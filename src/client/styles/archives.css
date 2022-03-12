@@ -1,0 +1,34 @@
+.archives-list-wrapper {
+  @apply w-full max-w-6xl m-auto pt-20;
+
+
+  & .archives-list-container {
+    @apply p-5 bg-white rounded-md mb-5 shadow-sm;
+  }
+
+  & h2 {
+    @apply text-slate-800 text-4xl py-5 pl-5 bg-white shadow-sm rounded-md mb-5;
+  }
+
+  & h3,h4 {
+    @apply text-2xl pb-4 text-slate-500;
+
+    & span {
+      @apply ml-3 ;
+    }
+  }
+
+  & .archives-item {
+    @apply flex justify-start items-center;
+    @apply h-9 text-xl text-slate-400;
+
+    & span {
+      @apply mr-5;
+    }
+
+    & a {
+      @apply text-slate-500 font-bold transition-all;
+      @apply hover:underline hover:text-slate-600;
+    }
+  }
+}

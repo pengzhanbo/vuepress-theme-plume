@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ES2020",
+    "rootDir": "./src",
+    "outDir": "./lib",
+    "types": ["@vuepress/client/types", "webpack-env", "vite/client"],
+    "paths": {
+      "@theme/*": ["./src/client/component/*"],
+      "@internal/*": ["./example/.vuepress/.temp/internal/*"],
+    },
+  },
+  "include": ["./src/client", "./src/shared"]
+}

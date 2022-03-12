@@ -1,6 +1,6 @@
 {
   "name": "@pengzhanbo/vuepress-theme-plume",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "blog theme by vuepress2.x",
   "main": "lib/node/index.js",
   "types": "lib/node/index.d.ts",
@@ -16,6 +16,14 @@
   ],
   "author": "pengzhanbo",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+  },
+  "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume",
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
   "scripts": {
     "dev-watch": "yarn clean && concurrently \"yarn copy-watch\" \"yarn tsc-watch\"",
     "dev": "vuepress dev example --debug",

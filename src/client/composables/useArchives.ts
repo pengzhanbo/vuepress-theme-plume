@@ -1,7 +1,7 @@
-import * as dayjs from 'dayjs'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
 import type { PostItemIndex } from '../../shared'
+import { dayjs } from '../utils/dayjs'
 import { usePostIndex } from './usePostIndex'
 
 export interface ArchivesItem {

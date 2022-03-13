@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import * as dayjs from 'dayjs'
 import type { Component } from 'vue'
 import { h, withDefaults } from 'vue'
 import type { CategoryItem } from '../composables'
+import { dayjs } from '../utils/dayjs'
 
 interface Props {
   category: CategoryItem

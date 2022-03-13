@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import * as dayjs from 'dayjs'
 import { useArchivesList } from '../composables/useArchives'
+import { dayjs } from '../utils/dayjs'
 
 const archivesList = useArchivesList()
 

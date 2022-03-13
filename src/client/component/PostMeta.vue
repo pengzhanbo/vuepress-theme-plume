@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import * as dayjs from 'dayjs'
 import { computed, withDefaults } from 'vue'
 import type { PostItemIndex } from '../../shared'
+import { dayjs } from '../utils/dayjs'
 import Icon from './Icon.vue'
 
 const props = withDefaults(

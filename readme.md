@@ -19,7 +19,7 @@ yarn add @pengzhanbo/vuepress-theme-plume
 // or {sourceDir}/.vuepress/config.{js, ts}
 export default {
   // ...
-  theme: path.resolve(__dirname, './lib/node/index.js'),
+  theme: '@pengzhanbo/vuepress-theme-plume',
   themeConfig: {
     // 首页头部大图
     bannerImg: '/big-banner.jpg',

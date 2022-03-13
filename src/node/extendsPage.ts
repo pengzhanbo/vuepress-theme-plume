@@ -10,7 +10,7 @@ export const extendsPage = (page: Page<PlumeThemePageData>): void => {
     ?.split('/')
     .slice(0, -1)
     .map((category) => {
-      const match = category.match(/^(\d+?)?(?:\.?)([^]+)$/) || []
+      const match = category.match(/^(\d+)?(?:\.?)([^]+)$/) || []
       return {
         type: Number(match[1]) || uuid++,
         name: match[2],

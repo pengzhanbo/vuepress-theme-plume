@@ -43,8 +43,8 @@ usePostIndex().value.forEach((post) => {
         children: [],
         postList: [],
       }
+      children.push(current)
     }
-    children.push(current)
     children = current.children
     if (index === category.length - 1) {
       current.postList.push(post)

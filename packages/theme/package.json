@@ -1,6 +1,7 @@
 {
   "name": "@vuepress-plume/vuepress-theme-plume",
   "version": "1.0.0-beta.1",
+  "private": true,
   "description": "A Blog Theme for VuePress 2.0",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "homepage": "",

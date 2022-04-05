@@ -3,7 +3,12 @@ import { isLinkHttp, isString } from '@vuepress/shared'
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import type { NavbarGroup, NavbarItem, ResolveNavbarItem } from '../../shared'
+import type {
+  NavbarGroup,
+  NavbarItem,
+  NavLink,
+  ResolveNavbarItem,
+} from '../../shared'
 import { resolveRepoType } from '../utils'
 import { useNavLink } from './navLink'
 import { useThemeLocaleData } from './themeData'
@@ -49,7 +54,7 @@ export const useNavbarSelectLanguage = (): ComputedRef<ResolveNavbarItem[]> => {
           ) {
             link = targetLocalePage
           } else {
-            link = targetThemeLocale.home ?? targetLocalPath
+            link = (targetThemeLocale.home as NavLink)?.link ?? targetLocalPath
           }
         }
         return { text, link }
@@ -111,5 +116,13 @@ const resolveNavbarItem = (
 
 export const useNavbarConfig = (): ComputedRef<ResolveNavbarItem[]> => {
   const themeLocale = useThemeLocaleData()
-  return computed(() => (themeLocale.value.navbar || []).map(resolveNavbarItem))
+  const { navbar, home, category, archive, tag } = themeLocale.value
+  const config: NavbarItem[] = [
+    home as NavbarItem,
+    ...((navbar || []) as unknown as NavbarItem[]),
+    category as NavbarItem,
+    tag as NavbarItem,
+    archive as NavbarItem,
+  ].filter((nav) => nav)
+  return computed(() => config.map(resolveNavbarItem))
 }

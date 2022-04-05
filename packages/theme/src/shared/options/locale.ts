@@ -56,7 +56,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
   /**
    * 网站站点首页
    */
-  home?: string
+  home?: false | NavLink
   /**
    * 网站站点logo
    */

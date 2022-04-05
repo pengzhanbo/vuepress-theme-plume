@@ -1,40 +1,15 @@
 <script lang="ts" setup>
-import { computed, onMounted, ref } from 'vue'
-import { onBeforeRouteUpdate, useRouter } from 'vue-router'
+import { computed } from 'vue'
 import { useThemeLocaleData } from '../composables'
 
 const themeLocale = useThemeLocaleData()
-const router = useRouter()
 
 const footer = computed(() => {
   return themeLocale.value.footer
 })
-const style = ref({})
-function setStyle(): void {
-  if (__VUEPRESS_SSR__) return
-  setTimeout(() => {
-    if (
-      document.documentElement.scrollHeight <=
-      document.documentElement.clientHeight
-    ) {
-      style.value = {
-        position: 'fixed',
-        bottom: 0,
-        left: 0,
-      }
-    } else {
-      style.value = {}
-    }
-  }, 30)
-}
-router.beforeEach(() => {
-  setStyle()
-})
-onMounted(() => setStyle())
-onBeforeRouteUpdate(() => setStyle())
 </script>
 <template>
-  <footer v-if="footer" class="theme-plume-footer" :style="style">
+  <footer v-if="footer" class="theme-plume-footer">
     <!-- eslint-disable vue/no-v-html -->
     <div
       v-if="footer.content"
@@ -50,12 +25,14 @@ onBeforeRouteUpdate(() => setStyle())
 </template>
 <style lang="scss">
 .theme-plume-footer {
-  width: 100%;
-  padding: 1.25rem;
-  margin-top: 4rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 100%;
+  padding: 1.25rem;
   background-color: var(--c-bg-container);
   box-shadow: var(--shadow-footer);
   font-size: 14px;

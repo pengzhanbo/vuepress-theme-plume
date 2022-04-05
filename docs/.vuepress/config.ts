@@ -11,7 +11,7 @@ export default defineUserConfig<PlumeThemeOptions>({
   themeConfig: {
     logo: 'https://pengzhanbo.cn/g.gif',
     avatar: {
-      url: 'https://via.placeholder.com/300?text=Profile+Photo',
+      url: '/images/blogger.jpg',
       name: 'Plume Theme',
       description: 'The Theme for Vuepress 2.0',
     },
@@ -37,49 +37,25 @@ export default defineUserConfig<PlumeThemeOptions>({
     },
     darkMode: true,
     navbar: [
-      { text: '首页', link: '/' },
-      {
-        text: '分类',
-        link: '/category/',
-      },
-      {
-        text: '标签',
-        link: '/tag/',
-      },
       {
         text: '笔记',
         children: [
-          // {
-          //   text: '技术',
-          //   children: [{ text: '《typescript学习笔记》', link: '/' }],
-          // },
-          // {
-          //   text: '技术',
-          //   children: [{ text: '《typescript学习笔记》', link: '/' }],
-          // },
           {
             text: 'typescript',
             link: '/note/typescript/',
-          },
-          {
-            text: '标签',
-            link: '/tag/',
           },
         ],
       },
     ],
     footer: {
       copyright: 'Copyright © 2022-present pengzhanbo',
+      content: '',
     },
     themePlugins: {
       caniuse: {
         mode: 'embed',
       },
       search: {
-        // hotKeys: ['s', '/'],
-        // maxSuggestions: 5,
-        // isSearchable: (page) => page.path !== '/',
-        // getExtraFields: () => [],
         locales: {
           '/': {
             placeholder: '搜索',

@@ -10,3 +10,4 @@ export * from './scrollPromise'
 
 export * from './tag'
 export * from './category'
+export * from './archive'

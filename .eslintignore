@@ -5,3 +5,4 @@ dist/
 !.vuepress/
 !.*.js
 scripts/
+LICENSE

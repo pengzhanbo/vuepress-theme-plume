@@ -9,15 +9,21 @@ import Tag from '@theme-plume/Tag.vue'
 import { usePageFrontmatter } from '@vuepress/client'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useThemeLocaleData } from '../composables'
 
 const route = useRoute()
 const frontmatter = usePageFrontmatter()
+const themeLocale = useThemeLocaleData()
 const isHome = computed(() => {
   return route.path === '/' && frontmatter.value.home
 })
 
 const pageType = computed(() => {
   return (frontmatter.value.pageType as string) || ''
+})
+
+const footer = computed(() => {
+  return themeLocale.value.footer
 })
 
 const pageMap = {
@@ -27,7 +33,7 @@ const pageMap = {
 }
 </script>
 <template>
-  <div class="plume-theme">
+  <div class="plume-theme" :class="footer ? 'bottom' : ''">
     <slot name="navbar">
       <Navbar>
         <template #before>

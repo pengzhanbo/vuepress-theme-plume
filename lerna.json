@@ -1,13 +1,15 @@
 {
   "useWorkspaces": true,
   "npmClient": "yarn",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "command": {
     "version": {
       "allowBranch": "main",
       "conventionalCommits": true,
       "exact": true,
-      "ignoreChanges": ["**/*.md"],
+      "ignoreChanges": [
+        "**/*.md"
+      ],
       "message": "build: publish %s"
     }
   }

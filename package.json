@@ -26,7 +26,6 @@
   "prettier": "prettier-config-vuepress",
   "devDependencies": {
     "@vuepress/cli": "^2.0.0-beta.37",
-    "chalk": "^5.0.1",
     "concurrently": "^7.0.0",
     "cpx2": "^4.2.0",
     "cross-env": "^7.0.3",
@@ -43,10 +42,13 @@
     "webpack-env": "^0.8.0"
   },
   "dependencies": {
-    "ts-node": "^10.7.0",
+    "@types/inquirer": "^8.2.1",
+    "@types/semver": "^7.3.9",
+    "chalk": "^5.0.1",
     "execa": "^6.1.0",
+    "inquirer": "^8.2.2",
     "ora": "^6.1.0",
     "semver": "^7.3.5",
-    "inquirer": "^8.2.2"
+    "ts-node": "^10.7.0"
   }
 }

@@ -1,4 +1,4 @@
-import { green, red } from 'chalk'
+import chalk from 'chalk'
 import { prompt } from 'inquirer'
 import type { ReleaseType } from 'semver'
 import { inc } from 'semver'
@@ -8,6 +8,8 @@ import { getNpmTags, getVersion, versions } from './version'
 import type { Answers } from './version'
 const execa = require('execa')
 const ora = require('ora')
+
+const { green, red } = chalk
 
 export const release = async (): Promise<void> => {
   const buildSpinner = ora('Building project').start()

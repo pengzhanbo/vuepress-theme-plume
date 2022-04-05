@@ -51,7 +51,7 @@ const pageMap = {
       </Page>
     </slot>
     <slot name="footer">
-      <PageFooter />
+      <PageFooter></PageFooter>
     </slot>
   </div>
 </template>

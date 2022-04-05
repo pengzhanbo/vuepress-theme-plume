@@ -15,9 +15,7 @@
   },
   "include": [
     "packages/**/*",
-    "docs/.vuepress/**/*",
-    "scripts/**/*",
-    "./lerna.json"
+    "docs/.vuepress/**/*"
   ],
   "exclude": [
     "node_modules",

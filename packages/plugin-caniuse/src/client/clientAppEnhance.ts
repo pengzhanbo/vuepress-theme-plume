@@ -9,6 +9,7 @@ const mode = __CAN_I_USE_INJECT_MODE__
 
 export default defineClientAppEnhance(({ router }) => {
   if (__VUEPRESS_SSR__) return
+
   router.afterEach((to) => {
     if (mode === 'embed') {
       setTimeout(() => resolveCanIUse(), 1500)

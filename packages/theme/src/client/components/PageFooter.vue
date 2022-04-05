@@ -11,6 +11,7 @@ const footer = computed(() => {
 })
 const style = ref({})
 function setStyle(): void {
+  if (__VUEPRESS_SSR__) return
   setTimeout(() => {
     if (
       document.documentElement.scrollHeight <=

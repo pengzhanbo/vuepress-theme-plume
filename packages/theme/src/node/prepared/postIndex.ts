@@ -41,6 +41,13 @@ export const preparedPostIndex = (
         page.path !== '/404.html'
       )
     })
+    .sort((left, right) => {
+      const leftMatter = left.frontmatter as PlumeThemePostFrontmatter
+      const rightMatter = right.frontmatter as PlumeThemePostFrontmatter
+      const leftTime = getCreateTime(leftMatter.createTime || '')
+      const rightTime = getCreateTime(rightMatter.createTime || '')
+      return leftTime < rightTime ? 1 : -1
+    })
     .map((page: Page<PlumeThemePageData>) => {
       const frontmatter = page.frontmatter as PlumeThemePostFrontmatter
       return {
@@ -55,11 +62,6 @@ export const preparedPostIndex = (
         category: page.data.category,
         isNote: page.data.isNote,
       } as PostItem
-    })
-    .sort((left, right) => {
-      const leftTime = getCreateTime(left.createTime)
-      const rightTime = getCreateTime(right.createTime)
-      return leftTime < rightTime ? 1 : -1
     })
   postIndex = [
     ...postIndex

@@ -4,7 +4,7 @@
   "description": "The Plugin for VuePres 2, Support Can-I-Use feature",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "homepage": "",
-  "license": "ISC",
+  "license": "MIT",
   "main": "lib/node/index.js",
   "files": [
     "lib"
@@ -24,5 +24,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "689d9606b97e32b20530979d37f6a12020b2f0b8"
 }

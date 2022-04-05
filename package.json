@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-plume",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.10",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -17,7 +17,8 @@
     "package:clean": "lerna run clean",
     "dev": "concurrently \"yarn dev:package\" \"yarn docs:vite-serve\"",
     "build": "yarn build:package",
-    "lerna": "lerna clean && lerna bootstrap"
+    "lerna": "lerna clean && lerna bootstrap",
+    "release": "yarn build && lerna publish"
   },
   "author": "pengzhanbo",
   "license": "MIT",

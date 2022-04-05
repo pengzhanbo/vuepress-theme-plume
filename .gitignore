@@ -1,25 +1,13 @@
-# VuePress files
-example/.vuepress/.temp/
-example/.vuepress/.cache/
-example/.vuepress/dist/
+node_modules
 
-# Dist files
-lib/
+docs/.vuepress/.cache
+docs/.vuepress/.temp
+docs/.vuepress/dist
 
-# Test temp files
-**/__fixtures__/.temp/
+lib
 
-# Test coverage files
-coverage/
-
-# Node modules
-node_modules/
-
-# MacOS Desktop Services Store
 .DS_Store
 
-# Log files
 *.log
-
-# Typescript build info
 *.tsbuildinfo
+.mind

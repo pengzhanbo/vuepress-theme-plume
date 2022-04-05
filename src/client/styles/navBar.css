@@ -1,7 +1,0 @@
-.navbar-wrapper {
-  @apply fixed top-0 left-0 w-full h-14 bg-white shadow-md z-50 flex justify-between items-center px-10;
-
-  & .nav-link {
-    @apply ml-8 text-slate-600 font-bold;
-  }
-}

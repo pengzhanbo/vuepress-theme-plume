@@ -3,7 +3,11 @@
     "composite": true,
     "declaration": true,
     "declarationMap": false,
-    "lib": ["DOM", "ES2020"],
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "DOM",
+      "ES2020"
+    ],
     "moduleResolution": "node",
     "newLine": "lf",
     "noEmitOnError": true,
@@ -13,6 +17,6 @@
     "sourceMap": false,
     "strict": true,
     "strictNullChecks": true,
-    "target": "ES2018"
+    "target": "ES2018",
   }
 }

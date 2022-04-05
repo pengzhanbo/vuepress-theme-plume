@@ -1,0 +1,135 @@
+<script lang="ts" setup>
+import DropdownTransition from '@theme-plume/DropdownTransition.vue'
+import { isLinkHttp, isLinkMailto } from '@vuepress/shared'
+import type { FunctionalComponent, Ref } from 'vue'
+import { ref } from 'vue'
+import { useThemeLocaleData } from '../composables'
+import {
+  EmailIcon,
+  FacebookIcon,
+  GithubIcon,
+  LinkedinIcon,
+  QQIcon,
+  TwitterIcon,
+  WeiBoIcon,
+  ZhiHuIcon,
+} from './icons'
+
+interface SocialItem {
+  url: string
+  icon: FunctionalComponent
+}
+type SocialData = SocialItem[]
+type SocialRef = Ref<SocialData>
+
+const themeLocale = useThemeLocaleData()
+const avatar = themeLocale.value.avatar || {}
+const social = themeLocale.value.social || {}
+
+const useSocialList = (): SocialRef => {
+  const list: SocialRef = ref([])
+  if (social.QQ) {
+    const url = isLinkHttp(social.QQ)
+      ? social.QQ
+      : `https://wpa.qq.com/msgrd?v=3&uin=${social.QQ}&site=qq&menu=yes`
+    list.value.push({ url, icon: QQIcon })
+  }
+  if (social.email) {
+    const url = isLinkMailto(social.email)
+      ? social.email
+      : `mailto:${social.email}`
+    list.value.push({ url, icon: EmailIcon })
+  }
+  if (social.github) {
+    const url = isLinkHttp(social.github)
+      ? social.github
+      : `https://github.com/${social.github}`
+    list.value.push({ url, icon: GithubIcon })
+  }
+  if (social.linkedin) {
+    list.value.push({ url: social.linkedin, icon: LinkedinIcon })
+  }
+  if (social.weiBo) {
+    list.value.push({ url: social.weiBo, icon: WeiBoIcon })
+  }
+  if (social.zhiHu) {
+    list.value.push({ url: social.zhiHu, icon: ZhiHuIcon })
+  }
+  if (social.facebook) {
+    list.value.push({ url: social.facebook, icon: FacebookIcon })
+  }
+  if (social.twitter) {
+    list.value.push({ url: social.twitter, icon: TwitterIcon })
+  }
+  return list
+}
+const socialList = useSocialList()
+</script>
+<template>
+  <DropdownTransition>
+    <section class="blogger-info">
+      <p v-if="avatar.url" class="avatar-img">
+        <img :src="avatar.url" :alt="avatar.name" />
+      </p>
+      <h3>{{ avatar.name }}</h3>
+      <p>{{ avatar.description }}</p>
+      <p class="blogger-social">
+        <a
+          v-for="item in socialList"
+          :key="item.url"
+          target="_blank"
+          :href="item.url"
+        >
+          <Component :is="item.icon" />
+        </a>
+      </p>
+    </section>
+  </DropdownTransition>
+</template>
+<style lang="scss">
+.blogger-info {
+  padding: 1.25rem;
+  border-radius: var(--p-around);
+  background-color: var(--c-bg-container);
+  box-shadow: var(--shadow);
+
+  .avatar-img {
+    padding-bottom: 0.8rem;
+    img {
+      width: 75%;
+    }
+  }
+
+  p,
+  h3 {
+    text-align: center;
+    margin: 0;
+  }
+
+  h3 {
+    padding-bottom: 0.5rem;
+  }
+
+  .blogger-social {
+    vertical-align: middle;
+    text-align: center;
+    a {
+      display: inline-block;
+      margin: 0.5rem 0.15rem 0;
+      vertical-align: middle;
+    }
+
+    .icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .email-icon,
+    .github-icon,
+    .weiBo-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+</style>

@@ -1,8 +1,0 @@
-/example
-/node_modules
-/src
-.editorconfig
-.eslint*
-.git*
-**/*.tsbuildinfo
-vuepress.config.js

@@ -1,0 +1,53 @@
+{
+  "name": "@vuepress-plume/vuepress-theme-plume",
+  "version": "1.0.0-beta.0",
+  "description": "A Blog Theme for VuePress 2.0",
+  "author": "pengzhanbo <volodymyr@foxmail.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "lib/node/index.js",
+  "files": [
+    "lib",
+    "template"
+  ],
+  "scripts": {
+    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
+    "copy:watch": "yarn copy -w",
+    "ts": "tsc -b tsconfig.build.json",
+    "ts:watch": "tsc -b tsconfig.build.json --watch",
+    "clean": "rimraf lib *.tsbuildinfo",
+    "dev": "concurrently \"yarn copy:watch\" \"yarn ts:watch\"",
+    "build": "yarn clean && yarn copy && yarn ts"
+  },
+  "dependencies": {
+    "@types/lodash.merge": "^4.6.6",
+    "@vuepress-plume/vuepress-plugin-caniuse": "^1.0.0-beta.0",
+    "@vuepress/client": "^2.0.0-beta.37",
+    "@vuepress/core": "^2.0.0-beta.37",
+    "@vuepress/plugin-container": "^2.0.0-beta.37",
+    "@vuepress/plugin-docsearch": "^2.0.0-beta.37",
+    "@vuepress/plugin-external-link-icon": "^2.0.0-beta.37",
+    "@vuepress/plugin-medium-zoom": "^2.0.0-beta.37",
+    "@vuepress/plugin-nprogress": "^2.0.0-beta.37",
+    "@vuepress/plugin-prismjs": "^2.0.0-beta.37",
+    "@vuepress/plugin-search": "^2.0.0-beta.36",
+    "@vuepress/plugin-theme-data": "^2.0.0-beta.37",
+    "@vuepress/plugin-toc": "^2.0.0-beta.37",
+    "@vuepress/shared": "^2.0.0-beta.37",
+    "@vuepress/utils": "^2.0.0-beta.37",
+    "@vueuse/core": "^8.2.3",
+    "chokidar": "^3.5.3",
+    "date-fns": "^2.28.0",
+    "gray-matter": "^4.0.3",
+    "json2yaml": "^1.1.0",
+    "lodash.merge": "^4.6.2",
+    "nanoid": "^3.3.2",
+    "sass": "^1.49.9",
+    "sass-loader": "^12.6.0",
+    "vue": "^3.2.31",
+    "vue-router": "^4.0.14"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

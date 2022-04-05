@@ -1,0 +1,28 @@
+{
+  "name": "@vuepress-plume/vuepress-plugin-caniuse",
+  "version": "1.0.0-beta.0",
+  "description": "The Plugin for VuePres 2, Support Can-I-Use feature",
+  "author": "pengzhanbo <volodymyr@foxmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/node/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "ts": "tsc -b tsconfig.build.json",
+    "ts:watch": "tsc -b tsconfig.build.json --watch",
+    "clean": "rimraf lib *.tsbuildinfo",
+    "dev": "yarn ts:watch",
+    "build": "yarn clean && yarn ts"
+  },
+  "dependencies": {
+    "@vuepress/client": "^2.0.0-beta.37",
+    "@vuepress/core": "^2.0.0-beta.37",
+    "@vuepress/utils": "^2.0.0-beta.37",
+    "markdown-it-container": "^3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

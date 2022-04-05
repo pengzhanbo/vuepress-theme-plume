@@ -1,0 +1,38 @@
+@import '_variables';
+
+@mixin  content_wrapper {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
+
+  @media (max-width: $MQNarrow) {
+    padding: 2rem;
+  }
+
+  @media (max-width: $MQMobileNarrow) {
+    padding: 1.5rem;
+  }
+}
+
+@mixin  dropdown_wrapper {
+  transition: height 0.1s ease-out;
+  overflow: hidden;
+}
+
+@mixin wrapper {
+  width: 100%;
+  padding-top: var(--navbar-height);
+}
+
+@mixin container_wrapper {
+  width: 100%;
+  max-width: $containerWith;
+  margin: auto;
+}
+
+@mixin content {
+  padding: 1.25rem;
+  background-color: var(--c-bg-container);
+  border-radius: var(--p-around);
+  box-shadow: var(--shadow);
+}

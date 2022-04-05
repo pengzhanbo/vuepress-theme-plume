@@ -1,8 +1,8 @@
 {
   "extends": "./tsconfig.base.json",
+  "files": [],
   "references": [
-    { "path": "./tsconfig.esm.json" },
-    { "path": "./tsconfig.cjs.json" }
-  ],
-  "files": []
+    { "path": "./packages/theme/tsconfig.build.json" },
+    { "path": "./packages/plugin-caniuse/tsconfig.build.json" }
+  ]
 }

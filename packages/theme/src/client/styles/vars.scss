@@ -1,0 +1,96 @@
+:root {
+
+  // brand color
+  --c-brand: #0095d9;
+  --c-brand-light: #2ca9e1;
+
+  // background color
+  --c-bg: #F3F4F6;
+  --c-bg-light: #E5E7EB;
+  --c-bg-lighter: #D1D5DB;
+  --c-bg-container: #fff;
+  --c-bg-navbar: var(--c-bg-container);
+  --c-bg-sidebar: var(--c-bg-container);
+  --c-bg-arrow: #ccc;
+
+  // text color-scheme
+  --c-text: #2c3e50;
+  --c-text-accent: var(--c-brand);
+  --c-text-light: #3a5169;
+  --c-text-lighter: #4e6e8e;
+  --c-text-lightest: #6a8bad;
+  --c-text-quote: #999;
+
+  // border colors
+  --c-border: #eaecef;
+  --c-border-dark: #dfe2e5;
+
+  // container color
+  --c-tip: #60A5FA;
+  --c-tip-bg: var(--c-bg-light);
+  --c-tip-title: var(--c-text);
+  --c-tip-text: var(--c-text);
+  --c-tip-text-accent: var(--c-text-accent);
+  --c-warning: #e7c000;
+  --c-warning-bg: #fffae3;
+  --c-warning-title: #ad9000;
+  --c-warning-text: #746000;
+  --c-warning-text-accent: var(--c-text);
+  --c-danger: #cc0000;
+  --c-danger-bg: #ffe0e0;
+  --c-danger-title: #990000;
+  --c-danger-text: #600;
+  --c-danger-text-accent: var(--c-text);
+  --c-detail-bg: #eee;
+
+  // transition
+  --t-color: 0.3s ease;
+  --t-transform: 0.3s ease;
+
+  // box-shadow
+  --shadow-sm: 0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 0 #0000, 0 0 #0000, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 0 #0000, 0 0 #0000, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 0 #0000, 0 0 #0000, 0 6px 8px -1px rgba(0, 0, 0, 0.1), 0 3px 6px -1px rgba(0, 0, 0, 0.06);
+
+  --shadow-footer: 0 -1px 3px 0px rgba(0, 0, 0, 0.1), 0 0 #0000, 0 0 #0000, 0 -1px 2px 0px rgba(0, 0, 0, 0.06);
+
+  // border-radius
+  --p-around: 4px;
+
+  // code block
+  --code-bg-color: #282c34;
+  --code-hl-bg-color: rgba(0, 0, 0, 0.66);
+  --code-ln-color: #9e9e9e;
+  --code-ln-wrapper-width: 3.5rem;
+
+
+  // font vars
+  --font-family: -apple-system, BlinkMackSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-code: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
+  --navbar-height: 3.6rem;
+  --navbar-padding-v: 0.7rem;
+  --navbar-padding-h: 1.5rem;
+  --sidebar-width: 20rem;
+  --sidebar-width-mobile: calc(var(--sidebar-width) * 0.82);
+  --content-width: 740px;
+
+  // search box vars
+  --search-bg-color: var(--c-bg-container);
+  --search-accent-color: var(--c-text-accent);
+  --search-text-color: var(--c-text);
+  --search-border-color: var(--c-border);
+
+  --search-item-text-color: var(--c-brand);
+  --search-item-focus-bg-color: var(--c-bg-light);
+
+  --search-input-width: 8rem;
+  --search-result-width: 20rem;
+
+}
+
+.external-link-icon {
+  --external-link-icon-color: var(--c-text-quote);
+}

@@ -1,6 +1,6 @@
 {
   "name": "@vuepress-plume/vuepress-theme-plume",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "private": true,
   "description": "A Blog Theme for VuePress 2.0",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@types/lodash.merge": "^4.6.6",
-    "@vuepress-plume/vuepress-plugin-caniuse": "1.0.0-beta.1",
+    "@vuepress-plume/vuepress-plugin-caniuse": "1.0.0-beta.2",
     "@vuepress/client": "^2.0.0-beta.37",
     "@vuepress/core": "^2.0.0-beta.37",
     "@vuepress/plugin-container": "^2.0.0-beta.37",

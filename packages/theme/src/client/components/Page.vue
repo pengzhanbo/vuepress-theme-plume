@@ -5,11 +5,12 @@ import { usePageData } from '@vuepress/client'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import type { PlumeThemePageData } from '../../shared'
-import { useThemeLocaleData } from '../composables'
+import { useDarkMode, useThemeLocaleData } from '../composables'
 import Toc from './Toc'
 const page = usePageData<PlumeThemePageData>()
 const route = useRoute()
 const themeLocale = useThemeLocaleData()
+const isDarkMode = useDarkMode()
 
 const isNote = computed(() => {
   return page.value.isNote || false
@@ -25,6 +26,9 @@ const isNote = computed(() => {
             <h1>{{ page.title }}</h1>
             <PostMeta :post="page" type="post" :border="true" />
             <Content />
+            <div class="comment-container">
+              <CommentService :darkmode="isDarkMode" />
+            </div>
           </div>
           <div v-if="page.headers?.length > 0" class="plume-theme-page-toc">
             <Toc />
@@ -65,5 +69,8 @@ const isNote = computed(() => {
       max-width: 100%;
     }
   }
+}
+.comment-container {
+  margin-top: 8rem;
 }
 </style>

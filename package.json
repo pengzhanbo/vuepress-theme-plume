@@ -3,6 +3,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "private": true,
   "scripts": {
     "docs:vite-serve": "vuepress-vite dev docs",
     "docs:vite-build": "vuepress-vite build docs",

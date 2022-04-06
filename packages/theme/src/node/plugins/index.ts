@@ -5,6 +5,7 @@ import type {
 } from '../../shared'
 import { resolveActiveHeaderLink } from './activeHeaderLink'
 import { resolveCanIUse } from './caniuse'
+import { resolveComment } from './comment'
 import { resolveCopyCode } from './copyCode'
 import { resolveExternalLinkIconPlugin } from './externalLinkIcon'
 import { resolveMarkdownEnhance } from './markdownEnhance'
@@ -31,6 +32,7 @@ export const getPlugins = (
     resolvePrismjs(plugins),
     resolveCopyCode(plugins),
     resolveMarkdownEnhance(plugins),
+    resolveComment(plugins),
     resolveThemeData(localeOptions),
   ].filter((item) => item[1] !== false)
 }

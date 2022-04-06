@@ -6,6 +6,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import type { PlumeThemePageData } from '../../shared'
 import { useThemeLocaleData } from '../composables'
+import Toc from './Toc'
 const page = usePageData<PlumeThemePageData>()
 const route = useRoute()
 const themeLocale = useThemeLocaleData()

@@ -3,14 +3,17 @@ import type {
   PlumeThemeLocaleOptions,
   PlumeThemePluginOptions,
 } from '../../shared'
+import { resolveActiveHeaderLink } from './activeHeaderLink'
 import { resolveCanIUse } from './caniuse'
+import { resolveCopyCode } from './copyCode'
 import { resolveExternalLinkIconPlugin } from './externalLinkIcon'
+import { resolveMarkdownEnhance } from './markdownEnhance'
 import { resolveMediumZoom } from './mediumZoom'
 import { resolveNprogress } from './nprogress'
+import { resolvePalette } from './palette'
 import { resolvePrismjs } from './prismjs'
 import { resolveSearch } from './search'
 import { resolveThemeData } from './themeData'
-import { resolveToc } from './toc'
 
 export const getPlugins = (
   app: App,
@@ -18,13 +21,16 @@ export const getPlugins = (
   localeOptions: PlumeThemeLocaleOptions
 ): PluginConfig<PluginOptions>[] => {
   return [
+    resolveActiveHeaderLink(),
+    resolvePalette(),
     resolveNprogress(plugins),
     resolveMediumZoom(plugins),
-    resolveToc(plugins),
-    resolveCanIUse(plugins.caniuse || false),
-    resolveExternalLinkIconPlugin(plugins.externalLinkIcon, localeOptions),
+    resolveCanIUse(plugins),
+    resolveExternalLinkIconPlugin(plugins, localeOptions),
     resolveSearch(plugins),
     resolvePrismjs(plugins),
+    resolveCopyCode(plugins),
+    resolveMarkdownEnhance(plugins),
     resolveThemeData(localeOptions),
   ].filter((item) => item[1] !== false)
 }

@@ -3,12 +3,19 @@
   "version": "1.0.0-beta.6",
   "description": "The Plugin for VuePres 2, Support Can-I-Use feature",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
-  "homepage": "",
+  "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
   "license": "MIT",
   "main": "lib/node/index.js",
   "files": [
     "lib"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
   "scripts": {
     "ts": "tsc -b tsconfig.build.json",
     "ts:watch": "tsc -b tsconfig.build.json --watch",
@@ -17,10 +24,13 @@
     "build": "yarn clean && yarn ts"
   },
   "dependencies": {
-    "@vuepress/client": "^2.0.0-beta.37",
-    "@vuepress/core": "^2.0.0-beta.37",
-    "@vuepress/utils": "^2.0.0-beta.37",
+    "@vuepress/client": "^2.0.0-beta.38",
+    "@vuepress/core": "^2.0.0-beta.38",
+    "@vuepress/utils": "^2.0.0-beta.38",
     "markdown-it-container": "^3.0.0"
+  },
+  "peerDependencies": {
+    "vuepress": "^2.0.0-beta.38"
   },
   "publishConfig": {
     "access": "public"

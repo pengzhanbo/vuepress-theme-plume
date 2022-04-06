@@ -7,6 +7,7 @@ import {
 } from '@vuepress/client'
 import { computed, h } from 'vue'
 import type { FunctionalComponent } from 'vue'
+import type { NavLink } from '../../shared'
 import { useDarkMode, useThemeLocaleData } from '../composables'
 
 const routeLocale = useRouteLocale()
@@ -15,7 +16,7 @@ const themeLocale = useThemeLocaleData()
 const isDarkMode = useDarkMode()
 
 const navbarBrandLink = computed(
-  () => themeLocale.value.home || routeLocale.value
+  () => (themeLocale.value.home as NavLink)?.link || routeLocale.value
 )
 const navbarBrandTitle = computed(() => siteLocale.value.title)
 const navbarBrandLogo = computed(() => {

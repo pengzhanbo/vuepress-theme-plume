@@ -6,7 +6,7 @@ export default defineUserConfig<PlumeThemeOptions>({
   lang: 'zh',
   title: 'Plume Theme',
   description: '',
-  public: path.resolve(__dirname, '../public'),
+  public: path.resolve(__dirname, 'public'),
   theme: '@vuepress-plume/vuepress-theme-plume',
   themeConfig: {
     logo: 'https://pengzhanbo.cn/g.gif',

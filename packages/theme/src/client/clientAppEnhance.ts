@@ -12,11 +12,4 @@ export default defineClientAppEnhance(({ app }) => {
     }
     return null
   })
-  app.component('Toc', () => {
-    const Toc = app.component('TocCom')
-    if (Toc) {
-      return h(Toc)
-    }
-    return null
-  })
 })

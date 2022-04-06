@@ -3,13 +3,20 @@
   "version": "1.0.0-beta.7",
   "description": "A Blog Theme for VuePress 2.0",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
-  "homepage": "",
+  "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
   "license": "MIT",
   "main": "lib/node/index.js",
   "files": [
     "lib",
     "template"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
   "scripts": {
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
     "copy:watch": "yarn copy -w",
@@ -22,19 +29,21 @@
   "dependencies": {
     "@types/lodash.merge": "^4.6.6",
     "@vuepress-plume/vuepress-plugin-caniuse": "1.0.0-beta.6",
-    "@vuepress/client": "^2.0.0-beta.37",
-    "@vuepress/core": "^2.0.0-beta.37",
-    "@vuepress/plugin-container": "^2.0.0-beta.37",
-    "@vuepress/plugin-docsearch": "^2.0.0-beta.37",
-    "@vuepress/plugin-external-link-icon": "^2.0.0-beta.37",
-    "@vuepress/plugin-medium-zoom": "^2.0.0-beta.37",
-    "@vuepress/plugin-nprogress": "^2.0.0-beta.37",
-    "@vuepress/plugin-prismjs": "^2.0.0-beta.37",
-    "@vuepress/plugin-search": "^2.0.0-beta.36",
-    "@vuepress/plugin-theme-data": "^2.0.0-beta.37",
-    "@vuepress/plugin-toc": "^2.0.0-beta.37",
-    "@vuepress/shared": "^2.0.0-beta.37",
-    "@vuepress/utils": "^2.0.0-beta.37",
+    "@vuepress/client": "^2.0.0-beta.38",
+    "@vuepress/core": "^2.0.0-beta.38",
+    "@vuepress/plugin-active-header-links": "^2.0.0-beta.38",
+    "@vuepress/plugin-container": "^2.0.0-beta.38",
+    "@vuepress/plugin-docsearch": "^2.0.0-beta.38",
+    "@vuepress/plugin-external-link-icon": "^2.0.0-beta.38",
+    "@vuepress/plugin-medium-zoom": "^2.0.0-beta.38",
+    "@vuepress/plugin-nprogress": "^2.0.0-beta.38",
+    "@vuepress/plugin-palette": "^2.0.0-beta.38",
+    "@vuepress/plugin-prismjs": "^2.0.0-beta.38",
+    "@vuepress/plugin-search": "^2.0.0-beta.38",
+    "@vuepress/plugin-theme-data": "^2.0.0-beta.38",
+    "@vuepress/plugin-toc": "^2.0.0-beta.38",
+    "@vuepress/shared": "^2.0.0-beta.38",
+    "@vuepress/utils": "^2.0.0-beta.38",
     "@vueuse/core": "^8.2.3",
     "chokidar": "^3.5.3",
     "date-fns": "^2.28.0",
@@ -45,7 +54,12 @@
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",
     "vue": "^3.2.31",
-    "vue-router": "^4.0.14"
+    "vue-router": "^4.0.14",
+    "vuepress-plugin-copy-code2": "^2.0.0-beta.36",
+    "vuepress-plugin-md-enhance": "^2.0.0-beta.36",
+    "vuepress-plugin-reading-time2": "^2.0.0-beta.36",
+    "vuepress-plugin-seo2": "^2.0.0-beta.36",
+    "vuepress-plugin-sitemap2": "^2.0.0-beta.36"
   },
   "publishConfig": {
     "access": "public"

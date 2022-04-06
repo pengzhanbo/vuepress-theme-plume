@@ -1,32 +1,36 @@
 import type { CanIUsePluginOptions } from '@vuepress-plume/vuepress-plugin-caniuse'
 import type { DocsearchOptions } from '@vuepress/plugin-docsearch'
 import type { SearchPluginOptions } from '@vuepress/plugin-search'
+import type { CopyCodeOptions } from 'vuepress-plugin-copy-code2'
+import type { MarkdownEnhanceOptions } from 'vuepress-plugin-md-enhance'
 export interface PlumeThemePluginOptions {
   /**
    * 是否启用 can-i-use 插件
    */
-  caniuse?: CanIUsePluginOptions
+  caniuse?: false | CanIUsePluginOptions
 
   /**
    * 是否启用 external-link-icon 插件
    */
-  externalLinkIcon?: boolean
+  externalLinkIcon?: false
 
   /**
    * plugin-search 配置
    */
-  search?: Partial<SearchPluginOptions>
+  search?: false | Partial<SearchPluginOptions>
 
   /**
    * plugin-docsearch 配置
    */
-  docsearch?: Partial<DocsearchOptions>
+  docsearch?: false | Partial<DocsearchOptions>
 
-  prismjs?: boolean
+  prismjs?: false
 
-  nprogress?: boolean
+  nprogress?: false
 
-  mediumZoom?: boolean
+  mediumZoom?: false
 
-  toc?: boolean
+  copyCode?: false | CopyCodeOptions
+
+  markdownEnhance?: false | MarkdownEnhanceOptions
 }

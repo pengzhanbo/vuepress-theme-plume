@@ -7,7 +7,9 @@ const themeLocale = useThemeLocaleData()
 
 const message = themeLocale.value.notFound ?? ['Not Found']
 const getMsg = (): string => message[Math.floor(Math.random() * message.length)]
-const homeLink = themeLocale.value.home ?? routeLocale.value
+const homeLink = themeLocale.value.home
+  ? themeLocale.value.home.link
+  : routeLocale.value
 const homeText = themeLocale.value.backToHome ?? 'Back to home'
 </script>
 <template>

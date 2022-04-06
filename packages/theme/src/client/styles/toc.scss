@@ -1,54 +1,65 @@
+
+.theme-plume-toc {
+  border-left: solid 1px var(--c-border);
+  max-height: calc(100vh - var(--navbar-height) - (1.25rem * 3));
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    opacity: 0;
+  }
+  > .theme-plume-toc-list {
+    padding-left: 0;
+  }
+}
+
+
+.theme-plume-toc-list {
+  list-style: none;
+
+  .theme-plume-toc-link {
+    width: 100%;
+    display: inline-block;
+    color: var(--c-text-light);
+    border-left: solid 3px transparent;
+    padding-left: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color var(--t-color), border-color var(--t-color);
+
+    &.active {
+      color: var(--c-text-accent);
+      border-color: var((--c-text-accent));
+    }
+  }
+
+  .theme-plume-toc-list {
+    .theme-plume-toc-link {
+      border: none;
+      font-size: 14px;
+      color: var(--c-text-lighter);
+
+      &.active {
+        color: var(--c-text-accent);
+      }
+    }
+  }
+}
+
 .plume-theme-page-toc {
   width: 200px;
   margin-left: 1.25rem;
 
-  .vuepress-toc {
+  .theme-plume-toc {
     position: sticky;
     top: calc(var(--navbar-height) + 1.25rem);
-    border-left: solid 1px var(--c-border);
-    max-height: calc(100vh - var(--navbar-height) - (1.25rem * 3));
-    overflow-y: auto;
-
-    &::-webkit-scrollbar {
-      width: 0;
-      opacity: 0;
-    }
-    > .vuepress-toc-list {
-      padding-left: 0;
-    }
   }
+}
 
-
-  .vuepress-toc-list {
-    list-style: none;
-
-    .vuepress-toc-link {
-      width: 100%;
-      display: inline-block;
-      color: var(--c-text-light);
-      border-left: solid 3px transparent;
-      padding-left: 1rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      transition: color var(--t-color), border-color var(--t-color);
-
-      &.active {
-        color: var(--c-text-accent);
-        border-color: var((--c-text-accent));
-      }
-    }
-
-    .vuepress-toc-list {
-      .vuepress-toc-link {
-        border: none;
-        font-size: 14px;
-        color: var(--c-text-lighter);
-
-        &.active {
-          color: var(--c-text-accent);
-        }
-      }
-    }
-  }
+.archive-toc {
+  width: 4rem;
+  margin-left: 0;
+  position: sticky;
+  top: calc(var(--navbar-height) + 1.25rem);
 }

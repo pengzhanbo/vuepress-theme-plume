@@ -24,14 +24,14 @@ export const resolveSearch = (
   plugins: PlumeThemePluginOptions
 ): PluginConfig => {
   if (plugins.search) {
-    if (!hasSearchInstalled()) {
+    if (!hasSearchInstalled() || plugins.search === false) {
       logger.error('@vuepress/plugin-search is not installed.')
       return ['', false]
     }
     return ['@vuepress/search', plugins.search]
   }
   if (plugins.docsearch) {
-    if (!hasDocsearchInstalled()) {
+    if (!hasDocsearchInstalled() || plugins.docsearch === false) {
       logger.error('@vuepress/plugin-docsearch is not installed.')
       return ['', false]
     }

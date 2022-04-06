@@ -1,12 +1,15 @@
 import type { PluginConfig } from '@vuepress/core'
 import type { ExternalLinkIconPluginOptions } from '@vuepress/plugin-external-link-icon'
-import type { PlumeThemeLocaleOptions } from '../../shared'
+import type {
+  PlumeThemeLocaleOptions,
+  PlumeThemePluginOptions,
+} from '../../shared'
 
 export const resolveExternalLinkIconPlugin = (
-  enabled: boolean | undefined,
+  plugins: PlumeThemePluginOptions,
   localeOptions: PlumeThemeLocaleOptions
 ): PluginConfig => {
-  if (enabled === false) return ['', false]
+  if (plugins.externalLinkIcon === false) return ['', false]
   return [
     '@vuepress/plugin-external-link-icon',
     {

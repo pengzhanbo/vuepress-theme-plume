@@ -1,27 +1,54 @@
 <script lang="ts" setup>
 import BlogInfo from '@theme-plume/BlogInfo.vue'
 import DropdownTransition from '@theme-plume/DropdownTransition.vue'
+import type { PageHeader } from '@vuepress/client'
+import { computed } from 'vue'
 import { useArchive } from '../composables'
+import Toc from './Toc'
 
 const archiveList = useArchive()
+
+const headers = computed(() => {
+  return archiveList.value.map(({ year }) => {
+    return {
+      level: 2,
+      slug: year,
+      title: year,
+      children: [],
+    } as PageHeader
+  })
+})
 </script>
 <template>
   <div class="archive-wrapper">
     <div class="archive-container">
       <DropdownTransition>
         <div class="archive-content">
-          <div
-            v-for="archive in archiveList"
-            :key="archive.year"
-            class="archive-items"
-          >
-            <h2>{{ archive.year }}</h2>
-            <ul class="archive-list">
-              <li v-for="child in archive.children" :key="child.link">
-                <span>{{ child.date }}</span>
-                <RouterLink :to="child.link">{{ child.text }}</RouterLink>
-              </li>
-            </ul>
+          <div class="archive-box">
+            <div
+              v-for="archive in archiveList"
+              :key="archive.year"
+              class="archive-items"
+            >
+              <h2>
+                <a
+                  class="header-anchor"
+                  :href="'#' + archive.year"
+                  aria-hidden="true"
+                  >#</a
+                >
+                {{ archive.year }}
+              </h2>
+              <ul class="archive-list">
+                <li v-for="child in archive.children" :key="child.link">
+                  <span>{{ child.date }}</span>
+                  <RouterLink :to="child.link">{{ child.text }}</RouterLink>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="archive-toc">
+            <Toc :headers="headers" />
           </div>
         </div>
       </DropdownTransition>
@@ -43,7 +70,13 @@ const archiveList = useArchive()
   }
 
   .archive-content {
+    display: flex;
+    align-items: flex-start;
     flex: 1;
+
+    .archive-box {
+      flex: 1;
+    }
   }
 
   .archive-items {

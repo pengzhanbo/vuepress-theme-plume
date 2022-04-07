@@ -2,9 +2,12 @@
 import DarkModeButton from '@theme-plume/DarkModeButton.vue'
 import NavbarBrand from '@theme-plume/NavbarBrand.vue'
 import NavbarItems from '@theme-plume/NavbarItems.vue'
+import ToggleSidebarButton from '@theme-plume/ToggleSidebarButton.vue'
 import { computed, onMounted, ref } from 'vue'
 import { useThemeLocaleData } from '../composables'
 import { getCssValue } from '../utils'
+
+defineEmits(['toggle-sidebar'])
 
 const themeLocale = useThemeLocaleData()
 
@@ -44,6 +47,7 @@ onMounted(() => {
 </script>
 <template>
   <header ref="navbar" class="navbar-wrapper">
+    <ToggleSidebarButton @toggle="$emit('toggle-sidebar')" />
     <span ref="navbarBrand">
       <NavbarBrand />
     </span>

@@ -95,7 +95,7 @@ function handleJump(): void {
         next
       </button>
     </div>
-    <div class="pagination-form">
+    <div class="pagination-form can-hide">
       <span>跳转到：</span>
       <input v-model="inputPage" type="number" :min="1" :max="pageCount" />
       <span>/{{ pageCount }}</span>
@@ -104,6 +104,7 @@ function handleJump(): void {
   </div>
 </template>
 <style lang="scss">
+@import '../styles/variables';
 .pagination-wrapper {
   display: flex;
   justify-content: flex-start;
@@ -167,6 +168,19 @@ function handleJump(): void {
     span {
       margin-right: 0.5rem;
     }
+  }
+}
+
+@media (max-width: $MQMobile) {
+  .pagination-wrapper {
+    .can-hide {
+      display: none;
+    }
+    // .pagination-container {
+    //   display: flex;
+    //   justify-content: space-between;
+    //   padding: 0 2rem;
+    // }
   }
 }
 </style>

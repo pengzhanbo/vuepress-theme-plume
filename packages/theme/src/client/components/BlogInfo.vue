@@ -7,10 +7,17 @@ import BloggerInfo from './BloggerInfo.vue'
   </aside>
 </template>
 <style lang="scss">
+@import '../styles/variables';
 .blog-info-wrapper {
   width: 18.75rem;
   margin-left: 1.25rem;
   position: sticky;
   top: calc(var(--navbar-height) + 1.25rem);
+}
+
+@media (max-width: $MQMobile) {
+  .blog-info-wrapper {
+    display: none;
+  }
 }
 </style>

@@ -41,7 +41,7 @@ const isNote = computed(() => {
 </template>
 <style lang="scss">
 @import '../styles/_mixins';
-
+@import '../styles/variables';
 .page-wrapper {
   @include wrapper;
 
@@ -72,5 +72,14 @@ const isNote = computed(() => {
 }
 .comment-container {
   margin-top: 8rem;
+}
+
+@media (max-width: $MQMobile) {
+  .page-wrapper .page-container .page-content {
+    padding: 0 0.75rem 1rem;
+  }
+  .plume-theme-page-toc {
+    display: none;
+  }
 }
 </style>

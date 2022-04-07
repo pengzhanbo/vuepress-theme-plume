@@ -8,7 +8,7 @@ export const resolveActiveHeaderLink = (): PluginConfig => {
       headerLinkSelector: 'a.theme-plume-toc-link',
       headerAnchorSelector: '.header-anchor',
       delay: 200,
-      offset: 80,
+      offset: 20,
     } as ActiveHeaderLinksPluginOptions,
   ]
 }

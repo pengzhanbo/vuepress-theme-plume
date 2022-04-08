@@ -81,8 +81,6 @@ onUnmounted(() => {
       @include container_wrapper;
       @include content;
       display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
       flex: 1;
     }
 
@@ -91,7 +89,7 @@ onUnmounted(() => {
       width: 100%;
       max-width: var(--content-width);
       padding: 0 2rem 1rem;
-      margin: auto;
+      margin: 0 auto;
     }
 
     img {

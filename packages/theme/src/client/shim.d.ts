@@ -11,3 +11,9 @@ declare module '@internal/postIndex.js' {
   const postIndex: PostIndex
   export { postIndex }
 }
+
+declare module '@internal/sidebarIndex.js' {
+  import type { SidebarOptions } from '../shared'
+  const sidebarIndex: Record<string, SidebarOptions>
+  export { sidebarIndex }
+}

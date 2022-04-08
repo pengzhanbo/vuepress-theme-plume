@@ -29,5 +29,15 @@ export interface PlumeThemeNotesItem {
   text: string
   link: string
   dir: string
-  sidebar: string[]
+  sidebar?: PlumeThemeSidebarConfigOptions | 'auto'
+}
+
+export type PlumeThemeSidebarConfigOptions = (
+  | PlumeThemeNotesConfigItem
+  | string
+)[]
+export interface PlumeThemeNotesConfigItem {
+  text: string
+  link?: string
+  children: PlumeThemeNotesConfigItem[]
 }

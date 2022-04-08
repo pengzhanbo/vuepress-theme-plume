@@ -41,31 +41,33 @@ const navbarLinks = computed(() => [
 </template>
 
 <style lang="scss">
-.navbar-items {
-  --navbar-line-height: calc(
-    var(--navbar-height) - 2 * var(--navbar-padding-v)
-  );
-  display: inline-block;
-
-  a {
+.navbar-wrapper {
+  .navbar-items {
+    --navbar-line-height: calc(
+      var(--navbar-height) - 2 * var(--navbar-padding-v)
+    );
     display: inline-block;
-    line-height: 1.4rem;
-    color: inherit;
 
-    &:hover,
-    &.router-lint-active {
-      color: var(--c-text-accent);
+    a {
+      display: inline-block;
+      line-height: 1.4rem;
+      color: inherit;
+
+      &:hover,
+      &.router-lint-active {
+        color: var(--c-text-accent);
+      }
     }
-  }
 
-  .navbar-item {
-    position: relative;
-    display: inline-block;
-    margin-left: 1.5rem;
-    line-height: var(--navbar-line-height);
+    .navbar-item {
+      position: relative;
+      display: inline-block;
+      margin-left: 1.5rem;
+      line-height: var(--navbar-line-height);
 
-    &:first-child {
-      margin-left: 0;
+      &:first-child {
+        margin-left: 0;
+      }
     }
   }
 }

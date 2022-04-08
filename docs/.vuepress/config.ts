@@ -31,7 +31,13 @@ export default defineUserConfig<PlumeThemeOptions>({
           link: 'typescript',
           dir: 'typescript',
           text: 'Typescript',
-          sidebar: [],
+          sidebar: [
+            '',
+            {
+              text: '123',
+              children: ['1', '2'],
+            },
+          ],
         },
       ],
     },

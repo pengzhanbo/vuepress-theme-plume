@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.12](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2022-04-08)
+
+
+### Bug Fixes
+
+* 修复page页toc问题 ([2d44799](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2d4479909f4c84a8d71c8a97c93f21bde3b8208c))
+
+
+
+
+
 # [1.0.0-beta.11](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2022-04-08)
 
 **Note:** Version bump only for package @vuepress-plume/vuepress-theme-plume

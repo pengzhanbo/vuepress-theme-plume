@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2022-04-08)
+
+**Note:** Version bump only for package vuepress-theme-plume
+
+
+
+
+
 # [1.0.0-beta.9](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2022-04-06)
 
 **Note:** Version bump only for package vuepress-theme-plume

@@ -51,7 +51,7 @@ defineProps({
       padding-left: 1.25rem;
 
       li a {
-        font-weight: 300;
+        font-weight: normal;
       }
     }
   }

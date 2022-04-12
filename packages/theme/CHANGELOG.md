@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.13](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2022-04-12)
+
+
+### Bug Fixes
+
+* 修复note生成sidebar时目录嵌套时未正确识别路径 ([7b3a6e2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7b3a6e2252582a19bdbf42c1ddf85dfab199d57b))
+
+
+
+
+
 # [1.0.0-beta.12](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2022-04-08)
 
 

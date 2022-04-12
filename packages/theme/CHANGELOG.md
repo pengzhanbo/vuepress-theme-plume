@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.14](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2022-04-12)
+
+
+### Bug Fixes
+
+* 修复sidebar问题 ([420ec9f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/420ec9fb663793fe2d4fd7e9e61f12ca0d05217e))
+
+
+
+
+
 # [1.0.0-beta.13](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2022-04-12)
 
 

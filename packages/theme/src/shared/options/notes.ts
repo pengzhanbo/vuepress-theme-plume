@@ -39,5 +39,6 @@ export type PlumeThemeSidebarConfigOptions = (
 export interface PlumeThemeNotesConfigItem {
   text: string
   link?: string
-  children: PlumeThemeNotesConfigItem[]
+  dir?: string
+  children: PlumeThemeSidebarConfigOptions
 }

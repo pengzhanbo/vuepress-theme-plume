@@ -37,6 +37,11 @@ export default defineUserConfig<PlumeThemeOptions>({
               text: '123',
               children: ['1', '2'],
             },
+            {
+              text: 'css',
+              dir: 'css',
+              children: ['1', '2'],
+            },
           ],
         },
       ],

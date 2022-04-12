@@ -50,10 +50,11 @@ export const generateFrontmatter = (
       ) {
         return currentNote.text
       }
-      return path
-        .basename(filepath)
-        .replace(/^\d+\./, '')
-        .replace(path.extname(filepath), '')
+      const basename = path.basename(filepath)
+      if (isReadme(basename)) {
+        return path.dirname(filepath).split('/').slice(-1)[0]
+      }
+      return basename.replace(/^\d+\./, '').replace(path.extname(filepath), '')
     },
     createTime: ({ createTime }: MarkdownFile, formatTime: string): string => {
       if (formatTime) return formatTime

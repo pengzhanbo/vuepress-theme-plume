@@ -12,7 +12,7 @@ export const usePostAllIndex = (): PostIndexRef => postIndex
 // 在首页文章列表的，默认排除掉 note中的文章，除非显示声明 article
 export const usePostIndex = (): PostIndexRef => {
   const postList = postIndex.value.filter((post) => {
-    return !post.isNote && post.article !== false
+    return !post.isNote || post.article === true
   })
   return ref(postList)
 }

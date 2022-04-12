@@ -18,7 +18,7 @@ export type ArchiveData = ArchiveItem[]
 export type ArchiveListRef = Ref<ArchiveData>
 
 export const useArchive = (): ArchiveListRef => {
-  const archiveList: ArchiveData = []
+  let archiveList: ArchiveData = []
   const postList = usePostAllIndex().value
   postList.forEach((post) => {
     const [year, month, day] = post.createTime.split('-')
@@ -32,6 +32,10 @@ export const useArchive = (): ArchiveListRef => {
       text: post.title,
       link: post.path,
     })
+  })
+
+  archiveList = archiveList.sort((left, right) => {
+    return left.year > right.year ? 1 : -1
   })
 
   return ref(archiveList)

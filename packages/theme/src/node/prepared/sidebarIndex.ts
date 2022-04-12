@@ -114,12 +114,14 @@ function sidebarByConfig(
         children: [],
       } as SidebarItem
     } else {
+      dir = path.join(dir, sidebar.dir || '')
+      link = path.join(link, sidebar.link)
       const current = sidebar.link
         ? findNotePage(sidebar.link, dir, notePageList)
         : undefined
       return {
-        text: sidebar.text,
-        link: current?.link || sidebar.link,
+        text: sidebar.text || sidebar.dir || '',
+        link: current?.link || link,
         children: sidebarByConfig(
           sidebar.text,
           sidebar.link,

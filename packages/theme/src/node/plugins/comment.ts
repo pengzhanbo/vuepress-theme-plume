@@ -7,12 +7,5 @@ export const resolveComment = (
   plugins: PlumeThemePluginOptions
 ): PluginConfig => {
   if (plugins.comment === false) return ['', false]
-  const option: Partial<CommentOptions> = {
-    type: 'giscus',
-    comment: true,
-  }
-  return comment({
-    ...(option as CommentOptions),
-    ...(plugins.comment as CommentOptions),
-  })
+  return comment(plugins.comment as CommentOptions)
 }

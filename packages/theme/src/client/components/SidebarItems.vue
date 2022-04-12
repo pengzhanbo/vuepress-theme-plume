@@ -49,7 +49,10 @@ defineProps({
     .sidebar-items {
       font-size: 16px;
       padding-left: 1.25rem;
-      font-weight: 300;
+
+      li a {
+        font-weight: 300;
+      }
     }
   }
 }

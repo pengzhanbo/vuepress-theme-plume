@@ -149,7 +149,6 @@ function findNotePage(
   } else {
     return notePageList.find((page) => {
       const relative = page.relativePath.join('/')
-      console.log(relative, dir, sidebar)
       return (
         relative === path.join(dir, sidebar) ||
         relative === path.join(dir, sidebar + '.md') ||

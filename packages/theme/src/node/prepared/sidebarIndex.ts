@@ -114,18 +114,17 @@ function sidebarByConfig(
         children: [],
       } as SidebarItem
     } else {
-      dir = path.join(dir, sidebar.dir || '')
       link = path.join(link || '', sidebar.link || '')
       const current = sidebar.link
         ? findNotePage(sidebar.link, dir, notePageList)
         : undefined
       return {
         text: sidebar.text || sidebar.dir || '',
-        link: current?.link || link,
+        link: current?.link,
         children: sidebarByConfig(
           sidebar.text,
           sidebar.link,
-          dir,
+          path.join(dir, sidebar.dir || ''),
           sidebar.children,
           notePageList
         ),
@@ -150,6 +149,7 @@ function findNotePage(
   } else {
     return notePageList.find((page) => {
       const relative = page.relativePath.join('/')
+      console.log(relative, dir, sidebar)
       return (
         relative === path.join(dir, sidebar) ||
         relative === path.join(dir, sidebar + '.md') ||

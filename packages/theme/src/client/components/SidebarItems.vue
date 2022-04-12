@@ -36,6 +36,10 @@ defineProps({
         &:hover {
           color: var(--c-text-accent);
         }
+
+        &.router-link-active {
+          color: var(--c-text-accent);
+        }
       }
       p {
         font-weight: 600;
@@ -45,6 +49,7 @@ defineProps({
     .sidebar-items {
       font-size: 16px;
       padding-left: 1.25rem;
+      font-weight: 300;
     }
   }
 }

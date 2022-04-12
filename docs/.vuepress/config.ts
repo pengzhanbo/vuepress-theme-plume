@@ -44,6 +44,28 @@ export default defineUserConfig<PlumeThemeOptions>({
             },
           ],
         },
+        {
+          link: '/interview-question',
+          text: '面试题解析',
+          dir: '面试题',
+          sidebar: [
+            {
+              text: 'HTML',
+              dir: 'HTML',
+              children: [],
+            },
+            {
+              text: 'CSS',
+              dir: 'CSS',
+              children: ['盒模型'],
+            },
+            {
+              text: 'JavaScript',
+              dir: 'JavaScript',
+              children: [],
+            },
+          ],
+        },
       ],
     },
     darkMode: true,
@@ -54,6 +76,10 @@ export default defineUserConfig<PlumeThemeOptions>({
           {
             text: 'typescript',
             link: '/note/typescript/',
+          },
+          {
+            text: '面试题',
+            link: '/note/interview-question',
           },
         ],
       },

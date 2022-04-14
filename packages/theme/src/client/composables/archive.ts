@@ -35,7 +35,7 @@ export const useArchive = (): ArchiveListRef => {
   })
 
   archiveList = archiveList.sort((left, right) => {
-    return left.year > right.year ? 1 : -1
+    return left.year > right.year ? -1 : 1
   })
 
   return ref(archiveList)

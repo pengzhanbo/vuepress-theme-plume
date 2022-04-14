@@ -20,7 +20,7 @@ onBeforeRouteUpdate((to) => {
   position: sticky;
   top: calc(var(--navbar-height) + 1.25rem);
   width: 20rem;
-  height: calc(100vh - var(--navbar-height));
+  height: calc(100vh - var(--navbar-height) - 1.25rem);
   border-right: solid 1px var(--c-border);
   font-size: 18px;
   overflow-y: auto;

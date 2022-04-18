@@ -53,13 +53,6 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
       :class="{ line: deep === 1 }"
     >
       <p @click.self="sidebarClick(sidebar)">
-        <ArrowRightIcon
-          v-if="deep === 1 && sidebar.children.length"
-          :class="{ open: sidebar.open }"
-          @click.self="sidebarClick(sidebar)"
-        >
-          >
-        </ArrowRightIcon>
         <AutoLink
           v-if="sidebar.link"
           :item="{ text: sidebar.text, link: sidebar.link }"
@@ -67,6 +60,11 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
         <span v-else @click.self="sidebarClick(sidebar)">
           {{ sidebar.text }}
         </span>
+        <ArrowRightIcon
+          v-if="deep === 1 && sidebar.children.length"
+          :class="{ open: sidebar.open }"
+          @click.self="sidebarClick(sidebar)"
+        />
       </p>
       <SidebarItems
         v-show="sidebar.open"
@@ -87,6 +85,7 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
         color: var(--c-text);
         margin: 0.25rem 0;
         font-weight: bold;
+        flex: 1;
 
         &:hover {
           color: var(--c-text-accent);
@@ -99,12 +98,13 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
       span {
         font-weight: 600;
         margin: 0.25rem 0;
+        flex: 1;
       }
 
       p {
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: space-between;
         margin: 0;
         height: 40px;
 

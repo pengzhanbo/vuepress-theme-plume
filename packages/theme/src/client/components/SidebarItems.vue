@@ -52,7 +52,10 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
       :key="sidebar.text"
       :class="{ line: deep === 1 }"
     >
-      <p @click.self="sidebarClick(sidebar)">
+      <p
+        :class="{ 'sidebar-items-title': deep === 1 }"
+        @click.self="sidebarClick(sidebar)"
+      >
         <AutoLink
           v-if="sidebar.link"
           :item="{ text: sidebar.text, link: sidebar.link }"
@@ -101,7 +104,7 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
         flex: 1;
       }
 
-      p {
+      p.sidebar-items-title {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -109,9 +112,9 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
         height: 40px;
 
         .arrow-right-icon {
-          width: 14px;
-          height: 14px;
-          margin-right: 0.25rem;
+          width: 20px;
+          height: 20px;
+          margin-right: 0.55rem;
           transform: rotate(0);
           transition: transform var(--t-color);
 

@@ -70,6 +70,7 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
         />
       </p>
       <SidebarItems
+        v-if="sidebar.children.length"
         v-show="sidebar.open"
         :sidebar-list="sidebar.children"
         :deep="deep + 1"
@@ -102,6 +103,10 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
         font-weight: 600;
         margin: 0.25rem 0;
         flex: 1;
+      }
+
+      p {
+        margin: 0.25rem 0;
       }
 
       p.sidebar-items-title {

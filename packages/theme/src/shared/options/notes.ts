@@ -17,6 +17,13 @@ export interface PlumeThemeNotesOptions {
    * 默认值： _notes
    */
   dir?: string
+
+  /**
+   * 是否可折叠
+   *
+   * 默认不折叠， 仅对一级有效
+   */
+  collapsible?: boolean
   /**
    * 笔记集合配置
    *

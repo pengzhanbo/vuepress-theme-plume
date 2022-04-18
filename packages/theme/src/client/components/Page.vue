@@ -4,13 +4,11 @@ import PostMeta from '@theme-plume/PostMeta.vue'
 import Sidebar from '@theme-plume/Sidebar.vue'
 import { usePageData } from '@vuepress/client'
 import { computed, nextTick, onUnmounted, watchEffect } from 'vue'
-import { useRoute } from 'vue-router'
 import type { PlumeThemePageData } from '../../shared'
 import { useDarkMode, useThemeLocaleData } from '../composables'
 import { getCssValue } from '../utils'
 import Toc from './Toc'
 const page = usePageData<PlumeThemePageData>()
-const route = useRoute()
 const themeLocale = useThemeLocaleData()
 const isDarkMode = useDarkMode()
 

@@ -1,11 +1,5 @@
-# `theme`
+# `@vuepress-plume/vuepress-theme-plume`
 
-> TODO: description
+一款基于 VuePress@2 的博客皮肤。
 
-## Usage
-
-```
-const theme = require('theme');
-
-// TODO: DEMONSTRATE API
-```
+[查看使用文档](https://pengzhanbo.cn/note/vuepress-theme-plume)

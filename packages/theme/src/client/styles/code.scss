@@ -133,16 +133,17 @@ pre[class*='language-'] {
     scrollbar-color: var(--c-brand) var(--c-border);
 
     &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
+      width: 7px;
+      height: 7px;
     }
 
     &::-webkit-scrollbar-track {
-      opacity: 0;
+      background-color: var(--code-bg-color);
     }
 
     &::-webkit-scrollbar-thumb {
-      opacity: 0;
+      background-color: var(--code-hl-bg-color);
+      border-radius: 3px;
     }
 
     code {

@@ -20,7 +20,7 @@ function handlePage({ currentPage }): void {
 }
 const { currentPage, pageCount, isFirstPage, isLastPage, prev, next } =
   useOffsetPagination({
-    total,
+    total: total.value,
     page: page.value,
     pageSize: 10,
     onPageChange: handlePage,
@@ -58,8 +58,10 @@ function handleJump(): void {
   if (
     inputPage.value &&
     inputPage.value >= 1 &&
-    inputPage.value <= pageCount.value
+    inputPage.value <= pageCount.value &&
+    currentPage.value !== Number(inputPage.value)
   ) {
+    currentPage.value = Number(inputPage.value)
     emit('togglePage', inputPage.value)
   }
 }
@@ -128,7 +130,9 @@ function handleJump(): void {
     background-color: var(--c-bg-container);
     cursor: pointer;
     font-size: inherit;
-    padding: 0.5rem 0.8rem;
+    padding: 0 0.8rem;
+    height: 34px;
+    line-height: 34px;
     border: solid 1px transparent;
     color: var(--c-text);
     box-shadow: var(--shadow-sm);
@@ -154,6 +158,8 @@ function handleJump(): void {
       font-size: inherit;
       padding: 0.5rem;
       width: 3.25rem;
+      height: 34px;
+      line-height: 34px;
       border: solid 1px transparent;
       color: var(--c-text);
       box-shadow: var(--shadow-sm);

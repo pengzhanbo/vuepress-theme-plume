@@ -119,7 +119,7 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
         .arrow-right-icon {
           width: 20px;
           height: 20px;
-          margin-right: 0.55rem;
+          margin-right: 0.75rem;
           transform: rotate(0);
           transition: transform var(--t-color);
 
@@ -140,6 +140,7 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
     .sidebar-items {
       font-size: 16px;
       padding-left: 1.25rem;
+      padding-bottom: 0.75rem;
 
       li a {
         font-weight: normal;

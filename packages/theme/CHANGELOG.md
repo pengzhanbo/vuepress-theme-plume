@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.26](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.25...v1.0.0-beta.26) (2022-04-25)
+
+
+### Features
+
+* support sitemap and seo ([a57af59](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a57af599e649d1f7ce357f704a222c7babc77b06))
+
+
+
+
+
 # [1.0.0-beta.25](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2022-04-25)
 
 

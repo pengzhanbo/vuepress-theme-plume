@@ -1,27 +1,28 @@
 import chalk from 'chalk'
-import { prompt } from 'inquirer'
-import type { ReleaseType } from 'semver'
-import { inc } from 'semver'
-import { version as currentVersion } from '../../lerna.json'
-import { sync } from './sync'
-import { getNpmTags, getVersion, versions } from './version'
-import type { Answers } from './version'
-const execa = require('execa')
-const ora = require('ora')
+import inquirer from 'inquirer'
+import inc from 'semver/functions/inc.js'
+import { getNpmTags, getVersion, versions } from './version.mjs'
+import { execa } from 'execa'
+import ora from 'ora'
+import fs from 'fs'
+import path from 'path'
 
 const { green, red } = chalk
+const { prompt } = inquirer
 
-export const release = async (): Promise<void> => {
+const lerna = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'lerna.json')))
+const { version: currentVersion } = lerna
+
+export const release = async () => {
   const buildSpinner = ora('Building project').start()
-
-  await execa('yarn', ['run', 'clean'])
+  await execa('yarn', ['run', 'lint'])
   await execa('yarn', ['run', 'build'])
 
   buildSpinner.succeed()
 
   ora(`Current version: ${green(currentVersion)}`).info()
 
-  const bumps: ReleaseType[] = [
+  const bumps = [
     'prerelease',
     'patch',
     'minor',
@@ -30,7 +31,7 @@ export const release = async (): Promise<void> => {
   ]
 
   bumps.forEach((bump) => {
-    versions[bump] = inc(currentVersion, bump) as string
+    versions[bump] = inc(currentVersion, bump)
   })
 
   const bumpChoices = bumps.map((bump) => ({
@@ -38,7 +39,7 @@ export const release = async (): Promise<void> => {
     value: bump,
   }))
 
-  const { bump, customVersion, npmTag } = await prompt<Answers>([
+  const { bump, customVersion, npmTag } = await prompt([
     {
       name: 'bump',
       message: 'Select release type:',
@@ -49,20 +50,20 @@ export const release = async (): Promise<void> => {
       name: 'customVersion',
       message: 'Input version:',
       type: 'input',
-      when: (answers): boolean => answers.bump === 'custom',
+      when: (answers) => answers.bump === 'custom',
     },
     {
       name: 'npmTag',
       message: 'Input npm tag:',
       type: 'list',
-      default: (answers: Answers): string => getNpmTags(getVersion(answers))[0],
-      choices: (answers: Answers): string[] => getNpmTags(getVersion(answers)),
+      default: answers => getNpmTags(getVersion(answers))[0],
+      choices: answers => getNpmTags(getVersion(answers)),
     },
   ])
 
   const version = customVersion || versions[bump]
 
-  const { confirm } = await prompt<{ confirm: 'Y' | 'N' }>([
+  const { confirm } = await prompt([
     {
       name: 'confirm',
       message: `Confirm releasing ${version} (${npmTag})?`,

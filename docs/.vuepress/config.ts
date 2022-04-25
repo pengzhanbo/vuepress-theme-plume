@@ -10,6 +10,7 @@ export default defineUserConfig<PlumeThemeOptions>({
   theme: '@vuepress-plume/vuepress-theme-plume',
   themeConfig: {
     logo: 'https://pengzhanbo.cn/g.gif',
+    hostname: 'https://pengzhanbo.cn',
     avatar: {
       url: '/images/blogger.jpg',
       name: 'Plume Theme',

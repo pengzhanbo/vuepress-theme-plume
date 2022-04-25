@@ -14,6 +14,8 @@ import { resolveNprogress } from './nprogress'
 import { resolvePalette } from './palette'
 import { resolvePrismjs } from './prismjs'
 import { resolveSearch } from './search'
+import { resolveSeo } from './seo'
+import { resolveSitemap } from './sitemap'
 import { resolveThemeData } from './themeData'
 
 export const getPlugins = (
@@ -33,6 +35,8 @@ export const getPlugins = (
     resolveCopyCode(plugins),
     resolveMarkdownEnhance(plugins),
     resolveComment(plugins),
+    resolveSitemap(plugins, localeOptions),
+    resolveSeo(plugins, localeOptions),
     resolveThemeData(localeOptions),
   ].filter((item) => item[1] !== false)
 }

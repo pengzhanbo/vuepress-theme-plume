@@ -36,4 +36,6 @@ export interface PlumeThemePluginOptions {
   markdownEnhance?: false | MarkdownEnhanceOptions
 
   comment?: false | CommentOptions
+
+  sitemap?: false
 }

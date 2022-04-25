@@ -71,6 +71,13 @@ export interface PlumeThemeLocaleData extends LocaleData {
   darkMode?: boolean
 
   /**
+   * 部署站点域名。
+   * 用于生成 sitemap、 seo等。
+   *
+   */
+  hostname?: string
+
+  /**
    * 配置博主拥有者信息
    *
    * 显示在右侧侧边栏

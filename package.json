@@ -19,9 +19,10 @@
     "docs:webpack-build": "vuepress-webpack build docs",
     "docs:webpack-serve": "vuepress-webpack dev docs",
     "lerna": "lerna clean && lerna bootstrap",
-    "lerna:publish": "node scripts/release/index.mjs",
+    "lerna:publish": "node scripts/release/index.mjs --input-type module",
     "lint": "eslint --ext .js,.ts,.vue .",
     "package:clean": "lerna run clean",
+    "package:update": "node scripts/dependencies.js",
     "prepare": "husky install",
     "release": "yarn lint && yarn build && lerna publish --registry https://registry.npmjs.org/"
   },

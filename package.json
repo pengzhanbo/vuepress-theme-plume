@@ -1,45 +1,41 @@
 {
   "name": "vuepress-theme-plume",
+  "private": true,
+  "license": "MIT",
+  "author": "pengzhanbo",
   "workspaces": [
     "packages/*"
   ],
-  "private": true,
   "scripts": {
-    "docs:vite-serve": "vuepress-vite dev docs",
-    "docs:vite-build": "vuepress-vite build docs",
-    "docs:webpack-serve": "vuepress-webpack dev docs",
-    "docs:webpack-build": "vuepress-webpack build docs",
-    "docs:clean": "rimraf docs/.vuepress/.cache docs/.vuepress/.temp docs/.vuepress/dist",
-    "docs": "yarn docs:vite-serve",
-    "dev:package": "lerna run dev --parallel",
-    "build:package": "lerna run build --stream",
-    "package:clean": "lerna run clean",
-    "dev": "concurrently \"yarn dev:package\" \"yarn docs:vite-serve\"",
     "build": "yarn build:package",
+    "build:package": "lerna run build --stream",
+    "commit": "cz",
+    "dev": "concurrently \"yarn dev:package\" \"yarn docs:vite-serve\"",
+    "dev:package": "lerna run dev --parallel",
+    "docs": "yarn docs:vite-serve",
+    "docs:clean": "rimraf docs/.vuepress/.cache docs/.vuepress/.temp docs/.vuepress/dist",
+    "docs:vite-build": "vuepress-vite build docs",
+    "docs:vite-serve": "vuepress-vite dev docs",
+    "docs:webpack-build": "vuepress-webpack build docs",
+    "docs:webpack-serve": "vuepress-webpack dev docs",
     "lerna": "lerna clean && lerna bootstrap",
     "lerna:publish": "ts-node -O {\\\"module\\\":\\\"commonjs\\\"} scripts/release",
-    "release": "yarn build && lerna publish --registry https://registry.npmjs.org/"
+    "lint": "eslint --ext .js,.ts,.vue .",
+    "package:clean": "lerna run clean",
+    "prepare": "husky install",
+    "release": "yarn lint && yarn build && lerna publish --registry https://registry.npmjs.org/"
   },
-  "author": "pengzhanbo",
-  "license": "MIT",
+  "lint-staged": {
+    "*.{js,ts,vue}": "eslint --fix",
+    "*.{json,yml,css,scss}": "prettier --write",
+    "package.json": "sort-package-json"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "prettier": "prettier-config-vuepress",
-  "devDependencies": {
-    "@vuepress/cli": "^2.0.0-beta.38",
-    "concurrently": "^7.0.0",
-    "cpx2": "^4.2.0",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.13.0",
-    "eslint-config-vuepress": "^3.5.0",
-    "eslint-config-vuepress-typescript": "^2.6.0",
-    "lerna": "^4.0.0",
-    "prettier": "^2.6.1",
-    "prettier-config-vuepress": "^1.4.0",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.6.3",
-    "vuepress-vite": "^2.0.0-beta.39",
-    "vuepress-webpack": "^2.0.0-beta.38",
-    "webpack-env": "^0.8.0"
-  },
   "dependencies": {
     "@types/inquirer": "^8.2.1",
     "@types/semver": "^7.3.9",
@@ -48,6 +44,30 @@
     "inquirer": "^8.2.2",
     "ora": "^6.1.0",
     "semver": "^7.3.5",
+    "sort-package-json": "^1.55.0",
     "ts-node": "^10.7.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@vuepress/cli": "^2.0.0-beta.38",
+    "commitizen": "^4.2.4",
+    "concurrently": "^7.0.0",
+    "cpx2": "^4.2.0",
+    "cross-env": "^7.0.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.13.0",
+    "eslint-config-vuepress": "^3.5.0",
+    "eslint-config-vuepress-typescript": "^2.6.0",
+    "husky": "^7.0.4",
+    "lerna": "^4.0.0",
+    "lint-staged": "^12.4.0",
+    "prettier": "^2.6.1",
+    "prettier-config-vuepress": "^1.4.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.6.3",
+    "vuepress-vite": "^2.0.0-beta.39",
+    "vuepress-webpack": "^2.0.0-beta.38",
+    "webpack-env": "^0.8.0"
   }
 }

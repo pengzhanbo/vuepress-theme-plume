@@ -7,13 +7,16 @@ export const resolveMarkdownEnhance = (
 ): PluginConfig => {
   if (plugins.markdownEnhance === false) return ['', false]
   return mdEnhance(
-    plugins.markdownEnhance || {
-      container: true, // info note tip warning danger details
-      codegroup: true,
-      align: true,
-      mark: true,
-      tasklist: true,
-      demo: true,
-    }
+    Object.assign(
+      {
+        container: true, // info note tip warning danger details
+        codegroup: true,
+        align: true,
+        mark: true,
+        tasklist: true,
+        demo: true,
+      },
+      plugins.markdownEnhance || {}
+    )
   )
 }

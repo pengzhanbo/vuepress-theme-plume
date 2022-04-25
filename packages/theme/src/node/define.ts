@@ -1,7 +1,7 @@
 import type { UserConfig } from '@vuepress/cli'
 import type { BundlerConfig } from '@vuepress/core'
 import type {
-  PlumeThemeNotesConfigItem,
+  PlumeThemeNotesItem,
   PlumeThemeNotesOptions,
   PlumeThemeOptions,
 } from '../shared'
@@ -17,5 +17,5 @@ export const definePlumeNotesConfig = (
 ): PlumeThemeNotesOptions => notes
 
 export const definePlumeNotesItemConfig = (
-  item: PlumeThemeNotesConfigItem
-): PlumeThemeNotesConfigItem => item
+  item: PlumeThemeNotesItem
+): PlumeThemeNotesItem => item

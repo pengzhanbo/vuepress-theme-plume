@@ -86,8 +86,8 @@ export const release = async () => {
     '--registry',
     'https://registry.npmjs.org/',
   ]
-
-  await execa(require.resolve('lerna/cli'), releaseArguments, {
+  const lerna = await import('lerna/cli.js')
+  await execa(lerna, releaseArguments, {
     stdio: 'inherit',
   })
 

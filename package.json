@@ -7,7 +7,6 @@
     "packages/*"
   ],
   "scripts": {
-    "_release": "yarn lint && yarn build && lerna publish --registry https://registry.npmjs.org/",
     "build": "yarn build:package",
     "build:package": "lerna run build --stream",
     "commit": "cz",
@@ -20,11 +19,11 @@
     "docs:webpack-build": "vuepress-webpack build docs",
     "docs:webpack-serve": "vuepress-webpack dev docs",
     "lerna": "lerna clean && lerna bootstrap",
-    "lerna:publish": "scripts/release/index.mjs",
+    "lerna:publish": "node scripts/release/index.mjs",
     "lint": "eslint --ext .js,.ts,.vue .",
     "package:clean": "lerna run clean",
     "prepare": "husky install",
-    "release": "yarn lint && yarn lerna:publish"
+    "release": "yarn lint && yarn build && lerna publish --registry https://registry.npmjs.org/"
   },
   "lint-staged": {
     "*.{js,ts,vue}": "eslint --fix",

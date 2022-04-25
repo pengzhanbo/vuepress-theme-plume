@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.25](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2022-04-25)
+
+
+### Bug Fixes
+
+* fix define config ([00bca40](https://github.com/pengzhanbo/vuepress-theme-plume/commit/00bca40d895499017308359bfce682cec055f42b))
+
+
+
+
+
 # [1.0.0-beta.24](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2022-04-25)
 
 

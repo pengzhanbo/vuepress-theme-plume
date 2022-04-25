@@ -1,30 +1,30 @@
 {
   "name": "@vuepress-plume/vuepress-theme-plume",
-  "version": "1.0.0-beta.23",
+  "version": "1.0.0-beta.24",
   "description": "A Blog Theme for VuePress 2.0",
-  "author": "pengzhanbo <volodymyr@foxmail.com>",
   "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+  },
   "license": "MIT",
+  "author": "pengzhanbo <volodymyr@foxmail.com>",
   "main": "lib/node/index.js",
   "files": [
     "lib",
     "template"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
-  },
-  "bugs": {
-    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
-  },
   "scripts": {
+    "build": "yarn clean && yarn copy && yarn ts",
+    "clean": "rimraf lib *.tsbuildinfo",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
     "copy:watch": "yarn copy -w",
-    "ts": "tsc -b tsconfig.build.json",
-    "ts:watch": "tsc -b tsconfig.build.json --watch",
-    "clean": "rimraf lib *.tsbuildinfo",
     "dev": "concurrently \"yarn copy:watch\" \"yarn ts:watch\"",
-    "build": "yarn clean && yarn copy && yarn ts"
+    "ts": "tsc -b tsconfig.build.json",
+    "ts:watch": "tsc -b tsconfig.build.json --watch"
   },
   "dependencies": {
     "@types/lodash.merge": "^4.6.6",

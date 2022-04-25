@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.24](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2022-04-25)
+
+
+### Features
+
+* 主题配置函数 ([844feea](https://github.com/pengzhanbo/vuepress-theme-plume/commit/844feeae7406f5aee8edef35bce4a08e808f692e))
+
+
+
+
+
 # [1.0.0-beta.23](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2022-04-23)
 
 **Note:** Version bump only for package vuepress-theme-plume

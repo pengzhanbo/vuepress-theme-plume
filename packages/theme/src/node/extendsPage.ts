@@ -15,7 +15,7 @@ function normalizePath(filepath: string): string {
 let uuid = 10000
 const cache: Record<string, number> = {}
 export const extendsPage = (
-  page: Page<PlumeThemePageData>,
+  page: Page<Partial<PlumeThemePageData>>,
   localeOption: PlumeThemeLocaleOptions
 ): void => {
   const pagePath = page.filePathRelative || ''

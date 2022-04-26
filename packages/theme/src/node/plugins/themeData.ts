@@ -1,8 +1,8 @@
-import type { PluginConfig } from '@vuepress/core'
+import type { PluginObject } from '@vuepress/core'
+import { themeDataPlugin } from '@vuepress/plugin-theme-data'
 import type { PlumeThemeLocaleOptions } from '../../shared'
-
 export const resolveThemeData = (
   localeOptions: PlumeThemeLocaleOptions
-): PluginConfig => {
-  return ['@vuepress/theme-data', { themeData: localeOptions }]
+): PluginObject => {
+  return themeDataPlugin({ themeData: localeOptions })
 }

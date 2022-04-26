@@ -1,9 +1,10 @@
-import type { PluginConfig } from '@vuepress/core'
+import type { PluginObject } from '@vuepress/core'
+import { nprogressPlugin } from '@vuepress/plugin-nprogress'
 import type { PlumeThemePluginOptions } from '../../shared'
 
 export const resolveNprogress = (
   plugins: PlumeThemePluginOptions
-): PluginConfig => {
-  if (plugins.nprogress === false) return ['', false]
-  return ['@vuepress/nprogress', true]
+): PluginObject | false => {
+  if (plugins.nprogress === false) return false
+  return nprogressPlugin()
 }

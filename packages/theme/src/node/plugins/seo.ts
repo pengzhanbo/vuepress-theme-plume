@@ -1,5 +1,5 @@
-import type { PluginConfig } from '@vuepress/core'
-import { seo } from 'vuepress-plugin-seo2'
+import type { PluginObject } from '@vuepress/core'
+// import { seoPlugin } from 'vuepress-plugin-seo2'
 import type {
   PlumeThemeLocaleOptions,
   PlumeThemePluginOptions,
@@ -8,10 +8,11 @@ import type {
 export const resolveSeo = (
   plugins: PlumeThemePluginOptions,
   localeOptions: PlumeThemeLocaleOptions
-): PluginConfig => {
-  if (plugins.sitemap === false || !localeOptions.hostname) return ['', false]
-  return seo({
-    hostname: localeOptions.hostname,
-    author: localeOptions.avatar?.name,
-  })
+): PluginObject | false => {
+  if (plugins.sitemap === false || !localeOptions.hostname) return false
+  // return seoPlugin({
+  //   hostname: localeOptions.hostname,
+  //   author: localeOptions.avatar?.name,
+  // })
+  return false
 }

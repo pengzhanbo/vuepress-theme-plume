@@ -1,4 +1,3 @@
-import * as os from 'os'
 import type { App } from '@vuepress/core'
 import { fs, path } from '@vuepress/utils'
 import * as chokidar from 'chokidar'
@@ -112,7 +111,7 @@ export const generateFrontmatter = (
       .stringify(data)
       .replace(/\n\s{2}/g, '\n')
       .replace(/"/g, '')
-    return `${yaml}---${os.EOL}${content}`
+    return `${yaml}---\n${content}`
   }
 
   const formatFrontmatter = (): void => {

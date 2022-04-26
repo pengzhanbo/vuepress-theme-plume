@@ -1,14 +1,14 @@
-import type { PluginConfig } from '@vuepress/core'
+import { caniusePlugin } from '@vuepress-plume/vuepress-plugin-caniuse'
+import type { PluginObject } from '@vuepress/core'
 import type { PlumeThemePluginOptions } from '../../shared'
 
 export const resolveCanIUse = (
   plugins: PlumeThemePluginOptions
-): PluginConfig => {
-  if (plugins.caniuse === false) return ['', false]
-  return [
-    '@vuepress-plume/caniuse',
+): PluginObject | false => {
+  if (plugins.caniuse === false) return false
+  return caniusePlugin(
     plugins.caniuse || {
       mode: 'embed',
-    },
-  ]
+    }
+  )
 }

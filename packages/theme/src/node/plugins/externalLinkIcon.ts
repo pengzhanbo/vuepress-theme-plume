@@ -1,5 +1,5 @@
-import type { PluginConfig } from '@vuepress/core'
-import type { ExternalLinkIconPluginOptions } from '@vuepress/plugin-external-link-icon'
+import type { PluginObject } from '@vuepress/core'
+import { externalLinkIconPlugin } from '@vuepress/plugin-external-link-icon'
 import type {
   PlumeThemeLocaleOptions,
   PlumeThemePluginOptions,
@@ -8,21 +8,18 @@ import type {
 export const resolveExternalLinkIconPlugin = (
   plugins: PlumeThemePluginOptions,
   localeOptions: PlumeThemeLocaleOptions
-): PluginConfig => {
-  if (plugins.externalLinkIcon === false) return ['', false]
-  return [
-    '@vuepress/plugin-external-link-icon',
-    {
-      locales: Object.entries(localeOptions.locales || {}).reduce(
-        (result, [key, value]) => {
-          result[key] = {
-            openInNewWindow:
-              value.openInNewWindow ?? localeOptions.openInNewWindow,
-          }
-          return result
-        },
-        {}
-      ),
-    } as ExternalLinkIconPluginOptions,
-  ]
+): PluginObject | false => {
+  if (plugins.externalLinkIcon === false) return false
+  return externalLinkIconPlugin({
+    locales: Object.entries(localeOptions.locales || {}).reduce(
+      (result, [key, value]) => {
+        result[key] = {
+          openInNewWindow:
+            value.openInNewWindow ?? localeOptions.openInNewWindow,
+        }
+        return result
+      },
+      {}
+    ),
+  })
 }

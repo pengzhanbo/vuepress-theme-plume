@@ -1,16 +1,14 @@
-import type { PluginConfig } from '@vuepress/core'
+import type { PluginObject } from '@vuepress/core'
+import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom'
 import type { PlumeThemePluginOptions } from '../../shared'
 
 export const resolveMediumZoom = (
   plugins: PlumeThemePluginOptions
-): PluginConfig => {
-  if (plugins.mediumZoom === false) return ['', false]
-  return [
-    '@vuepress/medium-zoom',
-    {
-      selector: '.page-content > img, .page-content :not(a) > img',
-      zoomOption: {},
-      delay: 300,
-    },
-  ]
+): PluginObject | false => {
+  if (plugins.mediumZoom === false) return false
+  return mediumZoomPlugin({
+    selector: '.page-content > img, .page-content :not(a) > img',
+    zoomOptions: {},
+    delay: 300,
+  })
 }

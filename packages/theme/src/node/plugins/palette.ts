@@ -1,5 +1,6 @@
-import type { PluginConfig } from '@vuepress/core'
+import type { PluginObject } from '@vuepress/core'
+import { palettePlugin } from '@vuepress/plugin-palette'
 
-export const resolvePalette = (): PluginConfig => {
-  return ['@vuepress/plugin-palette', { preset: 'sass' }]
+export const resolvePalette = (): PluginObject => {
+  return palettePlugin({ preset: 'sass' })
 }

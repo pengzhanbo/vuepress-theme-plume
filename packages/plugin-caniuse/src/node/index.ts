@@ -1,6 +1,6 @@
-import { plugin } from './plugin'
+import { caniusePlugin } from './plugin'
 
 export * from './plugin'
 export * from '../shared'
 
-export default plugin
+export default caniusePlugin

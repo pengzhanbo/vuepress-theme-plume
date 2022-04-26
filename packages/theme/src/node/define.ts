@@ -1,16 +1,4 @@
-import type { UserConfig } from '@vuepress/cli'
-import type { BundlerConfig } from '@vuepress/core'
-import type {
-  PlumeThemeNotesItem,
-  PlumeThemeNotesOptions,
-  PlumeThemeOptions,
-} from '../shared'
-
-type DefinePlumeConfig = UserConfig<PlumeThemeOptions, BundlerConfig>
-
-export const definePlumeConfig = (
-  config: DefinePlumeConfig
-): DefinePlumeConfig => config
+import type { PlumeThemeNotesItem, PlumeThemeNotesOptions } from '../shared'
 
 export const definePlumeNotesConfig = (
   notes: PlumeThemeNotesOptions

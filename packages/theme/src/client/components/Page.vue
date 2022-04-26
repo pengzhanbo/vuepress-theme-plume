@@ -19,26 +19,6 @@ const isNote = computed(() => {
 const enabledSidebar = computed(() => {
   return isNote.value
 })
-
-let layout: HTMLElement | null
-watchEffect(async () => {
-  await nextTick()
-  if (!enabledSidebar.value) return
-  layout = document.querySelector('.plume-theme')
-  const footer: HTMLElement | null = document.querySelector(
-    '.theme-plume-footer'
-  )
-  if (themeLocale.value.footer) {
-    const h = getCssValue(footer, 'height')
-    layout?.setAttribute('style', `padding-bottom: ${h}px`)
-  } else {
-    layout?.setAttribute('style', `padding-bottom: 0`)
-  }
-})
-
-onUnmounted(() => {
-  layout?.removeAttribute('style')
-})
 </script>
 <template>
   <DropdownTransition>
@@ -52,7 +32,7 @@ onUnmounted(() => {
             <PostMeta :post="page" type="post" :border="true" />
             <Content />
             <div class="comment-container">
-              <CommentService :darkmode="isDarkMode" />
+              <Comment :darkmode="isDarkMode" />
             </div>
           </div>
           <div v-if="page.headers?.length > 0" class="plume-theme-page-toc">

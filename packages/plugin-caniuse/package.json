@@ -2,35 +2,33 @@
   "name": "@vuepress-plume/vuepress-plugin-caniuse",
   "version": "1.0.0-beta.8",
   "description": "The Plugin for VuePres 2, Support Can-I-Use feature",
-  "author": "pengzhanbo <volodymyr@foxmail.com>",
   "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
-  "license": "MIT",
-  "main": "lib/node/index.js",
-  "files": [
-    "lib"
-  ],
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
   },
-  "bugs": {
-    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
-  },
+  "license": "MIT",
+  "author": "pengzhanbo <volodymyr@foxmail.com>",
+  "main": "lib/node/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
-    "ts": "tsc -b tsconfig.build.json",
-    "ts:watch": "tsc -b tsconfig.build.json --watch",
+    "build": "yarn clean && yarn ts",
     "clean": "rimraf lib *.tsbuildinfo",
     "dev": "yarn ts:watch",
-    "build": "yarn clean && yarn ts"
+    "ts": "tsc -b tsconfig.build.json",
+    "ts:watch": "tsc -b tsconfig.build.json --watch"
   },
   "dependencies": {
-    "@vuepress/client": "^2.0.0-beta.38",
-    "@vuepress/core": "^2.0.0-beta.38",
-    "@vuepress/utils": "^2.0.0-beta.38",
+    "@vuepress/cli": "^2.0.0-beta.41",
+    "@vuepress/client": "^2.0.0-beta.41",
+    "@vuepress/core": "^2.0.0-beta.41",
+    "@vuepress/utils": "^2.0.0-beta.41",
     "markdown-it-container": "^3.0.0"
-  },
-  "peerDependencies": {
-    "vuepress": "^2.0.0-beta.38"
   },
   "publishConfig": {
     "access": "public"

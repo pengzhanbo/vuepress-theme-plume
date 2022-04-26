@@ -22,6 +22,7 @@ const bannerStyle = computed(() => {
 })
 
 function handleResize(): void {
+  if (__VUEPRESS_SSR__) return
   const width = document.documentElement.offsetWidth
   if (!hasBanner.value) return
   if (width < MOBILE_WIDTH) {

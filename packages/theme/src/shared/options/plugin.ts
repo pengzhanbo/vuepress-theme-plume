@@ -23,7 +23,7 @@ export interface PlumeThemePluginOptions {
   /**
    * plugin-docsearch 配置
    */
-  docsearch?: false | Partial<DocsearchOptions>
+  docsearch?: false | DocsearchOptions
 
   prismjs?: false
 

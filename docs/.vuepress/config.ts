@@ -1,14 +1,14 @@
 import * as path from 'path'
-import type { PlumeThemeOptions } from '@vuepress-plume/vuepress-theme-plume'
+import { themePlume } from '@vuepress-plume/vuepress-theme-plume'
 import { defineUserConfig } from '@vuepress/cli'
 
-export default defineUserConfig<PlumeThemeOptions>({
+export default defineUserConfig({
+  base: '/',
   lang: 'zh',
   title: 'Plume Theme',
   description: '',
   public: path.resolve(__dirname, 'public'),
-  theme: '@vuepress-plume/vuepress-theme-plume',
-  themeConfig: {
+  theme: themePlume({
     logo: 'https://pengzhanbo.cn/g.gif',
     hostname: 'https://pengzhanbo.cn',
     avatar: {
@@ -101,5 +101,5 @@ export default defineUserConfig<PlumeThemeOptions>({
         },
       },
     },
-  },
+  }),
 })

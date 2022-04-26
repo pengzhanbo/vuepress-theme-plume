@@ -3,28 +3,18 @@
   "compilerOptions": {
     "baseUrl": "./",
     "module": "ES2020",
-    // "jsx": "preserve",
+    "jsx": "preserve",
     "paths": {
-      "@theme-plume/*": [
-        "./packages/theme/src/client/components/*"
-      ],
-      "@internal/*": [
-        "./docs/.vuepress/.temp/internal/*"
-      ]
+      "@theme-plume/*": ["./packages/theme/src/client/components/*"],
+      "@internal/*": ["./docs/.vuepress/.temp/internal/*"],
+      "@vuepress-plume/vuepress-*": ["./packages/*/src"],
+      "@vuepress-plume/vuepress-theme-plume": ["./packages/theme/src"]
     },
     "types": ["webpack-env", "vite/client", "@vuepress/client/types"]
   },
   "vueCompilerOptions": {
     "experimentalDisableTemplateSupport": true
   },
-  "include": [
-    "packages/**/*",
-    "docs/.vuepress/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    ".temp",
-    "lib",
-    "dist"
-  ]
+  "include": ["packages/**/*", "docs/.vuepress/**/*"],
+  "exclude": ["node_modules", ".temp", "lib", "dist"]
 }

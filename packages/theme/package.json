@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@types/lodash.merge": "^4.6.6",
-    "@vuepress-plume/vuepress-plugin-caniuse": "1.0.0-beta.8",
+    "@vuepress-plume/vuepress-plugin-caniuse": "workspace:*",
     "@vuepress/client": "2.0.0-beta.41",
     "@vuepress/core": "2.0.0-beta.41",
     "@vuepress/plugin-active-header-links": "2.0.0-beta.41",
@@ -72,6 +72,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "01136d273763630b68e6ac18b4bf1d42e3cf3ba7"
+  }
 }

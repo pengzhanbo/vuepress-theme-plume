@@ -1,5 +1,7 @@
 import * as path from 'path'
 import { themePlume } from '@vuepress-plume/vuepress-theme-plume'
+import { viteBundler } from '@vuepress/bundler-vite'
+import { webpackBundler } from '@vuepress/bundler-webpack'
 import { defineUserConfig } from '@vuepress/cli'
 
 export default defineUserConfig({
@@ -8,6 +10,10 @@ export default defineUserConfig({
   title: 'Plume Theme',
   description: '',
   public: path.resolve(__dirname, 'public'),
+
+  bundler:
+    process.env.DOCS_BUNDLER === 'webpack' ? webpackBundler() : viteBundler(),
+
   theme: themePlume({
     logo: 'https://pengzhanbo.cn/g.gif',
     hostname: 'https://pengzhanbo.cn',

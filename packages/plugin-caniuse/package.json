@@ -17,9 +17,9 @@
     "lib"
   ],
   "scripts": {
-    "build": "yarn clean && yarn ts",
+    "build": "pnpm run clean && pnpm run ts",
     "clean": "rimraf lib *.tsbuildinfo",
-    "dev": "yarn ts:watch",
+    "dev": "pnpm run ts:watch",
     "ts": "tsc -b tsconfig.build.json",
     "ts:watch": "tsc -b tsconfig.build.json --watch"
   },

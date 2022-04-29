@@ -17,13 +17,16 @@
     "vue"
   ],
   "cSpell.words": [
-      "caniuse",
-      "composables",
-      "Docsearch",
-      "nprogress",
-      "tsbuildinfo",
-      "vite",
-      "vuepress",
-      "vueuse"
+    "bumpp",
+    "caniuse",
+    "commitlint",
+    "composables",
+    "Docsearch",
+    "nprogress",
+    "pnpm",
+    "tsbuildinfo",
+    "vite",
+    "vuepress",
+    "vueuse"
   ]
 }

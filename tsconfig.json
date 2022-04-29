@@ -10,7 +10,7 @@
       "@vuepress-plume/vuepress-*": ["./packages/*/src"],
       "@vuepress-plume/vuepress-theme-plume": ["./packages/theme/src"]
     },
-    "types": ["webpack-env", "vite/client", "@vuepress/client/types"]
+    "types": ["webpack-env", "vite/client"]
   },
   "vueCompilerOptions": {
     "experimentalDisableTemplateSupport": true

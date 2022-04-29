@@ -15,9 +15,13 @@ export const readFileList = (
     const filepath = path.join(sourceDir, file)
     const stat = fs.statSync(filepath)
     if (stat.isDirectory()) {
-      if (file !== '.vuepress') readFileList(filepath, fileList)
+      if (file !== '.vuepress' && file !== 'node_modules')
+        readFileList(filepath, fileList)
     } else {
-      fileList.push(readFile(filepath, stat))
+      const extname = path.extname(file)
+      if (extname === '.md' || extname === '.MD') {
+        fileList.push(readFile(filepath, stat))
+      }
     }
   })
   return fileList

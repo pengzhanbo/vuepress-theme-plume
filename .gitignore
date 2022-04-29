@@ -1,10 +1,11 @@
-node_modules
+**/node_modules/
 
 docs/.vuepress/.cache
 docs/.vuepress/.temp
 docs/.vuepress/dist
 
-lib
+lib/
+dist/
 
 .DS_Store
 

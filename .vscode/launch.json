@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "docs:dev",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm run docs"
+    },
+    {
+      "name": "docs:build",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm docs:build"
+    }
+  ]
+}

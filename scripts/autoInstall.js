@@ -1,17 +1,19 @@
-import fs from 'fs'
-import path from 'path'
-import { execa } from 'execa'
-import ora from 'ora'
-import chalk from 'chalk'
+const fs = require('fs')
+const path = require('path')
+const execa = require('execa')
+const ora = require('ora')
+const chalk = require('chalk')
 
-const packages = fs.readdirSync(new URL('../packages', import.meta.url))
+const packages = [
+  ...fs.readdirSync(path.join(__dirname, '../packages')).map(dir => path.join('../packages', dir)),
+  '../docs'
+]
 
 const dependencies = packages.map(dir => {
-  const dirname = new URL(path.join('../packages', dir), import.meta.url)
-  const pkg = fs.readFileSync(path.join(dirname.pathname, 'package.json'))
+  const pkg = fs.readFileSync(path.join(__dirname, dir, 'package.json'))
   const { dependencies, devDependencies } = JSON.parse(pkg)
   return {
-    dirname: dirname.pathname,
+    dirname: path.join(__dirname, dir),
     dependencies: filterVuePress(Object.keys(dependencies || {})),
     devDependencies: filterVuePress(Object.keys(devDependencies || {}))
   }
@@ -31,28 +33,29 @@ function filterVuePress(dependencies) {
 const options = []
 dependencies.forEach(({ dirname, dependencies, devDependencies }) => {
   if (dependencies.length) {
-    options.push(['yarn', ['add', ...dependencies], { cwd: dirname }])
+    options.push(['pnpm', ['add', ...dependencies], { cwd: dirname }])
   }
   if (devDependencies.length) {
-    options.push(['yarn', ['add', '-D', ...devDependencies], { cwd: dirname }])
+    options.push(['pnpm', ['add', '-D', ...devDependencies], { cwd: dirname }])
   }
 })
 
 async function install(index = 0) {
   if (index >= options.length) return
+  const spinner = ora()
   const opt = options[index]
-  console.log(chalk.cyan(opt[2].cwd.split('/').slice(-2).join('/')));
+  const dir = opt[2].cwd.split('/').slice(-2).join('/')
+  console.log('Installing ', chalk.cyan(dir));
   console.log(chalk.gray(opt[0], opt[1].join(' ')));
   console.log('\n');
-  const spinner = ora('installing').start()
   const current = execa(opt[0], opt[1], opt[2])
   current.stdout.pipe(process.stdout)
   try {
     await current;
-    spinner.succeed()
+    spinner.succeed('Installed.')
     await install(index + 1)
   } catch(e) {
-    spinner.fail()
+    spinner.fail('Install Fail.')
     console.log(e)
   }
 }

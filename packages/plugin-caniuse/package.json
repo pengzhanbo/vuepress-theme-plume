@@ -24,10 +24,10 @@
     "ts:watch": "tsc -b tsconfig.build.json --watch"
   },
   "dependencies": {
-    "@vuepress/cli": "^2.0.0-beta.41",
-    "@vuepress/client": "^2.0.0-beta.41",
-    "@vuepress/core": "^2.0.0-beta.41",
-    "@vuepress/utils": "^2.0.0-beta.41",
+    "@vuepress/cli": "2.0.0-beta.41",
+    "@vuepress/client": "2.0.0-beta.41",
+    "@vuepress/core": "2.0.0-beta.41",
+    "@vuepress/utils": "2.0.0-beta.41",
     "markdown-it-container": "^3.0.0"
   },
   "publishConfig": {

@@ -59,11 +59,11 @@ importers:
   docs:
     specifiers:
       '@vuepress-plume/vuepress-theme-plume': workspace:*
-      '@vuepress/bundler-vite': ^2.0.0-beta.41
-      '@vuepress/bundler-webpack': ^2.0.0-beta.41
-      '@vuepress/cli': ^2.0.0-beta.41
-      '@vuepress/client': ^2.0.0-beta.41
-      '@vuepress/utils': ^2.0.0-beta.41
+      '@vuepress/bundler-vite': 2.0.0-beta.41
+      '@vuepress/bundler-webpack': 2.0.0-beta.41
+      '@vuepress/cli': 2.0.0-beta.41
+      '@vuepress/client': 2.0.0-beta.41
+      '@vuepress/utils': 2.0.0-beta.41
       anywhere: ^1.5.0
       sass-loader: ^12.6.0
       vue: ^3.2.33
@@ -80,10 +80,10 @@ importers:
 
   packages/plugin-caniuse:
     specifiers:
-      '@vuepress/cli': ^2.0.0-beta.41
-      '@vuepress/client': ^2.0.0-beta.41
-      '@vuepress/core': ^2.0.0-beta.41
-      '@vuepress/utils': ^2.0.0-beta.41
+      '@vuepress/cli': 2.0.0-beta.41
+      '@vuepress/client': 2.0.0-beta.41
+      '@vuepress/core': 2.0.0-beta.41
+      '@vuepress/utils': 2.0.0-beta.41
       markdown-it-container: ^3.0.0
     dependencies:
       '@vuepress/cli': 2.0.0-beta.41
@@ -96,21 +96,21 @@ importers:
     specifiers:
       '@types/lodash.merge': ^4.6.6
       '@vuepress-plume/vuepress-plugin-caniuse': 1.0.0-beta.8
-      '@vuepress/client': ^2.0.0-beta.41
-      '@vuepress/core': ^2.0.0-beta.41
-      '@vuepress/plugin-active-header-links': ^2.0.0-beta.41
-      '@vuepress/plugin-container': ^2.0.0-beta.41
-      '@vuepress/plugin-docsearch': ^2.0.0-beta.41
-      '@vuepress/plugin-external-link-icon': ^2.0.0-beta.41
-      '@vuepress/plugin-medium-zoom': ^2.0.0-beta.41
-      '@vuepress/plugin-nprogress': ^2.0.0-beta.41
-      '@vuepress/plugin-palette': ^2.0.0-beta.41
-      '@vuepress/plugin-prismjs': ^2.0.0-beta.41
-      '@vuepress/plugin-search': ^2.0.0-beta.41
-      '@vuepress/plugin-theme-data': ^2.0.0-beta.41
-      '@vuepress/plugin-toc': ^2.0.0-beta.41
-      '@vuepress/shared': ^2.0.0-beta.41
-      '@vuepress/utils': ^2.0.0-beta.41
+      '@vuepress/client': 2.0.0-beta.41
+      '@vuepress/core': 2.0.0-beta.41
+      '@vuepress/plugin-active-header-links': 2.0.0-beta.41
+      '@vuepress/plugin-container': 2.0.0-beta.41
+      '@vuepress/plugin-docsearch': 2.0.0-beta.41
+      '@vuepress/plugin-external-link-icon': 2.0.0-beta.41
+      '@vuepress/plugin-medium-zoom': 2.0.0-beta.41
+      '@vuepress/plugin-nprogress': 2.0.0-beta.41
+      '@vuepress/plugin-palette': 2.0.0-beta.41
+      '@vuepress/plugin-prismjs': 2.0.0-beta.41
+      '@vuepress/plugin-search': 2.0.0-beta.41
+      '@vuepress/plugin-theme-data': 2.0.0-beta.41
+      '@vuepress/plugin-toc': 2.0.0-beta.41
+      '@vuepress/shared': 2.0.0-beta.41
+      '@vuepress/utils': 2.0.0-beta.41
       '@vueuse/core': ^8.2.3
       chokidar: ^3.5.3
       date-fns: ^2.28.0
@@ -122,12 +122,12 @@ importers:
       sass-loader: ^12.6.0
       vue: ^3.2.33
       vue-router: ^4.0.14
-      vuepress-plugin-comment2: ^2.0.0-beta.47
-      vuepress-plugin-copy-code2: ^2.0.0-beta.47
-      vuepress-plugin-md-enhance: ^2.0.0-beta.47
-      vuepress-plugin-reading-time2: ^2.0.0-beta.47
-      vuepress-plugin-seo2: ^2.0.0-beta.47
-      vuepress-plugin-sitemap2: ^2.0.0-beta.47
+      vuepress-plugin-comment2: 2.0.0-beta.47
+      vuepress-plugin-copy-code2: 2.0.0-beta.47
+      vuepress-plugin-md-enhance: 2.0.0-beta.47
+      vuepress-plugin-reading-time2: 2.0.0-beta.47
+      vuepress-plugin-seo2: 2.0.0-beta.47
+      vuepress-plugin-sitemap2: 2.0.0-beta.47
     dependencies:
       '@types/lodash.merge': 4.6.7
       '@vuepress-plume/vuepress-plugin-caniuse': link:../plugin-caniuse

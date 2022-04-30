@@ -8,7 +8,9 @@
       "@theme-plume/*": ["./packages/theme/src/client/components/*"],
       "@internal/*": ["./docs/.vuepress/.temp/internal/*"],
       "@vuepress-plume/vuepress-*": ["./packages/*/src"],
-      "@vuepress-plume/vuepress-theme-plume": ["./packages/theme/src"]
+      "@vuepress-plume/vuepress-theme-plume": [
+        "./packages/theme/src/node/index.ts"
+      ]
     },
     "types": ["webpack-env", "vite/client"]
   },

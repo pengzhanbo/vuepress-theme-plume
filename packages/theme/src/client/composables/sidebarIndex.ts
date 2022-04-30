@@ -28,6 +28,8 @@ export const useSidebarIndex = (): UseSidebarIndex => {
           sidebarList.value = sidebarIndex.value[key]
         }
       })
+    } else {
+      sidebarList.value = []
     }
   }
   return { sidebarList, initSidebarList }

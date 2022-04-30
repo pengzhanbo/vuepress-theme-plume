@@ -124,7 +124,8 @@ export const generateFrontmatter = (
   }
 
   const watchNewMarkDown = (app: App, watchers): void => {
-    const watcher = chokidar.watch(['**/*.md', '!/{readme,README,index}.md'], {
+    const watcher = chokidar.watch('**/*.md', {
+      ignored: /node_modules/,
       cwd: app.options.source,
       ignoreInitial: true,
     })

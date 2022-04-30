@@ -13,7 +13,7 @@ import { resolveMediumZoom } from './mediumZoom'
 import { resolveNprogress } from './nprogress'
 import { resolvePalette } from './palette'
 import { resolvePrismjs } from './prismjs'
-// import { resolveSearch } from './search'
+import { resolveSearch } from './search'
 // import { resolveSeo } from './seo'
 // import { resolveSitemap } from './sitemap'
 import { resolveThemeData } from './themeData'
@@ -29,7 +29,7 @@ export const getPlugins = (
     resolveMediumZoom(plugins),
     resolveCanIUse(plugins),
     resolveExternalLinkIconPlugin(plugins, localeOptions),
-    // resolveSearch(plugins),
+    resolveSearch(plugins),
     resolvePrismjs(plugins),
     // resolveCopyCode(plugins),
     // resolveMarkdownEnhance(plugins),

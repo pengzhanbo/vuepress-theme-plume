@@ -5,6 +5,8 @@ declare module '*.vue' {
 }
 
 declare const __VUEPRESS_DEV__: boolean
+declare const __VUEPRESS_SSR__: boolean
+declare const __VUE_HMR_RUNTIME__: Record<string, unknown>
 
 declare module '@internal/postIndex.js' {
   import type { PostIndex } from '../shared'

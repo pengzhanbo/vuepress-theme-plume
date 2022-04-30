@@ -8,6 +8,7 @@ export * from './postIndex'
 export * from './sidebarIndex'
 export * from './postList'
 export * from './scrollPromise'
+export * from './asideNavbar'
 
 export * from './tag'
 export * from './category'

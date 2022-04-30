@@ -19,12 +19,16 @@ export const readFileList = (
         readFileList(filepath, fileList)
     } else {
       const extname = path.extname(file)
-      if (extname === '.md' || extname === '.MD') {
+      const basename = path.basename(file)
+      if (
+        (extname === '.md' || extname === '.MD') &&
+        basename !== 'CHANGELOG'
+      ) {
         fileList.push(readFile(filepath, stat))
       }
     }
   })
-  return fileList
+  return fileList.filter((file) => file.filepath.endsWith('.md'))
 }
 
 export const readFile = (filepath: string, stat: fs.Stats): MarkdownFile => {

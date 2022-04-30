@@ -9,6 +9,7 @@ export default defineUserConfig({
   lang: 'zh',
   title: 'Plume Theme',
   description: '',
+  source: path.resolve(__dirname, '../'),
   public: path.resolve(__dirname, 'public'),
 
   bundler:

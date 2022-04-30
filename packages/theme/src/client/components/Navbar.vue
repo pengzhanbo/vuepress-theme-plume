@@ -4,12 +4,12 @@ import NavbarBrand from '@theme-plume/NavbarBrand.vue'
 import NavbarItems from '@theme-plume/NavbarItems.vue'
 import ToggleSidebarButton from '@theme-plume/ToggleSidebarButton.vue'
 import { computed, onMounted, ref } from 'vue'
-import { useThemeLocaleData } from '../composables'
+import { useAsideNavbar, useThemeLocaleData } from '../composables'
 import { getCssValue } from '../utils'
 
-defineEmits(['toggle-sidebar'])
-
 const themeLocale = useThemeLocaleData()
+
+const { triggerAsideNavbar } = useAsideNavbar()
 
 const navbar = ref<HTMLElement | null>(null)
 const navbarBrand = ref<HTMLElement | null>(null)
@@ -47,7 +47,7 @@ onMounted(() => {
 </script>
 <template>
   <header ref="navbar" class="navbar-wrapper">
-    <ToggleSidebarButton @toggle="$emit('toggle-sidebar')" />
+    <ToggleSidebarButton @toggle="triggerAsideNavbar(true)" />
     <span ref="navbarBrand">
       <NavbarBrand />
     </span>
@@ -69,11 +69,12 @@ onMounted(() => {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 100v;
   height: var(--navbar-height);
   padding: var(--navbar-padding-v) var(--navbar-padding-h);
   background-color: var(--c-bg-navbar);

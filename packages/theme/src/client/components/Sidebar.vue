@@ -1,21 +1,36 @@
 <script lang="ts" setup>
 import SidebarItems from '@theme-plume/SidebarItems.vue'
-import { onBeforeRouteUpdate, useRoute } from 'vue-router'
-import { useSidebarIndex } from '../composables'
+import type { PropType } from 'vue'
+import { watchEffect } from 'vue'
+import { useRoute } from 'vue-router'
+import type { SidebarOptions } from '../../shared'
+import { useAsideNavbar, useSidebarIndex } from '../composables'
 
+defineProps({
+  aside: {
+    type: Array as PropType<SidebarOptions>,
+    required: false,
+    default: () => [],
+  },
+})
 const route = useRoute()
 const { sidebarList, initSidebarList } = useSidebarIndex()
+const { triggerAsideNavbar } = useAsideNavbar()
 initSidebarList(route.path)
-onBeforeRouteUpdate((to) => {
-  initSidebarList(to.path)
+watchEffect(() => {
+  initSidebarList(route.path)
+  triggerAsideNavbar(false)
 })
 </script>
 <template>
   <aside class="plume-theme-sidebar-wrapper">
+    <SidebarItems class="aside-navbar" :sidebar-list="aside" />
     <SidebarItems :sidebar-list="sidebarList" />
   </aside>
 </template>
 <style lang="scss">
+@import '../styles/variables';
+
 .plume-theme-sidebar-wrapper {
   position: sticky;
   top: calc(var(--navbar-height) + 1.25rem);
@@ -39,6 +54,27 @@ onBeforeRouteUpdate((to) => {
 
   &::-webkit-scrollbar-thumb {
     background-color: var(--c-brand);
+  }
+
+  > .aside-navbar {
+    position: relative;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: -1.25rem;
+      bottom: -4px;
+      right: 0;
+      border-bottom: solid 4px var(--c-border);
+    }
+  }
+}
+
+@media (max-width: $MQMobile) {
+  .plume-theme-sidebar-wrapper {
+    display: none;
   }
 }
 </style>

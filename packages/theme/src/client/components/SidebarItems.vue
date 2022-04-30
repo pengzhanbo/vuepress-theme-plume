@@ -64,13 +64,13 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
           {{ sidebar.text }}
         </span>
         <ArrowRightIcon
-          v-if="deep === 1 && sidebar.children.length"
+          v-if="deep === 1 && sidebar.children && sidebar.children.length"
           :class="{ open: sidebar.open }"
           @click.self="sidebarClick(sidebar)"
         />
       </p>
       <SidebarItems
-        v-if="sidebar.children.length"
+        v-if="sidebar.children && sidebar.children.length"
         v-show="sidebar.open"
         :sidebar-list="sidebar.children"
         :deep="deep + 1"

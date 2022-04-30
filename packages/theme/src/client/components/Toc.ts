@@ -4,6 +4,7 @@ import type { PropType, VNode } from 'vue'
 import { computed, defineComponent, h, toRefs } from 'vue'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { useRoute } from 'vue-router'
+import { scrollTo } from '../utils'
 
 export type TocPropsHeaders = PageHeader[]
 
@@ -51,7 +52,7 @@ const renderLink = (
     if (!anchor) return
     const el = document.documentElement
     const top = anchor.getBoundingClientRect().top - 80 + el.scrollTop
-    el.scrollTo ? el.scrollTo({ top }) : (el.scrollTop = top)
+    scrollTo(document, top)
   }
 
   return h(

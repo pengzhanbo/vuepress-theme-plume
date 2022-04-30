@@ -3,11 +3,12 @@ import DropdownTransition from '@theme-plume/DropdownTransition.vue'
 import PostItem from '@theme-plume/PostItem.vue'
 import { usePageFrontmatter } from '@vuepress/client'
 import type { PropType } from 'vue'
-import { onMounted, toRefs, watch } from 'vue'
+import { toRefs, watch } from 'vue'
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 import type { PlumeThemeHomeFrontmatter } from '../../shared'
 import type { PostListData } from '../composables'
 import { usePostList } from '../composables'
+import { scrollTo } from '../utils'
 import Pagination from './Pagination.vue'
 
 const props = defineProps({
@@ -30,6 +31,7 @@ watch(
   },
   { immediate: true }
 )
+
 const route = useRoute()
 
 onBeforeRouteUpdate((to) => {
@@ -42,7 +44,7 @@ onBeforeRouteUpdate((to) => {
       rect || document.querySelector('.navbar-wrapper')?.getBoundingClientRect()
     top = document.documentElement.clientHeight - (rect?.height || 0)
   }
-  document.documentElement.scrollTop = top
+  scrollTo(document, top)
 })
 
 setPostListPage((route.query.p as unknown as number) || 1)

@@ -78,6 +78,7 @@ const handleTag = (tag: string): void => {
   }
 
   .tag-list {
+    width: 100%;
     padding: 0 1.25rem 0.75rem;
     margin: 0 -0.25rem;
 

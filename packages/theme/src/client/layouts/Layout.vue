@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Archive from '@theme-plume/Archive.vue'
 import AsideNavbar from '@theme-plume/AsideNavbar.vue'
+import BackToTop from '@theme-plume/BackToTop.vue'
 import Category from '@theme-plume/Category.vue'
 import Home from '@theme-plume/Home.vue'
 import Navbar from '@theme-plume/Navbar.vue'
@@ -58,6 +59,7 @@ const pageMap = {
         </template>
       </Page>
     </slot>
+    <BackToTop />
     <slot name="footer">
       <PageFooter></PageFooter>
     </slot>

@@ -18,11 +18,11 @@
     "template"
   ],
   "scripts": {
-    "build": "yarn clean && yarn copy && yarn ts",
+    "build": "pnpm run clean && pnpm run copy && pnpm run ts",
     "clean": "rimraf lib *.tsbuildinfo",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
-    "copy:watch": "yarn copy -w",
-    "dev": "concurrently \"yarn copy:watch\" \"yarn ts:watch\"",
+    "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib -w",
+    "dev": "concurrently \"pnpm copy:watch\" \"pnpm ts:watch\"",
     "ts": "tsc -b tsconfig.build.json",
     "ts:watch": "tsc -b tsconfig.build.json --watch"
   },

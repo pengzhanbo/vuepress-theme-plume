@@ -47,7 +47,7 @@ export const generateFrontmatter = (
           file.startsWith(path.join(notesDir.replace(/^\//, ''), note.dir))
         ))
       ) {
-        return currentNote.text
+        return currentNote.text || currentNote.dir
       }
       const basename = path.basename(filepath)
       if (isReadme(basename)) {

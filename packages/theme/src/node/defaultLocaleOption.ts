@@ -1,6 +1,7 @@
 import type { PlumeThemeLocaleOptions } from '../shared'
 
 export const defaultLocaleOption: Partial<PlumeThemeLocaleOptions> = {
+  darkMode: true,
   home: { text: '首页', link: '/' },
   article: '/article',
   tag: { text: '标签', link: '/tag' },

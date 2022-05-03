@@ -1,10 +1,13 @@
 import { defineClientAppEnhance } from '@vuepress/client'
 import { h } from 'vue'
+import Badge from './components/global/Badge.vue'
 import { useScrollPromise } from './composables'
 
 import './styles/index.scss'
 
 export default defineClientAppEnhance(({ app, router }) => {
+  app.component('Badge', Badge)
+
   app.component('NavbarSearch', () => {
     const SearchComponent =
       app.component('Docsearch') || app.component('SearchBox')

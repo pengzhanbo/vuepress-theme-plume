@@ -1,13 +1,12 @@
 :root {
-
   // brand color
   --c-brand: #0095d9;
   --c-brand-light: #2ca9e1;
 
   // background color
-  --c-bg: #F3F4F6;
-  --c-bg-light: #E5E7EB;
-  --c-bg-lighter: #D1D5DB;
+  --c-bg: #f3f4f6;
+  --c-bg-light: #e5e7eb;
+  --c-bg-lighter: #d1d5db;
   --c-bg-container: #fff;
   --c-bg-navbar: var(--c-bg-container);
   --c-bg-sidebar: var(--c-bg-container);
@@ -26,7 +25,7 @@
   --c-border-dark: #dfe2e5;
 
   // container color
-  --c-tip: #60A5FA;
+  --c-tip: #60a5fa;
   --c-tip-bg: var(--c-bg-light);
   --c-tip-title: var(--c-text);
   --c-tip-text: var(--c-text);
@@ -43,17 +42,26 @@
   --c-danger-text-accent: var(--c-text);
   --c-detail-bg: #eee;
 
+  // badge component colors
+  --c-badge-tip: var(--c-tip);
+  --c-badge-warning: var(--c-warning);
+  --c-badge-danger: var(--c-danger);
+
   // transition
   --t-color: 0.3s ease;
   --t-transform: 0.3s ease;
 
   // box-shadow
   --shadow-sm: 0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow: 0 0 #0000, 0 0 #0000, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 0 #0000, 0 0 #0000, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 0 #0000, 0 0 #0000, 0 6px 8px -1px rgba(0, 0, 0, 0.1), 0 3px 6px -1px rgba(0, 0, 0, 0.06);
+  --shadow: 0 0 #0000, 0 0 #0000, 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 0 #0000, 0 0 #0000, 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 0 #0000, 0 0 #0000, 0 6px 8px -1px rgba(0, 0, 0, 0.1),
+    0 3px 6px -1px rgba(0, 0, 0, 0.06);
 
-  --shadow-footer: 0 -1px 3px 0px rgba(0, 0, 0, 0.1), 0 0 #0000, 0 0 #0000, 0 -1px 2px 0px rgba(0, 0, 0, 0.06);
+  --shadow-footer: 0 -1px 3px 0px rgba(0, 0, 0, 0.1), 0 0 #0000, 0 0 #0000,
+    0 -1px 2px 0px rgba(0, 0, 0, 0.06);
 
   // border-radius
   --p-around: 4px;
@@ -63,7 +71,6 @@
   --code-hl-bg-color: rgba(0, 0, 0, 0.66);
   --code-ln-color: #9e9e9e;
   --code-ln-wrapper-width: 3.5rem;
-
 
   // font vars
   --font-family: -apple-system, BlinkMackSystemFont, 'Segoe UI', Roboto, Oxygen,
@@ -88,9 +95,29 @@
 
   --search-input-width: 8rem;
   --search-result-width: 20rem;
+}
 
+.DocSearch {
+  --docsearch-primary-color: var(--c-brand);
+  --docsearch-text-color: var(--c-text);
+  --docsearch-highlight-color: var(--c-brand);
+  --docsearch-muted-color: var(--c-text-quote);
+  --docsearch-container-background: rgba(9, 10, 17, 0.8);
+  --docsearch-modal-background: var(--c-bg-light);
+  --docsearch-searchbox-background: var(--c-bg-lighter);
+  --docsearch-searchbox-focus-background: var(--c-bg);
+  --docsearch-searchbox-shadow: var(--shadow);
+  --docsearch-hit-color: var(--c-text-light);
+  --docsearch-hit-active-color: var(--c-bg);
+  --docsearch-hit-background: var(--c-bg);
+  --docsearch-hit-shadow: 0 1px 3px 0 var(--c-border-dark);
+  --docsearch-footer-background: var(--c-bg);
 }
 
 .external-link-icon {
   --external-link-icon-color: var(--c-text-quote);
+}
+
+.medium-zoom-overlay {
+  --medium-zoom-bg-color: var(--c-bg);
 }

@@ -46,15 +46,19 @@ export function scrollTo(
   top: number,
   time = 300
 ): void {
-  const currentTop = getScrollTop(target)
-  const step = Math.ceil(time / 16)
-  let currentStep = 0
-  const change = top - currentTop
-  const timer = setInterval(() => {
-    currentStep++
-    if (currentStep >= step) {
-      timer && clearInterval(timer)
-    }
-    setScrollTop(target, tween(currentStep, currentTop, change, step))
-  }, 1000 / 60)
+  if (target !== document) {
+    const currentTop = getScrollTop(target)
+    const step = Math.ceil(time / 16)
+    let currentStep = 0
+    const change = top - currentTop
+    const timer = setInterval(() => {
+      currentStep++
+      if (currentStep >= step) {
+        timer && clearInterval(timer)
+      }
+      setScrollTop(target, tween(currentStep, currentTop, change, step))
+    }, 1000 / 60)
+  } else {
+    window.scrollTo({ top, behavior: 'smooth' })
+  }
 }

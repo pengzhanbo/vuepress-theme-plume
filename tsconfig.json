@@ -17,6 +17,18 @@
   "vueCompilerOptions": {
     "experimentalDisableTemplateSupport": true
   },
-  "include": ["packages/**/*", "docs/.vuepress/**/*"],
-  "exclude": ["node_modules", ".temp", "lib", "dist"]
+  "include": ["packages/**/*", "docs/.vuepress/**/*", "scripts/**/*"],
+  "exclude": ["node_modules", ".temp", "lib", "dist"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "target": "ES2021",
+      "lib": ["ES2021"],
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "types": ["node"]
+    }
+  }
 }

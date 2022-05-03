@@ -1,16 +1,16 @@
-const fs = require('fs')
-const path = require('path')
-const execa = require('execa')
-const ora = require('ora')
-const chalk = require('chalk')
+import fs from 'fs'
+import path from 'path'
+import execa from 'execa'
+import ora from 'ora'
+import chalk from 'chalk'
 
-const packages = [
+const packages: string[] = [
   ...fs.readdirSync(path.join(__dirname, '../packages')).map(dir => path.join('../packages', dir)),
   '../docs'
 ]
 
-const dependencies = packages.map(dir => {
-  const pkg = fs.readFileSync(path.join(__dirname, dir, 'package.json'))
+const dependencies = packages.map((dir: string) => {
+  const pkg = fs.readFileSync(path.join(__dirname, dir, 'package.json'), 'utf-8')
   const { dependencies, devDependencies } = JSON.parse(pkg)
   return {
     dirname: path.join(__dirname, dir),
@@ -19,7 +19,7 @@ const dependencies = packages.map(dir => {
   }
 })
 
-function filterVuePress(dependencies) {
+function filterVuePress(dependencies: string[]) {
   const vuepress = dependencies.filter(
     dependence => dependence.startsWith('@vuepress/') || dependence.startsWith('vuepress-')
   ).map(dependence => dependence + '@next')
@@ -30,7 +30,7 @@ function filterVuePress(dependencies) {
   return [...vue, ...vuepress]
 }
 
-const options = []
+const options: [string, string[], { cwd: string }][] = []
 dependencies.forEach(({ dirname, dependencies, devDependencies }) => {
   if (dependencies.length) {
     options.push(['pnpm', ['add', ...dependencies], { cwd: dirname }])
@@ -49,7 +49,7 @@ async function install(index = 0) {
   console.log(chalk.gray(opt[0], opt[1].join(' ')));
   console.log('\n');
   const current = execa(opt[0], opt[1], opt[2])
-  current.stdout.pipe(process.stdout)
+  current?.stdout?.pipe(process.stdout)
   try {
     await current;
     spinner.succeed('Installed.')

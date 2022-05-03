@@ -1,4 +1,4 @@
-import type { PluginObject } from '@vuepress/core'
+import type { Plugin } from '@vuepress/core'
 import { externalLinkIconPlugin } from '@vuepress/plugin-external-link-icon'
 import type {
   PlumeThemeLocaleOptions,
@@ -8,8 +8,8 @@ import type {
 export const resolveExternalLinkIconPlugin = (
   plugins: PlumeThemePluginOptions,
   localeOptions: PlumeThemeLocaleOptions
-): PluginObject | false => {
-  if (plugins.externalLinkIcon === false) return false
+): Plugin => {
+  if (plugins.externalLinkIcon === false) return [] as unknown as Plugin
   return externalLinkIconPlugin({
     locales: Object.entries(localeOptions.locales || {}).reduce(
       (result, [key, value]) => {

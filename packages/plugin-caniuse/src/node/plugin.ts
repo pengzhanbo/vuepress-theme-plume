@@ -1,4 +1,4 @@
-import type { PluginObject } from '@vuepress/core'
+import type { Plugin, PluginObject } from '@vuepress/core'
 import { path } from '@vuepress/utils'
 import * as container from 'markdown-it-container'
 import type * as Token from 'markdown-it/lib/token'
@@ -10,7 +10,7 @@ const isMode = (mode: CanIUseMode): boolean => modeMap.includes(mode)
 
 export const caniusePlugin = ({
   mode = modeMap[0],
-}: CanIUsePluginOptions): PluginObject => {
+}: CanIUsePluginOptions): Plugin => {
   mode = isMode(mode) ? mode : modeMap[0]
   const type = 'caniuse'
   const validateReg = new RegExp(`^${type}\\s+(.*)$`)

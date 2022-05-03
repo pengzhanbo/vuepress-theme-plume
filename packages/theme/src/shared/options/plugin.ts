@@ -27,6 +27,8 @@ export interface PlumeThemePluginOptions {
 
   prismjs?: false
 
+  git?: false
+
   nprogress?: false
 
   mediumZoom?: false

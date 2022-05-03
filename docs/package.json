@@ -4,16 +4,16 @@
   "scripts": {
     "docs:build": "vuepress build --clean-cache",
     "docs:clean": "rimraf .vuepress/.temp .vuepress/.cache .vuepress/dist",
-    "docs:dev": "vuepress dev --clean-cache",
-    "docs:serve": "anywhere -s -h localhost -d .vuepress/dist"
+    "docs:dev": "vuepress-cli dev --clean-cache",
+    "docs:serve": "anywhere-cli -s -h localhost -d .vuepress/dist"
   },
   "dependencies": {
     "@vuepress-plume/vuepress-theme-plume": "workspace:*",
-    "@vuepress/bundler-vite": "2.0.0-beta.41",
-    "@vuepress/bundler-webpack": "2.0.0-beta.41",
-    "@vuepress/cli": "2.0.0-beta.41",
-    "@vuepress/client": "2.0.0-beta.41",
-    "@vuepress/utils": "2.0.0-beta.41",
+    "@vuepress/bundler-vite": "2.0.0-beta.43",
+    "@vuepress/bundler-webpack": "2.0.0-beta.43",
+    "@vuepress/cli": "2.0.0-beta.43",
+    "@vuepress/client": "2.0.0-beta.43",
+    "@vuepress/utils": "2.0.0-beta.43",
     "anywhere": "^1.5.0",
     "sass-loader": "^12.6.0",
     "vue": "^3.2.33"

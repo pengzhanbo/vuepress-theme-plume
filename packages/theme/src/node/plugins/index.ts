@@ -1,4 +1,4 @@
-import type { PluginConfig, PluginObject } from '@vuepress/core'
+import type { PluginConfig } from '@vuepress/core'
 import type {
   PlumeThemeLocaleOptions,
   PlumeThemePluginOptions,
@@ -8,6 +8,7 @@ import { resolveCanIUse } from './caniuse'
 // import { resolveComment } from './comment'
 // import { resolveCopyCode } from './copyCode'
 import { resolveExternalLinkIconPlugin } from './externalLinkIcon'
+import { resolveGit } from './git'
 // import { resolveMarkdownEnhance } from './markdownEnhance'
 import { resolveMediumZoom } from './mediumZoom'
 import { resolveNprogress } from './nprogress'
@@ -22,15 +23,16 @@ export const getPlugins = (
   plugins: PlumeThemePluginOptions,
   localeOptions: PlumeThemeLocaleOptions
 ): PluginConfig => {
-  const resolvePlugins: (PluginObject | false)[] = [
-    resolveActiveHeaderLink(),
+  const resolvePlugins: PluginConfig = [
     resolvePalette(),
+    resolveActiveHeaderLink(),
     resolveNprogress(plugins),
     resolveMediumZoom(plugins),
     resolveCanIUse(plugins),
     resolveExternalLinkIconPlugin(plugins, localeOptions),
     resolveSearch(plugins),
     resolvePrismjs(plugins),
+    resolveGit(plugins),
     // resolveCopyCode(plugins),
     // resolveMarkdownEnhance(plugins),
     // resolveComment(plugins),
@@ -38,5 +40,5 @@ export const getPlugins = (
     // resolveSeo(plugins, localeOptions),
     resolveThemeData(localeOptions),
   ]
-  return resolvePlugins.filter((plugin) => plugin) as PluginObject[]
+  return resolvePlugins
 }

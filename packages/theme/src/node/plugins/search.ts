@@ -1,16 +1,14 @@
-import type { PluginObject } from '@vuepress/core'
+import type { Plugin } from '@vuepress/core'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { searchPlugin } from '@vuepress/plugin-search'
 import type { PlumeThemePluginOptions } from '../../shared'
 
-export const resolveSearch = (
-  plugins: PlumeThemePluginOptions
-): PluginObject | false => {
+export const resolveSearch = (plugins: PlumeThemePluginOptions): Plugin => {
   if (plugins.search !== false) {
     return searchPlugin(plugins.search)
   }
   if (plugins.docsearch) {
     return docsearchPlugin(plugins.docsearch)
   }
-  return false
+  return [] as unknown as Plugin
 }

@@ -1,29 +1,23 @@
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from 'vue'
-import { scrollTo } from '../utils'
+import { debounce } from 'ts-debounce'
+import { onMounted, ref } from 'vue'
+import { getScrollTop, scrollTo } from '../utils'
 import { BackTopIcon } from './icons'
 
 const opacity = ref<number>(0)
 const MAX_TOP = 300
 
-const canShow = (): void => {
-  if (__VUEPRESS_SSR__) return
-  opacity.value = document.documentElement.scrollTop >= MAX_TOP ? 1 : 0
-}
+const canShow = debounce((): void => {
+  opacity.value = getScrollTop(document) >= MAX_TOP ? 1 : 0
+})
 
 const scrollToTop = (): void => {
   scrollTo(document, 0)
 }
 
 onMounted(() => {
-  if (__VUEPRESS_SSR__) return
   canShow()
-  window.addEventListener('scroll', canShow, false)
-})
-
-onUnmounted(() => {
-  if (__VUEPRESS_SSR__) return
-  window.removeEventListener('scroll', canShow)
+  window.addEventListener('scroll', () => canShow(), false)
 })
 </script>
 <template>
@@ -32,10 +26,11 @@ onUnmounted(() => {
   </div>
 </template>
 <style lang="scss">
+@import '../styles/variables';
 .btn-back-top {
   position: fixed;
   right: 3rem;
-  bottom: 3rem;
+  bottom: 4.35rem;
   width: 3rem;
   height: 3rem;
   text-align: center;
@@ -58,6 +53,12 @@ onUnmounted(() => {
     .back-top-icon {
       color: var(--c-brand-light);
     }
+  }
+}
+@media (max-width: $MQMobile) {
+  .btn-back-top {
+    right: 1.25rem;
+    bottom: 2rem;
   }
 }
 </style>

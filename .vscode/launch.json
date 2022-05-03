@@ -2,6 +2,12 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "dev",
+      "request": "launch",
+      "type": "node-terminal",
+      "command": "pnpm run dev"
+    },
+    {
       "name": "docs:dev",
       "type": "node-terminal",
       "request": "launch",

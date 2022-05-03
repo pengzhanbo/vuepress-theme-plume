@@ -11,7 +11,12 @@ export function getScrollTop(
   target: Document | HTMLElement = document
 ): number {
   if (target === document || !target) {
-    return document.documentElement.scrollTop || document.body.scrollTop
+    return (
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0
+    )
   } else {
     return (target as HTMLElement).scrollTop
   }

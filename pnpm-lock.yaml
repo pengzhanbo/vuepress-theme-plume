@@ -30,6 +30,7 @@ importers:
       nanoid: ^3.3.2
       sass: ^1.49.9
       sass-loader: ^12.6.0
+      ts-debounce: ^4.0.0
       vue: ^3.2.33
       vue-router: ^4.0.14
       vuepress-plugin-comment2: 2.0.0-beta.47
@@ -65,6 +66,7 @@ importers:
       nanoid: 3.3.3
       sass: 1.51.0
       sass-loader: 12.6.0_sass@1.51.0
+      ts-debounce: 4.0.0
       vue: 3.2.33
       vue-router: 4.0.14_vue@3.2.33
       vuepress-plugin-comment2: 2.0.0-beta.47

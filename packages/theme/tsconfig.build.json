@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "references": [
     { "path": "../plugin-caniuse/tsconfig.build.json" },
+    { "path": "../plugin-copy-code/tsconfig.build.json" },
     { "path": "./tsconfig.esm.json" },
     { "path": "./tsconfig.cjs.json" }
   ],

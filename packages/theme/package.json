@@ -29,6 +29,7 @@
   "dependencies": {
     "@types/lodash.merge": "^4.6.6",
     "@vuepress-plume/vuepress-plugin-caniuse": "workspace:*",
+    "@vuepress-plume/vuepress-plugin-copy-code": "workspace:*",
     "@vuepress/client": "2.0.0-beta.43",
     "@vuepress/core": "2.0.0-beta.43",
     "@vuepress/plugin-active-header-links": "2.0.0-beta.43",

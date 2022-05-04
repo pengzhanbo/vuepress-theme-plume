@@ -107,14 +107,19 @@ importers:
     specifiers:
       '@vuepress/client': 2.0.0-beta.43
       '@vuepress/core': 2.0.0-beta.43
+      vue: ^3.2.33
+      vue-router: ^4.0.14
     dependencies:
       '@vuepress/client': 2.0.0-beta.43
       '@vuepress/core': 2.0.0-beta.43
+      vue: 3.2.33
+      vue-router: 4.0.14_vue@3.2.33
 
   packages/theme:
     specifiers:
       '@types/lodash.merge': ^4.6.6
       '@vuepress-plume/vuepress-plugin-caniuse': workspace:*
+      '@vuepress-plume/vuepress-plugin-copy-code': workspace:*
       '@vuepress/client': 2.0.0-beta.43
       '@vuepress/core': 2.0.0-beta.43
       '@vuepress/plugin-active-header-links': 2.0.0-beta.43
@@ -153,6 +158,7 @@ importers:
     dependencies:
       '@types/lodash.merge': 4.6.7
       '@vuepress-plume/vuepress-plugin-caniuse': link:../plugin-caniuse
+      '@vuepress-plume/vuepress-plugin-copy-code': link:../plugin-copy-code
       '@vuepress/client': 2.0.0-beta.43
       '@vuepress/core': 2.0.0-beta.43
       '@vuepress/plugin-active-header-links': 2.0.0-beta.43

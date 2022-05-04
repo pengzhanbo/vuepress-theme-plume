@@ -5,18 +5,18 @@ import type {
 } from '../../shared'
 import { resolveActiveHeaderLink } from './activeHeaderLink'
 import { resolveCanIUse } from './caniuse'
-// import { resolveComment } from './comment'
-// import { resolveCopyCode } from './copyCode'
+import { resolveComment } from './comment'
+import { resolveCopyCode } from './copyCode'
 import { resolveExternalLinkIconPlugin } from './externalLinkIcon'
 import { resolveGit } from './git'
-// import { resolveMarkdownEnhance } from './markdownEnhance'
+import { resolveMarkdownEnhance } from './markdownEnhance'
 import { resolveMediumZoom } from './mediumZoom'
 import { resolveNprogress } from './nprogress'
 import { resolvePalette } from './palette'
 import { resolvePrismjs } from './prismjs'
 import { resolveSearch } from './search'
-// import { resolveSeo } from './seo'
-// import { resolveSitemap } from './sitemap'
+import { resolveSeo } from './seo'
+import { resolveSitemap } from './sitemap'
 import { resolveThemeData } from './themeData'
 
 export const getPlugins = (
@@ -33,11 +33,11 @@ export const getPlugins = (
     resolveSearch(plugins),
     resolvePrismjs(plugins),
     resolveGit(plugins),
-    // resolveCopyCode(plugins),
-    // resolveMarkdownEnhance(plugins),
-    // resolveComment(plugins),
-    // resolveSitemap(plugins, localeOptions),
-    // resolveSeo(plugins, localeOptions),
+    resolveCopyCode(plugins),
+    resolveMarkdownEnhance(plugins),
+    resolveComment(plugins),
+    resolveSitemap(plugins, localeOptions),
+    resolveSeo(plugins, localeOptions),
     resolveThemeData(localeOptions),
   ]
   return resolvePlugins

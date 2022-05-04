@@ -1,6 +1,6 @@
-import { copyCodePlugin } from '@vuepress-plume/vuepress-plugin-copy-code'
+// import { copyCodePlugin } from '@vuepress-plume/vuepress-plugin-copy-code'
 import type { Plugin } from '@vuepress/core'
-// import { copyCodePlugin } from 'vuepress-plugin-copy-code2'
+import { copyCodePlugin } from 'vuepress-plugin-copy-code2'
 import type { PlumeThemePluginOptions } from '../../shared'
 
 export const resolveCopyCode = (plugins: PlumeThemePluginOptions): Plugin => {

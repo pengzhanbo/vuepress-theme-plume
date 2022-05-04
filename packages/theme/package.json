@@ -29,7 +29,6 @@
   "dependencies": {
     "@types/lodash.merge": "^4.6.6",
     "@vuepress-plume/vuepress-plugin-caniuse": "workspace:*",
-    "@vuepress-plume/vuepress-plugin-copy-code": "workspace:*",
     "@vuepress/client": "2.0.0-beta.43",
     "@vuepress/core": "2.0.0-beta.43",
     "@vuepress/plugin-active-header-links": "2.0.0-beta.43",
@@ -58,13 +57,13 @@
     "ts-debounce": "^4.0.0",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14",
-    "vuepress-plugin-comment2": "2.0.0-beta.47",
-    "vuepress-plugin-copy-code2": "2.0.0-beta.47",
-    "vuepress-plugin-md-enhance": "2.0.0-beta.47",
-    "vuepress-plugin-reading-time2": "2.0.0-beta.47",
-    "vuepress-plugin-sass-palette": "2.0.0-beta.47",
-    "vuepress-plugin-seo2": "2.0.0-beta.47",
-    "vuepress-plugin-sitemap2": "2.0.0-beta.47"
+    "vuepress-plugin-comment2": "2.0.0-beta.49",
+    "vuepress-plugin-copy-code2": "2.0.0-beta.49",
+    "vuepress-plugin-md-enhance": "2.0.0-beta.49",
+    "vuepress-plugin-reading-time2": "2.0.0-beta.49",
+    "vuepress-plugin-sass-palette": "2.0.0-beta.49",
+    "vuepress-plugin-seo2": "2.0.0-beta.49",
+    "vuepress-plugin-sitemap2": "2.0.0-beta.49"
   },
   "peerDependencies": {
     "sass-loader": "^12.6.0"

@@ -1,3 +1,35 @@
+# [1.0.0-beta.27](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.26...v1.0.0-beta.27) (2022-05-04)
+
+
+### Bug Fixes
+
+* **theme:** fix backToTop ([48599f4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/48599f4dd200697867a2ec45b78a103a87bca74e))
+
+
+### chore
+
+* update vuepress dependencies ([e04e2a1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e04e2a19736469e00c3545caac6c7fc2e1e56083))
+
+
+### Continuous Integration
+
+* support pnpm ([29d1705](https://github.com/pengzhanbo/vuepress-theme-plume/commit/29d1705da593d41e784ec1fb81ef0e758ff9f347))
+
+
+### Features
+
+* **plugin-copy-code:** new plugin: plugin-copy-code ([5cc6409](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5cc6409b809ba9cb2c41bf305342ea5a841b6758))
+* **theme:** add backTop button ([93e034f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/93e034fa9f9c36a2349ab485ae78fe8ff9ead551))
+* **theme:** add Global Component Badge ([7503c7f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7503c7fffe3b7c2d9c7219991d41b341eebd447d))
+
+
+### BREAKING CHANGES
+
+* support pnpm
+* 跟随vuepress@2.0.0.beta.41的重大变更
+
+
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

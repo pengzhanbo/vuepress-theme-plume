@@ -1,6 +1,7 @@
 
 import { readTemplateList } from './readTpl'
 import path from 'path'
+import fs from 'fs'
 import { upperCase, lowerCase, packageName } from './utils'
 import { compile } from 'handlebars'
 import type { ConfigOptions } from './getConfig'
@@ -11,6 +12,8 @@ import execa from 'execa'
 
 const packagesRoot = path.join(__dirname, '../../packages')
 const spinner = ora()
+
+const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8'))
 
 const generatorFile = async (config: ConfigOptions): Promise<void> => {
   const templateList = readTemplateList(path.join(__dirname, './template'))
@@ -24,6 +27,7 @@ const generatorFile = async (config: ConfigOptions): Promise<void> => {
     lowerName: lowerCase(name),
     client,
     shared,
+    version: pkg.version,
   }
   const include = [!client && 'client', !shared && 'shared'].filter(Boolean).join('|')
   const filterRE = new RegExp(`/(${include})/`)

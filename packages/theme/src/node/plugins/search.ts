@@ -4,7 +4,7 @@ import { searchPlugin } from '@vuepress/plugin-search'
 import type { PlumeThemePluginOptions } from '../../shared'
 
 export const resolveSearch = (plugins: PlumeThemePluginOptions): Plugin => {
-  if (plugins.search !== false) {
+  if (plugins.search) {
     return searchPlugin(plugins.search)
   }
   if (plugins.docsearch) {

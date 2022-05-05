@@ -1,3 +1,17 @@
+# [1.0.0-beta.28](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2022-05-05)
+
+
+### Bug Fixes
+
+* **theme:** 搜索插件加载逻辑调整 ([5de0583](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5de058362ea247dfba3ee9dbcdf09689b2ad88c3))
+
+
+### Features
+
+* **plugin-copy-code:** 新增一键复制代码插件 ([c285261](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c2852610dde9bb57ca2b50258eacb661927f70ff))
+
+
+
 # [1.0.0-beta.27](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.26...v1.0.0-beta.27) (2022-05-04)
 
 

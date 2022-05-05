@@ -1,0 +1,31 @@
+.copy-code-button {
+  border: none;
+  background-color: transparent;
+  outline: 0;
+  border-radius: 4px;
+  padding: 5px 10px;
+  background-color: var(--c-bg-light);
+  color: var(--c-brand);
+  text-align: center;
+  cursor: pointer;
+
+  div[class*='language-'] & {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    opacity: 0;
+    transition: opacity var(--t-color);
+  }
+
+  div[class*='language-']:hover & {
+    opacity: 1;
+  }
+
+  .icon-success {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+  }
+}

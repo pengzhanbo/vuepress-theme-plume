@@ -1,0 +1,79 @@
+import { defineClientAppSetup, useRouteLocale } from '@vuepress/client'
+import { computed, onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import type { CopyCodeLocaleOption, CopyCodeOptions } from '../shared'
+import { copyToClipboard } from './copyToClipboard'
+import { successSVG } from './svg'
+
+import './styles/button.scss'
+
+declare const __COPY_CODE_OPTIONS__: CopyCodeOptions
+declare const __COPY_CODE_LOCALES_OPTIONS__: CopyCodeLocaleOption
+
+const options = __COPY_CODE_OPTIONS__
+const localesOptions = __COPY_CODE_LOCALES_OPTIONS__
+
+const isMobile = (): boolean =>
+  navigator
+    ? /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/iu.test(
+        navigator.userAgent
+      )
+    : false
+
+export default defineClientAppSetup(() => {
+  const route = useRoute()
+  const lang = useRouteLocale()
+
+  const locale = computed(() => {
+    return localesOptions[lang.value] || localesOptions['/zh/']
+  })
+
+  const insertBtn = (codeBlockEl: HTMLElement): void => {
+    if (codeBlockEl.hasAttribute('has-copy-code')) return
+    const button = document.createElement('button')
+    button.className = 'copy-code-button'
+    button.innerText = locale.value.hint as string
+
+    button.addEventListener('click', () => {
+      copyToClipboard(codeBlockEl.innerText)
+      button.innerHTML = successSVG + (locale.value.copy as string)
+      options.duration &&
+        setTimeout(() => {
+          button.innerText = locale.value.hint as string
+        }, options.duration)
+    })
+
+    if (codeBlockEl.parentElement) {
+      codeBlockEl.parentElement.insertBefore(button, codeBlockEl)
+    }
+    codeBlockEl.setAttribute('has-copy-code', '')
+  }
+
+  const generateButton = (): void => {
+    const { selector, delay } = options
+    setTimeout(() => {
+      if (typeof selector === 'string') {
+        document.querySelectorAll<HTMLElement>(selector).forEach(insertBtn)
+      } else if (Array.isArray(selector)) {
+        selector.forEach((item) => {
+          document.querySelectorAll<HTMLElement>(item).forEach(insertBtn)
+        })
+      }
+    }, delay)
+  }
+
+  onMounted(() => {
+    if (!isMobile() || options.showInMobile) {
+      generateButton()
+    }
+  })
+
+  watch(
+    () => route.path,
+    () => {
+      if (!isMobile() || options.showInMobile) {
+        generateButton()
+      }
+    }
+  )
+})

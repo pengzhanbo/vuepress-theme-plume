@@ -3,6 +3,7 @@
   "files": [],
   "references": [
     { "path": "./packages/theme/tsconfig.build.json" },
-    { "path": "./packages/plugin-caniuse/tsconfig.build.json" }
+    { "path": "./packages/plugin-caniuse/tsconfig.build.json" },
+    { "path": "./packages/plugin-copy-code/tsconfig.build.json" }
   ]
 }

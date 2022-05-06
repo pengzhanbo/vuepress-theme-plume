@@ -16,6 +16,7 @@ export interface PostItem {
   article?: boolean
   category: CategoryData
   isNote?: boolean
+  banner?: string
 }
 
 export type PostIndex = PostItem[]

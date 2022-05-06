@@ -3,13 +3,16 @@ import DropdownTransition from '@theme-plume/DropdownTransition.vue'
 import { isLinkHttp, isLinkMailto } from '@vuepress/shared'
 import type { FunctionalComponent, Ref } from 'vue'
 import { ref } from 'vue'
-import { useThemeLocaleData } from '../composables'
+import { usePostStat, useThemeLocaleData } from '../composables'
 import {
   EmailIcon,
   FacebookIcon,
+  FolderIcon,
   GithubIcon,
   LinkedinIcon,
+  PostIcon,
   QQIcon,
+  TagIcon,
   TwitterIcon,
   WeiBoIcon,
   ZhiHuIcon,
@@ -64,6 +67,10 @@ const useSocialList = (): SocialRef => {
   return list
 }
 const socialList = useSocialList()
+
+const postStat = usePostStat()
+
+console.log(postStat)
 </script>
 <template>
   <DropdownTransition>
@@ -83,6 +90,20 @@ const socialList = useSocialList()
           <Component :is="item.icon" />
         </a>
       </p>
+      <div class="post-stat">
+        <div class="post-stat-item">
+          <PostIcon />
+          <span>{{ postStat.postTotal }}</span>
+        </div>
+        <div class="post-stat-item">
+          <FolderIcon />
+          <span>{{ postStat.categoryTotal }}</span>
+        </div>
+        <div class="post-stat-item">
+          <TagIcon />
+          <span>{{ postStat.tagTotal }}</span>
+        </div>
+      </div>
     </section>
   </DropdownTransition>
 </template>
@@ -129,6 +150,31 @@ const socialList = useSocialList()
     .weiBo-icon {
       width: 24px;
       height: 24px;
+    }
+  }
+
+  .post-stat {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid var(--c-border);
+    margin-top: 0.75rem;
+    padding-top: 1rem;
+
+    .post-stat-item {
+      text-align: center;
+      color: var(--c-text-quote);
+      .icon {
+        width: 32px;
+        height: 32px;
+        color: var(--c-text-lightest);
+      }
+      span {
+        display: inline-block;
+        width: 100%;
+        font-size: 20px;
+        font-weight: 500;
+      }
     }
   }
 }

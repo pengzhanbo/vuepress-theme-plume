@@ -1,8 +1,11 @@
 <script lang="ts" setup>
+import { usePageFrontmatter } from '@vuepress/client'
 import { debounce } from 'ts-debounce'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { getScrollTop, scrollTo } from '../utils'
 import { BackTopIcon } from './icons'
+
+const frontmatter = usePageFrontmatter()
 
 const opacity = ref<number>(0)
 const MAX_TOP = 300
@@ -11,8 +14,20 @@ const canShow = debounce((): void => {
   opacity.value = getScrollTop(document) >= MAX_TOP ? 1 : 0
 })
 
+const top = computed(() => {
+  if (__VUEPRESS_SSR__) return 0
+  if (
+    frontmatter.value.home &&
+    (frontmatter.value.banner || frontmatter.value.mobileBanner)
+  ) {
+    return document.documentElement.clientHeight - 58
+  } else {
+    return 0
+  }
+})
+
 const scrollToTop = (): void => {
-  scrollTo(document, 0)
+  scrollTo(document, top.value)
 }
 
 onMounted(() => {
@@ -30,7 +45,7 @@ onMounted(() => {
 .btn-back-top {
   position: fixed;
   right: 3rem;
-  bottom: 4.35rem;
+  bottom: 2.1rem;
   width: 3rem;
   height: 3rem;
   text-align: center;

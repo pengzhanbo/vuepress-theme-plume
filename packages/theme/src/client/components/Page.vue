@@ -3,11 +3,11 @@ import DropdownTransition from '@theme-plume/DropdownTransition.vue'
 import PostMeta from '@theme-plume/PostMeta.vue'
 import Sidebar from '@theme-plume/Sidebar.vue'
 import { usePageData } from '@vuepress/client'
-import { computed, nextTick, onUnmounted, watchEffect } from 'vue'
+import { computed } from 'vue'
 import type { PlumeThemePageData } from '../../shared'
 import { useDarkMode, useThemeLocaleData } from '../composables'
-import { getCssValue } from '../utils'
 import Toc from './Toc'
+
 const page = usePageData<PlumeThemePageData>()
 const themeLocale = useThemeLocaleData()
 const isDarkMode = useDarkMode()
@@ -29,7 +29,7 @@ const enabledSidebar = computed(() => {
           <Sidebar v-if="enabledSidebar" />
           <div class="page-content">
             <h1>{{ page.title }}</h1>
-            <PostMeta :post="page" type="post" :border="true" />
+            <PostMeta :post="page" type="post" border />
             <Content />
             <div class="comment-container">
               <Comment :darkmode="isDarkMode" />

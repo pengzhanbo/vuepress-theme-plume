@@ -8,7 +8,7 @@
   --c-bg-light: #e5e7eb;
   --c-bg-lighter: #d1d5db;
   --c-bg-container: #fff;
-  --c-bg-navbar: var(--c-bg-container);
+  --c-bg-navbar: rgba(255, 255, 255, 0.9);
   --c-bg-sidebar: var(--c-bg-container);
   --c-bg-arrow: #ccc;
 
@@ -46,6 +46,8 @@
   --c-badge-tip: var(--c-tip);
   --c-badge-warning: var(--c-warning);
   --c-badge-danger: var(--c-danger);
+
+  --c-home-arrow-bottom: rgba(255, 255, 255, 0.75);
 
   // transition
   --t-color: 0.3s ease;
@@ -85,7 +87,7 @@
   --content-width: 740px;
 
   // search box vars
-  --search-bg-color: var(--c-bg-container);
+  --search-bg-color: transparent;
   --search-accent-color: var(--c-text-accent);
   --search-text-color: var(--c-text);
   --search-border-color: var(--c-border);

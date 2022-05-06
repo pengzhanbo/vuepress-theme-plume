@@ -17,6 +17,9 @@ export const usePostIndex = (): PostIndexRef => {
   return ref(postList)
 }
 
+export type PostTotalRef = Ref<number>
+export const postTotal: PostTotalRef = ref(0)
+
 if (import.meta.hot) {
   __VUE_HMR_RUNTIME__.updatePostIndex = (data: PostIndex) => {
     postIndex.value = data

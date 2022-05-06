@@ -61,6 +61,7 @@ export const preparedPostIndex = (
         article: frontmatter.article,
         category: page.data.category,
         isNote: page.data.isNote,
+        banner: frontmatter.banner,
       } as PostItem
     })
   postIndex = [

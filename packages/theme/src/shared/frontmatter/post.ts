@@ -5,4 +5,6 @@ export interface PlumeThemePostFrontmatter {
   tags?: string[]
   sticky?: boolean | number
   article?: boolean
+  banner?: string
+  bgBanner?: string
 }

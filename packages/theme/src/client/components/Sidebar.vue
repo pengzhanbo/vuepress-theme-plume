@@ -24,7 +24,11 @@ watchEffect(() => {
 </script>
 <template>
   <aside class="plume-theme-sidebar-wrapper">
-    <SidebarItems class="aside-navbar" :sidebar-list="aside" />
+    <SidebarItems
+      v-if="aside.length"
+      class="aside-navbar"
+      :sidebar-list="aside"
+    />
     <SidebarItems :sidebar-list="sidebarList" />
   </aside>
 </template>

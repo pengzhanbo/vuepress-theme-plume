@@ -5,7 +5,8 @@ html.dark {
   --c-bg: #22272e;
   --c-bg-light: #2b313a;
   --c-bg-lighter: #262c34;
-  --c-bg-container: #262c34;
+  --c-bg-container: rgb(38, 44, 52);
+  --c-bg-navbar: rgba(38, 44, 52, 0.95);
 
   --c-text: #adbac7;
   --c-text-light: #96a7b7;
@@ -27,6 +28,8 @@ html.dark {
   --c-details-bg: #323843;
 
   --c-hl-bg-color: #363b46;
+
+  --c-home-arrow-bottom: rgba(196, 205, 216, 0.75);
 }
 
 html.dark .DocSearch {

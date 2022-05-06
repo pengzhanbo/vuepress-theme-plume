@@ -81,12 +81,20 @@ const togglePage = (currentPage: number): void => {
   flex: 1;
 
   .post-list-item {
-    position: relative;
-    padding: 1.25rem 1.5rem;
-    background-color: var(--c-bg-container);
-    border-radius: var(--p-around);
-    margin-bottom: 1.25rem;
-    box-shadow: var(--shadow);
+    > div {
+      position: relative;
+      padding: 1.25rem 1.5rem;
+      background-color: var(--c-bg-container);
+      border-radius: var(--p-around);
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow);
+      transition: box-shadow var(--t-color);
+      overflow: hidden;
+
+      &:hover {
+        box-shadow: var(--shadow-lg);
+      }
+    }
 
     .top-icon {
       position: absolute;
@@ -95,6 +103,40 @@ const togglePage = (currentPage: number): void => {
       width: 2.65rem;
       height: 2.65rem;
       color: var(--c-brand);
+    }
+  }
+
+  .post-banner {
+    position: relative;
+    height: 300px;
+    margin: -1.25rem -1.5rem 1.25rem -1.5rem;
+    overflow: hidden;
+    cursor: pointer;
+
+    > div {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transform: scale(100%);
+      transition: transform var(--t-transform);
+
+      &:hover {
+        transform: scale(120%);
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 1.5rem;
+      width: 0;
+      height: 0;
+      border: solid 20px;
+      border-color: transparent transparent var(--c-bg-container) transparent;
+      z-index: 1;
     }
   }
 
@@ -122,6 +164,14 @@ const togglePage = (currentPage: number): void => {
 
   .post-more {
     text-align: right;
+
+    a {
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--p-around);
+      background-color: var(--c-bg);
+      color: var(--c-brand);
+    }
   }
 }
 

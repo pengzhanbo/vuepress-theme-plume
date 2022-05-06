@@ -14,4 +14,5 @@ export interface PlumeThemeHomeFrontmatter extends PlumeThemeNormalFrontmatter {
   banner?: string
   mobileBanner?: string
   productList?: PlumeThemeProductList
+  motto?: string
 }

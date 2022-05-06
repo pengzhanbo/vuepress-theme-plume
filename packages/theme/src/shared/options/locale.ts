@@ -92,21 +92,21 @@ export interface PlumeThemeLocaleData extends LocaleData {
   /**
    * 文章链接前缀
    *
-   * 默认： /article/
+   * @default： /article/
    */
   article?: string
 
   /**
    * 标签页链接 与 navbar配置
    *
-   * 默认：{ text: '标签', link: '/tag/' }
+   * @def：{ text: '标签', link: '/tag/' }
    */
   tag?: false | NavLink
 
   /**
    * 文章分类 与 navbar配置
    *
-   * 默认： { text: '分类', link: '/category/ }
+   * @default： { text: '分类', link: '/category/ }
    */
   category?: false | NavLink
 
@@ -115,7 +115,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
    *
    * (注，由于页面样式为 timeline， 所以默认链接为 timeline )
    *
-   * 默认： { text: '归档', link: '/timeline/' }
+   * @default： { text: '归档', link: '/timeline/' }
    */
   archive?: false | NavLink
 

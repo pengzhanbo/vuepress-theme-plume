@@ -1,3 +1,12 @@
+# [1.0.0-beta.29](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2022-05-06)
+
+
+### Features
+
+* **theme:** 更新主题样式 ([335d273](https://github.com/pengzhanbo/vuepress-theme-plume/commit/335d273d2caf315373c05d2aca61f58daa2a129a))
+
+
+
 # [1.0.0-beta.28](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2022-05-05)
 
 

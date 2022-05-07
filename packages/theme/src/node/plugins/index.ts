@@ -4,6 +4,7 @@ import type {
   PlumeThemePluginOptions,
 } from '../../shared'
 import { resolveActiveHeaderLink } from './activeHeaderLink'
+import { resolveBaiduTongji } from './baiduTongji'
 import { resolveCanIUse } from './caniuse'
 import { resolveComment } from './comment'
 import { resolveCopyCode } from './copyCode'
@@ -39,6 +40,7 @@ export const getPlugins = (
     resolveSitemap(plugins, localeOptions),
     resolveSeo(plugins, localeOptions),
     resolveThemeData(localeOptions),
+    resolveBaiduTongji(plugins),
   ]
   return resolvePlugins
 }

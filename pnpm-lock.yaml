@@ -121,7 +121,6 @@ importers:
       '@vuepress/core': 2.0.0-beta.43
       '@vuepress/shared': 2.0.0-beta.43
       '@vuepress/utils': 2.0.0-beta.43
-      balloon-css: ^1.2.0
       vue: ^3.2.33
       vue-router: ^4.0.14
     dependencies:
@@ -129,13 +128,13 @@ importers:
       '@vuepress/core': 2.0.0-beta.43
       '@vuepress/shared': 2.0.0-beta.43
       '@vuepress/utils': 2.0.0-beta.43
-      balloon-css: 1.2.0
       vue: 3.2.33
       vue-router: 4.0.14_vue@3.2.33
 
   packages/theme:
     specifiers:
       '@types/lodash.merge': ^4.6.6
+      '@vuepress-plume/vuepress-plugin-baidu-tongji': workspace:*
       '@vuepress-plume/vuepress-plugin-caniuse': workspace:*
       '@vuepress-plume/vuepress-plugin-copy-code': workspace:*
       '@vuepress/client': 2.0.0-beta.43
@@ -167,14 +166,12 @@ importers:
       vue: ^3.2.33
       vue-router: ^4.0.14
       vuepress-plugin-comment2: 2.0.0-beta.49
-      vuepress-plugin-copy-code2: 2.0.0-beta.49
       vuepress-plugin-md-enhance: 2.0.0-beta.49
-      vuepress-plugin-reading-time2: 2.0.0-beta.49
-      vuepress-plugin-sass-palette: 2.0.0-beta.49
       vuepress-plugin-seo2: 2.0.0-beta.49
       vuepress-plugin-sitemap2: 2.0.0-beta.49
     dependencies:
       '@types/lodash.merge': 4.6.7
+      '@vuepress-plume/vuepress-plugin-baidu-tongji': link:../plugin-baidu-tongji
       '@vuepress-plume/vuepress-plugin-caniuse': link:../plugin-caniuse
       '@vuepress-plume/vuepress-plugin-copy-code': link:../plugin-copy-code
       '@vuepress/client': 2.0.0-beta.43
@@ -206,10 +203,7 @@ importers:
       vue: 3.2.33
       vue-router: 4.0.14_vue@3.2.33
       vuepress-plugin-comment2: 2.0.0-beta.49_sass-loader@12.6.0
-      vuepress-plugin-copy-code2: 2.0.0-beta.49_sass-loader@12.6.0
       vuepress-plugin-md-enhance: 2.0.0-beta.49_sass-loader@12.6.0
-      vuepress-plugin-reading-time2: 2.0.0-beta.49
-      vuepress-plugin-sass-palette: 2.0.0-beta.49_sass-loader@12.6.0
       vuepress-plugin-seo2: 2.0.0-beta.49
       vuepress-plugin-sitemap2: 2.0.0-beta.49
 
@@ -2109,10 +2103,6 @@ packages:
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
-
-  /balloon-css/1.2.0:
-    resolution: {integrity: sha512-urXwkHgwp6GsXVF+it01485Z2Cj4pnW02ICnM0TemOlkKmCNnDLmyy+ZZiRXBpwldUXO+aRNr7Hdia4CBvXJ5A==}
-    dev: false
 
   /base64-js/1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
@@ -8005,26 +7995,6 @@ packages:
       - supports-color
     dev: false
 
-  /vuepress-plugin-copy-code2/2.0.0-beta.49_sass-loader@12.6.0:
-    resolution: {integrity: sha512-BYipVAj2Ajaatziho/TmOiPkm9GBX4z8nnOMgAwZS56S/xsKS8kM76MxikcIUFv+R0UANB+tTa5e1tNNa32IJQ==}
-    peerDependencies:
-      sass-loader: ^12.6.0
-    peerDependenciesMeta:
-      sass-loader:
-        optional: true
-    dependencies:
-      '@mr-hope/vuepress-shared': 2.0.0-beta.49
-      '@vuepress/client': 2.0.0-beta.43
-      '@vuepress/utils': 2.0.0-beta.43
-      balloon-css: 1.2.0
-      sass-loader: 12.6.0_sass@1.51.0
-      vue: 3.2.33
-      vue-router: 4.0.14_vue@3.2.33
-      vuepress-plugin-sass-palette: 2.0.0-beta.49_sass-loader@12.6.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /vuepress-plugin-md-enhance/2.0.0-beta.49_sass-loader@12.6.0:
     resolution: {integrity: sha512-1HvUKjJbhC3dsS5SpenjRrO9SBysYvBfNepeIpoBonBfZXMZIXYJA8Rv0zp8LtkOhtQZVYbSBLJdiBnm0Xj4yw==}
     peerDependencies:
@@ -8058,14 +8028,6 @@ packages:
       - '@vue/composition-api'
       - cypress
       - jest
-      - supports-color
-    dev: false
-
-  /vuepress-plugin-reading-time2/2.0.0-beta.49:
-    resolution: {integrity: sha512-dZYC6nct/2i5eZSDt9KlsA7lnYweyazJw3/pHuyU2EkmgccYKMZfstnY0yI0nU5Pa1uMArWbO8Diajyxd/rYIA==}
-    dependencies:
-      '@mr-hope/vuepress-shared': 2.0.0-beta.49
-    transitivePeerDependencies:
       - supports-color
     dev: false
 

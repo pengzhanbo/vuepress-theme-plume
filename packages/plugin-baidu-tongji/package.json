@@ -1,0 +1,43 @@
+{
+  "name": "@vuepress-plume/vuepress-plugin-baidu-tongji",
+  "version": "1.0.0-beta.29",
+  "description": "The Plugin for VuePres 2",
+  "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+  },
+  "license": "MIT",
+  "author": "pengzhanbo <volodymyr@foxmail.com>",
+  "main": "lib/node/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "pnpm run clean && pnpm run copy && pnpm run ts",
+    "clean": "rimraf lib *.tsbuildinfo",
+    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
+    "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib -w",
+    "dev": "concurrently \"pnpm copy:watch\" \"pnpm ts:watch\"",
+    "ts": "tsc -b tsconfig.build.json",
+    "ts:watch": "tsc -b tsconfig.build.json --watch"
+  },
+  "dependencies": {
+    "@vuepress/client": "2.0.0-beta.43",
+    "@vuepress/core": "2.0.0-beta.43",
+    "@vuepress/shared": "2.0.0-beta.43",
+    "@vuepress/utils": "2.0.0-beta.43"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keyword": [
+    "VuePress",
+    "vuepress plugin",
+    "baiduTongji",
+    "vuepress-plugin-plugin-baidu-tongji"
+  ]
+}

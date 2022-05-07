@@ -1,6 +1,6 @@
-import type { Plugin, App } from '@vuepress/core'
+import type { App, Plugin } from '@vuepress/core'
 {{#if client}}
-import path from 'path'
+import { path } from '@vuepress/utils'
 {{/if}}
 {{#if shared}}
 import type { {{ upperName }}Options } from '../shared'

@@ -56,7 +56,11 @@ const initPackage = async (config: ConfigOptions): Promise<void> => {
   const { name, client } = config
   const pkgName = packageName(name)
   const targetDir = path.join(packagesRoot, pkgName)
-  const dependencies: string[] = ['@vuepress/core@next']
+  const dependencies: string[] = [
+    '@vuepress/core@next',
+    '@vuepress/utils@next',
+    '@vuepress/shared@next'
+  ]
   client && dependencies.push('@vuepress/client@next')
 
   spinner.start(chalk.cyan('Installing...'))

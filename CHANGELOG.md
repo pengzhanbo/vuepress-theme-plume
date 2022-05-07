@@ -1,3 +1,12 @@
+# [1.0.0-beta.30](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2022-05-07)
+
+
+### Features
+
+* **plugin-baidu-tongji:** 新增百度统计插件 ([69a18b9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/69a18b910c62a0fa3b456769fe8b81c0aa7f9d95))
+
+
+
 # [1.0.0-beta.29](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2022-05-06)
 
 

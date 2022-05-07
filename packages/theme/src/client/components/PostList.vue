@@ -33,23 +33,23 @@ watch(
 )
 
 const route = useRoute()
-
+let offsetHeight = 0
 onBeforeRouteUpdate((to) => {
   if (__VUEPRESS_SSR__) return
   setPostListPage((to.query.p as unknown as number) || 1)
   const { home, banner, mobileBanner } = frontmatter.value
   let top = 0
   if (home && (banner || mobileBanner)) {
-    rect =
-      rect || document.querySelector('.navbar-wrapper')?.getBoundingClientRect()
-    top = document.documentElement.clientHeight - (rect?.height || 0)
+    offsetHeight =
+      offsetHeight ||
+      document.querySelector<HTMLElement>('.navbar-wrapper')?.offsetHeight ||
+      0
+    top = document.documentElement.clientHeight - offsetHeight
   }
-  scrollTo(document, top)
+  setTimeout(() => scrollTo(document, top), 0)
 })
 
 setPostListPage((route.query.p as unknown as number) || 1)
-
-let rect: any
 const togglePage = (currentPage: number): void => {
   router.push({
     path: route.path,

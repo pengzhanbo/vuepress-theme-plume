@@ -2,10 +2,7 @@
 import { usePageFrontmatter, withBase } from '@vuepress/client'
 import { isLinkHttp } from '@vuepress/shared'
 import { computed, onMounted, ref } from 'vue'
-import type {
-  PlumeThemeHomeFrontmatter,
-  PlumeThemeLocaleOptions,
-} from '../../shared'
+import type { PlumeThemeHomeFrontmatter } from '../../shared'
 import { useThemeLocaleData } from '../composables'
 import { scrollTo } from '../utils'
 import { ArrowBottomIcon } from './icons'

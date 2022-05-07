@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useOffsetPagination } from '@vueuse/core'
 import { computed, ref, toRefs } from 'vue'
+import { ArrowDoubleLeftIcon, ArrowDoubleRightIcon } from './icons'
 
 const emit = defineEmits(['togglePage'])
 const props = defineProps({
@@ -75,7 +76,7 @@ function handleJump(): void {
         :disabled="isFirstPage"
         @click="prev"
       >
-        prev
+        <ArrowDoubleLeftIcon />
       </button>
       <template v-for="count in pageList" :key="count">
         <button
@@ -94,7 +95,7 @@ function handleJump(): void {
         :disabled="isLastPage"
         @click="next"
       >
-        next
+        <ArrowDoubleRightIcon />
       </button>
     </div>
     <div class="pagination-form can-hide">
@@ -149,6 +150,15 @@ function handleJump(): void {
 
       &:disabled {
         color: var(--c-text);
+      }
+    }
+
+    &.btn-prev,
+    &.btn-next {
+      .icon {
+        width: 14px;
+        height: 14px;
+        vertical-align: text-top;
       }
     }
   }

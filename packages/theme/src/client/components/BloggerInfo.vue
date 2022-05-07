@@ -69,8 +69,6 @@ const useSocialList = (): SocialRef => {
 const socialList = useSocialList()
 
 const postStat = usePostStat()
-
-console.log(postStat)
 </script>
 <template>
   <DropdownTransition>

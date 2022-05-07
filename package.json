@@ -2,6 +2,15 @@
   "name": "vuepress-theme-plume",
   "version": "1.0.0-beta.30",
   "private": true,
+  "keywords": [
+    "vuepress",
+    "vuepress-next",
+    "Theme",
+    "vuepress theme",
+    "vuepress-theme",
+    "theme-plume",
+    "vuepress-theme-plume"
+  ],
   "license": "MIT",
   "author": "pengzhanbo",
   "scripts": {

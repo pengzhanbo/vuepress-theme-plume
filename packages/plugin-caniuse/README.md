@@ -8,10 +8,11 @@ yarn add @vuepress-plume/vuepress-plugin-caniuse
 ## Usage
 ``` js
 // .vuepress/config.js
+const { caniusePlugin } = require('@vuepress-plume/vuepress-plugin-caniuse')
 module.exports = {
   //...
   plugins: [
-    ['@vuepress-plume/vuepress-plugin-caniuse', { mode: 'embed' }]
+    caniusePlugin({ mode: 'embed' })
   ]
   // ...
 }

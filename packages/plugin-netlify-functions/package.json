@@ -1,6 +1,6 @@
 {
   "name": "@vuepress-plume/vuepress-plugin-netlify-functions",
-  "version": "1.0.0-beta.30",
+  "version": "1.0.0-beta.31",
   "description": "The Plugin for VuePres 2, Support Netlify Functions",
   "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
   "bugs": {

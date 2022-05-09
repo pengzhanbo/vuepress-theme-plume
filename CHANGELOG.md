@@ -1,3 +1,12 @@
+# [1.0.0-beta.31](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2022-05-09)
+
+
+### Features
+
+* **plugin-netlify-functions:** 新增 netlify-functions 插件 ([10cfbdb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/10cfbdb80f3ab5d57d4ddce93e8271a44717cdbb))
+
+
+
 # [1.0.0-beta.30](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2022-05-07)
 
 

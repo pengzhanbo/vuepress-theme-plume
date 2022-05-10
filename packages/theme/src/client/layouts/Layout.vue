@@ -16,12 +16,16 @@ import { useThemeLocaleData } from '../composables'
 const route = useRoute()
 const frontmatter = usePageFrontmatter()
 const themeLocale = useThemeLocaleData()
-const isHome = computed(() => {
-  return route.path === '/' && frontmatter.value.home
-})
 
 const pageType = computed(() => {
-  return (frontmatter.value.pageType as string) || ''
+  const matter = frontmatter.value
+  let type = ''
+  if (matter.home) {
+    type = 'home'
+  } else {
+    type = (frontmatter.value.pageType as string) || ''
+  }
+  return type
 })
 
 const footer = computed(() => {
@@ -32,6 +36,7 @@ const pageMap = {
   category: Category,
   archive: Archive,
   tag: Tag,
+  home: Home,
 }
 </script>
 <template>
@@ -48,8 +53,7 @@ const pageMap = {
     </slot>
     <AsideNavbar />
     <slot name="page">
-      <Home v-if="isHome" />
-      <Component :is="pageMap[pageType]" v-else-if="pageType" />
+      <Component :is="pageMap[pageType]" v-if="pageType" />
       <Page v-else>
         <template #top>
           <slot name="page-top" />

@@ -19,7 +19,7 @@ const loadEnvConfig = (): Record<string, string | undefined> => {
 
 export interface NetlifyServe {
   host: string
-  cancel: () => void
+  close: () => void
 }
 export const netlifyServe = async ({
   directory,
@@ -49,6 +49,6 @@ export const netlifyServe = async ({
 
   return {
     host: 'http://localhost:' + port,
-    cancel,
+    close: () => cancel(),
   }
 }

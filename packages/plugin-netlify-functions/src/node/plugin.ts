@@ -75,8 +75,8 @@ export const netlifyFunctionsPlugin = (
 ): Plugin => {
   return (app: App) => {
     const opts = initOptions(app, options)
-    cache.options = opts
     let server: NetlifyServe
+    cache.options = opts
     return {
       name: '@vuepress-plume/vuepress-plugin-netlify-functions',
 
@@ -85,10 +85,12 @@ export const netlifyFunctionsPlugin = (
         if (!app.env.isBuild) {
           // 初始化用户侧的 functions
           await initialFunctions(app, opts)
-          if (!server) {
-            server = await netlifyServe(opts)
-          }
+          server = await netlifyServe(opts)
         }
+      },
+
+      onWatched: (app, watchers) => {
+        watchers.push(server)
       },
 
       extendsBundlerOptions: (bundlerOption, app: App) => {

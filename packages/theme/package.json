@@ -39,7 +39,6 @@
     "@vuepress-plume/vuepress-plugin-baidu-tongji": "workspace:*",
     "@vuepress-plume/vuepress-plugin-caniuse": "workspace:*",
     "@vuepress-plume/vuepress-plugin-copy-code": "workspace:*",
-    "@vuepress-plume/vuepress-plugin-page-collection": "workspace:*",
     "@vuepress/client": "2.0.0-beta.43",
     "@vuepress/core": "2.0.0-beta.43",
     "@vuepress/plugin-active-header-links": "2.0.0-beta.43",

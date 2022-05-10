@@ -1,3 +1,3 @@
 export interface PageCollectionOptions {
-  a?: string
+  [x: string]: unknown
 }

@@ -1,0 +1,46 @@
+{
+  "schema": {
+    "updatedAt": { "type": "Date" },
+    "ACL": {
+      "type": "ACL",
+      "default": { "_owner": { "write": true }, "*": { "read": true } },
+      "hidden": true
+    },
+    "objectId": { "type": "String" },
+    "createdAt": { "type": "Date" },
+    "url": {
+      "type": "String",
+      "v": 2,
+      "required": false,
+      "comment": "页面路径",
+      "hidden": false,
+      "read_only": false
+    },
+    "visitCount": {
+      "type": "Number",
+      "v": 2,
+      "required": false,
+      "auto_increment": false,
+      "default": 0,
+      "comment": "访问次数",
+      "hidden": false,
+      "read_only": false
+    }
+  },
+  "permissions": {
+    "create": { "*": true },
+    "find": { "onlySignInUsers": true },
+    "get": { "onlySignInUsers": true },
+    "update": { "onlySignInUsers": true },
+    "delete": { "onlySignInUsers": true },
+    "add_fields": { "onlySignInUsers": true }
+  },
+  "indexes": [
+    {
+      "v": 2,
+      "key": { "url": 1 },
+      "name": "-user-url_1",
+      "background": true
+    }
+  ]
+}

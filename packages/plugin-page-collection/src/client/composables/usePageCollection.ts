@@ -15,11 +15,10 @@ interface ResponseData {
 }
 
 const fetchCollection = async (url: string): Promise<PageCollection> => {
+  // 发起 netlify functions 请求
+  // 你已经注意到，接口名就是在 node/functions 目录下的 文件名
   const response = await fetch(`${prefix}/page_collection`, {
     method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-    },
     body: JSON.stringify({ url }),
   })
   const result = (await response.json()) as unknown as ResponseData
@@ -42,7 +41,6 @@ export const usePageCollection = (): PageCollection => {
     collection.visitCount = visitCount
   }
   onMounted(() => {
-    // why ? mounted 比 router enter 更早 ？？？？？
     setTimeout(async () => {
       await getPageCollection(route.path)
     }, 0)

@@ -1,3 +1,14 @@
+## 1.0.0-beta.32 (2022-05-10)
+
+* refactor(plugin-page-collection): 添加说明文档和代码注释说明 ([26b59ce](https://github.com/pengzhanbo/vuepress-theme-plume/commit/26b59ce))
+* fix(plugin-netlify-functions): 修复 netlify 服务在vuepress服务重启前未被正确关闭就重启的问题 ([5263c58](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5263c58))
+* fix(plugin-netlify-functions): 修复 netlify 重复启动问题 ([1d63a9c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1d63a9c))
+* fix(theme): 修复 文章 设置 article 为 false 时未被正确过滤的问题 ([edf5456](https://github.com/pengzhanbo/vuepress-theme-plume/commit/edf5456))
+* feat(plugin-page-collection): 新增 plugin-netlify-functions 使用示例插件 ([10af203](https://github.com/pengzhanbo/vuepress-theme-plume/commit/10af203))
+* chore(plugin-netlify-functions): update package.json keywords ([14724ed](https://github.com/pengzhanbo/vuepress-theme-plume/commit/14724ed))
+
+
+
 # [1.0.0-beta.31](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2022-05-09)
 
 

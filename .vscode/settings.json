@@ -26,6 +26,7 @@
     "esbuild",
     "gsap",
     "iarna",
+    "leancloud",
     "nprogress",
     "pnpm",
     "portfinder",

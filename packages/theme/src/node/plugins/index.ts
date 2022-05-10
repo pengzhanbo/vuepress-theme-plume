@@ -1,3 +1,4 @@
+import { pageCollectionPlugin } from '@vuepress-plume/vuepress-plugin-page-collection'
 import type { PluginConfig } from '@vuepress/core'
 import type {
   PlumeThemeLocaleOptions,
@@ -41,6 +42,7 @@ export const getPlugins = (
     resolveSeo(plugins, localeOptions),
     resolveThemeData(localeOptions),
     resolveBaiduTongji(plugins),
+    pageCollectionPlugin(),
   ]
   return resolvePlugins
 }

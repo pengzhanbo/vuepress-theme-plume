@@ -30,6 +30,7 @@ const enabledSidebar = computed(() => {
           <div class="page-content">
             <h1>{{ page.title }}</h1>
             <PostMeta :post="page" type="post" border />
+            <PageCollection />
             <Content />
             <div class="comment-container">
               <Comment :darkmode="isDarkMode" />

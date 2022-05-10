@@ -31,6 +31,7 @@ import type {
   NetlifyFunctionsPluginOptions,
 } from '../shared'
 import { extendsBundlerOptions } from './extendsBundlerOptions'
+import type { NetlifyServe } from './netlify'
 import {
   generateFunctions,
   generateNetlifyConfig,
@@ -75,21 +76,23 @@ export const netlifyFunctionsPlugin = (
   return (app: App) => {
     const opts = initOptions(app, options)
     cache.options = opts
-    let server = ''
+    let server: NetlifyServe
     return {
       name: '@vuepress-plume/vuepress-plugin-netlify-functions',
 
       onInitialized: async (app) => {
         // 启动netlify functions server
         if (!app.env.isBuild) {
-          server = await netlifyServe(opts)
           // 初始化用户侧的 functions
           await initialFunctions(app, opts)
+          if (!server) {
+            server = await netlifyServe(opts)
+          }
         }
       },
 
       extendsBundlerOptions: (bundlerOption, app: App) => {
-        extendsBundlerOptions(bundlerOption, app, opts, server)
+        extendsBundlerOptions(bundlerOption, app, opts, server.host)
       },
 
       onGenerated: async (app: App) => {

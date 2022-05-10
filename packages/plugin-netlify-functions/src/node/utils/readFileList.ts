@@ -4,6 +4,7 @@ export const readFileList = (
   source: string,
   fileList: string[] = []
 ): string[] => {
+  if (!fs.existsSync(source)) return []
   const files = fs.readdirSync(source)
   files.forEach((file: string) => {
     const filepath = path.join(source, file)

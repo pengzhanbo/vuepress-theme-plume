@@ -17,9 +17,13 @@ const loadEnvConfig = (): Record<string, string | undefined> => {
   }
 }
 
+export interface NetlifyServe {
+  host: string
+  cancel: () => void
+}
 export const netlifyServe = async ({
   directory,
-}: NetlifyFunctionsPluginOptions): Promise<string> => {
+}: NetlifyFunctionsPluginOptions): Promise<NetlifyServe> => {
   const port = await portFinder.getPortPromise({ port: 9000 })
 
   const argv = [
@@ -31,7 +35,7 @@ export const netlifyServe = async ({
     // '--debug',
   ]
 
-  const { stdout } = execa(
+  const { stdout, cancel } = execa(
     path.resolve(__dirname, '../../../node_modules/.bin/netlify'),
     argv,
     {
@@ -43,5 +47,8 @@ export const netlifyServe = async ({
   )
   stdout?.pipe(process.stdout)
 
-  return 'http://localhost:' + port
+  return {
+    host: 'http://localhost:' + port,
+    cancel,
+  }
 }

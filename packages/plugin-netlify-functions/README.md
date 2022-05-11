@@ -89,3 +89,9 @@ __options__
 ## 查看详细说明文档
 
 待补充
+
+## 示例
+
+### 插件开发示例
+
+- [vuepress-plugin-page-collection](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-page-collection) 基于 netlify-functions 的，通过在 functions中连接 `leancloud` 实现 博客文章页 阅读数/访问次数 的记录与展示。

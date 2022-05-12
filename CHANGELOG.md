@@ -1,3 +1,12 @@
+## 1.0.0-beta.33 (2022-05-12)
+
+* perf(theme): 调整 sidebar 样式与交互 ([f1c776e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f1c776e))
+* docs: update readme ([ec67e52](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ec67e52))
+* docs: update readme.md ([f8ecdd9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f8ecdd9))
+* docs(plugin-netlify-functions): update readme ([9edaeb9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9edaeb9))
+
+
+
 ## 1.0.0-beta.32 (2022-05-10)
 
 * refactor(plugin-page-collection): 添加说明文档和代码注释说明 ([26b59ce](https://github.com/pengzhanbo/vuepress-theme-plume/commit/26b59ce))

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import SidebarItems from '@theme-plume/SidebarItems.vue'
 import type { PropType } from 'vue'
-import { watchEffect } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import type { SidebarOptions } from '../../shared'
 import { useAsideNavbar, useSidebarIndex } from '../composables'
@@ -21,9 +21,16 @@ watchEffect(() => {
   initSidebarList(route.path)
   triggerAsideNavbar(false)
 })
+
+const el = ref<HTMLElement | null>(null)
+onMounted(() => {
+  if (__VUEPRESS_SSR__) return
+  const activeEl = el.value?.querySelector<HTMLElement>('.router-link-active')
+  activeEl && activeEl.scrollIntoView(false)
+})
 </script>
 <template>
-  <aside class="plume-theme-sidebar-wrapper">
+  <aside :ref="(e) => (el = e)" class="plume-theme-sidebar-wrapper">
     <SidebarItems
       v-if="aside.length"
       class="aside-navbar"
@@ -38,10 +45,11 @@ watchEffect(() => {
 .plume-theme-sidebar-wrapper {
   position: sticky;
   top: calc(var(--navbar-height) + 1.25rem);
-  width: 20rem;
+  width: 18rem;
   height: calc(100vh - var(--navbar-height) - 1.25rem);
   border-right: solid 1px var(--c-border);
   font-size: 18px;
+  padding-left: 1.25rem;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--c-brand) var(--c-border);
@@ -57,6 +65,7 @@ watchEffect(() => {
   }
 
   &::-webkit-scrollbar-thumb {
+    border-radius: 3.5px;
     background-color: var(--c-brand);
   }
 

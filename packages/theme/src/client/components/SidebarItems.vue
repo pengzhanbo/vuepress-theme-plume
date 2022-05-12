@@ -53,9 +53,18 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
       :class="{ line: deep === 1 }"
     >
       <p
-        :class="{ 'sidebar-items-title': deep === 1 }"
+        :class="{
+          'sidebar-items-title': deep === 1,
+          'sidebar-items-subtitle':
+            deep > 1 && sidebar.children && sidebar.children.length,
+        }"
         @click.self="sidebarClick(sidebar)"
       >
+        <ArrowRightIcon
+          v-if="deep === 1 && sidebar.children && sidebar.children.length"
+          :class="{ open: sidebar.open }"
+          @click.self="sidebarClick(sidebar)"
+        />
         <AutoLink
           v-if="sidebar.link"
           :item="{ text: sidebar.text, link: sidebar.link }"
@@ -63,11 +72,6 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
         <span v-else @click.self="sidebarClick(sidebar)">
           {{ sidebar.text }}
         </span>
-        <ArrowRightIcon
-          v-if="deep === 1 && sidebar.children && sidebar.children.length"
-          :class="{ open: sidebar.open }"
-          @click.self="sidebarClick(sidebar)"
-        />
       </p>
       <SidebarItems
         v-if="sidebar.children && sidebar.children.length"
@@ -86,9 +90,9 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
     padding: 0;
     li {
       a {
-        color: var(--c-text);
+        color: var(--c-sidebar-text);
         margin: 0.25rem 0;
-        font-weight: bold;
+        font-weight: 500;
         flex: 1;
 
         &:hover {
@@ -110,18 +114,21 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
       }
 
       p.sidebar-items-title {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        position: relative;
         margin: 0;
         height: 40px;
+        line-height: 40px;
+        cursor: pointer;
 
         .arrow-right-icon {
+          position: absolute;
+          left: -1.5rem;
+          top: 8px;
           width: 20px;
           height: 20px;
-          margin-right: 0.75rem;
           transform: rotate(0);
           transition: transform var(--t-color);
+          color: var(--c-text-quote);
 
           &.open {
             transform: rotate(90deg);
@@ -129,8 +136,13 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
         }
       }
 
+      p.sidebar-items-subtitle {
+        color: var(--c-text);
+        font-weight: bolder;
+      }
+
       &.line {
-        border-bottom: solid 1px var(--c-border);
+        // border-bottom: solid 1px var(--c-border);
 
         &:last-child {
           border-bottom: none;
@@ -139,12 +151,6 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
     }
     .sidebar-items {
       font-size: 16px;
-      padding-left: 1.25rem;
-      padding-bottom: 0.75rem;
-
-      li a {
-        font-weight: normal;
-      }
     }
   }
 }

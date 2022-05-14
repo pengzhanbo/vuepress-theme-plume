@@ -1,3 +1,9 @@
+## 1.0.0-beta.34 (2022-05-14)
+
+* fix: 优化皮肤主题交互 ([1bf2c82](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1bf2c82))
+
+
+
 ## 1.0.0-beta.33 (2022-05-12)
 
 * perf(theme): 调整 sidebar 样式与交互 ([f1c776e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f1c776e))

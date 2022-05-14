@@ -24,15 +24,11 @@ if (import.meta.hot) {
 }
 `
 
-const isBoolean = (arg: unknown): boolean => {
-  return typeof arg === 'boolean'
-}
-
 export const preparedPostIndex = (
   app: App,
   localeOption: PlumeThemeLocaleOptions
 ): void => {
-  let postIndex: PostIndex = (app.pages as Page<PlumeThemePageData>[])
+  const postIndex: PostIndex = (app.pages as Page<PlumeThemePageData>[])
     .filter((page) => {
       return (
         !!page.pathInferred &&
@@ -64,18 +60,6 @@ export const preparedPostIndex = (
         banner: frontmatter.banner,
       } as PostItem
     })
-  postIndex = [
-    ...postIndex
-      .filter((post) => post.sticky)
-      .sort((left, right) => {
-        const leftSticky = isBoolean(left.sticky) ? 1 : (left.sticky as number)
-        const rightSticky = isBoolean(right.sticky)
-          ? 1
-          : (right.sticky as number)
-        return leftSticky < rightSticky ? 1 : -1
-      }),
-    ...postIndex.filter((post) => !post.sticky),
-  ]
 
   let content = `
 export const postIndex = ${JSON.stringify(postIndex, null, 2)}

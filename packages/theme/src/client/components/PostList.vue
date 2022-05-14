@@ -108,7 +108,7 @@ const togglePage = (currentPage: number): void => {
 
   .post-banner {
     position: relative;
-    height: 300px;
+    height: 18.75rem;
     margin: -1.25rem -1.5rem 1.25rem -1.5rem;
     overflow: hidden;
     cursor: pointer;
@@ -134,7 +134,7 @@ const togglePage = (currentPage: number): void => {
       left: 1.5rem;
       width: 0;
       height: 0;
-      border: solid 20px;
+      border: solid 1.25rem;
       border-color: transparent transparent var(--c-bg-container) transparent;
       z-index: 1;
     }

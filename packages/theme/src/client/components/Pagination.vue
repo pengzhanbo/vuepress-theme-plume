@@ -113,7 +113,7 @@ function handleJump(): void {
   justify-content: flex-start;
   align-items: center;
   text-align: center;
-  font-size: 14px;
+  font-size: 0.875rem;
 
   .pagination-container {
     flex: 1;
@@ -132,8 +132,8 @@ function handleJump(): void {
     cursor: pointer;
     font-size: inherit;
     padding: 0 0.8rem;
-    height: 34px;
-    line-height: 34px;
+    height: 2.125rem;
+    line-height: 2.125rem;
     border: solid 1px transparent;
     color: var(--c-text);
     box-shadow: var(--shadow-sm);
@@ -156,8 +156,8 @@ function handleJump(): void {
     &.btn-prev,
     &.btn-next {
       .icon {
-        width: 14px;
-        height: 14px;
+        width: 0.875rem;
+        height: 0.875rem;
         vertical-align: text-top;
       }
     }
@@ -168,8 +168,8 @@ function handleJump(): void {
       font-size: inherit;
       padding: 0.5rem;
       width: 3.25rem;
-      height: 34px;
-      line-height: 34px;
+      height: 2.125rem;
+      line-height: 2.125rem;
       border: solid 1px transparent;
       color: var(--c-text);
       box-shadow: var(--shadow-sm);

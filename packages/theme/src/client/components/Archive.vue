@@ -90,8 +90,8 @@ const headers = computed(() => {
       &::before {
         content: '';
         display: inline-block;
-        width: 12px;
-        height: 12px;
+        width: 0.75rem;
+        height: 0.75rem;
         background-color: var(--c-bg-container);
         border-radius: 6px;
         border: solid 2px var(--c-border-dark);
@@ -117,8 +117,8 @@ const headers = computed(() => {
       &::before {
         content: '';
         display: inline-block;
-        width: 10px;
-        height: 10px;
+        width: 0.625rem;
+        height: 0.625rem;
         background-color: var(--c-bg-container);
         border-radius: 5px;
         border: solid 2px var(--c-border-dark);

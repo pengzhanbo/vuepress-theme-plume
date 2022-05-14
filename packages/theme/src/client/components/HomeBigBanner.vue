@@ -67,6 +67,8 @@ const avatar = themeLocale.value.avatar || {}
   </div>
 </template>
 <style lang="scss">
+@import '../styles/_variables';
+
 .home-big-banner-wrapper {
   position: relative;
   display: flex;
@@ -82,8 +84,8 @@ const avatar = themeLocale.value.avatar || {}
     position: absolute;
     bottom: 1.25rem;
     left: 50%;
-    width: 48px;
-    height: 48px;
+    width: 3rem;
+    height: 3rem;
     color: var(--c-home-arrow-bottom);
     animation: home-banner-arrow 1.5s ease 0.3s infinite;
     cursor: pointer;
@@ -93,8 +95,8 @@ const avatar = themeLocale.value.avatar || {}
     margin: auto;
     text-align: center;
     .blogger-img {
-      width: 240px;
-      height: 240px;
+      width: 15rem;
+      height: 15rem;
       border-radius: 50%;
       overflow: hidden;
       padding: 1.25rem;
@@ -109,7 +111,7 @@ const avatar = themeLocale.value.avatar || {}
 
     h3 {
       display: inline-block;
-      font-size: 64px;
+      font-size: 4rem;
       max-width: var(--content-width);
       color: rgba(255, 255, 255, 0.85);
       padding: 0 1.25rem;
@@ -118,7 +120,7 @@ const avatar = themeLocale.value.avatar || {}
 
     .blogger-motto {
       max-width: var(--content-width);
-      font-size: 32px;
+      font-size: 2rem;
       color: rgba(255, 255, 255, 0.75);
       padding: 0 1.25rem;
       border-radius: var(--p-around);
@@ -126,10 +128,25 @@ const avatar = themeLocale.value.avatar || {}
   }
 }
 
+@media (max-width: $MQMobile) {
+  .home-big-banner-wrapper .home-blogger-info {
+    .blogger-img {
+      width: 50vw;
+      height: 50vw;
+    }
+    h3 {
+      font-size: 3rem;
+    }
+    .blogger-motto {
+      font-size: 1.5rem;
+    }
+  }
+}
+
 @keyframes home-banner-arrow {
   0% {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateX(-50%) translateY(-10px);
   }
 
   10% {
@@ -138,12 +155,12 @@ const avatar = themeLocale.value.avatar || {}
 
   95% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
 
   100% {
     opacity: 0.25;
-    transform: translateY(-7px);
+    transform: translateX(-50%) translateY(-7px);
   }
 }
 </style>

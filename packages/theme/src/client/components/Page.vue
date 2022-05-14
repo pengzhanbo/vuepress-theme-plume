@@ -5,11 +5,10 @@ import Sidebar from '@theme-plume/Sidebar.vue'
 import { usePageData } from '@vuepress/client'
 import { computed } from 'vue'
 import type { PlumeThemePageData } from '../../shared'
-import { useDarkMode, useThemeLocaleData } from '../composables'
+import { useDarkMode } from '../composables'
 import Toc from './Toc'
 
 const page = usePageData<PlumeThemePageData>()
-const themeLocale = useThemeLocaleData()
 const isDarkMode = useDarkMode()
 
 const isNote = computed(() => {
@@ -27,7 +26,7 @@ const enabledSidebar = computed(() => {
       <div class="page-container" :class="{ 'has-sidebar': enabledSidebar }">
         <main class="plume-theme-content">
           <Sidebar v-if="enabledSidebar" />
-          <div class="page-content">
+          <div class="page-content" :class="{ 'note-content': isNote }">
             <h1>{{ page.title }}</h1>
             <PostMeta :post="page" type="post" border />
             <Content />
@@ -68,6 +67,10 @@ const enabledSidebar = computed(() => {
       max-width: var(--content-width);
       padding: 0 2rem 1rem;
       margin: 0 auto;
+
+      &.note-content {
+        max-width: var(--content-note-width);
+      }
     }
 
     img {

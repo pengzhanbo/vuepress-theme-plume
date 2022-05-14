@@ -146,8 +146,8 @@ const postStat = usePostStat()
     .email-icon,
     .github-icon,
     .weiBo-icon {
-      width: 24px;
-      height: 24px;
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 
@@ -163,14 +163,14 @@ const postStat = usePostStat()
       text-align: center;
       color: var(--c-text-quote);
       .icon {
-        width: 32px;
-        height: 32px;
+        width: 2rem;
+        height: 2rem;
         color: var(--c-text-lightest);
       }
       span {
         display: inline-block;
         width: 100%;
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 500;
       }
     }

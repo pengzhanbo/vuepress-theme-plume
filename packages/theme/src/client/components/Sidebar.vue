@@ -48,7 +48,7 @@ onMounted(() => {
   width: 18rem;
   height: calc(100vh - var(--navbar-height) - 1.25rem);
   border-right: solid 1px var(--c-border);
-  font-size: 18px;
+  font-size: 1.125rem;
   padding-left: 1.25rem;
   overflow-y: auto;
   scrollbar-width: thin;
@@ -78,7 +78,7 @@ onMounted(() => {
       content: '';
       position: absolute;
       left: -1.25rem;
-      bottom: -4px;
+      bottom: -0.25rem;
       right: 0;
       border-bottom: solid 4px var(--c-border);
     }

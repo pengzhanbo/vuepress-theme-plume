@@ -35,7 +35,7 @@ const footer = computed(() => {
   padding: 1.25rem;
   background-color: var(--c-bg-container);
   box-shadow: var(--shadow-footer);
-  font-size: 14px;
+  font-size: 0.875rem;
   text-align: center;
 
   .theme-plume-footer-content {

@@ -116,16 +116,16 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
       p.sidebar-items-title {
         position: relative;
         margin: 0;
-        height: 40px;
-        line-height: 40px;
+        height: 2.5rem;
+        line-height: 2.5rem;
         cursor: pointer;
 
         .arrow-right-icon {
           position: absolute;
           left: -1.5rem;
           top: 8px;
-          width: 20px;
-          height: 20px;
+          width: 1.25rem;
+          height: 1.25rem;
           transform: rotate(0);
           transition: transform var(--t-color);
           color: var(--c-text-quote);

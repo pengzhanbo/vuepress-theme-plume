@@ -3,6 +3,7 @@ import { themePlume } from '@vuepress-plume/vuepress-theme-plume'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { webpackBundler } from '@vuepress/bundler-webpack'
 import { defineUserConfig } from '@vuepress/cli'
+import notes from './notes'
 
 export default defineUserConfig({
   base: '/',
@@ -33,61 +34,22 @@ export default defineUserConfig({
       twitter: 'https://baidu.com',
       linkedin: 'https://baidu.com',
     },
-    notes: {
-      notes: [
-        {
-          link: 'typescript',
-          dir: 'typescript',
-          text: 'Typescript',
-          sidebar: [
-            '',
-            {
-              text: '123',
-              children: ['1', '2'],
-            },
-            {
-              text: 'css',
-              dir: 'css',
-              children: ['1', '2'],
-            },
-          ],
-        },
-        {
-          link: '/interview-question',
-          text: '面试题解析',
-          dir: '面试题',
-          sidebar: [
-            {
-              text: 'HTML',
-              dir: 'HTML',
-              children: [],
-            },
-            {
-              text: 'CSS',
-              dir: 'CSS',
-              children: ['盒模型'],
-            },
-            {
-              text: 'JavaScript',
-              dir: 'JavaScript',
-              children: [],
-            },
-          ],
-        },
-      ],
-    },
+    notes,
     darkMode: true,
     navbar: [
       {
-        text: '笔记',
+        text: 'VuePress',
         children: [
+          { text: 'theme-plume', link: '/note/vuepress-theme-plume/' },
           {
-            text: 'typescript',
-            link: '/note/typescript/',
-          },
-          {
-            text: '面试题',
-            link: '/note/interview-question',
+            text: 'Plugin',
+            children: [
+              { text: 'caniuse', link: '/note/vuepress-plugin/caniuse/' },
+              {
+                text: 'netlify-functions',
+                link: '/note/vuepress-plugin/netlify-functions/',
+              },
+            ],
           },
         ],
       },
@@ -97,9 +59,6 @@ export default defineUserConfig({
       content: '',
     },
     themePlugins: {
-      caniuse: {
-        mode: 'embed',
-      },
       search: {
         locales: {
           '/': {

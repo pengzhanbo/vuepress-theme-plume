@@ -16,6 +16,7 @@ const scrollToTop = (): void => {
 }
 
 onMounted(() => {
+  if (__VUEPRESS_SSR__) return
   canShow()
   window.addEventListener('scroll', () => canShow(), false)
 })

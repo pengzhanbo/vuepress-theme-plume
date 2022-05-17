@@ -2,7 +2,7 @@
 import DropdownTransition from '@theme-plume/DropdownTransition.vue'
 import { isLinkHttp, isLinkMailto } from '@vuepress/shared'
 import type { FunctionalComponent, Ref } from 'vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { usePostStat, useThemeLocaleData } from '../composables'
 import {
   EmailIcon,
@@ -26,11 +26,11 @@ type SocialData = SocialItem[]
 type SocialRef = Ref<SocialData>
 
 const themeLocale = useThemeLocaleData()
-const avatar = themeLocale.value.avatar || {}
-const social = themeLocale.value.social || {}
+const avatar = computed(() => themeLocale.value.avatar || {})
 
 const useSocialList = (): SocialRef => {
   const list: SocialRef = ref([])
+  const social = themeLocale.value.social || {}
   if (social.QQ) {
     const url = isLinkHttp(social.QQ)
       ? social.QQ

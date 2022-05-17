@@ -3,7 +3,7 @@ import DropdownTransition from '@theme-plume/DropdownTransition.vue'
 import PostItem from '@theme-plume/PostItem.vue'
 import { usePageFrontmatter } from '@vuepress/client'
 import type { PropType } from 'vue'
-import { toRefs, watch } from 'vue'
+import { nextTick, onMounted, toRefs, watch } from 'vue'
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 import type { PlumeThemeHomeFrontmatter } from '../../shared'
 import type { PostListData } from '../composables'
@@ -49,7 +49,11 @@ onBeforeRouteUpdate((to) => {
   setTimeout(() => scrollTo(document, top), 0)
 })
 
-setPostListPage((route.query.p as unknown as number) || 1)
+onMounted(async () => {
+  if (__VUEPRESS_SSR__) return
+  await nextTick()
+  setPostListPage((route.query.p as unknown as number) || 1)
+})
 const togglePage = (currentPage: number): void => {
   router.push({
     path: route.path,

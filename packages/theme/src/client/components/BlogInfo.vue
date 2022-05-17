@@ -1,8 +1,16 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
+import { useThemeLocaleData } from '../composables'
 import BloggerInfo from './BloggerInfo.vue'
+const themeLocale = useThemeLocaleData()
+
+const showInfo = computed(() => {
+  const avatar = themeLocale.value.avatar || {}
+  return avatar.name || avatar.url
+})
 </script>
 <template>
-  <aside class="blog-info-wrapper">
+  <aside v-if="showInfo" class="blog-info-wrapper">
     <BloggerInfo />
   </aside>
 </template>

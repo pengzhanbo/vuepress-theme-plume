@@ -1,6 +1,9 @@
 import { defineClientConfig } from '@vuepress/client'
-import PageCollection from './components/PageCollection'
+import Collection from './components/PageCollection'
 
 export default defineClientConfig({
-  rootComponents: [PageCollection],
+  enhance({ app }) {
+    // eslint-disable-next-line vue/match-component-file-name
+    app.component('PageCollection', Collection)
+  },
 })

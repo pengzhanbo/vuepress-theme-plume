@@ -16,7 +16,6 @@ defineProps({
 const route = useRoute()
 const { sidebarList, initSidebarList } = useSidebarIndex()
 const { triggerAsideNavbar } = useAsideNavbar()
-initSidebarList(route.path)
 watchEffect(() => {
   initSidebarList(route.path)
   triggerAsideNavbar(false)
@@ -24,7 +23,7 @@ watchEffect(() => {
 
 const el = ref<HTMLElement | null>(null)
 onMounted(() => {
-  if (__VUEPRESS_SSR__) return
+  initSidebarList(route.path)
   const activeEl = el.value?.querySelector<HTMLElement>('.router-link-active')
   activeEl && activeEl.scrollIntoView(false)
 })

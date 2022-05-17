@@ -41,10 +41,10 @@
     "@vuepress/utils": "2.0.0-beta.45",
     "chokidar": "^3.5.3",
     "cpx2": "^4.2.0",
-    "dotenv": "^16.0.0",
-    "esbuild": "^0.14.38",
+    "dotenv": "^16.0.1",
+    "esbuild": "^0.14.39",
     "execa": "5.1.1",
-    "netlify-cli": "^10.3.0",
+    "netlify-cli": "^10.3.1",
     "portfinder": "^1.0.28"
   },
   "publishConfig": {

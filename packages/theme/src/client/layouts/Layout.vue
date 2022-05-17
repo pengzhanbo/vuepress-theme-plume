@@ -10,10 +10,8 @@ import PageFooter from '@theme-plume/PageFooter.vue'
 import Tag from '@theme-plume/Tag.vue'
 import { usePageFrontmatter } from '@vuepress/client'
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 import { useThemeLocaleData } from '../composables'
 
-const route = useRoute()
 const frontmatter = usePageFrontmatter()
 const themeLocale = useThemeLocaleData()
 

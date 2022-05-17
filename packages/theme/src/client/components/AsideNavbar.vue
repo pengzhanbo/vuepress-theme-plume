@@ -34,7 +34,7 @@ const { asideNavbarShow, triggerAsideNavbar } = useAsideNavbar()
     right: 0;
     width: 70%;
     height: 100%;
-    padding: 1.25rem 0 1.25rem 1.25rem;
+    padding: 1.25rem 0 1.25rem 2.25rem;
   }
 }
 @media (min-width: $MQMobile) {

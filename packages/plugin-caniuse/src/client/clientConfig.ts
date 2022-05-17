@@ -8,7 +8,7 @@ declare const __VUEPRESS_SSR__: boolean
 const mode = __CAN_I_USE_INJECT_MODE__
 
 export default defineClientConfig({
-  enhance: ({ router }) => {
+  enhance({ router }) {
     if (__VUEPRESS_SSR__) return
 
     router.afterEach((to, from) => {

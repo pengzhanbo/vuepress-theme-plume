@@ -1,3 +1,9 @@
+## 1.0.0-beta.36 (2022-05-17)
+
+* refactor: 升级 vue-router, vue, vuepress 版本, 跟进 vuepress.beta.45的变更 ([bf9ccc4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bf9ccc4))
+
+
+
 ## 1.0.0-beta.35 (2022-05-17)
 
 * refactor: update vuepress dependencies ([9c03bbd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9c03bbd))

@@ -1,3 +1,10 @@
+## 1.0.0-beta.35 (2022-05-17)
+
+* refactor: update vuepress dependencies ([9c03bbd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9c03bbd))
+* refactor(theme): 优化皮肤交互 ([c62218e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c62218e))
+
+
+
 ## 1.0.0-beta.34 (2022-05-14)
 
 * fix: 优化皮肤主题交互 ([1bf2c82](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1bf2c82))

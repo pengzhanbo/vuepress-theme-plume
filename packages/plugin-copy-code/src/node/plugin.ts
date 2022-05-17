@@ -35,6 +35,6 @@ export const copyCodePlugin = (options: CopyCodeOptions): Plugin => {
       __COPY_CODE_LOCALES_OPTIONS__: localesOption,
     }),
 
-    clientAppSetupFiles: path.resolve(__dirname, '../client/clientAppSetup.js'),
+    clientConfigFile: path.resolve(__dirname, '../client/clientConfig.js'),
   }
 }

@@ -21,8 +21,7 @@ export const themePlume = ({
     layouts: resolveClient('layouts'),
     templateBuild: resolveTemplate('index.build.html'),
     alias: getAlias(),
-    clientAppEnhanceFiles: resolveClient('clientAppEnhance.js'),
-    clientAppSetupFiles: resolveClient('clientAppSetup.js'),
+    clientConfigFile: resolveClient('config.js'),
     onInitialized: async (app) => {
       const { formatFrontmatter, watchNewMarkDown } = generateFrontmatter(
         app.options.source,

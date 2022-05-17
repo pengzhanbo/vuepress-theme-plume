@@ -16,10 +16,7 @@ export const caniusePlugin = ({
   const validateReg = new RegExp(`^${type}\\s+(.*)$`)
   const pluginObj: PluginObject = {
     name: '@vuepress-plume/vuepress-plugin-caniuse',
-    clientAppEnhanceFiles: path.resolve(
-      __dirname,
-      '../client/clientAppEnhance.js'
-    ),
+    clientConfigFile: path.resolve(__dirname, '../client/clientConfig.js'),
     define: {
       __CAN_I_USE_INJECT_MODE__: mode,
     },

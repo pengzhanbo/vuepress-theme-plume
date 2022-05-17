@@ -5,7 +5,9 @@ import ora from 'ora'
 import chalk from 'chalk'
 
 const packages: string[] = [
-  ...fs.readdirSync(path.join(__dirname, '../packages')).map(dir => path.join('../packages', dir)),
+  ...fs.readdirSync(path.join(__dirname, '../packages'))
+    .filter((file) => file !== '.DS_Store')
+    .map(dir => path.join('../packages', dir)),
   '../docs'
 ]
 

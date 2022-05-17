@@ -38,10 +38,7 @@ export const pageCollectionPlugin = (
         // 以便获取使用
         __COLLECTION_PROXY_PREFIX__: proxyPrefix,
       }),
-      clientAppEnhanceFiles: path.resolve(
-        __dirname,
-        '../client/clientAppEnhance.js'
-      ),
+      clientConfigFile: path.resolve(__dirname, '../client/clientConfig.js'),
       // 不要忘了，需要在这里 定义好 钩子
       onPrepared: () => preparePluginFunctions(),
       onGenerated: () => generatePluginFunctions(),

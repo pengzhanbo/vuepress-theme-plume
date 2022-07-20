@@ -22,20 +22,20 @@ permalink: /note/vuepress-plugin/netlify-functions/
 
 ## 安装
 
-:::: code-group
-::: code-group-item  npm
+::: code-tabs
+@tab  npm
 ``` sh
 npm install @vuepress-plume/vuepress-plugin-netlify-functions
 ```
-:::
-::: code-group-item yarn:active
+
+@tab yarn:active
 ``` sh
 yarn add @vuepress-plume/vuepress-plugin-netlify-functions
 ```
-:::
-::: code-group-item pnpm
+
+@tab pnpm
 ``` sh
 pnpm add @vuepress-plume/vuepress-plugin-netlify-functions
 ```
+
 :::
-::::

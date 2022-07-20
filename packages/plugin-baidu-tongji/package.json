@@ -26,10 +26,10 @@
     "ts:watch": "tsc -b tsconfig.build.json --watch"
   },
   "dependencies": {
-    "@vuepress/client": "2.0.0-beta.45",
-    "@vuepress/core": "2.0.0-beta.45",
-    "@vuepress/shared": "2.0.0-beta.45",
-    "@vuepress/utils": "2.0.0-beta.45"
+    "@vuepress/client": "2.0.0-beta.49",
+    "@vuepress/core": "2.0.0-beta.49",
+    "@vuepress/shared": "2.0.0-beta.49",
+    "@vuepress/utils": "2.0.0-beta.49"
   },
   "publishConfig": {
     "access": "public"

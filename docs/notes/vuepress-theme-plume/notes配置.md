@@ -106,8 +106,8 @@ _notes
 
 则可以进行如下配置：
 
-:::: code-group
-::: code-group-item config.ts
+::: code-tabs
+@tab config.ts
 ``` ts
 import { defineUserConfig } from 'vuepress'
 import type {PlumeThemeOptions } from '@vuepress-plume/vuepress-theme-plume'
@@ -122,8 +122,8 @@ export default defineUserConfig<PlumeThemeOptions>({
   }
 })
 ```
-:::
-::: code-group-item notes.ts
+
+@tab notes.ts
 ``` ts
 export default [
   {
@@ -162,6 +162,5 @@ export default [
 ]
 ```
 :::
-::::
 
 其效果 即为 本文档 左侧 sidebar 展示效果。

@@ -29,13 +29,13 @@
   "dependencies": {
     "@netlify/functions": "^1.0.0",
     "@vuepress-plume/vuepress-plugin-netlify-functions": "workspace:*",
-    "@vuepress/client": "2.0.0-beta.45",
-    "@vuepress/core": "2.0.0-beta.45",
-    "@vuepress/shared": "2.0.0-beta.45",
-    "@vuepress/utils": "2.0.0-beta.45",
+    "@vuepress/client": "2.0.0-beta.49",
+    "@vuepress/core": "2.0.0-beta.49",
+    "@vuepress/shared": "2.0.0-beta.49",
+    "@vuepress/utils": "2.0.0-beta.49",
     "leancloud-storage": "^4.12.2",
-    "vue": "^3.2.33",
-    "vue-router": "^4.0.15"
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.2"
   },
   "publishConfig": {
     "access": "public"

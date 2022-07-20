@@ -19,23 +19,23 @@ permalink: /note/vuepress-plugin/caniuse/
 
 ## 安装
 
-:::: code-group
-::: code-group-item  npm
+::: code-tabs
+@tab npm
 ``` sh
 npm install @vuepress-plume/vuepress-plugin-caniuse
 ```
-:::
-::: code-group-item yarn:active
+
+@tab:active yarn
 ``` sh
 yarn add @vuepress-plume/vuepress-plugin-caniuse
 ```
-:::
-::: code-group-item pnpm
+
+@tab pnpm
 ``` sh
 pnpm add @vuepress-plume/vuepress-plugin-caniuse
 ```
+
 :::
-::::
 
 ## 使用
 
@@ -43,8 +43,8 @@ pnpm add @vuepress-plume/vuepress-plugin-caniuse
 
 将插件添加到你的 vuepress 项目的配置文件中：
 
-:::: code-group
-::: code-group-item .vuepress/config.ts
+::: code-tabs
+@tab .vuepress/config.ts
 ``` ts {2,6}
 import { defineUserConfig } from 'vuepress'
 import { caniusePlugin } from '@vuepress-plume/vuepress-plugin-caniuse'
@@ -55,8 +55,8 @@ export default defineUserConfig({
   ]
 })
 ```
-:::
-::: code-group-item .vuepress/config.js
+
+@tab .vuepress/config.js
 ``` js {1,5}
 const { caniusePlugin } = require('@vuepress-plume/vuepress-plugin-caniuse')
 
@@ -66,8 +66,8 @@ module.exports = {
   ]
 }
 ```
+
 :::
-::::
 
 ### Step2：在markdown中使用
 

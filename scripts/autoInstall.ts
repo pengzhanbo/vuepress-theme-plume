@@ -28,7 +28,7 @@ function filterVuePress(dependencies: string[]) {
   const includes = ['vue', 'vue-router']
   const vue = dependencies.filter(
     dependence => includes.includes(dependence)
-  )
+  ).map(dependence => dependence + '@latest')
   return [...vue, ...vuepress]
 }
 

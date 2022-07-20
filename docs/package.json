@@ -9,15 +9,15 @@
   },
   "dependencies": {
     "@vuepress-plume/vuepress-theme-plume": "workspace:*",
-    "@vuepress/bundler-vite": "2.0.0-beta.45",
-    "@vuepress/bundler-webpack": "2.0.0-beta.45",
-    "@vuepress/cli": "2.0.0-beta.45",
-    "@vuepress/client": "2.0.0-beta.45",
-    "@vuepress/utils": "2.0.0-beta.45",
+    "@vuepress/bundler-vite": "2.0.0-beta.49",
+    "@vuepress/bundler-webpack": "2.0.0-beta.49",
+    "@vuepress/cli": "2.0.0-beta.49",
+    "@vuepress/client": "2.0.0-beta.49",
+    "@vuepress/utils": "2.0.0-beta.49",
     "anywhere": "^1.5.0",
     "leancloud-storage": "^4.12.2",
-    "sass": "^1.49.9",
-    "sass-loader": "^12.6.0",
-    "vue": "^3.2.33"
+    "sass": "^1.51.0",
+    "sass-loader": "^13.0.2",
+    "vue": "^3.2.37"
   }
 }

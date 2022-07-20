@@ -10,11 +10,13 @@ export const resolveMarkdownEnhance = (
     Object.assign(
       {
         container: true, // info note tip warning danger details
-        codegroup: true,
+        codetabs: true,
+        tabs: true,
         align: true,
         mark: true,
         tasklist: true,
         demo: true,
+        attrs: true,
       },
       plugins.markdownEnhance || {}
     )

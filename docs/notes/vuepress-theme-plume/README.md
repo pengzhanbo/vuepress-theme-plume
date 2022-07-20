@@ -36,23 +36,22 @@ __基于 `vuepress 2.0` 制作的 `Blog` 主题。__
 
 ## 安装
 
-:::: code-group
-::: code-group-item yarn
+::: code-tabs
+@tab yarn
 ``` sh
 yarn add @vuepress-plume/vuepress-theme-plume
 ```
 :::
-::: code-group-item npm
+@tab npm
 ``` sh
 npm i @vuepress-plume/vuepress-theme-plume
 ```
 :::
-::::
 
 ## 使用
 
-:::: code-group
-::: code-group-item ts
+::: code-tabs
+@tab ts
 ``` ts
 // .vuepress/config.ts
 import { defineUserConfig } from 'vuepress'
@@ -63,8 +62,8 @@ export default defineUserConfig({
   })
 })
 ```
-:::
-::: code-group-item js
+
+@tab js
 ``` js
 // .vuepress/config.js
 import { themePlume } from '@vuepress-plume/vuepress-theme-plume'
@@ -75,7 +74,6 @@ module.exports = {
 }
 ```
 :::
-::::
 
 ## 示例
 

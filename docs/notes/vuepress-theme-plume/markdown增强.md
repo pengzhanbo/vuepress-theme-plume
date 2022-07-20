@@ -123,40 +123,39 @@ markdown 增强 由 [vuepress-plugin-md-enhance](https://vuepress-theme-hope.git
 如果需要给先让某个选项卡被激活，在标题后面补充`:active`后缀。
 
 ````md
-:::: code-group
+::: code-tabs
 
-::: code-group-item yarn
+@tab yarn
 ```sh
 yarn version
 ```
-:::
 
-::: code-group-item npm:active
+
+@tab:active npm
 ```sh
 npm version
 ```
 :::
 
-::::
+
 ````
 
-:::: code-group
-::: code-group-item yarn
+::: code-tabs
+@tab yarn
 ``` sh
 yarn version
 ```
-:::
-::: code-group-item npm:active
+
+@tab:active npm
 ``` sh
 npm version
 ```
 :::
-::::
 
 ## 代码演示
 
 ```` md
-::: demo [类型] 可选的标题文字
+::: [类型]-demo 可选的标题文字
 
 ```html
 <!-- ↑ 使用可用的语言 -->
@@ -216,7 +215,7 @@ JSON 块是可选的，可用的配置详见[配置](https://vuepress-theme-hope
 
 ### 不支持的语言
 
-::: demo 一个使用浏览器不支持解析语言 Demo
+::: normal-demo 一个使用浏览器不支持解析语言 Demo
 
 ```md
 # 标题
@@ -244,7 +243,7 @@ h1 {
 
 :::: details 代码
 ```` md
-::: demo 一个使用浏览器不支持解析语言 Demo
+::: normal-demo 一个使用浏览器不支持解析语言 Demo
 
 ```md
 # 标题
@@ -276,7 +275,7 @@ h1 {
 ### 普通代码演示
 格式：
 ```` md
-::: demo 可选的标题文字
+::: normal-demo 可选的标题文字
 
 ```html
 <!-- html code -->
@@ -310,7 +309,7 @@ h1 {
 
 #### 例子
 
-::: demo Demo 演示
+::: normal-demo Demo 演示
 
 ```html
 <h1>Hello Word!</h1>
@@ -333,7 +332,7 @@ span {
 
 :::: details 代码
 ```` md
-::: demo Demo 演示
+::: normal-demo Demo 演示
 
 ```html
 <h1>Hello Word!</h1>
@@ -360,7 +359,7 @@ span {
 
 #### 格式
 ```` md
-::: demo [vue] 可选的标题文字
+::: vue-demo 可选的标题文字
 
 ```vue
 <!-- ↑ 你也可以使用 html -->
@@ -392,7 +391,7 @@ export default {
 
 #### 演示
 
-::: demo [vue] 一个 Vue Composition 演示
+::: vue-demo 一个 Vue Composition 演示
 
 ```vue
 <template>
@@ -431,7 +430,7 @@ export default {
 
 :::: details 代码
 ```` md
-::: demo [vue] 一个 Vue Composition 演示
+::: vue-demo 一个 Vue Composition 演示
 
 ```vue
 <template>
@@ -475,7 +474,7 @@ export default {
 #### 格式
 
 ```` md
-::: demo [react] 可选的标题文字
+::: react-demo 可选的标题文字
 
 ```js
 // 放置脚本，并通过 `export default` 导出你的 react 组件
@@ -500,7 +499,7 @@ export default {
 
 #### 演示
 
-::: demo [react] 一个函数式 React Demo
+::: react-demo 一个函数式 React Demo
 
 ```js
 const { useState } = React;
@@ -533,7 +532,7 @@ export default () => {
 
 :::: details 代码
 ```` md
-::: demo [react] 一个函数式 React Demo
+::: react-demo 一个函数式 React Demo
 
 ```js
 const { useState } = React;

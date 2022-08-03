@@ -126,14 +126,14 @@ importers:
       '@vuepress/shared': 2.0.0-beta.49
       '@vuepress/utils': 2.0.0-beta.49
       vue: ^3.2.37
-      vue-router: ^4.1.3
+      vue-router: 4.1.2
     dependencies:
       '@vuepress/client': 2.0.0-beta.49
       '@vuepress/core': 2.0.0-beta.49
       '@vuepress/shared': 2.0.0-beta.49
       '@vuepress/utils': 2.0.0-beta.49
       vue: 3.2.37
-      vue-router: 4.1.3_vue@3.2.37
+      vue-router: 4.1.2_vue@3.2.37
 
   packages/plugin-netlify-functions:
     specifiers:
@@ -173,7 +173,7 @@ importers:
       '@vuepress/utils': 2.0.0-beta.49
       leancloud-storage: ^4.12.2
       vue: ^3.2.37
-      vue-router: ^4.1.3
+      vue-router: 4.1.2
     dependencies:
       '@netlify/functions': 1.0.0
       '@vuepress-plume/vuepress-plugin-netlify-functions': link:../plugin-netlify-functions
@@ -183,7 +183,7 @@ importers:
       '@vuepress/utils': 2.0.0-beta.49
       leancloud-storage: 4.13.1
       vue: 3.2.37
-      vue-router: 4.1.3_vue@3.2.37
+      vue-router: 4.1.2_vue@3.2.37
 
   packages/theme:
     specifiers:
@@ -218,7 +218,7 @@ importers:
       sass-loader: ^13.0.2
       ts-debounce: ^4.0.0
       vue: ^3.2.37
-      vue-router: ^4.1.3
+      vue-router: 4.1.2
       vuepress-plugin-comment2: 2.0.0-beta.87
       vuepress-plugin-md-enhance: 2.0.0-beta.87
       vuepress-plugin-seo2: 2.0.0-beta.87
@@ -255,7 +255,7 @@ importers:
       sass-loader: 13.0.2_sass@1.54.1
       ts-debounce: 4.0.0
       vue: 3.2.37
-      vue-router: 4.1.3_vue@3.2.37
+      vue-router: 4.1.2_vue@3.2.37
       vuepress-plugin-comment2: 2.0.0-beta.87_sass-loader@13.0.2
       vuepress-plugin-md-enhance: 2.0.0-beta.87_sass-loader@13.0.2
       vuepress-plugin-seo2: 2.0.0-beta.87
@@ -13627,6 +13627,15 @@ packages:
       hash-sum: 2.0.0
       loader-utils: 2.0.2
       webpack: 5.74.0
+    dev: false
+
+  /vue-router/4.1.2_vue@3.2.37:
+    resolution: {integrity: sha512-5BP1qXFncVRwgV/XnqzsKApdMjQPqWIpoUBdL1ynz8HyLxIX/UDAx7Ql2BjmA5CXT/p61JfZvkpiFWFpaqcfag==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.2.1
+      vue: 3.2.37
     dev: false
 
   /vue-router/4.1.3_vue@3.2.37:

@@ -1,3 +1,12 @@
+# [1.0.0-beta.39](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.38...v1.0.0-beta.39) (2022-08-03)
+
+
+### Bug Fixes
+
+* 同步vuepressde vue-router版本为4.1.2 ([894e272](https://github.com/pengzhanbo/vuepress-theme-plume/commit/894e272727dc0b10d0a7aea6ff58a9524ee321da))
+
+
+
 # [1.0.0-beta.38](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.37...v1.0.0-beta.38) (2022-08-03)
 
 

@@ -1,3 +1,12 @@
+# [1.0.0-beta.38](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.37...v1.0.0-beta.38) (2022-08-03)
+
+
+### Bug Fixes
+
+* **theme:** 修复代码块行数显示问题 ([1da1b0a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1da1b0a57cea740c3fc00ed45c3cc5332fa4f0d9))
+
+
+
 # [1.0.0-beta.37](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.36...v1.0.0-beta.37) (2022-07-20)
 
 

@@ -116,8 +116,8 @@ const sidebarClick = (sidebar: SidebarListComputed): void => {
       p.sidebar-items-title {
         position: relative;
         margin: 0;
-        height: 2.5rem;
-        line-height: 2.5rem;
+        padding: 0.25rem 0;
+        line-height: 1.55;
         cursor: pointer;
 
         .arrow-right-icon {

@@ -34,8 +34,9 @@ watch(
 
 const route = useRoute()
 let offsetHeight = 0
-onBeforeRouteUpdate((to) => {
+onBeforeRouteUpdate((to, from) => {
   if (__VUEPRESS_SSR__) return
+  if (to.fullPath === from.fullPath) return
   setPostListPage((to.query.p as unknown as number) || 1)
   const { home, banner, mobileBanner } = frontmatter.value
   let top = 0

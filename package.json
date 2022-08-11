@@ -20,6 +20,7 @@
     "commit": "cz",
     "dev": "concurrently \"pnpm run dev:package\" \"pnpm run docs\"",
     "dev:package": "pnpm --filter=!vuepress-theme-plume --parallel dev",
+    "dev:theme": "concurrently \"pnpm --filter=@vuepress-plume/vuepress-theme-plume dev\" \"pnpm run docs\"",
     "docs": "pnpm --filter=docs docs:dev",
     "docs:build": "pnpm --filter=docs docs:build",
     "docs:clean": "pnpm --filter=docs docs:clean",

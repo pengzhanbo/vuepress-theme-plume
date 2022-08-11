@@ -78,7 +78,8 @@ onMounted(() => {
   height: var(--navbar-height);
   padding: var(--navbar-padding-v) var(--navbar-padding-h);
   background-color: var(--c-bg-navbar);
-  box-shadow: var(--shadow);
+  backdrop-filter: saturate(50%) blur(8px);
+  // box-shadow: var(--shadow);
   line-height: var(--navbar-line-height);
   transition: background-color 0.3s ease;
 

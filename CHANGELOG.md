@@ -1,3 +1,12 @@
+# [1.0.0-beta.40](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.39...v1.0.0-beta.40) (2022-08-11)
+
+
+### Features
+
+* **plugin-windicss:** 新增windicss插件 ([7ae8230](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7ae82300a048ee910c66629a8ebb3a104b6c26e6))
+
+
+
 # [1.0.0-beta.39](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.38...v1.0.0-beta.39) (2022-08-03)
 
 

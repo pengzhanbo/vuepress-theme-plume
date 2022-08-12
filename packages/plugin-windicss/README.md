@@ -9,10 +9,12 @@ yarn add @vuepress-plume/vuepress-plugin-windicss
 ## Usage
 ``` js
 // .vuepress/config.js
+const { windicssPlugin } = require('@vuepress-plume/vuepress-plugin-windicss')
+const path = require('path')
 module.exports = {
   //...
   plugins: [
-    windicssPlugin(options)
+    windicssPlugin(path.resolve(__dirname, 'windi.config.js'))
   ]
   // ...
 }

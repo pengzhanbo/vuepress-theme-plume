@@ -6,7 +6,9 @@
     "outDir": "./lib"
   },
   "include": [
-    "./src/node",
-    "./src/shared"
+    {{#if shared}}
+    "./src/shared",
+    {{/if}}
+    "./src/node"
   ]
 }

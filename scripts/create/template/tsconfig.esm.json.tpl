@@ -9,7 +9,9 @@
     ]
   },
   "include": [
-    "./src/client",
-    "./src/shared"
+    {{#if shared}}
+    "./src/shared",
+    {{/if}}
+    "./src/client"
   ]
 }

@@ -29,7 +29,7 @@ const generatorFile = async (config: ConfigOptions): Promise<void> => {
     shared,
     version: pkg.version,
   }
-  const include = [!client && 'client', !shared && 'shared'].filter(Boolean).join('|')
+  const include = [!client && 'client', !client && 'tsconfig.esm.json', !shared && 'shared'].filter(Boolean).join('|')
   const filterRE = new RegExp(`/(${include})/`)
   const templates = templateList.filter(({ file }) => {
     return !filterRE.test(file)

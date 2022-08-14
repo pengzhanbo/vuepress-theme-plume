@@ -159,4 +159,8 @@ export interface PlumeThemeLocaleData extends LocaleData {
    * 外部链接打开方式
    */
   openInNewWindow?: string | boolean
+
+  notFound?: string[]
+
+  backToHome?: string
 }

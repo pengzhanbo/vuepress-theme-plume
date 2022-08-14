@@ -4,15 +4,14 @@
   outline: 0;
   border-radius: 4px;
   padding: 5px 10px;
-  background-color: var(--c-bg-light);
-  color: var(--c-brand);
+  color: #d1d5db;
   text-align: center;
   cursor: pointer;
 
   div[class*='language-'] & {
     position: absolute;
     right: 0;
-    bottom: 0;
+    top: 2rem;
     z-index: 99;
     opacity: 0;
     transition: opacity var(--t-color);
@@ -24,8 +23,14 @@
 
   .icon-success {
     display: inline-block;
-    width: 14px;
-    height: 14px;
+    width: 1.5rem;
+    height: 1.5rem;
     vertical-align: middle;
   }
+}
+
+.icon-copy {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
 }

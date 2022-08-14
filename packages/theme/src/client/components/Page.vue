@@ -29,7 +29,7 @@ const enabledSidebar = computed(() => {
           <div class="page-content" :class="{ 'note-content': isNote }">
             <h1>{{ page.title }}</h1>
             <PostMeta :post="page" type="post" border />
-            <Content />
+            <Content class="post-content" />
             <div class="comment-container">
               <Comment :darkmode="isDarkMode" />
             </div>
@@ -51,7 +51,7 @@ const enabledSidebar = computed(() => {
 
   .page-container {
     display: flex;
-    padding-top: 1.25rem;
+    // padding-top: 1.25rem;
     padding-bottom: 1.25rem;
 
     .plume-theme-content {
@@ -71,6 +71,10 @@ const enabledSidebar = computed(() => {
       &.note-content {
         max-width: var(--content-note-width);
       }
+    }
+
+    .post-content {
+      padding-top: 2rem;
     }
 
     img {

@@ -1,14 +1,14 @@
-import { useRouteLocale } from '@vuepress/client'
-import { computed, onMounted, watch } from 'vue'
+// import { useRouteLocale } from '@vuepress/client'
+import { onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import type { CopyCodeLocaleOption, CopyCodeOptions } from '../../shared'
-import { successSVG } from '../svg'
+import type { CopyCodeOptions } from '../../shared'
+import { copySVG, successSVG } from '../svg'
 import { copyToClipboard } from './copyToClipboard'
 declare const __COPY_CODE_OPTIONS__: CopyCodeOptions
-declare const __COPY_CODE_LOCALES_OPTIONS__: CopyCodeLocaleOption
+// declare const __COPY_CODE_LOCALES_OPTIONS__: CopyCodeLocaleOption
 
 const options = __COPY_CODE_OPTIONS__
-const localesOptions = __COPY_CODE_LOCALES_OPTIONS__
+// const localesOptions = __COPY_CODE_LOCALES_OPTIONS__
 
 const isMobile = (): boolean =>
   navigator
@@ -19,24 +19,24 @@ const isMobile = (): boolean =>
 
 export const setupCopyCode = (): void => {
   const route = useRoute()
-  const lang = useRouteLocale()
+  // const lang = useRouteLocale()
 
-  const locale = computed(() => {
-    return localesOptions[lang.value] || localesOptions['/zh/']
-  })
+  // const locale = computed(() => {
+  //   return localesOptions[lang.value] || localesOptions['/zh/']
+  // })
 
   const insertBtn = (codeBlockEl: HTMLElement): void => {
     if (codeBlockEl.hasAttribute('has-copy-code')) return
     const button = document.createElement('button')
     button.className = 'copy-code-button'
-    button.innerText = locale.value.hint as string
+    button.innerHTML = copySVG
 
     button.addEventListener('click', () => {
       copyToClipboard(codeBlockEl.innerText)
-      button.innerHTML = successSVG + (locale.value.copy as string)
+      button.innerHTML = successSVG
       options.duration &&
         setTimeout(() => {
-          button.innerText = locale.value.hint as string
+          button.innerHTML = copySVG
         }, options.duration)
     })
 

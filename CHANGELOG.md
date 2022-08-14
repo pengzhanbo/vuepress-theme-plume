@@ -1,3 +1,12 @@
+# [1.0.0-beta.41](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.40...v1.0.0-beta.41) (2022-08-14)
+
+
+### Features
+
+* **theme:** 调整主题样式 ([7d5457b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7d5457b733f0cfbb1a89b483476bae4ae1caaf57))
+
+
+
 # [1.0.0-beta.40](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.39...v1.0.0-beta.40) (2022-08-11)
 
 

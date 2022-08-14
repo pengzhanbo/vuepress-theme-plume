@@ -73,11 +73,15 @@ const postStat = usePostStat()
 <template>
   <DropdownTransition>
     <section class="blogger-info">
-      <p v-if="avatar.url" class="avatar-img">
-        <img :src="avatar.url" :alt="avatar.name" />
-      </p>
-      <h3>{{ avatar.name }}</h3>
-      <p>{{ avatar.description }}</p>
+      <div class="blogger-profile">
+        <p v-if="avatar.url" class="avatar-img">
+          <img :src="avatar.url" :alt="avatar.name" />
+        </p>
+        <div>
+          <h3>{{ avatar.name }}</h3>
+          <p>{{ avatar.description }}</p>
+        </div>
+      </div>
       <p class="blogger-social">
         <a
           v-for="item in socialList"
@@ -108,25 +112,36 @@ const postStat = usePostStat()
 <style lang="scss">
 .blogger-info {
   padding: 1.25rem;
-  border-radius: var(--p-around);
-  background-color: var(--c-bg-container);
-  box-shadow: var(--shadow);
+  // border-radius: var(--p-around);
+  // background-color: var(--c-bg-container);
+  // box-shadow: var(--shadow);
+
+  .blogger-profile {
+    display: flex;
+    align-items: center;
+
+    p {
+      font-size: 14px;
+    }
+  }
 
   .avatar-img {
-    padding-bottom: 0.8rem;
+    width: 30%;
+    padding-right: 0.8rem;
     img {
-      width: 75%;
+      width: 100%;
     }
   }
 
   p,
   h3 {
-    text-align: center;
+    text-align: left;
     margin: 0;
   }
 
   h3 {
     padding-bottom: 0.5rem;
+    font-size: 18px;
   }
 
   .blogger-social {
@@ -152,11 +167,12 @@ const postStat = usePostStat()
   }
 
   .post-stat {
-    display: flex;
+    // display: flex;
+    display: none;
     justify-content: space-around;
     align-items: center;
     border-top: 1px solid var(--c-border);
-    margin-top: 0.75rem;
+    margin-top: 1.75rem;
     padding-top: 1rem;
 
     .post-stat-item {

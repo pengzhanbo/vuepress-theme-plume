@@ -119,7 +119,7 @@ function handleJump(): void {
     flex: 1;
 
     button {
-      border-right: solid 1px var(--c-border);
+      // border-right: solid 1px var(--c-border);
 
       &:last-of-type {
         border-right: none;
@@ -136,7 +136,7 @@ function handleJump(): void {
     line-height: 2.125rem;
     border: solid 1px transparent;
     color: var(--c-text);
-    box-shadow: var(--shadow-sm);
+    // box-shadow: var(--shadow-sm);
 
     &:disabled {
       color: var(--c-text-accent);
@@ -172,8 +172,9 @@ function handleJump(): void {
       line-height: 2.125rem;
       border: solid 1px transparent;
       color: var(--c-text);
-      box-shadow: var(--shadow-sm);
+      // box-shadow: var(--shadow-sm);
       outline: 0;
+      background-color: var(--c-bg-light);
       margin-right: 0.5rem;
 
       &:focus {

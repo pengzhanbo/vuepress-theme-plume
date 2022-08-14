@@ -48,15 +48,17 @@ onMounted(() => {
 <template>
   <header ref="navbar" class="navbar-wrapper">
     <ToggleSidebarButton @toggle="triggerAsideNavbar(true)" />
-    <span ref="navbarBrand">
+    <span ref="navbarBrand" class="navbar-brand-wrapper">
       <NavbarBrand />
     </span>
     <div class="navbar-items-wrapper" :style="linksWrapperStyle">
       <slot name="before" />
+      <div class="navbar-item-search">
+        <NavbarSearch />
+      </div>
       <NavbarItems class="can-hide" is-header />
       <slot name="after" />
       <DarkModeButton v-if="enableDarkMode" />
-      <NavbarSearch />
     </div>
   </header>
 </template>
@@ -74,15 +76,19 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100v;
+  width: 100%;
   height: var(--navbar-height);
-  padding: var(--navbar-padding-v) var(--navbar-padding-h);
+  padding: 0 0 0 var(--navbar-padding-h);
   background-color: var(--c-bg-navbar);
   backdrop-filter: saturate(50%) blur(8px);
   // box-shadow: var(--shadow);
   line-height: var(--navbar-line-height);
   transition: background-color 0.3s ease;
 
+  .navbar-brand-wrapper {
+    display: inline-block;
+    height: 100%;
+  }
   .logo {
     height: var(--navbar-line-height);
     margin-right: var(--navbar-padding-v);
@@ -99,9 +105,17 @@ onMounted(() => {
 
   .navbar-items-wrapper {
     display: flex;
+    align-items: center;
+    flex-grow: 1;
     white-space: nowrap;
     font-size: 0.9rem;
-    height: var(--navbar-line-height);
+    height: 100%;
+    padding-right: var(--navbar-padding-h);
+
+    .navbar-item-search {
+      flex-grow: 1;
+      padding-left: 1.5rem;
+    }
 
     .search-box {
       flex: 0 0 auto;
@@ -133,6 +147,13 @@ onMounted(() => {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+    }
+
+    .navbar-items-wrapper {
+      justify-content: flex-end;
+      .navbar-item-search {
+        flex-grow: 0;
+      }
     }
   }
 }

@@ -34,7 +34,7 @@ const footer = computed(() => {
   width: 100%;
   padding: 1.25rem;
   background-color: var(--c-bg-container);
-  box-shadow: var(--shadow-footer);
+  // box-shadow: var(--shadow-footer);
   font-size: 0.875rem;
   text-align: center;
 

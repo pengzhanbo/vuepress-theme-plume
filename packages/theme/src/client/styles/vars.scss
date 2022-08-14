@@ -4,7 +4,7 @@
   --c-brand-light: #2ca9e1;
 
   // background color
-  --c-bg: #f3f4f6;
+  --c-bg: #fff;
   --c-bg-light: #e5e7eb;
   --c-bg-lighter: #d1d5db;
   --c-bg-container: #fff;
@@ -90,7 +90,7 @@
   --content-note-width: 1000px;
 
   // search box vars
-  --search-bg-color: transparent;
+  --search-bg-color: var(--c-bg-container);
   --search-accent-color: var(--c-text-accent);
   --search-text-color: var(--c-text);
   --search-border-color: var(--c-border);

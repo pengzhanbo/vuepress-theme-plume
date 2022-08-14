@@ -14,16 +14,14 @@ defineProps({
   },
 })
 const route = useRoute()
-const { sidebarList, initSidebarList } = useSidebarIndex()
+const { sidebarList } = useSidebarIndex()
 const { triggerAsideNavbar } = useAsideNavbar()
 watchEffect(() => {
-  initSidebarList(route.path)
   triggerAsideNavbar(false)
 })
 
 const el = ref<HTMLElement | null>(null)
 onMounted(() => {
-  initSidebarList(route.path)
   const activeEl = el.value?.querySelector<HTMLElement>('.router-link-active')
   activeEl && activeEl.scrollIntoView(false)
 })
@@ -45,6 +43,7 @@ onMounted(() => {
   position: sticky;
   top: calc(var(--navbar-height) + 1.25rem);
   width: 18rem;
+  flex-shrink: 0;
   height: calc(100vh - var(--navbar-height) - 1.25rem);
   border-right: solid 1px var(--c-border);
   font-size: 1.125rem;

@@ -145,7 +145,7 @@ const headers = computed(() => {
         padding: 0.5rem 1.25rem;
         background-color: var(--c-bg-container);
         border-radius: var(--p-around);
-        box-shadow: var(--shadow-sm);
+        // box-shadow: var(--shadow-sm);
         color: var(--c-text);
         transition: color var(--t-color), box-shadow var(--t-color);
       }
@@ -156,9 +156,9 @@ const headers = computed(() => {
           color: var(--c-text-accent);
         }
 
-        > a {
-          box-shadow: var(--shadow);
-        }
+        // > a {
+        // box-shadow: var(--shadow);
+        // }
 
         &::before {
           border-color: var(--c-text-accent);

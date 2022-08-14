@@ -4,7 +4,8 @@ import DropdownTransition from '@theme-plume/DropdownTransition.vue'
 import type { PropType } from 'vue'
 import { computed, ref, toRefs, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import type { NavbarItem, NavGroup, ResolveNavbarItem } from '../../shared'
+import { NavbarItem, NavGroup } from '../../shared'
+import type { ResolveNavbarItem } from '../../shared'
 
 const props = defineProps({
   item: {
@@ -312,7 +313,7 @@ const onGrandChildFocusout = (grandchild, child): void => {
       top: 100%;
       right: 0;
       box-sizing: border-box;
-      background-color: var(--c-bg-navbar);
+      background-color: var(--c-bg-container);
       padding: 0.6rem 0;
       border: 1px solid var(--c-border);
       border-bottom-color: var(--c-border-dark);

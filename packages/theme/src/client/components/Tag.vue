@@ -93,7 +93,7 @@ const handleTag = (tag: string): void => {
       background-color: var(--c-bg-lighter);
       cursor: pointer;
       color: #fff;
-      box-shadow: var(--shadow-sm);
+      // box-shadow: var(--shadow-sm);
     }
   }
 }

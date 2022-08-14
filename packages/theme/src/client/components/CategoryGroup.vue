@@ -56,7 +56,7 @@ const Heading: FunctionalComponent = () => {
   background-color: var(--c-bg-container);
   border-radius: var(--p-around);
   margin-bottom: 1.25rem;
-  box-shadow: var(--shadow);
+  // box-shadow: var(--shadow);
   transition: box-shadow var(--t-color);
 
   .category-group-wrapper {

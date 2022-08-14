@@ -8,12 +8,17 @@ import {
 import { computed, h } from 'vue'
 import type { FunctionalComponent } from 'vue'
 import type { NavLink } from '../../shared'
-import { useDarkMode, useThemeLocaleData } from '../composables'
+import {
+  useDarkMode,
+  useSidebarIndex,
+  useThemeLocaleData,
+} from '../composables'
 
 const routeLocale = useRouteLocale()
 const siteLocale = useSiteLocaleData()
 const themeLocale = useThemeLocaleData()
 const isDarkMode = useDarkMode()
+const { hasSidebar } = useSidebarIndex()
 
 const navbarBrandLink = computed(
   () => (themeLocale.value.home as NavLink)?.link || routeLocale.value
@@ -40,7 +45,13 @@ const NavbarBrandLogo: FunctionalComponent = () => {
 </script>
 
 <template>
-  <RouterLink :to="navbarBrandLink">
+  <RouterLink
+    :to="navbarBrandLink"
+    :class="{
+      'navbar-brand': true,
+      'has-sidebar': hasSidebar,
+    }"
+  >
     <NavbarBrandLogo />
     <span
       v-if="navbarBrandTitle"
@@ -51,3 +62,15 @@ const NavbarBrandLogo: FunctionalComponent = () => {
     </span>
   </RouterLink>
 </template>
+<style lang="scss">
+.navbar-brand {
+  display: flex;
+  height: 100%;
+  align-items: center;
+
+  &.has-sidebar {
+    width: calc(18rem - var(--navbar-padding-h));
+    border-bottom: solid 1px var(--c-border);
+  }
+}
+</style>

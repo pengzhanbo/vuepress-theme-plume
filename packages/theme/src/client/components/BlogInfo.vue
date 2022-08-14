@@ -21,6 +21,7 @@ const showInfo = computed(() => {
   margin-left: 1.25rem;
   position: sticky;
   top: calc(var(--navbar-height) + 1.25rem);
+  border-left: solid 1px var(--c-border);
 }
 
 @media (max-width: $MQMobile) {

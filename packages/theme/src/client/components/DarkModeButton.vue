@@ -57,7 +57,6 @@ const toggleDarkMode = (): void => {
 <style lang="scss">
 .toggle-dark-button {
   display: flex;
-  margin: auto;
   margin-left: 1rem;
   border: 0;
   background: none;

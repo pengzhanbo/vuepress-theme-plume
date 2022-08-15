@@ -84,27 +84,26 @@ const togglePage = (currentPage: number): void => {
 @import '../styles/_variables';
 .post-list-wrapper {
   flex: 1;
-  padding-top: 4rem;
+  padding-top: 2rem;
 
   .post-list-item {
     > div {
       position: relative;
       padding: 1.25rem 1.5rem;
-      padding-bottom: 3rem;
       background-color: var(--c-bg-container);
       border-radius: var(--p-around);
-      margin-bottom: 1.25rem;
+      margin-bottom: 2.25rem;
       // box-shadow: var(--shadow);
       transition: box-shadow var(--t-color);
       overflow: hidden;
 
+      &.sticky {
+        background-color: var(--c-bg-sticky);
+      }
+
       // &:hover {
       //   box-shadow: var(--shadow-lg);
       // }
-    }
-
-    &:last-child > div {
-      padding-bottom: 1.5rem;
     }
 
     .top-icon {

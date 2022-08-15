@@ -146,7 +146,7 @@ const onGrandChildFocusout = (grandchild, child): void => {
 
   .navbar-dropdown-title {
     display: block;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-family: inherit;
     cursor: inherit;
     padding: inherit;
@@ -183,12 +183,14 @@ const onGrandChildFocusout = (grandchild, child): void => {
     .navbar-dropdown-item {
       color: inherit;
       line-height: 1.7rem;
+      cursor: default;
 
       .navbar-dropdown-subtitle {
         margin: 0.45rem 0 0;
         border-top: 1px solid var(--c-border);
         padding: 1rem 0 0.45rem 0;
-        font-size: 0.9rem;
+        font-size: 1rem;
+        color: var(--c-text-light);
 
         & > span {
           padding: 0 1.5rem;
@@ -210,7 +212,7 @@ const onGrandChildFocusout = (grandchild, child): void => {
         list-style: none;
 
         .navbar-dropdown-subitem {
-          font-size: 0.9em;
+          font-size: 1em;
         }
       }
 
@@ -280,12 +282,12 @@ const onGrandChildFocusout = (grandchild, child): void => {
 
         .navbar-dropdown-subtitle,
         & > a {
-          font-size: 15px;
+          font-size: 1rem;
           line-height: 2rem;
         }
 
         .navbar-dropdown-subitem {
-          font-size: 14px;
+          font-size: 1rem;
           padding-left: 1rem;
         }
       }
@@ -314,13 +316,14 @@ const onGrandChildFocusout = (grandchild, child): void => {
       right: 0;
       box-sizing: border-box;
       background-color: var(--c-bg-container);
-      padding: 0.6rem 0;
+      padding: 1.5rem 0.75rem;
       border: 1px solid var(--c-border);
       border-bottom-color: var(--c-border-dark);
       text-align: left;
       border-radius: 0.25rem;
       white-space: nowrap;
       margin: 0;
+      box-shadow: var(--shadow);
     }
   }
 }

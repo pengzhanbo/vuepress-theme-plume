@@ -17,6 +17,10 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  showAuthor: {
+    type: Boolean,
+    default: true,
+  },
 })
 const route = useRoute()
 const router = useRouter()
@@ -24,6 +28,12 @@ const themeLocale = useThemeLocaleData()
 
 const tags = computed(() => {
   return (props.post.tags || []).filter((_, i) => i < 4)
+})
+
+const category = computed(() => {
+  return (props.post.category || []).filter((cate) =>
+    Boolean(cate.name?.trim())
+  )
 })
 
 const handleTag = (tag: string): void => {
@@ -38,15 +48,15 @@ const handleTag = (tag: string): void => {
 </script>
 <template>
   <div class="post-meta" :class="{ border: post.excerpt || border }">
-    <div v-if="post.author" class="post-meta-author">
+    <div v-if="post.author && showAuthor" class="post-meta-author">
       <UserIcon />
       <span>{{ post.author }}</span>
     </div>
-    <div v-if="post.category.length > 0" class="post-meta-category">
+    <div v-if="category.length > 0" class="post-meta-category">
       <FolderIcon />
-      <template v-for="(cate, i) in post.category" :key="cate.type">
+      <template v-for="(cate, i) in category" :key="cate.type">
         <span>{{ cate.name }}</span>
-        <span v-if="i < post.category.length - 1"> / </span>
+        <span v-if="i < category.length - 1"> / </span>
       </template>
     </div>
     <div v-if="tags.length > 0">

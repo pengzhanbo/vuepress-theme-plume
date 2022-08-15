@@ -112,7 +112,7 @@ const headers = computed(() => {
       position: relative;
       margin-left: 4rem;
       border-left: solid 4px var(--c-border);
-      padding: 1.25rem;
+      padding: 0.75rem 1.25rem;
 
       &::before {
         content: '';

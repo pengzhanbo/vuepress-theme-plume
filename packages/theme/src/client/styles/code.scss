@@ -142,7 +142,7 @@ pre[class*='language-'] {
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: var(--c-brand);
+      background-color: rgba(220, 220, 220, 0.35);
       border-radius: 3px;
     }
 

@@ -27,9 +27,9 @@ const handlePost = (path: string): void => {
 <template>
   <DropdownTransition :delay="index * 0.04">
     <section :key="post.path" class="post-list-item">
-      <div>
+      <div :class="{ sticky: post.sticky }">
         <TopIcon v-if="post.sticky" />
-        <div
+        <!-- <div
           v-if="post.banner"
           class="post-banner"
           @click="handlePost(post.path)"
@@ -39,11 +39,11 @@ const handlePost = (path: string): void => {
               'background-image': `url(${post.banner})`,
             }"
           ></div>
-        </div>
+        </div> -->
         <h3>
           <AutoLink :item="{ text: post.title, link: post.path }" />
         </h3>
-        <PostMeta :post="post" />
+        <PostMeta :post="post" :show-author="false" />
         <!--eslint-disable vue/no-v-html-->
         <div
           v-if="post.excerpt"

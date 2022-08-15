@@ -64,7 +64,7 @@ onMounted(() => {
 
   &::-webkit-scrollbar-thumb {
     border-radius: 3.5px;
-    background-color: var(--c-brand);
+    background-color: rgba(34, 34, 34, 0.75);
   }
 
   > .aside-navbar {

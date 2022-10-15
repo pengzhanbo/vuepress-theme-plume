@@ -1,3 +1,12 @@
+# [1.0.0-beta.45](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.44...v1.0.0-beta.45) (2022-10-15)
+
+
+### Bug Fixes
+
+* **theme:** internal deps ([728a686](https://github.com/pengzhanbo/vuepress-theme-plume/commit/728a6868e6bd61e6f539fb4fbf08d3388a612478))
+
+
+
 # [1.0.0-beta.44](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.43...v1.0.0-beta.44) (2022-10-15)
 
 

@@ -4,7 +4,7 @@ export interface BaiduTongjiOptions {
   key?: string
 }
 
-export const baiduTongjiPlugin = ({ key }: BaiduTongjiOptions): Plugin => {
+export const baiduTongjiPlugin = ({ key = '' }: BaiduTongjiOptions): Plugin => {
   return {
     name: '@vuepress-plume/vuepress-plugin-baidu-tongji',
     extendsPage: (page) => {

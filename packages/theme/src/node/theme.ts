@@ -30,7 +30,7 @@ export const themePlume = ({
       formatFrontmatter()
       await createPage(app, localeOption)
     },
-    onPrepared: (app) => onPrepared(app, localeOption),
+    onPrepared: async (app) => await onPrepared(app, localeOption),
     extendsPage: (page: Page<Partial<PlumeThemePageData>>) =>
       extendsPage(page, localeOption),
     onWatched: (app, watchers) => {

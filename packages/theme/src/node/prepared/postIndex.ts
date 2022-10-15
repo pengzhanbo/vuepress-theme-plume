@@ -24,10 +24,10 @@ if (import.meta.hot) {
 }
 `
 
-export const preparedPostIndex = (
+export const preparedPostIndex = async (
   app: App,
   localeOption: PlumeThemeLocaleOptions
-): void => {
+): Promise<void> => {
   const postIndex: PostIndex = (app.pages as Page<PlumeThemePageData>[])
     .filter((page) => {
       return (
@@ -68,7 +68,7 @@ export const postIndex = ${JSON.stringify(postIndex, null, 2)}
     content += HMR_CODE
   }
 
-  app.writeTemp('internal/postIndex.js', content)
+  await app.writeTemp('internal/postIndex.js', content)
 }
 
 export const watchPostIndex = (

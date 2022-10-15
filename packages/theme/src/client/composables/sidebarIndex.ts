@@ -1,4 +1,4 @@
-import { sidebarIndex as sidebarIndexRaw } from '@internal/sidebarIndex.js'
+import { sidebarIndex as sidebarIndexRaw } from '@internal/sidebarIndex'
 import { usePageFrontmatter } from '@vuepress/client'
 import { computed, ref } from 'vue'
 import type { ComputedRef, Ref } from 'vue'

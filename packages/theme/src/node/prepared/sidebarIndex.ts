@@ -32,10 +32,10 @@ interface NotePage {
   link: string
 }
 
-export const preparedSidebarIndex = (
+export const preparedSidebarIndex = async (
   app: App,
   { notes }: PlumeThemeLocaleOptions
-): void => {
+): Promise<void> => {
   const pages = app.pages as Page<PlumeThemePageData>[]
   if (notes === false) return
   const {
@@ -71,7 +71,7 @@ export const sidebarIndex = ${JSON.stringify(sidebarMap, null, 2)}
     content += HMR_CODE
   }
 
-  app.writeTemp('internal/sidebarIndex.js', content)
+  await app.writeTemp('internal/sidebarIndex.js', content)
 }
 
 function noteSidebar(

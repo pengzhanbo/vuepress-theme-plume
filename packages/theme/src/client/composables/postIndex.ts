@@ -1,4 +1,4 @@
-import { postIndex as postIndexRaw } from '@internal/postIndex.js'
+import { postIndex as postIndexRaw } from '@internal/postIndex'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
 import type { PostIndex } from '../../shared/index.js'

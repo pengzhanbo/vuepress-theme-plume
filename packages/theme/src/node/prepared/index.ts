@@ -3,12 +3,12 @@ import type { PlumeThemeLocaleOptions } from '../../shared/index.js'
 import { preparedPostIndex, watchPostIndex } from './postIndex.js'
 import { preparedSidebarIndex, watchSidebarIndex } from './sidebarIndex.js'
 
-export const onPrepared = (
+export const onPrepared = async (
   app: App,
   localeOption: PlumeThemeLocaleOptions
-): void => {
-  preparedPostIndex(app, localeOption)
-  preparedSidebarIndex(app, localeOption)
+): Promise<void> => {
+  await preparedPostIndex(app, localeOption)
+  await preparedSidebarIndex(app, localeOption)
 }
 
 export const preparedWatch = (

@@ -1,3 +1,3 @@
-export * from './navbar'
+export * from './navbar.js'
 
-export * from './sidebar'
+export * from './sidebar.js'

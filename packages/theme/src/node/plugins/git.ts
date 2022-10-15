@@ -1,6 +1,6 @@
 import type { Plugin } from '@vuepress/core'
 import { gitPlugin } from '@vuepress/plugin-git'
-import type { PlumeThemePluginOptions } from '../../shared'
+import type { PlumeThemePluginOptions } from '../../shared/index.js'
 
 const isProd = process.env.NODE_ENV === 'production'
 

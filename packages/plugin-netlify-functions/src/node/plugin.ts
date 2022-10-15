@@ -29,15 +29,15 @@ import type { App, Plugin } from '@vuepress/core'
 import type {
   NetlifyFunctionsOptions,
   NetlifyFunctionsPluginOptions,
-} from '../shared'
-import { extendsBundlerOptions } from './extendsBundlerOptions'
-import type { NetlifyServe } from './netlify'
+} from '../shared/index.js'
+import { extendsBundlerOptions } from './extendsBundlerOptions.js'
+import type { NetlifyServe } from './netlify/index.js'
 import {
   generateFunctions,
   generateNetlifyConfig,
   initialFunctions,
   netlifyServe,
-} from './netlify'
+} from './netlify/index.js'
 
 const initOptions = (
   app: App,

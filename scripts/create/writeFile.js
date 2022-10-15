@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 
-export const writeFile = async (filepath: string, content: string): Promise<void> => {
+export const writeFile = async (filepath, content) => {
   const dirname = path.dirname(filepath)
   if (!fs.existsSync(dirname)) {
     fs.mkdirSync(dirname, { recursive: true })

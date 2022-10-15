@@ -1,8 +1,10 @@
-import { fs, path } from '@vuepress/utils'
+import { fs, getDirname, path } from '@vuepress/utils'
 import dotenv from 'dotenv'
-import * as execa from 'execa'
+import { execa } from 'execa'
 import * as portFinder from 'portfinder'
-import type { NetlifyFunctionsPluginOptions } from '../../shared'
+import type { NetlifyFunctionsPluginOptions } from '../../shared/index.js'
+
+const __dirname = getDirname(import.meta.url)
 
 const loadEnvConfig = (): Record<string, string | undefined> => {
   const configPath = path.resolve(process.cwd(), '.env')

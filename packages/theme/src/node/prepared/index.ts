@@ -1,7 +1,7 @@
 import type { App } from '@vuepress/core'
-import type { PlumeThemeLocaleOptions } from '../../shared'
-import { preparedPostIndex, watchPostIndex } from './postIndex'
-import { preparedSidebarIndex, watchSidebarIndex } from './sidebarIndex'
+import type { PlumeThemeLocaleOptions } from '../../shared/index.js'
+import { preparedPostIndex, watchPostIndex } from './postIndex.js'
+import { preparedSidebarIndex, watchSidebarIndex } from './sidebarIndex.js'
 
 export const onPrepared = (
   app: App,
@@ -13,7 +13,7 @@ export const onPrepared = (
 
 export const preparedWatch = (
   app: App,
-  watchers,
+  watchers: any[],
   localeOption: PlumeThemeLocaleOptions
 ): void => {
   watchPostIndex(app, watchers, localeOption)

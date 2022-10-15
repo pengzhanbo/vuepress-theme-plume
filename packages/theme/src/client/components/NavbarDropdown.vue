@@ -4,8 +4,12 @@ import DropdownTransition from '@theme-plume/DropdownTransition.vue'
 import type { PropType } from 'vue'
 import { computed, ref, toRefs, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { NavbarItem, NavGroup } from '../../shared'
-import type { ResolveNavbarItem } from '../../shared'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type {
+  NavbarItem,
+  NavGroup,
+  ResolveNavbarItem,
+} from '../../shared/index.js'
 
 const props = defineProps({
   item: {
@@ -32,7 +36,7 @@ watch(
   }
 )
 
-const handleDropdown = (e): void => {
+const handleDropdown = (e: MouseEvent): void => {
   const isTriggerByTab = e.detail === 0
   if (isTriggerByTab || props.isHeader) {
     open.value = !open.value
@@ -43,7 +47,7 @@ const handleDropdown = (e): void => {
 const isLastItemOfArray = (item: unknown, arr: unknown[]): boolean =>
   arr[arr.length - 1] === item
 
-const onSubTitleFocusout = (child): void => {
+const onSubTitleFocusout = (child: any): void => {
   if (
     isLastItemOfArray(child, item.value.children) &&
     child.children &&
@@ -53,7 +57,7 @@ const onSubTitleFocusout = (child): void => {
   }
 }
 
-const onGrandChildFocusout = (grandchild, child): void => {
+const onGrandChildFocusout = (grandchild: unknown, child: any): void => {
   if (
     isLastItemOfArray(grandchild, child.children) &&
     isLastItemOfArray(child, item.value.children)

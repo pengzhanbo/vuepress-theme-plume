@@ -1,4 +1,4 @@
-import type { PlumeThemeLocaleOptions } from '../shared'
+import type { PlumeThemeLocaleOptions } from '../shared/index.js'
 
 export const defaultLocaleOption: Partial<PlumeThemeLocaleOptions> = {
   darkMode: true,

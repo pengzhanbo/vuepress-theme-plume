@@ -3,8 +3,8 @@ import BlogInfo from '@theme-plume/BlogInfo.vue'
 import DropdownTransition from '@theme-plume/DropdownTransition.vue'
 import type { PageHeader } from '@vuepress/client'
 import { computed } from 'vue'
-import { useArchive } from '../composables'
-import Toc from './Toc'
+import { useArchive } from '../composables/index.js'
+import Toc from './Toc.js'
 
 const archiveList = useArchive()
 
@@ -14,6 +14,7 @@ const headers = computed(() => {
       level: 2,
       slug: year,
       title: year,
+      link: '',
       children: [],
     } as PageHeader
   })

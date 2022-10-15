@@ -1,7 +1,7 @@
 import type { Plugin } from '@vuepress/core'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { searchPlugin } from '@vuepress/plugin-search'
-import type { PlumeThemePluginOptions } from '../../shared'
+import type { PlumeThemePluginOptions } from '../../shared/index.js'
 
 export const resolveSearch = (plugins: PlumeThemePluginOptions): Plugin => {
   if (plugins.search) {

@@ -1,4 +1,6 @@
-import { path } from '@vuepress/utils'
+import { getDirname, path } from '@vuepress/utils'
+
+const __dirname = getDirname(import.meta.url)
 
 export const resolvePath = (...args: string[]): string => {
   return path.resolve(__dirname, '../../', ...args)

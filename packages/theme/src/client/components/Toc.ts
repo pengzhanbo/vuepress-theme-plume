@@ -4,7 +4,7 @@ import type { PropType, VNode } from 'vue'
 import { computed, defineComponent, h, toRefs } from 'vue'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { useRoute } from 'vue-router'
-import { scrollTo } from '../utils'
+import { scrollTo } from '../utils/index.js'
 
 export type TocPropsHeaders = PageHeader[]
 
@@ -61,7 +61,7 @@ const renderLink = (
       href: hash,
       class: linkClass,
       ariaLabel: header.title,
-      onClick: (e) => {
+      onClick: (e: MouseEvent) => {
         e.preventDefault()
         setActiveRouteHash()
       },

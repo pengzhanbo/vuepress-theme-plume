@@ -2,12 +2,17 @@
 import AutoLink from '@theme-plume/AutoLink.vue'
 import NavbarDropdown from '@theme-plume/NavbarDropdown.vue'
 import { computed } from 'vue'
-import type { NavGroup, ResolveNavbarItem } from '../../shared'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type {
+  NavGroup,
+  NavLink,
+  ResolveNavbarItem,
+} from '../../shared/index.js'
 import {
   useNavbarConfig,
   useNavbarRepo,
   useNavbarSelectLanguage,
-} from '../composables'
+} from '../composables/index.js'
 
 defineProps({
   isHeader: {
@@ -32,10 +37,10 @@ const navbarLinks = computed(() => [
     <div v-for="item in navbarLinks" :key="item.text" class="navbar-item">
       <NavbarDropdown
         v-if="(item as NavGroup<ResolveNavbarItem>).children"
-        :item="item"
+        :item="(item as NavGroup<ResolveNavbarItem>)"
         :is-header="isHeader"
       />
-      <AutoLink v-else :item="item" />
+      <AutoLink v-else :item="(item as NavLink)" />
     </div>
   </nav>
 </template>

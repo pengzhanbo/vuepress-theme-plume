@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
-import { usePostAllIndex } from './postIndex'
-import { useTagList } from './tag'
+import { usePostAllIndex } from './postIndex.js'
+import { useTagList } from './tag.js'
 
 export interface PostStatData {
   postTotal: number

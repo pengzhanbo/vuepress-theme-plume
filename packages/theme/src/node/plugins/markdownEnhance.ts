@@ -1,6 +1,6 @@
 import type { Plugin } from '@vuepress/core'
 import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
-import type { PlumeThemePluginOptions } from '../../shared'
+import type { PlumeThemePluginOptions } from '../../shared/index.js'
 
 export const resolveMarkdownEnhance = (
   plugins: PlumeThemePluginOptions

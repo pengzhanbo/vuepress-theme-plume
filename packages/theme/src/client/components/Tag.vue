@@ -4,9 +4,9 @@ import DropdownTransition from '@theme-plume/DropdownTransition.vue'
 import PostList from '@theme-plume/PostList.vue'
 import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import type { PostListRef } from '../composables'
-import { usePostAllIndex, useTagList } from '../composables'
-import { normalizePath } from '../utils'
+import type { PostListRef } from '../composables/index.js'
+import { usePostAllIndex, useTagList } from '../composables/index.js'
+import { normalizePath } from '../utils/index.js'
 
 const tagList = useTagList()
 const route = useRoute()

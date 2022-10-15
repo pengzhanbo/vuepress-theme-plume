@@ -3,7 +3,7 @@ import { sitemapPlugin } from 'vuepress-plugin-sitemap2'
 import type {
   PlumeThemeLocaleOptions,
   PlumeThemePluginOptions,
-} from '../../shared'
+} from '../../shared/index.js'
 
 const isProd = process.env.NODE_ENV === 'production'
 

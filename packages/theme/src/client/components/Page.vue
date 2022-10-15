@@ -4,9 +4,9 @@ import PostMeta from '@theme-plume/PostMeta.vue'
 import Sidebar from '@theme-plume/Sidebar.vue'
 import { usePageData } from '@vuepress/client'
 import { computed } from 'vue'
-import type { PlumeThemePageData } from '../../shared'
-import { useDarkMode } from '../composables'
-import Toc from './Toc'
+import type { PlumeThemePageData } from '../../shared/index.js'
+import { useDarkMode } from '../composables/index.js'
+import Toc from './Toc.js'
 
 const page = usePageData<PlumeThemePageData>()
 const isDarkMode = useDarkMode()

@@ -1,1 +1,1 @@
-export * from './caniuse'
+export * from './caniuse.js'

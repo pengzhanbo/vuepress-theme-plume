@@ -1,9 +1,9 @@
 // import { useRouteLocale } from '@vuepress/client'
 import { onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import type { CopyCodeOptions } from '../../shared'
-import { copySVG, successSVG } from '../svg'
-import { copyToClipboard } from './copyToClipboard'
+import type { CopyCodeOptions } from '../../shared/index.js'
+import { copySVG, successSVG } from '../svg.js'
+import { copyToClipboard } from './copyToClipboard.js'
 declare const __COPY_CODE_OPTIONS__: CopyCodeOptions
 // declare const __COPY_CODE_LOCALES_OPTIONS__: CopyCodeLocaleOption
 

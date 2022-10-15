@@ -6,8 +6,8 @@ import type {
   PlumeThemePostFrontmatter,
   PostIndex,
   PostItem,
-} from '../../shared'
-import { getCreateTime } from '../utils'
+} from '../../shared/index.js'
+import { getCreateTime } from '../utils/index.js'
 
 const HMR_CODE = `
 if (import.meta.webpackHot) {

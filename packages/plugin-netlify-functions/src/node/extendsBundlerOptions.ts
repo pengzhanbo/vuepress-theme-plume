@@ -1,5 +1,5 @@
 import type { App } from '@vuepress/core'
-import type { NetlifyFunctionsPluginOptions } from '../shared'
+import type { NetlifyFunctionsPluginOptions } from '../shared/index.js'
 export const extendsBundlerOptions = (
   bundlerOption: any,
   app: App,
@@ -25,16 +25,18 @@ export const extendsBundlerOptions = (
   }
   if (app.options.bundler.name === '@vuepress/bundler-webpack') {
     const rewritePath = `^${options.proxyPrefix}`
-    bundlerOption.configureWebpack((config, isServer, isBuild) => {
-      if (isBuild) return
-      config.devServer = config.devServer || {}
-      config.devServer.proxy = Object.assign(config.devServer.proxy || {}, {
-        [options.proxyPrefix as string]: {
-          target: server,
-          changeOrigin: true,
-          pathRewrite: { [rewritePath]: targetPath },
-        },
-      })
-    })
+    bundlerOption.configureWebpack(
+      (config: any, isServer: boolean, isBuild: boolean) => {
+        if (isBuild) return
+        config.devServer = config.devServer || {}
+        config.devServer.proxy = Object.assign(config.devServer.proxy || {}, {
+          [options.proxyPrefix as string]: {
+            target: server,
+            changeOrigin: true,
+            pathRewrite: { [rewritePath]: targetPath },
+          },
+        })
+      }
+    )
   }
 }

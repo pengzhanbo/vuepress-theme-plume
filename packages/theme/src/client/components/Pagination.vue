@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useOffsetPagination } from '@vueuse/core'
 import { computed, ref, toRefs } from 'vue'
-import { ArrowDoubleLeftIcon, ArrowDoubleRightIcon } from './icons'
+import { ArrowDoubleLeftIcon, ArrowDoubleRightIcon } from './icons/index.js'
 
 const emit = defineEmits(['togglePage'])
 const props = defineProps({
@@ -16,7 +16,7 @@ const props = defineProps({
 })
 const { page, total } = toRefs(props)
 
-function handlePage({ currentPage }): void {
+function handlePage({ currentPage }: { currentPage: number }): void {
   emit('togglePage', currentPage)
 }
 const { currentPage, pageCount, isFirstPage, isLastPage, prev, next } =

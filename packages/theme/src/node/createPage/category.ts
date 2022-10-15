@@ -1,6 +1,6 @@
 import type { App } from '@vuepress/core'
 import { createPage } from '@vuepress/core'
-import type { PlumeThemeLocaleOptions } from '../../shared'
+import type { PlumeThemeLocaleOptions } from '../../shared/index.js'
 
 export const createCategoryPage = async (
   app: App,

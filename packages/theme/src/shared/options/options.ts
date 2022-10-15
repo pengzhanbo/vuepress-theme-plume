@@ -1,6 +1,6 @@
 import type { ThemeData } from '@vuepress/plugin-theme-data'
-import type { PlumeThemeLocaleData } from './locale'
-import type { PlumeThemePluginOptions } from './plugin'
+import type { PlumeThemeLocaleData } from './locale.js'
+import type { PlumeThemePluginOptions } from './plugin.js'
 
 export interface PlumeThemeOptions extends PlumeThemeLocaleOptions {
   /**

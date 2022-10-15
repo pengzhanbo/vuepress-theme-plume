@@ -1,5 +1,5 @@
 import { fs } from '@vuepress/utils'
-import { resolveClient } from './utils'
+import { resolveClient } from './utils/index.js'
 
 export const getAlias = (): Record<string, string> => {
   return Object.fromEntries(

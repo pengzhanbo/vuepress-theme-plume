@@ -2,9 +2,9 @@ import fs from 'fs'
 import path from 'path'
 
 const tplRE = /\.tpl$/
-const readFileList = (dir: string, fileList = {}): Record<string, string> => {
+const readFileList = (dir, fileList = {}) => {
   const files = fs.readdirSync(dir)
-  files.forEach((file: string) => {
+  files.forEach((file) => {
     const filepath = path.join(dir, file)
     const stat = fs.statSync(filepath)
     if (stat.isDirectory()) {
@@ -19,17 +19,10 @@ const readFileList = (dir: string, fileList = {}): Record<string, string> => {
   return fileList
 }
 
-interface TemplateItem {
-  file: string
-  content: string
-}
-
-export type TemplateList = TemplateItem[]
-
-export const readTemplateList = (dir: string): TemplateList => {
+export const readTemplateList = (dir) => {
   const templateMap= readFileList(dir)
-  const result: TemplateList = []
-  Object.keys(templateMap).forEach((key: string) => {
+  const result = []
+  Object.keys(templateMap).forEach((key) => {
     const file = path.relative(dir, key)
     result.push({
       file,

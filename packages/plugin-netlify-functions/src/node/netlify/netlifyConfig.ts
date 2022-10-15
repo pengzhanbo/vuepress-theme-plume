@@ -2,7 +2,7 @@ import type { JsonMap } from '@iarna/toml'
 import { parse, stringify } from '@iarna/toml'
 import type { App } from '@vuepress/core'
 import { fs, path } from '@vuepress/utils'
-import type { NetlifyFunctionsPluginOptions } from '../../shared'
+import type { NetlifyFunctionsPluginOptions } from '../../shared/index.js'
 
 export interface NetlifyConfig {
   functions: Record<string, any>

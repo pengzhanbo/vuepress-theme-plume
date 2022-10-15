@@ -1,9 +1,10 @@
 import type { App, Plugin } from '@vuepress/core'
-import { path } from '@vuepress/utils'
-import type { UserOptions, WindiPluginUtilsOptions } from 'vite-plugin-windicss'
+import { getDirname, path } from '@vuepress/utils'
 import viteWindiCSS from 'vite-plugin-windicss'
+import type { UserOptions, WindiPluginUtilsOptions } from 'vite-plugin-windicss'
 import WebpackWindiCSSPlugin from 'windicss-webpack-plugin'
 
+const __dirname = getDirname(import.meta.url)
 export interface WindiCSSOptions {
   userOptions?: UserOptions
   utilsOptions?: WindiPluginUtilsOptions

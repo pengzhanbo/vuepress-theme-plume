@@ -1,4 +1,4 @@
-import type { PlumeThemeNormalFrontmatter } from './normal'
+import type { PlumeThemeNormalFrontmatter } from './normal.js'
 
 export interface PlumeThemeProductItem {
   link?: string

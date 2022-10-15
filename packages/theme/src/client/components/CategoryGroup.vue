@@ -2,7 +2,7 @@
 import DropdownTransition from '@theme-plume/DropdownTransition.vue'
 import type { FunctionalComponent, PropType } from 'vue'
 import { h } from 'vue'
-import type { CategoryItem } from '../composables'
+import type { CategoryItem } from '../composables/index.js'
 const props = defineProps({
   category: {
     type: Object as PropType<CategoryItem>,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useDarkMode, useThemeLocaleData } from '../composables'
+import { useDarkMode, useThemeLocaleData } from '../composables/index.js'
 const themeLocale = useThemeLocaleData()
 const isDarkMode = useDarkMode()
 const toggleDarkMode = (): void => {

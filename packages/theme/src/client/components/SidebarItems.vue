@@ -2,10 +2,10 @@
 import AutoLink from '@theme-plume/AutoLink.vue'
 import { computed, ref, watchEffect } from 'vue'
 import type { PropType } from 'vue'
-import type { SidebarItem, SidebarOptions } from '../../shared'
-import { useThemeLocaleData } from '../composables'
-import { hasOwn } from '../utils'
-import { ArrowRightIcon } from './icons'
+import type { SidebarItem, SidebarOptions } from '../../shared/index.js'
+import { useThemeLocaleData } from '../composables/index.js'
+import { hasOwn } from '../utils/index.js'
+import { ArrowRightIcon } from './icons/index.js'
 
 type SidebarListComputed = SidebarItem & { open: boolean }
 

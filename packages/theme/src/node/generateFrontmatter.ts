@@ -1,17 +1,17 @@
 import type { App } from '@vuepress/core'
 import { fs, path } from '@vuepress/utils'
-import * as chokidar from 'chokidar'
+import chokidar from 'chokidar'
 import { format } from 'date-fns'
-import * as matter from 'gray-matter'
-import * as jsonToYaml from 'json2yaml'
+import matter from 'gray-matter'
+import jsonToYaml from 'json2yaml'
 import { customAlphabet } from 'nanoid'
 import type {
   PlumeThemeLocaleOptions,
   PlumeThemeNotesItem,
   PlumeThemeNotesOptions,
-} from '../shared'
-import type { MarkdownFile } from './utils'
-import { readFile, readFileList } from './utils'
+} from '../shared/index.js'
+import type { MarkdownFile } from './utils/index.js'
+import { readFile, readFileList } from './utils/index.js'
 
 export interface GenerateFrontmatter {
   formatFrontmatter: () => void
@@ -34,7 +34,7 @@ export const generateFrontmatter = (
     link: notesLink,
     dir: notesDir,
   } = notes as PlumeThemeNotesOptions
-  const matterTask = {
+  const matterTask: Record<string, any> = {
     title: ({ filepath }: MarkdownFile, title: string): string => {
       if (title) return title
       const file = path.relative(sourceDir, filepath)
@@ -59,7 +59,7 @@ export const generateFrontmatter = (
       if (formatTime) return formatTime
       return format(new Date(createTime), 'yyyy/MM/dd hh:mm:ss')
     },
-    author: (_, author: string): string => {
+    author: (_: any, author: string): string => {
       if (author) return author
       const pkg = require(path.join(process.cwd(), 'package.json'))
       return pkg.author
@@ -123,7 +123,7 @@ export const generateFrontmatter = (
     })
   }
 
-  const watchNewMarkDown = (app: App, watchers): void => {
+  const watchNewMarkDown = (app: App, watchers: any): void => {
     const watcher = chokidar.watch('**/*.md', {
       ignored: /node_modules/,
       cwd: app.options.source,

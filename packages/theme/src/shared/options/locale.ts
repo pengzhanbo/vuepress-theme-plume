@@ -1,6 +1,6 @@
 import type { LocaleData } from '@vuepress/core'
-import type { NavbarConfig, NavLink } from '../layout'
-import type { PlumeThemeNotesOptions } from './notes'
+import type { NavbarConfig, NavLink } from '../layout/index.js'
+import type { PlumeThemeNotesOptions } from './notes.js'
 
 export interface PlumeThemeAvatar {
   /**
@@ -69,6 +69,10 @@ export interface PlumeThemeLocaleData extends LocaleData {
    * 是否启用深色模式
    */
   darkMode?: boolean
+
+  toggleDarkMode?: string
+
+  toggleSidebar?: string
 
   /**
    * 部署站点域名。

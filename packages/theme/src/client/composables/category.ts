@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-import type { PostItem } from '../../shared'
-import { usePostIndex } from './postIndex'
+import type { PostItem } from '../../shared/index.js'
+import { usePostIndex } from './postIndex.js'
 
 export interface CategoryItem {
   label: string
@@ -16,7 +16,7 @@ export type CategoryListRef = Ref<CategoryList>
 
 export const useCategoryList = (): CategoryListRef => {
   let categoryListRaw: CategoryList = []
-  usePostIndex().value.forEach((post) => {
+  usePostIndex().value.forEach((post: PostItem) => {
     if (post.category.length === 0) return
     const category = post.category.map((cate, index) => {
       if (index > 0) {

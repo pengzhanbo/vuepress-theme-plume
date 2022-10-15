@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import BlogInfo from '@theme-plume/BlogInfo.vue'
 import DropdownTransition from '@theme-plume/DropdownTransition.vue'
-import { useCategoryList } from '../composables'
+import { useCategoryList } from '../composables/index.js'
 import CategoryGroup from './CategoryGroup.vue'
 
 const categoryList = useCategoryList()

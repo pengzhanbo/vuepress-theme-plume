@@ -3,8 +3,8 @@ import { usePageFrontmatter } from '@vuepress/client'
 import { computed, ref } from 'vue'
 import type { ComputedRef, Ref } from 'vue'
 import { useRoute } from 'vue-router'
-import type { SidebarOptions } from '../../shared'
-import { useThemeLocaleData } from './themeData'
+import type { SidebarOptions } from '../../shared/index.js'
+import { useThemeLocaleData } from './themeData.js'
 
 export type SidebarIndexRef = Ref<Record<string, SidebarOptions>>
 

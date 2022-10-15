@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import { ref } from 'vue'
-import type { PostItem } from '../../shared'
-import { usePostIndex } from './postIndex'
+import type { PostItem } from '../../shared/index.js'
+import { usePostIndex } from './postIndex.js'
 
 export type PostListData = PostItem[]
 export type PostListRef = Ref<PostListData>

@@ -3,8 +3,8 @@ import SidebarItems from '@theme-plume/SidebarItems.vue'
 import type { PropType } from 'vue'
 import { onMounted, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
-import type { SidebarOptions } from '../../shared'
-import { useAsideNavbar, useSidebarIndex } from '../composables'
+import type { SidebarOptions } from '../../shared/index.js'
+import { useAsideNavbar, useSidebarIndex } from '../composables/index.js'
 
 defineProps({
   aside: {
@@ -27,7 +27,10 @@ onMounted(() => {
 })
 </script>
 <template>
-  <aside :ref="(e) => (el = e)" class="plume-theme-sidebar-wrapper">
+  <aside
+    :ref="(e) => (el = e as HTMLElement)"
+    class="plume-theme-sidebar-wrapper"
+  >
     <SidebarItems
       v-if="aside.length"
       class="aside-navbar"

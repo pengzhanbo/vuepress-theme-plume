@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-import { usePostAllIndex } from './postIndex'
+import { usePostAllIndex } from './postIndex.js'
 
 export interface ArchiveItem {
   year: string

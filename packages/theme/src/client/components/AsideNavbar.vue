@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import Sidebar from '@theme-plume/Sidebar.vue'
-import { useAsideNavbar, useNavbarConfig } from '../composables'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { SidebarOptions } from '../../shared/index.js'
+import { useAsideNavbar, useNavbarConfig } from '../composables/index.js'
 
 const navbarConfig = useNavbarConfig()
 const { asideNavbarShow, triggerAsideNavbar } = useAsideNavbar()
@@ -12,7 +14,7 @@ const { asideNavbarShow, triggerAsideNavbar } = useAsideNavbar()
       class="aside-navbar-wrapper"
       @click.self="triggerAsideNavbar(false)"
     >
-      <Sidebar :aside="navbarConfig" />
+      <Sidebar :aside="(navbarConfig as SidebarOptions)" />
     </div>
   </Transition>
 </template>

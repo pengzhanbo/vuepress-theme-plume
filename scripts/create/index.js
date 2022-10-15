@@ -1,6 +1,6 @@
-import { getConfig } from './getConfig'
-import { getHelp } from './getHelp'
-import { generator } from './generator'
+import { getConfig } from './getConfig.js'
+import { getHelp } from './getHelp.js'
+import { generator } from './generator.js'
 
 const config = getConfig()
 

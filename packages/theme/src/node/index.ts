@@ -1,12 +1,12 @@
-import {
+import type {
   PlumeThemeNotesItem,
   PlumeThemeNotesOptions,
   PlumeThemeOptions,
   PlumeThemeSidebarConfigOptions,
-} from '../shared'
-import { themePlume } from './theme'
-export * from './theme'
-export * from './define'
+} from '../shared/index.js'
+import { themePlume } from './theme.js'
+export * from './theme.js'
+export * from './define.js'
 
 export {
   PlumeThemeOptions,

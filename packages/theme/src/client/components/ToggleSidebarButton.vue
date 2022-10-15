@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useThemeLocaleData } from '../composables'
+import { useThemeLocaleData } from '../composables/index.js'
 
 defineEmits(['toggle'])
 
@@ -9,7 +9,7 @@ const themeLocale = useThemeLocaleData()
 <template>
   <div
     class="toggle-sidebar-button"
-    :title="themeLocale.toggleSidebar"
+    :title="themeLocale.toggleSidebar || ''"
     aria-expanded="false"
     role="button"
     tabindex="0"

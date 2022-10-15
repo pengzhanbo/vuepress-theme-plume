@@ -1,7 +1,7 @@
 import { postIndex as postIndexRaw } from '@internal/postIndex.js'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-import type { PostIndex } from '../../shared'
+import type { PostIndex } from '../../shared/index.js'
 
 const isBoolean = (arg: unknown): boolean => {
   return typeof arg === 'boolean'

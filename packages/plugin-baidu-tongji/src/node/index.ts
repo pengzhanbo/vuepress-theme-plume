@@ -1,5 +1,5 @@
-import { baiduTongjiPlugin } from './plugin'
+import { baiduTongjiPlugin } from './plugin.js'
 
-export * from './plugin'
+export * from './plugin.js'
 
 export default baiduTongjiPlugin

@@ -2,10 +2,10 @@
 import { usePageFrontmatter, withBase } from '@vuepress/client'
 import { isLinkHttp } from '@vuepress/shared'
 import { computed, onMounted, ref } from 'vue'
-import type { PlumeThemeHomeFrontmatter } from '../../shared'
-import { useThemeLocaleData } from '../composables'
-import { scrollTo } from '../utils'
-import { ArrowBottomIcon } from './icons'
+import type { PlumeThemeHomeFrontmatter } from '../../shared/index.js'
+import { useThemeLocaleData } from '../composables/index.js'
+import { scrollTo } from '../utils/index.js'
+import { ArrowBottomIcon } from './icons/index.js'
 
 const frontmatter = usePageFrontmatter<PlumeThemeHomeFrontmatter>()
 const MOBILE_WIDTH = 716

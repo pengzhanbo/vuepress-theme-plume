@@ -1,14 +1,14 @@
 import type { App, Page, Theme } from '@vuepress/core'
-import type { PlumeThemeOptions, PlumeThemePageData } from '../shared'
-import { getAlias } from './alias'
-import { createPage } from './createPage'
-import { defaultLocaleOption } from './defaultLocaleOption'
-import { extendsPage } from './extendsPage'
-import { generateFrontmatter } from './generateFrontmatter'
-import { getPlugins } from './plugins'
-import { onPrepared, preparedWatch } from './prepared'
-import { resolveClient, resolveTemplate } from './utils'
-const merge = require('lodash.merge')
+import merge from 'lodash.merge'
+import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
+import { getAlias } from './alias.js'
+import { createPage } from './createPage/index.js'
+import { defaultLocaleOption } from './defaultLocaleOption.js'
+import { extendsPage } from './extendsPage.js'
+import { generateFrontmatter } from './generateFrontmatter.js'
+import { getPlugins } from './plugins/index.js'
+import { onPrepared, preparedWatch } from './prepared/index.js'
+import { resolveClient, resolveTemplate } from './utils/index.js'
 
 export const themePlume = ({
   themePlugins = {},
@@ -18,7 +18,6 @@ export const themePlume = ({
   let watchMarkdown: null | ((app: App, watchers: unknown) => void) = null
   return {
     name: '@vuepress-plume/vuepress-theme-plume',
-    layouts: resolveClient('layouts'),
     templateBuild: resolveTemplate('index.build.html'),
     alias: getAlias(),
     clientConfigFile: resolveClient('config.js'),

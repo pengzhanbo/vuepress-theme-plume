@@ -1,6 +1,6 @@
-import { copyCodePlugin } from './plugin'
+import { copyCodePlugin } from './plugin.js'
 
-export * from './plugin'
-export * from '../shared'
+export * from './plugin.js'
+export * from '../shared/index.js'
 
 export default copyCodePlugin

@@ -8,8 +8,10 @@
 // netlify functions 开发时支持
 import { useNetlifyFunctionsPlugin } from '@vuepress-plume/vuepress-plugin-netlify-functions'
 import type { App, Plugin } from '@vuepress/core'
-import { path } from '@vuepress/utils'
-import type { PageCollectionOptions } from '../shared'
+import { getDirname, path } from '@vuepress/utils'
+import type { PageCollectionOptions } from '../shared/index.js'
+
+const __dirname = getDirname(import.meta.url)
 
 export const pageCollectionPlugin = (
   options: PageCollectionOptions = {}

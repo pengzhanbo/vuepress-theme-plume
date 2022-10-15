@@ -1,5 +1,5 @@
-import { windiCSSPlugin } from './plugin'
+import { windiCSSPlugin } from './plugin.js'
 
-export * from './plugin'
+export * from './plugin.js'
 
 export default windiCSSPlugin

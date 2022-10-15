@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import { ref } from 'vue'
-import { getColor } from '../utils'
-import { usePostAllIndex } from './postIndex'
+import { getColor } from '../utils/index.js'
+import { usePostAllIndex } from './postIndex.js'
 
 export interface TagItem {
   tag: string

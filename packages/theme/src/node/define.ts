@@ -1,4 +1,7 @@
-import type { PlumeThemeNotesItem, PlumeThemeNotesOptions } from '../shared'
+import type {
+  PlumeThemeNotesItem,
+  PlumeThemeNotesOptions,
+} from '../shared/index.js'
 
 export const definePlumeNotesConfig = (
   notes: PlumeThemeNotesOptions

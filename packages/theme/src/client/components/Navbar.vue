@@ -4,8 +4,8 @@ import NavbarBrand from '@theme-plume/NavbarBrand.vue'
 import NavbarItems from '@theme-plume/NavbarItems.vue'
 import ToggleSidebarButton from '@theme-plume/ToggleSidebarButton.vue'
 import { computed, onMounted, ref } from 'vue'
-import { useAsideNavbar, useThemeLocaleData } from '../composables'
-import { getCssValue } from '../utils'
+import { useAsideNavbar, useThemeLocaleData } from '../composables/index.js'
+import { getCssValue } from '../utils/index.js'
 
 const themeLocale = useThemeLocaleData()
 

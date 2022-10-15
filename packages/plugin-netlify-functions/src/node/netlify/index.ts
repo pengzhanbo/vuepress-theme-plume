@@ -1,3 +1,3 @@
-export * from './initFunctions'
-export * from './netlifyConfig'
-export * from './netlifyServer'
+export * from './initFunctions.js'
+export * from './netlifyConfig.js'
+export * from './netlifyServer.js'

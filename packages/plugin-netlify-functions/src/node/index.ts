@@ -1,7 +1,7 @@
-import type { NetlifyFunctionsOptions } from '../shared'
-import { netlifyFunctionsPlugin } from './plugin'
+import type { NetlifyFunctionsOptions } from '../shared/index.js'
+import { netlifyFunctionsPlugin } from './plugin.js'
 
-export * from './useNetlifyFunctionsPlugins'
+export * from './useNetlifyFunctionsPlugins.js'
 
 export { NetlifyFunctionsOptions }
 

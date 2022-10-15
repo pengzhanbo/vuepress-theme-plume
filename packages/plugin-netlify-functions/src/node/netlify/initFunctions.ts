@@ -2,8 +2,8 @@ import type { App } from '@vuepress/core'
 import { path } from '@vuepress/utils'
 import * as chokidar from 'chokidar'
 import esbuild from 'esbuild'
-import type { NetlifyFunctionsPluginOptions } from '../../shared'
-import { readFileList } from '../utils'
+import type { NetlifyFunctionsPluginOptions } from '../../shared/index.js'
+import { readFileList } from '../utils/index.js'
 
 export const generateFunctions = async (
   app: App,

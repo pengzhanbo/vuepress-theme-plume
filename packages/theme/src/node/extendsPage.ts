@@ -5,8 +5,8 @@ import type {
   PlumeThemeLocaleOptions,
   PlumeThemePageData,
   PlumeThemePostFrontmatter,
-} from '../shared'
-import { formatDate } from './utils'
+} from '../shared/index.js'
+import { formatDate } from './utils/index.js'
 
 function normalizePath(filepath: string): string {
   return filepath.replace(/^\//, '')

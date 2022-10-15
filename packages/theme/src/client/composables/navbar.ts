@@ -8,10 +8,10 @@ import type {
   NavbarItem,
   NavLink,
   ResolveNavbarItem,
-} from '../../shared'
-import { resolveRepoType } from '../utils'
-import { useNavLink } from './navLink'
-import { useThemeLocaleData } from './themeData'
+} from '../../shared/index.js'
+import { resolveRepoType } from '../utils/index.js'
+import { useNavLink } from './navLink.js'
+import { useThemeLocaleData } from './themeData.js'
 
 export const useNavbarSelectLanguage = (): ComputedRef<ResolveNavbarItem[]> => {
   const router = useRouter()

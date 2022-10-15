@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { debounce } from 'ts-debounce'
 import { onMounted, ref } from 'vue'
-import { getScrollTop, scrollTo } from '../utils'
-import { BackTopIcon } from './icons'
+import { getScrollTop, scrollTo } from '../utils/index.js'
+import { BackTopIcon } from './icons/index.js'
 
 const opacity = ref<number>(0)
 const MAX_TOP = 300

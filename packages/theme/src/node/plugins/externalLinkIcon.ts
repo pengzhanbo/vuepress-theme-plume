@@ -3,7 +3,7 @@ import { externalLinkIconPlugin } from '@vuepress/plugin-external-link-icon'
 import type {
   PlumeThemeLocaleOptions,
   PlumeThemePluginOptions,
-} from '../../shared'
+} from '../../shared/index.js'
 
 export const resolveExternalLinkIconPlugin = (
   plugins: PlumeThemePluginOptions,
@@ -12,7 +12,7 @@ export const resolveExternalLinkIconPlugin = (
   if (plugins.externalLinkIcon === false) return [] as unknown as Plugin
   return externalLinkIconPlugin({
     locales: Object.entries(localeOptions.locales || {}).reduce(
-      (result, [key, value]) => {
+      (result: Record<string, any>, [key, value]) => {
         result[key] = {
           openInNewWindow:
             value.openInNewWindow ?? localeOptions.openInNewWindow,

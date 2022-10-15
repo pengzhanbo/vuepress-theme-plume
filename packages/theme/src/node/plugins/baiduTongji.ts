@@ -2,7 +2,7 @@
 import type { BaiduTongjiOptions } from '@vuepress-plume/vuepress-plugin-baidu-tongji'
 import { baiduTongjiPlugin } from '@vuepress-plume/vuepress-plugin-baidu-tongji'
 import type { Plugin } from '@vuepress/core'
-import type { PlumeThemePluginOptions } from '../../shared'
+import type { PlumeThemePluginOptions } from '../../shared/index.js'
 
 export const resolveBaiduTongji = ({
   baiduTongji,

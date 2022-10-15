@@ -2,10 +2,10 @@
 import type { PropType } from 'vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import type { PostItem } from '../../shared'
-import { useThemeLocaleData } from '../composables'
-import { getColor, normalizePath } from '../utils'
-import { ClockIcon, FolderIcon, TagIcon, UserIcon } from './icons'
+import type { PostItem } from '../../shared/index.js'
+import { useThemeLocaleData } from '../composables/index.js'
+import { getColor, normalizePath } from '../utils/index.js'
+import { ClockIcon, FolderIcon, TagIcon, UserIcon } from './icons/index.js'
 
 const props = defineProps({
   post: {

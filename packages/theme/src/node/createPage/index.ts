@@ -1,8 +1,8 @@
 import type { App } from '@vuepress/core'
-import type { PlumeThemeLocaleOptions } from '../../shared'
-import { createArchivePage } from './archive'
-import { createCategoryPage } from './category'
-import { createTagPage } from './tag'
+import type { PlumeThemeLocaleOptions } from '../../shared/index.js'
+import { createArchivePage } from './archive.js'
+import { createCategoryPage } from './category.js'
+import { createTagPage } from './tag.js'
 
 export const createPage = async (
   app: App,

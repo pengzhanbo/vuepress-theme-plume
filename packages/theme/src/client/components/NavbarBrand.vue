@@ -7,12 +7,12 @@ import {
 } from '@vuepress/client'
 import { computed, h } from 'vue'
 import type { FunctionalComponent } from 'vue'
-import type { NavLink } from '../../shared'
+import type { NavLink } from '../../shared/index.js'
 import {
   useDarkMode,
   useSidebarIndex,
   useThemeLocaleData,
-} from '../composables'
+} from '../composables/index.js'
 
 const routeLocale = useRouteLocale()
 const siteLocale = useSiteLocaleData()

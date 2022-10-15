@@ -19,26 +19,29 @@
   },
   "license": "MIT",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
+  "type": "module",
+  "exports": {
+    ".": "./lib/node/index.js",
+    "./client": "./lib/client/index.js",
+    "./package.json": "./package.json"
+  },
   "main": "lib/node/index.js",
+  "types": "./lib/node/index.d.ts",
   "files": [
     "lib"
   ],
   "scripts": {
     "build": "pnpm run clean && pnpm run ts",
     "clean": "rimraf lib *.tsbuildinfo",
-    "dev": "pnpm run ts:watch",
-    "ts": "tsc -b tsconfig.build.json",
-    "ts:watch": "tsc -b tsconfig.build.json --watch"
+    "ts": "tsc -b tsconfig.build.json"
   },
   "dependencies": {
-    "@vuepress/cli": "2.0.0-beta.49",
-    "@vuepress/client": "2.0.0-beta.49",
-    "@vuepress/core": "2.0.0-beta.49",
-    "@vuepress/utils": "2.0.0-beta.49",
+    "@types/markdown-it": "^12.2.3",
+    "@vuepress/cli": "2.0.0-beta.51",
+    "@vuepress/client": "2.0.0-beta.51",
+    "@vuepress/core": "2.0.0-beta.51",
+    "@vuepress/utils": "2.0.0-beta.51",
     "markdown-it-container": "^3.0.0"
-  },
-  "devDependencies": {
-    "@types/markdown-it": "^12.2.3"
   },
   "publishConfig": {
     "access": "public"

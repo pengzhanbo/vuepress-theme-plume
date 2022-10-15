@@ -1,10 +1,11 @@
 import type { Plugin, PluginObject } from '@vuepress/core'
-import { path } from '@vuepress/utils'
-import * as container from 'markdown-it-container'
-import type * as Token from 'markdown-it/lib/token'
-import type { CanIUseMode, CanIUsePluginOptions } from '../shared'
-import { resolveCanIUse } from './resolveCanIUse'
+import { getDirname, path } from '@vuepress/utils'
+import container from 'markdown-it-container'
+import type Token from 'markdown-it/lib/token.js'
+import type { CanIUseMode, CanIUsePluginOptions } from '../shared/index.js'
+import { resolveCanIUse } from './resolveCanIUse.js'
 
+const __dirname = getDirname(import.meta.url)
 const modeMap: CanIUseMode[] = ['image', 'embed']
 const isMode = (mode: CanIUseMode): boolean => modeMap.includes(mode)
 

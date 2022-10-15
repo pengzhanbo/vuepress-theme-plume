@@ -1,22 +1,30 @@
-
-import { readTemplateList } from './readTpl'
+import { readTemplateList } from './readTpl.js'
 import path from 'path'
 import fs from 'fs'
-import { upperCase, lowerCase, packageName } from './utils'
-import { compile } from 'handlebars'
-import type { ConfigOptions } from './getConfig'
-import { writeFile } from './writeFile'
+import { upperCase, lowerCase, packageName } from './utils.js'
+import handlebars from 'handlebars'
+import { writeFile } from './writeFile.js'
 import chalk from 'chalk'
 import ora from 'ora'
-import execa from 'execa'
+import { execa } from 'execa'
+import { fileURLToPath } from 'url'
 
-const packagesRoot = path.join(__dirname, '../../packages')
+const compile = handlebars.compile
+
+const _dirname =
+  typeof __dirname !== 'undefined'
+    ? __dirname
+    : path.dirname(fileURLToPath(import.meta.url))
+
+const packagesRoot = path.join(_dirname, '../../packages')
 const spinner = ora()
 
-const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8'))
+const pkg = JSON.parse(
+  fs.readFileSync(path.join(_dirname, '../../package.json'), 'utf-8')
+)
 
-const generatorFile = async (config: ConfigOptions): Promise<void> => {
-  const templateList = readTemplateList(path.join(__dirname, './template'))
+const generatorFile = async (config) => {
+  const templateList = readTemplateList(path.join(_dirname, './template'))
 
   const { name, client, shared } = config
   const pkgName = packageName(name)
@@ -29,16 +37,24 @@ const generatorFile = async (config: ConfigOptions): Promise<void> => {
     shared,
     version: pkg.version,
   }
-  const include = [!client && 'client', !client && 'tsconfig.esm.json', !shared && 'shared'].filter(Boolean).join('|')
+  const include = [
+    !client && 'client',
+    !client && 'tsconfig.esm.json',
+    !shared && 'shared',
+  ]
+    .filter(Boolean)
+    .join('|')
   const filterRE = new RegExp(`/(${include})/`)
-  const templates = templateList.filter(({ file }) => {
-    return !filterRE.test(file)
-  }).map(({ file, content }) => {
-    return {
-      file,
-      template: compile(content)
-    }
-  })
+  const templates = templateList
+    .filter(({ file }) => {
+      return !filterRE.test(file)
+    })
+    .map(({ file, content }) => {
+      return {
+        file,
+        template: compile(content),
+      }
+    })
   spinner.start(`${chalk.cyan(pkgName)} generating....`)
   templates.forEach(async ({ file, template }) => {
     try {
@@ -52,14 +68,14 @@ const generatorFile = async (config: ConfigOptions): Promise<void> => {
   spinner.succeed(`${chalk.cyan(pkgName)} generated !`)
 }
 
-const initPackage = async (config: ConfigOptions): Promise<void> => {
+const initPackage = async (config) => {
   const { name, client } = config
   const pkgName = packageName(name)
   const targetDir = path.join(packagesRoot, pkgName)
-  const dependencies: string[] = [
+  const dependencies = [
     '@vuepress/core@next',
     '@vuepress/utils@next',
-    '@vuepress/shared@next'
+    '@vuepress/shared@next',
   ]
   client && dependencies.push('@vuepress/client@next')
 
@@ -73,7 +89,7 @@ const initPackage = async (config: ConfigOptions): Promise<void> => {
   }
 }
 
-export const generator = async (config: ConfigOptions): Promise<void> => {
+export const generator = async (config) => {
   await generatorFile(config)
   await initPackage(config)
 }

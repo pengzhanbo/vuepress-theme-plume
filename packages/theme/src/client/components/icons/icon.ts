@@ -1,6 +1,6 @@
 import { h } from 'vue'
 import type { FunctionalComponent } from 'vue'
-import { IconBase } from './IconBase'
+import { IconBase } from './IconBase.js'
 
 export const UserIcon: FunctionalComponent = () =>
   h(IconBase, { name: 'user' }, () =>

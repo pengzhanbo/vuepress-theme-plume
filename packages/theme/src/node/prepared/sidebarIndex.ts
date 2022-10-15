@@ -9,7 +9,7 @@ import type {
   PlumeThemeSidebarConfigOptions,
   SidebarItem,
   SidebarOptions,
-} from '../../shared'
+} from '../../shared/index.js'
 
 const HMR_CODE = `
 if (import.meta.webpackHot) {

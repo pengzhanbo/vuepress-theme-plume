@@ -1,6 +1,6 @@
 import { copyCodePlugin } from '@vuepress-plume/vuepress-plugin-copy-code'
 import type { Plugin } from '@vuepress/core'
-import type { PlumeThemePluginOptions } from '../../shared'
+import type { PlumeThemePluginOptions } from '../../shared/index.js'
 
 export const resolveCopyCode = (plugins: PlumeThemePluginOptions): Plugin => {
   if (plugins.copyCode === false) return [] as unknown as Plugin

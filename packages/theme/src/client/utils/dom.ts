@@ -1,9 +1,10 @@
-import { tween } from './animate'
+import { tween } from './animate.js'
+
 export function getCssValue(el: HTMLElement | null, property: string): number {
   const val = el?.ownerDocument?.defaultView?.getComputedStyle(el, null)?.[
-    property
+    property as any
   ]
-  const num = Number.parseInt(val, 10)
+  const num = Number.parseInt(val as string, 10)
   return Number.isNaN(num) ? 0 : num
 }
 

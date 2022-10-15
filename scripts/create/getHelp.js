@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-export const getHelp = (): void => {
+export const getHelp = () => {
   console.log(`  this command will generator a package to ${chalk.cyan('packages')}.
   command: ${chalk.green('pnpm pkg <package-name> [--options]')}
 

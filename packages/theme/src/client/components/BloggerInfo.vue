@@ -3,7 +3,7 @@ import DropdownTransition from '@theme-plume/DropdownTransition.vue'
 import { isLinkHttp, isLinkMailto } from '@vuepress/shared'
 import type { FunctionalComponent, Ref } from 'vue'
 import { computed, ref } from 'vue'
-import { usePostStat, useThemeLocaleData } from '../composables'
+import { usePostStat, useThemeLocaleData } from '../composables/index.js'
 import {
   EmailIcon,
   FacebookIcon,
@@ -16,7 +16,7 @@ import {
   TwitterIcon,
   WeiBoIcon,
   ZhiHuIcon,
-} from './icons'
+} from './icons/index.js'
 
 interface SocialItem {
   url: string

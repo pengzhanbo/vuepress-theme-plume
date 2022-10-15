@@ -9,13 +9,14 @@ import Page from '@theme-plume/Page.vue'
 import PageFooter from '@theme-plume/PageFooter.vue'
 import Tag from '@theme-plume/Tag.vue'
 import { usePageFrontmatter } from '@vuepress/client'
+import type { Component } from 'vue'
 import { computed } from 'vue'
-import { useThemeLocaleData } from '../composables'
+import { useThemeLocaleData } from '../composables/index.js'
 
 const frontmatter = usePageFrontmatter()
 const themeLocale = useThemeLocaleData()
 
-const pageType = computed(() => {
+const pageType = computed<string>(() => {
   const matter = frontmatter.value
   let type = ''
   if (matter.home) {
@@ -30,7 +31,7 @@ const footer = computed(() => {
   return themeLocale.value.footer
 })
 
-const pageMap = {
+const pageMap: Record<string, Component> = {
   category: Category,
   archive: Archive,
   tag: Tag,

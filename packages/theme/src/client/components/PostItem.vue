@@ -2,9 +2,9 @@
 import DropdownTransition from '@theme-plume/DropdownTransition.vue'
 import type { PropType } from 'vue'
 import { useRouter } from 'vue-router'
-import type { PostItem } from '../../shared'
+import type { PostItem } from '../../shared/index.js'
 import AutoLink from './AutoLink.vue'
-import { TopIcon } from './icons'
+import { TopIcon } from './icons/index.js'
 import PostMeta from './PostMeta.vue'
 
 defineProps({

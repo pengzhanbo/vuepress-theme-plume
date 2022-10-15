@@ -1,8 +1,8 @@
 import type { App, PluginObject } from '@vuepress/core'
 import { path } from '@vuepress/utils'
 import * as cpx2 from 'cpx2'
-import type { UseNetlifyFunctionPluginsOptions } from '../shared'
-import { getOptions, netlifyFunctionsPlugin } from './plugin'
+import type { UseNetlifyFunctionPluginsOptions } from '../shared/index.js'
+import { getOptions, netlifyFunctionsPlugin } from './plugin.js'
 
 interface UseNetlifyFunctionResult {
   /**

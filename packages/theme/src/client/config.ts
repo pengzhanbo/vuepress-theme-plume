@@ -1,7 +1,9 @@
 import { defineClientConfig } from '@vuepress/client'
 import { h } from 'vue'
 import Badge from './components/global/Badge.vue'
-import { setupDarkMode, useScrollPromise } from './composables'
+import { setupDarkMode, useScrollPromise } from './composables/index.js'
+import NotFound from './layouts/404.vue'
+import Layout from './layouts/Layout.vue'
 
 import './styles/index.scss'
 
@@ -36,5 +38,9 @@ export default defineClientConfig({
   },
   setup() {
     setupDarkMode()
+  },
+  layouts: {
+    Layout,
+    NotFound,
   },
 })

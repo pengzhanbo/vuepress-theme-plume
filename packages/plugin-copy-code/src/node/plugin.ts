@@ -1,6 +1,8 @@
 import type { Plugin } from '@vuepress/core'
-import { path } from '@vuepress/utils'
-import type { CopyCodeLocaleOption, CopyCodeOptions } from '../shared'
+import { getDirname, path } from '@vuepress/utils'
+import type { CopyCodeLocaleOption, CopyCodeOptions } from '../shared/index.js'
+
+const __dirname = getDirname(import.meta.url)
 
 const defaultOptions: CopyCodeOptions = {
   selector: '.theme-default-content div[class*="language-"] pre',

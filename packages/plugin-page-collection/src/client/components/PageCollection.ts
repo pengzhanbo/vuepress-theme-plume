@@ -1,5 +1,5 @@
 import { defineComponent, h } from 'vue'
-import { usePageCollection } from '../composables'
+import { usePageCollection } from '../composables/index.js'
 
 export default defineComponent({
   name: 'PageCollection',

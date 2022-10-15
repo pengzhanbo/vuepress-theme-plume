@@ -1,5 +1,5 @@
-import type { NavLink } from '../../shared'
-import { useResolveRouteWithRedirect } from './resolveRouteWithRedirect'
+import type { NavLink } from '../../shared/index.js'
+import { useResolveRouteWithRedirect } from './resolveRouteWithRedirect.js'
 
 declare module 'vue-router' {
   interface RouteMeta {

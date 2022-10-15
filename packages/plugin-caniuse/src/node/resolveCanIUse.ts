@@ -1,4 +1,4 @@
-import type { CanIUseMode } from '../shared'
+import type { CanIUseMode } from '../shared/index.js'
 export const resolveCanIUse = (feature: string, mode: CanIUseMode): string => {
   const before =
     mode === 'embed'

@@ -98,6 +98,10 @@ const enabledSidebar = computed(() => {
 @media (max-width: $MQMobile) {
   .page-wrapper .page-container .page-content {
     padding: 0 0.75rem 1rem;
+
+    h1 {
+      font-size: 1.5rem;
+    }
   }
   .plume-theme-page-toc {
     display: none;

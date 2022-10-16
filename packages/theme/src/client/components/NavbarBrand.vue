@@ -63,6 +63,7 @@ const NavbarBrandLogo: FunctionalComponent = () => {
   </RouterLink>
 </template>
 <style lang="scss">
+@import '../styles/variables';
 .navbar-brand {
   display: flex;
   height: 100%;
@@ -71,6 +72,13 @@ const NavbarBrandLogo: FunctionalComponent = () => {
   &.has-sidebar {
     width: calc(18rem - var(--navbar-padding-h));
     border-bottom: solid 1px var(--c-border);
+  }
+}
+
+@media (max-width: $MQMobile) {
+  .navbar-brand.has-sidebar {
+    width: auto;
+    border-bottom: none;
   }
 }
 </style>

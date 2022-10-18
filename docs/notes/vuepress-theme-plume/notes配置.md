@@ -1,6 +1,6 @@
 ---
 title: notes配置
-createTime: 2022/04/09 02:48:41
+createTime: 2022-05-14T10:43:53.218Z
 author: pengzhanbo
 permalink: /note/vuepress-theme-plume/notes-config/
 ---

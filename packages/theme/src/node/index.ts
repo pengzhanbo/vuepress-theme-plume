@@ -1,18 +1,8 @@
-import type {
-  PlumeThemeNotesItem,
-  PlumeThemeNotesOptions,
-  PlumeThemeOptions,
-  PlumeThemeSidebarConfigOptions,
-} from '../shared/index.js'
-import { themePlume } from './theme.js'
-export * from './theme.js'
-export * from './define.js'
+import { plumeTheme } from './theme.js'
 
-export {
-  PlumeThemeOptions,
-  PlumeThemeNotesOptions,
-  PlumeThemeNotesItem,
-  PlumeThemeSidebarConfigOptions,
-}
+export * from './defineConfig.js'
+export * from '../shared/index.js'
 
-export default themePlume
+export { plumeTheme }
+
+export default plumeTheme

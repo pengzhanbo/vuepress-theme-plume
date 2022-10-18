@@ -1,6 +1,11 @@
 import type { LocaleData } from '@vuepress/core'
-import type { NavbarConfig, NavLink } from '../layout/index.js'
-import type { PlumeThemeNotesOptions } from './notes.js'
+// import type { NavbarConfig, NavLink } from '../layout/index.js'
+// import type { PlumeThemeNotesOptions } from './notes.js'
+
+// todo type
+type NavbarConfig = any
+type NavLink = any
+type PlumeThemeNotesOptions = any
 
 export interface PlumeThemeAvatar {
   /**

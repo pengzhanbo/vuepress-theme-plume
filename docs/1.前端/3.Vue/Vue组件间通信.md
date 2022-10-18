@@ -1,9 +1,9 @@
 ---
 title: Vue组件间通信
 lang: zh-CN
-tags: 
+tags:
   - vue
-createTime: 2018/07/20 11:15:27
+createTime: 2022-03-26T11:46:50.028Z
 permalink: /article/iezlvhvg
 author: pengzhanbo
 top: false

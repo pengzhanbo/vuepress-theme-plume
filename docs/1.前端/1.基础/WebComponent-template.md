@@ -1,10 +1,10 @@
 ---
 title: WebComponent——template
 lang: zh-CN
-tags: 
+tags:
   - html
   - javascript
-createTime: 2018/8/2 11:15:27
+createTime: 2022-03-26T11:46:50.025Z
 permalink: /article/5fmy4kla
 author: pengzhanbo
 top: false

@@ -1,5 +1,5 @@
 import * as path from 'path'
-import { themePlume } from '@vuepress-plume/vuepress-theme-plume'
+import themePlume from '@vuepress-plume/vuepress-theme-plume'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { webpackBundler } from '@vuepress/bundler-webpack'
 import { defineUserConfig } from '@vuepress/cli'

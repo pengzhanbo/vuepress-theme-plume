@@ -1,5 +1,0 @@
-export * from './dom.js'
-export * from './resolveRepoType.js'
-export * from './path.js'
-export * from './color.js'
-export * from './check.js'

@@ -1,10 +1,10 @@
 ---
 title: Jenkins 使用
 lang: zh-CN
-createTime: 2018/09/16 11:15:27
+createTime: 2022-03-26T11:46:50.027Z
 permalink: /article/bmtl5ah4
 author: pengzhanbo
-tags: 
+tags:
   - 工具
 top: false
 type: null

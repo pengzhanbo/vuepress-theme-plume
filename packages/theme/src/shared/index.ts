@@ -1,5 +1,3 @@
+export * from './frontmatter.js'
+export * from './note.js'
 export * from './options/index.js'
-export * from './layout/index.js'
-export * from './post.js'
-export * from './frontmatter/index.js'
-export * from './page.js'

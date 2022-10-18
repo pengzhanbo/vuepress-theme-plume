@@ -1,6 +1,6 @@
 ---
 title: 详解 Promise
-createTime: 2020/11/22 12:58:28
+createTime: 2022-03-26T11:46:50.026Z
 permalink: /article/q40nq4hv
 author: pengzhanbo
 sticky: true

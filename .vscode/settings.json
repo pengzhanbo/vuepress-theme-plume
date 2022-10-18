@@ -24,6 +24,7 @@
     "composables",
     "Docsearch",
     "esbuild",
+    "frontmatter",
     "gsap",
     "iarna",
     "leancloud",

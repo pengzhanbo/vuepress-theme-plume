@@ -1,9 +1,9 @@
 ---
 title: <!DOCTYPE> 文档类型声明
-createTime: 2018/03/14 01:06:52
+createTime: 2022-03-26T11:46:50.025Z
 permalink: /article/s8udp6vp
 author: pengzhanbo
-tags: 
+tags:
   - html
 top: false
 type: null

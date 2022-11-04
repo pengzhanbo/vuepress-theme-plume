@@ -4,7 +4,6 @@ import { useBlogPostData } from './composables/index.js'
 
 export default defineClientConfig({
   enhance({ app }) {
-    // provide theme data & theme locale data
     const blogPostData = useBlogPostData()
 
     // setup devtools in dev mode

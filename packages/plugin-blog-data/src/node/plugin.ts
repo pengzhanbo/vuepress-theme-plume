@@ -41,6 +41,15 @@ export const blogDataPlugin = ({
   return {
     name: '@vuepress-plume/vuepress-plugin-blog-data',
     clientConfigFile: path.resolve(__dirname, '../client/config.js'),
+    extendsPage(page) {
+      if (
+        page.filePathRelative &&
+        options.exclude.every((filter) => filter(page.filePathRelative!)) &&
+        options.include.some((filter) => filter(page.filePathRelative!))
+      ) {
+        ;(page.data as any).isBlogPost = true
+      }
+    },
     onPrepared: async (app) => await preparedBlogData(app, options),
     onWatched(app, watchers) {
       const watcher = chokidar.watch('pages/**/*', {

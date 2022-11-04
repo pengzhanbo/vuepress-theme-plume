@@ -14,7 +14,10 @@ export const windiCSSPlugin = (options?: WindiCSSOptions | string): Plugin => {
   let userOptions: UserOptions | undefined
   let utilsOptions: WindiPluginUtilsOptions | undefined
   if (typeof options === 'string') {
-    userOptions = { config: options }
+    userOptions = {
+      config: options,
+      include: ['**/.vuepress/**/*.{vue,jsx,tsx}', '**/*.md'],
+    }
   } else {
     options = options || {}
     userOptions = options.userOptions

@@ -39,6 +39,7 @@
     "@vuepress-plume/vuepress-plugin-blog-data": "workspace:*",
     "@vuepress-plume/vuepress-plugin-caniuse": "workspace:*",
     "@vuepress-plume/vuepress-plugin-copy-code": "workspace:*",
+    "@vuepress-plume/vuepress-plugin-windicss": "workspace:*",
     "@vuepress/client": "2.0.0-beta.51",
     "@vuepress/core": "2.0.0-beta.51",
     "@vuepress/plugin-active-header-links": "2.0.0-beta.51",
@@ -55,6 +56,7 @@
     "@vuepress/plugin-toc": "2.0.0-beta.51",
     "@vuepress/shared": "2.0.0-beta.51",
     "@vuepress/utils": "2.0.0-beta.51",
+    "@vueuse/core": "^9.3.0",
     "date-fns": "^2.29.3",
     "nanoid": "^4.0.0",
     "ts-debounce": "^4.0.0",
@@ -63,6 +65,7 @@
     "vuepress-plugin-comment2": "2.0.0-beta.110",
     "vuepress-plugin-md-enhance": "2.0.0-beta.110",
     "vuepress-plugin-seo2": "2.0.0-beta.110",
-    "vuepress-plugin-sitemap2": "2.0.0-beta.110"
+    "vuepress-plugin-sitemap2": "2.0.0-beta.110",
+    "windicss": "^3.5.6"
   }
 }

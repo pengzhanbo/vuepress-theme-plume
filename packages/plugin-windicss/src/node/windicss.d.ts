@@ -1,17 +1,17 @@
-declare module 'windicss-webpack-plugin' {
-  const result: any
+// declare module 'windicss-webpack-plugin' {
+//   const result: any
 
-  export default result
-}
+//   export default result
+// }
 
-declare module 'vite-plugin-windicss' {
-  const result: any
+// declare module 'vite-plugin-windicss' {
+//   const result: any
 
-  type UserOptions = any
+//   type UserOptions = any
 
-  type WindiPluginUtilsOptions = any
+//   type WindiPluginUtilsOptions = any
 
-  export default result
+//   export default result
 
-  export { UserOptions, WindiPluginUtilsOptions }
-}
+//   export { UserOptions, WindiPluginUtilsOptions }
+// }

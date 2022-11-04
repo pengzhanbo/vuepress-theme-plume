@@ -3,6 +3,7 @@ import { baiduTongjiPlugin } from '@vuepress-plume/vuepress-plugin-baidu-tongji'
 import { blogDataPlugin } from '@vuepress-plume/vuepress-plugin-blog-data'
 import { caniusePlugin } from '@vuepress-plume/vuepress-plugin-caniuse'
 import { copyCodePlugin } from '@vuepress-plume/vuepress-plugin-copy-code'
+import { windiCSSPlugin } from '@vuepress-plume/vuepress-plugin-windicss'
 import type { App, PluginConfig } from '@vuepress/core'
 import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
@@ -14,6 +15,7 @@ import { palettePlugin } from '@vuepress/plugin-palette'
 import { prismjsPlugin } from '@vuepress/plugin-prismjs'
 import { searchPlugin } from '@vuepress/plugin-search'
 import { themeDataPlugin } from '@vuepress/plugin-theme-data'
+import { getDirname, path } from '@vuepress/utils'
 import { commentPlugin } from 'vuepress-plugin-comment2'
 import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
 import { seoPlugin } from 'vuepress-plugin-seo2'
@@ -24,6 +26,8 @@ import type {
 } from '../shared/index.js'
 import autoFrontmatter from './autoFrontmatter.js'
 
+const __dirname = getDirname(import.meta.url)
+
 export const setupPlugins = (
   app: App,
   options: PlumeThemePluginOptions,
@@ -33,6 +37,7 @@ export const setupPlugins = (
 
   return [
     palettePlugin({ preset: 'sass' }),
+    windiCSSPlugin(path.resolve(__dirname, '../client/windi.config.js')),
     themeDataPlugin({ themeData: localeOptions }),
     autoFrontmatterPlugin(autoFrontmatter(app, localeOptions)),
     blogDataPlugin({

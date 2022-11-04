@@ -71,9 +71,11 @@ export interface PlumeThemeLocaleData extends LocaleData {
    */
   logoDark?: string
   /**
-   * 是否启用深色模式
+   * 是否启用深色模式切换按钮
    */
-  darkMode?: boolean
+  colorModeSwitch?: boolean
+
+  colorMode?: 'auto' | 'light' | 'dark'
 
   toggleDarkMode?: string
 

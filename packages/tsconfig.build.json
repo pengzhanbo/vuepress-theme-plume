@@ -10,6 +10,7 @@
     { "path": "./plugin-copy-code/tsconfig.build.json" },
     { "path": "./plugin-netlify-functions/tsconfig.build.json" },
     { "path": "./plugin-page-collection/tsconfig.build.json" },
-    { "path": "./plugin-windicss/tsconfig.build.json" }
+    { "path": "./plugin-windicss/tsconfig.build.json" },
+    { "path": "./plugin-blog-data/tsconfig.build.json" }
   ]
 }

@@ -1,3 +1,12 @@
+# [1.0.0-beta.46](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.45...v1.0.0-beta.46) (2022-11-29)
+
+
+### Bug Fixes
+
+* **theme:** fix navbar and page title ([44a05f1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/44a05f1ffe07a735c8dd866c2ab0425f7d14dadb))
+
+
+
 # [1.0.0-beta.45](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.44...v1.0.0-beta.45) (2022-10-15)
 
 

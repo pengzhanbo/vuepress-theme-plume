@@ -3,6 +3,7 @@
 docs/.vuepress/.cache
 docs/.vuepress/.temp
 docs/.vuepress/dist
+packages/theme-back
 
 lib/
 dist/

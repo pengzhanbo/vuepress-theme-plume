@@ -1,3 +1,4 @@
+import { createRequire } from 'module'
 import type { App } from '@vuepress/core'
 import { fs, path } from '@vuepress/utils'
 import chokidar from 'chokidar'
@@ -12,6 +13,8 @@ import type {
 } from '../shared/index.js'
 import type { MarkdownFile } from './utils/index.js'
 import { readFile, readFileList } from './utils/index.js'
+
+const require = createRequire(import.meta.url)
 
 export interface GenerateFrontmatter {
   formatFrontmatter: () => void

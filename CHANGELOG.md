@@ -1,3 +1,12 @@
+# [1.0.0-beta.47](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.46...v1.0.0-beta.47) (2022-12-01)
+
+
+### Bug Fixes
+
+* **theme:** frontmatter ([253921e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/253921e53d5e867cf69c44ae5fb7406c598bb271))
+
+
+
 # [1.0.0-beta.46](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.45...v1.0.0-beta.46) (2022-11-29)
 
 

@@ -27,7 +27,7 @@ export const themePlume = ({
         localeOption
       )
       watchMarkdown = watchNewMarkDown
-      formatFrontmatter()
+      await formatFrontmatter()
       await createPage(app, localeOption)
     },
     onPrepared: async (app) => await onPrepared(app, localeOption),

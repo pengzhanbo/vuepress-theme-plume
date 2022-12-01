@@ -17,7 +17,7 @@ import { readFile, readFileList } from './utils/index.js'
 const require = createRequire(import.meta.url)
 
 export interface GenerateFrontmatter {
-  formatFrontmatter: () => void
+  formatFrontmatter: () => Promise<void>
   watchNewMarkDown: (app: App, watchers: unknown) => void
 }
 
@@ -104,12 +104,12 @@ export const generateFrontmatter = (
     },
   }
 
-  const formatMarkdown = (file: MarkdownFile): string => {
+  const formatMarkdown = async (file: MarkdownFile): Promise<string> => {
     const { data, content } = matter(file.content)
-    Object.keys(matterTask).forEach((key) => {
-      const value = matterTask[key](file, data[key])
+    for (const key of Object.keys(matterTask)) {
+      const value = await matterTask[key](file, data[key])
       data[key] = value ?? data[key]
-    })
+    }
     const yaml = jsonToYaml
       .stringify(data)
       .replace(/\n\s{2}/g, '\n')
@@ -117,13 +117,14 @@ export const generateFrontmatter = (
     return `${yaml}---\n${content}`
   }
 
-  const formatFrontmatter = (): void => {
+  const formatFrontmatter = async (): Promise<void> => {
     const files = readFileList(sourceDir)
-    files.forEach((file) => {
+    for (const file of files) {
       const relativePath = path.relative(sourceDir, file.filepath)
       if (isReadme(relativePath)) return
-      fs.writeFileSync(file.filepath, formatMarkdown(file), 'utf-8')
-    })
+      const content = await formatMarkdown(file)
+      await fs.writeFile(file.filepath, content, 'utf-8')
+    }
   }
 
   const watchNewMarkDown = (app: App, watchers: any): void => {
@@ -132,11 +133,11 @@ export const generateFrontmatter = (
       cwd: app.options.source,
       ignoreInitial: true,
     })
-    watcher.on('add', (file, stat) => {
+    watcher.on('add', async (file, stat) => {
       const filepath = path.join(app.options.source, file)
       stat = stat || fs.statSync(filepath)
       const newFile = readFile(filepath, stat)
-      const content = formatMarkdown(newFile)
+      const content = await formatMarkdown(newFile)
       fs.writeFileSync(filepath, content, 'utf-8')
     })
     watchers.push(watcher)

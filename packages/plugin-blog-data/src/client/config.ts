@@ -2,6 +2,8 @@ import { setupDevtoolsPlugin } from '@vue/devtools-api'
 import { defineClientConfig } from '@vuepress/client'
 import { useBlogPostData } from './composables/index.js'
 
+declare const __VUE_PROD_DEVTOOLS__: boolean
+
 export default defineClientConfig({
   enhance({ app }) {
     const blogPostData = useBlogPostData()

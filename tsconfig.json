@@ -17,9 +17,6 @@
     },
     "types": ["webpack-env", "vite/client"]
   },
-  "vueCompilerOptions": {
-    "experimentalDisableTemplateSupport": true
-  },
   "include": ["packages/**/*", "docs/.vuepress/**/*", "scripts/**/*"],
   "exclude": ["node_modules", ".temp", "lib", "dist"],
   "ts-node": {

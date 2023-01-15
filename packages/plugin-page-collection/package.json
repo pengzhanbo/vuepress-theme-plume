@@ -31,7 +31,7 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "dependencies": {
-    "@netlify/functions": "^1.3.0",
+    "@netlify/functions": "^1.4.0",
     "@vuepress-plume/vuepress-plugin-netlify-functions": "workspace:*",
     "@vuepress/client": "2.0.0-beta.60",
     "@vuepress/core": "2.0.0-beta.60",

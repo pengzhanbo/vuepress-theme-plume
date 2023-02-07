@@ -37,7 +37,7 @@
     "@vuepress/utils": "2.0.0-beta.60",
     "chokidar": "^3.5.3",
     "glob-to-regexp": "^0.4.1",
-    "vue": "^3.2.45"
+    "vue": "^3.2.47"
   },
   "publishConfig": {
     "access": "public"

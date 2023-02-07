@@ -42,7 +42,9 @@ export const windiCSSPlugin = (options?: WindiCSSOptions | string): Plugin => {
         if (app.options.bundler.name === '@vuepress/bundler-webpack') {
           bundlerOptions.configureWebpack &&
             bundlerOptions.configureWebpack((config: any) => {
-              config.plugins.push(new WebpackWindiCSSPlugin(userOptions))
+              config.plugins.push(
+                new (WebpackWindiCSSPlugin as any)(userOptions)
+              )
             })
         }
       },

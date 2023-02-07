@@ -59,7 +59,7 @@ export const preparedBlogData = async (
       ...extended,
     }
 
-    if (options.excerpt) data.excerpt = page.excerpt
+    if (options.excerpt) data.excerpt = (page as any).excerpt
 
     return data as BlogPostDataItem
   })

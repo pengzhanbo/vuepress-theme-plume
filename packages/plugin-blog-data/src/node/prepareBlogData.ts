@@ -23,14 +23,11 @@ const getTimestamp = (time: Date): number => {
 
 export const preparedBlogData = async (
   app: App,
+  pageFilter: (id: string) => boolean,
   options: PluginOption
 ): Promise<void> => {
   let pages = app.pages.filter((page) => {
-    return (
-      page.filePathRelative &&
-      options.exclude.every((filter) => filter(page.filePathRelative!)) &&
-      options.include.some((filter) => filter(page.filePathRelative!))
-    )
+    return page.filePathRelative && pageFilter(page.filePathRelative)
   })
   if (options.sortBy) {
     pages = pages.sort((prev, next) => {

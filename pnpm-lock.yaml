@@ -100,7 +100,6 @@ importers:
     specifiers:
       '@vuepress/core': 2.0.0-beta.60
       '@vuepress/shared': 2.0.0-beta.60
-      '@vuepress/utils': 2.0.0-beta.60
       chokidar: ^3.5.3
       create-filter: ^1.0.0
       fast-glob: ^3.2.12
@@ -109,7 +108,6 @@ importers:
     dependencies:
       '@vuepress/core': 2.0.0-beta.60
       '@vuepress/shared': 2.0.0-beta.60
-      '@vuepress/utils': 2.0.0-beta.60
       chokidar: 3.5.3
       create-filter: 1.0.0
       fast-glob: 3.2.12
@@ -214,7 +212,16 @@ importers:
       '@types/node': 18.11.18
 
   packages/plugin-notes-data:
-    specifiers: {}
+    specifiers:
+      '@vuepress/client': 2.0.0-beta.60
+      '@vuepress/core': 2.0.0-beta.60
+      '@vuepress/shared': 2.0.0-beta.60
+      '@vuepress/utils': 2.0.0-beta.60
+    dependencies:
+      '@vuepress/client': 2.0.0-beta.60
+      '@vuepress/core': 2.0.0-beta.60
+      '@vuepress/shared': 2.0.0-beta.60
+      '@vuepress/utils': 2.0.0-beta.60
 
   packages/plugin-page-collection:
     specifiers:
@@ -264,7 +271,6 @@ importers:
       '@vuepress-plume/vuepress-plugin-blog-data': workspace:*
       '@vuepress-plume/vuepress-plugin-caniuse': workspace:*
       '@vuepress-plume/vuepress-plugin-copy-code': workspace:*
-      '@vuepress-plume/vuepress-plugin-windicss': workspace:*
       '@vuepress/client': 2.0.0-beta.60
       '@vuepress/core': 2.0.0-beta.60
       '@vuepress/plugin-active-header-links': 2.0.0-beta.60
@@ -299,7 +305,6 @@ importers:
       '@vuepress-plume/vuepress-plugin-blog-data': link:../plugin-blog-data
       '@vuepress-plume/vuepress-plugin-caniuse': link:../plugin-caniuse
       '@vuepress-plume/vuepress-plugin-copy-code': link:../plugin-copy-code
-      '@vuepress-plume/vuepress-plugin-windicss': link:../plugin-windicss
       '@vuepress/client': 2.0.0-beta.60
       '@vuepress/core': 2.0.0-beta.60
       '@vuepress/plugin-active-header-links': 2.0.0-beta.60

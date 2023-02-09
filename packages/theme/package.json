@@ -26,8 +26,8 @@
   "scripts": {
     "build": "pnpm run clean && pnpm run copy && pnpm run ts",
     "clean": "rimraf lib *.tsbuildinfo",
-    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
-    "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib -w",
+    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
+    "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib -w",
     "dev": "concurrently \"pnpm copy:watch\" \"pnpm ts:watch\"",
     "ts": "tsc -b tsconfig.build.json",
     "ts:watch": "tsc -b tsconfig.build.json --watch"
@@ -39,7 +39,6 @@
     "@vuepress-plume/vuepress-plugin-blog-data": "workspace:*",
     "@vuepress-plume/vuepress-plugin-caniuse": "workspace:*",
     "@vuepress-plume/vuepress-plugin-copy-code": "workspace:*",
-    "@vuepress-plume/vuepress-plugin-windicss": "workspace:*",
     "@vuepress/client": "2.0.0-beta.60",
     "@vuepress/core": "2.0.0-beta.60",
     "@vuepress/plugin-active-header-links": "2.0.0-beta.60",

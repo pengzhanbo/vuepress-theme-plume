@@ -3,7 +3,7 @@ import type { App, Plugin } from '@vuepress/core'
 import { path } from '@vuepress/utils'
 {{/if}}
 {{#if shared}}
-import type { {{ upperName }}Options } from '../shared'
+import type { {{ upperName }}Options } from '../shared/index.js'
 {{else}}
 
 export interface {{ upperName }}Options {
@@ -16,10 +16,7 @@ export const {{ lowerName }}Plugin = (options: {{ upperName }}Options): Plugin =
     return {
       name: '@vuepress-plume/vuepress-{{ pkgName }}',
       {{#if client}}
-      clientAppEnhanceFiles: path.resolve(
-        __dirname,
-        '../client/clientAppEnhance.js'
-      ),
+      clientConfigFile: path.resolve(__dirname, '../client/clientConfig.js'),
       {{/if}}
     }
   }

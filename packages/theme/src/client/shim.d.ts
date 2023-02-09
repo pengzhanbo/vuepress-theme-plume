@@ -3,3 +3,5 @@ declare module '*.vue' {
   const comp: ComponentOptions
   export default comp
 }
+
+declare const __VUEPRESS_DEV__: string

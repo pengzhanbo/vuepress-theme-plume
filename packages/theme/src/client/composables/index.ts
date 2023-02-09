@@ -1,4 +1,4 @@
-export * from './useDarkMode.js'
+export * from './darkMode.js'
 export * from './useScrollPromise.js'
-export * from './useThemeData.js'
+export * from './themeData.js'
 export * from './useResolveRouteWithRedirect.js'

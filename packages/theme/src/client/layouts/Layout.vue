@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Navbar from '../components/Navbar/index.vue'
+import Nav from '../components/Nav/index.vue'
 import { useScrollPromise, useThemeLocaleData } from '../composables/index.js'
 
 // handle scrollBehavior with transition
@@ -9,6 +9,6 @@ const onBeforeLeave = scrollPromise.pending
 </script>
 <template>
   <div class="theme-plume relative min-h-100vh">
-    <Navbar />
+    <Nav />
   </div>
 </template>

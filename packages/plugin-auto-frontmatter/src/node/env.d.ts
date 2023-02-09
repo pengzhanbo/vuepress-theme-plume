@@ -1,16 +1,5 @@
-declare module 'glob-to-regexp' {
-  interface GlobToRegexp {
-    (
-      glob: string,
-      options?: {
-        globstar?: boolean
-        extended?: boolean
-        flags?: string
-      }
-    ): RegExp
-  }
+declare module 'json2yaml' {
+  const result: any
 
-  const globToRegexp: GlobToRegexp
-
-  export default globToRegexp
+  export default result
 }

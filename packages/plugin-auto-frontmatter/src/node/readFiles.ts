@@ -1,18 +1,22 @@
-import { fs, globby, path } from '@vuepress/utils'
+import fs from 'node:fs'
+import path from 'node:path'
+import fg from 'fast-glob'
 import type { MarkdownFile } from '../shared/index.js'
 
 type MarkdownFileList = MarkdownFile[]
 
 export const readMarkdownList = async (
   sourceDir: string,
-  glob: string[]
+  filter: (id: string) => boolean
 ): Promise<MarkdownFileList> => {
-  const files: string[] = await globby(glob, {
+  const files: string[] = await fg(['**/*.md'], {
     cwd: sourceDir,
-    gitignore: true,
+    ignore: ['node_modules/', '.vuepress/'],
   })
 
-  return files.map((file) => readMarkdown(sourceDir, file))
+  return files
+    .filter((file) => filter(file))
+    .map((file) => readMarkdown(sourceDir, file))
 }
 
 export const readMarkdown = (

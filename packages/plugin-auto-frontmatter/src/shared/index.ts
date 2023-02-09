@@ -15,15 +15,17 @@ export type FormatterObject<K = object, T = any> = Record<
 >
 
 export type FormatterArray = {
-  glob: string
+  include: string
   formatter: FormatterObject
 }[]
 
 export interface AutoFrontmatterOptions {
   /**
-   * glob string
+   * FilterPattern
    */
-  glob?: string | string[]
+  include?: string | string[]
+
+  exclude?: string | string[]
 
   /**
    * {

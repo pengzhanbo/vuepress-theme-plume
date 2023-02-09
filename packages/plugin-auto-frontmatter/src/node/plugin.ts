@@ -1,8 +1,9 @@
+import fs from 'node:fs'
 import type { Plugin } from '@vuepress/core'
-import { fs } from '@vuepress/utils'
 import chokidar from 'chokidar'
-import globToRegexp from 'glob-to-regexp'
+import { createFilter } from 'create-filter'
 import grayMatter from 'gray-matter'
+import jsonToYaml from 'json2yaml'
 import type {
   AutoFrontmatterOptions,
   FormatterArray,
@@ -10,30 +11,31 @@ import type {
   MarkdownFile,
 } from '../shared/index.js'
 import { readMarkdown, readMarkdownList } from './readFiles.js'
+import { ensureArray } from './utils.js'
 
 export const autoFrontmatterPlugin = ({
-  glob = '',
+  include = ['**/*.{md,MD}'],
+  exclude = ['.vuepress/**/*', 'node_modules'],
   formatter = {},
 }: AutoFrontmatterOptions = {}): Plugin => {
-  glob = glob ? (Array.isArray(glob) ? glob : [glob]) : []
-  glob = ['**/*.{md,MD}', '!.vuepress/', '!node_modules/', ...glob]
+  include = ensureArray(include)
+  exclude = ensureArray(exclude)
+
+  const globFilter = createFilter(include, exclude, { resolve: false })
 
   const matterFormatter: FormatterArray = Array.isArray(formatter)
     ? formatter
-    : [{ glob: '*', formatter }]
+    : [{ include: '*', formatter }]
 
   const globFormatter: FormatterObject =
-    matterFormatter.find(({ glob }) => glob === '*')?.formatter || {}
+    matterFormatter.find(({ include }) => include === '*')?.formatter || {}
 
   const otherFormatters = matterFormatter
-    .filter(({ glob }) => glob !== '*')
-    .map(({ glob, formatter }) => {
+    .filter(({ include }) => include !== '*')
+    .map(({ include, formatter }) => {
       return {
-        glob,
-        regexp: globToRegexp(glob, {
-          globstar: true,
-          extended: true,
-        }),
+        include,
+        filter: createFilter(include),
         formatter,
       }
     })
@@ -42,26 +44,27 @@ export const autoFrontmatterPlugin = ({
     const { filepath, relativePath } = file
 
     const formatter =
-      otherFormatters.find(({ regexp }) => regexp.test(relativePath))
-        ?.formatter || globFormatter
+      otherFormatters.find(({ filter }) => filter(relativePath))?.formatter ||
+      globFormatter
     const { data, content } = grayMatter(file.content)
 
     Object.keys(formatter).forEach((key) => {
       const value = formatter[key](data[key], data, file)
       data[key] = value ?? data[key]
     })
-    const newContent = grayMatter.stringify({ content }, data)
+    const yaml = jsonToYaml
+      .stringify(data)
+      .replace(/\n\s{2}/g, '\n')
+      .replace(/"/g, '')
+    const newContent = `${yaml}---\n${content}`
 
-    fs.writeFileSync(filepath, newContent)
+    fs.writeFileSync(filepath, newContent, 'utf-8')
   }
 
   return {
     name: '@vuepress-plume/vuepress-plugin-auto-frontmatter',
     onInitialized: async (app) => {
-      const markdownList = await readMarkdownList(
-        app.dir.source(),
-        glob as string[]
-      )
+      const markdownList = await readMarkdownList(app.dir.source(), globFilter)
       markdownList.forEach((file) => formatMarkdown(file))
     },
     onWatched: async (app, watchers) => {
@@ -72,8 +75,7 @@ export const autoFrontmatterPlugin = ({
       })
 
       watcher.on('add', (relativePath) => {
-        if ((glob as string[]).some((_) => !globToRegexp(_).test(relativePath)))
-          return
+        if (!globFilter(relativePath)) return
         formatMarkdown(readMarkdown(app.dir.source(), relativePath))
       })
 

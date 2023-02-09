@@ -35,7 +35,7 @@ export const autoFrontmatterPlugin = ({
     .map(({ include, formatter }) => {
       return {
         include,
-        filter: createFilter(include),
+        filter: createFilter(ensureArray(include)),
         formatter,
       }
     })

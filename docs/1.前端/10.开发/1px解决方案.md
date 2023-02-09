@@ -1,13 +1,12 @@
 ---
 title: 1px解决方案
-createTime: 2022-03-26T11:46:50.026Z
-permalink: /article/tz7ncicn
+createTime: 2019/05/15 10:41:32
+permalink: /article/tz7ncicn/
 author: pengzhanbo
-tags:
+tags: 
   - html
   - css
   - develop
-banner: /images/big-banner.jpg
 ---
 
 在日常移动端前端应用开发中，经常遇到一个问题就是 1px的线在移动端 Retina屏下的渲染并未达到预期。以下总几种不同场景下的 1px解决方案。

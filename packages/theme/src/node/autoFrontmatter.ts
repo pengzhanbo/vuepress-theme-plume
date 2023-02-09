@@ -12,14 +12,14 @@ export default function (
   const pkg = require('./package.json') || {}
 
   return {
-    glob: [],
+    include: [],
     formatter: [
       {
-        glob: '**/{readme,README,index}.md',
+        include: '**/{readme,README,index}.md',
         formatter: {},
       },
       {
-        glob: '*',
+        include: '*',
         formatter: {
           author(author: string) {
             if (author) return author

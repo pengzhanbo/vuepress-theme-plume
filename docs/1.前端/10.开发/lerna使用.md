@@ -1,13 +1,13 @@
 ---
 title: lerna使用
-createTime: 2022-03-26T11:46:50.027Z
-permalink: /article/i1wc1uld
+createTime: 2021/11/26 06:28:37
+permalink: /article/i1wc1uld/
 author: pengzhanbo
-top: false
-type: null
 ---
 
-![lerna](https://user-images.githubusercontent.com/645641/79596653-38f81200-80e1-11ea-98cd-1c6a3bb5de51.png)
+::: center
+![lerna](https://user-images.githubusercontent.com/645641/79596653-38f81200-80e1-11ea-98cd-1c6a3bb5de51.png){ style="width: 50%" }
+:::
 
 ## 概述
 

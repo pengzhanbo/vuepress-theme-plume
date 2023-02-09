@@ -1,6 +1,6 @@
 ---
 title: vuepress-theme-plume
-createTime: '2022/04/08 08:52:12'
+createTime: 2022/04/08 08:52:12
 author: pengzhanbo
 permalink: /note/vuepress-theme-plume/
 article: true

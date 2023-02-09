@@ -1,12 +1,10 @@
 ---
 title: CSS At-Rules
-createTime: 2022-03-26T11:46:50.024Z
-permalink: /article/btkqop1a
+createTime: 2018/10/06 08:16:38
+permalink: /article/btkqop1a/
 author: pengzhanbo
-tags:
+tags: 
   - css
-top: false
-type: null
 ---
 
 ## @charset

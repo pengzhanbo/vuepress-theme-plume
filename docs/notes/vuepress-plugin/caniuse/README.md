@@ -1,6 +1,6 @@
 ---
 title: plugin-caniuse
-createTime: '2022/05/13 01:02:51'
+createTime: 2022/05/13 01:02:51
 author: pengzhanbo
 permalink: /note/vuepress-plugin/caniuse/
 ---

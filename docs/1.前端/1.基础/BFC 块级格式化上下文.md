@@ -1,16 +1,14 @@
 ---
 title: BFC 块级格式化上下文
-createTime: 2022-03-26T11:46:50.024Z
-permalink: /article/o5g7ggvf
+createTime: 2018/05/17 12:28:33
+permalink: /article/o5g7ggvf/
 author: pengzhanbo
-top: false
-tags:
+tags: 
   - html
-type: null
 ---
 ## 概念
 
-BFC, Block Formating Context。是 W3C CSS2.1规范中的一个概念。 是页面中的一块块级渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和作用。
+BFC, Block Formatting Context。是 W3C CSS2.1规范中的一个概念。 是页面中的一块块级渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和作用。
 
 具有BFC特性的元素，可以看做是一个被隔离了的独立容器，容器内的元素不会在布局上影响到外面的元素，并且BFC具有普通容器所没有的一些特性。
 

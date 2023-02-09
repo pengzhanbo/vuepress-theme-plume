@@ -1,10 +1,9 @@
 ---
 title: caniuse
-createTime: 2022-03-26T11:46:50.027Z
-permalink: /article/h4z91gyz
+createTime: 2020/11/01 06:41:12
+permalink: /article/h4z91gyz/
 author: pengzhanbo
-top: false
-type: null
+article: false
 ---
 
 ### 工具

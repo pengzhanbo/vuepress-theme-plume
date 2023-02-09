@@ -11,7 +11,7 @@ export const readMarkdownList = async (
 ): Promise<MarkdownFileList> => {
   const files: string[] = await fg(['**/*.md'], {
     cwd: sourceDir,
-    ignore: ['node_modules/', '.vuepress/'],
+    ignore: ['node_modules', '.vuepress'],
   })
 
   return files

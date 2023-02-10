@@ -213,15 +213,23 @@ importers:
 
   packages/plugin-notes-data:
     specifiers:
+      '@vue/devtools-api': ^6.4.5
       '@vuepress/client': 2.0.0-beta.60
       '@vuepress/core': 2.0.0-beta.60
       '@vuepress/shared': 2.0.0-beta.60
       '@vuepress/utils': 2.0.0-beta.60
+      chokidar: ^3.5.3
+      create-filter: ^1.0.0
+      vue: ^3.2.47
     dependencies:
+      '@vue/devtools-api': 6.4.5
       '@vuepress/client': 2.0.0-beta.60
       '@vuepress/core': 2.0.0-beta.60
       '@vuepress/shared': 2.0.0-beta.60
       '@vuepress/utils': 2.0.0-beta.60
+      chokidar: 3.5.3
+      create-filter: 1.0.0
+      vue: 3.2.47
 
   packages/plugin-page-collection:
     specifiers:
@@ -271,6 +279,7 @@ importers:
       '@vuepress-plume/vuepress-plugin-blog-data': workspace:*
       '@vuepress-plume/vuepress-plugin-caniuse': workspace:*
       '@vuepress-plume/vuepress-plugin-copy-code': workspace:*
+      '@vuepress-plume/vuepress-plugin-notes-data': workspace:*
       '@vuepress/client': 2.0.0-beta.60
       '@vuepress/core': 2.0.0-beta.60
       '@vuepress/plugin-active-header-links': 2.0.0-beta.60
@@ -305,6 +314,7 @@ importers:
       '@vuepress-plume/vuepress-plugin-blog-data': link:../plugin-blog-data
       '@vuepress-plume/vuepress-plugin-caniuse': link:../plugin-caniuse
       '@vuepress-plume/vuepress-plugin-copy-code': link:../plugin-copy-code
+      '@vuepress-plume/vuepress-plugin-notes-data': link:../plugin-notes-data
       '@vuepress/client': 2.0.0-beta.60
       '@vuepress/core': 2.0.0-beta.60
       '@vuepress/plugin-active-header-links': 2.0.0-beta.60

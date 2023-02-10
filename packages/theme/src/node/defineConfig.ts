@@ -1,12 +1,10 @@
 import type {
-  PlumeThemeNotesItem,
-  PlumeThemeNotesOptions,
-} from '../shared/index.js'
+  NotesDataOptions,
+  NotesItem,
+} from '@vuepress-plume/vuepress-plugin-notes-data'
 
 export const definePlumeNotesConfig = (
-  notes: PlumeThemeNotesOptions
-): PlumeThemeNotesOptions => notes
+  notes: NotesDataOptions
+): NotesDataOptions => notes
 
-export const definePlumeNotesItemConfig = (
-  item: PlumeThemeNotesItem
-): PlumeThemeNotesItem => item
+export const definePlumeNotesItemConfig = (item: NotesItem): NotesItem => item

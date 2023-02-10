@@ -3,6 +3,7 @@ import { baiduTongjiPlugin } from '@vuepress-plume/vuepress-plugin-baidu-tongji'
 import { blogDataPlugin } from '@vuepress-plume/vuepress-plugin-blog-data'
 import { caniusePlugin } from '@vuepress-plume/vuepress-plugin-caniuse'
 import { copyCodePlugin } from '@vuepress-plume/vuepress-plugin-copy-code'
+import { notesDataPlugin } from '@vuepress-plume/vuepress-plugin-notes-data'
 import type { App, PluginConfig } from '@vuepress/core'
 import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
@@ -39,6 +40,7 @@ export const setupPlugins = (
       include: ['**/*.md'],
       exclude: ['**/{README,index}.md', 'notes/**'],
     }),
+    localeOptions.notes ? notesDataPlugin(localeOptions.notes) : [],
     activeHeaderLinksPlugin({
       headerLinkSelector: 'a.theme-plume-toc-link',
       headerAnchorSelector: '.header-anchor',

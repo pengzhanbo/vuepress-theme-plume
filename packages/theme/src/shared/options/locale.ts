@@ -1,3 +1,4 @@
+import type { NotesDataOptions } from '@vuepress-plume/vuepress-plugin-notes-data'
 import type { LocaleData } from '@vuepress/core'
 // import type { NavbarConfig, NavLink } from '../layout/index.js'
 // import type { PlumeThemeNotesOptions } from './notes.js'
@@ -5,7 +6,6 @@ import type { LocaleData } from '@vuepress/core'
 // todo type
 type NavbarConfig = any
 type NavLink = any
-type PlumeThemeNotesOptions = any
 
 export interface PlumeThemeAvatar {
   /**
@@ -135,7 +135,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
    *
    * 注：你也可以将notes配置到navbar中，默认自动生成在右侧栏目中
    */
-  notes?: false | PlumeThemeNotesOptions
+  notes?: false | NotesDataOptions
 
   footer?: false | { content: string; copyright: string }
 

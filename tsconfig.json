@@ -9,6 +9,9 @@
       "@internal/blogData": [
         "./packages/plugin-blog-data/src/client/blogPostData.d.ts"
       ],
+      "@internal/notesData": [
+        "./packages/plugin-notes-data/src/client/notesData.d.ts"
+      ],
       "@internal/*": ["./docs/.vuepress/.temp/internal/*"],
       "@vuepress-plume/vuepress-*": ["./packages/*/src/node/index.ts"],
       "@vuepress-plume/vuepress-theme-plume": [

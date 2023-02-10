@@ -39,10 +39,6 @@ export interface PlumeThemeOptions extends PlumeThemeLocaleOptions {
      */
     exclude?: string[]
   }
-
-  notes?: {
-    dir?: string
-  }
 }
 
 export type PlumeThemeLocaleOptions = PlumeThemeData

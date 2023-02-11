@@ -297,6 +297,7 @@ importers:
       '@vuepress/shared': 2.0.0-beta.60
       '@vuepress/utils': 2.0.0-beta.60
       '@vueuse/core': ^9.10.0
+      body-scroll-lock: 4.0.0-beta.0
       date-fns: ^2.29.3
       nanoid: ^4.0.0
       ts-debounce: ^4.0.0
@@ -332,6 +333,7 @@ importers:
       '@vuepress/shared': 2.0.0-beta.60
       '@vuepress/utils': 2.0.0-beta.60
       '@vueuse/core': 9.10.0_vue@3.2.47
+      body-scroll-lock: 4.0.0-beta.0
       date-fns: 2.29.3
       nanoid: 4.0.0
       ts-debounce: 4.0.0
@@ -4520,6 +4522,10 @@ packages:
       unpipe: 1.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /body-scroll-lock/4.0.0-beta.0:
+    resolution: {integrity: sha512-a7tP5+0Mw3YlUJcGAKUqIBkYYGlYxk2fnCasq/FUph1hadxlTRjF+gAcZksxANnaMnALjxEddmSi/H3OR8ugcQ==}
     dev: false
 
   /bonjour-service/1.0.13:

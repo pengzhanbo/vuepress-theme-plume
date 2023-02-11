@@ -292,6 +292,7 @@ importers:
       '@vuepress/plugin-palette': 2.0.0-beta.60
       '@vuepress/plugin-prismjs': 2.0.0-beta.60
       '@vuepress/plugin-search': 2.0.0-beta.60
+      '@vuepress/plugin-shiki': 2.0.0-beta.60
       '@vuepress/plugin-theme-data': 2.0.0-beta.60
       '@vuepress/plugin-toc': 2.0.0-beta.60
       '@vuepress/shared': 2.0.0-beta.60
@@ -328,6 +329,7 @@ importers:
       '@vuepress/plugin-palette': 2.0.0-beta.60
       '@vuepress/plugin-prismjs': 2.0.0-beta.60
       '@vuepress/plugin-search': 2.0.0-beta.60
+      '@vuepress/plugin-shiki': 2.0.0-beta.60
       '@vuepress/plugin-theme-data': 2.0.0-beta.60
       '@vuepress/plugin-toc': 2.0.0-beta.60
       '@vuepress/shared': 2.0.0-beta.60
@@ -3556,6 +3558,15 @@ packages:
       chokidar: 3.5.3
       vue: 3.2.47
       vue-router: 4.1.6_vue@3.2.47
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@vuepress/plugin-shiki/2.0.0-beta.60:
+    resolution: {integrity: sha512-ENUZnuLPnXKqozA0sr2xrVuTWFBziYcXIi9sL6Dc1x3+AdBHxXA0oinPioJ/TJ5qgUF8rAFMZnUR/uwZQV+KQQ==}
+    dependencies:
+      '@vuepress/core': 2.0.0-beta.60
+      shiki: 0.12.1
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -13876,6 +13887,14 @@ packages:
   /shell-quote/1.7.4:
     resolution: {integrity: sha512-8o/QEhSSRb1a5i7TFR0iM4G16Z0vYB2OQVs4G3aAFXjn3T6yEx8AZxy1PgDF7I00LZHYA3WxaSYIf5e5sAX8Rw==}
 
+  /shiki/0.12.1:
+    resolution: {integrity: sha512-aieaV1m349rZINEBkjxh2QbBvFFQOlgqYTNtCal82hHj4dDZ76oMlQIX+C7ryerBTDiga3e5NfH6smjdJ02BbQ==}
+    dependencies:
+      jsonc-parser: 3.2.0
+      vscode-oniguruma: 1.7.0
+      vscode-textmate: 8.0.0
+    dev: false
+
   /side-channel/1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
     dependencies:
@@ -15305,6 +15324,14 @@ packages:
       sass: 1.57.1
     optionalDependencies:
       fsevents: 2.3.2
+    dev: false
+
+  /vscode-oniguruma/1.7.0:
+    resolution: {integrity: sha512-L9WMGRfrjOhgHSdOYgCt/yRMsXzLDJSL7BPrOZt73gU0iWO4mpqzqQzOz5srxqTvMBaR0XZTSrVWo4j55Rc6cA==}
+    dev: false
+
+  /vscode-textmate/8.0.0:
+    resolution: {integrity: sha512-AFbieoL7a5LMqcnOF04ji+rpXadgOXnZsxQr//r83kLPr7biP7am3g9zbaZIaBGwBRWeSvoMD4mgPdX3e4NWBg==}
     dev: false
 
   /vue-demi/0.13.6_vue@3.2.47:

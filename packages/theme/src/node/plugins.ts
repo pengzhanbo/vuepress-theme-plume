@@ -14,6 +14,7 @@ import { nprogressPlugin } from '@vuepress/plugin-nprogress'
 import { palettePlugin } from '@vuepress/plugin-palette'
 import { prismjsPlugin } from '@vuepress/plugin-prismjs'
 import { searchPlugin } from '@vuepress/plugin-search'
+import { shikiPlugin } from '@vuepress/plugin-shiki'
 import { themeDataPlugin } from '@vuepress/plugin-theme-data'
 import { commentPlugin } from 'vuepress-plugin-comment2'
 import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
@@ -49,7 +50,7 @@ export const setupPlugins = (
     }),
     localeOptions.notes ? notesDataPlugin(localeOptions.notes) : [],
     activeHeaderLinksPlugin({
-      headerLinkSelector: 'a.theme-plume-toc-link',
+      headerLinkSelector: 'a.outline-link',
       headerAnchorSelector: '.header-anchor',
       delay: 200,
       offset: 20,
@@ -67,7 +68,7 @@ export const setupPlugins = (
 
     options.mediumZoom !== false
       ? mediumZoomPlugin({
-          selector: '.page-content > img, .page-content :not(a) > img',
+          selector: '.plume-content > img, .plume-content :not(a) > img',
           zoomOptions: {
             background: 'var(--c-bg)',
           },
@@ -102,10 +103,15 @@ export const setupPlugins = (
     options.docsearch !== false && !options.search
       ? docsearchPlugin(options.docsearch!)
       : [],
-    options.prismjs !== false ? prismjsPlugin() : [],
+    options.prismjs !== false && !isProd ? prismjsPlugin() : [],
+    options.prismjs !== false && isProd
+      ? shikiPlugin({
+          theme: 'material-palenight',
+        })
+      : [],
     options.copyCode !== false
       ? copyCodePlugin({
-          selector: '.page-content div[class*="language-"] pre',
+          selector: '.plume-content div[class*="language-"] pre',
           locales: {
             '/': {
               copy: '复制成功',

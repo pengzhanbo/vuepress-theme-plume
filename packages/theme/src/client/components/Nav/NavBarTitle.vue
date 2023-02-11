@@ -1,22 +1,25 @@
 <script lang="ts" setup>
 import { useSiteLocaleData } from '@vuepress/client'
+import { useSidebar } from '../../composables/index.js'
 import { useThemeLocaleData } from '../../composables/themeData.js'
+import AutoLink from '../AutoLink.vue'
 import VImage from '../VImage.vue'
 
 const theme = useThemeLocaleData()
 const site = useSiteLocaleData()
+const { hasSidebar } = useSidebar()
 </script>
 
 <template>
-  <div class="navbar-title">
-    <a class="title" :href="theme.home">
+  <div class="navbar-title" :class="{ 'has-sidebar': hasSidebar }">
+    <AutoLink class="title" :href="theme.home ? theme.home.link : ''">
       <VImage
         v-if="theme.logo"
         class="logo"
         :image="{ light: theme.logo, dark: theme.logoDark || '' }"
       />
       {{ site.title }}
-    </a>
+    </AutoLink>
   </div>
 </template>
 

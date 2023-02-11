@@ -4,3 +4,7 @@
 @use 'nprogress';
 @use 'utils';
 @use 'content';
+@use 'toc';
+@use 'code';
+
+@use '@vuepress/plugin-palette/style';

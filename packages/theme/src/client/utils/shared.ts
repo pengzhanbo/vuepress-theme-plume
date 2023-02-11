@@ -41,3 +41,25 @@ export function normalize(path: string): string {
 export function isExternal(path: string): boolean {
   return EXTERNAL_URL_RE.test(path)
 }
+
+export function throttleAndDebounce(fn: () => void, delay: number): () => void {
+  // eslint-disable-next-line no-undef
+  let timeoutId: NodeJS.Timeout
+  let called = false
+
+  return () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId)
+    }
+
+    if (!called) {
+      fn()
+      called = true
+      setTimeout(() => {
+        called = false
+      }, delay)
+    } else {
+      timeoutId = setTimeout(fn, delay)
+    }
+  }
+}

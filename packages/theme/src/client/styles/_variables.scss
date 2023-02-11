@@ -1,0 +1,5 @@
+@import '@vuepress/plugin-palette/palette';
+
+$codeLang: 'c' 'cpp' 'cs' 'dart' 'docker' 'fs' 'go' 'java' 'kt' 'makefile' 'css'
+  'less' 'sass' 'scss' 'styl' 'html' 'js' 'json' 'ts' 'vue' 'jsx' 'md' 'php'
+  'py' 'rb' 'rs' 'sh' 'toml' 'yml' !default;

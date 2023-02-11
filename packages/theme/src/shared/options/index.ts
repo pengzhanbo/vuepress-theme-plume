@@ -47,3 +47,4 @@ export type PlumeThemeData = ThemeData<PlumeThemeLocaleData>
 
 export * from './locale.js'
 export * from './plugins.js'
+export * from './navbar.js'

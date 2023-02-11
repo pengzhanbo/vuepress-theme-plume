@@ -34,7 +34,14 @@ export const setupPlugins = (
 
   return [
     palettePlugin({ preset: 'sass' }),
-    themeDataPlugin({ themeData: localeOptions }),
+    themeDataPlugin({
+      themeData: {
+        ...localeOptions,
+        notes: localeOptions.notes
+          ? { dir: localeOptions.notes.dir, link: localeOptions.notes.link }
+          : undefined,
+      } as any,
+    }),
     autoFrontmatterPlugin(autoFrontmatter(app, localeOptions)),
     blogDataPlugin({
       include: ['**/*.md'],

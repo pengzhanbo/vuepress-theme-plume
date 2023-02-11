@@ -101,7 +101,7 @@ function initSidebar(note: NotesItem, pages: NotePage[]): NotesSidebarItem[] {
 }
 
 function initSidebarByConfig(
-  { text, link, dir, sidebar }: NotesItem,
+  { text, dir, sidebar }: NotesItem,
   pages: NotePage[]
 ): NotesSidebarItem[] {
   return (sidebar as NotesSidebar).map((item) => {
@@ -114,11 +114,11 @@ function initSidebarByConfig(
         items: [],
       }
     } else {
-      // link = path.join(link || '', item.link || '')
       const current = findNotePage(item.link || '', dir, pages)
       return {
         text: item.text || item.dir || current?.title,
         link: current?.link,
+        collapsed: item.collapsed,
         items: initSidebarByConfig(
           {
             link: item.link || '',

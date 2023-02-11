@@ -19,6 +19,7 @@ export type NotesSidebarItem = {
   text?: string
   link?: string
   dir?: string
+  collapsed?: boolean
   items?: NotesSidebar
 }
 

@@ -1,11 +1,8 @@
 import type { NotesDataOptions } from '@vuepress-plume/vuepress-plugin-notes-data'
 import type { LocaleData } from '@vuepress/core'
+import type { NavItem, NavItemWithLink } from './navbar.js'
 // import type { NavbarConfig, NavLink } from '../layout/index.js'
 // import type { PlumeThemeNotesOptions } from './notes.js'
-
-// todo type
-type NavbarConfig = any
-type NavLink = any
 
 export interface PlumeThemeAvatar {
   /**
@@ -22,46 +19,28 @@ export interface PlumeThemeAvatar {
   description?: string
 }
 
-export interface PlumeThemeSocialOption {
-  /**
-   * 邮箱
-   */
-  email?: string
-  /**
-   * github链接 支持仅填写 organization / Repositories
-   */
-  github?: string
-  /**
-   * 微博
-   */
-  weiBo?: string
-  /**
-   * 知乎
-   */
-  zhiHu?: string
-  /**
-   * QQ
-   */
-  QQ?: string
-  /**
-   * facebook
-   */
-  facebook?: string
-  /**
-   * twitter
-   */
-  twitter?: string
-  /**
-   * linkedin 英领
-   */
-  linkedin?: string
+export interface SocialLink {
+  icon: SocialLinkIcon
+  link: string
 }
+
+export type SocialLinkIcon =
+  | 'discord'
+  | 'facebook'
+  | 'github'
+  | 'instagram'
+  | 'linkedin'
+  | 'mastodon'
+  | 'slack'
+  | 'twitter'
+  | 'youtube'
+  | { svg: string }
 
 export interface PlumeThemeLocaleData extends LocaleData {
   /**
    * 网站站点首页
    */
-  home?: false | NavLink
+  home?: false | NavItemWithLink
   /**
    * 网站站点logo
    */
@@ -73,13 +52,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
   /**
    * 是否启用深色模式切换按钮
    */
-  colorModeSwitch?: boolean
-
-  colorMode?: 'auto' | 'light' | 'dark'
-
-  toggleDarkMode?: string
-
-  toggleSidebar?: string
+  appearance?: boolean | 'dark'
 
   /**
    * 部署站点域名。
@@ -98,7 +71,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
   /**
    * 社交账号配置
    */
-  social?: PlumeThemeSocialOption
+  social?: SocialLink[]
 
   /**
    * 文章链接前缀
@@ -112,14 +85,14 @@ export interface PlumeThemeLocaleData extends LocaleData {
    *
    * @def：{ text: '标签', link: '/tag/' }
    */
-  tag?: false | NavLink
+  tag?: false | NavItemWithLink
 
   /**
    * 文章分类 与 navbar配置
    *
    * @default： { text: '分类', link: '/category/ }
    */
-  category?: false | NavLink
+  category?: false | NavItemWithLink
 
   /**
    * 归档页 链接与 navbar 配置
@@ -128,7 +101,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
    *
    * @default： { text: '归档', link: '/timeline/' }
    */
-  archive?: false | NavLink
+  archive?: false | NavItemWithLink
 
   /**
    * 笔记配置， 笔记中的文章默认不会出现在首页文章列表
@@ -165,7 +138,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
    *
    * Set to `false` to disable navbar in current locale
    */
-  navbar?: false | NavbarConfig
+  navbar?: false | NavItem[]
   /**
    * 外部链接打开方式
    */

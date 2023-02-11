@@ -19,31 +19,32 @@ export default defineUserConfig({
   theme: themePlume({
     logo: 'https://pengzhanbo.cn/g.gif',
     hostname: 'https://pengzhanbo.cn',
+    appearance: true,
     avatar: {
       url: '/images/blogger.jpg',
       name: 'Plume Theme',
       description: 'The Theme for Vuepress 2.0',
     },
-    social: {
-      email: 'volodymyr@foxmail.com',
-      github: 'pengzhanbo',
-      QQ: '942450674',
-      weiBo: 'https://weibo.com',
-      zhiHu: 'https://zhihu.com',
-      facebook: 'https://baidu.com',
-      twitter: 'https://baidu.com',
-      linkedin: 'https://baidu.com',
-    },
+    social: [{ icon: 'github', link: 'https://github.com/pengzhanbo' }],
+    // {
+    //   email: 'volodymyr@foxmail.com',
+    //   github: 'pengzhanbo',
+    //   QQ: '942450674',
+    //   weiBo: 'https://weibo.com',
+    //   zhiHu: 'https://zhihu.com',
+    //   facebook: 'https://baidu.com',
+    //   twitter: 'https://baidu.com',
+    //   linkedin: 'https://baidu.com',
+    // },
     notes,
-    darkMode: true,
     navbar: [
       {
         text: 'VuePress',
-        children: [
+        items: [
           { text: 'theme-plume', link: '/note/vuepress-theme-plume/' },
           {
             text: 'Plugin',
-            children: [
+            items: [
               { text: 'caniuse', link: '/note/vuepress-plugin/caniuse/' },
               {
                 text: 'netlify-functions',

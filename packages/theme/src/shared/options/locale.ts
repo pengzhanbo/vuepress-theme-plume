@@ -34,6 +34,9 @@ export type SocialLinkIcon =
   | 'slack'
   | 'twitter'
   | 'youtube'
+  | 'qq'
+  | 'weibo'
+  | 'bilibili'
   | { svg: string }
 
 export interface PlumeThemeLocaleData extends LocaleData {
@@ -72,6 +75,38 @@ export interface PlumeThemeLocaleData extends LocaleData {
    * 社交账号配置
    */
   social?: SocialLink[]
+
+  blog?: {
+    /**
+     * blog 文章读取目录
+     *
+     * @default './' 即 vuepress 配置的 source 目录
+     */
+    dir?: string
+
+    /**
+     * blog list link
+     *
+     * @default '/blog/'
+     */
+    link?: string
+
+    /**
+     * 在 `blog.dir` 目录中，通过 glob string 配置包含文件
+     *
+     * @default - ['**\*.md']
+     */
+    include?: string[]
+
+    /**
+     * 在 `blog.dir` 目录中，通过 glob string 配置排除的文件
+     *
+     *  _README.md 文件一般作为主页或者某个目录下的主页，不应该被读取为 blog文章_
+     *
+     * @default - ['.vuepress/', 'node_modules/', '{README,index}.md']
+     */
+    exclude?: string[]
+  }
 
   /**
    * 文章链接前缀

@@ -18,7 +18,10 @@ export default function (
 ): AutoFrontmatterOptions {
   const sourceDir = app.dir.source()
   const require = createRequire(process.cwd())
-  const pkg = require('./package.json') || {}
+  let pkg = {} as any
+  try {
+    pkg = require(path.join(process.cwd(), './package.json')) || {}
+  } catch {}
   const articlePrefix = localeOption.article || '/article/'
   const {
     dir,

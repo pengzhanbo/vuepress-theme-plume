@@ -115,7 +115,6 @@ function initSidebarByConfig(
       const current = findNotePage(item.link || '', dir, pages)
       return {
         text: item.text || item.dir || current?.title,
-        link: current?.link,
         collapsed: item.collapsed,
         items: initSidebarByConfig(
           {

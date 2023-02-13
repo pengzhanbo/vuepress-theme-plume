@@ -1,110 +1,180 @@
 <script lang="ts" setup>
-import DropdownTransition from '@theme-plume/DropdownTransition.vue'
-import PostMeta from '@theme-plume/PostMeta.vue'
-import Sidebar from '@theme-plume/Sidebar.vue'
 import { usePageData } from '@vuepress/client'
-import { computed } from 'vue'
 import type { PlumeThemePageData } from '../../shared/index.js'
-import { useDarkMode } from '../composables/index.js'
-import Toc from './Toc.js'
+import { useDarkMode, useSidebar } from '../composables/index.js'
+import PageAside from './PageAside.vue'
+import PageMeta from './PageMeta.vue'
 
+const { hasSidebar, hasAside } = useSidebar()
+const isDark = useDarkMode()
 const page = usePageData<PlumeThemePageData>()
-const isDarkMode = useDarkMode()
-
-const isNote = computed(() => {
-  return page.value.isNote || false
-})
-
-const enabledSidebar = computed(() => {
-  return isNote.value
-})
 </script>
 <template>
-  <DropdownTransition>
-    <main class="page-wrapper">
-      <slot name="top"></slot>
-      <div class="page-container" :class="{ 'has-sidebar': enabledSidebar }">
-        <main class="plume-theme-content">
-          <Sidebar v-if="enabledSidebar" />
-          <div class="page-content" :class="{ 'note-content': isNote }">
-            <h1>{{ page.title }}</h1>
-            <PostMeta :post="page" type="post" border />
-            <Content class="post-content" />
-            <div class="comment-container">
-              <Comment :darkmode="isDarkMode" />
-            </div>
+  <div
+    class="plume-page"
+    :class="{
+      'has-sidebar': hasSidebar,
+      'has-aside': hasAside,
+      'is-blog': page.isBlogPost,
+    }"
+  >
+    <div class="container">
+      <div v-if="hasAside" class="aside">
+        <div class="aside-curtain" />
+        <div class="aside-container">
+          <div class="aside-content">
+            <PageAside />
           </div>
-          <div v-if="page.headers?.length > 0" class="plume-theme-page-toc">
-            <Toc />
-          </div>
-        </main>
+        </div>
       </div>
-      <slot name="bottom"></slot>
-    </main>
-  </DropdownTransition>
+      <div class="content">
+        <div class="content-container">
+          <main class="main">
+            <PageMeta />
+            <Content class="plume-content" />
+            <PageComment :darkmode="isDark" />
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
-<style lang="scss">
-@import '../styles/_mixins';
-@import '../styles/variables';
-.page-wrapper {
-  @include wrapper;
 
-  .page-container {
+<style scoped>
+.plume-page {
+  position: relative;
+  display: flex;
+}
+.plume-page {
+  padding: 32px 24px 96px;
+  width: 100%;
+}
+
+.plume-page.is-blog {
+  padding-top: calc(var(--vp-nav-height) + 32px);
+}
+
+@media (min-width: 768px) {
+  .plume-page {
+    padding: 48px 32px 128px;
+  }
+}
+
+@media (min-width: 960px) {
+  .plume-page,
+  .plume-page.is-blog {
+    padding: 32px 32px 0;
+  }
+
+  .plume-page:not(.has-sidebar) .container {
     display: flex;
-    // padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
+    justify-content: center;
+    max-width: 992px;
+  }
 
-    .plume-theme-content {
-      @include container_wrapper;
-      @include content;
-      display: flex;
-      flex: 1;
-    }
-
-    .page-content {
-      flex: 1;
-      width: 100%;
-      max-width: var(--content-width);
-      padding: 0 2rem 1rem;
-      margin: 0 auto;
-
-      &.note-content {
-        max-width: var(--content-note-width);
-      }
-    }
-
-    .post-content {
-      padding-top: 2rem;
-    }
-
-    img {
-      max-width: 100%;
-    }
-
-    &.has-sidebar {
-      padding-top: 0;
-      padding-bottom: 0;
-
-      .plume-theme-content {
-        max-width: 100%;
-      }
-    }
+  .plume-page:not(.has-sidebar) .content {
+    max-width: 752px;
   }
 }
-.comment-container {
-  margin-top: 8rem;
+
+@media (min-width: 1280px) {
+  .plume-page .container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .plume-page .aside {
+    display: block;
+  }
 }
 
-@media (max-width: $MQMobile) {
-  .page-wrapper .page-container .page-content {
-    padding: 0 0.75rem 1rem;
+@media (min-width: 1440px) {
+  .plume-page:not(.has-sidebar) .content {
+    max-width: 784px;
+  }
 
-    h1 {
-      font-size: 1.5rem;
-    }
+  .plume-page:not(.has-sidebar) .container {
+    max-width: 1204px;
   }
-  .plume-theme-page-toc {
-    display: none;
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.aside {
+  position: relative;
+  display: none;
+  order: 2;
+  flex-grow: 1;
+  padding-left: 32px;
+  width: 100%;
+  max-width: 256px;
+}
+
+.aside-container {
+  position: sticky;
+  top: 0;
+  margin-top: calc(
+    (var(--vp-nav-height) + var(--vp-layout-top-height, 0px)) * -1 - 32px
+  );
+  padding-top: calc(
+    var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 32px
+  );
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.aside-container::-webkit-scrollbar {
+  display: none;
+}
+
+.aside-curtain {
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  width: 224px;
+  height: 32px;
+  background: linear-gradient(transparent, var(--vp-c-bg) 70%);
+}
+
+.aside-content {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(
+    100vh - (var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 32px)
+  );
+  padding-bottom: 32px;
+}
+
+.content {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 960px) {
+  .content {
+    padding: 0 32px 128px;
   }
+}
+
+@media (min-width: 1280px) {
+  .content {
+    order: 1;
+    margin: 0;
+    min-width: 640px;
+  }
+}
+
+.content-container {
+  margin: 0 auto;
+}
+
+.plume-page.has-aside .content-container {
+  max-width: 688px;
 }
 </style>

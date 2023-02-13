@@ -1,10 +1,10 @@
 ---
 title: 详解 Promise
 createTime: 2020/11/22 12:58:28
-permalink: /article/q40nq4hv
+permalink: /article/q40nq4hv/
 author: pengzhanbo
-sticky: true
-type: null
+tags: 
+  - javascript
 ---
 
 ## 概述
@@ -47,6 +47,8 @@ Promise 创建后，必然处于以下几种状态
   *then()* 接收两个函数参数（也可以仅接收一个函数参数 onFulfilled）。
   - onFulfilled 函数参数，表示当 promise的状态从 `pending` 更新为`fulfilled` 时触发，并将成功的结果 value 作为`onFulfilled`函数的参数。
   - onRejected 函数参数，表示当promise的状态从 `pending` 更新为`rejected` 时触发，并将失败的原因 reason 作为 `onRejected`函数的参数。
+  
+  *then()* 方法返回的结果会被包装为一个新的promise实例。
 
 #### `.catch(onRejected)`
   *catch()* 可以相当于 *.then(null, onRejected)*，即仅处理当promise的状态从 `pending` 更新为`rejected` 时触发。
@@ -88,6 +90,162 @@ promise
   .catch(reason => {
     console.log(reason) // error: cath error
   })
+```
+
+## Promise代码实现
+```js
+const PENDING = "pending";
+const FULFILLED = "fulfilled";
+const REJECTED = "rejected";
+const microtask = globalThis.queueMicrotask || ((cb) => setTimeout(cb, 0));
+
+function LikePromise(resolver) {
+  if (typeof resolver !== "function") {
+    throw new TypeError(`Promise resolver ${resolver} is not a function`);
+  }
+  this.state = PENDING;
+  this.value = undefined;
+  this.reason = undefined;
+  this.fulfillQueue = [];
+  this.rejectQueue = [];
+
+  const that = this;
+
+  function reject(reason) {
+    if (that.state === PENDING) {
+      that.state = REJECTED;
+      that.reason = reason;
+      that.rejectQueue.forEach((cb) => cb(reason));
+    }
+  }
+
+  function resolve(value) {
+    if (that.state === PENDING) {
+      that.state = FULFILLED;
+      that.value = value;
+      that.fulfillQueue.forEach((cb) => cb(value));
+    }
+  }
+
+  try {
+    resolver(resolve, reject);
+  } catch (e) {
+    reject(e);
+  }
+}
+
+function resolvePromise(promise, x, resolve, reject) {
+  if (promise === x) {
+    reject(new TypeError("chaining cycle"));
+  } else if (x !== null && (typeof x === "object" || typeof x === "function")) {
+    let used = false;
+    try {
+      const then = x.then;
+      if (typeof then === "function") {
+        then.call(
+          x,
+          (y) => {
+            if (used) return;
+            used = true;
+            resolvePromise(promise, y, resolve, reject);
+          },
+          (r) => {
+            if (used) return;
+            used = true;
+            reject(r);
+          }
+        );
+      } else {
+        if (used) return;
+        used = true;
+        resolve(x);
+      }
+    } catch (e) {
+      if (used) return;
+      used = true;
+      reject(e);
+    }
+  } else {
+    resolve(x);
+  }
+}
+
+LikePromise.prototype.then = function (onFulfilled, onRejected) {
+  onFulfilled =
+    typeof onFulfilled === "function" ? onFulfilled : (value) => value;
+  onRejected =
+    typeof onRejected === "function"
+      ? onRejected
+      : (reason) => {
+          throw reason;
+        };
+  const that = this;
+  const promise = new LikePromise((resolve, reject) => {
+    if (that.state === FULFILLED) {
+      microtask(() => {
+        try {
+          const x = onFulfilled(that.value);
+          resolvePromise(promise, x, resolve, reject);
+        } catch (e) {
+          reject(e);
+        }
+      });
+    } else if (that.state === REJECTED) {
+      microtask(() => {
+        try {
+          const x = onRejected(that.reason);
+          resolvePromise(promise, x, resolve, reject);
+        } catch (e) {
+          reject(e);
+        }
+      });
+    } else {
+      that.fulfillQueue.push(() => {
+        microtask(() => {
+          try {
+            const x = onFulfilled(that.value);
+            resolvePromise(promise, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
+        });
+      });
+      that.rejectQueue.push(() => {
+        microtask(() => {
+          try {
+            const x = onRejected(that.reason);
+            resolvePromise(promise, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
+        });
+      });
+    }
+  });
+  return promise;
+};
+
+LikePromise.prototype.catch = function (onRejected) {
+  return this.then(null, onRejected);
+};
+
+LikePromise.prototype.finally = function (onFinally) {
+  return this.then(
+    (value) => LikePromise.resolve(onFinally()).then(() => value),
+    (reason) =>
+      LikePromise.resolve(onFinally()).then(() => {
+        throw reason;
+      })
+  );
+};
+
+LikePromise.resolve = function (value) {
+  return new LikePromise((resolve) => resolve(value));
+};
+
+LikePromise.reject = function (reason) {
+  return new LikePromise((_, reject) => reject(reason));
+};
 ```
 
 

@@ -1,12 +1,10 @@
 ---
 title: HTML5新特性
 createTime: 2018/02/17 12:49:58
-permalink: /article/8rv45yuy
+permalink: /article/8rv45yuy/
 author: pengzhanbo
 tags: 
   - html
-top: false
-type: null
 ---
 
 ## 语义标签

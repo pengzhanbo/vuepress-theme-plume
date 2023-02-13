@@ -1,94 +1,148 @@
 <script lang="ts" setup>
-import SidebarItems from '@theme-plume/SidebarItems.vue'
-import type { PropType } from 'vue'
-import { onMounted, ref, watchEffect } from 'vue'
-import { useRoute } from 'vue-router'
-import type { SidebarOptions } from '../../shared/index.js'
-import { useAsideNavbar, useSidebarIndex } from '../composables/index.js'
+import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
+import { ref, watchPostEffect } from 'vue'
+import { useSidebar } from '../composables/sidebar.js'
+import SidebarItem from './SidebarItem.vue'
 
-defineProps({
-  aside: {
-    type: Array as PropType<SidebarOptions>,
-    required: false,
-    default: () => [],
-  },
-})
-const route = useRoute()
-const { sidebarList } = useSidebarIndex()
-const { triggerAsideNavbar } = useAsideNavbar()
-watchEffect(() => {
-  triggerAsideNavbar(false)
-})
+const { sidebarGroups, hasSidebar } = useSidebar()
 
-const el = ref<HTMLElement | null>(null)
-onMounted(() => {
-  const activeEl = el.value?.querySelector<HTMLElement>('.router-link-active')
-  activeEl && activeEl.scrollIntoView(false)
+const props = defineProps<{
+  open: boolean
+}>()
+
+// a11y: focus Nav element when menu has opened
+const navEl = ref<HTMLElement | null>(null)
+
+function lockBodyScroll() {
+  disableBodyScroll(navEl.value!, { reserveScrollBarGap: true })
+}
+
+function unlockBodyScroll() {
+  clearAllBodyScrollLocks()
+}
+
+watchPostEffect(async () => {
+  if (props.open) {
+    lockBodyScroll()
+    navEl.value?.focus()
+  } else {
+    unlockBodyScroll()
+  }
 })
 </script>
+
 <template>
   <aside
-    :ref="(e) => (el = e as HTMLElement)"
-    class="plume-theme-sidebar-wrapper"
+    v-if="hasSidebar"
+    ref="navEl"
+    class="sidebar-wrapper"
+    :class="{ open }"
+    @click.stop
   >
-    <SidebarItems
-      v-if="aside.length"
-      class="aside-navbar"
-      :sidebar-list="aside"
-    />
-    <SidebarItems :sidebar-list="sidebarList" />
+    <div class="curtain" />
+
+    <nav
+      id="SidebarNav"
+      class="nav"
+      aria-labelledby="sidebar-aria-label"
+      tabindex="-1"
+    >
+      <span id="sidebar-aria-label" class="visually-hidden">
+        Sidebar Navigation
+      </span>
+
+      <div v-for="item in sidebarGroups" :key="item.text" class="group">
+        <SidebarItem :item="item" :depth="0" />
+      </div>
+    </nav>
   </aside>
 </template>
-<style lang="scss">
-@import '../styles/variables';
 
-.plume-theme-sidebar-wrapper {
-  position: sticky;
-  top: calc(var(--navbar-height) + 1.25rem);
-  width: 18rem;
-  flex-shrink: 0;
-  height: calc(100vh - var(--navbar-height) - 1.25rem);
-  border-right: solid 1px var(--c-border);
-  font-size: 1.125rem;
-  padding-left: 1.25rem;
+<style scoped>
+.sidebar-wrapper {
+  position: fixed;
+  top: var(--vp-layout-top-height, 0px);
+  bottom: 0;
+  left: 0;
+  z-index: var(--vp-z-index-sidebar);
+  padding: 32px 32px 96px;
+  width: calc(100vw - 64px);
+  max-width: 320px;
+  background-color: var(--vp-sidebar-bg-color);
+  opacity: 0;
+  box-shadow: var(--vp-c-shadow-3);
+  overflow-x: hidden;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--c-brand) var(--c-border);
-  background-color: var(--c-bg-container);
-  transition: transform var(--t-color), background-color var(--t-color);
+  transform: translateX(-100%);
+  transition: opacity 0.5s, transform 0.25s ease;
+}
 
-  &::-webkit-scrollbar {
-    width: 7px;
-  }
+.sidebar-wrapper.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition: opacity 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
 
-  &::-webkit-scrollbar-track {
-    background-color: var(--c-border);
-  }
+.dark .sidebar-wrapper {
+  box-shadow: var(--vp-shadow-1);
+}
 
-  &::-webkit-scrollbar-thumb {
-    border-radius: 3.5px;
-    background-color: rgba(34, 34, 34, 0.75);
-  }
-
-  > .aside-navbar {
-    position: relative;
-    padding-bottom: 0.75rem;
-    margin-bottom: 1.25rem;
-
-    &::after {
-      content: '';
-      position: absolute;
-      left: -1.25rem;
-      bottom: -0.25rem;
-      right: 0;
-      border-bottom: solid 4px var(--c-border);
-    }
+@media (min-width: 960px) {
+  .sidebar-wrapper {
+    z-index: 1;
+    padding-top: var(--vp-nav-height);
+    padding-bottom: 128px;
+    width: var(--vp-sidebar-width);
+    max-width: 100%;
+    background-color: var(--vp-sidebar-bg-color);
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none;
+    transform: translateX(0);
   }
 }
 
-@media (max-width: $MQMobile) {
-  .plume-theme-sidebar-wrapper {
-    display: none;
+@media (min-width: 1440px) {
+  .sidebar-wrapper {
+    padding-left: max(
+      32px,
+      calc((100% - (var(--vp-layout-max-width) - 64px)) / 2)
+    );
+    width: calc(
+      (100% - (var(--vp-layout-max-width) - 64px)) / 2 + var(--vp-sidebar-width) -
+        32px
+    );
+  }
+}
+
+@media (min-width: 960px) {
+  .curtain {
+    position: sticky;
+    top: -64px;
+    left: 0;
+    z-index: 1;
+    margin-top: calc(var(--vp-nav-height) * -1);
+    margin-right: -32px;
+    margin-left: -32px;
+    height: var(--vp-nav-height);
+    background-color: var(--vp-sidebar-bg-color);
+  }
+}
+
+.nav {
+  outline: 0;
+}
+
+.group + .group {
+  border-top: 1px solid var(--vp-c-divider);
+  padding-top: 10px;
+}
+
+@media (min-width: 960px) {
+  .group {
+    padding-top: 10px;
+    width: calc(var(--vp-sidebar-width) - 64px);
   }
 }
 </style>

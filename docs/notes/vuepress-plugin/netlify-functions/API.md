@@ -1,6 +1,6 @@
 ---
 title: API
-createTime: 2022/05/13 05:49:14
+createTime: 2022/05/14 10:43:53
 author: pengzhanbo
 permalink: /note/vuepress-plugin/netlify-functions/api/
 ---
@@ -83,4 +83,3 @@ __类型：__ `{ directory: string }`
 
   一般来说，它的值都设置为 `path.resolve(__dirname, 'functions')`
   
-

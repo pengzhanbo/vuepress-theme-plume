@@ -1,70 +1,65 @@
 <script setup lang="ts">
-import Archive from '@theme-plume/Archive.vue'
-import AsideNavbar from '@theme-plume/AsideNavbar.vue'
-import BackToTop from '@theme-plume/BackToTop.vue'
-import Category from '@theme-plume/Category.vue'
-import Home from '@theme-plume/Home.vue'
-import Navbar from '@theme-plume/Navbar.vue'
-import Page from '@theme-plume/Page.vue'
-import PageFooter from '@theme-plume/PageFooter.vue'
-import Tag from '@theme-plume/Tag.vue'
-import { usePageFrontmatter } from '@vuepress/client'
-import type { Component } from 'vue'
-import { computed } from 'vue'
-import { useThemeLocaleData } from '../composables/index.js'
+import { usePageData } from '@vuepress/client'
+import { provide, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import type { PlumeThemePageData } from '../../shared/index.js'
+import Backdrop from '../components/Backdrop.vue'
+import Blog from '../components/Blog.vue'
+import Home from '../components/Home.vue'
+import LayoutContent from '../components/LayoutContent.vue'
+import LocalNav from '../components/LocalNav.vue'
+import Nav from '../components/Nav/index.vue'
+import Page from '../components/Page.vue'
+import Sidebar from '../components/Sidebar.vue'
+import SkipLink from '../components/SkipLink.vue'
+import VFooter from '../components/VFooter.vue'
+import {
+  useCloseSidebarOnEscape,
+  useScrollPromise,
+  useSidebar,
+} from '../composables/index.js'
 
-const frontmatter = usePageFrontmatter()
-const themeLocale = useThemeLocaleData()
+const page = usePageData<PlumeThemePageData>()
 
-const pageType = computed<string>(() => {
-  const matter = frontmatter.value
-  let type = ''
-  if (matter.home) {
-    type = 'home'
-  } else {
-    type = (frontmatter.value.pageType as string) || ''
-  }
-  return type
-})
+const {
+  isOpen: isSidebarOpen,
+  open: openSidebar,
+  close: closeSidebar,
+} = useSidebar()
 
-const footer = computed(() => {
-  return themeLocale.value.footer
-})
+const route = useRoute()
+watch(() => route.path, closeSidebar)
 
-const pageMap: Record<string, Component> = {
-  category: Category,
-  archive: Archive,
-  tag: Tag,
-  home: Home,
-}
+useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
+
+provide('close-sidebar', closeSidebar)
+provide('is-sidebar-open', isSidebarOpen)
+
+// handle scrollBehavior with transition
+const scrollPromise = useScrollPromise()
+const onBeforeEnter = scrollPromise.resolve
+const onBeforeLeave = scrollPromise.pending
 </script>
 <template>
-  <div class="plume-theme" :class="footer ? 'bottom' : ''">
-    <slot name="navbar">
-      <Navbar>
-        <template #before>
-          <slot name="navbar-before"></slot>
-        </template>
-        <template #after>
-          <slot name="navbar-after"></slot>
-        </template>
-      </Navbar>
-    </slot>
-    <AsideNavbar />
-    <slot name="page">
-      <Component :is="pageMap[pageType]" v-if="pageType" />
-      <Page v-else>
-        <template #top>
-          <slot name="page-top" />
-        </template>
-        <template #bottom>
-          <slot name="page-bottom" />
-        </template>
-      </Page>
-    </slot>
-    <BackToTop />
-    <slot name="footer">
-      <PageFooter></PageFooter>
-    </slot>
+  <div class="theme-plume">
+    <SkipLink />
+    <Backdrop :show="isSidebarOpen" @click="closeSidebar" />
+    <Nav />
+    <LocalNav :open="isSidebarOpen" @open-menu="openSidebar" />
+    <Sidebar :open="isSidebarOpen" />
+    <LayoutContent>
+      <Home v-if="page.frontmatter.home" />
+      <Blog v-else-if="page.type === 'blog'" />
+      <Page v-else />
+      <VFooter />
+    </LayoutContent>
   </div>
 </template>
+
+<style scoped>
+.theme-plume {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+</style>

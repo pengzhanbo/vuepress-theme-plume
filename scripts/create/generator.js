@@ -39,8 +39,8 @@ const generatorFile = async (config) => {
   }
   const include = [
     !client && 'client',
-    !client && 'tsconfig.esm.json',
     !shared && 'shared',
+    !shared && 'client/index.js'
   ]
     .filter(Boolean)
     .join('|')

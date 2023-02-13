@@ -18,10 +18,16 @@
   },
   "license": "MIT",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
+  "type": "module",
+  "exports": {
+    ".": "./lib/node/index.js",
+    {{#if shared }}
+    "./client": "./lib/client/index.js",
+    {{/if}}
+    "./package.json": "./package.json"
+  },
   "main": "lib/node/index.js",
-  "files": [
-    "lib"
-  ],
+  "types": "./lib/node/index.d.ts",
   "scripts": {
     "build": "pnpm run clean && pnpm run copy && pnpm run ts",
     "clean": "rimraf lib *.tsbuildinfo",

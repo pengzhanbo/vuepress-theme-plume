@@ -1,19 +1,13 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  background-color: var(--c-bg);
-  transition: background-color var(--t-color);
-}
-
 *,
-*::after,
-*::before {
+::before,
+::after {
   box-sizing: border-box;
 }
 
-:root {
-  scroll-behavior: smooth;
+html {
+  line-height: 1.4;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 html.dark {
@@ -21,65 +15,25 @@ html.dark {
 }
 
 body {
-  font-family: var(--font-family);
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: grayscale;
-  font-size: 16px;
-  color: var(--c-text);
-}
-
-a {
-  font-weight: 500;
-  color: var(--c-text-accent);
-  text-decoration: none;
-  overflow-wrap: break-word;
-  transition: color var(--t-color);
-}
-
-p a code {
-  font-weight: 400;
-  color: var(--c-text-accent);
-}
-
-kbd {
-  font-family: var(--font-family-code);
-  color: var(--c-text);
-  background: var(--c-bg-lighter);
-  border: solid 0.15rem var(--c-border-dark);
-  border-bottom: solid 0.25rem var(--c-border-dark);
-  padding: 0 0.15em;
-}
-
-code {
-  font-family: var(--font-family-code);
-  color: var(--c-text-lighter);
-  padding: 0.25rem 0.5rem;
   margin: 0;
-  font-size: 0.85rem;
-  background-color: var(--c-bg-light);
-  border-radius: 3px;
-  overflow-wrap: break-word;
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  line-height: 24px;
+  font-family: var(--vp-font-family-base);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--vp-c-text-1);
+  background-color: var(--vp-c-bg);
+  direction: ltr;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-blockquote {
-  font-size: 1rem;
-  color: var(--c-text-quote);
-  border-left: 0.2rem solid var(--c-border-dark);
-  margin: 1rem 0;
-  padding: 0.25rem 0 0.25rem 1rem;
-
-  & > p {
-    margin: 0;
-  }
-}
-
-ul,
-ol {
-  padding-left: 1.2em;
-}
-
-strong {
-  font-weight: 600;
+main {
+  display: block;
 }
 
 h1,
@@ -88,100 +42,190 @@ h3,
 h4,
 h5,
 h6 {
+  margin: 0;
+  line-height: 24px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+p {
+  margin: 0;
+}
+
+strong,
+b {
   font-weight: 600;
-  line-height: 1.25;
-  transition: color var(--t-color);
-
-  &:focus-visible {
-    outline: none;
-  }
-
-  &:hover .header-anchor {
-    opacity: 1;
-  }
 }
 
-h1 {
-  font-size: 2.2rem;
+/**
+ * Avoid 300ms click delay on touch devices that support the `touch-action`
+ * CSS property.
+ *
+ * In particular, unlike most other browsers, IE11+Edge on Windows 10 on
+ * touch devices and IE Mobile 10-11 DON'T remove the click delay when
+ * `<meta name="viewport" content="width=device-width">` is present.
+ * However, they DO support removing the click delay via
+ * `touch-action: manipulation`.
+ *
+ * See:
+ * - http://v4-alpha.getbootstrap.com/content/reboot/#click-delay-optimization-for-touch
+ * - http://caniuse.com/#feat=css-touch-action
+ * - http://patrickhlauke.github.io/touch/tests/results/#suppressing-300ms-delay
+ */
+a,
+area,
+button,
+[role='button'],
+input,
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
 }
 
-h2 {
-  font-size: 1.65rem;
-  padding-bottom: 0.5rem;
-  border-bottom: solid 1px var(--c-border);
-  transition: border-color var(--t-color);
-  margin-top: 2.75rem;
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
-h3 {
-  font-size: 1.35rem;
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-h4 {
-  font-size: 1.15rem;
+blockquote {
+  margin: 0;
 }
 
-h5 {
-  font-size: 1.05rem;
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--vp-font-family-mono);
 }
 
-h6 {
-  font-size: 1rem;
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
 }
 
-a.header-anchor {
-  font-size: 0.85rem;
-  float: left;
-  margin-left: -0.87rem;
-  padding-right: 0.23rem;
-  margin-top: 0.125rem;
-  opacity: 0;
-
-  &:hover {
-    text-decoration: none;
-
-    &:focus-visible {
-      opacity: 1;
-    }
-  }
+figure {
+  margin: 0;
 }
 
-p,
-ul,
-ol {
-  line-height: 1.7;
+img,
+video {
+  max-width: 100%;
+  height: auto;
 }
 
-hr {
+button,
+input,
+optgroup,
+select,
+textarea {
   border: 0;
-  border-top: solid 1px var(--c-border);
+  padding: 0;
+  line-height: inherit;
+  color: inherit;
+}
+
+button {
+  padding: 0;
+  font-family: inherit;
+  background-color: transparent;
+  background-image: none;
+}
+
+button:enabled,
+[role='button']:enabled {
+  cursor: pointer;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 1px dotted;
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+button:focus:not(:focus-visible) {
+  outline: none !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
 }
 
 table {
   border-collapse: collapse;
-  margin: 1rem 0;
-  display: block;
-  overflow-x: auto;
-  transition: border-color var(--t-color);
 }
 
-tr {
-  border-top: solid 1px var(--c-border-dark);
-  transition: border-color var(--t-color);
-
-  &:nth-child(2n) {
-    background-color: var(--c-bg-light);
-    transition: background-color var(--t-color);
-
-    code {
-      background-color: var(--c-bg-lighter);
-    }
-  }
+input {
+  background-color: transparent;
 }
 
-th,
-td {
-  padding: 0.6em 1em;
-  border: 1px solid var(--c-border-dark);
-  transition: border-color var(--t-color);
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: var(--vp-c-text-3);
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  color: var(--vp-c-text-3);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--vp-c-text-3);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+textarea {
+  resize: vertical;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+p {
+  overflow-wrap: break-word;
+}
+
+vite-error-overlay {
+  z-index: 9999;
 }

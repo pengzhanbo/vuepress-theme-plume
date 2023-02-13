@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.build.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./lib",
+    "paths": {
+      "@internal/notesData": ["./src/client/notesData.d.ts"]
+    },
+    "types": ["@vuepress/client/types", "vite/client", "webpack-env"]
+  },
+  "include": ["./src"]
+}

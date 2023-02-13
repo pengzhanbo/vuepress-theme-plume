@@ -10,6 +10,5 @@ import type { PlumeThemeData } from '../../shared/index.js'
 
 export const useThemeData = (): ThemeDataRef<PlumeThemeData> =>
   _useThemeData<PlumeThemeData>()
-
 export const useThemeLocaleData = (): ThemeLocaleDataRef<PlumeThemeData> =>
   _useThemeLocaleData<PlumeThemeData>()

@@ -1,6 +1,8 @@
 import { definePlumeNotesConfig } from '@vuepress-plume/vuepress-theme-plume'
 
 export default definePlumeNotesConfig({
+  dir: 'notes',
+  link: '/note',
   notes: [
     {
       text: '',
@@ -10,22 +12,22 @@ export default definePlumeNotesConfig({
         '',
         {
           text: '指南',
-          children: ['快速开始', '编写文章'],
+          items: ['快速开始', '编写文章'],
         },
         {
           text: '配置',
-          children: [
+          items: [
             {
               text: '主题配置',
               link: '主题配置',
-              children: ['主题插件配置', 'notes配置'],
+              items: ['主题插件配置', 'notes配置'],
             },
             '页面配置',
           ],
         },
         {
           text: '功能',
-          children: ['基础功能', 'markdown增强'],
+          items: ['基础功能', 'markdown增强'],
         },
       ],
     },
@@ -39,7 +41,7 @@ export default definePlumeNotesConfig({
           dir: 'netlify-functions',
           text: 'plugin-netlify-functions',
           link: 'netlify-functions',
-          children: ['', '介绍', '使用', '功能', 'API', 'functions开发指南'],
+          items: ['', '介绍', '使用', '功能', 'API', 'functions开发指南'],
         },
       ],
     },

@@ -1,20 +1,18 @@
-@import '_variables';
-
 // ===============================
 // Forked and modified from prismjs/themes/prism-tomorrow.css
 
 code[class*='language-'],
 pre[class*='language-'] {
-  color: #ccc;
+  color: var(--vp-code-block-color);
   background: none;
-  font-family: var(--font-family-code);
-  font-size: 1em;
+  font-family: var(--vp-font-family-mono);
+  font-size: var(--vp-code-font-size);
   text-align: left;
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
   word-wrap: normal;
-  line-height: 1.5;
+  line-height: var(--vp-code-line-height);
 
   -moz-tab-size: 4;
   -o-tab-size: 4;
@@ -33,17 +31,17 @@ pre[class*='language-'] {
   overflow: auto;
 }
 
-:not(pre) > code[class*='language-'],
-pre[class*='language-'] {
-  background: #2d2d2d;
-}
+// :not(pre) > code[class*='language-'],
+// pre[class*='language-'] {
+//   background: var(--vp-code-block-bg);
+// }
 
-/* Inline code */
-:not(pre) > code[class*='language-'] {
-  padding: 0.1em;
-  border-radius: 0.3em;
-  white-space: normal;
-}
+// /* Inline code */
+// :not(pre) > code[class*='language-'] {
+//   padding: 0.1em;
+//   border-radius: 0.3em;
+//   white-space: normal;
+// }
 
 .token.comment,
 .token.block-comment,
@@ -121,12 +119,12 @@ pre[class*='language-'] {
 
 // ===============================
 
-.plume-theme-content {
+.plume-content {
   pre,
   pre[class*='language-'] {
-    line-height: 1.4;
+    // line-height: 1.4;
     padding: 1.3rem 1.5rem;
-    margin: 0.85rem 0;
+    margin: 0 0 0.85rem 0;
     border-radius: 6px;
     overflow: auto;
     scrollbar-width: thin;
@@ -138,7 +136,7 @@ pre[class*='language-'] {
     }
 
     &::-webkit-scrollbar-track {
-      background-color: var(--code-bg-color);
+      background-color: var(--vp-code-block-bg);
     }
 
     &::-webkit-scrollbar-thumb {
@@ -158,22 +156,34 @@ pre[class*='language-'] {
   }
 
   .line-number {
-    font-family: var(--font-family-code);
+    font-family: var(--vp-font-family-mono);
   }
+
+  .code-tabs {
+    .div[class*='language-'] {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+}
+
+.code-tabs-nav {
+  margin-bottom: 0rem;
 }
 
 div[class*='language-'] {
   position: relative;
-  background-color: var(--code-bg-color);
+  background-color: var(--vp-code-block-bg);
   border-radius: 6px;
 
   &::before {
+    content: attr(data-ext);
     position: absolute;
     z-index: 3;
     top: 0.8em;
     right: 1em;
     font-size: 0.75rem;
-    color: var(--code-ln-color);
+    color: var(--vp-code-line-number-color);
   }
 
   pre,
@@ -194,7 +204,7 @@ div[class*='language-'] {
     line-height: 1.4;
 
     .highlight-line {
-      background-color: var(--code-hl-bg-color);
+      background-color: var(--vp-code-block-bg);
     }
   }
 
@@ -215,13 +225,13 @@ div[class*='language-'] {
         left: 0;
         top: 0;
         display: block;
-        width: var(--code-ln-wrapper-width);
+        // width: var(--code-ln-wrapper-width);
         height: 100%;
       }
     }
 
     pre {
-      margin-left: var(--code-ln-wrapper-width);
+      margin-left: 2rem;
       padding-left: 1rem;
       vertical-align: middle;
     }
@@ -229,18 +239,22 @@ div[class*='language-'] {
     .line-numbers {
       position: absolute;
       top: 0;
-      width: var(--code-ln-wrapper-width);
+      left: 0;
+      width: 2rem;
+      height: 100%;
       text-align: center;
-      color: var(--code-ln-color);
-      padding-top: 1.25rem;
-      line-height: 1.4;
+      z-index: 1;
+      color: var(--vp-code-line-number-color);
+      padding-top: 1.14rem;
+      line-height: var(--vp-code-line-height);
       counter-reset: line-number;
+      border-right: var(--vp-code-block-divider-color) 1px solid;
 
       .line-number {
         position: relative;
         z-index: 3;
         user-select: none;
-        height: 1.4em;
+        height: 1.5rem;
 
         &::before {
           counter-increment: line-number;
@@ -249,34 +263,19 @@ div[class*='language-'] {
         }
       }
     }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: var(--code-ln-wrapper-width);
-      height: 100%;
-      border-radius: 6px 0 0 6px;
-      border-right: 1px solid var(--code-hl-bg-color);
-    }
-  }
-}
-
-@each $lang in $codeLang {
-  div[class*='language-'].ext-#{$lang} {
-    &:before {
-      content: '' + $lang;
-    }
   }
 }
 
 // narrow mobile
-@media (max-width: $MQMobileNarrow) {
-  .plume-theme-content {
+@media (max-width: 419px) {
+  .plume-content {
     div[class*='language-'] {
       margin: 0.85rem -1.5rem;
       border-radius: 0;
     }
+  }
+
+  .code-tabs-nav {
+    margin-bottom: -0.85rem;
   }
 }

@@ -13,7 +13,7 @@ const _dirname =
 const packages = [
   ...fs
     .readdirSync(path.join(_dirname, '../packages'))
-    .filter((file) => file !== '.DS_Store')
+    .filter((file) => file !== '.DS_Store' && file !== 'tsconfig.build.json')
     .map((dir) => path.join('../packages', dir)),
   '../docs',
 ]

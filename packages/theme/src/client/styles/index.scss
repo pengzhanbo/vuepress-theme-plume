@@ -1,13 +1,10 @@
 @use 'vars';
-@use 'vars-dark';
-
+@use 'fonts';
 @use 'normalize';
-@use 'arrow';
-@use 'transition';
-@use 'icons';
-
-@use 'layout';
-@use 'code';
+@use 'nprogress';
+@use 'utils';
+@use 'content';
 @use 'toc';
+@use 'code';
 
-@use'@vuepress/plugin-palette/style';
+@use '@vuepress/plugin-palette/style';

@@ -1,7 +1,5 @@
 .theme-plume-toc {
-  border-left: solid 1px var(--c-border);
-  max-height: calc(100vh - var(--navbar-height) - (1.25rem * 3));
-  overflow-y: auto;
+  border-left: solid 1px var(--vp-c-divider);
 
   &::-webkit-scrollbar {
     width: 0;
@@ -14,20 +12,23 @@
 
 .theme-plume-toc-list {
   list-style: none;
+  font-size: 13px;
+  font-weight: 500;
 
   .theme-plume-toc-link {
     width: 100%;
     display: inline-block;
-    color: var(--c-text-light);
+    color: var(--vp-c-text-2);
     border-left: solid 3px transparent;
     padding-left: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    transition: color var(--t-color), border-color var(--t-color);
+    line-height: 28px;
+    transition: color 0.25s, border-color 0.25s;
 
     &.active {
-      color: var(--c-text-accent);
+      color: var(--vp-c-text-1);
       border-color: var((--c-text-accent));
     }
   }

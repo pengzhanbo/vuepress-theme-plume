@@ -2,12 +2,10 @@
 title: VSCode 常用插件推荐
 lang: zh-CN
 createTime: 2018/12/29 11:15:27
-permalink: /article/ofp08jd8
+permalink: /article/ofp08jd8/
 author: pengzhanbo
 tags: 
   - VSCode
-top: false
-type: null
 ---
 
 `VS Code` 作为我现在工作中最常用的编辑器，也是我十分喜欢的编辑器。它强大的功能和插件系统，对我的工作提供了很多帮助和支持。将我在工作中经常使用的插件，推荐给大家。
@@ -126,3 +124,5 @@ type: null
 2. [minapp](https://github.com/wx-minapp/minapp-vscode)
 
     微信小程序 支持。
+
+

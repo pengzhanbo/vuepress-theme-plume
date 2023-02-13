@@ -1,13 +1,11 @@
 ---
 title: WebComponent——custom elements
 tags: 
-  - html
+  - WebComponent
   - javascript
 createTime: 2018/08/01 11:15:27
-permalink: /article/m63fd7lf
+permalink: /article/m63fd7lf/
 author: pengzhanbo
-top: false
-type: null
 ---
 
 

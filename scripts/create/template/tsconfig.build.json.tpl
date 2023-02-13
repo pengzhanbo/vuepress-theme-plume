@@ -1,14 +1,8 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "references": [
-    {{#if client}}
-    {
-      "path": "./tsconfig.esm.json"
-    },
-    {{/if}}
-    {
-      "path": "./tsconfig.cjs.json"
-    }
-  ],
-  "files": []
+"extends": "../tsconfig.build.json",
+"compilerOptions": {
+"rootDir": "./src",
+"outDir": "./lib"
+},
+"include": ["./src"]
 }

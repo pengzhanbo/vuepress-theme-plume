@@ -6,6 +6,12 @@
     "jsx": "preserve",
     "paths": {
       "@theme-plume/*": ["./packages/theme/src/client/components/*"],
+      "@internal/blogData": [
+        "./packages/plugin-blog-data/src/client/blogPostData.d.ts"
+      ],
+      "@internal/notesData": [
+        "./packages/plugin-notes-data/src/client/notesData.d.ts"
+      ],
       "@internal/*": ["./docs/.vuepress/.temp/internal/*"],
       "@vuepress-plume/vuepress-*": ["./packages/*/src/node/index.ts"],
       "@vuepress-plume/vuepress-theme-plume": [
@@ -13,9 +19,6 @@
       ]
     },
     "types": ["webpack-env", "vite/client"]
-  },
-  "vueCompilerOptions": {
-    "experimentalDisableTemplateSupport": true
   },
   "include": ["packages/**/*", "docs/.vuepress/**/*", "scripts/**/*"],
   "exclude": ["node_modules", ".temp", "lib", "dist"],

@@ -4,7 +4,11 @@ import { useSidebar } from '../composables/index.js'
 const { hasSidebar } = useSidebar()
 </script>
 <template>
-  <div class="layout-content" :class="{ 'has-sidebar': hasSidebar }">
+  <div
+    id="LayoutContent"
+    class="layout-content"
+    :class="{ 'has-sidebar': hasSidebar }"
+  >
     <slot />
   </div>
 </template>

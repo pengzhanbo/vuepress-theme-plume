@@ -165,10 +165,10 @@ pre[class*='language-'] {
       border-top-right-radius: 0;
     }
   }
+}
 
-  .code-tabs-nav {
-    margin-bottom: 0rem;
-  }
+.code-tabs-nav {
+  margin-bottom: 0rem;
 }
 
 div[class*='language-'] {
@@ -273,5 +273,9 @@ div[class*='language-'] {
       margin: 0.85rem -1.5rem;
       border-radius: 0;
     }
+  }
+
+  .code-tabs-nav {
+    margin-bottom: -0.85rem;
   }
 }

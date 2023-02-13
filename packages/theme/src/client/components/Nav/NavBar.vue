@@ -6,6 +6,7 @@ import NavBarAppearance from './NavBarAppearance.vue'
 import NavBarExtra from './NavBarExtra.vue'
 import NavBarHamburger from './NavBarHamburger.vue'
 import NavBarMenu from './NavBarMenu.vue'
+import NavBarSearch from './NavBarSearch.vue'
 import NavBarSocialLinks from './NavBarSocialLinks.vue'
 import NavBarTitle from './NavBarTitle.vue'
 
@@ -35,7 +36,7 @@ const classes = computed(() => ({
       <div class="content">
         <div class="curtain"></div>
         <div class="content-body">
-          <NavbarSearch class="search" />
+          <NavBarSearch class="search" />
           <NavBarMenu class="menu" />
           <NavBarAppearance class="appearance" />
           <NavBarSocialLinks class="social-links" />

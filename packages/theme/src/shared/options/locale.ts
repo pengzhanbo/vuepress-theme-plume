@@ -40,7 +40,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
   /**
    * 网站站点首页
    */
-  home?: false | NavItemWithLink
+  home?: string
   /**
    * 网站站点logo
    */
@@ -110,8 +110,6 @@ export interface PlumeThemeLocaleData extends LocaleData {
    */
   notes?: false | NotesDataOptions
 
-  footer?: false | { content: string; copyright: string }
-
   /**
    * language text
    */
@@ -147,4 +145,11 @@ export interface PlumeThemeLocaleData extends LocaleData {
   notFound?: string[]
 
   backToHome?: string
+
+  footer?:
+    | false
+    | {
+        message?: string
+        copyright?: string
+      }
 }

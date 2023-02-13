@@ -1,4 +1,4 @@
-import type { App } from '@vuepress/core'
+import type { App, Page } from '@vuepress/core'
 import type { BlogPostData, BlogPostDataItem } from '../shared/index.js'
 import type { PluginOption } from './plugin.js'
 
@@ -20,6 +20,8 @@ if (import.meta.hot) {
 const getTimestamp = (time: Date): number => {
   return new Date(time).getTime()
 }
+
+const EXCERPT_SPLIT = '<!-- more -->'
 
 export const preparedBlogData = async (
   app: App,
@@ -45,7 +47,7 @@ export const preparedBlogData = async (
     })
   }
 
-  const blogData: BlogPostData = pages.map((page) => {
+  const blogData: BlogPostData = pages.map((page: Page) => {
     let extended: Partial<BlogPostDataItem> = {}
     if (typeof options.extendBlogData === 'function') {
       extended = options.extendBlogData(page)
@@ -56,7 +58,10 @@ export const preparedBlogData = async (
       ...extended,
     }
 
-    if (options.excerpt) data.excerpt = (page as any).excerpt
+    if (options.excerpt && page.contentRendered.includes(EXCERPT_SPLIT)) {
+      const contents = page.contentRendered.split(EXCERPT_SPLIT)
+      data.excerpt = contents[0]
+    }
 
     return data as BlogPostDataItem
   })

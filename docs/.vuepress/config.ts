@@ -38,6 +38,7 @@ export default defineUserConfig({
     // },
     notes,
     navbar: [
+      { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
       {
         text: 'VuePress',
         items: [
@@ -57,7 +58,7 @@ export default defineUserConfig({
     ],
     footer: {
       copyright: 'Copyright © 2022-present pengzhanbo',
-      content: '',
+      message: '',
     },
     themePlugins: {
       search: {

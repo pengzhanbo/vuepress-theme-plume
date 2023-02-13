@@ -47,6 +47,16 @@ export const setupPlugins = (
     blogDataPlugin({
       include: ['**/*.md'],
       exclude: ['**/{README,index}.md', 'notes/**'],
+      sortBy: 'createTime',
+      excerpt: true,
+      extendBlogData(page: any) {
+        return {
+          categoryList: page.data.categoryList,
+          tags: page.frontmatter.tags,
+          sticky: page.frontmatter.sticky,
+          createTime: page.data.frontmatter.createTime,
+        }
+      },
     }),
     localeOptions.notes ? notesDataPlugin(localeOptions.notes) : [],
     activeHeaderLinksPlugin({

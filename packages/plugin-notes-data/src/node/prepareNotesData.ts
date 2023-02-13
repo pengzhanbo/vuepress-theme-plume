@@ -94,7 +94,6 @@ export const watchNotesData = (
 }
 
 function initSidebar(note: NotesItem, pages: NotePage[]): NotesSidebarItem[] {
-  console.log('pages:', pages)
   if (!note.sidebar) return []
   if (note.sidebar === 'auto') return []
   return initSidebarByConfig(note, pages)
@@ -105,7 +104,6 @@ function initSidebarByConfig(
   pages: NotePage[]
 ): NotesSidebarItem[] {
   return (sidebar as NotesSidebar).map((item) => {
-    console.log('text: ', text, 's-item: ', item, 'dir: ', dir)
     if (typeof item === 'string') {
       const current = findNotePage(item, dir, pages)
       return {

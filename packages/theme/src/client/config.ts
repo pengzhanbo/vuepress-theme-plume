@@ -9,11 +9,20 @@ import './styles/index.scss'
 export default defineClientConfig({
   enhance({ app }) {
     // eslint-disable-next-line vue/match-component-file-name
-    app.component('NavbarSearch', () => {
+    app.component('DocSearch', () => {
       const SearchComponent =
         app.component('Docsearch') || app.component('SearchBox')
       if (SearchComponent) {
         return h(SearchComponent)
+      }
+      return null
+    })
+
+    // eslint-disable-next-line vue/match-component-file-name
+    app.component('PageComment', (props) => {
+      const CommentService = app.component('CommentService')
+      if (CommentService) {
+        return h(CommentService, props)
       }
       return null
     })

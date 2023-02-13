@@ -1,13 +1,22 @@
 <script lang="ts" setup>
-import { useSidebar } from '../composables/index.js'
+import { usePageData } from '@vuepress/client'
+import type { PlumeThemePageData } from '../../shared/index.js'
+import { useDarkMode, useSidebar } from '../composables/index.js'
 import PageAside from './PageAside.vue'
+import PageMeta from './PageMeta.vue'
 
 const { hasSidebar, hasAside } = useSidebar()
+const isDark = useDarkMode()
+const page = usePageData<PlumeThemePageData>()
 </script>
 <template>
   <div
     class="plume-page"
-    :class="{ 'has-sidebar': hasSidebar, 'has-aside': hasAside }"
+    :class="{
+      'has-sidebar': hasSidebar,
+      'has-aside': hasAside,
+      'is-blog': page.isBlogPost,
+    }"
   >
     <div class="container">
       <div v-if="hasAside" class="aside">
@@ -21,7 +30,9 @@ const { hasSidebar, hasAside } = useSidebar()
       <div class="content">
         <div class="content-container">
           <main class="main">
+            <PageMeta />
             <Content class="plume-content" />
+            <PageComment :darkmode="isDark" />
           </main>
         </div>
       </div>
@@ -39,6 +50,10 @@ const { hasSidebar, hasAside } = useSidebar()
   width: 100%;
 }
 
+.plume-page.is-blog {
+  padding-top: calc(var(--vp-nav-height) + 32px);
+}
+
 @media (min-width: 768px) {
   .plume-page {
     padding: 48px 32px 128px;
@@ -46,7 +61,8 @@ const { hasSidebar, hasAside } = useSidebar()
 }
 
 @media (min-width: 960px) {
-  .plume-page {
+  .plume-page,
+  .plume-page.is-blog {
     padding: 32px 32px 0;
   }
 

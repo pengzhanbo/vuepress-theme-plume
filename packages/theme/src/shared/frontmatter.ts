@@ -1,7 +1,19 @@
 export interface PlumeThemeHomeFrontmatter {
   home?: true
+  banner?: string
+  hero: {
+    name: string
+    profession?: string
+    text?: string
+    actions: PlumeThemeHeroAction[]
+  }
 }
 
+export interface PlumeThemeHeroAction {
+  theme?: 'brand' | 'alt'
+  text: string
+  link?: string
+}
 export interface PlumeThemePostFrontmatter {
   createTime?: string
   author?: string

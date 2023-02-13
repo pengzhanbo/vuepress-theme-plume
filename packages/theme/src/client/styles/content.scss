@@ -28,6 +28,10 @@
   font-size: 24px;
 }
 
+.plume-content h2:first-of-type {
+  border-top: none;
+}
+
 .plume-content h3 {
   margin: 32px 0 0;
   letter-spacing: -0.01em;
@@ -66,6 +70,18 @@
     line-height: 40px;
     font-size: 32px;
   }
+}
+
+.plume-content img {
+  display: inline-block;
+}
+
+.plume-content img + img {
+  margin-left: 0.5rem;
+}
+
+.plume-content a img + span {
+  margin-left: 0.2rem;
 }
 
 /**

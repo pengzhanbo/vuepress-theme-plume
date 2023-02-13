@@ -1,7 +1,17 @@
 ---
 home: true
-banner: /images/big-banner.jpg
-motto: 世间的美好总是不期而遇，恬静而自然。
-author: pengzhanbo
-createTime: 2022/03/26 07:46:50
+banner: /images/bg-home.jpg
+hero: 
+  name: 鹏展博
+  profession: 前端开发工程师
+  text: 简单介绍专业技能信息相关的描述
+  actions: 
+    - 
+      theme: brand
+      text: Blog
+      link: /
+    - 
+      theme: alt
+      text: Github
+      link: /
 ---

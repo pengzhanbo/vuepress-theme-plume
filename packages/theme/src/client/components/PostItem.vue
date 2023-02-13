@@ -43,7 +43,10 @@ const createTime = computed(() => {
       </div>
       <div v-if="tags.length" class="tag-list">
         <IconTag class="icon" />
-        <span v-for="tag in tags" :key="tag">{{ tag }}</span>
+        <template v-for="(tag, i) in tags" :key="tag">
+          <span class="tag">{{ tag }}</span>
+          <span v-if="i !== tags.length - 1">,</span>
+        </template>
       </div>
       <div v-if="createTime" class="create-time">
         <IconClock class="icon" />
@@ -68,7 +71,7 @@ const createTime = computed(() => {
   h3 {
     display: flex;
     align-items: center;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     transition: color var(--t-color);
     margin-bottom: 1rem;
@@ -113,6 +116,15 @@ const createTime = computed(() => {
 
     &:last-of-type {
       margin-right: 0;
+    }
+  }
+
+  .tag-list {
+    display: flex;
+    align-items: center;
+
+    .tag {
+      margin: 0 0.2rem;
     }
   }
 

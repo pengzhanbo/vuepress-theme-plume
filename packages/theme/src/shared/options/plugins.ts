@@ -3,6 +3,7 @@ import type { CanIUsePluginOptions } from '@vuepress-plume/vuepress-plugin-caniu
 import type { CopyCodeOptions } from '@vuepress-plume/vuepress-plugin-copy-code'
 import type { DocsearchOptions } from '@vuepress/plugin-docsearch'
 import type { SearchPluginOptions } from '@vuepress/plugin-search'
+import type { ShikiPluginOptions } from '@vuepress/plugin-shiki'
 import type { CommentOptions } from 'vuepress-plugin-comment2'
 import type { MarkdownEnhanceOptions } from 'vuepress-plugin-md-enhance'
 
@@ -28,6 +29,8 @@ export interface PlumeThemePluginOptions {
   docsearch?: false | DocsearchOptions
 
   prismjs?: false
+
+  shiki?: false | ShikiPluginOptions
 
   git?: false
 

@@ -15,7 +15,7 @@ export function isActive(
     return false
   }
 
-  currentPath = normalize(`/${currentPath}`)
+  currentPath = normalize(`/${currentPath.replace(/^\//, '')}`)
 
   if (asRegex) {
     return new RegExp(matchPath).test(currentPath)

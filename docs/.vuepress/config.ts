@@ -26,16 +26,6 @@ export default defineUserConfig({
       description: 'The Theme for Vuepress 2.0',
     },
     social: [{ icon: 'github', link: 'https://github.com/pengzhanbo' }],
-    // {
-    //   email: 'volodymyr@foxmail.com',
-    //   github: 'pengzhanbo',
-    //   QQ: '942450674',
-    //   weiBo: 'https://weibo.com',
-    //   zhiHu: 'https://zhihu.com',
-    //   facebook: 'https://baidu.com',
-    //   twitter: 'https://baidu.com',
-    //   linkedin: 'https://baidu.com',
-    // },
     notes,
     navbar: [
       { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
@@ -58,7 +48,6 @@ export default defineUserConfig({
     ],
     footer: {
       copyright: 'Copyright © 2022-present pengzhanbo',
-      message: '',
     },
     themePlugins: {
       search: {
@@ -67,6 +56,17 @@ export default defineUserConfig({
             placeholder: '搜索',
           },
         },
+      },
+      comment: {
+        provider: 'Giscus',
+        comment: true,
+        repo: 'pengzhanbo/pengzhanbo-blog-vuepress',
+        repoId: 'MDEwOlJlcG9zaXRvcnkxNDgwMzY4MDc=',
+        category: 'Announcements',
+        categoryId: 'DIC_kwDOCNLcx84COcVd',
+        mapping: 'pathname',
+        reactionsEnabled: true,
+        inputPosition: 'top',
       },
     },
   }),

@@ -16,7 +16,7 @@ const { hasSidebar } = useSidebar()
       <VImage
         v-if="theme.logo"
         class="logo"
-        :image="{ light: theme.logo, dark: theme.logoDark || '' }"
+        :image="{ light: theme.logo, dark: theme.logoDark || theme.logo }"
       />
       {{ site.title }}
     </AutoLink>

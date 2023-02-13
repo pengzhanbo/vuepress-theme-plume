@@ -50,9 +50,11 @@ export const setupPlugins = (
     }),
     autoFrontmatterPlugin(autoFrontmatter(app, localeOptions)),
     blogDataPlugin({
-      include: ['**/*.md'],
+      include: localeOptions.blog?.include,
       exclude: [
-        '**/{README,index}.md',
+        '**/{README,readme,index}.md',
+        '.vuepress/',
+        ...(localeOptions.blog?.exclude || []),
         notesDir ? `${notesDir}/**` : '',
       ].filter(Boolean),
       sortBy: 'createTime',
@@ -88,7 +90,7 @@ export const setupPlugins = (
       ? mediumZoomPlugin({
           selector: '.plume-content > img, .plume-content :not(a) > img',
           zoomOptions: {
-            background: 'var(--c-bg)',
+            background: 'var(--vp-c-bg)',
           },
           delay: 300,
         })
@@ -122,9 +124,10 @@ export const setupPlugins = (
       ? docsearchPlugin(options.docsearch!)
       : [],
     options.prismjs !== false && !isProd ? prismjsPlugin() : [],
-    options.prismjs !== false && isProd
+    options.shiki !== false && isProd
       ? shikiPlugin({
           theme: 'material-palenight',
+          ...options.shiki,
         })
       : [],
     options.copyCode !== false

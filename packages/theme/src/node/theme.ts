@@ -30,10 +30,13 @@ export const plumeTheme = ({
       clientConfigFile: path.resolve(__dirname, '../client/config.js'),
       plugins: setupPlugins(app, themePlugins, localeOptions),
       onInitialized: async (app) => {
-        await setupPage(app)
+        await setupPage(app, localeOptions)
       },
       extendsPage: (page: Page<PlumeThemePageData>) => {
-        if (page.path === '/blog/') {
+        if (
+          localeOptions.blog?.link &&
+          page.path.startsWith(localeOptions.blog.link)
+        ) {
           page.data.type = 'blog'
         }
         if (page.path === '/product/') {

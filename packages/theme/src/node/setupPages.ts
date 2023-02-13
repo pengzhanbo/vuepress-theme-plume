@@ -6,9 +6,12 @@ import type {
   PlumeThemePageData,
 } from '../shared/index.js'
 
-export async function setupPage(app: App) {
+export async function setupPage(
+  app: App,
+  localeOption: PlumeThemeLocaleOptions
+) {
   const blogPage = await createPage(app, {
-    path: '/blog/',
+    path: localeOption.blog?.link,
   })
   const productPage = await createPage(app, {
     path: '/product/',

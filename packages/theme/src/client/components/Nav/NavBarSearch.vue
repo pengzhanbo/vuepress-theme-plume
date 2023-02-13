@@ -34,6 +34,7 @@
   --docsearch-key-shadow: none;
   --docsearch-modal-background: var(--vp-c-bg-soft);
   --docsearch-footer-background: var(--vp-c-bg);
+  --docsearch-searchbox-background: var(--vp-c-bg-elv-mute);
 }
 
 .dark .DocSearch {

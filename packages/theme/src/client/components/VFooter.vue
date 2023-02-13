@@ -40,6 +40,10 @@ const { hasSidebar } = useSidebar()
   display: none;
 }
 
+.plume-footer :deep(a) {
+  color: var(--vp-c-brand);
+}
+
 @media (min-width: 768px) {
   .plume-footer {
     padding: 32px;

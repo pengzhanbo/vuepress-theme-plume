@@ -1,3 +1,12 @@
+# [1.0.0-beta.52](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.51...v1.0.0-beta.52) (2023-02-13)
+
+
+### Bug Fixes
+
+* **theme:** remove sidebar console ([ad3140f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ad3140fa750f1114f323aa8d926c99236be440fe))
+
+
+
 # [1.0.0-beta.51](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.50...v1.0.0-beta.51) (2023-02-13)
 
 

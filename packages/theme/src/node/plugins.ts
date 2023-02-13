@@ -33,6 +33,11 @@ export const setupPlugins = (
 ): PluginConfig => {
   const isProd = !app.env.isDev
 
+  let notesDir: string | undefined
+  if (localeOptions.notes !== false) {
+    notesDir = localeOptions.notes?.dir
+  }
+
   return [
     palettePlugin({ preset: 'sass' }),
     themeDataPlugin({
@@ -46,7 +51,10 @@ export const setupPlugins = (
     autoFrontmatterPlugin(autoFrontmatter(app, localeOptions)),
     blogDataPlugin({
       include: ['**/*.md'],
-      exclude: ['**/{README,index}.md', 'notes/**'],
+      exclude: [
+        '**/{README,index}.md',
+        notesDir ? `${notesDir}/**` : '',
+      ].filter(Boolean),
       sortBy: 'createTime',
       excerpt: true,
       extendBlogData(page: any) {

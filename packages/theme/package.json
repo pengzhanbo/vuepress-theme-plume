@@ -69,6 +69,7 @@
     "@vueuse/core": "^9.10.0",
     "body-scroll-lock": "4.0.0-beta.0",
     "date-fns": "^2.29.3",
+    "lodash.merge": "^4.6.2",
     "nanoid": "^4.0.0",
     "ts-debounce": "^4.0.0",
     "vue": "^3.2.47",

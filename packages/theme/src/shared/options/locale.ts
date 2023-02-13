@@ -1,6 +1,6 @@
 import type { NotesDataOptions } from '@vuepress-plume/vuepress-plugin-notes-data'
 import type { LocaleData } from '@vuepress/core'
-import type { NavItem, NavItemWithLink } from './navbar.js'
+import type { NavItem } from './navbar.js'
 // import type { NavbarConfig, NavLink } from '../layout/index.js'
 // import type { PlumeThemeNotesOptions } from './notes.js'
 
@@ -85,14 +85,14 @@ export interface PlumeThemeLocaleData extends LocaleData {
    *
    * @def：{ text: '标签', link: '/tag/' }
    */
-  tag?: false | NavItemWithLink
+  // tag?: false | NavItemWithLink
 
   /**
    * 文章分类 与 navbar配置
    *
    * @default： { text: '分类', link: '/category/ }
    */
-  category?: false | NavItemWithLink
+  // category?: false | NavItemWithLink
 
   /**
    * 归档页 链接与 navbar 配置
@@ -101,7 +101,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
    *
    * @default： { text: '归档', link: '/timeline/' }
    */
-  archive?: false | NavItemWithLink
+  // archive?: false | NavItemWithLink
 
   /**
    * 笔记配置， 笔记中的文章默认不会出现在首页文章列表
@@ -113,23 +113,23 @@ export interface PlumeThemeLocaleData extends LocaleData {
   /**
    * language text
    */
-  selectLanguageText?: string
+  // selectLanguageText?: string
   /**
    * language aria label
    */
-  selectLanguageAriaLabel?: string
+  // selectLanguageAriaLabel?: string
   /**
    * language name
    */
-  selectLanguageName?: string
+  // selectLanguageName?: string
   /**
    * repository of navbar
    */
-  repo?: null | string
+  // repo?: null | string
   /**
    * repository text of navbar
    */
-  repoLabel?: string
+  // repoLabel?: string
 
   /**
    * Navbar config
@@ -142,9 +142,9 @@ export interface PlumeThemeLocaleData extends LocaleData {
    */
   openInNewWindow?: string | boolean
 
-  notFound?: string[]
+  // notFound?: string[]
 
-  backToHome?: string
+  // backToHome?: string
 
   footer?:
     | false

@@ -11,7 +11,7 @@ import type {
   MarkdownFile,
 } from '../shared/index.js'
 import { readMarkdown, readMarkdownList } from './readFiles.js'
-import { ensureArray } from './utils.js'
+import { ensureArray, isEmptyObject } from './utils.js'
 
 export const autoFrontmatterPlugin = ({
   include = ['**/*.{md,MD}'],
@@ -35,7 +35,7 @@ export const autoFrontmatterPlugin = ({
     .map(({ include, formatter }) => {
       return {
         include,
-        filter: createFilter(ensureArray(include)),
+        filter: createFilter(ensureArray(include), [], { resolve: false }),
         formatter,
       }
     })
@@ -43,22 +43,28 @@ export const autoFrontmatterPlugin = ({
   function formatMarkdown(file: MarkdownFile): void {
     const { filepath, relativePath } = file
 
-    const formatter =
-      otherFormatters.find(({ filter }) => filter(relativePath))?.formatter ||
-      globFormatter
+    const current = otherFormatters.find(({ filter }) => filter(relativePath))
+    const formatter = current?.formatter || globFormatter
     const { data, content } = grayMatter(file.content)
 
     Object.keys(formatter).forEach((key) => {
       const value = formatter[key](data[key], data, file)
       data[key] = value ?? data[key]
     })
-    const yaml = jsonToYaml
-      .stringify(data)
-      .replace(/\n\s{2}/g, '\n')
-      .replace(/"/g, '')
-    const newContent = `${yaml}---\n${content}`
 
-    fs.writeFileSync(filepath, newContent, 'utf-8')
+    try {
+      const yaml = isEmptyObject(data)
+        ? '---\n'
+        : jsonToYaml
+            .stringify(data)
+            .replace(/\n\s{2}/g, '\n')
+            .replace(/"/g, '')
+      const newContent = `${yaml}---\n${content}`
+
+      fs.writeFileSync(filepath, newContent, 'utf-8')
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   return {

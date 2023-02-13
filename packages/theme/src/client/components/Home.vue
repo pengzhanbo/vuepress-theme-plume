@@ -119,9 +119,9 @@ const actions = computed(() => {
   font-weight: 500;
   margin-top: 1.5rem;
   color: var(--vp-c-text-hero-text);
-  padding: 6px 20px;
+  /* padding: 6px 20px; */
   border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.25);
+  /* background-color: rgba(0, 0, 0, 0.25); */
 }
 
 .actions {

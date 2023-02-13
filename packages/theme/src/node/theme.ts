@@ -1,6 +1,7 @@
 import type { App, Page, Theme } from '@vuepress/core'
 import { fs, getDirname, path } from '@vuepress/utils'
 import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
+import { mergeLocaleOptions } from './defaultOptions.js'
 import { setupPlugins } from './plugins.js'
 import { autoCategory, pageContentRendered, setupPage } from './setupPages.js'
 
@@ -10,6 +11,7 @@ export const plumeTheme = ({
   themePlugins = {},
   ...localeOptions
 }: PlumeThemeOptions = {}): Theme => {
+  localeOptions = mergeLocaleOptions(localeOptions)
   return (app: App) => {
     return {
       name: '@vuepress-plume/theme-plume',

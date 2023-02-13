@@ -1,3 +1,12 @@
+# [1.0.0-beta.49](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.48...v1.0.0-beta.49) (2023-02-13)
+
+
+### Bug Fixes
+
+* **theme:** `auto frontmatter` require error ([3afcd9c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3afcd9c938af192d6d4a5313397b7d43e9602059))
+
+
+
 # [1.0.0-beta.48](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.47...v1.0.0-beta.48) (2023-02-13)
 
 

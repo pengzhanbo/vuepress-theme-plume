@@ -1,3 +1,33 @@
+# [1.0.0-beta.48](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.47...v1.0.0-beta.48) (2023-02-13)
+
+
+### Bug Fixes
+
+* **plugin-blog-data:** 修复 page类型检查错误 ([0ca612e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0ca612eca4564ded8b1bb01fe3f68d8d39204e26))
+* **plugin-windicss:** fix windicss-webpack-plugin ([b28b4c8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b28b4c8acd1376f107554596adf391b9a4582459))
+
+
+### Features
+
+* 重构部分插件 ([9737e98](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9737e9810c03396752b442f982fd5fe08657854d))
+* add plugin-notes-data ([a2296e9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a2296e9dc9145a84cb29a77ffe558bd7d65ce6fd))
+* **plugin-blog-data:** replace `glob-to-regexp` ([e1141bc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e1141bcea093679ea013e3e4b2b3f78d979a049f))
+* **plugin-notes-data:**  provide notes-data ([86f51ff](https://github.com/pengzhanbo/vuepress-theme-plume/commit/86f51ff2710453f61bbd4e96c93f7398702548c8))
+* **theme:** add auto frontmatter config ([c1587fd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c1587fd3cd310780df03cc37e7d45f4902c474e6))
+* **theme:** add content styles ([4e98011](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4e98011b655eb2b815e602812ff067e0d4f95521))
+* **theme:** add fonts styles ([b859801](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b859801a1b48472fd0ff28a439aa98ff4681ad8c))
+* **theme:** add global component `NavbarSearch` ([20340f7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/20340f735f30399e10b1089f8e207010e8af35b5))
+* **theme:** add home components ([2c5bc7d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2c5bc7d29e742d7b9b2483b61e5d6fd1eac4c33c))
+* **theme:** add icon components ([82051c2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/82051c239894299982a09f58022d356ecc488376))
+* **theme:** add Nav components ([1689b9c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1689b9c691f1b22631e9d7725e220cd7a97fc838))
+* **theme:** add nav screen ([f94c443](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f94c443b2db1b1e93cf8229d9426b611f7976408))
+* **theme:** add navbar components ([4b0078d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4b0078d010e2acc568d80e12ec36a6b4924ee491))
+* **theme:** add page components ([764c586](https://github.com/pengzhanbo/vuepress-theme-plume/commit/764c58693e14adb799ec01aa0c0cc4fd7240b399))
+* **theme:** initial styles ([5842436](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5842436b6cdbe052b2266a8c81e3eaf929c9f16c))
+* **theme:** plume-theme next devloping ! ([5de60d4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5de60d4d6e7fa83ebbdd2127df7e4cbd0bfe269b))
+
+
+
 # [1.0.0-beta.47](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.46...v1.0.0-beta.47) (2022-12-01)
 
 

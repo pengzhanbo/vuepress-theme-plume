@@ -1,3 +1,12 @@
+# [1.0.0-beta.50](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.49...v1.0.0-beta.50) (2023-02-13)
+
+
+### Bug Fixes
+
+* **theme:** templates word error ([78fab2f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/78fab2f3f1683bed2b00d5dd456364c765ff5263))
+
+
+
 # [1.0.0-beta.49](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.48...v1.0.0-beta.49) (2023-02-13)
 
 

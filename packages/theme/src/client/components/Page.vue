@@ -177,4 +177,8 @@ const page = usePageData<PlumeThemePageData>()
 .plume-page.has-aside .content-container {
   max-width: 688px;
 }
+
+.giscus-wrapper {
+  padding: 5rem 0 0;
+}
 </style>

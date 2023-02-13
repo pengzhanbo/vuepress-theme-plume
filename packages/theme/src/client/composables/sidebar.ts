@@ -119,7 +119,6 @@ export function useSidebarControl(item: ComputedRef<NotesSidebarItem>) {
   })
 
   const isActiveLink = computed(() => {
-    console.log('pl:', page.value.path, '  il:', item.value.link)
     return isActive(page.value.path, item.value.link)
   })
 

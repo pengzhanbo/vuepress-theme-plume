@@ -57,17 +57,6 @@ export default defineUserConfig({
           },
         },
       },
-      comment: {
-        provider: 'Giscus',
-        comment: true,
-        repo: 'pengzhanbo/pengzhanbo-blog-vuepress',
-        repoId: 'MDEwOlJlcG9zaXRvcnkxNDgwMzY4MDc=',
-        category: 'Announcements',
-        categoryId: 'DIC_kwDOCNLcx84COcVd',
-        mapping: 'pathname',
-        reactionsEnabled: true,
-        inputPosition: 'top',
-      },
     },
   }),
 })

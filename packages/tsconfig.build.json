@@ -11,6 +11,7 @@
     { "path": "./plugin-caniuse/tsconfig.build.json" },
     { "path": "./plugin-copy-code/tsconfig.build.json" },
     { "path": "./plugin-netlify-functions/tsconfig.build.json" },
+    { "path": "./plugin-notes-data/tsconfig.build.json" },
     { "path": "./plugin-page-collection/tsconfig.build.json" },
     { "path": "./plugin-windicss/tsconfig.build.json" },
     { "path": "./theme/tsconfig.build.json" }

@@ -1,3 +1,26 @@
+# [1.0.0-beta.51](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.50...v1.0.0-beta.51) (2023-02-13)
+
+
+### Bug Fixes
+
+* **plugin-notes-data:** sidebar link `null` ([5131ee2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5131ee23854135836291260b91f897f91336ece7))
+* **theme:** `isActive` function match fail ([520a70f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/520a70fc3f96900c2b6b76953b525b90d8ff5c8a))
+* **theme:** update comment style ([46d38ed](https://github.com/pengzhanbo/vuepress-theme-plume/commit/46d38ed8ff4a7651c37053ebba4ef178c6cfbcf9))
+* **theme:** update post tag style ([0a017c8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0a017c85413ab2b5a6a3f85fe626791b0de61d5d))
+
+
+### Features
+
+* **theme:** add NotFound component ([0d0db5f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0d0db5f14f0b2b062692987c97c746a30dba4d6d))
+* **theme:** add page footer style ([03a1401](https://github.com/pengzhanbo/vuepress-theme-plume/commit/03a1401c335abbf6322243eacb30655767b9040d))
+* **theme:** add search box style variables ([5d3473e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5d3473e1b3a19d4aacf0c6ea0d37f9bc6f945b36))
+* **theme:** add search style variable ([9c3d5c4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9c3d5c4b5cdab6d2d9f22113ec3e68c2a2f41669))
+* **theme:** add social icon `qq/weibo/bilibili` ([b089d28](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b089d28af57bf0caf31a84191f1741e4f5569997))
+* **theme:** add theme default options ([2fe3104](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2fe31042531203100ea6c83063fa51551fa929be))
+* **theme:** update style & config ([d0a6e6c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d0a6e6c77bda79498751cdb79d4b34ef866fb2d9))
+
+
+
 # [1.0.0-beta.50](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.49...v1.0.0-beta.50) (2023-02-13)
 
 

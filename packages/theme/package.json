@@ -30,7 +30,7 @@
   "types": "lib/node/index.d.ts",
   "files": [
     "lib",
-    "template"
+    "templates"
   ],
   "scripts": {
     "build": "pnpm run clean && pnpm run copy && pnpm run ts",

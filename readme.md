@@ -36,6 +36,14 @@ __options__ : `PlumeThemeOptions`
 ## 案例
 
 - [我的个人博客](https://pengzhanbo.cn/)
+
+### 效果图
+
+![](/docs/preview-home.png)
+
+![](/docs/preview-blog.png)
+
+![](/docs/preview-note.png)
   
 
 ## 内置插件

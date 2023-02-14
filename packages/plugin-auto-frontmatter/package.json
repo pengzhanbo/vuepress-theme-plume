@@ -1,6 +1,6 @@
 {
   "name": "@vuepress-plume/vuepress-plugin-auto-frontmatter",
-  "version": "1.0.0-beta.53",
+  "version": "1.0.0-beta.54",
   "description": "The Plugin for VuePres 2",
   "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
   "bugs": {

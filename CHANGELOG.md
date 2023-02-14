@@ -1,3 +1,12 @@
+# [1.0.0-beta.54](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.53...v1.0.0-beta.54) (2023-02-14)
+
+
+### Features
+
+* **plugin-blog-data:** add page filters ([a15d067](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a15d067d9bb1230e082b864d3d2a4d9e082b6900))
+
+
+
 # [1.0.0-beta.53](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.52...v1.0.0-beta.53) (2023-02-14)
 
 

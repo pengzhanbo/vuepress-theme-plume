@@ -1,3 +1,13 @@
+# [1.0.0-beta.53](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.52...v1.0.0-beta.53) (2023-02-14)
+
+
+### Features
+
+* **plugin-notes-data:** add auto sidebar option ([2e26fc7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2e26fc7224142e2c8f8609bc93728ad6a3329d8d))
+* **theme:** add Badge component ([9e67199](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9e671998851eacf1927bf7209ab26d4f8948156b))
+
+
+
 # [1.0.0-beta.52](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.51...v1.0.0-beta.52) (2023-02-13)
 
 

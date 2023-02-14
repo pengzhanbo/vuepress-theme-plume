@@ -17,10 +17,10 @@ npm i @vuepress-plume/vuepress-theme-plume
 ``` js
 // .vuepress/config.ts
 import { defineUserConfig } from 'vuepress'
-import { themePlume } from '@vuepress-plume/vuepress-theme-plume'
+import { plumeTheme } from '@vuepress-plume/vuepress-theme-plume'
 
 export default defineUserConfig({
-  theme: themePlume({
+  theme: plumeTheme({
     // theme config
   })
 })

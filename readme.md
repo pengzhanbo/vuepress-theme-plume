@@ -19,15 +19,15 @@ yarn add vuepress@next @vuepress-plume/vuepress-theme-plume
 
 ``` ts
 import { defineUserConfig } from 'vuepress'
-import { themePlume } from '@vuepress-plume/vuepress-theme-plume'
+import { plumeTheme } from '@vuepress-plume/vuepress-theme-plume'
 export default defineUserConfig({
-  theme: themePlume({
+  theme: plumeTheme({
     // theme config
   })
 })
 ```
 
-### `themePlume(options)`
+### `plumeTheme(options)`
 
 __options__ : `PlumeThemeOptions`
 
@@ -60,5 +60,3 @@ __options__ : `PlumeThemeOptions`
 本主题基于 `VuePress2` ，仍处于 Beta 阶段。
 
 这意味着功能尚未完善，在未来有概率发生破坏性更改。
-
-本主题已完成主要功能的开发，并用于个人博客，也欢迎各位使用，如能给小弟提供您宝贵的建议和意见，不胜感激。

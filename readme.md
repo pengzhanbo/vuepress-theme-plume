@@ -41,6 +41,9 @@ __options__ : `PlumeThemeOptions`
 ## 内置插件
 
 - [plugin-caniuse](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-caniuse) 在文档中使用 caniuse 提供的 web feature support list
+- [plugin-auto-frontmatter](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-auto-frontmatter) 在 md 文件中根据匹配规则自动生成 frontmatter
+- [plugin-notes-data](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-notes-data) 根据规则，将 md文件归类为 note，并生成 sidebar
+- [plugin-blog-data](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-blog-data) 根据规则，将md文件归类为 blog post，并生成 post list
 - [vuepress-plugin-mdEnhance](https://vuepress-theme-hope.github.io/v2/md-enhance/zh/) 增强markdown功能插件
 - [vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v2/comment/zh/) 文章评论插件，支持 "giscus" | "twikoo" | "waline"
 - [vuepress-plugin-copy-code](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-copy-code) 文章内代码块复制插件

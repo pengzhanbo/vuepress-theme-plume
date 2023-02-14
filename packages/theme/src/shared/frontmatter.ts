@@ -21,7 +21,6 @@ export interface PlumeThemePostFrontmatter {
   sticky?: boolean | number
   article?: boolean
   banner?: string
-  bgBanner?: string
 }
 
 export interface PlumeThemeNoteFrontmatter {

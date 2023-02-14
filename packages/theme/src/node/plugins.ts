@@ -59,6 +59,12 @@ export const setupPlugins = (
       ].filter(Boolean),
       sortBy: 'createTime',
       excerpt: true,
+      pageFilter(page: any) {
+        if (page.frontmatter.article !== undefined) {
+          return !!page.frontmatter.article
+        }
+        return true
+      },
       extendBlogData(page: any) {
         return {
           categoryList: page.data.categoryList,

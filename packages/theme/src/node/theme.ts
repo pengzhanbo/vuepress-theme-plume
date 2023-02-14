@@ -39,9 +39,6 @@ export const plumeTheme = ({
         ) {
           page.data.type = 'blog'
         }
-        if (page.path === '/product/') {
-          page.data.type = 'product'
-        }
         autoCategory(page, localeOptions)
         pageContentRendered(page)
       },

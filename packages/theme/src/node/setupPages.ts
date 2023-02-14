@@ -13,11 +13,8 @@ export async function setupPage(
   const blogPage = await createPage(app, {
     path: localeOption.blog?.link,
   })
-  const productPage = await createPage(app, {
-    path: '/product/',
-  })
 
-  app.pages.push(blogPage, productPage)
+  app.pages.push(blogPage)
 }
 
 let uuid = 10000

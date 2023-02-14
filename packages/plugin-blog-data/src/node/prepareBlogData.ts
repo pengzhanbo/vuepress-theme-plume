@@ -31,6 +31,9 @@ export const preparedBlogData = async (
   let pages = app.pages.filter((page) => {
     return page.filePathRelative && pageFilter(page.filePathRelative)
   })
+  if (options.pageFilter) {
+    pages = pages.filter(options.pageFilter)
+  }
   if (options.sortBy) {
     pages = pages.sort((prev, next) => {
       if (options.sortBy === 'createTime') {

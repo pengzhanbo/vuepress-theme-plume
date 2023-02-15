@@ -15,7 +15,7 @@ const homeStyle = computed(() => {
 })
 
 const name = computed(() => matter.value.hero?.name)
-const profession = computed(() => matter.value.hero?.profession)
+const tagline = computed(() => matter.value.hero?.tagline)
 const text = computed(() => matter.value.hero?.text)
 
 const actions = computed(() => {
@@ -27,8 +27,8 @@ const actions = computed(() => {
     <div class="container">
       <div v-if="matter.hero" class="content">
         <h2 v-if="name" class="hero-name">{{ name }}</h2>
-        <p v-if="profession" class="hero-profession">
-          <span class="line"></span> <span>{{ profession }}</span>
+        <p v-if="tagline" class="hero-tagline">
+          <span class="line"></span> <span>{{ tagline }}</span>
         </p>
         <p v-if="text" class="hero-text">{{ text }}</p>
         <div v-if="actions" class="actions">
@@ -55,6 +55,7 @@ const actions = computed(() => {
   background-position: center;
   min-height: calc(100vh - var(--vp-nav-height));
   filter: var(--vp-home-hero-image-filter);
+  transition: all var(--t-color);
 }
 
 .plume-home .container {
@@ -83,7 +84,7 @@ const actions = computed(() => {
     padding-top: 8rem;
   }
 
-  .plume-home .content .hero-profession {
+  .plume-home .content .hero-tagline {
     font-size: 32px;
   }
 }
@@ -94,21 +95,21 @@ const actions = computed(() => {
   line-height: 1;
   color: var(--vp-c-text-hero-name);
 }
-.plume-home .content .hero-profession {
+.plume-home .content .hero-tagline {
   display: flex;
   align-items: center;
   font-size: 24px;
   font-weight: 500;
   margin-top: 1rem;
-  color: var(--vp-c-text-hero-profession);
+  color: var(--vp-c-text-hero-tagline);
   line-height: 1.25;
 }
 
-.plume-home .content .hero-profession .line {
+.plume-home .content .hero-tagline .line {
   display: inline-block;
   width: 80px;
   height: 0;
-  border-top: solid 1px var(--vp-c-text-hero-profession);
+  border-top: solid 1px var(--vp-c-text-hero-tagline);
   margin-right: 1rem;
 }
 

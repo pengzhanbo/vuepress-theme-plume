@@ -3,7 +3,7 @@ export interface PlumeThemeHomeFrontmatter {
   banner?: string
   hero: {
     name: string
-    profession?: string
+    tagline?: string
     text?: string
     actions: PlumeThemeHeroAction[]
   }

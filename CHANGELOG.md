@@ -1,3 +1,12 @@
+# [1.0.0-beta.56](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.55...v1.0.0-beta.56) (2023-02-16)
+
+
+### Features
+
+* **theme:** add AutoLink router behavior ([c3a438e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c3a438e34a1dd36fb45e15131328c9916d37eef5))
+
+
+
 # [1.0.0-beta.55](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.54...v1.0.0-beta.55) (2023-02-15)
 
 

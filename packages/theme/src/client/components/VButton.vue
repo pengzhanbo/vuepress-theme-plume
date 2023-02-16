@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { EXTERNAL_URL_RE } from '../utils/index.js'
 
 const props = defineProps<{
@@ -10,6 +11,7 @@ const props = defineProps<{
   href?: string
 }>()
 
+const router = useRouter()
 const classes = computed(() => [props.size ?? 'medium', props.theme ?? 'brand'])
 
 const isExternal = computed(
@@ -23,6 +25,13 @@ const component = computed(() => {
 
   return props.href ? 'a' : 'button'
 })
+
+const linkTo = (e: Event) => {
+  if (!isExternal.value) {
+    e.preventDefault()
+    props.href && router.push({ path: props.href })
+  }
+}
 </script>
 
 <template>
@@ -33,6 +42,7 @@ const component = computed(() => {
     :href="href"
     :target="isExternal ? '_blank' : undefined"
     :rel="isExternal ? 'noreferrer' : undefined"
+    @click="linkTo($event)"
   >
     {{ text }}
   </Component>

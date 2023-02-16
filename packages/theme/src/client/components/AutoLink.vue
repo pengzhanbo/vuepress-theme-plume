@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { EXTERNAL_URL_RE, normalizeLink } from '../utils/index.js'
 import IconExternalLink from './icons/IconExternalLink.vue'
 
@@ -9,10 +10,21 @@ const props = defineProps<{
   noIcon?: boolean
 }>()
 
+const router = useRouter()
+
 const tag = computed(() => (props.tag ?? props.href ? 'a' : 'span'))
 const isExternal = computed(
   () => props.href && EXTERNAL_URL_RE.test(props.href)
 )
+
+const linkTo = (e: Event) => {
+  if (!isExternal.value) {
+    e.preventDefault()
+    if (props.href) {
+      router.push({ path: props.href })
+    }
+  }
+}
 </script>
 
 <template>
@@ -23,6 +35,7 @@ const isExternal = computed(
     :href="href ? normalizeLink(href) : undefined"
     :target="isExternal ? '_blank' : undefined"
     :rel="isExternal ? 'noreferrer' : undefined"
+    @click="linkTo($event)"
   >
     <slot />
     <IconExternalLink v-if="isExternal && !noIcon" class="icon" />

@@ -1,3 +1,13 @@
+# [1.0.0-beta.58](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.57...v1.0.0-beta.58) (2023-02-17)
+
+
+### Features
+
+* **plugin-iconify:** add vuepress-plugin-iconify ([3331455](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3331455790bff91f278c1b1330d1743e69caaead))
+* **theme:** add iconify support ([ae7adc6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ae7adc6f8a0a2718e71153e0dce80106e837d405))
+
+
+
 # [1.0.0-beta.57](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.56...v1.0.0-beta.57) (2023-02-17)
 
 

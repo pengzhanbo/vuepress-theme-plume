@@ -5,6 +5,7 @@ import AutoLink from '../AutoLink.vue'
 defineProps<{
   text: string
   link: string
+  icon?: string
 }>()
 
 const closeScreen = inject('close-screen') as () => void
@@ -12,6 +13,7 @@ const closeScreen = inject('close-screen') as () => void
 
 <template>
   <AutoLink class="nav-screen-menu-link" :href="link" @click="closeScreen">
+    <Icon v-if="icon" :name="icon" />
     {{ text }}
   </AutoLink>
 </template>

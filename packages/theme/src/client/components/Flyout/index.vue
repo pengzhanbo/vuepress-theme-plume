@@ -6,6 +6,7 @@ import IconMoreHorizontal from '../icons/IconMoreHorizontal.vue'
 import VMenu from './VMenu.vue'
 
 defineProps<{
+  prefixIcon?: string
   icon?: any
   button?: string
   label?: string
@@ -19,6 +20,13 @@ useFlyout({ el, onBlur })
 
 function onBlur() {
   open.value = false
+}
+</script>
+
+<script lang="ts">
+export default {
+  // eslint-disable-next-line vue/match-component-file-name
+  name: 'Flyout',
 }
 </script>
 
@@ -38,6 +46,7 @@ function onBlur() {
       @click="open = !open"
     >
       <span v-if="button || icon" class="text">
+        <Icon v-if="prefixIcon" :name="prefixIcon" />
         <Component :is="icon" v-if="icon" class="option-icon" />
         {{ button }}
         <IconChevronDown class="text-icon" />

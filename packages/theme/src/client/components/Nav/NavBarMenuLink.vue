@@ -24,6 +24,7 @@ const page = usePageData()
     :href="item.link"
     :no-icon="true"
   >
+    <Icon v-if="item.icon" :name="item.icon" />
     {{ item.text }}
   </AutoLink>
 </template>

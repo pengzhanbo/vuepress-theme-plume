@@ -31,6 +31,15 @@ export default defineClientConfig({
       }
       return null
     })
+
+    // eslint-disable-next-line vue/match-component-file-name
+    app.component('Icon', (props) => {
+      const Iconify = app.component('Iconify')
+      if (Iconify) {
+        return h(Iconify, props)
+      }
+      return null
+    })
   },
   setup() {
     setupDarkMode()

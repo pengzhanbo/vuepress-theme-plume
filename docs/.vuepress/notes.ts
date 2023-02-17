@@ -12,6 +12,7 @@ export default definePlumeNotesConfig({
         '',
         {
           text: '指南',
+          icon: 'icon-park-outline:guide-board',
           items: ['快速开始', '编写文章'],
         },
         {

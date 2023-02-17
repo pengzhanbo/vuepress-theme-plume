@@ -3,6 +3,7 @@ import type { NavItemWithLink } from '../../../shared/index.js'
 import NavScreenMenuGroupLink from './NavScreenMenuGroupLink.vue'
 
 defineProps<{
+  icon?: string
   text?: string
   items: NavItemWithLink[]
 }>()
@@ -10,12 +11,16 @@ defineProps<{
 
 <template>
   <div class="nav-screen-menu-group-section">
-    <p v-if="text" class="title">{{ text }}</p>
+    <p v-if="text" class="title">
+      <Icon v-if="icon" :name="icon" />
+      {{ text }}
+    </p>
     <NavScreenMenuGroupLink
       v-for="item in items"
       :key="item.text"
       :text="item.text"
       :link="item.link"
+      :icon="item.icon"
     />
   </div>
 </template>

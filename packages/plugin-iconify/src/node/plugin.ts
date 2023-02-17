@@ -6,15 +6,14 @@ export const iconifyPlugin = ({
   componentName = 'Iconify',
   size = '1em',
   color = 'currentColor',
-}: IconifyOptions): Plugin => {
+}: IconifyOptions = {}): Plugin => {
   return (app: App) => {
     return {
       name: '@vuepress-plume/vuepress-plugin-iconify',
       define: {
-        __VUEPRESS_PLUGIN_ICONIFY_COMPONENT_NAME__:
-          JSON.stringify(componentName),
-        __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_SIZE__: JSON.stringify(size),
-        __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_COLOR__: JSON.stringify(color),
+        __VUEPRESS_PLUGIN_ICONIFY_COMPONENT_NAME__: componentName,
+        __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_SIZE__: size,
+        __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_COLOR__: color,
       },
       clientConfigFile: path.resolve(
         getDirname(import.meta.url),

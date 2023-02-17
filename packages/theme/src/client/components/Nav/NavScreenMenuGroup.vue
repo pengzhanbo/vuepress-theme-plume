@@ -6,6 +6,7 @@ import NavScreenMenuGroupSection from './NavScreenMenuGroupSection.vue'
 
 const props = defineProps<{
   text: string
+  icon?: string
   items: any[]
 }>()
 
@@ -28,18 +29,29 @@ function toggle() {
       :aria-expanded="isOpen"
       @click="toggle"
     >
-      <span class="button-text">{{ text }}</span>
+      <span class="button-text">
+        <Icon v-if="icon" :name="icon" />
+        {{ text }}
+      </span>
       <IconPlus class="button-icon" />
     </button>
 
     <div :id="groupId" class="items">
       <template v-for="item in items" :key="item.text">
         <div v-if="'link' in item" :key="item.text" class="item">
-          <NavScreenMenuGroupLink :text="item.text" :link="item.link" />
+          <NavScreenMenuGroupLink
+            :text="item.text"
+            :link="item.link"
+            :icon="item.icon"
+          />
         </div>
 
         <div v-else class="group">
-          <NavScreenMenuGroupSection :text="item.text" :items="item.items" />
+          <NavScreenMenuGroupSection
+            :text="item.text"
+            :items="item.items"
+            :icon="item.icon"
+          />
         </div>
       </template>
     </div>

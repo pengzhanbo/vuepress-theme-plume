@@ -13,6 +13,7 @@ const theme = useThemeLocaleData()
         v-if="'link' in item"
         :text="item.text"
         :link="item.link"
+        :icon="item.icon"
       />
       <NavScreenMenuGroup v-else :text="item.text || ''" :items="item.items" />
     </template>

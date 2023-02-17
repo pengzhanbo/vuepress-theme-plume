@@ -28,18 +28,34 @@ export default defineUserConfig({
     social: [{ icon: 'github', link: 'https://github.com/pengzhanbo' }],
     notes,
     navbar: [
-      { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
+      { text: 'Home', link: '/', icon: 'material-symbols:home-outline' },
+      {
+        text: 'Blog',
+        link: '/blog/',
+        icon: 'material-symbols:article-outline',
+      },
       {
         text: 'VuePress',
+        icon: 'vscode-icons:file-type-vue',
         items: [
-          { text: 'theme-plume', link: '/note/vuepress-theme-plume/' },
+          {
+            text: 'theme-plume',
+            link: '/note/vuepress-theme-plume/',
+            icon: 'icon-park-outline:theme',
+          },
           {
             text: 'Plugin',
+            icon: 'mingcute:plugin-2-line',
             items: [
-              { text: 'caniuse', link: '/note/vuepress-plugin/caniuse/' },
+              {
+                text: 'caniuse',
+                link: '/note/vuepress-plugin/caniuse/',
+                icon: 'tabler:brand-css3',
+              },
               {
                 text: 'netlify-functions',
                 link: '/note/vuepress-plugin/netlify-functions/',
+                icon: 'teenyicons:netlify-outline',
               },
             ],
           },

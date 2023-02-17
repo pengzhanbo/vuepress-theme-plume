@@ -3,13 +3,17 @@ import MenuLink from './MenuLink.vue'
 
 defineProps<{
   text?: string
+  icon?: string
   items: any[]
 }>()
 </script>
 
 <template>
   <div class="menu-group">
-    <p v-if="text" class="title">{{ text }}</p>
+    <p v-if="text" class="title">
+      <Icon v-if="icon" :name="icon" />
+      {{ text }}
+    </p>
 
     <template v-for="item in items">
       <MenuLink v-if="'link' in item" :key="item?.link" :item="item" />

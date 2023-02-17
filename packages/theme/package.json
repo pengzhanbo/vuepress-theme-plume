@@ -49,6 +49,7 @@
     "@vuepress-plume/vuepress-plugin-blog-data": "workspace:*",
     "@vuepress-plume/vuepress-plugin-caniuse": "workspace:*",
     "@vuepress-plume/vuepress-plugin-copy-code": "workspace:*",
+    "@vuepress-plume/vuepress-plugin-iconify": "workspace:*",
     "@vuepress-plume/vuepress-plugin-notes-data": "workspace:*",
     "@vuepress/client": "2.0.0-beta.60",
     "@vuepress/core": "2.0.0-beta.60",

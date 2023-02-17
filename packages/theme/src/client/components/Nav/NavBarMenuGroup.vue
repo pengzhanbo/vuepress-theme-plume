@@ -19,5 +19,6 @@ const page = usePageData()
     }"
     :button="item.text"
     :items="item.items"
+    :prefix-icon="item.icon"
   />
 </template>

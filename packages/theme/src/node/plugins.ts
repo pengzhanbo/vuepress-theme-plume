@@ -3,6 +3,7 @@ import { baiduTongjiPlugin } from '@vuepress-plume/vuepress-plugin-baidu-tongji'
 import { blogDataPlugin } from '@vuepress-plume/vuepress-plugin-blog-data'
 import { caniusePlugin } from '@vuepress-plume/vuepress-plugin-caniuse'
 import { copyCodePlugin } from '@vuepress-plume/vuepress-plugin-copy-code'
+import { iconifyPlugin } from '@vuepress-plume/vuepress-plugin-iconify'
 import { notesDataPlugin } from '@vuepress-plume/vuepress-plugin-notes-data'
 import type { App, PluginConfig } from '@vuepress/core'
 import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links'
@@ -74,7 +75,11 @@ export const setupPlugins = (
         }
       },
     }),
+
     localeOptions.notes ? notesDataPlugin(localeOptions.notes) : [],
+
+    iconifyPlugin(),
+
     activeHeaderLinksPlugin({
       headerLinkSelector: 'a.outline-link',
       headerAnchorSelector: '.header-anchor',

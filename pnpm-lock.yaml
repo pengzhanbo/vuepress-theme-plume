@@ -295,6 +295,7 @@ importers:
       '@vuepress-plume/vuepress-plugin-blog-data': workspace:*
       '@vuepress-plume/vuepress-plugin-caniuse': workspace:*
       '@vuepress-plume/vuepress-plugin-copy-code': workspace:*
+      '@vuepress-plume/vuepress-plugin-iconify': workspace:*
       '@vuepress-plume/vuepress-plugin-notes-data': workspace:*
       '@vuepress/client': 2.0.0-beta.60
       '@vuepress/core': 2.0.0-beta.60
@@ -333,6 +334,7 @@ importers:
       '@vuepress-plume/vuepress-plugin-blog-data': link:../plugin-blog-data
       '@vuepress-plume/vuepress-plugin-caniuse': link:../plugin-caniuse
       '@vuepress-plume/vuepress-plugin-copy-code': link:../plugin-copy-code
+      '@vuepress-plume/vuepress-plugin-iconify': link:../plugin-iconify
       '@vuepress-plume/vuepress-plugin-notes-data': link:../plugin-notes-data
       '@vuepress/client': 2.0.0-beta.60
       '@vuepress/core': 2.0.0-beta.60

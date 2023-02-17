@@ -1,3 +1,12 @@
+# [1.0.0-beta.57](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.56...v1.0.0-beta.57) (2023-02-17)
+
+
+### Features
+
+* **theme:** home media style ([5e55b53](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5e55b53e043e28d6efa3ce118b6f62b0ab0f4930))
+
+
+
 # [1.0.0-beta.56](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.55...v1.0.0-beta.56) (2023-02-16)
 
 

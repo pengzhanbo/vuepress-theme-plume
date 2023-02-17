@@ -3,7 +3,7 @@ home: true
 banner: /images/bg-home.jpg
 hero: 
   name: 鹏展博
-  profession: 前端开发工程师
+  tagline: 前端开发工程师
   text: 简单介绍专业技能信息相关的描述
   actions: 
     - 

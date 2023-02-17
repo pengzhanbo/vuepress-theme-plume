@@ -71,26 +71,8 @@ const actions = computed(() => {
   padding: 0 2rem;
 }
 
-@media (min-width: 960px) {
-  .plume-home .container {
-    max-width: 768px;
-    padding-top: 8rem;
-  }
-}
-
-@media (min-width: 1440px) {
-  .plume-home .container {
-    max-width: 1104px;
-    padding-top: 8rem;
-  }
-
-  .plume-home .content .hero-tagline {
-    font-size: 32px;
-  }
-}
-
 .plume-home .content .hero-name {
-  font-size: 100px;
+  font-size: 72px;
   font-weight: 600;
   line-height: 1;
   color: var(--vp-c-text-hero-name);
@@ -123,6 +105,27 @@ const actions = computed(() => {
   /* padding: 6px 20px; */
   border-radius: 5px;
   /* background-color: rgba(0, 0, 0, 0.25); */
+}
+
+@media (min-width: 960px) {
+  .plume-home .container {
+    max-width: 768px;
+    padding-top: 8rem;
+  }
+  .plume-home .content .hero-name {
+    font-size: 100px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .plume-home .container {
+    max-width: 1104px;
+    padding-top: 8rem;
+  }
+
+  .plume-home .content .hero-tagline {
+    font-size: 32px;
+  }
 }
 
 .actions {

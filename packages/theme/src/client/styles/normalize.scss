@@ -30,6 +30,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: color var(--t-color) ease, background-color var(--t-color) ease;
 }
 
 main {

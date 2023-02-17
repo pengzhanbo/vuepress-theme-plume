@@ -20,6 +20,8 @@ const theme = useThemeLocaleData()
   border-radius: 8px;
   padding: 12px 14px 12px 16px;
   background-color: var(--vp-c-bg-soft);
+  transition: var(--t-color);
+  transition-property: background-color;
 }
 
 .text {

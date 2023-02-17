@@ -109,6 +109,8 @@
   --search-input-width: 8rem;
   --search-result-width: 20rem;
   --search-border-color: var(--vp-c-divider);
+
+  --c-brand: var(--vp-c-brand);
 }
 
 .dark {
@@ -413,7 +415,7 @@
 }
 
 :root {
-  --t-color: 0.25s;
+  --t-color: 0.25s ease;
   --code-tabs-nav-bg-color: var(--vp-code-tab-b);
   --code-bg-color: var(--vp-code-block-bg);
 }

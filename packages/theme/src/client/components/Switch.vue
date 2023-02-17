@@ -18,7 +18,7 @@
   flex-shrink: 0;
   border: 1px solid var(--vp-input-border-color);
   background-color: var(--vp-input-switch-bg-color);
-  transition: border-color 0.25s;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
 .switch-wrapper:hover {

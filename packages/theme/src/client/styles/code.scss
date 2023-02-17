@@ -279,3 +279,7 @@ div[class*='language-'] {
     margin-bottom: -0.85rem;
   }
 }
+
+.hint-container.info pre code {
+  background-color: transparent;
+}

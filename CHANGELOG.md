@@ -1,3 +1,12 @@
+# [1.0.0-beta.59](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.58...v1.0.0-beta.59) (2023-02-17)
+
+
+### Bug Fixes
+
+* **plugin-iconify:** offline import fail ([2c31361](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2c3136146a81395e528ca7257e9e7fdadeeeb96b))
+
+
+
 # [1.0.0-beta.58](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.57...v1.0.0-beta.58) (2023-02-17)
 
 

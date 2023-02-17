@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Icon as OfflineIcon } from '@iconify/vue/dist/offline.js'
+import { Icon as OfflineIcon } from '@iconify/vue/offline'
 import type { CSSProperties } from 'vue'
 import { computed, toRefs } from 'vue'
 import { useIconify } from '../composables/iconify.js'

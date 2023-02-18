@@ -15,7 +15,12 @@ const theme = useThemeLocaleData()
         :link="item.link"
         :icon="item.icon"
       />
-      <NavScreenMenuGroup v-else :text="item.text || ''" :items="item.items" />
+      <NavScreenMenuGroup
+        v-else
+        :text="item.text || ''"
+        :items="item.items"
+        :icon="item.icon"
+      />
     </template>
   </nav>
 </template>

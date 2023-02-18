@@ -7,7 +7,7 @@ const iconCache: Ref<Record<string, IconifyIcon>> = ref({})
 
 export const useIconify = (name: ComputedRef<string> | Ref<string>) => {
   const icon = computed(() => iconCache.value[name.value])
-  const loaded = ref(false)
+  const loaded = ref(true)
 
   async function loadIconComponent() {
     if (icon.value) {

@@ -87,7 +87,7 @@ export default function (
             if (permalink) return permalink
             const note = findNote(filepath)
             const dirname = getCurrentDirname(note, filepath)
-            return path.join(notesLink, note?.link || dirname, nanoid())
+            return path.join(notesLink, note?.link || dirname, nanoid(), '/')
           },
         },
       },
@@ -99,13 +99,14 @@ export default function (
         include: '*',
         formatter: {
           ...baseFormatter,
-          title(title: string) {
+          title(title: string, _, { filepath }) {
             if (title) return title
-            return title
+            const basename = path.basename(filepath, '.md')
+            return basename
           },
           permalink(permalink: string) {
             if (permalink) return permalink
-            return path.join(articlePrefix, nanoid())
+            return path.join(articlePrefix, nanoid(), '/')
           },
         },
       },

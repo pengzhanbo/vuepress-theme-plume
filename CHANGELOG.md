@@ -1,3 +1,7 @@
+# [1.0.0-beta.60](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.59...v1.0.0-beta.60) (2023-02-18)
+
+
+
 # [1.0.0-beta.59](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.58...v1.0.0-beta.59) (2023-02-17)
 
 

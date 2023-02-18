@@ -60,13 +60,13 @@ export default function (
         // note 首页链接
         include: path.join(notesDir, `**/{readme,README,index}.md`),
         formatter: {
-          ...baseFormatter,
           title(title: string, _, { filepath }) {
             if (title) return title
             const note = findNote(filepath)
             if (note?.text) return note.text
             return getCurrentDirname(note, filepath) || ''
           },
+          ...baseFormatter,
           permalink(permalink: string, _, { filepath }) {
             if (permalink) return permalink
             const note = findNote(filepath)
@@ -83,6 +83,7 @@ export default function (
             const basename = path.basename(filepath, '.md')
             return basename
           },
+          ...baseFormatter,
           permalink(permalink: string, _, { filepath }) {
             if (permalink) return permalink
             const note = findNote(filepath)
@@ -98,12 +99,12 @@ export default function (
       {
         include: '*',
         formatter: {
-          ...baseFormatter,
           title(title: string, _, { filepath }) {
             if (title) return title
             const basename = path.basename(filepath, '.md')
             return basename
           },
+          ...baseFormatter,
           permalink(permalink: string) {
             if (permalink) return permalink
             return path.join(articlePrefix, nanoid(), '/')

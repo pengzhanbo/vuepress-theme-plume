@@ -1,3 +1,13 @@
+# [1.0.0-beta.62](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.61...v1.0.0-beta.62) (2023-02-20)
+
+
+### Bug Fixes
+
+* **theme:** 补充 auto frontmatter 缺失字段 ([2a76f26](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2a76f26f94d7b78099f87207ce0056cec185414a))
+* **theme:** 修复颜色模式按钮动画效果 ([b29a93e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b29a93eae1b235cd193bad9b6f59bcc8f85b342d))
+
+
+
 # [1.0.0-beta.61](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.60...v1.0.0-beta.61) (2023-02-18)
 
 

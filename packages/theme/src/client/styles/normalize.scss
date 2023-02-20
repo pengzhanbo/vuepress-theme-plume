@@ -30,7 +30,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: color var(--t-color) ease, background-color var(--t-color) ease;
+  transition: all 0.25s;
 }
 
 main {
@@ -179,16 +179,19 @@ input {
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
   color: var(--vp-c-text-3);
+  transition: color var(--t-color);
 }
 
 input::-ms-input-placeholder,
 textarea::-ms-input-placeholder {
   color: var(--vp-c-text-3);
+  transition: color var(--t-color);
 }
 
 input::placeholder,
 textarea::placeholder {
   color: var(--vp-c-text-3);
+  transition: color var(--t-color);
 }
 
 input::-webkit-outer-spin-button,

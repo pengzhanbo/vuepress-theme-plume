@@ -415,7 +415,8 @@
 }
 
 :root {
-  --t-color: 0.25s ease;
+  --t-color: 0.25s;
   --code-tabs-nav-bg-color: var(--vp-code-tab-b);
   --code-bg-color: var(--vp-code-block-bg);
+  --medium-zoom-bg-color: var(--vp-c-bg);
 }

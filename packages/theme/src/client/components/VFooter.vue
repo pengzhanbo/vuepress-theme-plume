@@ -34,6 +34,7 @@ const { hasSidebar } = useSidebar()
   border-top: 1px solid var(--vp-c-gutter);
   padding: 32px 24px;
   background-color: var(--vp-c-bg);
+  transition: all 0.25s;
 }
 
 .plume-footer.has-sidebar {

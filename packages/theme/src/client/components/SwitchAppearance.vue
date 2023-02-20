@@ -55,7 +55,7 @@ function useAppearance() {
     css.type = 'text/css'
     css.appendChild(
       document.createTextNode(
-        `:not(.VPSwitchAppearance):not(.VPSwitchAppearance *) {
+        `:not(.switch-appearance):not(.switch-appearance *) {
   -webkit-transition: none !important;
   -moz-transition: none !important;
   -o-transition: none !important;

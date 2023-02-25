@@ -48,7 +48,7 @@ export const autoFrontmatterPlugin = ({
     const { data, content } = grayMatter(file.content)
 
     for (const key in formatter) {
-      const value = await formatMarkdown[key](data[key], file, data)
+      const value = await formatter[key](data[key], file, data)
       data[key] = value ?? data[key]
     }
 

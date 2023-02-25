@@ -1,3 +1,12 @@
+# [1.0.0-beta.63](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.62...v1.0.0-beta.63) (2023-02-25)
+
+
+### Performance Improvements
+
+* optimize auto-frontmatter ([dab3f46](https://github.com/pengzhanbo/vuepress-theme-plume/commit/dab3f462575e5de987ea8da902c51bd9b9505fe2))
+
+
+
 # [1.0.0-beta.62](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.61...v1.0.0-beta.62) (2023-02-20)
 
 

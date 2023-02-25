@@ -1,21 +1,24 @@
+import type fs from 'node:fs'
 export interface MarkdownFile {
   filepath: string
   relativePath: string
   content: string
   createTime: Date
+  stats: fs.Stats
 }
 
-export interface FormatterFn<T = any, K = object> {
-  (value: T, data: K, file: MarkdownFile): T
-}
+export type FormatterFn<T = any, K = object> = (
+  value: T,
+  file: MarkdownFile,
+  data: K
+) => T | PromiseLike<T>
 
-export type FormatterObject<K = object, T = any> = Record<
-  string,
-  FormatterFn<T, K>
->
+export type FormatterObject<K = object, T = any> = {
+  [P: string]: FormatterFn<T, K>
+}
 
 export type FormatterArray = {
-  include: string
+  include: string | string[]
   formatter: FormatterObject
 }[]
 
@@ -29,10 +32,10 @@ export interface AutoFrontmatterOptions {
 
   /**
    * {
-   *    key(value, data, file) {
+   *    key(value, file, data) {
    *      return value
    *    }
    * }
    */
-  formatter?: FormatterObject | FormatterArray
+  formatter?: FormatterArray | FormatterObject
 }

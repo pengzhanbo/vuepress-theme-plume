@@ -24,14 +24,16 @@ export const readMarkdown = (
   relativePath: string
 ): MarkdownFile => {
   const filepath = path.join(sourceDir, relativePath)
+  const stats = fs.statSync(filepath)
   return {
     filepath,
     relativePath,
     content: fs.readFileSync(filepath, 'utf-8'),
-    createTime: getFileCreateTime(fs.statSync(filepath)),
+    createTime: getFileCreateTime(stats),
+    stats,
   }
 }
 
-export const getFileCreateTime = (stat: fs.Stats): Date => {
-  return stat.birthtime.getFullYear() !== 1970 ? stat.birthtime : stat.atime
+export const getFileCreateTime = (stats: fs.Stats): Date => {
+  return stats.birthtime.getFullYear() !== 1970 ? stats.birthtime : stats.atime
 }

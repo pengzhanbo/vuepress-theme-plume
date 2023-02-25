@@ -1,6 +1,9 @@
 import { createRequire } from 'node:module'
 import path from 'node:path'
-import type { AutoFrontmatterOptions } from '@vuepress-plume/vuepress-plugin-auto-frontmatter'
+import type {
+  AutoFrontmatterOptions,
+  FormatterArray,
+} from '@vuepress-plume/vuepress-plugin-auto-frontmatter'
 import type {
   NotesDataOptions,
   NotesItem,
@@ -60,14 +63,14 @@ export default function (
         // note 首页链接
         include: path.join(notesDir, `**/{readme,README,index}.md`),
         formatter: {
-          title(title: string, _, { filepath }) {
+          title(title: string, { filepath }) {
             if (title) return title
             const note = findNote(filepath)
             if (note?.text) return note.text
             return getCurrentDirname(note, filepath) || ''
           },
           ...baseFormatter,
-          permalink(permalink: string, _, { filepath }) {
+          permalink(permalink: string, { filepath }) {
             if (permalink) return permalink
             const note = findNote(filepath)
             const dirname = getCurrentDirname(note, filepath)
@@ -78,13 +81,13 @@ export default function (
       {
         include: path.join(notesDir, '**/*.md'),
         formatter: {
-          title(title: string, _, { filepath }) {
+          title(title: string, { filepath }) {
             if (title) return title
             const basename = path.basename(filepath, '.md')
             return basename
           },
           ...baseFormatter,
-          permalink(permalink: string, _, { filepath }) {
+          permalink(permalink: string, { filepath }) {
             if (permalink) return permalink
             const note = findNote(filepath)
             const dirname = getCurrentDirname(note, filepath)
@@ -99,7 +102,7 @@ export default function (
       {
         include: '*',
         formatter: {
-          title(title: string, _, { filepath }) {
+          title(title: string, { filepath }) {
             if (title) return title
             const basename = path.basename(filepath, '.md')
             return basename
@@ -111,6 +114,6 @@ export default function (
           },
         },
       },
-    ],
+    ] as FormatterArray,
   }
 }

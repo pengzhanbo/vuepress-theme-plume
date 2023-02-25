@@ -15,7 +15,7 @@ export default {
   plugins: [
     autoFrontmatterPlugin({
       formatter: {
-        createTime(formatTime, matter, file) {
+        createTime(formatTime, file, matter) {
           if (formatTime) return formatTime
           return file.createTime
         }
@@ -48,10 +48,11 @@ export default {
     relativePath: string
     content: string
     createTime: Date
+    stats: fs.Stats
   }
 
   interface FormatterFn<T = any, K = object> {
-    (value: T, data: K, file: MarkdownFile): T
+    (value: T, file: MarkdownFile, data: K): T
   }
 
   type FormatterObject<K = object, T = any> = Record<
@@ -60,7 +61,7 @@ export default {
   >
 
   type FormatterArray = {
-    include: string
+    include: string | string[]
     formatter: FormatterObject
   }[]
 
@@ -75,7 +76,7 @@ export default {
    * ---
    */
   const formatterObj: Formatter  = {
-    createTime(formatTime, matter, file) {
+    createTime(formatTime, file, matter) {
       if (formatTime) return formatTime
       return file.createTime
     }
@@ -87,7 +88,7 @@ export default {
       include: '**/{README,index}.md',
       // formatter 仅对 glob命中的文件有效
       formatter: {
-        home(value, matter, file) {
+        home(value, file, matter) {
           return value
         }
       },

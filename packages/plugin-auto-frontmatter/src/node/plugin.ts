@@ -40,26 +40,26 @@ export const autoFrontmatterPlugin = ({
       }
     })
 
-  function formatMarkdown(file: MarkdownFile): void {
+  async function formatMarkdown(file: MarkdownFile): Promise<void> {
     const { filepath, relativePath } = file
 
     const current = otherFormatters.find(({ filter }) => filter(relativePath))
     const formatter = current?.formatter || globFormatter
     const { data, content } = grayMatter(file.content)
 
-    Object.keys(formatter).forEach((key) => {
-      const value = formatter[key](data[key], data, file)
+    for (const key in formatter) {
+      const value = await formatMarkdown[key](data[key], file, data)
       data[key] = value ?? data[key]
-    })
+    }
 
     try {
       const yaml = isEmptyObject(data)
-        ? '---\n'
+        ? ''
         : jsonToYaml
             .stringify(data)
             .replace(/\n\s{2}/g, '\n')
             .replace(/"/g, '')
-      const newContent = `${yaml}---\n${content}`
+      const newContent = yaml ? `${yaml}---\n${content}` : content
 
       fs.writeFileSync(filepath, newContent, 'utf-8')
     } catch (e) {
@@ -71,7 +71,9 @@ export const autoFrontmatterPlugin = ({
     name: '@vuepress-plume/vuepress-plugin-auto-frontmatter',
     onInitialized: async (app) => {
       const markdownList = await readMarkdownList(app.dir.source(), globFilter)
-      markdownList.forEach((file) => formatMarkdown(file))
+      for (const file of markdownList) {
+        await formatMarkdown(file)
+      }
     },
     onWatched: async (app, watchers) => {
       const watcher = chokidar.watch('**/*.md', {
@@ -80,9 +82,9 @@ export const autoFrontmatterPlugin = ({
         ignored: /(node_modules|\.vuepress)\//,
       })
 
-      watcher.on('add', (relativePath) => {
+      watcher.on('add', async (relativePath) => {
         if (!globFilter(relativePath)) return
-        formatMarkdown(readMarkdown(app.dir.source(), relativePath))
+        await formatMarkdown(readMarkdown(app.dir.source(), relativePath))
       })
 
       watchers.push(watcher)

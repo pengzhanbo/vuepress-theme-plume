@@ -1,3 +1,12 @@
+# [1.0.0-beta.64](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.63...v1.0.0-beta.64) (2023-02-25)
+
+
+### Bug Fixes
+
+* **plugin-auto-frontmatter:** modified formatter ([3d31767](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3d31767dc0b6b64d50efa9adea29b63bf8d25815))
+
+
+
 # [1.0.0-beta.63](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.62...v1.0.0-beta.63) (2023-02-25)
 
 

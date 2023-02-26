@@ -1,3 +1,12 @@
+# [1.0.0-beta.65](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.64...v1.0.0-beta.65) (2023-02-26)
+
+
+### Bug Fixes
+
+* **theme:** fixed auto frontmatter `createTime` ([f573b62](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f573b626339babedb7afa37af747397d18313d3a))
+
+
+
 # [1.0.0-beta.64](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.63...v1.0.0-beta.64) (2023-02-25)
 
 

@@ -37,7 +37,7 @@ export default function (
       if (author) return author
       return localeOption.avatar?.name || pkg.author || ''
     },
-    createTime(formatTime: string, _: any, { createTime }) {
+    createTime(formatTime: string, { createTime }) {
       if (formatTime) return formatTime
       return format(new Date(createTime), 'yyyy/MM/dd hh:mm:ss')
     },

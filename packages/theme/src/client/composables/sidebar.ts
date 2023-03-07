@@ -38,7 +38,8 @@ export function useSidebar() {
     return (
       !frontmatter.value.home &&
       !page.value.isBlogPost &&
-      sidebar.value.length > 0
+      sidebar.value.length > 0 &&
+      frontmatter.value.sidebar !== false
     )
   })
 

@@ -6,9 +6,9 @@
 
 // 通过引入 '@vuepress-plume/vuepress-plugin-netlify-functions' 插件，来为本插件提供
 // netlify functions 开发时支持
-import { useNetlifyFunctionsPlugin } from '@vuepress-plume/vuepress-plugin-netlify-functions'
 import type { App, Plugin } from '@vuepress/core'
 import { getDirname, path } from '@vuepress/utils'
+import { useNetlifyFunctionsPlugin } from '@vuepress-plume/vuepress-plugin-netlify-functions'
 import type { PageCollectionOptions } from '../shared/index.js'
 
 const __dirname = getDirname(import.meta.url)

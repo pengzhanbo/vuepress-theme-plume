@@ -1,9 +1,9 @@
-import type { BaiduTongjiOptions } from '@vuepress-plume/vuepress-plugin-baidu-tongji'
-import type { CanIUsePluginOptions } from '@vuepress-plume/vuepress-plugin-caniuse'
-import type { CopyCodeOptions } from '@vuepress-plume/vuepress-plugin-copy-code'
 import type { DocsearchOptions } from '@vuepress/plugin-docsearch'
 import type { SearchPluginOptions } from '@vuepress/plugin-search'
 import type { ShikiPluginOptions } from '@vuepress/plugin-shiki'
+import type { BaiduTongjiOptions } from '@vuepress-plume/vuepress-plugin-baidu-tongji'
+import type { CanIUsePluginOptions } from '@vuepress-plume/vuepress-plugin-caniuse'
+import type { CopyCodeOptions } from '@vuepress-plume/vuepress-plugin-copy-code'
 import type { CommentOptions } from 'vuepress-plugin-comment2'
 import type { MarkdownEnhanceOptions } from 'vuepress-plugin-md-enhance'
 

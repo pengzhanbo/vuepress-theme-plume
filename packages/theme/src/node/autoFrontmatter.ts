@@ -1,5 +1,6 @@
 import { createRequire } from 'node:module'
 import path from 'node:path'
+import type { App } from '@vuepress/core'
 import type {
   AutoFrontmatterOptions,
   FormatterArray,
@@ -8,7 +9,6 @@ import type {
   NotesDataOptions,
   NotesItem,
 } from '@vuepress-plume/vuepress-plugin-notes-data'
-import type { App } from '@vuepress/core'
 import { format } from 'date-fns'
 import { customAlphabet } from 'nanoid'
 import type { PlumeThemeLocaleOptions } from '../shared/index.js'

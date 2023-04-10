@@ -1,7 +1,7 @@
 import type { Plugin, PluginObject } from '@vuepress/core'
 import { getDirname, path } from '@vuepress/utils'
-import container from 'markdown-it-container'
 import type Token from 'markdown-it/lib/token.js'
+import container from 'markdown-it-container'
 import type { CanIUseMode, CanIUsePluginOptions } from '../shared/index.js'
 import { resolveCanIUse } from './resolveCanIUse.js'
 

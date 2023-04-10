@@ -1,5 +1,5 @@
-import type { NotesDataOptions } from '@vuepress-plume/vuepress-plugin-notes-data'
 import type { LocaleData } from '@vuepress/core'
+import type { NotesDataOptions } from '@vuepress-plume/vuepress-plugin-notes-data'
 import type { NavItem } from './navbar.js'
 // import type { NavbarConfig, NavLink } from '../layout/index.js'
 // import type { PlumeThemeNotesOptions } from './notes.js'

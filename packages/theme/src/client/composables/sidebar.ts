@@ -1,10 +1,10 @@
+import type { PageData } from '@vuepress/client'
+import { usePageData, usePageFrontmatter, withBase } from '@vuepress/client'
 import type {
   NotesData,
   NotesSidebarItem,
 } from '@vuepress-plume/vuepress-plugin-notes-data'
 import { useNotesData } from '@vuepress-plume/vuepress-plugin-notes-data/client'
-import type { PageData } from '@vuepress/client'
-import { usePageData, usePageFrontmatter, withBase } from '@vuepress/client'
 import { useMediaQuery } from '@vueuse/core'
 import type { ComputedRef, Ref } from 'vue'
 import { computed, onMounted, onUnmounted, ref, watchEffect } from 'vue'

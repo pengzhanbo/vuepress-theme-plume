@@ -129,6 +129,7 @@ pre[class*='language-'] {
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--c-brand) var(--c-border);
+    font-size: 14px;
 
     &::-webkit-scrollbar {
       width: 7px;

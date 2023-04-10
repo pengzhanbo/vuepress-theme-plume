@@ -69,7 +69,7 @@ function useAppearance() {
     checked.value = dark
     classList[dark ? 'add' : 'remove']('dark')
 
-    // eslint-disable-next-line @typescript-eslint/naming-convention
+    // eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-unused-vars
     const _ = window.getComputedStyle(css).opacity
     document.head.removeChild(css)
   }

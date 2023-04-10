@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useSiteLocaleData, withBase } from '@vuepress/client'
-import { onMounted, ref } from 'vue'
+import { withBase } from '@vuepress/client'
+import { ref } from 'vue'
 
-const site = useSiteLocaleData()
+// const site = useSiteLocaleData()
 
 const root = ref('/')
 // onMounted(() => {

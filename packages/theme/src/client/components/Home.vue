@@ -2,11 +2,11 @@
 import { usePageFrontmatter, withBase } from '@vuepress/client'
 import { computed } from 'vue'
 import type { PlumeThemeHomeFrontmatter } from '../../shared/index.js'
-import { useThemeLocaleData } from '../composables/index.js'
+// import { useThemeLocaleData } from '../composables/index.js'
 import VButton from './VButton.vue'
 
 const matter = usePageFrontmatter<PlumeThemeHomeFrontmatter>()
-const theme = useThemeLocaleData()
+// const theme = useThemeLocaleData()
 
 const homeStyle = computed(() => {
   return {

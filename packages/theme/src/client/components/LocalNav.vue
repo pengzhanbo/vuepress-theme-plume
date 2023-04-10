@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useSidebar, useThemeLocaleData } from '../composables/index.js'
+import { useSidebar } from '../composables/index.js'
 import IconAlignLeft from './icons/IconAlignLeft.vue'
 
 defineProps<{
@@ -10,7 +10,6 @@ defineEmits<{
   (e: 'open-menu'): void
 }>()
 
-const theme = useThemeLocaleData()
 const { hasSidebar } = useSidebar()
 
 function scrollToTop() {

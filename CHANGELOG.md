@@ -1,3 +1,12 @@
+# [1.0.0-beta.66](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.65...v1.0.0-beta.66) (2023-04-10)
+
+
+### Performance Improvements
+
+* **theme:** sidebar hooks ([ed16109](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ed1610916b884aa8a44fd78ce0a6454b9d29a231))
+
+
+
 # [1.0.0-beta.65](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.64...v1.0.0-beta.65) (2023-02-26)
 
 

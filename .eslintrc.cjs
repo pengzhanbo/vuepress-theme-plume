@@ -3,6 +3,7 @@ module.exports = {
   extends: 'vuepress',
   globals: {
     __VUEPRESS_VERSION__: 'readonly',
+    __VUEPRESS_BASE__: 'readonly',
     __VUEPRESS_DEV__: 'readonly',
     __VUEPRESS_SSR__: 'readonly',
     __VUE_HMR_RUNTIME__: 'readonly',
@@ -11,16 +12,15 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.ts', '*.vue'],
+      files: ['*.ts', '*.vue', '*.cts'],
       extends: 'vuepress-typescript',
       parserOptions: {
         project: ['tsconfig.json'],
       },
       rules: {
-        '@typescript-eslint/ban-ts-comment': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
-        '@typescript-eslint/no-var-requires': 'off',
+        'vue/multi-word-component-names': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         'vue/component-tags-order': [
           'error',
@@ -28,22 +28,10 @@ module.exports = {
             order: ['script', 'template', 'style'],
           },
         ],
-        'vue/multi-word-component-names': 'off',
       },
     },
     {
-      files: ['*.vue'],
-      globals: {
-        defineEmits: 'readonly',
-        defineProps: 'readonly',
-      },
-      rules: {
-        // disable for setup script
-        '@typescript-eslint/no-unused-vars': 'off',
-      },
-    },
-    {
-      files: ['clientConfig.ts'],
+      files: ['**/client/config.ts'],
       rules: {
         'vue/match-component-file-name': 'off',
       },

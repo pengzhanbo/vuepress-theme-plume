@@ -15,7 +15,7 @@ import SkipLink from '../components/SkipLink.vue'
 import VFooter from '../components/VFooter.vue'
 import {
   useCloseSidebarOnEscape,
-  useScrollPromise,
+  // useScrollPromise,
   useSidebar,
 } from '../composables/index.js'
 
@@ -36,9 +36,9 @@ provide('close-sidebar', closeSidebar)
 provide('is-sidebar-open', isSidebarOpen)
 
 // handle scrollBehavior with transition
-const scrollPromise = useScrollPromise()
-const onBeforeEnter = scrollPromise.resolve
-const onBeforeLeave = scrollPromise.pending
+// const scrollPromise = useScrollPromise()
+// const onBeforeEnter = scrollPromise.resolve
+// const onBeforeLeave = scrollPromise.pending
 </script>
 <template>
   <div class="theme-plume">

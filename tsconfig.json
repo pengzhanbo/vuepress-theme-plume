@@ -1,8 +1,7 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "./",
-    "module": "ES2020",
+    "baseUrl": ".",
     "jsx": "preserve",
     "paths": {
       "@theme-plume/*": ["./packages/theme/src/client/components/*"],

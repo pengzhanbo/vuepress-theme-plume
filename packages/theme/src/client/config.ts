@@ -1,14 +1,14 @@
 import { defineClientConfig } from '@vuepress/client'
 import { h } from 'vue'
 import Badge from './components/global/Badge.vue'
-import { setupDarkMode } from './composables/index.js'
+import { setupDarkMode, useScrollPromise } from './composables/index.js'
 import Layout from './layouts/Layout.vue'
 import NotFound from './layouts/NotFound.vue'
 
 import './styles/index.scss'
 
 export default defineClientConfig({
-  enhance({ app }) {
+  enhance({ app, router }) {
     // global component
     // eslint-disable-next-line vue/match-component-file-name
     app.component('Badge', Badge)
@@ -40,6 +40,13 @@ export default defineClientConfig({
       }
       return null
     })
+
+    // handle scrollBehavior with transition
+    const scrollBehavior = router.options.scrollBehavior!
+    router.options.scrollBehavior = async (...args) => {
+      await useScrollPromise().wait()
+      return scrollBehavior(...args)
+    }
   },
   setup() {
     setupDarkMode()

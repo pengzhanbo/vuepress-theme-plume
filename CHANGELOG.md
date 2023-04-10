@@ -1,3 +1,12 @@
+# [1.0.0-beta.67](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.66...v1.0.0-beta.67) (2023-04-10)
+
+
+### Bug Fixes
+
+* nav 重复显示 ([3699b01](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3699b017992ad39b16b7eb36fa6b3cfcbd722287))
+
+
+
 # [1.0.0-beta.66](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.65...v1.0.0-beta.66) (2023-04-10)
 
 

@@ -29,10 +29,10 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "dependencies": {
-    "@vuepress/core": "2.0.0-beta.60",
-    "@vuepress/shared": "2.0.0-beta.60",
+    "@vuepress/core": "2.0.0-beta.61",
+    "@vuepress/shared": "2.0.0-beta.61",
     "chokidar": "^3.5.3",
-    "create-filter": "^1.0.0",
+    "create-filter": "^1.0.1",
     "fast-glob": "^3.2.12",
     "gray-matter": "^4.0.3",
     "json2yaml": "^1.1.0"

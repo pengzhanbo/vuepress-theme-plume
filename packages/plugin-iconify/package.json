@@ -30,11 +30,11 @@
     "ts:watch": "tsc -b tsconfig.build.json --watch"
   },
   "dependencies": {
-    "@iconify/vue": "^4.1.0",
-    "@vuepress/client": "2.0.0-beta.60",
-    "@vuepress/core": "2.0.0-beta.60",
-    "@vuepress/shared": "2.0.0-beta.60",
-    "@vuepress/utils": "2.0.0-beta.60",
+    "@iconify/vue": "^4.1.1",
+    "@vuepress/client": "2.0.0-beta.61",
+    "@vuepress/core": "2.0.0-beta.61",
+    "@vuepress/shared": "2.0.0-beta.61",
+    "@vuepress/utils": "2.0.0-beta.61",
     "vue": "^3.2.47"
   },
   "publishConfig": {

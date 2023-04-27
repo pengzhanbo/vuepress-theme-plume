@@ -68,7 +68,7 @@
     "@vuepress/plugin-toc": "2.0.0-beta.61",
     "@vuepress/shared": "2.0.0-beta.61",
     "@vuepress/utils": "2.0.0-beta.61",
-    "@vueuse/core": "^9.13.0",
+    "@vueuse/core": "^10.1.0",
     "body-scroll-lock": "4.0.0-beta.0",
     "date-fns": "^2.29.3",
     "lodash.merge": "^4.6.2",
@@ -76,10 +76,10 @@
     "ts-debounce": "^4.0.0",
     "vue": "^3.2.47",
     "vue-router": "4.1.6",
-    "vuepress-plugin-comment2": "2.0.0-beta.202",
-    "vuepress-plugin-md-enhance": "2.0.0-beta.202",
-    "vuepress-plugin-seo2": "2.0.0-beta.202",
-    "vuepress-plugin-sitemap2": "2.0.0-beta.202",
+    "vuepress-plugin-comment2": "2.0.0-beta.206",
+    "vuepress-plugin-md-enhance": "2.0.0-beta.206",
+    "vuepress-plugin-seo2": "2.0.0-beta.206",
+    "vuepress-plugin-sitemap2": "2.0.0-beta.206",
     "windicss": "^3.5.6"
   }
 }

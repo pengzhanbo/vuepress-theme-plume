@@ -25,7 +25,7 @@ const page = usePageData()
     :no-icon="true"
   >
     <Icon v-if="item.icon" :name="item.icon" />
-    {{ item.text }}
+    <i>{{ item.text }}</i>
   </AutoLink>
 </template>
 

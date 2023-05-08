@@ -12,7 +12,7 @@ defineProps<{
   <div class="menu-group">
     <p v-if="text" class="title">
       <Icon v-if="icon" :name="icon" />
-      {{ text }}
+      <span>{{ text }}</span>
     </p>
 
     <template v-for="item in items">

@@ -52,4 +52,9 @@ const linkTo = (e: Event) => {
   fill: var(--vp-c-text-3);
   transition: fill 0.25s;
 }
+
+.auto-link :deep(i) {
+  font-style: normal;
+  font-weight: inherit;
+}
 </style>

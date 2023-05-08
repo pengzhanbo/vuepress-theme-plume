@@ -48,11 +48,11 @@
     "dotenv": "^16.0.3",
     "esbuild": "^0.17.18",
     "execa": "^7.1.1",
-    "netlify-cli": "^14.3.1",
+    "netlify-cli": "^15.0.2",
     "portfinder": "^1.0.32"
   },
   "devDependencies": {
-    "@types/node": "^18.16.1"
+    "@types/node": "^18.16.5"
   },
   "publishConfig": {
     "access": "public"

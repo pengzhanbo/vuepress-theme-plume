@@ -4,7 +4,7 @@ import type { ShikiPluginOptions } from '@vuepress/plugin-shiki'
 import type { BaiduTongjiOptions } from '@vuepress-plume/vuepress-plugin-baidu-tongji'
 import type { CanIUsePluginOptions } from '@vuepress-plume/vuepress-plugin-caniuse'
 import type { CopyCodeOptions } from '@vuepress-plume/vuepress-plugin-copy-code'
-import type { CommentOptions } from 'vuepress-plugin-comment2'
+import type { CommentPluginOptions } from 'vuepress-plugin-comment2'
 import type { MarkdownEnhanceOptions } from 'vuepress-plugin-md-enhance'
 
 export interface PlumeThemePluginOptions {
@@ -42,7 +42,7 @@ export interface PlumeThemePluginOptions {
 
   markdownEnhance?: false | MarkdownEnhanceOptions
 
-  comment?: false | CommentOptions
+  comment?: false | CommentPluginOptions
 
   sitemap?: false
 

@@ -1,3 +1,12 @@
+# [1.0.0-beta.69](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.68...v1.0.0-beta.69) (2023-05-08)
+
+
+### Bug Fixes
+
+* nav link render ([fcb794e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fcb794e0571aab64ef660182a77e10043d7af28a))
+
+
+
 # [1.0.0-beta.68](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.67...v1.0.0-beta.68) (2023-04-27)
 
 

@@ -35,8 +35,7 @@ function filterVuePress(dependencies) {
   const vuepress = dependencies
     .filter(
       (dependence) =>
-        dependence.startsWith('@vuepress/') ||
-        dependence.startsWith('vuepress-')
+        dependence.startsWith('@vuepress/')
     )
     .map((dependence) => dependence + '@next')
   const includes = ['vue', 'vue-router']

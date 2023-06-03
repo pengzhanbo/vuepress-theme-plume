@@ -137,7 +137,7 @@ export const setupPlugins = (
     options.prismjs !== false && !isProd ? prismjsPlugin() : [],
     options.shiki !== false && isProd
       ? shikiPlugin({
-          theme: 'material-palenight',
+          theme: 'material-theme-palenight',
           ...options.shiki,
         })
       : [],

@@ -1,7 +1,7 @@
 import { inject, provide, ref } from 'vue'
-import type { InjectionKey, WritableComputedRef } from 'vue'
+import type { InjectionKey, Ref } from 'vue'
 
-export type DarkModeRef = WritableComputedRef<boolean>
+export type DarkModeRef = Ref<boolean>
 
 export const darkModeSymbol: InjectionKey<DarkModeRef> = Symbol(
   __VUEPRESS_DEV__ ? 'darkMode' : ''

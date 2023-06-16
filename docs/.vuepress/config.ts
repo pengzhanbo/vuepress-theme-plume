@@ -3,7 +3,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { webpackBundler } from '@vuepress/bundler-webpack'
 import { defineUserConfig } from '@vuepress/cli'
 import themePlume from '@vuepress-plume/vuepress-theme-plume'
-import notes from './notes.js'
+import { enNotes, zhNotes } from './notes.js'
 
 export default defineUserConfig({
   base: '/',
@@ -12,6 +12,18 @@ export default defineUserConfig({
   description: '',
   source: path.resolve(__dirname, '../'),
   public: path.resolve(__dirname, 'public'),
+  locales: {
+    '/': {
+      title: 'Plume主题',
+      description: '',
+      lang: 'zh',
+    },
+    '/en/': {
+      title: 'Plume Theme',
+      description: '',
+      lang: 'en',
+    },
+  },
 
   bundler:
     process.env.DOCS_BUNDLER === 'webpack' ? webpackBundler() : viteBundler(),
@@ -26,11 +38,11 @@ export default defineUserConfig({
       description: 'The Theme for Vuepress 2.0',
     },
     social: [{ icon: 'github', link: 'https://github.com/pengzhanbo' }],
-    notes,
+    notes: zhNotes,
     navbar: [
-      { text: 'Home', link: '/', icon: 'material-symbols:home-outline' },
+      { text: '首页', link: '/', icon: 'material-symbols:home-outline' },
       {
-        text: 'Blog',
+        text: '博客',
         link: '/blog/',
         icon: 'material-symbols:article-outline',
       },
@@ -44,7 +56,7 @@ export default defineUserConfig({
             icon: 'icon-park-outline:theme',
           },
           {
-            text: 'Plugin',
+            text: '插件',
             icon: 'mingcute:plugin-2-line',
             items: [
               {
@@ -72,6 +84,39 @@ export default defineUserConfig({
             placeholder: '搜索',
           },
         },
+      },
+    },
+    locales: {
+      '/': { selectLanguageName: '简体中文', selectLanguageText: '选择语言' },
+      '/en/': {
+        selectLanguageName: 'English',
+        selectLanguageText: 'Language',
+        notes: enNotes,
+        navbar: [
+          { text: 'Home', link: '/en/', icon: 'material-symbols:home-outline' },
+          {
+            text: 'Blog',
+            link: '/en/blog/',
+            icon: 'material-symbols:article-outline',
+          },
+          {
+            text: 'VuePress',
+            icon: 'vscode-icons:file-type-vue',
+            items: [
+              {
+                text: 'Plugin',
+                icon: 'mingcute:plugin-2-line',
+                items: [
+                  {
+                    text: 'caniuse',
+                    link: '/en/note/vuepress-plugin/caniuse/',
+                    icon: 'tabler:brand-css3',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       },
     },
   }),

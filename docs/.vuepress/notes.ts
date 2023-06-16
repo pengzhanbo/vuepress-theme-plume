@@ -1,6 +1,6 @@
 import { definePlumeNotesConfig } from '@vuepress-plume/vuepress-theme-plume'
 
-export default definePlumeNotesConfig({
+export const zhNotes = definePlumeNotesConfig({
   dir: 'notes',
   link: '/note',
   notes: [
@@ -45,6 +45,19 @@ export default definePlumeNotesConfig({
           items: ['', '介绍', '使用', '功能', 'API', 'functions开发指南'],
         },
       ],
+    },
+  ],
+})
+
+export const enNotes = definePlumeNotesConfig({
+  dir: 'notes',
+  link: '/note',
+  notes: [
+    {
+      dir: 'vuepress-plugin',
+      text: '',
+      link: '/vuepress-plugin/',
+      sidebar: ['caniuse/README'],
     },
   ],
 })

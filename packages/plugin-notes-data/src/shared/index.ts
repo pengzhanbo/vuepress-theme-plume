@@ -21,6 +21,7 @@ export type NotesSidebarItem = {
   dir?: string
   collapsed?: boolean
   items?: NotesSidebar
+  icon?: string
 }
 
 export type NotesData = Record<string, NotesSidebarItem[]>

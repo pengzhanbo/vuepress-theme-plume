@@ -1,11 +1,14 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useThemeLocaleData } from '../../composables/index.js'
+import { useLangs } from '../../composables/langs.js'
 import Flyout from '../Flyout/index.vue'
+import MenuLink from '../Flyout/MenuLink.vue'
 import SocialLinks from '../SocialLinks.vue'
 import SwitchAppearance from '../SwitchAppearance.vue'
 
 const theme = useThemeLocaleData()
+const { localeLinks, currentLang } = useLangs({ correspondingLink: true })
 
 const hasExtraContent = computed(
   () => theme.value.appearance || theme.value.social
@@ -14,6 +17,17 @@ const hasExtraContent = computed(
 
 <template>
   <Flyout v-if="hasExtraContent" class="navbar-extra" label="extra navigation">
+    <div
+      v-if="localeLinks.length && currentLang.label"
+      class="group translations"
+    >
+      <p class="trans-title">{{ currentLang.label }}</p>
+
+      <template v-for="locale in localeLinks" :key="locale.link">
+        <MenuLink :item="locale" />
+      </template>
+    </div>
+
     <div v-if="theme.appearance" class="group">
       <div class="item appearance">
         <p class="label">Appearance</p>

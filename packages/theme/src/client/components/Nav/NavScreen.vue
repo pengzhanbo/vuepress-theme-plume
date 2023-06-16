@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import NavScreenAppearance from './NavScreenAppearance.vue'
 import NavScreenMenu from './NavScreenMenu.vue'
 import NavScreenSocialLinks from './NavScreenSocialLinks.vue'
+import NavScreenTranslates from './NavScreenTranslations.vue'
 
 defineProps<{
   open: boolean
@@ -29,6 +30,7 @@ function unlockBodyScroll() {
     <div v-if="open" ref="screen" class="nav-screen">
       <div class="container">
         <NavScreenMenu class="menu" />
+        <NavScreenTranslates class="translations" />
         <NavScreenAppearance class="appearance" />
         <NavScreenSocialLinks class="social-links" />
       </div>

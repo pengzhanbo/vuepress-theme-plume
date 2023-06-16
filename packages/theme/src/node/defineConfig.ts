@@ -8,3 +8,5 @@ export const definePlumeNotesConfig = (
 ): NotesDataOptions => notes
 
 export const definePlumeNotesItemConfig = (item: NotesItem): NotesItem => item
+
+export type { NotesDataOptions, NotesItem }

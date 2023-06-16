@@ -1,4 +1,3 @@
-import merge from 'lodash.merge'
 import type { PlumeThemeLocaleOptions } from '../shared/index.js'
 
 export const defaultLocaleOption: Partial<PlumeThemeLocaleOptions> = {
@@ -13,8 +12,23 @@ export const defaultLocaleOption: Partial<PlumeThemeLocaleOptions> = {
     message:
       'Power by <a target="_blank" href="https://v2.vuepress.vuejs.org/">Vuepress</a> & <a target="_blank" href="https://github.com/pengzhanbo/vuepress-theme-plume">vuepress-theme-plume</a>',
   },
+  appearance: true,
 }
 
 export const mergeLocaleOptions = (options: PlumeThemeLocaleOptions) => {
-  return merge(defaultLocaleOption, options)
+  if (!options.locales) {
+    options.locales = {}
+  }
+  if (!options.locales['/']) {
+    options.locales['/'] = {}
+  }
+  Object.assign(options, {
+    ...defaultLocaleOption,
+    ...options,
+  })
+  Object.assign(options.locales['/'], {
+    ...defaultLocaleOption,
+    ...options.locales['/'],
+  })
+  return options
 }

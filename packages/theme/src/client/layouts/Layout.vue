@@ -21,6 +21,8 @@ import {
 
 const page = usePageData<PlumeThemePageData>()
 
+console.log(page)
+
 const {
   isOpen: isSidebarOpen,
   open: openSidebar,
@@ -49,7 +51,7 @@ provide('is-sidebar-open', isSidebarOpen)
     <Sidebar :open="isSidebarOpen" />
     <LayoutContent>
       <Home v-if="page.frontmatter.home" />
-      <Blog v-else-if="page.type === 'blog'" />
+      <Blog v-else-if="page.frontmatter.type === 'blog'" />
       <Page v-else />
       <VFooter />
     </LayoutContent>

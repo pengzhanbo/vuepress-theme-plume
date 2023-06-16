@@ -8,6 +8,8 @@ const props = defineProps<{
   tag?: string
   href?: string
   noIcon?: boolean
+  target?: string
+  rel?: string
 }>()
 
 const router = useRouter()
@@ -33,8 +35,8 @@ const linkTo = (e: Event) => {
     class="auto-link"
     :class="{ link: href }"
     :href="href ? normalizeLink(href) : undefined"
-    :target="isExternal ? '_blank' : undefined"
-    :rel="isExternal ? 'noreferrer' : undefined"
+    :target="target || (isExternal ? '_blank' : undefined)"
+    :rel="rel || (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"
   >
     <slot />

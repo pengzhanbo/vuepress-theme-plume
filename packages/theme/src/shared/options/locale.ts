@@ -148,15 +148,15 @@ export interface PlumeThemeLocaleData extends LocaleData {
   /**
    * language text
    */
-  // selectLanguageText?: string
+  selectLanguageText?: string
   /**
    * language aria label
    */
-  // selectLanguageAriaLabel?: string
+  selectLanguageAriaLabel?: string
   /**
    * language name
    */
-  // selectLanguageName?: string
+  selectLanguageName?: string
   /**
    * repository of navbar
    */

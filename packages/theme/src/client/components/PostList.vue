@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+import { usePageLang } from '@vuepress/client'
 import { useBlogPostData } from '@vuepress-plume/vuepress-plugin-blog-data/client'
 import { computed } from 'vue'
 import type { Ref } from 'vue'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 import PostItem from './PostItem.vue'
+
+const locale = usePageLang()
 
 const list = useBlogPostData() as unknown as Ref<PlumeThemeBlogPostItem[]>
 
@@ -21,7 +24,7 @@ const postList = computed(() => {
       return next.sticky > prev.sticky ? 1 : -1
     }),
     ...otherList,
-  ]
+  ].filter((item) => item.lang === locale.value)
 })
 </script>
 <template>

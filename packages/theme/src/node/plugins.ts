@@ -1,3 +1,4 @@
+import path from 'node:path'
 import type { App, PluginConfig } from '@vuepress/core'
 import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
@@ -34,10 +35,13 @@ export const setupPlugins = (
 ): PluginConfig => {
   const isProd = !app.env.isDev
 
-  let notesDir: string | undefined
-  if (localeOptions.notes !== false) {
-    notesDir = localeOptions.notes?.dir
-  }
+  const locales = (localeOptions.locales || {}) as PlumeThemeLocaleOptions
+  const localeNotesDirs = Object.keys(locales)
+    .map((locale) => {
+      const dir = locales[locale].notes?.dir || ''
+      return dir ? path.join(locale, dir, '**').replace(/^\//, '') : ''
+    })
+    .filter(Boolean)
 
   return [
     palettePlugin({ preset: 'sass' }),
@@ -56,7 +60,7 @@ export const setupPlugins = (
         '**/{README,readme,index}.md',
         '.vuepress/',
         ...(localeOptions.blog?.exclude || []),
-        notesDir ? `${notesDir}/**` : '',
+        ...localeNotesDirs,
       ].filter(Boolean),
       sortBy: 'createTime',
       excerpt: true,
@@ -72,6 +76,7 @@ export const setupPlugins = (
           tags: page.frontmatter.tags,
           sticky: page.frontmatter.sticky,
           createTime: page.data.frontmatter.createTime,
+          lang: page.lang,
         }
       },
     }),

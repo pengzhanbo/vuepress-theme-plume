@@ -6,6 +6,9 @@ import { setupPlugins } from './plugins.js'
 import { autoCategory, pageContentRendered, setupPage } from './setupPages.js'
 
 const __dirname = getDirname(import.meta.url)
+const name = '@vuepress-plume/theme-plume'
+const resolve = (...args: string[]) => path.resolve(__dirname, '../', ...args)
+const templates = (url: string) => resolve('../templates', url)
 
 export const plumeTheme = ({
   themePlugins = {},
@@ -14,32 +17,24 @@ export const plumeTheme = ({
   localeOptions = mergeLocaleOptions(localeOptions)
   return (app: App) => {
     return {
-      name: '@vuepress-plume/theme-plume',
-      templateBuild: path.resolve(__dirname, '../../templates/build.html'),
+      name,
+      templateBuild: templates('build.html'),
+      clientConfigFile: resolve('client/config.js'),
       alias: {
         ...Object.fromEntries(
           fs
-            .readdirSync(path.resolve(__dirname, '../client/components'))
+            .readdirSync(resolve('client/components'))
             .filter((file) => file.endsWith('.vue'))
             .map((file) => [
               `@theme/${file}`,
-              path.resolve(__dirname, '../client/components', file),
+              resolve('client/components', file),
             ])
         ),
       },
-      clientConfigFile: path.resolve(__dirname, '../client/config.js'),
       plugins: setupPlugins(app, themePlugins, localeOptions),
-      onInitialized: async (app) => {
-        await setupPage(app, localeOptions)
-      },
+      onInitialized: async (app) => await setupPage(app, localeOptions),
       extendsPage: (page: Page<PlumeThemePageData>) => {
-        if (
-          localeOptions.blog?.link &&
-          page.path.startsWith(localeOptions.blog.link)
-        ) {
-          page.data.type = 'blog'
-        }
-        autoCategory(page, localeOptions)
+        autoCategory(app, page, localeOptions)
         pageContentRendered(page)
       },
     }

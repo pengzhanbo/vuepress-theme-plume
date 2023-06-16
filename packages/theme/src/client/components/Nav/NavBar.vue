@@ -9,6 +9,7 @@ import NavBarMenu from './NavBarMenu.vue'
 import NavBarSearch from './NavBarSearch.vue'
 import NavBarSocialLinks from './NavBarSocialLinks.vue'
 import NavBarTitle from './NavBarTitle.vue'
+import NavBarTranslations from './NavBarTranslations.vue'
 
 defineProps<{
   isScreenOpen: boolean
@@ -38,6 +39,7 @@ const classes = computed(() => ({
         <div class="content-body">
           <NavBarSearch class="search" />
           <NavBarMenu class="menu" />
+          <NavBarTranslations class="translations" />
           <NavBarAppearance class="appearance" />
           <NavBarSocialLinks class="social-links" />
           <NavBarExtra class="extra" />

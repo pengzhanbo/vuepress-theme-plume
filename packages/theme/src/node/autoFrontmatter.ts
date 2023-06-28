@@ -36,12 +36,11 @@ export default function autoFrontmatter(
       const notes = localeOption.locales?.[locale].notes
       if (!notes) return ''
       const dir = notes.dir
-      console.log(locale, dir)
-      return dir ? path.join(locale, dir).replace(/^\//, '') : ''
+      return dir
+        ? path.join(locale, dir).replace(/\\+/g, '/').replace(/^\//, '')
+        : ''
     })
     .filter(Boolean)
-
-  console.log('locales notes dirs', Object.keys(locales), localesNotesDirs)
 
   const baseFormatter: FormatterObject = {
     author(author: string) {

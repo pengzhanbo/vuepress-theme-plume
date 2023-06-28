@@ -9,7 +9,7 @@ import type {
   NotesSidebar,
   NotesSidebarItem,
 } from '../shared/index.js'
-import { ensureArray } from './utils.js'
+import { ensureArray, normalizePath } from './utils.js'
 
 const HMR_CODE = `
 if (import.meta.webpackHot) {
@@ -37,10 +37,11 @@ export const prepareNotesData = async (
   { include, exclude, notes, dir, link }: NotesDataOptions
 ) => {
   if (!notes || notes.length === 0) return
+  dir = normalizePath(dir)
   const filter = createFilter(ensureArray(include), ensureArray(exclude), {
     resolve: false,
   })
-  const DIR_PATTERN = new RegExp(`^${path.join(dir, '/')}`)
+  const DIR_PATTERN = new RegExp(`^${normalizePath(path.join(dir, '/'))}`)
   const notesPageList: NotePage[] = app.pages
     .filter(
       (page) =>

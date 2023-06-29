@@ -1,36 +1,43 @@
 <script setup lang="ts">
+import LayoutContent from '../components/LayoutContent.vue'
+import Nav from '../components/Nav/index.vue'
 import { withBase } from '@vuepress/client'
+
 import { ref } from 'vue'
-
-// const site = useSiteLocaleData()
-
 const root = ref('/')
-// onMounted(() => {
-//   const path = window.location.pathname
-//     .replace(site.value.base, '')
-//     .replace(/(^.*?\/).*$/, '/$1')
-// })
+
 </script>
 
 <template>
-  <div class="not-found">
-    <p class="code">404</p>
-    <h1 class="title">PAGE NOT FOUND</h1>
-    <div class="divider" />
-    <blockquote class="quote">
-      But if you don't change your direction, and if you keep looking, you may
-      end up where you are heading.
-    </blockquote>
+  <div class="theme-plume">
+    <Nav />
+    <LayoutContent>
+      <div class="not-found">
+        <p class="code">404</p>
+        <h1 class="title">PAGE NOT FOUND</h1>
+        <div class="divider" />
+        <blockquote class="quote">
+          But if you don't change your direction, and if you keep looking, you may
+          end up where you are heading.
+        </blockquote>
 
-    <div class="action">
-      <a class="link" :href="withBase(root)" aria-label="go to home">
-        Take me home
-      </a>
-    </div>
+        <div class="action">
+          <a class="link" :href="withBase(root)" aria-label="go to home">
+            Take me home
+          </a>
+        </div>
+      </div>
+    </LayoutContent>
   </div>
 </template>
 
 <style scoped>
+.theme-plume {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .not-found {
   padding: 64px 24px 96px;
   text-align: center;

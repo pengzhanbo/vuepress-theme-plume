@@ -22,6 +22,10 @@ const getPackage = () => {
   return pkg
 }
 
+const normalizePath = (dir: string) => {
+  return dir.replace(/\\+/g, '/')
+}
+
 export default function autoFrontmatter(
   app: App,
   localeOption: PlumeThemeLocaleOptions
@@ -127,12 +131,14 @@ export default function autoFrontmatter(
                 const locale = resolveLocale(filepath)
                 const note = findNote(filepath)
                 const notes = notesByLocale(locale)
-                return path.join(
-                  locale,
-                  notes?.link || '',
-                  note?.link || getCurrentDirname(note, filepath),
-                  nanoid(),
-                  '/'
+                return normalizePath(
+                  path.join(
+                    locale,
+                    notes?.link || '',
+                    note?.link || getCurrentDirname(note, filepath),
+                    nanoid(),
+                    '/'
+                  )
                 )
               },
             },
@@ -154,7 +160,9 @@ export default function autoFrontmatter(
           permalink(permalink: string, { filepath }) {
             if (permalink) return permalink
             const locale = resolveLocale(filepath)
-            return path.join(locale, articlePrefix, nanoid(), '/')
+            return normalizePath(
+              path.join(locale, articlePrefix, nanoid(), '/')
+            )
           },
         },
       },

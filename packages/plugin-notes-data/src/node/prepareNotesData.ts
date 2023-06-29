@@ -59,7 +59,7 @@ export const prepareNotesData = async (
 
   const notesData: NotesData = {}
   notes.forEach((note) => {
-    notesData[path.join('/', link, note.link)] = initSidebar(
+    notesData[normalizePath(path.join('/', link, note.link))] = initSidebar(
       note,
       notesPageList.filter((page) =>
         page.relativePath.startsWith(note.dir.trim().replace(/^\/|\/$/g, ''))
@@ -160,7 +160,7 @@ function initSidebarByConfig(
             link: item.link || '',
             text: item.text || '',
             sidebar: item.items,
-            dir: path.join(dir, item.dir || ''),
+            dir: normalizePath(path.join(dir, item.dir || '')),
           },
           pages
         ),
@@ -178,16 +178,16 @@ function findNotePage(
     return notePageList.find((page) => {
       const relative = page.relativePath
       return (
-        relative === path.join(dir, 'README.md') ||
-        relative === path.join(dir, 'index.md')
+        relative === normalizePath(path.join(dir, 'README.md')) ||
+        relative === normalizePath(path.join(dir, 'index.md'))
       )
     })
   } else {
     return notePageList.find((page) => {
       const relative = page.relativePath
       return (
-        relative === path.join(dir, sidebar) ||
-        relative === path.join(dir, sidebar + '.md') ||
+        relative === normalizePath(path.join(dir, sidebar)) ||
+        relative === normalizePath(path.join(dir, sidebar + '.md')) ||
         page.link === sidebar
       )
     })

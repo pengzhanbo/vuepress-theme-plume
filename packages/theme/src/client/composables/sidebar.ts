@@ -13,9 +13,13 @@ import type { PlumeThemePageData } from '../../shared/index.js'
 import { isActive } from '../utils/index.js'
 import { useThemeLocaleData } from './themeData.js'
 
+export function normalizePath(path: string) {
+  return path.replace(/\/\\+/g, '/').replace(/\\+/g, '/')
+}
+
 export function getSidebarList(path: string, notesData: NotesData) {
   const link = Object.keys(notesData).find((link) =>
-    path.startsWith(withBase(link))
+    path.startsWith(normalizePath(withBase(link)))
   )
   return link ? notesData[link] : []
 }

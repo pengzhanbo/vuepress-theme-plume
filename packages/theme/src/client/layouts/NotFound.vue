@@ -1,11 +1,9 @@
 <script setup lang="ts">
+import { withBase } from '@vuepress/client'
+import { ref } from 'vue'
 import LayoutContent from '../components/LayoutContent.vue'
 import Nav from '../components/Nav/index.vue'
-import { withBase } from '@vuepress/client'
-
-import { ref } from 'vue'
 const root = ref('/')
-
 </script>
 
 <template>
@@ -17,8 +15,8 @@ const root = ref('/')
         <h1 class="title">PAGE NOT FOUND</h1>
         <div class="divider" />
         <blockquote class="quote">
-          But if you don't change your direction, and if you keep looking, you may
-          end up where you are heading.
+          But if you don't change your direction, and if you keep looking, you
+          may end up where you are heading.
         </blockquote>
 
         <div class="action">

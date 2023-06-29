@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { usePageFrontmatter, withBase } from '@vuepress/client'
-import { computed,onMounted } from 'vue'
+import { computed } from 'vue'
 import type { PlumeThemeHomeFrontmatter } from '../../shared/index.js'
 // import { useThemeLocaleData } from '../composables/index.js'
 import { useDarkMode } from '../composables/darkMode.js'
@@ -8,10 +8,6 @@ import VButton from './VButton.vue'
 
 const matter = usePageFrontmatter<PlumeThemeHomeFrontmatter>()
 const isDark = useDarkMode()
-
-onMounted(() => {
-  isDark.value = document.documentElement.classList.contains('dark')
-})
 
 const mask = computed(() => {
   if (typeof matter.value.bannerMask !== 'object') {

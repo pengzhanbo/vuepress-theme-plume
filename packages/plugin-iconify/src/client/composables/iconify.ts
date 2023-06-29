@@ -13,10 +13,14 @@ export const useIconify = (name: ComputedRef<string> | Ref<string>) => {
     if (icon.value) {
       return
     }
-    try {
-      loaded.value = false
-      iconCache.value[name.value] = await loadIcon(name.value)
-    } finally {
+    if (!__VUEPRESS_SSR__) {
+      try {
+        loaded.value = false
+        iconCache.value[name.value] = await loadIcon(name.value)
+      } finally {
+        loaded.value = true
+      }
+    } else {
       loaded.value = true
     }
   }

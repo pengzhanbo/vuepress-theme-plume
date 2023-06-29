@@ -3,14 +3,33 @@ import { usePageFrontmatter, withBase } from '@vuepress/client'
 import { computed } from 'vue'
 import type { PlumeThemeHomeFrontmatter } from '../../shared/index.js'
 // import { useThemeLocaleData } from '../composables/index.js'
+import { useDarkMode } from '../composables/darkMode.js'
 import VButton from './VButton.vue'
 
 const matter = usePageFrontmatter<PlumeThemeHomeFrontmatter>()
-// const theme = useThemeLocaleData()
+const isDark = useDarkMode()
+
+const mask = computed(() => {
+  if (typeof matter.value.bannerMask !== 'object') {
+    return matter.value.bannerMask || 0
+  }
+  return (
+    (isDark.value
+      ? matter.value.bannerMask.dark
+      : matter.value.bannerMask.light) || 0
+  )
+})
 
 const homeStyle = computed(() => {
   return {
-    'background-image': `url(${withBase(matter.value.banner || '')})`,
+    'background-image': [
+      mask.value
+        ? `linear-gradient(rgba(0, 0, 0, ${mask.value}), rgba(0, 0, 0, ${mask.value}))`
+        : '',
+      `url(${withBase(matter.value.banner || '')})`,
+    ]
+      .filter(Boolean)
+      .join(','),
   }
 })
 

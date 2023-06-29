@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { Icon as OfflineIcon } from '@iconify/vue/offline'
+import { ClientOnly } from '@vuepress/client'
 import type { CSSProperties } from 'vue'
 import { computed, toRefs } from 'vue'
 import { useIconify } from '../composables/iconify.js'
@@ -42,16 +43,18 @@ declare const __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_COLOR__: string
 </script>
 
 <template>
-  <span v-if="!loaded" class="vp-iconify" :style="iconStyle"></span>
-  <OfflineIcon
-    v-else-if="icon"
-    :icon="icon"
-    class="vp-iconify"
-    :style="iconStyle"
-  />
-  <span v-else class="vp-iconify" :style="{ ...iconStyle, fontSize: size }">
-    {{ props.name }}
-  </span>
+  <ClientOnly>
+    <span v-if="!loaded" class="vp-iconify" :style="iconStyle"></span>
+    <OfflineIcon
+      v-else-if="icon"
+      :icon="icon"
+      class="vp-iconify"
+      :style="iconStyle"
+    />
+    <span v-else class="vp-iconify" :style="{ ...iconStyle, fontSize: size }">
+      {{ props.name }}
+    </span>
+  </ClientOnly>
 </template>
 <style scoped>
 .vp-iconify {

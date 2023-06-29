@@ -23,7 +23,7 @@ const page = usePageData()
       :href="item.link"
     >
       <Icon v-if="item.icon" :name="item.icon" />
-      <i>{{ item.text }}</i>
+      <i v-text="item.text"></i>
     </AutoLink>
   </div>
 </template>

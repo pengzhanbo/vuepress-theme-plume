@@ -31,7 +31,7 @@ function toggle() {
     >
       <span class="button-text">
         <Icon v-if="icon" :name="icon" />
-        {{ text }}
+        <i v-text="text"></i>
       </span>
       <IconPlus class="button-icon" />
     </button>
@@ -104,6 +104,10 @@ function toggle() {
 
 .button:hover {
   color: var(--vp-c-brand);
+}
+
+.button-text i {
+  font-style: normal;
 }
 
 .button-icon {

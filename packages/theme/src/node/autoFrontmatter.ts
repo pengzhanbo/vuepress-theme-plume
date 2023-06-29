@@ -53,7 +53,7 @@ export default function autoFrontmatter(
     },
     createTime(formatTime: string, { createTime }) {
       if (formatTime) return formatTime
-      return format(new Date(createTime), 'yyyy/MM/dd hh:mm:ss')
+      return format(new Date(createTime), 'yyyy/MM/dd HH:mm:ss')
     },
   }
 

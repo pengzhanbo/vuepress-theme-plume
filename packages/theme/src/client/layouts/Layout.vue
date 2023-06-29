@@ -21,8 +21,6 @@ import {
 
 const page = usePageData<PlumeThemePageData>()
 
-console.log(page)
-
 const {
   isOpen: isSidebarOpen,
   open: openSidebar,

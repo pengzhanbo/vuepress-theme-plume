@@ -4,21 +4,16 @@ import type { CSSProperties } from 'vue'
 import { computed, toRefs } from 'vue'
 import { useIconify } from '../composables/iconify.js'
 
-const props = defineProps({
-  name: {
-    type: String,
-    require: true,
-    default: '',
-  },
-  size: {
-    type: String,
-    default: '',
-  },
-  color: {
-    type: String,
-    default: '',
-  },
-})
+const props = withDefaults(
+  defineProps<{
+    name?: string
+    size?: string
+    color?: string
+  }>(),
+  {
+    name: '',
+  }
+)
 
 const { name } = toRefs(props)
 

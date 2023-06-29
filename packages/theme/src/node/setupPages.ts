@@ -43,7 +43,8 @@ export function autoCategory(
   const notesLinks: string[] = []
   for (const [, locale] of locales.entries()) {
     const notes = options.locales?.[locale]?.notes
-    if (notes && notes.link) notesLinks.push(path.join(locale, notes.link))
+    if (notes && notes.link)
+      notesLinks.push(path.join(locale, notes.link).replace(/\\+/g, '/'))
   }
   if (notesLinks.some((link) => page.path.startsWith(link))) return
   const RE_LOCALE = new RegExp(

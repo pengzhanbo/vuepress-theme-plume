@@ -39,7 +39,9 @@ export const setupPlugins = (
   const localeNotesDirs = Object.keys(locales)
     .map((locale) => {
       const dir = locales[locale].notes?.dir || ''
-      return dir ? path.join(locale, dir, '**').replace(/^\//, '') : ''
+      return dir
+        ? path.join(locale, dir, '**').replace(/\\+/g, '/').replace(/^\//, '')
+        : ''
     })
     .filter(Boolean)
 

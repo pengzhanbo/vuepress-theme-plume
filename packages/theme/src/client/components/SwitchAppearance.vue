@@ -12,7 +12,7 @@ const checked = ref(false)
 const isDark = useDarkMode()
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-const toggle = typeof localStorage !== 'undefined' ? useAppearance() : () => {}
+const toggle = typeof document !== 'undefined' ? useAppearance() : () => {}
 
 onMounted(() => {
   checked.value = document.documentElement.classList.contains('dark')
@@ -35,6 +35,8 @@ function useAppearance() {
       setClass((isDark = e.matches))
     }
   }
+
+  setClass(isDark)
 
   function toggle() {
     setClass((isDark = !isDark))

@@ -1,6 +1,7 @@
 export interface PlumeThemeHomeFrontmatter {
   home?: true
   banner?: string
+  bannerMask?: number | { light?: number; dark?: number }
   hero: {
     name: string
     tagline?: string

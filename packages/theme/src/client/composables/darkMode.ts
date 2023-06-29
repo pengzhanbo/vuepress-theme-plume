@@ -23,5 +23,11 @@ export const useDarkMode = (): DarkModeRef => {
  */
 export const setupDarkMode = (): void => {
   const isDark = ref<boolean>(false)
+  if (
+    typeof document !== 'undefined' &&
+    document.documentElement.classList.contains('dark')
+  ) {
+    isDark.value = true
+  }
   provide(darkModeSymbol, isDark)
 }

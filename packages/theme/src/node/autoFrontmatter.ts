@@ -58,7 +58,9 @@ export default function autoFrontmatter(
   }
 
   const resolveLocale = (filepath: string) => {
-    const file = path.join('/', path.relative(sourceDir, filepath))
+    const file = normalizePath(
+      path.join('/', path.relative(sourceDir, filepath))
+    )
     return resolveLocalePath(localeOption.locales!, file)
   }
   const notesByLocale = (locale: string) => {
@@ -68,7 +70,7 @@ export default function autoFrontmatter(
   }
   const findNote = (filepath: string) => {
     const file = path.join('/', path.relative(sourceDir, filepath))
-    const locale = resolveLocalePath(localeOption.locales!, file)
+    const locale = resolveLocalePath(localeOption.locales!, normalizePath(file))
     const notes = notesByLocale(locale)
     if (!notes) return undefined
     const notesList = notes?.notes || []
@@ -79,7 +81,7 @@ export default function autoFrontmatter(
   }
 
   const getCurrentDirname = (note: NotesItem | undefined, filepath: string) => {
-    const dirList = (note?.dir || path.dirname(filepath))
+    const dirList = normalizePath(note?.dir || path.dirname(filepath))
       .replace(/^\/|\/$/g, '')
       .split('/')
     return dirList.length > 0 ? dirList[dirList.length - 1] : ''
@@ -91,7 +93,7 @@ export default function autoFrontmatter(
         ? {
             // note 首页链接
             include: localesNotesDirs.map((dir) =>
-              path.join(dir, '**/{readme,README,index}.md')
+              normalizePath(path.join(dir, '**/{readme,README,index}.md'))
             ),
             formatter: {
               title(title: string, { filepath }) {
@@ -106,11 +108,13 @@ export default function autoFrontmatter(
                 const locale = resolveLocale(filepath)
                 const notes = notesByLocale(locale)
                 const note = findNote(filepath)
-                return path.join(
-                  locale,
-                  notes?.link || '',
-                  note?.link || getCurrentDirname(note, filepath),
-                  '/'
+                return normalizePath(
+                  path.join(
+                    locale,
+                    notes?.link || '',
+                    note?.link || getCurrentDirname(note, filepath),
+                    '/'
+                  )
                 )
               },
             },
@@ -118,7 +122,9 @@ export default function autoFrontmatter(
         : '',
       localesNotesDirs.length
         ? {
-            include: localesNotesDirs.map((dir) => path.join(dir, '**/**.md')),
+            include: localesNotesDirs.map((dir) =>
+              path.join(dir, '**/**.md').replace(/\\+/g, '/')
+            ),
             formatter: {
               title(title: string, { filepath }) {
                 if (title) return title

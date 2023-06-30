@@ -13,6 +13,8 @@ const props = withDefaults(
   }>(),
   {
     name: '',
+    size: '',
+    color: '',
   }
 )
 

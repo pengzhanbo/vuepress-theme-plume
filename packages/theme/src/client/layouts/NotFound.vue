@@ -9,7 +9,7 @@ const root = ref('/')
 <template>
   <div class="theme-plume">
     <Nav />
-    <LayoutContent>
+    <LayoutContent :isNotFound="true">
       <div class="not-found">
         <p class="code">404</p>
         <h1 class="title">PAGE NOT FOUND</h1>

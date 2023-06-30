@@ -40,9 +40,7 @@ export default function autoFrontmatter(
       const notes = localeOption.locales?.[locale].notes
       if (!notes) return ''
       const dir = notes.dir
-      return dir
-        ? path.join(locale, dir).replace(/\\+/g, '/').replace(/^\//, '')
-        : ''
+      return dir ? normalizePath(path.join(locale, dir)).replace(/^\//, '') : ''
     })
     .filter(Boolean)
 
@@ -123,7 +121,7 @@ export default function autoFrontmatter(
       localesNotesDirs.length
         ? {
             include: localesNotesDirs.map((dir) =>
-              path.join(dir, '**/**.md').replace(/\\+/g, '/')
+              normalizePath(path.join(dir, '**/**.md').replace(/\\+/g, '/'))
             ),
             formatter: {
               title(title: string, { filepath }) {

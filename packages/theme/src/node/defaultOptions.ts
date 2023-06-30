@@ -19,16 +19,21 @@ export const mergeLocaleOptions = (options: PlumeThemeLocaleOptions) => {
   if (!options.locales) {
     options.locales = {}
   }
-  if (!options.locales['/']) {
-    options.locales['/'] = {}
+  const { locales, ...otherOptions } = options
+
+  if (!locales['/']) {
+    locales['/'] = {}
   }
   Object.assign(options, {
     ...defaultLocaleOption,
     ...options,
   })
-  Object.assign(options.locales['/'], {
+
+  Object.assign(locales['/'], {
     ...defaultLocaleOption,
-    ...options.locales['/'],
+    ...JSON.parse(JSON.stringify(otherOptions)),
+    ...locales['/'],
   })
+
   return options
 }

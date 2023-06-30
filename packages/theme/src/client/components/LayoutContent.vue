@@ -2,12 +2,14 @@
 import { useSidebar } from '../composables/index.js'
 
 const { hasSidebar } = useSidebar()
+const props = defineProps(["isNotFound"])
+
 </script>
 <template>
   <div
     id="LayoutContent"
     class="layout-content"
-    :class="{ 'has-sidebar': hasSidebar }"
+    :class="{ 'has-sidebar': hasSidebar && !props.isNotFound }"
   >
     <slot />
   </div>

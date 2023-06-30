@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import { useSidebar } from '../composables/index.js'
 
-const { hasSidebar } = useSidebar()
-const props = defineProps(["isNotFound"])
+const props = defineProps<{
+  isNotFound?: boolean
+}>()
 
+const { hasSidebar } = useSidebar()
 </script>
 <template>
   <div

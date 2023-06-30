@@ -3,13 +3,14 @@ import { withBase } from '@vuepress/client'
 import { ref } from 'vue'
 import LayoutContent from '../components/LayoutContent.vue'
 import Nav from '../components/Nav/index.vue'
+
 const root = ref('/')
 </script>
 
 <template>
   <div class="theme-plume">
     <Nav />
-    <LayoutContent :isNotFound="true">
+    <LayoutContent is-not-found>
       <div class="not-found">
         <p class="code">404</p>
         <h1 class="title">PAGE NOT FOUND</h1>

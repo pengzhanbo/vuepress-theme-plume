@@ -5,9 +5,15 @@
 }
 
 html {
-  line-height: 1.4;
   font-size: 16px;
+}
+
+body {
   -webkit-text-size-adjust: 100%;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html.dark {
@@ -21,16 +27,16 @@ body {
   min-height: 100vh;
   line-height: 24px;
   font-family: var(--vp-font-family-base);
-  font-size: 16px;
   font-weight: 400;
+  direction: ltr;
+}
+
+html,
+body {
   color: var(--vp-c-text-1);
   background-color: var(--vp-c-bg);
-  direction: ltr;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: all 0.25s;
+  transition: var(--t-color);
+  transition-property: color, background-color;
 }
 
 main {

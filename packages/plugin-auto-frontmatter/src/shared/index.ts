@@ -7,19 +7,19 @@ export interface MarkdownFile {
   stats: fs.Stats
 }
 
-export type FormatterFn<T = any, K = object> = (
+export type FrontmatterFn<T = any, K = object> = (
   value: T,
   file: MarkdownFile,
   data: K
 ) => T | PromiseLike<T>
 
-export type FormatterObject<K = object, T = any> = {
-  [P: string]: FormatterFn<T, K>
+export type FrontmatterObject<K = object, T = any> = {
+  [P: string]: FrontmatterFn<T, K>
 }
 
-export type FormatterArray = {
+export type FrontmatterArray = {
   include: string | string[]
-  formatter: FormatterObject
+  frontmatter: FrontmatterObject
 }[]
 
 export interface AutoFrontmatterOptions {
@@ -37,5 +37,5 @@ export interface AutoFrontmatterOptions {
    *    }
    * }
    */
-  formatter?: FormatterArray | FormatterObject
+  frontmatter?: FrontmatterArray | FrontmatterObject
 }

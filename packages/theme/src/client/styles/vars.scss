@@ -113,7 +113,7 @@
   --c-brand: var(--vp-c-brand);
 }
 
-.dark {
+html.dark {
   --vp-c-bg: #1e1e20;
 
   --vp-c-bg-elv: #252529;
@@ -242,7 +242,7 @@
   --vp-code-tab-active-bar-color: var(--vp-c-brand);
 }
 
-.dark {
+html.dark {
   --vp-code-block-bg: #161618;
 }
 
@@ -282,7 +282,7 @@
   --vp-button-sponsor-active-bg: transparent;
 }
 
-.dark {
+html.dark {
   --vp-button-sponsor-border: var(--vp-c-gray-dark-1);
   --vp-button-sponsor-text: var(--vp-c-text-dark-2);
 }
@@ -415,7 +415,7 @@
 }
 
 :root {
-  --t-color: 0.25s;
+  --t-color: 250ms ease;
   --code-tabs-nav-bg-color: var(--vp-code-tab-b);
   --code-bg-color: var(--vp-code-block-bg);
   --medium-zoom-bg-color: var(--vp-c-bg);

@@ -1,11 +1,11 @@
+import './styles/index.scss'
+
 import { defineClientConfig } from '@vuepress/client'
 import { h } from 'vue'
 import Badge from './components/global/Badge.vue'
 import { setupDarkMode, useScrollPromise } from './composables/index.js'
 import Layout from './layouts/Layout.vue'
 import NotFound from './layouts/NotFound.vue'
-
-import './styles/index.scss'
 
 export default defineClientConfig({
   enhance({ app, router }) {

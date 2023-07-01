@@ -4,8 +4,8 @@ import type { App } from '@vuepress/core'
 import { resolveLocalePath } from '@vuepress/shared'
 import type {
   AutoFrontmatterOptions,
-  FormatterArray,
-  FormatterObject,
+  FrontmatterArray,
+  FrontmatterObject,
 } from '@vuepress-plume/vuepress-plugin-auto-frontmatter'
 import type { NotesItem } from '@vuepress-plume/vuepress-plugin-notes-data'
 import { format } from 'date-fns'
@@ -44,7 +44,7 @@ export default function autoFrontmatter(
     })
     .filter(Boolean)
 
-  const baseFormatter: FormatterObject = {
+  const baseFrontmatter: FrontmatterObject = {
     author(author: string) {
       if (author) return author
       return localeOption.avatar?.name || pkg.author || ''
@@ -86,21 +86,21 @@ export default function autoFrontmatter(
   }
   return {
     include: ['**/*.md'],
-    formatter: [
+    frontmatter: [
       localesNotesDirs.length
         ? {
             // note 首页链接
             include: localesNotesDirs.map((dir) =>
               normalizePath(path.join(dir, '**/{readme,README,index}.md'))
             ),
-            formatter: {
+            frontmatter: {
               title(title: string, { filepath }) {
                 if (title) return title
                 const note = findNote(filepath)
                 if (note?.text) return note.text
                 return getCurrentDirname(note, filepath) || ''
               },
-              ...baseFormatter,
+              ...baseFrontmatter,
               permalink(permalink: string, { filepath }) {
                 if (permalink) return permalink
                 const locale = resolveLocale(filepath)
@@ -121,15 +121,15 @@ export default function autoFrontmatter(
       localesNotesDirs.length
         ? {
             include: localesNotesDirs.map((dir) =>
-              normalizePath(path.join(dir, '**/**.md').replace(/\\+/g, '/'))
+              normalizePath(path.join(dir, '**/**.md'))
             ),
-            formatter: {
+            frontmatter: {
               title(title: string, { filepath }) {
                 if (title) return title
                 const basename = path.basename(filepath, '.md')
                 return basename
               },
-              ...baseFormatter,
+              ...baseFrontmatter,
               permalink(permalink: string, { filepath }) {
                 if (permalink) return permalink
                 const locale = resolveLocale(filepath)
@@ -150,17 +150,17 @@ export default function autoFrontmatter(
         : '',
       {
         include: '**/{readme,README,index}.md',
-        formatter: {},
+        frontmatter: {},
       },
       {
         include: '*',
-        formatter: {
+        frontmatter: {
           title(title: string, { filepath }) {
             if (title) return title
             const basename = path.basename(filepath, '.md')
             return basename
           },
-          ...baseFormatter,
+          ...baseFrontmatter,
           permalink(permalink: string, { filepath }) {
             if (permalink) return permalink
             const locale = resolveLocale(filepath)
@@ -170,6 +170,6 @@ export default function autoFrontmatter(
           },
         },
       },
-    ].filter(Boolean) as FormatterArray,
+    ].filter(Boolean) as FrontmatterArray,
   }
 }

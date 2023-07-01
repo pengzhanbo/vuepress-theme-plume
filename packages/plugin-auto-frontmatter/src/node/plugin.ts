@@ -6,8 +6,8 @@ import grayMatter from 'gray-matter'
 import jsonToYaml from 'json2yaml'
 import type {
   AutoFrontmatterOptions,
-  FormatterArray,
-  FormatterObject,
+  FrontmatterArray,
+  FrontmatterObject,
   MarkdownFile,
 } from '../shared/index.js'
 import { readMarkdown, readMarkdownList } from './readFiles.js'
@@ -16,27 +16,27 @@ import { ensureArray, isEmptyObject } from './utils.js'
 export const autoFrontmatterPlugin = ({
   include = ['**/*.{md,MD}'],
   exclude = ['.vuepress/**/*', 'node_modules'],
-  formatter = {},
+  frontmatter = {},
 }: AutoFrontmatterOptions = {}): Plugin => {
   include = ensureArray(include)
   exclude = ensureArray(exclude)
 
   const globFilter = createFilter(include, exclude, { resolve: false })
 
-  const matterFormatter: FormatterArray = Array.isArray(formatter)
-    ? formatter
-    : [{ include: '*', formatter }]
+  const matterFrontmatter: FrontmatterArray = Array.isArray(frontmatter)
+    ? frontmatter
+    : [{ include: '*', frontmatter }]
 
-  const globFormatter: FormatterObject =
-    matterFormatter.find(({ include }) => include === '*')?.formatter || {}
+  const globFormatter: FrontmatterObject =
+    matterFrontmatter.find(({ include }) => include === '*')?.frontmatter || {}
 
-  const otherFormatters = matterFormatter
+  const otherFormatters = matterFrontmatter
     .filter(({ include }) => include !== '*')
-    .map(({ include, formatter }) => {
+    .map(({ include, frontmatter }) => {
       return {
         include,
         filter: createFilter(ensureArray(include), [], { resolve: false }),
-        formatter,
+        frontmatter,
       }
     })
 
@@ -44,7 +44,7 @@ export const autoFrontmatterPlugin = ({
     const { filepath, relativePath } = file
 
     const current = otherFormatters.find(({ filter }) => filter(relativePath))
-    const formatter = current?.formatter || globFormatter
+    const formatter = current?.frontmatter || globFormatter
     const { data, content } = grayMatter(file.content)
 
     for (const key in formatter) {

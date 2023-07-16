@@ -52,13 +52,7 @@ const actions = computed(() => {
         <p v-if="text" class="hero-text">{{ text }}</p>
         <div v-if="actions" class="actions">
           <div v-for="action in actions" :key="action.link" class="action">
-            <VButton
-              tag="a"
-              size="medium"
-              :theme="action.theme"
-              :text="action.text"
-              :href="action.link"
-            />
+            <VButton tag="a" size="medium" :theme="action.theme" :text="action.text" :href="action.link" />
           </div>
         </div>
       </div>
@@ -88,6 +82,7 @@ const actions = computed(() => {
 
 .plume-home .content {
   padding: 0 2rem;
+  width: 100%;
 }
 
 .plume-home .content .hero-name {
@@ -96,6 +91,7 @@ const actions = computed(() => {
   line-height: 1;
   color: var(--vp-c-text-hero-name);
 }
+
 .plume-home .content .hero-tagline {
   display: flex;
   align-items: center;
@@ -131,6 +127,7 @@ const actions = computed(() => {
     max-width: 768px;
     padding-top: 8rem;
   }
+
   .plume-home .content .hero-name {
     font-size: 100px;
   }

@@ -31,20 +31,9 @@ export default {
 </script>
 
 <template>
-  <div
-    ref="el"
-    class="flyout-wrapper"
-    @mouseenter="open = true"
-    @mouseleave="open = false"
-  >
-    <button
-      type="button"
-      class="button"
-      aria-haspopup="true"
-      :aria-expanded="open"
-      :aria-label="label"
-      @click="open = !open"
-    >
+  <div ref="el" class="flyout-wrapper" @mouseenter="open = true" @mouseleave="open = false">
+    <button type="button" class="button" aria-haspopup="true" :aria-expanded="open" :aria-label="label"
+      @click="open = !open">
       <span v-if="button || icon" class="text">
         <Icon v-if="prefixIcon" :name="prefixIcon" />
         <Component :is="icon" v-if="icon" class="option-icon" />
@@ -90,7 +79,7 @@ export default {
 }
 
 .flyout-wrapper:hover .menu,
-.button[aria-expanded='true'] + .menu {
+.button[aria-expanded='true']+.menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -108,7 +97,8 @@ export default {
 .text {
   display: flex;
   align-items: center;
-  line-height: var(--vp-nav-height);
+  /* line-height: var(--vp-nav-height); */
+  line-height: normal;
   font-size: 14px;
   font-weight: 500;
   color: var(--vp-c-text-1);

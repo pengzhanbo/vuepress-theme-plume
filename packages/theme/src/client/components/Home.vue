@@ -52,7 +52,13 @@ const actions = computed(() => {
         <p v-if="text" class="hero-text">{{ text }}</p>
         <div v-if="actions" class="actions">
           <div v-for="action in actions" :key="action.link" class="action">
-            <VButton tag="a" size="medium" :theme="action.theme" :text="action.text" :href="action.link" />
+            <VButton
+              tag="a"
+              size="medium"
+              :theme="action.theme"
+              :text="action.text"
+              :href="action.link"
+            />
           </div>
         </div>
       </div>

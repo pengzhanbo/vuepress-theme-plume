@@ -30,9 +30,15 @@ const linkTo = (e: Event) => {
 </script>
 
 <template>
-  <Component :is="tag" class="auto-link" :class="{ link: href }" :href="href ? normalizeLink(href) : undefined"
-    :target="target || (isExternal ? '_blank' : undefined)" :rel="rel || (isExternal ? 'noreferrer' : undefined)"
-    @click="linkTo($event)">
+  <Component
+    :is="tag"
+    class="auto-link"
+    :class="{ link: href }"
+    :href="href ? normalizeLink(href) : undefined"
+    :target="target || (isExternal ? '_blank' : undefined)"
+    :rel="rel || (isExternal ? 'noreferrer' : undefined)"
+    @click="linkTo($event)"
+  >
     <slot />
     <IconExternalLink v-if="isExternal && !noIcon" class="icon" />
   </Component>

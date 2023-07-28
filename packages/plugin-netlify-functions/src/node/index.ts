@@ -3,7 +3,7 @@ import { netlifyFunctionsPlugin } from './plugin.js'
 
 export * from './useNetlifyFunctionsPlugins.js'
 
-export { NetlifyFunctionsOptions }
+export { type NetlifyFunctionsOptions }
 
 export { netlifyFunctionsPlugin }
 

@@ -61,7 +61,7 @@ const createTime = computed(() => {
 <style lang="scss" scoped>
 .post-item {
   padding-top: 1rem;
-  margin: 0 1.75rem 3rem;
+  margin: 0 1.75rem 2rem;
   // border-bottom: solid 1px var(--vp-c-divider);
 
   &:last-of-type {
@@ -71,10 +71,10 @@ const createTime = computed(() => {
   h3 {
     display: flex;
     align-items: center;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     transition: color var(--t-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   h3:hover {
@@ -82,6 +82,12 @@ const createTime = computed(() => {
 
     .sticky {
       color: var(--vp-c-text-2);
+    }
+  }
+
+  @media (min-width: 960px) {
+    h3 {
+      font-size: 20px;
     }
   }
 
@@ -106,7 +112,7 @@ const createTime = computed(() => {
   font-size: 14px;
   font-weight: 400;
   color: var(--vp-c-text-2);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 
   > div {
     display: flex;
@@ -134,5 +140,19 @@ const createTime = computed(() => {
     margin: 0.3rem;
     color: var(--vp-c-text-3);
   }
+}
+
+.plume-content :deep(p) {
+  margin: 0.5rem 0;
+}
+.plume-content :deep(p:first-of-type) {
+  margin-top: 0;
+}
+.plume-content :deep(p:last-of-type) {
+  margin-bottom: 0;
+}
+
+.plume-content :deep(p strong) {
+  color: var(--vp-c-text-2);
 }
 </style>

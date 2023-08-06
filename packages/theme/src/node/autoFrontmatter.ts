@@ -37,7 +37,8 @@ export default function autoFrontmatter(
   const locales = (app.siteData.locales || {}) as PlumeThemeLocaleOptions
   const localesNotesDirs = Object.keys(locales)
     .map((locale) => {
-      const notes = localeOption.locales?.[locale].notes
+      // fixed: #15
+      const notes = localeOption.locales?.[locale]?.notes
       if (!notes) return ''
       const dir = notes.dir
       return dir ? normalizePath(path.join(locale, dir)).replace(/^\//, '') : ''
@@ -62,7 +63,7 @@ export default function autoFrontmatter(
     return resolveLocalePath(localeOption.locales!, file)
   }
   const notesByLocale = (locale: string) => {
-    const notes = localeOption.locales![locale].notes || localeOption.notes
+    const notes = localeOption.locales![locale]?.notes || localeOption.notes
     if (notes === false) return undefined
     return notes
   }

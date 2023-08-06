@@ -46,13 +46,13 @@
     "chokidar": "^3.5.3",
     "cpx2": "^5.0.0",
     "dotenv": "^16.3.1",
-    "esbuild": "^0.18.17",
+    "esbuild": "^0.18.18",
     "execa": "^7.2.0",
-    "netlify-cli": "^15.9.1",
+    "netlify-cli": "^15.10.0",
     "portfinder": "^1.0.32"
   },
   "devDependencies": {
-    "@types/node": "^18.17.1"
+    "@types/node": "^18.17.3"
   },
   "publishConfig": {
     "access": "public"

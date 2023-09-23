@@ -8,6 +8,7 @@ export const baiduTongjiPlugin = ({ key = '' }: BaiduTongjiOptions): Plugin => {
   return {
     name: '@vuepress-plume/vuepress-plugin-baidu-tongji',
     extendsPage: (page) => {
+      page.frontmatter.head = page.frontmatter.head || [];
       page.frontmatter.head?.push([
         'script',
         {

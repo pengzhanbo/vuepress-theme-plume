@@ -5,7 +5,7 @@
 开箱即用，仅需少量配置即可使用。
 
 ![npm version](https://badge.fury.io/js/@vuepress-plume%2Fvuepress-theme-plume.svg)
-![npm download](https://img.shields.io/npm/dm/@vuepress-plume/vuepress-theme-plume?style=flat)
+![npm download](https://img.shields.io/npm/dt/@vuepress-plume/vuepress-theme-plume?style=flat)
 
 ### [查看文档](https://pengzhanbo.cn/note/vuepress-theme-plume)
 

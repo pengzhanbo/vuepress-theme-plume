@@ -14,9 +14,7 @@ import NavBarTranslations from './NavBarTranslations.vue'
 defineProps<{
   isScreenOpen: boolean
 }>()
-defineEmits<{
-  (e: 'toggle-screen'): void
-}>()
+defineEmits<(e: 'toggle-screen') => void>()
 
 const { y } = useWindowScroll()
 const { hasSidebar } = useSidebar()

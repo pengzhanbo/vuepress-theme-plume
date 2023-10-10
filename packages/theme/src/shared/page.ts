@@ -1,4 +1,4 @@
-export type PlumeThemePageData = {
+export interface PlumeThemePageData {
   git: {
     createTime: number
     updateTime: number
@@ -8,7 +8,7 @@ export type PlumeThemePageData = {
   categoryList?: PageCategoryData[]
 }
 
-export type PageCategoryData = {
+export interface PageCategoryData {
   type: string | number
   name: string
 }

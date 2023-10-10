@@ -3,9 +3,7 @@ defineProps<{
   active: boolean
 }>()
 
-defineEmits<{
-  (e: 'click'): void
-}>()
+defineEmits<(e: 'click') => void>()
 </script>
 
 <template>

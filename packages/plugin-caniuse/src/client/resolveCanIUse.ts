@@ -1,7 +1,6 @@
 export const resolveCanIUse = (): void => {
-  const canIUseEls = document.getElementsByClassName('ciu_embed')
-  for (let t = 0; t < canIUseEls.length; t++) {
-    const el = canIUseEls[t]
+  const canIUseEls = Array.from(document.getElementsByClassName('ciu_embed'))
+  for (const el of canIUseEls) {
     const feature = el.getAttribute('data-feature')
     const periods = el.getAttribute('data-periods')
     const accessible = el.getAttribute('data-accessible-colours') || 'false'
@@ -18,8 +17,7 @@ export const resolveCanIUse = (): void => {
     const data = message.data
     if (typeof data === 'string' && data.indexOf('ciu_embed') > -1) {
       const [, feature, height] = data.split(':')
-      for (let i = 0; i < canIUseEls.length; i++) {
-        const el = canIUseEls[i]
+      for (const el of canIUseEls) {
         if (el.getAttribute('data-feature') === feature) {
           const h = parseInt(height) + 30
           ;(el.childNodes[0] as any).height = h + 'px'

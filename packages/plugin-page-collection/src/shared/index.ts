@@ -1,3 +1,1 @@
-export interface PageCollectionOptions {
-  [x: string]: unknown
-}
+export type PageCollectionOptions = Record<string, unknown>;

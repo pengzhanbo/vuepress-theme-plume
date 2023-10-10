@@ -1,6 +1,6 @@
 export type NavItem = NavItemWithLink | NavItemWithChildren
 
-export type NavItemWithLink = {
+export interface NavItemWithLink {
   text: string
   link: string
   icon?: string
@@ -12,7 +12,7 @@ export type NavItemWithLink = {
   activeMatch?: string
 }
 
-export type NavItemChildren = {
+export interface NavItemChildren {
   text?: string
   icon?: string
   items: NavItemWithLink[]

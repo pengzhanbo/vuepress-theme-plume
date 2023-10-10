@@ -1,4 +1,5 @@
-import { onUnmounted, readonly, ref, type Ref, watch } from 'vue'
+import { onUnmounted, readonly, ref,  watch } from 'vue'
+import type {Ref} from 'vue';
 import { inBrowser } from '../utils/index.js'
 
 interface UseFlyoutOptions {

@@ -1,4 +1,4 @@
-export type NotesDataOptions = {
+export interface NotesDataOptions {
   dir: string
   link: string
   include?: string | string[]
@@ -6,7 +6,7 @@ export type NotesDataOptions = {
   notes: NotesItem[]
 }
 
-export type NotesItem = {
+export interface NotesItem {
   dir: string
   link: string
   text: string
@@ -15,7 +15,7 @@ export type NotesItem = {
 
 export type NotesSidebar = (NotesSidebarItem | string)[]
 
-export type NotesSidebarItem = {
+export interface NotesSidebarItem {
   text?: string
   link?: string
   dir?: string

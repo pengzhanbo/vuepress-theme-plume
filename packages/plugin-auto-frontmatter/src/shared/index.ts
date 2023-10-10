@@ -13,9 +13,7 @@ export type FrontmatterFn<T = any, K = object> = (
   data: K
 ) => T | PromiseLike<T>
 
-export type FrontmatterObject<K = object, T = any> = {
-  [P: string]: FrontmatterFn<T, K>
-}
+export type FrontmatterObject<K = object, T = any> = Record<string, FrontmatterFn<T, K>>;
 
 export type FrontmatterArray = {
   include: string | string[]

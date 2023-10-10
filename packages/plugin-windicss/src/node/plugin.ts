@@ -16,7 +16,9 @@ export const windiCSSPlugin = (options?: WindiCSSOptions | string): Plugin => {
   if (typeof options === 'string') {
     userOptions = {
       config: options,
-      include: ['**/.vuepress/**/*.{vue,jsx,tsx}', '**/*.md'],
+      scan: {
+        include: ['**/.vuepress/**/*.{vue,jsx,tsx}', '**/*.md'],
+      },
     }
   } else {
     options = options || {}
@@ -36,14 +38,14 @@ export const windiCSSPlugin = (options?: WindiCSSOptions | string): Plugin => {
           bundlerOptions.viteOptions ??= {}
           bundlerOptions.viteOptions.plugins ??= []
           bundlerOptions.viteOptions.plugins.push(
-            viteWindiCSS(userOptions, utilsOptions)
+            viteWindiCSS(userOptions, utilsOptions),
           )
         }
         if (app.options.bundler.name === '@vuepress/bundler-webpack') {
           bundlerOptions.configureWebpack &&
             bundlerOptions.configureWebpack((config: any) => {
               config.plugins.push(
-                new (WebpackWindiCSSPlugin as any)(userOptions)
+                new (WebpackWindiCSSPlugin as any)(userOptions),
               )
             })
         }

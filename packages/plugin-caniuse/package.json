@@ -36,7 +36,7 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "dependencies": {
-    "@types/markdown-it": "^13.0.2",
+    "@types/markdown-it": "^13.0.6",
     "@vuepress/cli": "2.0.0-beta.67",
     "@vuepress/client": "2.0.0-beta.67",
     "@vuepress/core": "2.0.0-beta.67",

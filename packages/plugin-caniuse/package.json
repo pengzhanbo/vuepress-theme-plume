@@ -37,10 +37,10 @@
   },
   "dependencies": {
     "@types/markdown-it": "^13.0.6",
-    "@vuepress/cli": "2.0.0-beta.67",
-    "@vuepress/client": "2.0.0-beta.67",
-    "@vuepress/core": "2.0.0-beta.67",
-    "@vuepress/utils": "2.0.0-beta.67",
+    "@vuepress/cli": "2.0.0-rc.0",
+    "@vuepress/client": "2.0.0-rc.0",
+    "@vuepress/core": "2.0.0-rc.0",
+    "@vuepress/utils": "2.0.0-rc.0",
     "markdown-it-container": "^3.0.0"
   },
   "publishConfig": {

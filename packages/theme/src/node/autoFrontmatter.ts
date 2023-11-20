@@ -11,8 +11,8 @@ import type { NotesItem } from '@vuepress-plume/vuepress-plugin-notes-data'
 import { format } from 'date-fns'
 import { customAlphabet } from 'nanoid'
 import type {
-  PlumeThemePluginOptions,
-  PlumeThemeLocaleOptions
+  PlumeThemeLocaleOptions,
+  PlumeThemePluginOptions
 } from '../shared/index.js'
 
 const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz', 8)
@@ -90,9 +90,9 @@ export default function autoFrontmatter(
     return dirList.length > 0 ? dirList[dirList.length - 1] : ''
   }
   return {
-    include: options.frontmatter.include ?? ['**/*.{md,MD}'],
-    exclude: options.frontmatter.exclude ?? ['.vuepress/**/*', 'node_modules'],
-    frontmatter: options.frontmatter.frontmatter ?? [
+    include: options.frontmatter?.include ?? ['**/*.{md,MD}'],
+    exclude: options.frontmatter?.exclude ?? ['.vuepress/**/*', 'node_modules'],
+    frontmatter: options.frontmatter?.frontmatter ?? [
       localesNotesDirs.length
         ? {
             // note 首页链接

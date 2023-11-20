@@ -1,3 +1,18 @@
+# [1.0.0-beta.87](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.86...v1.0.0-beta.87) (2023-11-20)
+
+
+### Bug Fixes
+
+* fix the wrong position in note ([2f08ccd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2f08ccd6b4b2437768b61264d2f92a7236a7c896))
+* **theme:** `options.frontmatter` not defined ([0782fe0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0782fe06f814938d340aae3009eb6666777152a3)), closes [#17](https://github.com/pengzhanbo/vuepress-theme-plume/issues/17) [#17](https://github.com/pengzhanbo/vuepress-theme-plume/issues/17)
+
+
+### Features
+
+* add config of autoFrontmatter ([0f88f50](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0f88f5064f299111e82c47c4e1c002a54bfa30a7))
+
+
+
 # [1.0.0-beta.86](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.85...v1.0.0-beta.86) (2023-11-18)
 
 

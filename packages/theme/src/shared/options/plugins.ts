@@ -6,6 +6,7 @@ import type { CanIUsePluginOptions } from '@vuepress-plume/vuepress-plugin-caniu
 import type { CopyCodeOptions } from '@vuepress-plume/vuepress-plugin-copy-code'
 import type { CommentPluginOptions } from 'vuepress-plugin-comment2'
 import type { MarkdownEnhanceOptions } from 'vuepress-plugin-md-enhance'
+import type { AutoFrontmatterOptions } from '@vuepress-plume/vuepress-plugin-auto-frontmatter'
 
 export interface PlumeThemePluginOptions {
   /**
@@ -49,4 +50,6 @@ export interface PlumeThemePluginOptions {
   seo?: false
 
   baiduTongji?: false | BaiduTongjiOptions
+
+  frontmatter?: AutoFrontmatterOptions
 }

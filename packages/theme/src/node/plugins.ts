@@ -55,7 +55,7 @@ export const setupPlugins = (
           : undefined,
       } as any,
     }),
-    autoFrontmatterPlugin(autoFrontmatter(app, localeOptions)),
+    autoFrontmatterPlugin(autoFrontmatter(app, options, localeOptions)),
     blogDataPlugin({
       include: localeOptions.blog?.include,
       exclude: [

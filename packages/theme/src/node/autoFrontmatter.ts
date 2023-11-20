@@ -10,7 +10,10 @@ import type {
 import type { NotesItem } from '@vuepress-plume/vuepress-plugin-notes-data'
 import { format } from 'date-fns'
 import { customAlphabet } from 'nanoid'
-import type { PlumeThemeLocaleOptions } from '../shared/index.js'
+import type {
+  PlumeThemePluginOptions,
+  PlumeThemeLocaleOptions
+} from '../shared/index.js'
 
 const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz', 8)
 const require = createRequire(process.cwd())
@@ -28,6 +31,7 @@ const normalizePath = (dir: string) => {
 
 export default function autoFrontmatter(
   app: App,
+  options: PlumeThemePluginOptions,
   localeOption: PlumeThemeLocaleOptions
 ): AutoFrontmatterOptions {
   const sourceDir = app.dir.source()
@@ -86,8 +90,9 @@ export default function autoFrontmatter(
     return dirList.length > 0 ? dirList[dirList.length - 1] : ''
   }
   return {
-    include: ['**/*.md'],
-    frontmatter: [
+    include: options.frontmatter.include ?? ['**/*.{md,MD}'],
+    exclude: options.frontmatter.exclude ?? ['.vuepress/**/*', 'node_modules'],
+    frontmatter: options.frontmatter.frontmatter ?? [
       localesNotesDirs.length
         ? {
             // note 首页链接

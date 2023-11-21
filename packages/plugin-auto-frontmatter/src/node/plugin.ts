@@ -15,7 +15,7 @@ import { ensureArray, isEmptyObject } from './utils.js'
 
 export const autoFrontmatterPlugin = ({
   include = ['**/*.{md,MD}'],
-  exclude = ['.vuepress/**/*', 'node_modules'],
+  exclude = ['.vuepress/**/*', 'node_modules', '!.~*.{md,MD}'],
   frontmatter = {},
 }: AutoFrontmatterOptions = {}): Plugin => {
   include = ensureArray(include)

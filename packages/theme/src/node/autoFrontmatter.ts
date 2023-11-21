@@ -91,7 +91,7 @@ export default function autoFrontmatter(
   }
   return {
     include: options.frontmatter?.include ?? ['**/*.{md,MD}'],
-    exclude: options.frontmatter?.exclude ?? ['.vuepress/**/*', 'node_modules'],
+    exclude: options.frontmatter?.exclude ?? ['.vuepress/**/*', 'node_modules', '!.~*.{md,MD}'],
     frontmatter: options.frontmatter?.frontmatter ?? [
       localesNotesDirs.length
         ? {

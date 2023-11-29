@@ -1,3 +1,12 @@
+# [1.0.0-beta.88](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.87...v1.0.0-beta.88) (2023-11-29)
+
+
+### Performance Improvements
+
+* **plugin-caniuse:** optimize render content ([b0cbe45](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b0cbe45d7def5a2369b2ff9ae1fceac40fe1a57d))
+
+
+
 # [1.0.0-beta.87](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.86...v1.0.0-beta.87) (2023-11-20)
 
 

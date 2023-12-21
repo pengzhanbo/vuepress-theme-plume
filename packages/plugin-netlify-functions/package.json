@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@iarna/toml": "^2.2.5",
-    "@netlify/functions": "^2.4.0",
+    "@netlify/functions": "^2.4.1",
     "@vuepress/core": "2.0.0-rc.0",
     "@vuepress/shared": "2.0.0-rc.0",
     "@vuepress/utils": "2.0.0-rc.0",
@@ -46,13 +46,13 @@
     "chokidar": "^3.5.3",
     "cpx2": "^6.0.1",
     "dotenv": "^16.3.1",
-    "esbuild": "^0.19.5",
+    "esbuild": "^0.19.10",
     "execa": "^8.0.1",
-    "netlify-cli": "^17.5.1",
+    "netlify-cli": "^17.10.1",
     "portfinder": "^1.0.32"
   },
   "devDependencies": {
-    "@types/node": "^20.9.1"
+    "@types/node": "^20.10.5"
   },
   "publishConfig": {
     "access": "public"

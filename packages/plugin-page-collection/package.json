@@ -31,14 +31,14 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "dependencies": {
-    "@netlify/functions": "^2.4.0",
+    "@netlify/functions": "^2.4.1",
     "@vuepress-plume/vuepress-plugin-netlify-functions": "workspace:*",
     "@vuepress/client": "2.0.0-rc.0",
     "@vuepress/core": "2.0.0-rc.0",
     "@vuepress/shared": "2.0.0-rc.0",
     "@vuepress/utils": "2.0.0-rc.0",
     "leancloud-storage": "^4.15.2",
-    "vue": "^3.3.8",
+    "vue": "^3.3.13",
     "vue-router": "4.2.5"
   },
   "publishConfig": {

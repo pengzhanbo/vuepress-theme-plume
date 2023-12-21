@@ -27,19 +27,13 @@ export const caniusePlugin = ({
     return validateReg.test(info.trim())
   }
 
-  const before = '<div class="caniuse-container">\n'
-  const after = '\n</div>'
-
   const render = (tokens: Token[], index: number): string => {
     const token = tokens[index]
     if (token.nesting === 1) {
       const feature = token.info.trim().slice(type.length).trim() || ''
-      if (feature) {
-        return before + resolveCanIUse(feature, mode)
-      }
-      return before
+      return feature ? resolveCanIUse(feature, mode) : ''
     } else {
-      return after
+      return ''
     }
   }
 

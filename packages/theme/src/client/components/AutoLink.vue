@@ -35,8 +35,8 @@ const linkTo = (e: Event) => {
     class="auto-link"
     :class="{ link: href }"
     :href="href ? normalizeLink(href) : undefined"
-    :target="target || (isExternal ? '_blank' : undefined)"
-    :rel="rel || (isExternal ? 'noreferrer' : undefined)"
+    :target="target ?? (isExternal ? '_blank' : undefined)"
+    :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"
   >
     <slot />

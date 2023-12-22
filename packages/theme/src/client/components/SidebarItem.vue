@@ -44,7 +44,10 @@ const classes = computed(() => [
   { 'has-active': hasActiveLink.value },
 ])
 
-function onItemClick() {
+function onItemInteraction(e: MouseEvent | Event) {
+  if ('key' in e && e.key !== 'Enter') {
+    return
+  }
   !props.item.link && toggle()
 }
 
@@ -55,10 +58,19 @@ function onCaretClick() {
 
 <template>
   <Component :is="sectionTag" class="sidebar-item" :class="classes">
-    <div v-if="item.text" class="item" :role="itemRole" @click="onItemClick">
+    <div
+      v-if="item.text"
+      class="item"
+      :role="itemRole"
+      :tabindex="item.items && 0"
+      v-on="item.items
+        ? { click: onItemInteraction, keydown: onItemInteraction }
+        : {}
+      "
+    >
       <div class="indicator" />
 
-      <AutoLink :tag="linkTag" class="link" :href="item.link">
+      <AutoLink v-if="item.link" :tag="linkTag" class="link" :href="item.link">
         <!-- eslint-disable vue/no-v-text-v-html-on-component -->
         <!-- eslint-disable-next-line vue/no-v-html -->
         <Component :is="textTag" class="text" v-html="item.text" />
@@ -68,7 +80,10 @@ function onCaretClick() {
         v-if="item.collapsed != null"
         class="caret"
         role="button"
+        aria-label="toggle section"
+        tabindex="0"
         @click="onCaretClick"
+        @keydown.enter="onCaretClick"
       >
         <IconChevronRight class="caret-icon" />
       </div>

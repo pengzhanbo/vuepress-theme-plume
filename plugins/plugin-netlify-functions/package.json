@@ -1,0 +1,60 @@
+{
+  "name": "@vuepress-plume/plugin-netlify-functions",
+  "version": "1.0.0-beta.89",
+  "description": "The Plugin for VuePres 2, Support Netlify Functions",
+  "keywords": [
+    "VuePress",
+    "vuepress plugin",
+    "netlify",
+    "netlify functions",
+    "netlifyFunctions",
+    "vuepress-plugin-plugin-netlify-functions"
+  ],
+  "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+  },
+  "license": "MIT",
+  "author": "pengzhanbo <volodymyr@foxmail.com>",
+  "type": "module",
+  "exports": {
+    ".": "./lib/node/index.js",
+    "./package.json": "./package.json"
+  },
+  "main": "lib/node/index.js",
+  "types": "lib/node/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "pnpm run clean && pnpm run copy && pnpm run ts",
+    "clean": "rimraf lib *.tsbuildinfo",
+    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
+    "ts": "tsc -b tsconfig.build.json"
+  },
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "@netlify/functions": "^2.4.1",
+    "@vuepress/core": "2.0.0-rc.0",
+    "@vuepress/shared": "2.0.0-rc.0",
+    "@vuepress/utils": "2.0.0-rc.0",
+    "chalk": "^5.3.0",
+    "chokidar": "^3.5.3",
+    "cpx2": "^6.0.1",
+    "dotenv": "^16.3.1",
+    "esbuild": "^0.19.10",
+    "execa": "^8.0.1",
+    "netlify-cli": "^17.10.1",
+    "portfinder": "^1.0.32"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -9,7 +9,6 @@
     "docs:serve": "anywhere -s -h localhost -d .vuepress/dist"
   },
   "dependencies": {
-    "@vuepress-plume/vuepress-theme-plume": "workspace:*",
     "@vuepress/bundler-vite": "2.0.0-rc.0",
     "@vuepress/bundler-webpack": "2.0.0-rc.0",
     "@vuepress/cli": "2.0.0-rc.0",
@@ -19,6 +18,7 @@
     "leancloud-storage": "^4.15.2",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
-    "vue": "^3.3.13"
+    "vue": "^3.3.13",
+    "vuepress-theme-plume": "workspace:*"
   }
 }

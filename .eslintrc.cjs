@@ -48,7 +48,7 @@ module.exports = {
       },
     },
     {
-      files: ['docs/**'],
+      files: ['docs/**/*.ts'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
       },

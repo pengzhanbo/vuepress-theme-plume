@@ -1,13 +1,13 @@
-# `@vuepress-plume/vuepress-{{ pkgName }}`
+# `@vuepress-plume/{{ pkgName }}`
 
 ## Install
 ```
-yarn add @vuepress-plume/vuepress-{{ pkgName }}
+yarn add @vuepress-plume/{{ pkgName }}
 ```
 ## Usage
 ``` js
 // .vuepress/config.js
-const {{ lowerName }}Plugin = require('@vuepress-plume/vuepress-{{ pkgName }}')
+const {{ lowerName }}Plugin = require('@vuepress-plume/{{ pkgName }}')
 module.exports = {
   //...
   plugins: [

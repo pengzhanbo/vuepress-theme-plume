@@ -1,0 +1,49 @@
+{
+  "name": "@vuepress-plume/plugin-caniuse",
+  "version": "1.0.0-beta.89",
+  "description": "The Plugin for VuePres 2, Support Can-I-Use feature",
+  "keywords": [
+    "VuePress",
+    "plugin",
+    "vuepress-plugin",
+    "can-i-use",
+    "caniuse"
+  ],
+  "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+  },
+  "license": "MIT",
+  "author": "pengzhanbo <volodymyr@foxmail.com>",
+  "type": "module",
+  "exports": {
+    ".": "./lib/node/index.js",
+    "./client": "./lib/client/index.js",
+    "./package.json": "./package.json"
+  },
+  "main": "lib/node/index.js",
+  "types": "./lib/node/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "pnpm run clean && pnpm run ts",
+    "clean": "rimraf lib *.tsbuildinfo",
+    "ts": "tsc -b tsconfig.build.json"
+  },
+  "dependencies": {
+    "@types/markdown-it": "^13.0.7",
+    "@vuepress/cli": "2.0.0-rc.0",
+    "@vuepress/client": "2.0.0-rc.0",
+    "@vuepress/core": "2.0.0-rc.0",
+    "@vuepress/utils": "2.0.0-rc.0",
+    "markdown-it-container": "^4.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

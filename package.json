@@ -1,5 +1,5 @@
 {
-  "name": "vuepress-theme-plume",
+  "name": "vuepress-theme-plume-monorepo",
   "version": "1.0.0-beta.89",
   "private": true,
   "keywords": [
@@ -7,8 +7,6 @@
     "vuepress-next",
     "Theme",
     "vuepress theme",
-    "vuepress-theme",
-    "theme-plume",
     "vuepress-theme-plume"
   ],
   "license": "MIT",
@@ -17,11 +15,11 @@
   "scripts": {
     "autoUpdate": "node scripts/autoInstall.js",
     "build": "pnpm run build:package",
-    "build:package": "pnpm --filter=!vuepress-theme-plume run -r --stream build",
+    "build:package": "pnpm --filter=!vuepress-theme-plume-monorepo --filter=!docs run -r --stream build",
     "commit": "cz",
     "dev": "concurrently \"pnpm run dev:package\" \"pnpm run docs\"",
-    "dev:package": "pnpm --filter=!vuepress-theme-plume --parallel dev",
-    "dev:theme": "concurrently \"pnpm --filter=@vuepress-plume/vuepress-theme-plume dev\" \"pnpm run docs\"",
+    "dev:package": "pnpm --filter=!vuepress-theme-plume-monorepo --filter=!docs --parallel dev",
+    "dev:theme": "concurrently \"pnpm --filter=vuepress-theme-plume dev\" \"pnpm run docs\"",
     "docs": "pnpm --filter=docs docs:dev",
     "docs:build": "pnpm --filter=docs docs:build",
     "docs:clean": "pnpm --filter=docs docs:clean",
@@ -76,7 +74,6 @@
     "rimraf": "^5.0.5",
     "sort-package-json": "^2.6.0",
     "taze": "^0.13.0",
-    "ts-node": "^10.9.2",
     "tsconfig-vuepress": "^4.5.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.10"

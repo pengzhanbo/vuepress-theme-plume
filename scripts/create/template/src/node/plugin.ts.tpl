@@ -14,7 +14,7 @@ export interface {{ upperName }}Options {
 export const {{ lowerName }}Plugin = (options: {{ upperName }}Options): Plugin => {
   return (app: App) => {
     return {
-      name: '@vuepress-plume/vuepress-{{ pkgName }}',
+      name: '@vuepress-plume/{{ pkgName }}',
       {{#if client}}
       clientConfigFile: path.resolve(__dirname, '../client/clientConfig.js'),
       {{/if}}

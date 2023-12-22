@@ -1,0 +1,11 @@
+{
+  "extends": "../plugins/tsconfig.build.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./lib",
+    "baseUrl": ".",
+    "types": ["@vuepress/client/types", "vite/client"]
+  },
+  "include": ["./src"],
+  "files": []
+}

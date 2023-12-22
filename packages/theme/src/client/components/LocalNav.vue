@@ -1,6 +1,13 @@
 <script lang="ts" setup>
-import { useSidebar } from '../composables/index.js'
+import { usePageData } from '@vuepress/client'
+import { useWindowScroll } from '@vueuse/core'
+import { computed, onMounted, ref } from 'vue'
+import type {
+  PlumeThemePageData,
+} from '../../shared/index.js'
+import { useSidebar, useThemeLocaleData } from '../composables/index.js'
 import IconAlignLeft from './icons/IconAlignLeft.vue'
+import LocalNavOutlineDropdown from './LocalNavOutlineDropdown.vue'
 
 defineProps<{
   open: boolean
@@ -8,15 +15,39 @@ defineProps<{
 
 defineEmits<(e: 'open-menu') => void>()
 
-const { hasSidebar } = useSidebar()
+const page = usePageData<PlumeThemePageData>()
+const themeData = useThemeLocaleData()
 
-function scrollToTop() {
-  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-}
+const { hasSidebar } = useSidebar()
+const { y } = useWindowScroll()
+
+const navHeight = ref(0)
+
+const headers = computed(() => page.value.headers)
+const empty = computed(() => {
+  return headers.value.length === 0 && !hasSidebar.value
+})
+
+onMounted(() => {
+  navHeight.value = parseInt(
+    getComputedStyle(document.documentElement).getPropertyValue(
+      '--vp-nav-height'
+    )
+  )
+})
+
+const classes = computed(() => {
+  return {
+    'local-nav': true,
+    fixed: empty.value,
+    'reached-top': y.value >= navHeight.value
+  }
+})
+
 </script>
 
 <template>
-  <div v-if="hasSidebar" class="local-nav">
+  <div v-if="hasSidebar && (!empty || y >= navHeight)" :class="classes">
     <button
       class="menu"
       :aria-expanded="open"
@@ -24,10 +55,10 @@ function scrollToTop() {
       @click="$emit('open-menu')"
     >
       <IconAlignLeft class="menu-icon" />
-      <span class="menu-text"> Menu </span>
+      <span class="menu-text"> {{ themeData.sidebarMenuLabel || 'Menu' }} </span>
     </button>
 
-    <a class="top-link" href="#" @click="scrollToTop"> Return to top </a>
+    <LocalNavOutlineDropdown :headers="headers" :nav-height="navHeight" />
   </div>
 </template>
 
@@ -46,6 +77,14 @@ function scrollToTop() {
   width: 100%;
   background-color: var(--vp-local-nav-bg-color);
   transition: border-color 0.5s, background-color 0.5s;
+}
+
+.local-nav.fixed {
+  position: fixed;
+}
+
+.local-nav.reached-top {
+  border-top-color: transparent;
 }
 
 @media (min-width: 960px) {

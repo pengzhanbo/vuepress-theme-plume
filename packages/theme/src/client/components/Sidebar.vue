@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
-import { ref, watchPostEffect } from 'vue'
+import { useScrollLock } from '@vueuse/core'
+import { ref, watch } from 'vue'
 import { useSidebar } from '../composables/sidebar.js'
+import { inBrowser } from '../utils/index.js'
 import SidebarItem from './SidebarItem.vue'
 
 const { sidebarGroups, hasSidebar } = useSidebar()
@@ -12,23 +13,18 @@ const props = defineProps<{
 
 // a11y: focus Nav element when menu has opened
 const navEl = ref<HTMLElement | null>(null)
+const isLocked = useScrollLock(inBrowser ? document.body : null)
 
-function lockBodyScroll() {
-  disableBodyScroll(navEl.value!, { reserveScrollBarGap: true })
-}
-
-function unlockBodyScroll() {
-  clearAllBodyScrollLocks()
-}
-
-watchPostEffect(async () => {
-  if (props.open) {
-    lockBodyScroll()
-    navEl.value?.focus()
-  } else {
-    unlockBodyScroll()
-  }
-})
+watch(
+  [props, navEl],
+  () => {
+    if (props.open) {
+      isLocked.value = true
+      navEl.value?.focus()
+    } else isLocked.value = false
+  },
+  { immediate: true, flush: 'post' }
+)
 </script>
 
 <template>
@@ -74,7 +70,7 @@ watchPostEffect(async () => {
   overflow-x: hidden;
   overflow-y: auto;
   transform: translateX(-100%);
-  transition: opacity 0.5s, transform 0.25s ease;
+  transition: opacity 0.5s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .sidebar-wrapper.open {
@@ -92,7 +88,6 @@ watchPostEffect(async () => {
   .sidebar-wrapper {
     z-index: 1;
     padding-top: var(--vp-nav-height);
-    padding-bottom: 128px;
     width: var(--vp-sidebar-width);
     max-width: 100%;
     background-color: var(--vp-sidebar-bg-color);

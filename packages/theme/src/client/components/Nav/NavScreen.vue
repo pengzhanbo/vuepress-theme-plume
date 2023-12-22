@@ -1,33 +1,27 @@
 <script setup lang="ts">
-import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
-import { ref } from 'vue'
+import { useScrollLock } from '@vueuse/core'
+import { inBrowser } from '../../utils/index.js'
 import NavScreenAppearance from './NavScreenAppearance.vue'
 import NavScreenMenu from './NavScreenMenu.vue'
 import NavScreenSocialLinks from './NavScreenSocialLinks.vue'
 import NavScreenTranslates from './NavScreenTranslations.vue'
 
+
 defineProps<{
   open: boolean
 }>()
 
-const screen = ref<HTMLElement | null>(null)
+const isLocked = useScrollLock(inBrowser ? document.body : null)
 
-function lockBodyScroll() {
-  disableBodyScroll(screen.value!, { reserveScrollBarGap: true })
-}
-
-function unlockBodyScroll() {
-  clearAllBodyScrollLocks()
-}
 </script>
 
 <template>
   <Transition
     name="fade"
-    @enter="lockBodyScroll"
-    @after-leave="unlockBodyScroll"
+    @enter="isLocked = true"
+    @after-leave="isLocked = false"
   >
-    <div v-if="open" ref="screen" class="nav-screen">
+    <div v-if="open" id="navScreen" class="nav-screen">
       <div class="container">
         <NavScreenMenu class="menu" />
         <NavScreenTranslates class="translations" />

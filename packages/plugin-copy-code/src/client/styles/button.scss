@@ -11,14 +11,10 @@
   div[class*='language-'] & {
     position: absolute;
     right: 0;
-    top: 2rem;
+    top: 0.8rem;
     z-index: 99;
     opacity: 0;
     transition: opacity var(--t-color);
-  }
-
-  div[class*='language-']:hover & {
-    opacity: 1;
   }
 
   .icon-success {
@@ -26,6 +22,21 @@
     width: 1.5rem;
     height: 1.5rem;
     vertical-align: middle;
+  }
+}
+
+div[class*='language-'] {
+  &::before {
+    opacity: 1;
+    transition: opacity var(--t-color);
+  }
+
+  &:hover::before {
+    opacity: 0;
+  }
+
+  &:hover .copy-code-button {
+    opacity: 1;
   }
 }
 

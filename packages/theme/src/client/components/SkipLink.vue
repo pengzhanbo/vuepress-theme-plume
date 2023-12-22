@@ -11,8 +11,8 @@ watch(
 )
 
 function focusOnTargetAnchor({ target }: Event) {
-  const el = document.querySelector<HTMLAnchorElement>(
-    (target as HTMLAnchorElement).hash
+  const el = document.getElementById(
+    decodeURIComponent((target as HTMLAnchorElement).hash).slice(1)
   )
 
   if (el) {
@@ -62,9 +62,6 @@ function focusOnTargetAnchor({ target }: Event) {
   clip-path: none;
 }
 
-.dark .skip-link {
-  color: var(--vp-c-green);
-}
 
 @media (min-width: 1280px) {
   .skip-link {

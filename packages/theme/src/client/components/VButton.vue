@@ -3,27 +3,28 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { EXTERNAL_URL_RE } from '../utils/index.js'
 
-const props = defineProps<{
+interface Props {
   tag?: string
   size?: 'medium' | 'big'
   theme?: 'brand' | 'alt' | 'sponsor'
   text: string
   href?: string
-}>()
+}
+const props = withDefaults(defineProps<Props>(), {
+  size: 'medium',
+  theme: 'brand',
+  tag: undefined,
+  href: undefined,
+})
 
 const router = useRouter()
-const classes = computed(() => [props.size ?? 'medium', props.theme ?? 'brand'])
 
 const isExternal = computed(
   () => props.href && EXTERNAL_URL_RE.test(props.href)
 )
 
 const component = computed(() => {
-  if (props.tag) {
-    return props.tag
-  }
-
-  return props.href ? 'a' : 'button'
+  return props.tag || props.href ? 'a' : 'button'
 })
 
 const linkTo = (e: Event) => {
@@ -38,7 +39,7 @@ const linkTo = (e: Event) => {
   <Component
     :is="component"
     class="VPButton"
-    :class="classes"
+    :class="[size, theme]"
     :href="href"
     :target="isExternal ? '_blank' : undefined"
     :rel="isExternal ? 'noreferrer' : undefined"

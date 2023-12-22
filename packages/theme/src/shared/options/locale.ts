@@ -177,9 +177,11 @@ export interface PlumeThemeLocaleData extends LocaleData {
    */
   openInNewWindow?: string | boolean
 
-  // notFound?: string[]
-
   // backToHome?: string
+
+  sidebarMenuLabel?: string
+
+  returnToTopLabel?: string
 
   footer?:
     | false
@@ -187,4 +189,12 @@ export interface PlumeThemeLocaleData extends LocaleData {
         message?: string
         copyright?: string
       }
+
+  notFound?: {
+    code?: string | number
+    title?: string
+    quote?: string
+    linkLabel?: string
+    linkText?: string
+  }
 }

@@ -42,7 +42,13 @@ const { hasSidebar } = useSidebar()
 }
 
 .plume-footer :deep(a) {
-  color: var(--vp-c-brand);
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+  transition: color 0.25s;
+}
+
+.plume-footer :deep(a:hover) {
+  color: var(--vp-c-text-1);
 }
 
 @media (min-width: 768px) {

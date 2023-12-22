@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import { usePageFrontmatter, } from '@vuepress/client'
 import { useWindowScroll } from '@vueuse/core'
-import { computed } from 'vue'
+import { ref, watchPostEffect } from 'vue'
 import { useSidebar } from '../../composables/sidebar.js'
 import NavBarAppearance from './NavBarAppearance.vue'
 import NavBarExtra from './NavBarExtra.vue'
@@ -16,13 +17,18 @@ defineProps<{
 }>()
 defineEmits<(e: 'toggle-screen') => void>()
 
+const matter = usePageFrontmatter()
+
 const { y } = useWindowScroll()
 const { hasSidebar } = useSidebar()
 
-const classes = computed(() => ({
-  'has-sidebar': hasSidebar.value,
-  'fill': y.value > 0,
-}))
+const classes = ref<Record<string, boolean>>({})
+watchPostEffect(() => {
+  classes.value = {
+    'has-sidebar': hasSidebar.value,
+    top: !!matter.value.home && y.value === 0,
+  }
+})
 </script>
 
 <template>
@@ -58,13 +64,10 @@ const classes = computed(() => ({
   border-bottom: 1px solid transparent;
   padding: 0 8px 0 24px;
   height: var(--vp-nav-height);
-  transition: border-color 0.5s, background-color 0.5s;
   pointer-events: none;
+  white-space: nowrap;
 }
 
-.navbar-wrapper.has-sidebar {
-  border-bottom-color: var(--vp-c-gutter);
-}
 
 @media (min-width: 768px) {
   .navbar-wrapper {
@@ -74,11 +77,10 @@ const classes = computed(() => ({
 
 @media (min-width: 960px) {
   .navbar-wrapper.has-sidebar {
-    border-bottom-color: transparent;
     padding: 0;
   }
 
-  .navbar-wrapper.fill:not(.has-sidebar) {
+  .navbar-wrapper:not(.has-sidebar):not(.top) {
     border-bottom-color: var(--vp-c-gutter);
     background-color: var(--vp-nav-bg-color);
   }
@@ -166,10 +168,15 @@ const classes = computed(() => ({
 }
 
 @media (min-width: 960px) {
-  .navbar-wrapper.has-sidebar .content-body,
-  .navbar-wrapper.fill .content-body {
+  .navbar-wrapper:not(.top) .content-body {
     position: relative;
     background-color: var(--vp-nav-bg-color);
+  }
+}
+
+@media (max-width: 767px) {
+  .content-body {
+    column-gap: 0.5rem;
   }
 }
 

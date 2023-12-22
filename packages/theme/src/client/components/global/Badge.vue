@@ -1,12 +1,16 @@
 <script setup lang="ts">
-defineProps<{
+interface Props {
   text?: string
   type?: 'info' | 'tip' | 'warning' | 'danger'
-}>()
+}
+withDefaults(defineProps<Props>(), {
+  type: 'tip',
+  text: undefined
+})
 </script>
 
 <template>
-  <span class="badge-view" :class="type ?? 'tip'">
+  <span class="badge-view" :class="type">
     <slot>{{ text }}</slot>
   </span>
 </template>
@@ -16,11 +20,11 @@ defineProps<{
   display: inline-block;
   margin-left: 2px;
   border: 1px solid transparent;
-  border-radius: 10px;
-  padding: 0 8px;
-  line-height: 18px;
+  border-radius: 12px;
+  padding: 0 10px;
+  line-height: 22px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   transform: translateY(-2px);
 }
 

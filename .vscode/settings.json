@@ -9,6 +9,7 @@
     "files.trimTrailingWhitespace": false
   },
   "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.experimental.useFlatConfig": false,
   "eslint.validate": [
     "javascript",
     "javascriptreact",

@@ -28,18 +28,24 @@ withDefaults(defineProps<Props>(), {
   transform: translateY(-2px);
 }
 
-h1 .badge-view,
-h2 .badge-view,
-h3 .badge-view,
+h1 .badge-view {
+  margin-top: 4px;
+  vertical-align: top;
+}
+h2 .badge-view {
+  margin-top: 3px;
+  padding: 0 8px;
+  vertical-align: top;
+}
+h3 .badge-view {
+  vertical-align: middle;
+}
+
 h4 .badge-view,
 h5 .badge-view,
 h6 .badge-view {
-  vertical-align: top;
-}
-
-h2 .badge-view {
-  border-radius: 11px;
-  line-height: 20px;
+  vertical-align: middle;
+  line-height: 18px;
 }
 
 .badge-view.info {

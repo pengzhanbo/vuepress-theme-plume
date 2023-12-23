@@ -1,3 +1,5 @@
+import type { NavItemWithLink } from ".";
+
 export interface PlumeThemeHomeFrontmatter {
   home?: true
   banner?: string
@@ -15,7 +17,17 @@ export interface PlumeThemeHeroAction {
   text: string
   link?: string
 }
-export interface PlumeThemePostFrontmatter {
+
+export interface PlumeThemePageFrontmatter {
+  editLink?: boolean
+  editLinkPattern?: string
+  lastUpdated?: boolean
+  contributors?: boolean
+  prev?: string | NavItemWithLink
+  next?: string | NavItemWithLink
+}
+
+export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {
   createTime?: string
   author?: string
   tags?: string[]
@@ -24,6 +36,6 @@ export interface PlumeThemePostFrontmatter {
   banner?: string
 }
 
-export interface PlumeThemeNoteFrontmatter {
+export interface PlumeThemeNoteFrontmatter extends PlumeThemePageFrontmatter {
   createTime?: string
 }

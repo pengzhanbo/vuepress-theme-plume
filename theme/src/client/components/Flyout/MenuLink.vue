@@ -48,11 +48,11 @@ const page = usePageData()
 }
 
 .link:hover {
-  color: var(--vp-c-brand);
-  background-color: var(--vp-c-bg-elv-mute);
+  color: var(--vp-c-brand-1);
+  background-color: var(--vp-c-default-soft);
 }
 
 .link.active {
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-1);
 }
 </style>

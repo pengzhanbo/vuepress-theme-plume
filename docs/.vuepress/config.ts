@@ -31,6 +31,10 @@ export default defineUserConfig({
   theme: themePlume({
     logo: 'https://pengzhanbo.cn/g.gif',
     hostname: 'https://pengzhanbo.cn',
+    repo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
+    docsDir: 'docs',
+    editLink: true,
+    editLinkText: 'Edit this page on GitHub',
     appearance: true,
     avatar: {
       url: '/images/blogger.jpg',

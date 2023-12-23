@@ -78,7 +78,7 @@ const createTime = computed(() => {
   }
 
   h3:hover {
-    color: var(--vp-c-brand);
+    color: var(--vp-c-brand-1);
 
     .sticky {
       color: var(--vp-c-text-2);
@@ -100,7 +100,7 @@ const createTime = computed(() => {
     line-height: 1;
     font-size: 13px;
     color: var(--vp-c-text-2);
-    background-color: var(--vp-c-bg-soft-mute);
+    background-color: var(--vp-c-default-soft);
   }
 }
 

@@ -1,6 +1,8 @@
 ---
 home: true
 banner: /images/bg-home.jpg
+bannerMask: 
+  dark: 0.2
 hero: 
   name: 鹏展博
   tagline: 前端开发工程师

@@ -97,9 +97,9 @@ export const setupPlugins = (
 
     options.git !== false
       ? gitPlugin({
-          createdTime: true,
-          updatedTime: true,
-          contributors: false,
+          createdTime: false,
+          updatedTime: localeOptions.lastUpdated !== false,
+          contributors: localeOptions.contributors !== false,
         })
       : [],
 
@@ -141,7 +141,10 @@ export const setupPlugins = (
       ? docsearchPlugin(options.docsearch!)
       : [],
 
-    options.shikiji !== false ? shikijiPlugin(options.shikiji) : [],
+    options.shikiji !== false ? shikijiPlugin({
+      theme: { light: 'vitesse-light', dark: 'vitesse-dark' },
+      ...(options.shikiji ?? {}),
+    }) : [],
 
     options.copyCode !== false
       ? copyCodePlugin({
@@ -154,7 +157,7 @@ export const setupPlugins = (
       ? mdEnhancePlugin(
           Object.assign(
             {
-              container: true, // info note tip warning danger details
+              hint: true, // info note tip warning danger details d
               codetabs: true,
               tabs: true,
               align: true,

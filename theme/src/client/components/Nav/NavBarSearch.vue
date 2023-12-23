@@ -24,7 +24,7 @@
 }
 
 .DocSearch {
-  --docsearch-primary-color: var(--vp-c-brand);
+  --docsearch-primary-color: var(--vp-c-brand-1);
   --docsearch-highlight-color: var(--docsearch-primary-color);
   --docsearch-text-color: var(--vp-c-text-1);
   --docsearch-muted-color: var(--vp-c-text-2);
@@ -41,7 +41,7 @@
   --docsearch-modal-shadow: none;
   --docsearch-footer-shadow: none;
   --docsearch-logo-color: var(--vp-c-text-2);
-  --docsearch-hit-background: var(--vp-c-bg-soft-mute);
+  --docsearch-hit-background: var(--vp-c-default-soft);
   --docsearch-hit-color: var(--vp-c-text-2);
   --docsearch-hit-shadow: none;
 }
@@ -83,7 +83,7 @@
   }
 
   .DocSearch-Button:hover {
-    border-color: var(--vp-c-brand);
+    border-color: var(--vp-c-brand-1);
     background: var(--vp-c-bg-alt);
   }
 }
@@ -200,11 +200,11 @@
 }
 
 .DocSearch-Form {
-  border: 1px solid var(--vp-c-brand);
+  border: 1px solid var(--vp-c-brand-1);
   background-color: var(--vp-c-white);
 }
 
 .dark .DocSearch-Form {
-  background-color: var(--vp-c-bg-soft-mute);
+  background-color: var(--vp-c-bg-soft);
 }
 </style>

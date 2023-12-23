@@ -1,0 +1,90 @@
+.plume-content .hint-container {
+  border-radius: 8px;
+  padding: 16px 16px 8px;
+  line-height: 24px;
+  font-size: var(--vp-custom-block-font-size);
+  color: var(--vp-c-text-2);
+}
+
+.plume-content .hint-container .hint-container-title {
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.hint-container.note {
+  color: var(--vp-custom-block-info-text);
+}
+
+.hint-container.tip {
+  color: var(--vp-custom-block-tip-text);
+}
+
+.hint-container.warning {
+  color: var(--vp-custom-block-warning-text);
+}
+
+.hint-container.caution {
+  color: var(--vp-custom-block-danger-text);
+}
+
+.hint-container.detail {
+  color: var(--vp-custom-block-detail-text);
+}
+
+.plume-content .hint-container.details summary {
+  margin: -1.5rem -1.5rem -1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--vp-c-text-1);
+}
+
+.plume-content .hint-container.details summary + p {
+  margin: 8px 0;
+}
+
+.plume-content .hint-container p + p {
+  margin: 8px 0;
+}
+
+.plume-content .hint-container code {
+  font-size: var(--vp-custom-block-code-font-size);
+}
+
+.plume-content .hint-container {
+  &.note,
+  &.tip,
+  &.detail,
+  &.important {
+    a,
+    code {
+      color: var(--vp-c-brand-1);
+    }
+    a:hover {
+      color: var(--vp-c-brand-2);
+    }
+  }
+  &.warning {
+    a,
+    code {
+      color: var(--vp-c-warning-1);
+    }
+    a:hover {
+      color: var(--vp-c-warning-2);
+    }
+  }
+  &.caution {
+    a,
+    code {
+      color: var(--vp-c-danger-1);
+    }
+    a:hover {
+      color: var(--vp-c-danger-2);
+    }
+  }
+
+  th,
+  blockquote > p {
+    font-size: var(--vp-custom-block-font-size);
+    color: inherit;
+  }
+}

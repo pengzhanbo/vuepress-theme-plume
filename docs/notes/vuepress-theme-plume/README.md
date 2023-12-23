@@ -55,7 +55,7 @@ npm i @vuepress-plume/vuepress-theme-plume
 // .vuepress/config.ts
 import { defineUserConfig } from 'vuepress'
 import { themePlume } from '@vuepress-plume/vuepress-theme-plume'
-export default defineUserConfig({ // [!code focus]
+export default defineUserConfig({
   theme: themePlume({ 
     // more...
   })

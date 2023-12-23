@@ -1,5 +1,5 @@
 {
-  "name": "@vuepress-plume/plugin-page-collection",
+  "name": "plugin-page-collection",
   "version": "1.0.0-rc.1",
   "private": true,
   "description": "The Plugin for VuePres 2",
@@ -32,14 +32,14 @@
   },
   "dependencies": {
     "@netlify/functions": "^2.4.1",
-    "@vuepress-plume/plugin-netlify-functions": "workspace:*",
     "@vuepress/client": "2.0.0-rc.0",
     "@vuepress/core": "2.0.0-rc.0",
     "@vuepress/shared": "2.0.0-rc.0",
     "@vuepress/utils": "2.0.0-rc.0",
     "leancloud-storage": "^4.15.2",
     "vue": "^3.3.13",
-    "vue-router": "4.2.5"
+    "vue-router": "4.2.5",
+    "vuepress-plugin-netlify-functions": "workspace:*"
   },
   "publishConfig": {
     "access": "public"

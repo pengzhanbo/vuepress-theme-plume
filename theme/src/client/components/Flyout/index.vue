@@ -69,7 +69,7 @@ export default {
 }
 
 .flyout-wrapper:hover {
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-1);
   transition: color 0.25s;
 }
 
@@ -82,11 +82,11 @@ export default {
 }
 
 .flyout-wrapper.active .text {
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-1);
 }
 
 .flyout-wrapper.active:hover .text {
-  color: var(--vp-c-brand-dark);
+  color: var(--vp-c-brand-2);
 }
 
 .flyout-wrapper:hover .menu,

@@ -50,7 +50,7 @@ function focusOnTargetAnchor({ target }: Event) {
   font-size: 12px;
   font-weight: bold;
   text-decoration: none;
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-1);
   box-shadow: var(--vp-shadow-3);
   background-color: var(--vp-c-bg);
 }

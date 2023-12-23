@@ -160,11 +160,11 @@ export interface PlumeThemeLocaleData extends LocaleData {
   /**
    * repository of navbar
    */
-  // repo?: null | string
+  repo?: null | string
   /**
    * repository text of navbar
    */
-  // repoLabel?: string
+  repoLabel?: string
 
   /**
    * Navbar config
@@ -172,6 +172,76 @@ export interface PlumeThemeLocaleData extends LocaleData {
    * Set to `false` to disable navbar in current locale
    */
   navbar?: false | NavItem[]
+  /**
+   * Page meta - edit link config
+   *
+   * Whether to show "Edit this page" or not
+   */
+  editLink?: boolean
+
+  /**
+   * Page meta - edit link config
+   *
+   * The text to replace the default "Edit this page"
+   */
+  editLinkText?: string
+
+  /**
+   * Page meta - edit link config
+   *
+   * Pattern of edit link
+   *
+   * @example ':repo/edit/:branch/:path'
+   */
+  editLinkPattern?: string
+  /**
+   * Page meta - edit link config
+   *
+   * Use `repo` config by default
+   *
+   * Set this config if your docs is placed in a different repo
+   */
+  docsRepo?: string
+
+  /**
+   * Page meta - edit link config
+   *
+   * Set this config if the branch of your docs is not 'main'
+   */
+  docsBranch?: string
+
+  /**
+   * Page meta - edit link config
+   *
+   * Set this config if your docs is placed in sub dir of your `docsRepo`
+   */
+  docsDir?: string
+  /**
+   * Page meta - last updated config
+   *
+   * Whether to show "Last Updated" or not
+   */
+  lastUpdated?: boolean
+
+  /**
+   * Page meta - last updated config
+   *
+   * The text to replace the default "Last Updated"
+   */
+  lastUpdatedText?: string
+
+  /**
+   * Page meta - contributors config
+   *
+   * Whether to show "Contributors" or not
+   */
+  contributors?: boolean
+  /**
+   * Page meta - contributors config
+   *
+   * The text to replace the default "Contributors"
+   */
+  contributorsText?: string
   /**
    * 外部链接打开方式
    */
@@ -190,6 +260,10 @@ export interface PlumeThemeLocaleData extends LocaleData {
   returnToTopLabel?: string
 
   outlineLabel?: string
+
+  prevPageLabel?: string
+
+  nextPageLabel?: string
 
   footer?:
     | false

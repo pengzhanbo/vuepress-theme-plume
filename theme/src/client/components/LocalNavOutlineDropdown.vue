@@ -120,7 +120,7 @@ function scrollToTop() {
   right: 16px;
   left: 16px;
   display: grid;
-  /* gap: 1px; */
+  gap: 1px;
   border: 1px solid var(--vp-c-border);
   border-radius: 8px;
   background-color: var(--vp-c-gutter);

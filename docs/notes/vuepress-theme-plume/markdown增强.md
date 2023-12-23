@@ -58,6 +58,17 @@ markdown 增强 由 [vuepress-plugin-md-enhance](https://vuepress-theme-hope.git
   警告内容
   :::
 
+- 危险
+  ``` md
+  ::: danger 危险
+  危险内容
+  :::
+  ```
+  ::: danger 危险
+  危险内容
+  `markdown`
+  :::
+
 - 详情
   ``` md
   ::: details 详情
@@ -66,6 +77,17 @@ markdown 增强 由 [vuepress-plugin-md-enhance](https://vuepress-theme-hope.git
   ```
   ::: details 详情
   详情信息
+  :::
+
+- 重要
+
+  ``` md
+  ::: important 重要
+  重要内容
+  :::
+  ```
+  ::: important 重要
+  重要内容
   :::
 
 ## 自定义对齐

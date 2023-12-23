@@ -1,13 +1,10 @@
-// import { useRouteLocale } from '@vuepress/client'
 import { onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import type { CopyCodeOptions } from '../../shared/index.js'
 import { copyToClipboard } from './copyToClipboard.js'
 declare const __COPY_CODE_OPTIONS__: CopyCodeOptions
-// declare const __COPY_CODE_LOCALES_OPTIONS__: CopyCodeLocaleOption
 
 const options = __COPY_CODE_OPTIONS__
-// const localesOptions = __COPY_CODE_LOCALES_OPTIONS__
 
 const isMobile = (): boolean =>
   navigator
@@ -18,11 +15,6 @@ const isMobile = (): boolean =>
 
 export const setupCopyCode = (): void => {
   const route = useRoute()
-  // const lang = useRouteLocale()
-
-  // const locale = computed(() => {
-  //   return localesOptions[lang.value] || localesOptions['/zh/']
-  // })
 
   const insertBtn = (codeBlockEl: HTMLElement): void => {
     if (codeBlockEl.hasAttribute('has-copy-code')) return

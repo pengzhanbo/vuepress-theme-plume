@@ -1,10 +1,10 @@
 import type { DocsearchOptions } from '@vuepress/plugin-docsearch'
 import type { SearchPluginOptions } from '@vuepress/plugin-search'
-import type { ShikiPluginOptions } from '@vuepress/plugin-shiki'
 import type { AutoFrontmatterOptions } from '@vuepress-plume/plugin-auto-frontmatter'
 import type { BaiduTongjiOptions } from '@vuepress-plume/plugin-baidu-tongji'
 import type { CanIUsePluginOptions } from '@vuepress-plume/plugin-caniuse'
 import type { CopyCodeOptions } from '@vuepress-plume/plugin-copy-code'
+import type { ShikijiPluginOptions } from '@vuepress-plume/plugin-shikiji'
 import type { CommentPluginOptions } from 'vuepress-plugin-comment2'
 import type { MarkdownEnhanceOptions } from 'vuepress-plugin-md-enhance'
 
@@ -29,9 +29,7 @@ export interface PlumeThemePluginOptions {
    */
   docsearch?: false | DocsearchOptions
 
-  prismjs?: false
-
-  shiki?: false | ShikiPluginOptions
+  shikiji?: false | ShikijiPluginOptions
 
   git?: false
 

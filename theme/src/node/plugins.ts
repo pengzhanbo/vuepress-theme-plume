@@ -7,9 +7,7 @@ import { gitPlugin } from '@vuepress/plugin-git'
 import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
 import { palettePlugin } from '@vuepress/plugin-palette'
-import { prismjsPlugin } from '@vuepress/plugin-prismjs'
 import { searchPlugin } from '@vuepress/plugin-search'
-import { shikiPlugin } from '@vuepress/plugin-shiki'
 import { themeDataPlugin } from '@vuepress/plugin-theme-data'
 import { autoFrontmatterPlugin } from '@vuepress-plume/plugin-auto-frontmatter'
 import { baiduTongjiPlugin } from '@vuepress-plume/plugin-baidu-tongji'
@@ -18,6 +16,7 @@ import { caniusePlugin } from '@vuepress-plume/plugin-caniuse'
 import { copyCodePlugin } from '@vuepress-plume/plugin-copy-code'
 import { iconifyPlugin } from '@vuepress-plume/plugin-iconify'
 import { notesDataPlugin } from '@vuepress-plume/plugin-notes-data'
+import { shikijiPlugin } from '@vuepress-plume/plugin-shikiji'
 import { commentPlugin } from 'vuepress-plugin-comment2'
 import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
 import { seoPlugin } from 'vuepress-plugin-seo2'
@@ -141,13 +140,9 @@ export const setupPlugins = (
     options.docsearch !== false && !options.search
       ? docsearchPlugin(options.docsearch!)
       : [],
-    options.prismjs !== false && !isProd ? prismjsPlugin() : [],
-    options.shiki !== false && isProd
-      ? shikiPlugin({
-          theme: 'material-theme-palenight',
-          ...options.shiki,
-        })
-      : [],
+
+    options.shikiji !== false ? shikijiPlugin(options.shikiji) : [],
+
     options.copyCode !== false
       ? copyCodePlugin({
           selector: '.plume-content div[class*="language-"] pre',

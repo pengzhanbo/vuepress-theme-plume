@@ -35,7 +35,7 @@ export const useNetlifyFunctionsPlugin = (
   if (
     !plugins.some(
       (plugin: PluginObject) =>
-        plugin.name === '@vuepress-plume/plugin-netlify-functions'
+        plugin.name === 'vuepress-plugin-netlify-functions'
     )
   ) {
     app.use(netlifyFunctionsPlugin())

@@ -1,4 +1,4 @@
-# `@vuepress-plume/plugin-netlify-functions`
+# `vuepress-plugin-netlify-functions`
 
 
 If your vuepress site is deployed on `netlify` and you want to be able to use `netlify functions` for ` serverless`.
@@ -24,7 +24,7 @@ You may need this plugin to provide support.
 
 ## Install
 ```
-yarn add @vuepress-plume/plugin-netlify-functions
+yarn add vuepress-plugin-netlify-functions
 ```
 ## Usage
 
@@ -33,7 +33,7 @@ yarn add @vuepress-plume/plugin-netlify-functions
    在 vuepress 项目中，或者在一个 vuepress 主题中
    ``` js
    // .vuepress/config.js
-   import { netlifyFunctionsPlugin } from '@vuepress-plume/plugin-netlify-functions'
+   import { netlifyFunctionsPlugin } from 'vuepress-plugin-netlify-functions'
    module.exports = {
      //...
      plugins: [
@@ -47,7 +47,7 @@ yarn add @vuepress-plume/plugin-netlify-functions
    
    在 vuepress plugin 中：
    ``` js
-   import { useNetlifyFunctionsPlugin } from '@vuepress-plume/plugin-netlify-functions'
+   import { useNetlifyFunctionsPlugin } from 'vuepress-plugin-netlify-functions'
 
    const myPlugin = (): Plugin => {
      return (app: App) => {

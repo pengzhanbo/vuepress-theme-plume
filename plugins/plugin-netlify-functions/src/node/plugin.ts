@@ -78,7 +78,7 @@ export const netlifyFunctionsPlugin = (
     let server: NetlifyServe
     cache.options = opts
     return {
-      name: '@vuepress-plume/plugin-netlify-functions',
+      name: 'vuepress-plugin-netlify-functions',
 
       onInitialized: async (app) => {
         // 启动netlify functions server

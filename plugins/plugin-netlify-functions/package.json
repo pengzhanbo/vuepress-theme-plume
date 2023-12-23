@@ -1,5 +1,5 @@
 {
-  "name": "@vuepress-plume/plugin-netlify-functions",
+  "name": "vuepress-plugin-netlify-functions",
   "version": "1.0.0-rc.1",
   "description": "The Plugin for VuePres 2, Support Netlify Functions",
   "keywords": [
@@ -8,7 +8,7 @@
     "netlify",
     "netlify functions",
     "netlifyFunctions",
-    "vuepress-plugin-plugin-netlify-functions"
+    "vuepress-plugin-netlify-functions"
   ],
   "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
   "bugs": {

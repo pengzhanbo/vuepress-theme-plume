@@ -2,7 +2,7 @@ import * as path from 'path'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { webpackBundler } from '@vuepress/bundler-webpack'
 import { defineUserConfig } from '@vuepress/cli'
-import themePlume from '@vuepress-plume/vuepress-theme-plume'
+import themePlume from 'vuepress-theme-plume'
 import { enNotes, zhNotes } from './notes.js'
 
 export default defineUserConfig({

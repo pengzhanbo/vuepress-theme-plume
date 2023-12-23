@@ -4,33 +4,23 @@
     "baseUrl": ".",
     "jsx": "preserve",
     "paths": {
-      "@theme-plume/*": ["./packages/theme/src/client/components/*"],
       "@internal/blogData": [
-        "./packages/plugin-blog-data/src/client/blogPostData.d.ts"
+        "./plugins/plugin-blog-data/src/client/blogPostData.d.ts"
       ],
       "@internal/notesData": [
-        "./packages/plugin-notes-data/src/client/notesData.d.ts"
+        "./plugins/plugin-notes-data/src/client/notesData.d.ts"
       ],
       "@internal/*": ["./docs/.vuepress/.temp/internal/*"],
-      "@vuepress-plume/vuepress-*": ["./packages/*/src/node/index.ts"],
-      "@vuepress-plume/vuepress-theme-plume": [
-        "./packages/theme/src/node/index.ts"
-      ]
+      "@vuepress-plume/*": ["./plugins/*/src/node/index.ts"],
+      "vuepress-theme-plume": ["./theme/src/node/index.ts"]
     },
     "types": ["webpack-env", "vite/client"]
   },
-  "include": ["packages/**/*", "docs/.vuepress/**/*", "scripts/**/*"],
-  "exclude": ["node_modules", ".temp", "lib", "dist"],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "ES2020",
-      "target": "ES2020",
-      "lib": ["ES2021"],
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true,
-      "types": ["node"]
-    }
-  }
+  "include": [
+    "plugins/**/*",
+    "theme/**/*",
+    "docs/.vuepress/**/*",
+    "scripts/**/*"
+  ],
+  "exclude": ["node_modules", ".temp", ".cache", "lib", "dist"]
 }

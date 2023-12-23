@@ -1,4 +1,4 @@
-## @vuepress-plume/vuepress-theme-plume
+## vuepress-theme-plume
 
 一个简约的 vuepress 主题。
 
@@ -12,14 +12,14 @@
 ## Install
 
 ``` sh
-yarn add vuepress@next @vuepress-plume/vuepress-theme-plume
+yarn add vuepress@next vuepress-theme-plume
 ```
 
 ## Usage
 
 ``` ts
 import { defineUserConfig } from 'vuepress'
-import { plumeTheme } from '@vuepress-plume/vuepress-theme-plume'
+import { plumeTheme } from 'vuepress-theme-plume'
 export default defineUserConfig({
   theme: plumeTheme({
     // theme config
@@ -48,10 +48,11 @@ __options__ : `PlumeThemeOptions`
 
 ## 内置插件
 
-- [plugin-caniuse](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-caniuse) 在文档中使用 caniuse 提供的 web feature support list
-- [plugin-auto-frontmatter](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-auto-frontmatter) 在 md 文件中根据匹配规则自动生成 frontmatter
-- [plugin-notes-data](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-notes-data) 根据规则，将 md文件归类为 note，并生成 sidebar
-- [plugin-blog-data](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-blog-data) 根据规则，将md文件归类为 blog post，并生成 post list
+- [plugin-shikiji](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-shikiji) 使用 [`shikiji`](https://shikiji.netlify.app/) 来为 Markdown 代码块启用代码高亮。
+- [plugin-caniuse](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-caniuse) 在文档中使用 caniuse 提供的 web feature support list
+- [plugin-auto-frontmatter](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-auto-frontmatter) 在 md 文件中根据匹配规则自动生成 frontmatter
+- [plugin-notes-data](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-notes-data) 根据规则，将 md文件归类为 note，并生成 sidebar
+- [plugin-blog-data](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-blog-data) 根据规则，将md文件归类为 blog post，并生成 post list
 - [vuepress-plugin-mdEnhance](https://vuepress-theme-hope.github.io/v2/md-enhance/zh/) 增强markdown功能插件
 - [vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v2/comment/zh/) 文章评论插件，支持 "giscus" | "twikoo" | "waline"
 - [vuepress-plugin-copy-code](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-copy-code) 文章内代码块复制插件
@@ -65,7 +66,7 @@ __options__ : `PlumeThemeOptions`
 
 ## 非内置插件
 
-- [vuepress-plugin-netlify-functions](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-netlify-functions) 当站点部署在 netlify 时，希望使用 netlify functions 可选择此插件提供支持
+- [vuepress-plugin-netlify-functions](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-netlify-functions) 当站点部署在 netlify 时，希望使用 netlify functions 可选择此插件提供支持
 ### 注意
 
 本主题基于 `VuePress2` ，仍处于 Beta 阶段。

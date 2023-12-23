@@ -1,0 +1,85 @@
+{
+  "name": "vuepress-theme-plume",
+  "version": "1.0.0-beta.89",
+  "description": "A Blog Theme for VuePress 2.0",
+  "keywords": [
+    "VuePress",
+    "Theme",
+    "plume",
+    "vuepress-theme",
+    "vuepress-theme-plume",
+    "theme-plume"
+  ],
+  "homepage": "https://pengzhanbo.cn/note/vuepress-theme-plume",
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+  },
+  "license": "MIT",
+  "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
+  "type": "module",
+  "exports": {
+    ".": "./lib/node/index.js",
+    "./client": "./lib/client/index.js",
+    "./package.json": "./package.json",
+    "./shared": "./lib/shared/index.js"
+  },
+  "main": "lib/node/index.js",
+  "types": "lib/node/index.d.ts",
+  "files": [
+    "lib",
+    "templates"
+  ],
+  "scripts": {
+    "build": "pnpm run clean && pnpm run copy && pnpm run ts",
+    "clean": "rimraf lib *.tsbuildinfo",
+    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
+    "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib -w",
+    "dev": "concurrently \"pnpm copy:watch\" \"pnpm ts:watch\"",
+    "ts": "tsc -b tsconfig.build.json",
+    "ts:watch": "tsc -b tsconfig.build.json --watch"
+  },
+  "dependencies": {
+    "@vuepress-plume/plugin-auto-frontmatter": "workspace:*",
+    "@vuepress-plume/plugin-baidu-tongji": "workspace:*",
+    "@vuepress-plume/plugin-blog-data": "workspace:*",
+    "@vuepress-plume/plugin-caniuse": "workspace:*",
+    "@vuepress-plume/plugin-copy-code": "workspace:*",
+    "@vuepress-plume/plugin-iconify": "workspace:*",
+    "@vuepress-plume/plugin-notes-data": "workspace:*",
+    "@vuepress-plume/plugin-shikiji": "workspace:*",
+    "@vuepress/client": "2.0.0-rc.0",
+    "@vuepress/core": "2.0.0-rc.0",
+    "@vuepress/plugin-active-header-links": "2.0.0-rc.0",
+    "@vuepress/plugin-container": "2.0.0-rc.0",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.0",
+    "@vuepress/plugin-external-link-icon": "2.0.0-rc.0",
+    "@vuepress/plugin-git": "2.0.0-rc.0",
+    "@vuepress/plugin-medium-zoom": "2.0.0-rc.0",
+    "@vuepress/plugin-nprogress": "2.0.0-rc.0",
+    "@vuepress/plugin-palette": "2.0.0-rc.0",
+    "@vuepress/plugin-search": "2.0.0-rc.0",
+    "@vuepress/plugin-theme-data": "2.0.0-rc.0",
+    "@vuepress/plugin-toc": "2.0.0-rc.0",
+    "@vuepress/shared": "2.0.0-rc.0",
+    "@vuepress/utils": "2.0.0-rc.0",
+    "@vueuse/core": "^10.7.0",
+    "date-fns": "^3.0.5",
+    "lodash.merge": "^4.6.2",
+    "nanoid": "^5.0.4",
+    "ts-debounce": "^4.0.0",
+    "vue": "^3.3.13",
+    "vue-router": "4.2.5",
+    "vuepress-plugin-comment2": "2.0.0-rc.0",
+    "vuepress-plugin-md-enhance": "2.0.0-rc.0",
+    "vuepress-plugin-seo2": "2.0.0-rc.0",
+    "vuepress-plugin-sitemap2": "2.0.0-rc.0",
+    "windicss": "^3.5.6"
+  },
+  "devDependencies": {
+    "@types/lodash.merge": "^4.6.9"
+  }
+}

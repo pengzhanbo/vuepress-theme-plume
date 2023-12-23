@@ -1,4 +1,4 @@
-import { definePlumeNotesConfig } from '@vuepress-plume/vuepress-theme-plume'
+import { definePlumeNotesConfig } from 'vuepress-theme-plume'
 
 export const zhNotes = definePlumeNotesConfig({
   dir: 'notes',

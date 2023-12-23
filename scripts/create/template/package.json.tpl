@@ -1,5 +1,5 @@
 {
-  "name": "@vuepress-plume/vuepress-{{ pkgName }}",
+  "name": "@vuepress-plume/{{ pkgName }}",
   "version": "{{ version }}",
   "description": "The Plugin for VuePres 2",
   "keyword": [

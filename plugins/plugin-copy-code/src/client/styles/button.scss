@@ -1,0 +1,90 @@
+:root {
+  --icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2'/%3E%3C/svg%3E");
+  --icon-copied: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4'/%3E%3C/svg%3E");
+}
+
+:root {
+  --code-copy-code-border-color: #e2e2e3;
+  --code-copy-code-bg: #f6f6f7;
+  --code-copy-code-hover-border-color: #e2e2e3;
+  --code-copy-code-hover-bg: #fff;
+  --code-copy-code-active-text: rgba(60, 60, 67, 0.78);
+  --code-copy-copied-text-content: 'Copied';
+}
+
+.dark {
+  --code-copy-code-border-color: #2e2e32;
+  --code-copy-code-bg: #202127;
+  --code-copy-code-hover-bg: #1b1b1f;
+  --code-copy-code-hover-border-color: #2e2e32;
+  --code-copy-code-active-text: rgba(235, 235, 245, 0.6);
+}
+
+.copy-code-button {
+  /*rtl:ignore*/
+  direction: ltr;
+  position: absolute;
+  top: 12px;
+  /*rtl:ignore*/
+  right: 12px;
+  z-index: 3;
+  border: 1px solid var(--code-copy-code-border-color);
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--code-copy-code-bg);
+  opacity: 0;
+  cursor: pointer;
+  background-image: var(--icon-copy);
+  background-position: 50%;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  transition:
+    border-color 0.25s,
+    background-color 0.25s,
+    opacity 0.25s;
+}
+
+[class*='language-']:hover > .copy-code-button,
+[class*='language-'] > .copy-code-button:focus {
+  opacity: 1;
+}
+
+[class*='language-'] > .copy-code-button:hover,
+[class*='language-'] > .copy-code-button.copied {
+  border-color: var(--code-copy-code-hover-border-color);
+  background-color: var(--code-copy-code-hover-bg);
+}
+
+[class*='language-'] > .copy-code-button.copied,
+[class*='language-'] > .copy-code-button:hover.copied {
+  /*rtl:ignore*/
+  border-radius: 0 4px 4px 0;
+  background-color: var(--code-copy-code-hover-bg);
+  background-image: var(--icon-copied);
+}
+
+[class*='language-'] > .copy-code-button.copied::before,
+[class*='language-'] > .copy-code-button:hover.copied::before {
+  position: relative;
+  top: -1px;
+  /*rtl:ignore*/
+  transform: translateX(calc(-100% - 1px));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--code-copy-code-hover-border-color);
+  /*rtl:ignore*/
+  border-right: 0;
+  border-radius: 4px 0 0 4px;
+  padding: 0 10px;
+  width: fit-content;
+  height: 40px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--code-copy-code-active-text);
+  background-color: var(--code-copy-code-hover-bg);
+  white-space: nowrap;
+  content: var(--code-copy-copied-text-content);
+}

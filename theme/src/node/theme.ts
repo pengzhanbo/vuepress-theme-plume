@@ -34,6 +34,8 @@ export const plumeTheme = ({
       plugins: setupPlugins(app, themePlugins, localeOptions),
       onInitialized: async (app) => await setupPage(app, localeOptions),
       extendsPage: (page: Page<PlumeThemePageData>) => {
+        page.data.filePathRelative = page.filePathRelative
+        page.routeMeta.title = page.title
         autoCategory(app, page, localeOptions)
         pageContentRendered(page)
       },

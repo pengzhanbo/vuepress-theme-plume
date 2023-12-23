@@ -3,6 +3,7 @@ import { usePageData } from '@vuepress/client'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import { useDarkMode, useSidebar } from '../composables/index.js'
 import PageAside from './PageAside.vue'
+import PageFooter from './PageFooter.vue'
 import PageMeta from './PageMeta.vue'
 
 const { hasSidebar, hasAside } = useSidebar()
@@ -32,6 +33,7 @@ const page = usePageData<PlumeThemePageData>()
           <main class="main">
             <PageMeta />
             <Content class="plume-content" />
+            <PageFooter />
             <PageComment :darkmode="isDark" />
           </main>
         </div>

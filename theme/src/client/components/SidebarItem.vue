@@ -75,6 +75,9 @@ function onCaretClick() {
         <!-- eslint-disable-next-line vue/no-v-html -->
         <Component :is="textTag" class="text" v-html="item.text" />
       </AutoLink>
+      <!-- eslint-disable vue/no-v-text-v-html-on-component -->
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <Component :is="textTag" v-else class="text" v-html="item.text" />
 
       <div
         v-if="item.collapsed != null"

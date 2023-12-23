@@ -1,3 +1,19 @@
+# [1.0.0-rc.2](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.1...v1.0.0-rc.2) (2023-12-23)
+
+
+### Features
+
+* add PageFooter ([918fba3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/918fba3e5eec2c0976dca90dee2e4cc84502fb0e))
+* rename vuepress-plugin-netlify-functions ([49236d8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/49236d812d097e5ab61601fc18b5c389d21b1a3c))
+
+
+### Performance Improvements
+
+* 优化交互体验，调整 UI ([b9ffac1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b9ffac184a617eee0f43cf92856061cb2e8d3944))
+* shikiji 处理转译字符 ([58eb1c8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/58eb1c88a079bae843eb4334aaa5d594a7727c3a))
+
+
+
 # [1.0.0-rc.1](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.0...v1.0.0-rc.1) (2023-12-23)
 
 

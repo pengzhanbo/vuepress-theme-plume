@@ -19,6 +19,9 @@
   },
   "main": "lib/node/index.js",
   "types": "./lib/node/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "pnpm run clean && pnpm run copy && pnpm run ts",
     "clean": "rimraf lib *.tsbuildinfo",

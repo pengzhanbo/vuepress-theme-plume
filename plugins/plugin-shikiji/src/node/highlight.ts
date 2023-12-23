@@ -116,7 +116,7 @@ export async function highlight(
       return s.replace(
         /(<span class="line highlighted">)(<\/span>)/g,
         '$1<wbr>$2'
-      ) + '\n'
+      ).replace(/(\/\/\s*?\[)\\(!code.*?\])/g, '$1$2') + '\n'
     }
 
     str = removeMustache(str).trimEnd()
@@ -125,13 +125,6 @@ export async function highlight(
       lang,
       transformers: [
         ...transformers,
-        // transformerCompactLineOptions(lineOptions),
-        // {
-        //   name: 'vitepress:v-pre',
-        //   pre(node) {
-        //     if (vPre) node.properties['v-pre'] = ''
-        //   }
-        // },
         ...userTransformers
       ],
       meta: {

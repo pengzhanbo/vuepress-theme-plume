@@ -1,3 +1,14 @@
+# [1.0.0-rc.1](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.0...v1.0.0-rc.1) (2023-12-23)
+
+
+### Performance Improvements
+
+* optimize `plugin-copy-code` ([21059df](https://github.com/pengzhanbo/vuepress-theme-plume/commit/21059df58b78d0f978be949b9f81a2327887f247))
+* **theme:** remove `copy-code` options ([d330af8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d330af827167d7725f42be77057d6118a410ee69))
+* update `SidebarItem` ([e0870e0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e0870e03dbc4cca207d3ea6b60bf8b83c1d52c20))
+
+
+
 # [1.0.0-rc.0](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-beta.89...v1.0.0-rc.0) (2023-12-23)
 
 

@@ -1,6 +1,14 @@
 // ===============================
 // Forked and modified from prismjs/themes/prism-tomorrow.css
 
+.dark .vp-code span {
+  color: var(--shiki-dark, rgba(235, 235, 245, 0.6));
+}
+
+html:not(.dark) .vp-code span {
+  color: var(--shiki-light, rgba(60, 60, 67, 0.92));
+}
+
 code[class*='language-'],
 pre[class*='language-'] {
   color: var(--vp-code-block-color);
@@ -42,80 +50,6 @@ pre[class*='language-'] {
 //   border-radius: 0.3em;
 //   white-space: normal;
 // }
-
-.token.comment,
-.token.block-comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: #999;
-}
-
-.token.punctuation {
-  color: #ccc;
-}
-
-.token.tag,
-.token.attr-name,
-.token.namespace,
-.token.deleted {
-  color: #ec5975;
-}
-
-.token.function-name {
-  color: #6196cc;
-}
-
-.token.boolean,
-.token.number,
-.token.function {
-  color: #f08d49;
-}
-
-.token.property,
-.token.class-name,
-.token.constant,
-.token.symbol {
-  color: #f8c555;
-}
-
-.token.selector,
-.token.important,
-.token.atrule,
-.token.keyword,
-.token.builtin {
-  color: #cc99cd;
-}
-
-.token.string,
-.token.char,
-.token.attr-value,
-.token.regex,
-.token.variable {
-  color: #7ec699;
-}
-
-.token.operator,
-.token.entity,
-.token.url {
-  color: #67cdcc;
-}
-
-.token.important,
-.token.bold {
-  font-weight: bold;
-}
-.token.italic {
-  font-style: italic;
-}
-
-.token.entity {
-  cursor: help;
-}
-
-.token.inserted {
-  color: #3eaf7c;
-}
 
 // ===============================
 
@@ -202,10 +136,10 @@ div[class*='language-'] {
     top: 0;
     left: 0;
     width: 100%;
-    line-height: 1.4;
+    line-height: 1.5;
 
     .highlight-line {
-      background-color: var(--vp-code-block-bg);
+      background-color: rgba(142, 150, 170, 0.14);
     }
   }
 
@@ -265,6 +199,80 @@ div[class*='language-'] {
       }
     }
   }
+}
+
+.plume-content [class*='language-'] code .highlighted {
+  background-color: var(--vp-code-line-highlight-color);
+  transition: background-color 0.5s;
+  margin: 0 -24px;
+  padding: 0 24px;
+  width: calc(100% + 2 * 24px);
+  display: inline-block;
+}
+
+.plume-content [class*='language-'] code .highlighted.error {
+  background-color: var(--vp-code-line-error-color);
+}
+
+.plume-content [class*='language-'] code .highlighted.warning {
+  background-color: var(--vp-code-line-warning-color);
+}
+
+.plume-content [class*='language-'] code .diff {
+  transition: background-color 0.5s;
+  margin: 0 -24px;
+  padding: 0 24px;
+  width: calc(100% + 2 * 24px);
+  display: inline-block;
+}
+
+.plume-content [class*='language-'] code .diff::before {
+  position: absolute;
+  left: 10px;
+}
+
+.plume-content [class*='language-'] .has-focused-lines .line:not(.has-focus) {
+  filter: blur(0.095rem);
+  opacity: 0.4;
+  transition:
+    filter 0.35s,
+    opacity 0.35s;
+}
+
+.plume-content [class*='language-'] .has-focused-lines .line:not(.has-focus) {
+  opacity: 0.7;
+  transition:
+    filter 0.35s,
+    opacity 0.35s;
+}
+
+.plume-content
+  [class*='language-']:hover
+  .has-focused-lines
+  .line:not(.has-focus) {
+  filter: blur(0);
+  opacity: 1;
+}
+
+.plume-content [class*='language-'] code .diff.remove {
+  background-color: var(--vp-code-line-diff-remove-color);
+  opacity: 0.7;
+}
+
+.plume-content [class*='language-'] code .diff.remove::before {
+  content: '-';
+  color: var(--vp-code-line-diff-remove-symbol-color);
+  transform: translateX(-6px);
+}
+
+.plume-content [class*='language-'] code .diff.add {
+  background-color: var(--vp-code-line-diff-add-color);
+}
+
+.plume-content [class*='language-'] code .diff.add::before {
+  content: '+';
+  color: var(--vp-code-line-diff-add-symbol-color);
+  transform: translateX(-6px);
 }
 
 // narrow mobile

@@ -216,11 +216,16 @@ html.dark {
   --vp-code-font-size: 0.875em;
 
   --vp-code-block-color: var(--vp-c-text-dark-1);
-  --vp-code-block-bg: #292b30;
-  --vp-code-block-divider-color: #000000;
+  // --vp-code-block-bg: #292b30;
+  --vp-code-block-bg: #f6f6f7;
+  --vp-code-block-divider-color: #e2e2e3;
 
-  --vp-code-line-highlight-color: rgba(0, 0, 0, 0.5);
-  --vp-code-line-number-color: var(--vp-c-text-dark-3);
+  --code-tabs-nav-text-color: var(--vp-c-text-light-2);
+  --code-tabs-nav-bg-color: #e6e6e7;
+  --code-tabs-nav-hover-color: var(--vp-code-block-bg);
+
+  --vp-code-line-highlight-color: rgba(142, 150, 170, 0.14);
+  --vp-code-line-number-color: var(--vp-c-text-light-3);
 
   --vp-code-line-diff-add-color: var(--vp-c-green-dimm-2);
   --vp-code-line-diff-add-symbol-color: var(--vp-c-green);
@@ -244,6 +249,11 @@ html.dark {
 
 html.dark {
   --vp-code-block-bg: #161618;
+  --vp-code-block-divider-color: #000000;
+  --vp-code-line-number-color: var(--vp-c-text-dark-3);
+  --code-tabs-nav-text-color: var(--vp-c-text-dark-2);
+  --code-tabs-nav-bg-color: #3a404c;
+  --code-tabs-nav-hover-color: #434a57;
 }
 
 /**
@@ -416,7 +426,6 @@ html.dark {
 
 :root {
   --t-color: 250ms ease;
-  --code-tabs-nav-bg-color: var(--vp-code-tab-b);
   --code-bg-color: var(--vp-code-block-bg);
   --medium-zoom-bg-color: var(--vp-c-bg);
 }

@@ -41,7 +41,6 @@ __基于 `vuepress 2.0` 制作的 `Blog` 主题。__
 ``` sh
 yarn add @vuepress-plume/vuepress-theme-plume
 ```
-:::
 @tab npm
 ``` sh
 npm i @vuepress-plume/vuepress-theme-plume
@@ -56,13 +55,12 @@ npm i @vuepress-plume/vuepress-theme-plume
 // .vuepress/config.ts
 import { defineUserConfig } from 'vuepress'
 import { themePlume } from '@vuepress-plume/vuepress-theme-plume'
-export default defineUserConfig({
-  theme: themePlume({
+export default defineUserConfig({ // [!code focus]
+  theme: themePlume({ 
     // more...
   })
 })
 ```
-
 @tab js
 ``` js
 // .vuepress/config.js

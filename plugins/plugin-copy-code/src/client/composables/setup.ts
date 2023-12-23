@@ -2,7 +2,6 @@
 import { onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import type { CopyCodeOptions } from '../../shared/index.js'
-import { copySVG, successSVG } from '../svg.js'
 import { copyToClipboard } from './copyToClipboard.js'
 declare const __COPY_CODE_OPTIONS__: CopyCodeOptions
 // declare const __COPY_CODE_LOCALES_OPTIONS__: CopyCodeLocaleOption
@@ -29,14 +28,13 @@ export const setupCopyCode = (): void => {
     if (codeBlockEl.hasAttribute('has-copy-code')) return
     const button = document.createElement('button')
     button.className = 'copy-code-button'
-    button.innerHTML = copySVG
 
     button.addEventListener('click', () => {
       copyToClipboard(codeBlockEl.innerText)
-      button.innerHTML = successSVG
+      button.classList.add('copied')
       options.duration &&
         setTimeout(() => {
-          button.innerHTML = copySVG
+          button.classList.remove('copied')
         }, options.duration)
     })
 

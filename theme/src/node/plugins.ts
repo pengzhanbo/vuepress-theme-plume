@@ -146,12 +146,6 @@ export const setupPlugins = (
     options.copyCode !== false
       ? copyCodePlugin({
           selector: '.plume-content div[class*="language-"] pre',
-          locales: {
-            '/': {
-              copy: '复制成功',
-              hint: '复制代码',
-            },
-          },
           ...options.copyCode,
         })
       : [],

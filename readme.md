@@ -4,8 +4,11 @@
 
 开箱即用，仅需少量配置即可使用。
 
-![npm version](https://badge.fury.io/js/@vuepress-plume%2Fvuepress-theme-plume.svg)
-![npm download](https://img.shields.io/npm/dt/@vuepress-plume/vuepress-theme-plume?style=flat)
+![npm version](https://badge.fury.io/js/vuepress-theme-plume.svg)
+![npm downloads](https://img.shields.io/npm/dt/%40vuepress-plume/vuepress-theme-plume?style=flat&label=beta%20downloads)
+![npm download](https://img.shields.io/npm/dt/vuepress-theme-plume?style=flat)
+![GitHub License](https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume)
+
 
 ### [查看文档](https://pengzhanbo.cn/note/vuepress-theme-plume)
 

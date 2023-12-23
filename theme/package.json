@@ -67,17 +67,16 @@
     "@vuepress/shared": "2.0.0-rc.0",
     "@vuepress/utils": "2.0.0-rc.0",
     "@vueuse/core": "^10.7.0",
-    "date-fns": "^3.0.5",
+    "date-fns": "^3.0.6",
     "lodash.merge": "^4.6.2",
     "nanoid": "^5.0.4",
     "ts-debounce": "^4.0.0",
     "vue": "^3.3.13",
     "vue-router": "4.2.5",
-    "vuepress-plugin-comment2": "2.0.0-rc.0",
-    "vuepress-plugin-md-enhance": "2.0.0-rc.0",
-    "vuepress-plugin-seo2": "2.0.0-rc.0",
-    "vuepress-plugin-sitemap2": "2.0.0-rc.0",
-    "windicss": "^3.5.6"
+    "vuepress-plugin-comment2": "2.0.0-rc.5",
+    "vuepress-plugin-md-enhance": "2.0.0-rc.5",
+    "vuepress-plugin-seo2": "2.0.0-rc.5",
+    "vuepress-plugin-sitemap2": "2.0.0-rc.5"
   },
   "devDependencies": {
     "@types/lodash.merge": "^4.6.9"

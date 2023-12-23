@@ -72,6 +72,7 @@ const classes = computed(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 1px solid var(--vp-c-gutter);
   border-bottom: 1px solid var(--vp-c-gutter);
   padding-top: var(--vp-layout-top-height, 0px);
   width: 100%;

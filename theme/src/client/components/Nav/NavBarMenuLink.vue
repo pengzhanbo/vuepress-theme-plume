@@ -42,10 +42,10 @@ const page = usePageData()
 }
 
 .navbar-menu-link.active {
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-1);
 }
 
 .navbar-menu-link:hover {
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-1);
 }
 </style>

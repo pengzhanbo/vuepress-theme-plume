@@ -65,7 +65,7 @@ const hasMeta = computed(() => tags.value.length || createTime.value)
   font-size: 16px;
   font-weight: 400;
   margin-bottom: 2rem;
-  border-left: solid 4px var(--vp-c-brand);
+  border-left: solid 4px var(--vp-c-brand-1);
   padding-left: 1rem;
 }
 
@@ -75,7 +75,7 @@ const hasMeta = computed(() => tags.value.length || createTime.value)
 }
 
 .page-category-wrapper .category:hover {
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-1);
 }
 
 .page-category-wrapper .dot {

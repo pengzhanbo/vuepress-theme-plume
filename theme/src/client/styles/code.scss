@@ -6,7 +6,7 @@
 }
 
 html:not(.dark) .vp-code span {
-  color: var(--shiki-light, rgba(60, 60, 67, 0.92));
+  color: var(--shiki-light, rgba(60, 60, 67, 0.78));
 }
 
 code[class*='language-'],
@@ -64,20 +64,6 @@ pre[class*='language-'] {
     scrollbar-width: thin;
     scrollbar-color: var(--c-brand) var(--c-border);
     font-size: 14px;
-
-    &::-webkit-scrollbar {
-      width: 7px;
-      height: 7px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: var(--vp-code-block-bg);
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: rgba(220, 220, 220, 0.35);
-      border-radius: 3px;
-    }
 
     code {
       color: #fff;
@@ -139,7 +125,7 @@ div[class*='language-'] {
     line-height: 1.5;
 
     .highlight-line {
-      background-color: rgba(142, 150, 170, 0.14);
+      background-color: var(--vp-c-default-soft);
     }
   }
 

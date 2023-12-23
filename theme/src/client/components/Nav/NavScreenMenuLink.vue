@@ -31,6 +31,6 @@ const closeScreen = inject('close-screen') as () => void
 }
 
 .nav-screen-menu-link:hover {
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-1);
 }
 </style>

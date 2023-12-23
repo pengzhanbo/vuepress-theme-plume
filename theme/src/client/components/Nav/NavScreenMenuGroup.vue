@@ -81,7 +81,7 @@ function toggle() {
 
 .nav-screen-menu-group.open .button {
   padding-bottom: 6px;
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-1);
 }
 
 .nav-screen-menu-group.open .button-icon {
@@ -103,7 +103,7 @@ function toggle() {
 }
 
 .button:hover {
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-1);
 }
 
 .button-text i {

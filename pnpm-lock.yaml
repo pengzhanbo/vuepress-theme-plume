@@ -370,6 +370,27 @@ importers:
         specifier: 4.2.5
         version: 4.2.5(vue@3.3.13)
 
+  plugins/plugin-shikiji:
+    dependencies:
+      '@vuepress/core':
+        specifier: 2.0.0-rc.0
+        version: 2.0.0-rc.0(typescript@5.3.3)
+      '@vuepress/utils':
+        specifier: 2.0.0-rc.0
+        version: 2.0.0-rc.0
+      nanoid:
+        specifier: ^5.0.4
+        version: 5.0.4
+      picocolors:
+        specifier: ^1.0.0
+        version: 1.0.0
+      shikiji:
+        specifier: ^0.9.11
+        version: 0.9.11
+      shikiji-transformers:
+        specifier: ^0.9.11
+        version: 0.9.11
+
   plugins/plugin-windicss:
     dependencies:
       '@vuepress/client':
@@ -417,6 +438,9 @@ importers:
       '@vuepress-plume/plugin-notes-data':
         specifier: workspace:*
         version: link:../plugins/plugin-notes-data
+      '@vuepress-plume/plugin-shikiji':
+        specifier: workspace:*
+        version: link:../plugins/plugin-shikiji
       '@vuepress/client':
         specifier: 2.0.0-rc.0
         version: 2.0.0-rc.0(typescript@5.3.3)
@@ -447,13 +471,7 @@ importers:
       '@vuepress/plugin-palette':
         specifier: 2.0.0-rc.0
         version: 2.0.0-rc.0(typescript@5.3.3)
-      '@vuepress/plugin-prismjs':
-        specifier: 2.0.0-rc.0
-        version: 2.0.0-rc.0(typescript@5.3.3)
       '@vuepress/plugin-search':
-        specifier: 2.0.0-rc.0
-        version: 2.0.0-rc.0(typescript@5.3.3)
-      '@vuepress/plugin-shiki':
         specifier: 2.0.0-rc.0
         version: 2.0.0-rc.0(typescript@5.3.3)
       '@vuepress/plugin-theme-data':
@@ -4990,17 +5008,6 @@ packages:
       - typescript
     dev: false
 
-  /@vuepress/plugin-prismjs@2.0.0-rc.0(typescript@5.3.3):
-    resolution: {integrity: sha512-c5WRI7+FhVjdbymOKQ8F2KY/Bnv7aQtWScVk8vCMUimNi7v7Wff/A/i3KSFNz/tge3LxiAeH/Dc2WS/OnQXwCg==}
-    dependencies:
-      '@vuepress/core': 2.0.0-rc.0(typescript@5.3.3)
-      prismjs: 1.29.0
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - supports-color
-      - typescript
-    dev: false
-
   /@vuepress/plugin-search@2.0.0-rc.0(typescript@5.3.3):
     resolution: {integrity: sha512-1ikJUgIN+7QrcAftxpWUKTrNVHEN2+k/az0Sjz7Ok7EthMHcG6qQsIb+AoK4WIQMsJkwVPLxwym/M1FbBTZDWQ==}
     dependencies:
@@ -5011,17 +5018,6 @@ packages:
       chokidar: 3.5.3
       vue: 3.3.13(typescript@5.3.3)
       vue-router: 4.2.5(vue@3.3.13)
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - supports-color
-      - typescript
-    dev: false
-
-  /@vuepress/plugin-shiki@2.0.0-rc.0(typescript@5.3.3):
-    resolution: {integrity: sha512-K06icizhp0zVUtWa6rqL/SKWzzSP+XgYizRoqwdMsGlYNThLXAf4cIseRjF+I4VOFS5aj5hZs8MnxymKmRrwIQ==}
-    dependencies:
-      '@vuepress/core': 2.0.0-rc.0(typescript@5.3.3)
-      shiki: 0.14.5
     transitivePeerDependencies:
       - '@vue/composition-api'
       - supports-color
@@ -5573,10 +5569,6 @@ packages:
   /ansi-regex@6.0.1:
     resolution: {integrity: sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==}
     engines: {node: '>=12'}
-
-  /ansi-sequence-parser@1.1.0:
-    resolution: {integrity: sha512-lEm8mt52to2fT8GhciPCGeCXACSz2UwIN4X2e2LJSnZ5uAbn2/dsYdOmUXq0AtWS5cpAupysIneExOgH0Vd2TQ==}
-    dev: false
 
   /ansi-styles@3.2.1:
     resolution: {integrity: sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==}
@@ -13807,11 +13799,6 @@ packages:
       minimist: 1.2.8
     dev: false
 
-  /prismjs@1.29.0:
-    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
-    engines: {node: '>=6'}
-    dev: false
-
   /proc-log@3.0.0:
     resolution: {integrity: sha512-++Vn7NS4Xf9NacaU9Xq3URUuqZETPsf8L4j5/ckhaRYsfPeRyzGw+iDjFhV/Jr3uNmTvvddEJFWh5R1gRgUH8A==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
@@ -14775,13 +14762,20 @@ packages:
   /shell-quote@1.8.1:
     resolution: {integrity: sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==}
 
-  /shiki@0.14.5:
-    resolution: {integrity: sha512-1gCAYOcmCFONmErGTrS1fjzJLA7MGZmKzrBNX7apqSwhyITJg2O102uFzXUeBxNnEkDA9vHIKLyeKq0V083vIw==}
+  /shikiji-core@0.9.11:
+    resolution: {integrity: sha512-KbZdB+0oyoyNiQT0ueXCigp/0ilu1sMvb2aD3gDIDkaQwfayet0f1/9kkh0Wvtk42KMASDR36qA8ctnTQvpocA==}
+    dev: false
+
+  /shikiji-transformers@0.9.11:
+    resolution: {integrity: sha512-ndEyaMIlILU/skg1zDXiHvTBNsBdTkNxLwSJ/fQEDyGiVn1KceRHaxxCFlslK7zBjCup1M0jWhgxWLij8+o+Lg==}
     dependencies:
-      ansi-sequence-parser: 1.1.0
-      jsonc-parser: 3.2.0
-      vscode-oniguruma: 1.7.0
-      vscode-textmate: 8.0.0
+      shikiji: 0.9.11
+    dev: false
+
+  /shikiji@0.9.11:
+    resolution: {integrity: sha512-3lZxXOPdhUr42fDTWmWiSrWTbbrRR3YY70F24G+hwh3VmN33ocKdH8RpytyhBhYvSRpiPhHDwGl2C5ozlO6Xow==}
+    dependencies:
+      shikiji-core: 0.9.11
     dev: false
 
   /shimmer@1.2.1:
@@ -16438,14 +16432,6 @@ packages:
       sass: 1.69.5
     optionalDependencies:
       fsevents: 2.3.3
-
-  /vscode-oniguruma@1.7.0:
-    resolution: {integrity: sha512-L9WMGRfrjOhgHSdOYgCt/yRMsXzLDJSL7BPrOZt73gU0iWO4mpqzqQzOz5srxqTvMBaR0XZTSrVWo4j55Rc6cA==}
-    dev: false
-
-  /vscode-textmate@8.0.0:
-    resolution: {integrity: sha512-AFbieoL7a5LMqcnOF04ji+rpXadgOXnZsxQr//r83kLPr7biP7am3g9zbaZIaBGwBRWeSvoMD4mgPdX3e4NWBg==}
-    dev: false
 
   /vue-demi@0.14.6(vue@3.3.13):
     resolution: {integrity: sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==}

@@ -92,7 +92,7 @@ HTTP缓存，根据是否需要重新向服务器发起请求，可分为两大�
 ``` html
 <meta http-equiv="Pragma" content="no-cache">
 ```
-::: danger 警告
+::: caution 警告
 - 这个标签声明仅有 IE才能识别含义，其他主流浏览器不兼容。
 - 在IE浏览器中，虽然能够识别含义，但并不一定会在请求Request Header中加上Pragma，但确实会让当前页面每次都发起新请求。
   （仅限页面html文件，页面内使用的其他资源不受影响。）
@@ -120,7 +120,7 @@ Expires 的值是一个 GMT时间， 如：`Thu Jun 07 2018 14:26:45 GMT`，用�
 ```
 如果希望不走缓存，每次页面请求都发起新的请求，可以把 content 设置为 -1 或 0。
 
-::: danger 提醒
+::: caution 提醒
 跟 Pragma 字段一样， 该 meta 标签只有 IE 能够正确识别。
 而且该方式仅是告知 IE 缓存时间的标记，并不能在 Request Header 中找到该字段。
 :::

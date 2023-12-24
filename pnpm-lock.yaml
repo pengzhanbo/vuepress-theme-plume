@@ -122,6 +122,9 @@ importers:
       anywhere:
         specifier: ^1.6.0
         version: 1.6.0
+      katex:
+        specifier: ^0.16.9
+        version: 0.16.9
       leancloud-storage:
         specifier: ^4.15.2
         version: 4.15.2
@@ -11006,6 +11009,13 @@ packages:
 
   /jwt-decode@3.1.2:
     resolution: {integrity: sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==}
+    dev: false
+
+  /katex@0.16.9:
+    resolution: {integrity: sha512-fsSYjWS0EEOwvy81j3vRA8TEAhQhKiqO+FQaKWp0m39qwOzHVBgAUBIXWj1pB+O2W3fIpNa6Y9KSKCVbfPhyAQ==}
+    hasBin: true
+    dependencies:
+      commander: 8.3.0
     dev: false
 
   /keep-func-props@4.0.1:

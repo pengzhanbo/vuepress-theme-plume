@@ -82,6 +82,7 @@ export default defineUserConfig({
       copyright: 'Copyright © 2022-present pengzhanbo',
     },
     themePlugins: {
+      markdownEnhance: { katex: true },
       search: {
         locales: {
           '/': {

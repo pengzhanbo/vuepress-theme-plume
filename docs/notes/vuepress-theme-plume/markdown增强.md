@@ -60,11 +60,11 @@ markdown 增强 由 [vuepress-plugin-md-enhance](https://vuepress-theme-hope.git
 
 - 危险
   ``` md
-  ::: danger 危险
+  ::: caution 危险
   危险内容
   :::
   ```
-  ::: danger 危险
+  ::: caution 危险
   危险内容
   `markdown`
   :::

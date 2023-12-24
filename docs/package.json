@@ -15,6 +15,7 @@
     "@vuepress/client": "2.0.0-rc.0",
     "@vuepress/utils": "2.0.0-rc.0",
     "anywhere": "^1.6.0",
+    "katex": "^0.16.9",
     "leancloud-storage": "^4.15.2",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",

@@ -29,12 +29,12 @@
   --docsearch-text-color: var(--vp-c-text-1);
   --docsearch-muted-color: var(--vp-c-text-2);
   --docsearch-searchbox-shadow: none;
-  --docsearch-searchbox-focus-background: transparent;
+  --docsearch-searchbox-background: var(--vp-c-default-soft);
+  --docsearch-searchbox-focus-background: var(--vp-c-default-3);
   --docsearch-key-gradient: transparent;
   --docsearch-key-shadow: none;
   --docsearch-modal-background: var(--vp-c-bg-soft);
   --docsearch-footer-background: var(--vp-c-bg);
-  --docsearch-searchbox-background: var(--vp-c-bg-elv-mute);
 }
 
 .dark .DocSearch {

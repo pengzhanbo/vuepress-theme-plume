@@ -268,6 +268,10 @@ div[class*='language-'] {
       margin: 0.85rem -1.5rem;
       border-radius: 0;
     }
+
+    .hint-container div[class*='language-'] {
+      margin: 0.85rem -1rem 0.85rem -1.25rem;
+    }
   }
 
   .plume-content .vp-code-tabs-nav {

@@ -1,3 +1,22 @@
+# [1.0.0-rc.3](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2023-12-24)
+
+
+### Bug Fixes
+
+* 代码块在内容容器中的 UI错误 ([99f04bb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/99f04bb2d0d85e0c37abc020fcc39898078d7fcf))
+
+
+### Features
+
+* support reading time ([aa9b872](https://github.com/pengzhanbo/vuepress-theme-plume/commit/aa9b8727dbcfb48325a4f74550f56b764d32eacc))
+
+
+### Performance Improvements
+
+* 调整 doc search UI ([086516a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/086516a4a08aa08e7f5db58e91125b91cddc3b01))
+
+
+
 # [1.0.0-rc.2](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.1...v1.0.0-rc.2) (2023-12-23)
 
 

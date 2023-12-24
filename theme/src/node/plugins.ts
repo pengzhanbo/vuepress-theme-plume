@@ -19,6 +19,7 @@ import { notesDataPlugin } from '@vuepress-plume/plugin-notes-data'
 import { shikijiPlugin } from '@vuepress-plume/plugin-shikiji'
 import { commentPlugin } from 'vuepress-plugin-comment2'
 import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
+import { useReadingTimePlugin } from 'vuepress-plugin-reading-time2'
 import { seoPlugin } from 'vuepress-plugin-seo2'
 import { sitemapPlugin } from 'vuepress-plugin-sitemap2'
 import type {
@@ -43,6 +44,10 @@ export const setupPlugins = (
         : ''
     })
     .filter(Boolean)
+
+  if (options.readingTime !== false) {
+    useReadingTimePlugin(app, options.readingTime || {}, true)
+  }
 
   return [
     palettePlugin({ preset: 'sass' }),

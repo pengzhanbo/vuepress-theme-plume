@@ -1,10 +1,18 @@
 import type { GitPluginPageData } from '@vuepress/plugin-git'
 
+interface ReadingTime {
+  /** 分钟数 */
+  minutes: number;
+  /** 字数 */
+  words: number;
+}
+
 export interface PlumeThemePageData extends GitPluginPageData {
   isBlogPost: boolean
   type: 'blog' | 'product'
   categoryList?: PageCategoryData[]
   filePathRelative: string | null
+  readingTime?: ReadingTime
 }
 
 export interface PageCategoryData {

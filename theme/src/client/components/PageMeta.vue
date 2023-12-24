@@ -5,11 +5,14 @@ import type {
   PlumeThemePageData,
   PlumeThemePostFrontmatter,
 } from '../../shared/index.js'
+import { useReadingTime } from '../composables/index.js'
+import IconBooks from './icons/IconBooks.vue'
 import IconClock from './icons/IconClock.vue'
 import IconTag from './icons/IconTag.vue'
 
 const page = usePageData<PlumeThemePageData>()
 const matter = usePageFrontmatter<PlumeThemePostFrontmatter>()
+const readingTime = useReadingTime()
 
 const createTime = computed(() => {
   if (matter.value.createTime) {
@@ -48,13 +51,19 @@ const hasMeta = computed(() => tags.value.length || createTime.value)
     {{ page.title }}
   </h2>
   <div v-if="hasMeta" class="page-meta-wrapper">
+    <p v-if="readingTime.times" class="reading-time">
+      <IconBooks class="icon" />
+      <span>{{ readingTime.words }}</span>
+      <span>{{ readingTime.times }}</span>
+    </p>
     <p v-if="tags.length > 0">
       <IconTag class="icon" />
-      <span v-for="tag in tags" :key="tag" class="tag">
+      <span v-for="(tag, index) in tags" :key="tag" class="tag">
         {{ tag }}
+        <template v-if="index < tags.length - 1">,</template>
       </span>
     </p>
-    <p v-if="createTime">
+    <p v-if="createTime" class="create-time">
       <IconClock class="icon" /><span>{{ createTime }}</span>
     </p>
   </div>
@@ -95,7 +104,8 @@ const hasMeta = computed(() => tags.value.length || createTime.value)
 .page-meta-wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   padding: 1rem 0 0.5rem;
   margin-bottom: 2rem;
   color: var(--vp-c-text-3);
@@ -118,14 +128,29 @@ const hasMeta = computed(() => tags.value.length || createTime.value)
 .page-meta-wrapper .tag {
   display: inline-block;
   line-height: 1;
-  margin-right: 0.3rem;
-  padding: 3px 6px;
+  padding: 3px 3px;
   color: var(--vp-c-text-2);
   background-color: var(--vp-c-mute);
   border-radius: 4px;
 }
 
 .page-meta-wrapper .tag:last-of-type {
+  margin-right: 0;
+}
+
+.page-meta-wrapper .reading-time span {
+  margin-right: 0.5rem;
+}
+
+.page-meta-wrapper .reading-time span:last-of-type {
+  margin-right: 0;
+}
+
+.page-meta-wrapper .create-time {
+  flex: 1;
+  min-width: 110px;
+  justify-content: right;
+  text-align: right;
   margin-right: 0;
 }
 </style>

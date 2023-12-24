@@ -7,6 +7,7 @@ import type { CopyCodeOptions } from '@vuepress-plume/plugin-copy-code'
 import type { ShikijiPluginOptions } from '@vuepress-plume/plugin-shikiji'
 import type { CommentPluginOptions } from 'vuepress-plugin-comment2'
 import type { MarkdownEnhanceOptions } from 'vuepress-plugin-md-enhance'
+import type { ReadingTimeOptions } from 'vuepress-plugin-reading-time2'
 
 export interface PlumeThemePluginOptions {
   /**
@@ -50,4 +51,6 @@ export interface PlumeThemePluginOptions {
   baiduTongji?: false | BaiduTongjiOptions
 
   frontmatter?: AutoFrontmatterOptions
+
+  readingTime?: false | ReadingTimeOptions
 }

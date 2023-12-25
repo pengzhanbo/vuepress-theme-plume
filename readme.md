@@ -15,6 +15,10 @@
 ## Install
 
 ``` sh
+npm install vuepress@next vuepress-theme-plume
+# or
+pnpm add vuepress@next vuepress-theme-plume
+# or
 yarn add vuepress@next vuepress-theme-plume
 ```
 
@@ -23,6 +27,7 @@ yarn add vuepress@next vuepress-theme-plume
 ``` ts
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     // theme config

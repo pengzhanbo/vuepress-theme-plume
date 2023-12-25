@@ -42,13 +42,13 @@ __options__ : `PlumeThemeOptions`
 
 ### 效果图
 
-![](/docs/preview-home.png)
+![](/docs/preview-home.png?a=1)
 
-![](/docs/preview-blog.png)
+![](/docs/preview-blog.png?a=1)
 
-![](/docs/preview-post.png)
+![](/docs/preview-post.png?a=1)
 
-![](/docs/preview-note.png)
+![](/docs/preview-note.png?a=1)
   
 
 ## 内置插件

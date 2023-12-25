@@ -4,10 +4,10 @@
 
 开箱即用，仅需少量配置即可使用。
 
-![npm version](https://badge.fury.io/js/vuepress-theme-plume.svg)
-![npm downloads](https://img.shields.io/npm/dt/%40vuepress-plume/vuepress-theme-plume?style=flat&label=beta%20downloads)
-![npm download](https://img.shields.io/npm/dt/vuepress-theme-plume?style=flat)
-![GitHub License](https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume)
+[![npm version](https://img.shields.io/npm/v/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=npm)](https://www.npmjs.com/package/vuepress-theme-plume)
+[![npm beta download](https://img.shields.io/npm/dy/@vuepress-plume/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=beta%20downloads)](https://www.npmjs.com/package/vuepress-theme-plume)
+[![npm download](https://img.shields.io/npm/dy/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads)](https://www.npmjs.com/package/vuepress-theme-plume)
+![GitHub License](https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A)
 
 
 ### [查看文档](https://pengzhanbo.cn/note/vuepress-theme-plume)

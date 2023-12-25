@@ -46,6 +46,8 @@ __options__ : `PlumeThemeOptions`
 
 ![](/docs/preview-blog.png)
 
+![](/docs/preview-post.png)
+
 ![](/docs/preview-note.png)
   
 
@@ -71,6 +73,6 @@ __options__ : `PlumeThemeOptions`
 - [vuepress-plugin-netlify-functions](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-netlify-functions) 当站点部署在 netlify 时，希望使用 netlify functions 可选择此插件提供支持
 ### 注意
 
-本主题基于 `VuePress2` ，仍处于 Beta 阶段。
+本主题基于 `vuepress 2` ，处于 RC 阶段。
 
-这意味着功能尚未完善，在未来有概率发生破坏性更改。
+这意味着功能已趋于稳定，但在未来仍有小概率发生破坏性更改。

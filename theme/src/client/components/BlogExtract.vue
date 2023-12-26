@@ -1,7 +1,9 @@
 <script lang="ts" setup>
+import { useScrollLock } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useBlogExtract, useThemeLocaleData } from '../composables/index.js'
+import { inBrowser } from '../utils/index.js'
 import AutoLink from './AutoLink.vue'
 import IconArchive from './icons/IconArchive.vue'
 import IconBlogExt from './icons/IconBlogExt.vue'
@@ -15,9 +17,21 @@ const avatar = computed(() => theme.value.avatar)
 const { hasBlogExtract, tags, archives } = useBlogExtract()
 const open = ref(false)
 
+const isLocked = useScrollLock(inBrowser ? document.body : null)
+
 watch(() => route.path, () => {
   open.value = false
 })
+
+watch(
+  [() => open.value],
+  () => {
+    if (open.value) {
+      isLocked.value = true
+    } else isLocked.value = false
+  },
+  { immediate: true, flush: 'post' }
+)
 
 const showBlogExtract = computed(() => {
   return avatar.value || hasBlogExtract.value
@@ -66,6 +80,7 @@ const showBlogExtract = computed(() => {
   box-shadow: var(--vp-shadow-2);
   z-index: calc(var(--vp-z-index-nav) - 1);
   background-color: var(--vp-c-bg);
+  cursor: pointer;
 }
 
 .blog-extract .icon {

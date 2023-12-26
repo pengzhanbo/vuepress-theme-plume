@@ -1,3 +1,18 @@
+# [1.0.0-rc.5](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.4...v1.0.0-rc.5) (2023-12-26)
+
+
+### Bug Fixes
+
+* 修复 SSR 替换字符问题 ([1ac989b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1ac989b9985e1de4440dd605d2de6087eaf901e0))
+
+
+### Features
+
+* 添加移动设备下博客列表页 avatar UI交互 ([616672f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/616672fa59a189b319678b657996f79fd0de16a0))
+* 页面级别控制是否可评论 ([1ebab70](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1ebab7054a6126dcea4aad7158c22516cf03b41c))
+
+
+
 # [1.0.0-rc.4](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2023-12-26)
 
 

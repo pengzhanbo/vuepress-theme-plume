@@ -1,23 +1,27 @@
 :root {
-  --icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2'/%3E%3C/svg%3E");
-  --icon-copied: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4'/%3E%3C/svg%3E");
+  --vp-icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2'/%3E%3C/svg%3E");
+  --vp-icon-copied: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4'/%3E%3C/svg%3E");
 }
 
 :root {
-  --code-copy-code-border-color: #e2e2e3;
-  --code-copy-code-bg: #f6f6f7;
-  --code-copy-code-hover-border-color: #e2e2e3;
-  --code-copy-code-hover-bg: #fff;
-  --code-copy-code-active-text: rgba(60, 60, 67, 0.78);
-  --code-copy-copied-text-content: 'Copied';
+  --vp-code-copy-code-border-color: #e2e2e3;
+  --vp-code-copy-code-bg: #f6f6f7;
+  --vp-code-copy-code-hover-border-color: #e2e2e3;
+  --vp-code-copy-code-hover-bg: #fff;
+  --vp-code-copy-code-active-text: rgba(60, 60, 67, 0.78);
+  --vp-code-copy-copied-text-content: 'Copied';
+}
+
+html[lang='zh-CN'] {
+  --vp-code-copy-copied-text-content: '已复制';
 }
 
 .dark {
-  --code-copy-code-border-color: #2e2e32;
-  --code-copy-code-bg: #202127;
-  --code-copy-code-hover-bg: #1b1b1f;
-  --code-copy-code-hover-border-color: #2e2e32;
-  --code-copy-code-active-text: rgba(235, 235, 245, 0.6);
+  --vp-code-copy-code-border-color: #2e2e32;
+  --vp-code-copy-code-bg: #202127;
+  --vp-code-copy-code-hover-bg: #1b1b1f;
+  --vp-code-copy-code-hover-border-color: #2e2e32;
+  --vp-code-copy-code-active-text: rgba(235, 235, 245, 0.6);
 }
 
 .copy-code-button {
@@ -28,14 +32,14 @@
   /*rtl:ignore*/
   right: 12px;
   z-index: 3;
-  border: 1px solid var(--code-copy-code-border-color);
+  border: 1px solid var(--vp-code-copy-code-border-color);
   border-radius: 4px;
   width: 40px;
   height: 40px;
-  background-color: var(--code-copy-code-bg);
+  background-color: var(--vp-code-copy-code-bg);
   opacity: 0;
   cursor: pointer;
-  background-image: var(--icon-copy);
+  background-image: var(--vp-icon-copy);
   background-position: 50%;
   background-size: 20px;
   background-repeat: no-repeat;
@@ -52,16 +56,16 @@
 
 [class*='language-'] > .copy-code-button:hover,
 [class*='language-'] > .copy-code-button.copied {
-  border-color: var(--code-copy-code-hover-border-color);
-  background-color: var(--code-copy-code-hover-bg);
+  border-color: var(--vp-code-copy-code-hover-border-color);
+  background-color: var(--vp-code-copy-code-hover-bg);
 }
 
 [class*='language-'] > .copy-code-button.copied,
 [class*='language-'] > .copy-code-button:hover.copied {
   /*rtl:ignore*/
   border-radius: 0 4px 4px 0;
-  background-color: var(--code-copy-code-hover-bg);
-  background-image: var(--icon-copied);
+  background-color: var(--vp-code-copy-code-hover-bg);
+  background-image: var(--vp-icon-copied);
 }
 
 [class*='language-'] > .copy-code-button.copied::before,
@@ -73,7 +77,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--code-copy-code-hover-border-color);
+  border: 1px solid var(--vp-code-copy-code-hover-border-color);
   /*rtl:ignore*/
   border-right: 0;
   border-radius: 4px 0 0 4px;
@@ -83,8 +87,8 @@
   text-align: center;
   font-size: 12px;
   font-weight: 500;
-  color: var(--code-copy-code-active-text);
-  background-color: var(--code-copy-code-hover-bg);
+  color: var(--vp-code-copy-code-active-text);
+  background-color: var(--vp-code-copy-code-hover-bg);
   white-space: nowrap;
-  content: var(--code-copy-copied-text-content);
+  content: var(--vp-code-copy-copied-text-content);
 }

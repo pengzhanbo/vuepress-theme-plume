@@ -69,6 +69,8 @@
   --vp-c-red-3: #e0575b;
   --vp-c-red-soft: rgba(244, 63, 94, 0.14);
 
+  --vp-c-purple: #f4eefe;
+
   --vp-c-sponsor: #db2777;
 }
 
@@ -92,6 +94,8 @@
   --vp-c-yellow-2: #da8b17;
   --vp-c-yellow-3: #a46a0a;
   --vp-c-yellow-soft: rgba(234, 179, 8, 0.16);
+
+  --vp-c-purple: #423655;
 
   --vp-c-red-1: #f66f81;
   --vp-c-red-2: #f14158;
@@ -297,7 +301,7 @@
   --vp-code-bg: var(--vp-c-default-soft);
 
   --vp-code-block-color: var(--vp-c-text-2);
-  --vp-code-block-bg: var(--vp-c-bg-alt);
+  --vp-code-block-bg: var(--vp-c-bg-soft);
   --vp-code-block-divider-color: var(--vp-c-gutter);
 
   --vp-code-lang-color: var(--vp-c-text-3);
@@ -477,6 +481,15 @@
 }
 
 /**
+ * Component: Friends
+ * -------------------------------------------------------------------------- */
+:root {
+  --vp-friends-text-color: var(--vp-c-text-1);
+  --vp-friends-bg-color: var(--vp-c-bg);
+  --vp-friends-link-color: var(--vp-c-brand-1);
+  --vp-friends-border-color: var(--vp-c-border);
+}
+/**
  * Component: Badge
  * -------------------------------------------------------------------------- */
 
@@ -549,12 +562,14 @@
 }
 
 /* md enhance hints */
-:root {
-  // important
+:root,
+html.dark {
+  /* important */
   --important-title-color: var(--vp-c-text-1);
-  --important-bg-color: #f4eefe;
-  --important-border-color: #f4eefe;
+  --important-bg-color: var(--vp-c-purple);
+  --important-border-color: var(--vp-c-purple);
   --important-code-bg-color: rgb(163 113 247 / 10%);
+
   // info
   --info-title-color: var(--vp-c-text-1);
   --info-bg-color: var(--vp-custom-block-info-bg);
@@ -563,7 +578,7 @@
 
   // note
   --note-title-color: var(--vp-c-text-3);
-  --note-bg-color: var(--vp-c-bg-elv);
+  --note-bg-color: var(--vp-c-bg);
   --note-border-color: var(--vp-c-divider);
   --note-code-bg-color: var(--vp-c-default-soft);
 
@@ -589,6 +604,11 @@
   --detail-bg-color: var(--vp-custom-block-details-bg);
   --detail-text-color: inherit;
   --detail-code-bg-color: var(--vp-custom-block-details-code-bg);
+}
+
+/* md enhance code-demo */
+:root {
+  --code-demo-header-bg-color: var(--vp-c-bg-soft);
 }
 
 :root {

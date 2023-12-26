@@ -19,6 +19,7 @@ export interface PlumeThemeHeroAction {
 }
 
 export interface PlumeThemePageFrontmatter {
+  comments?: boolean
   editLink?: boolean
   editLinkPattern?: string
   lastUpdated?: boolean
@@ -33,7 +34,6 @@ export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {
   tags?: string[]
   sticky?: boolean | number
   article?: boolean
-  banner?: string
 }
 
 export interface PlumeThemeNoteFrontmatter extends PlumeThemePageFrontmatter {

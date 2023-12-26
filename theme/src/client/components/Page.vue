@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { usePageData } from '@vuepress/client'
+import { computed } from 'vue'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import { useDarkMode, useSidebar } from '../composables/index.js'
 import PageAside from './PageAside.vue'
@@ -9,6 +10,9 @@ import PageMeta from './PageMeta.vue'
 const { hasSidebar, hasAside } = useSidebar()
 const isDark = useDarkMode()
 const page = usePageData<PlumeThemePageData>()
+const hasComments = computed(() => {
+  return page.value.frontmatter.comments !== false
+})
 </script>
 <template>
   <div
@@ -34,7 +38,7 @@ const page = usePageData<PlumeThemePageData>()
             <PageMeta />
             <Content class="plume-content" />
             <PageFooter />
-            <PageComment :darkmode="isDark" />
+            <PageComment v-if="hasComments" :darkmode="isDark" />
           </main>
         </div>
       </div>
@@ -52,9 +56,9 @@ const page = usePageData<PlumeThemePageData>()
   width: 100%;
 }
 
-.plume-page.is-blog {
+/* .plume-page.is-blog {
   padding-top: calc(var(--vp-nav-height) + 32px);
-}
+} */
 
 @media (min-width: 768px) {
   .plume-page {

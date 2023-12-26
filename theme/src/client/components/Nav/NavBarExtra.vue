@@ -11,7 +11,7 @@ const theme = useThemeLocaleData()
 const { localeLinks, currentLang } = useLangs({ correspondingLink: true })
 
 const hasExtraContent = computed(
-  () => theme.value.appearance || theme.value.social
+  () => theme.value.appearance || theme.value.social,
 )
 </script>
 
@@ -21,7 +21,9 @@ const hasExtraContent = computed(
       v-if="localeLinks.length && currentLang.label"
       class="group translations"
     >
-      <p class="trans-title">{{ currentLang.label }}</p>
+      <p class="trans-title">
+        {{ currentLang.label }}
+      </p>
 
       <template v-for="locale in localeLinks" :key="locale.link">
         <MenuLink :item="locale" />
@@ -30,7 +32,9 @@ const hasExtraContent = computed(
 
     <div v-if="theme.appearance" class="group">
       <div class="item appearance">
-        <p class="label">Appearance</p>
+        <p class="label">
+          Appearance
+        </p>
         <div class="appearance-action">
           <SwitchAppearance />
         </div>

@@ -6,13 +6,11 @@ import NavScreenMenu from './NavScreenMenu.vue'
 import NavScreenSocialLinks from './NavScreenSocialLinks.vue'
 import NavScreenTranslates from './NavScreenTranslations.vue'
 
-
 defineProps<{
   open: boolean
 }>()
 
 const isLocked = useScrollLock(inBrowser ? document.body : null)
-
 </script>
 
 <template>

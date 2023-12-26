@@ -12,15 +12,13 @@ declare module 'vue-router' {
 /**
  * Resolve a route with redirection
  */
-export const useResolveRouteWithRedirect = (
-  ...args: Parameters<Router['resolve']>
-): ReturnType<Router['resolve']> => {
+export function useResolveRouteWithRedirect(...args: Parameters<Router['resolve']>): ReturnType<Router['resolve']> {
   const router = useRouter()
   const route = router.resolve(...args)
   const lastMatched = route.matched[route.matched.length - 1]
-  if (!lastMatched?.redirect) {
+  if (!lastMatched?.redirect)
     return route
-  }
+
   const { redirect } = lastMatched
   const resolvedRedirect = isFunction(redirect) ? redirect(route) : redirect
   const resolvedRedirectObj = isString(resolvedRedirect)
@@ -41,7 +39,7 @@ export const useResolveRouteWithRedirect = (
  * - Input: '/README.md'
  * - Output: { text: 'Home', link: '/' }
  */
-export const useNavLink = (item: string): NavItemWithLink => {
+export function useNavLink(item: string): NavItemWithLink {
   // the route path of vue-router is url-encoded, and we expect users are using
   // non-url-encoded string in theme config, so we need to url-encode it first to
   // resolve the route correctly

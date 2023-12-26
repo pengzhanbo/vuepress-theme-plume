@@ -13,7 +13,7 @@ const props = defineProps<{
 const isOpen = ref(false)
 
 const groupId = computed(
-  () => `nav-screen-menu-group-${props.text.replace(' ', '-').toLowerCase()}`
+  () => `nav-screen-menu-group-${props.text.replace(' ', '-').toLowerCase()}`,
 )
 
 function toggle() {
@@ -31,7 +31,7 @@ function toggle() {
     >
       <span class="button-text">
         <Icon v-if="icon" :name="icon" />
-        <i v-text="text"></i>
+        <i v-text="text" />
       </span>
       <IconPlus class="button-icon" />
     </button>

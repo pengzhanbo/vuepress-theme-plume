@@ -13,9 +13,7 @@ import type { PageCollectionOptions } from '../shared/index.js'
 
 const __dirname = getDirname(import.meta.url)
 
-export const pageCollectionPlugin = (
-  options: PageCollectionOptions = {}
-): Plugin => {
+export function pageCollectionPlugin(_options: PageCollectionOptions = {}): Plugin {
   return (app: App) => {
     const {
       // 客户端发起 functions 请求时的代理前缀

@@ -5,6 +5,7 @@ import type {
   ShikijiTransformer,
   ThemeRegistration,
 } from 'shikiji'
+
 export type ThemeOptions =
   | ThemeRegistration
   | BuiltinTheme

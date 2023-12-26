@@ -9,7 +9,8 @@ const props = defineProps<{
 }>()
 
 const svg = computed(() => {
-  if (typeof props.icon === 'object') return props.icon.svg
+  if (typeof props.icon === 'object')
+    return props.icon.svg
   return icons[props.icon]
 })
 </script>
@@ -22,8 +23,7 @@ const svg = computed(() => {
     target="_blank"
     rel="noopener"
     v-html="svg"
-  >
-  </a>
+  />
 </template>
 
 <style scoped>

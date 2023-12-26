@@ -1,7 +1,11 @@
 {
   "name": "vuepress-theme-plume-monorepo",
+  "type": "module",
   "version": "1.0.0-rc.5",
   "private": true,
+  "packageManager": "pnpm@8.12.1",
+  "author": "pengzhanbo",
+  "license": "MIT",
   "keywords": [
     "vuepress",
     "vuepress-next",
@@ -9,9 +13,10 @@
     "vuepress theme",
     "vuepress-theme-plume"
   ],
-  "license": "MIT",
-  "author": "pengzhanbo",
-  "type": "module",
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=7"
+  },
   "scripts": {
     "autoUpdate": "node scripts/autoInstall.js",
     "build": "pnpm run build:package",
@@ -24,7 +29,7 @@
     "docs:build": "pnpm --filter=docs docs:build",
     "docs:clean": "pnpm --filter=docs docs:clean",
     "docs:serve": "pnpm --filter=docs docs:serve",
-    "lint": "eslint --ext .js,.ts,.vue .",
+    "lint": "eslint .",
     "pkg": "node scripts/create/index.js",
     "prepare": "husky install",
     "release": "pnpm release:check && pnpm release:version && pnpm release:publish",
@@ -34,20 +39,10 @@
     "release:version": "bumpp package.json plugins/*/package.json theme/package.json --execute=\"pnpm release:changelog\" --commit \"build: publish v%s\" --all --tag --push",
     "up": "taze -r major"
   },
-  "lint-staged": {
-    "*.{js,ts,vue}": "eslint --fix",
-    "*.{json,yml,css,scss}": "prettier --write",
-    "package.json": "sort-package-json"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "prettier": "prettier-config-vuepress",
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@pengzhanbo/eslint-config-vue": "^1.4.0",
     "@types/minimist": "^1.2.5",
     "@types/node": "20.9.1",
     "@types/webpack-env": "^1.18.4",
@@ -60,8 +55,7 @@
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.56.0",
-    "eslint-config-vuepress": "^4.9.0",
-    "eslint-config-vuepress-typescript": "^4.9.0",
+    "eslint-plugin-format": "^0.1.0",
     "execa": "^8.0.1",
     "handlebars": "^4.7.8",
     "husky": "^8.0.3",
@@ -69,19 +63,12 @@
     "minimist": "^1.2.8",
     "ora": "^8.0.1",
     "pnpm": "^8.12.1",
-    "prettier": "^3.1.1",
-    "prettier-config-vuepress": "^4.4.0",
     "rimraf": "^5.0.5",
     "sort-package-json": "^2.6.0",
     "taze": "^0.13.0",
     "tsconfig-vuepress": "^4.5.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.10"
-  },
-  "packageManager": "pnpm@8.12.1",
-  "engines": {
-    "node": ">=16",
-    "pnpm": ">=7"
   },
   "pnpm": {
     "peerDependencyRules": {
@@ -98,6 +85,14 @@
         "postcss",
         "jest"
       ]
+    }
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
   }
 }

@@ -11,14 +11,15 @@ const props = defineProps<{
 
 const page = usePageData()
 
-const isChildActive = (navItem: NavItem) => {
+function isChildActive(navItem: NavItem) {
   if ('link' in navItem) {
     return isActive(
       page.value.path,
       navItem.link,
-      !!props.item.activeMatch
+      !!props.item.activeMatch,
     )
-  } else {
+  }
+  else {
     return navItem.items.some(isChildActive)
   }
 }
@@ -27,9 +28,8 @@ const childrenActive = computed(() => isChildActive(props.item))
 
 <template>
   <Flyout
-    :class="{
-      'navbar-menu-group': true,
-      'active': isActive(page.path, item.activeMatch, !!item.activeMatch) || childrenActive,
+    class="navbar-menu-group" :class="{
+      active: isActive(page.path, item.activeMatch, !!item.activeMatch) || childrenActive,
     }"
     :button="item.text"
     :items="item.items"

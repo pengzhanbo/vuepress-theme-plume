@@ -32,11 +32,9 @@ interface NotePage {
   link: string
 }
 
-export const prepareNotesData = async (
-  app: App,
-  { include, exclude, notes, dir, link }: NotesDataOptions
-) => {
-  if (!notes || notes.length === 0) return
+export async function prepareNotesData(app: App, { include, exclude, notes, dir, link }: NotesDataOptions) {
+  if (!notes || notes.length === 0)
+    return
   dir = normalizePath(dir)
   const filter = createFilter(ensureArray(include), ensureArray(exclude), {
     resolve: false,
@@ -44,10 +42,10 @@ export const prepareNotesData = async (
   const DIR_PATTERN = new RegExp(`^${normalizePath(path.join(dir, '/'))}`)
   const notesPageList: NotePage[] = app.pages
     .filter(
-      (page) =>
-        page.filePathRelative &&
-        page.filePathRelative.startsWith(dir) &&
-        filter(page.filePathRelative)
+      page =>
+        page.filePathRelative
+        && page.filePathRelative.startsWith(dir)
+        && filter(page.filePathRelative),
     )
     .map((page) => {
       return {
@@ -61,27 +59,23 @@ export const prepareNotesData = async (
   notes.forEach((note) => {
     notesData[normalizePath(path.join('/', link, note.link))] = initSidebar(
       note,
-      notesPageList.filter((page) =>
-        page.relativePath.startsWith(note.dir.trim().replace(/^\/|\/$/g, ''))
-      )
+      notesPageList.filter(page =>
+        page.relativePath.startsWith(note.dir.trim().replace(/^\/|\/$/g, '')),
+      ),
     )
   })
   let content = `
 export const notesData = ${JSON.stringify(notesData, null, 2)}
 `
-  if (app.env.isDev) {
+  if (app.env.isDev)
     content += HMR_CODE
-  }
 
   await app.writeTemp('internal/notesData.js', content)
 }
 
-export const watchNotesData = (
-  app: App,
-  watchers: any[],
-  options: NotesDataOptions
-): void => {
-  if (!options.notes || options.notes.length === 0 || !options.dir) return
+export function watchNotesData(app: App, watchers: any[], options: NotesDataOptions): void {
+  if (!options.notes || options.notes.length === 0 || !options.dir)
+    return
   const dir = path.join('pages', options.dir, '**/*')
   const watcher = chokidar.watch(dir, {
     cwd: app.dir.temp(),
@@ -95,14 +89,16 @@ export const watchNotesData = (
 }
 
 function initSidebar(note: NotesItem, pages: NotePage[]): NotesSidebarItem[] {
-  if (!note.sidebar) return []
-  if (note.sidebar === 'auto') return initSidebarByAuto(note, pages)
+  if (!note.sidebar)
+    return []
+  if (note.sidebar === 'auto')
+    return initSidebarByAuto(note, pages)
   return initSidebarByConfig(note, pages)
 }
 
 function initSidebarByAuto(
   note: NotesItem,
-  pages: NotePage[]
+  pages: NotePage[],
 ): NotesSidebarItem[] {
   pages = pages.sort((prev, next) => {
     const pi = prev.relativePath.match(/\//g)?.length || 0
@@ -119,9 +115,10 @@ function initSidebarByAuto(
     let index = 0
     let dir: string
     let items = result
+    // eslint-disable-next-line no-cond-assign
     while ((dir = paths[index])) {
       const text = dir.replace(/\.md$/, '')
-      let current = items.find((item) => item.text === text)
+      let current = items.find(item => item.text === text)
       if (!current) {
         current = { text, link: undefined, items: [] }
         !RE_INDEX.includes(dir) ? items.push(current) : items.unshift(current)
@@ -139,7 +136,7 @@ function initSidebarByAuto(
 
 function initSidebarByConfig(
   { text, dir, sidebar }: NotesItem,
-  pages: NotePage[]
+  pages: NotePage[],
 ): NotesSidebarItem[] {
   return (sidebar as NotesSidebar).map((item) => {
     if (typeof item === 'string') {
@@ -149,7 +146,8 @@ function initSidebarByConfig(
         link: current?.link,
         items: [],
       }
-    } else {
+    }
+    else {
       const current = findNotePage(item.link || '', dir, pages)
       return {
         text: item.text || item.dir || current?.title,
@@ -162,7 +160,7 @@ function initSidebarByConfig(
             sidebar: item.items,
             dir: normalizePath(path.join(dir, item.dir || '')),
           },
-          pages
+          pages,
         ),
       }
     }
@@ -172,23 +170,24 @@ function initSidebarByConfig(
 function findNotePage(
   sidebar: string,
   dir: string,
-  notePageList: NotePage[]
+  notePageList: NotePage[],
 ): NotePage | undefined {
   if (sidebar === '' || sidebar === 'README.md' || sidebar === 'index.md') {
     return notePageList.find((page) => {
       const relative = page.relativePath
       return (
-        relative === normalizePath(path.join(dir, 'README.md')) ||
-        relative === normalizePath(path.join(dir, 'index.md'))
+        relative === normalizePath(path.join(dir, 'README.md'))
+        || relative === normalizePath(path.join(dir, 'index.md'))
       )
     })
-  } else {
+  }
+  else {
     return notePageList.find((page) => {
       const relative = page.relativePath
       return (
-        relative === normalizePath(path.join(dir, sidebar)) ||
-        relative === normalizePath(path.join(dir, sidebar + '.md')) ||
-        page.link === sidebar
+        relative === normalizePath(path.join(dir, sidebar))
+        || relative === normalizePath(path.join(dir, `${sidebar}.md`))
+        || page.link === sidebar
       )
     })
   }

@@ -15,7 +15,7 @@ const props = withDefaults(
     name: '',
     size: '',
     color: '',
-  }
+  },
 )
 
 const { name } = toRefs(props)
@@ -24,9 +24,9 @@ const { icon, loaded } = useIconify(name)
 
 const size = computed(() => {
   const size = props.size || __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_SIZE__
-  if (String(Number(size)) === size) {
+  if (String(Number(size)) === size)
     return `${size}px`
-  }
+
   return size
 })
 const iconStyle = computed(() => {
@@ -46,7 +46,7 @@ declare const __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_COLOR__: string
 
 <template>
   <ClientOnly>
-    <span v-if="!loaded" class="vp-iconify" :style="iconStyle"></span>
+    <span v-if="!loaded" class="vp-iconify" :style="iconStyle" />
     <OfflineIcon
       v-else-if="icon"
       :icon="icon"
@@ -58,6 +58,7 @@ declare const __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_COLOR__: string
     </span>
   </ClientOnly>
 </template>
+
 <style scoped>
 .vp-iconify {
   display: inline-block;

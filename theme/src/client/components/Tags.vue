@@ -5,7 +5,6 @@ import ShortPostList from './ShortPostList.vue'
 
 const { tags, currentTag, postList, handleTagClick } = useTags()
 const { tags: tagsLink } = useBlogExtract()
-
 </script>
 
 <template>
@@ -31,7 +30,7 @@ const { tags: tagsLink } = useBlogExtract()
   </div>
 </template>
 
-<style scoped >
+<style scoped>
 .tags-wrapper {
   padding: 32px 24px;
   flex: 1;

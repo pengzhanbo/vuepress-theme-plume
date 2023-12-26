@@ -11,9 +11,7 @@ const defaultOptions: CopyCodeOptions = {
   showInMobile: false,
 }
 
-
-export const copyCodePlugin = (options: CopyCodeOptions): Plugin => {
-
+export function copyCodePlugin(options: CopyCodeOptions): Plugin {
   options = Object.assign({}, defaultOptions, options)
 
   return {

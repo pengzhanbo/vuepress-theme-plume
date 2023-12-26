@@ -20,7 +20,7 @@ const showFooter = computed(() => {
     <div v-if="editNavLink || lastUpdated" class="edit-info">
       <div v-if="editNavLink" class="edit-link">
         <AutoLink class="edit-link-button" :href="editNavLink.link" :no-icon="true">
-          <IconEdit class="edit-link-icon" aria-label="edit icon"/>
+          <IconEdit class="edit-link-icon" aria-label="edit icon" />
           {{ editNavLink.text }}
         </AutoLink>
       </div>
@@ -37,7 +37,7 @@ const showFooter = computed(() => {
       <span class="contributors-info">
         <template v-for="(contributor, index) in contributors" :key="contributor">
           <span class="contributor" :title="`email: ${contributor.email}`">
-              {{ contributor.name }}
+            {{ contributor.name }}
           </span>
           <template v-if="index !== contributors.length - 1">, </template>
         </template>
@@ -47,18 +47,18 @@ const showFooter = computed(() => {
     <nav v-if="prev?.link || next?.link" class="prev-next">
       <div class="pager">
         <AutoLink v-if="prev?.link" class="pager-link prev" :href="prev.link">
-          <!--eslint-disable-next-line vue/no-v-html-->
-          <span class="desc" v-html="themeLocale.prevPageLabel || 'Previous page'"></span>
-          <!--eslint-disable-next-line vue/no-v-html-->
-          <span class="title" v-html="prev.text"></span>
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <span class="desc" v-html="themeLocale.prevPageLabel || 'Previous page'" />
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <span class="title" v-html="prev.text" />
         </AutoLink>
       </div>
       <div class="pager">
         <AutoLink v-if="next?.link" class="pager-link next" :href="next.link">
-          <!--eslint-disable-next-line vue/no-v-html-->
-          <span class="desc" v-html="themeLocale.nextPageLabel || 'Next page'"></span>
-          <!--eslint-disable-next-line vue/no-v-html-->
-          <span class="title" v-html="next.text"></span>
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <span class="desc" v-html="themeLocale.nextPageLabel || 'Next page'" />
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <span class="title" v-html="next.text" />
         </AutoLink>
       </div>
     </nav>
@@ -69,7 +69,6 @@ const showFooter = computed(() => {
 .page-footer {
   margin-top: 96px;
 }
-
 
 @media (min-width: 640px) {
   .edit-info {
@@ -186,5 +185,4 @@ const showFooter = computed(() => {
   color: var(--vp-c-brand-1);
   transition: color 0.25s;
 }
-
 </style>

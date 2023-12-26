@@ -18,7 +18,7 @@ const closeScreen = inject('close-screen') as () => void
     @click="closeScreen"
   >
     <Icon v-if="icon" :name="icon" />
-    <i v-text="text"></i>
+    <i v-text="text" />
   </AutoLink>
 </template>
 

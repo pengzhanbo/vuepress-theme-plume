@@ -9,9 +9,9 @@ const __dirname = getDirname(import.meta.url)
 const modeMap: CanIUseMode[] = ['image', 'embed']
 const isMode = (mode: CanIUseMode): boolean => modeMap.includes(mode)
 
-export const caniusePlugin = ({
+export function caniusePlugin({
   mode = modeMap[0],
-}: CanIUsePluginOptions): Plugin => {
+}: CanIUsePluginOptions): Plugin {
   mode = isMode(mode) ? mode : modeMap[0]
   const type = 'caniuse'
   const validateReg = new RegExp(`^${type}\\s+(.*)$`)
@@ -32,7 +32,8 @@ export const caniusePlugin = ({
     if (token.nesting === 1) {
       const feature = token.info.trim().slice(type.length).trim() || ''
       return feature ? resolveCanIUse(feature, mode) : ''
-    } else {
+    }
+    else {
       return ''
     }
   }

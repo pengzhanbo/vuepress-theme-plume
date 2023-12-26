@@ -15,9 +15,9 @@ const matter = usePageFrontmatter<PlumeThemePostFrontmatter>()
 const readingTime = useReadingTime()
 
 const createTime = computed(() => {
-  if (matter.value.createTime) {
+  if (matter.value.createTime)
     return matter.value.createTime.split(' ')[0].replace(/\//g, '-')
-  }
+
   return ''
 })
 
@@ -26,14 +26,15 @@ const categoryList = computed(() => {
 })
 
 const tags = computed(() => {
-  if (matter.value.tags) {
+  if (matter.value.tags)
     return matter.value.tags.slice(0, 4)
-  }
+
   return []
 })
 
 const hasMeta = computed(() => readingTime.value.times || tags.value.length || createTime.value)
 </script>
+
 <template>
   <div
     v-if="page.isBlogPost && categoryList.length"
@@ -41,7 +42,7 @@ const hasMeta = computed(() => readingTime.value.times || tags.value.length || c
   >
     <template
       v-for="({ type, name }, index) in categoryList"
-      :key="index + '-' + type"
+      :key="`${index}-${type}`"
     >
       <span class="category">{{ name }}</span>
       <span v-if="index !== categoryList.length - 1" class="dot">&rsaquo;</span>

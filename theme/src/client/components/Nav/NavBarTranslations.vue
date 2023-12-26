@@ -17,7 +17,9 @@ const { currentLang, localeLinks } = useLangs()
     :label="theme.selectLanguageText || 'change language'"
   >
     <div class="items">
-      <p class="title">{{ currentLang.label }}</p>
+      <p class="title">
+        {{ currentLang.label }}
+      </p>
 
       <template v-for="locale in localeLinks" :key="locale.link">
         <MenuLink :item="locale" />

@@ -1,7 +1,18 @@
 {
   "name": "vuepress-theme-plume",
+  "type": "module",
   "version": "1.0.0-rc.5",
   "description": "A Blog Theme for VuePress 2.0",
+  "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
+  "license": "MIT",
+  "homepage": "https://pengzhanbo.cn/note/vuepress-theme-plume",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
   "keywords": [
     "VuePress",
     "Theme",
@@ -10,17 +21,6 @@
     "vuepress-theme-plume",
     "theme-plume"
   ],
-  "homepage": "https://pengzhanbo.cn/note/vuepress-theme-plume",
-  "bugs": {
-    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
-  },
-  "license": "MIT",
-  "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
-  "type": "module",
   "exports": {
     ".": "./lib/node/index.js",
     "./client": "./lib/client/index.js",

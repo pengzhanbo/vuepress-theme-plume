@@ -30,7 +30,7 @@ export default defineClientConfig({
               value: blogPostData.value,
             })
           })
-        }
+        },
       )
     }
   },

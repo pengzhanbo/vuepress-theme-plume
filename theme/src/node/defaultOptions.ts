@@ -17,10 +17,10 @@ export const defaultLocaleOption: Partial<PlumeThemeLocaleOptions> = {
   contributorsText: 'Contributors',
 }
 
-export const mergeLocaleOptions = (options: PlumeThemeLocaleOptions) => {
-  if (!options.locales) {
+export function mergeLocaleOptions(options: PlumeThemeLocaleOptions) {
+  if (!options.locales)
     options.locales = {}
-  }
+
   if (options.notes) {
     options.notes = {
       ...defaultLocaleOption.notes,
@@ -37,9 +37,9 @@ export const mergeLocaleOptions = (options: PlumeThemeLocaleOptions) => {
 
   const { locales, ...otherOptions } = options
 
-  if (!locales['/']) {
+  if (!locales['/'])
     locales['/'] = {}
-  }
+
   Object.assign(options, {
     ...defaultLocaleOption,
     ...options,

@@ -2,9 +2,9 @@ import type { GitPluginPageData } from '@vuepress/plugin-git'
 
 interface ReadingTime {
   /** 分钟数 */
-  minutes: number;
+  minutes: number
   /** 字数 */
-  words: number;
+  words: number
 }
 
 export interface PlumeThemePageData extends GitPluginPageData {

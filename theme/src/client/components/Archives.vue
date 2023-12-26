@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { useArchives, useBlogExtract } from '../composables/index.js'
 import IconArchive from './icons/IconArchive.vue'
-import ShortPostList from './ShortPostList.vue';
+import ShortPostList from './ShortPostList.vue'
 
 const { archives: archivesLink } = useBlogExtract()
 const { archives } = useArchives()
-
 </script>
+
 <template>
   <div class="archives-wrapper">
     <h2 class="archives-title">
@@ -16,7 +16,9 @@ const { archives } = useArchives()
     <div v-if="archives.length" class="archives">
       <template v-for="archive in archives" :key="archive.label">
         <div class="archive">
-          <h3 class="archive-title">{{ archive.label }}</h3>
+          <h3 class="archive-title">
+            {{ archive.label }}
+          </h3>
           <ShortPostList :post-list="archive.list" />
         </div>
       </template>

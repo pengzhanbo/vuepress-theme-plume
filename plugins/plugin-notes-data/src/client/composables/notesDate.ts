@@ -9,9 +9,11 @@ export type NotesDataRef<T extends NotesData = NotesData> = Ref<T>
 
 export const notesData: NotesDataRef = ref(notesDataRaw)
 
-export const useNotesData = <
-  T extends NotesData = NotesData
->(): NotesDataRef<T> => notesData as NotesDataRef<T>
+export function useNotesData<
+  T extends NotesData = NotesData,
+>(): NotesDataRef<T> {
+  return notesData as NotesDataRef<T>
+}
 
 if (import.meta.webpackHot || import.meta.hot) {
   __VUE_HMR_RUNTIME__.updateNotesData = (data: NotesData) => {

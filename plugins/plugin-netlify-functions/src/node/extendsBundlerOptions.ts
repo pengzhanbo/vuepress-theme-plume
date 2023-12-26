@@ -1,11 +1,7 @@
 import type { App } from '@vuepress/core'
 import type { NetlifyFunctionsPluginOptions } from '../shared/index.js'
-export const extendsBundlerOptions = (
-  bundlerOption: any,
-  app: App,
-  options: NetlifyFunctionsPluginOptions,
-  server: string
-): void => {
+
+export function extendsBundlerOptions(bundlerOption: any, app: App, options: NetlifyFunctionsPluginOptions, server: string): void {
   // 在 netlify-cli 的 function:serve 中，
   // 默认就是 指向 /.netlify/functions
   // 而配置的 --functions 仅作为源文件入口
@@ -27,7 +23,8 @@ export const extendsBundlerOptions = (
     const rewritePath = `^${options.proxyPrefix}`
     bundlerOption.configureWebpack(
       (config: any, isServer: boolean, isBuild: boolean) => {
-        if (isBuild) return
+        if (isBuild)
+          return
         config.devServer = config.devServer || {}
         config.devServer.proxy = Object.assign(config.devServer.proxy || {}, {
           [options.proxyPrefix as string]: {
@@ -36,7 +33,7 @@ export const extendsBundlerOptions = (
             pathRewrite: { [rewritePath]: targetPath },
           },
         })
-      }
+      },
     )
   }
 }

@@ -13,6 +13,7 @@ const {
   changePage,
 } = usePostListControl()
 </script>
+
 <template>
   <div class="post-list">
     <PostItem v-for="post in postList" :key="post.path" :post="post" />

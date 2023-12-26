@@ -1,1 +1,1 @@
-export type PageCollectionOptions = Record<string, unknown>;
+export type PageCollectionOptions = Record<string, unknown>

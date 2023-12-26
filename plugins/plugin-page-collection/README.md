@@ -9,7 +9,7 @@
 - 为什么是在 `netlify functions` 中 连接 `leancloud` ，而不是直接在 web客户端中请求 `leancloud` ?
 
   这是出于数据安全的角度考虑，避免直接在浏览器可见的代码中暴露私密的鉴权信息。
-## 使用方式 
+## 使用方式
 
 > (仅示例，本插件未发布到 npm)
 
@@ -47,7 +47,7 @@
 ├── database # leancloud-storage
 │   └── Page.json # Object Page 在 leancloud控制台中导入即可使用
 ├── src # 源码
-│   ├── client 
+│   ├── client
 │   │   ├── clientAppEnhance.ts # 注入全局组件
 │   │   ├── components
 |   |   |   └── PageCollection.ts # 组件

@@ -11,7 +11,7 @@ yarn add @vuepress-plume/plugin-iconify
 // .vuepress/config.js
 const iconifyPlugin = require('@vuepress-plume/plugin-iconify')
 module.exports = {
-  //...
+  // ...
   plugins: [
     iconifyPlugin()
   ]
@@ -30,7 +30,6 @@ interface IconifyOptions {
   color?: string
   size?: string | number
 }
-
 ```
 
 ## Component

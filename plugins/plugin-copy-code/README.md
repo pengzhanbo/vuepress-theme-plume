@@ -9,7 +9,7 @@ yarn add @vuepress-plume/plugin-copy-code
 // .vuepress/config.js
 const { copyCodePlugin } = require('@vuepress-plume/plugin-copy-code')
 module.exports = {
-  //...
+  // ...
   plugins: [
     copyCodePlugin()
   ]

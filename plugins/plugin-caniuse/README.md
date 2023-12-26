@@ -10,7 +10,7 @@ yarn add @vuepress-plume/plugin-caniuse
 // .vuepress/config.js
 const { caniusePlugin } = require('@vuepress-plume/plugin-caniuse')
 module.exports = {
-  //...
+  // ...
   plugins: [
     caniusePlugin({ mode: 'embed' })
   ]

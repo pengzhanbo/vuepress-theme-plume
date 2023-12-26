@@ -4,11 +4,11 @@ export interface BaiduTongjiOptions {
   key?: string
 }
 
-export const baiduTongjiPlugin = ({ key = '' }: BaiduTongjiOptions): Plugin => {
+export function baiduTongjiPlugin({ key = '' }: BaiduTongjiOptions): Plugin {
   return {
     name: '@vuepress-plume/plugin-baidu-tongji',
     extendsPage: (page) => {
-      page.frontmatter.head = page.frontmatter.head || [];
+      page.frontmatter.head = page.frontmatter.head || []
       page.frontmatter.head?.push([
         'script',
         {

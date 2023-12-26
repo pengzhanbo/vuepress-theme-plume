@@ -1,7 +1,7 @@
-export const copyToClipboard = (str: string): void => {
+export function copyToClipboard(str: string): void {
   const selection = document.getSelection()
-  const selectedRange =
-    selection && selection.rangeCount > 0 ? selection.getRangeAt(0) : false
+  const selectedRange
+    = selection && selection.rangeCount > 0 ? selection.getRangeAt(0) : false
 
   const textEl = document.createElement('textarea')
 

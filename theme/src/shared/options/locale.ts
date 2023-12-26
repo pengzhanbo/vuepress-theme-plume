@@ -271,9 +271,9 @@ export interface PlumeThemeLocaleData extends LocaleData {
   footer?:
     | false
     | {
-        message?: string
-        copyright?: string
-      }
+      message?: string
+      copyright?: string
+    }
 
   /**
    * 404 page options

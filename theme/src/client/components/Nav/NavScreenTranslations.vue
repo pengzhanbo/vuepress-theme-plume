@@ -27,7 +27,9 @@ function toggle() {
 
     <ul class="list">
       <li v-for="locale in localeLinks" :key="locale.link" class="item">
-        <AutoLink class="link" :href="locale.link">{{ locale.text }}</AutoLink>
+        <AutoLink class="link" :href="locale.link">
+          {{ locale.text }}
+        </AutoLink>
       </li>
     </ul>
   </div>

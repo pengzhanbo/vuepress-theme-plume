@@ -2,6 +2,7 @@
 import { usePageFrontmatter, withBase } from '@vuepress/client'
 import { computed } from 'vue'
 import type { PlumeThemeHomeFrontmatter } from '../../shared/index.js'
+
 // import { useThemeLocaleData } from '../composables/index.js'
 import { useDarkMode } from '../composables/darkMode.js'
 import VButton from './VButton.vue'
@@ -10,9 +11,9 @@ const matter = usePageFrontmatter<PlumeThemeHomeFrontmatter>()
 const isDark = useDarkMode()
 
 const mask = computed(() => {
-  if (typeof matter.value.bannerMask !== 'object') {
+  if (typeof matter.value.bannerMask !== 'object')
     return matter.value.bannerMask || 0
-  }
+
   return (
     (isDark.value
       ? matter.value.bannerMask.dark
@@ -41,15 +42,20 @@ const actions = computed(() => {
   return matter.value.hero?.actions ?? []
 })
 </script>
+
 <template>
   <div class="plume-home" :style="homeStyle">
     <div class="container">
       <div v-if="matter.hero" class="content">
-        <h2 v-if="name" class="hero-name">{{ name }}</h2>
+        <h2 v-if="name" class="hero-name">
+          {{ name }}
+        </h2>
         <p v-if="tagline" class="hero-tagline">
-          <span class="line"></span> <span>{{ tagline }}</span>
+          <span class="line" /> <span>{{ tagline }}</span>
         </p>
-        <p v-if="text" class="hero-text">{{ text }}</p>
+        <p v-if="text" class="hero-text">
+          {{ text }}
+        </p>
         <div v-if="actions" class="actions">
           <div v-for="action in actions" :key="action.link" class="action">
             <VButton

@@ -14,6 +14,7 @@ const hasComments = computed(() => {
   return page.value.frontmatter.comments !== false
 })
 </script>
+
 <template>
   <div
     class="plume-page"

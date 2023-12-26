@@ -9,7 +9,7 @@ yarn add @vuepress-plume/plugin-blog-data
 // .vuepress/config.js
 const { blogDataPlugin } = require('@vuepress-plume/plugin-blog-data')
 module.exports = {
-  //...
+  // ...
   plugins: [
     blogDataPlugin()
   ]

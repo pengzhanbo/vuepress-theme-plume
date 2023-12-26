@@ -9,7 +9,6 @@ import IconArchive from './icons/IconArchive.vue'
 import IconBlogExt from './icons/IconBlogExt.vue'
 import IconTag from './icons/IconTag.vue'
 
-
 const theme = useThemeLocaleData()
 const route = useRoute()
 
@@ -26,17 +25,19 @@ watch(() => route.path, () => {
 watch(
   [() => open.value],
   () => {
-    if (open.value) {
+    if (open.value)
       isLocked.value = true
-    } else isLocked.value = false
+
+    else isLocked.value = false
   },
-  { immediate: true, flush: 'post' }
+  { immediate: true, flush: 'post' },
 )
 
 const showBlogExtract = computed(() => {
   return avatar.value || hasBlogExtract.value
 })
 </script>
+
 <template>
   <div v-if="showBlogExtract" class="blog-extract" @click="open = !open">
     <IconBlogExt class="icon" />
@@ -45,11 +46,13 @@ const showBlogExtract = computed(() => {
     <div class="blog-modal-container">
       <div v-if="avatar" class="avatar-profile">
         <p v-if="avatar.url" class="avatar">
-          <img :src="avatar.url" :alt="avatar.name" />
+          <img :src="avatar.url" :alt="avatar.name">
         </p>
         <div>
           <h3>{{ avatar.name }}</h3>
-          <p class="desc">{{ avatar.description }}</p>
+          <p class="desc">
+            {{ avatar.description }}
+          </p>
         </div>
       </div>
       <div v-if="hasBlogExtract" class="blog-nav">

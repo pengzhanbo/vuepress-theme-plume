@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePageFrontmatter, } from '@vuepress/client'
+import { usePageFrontmatter } from '@vuepress/client'
 import { useWindowScroll } from '@vueuse/core'
 import { ref, watchPostEffect } from 'vue'
 import { useSidebar } from '../../composables/sidebar.js'
@@ -15,7 +15,7 @@ import NavBarTranslations from './NavBarTranslations.vue'
 defineProps<{
   isScreenOpen: boolean
 }>()
-defineEmits<(e: 'toggle-screen') => void>()
+defineEmits<(e: 'toggleScreen') => void>()
 
 const matter = usePageFrontmatter()
 
@@ -26,7 +26,7 @@ const classes = ref<Record<string, boolean>>({})
 watchPostEffect(() => {
   classes.value = {
     'has-sidebar': hasSidebar.value,
-    top: !!matter.value.home && y.value === 0,
+    'top': !!matter.value.home && y.value === 0,
   }
 })
 </script>
@@ -39,7 +39,7 @@ watchPostEffect(() => {
       </div>
 
       <div class="content">
-        <div class="curtain"></div>
+        <div class="curtain" />
         <div class="content-body">
           <NavBarSearch class="search" />
           <NavBarMenu class="menu" />
@@ -50,7 +50,7 @@ watchPostEffect(() => {
           <NavBarHamburger
             class="hamburger"
             :active="isScreenOpen"
-            @click="$emit('toggle-screen')"
+            @click="$emit('toggleScreen')"
           />
         </div>
       </div>
@@ -67,7 +67,6 @@ watchPostEffect(() => {
   pointer-events: none;
   white-space: nowrap;
 }
-
 
 @media (min-width: 768px) {
   .navbar-wrapper {

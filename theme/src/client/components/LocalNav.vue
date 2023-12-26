@@ -13,7 +13,7 @@ defineProps<{
   open: boolean
 }>()
 
-defineEmits<(e: 'open-menu') => void>()
+defineEmits<(e: 'openMenu') => void>()
 
 const page = usePageData<PlumeThemePageData>()
 const themeData = useThemeLocaleData()
@@ -29,36 +29,35 @@ const empty = computed(() => {
 })
 
 onMounted(() => {
-  navHeight.value = parseInt(
+  navHeight.value = Number.parseInt(
     getComputedStyle(document.documentElement).getPropertyValue(
-      '--vp-nav-height'
-    )
+      '--vp-nav-height',
+    ),
   )
 })
 
 const classes = computed(() => {
   return {
     'local-nav': true,
-    fixed: empty.value,
-    'reached-top': y.value >= navHeight.value
+    'fixed': empty.value,
+    'reached-top': y.value >= navHeight.value,
   }
 })
 
 const showLocalNav = computed(() => {
   return (hasSidebar.value || page.value.isBlogPost) && (!empty.value || y.value >= navHeight.value)
 })
-
 </script>
 
 <template>
   <div v-if="showLocalNav" :class="classes">
     <button
       class="menu"
-      :class="{ 'hidden': page.isBlogPost }"
+      :class="{ hidden: page.isBlogPost }"
       :disabled="page.isBlogPost"
       :aria-expanded="open"
       aria-controls="SidebarNav"
-      @click="$emit('open-menu')"
+      @click="$emit('openMenu')"
     >
       <IconAlignLeft class="menu-icon" />
       <span class="menu-text"> {{ themeData.sidebarMenuLabel || 'Menu' }} </span>

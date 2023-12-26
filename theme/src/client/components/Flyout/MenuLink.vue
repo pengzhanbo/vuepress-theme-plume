@@ -17,13 +17,13 @@ const page = usePageData()
         active: isActive(
           page.path,
           item.activeMatch || item.link,
-          !!item.activeMatch
+          !!item.activeMatch,
         ),
       }"
       :href="item.link"
     >
       <Icon v-if="item.icon" :name="item.icon" />
-      <i v-text="item.text"></i>
+      <i v-text="item.text" />
     </AutoLink>
   </div>
 </template>

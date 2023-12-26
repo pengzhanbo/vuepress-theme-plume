@@ -11,7 +11,6 @@ const theme = useThemeLocaleData()
 const checked = ref(false)
 const isDark = useDarkMode()
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 const toggle = typeof document !== 'undefined' ? useAppearance() : () => {}
 
 onMounted(() => {
@@ -24,16 +23,15 @@ function useAppearance() {
 
   let userPreference = localStorage.getItem(APPEARANCE_KEY)
 
-  let isDark =
-    (theme.value.appearance === 'dark' && userPreference == null) ||
-    (userPreference === 'auto' || userPreference == null
+  let isDark
+    = (theme.value.appearance === 'dark' && userPreference == null)
+    || (userPreference === 'auto' || userPreference == null
       ? query.matches
       : userPreference === 'dark')
 
   query.onchange = (e) => {
-    if (userPreference === 'auto') {
+    if (userPreference === 'auto')
       setClass((isDark = e.matches))
-    }
   }
 
   setClass(isDark)
@@ -46,8 +44,8 @@ function useAppearance() {
         ? 'auto'
         : 'dark'
       : query.matches
-      ? 'light'
-      : 'auto'
+        ? 'light'
+        : 'auto'
 
     localStorage.setItem(APPEARANCE_KEY, userPreference)
   }
@@ -63,15 +61,15 @@ function useAppearance() {
   -o-transition: none !important;
   -ms-transition: none !important;
   transition: none !important;
-}`
-      )
+}`,
+      ),
     )
     document.head.appendChild(css)
 
     checked.value = dark
     classList[dark ? 'add' : 'remove']('dark')
 
-    // eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     const _ = window.getComputedStyle(css).opacity
     document.head.removeChild(css)
   }

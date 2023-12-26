@@ -1,9 +1,0 @@
-node_modules/
-.temp/
-.cache/
-lib/
-dist/
-!.vuepress/
-!.*.js
-scripts/
-LICENSE

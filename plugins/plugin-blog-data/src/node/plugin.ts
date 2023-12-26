@@ -9,11 +9,11 @@ const __dirname = getDirname(import.meta.url)
 
 export type PluginOption = Omit<BlogDataPluginOptions, 'include' | 'exclude'>
 
-export const blogDataPlugin = ({
+export function blogDataPlugin({
   include,
   exclude,
   ...pluginOptions
-}: BlogDataPluginOptions = {}): Plugin => {
+}: BlogDataPluginOptions = {}): Plugin {
   const pageFilter = createFilter(toArray(include), toArray(exclude), {
     resolve: false,
   })
@@ -26,7 +26,7 @@ export const blogDataPlugin = ({
         ;(page.data as any).isBlogPost = true
       }
     },
-    onPrepared: async (app) =>
+    onPrepared: async app =>
       await preparedBlogData(app, pageFilter, pluginOptions),
     onWatched(app, watchers) {
       const watcher = chokidar.watch('pages/**/*', {
@@ -36,15 +36,15 @@ export const blogDataPlugin = ({
 
       watcher.on(
         'add',
-        async () => await preparedBlogData(app, pageFilter, pluginOptions)
+        async () => await preparedBlogData(app, pageFilter, pluginOptions),
       )
       watcher.on(
         'change',
-        async () => await preparedBlogData(app, pageFilter, pluginOptions)
+        async () => await preparedBlogData(app, pageFilter, pluginOptions),
       )
       watcher.on(
         'unlink',
-        async () => await preparedBlogData(app, pageFilter, pluginOptions)
+        async () => await preparedBlogData(app, pageFilter, pluginOptions),
       )
 
       watchers.push(watcher)
@@ -53,6 +53,7 @@ export const blogDataPlugin = ({
 }
 
 function toArray(likeArr: string | string[] | undefined): string[] {
-  if (Array.isArray(likeArr)) return likeArr
+  if (Array.isArray(likeArr))
+    return likeArr
   return likeArr ? [likeArr] : []
 }

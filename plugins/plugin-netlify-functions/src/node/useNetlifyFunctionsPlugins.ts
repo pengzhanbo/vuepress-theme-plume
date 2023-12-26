@@ -19,27 +19,24 @@ interface UseNetlifyFunctionResult {
    */
   generatePluginFunctions: () => void
 }
-export const useNetlifyFunctionsPlugin = (
-  app: App,
-  options: UseNetlifyFunctionPluginsOptions
-): UseNetlifyFunctionResult => {
-  if (typeof options === 'undefined') {
+export function useNetlifyFunctionsPlugin(app: App, options: UseNetlifyFunctionPluginsOptions): UseNetlifyFunctionResult {
+  if (typeof options === 'undefined')
     throw new Error('useNetlifyFunctionsPlugin [options] argument not found.')
-  }
+
   if (typeof options.directory !== 'string' || !options.directory) {
     throw new Error(
-      `useNetlifyFunctionsPlugin [options.directory] must be a string\n exp: path.join(__dirname, 'functions')`
+      `useNetlifyFunctionsPlugin [options.directory] must be a string\n exp: path.join(__dirname, 'functions')`,
     )
   }
   const plugins = app.pluginApi.plugins
   if (
     !plugins.some(
       (plugin: PluginObject) =>
-        plugin.name === 'vuepress-plugin-netlify-functions'
+        plugin.name === 'vuepress-plugin-netlify-functions',
     )
-  ) {
+  )
     app.use(netlifyFunctionsPlugin())
-  }
+
   const { proxyPrefix, directory } = getOptions()
   const source = path.join(options.directory, '**/*.js')
 

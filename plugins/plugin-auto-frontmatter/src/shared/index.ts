@@ -1,4 +1,5 @@
 import type fs from 'node:fs'
+
 export interface MarkdownFile {
   filepath: string
   relativePath: string
@@ -13,7 +14,7 @@ export type FrontmatterFn<T = any, K = object> = (
   data: K
 ) => T | PromiseLike<T>
 
-export type FrontmatterObject<K = object, T = any> = Record<string, FrontmatterFn<T, K>>;
+export type FrontmatterObject<K = object, T = any> = Record<string, FrontmatterFn<T, K>>
 
 export type FrontmatterArray = {
   include: string | string[]

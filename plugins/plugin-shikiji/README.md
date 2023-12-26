@@ -11,7 +11,7 @@ yarn add @vuepress-plume/plugin-shikiji
 // .vuepress/config.js
 const shikijiPlugin = require('@vuepress-plume/plugin-shikiji')
 module.exports = {
-  //...
+  // ...
   plugins: [
     shikijiPlugin()
   ]
@@ -63,5 +63,4 @@ interface ShikijiOptions {
    */
   codeTransformers?: ShikijiTransformer[]
 }
-
 ```

@@ -7,7 +7,9 @@ const theme = useThemeLocaleData()
 
 <template>
   <div v-if="theme.appearance" class="nav-screen-appearance">
-    <p class="text">Appearance</p>
+    <p class="text">
+      Appearance
+    </p>
     <SwitchAppearance />
   </div>
 </template>

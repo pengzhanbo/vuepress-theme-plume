@@ -5,7 +5,6 @@ import AutoLink from './AutoLink.vue'
 import IconArchive from './icons/IconArchive.vue'
 import IconTag from './icons/IconTag.vue'
 
-
 const theme = useThemeLocaleData()
 
 const avatar = computed(() => theme.value.avatar)
@@ -16,7 +15,7 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
   <div v-if="avatar" class="blog-aside-wrapper">
     <div class="avatar-profile">
       <p v-if="avatar.url">
-        <img :src="avatar.url" :alt="avatar.name" />
+        <img :src="avatar.url" :alt="avatar.name">
       </p>
       <div>
         <h3>{{ avatar.name }}</h3>

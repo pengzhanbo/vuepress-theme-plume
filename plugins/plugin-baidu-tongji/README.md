@@ -11,7 +11,7 @@ yarn add @vuepress-plume/plugin-baidu-tongji
 // .vuepress/config.js
 const { baiduTongjiPlugin } = require('@vuepress-plume/plugin-baidu-tongji')
 module.exports = {
-  //...
+  // ...
   plugins: [
     baiduTongjiPlugin({
       key: '', // 百度统计使用的 key

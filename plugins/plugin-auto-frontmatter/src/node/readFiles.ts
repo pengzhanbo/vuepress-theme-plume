@@ -5,24 +5,18 @@ import type { MarkdownFile } from '../shared/index.js'
 
 type MarkdownFileList = MarkdownFile[]
 
-export const readMarkdownList = async (
-  sourceDir: string,
-  filter: (id: string) => boolean
-): Promise<MarkdownFileList> => {
+export async function readMarkdownList(sourceDir: string, filter: (id: string) => boolean): Promise<MarkdownFileList> {
   const files: string[] = await fg(['**/*.md'], {
     cwd: sourceDir,
     ignore: ['node_modules', '.vuepress'],
   })
 
   return files
-    .filter((file) => filter(file))
-    .map((file) => readMarkdown(sourceDir, file))
+    .filter(file => filter(file))
+    .map(file => readMarkdown(sourceDir, file))
 }
 
-export const readMarkdown = (
-  sourceDir: string,
-  relativePath: string
-): MarkdownFile => {
+export function readMarkdown(sourceDir: string, relativePath: string): MarkdownFile {
   const filepath = path.join(sourceDir, relativePath)
   const stats = fs.statSync(filepath)
   return {
@@ -34,6 +28,6 @@ export const readMarkdown = (
   }
 }
 
-export const getFileCreateTime = (stats: fs.Stats): Date => {
+export function getFileCreateTime(stats: fs.Stats): Date {
   return stats.birthtime.getFullYear() !== 1970 ? stats.birthtime : stats.atime
 }

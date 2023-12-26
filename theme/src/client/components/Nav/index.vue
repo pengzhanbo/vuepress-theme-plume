@@ -18,6 +18,7 @@ const fixed = computed(() => {
 
 provide('close-screen', closeScreen)
 </script>
+
 <template>
   <div class="nav-wrapper" :class="{ fixed }">
     <Navbar :is-screen-open="isScreenOpen" @toggle-screen="toggleScreen" />

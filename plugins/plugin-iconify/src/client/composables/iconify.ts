@@ -5,22 +5,24 @@ import type { ComputedRef, Ref } from 'vue'
 
 const iconCache: Ref<Record<string, IconifyIcon>> = ref({})
 
-export const useIconify = (name: ComputedRef<string> | Ref<string>) => {
+export function useIconify(name: ComputedRef<string> | Ref<string>) {
   const icon = computed(() => iconCache.value[name.value])
   const loaded = ref(true)
 
   async function loadIconComponent() {
-    if (icon.value) {
+    if (icon.value)
       return
-    }
+
     if (!__VUEPRESS_SSR__) {
       try {
         loaded.value = false
         iconCache.value[name.value] = await loadIcon(name.value)
-      } finally {
+      }
+      finally {
         loaded.value = true
       }
-    } else {
+    }
+    else {
       loaded.value = true
     }
   }

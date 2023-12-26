@@ -7,13 +7,13 @@ import type {
   PlumeThemePageData,
 } from '../shared/index.js'
 
-const normalizePath = (dir: string) => {
+function normalizePath(dir: string) {
   return dir.replace(/\\+/g, '/')
 }
 
 export async function setupPage(
   app: App,
-  localeOption: PlumeThemeLocaleOptions
+  localeOption: PlumeThemeLocaleOptions,
 ) {
   const locales = Object.keys(app.siteData.locales || {})
   for (const [, locale] of locales.entries()) {
@@ -58,7 +58,7 @@ export async function setupPage(
 export function extendsPageData(
   app: App,
   page: Page<PlumeThemePageData>,
-  localeOptions: PlumeThemeLocaleOptions
+  localeOptions: PlumeThemeLocaleOptions,
 ) {
   page.data.filePathRelative = page.filePathRelative
   page.routeMeta.title = page.title
@@ -87,10 +87,11 @@ const RE_CATEGORY = /^(\d+)?(?:\.?)([^]+)$/
 export function autoCategory(
   app: App,
   page: Page<PlumeThemePageData>,
-  options: PlumeThemeLocaleOptions
+  options: PlumeThemeLocaleOptions,
 ) {
   const pagePath = page.filePathRelative
-  if (page.frontmatter.type || !pagePath) return
+  if (page.frontmatter.type || !pagePath)
+    return
   const locales = Object.keys(app.siteData.locales)
   const notesLinks: string[] = []
   for (const [, locale] of locales.entries()) {
@@ -98,9 +99,10 @@ export function autoCategory(
     if (notes && notes.link)
       notesLinks.push(path.join(locale, notes.link).replace(/\\+/g, '/'))
   }
-  if (notesLinks.some((link) => page.path.startsWith(link))) return
+  if (notesLinks.some(link => page.path.startsWith(link)))
+    return
   const RE_LOCALE = new RegExp(
-    `^(${locales.filter((l) => l !== '/').join('|')})`
+    `^(${locales.filter(l => l !== '/').join('|')})`,
   )
   const categoryList: PageCategoryData[] = `/${pagePath}`
     .replace(RE_LOCALE, '')

@@ -22,10 +22,13 @@ const createTime = computed(() => {
   return props.post.createTime?.split(' ')[0].replace(/\//g, '-')
 })
 </script>
+
 <template>
   <div class="post-item">
     <h3>
-      <AutoLink :href="post.path">{{ post.title }}</AutoLink>
+      <AutoLink :href="post.path">
+        {{ post.title }}
+      </AutoLink>
       <div
         v-if="typeof post.sticky === 'boolean' ? post.sticky : post.sticky >= 0"
         class="sticky"
@@ -54,7 +57,7 @@ const createTime = computed(() => {
       </div>
     </div>
     <!-- eslint-disable vue/no-v-html -->
-    <div v-if="post.excerpt" class="plume-content" v-html="post.excerpt"></div>
+    <div v-if="post.excerpt" class="plume-content" v-html="post.excerpt" />
   </div>
 </template>
 

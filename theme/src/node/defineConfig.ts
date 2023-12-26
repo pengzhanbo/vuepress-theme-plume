@@ -3,9 +3,9 @@ import type {
   NotesItem,
 } from '@vuepress-plume/plugin-notes-data'
 
-export const definePlumeNotesConfig = (
-  notes: NotesDataOptions
-): NotesDataOptions => notes
+export function definePlumeNotesConfig(notes: NotesDataOptions): NotesDataOptions {
+  return notes
+}
 
 export const definePlumeNotesItemConfig = (item: NotesItem): NotesItem => item
 

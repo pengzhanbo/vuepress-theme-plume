@@ -7,7 +7,6 @@ import { useThemeLocaleData } from '../composables'
 
 const root = ref('/')
 const themeData = useThemeLocaleData()
-
 </script>
 
 <template>
@@ -15,8 +14,12 @@ const themeData = useThemeLocaleData()
     <Nav />
     <LayoutContent is-not-found>
       <div class="not-found">
-        <p class="code">{{ themeData.notFound?.code ?? '404' }}</p>
-        <h1 class="title">{{ themeData.notFound?.title ?? 'PAGE NOT FOUND' }}</h1>
+        <p class="code">
+          {{ themeData.notFound?.code ?? '404' }}
+        </p>
+        <h1 class="title">
+          {{ themeData.notFound?.title ?? 'PAGE NOT FOUND' }}
+        </h1>
         <div class="divider" />
         <blockquote class="quote">
           {{ themeData.notFound?.quote ?? `But if you don't change your direction, and if you keep looking, you may end up where you are heading.` }}

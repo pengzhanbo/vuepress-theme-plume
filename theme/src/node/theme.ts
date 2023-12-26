@@ -10,10 +10,10 @@ const name = 'vuepress-theme-plume'
 const resolve = (...args: string[]) => path.resolve(__dirname, '../', ...args)
 const templates = (url: string) => resolve('../templates', url)
 
-export const plumeTheme = ({
+export function plumeTheme({
   themePlugins = {},
   ...localeOptions
-}: PlumeThemeOptions = {}): Theme => {
+}: PlumeThemeOptions = {}): Theme {
   localeOptions = mergeLocaleOptions(localeOptions)
   return (app: App) => {
     return {
@@ -21,7 +21,7 @@ export const plumeTheme = ({
       templateBuild: templates('build.html'),
       clientConfigFile: resolve('client/config.js'),
       plugins: setupPlugins(app, themePlugins, localeOptions),
-      onInitialized: async (app) => await setupPage(app, localeOptions),
+      onInitialized: async app => await setupPage(app, localeOptions),
       extendsPage: (page: Page<PlumeThemePageData>) =>
         extendsPageData(app, page, localeOptions)
       ,

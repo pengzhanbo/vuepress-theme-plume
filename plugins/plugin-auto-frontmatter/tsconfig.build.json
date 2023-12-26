@@ -4,6 +4,6 @@
     "rootDir": "./src",
     "outDir": "./lib"
   },
-  "include": ["./src"],
-  "files": []
+  "files": [],
+  "include": ["./src"]
 }

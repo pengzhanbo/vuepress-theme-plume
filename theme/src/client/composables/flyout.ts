@@ -1,5 +1,5 @@
-import { onUnmounted, readonly, ref,  watch } from 'vue'
-import type {Ref} from 'vue';
+import { onUnmounted, readonly, ref, watch } from 'vue'
+import type { Ref } from 'vue'
 import { inBrowser } from '../utils/index.js'
 
 interface UseFlyoutOptions {
@@ -25,7 +25,8 @@ export function useFlyout(options: UseFlyoutOptions) {
       if (el === options.el.value || options.el.value?.contains(el!)) {
         focus.value = true
         options.onFocus?.()
-      } else {
+      }
+      else {
         focus.value = false
         options.onBlur?.()
       }
@@ -36,9 +37,8 @@ export function useFlyout(options: UseFlyoutOptions) {
 
       listeners--
 
-      if (!listeners) {
+      if (!listeners)
         deactivateFocusTracking()
-      }
     })
   }
 

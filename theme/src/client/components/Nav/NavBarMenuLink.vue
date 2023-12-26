@@ -13,19 +13,18 @@ const page = usePageData()
 
 <template>
   <AutoLink
-    :class="{
-      'navbar-menu-link': true,
-      'active': isActive(
+    class="navbar-menu-link" :class="{
+      active: isActive(
         page.path,
         item.activeMatch || item.link,
-        !!item.activeMatch
+        !!item.activeMatch,
       ),
     }"
     :href="item.link"
     :no-icon="true"
   >
     <Icon v-if="item.icon" :name="item.icon" />
-    <i v-text="item.text"></i>
+    <i v-text="item.text" />
   </AutoLink>
 </template>
 

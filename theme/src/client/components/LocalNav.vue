@@ -44,12 +44,18 @@ const classes = computed(() => {
   }
 })
 
+const showLocalNav = computed(() => {
+  return (hasSidebar.value || page.value.isBlogPost) && (!empty.value || y.value >= navHeight.value)
+})
+
 </script>
 
 <template>
-  <div v-if="hasSidebar && (!empty || y >= navHeight)" :class="classes">
+  <div v-if="showLocalNav" :class="classes">
     <button
       class="menu"
+      :class="{ 'hidden': page.isBlogPost }"
+      :disabled="page.isBlogPost"
       :aria-expanded="open"
       aria-controls="SidebarNav"
       @click="$emit('open-menu')"
@@ -103,6 +109,10 @@ const classes = computed(() => {
   font-weight: 500;
   color: var(--vp-c-text-2);
   transition: color 0.5s;
+}
+
+.menu.hidden {
+  visibility: hidden;
 }
 
 .menu:hover {

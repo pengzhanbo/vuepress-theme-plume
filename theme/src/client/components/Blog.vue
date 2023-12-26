@@ -3,6 +3,7 @@ import { usePageData } from '@vuepress/client'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import Archives from './Archives.vue'
 import BlogAside from './BlogAside.vue'
+import BlogExtract from './BlogExtract.vue'
 import PostList from './PostList.vue'
 import Tags from './Tags.vue'
 
@@ -15,6 +16,7 @@ const page = usePageData<PlumeThemePageData>()
     <Tags v-if="page.type === 'blog-tags'" />
     <Archives v-if="page.type === 'blog-archives'" />
     <BlogAside />
+    <BlogExtract />
   </div>
 </template>
 

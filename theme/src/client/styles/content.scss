@@ -120,11 +120,13 @@
   text-underline-offset: 2px;
   transition:
     color 0.25s,
-    opacity 0.25s;
+    opacity 0.25s,
+    text-underline-offset 0.25s;
 }
 
 .plume-content a:hover {
   color: var(--vp-c-brand-2);
+  text-underline-offset: 4px;
 }
 
 .plume-content strong {

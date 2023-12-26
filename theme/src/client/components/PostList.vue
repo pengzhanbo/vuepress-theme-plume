@@ -17,11 +17,11 @@ const {
   <div class="post-list">
     <PostItem v-for="post in postList" :key="post.path" :post="post" />
     <div v-if="isPaginationEnabled" class="pagination">
-      <button type="button" class="btn prev" :disabled="isFirstPage" @click="changePage(-1)">
+      <button type="button" class="btn prev" :disabled="isFirstPage" @click="() => changePage(-1)">
         {{ pagination?.prevPageText || 'Prev' }}
       </button>
       <span class="page-info">{{ page }} / {{ totalPage }}</span>
-      <button type="button" class="btn next" :disabled="isLastPage" @click="changePage(1)">
+      <button type="button" class="btn next" :disabled="isLastPage" @click="() => changePage(1)">
         {{ pagination?.nextPageText || 'Next' }}
       </button>
     </div>

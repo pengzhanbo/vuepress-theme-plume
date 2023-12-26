@@ -1,3 +1,19 @@
+# [1.0.0-rc.4](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2023-12-26)
+
+
+### Features
+
+* 添加 标签页、归档页 支持 ([3ab460b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3ab460b01b47f7bc9194a85f2d5d53340c3884f4))
+* 添加友情链接页面支持 ([25d703b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/25d703b906e6f0c7bfbc9ccf41deb40c25df996d))
+
+
+### Performance Improvements
+
+* 优化侧边栏和页面内导航 ([e5db17f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e5db17fb7e2e5cab9af8ea2e1ca5fefec9b15ded))
+* 优化内容容器 暗色模式下 UI ([4f02717](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4f02717ea35ce10057b9b71d88bcb6e7fa9205dd))
+
+
+
 # [1.0.0-rc.3](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2023-12-24)
 
 

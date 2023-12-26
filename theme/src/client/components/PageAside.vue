@@ -2,6 +2,7 @@
 import { usePageData } from '@vuepress/client'
 import { computed, ref } from 'vue'
 import { useActiveAnchor, useThemeLocaleData } from '../composables/index.js'
+import IconPrint from './icons/IconPrint.vue'
 import PageAsideItem from './PageAsideItem.vue'
 
 const page = usePageData()
@@ -33,7 +34,10 @@ function handleClick({ target: el }: Event) {
       <div class="content">
         <div ref="marker" class="outline-marker" />
 
-        <div class="outline-title">{{ theme.outlineLabel || 'On this page' }}</div>
+        <div class="outline-title">
+          <span>{{ theme.outlineLabel || 'On this page' }}</span>
+          <IconPrint class="icon" />
+        </div>
 
         <nav aria-labelledby="doc-outline-aria-label">
           <span id="doc-outline-aria-label" class="visually-hidden">
@@ -87,9 +91,17 @@ function handleClick({ target: el }: Event) {
 }
 
 .outline-title {
+  display: flex;
+  align-items: center;
   letter-spacing: 0.4px;
   line-height: 28px;
   font-size: 13px;
   font-weight: 600;
+}
+.outline-title .icon {
+  margin-left: 4px;
+  width: 1em;
+  height: 1em;
+  font-size: 1.2em;
 }
 </style>

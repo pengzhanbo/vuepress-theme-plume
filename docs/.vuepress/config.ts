@@ -7,7 +7,7 @@ import { enNotes, zhNotes } from './notes.js'
 
 export default defineUserConfig({
   base: '/',
-  lang: 'zh',
+  lang: 'zh-CN',
   title: 'Plume Theme',
   description: '',
   source: path.resolve(__dirname, '../'),
@@ -16,7 +16,7 @@ export default defineUserConfig({
     '/': {
       title: 'Plume主题',
       description: '',
-      lang: 'zh',
+      lang: 'zh-CN',
     },
     '/en/': {
       title: 'Plume Theme',
@@ -77,6 +77,7 @@ export default defineUserConfig({
           },
         ],
       },
+      { text: '友情链接', link: '/friends/', icon: 'emojione-monotone:roller-coaster' },
     ],
     footer: {
       copyright: 'Copyright © 2022-present pengzhanbo',

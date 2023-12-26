@@ -9,7 +9,7 @@ interface ReadingTime {
 
 export interface PlumeThemePageData extends GitPluginPageData {
   isBlogPost: boolean
-  type: 'blog' | 'product'
+  type: 'blog' | 'friends' | 'blog-tags' | 'blog-archives'
   categoryList?: PageCategoryData[]
   filePathRelative: string | null
   readingTime?: ReadingTime

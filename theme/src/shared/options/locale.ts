@@ -1,8 +1,6 @@
 import type { LocaleData } from '@vuepress/core'
 import type { NotesDataOptions } from '@vuepress-plume/plugin-notes-data'
 import type { NavItem } from './navbar.js'
-// import type { NavbarConfig, NavLink } from '../layout/index.js'
-// import type { PlumeThemeNotesOptions } from './notes.js'
 
 export interface PlumeThemeAvatar {
   /**
@@ -38,6 +36,67 @@ export type SocialLinkIcon =
   | 'weibo'
   | 'bilibili'
   | { svg: string }
+
+export interface PlumeThemeBlog {
+  /**
+     * blog 文章读取目录
+     *
+     * @default './' 即 vuepress 配置的 source 目录
+     */
+  dir?: string
+
+  /**
+   * blog list link
+   *
+   * @default '/blog/'
+   */
+  link?: string
+
+  /**
+   * 在 `blog.dir` 目录中，通过 glob string 配置包含文件
+   *
+   * @default - ['**\*.md']
+   */
+  include?: string[]
+
+  /**
+   * 在 `blog.dir` 目录中，通过 glob string 配置排除的文件
+   *
+   *  _README.md 文件一般作为主页或者某个目录下的主页，不应该被读取为 blog文章_
+   *
+   * @default - ['.vuepress/', 'node_modules/', '{README,index}.md']
+   */
+  exclude?: string[]
+
+  pagination?: false | {
+    /**
+     * 每页显示的文章数量
+     * @default 20
+     */
+    perPage?: number
+    /**
+     * 前一页的文本
+     * @default 'Prev'
+     */
+    prevPageText?: string
+    /**
+     * 后一页的文本
+     * @default 'Next'
+     */
+    nextPageText?: string
+  }
+
+  /**
+   * 是否启用标签页
+   * @default true
+   */
+  tags?: boolean
+  /**
+   * 是否启用归档页
+   * @default true
+   */
+  archives?: boolean
+}
 
 export interface PlumeThemeLocaleData extends LocaleData {
   /**
@@ -76,37 +135,10 @@ export interface PlumeThemeLocaleData extends LocaleData {
    */
   social?: SocialLink[]
 
-  blog?: {
-    /**
-     * blog 文章读取目录
-     *
-     * @default './' 即 vuepress 配置的 source 目录
-     */
-    dir?: string
-
-    /**
-     * blog list link
-     *
-     * @default '/blog/'
-     */
-    link?: string
-
-    /**
-     * 在 `blog.dir` 目录中，通过 glob string 配置包含文件
-     *
-     * @default - ['**\*.md']
-     */
-    include?: string[]
-
-    /**
-     * 在 `blog.dir` 目录中，通过 glob string 配置排除的文件
-     *
-     *  _README.md 文件一般作为主页或者某个目录下的主页，不应该被读取为 blog文章_
-     *
-     * @default - ['.vuepress/', 'node_modules/', '{README,index}.md']
-     */
-    exclude?: string[]
-  }
+  /**
+   * 博客配置
+   */
+  blog?: PlumeThemeBlog
 
   /**
    * 文章链接前缀
@@ -114,29 +146,6 @@ export interface PlumeThemeLocaleData extends LocaleData {
    * @default： /article/
    */
   article?: string
-
-  /**
-   * 标签页链接 与 navbar配置
-   *
-   * @def：{ text: '标签', link: '/tag/' }
-   */
-  // tag?: false | NavItemWithLink
-
-  /**
-   * 文章分类 与 navbar配置
-   *
-   * @default： { text: '分类', link: '/category/ }
-   */
-  // category?: false | NavItemWithLink
-
-  /**
-   * 归档页 链接与 navbar 配置
-   *
-   * (注，由于页面样式为 timeline， 所以默认链接为 timeline )
-   *
-   * @default： { text: '归档', link: '/timeline/' }
-   */
-  // archive?: false | NavItemWithLink
 
   /**
    * 笔记配置， 笔记中的文章默认不会出现在首页文章列表

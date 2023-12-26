@@ -14,13 +14,13 @@ export const readingTimeLocales = {
     time: "About $time min",
   },
 
-  "zh": {
+  "zh-CN": {
     word: "约 $word 字",
     less1Minute: "小于 1 分钟",
     time: "大约 $time 分钟",
   },
 
-  "zh-tw": {
+  "zh-TW": {
     word: "約 $word 字",
     less1Minute: "小於 1 分鐘",
     time: "大约 $time 分鐘",
@@ -132,7 +132,7 @@ export const readingTimeLocales = {
 export const useReadingTime = () => {
   const page = usePageData<PlumeThemePageData>()
 
-  return computed(() => {
+  return computed<{ times: string; words: string }>(() => {
     if (!page.value.readingTime) return { times: '', words: '' }
 
     const locale = readingTimeLocales[page.value.lang] ?? readingTimeLocales.en

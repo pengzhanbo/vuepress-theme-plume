@@ -7,6 +7,10 @@ import type {
   PlumeThemePageData,
 } from '../shared/index.js'
 
+const normalizePath = (dir: string) => {
+  return dir.replace(/\\+/g, '/')
+}
+
 export async function setupPage(
   app: App,
   localeOption: PlumeThemeLocaleOptions
@@ -14,18 +18,66 @@ export async function setupPage(
   const locales = Object.keys(app.siteData.locales || {})
   for (const [, locale] of locales.entries()) {
     const blog = localeOption.locales?.[locale]?.blog
+    const defaultBlog = localeOption.blog
+    const link = blog?.link
+      ? blog.link
+      : normalizePath(path.join('/', locale, defaultBlog?.link || ''))
     const blogPage = await createPage(app, {
-      path: blog?.link
-        ? blog.link
-        : path.join('/', locale, localeOption.blog?.link || ''),
+      path: link,
       frontmatter: {
         lang: locale.replace(/^\/|\/$/g, '') || app.siteData.lang,
         type: 'blog',
       },
     })
-
     app.pages.push(blogPage)
+
+    if (blog?.tags !== false || defaultBlog?.tags !== false) {
+      const tagsPage = await createPage(app, {
+        path: normalizePath(path.join(link, 'tags/')),
+        frontmatter: {
+          lang: locale.replace(/^\/|\/$/g, '') || app.siteData.lang,
+          type: 'blog-tags',
+        },
+      })
+      app.pages.push(tagsPage)
+    }
+
+    if (blog?.archives !== false || defaultBlog?.archives !== false) {
+      const archivesPage = await createPage(app, {
+        path: normalizePath(path.join(link, 'archives/')),
+        frontmatter: {
+          lang: locale.replace(/^\/|\/$/g, '') || app.siteData.lang,
+          type: 'blog-archives',
+        },
+      })
+      app.pages.push(archivesPage)
+    }
   }
+}
+
+export function extendsPageData(
+  app: App,
+  page: Page<PlumeThemePageData>,
+  localeOptions: PlumeThemeLocaleOptions
+) {
+  page.data.filePathRelative = page.filePathRelative
+  page.routeMeta.title = page.title
+
+  if (page.frontmatter.friends) {
+    page.frontmatter.article = false
+    page.frontmatter.type = 'friends'
+    page.data.isBlogPost = false
+    page.permalink = page.permalink ?? '/friends/'
+  }
+
+  if ((page.frontmatter.type as string)?.startsWith('blog')) {
+    page.data.isBlogPost = false
+    page.frontmatter.article = false
+    page.data.type = page.frontmatter.type as any
+  }
+
+  autoCategory(app, page, localeOptions)
+  pageContentRendered(page)
 }
 
 let uuid = 10000

@@ -50,12 +50,14 @@ export default function autoFrontmatter(
     .filter(Boolean)
 
   const baseFrontmatter: FrontmatterObject = {
-    author(author: string) {
+    author(author: string, _, data: any) {
       if (author) return author
+      if (data.friends) return
       return localeOption.avatar?.name || pkg.author || ''
     },
-    createTime(formatTime: string, { createTime }) {
+    createTime(formatTime: string, { createTime }, data: any) {
       if (formatTime) return formatTime
+      if (data.friends) return
       return format(new Date(createTime), 'yyyy/MM/dd HH:mm:ss')
     },
   }
@@ -107,8 +109,9 @@ export default function autoFrontmatter(
                 return getCurrentDirname(note, filepath) || ''
               },
               ...baseFrontmatter,
-              permalink(permalink: string, { filepath }) {
+              permalink(permalink: string, { filepath }, data: any) {
                 if (permalink) return permalink
+                if (data.friends) return
                 const locale = resolveLocale(filepath)
                 const notes = notesByLocale(locale)
                 const note = findNote(filepath)
@@ -136,8 +139,9 @@ export default function autoFrontmatter(
                 return basename
               },
               ...baseFrontmatter,
-              permalink(permalink: string, { filepath }) {
+              permalink(permalink: string, { filepath }, data: any) {
                 if (permalink) return permalink
+                if (data.friends) return
                 const locale = resolveLocale(filepath)
                 const note = findNote(filepath)
                 const notes = notesByLocale(locale)

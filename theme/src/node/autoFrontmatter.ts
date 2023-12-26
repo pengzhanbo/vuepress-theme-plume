@@ -1,4 +1,4 @@
-import { createRequire } from 'node:module'
+import fs from 'node:fs'
 import path from 'node:path'
 import type { App } from '@vuepress/core'
 import { resolveLocalePath } from '@vuepress/shared'
@@ -16,11 +16,11 @@ import type {
 } from '../shared/index.js'
 
 const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz', 8)
-const require = createRequire(process.cwd())
 const getPackage = () => {
   let pkg = {} as any
   try {
-    pkg = require('package.json') || {}
+    const content = fs.readFileSync(path.join(process.cwd(), 'package.json'), 'utf-8')
+    pkg = JSON.parse(content)
   } catch {}
   return pkg
 }
@@ -92,7 +92,7 @@ export default function autoFrontmatter(
     return dirList.length > 0 ? dirList[dirList.length - 1] : ''
   }
   return {
-    include: options.frontmatter?.include ?? ['**/*.{md,MD}'],
+    include: options.frontmatter?.include ?? ['**/*.md'],
     exclude: options.frontmatter?.exclude ?? ['.vuepress/**/*', 'node_modules'],
     frontmatter: options.frontmatter?.frontmatter ?? [
       localesNotesDirs.length

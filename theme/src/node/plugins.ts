@@ -51,6 +51,7 @@ export const setupPlugins = (
 
   return [
     palettePlugin({ preset: 'sass' }),
+
     themeDataPlugin({
       themeData: {
         ...localeOptions,
@@ -60,12 +61,14 @@ export const setupPlugins = (
       } as any,
     }),
     autoFrontmatterPlugin(autoFrontmatter(app, options, localeOptions)),
+
     blogDataPlugin({
-      include: localeOptions.blog?.include,
+      include: localeOptions.blog?.include ?? ['**/*.md'],
       exclude: [
         '**/{README,readme,index}.md',
         '.vuepress/',
-        ...(localeOptions.blog?.exclude || []),
+        'node_modules/',
+        ...(localeOptions.blog?.exclude ?? []),
         ...localeNotesDirs,
       ].filter(Boolean),
       sortBy: 'createTime',

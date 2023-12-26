@@ -21,7 +21,7 @@ export async function setupPage(
     const defaultBlog = localeOption.blog
     const link = blog?.link
       ? blog.link
-      : normalizePath(path.join('/', locale, defaultBlog?.link || ''))
+      : normalizePath(path.join('/', locale, defaultBlog?.link || '/blog/'))
     const blogPage = await createPage(app, {
       path: link,
       frontmatter: {

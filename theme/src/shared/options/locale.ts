@@ -38,12 +38,6 @@ export type SocialLinkIcon =
   | { svg: string }
 
 export interface PlumeThemeBlog {
-  /**
-     * blog 文章读取目录
-     *
-     * @default './' 即 vuepress 配置的 source 目录
-     */
-  dir?: string
 
   /**
    * blog list link
@@ -53,14 +47,14 @@ export interface PlumeThemeBlog {
   link?: string
 
   /**
-   * 在 `blog.dir` 目录中，通过 glob string 配置包含文件
+   * 通过 glob string 配置包含文件
    *
    * @default - ['**\*.md']
    */
   include?: string[]
 
   /**
-   * 在 `blog.dir` 目录中，通过 glob string 配置排除的文件
+   * 通过 glob string 配置排除的文件
    *
    *  _README.md 文件一般作为主页或者某个目录下的主页，不应该被读取为 blog文章_
    *

@@ -32,7 +32,7 @@ const tags = computed(() => {
   return []
 })
 
-const hasMeta = computed(() => tags.value.length || createTime.value)
+const hasMeta = computed(() => readingTime.value.times || tags.value.length || createTime.value)
 </script>
 <template>
   <div

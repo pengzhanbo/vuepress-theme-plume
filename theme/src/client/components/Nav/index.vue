@@ -10,8 +10,10 @@ const page = usePageData<PlumeThemePageData>()
 
 const { isScreenOpen, closeScreen, toggleScreen } = useNav()
 
+const fixedInclude = ['blog', 'friends']
+
 const fixed = computed(() => {
-  return page.value.isBlogPost || page.value.frontmatter.type === 'blog'
+  return fixedInclude.includes(page.value.frontmatter.type as string)
 })
 
 provide('close-screen', closeScreen)

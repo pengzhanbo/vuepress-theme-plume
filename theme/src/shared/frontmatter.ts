@@ -39,3 +39,17 @@ export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {
 export interface PlumeThemeNoteFrontmatter extends PlumeThemePageFrontmatter {
   createTime?: string
 }
+
+export interface FriendsItem {
+  name: string
+  link: string
+  avatar?: string
+  desc?: string
+}
+
+export interface PlumeThemeFriendsFrontmatter {
+  friends: boolean
+  title?: string
+  description?: string
+  list?: FriendsItem[]
+}

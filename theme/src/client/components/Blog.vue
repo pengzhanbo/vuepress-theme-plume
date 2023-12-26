@@ -1,11 +1,20 @@
 <script lang="ts" setup>
-import BlogAvatar from './BlogAvatar.vue'
+import { usePageData } from '@vuepress/client'
+import type { PlumeThemePageData } from '../../shared/index.js'
+import Archives from './Archives.vue'
+import BlogAside from './BlogAside.vue'
 import PostList from './PostList.vue'
+import Tags from './Tags.vue'
+
+const page = usePageData<PlumeThemePageData>()
+
 </script>
 <template>
   <div class="blog-wrapper">
-    <PostList />
-    <BlogAvatar />
+    <PostList v-if="page.type === 'blog'" />
+    <Tags v-if="page.type === 'blog-tags'" />
+    <Archives v-if="page.type === 'blog-archives'" />
+    <BlogAside />
   </div>
 </template>
 

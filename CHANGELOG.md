@@ -1,3 +1,16 @@
+# [1.0.0-rc.6](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.5...v1.0.0-rc.6) (2023-12-27)
+
+
+### Performance Improvements
+
+* 调整 滚动交互 ([a81947a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a81947aca4c58a3b3c1369f9f3c36d19c7c1e063))
+* 调整主题配置 ([15d9265](https://github.com/pengzhanbo/vuepress-theme-plume/commit/15d9265b21969b493268d3cc55012ecfb554306c))
+* 更新 externalLinkIcon 样式 ([0244f68](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0244f6886ffc9bddde6f7316df27f7287772f0c7))
+* 优化搜索框、内容容器样式 ([6f97ba4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6f97ba44da1e8248697556c5d157e8fe0fddb8e6))
+* copy code 插件样式调整 ([3b00215](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3b00215b8b94d909bd8b744f8018afd1dad3dcdd))
+
+
+
 # [1.0.0-rc.5](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.4...v1.0.0-rc.5) (2023-12-26)
 
 

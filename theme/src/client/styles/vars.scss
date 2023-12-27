@@ -543,14 +543,14 @@ html[lang='zh-CN'] {
 
 /** Component: Search **/
 :root {
-  --search-bg-color: var(--vp-c-default-soft);
+  --search-bg-color: var(--vp-c-bg-alt);
   --search-text-color: var(--vp-c-text-2);
   --search-item-text-color: var(--vp-c-text-1);
   --search-item-focus-bg-color: var(--vp-c-bg-alt);
   --search-input-width: 8rem;
   --search-result-width: 20rem;
   --search-border-color: var(--vp-c-divider);
-  --search-accent-color: var(--vp-c-brand-2);
+  --search-accent-color: var(--vp-c-brand-1);
 }
 
 /* md enhance code-tabs */

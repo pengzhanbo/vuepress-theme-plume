@@ -45,6 +45,7 @@
       summary + p {
         margin: 8px 0;
       }
+
     }
 
     p + p {
@@ -84,6 +85,10 @@
       a:hover {
         color: var(--vp-c-danger-2);
       }
+    }
+
+    &.details code {
+      background-color: transparent;
     }
 
     th,
@@ -146,6 +151,19 @@
     .vp-code-demo-codes div[class*='language-'] pre {
       margin-bottom: 0;
       border-radius: 0;
+    }
+
+    @media (max-width: 419px) {
+      .vp-code-demo-codes div[class*='language-'] {
+        margin: 0;
+        border-radius: 0;
+      }
+    }
+  }
+
+  @media (max-width: 419px) {
+    .vp-code-demo {
+      margin: 8px -12px;
     }
   }
 }

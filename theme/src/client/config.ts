@@ -3,6 +3,7 @@ import './styles/index.scss'
 import { defineClientConfig } from '@vuepress/client'
 import { h } from 'vue'
 import Badge from './components/global/Badge.vue'
+import ExternalLinkIcon from './components/global/ExternalLinkIcon.vue'
 import { setupDarkMode, useScrollPromise } from './composables/index.js'
 import Layout from './layouts/Layout.vue'
 import NotFound from './layouts/NotFound.vue'
@@ -12,6 +13,7 @@ export default defineClientConfig({
     // global component
 
     app.component('Badge', Badge)
+    app.component('ExternalLinkIcon', ExternalLinkIcon)
 
     app.component('DocSearch', () => {
       const SearchComponent

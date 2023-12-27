@@ -2,7 +2,7 @@ import { usePageLang, useSiteData } from '@vuepress/client'
 import { computed } from 'vue'
 import { normalizeLink } from '../utils'
 
-export const useLocaleLink = (link: string) => {
+export function useLocaleLink(link: string) {
   const site = useSiteData()
   const locale = usePageLang()
 

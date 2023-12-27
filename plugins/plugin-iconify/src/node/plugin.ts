@@ -1,13 +1,13 @@
-import type { App, Plugin } from '@vuepress/core'
+import type { Plugin } from '@vuepress/core'
 import { getDirname, path } from '@vuepress/utils'
 import type { IconifyOptions } from '../shared/index.js'
 
-export const iconifyPlugin = ({
+export function iconifyPlugin({
   componentName = 'Iconify',
   size = '1em',
   color = 'currentColor',
-}: IconifyOptions = {}): Plugin => {
-  return (app: App) => {
+}: IconifyOptions = {}): Plugin {
+  return () => {
     return {
       name: '@vuepress-plume/plugin-iconify',
       define: {
@@ -17,7 +17,7 @@ export const iconifyPlugin = ({
       },
       clientConfigFile: path.resolve(
         getDirname(import.meta.url),
-        '../client/clientConfig.js'
+        '../client/clientConfig.js',
       ),
     }
   }

@@ -1,3 +1,5 @@
+import { Buffer } from 'node:buffer'
+import process from 'node:process'
 import { fs, getDirname, path } from '@vuepress/utils'
 import dotenv from 'dotenv'
 import { execa } from 'execa'
@@ -6,15 +8,16 @@ import type { NetlifyFunctionsPluginOptions } from '../../shared/index.js'
 
 const __dirname = getDirname(import.meta.url)
 
-const loadEnvConfig = (): Record<string, string | undefined> => {
+function loadEnvConfig(): Record<string, string | undefined> {
   const configPath = path.resolve(process.cwd(), '.env')
-  if (!fs.existsSync(configPath)) {
+  if (!fs.existsSync(configPath))
     return {}
-  }
+
   try {
     const content = fs.readFileSync(configPath, 'utf-8')
     return dotenv.parse(Buffer.from(content))
-  } catch {
+  }
+  catch {
     return {}
   }
 }
@@ -23,15 +26,15 @@ export interface NetlifyServe {
   host: string
   close: () => void
 }
-export const netlifyServe = async ({
+export async function netlifyServe({
   directory,
-}: NetlifyFunctionsPluginOptions): Promise<NetlifyServe> => {
+}: NetlifyFunctionsPluginOptions): Promise<NetlifyServe> {
   const port = await portFinder.getPortPromise({ port: 9000 })
 
   const argv = [
     'functions:serve',
     '--port',
-    port + '',
+    `${port}`,
     '--functions',
     path.join('./', path.relative(process.cwd(), directory.temp)),
     // '--debug',
@@ -45,12 +48,12 @@ export const netlifyServe = async ({
       env: {
         ...loadEnvConfig(),
       },
-    }
+    },
   )
   stdout?.pipe(process.stdout)
 
   return {
-    host: 'http://localhost:' + port,
+    host: `http://localhost:${port}`,
     close: () => cancel(),
   }
 }

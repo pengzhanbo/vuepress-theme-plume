@@ -1,6 +1,8 @@
 import type { CanIUseMode } from '../shared/index.js'
-export const resolveCanIUse = (feature: string, mode: CanIUseMode): string => {
-  if (!feature) return ''
+
+export function resolveCanIUse(feature: string, mode: CanIUseMode): string {
+  if (!feature)
+    return ''
 
   if (mode === 'image') {
     return `<picture>

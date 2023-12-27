@@ -14,7 +14,7 @@ interface ResponseData {
   result: Record<string, any>
 }
 
-const fetchCollection = async (url: string): Promise<PageCollection> => {
+async function fetchCollection(url: string): Promise<PageCollection> {
   // 发起 netlify functions 请求
   // 你已经注意到，接口名就是在 node/functions 目录下的 文件名
   const response = await fetch(`${prefix}/page_collection`, {
@@ -24,14 +24,15 @@ const fetchCollection = async (url: string): Promise<PageCollection> => {
   const result = (await response.json()) as unknown as ResponseData
   if (result.code === 200) {
     return (result.result || {}) as PageCollection
-  } else {
+  }
+  else {
     return {
       visitCount: 0,
     }
   }
 }
 
-export const usePageCollection = (): PageCollection => {
+export function usePageCollection(): PageCollection {
   const collection = reactive({
     visitCount: 0,
   })

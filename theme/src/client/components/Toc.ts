@@ -23,33 +23,28 @@ export interface TocProps {
   options: TocPropsOptions
 }
 
-const renderLink = (
-  header: PageHeader,
-  options: TocPropsOptions,
-  route: RouteLocationNormalizedLoaded
-): VNode => {
+function renderLink(header: PageHeader, options: TocPropsOptions, route: RouteLocationNormalizedLoaded): VNode {
   const hash = `#${header.slug}`
   const linkClass = [options.linkClass]
 
-  if (options.linkActiveClass && route.hash === hash) {
+  if (options.linkActiveClass && route.hash === hash)
     linkClass.push(options.linkActiveClass)
-  }
 
   if (
-    options.linkChildrenActiveClass &&
-    header.children.some((item) => `#${item.slug}` === route.hash)
-  ) {
+    options.linkChildrenActiveClass
+    && header.children.some(item => `#${item.slug}` === route.hash)
+  )
     linkClass.push(options.linkChildrenActiveClass)
-  }
 
   const setActiveRouteHash = (): void => {
     const headerAnchors: HTMLAnchorElement[] = Array.from(
-      document.querySelectorAll('.header-anchor')
+      document.querySelectorAll('.header-anchor'),
     )
     const anchor = headerAnchors.find(
-      (anchor) => decodeURI(anchor.hash) === hash
+      anchor => decodeURI(anchor.hash) === hash,
     )
-    if (!anchor) return
+    if (!anchor)
+      return
     const el = document.documentElement
     const top = anchor.getBoundingClientRect().top - 80 + el.scrollTop
     scrollTo(document, top)
@@ -66,28 +61,24 @@ const renderLink = (
         setActiveRouteHash()
       },
     },
-    header.title
+    header.title,
   )
 }
 
-const renderHeaders = (
-  headers: PageHeader[],
-  options: TocPropsOptions,
-  route: RouteLocationNormalizedLoaded
-): VNode[] => {
-  if (headers.length === 0) {
+function renderHeaders(headers: PageHeader[], options: TocPropsOptions, route: RouteLocationNormalizedLoaded): VNode[] {
+  if (headers.length === 0)
     return []
-  }
+
   return [
     h(
       'ul',
       { class: options.listClass },
-      headers.map((header) =>
+      headers.map(header =>
         h('li', { class: options.itemClass }, [
           renderLink(header, options, route),
           renderHeaders(header.children, options, route),
-        ])
-      )
+        ]),
+      ),
     ),
   ]
 }
@@ -137,7 +128,7 @@ const Toc = defineComponent({
         return h(
           options.value.containerTag,
           { class: options.value.containerClass },
-          renderedHeaders
+          renderedHeaders,
         )
       }
       return renderedHeaders

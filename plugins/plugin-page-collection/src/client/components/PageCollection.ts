@@ -11,7 +11,7 @@ export default defineComponent({
         {
           class: 'page-collection',
         },
-        `阅读数：${collection.visitCount}`
+        `阅读数：${collection.visitCount}`,
       )
   },
 })

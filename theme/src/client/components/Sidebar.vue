@@ -5,11 +5,11 @@ import { useSidebar } from '../composables/sidebar.js'
 import { inBrowser } from '../utils/index.js'
 import SidebarItem from './SidebarItem.vue'
 
-const { sidebarGroups, hasSidebar } = useSidebar()
-
 const props = defineProps<{
   open: boolean
 }>()
+
+const { sidebarGroups, hasSidebar } = useSidebar()
 
 // a11y: focus Nav element when menu has opened
 const navEl = ref<HTMLElement | null>(null)
@@ -21,9 +21,10 @@ watch(
     if (props.open) {
       isLocked.value = true
       navEl.value?.focus()
-    } else isLocked.value = false
+    }
+    else { isLocked.value = false }
   },
-  { immediate: true, flush: 'post' }
+  { immediate: true, flush: 'post' },
 )
 </script>
 

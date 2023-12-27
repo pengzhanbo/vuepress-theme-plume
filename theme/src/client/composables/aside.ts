@@ -12,9 +12,8 @@ export function useAside() {
   const is1280 = useMediaQuery('(min-width: 1280px)')
 
   const isAsideEnabled = computed(() => {
-    if (!is1280.value && !is960.value) {
+    if (!is1280.value && !is960.value)
       return false
-    }
 
     return hasSidebar.value ? is1280.value : is960.value
   })
@@ -26,7 +25,7 @@ export function useAside() {
 
 export function useActiveAnchor(
   container: Ref<HTMLElement>,
-  marker: Ref<HTMLElement>
+  marker: Ref<HTMLElement>,
 ) {
   const { isAsideEnabled } = useAside()
 
@@ -49,12 +48,11 @@ export function useActiveAnchor(
   })
 
   function setActiveLink() {
-    if (!isAsideEnabled.value) {
+    if (!isAsideEnabled.value)
       return
-    }
 
     const links = [].slice.call(
-      container.value.querySelectorAll('.outline-link')
+      container.value.querySelectorAll('.outline-link'),
     ) as HTMLAnchorElement[]
 
     const anchors = [].slice
@@ -90,13 +88,12 @@ export function useActiveAnchor(
   }
 
   function activateLink(hash: string | null) {
-    if (prevActiveLink) {
+    if (prevActiveLink)
       prevActiveLink.classList.remove('active')
-    }
 
     if (hash !== null) {
       prevActiveLink = container.value.querySelector(
-        `a[href="${decodeURIComponent(hash)}"]`
+        `a[href="${decodeURIComponent(hash)}"]`,
       )
     }
 
@@ -104,9 +101,10 @@ export function useActiveAnchor(
 
     if (activeLink) {
       activeLink.classList.add('active')
-      marker.value.style.top = activeLink.offsetTop + 33 + 'px'
+      marker.value.style.top = `${activeLink.offsetTop + 33}px`
       marker.value.style.opacity = '1'
-    } else {
+    }
+    else {
       marker.value.style.top = '33px'
       marker.value.style.opacity = '0'
     }
@@ -120,21 +118,18 @@ function getAnchorTop(anchor: HTMLAnchorElement): number {
 function isAnchorActive(
   index: number,
   anchor: HTMLAnchorElement,
-  nextAnchor: HTMLAnchorElement | undefined
+  nextAnchor: HTMLAnchorElement | undefined,
 ): [boolean, string | null] {
   const scrollTop = window.scrollY
 
-  if (index === 0 && scrollTop === 0) {
+  if (index === 0 && scrollTop === 0)
     return [true, null]
-  }
 
-  if (scrollTop < getAnchorTop(anchor)) {
+  if (scrollTop < getAnchorTop(anchor))
     return [false, null]
-  }
 
-  if (!nextAnchor || scrollTop < getAnchorTop(nextAnchor)) {
+  if (!nextAnchor || scrollTop < getAnchorTop(nextAnchor))
     return [true, anchor.hash]
-  }
 
   return [false, null]
 }

@@ -9,34 +9,37 @@ export function getCssValue(el: HTMLElement | null, property: string): number {
 }
 
 export function getScrollTop(
-  target: Document | HTMLElement = document
+  target: Document | HTMLElement = document,
 ): number {
   if (target === document || !target) {
     return (
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0
+      window.pageYOffset
+      || document.documentElement.scrollTop
+      || document.body.scrollTop
+      || 0
     )
-  } else {
+  }
+  else {
     return (target as HTMLElement).scrollTop
   }
 }
 
 export function setScrollTop(
   target: Document | HTMLElement = document,
-  scrollTop = 0
+  scrollTop = 0,
 ): void {
   if (typeof target === 'number') {
     scrollTop = target
     target = document
     document.documentElement.scrollTop = scrollTop
     document.body.scrollTop = scrollTop
-  } else {
+  }
+  else {
     if (target === document) {
       document.body.scrollTop = scrollTop || 0
       document.documentElement.scrollTop = scrollTop || 0
-    } else {
+    }
+    else {
       ;(target as HTMLElement).scrollTop = scrollTop || 0
     }
   }
@@ -45,7 +48,7 @@ export function setScrollTop(
 export function scrollTo(
   target: Document | HTMLElement,
   top: number,
-  time = 300
+  time = 300,
 ): void {
   if (target !== document) {
     const currentTop = getScrollTop(target)
@@ -54,12 +57,13 @@ export function scrollTo(
     const change = top - currentTop
     const timer = setInterval(() => {
       currentStep++
-      if (currentStep >= step) {
+      if (currentStep >= step)
         timer && clearInterval(timer)
-      }
+
       setScrollTop(target, tween(currentStep, currentTop, change, step))
     }, 1000 / 60)
-  } else {
+  }
+  else {
     window.scrollTo({ top, behavior: 'smooth' })
   }
 }

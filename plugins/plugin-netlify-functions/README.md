@@ -1,6 +1,5 @@
 # `vuepress-plugin-netlify-functions`
 
-
 If your vuepress site is deployed on `netlify` and you want to be able to use `netlify functions` for ` serverless`.
 
 You may need this plugin to provide support.
@@ -29,27 +28,27 @@ yarn add vuepress-plugin-netlify-functions
 ## Usage
 
 1. In a Vuepress project, or in a Vuepress theme
-   
+
    在 vuepress 项目中，或者在一个 vuepress 主题中
    ``` js
    // .vuepress/config.js
    import { netlifyFunctionsPlugin } from 'vuepress-plugin-netlify-functions'
    module.exports = {
-     //...
+     // ...
      plugins: [
-        netlifyFunctionsPlugin()
+       netlifyFunctionsPlugin()
      ]
      // ...
    }
    ```
 
 2. In a vuepress plugin:
-   
+
    在 vuepress plugin 中：
    ``` js
    import { useNetlifyFunctionsPlugin } from 'vuepress-plugin-netlify-functions'
 
-   const myPlugin = (): Plugin => {
+   function myPlugin(): Plugin {
      return (app: App) => {
        const {
          // proxy prefix, default: /api
@@ -57,14 +56,14 @@ yarn add vuepress-plugin-netlify-functions
          proxyPrefix,
          preparePluginFunctions,
          generatePluginFunctions
-         } = useNetlifyFunctionsPlugin(app, {
-          // Specifies the functions directory for the plugin where the relevant scripts are developed
-          // 指定插件的functions目录，相关脚本在此目录中开发
+       } = useNetlifyFunctionsPlugin(app, {
+         // Specifies the functions directory for the plugin where the relevant scripts are developed
+         // 指定插件的functions目录，相关脚本在此目录中开发
          directory: path.resolve(__dirname, 'functions')
        })
        return {
          name: 'vuepress-plugin-myPlugin',
-         onPrepared:() => preparePluginFunctions(),
+         onPrepared: () => preparePluginFunctions(),
          onGenerated: () => generatePluginFunctions(),
        }
      }
@@ -86,33 +85,33 @@ In the Vuepress configuration, or in the Vuepress topic configuration.
 __options__
 
 - `options.sourceDirectory` functions source directory。
-  
+
   @default `app.dir.source('.vuepress/functions')。
 
 - `options.destDirectory` functions output directory
-  
-  @default `app.dir.dest('function') 
+
+  @default `app.dir.dest('function')
 
 - `options.proxyPrefix` server proxy prefix
-  
+
   @default `/api`。
-  
+
   functions request to proxy `^/api/*`
 
 __options__
 
 - `options.sourceDirectory` functions 源文件夹。
-  
+
   默认 `app.dir.source('.vuepress/functions') 目录。
 
 - `options.destDirectory` functions 输出文件夹。
-  
+
   默认 `app.dir.dest('function') 目录
 
 - `options.proxyPrefix` proxy代理前缀。
-  
+
   默认 `/api`。
-  
+
   functions下的请求通过 `/api` 转发
 
 ### `useNetlifyFunctionsPlugin(app, options)`
@@ -125,8 +124,8 @@ __app__: `App`
 
 __options__
 
-- `options.directory`  
-  
+- `options.directory`
+
   Functions development directory in plugin
 
   插件中的 functions 开发目录

@@ -3,7 +3,6 @@
   "compilerOptions": {
     "composite": true
   },
-  "files": [],
   "references": [
     { "path": "./plugin-auto-frontmatter/tsconfig.build.json" },
     { "path": "./plugin-baidu-tongji/tsconfig.build.json" },
@@ -14,7 +13,7 @@
     { "path": "./plugin-netlify-functions/tsconfig.build.json" },
     { "path": "./plugin-notes-data/tsconfig.build.json" },
     { "path": "./plugin-page-collection/tsconfig.build.json" },
-    { "path": "./plugin-windicss/tsconfig.build.json" },
     { "path": "./plugin-shikiji/tsconfig.build.json" }
-  ]
+  ],
+  "files": []
 }

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import type { NotesSidebarItem } from '@vuepress-plume/plugin-notes-data'
 import { computed } from 'vue'
 import { useSidebarControl } from '../composables/sidebar.js'
@@ -29,8 +28,8 @@ const textTag = computed(() => {
   return !hasChildren.value
     ? 'p'
     : props.depth + 2 === 7
-    ? 'p'
-    : `h${props.depth + 2}`
+      ? 'p'
+      : `h${props.depth + 2}`
 })
 
 const itemRole = computed(() => (isLink.value ? undefined : 'button'))
@@ -45,9 +44,9 @@ const classes = computed(() => [
 ])
 
 function onItemInteraction(e: MouseEvent | Event) {
-  if ('key' in e && e.key !== 'Enter') {
+  if ('key' in e && e.key !== 'Enter')
     return
-  }
+
   !props.item.link && toggle()
 }
 

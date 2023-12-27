@@ -13,7 +13,9 @@ defineProps<{
 <template>
   <div class="post-list">
     <p v-for="post in postList" :key="post.path">
-      <AutoLink class="post-title" :href="post.path">{{ post.title }}</AutoLink>
+      <AutoLink class="post-title" :href="post.path">
+        {{ post.title }}
+      </AutoLink>
       <span class="post-time">{{ post.createTime }}</span>
     </p>
   </div>

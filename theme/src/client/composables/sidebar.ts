@@ -18,8 +18,8 @@ export function normalizePath(path: string) {
 }
 
 export function getSidebarList(path: string, notesData: NotesData) {
-  const link = Object.keys(notesData).find((link) =>
-    path.startsWith(normalizePath(withBase(link)))
+  const link = Object.keys(notesData).find(link =>
+    path.startsWith(normalizePath(withBase(link))),
   )
   return link ? notesData[link] : []
 }
@@ -40,10 +40,10 @@ export function useSidebar() {
   })
   const hasSidebar = computed(() => {
     return (
-      !frontmatter.value.home &&
-      !page.value.isBlogPost &&
-      sidebar.value.length > 0 &&
-      frontmatter.value.sidebar !== false
+      !frontmatter.value.home
+      && !page.value.isBlogPost
+      && sidebar.value.length > 0
+      && frontmatter.value.sidebar !== false
     )
   })
 
@@ -84,7 +84,7 @@ export function useSidebar() {
 
 export function useCloseSidebarOnEscape(
   isOpen: Ref<boolean>,
-  close: () => void
+  close: () => void,
 ) {
   let triggerElement: HTMLButtonElement | undefined
 
@@ -128,15 +128,14 @@ export function useSidebarControl(item: ComputedRef<NotesSidebarItem>) {
   })
 
   const hasActiveLink = computed(() => {
-    if (isActiveLink.value) {
+    if (isActiveLink.value)
       return true
-    }
 
     return item.value.items
       ? containsActiveLink(
-          page.value.path,
-          item.value.items as NotesSidebarItem[]
-        )
+        page.value.path,
+        item.value.items as NotesSidebarItem[],
+      )
       : false
   })
 
@@ -153,9 +152,8 @@ export function useSidebarControl(item: ComputedRef<NotesSidebarItem>) {
   })
 
   function toggle() {
-    if (collapsible.value) {
+    if (collapsible.value)
       collapsed.value = !collapsed.value
-    }
   }
 
   return {
@@ -171,24 +169,23 @@ export function useSidebarControl(item: ComputedRef<NotesSidebarItem>) {
 
 export function containsActiveLink(
   path: string,
-  items: NotesSidebarItem | NotesSidebarItem[]
+  items: NotesSidebarItem | NotesSidebarItem[],
 ): boolean {
-  if (Array.isArray(items)) {
-    return items.some((item) => containsActiveLink(path, item))
-  }
+  if (Array.isArray(items))
+    return items.some(item => containsActiveLink(path, item))
 
   return isActive(path, items.link)
     ? true
     : items.items
-    ? containsActiveLink(path, items.items as NotesSidebarItem[])
-    : false
+      ? containsActiveLink(path, items.items as NotesSidebarItem[])
+      : false
 }
 
 /**
  * Get or generate sidebar group from the given sidebar items.
  */
 export function getSidebarGroups(
-  sidebar: NotesSidebarItem[]
+  sidebar: NotesSidebarItem[],
 ): NotesSidebarItem[] {
   const groups: NotesSidebarItem[] = []
 
@@ -202,9 +199,8 @@ export function getSidebarGroups(
       continue
     }
 
-    if (!groups[lastGroupIndex]) {
+    if (!groups[lastGroupIndex])
       groups.push({ items: [] })
-    }
 
     groups[lastGroupIndex]!.items!.push(item)
   }

@@ -7,6 +7,7 @@ const props = defineProps<{
 
 const { hasSidebar } = useSidebar()
 </script>
+
 <template>
   <div
     id="LayoutContent"

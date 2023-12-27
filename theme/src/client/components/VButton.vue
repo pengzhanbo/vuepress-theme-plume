@@ -20,14 +20,14 @@ const props = withDefaults(defineProps<Props>(), {
 const router = useRouter()
 
 const isExternal = computed(
-  () => props.href && EXTERNAL_URL_RE.test(props.href)
+  () => props.href && EXTERNAL_URL_RE.test(props.href),
 )
 
 const component = computed(() => {
   return props.tag || props.href ? 'a' : 'button'
 })
 
-const linkTo = (e: Event) => {
+function linkTo(e: Event) {
   if (!isExternal.value) {
     e.preventDefault()
     props.href && router.push({ path: props.href })

@@ -9,7 +9,7 @@ yarn add @vuepress-plume/plugin-notes-data
 // .vuepress/config.js
 const notesDataPlugin = require('@vuepress-plume/plugin-notes-data')
 module.exports = {
-  //...
+  // ...
   plugins: [
     notesDataPlugin()
   ]
@@ -20,7 +20,7 @@ module.exports = {
 ## Options
 
 ``` ts
-type NotesDataOptions = {
+interface NotesDataOptions {
   dir: string
   link: string
   include?: string | string[]
@@ -28,7 +28,7 @@ type NotesDataOptions = {
   notes: NotesItem[]
 }
 
-type NotesItem = {
+interface NotesItem {
   dir: string
   link: string
   text: string
@@ -37,7 +37,7 @@ type NotesItem = {
 
 type NotesSidebar = (NotesSidebarItem | string)[]
 
-type NotesSidebarItem = {
+interface NotesSidebarItem {
   text?: string
   link?: string
   dir?: string

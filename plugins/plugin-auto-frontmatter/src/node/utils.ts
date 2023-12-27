@@ -1,6 +1,8 @@
 export function ensureArray<T>(thing: T | T[] | null | undefined): T[] {
-  if (Array.isArray(thing)) return thing
-  if (thing === null || thing === undefined) return []
+  if (Array.isArray(thing))
+    return thing
+  if (thing === null || thing === undefined)
+    return []
   return [thing]
 }
 

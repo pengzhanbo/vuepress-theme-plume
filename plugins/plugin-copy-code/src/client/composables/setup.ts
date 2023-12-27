@@ -2,37 +2,40 @@ import { onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import type { CopyCodeOptions } from '../../shared/index.js'
 import { copyToClipboard } from './copyToClipboard.js'
+
 declare const __COPY_CODE_OPTIONS__: CopyCodeOptions
 
 const options = __COPY_CODE_OPTIONS__
 
-const isMobile = (): boolean =>
-  navigator
+function isMobile(): boolean {
+  return navigator
     ? /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/iu.test(
-        navigator.userAgent
-      )
+      navigator.userAgent,
+    )
     : false
+}
 
-export const setupCopyCode = (): void => {
+export function setupCopyCode(): void {
   const route = useRoute()
 
   const insertBtn = (codeBlockEl: HTMLElement): void => {
-    if (codeBlockEl.hasAttribute('has-copy-code')) return
+    if (codeBlockEl.hasAttribute('has-copy-code'))
+      return
     const button = document.createElement('button')
     button.className = 'copy-code-button'
 
     button.addEventListener('click', () => {
-      copyToClipboard(codeBlockEl.innerText)
+      copyToClipboard(codeBlockEl.textContent || '')
       button.classList.add('copied')
-      options.duration &&
-        setTimeout(() => {
-          button.classList.remove('copied')
-        }, options.duration)
+      options.duration
+      && setTimeout(() => {
+        button.classList.remove('copied')
+      }, options.duration)
     })
 
-    if (codeBlockEl.parentElement) {
+    if (codeBlockEl.parentElement)
       codeBlockEl.parentElement.insertBefore(button, codeBlockEl)
-    }
+
     codeBlockEl.setAttribute('has-copy-code', '')
   }
 
@@ -41,7 +44,8 @@ export const setupCopyCode = (): void => {
     setTimeout(() => {
       if (typeof selector === 'string') {
         document.querySelectorAll<HTMLElement>(selector).forEach(insertBtn)
-      } else if (Array.isArray(selector)) {
+      }
+      else if (Array.isArray(selector)) {
         selector.forEach((item) => {
           document.querySelectorAll<HTMLElement>(item).forEach(insertBtn)
         })
@@ -50,16 +54,14 @@ export const setupCopyCode = (): void => {
   }
 
   onMounted(() => {
-    if (!isMobile() || options.showInMobile) {
+    if (!isMobile() || options.showInMobile)
       generateButton()
-    }
   })
   watch(
     () => route.path,
     () => {
-      if (!isMobile() || options.showInMobile) {
+      if (!isMobile() || options.showInMobile)
         generateButton()
-      }
-    }
+    },
   )
 }

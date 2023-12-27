@@ -28,11 +28,7 @@ import type {
 } from '../shared/index.js'
 import autoFrontmatter from './autoFrontmatter.js'
 
-export const setupPlugins = (
-  app: App,
-  options: PlumeThemePluginOptions,
-  localeOptions: PlumeThemeLocaleOptions
-): PluginConfig => {
+export function setupPlugins(app: App, options: PlumeThemePluginOptions, localeOptions: PlumeThemeLocaleOptions): PluginConfig {
   const isProd = !app.env.isDev
 
   const locales = (localeOptions.locales || {}) as PlumeThemeLocaleOptions
@@ -45,12 +41,12 @@ export const setupPlugins = (
     })
     .filter(Boolean)
 
-  if (options.readingTime !== false) {
+  if (options.readingTime !== false)
     useReadingTimePlugin(app, options.readingTime || {}, true)
-  }
 
   return [
     palettePlugin({ preset: 'sass' }),
+
     themeDataPlugin({
       themeData: {
         ...localeOptions,
@@ -60,20 +56,22 @@ export const setupPlugins = (
       } as any,
     }),
     autoFrontmatterPlugin(autoFrontmatter(app, options, localeOptions)),
+
     blogDataPlugin({
-      include: localeOptions.blog?.include,
+      include: localeOptions.blog?.include ?? ['**/*.md'],
       exclude: [
         '**/{README,readme,index}.md',
         '.vuepress/',
-        ...(localeOptions.blog?.exclude || []),
+        'node_modules/',
+        ...(localeOptions.blog?.exclude ?? []),
         ...localeNotesDirs,
       ].filter(Boolean),
       sortBy: 'createTime',
       excerpt: true,
       pageFilter(page: any) {
-        if (page.frontmatter.article !== undefined) {
+        if (page.frontmatter.article !== undefined)
           return !!page.frontmatter.article
-        }
+
         return true
       },
       extendBlogData(page: any) {
@@ -102,43 +100,43 @@ export const setupPlugins = (
 
     options.git !== false
       ? gitPlugin({
-          createdTime: false,
-          updatedTime: localeOptions.lastUpdated !== false,
-          contributors: localeOptions.contributors !== false,
-        })
+        createdTime: false,
+        updatedTime: localeOptions.lastUpdated !== false,
+        contributors: localeOptions.contributors !== false,
+      })
       : [],
 
     options.mediumZoom !== false
       ? mediumZoomPlugin({
-          selector: '.plume-content > img, .plume-content :not(a) > img',
-          zoomOptions: {
-            background: 'var(--vp-c-bg)',
-          },
-          delay: 300,
-        })
+        selector: '.plume-content > img, .plume-content :not(a) > img',
+        zoomOptions: {
+          background: 'var(--vp-c-bg)',
+        },
+        delay: 300,
+      })
       : [],
 
     options.caniuse !== false
       ? caniusePlugin(
-          options.caniuse || {
-            mode: 'embed',
-          }
-        )
+        options.caniuse || {
+          mode: 'embed',
+        },
+      )
       : [],
 
     options.externalLinkIcon !== false
       ? externalLinkIconPlugin({
-          locales: Object.entries(localeOptions.locales || {}).reduce(
-            (result: Record<string, any>, [key, value]) => {
-              result[key] = {
-                openInNewWindow:
+        locales: Object.entries(localeOptions.locales || {}).reduce(
+          (result: Record<string, any>, [key, value]) => {
+            result[key] = {
+              openInNewWindow:
                   value.openInNewWindow ?? localeOptions.openInNewWindow,
-              }
-              return result
-            },
-            {}
-          ),
-        })
+            }
+            return result
+          },
+          {},
+        ),
+      })
       : [],
 
     options.search !== false ? searchPlugin(options.search) : [],
@@ -146,34 +144,36 @@ export const setupPlugins = (
       ? docsearchPlugin(options.docsearch!)
       : [],
 
-    options.shikiji !== false ? shikijiPlugin({
-      theme: { light: 'vitesse-light', dark: 'vitesse-dark' },
-      ...(options.shikiji ?? {}),
-    }) : [],
+    options.shikiji !== false
+      ? shikijiPlugin({
+        theme: { light: 'vitesse-light', dark: 'vitesse-dark' },
+        ...(options.shikiji ?? {}),
+      })
+      : [],
 
     options.copyCode !== false
       ? copyCodePlugin({
-          selector: '.plume-content div[class*="language-"] pre',
-          ...options.copyCode,
-        })
+        selector: '.plume-content div[class*="language-"] pre',
+        ...options.copyCode,
+      })
       : [],
 
     options.markdownEnhance !== false
       ? mdEnhancePlugin(
-          Object.assign(
-            {
-              hint: true, // info note tip warning danger details d
-              codetabs: true,
-              tabs: true,
-              align: true,
-              mark: true,
-              tasklist: true,
-              demo: true,
-              attrs: true,
-            },
-            options.markdownEnhance || {}
-          )
-        )
+        Object.assign(
+          {
+            hint: true, // info note tip warning danger details d
+            codetabs: true,
+            tabs: true,
+            align: true,
+            mark: true,
+            tasklist: true,
+            demo: true,
+            attrs: true,
+          },
+          options.markdownEnhance || {},
+        ),
+      )
       : [],
 
     options.comment !== false ? commentPlugin(options.comment || {}) : [],
@@ -184,14 +184,14 @@ export const setupPlugins = (
 
     options.sitemap !== false && localeOptions.hostname && isProd
       ? sitemapPlugin({
-          hostname: localeOptions.hostname,
-        })
+        hostname: localeOptions.hostname,
+      })
       : [],
     options.seo !== false && localeOptions.hostname && isProd
       ? seoPlugin({
-          hostname: localeOptions.hostname || '',
-          author: localeOptions.avatar?.name,
-        })
+        hostname: localeOptions.hostname || '',
+        author: localeOptions.avatar?.name,
+      })
       : [],
   ]
 }

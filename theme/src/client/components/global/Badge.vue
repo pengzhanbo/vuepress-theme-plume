@@ -5,7 +5,7 @@ interface Props {
 }
 withDefaults(defineProps<Props>(), {
   type: 'tip',
-  text: undefined
+  text: undefined,
 })
 </script>
 

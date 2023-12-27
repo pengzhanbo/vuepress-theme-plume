@@ -1,27 +1,28 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import process from 'node:process'
 import { execa } from 'execa'
 import ora from 'ora'
 import chalk from 'chalk'
-import { fileURLToPath } from 'url'
 
-const _dirname =
-  typeof __dirname !== 'undefined'
+const _dirname
+  = typeof __dirname !== 'undefined'
     ? __dirname
     : path.dirname(fileURLToPath(import.meta.url))
 
 const packages = [
   ...fs
     .readdirSync(path.join(_dirname, '../packages'))
-    .filter((file) => file !== '.DS_Store' && file !== 'tsconfig.build.json')
-    .map((dir) => path.join('../packages', dir)),
+    .filter(file => file !== '.DS_Store' && file !== 'tsconfig.build.json')
+    .map(dir => path.join('../packages', dir)),
   '../docs',
 ]
 
 const dependencies = packages.map((dir) => {
   const pkg = fs.readFileSync(
     path.join(_dirname, dir, 'package.json'),
-    'utf-8'
+    'utf-8',
   )
   const { dependencies, devDependencies } = JSON.parse(pkg)
   return {
@@ -34,29 +35,29 @@ const dependencies = packages.map((dir) => {
 function filterVuePress(dependencies) {
   const vuepress = dependencies
     .filter(
-      (dependence) =>
-        dependence.startsWith('@vuepress/')
+      dependence =>
+        dependence.startsWith('@vuepress/'),
     )
-    .map((dependence) => dependence + '@next')
+    .map(dependence => `${dependence}@next`)
   const includes = ['vue', 'vue-router']
   const vue = dependencies
-    .filter((dependence) => includes.includes(dependence))
-    .map((dependence) => dependence + '@latest')
+    .filter(dependence => includes.includes(dependence))
+    .map(dependence => `${dependence}@latest`)
   return [...vue, ...vuepress]
 }
 
 const options = []
 dependencies.forEach(({ dirname, dependencies, devDependencies }) => {
-  if (dependencies.length) {
+  if (dependencies.length)
     options.push(['pnpm', ['add', ...dependencies], { cwd: dirname }])
-  }
-  if (devDependencies.length) {
+
+  if (devDependencies.length)
     options.push(['pnpm', ['add', '-D', ...devDependencies], { cwd: dirname }])
-  }
 })
 
 async function install(index = 0) {
-  if (index >= options.length) return
+  if (index >= options.length)
+    return
   const spinner = ora()
   const opt = options[index]
   const dir = opt[2].cwd.split('/').slice(-2).join('/')
@@ -69,7 +70,8 @@ async function install(index = 0) {
     await current
     spinner.succeed('Installed.')
     await install(index + 1)
-  } catch (e) {
+  }
+  catch (e) {
     spinner.fail('Install Fail.')
     console.log(e)
   }

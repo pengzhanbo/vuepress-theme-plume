@@ -16,15 +16,14 @@ const router = useRouter()
 
 const tag = computed(() => props.tag ?? (props.href ? 'a' : 'span'))
 const isExternal = computed(
-  () => props.href && EXTERNAL_URL_RE.test(props.href)
+  () => props.href && EXTERNAL_URL_RE.test(props.href),
 )
 
-const linkTo = (e: Event) => {
+function linkTo(e: Event) {
   if (!isExternal.value) {
     e.preventDefault()
-    if (props.href) {
+    if (props.href)
       router.push({ path: props.href })
-    }
   }
 }
 </script>

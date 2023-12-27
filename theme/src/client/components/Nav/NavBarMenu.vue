@@ -12,9 +12,7 @@ const theme = useThemeLocaleData()
     aria-labelledby="main-nav-aria-label"
     class="navbar-menu"
   >
-    <span id="main-nav-aria-label" class="visually-hidden"
-      >Main Navigation</span
-    >
+    <span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span>
     <template v-for="item in theme.navbar" :key="item.text">
       <NavBarMenuLink v-if="'link' in item" :item="item" />
       <NavBarMenuGroup v-else :item="item" />

@@ -9,12 +9,12 @@ const mode = __CAN_I_USE_INJECT_MODE__
 
 export default defineClientConfig({
   enhance({ router }) {
-    if (__VUEPRESS_SSR__) return
+    if (__VUEPRESS_SSR__)
+      return
 
-    router.afterEach((to, from) => {
-      if (mode === 'embed') {
+    router.afterEach(() => {
+      if (mode === 'embed')
         resolveCanIUse()
-      }
     })
   },
 })

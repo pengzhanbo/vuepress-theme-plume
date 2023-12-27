@@ -7,13 +7,13 @@ import {
   bundledLanguages,
   getHighlighter,
   isPlaintext as isPlainLang,
-  isSpecialLang
+  isSpecialLang,
 } from 'shikiji'
 import {
   transformerNotationDiff,
   transformerNotationErrorLevel,
   transformerNotationFocus,
-  transformerNotationHighlight
+  transformerNotationHighlight,
 } from 'shikiji-transformers'
 import type { HighlighterOptions, ThemeOptions } from './types.js'
 
@@ -25,7 +25,7 @@ export async function highlight(
 ): Promise<(str: string, lang: string, attrs: string) => string> {
   const {
     defaultHighlightLang: defaultLang = '',
-    codeTransformers: userTransformers = []
+    codeTransformers: userTransformers = [],
   } = options
 
   const highlighter = await getHighlighter({
@@ -34,7 +34,7 @@ export async function highlight(
         ? [theme]
         : [theme.light, theme.dark],
     langs: [...Object.keys(bundledLanguages), ...(options.languages || [])],
-    langAlias: options.languageAlias
+    langAlias: options.languageAlias,
   })
 
   await options?.shikijiSetup?.(highlighter)
@@ -43,7 +43,7 @@ export async function highlight(
     transformerNotationDiff(),
     transformerNotationFocus({
       classActiveLine: 'has-focus',
-      classActivePre: 'has-focused-lines'
+      classActivePre: 'has-focused-lines',
     }),
     transformerNotationHighlight(),
     transformerNotationErrorLevel(),
@@ -51,15 +51,15 @@ export async function highlight(
       name: 'vuepress:add-class',
       pre(node) {
         addClassToHast(node, 'vp-code')
-      }
+      },
     },
     {
       name: 'vuepress:clean-up',
       pre(node) {
         delete node.properties.tabindex
         delete node.properties.style
-      }
-    }
+      },
+    },
   ]
 
   const vueRE = /-vue$/
@@ -69,8 +69,8 @@ export async function highlight(
 
   return (str: string, lang: string, attrs: string) => {
     const vPre = vueRE.test(lang) ? '' : 'v-pre'
-    lang =
-      lang
+    lang
+      = lang
         .replace(lineNoStartRE, '')
         .replace(lineNoRE, '')
         .replace(vueRE, '')
@@ -82,8 +82,8 @@ export async function highlight(
         logger.warn(
           c.yellow(
             `\nThe language '${lang}' is not loaded, falling back to '${defaultLang || 'txt'
-            }' for syntax highlighting.`
-          )
+            }' for syntax highlighting.`,
+          ),
         )
         lang = defaultLang
       }
@@ -94,7 +94,8 @@ export async function highlight(
     const mustaches = new Map<string, string>()
 
     const removeMustache = (s: string) => {
-      if (vPre) return s
+      if (vPre)
+        return s
       return s.replace(mustacheRE, (match) => {
         let marker = mustaches.get(match)
         if (!marker) {
@@ -113,10 +114,10 @@ export async function highlight(
     }
 
     const fillEmptyHighlightedLine = (s: string) => {
-      return s.replace(
+      return `${s.replace(
         /(<span class="line highlighted">)(<\/span>)/g,
-        '$1<wbr>$2'
-      ).replace(/(\/\/\s*?\[)\\(!code.*?\])/g, '$1$2') + '\n'
+        '$1<wbr>$2',
+      ).replace(/(\/\/\s*?\[)\\(!code.*?\])/g, '$1$2')}\n`
     }
 
     str = removeMustache(str).trimEnd()
@@ -125,17 +126,17 @@ export async function highlight(
       lang,
       transformers: [
         ...transformers,
-        ...userTransformers
+        ...userTransformers,
       ],
       meta: {
-        __raw: attrs
+        __raw: attrs,
       },
       ...(typeof theme === 'string' || 'name' in theme
         ? { theme }
         : {
-          themes: theme,
-          defaultColor: false
-        })
+            themes: theme,
+            defaultColor: false,
+          }),
     })
 
     return fillEmptyHighlightedLine(restoreMustache(highlighted))

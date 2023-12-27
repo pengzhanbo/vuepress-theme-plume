@@ -39,27 +39,26 @@ import {
   netlifyServe,
 } from './netlify/index.js'
 
-const initOptions = (
-  app: App,
-  {
-    sourceDirectory,
-    destDirectory,
-    proxyPrefix = '/api',
-  }: NetlifyFunctionsOptions
-): NetlifyFunctionsPluginOptions => ({
-  directory: {
-    source: [sourceDirectory || app.dir.source('.vuepress/functions')],
-    dest: destDirectory || app.dir.dest('functions'),
-    temp: app.dir.temp('functions'),
-  },
-  proxyPrefix,
-})
+function initOptions(app: App, {
+  sourceDirectory,
+  destDirectory,
+  proxyPrefix = '/api',
+}: NetlifyFunctionsOptions): NetlifyFunctionsPluginOptions {
+  return {
+    directory: {
+      source: [sourceDirectory || app.dir.source('.vuepress/functions')],
+      dest: destDirectory || app.dir.dest('functions'),
+      temp: app.dir.temp('functions'),
+    },
+    proxyPrefix,
+  }
+}
 
 const cache = {
   options: {},
 }
 
-export const getOptions = (): NetlifyFunctionsPluginOptions => {
+export function getOptions(): NetlifyFunctionsPluginOptions {
   return cache.options as NetlifyFunctionsPluginOptions
 }
 
@@ -68,11 +67,8 @@ export const getOptions = (): NetlifyFunctionsPluginOptions => {
  * netlify function 插件，提供 netlify functions 支持
  *
  * @param options
- * @returns
  */
-export const netlifyFunctionsPlugin = (
-  options: NetlifyFunctionsOptions = {}
-): Plugin => {
+export function netlifyFunctionsPlugin(options: NetlifyFunctionsOptions = {}): Plugin {
   return (app: App) => {
     const opts = initOptions(app, options)
     let server: NetlifyServe

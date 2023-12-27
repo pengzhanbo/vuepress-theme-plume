@@ -13,11 +13,11 @@ import type {
 import { readMarkdown, readMarkdownList } from './readFiles.js'
 import { ensureArray, isEmptyObject } from './utils.js'
 
-export const autoFrontmatterPlugin = ({
+export function autoFrontmatterPlugin({
   include = ['**/*.{md,MD}'],
   exclude = ['.vuepress/**/*', 'node_modules'],
   frontmatter = {},
-}: AutoFrontmatterOptions = {}): Plugin => {
+}: AutoFrontmatterOptions = {}): Plugin {
   include = ensureArray(include)
   exclude = ensureArray(exclude)
 
@@ -27,8 +27,8 @@ export const autoFrontmatterPlugin = ({
     ? frontmatter
     : [{ include: '*', frontmatter }]
 
-  const globFormatter: FrontmatterObject =
-    matterFrontmatter.find(({ include }) => include === '*')?.frontmatter || {}
+  const globFormatter: FrontmatterObject
+    = matterFrontmatter.find(({ include }) => include === '*')?.frontmatter || {}
 
   const otherFormatters = matterFrontmatter
     .filter(({ include }) => include !== '*')
@@ -56,14 +56,15 @@ export const autoFrontmatterPlugin = ({
       const yaml = isEmptyObject(data)
         ? ''
         : jsonToYaml
-            .stringify(data)
-            .replace(/\n\s{2}/g, '\n')
-            .replace(/"/g, '')
+          .stringify(data)
+          .replace(/\n\s{2}/g, '\n')
+          .replace(/"/g, '')
       const newContent = yaml ? `${yaml}---\n${content}` : content
 
       fs.writeFileSync(filepath, newContent, 'utf-8')
-    } catch (e) {
-      console.log(e)
+    }
+    catch (e) {
+      console.error(e)
     }
   }
 
@@ -71,9 +72,8 @@ export const autoFrontmatterPlugin = ({
     name: '@vuepress-plume/plugin-auto-frontmatter',
     onInitialized: async (app) => {
       const markdownList = await readMarkdownList(app.dir.source(), globFilter)
-      for (const file of markdownList) {
+      for (const file of markdownList)
         await formatMarkdown(file)
-      }
     },
     onWatched: async (app, watchers) => {
       const watcher = chokidar.watch('**/*.md', {
@@ -83,7 +83,8 @@ export const autoFrontmatterPlugin = ({
       })
 
       watcher.on('add', async (relativePath) => {
-        if (!globFilter(relativePath)) return
+        if (!globFilter(relativePath))
+          return
         await formatMarkdown(readMarkdown(app.dir.source(), relativePath))
       })
 

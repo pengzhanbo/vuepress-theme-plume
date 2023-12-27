@@ -1,3 +1,4 @@
+import process from 'node:process'
 import minimist from 'minimist'
 
 const defaultOptions = {
@@ -6,23 +7,23 @@ const defaultOptions = {
   c: false,
   client: false,
   h: false,
-  help: false
+  help: false,
 }
 
-const normalizeArgv = (argv) => {
+function normalizeArgv(argv) {
   return {
     name: argv._[0] || '',
     client: argv.client || argv.c,
     shared: argv.shared || argv.s,
-    help: argv.h || argv.help
+    help: argv.h || argv.help,
   }
 }
 
-export const getConfig = () => {
+export function getConfig() {
   const argv = Object.assign(
     {},
     defaultOptions,
-    minimist(process.argv.slice(2))
+    minimist(process.argv.slice(2)),
   )
   return normalizeArgv(argv)
 }

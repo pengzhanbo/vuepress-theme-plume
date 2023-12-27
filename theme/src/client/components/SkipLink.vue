@@ -7,12 +7,12 @@ const backToTop = ref()
 
 watch(
   () => route.path,
-  () => backToTop.value.focus()
+  () => backToTop.value.focus(),
 )
 
 function focusOnTargetAnchor({ target }: Event) {
   const el = document.getElementById(
-    decodeURIComponent((target as HTMLAnchorElement).hash).slice(1)
+    decodeURIComponent((target as HTMLAnchorElement).hash).slice(1),
   )
 
   if (el) {
@@ -61,7 +61,6 @@ function focusOnTargetAnchor({ target }: Event) {
   clip: auto;
   clip-path: none;
 }
-
 
 @media (min-width: 1280px) {
   .skip-link {

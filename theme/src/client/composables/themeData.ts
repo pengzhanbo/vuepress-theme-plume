@@ -8,7 +8,9 @@ import type {
 } from '@vuepress/plugin-theme-data/client'
 import type { PlumeThemeData } from '../../shared/index.js'
 
-export const useThemeData = (): ThemeDataRef<PlumeThemeData> =>
-  _useThemeData<PlumeThemeData>()
-export const useThemeLocaleData = (): ThemeLocaleDataRef<PlumeThemeData> =>
-  _useThemeLocaleData<PlumeThemeData>()
+export function useThemeData(): ThemeDataRef<PlumeThemeData> {
+  return _useThemeData<PlumeThemeData>()
+}
+export function useThemeLocaleData(): ThemeLocaleDataRef<PlumeThemeData> {
+  return _useThemeLocaleData<PlumeThemeData>()
+}

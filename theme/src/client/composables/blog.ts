@@ -6,7 +6,7 @@ import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 import { useLocaleLink, useThemeLocaleData } from '../composables/index.js'
 import { toArray } from '../utils/index.js'
 
-export const usePostListControl = () => {
+export function usePostListControl() {
   const locale = usePageLang()
   const themeData = useThemeLocaleData()
 
@@ -15,26 +15,28 @@ export const usePostListControl = () => {
   const pagination = computed(() => blog.value.pagination || {})
 
   const postList = computed(() => {
-    const stickyList = list.value.filter((item) =>
-      typeof item.sticky === 'boolean' ? item.sticky : item.sticky >= 0
+    const stickyList = list.value.filter(item =>
+      typeof item.sticky === 'boolean' ? item.sticky : item.sticky >= 0,
     )
     const otherList = list.value.filter(
-      (item) => item.sticky === undefined || item.sticky === false
+      item => item.sticky === undefined || item.sticky === false,
     )
 
     return [
       ...stickyList.sort((prev, next) => {
-        if (next.sticky === true && prev.sticky === true) return 0
+        if (next.sticky === true && prev.sticky === true)
+          return 0
         return next.sticky > prev.sticky ? 1 : -1
       }),
       ...otherList,
-    ].filter((item) => item.lang === locale.value)
+    ].filter(item => item.lang === locale.value)
   })
 
   const page = ref(1)
 
   const totalPage = computed(() => {
-    if (blog.value.pagination === false) return 0
+    if (blog.value.pagination === false)
+      return 0
     const perPage = blog.value.pagination?.perPage || 20
     return Math.ceil(postList.value.length / perPage)
   })
@@ -43,14 +45,16 @@ export const usePostListControl = () => {
   const isPaginationEnabled = computed(() => blog.value.pagination !== false && totalPage.value > 1)
 
   const finalList = computed(() => {
-    if (blog.value.pagination === false) return postList.value
+    if (blog.value.pagination === false)
+      return postList.value
 
     const perPage = blog.value.pagination?.perPage || 20
-    if (postList.value.length <= perPage) return postList.value
+    if (postList.value.length <= perPage)
+      return postList.value
 
     return postList.value.slice(
       (page.value - 1) * perPage,
-      page.value * perPage
+      page.value * perPage,
     )
   })
 
@@ -71,13 +75,13 @@ export const usePostListControl = () => {
   }
 }
 
-const extractLocales: Record<string, { tags: string; archives: string }> = {
+const extractLocales: Record<string, { tags: string, archives: string }> = {
   'zh-CN': { tags: '标签', archives: '归档' },
-  en: { tags: 'Tags', archives: 'Archives' },
+  'en': { tags: 'Tags', archives: 'Archives' },
   'zh-TW': { tags: '標籤', archives: '歸檔' },
 }
 
-export const useBlogExtract = () => {
+export function useBlogExtract() {
   const theme = useThemeLocaleData()
   const locale = usePageLang()
 
@@ -86,8 +90,8 @@ export const useBlogExtract = () => {
   const archiveLink = useLocaleLink('blog/archives/')
 
   const tags = computed(() => ({
-      link: tagsLink.value,
-      text: extractLocales[locale.value]?.tags || extractLocales.en.tags,
+    link: tagsLink.value,
+    text: extractLocales[locale.value]?.tags || extractLocales.en.tags,
   }))
 
   const archives = computed(() => ({
@@ -104,11 +108,11 @@ export const useBlogExtract = () => {
 
 export type ShortPostItem = Pick<PlumeThemeBlogPostItem, 'title' | 'path' | 'createTime'>
 
-export const useTags = () => {
+export function useTags() {
   const locale = usePageLang()
   const list = useBlogPostData() as unknown as Ref<PlumeThemeBlogPostItem[]>
   const filteredList = computed(() =>
-    list.value.filter((item) => item.lang === locale.value)
+    list.value.filter(item => item.lang === locale.value),
   )
 
   const tags = computed(() => {
@@ -116,15 +120,14 @@ export const useTags = () => {
     filteredList.value.forEach((item) => {
       if (item.tags) {
         toArray(item.tags).forEach((tag) => {
-          if (tagMap[tag]) {
+          if (tagMap[tag])
             tagMap[tag] += 1
-          } else {
+          else
             tagMap[tag] = 1
-          }
         })
       }
     })
-    return Object.keys(tagMap).map((tag) => ({
+    return Object.keys(tagMap).map(tag => ({
       name: tag,
       count: tagMap[tag],
     }))
@@ -136,11 +139,11 @@ export const useTags = () => {
   const handleTagClick = (tag: string) => {
     currentTag.value = tag
     postList.value = filteredList.value.filter((item) => {
-      if (item.tags) {
+      if (item.tags)
         return toArray(item.tags).includes(tag)
-      }
+
       return false
-    }).map((item) => ({
+    }).map(item => ({
       title: item.title,
       path: item.path,
       createTime: item.createTime.split(' ')[0],
@@ -151,21 +154,20 @@ export const useTags = () => {
     tags,
     currentTag,
     postList,
-    handleTagClick
+    handleTagClick,
   }
 }
 
-
-export const useArchives = () => {
+export function useArchives() {
   const locale = usePageLang()
   const list = useBlogPostData() as unknown as Ref<PlumeThemeBlogPostItem[]>
   const filteredList = computed(() =>
-    list.value.filter((item) => item.lang === locale.value)
+    list.value.filter(item => item.lang === locale.value),
   )
   const archives = computed(() => {
     const archives: { label: string, list: ShortPostItem[] }[] = []
 
-    filteredList.value.forEach(item => {
+    filteredList.value.forEach((item) => {
       const createTime = item.createTime.split(' ')[0]
       const year = createTime.split('/')[0]
       let current = archives.find(archive => archive.label === year)
@@ -184,6 +186,6 @@ export const useArchives = () => {
   })
 
   return {
-    archives
+    archives,
   }
 }

@@ -325,12 +325,16 @@
   --vp-code-copy-code-active-text: var(--vp-c-text-2);
   --vp-code-copy-copied-text-content: 'Copied';
 
-  --vp-code-tab-divider: var(--vp-code-block-divider-color);
-  --vp-code-tab-text-color: var(--vp-c-text-2);
-  --vp-code-tab-bg: var(--vp-code-block-bg);
-  --vp-code-tab-hover-text-color: var(--vp-c-text-1);
-  --vp-code-tab-active-text-color: var(--vp-c-text-1);
-  --vp-code-tab-active-bar-color: var(--vp-c-brand-1);
+  // --vp-code-tab-divider: var(--vp-code-block-divider-color);
+  // --vp-code-tab-text-color: var(--vp-c-text-2);
+  // --vp-code-tab-bg: var(--vp-code-block-bg);
+  // --vp-code-tab-hover-text-color: var(--vp-c-text-1);
+  // --vp-code-tab-active-text-color: var(--vp-c-text-1);
+  // --vp-code-tab-active-bar-color: var(--vp-c-brand-1);
+}
+
+html[lang='zh-CN'] {
+  --vp-code-copy-copied-text-content: '已复制';
 }
 
 /**
@@ -539,14 +543,14 @@
 
 /** Component: Search **/
 :root {
-  --search-bg-color: var(--vp-c-default-soft);
+  --search-bg-color: var(--vp-c-bg-alt);
   --search-text-color: var(--vp-c-text-2);
   --search-item-text-color: var(--vp-c-text-1);
   --search-item-focus-bg-color: var(--vp-c-bg-alt);
   --search-input-width: 8rem;
   --search-result-width: 20rem;
   --search-border-color: var(--vp-c-divider);
-  --search-accent-color: var(--vp-c-brand-2);
+  --search-accent-color: var(--vp-c-brand-1);
 }
 
 /* md enhance code-tabs */

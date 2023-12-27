@@ -9,7 +9,6 @@
 [![npm download](https://img.shields.io/npm/dy/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads)](https://www.npmjs.com/package/vuepress-theme-plume)
 ![GitHub License](https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A)
 
-
 ### [查看文档](https://pengzhanbo.cn/note/vuepress-theme-plume)
 
 ## Install
@@ -54,7 +53,6 @@ __options__ : `PlumeThemeOptions`
 ![](/docs/preview-post.png?a=1)
 
 ![](/docs/preview-note.png?a=1)
-  
 
 ## 内置插件
 

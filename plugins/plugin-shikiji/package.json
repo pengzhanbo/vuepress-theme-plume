@@ -1,18 +1,18 @@
 {
   "name": "@vuepress-plume/plugin-shikiji",
+  "type": "module",
   "version": "1.0.0-rc.5",
   "description": "The Plugin for VuePres 2",
+  "author": "pengzhanbo <volodymyr@foxmail.com>",
+  "license": "MIT",
   "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
-  "bugs": {
-    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
   },
-  "license": "MIT",
-  "author": "pengzhanbo <volodymyr@foxmail.com>",
-  "type": "module",
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
   "exports": {
     ".": "./lib/node/index.js",
     "./package.json": "./package.json"

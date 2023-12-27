@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type {FriendsItem} from '../../shared/index';
+import type { FriendsItem } from '../../shared/index'
 import AutoLink from './AutoLink.vue'
 
 defineProps<{
@@ -10,11 +10,15 @@ defineProps<{
 <template>
   <div class="friend">
     <AutoLink class="avatar-link" :href="friend.link" no-icon>
-      <div class="avatar" :style="{ backgroundImage: `url(${friend.avatar})` }"></div>
+      <div class="avatar" :style="{ backgroundImage: `url(${friend.avatar})` }" />
     </AutoLink>
     <div class="content">
-      <AutoLink class="title" :href="friend.link" no-icon>{{ friend.name }}</AutoLink>
-      <p v-if="friend.desc">{{ friend.desc }}</p>
+      <AutoLink class="title" :href="friend.link" no-icon>
+        {{ friend.name }}
+      </AutoLink>
+      <p v-if="friend.desc">
+        {{ friend.desc }}
+      </p>
     </div>
   </div>
 </template>

@@ -1,12 +1,13 @@
 <script lang="ts" setup>
+import { useScrollLock } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useBlogExtract, useThemeLocaleData } from '../composables/index.js'
+import { inBrowser } from '../utils/index.js'
 import AutoLink from './AutoLink.vue'
 import IconArchive from './icons/IconArchive.vue'
 import IconBlogExt from './icons/IconBlogExt.vue'
 import IconTag from './icons/IconTag.vue'
-
 
 const theme = useThemeLocaleData()
 const route = useRoute()
@@ -15,14 +16,28 @@ const avatar = computed(() => theme.value.avatar)
 const { hasBlogExtract, tags, archives } = useBlogExtract()
 const open = ref(false)
 
+const isLocked = useScrollLock(inBrowser ? document.body : null)
+
 watch(() => route.path, () => {
   open.value = false
 })
+
+watch(
+  [() => open.value],
+  () => {
+    if (open.value)
+      isLocked.value = true
+
+    else isLocked.value = false
+  },
+  { immediate: true, flush: 'post' },
+)
 
 const showBlogExtract = computed(() => {
   return avatar.value || hasBlogExtract.value
 })
 </script>
+
 <template>
   <div v-if="showBlogExtract" class="blog-extract" @click="open = !open">
     <IconBlogExt class="icon" />
@@ -31,11 +46,13 @@ const showBlogExtract = computed(() => {
     <div class="blog-modal-container">
       <div v-if="avatar" class="avatar-profile">
         <p v-if="avatar.url" class="avatar">
-          <img :src="avatar.url" :alt="avatar.name" />
+          <img :src="avatar.url" :alt="avatar.name">
         </p>
         <div>
           <h3>{{ avatar.name }}</h3>
-          <p class="desc">{{ avatar.description }}</p>
+          <p class="desc">
+            {{ avatar.description }}
+          </p>
         </div>
       </div>
       <div v-if="hasBlogExtract" class="blog-nav">
@@ -66,6 +83,7 @@ const showBlogExtract = computed(() => {
   box-shadow: var(--vp-shadow-2);
   z-index: calc(var(--vp-z-index-nav) - 1);
   background-color: var(--vp-c-bg);
+  cursor: pointer;
 }
 
 .blog-extract .icon {

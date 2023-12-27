@@ -30,10 +30,10 @@ export function useLangs({
               key,
               correspondingLink,
               page.value.path.slice(currentLang.value.link.length - 1),
-              true
+              true,
             ),
-          }
-    )
+          },
+    ),
   )
 
   return { localeLinks, currentLang }
@@ -43,14 +43,14 @@ function normalizeLink(
   link: string,
   addPath: boolean,
   path: string,
-  addExt: boolean
+  addExt: boolean,
 ) {
   return addPath
-    ? link.replace(/\/$/, '') +
-        ensureStartingSlash(
-          path
-            .replace(/(^|\/)?index.md$/, '$1')
-            .replace(/\.md$/, addExt ? '.html' : '')
-        )
+    ? link.replace(/\/$/, '')
+    + ensureStartingSlash(
+      path
+        .replace(/(^|\/)?index.md$/, '$1')
+        .replace(/\.md$/, addExt ? '.html' : ''),
+    )
     : link
 }

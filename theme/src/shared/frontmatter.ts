@@ -1,9 +1,9 @@
-import type { NavItemWithLink } from ".";
+import type { NavItemWithLink } from '.'
 
 export interface PlumeThemeHomeFrontmatter {
   home?: true
   banner?: string
-  bannerMask?: number | { light?: number; dark?: number }
+  bannerMask?: number | { light?: number, dark?: number }
   hero: {
     name: string
     tagline?: string

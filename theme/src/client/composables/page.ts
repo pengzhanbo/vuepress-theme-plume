@@ -14,17 +14,16 @@ import type {
 import { useNavLink, useSidebar, useThemeLocaleData } from '../composables/index.js'
 import { resolveEditLink } from '../utils/index.js'
 
-export const useEditNavLink = (): ComputedRef<null | NavItemWithLink> => {
+export function useEditNavLink(): ComputedRef<null | NavItemWithLink> {
   const themeLocale = useThemeLocaleData()
   const page = usePageData<PlumeThemePageData>()
   const frontmatter = usePageFrontmatter<PlumeThemePageFrontmatter>()
 
   return computed(() => {
-    const showEditLink =
-      frontmatter.value.editLink ?? themeLocale.value.editLink ?? true
-    if (!showEditLink) {
+    const showEditLink
+      = frontmatter.value.editLink ?? themeLocale.value.editLink ?? true
+    if (!showEditLink)
       return null
-    }
 
     const {
       repo,
@@ -34,7 +33,8 @@ export const useEditNavLink = (): ComputedRef<null | NavItemWithLink> => {
       editLinkText,
     } = themeLocale.value
 
-    if (!docsRepo) return null
+    if (!docsRepo)
+      return null
 
     const editLink = resolveEditLink({
       docsRepo,
@@ -45,7 +45,8 @@ export const useEditNavLink = (): ComputedRef<null | NavItemWithLink> => {
         frontmatter.value.editLinkPattern ?? themeLocale.value.editLinkPattern,
     })
 
-    if (!editLink) return null
+    if (!editLink)
+      return null
 
     return {
       text: editLinkText ?? 'Edit this page',
@@ -54,18 +55,20 @@ export const useEditNavLink = (): ComputedRef<null | NavItemWithLink> => {
   })
 }
 
-export const useLastUpdated = (): ComputedRef<null | string> => {
+export function useLastUpdated(): ComputedRef<null | string> {
   const themeLocale = useThemeLocaleData()
   const page = usePageData<PlumeThemePageData>()
   const frontmatter = usePageFrontmatter<PlumeThemePageFrontmatter>()
 
   return computed(() => {
-    const showLastUpdated =
-      frontmatter.value.lastUpdated ?? themeLocale.value.lastUpdated ?? true
+    const showLastUpdated
+      = frontmatter.value.lastUpdated ?? themeLocale.value.lastUpdated ?? true
 
-    if (!showLastUpdated) return null
+    if (!showLastUpdated)
+      return null
 
-    if (!page.value.git?.updatedTime) return null
+    if (!page.value.git?.updatedTime)
+      return null
 
     const updatedDate = new Date(page.value.git?.updatedTime)
 
@@ -73,18 +76,19 @@ export const useLastUpdated = (): ComputedRef<null | string> => {
   })
 }
 
-export const useContributors = (): ComputedRef<
+export function useContributors(): ComputedRef<
   null | Required<PlumeThemePageData['git']>['contributors']
-> => {
+> {
   const themeLocale = useThemeLocaleData()
   const page = usePageData<PlumeThemePageData>()
   const frontmatter = usePageFrontmatter<PlumeThemePageFrontmatter>()
 
   return computed(() => {
-    const showContributors =
-      frontmatter.value.contributors ?? themeLocale.value.contributors ?? true
+    const showContributors
+      = frontmatter.value.contributors ?? themeLocale.value.contributors ?? true
 
-    if (!showContributors) return null
+    if (!showContributors)
+      return null
 
     return page.value.git?.contributors ?? null
   })
@@ -93,35 +97,26 @@ export const useContributors = (): ComputedRef<
 /**
  * Resolve `prev` or `next` config from frontmatter
  */
-const resolveFromFrontmatterConfig = (
-  conf: unknown,
-): null | false | NavItemWithLink => {
-  if (conf === false) {
+function resolveFromFrontmatterConfig(conf: unknown): null | false | NavItemWithLink {
+  if (conf === false)
     return null
-  }
 
-  if (isString(conf)) {
+  if (isString(conf))
     return useNavLink(conf)
-  }
 
-  if (isPlainObject<NavItemWithLink>(conf)) {
+  if (isPlainObject<NavItemWithLink>(conf))
     return conf
-  }
 
   return false
 }
 
-const flatSidebar = (
-  sidebar: NotesSidebarItem[],
-  res: NavItemWithLink[] = []
-): NavItemWithLink[] => {
+function flatSidebar(sidebar: NotesSidebarItem[], res: NavItemWithLink[] = []): NavItemWithLink[] {
   for (const item of sidebar) {
-    if (item.link) {
+    if (item.link)
       res.push({ link: item.link, text: item.text || item.dir || '' })
-    }
-    if (isArray(item.items) && item.items.length) {
+
+    if (isArray(item.items) && item.items.length)
       flatSidebar(item.items as NotesSidebarItem[], res)
-    }
   }
 
   return res
@@ -130,12 +125,8 @@ const flatSidebar = (
 /**
  * Resolve `prev` or `next` config from sidebar items
  */
-const resolveFromSidebarItems = (
-  sidebarItems: NavItemWithLink[],
-  currentPath: string,
-  offset: number,
-): null | NavItemWithLink => {
-  const index = sidebarItems.findIndex((item) => item.link === currentPath)
+function resolveFromSidebarItems(sidebarItems: NavItemWithLink[], currentPath: string, offset: number): null | NavItemWithLink {
+  const index = sidebarItems.findIndex(item => item.link === currentPath)
   if (index !== -1) {
     const targetItem = sidebarItems[index + offset]
     if (targetItem?.link) {
@@ -149,17 +140,13 @@ const resolveFromSidebarItems = (
   return null
 }
 
-const resolveFromBlogPostData = (
-  postList: PlumeThemeBlogPostItem[],
-  currentPath: string,
-  offset: number,
-): null | NavItemWithLink => {
-  const index = postList.findIndex((item) => item.path === currentPath)
+function resolveFromBlogPostData(postList: PlumeThemeBlogPostItem[], currentPath: string, offset: number): null | NavItemWithLink {
+  const index = postList.findIndex(item => item.path === currentPath)
   if (index !== -1) {
     const targetItem = postList[index + offset]
-    if (!targetItem?.path) {
+    if (!targetItem?.path)
       return null
-    }
+
     return {
       link: targetItem.path,
       text: targetItem.title,
@@ -168,7 +155,7 @@ const resolveFromBlogPostData = (
   return null
 }
 
-export const usePageNav = () => {
+export function usePageNav() {
   const route = useRoute()
   const page = usePageData<PlumeThemePageData>()
   const frontmatter = usePageFrontmatter<PlumeThemePageFrontmatter>()
@@ -178,32 +165,34 @@ export const usePageNav = () => {
 
   const prevNavList = computed(() => {
     const prevConfig = resolveFromFrontmatterConfig(frontmatter.value.prev)
-    if (prevConfig !== false) {
+    if (prevConfig !== false)
       return prevConfig
-    }
+
     if (page.value.isBlogPost) {
       return resolveFromBlogPostData(
         postList.value.filter(item => item.lang === locale.value),
         route.path,
-        -1
+        -1,
       )
-    } else {
+    }
+    else {
       return resolveFromSidebarItems(flatSidebar(sidebar.value), route.path, -1)
     }
   })
 
   const nextNavList = computed(() => {
     const nextConfig = resolveFromFrontmatterConfig(frontmatter.value.next)
-    if (nextConfig !== false) {
+    if (nextConfig !== false)
       return nextConfig
-    }
+
     if (page.value.isBlogPost) {
       return resolveFromBlogPostData(
         postList.value.filter(item => item.lang === locale.value),
         route.path,
-        1
+        1,
       )
-    } else {
+    }
+    else {
       return resolveFromSidebarItems(flatSidebar(sidebar.value), route.path, 1)
     }
   })

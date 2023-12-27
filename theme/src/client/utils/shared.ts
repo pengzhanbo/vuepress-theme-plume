@@ -9,27 +9,23 @@ export const inBrowser = typeof document !== 'undefined'
 export function isActive(
   currentPath: string,
   matchPath?: string,
-  asRegex = false
+  asRegex = false,
 ): boolean {
-  if (matchPath === undefined) {
+  if (matchPath === undefined)
     return false
-  }
 
   currentPath = normalize(`/${currentPath.replace(/^\//, '')}`)
 
-  if (asRegex) {
+  if (asRegex)
     return new RegExp(matchPath).test(currentPath)
-  }
 
-  if (normalize(matchPath) !== currentPath) {
+  if (normalize(matchPath) !== currentPath)
     return false
-  }
 
   const hashMatch = matchPath.match(HASH_RE)
 
-  if (hashMatch) {
+  if (hashMatch)
     return (inBrowser ? location.hash : '') === hashMatch[0]
-  }
 
   return true
 }
@@ -43,14 +39,12 @@ export function isExternal(path: string): boolean {
 }
 
 export function throttleAndDebounce(fn: () => void, delay: number): () => void {
-  // eslint-disable-next-line no-undef
   let timeoutId: NodeJS.Timeout
   let called = false
 
   return () => {
-    if (timeoutId) {
+    if (timeoutId)
       clearTimeout(timeoutId)
-    }
 
     if (!called) {
       fn()
@@ -58,7 +52,8 @@ export function throttleAndDebounce(fn: () => void, delay: number): () => void {
       setTimeout(() => {
         called = false
       }, delay)
-    } else {
+    }
+    else {
       timeoutId = setTimeout(fn, delay)
     }
   }

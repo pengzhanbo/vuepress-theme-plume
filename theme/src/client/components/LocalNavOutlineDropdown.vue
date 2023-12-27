@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type {PageHeader} from '@vuepress/client';
-import {onClickOutside} from '@vueuse/core'
+import type { PageHeader } from '@vuepress/client'
+import { onClickOutside } from '@vueuse/core'
 import { nextTick, ref, watch } from 'vue'
 import { useThemeLocaleData } from '../composables/index.js'
 import DocOutlineItem from './DocOutlineItem.vue'
@@ -33,9 +33,9 @@ function toggle() {
 function onItemClick(e: Event) {
   if ((e.target as HTMLElement).classList.contains('outline-link')) {
     // disable animation on hash navigation when page jumps
-    if (items.value) {
+    if (items.value)
       items.value.style.transition = 'none'
-    }
+
     nextTick(() => {
       open.value = false
     })
@@ -49,7 +49,7 @@ function scrollToTop() {
 </script>
 
 <template>
-  <div class="local-nav-outline-dropdown" :style="{ '--vp-vh': vh + 'px' }">
+  <div class="local-nav-outline-dropdown" :style="{ '--vp-vh': `${vh}px` }">
     <button v-if="headers.length > 0" ref="btn" :class="{ open }" @click="toggle">
       {{ theme.outlineLabel || 'On this page' }}
       <IconChevronRight class="icon" />

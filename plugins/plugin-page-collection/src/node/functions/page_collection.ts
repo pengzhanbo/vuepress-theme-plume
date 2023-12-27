@@ -5,6 +5,7 @@
  * 那么客户端发起的请求接口应该是 {host}:{port}/{proxyPrefix}/page_collection
  */
 // 引入这个包来提供类型支持
+import process from 'node:process'
 import type { Handler } from '@netlify/functions'
 import * as lean from 'leancloud-storage'
 
@@ -24,11 +25,7 @@ interface ResponseRes {
   message?: string
 }
 
-const response = (
-  code: number,
-  message: string,
-  data?: Record<string, any>
-): ResponseRes => {
+function response(code: number, message: string, data?: Record<string, any>): ResponseRes {
   return {
     statusCode: 200,
     body: JSON.stringify({
@@ -39,11 +36,11 @@ const response = (
   }
 }
 
-const successRes = (data: Record<string, any>): ResponseRes => {
+function successRes(data: Record<string, any>): ResponseRes {
   return response(200, 'success', data)
 }
 
-const errorRes = (message: string, code = 500): ResponseRes => {
+function errorRes(message: string, code = 500): ResponseRes {
   return response(code, message)
 }
 
@@ -55,12 +52,11 @@ const useMasterKey = Boolean(process.env.LEAN_CLOUD_MASTER_KEY)
 // netlify functions 的 functions 格式规范
 // 通过导出一个 handler 函数作为 钩子
 // event 中包含了 请求相关的信息，你可以通过 console.log(event) 查看具体信息
-export const handler: Handler = async (event, context) => {
+export const handler: Handler = async (event) => {
   // body 即为 请求体
   const { url } = JSON.parse(event.body || '') || {}
-  if (!url) {
+  if (!url)
     return errorRes('params [url] not found')
-  }
 
   // 出于安全考虑，你可能还需要在这里做 域名请求白名单的校验
   // 可以在 event.headers 中拿到相关 域名信息
@@ -72,11 +68,12 @@ export const handler: Handler = async (event, context) => {
     query.equalTo('url', url)
     const current = await query.first({ useMasterKey })
     let page: lean.Object
-    if (current) {
+    if (current)
       page = lean.Object.createWithoutData('Page', current.get('objectId'))
-    } else {
+
+    else
       page = new Page()
-    }
+
     page.increment('visitCount', 1)
     page = await page.save(null, {
       useMasterKey,
@@ -85,7 +82,8 @@ export const handler: Handler = async (event, context) => {
     return successRes({
       visitCount: page.get('visitCount'),
     })
-  } catch (e: any) {
+  }
+  catch (e: any) {
     return errorRes(e.message, e.code || e.status || e.statusCode)
   }
 }

@@ -7,30 +7,33 @@ import AutoLink from './AutoLink.vue'
 import FriendsItem from './FriendsItem.vue'
 import IconEdit from './icons/IconEdit.vue'
 
-
 const matter = usePageFrontmatter<PlumeThemeFriendsFrontmatter>()
 const editNavLink = useEditNavLink()
 
 const list = computed(() => matter.value.list || [])
-
 </script>
 
 <template>
   <div class="friends-wrapper">
-    <h2 class="title">{{ matter.title || 'My Friends' }}</h2>
-    <p v-if="matter.description" class="description">{{ matter.description }}</p>
+    <h2 class="title">
+      {{ matter.title || 'My Friends' }}
+    </h2>
+    <p v-if="matter.description" class="description">
+      {{ matter.description }}
+    </p>
     <section v-if="list.length" class="friends-list">
       <FriendsItem v-for="(friend, index) in list" :key="friend.name + index" :friend="friend" />
     </section>
 
     <div v-if="editNavLink" class="edit-link">
       <AutoLink class="edit-link-button" :href="editNavLink.link" :no-icon="true">
-        <IconEdit class="edit-link-icon" aria-label="edit icon"/>
+        <IconEdit class="edit-link-icon" aria-label="edit icon" />
         {{ editNavLink.text }}
       </AutoLink>
     </div>
   </div>
 </template>
+
 <style scoped>
 .friends-wrapper {
   width: 100%;

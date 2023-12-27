@@ -17,13 +17,14 @@ const marker = ref()
 useActiveAnchor(container, marker)
 
 function handleClick({ target: el }: Event) {
-  const id = '#' + (el as HTMLAnchorElement).href!.split('#')[1]
+  const id = `#${(el as HTMLAnchorElement).href!.split('#')[1]}`
   const heading = document.querySelector<HTMLAnchorElement>(
-    decodeURIComponent(id)
+    decodeURIComponent(id),
   )
   heading?.focus()
 }
 </script>
+
 <template>
   <div class="page-aside">
     <div

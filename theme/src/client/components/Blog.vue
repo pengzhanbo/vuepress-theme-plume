@@ -8,8 +8,8 @@ import PostList from './PostList.vue'
 import Tags from './Tags.vue'
 
 const page = usePageData<PlumeThemePageData>()
-
 </script>
+
 <template>
   <div class="blog-wrapper">
     <PostList v-if="page.type === 'blog'" />

@@ -9,9 +9,11 @@ export type BlogDataRef<T extends BlogPostData = BlogPostData> = Ref<T>
 
 export const blogPostData: BlogDataRef = ref(blogPostDataRaw)
 
-export const useBlogPostData = <
-  T extends BlogPostData = BlogPostData
->(): BlogDataRef<T> => blogPostData as BlogDataRef<T>
+export function useBlogPostData<
+  T extends BlogPostData = BlogPostData,
+>(): BlogDataRef<T> {
+  return blogPostData as BlogDataRef<T>
+}
 
 if (import.meta.webpackHot || import.meta.hot) {
   __VUE_HMR_RUNTIME__.updateBlogData = (data: BlogPostData) => {

@@ -10,7 +10,7 @@ let promiseResolve: (() => void) | null = null
 const scrollPromise: ScrollPromise = {
   wait: () => promise,
   pending: () => {
-    promise = new Promise((resolve) => (promiseResolve = resolve))
+    promise = new Promise(resolve => (promiseResolve = resolve))
   },
   resolve: () => {
     promiseResolve?.()

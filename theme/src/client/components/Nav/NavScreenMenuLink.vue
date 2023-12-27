@@ -14,7 +14,7 @@ const closeScreen = inject('close-screen') as () => void
 <template>
   <AutoLink class="nav-screen-menu-link" :href="link" @click="closeScreen">
     <Icon v-if="icon" :name="icon" />
-    <i v-text="text"></i>
+    <i v-text="text" />
   </AutoLink>
 </template>
 

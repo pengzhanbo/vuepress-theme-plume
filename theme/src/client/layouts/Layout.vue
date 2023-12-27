@@ -32,9 +32,9 @@ watch(() => route.path, closeSidebar)
 
 const isBlogLayout = computed(() => {
   return (
-    page.value.type === 'blog' ||
-    page.value.type === 'blog-archives' ||
-    page.value.type === 'blog-tags'
+    page.value.type === 'blog'
+    || page.value.type === 'blog-archives'
+    || page.value.type === 'blog-tags'
   )
 })
 
@@ -43,6 +43,7 @@ useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
 provide('close-sidebar', closeSidebar)
 provide('is-sidebar-open', isSidebarOpen)
 </script>
+
 <template>
   <div class="theme-plume">
     <SkipLink />

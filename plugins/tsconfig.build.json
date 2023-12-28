@@ -13,7 +13,8 @@
     { "path": "./plugin-netlify-functions/tsconfig.build.json" },
     { "path": "./plugin-notes-data/tsconfig.build.json" },
     { "path": "./plugin-page-collection/tsconfig.build.json" },
-    { "path": "./plugin-shikiji/tsconfig.build.json" }
+    { "path": "./plugin-shikiji/tsconfig.build.json" },
+    { "path": "./plugin-content-update/tsconfig.build.json" }
   ],
   "files": []
 }

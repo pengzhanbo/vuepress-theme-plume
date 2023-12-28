@@ -1,0 +1,49 @@
+{
+  "name": "@vuepress-plume/plugin-content-update",
+  "type": "module",
+  "version": "1.0.0-rc.6",
+  "description": "The Plugin for VuePres 2",
+  "author": "pengzhanbo <volodymyr@foxmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
+  "exports": {
+    ".": "./lib/node/index.js",
+    "./client": "./lib/client/index.js",
+    "./package.json": "./package.json"
+  },
+  "main": "lib/node/index.js",
+  "types": "./lib/node/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "pnpm run clean && pnpm run copy && pnpm run ts",
+    "clean": "rimraf lib *.tsbuildinfo",
+    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
+    "ts": "tsc -b tsconfig.build.json"
+  },
+  "dependencies": {
+    "@vuepress/client": "2.0.0-rc.0",
+    "@vuepress/core": "2.0.0-rc.0",
+    "@vuepress/shared": "2.0.0-rc.0",
+    "@vuepress/utils": "2.0.0-rc.0",
+    "vue": "^3.3.13",
+    "vue-router": "4.2.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keyword": [
+    "VuePress",
+    "vuepress plugin",
+    "content-update",
+    "vuepress-plugin-plugin-content-update"
+  ]
+}

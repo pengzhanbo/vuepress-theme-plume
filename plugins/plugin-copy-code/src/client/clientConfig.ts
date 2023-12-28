@@ -1,5 +1,5 @@
 import { defineClientConfig } from '@vuepress/client'
-import { setupCopyCode } from './composables/index.js'
+import { setupCopyCode } from './setupCopyCode.js'
 
 import './styles/button.scss'
 

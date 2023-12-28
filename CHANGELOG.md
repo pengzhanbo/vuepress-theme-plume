@@ -1,3 +1,23 @@
+# [1.0.0-rc.7](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.6...v1.0.0-rc.7) (2023-12-28)
+
+
+### Features
+
+* 新增 content-update 插件 ([496bbae](https://github.com/pengzhanbo/vuepress-theme-plume/commit/496bbae295bf7a9eddd6135ab841e8c0ae543123))
+
+
+### Performance Improvements
+
+* 调整 iconify 逻辑 ([bd0f857](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bd0f857e6ae24b989747d62dceabd683eb22cf02))
+* 调整代码复制逻辑，适配 shikiji diff ([90465d2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/90465d2b02788f095c60e10e0d412d3fad651bc7))
+* 删除无用文件 ([a598209](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a598209a51c85c9d7583d3cb57b44d588b5e7105))
+* 优化 blog extract 交互 ([713b2cf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/713b2cfbb76d59be428eaf48976dabd95fb5e7d9))
+* 优化代码结构 ([7ab0686](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7ab06863e712a376b1b7075368c6e36d1e9397c6))
+* 优化归档页、标签页 UI ([7b8fea5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7b8fea5d40ca7ed59d030ad434a5339a96f4f44f))
+* 优化开发时编写md时一些组件的热更新交互 ([bcc894b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bcc894ba98c69c3c00b5bbcc81d756fcf46e5ca1))
+
+
+
 # [1.0.0-rc.6](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.5...v1.0.0-rc.6) (2023-12-27)
 
 

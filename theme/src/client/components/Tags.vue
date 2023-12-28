@@ -8,7 +8,7 @@ const { tags: tagsLink } = useBlogExtract()
 </script>
 
 <template>
-  <div class="tags-wrapper">
+  <div class="tags-wrapper" :class="{ 'has-list': postList.length > 0 }">
     <h2 class="tags-title">
       <IconTag class="icon" />
       <span>{{ tagsLink.text }}</span>
@@ -22,9 +22,13 @@ const { tags: tagsLink } = useBlogExtract()
         @click="handleTagClick(tag.name)"
       >
         <span class="tag-name">{{ tag.name }}</span>
-        <span class="tag-count">({{ tag.count }})</span>
+        <span class="tag-count">{{ tag.count }}</span>
       </p>
     </div>
+
+    <h3 v-if="currentTag" class="tag-title">
+      {{ currentTag }}
+    </h3>
 
     <ShortPostList v-if="postList.length" :post-list="postList" />
   </div>
@@ -32,16 +36,20 @@ const { tags: tagsLink } = useBlogExtract()
 
 <style scoped>
 .tags-wrapper {
-  padding: 32px 24px;
+  padding: 32px 24px 168px;
   flex: 1;
+}
+
+.tags-wrapper.has-list {
+  padding-bottom: 64px;
 }
 .tags-title {
   display: flex;
   align-items: center;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--vp-c-brand-1);
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 .tags-title .icon {
   width: 1em;
@@ -55,20 +63,25 @@ const { tags: tagsLink } = useBlogExtract()
   align-items: center;
 }
 .tags .tag {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   word-wrap: break-word;
   margin: 8px;
-  padding: 2px 10px;
+  padding: 6px 6px 6px 10px;
   background-color: var(--vp-c-default-soft);
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
+  line-height: 1;
   border-radius: 4px;
   cursor: pointer;
   transition: all var(--t-color);
 }
-.tags .tag:hover,
-.tags .tag.active {
-  background-color: var(--vp-c-brand-1);
-  color: var(--vp-c-bg);
+
+.tag-title {
+  font-size: 20px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--vp-c-divider);
+  padding-bottom: 8px;
+  margin: 20px 12px -10px 12px;
 }
 
 .tag-name {
@@ -76,6 +89,22 @@ const { tags: tagsLink } = useBlogExtract()
 }
 
 .tag-count {
+  display: inline-block;
+  border-left: 1px solid var(--vp-c-divider);
+  padding-left: 6px;
   margin-left: 4px;
+  color: var(--vp-c-text-3);
+  transition: all var(--t-color);
+}
+
+.tags .tag:hover,
+.tags .tag.active {
+  background-color: var(--vp-c-brand-1);
+  color: var(--vp-c-bg);
+}
+
+.tags .tag:hover .tag-count,
+.tags .tag.active .tag-count {
+  color: var(--vp-bg);
 }
 </style>

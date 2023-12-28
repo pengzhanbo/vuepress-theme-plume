@@ -1,5 +1,5 @@
-import { nextTick, onMounted, watch } from 'vue'
-import { usePageData } from '@vuepress/client'
+import { nextTick, onMounted } from 'vue'
+import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import type { CopyCodeOptions } from '../shared/index.js'
 
 declare const __COPY_CODE_OPTIONS__: CopyCodeOptions
@@ -23,8 +23,6 @@ function sleep(ms: number): Promise<void> {
 }
 
 export function setupCopyCode(): void {
-  const page = usePageData()
-
   const insertBtn = (codeBlockEl: HTMLElement): void => {
     if (codeBlockEl.hasAttribute('has-copy-code'))
       return
@@ -92,13 +90,10 @@ export function setupCopyCode(): void {
     }
   })
 
-  watch(
-    () => page.value.path,
-    () => {
-      if (!isMobile() || options.showInMobile)
-        generateButton()
-    },
-  )
+  onContentUpdated(() => {
+    if (!isMobile() || options.showInMobile)
+      generateButton()
+  })
 }
 
 async function copyToClipboard(text: string) {

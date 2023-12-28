@@ -22,6 +22,7 @@ import { type MarkdownEnhanceOptions, mdEnhancePlugin } from 'vuepress-plugin-md
 import { readingTimePlugin } from 'vuepress-plugin-reading-time2'
 import { seoPlugin } from 'vuepress-plugin-seo2'
 import { sitemapPlugin } from 'vuepress-plugin-sitemap2'
+import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
 import type {
   PlumeThemeLocaleOptions,
   PlumeThemePluginOptions,
@@ -84,6 +85,8 @@ export function setupPlugins(app: App, options: PlumeThemePluginOptions, localeO
     }),
 
     iconifyPlugin(),
+
+    contentUpdatePlugin(),
 
     activeHeaderLinksPlugin({
       headerLinkSelector: 'a.outline-link',

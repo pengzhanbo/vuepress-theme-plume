@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { usePageData } from '@vuepress/client'
 import { computed, ref } from 'vue'
+import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import { useActiveAnchor, useThemeLocaleData } from '../composables/index.js'
 import IconPrint from './icons/IconPrint.vue'
 import PageAsideItem from './PageAsideItem.vue'
@@ -8,8 +9,12 @@ import PageAsideItem from './PageAsideItem.vue'
 const page = usePageData()
 const theme = useThemeLocaleData()
 
-const headers = computed(() => page.value.headers)
+const headers = ref(page.value.headers)
 const hasOutline = computed(() => headers.value.length > 0)
+
+onContentUpdated(() => {
+  headers.value = page.value.headers
+})
 
 const container = ref()
 const marker = ref()

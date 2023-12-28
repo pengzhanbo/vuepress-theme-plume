@@ -48,6 +48,7 @@
     "@vuepress-plume/plugin-baidu-tongji": "workspace:*",
     "@vuepress-plume/plugin-blog-data": "workspace:*",
     "@vuepress-plume/plugin-caniuse": "workspace:*",
+    "@vuepress-plume/plugin-content-update": "workspace:*",
     "@vuepress-plume/plugin-copy-code": "workspace:*",
     "@vuepress-plume/plugin-iconify": "workspace:*",
     "@vuepress-plume/plugin-notes-data": "workspace:*",
@@ -74,11 +75,11 @@
     "ts-debounce": "^4.0.0",
     "vue": "^3.3.13",
     "vue-router": "4.2.5",
-    "vuepress-plugin-comment2": "2.0.0-rc.6",
-    "vuepress-plugin-md-enhance": "2.0.0-rc.6",
-    "vuepress-plugin-reading-time2": "2.0.0-rc.6",
-    "vuepress-plugin-seo2": "2.0.0-rc.6",
-    "vuepress-plugin-sitemap2": "2.0.0-rc.6"
+    "vuepress-plugin-comment2": "2.0.0-rc.7",
+    "vuepress-plugin-md-enhance": "2.0.0-rc.7",
+    "vuepress-plugin-reading-time2": "2.0.0-rc.7",
+    "vuepress-plugin-seo2": "2.0.0-rc.7",
+    "vuepress-plugin-sitemap2": "2.0.0-rc.7"
   },
   "devDependencies": {
     "@types/lodash.merge": "^4.6.9"

@@ -15,11 +15,21 @@ const route = useRoute()
 const avatar = computed(() => theme.value.avatar)
 const { hasBlogExtract, tags, archives } = useBlogExtract()
 const open = ref(false)
+const lazyOpen = ref(false)
 
 const isLocked = useScrollLock(inBrowser ? document.body : null)
 
 watch(() => route.path, () => {
   open.value = false
+})
+
+watch(open, async () => {
+  if (open.value) {
+    setTimeout(() => {
+      lazyOpen.value = true
+    }, 200)
+  }
+  else { lazyOpen.value = false }
 })
 
 watch(
@@ -39,34 +49,38 @@ const showBlogExtract = computed(() => {
 </script>
 
 <template>
-  <div v-if="showBlogExtract" class="blog-extract" @click="open = !open">
-    <IconBlogExt class="icon" />
-  </div>
-  <div v-if="showBlogExtract" class="blog-modal" :class="{ open }" @click.self="open = false">
-    <div class="blog-modal-container">
-      <div v-if="avatar" class="avatar-profile">
-        <p v-if="avatar.url" class="avatar">
-          <img :src="avatar.url" :alt="avatar.name">
-        </p>
-        <div>
-          <h3>{{ avatar.name }}</h3>
-          <p class="desc">
-            {{ avatar.description }}
-          </p>
+  <template v-if="showBlogExtract">
+    <div class="blog-extract" @click="open = !open">
+      <IconBlogExt class="icon" />
+    </div>
+    <Transition name="fade">
+      <div v-show="open" class="blog-modal" @click.self="open = false">
+        <div class="blog-modal-container" :class="{ open: lazyOpen }">
+          <div v-if="avatar" class="avatar-profile">
+            <p v-if="avatar.url" class="avatar">
+              <img :src="avatar.url" :alt="avatar.name">
+            </p>
+            <div>
+              <h3>{{ avatar.name }}</h3>
+              <p class="desc">
+                {{ avatar.description }}
+              </p>
+            </div>
+          </div>
+          <div v-if="hasBlogExtract" class="blog-nav">
+            <AutoLink class="nav-link" :href="tags.link">
+              <IconTag class="icon" />
+              <span>{{ tags.text }}</span>
+            </AutoLink>
+            <AutoLink class="nav-link" :href="archives.link">
+              <IconArchive class="icon" />
+              <span>{{ archives.text }}</span>
+            </AutoLink>
+          </div>
         </div>
       </div>
-      <div v-if="hasBlogExtract" class="blog-nav">
-        <AutoLink class="nav-link" :href="tags.link">
-          <IconTag class="icon" />
-          <span>{{ tags.text }}</span>
-        </AutoLink>
-        <AutoLink class="nav-link" :href="archives.link">
-          <IconArchive class="icon" />
-          <span>{{ archives.text }}</span>
-        </AutoLink>
-      </div>
-    </div>
-  </div>
+    </Transition>
+  </template>
 </template>
 
 <style scoped>
@@ -104,19 +118,18 @@ const showBlogExtract = computed(() => {
   left: 0;
   z-index: var(--vp-z-index-sidebar);
   width: 100%;
-  opacity: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  transform: translateY(100%);
-  transition: opacity 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  opacity: 1;
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.blog-modal.open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  transition: opacity 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+.blog-modal.fade-enter-from,
+.blog-modal.fade-leave-to {
+  opacity: 0;
+}
+
+.blog-modal.fade-leave-active,
+.blog-modal.fade-enter-active {
+  transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .blog-modal-container {
@@ -125,8 +138,15 @@ const showBlogExtract = computed(() => {
   width: 100%;
   padding: 24px;
   background-color: var(--vp-c-bg);
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.1), 0 -1px 4px rgba(0, 0, 0, 0.1);;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.blog-modal-container.open {
+  transform: translateY(0);
 }
 
 .avatar-profile {

@@ -52,16 +52,20 @@ const {
 }
 
 .btn:hover {
-  color: var(--vp-c-brand-2);
+  color: var(--vp-c-bg);
+  background-color: var(--vp-c-brand-2);
   border-color: var(--vp-c-brand-2);
 }
-.btn[disabled] {
+.btn[disabled],
+.btn[disabled]:hover {
   color: var(--vp-c-gray-1);
   border-color: var(--vp-c-divider);
+  background-color: transparent;
+  cursor: not-allowed;
 }
 
 .page-info {
-  color: var(--vp-c-brand-2);
+  color: var(--vp-c-text-3);
   font-weight: 500;
 }
 </style>

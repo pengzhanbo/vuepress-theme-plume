@@ -146,7 +146,7 @@ export function useTags() {
     }).map(item => ({
       title: item.title,
       path: item.path,
-      createTime: item.createTime.split(' ')[0],
+      createTime: item.createTime.split(' ')[0].replace(/\//g, '-'),
     }))
   }
 
@@ -178,7 +178,7 @@ export function useArchives() {
       current.list.push({
         title: item.title,
         path: item.path,
-        createTime: createTime.slice(year.length + 1),
+        createTime: createTime.slice(year.length + 1).replace(/\//g, '-'),
       })
     })
 

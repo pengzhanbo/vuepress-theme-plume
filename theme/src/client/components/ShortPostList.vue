@@ -11,14 +11,16 @@ defineProps<{
 </script>
 
 <template>
-  <div class="post-list">
-    <p v-for="post in postList" :key="post.path">
-      <AutoLink class="post-title" :href="post.path">
-        {{ post.title }}
-      </AutoLink>
+  <ul class="post-list">
+    <li v-for="post in postList" :key="post.path">
+      <p class="post-title">
+        <AutoLink class="post-link" :href="post.path">
+          {{ post.title }}
+        </AutoLink>
+      </p>
       <span class="post-time">{{ post.createTime }}</span>
-    </p>
-  </div>
+    </li>
+  </ul>
 </template>
 
 <style scoped>
@@ -27,7 +29,7 @@ defineProps<{
   padding: 0 12px;
 }
 
-.post-list p {
+.post-list li {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,7 +39,7 @@ defineProps<{
 
 .post-list .post-title {
   flex: 1;
-  margin-right: 20px;
+  margin-right: 14px;
   font-weight: 600;
   transition: all var(--t-color);
   display: -webkit-box;
@@ -52,10 +54,10 @@ defineProps<{
   transition: all var(--t-color);
 }
 
-.post-list p:hover .post-title {
+.post-list li:hover .post-title {
   color: var(--vp-c-brand-1);
 }
-.post-list p:hover .post-time {
+.post-list li:hover .post-time {
   color: var(--vp-c-text-2);
 }
 </style>

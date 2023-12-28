@@ -50,7 +50,7 @@ export interface PlumeThemePluginOptions {
 
   baiduTongji?: false | BaiduTongjiOptions
 
-  frontmatter?: AutoFrontmatterOptions
+  frontmatter?: Omit<AutoFrontmatterOptions, 'frontmatter'>
 
   readingTime?: false | ReadingTimeOptions
 }

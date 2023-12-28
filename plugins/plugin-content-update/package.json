@@ -1,5 +1,5 @@
 {
-  "name": "@vuepress-plume/plugin-copy-code",
+  "name": "@vuepress-plume/plugin-content-update",
   "type": "module",
   "version": "1.0.0-rc.6",
   "description": "The Plugin for VuePres 2",
@@ -30,12 +30,12 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "dependencies": {
-    "@vuepress-plume/plugin-content-update": "workspace:*",
     "@vuepress/client": "2.0.0-rc.0",
     "@vuepress/core": "2.0.0-rc.0",
     "@vuepress/shared": "2.0.0-rc.0",
     "@vuepress/utils": "2.0.0-rc.0",
-    "vue": "^3.3.13"
+    "vue": "^3.3.13",
+    "vue-router": "4.2.5"
   },
   "publishConfig": {
     "access": "public"
@@ -43,7 +43,7 @@
   "keyword": [
     "VuePress",
     "vuepress plugin",
-    "copyCode",
-    "vuepress-plugin-plugin-copy-code"
+    "content-update",
+    "vuepress-plugin-plugin-content-update"
   ]
 }

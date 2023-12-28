@@ -23,8 +23,7 @@ export function plumeTheme({
       plugins: setupPlugins(app, themePlugins, localeOptions),
       onInitialized: async app => await setupPage(app, localeOptions),
       extendsPage: (page: Page<PlumeThemePageData>) =>
-        extendsPageData(app, page, localeOptions)
-      ,
+        extendsPageData(app, page, localeOptions),
     }
   }
 }

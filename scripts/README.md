@@ -1,11 +1,3 @@
-## scripts/autoInstall
-
-检查各个 workspace package 中的 vuepress 相关依赖，并更新到最新版本。
-
-``` sh
-pnpm autoUpdate
-```
-
 ## scripts/create
 
 在 `packages/` 目录下生成一个新的 插件包

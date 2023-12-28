@@ -10,6 +10,7 @@
       "@internal/notesData": [
         "./plugins/plugin-notes-data/src/client/notesData.d.ts"
       ],
+      "@internal/pageComponents": ["./docs/.vuepress/.temp/internal/pageComponents.js"],
       "@internal/*": ["./docs/.vuepress/.temp/internal/*"],
       "@vuepress-plume/*": ["./plugins/*/src/node/index.ts"],
       "vuepress-theme-plume": ["./theme/src/node/index.ts"],
@@ -25,5 +26,5 @@
     "docs/.vuepress/**/*",
     "scripts/**/*"
   ],
-  "exclude": ["node_modules", ".temp", ".cache", "lib", "dist"]
+  "exclude": ["node_modules", ".cache", "lib", "dist"]
 }

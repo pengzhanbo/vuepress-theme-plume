@@ -1,13 +1,11 @@
 import type { IconifyIcon } from '@iconify/vue'
 import { loadIcon } from '@iconify/vue'
-import { computed, ref, watch } from 'vue'
-import type { ComputedRef, Ref } from 'vue'
+import { ref, watch } from 'vue'
+import type { Ref } from 'vue'
 
-const iconCache: Ref<Record<string, IconifyIcon>> = ref({})
-
-export function useIconify(name: ComputedRef<string> | Ref<string>) {
-  const icon = computed(() => iconCache.value[name.value])
-  const loaded = ref(true)
+export function useIconify(name: Ref<string>) {
+  const icon = ref<IconifyIcon | null>(null)
+  const loaded = ref(false)
 
   async function loadIconComponent() {
     if (icon.value)
@@ -16,7 +14,8 @@ export function useIconify(name: ComputedRef<string> | Ref<string>) {
     if (!__VUEPRESS_SSR__) {
       try {
         loaded.value = false
-        iconCache.value[name.value] = await loadIcon(name.value)
+        const cached = await loadIcon(name.value)
+        icon.value = cached
       }
       finally {
         loaded.value = true

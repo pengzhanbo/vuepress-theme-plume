@@ -12,6 +12,9 @@ export default defineClientConfig({
   enhance({ app, router }) {
     // global component
     app.component('Badge', Badge)
+
+    if (app._context.components.ExternalLinkIcon)
+      delete app._context.components.ExternalLinkIcon
     app.component('ExternalLinkIcon', ExternalLinkIcon)
 
     app.component('DocSearch', () => {

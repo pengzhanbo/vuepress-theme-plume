@@ -53,9 +53,6 @@ declare const __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_COLOR__: string
       class="vp-iconify"
       :style="iconStyle"
     />
-    <span v-else class="vp-iconify" :style="{ ...iconStyle, fontSize: size }">
-      {{ props.name }}
-    </span>
   </ClientOnly>
 </template>
 

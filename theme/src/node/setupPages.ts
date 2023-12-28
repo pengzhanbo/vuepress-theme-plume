@@ -6,10 +6,7 @@ import type {
   PlumeThemeLocaleOptions,
   PlumeThemePageData,
 } from '../shared/index.js'
-
-function normalizePath(dir: string) {
-  return dir.replace(/\\+/g, '/')
-}
+import { normalizePath } from './utils.js'
 
 export async function setupPage(
   app: App,

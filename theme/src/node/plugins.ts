@@ -18,8 +18,8 @@ import { iconifyPlugin } from '@vuepress-plume/plugin-iconify'
 import { notesDataPlugin } from '@vuepress-plume/plugin-notes-data'
 import { shikijiPlugin } from '@vuepress-plume/plugin-shikiji'
 import { commentPlugin } from 'vuepress-plugin-comment2'
-import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
-import { useReadingTimePlugin } from 'vuepress-plugin-reading-time2'
+import { type MarkdownEnhanceOptions, mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
+import { readingTimePlugin } from 'vuepress-plugin-reading-time2'
 import { seoPlugin } from 'vuepress-plugin-seo2'
 import { sitemapPlugin } from 'vuepress-plugin-sitemap2'
 import type {
@@ -41,10 +41,7 @@ export function setupPlugins(app: App, options: PlumeThemePluginOptions, localeO
     })
     .filter(Boolean)
 
-  if (options.readingTime !== false)
-    useReadingTimePlugin(app, options.readingTime || {}, true)
-
-  return [
+  const plugins: PluginConfig = [
     palettePlugin({ preset: 'sass' }),
 
     themeDataPlugin({
@@ -55,6 +52,7 @@ export function setupPlugins(app: App, options: PlumeThemePluginOptions, localeO
           : undefined,
       } as any,
     }),
+
     autoFrontmatterPlugin(autoFrontmatter(app, options, localeOptions)),
 
     blogDataPlugin({
@@ -85,8 +83,6 @@ export function setupPlugins(app: App, options: PlumeThemePluginOptions, localeO
       },
     }),
 
-    localeOptions.notes ? notesDataPlugin(localeOptions.notes) : [],
-
     iconifyPlugin(),
 
     activeHeaderLinksPlugin({
@@ -95,103 +91,124 @@ export function setupPlugins(app: App, options: PlumeThemePluginOptions, localeO
       delay: 200,
       offset: 20,
     }),
-
-    options.nprogress !== false ? nprogressPlugin() : [],
-
-    options.git !== false
-      ? gitPlugin({
-        createdTime: false,
-        updatedTime: localeOptions.lastUpdated !== false,
-        contributors: localeOptions.contributors !== false,
-      })
-      : [],
-
-    options.mediumZoom !== false
-      ? mediumZoomPlugin({
-        selector: '.plume-content > img, .plume-content :not(a) > img',
-        zoomOptions: {
-          background: 'var(--vp-c-bg)',
-        },
-        delay: 300,
-      })
-      : [],
-
-    options.caniuse !== false
-      ? caniusePlugin(
-        options.caniuse || {
-          mode: 'embed',
-        },
-      )
-      : [],
-
-    options.externalLinkIcon !== false
-      ? externalLinkIconPlugin({
-        locales: Object.entries(localeOptions.locales || {}).reduce(
-          (result: Record<string, any>, [key, value]) => {
-            result[key] = {
-              openInNewWindow:
-                  value.openInNewWindow ?? localeOptions.openInNewWindow,
-            }
-            return result
-          },
-          {},
-        ),
-      })
-      : [],
-
-    options.search !== false ? searchPlugin(options.search) : [],
-    options.docsearch !== false && !options.search
-      ? docsearchPlugin(options.docsearch!)
-      : [],
-
-    options.shikiji !== false
-      ? shikijiPlugin({
-        theme: { light: 'vitesse-light', dark: 'vitesse-dark' },
-        ...(options.shikiji ?? {}),
-      })
-      : [],
-
-    options.copyCode !== false
-      ? copyCodePlugin({
-        selector: '.plume-content div[class*="language-"] pre',
-        ...options.copyCode,
-      })
-      : [],
-
-    options.markdownEnhance !== false
-      ? mdEnhancePlugin(
-        Object.assign(
-          {
-            hint: true, // info note tip warning danger details d
-            codetabs: true,
-            tabs: true,
-            align: true,
-            mark: true,
-            tasklist: true,
-            demo: true,
-            attrs: true,
-          },
-          options.markdownEnhance || {},
-        ),
-      )
-      : [],
-
-    options.comment !== false ? commentPlugin(options.comment || {}) : [],
-
-    options.baiduTongji !== false && options.baiduTongji?.key
-      ? baiduTongjiPlugin(options.baiduTongji)
-      : [],
-
-    options.sitemap !== false && localeOptions.hostname && isProd
-      ? sitemapPlugin({
-        hostname: localeOptions.hostname,
-      })
-      : [],
-    options.seo !== false && localeOptions.hostname && isProd
-      ? seoPlugin({
-        hostname: localeOptions.hostname || '',
-        author: localeOptions.avatar?.name,
-      })
-      : [],
   ]
+
+  if (options.readingTime !== false)
+    plugins.push(readingTimePlugin(options.readingTime || {}))
+
+  if (localeOptions.notes)
+    plugins.push(notesDataPlugin(localeOptions.notes))
+
+  if (options.nprogress !== false)
+    plugins.push(nprogressPlugin())
+
+  if (options.git !== false) {
+    plugins.push(gitPlugin({
+      createdTime: false,
+      updatedTime: localeOptions.lastUpdated !== false,
+      contributors: localeOptions.contributors !== false,
+    }))
+  }
+
+  if (options.mediumZoom !== false) {
+    plugins.push(mediumZoomPlugin({
+      selector: '.plume-content > img, .plume-content :not(a) > img',
+      zoomOptions: {
+        background: 'var(--vp-c-bg)',
+      },
+      delay: 300,
+    }))
+  }
+
+  if (options.caniuse !== false) {
+    plugins.push(caniusePlugin(
+      options.caniuse || {
+        mode: 'embed',
+      },
+    ))
+  }
+
+  if (options.externalLinkIcon !== false) {
+    plugins.push(externalLinkIconPlugin({
+      locales: Object.entries(localeOptions.locales || {}).reduce(
+        (result: Record<string, any>, [key, value]) => {
+          result[key] = {
+            openInNewWindow:
+              value.openInNewWindow ?? localeOptions.openInNewWindow,
+          }
+          return result
+        },
+        {},
+      ),
+    }))
+  }
+
+  if (options.search !== false)
+    plugins.push(searchPlugin(options.search))
+
+  if (options.docsearch !== false && !options.search) {
+    if (options.docsearch?.appId && options.docsearch?.apiKey) {
+      plugins.push(docsearchPlugin(options.docsearch))
+    }
+    else {
+      console.error(
+        'docsearch plugin: appId and apiKey are both required',
+      )
+    }
+  }
+
+  if (options.shikiji !== false) {
+    plugins.push(shikijiPlugin({
+      theme: { light: 'vitesse-light', dark: 'vitesse-dark' },
+      ...(options.shikiji ?? {}),
+    }))
+  }
+
+  if (options.copyCode !== false) {
+    plugins.push(copyCodePlugin({
+      selector: '.plume-content div[class*="language-"] pre',
+      ...options.copyCode,
+    }))
+  }
+
+  if (options.markdownEnhance !== false) {
+    plugins.push(mdEnhancePlugin(
+      Object.assign(
+        {
+          hint: true, // info note tip warning danger details
+          codetabs: true,
+          tabs: true,
+          align: true,
+          mark: true,
+          tasklist: true,
+          demo: true,
+          attrs: true,
+          sup: true,
+          sub: true,
+        } as MarkdownEnhanceOptions,
+        options.markdownEnhance || {},
+      ),
+    ))
+  }
+
+  if (options.comment !== false)
+    plugins.push(commentPlugin(options.comment || {}))
+
+  if (options.baiduTongji !== false && options.baiduTongji?.key)
+    plugins.push(baiduTongjiPlugin(options.baiduTongji))
+
+  if (options.sitemap !== false && localeOptions.hostname && isProd) {
+    plugins.push(sitemapPlugin({
+      hostname: localeOptions.hostname,
+    }))
+  }
+
+  if (options.seo !== false && localeOptions.hostname && isProd) {
+    plugins.push(seoPlugin({
+      hostname: localeOptions.hostname || '',
+      author: localeOptions.avatar?.name,
+    }))
+  }
+
+  return plugins
 }

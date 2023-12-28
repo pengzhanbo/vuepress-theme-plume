@@ -1,6 +1,4 @@
-import fs from 'node:fs'
 import path from 'node:path'
-import process from 'node:process'
 import type { App } from '@vuepress/core'
 import { resolveLocalePath } from '@vuepress/shared'
 import type {
@@ -8,28 +6,13 @@ import type {
   FrontmatterArray,
   FrontmatterObject,
 } from '@vuepress-plume/plugin-auto-frontmatter'
-import type { NotesItem } from '@vuepress-plume/plugin-notes-data'
 import { format } from 'date-fns'
-import { customAlphabet } from 'nanoid'
+import { uniq } from '@pengzhanbo/utils'
 import type {
   PlumeThemeLocaleOptions,
   PlumeThemePluginOptions,
 } from '../shared/index.js'
-
-const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz', 8)
-function getPackage() {
-  let pkg = {} as any
-  try {
-    const content = fs.readFileSync(path.join(process.cwd(), 'package.json'), 'utf-8')
-    pkg = JSON.parse(content)
-  }
-  catch {}
-  return pkg
-}
-
-function normalizePath(dir: string) {
-  return dir.replace(/\\+/g, '/')
-}
+import { getCurrentDirname, getPackage, nanoid, pathJoin } from './utils.js'
 
 export default function autoFrontmatter(
   app: App,
@@ -38,17 +21,17 @@ export default function autoFrontmatter(
 ): AutoFrontmatterOptions {
   const sourceDir = app.dir.source()
   const pkg = getPackage()
-  const articlePrefix = localeOption.article || '/article/'
+  const { locales = {}, avatar, article: articlePrefix = '/article/' } = localeOption
+  const { frontmatter } = options
 
-  const locales = (app.siteData.locales || {}) as PlumeThemeLocaleOptions
-  const localesNotesDirs = Object.keys(locales)
+  const localesNotesDirs = Object.keys(app.siteData.locales || {})
     .map((locale) => {
       // fixed: #15
-      const notes = localeOption.locales?.[locale]?.notes
+      const notes = locales[locale]?.notes
       if (!notes)
         return ''
-      const dir = notes.dir
-      return dir ? normalizePath(path.join(locale, dir)).replace(/^\//, '') : ''
+
+      return notes.dir ? pathJoin(locale, notes.dir).replace(/^\//, '') : ''
     })
     .filter(Boolean)
 
@@ -58,7 +41,7 @@ export default function autoFrontmatter(
         return author
       if (data.friends)
         return
-      return localeOption.avatar?.name || pkg.author || ''
+      return avatar?.name || pkg.author || ''
     },
     createTime(formatTime: string, { createTime }, data: any) {
       if (formatTime)
@@ -70,20 +53,20 @@ export default function autoFrontmatter(
   }
 
   const resolveLocale = (filepath: string) => {
-    const file = normalizePath(
-      path.join('/', path.relative(sourceDir, filepath)),
-    )
+    const file = pathJoin('/', path.relative(sourceDir, filepath))
+
     return resolveLocalePath(localeOption.locales!, file)
   }
   const notesByLocale = (locale: string) => {
-    const notes = localeOption.locales![locale]?.notes || localeOption.notes
+    const notes = locales[locale]?.notes || localeOption.notes
     if (notes === false)
       return undefined
     return notes
   }
+
   const findNote = (filepath: string) => {
-    const file = path.join('/', path.relative(sourceDir, filepath))
-    const locale = resolveLocalePath(localeOption.locales!, normalizePath(file))
+    const file = pathJoin('/', path.relative(sourceDir, filepath))
+    const locale = resolveLocalePath(locales, file)
     const notes = notesByLocale(locale)
     if (!notes)
       return undefined
@@ -94,22 +77,15 @@ export default function autoFrontmatter(
     )
   }
 
-  const getCurrentDirname = (note: NotesItem | undefined, filepath: string) => {
-    const dirList = normalizePath(note?.dir || path.dirname(filepath))
-      .replace(/^\/|\/$/g, '')
-      .split('/')
-    return dirList.length > 0 ? dirList[dirList.length - 1] : ''
-  }
   return {
-    include: options.frontmatter?.include ?? ['**/*.md'],
-    exclude: options.frontmatter?.exclude ?? ['.vuepress/**/*', 'node_modules'],
-    frontmatter: options.frontmatter?.frontmatter ?? [
+    include: frontmatter?.include ?? ['**/*.md'],
+    exclude: uniq(['.vuepress/**/*', 'node_modules', ...(frontmatter?.exclude ?? [])]),
+
+    frontmatter: [
       localesNotesDirs.length
         ? {
             // note 首页链接
-            include: localesNotesDirs.map(dir =>
-              normalizePath(path.join(dir, '**/{readme,README,index}.md')),
-            ),
+            include: localesNotesDirs.map(dir => pathJoin(dir, '**/{readme,README,index}.md')),
             frontmatter: {
               title(title: string, { filepath }) {
                 if (title)
@@ -117,7 +93,7 @@ export default function autoFrontmatter(
                 const note = findNote(filepath)
                 if (note?.text)
                   return note.text
-                return getCurrentDirname(note, filepath) || ''
+                return getCurrentDirname(note?.dir, filepath) || ''
               },
               ...baseFrontmatter,
               permalink(permalink: string, { filepath }, data: any) {
@@ -128,13 +104,11 @@ export default function autoFrontmatter(
                 const locale = resolveLocale(filepath)
                 const notes = notesByLocale(locale)
                 const note = findNote(filepath)
-                return normalizePath(
-                  path.join(
-                    locale,
-                    notes?.link || '',
-                    note?.link || getCurrentDirname(note, filepath),
-                    '/',
-                  ),
+                return pathJoin(
+                  locale,
+                  notes?.link || '',
+                  note?.link || getCurrentDirname(note?.dir, filepath),
+                  '/',
                 )
               },
             },
@@ -142,9 +116,7 @@ export default function autoFrontmatter(
         : '',
       localesNotesDirs.length
         ? {
-            include: localesNotesDirs.map(dir =>
-              normalizePath(path.join(dir, '**/**.md')),
-            ),
+            include: localesNotesDirs.map(dir => pathJoin(dir, '**/**.md')),
             frontmatter: {
               title(title: string, { filepath }) {
                 if (title)
@@ -161,14 +133,12 @@ export default function autoFrontmatter(
                 const locale = resolveLocale(filepath)
                 const note = findNote(filepath)
                 const notes = notesByLocale(locale)
-                return normalizePath(
-                  path.join(
-                    locale,
-                    notes?.link || '',
-                    note?.link || getCurrentDirname(note, filepath),
-                    nanoid(),
-                    '/',
-                  ),
+                return pathJoin(
+                  locale,
+                  notes?.link || '',
+                  note?.link || getCurrentDirname(note?.dir, filepath),
+                  nanoid(),
+                  '/',
                 )
               },
             },
@@ -192,9 +162,7 @@ export default function autoFrontmatter(
             if (permalink)
               return permalink
             const locale = resolveLocale(filepath)
-            return normalizePath(
-              path.join(locale, articlePrefix, nanoid(), '/'),
-            )
+            return pathJoin(locale, articlePrefix, nanoid(), '/')
           },
         },
       },

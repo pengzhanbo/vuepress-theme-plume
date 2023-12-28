@@ -11,7 +11,6 @@ import NotFound from './layouts/NotFound.vue'
 export default defineClientConfig({
   enhance({ app, router }) {
     // global component
-
     app.component('Badge', Badge)
     app.component('ExternalLinkIcon', ExternalLinkIcon)
 

@@ -1,3 +1,12 @@
+# [1.0.0-rc.10](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.9...v1.0.0-rc.10) (2023-12-30)
+
+
+### Bug Fixes
+
+* 修复内容容器内代码样式 ([dd14296](https://github.com/pengzhanbo/vuepress-theme-plume/commit/dd142967003d1a175bcdb044e34ca1563d815526))
+
+
+
 # [1.0.0-rc.9](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.8...v1.0.0-rc.9) (2023-12-30)
 
 

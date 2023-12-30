@@ -28,9 +28,9 @@ export const Content = defineComponent({
     return () =>
       pageComponent.value
         ? h(pageComponent.value, {
-          onVnodeMounted: runCallbacks,
-          onVnodeUpdated: runCallbacks,
-          onVnodeBeforeUnmount: runCallbacks,
+          onVnodeMounted: () => runCallbacks({ mounted: true }),
+          onVnodeUpdated: () => runCallbacks({ updated: true }),
+          onVnodeBeforeUnmount: () => runCallbacks({ beforeUnmount: true }),
         })
         : h(
           'div',

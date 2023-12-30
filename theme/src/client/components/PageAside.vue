@@ -28,6 +28,10 @@ function handleClick({ target: el }: Event) {
   )
   heading?.focus()
 }
+
+function handlePrint() {
+  window.print()
+}
 </script>
 
 <template>
@@ -42,7 +46,7 @@ function handleClick({ target: el }: Event) {
 
         <div class="outline-title">
           <span>{{ theme.outlineLabel || 'On this page' }}</span>
-          <IconPrint class="icon" />
+          <IconPrint class="icon" @click="handlePrint" />
         </div>
 
         <nav aria-labelledby="doc-outline-aria-label">
@@ -89,7 +93,7 @@ function handleClick({ target: el }: Event) {
   left: -1px;
   z-index: 0;
   opacity: 0;
-  width: 1px;
+  width: 2px;
   height: 18px;
   background-color: var(--vp-c-brand-1);
   transition: top 0.25s cubic-bezier(0, 1, 0.5, 1), background-color 0.5s,
@@ -109,5 +113,6 @@ function handleClick({ target: el }: Event) {
   width: 1em;
   height: 1em;
   font-size: 1.2em;
+  cursor: pointer;
 }
 </style>

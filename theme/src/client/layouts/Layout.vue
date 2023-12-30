@@ -14,6 +14,7 @@ import Page from '../components/Page.vue'
 import Sidebar from '../components/Sidebar.vue'
 import SkipLink from '../components/SkipLink.vue'
 import VFooter from '../components/VFooter.vue'
+import BackToTop from '../components/BackToTop.vue'
 import {
   useCloseSidebarOnEscape,
   useSidebar,
@@ -56,6 +57,7 @@ provide('is-sidebar-open', isSidebarOpen)
       <Friends v-else-if="page.frontmatter.friends" />
       <Blog v-else-if="isBlogLayout" />
       <Page v-else />
+      <BackToTop />
       <VFooter />
     </LayoutContent>
   </div>

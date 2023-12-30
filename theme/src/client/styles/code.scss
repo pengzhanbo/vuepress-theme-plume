@@ -9,53 +9,8 @@ html:not(.dark) .vp-code span {
   color: var(--shiki-light, rgba(60, 60, 67, 0.78));
 }
 
-code[class*='language-'],
-pre[class*='language-'] {
-  color: var(--vp-code-block-color);
-  background: none;
-  font-family: var(--vp-font-family-mono);
-  font-size: var(--vp-code-font-size);
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: var(--vp-code-line-height);
-
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-/* Code blocks */
-pre[class*='language-'] {
-  padding: 1em;
-  margin: 0.5em 0;
-  overflow: auto;
-}
-
-// :not(pre) > code[class*='language-'],
-// pre[class*='language-'] {
-//   background: var(--vp-code-block-bg);
-// }
-
-// /* Inline code */
-// :not(pre) > code[class*='language-'] {
-//   padding: 0.1em;
-//   border-radius: 0.3em;
-//   white-space: normal;
-// }
-
-// ===============================
-
 .plume-content {
-  pre,
-  pre[class*='language-'] {
+  pre {
     // line-height: 1.4;
     padding: 1.3rem 1.5rem;
     margin: 0 0 0.85rem 0;
@@ -107,8 +62,12 @@ div[class*='language-'] {
     color: var(--vp-code-line-number-color);
   }
 
-  pre,
-  pre[class*='language-'] {
+  code {
+    display: inline-block;
+    min-width: 100%;
+  }
+
+  pre {
     // force override the background color to be compatible with shiki
     background: transparent !important;
     position: relative;
@@ -270,7 +229,7 @@ div[class*='language-'] {
     }
 
     .hint-container div[class*='language-'] {
-      margin: 0.85rem -1rem 0.85rem -1rem;
+      margin: 0.85rem -1rem 0.85rem -1.25rem;
     }
   }
 

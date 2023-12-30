@@ -23,6 +23,7 @@
   }
 }
 
+/* plugin-docsearch */
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand-1);
   --docsearch-highlight-color: var(--docsearch-primary-color);
@@ -211,4 +212,13 @@
 .dark .DocSearch-Form {
   background-color: var(--vp-c-bg-soft);
 }
+
+/* plugin-docsearch */
+
+/* plugin-search */
+.navbar-search .search-box input {
+  padding: 0 0.3rem 0 1.575rem;
+  background-position: 0.5rem 0.4rem;
+}
+/* plugin-search */
 </style>

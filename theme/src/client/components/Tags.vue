@@ -19,6 +19,7 @@ const { tags: tagsLink } = useBlogExtract()
         :key="tag.name"
         class="tag"
         :class="{ active: tag.name === currentTag }"
+        :style="{ '--vp-tag-color': tag.color }"
         @click="handleTagClick(tag.name)"
       >
         <span class="tag-name">{{ tag.name }}</span>
@@ -68,8 +69,10 @@ const { tags: tagsLink } = useBlogExtract()
   word-wrap: break-word;
   margin: 8px;
   padding: 6px 6px 6px 10px;
-  background-color: var(--vp-c-default-soft);
-  color: var(--vp-c-text-2);
+  /* background-color: var(--vp-c-default-soft); */
+  /* color: var(--vp-c-text-2); */
+  color: var(--vp-tag-color);
+  border: solid 1px var(--vp-tag-color);
   line-height: 1;
   border-radius: 4px;
   cursor: pointer;
@@ -84,27 +87,24 @@ const { tags: tagsLink } = useBlogExtract()
   margin: 20px 12px -10px 12px;
 }
 
-.tag-name {
-  font-weight: 600;
-}
-
 .tag-count {
   display: inline-block;
-  border-left: 1px solid var(--vp-c-divider);
+  border-left: 1px solid var(--vp-tag-color);
   padding-left: 6px;
   margin-left: 4px;
-  color: var(--vp-c-text-3);
+  color: var(--vp-tag-color);
   transition: all var(--t-color);
 }
 
 .tags .tag:hover,
 .tags .tag.active {
-  background-color: var(--vp-c-brand-1);
+  background-color: var(--vp-tag-color);
   color: var(--vp-c-bg);
 }
 
 .tags .tag:hover .tag-count,
 .tags .tag.active .tag-count {
   color: var(--vp-bg);
+  border-left-color: var(--vp-c-divider);
 }
 </style>

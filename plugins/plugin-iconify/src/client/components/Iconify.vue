@@ -1,15 +1,23 @@
 <script lang="ts" setup>
 import { Icon as OfflineIcon } from '@iconify/vue/offline'
 import { ClientOnly } from '@vuepress/client'
-import type { CSSProperties } from 'vue'
+import type { IconifyRenderMode } from '@iconify/vue'
+import type { StyleValue } from 'vue'
 import { computed, toRefs } from 'vue'
 import { useIconify } from '../composables/iconify.js'
 
 const props = withDefaults(
   defineProps<{
     name?: string
-    size?: string
+    size?: string | number
     color?: string
+    mode?: IconifyRenderMode
+    style?: StyleValue
+    flip?: string
+    vFlip?: boolean
+    hFlip?: boolean
+    inline?: boolean
+    rotate?: number
   }>(),
   {
     name: '',
@@ -29,14 +37,21 @@ const size = computed(() => {
 
   return size
 })
-const iconStyle = computed(() => {
-  const style: CSSProperties = {
-    color: props.color || __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_COLOR__,
-    width: size.value,
-    height: size.value,
-  }
-  return style
-})
+const color = computed(() => props.color || __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_COLOR__)
+
+const bind = computed<any>(() => ({
+  icon: icon.value,
+  mode: props.mode,
+  inline: props.inline,
+  rotate: props.rotate,
+  flip: props.flip,
+  vFlip: props.vFlip,
+  hFlip: props.hFlip,
+  color: props.color,
+  width: size.value,
+  height: size.value,
+  style: props.style,
+}))
 </script>
 
 <script lang="ts">
@@ -46,12 +61,11 @@ declare const __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_COLOR__: string
 
 <template>
   <ClientOnly>
-    <span v-if="!loaded" class="vp-iconify" :style="iconStyle" />
+    <span v-if="!loaded" class="vp-iconify" :style="{ color, width: size, height: size }" />
     <OfflineIcon
       v-else-if="icon"
-      :icon="icon"
       class="vp-iconify"
-      :style="iconStyle"
+      v-bind="bind"
     />
   </ClientOnly>
 </template>

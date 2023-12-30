@@ -8,6 +8,8 @@
   "[markdown]": {
     "files.trimTrailingWhitespace": false
   },
+  "css.validate": false,
+  "scss.validate": false,
   "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
     "bumpp",

@@ -1,7 +1,12 @@
 import { onUnmounted } from 'vue'
 
-// eslint-disable-next-line import/no-mutable-exports
-export let contentUpdatedCallbacks: (() => any)[] = []
+export interface ContentUpdated {
+  mounted?: boolean
+  updated?: boolean
+  beforeUnmount?: boolean
+}
+
+let contentUpdatedCallbacks: ((lifeCircleType: ContentUpdated) => any)[] = []
 
 /**
  * Register callback that is called every time the markdown content is updated
@@ -14,6 +19,6 @@ export function onContentUpdated(fn: () => any) {
   })
 }
 
-export function runCallbacks() {
-  contentUpdatedCallbacks.forEach(fn => fn())
+export function runCallbacks(lifeCircleType: ContentUpdated) {
+  contentUpdatedCallbacks.forEach(fn => fn(lifeCircleType))
 }

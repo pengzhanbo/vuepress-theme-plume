@@ -4,7 +4,7 @@ import { computed, ref } from 'vue'
 import type { Ref } from 'vue'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 import { useLocaleLink, useThemeLocaleData } from '../composables/index.js'
-import { toArray } from '../utils/index.js'
+import { getRandomColor, toArray } from '../utils/index.js'
 
 export function usePostListControl() {
   const locale = usePageLang()
@@ -129,7 +129,8 @@ export function useTags() {
     })
     return Object.keys(tagMap).map(tag => ({
       name: tag,
-      count: tagMap[tag],
+      count: tagMap[tag] > 99 ? '99+' : tagMap[tag],
+      color: getRandomColor(),
     }))
   })
 

@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useContributors, useEditNavLink, useLastUpdated, usePageNav, useThemeLocaleData } from '../composables/index.js'
+import {
+  useContributors,
+  useEditNavLink,
+  useLastUpdated,
+  usePageNav,
+  useThemeLocaleData,
+} from '../composables/index.js'
 import AutoLink from './AutoLink.vue'
 import IconEdit from './icons/IconEdit.vue'
 
@@ -117,9 +123,17 @@ const showFooter = computed(() => {
 }
 
 .contributors {
+  margin-top: -10px;
   padding-bottom: 6px;
   line-height: 32px;
   font-size: 14px;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .contributors {
+    text-align: right;
+  }
 }
 
 .contributors-label {
@@ -131,7 +145,7 @@ const showFooter = computed(() => {
 .contributors-info {
   color: var(--vp-c-text-2);
   .contributor {
-    color: var(--vp-c-brand-2);
+    color: var(--vp-c-text-3);
   }
 }
 

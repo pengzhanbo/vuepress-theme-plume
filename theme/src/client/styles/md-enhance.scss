@@ -87,7 +87,12 @@
       }
     }
 
-    &.details code {
+    &.note code,
+    &.info code,
+    &.tip code,
+    &.warning code,
+    &.caution code,
+    &.details, code {
       background-color: transparent;
     }
 

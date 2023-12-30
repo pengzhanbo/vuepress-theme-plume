@@ -26,6 +26,7 @@ export interface PlumeThemePageFrontmatter {
   contributors?: boolean
   prev?: string | NavItemWithLink
   next?: string | NavItemWithLink
+  backToTop?: boolean
 }
 
 export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {

@@ -122,7 +122,7 @@ const showBlogExtract = computed(() => {
   top: 0;
   bottom: 0;
   left: 0;
-  z-index: var(--vp-z-index-sidebar);
+  z-index: var(--vp-z-index-overlay);
   width: 100%;
   opacity: 1;
   background-color: rgba(0, 0, 0, 0.3);
@@ -146,9 +146,13 @@ const showBlogExtract = computed(() => {
   background-color: var(--vp-c-bg);
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.1), 0 -1px 4px rgba(0, 0, 0, 0.1);;
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.1), 0 -1px 4px rgba(0, 0, 0, 0.1);
   transform: translateY(100%);
   transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.dark .blog-modal-container {
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.3), 0 -1px 4px rgba(0, 0, 0, 0.27);
 }
 
 .blog-modal-container.open {

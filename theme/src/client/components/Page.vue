@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { usePageData } from '@vuepress/client'
 import { computed } from 'vue'
+import { useMediumZoom } from '@vuepress/plugin-medium-zoom/client'
+import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import { useDarkMode, useSidebar } from '../composables/index.js'
 import PageAside from './PageAside.vue'
@@ -10,9 +12,14 @@ import PageMeta from './PageMeta.vue'
 const { hasSidebar, hasAside } = useSidebar()
 const isDark = useDarkMode()
 const page = usePageData<PlumeThemePageData>()
+
 const hasComments = computed(() => {
   return page.value.frontmatter.comments !== false
 })
+
+const zoom = useMediumZoom()
+
+onContentUpdated(() => zoom?.refresh())
 </script>
 
 <template>

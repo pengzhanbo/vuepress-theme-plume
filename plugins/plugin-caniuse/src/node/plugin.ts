@@ -30,8 +30,10 @@ export function caniusePlugin({
   const render = (tokens: Token[], index: number): string => {
     const token = tokens[index]
     if (token.nesting === 1) {
-      const feature = token.info.trim().slice(type.length).trim() || ''
-      return feature ? resolveCanIUse(feature, mode) : ''
+      const info = token.info.trim().slice(type.length).trim() || ''
+      const feature = info.split(/\s+/)[0]
+      const versions = info.match(/\{(.*)\}/)?.[1] || ''
+      return feature ? resolveCanIUse(feature, mode, versions) : ''
     }
     else {
       return ''

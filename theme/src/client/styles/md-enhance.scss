@@ -87,12 +87,12 @@
       }
     }
 
-    &.note code,
-    &.info code,
-    &.tip code,
-    &.warning code,
-    &.caution code,
-    &.details, code {
+    &.note [class*="language-"] code,
+    &.info [class*="language-"] code,
+    &.tip [class*="language-"] code,
+    &.warning [class*="language-"] code,
+    &.caution [class*="language-"] code,
+    &.details [class*="language-"] code {
       background-color: transparent;
     }
 

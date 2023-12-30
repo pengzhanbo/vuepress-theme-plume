@@ -99,6 +99,12 @@ const showLocalNav = computed(() => {
   }
 }
 
+@media print {
+  .local-nav {
+    display: none;
+  }
+}
+
 .menu {
   display: flex;
   align-items: center;

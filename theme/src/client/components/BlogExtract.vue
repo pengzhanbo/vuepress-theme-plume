@@ -111,6 +111,12 @@ const showBlogExtract = computed(() => {
   }
 }
 
+@media print {
+  .blog-extract {
+    display: none;
+  }
+}
+
 .blog-modal {
   position: fixed;
   top: 0;

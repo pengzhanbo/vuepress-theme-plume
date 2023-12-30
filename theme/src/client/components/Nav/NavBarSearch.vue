@@ -46,33 +46,37 @@
   --docsearch-hit-shadow: none;
 }
 
-.DocSearch-Button {
+.navbar-search .DocSearch-Button {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
   padding: 0;
   width: 32px;
-  height: 55px;
-  background: transparent;
+  height: 32px;
+  background: var(--docsearch-searchbox-background);
   transition: border-color 0.25s;
 }
 
-.DocSearch-Button:hover {
-  background: transparent;
+.navbar-search .DocSearch-Button:hover {
+  background: var(--docsearch-searchbox-focus-background);
 }
 
-.DocSearch-Button:focus {
+.navbar-search .DocSearch-Button:focus {
   outline: 1px dotted;
   outline: 5px auto -webkit-focus-ring-color;
 }
 
-.DocSearch-Button:focus:not(:focus-visible) {
+.navbar-search .DocSearch-Button:focus:not(:focus-visible) {
   outline: none !important;
 }
 
+.navbar-search #docsearch-container {
+    min-width: 32px;
+  }
+
 @media (min-width: 768px) {
-  .DocSearch-Button {
+  .navbar-search .DocSearch-Button {
     justify-content: flex-start;
     border: 1px solid transparent;
     border-radius: 8px;
@@ -82,9 +86,9 @@
     background-color: var(--vp-c-bg-alt);
   }
 
-  .DocSearch-Button:hover {
+  .navbar-search .DocSearch-Button:hover {
     border-color: var(--vp-c-brand-1);
-    background: var(--vp-c-bg-alt);
+    background: var(--docsearch-searchbox-focus-background);
   }
 }
 

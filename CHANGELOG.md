@@ -1,3 +1,22 @@
+# [1.0.0-rc.9](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.8...v1.0.0-rc.9) (2023-12-30)
+
+
+### Features
+
+* 新增 back-to-top ([c0c3122](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c0c312259291d364f7ce93519316b13a536d3a7a))
+* **plugin-caniuse:** 新增 浏览器版本支持列表选项 ([d537d5a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d537d5af93173fe5c2f3e6fe2def2e66e6419b26))
+* **plugin-content-update:** 新增内容更新触发类型 ([85b6d2c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/85b6d2c7d7c9bf102d78afc4f9f05998d6d9f979))
+* **plugin-iconify:** 新增更多的 icon props ([90e6b81](https://github.com/pengzhanbo/vuepress-theme-plume/commit/90e6b81fb779ae4eb9dc96fb74bf3c410a6a44fc))
+
+
+### Performance Improvements
+
+* 优化 标签 UI ([2abdb84](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2abdb84ae83f7bbc2f9502a42e70583a2f6fa4b6))
+* 优化 UI ([fd550e4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fd550e460b2ee6a0f2f4600ded9b9b6b6c9e21a2))
+* 优化搜索、内容容器内代码块 UI ([5a74a66](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5a74a66ef7b109ba22fd0b0201a4a42db63b56dd))
+
+
+
 # [1.0.0-rc.8](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.7...v1.0.0-rc.8) (2023-12-30)
 
 

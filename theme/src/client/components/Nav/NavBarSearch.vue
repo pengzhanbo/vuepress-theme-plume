@@ -48,7 +48,7 @@
 
 .navbar-search .DocSearch-Button {
   display: flex;
-  justify-content: center;
+  justify-content: center !important;
   align-items: center;
   margin: 0;
   padding: 0;

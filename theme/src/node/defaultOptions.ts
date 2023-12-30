@@ -5,7 +5,7 @@ export const defaultLocaleOption: Partial<PlumeThemeLocaleOptions> = {
   notes: { link: '/note', dir: 'notes', notes: [] },
   footer: {
     message:
-      'Power by <a target="_blank" href="https://v2.vuepress.vuejs.org/">vuepress</a> & <a target="_blank" href="https://github.com/pengzhanbo/vuepress-theme-plume">vuepress-theme-plume</a>',
+      'Power by <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://github.com/pengzhanbo/vuepress-theme-plume">vuepress-theme-plume</a>',
   },
   appearance: true,
   // page meta

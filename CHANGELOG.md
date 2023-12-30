@@ -1,3 +1,18 @@
+# [1.0.0-rc.8](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.7...v1.0.0-rc.8) (2023-12-30)
+
+
+### Features
+
+* support print page ([2ab6ae2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2ab6ae2b1c9a619b8c00d9b246e76a90246eb16b))
+
+
+### Performance Improvements
+
+* 优化 搜索框 UI ([f01cfe9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f01cfe98ae11f1eb2b5a3fc75ef50017e6703ad1))
+* 优化代码块和任务列表 UI ([8915ced](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8915ced914e6df2806ce8b5f846eed2ad230c646))
+
+
+
 # [1.0.0-rc.7](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.6...v1.0.0-rc.7) (2023-12-28)
 
 

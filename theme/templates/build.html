@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="generator" content="VuePress {{ version }}">
+    <meta name="theme" content="VuePress Theme Plume {{ themeVersion }}">
     <script>
       (function() {
-        const userMode = localStorage.getItem('vuepress-theme-appearance');
-        const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+        const um = localStorage.getItem('vuepress-theme-appearance');
+        const sm = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (um === 'dark' || (um !== 'light' && sm)) {
           document.documentElement.classList.add('dark');
         }
       })();

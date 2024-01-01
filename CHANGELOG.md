@@ -1,3 +1,18 @@
+# [1.0.0-rc.11](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.10...v1.0.0-rc.11) (2024-1-1)
+
+
+### Features
+
+* 优化 html 构建输出 ([a69a8ea](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a69a8ead5d7207e0f06bd46af0ae2732dcc11b7c))
+
+
+### Performance Improvements
+
+* 调整包导入格式，优化文档说明 ([fb2703f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fb2703fb565f455d017b65a72398e441abb476d4))
+* 优化内容容器中代码块 UI ([a798601](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a7986016804447525394ae85dc1696f9b0f196b5))
+
+
+
 # [1.0.0-rc.10](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.9...v1.0.0-rc.10) (2023-12-30)
 
 

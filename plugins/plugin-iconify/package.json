@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-iconify",
   "type": "module",
-  "version": "1.0.0-rc.10",
+  "version": "1.0.0-rc.11",
   "description": "The Plugin for VuePres 2",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",

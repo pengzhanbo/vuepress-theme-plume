@@ -71,14 +71,18 @@ watch(
   overflow-x: hidden;
   overflow-y: auto;
   transform: translateX(-100%);
-  transition: opacity 0.5s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition:
+    opacity 0.5s,
+    transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .sidebar-wrapper.open {
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
-  transition: opacity 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition:
+    opacity 0.25s,
+    transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .dark .sidebar-wrapper {

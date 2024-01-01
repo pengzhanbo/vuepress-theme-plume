@@ -66,11 +66,11 @@ export default {
 <style scoped>
 .flyout-wrapper {
   position: relative;
+  transition: color 0.25s;
 }
 
 .flyout-wrapper:hover {
   color: var(--vp-c-brand-1);
-  transition: color 0.25s;
 }
 
 .flyout-wrapper:hover .text {
@@ -143,6 +143,9 @@ export default {
   right: 0;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s, visibility 0.25s, transform 0.25s;
+  transition:
+    opacity 0.25s,
+    visibility 0.25s,
+    transform 0.25s;
 }
 </style>

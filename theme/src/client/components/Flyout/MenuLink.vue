@@ -44,7 +44,9 @@ const page = usePageData()
   font-weight: 500;
   color: var(--vp-c-text-1);
   white-space: nowrap;
-  transition: background-color 0.25s, color 0.25s;
+  transition:
+    background-color 0.25s,
+    color 0.25s;
 }
 
 .link:hover {

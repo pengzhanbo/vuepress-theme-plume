@@ -140,7 +140,7 @@ const hasMeta = computed(() => readingTime.value.times || tags.value.length || c
 }
 
 .page-meta-wrapper .reading-time span {
-  margin-right: 0.5rem;
+  margin-right: 8px;
 }
 
 .page-meta-wrapper .reading-time span:last-of-type {

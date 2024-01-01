@@ -114,7 +114,9 @@ function toggle() {
   width: 14px;
   height: 14px;
   fill: var(--vp-c-text-2);
-  transition: fill 0.5s, transform 0.25s;
+  transition:
+    fill 0.5s,
+    transform 0.25s;
 }
 
 .group:first-child {

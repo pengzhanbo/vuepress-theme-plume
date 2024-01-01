@@ -20,7 +20,7 @@ const isScrolling = ref(false)
 const progress = computed(
   () => (y.value / (bodyHeight.value - windowHeight.value)) * 100,
 )
-const percent = computed(() => `${Math.round(progress.value)}%`)
+const percent = computed(() => `${Math.round(progress.value) || 0}%`)
 
 const stroke = computed(() =>
   `calc(${Math.PI * progress.value}% - ${4 * Math.PI}px) calc(${Math.PI * 100}% - ${4 * Math.PI}px)`,
@@ -86,7 +86,9 @@ function handleClick() {
   box-shadow: var(--vp-shadow-2);
   background-color: var(--vp-c-bg);
   inset-inline-end: 1rem;
-  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .back-to-top-button .percent,

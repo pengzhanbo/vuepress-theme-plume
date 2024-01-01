@@ -34,18 +34,11 @@ export function blogDataPlugin({
         ignoreInitial: true,
       })
 
-      watcher.on(
-        'add',
-        async () => await preparedBlogData(app, pageFilter, pluginOptions),
-      )
-      watcher.on(
-        'change',
-        async () => await preparedBlogData(app, pageFilter, pluginOptions),
-      )
-      watcher.on(
-        'unlink',
-        async () => await preparedBlogData(app, pageFilter, pluginOptions),
-      )
+      const handler = () => preparedBlogData(app, pageFilter, pluginOptions)
+
+      watcher.on('add', handler)
+      watcher.on('change', handler)
+      watcher.on('unlink', handler)
 
       watchers.push(watcher)
     },

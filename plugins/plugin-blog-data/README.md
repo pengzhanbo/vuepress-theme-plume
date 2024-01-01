@@ -1,14 +1,22 @@
 # `@vuepress-plume/plugin-blog-data`
 
 ## Install
-```
+
+```sh
+npm install @vuepress-plume/plugin-blog-data
+# or
+pnpm add @vuepress-plume/plugin-blog-data
+# or
 yarn add @vuepress-plume/plugin-blog-data
 ```
+
 ## Usage
+
 ``` js
-// .vuepress/config.js
-const { blogDataPlugin } = require('@vuepress-plume/plugin-blog-data')
-module.exports = {
+// .vuepress/config.[jt]s
+import { blogDataPlugin } from '@vuepress-plume/plugin-blog-data'
+
+export default {
   // ...
   plugins: [
     blogDataPlugin()

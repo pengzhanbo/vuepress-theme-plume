@@ -3,14 +3,20 @@
 添加 `iconify` 图标库支持。并注入全局组件 `<Iconify>`
 
 ## Install
-```
+
+```sh
+npm install @vuepress-plume/plugin-iconify
+# or
+pnpm add @vuepress-plume/plugin-iconify
+# or
 yarn add @vuepress-plume/plugin-iconify
 ```
 ## Usage
 ``` js
-// .vuepress/config.js
-const iconifyPlugin = require('@vuepress-plume/plugin-iconify')
-module.exports = {
+// .vuepress/config.[jt]s
+import { iconifyPlugin } from '@vuepress-plume/plugin-iconify'
+
+export default {
   // ...
   plugins: [
     iconifyPlugin()

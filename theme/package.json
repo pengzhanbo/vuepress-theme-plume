@@ -22,10 +22,19 @@
     "theme-plume"
   ],
   "exports": {
-    ".": "./lib/node/index.js",
-    "./client": "./lib/client/index.js",
-    "./package.json": "./package.json",
-    "./shared": "./lib/shared/index.js"
+    ".": {
+      "types": "./lib/node/index.d.ts",
+      "import": "./lib/node/index.js"
+    },
+    "./client": {
+      "types": "./lib/client/index.d.ts",
+      "import": "./lib/client/index.js"
+    },
+    "./shared": {
+      "types": "./lib/shared/index.d.ts",
+      "import": "./lib/shared/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "main": "lib/node/index.js",
   "types": "lib/node/index.d.ts",

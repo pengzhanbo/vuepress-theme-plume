@@ -22,7 +22,10 @@
     "vuepress-plugin-netlify-functions"
   ],
   "exports": {
-    ".": "./lib/node/index.js",
+    ".": {
+      "types": "./lib/node/index.d.ts",
+      "import": "./lib/node/index.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "lib/node/index.js",

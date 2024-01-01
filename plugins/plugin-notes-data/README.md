@@ -1,14 +1,21 @@
 # `@vuepress-plume/plugin-notes-data`
 
 ## Install
-```
+
+```sh
+npm install @vuepress-plume/plugin-notes-data
+# or
+pnpm add @vuepress-plume/plugin-notes-data
+# or
 yarn add @vuepress-plume/plugin-notes-data
 ```
 ## Usage
+
 ``` js
-// .vuepress/config.js
-const notesDataPlugin = require('@vuepress-plume/plugin-notes-data')
-module.exports = {
+// .vuepress/config.[jt]s
+import { notesDataPlugin } from '@vuepress-plume/plugin-notes-data'
+
+export default {
   // ...
   plugins: [
     notesDataPlugin()

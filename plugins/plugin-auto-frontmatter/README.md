@@ -3,13 +3,19 @@
 自动生成 `*.md` 文件的 `frontmatter` 配置。
 
 ## Install
-```
+
+```sh
+npm install @vuepress-plume/plugin-auto-frontmatter
+# or
+pnpm add @vuepress-plume/plugin-auto-frontmatter
+# or
 yarn add @vuepress-plume/plugin-auto-frontmatter
 ```
 ## Usage
 ``` js
-// .vuepress/config.js
+// .vuepress/config.[jt]s
 import { autoFrontmatterPlugin } from '@vuepress-plume/plugin-auto-frontmatter'
+
 export default {
   // ...
   plugins: [

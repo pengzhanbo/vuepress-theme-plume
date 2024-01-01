@@ -15,7 +15,7 @@ export function useNotesData<
   return notesData as NotesDataRef<T>
 }
 
-if (import.meta.webpackHot || import.meta.hot) {
+if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {
   __VUE_HMR_RUNTIME__.updateNotesData = (data: NotesData) => {
     notesData.value = data
   }

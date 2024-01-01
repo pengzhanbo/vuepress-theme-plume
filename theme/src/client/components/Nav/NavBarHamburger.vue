@@ -83,7 +83,10 @@ defineEmits<(e: 'click') => void>()
 .navbar-hamburger.active:hover .middle,
 .navbar-hamburger.active:hover .bottom {
   background-color: var(--vp-c-text-2);
-  transition: top 0.25s, background-color 0.25s, transform 0.25s;
+  transition:
+    top 0.25s,
+    background-color 0.25s,
+    transform 0.25s;
 }
 
 .top,
@@ -93,7 +96,10 @@ defineEmits<(e: 'click') => void>()
   width: 16px;
   height: 2px;
   background-color: var(--vp-c-text-1);
-  transition: top 0.25s, background-color 0.5s, transform 0.25s;
+  transition:
+    top 0.25s,
+    background-color 0.5s,
+    transform 0.25s;
 }
 
 .top {

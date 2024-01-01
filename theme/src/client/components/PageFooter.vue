@@ -100,6 +100,12 @@ const showFooter = computed(() => {
   color: var(--vp-c-brand-2);
 }
 
+@media print {
+  .edit-link-button {
+    display: none;
+  }
+}
+
 .edit-link-icon {
   margin-right: 8px;
   width: 14px;
@@ -130,7 +136,7 @@ const showFooter = computed(() => {
   text-align: left;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .contributors {
     text-align: right;
   }

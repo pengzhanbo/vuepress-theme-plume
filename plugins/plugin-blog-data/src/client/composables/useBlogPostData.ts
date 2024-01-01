@@ -15,7 +15,7 @@ export function useBlogPostData<
   return blogPostData as BlogDataRef<T>
 }
 
-if (import.meta.webpackHot || import.meta.hot) {
+if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {
   __VUE_HMR_RUNTIME__.updateBlogData = (data: BlogPostData) => {
     blogPostData.value = data
   }

@@ -23,6 +23,12 @@
   }
 }
 
+@media print {
+  .navbar-search {
+    display: none;
+  }
+}
+
 /* plugin-docsearch */
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand-1);
@@ -73,8 +79,8 @@
 }
 
 .navbar-search #docsearch-container {
-    min-width: 32px;
-  }
+  min-width: 32px;
+}
 
 @media (min-width: 768px) {
   .navbar-search .DocSearch-Button {
@@ -171,7 +177,9 @@
   font-family: var(--vp-font-family-base);
   font-size: 12px;
   font-weight: 500;
-  transition: color 0.5s, border-color 0.5s;
+  transition:
+    color 0.5s,
+    border-color 0.5s;
 }
 
 .DocSearch-Button .DocSearch-Button-Key + .DocSearch-Button-Key {
@@ -217,7 +225,7 @@
 
 /* plugin-search */
 .navbar-search .search-box input {
-  padding: 0 0.3rem 0 1.575rem;
+  padding: 0 0.4rem 0 1.555rem;
   background-position: 0.5rem 0.4rem;
 }
 /* plugin-search */

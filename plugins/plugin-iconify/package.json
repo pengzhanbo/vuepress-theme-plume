@@ -33,10 +33,7 @@
     "build": "pnpm run clean && pnpm run copy && pnpm run ts",
     "clean": "rimraf lib *.tsbuildinfo",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
-    "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib -w",
-    "dev": "concurrently \"pnpm copy:watch\" \"pnpm ts:watch\"",
-    "ts": "tsc -b tsconfig.build.json",
-    "ts:watch": "tsc -b tsconfig.build.json --watch"
+    "ts": "tsc -b tsconfig.build.json"
   },
   "dependencies": {
     "@iconify/vue": "^4.1.1",

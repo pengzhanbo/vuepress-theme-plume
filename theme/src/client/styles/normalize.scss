@@ -52,7 +52,8 @@ html,
 body {
   color: var(--vp-c-text-1);
   background-color: var(--vp-c-bg);
-  transition: var(--t-color);
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
   transition-property: color, background-color;
 }
 

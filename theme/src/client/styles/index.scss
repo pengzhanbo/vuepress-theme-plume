@@ -1,11 +1,13 @@
-@use 'vars';
-@use 'fonts';
-@use 'normalize';
-@use 'nprogress';
-@use 'utils';
-@use 'content';
-@use 'code';
-@use 'md-enhance';
-@use 'search';
+@import '@vuepress/plugin-palette/palette';
 
-@use '@vuepress/plugin-palette/style';
+@import 'vars';
+@import 'fonts';
+@import 'normalize';
+@import 'nprogress';
+@import 'utils';
+@import 'content';
+@import 'code';
+@import 'md-enhance';
+@import 'search';
+
+@import '@vuepress/plugin-palette/style';

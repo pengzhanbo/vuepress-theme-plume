@@ -15,15 +15,15 @@ export const readingTimeLocales = {
   },
 
   'zh-CN': {
-    word: '约 $word 字',
-    less1Minute: '小于 1 分钟',
-    time: '大约 $time 分钟',
+    word: '约$word字',
+    less1Minute: '小于1分钟',
+    time: '大约$time分钟',
   },
 
   'zh-TW': {
-    word: '約 $word 字',
-    less1Minute: '小於 1 分鐘',
-    time: '大约 $time 分鐘',
+    word: '約$word字',
+    less1Minute: '小於1分鐘',
+    time: '大约$time分鐘',
   },
 
   'de': {

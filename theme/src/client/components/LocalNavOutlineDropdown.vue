@@ -110,7 +110,7 @@ function scrollToTop() {
   padding: 2px 0;
 }
 
-.open>.icon {
+.open > .icon {
   transform: rotate(90deg);
 }
 
@@ -148,11 +148,11 @@ function scrollToTop() {
 }
 
 .flyout-enter-active {
-  transition: all .2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .flyout-leave-active {
-  transition: all .15s ease-in;
+  transition: all 0.15s ease-in;
 }
 
 .flyout-enter-from,

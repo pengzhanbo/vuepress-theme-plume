@@ -2,9 +2,10 @@ import config from '@pengzhanbo/eslint-config-vue'
 
 export default config({
   formatters: {
-    css: false,
+    css: true,
+    html: true,
   },
-  ignores: ['.temp', '.cache', 'lib', 'dist', 'docs', '**/*.html'],
+  ignores: ['lib', 'docs/**/*.md'],
   globals: {
     __VUEPRESS_VERSION__: 'readonly',
     __VUEPRESS_BASE__: 'readonly',

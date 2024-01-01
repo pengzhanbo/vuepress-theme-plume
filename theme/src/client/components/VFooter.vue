@@ -44,7 +44,9 @@ const { hasSidebar } = useSidebar()
 .plume-footer :deep(a) {
   text-decoration-line: underline;
   text-underline-offset: 2px;
-  transition: color, text-underline-offset 0.25s;
+  transition:
+    color,
+    text-underline-offset 0.25s;
 }
 
 .plume-footer :deep(a:hover) {

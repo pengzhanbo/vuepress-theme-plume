@@ -3,14 +3,20 @@
 在vuepress中接入百度统计
 
 ## Install
-```
+
+```sh
+npm install @vuepress-plume/plugin-baidu-tongji
+# or
+pnpm add @vuepress-plume/plugin-baidu-tongji
+# or
 yarn add @vuepress-plume/plugin-baidu-tongji
 ```
 ## Usage
 ``` js
-// .vuepress/config.js
-const { baiduTongjiPlugin } = require('@vuepress-plume/plugin-baidu-tongji')
-module.exports = {
+// .vuepress/config.[jt]s
+import { baiduTongjiPlugin } from '@vuepress-plume/plugin-baidu-tongji'
+
+export default {
   // ...
   plugins: [
     baiduTongjiPlugin({

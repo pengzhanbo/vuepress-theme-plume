@@ -22,7 +22,12 @@ You may need this plugin to provide support.
 - 使用 `dotenv` 在本地服务环境提供 类似于 `netlify environment variables` 支持。 在项目根目录下 创建 `.env` 文件用于保存开发时环境变量
 
 ## Install
-```
+
+```sh
+npm install vuepress-plugin-netlify-functions
+# or
+pnpm add vuepress-plugin-netlify-functions
+# or
 yarn add vuepress-plugin-netlify-functions
 ```
 ## Usage
@@ -31,9 +36,10 @@ yarn add vuepress-plugin-netlify-functions
 
    在 vuepress 项目中，或者在一个 vuepress 主题中
    ``` js
-   // .vuepress/config.js
+   // .vuepress/config.[jt]s
    import { netlifyFunctionsPlugin } from 'vuepress-plugin-netlify-functions'
-   module.exports = {
+
+   export default {
      // ...
      plugins: [
        netlifyFunctionsPlugin()

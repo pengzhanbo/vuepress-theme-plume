@@ -87,14 +87,15 @@
       }
     }
 
-    &.note [class*="language-"] code,
-    &.info [class*="language-"] code,
-    &.tip [class*="language-"] code,
-    &.warning [class*="language-"] code,
-    &.caution [class*="language-"] code,
-    &.details [class*="language-"] code {
+    [class*="language-"] code {
       background-color: transparent;
     }
+
+    [class*="language-"] .line-numbers {
+      padding-top: 21px;
+    }
+
+
 
     th,
     blockquote > p {

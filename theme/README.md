@@ -5,11 +5,14 @@
 [查看使用文档](https://pengzhanbo.cn/note/vuepress-theme-plume)
 
 ## Install
+
 ``` sh
-# use yarn
-yarn add vuepress-theme-plume
-# or npm
+# npm
 npm i vuepress-theme-plume
+# or pnpm
+pnpm add vuepress-theme-plume
+# or yarn
+yarn add vuepress-theme-plume
 ```
 
 ## Usage

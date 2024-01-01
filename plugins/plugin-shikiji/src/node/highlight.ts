@@ -30,9 +30,9 @@ export async function highlight(
 
   const highlighter = await getHighlighter({
     themes:
-      typeof theme === 'string' || 'name' in theme
-        ? [theme]
-        : [theme.light, theme.dark],
+      typeof theme === 'object' && 'light' in theme && 'dark' in theme
+        ? [theme.light, theme.dark]
+        : [theme],
     langs: [...Object.keys(bundledLanguages), ...(options.languages || [])],
     langAlias: options.languageAlias,
   })
@@ -131,12 +131,9 @@ export async function highlight(
       meta: {
         __raw: attrs,
       },
-      ...(typeof theme === 'string' || 'name' in theme
-        ? { theme }
-        : {
-            themes: theme,
-            defaultColor: false,
-          }),
+      ...(typeof theme === 'object' && 'light' in theme && 'dark' in theme
+        ? { themes: theme, defaultColor: false }
+        : { theme }),
     })
 
     return fillEmptyHighlightedLine(restoreMustache(highlighted))

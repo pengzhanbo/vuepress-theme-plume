@@ -8,23 +8,32 @@ VuePress 2 插件
 
 ## Install
 ``` sh
+npm install @vuepress-plume/plugin-caniuse
+# or
+pnpm add @vuepress-plume/plugin-caniuse
+# or
 yarn add @vuepress-plume/plugin-caniuse
 ```
 
 ## Usage
 
 ### 在VuePress 配置文件中添加插件
+
 ``` js
-// .vuepress/config.js
+// .vuepress/config.[jt]s
+import { caniusePlugin } from '@vuepress-plume/plugin-caniuse'
+
 export default {
   // ...
   plugins: [
-    ['@vuepress-plume/plugin-caniuse', { mode: 'image' }]
+    caniusePlugin({ mode: 'image' }),
   ]
   // ...
 }
 ```
+
 ### 在markdown中编写
+
 ``` md
 ::: caniuse <feature> {{browser_versions}}
 :::
@@ -51,6 +60,7 @@ export default {
 - 大于`0` 表示高于当前浏览器版本的支持情况
 
 ## Example
+
 ``` md
 ::: caniuse css-matches-pseudo {-2,-1,1}
 :::

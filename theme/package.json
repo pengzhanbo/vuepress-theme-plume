@@ -22,10 +22,19 @@
     "theme-plume"
   ],
   "exports": {
-    ".": "./lib/node/index.js",
-    "./client": "./lib/client/index.js",
-    "./package.json": "./package.json",
-    "./shared": "./lib/shared/index.js"
+    ".": {
+      "types": "./lib/node/index.d.ts",
+      "import": "./lib/node/index.js"
+    },
+    "./client": {
+      "types": "./lib/client/index.d.ts",
+      "import": "./lib/client/index.js"
+    },
+    "./shared": {
+      "types": "./lib/shared/index.d.ts",
+      "import": "./lib/shared/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "main": "lib/node/index.js",
   "types": "lib/node/index.d.ts",
@@ -73,13 +82,13 @@
     "lodash.merge": "^4.6.2",
     "nanoid": "^5.0.4",
     "ts-debounce": "^4.0.0",
-    "vue": "^3.3.13",
+    "vue": "^3.4.3",
     "vue-router": "4.2.5",
-    "vuepress-plugin-comment2": "2.0.0-rc.7",
-    "vuepress-plugin-md-enhance": "2.0.0-rc.7",
-    "vuepress-plugin-reading-time2": "2.0.0-rc.7",
-    "vuepress-plugin-seo2": "2.0.0-rc.7",
-    "vuepress-plugin-sitemap2": "2.0.0-rc.7"
+    "vuepress-plugin-comment2": "2.0.0-rc.10",
+    "vuepress-plugin-md-enhance": "2.0.0-rc.10",
+    "vuepress-plugin-reading-time2": "2.0.0-rc.10",
+    "vuepress-plugin-seo2": "2.0.0-rc.10",
+    "vuepress-plugin-sitemap2": "2.0.0-rc.10"
   },
   "devDependencies": {
     "@types/lodash.merge": "^4.6.9"

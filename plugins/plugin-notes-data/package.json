@@ -14,8 +14,14 @@
     "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
   },
   "exports": {
-    ".": "./lib/node/index.js",
-    "./client": "./lib/client/index.js",
+    ".": {
+      "types": "./lib/node/index.d.ts",
+      "import": "./lib/node/index.js"
+    },
+    "./client": {
+      "types": "./lib/client/index.d.ts",
+      "import": "./lib/client/index.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "lib/node/index.js",
@@ -40,7 +46,7 @@
     "@vuepress/utils": "2.0.0-rc.0",
     "chokidar": "^3.5.3",
     "create-filter": "^1.0.1",
-    "vue": "^3.3.13"
+    "vue": "^3.4.3"
   },
   "publishConfig": {
     "access": "public"

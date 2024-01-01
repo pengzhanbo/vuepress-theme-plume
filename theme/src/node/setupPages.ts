@@ -6,7 +6,7 @@ import type {
   PlumeThemeLocaleOptions,
   PlumeThemePageData,
 } from '../shared/index.js'
-import { normalizePath } from './utils.js'
+import { pathJoin } from './utils.js'
 
 export async function setupPage(
   app: App,
@@ -18,7 +18,7 @@ export async function setupPage(
     const defaultBlog = localeOption.blog
     const link = blog?.link
       ? blog.link
-      : normalizePath(path.join('/', locale, defaultBlog?.link || '/blog/'))
+      : pathJoin('/', locale, defaultBlog?.link || '/blog/')
     const blogPage = await createPage(app, {
       path: link,
       frontmatter: {
@@ -30,7 +30,7 @@ export async function setupPage(
 
     if (blog?.tags !== false || defaultBlog?.tags !== false) {
       const tagsPage = await createPage(app, {
-        path: normalizePath(path.join(link, 'tags/')),
+        path: pathJoin(link, 'tags/'),
         frontmatter: {
           lang: locale.replace(/^\/|\/$/g, '') || app.siteData.lang,
           type: 'blog-tags',
@@ -41,7 +41,7 @@ export async function setupPage(
 
     if (blog?.archives !== false || defaultBlog?.archives !== false) {
       const archivesPage = await createPage(app, {
-        path: normalizePath(path.join(link, 'archives/')),
+        path: pathJoin(link, 'archives/'),
         frontmatter: {
           lang: locale.replace(/^\/|\/$/g, '') || app.siteData.lang,
           type: 'blog-archives',

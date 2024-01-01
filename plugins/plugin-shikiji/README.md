@@ -3,14 +3,21 @@
 使用 [`shikiji`](https://shikiji.netlify.app/) 来为 Markdown 代码块启用代码高亮。
 
 ## Install
-```
+
+```sh
+npm install @vuepress-plume/plugin-shikiji
+# or
+pnpm add @vuepress-plume/plugin-shikiji
+# or
 yarn add @vuepress-plume/plugin-shikiji
 ```
 ## Usage
+
 ``` js
-// .vuepress/config.js
-const shikijiPlugin = require('@vuepress-plume/plugin-shikiji')
-module.exports = {
+// .vuepress/config.[jt]s
+import { shikijiPlugin } from '@vuepress-plume/plugin-shikiji'
+
+export default {
   // ...
   plugins: [
     shikijiPlugin()

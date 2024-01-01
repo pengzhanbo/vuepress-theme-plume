@@ -14,7 +14,10 @@
     "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
   },
   "exports": {
-    ".": "./lib/node/index.js",
+    ".": {
+      "types": "./lib/node/index.d.ts",
+      "import": "./lib/node/index.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "lib/node/index.js",
@@ -33,8 +36,8 @@
     "@vuepress/utils": "2.0.0-rc.0",
     "nanoid": "^5.0.4",
     "picocolors": "^1.0.0",
-    "shikiji": "^0.9.12",
-    "shikiji-transformers": "^0.9.12"
+    "shikiji": "^0.9.15",
+    "shikiji-transformers": "^0.9.15"
   },
   "publishConfig": {
     "access": "public"

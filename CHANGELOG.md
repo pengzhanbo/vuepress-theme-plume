@@ -1,3 +1,13 @@
+# [1.0.0-rc.12](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.11...v1.0.0-rc.12) (2024-1-1)
+
+
+### Performance Improvements
+
+* 优化内容容器在移动端的表现效果 ([75c59c5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/75c59c588ccaa7eea5d38e99e335d1928c85277b))
+* 优化页面打印布局排版 ([aac83e0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/aac83e0c14cfd5e4e01ee342125bfebe451fe570))
+
+
+
 # [1.0.0-rc.11](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.10...v1.0.0-rc.11) (2024-1-1)
 
 

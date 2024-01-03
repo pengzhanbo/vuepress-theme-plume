@@ -1,3 +1,12 @@
+# [1.0.0-rc.13](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.12...v1.0.0-rc.13) (2024-1-3)
+
+
+### Bug Fixes
+
+* **theme:** build html fail ([8625c68](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8625c6820293b98a6464b1237fc9e3ba108ac6b4))
+
+
+
 # [1.0.0-rc.12](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.11...v1.0.0-rc.12) (2024-1-1)
 
 

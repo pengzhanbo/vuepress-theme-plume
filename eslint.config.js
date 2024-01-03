@@ -3,7 +3,6 @@ import config from '@pengzhanbo/eslint-config-vue'
 export default config({
   formatters: {
     css: true,
-    html: true,
   },
   ignores: ['lib', 'docs/**/*.md'],
   globals: {

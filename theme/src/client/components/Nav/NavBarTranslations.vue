@@ -14,7 +14,7 @@ const { currentLang, localeLinks } = useLangs()
     v-if="localeLinks.length && currentLang.label"
     class="navbar-translations"
     :icon="IconLanguages"
-    :label="theme.selectLanguageText || 'change language'"
+    :label="theme.selectLanguageText || 'Change Language'"
   >
     <div class="items">
       <p class="title">

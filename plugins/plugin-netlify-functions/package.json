@@ -1,7 +1,7 @@
 {
   "name": "vuepress-plugin-netlify-functions",
   "type": "module",
-  "version": "1.0.0-rc.13",
+  "version": "1.0.0-rc.14",
   "description": "The Plugin for VuePres 2, Support Netlify Functions",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",

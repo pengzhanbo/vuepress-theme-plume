@@ -1,3 +1,19 @@
+# [1.0.0-rc.14](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.13...v1.0.0-rc.14) (2024-1-4)
+
+
+### Features
+
+* 增强多语言支持 ([5ff9570](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5ff9570018d36b4017038cc3419951cfc6481aed))
+* mdEnhance 默认启用 `katex` ([1fe16bd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1fe16bd5799351382b05731a698804e74e788a85))
+* **plugin-notes-data:** 支持 数组形式的插件配置项 ([66f1f03](https://github.com/pengzhanbo/vuepress-theme-plume/commit/66f1f037e4d743071cac46a4ebc8de8cec19dfa5))
+
+
+### Performance Improvements
+
+* 优化博客列表页数据逻辑 ([689bde3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/689bde34bbe586b3e2b936093658ae50ac3d05ee))
+
+
+
 # [1.0.0-rc.13](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.12...v1.0.0-rc.13) (2024-1-3)
 
 

@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.13",
   "private": true,
-  "packageManager": "pnpm@8.13.1",
+  "packageManager": "pnpm@8.14.0",
   "author": "pengzhanbo",
   "license": "MIT",
   "keywords": [
@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build": "pnpm run build:package",
-    "build:package": "pnpm --filter=!vuepress-theme-plume-monorepo --filter=!docs run -r --stream build",
+    "build:package": "pnpm --filter=!vuepress-theme-plume-monorepo --filter=!docs --filter=!plugin-page-collection run -r --stream build",
     "commit": "cz",
     "dev": "concurrently \"pnpm run dev:package\" \"pnpm run docs\"",
     "dev:package": "pnpm --filter=!vuepress-theme-plume-monorepo --filter=!docs --parallel dev",

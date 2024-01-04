@@ -475,15 +475,15 @@ importers:
       date-fns:
         specifier: ^3.0.6
         version: 3.0.6
+      katex:
+        specifier: ^0.16.9
+        version: 0.16.9
       lodash.merge:
         specifier: ^4.6.2
         version: 4.6.2
       nanoid:
         specifier: ^5.0.4
         version: 5.0.4
-      ts-debounce:
-        specifier: ^4.0.0
-        version: 4.0.0
       vue:
         specifier: ^3.4.3
         version: 3.4.3(typescript@5.3.3)
@@ -495,7 +495,7 @@ importers:
         version: 2.0.0-rc.10(typescript@5.3.3)
       vuepress-plugin-md-enhance:
         specifier: 2.0.0-rc.10
-        version: 2.0.0-rc.10(markdown-it@13.0.2)(typescript@5.3.3)
+        version: 2.0.0-rc.10(katex@0.16.9)(markdown-it@13.0.2)(typescript@5.3.3)
       vuepress-plugin-reading-time2:
         specifier: 2.0.0-rc.10
         version: 2.0.0-rc.10(typescript@5.3.3)
@@ -2416,7 +2416,7 @@ packages:
       upath: 2.0.1
     dev: false
 
-  /@mdit/plugin-katex@0.7.6(markdown-it@13.0.2):
+  /@mdit/plugin-katex@0.7.6(katex@0.16.9)(markdown-it@13.0.2):
     resolution: {integrity: sha512-ZbPIks1SlgzS5R6YOL5s0J5vk20ROl5hF+Yj9o6CiEljodK2ln0ewpX36qM6POVrS/cu6E4Lx4X0fc5JTI6nAQ==}
     engines: {node: '>= 18'}
     peerDependencies:
@@ -2431,6 +2431,7 @@ packages:
       '@mdit/plugin-tex': 0.7.6(markdown-it@13.0.2)
       '@types/katex': 0.16.7
       '@types/markdown-it': 13.0.7
+      katex: 0.16.9
       markdown-it: 13.0.2
     dev: false
 
@@ -16655,7 +16656,7 @@ packages:
       - typescript
     dev: false
 
-  /vuepress-plugin-md-enhance@2.0.0-rc.10(markdown-it@13.0.2)(typescript@5.3.3):
+  /vuepress-plugin-md-enhance@2.0.0-rc.10(katex@0.16.9)(markdown-it@13.0.2)(typescript@5.3.3):
     resolution: {integrity: sha512-bZJs7MWv8GdGdC3OxjEU1kAnmOp9odiq+jYKr85mS4TkqH7aVYRrhuJcUErRKCSO7shBhBFpm1zVwnIGkx41Jw==}
     engines: {node: '>=18.16.0', npm: '>=8', pnpm: '>=7', yarn: '>=2'}
     peerDependencies:
@@ -16723,7 +16724,7 @@ packages:
       '@mdit/plugin-img-mark': 0.7.6(markdown-it@13.0.2)
       '@mdit/plugin-img-size': 0.7.6(markdown-it@13.0.2)
       '@mdit/plugin-include': 0.7.6(markdown-it@13.0.2)
-      '@mdit/plugin-katex': 0.7.6(markdown-it@13.0.2)
+      '@mdit/plugin-katex': 0.7.6(katex@0.16.9)(markdown-it@13.0.2)
       '@mdit/plugin-mark': 0.7.6(markdown-it@13.0.2)
       '@mdit/plugin-mathjax': 0.7.6(markdown-it@13.0.2)
       '@mdit/plugin-stylize': 0.7.6(markdown-it@13.0.2)
@@ -16740,6 +16741,7 @@ packages:
       '@vueuse/core': 10.7.1(vue@3.4.3)
       balloon-css: 1.2.0
       js-yaml: 4.1.0
+      katex: 0.16.9
       vue: 3.4.3(typescript@5.3.3)
       vue-router: 4.2.5(vue@3.4.3)
       vuepress-plugin-sass-palette: 2.0.0-rc.10(typescript@5.3.3)

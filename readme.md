@@ -74,8 +74,13 @@ __options__ : `PlumeThemeOptions`
 ## 非内置插件
 
 - [vuepress-plugin-netlify-functions](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-netlify-functions) 当站点部署在 netlify 时，希望使用 netlify functions 可选择此插件提供支持
+
 ### 注意
 
 本主题基于 `vuepress 2` ，处于 RC 阶段。
 
 这意味着功能已趋于稳定，但在未来仍有小概率发生破坏性更改。
+
+## 贡献指南
+
+查看 [[贡献指南]](/CONTRIBUTING.md) 了解更多

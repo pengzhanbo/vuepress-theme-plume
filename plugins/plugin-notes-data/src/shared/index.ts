@@ -3,8 +3,10 @@ export interface NotesDataOptions {
   link: string
   include?: string | string[]
   exclude?: string | string[]
-  notes: NotesItem[]
+  notes: NotesItemOptions[]
 }
+
+export type NotesItemOptions = (Omit<NotesItem, 'text'> & { text?: string })
 
 export interface NotesItem {
   dir: string

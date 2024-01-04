@@ -1,16 +1,20 @@
 import { usePageLang } from '@vuepress/client'
 import { useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
 import { computed, ref } from 'vue'
-import type { Ref } from 'vue'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 import { useLocaleLink, useThemeLocaleData } from '../composables/index.js'
 import { getRandomColor, toArray } from '../utils/index.js'
 
-export function usePostListControl() {
+export function useLocalePostList() {
   const locale = usePageLang()
+  const list = useBlogPostData()
+  return computed(() => list.value.filter(item => item.lang === locale.value))
+}
+
+export function usePostListControl() {
   const themeData = useThemeLocaleData()
 
-  const list = useBlogPostData() as unknown as Ref<PlumeThemeBlogPostItem[]>
+  const list = useLocalePostList()
   const blog = computed(() => themeData.value.blog || {})
   const pagination = computed(() => blog.value.pagination || {})
 
@@ -29,7 +33,7 @@ export function usePostListControl() {
         return next.sticky > prev.sticky ? 1 : -1
       }),
       ...otherList,
-    ].filter(item => item.lang === locale.value)
+    ]
   })
 
   const page = ref(1)
@@ -109,15 +113,10 @@ export function useBlogExtract() {
 export type ShortPostItem = Pick<PlumeThemeBlogPostItem, 'title' | 'path' | 'createTime'>
 
 export function useTags() {
-  const locale = usePageLang()
-  const list = useBlogPostData() as unknown as Ref<PlumeThemeBlogPostItem[]>
-  const filteredList = computed(() =>
-    list.value.filter(item => item.lang === locale.value),
-  )
-
+  const list = useLocalePostList()
   const tags = computed(() => {
     const tagMap: Record<string, number> = {}
-    filteredList.value.forEach((item) => {
+    list.value.forEach((item) => {
       if (item.tags) {
         toArray(item.tags).forEach((tag) => {
           if (tagMap[tag])
@@ -139,7 +138,7 @@ export function useTags() {
 
   const handleTagClick = (tag: string) => {
     currentTag.value = tag
-    postList.value = filteredList.value.filter((item) => {
+    postList.value = list.value.filter((item) => {
       if (item.tags)
         return toArray(item.tags).includes(tag)
 
@@ -160,15 +159,11 @@ export function useTags() {
 }
 
 export function useArchives() {
-  const locale = usePageLang()
-  const list = useBlogPostData() as unknown as Ref<PlumeThemeBlogPostItem[]>
-  const filteredList = computed(() =>
-    list.value.filter(item => item.lang === locale.value),
-  )
+  const list = useLocalePostList()
   const archives = computed(() => {
     const archives: { label: string, list: ShortPostItem[] }[] = []
 
-    filteredList.value.forEach((item) => {
+    list.value.forEach((item) => {
       const createTime = item.createTime.split(' ')[0]
       const year = createTime.split('/')[0]
       let current = archives.find(archive => archive.label === year)
@@ -186,7 +181,5 @@ export function useArchives() {
     return archives
   })
 
-  return {
-    archives,
-  }
+  return { archives }
 }

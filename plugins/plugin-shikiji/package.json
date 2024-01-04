@@ -36,8 +36,8 @@
     "@vuepress/utils": "2.0.0-rc.0",
     "nanoid": "^5.0.4",
     "picocolors": "^1.0.0",
-    "shikiji": "^0.9.16",
-    "shikiji-transformers": "^0.9.16"
+    "shikiji": "^0.9.17",
+    "shikiji-transformers": "^0.9.17"
   },
   "publishConfig": {
     "access": "public"

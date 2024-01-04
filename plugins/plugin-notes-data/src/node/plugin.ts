@@ -3,7 +3,7 @@ import { getDirname, path } from '@vuepress/utils'
 import type { NotesDataOptions } from '../shared/index.js'
 import { prepareNotesData, watchNotesData } from './prepareNotesData.js'
 
-export function notesDataPlugin(options: NotesDataOptions): Plugin {
+export function notesDataPlugin(options: NotesDataOptions | NotesDataOptions[]): Plugin {
   return (app: App) => {
     return {
       name: '@vuepress-plume/plugin-notes-data',

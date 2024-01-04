@@ -2,6 +2,12 @@ import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
 import { customAlphabet } from 'nanoid'
+import { getDirname } from '@vuepress/utils'
+
+const __dirname = getDirname(import.meta.url)
+
+export const resolve = (...args: string[]) => path.resolve(__dirname, '../', ...args)
+export const templates = (url: string) => resolve('../templates', url)
 
 export const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz', 8)
 
@@ -15,7 +21,17 @@ export function getPackage() {
   return pkg
 }
 
-const RE_SLASH = /\\+/g
+export function getThemePackage() {
+  let pkg = {} as any
+  try {
+    const content = fs.readFileSync(resolve('../package.json'), 'utf-8')
+    pkg = JSON.parse(content)
+  }
+  catch {}
+  return pkg
+}
+
+const RE_SLASH = /(\\|\/)+/g
 export function normalizePath(dir: string) {
   return dir.replace(RE_SLASH, '/')
 }

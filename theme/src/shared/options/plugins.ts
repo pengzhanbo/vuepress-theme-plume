@@ -30,8 +30,14 @@ export interface PlumeThemePluginOptions {
    */
   docsearch?: false | DocsearchOptions
 
+  /**
+   * 代码高亮 配置
+   */
   shikiji?: false | ShikijiPluginOptions
 
+  /**
+   * git 插件 配置
+   */
   git?: false
 
   nprogress?: false

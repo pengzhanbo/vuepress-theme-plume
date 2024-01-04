@@ -1,4 +1,3 @@
-import path from 'node:path'
 import type { App, PluginConfig } from '@vuepress/core'
 import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
@@ -28,61 +27,55 @@ import type {
   PlumeThemePluginOptions,
 } from '../shared/index.js'
 import autoFrontmatter from './autoFrontmatter.js'
+import { resolveLocaleOptions } from './resolveLocaleOptions.js'
+import { pathJoin } from './utils.js'
+import { resolveNotesList } from './resolveNotesList.js'
 
-export function setupPlugins(app: App, options: PlumeThemePluginOptions, localeOptions: PlumeThemeLocaleOptions): PluginConfig {
+export function setupPlugins(
+  app: App,
+  options: PlumeThemePluginOptions,
+  localeOptions: PlumeThemeLocaleOptions,
+): PluginConfig {
   const isProd = !app.env.isDev
 
-  const locales = (localeOptions.locales || {}) as PlumeThemeLocaleOptions
-  const localeNotesDirs = Object.keys(locales)
-    .map((locale) => {
-      const dir = locales[locale].notes?.dir || ''
-      return dir
-        ? path.join(locale, dir, '**').replace(/\\+/g, '/').replace(/^\//, '')
-        : ''
-    })
+  const notesList = resolveNotesList(localeOptions)
+  const notesDirList = notesList
+    .map(notes => notes.dir && pathJoin(notes.dir, '**').replace(/^\//, ''))
     .filter(Boolean)
+
+  const blog = resolveLocaleOptions(localeOptions, 'blog')
 
   const plugins: PluginConfig = [
     palettePlugin({ preset: 'sass' }),
 
-    themeDataPlugin({
-      themeData: {
-        ...localeOptions,
-        notes: localeOptions.notes
-          ? { dir: localeOptions.notes.dir, link: localeOptions.notes.link }
-          : undefined,
-      } as any,
-    }),
+    themeDataPlugin({ themeData: localeOptions }),
 
     autoFrontmatterPlugin(autoFrontmatter(app, options, localeOptions)),
 
     blogDataPlugin({
-      include: localeOptions.blog?.include ?? ['**/*.md'],
+      include: blog?.include ?? ['**/*.md'],
       exclude: [
         '**/{README,readme,index}.md',
         '.vuepress/',
         'node_modules/',
-        ...(localeOptions.blog?.exclude ?? []),
-        ...localeNotesDirs,
+        ...(blog?.exclude ?? []),
+        ...notesDirList,
       ].filter(Boolean),
       sortBy: 'createTime',
       excerpt: true,
-      pageFilter(page: any) {
-        if (page.frontmatter.article !== undefined)
-          return !!page.frontmatter.article
-
-        return true
-      },
-      extendBlogData(page: any) {
-        return {
-          categoryList: page.data.categoryList,
-          tags: page.frontmatter.tags,
-          sticky: page.frontmatter.sticky,
-          createTime: page.data.frontmatter.createTime,
-          lang: page.lang,
-        }
-      },
+      pageFilter: (page: any) => page.frontmatter.article !== undefined
+        ? !!page.frontmatter.article
+        : true,
+      extendBlogData: (page: any) => ({
+        categoryList: page.data.categoryList,
+        tags: page.frontmatter.tags,
+        sticky: page.frontmatter.sticky,
+        createTime: page.data.frontmatter.createTime,
+        lang: page.lang,
+      }),
     }),
+
+    notesDataPlugin(notesList),
 
     iconifyPlugin(),
 
@@ -99,37 +92,27 @@ export function setupPlugins(app: App, options: PlumeThemePluginOptions, localeO
   if (options.readingTime !== false)
     plugins.push(readingTimePlugin(options.readingTime || {}))
 
-  if (localeOptions.notes)
-    plugins.push(notesDataPlugin(localeOptions.notes))
-
   if (options.nprogress !== false)
     plugins.push(nprogressPlugin())
 
   if (options.git !== false) {
     plugins.push(gitPlugin({
       createdTime: false,
-      updatedTime: localeOptions.lastUpdated !== false,
-      contributors: localeOptions.contributors !== false,
+      updatedTime: resolveLocaleOptions(localeOptions, 'lastUpdated') !== false,
+      contributors: resolveLocaleOptions(localeOptions, 'contributors') !== false,
     }))
   }
 
   if (options.mediumZoom !== false) {
     plugins.push(mediumZoomPlugin({
       selector: '.plume-content > img, .plume-content :not(a) > img',
-      zoomOptions: {
-        background: 'var(--vp-c-bg)',
-      },
+      zoomOptions: { background: 'var(--vp-c-bg)' },
       delay: 300,
     }))
   }
 
-  if (options.caniuse !== false) {
-    plugins.push(caniusePlugin(
-      options.caniuse || {
-        mode: 'embed',
-      },
-    ))
-  }
+  if (options.caniuse !== false)
+    plugins.push(caniusePlugin(options.caniuse || { mode: 'embed' }))
 
   if (options.externalLinkIcon !== false) {
     plugins.push(externalLinkIconPlugin({
@@ -150,14 +133,11 @@ export function setupPlugins(app: App, options: PlumeThemePluginOptions, localeO
     plugins.push(searchPlugin(options.search))
 
   if (options.docsearch !== false && !options.search) {
-    if (options.docsearch?.appId && options.docsearch?.apiKey) {
+    if (options.docsearch?.appId && options.docsearch?.apiKey)
       plugins.push(docsearchPlugin(options.docsearch))
-    }
-    else {
-      console.error(
-        'docsearch plugin: appId and apiKey are both required',
-      )
-    }
+
+    else
+      console.error('docsearch plugin: appId and apiKey are both required')
   }
 
   if (options.shikiji !== false) {
@@ -180,7 +160,6 @@ export function setupPlugins(app: App, options: PlumeThemePluginOptions, localeO
         {
           hint: true, // info note tip warning danger details
           codetabs: true,
-          tabs: true,
           align: true,
           mark: true,
           tasklist: true,
@@ -188,6 +167,7 @@ export function setupPlugins(app: App, options: PlumeThemePluginOptions, localeO
           attrs: true,
           sup: true,
           sub: true,
+          katex: true,
         } as MarkdownEnhanceOptions,
         options.markdownEnhance || {},
       ),
@@ -200,16 +180,15 @@ export function setupPlugins(app: App, options: PlumeThemePluginOptions, localeO
   if (options.baiduTongji !== false && options.baiduTongji?.key)
     plugins.push(baiduTongjiPlugin(options.baiduTongji))
 
-  if (options.sitemap !== false && localeOptions.hostname && isProd) {
-    plugins.push(sitemapPlugin({
-      hostname: localeOptions.hostname,
-    }))
-  }
+  const hostname = resolveLocaleOptions(localeOptions, 'hostname')
 
-  if (options.seo !== false && localeOptions.hostname && isProd) {
+  if (options.sitemap !== false && hostname && isProd)
+    plugins.push(sitemapPlugin({ hostname }))
+
+  if (options.seo !== false && hostname && isProd) {
     plugins.push(seoPlugin({
-      hostname: localeOptions.hostname || '',
-      author: localeOptions.avatar?.name,
+      hostname,
+      author: resolveLocaleOptions(localeOptions, 'avatar')?.name,
     }))
   }
 

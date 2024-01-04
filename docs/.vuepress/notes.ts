@@ -5,7 +5,6 @@ export const zhNotes = definePlumeNotesConfig({
   link: '/note',
   notes: [
     {
-      text: '',
       dir: 'vuepress-theme-plume',
       link: '/vuepress-theme-plume/',
       sidebar: [
@@ -34,7 +33,6 @@ export const zhNotes = definePlumeNotesConfig({
     },
     {
       dir: 'vuepress-plugin',
-      text: '',
       link: '/vuepress-plugin/',
       sidebar: [
         'caniuse/README',
@@ -50,12 +48,11 @@ export const zhNotes = definePlumeNotesConfig({
 })
 
 export const enNotes = definePlumeNotesConfig({
-  dir: 'notes',
-  link: '/note',
+  dir: 'en/notes',
+  link: '/en/note',
   notes: [
     {
       dir: 'vuepress-plugin',
-      text: '',
       link: '/vuepress-plugin/',
       sidebar: ['caniuse/README'],
     },

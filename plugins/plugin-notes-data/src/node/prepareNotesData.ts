@@ -5,7 +5,7 @@ import { createFilter } from 'create-filter'
 import type {
   NotesData,
   NotesDataOptions,
-  NotesItem,
+  NotesItemOptions,
   NotesSidebar,
   NotesSidebarItem,
 } from '../shared/index.js'
@@ -32,10 +32,11 @@ interface NotePage {
   link: string
 }
 
-export async function prepareNotesData(app: App, { include, exclude, notes, dir, link }: NotesDataOptions) {
+function resolvedNotesData(app: App, options: NotesDataOptions, result: NotesData) {
+  const { include, exclude, notes, dir: _dir, link } = options
   if (!notes || notes.length === 0)
     return
-  dir = normalizePath(dir)
+  const dir = normalizePath(_dir)
   const filter = createFilter(ensureArray(include), ensureArray(exclude), {
     resolve: false,
   })
@@ -47,23 +48,27 @@ export async function prepareNotesData(app: App, { include, exclude, notes, dir,
         && page.filePathRelative.startsWith(dir)
         && filter(page.filePathRelative),
     )
-    .map((page) => {
-      return {
-        relativePath: page.filePathRelative?.replace(DIR_PATTERN, '') || '',
-        title: page.title,
-        link: page.path,
-      }
-    })
-
-  const notesData: NotesData = {}
+    .map(page => ({
+      relativePath: page.filePathRelative?.replace(DIR_PATTERN, '') || '',
+      title: page.title,
+      link: page.path,
+    }))
   notes.forEach((note) => {
-    notesData[normalizePath(path.join('/', link, note.link))] = initSidebar(
+    result[normalizePath(path.join('/', link, note.link))] = initSidebar(
       note,
       notesPageList.filter(page =>
         page.relativePath.startsWith(note.dir.trim().replace(/^\/|\/$/g, '')),
       ),
     )
   })
+}
+
+export async function prepareNotesData(app: App, options: NotesDataOptions | NotesDataOptions[]) {
+  const notesData: NotesData = {}
+  const allOptions = ensureArray<NotesDataOptions>(options)
+
+  allOptions.forEach(option => resolvedNotesData(app, option, notesData))
+
   let content = `
 export const notesData = ${JSON.stringify(notesData, null, 2)}
 `
@@ -73,14 +78,17 @@ export const notesData = ${JSON.stringify(notesData, null, 2)}
   await app.writeTemp('internal/notesData.js', content)
 }
 
-export function watchNotesData(app: App, watchers: any[], options: NotesDataOptions): void {
-  if (!options.notes || options.notes.length === 0 || !options.dir)
-    return
-  const dir = path.join('pages', options.dir, '**/*')
+export function watchNotesData(app: App, watchers: any[], options: NotesDataOptions | NotesDataOptions[]): void {
+  const allOptions = ensureArray<NotesDataOptions>(options)
+  const [firstLink, ...links] = allOptions.map(option => option.link)
+
+  const dir = path.join('pages', firstLink, '**/*')
   const watcher = chokidar.watch(dir, {
     cwd: app.dir.temp(),
     ignoreInitial: true,
   })
+
+  links.length && watcher.add(links.map(link => path.join('pages', link, '**/*')))
 
   watcher.on('add', () => prepareNotesData(app, options))
   watcher.on('change', () => prepareNotesData(app, options))
@@ -88,7 +96,7 @@ export function watchNotesData(app: App, watchers: any[], options: NotesDataOpti
   watchers.push(watcher)
 }
 
-function initSidebar(note: NotesItem, pages: NotePage[]): NotesSidebarItem[] {
+function initSidebar(note: NotesItemOptions, pages: NotePage[]): NotesSidebarItem[] {
   if (!note.sidebar)
     return []
   if (note.sidebar === 'auto')
@@ -97,7 +105,7 @@ function initSidebar(note: NotesItem, pages: NotePage[]): NotesSidebarItem[] {
 }
 
 function initSidebarByAuto(
-  note: NotesItem,
+  note: NotesItemOptions,
   pages: NotePage[],
 ): NotesSidebarItem[] {
   pages = pages.sort((prev, next) => {
@@ -135,7 +143,7 @@ function initSidebarByAuto(
 }
 
 function initSidebarByConfig(
-  { text, dir, sidebar }: NotesItem,
+  { text, dir, sidebar }: NotesItemOptions,
   pages: NotePage[],
 ): NotesSidebarItem[] {
   return (sidebar as NotesSidebar).map((item) => {

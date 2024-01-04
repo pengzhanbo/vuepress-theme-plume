@@ -1,12 +1,23 @@
 import type {
   NotesDataOptions,
-  NotesItem,
+  NotesItemOptions,
 } from '@vuepress-plume/plugin-notes-data'
+import type { NavItem } from '../shared/index.js'
 
 export function definePlumeNotesConfig(notes: NotesDataOptions): NotesDataOptions {
   return notes
 }
 
-export const definePlumeNotesItemConfig = (item: NotesItem): NotesItem => item
+export function definePlumeNotesItemConfig(item: NotesItemOptions): NotesItemOptions {
+  return item
+}
 
-export type { NotesDataOptions, NotesItem }
+export function defineNavbar(navbar: NavItem[]): NavItem[] {
+  return navbar
+}
+
+export type {
+  NotesDataOptions,
+  NotesItemOptions,
+  NotesItemOptions as NotesItem,
+}

@@ -7,15 +7,16 @@ import type {
   PlumeThemePageData,
 } from '../shared/index.js'
 import { pathJoin } from './utils.js'
+import { resolveLocaleOptions } from './resolveLocaleOptions.js'
 
 export async function setupPage(
   app: App,
   localeOption: PlumeThemeLocaleOptions,
 ) {
   const locales = Object.keys(app.siteData.locales || {})
+  const defaultBlog = resolveLocaleOptions(localeOption, 'blog')
   for (const [, locale] of locales.entries()) {
-    const blog = localeOption.locales?.[locale]?.blog
-    const defaultBlog = localeOption.blog
+    const blog = resolveLocaleOptions(localeOption, 'blog', locale, false)
     const link = blog?.link
       ? blog.link
       : pathJoin('/', locale, defaultBlog?.link || '/blog/')

@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import { ensureStartingSlash } from '../utils/index.js'
 import { useThemeData } from './themeData.js'
+import { normalizePath } from './sidebar.js'
 
 export function useLangs({
   removeCurrent = true,
@@ -20,18 +21,34 @@ export function useLangs({
     }
   })
 
+  const addPath = computed(() => {
+    if (page.value.frontmatter.home || (page.value.type && page.value.type !== 'friends'))
+      return true
+
+    return correspondingLink
+  })
+
+  const getBlogLink = (locale: string) => {
+    const blog = theme.value.locales?.[`/${locale}/`]?.blog
+    const defaultBlog = theme.value.locales?.['/']?.blog ?? theme.value.blog
+    const link = blog?.link ? blog.link : normalizePath(`${locale}${defaultBlog?.link || 'blog/'}`)
+    return link
+  }
+
   const localeLinks = computed(() =>
     Object.entries(theme.value.locales || {}).flatMap(([key, value]) =>
       removeCurrent && currentLang.value.label === value.selectLanguageName
         ? []
         : {
             text: value.selectLanguageName,
-            link: normalizeLink(
-              key,
-              correspondingLink,
-              page.value.path.slice(currentLang.value.link.length - 1),
-              true,
-            ),
+            link: page.value.isBlogPost
+              ? getBlogLink(key)
+              : normalizeLink(
+                key,
+                addPath.value,
+                page.value.path.slice(currentLang.value.link.length - 1),
+                true,
+              ),
           },
     ),
   )

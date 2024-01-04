@@ -13,6 +13,8 @@ import type {
   PlumeThemePluginOptions,
 } from '../shared/index.js'
 import { getCurrentDirname, getPackage, nanoid, pathJoin } from './utils.js'
+import { resolveNotesList } from './resolveNotesList.js'
+import { resolveLocaleOptions } from './resolveLocaleOptions.js'
 
 export default function autoFrontmatter(
   app: App,
@@ -21,18 +23,12 @@ export default function autoFrontmatter(
 ): AutoFrontmatterOptions {
   const sourceDir = app.dir.source()
   const pkg = getPackage()
-  const { locales = {}, avatar, article: articlePrefix = '/article/' } = localeOption
+  const { locales = {}, article: articlePrefix = '/article/' } = localeOption
   const { frontmatter } = options
-
-  const localesNotesDirs = Object.keys(app.siteData.locales || {})
-    .map((locale) => {
-      // fixed: #15
-      const notes = locales[locale]?.notes
-      if (!notes)
-        return ''
-
-      return notes.dir ? pathJoin(locale, notes.dir).replace(/^\//, '') : ''
-    })
+  const avatar = resolveLocaleOptions(localeOption, 'avatar')
+  const notesList = resolveNotesList(localeOption)
+  const localesNotesDirs = notesList
+    .map(notes => notes.dir?.replace(/^\//, ''))
     .filter(Boolean)
 
   const baseFrontmatter: FrontmatterObject = {
@@ -58,7 +54,7 @@ export default function autoFrontmatter(
     return resolveLocalePath(localeOption.locales!, file)
   }
   const notesByLocale = (locale: string) => {
-    const notes = locales[locale]?.notes || localeOption.notes
+    const notes = resolveLocaleOptions(localeOption, 'notes', locale)
     if (notes === false)
       return undefined
     return notes
@@ -162,7 +158,13 @@ export default function autoFrontmatter(
             if (permalink)
               return permalink
             const locale = resolveLocale(filepath)
-            return pathJoin(locale, articlePrefix, nanoid(), '/')
+            const prefix = resolveLocaleOptions(localeOption, 'article', locale, false)
+            const args: string[] = []
+            prefix
+              ? args.push(prefix)
+              : args.push(locale, articlePrefix)
+
+            return pathJoin(...args, nanoid(), '/')
           },
         },
       },

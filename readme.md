@@ -14,11 +14,11 @@
 ## Install
 
 ``` sh
-npm install vue vuepress@next vuepress-theme-plume
+npm install vuepress@next vuepress-theme-plume
 # or
-pnpm add vue vuepress@next vuepress-theme-plume
+pnpm add vuepress@next vuepress-theme-plume vue @vuepress/client
 # or
-yarn add vue vuepress@next vuepress-theme-plume
+yarn add vuepress@next vuepress-theme-plume
 ```
 
 ## Usage

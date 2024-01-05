@@ -1,4 +1,4 @@
-import { usePageData, usePageLang, useSiteData } from '@vuepress/client'
+import { usePageData, useRouteLocale } from '@vuepress/client'
 import { computed } from 'vue'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import { ensureStartingSlash } from '../utils/index.js'
@@ -10,11 +10,10 @@ export function useLangs({
   correspondingLink = false,
 } = {}) {
   const page = usePageData<PlumeThemePageData>()
-  const site = useSiteData()
   const theme = useThemeData()
-  const locale = usePageLang()
+  const routeLocale = useRouteLocale()
   const currentLang = computed(() => {
-    const link = locale.value === site.value.lang ? '/' : `/${locale.value}/`
+    const link = routeLocale.value
     return {
       label: theme.value.locales?.[link]?.selectLanguageName,
       link,

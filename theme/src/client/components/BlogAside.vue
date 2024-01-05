@@ -66,7 +66,7 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
 }
 
 .blog-nav {
-  padding: 10px 24px 0;
+  padding: 10px 12px 0;
   margin: 24px 24px 0;
   display: grid;
   gap: 16px;
@@ -77,6 +77,7 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
 .nav-link {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 3px;
   color: var(--vp-c-brand-1);
   font-weight: 600;

@@ -1,3 +1,21 @@
+# [1.0.0-rc.15](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.14...v1.0.0-rc.15) (2024-1-5)
+
+
+### Features
+
+* 优化搜索插件默认配置 ([a3fa5e4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a3fa5e444e330b1298fde88d0f2f5a4d8f065219))
+* 增强主题默认配置，适配多语言 ([bf3a0af](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bf3a0afabb211931350f83c274960ae481f2bfd1))
+
+
+### Performance Improvements
+
+* 404页面 多语言支持 ([6d6aaea](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6d6aaea628b26e6d89099db6018a3a9ed9e12b8a))
+* 优化 多语言切换组件交互表现 ([6fb37ee](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6fb37eeb6377098d74154043d3cabe5a9a022a76))
+* 优化 文章列表页侧边栏 UI ([a268b84](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a268b84849a8ed8989c91a5887e97c9a492aaaf1))
+* 优化多语言下自动生成页面路径 ([e4e03e0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e4e03e0ae2a23ce04de84d829777ea21e5aae60f))
+
+
+
 # [1.0.0-rc.14](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.13...v1.0.0-rc.14) (2024-1-4)
 
 

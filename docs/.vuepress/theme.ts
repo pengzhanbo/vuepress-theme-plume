@@ -7,9 +7,6 @@ export const theme = themePlume({
   hostname: 'https://pengzhanbo.cn',
   repo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
   docsDir: 'docs',
-  editLink: true,
-  editLinkText: '在 GitHub 编辑此页',
-  appearance: true,
   avatar: {
     url: '/images/blogger.jpg',
     name: 'Plume Theme',
@@ -20,30 +17,19 @@ export const theme = themePlume({
 
   locales: {
     '/': {
-      selectLanguageName: '简体中文',
-      selectLanguageText: '选择语言',
       notes: zhNotes,
       navbar: zhNavbar,
     },
     '/en/': {
-      selectLanguageName: 'English',
-      selectLanguageText: 'Language',
-      editLinkText: 'Edit this page on GitHub',
       notes: enNotes,
       navbar: enNavbar,
     },
   },
   plugins: {
-    markdownEnhance: { katex: true },
-    search: {
-      locales: {
-        '/': {
-          placeholder: '搜索',
-        },
-        '/en/': {
-          placeholder: 'Search',
-        },
-      },
-    },
+    // docsearch: {
+    //   apiKey: '111',
+    //   appId: '111',
+    //   indexName: '1234',
+    // },
   },
 })

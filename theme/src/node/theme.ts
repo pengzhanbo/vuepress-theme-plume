@@ -13,23 +13,25 @@ export function plumeTheme({
   plugins,
   ...localeOptions
 }: PlumeThemeOptions = {}): Theme {
-  localeOptions = mergeLocaleOptions(localeOptions)
   const pluginsOptions = plugins ?? themePlugins ?? {}
   const pkg = getThemePackage()
 
-  return app => ({
-    name: THEME_NAME,
-    templateBuild: templates('build.html'),
-    clientConfigFile: resolve('client/config.js'),
-    plugins: setupPlugins(app, pluginsOptions, localeOptions),
-    onInitialized: app => setupPage(app, localeOptions),
-    extendsPage: page => extendsPageData(app, page as Page<PlumeThemePageData>, localeOptions),
-    templateBuildRenderer(template, context) {
-      template = template
-        .replace('{{ themeVersion }}', pkg.version || '')
-        .replace(/^\s+|\s+$/gm, '')
-        .replace(/\n/g, '')
-      return templateRenderer(template, context)
-    },
-  })
+  return (app) => {
+    localeOptions = mergeLocaleOptions(app, localeOptions)
+    return {
+      name: THEME_NAME,
+      templateBuild: templates('build.html'),
+      clientConfigFile: resolve('client/config.js'),
+      plugins: setupPlugins(app, pluginsOptions, localeOptions),
+      onInitialized: app => setupPage(app, localeOptions),
+      extendsPage: page => extendsPageData(app, page as Page<PlumeThemePageData>, localeOptions),
+      templateBuildRenderer(template, context) {
+        template = template
+          .replace('{{ themeVersion }}', pkg.version || '')
+          .replace(/^\s+|\s+$/gm, '')
+          .replace(/\n/g, '')
+        return templateRenderer(template, context)
+      },
+    }
+  }
 }

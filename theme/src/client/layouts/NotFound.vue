@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { withBase } from '@vuepress/client'
-import { ref } from 'vue'
+import { useRouteLocale, withBase } from '@vuepress/client'
 import LayoutContent from '../components/LayoutContent.vue'
 import Nav from '../components/Nav/index.vue'
 import { useThemeLocaleData } from '../composables'
 
-const root = ref('/')
+const root = useRouteLocale()
 const themeData = useThemeLocaleData()
 </script>
 

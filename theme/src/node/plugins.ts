@@ -30,6 +30,7 @@ import autoFrontmatter from './autoFrontmatter.js'
 import { resolveLocaleOptions } from './resolveLocaleOptions.js'
 import { pathJoin } from './utils.js'
 import { resolveNotesList } from './resolveNotesList.js'
+import { resolvedDocsearchOption, resolvedSearchOptions } from './searchPluginOptions.js'
 
 export function setupPlugins(
   app: App,
@@ -129,15 +130,15 @@ export function setupPlugins(
     }))
   }
 
-  if (options.search !== false)
-    plugins.push(searchPlugin(options.search))
-
-  if (options.docsearch !== false && !options.search) {
-    if (options.docsearch?.appId && options.docsearch?.apiKey)
-      plugins.push(docsearchPlugin(options.docsearch))
+  if (options.docsearch) {
+    if (options.docsearch.appId && options.docsearch.apiKey)
+      plugins.push(docsearchPlugin(resolvedDocsearchOption(app, options.docsearch)))
 
     else
       console.error('docsearch plugin: appId and apiKey are both required')
+  }
+  else if (options.search !== false) {
+    plugins.push(searchPlugin(resolvedSearchOptions(app, options.search)))
   }
 
   if (options.shikiji !== false) {

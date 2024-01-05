@@ -13,29 +13,24 @@ export async function setupPage(
   app: App,
   localeOption: PlumeThemeLocaleOptions,
 ) {
-  const locales = Object.keys(app.siteData.locales || {})
+  const locales = app.siteData.locales || {}
   const defaultBlog = resolveLocaleOptions(localeOption, 'blog')
-  for (const [, locale] of locales.entries()) {
+  for (const [, locale] of Object.keys(locales).entries()) {
     const blog = resolveLocaleOptions(localeOption, 'blog', locale, false)
+    const lang = locales[locale].lang || app.siteData.lang
     const link = blog?.link
       ? blog.link
       : pathJoin('/', locale, defaultBlog?.link || '/blog/')
     const blogPage = await createPage(app, {
       path: link,
-      frontmatter: {
-        lang: locale.replace(/^\/|\/$/g, '') || app.siteData.lang,
-        type: 'blog',
-      },
+      frontmatter: { lang, type: 'blog' },
     })
     app.pages.push(blogPage)
 
     if (blog?.tags !== false || defaultBlog?.tags !== false) {
       const tagsPage = await createPage(app, {
         path: pathJoin(link, 'tags/'),
-        frontmatter: {
-          lang: locale.replace(/^\/|\/$/g, '') || app.siteData.lang,
-          type: 'blog-tags',
-        },
+        frontmatter: { lang, type: 'blog-tags' },
       })
       app.pages.push(tagsPage)
     }
@@ -43,10 +38,7 @@ export async function setupPage(
     if (blog?.archives !== false || defaultBlog?.archives !== false) {
       const archivesPage = await createPage(app, {
         path: pathJoin(link, 'archives/'),
-        frontmatter: {
-          lang: locale.replace(/^\/|\/$/g, '') || app.siteData.lang,
-          type: 'blog-archives',
-        },
+        frontmatter: { lang, type: 'blog-archives' },
       })
       app.pages.push(archivesPage)
     }

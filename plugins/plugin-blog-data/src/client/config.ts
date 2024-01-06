@@ -8,15 +8,27 @@ export default defineClientConfig({
   enhance({ app }) {
     const blogPostData = useBlogPostData()
 
+    Object.defineProperties(app.config.globalProperties, {
+      $blogPostData: {
+        get() {
+          return blogPostData.value
+        },
+      },
+    })
+
     // setup devtools in dev mode
     if (__VUEPRESS_DEV__ || __VUE_PROD_DEVTOOLS__) {
+      const PLUGIN_ID = 'org.vuejs.vuepress'
+      const PLUGIN_LABEL = 'VuePress'
+      const INSPECTOR_ID = PLUGIN_ID
+
       setupDevtoolsPlugin(
         {
           // fix recursive reference
           app: app as any,
-          id: 'org.vuepress-plume.plugin-blog-data',
-          label: 'VuePress Blog Data Plugin',
-          packageName: '@vuepress/plugin-blog-data',
+          id: PLUGIN_ID,
+          label: PLUGIN_LABEL,
+          packageName: '@vuepress-plume/plugin-blog-data',
           homepage: 'https://pengzhanbo.cn',
           logo: 'https://v2.vuepress.vuejs.org/images/hero.png',
           componentStateTypes: ['VuePress'],
@@ -29,6 +41,26 @@ export default defineClientConfig({
               editable: false,
               value: blogPostData.value,
             })
+          })
+          api.on.getInspectorTree((payload) => {
+            if (payload.inspectorId !== INSPECTOR_ID)
+              return
+            payload.rootNodes.push({
+              id: 'blog_post_data',
+              label: 'Blog Post Data',
+            })
+          })
+          api.on.getInspectorState((payload) => {
+            if (payload.inspectorId !== INSPECTOR_ID)
+              return
+            if (payload.nodeId === 'blog_post_data') {
+              payload.state = {
+                BlogPostData: [{
+                  key: 'blogPostData',
+                  value: blogPostData.value,
+                }],
+              }
+            }
           })
         },
       )

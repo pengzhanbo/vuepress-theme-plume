@@ -44,6 +44,7 @@ pnpm build
 
 - [TypeScript](https://www.typescriptlang.org/) 作为开发语言
 - [ESLint](https://eslint.org/) 用于代码检查和格式化
+- [StyleLint](https://stylelint.io/) 用于代码检查和格式化
 
 ### 开发脚本
 

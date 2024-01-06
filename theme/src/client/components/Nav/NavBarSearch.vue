@@ -5,65 +5,6 @@
 </template>
 
 <style>
-@media (width >= 768px) {
-  .navbar-search {
-    flex-grow: 1;
-    padding-left: 24px;
-  }
-}
-
-@media (width >= 960px) {
-  .navbar-search {
-    padding-left: 32px;
-  }
-}
-
-@media print {
-  .navbar-search {
-    display: none;
-  }
-}
-
-@media (width >= 768px) {
-  .navbar-search .DocSearch-Button {
-    justify-content: flex-start;
-    width: 100%;
-    height: 40px;
-    padding: 0 10px 0 12px;
-    background-color: var(--vp-c-bg-alt);
-    border: 1px solid transparent;
-    border-radius: 8px;
-  }
-
-  .navbar-search .DocSearch-Button:hover {
-    background: var(--docsearch-searchbox-focus-background);
-    border-color: var(--vp-c-brand-1);
-  }
-}
-
-@media (width >= 768px) {
-  .DocSearch-Button .DocSearch-Search-Icon {
-    top: 1px;
-    width: 14px;
-    height: 14px;
-    margin-right: 8px;
-    color: var(--vp-c-text-2);
-  }
-}
-
-@media (width >= 768px) {
-  .DocSearch-Button .DocSearch-Button-Placeholder {
-    display: inline-block;
-  }
-}
-
-@media (width >= 768px) {
-  .DocSearch-Button .DocSearch-Button-Keys {
-    display: flex;
-    align-items: center;
-  }
-}
-
 .navbar-search {
   display: flex;
   align-items: center;
@@ -234,4 +175,64 @@
 }
 
 /* plugin-search */
+
+/* stylelint-disable-next-line order/order */
+@media (width >= 768px) {
+  .navbar-search {
+    flex-grow: 1;
+    padding-left: 24px;
+  }
+}
+
+@media (width >= 960px) {
+  .navbar-search {
+    padding-left: 32px;
+  }
+}
+
+@media print {
+  .navbar-search {
+    display: none;
+  }
+}
+
+@media (width >= 768px) {
+  .navbar-search .DocSearch-Button {
+    justify-content: flex-start;
+    width: 100%;
+    height: 40px;
+    padding: 0 10px 0 12px;
+    background-color: var(--vp-c-bg-alt);
+    border: 1px solid transparent;
+    border-radius: 8px;
+  }
+
+  .navbar-search .DocSearch-Button:hover {
+    background: var(--docsearch-searchbox-focus-background);
+    border-color: var(--vp-c-brand-1);
+  }
+}
+
+@media (width >= 768px) {
+  .DocSearch-Button .DocSearch-Search-Icon {
+    top: 1px;
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    color: var(--vp-c-text-2);
+  }
+}
+
+@media (width >= 768px) {
+  .DocSearch-Button .DocSearch-Button-Placeholder {
+    display: inline-block;
+  }
+}
+
+@media (width >= 768px) {
+  .DocSearch-Button .DocSearch-Button-Keys {
+    display: flex;
+    align-items: center;
+  }
+}
 </style>

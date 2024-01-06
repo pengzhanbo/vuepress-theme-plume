@@ -89,8 +89,5 @@
     "vuepress-plugin-reading-time2": "2.0.0-rc.10",
     "vuepress-plugin-seo2": "2.0.0-rc.10",
     "vuepress-plugin-sitemap2": "2.0.0-rc.10"
-  },
-  "devDependencies": {
-    "@types/lodash.merge": "^4.6.9"
   }
 }

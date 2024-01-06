@@ -1,9 +1,6 @@
 import config from '@pengzhanbo/eslint-config-vue'
 
 export default config({
-  formatters: {
-    css: true,
-  },
   ignores: ['lib', 'docs/**/*.md'],
   globals: {
     __VUEPRESS_VERSION__: 'readonly',

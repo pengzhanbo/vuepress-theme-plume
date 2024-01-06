@@ -30,6 +30,6 @@ export const theme = themePlume({
     //   apiKey: '111',
     //   appId: '111',
     //   indexName: '1234',
-    // },
+    // }
   },
 })

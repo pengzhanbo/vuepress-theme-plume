@@ -14,6 +14,7 @@
       "@internal/*": ["./docs/.vuepress/.temp/internal/*"],
       "@vuepress-plume/*": ["./plugins/*/src/node/index.ts"],
       "vuepress-theme-plume": ["./theme/src/node/index.ts"],
+      "@vuepress-plume/*/client": ["./plugins/*/src/client/index.ts"],
       "vuepress-plugin-netlify-functions": [
         "./plugins/plugin-netlify-functions/src/node/index.ts"
       ]

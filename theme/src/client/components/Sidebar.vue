@@ -88,7 +88,7 @@ watch(
   box-shadow: var(--vp-shadow-1);
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .sidebar-wrapper {
     z-index: 1;
     width: var(--vp-sidebar-width);
@@ -102,7 +102,7 @@ watch(
   }
 }
 
-@media (width >= 1440px) {
+@media (min-width: 1440px) {
   .sidebar-wrapper {
     width:
       calc(
@@ -117,7 +117,7 @@ watch(
   }
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .curtain {
     position: sticky;
     top: -64px;
@@ -140,7 +140,7 @@ watch(
   border-top: 1px solid var(--vp-c-divider);
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .group {
     width: calc(var(--vp-sidebar-width) - 64px);
     padding-top: 10px;

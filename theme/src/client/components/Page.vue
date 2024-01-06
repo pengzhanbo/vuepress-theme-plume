@@ -59,13 +59,13 @@ onContentUpdated(() => zoom?.refresh())
   padding-top: calc(var(--vp-nav-height) + 32px);
 } */
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .plume-page {
     padding: 48px 32px 128px;
   }
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .plume-page,
   .plume-page.is-blog {
     padding: 32px 32px 0;
@@ -82,7 +82,7 @@ onContentUpdated(() => zoom?.refresh())
   }
 }
 
-@media (width >= 1280px) {
+@media (min-width: 1280px) {
   .plume-page .container {
     display: flex;
     justify-content: center;
@@ -93,7 +93,7 @@ onContentUpdated(() => zoom?.refresh())
   }
 }
 
-@media (width >= 1440px) {
+@media (min-width: 1440px) {
   .plume-page:not(.has-sidebar) .content {
     max-width: 784px;
   }
@@ -103,13 +103,13 @@ onContentUpdated(() => zoom?.refresh())
   }
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .content {
     padding: 0 32px 128px;
   }
 }
 
-@media (width >= 1280px) {
+@media (min-width: 1280px) {
   .content {
     order: 1;
     min-width: 640px;

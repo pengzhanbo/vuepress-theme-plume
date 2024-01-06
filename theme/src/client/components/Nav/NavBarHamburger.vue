@@ -33,7 +33,7 @@ defineEmits<(e: 'click') => void>()
   height: var(--vp-nav-height);
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .navbar-hamburger {
     display: none;
   }

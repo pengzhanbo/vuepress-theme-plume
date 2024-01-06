@@ -127,7 +127,7 @@
     overflow: hidden;
     border: solid 1px var(--vp-c-divider);
 
-    @media (width <= 419px) {
+    @media (max-width: 419px) {
       .vp-code-demo-codes div[class*="language-"] {
         margin: 0;
         border-radius: 0;
@@ -239,6 +239,13 @@
     border: 1px solid var(--vp-c-divider);
   }
 
+  /* stylelint-disable-next-line order/order */
+  @media (min-width: 419px) {
+    .vp-tabs {
+      margin: 1.5rem 0;
+    }
+  }
+
   .hint-container .vp-tabs {
     margin: 1rem -0.45rem 1rem -0.75rem;
 
@@ -263,7 +270,7 @@
     font-size: 14px;
     border-left: 4px solid var(--vp-c-default-soft);
 
-    @media (width >= 419px) {
+    @media (max-width: 419px) {
       & {
         margin-left: 0;
       }

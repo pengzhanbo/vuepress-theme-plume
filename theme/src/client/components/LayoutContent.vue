@@ -35,7 +35,7 @@ const { hasSidebar } = useSidebar()
   margin: 0;
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .layout-content {
     padding-top: var(--vp-nav-height);
   }
@@ -46,7 +46,7 @@ const { hasSidebar } = useSidebar()
   }
 }
 
-@media (width >= 1440px) {
+@media (min-width: 1440px) {
   .layout-content.has-sidebar {
     padding-right: calc((100vw - var(--vp-layout-max-width)) / 2);
     padding-left:

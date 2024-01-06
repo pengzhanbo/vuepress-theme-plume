@@ -136,7 +136,7 @@ const actions = computed(() => {
   /* background-color: rgba(0, 0, 0, 0.25); */
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .plume-home .container {
     max-width: 768px;
     padding-top: 8rem;
@@ -147,7 +147,7 @@ const actions = computed(() => {
   }
 }
 
-@media (width >= 1440px) {
+@media (min-width: 1440px) {
   .plume-home .container {
     max-width: 1104px;
     padding-top: 8rem;

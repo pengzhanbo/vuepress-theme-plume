@@ -55,13 +55,13 @@ const hasExtraContent = computed(
   margin-right: -12px;
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .navbar-extra {
     display: block;
   }
 }
 
-@media (width >= 1280px) {
+@media (min-width: 1280px) {
   .navbar-extra {
     display: none;
   }

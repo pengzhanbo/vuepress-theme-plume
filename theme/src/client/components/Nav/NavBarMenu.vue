@@ -25,7 +25,7 @@ const theme = useThemeLocaleData()
   display: none;
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .navbar-menu {
     display: flex;
   }

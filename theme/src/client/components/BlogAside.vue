@@ -60,7 +60,7 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
   font-weight: 600;
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .blog-aside-wrapper {
     display: block;
   }

@@ -62,7 +62,7 @@ function focusOnTargetAnchor({ target }: Event) {
   clip-path: none;
 }
 
-@media (width >= 1280px) {
+@media (min-width: 1280px) {
   .skip-link {
     top: 14px;
     left: 16px;

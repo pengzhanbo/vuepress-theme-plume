@@ -33,7 +33,7 @@ const { currentLang, localeLinks } = useLangs()
   display: none;
 }
 
-@media (width >= 1280px) {
+@media (min-width: 1280px) {
   .navbar-translations {
     display: flex;
     align-items: center;

@@ -76,7 +76,7 @@ const showFooter = computed(() => {
   margin-top: 96px;
 }
 
-@media (width >= 640px) {
+@media (min-width: 640px) {
   .edit-info {
     display: flex;
     align-items: center;
@@ -120,7 +120,7 @@ const showFooter = computed(() => {
   color: var(--vp-c-text-2);
 }
 
-@media (width >= 640px) {
+@media (min-width: 640px) {
   .last-updated-text {
     font-size: 14px;
     font-weight: 500;
@@ -136,7 +136,7 @@ const showFooter = computed(() => {
   text-align: left;
 }
 
-@media (width >= 640px) {
+@media (min-width: 640px) {
   .contributors {
     text-align: right;
   }
@@ -164,7 +164,7 @@ const showFooter = computed(() => {
   border-top: 1px solid var(--vp-c-divider);
 }
 
-@media (width >= 640px) {
+@media (min-width: 640px) {
   .prev-next {
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 16px;

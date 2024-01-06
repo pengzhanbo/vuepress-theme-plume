@@ -137,7 +137,7 @@ function handleClick() {
   r: 16;
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .back-to-top-button {
     width: 48px;
     height: 48px;

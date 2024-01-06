@@ -96,7 +96,7 @@ const showLocalNav = computed(() => {
   border-top-color: transparent;
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .local-nav {
     display: none;
   }
@@ -128,7 +128,7 @@ const showLocalNav = computed(() => {
   transition: color 0.25s;
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .menu {
     padding: 0 32px;
   }
@@ -156,7 +156,7 @@ const showLocalNav = computed(() => {
   transition: color 0.25s;
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .top-link {
     padding: 12px 32px 11px;
   }

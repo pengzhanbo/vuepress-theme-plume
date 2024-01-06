@@ -35,7 +35,7 @@ defineProps<{
   transition-duration: 0.25s;
 }
 
-@media (width >= 1280px) {
+@media (min-width: 1280px) {
   .backdrop {
     display: none;
   }

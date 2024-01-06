@@ -66,7 +66,7 @@ const createTime = computed(() => {
   padding-top: 1rem;
   margin: 0 1.75rem 2rem;
 
-  @media (width >= 960px) {
+  @media (min-width: 960px) {
     h3 {
       font-size: 20px;
     }

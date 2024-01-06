@@ -67,7 +67,7 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
   transform: translateY(-8px);
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .nav-screen {
     display: none;
   }

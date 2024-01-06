@@ -30,14 +30,14 @@ const page = usePageData<PlumeThemePageData>()
   margin: 0 auto;
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .blog-wrapper {
     max-width: 784px;
     padding-top: 0;
   }
 }
 
-@media (width >= 1440px) {
+@media (min-width: 1440px) {
   .blog-wrapper {
     max-width: 1104px;
   }

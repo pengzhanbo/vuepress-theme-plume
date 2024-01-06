@@ -40,7 +40,7 @@ const { hasSidebar } = useSidebar()
   opacity: 0.6;
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .title {
     flex-shrink: 0;
   }

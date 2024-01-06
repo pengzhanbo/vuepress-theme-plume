@@ -71,7 +71,7 @@ const list = computed(() => matter.value.list || [])
   margin-top: 64px;
 }
 
-@media (width >= 640px) {
+@media (min-width: 640px) {
   .friends-wrapper .title,
   .friends-wrapper .description,
   .edit-link {
@@ -84,7 +84,7 @@ const list = computed(() => matter.value.list || [])
   }
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .friends-wrapper {
     max-width: 784px;
     padding-top: 0;
@@ -95,7 +95,7 @@ const list = computed(() => matter.value.list || [])
   }
 }
 
-@media (width >= 1440px) {
+@media (min-width: 1440px) {
   .friends-wrapper {
     max-width: 1104px;
   }

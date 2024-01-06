@@ -177,14 +177,14 @@
 /* plugin-search */
 
 /* stylelint-disable-next-line order/order */
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .navbar-search {
     flex-grow: 1;
     padding-left: 24px;
   }
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .navbar-search {
     padding-left: 32px;
   }
@@ -196,7 +196,7 @@
   }
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .navbar-search .DocSearch-Button {
     justify-content: flex-start;
     width: 100%;
@@ -213,7 +213,7 @@
   }
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .DocSearch-Button .DocSearch-Search-Icon {
     top: 1px;
     width: 14px;
@@ -223,13 +223,13 @@
   }
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .DocSearch-Button .DocSearch-Button-Placeholder {
     display: inline-block;
   }
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .DocSearch-Button .DocSearch-Button-Keys {
     display: flex;
     align-items: center;

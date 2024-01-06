@@ -68,13 +68,13 @@ watchPostEffect(() => {
   border-bottom: 1px solid transparent;
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .navbar-wrapper {
     padding: 0 32px;
   }
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .navbar-wrapper.has-sidebar {
     padding: 0;
   }
@@ -98,7 +98,7 @@ watchPostEffect(() => {
   pointer-events: auto;
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .navbar-wrapper.has-sidebar .container {
     max-width: 100%;
   }
@@ -110,7 +110,7 @@ watchPostEffect(() => {
   transition: background-color 0.5s;
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .navbar-wrapper.has-sidebar .title {
     position: absolute;
     top: 0;
@@ -123,7 +123,7 @@ watchPostEffect(() => {
   }
 }
 
-@media (width >= 1440px) {
+@media (min-width: 1440px) {
   .navbar-wrapper.has-sidebar .title {
     width:
       calc(
@@ -142,7 +142,7 @@ watchPostEffect(() => {
   flex-grow: 1;
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .navbar-wrapper.has-sidebar .content {
     position: relative;
     z-index: 1;
@@ -151,7 +151,7 @@ watchPostEffect(() => {
   }
 }
 
-@media (width >= 1440px) {
+@media (min-width: 1440px) {
   .navbar-wrapper.has-sidebar .content {
     padding-right: calc((100vw - var(--vp-layout-max-width)) / 2 + 32px);
     padding-left:
@@ -169,14 +169,14 @@ watchPostEffect(() => {
   transition: background-color 0.5s;
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .navbar-wrapper:not(.top) .content-body {
     position: relative;
     background-color: var(--vp-nav-bg-color);
   }
 }
 
-@media (width <= 767px) {
+@media (max-width: 767px) {
   .content-body {
     column-gap: 0.5rem;
   }
@@ -208,7 +208,7 @@ watchPostEffect(() => {
   margin-right: -8px;
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .navbar-wrapper.has-sidebar .curtain {
     position: absolute;
     right: 0;
@@ -226,7 +226,7 @@ watchPostEffect(() => {
   }
 }
 
-@media (width >= 1440px) {
+@media (min-width: 1440px) {
   .navbar-wrapper.has-sidebar .curtain {
     width:
       calc(

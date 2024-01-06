@@ -105,7 +105,7 @@ const showBlogExtract = computed(() => {
   color: var(--vp-c-text-2);
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .blog-extract {
     display: none;
   }

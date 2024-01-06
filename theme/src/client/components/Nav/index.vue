@@ -48,7 +48,7 @@ provide('close-screen', closeScreen)
   border-bottom-color: var(--vp-c-gutter);
 }
 
-@media (width >= 960px) {
+@media (min-width: 960px) {
   .nav-wrapper {
     position: fixed;
   }

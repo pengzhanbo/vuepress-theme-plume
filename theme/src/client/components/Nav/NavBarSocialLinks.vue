@@ -18,7 +18,7 @@ const theme = useThemeLocaleData()
   display: none;
 }
 
-@media (width >= 1280px) {
+@media (min-width: 1280px) {
   .navbar-social-links {
     display: flex;
     align-items: center;

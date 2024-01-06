@@ -54,7 +54,7 @@ const { hasSidebar } = useSidebar()
   text-underline-offset: 4px;
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .plume-footer {
     padding: 32px;
   }

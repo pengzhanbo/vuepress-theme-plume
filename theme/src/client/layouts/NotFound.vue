@@ -46,7 +46,7 @@ const themeData = useThemeLocaleData()
   text-align: center;
 }
 
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .not-found {
     padding: 96px 32px 168px;
   }

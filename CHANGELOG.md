@@ -1,3 +1,12 @@
+# [1.0.0-rc.17](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.16...v1.0.0-rc.17) (2024-1-6)
+
+
+### Bug Fixes
+
+* docs search ui ([fcbd562](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fcbd562dc3f20e302242c9af122f963582e9d79b))
+
+
+
 # [1.0.0-rc.16](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.15...v1.0.0-rc.16) (2024-1-6)
 
 

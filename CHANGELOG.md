@@ -1,3 +1,18 @@
+# [1.0.0-rc.16](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.15...v1.0.0-rc.16) (2024-1-6)
+
+
+### Features
+
+* 文章列表页分页路由映射 ([1291705](https://github.com/pengzhanbo/vuepress-theme-plume/commit/12917050c8ef006bbdca6330c30465f3d1f8e647))
+* md 增强支持 tabs、footnote、gfm ([fe5da59](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fe5da597ce6bce4f53f8a6dff495df1c8b1babb8))
+
+
+### Performance Improvements
+
+* 优化开发模式下 devtools 主题数据预览 ([36aa6c9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/36aa6c99b527e3f90641f770d9c349bda99d805e))
+
+
+
 # [1.0.0-rc.15](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.14...v1.0.0-rc.15) (2024-1-5)
 
 

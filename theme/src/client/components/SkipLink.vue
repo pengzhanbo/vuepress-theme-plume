@@ -44,25 +44,25 @@ function focusOnTargetAnchor({ target }: Event) {
 .skip-link {
   top: 8px;
   left: 8px;
-  padding: 8px 16px;
   z-index: 999;
-  border-radius: 8px;
+  padding: 8px 16px;
   font-size: 12px;
   font-weight: bold;
-  text-decoration: none;
   color: var(--vp-c-brand-1);
-  box-shadow: var(--vp-shadow-3);
+  text-decoration: none;
   background-color: var(--vp-c-bg);
+  border-radius: 8px;
+  box-shadow: var(--vp-shadow-3);
 }
 
 .skip-link:focus {
-  height: auto;
   width: auto;
+  height: auto;
   clip: auto;
   clip-path: none;
 }
 
-@media (min-width: 1280px) {
+@media (width >= 1280px) {
   .skip-link {
     top: 14px;
     left: 16px;

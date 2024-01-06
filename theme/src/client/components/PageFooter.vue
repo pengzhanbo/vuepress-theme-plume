@@ -76,11 +76,11 @@ const showFooter = computed(() => {
   margin-top: 96px;
 }
 
-@media (min-width: 640px) {
+@media (width >= 640px) {
   .edit-info {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding-bottom: 6px;
   }
 }
@@ -88,11 +88,11 @@ const showFooter = computed(() => {
 .edit-link-button {
   display: flex;
   align-items: center;
-  border: 0;
-  line-height: 32px;
   font-size: 14px;
   font-weight: 500;
+  line-height: 32px;
   color: var(--vp-c-brand-1);
+  border: 0;
   transition: color 0.25s;
 }
 
@@ -107,36 +107,36 @@ const showFooter = computed(() => {
 }
 
 .edit-link-icon {
-  margin-right: 8px;
   width: 14px;
   height: 14px;
-  fill: currentColor;
+  margin-right: 8px;
+  fill: currentcolor;
 }
 
 .last-updated-text {
-  line-height: 24px;
   font-size: 14px;
   font-weight: 500;
+  line-height: 24px;
   color: var(--vp-c-text-2);
 }
 
-@media (min-width: 640px) {
+@media (width >= 640px) {
   .last-updated-text {
-    line-height: 32px;
     font-size: 14px;
     font-weight: 500;
+    line-height: 32px;
   }
 }
 
 .contributors {
-  margin-top: -10px;
   padding-bottom: 6px;
-  line-height: 32px;
+  margin-top: -10px;
   font-size: 14px;
+  line-height: 32px;
   text-align: left;
 }
 
-@media (min-width: 640px) {
+@media (width >= 640px) {
   .contributors {
     text-align: right;
   }
@@ -150,20 +150,21 @@ const showFooter = computed(() => {
 
 .contributors-info {
   color: var(--vp-c-text-2);
+
   .contributor {
     color: var(--vp-c-text-3);
   }
 }
 
 .prev-next {
-  border-top: 1px solid var(--vp-c-divider);
-  margin-top: 10px;
-  padding-top: 24px;
   display: grid;
   grid-row-gap: 8px;
+  padding-top: 24px;
+  margin-top: 10px;
+  border-top: 1px solid var(--vp-c-divider);
 }
 
-@media (min-width: 640px) {
+@media (width >= 640px) {
   .prev-next {
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 16px;
@@ -172,11 +173,11 @@ const showFooter = computed(() => {
 
 .pager-link {
   display: block;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  padding: 11px 16px 13px;
   width: 100%;
   height: 100%;
+  padding: 11px 16px 13px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
   transition: border-color 0.25s;
 }
 
@@ -191,17 +192,17 @@ const showFooter = computed(() => {
 
 .desc {
   display: block;
-  line-height: 20px;
   font-size: 12px;
   font-weight: 500;
+  line-height: 20px;
   color: var(--vp-c-text-2);
 }
 
 .title {
   display: block;
-  line-height: 20px;
   font-size: 14px;
   font-weight: 500;
+  line-height: 20px;
   color: var(--vp-c-brand-1);
   transition: color 0.25s;
 }

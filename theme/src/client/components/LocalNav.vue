@@ -71,17 +71,18 @@ const showLocalNav = computed(() => {
 .local-nav {
   position: sticky;
   top: 0;
-  /*rtl:ignore*/
+
+  /* rtl:ignore */
   left: 0;
   z-index: var(--vp-z-index-local-nav);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: var(--vp-layout-top-height, 0);
+  background-color: var(--vp-local-nav-bg-color);
   border-top: 1px solid var(--vp-c-gutter);
   border-bottom: 1px solid var(--vp-c-gutter);
-  padding-top: var(--vp-layout-top-height, 0px);
-  width: 100%;
-  background-color: var(--vp-local-nav-bg-color);
   transition:
     border-color 0.5s,
     background-color 0.5s;
@@ -95,7 +96,7 @@ const showLocalNav = computed(() => {
   border-top-color: transparent;
 }
 
-@media (min-width: 960px) {
+@media (width >= 960px) {
   .local-nav {
     display: none;
   }
@@ -111,9 +112,9 @@ const showLocalNav = computed(() => {
   display: flex;
   align-items: center;
   padding: 12px 24px 11px;
-  line-height: 24px;
   font-size: 12px;
   font-weight: 500;
+  line-height: 24px;
   color: var(--vp-c-text-2);
   transition: color 0.5s;
 }
@@ -127,25 +128,25 @@ const showLocalNav = computed(() => {
   transition: color 0.25s;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .menu {
     padding: 0 32px;
   }
 }
 
 .menu-icon {
-  margin-right: 8px;
   width: 16px;
   height: 16px;
-  fill: currentColor;
+  margin-right: 8px;
+  fill: currentcolor;
 }
 
 .top-link {
   display: block;
   padding: 12px 24px 11px;
-  line-height: 24px;
   font-size: 12px;
   font-weight: 500;
+  line-height: 24px;
   color: var(--vp-c-text-2);
   transition: color 0.5s;
 }
@@ -155,7 +156,7 @@ const showLocalNav = computed(() => {
   transition: color 0.25s;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .top-link {
     padding: 12px 32px 11px;
   }

@@ -31,11 +31,11 @@ defineProps<{
 
 .outline-link {
   display: block;
+  overflow: hidden;
   line-height: 28px;
   color: var(--vp-c-text-2);
-  white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
   transition: color 0.5s;
 }
 

@@ -1,13 +1,11 @@
-@import '@vuepress/plugin-palette/palette';
-
-@import 'vars';
-@import 'fonts';
-@import 'normalize';
-@import 'nprogress';
-@import 'utils';
-@import 'content';
-@import 'code';
-@import 'md-enhance';
-@import 'search';
-
-@import '@vuepress/plugin-palette/style';
+@import "@vuepress/plugin-palette/palette";
+@import "vars";
+@import "fonts";
+@import "normalize";
+@import "nprogress";
+@import "utils";
+@import "content";
+@import "code";
+@import "md-enhance";
+@import "search";
+@import "@vuepress/plugin-palette/style";

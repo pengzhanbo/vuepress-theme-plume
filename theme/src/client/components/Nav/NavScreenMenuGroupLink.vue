@@ -26,9 +26,9 @@ const closeScreen = inject('close-screen') as () => void
 .nav-screen-menu-group-link {
   display: block;
   margin-left: 12px;
-  line-height: 32px;
   font-size: 14px;
   font-weight: 400;
+  line-height: 32px;
   color: var(--vp-c-text-1);
   transition: color 0.25s;
 }

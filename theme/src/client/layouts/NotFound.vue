@@ -46,36 +46,36 @@ const themeData = useThemeLocaleData()
   text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .not-found {
     padding: 96px 32px 168px;
   }
 }
 
 .code {
-  line-height: 64px;
   font-size: 64px;
   font-weight: 600;
+  line-height: 64px;
 }
 
 .title {
   padding-top: 12px;
-  letter-spacing: 2px;
-  line-height: 20px;
   font-size: 20px;
   font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 2px;
 }
 
 .divider {
-  margin: 24px auto 18px;
   width: 64px;
   height: 1px;
+  margin: 24px auto 18px;
   background-color: var(--vp-c-divider);
 }
 
 .quote {
-  margin: 0 auto;
   max-width: 256px;
+  margin: 0 auto;
   font-size: 14px;
   font-weight: 500;
   color: var(--vp-c-text-2);
@@ -87,19 +87,19 @@ const themeData = useThemeLocaleData()
 
 .link {
   display: inline-block;
-  border: 1px solid var(--vp-c-brand);
-  border-radius: 16px;
   padding: 3px 16px;
   font-size: 14px;
   font-weight: 500;
   color: var(--vp-c-brand);
+  border: 1px solid var(--vp-c-brand);
+  border-radius: 16px;
   transition:
     border-color 0.25s,
     color 0.25s;
 }
 
 .link:hover {
-  border-color: var(--vp-c-brand-dark);
   color: var(--vp-c-brand-dark);
+  border-color: var(--vp-c-brand-dark);
 }
 </style>

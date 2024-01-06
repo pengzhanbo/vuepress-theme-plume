@@ -69,7 +69,6 @@ function useAppearance() {
     checked.value = dark
     classList[dark ? 'add' : 'remove']('dark')
 
-    // eslint-disable-next-line no-unused-vars
     const _ = window.getComputedStyle(css).opacity
     document.head.removeChild(css)
   }
@@ -112,7 +111,7 @@ watch(checked, (newIsDark) => {
 }
 
 .dark .switch-appearance :deep(.check) {
-  /*rtl:ignore*/
+  /* rtl:ignore */
   transform: translateX(18px);
 }
 </style>

@@ -2,13 +2,13 @@
   *,
   ::before,
   ::after {
-    animation-delay: -1ms !important;
-    animation-duration: 1ms !important;
-    animation-iteration-count: 1 !important;
     background-attachment: initial !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0s !important;
     transition-delay: 0s !important;
+    transition-duration: 0s !important;
+    animation-duration: 1ms !important;
+    animation-delay: -1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -28,7 +28,7 @@ html {
 body {
   -webkit-text-size-adjust: 100%;
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -38,13 +38,13 @@ html.dark {
 }
 
 body {
-  margin: 0;
   width: 100%;
   min-width: 320px;
   min-height: 100vh;
-  line-height: 24px;
+  margin: 0;
   font-family: var(--vp-font-family-base);
   font-weight: 400;
+  line-height: 24px;
   direction: ltr;
 }
 
@@ -52,8 +52,8 @@ html,
 body {
   color: var(--vp-c-text-1);
   background-color: var(--vp-c-bg);
-  transition-duration: 0.25s;
   transition-timing-function: ease;
+  transition-duration: 0.25s;
   transition-property: color, background-color;
 }
 
@@ -68,9 +68,9 @@ h4,
 h5,
 h6 {
   margin: 0;
-  line-height: 24px;
   font-size: 16px;
   font-weight: 400;
+  line-height: 24px;
 }
 
 p {
@@ -100,7 +100,7 @@ b {
 a,
 area,
 button,
-[role='button'],
+[role="button"],
 input,
 label,
 select,
@@ -116,9 +116,9 @@ a {
 
 ol,
 ul {
-  list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 blockquote {
@@ -158,10 +158,10 @@ input,
 optgroup,
 select,
 textarea {
-  border: 0;
   padding: 0;
   line-height: inherit;
   color: inherit;
+  border: 0;
 }
 
 button {
@@ -172,7 +172,7 @@ button {
 }
 
 button:enabled,
-[role='button']:enabled {
+[role="button"]:enabled {
   cursor: pointer;
 }
 
@@ -220,11 +220,11 @@ textarea::placeholder {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
   margin: 0;
+  -webkit-appearance: none;
 }
 
-input[type='number'] {
+input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
@@ -239,8 +239,8 @@ select {
 }
 
 fieldset {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 h1,

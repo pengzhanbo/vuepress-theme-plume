@@ -23,15 +23,15 @@ defineProps<{
 
 <style scoped>
 .menu-group {
+  padding: 12px 12px 0;
   margin: 12px -12px 0;
   border-top: 1px solid var(--vp-c-divider);
-  padding: 12px 12px 0;
 }
 
 .menu-group:first-child {
+  padding-top: 0;
   margin-top: 0;
   border-top: 0;
-  padding-top: 0;
 }
 
 .menu-group + .menu-group {
@@ -41,9 +41,9 @@ defineProps<{
 
 .title {
   padding: 0 12px;
-  line-height: 32px;
   font-size: 14px;
   font-weight: 600;
+  line-height: 32px;
   color: var(--vp-c-text-2);
   transition: color 0.25s;
 }

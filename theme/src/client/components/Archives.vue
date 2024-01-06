@@ -28,18 +28,19 @@ const { archives } = useArchives()
 
 <style scoped>
 .archives-wrapper {
-  padding: 32px 24px;
   flex: 1;
+  padding: 32px 24px;
 }
 
 .archives-title {
   display: flex;
   align-items: center;
+  margin-bottom: 40px;
   font-size: 24px;
   font-weight: 700;
   color: var(--vp-c-brand-1);
-  margin-bottom: 40px;
 }
+
 .archives-title .icon {
   width: 1em;
   height: 1em;
@@ -56,8 +57,8 @@ const { archives } = useArchives()
 }
 
 .archive-title {
+  margin-top: 2rem;
   font-size: 18px;
   font-weight: 700;
-  margin-top: 2rem;
 }
 </style>

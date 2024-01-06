@@ -33,19 +33,18 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
 <style scoped>
 .nav-screen {
   position: fixed;
-  top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px));
-  /*rtl:ignore*/
-  right: 0;
-  bottom: 0;
-  /*rtl:ignore*/
-  left: 0;
-  padding: 0 32px;
+  inset: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px)) 0 0 0;
+
+  /* rtl:ignore */
+
+  /* rtl:ignore */
   width: 100%;
-  border-top: 1px solid var(--vp-c-divider);
-  background-color: var(--vp-nav-screen-bg-color);
+  padding: 0 32px;
   overflow-y: auto;
-  transition: background-color 0.5s;
   pointer-events: auto;
+  background-color: var(--vp-nav-screen-bg-color);
+  border-top: 1px solid var(--vp-c-divider);
+  transition: background-color 0.5s;
 }
 
 .nav-screen.fade-enter-active,
@@ -68,16 +67,16 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
   transform: translateY(-8px);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .nav-screen {
     display: none;
   }
 }
 
 .container {
-  margin: 0 auto;
-  padding: 24px 0 96px;
   max-width: 288px;
+  padding: 24px 0 96px;
+  margin: 0 auto;
 }
 
 .menu + .translations,

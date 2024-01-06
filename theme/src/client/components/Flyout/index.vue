@@ -90,17 +90,17 @@ export default {
 }
 
 .flyout-wrapper:hover .menu,
-.button[aria-expanded='true'] + .menu {
-  opacity: 1;
+.button[aria-expanded="true"] + .menu {
   visibility: visible;
+  opacity: 1;
   transform: translateY(0);
 }
 
 .button {
   display: flex;
   align-items: center;
-  padding: 0 12px;
   height: var(--vp-nav-height);
+  padding: 0 12px;
   color: var(--vp-c-text-1);
   transition: color 0.5s;
 }
@@ -108,32 +108,33 @@ export default {
 .text {
   display: flex;
   align-items: center;
-  /* line-height: var(--vp-nav-height); */
-  line-height: normal;
   font-size: 14px;
   font-weight: 500;
+
+  /* line-height: var(--vp-nav-height); */
+  line-height: normal;
   color: var(--vp-c-text-1);
   transition: color 0.25s;
 }
 
 .option-icon {
-  margin-right: 0px;
   width: 16px;
   height: 16px;
-  fill: currentColor;
+  margin-right: 0;
+  fill: currentcolor;
 }
 
 .text-icon {
-  margin-left: 4px;
   width: 14px;
   height: 14px;
-  fill: currentColor;
+  margin-left: 4px;
+  fill: currentcolor;
 }
 
 .icon {
   width: 20px;
   height: 20px;
-  fill: currentColor;
+  fill: currentcolor;
   transition: fill 0.25s;
 }
 
@@ -141,8 +142,8 @@ export default {
   position: absolute;
   top: calc(var(--vp-nav-height) / 2 + 20px);
   right: 0;
-  opacity: 0;
   visibility: hidden;
+  opacity: 0;
   transition:
     opacity 0.25s,
     visibility 0.25s,

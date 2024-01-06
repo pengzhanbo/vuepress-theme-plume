@@ -78,13 +78,13 @@ function scrollToTop() {
 }
 
 .local-nav-outline-dropdown button {
+  position: relative;
   display: block;
   font-size: 12px;
   font-weight: 500;
   line-height: 24px;
   color: var(--vp-c-text-2);
   transition: color 0.5s;
-  position: relative;
 }
 
 .local-nav-outline-dropdown button:hover {
@@ -98,16 +98,16 @@ function scrollToTop() {
 
 .icon {
   display: inline-block;
-  vertical-align: middle;
-  margin-left: 2px;
   width: 14px;
   height: 14px;
-  fill: currentColor;
+  margin-left: 2px;
+  vertical-align: middle;
+  fill: currentcolor;
 }
 
 :deep(.outline-link) {
-  font-size: 14px;
   padding: 2px 0;
+  font-size: 14px;
 }
 
 .open > .icon {
@@ -121,11 +121,11 @@ function scrollToTop() {
   left: 16px;
   display: grid;
   gap: 1px;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  background-color: var(--vp-c-gutter);
   max-height: calc(var(--vp-vh, 100vh) - 86px);
   overflow: hidden auto;
+  background-color: var(--vp-c-gutter);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 8px;
   box-shadow: var(--vp-shadow-3);
 }
 
@@ -136,9 +136,9 @@ function scrollToTop() {
 .top-link {
   display: block;
   padding: 0 16px;
-  line-height: 48px;
   font-size: 14px;
   font-weight: 500;
+  line-height: 48px;
   color: var(--vp-c-brand-1);
 }
 

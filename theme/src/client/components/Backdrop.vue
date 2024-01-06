@@ -14,10 +14,12 @@ defineProps<{
 .backdrop {
   position: fixed;
   top: 0;
-  /*rtl:ignore*/
+
+  /* rtl:ignore */
   right: 0;
   bottom: 0;
-  /*rtl:ignore*/
+
+  /* rtl:ignore */
   left: 0;
   z-index: var(--vp-z-index-backdrop);
   background: var(--vp-backdrop-bg-color);
@@ -33,7 +35,7 @@ defineProps<{
   transition-duration: 0.25s;
 }
 
-@media (min-width: 1280px) {
+@media (width >= 1280px) {
   .backdrop {
     display: none;
   }

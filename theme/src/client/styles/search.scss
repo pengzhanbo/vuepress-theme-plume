@@ -1,8 +1,8 @@
 .search-box .suggestions {
-  box-shadow: var(--vp-shadow-3);
   top: 2.5rem;
   right: -1rem;
-  border-radius: 12px;
   padding: 16px 12px;
   background-color: var(--vp-c-bg);
+  border-radius: 12px;
+  box-shadow: var(--vp-shadow-3);
 }

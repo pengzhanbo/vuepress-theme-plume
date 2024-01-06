@@ -27,12 +27,12 @@ const { hasSidebar } = useSidebar()
 .title {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid transparent;
   width: 100%;
   height: var(--vp-nav-height);
   font-size: 16px;
   font-weight: 600;
   color: var(--vp-c-text-1);
+  border-bottom: 1px solid transparent;
   transition: opacity 0.25s;
 }
 
@@ -40,7 +40,7 @@ const { hasSidebar } = useSidebar()
   opacity: 0.6;
 }
 
-@media (min-width: 960px) {
+@media (width >= 960px) {
   .title {
     flex-shrink: 0;
   }
@@ -51,7 +51,7 @@ const { hasSidebar } = useSidebar()
 }
 
 :deep(.logo) {
-  margin-right: 8px;
   height: 24px;
+  margin-right: 8px;
 }
 </style>

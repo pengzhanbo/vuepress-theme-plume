@@ -65,6 +65,12 @@ const createTime = computed(() => {
 .post-item {
   padding-top: 1rem;
   margin: 0 1.75rem 2rem;
+
+  @media (width >= 960px) {
+    h3 {
+      font-size: 20px;
+    }
+  }
   // border-bottom: solid 1px var(--vp-c-divider);
 
   &:last-of-type {
@@ -74,10 +80,10 @@ const createTime = computed(() => {
   h3 {
     display: flex;
     align-items: center;
+    margin-bottom: 0.75rem;
     font-size: 18px;
     font-weight: 600;
     transition: color var(--t-color);
-    margin-bottom: 0.75rem;
   }
 
   h3:hover {
@@ -88,34 +94,28 @@ const createTime = computed(() => {
     }
   }
 
-  @media (min-width: 960px) {
-    h3 {
-      font-size: 20px;
-    }
-  }
-
   .sticky {
     display: inline-block;
-    font-weight: 600;
     padding: 3px 6px;
     margin-left: 0.5rem;
-    border-radius: 4px;
-    line-height: 1;
     font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
     color: var(--vp-c-text-2);
     background-color: var(--vp-c-default-soft);
+    border-radius: 4px;
   }
 }
 
 .post-meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
   font-size: 14px;
   font-weight: 400;
   color: var(--vp-c-text-2);
-  margin-bottom: 0.5rem;
 
   > div {
     display: flex;
@@ -148,9 +148,11 @@ const createTime = computed(() => {
 .plume-content :deep(p) {
   margin: 0.5rem 0;
 }
+
 .plume-content :deep(p:first-of-type) {
   margin-top: 0;
 }
+
 .plume-content :deep(p:last-of-type) {
   margin-bottom: 0;
 }

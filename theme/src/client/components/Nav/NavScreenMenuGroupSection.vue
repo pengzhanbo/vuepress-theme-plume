@@ -31,9 +31,9 @@ defineProps<{
 }
 
 .title {
-  line-height: 32px;
   font-size: 13px;
   font-weight: 700;
+  line-height: 32px;
   color: var(--vp-c-text-2);
   transition: color 0.25s;
 }

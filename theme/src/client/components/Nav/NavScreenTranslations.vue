@@ -56,7 +56,7 @@ function toggle() {
 .icon {
   width: 16px;
   height: 16px;
-  fill: currentColor;
+  fill: currentcolor;
 }
 
 .icon.lang {
@@ -72,8 +72,8 @@ function toggle() {
 }
 
 .link {
-  line-height: 32px;
   font-size: 13px;
+  line-height: 32px;
   color: var(--vp-c-text-1);
 }
 </style>

@@ -31,9 +31,9 @@ const { hasSidebar } = useSidebar()
 .plume-footer {
   position: relative;
   z-index: var(--vp-z-index-footer);
-  border-top: 1px solid var(--vp-c-gutter);
   padding: 32px 24px;
   background-color: var(--vp-c-bg);
+  border-top: 1px solid var(--vp-c-gutter);
   transition: all 0.25s;
 }
 
@@ -54,23 +54,23 @@ const { hasSidebar } = useSidebar()
   text-underline-offset: 4px;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .plume-footer {
     padding: 32px;
   }
 }
 
 .container {
-  margin: 0 auto;
   max-width: var(--vp-layout-max-width);
+  margin: 0 auto;
   text-align: center;
 }
 
 .message,
 .copyright {
-  line-height: 24px;
   font-size: 14px;
   font-weight: 500;
+  line-height: 24px;
   color: var(--vp-c-text-2);
 }
 

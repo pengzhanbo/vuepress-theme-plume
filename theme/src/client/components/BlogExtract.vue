@@ -85,19 +85,19 @@ const showBlogExtract = computed(() => {
 
 <style scoped>
 .blog-extract {
-  display: block;
   position: fixed;
   right: 0;
   bottom: 30%;
+  z-index: calc(var(--vp-z-index-nav) - 1);
+  display: block;
   padding: 4px 10px;
-  border-top-left-radius: 99px;
-  border-bottom-left-radius: 99px;
+  cursor: pointer;
+  background-color: var(--vp-c-bg);
   border: solid 1px var(--vp-c-divider);
   border-right: none;
+  border-top-left-radius: 99px;
+  border-bottom-left-radius: 99px;
   box-shadow: var(--vp-shadow-2);
-  z-index: calc(var(--vp-z-index-nav) - 1);
-  background-color: var(--vp-c-bg);
-  cursor: pointer;
 }
 
 .blog-extract .icon {
@@ -105,7 +105,7 @@ const showBlogExtract = computed(() => {
   color: var(--vp-c-text-2);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .blog-extract {
     display: none;
   }
@@ -124,8 +124,8 @@ const showBlogExtract = computed(() => {
   left: 0;
   z-index: var(--vp-z-index-overlay);
   width: 100%;
-  opacity: 1;
   background-color: rgba(0, 0, 0, 0.3);
+  opacity: 1;
 }
 
 .blog-modal.fade-enter-from,
@@ -149,8 +149,8 @@ const showBlogExtract = computed(() => {
   box-shadow:
     0 -3px 12px rgba(0, 0, 0, 0.1),
     0 -1px 4px rgba(0, 0, 0, 0.1);
-  transform: translateY(100%);
   transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transform: translateY(100%);
 }
 
 .dark .blog-modal-container {
@@ -182,11 +182,11 @@ const showBlogExtract = computed(() => {
 }
 
 .blog-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   padding: 10px 0 0;
   margin: 24px 0 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   border-top: solid 1px var(--vp-c-divider);
 }
 
@@ -194,15 +194,15 @@ const showBlogExtract = computed(() => {
   display: flex;
   align-items: center;
   padding: 3px;
-  color: var(--vp-c-brand-1);
   font-weight: 600;
+  color: var(--vp-c-brand-1);
   border-radius: 8px;
   transition: all var(--t-color);
 }
 
 .nav-link .icon {
-  margin-right: 4px;
   width: 1em;
   height: 1em;
+  margin-right: 4px;
 }
 </style>

@@ -29,8 +29,9 @@ provide('close-screen', closeScreen)
 <style scoped>
 .nav-wrapper {
   position: relative;
-  top: var(--vp-layout-top-height, 0px);
-  /*rtl:ignore*/
+  top: var(--vp-layout-top-height, 0);
+
+  /* rtl:ignore */
   left: 0;
   z-index: var(--vp-z-index-nav);
   width: 100%;
@@ -43,11 +44,11 @@ provide('close-screen', closeScreen)
 }
 
 .nav-wrapper.fixed :deep(.navbar-wrapper) {
-  border-bottom-color: var(--vp-c-gutter);
   background-color: var(--vp-nav-bg-color);
+  border-bottom-color: var(--vp-c-gutter);
 }
 
-@media (min-width: 960px) {
+@media (width >= 960px) {
   .nav-wrapper {
     position: fixed;
   }

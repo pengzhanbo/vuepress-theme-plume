@@ -25,8 +25,8 @@ defineProps<{
 
 <style scoped>
 .post-list {
-  margin-top: 32px;
   padding: 0 12px;
+  margin-top: 32px;
 }
 
 .post-list li {
@@ -38,12 +38,12 @@ defineProps<{
 }
 
 .post-list .post-title {
+  display: -webkit-box;
   flex: 1;
   margin-right: 14px;
+  overflow: hidden;
   font-weight: 600;
   transition: all var(--t-color);
-  display: -webkit-box;
-  overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -57,6 +57,7 @@ defineProps<{
 .post-list li:hover .post-title {
   color: var(--vp-c-brand-1);
 }
+
 .post-list li:hover .post-time {
   color: var(--vp-c-text-2);
 }

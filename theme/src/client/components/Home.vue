@@ -75,11 +75,11 @@ const actions = computed(() => {
 <style scoped>
 .plume-home {
   width: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   min-height: calc(100vh - var(--vp-nav-height));
   filter: var(--vp-home-hero-image-filter);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   transition: all var(--t-color);
 }
 
@@ -88,13 +88,13 @@ const actions = computed(() => {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  margin: 0 auto;
   padding-top: 4rem;
+  margin: 0 auto;
 }
 
 .plume-home .content {
-  padding: 0 2rem;
   width: 100%;
+  padding: 0 2rem;
 }
 
 .plume-home .content .hero-name {
@@ -107,34 +107,36 @@ const actions = computed(() => {
 .plume-home .content .hero-tagline {
   display: flex;
   align-items: center;
+  margin-top: 1rem;
   font-size: 24px;
   font-weight: 500;
-  margin-top: 1rem;
-  color: var(--vp-c-text-hero-tagline);
   line-height: 1.25;
+  color: var(--vp-c-text-hero-tagline);
 }
 
 .plume-home .content .hero-tagline .line {
   display: inline-block;
   width: 80px;
   height: 0;
-  border-top: solid 1px var(--vp-c-text-hero-tagline);
   margin-right: 1rem;
+  border-top: solid 1px var(--vp-c-text-hero-tagline);
 }
 
 .plume-home .content .hero-text {
   width: 100%;
   max-width: 700px;
+  margin-top: 1.5rem;
   font-size: 16px;
   font-weight: 500;
-  margin-top: 1.5rem;
   color: var(--vp-c-text-hero-text);
+
   /* padding: 6px 20px; */
   border-radius: 5px;
+
   /* background-color: rgba(0, 0, 0, 0.25); */
 }
 
-@media (min-width: 960px) {
+@media (width >= 960px) {
   .plume-home .container {
     max-width: 768px;
     padding-top: 8rem;
@@ -145,7 +147,7 @@ const actions = computed(() => {
   }
 }
 
-@media (min-width: 1440px) {
+@media (width >= 1440px) {
   .plume-home .container {
     max-width: 1104px;
     padding-top: 8rem;
@@ -159,8 +161,8 @@ const actions = computed(() => {
 .actions {
   display: flex;
   flex-wrap: wrap;
-  margin: -6px;
   padding-top: 24px;
+  margin: -6px;
 }
 
 .action {

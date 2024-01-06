@@ -1,3 +1,12 @@
+# [1.0.0-rc.19](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.18...v1.0.0-rc.19) (2024-1-6)
+
+
+### Performance Improvements
+
+* 优化在移动设备的 UI 表现 ([33aaf36](https://github.com/pengzhanbo/vuepress-theme-plume/commit/33aaf369cfb0a621fcbd8705f18f334596fe295b))
+
+
+
 # [1.0.0-rc.18](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.17...v1.0.0-rc.18) (2024-1-6)
 
 

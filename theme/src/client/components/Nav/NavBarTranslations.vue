@@ -33,7 +33,7 @@ const { currentLang, localeLinks } = useLangs()
   display: none;
 }
 
-@media (min-width: 1280px) {
+@media (width >= 1280px) {
   .navbar-translations {
     display: flex;
     align-items: center;
@@ -42,9 +42,9 @@ const { currentLang, localeLinks } = useLangs()
 
 .title {
   padding: 0 24px 0 12px;
-  line-height: 32px;
   font-size: 14px;
   font-weight: 700;
+  line-height: 32px;
   color: var(--vp-c-text-1);
 }
 </style>

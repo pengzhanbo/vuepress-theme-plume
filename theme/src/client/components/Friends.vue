@@ -37,66 +37,69 @@ const list = computed(() => matter.value.list || [])
 <style scoped>
 .friends-wrapper {
   width: 100%;
-  margin: 0 auto;
   padding-top: var(--vp-nav-height);
   padding-bottom: 5rem;
+  margin: 0 auto;
 }
 
 .friends-wrapper .title {
+  padding-top: 3rem;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
   font-size: 24px;
   font-weight: 700;
   color: var(--vp-c-brand-1);
-  padding-left: 1rem;
-  padding-top: 3rem;
-  margin-bottom: 1rem;
   outline: none;
 }
 
 .friends-wrapper .description {
-  color: var(--vp-c-text-1);
   padding-left: 1rem;
   margin-bottom: 16px;
   line-height: 28px;
+  color: var(--vp-c-text-1);
 }
 
 .friends-list {
   display: grid;
   gap: 16px;
-  margin-top: 64px;
   padding: 0 16px;
+  margin-top: 64px;
 }
 
 .edit-link {
-  margin-top: 64px;
   padding-left: 1rem;
+  margin-top: 64px;
 }
 
-@media (min-width: 640px) {
+@media (width >= 640px) {
   .friends-wrapper .title,
   .friends-wrapper .description,
   .edit-link {
     padding-left: 0;
   }
+
   .friends-list {
-    padding: 0 16px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0 16px;
   }
 }
 
-@media (min-width: 960px) {
+@media (width >= 960px) {
   .friends-wrapper {
     max-width: 784px;
     padding-top: 0;
   }
+
   .friends-list {
     padding: 0;
   }
 }
 
-@media (min-width: 1440px) {
+@media (width >= 1440px) {
   .friends-wrapper {
     max-width: 1104px;
   }
+
   .friends-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -105,11 +108,11 @@ const list = computed(() => matter.value.list || [])
 .edit-link-button {
   display: flex;
   align-items: center;
-  border: 0;
-  line-height: 32px;
   font-size: 14px;
   font-weight: 500;
+  line-height: 32px;
   color: var(--vp-c-brand-1);
+  border: 0;
   transition: color 0.25s;
 }
 
@@ -118,9 +121,9 @@ const list = computed(() => matter.value.list || [])
 }
 
 .edit-link-icon {
-  margin-right: 8px;
   width: 14px;
   height: 14px;
-  fill: currentColor;
+  margin-right: 8px;
+  fill: currentcolor;
 }
 </style>

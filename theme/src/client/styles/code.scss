@@ -9,19 +9,19 @@ html:not(.dark) .vp-code span {
 .plume-content {
   pre {
     padding: 1.3rem 1.5rem;
-    margin: 0 0 0.85rem 0;
-    border-radius: 6px;
+    margin: 0 0 0.85rem;
     overflow: auto;
+    font-size: 14px;
+    border-radius: 6px;
     scrollbar-width: thin;
     scrollbar-color: var(--vp-c-brand-1) var(--vp-c-border);
-    font-size: 14px;
 
     code {
-      color: #fff;
       padding: 0;
+      color: #fff;
+      overflow-wrap: unset;
       background-color: transparent;
       border-radius: 0;
-      overflow-wrap: unset;
       -webkit-font-smoothing: auto;
       -moz-osx-font-smoothing: auto;
     }
@@ -32,26 +32,26 @@ html:not(.dark) .vp-code span {
   }
 
   .code-tabs {
-    .div[class*='language-'] {
+    .div[class*="language-"] {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }
   }
 }
 
-div[class*='language-'] {
+div[class*="language-"] {
   position: relative;
   background-color: var(--vp-code-block-bg);
   border-radius: 6px;
 
   &::before {
-    content: attr(data-ext);
     position: absolute;
-    z-index: 3;
     top: 0.8em;
     right: 1em;
+    z-index: 3;
     font-size: 0.75rem;
     color: var(--vp-code-line-number-color);
+    content: attr(data-ext);
   }
 
   code {
@@ -60,20 +60,21 @@ div[class*='language-'] {
   }
 
   pre {
-    // force override the background color to be compatible with shiki
-    background: transparent !important;
     position: relative;
     z-index: 1;
+
+    // force override the background color to be compatible with shiki
+    background: transparent !important;
   }
 
   .highlight-lines {
-    user-select: none;
-    padding-top: 1.3rem;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    padding-top: 1.3rem;
     line-height: 1.5;
+    user-select: none;
 
     .highlight-line {
       background-color: var(--vp-c-default-soft);
@@ -91,19 +92,19 @@ div[class*='language-'] {
       position: relative;
 
       &::before {
-        content: ' ';
         position: absolute;
-        z-index: 2;
-        left: 0;
         top: 0;
+        left: 0;
+        z-index: 2;
         display: block;
         height: 100%;
+        content: " ";
       }
     }
 
     pre {
-      margin-left: 2rem;
       padding-left: 1rem;
+      margin-left: 2rem;
       vertical-align: middle;
     }
 
@@ -111,40 +112,40 @@ div[class*='language-'] {
       position: absolute;
       top: 0;
       left: 0;
+      z-index: 1;
       width: 2rem;
       height: 100%;
-      text-align: center;
-      z-index: 1;
-      color: var(--vp-code-line-number-color);
       padding-top: 1.25rem;
       line-height: var(--vp-code-line-height);
+      color: var(--vp-code-line-number-color);
+      text-align: center;
       counter-reset: line-number;
       border-right: var(--vp-code-block-divider-color) 1px solid;
 
       .line-number {
         position: relative;
         z-index: 3;
-        user-select: none;
         height: 1.5rem;
+        user-select: none;
 
         &::before {
-          counter-increment: line-number;
-          content: counter(line-number);
           font-size: 0.85em;
+          content: counter(line-number);
+          counter-increment: line-number;
         }
       }
     }
   }
 }
 
-.plume-content [class*='language-'] code .highlighted {
+.plume-content [class*="language-"] code .highlighted {
+  z-index: 2;
+  display: inline-block;
+  width: calc(100% + 2 * 24px);
+  padding: 0 24px;
+  margin: 0 -24px;
   background-color: var(--vp-code-line-highlight-color);
   transition: background-color 0.5s;
-  margin: 0 -24px;
-  padding: 0 24px;
-  width: calc(100% + 2 * 24px);
-  display: inline-block;
-  z-index: 2;
 
   &.error {
     background-color: var(--vp-code-line-error-color);
@@ -155,12 +156,12 @@ div[class*='language-'] {
   }
 }
 
-.plume-content [class*='language-'] code .diff {
-  transition: background-color 0.5s;
-  margin: 0 -24px;
-  padding: 0 24px;
-  width: calc(100% + 2 * 24px);
+.plume-content [class*="language-"] code .diff {
   display: inline-block;
+  width: calc(100% + 2 * 24px);
+  padding: 0 24px;
+  margin: 0 -24px;
+  transition: background-color 0.5s;
 
   &::before {
     position: absolute;
@@ -173,8 +174,8 @@ div[class*='language-'] {
   }
 
   &.remove::before {
-    content: '-';
     color: var(--vp-code-line-diff-remove-symbol-color);
+    content: "-";
     transform: translateX(-6px);
   }
 
@@ -183,13 +184,13 @@ div[class*='language-'] {
   }
 
   &.add::before {
-    content: '+';
     color: var(--vp-code-line-diff-add-symbol-color);
+    content: "+";
     transform: translateX(-6px);
   }
 }
 
-.plume-content [class*='language-'] .has-focused-lines .line:not(.has-focus) {
+.plume-content [class*="language-"] .has-focused-lines .line:not(.has-focus) {
   filter: blur(0.095rem);
   opacity: 0.7;
   transition:
@@ -197,27 +198,24 @@ div[class*='language-'] {
     opacity 0.35s;
 }
 
-.plume-content
-  [class*='language-']:hover
-  .has-focused-lines
-  .line:not(.has-focus) {
+.plume-content [class*="language-"]:hover .has-focused-lines .line:not(.has-focus) {
   filter: blur(0);
   opacity: 1;
 }
 
 .code-tabs-nav {
-  margin-bottom: 0rem;
+  margin-bottom: 0;
 }
 
 // narrow mobile
-@media (max-width: 419px) {
+@media (width <= 419px) {
   .plume-content {
-    div[class*='language-'] {
+    div[class*="language-"] {
       margin: 0.85rem -1.5rem;
       border-radius: 0;
     }
 
-    .hint-container div[class*='language-'] {
+    .hint-container div[class*="language-"] {
       margin: 0.85rem -1rem 0.85rem -1.25rem;
     }
   }

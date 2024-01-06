@@ -10,8 +10,10 @@
   },
   "css.validate": false,
   "scss.validate": false,
+  "less.validate": false,
   "typescript.tsdk": "node_modules/typescript/lib",
   "eslint.experimental.useFlatConfig": true,
+  "stylelint.packageManager": "pnpm",
   "eslint.rules.customizations": [
     { "rule": "style/*", "severity": "off" },
     { "rule": "*-indent", "severity": "off" },
@@ -27,6 +29,7 @@
     "source.fixAll": "explicit",
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
+    // "source.fixAll.stylelint": "explicit"
   },
   "editor.formatOnPaste": true,
   "eslint.validate": [
@@ -40,6 +43,12 @@
     "json",
     "jsonc",
     "yaml"
+  ],
+  "stylelint.validate": [
+    "css",
+    "scss",
+    "postcss",
+    "vue"
   ],
   "cSpell.words": [
     "bumpp",

@@ -1,8 +1,8 @@
 import { usePageLang } from '@vuepress/client'
 import { useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
-import { useLocaleLink, useThemeLocaleData } from '../composables/index.js'
+import { useLocaleLink, useRouteQuery, useThemeLocaleData } from '../composables/index.js'
 import { getRandomColor, toArray } from '../utils/index.js'
 
 export function useLocalePostList() {
@@ -33,10 +33,18 @@ export function usePostListControl() {
         return next.sticky > prev.sticky ? 1 : -1
       }),
       ...otherList,
-    ]
+    ] as PlumeThemeBlogPostItem[]
   })
 
-  const page = ref(1)
+  const page = useRouteQuery('p', 1, {
+    mode: 'push',
+    transform(val) {
+      const page = Number(val)
+      if (!Number.isNaN(page) && page > 0)
+        return page
+      return 1
+    },
+  })
 
   const totalPage = computed(() => {
     if (blog.value.pagination === false)
@@ -133,14 +141,15 @@ export function useTags() {
     }))
   })
 
-  const postList = ref<ShortPostItem[]>([])
-  const currentTag = ref<string>()
+  const currentTag = useRouteQuery<string>('tag')
 
-  const handleTagClick = (tag: string) => {
-    currentTag.value = tag
-    postList.value = list.value.filter((item) => {
+  const postList = computed<ShortPostItem[]>(() => {
+    if (!currentTag.value)
+      return []
+
+    return list.value.filter((item) => {
       if (item.tags)
-        return toArray(item.tags).includes(tag)
+        return toArray(item.tags).includes(currentTag.value)
 
       return false
     }).map(item => ({
@@ -148,6 +157,10 @@ export function useTags() {
       path: item.path,
       createTime: item.createTime.split(' ')[0].replace(/\//g, '-'),
     }))
+  })
+
+  const handleTagClick = (tag: string) => {
+    currentTag.value = tag
   }
 
   return {

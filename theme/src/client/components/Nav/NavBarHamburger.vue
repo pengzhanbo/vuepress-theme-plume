@@ -27,13 +27,13 @@ defineEmits<(e: 'click') => void>()
 <style scoped>
 .navbar-hamburger {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 48px;
   height: var(--vp-nav-height);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .navbar-hamburger {
     display: none;
   }

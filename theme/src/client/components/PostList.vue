@@ -31,8 +31,8 @@ const {
 
 <style scoped>
 .post-list {
-  padding-top: 2rem;
   flex: 1;
+  padding-top: 2rem;
 }
 
 .pagination {
@@ -43,10 +43,10 @@ const {
 }
 
 .btn {
-  color: var(--vp-c-brand-1);
-  font-weight: 500;
-  border: 1px solid var(--vp-c-brand-1);
   padding: 0 4px;
+  font-weight: 500;
+  color: var(--vp-c-brand-1);
+  border: 1px solid var(--vp-c-brand-1);
   border-radius: 4px;
   transition: all var(--t-color);
 }
@@ -56,16 +56,17 @@ const {
   background-color: var(--vp-c-brand-2);
   border-color: var(--vp-c-brand-2);
 }
+
 .btn[disabled],
 .btn[disabled]:hover {
   color: var(--vp-c-gray-1);
-  border-color: var(--vp-c-divider);
-  background-color: transparent;
   cursor: not-allowed;
+  background-color: transparent;
+  border-color: var(--vp-c-divider);
 }
 
 .page-info {
-  color: var(--vp-c-text-3);
   font-weight: 500;
+  color: var(--vp-c-text-3);
 }
 </style>

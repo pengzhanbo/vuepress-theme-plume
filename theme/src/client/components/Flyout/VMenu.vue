@@ -27,25 +27,25 @@ defineProps<{
 
 <style scoped>
 .menu-wrapper {
-  border-radius: 12px;
-  padding: 12px;
   min-width: 128px;
-  border: 1px solid var(--vp-c-divider);
+  max-height: calc(100vh - var(--vp-nav-height));
+  padding: 12px;
+  overflow-y: auto;
   background-color: var(--vp-c-bg-elv);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
   box-shadow: var(--vp-shadow-3);
   transition: background-color 0.5s;
-  max-height: calc(100vh - var(--vp-nav-height));
-  overflow-y: auto;
 }
 
 .menu-wrapper :deep(.group) {
-  margin: 0 -12px;
   padding: 0 12px 12px;
+  margin: 0 -12px;
 }
 
 .menu-wrapper :deep(.group + .group) {
-  border-top: 1px solid var(--vp-c-divider);
   padding: 11px 12px 12px;
+  border-top: 1px solid var(--vp-c-divider);
 }
 
 .menu-wrapper :deep(.group:last-child) {
@@ -53,8 +53,8 @@ defineProps<{
 }
 
 .menu-wrapper :deep(.group + .item) {
-  border-top: 1px solid var(--vp-c-divider);
   padding: 11px 16px 0;
+  border-top: 1px solid var(--vp-c-divider);
 }
 
 .menu-wrapper :deep(.item) {
@@ -64,9 +64,9 @@ defineProps<{
 
 .menu-wrapper :deep(.label) {
   flex-grow: 1;
-  line-height: 28px;
   font-size: 12px;
   font-weight: 500;
+  line-height: 28px;
   color: var(--vp-c-text-2);
   transition: color 0.5s;
 }

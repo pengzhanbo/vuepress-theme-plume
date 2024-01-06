@@ -21,12 +21,12 @@ const closeScreen = inject('close-screen') as () => void
 <style scoped>
 .nav-screen-menu-link {
   display: block;
-  border-bottom: 1px solid var(--vp-c-divider);
   padding: 12px 0 11px;
-  line-height: 24px;
   font-size: 14px;
   font-weight: 500;
+  line-height: 24px;
   color: var(--vp-c-text-1);
+  border-bottom: 1px solid var(--vp-c-divider);
   transition:
     border-color 0.25s,
     color 0.25s;

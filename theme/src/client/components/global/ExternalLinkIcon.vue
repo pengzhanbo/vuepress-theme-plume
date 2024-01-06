@@ -9,11 +9,11 @@ import IconExternalLink from '../icons/IconExternalLink.vue'
 <style scoped>
 .external-icon {
   position: relative;
-  display: inline-block;
-  color: var(--vp-c-text-3);
-  vertical-align: middle;
   top: 1px;
+  display: inline-block;
   width: 0.8em;
   height: 0.8em;
+  color: var(--vp-c-text-3);
+  vertical-align: middle;
 }
 </style>

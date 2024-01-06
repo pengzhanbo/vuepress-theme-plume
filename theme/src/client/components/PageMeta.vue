@@ -72,11 +72,11 @@ const hasMeta = computed(() => readingTime.value.times || tags.value.length || c
 
 <style scoped>
 .page-category-wrapper {
+  padding-left: 1rem;
+  margin-bottom: 2rem;
   font-size: 16px;
   font-weight: 400;
-  margin-bottom: 2rem;
   border-left: solid 4px var(--vp-c-brand-1);
-  padding-left: 1rem;
 }
 
 .page-category-wrapper .category {
@@ -94,23 +94,24 @@ const hasMeta = computed(() => readingTime.value.times || tags.value.length || c
 }
 
 .page-title {
+  margin-bottom: 1rem;
   font-size: 28px;
   font-weight: 600;
-  margin-bottom: 1rem;
 }
 
 .page-title.padding {
   padding-bottom: 4rem;
 }
+
 .page-meta-wrapper {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  flex-wrap: wrap;
   padding: 1rem 0 0.5rem;
   margin-bottom: 2rem;
-  color: var(--vp-c-text-3);
   font-size: 14px;
+  color: var(--vp-c-text-3);
   border-bottom: solid 1px var(--vp-c-divider);
 }
 
@@ -128,8 +129,8 @@ const hasMeta = computed(() => readingTime.value.times || tags.value.length || c
 
 .page-meta-wrapper .tag {
   display: inline-block;
+  padding: 3px;
   line-height: 1;
-  padding: 3px 3px;
   color: var(--vp-c-text-2);
   background-color: var(--vp-c-mute);
   border-radius: 4px;
@@ -149,9 +150,9 @@ const hasMeta = computed(() => readingTime.value.times || tags.value.length || c
 
 .page-meta-wrapper .create-time {
   flex: 1;
-  min-width: 110px;
   justify-content: right;
-  text-align: right;
+  min-width: 110px;
   margin-right: 0;
+  text-align: right;
 }
 </style>

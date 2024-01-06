@@ -161,6 +161,7 @@ export function setupPlugins(
         {
           hint: true, // info note tip warning danger details
           codetabs: true,
+          tabs: true,
           align: true,
           mark: true,
           tasklist: true,
@@ -168,6 +169,8 @@ export function setupPlugins(
           attrs: true,
           sup: true,
           sub: true,
+          alert: true,
+          footnote: true,
           katex: true,
         } as MarkdownEnhanceOptions,
         options.markdownEnhance || {},
@@ -175,8 +178,8 @@ export function setupPlugins(
     ))
   }
 
-  if (options.comment !== false)
-    plugins.push(commentPlugin(options.comment || {}))
+  if (options.comment)
+    plugins.push(commentPlugin(options.comment))
 
   if (options.baiduTongji !== false && options.baiduTongji?.key)
     plugins.push(baiduTongjiPlugin(options.baiduTongji))

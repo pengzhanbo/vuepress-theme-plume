@@ -14,18 +14,18 @@
 }
 
 .plume-content h1 {
-  letter-spacing: -0.02em;
-  line-height: 40px;
   font-size: 28px;
+  line-height: 40px;
+  letter-spacing: -0.02em;
 }
 
 .plume-content h2 {
-  margin: 48px 0 16px;
-  border-top: 1px solid var(--vp-c-divider);
   padding-top: 24px;
-  letter-spacing: -0.02em;
-  line-height: 32px;
+  margin: 48px 0 16px;
   font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.02em;
+  border-top: 1px solid var(--vp-c-divider);
 }
 
 .plume-content h2:first-of-type {
@@ -34,15 +34,15 @@
 
 .plume-content h3 {
   margin: 32px 0 0;
-  letter-spacing: -0.01em;
-  line-height: 28px;
   font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
 }
 
 .plume-content .header-anchor {
   float: left;
-  margin-left: -0.87em;
   padding-right: 0.23em;
+  margin-left: -0.87em;
   font-weight: 500;
   user-select: none;
   opacity: 0;
@@ -66,11 +66,11 @@
   opacity: 1;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .plume-content h1 {
-    letter-spacing: -0.02em;
-    line-height: 40px;
     font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -100,9 +100,9 @@
 }
 
 .plume-content blockquote {
+  padding-left: 16px;
   margin: 16px 0;
   border-left: 2px solid var(--vp-c-divider);
-  padding-left: 16px;
   transition: border-color 0.5s;
 }
 
@@ -166,9 +166,9 @@
 
 .plume-content table {
   display: block;
-  border-collapse: collapse;
   margin: 20px 0;
   overflow-x: auto;
+  border-collapse: collapse;
 }
 
 .plume-content tr {
@@ -183,15 +183,15 @@
 
 .plume-content th,
 .plume-content td {
-  border: 1px solid var(--vp-c-divider);
   padding: 8px 16px;
+  border: 1px solid var(--vp-c-divider);
 }
 
 .plume-content th {
-  text-align: left;
   font-size: 14px;
   font-weight: 600;
   color: var(--vp-c-text-2);
+  text-align: left;
   background-color: var(--vp-c-bg-soft);
 }
 
@@ -263,9 +263,9 @@
 }
 
 .plume-content :not(pre) > code {
-  border-radius: 4px;
   padding: 3px 6px;
   background-color: var(--vp-code-bg);
+  border-radius: 4px;
   transition:
     color 0.25s,
     background-color 0.5s;

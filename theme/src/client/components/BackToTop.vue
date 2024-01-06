@@ -38,7 +38,6 @@ const show = computed(() => {
     return y.value > windowHeight.value / 2
 })
 
-// eslint-disable-next-line no-undef
 let timer: NodeJS.Timeout | null = null
 function resetScrolling() {
   timer && clearTimeout(timer)
@@ -77,15 +76,15 @@ function handleClick() {
 <style scoped>
 .back-to-top-button {
   position: fixed;
+  inset-inline-end: 1rem;
   right: 20px;
   bottom: 64px;
   z-index: var(--vp-z-index-back-to-top);
   width: 36px;
   height: 36px;
+  background-color: var(--vp-c-bg);
   border-radius: 100%;
   box-shadow: var(--vp-shadow-2);
-  background-color: var(--vp-c-bg);
-  inset-inline-end: 1rem;
   transition:
     background-color 0.25s ease,
     box-shadow 0.25s ease;
@@ -96,8 +95,8 @@ function handleClick() {
   position: absolute;
   top: 0;
   left: 0;
-  transition: opacity 0.5s ease;
   opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 .back-to-top-button .percent.show,
@@ -108,19 +107,19 @@ function handleClick() {
 .back-to-top-button .percent {
   width: 100%;
   height: 100%;
-  user-select: none;
+  font-size: 10px;
   line-height: 36px;
   text-align: center;
-  font-size: 10px;
+  user-select: none;
 }
 
 .back-to-top-button .icon {
-  width: 18px;
-  height: 18px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
   color: var(--vp-c-text-3);
+  transform: translate(-50%, -50%);
 }
 
 .back-to-top-button svg {
@@ -131,23 +130,24 @@ function handleClick() {
 .back-to-top-button svg circle {
   fill: none;
   stroke: var(--vp-c-brand-2);
+  stroke-dasharray: 0% 314.1593%;
+  stroke-width: 4px;
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
   r: 16;
-  stroke-dasharray: 0% 314.1593%;
-  stroke-width: 4px;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .back-to-top-button {
     width: 48px;
     height: 48px;
   }
 
   .back-to-top-button .percent {
-    line-height: 48px;
     font-size: 14px;
+    line-height: 48px;
   }
+
   .back-to-top-button .icon {
     width: 24px;
     height: 24px;

@@ -60,9 +60,9 @@ function toggle() {
 
 <style scoped>
 .nav-screen-menu-group {
-  border-bottom: 1px solid var(--vp-c-divider);
   height: 48px;
   overflow: hidden;
+  border-bottom: 1px solid var(--vp-c-divider);
   transition: border-color 0.5s;
 }
 
@@ -75,8 +75,8 @@ function toggle() {
 }
 
 .nav-screen-menu-group.open {
-  padding-bottom: 10px;
   height: auto;
+  padding-bottom: 10px;
 }
 
 .nav-screen-menu-group.open .button {
@@ -85,19 +85,19 @@ function toggle() {
 }
 
 .nav-screen-menu-group.open .button-icon {
-  /*rtl:ignore*/
+  /* rtl:ignore */
   transform: rotate(45deg);
 }
 
 .button {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 12px 4px 11px 0;
+  justify-content: space-between;
   width: 100%;
-  line-height: 24px;
+  padding: 12px 4px 11px 0;
   font-size: 14px;
   font-weight: 500;
+  line-height: 24px;
   color: var(--vp-c-text-1);
   transition: color 0.25s;
 }
@@ -120,7 +120,7 @@ function toggle() {
 }
 
 .group:first-child {
-  padding-top: 0px;
+  padding-top: 0;
 }
 
 .group + .group,

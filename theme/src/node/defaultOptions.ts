@@ -18,9 +18,10 @@ const defaultLocales: NonNullable<PlumeThemeLocaleOptions['locales']> = {
 
     blog: { pagination: { prevPageText: '上一页', nextPageText: '下一页' } },
 
-    outlineLabel: '内容大纲',
+    outlineLabel: '此页内容',
     returnToTopLabel: '返回顶部',
     editLinkText: '编辑此页',
+    contributorsText: '贡献者',
     lastUpdatedText: '上次更新',
     prevPageLabel: '上一页',
     nextPageLabel: '下一页',

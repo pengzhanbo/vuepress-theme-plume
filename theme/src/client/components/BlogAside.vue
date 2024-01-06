@@ -40,12 +40,12 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
   position: sticky;
   top: calc(var(--vp-nav-height) + 2rem);
   width: 270px;
-  margin-left: 2rem;
+  padding: 1rem 0;
   margin-top: 2rem;
   margin-bottom: 12rem;
-  border-left: solid 1px var(--vp-c-divider);
+  margin-left: 2rem;
   text-align: center;
-  padding: 1rem 0;
+  border-left: solid 1px var(--vp-c-divider);
 
   img {
     width: 50%;
@@ -53,24 +53,24 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
   }
 
   h3 {
+    margin-top: 1.5rem;
     font-size: 16px;
     font-weight: 600;
-    margin-top: 1.5rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .blog-aside-wrapper {
     display: none;
   }
 }
 
 .blog-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
   padding: 10px 12px 0;
   margin: 24px 24px 0;
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   border-top: solid 1px var(--vp-c-divider);
 }
 
@@ -79,18 +79,19 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
   align-items: center;
   justify-content: center;
   padding: 3px;
-  color: var(--vp-c-brand-1);
   font-weight: 600;
+  color: var(--vp-c-brand-1);
   border-radius: 8px;
   transition: all var(--t-color);
 }
+
 .nav-link:hover {
   color: var(--vp-c-brand-2);
 }
 
 .nav-link .icon {
-  margin-right: 4px;
   width: 1em;
   height: 1em;
+  margin-right: 4px;
 }
 </style>

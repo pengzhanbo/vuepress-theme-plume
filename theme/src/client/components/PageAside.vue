@@ -81,10 +81,10 @@ function handlePrint() {
 
 .content {
   position: relative;
-  border-left: 1px solid var(--vp-c-divider);
   padding-left: 16px;
   font-size: 13px;
   font-weight: 500;
+  border-left: 1px solid var(--vp-c-divider);
 }
 
 .outline-marker {
@@ -92,10 +92,10 @@ function handlePrint() {
   top: 32px;
   left: -1px;
   z-index: 0;
-  opacity: 0;
   width: 2px;
   height: 18px;
   background-color: var(--vp-c-brand-1);
+  opacity: 0;
   transition:
     top 0.25s cubic-bezier(0, 1, 0.5, 1),
     background-color 0.5s,
@@ -105,15 +105,16 @@ function handlePrint() {
 .outline-title {
   display: flex;
   align-items: center;
-  letter-spacing: 0.4px;
-  line-height: 28px;
   font-size: 13px;
   font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0.4px;
 }
+
 .outline-title .icon {
-  margin-left: 4px;
   width: 1em;
   height: 1em;
+  margin-left: 4px;
   font-size: 1.2em;
   cursor: pointer;
 }

@@ -18,13 +18,13 @@ withDefaults(defineProps<Props>(), {
 <style scoped>
 .badge-view {
   display: inline-block;
-  margin-left: 2px;
-  border: 1px solid transparent;
-  border-radius: 12px;
   padding: 0 10px;
-  line-height: 22px;
+  margin-left: 2px;
   font-size: 12px;
   font-weight: 500;
+  line-height: 22px;
+  border: 1px solid transparent;
+  border-radius: 12px;
   transform: translateY(-2px);
 }
 
@@ -32,11 +32,13 @@ h1 .badge-view {
   margin-top: 4px;
   vertical-align: top;
 }
+
 h2 .badge-view {
-  margin-top: 3px;
   padding: 0 8px;
+  margin-top: 3px;
   vertical-align: top;
 }
+
 h3 .badge-view {
   vertical-align: middle;
 }
@@ -44,31 +46,31 @@ h3 .badge-view {
 h4 .badge-view,
 h5 .badge-view,
 h6 .badge-view {
-  vertical-align: middle;
   line-height: 18px;
+  vertical-align: middle;
 }
 
 .badge-view.info {
-  border-color: var(--vp-badge-info-border);
   color: var(--vp-badge-info-text);
   background-color: var(--vp-badge-info-bg);
+  border-color: var(--vp-badge-info-border);
 }
 
 .badge-view.tip {
-  border-color: var(--vp-badge-tip-border);
   color: var(--vp-badge-tip-text);
   background-color: var(--vp-badge-tip-bg);
+  border-color: var(--vp-badge-tip-border);
 }
 
 .badge-view.warning {
-  border-color: var(--vp-badge-warning-border);
   color: var(--vp-badge-warning-text);
   background-color: var(--vp-badge-warning-bg);
+  border-color: var(--vp-badge-warning-border);
 }
 
 .badge-view.danger {
-  border-color: var(--vp-badge-danger-border);
   color: var(--vp-badge-danger-text);
   background-color: var(--vp-badge-danger-bg);
+  border-color: var(--vp-badge-danger-border);
 }
 </style>

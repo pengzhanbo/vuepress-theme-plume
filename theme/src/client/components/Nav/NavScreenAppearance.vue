@@ -17,19 +17,19 @@ const theme = useThemeLocaleData()
 <style scoped>
 .nav-screen-appearance {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-radius: 8px;
+  justify-content: space-between;
   padding: 12px 14px 12px 16px;
   background-color: var(--vp-c-bg-soft);
+  border-radius: 8px;
   transition: var(--t-color);
   transition-property: background-color;
 }
 
 .text {
-  line-height: 24px;
   font-size: 12px;
   font-weight: 500;
+  line-height: 24px;
   color: var(--vp-c-text-2);
 }
 </style>

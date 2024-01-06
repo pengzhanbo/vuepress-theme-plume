@@ -61,36 +61,36 @@ watchPostEffect(() => {
 <style scoped>
 .navbar-wrapper {
   position: relative;
-  border-bottom: 1px solid transparent;
-  padding: 0 8px 0 24px;
   height: var(--vp-nav-height);
-  pointer-events: none;
+  padding: 0 8px 0 24px;
   white-space: nowrap;
+  pointer-events: none;
+  border-bottom: 1px solid transparent;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .navbar-wrapper {
     padding: 0 32px;
   }
 }
 
-@media (min-width: 960px) {
+@media (width >= 960px) {
   .navbar-wrapper.has-sidebar {
     padding: 0;
   }
 
-  .navbar-wrapper:not(.has-sidebar):not(.top) {
-    border-bottom-color: var(--vp-c-gutter);
+  .navbar-wrapper:not(.has-sidebar, .top) {
     background-color: var(--vp-nav-bg-color);
+    border-bottom-color: var(--vp-c-gutter);
   }
 }
 
 .container {
   display: flex;
   justify-content: space-between;
-  margin: 0 auto;
   max-width: calc(var(--vp-layout-max-width) - 64px);
   height: var(--vp-nav-height);
+  margin: 0 auto;
   pointer-events: none;
 }
 
@@ -98,7 +98,7 @@ watchPostEffect(() => {
   pointer-events: auto;
 }
 
-@media (min-width: 960px) {
+@media (width >= 960px) {
   .navbar-wrapper.has-sidebar .container {
     max-width: 100%;
   }
@@ -110,29 +110,31 @@ watchPostEffect(() => {
   transition: background-color 0.5s;
 }
 
-@media (min-width: 960px) {
+@media (width >= 960px) {
   .navbar-wrapper.has-sidebar .title {
     position: absolute;
     top: 0;
     left: 0;
     z-index: 2;
-    padding: 0 32px;
     width: var(--vp-sidebar-width);
     height: var(--vp-nav-height);
+    padding: 0 32px;
     background-color: transparent;
   }
 }
 
-@media (min-width: 1440px) {
+@media (width >= 1440px) {
   .navbar-wrapper.has-sidebar .title {
-    padding-left: max(
-      32px,
-      calc((100% - (var(--vp-layout-max-width) - 64px)) / 2)
-    );
-    width: calc(
-      (100% - (var(--vp-layout-max-width) - 64px)) / 2 + var(--vp-sidebar-width) -
+    width:
+      calc(
+        (100% - (var(--vp-layout-max-width) - 64px)) / 2 + var(--vp-sidebar-width) -
         32px
-    );
+      );
+    padding-left:
+      max(
+        32px,
+        calc((100% - (var(--vp-layout-max-width) - 64px)) / 2)
+      );
   }
 }
 
@@ -140,7 +142,7 @@ watchPostEffect(() => {
   flex-grow: 1;
 }
 
-@media (min-width: 960px) {
+@media (width >= 960px) {
   .navbar-wrapper.has-sidebar .content {
     position: relative;
     z-index: 1;
@@ -149,31 +151,32 @@ watchPostEffect(() => {
   }
 }
 
-@media (min-width: 1440px) {
+@media (width >= 1440px) {
   .navbar-wrapper.has-sidebar .content {
     padding-right: calc((100vw - var(--vp-layout-max-width)) / 2 + 32px);
-    padding-left: calc(
-      (100vw - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width)
-    );
+    padding-left:
+      calc(
+        (100vw - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width)
+      );
   }
 }
 
 .content-body {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
   height: calc(var(--vp-nav-height) - 1px);
   transition: background-color 0.5s;
 }
 
-@media (min-width: 960px) {
+@media (width >= 960px) {
   .navbar-wrapper:not(.top) .content-body {
     position: relative;
     background-color: var(--vp-nav-bg-color);
   }
 }
 
-@media (max-width: 767px) {
+@media (width <= 767px) {
   .content-body {
     column-gap: 0.5rem;
   }
@@ -184,12 +187,12 @@ watchPostEffect(() => {
 .menu + .social-links::before,
 .translations + .appearance::before,
 .appearance + .social-links::before {
-  margin-right: 8px;
-  margin-left: 8px;
   width: 1px;
   height: 24px;
+  margin-right: 8px;
+  margin-left: 8px;
+  content: "";
   background-color: var(--vp-c-divider);
-  content: '';
 }
 
 .menu + .appearance::before,
@@ -205,7 +208,7 @@ watchPostEffect(() => {
   margin-right: -8px;
 }
 
-@media (min-width: 960px) {
+@media (width >= 960px) {
   .navbar-wrapper.has-sidebar .curtain {
     position: absolute;
     right: 0;
@@ -218,17 +221,18 @@ watchPostEffect(() => {
     display: block;
     width: 100%;
     height: 32px;
+    content: "";
     background: linear-gradient(var(--vp-c-bg), transparent 70%);
-    content: '';
   }
 }
 
-@media (min-width: 1440px) {
+@media (width >= 1440px) {
   .navbar-wrapper.has-sidebar .curtain {
-    width: calc(
-      100% -
+    width:
+      calc(
+        100% -
         ((100vw - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width))
-    );
+      );
   }
 }
 </style>

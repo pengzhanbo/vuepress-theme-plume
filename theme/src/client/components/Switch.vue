@@ -11,13 +11,13 @@
 <style scoped>
 .switch-wrapper {
   position: relative;
-  border-radius: 11px;
   display: block;
+  flex-shrink: 0;
   width: 40px;
   height: 22px;
-  flex-shrink: 0;
-  border: 1px solid var(--vp-input-border-color);
   background-color: var(--vp-input-switch-bg-color);
+  border: 1px solid var(--vp-input-border-color);
+  border-radius: 11px;
   transition:
     border-color 0.25s ease,
     background-color 0.25s ease;
@@ -30,12 +30,13 @@
 .check {
   position: absolute;
   top: 1px;
-  /*rtl:ignore*/
+
+  /* rtl:ignore */
   left: 1px;
   width: 18px;
   height: 18px;
-  border-radius: 50%;
   background-color: var(--vp-c-neutral-inverse);
+  border-radius: 50%;
   box-shadow: var(--vp-shadow-1);
   transition: transform 0.25s;
 }
@@ -45,8 +46,8 @@
   display: block;
   width: 18px;
   height: 18px;
-  border-radius: 50%;
   overflow: hidden;
+  border-radius: 50%;
 }
 
 .icon :deep(svg) {

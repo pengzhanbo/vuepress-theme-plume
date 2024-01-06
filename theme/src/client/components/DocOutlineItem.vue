@@ -36,13 +36,13 @@ function onClick({ target: el }: Event) {
 
 .outline-link {
   display: block;
+  overflow: hidden;
+  font-weight: 400;
   line-height: 28px;
   color: var(--vp-c-text-2);
-  white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
   transition: color 0.5s;
-  font-weight: 400;
 }
 
 .outline-link:hover,

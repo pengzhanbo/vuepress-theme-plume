@@ -55,13 +55,13 @@ const hasExtraContent = computed(
   margin-right: -12px;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .navbar-extra {
     display: block;
   }
 }
 
-@media (min-width: 1280px) {
+@media (width >= 1280px) {
   .navbar-extra {
     display: none;
   }
@@ -69,9 +69,9 @@ const hasExtraContent = computed(
 
 .trans-title {
   padding: 0 24px 0 12px;
-  line-height: 32px;
   font-size: 14px;
   font-weight: 700;
+  line-height: 32px;
   color: var(--vp-c-text-1);
 }
 

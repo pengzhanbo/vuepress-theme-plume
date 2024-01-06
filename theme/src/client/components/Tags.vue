@@ -37,69 +37,75 @@ const { tags: tagsLink } = useBlogExtract()
 
 <style scoped>
 .tags-wrapper {
-  padding: 32px 24px 168px;
   flex: 1;
+  padding: 32px 24px 168px;
 }
 
 .tags-wrapper.has-list {
   padding-bottom: 64px;
 }
+
 .tags-title {
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
   font-size: 20px;
   font-weight: 700;
   color: var(--vp-c-brand-1);
-  margin-bottom: 20px;
 }
+
 .tags-title .icon {
   width: 1em;
   height: 1em;
   margin-right: 8px;
 }
+
 .tags {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
 }
+
 .tags .tag {
   display: flex;
   align-items: center;
-  word-wrap: break-word;
-  margin: 8px;
   padding: 6px 6px 6px 10px;
+  margin: 8px;
+  line-height: 1;
+
   /* background-color: var(--vp-c-default-soft); */
+
   /* color: var(--vp-c-text-2); */
   color: var(--vp-tag-color);
-  border: solid 1px var(--vp-tag-color);
-  line-height: 1;
-  border-radius: 4px;
+  word-wrap: break-word;
   cursor: pointer;
+  border: solid 1px var(--vp-tag-color);
+  border-radius: 4px;
   transition: all var(--t-color);
 }
 
 .tag-title {
+  padding-bottom: 8px;
+  margin: 20px 12px -10px;
   font-size: 20px;
   font-weight: 600;
   border-bottom: 1px solid var(--vp-c-divider);
-  padding-bottom: 8px;
-  margin: 20px 12px -10px 12px;
 }
 
 .tag-count {
   display: inline-block;
-  border-left: 1px solid var(--vp-tag-color);
   padding-left: 6px;
   margin-left: 4px;
   color: var(--vp-tag-color);
+  border-left: 1px solid var(--vp-tag-color);
   transition: all var(--t-color);
 }
 
 .tags .tag:hover,
 .tags .tag.active {
-  background-color: var(--vp-tag-color);
   color: var(--vp-c-bg);
+  background-color: var(--vp-tag-color);
 }
 
 .tags .tag:hover .tag-count,

@@ -1,10 +1,4 @@
 .plume-content {
-  @media (width <= 419px) {
-    .vp-code-demo {
-      margin: 8px -12px;
-    }
-  }
-
   .hint-container {
     padding: 16px 16px 8px;
     font-size: var(--vp-custom-block-font-size);
@@ -190,6 +184,13 @@
     .vp-code-demo-codes div[class*="language-"] pre {
       margin-bottom: 0;
       border-radius: 0;
+    }
+  }
+
+  /* stylelint-disable-next-line order/order */
+  @media (max-width: 419px) {
+    .vp-code-demo {
+      margin: 8px -12px;
     }
   }
 

@@ -15,5 +15,6 @@ export default stylelintConfig({
     'declaration-block-no-redundant-longhand-properties': [true, {
       ignoreShorthands: ['inset'],
     }],
+    'media-feature-range-notation': null,
   },
 })

@@ -35,10 +35,11 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .blog-aside-wrapper {
   position: sticky;
   top: calc(var(--vp-nav-height) + 2rem);
+  display: none;
   width: 270px;
   padding: 1rem 0;
   margin-top: 2rem;
@@ -46,22 +47,22 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
   margin-left: 2rem;
   text-align: center;
   border-left: solid 1px var(--vp-c-divider);
-
-  img {
-    width: 50%;
-    margin: auto;
-  }
-
-  h3 {
-    margin-top: 1.5rem;
-    font-size: 16px;
-    font-weight: 600;
-  }
 }
 
-@media (width <= 768px) {
+.blog-aside-wrapper img {
+  width: 50%;
+  margin: auto;
+}
+
+.blog-aside-wrapper h3 {
+  margin-top: 1.5rem;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@media (width >= 768px) {
   .blog-aside-wrapper {
-    display: none;
+    display: block;
   }
 }
 

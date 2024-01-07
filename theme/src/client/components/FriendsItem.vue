@@ -9,11 +9,23 @@ defineProps<{
 
 <template>
   <div class="friend">
-    <AutoLink class="avatar-link" :href="friend.link" no-icon>
-      <div class="avatar" :style="{ backgroundImage: `url(${friend.avatar})` }" />
+    <AutoLink
+      class="avatar-link"
+      :href="friend.link"
+      no-icon
+    >
+      <div
+        class="avatar"
+        :style="{ backgroundImage: `url(${friend.avatar})` }"
+      />
     </AutoLink>
+
     <div class="content">
-      <AutoLink class="title" :href="friend.link" no-icon>
+      <AutoLink
+        class="title"
+        :href="friend.link"
+        no-icon
+      >
         {{ friend.name }}
       </AutoLink>
       <p v-if="friend.desc">

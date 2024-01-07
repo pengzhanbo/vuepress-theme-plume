@@ -69,6 +69,35 @@ export default {
   transition: color 0.25s;
 }
 
+.text {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  color: var(--vp-c-text-1);
+  transition: color 0.25s;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: currentcolor;
+  transition: fill 0.25s;
+}
+
+.menu {
+  position: absolute;
+  top: calc(var(--vp-nav-height) / 2 + 20px);
+  right: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.25s,
+    visibility 0.25s,
+    transform 0.25s;
+}
+
 .flyout-wrapper:hover {
   color: var(--vp-c-brand-1);
 }
@@ -105,18 +134,6 @@ export default {
   transition: color 0.5s;
 }
 
-.text {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 500;
-
-  /* line-height: var(--vp-nav-height); */
-  line-height: normal;
-  color: var(--vp-c-text-1);
-  transition: color 0.25s;
-}
-
 .option-icon {
   width: 16px;
   height: 16px;
@@ -129,24 +146,5 @@ export default {
   height: 14px;
   margin-left: 4px;
   fill: currentcolor;
-}
-
-.icon {
-  width: 20px;
-  height: 20px;
-  fill: currentcolor;
-  transition: fill 0.25s;
-}
-
-.menu {
-  position: absolute;
-  top: calc(var(--vp-nav-height) / 2 + 20px);
-  right: 0;
-  visibility: hidden;
-  opacity: 0;
-  transition:
-    opacity 0.25s,
-    visibility 0.25s,
-    transform 0.25s;
 }
 </style>

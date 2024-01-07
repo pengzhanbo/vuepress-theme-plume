@@ -164,6 +164,19 @@ textarea {
   border: 0;
 }
 
+textarea {
+  resize: vertical;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input {
+  background-color: transparent;
+}
+
 button {
   padding: 0;
   font-family: inherit;
@@ -196,10 +209,6 @@ table {
   border-collapse: collapse;
 }
 
-input {
-  background-color: transparent;
-}
-
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
   color: var(--vp-c-text-3);
@@ -227,15 +236,6 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
-}
-
-textarea {
-  resize: vertical;
-}
-
-select {
-  -webkit-appearance: none;
-  appearance: none;
 }
 
 fieldset {

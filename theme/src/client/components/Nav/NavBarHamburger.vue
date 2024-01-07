@@ -46,6 +46,37 @@ defineEmits<(e: 'click') => void>()
   overflow: hidden;
 }
 
+.top,
+.middle,
+.bottom {
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  background-color: var(--vp-c-text-1);
+  transition:
+    top 0.25s,
+    background-color 0.5s,
+    transform 0.25s;
+}
+
+.top {
+  top: 0;
+  left: 0;
+  transform: translateX(0);
+}
+
+.middle {
+  top: 6px;
+  left: 0;
+  transform: translateX(8px);
+}
+
+.bottom {
+  top: 12px;
+  left: 0;
+  transform: translateX(4px);
+}
+
 .navbar-hamburger:hover .top {
   top: 0;
   left: 0;
@@ -87,36 +118,5 @@ defineEmits<(e: 'click') => void>()
     top 0.25s,
     background-color 0.25s,
     transform 0.25s;
-}
-
-.top,
-.middle,
-.bottom {
-  position: absolute;
-  width: 16px;
-  height: 2px;
-  background-color: var(--vp-c-text-1);
-  transition:
-    top 0.25s,
-    background-color 0.5s,
-    transform 0.25s;
-}
-
-.top {
-  top: 0;
-  left: 0;
-  transform: translateX(0);
-}
-
-.middle {
-  top: 6px;
-  left: 0;
-  transform: translateX(8px);
-}
-
-.bottom {
-  top: 12px;
-  left: 0;
-  transform: translateX(4px);
 }
 </style>

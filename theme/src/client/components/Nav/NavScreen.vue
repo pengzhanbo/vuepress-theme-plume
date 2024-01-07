@@ -47,6 +47,12 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
   transition: background-color 0.5s;
 }
 
+.container {
+  max-width: 288px;
+  padding: 24px 0 96px;
+  margin: 0 auto;
+}
+
 .nav-screen.fade-enter-active,
 .nav-screen.fade-leave-active {
   transition: opacity 0.25s;
@@ -71,12 +77,6 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
   .nav-screen {
     display: none;
   }
-}
-
-.container {
-  max-width: 288px;
-  padding: 24px 0 96px;
-  margin: 0 auto;
 }
 
 .menu + .translations,

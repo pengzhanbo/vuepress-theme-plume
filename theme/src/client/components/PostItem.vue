@@ -10,17 +10,17 @@ const props = defineProps<{
   post: PlumeThemeBlogPostItem
 }>()
 
-const categoryList = computed(() => {
-  return props.post.categoryList ?? []
-})
+const categoryList = computed(() =>
+  props.post.categoryList ?? [],
+)
 
-const tags = computed(() => {
-  return (props.post.tags ?? []).slice(0, 4)
-})
+const tags = computed(() =>
+  (props.post.tags ?? []).slice(0, 4),
+)
 
-const createTime = computed(() => {
-  return props.post.createTime?.split(' ')[0].replace(/\//g, '-')
-})
+const createTime = computed(() =>
+  props.post.createTime?.split(' ')[0].replace(/\//g, '-'),
+)
 </script>
 
 <template>
@@ -56,54 +56,52 @@ const createTime = computed(() => {
         <span>{{ createTime }}</span>
       </div>
     </div>
-    <!-- eslint-disable vue/no-v-html -->
     <div v-if="post.excerpt" class="plume-content" v-html="post.excerpt" />
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .post-item {
   padding-top: 1rem;
   margin: 0 1.75rem 2rem;
+}
 
-  @media (min-width: 960px) {
-    h3 {
-      font-size: 20px;
-    }
-  }
-  // border-bottom: solid 1px var(--vp-c-divider);
+.post-item:last-of-type {
+  border-bottom: none;
+}
 
-  &:last-of-type {
-    border-bottom: none;
-  }
+.post-item .sticky {
+  display: inline-block;
+  padding: 3px 6px;
+  margin-left: 0.5rem;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--vp-c-text-2);
+  background-color: var(--vp-c-default-soft);
+  border-radius: 4px;
+}
 
-  h3 {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.75rem;
-    font-size: 18px;
-    font-weight: 600;
-    transition: color var(--t-color);
-  }
+.post-item h3 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: 18px;
+  font-weight: 600;
+  transition: color var(--t-color);
+}
 
-  h3:hover {
-    color: var(--vp-c-brand-1);
+.post-item h3:hover {
+  color: var(--vp-c-brand-1);
+}
 
-    .sticky {
-      color: var(--vp-c-text-2);
-    }
-  }
+.post-item h3:hover .sticky {
+  color: var(--vp-c-text-2);
+}
 
-  .sticky {
-    display: inline-block;
-    padding: 3px 6px;
-    margin-left: 0.5rem;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1;
-    color: var(--vp-c-text-2);
-    background-color: var(--vp-c-default-soft);
-    border-radius: 4px;
+@media (min-width: 960px) {
+  .post-item h3 {
+    font-size: 20px;
   }
 }
 
@@ -116,33 +114,33 @@ const createTime = computed(() => {
   font-size: 14px;
   font-weight: 400;
   color: var(--vp-c-text-2);
+}
 
-  > div {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-right: 1rem;
+.post-meta > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 1rem;
+}
 
-    &:last-of-type {
-      margin-right: 0;
-    }
-  }
+.post-meta > div:last-of-type {
+  margin-right: 0;
+}
 
-  .tag-list {
-    display: flex;
-    align-items: center;
+.post-meta .tag-list {
+  display: flex;
+  align-items: center;
+}
 
-    .tag {
-      margin: 0 0.2rem;
-    }
-  }
+.post-meta .tag-list .tag {
+  margin: 0 0.2rem;
+}
 
-  .icon {
-    width: 14px;
-    height: 14px;
-    margin: 0.3rem;
-    color: var(--vp-c-text-3);
-  }
+.post-meta .icon {
+  width: 14px;
+  height: 14px;
+  margin: 0.3rem;
+  color: var(--vp-c-text-3);
 }
 
 .plume-content :deep(p) {

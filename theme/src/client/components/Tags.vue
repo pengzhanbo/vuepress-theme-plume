@@ -38,7 +38,9 @@ const { tags: tagsLink } = useBlogExtract()
 <style scoped>
 .tags-wrapper {
   flex: 1;
+  max-width: 768px;
   padding: 32px 24px 168px;
+  margin: 0 auto;
 }
 
 .tags-wrapper.has-list {
@@ -73,10 +75,6 @@ const { tags: tagsLink } = useBlogExtract()
   padding: 6px 6px 6px 10px;
   margin: 8px;
   line-height: 1;
-
-  /* background-color: var(--vp-c-default-soft); */
-
-  /* color: var(--vp-c-text-2); */
   color: var(--vp-tag-color);
   word-wrap: break-word;
   cursor: pointer;

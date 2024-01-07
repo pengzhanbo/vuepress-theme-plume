@@ -29,7 +29,9 @@ const { archives } = useArchives()
 <style scoped>
 .archives-wrapper {
   flex: 1;
+  max-width: 768px;
   padding: 32px 24px;
+  margin: 0 auto;
 }
 
 .archives-title {

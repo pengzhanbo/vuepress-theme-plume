@@ -67,7 +67,7 @@ const showBlogExtract = computed(() => {
               </p>
             </div>
           </div>
-          <div v-if="hasBlogExtract" class="blog-nav">
+          <div v-if="hasBlogExtract" class="blog-nav" :class="{ 'no-avatar': !avatar }">
             <AutoLink class="nav-link" :href="tags.link">
               <IconTag class="icon" />
               <span>{{ tags.text }}</span>
@@ -188,6 +188,12 @@ const showBlogExtract = computed(() => {
   padding: 10px 0 0;
   margin: 24px 0 0;
   border-top: solid 1px var(--vp-c-divider);
+}
+
+.blog-nav.no-avatar {
+  padding-top: 0;
+  margin: 0;
+  border-top: none;
 }
 
 .nav-link {

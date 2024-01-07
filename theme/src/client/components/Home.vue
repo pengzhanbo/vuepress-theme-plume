@@ -2,8 +2,6 @@
 import { usePageFrontmatter, withBase } from '@vuepress/client'
 import { computed } from 'vue'
 import type { PlumeThemeHomeFrontmatter } from '../../shared/index.js'
-
-// import { useThemeLocaleData } from '../composables/index.js'
 import { useDarkMode } from '../composables/darkMode.js'
 import VButton from './VButton.vue'
 

@@ -5,7 +5,7 @@ export default stylelintConfig({
     'selector-pseudo-element-no-unknown': [true, {
       ignorePseudoElements: ['input-placeholder'],
     }],
-    'no-descending-specificity': null,
+    // 'no-descending-specificity': null,
     'custom-property-empty-line-before': null,
     'property-no-vendor-prefix': null,
     'selector-no-vendor-prefix': null,

@@ -1,7 +1,7 @@
 import { defineClientConfig } from '@vuepress/client'
 import { setupCopyCode } from './setupCopyCode.js'
 
-import './styles/button.scss'
+import './styles/button.css'
 
 export default defineClientConfig({
   setup() {

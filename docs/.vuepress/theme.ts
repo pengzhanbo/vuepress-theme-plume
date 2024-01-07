@@ -7,11 +7,13 @@ export const theme = themePlume({
   hostname: 'https://pengzhanbo.cn',
   repo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
   docsDir: 'docs',
+
   avatar: {
     url: '/images/blogger.jpg',
     name: 'Plume Theme',
     description: 'The Theme for Vuepress 2.0',
   },
+
   social: [{ icon: 'github', link: 'https://github.com/pengzhanbo' }],
   footer: { copyright: 'Copyright © 2022-present pengzhanbo' },
 
@@ -26,10 +28,10 @@ export const theme = themePlume({
     },
   },
   plugins: {
-    // docsearch: {
-    //   apiKey: '111',
-    //   appId: '111',
-    //   indexName: '1234',
-    // }
+    docsearch: {
+      apiKey: '111',
+      appId: '111',
+      indexName: '1234',
+    },
   },
 })

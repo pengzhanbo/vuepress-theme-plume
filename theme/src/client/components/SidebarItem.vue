@@ -69,13 +69,15 @@ function onCaretClick() {
     >
       <div class="indicator" />
 
-      <AutoLink v-if="item.link" :tag="linkTag" class="link" :href="item.link">
-        <!-- eslint-disable vue/no-v-text-v-html-on-component -->
-        <!-- eslint-disable-next-line vue/no-v-html -->
+      <AutoLink
+        v-if="item.link"
+        :tag="linkTag"
+        class="link"
+        :href="item.link"
+      >
         <Component :is="textTag" class="text" v-html="item.text" />
       </AutoLink>
-      <!-- eslint-disable vue/no-v-text-v-html-on-component -->
-      <!-- eslint-disable-next-line vue/no-v-html -->
+
       <Component :is="textTag" v-else class="text" v-html="item.text" />
 
       <div
@@ -166,15 +168,6 @@ function onCaretClick() {
   color: var(--vp-c-text-2);
 }
 
-.sidebar-item.level-0.is-link > .item > .link:hover .text,
-.sidebar-item.level-1.is-link > .item > .link:hover .text,
-.sidebar-item.level-2.is-link > .item > .link:hover .text,
-.sidebar-item.level-3.is-link > .item > .link:hover .text,
-.sidebar-item.level-4.is-link > .item > .link:hover .text,
-.sidebar-item.level-5.is-link > .item > .link:hover .text {
-  color: var(--vp-c-brand-1);
-}
-
 .sidebar-item.level-0.has-active > .item > .link > .text,
 .sidebar-item.level-1.has-active > .item > .link > .text,
 .sidebar-item.level-2.has-active > .item > .link > .text,
@@ -190,6 +183,15 @@ function onCaretClick() {
 .sidebar-item.level-3.is-active > .item .link > .text,
 .sidebar-item.level-4.is-active > .item .link > .text,
 .sidebar-item.level-5.is-active > .item .link > .text {
+  color: var(--vp-c-brand-1);
+}
+
+.sidebar-item.level-0.is-link > .item > .link:hover .text,
+.sidebar-item.level-1.is-link > .item > .link:hover .text,
+.sidebar-item.level-2.is-link > .item > .link:hover .text,
+.sidebar-item.level-3.is-link > .item > .link:hover .text,
+.sidebar-item.level-4.is-link > .item > .link:hover .text,
+.sidebar-item.level-5.is-link > .item > .link:hover .text {
   color: var(--vp-c-brand-1);
 }
 

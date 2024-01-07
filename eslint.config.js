@@ -11,4 +11,7 @@ export default config({
     __VUE_OPTIONS_API__: 'readonly',
     __VUE_PROD_DEVTOOLS__: 'readonly',
   },
+  rules: {
+    'vue/no-v-text-v-html-on-component': 'off',
+  },
 })

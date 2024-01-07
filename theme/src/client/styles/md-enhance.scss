@@ -1,3 +1,6 @@
+/* stylelint-disable no-descending-specificity */
+
+/* ------------------ Markdown Enhance: Hint Container  ------------------ */
 .plume-content {
   .hint-container {
     padding: 16px 16px 8px;
@@ -17,6 +20,12 @@
 
     code {
       font-size: var(--vp-custom-block-code-font-size);
+      color: inherit;
+    }
+
+    th,
+    blockquote > p {
+      font-size: var(--vp-custom-block-font-size);
       color: inherit;
     }
 
@@ -115,14 +124,18 @@
     [class*="language-"] .line-numbers {
       padding-top: 21px;
     }
-
-    th,
-    blockquote > p {
-      font-size: var(--vp-custom-block-font-size);
-      color: inherit;
-    }
   }
+}
 
+/* ------------------ Markdown Enhance: Code Tabs ----------------------- */
+.plume-content {
+  .vp-code-tabs-nav {
+    margin: 0.85rem 0 0;
+  }
+}
+
+/* --------------------  Markdown Enhance: Code Demo  -------------------- */
+.plume-content {
   .vp-code-demo {
     overflow: hidden;
     border: solid 1px var(--vp-c-divider);
@@ -193,7 +206,10 @@
       margin: 8px -12px;
     }
   }
+}
 
+/* ----------------------  Markdown Enhance: Task List ---------------------- */
+.plume-content {
   .task-list-container {
     padding-left: 0;
 
@@ -232,7 +248,10 @@
       }
     }
   }
+}
 
+/* ----------------------------  Markdown Enhance: Tabs ----------------------------- */
+.plume-content {
   .vp-tabs {
     margin: 1.5rem -0.75rem;
     overflow: hidden;
@@ -258,7 +277,10 @@
       }
     }
   }
+}
 
+/* --------------------- Markdown Enhance: Footnote -------------------------------- */
+.plume-content {
   .footnotes-sep {
     margin-top: 48px;
   }
@@ -341,6 +363,7 @@
   }
 }
 
+/* --------------  Markdown Enhance: Image Figure --------------------- */
 .plume-content {
   figure {
     position: relative;

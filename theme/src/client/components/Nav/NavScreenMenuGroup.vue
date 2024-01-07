@@ -79,16 +79,6 @@ function toggle() {
   padding-bottom: 10px;
 }
 
-.nav-screen-menu-group.open .button {
-  padding-bottom: 6px;
-  color: var(--vp-c-brand-1);
-}
-
-.nav-screen-menu-group.open .button-icon {
-  /* rtl:ignore */
-  transform: rotate(45deg);
-}
-
 .button {
   display: flex;
   align-items: center;
@@ -106,8 +96,9 @@ function toggle() {
   color: var(--vp-c-brand-1);
 }
 
-.button-text i {
-  font-style: normal;
+.nav-screen-menu-group.open .button {
+  padding-bottom: 6px;
+  color: var(--vp-c-brand-1);
 }
 
 .button-icon {
@@ -117,6 +108,15 @@ function toggle() {
   transition:
     fill 0.5s,
     transform 0.25s;
+}
+
+.nav-screen-menu-group.open .button-icon {
+  /* rtl:ignore */
+  transform: rotate(45deg);
+}
+
+.button-text i {
+  font-style: normal;
 }
 
 .group:first-child {

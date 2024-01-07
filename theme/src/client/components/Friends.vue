@@ -22,11 +22,19 @@ const list = computed(() => matter.value.list || [])
       {{ matter.description }}
     </p>
     <section v-if="list.length" class="friends-list">
-      <FriendsItem v-for="(friend, index) in list" :key="friend.name + index" :friend="friend" />
+      <FriendsItem
+        v-for="(friend, index) in list"
+        :key="friend.name + index"
+        :friend="friend"
+      />
     </section>
 
     <div v-if="editNavLink" class="edit-link">
-      <AutoLink class="edit-link-button" :href="editNavLink.link" :no-icon="true">
+      <AutoLink
+        class="edit-link-button"
+        :href="editNavLink.link"
+        :no-icon="true"
+      >
         <IconEdit class="edit-link-icon" aria-label="edit icon" />
         {{ editNavLink.text }}
       </AutoLink>

@@ -55,68 +55,6 @@ onContentUpdated(() => zoom?.refresh())
 </template>
 
 <style scoped>
-/* .plume-page.is-blog {
-  padding-top: calc(var(--vp-nav-height) + 32px);
-} */
-
-@media (min-width: 768px) {
-  .plume-page {
-    padding: 48px 32px 128px;
-  }
-}
-
-@media (min-width: 960px) {
-  .plume-page,
-  .plume-page.is-blog {
-    padding: 32px 32px 0;
-  }
-
-  .plume-page:not(.has-sidebar) .container {
-    display: flex;
-    justify-content: center;
-    max-width: 992px;
-  }
-
-  .plume-page:not(.has-sidebar) .content {
-    max-width: 752px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .plume-page .container {
-    display: flex;
-    justify-content: center;
-  }
-
-  .plume-page .aside {
-    display: block;
-  }
-}
-
-@media (min-width: 1440px) {
-  .plume-page:not(.has-sidebar) .content {
-    max-width: 784px;
-  }
-
-  .plume-page:not(.has-sidebar) .container {
-    max-width: 1204px;
-  }
-}
-
-@media (min-width: 960px) {
-  .content {
-    padding: 0 32px 128px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .content {
-    order: 1;
-    min-width: 640px;
-    margin: 0;
-  }
-}
-
 .plume-page {
   position: relative;
   display: flex;
@@ -197,5 +135,63 @@ onContentUpdated(() => zoom?.refresh())
 
 .giscus-wrapper {
   padding: 5rem 0 0;
+}
+
+@media (min-width: 768px) {
+  .plume-page {
+    padding: 48px 32px 128px;
+  }
+}
+
+@media (min-width: 960px) {
+  .plume-page,
+  .plume-page.is-blog {
+    padding: 32px 32px 0;
+  }
+
+  .plume-page:not(.has-sidebar) .container {
+    display: flex;
+    justify-content: center;
+    max-width: 992px;
+  }
+
+  .plume-page:not(.has-sidebar) .content {
+    max-width: 752px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .plume-page .container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .plume-page .aside {
+    display: block;
+  }
+}
+
+@media (min-width: 1440px) {
+  .plume-page:not(.has-sidebar) .content {
+    max-width: 784px;
+  }
+
+  .plume-page:not(.has-sidebar) .container {
+    max-width: 1204px;
+  }
+}
+
+@media (min-width: 960px) {
+  .content {
+    padding: 0 32px 128px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .content {
+    order: 1;
+    min-width: 640px;
+    margin: 0;
+  }
 }
 </style>

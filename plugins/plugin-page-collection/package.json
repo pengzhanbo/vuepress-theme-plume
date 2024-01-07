@@ -1,7 +1,7 @@
 {
   "name": "plugin-page-collection",
   "type": "module",
-  "version": "1.0.0-rc.19",
+  "version": "1.0.0-rc.20",
   "private": true,
   "description": "The Plugin for VuePres 2",
   "author": "pengzhanbo <volodymyr@foxmail.com>",

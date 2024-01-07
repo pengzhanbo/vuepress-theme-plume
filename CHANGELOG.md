@@ -1,3 +1,13 @@
+# [1.0.0-rc.20](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.19...v1.0.0-rc.20) (2024-1-7)
+
+
+### Performance Improvements
+
+* 调整内容容器中代码块在移动设备 UI ([3e5ecad](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3e5ecada8ec48e9833a59e24b79cd4d7cc8dcd78))
+* 优化默认导航栏生成 ([6b5fd5d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6b5fd5d427c0c49ae30a1a5b729ff429481c6cbf))
+
+
+
 # [1.0.0-rc.19](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.18...v1.0.0-rc.19) (2024-1-6)
 
 

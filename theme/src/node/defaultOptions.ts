@@ -52,16 +52,22 @@ export const fallbackLocaleOption: Partial<PlumeThemeLocaleOptions> = {
 interface PresetLocale {
   home: string
   blog: string
+  tag: string
+  archive: string
 }
 
 const presetLocales: Record<string, PresetLocale> = {
   'zh-CN': {
     home: '首页',
     blog: '博客',
+    tag: '标签',
+    archive: '归档',
   },
   'en-US': {
     home: 'Home',
     blog: 'Blog',
+    tag: 'Tags',
+    archive: 'Archives',
   },
 }
 
@@ -131,6 +137,23 @@ export function mergeLocaleOptions(app: App, options: PlumeThemeLocaleOptions) {
         text: presetLocales[lang]?.blog || presetLocales[defaultLang].blog,
         icon: 'material-symbols:article-outline',
       })
+      const avatar = resolveLocaleOptions(options, 'avatar')
+      if (!avatar) {
+        if (blog?.tags !== false || defaultBlog?.tags !== false) {
+          option.navbar.push({
+            link: pathJoin(link, 'tags/'),
+            text: presetLocales[lang]?.tag || presetLocales[defaultLang].tag,
+            icon: 'tabler:tag',
+          })
+        }
+        if (blog?.archives !== false || defaultBlog?.archives !== false) {
+          option.navbar.push({
+            link: pathJoin(link, 'archives/'),
+            text: presetLocales[lang]?.archive || presetLocales[defaultLang].archive,
+            icon: 'ph:file-archive',
+          })
+        }
+      }
     }
   })
 

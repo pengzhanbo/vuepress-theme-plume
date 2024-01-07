@@ -12,6 +12,13 @@ export function definePlumeNotesItemConfig(item: NotesItemOptions): NotesItemOpt
   return item
 }
 
+export function defineNavbarConfig(navbar: NavItem[]): NavItem[] {
+  return navbar
+}
+
+/**
+ * @deprecated move to `defineNavbarConfig`
+ */
 export function defineNavbar(navbar: NavItem[]): NavItem[] {
   return navbar
 }

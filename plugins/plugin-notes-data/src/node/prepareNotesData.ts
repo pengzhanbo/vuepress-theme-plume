@@ -80,6 +80,9 @@ export const notesData = ${JSON.stringify(notesData, null, 2)}
 
 export function watchNotesData(app: App, watchers: any[], options: NotesDataOptions | NotesDataOptions[]): void {
   const allOptions = ensureArray<NotesDataOptions>(options)
+  if (!allOptions.length)
+    return
+
   const [firstLink, ...links] = allOptions.map(option => option.link)
 
   const dir = path.join('pages', firstLink, '**/*')

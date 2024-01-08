@@ -83,7 +83,10 @@ export function watchNotesData(app: App, watchers: any[], options: NotesDataOpti
   if (!allOptions.length)
     return
 
-  const [firstLink, ...links] = allOptions.map(option => option.link)
+  const [firstLink, ...links] = allOptions.map(option => option.link).filter(Boolean)
+
+  if (!firstLink)
+    return
 
   const dir = path.join('pages', firstLink, '**/*')
   const watcher = chokidar.watch(dir, {

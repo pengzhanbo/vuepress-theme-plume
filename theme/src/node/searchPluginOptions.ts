@@ -2,6 +2,7 @@ import type { DocsearchPluginOptions } from '@vuepress/plugin-docsearch'
 import type { SearchPluginOptions } from '@vuepress/plugin-search'
 import type { App } from '@vuepress/core'
 import { deepMerge } from '@pengzhanbo/utils'
+import { resolvedAppLocales } from './resolveLocaleOptions.js'
 
 // `en-US` is used by default
 const defaultDocsearchLocales: NonNullable<DocsearchPluginOptions['locales']> = {
@@ -56,8 +57,9 @@ const defaultSearchLocales: NonNullable<SearchPluginOptions['locales']> = {
 export function resolvedDocsearchOption(app: App, options: DocsearchPluginOptions): DocsearchPluginOptions {
   options.locales ??= {}
 
-  Object.keys(app.siteData.locales || {}).forEach((locale) => {
-    const lang = app.siteData.locales![locale]?.lang || 'en-US'
+  const locales = resolvedAppLocales(app)
+  Object.keys(locales).forEach((locale) => {
+    const lang = locales[locale]?.lang || 'en-US'
     if (defaultDocsearchLocales[lang]) {
       options.locales![locale] = deepMerge(
         {},
@@ -72,9 +74,9 @@ export function resolvedDocsearchOption(app: App, options: DocsearchPluginOption
 
 export function resolvedSearchOptions(app: App, options: SearchPluginOptions = {}): SearchPluginOptions {
   options.locales ??= {}
-
-  Object.keys(app.siteData.locales || {}).forEach((locale) => {
-    const lang = app.siteData.locales![locale]?.lang || 'en-US'
+  const locales = resolvedAppLocales(app)
+  Object.keys(locales).forEach((locale) => {
+    const lang = locales[locale]?.lang || 'en-US'
     if (defaultSearchLocales[lang]) {
       options.locales![locale] = deepMerge(
         {},

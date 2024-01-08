@@ -1,3 +1,12 @@
+# [1.0.0-rc.22](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.21...v1.0.0-rc.22) (2024-1-8)
+
+
+### Bug Fixes
+
+* 修复在最小配置下的预设问题 [#40](https://github.com/pengzhanbo/vuepress-theme-plume/issues/40) ([2dbbc79](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2dbbc79a757a6ea21a01a239414ead137314dcf6))
+
+
+
 # [1.0.0-rc.21](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.20...v1.0.0-rc.21) (2024-1-8)
 
 

@@ -1,3 +1,5 @@
+import { isEmptyObject } from '@pengzhanbo/utils'
+import type { App } from '@vuepress/core'
 import type { PlumeThemeLocaleOptions } from '../shared/index.js'
 import { normalizePath } from './utils.js'
 
@@ -23,4 +25,12 @@ export function resolveLocaleOptions<
   const value = localeOptions[_key] as T[K]
 
   return value ?? (fallback ? fallbackData : undefined)
+}
+
+export function resolvedAppLocales(app: App): NonNullable<App['siteData']['locales']> {
+  if (app.siteData.locales && !isEmptyObject(app.siteData.locales))
+    return app.siteData.locales
+
+  const defaultLang = app.siteData.lang || 'en-US'
+  return { '/': { lang: defaultLang } }
 }

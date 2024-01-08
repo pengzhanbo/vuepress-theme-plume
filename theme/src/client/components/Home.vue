@@ -25,15 +25,15 @@ const homeStyle = computed(() => {
       mask.value
         ? `linear-gradient(rgba(0, 0, 0, ${mask.value}), rgba(0, 0, 0, ${mask.value}))`
         : '',
-      `url(${withBase(matter.value.banner || '')})`,
+      `url(${withBase(matter.value.banner ?? 'https://pengzhanbo.cn/images/home-banner.jpg')})`,
     ]
       .filter(Boolean)
       .join(','),
   }
 })
 
-const name = computed(() => matter.value.hero?.name)
-const tagline = computed(() => matter.value.hero?.tagline)
+const name = computed(() => matter.value.hero?.name ?? 'Plume')
+const tagline = computed(() => matter.value.hero?.tagline ?? 'A VuePress Theme')
 const text = computed(() => matter.value.hero?.text)
 
 const actions = computed(() => {
@@ -44,7 +44,7 @@ const actions = computed(() => {
 <template>
   <div class="plume-home" :style="homeStyle">
     <div class="container">
-      <div v-if="matter.hero" class="content">
+      <div class="content">
         <h2 v-if="name" class="hero-name">
           {{ name }}
         </h2>

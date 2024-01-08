@@ -7,13 +7,13 @@ import type {
   PlumeThemePageData,
 } from '../shared/index.js'
 import { pathJoin } from './utils.js'
-import { resolveLocaleOptions } from './resolveLocaleOptions.js'
+import { resolveLocaleOptions, resolvedAppLocales } from './resolveLocaleOptions.js'
 
 export async function setupPage(
   app: App,
   localeOption: PlumeThemeLocaleOptions,
 ) {
-  const locales = app.siteData.locales || {}
+  const locales = resolvedAppLocales(app)
   const defaultBlog = resolveLocaleOptions(localeOption, 'blog')
   for (const [, locale] of Object.keys(locales).entries()) {
     const blog = resolveLocaleOptions(localeOption, 'blog', locale, false)
@@ -82,7 +82,7 @@ export function autoCategory(
   const pagePath = page.filePathRelative
   if (page.frontmatter.type || !pagePath)
     return
-  const locales = Object.keys(app.siteData.locales)
+  const locales = Object.keys(resolvedAppLocales(app))
   const notesLinks: string[] = []
   for (const [, locale] of locales.entries()) {
     const notes = options.locales?.[locale]?.notes

@@ -2,7 +2,7 @@ import type { App } from '@vuepress/core'
 import { deepClone, deepMerge } from '@pengzhanbo/utils'
 import type { PlumeThemeLocaleOptions } from '../shared/index.js'
 import { pathJoin } from './utils.js'
-import { resolveLocaleOptions } from './resolveLocaleOptions.js'
+import { resolveLocaleOptions, resolvedAppLocales } from './resolveLocaleOptions.js'
 
 const defaultLocales: NonNullable<PlumeThemeLocaleOptions['locales']> = {
   'en-US': {
@@ -102,8 +102,9 @@ export function mergeLocaleOptions(app: App, options: PlumeThemeLocaleOptions) {
   })
 
   const langs: Record<string, string> = {}
-  Object.keys(app.siteData.locales || {}).forEach((locale) => {
-    const lang = app.siteData.locales![locale]?.lang || 'en-US'
+  const siteLocales = resolvedAppLocales(app)
+  Object.keys(siteLocales).forEach((locale) => {
+    const lang = siteLocales[locale]?.lang || 'en-US'
     langs[locale] = lang
     if (defaultLocales[lang]) {
       locales[locale] = deepMerge(

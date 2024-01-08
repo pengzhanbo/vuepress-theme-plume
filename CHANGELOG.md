@@ -1,3 +1,12 @@
+# [1.0.0-rc.21](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.20...v1.0.0-rc.21) (2024-1-8)
+
+
+### Bug Fixes
+
+* 修复 notes data 插件 路径解析 ([ab798d4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ab798d4234f912d98da455ecc68793af5ce92cb8))
+
+
+
 # [1.0.0-rc.20](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.19...v1.0.0-rc.20) (2024-1-7)
 
 

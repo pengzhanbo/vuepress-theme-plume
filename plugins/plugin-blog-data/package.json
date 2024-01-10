@@ -36,13 +36,13 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "dependencies": {
-    "@vue/devtools-api": "^6.5.1",
+    "@vue/devtools-api": "6.5.1",
     "@vuepress/client": "2.0.0-rc.0",
     "@vuepress/core": "2.0.0-rc.0",
     "@vuepress/utils": "2.0.0-rc.0",
     "chokidar": "^3.5.3",
     "create-filter": "^1.0.1",
-    "vue": "^3.4.5"
+    "vue": "^3.4.7"
   },
   "publishConfig": {
     "access": "public"

@@ -89,10 +89,11 @@
 }
 
 .DocSearch-Button .DocSearch-Button-Keys {
-  /* rtl:ignore */
-  direction: ltr;
   display: none;
   min-width: auto;
+
+  /* rtl:ignore */
+  direction: ltr;
 }
 
 .DocSearch-Button .DocSearch-Button-Key {

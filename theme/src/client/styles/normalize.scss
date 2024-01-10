@@ -8,6 +8,7 @@
     animation-duration: 1ms !important;
     animation-delay: -1ms !important;
     animation-iteration-count: 1 !important;
+
     scroll-behavior: auto !important;
   }
 }
@@ -21,16 +22,17 @@
 html {
   font-size: 16px;
   line-height: 1.4;
+
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
 
 body {
-  -webkit-text-size-adjust: 100%;
-  font-synthesis: none;
-  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
+  -webkit-text-size-adjust: 100%;
 }
 
 html.dark {
@@ -45,6 +47,7 @@ body {
   font-family: var(--vp-font-family-base);
   font-weight: 400;
   line-height: 24px;
+
   direction: ltr;
 }
 

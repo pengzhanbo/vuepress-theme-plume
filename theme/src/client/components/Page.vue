@@ -93,6 +93,7 @@ onContentUpdated(() => zoom?.refresh())
       (var(--vp-nav-height) + var(--vp-layout-top-height, 0px)) * -1 - 32px
     );
   overflow: hidden auto;
+
   scrollbar-width: none;
 }
 

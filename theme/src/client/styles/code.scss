@@ -13,8 +13,9 @@ html:not(.dark) .vp-code span {
     overflow: auto;
     font-size: 14px;
     border-radius: 6px;
-    scrollbar-width: thin;
+
     scrollbar-color: var(--vp-c-brand-1) var(--vp-c-border);
+    scrollbar-width: thin;
 
     code {
       padding: 0;
@@ -22,6 +23,7 @@ html:not(.dark) .vp-code span {
       overflow-wrap: unset;
       background-color: transparent;
       border-radius: 0;
+
       -webkit-font-smoothing: auto;
       -moz-osx-font-smoothing: auto;
     }

@@ -88,6 +88,7 @@ defineProps<{
   font-size: 0.875rem;
   line-height: 1.5;
   color: var(--vp-friends-text-color);
+
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   line-clamp: 3;

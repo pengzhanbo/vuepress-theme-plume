@@ -134,6 +134,7 @@ function handleClick() {
   stroke-width: 4px;
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
+
   r: 16;
 }
 

@@ -15,7 +15,9 @@ import {
   transformerNotationFocus,
   transformerNotationHighlight,
 } from 'shikiji-transformers'
+import { rendererRich, transformerTwoSlash } from 'shikiji-twoslash'
 import type { HighlighterOptions, ThemeOptions } from './types.js'
+import { resolveAttrs } from './resolveAttrs.js'
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 10)
 
@@ -88,9 +90,7 @@ export async function highlight(
         lang = defaultLang
       }
     }
-
-    // const lineOptions = attrsToLines(attrs)
-
+    const { attrs: attributes, rawAttrs } = resolveAttrs(attrs || '')
     const mustaches = new Map<string, string>()
 
     const removeMustache = (s: string) => {
@@ -110,32 +110,75 @@ export async function highlight(
       mustaches.forEach((marker, match) => {
         s = s.replaceAll(marker, match)
       })
-      return s
-    }
 
-    const fillEmptyHighlightedLine = (s: string) => {
-      return `${s.replace(
-        /(<span class="line highlighted">)(<\/span>)/g,
-        '$1<wbr>$2',
-      ).replace(/(\/\/\s*?\[)\\(!code.*?\])/g, '$1$2')}\n`
+      return `${s}\n`
     }
 
     str = removeMustache(str).trimEnd()
 
-    const highlighted = highlighter.codeToHtml(str, {
-      lang,
-      transformers: [
-        ...transformers,
-        ...userTransformers,
-      ],
-      meta: {
-        __raw: attrs,
+    const inlineTransformers: ShikijiTransformer[] = [
+      {
+        name: 'vuepress-shikiji:empty-line',
+        pre(hast) {
+          hast.children.forEach((code) => {
+            if (code.type === 'element' && code.tagName === 'code') {
+              code.children.forEach((span) => {
+                if (
+                  span.type === 'element'
+                  && span.tagName === 'span'
+                  && Array.isArray(span.properties.class)
+                  && span.properties.class.includes('line')
+                  && span.children.length === 0
+                ) {
+                  span.children.push({
+                    type: 'element',
+                    tagName: 'wbr',
+                    properties: {},
+                    children: [],
+                  })
+                }
+              })
+            }
+          })
+        },
       },
-      ...(typeof theme === 'object' && 'light' in theme && 'dark' in theme
-        ? { themes: theme, defaultColor: false }
-        : { theme }),
-    })
+      {
+        name: 'vuepress-shikiji:remove-escape',
+        postprocess(code) {
+          return code.replace(/\[\\\!code/g, '[!code')
+        },
+      },
+    ]
 
-    return fillEmptyHighlightedLine(restoreMustache(highlighted))
+    if (attributes.twoslash) {
+      inlineTransformers.push(transformerTwoSlash({
+        renderer: rendererRich({
+          classExtra: 'vp-copy-ignore',
+        }),
+      }))
+    }
+
+    try {
+      const highlighted = highlighter.codeToHtml(str, {
+        lang,
+        transformers: [
+          ...transformers,
+          ...inlineTransformers,
+          ...userTransformers,
+        ],
+        meta: {
+          __raw: rawAttrs,
+        },
+        ...(typeof theme === 'object' && 'light' in theme && 'dark' in theme
+          ? { themes: theme, defaultColor: false }
+          : { theme }),
+      })
+
+      return restoreMustache(highlighted)
+    }
+    catch (e) {
+      logger.error(e)
+      return str
+    }
   }
 }

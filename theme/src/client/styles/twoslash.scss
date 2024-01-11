@@ -1,0 +1,225 @@
+/* stylelint-disable no-descending-specificity */
+
+/* ===== Basic ===== */
+:root {
+  --twoslash-border-color: var(--vp-c-divider);
+  --twoslash-jsdoc-color: #888;
+  --twoslash-underline-color: currentcolor;
+  --twoslash-popup-bg: var(--vp-c-neutral-inverse);
+  --twoslash-popup-shadow: var(--vp-shadow-2);
+  --twoslash-matched-color: inherit;
+  --twoslash-unmatched-color: #888;
+  --twoslash-cursor-color: #8888;
+  --twoslash-error-color: var(--vp-c-danger-1);
+  --twoslash-error-bg: var(--vp-c-danger-soft);
+  --twoslash-tag-color: var(--vp-c-tip-1);
+  --twoslash-tag-bg: var(--vp-c-tip-soft);
+  --twoslash-tag-warn-color: var(--vp-c-warning-1);
+  --twoslash-tag-warn-bg: var(--vp-c-warning-soft);
+  --twoslash-tag-annotate-color: var(--vp-c-green-1);
+  --twoslash-tag-annotate-bg: var(--vp-c-green-soft);
+}
+
+div[class*="language-"].line-numbers-mode:has(> .twoslash) {
+  .line-numbers {
+    display: none;
+  }
+
+  pre {
+    padding-left: 1.5rem;
+    margin-left: 0;
+  }
+}
+
+/* Respect people's wishes to not have animations */
+@media (prefers-reduced-motion: reduce) {
+  .twoslash * {
+    transition: none !important;
+  }
+}
+
+/* ===== Hover Info ===== */
+.twoslash:hover .twoslash-hover {
+  border-color: var(--twoslash-underline-color);
+}
+
+.twoslash .twoslash-hover {
+  position: relative;
+  border-bottom: 1px dotted transparent;
+  transition: border-color 0.3s;
+  transition-timing-function: ease;
+}
+
+.twoslash .twoslash-popup-info {
+  position: absolute;
+  z-index: 10;
+  display: inline-block;
+  padding: 4px 6px;
+  text-align: left;
+  pointer-events: none;
+  user-select: none;
+  background: var(--twoslash-popup-bg);
+  border: 1px solid var(--twoslash-border-color);
+  border-radius: 4px;
+  box-shadow: var(--twoslash-popup-shadow);
+  opacity: 0;
+  transition: opacity 0.3s;
+  transform: translateY(1.5em);
+}
+
+.twoslash .twoslash-query-presisted .twoslash-popup-info {
+  left: 50%;
+  z-index: 9;
+  transform: translate(-1.3em, 1.8em);
+}
+
+.twoslash .twoslash-hover:hover .twoslash-popup-info,
+.twoslash .twoslash-query-presisted .twoslash-popup-info {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.twoslash .twoslash-popup-info:hover {
+  user-select: auto;
+}
+
+.twoslash .twoslash-popup-arrow {
+  position: absolute;
+  top: -4px;
+  left: 1em;
+  width: 6px;
+  height: 6px;
+  pointer-events: none;
+  background: var(--twoslash-popup-bg);
+  border-top: 1px solid var(--twoslash-border-color);
+  border-right: 1px solid var(--twoslash-border-color);
+  transform: rotate(-45deg);
+}
+
+.twoslash .twoslash-popup-jsdoc {
+  padding-top: 6px;
+  padding-bottom: 2px;
+  font-family: sans-serif;
+  font-size: 0.8em;
+  color: var(--twoslash-jsdoc-color);
+}
+
+/* ===== Error Line ===== */
+.twoslash .twoslash-error-line {
+  position: relative;
+  padding: 6px;
+  margin: 0.2em 0;
+  color: var(--twoslash-error-color);
+  background-color: var(--twoslash-error-bg);
+  border-left: 3px solid var(--twoslash-error-color);
+}
+
+.twoslash .twoslash-error {
+  padding-bottom: 2px;
+  background:
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%206%203'%20enable-background%3D'new%200%200%206%203'%20height%3D'3'%20width%3D'6'%3E%3Cg%20fill%3D'%23c94824'%3E%3Cpolygon%20points%3D'5.5%2C0%202.5%2C3%201.1%2C3%204.1%2C0'%2F%3E%3Cpolygon%20points%3D'4%2C0%206%2C2%206%2C0.6%205.4%2C0'%2F%3E%3Cpolygon%20points%3D'0%2C2%201%2C3%202.4%2C3%200%2C0.6'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+    repeat-x bottom left;
+}
+
+/* ===== Completeions ===== */
+.twoslash .twoslash-completions-list {
+  position: relative;
+}
+
+.twoslash .twoslash-completions-list ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 240px;
+  padding: 4px;
+  margin: 3px 0 0 -1px;
+  font-size: 0.8rem;
+  user-select: none;
+  background: var(--twoslash-popup-bg);
+  border: 1px solid var(--twoslash-border-color);
+  box-shadow: var(--twoslash-popup-shadow);
+  transform: translate(0, 1.2em);
+}
+
+.twoslash .twoslash-completions-list ul:hover {
+  user-select: auto;
+}
+
+.twoslash .twoslash-completions-list ul::before {
+  position: absolute;
+  top: -1.6em;
+  left: -1px;
+  width: 2px;
+  height: 1.4em;
+  content: " ";
+  background-color: var(--twoslash-cursor-color);
+}
+
+.twoslash .twoslash-completions-list ul li {
+  display: flex;
+  gap: 0.25em;
+  align-items: center;
+  overflow: hidden;
+  line-height: 1em;
+}
+
+.twoslash .twoslash-completions-list ul li span.twoslash-completions-unmatched {
+  color: var(--twoslash-unmatched-color);
+}
+
+.twoslash .twoslash-completions-list ul .deprecated {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.twoslash .twoslash-completions-list ul li span.twoslash-completions-matched {
+  color: var(--twoslash-matched-color);
+}
+
+/* Icons */
+.twoslash .twoslash-completions-list .twoslash-completions-icon {
+  flex: none;
+  width: 1em;
+  color: var(--twoslash-unmatched-color);
+}
+
+/* Custom Tags */
+.twoslash .twoslash-tag-line {
+  position: relative;
+  display: flex;
+  gap: 0.3em;
+  align-items: center;
+  padding: 6px;
+  margin: 0.2em 0;
+  color: var(--twoslash-tag-color);
+  background-color: var(--twoslash-tag-bg);
+  border-left: 3px solid var(--twoslash-tag-color);
+}
+
+.twoslash .twoslash-tag-line .twoslash-tag-icon {
+  width: 1.1em;
+  color: inherit;
+}
+
+.twoslash .twoslash-tag-line.twoslash-tag-error-line {
+  color: var(--twoslash-error-color);
+  background-color: var(--twoslash-error-bg);
+  border-left: 3px solid var(--twoslash-error-color);
+}
+
+.twoslash .twoslash-tag-line.twoslash-tag-warn-line {
+  color: var(--twoslash-tag-warn-color);
+  background-color: var(--twoslash-tag-warn-bg);
+  border-left: 3px solid var(--twoslash-tag-warn-color);
+}
+
+.twoslash .twoslash-tag-line.twoslash-tag-annotate-line {
+  color: var(--twoslash-tag-annotate-color);
+  background-color: var(--twoslash-tag-annotate-bg);
+  border-left: 3px solid var(--twoslash-tag-annotate-color);
+}

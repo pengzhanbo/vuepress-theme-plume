@@ -8,7 +8,7 @@ const options = __COPY_CODE_OPTIONS__
 const RE_LANGUAGE = /language-([\w]+)/
 const RE_START_CODE = /^ *(\$|>)/gm
 const shells = ['shellscript', 'shell', 'bash', 'sh', 'zsh']
-const ignoredNodes = ['.diff.remove']
+const ignoredNodes = ['.diff.remove', '.vp-copy-ignore']
 
 function isMobile(): boolean {
   return navigator

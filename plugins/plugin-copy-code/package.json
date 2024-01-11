@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-copy-code",
   "type": "module",
-  "version": "1.0.0-rc.22",
+  "version": "1.0.0-rc.23",
   "description": "The Plugin for VuePres 2",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",

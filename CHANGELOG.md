@@ -1,3 +1,12 @@
+# [1.0.0-rc.23](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.22...v1.0.0-rc.23) (2024-1-11)
+
+
+### Features
+
+* (试验性)代码高亮支持 twoslash ([d0fdf79](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d0fdf794774d126ab7f5d24fa6de5865498105b2))
+
+
+
 # [1.0.0-rc.22](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.21...v1.0.0-rc.22) (2024-1-8)
 
 

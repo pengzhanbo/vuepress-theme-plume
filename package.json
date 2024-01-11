@@ -60,6 +60,11 @@
     "typescript": "^5.3.3",
     "vite": "^5.0.11"
   },
+  "pnpm": {
+    "patchedDependencies": {
+      "@vuepress/markdown@2.0.0-rc.0": "patches/@vuepress__markdown@2.0.0-rc.0.patch"
+    }
+  },
   "lint-staged": {
     "*": "eslint --fix"
   },

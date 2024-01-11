@@ -2,9 +2,6 @@ import type { Plugin } from '@vuepress/core'
 import { highlight } from './highlight.js'
 import type { HighlighterOptions } from './types'
 
-/**
- * Options of @vuepress/plugin-shiki
- */
 export type ShikijiPluginOptions = HighlighterOptions
 
 export function shikijiPlugin(options: ShikijiPluginOptions = {}): Plugin {

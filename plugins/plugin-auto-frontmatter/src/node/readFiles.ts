@@ -1,5 +1,5 @@
 import fs from 'node:fs'
-import path from 'node:path'
+import path from 'upath'
 import fg from 'fast-glob'
 import type { MarkdownFile } from '../shared/index.js'
 

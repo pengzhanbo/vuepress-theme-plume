@@ -1,4 +1,4 @@
-import path from 'node:path'
+import path from 'upath'
 import type { App } from '@vuepress/core'
 import * as chokidar from 'chokidar'
 import { createFilter } from 'create-filter'

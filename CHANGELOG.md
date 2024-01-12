@@ -1,3 +1,12 @@
+# [1.0.0-rc.24](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.23...v1.0.0-rc.24) (2024-1-12)
+
+
+### Bug Fixes
+
+* 修复在 windows 下的路径拼接错误 ([e2305cb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e2305cb337f88b2565851a1155791f658562f3ff))
+
+
+
 # [1.0.0-rc.23](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.22...v1.0.0-rc.23) (2024-1-11)
 
 

@@ -1,5 +1,4 @@
-import fs from 'node:fs'
-import path from 'upath'
+import { fs, path } from '@vuepress/utils'
 import fg from 'fast-glob'
 import type { MarkdownFile } from '../shared/index.js'
 

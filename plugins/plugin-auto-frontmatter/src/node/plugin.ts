@@ -1,4 +1,4 @@
-import fs from 'node:fs'
+import { fs } from '@vuepress/utils'
 import type { Plugin } from '@vuepress/core'
 import chokidar from 'chokidar'
 import { createFilter } from 'create-filter'

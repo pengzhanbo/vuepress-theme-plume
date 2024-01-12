@@ -1,4 +1,4 @@
-import path from 'upath'
+import { path } from '@vuepress/utils'
 import type { App, Page } from '@vuepress/core'
 import { createPage } from '@vuepress/core'
 import type {

@@ -1,4 +1,4 @@
-import path from 'upath'
+import { path } from '@vuepress/utils'
 import type { App } from '@vuepress/core'
 import { resolveLocalePath } from '@vuepress/shared'
 import type {

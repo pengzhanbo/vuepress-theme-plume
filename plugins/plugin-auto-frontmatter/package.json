@@ -38,7 +38,8 @@
     "create-filter": "^1.0.1",
     "fast-glob": "^3.3.2",
     "gray-matter": "^4.0.3",
-    "json2yaml": "^1.1.0"
+    "json2yaml": "^1.1.0",
+    "upath": "2.0.1"
   },
   "publishConfig": {
     "access": "public"

@@ -1,12 +1,14 @@
 import fs from 'node:fs'
-import path from 'node:path'
 import process from 'node:process'
+import path from 'upath'
 import { customAlphabet } from 'nanoid'
 import { getDirname } from '@vuepress/utils'
 
 const __dirname = getDirname(import.meta.url)
 
-export const resolve = (...args: string[]) => path.resolve(__dirname, '../', ...args)
+export function resolve(...args: string[]) {
+  return path.resolve(__dirname, '../', ...args)
+}
 export const templates = (url: string) => resolve('../templates', url)
 
 export const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz', 8)
@@ -14,10 +16,13 @@ export const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz', 8)
 export function getPackage() {
   let pkg = {} as any
   try {
-    const content = fs.readFileSync(path.join(process.cwd(), 'package.json'), 'utf-8')
+    const content = fs.readFileSync(
+      path.join(process.cwd(), 'package.json'),
+      'utf-8',
+    )
     pkg = JSON.parse(content)
   }
-  catch { }
+  catch {}
   return pkg
 }
 
@@ -41,7 +46,10 @@ export function pathJoin(...args: string[]) {
 }
 
 const RE_START_END_SLASH = /^\/|\/$/g
-export function getCurrentDirname(basePath: string | undefined, filepath: string) {
+export function getCurrentDirname(
+  basePath: string | undefined,
+  filepath: string,
+) {
   const dirList = normalizePath(basePath || path.dirname(filepath))
     .replace(RE_START_END_SLASH, '')
     .split('/')

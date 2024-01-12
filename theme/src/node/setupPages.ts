@@ -1,4 +1,4 @@
-import path from 'node:path'
+import path from 'upath'
 import type { App, Page } from '@vuepress/core'
 import { createPage } from '@vuepress/core'
 import type {

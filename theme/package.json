@@ -82,6 +82,7 @@
     "katex": "^0.16.9",
     "lodash.merge": "^4.6.2",
     "nanoid": "^5.0.4",
+    "upath": "2.0.1",
     "vue": "^3.4.10",
     "vue-router": "4.2.5",
     "vuepress-plugin-comment2": "2.0.0-rc.10",

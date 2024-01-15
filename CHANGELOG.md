@@ -1,3 +1,12 @@
+# [1.0.0-rc.25](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.24...v1.0.0-rc.25) (2024-1-15)
+
+
+### Bug Fixes
+
+* 移动设备下 twoslash 样式兼容问题 ([fd78015](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fd7801518e7996c8b054627c277a775df24869c4))
+
+
+
 # [1.0.0-rc.24](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.23...v1.0.0-rc.24) (2024-1-12)
 
 

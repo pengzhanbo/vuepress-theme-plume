@@ -455,16 +455,16 @@
   }
 
   .demo-container {
-    padding: 10px 20px;
+    padding: 20px;
     background-color: var(--vp-c-bg-alt);
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
 
-    > :first-of-type {
+    > *:first-child {
       margin-top: 0;
     }
 
-    > :last-of-type {
+    > *:last-child {
       margin-bottom: 0;
     }
   }

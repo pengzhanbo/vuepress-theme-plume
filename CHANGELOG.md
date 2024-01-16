@@ -1,3 +1,12 @@
+# [1.0.0-rc.26](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.25...v1.0.0-rc.26) (2024-1-16)
+
+
+### Features
+
+* add `demo-wrapper` container support ([7b946d7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7b946d7b4947401475d911a5593c60b03a839f52))
+
+
+
 # [1.0.0-rc.25](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.24...v1.0.0-rc.25) (2024-1-15)
 
 

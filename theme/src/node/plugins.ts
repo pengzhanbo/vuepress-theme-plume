@@ -31,6 +31,7 @@ import { resolveLocaleOptions } from './resolveLocaleOptions.js'
 import { pathJoin } from './utils.js'
 import { resolveNotesList } from './resolveNotesList.js'
 import { resolvedDocsearchOption, resolvedSearchOptions } from './searchPluginOptions.js'
+import { customContainers } from './container.js'
 
 export function setupPlugins(
   app: App,
@@ -88,6 +89,8 @@ export function setupPlugins(
       delay: 200,
       offset: 20,
     }),
+
+    ...customContainers,
   ]
 
   if (options.readingTime !== false)

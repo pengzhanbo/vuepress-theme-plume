@@ -16,8 +16,8 @@
     "@vuepress/utils": "2.0.0-rc.0",
     "anywhere": "^1.6.0",
     "sass": "^1.69.7",
-    "sass-loader": "^13.3.3",
-    "vue": "^3.4.10",
+    "sass-loader": "^14.0.0",
+    "vue": "^3.4.14",
     "vuepress-theme-plume": "workspace:*"
   }
 }

@@ -40,12 +40,12 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.4",
     "@commitlint/config-conventional": "^18.4.4",
-    "@pengzhanbo/eslint-config-vue": "^1.5.3",
-    "@pengzhanbo/stylelint-config": "^1.5.3",
+    "@pengzhanbo/eslint-config-vue": "^1.5.4",
+    "@pengzhanbo/stylelint-config": "^1.5.4",
     "@types/lodash.merge": "^4.6.9",
     "@types/node": "20.9.1",
     "@types/webpack-env": "^1.18.4",
-    "bumpp": "^9.2.1",
+    "bumpp": "^9.3.0",
     "commitizen": "^4.3.0",
     "concurrently": "^8.2.2",
     "conventional-changelog-cli": "^4.1.0",
@@ -55,10 +55,10 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "rimraf": "^5.0.5",
-    "stylelint": "^16.1.0",
+    "stylelint": "^16.2.0",
     "tsconfig-vuepress": "^4.5.0",
     "typescript": "^5.3.3",
-    "vite": "^5.0.11"
+    "vite": "^5.0.12"
   },
   "pnpm": {
     "patchedDependencies": {

@@ -1,3 +1,12 @@
+# [1.0.0-rc.28](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.27...v1.0.0-rc.28) (2024-1-21)
+
+
+### Features
+
+* update `demo-wrapper` container ([0f8acc3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0f8acc37dcf28cc1aebc7681880ad0afe77d02e7))
+
+
+
 # [1.0.0-rc.27](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.26...v1.0.0-rc.27) (2024-1-16)
 
 

@@ -15,7 +15,7 @@ import {
   transformerNotationFocus,
   transformerNotationHighlight,
 } from 'shikiji-transformers'
-import { rendererRich, transformerTwoSlash } from 'shikiji-twoslash'
+import { rendererRich, transformerTwoslash } from 'shikiji-twoslash'
 import type { HighlighterOptions, ThemeOptions } from './types.js'
 import { resolveAttrs } from './resolveAttrs.js'
 
@@ -151,7 +151,7 @@ export async function highlight(
     ]
 
     if (attributes.twoslash) {
-      inlineTransformers.push(transformerTwoSlash({
+      inlineTransformers.push(transformerTwoslash({
         renderer: rendererRich({
           classExtra: 'vp-copy-ignore',
         }),

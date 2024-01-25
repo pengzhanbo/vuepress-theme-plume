@@ -61,11 +61,11 @@ div[class*="language-"].line-numbers-mode:has(> .twoslash) {
   transition-timing-function: ease;
 }
 
-.twoslash .twoslash-popup-info {
+.twoslash .twoslash-popup-container {
   position: absolute;
   z-index: 10;
-  display: inline-block;
-  padding: 4px 6px;
+  display: inline-flex;
+  flex-direction: column;
   text-align: left;
   pointer-events: none;
   user-select: none;
@@ -78,19 +78,19 @@ div[class*="language-"].line-numbers-mode:has(> .twoslash) {
   transform: translateY(1.5em);
 }
 
-.twoslash .twoslash-query-presisted .twoslash-popup-info {
+.twoslash .twoslash-query-presisted .twoslash-popup-container {
   left: 50%;
   z-index: 9;
   transform: translate(-1.3em, 1.8em);
 }
 
-.twoslash .twoslash-hover:hover .twoslash-popup-info,
-.twoslash .twoslash-query-presisted .twoslash-popup-info {
+.twoslash .twoslash-hover:hover .twoslash-popup-container,
+.twoslash .twoslash-query-presisted .twoslash-popup-container {
   pointer-events: auto;
   opacity: 1;
 }
 
-.twoslash .twoslash-popup-info:hover {
+.twoslash .twoslash-popup-container:hover {
   user-select: auto;
 }
 
@@ -107,12 +107,26 @@ div[class*="language-"].line-numbers-mode:has(> .twoslash) {
   transform: rotate(-45deg);
 }
 
-.twoslash .twoslash-popup-jsdoc {
-  padding-top: 6px;
-  padding-bottom: 2px;
+.twoslash .twoslash-popup-code,
+.twoslash .twoslash-popup-docs {
+  padding: 6px 8px !important;
+}
+
+.twoslash .twoslash-popup-docs {
   font-family: sans-serif;
   font-size: 0.8em;
   color: var(--twoslash-jsdoc-color);
+  border-top: 1px solid var(--twoslash-border-color);
+}
+
+.twoslash .twoslash-popup-docs-tags {
+  display: flex;
+  flex-direction: column;
+}
+
+.twoslash .twoslash-popup-docs-tags,
+.twoslash .twoslash-popup-docs-tag-name {
+  margin-right: 0.5em;
 }
 
 /* ===== Error Line ===== */
@@ -133,23 +147,17 @@ div[class*="language-"].line-numbers-mode:has(> .twoslash) {
 }
 
 /* ===== Completeions ===== */
-.twoslash .twoslash-completions-list {
+.twoslash .twoslash-completion-cursor {
   position: relative;
 }
 
-.twoslash .twoslash-completions-list ul {
+.twoslash .twoslash-completion-cursor .twoslash-completion-list {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 8;
   display: inline-block;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  width: 240px;
-  padding: 4px;
   margin: 3px 0 0 -1px;
-  font-size: 0.8rem;
   user-select: none;
   background: var(--twoslash-popup-bg);
   border: 1px solid var(--twoslash-border-color);
@@ -157,11 +165,20 @@ div[class*="language-"].line-numbers-mode:has(> .twoslash) {
   transform: translate(0, 1.2em);
 }
 
-.twoslash .twoslash-completions-list ul:hover {
+.twoslash-completion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 240px;
+  padding: 4px;
+  font-size: 0.8rem;
+}
+
+.twoslash-completion-list:hover {
   user-select: auto;
 }
 
-.twoslash .twoslash-completions-list ul::before {
+.twoslash-completion-list::before {
   position: absolute;
   top: -1.6em;
   left: -1px;
@@ -171,7 +188,7 @@ div[class*="language-"].line-numbers-mode:has(> .twoslash) {
   background-color: var(--twoslash-cursor-color);
 }
 
-.twoslash .twoslash-completions-list ul li {
+.twoslash-completion-list li {
   display: flex;
   gap: 0.25em;
   align-items: center;
@@ -179,21 +196,30 @@ div[class*="language-"].line-numbers-mode:has(> .twoslash) {
   line-height: 1em;
 }
 
-.twoslash .twoslash-completions-list ul li span.twoslash-completions-unmatched {
+.twoslash-completion-list li span.twoslash-completions-unmatched {
   color: var(--twoslash-unmatched-color);
 }
 
-.twoslash .twoslash-completions-list ul .deprecated {
+.twoslash-completion-list .deprecated {
   text-decoration: line-through;
   opacity: 0.5;
 }
 
-.twoslash .twoslash-completions-list ul li span.twoslash-completions-matched {
+.twoslash-completion-list li span.twoslash-completions-matched {
   color: var(--twoslash-matched-color);
 }
 
+/* Highlights */
+.twoslash-highlighted {
+  padding: 1px 2px;
+  margin: -1px -3px;
+  background-color: var(--twoslash-highlighted-bg);
+  border: 1px solid var(--twoslash-highlighted-border);
+  border-radius: 4px;
+}
+
 /* Icons */
-.twoslash .twoslash-completions-list .twoslash-completions-icon {
+.twoslash-completion-list .twoslash-completions-icon {
   flex: none;
   width: 1em;
   color: var(--twoslash-unmatched-color);
@@ -205,7 +231,7 @@ div[class*="language-"].line-numbers-mode:has(> .twoslash) {
   display: flex;
   gap: 0.3em;
   align-items: center;
-  padding: 6px;
+  padding: 6px 10px;
   margin: 0.2em 0;
   color: var(--twoslash-tag-color);
   background-color: var(--twoslash-tag-bg);

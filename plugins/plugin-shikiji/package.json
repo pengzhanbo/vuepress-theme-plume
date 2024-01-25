@@ -36,9 +36,9 @@
     "@vuepress/utils": "2.0.0-rc.0",
     "nanoid": "^5.0.4",
     "picocolors": "^1.0.0",
-    "shikiji": "^0.9.19",
-    "shikiji-transformers": "^0.9.19",
-    "shikiji-twoslash": "^0.9.19"
+    "shikiji": "^0.10.0",
+    "shikiji-transformers": "^0.10.0",
+    "shikiji-twoslash": "^0.10.0"
   },
   "publishConfig": {
     "access": "public"

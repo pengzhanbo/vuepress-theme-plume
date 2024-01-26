@@ -55,7 +55,7 @@
     "portfinder": "^1.0.32"
   },
   "devDependencies": {
-    "@types/node": "^20.11.6"
+    "@types/node": "^20.11.7"
   },
   "publishConfig": {
     "access": "public"

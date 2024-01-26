@@ -83,10 +83,10 @@
     "nanoid": "^5.0.4",
     "vue": "^3.4.15",
     "vue-router": "4.2.5",
-    "vuepress-plugin-comment2": "2.0.0-rc.14",
-    "vuepress-plugin-md-enhance": "2.0.0-rc.14",
-    "vuepress-plugin-reading-time2": "2.0.0-rc.14",
-    "vuepress-plugin-seo2": "2.0.0-rc.14",
-    "vuepress-plugin-sitemap2": "2.0.0-rc.14"
+    "vuepress-plugin-comment2": "2.0.0-rc.15",
+    "vuepress-plugin-md-enhance": "2.0.0-rc.15",
+    "vuepress-plugin-reading-time2": "2.0.0-rc.15",
+    "vuepress-plugin-seo2": "2.0.0-rc.15",
+    "vuepress-plugin-sitemap2": "2.0.0-rc.15"
   }
 }

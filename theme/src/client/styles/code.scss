@@ -10,22 +10,26 @@ html:not(.dark) .vp-code span {
   pre {
     padding: 1.3rem 1.5rem;
     margin: 0 0 0.85rem;
-    overflow: auto;
-    font-size: 14px;
-    border-radius: 6px;
+    overflow-x: auto;
 
-    scrollbar-color: var(--vp-c-brand-1) var(--vp-c-border);
     scrollbar-width: thin;
 
     code {
       padding: 0;
-      color: #fff;
+      font-size: var(--vp-code-font-size);
+      color: var(--vp-code-block-color);
       overflow-wrap: unset;
       background-color: transparent;
       border-radius: 0;
 
       -webkit-font-smoothing: auto;
       -moz-osx-font-smoothing: auto;
+    }
+
+    @media (min-width: 640px) {
+      & {
+        border-radius: 6px;
+      }
     }
   }
 
@@ -41,14 +45,20 @@ html:not(.dark) .vp-code span {
   }
 }
 
+@media (max-width: 639px) {
+  .plume-content li pre {
+    border-radius: 8px 0 0 8px;
+  }
+}
+
 div[class*="language-"] {
   position: relative;
+  margin: 0.85rem -1.5rem;
   background-color: var(--vp-code-block-bg);
-  border-radius: 6px;
 
   &::before {
     position: absolute;
-    top: 0.8em;
+    top: 5px;
     right: 1em;
     z-index: 3;
     font-size: 0.75rem;
@@ -58,6 +68,7 @@ div[class*="language-"] {
 
   code {
     display: inline-block;
+    width: fit-content;
     min-width: 100%;
   }
 
@@ -67,6 +78,27 @@ div[class*="language-"] {
 
     // force override the background color to be compatible with shiki
     background: transparent !important;
+  }
+
+  pre,
+  code {
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+
+    /* rtl:ignore */
+    text-align: left;
+    word-break: normal;
+    word-wrap: normal;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    white-space: pre;
+    word-spacing: normal;
+
+    /* rtl:ignore */
+    direction: ltr;
   }
 
   .highlight-lines {
@@ -117,8 +149,8 @@ div[class*="language-"] {
       z-index: 1;
       width: 2rem;
       height: 100%;
-      padding-top: 1.25rem;
-      line-height: var(--vp-code-line-height);
+      padding-top: 1.3rem;
+      line-height: 1.4rem;
       color: var(--vp-code-line-number-color);
       text-align: center;
       counter-reset: line-number;
@@ -136,6 +168,19 @@ div[class*="language-"] {
           counter-increment: line-number;
         }
       }
+    }
+  }
+
+  @media (min-width: 640px) {
+    & {
+      margin: 0;
+      border-radius: 6px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .plume-content li & {
+      border-radius: 8px 0 0 8px;
     }
   }
 }
@@ -206,11 +251,11 @@ div[class*="language-"] {
 }
 
 // narrow mobile
-@media (max-width: 419px) {
-  .plume-content {
-    div[class*="language-"] {
-      margin: 0.85rem -1.5rem;
-      border-radius: 0;
-    }
-  }
-}
+// @media (max-width: 419px) {
+//   .plume-content {
+//     div[class*="language-"] {
+//       margin: 0.85rem -1.5rem;
+//       border-radius: 0;
+//     }
+//   }
+// }

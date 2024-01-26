@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-notes-data",
   "type": "module",
-  "version": "1.0.0-rc.28",
+  "version": "1.0.0-rc.29",
   "description": "The Plugin for VuePres 2",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",

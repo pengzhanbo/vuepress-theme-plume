@@ -1,3 +1,16 @@
+# [1.0.0-rc.29](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.28...v1.0.0-rc.29) (2024-1-26)
+
+
+### Performance Improvements
+
+* bump `shikiji` to `0.10` ([38bfad7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/38bfad7513a4e16d19de2cdce514fb33adb2894a))
+* bump twoslash to `0.10.0` ([1beacde](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1beacde1218e02fa484cee49a453017ea02d7b27))
+* bump vuepress to `2.0.0-rc.2` ([81870e0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/81870e0c23a2b711abe263b4b3a2674a926b7f6d))
+* update `husky` to `v9` ([87e0c39](https://github.com/pengzhanbo/vuepress-theme-plume/commit/87e0c3936259e63c15bc8311dc3acb801159a700))
+* update content style ([afb88ee](https://github.com/pengzhanbo/vuepress-theme-plume/commit/afb88ee4be00673905c9d731fd42dba29decd4cd))
+
+
+
 # [1.0.0-rc.28](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.27...v1.0.0-rc.28) (2024-1-21)
 
 

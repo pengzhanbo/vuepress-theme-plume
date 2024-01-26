@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Icon as OfflineIcon } from '@iconify/vue/offline'
-import { ClientOnly } from '@vuepress/client'
+import { ClientOnly } from 'vuepress/client'
 import type { IconifyRenderMode } from '@iconify/vue'
 import type { StyleValue } from 'vue'
 import { computed, toRefs } from 'vue'

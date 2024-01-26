@@ -1,4 +1,4 @@
-import type { Plugin } from '@vuepress/core'
+import type { Plugin } from 'vuepress/core'
 import { highlight } from './highlight.js'
 import type { HighlighterOptions } from './types'
 

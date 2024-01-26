@@ -1,5 +1,5 @@
-import type { Plugin } from '@vuepress/core'
-import { getDirname, path } from '@vuepress/utils'
+import type { Plugin } from 'vuepress/core'
+import { getDirname, path } from 'vuepress/utils'
 import chokidar from 'chokidar'
 import { createFilter } from 'create-filter'
 import { preparedBlogData } from './prepareBlogData.js'

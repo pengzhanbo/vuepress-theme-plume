@@ -1,5 +1,5 @@
-import { usePageData, usePageFrontmatter, usePageLang } from '@vuepress/client'
-import { isArray, isPlainObject, isString } from '@vuepress/shared'
+import { usePageData, usePageFrontmatter, usePageLang } from 'vuepress/client'
+import { isPlainObject, isString } from 'vuepress/shared'
 import { useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
 import type { NotesSidebarItem } from '@vuepress-plume/plugin-notes-data'
 import { computed } from 'vue'
@@ -115,7 +115,7 @@ function flatSidebar(sidebar: NotesSidebarItem[], res: NavItemWithLink[] = []): 
     if (item.link)
       res.push({ link: item.link, text: item.text || item.dir || '' })
 
-    if (isArray(item.items) && item.items.length)
+    if (Array.isArray(item.items) && item.items.length)
       flatSidebar(item.items as NotesSidebarItem[], res)
   }
 

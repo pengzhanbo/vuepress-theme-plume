@@ -1,4 +1,4 @@
-import type { App } from '@vuepress/core'
+import type { App } from 'vuepress/core'
 import { deepClone, deepMerge } from '@pengzhanbo/utils'
 import type { PlumeThemeLocaleOptions } from '../shared/index.js'
 import { pathJoin } from './utils.js'

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useElementSize, useWindowScroll, useWindowSize } from '@vueuse/core'
 import { computed, onMounted, ref, shallowRef, watch } from 'vue'
-import { usePageData } from '@vuepress/client'
+import { usePageData } from 'vuepress/client'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import IconBackToTop from './icons/IconBackToTop.vue'
 

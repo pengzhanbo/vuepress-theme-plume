@@ -1,4 +1,4 @@
-import { isFunction, isString } from '@vuepress/shared'
+import { isFunction, isString } from 'vuepress/shared'
 import { useRouter } from 'vue-router'
 import type { Router } from 'vue-router'
 import type { NavItemWithLink } from '../../shared/index.js'

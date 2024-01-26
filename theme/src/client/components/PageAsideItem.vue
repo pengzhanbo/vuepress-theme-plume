@@ -1,19 +1,26 @@
 <script setup lang="ts">
-import type { PageHeader } from '@vuepress/client'
+import type { PageHeader } from 'vuepress/client'
 
 defineProps<{
   headers: PageHeader[]
-  onClick: (e: MouseEvent) => void
   root?: boolean
 }>()
+
+function handleClick({ target: el }: Event) {
+  const id = `#${(el as HTMLAnchorElement).href!.split('#')[1]}`
+  const heading = document.querySelector<HTMLAnchorElement>(
+    decodeURIComponent(id),
+  )
+  heading?.focus({ preventScroll: true })
+}
 </script>
 
 <template>
   <ul :class="root ? 'root' : 'nested'">
     <li v-for="{ children, link, title } in headers" :key="link">
-      <a class="outline-link" :href="link" @click="onClick">{{ title }}</a>
+      <a class="outline-link" :href="link" @click="handleClick">{{ title }}</a>
       <template v-if="children?.length">
-        <PageAsideItem :headers="children" :on-click="onClick" />
+        <PageAsideItem :headers="children" />
       </template>
     </li>
   </ul>

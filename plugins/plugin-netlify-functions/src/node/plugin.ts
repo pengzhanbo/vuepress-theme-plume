@@ -25,7 +25,7 @@
  * - 如何解决可能存在的 插件之间的 functions 命名冲突
  *
  */
-import type { App, Plugin } from '@vuepress/core'
+import type { App, Plugin } from 'vuepress/core'
 import type {
   NetlifyFunctionsOptions,
   NetlifyFunctionsPluginOptions,

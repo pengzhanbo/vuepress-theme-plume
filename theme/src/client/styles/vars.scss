@@ -68,10 +68,10 @@
   --vp-c-red-3: #e0575b;
   --vp-c-red-soft: rgba(244, 63, 94, 0.14);
 
-  --vp-c-purple-1: #734bb0;
-  --vp-c-purple-2: #9a72da;
-  --vp-c-purple-3: #d2c5e7;
-  --vp-c-purple-soft: rgba(109, 85, 148, 0.14);
+  --vp-c-purple-1: #6f42c1;
+  --vp-c-purple-2: #7e4cc9;
+  --vp-c-purple-3: #8e5cd9;
+  --vp-c-purple-soft: rgba(159, 122, 234, 0.14);
 
   --vp-c-sponsor: #db2777;
 }
@@ -97,15 +97,15 @@
   --vp-c-yellow-3: #a46a0a;
   --vp-c-yellow-soft: rgba(234, 179, 8, 0.16);
 
-  --vp-c-purple-1: #9c74da;
-  --vp-c-purple-2: #a987df;
-  --vp-c-purple-3: #c3b4da;
-  --vp-c-purple-soft: rgba(109, 85, 148, 0.16);
-
   --vp-c-red-1: #f66f81;
   --vp-c-red-2: #f14158;
   --vp-c-red-3: #b62a3c;
   --vp-c-red-soft: rgba(244, 63, 94, 0.16);
+
+  --vp-c-purple-1: #c8abfa;
+  --vp-c-purple-2: #a879e6;
+  --vp-c-purple-3: #8e5cd9;
+  --vp-c-purple-soft: rgba(159, 122, 234, 0.16);
 }
 
 /**
@@ -273,6 +273,7 @@
     "Liberation Mono",
     "Courier New",
     monospace;
+  --vp-header-anchor-symbol: "#";
 }
 
 /**
@@ -459,7 +460,7 @@ html[lang="zh-CN"] {
   --vp-input-border-color: var(--vp-c-border);
   --vp-input-bg-color: var(--vp-c-bg-alt);
 
-  --vp-input-switch-bg-color: var(--vp-c-gray-soft);
+  --vp-input-switch-bg-color: var(--vp-c-default-soft);
 }
 
 /**
@@ -595,7 +596,7 @@ html[lang="zh-CN"] {
 /* md enhance code-tabs */
 :root {
   --code-tabs-nav-text-color: var(--vp-c-text-1);
-  --code-tabs-nav-bg-color: #e6e6e7;
+  --code-tabs-nav-bg-color: var(--vp-c-default-3);
   --code-tabs-nav-hover-color: var(--vp-code-block-bg);
 }
 
@@ -658,7 +659,7 @@ html.dark {
 :root {
   --tab-bg-color: var(--vp-c-bg);
   --tab-nav-bg-color: var(--vp-c-bg-soft);
-  --tab-nav-hover-color: var(--vp-c-bg);
+  --tab-nav-hover-color: var(--tab-bg-color);
   --tab-nav-text-color: var(--vp-c-text-1);
 }
 

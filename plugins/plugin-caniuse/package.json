@@ -41,10 +41,10 @@
     "clean": "rimraf lib *.tsbuildinfo",
     "ts": "tsc -b tsconfig.build.json"
   },
+  "peerDependencies": {
+    "vuepress": "2.0.0-rc.2"
+  },
   "dependencies": {
-    "@vuepress/client": "2.0.0-rc.0",
-    "@vuepress/core": "2.0.0-rc.0",
-    "@vuepress/utils": "2.0.0-rc.0",
     "markdown-it-container": "^4.0.0"
   },
   "devDependencies": {

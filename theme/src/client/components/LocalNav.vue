@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePageData } from '@vuepress/client'
+import { usePageData } from 'vuepress/client'
 import { useWindowScroll } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
 import type {

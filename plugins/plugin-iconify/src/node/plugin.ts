@@ -1,5 +1,5 @@
-import type { Plugin } from '@vuepress/core'
-import { getDirname, path } from '@vuepress/utils'
+import type { Plugin } from 'vuepress/core'
+import { getDirname, path } from 'vuepress/utils'
 import type { IconifyOptions } from '../shared/index.js'
 
 export function iconifyPlugin({

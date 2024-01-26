@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePageData, usePageFrontmatter } from '@vuepress/client'
+import { usePageData, usePageFrontmatter } from 'vuepress/client'
 import { computed } from 'vue'
 import type {
   PlumeThemePageData,

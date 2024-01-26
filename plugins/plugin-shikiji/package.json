@@ -31,14 +31,15 @@
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
     "ts": "tsc -b tsconfig.build.json"
   },
+  "peerDependencies": {
+    "vuepress": "2.0.0-rc.2"
+  },
   "dependencies": {
-    "@vuepress/core": "2.0.0-rc.0",
-    "@vuepress/utils": "2.0.0-rc.0",
     "nanoid": "^5.0.4",
     "picocolors": "^1.0.0",
-    "shikiji": "^0.9.19",
-    "shikiji-transformers": "^0.9.19",
-    "shikiji-twoslash": "^0.9.19"
+    "shikiji": "^0.10.2",
+    "shikiji-transformers": "^0.10.2",
+    "shikiji-twoslash": "^0.10.2"
   },
   "publishConfig": {
     "access": "public"

@@ -3,17 +3,17 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "docs:build": "vuepress-cli build --clean-cache",
+    "docs:build": "vuepress build --clean-cache",
     "docs:clean": "rimraf .vuepress/.temp .vuepress/.cache .vuepress/dist",
-    "docs:dev": "vuepress-cli dev --clean-cache --clean-temp",
+    "docs:dev": "vuepress dev --clean-cache --clean-temp",
     "docs:serve": "anywhere -s -h localhost -d .vuepress/dist"
   },
+  "peerDependencies": {
+    "vuepress": "2.0.0-rc.2"
+  },
   "dependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.0",
-    "@vuepress/bundler-webpack": "2.0.0-rc.0",
-    "@vuepress/cli": "2.0.0-rc.0",
-    "@vuepress/client": "2.0.0-rc.0",
-    "@vuepress/utils": "2.0.0-rc.0",
+    "@vuepress/bundler-vite": "2.0.0-rc.2",
+    "@vuepress/bundler-webpack": "2.0.0-rc.2",
     "anywhere": "^1.6.0",
     "sass": "^1.70.0",
     "sass-loader": "^14.0.0",

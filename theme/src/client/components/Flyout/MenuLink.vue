@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePageData } from '@vuepress/client'
+import { usePageData } from 'vuepress/client'
 import { isActive } from '../../utils/index.js'
 import AutoLink from '../AutoLink.vue'
 

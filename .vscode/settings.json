@@ -8,6 +8,9 @@
   "[markdown]": {
     "files.trimTrailingWhitespace": false
   },
+  "[typescript]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
   "css.validate": false,
   "scss.validate": false,
   "less.validate": false,

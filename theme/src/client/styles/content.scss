@@ -10,6 +10,7 @@
 .plume-content h6 {
   position: relative;
   font-weight: 600;
+  overflow-wrap: break-word;
   outline: none;
 }
 
@@ -40,30 +41,29 @@
 }
 
 .plume-content .header-anchor {
-  float: left;
-  padding-right: 0.23em;
-  margin-left: -0.87em;
-  font-weight: 500;
-  user-select: none;
-  opacity: 0;
-  transition:
-    color 0.25s,
-    opacity 0.25s;
-}
+  position: relative;
+  color: inherit;
+  text-decoration: none;
 
-.plume-content h1:hover .header-anchor,
-.plume-content h1 .header-anchor:focus,
-.plume-content h2:hover .header-anchor,
-.plume-content h2 .header-anchor:focus,
-.plume-content h3:hover .header-anchor,
-.plume-content h3 .header-anchor:focus,
-.plume-content h4:hover .header-anchor,
-.plume-content h4 .header-anchor:focus,
-.plume-content h5:hover .header-anchor,
-.plume-content h5 .header-anchor:focus,
-.plume-content h6:hover .header-anchor,
-.plume-content h6 .header-anchor:focus {
-  opacity: 1;
+  &:hover::before {
+    position: absolute;
+    left: -0.75em;
+    font-size: 0.8em;
+    color: var(--vp-c-brand-1);
+    content: var(--vp-header-anchor-symbol);
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    &::before {
+      position: absolute;
+      left: -0.75em;
+      color: var(--vp-c-brand-1);
+      content: var(--vp-header-anchor-symbol);
+      outline: auto;
+    }
+  }
 }
 
 @media (min-width: 768px) {
@@ -122,9 +122,18 @@
     color 0.25s,
     opacity 0.25s,
     text-underline-offset 0.25s;
+
+  @media print {
+    &[href^="http://"],
+    &[href^="https://"] {
+      &::after {
+        content: " (" attr(href) ") ";
+      }
+    }
+  }
 }
 
-.plume-content a:hover {
+.plume-content :not(h1,h2,h3,h4,h5,h6) a:hover {
   color: var(--vp-c-brand-2);
   text-underline-offset: 5px;
 }

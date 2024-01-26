@@ -1,6 +1,6 @@
 import type { DocsearchPluginOptions } from '@vuepress/plugin-docsearch'
 import type { SearchPluginOptions } from '@vuepress/plugin-search'
-import type { App } from '@vuepress/core'
+import type { App } from 'vuepress/core'
 import { deepMerge } from '@pengzhanbo/utils'
 import { resolvedAppLocales } from './resolveLocaleOptions.js'
 

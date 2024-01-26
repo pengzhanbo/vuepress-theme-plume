@@ -1,5 +1,5 @@
 import { isEmptyObject } from '@pengzhanbo/utils'
-import type { App } from '@vuepress/core'
+import type { App } from 'vuepress/core'
 import type { PlumeThemeLocaleOptions } from '../shared/index.js'
 import { normalizePath } from './utils.js'
 

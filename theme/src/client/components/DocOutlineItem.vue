@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PageHeader } from '@vuepress/client'
+import type { PageHeader } from 'vuepress/client'
 
 defineProps<{
   headers: PageHeader[]

@@ -1,4 +1,4 @@
-import type { LocaleData } from '@vuepress/core'
+import type { LocaleData } from 'vuepress/core'
 import type { NotesDataOptions } from '@vuepress-plume/plugin-notes-data'
 import type { NavItem } from './navbar.js'
 
@@ -29,8 +29,10 @@ export type SocialLinkIcon =
   | 'instagram'
   | 'linkedin'
   | 'mastodon'
+  | 'npm'
   | 'slack'
   | 'twitter'
+  | 'x'
   | 'youtube'
   | 'qq'
   | 'weibo'

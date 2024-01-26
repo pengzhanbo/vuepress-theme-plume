@@ -1,5 +1,5 @@
-import { path } from '@vuepress/utils'
-import type { App } from '@vuepress/core'
+import { path } from 'vuepress/utils'
+import type { App } from 'vuepress/core'
 import * as chokidar from 'chokidar'
 import { createFilter } from 'create-filter'
 import type {

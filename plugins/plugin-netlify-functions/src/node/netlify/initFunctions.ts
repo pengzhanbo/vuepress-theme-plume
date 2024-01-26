@@ -1,5 +1,5 @@
-import type { App } from '@vuepress/core'
-import { path } from '@vuepress/utils'
+import type { App } from 'vuepress/core'
+import { path } from 'vuepress/utils'
 import * as chokidar from 'chokidar'
 import esbuild from 'esbuild'
 import type { NetlifyFunctionsPluginOptions } from '../../shared/index.js'

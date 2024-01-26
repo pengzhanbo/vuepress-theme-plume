@@ -1,4 +1,4 @@
-import { fs, path } from '@vuepress/utils'
+import { fs, path } from 'vuepress/utils'
 
 export function readFileList(source: string, fileList: string[] = []): string[] {
   if (!fs.existsSync(source))

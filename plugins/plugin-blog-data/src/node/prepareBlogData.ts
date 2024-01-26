@@ -1,4 +1,4 @@
-import type { App, Page } from '@vuepress/core'
+import type { App, Page } from 'vuepress/core'
 import type { BlogPostData, BlogPostDataItem } from '../shared/index.js'
 import type { PluginOption } from './plugin.js'
 

@@ -1,4 +1,4 @@
-import { withBase } from '@vuepress/client'
+import { withBase } from 'vuepress/client'
 import { PATHNAME_PROTOCOL_RE, isExternal } from './shared.js'
 
 export function normalizeLink(url: string): string {

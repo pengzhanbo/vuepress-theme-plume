@@ -1,8 +1,8 @@
 diff --git a/dist/index.js b/dist/index.js
-index 996b0d16dac39667cc25496e52adcc9dd2b2befa..a4c9f5ba3a20967d9a561fcc73178d9e84f48279 100644
+index de136bbd25d01677b7b86b6654b780765b9b7cec..b0ff18b8888fe4e691e8c8c2ee3db6ba9fd35ed2 100644
 --- a/dist/index.js
 +++ b/dist/index.js
-@@ -245,7 +245,7 @@ var codePlugin = (md, {
+@@ -267,7 +267,7 @@ var codePlugin = (md, {
      const info = token.info ? md.utils.unescapeAll(token.info).trim() : "";
      const language = resolveLanguage(info);
      const languageClass = `${options.langPrefix}${language.name}`;

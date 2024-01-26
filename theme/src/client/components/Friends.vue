@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePageFrontmatter } from '@vuepress/client'
+import { usePageFrontmatter } from 'vuepress/client'
 import { computed } from 'vue'
 import type { PlumeThemeFriendsFrontmatter } from '../../shared/index.js'
 import { useEditNavLink } from '../composables/index.js'

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { withBase } from '@vuepress/client'
+import { withBase } from 'vuepress/client'
 
 defineProps<{
   image:

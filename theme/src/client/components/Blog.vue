@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePageData } from '@vuepress/client'
+import { usePageData } from 'vuepress/client'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import Archives from './Archives.vue'
 import BlogAside from './BlogAside.vue'

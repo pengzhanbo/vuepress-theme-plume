@@ -184,6 +184,12 @@ const showFooter = computed(() => {
   }
 }
 
+@media print {
+  .prev-next {
+    display: none;
+  }
+}
+
 .pager-link {
   display: block;
   width: 100%;

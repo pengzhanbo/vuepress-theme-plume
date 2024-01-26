@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePageFrontmatter, withBase } from '@vuepress/client'
+import { usePageFrontmatter, withBase } from 'vuepress/client'
 import { computed } from 'vue'
 import type { PlumeThemeHomeFrontmatter } from '../../shared/index.js'
 import { useDarkMode } from '../composables/darkMode.js'

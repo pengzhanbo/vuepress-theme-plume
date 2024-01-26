@@ -1,5 +1,5 @@
-import { fs } from '@vuepress/utils'
-import type { Plugin } from '@vuepress/core'
+import { fs } from 'vuepress/utils'
+import type { Plugin } from 'vuepress/core'
 import chokidar from 'chokidar'
 import { createFilter } from 'create-filter'
 import grayMatter from 'gray-matter'

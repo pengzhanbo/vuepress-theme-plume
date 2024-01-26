@@ -1,6 +1,6 @@
 import { Buffer } from 'node:buffer'
 import process from 'node:process'
-import { fs, getDirname, path } from '@vuepress/utils'
+import { fs, getDirname, path } from 'vuepress/utils'
 import dotenv from 'dotenv'
 import { execa } from 'execa'
 import * as portFinder from 'portfinder'

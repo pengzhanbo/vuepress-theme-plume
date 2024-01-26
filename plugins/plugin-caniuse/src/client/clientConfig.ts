@@ -1,4 +1,5 @@
-import { defineClientConfig } from '@vuepress/client'
+import { defineClientConfig } from 'vuepress/client'
+import type { ClientConfig } from 'vuepress/client'
 import type { CanIUseMode } from '../shared/index.js'
 import { resolveCanIUse } from './resolveCanIUse.js'
 
@@ -17,4 +18,4 @@ export default defineClientConfig({
         resolveCanIUse()
     })
   },
-})
+}) as ClientConfig

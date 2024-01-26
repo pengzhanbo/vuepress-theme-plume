@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePageFrontmatter } from '@vuepress/client'
+import { usePageFrontmatter } from 'vuepress/client'
 import { useWindowScroll } from '@vueuse/core'
 import { ref, watchPostEffect } from 'vue'
 import { useSidebar } from '../../composables/sidebar.js'

@@ -37,9 +37,9 @@
   "dependencies": {
     "nanoid": "^5.0.4",
     "picocolors": "^1.0.0",
-    "shikiji": "^0.10.0",
-    "shikiji-transformers": "^0.10.0",
-    "shikiji-twoslash": "^0.10.0"
+    "shikiji": "^0.10.2",
+    "shikiji-transformers": "^0.10.2",
+    "shikiji-twoslash": "^0.10.2"
   },
   "publishConfig": {
     "access": "public"

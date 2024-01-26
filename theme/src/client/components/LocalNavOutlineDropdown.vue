@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PageHeader } from '@vuepress/client'
+import type { PageHeader } from 'vuepress/client'
 import { onClickOutside } from '@vueuse/core'
 import { nextTick, ref, watch } from 'vue'
 import { useThemeLocaleData } from '../composables/index.js'

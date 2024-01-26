@@ -1,5 +1,5 @@
-import type { PageData } from '@vuepress/client'
-import { usePageData, usePageFrontmatter, withBase } from '@vuepress/client'
+import type { PageData } from 'vuepress/client'
+import { usePageData, usePageFrontmatter, withBase } from 'vuepress/client'
 import type {
   NotesData,
   NotesSidebarItem,

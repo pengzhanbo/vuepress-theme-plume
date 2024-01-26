@@ -1,6 +1,6 @@
 import process from 'node:process'
 import { customAlphabet } from 'nanoid'
-import { fs, getDirname, path } from '@vuepress/utils'
+import { fs, getDirname, path } from 'vuepress/utils'
 
 const __dirname = getDirname(import.meta.url)
 

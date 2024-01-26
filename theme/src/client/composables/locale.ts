@@ -1,4 +1,4 @@
-import { useRouteLocale } from '@vuepress/client'
+import { useRouteLocale } from 'vuepress/client'
 import { computed } from 'vue'
 import { normalizeLink } from '../utils'
 

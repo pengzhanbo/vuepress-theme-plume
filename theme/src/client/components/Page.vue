@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePageData } from '@vuepress/client'
+import { usePageData } from 'vuepress/client'
 import { computed } from 'vue'
 import { useMediumZoom } from '@vuepress/plugin-medium-zoom/client'
 import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePageData } from '@vuepress/client'
+import { usePageData } from 'vuepress/client'
 import { computed, provide } from 'vue'
 import type { PlumeThemePageData } from '../../../shared/index.js'
 import { useNav } from '../../composables/nav.js'

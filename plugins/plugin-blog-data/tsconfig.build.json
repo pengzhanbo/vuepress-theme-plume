@@ -6,7 +6,7 @@
     "paths": {
       "@internal/blogData": ["./src/client/blogPostData.d.ts"]
     },
-    "types": ["@vuepress/client/types", "vite/client", "webpack-env"],
+    "types": ["vuepress/client-types", "vite/client", "webpack-env"],
     "outDir": "./lib"
   },
   "include": ["./src"]

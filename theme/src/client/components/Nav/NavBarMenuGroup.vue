@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePageData } from '@vuepress/client'
+import { usePageData } from 'vuepress/client'
 import { computed } from 'vue'
 import type { NavItem, NavItemWithChildren } from '../../../shared/index.js'
 import { isActive } from '../../utils/index.js'

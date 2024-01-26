@@ -1,4 +1,4 @@
-import { usePageLang } from '@vuepress/client'
+import { usePageLang } from 'vuepress/client'
 import { useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
 import { computed } from 'vue'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'

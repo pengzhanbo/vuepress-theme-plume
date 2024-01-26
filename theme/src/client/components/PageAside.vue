@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePageData } from '@vuepress/client'
+import { usePageData } from 'vuepress/client'
 import { computed, ref } from 'vue'
 import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import { useActiveAnchor, useThemeLocaleData } from '../composables/index.js'
@@ -20,14 +20,6 @@ const container = ref()
 const marker = ref()
 
 useActiveAnchor(container, marker)
-
-function handleClick({ target: el }: Event) {
-  const id = `#${(el as HTMLAnchorElement).href!.split('#')[1]}`
-  const heading = document.querySelector<HTMLAnchorElement>(
-    decodeURIComponent(id),
-  )
-  heading?.focus()
-}
 
 function handlePrint() {
   window.print()
@@ -56,7 +48,6 @@ function handlePrint() {
           <PageAsideItem
             :headers="headers"
             :root="true"
-            :on-click="handleClick"
           />
         </nav>
       </div>

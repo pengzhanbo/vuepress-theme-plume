@@ -1,4 +1,4 @@
-import type { App, PluginConfig } from '@vuepress/core'
+import type { App, PluginConfig } from 'vuepress/core'
 import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { externalLinkIconPlugin } from '@vuepress/plugin-external-link-icon'

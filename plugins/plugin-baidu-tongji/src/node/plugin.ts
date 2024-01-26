@@ -1,4 +1,4 @@
-import type { Plugin } from '@vuepress/core'
+import type { Plugin } from 'vuepress/core'
 
 export interface BaiduTongjiOptions {
   key?: string

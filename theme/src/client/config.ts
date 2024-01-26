@@ -1,6 +1,7 @@
 import './styles/index.scss'
 
-import { defineClientConfig } from '@vuepress/client'
+import { defineClientConfig } from 'vuepress/client'
+import type { ClientConfig } from 'vuepress/client'
 import { h } from 'vue'
 import Badge from './components/global/Badge.vue'
 import ExternalLinkIcon from './components/global/ExternalLinkIcon.vue'
@@ -56,4 +57,4 @@ export default defineClientConfig({
     Layout,
     NotFound,
   },
-})
+}) as ClientConfig

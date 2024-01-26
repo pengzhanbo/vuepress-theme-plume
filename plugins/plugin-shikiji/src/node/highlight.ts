@@ -1,4 +1,4 @@
-import { logger } from '@vuepress/utils'
+import { logger } from 'vuepress/utils'
 import { customAlphabet } from 'nanoid'
 import c from 'picocolors'
 import type { ShikijiTransformer } from 'shikiji'

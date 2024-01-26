@@ -31,8 +31,8 @@
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
     "ts": "tsc -b tsconfig.build.json"
   },
-  "dependencies": {
-    "@vuepress/core": "2.0.0-rc.0"
+  "peerDependencies": {
+    "vuepress": "2.0.0-rc.2"
   },
   "publishConfig": {
     "access": "public"

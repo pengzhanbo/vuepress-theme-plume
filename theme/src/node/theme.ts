@@ -1,5 +1,5 @@
-import type { Page, Theme } from '@vuepress/core'
-import { templateRenderer } from '@vuepress/utils'
+import type { Page, Theme } from 'vuepress/core'
+import { templateRenderer } from 'vuepress/utils'
 import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
 import { mergeLocaleOptions } from './defaultOptions.js'
 import { setupPlugins } from './plugins.js'

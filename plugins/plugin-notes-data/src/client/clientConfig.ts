@@ -1,5 +1,6 @@
 import { setupDevtoolsPlugin } from '@vue/devtools-api'
-import { defineClientConfig } from '@vuepress/client'
+import { defineClientConfig } from 'vuepress/client'
+import type { ClientConfig } from 'vuepress/client'
 import { useNotesData } from './composables/index.js'
 
 declare const __VUE_PROD_DEVTOOLS__: boolean
@@ -66,4 +67,4 @@ export default defineClientConfig({
       )
     }
   },
-})
+}) as ClientConfig

@@ -1,4 +1,4 @@
-import { usePageData, useRouteLocale } from '@vuepress/client'
+import { usePageData, useRouteLocale } from 'vuepress/client'
 import { computed } from 'vue'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import { ensureStartingSlash } from '../utils/index.js'

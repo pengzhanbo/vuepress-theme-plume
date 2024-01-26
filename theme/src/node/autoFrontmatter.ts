@@ -1,6 +1,6 @@
-import { path } from '@vuepress/utils'
-import type { App } from '@vuepress/core'
-import { resolveLocalePath } from '@vuepress/shared'
+import { path } from 'vuepress/utils'
+import type { App } from 'vuepress/core'
+import { resolveLocalePath } from 'vuepress/shared'
 import type {
   AutoFrontmatterOptions,
   FrontmatterArray,

@@ -62,7 +62,7 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "@vuepress/markdown@2.0.0-rc.0": "patches/@vuepress__markdown@2.0.0-rc.0.patch"
+      "@vuepress/markdown@2.0.0-rc.2": "patches/@vuepress__markdown@2.0.0-rc.2.patch"
     }
   },
   "lint-staged": {

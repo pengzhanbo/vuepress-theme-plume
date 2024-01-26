@@ -1,6 +1,6 @@
 import { pagesComponents } from '@internal/pagesComponents'
 import { computed, defineComponent, h } from 'vue'
-import { usePageData } from '@vuepress/client'
+import { usePageData } from 'vuepress/client'
 import { runCallbacks } from '../composables/index.js'
 
 declare const __VUEPRESS_DEV__: boolean

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRouteLocale, withBase } from '@vuepress/client'
+import { useRouteLocale, withBase } from 'vuepress/client'
 import LayoutContent from '../components/LayoutContent.vue'
 import Nav from '../components/Nav/index.vue'
 import { useThemeLocaleData } from '../composables'

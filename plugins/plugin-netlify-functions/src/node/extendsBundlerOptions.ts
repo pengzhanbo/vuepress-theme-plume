@@ -1,4 +1,4 @@
-import type { App } from '@vuepress/core'
+import type { App } from 'vuepress/core'
 import type { NetlifyFunctionsPluginOptions } from '../shared/index.js'
 
 export function extendsBundlerOptions(bundlerOption: any, app: App, options: NetlifyFunctionsPluginOptions, server: string): void {

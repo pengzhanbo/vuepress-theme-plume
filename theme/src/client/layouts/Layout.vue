@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { usePageData } from '@vuepress/client'
+import { usePageData } from 'vuepress/client'
 import { computed, provide, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import type { PlumeThemePageData } from '../../shared/index.js'

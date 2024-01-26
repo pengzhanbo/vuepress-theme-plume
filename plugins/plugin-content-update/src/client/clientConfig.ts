@@ -1,4 +1,5 @@
-import { defineClientConfig } from '@vuepress/client'
+import { defineClientConfig } from 'vuepress/client'
+import type { ClientConfig } from 'vuepress/client'
 import { Content } from './components/Content.js'
 
 export default defineClientConfig({
@@ -8,4 +9,4 @@ export default defineClientConfig({
 
     app.component('Content', Content)
   },
-})
+}) as ClientConfig

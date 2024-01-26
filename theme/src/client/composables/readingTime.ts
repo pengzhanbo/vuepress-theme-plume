@@ -1,4 +1,4 @@
-import { usePageData } from '@vuepress/client'
+import { usePageData } from 'vuepress/client'
 import { computed } from 'vue'
 import type {
   PlumeThemePageData,

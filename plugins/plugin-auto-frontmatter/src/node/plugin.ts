@@ -14,7 +14,7 @@ import { readMarkdown, readMarkdownList } from './readFiles.js'
 import { ensureArray, isEmptyObject } from './utils.js'
 
 export function autoFrontmatterPlugin({
-  include = ['**/*.{md,MD}'],
+  include = ['**/*.md'],
   exclude = ['.vuepress/**/*', 'node_modules'],
   frontmatter = {},
 }: AutoFrontmatterOptions = {}): Plugin {

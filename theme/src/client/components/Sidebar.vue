@@ -73,6 +73,8 @@ watch(
     opacity 0.5s,
     transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   transform: translateX(-100%);
+
+  scrollbar-width: thin;
 }
 
 .sidebar-wrapper.open {

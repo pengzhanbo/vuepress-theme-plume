@@ -1,9 +1,15 @@
 <script lang="ts" setup>
+import { usePageFrontmatter } from 'vuepress/client'
+import { computed } from 'vue'
 import IconExternalLink from '../icons/IconExternalLink.vue'
+import type { PlumeThemePageFrontmatter } from '../../../shared/index.js'
+
+const matter = usePageFrontmatter<PlumeThemePageFrontmatter>()
+const show = computed(() => matter.value.externalLink !== false)
 </script>
 
 <template>
-  <IconExternalLink class="external-icon" />
+  <IconExternalLink v-if="show" class="external-icon" />
 </template>
 
 <style scoped>
@@ -15,5 +21,11 @@ import IconExternalLink from '../icons/IconExternalLink.vue'
   height: 0.8em;
   color: var(--vp-c-text-3);
   vertical-align: middle;
+}
+
+@media print {
+  .external-icon {
+    display: none;
+  }
 }
 </style>

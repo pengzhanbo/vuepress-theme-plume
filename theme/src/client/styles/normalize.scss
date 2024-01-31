@@ -58,6 +58,8 @@ body {
   transition-timing-function: ease;
   transition-duration: 0.25s;
   transition-property: color, background-color;
+
+  scrollbar-width: thin;
 }
 
 main {

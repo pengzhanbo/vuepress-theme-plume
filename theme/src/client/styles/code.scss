@@ -203,6 +203,33 @@ div[class*="language-"] {
   }
 }
 
+.plume-content [class*="language-"] code .highlighted-word {
+  padding: 1px 3px;
+  margin: -1px -3px;
+  background-color: var(--vp-c-gray-soft);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 4px;
+}
+
+.plume-content [class*="language-"] code {
+  .tab,
+  .space {
+    position: relative;
+  }
+
+  .tab::before {
+    position: absolute;
+    content: "⇥";
+    opacity: 0.3;
+  }
+
+  .space::before {
+    position: absolute;
+    content: "·";
+    opacity: 0.3;
+  }
+}
+
 .plume-content [class*="language-"] code .diff {
   display: inline-block;
   width: calc(100% + 2 * 24px);
@@ -249,13 +276,3 @@ div[class*="language-"] {
   filter: blur(0);
   opacity: 1;
 }
-
-// narrow mobile
-// @media (max-width: 419px) {
-//   .plume-content {
-//     div[class*="language-"] {
-//       margin: 0.85rem -1.5rem;
-//       border-radius: 0;
-//     }
-//   }
-// }

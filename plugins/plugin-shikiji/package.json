@@ -2,7 +2,7 @@
   "name": "@vuepress-plume/plugin-shikiji",
   "type": "module",
   "version": "1.0.0-rc.29",
-  "description": "The Plugin for VuePres 2",
+  "description": "The Plugin for VuePres 2 - shiki",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
@@ -35,11 +35,11 @@
     "vuepress": "2.0.0-rc.2"
   },
   "dependencies": {
+    "@shikijs/transformers": "1.0.0-beta.0",
+    "@shikijs/twoslash": "1.0.0-beta.0",
     "nanoid": "^5.0.4",
     "picocolors": "^1.0.0",
-    "shikiji": "^0.10.2",
-    "shikiji-transformers": "^0.10.2",
-    "shikiji-twoslash": "^0.10.2"
+    "shiki": "1.0.0-beta.0"
   },
   "publishConfig": {
     "access": "public"
@@ -47,7 +47,7 @@
   "keyword": [
     "VuePress",
     "vuepress plugin",
-    "shikiji",
-    "vuepress-plugin-shikiji"
+    "shiki",
+    "vuepress-plugin-shiki"
   ]
 }

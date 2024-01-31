@@ -1,8 +1,8 @@
 ## vuepress-theme-plume
 
-一个简约的 vuepress 主题。
+一个简约的，干净的，容易上手的 vuepress 主题，适用于博客和文档。
 
-开箱即用，仅需少量配置即可使用，让您更专注于 内容的创作。
+开箱即用，仅需少量配置即可使用，让您更专注于 内容的创作，更好的表达你的想法，形成你的知识笔记。
 
 [![npm version](https://img.shields.io/npm/v/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=npm)](https://www.npmjs.com/package/vuepress-theme-plume)
 [![npm beta download](https://img.shields.io/npm/dt/@vuepress-plume/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=beta%20downloads)](https://www.npmjs.com/package/vuepress-theme-plume)
@@ -16,7 +16,7 @@
 ``` sh
 npm install vuepress@next vuepress-theme-plume
 # or
-pnpm add vuepress@next vuepress-theme-plume vue @vuepress/client
+pnpm add vuepress@next vuepress-theme-plume vue
 # or
 yarn add vuepress@next vuepress-theme-plume
 ```
@@ -44,16 +44,6 @@ __options__ : `PlumeThemeOptions`
 ## 案例
 
 - [我的个人博客](https://pengzhanbo.cn/)
-
-### 效果图
-
-![](/docs/preview-home.png?a=1)
-
-![](/docs/preview-blog.png?a=1)
-
-![](/docs/preview-post.png?a=1)
-
-![](/docs/preview-note.png?a=1)
 
 ## 内置插件
 
@@ -85,3 +75,21 @@ __options__ : `PlumeThemeOptions`
 ## 贡献指南
 
 查看 [[贡献指南]](/CONTRIBUTING.md) 了解更多
+
+### 效果图
+
+**home page**
+
+![](/docs/preview-home.jpeg)
+
+**blog page**
+
+![](/docs/preview-blog.jpeg)
+
+**post page**
+
+![](/docs/preview-post.jpeg)
+
+**note page**
+
+![](/docs/preview-note.jpeg)

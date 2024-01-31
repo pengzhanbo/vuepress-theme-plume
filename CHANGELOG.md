@@ -1,3 +1,20 @@
+# [1.0.0-rc.30](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.29...v1.0.0-rc.30) (2024-1-31)
+
+
+### Features
+
+* add `externalLink` frontmatter ([eb30e03](https://github.com/pengzhanbo/vuepress-theme-plume/commit/eb30e03116f5559f1919a7e4ba42ea0aa4b5389b))
+* add highlight word ([554167d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/554167d123a6d66cb0d496ad338c7f40e5115be8))
+
+
+### Performance Improvements
+
+* 优化代码块样式交互 ([0e4cb1a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0e4cb1a8c65099e54f944796145a1fa92e88ae80))
+* bump comment plugin to latest ([28cfb04](https://github.com/pengzhanbo/vuepress-theme-plume/commit/28cfb044906eaa429fad435fbf20b605a8fc23f6))
+* rename `shikiji` to `shiki` ([d087249](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d08724984056510ed2a78f615a2015f80dd48e21))
+
+
+
 # [1.0.0-rc.29](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.28...v1.0.0-rc.29) (2024-1-26)
 
 

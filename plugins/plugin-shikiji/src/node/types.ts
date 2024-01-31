@@ -2,9 +2,9 @@ import type {
   BuiltinTheme,
   Highlighter,
   LanguageInput,
-  ShikijiTransformer,
+  ShikiTransformer,
   ThemeRegistration,
-} from 'shikiji'
+} from 'shiki'
 
 export type ThemeOptions =
   | ThemeRegistration
@@ -24,34 +24,40 @@ export interface HighlighterOptions {
    * @example { theme: { light: 'github-light', dark: 'github-dark' } }
    *
    * You can use an existing theme.
-   * @see https://github.com/antfu/shikiji/blob/main/docs/themes.md#all-themes
+   * @see https://shiki.style/themes
    * Or add your own theme.
-   * @see https://github.com/antfu/shikiji/blob/main/docs/themes.md#load-custom-themes
+   * @see https://shiki.style/guide/load-theme
    */
   theme?: ThemeOptions
   /**
    * Languages for syntax highlighting.
-   * @see https://github.com/antfu/shikiji/blob/main/docs/languages.md#all-themes
+   * @see https://shiki.style/languages
    */
   languages?: LanguageInput[]
   /**
    * Custom language aliases.
    *
    * @example { 'my-lang': 'js' }
-   * @see https://github.com/antfu/shikiji/tree/main#custom-language-aliases
+   * @see https://shiki.style/guide/load-lang#custom-language-aliases
    */
   languageAlias?: Record<string, string>
   /**
    * Setup Shikiji instance
    */
-  shikijiSetup?: (shikiji: Highlighter) => void | Promise<void>
+  shikiSetup?: (shikiji: Highlighter) => void | Promise<void>
   /**
    * Fallback language when the specified language is not available.
    */
   defaultHighlightLang?: string
   /**
    * Transformers applied to code blocks
-   * @see https://github.com/antfu/shikiji#hast-transformers
+   * @see https://shiki.style/guide/transformers
    */
-  codeTransformers?: ShikijiTransformer[]
+  codeTransformers?: ShikiTransformer[]
+
+  /**
+   * Enable transformerRenderWhitespace
+   * @default false
+   */
+  whitespace?: boolean
 }

@@ -1,25 +1,30 @@
 import { logger } from 'vuepress/utils'
 import { customAlphabet } from 'nanoid'
 import c from 'picocolors'
-import type { ShikijiTransformer } from 'shikiji'
+import type { ShikiTransformer } from 'shiki'
 import {
   addClassToHast,
   bundledLanguages,
   getHighlighter,
-  isPlaintext as isPlainLang,
+  isPlainLang,
   isSpecialLang,
-} from 'shikiji'
+} from 'shiki'
 import {
   transformerNotationDiff,
   transformerNotationErrorLevel,
   transformerNotationFocus,
   transformerNotationHighlight,
-} from 'shikiji-transformers'
-import { rendererRich, transformerTwoslash } from 'shikiji-twoslash'
+  transformerNotationWordHighlight,
+  transformerRenderWhitespace,
+} from '@shikijs/transformers'
+import { rendererRich, transformerTwoslash } from '@shikijs/twoslash'
 import type { HighlighterOptions, ThemeOptions } from './types.js'
 import { resolveAttrs } from './resolveAttrs.js'
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 10)
+
+const RE_ESCAPE = /\[\\\!code/g
+const mustacheRE = /\{\{.*?\}\}/g
 
 export async function highlight(
   theme: ThemeOptions,
@@ -28,6 +33,7 @@ export async function highlight(
   const {
     defaultHighlightLang: defaultLang = '',
     codeTransformers: userTransformers = [],
+    whitespace = false,
   } = options
 
   const highlighter = await getHighlighter({
@@ -39,9 +45,9 @@ export async function highlight(
     langAlias: options.languageAlias,
   })
 
-  await options?.shikijiSetup?.(highlighter)
+  await options?.shikiSetup?.(highlighter)
 
-  const transformers: ShikijiTransformer[] = [
+  const transformers: ShikiTransformer[] = [
     transformerNotationDiff(),
     transformerNotationFocus({
       classActiveLine: 'has-focus',
@@ -49,6 +55,7 @@ export async function highlight(
     }),
     transformerNotationHighlight(),
     transformerNotationErrorLevel(),
+    transformerNotationWordHighlight(),
     {
       name: 'vuepress:add-class',
       pre(node) {
@@ -62,21 +69,14 @@ export async function highlight(
         delete node.properties.style
       },
     },
+    {
+      name: 'vuepress-shikiji:remove-escape',
+      postprocess: code => code.replace(RE_ESCAPE, '[!code'),
+    },
   ]
 
-  const vueRE = /-vue$/
-  const lineNoStartRE = /=(\d*)/
-  const lineNoRE = /:(no-)?line-numbers(=\d*)?$/
-  const mustacheRE = /\{\{.*?\}\}/g
-
   return (str: string, lang: string, attrs: string) => {
-    const vPre = vueRE.test(lang) ? '' : 'v-pre'
-    lang
-      = lang
-        .replace(lineNoStartRE, '')
-        .replace(lineNoRE, '')
-        .replace(vueRE, '')
-        .toLowerCase() || defaultLang
+    lang = lang || defaultLang
 
     if (lang) {
       const langLoaded = highlighter.getLoadedLanguages().includes(lang as any)
@@ -94,8 +94,6 @@ export async function highlight(
     const mustaches = new Map<string, string>()
 
     const removeMustache = (s: string) => {
-      if (vPre)
-        return s
       return s.replace(mustacheRE, (match) => {
         let marker = mustaches.get(match)
         if (!marker) {
@@ -116,39 +114,7 @@ export async function highlight(
 
     str = removeMustache(str).trimEnd()
 
-    const inlineTransformers: ShikijiTransformer[] = [
-      {
-        name: 'vuepress-shikiji:empty-line',
-        pre(hast) {
-          hast.children.forEach((code) => {
-            if (code.type === 'element' && code.tagName === 'code') {
-              code.children.forEach((span) => {
-                if (
-                  span.type === 'element'
-                  && span.tagName === 'span'
-                  && Array.isArray(span.properties.class)
-                  && span.properties.class.includes('line')
-                  && span.children.length === 0
-                ) {
-                  span.children.push({
-                    type: 'element',
-                    tagName: 'wbr',
-                    properties: {},
-                    children: [],
-                  })
-                }
-              })
-            }
-          })
-        },
-      },
-      {
-        name: 'vuepress-shikiji:remove-escape',
-        postprocess(code) {
-          return code.replace(/\[\\\!code/g, '[!code')
-        },
-      },
-    ]
+    const inlineTransformers: ShikiTransformer[] = []
 
     if (attributes.twoslash) {
       inlineTransformers.push(transformerTwoslash({
@@ -157,6 +123,12 @@ export async function highlight(
         }),
       }))
     }
+
+    if (
+      (whitespace && attributes.whitespace !== false)
+      || (!whitespace && attributes.whitespace)
+    )
+      inlineTransformers.push(transformerRenderWhitespace({ position: 'boundary' }))
 
     try {
       const highlighted = highlighter.codeToHtml(str, {

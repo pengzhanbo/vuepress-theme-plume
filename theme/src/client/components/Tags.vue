@@ -9,29 +9,33 @@ const { tags: tagsLink } = useBlogExtract()
 
 <template>
   <div class="tags-wrapper" :class="{ 'has-list': postList.length > 0 }">
-    <h2 class="tags-title">
-      <IconTag class="icon" />
-      <span>{{ tagsLink.text }}</span>
-    </h2>
-    <div class="tags">
-      <p
-        v-for="tag in tags"
-        :key="tag.name"
-        class="tag"
-        :class="{ active: tag.name === currentTag }"
-        :style="{ '--vp-tag-color': tag.color }"
-        @click="handleTagClick(tag.name)"
-      >
-        <span class="tag-name">{{ tag.name }}</span>
-        <span class="tag-count">{{ tag.count }}</span>
-      </p>
+    <div class="tags-nav">
+      <h2 class="tags-title">
+        <IconTag class="icon" />
+        <span>{{ tagsLink.text }}</span>
+      </h2>
+      <div class="tags">
+        <p
+          v-for="tag in tags"
+          :key="tag.name"
+          class="tag"
+          :class="{ active: tag.name === currentTag }"
+          :style="{ '--vp-tag-color': tag.colors[0], '--vp-tag-hover-color': tag.colors[1] }"
+          @click="handleTagClick(tag.name)"
+        >
+          <span class="tag-name">{{ tag.name }}</span>
+          <span class="tag-count">{{ tag.count }}</span>
+        </p>
+      </div>
     </div>
 
-    <h3 v-if="currentTag" class="tag-title">
-      {{ currentTag }}
-    </h3>
+    <div v-if="currentTag" class="tags-container">
+      <h3 class="tag-title">
+        {{ currentTag }}
+      </h3>
 
-    <ShortPostList v-if="postList.length" :post-list="postList" />
+      <ShortPostList v-if="postList.length" :post-list="postList" />
+    </div>
   </div>
 </template>
 
@@ -39,7 +43,7 @@ const { tags: tagsLink } = useBlogExtract()
 .tags-wrapper {
   flex: 1;
   max-width: 768px;
-  padding: 32px 24px 168px;
+  padding: 32px 24px;
   margin: 0 auto;
 }
 
@@ -53,7 +57,7 @@ const { tags: tagsLink } = useBlogExtract()
   margin-bottom: 20px;
   font-size: 20px;
   font-weight: 700;
-  color: var(--vp-c-brand-1);
+  color: var(--vp-c-text-1);
 }
 
 .tags-title .icon {
@@ -72,14 +76,16 @@ const { tags: tagsLink } = useBlogExtract()
 .tags .tag {
   display: flex;
   align-items: center;
-  padding: 6px 6px 6px 10px;
-  margin: 8px;
+  padding: 6px 10px 6px 12px;
+  margin: 6px;
+  font-size: 14px;
   line-height: 1;
-  color: var(--vp-tag-color);
+  color: var(--vp-c-bg);
   word-wrap: break-word;
   cursor: pointer;
+  background-color: var(--vp-tag-color);
   border: solid 1px var(--vp-tag-color);
-  border-radius: 4px;
+  border-radius: 6px;
   transition: all var(--t-color);
 }
 
@@ -95,20 +101,50 @@ const { tags: tagsLink } = useBlogExtract()
   display: inline-block;
   padding-left: 6px;
   margin-left: 4px;
-  color: var(--vp-tag-color);
-  border-left: 1px solid var(--vp-tag-color);
+  color: var(--vp-c-bg);
+  border-left: 1px solid var(--vp-c-bg);
   transition: all var(--t-color);
 }
 
 .tags .tag:hover,
 .tags .tag.active {
   color: var(--vp-c-bg);
-  background-color: var(--vp-tag-color);
+  background-color: var(--vp-tag-hover-color);
 }
 
 .tags .tag:hover .tag-count,
 .tags .tag.active .tag-count {
-  color: var(--vp-bg);
+  color: var(--vp-c-bg);
   border-left-color: var(--vp-c-divider);
+}
+
+@media (min-width: 768px) {
+  .tags-wrapper {
+    padding: 32px 0;
+    margin-left: 20px;
+  }
+
+  .tags-nav,
+  .tags-container {
+    padding: 20px;
+    background-color: var(--vp-c-bg);
+    border-radius: 8px;
+    box-shadow: var(--vp-shadow-2);
+  }
+
+  .tags-container {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .tags-container .tag-title {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 960px) {
+  .tags-wrapper {
+    margin-left: auto;
+  }
 }
 </style>

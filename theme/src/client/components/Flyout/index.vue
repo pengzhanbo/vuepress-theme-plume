@@ -129,7 +129,7 @@ export default {
   display: flex;
   align-items: center;
   height: var(--vp-nav-height);
-  padding: 0 12px;
+  padding: 0 10px;
   color: var(--vp-c-text-1);
   transition: color 0.5s;
 }

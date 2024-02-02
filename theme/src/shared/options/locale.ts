@@ -15,6 +15,10 @@ export interface PlumeThemeAvatar {
    * 描述
    */
   description?: string
+  /**
+   * 是否显示为圆形头像
+   */
+  circle?: boolean
 }
 
 export interface SocialLink {

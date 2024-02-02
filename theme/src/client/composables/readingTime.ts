@@ -17,13 +17,13 @@ export const readingTimeLocales = {
   'zh-CN': {
     word: '约$word字',
     less1Minute: '小于1分钟',
-    time: '大约$time分钟',
+    time: '约$time分钟',
   },
 
   'zh-TW': {
     word: '約$word字',
     less1Minute: '小於1分鐘',
-    time: '大约$time分鐘',
+    time: '约$time分鐘',
   },
 
   'de': {

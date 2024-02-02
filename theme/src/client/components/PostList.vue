@@ -65,6 +65,7 @@ const {
   padding: 0 4px;
   font-weight: 500;
   color: var(--vp-c-brand-1);
+  background-color: var(--vp-c-bg);
   border: 1px solid var(--vp-c-brand-1);
   border-radius: 4px;
   transition: all var(--t-color);

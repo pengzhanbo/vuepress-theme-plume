@@ -45,9 +45,16 @@ const list = computed(() => matter.value.list || [])
 <style scoped>
 .friends-wrapper {
   width: 100%;
+  min-height: calc(100vh - var(--vp-footer-height, 0px));
   padding-top: var(--vp-nav-height);
   padding-bottom: 5rem;
   margin: 0 auto;
+}
+
+@media (min-width: 960px) {
+  .friends-wrapper {
+    min-height: calc(100vh - var(--vp-nav-height) - var(--vp-footer-height, 0px));
+  }
 }
 
 .friends-wrapper .title {

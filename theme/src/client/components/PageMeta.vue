@@ -5,7 +5,7 @@ import type {
   PlumeThemePageData,
   PlumeThemePostFrontmatter,
 } from '../../shared/index.js'
-import { useReadingTime } from '../composables/index.js'
+import { useExtraBlogData, useReadingTime } from '../composables/index.js'
 import IconBooks from './icons/IconBooks.vue'
 import IconClock from './icons/IconClock.vue'
 import IconTag from './icons/IconTag.vue'
@@ -13,6 +13,7 @@ import IconTag from './icons/IconTag.vue'
 const page = usePageData<PlumeThemePageData>()
 const matter = usePageFrontmatter<PlumeThemePostFrontmatter>()
 const readingTime = useReadingTime()
+const extraData = useExtraBlogData()
 
 const createTime = computed(() => {
   if (matter.value.createTime)
@@ -26,8 +27,12 @@ const categoryList = computed(() => {
 })
 
 const tags = computed(() => {
-  if (matter.value.tags)
-    return matter.value.tags.slice(0, 4)
+  if (matter.value.tags) {
+    return matter.value.tags.slice(0, 4).map(tag => ({
+      name: tag,
+      colors: extraData.value.tagsColorsPreset[extraData.value.tagsColors[tag]],
+    }))
+  }
 
   return []
 })
@@ -59,9 +64,13 @@ const hasMeta = computed(() => readingTime.value.times || tags.value.length || c
     </p>
     <p v-if="tags.length > 0">
       <IconTag class="icon" />
-      <span v-for="(tag, index) in tags" :key="tag" class="tag">
-        {{ tag }}
-        <template v-if="index < tags.length - 1">,</template>
+      <span
+        v-for="tag in tags"
+        :key="tag.name"
+        class="tag"
+        :style="{ '--vp-tag-color': tag.colors[0], '--vp-tag-bg-color': tag.colors[2] }"
+      >
+        {{ tag.name }}
       </span>
     </p>
     <p v-if="createTime" class="create-time">
@@ -129,11 +138,12 @@ const hasMeta = computed(() => readingTime.value.times || tags.value.length || c
 
 .page-meta-wrapper .tag {
   display: inline-block;
-  padding: 3px;
+  padding: 3px 5px;
+  margin-right: 6px;
   line-height: 1;
-  color: var(--vp-c-text-2);
-  background-color: var(--vp-c-mute);
-  border-radius: 4px;
+  color: var(--vp-tag-color);
+  background-color: var(--vp-tag-bg-color);
+  border-radius: 3px;
 }
 
 .page-meta-wrapper .tag:last-of-type {

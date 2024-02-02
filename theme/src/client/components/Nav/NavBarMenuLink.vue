@@ -32,7 +32,7 @@ const page = usePageData()
 .navbar-menu-link {
   display: flex;
   align-items: center;
-  padding: 0 12px;
+  padding: 0 10px;
   font-size: 14px;
   font-weight: 500;
   line-height: var(--vp-nav-height);

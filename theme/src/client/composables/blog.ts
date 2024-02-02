@@ -1,9 +1,16 @@
 import { usePageLang } from 'vuepress/client'
-import { useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
-import { computed } from 'vue'
+import { useExtraBlogData as _useExtraBlogData, useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
+import { type Ref, computed } from 'vue'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 import { useLocaleLink, useRouteQuery, useThemeLocaleData } from '../composables/index.js'
-import { getRandomColor, toArray } from '../utils/index.js'
+import { toArray } from '../utils/index.js'
+
+export const useExtraBlogData = _useExtraBlogData as () => Ref<{
+  tagsColorsPreset: (readonly [string, string, string])[]
+  tagsColors: Record<string, number>
+}>
+
+const DEFAULT_PER_PAGE = 10
 
 export function useLocalePostList() {
   const locale = usePageLang()
@@ -49,7 +56,7 @@ export function usePostListControl() {
   const totalPage = computed(() => {
     if (blog.value.pagination === false)
       return 0
-    const perPage = blog.value.pagination?.perPage || 20
+    const perPage = blog.value.pagination?.perPage || DEFAULT_PER_PAGE
     return Math.ceil(postList.value.length / perPage)
   })
   const isLastPage = computed(() => page.value >= totalPage.value)
@@ -60,7 +67,7 @@ export function usePostListControl() {
     if (blog.value.pagination === false)
       return postList.value
 
-    const perPage = blog.value.pagination?.perPage || 20
+    const perPage = blog.value.pagination?.perPage || DEFAULT_PER_PAGE
     if (postList.value.length <= perPage)
       return postList.value
 
@@ -96,6 +103,8 @@ const extractLocales: Record<string, { tags: string, archives: string }> = {
 export function useBlogExtract() {
   const theme = useThemeLocaleData()
   const locale = usePageLang()
+  const postList = useLocalePostList()
+  const { tags: tagsList } = useTags()
 
   const hasBlogExtract = computed(() => theme.value.blog?.archives !== false || theme.value.blog?.tags !== false)
   const tagsLink = useLocaleLink('blog/tags/')
@@ -104,11 +113,13 @@ export function useBlogExtract() {
   const tags = computed(() => ({
     link: tagsLink.value,
     text: extractLocales[locale.value]?.tags || extractLocales.en.tags,
+    total: tagsList.value.length,
   }))
 
   const archives = computed(() => ({
     link: archiveLink.value,
     text: extractLocales[locale.value]?.archives || extractLocales.en.archives,
+    total: postList.value.length,
   }))
 
   return {
@@ -122,6 +133,9 @@ export type ShortPostItem = Pick<PlumeThemeBlogPostItem, 'title' | 'path' | 'cre
 
 export function useTags() {
   const list = useLocalePostList()
+
+  const extraData = useExtraBlogData()
+
   const tags = computed(() => {
     const tagMap: Record<string, number> = {}
     list.value.forEach((item) => {
@@ -137,7 +151,7 @@ export function useTags() {
     return Object.keys(tagMap).map(tag => ({
       name: tag,
       count: tagMap[tag] > 99 ? '99+' : tagMap[tag],
-      color: getRandomColor(),
+      colors: extraData.value.tagsColorsPreset[extraData.value.tagsColors[tag]],
     }))
   })
 

@@ -1,3 +1,21 @@
+# [1.0.0-rc.31](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.30...v1.0.0-rc.31) (2024-2-2)
+
+
+### Features
+
+* bump and rename `shiki` ([9952a3f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9952a3fd8506846cde0dc57e0bf557d4727d1e38))
+* **plugin-blog-data:** 添加支持生成额外的博客数据 ([5f28042](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5f280420ef272a09c573fcb4bc7c1406162b7f6b))
+
+
+### Performance Improvements
+
+* 改版博客文章列表页UI，贴合设计趋势 ([8a969ab](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8a969abb27df963c54a266144d6748dd2d2f7d71))
+* 使用官方插件替换 seo、sitemap 插件 ([15c1f52](https://github.com/pengzhanbo/vuepress-theme-plume/commit/15c1f52b2749854850b4fe66f9fb5f3ec81613ba))
+* 优化文章标签页 UI ([8d56e98](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8d56e989d4c236c43017a62b7b52ef93e012496f))
+* 优化文章归档页 UI ([c1e0c85](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c1e0c854f675ede733c042146c141f72a2efa384))
+
+
+
 # [1.0.0-rc.30](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.29...v1.0.0-rc.30) (2024-1-31)
 
 

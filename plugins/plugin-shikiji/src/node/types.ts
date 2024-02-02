@@ -20,13 +20,17 @@ export interface HighlighterOptions {
    *
    * You can also pass an object with `light` and `dark` themes to support dual themes.
    *
+   * You can use an existing theme.
+   *
+   * @see https://shiki.style/themes
+   *
+   * Or add your own theme.
+   *
+   * @see https://shiki.style/guide/load-theme
+   *
    * @example { theme: 'github-dark' }
    * @example { theme: { light: 'github-light', dark: 'github-dark' } }
    *
-   * You can use an existing theme.
-   * @see https://shiki.style/themes
-   * Or add your own theme.
-   * @see https://shiki.style/guide/load-theme
    */
   theme?: ThemeOptions
   /**

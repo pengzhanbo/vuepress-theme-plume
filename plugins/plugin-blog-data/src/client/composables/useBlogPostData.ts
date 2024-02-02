@@ -1,4 +1,7 @@
-import { blogPostData as blogPostDataRaw } from '@internal/blogData'
+import {
+  blogPostData as blogPostDataRaw,
+  extraBlogData as extraBlogDataRaw,
+} from '@internal/blogData'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
 import type { BlogPostData } from '../../shared/index.js'
@@ -15,8 +18,19 @@ export function useBlogPostData<
   return blogPostData as BlogDataRef<T>
 }
 
+export type ExtraBlogDataRef = Ref<Record<string, any>>
+
+export const extraBlogData: ExtraBlogDataRef = ref(extraBlogDataRaw)
+
+export function useExtraBlogData(): ExtraBlogDataRef {
+  return extraBlogData as ExtraBlogDataRef
+}
+
 if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {
   __VUE_HMR_RUNTIME__.updateBlogData = (data: BlogPostData) => {
     blogPostData.value = data
+  }
+  __VUE_HMR_RUNTIME__.updateExtraBlogData = (data: Record<string, any>) => {
+    extraBlogData.value = data
   }
 }

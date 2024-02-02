@@ -1,8 +1,9 @@
 import themePlume from 'vuepress-theme-plume'
+import type { Theme } from 'vuepress'
 import { enNotes, zhNotes } from './notes.js'
 import { enNavbar, zhNavbar } from './navbar.js'
 
-export const theme = themePlume({
+export const theme: Theme = themePlume({
   logo: 'https://pengzhanbo.cn/g.gif',
   hostname: 'https://pengzhanbo.cn',
   repo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
@@ -15,6 +16,7 @@ export const theme = themePlume({
   },
 
   social: [{ icon: 'github', link: 'https://github.com/pengzhanbo' }],
+
   footer: { copyright: 'Copyright © 2022-present pengzhanbo' },
 
   locales: {

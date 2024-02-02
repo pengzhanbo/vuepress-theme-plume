@@ -8,11 +8,15 @@ if (import.meta.webpackHot) {
   if (__VUE_HMR_RUNTIME__.updateBlogData) {
     __VUE_HMR_RUNTIME__.updateBlogData(blogPostData)
   }
+  if (__VUE_HMR_RUNTIME__.updateExtraBlogData) {
+    __VUE_HMR_RUNTIME__.updateExtraBlogData(extraBlogData)
+  }
 }
 
 if (import.meta.hot) {
-  import.meta.hot.accept(({ blogPostData }) => {
+  import.meta.hot.accept(({ blogPostData, extraBlogData }) => {
     __VUE_HMR_RUNTIME__.updateBlogData(blogPostData)
+    __VUE_HMR_RUNTIME__.updateExtraBlogData(extraBlogData)
   })
 }
 `
@@ -47,10 +51,15 @@ export async function preparedBlogData(app: App, pageFilter: (id: string) => boo
     })
   }
 
+  const extraBlogData: Record<string, any> = {}
+
+  if (typeof options.extraBlogData === 'function')
+    options.extraBlogData(extraBlogData)
+
   const blogData: BlogPostData = pages.map((page: Page) => {
     let extended: Partial<BlogPostDataItem> = {}
     if (typeof options.extendBlogData === 'function')
-      extended = options.extendBlogData(page)
+      extended = options.extendBlogData(page, extraBlogData)
 
     const data = {
       path: page.path,
@@ -69,7 +78,10 @@ export async function preparedBlogData(app: App, pageFilter: (id: string) => boo
   let content = `\
 export const blogPostData = JSON.parse(${JSON.stringify(
     JSON.stringify(blogData),
-  )})
+  )});
+export const extraBlogData = JSON.parse(${JSON.stringify(
+    JSON.stringify(extraBlogData),
+)});
 `
 
   // inject HMR code

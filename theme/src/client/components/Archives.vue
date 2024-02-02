@@ -63,4 +63,36 @@ const { archives } = useArchives()
   font-size: 18px;
   font-weight: 700;
 }
+
+@media (min-width: 768px) {
+  .archives-wrapper {
+    padding: 32px 0;
+    margin-left: 20px;
+  }
+
+  .archives-title {
+    display: none;
+  }
+
+  .archive {
+    padding: 20px;
+    margin-bottom: 24px;
+    background-color: var(--vp-c-bg);
+    border-bottom: none;
+    border-radius: 8px;
+    box-shadow: var(--vp-shadow-2);
+  }
+
+  .archive-title {
+    padding-bottom: 10px;
+    margin-top: 0;
+    border-bottom: solid 1px var(--vp-c-divider);
+  }
+}
+
+@media (min-width: 960px) {
+  .archives-wrapper {
+    margin-left: auto;
+  }
+}
 </style>

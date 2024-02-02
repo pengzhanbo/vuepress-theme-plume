@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
+import { useExtraBlogData } from '../composables/index.js'
 import AutoLink from './AutoLink.vue'
 import IconClock from './icons/IconClock.vue'
 import IconFolder from './icons/IconFolder.vue'
@@ -10,12 +11,19 @@ const props = defineProps<{
   post: PlumeThemeBlogPostItem
 }>()
 
+const extraData = useExtraBlogData()
+
 const categoryList = computed(() =>
   props.post.categoryList ?? [],
 )
 
 const tags = computed(() =>
-  (props.post.tags ?? []).slice(0, 4),
+  (props.post.tags ?? [])
+    .slice(0, 4)
+    .map(tag => ({
+      name: tag,
+      colors: extraData.value.tagsColorsPreset[extraData.value.tagsColors[tag]],
+    })),
 )
 
 const createTime = computed(() =>
@@ -46,9 +54,13 @@ const createTime = computed(() =>
       </div>
       <div v-if="tags.length" class="tag-list">
         <IconTag class="icon" />
-        <template v-for="(tag, i) in tags" :key="tag">
-          <span class="tag">{{ tag }}</span>
-          <span v-if="i !== tags.length - 1">,</span>
+        <template v-for="tag in tags" :key="tag.name">
+          <span
+            class="tag"
+            :style="{ '--vp-tag-color': tag.colors[0], '--vp-tag-bg-color': tag.colors[2] }"
+          >
+            {{ tag.name }}
+          </span>
         </template>
       </div>
       <div v-if="createTime" class="create-time">
@@ -99,7 +111,21 @@ const createTime = computed(() =>
   color: var(--vp-c-text-2);
 }
 
+@media (min-width: 768px) {
+  .post-item {
+    padding: 24px 20px;
+    margin: 0 0 24px 20px;
+    background-color: var(--vp-c-bg);
+    border-radius: 8px;
+    box-shadow: var(--vp-shadow-2);
+  }
+}
+
 @media (min-width: 960px) {
+  .post-item {
+    margin-left: 0;
+  }
+
   .post-item h3 {
     font-size: 20px;
   }
@@ -133,7 +159,17 @@ const createTime = computed(() =>
 }
 
 .post-meta .tag-list .tag {
-  margin: 0 0.2rem;
+  display: inline-block;
+  padding: 3px 5px;
+  margin-right: 6px;
+  line-height: 1;
+  color: var(--vp-tag-color);
+  background-color: var(--vp-tag-bg-color);
+  border-radius: 3px;
+}
+
+.post-meta .tag-list .tag:last-of-type {
+  margin-right: 0;
 }
 
 .post-meta .icon {

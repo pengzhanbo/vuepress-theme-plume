@@ -77,8 +77,8 @@ function handleClick() {
 .back-to-top-button {
   position: fixed;
   inset-inline-end: 1rem;
-  right: 20px;
-  bottom: 64px;
+  right: 24px;
+  bottom: calc(var(--vp-footer-height, 82px) - 18px);
   z-index: var(--vp-z-index-back-to-top);
   width: 36px;
   height: 36px;
@@ -140,6 +140,7 @@ function handleClick() {
 
 @media (min-width: 768px) {
   .back-to-top-button {
+    bottom: calc(var(--vp-footer-height, 88px) - 24px);
     width: 48px;
     height: 48px;
   }

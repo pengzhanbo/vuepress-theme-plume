@@ -15,12 +15,12 @@ import { caniusePlugin } from '@vuepress-plume/plugin-caniuse'
 import { copyCodePlugin } from '@vuepress-plume/plugin-copy-code'
 import { iconifyPlugin } from '@vuepress-plume/plugin-iconify'
 import { notesDataPlugin } from '@vuepress-plume/plugin-notes-data'
-import { shikijiPlugin } from '@vuepress-plume/plugin-shikiji'
+import { shikiPlugin } from '@vuepress-plume/plugin-shikiji'
 import { commentPlugin } from 'vuepress-plugin-comment2'
 import { type MarkdownEnhanceOptions, mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
 import { readingTimePlugin } from 'vuepress-plugin-reading-time2'
-import { seoPlugin } from 'vuepress-plugin-seo2'
-import { sitemapPlugin } from 'vuepress-plugin-sitemap2'
+import { seoPlugin } from '@vuepress/plugin-seo'
+import { sitemapPlugin } from '@vuepress/plugin-sitemap'
 import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
 import type {
   PlumeThemeLocaleOptions,
@@ -32,6 +32,7 @@ import { pathJoin } from './utils.js'
 import { resolveNotesList } from './resolveNotesList.js'
 import { resolvedDocsearchOption, resolvedSearchOptions } from './searchPluginOptions.js'
 import { customContainers } from './container.js'
+import { BLOG_TAGS_COLORS_PRESET, generateBlogTagsColors } from './blogTags.js'
 
 export function setupPlugins(
   app: App,
@@ -68,13 +69,21 @@ export function setupPlugins(
       pageFilter: (page: any) => page.frontmatter.article !== undefined
         ? !!page.frontmatter.article
         : true,
-      extendBlogData: (page: any) => ({
-        categoryList: page.data.categoryList,
-        tags: page.frontmatter.tags,
-        sticky: page.frontmatter.sticky,
-        createTime: page.data.frontmatter.createTime,
-        lang: page.lang,
-      }),
+      extraBlogData(extra) {
+        extra.tagsColorsPreset = BLOG_TAGS_COLORS_PRESET
+        extra.tagsColors = {}
+      },
+      extendBlogData: (page: any, extra) => {
+        const tags = page.frontmatter.tags
+        generateBlogTagsColors(extra.tagsColors, tags)
+        return {
+          categoryList: page.data.categoryList,
+          tags,
+          sticky: page.frontmatter.sticky,
+          createTime: page.data.frontmatter.createTime,
+          lang: page.lang,
+        }
+      },
     }),
 
     notesDataPlugin(notesList),
@@ -144,10 +153,11 @@ export function setupPlugins(
     plugins.push(searchPlugin(resolvedSearchOptions(app, options.search)))
   }
 
-  if (options.shikiji !== false) {
-    plugins.push(shikijiPlugin({
+  const shikiOption = options.shiki || options.shikiji
+  if (shikiOption !== false) {
+    plugins.push(shikiPlugin({
       theme: { light: 'vitesse-light', dark: 'vitesse-dark' },
-      ...(options.shikiji ?? {}),
+      ...(shikiOption ?? {}),
     }))
   }
 

@@ -1,14 +1,25 @@
 <script setup lang="ts">
+import { useCssVar } from '@vueuse/core'
+import { onMounted, ref } from 'vue'
 import { useSidebar, useThemeLocaleData } from '../composables/index.js'
+import { inBrowser } from '../utils/index.js'
 
 const theme = useThemeLocaleData()
 const { hasSidebar } = useSidebar()
+
+const footerHeight = useCssVar('--vp-footer-height', inBrowser ? document.body : null)
+const footer = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  if (theme.value.footer && footer.value)
+    footerHeight.value = `${footer.value.offsetHeight}px`
+})
 </script>
 
 <template>
-  <!-- eslint-disable vue/no-v-html -->
   <footer
     v-if="theme.footer"
+    ref="footer"
     class="plume-footer"
     :class="{ 'has-sidebar': hasSidebar }"
   >
@@ -35,10 +46,6 @@ const { hasSidebar } = useSidebar()
   background-color: var(--vp-c-bg);
   border-top: 1px solid var(--vp-c-gutter);
   transition: all 0.25s;
-}
-
-.plume-footer.has-sidebar {
-  display: none;
 }
 
 .plume-footer :deep(a) {

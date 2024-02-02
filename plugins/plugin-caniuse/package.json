@@ -8,7 +8,8 @@
   "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git",
+    "directory": "plugins/plugin-caniuse"
   },
   "bugs": {
     "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"

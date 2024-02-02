@@ -4,7 +4,7 @@ import type { AutoFrontmatterOptions } from '@vuepress-plume/plugin-auto-frontma
 import type { BaiduTongjiOptions } from '@vuepress-plume/plugin-baidu-tongji'
 import type { CanIUsePluginOptions } from '@vuepress-plume/plugin-caniuse'
 import type { CopyCodeOptions } from '@vuepress-plume/plugin-copy-code'
-import type { ShikijiPluginOptions } from '@vuepress-plume/plugin-shikiji'
+import type { ShikiPluginOptions } from '@vuepress-plume/plugin-shikiji'
 import type { CommentPluginOptions } from 'vuepress-plugin-comment2'
 import type { MarkdownEnhanceOptions } from 'vuepress-plugin-md-enhance'
 import type { ReadingTimeOptions } from 'vuepress-plugin-reading-time2'
@@ -31,9 +31,15 @@ export interface PlumeThemePluginOptions {
   docsearch?: false | DocsearchOptions
 
   /**
+   * @deprecated move to `shiki`
    * 代码高亮 配置
    */
-  shikiji?: false | ShikijiPluginOptions
+  shikiji?: false | ShikiPluginOptions
+
+  /**
+   * 代码高亮 配置
+   */
+  shiki?: false | ShikiPluginOptions
 
   /**
    * git 插件 配置

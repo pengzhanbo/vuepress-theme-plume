@@ -5,8 +5,10 @@ export interface BlogDataPluginOptions {
   exclude?: string | string[]
   sortBy?: 'createTime' | false | (<T>(prev: T, next: T) => boolean)
   excerpt?: boolean
-  extendBlogData?: <T = any>(page: T) => Record<string, any>
+  extendBlogData?: <T = any>(page: T, extra: Record<string, any>) => Record<string, any>
   pageFilter?: (page: Page) => boolean
+
+  extraBlogData?: (extra: Record<string, any>) => void
 }
 
 export type BlogPostData<T extends object = object> = BlogPostDataItem<T>[]

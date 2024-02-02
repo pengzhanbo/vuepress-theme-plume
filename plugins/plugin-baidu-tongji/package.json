@@ -2,13 +2,14 @@
   "name": "@vuepress-plume/plugin-baidu-tongji",
   "type": "module",
   "version": "1.0.0-rc.30",
-  "description": "The Plugin for VuePres 2",
+  "description": "The Plugin for VuePres 2 - baidu tongji",
   "author": "pengzhanbo <volodymyr@foxmail.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git",
+    "directory": "plugins/plugin-baidu-tongji"
   },
   "bugs": {
     "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"

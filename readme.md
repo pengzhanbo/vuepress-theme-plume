@@ -86,7 +86,7 @@ __options__ : `PlumeThemeOptions`
 
 **blog page**
 
-![](/docs/preview-blog.jpeg)
+![](/docs/preview-blog.jpeg?t=0)
 
 **post page**
 

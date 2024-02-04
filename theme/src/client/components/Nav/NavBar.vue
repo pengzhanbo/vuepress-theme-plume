@@ -66,6 +66,8 @@ watchPostEffect(() => {
   white-space: nowrap;
   pointer-events: none;
   border-bottom: 1px solid transparent;
+  transition: var(--t-color);
+  transition-property: background-color, color, border-bottom;
 }
 
 @media (min-width: 768px) {
@@ -107,7 +109,7 @@ watchPostEffect(() => {
 .title {
   flex-shrink: 0;
   height: calc(var(--vp-nav-height) - 1px);
-  transition: background-color 0.5s;
+  transition: background-color var(--t-color);
 }
 
 @media (min-width: 960px) {
@@ -166,7 +168,8 @@ watchPostEffect(() => {
   align-items: center;
   justify-content: flex-end;
   height: calc(var(--vp-nav-height) - 1px);
-  transition: background-color 0.5s;
+  transition: var(--t-color);
+  transition-property: background-color;
 }
 
 @media (min-width: 960px) {
@@ -193,6 +196,7 @@ watchPostEffect(() => {
   margin-left: 8px;
   content: "";
   background-color: var(--vp-c-divider);
+  transition: background-color var(--t-color);
 }
 
 .menu + .appearance::before,
@@ -212,17 +216,11 @@ watchPostEffect(() => {
   .navbar-wrapper.has-sidebar .curtain {
     position: absolute;
     right: 0;
-    bottom: -31px;
+    bottom: 0;
     width: calc(100% - var(--vp-sidebar-width));
-    height: 32px;
-  }
-
-  .navbar-wrapper.has-sidebar .curtain::before {
-    display: block;
-    width: 100%;
-    height: 32px;
-    content: "";
-    background: linear-gradient(var(--vp-c-bg), transparent 70%);
+    height: 0;
+    border-bottom: solid 1px var(--vp-c-divider);
+    transition: border-bottom var(--t-color);
   }
 }
 

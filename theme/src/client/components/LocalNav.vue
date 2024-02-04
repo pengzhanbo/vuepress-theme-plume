@@ -84,8 +84,9 @@ const showLocalNav = computed(() => {
   border-top: 1px solid var(--vp-c-gutter);
   border-bottom: 1px solid var(--vp-c-gutter);
   transition:
-    border-color 0.5s,
-    background-color 0.5s;
+    border-color var(--t-color),
+    background-color var(--t-color),
+    border var(--t-color);
 }
 
 .local-nav.fixed {

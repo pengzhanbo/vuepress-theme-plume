@@ -35,6 +35,6 @@ defineProps<{
   font-weight: 700;
   line-height: 32px;
   color: var(--vp-c-text-2);
-  transition: color 0.25s;
+  transition: color var(--t-color);
 }
 </style>

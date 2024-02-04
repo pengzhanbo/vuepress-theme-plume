@@ -55,7 +55,7 @@ defineEmits<(e: 'click') => void>()
   background-color: var(--vp-c-text-1);
   transition:
     top 0.25s,
-    background-color 0.5s,
+    background-color var(--t-color),
     transform 0.25s;
 }
 
@@ -116,7 +116,7 @@ defineEmits<(e: 'click') => void>()
   background-color: var(--vp-c-text-2);
   transition:
     top 0.25s,
-    background-color 0.25s,
+    background-color var(--t-color),
     transform 0.25s;
 }
 </style>

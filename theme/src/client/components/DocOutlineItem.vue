@@ -42,13 +42,12 @@ function onClick({ target: el }: Event) {
   color: var(--vp-c-text-2);
   text-overflow: ellipsis;
   white-space: nowrap;
-  transition: color 0.5s;
+  transition: color var(--t-color);
 }
 
 .outline-link:hover,
 .outline-link.active {
   color: var(--vp-c-text-1);
-  transition: color 0.25s;
 }
 
 .outline-link.nested {

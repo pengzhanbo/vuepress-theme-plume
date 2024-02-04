@@ -30,7 +30,7 @@ const closeScreen = inject('close-screen') as () => void
   font-weight: 400;
   line-height: 32px;
   color: var(--vp-c-text-1);
-  transition: color 0.25s;
+  transition: color var(--t-color);
 }
 
 .nav-screen-menu-group-link:hover {

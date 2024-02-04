@@ -34,7 +34,7 @@ const routeLocale = useRouteLocale()
   font-weight: 600;
   color: var(--vp-c-text-1);
   border-bottom: 1px solid transparent;
-  transition: opacity 0.25s;
+  transition: opacity var(--t-color), color var(--t-color), border-bottom var(--t-color);
 }
 
 .title:hover {

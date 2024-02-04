@@ -63,7 +63,7 @@ function toggle() {
   height: 48px;
   overflow: hidden;
   border-bottom: 1px solid var(--vp-c-divider);
-  transition: border-color 0.5s;
+  transition: border-color var(--t-color);
 }
 
 .nav-screen-menu-group .items {
@@ -89,7 +89,7 @@ function toggle() {
   font-weight: 500;
   line-height: 24px;
   color: var(--vp-c-text-1);
-  transition: color 0.25s;
+  transition: color var(--t-color);
 }
 
 .button:hover {

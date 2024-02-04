@@ -37,7 +37,7 @@ const page = usePageData()
   font-weight: 500;
   line-height: var(--vp-nav-height);
   color: var(--vp-c-text-1);
-  transition: color 0.25s;
+  transition: color var(--t-color);
 }
 
 .navbar-menu-link.active {

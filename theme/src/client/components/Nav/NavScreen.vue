@@ -44,7 +44,7 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
   pointer-events: auto;
   background-color: var(--vp-nav-screen-bg-color);
   border-top: 1px solid var(--vp-c-divider);
-  transition: background-color 0.5s;
+  transition: background-color var(--t-color), border-top var(--t-color);
 }
 
 .container {
@@ -55,12 +55,12 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
 
 .nav-screen.fade-enter-active,
 .nav-screen.fade-leave-active {
-  transition: opacity 0.25s;
+  transition: opacity var(--t-color);
 }
 
 .nav-screen.fade-enter-active .container,
 .nav-screen.fade-leave-active .container {
-  transition: transform 0.25s ease;
+  transition: transform var(--t-color);
 }
 
 .nav-screen.fade-enter-from,

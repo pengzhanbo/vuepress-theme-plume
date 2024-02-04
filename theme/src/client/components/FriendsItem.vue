@@ -45,7 +45,7 @@ defineProps<{
   border: 1px solid var(--vp-friends-border-color);
   border-radius: 6px;
   box-shadow: var(--vp-shadow-1);
-  transition: all 0.25s;
+  transition: all var(--t-color);
 }
 
 .friend:hover {
@@ -79,6 +79,7 @@ defineProps<{
   font-weight: 700;
   color: var(--vp-friends-link-color);
   border-bottom: 1px dashed var(--vp-friends-border-color);
+  transition: color var(--t-color), border-bottom var(--t-color);
 }
 
 .content p {
@@ -88,6 +89,7 @@ defineProps<{
   font-size: 0.875rem;
   line-height: 1.5;
   color: var(--vp-friends-text-color);
+  transition: color var(--t-color);
 
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;

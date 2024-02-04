@@ -128,7 +128,7 @@ const list = computed(() => matter.value.list || [])
   line-height: 32px;
   color: var(--vp-c-brand-1);
   border: 0;
-  transition: color 0.25s;
+  transition: color var(--t-color);
 }
 
 .edit-link-button:hover {

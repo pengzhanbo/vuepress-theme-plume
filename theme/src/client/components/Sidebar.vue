@@ -70,7 +70,9 @@ watch(
   box-shadow: var(--vp-c-shadow-3);
   opacity: 0;
   transition:
-    opacity 0.5s,
+    opacity var(--t-color),
+    background-color var(--t-color),
+    box-shadow var(--t-color),
     transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   transform: translateX(-100%);
 
@@ -130,6 +132,7 @@ watch(
     margin-right: -32px;
     margin-left: -32px;
     background-color: var(--vp-sidebar-bg-color);
+    transition: background-color var(--t-color);
   }
 }
 
@@ -140,6 +143,7 @@ watch(
 .group + .group {
   padding-top: 10px;
   border-top: 1px solid var(--vp-c-divider);
+  transition: border-top var(--t-color);
 }
 
 @media (min-width: 960px) {

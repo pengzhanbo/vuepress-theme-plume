@@ -131,7 +131,7 @@ function onCaretClick() {
   bottom: 6px;
   left: -17px;
   width: 1px;
-  transition: background-color 0.25s;
+  transition: background-color var(--t-color);
 }
 
 .sidebar-item.level-2.is-active > .item > .indicator,
@@ -151,7 +151,7 @@ function onCaretClick() {
   padding: 4px 0;
   font-size: 14px;
   line-height: 24px;
-  transition: color 0.25s;
+  transition: color var(--t-color);
 }
 
 .sidebar-item.level-0 .text {
@@ -204,7 +204,7 @@ function onCaretClick() {
   margin-right: -7px;
   color: var(--vp-c-text-3);
   cursor: pointer;
-  transition: color 0.25s;
+  transition: color var(--t-color);
 }
 
 .item:hover .caret {
@@ -219,7 +219,7 @@ function onCaretClick() {
   width: 18px;
   height: 18px;
   fill: currentcolor;
-  transition: transform 0.25s;
+  transition: transform var(--t-color);
   transform: rotate(90deg);
 }
 
@@ -234,6 +234,7 @@ function onCaretClick() {
 .sidebar-item.level-5 .items {
   padding-left: 16px;
   border-left: 1px solid var(--vp-c-divider);
+  transition: border-left var(--t-color);
 }
 
 .sidebar-item.collapsed .items {

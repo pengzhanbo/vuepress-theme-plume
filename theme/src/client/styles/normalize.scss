@@ -55,8 +55,7 @@ html,
 body {
   color: var(--vp-c-text-1);
   background-color: var(--vp-c-bg);
-  transition-timing-function: ease;
-  transition-duration: 0.25s;
+  transition: var(--t-color);
   transition-property: color, background-color;
 
   scrollbar-width: thin;

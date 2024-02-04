@@ -160,6 +160,7 @@
   .vp-code-demo {
     overflow: hidden;
     border: solid 1px var(--vp-c-divider);
+    transition: border var(--t-color);
 
     @media (max-width: 419px) {
       .vp-code-demo-codes div[class*="language-"] {
@@ -174,6 +175,7 @@
 
     .vp-code-demo-header {
       padding: 8px 12px;
+      transition: background-color var(--t-color);
     }
 
     .vp-code-demo-code-wrapper {
@@ -183,6 +185,7 @@
     .vp-code-demo-toggle-button {
       margin: 0 12px 0 8px;
       background-color: var(--vp-c-gray-2);
+      transition: background-color var(--t-color);
 
       &:hover {
         background-color: var(--vp-c-gray-1);
@@ -205,6 +208,7 @@
 
     .vp-code-demo-codes div[class*="language-"] {
       border-bottom: 2px dashed var(--vp-c-divider);
+      transition: border-bottom var(--t-color);
 
       &:first-of-type {
         border-top: 1px solid var(--vp-c-divider);
@@ -276,6 +280,7 @@
     margin: 1.5rem -0.75rem;
     overflow: hidden;
     border: 1px solid var(--vp-c-divider);
+    transition: border var(--t-color);
   }
 
   @media (min-width: 419px) {
@@ -430,6 +435,8 @@
   border: solid 1px var(--vp-c-divider);
   border-radius: 8px;
   box-shadow: var(--vp-shadow-2);
+  transition: var(--t-color);
+  transition-property: border, box-shadow;
 
   &.has-title .demo-head {
     border-bottom-color: transparent;
@@ -459,6 +466,7 @@
     justify-content: flex-start;
     min-height: 0;
     border-bottom: solid 1px var(--vp-c-divider);
+    transition: border-bottom var(--t-color);
   }
 
   .demo-ctrl {
@@ -473,8 +481,9 @@
     display: inline-block;
     width: 10px;
     height: 10px;
-    background: #ccc;
+    background-color: #ccc;
     border-radius: 100%;
+    transition: background-color var(--t-color);
 
     &:nth-child(1) {
       background-color: var(--vp-c-danger-3);
@@ -500,6 +509,8 @@
     background-color: var(--vp-c-bg-alt);
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    transition: var(--t-color);
+    transition-property: color, background-color;
   }
 
   .demo-title p {
@@ -518,6 +529,7 @@
     width: 8px;
     height: 8px;
     content: " ";
+    transition: background var(--t-color);
   }
 
   .demo-title::before {
@@ -538,6 +550,7 @@
     background-color: var(--vp-c-bg-alt);
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
+    transition: background-color var(--t-color);
 
     > *:first-child {
       margin-top: 0;

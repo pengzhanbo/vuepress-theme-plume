@@ -21,6 +21,7 @@ html:not(.dark) .vp-code span {
       overflow-wrap: unset;
       background-color: transparent;
       border-radius: 0;
+      transition: background-color, var(--t-color), color var(--t-color);
 
       -webkit-font-smoothing: auto;
       -moz-osx-font-smoothing: auto;
@@ -55,6 +56,7 @@ div[class*="language-"] {
   position: relative;
   margin: 0.85rem -1.5rem;
   background-color: var(--vp-code-block-bg);
+  transition: background-color, var(--t-color);
 
   &::before {
     position: absolute;
@@ -64,6 +66,7 @@ div[class*="language-"] {
     font-size: 0.75rem;
     color: var(--vp-code-line-number-color);
     content: attr(data-ext);
+    transition: color var(--t-color);
   }
 
   code {
@@ -112,6 +115,7 @@ div[class*="language-"] {
 
     .highlight-line {
       background-color: var(--vp-c-default-soft);
+      transition: background-color var(--t-color);
     }
   }
 
@@ -155,6 +159,7 @@ div[class*="language-"] {
       text-align: center;
       counter-reset: line-number;
       border-right: var(--vp-code-block-divider-color) 1px solid;
+      transition: border-right var(--t-color), color var(--t-color);
 
       .line-number {
         position: relative;

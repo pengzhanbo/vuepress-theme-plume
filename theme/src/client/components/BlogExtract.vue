@@ -98,11 +98,14 @@ const showBlogExtract = computed(() => {
   border-top-left-radius: 99px;
   border-bottom-left-radius: 99px;
   box-shadow: var(--vp-shadow-2);
+  transition: var(--t-color);
+  transition-property: background-color, border, box-shadow;
 }
 
 .blog-extract .icon {
   font-size: 16px;
   color: var(--vp-c-text-2);
+  transition: color var(--t-color);
 }
 
 @media (min-width: 768px) {

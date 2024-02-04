@@ -58,6 +58,7 @@ const { tags: tagsLink } = useBlogExtract()
   font-size: 20px;
   font-weight: 700;
   color: var(--vp-c-text-1);
+  transition: color var(--t-color);
 }
 
 .tags-title .icon {
@@ -95,6 +96,7 @@ const { tags: tagsLink } = useBlogExtract()
   font-size: 20px;
   font-weight: 600;
   border-bottom: 1px solid var(--vp-c-divider);
+  transition: border-bottom var(--t-color);
 }
 
 .tag-count {
@@ -103,7 +105,7 @@ const { tags: tagsLink } = useBlogExtract()
   margin-left: 4px;
   color: var(--vp-c-bg);
   border-left: 1px solid var(--vp-c-bg);
-  transition: all var(--t-color);
+  transition: color var(--t-color), border-left var(--t-color);
 }
 
 .tags .tag:hover,
@@ -129,12 +131,19 @@ const { tags: tagsLink } = useBlogExtract()
     padding: 20px;
     background-color: var(--vp-c-bg);
     border-radius: 8px;
-    box-shadow: var(--vp-shadow-2);
+    box-shadow: var(--vp-shadow-1);
+    transition: var(--t-color);
+    transition-property: background-color, box-shadow;
   }
 
   .tags-container {
     margin-top: 24px;
     margin-bottom: 24px;
+  }
+
+  .tags-nav:hover,
+  .tags-container:hover {
+    box-shadow: var(--vp-shadow-2);
   }
 
   .tags-container .tag-title {

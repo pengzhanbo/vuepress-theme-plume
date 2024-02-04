@@ -24,6 +24,7 @@ const page = usePageData<PlumeThemePageData>()
 
 <style scoped>
 .blog-wrapper {
+  position: relative;
   min-height: calc(100vh - var(--vp-footer-height, 0px));
 }
 
@@ -45,6 +46,12 @@ const page = usePageData<PlumeThemePageData>()
     padding-top: var(--vp-nav-height);
     margin-top: calc(var(--vp-nav-height) * -1);
     background-color: var(--vp-c-bg-alt);
+    transition: background-color var(--t-color);
+  }
+
+  .blog-container {
+    position: relative;
+    z-index: 2;
   }
 }
 

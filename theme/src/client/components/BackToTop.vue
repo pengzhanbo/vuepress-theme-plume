@@ -86,8 +86,8 @@ function handleClick() {
   border-radius: 100%;
   box-shadow: var(--vp-shadow-2);
   transition:
-    background-color 0.25s ease,
-    box-shadow 0.25s ease;
+    background-color var(--t-color),
+    box-shadow var(--t-color);
 }
 
 .back-to-top-button .percent,
@@ -96,7 +96,7 @@ function handleClick() {
   top: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease, color var(--t-color);
 }
 
 .back-to-top-button .percent.show,

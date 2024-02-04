@@ -78,7 +78,21 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
   margin-bottom: 24px;
   background-color: var(--vp-c-bg);
   border-radius: 8px;
+  box-shadow: var(--vp-shadow-1);
+  transition: var(--t-color);
+  transition-property: background-color, color, box-shadow, transform;
+  transform: scale(1);
+}
+
+.avatar-profile:hover {
   box-shadow: var(--vp-shadow-2);
+  transform: scale(1.002);
+}
+
+.avatar-profile h3,
+.avatar-profile p {
+  color: var(--vp-c-text-1);
+  transition: color var(--t-color);
 }
 
 .avatar-profile .circle img {
@@ -102,8 +116,15 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
   color: var(--vp-c-text-1);
   background-color: var(--vp-c-bg);
   border-radius: 8px;
+  box-shadow: var(--vp-shadow-1);
+  transition: var(--t-color);
+  transition-property: background-color, color, box-shadow, transform;
+  transform: scale(1);
+}
+
+.nav-link:hover {
   box-shadow: var(--vp-shadow-2);
-  transition: color var(--t-color);
+  transform: scale(1.002);
 }
 
 .nav-link:hover,
@@ -120,6 +141,7 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
 .nav-link .total {
   padding-right: 8px;
   color: var(--vp-c-text-3);
+  transition: color var(--t-color);
 }
 
 .nav-link .icon {
@@ -127,6 +149,7 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
   height: 1em;
   font-size: 1.2em;
   color: var(--vp-c-text-3);
+  transition: color var(--t-color);
 }
 
 .nav-link .icon-logo {

@@ -80,6 +80,12 @@ const { archives } = useArchives()
     background-color: var(--vp-c-bg);
     border-bottom: none;
     border-radius: 8px;
+    box-shadow: var(--vp-shadow-1);
+    transition: var(--t-color);
+    transition-property: border-bottom, box-shadow, background-color;
+  }
+
+  .archive:hover {
     box-shadow: var(--vp-shadow-2);
   }
 
@@ -87,6 +93,7 @@ const { archives } = useArchives()
     padding-bottom: 10px;
     margin-top: 0;
     border-bottom: solid 1px var(--vp-c-divider);
+    transition: border-bottom var(--t-color);
   }
 }
 

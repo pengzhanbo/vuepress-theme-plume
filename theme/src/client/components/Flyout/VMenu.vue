@@ -35,7 +35,7 @@ defineProps<{
   border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   box-shadow: var(--vp-shadow-3);
-  transition: background-color 0.5s;
+  transition: background-color var(--t-color), border var(--t-color);
 }
 
 .menu-wrapper :deep(.group) {
@@ -46,6 +46,7 @@ defineProps<{
 .menu-wrapper :deep(.group + .group) {
   padding: 11px 12px 12px;
   border-top: 1px solid var(--vp-c-divider);
+  transition: border-top var(--t-color);
 }
 
 .menu-wrapper :deep(.group:last-child) {
@@ -55,6 +56,7 @@ defineProps<{
 .menu-wrapper :deep(.group + .item) {
   padding: 11px 16px 0;
   border-top: 1px solid var(--vp-c-divider);
+  transition: border-top var(--t-color);
 }
 
 .menu-wrapper :deep(.item) {
@@ -68,7 +70,7 @@ defineProps<{
   font-weight: 500;
   line-height: 28px;
   color: var(--vp-c-text-2);
-  transition: color 0.5s;
+  transition: color var(--t-color);
 }
 
 .menu-wrapper :deep(.action) {

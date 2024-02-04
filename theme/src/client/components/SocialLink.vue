@@ -34,12 +34,11 @@ const svg = computed(() => {
   width: 36px;
   height: 36px;
   color: var(--vp-c-text-2);
-  transition: color 0.5s;
+  transition: color var(--t-color);
 }
 
 .social-link:hover {
   color: var(--vp-c-text-1);
-  transition: color 0.25s;
 }
 
 .social-link > :deep(svg) {

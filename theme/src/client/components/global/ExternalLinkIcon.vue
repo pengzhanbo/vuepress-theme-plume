@@ -21,6 +21,7 @@ const show = computed(() => matter.value.externalLink !== false)
   height: 0.8em;
   color: var(--vp-c-text-3);
   vertical-align: middle;
+  transition: color var(--t-color);
 }
 
 @media print {

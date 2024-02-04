@@ -26,6 +26,7 @@ defineProps<{
   padding: 12px 12px 0;
   margin: 12px -12px 0;
   border-top: 1px solid var(--vp-c-divider);
+  transition: border-top var(--t-color);
 }
 
 .menu-group:first-child {
@@ -45,6 +46,6 @@ defineProps<{
   font-weight: 600;
   line-height: 32px;
   color: var(--vp-c-text-2);
-  transition: color 0.25s;
+  transition: color var(--t-color);
 }
 </style>

@@ -25,6 +25,8 @@ withDefaults(defineProps<Props>(), {
   line-height: 22px;
   border: 1px solid transparent;
   border-radius: 12px;
+  transition: var(--t-color);
+  transition-property: color, background-color, border-color;
   transform: translateY(-2px);
 }
 

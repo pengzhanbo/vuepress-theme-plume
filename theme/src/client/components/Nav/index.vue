@@ -36,7 +36,6 @@ provide('close-screen', closeScreen)
   z-index: var(--vp-z-index-nav);
   width: 100%;
   pointer-events: none;
-  transition: background-color 0.5s;
 }
 
 .nav-wrapper.fixed {

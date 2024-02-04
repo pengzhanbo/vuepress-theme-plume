@@ -56,10 +56,8 @@ function linkTo(e: Event) {
   text-align: center;
   white-space: nowrap;
   border: 1px solid transparent;
-  transition:
-    color 0.25s,
-    border-color 0.25s,
-    background-color 0.25s;
+  transition: var(--t-color);
+  transition-property: border, color, background-color;
 }
 
 .VPButton:active {

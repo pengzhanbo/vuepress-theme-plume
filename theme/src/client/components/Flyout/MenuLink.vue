@@ -33,6 +33,7 @@ const page = usePageData()
   padding: 12px 12px 0;
   margin: 12px -12px 0;
   border-top: 1px solid var(--vp-c-divider);
+  transition: border-top var(--t-color);
 }
 
 .link {
@@ -45,8 +46,8 @@ const page = usePageData()
   white-space: nowrap;
   border-radius: 6px;
   transition:
-    background-color 0.25s,
-    color 0.25s;
+    background-color var(--t-color),
+    color var(--t-color);
 }
 
 .link:hover {

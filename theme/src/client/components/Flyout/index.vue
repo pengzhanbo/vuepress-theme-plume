@@ -66,7 +66,7 @@ export default {
 <style scoped>
 .flyout-wrapper {
   position: relative;
-  transition: color 0.25s;
+  transition: color var(--t-color);
 }
 
 .text {
@@ -76,14 +76,14 @@ export default {
   font-weight: 500;
   line-height: normal;
   color: var(--vp-c-text-1);
-  transition: color 0.25s;
+  transition: color var(--t-color);
 }
 
 .icon {
   width: 20px;
   height: 20px;
   fill: currentcolor;
-  transition: fill 0.25s;
+  transition: fill var(--t-color);
 }
 
 .menu {
@@ -131,7 +131,7 @@ export default {
   height: var(--vp-nav-height);
   padding: 0 10px;
   color: var(--vp-c-text-1);
-  transition: color 0.5s;
+  transition: color var(--t-color);
 }
 
 .option-icon {

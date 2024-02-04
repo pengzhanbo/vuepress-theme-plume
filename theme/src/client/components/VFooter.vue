@@ -42,18 +42,24 @@ onMounted(() => {
 .plume-footer {
   position: relative;
   z-index: var(--vp-z-index-footer);
-  padding: 32px 24px;
+  padding: 24px;
   background-color: var(--vp-c-bg);
   border-top: 1px solid var(--vp-c-gutter);
-  transition: all 0.25s;
+  transition: all var(--t-color);
+}
+
+.plume-footer p {
+  color: var(--vp-c-text-2);
+  transition: color var(--t-color);
 }
 
 .plume-footer :deep(a) {
+  color: var(--vp-c-text-2);
   text-decoration-line: underline;
   text-underline-offset: 2px;
   transition:
-    color,
-    text-underline-offset 0.25s;
+    color var(--t-color),
+    text-underline-offset var(--t-color);
 }
 
 .plume-footer :deep(a:hover) {
@@ -63,7 +69,7 @@ onMounted(() => {
 
 @media (min-width: 768px) {
   .plume-footer {
-    padding: 32px;
+    padding: 24px;
   }
 }
 

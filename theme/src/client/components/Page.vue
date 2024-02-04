@@ -101,14 +101,14 @@ onContentUpdated(() => zoom?.refresh())
   display: none;
 }
 
-.aside-curtain {
+/* .aside-curtain {
   position: fixed;
   bottom: 0;
   z-index: 10;
   width: 224px;
   height: 32px;
   background: linear-gradient(transparent, var(--vp-c-bg) 70%);
-}
+} */
 
 .aside-content {
   display: flex;

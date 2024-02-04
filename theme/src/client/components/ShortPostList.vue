@@ -35,6 +35,7 @@ defineProps<{
   justify-content: space-between;
   margin: 14px 0;
   color: var(--vp-c-text-1);
+  transition: color var(--t-color);
 }
 
 .post-list .post-title {
@@ -52,7 +53,7 @@ defineProps<{
 
 .post-list .post-time {
   color: var(--vp-c-text-3);
-  transition: all var(--t-color);
+  transition: color var(--t-color);
 }
 
 .post-list li:hover .post-title {

@@ -92,6 +92,8 @@ const createTime = computed(() =>
   color: var(--vp-c-text-2);
   background-color: var(--vp-c-default-soft);
   border-radius: 4px;
+  transition: var(--t-color);
+  transition-property: color, background-color;
 }
 
 .post-item h3 {
@@ -100,6 +102,7 @@ const createTime = computed(() =>
   margin-bottom: 0.75rem;
   font-size: 18px;
   font-weight: 600;
+  color: var(--vp-c-text-1);
   transition: color var(--t-color);
 }
 
@@ -117,6 +120,13 @@ const createTime = computed(() =>
     margin: 0 0 24px 20px;
     background-color: var(--vp-c-bg);
     border-radius: 8px;
+    box-shadow: var(--vp-shadow-1);
+    transition: var(--t-color);
+    transition-property: background-color, color, box-shadow;
+    will-change: transform;
+  }
+
+  .post-item:hover {
     box-shadow: var(--vp-shadow-2);
   }
 }
@@ -140,6 +150,7 @@ const createTime = computed(() =>
   font-size: 14px;
   font-weight: 400;
   color: var(--vp-c-text-2);
+  transition: color var(--t-color);
 }
 
 .post-meta > div {
@@ -166,6 +177,7 @@ const createTime = computed(() =>
   color: var(--vp-tag-color);
   background-color: var(--vp-tag-bg-color);
   border-radius: 3px;
+  transition: color var(--t-color), background-color var(--t-color);
 }
 
 .post-meta .tag-list .tag:last-of-type {
@@ -177,6 +189,7 @@ const createTime = computed(() =>
   height: 14px;
   margin: 0.3rem;
   color: var(--vp-c-text-3);
+  transition: color var(--t-color);
 }
 
 .plume-content :deep(p) {

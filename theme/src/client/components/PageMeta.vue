@@ -86,6 +86,7 @@ const hasMeta = computed(() => readingTime.value.times || tags.value.length || c
   font-size: 16px;
   font-weight: 400;
   border-left: solid 4px var(--vp-c-brand-1);
+  transition: border-left var(--t-color);
 }
 
 .page-category-wrapper .category {
@@ -122,6 +123,7 @@ const hasMeta = computed(() => readingTime.value.times || tags.value.length || c
   font-size: 14px;
   color: var(--vp-c-text-3);
   border-bottom: solid 1px var(--vp-c-divider);
+  transition: color var(--t-color), border-bottom var(--t-color);
 }
 
 .page-meta-wrapper p {

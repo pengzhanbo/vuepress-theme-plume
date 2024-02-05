@@ -25,7 +25,7 @@ const homeStyle = computed(() => {
       mask.value
         ? `linear-gradient(rgba(0, 0, 0, ${mask.value}), rgba(0, 0, 0, ${mask.value}))`
         : '',
-      `url(${withBase(matter.value.banner ?? 'https://pengzhanbo.cn/images/home-banner.jpg')})`,
+      `url(${withBase(matter.value.banner ?? 'http://file.mo7.cc/api/public/bz')})`,
     ]
       .filter(Boolean)
       .join(','),

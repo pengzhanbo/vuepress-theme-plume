@@ -135,6 +135,11 @@ const showFooter = computed(() => {
 }
 
 @media (min-width: 640px) {
+  .last-updated {
+    flex: 1;
+    text-align: right;
+  }
+
   .last-updated-text {
     font-size: 14px;
     font-weight: 500;

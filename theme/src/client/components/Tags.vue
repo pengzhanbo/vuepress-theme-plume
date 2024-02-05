@@ -42,7 +42,6 @@ const { tags: tagsLink } = useBlogExtract()
 <style scoped>
 .tags-wrapper {
   flex: 1;
-  max-width: 768px;
   padding: 32px 24px;
   margin: 0 auto;
 }
@@ -151,9 +150,9 @@ const { tags: tagsLink } = useBlogExtract()
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1200px) {
   .tags-wrapper {
-    margin-left: auto;
+    margin-left: 0;
   }
 }
 </style>

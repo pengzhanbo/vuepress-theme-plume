@@ -29,7 +29,6 @@ const { archives } = useArchives()
 <style scoped>
 .archives-wrapper {
   flex: 1;
-  max-width: 768px;
   padding: 32px 24px;
   margin: 0 auto;
 }
@@ -97,9 +96,9 @@ const { archives } = useArchives()
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1200px) {
   .archives-wrapper {
-    margin-left: auto;
+    margin-left: 0;
   }
 }
 </style>

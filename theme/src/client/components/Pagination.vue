@@ -63,23 +63,19 @@ const emit = defineEmits<{ change: [value: number] }>()
   font-weight: 500;
   line-height: 1;
   color: var(--vp-c-text-2);
+  background-color: transparent;
   border-radius: 4px;
-  transition: all var(--t-color);
+  transition: var(--t-color);
+  transition-property: color, background-color;
 }
 
 .btn.active {
-  color: var(--vp-c-bg);
-  background-color: var(--vp-c-brand-2);
-  border-color: var(--vp-c-brand-2);
+  color: var(--vp-c-brand-1);
+  background-color: var(--vp-c-bg-alt);
 }
 
 .btn[disabled],
-.btn[disabled]:hover {
-  color: var(--vp-c-gray-1);
-  cursor: not-allowed;
-  background-color: transparent;
-}
-
+.btn[disabled]:hover,
 .btn.more {
   color: var(--vp-c-gray-1);
   cursor: not-allowed;
@@ -92,12 +88,18 @@ const emit = defineEmits<{ change: [value: number] }>()
     background-color: var(--vp-c-bg);
     border-radius: 6px;
     box-shadow: var(--vp-shadow-1);
+    transition: var(--t-color);
+    transition-property: background-color, box-shadow;
   }
 
   .page-range .btn {
     padding: 4px 12px;
     margin: 0 8px;
     font-size: 14px;
+  }
+
+  .btn:not(.active):hover {
+    color: var(--vp-c-brand-1);
   }
 }
 </style>

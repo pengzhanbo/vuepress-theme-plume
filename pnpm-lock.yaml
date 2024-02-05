@@ -280,11 +280,11 @@ importers:
   plugins/plugin-shikiji:
     dependencies:
       '@shikijs/transformers':
-        specifier: 1.0.0-beta.3
-        version: 1.0.0-beta.3
+        specifier: 1.0.0-beta.5
+        version: 1.0.0-beta.5
       '@shikijs/twoslash':
-        specifier: 1.0.0-beta.3
-        version: 1.0.0-beta.3(typescript@5.3.3)
+        specifier: 1.0.0-beta.5
+        version: 1.0.0-beta.5(typescript@5.3.3)
       nanoid:
         specifier: ^5.0.4
         version: 5.0.4
@@ -292,8 +292,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       shiki:
-        specifier: 1.0.0-beta.3
-        version: 1.0.0-beta.3
+        specifier: 1.0.0-beta.5
+        version: 1.0.0-beta.5
       vuepress:
         specifier: 2.0.0-rc.2
         version: 2.0.0-rc.2(@vuepress/bundler-vite@2.0.0-rc.2)(@vuepress/bundler-webpack@2.0.0-rc.2)(typescript@5.3.3)(vue@3.4.15)
@@ -449,9 +449,6 @@ packages:
     peerDependencies:
       '@algolia/client-search': '>= 4.9.1 < 6'
       algoliasearch: '>= 4.9.1 < 6'
-    peerDependenciesMeta:
-      '@algolia/client-search':
-        optional: true
     dependencies:
       '@algolia/client-search': 4.20.0
       algoliasearch: 4.20.0
@@ -3062,20 +3059,20 @@ packages:
     dev: false
     optional: true
 
-  /@shikijs/core@1.0.0-beta.3:
-    resolution: {integrity: sha512-SCwPom2Wn8XxNlEeqdzycU93SKgzYeVsedjqDsgZaz4XiiPpZUzlHt2NAEQTwTnPcHNZapZ6vbkwJ8P11ggL3Q==}
+  /@shikijs/core@1.0.0-beta.5:
+    resolution: {integrity: sha512-C/MxtvK3FFCQZSsDq6OfjDHHOmyP1Jc9wO66cnE8VLEyWXzWch7Zpoc2MWuVJTSC0Pz9QxyUlsBCnroplFqoSg==}
     dev: false
 
-  /@shikijs/transformers@1.0.0-beta.3:
-    resolution: {integrity: sha512-ASQQQqxW4dANxMGw4yGkTjtMSsUaRhImv/lzJEdfJ3/eP8TVlVYnohOFQVgpLjBBYGy9P0l0oKrlbjiGosTJ/Q==}
+  /@shikijs/transformers@1.0.0-beta.5:
+    resolution: {integrity: sha512-Kd3312yH6sh8Jw0xjBFfGpXTU3Qts1bwuB19wDDoKRvJqjrkffftdSuKzhHPa+DP/L0ZFhq96xMPngzQ15rQmQ==}
     dependencies:
-      shiki: 1.0.0-beta.3
+      shiki: 1.0.0-beta.5
     dev: false
 
-  /@shikijs/twoslash@1.0.0-beta.3(typescript@5.3.3):
-    resolution: {integrity: sha512-lHksLOuWNaU5rZsbJ3ViBn3U8P5f+CGKIcPDuggNczEAyT/nT1CFAHSusE08lJSclAFTNHIkEUE4btUUkxx3Wg==}
+  /@shikijs/twoslash@1.0.0-beta.5(typescript@5.3.3):
+    resolution: {integrity: sha512-BPn2PFgy6Bon/hWU52ELWeGrdO1lsuR6ZIhTTDw4q+GrOZQsVDkdNlhIjoanGv1UY95dlbTEuPqXtzmk+4O73Q==}
     dependencies:
-      '@shikijs/core': 1.0.0-beta.3
+      '@shikijs/core': 1.0.0-beta.5
       twoslash: 0.1.0(typescript@5.3.3)
     transitivePeerDependencies:
       - supports-color
@@ -13231,10 +13228,10 @@ packages:
   /shell-quote@1.8.1:
     resolution: {integrity: sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==}
 
-  /shiki@1.0.0-beta.3:
-    resolution: {integrity: sha512-z7cHTNSSvwGx2DfeLwjSNLo+HcVxifgNIzLm6Ye52eXcIwNHXT0wHbhy7FDOKSKveuEHBwt9opfj3Hoc8LE1Yg==}
+  /shiki@1.0.0-beta.5:
+    resolution: {integrity: sha512-S5FV55ZH8zLicVyqlJZj8LYqh/VuUICDDNG/L9eDM9I4d69EX+FbgSnKRIuJIwLrmJfTiPoGVnH1HsHX5whP/g==}
     dependencies:
-      '@shikijs/core': 1.0.0-beta.3
+      '@shikijs/core': 1.0.0-beta.5
     dev: false
 
   /side-channel@1.0.4:

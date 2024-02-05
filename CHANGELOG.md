@@ -1,3 +1,29 @@
+# [1.0.0-rc.32](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.31...v1.0.0-rc.32) (2024-2-5)
+
+
+### Features
+
+*  博客相关页面 外观切换过渡效果，hover 效果 ([a44a6ad](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a44a6ad2eecf593eeb2f482d93b41e40af1fff4b))
+*  导航栏 外观切换过渡效果 ([e3a9c07](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e3a9c07ed32565f325a3d9e5445704b93632a262))
+*  文章页面 外观切换过渡效果 ([61e6e17](https://github.com/pengzhanbo/vuepress-theme-plume/commit/61e6e1789472468993b3256c8c8c42acad2d2bc8))
+*  友情链接页 外观切换过渡效果 ([062cc88](https://github.com/pengzhanbo/vuepress-theme-plume/commit/062cc88a6a612849e9e7550fd9dbcb8cb624b116))
+* 侧边栏 外观切换过渡效果 ([42bf148](https://github.com/pengzhanbo/vuepress-theme-plume/commit/42bf1481a1c098a6181ae0085f235d7dfeaef991))
+* 代码块高亮 外观切换过渡效果 ([13f7421](https://github.com/pengzhanbo/vuepress-theme-plume/commit/13f7421022bdaf30eb751c4681eadbb8efef8488))
+
+
+### Performance Improvements
+
+* 迁移 read time 至官方插件 ([21268e6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/21268e6e2bcc41bf4671dbc0fda20fcdde3f71e7))
+* 首页大图默认为 Bing 每日壁纸 ([ae598a1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ae598a1f0f1aa12688709cb9883e76b134313790))
+* 优化 标签页、归档页 布局 ([977d965](https://github.com/pengzhanbo/vuepress-theme-plume/commit/977d965c1273d2b569ae54c4ea35968eb49aa873))
+* 优化 博客文章列表页 布局 ([f3feaf4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f3feaf499ac3991cb701ddab68b4f434867beae6))
+* 优化博客文章列表页分页组件 ([b764d2a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b764d2a10e4325f08f1b65cd0aa445add79e499e))
+* 优化内容细节， 搜索框的过渡效果 ([fed4efb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fed4efb566a43bc864b258128e88de85da0bff97))
+* 优化页面细节上的过渡效果 ([526e8d1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/526e8d13c11dac8bab44dac35f2b608bf3d96b92))
+* bump `shiki` ([5210925](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5210925f87b183fbd2cd6012776c84461685fb67))
+
+
+
 # [1.0.0-rc.31](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.30...v1.0.0-rc.31) (2024-2-2)
 
 

@@ -1,6 +1,7 @@
 import { usePageLang } from 'vuepress/client'
 import { useExtraBlogData as _useExtraBlogData, useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
 import { type Ref, computed } from 'vue'
+import { useMediaQuery } from '@vueuse/core'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 import { useLocaleLink, useRouteQuery, useThemeLocaleData } from '../composables/index.js'
 import { toArray } from '../utils/index.js'
@@ -24,6 +25,7 @@ export function usePostListControl() {
   const list = useLocalePostList()
   const blog = computed(() => themeData.value.blog || {})
   const pagination = computed(() => blog.value.pagination || {})
+  const is960 = useMediaQuery('(max-width: 960px)')
 
   const postList = computed(() => {
     const stickyList = list.value.filter(item =>
@@ -77,8 +79,51 @@ export function usePostListControl() {
     )
   })
 
-  const changePage = (offset: number) => {
-    page.value += offset
+  const pageRange = computed(() => {
+    let range: { value: number | string, more?: true }[] = []
+    const total = totalPage.value
+    const _page = page.value
+    const per = is960.value ? 4 : 5
+
+    if (total <= 0)
+      return range
+    if (total <= 10) {
+      range = Array.from({ length: total }, (_, i) => ({ value: i + 1 }))
+    }
+    else {
+      let i = 1
+      let hasMore = false
+      while (i <= total) {
+        if ((_page <= per && i <= per) || (_page >= total - (per - 1) && i >= total - (per - 1))) {
+          hasMore = false
+          range.push({ value: i })
+        }
+        else if (i <= 2 || i >= total - 1) {
+          hasMore = false
+          range.push({ value: i })
+        }
+        else if (
+          (_page > per + 1 || _page < total - (per + 1))
+          && _page - i < per - 2
+          && i - _page < per - 2
+        ) {
+          hasMore = false
+          range.push({ value: i })
+        }
+        else if (!hasMore) {
+          hasMore = true
+          range.push({ value: i, more: true })
+        }
+        i++
+      }
+    }
+    return range
+  })
+
+  const changePage = (current: number) => {
+    if (page.value === current)
+      return
+    page.value = current
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
   }
 
@@ -87,6 +132,7 @@ export function usePostListControl() {
     postList: finalList,
     page,
     totalPage,
+    pageRange,
     isLastPage,
     isFirstPage,
     isPaginationEnabled,

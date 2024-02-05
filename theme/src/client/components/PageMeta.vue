@@ -1,19 +1,22 @@
 <script lang="ts" setup>
 import { usePageData, usePageFrontmatter } from 'vuepress/client'
 import { computed } from 'vue'
+import {
+  useReadingTimeLocale,
+} from '@vuepress/plugin-reading-time/client'
 import type {
   PlumeThemePageData,
   PlumeThemePostFrontmatter,
 } from '../../shared/index.js'
-import { useExtraBlogData, useReadingTime } from '../composables/index.js'
+import { useExtraBlogData } from '../composables/index.js'
 import IconBooks from './icons/IconBooks.vue'
 import IconClock from './icons/IconClock.vue'
 import IconTag from './icons/IconTag.vue'
 
 const page = usePageData<PlumeThemePageData>()
 const matter = usePageFrontmatter<PlumeThemePostFrontmatter>()
-const readingTime = useReadingTime()
 const extraData = useExtraBlogData()
+const readingTime = useReadingTimeLocale()
 
 const createTime = computed(() => {
   if (matter.value.createTime)
@@ -37,7 +40,7 @@ const tags = computed(() => {
   return []
 })
 
-const hasMeta = computed(() => readingTime.value.times || tags.value.length || createTime.value)
+const hasMeta = computed(() => readingTime.value.time || tags.value.length || createTime.value)
 </script>
 
 <template>
@@ -57,10 +60,10 @@ const hasMeta = computed(() => readingTime.value.times || tags.value.length || c
     {{ page.title }}
   </h2>
   <div v-if="hasMeta" class="page-meta-wrapper">
-    <p v-if="readingTime.times" class="reading-time">
+    <p v-if="readingTime.time" class="reading-time">
       <IconBooks class="icon" />
       <span>{{ readingTime.words }}</span>
-      <span>{{ readingTime.times }}</span>
+      <span>{{ readingTime.time }}</span>
     </p>
     <p v-if="tags.length > 0">
       <IconTag class="icon" />
@@ -142,6 +145,7 @@ const hasMeta = computed(() => readingTime.value.times || tags.value.length || c
   display: inline-block;
   padding: 3px 5px;
   margin-right: 6px;
+  font-size: 12px;
   line-height: 1;
   color: var(--vp-tag-color);
   background-color: var(--vp-tag-bg-color);

@@ -7,7 +7,7 @@ import type { CopyCodeOptions } from '@vuepress-plume/plugin-copy-code'
 import type { ShikiPluginOptions } from '@vuepress-plume/plugin-shikiji'
 import type { CommentPluginOptions } from 'vuepress-plugin-comment2'
 import type { MarkdownEnhanceOptions } from 'vuepress-plugin-md-enhance'
-import type { ReadingTimeOptions } from 'vuepress-plugin-reading-time2'
+import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
 
 export interface PlumeThemePluginOptions {
   /**
@@ -64,5 +64,5 @@ export interface PlumeThemePluginOptions {
 
   frontmatter?: Omit<AutoFrontmatterOptions, 'frontmatter'>
 
-  readingTime?: false | ReadingTimeOptions
+  readingTime?: false | ReadingTimePluginOptions
 }

@@ -49,7 +49,6 @@ const {
 <style scoped>
 .post-list {
   flex: 1;
-  max-width: 768px;
   padding-top: 2rem;
   margin: 0 auto;
 }

@@ -34,15 +34,15 @@ const createTime = computed(() =>
 <template>
   <div class="post-item">
     <h3>
-      <AutoLink :href="post.path">
-        {{ post.title }}
-      </AutoLink>
       <div
         v-if="typeof post.sticky === 'boolean' ? post.sticky : post.sticky >= 0"
         class="sticky"
       >
         TOP
       </div>
+      <AutoLink :href="post.path">
+        {{ post.title }}
+      </AutoLink>
     </h3>
     <div class="post-meta">
       <div v-if="categoryList.length" class="category-list">
@@ -68,7 +68,7 @@ const createTime = computed(() =>
         <span>{{ createTime }}</span>
       </div>
     </div>
-    <div v-if="post.excerpt" class="plume-content" v-html="post.excerpt" />
+    <div v-if="post.excerpt" class="plume-content excerpt" v-html="post.excerpt" />
   </div>
 </template>
 
@@ -85,12 +85,12 @@ const createTime = computed(() =>
 .post-item .sticky {
   display: inline-block;
   padding: 3px 6px;
-  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   font-size: 13px;
   font-weight: 600;
   line-height: 1;
   color: var(--vp-c-text-2);
-  background-color: var(--vp-c-default-soft);
+  background-color: var(--vp-c-brand-soft);
   border-radius: 4px;
   transition: var(--t-color);
   transition-property: color, background-color;
@@ -129,15 +129,19 @@ const createTime = computed(() =>
   .post-item:hover {
     box-shadow: var(--vp-shadow-2);
   }
-}
 
-@media (min-width: 960px) {
-  .post-item {
-    margin-left: 0;
+  .post-item .post-meta {
+    margin-bottom: 0;
   }
 
-  .post-item h3 {
-    font-size: 20px;
+  .post-item .excerpt {
+    margin-top: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .post-item {
+    margin-left: 0;
   }
 }
 
@@ -173,6 +177,7 @@ const createTime = computed(() =>
   display: inline-block;
   padding: 3px 5px;
   margin-right: 6px;
+  font-size: 12px;
   line-height: 1;
   color: var(--vp-tag-color);
   background-color: var(--vp-tag-bg-color);

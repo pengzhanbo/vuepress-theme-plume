@@ -118,7 +118,12 @@ function initSidebarByAuto(
     const pi = prev.relativePath.match(/\//g)?.length || 0
     const ni = next.relativePath.match(/\//g)?.length || 0
     return pi < ni ? -1 : 1
+  }).sort((prev, next) => {
+      const pi = parseFloat(prev.relativePath.match(/(\d+)\.(?=[^/]+$)/)?.[1] || '0')
+      const ni = parseFloat(next.relativePath.match(/(\d+)\.(?=[^/]+$)/)?.[1] || '0')
+      return pi < ni ? -1 : 1
   })
+  
   const RE_INDEX = ['index.md', 'README.md', 'readme.md']
   const result: NotesSidebarItem[] = []
   for (const page of pages) {

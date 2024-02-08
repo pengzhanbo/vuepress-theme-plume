@@ -114,11 +114,29 @@ function initSidebarByAuto(
   note: NotesItemOptions,
   pages: NotePage[],
 ): NotesSidebarItem[] {
-  pages = pages.sort((prev, next) => {
-    const pi = prev.relativePath.match(/\//g)?.length || 0
-    const ni = next.relativePath.match(/\//g)?.length || 0
-    return pi < ni ? -1 : 1
+  let tempPages = pages.map(page => {
+    return { ...page, splitPath: page.relativePath.split('/') }
   })
+
+  const maxIndex = Math.max(...tempPages.map(page => page.splitPath.length))
+  let nowIndex = 0
+
+  while (nowIndex < maxIndex) {
+    tempPages = tempPages.sort((prev, next) => {
+      const pi = prev.splitPath?.[nowIndex]?.match(/(\d+)\.(?=[^/]+$)/)?.[1]
+      const ni = next.splitPath?.[nowIndex]?.match(/(\d+)\.(?=[^/]+$)/)?.[1]
+      if (!pi || !ni) return 0
+      return parseFloat(pi) < parseFloat(ni) ? -1 : 1
+    })
+
+    nowIndex++
+  }
+
+  pages = tempPages.map(page => {
+    delete page.splitPath;
+    return page
+  })
+
   const RE_INDEX = ['index.md', 'README.md', 'readme.md']
   const result: NotesSidebarItem[] = []
   for (const page of pages) {

@@ -139,12 +139,6 @@ const createTime = computed(() =>
   }
 }
 
-@media (min-width: 1200px) {
-  .post-item {
-    margin-left: 0;
-  }
-}
-
 .post-meta {
   display: flex;
   flex-wrap: wrap;

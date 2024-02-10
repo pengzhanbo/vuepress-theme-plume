@@ -114,7 +114,7 @@ function initSidebarByAuto(
   note: NotesItemOptions,
   pages: NotePage[],
 ): NotesSidebarItem[] {
-  let tempPages = pages.map(page => {
+  let tempPages = pages.map((page) => {
     return { ...page, splitPath: page.relativePath.split('/') }
   })
 
@@ -125,15 +125,16 @@ function initSidebarByAuto(
     tempPages = tempPages.sort((prev, next) => {
       const pi = prev.splitPath?.[nowIndex]?.match(/(\d+)\.(?=[^/]+$)/)?.[1]
       const ni = next.splitPath?.[nowIndex]?.match(/(\d+)\.(?=[^/]+$)/)?.[1]
-      if (!pi || !ni) return 0
-      return parseFloat(pi) < parseFloat(ni) ? -1 : 1
+      if (!pi || !ni)
+        return 0
+      return Number.parseFloat(pi) < Number.parseFloat(ni) ? -1 : 1
     })
 
     nowIndex++
   }
 
-  pages = tempPages.map(page => {
-    delete page.splitPath;
+  pages = tempPages.map((page) => {
+    delete (page as any).splitPath
     return page
   })
 

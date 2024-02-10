@@ -1,6 +1,6 @@
 ---
 home: true
-banner: http://file.mo7.cc/api/public/bz
+banner: https://file.mo7.cc/api/public/bz
 bannerMask: 
   light: 0.1
   dark: 0.3

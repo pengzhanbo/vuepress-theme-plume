@@ -56,9 +56,9 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
       <span v-if="index !== categoryList.length - 1" class="dot">&rsaquo;</span>
     </template>
   </div>
-  <h2 v-if="page.isBlogPost" class="page-title" :class="{ padding: !hasMeta }">
+  <h1 v-if="page.isBlogPost" class="page-title" :class="{ padding: !hasMeta }">
     {{ page.title }}
-  </h2>
+  </h1>
   <div v-if="hasMeta" class="page-meta-wrapper">
     <p v-if="readingTime.time" class="reading-time">
       <IconBooks class="icon" />

@@ -149,10 +149,4 @@ const { tags: tagsLink } = useBlogExtract()
     margin-top: 0;
   }
 }
-
-@media (min-width: 1200px) {
-  .tags-wrapper {
-    margin-left: 0;
-  }
-}
 </style>

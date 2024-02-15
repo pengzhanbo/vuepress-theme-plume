@@ -280,20 +280,20 @@ importers:
   plugins/plugin-shikiji:
     dependencies:
       '@shikijs/transformers':
-        specifier: 1.0.0-beta.5
-        version: 1.0.0-beta.5
+        specifier: ^1.1.2
+        version: 1.1.2
       '@shikijs/twoslash':
-        specifier: 1.0.0-beta.5
-        version: 1.0.0-beta.5(typescript@5.3.3)
+        specifier: ^1.1.2
+        version: 1.1.2(typescript@5.3.3)
       nanoid:
-        specifier: ^5.0.4
-        version: 5.0.4
+        specifier: ^5.0.5
+        version: 5.0.5
       picocolors:
         specifier: ^1.0.0
         version: 1.0.0
       shiki:
-        specifier: 1.0.0-beta.5
-        version: 1.0.0-beta.5
+        specifier: ^1.1.2
+        version: 1.1.2
       vuepress:
         specifier: 2.0.0-rc.2
         version: 2.0.0-rc.2(@vuepress/bundler-vite@2.0.0-rc.2)(@vuepress/bundler-webpack@2.0.0-rc.2)(typescript@5.3.3)(vue@3.4.15)
@@ -3059,21 +3059,21 @@ packages:
     dev: false
     optional: true
 
-  /@shikijs/core@1.0.0-beta.5:
-    resolution: {integrity: sha512-C/MxtvK3FFCQZSsDq6OfjDHHOmyP1Jc9wO66cnE8VLEyWXzWch7Zpoc2MWuVJTSC0Pz9QxyUlsBCnroplFqoSg==}
+  /@shikijs/core@1.1.2:
+    resolution: {integrity: sha512-ERVzNQz88ZkDqUpWeC57Kp+Kmx5RjqeDBR1M8AGWGom4yrkITiTfXCGmjchlDSw12MhDTuPYR4HVFW8uT61RaQ==}
     dev: false
 
-  /@shikijs/transformers@1.0.0-beta.5:
-    resolution: {integrity: sha512-Kd3312yH6sh8Jw0xjBFfGpXTU3Qts1bwuB19wDDoKRvJqjrkffftdSuKzhHPa+DP/L0ZFhq96xMPngzQ15rQmQ==}
+  /@shikijs/transformers@1.1.2:
+    resolution: {integrity: sha512-tldkUMW7RBkU2F6eXbiRMw3ja+hQer1EjwhD2NGOv6K0pgZdVp3JKjU8uisRtg65tyBqrVHq7zlLHVk7EKmUZA==}
     dependencies:
-      shiki: 1.0.0-beta.5
+      shiki: 1.1.2
     dev: false
 
-  /@shikijs/twoslash@1.0.0-beta.5(typescript@5.3.3):
-    resolution: {integrity: sha512-BPn2PFgy6Bon/hWU52ELWeGrdO1lsuR6ZIhTTDw4q+GrOZQsVDkdNlhIjoanGv1UY95dlbTEuPqXtzmk+4O73Q==}
+  /@shikijs/twoslash@1.1.2(typescript@5.3.3):
+    resolution: {integrity: sha512-Jt8QAudENcCS7cgxjbXMpUCA7IAOy1kot+Qo5yyyLl9VwVKvZMW0BDrrigbOia8602X2Z76U6XEs9UXyD6LnsQ==}
     dependencies:
-      '@shikijs/core': 1.0.0-beta.5
-      twoslash: 0.1.0(typescript@5.3.3)
+      '@shikijs/core': 1.1.2
+      twoslash: 0.2.2(typescript@5.3.3)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -11028,6 +11028,12 @@ packages:
     hasBin: true
     dev: false
 
+  /nanoid@5.0.5:
+    resolution: {integrity: sha512-/Veqm+QKsyMY3kqi4faWplnY1u+VuKO3dD2binyPIybP31DRO29bPF+1mszgLnrR2KqSLceFLBNw0zmvDzN1QQ==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+    dev: false
+
   /nanomatch@1.2.13:
     resolution: {integrity: sha512-fpoe2T0RbHwBTBUOftAfBPaDEi06ufaUai0mE6Yn1kacc3SnTErfb/h+X94VXzI64rKFHYImXSvdwGGCmwOqCA==}
     engines: {node: '>=0.10.0'}
@@ -13228,10 +13234,10 @@ packages:
   /shell-quote@1.8.1:
     resolution: {integrity: sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==}
 
-  /shiki@1.0.0-beta.5:
-    resolution: {integrity: sha512-S5FV55ZH8zLicVyqlJZj8LYqh/VuUICDDNG/L9eDM9I4d69EX+FbgSnKRIuJIwLrmJfTiPoGVnH1HsHX5whP/g==}
+  /shiki@1.1.2:
+    resolution: {integrity: sha512-qNzFwTv5uhEDNUIwp7wHjsrffVeLbmOgWnM5mZZhoiz7G2qAUvqVfUzuWfieD45/YAKipzCtdV9SndacKtABow==}
     dependencies:
-      '@shikijs/core': 1.0.0-beta.5
+      '@shikijs/core': 1.1.2
     dev: false
 
   /side-channel@1.0.4:
@@ -14405,12 +14411,17 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
-  /twoslash@0.1.0(typescript@5.3.3):
-    resolution: {integrity: sha512-zvDn23/FwNdi/i2xMTTDcn7xnX4iKlp6tJt68aD86zRqesQrb/HOnMBtaUu6+vme4gtlX9ScEfKYog1+7IPKSw==}
+  /twoslash-protocol@0.2.2:
+    resolution: {integrity: sha512-vwmMzoVkRk9yOElqn1xzCGwnv4rpfWHGtD177NkGc+A6KK5JhZtmugyW/T96g+Fwx2JrZB67FhAvdU5ptsXrUQ==}
+    dev: false
+
+  /twoslash@0.2.2(typescript@5.3.3):
+    resolution: {integrity: sha512-34VeMQiwiC6Jn2fSxo39z0BtINrOAeYb9WRfEQyW47cgMjw4NUuM3ym5qwL0g4xFoocuH1fKXlSl96EE2DghVQ==}
     peerDependencies:
       typescript: '*'
     dependencies:
       '@typescript/vfs': 1.5.0
+      twoslash-protocol: 0.2.2
       typescript: 5.3.3
     transitivePeerDependencies:
       - supports-color

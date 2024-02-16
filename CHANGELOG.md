@@ -1,3 +1,12 @@
+# [1.0.0-rc.34](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.33...v1.0.0-rc.34) (2024-2-16)
+
+
+### Bug Fixes
+
+* **plugin-baidu-tongji:** 修复错误的在`enhance`中使用 composable api ([040de83](https://github.com/pengzhanbo/vuepress-theme-plume/commit/040de83f5bbc37394fb10a300dbb06de6480662f))
+
+
+
 # [1.0.0-rc.33](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.32...v1.0.0-rc.33) (2024-2-16)
 
 

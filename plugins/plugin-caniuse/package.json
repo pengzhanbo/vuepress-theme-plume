@@ -39,11 +39,11 @@
   ],
   "scripts": {
     "build": "pnpm run clean && pnpm run ts",
-    "clean": "rimraf lib *.tsbuildinfo",
+    "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
     "ts": "tsc -b tsconfig.build.json"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.2"
+    "vuepress": "2.0.0-rc.7"
   },
   "dependencies": {
     "markdown-it-container": "^4.0.0"

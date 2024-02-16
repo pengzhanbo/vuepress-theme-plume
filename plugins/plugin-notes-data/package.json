@@ -32,18 +32,18 @@
   ],
   "scripts": {
     "build": "pnpm run clean && pnpm run copy && pnpm run ts",
-    "clean": "rimraf lib *.tsbuildinfo",
+    "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
     "ts": "tsc -b tsconfig.build.json"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.2"
+    "vuepress": "2.0.0-rc.7"
   },
   "dependencies": {
     "@vue/devtools-api": "6.5.1",
-    "chokidar": "^3.5.3",
+    "chokidar": "^3.6.0",
     "create-filter": "^1.0.1",
-    "vue": "^3.4.15"
+    "vue": "^3.4.19"
   },
   "publishConfig": {
     "access": "public"

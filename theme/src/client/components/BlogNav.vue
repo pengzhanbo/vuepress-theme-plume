@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useRoute } from 'vue-router'
+import { useRoute } from 'vuepress/client'
 import { useBlogExtract } from '../composables/index.js'
 import AutoLink from './AutoLink.vue'
 import IconArchive from './icons/IconArchive.vue'

@@ -1,6 +1,6 @@
 import { customRef, nextTick, toValue, watch } from 'vue'
 import type { MaybeRef, MaybeRefOrGetter, Ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vuepress/client'
 import type { RouteParamValueRaw, Router } from 'vue-router'
 import { tryOnScopeDispose } from '@vueuse/core'
 

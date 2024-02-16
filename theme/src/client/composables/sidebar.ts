@@ -1,5 +1,5 @@
 import type { PageData } from 'vuepress/client'
-import { usePageData, usePageFrontmatter, withBase } from 'vuepress/client'
+import { usePageData, usePageFrontmatter, useRoute, withBase } from 'vuepress/client'
 import type {
   NotesData,
   NotesSidebarItem,
@@ -8,7 +8,6 @@ import { useNotesData } from '@vuepress-plume/plugin-notes-data/client'
 import { useMediaQuery } from '@vueuse/core'
 import type { ComputedRef, Ref } from 'vue'
 import { computed, onMounted, onUnmounted, ref, watchEffect } from 'vue'
-import { useRoute } from 'vue-router'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import { isActive } from '../utils/index.js'
 import { useThemeLocaleData } from './themeData.js'

@@ -1,10 +1,9 @@
-import { usePageData, usePageFrontmatter, usePageLang } from 'vuepress/client'
+import { usePageData, usePageFrontmatter, usePageLang, useRoute } from 'vuepress/client'
 import { isPlainObject, isString } from 'vuepress/shared'
 import { useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
 import type { NotesSidebarItem } from '@vuepress-plume/plugin-notes-data'
 import { computed } from 'vue'
 import type { ComputedRef, Ref } from 'vue'
-import { useRoute } from 'vue-router'
 import type {
   NavItemWithLink,
   PlumeThemeBlogPostItem,

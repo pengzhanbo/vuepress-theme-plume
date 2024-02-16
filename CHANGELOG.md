@@ -1,3 +1,25 @@
+# [1.0.0-rc.33](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.32...v1.0.0-rc.33) (2024-2-16)
+
+
+### Features
+
+* **plugin-baidu-tongji:** add `useBaiduTongji` ([9dfa6c9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9dfa6c976f0f8c91c916a22bcd3dbea377b9d0f9))
+* **theme:** add `AppearanceText` options ([d98785a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d98785ada7b8ce97e6f810549a987f0bb1a8da03))
+
+
+### Performance Improvements
+
+* 优化 页脚对齐 ([50a59e2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/50a59e2aca82102a242722786cce4e9c3dbb0ece))
+* 优化标签、归档页布局 ([a34a216](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a34a216f90bbee4c0229952e6327c0361173616d))
+* 优化分页交互体验 ([c55d521](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c55d5214ece5cf4fbac1ed837d270de818d8a77b))
+* bump `shiki` to latest ([dd19f19](https://github.com/pengzhanbo/vuepress-theme-plume/commit/dd19f195ea53ca117acb935318bcc54cf9929487))
+* **plugin-content-update:** optimize `Content` Component ([38ef295](https://github.com/pengzhanbo/vuepress-theme-plume/commit/38ef295bc2ede17352debb9c9cf537bf3574d092))
+* **plugin-shikiji:** remove `picocolors` ([41a3744](https://github.com/pengzhanbo/vuepress-theme-plume/commit/41a3744db2bf4297892b3a244baaa1545065bcc9))
+* **theme:** use vuepress virtual routes ([24261ab](https://github.com/pengzhanbo/vuepress-theme-plume/commit/24261ab269f24bc718beeb686a19f34541fcf251))
+* upgrade vuepress to `rc.7` ([e707e9a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e707e9a057953232190f2963e6ed95c4c4a020be))
+
+
+
 # [1.0.0-rc.32](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.31...v1.0.0-rc.32) (2024-2-5)
 
 

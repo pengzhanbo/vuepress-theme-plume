@@ -1,6 +1,5 @@
-import { logger } from 'vuepress/utils'
+import { colors as c, logger } from 'vuepress/utils'
 import { customAlphabet } from 'nanoid'
-import c from 'picocolors'
 import type { ShikiTransformer } from 'shiki'
 import {
   addClassToHast,

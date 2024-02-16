@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vuepress/client'
 import { EXTERNAL_URL_RE, normalizeLink } from '../utils/index.js'
 import IconExternalLink from './icons/IconExternalLink.vue'
 

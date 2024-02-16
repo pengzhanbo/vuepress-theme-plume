@@ -8,7 +8,7 @@ const theme = useThemeLocaleData()
 <template>
   <div v-if="theme.appearance" class="nav-screen-appearance">
     <p class="text">
-      Appearance
+      {{ theme.appearanceText ?? 'Appearance' }}
     </p>
     <SwitchAppearance />
   </div>

@@ -1,9 +1,6 @@
-import { pagesComponents } from '@internal/pagesComponents'
-import { computed, defineComponent, h } from 'vue'
-import { usePageData } from 'vuepress/client'
+import { computed, defineAsyncComponent, defineComponent, h } from 'vue'
+import { resolveRoute, usePageComponent } from 'vuepress/client'
 import { runCallbacks } from '../composables/index.js'
-
-declare const __VUEPRESS_DEV__: boolean
 
 /**
  * Markdown rendered content
@@ -13,7 +10,7 @@ export const Content = defineComponent({
   name: 'Content',
 
   props: {
-    pageKey: {
+    path: {
       type: String,
       required: false,
       default: '',
@@ -21,22 +18,18 @@ export const Content = defineComponent({
   },
 
   setup(props) {
-    const page = usePageData()
-    const pageComponent = computed(
-      () => pagesComponents[props.pageKey || page.value.key],
-    )
-    return () =>
-      pageComponent.value
-        ? h(pageComponent.value, {
-          onVnodeMounted: () => runCallbacks({ mounted: true }),
-          onVnodeUpdated: () => runCallbacks({ updated: true }),
-          onVnodeBeforeUnmount: () => runCallbacks({ beforeUnmount: true }),
-        })
-        : h(
-          'div',
-          __VUEPRESS_DEV__
-            ? 'Page does not exist. This is a fallback content.'
-            : '404 Not Found',
-        )
+    const pageComponent = usePageComponent()
+    const ContentComponent = computed(() => {
+      if (!props.path)
+        return pageComponent.value
+      const route = resolveRoute(props.path)
+      return defineAsyncComponent(() => route.loader().then(({ comp }) => comp))
+    })
+
+    return () => h(ContentComponent.value, {
+      onVnodeMounted: () => runCallbacks({ mounted: true }),
+      onVnodeUpdated: () => runCallbacks({ updated: true }),
+      onVnodeBeforeUnmount: () => runCallbacks({ beforeUnmount: true }),
+    })
   },
 })

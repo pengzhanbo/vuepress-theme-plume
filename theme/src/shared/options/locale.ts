@@ -117,6 +117,11 @@ export interface PlumeThemeLocaleData extends LocaleData {
   appearance?: boolean | 'dark'
 
   /**
+   * 深色模式切换按钮的文本
+   */
+  appearanceText?: string
+
+  /**
    * 部署站点域名。
    * 用于生成 sitemap、 seo等。
    *

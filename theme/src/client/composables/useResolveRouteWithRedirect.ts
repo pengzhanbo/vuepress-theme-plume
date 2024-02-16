@@ -1,13 +1,7 @@
 import { isFunction, isString } from 'vuepress/shared'
-import { useRouter } from 'vue-router'
-import type { Router } from 'vue-router'
+import { useRouter } from 'vuepress/client'
+import type { Router } from 'vuepress/client'
 import type { NavItemWithLink } from '../../shared/index.js'
-
-declare module 'vue-router' {
-  interface RouteMeta {
-    title?: string
-  }
-}
 
 /**
  * Resolve a route with redirection
@@ -45,7 +39,7 @@ export function useNavLink(item: string): NavItemWithLink {
   // resolve the route correctly
   const resolved = useResolveRouteWithRedirect(encodeURI(item))
   return {
-    text: resolved.meta.title || item,
+    text: (resolved.meta as any).title || item,
     link: resolved.name === '404' ? item : resolved.fullPath,
   }
 }

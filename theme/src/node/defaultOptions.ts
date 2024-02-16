@@ -11,6 +11,7 @@ const defaultLocales: NonNullable<PlumeThemeLocaleOptions['locales']> = {
     editLinkText: 'Edit this page',
     lastUpdatedText: 'Last Updated',
     contributorsText: 'Contributors',
+    appearanceText: 'Appearance',
   },
   'zh-CN': {
     selectLanguageName: '简体中文',
@@ -23,6 +24,7 @@ const defaultLocales: NonNullable<PlumeThemeLocaleOptions['locales']> = {
     editLinkText: '编辑此页',
     contributorsText: '贡献者',
     lastUpdatedText: '上次更新',
+    appearanceText: '外观',
     prevPageLabel: '上一页',
     nextPageLabel: '下一页',
 

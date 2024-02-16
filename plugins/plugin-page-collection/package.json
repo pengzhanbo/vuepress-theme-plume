@@ -26,17 +26,17 @@
   ],
   "scripts": {
     "build": "pnpm run clean && pnpm run copy && pnpm run ts",
-    "clean": "rimraf lib *.tsbuildinfo",
+    "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
     "ts": "tsc -b tsconfig.build.json"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.2"
+    "vuepress": "2.0.0-rc.7"
   },
   "dependencies": {
-    "@netlify/functions": "^2.5.1",
+    "@netlify/functions": "^2.6.0",
     "leancloud-storage": "^4.15.2",
-    "vue": "^3.4.15",
+    "vue": "^3.4.19",
     "vue-router": "4.2.5",
     "vuepress-plugin-netlify-functions": "workspace:*"
   },

@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
 import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute } from 'vuepress/client'
 
 export interface UseNavReturn {
   isScreenOpen: Ref<boolean>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vuepress/client'
 import { EXTERNAL_URL_RE } from '../utils/index.js'
 
 interface Props {

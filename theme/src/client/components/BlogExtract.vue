@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useScrollLock } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute } from 'vuepress/client'
 import { useBlogExtract, useThemeLocaleData } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
 import AutoLink from './AutoLink.vue'

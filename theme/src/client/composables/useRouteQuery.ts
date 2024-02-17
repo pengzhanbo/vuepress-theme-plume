@@ -100,10 +100,9 @@ export function useRouteQuery<
           const newQueries = Object.fromEntries(_queriesQueue.entries())
           _queriesQueue.clear()
 
-          const { params, query, hash } = route
-
+          const { query, hash, path } = route
           router[toValue(mode)]({
-            params,
+            path,
             query: { ...query, ...newQueries },
             hash,
           })

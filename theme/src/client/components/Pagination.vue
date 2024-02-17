@@ -58,7 +58,7 @@ const emit = defineEmits<{ change: [value: number] }>()
 }
 
 .btn {
-  padding: 2px 4px;
+  padding: 2px 5px;
   margin: 0 2px;
   font-weight: 500;
   line-height: 1;
@@ -85,6 +85,7 @@ const emit = defineEmits<{ change: [value: number] }>()
 @media (min-width: 768px) {
   .pagination {
     padding: 20px;
+    margin-left: 20px;
     background-color: var(--vp-c-bg);
     border-radius: 6px;
     box-shadow: var(--vp-shadow-1);
@@ -98,8 +99,12 @@ const emit = defineEmits<{ change: [value: number] }>()
     font-size: 14px;
   }
 
-  .btn:not(.active):hover {
+  .btn:not(.active, [disabled]):hover {
     color: var(--vp-c-brand-1);
+  }
+
+  .btn:not(.prev, .next):hover {
+    background-color: var(--vp-c-bg-alt);
   }
 }
 </style>

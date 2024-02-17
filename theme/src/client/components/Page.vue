@@ -33,7 +33,6 @@ onContentUpdated(() => zoom?.refresh())
   >
     <div class="container">
       <div v-if="hasAside" class="aside">
-        <div class="aside-curtain" />
         <div class="aside-container">
           <div class="aside-content">
             <PageAside />
@@ -101,15 +100,6 @@ onContentUpdated(() => zoom?.refresh())
   display: none;
 }
 
-/* .aside-curtain {
-  position: fixed;
-  bottom: 0;
-  z-index: 10;
-  width: 224px;
-  height: 32px;
-  background: linear-gradient(transparent, var(--vp-c-bg) 70%);
-} */
-
 .aside-content {
   display: flex;
   flex-direction: column;
@@ -150,6 +140,15 @@ onContentUpdated(() => zoom?.refresh())
     padding: 32px 32px 0;
   }
 
+  .plume-page .container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .plume-page.is-blog .aside {
+    display: block;
+  }
+
   .plume-page:not(.has-sidebar) .container {
     display: flex;
     justify-content: center;
@@ -162,11 +161,6 @@ onContentUpdated(() => zoom?.refresh())
 }
 
 @media (min-width: 1280px) {
-  .plume-page .container {
-    display: flex;
-    justify-content: center;
-  }
-
   .plume-page .aside {
     display: block;
   }

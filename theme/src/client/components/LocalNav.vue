@@ -41,6 +41,7 @@ const classes = computed(() => {
     'local-nav': true,
     'fixed': empty.value,
     'reached-top': y.value >= navHeight.value,
+    'is-blog': page.value.isBlogPost,
   }
 })
 
@@ -98,6 +99,23 @@ const showLocalNav = computed(() => {
 }
 
 @media (min-width: 960px) {
+  .local-nav.is-blog {
+    display: none;
+  }
+
+  .local-nav {
+    top: var(--vp-nav-height);
+    width: calc(100% - var(--vp-sidebar-width));
+    margin-left: var(--vp-sidebar-width);
+    border-top: none;
+  }
+
+  .local-nav .menu {
+    visibility: hidden;
+  }
+}
+
+@media (min-width: 1280px) {
   .local-nav {
     display: none;
   }

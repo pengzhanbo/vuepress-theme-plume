@@ -1,3 +1,17 @@
+# [1.0.0-rc.35](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.34...v1.0.0-rc.35) (2024-2-17)
+
+
+### Bug Fixes
+
+* 修复文章列表页分页跳转错误 ([d6c9fba](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d6c9fba835de9745f8489e8f779175bb4ec82940))
+
+
+### Performance Improvements
+
+* 优化导航栏在不同设备的交互表现 ([16c65da](https://github.com/pengzhanbo/vuepress-theme-plume/commit/16c65daea9812c632872c69e52fe1ed9710e2554))
+
+
+
 # [1.0.0-rc.34](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.33...v1.0.0-rc.34) (2024-2-16)
 
 

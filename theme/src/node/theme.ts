@@ -24,7 +24,16 @@ export function plumeTheme({
       clientConfigFile: resolve('client/config.js'),
       plugins: setupPlugins(app, pluginsOptions, localeOptions),
       onInitialized: app => setupPage(app, localeOptions),
-      extendsPage: page => extendsPageData(app, page as Page<PlumeThemePageData>, localeOptions),
+      extendsPage: (page) => {
+        extendsPageData(app, page as Page<PlumeThemePageData>, localeOptions)
+
+        page.frontmatter.head ??= []
+        page.frontmatter.head?.push([
+          'script',
+          { id: 'check-mac-os' },
+          `document.documentElement.classList.toggle('mac', /Mac|iPhone|iPod|iPad/i.test(navigator.platform))`,
+        ])
+      },
       templateBuildRenderer(template, context) {
         template = template
           .replace('{{ themeVersion }}', pkg.version || '')

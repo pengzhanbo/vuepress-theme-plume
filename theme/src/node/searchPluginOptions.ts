@@ -1,5 +1,5 @@
 import type { DocsearchPluginOptions } from '@vuepress/plugin-docsearch'
-import type { SearchPluginOptions } from '@vuepress/plugin-search'
+import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
 import type { App } from 'vuepress/core'
 import { deepMerge } from '@pengzhanbo/utils'
 import { resolvedAppLocales } from './resolveLocaleOptions.js'
@@ -50,8 +50,36 @@ const defaultDocsearchLocales: NonNullable<DocsearchPluginOptions['locales']> = 
 }
 
 const defaultSearchLocales: NonNullable<SearchPluginOptions['locales']> = {
-  'zh-CN': { placeholder: '搜索' },
-  'en-US': { placeholder: 'Search' },
+  'zh-CN': {
+    placeholder: '搜索文档',
+    resetButtonTitle: '重置搜索',
+    backButtonTitle: '关闭',
+    noResultsText: '无搜索结果：',
+    footer: {
+      selectText: '选择',
+      selectKeyAriaLabel: '输入',
+      navigateText: '切换',
+      navigateUpKeyAriaLabel: '向上',
+      navigateDownKeyAriaLabel: '向下',
+      closeText: '关闭',
+      closeKeyAriaLabel: '退出',
+    },
+  },
+  'en-US': {
+    placeholder: 'Search',
+    resetButtonTitle: 'Reset search',
+    backButtonTitle: 'Close search',
+    noResultsText: 'No results for',
+    footer: {
+      selectText: 'to select',
+      selectKeyAriaLabel: 'enter',
+      navigateText: 'to navigate',
+      navigateUpKeyAriaLabel: 'up arrow',
+      navigateDownKeyAriaLabel: 'down arrow',
+      closeText: 'to close',
+      closeKeyAriaLabel: 'escape',
+    },
+  },
 }
 
 export function resolvedDocsearchOption(app: App, options: DocsearchPluginOptions): DocsearchPluginOptions {

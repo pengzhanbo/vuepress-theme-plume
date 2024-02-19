@@ -1,5 +1,5 @@
 import type { DocsearchOptions } from '@vuepress/plugin-docsearch'
-import type { SearchPluginOptions } from '@vuepress/plugin-search'
+import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
 import type { AutoFrontmatterOptions } from '@vuepress-plume/plugin-auto-frontmatter'
 import type { BaiduTongjiOptions } from '@vuepress-plume/plugin-baidu-tongji'
 import type { CanIUsePluginOptions } from '@vuepress-plume/plugin-caniuse'

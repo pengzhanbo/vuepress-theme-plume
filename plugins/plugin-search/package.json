@@ -1,0 +1,63 @@
+{
+  "name": "@vuepress-plume/plugin-search",
+  "type": "module",
+  "version": "1.0.0-rc.35",
+  "description": "The Plugin for VuePres 2 - mini search",
+  "author": "pengzhanbo <volodymyr@foxmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git",
+    "directory": "plugins/plugin-search"
+  },
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/node/index.d.ts",
+      "import": "./lib/node/index.js"
+    },
+    "./client": {
+      "types": "./lib/client/index.d.ts",
+      "import": "./lib/client/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "lib/node/index.js",
+  "types": "./lib/node/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "pnpm run clean && pnpm run copy && pnpm run ts",
+    "dev": "pnpm copy --watch",
+    "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
+    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
+    "ts": "tsc -b tsconfig.build.json"
+  },
+  "peerDependencies": {
+    "vuepress": "2.0.0-rc.7"
+  },
+  "dependencies": {
+    "@vuepress/helper": "2.0.0-rc.14",
+    "@vueuse/core": "^10.7.2",
+    "@vueuse/integrations": "^10.7.2",
+    "chokidar": "^3.6.0",
+    "focus-trap": "^7.5.4",
+    "mark.js": "^8.11.1",
+    "minisearch": "^6.3.0",
+    "p-map": "^7.0.1",
+    "vue": "^3.4.19"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keyword": [
+    "VuePress",
+    "vuepress plugin",
+    "mini search",
+    "vuepress-plugin-search"
+  ]
+}

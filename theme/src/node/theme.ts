@@ -24,7 +24,38 @@ export function plumeTheme({
       clientConfigFile: resolve('client/config.js'),
       plugins: setupPlugins(app, pluginsOptions, localeOptions),
       onInitialized: app => setupPage(app, localeOptions),
-      extendsPage: page => extendsPageData(app, page as Page<PlumeThemePageData>, localeOptions),
+      extendsPage: (page) => {
+        extendsPageData(app, page as Page<PlumeThemePageData>, localeOptions)
+
+        page.frontmatter.head ??= []
+        if (localeOptions.appearance ?? true) {
+          const appearance = typeof localeOptions.appearance === 'string'
+            ? localeOptions.appearance
+            : 'auto'
+
+          page.frontmatter.head.push([
+            'script',
+            { id: 'check-dark-mode' },
+            appearance === 'force-dark'
+              ? `document.documentElement.classList.add('dark')`
+              : `;(function () {
+        const um= localStorage.getItem('vuepress-theme-appearance') || '${appearance}';
+        const sm =
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (um === 'dark' || (um !== 'light' && sm)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();`,
+          ])
+        }
+
+        page.frontmatter.head?.push([
+          'script',
+          { id: 'check-mac-os' },
+          `document.documentElement.classList.toggle('mac', /Mac|iPhone|iPod|iPad/i.test(navigator.platform))`,
+        ])
+      },
       templateBuildRenderer(template, context) {
         template = template
           .replace('{{ themeVersion }}', pkg.version || '')

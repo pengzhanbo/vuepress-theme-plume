@@ -6,7 +6,6 @@ import { gitPlugin } from '@vuepress/plugin-git'
 import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
 import { palettePlugin } from '@vuepress/plugin-palette'
-import { searchPlugin } from '@vuepress/plugin-search'
 import { themeDataPlugin } from '@vuepress/plugin-theme-data'
 import { autoFrontmatterPlugin } from '@vuepress-plume/plugin-auto-frontmatter'
 import { baiduTongjiPlugin } from '@vuepress-plume/plugin-baidu-tongji'
@@ -22,6 +21,7 @@ import { readingTimePlugin } from '@vuepress/plugin-reading-time'
 import { seoPlugin } from '@vuepress/plugin-seo'
 import { sitemapPlugin } from '@vuepress/plugin-sitemap'
 import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
+import { searchPlugin } from '@vuepress-plume/plugin-search'
 import type {
   PlumeThemeLocaleOptions,
   PlumeThemePluginOptions,

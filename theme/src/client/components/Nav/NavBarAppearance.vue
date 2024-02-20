@@ -6,7 +6,10 @@ const theme = useThemeLocaleData()
 </script>
 
 <template>
-  <div v-if="theme.appearance" class="navbar-appearance">
+  <div
+    v-if="theme.appearance && theme.appearance !== 'force-dark'"
+    class="navbar-appearance"
+  >
     <SwitchAppearance />
   </div>
 </template>

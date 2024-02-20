@@ -189,6 +189,7 @@ watchPostEffect(() => {
 .menu + .appearance::before,
 .menu + .social-links::before,
 .translations + .appearance::before,
+.translations + .social-links::before,
 .appearance + .social-links::before {
   width: 1px;
   height: 24px;

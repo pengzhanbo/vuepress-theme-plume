@@ -141,6 +141,11 @@
   font-size: 12px;
   color: var(--docsearch-muted-color);
   letter-spacing: normal;
+  content: "Ctrl";
+}
+
+.mac .DocSearch-Button .DocSearch-Button-Key:first-child::after {
+  content: "\2318";
 }
 
 .DocSearch-Button .DocSearch-Button-Key:first-child > * {

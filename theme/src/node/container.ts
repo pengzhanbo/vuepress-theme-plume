@@ -1,4 +1,4 @@
-import containerPlugin from '@vuepress/plugin-container'
+import { containerPlugin } from '@vuepress/plugin-container'
 import type { Plugin } from 'vuepress/core'
 
 export const customContainers: Plugin[] = [

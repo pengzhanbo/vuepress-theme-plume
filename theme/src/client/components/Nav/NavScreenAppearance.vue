@@ -6,7 +6,10 @@ const theme = useThemeLocaleData()
 </script>
 
 <template>
-  <div v-if="theme.appearance" class="nav-screen-appearance">
+  <div
+    v-if="theme.appearance && theme.appearance !== 'force-dark'"
+    class="nav-screen-appearance"
+  >
     <p class="text">
       {{ theme.appearanceText ?? 'Appearance' }}
     </p>

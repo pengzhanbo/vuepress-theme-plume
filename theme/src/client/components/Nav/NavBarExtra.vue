@@ -30,7 +30,7 @@ const hasExtraContent = computed(
       </template>
     </div>
 
-    <div v-if="theme.appearance" class="group">
+    <div v-if="theme.appearance && theme.appearance !== 'force-dark'" class="group">
       <div class="item appearance">
         <p class="label">
           {{ theme.appearanceText || 'Appearance' }}

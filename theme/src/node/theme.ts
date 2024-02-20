@@ -28,6 +28,28 @@ export function plumeTheme({
         extendsPageData(app, page as Page<PlumeThemePageData>, localeOptions)
 
         page.frontmatter.head ??= []
+        if (localeOptions.appearance ?? true) {
+          const appearance = typeof localeOptions.appearance === 'string'
+            ? localeOptions.appearance
+            : 'auto'
+
+          page.frontmatter.head.push([
+            'script',
+            { id: 'check-dark-mode' },
+            appearance === 'force-dark'
+              ? `document.documentElement.classList.add('dark')`
+              : `;(function () {
+        const um= localStorage.getItem('vuepress-theme-appearance') || '${appearance}';
+        const sm =
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (um === 'dark' || (um !== 'light' && sm)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();`,
+          ])
+        }
+
         page.frontmatter.head?.push([
           'script',
           { id: 'check-mac-os' },

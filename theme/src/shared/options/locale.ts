@@ -114,7 +114,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
   /**
    * 是否启用深色模式切换按钮
    */
-  appearance?: boolean | 'dark'
+  appearance?: boolean | 'dark' | 'force-dark'
 
   /**
    * 深色模式切换按钮的文本

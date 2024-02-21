@@ -4,8 +4,8 @@ import { inBrowser } from '../utils/index.js'
 
 interface UseFlyoutOptions {
   el: Ref<HTMLElement | undefined>
-  onFocus?(): void
-  onBlur?(): void
+  onFocus?: () => void
+  onBlur?: () => void
 }
 
 export const focusedElement = ref<HTMLElement>()

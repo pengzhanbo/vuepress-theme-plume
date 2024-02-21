@@ -1,3 +1,21 @@
+# [1.0.0-rc.36](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.35...v1.0.0-rc.36) (2024-2-21)
+
+
+### Features
+
+* add `plugin-search` (power by minisearch) ([e409ece](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e409ece6fd11920500b038722966924a2752ab37))
+* **theme:** 切换为主题内部搜索插件 ([cec3191](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cec3191adc4854a2f4beacad968019f5baba26e0))
+* **theme:** 新增 `force-dark` 外观配置 ([979d4d6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/979d4d645f81bd6871b41a2169513a1cccd28033))
+
+
+### Performance Improvements
+
+* 优化 搜索按钮样式 ([5159c5a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5159c5a434adb3be3b02c5bdc5fa8d28d196f191))
+* bump `vuepress` to `rc.8` ([96166b2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/96166b2a4da31b3318635a2cb17992b186fa4634))
+* bump shiki to latest ([89c8a0e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/89c8a0e1d5946c769036901fd3649c03fa1fb77a))
+
+
+
 # [1.0.0-rc.35](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.34...v1.0.0-rc.35) (2024-2-17)
 
 

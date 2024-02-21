@@ -37,7 +37,7 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.7"
+    "vuepress": "2.0.0-rc.8"
   },
   "dependencies": {
     "vue": "^3.4.19"

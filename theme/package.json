@@ -52,7 +52,7 @@
     "ts:watch": "tsc -b tsconfig.build.json --watch"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.7"
+    "vuepress": "2.0.0-rc.8"
   },
   "dependencies": {
     "@pengzhanbo/utils": "^1.1.1",
@@ -66,27 +66,27 @@
     "@vuepress-plume/plugin-notes-data": "workspace:*",
     "@vuepress-plume/plugin-search": "workspace:*",
     "@vuepress-plume/plugin-shikiji": "workspace:*",
-    "@vuepress/plugin-active-header-links": "2.0.0-rc.14",
-    "@vuepress/plugin-container": "2.0.0-rc.12",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.14",
-    "@vuepress/plugin-external-link-icon": "2.0.0-rc.14",
-    "@vuepress/plugin-git": "2.0.0-rc.12",
-    "@vuepress/plugin-medium-zoom": "2.0.0-rc.14",
-    "@vuepress/plugin-nprogress": "2.0.0-rc.14",
-    "@vuepress/plugin-palette": "2.0.0-rc.14",
-    "@vuepress/plugin-reading-time": "2.0.0-rc.14",
-    "@vuepress/plugin-seo": "2.0.0-rc.14",
-    "@vuepress/plugin-sitemap": "2.0.0-rc.14",
-    "@vuepress/plugin-theme-data": "2.0.0-rc.14",
-    "@vuepress/plugin-toc": "2.0.0-rc.14",
-    "@vueuse/core": "^10.7.2",
+    "@vuepress/plugin-active-header-links": "2.0.0-rc.17",
+    "@vuepress/plugin-container": "2.0.0-rc.15",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.15",
+    "@vuepress/plugin-external-link-icon": "2.0.0-rc.15",
+    "@vuepress/plugin-git": "2.0.0-rc.15",
+    "@vuepress/plugin-medium-zoom": "2.0.0-rc.17",
+    "@vuepress/plugin-nprogress": "2.0.0-rc.15",
+    "@vuepress/plugin-palette": "2.0.0-rc.15",
+    "@vuepress/plugin-reading-time": "2.0.0-rc.17",
+    "@vuepress/plugin-seo": "2.0.0-rc.17",
+    "@vuepress/plugin-sitemap": "2.0.0-rc.17",
+    "@vuepress/plugin-theme-data": "2.0.0-rc.15",
+    "@vuepress/plugin-toc": "2.0.0-rc.15",
+    "@vueuse/core": "^10.8.0",
     "date-fns": "^3.3.1",
     "katex": "^0.16.9",
     "lodash.merge": "^4.6.2",
-    "nanoid": "^5.0.5",
+    "nanoid": "^5.0.6",
     "vue": "^3.4.19",
     "vue-router": "4.2.5",
-    "vuepress-plugin-comment2": "2.0.0-rc.23",
-    "vuepress-plugin-md-enhance": "2.0.0-rc.23"
+    "vuepress-plugin-comment2": "2.0.0-rc.25",
+    "vuepress-plugin-md-enhance": "2.0.0-rc.25"
   }
 }

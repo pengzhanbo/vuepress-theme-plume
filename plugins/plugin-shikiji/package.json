@@ -33,12 +33,12 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.7"
+    "vuepress": "2.0.0-rc.8"
   },
   "dependencies": {
     "@shikijs/transformers": "^1.1.6",
     "@shikijs/twoslash": "^1.1.6",
-    "nanoid": "^5.0.5",
+    "nanoid": "^5.0.6",
     "shiki": "^1.1.6"
   },
   "publishConfig": {

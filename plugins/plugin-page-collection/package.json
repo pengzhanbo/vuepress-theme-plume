@@ -31,7 +31,7 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.7"
+    "vuepress": "2.0.0-rc.8"
   },
   "dependencies": {
     "@netlify/functions": "^2.6.0",

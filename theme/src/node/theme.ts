@@ -40,9 +40,7 @@ export function plumeTheme({
               ? `document.documentElement.classList.add('dark')`
               : `;(function () {
         const um= localStorage.getItem('vuepress-theme-appearance') || '${appearance}';
-        const sm =
-          window.matchMedia &&
-          window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const sm = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         if (um === 'dark' || (um !== 'light' && sm)) {
           document.documentElement.classList.add('dark');
         }

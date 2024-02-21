@@ -40,8 +40,8 @@
   "devDependencies": {
     "@commitlint/cli": "^18.6.1",
     "@commitlint/config-conventional": "^18.6.2",
-    "@pengzhanbo/eslint-config-vue": "^1.5.4",
-    "@pengzhanbo/stylelint-config": "^1.5.4",
+    "@pengzhanbo/eslint-config-vue": "^1.6.0",
+    "@pengzhanbo/stylelint-config": "^1.6.0",
     "@types/lodash.merge": "^4.6.9",
     "@types/node": "20.9.1",
     "@types/webpack-env": "^1.18.4",

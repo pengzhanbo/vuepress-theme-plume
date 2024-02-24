@@ -21,6 +21,8 @@ if (import.meta.hot) {
 }
 `
 
+const headingRe = /<h(\d*).*?>.*?<\/h\1>/gi
+
 function getTimestamp(time: Date): number {
   return new Date(time).getTime()
 }
@@ -69,7 +71,10 @@ export async function preparedBlogData(app: App, pageFilter: (id: string) => boo
 
     if (options.excerpt && page.contentRendered.includes(EXCERPT_SPLIT)) {
       const contents = page.contentRendered.split(EXCERPT_SPLIT)
-      data.excerpt = contents[0]
+      let excerpt = contents[0]
+      // 删除摘要中的标题
+      excerpt = excerpt.replace(headingRe, '')
+      data.excerpt = excerpt
     }
 
     return data as BlogPostDataItem

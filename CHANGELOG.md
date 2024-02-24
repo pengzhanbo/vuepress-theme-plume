@@ -1,3 +1,19 @@
+# [1.0.0-rc.37](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.36...v1.0.0-rc.37) (2024-2-24)
+
+
+### Features
+
+* **plugin-shikiji:** 使用 floating-vue 实现 twoslash 模态框 ([c37b130](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c37b1308e9cd0945054ec1bfc0156f180bd85eb4))
+
+
+### Performance Improvements
+
+* **plugin-blog-data:** 排除文章摘要中的标题部分 ([aa70bf9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/aa70bf98097313f31ceb2849d05dd4ab392a91a6))
+* **plugin-shikiji:** 优化开发时编译速度 ([4d950b7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4d950b7618829d61df64687626420ba3800149c3))
+* **theme:** 优化文章页在大屏幕下的表现 ([4adc786](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4adc7862b57a67d129c9e9fc0ea0cf5091769b8c))
+
+
+
 # [1.0.0-rc.36](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.35...v1.0.0-rc.36) (2024-2-21)
 
 

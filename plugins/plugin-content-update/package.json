@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-content-update",
   "type": "module",
-  "version": "1.0.0-rc.36",
+  "version": "1.0.0-rc.37",
   "description": "The Plugin for VuePres 2 - content update",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",

@@ -24,6 +24,7 @@ import { defaultHoverInfoProcessor, transformerTwoslash } from './rendererTransf
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 10)
 const cache = new LRUCache<string, string>(64)
 
+const vueRE = /-vue$/
 const RE_ESCAPE = /\[\\\!code/g
 const mustacheRE = /\{\{.*?\}\}/g
 
@@ -91,6 +92,7 @@ export async function highlight(
 
   return (str: string, lang: string, attrs: string) => {
     lang = lang || defaultLang
+    const vPre = vueRE.test(lang) ? '' : 'v-pre'
 
     const key = str + lang + attrs
 
@@ -149,6 +151,15 @@ export async function highlight(
             .replace(/_shikijs_core[\w_]*\./g, '')
         },
       }))
+    }
+    else {
+      inlineTransformers.push({
+        name: 'vuepress:v-pre',
+        pre(node) {
+          if (vPre)
+            node.properties['v-pre'] = ''
+        },
+      })
     }
 
     if (

@@ -32,7 +32,6 @@
   ],
   "scripts": {
     "build": "pnpm run clean && pnpm run copy && pnpm run ts",
-    "dev": "pnpm copy --watch",
     "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
     "ts": "tsc -b tsconfig.build.json"

@@ -16,11 +16,13 @@ import {
   transformerNotationWordHighlight,
   transformerRenderWhitespace,
 } from '@shikijs/transformers'
-import { rendererRich, transformerTwoslash } from '@shikijs/twoslash'
 import type { HighlighterOptions, ThemeOptions } from './types.js'
 import { resolveAttrs } from './resolveAttrs.js'
+import { LRUCache } from './lru.js'
+import { defaultHoverInfoProcessor, transformerTwoslash } from './rendererTransformer.js'
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 10)
+const cache = new LRUCache<string, string>(64)
 
 const RE_ESCAPE = /\[\\\!code/g
 const mustacheRE = /\{\{.*?\}\}/g
@@ -28,6 +30,7 @@ const mustacheRE = /\{\{.*?\}\}/g
 export async function highlight(
   theme: ThemeOptions,
   options: HighlighterOptions,
+  isDev: boolean,
 ): Promise<(str: string, lang: string, attrs: string) => string> {
   const {
     defaultHighlightLang: defaultLang = '',
@@ -69,6 +72,18 @@ export async function highlight(
       },
     },
     {
+      name: 'shiki:inline-decorations',
+      preprocess(code, options) {
+        const reg = /^\/\/ @decorations:(.*?)\n/
+        code = code.replace(reg, (match, decorations) => {
+          options.decorations ||= []
+          options.decorations.push(...JSON.parse(decorations))
+          return ''
+        })
+        return code
+      },
+    },
+    {
       name: 'vuepress-shikiji:remove-escape',
       postprocess: code => code.replace(RE_ESCAPE, '[!code'),
     },
@@ -76,6 +91,14 @@ export async function highlight(
 
   return (str: string, lang: string, attrs: string) => {
     lang = lang || defaultLang
+
+    const key = str + lang + attrs
+
+    if (isDev) {
+      const rendered = cache.get(key)
+      if (rendered)
+        return rendered
+    }
 
     if (lang) {
       const langLoaded = highlighter.getLoadedLanguages().includes(lang as any)
@@ -108,6 +131,9 @@ export async function highlight(
         s = s.replaceAll(marker, match)
       })
 
+      if (attributes.twoslash && options.twoslash)
+        s = s.replace(/{/g, '&#123;')
+
       return `${s}\n`
     }
 
@@ -115,11 +141,13 @@ export async function highlight(
 
     const inlineTransformers: ShikiTransformer[] = []
 
-    if (attributes.twoslash) {
+    if (attributes.twoslash && options.twoslash) {
       inlineTransformers.push(transformerTwoslash({
-        renderer: rendererRich({
-          classExtra: 'vp-copy-ignore',
-        }),
+        processHoverInfo(info) {
+          return defaultHoverInfoProcessor(info)
+            // Remove shiki_core namespace
+            .replace(/_shikijs_core[\w_]*\./g, '')
+        },
       }))
     }
 
@@ -137,15 +165,18 @@ export async function highlight(
           ...inlineTransformers,
           ...userTransformers,
         ],
-        meta: {
-          __raw: rawAttrs,
-        },
+        meta: { __raw: rawAttrs },
         ...(typeof theme === 'object' && 'light' in theme && 'dark' in theme
           ? { themes: theme, defaultColor: false }
           : { theme }),
       })
 
-      return restoreMustache(highlighted)
+      const rendered = restoreMustache(highlighted)
+
+      if (isDev)
+        cache.set(key, rendered)
+
+      return rendered
     }
     catch (e) {
       logger.error(e)

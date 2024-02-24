@@ -35,5 +35,6 @@ export const theme: Theme = themePlume({
     //   appId: '111',
     //   indexName: '1234',
     // },
+    shiki: { twoslash: true },
   },
 })

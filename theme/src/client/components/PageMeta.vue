@@ -107,9 +107,12 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 }
 
 .page-title {
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
   font-size: 28px;
   font-weight: 600;
+  line-height: 1.5;
+  color: var(--vp-c-text-1);
+  transition: color var(--t-color);
 }
 
 .page-title.padding {

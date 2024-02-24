@@ -121,7 +121,7 @@ onContentUpdated(() => zoom?.refresh())
 }
 
 .plume-page.has-aside .content-container {
-  max-width: 688px;
+  max-width: 828px;
 }
 
 .giscus-wrapper {
@@ -168,11 +168,11 @@ onContentUpdated(() => zoom?.refresh())
 
 @media (min-width: 1440px) {
   .plume-page:not(.has-sidebar) .content {
-    max-width: 784px;
+    max-width: 984px;
   }
 
   .plume-page:not(.has-sidebar) .container {
-    max-width: 1204px;
+    max-width: 1404px;
   }
 }
 

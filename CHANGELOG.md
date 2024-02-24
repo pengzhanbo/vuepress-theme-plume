@@ -1,3 +1,12 @@
+# [1.0.0-rc.38](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.37...v1.0.0-rc.38) (2024-2-24)
+
+
+### Bug Fixes
+
+* **plugin-shikiji:** 非 twoslash 代码块 添加 `v-pre` 指令 ([ef64ada](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ef64ada12ff3c6e7c4dbfde1b4291bc16b6f4cec))
+
+
+
 # [1.0.0-rc.37](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.36...v1.0.0-rc.37) (2024-2-24)
 
 

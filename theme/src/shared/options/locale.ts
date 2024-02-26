@@ -68,6 +68,9 @@ export interface PlumeThemeBlog {
    */
   exclude?: string[]
 
+  /**
+   * 分页
+   */
   pagination?: false | {
     /**
      * 每页显示的文章数量
@@ -96,6 +99,37 @@ export interface PlumeThemeBlog {
    * @default true
    */
   archives?: boolean
+}
+
+export interface PlumeThemeEncrypt {
+  /**
+   * 是否启用全站加密
+   * @default false
+   */
+  global?: boolean
+  /**
+   * 超级权限密码, 该密码可以解密全站，以及任意加密的文章
+   *
+   */
+  admin?: string | string[]
+
+  /**
+   * 文章密码， 可以通过 文章的 markdown 文件相对路径、页面访问路径、
+   * 目录路径 等，对 单个文章 或者 整个目录 进行 加密。
+   * 如果是以 `^` 开头，则被认为是类似于正则表达式进行匹配。
+   *
+   * @example
+   * ```json
+   * {
+   *   "前端/基础/html.md": "123",
+   *   "/article/23c44c/": ["456", "789"],
+   *   "^/note/(note1|note2)/": "123"
+   * }
+   * ```
+   */
+  rules?: {
+    [key: string]: string | string[]
+  }
 }
 
 export interface PlumeThemeLocaleData extends LocaleData {
@@ -296,4 +330,28 @@ export interface PlumeThemeLocaleData extends LocaleData {
     linkLabel?: string
     linkText?: string
   }
+  /**
+   * 加密
+   */
+  encrypt?: PlumeThemeEncrypt
+
+  /**
+   * 全站加密时的提示
+   */
+  encryptGlobalText?: string
+
+  /**
+   * 文章加密时的提示
+   */
+  encryptPageText?: string
+
+  /**
+   * 加密确认按钮文本
+   */
+  encryptButtonText?: string
+
+  /**
+   * 加密时输入框的 placeholder
+   */
+  encryptPlaceholder?: string
 }

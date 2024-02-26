@@ -12,6 +12,11 @@ const defaultLocales: NonNullable<PlumeThemeLocaleOptions['locales']> = {
     lastUpdatedText: 'Last Updated',
     contributorsText: 'Contributors',
     appearanceText: 'Appearance',
+
+    encryptButtonText: 'Confirm',
+    encryptPlaceholder: 'Enter password',
+    encryptGlobalText: 'Only password can access this site',
+    encryptPageText: 'Only password can access this page',
   },
   'zh-CN': {
     selectLanguageName: '简体中文',
@@ -34,6 +39,11 @@ const defaultLocales: NonNullable<PlumeThemeLocaleOptions['locales']> = {
       quote: '但是，如果你不改变方向，并且一直寻找，最终可能会到达你要去的地方。',
       linkText: '返回首页',
     },
+
+    encryptButtonText: '确认',
+    encryptPlaceholder: '请输入密码',
+    encryptGlobalText: '本站只允许密码访问',
+    encryptPageText: '本页面只允许密码访问',
   },
 }
 

@@ -6,6 +6,7 @@ import AutoLink from './AutoLink.vue'
 import IconClock from './icons/IconClock.vue'
 import IconFolder from './icons/IconFolder.vue'
 import IconTag from './icons/IconTag.vue'
+import IconLock from './icons/IconLock.vue'
 
 const props = defineProps<{
   post: PlumeThemeBlogPostItem
@@ -40,6 +41,7 @@ const createTime = computed(() =>
       >
         TOP
       </div>
+      <IconLock v-if="post.encrypt" class="icon-lock" />
       <AutoLink :href="post.path">
         {{ post.title }}
       </AutoLink>
@@ -94,6 +96,16 @@ const createTime = computed(() =>
   border-radius: 4px;
   transition: var(--t-color);
   transition-property: color, background-color;
+}
+
+.post-item .icon-lock {
+  width: 1em;
+  height: 1em;
+  margin-right: 8px;
+  margin-left: 3px;
+  color: var(--vp-c-text-3);
+  transition: var(--t-color);
+  transition-property: color;
 }
 
 .post-item h3 {
@@ -205,5 +217,6 @@ const createTime = computed(() =>
 
 .plume-content :deep(p strong) {
   color: var(--vp-c-text-2);
+  transition: color var(--t-color);
 }
 </style>

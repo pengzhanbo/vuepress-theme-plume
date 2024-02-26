@@ -5,20 +5,23 @@ import { useMediumZoom } from '@vuepress/plugin-medium-zoom/client'
 import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import { useDarkMode, useSidebar } from '../composables/index.js'
+import { usePageEncrypt } from '../composables/encrypt.js'
 import PageAside from './PageAside.vue'
 import PageFooter from './PageFooter.vue'
 import PageMeta from './PageMeta.vue'
+import EncryptPage from './EncryptPage.vue'
 
 const { hasSidebar, hasAside } = useSidebar()
 const isDark = useDarkMode()
 const page = usePageData<PlumeThemePageData>()
+
+const { isPageDecrypted } = usePageEncrypt()
 
 const hasComments = computed(() => {
   return page.value.frontmatter.comments !== false
 })
 
 const zoom = useMediumZoom()
-
 onContentUpdated(() => zoom?.refresh())
 </script>
 
@@ -29,10 +32,11 @@ onContentUpdated(() => zoom?.refresh())
       'has-sidebar': hasSidebar,
       'has-aside': hasAside,
       'is-blog': page.isBlogPost,
+      'with-encrypt': !isPageDecrypted,
     }"
   >
     <div class="container">
-      <div v-if="hasAside" class="aside">
+      <div v-if="hasAside && isPageDecrypted" class="aside">
         <div class="aside-container">
           <div class="aside-content">
             <PageAside />
@@ -43,9 +47,12 @@ onContentUpdated(() => zoom?.refresh())
         <div class="content-container">
           <main class="main">
             <PageMeta />
-            <Content class="plume-content" />
-            <PageFooter />
-            <PageComment v-if="hasComments" :darkmode="isDark" />
+            <EncryptPage v-if="!isPageDecrypted" />
+            <template v-else>
+              <Content class="plume-content" />
+              <PageFooter />
+              <PageComment v-if="hasComments" :darkmode="isDark" />
+            </template>
           </main>
         </div>
       </div>
@@ -61,7 +68,12 @@ onContentUpdated(() => zoom?.refresh())
 
 .plume-page {
   width: 100%;
+  min-height: calc(100vh - var(--vp-nav-height) - var(--vp-footer-height, 0px) - 49px);
   padding: 32px 24px 96px;
+}
+
+.plume-page.with-encrypt {
+  padding: 32px 24px;
 }
 
 .container {
@@ -82,7 +94,8 @@ onContentUpdated(() => zoom?.refresh())
 .aside-container {
   position: sticky;
   top: 0;
-  height: 100vh;
+  min-height: calc(100vh - var(--vp-footer-height, 0px));
+  max-height: 100vh;
   padding-top:
     calc(
       var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 32px
@@ -105,7 +118,7 @@ onContentUpdated(() => zoom?.refresh())
   flex-direction: column;
   min-height:
     calc(
-      100vh - (var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 32px)
+      100vh - (var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 32px + var(--vp-footer-height, 0px))
     );
   padding-bottom: 32px;
 }
@@ -135,6 +148,10 @@ onContentUpdated(() => zoom?.refresh())
 }
 
 @media (min-width: 960px) {
+  .plume-page {
+    min-height: calc(100vh - var(--vp-nav-height) - var(--vp-footer-height, 0px));
+  }
+
   .plume-page,
   .plume-page.is-blog {
     padding: 32px 32px 0;

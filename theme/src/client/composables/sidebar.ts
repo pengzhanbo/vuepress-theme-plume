@@ -47,7 +47,7 @@ export function useSidebar() {
   })
 
   const hasAside = computed(() => {
-    return !frontmatter.value.home && frontmatter.value.aside !== false
+    return !frontmatter.value.home && frontmatter.value.aside !== false && page.value.headers.length
   })
 
   const isSidebarEnabled = computed(() => hasSidebar.value && is960.value)

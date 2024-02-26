@@ -6,6 +6,8 @@ export interface PlumeThemeBlogPostItem extends BlogPostDataItem {
   sticky: boolean
   categoryLost: PageCategoryData[]
   createTime: string
+  lang: string
+  encrypt?: boolean
 }
 
 export type PlumeThemeBlogPostData = PlumeThemeBlogPostItem[]

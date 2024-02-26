@@ -14,10 +14,12 @@ import Sidebar from '../components/Sidebar.vue'
 import SkipLink from '../components/SkipLink.vue'
 import VFooter from '../components/VFooter.vue'
 import BackToTop from '../components/BackToTop.vue'
+import EncryptGlobal from '../components/EncryptGlobal.vue'
 import {
   useCloseSidebarOnEscape,
   useSidebar,
 } from '../composables/index.js'
+import { useGlobalEncrypt, usePageEncrypt } from '../composables/encrypt.js'
 
 const page = usePageData<PlumeThemePageData>()
 
@@ -26,6 +28,9 @@ const {
   open: openSidebar,
   close: closeSidebar,
 } = useSidebar()
+
+const { isGlobalDecrypted } = useGlobalEncrypt()
+const { isPageDecrypted } = usePageEncrypt()
 
 const route = useRoute()
 watch(() => route.path, closeSidebar)
@@ -46,19 +51,26 @@ provide('is-sidebar-open', isSidebarOpen)
 
 <template>
   <div class="theme-plume">
-    <SkipLink />
-    <Backdrop :show="isSidebarOpen" @click="closeSidebar" />
-    <Nav />
-    <LocalNav :open="isSidebarOpen" @open-menu="openSidebar" />
-    <Sidebar :open="isSidebarOpen" />
-    <LayoutContent>
-      <Home v-if="page.frontmatter.home" />
-      <Friends v-else-if="page.frontmatter.friends" />
-      <Blog v-else-if="isBlogLayout" />
-      <Page v-else />
-      <BackToTop />
-      <VFooter />
-    </LayoutContent>
+    <EncryptGlobal v-if="!isGlobalDecrypted" />
+    <template v-else>
+      <SkipLink />
+      <Backdrop :show="isSidebarOpen" @click="closeSidebar" />
+      <Nav />
+      <LocalNav
+        :open="isSidebarOpen"
+        :show-outline="isPageDecrypted"
+        @open-menu="openSidebar"
+      />
+      <Sidebar :open="isSidebarOpen" />
+      <LayoutContent>
+        <Home v-if="page.frontmatter.home" />
+        <Friends v-else-if="page.frontmatter.friends" />
+        <Blog v-else-if="isBlogLayout" />
+        <Page v-else />
+        <BackToTop />
+        <VFooter />
+      </LayoutContent>
+    </template>
   </div>
 </template>
 

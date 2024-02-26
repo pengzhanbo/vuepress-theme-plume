@@ -23,6 +23,7 @@ import { sitemapPlugin } from '@vuepress/plugin-sitemap'
 import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
 import { searchPlugin } from '@vuepress-plume/plugin-search'
 import type {
+  PlumeThemeEncrypt,
   PlumeThemeLocaleOptions,
   PlumeThemePluginOptions,
 } from '../shared/index.js'
@@ -33,11 +34,13 @@ import { resolveNotesList } from './resolveNotesList.js'
 import { resolvedDocsearchOption, resolvedSearchOptions } from './searchPluginOptions.js'
 import { customContainers } from './container.js'
 import { BLOG_TAGS_COLORS_PRESET, generateBlogTagsColors } from './blogTags.js'
+import { isEncryptPage } from './resolveEncrypt.js'
 
 export function setupPlugins(
   app: App,
   options: PlumeThemePluginOptions,
   localeOptions: PlumeThemeLocaleOptions,
+  encrypt?: PlumeThemeEncrypt,
 ): PluginConfig {
   const isProd = !app.env.isDev
 
@@ -76,13 +79,15 @@ export function setupPlugins(
       extendBlogData: (page: any, extra) => {
         const tags = page.frontmatter.tags
         generateBlogTagsColors(extra.tagsColors, tags)
-        return {
+        const data: Record<string, any> = {
           categoryList: page.data.categoryList,
           tags,
           sticky: page.frontmatter.sticky,
           createTime: page.data.frontmatter.createTime,
           lang: page.lang,
         }
+        isEncryptPage(page, encrypt) && (data.encrypt = true)
+        return data
       },
     }),
 

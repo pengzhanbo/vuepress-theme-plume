@@ -1,3 +1,19 @@
+# [1.0.0-rc.39](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.38...v1.0.0-rc.39) (2024-2-26)
+
+
+### Features
+
+* **theme:** 新增 加密 功能 ([254eb7a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/254eb7a9ead1d256de3bcae894130e081a68caed))
+* **theme:** add `showOutline` prop  to LocalNav ([ecd2064](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ecd20647dd9dbea1c1bfcf27fbfd6a5e171c1763))
+
+
+### Performance Improvements
+
+* **plugin-shikiji:** add `experiment` type ([205cb13](https://github.com/pengzhanbo/vuepress-theme-plume/commit/205cb1336c2db651390514bc22999d1781adc07b))
+* **theme:** 右侧边栏添加 headers 判断控制显示 ([ba899ec](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ba899ec7ca3a454fdf3ca39003a2024080645b76))
+
+
+
 # [1.0.0-rc.38](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.37...v1.0.0-rc.38) (2024-2-24)
 
 

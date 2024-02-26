@@ -30,11 +30,6 @@ export const theme: Theme = themePlume({
     },
   },
   plugins: {
-    // docsearch: {
-    //   apiKey: '111',
-    //   appId: '111',
-    //   indexName: '1234',
-    // },
     shiki: { twoslash: true },
   },
 })

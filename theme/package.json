@@ -80,6 +80,7 @@
     "@vuepress/plugin-theme-data": "2.0.0-rc.15",
     "@vuepress/plugin-toc": "2.0.0-rc.15",
     "@vueuse/core": "^10.8.0",
+    "bcrypt-ts": "^5.0.2",
     "date-fns": "^3.3.1",
     "katex": "^0.16.9",
     "lodash.merge": "^4.6.2",

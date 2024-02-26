@@ -402,6 +402,9 @@ importers:
       '@vueuse/core':
         specifier: ^10.8.0
         version: 10.8.0(vue@3.4.19)
+      bcrypt-ts:
+        specifier: ^5.0.2
+        version: 5.0.2
       date-fns:
         specifier: ^3.3.1
         version: 3.3.1
@@ -5269,6 +5272,11 @@ packages:
 
   /batch@0.6.1:
     resolution: {integrity: sha1-3DQxT05nkxgJP8dgJyUl+UvyXBY=}
+    dev: false
+
+  /bcrypt-ts@5.0.2:
+    resolution: {integrity: sha512-gDwQ5784AkkfhHACh3jGcg1hUubyZyeq9AtVd5gXkcyHGVOC+mORjRIHSj+fHfqwY5vxwyBLXQpcfk8MpK0ROg==}
+    engines: {node: '>=18'}
     dev: false
 
   /before-after-hook@2.2.2:

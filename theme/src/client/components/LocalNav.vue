@@ -9,8 +9,9 @@ import { useSidebar, useThemeLocaleData } from '../composables/index.js'
 import IconAlignLeft from './icons/IconAlignLeft.vue'
 import LocalNavOutlineDropdown from './LocalNavOutlineDropdown.vue'
 
-defineProps<{
+const props = defineProps<{
   open: boolean
+  showOutline: boolean
 }>()
 
 defineEmits<(e: 'openMenu') => void>()
@@ -42,6 +43,7 @@ const classes = computed(() => {
     'fixed': empty.value,
     'reached-top': y.value >= navHeight.value,
     'is-blog': page.value.isBlogPost,
+    'with-outline': !props.showOutline,
   }
 })
 
@@ -64,7 +66,7 @@ const showLocalNav = computed(() => {
       <span class="menu-text"> {{ themeData.sidebarMenuLabel || 'Menu' }} </span>
     </button>
 
-    <LocalNavOutlineDropdown :headers="headers" :nav-height="navHeight" />
+    <LocalNavOutlineDropdown v-if="showOutline" :headers="headers" :nav-height="navHeight" />
   </div>
 </template>
 
@@ -113,6 +115,10 @@ const showLocalNav = computed(() => {
   .local-nav .menu {
     visibility: hidden;
   }
+
+  .local-nav.with-outline {
+    display: none;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -149,7 +155,7 @@ const showLocalNav = computed(() => {
 
 @media (min-width: 768px) {
   .menu {
-    padding: 0 32px;
+    padding: 12px 32px 11px;
   }
 }
 

@@ -60,6 +60,7 @@ export interface HighlighterOptions {
   codeTransformers?: ShikiTransformer[]
 
   /**
+   * @experiment
    * Enable transformerTwoslash
    * @default false
    */

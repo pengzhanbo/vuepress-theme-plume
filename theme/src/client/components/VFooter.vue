@@ -70,6 +70,7 @@ onMounted(() => {
 @media (min-width: 768px) {
   .plume-footer {
     padding: 24px;
+    margin-right: calc(0px - ((100vw - var(--vp-layout-max-width)) / 2));
   }
 }
 

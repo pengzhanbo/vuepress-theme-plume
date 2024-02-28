@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { useRoute } from 'vuepress/client'
-import { useBlogExtract } from '../composables/index.js'
-import AutoLink from './AutoLink.vue'
-import IconArchive from './icons/IconArchive.vue'
-import IconTag from './icons/IconTag.vue'
-import IconChevronRight from './icons/IconChevronRight.vue'
+import { useBlogExtract } from '../../composables/index.js'
+import AutoLink from '../AutoLink.vue'
+import IconArchive from '../icons/IconArchive.vue'
+import IconTag from '../icons/IconTag.vue'
+import IconChevronRight from '../icons/IconChevronRight.vue'
 
 const props = defineProps<{
   isLocal?: boolean

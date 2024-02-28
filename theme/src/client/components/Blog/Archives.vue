@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useArchives, useBlogExtract } from '../composables/index.js'
-import IconArchive from './icons/IconArchive.vue'
+import { useArchives, useBlogExtract } from '../../composables/index.js'
+import IconArchive from '../icons/IconArchive.vue'
 import ShortPostList from './ShortPostList.vue'
 
 const { archives: archivesLink } = useBlogExtract()

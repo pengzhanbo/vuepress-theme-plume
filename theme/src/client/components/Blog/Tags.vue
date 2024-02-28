@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useBlogExtract, useTags } from '../composables/index.js'
-import IconTag from './icons/IconTag.vue'
+import { useBlogExtract, useTags } from '../../composables/index.js'
+import IconTag from '../icons/IconTag.vue'
 import ShortPostList from './ShortPostList.vue'
 
 const { tags, currentTag, postList, handleTagClick } = useTags()

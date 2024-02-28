@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { usePageData } from 'vuepress/client'
-import type { PlumeThemePageData } from '../../shared/index.js'
-import { useThemeLocaleData } from '../composables/index.js'
+import type { PlumeThemePageData } from '../../../shared/index.js'
+import { useThemeLocaleData } from '../../composables/index.js'
+import PostList from './PostList.vue'
 import Archives from './Archives.vue'
 import BlogAside from './BlogAside.vue'
 import BlogExtract from './BlogExtract.vue'
-import PostList from './PostList.vue'
 import Tags from './Tags.vue'
 import BlogNav from './BlogNav.vue'
 

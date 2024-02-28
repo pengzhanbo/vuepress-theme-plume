@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useThemeLocaleData } from '../composables/index.js'
+import { useThemeLocaleData } from '../../composables/index.js'
 
 const theme = useThemeLocaleData()
 const avatar = computed(() => theme.value.avatar)

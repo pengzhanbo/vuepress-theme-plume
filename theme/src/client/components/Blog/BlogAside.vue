@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useThemeLocaleData } from '../composables/index.js'
+import { useThemeLocaleData } from '../../composables/index.js'
 import BlogNav from './BlogNav.vue'
 import BlogProfile from './BlogProfile.vue'
 

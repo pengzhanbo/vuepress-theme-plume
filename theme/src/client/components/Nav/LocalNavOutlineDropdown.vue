@@ -2,9 +2,9 @@
 import type { PageHeader } from 'vuepress/client'
 import { onClickOutside } from '@vueuse/core'
 import { nextTick, ref, watch } from 'vue'
-import { useThemeLocaleData } from '../composables/index.js'
+import { useThemeLocaleData } from '../../composables/index.js'
+import IconChevronRight from '../icons/IconChevronRight.vue'
 import DocOutlineItem from './DocOutlineItem.vue'
-import IconChevronRight from './icons/IconChevronRight.vue'
 
 const props = defineProps<{
   headers: PageHeader[]

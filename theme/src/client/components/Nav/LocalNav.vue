@@ -4,9 +4,9 @@ import { useWindowScroll } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
 import type {
   PlumeThemePageData,
-} from '../../shared/index.js'
-import { useSidebar, useThemeLocaleData } from '../composables/index.js'
-import IconAlignLeft from './icons/IconAlignLeft.vue'
+} from '../../../shared/index.js'
+import { useSidebar, useThemeLocaleData } from '../../composables/index.js'
+import IconAlignLeft from '../icons/IconAlignLeft.vue'
 import LocalNavOutlineDropdown from './LocalNavOutlineDropdown.vue'
 
 const props = defineProps<{

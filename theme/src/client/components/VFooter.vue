@@ -43,7 +43,6 @@ onMounted(() => {
   position: relative;
   z-index: var(--vp-z-index-footer);
   padding: 24px;
-  background-color: var(--vp-c-bg);
   border-top: 1px solid var(--vp-c-gutter);
   transition: all var(--t-color);
 }
@@ -70,6 +69,9 @@ onMounted(() => {
 @media (min-width: 768px) {
   .plume-footer {
     padding: 24px;
+  }
+
+  .plume-footer.has-sidebar {
     margin-right: calc(0px - ((100vw - var(--vp-layout-max-width)) / 2));
   }
 }

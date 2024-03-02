@@ -30,7 +30,7 @@
   line-height: 32px;
   letter-spacing: -0.02em;
   border-top: 1px solid var(--vp-c-divider);
-  transition: border-top var(--t-color);
+  transition: border-top var(--t-color), color var(--t-color);
 }
 
 .plume-content h2:first-of-type {

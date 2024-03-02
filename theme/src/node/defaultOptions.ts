@@ -49,7 +49,7 @@ const defaultLocales: NonNullable<PlumeThemeLocaleOptions['locales']> = {
 
 export const fallbackLocaleOption: Partial<PlumeThemeLocaleOptions> = {
   article: '/article/',
-  notes: { link: '/note', dir: 'notes', notes: [] },
+  notes: { link: '/', dir: 'notes', notes: [] },
   appearance: true,
   // page meta
   editLink: true,

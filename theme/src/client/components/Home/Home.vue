@@ -27,10 +27,14 @@ const config = computed(() => {
     return config
 
   return [{
-    type: 'banner',
-    banner: matter.value.banner,
-    bannerMask: matter.value.bannerMask,
-    hero: matter.value.hero,
+    type: 'hero',
+    full: true,
+    background: 'filter',
+    hero: matter.value.hero ?? {
+      name: 'Theme Plume',
+      tagline: 'VuePress Next Theme',
+      text: '一个简约的，功能丰富的 vuepress 文档&博客 主题',
+    },
   }]
 })
 

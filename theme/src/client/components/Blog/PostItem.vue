@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
-import { useExtraBlogData } from '../composables/index.js'
-import AutoLink from './AutoLink.vue'
-import IconClock from './icons/IconClock.vue'
-import IconFolder from './icons/IconFolder.vue'
-import IconTag from './icons/IconTag.vue'
-import IconLock from './icons/IconLock.vue'
+import type { PlumeThemeBlogPostItem } from '../../../shared/index.js'
+import { useExtraBlogData } from '../../composables/index.js'
+import AutoLink from '../AutoLink.vue'
+import IconClock from '../icons/IconClock.vue'
+import IconFolder from '../icons/IconFolder.vue'
+import IconTag from '../icons/IconTag.vue'
+import IconLock from '../icons/IconLock.vue'
 
 const props = defineProps<{
   post: PlumeThemeBlogPostItem

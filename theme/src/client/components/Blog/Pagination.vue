@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PlumeThemeBlog } from '../../shared/index.js'
+import type { PlumeThemeBlog } from '../../../shared/index.js'
 
 type NonFalseAndNullable<T> = T extends false | null | undefined ? never : T
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AutoLink from './AutoLink.vue'
+import AutoLink from '../AutoLink.vue'
 
 defineProps<{
   postList: {

@@ -1,48 +1,43 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { usePageFrontmatter, withBase } from 'vuepress/client'
+import { isLinkHttp } from 'vuepress/shared'
 import { computed } from 'vue'
-import type { PlumeThemeHomeFrontmatter } from '../../shared/index.js'
-import { useDarkMode } from '../composables/darkMode.js'
-import VButton from './VButton.vue'
+import type { PlumeThemeHomeBanner, PlumeThemeHomeFrontmatter } from '../../../shared/index.js'
+import { useDarkMode } from '../../composables/darkMode.js'
+import VButton from '../VButton.vue'
+
+const props = defineProps<PlumeThemeHomeBanner & { onlyOnce: boolean }>()
+
+const DEFAULT_BANNER = 'http://file.mo7.cc/api/public/bz'
 
 const matter = usePageFrontmatter<PlumeThemeHomeFrontmatter>()
 const isDark = useDarkMode()
 
 const mask = computed(() => {
-  if (typeof matter.value.bannerMask !== 'object')
-    return matter.value.bannerMask || 0
+  const mask = props.bannerMask ?? matter.value.bannerMask
+  if (typeof mask !== 'object')
+    return mask || 0
 
-  return (
-    (isDark.value
-      ? matter.value.bannerMask.dark
-      : matter.value.bannerMask.light) || 0
-  )
+  return (isDark.value ? mask.dark : mask.light) || 0
 })
 
-const homeStyle = computed(() => {
+const bannerStyle = computed(() => {
+  const banner = props.banner ?? matter.value.banner
+  const link = banner ? isLinkHttp(banner) ? banner : withBase(banner) : DEFAULT_BANNER
   return {
-    'background-image': [
-      mask.value
-        ? `linear-gradient(rgba(0, 0, 0, ${mask.value}), rgba(0, 0, 0, ${mask.value}))`
-        : '',
-      `url(${withBase(matter.value.banner ?? 'http://file.mo7.cc/api/public/bz')})`,
-    ]
-      .filter(Boolean)
-      .join(','),
+    'background-image': `url(${link})`,
   }
 })
 
-const name = computed(() => matter.value.hero?.name ?? 'Plume')
-const tagline = computed(() => matter.value.hero?.tagline ?? 'A VuePress Theme')
-const text = computed(() => matter.value.hero?.text)
-
-const actions = computed(() => {
-  return matter.value.hero?.actions ?? []
-})
+const name = computed(() => props.hero?.name ?? matter.value.hero?.name ?? 'Plume')
+const tagline = computed(() => props.hero?.tagline ?? matter.value.hero?.tagline ?? 'A VuePress Theme')
+const text = computed(() => props.hero?.text ?? matter.value.hero?.text)
+const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions ?? [])
 </script>
 
 <template>
-  <div class="plume-home" :style="homeStyle">
+  <div class="home-banner" :style="bannerStyle">
+    <div class="banner-mask" :style="{ opacity: mask }" />
     <div class="container">
       <div class="content">
         <h2 v-if="name" class="hero-name">
@@ -54,7 +49,7 @@ const actions = computed(() => {
         <p v-if="text" class="hero-text">
           {{ text }}
         </p>
-        <div v-if="actions" class="actions">
+        <div v-if="actions.length" class="actions">
           <div v-for="action in actions" :key="action.link" class="action">
             <VButton
               tag="a"
@@ -71,17 +66,29 @@ const actions = computed(() => {
 </template>
 
 <style scoped>
-.plume-home {
+.home-banner {
+  position: relative;
   width: 100%;
   min-height: calc(100vh - var(--vp-nav-height));
-  filter: var(--vp-home-hero-image-filter);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   transition: all var(--t-color);
 }
 
-.plume-home .container {
+.home-banner .banner-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  transition: opacity var(--t-color);
+}
+
+.home-banner .container {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -90,19 +97,19 @@ const actions = computed(() => {
   margin: 0 auto;
 }
 
-.plume-home .content {
+.home-banner .content {
   width: 100%;
   padding: 0 2rem;
 }
 
-.plume-home .content .hero-name {
+.home-banner .content .hero-name {
   font-size: 72px;
   font-weight: 600;
   line-height: 1;
   color: var(--vp-c-text-hero-name);
 }
 
-.plume-home .content .hero-tagline {
+.home-banner .content .hero-tagline {
   display: flex;
   align-items: center;
   margin-top: 1rem;
@@ -112,7 +119,7 @@ const actions = computed(() => {
   color: var(--vp-c-text-hero-tagline);
 }
 
-.plume-home .content .hero-tagline .line {
+.home-banner .content .hero-tagline .line {
   display: inline-block;
   width: 80px;
   height: 0;
@@ -120,7 +127,7 @@ const actions = computed(() => {
   border-top: solid 1px var(--vp-c-text-hero-tagline);
 }
 
-.plume-home .content .hero-text {
+.home-banner .content .hero-text {
   width: 100%;
   max-width: 700px;
   margin-top: 1.5rem;
@@ -135,23 +142,23 @@ const actions = computed(() => {
 }
 
 @media (min-width: 960px) {
-  .plume-home .container {
+  .home-banner .container {
     max-width: 768px;
     padding-top: 8rem;
   }
 
-  .plume-home .content .hero-name {
+  .home-banner .content .hero-name {
     font-size: 100px;
   }
 }
 
 @media (min-width: 1440px) {
-  .plume-home .container {
+  .home-banner .container {
     max-width: 1104px;
     padding-top: 8rem;
   }
 
-  .plume-home .content .hero-tagline {
+  .home-banner .content .hero-tagline {
     font-size: 32px;
   }
 }

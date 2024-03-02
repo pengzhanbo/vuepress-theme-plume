@@ -2,12 +2,12 @@
 import { useScrollLock } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
-import { useBlogExtract, useThemeLocaleData } from '../composables/index.js'
-import { inBrowser } from '../utils/index.js'
-import AutoLink from './AutoLink.vue'
-import IconArchive from './icons/IconArchive.vue'
-import IconBlogExt from './icons/IconBlogExt.vue'
-import IconTag from './icons/IconTag.vue'
+import { useBlogExtract, useThemeLocaleData } from '../../composables/index.js'
+import { inBrowser } from '../../utils/index.js'
+import AutoLink from '../AutoLink.vue'
+import IconArchive from '../icons/IconArchive.vue'
+import IconBlogExt from '../icons/IconBlogExt.vue'
+import IconTag from '../icons/IconTag.vue'
 
 const theme = useThemeLocaleData()
 const route = useRoute()

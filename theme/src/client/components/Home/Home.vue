@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { usePageFrontmatter } from 'vuepress/client'
-import { type Component, computed, h, resolveComponent } from 'vue'
+import { type Component, computed, resolveComponent } from 'vue'
 import type { PlumeThemeHomeFrontmatter } from '../../../shared/index.js'
 import HomeBanner from './HomeBanner.vue'
 import HomeHero from './HomeHero.vue'

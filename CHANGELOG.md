@@ -1,3 +1,39 @@
+# [1.0.0-rc.40](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.39...v1.0.0-rc.40) (2024-3-3)
+
+
+### Features
+
+* 新增 首页布局容器组件 ([bfa9164](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bfa9164037797744ae9530332186ea8e615b44b4))
+* 新增 首页布局容器组件 ([faa00fc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/faa00fc75c358072d5a142fe3434c32bab61876d))
+* **theme:** 全新的首页布局与配置方案！ ([cca2262](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cca2262c77b25485dbd312ed3e7ef1ff55083ac2))
+* **theme:** add Home Banner ([09bbd7e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/09bbd7eb994b44c63d36b668880e68fa89792e47))
+* **theme:** add Home Custom ([032bb68](https://github.com/pengzhanbo/vuepress-theme-plume/commit/032bb68b4c37c0ff40eb664a7777688542aec768))
+* **theme:** add Home Features ([bc8f5ad](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bc8f5aded3d89b7e45189e46dddc0ce44e5cb571))
+* **theme:** add Home Hero ([305ba20](https://github.com/pengzhanbo/vuepress-theme-plume/commit/305ba20beb9ce5f51f1f91bfb5a2d6eda1973d87))
+* **theme:** add Home Profile ([489208f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/489208f948affa48c4e65deedd6308eda4107cf1))
+* **theme:** add Home Text Image ([dc450ca](https://github.com/pengzhanbo/vuepress-theme-plume/commit/dc450caeb584ee0200b15251d40e2e87c34b2271))
+* **theme:** notes 默认配置, link: '/note' 变更为 link: '/' ([ef73709](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ef737098b5224ca662278937c92c12c6eb6f4c19))
+
+
+### Performance Improvements
+
+* 调整 Footer 布局 ([0548715](https://github.com/pengzhanbo/vuepress-theme-plume/commit/05487158cc3c9a33644b905f2ba1d0f8dd350133))
+* 优化大屏幕下 Footer 宽度计算 ([7d5e7a0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7d5e7a022696b5db7ebb2651875d824726de2d36))
+* 优化首页组件结构 ([83bae10](https://github.com/pengzhanbo/vuepress-theme-plume/commit/83bae103448a4f636acab3ddcd44e547cece5dea))
+* 优化首页组件结构 ([4a086c4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4a086c4cb1c9291345f2dd84b84f7c2578c727db))
+* **theme:** 博客相关组件归类 ([0d46ef4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0d46ef46d791c48b061c9875d4cf741835e8015e))
+* **theme:** 导航栏相关组件归类 ([ab4ee5d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ab4ee5d6f2a69e9292b82925d91fd5533d9ca96b))
+* **theme:** 优化 加密组件结构 ([471084f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/471084ff23a6e388268c911b00bc0a823e00e93a))
+* update `vue` to latest ([1eb541e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1eb541efae2e8117bd177b673de9d113209870fe))
+* update home default config ([89c0085](https://github.com/pengzhanbo/vuepress-theme-plume/commit/89c0085d0826486913eaed9409368e0db335aaaf))
+
+
+### BREAKING CHANGES
+
+* **theme:** 对于已使用该功能的用户,需要手动修改文章中的相关链接,以及 md front matter 中的 `permalink` 字段, 删去 `/note`
+
+
+
 # [1.0.0-rc.39](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.38...v1.0.0-rc.39) (2024-2-26)
 
 

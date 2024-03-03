@@ -2,10 +2,9 @@
 import { computed } from 'vue'
 import type { PlumeThemeHomeFeatures } from '../../../shared/index.js'
 import HomeFeature from './HomeFeature.vue'
+import HomeBox from './HomeBox.vue'
 
-const props = defineProps<{
-  onlyOnce?: boolean
-} & PlumeThemeHomeFeatures>()
+const props = defineProps<PlumeThemeHomeFeatures>()
 
 const grid = computed(() => {
   const length = props.features?.length
@@ -30,56 +29,40 @@ const grid = computed(() => {
 </script>
 
 <template>
-  <div v-if="features" class="home-features">
-    <div class="container">
-      <h2 v-if="title" class="title" v-html="title" />
-      <p v-if="description" class="description" v-html="description" />
-      <div class="items">
-        <div
-          v-for="feature in features"
-          :key="feature.title"
-          class="item"
-          :class="[grid]"
-        >
-          <HomeFeature
-            :icon="feature.icon"
-            :title="feature.title"
-            :details="feature.details"
-            :link="feature.link"
-            :link-text="feature.linkText"
-            :rel="feature.rel"
-            :target="feature.target"
-          />
-        </div>
+  <HomeBox
+    v-if="features"
+    class="home-features"
+    :type="type"
+    :background-image="backgroundImage"
+    :background-attachment="backgroundAttachment"
+    :full="full"
+  >
+    <h2 v-if="title" class="title" v-html="title" />
+    <p v-if="description" class="description" v-html="description" />
+
+    <div class="items">
+      <div
+        v-for="feature in features"
+        :key="feature.title"
+        class="item"
+        :class="[grid]"
+      >
+        <HomeFeature
+          :icon="feature.icon"
+          :title="feature.title"
+          :details="feature.details"
+          :link="feature.link"
+          :link-text="feature.linkText"
+          :rel="feature.rel"
+          :target="feature.target"
+        />
       </div>
     </div>
-  </div>
+  </HomeBox>
 </template>
 
 <style scoped>
-.home-features {
-  position: relative;
-  padding: 24px;
-}
-
-@media (min-width: 640px) {
-  .home-features {
-    padding: 24px 48px 48px;
-  }
-}
-
-@media (min-width: 960px) {
-  .home-features {
-    padding: 48px 64px 64px;
-  }
-}
-
-.container {
-  max-width: 1152px;
-  margin: 0 auto;
-}
-
-.container .title {
+.title {
   margin-bottom: 20px;
   font-size: 20px;
   font-weight: 900;
@@ -88,7 +71,7 @@ const grid = computed(() => {
   transition: color var(--t-color);
 }
 
-.container .description {
+.description {
   margin-bottom: 20px;
   font-size: 16px;
   line-height: 1.7;
@@ -98,17 +81,17 @@ const grid = computed(() => {
 }
 
 @media (min-width: 768px) {
-  .container .title {
+  .title {
     font-size: 24px;
   }
 
-  .container .description {
+  .description {
     font-size: 18px;
   }
 }
 
 @media (min-width: 960px) {
-  .container .title {
+  .title {
     font-size: 28px;
   }
 }

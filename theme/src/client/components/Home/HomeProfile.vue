@@ -3,8 +3,9 @@ import { computed } from 'vue'
 import type { PlumeThemeHomeProfile } from '../../../shared/index.js'
 import VImage from '../VImage.vue'
 import { useThemeLocaleData } from '../../composables/index.js'
+import HomeBox from './HomeBox.vue'
 
-const props = defineProps<PlumeThemeHomeProfile & { onlyOnce?: boolean }>()
+const props = defineProps<PlumeThemeHomeProfile>()
 
 const theme = useThemeLocaleData()
 
@@ -21,66 +22,53 @@ const profile = computed(() => {
 </script>
 
 <template>
-  <div class="home-profile">
-    <div class="container">
-      <VImage v-if="profile.avatar" :image="profile.avatar" :class="{ circle: profile.circle }" />
-      <h3 v-if="profile.name">
-        {{ profile.name }}
-      </h3>
-      <p v-if="profile.description">
-        {{ profile.description }}
-      </p>
-    </div>
-  </div>
+  <HomeBox
+    class="home-profile"
+    :type="type"
+    :background-image="backgroundImage"
+    :background-attachment="backgroundAttachment"
+    :full="full"
+  >
+    <VImage v-if="profile.avatar" :image="profile.avatar" :class="{ circle: profile.circle }" />
+
+    <h3 v-if="profile.name">
+      {{ profile.name }}
+    </h3>
+
+    <p v-if="profile.description">
+      {{ profile.description }}
+    </p>
+  </HomeBox>
 </template>
 
 <style scoped>
-.home-profile {
-  position: relative;
-  padding: 24px;
-}
-
-@media (min-width: 640px) {
-  .home-profile {
-    padding: 32px 48px;
-  }
-}
-
-@media (min-width: 960px) {
-  .home-profile {
-    padding: 48px 64px;
-  }
-}
-
-.container {
-  max-width: 1152px;
-  margin: 0 auto;
+.home-profile :deep(.container) {
   overflow: hidden;
 }
 
-.container :deep(img) {
+.home-profile :deep(img) {
   float: left;
   width: 64px;
   margin-right: 24px;
 }
 
-.container :deep(img.circle) {
+.home-profile :deep(img.circle) {
   border-radius: 50%;
 }
 
 @media (min-width: 960px) {
-  .container :deep(img) {
+  .home-profile :deep(img) {
     width: 96px;
   }
 }
 
-.container :deep(h3) {
+.home-profile :deep(h3) {
   margin-bottom: 12px;
   font-size: 20px;
   font-weight: 500;
 }
 
-.container :deep(p) {
+.home-profile :deep(p) {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;

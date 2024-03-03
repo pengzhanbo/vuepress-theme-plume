@@ -4,7 +4,7 @@ config:
   - 
     type: hero
     full: true
-    background: filter
+    background: filter-blur
     hero: 
       name: Theme Plume
       tagline: Vuepress Next Theme

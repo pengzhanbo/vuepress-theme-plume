@@ -23,9 +23,13 @@ export interface PlumeThemeHeroAction {
 
 export interface PlumeHomeConfigBase {
   type: 'banner' | 'hero' | 'text-image' | 'image-text' | 'features' | 'profile' | 'custom'
+  full?: boolean
+  backgroundImage?: string | { light: string, dark: string }
+  backgroundAttachment?: 'fixed' | 'local'
+  onlyOnce?: boolean
 }
 
-export interface PlumeThemeHomeBanner extends PlumeHomeConfigBase {
+export interface PlumeThemeHomeBanner extends Pick<PlumeHomeConfigBase, 'type' | 'onlyOnce' | 'full'> {
   type: 'banner'
   banner?: string
   bannerMask?: number | { light?: number, dark?: number }
@@ -36,7 +40,8 @@ export interface PlumeThemeHomeHero extends PlumeHomeConfigBase {
   type: 'hero'
   hero: PlumeThemeHero
   full?: boolean
-  background?: 'filter' | (string & { zz_IGNORE?: never })
+  background?: 'filter-blur' | (string & { zz_IGNORE?: never })
+  filter?: string
 }
 
 export interface PlumeThemeHomeTextImage extends PlumeHomeConfigBase {
@@ -46,8 +51,6 @@ export interface PlumeThemeHomeTextImage extends PlumeHomeConfigBase {
   title?: string
   description?: string
   list: (string | { title?: string, description?: string })[]
-  backgroundImage?: string | { light: string, dark: string }
-  backgroundAttachment?: 'fixed' | 'local'
 }
 
 export interface PlumeThemeHomeFeatures extends PlumeHomeConfigBase {

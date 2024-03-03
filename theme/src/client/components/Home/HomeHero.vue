@@ -3,18 +3,33 @@ import { usePageFrontmatter, withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { computed } from 'vue'
 import VButton from '../VButton.vue'
+import { useDarkMode } from '../../composables/index.js'
 import type { PlumeThemeHomeFrontmatter, PlumeThemeHomeHero } from '../../../shared/index.js'
 
-const props = defineProps<PlumeThemeHomeHero & { onlyOnce: boolean }>()
+const props = defineProps<PlumeThemeHomeHero>()
 
 const matter = usePageFrontmatter<PlumeThemeHomeFrontmatter>()
+const isDark = useDarkMode()
 
-const background = computed(() => {
-  const background = props.background !== 'filter' ? props.background : ''
-  const link = background ? isLinkHttp(background) ? background : withBase(background) : ''
-  return link
-    ? { 'background-image': `url(${link})` }
-    : null
+const heroBackground = computed(() => {
+  if (props.background === 'filter-blur')
+    return null
+  const image = props.backgroundImage
+    ? typeof props.backgroundImage === 'string'
+      ? props.backgroundImage
+      : (props.backgroundImage[isDark.value ? 'dark' : 'light'] ?? props.backgroundImage.light)
+    : ''
+  const background = image || props.background
+
+  if (!background)
+    return null
+
+  const link = isLinkHttp(background) ? background : withBase(background)
+  return {
+    'background-image': `url(${link})`,
+    'background-attachment': props.backgroundAttachment || '',
+    '--vp-hero-bg-filter': props.filter,
+  }
 })
 
 const hero = computed(() => props.hero ?? matter.value.hero ?? {})
@@ -23,9 +38,9 @@ const actions = computed(() => hero.value.actions ?? [])
 
 <template>
   <div class="home-hero" :class="{ full: props.full, once: props.onlyOnce }">
-    <div v-if="background" class="home-hero-bg" :style="background" />
+    <div v-if="heroBackground" class="home-hero-bg" :style="heroBackground" />
 
-    <div v-if="props.background === 'filter'" class="bg-filter">
+    <div v-if="background === 'filter-blur'" class="bg-filter">
       <div class="g g-1" />
       <div class="g g-2" />
       <div class="g g-3" />
@@ -36,16 +51,12 @@ const actions = computed(() => hero.value.actions ?? [])
         <h1 v-if="hero.name" class="hero-name" v-html="hero.name" />
         <p v-if="hero.tagline" class="hero-tagline" v-html="hero.tagline" />
         <p v-if="hero.text" class="hero-text" v-html="hero.text" />
+
         <div v-if="actions.length" class="actions">
           <div class="action">
             <VButton
-              v-for="action in actions"
-              :key="action.link"
-              tag="a"
-              size="medium"
-              :theme="action.theme"
-              :text="action.text"
-              :href="action.link"
+              v-for="action in actions" :key="action.link" tag="a" size="medium" :theme="action.theme"
+              :text="action.text" :href="action.link"
             />
           </div>
         </div>
@@ -66,6 +77,17 @@ const actions = computed(() => hero.value.actions ?? [])
 
 .home-hero.full.once {
   height: calc(100vh - var(--vp-nav-height) - var(--vp-footer-height, 0px));
+}
+
+.home-hero-bg {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  filter: var(--vp-hero-bg-filter);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .container {

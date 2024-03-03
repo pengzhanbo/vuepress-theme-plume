@@ -19,6 +19,12 @@ const components: Record<string, Component<any, any, any>> = {
   'custom': HomeCustom,
 }
 
+const DEFAULT_HERO = {
+  name: 'Theme Plume',
+  tagline: 'VuePress Next Theme',
+  text: '一个简约的，功能丰富的 vuepress 文档&博客 主题',
+}
+
 const matter = usePageFrontmatter<PlumeThemeHomeFrontmatter>()
 
 const config = computed(() => {
@@ -26,15 +32,22 @@ const config = computed(() => {
   if (config && config.length)
     return config
 
+  // @deprecated
+  // 适配旧版本配置，将在正式版本中删去
+  if (matter.value.banner) {
+    return [{
+      type: 'banner',
+      banner: matter.value.banner,
+      bannerMask: matter.value.bannerMask,
+      hero: matter.value.hero ?? DEFAULT_HERO,
+    }]
+  }
+
   return [{
     type: 'hero',
     full: true,
     background: 'filter',
-    hero: matter.value.hero ?? {
-      name: 'Theme Plume',
-      tagline: 'VuePress Next Theme',
-      text: '一个简约的，功能丰富的 vuepress 文档&博客 主题',
-    },
+    hero: matter.value.hero ?? DEFAULT_HERO,
   }]
 })
 

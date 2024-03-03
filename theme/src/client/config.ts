@@ -8,6 +8,7 @@ import ExternalLinkIcon from './components/global/ExternalLinkIcon.vue'
 import { setupDarkMode, useScrollPromise } from './composables/index.js'
 import Layout from './layouts/Layout.vue'
 import NotFound from './layouts/NotFound.vue'
+import HomeBox from './components/Home/HomeBox.vue'
 
 export default defineClientConfig({
   enhance({ app, router }) {
@@ -42,6 +43,8 @@ export default defineClientConfig({
 
       return null
     })
+
+    app.component('HomeBox', HomeBox)
 
     // handle scrollBehavior with transition
     const scrollBehavior = router.options.scrollBehavior!

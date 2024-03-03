@@ -1,8 +1,6 @@
 import * as path from 'node:path'
-import process from 'node:process'
-import { defineUserConfig } from 'vuepress'
+import { type UserConfig, defineUserConfig } from 'vuepress'
 import { viteBundler } from '@vuepress/bundler-vite'
-import { webpackBundler } from '@vuepress/bundler-webpack'
 import { theme } from './theme.js'
 
 export default defineUserConfig({
@@ -15,9 +13,7 @@ export default defineUserConfig({
     '/en/': { title: 'Plume Theme', description: '', lang: 'en-US' },
   },
 
-  // specify bundler via environment variable
-  bundler:
-    process.env.DOCS_BUNDLER === 'webpack' ? webpackBundler() : viteBundler(),
+  bundler: viteBundler(),
 
   theme,
-})
+}) as UserConfig

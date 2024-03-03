@@ -13,11 +13,8 @@
   },
   "dependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.8",
-    "@vuepress/bundler-webpack": "2.0.0-rc.8",
     "anywhere": "^1.6.0",
-    "sass": "^1.71.1",
-    "sass-loader": "^14.1.1",
-    "vue": "^3.4.19",
+    "vue": "^3.4.21",
     "vuepress-theme-plume": "workspace:*"
   }
 }

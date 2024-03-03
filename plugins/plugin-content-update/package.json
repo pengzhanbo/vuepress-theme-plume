@@ -40,7 +40,7 @@
     "vuepress": "2.0.0-rc.8"
   },
   "dependencies": {
-    "vue": "^3.4.19"
+    "vue": "^3.4.21"
   },
   "publishConfig": {
     "access": "public"

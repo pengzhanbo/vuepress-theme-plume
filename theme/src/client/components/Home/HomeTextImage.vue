@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { isLinkHttp } from 'vuepress/shared'
-import { withBase } from 'vuepress/client'
 import type { PlumeThemeHomeTextImage } from '../../../shared/index.js'
 import VImage from '../VImage.vue'
-import { useDarkMode } from '../../composables/index.js'
+import HomeBox from './HomeBox.vue'
 
-const props = defineProps<PlumeThemeHomeTextImage & { onlyOnce?: boolean }>()
-
-const isDark = useDarkMode()
+const props = defineProps<PlumeThemeHomeTextImage>()
 
 const maxWidth = computed(() => {
   const width = props.width
@@ -18,70 +14,45 @@ const maxWidth = computed(() => {
 
   return width
 })
-
-const styles = computed(() => {
-  if (!props.backgroundImage)
-    return null
-
-  const image = typeof props.backgroundImage === 'string' ? props.backgroundImage : (props.backgroundImage[isDark.value ? 'dark' : 'light'] ?? props.backgroundImage.light)
-
-  const link = isLinkHttp(image) ? props.backgroundImage : withBase(image)
-  return {
-    'background-image': `url(${link})`,
-    'background-size': 'cover',
-    'background-position': 'center',
-    'background-repeat': 'no-repeat',
-    'background-attachment': props.backgroundAttachment || '',
-  }
-})
 </script>
 
 <template>
-  <div class="home-text-image" :style="styles">
-    <div class="container" :class="{ reverse: type === 'text-image' }">
-      <div class="content-image">
-        <VImage :image="image" :style="{ maxWidth }" />
-      </div>
-      <div class="content-text plume-content">
-        <section>
-          <h2 v-if="title" class="title">
-            {{ title }}
-          </h2>
-          <p v-if="description" class="description" v-html="description" />
-          <ul v-if="list && list.length" class="list">
-            <li v-for="(item, index) in list" :key="index">
-              <template v-if="typeof item === 'object'">
-                <h3 v-if="item.title" v-html="item.title" />
-                <p v-if="item.description" v-html="item.description" />
-              </template>
-              <p v-else v-html="item" />
-            </li>
-          </ul>
-        </section>
-      </div>
+  <HomeBox
+    class="home-text-image"
+    :type="type"
+    :background-image="backgroundImage"
+    :background-attachment="backgroundAttachment"
+    :full="full"
+    :container-class="{ reverse: type === 'text-image' }"
+  >
+    <div class="content-image">
+      <VImage :image="image" :style="{ maxWidth }" />
     </div>
-  </div>
+
+    <div class="content-text plume-content">
+      <section>
+        <h2 v-if="title" class="title">
+          {{ title }}
+        </h2>
+
+        <p v-if="description" class="description" v-html="description" />
+
+        <ul v-if="list && list.length" class="list">
+          <li v-for="(item, index) in list" :key="index">
+            <template v-if="typeof item === 'object'">
+              <h3 v-if="item.title" v-html="item.title" />
+              <p v-if="item.description" v-html="item.description" />
+            </template>
+            <p v-else v-html="item" />
+          </li>
+        </ul>
+      </section>
+    </div>
+  </HomeBox>
 </template>
 
 <style scoped>
-.home-text-image {
-  position: relative;
-  padding: 24px;
-}
-
-@media (min-width: 640px) {
-  .home-text-image {
-    padding: 32px 48px;
-  }
-}
-
-@media (min-width: 960px) {
-  .home-text-image {
-    padding: 48px 64px;
-  }
-}
-
-.container {
+.home-text-image :deep(.container) {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -92,11 +63,11 @@ const styles = computed(() => {
 }
 
 @media (min-width: 960px) {
-  .container {
+  .home-text-image :deep(.container) {
     flex-direction: row;
   }
 
-  .container.reverse {
+  .home-text-image :deep(.container.reverse) {
     flex-direction: row-reverse;
   }
 }
@@ -152,7 +123,7 @@ const styles = computed(() => {
 }
 
 @media (min-width: 960px) {
-  .container {
+  .home-text-image :deep(.container) {
     gap: 48px;
   }
 
@@ -161,7 +132,7 @@ const styles = computed(() => {
     margin: 0 96px;
   }
 
-  .container .content-text {
+  .content-text {
     display: flex;
     justify-content: center;
     max-width: 80%;

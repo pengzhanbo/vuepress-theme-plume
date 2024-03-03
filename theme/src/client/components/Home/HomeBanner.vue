@@ -6,7 +6,7 @@ import type { PlumeThemeHomeBanner, PlumeThemeHomeFrontmatter } from '../../../s
 import { useDarkMode } from '../../composables/darkMode.js'
 import VButton from '../VButton.vue'
 
-const props = defineProps<PlumeThemeHomeBanner & { onlyOnce: boolean }>()
+const props = defineProps<PlumeThemeHomeBanner>()
 
 const DEFAULT_BANNER = 'http://file.mo7.cc/api/public/bz'
 
@@ -49,6 +49,7 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
         <p v-if="text" class="hero-text">
           {{ text }}
         </p>
+
         <div v-if="actions.length" class="actions">
           <div v-for="action in actions" :key="action.link" class="action">
             <VButton
@@ -134,11 +135,7 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
   font-size: 16px;
   font-weight: 500;
   color: var(--vp-c-text-hero-text);
-
-  /* padding: 6px 20px; */
   border-radius: 5px;
-
-  /* background-color: rgba(0, 0, 0, 0.25); */
 }
 
 @media (min-width: 960px) {

@@ -20,7 +20,7 @@ export default defineUserConfig({
 
 ## 指南
 
-主题会通过向网站 `<head>` 注入标签，让你的网站完全支持 [开放内容协议 OGP](https://ogp.me/) 
+主题会通过向网站 `<head>` 注入标签，让你的网站完全支持 [开放内容协议 OGP](https://ogp.me/)
 和 [JSON-LD 1.1](https://www.w3.org/TR/json-ld-api/)，以全面增强站点的搜索引擎优化性。
 
 默认情况下，插件会读取站点配置、主题配置与页面的 frontmatter 来尽可能自动生成。

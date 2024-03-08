@@ -11,13 +11,11 @@ permalink: /guide/api/client/
 import { useDarkMode } from 'vuepress-theme-plume/client'
 ```
 
-
 ## `useDarkMode()`
 
 - 类型： `() => Ref<boolean>`
 
 Composable `useDarkMode()` 用于获取当前的 `dark` 状态。
-
 
 ```ts
 import { useDarkMode } from 'vuepress-theme-plume/client'
@@ -30,7 +28,6 @@ const isDark = useDarkMode()
 - 类型：`Component`
 
 自定义首页时，提供给 区域 的 包装容器。
-
 
 ### Props
 

@@ -16,7 +16,7 @@ permalink: /guide/markdown/experiment/
 > 该功能当前仅在以下版本中通过可用性验证，在后续的所有的版本中均不能保证其可用性，请谨慎使用：
 > - [x] `vuepress@2.0.0-rc.0`
 > - [x] `vuepress@2.0.0-rc.2`
-> - [x] `vuepress@2.0.0-rc.7` 
+> - [x] `vuepress@2.0.0-rc.7`
 > - [x] `vuepress@2.0.0-rc.8`
 
 ### 概述
@@ -37,7 +37,6 @@ import { getHighlighterCore } from 'shiki/core'
 const highlighter = await getHighlighterCore({})
 //      ^?
 
-
 // @log: Custom log message
 const a = 1
 // @error: Custom error message
@@ -55,7 +54,6 @@ import { getHighlighterCore } from 'shiki/core'
 
 const highlighter = await getHighlighterCore({})
 //      ^?
-
 
 // @log: Custom log message
 const a = 1
@@ -94,14 +92,14 @@ $ pnpm patch @vuepress/markdown --edit-dir _tmp/vuepress__markdown
 找到 `270` 行，其内容如下：
 
 ```ts
-const code = options.highlight?.(token.content, language.name, "") || md.utils.escapeHtml(token.content);
+const code = options.highlight?.(token.content, language.name, '') || md.utils.escapeHtml(token.content)
 ```
 
 对其进行修改：
 
 ```ts
-const code = options.highlight?.(token.content, language.name, "") || md.utils.escapeHtml(token.content); // [!code --]
-const code = options.highlight?.(token.content, language.name, info || "") || md.utils.escapeHtml(token.content); // [!code ++]
+const code = options.highlight?.(token.content, language.name, '') || md.utils.escapeHtml(token.content) // [!code --]
+const code = options.highlight?.(token.content, language.name, info || '') || md.utils.escapeHtml(token.content) // [!code ++]
 ```
 
 你可以直接复制上面的代码内容，然后粘贴到 `_tmp/vuepress__markdown/dist/index.js` 文件中替换 `248` 行。
@@ -118,7 +116,6 @@ $ pnpm patch-commit '_tmp/vuepress__markdown'
 并提供 `patchedDependencies` 字段注册到你的项目中。
 
 之后你就可以选择 删除 `_tmp/vuepress__markdown` 目录了。
-
 
 #### 步骤四
 
@@ -169,7 +166,7 @@ const a = 1
 ```ts twoslash
 const a = 1
 //    ^?
-      //
+//
 ```
 
 **需要注意的是，`^`必须正确指向需要突出显示类型的变量**
@@ -182,9 +179,9 @@ const a = 1
 ```ts twoslash
 // @noErrors
 // @esModuleInterop
-import express from "express"
+import express from 'express'
 const app = express()
-app.get("/", function (req, res) {
+app.get('/', (req, res) => {
   res.sen
 //      ^|
 })
@@ -195,16 +192,16 @@ app.listen(3000)
 ```ts twoslash
 // @noErrors
 // @esModuleInterop
-import express from "express"
+import express from 'express'
 const app = express()
-app.get("/", function (req, res) {
+app.get('/', (req, res) => {
   res.sen
 //       ^|
 })
 app.listen(3000)
-          //
-          //
-          //
+//
+//
+//
 ```
 
 **需要注意的是，`^`必须正确指向需要进行内容预测的位置**
@@ -219,14 +216,14 @@ app.listen(3000)
 ````md
 ```ts twoslash
 // @errors: 2339
-const welcome = "Tudo bem gente?"
-const words = welcome.contains(" ")
+const welcome = 'Tudo bem gente?'
+const words = welcome.contains(' ')
 ```
 ````
 ```ts twoslash
 // @errors: 2339
-const welcome = "Tudo bem gente?"
-const words = welcome.contains(" ")
+const welcome = 'Tudo bem gente?'
+const words = welcome.contains(' ')
 ```
 
 你需要在 `@errors` 后面，声明对应的 `typescript` 错误码。
@@ -255,7 +252,7 @@ const hi = 'hi'
 // ---cut---
 const msg = `${hi} words` as const
 //    ^?
-      //
+//
 ```
 
 #### 自定义输出信息 {id=twoslash-custom-message}
@@ -284,7 +281,6 @@ const c = 1
 // @annotate: Custom annotation message
 ```
 
-
 #### import_files {id=twoslash-import-files}
 
 `@filename: <filename>` 用于声明后续的代码将来自哪个文件，
@@ -293,35 +289,35 @@ const c = 1
 ````md
 ```ts twoslash
 // @filename: sum.ts
-export function sum(a: number, b: number): number {
-  return a + b
-}
-
 // @filename: ok.ts
-import { sum } from "./sum"
-sum(1, 2)
+import { sum } from './sum'
 
 // @filename: error.ts
 // @errors: 2345
-import { sum } from "./sum"
-sum(4, "woops")
+import { sum } from './sum'
+
+export function sum(a: number, b: number): number {
+  return a + b
+}
+sum(1, 2)
+sum(4, 'woops')
 ```
 ````
 
 ```ts twoslash
 // @filename: sum.ts
-export function sum(a: number, b: number): number {
-  return a + b
-}
-
 // @filename: ok.ts
-import { sum } from "./sum"
-sum(1, 2)
+import { sum } from './sum'
 
 // @filename: error.ts
 // @errors: 2345
-import { sum } from "./sum"
-sum(4, "woops")
+import { sum } from './sum'
+
+export function sum(a: number, b: number): number {
+  return a + b
+}
+sum(1, 2)
+sum(4, 'woops')
 ```
 
 ::: warning

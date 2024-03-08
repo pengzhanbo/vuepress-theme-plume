@@ -415,7 +415,7 @@ end tell
 `````md
 ````md
 ```js
-const a = 1;
+const a = 1
 ```
 ````
 `````
@@ -424,7 +424,7 @@ const a = 1;
 
 ````md
 ```js
-const a = 1;
+const a = 1
 ```
 ````
 

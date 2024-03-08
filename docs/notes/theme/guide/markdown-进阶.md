@@ -12,7 +12,7 @@ permalink: /guide/markdown/advance/
 ::: code-tabs
 @tab .vuepress/config.ts
 ```ts
-export default defineUserConfig{
+export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
       markdownEnhance: {
@@ -20,7 +20,7 @@ export default defineUserConfig{
       },
     }
   })
-}
+})
 ```
 :::
 
@@ -96,9 +96,9 @@ JSON 块是可选的，可用的配置详见[配置](https://vuepress-theme-hope
 ```
 
 ```ts
-const message: string = "VuePress Theme Hope";
+const message: string = 'VuePress Theme Hope'
 
-document.querySelector("h1").innerHTML = message;
+document.querySelector('h1').innerHTML = message
 ```
 
 ```scss
@@ -124,9 +124,9 @@ h1 {
 ```
 
 ```ts
-const message: string = "VuePress Theme Hope";
+const message: string = 'VuePress Theme Hope'
 
-document.querySelector("h1").innerHTML = message;
+document.querySelector('h1').innerHTML = message
 ```
 
 ```scss
@@ -142,7 +142,6 @@ h1 {
 :::
 ````
 ::::
-
 
 ### 普通代码演示
 格式：
@@ -165,10 +164,10 @@ h1 {
 // 配置 (可选)
 {
   "jsLib": [
-    ...
+    // ...
   ],
-  "cssLib":[
-    ...
+  "cssLib": [
+    // ...
   ]
 }
 ```
@@ -189,9 +188,9 @@ h1 {
 ```
 
 ```js
-document.querySelector("#very").addEventListener("click", () => {
-  alert("非常强大");
-});
+document.querySelector('#very').addEventListener('click', () => {
+  alert('非常强大')
+})
 ```
 
 ```css
@@ -212,9 +211,9 @@ span {
 ```
 
 ```js
-document.querySelector("#very").addEventListener("click", () => {
-  alert("非常强大");
-});
+document.querySelector('#very').addEventListener('click', () => {
+  alert('非常强大')
+})
 ```
 
 ```css
@@ -235,14 +234,17 @@ span {
 
 ```vue
 <!-- ↑ 你也可以使用 html -->
-<template>
-  <!-- vue 模板 -->
-</template>
 <script>
 export default {
   // vue 组件
-};
+}
 </script>
+
+<template>
+  <!-- vue 模板 -->
+  <div>demo</div>
+</template>
+
 <style>
 /* css 代码 */
 </style>
@@ -250,6 +252,7 @@ export default {
 
 ```json
 // 配置 (可选)
+{}
 ```
 
 :::
@@ -266,31 +269,32 @@ export default {
 ::: vue-demo 一个 Vue Composition 演示
 
 ```vue
-<template>
-  <div class="box">
-    <code>Hello Word</code> is
-    <span @click="handler">{{ message }}</span
-    >!
-  </div>
-</template>
 <script>
-const { ref } = Vue;
+const { ref } = Vue
 
 export default {
   setup() {
-    const message = ref("powerful");
+    const message = ref('powerful')
 
     const handler = () => {
-      message.value = "very " + message.value;
-    };
+      message.value = `very ${message.value}`
+    }
 
     return {
       message,
       handler,
-    };
+    }
   },
-};
+}
 </script>
+
+<template>
+  <div class="box">
+    <code>Hello Word</code> is
+    <span @click="handler">{{ message }}</span>!
+  </div>
+</template>
+
 <style>
 .box span {
   color: red;
@@ -305,31 +309,32 @@ export default {
 ::: vue-demo 一个 Vue Composition 演示
 
 ```vue
-<template>
-  <div class="box">
-    <code>Hello Word</code> is
-    <span @click="handler">{{ message }}</span
-    >!
-  </div>
-</template>
 <script>
-const { ref } = Vue;
+const { ref } = Vue
 
 export default {
   setup() {
-    const message = ref("powerful");
+    const message = ref('powerful')
 
     const handler = () => {
-      message.value = "very " + message.value;
-    };
+      message.value = `very ${message.value}`
+    }
 
     return {
       message,
       handler,
-    };
+    }
   },
-};
+}
 </script>
+
+<template>
+  <div class="box">
+    <code>Hello Word</code> is
+    <span @click="handler">{{ message }}</span>!
+  </div>
+</template>
+
 <style>
 .box span {
   color: red;
@@ -358,6 +363,7 @@ export default {
 
 ```json
 // 配置 (可选)
+{}
 ```
 
 :::
@@ -374,14 +380,14 @@ export default {
 ::: react-demo 一个函数式 React Demo
 
 ```js
-const { useState } = React;
+const { useState } = React
 
 export default () => {
-  const [message, setMessage] = useState(" 强大");
+  const [message, setMessage] = useState(' 强大')
 
   const handler = () => {
-    setMessage(`十分${message}`);
-  };
+    setMessage(`十分${message}`)
+  }
 
   return (
     <div className="box">
@@ -390,8 +396,8 @@ export default () => {
         {message}
       </span>
     </div>
-  );
-};
+  )
+}
 ```
 
 ```css
@@ -407,14 +413,14 @@ export default () => {
 ::: react-demo 一个函数式 React Demo
 
 ```js
-const { useState } = React;
+const { useState } = React
 
 export default () => {
-  const [message, setMessage] = useState(" 强大");
+  const [message, setMessage] = useState(' 强大')
 
   const handler = () => {
-    setMessage(`十分${message}`);
-  };
+    setMessage(`十分${message}`)
+  }
 
   return (
     <div className="box">
@@ -423,8 +429,8 @@ export default () => {
         {message}
       </span>
     </div>
-  );
-};
+  )
+}
 ```
 
 ```css
@@ -443,7 +449,7 @@ export default () => {
 
 你需要将选项卡包装在 `tabs` 容器中。
 
-你可以在 `tabs` 容器中添加一个 id 后缀，该后缀将用作选项卡 id。 
+你可以在 `tabs` 容器中添加一个 id 后缀，该后缀将用作选项卡 id。
 所有具有相同 id 的选项卡将共享相同的切换事件。
 
 ```md
@@ -502,7 +508,6 @@ export default () => {
 
 你可以在每个选项卡中使用 Vue 语法和组件，并且你可以访问 value 和 isActive，
 表示选项卡的绑定值和选项卡是否处于激活状态。
-
 
 **输入**
 

@@ -1,7 +1,7 @@
 import config from '@pengzhanbo/eslint-config-vue'
 
 export default config({
-  ignores: ['lib', 'docs/**/*.md'],
+  ignores: ['lib'],
   globals: {
     __VUEPRESS_VERSION__: 'readonly',
     __VUEPRESS_BASE__: 'readonly',
@@ -15,5 +15,11 @@ export default config({
   files: ['**/*.vue'],
   rules: {
     'vue/no-v-text-v-html-on-component': 'off',
+  },
+}, {
+  files: ['**/*.md/*.ts'],
+  rules: {
+    'import/no-duplicates': 'off',
+    'no-new': 'off',
   },
 })

@@ -26,7 +26,6 @@ permalink: /guide/markdown/extensions/
 主题默认对每个 md 文件自动生成一个新的 链接，并保存在对应的 md 文件的 frontmatter 的 `permalink` 中。
 你可以随时修改它们。
 
-
 #### 内部链接
 
 建议使用 生成的 `permalink` 作为内部链接的目标。
@@ -354,7 +353,7 @@ export default {
 
 ```js
 export default {
-  data () {
+  data() {
     return {
       msg: 'Highlighted!' // [!code highlight]
     }
@@ -386,7 +385,7 @@ export default {
 
 ```js
 export default {
-  data () {
+  data() {
     return {
       msg: 'Focused!' // [!code focus]
     }
@@ -405,7 +404,7 @@ export default {
 export default {
   data () {
     return {
-      msg: 'Removed' // [\!code --]
+      msg: 'Removed', // [\!code --]
       msg: 'Added' // [\!code ++]
     }
   }
@@ -417,9 +416,9 @@ export default {
 
 ```js
 export default {
-  data () {
+  data() {
     return {
-      msg: 'Removed' // [!code --]
+      msg: 'Removed', // [!code --]
       msg: 'Added' // [!code ++]
     }
   }
@@ -449,7 +448,7 @@ export default {
 
 ```js
 export default {
-  data () {
+  data() {
     return {
       msg: 'Error', // [!code error]
       msg: 'Warning' // [!code warning]
@@ -506,7 +505,6 @@ console.log(options.foo) // 这个不会被高亮显示
 
 可以像这样对多个代码块进行分组：
 
-
 **输入**
 
 ````md
@@ -525,7 +523,7 @@ export default config
 
 @tab config.ts
 ```ts
-import { type UserConfig } from 'vuepress'
+import type { UserConfig } from 'vuepress'
 
 const config: UserConfig = {
   // ..
@@ -552,7 +550,7 @@ export default config
 ```
 @tab config.ts
 ```ts
-import { type UserConfig } from 'vuepress'
+import type { UserConfig } from 'vuepress'
 
 const config: UserConfig = {
   // ..
@@ -562,7 +560,7 @@ export default config
 ```
 :::
 
-你还可以通过 `@tab:active` 
+你还可以通过 `@tab:active`
 
 ## 导入代码块
 

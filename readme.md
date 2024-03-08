@@ -26,7 +26,7 @@
 - 👨‍💻‍ 支持 浅色/深色 主题 （包括代码高亮）
 - 📠 markdown 增强，支持 代码块分组、提示容器、任务列表、数学公式、代码演示 等
 
-### [查看文档](https://pengzhanbo.cn/note/vuepress-theme-plume)
+### [查看文档](https://plume.pengzhanbo.cn)
 
 ## Install
 

@@ -5,7 +5,7 @@
   "scripts": {
     "docs:build": "vuepress build --clean-cache",
     "docs:clean": "rimraf .vuepress/.temp .vuepress/.cache .vuepress/dist",
-    "docs:dev": "vuepress dev --clean-cache --clean-temp",
+    "docs:dev": "vuepress dev",
     "docs:serve": "anywhere -s -h localhost -d .vuepress/dist"
   },
   "peerDependencies": {

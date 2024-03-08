@@ -64,7 +64,7 @@ function resolveComponentName(type: string) {
       v-for="(item, index) in config"
       :key="item.type + index"
     >
-      <div :class="{ layout: index > 0 && item.type !== 'features' }">
+      <div :class="{ layout: index > 0 && item.type !== 'features' && item.type !== 'custom' }">
         <component
           :is="resolveComponentName(item.type)"
           v-bind="item"

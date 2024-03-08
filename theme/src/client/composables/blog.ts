@@ -197,7 +197,7 @@ export function useTags() {
     return Object.keys(tagMap).map(tag => ({
       name: tag,
       count: tagMap[tag] > 99 ? '99+' : tagMap[tag],
-      colors: extraData.value.tagsColorsPreset[extraData.value.tagsColors[tag]],
+      colors: extraData.value.tagsColorsPreset[extraData.value.tagsColors[tag]] ?? [],
     }))
   })
 

@@ -48,7 +48,7 @@ export interface HighlighterOptions {
   /**
    * Setup Shikiji instance
    */
-  shikiSetup?: (shikiji: Highlighter) => void | Promise<void>
+  shikiSetup?: (shiki: Highlighter) => void | Promise<void>
   /**
    * Fallback language when the specified language is not available.
    */

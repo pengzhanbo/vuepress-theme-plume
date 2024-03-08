@@ -12,6 +12,7 @@ import { useExtraBlogData } from '../composables/index.js'
 import IconBooks from './icons/IconBooks.vue'
 import IconClock from './icons/IconClock.vue'
 import IconTag from './icons/IconTag.vue'
+import IconUser from './icons/IconUser.vue'
 
 const page = usePageData<PlumeThemePageData>()
 const matter = usePageFrontmatter<PlumeThemePostFrontmatter>()
@@ -33,7 +34,7 @@ const tags = computed(() => {
   if (matter.value.tags) {
     return matter.value.tags.slice(0, 4).map(tag => ({
       name: tag,
-      colors: extraData.value.tagsColorsPreset[extraData.value.tagsColors[tag]],
+      colors: extraData.value.tagsColorsPreset[extraData.value.tagsColors[tag]] ?? [],
     }))
   }
 
@@ -56,10 +57,14 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
       <span v-if="index !== categoryList.length - 1" class="dot">&rsaquo;</span>
     </template>
   </div>
-  <h1 v-if="page.isBlogPost" class="page-title" :class="{ padding: !hasMeta }">
+  <h1 class="page-title" :class="{ padding: !hasMeta }">
     {{ page.title }}
   </h1>
   <div v-if="hasMeta" class="page-meta-wrapper">
+    <p v-if="matter.author" class="author">
+      <IconUser class="icon" />
+      <span>{{ matter.author }}</span>
+    </p>
     <p v-if="readingTime.time" class="reading-time">
       <IconBooks class="icon" />
       <span>{{ readingTime.words }}</span>
@@ -144,14 +149,20 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
   margin-right: 0.3rem;
 }
 
+.page-meta-wrapper .author .icon,
+.page-meta-wrapper .author span {
+  color: var(--vp-c-text-2);
+  transition: color var(--t-color);
+}
+
 .page-meta-wrapper .tag {
   display: inline-block;
   padding: 3px 5px;
   margin-right: 6px;
   font-size: 12px;
   line-height: 1;
-  color: var(--vp-tag-color);
-  background-color: var(--vp-tag-bg-color);
+  color: var(--vp-tag-color, var(--vp-c-text-3));
+  background-color: var(--vp-tag-bg-color, var(--vp-c-default-soft));
   border-radius: 3px;
 }
 
@@ -168,10 +179,15 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 }
 
 .page-meta-wrapper .create-time {
-  flex: 1;
-  justify-content: right;
   min-width: 110px;
   margin-right: 0;
   text-align: right;
+}
+
+@media (min-width: 768px) {
+  .page-meta-wrapper .create-time {
+    flex: 1;
+    justify-content: right;
+  }
 }
 </style>

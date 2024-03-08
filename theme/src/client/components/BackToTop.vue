@@ -27,7 +27,7 @@ const stroke = computed(() =>
 )
 
 const mustHidden = computed(() => {
-  return page.value.frontmatter.backToTop === false || page.value.frontmatter.home
+  return page.value.frontmatter.backToTop === false || (page.value.frontmatter.home && page.value.frontmatter.config && (page.value.frontmatter.config as any).length <= 1)
 })
 
 const show = computed(() => {

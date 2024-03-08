@@ -43,7 +43,7 @@
     "templates"
   ],
   "scripts": {
-    "build": "pnpm run clean && pnpm run copy && pnpm run ts",
+    "build": "pnpm run copy && pnpm run ts",
     "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
     "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib -w",

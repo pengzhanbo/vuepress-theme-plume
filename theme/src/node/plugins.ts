@@ -107,8 +107,18 @@ export function setupPlugins(
     ...customContainers,
   ]
 
-  if (options.readingTime !== false)
-    plugins.push(readingTimePlugin(options.readingTime || {}))
+  if (options.readingTime !== false) {
+    plugins.push(readingTimePlugin({
+      locales: {
+        '/zh/': {
+          word: '$word字',
+          less1Minute: '小于1分钟',
+          time: '大约$time分钟',
+        },
+      },
+      ...options.readingTime,
+    }))
+  }
 
   if (options.nprogress !== false)
     plugins.push(nprogressPlugin())
@@ -183,7 +193,6 @@ export function setupPlugins(
           align: true,
           mark: true,
           tasklist: true,
-          demo: true,
           attrs: true,
           sup: true,
           sub: true,
@@ -203,7 +212,6 @@ export function setupPlugins(
     plugins.push(baiduTongjiPlugin(options.baiduTongji))
 
   const hostname = resolveLocaleOptions(localeOptions, 'hostname')
-
   if (options.sitemap !== false && hostname && isProd)
     plugins.push(sitemapPlugin({ hostname }))
 

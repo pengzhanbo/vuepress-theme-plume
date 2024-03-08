@@ -38,7 +38,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "pnpm run clean && pnpm run ts",
+    "build": "pnpm run ts",
     "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
     "ts": "tsc -b tsconfig.build.json"
   },

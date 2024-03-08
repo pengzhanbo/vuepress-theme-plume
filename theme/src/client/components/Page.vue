@@ -185,7 +185,7 @@ onContentUpdated(() => zoom?.refresh())
 
 @media (min-width: 1440px) {
   .plume-page:not(.has-sidebar) .content {
-    max-width: 984px;
+    max-width: 784px;
   }
 
   .plume-page:not(.has-sidebar) .container {

@@ -14,7 +14,7 @@ config:
         -
           theme: brand
           text: 快速开始 →
-          link: /
+          link: /guide/intro/
         -
           theme: alt
           text: Github

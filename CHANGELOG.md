@@ -1,3 +1,21 @@
+# [1.0.0-rc.41](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.40...v1.0.0-rc.41) (2024-3-8)
+
+
+### Features
+
+* 全新的文档！ ([c56bae8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c56bae8d58941db05a5cb1faad45be2178331db3))
+* **theme:** 首页显示回到顶部按钮 ([bb8a971](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bb8a971c9006752cb90ff63213b864c47481af54))
+* **theme:** 新增页面元数据作者信息 ([deb17c7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/deb17c7ebc5077ec50ccb1a1813959d9af579f53))
+
+
+### Performance Improvements
+
+* **theme:** 调整首页布局 ([ba235c4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ba235c421fa13189c736ce3d83e6e0d9c27f9d74))
+* **theme:** 优化分类、标签计算逻辑 ([f2860d9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f2860d96da519f01491d9b053e55da939209cf9d))
+* **theme:** 优化页面布局 ([ee30acb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ee30acbc15a0e2f69edf09dec53ebd8421626018))
+
+
+
 # [1.0.0-rc.40](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.39...v1.0.0-rc.40) (2024-3-3)
 
 

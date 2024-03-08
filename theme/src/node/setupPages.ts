@@ -80,14 +80,20 @@ export function autoCategory(
   options: PlumeThemeLocaleOptions,
 ) {
   const pagePath = page.filePathRelative
+
   if (page.frontmatter.type || !pagePath)
     return
   const locales = Object.keys(resolvedAppLocales(app))
   const notesLinks: string[] = []
   for (const [, locale] of locales.entries()) {
-    const notes = options.locales?.[locale]?.notes
-    if (notes && notes.link)
-      notesLinks.push(path.join(locale, notes.link).replace(/\\+/g, '/'))
+    const config = options.locales?.[locale]?.notes
+    if (config && config.notes) {
+      notesLinks.push(
+        ...config.notes.map(
+          note => path.join(locale, config.link || '', note.link).replace(/\\+/g, '/'),
+        ),
+      )
+    }
   }
   if (notesLinks.some(link => page.path.startsWith(link)))
     return

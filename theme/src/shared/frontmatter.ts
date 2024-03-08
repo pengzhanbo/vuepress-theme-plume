@@ -95,8 +95,6 @@ export interface PlumeThemeHomeProfile extends PlumeHomeConfigBase {
 
 export interface PlumeThemeHomeCustom extends PlumeHomeConfigBase {
   type: 'custom'
-  backgroundImage?: string | { light: string, dark: string }
-  backgroundAttachment?: 'fixed' | 'local'
 }
 
 /* =============================== Home end ==================================== */

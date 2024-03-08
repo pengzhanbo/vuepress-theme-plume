@@ -80,6 +80,7 @@ const maxWidth = computed(() => {
 
 .content-text h2 {
   margin-top: 0;
+  margin-bottom: 12px;
 }
 
 .content-text ul {
@@ -87,6 +88,7 @@ const maxWidth = computed(() => {
 }
 
 .content-text .description {
+  margin: 12px 0 24px;
   font-size: 16px;
   font-weight: 500;
   color: var(--vp-c-text-1);
@@ -102,6 +104,7 @@ const maxWidth = computed(() => {
 
 .content-text ul p {
   margin: 0;
+  font-weight: 400;
   color: var(--vp-c-text-1);
   transition: color var(--t-color);
 }
@@ -112,13 +115,12 @@ const maxWidth = computed(() => {
 
 @media (min-width: 768px) {
   .content-image :deep(.plume-image) {
-    max-width: 160px;
+    max-width: 180px;
     margin: 0 48px;
   }
 
   .content-text {
     flex: 1;
-    width: 100%;
   }
 }
 
@@ -128,7 +130,7 @@ const maxWidth = computed(() => {
   }
 
   .content-image :deep(.plume-image) {
-    max-width: 180px;
+    max-width: 220px;
     margin: 0 96px;
   }
 

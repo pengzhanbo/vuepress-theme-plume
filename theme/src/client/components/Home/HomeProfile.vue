@@ -31,13 +31,9 @@ const profile = computed(() => {
   >
     <VImage v-if="profile.avatar" :image="profile.avatar" :class="{ circle: profile.circle }" />
 
-    <h3 v-if="profile.name">
-      {{ profile.name }}
-    </h3>
+    <h3 v-if="profile.name" v-html="profile.name" />
 
-    <p v-if="profile.description">
-      {{ profile.description }}
-    </p>
+    <p v-if="profile.description" v-html="profile.description" />
   </HomeBox>
 </template>
 

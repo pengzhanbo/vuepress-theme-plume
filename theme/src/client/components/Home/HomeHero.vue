@@ -201,7 +201,7 @@ const actions = computed(() => hero.value.actions ?? [])
   width: 714px;
   height: 390px;
   clip-path: polygon(0 10%, 30% 0, 100% 40%, 70% 100%, 20% 90%);
-  background: #fe5;
+  background: var(--vp-c-yellow-3);
   transform: translate(-50%, 0);
 }
 
@@ -211,7 +211,7 @@ const actions = computed(() => hero.value.actions ?? [])
   width: 1000px;
   height: 450px;
   clip-path: polygon(10% 0, 100% 70%, 100% 100%, 20% 90%);
-  background: #e950d1;
+  background: var(--vp-c-red-3);
   transform: translate(-50%, 0);
 }
 
@@ -221,7 +221,7 @@ const actions = computed(() => hero.value.actions ?? [])
   width: 1000px;
   height: 450px;
   clip-path: polygon(80% 0, 100% 70%, 100% 100%, 20% 90%);
-  background: rgba(87, 80, 233);
+  background: var(--vp-c-purple-3);
   transform: translate(-50%, 0);
 }
 

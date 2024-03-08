@@ -1,17 +1,26 @@
 ---
 home: true
-banner: /images/bg-home.jpg
-hero: 
-  name: pengzhanbo
-  tagline: Front-End Developer
-  text: 简单介绍专业技能信息相关的描述
-  actions: 
-    - 
-      theme: brand
-      text: Blog
-      link: /en/blog/
-    - 
-      theme: alt
-      text: Github
-      link: /
+externalLink: false
+config: 
+  - 
+    type: hero
+    full: true
+    background: filter-blur
+    hero: 
+      name: Theme Plume
+      tagline: Vuepress Next Theme
+      text: A simple, feature-rich vuepress document & blog theme
+      actions: 
+        - 
+          theme: brand
+          text: Quick Start →
+          link: /
+        - 
+          theme: alt
+          text: Github
+          link: https://github.com/pengzhanbo/vuepress-theme-plume
+  - 
+    type: custom
 ---
+
+Todo...

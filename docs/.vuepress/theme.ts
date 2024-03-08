@@ -4,20 +4,20 @@ import { enNotes, zhNotes } from './notes.js'
 import { enNavbar, zhNavbar } from './navbar.js'
 
 export const theme: Theme = themePlume({
-  logo: 'https://pengzhanbo.cn/g.gif',
-  hostname: 'https://pengzhanbo.cn',
+  logo: '/plume.png',
+  hostname: 'https://plume.pengzhanbo.cn',
   repo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
   docsDir: 'docs',
 
   avatar: {
-    url: '/images/blogger.jpg',
+    url: '/plume.png',
     name: 'Plume Theme',
     description: 'The Theme for Vuepress 2.0',
   },
 
-  social: [{ icon: 'github', link: 'https://github.com/pengzhanbo' }],
+  social: [{ icon: 'github', link: 'https://github.com/pengzhanbo/vuepress-theme-plume' }],
 
-  footer: { copyright: 'Copyright © 2022-present pengzhanbo' },
+  footer: { copyright: 'Copyright © 2021-present pengzhanbo' },
 
   locales: {
     '/': {
@@ -31,5 +31,27 @@ export const theme: Theme = themePlume({
   },
   plugins: {
     shiki: { twoslash: true },
+    markdownEnhance: {
+      demo: true,
+    },
+    comment: {
+      provider: 'Giscus',
+      comment: true,
+      repo: 'pengzhanbo/vuepress-theme-plume',
+      repoId: 'R_kgDOG_ebNA',
+      category: 'docs-comment',
+      categoryId: 'DIC_kwDOG_ebNM4Cd0uF',
+      mapping: 'url',
+      reactionsEnabled: true,
+      inputPosition: 'top',
+      darkTheme: 'dark_protanopia',
+      lightTheme: 'light_protanopia',
+    },
+
+  },
+  encrypt: {
+    rules: {
+      '/article/enx7c9s/': '123456',
+    },
   },
 })

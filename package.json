@@ -46,7 +46,7 @@
     "@types/lodash.merge": "^4.6.9",
     "@types/node": "20.9.1",
     "@types/webpack-env": "^1.18.4",
-    "bumpp": "^9.3.0",
+    "bumpp": "^9.4.0",
     "commitizen": "^4.3.0",
     "concurrently": "^8.2.2",
     "conventional-changelog-cli": "^4.1.0",
@@ -58,8 +58,8 @@
     "rimraf": "^5.0.5",
     "stylelint": "^16.2.1",
     "tsconfig-vuepress": "^4.5.0",
-    "typescript": "^5.3.3",
-    "vite": "^5.1.4"
+    "typescript": "^5.4.2",
+    "vite": "^5.1.5"
   },
   "pnpm": {
     "patchedDependencies": {

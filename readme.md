@@ -56,7 +56,7 @@ export default defineUserConfig({
 
 __options__ : `PlumeThemeOptions`
 
-[查看 options 详细说明](https://pengzhanbo.cn/vuepress-theme-plume/theme-config/)
+[查看 options 详细说明](https://plume.pengzhanbo.cn/config/basic/)
 
 ## 案例
 

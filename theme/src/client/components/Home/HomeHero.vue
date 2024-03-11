@@ -88,6 +88,7 @@ const actions = computed(() => hero.value.actions ?? [])
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  transform: translate3d(0, 0, 0);
 }
 
 .container {
@@ -173,6 +174,7 @@ const actions = computed(() => hero.value.actions ?? [])
   height: 100%;
   overflow: hidden;
   pointer-events: none;
+  transform: translate3d(0, 0, 0);
 }
 
 .home-hero.full.once .bg-filter {
@@ -188,11 +190,13 @@ const actions = computed(() => hero.value.actions ?? [])
   z-index: 1;
   content: "";
   backdrop-filter: blur(150px);
+  transform: translate3d(0, 0, 0);
 }
 
 .g {
   position: absolute;
   opacity: 0.5;
+  transform: translate3d(0, 0, 0);
 }
 
 .g-1 {

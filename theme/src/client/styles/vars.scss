@@ -128,6 +128,7 @@
   --vp-c-bg-alt: #f6f6f7;
   --vp-c-bg-elv: #fff;
   --vp-c-bg-soft: #f6f6f7;
+  --vp-c-bg-safe: #f6f8fa;
 }
 
 .dark {
@@ -135,6 +136,7 @@
   --vp-c-bg-alt: #161618;
   --vp-c-bg-elv: #202127;
   --vp-c-bg-soft: #202127;
+  --vp-c-bg-safe: #202127;
 }
 
 /**
@@ -340,7 +342,7 @@
   --vp-code-bg: var(--vp-c-default-soft);
 
   --vp-code-block-color: var(--vp-c-text-2);
-  --vp-code-block-bg: var(--vp-c-bg-soft);
+  --vp-code-block-bg: var(--vp-c-bg-safe);
   --vp-code-block-divider-color: var(--vp-c-gutter);
 
   --vp-code-lang-color: var(--vp-c-text-3);
@@ -596,7 +598,7 @@ html[lang="zh-CN"] {
 /* md enhance code-tabs */
 :root {
   --code-tabs-nav-text-color: var(--vp-c-text-1);
-  --code-tabs-nav-bg-color: var(--vp-c-default-3);
+  --code-tabs-nav-bg-color: #eaeef1;
   --code-tabs-nav-hover-color: var(--vp-code-block-bg);
 }
 

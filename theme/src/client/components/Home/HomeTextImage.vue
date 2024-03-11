@@ -104,7 +104,7 @@ const maxWidth = computed(() => {
 
 .content-text ul p {
   margin: 0;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--vp-c-text-1);
   transition: color var(--t-color);
 }

@@ -113,7 +113,7 @@ export function setupPlugins(
         '/zh/': {
           word: '$word字',
           less1Minute: '小于1分钟',
-          time: '大约$time分钟',
+          time: '约$time分钟',
         },
       },
       ...options.readingTime,

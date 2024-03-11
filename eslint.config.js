@@ -20,6 +20,7 @@ export default config({
   files: ['**/*.md/*.ts'],
   rules: {
     'import/no-duplicates': 'off',
+    'import/first': 'off',
     'no-new': 'off',
   },
 })

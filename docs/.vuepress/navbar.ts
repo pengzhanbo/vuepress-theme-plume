@@ -22,6 +22,7 @@ export const zhNavbar = [
   },
   {
     text: '更多',
+    icon: 'icon-park-outline:more-three',
     items: [
       {
         text: 'Vuepress',
@@ -63,6 +64,7 @@ export const enNavbar = [
   },
   {
     text: 'More',
+    icon: 'icon-park-outline:more-three',
     items: [
       {
         text: 'Vuepress',

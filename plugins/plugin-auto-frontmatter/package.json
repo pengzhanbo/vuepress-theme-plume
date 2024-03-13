@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-auto-frontmatter",
   "type": "module",
-  "version": "1.0.0-rc.41",
+  "version": "1.0.0-rc.42",
   "description": "The Plugin for VuePres 2 - auto frontmatter",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",

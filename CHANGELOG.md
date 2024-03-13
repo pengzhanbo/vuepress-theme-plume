@@ -1,3 +1,19 @@
+# [1.0.0-rc.42](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.41...v1.0.0-rc.42) (2024-3-13)
+
+
+### Features
+
+* **theme:** add `readingTime` frontmatter ([9089693](https://github.com/pengzhanbo/vuepress-theme-plume/commit/90896934ebcc672df70f3c8ee557443b54bb56ad))
+* **theme:** add sidebar icon supported ([eb4a73b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/eb4a73b6d7a18b106874b94a85e5678bbdb51c7e))
+
+
+### Performance Improvements
+
+* 优化代码块、组背景色 ([d0638d5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d0638d5bf457d0426414fac80c29275a99e44267))
+* **theme:** 优化预设背景交互流畅度 ([a1fa991](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a1fa99188c7a9ae32328671612db3ee405a0be68))
+
+
+
 # [1.0.0-rc.41](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.40...v1.0.0-rc.41) (2024-3-8)
 
 

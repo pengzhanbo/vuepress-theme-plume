@@ -11,15 +11,18 @@ export const zhNotes = definePlumeNotesConfig({
         {
           text: '快速开始',
           collapsed: false,
+          icon: 'carbon:idea',
           items: ['介绍', '安装与使用', '博客', '知识笔记'],
         },
         {
           text: '写作',
+          icon: 'fluent-mdl2:edit-create',
           collapsed: false,
           items: [
             '编写文章',
             {
               text: 'markdown',
+              icon: 'material-symbols:markdown-outline',
               items: ['markdown-基础', 'markdown-扩展', 'markdown-进阶', 'markdown-试验性'],
             },
             '国际化',
@@ -27,16 +30,19 @@ export const zhNotes = definePlumeNotesConfig({
         },
         {
           text: '功能',
+          icon: 'lucide:box',
           collapsed: false,
           items: ['代码复制', '内容搜索', '评论', '加密', '组件', '友情链接页', 'seo', 'sitemap'],
         },
         {
           text: '自定义',
+          icon: 'material-symbols:dashboard-customize-outline-rounded',
           collapsed: false,
           items: ['自定义首页', '自定义样式'],
         },
         {
           text: 'API',
+          icon: 'mdi:api',
           collapsed: false,
           items: ['api-客户端', 'api-node'],
         },
@@ -68,6 +74,34 @@ export const zhNotes = definePlumeNotesConfig({
           dir: 'plugins',
           collapsed: false,
           items: ['', '代码复制', '代码高亮', '搜索', '阅读统计', 'markdown增强', '百度统计'],
+        },
+      ],
+    },
+    {
+      dir: 'plugins',
+      link: '/plugins/',
+      sidebar: [
+        {
+          text: '插件',
+          link: '/plugins/',
+          items: [
+            'caniuse',
+            'iconify',
+            'shiki',
+            'content-updated',
+            {
+              text: 'plugin-netlify-functions',
+              dir: 'netlify-functions',
+              link: '/plugins/plugin-netlify-functions/',
+              items: [
+                '介绍',
+                '使用',
+                '功能',
+                'api',
+                'functions',
+              ],
+            },
+          ],
         },
       ],
     },

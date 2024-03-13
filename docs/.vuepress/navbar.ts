@@ -15,6 +15,12 @@ export const zhNavbar = [
     activeMatch: '^/config/',
   },
   {
+    text: '插件',
+    icon: 'clarity:plugin-line',
+    link: '/plugins/',
+    activeMatch: '^/plugins/',
+  },
+  {
     text: '博客',
     link: '/blog/',
     icon: 'material-symbols:article-outline',
@@ -24,6 +30,7 @@ export const zhNavbar = [
     text: '更多',
     icon: 'icon-park-outline:more-three',
     items: [
+      { text: '友情链接', link: '/friends/' },
       {
         text: 'Vuepress',
         items: [
@@ -37,8 +44,8 @@ export const zhNavbar = [
     text: `${version}`,
     icon: 'codicon:versions',
     items: [
-      { text: '更新日志', link: 'https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/CHANGELOG.md' },
-      { text: '参与贡献', link: 'https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/CONTRIBUTING.md' },
+      { text: '更新日志', link: '/changelog/' },
+      { text: '参与贡献', link: '/contributing/' },
     ],
   },
 ] as NavItem[]
@@ -79,8 +86,8 @@ export const enNavbar = [
     text: `${version}`,
     icon: 'codicon:versions',
     items: [
-      { text: 'Changelog', link: 'https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/CHANGELOG.md' },
-      { text: 'Contributing', link: 'https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/CONTRIBUTING.md' },
+      { text: 'Changelog', link: '/changelog/' },
+      { text: 'Contributing', link: '/contributing/' },
     ],
   },
 ] as NavItem[]

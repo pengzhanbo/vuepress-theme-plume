@@ -1,6 +1,7 @@
 ---
 title: 扩展
 author: pengzhanbo
+icon: fluent-mdl2:auto-enhance-on
 createTime: 2024/03/05 23:29:07
 permalink: /guide/markdown/extensions/
 ---

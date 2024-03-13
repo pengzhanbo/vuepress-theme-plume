@@ -1,6 +1,7 @@
 ---
 title: SEO
 author: pengzhanbo
+icon: tabler:seo
 createTime: 2024/03/02 14:46:25
 permalink: /guide/seo/
 ---

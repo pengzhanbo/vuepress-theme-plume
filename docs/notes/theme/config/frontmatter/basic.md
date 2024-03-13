@@ -90,6 +90,13 @@ permalink: /config/frontmatter/basic/
 - 博客类型的文章，主题根据时间排序，自动填充下一篇文章的标题和链接。
 - notes 类型的文章，主题根据 note sidebar 配置，自动填充下一篇文章的标题和链接。
 
+### readingTime
+
+- 类型： `boolean`
+- 默认值： `true`
+
+当前文章是否 显示 阅读时长。
+
 ### lastUpdated
 
 - 类型： `boolean`

@@ -1,6 +1,7 @@
 ---
 title: 试验性
 author: pengzhanbo
+icon: material-symbols:experiment-outline
 createTime: 2024/03/06 11:46:49
 permalink: /guide/markdown/experiment/
 ---

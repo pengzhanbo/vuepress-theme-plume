@@ -33,6 +33,7 @@ export const theme: Theme = themePlume({
     shiki: { twoslash: true },
     markdownEnhance: {
       demo: true,
+      include: true,
     },
     comment: {
       provider: 'Giscus',

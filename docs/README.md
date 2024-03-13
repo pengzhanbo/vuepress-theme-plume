@@ -155,7 +155,7 @@ export default defineUserConfig({
 
 ### 更新记录
 
-[Changelog](https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/CHANGELOG.md)
+[Changelog](/changelog/)
 
 ### 贡献者
 

@@ -30,6 +30,7 @@ interface NotePage {
   relativePath: string
   title: string
   link: string
+  frontmatter: Record<string, any>
 }
 
 function resolvedNotesData(app: App, options: NotesDataOptions, result: NotesData) {
@@ -52,6 +53,7 @@ function resolvedNotesData(app: App, options: NotesDataOptions, result: NotesDat
       relativePath: page.filePathRelative?.replace(DIR_PATTERN, '') || '',
       title: page.title,
       link: page.path,
+      frontmatter: page.frontmatter,
     }))
   notes.forEach((note) => {
     result[normalizePath(path.join('/', link, note.link))] = initSidebar(
@@ -141,7 +143,7 @@ function initSidebarByAuto(
   const RE_INDEX = ['index.md', 'README.md', 'readme.md']
   const result: NotesSidebarItem[] = []
   for (const page of pages) {
-    const { relativePath, title, link } = page
+    const { relativePath, title, link, frontmatter } = page
     const paths = relativePath
       .slice(note.dir.replace(/^\/|\/$/g, '').length + 1)
       .split('/')
@@ -160,6 +162,9 @@ function initSidebarByAuto(
         current.link = link
         current.text = title
       }
+      if (frontmatter.icon)
+        current.icon = frontmatter.icon
+
       items = current.items as NotesSidebarItem[]
       index++
     }
@@ -177,6 +182,7 @@ function initSidebarByConfig(
       return {
         text: current?.title || text,
         link: current?.link,
+        icon: current?.frontmatter.icon,
         items: [],
       }
     }
@@ -185,6 +191,7 @@ function initSidebarByConfig(
       return {
         text: item.text || item.dir || current?.title,
         collapsed: item.collapsed,
+        icon: item.icon || current?.frontmatter.icon,
         link: item.link,
         items: initSidebarByConfig(
           {

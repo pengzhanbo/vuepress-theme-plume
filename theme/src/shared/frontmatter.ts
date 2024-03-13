@@ -109,6 +109,7 @@ export interface PlumeThemePageFrontmatter {
   next?: string | NavItemWithLink
   backToTop?: boolean
   externalLink?: boolean
+  readingTime?: boolean
 }
 
 export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {

@@ -69,6 +69,8 @@ function onCaretClick() {
     >
       <div class="indicator" />
 
+      <Icon v-if="item.icon" :name="item.icon" />
+
       <AutoLink
         v-if="item.link"
         :tag="linkTag"
@@ -118,6 +120,7 @@ function onCaretClick() {
 .item {
   position: relative;
   display: flex;
+  align-items: center;
   width: 100%;
 }
 
@@ -207,12 +210,24 @@ function onCaretClick() {
   transition: color var(--t-color);
 }
 
+.item :deep(.vp-iconify) {
+  margin: 0 0.25rem 0 0;
+  font-size: 0.9em;
+  color: var(--vp-c-text-2);
+  transition: color var(--t-color);
+}
+
 .item:hover .caret {
   color: var(--vp-c-text-2);
 }
 
 .item:hover .caret:hover {
   color: var(--vp-c-text-1);
+}
+
+.sidebar-item:not(.collapsible) > .item:hover :deep(.vp-iconify),
+.sidebar-item:not(.collapsible).has-active > .item > :deep(.vp-iconify) {
+  color: var(--vp-c-brand-1);
 }
 
 .caret-icon {

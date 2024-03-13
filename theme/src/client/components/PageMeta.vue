@@ -65,7 +65,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
       <IconUser class="icon" />
       <span>{{ matter.author }}</span>
     </p>
-    <p v-if="readingTime.time" class="reading-time">
+    <p v-if="readingTime.time && matter.readingTime !== false" class="reading-time">
       <IconBooks class="icon" />
       <span>{{ readingTime.words }}</span>
       <span>{{ readingTime.time }}</span>

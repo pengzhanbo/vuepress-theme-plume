@@ -13,7 +13,7 @@ import type {
   PlumeThemePluginOptions,
 } from '../shared/index.js'
 import { getCurrentDirname, getPackage, nanoid, pathJoin } from './utils.js'
-import { resolveNotesList } from './resolveNotesList.js'
+import { resolveLinkBySidebar, resolveNotesList } from './resolveNotesList.js'
 import { resolveLocaleOptions } from './resolveLocaleOptions.js'
 
 export default function autoFrontmatter(
@@ -28,7 +28,11 @@ export default function autoFrontmatter(
   const avatar = resolveLocaleOptions(localeOption, 'avatar')
   const notesList = resolveNotesList(localeOption)
   const localesNotesDirs = notesList
-    .map(notes => notes.dir?.replace(/^\//, ''))
+    .map(({ notes, dir }) => {
+      const _dir = dir?.replace(/^\//, '')
+      return notes.map(note => pathJoin(_dir, note.dir || ''))
+    })
+    .flat()
     .filter(Boolean)
 
   const baseFrontmatter: FrontmatterObject = {
@@ -81,7 +85,7 @@ export default function autoFrontmatter(
       localesNotesDirs.length
         ? {
             // note 首页链接
-            include: localesNotesDirs.map(dir => pathJoin(dir, '**/{readme,README,index}.md')),
+            include: localesNotesDirs.map(dir => pathJoin(dir, '/{readme,README,index}.md')),
             frontmatter: {
               title(title: string, { filepath }) {
                 if (title)
@@ -117,7 +121,13 @@ export default function autoFrontmatter(
               title(title: string, { filepath }) {
                 if (title)
                   return title
-                const basename = path.basename(filepath, '.md')
+
+                const note = findNote(filepath)
+
+                let basename = path.basename(filepath, '.md')
+                if (note?.sidebar === 'auto')
+                  basename = basename.replace(/^\d+\./, '')
+
                 return basename
               },
               ...baseFrontmatter,
@@ -127,15 +137,22 @@ export default function autoFrontmatter(
                 if (data.friends)
                   return
                 const locale = resolveLocale(filepath)
-                const note = findNote(filepath)
                 const notes = notesByLocale(locale)
-                return pathJoin(
+                const note = findNote(filepath)
+                const args: string[] = [
                   locale,
                   notes?.link || '',
                   note?.link || getCurrentDirname(note?.dir, filepath),
-                  nanoid(),
-                  '/',
-                )
+                ]
+                const sidebar = note?.sidebar
+
+                if (sidebar && sidebar !== 'auto') {
+                  const res = resolveLinkBySidebar(sidebar, pathJoin(notes?.dir || '', note?.dir || ''))
+                  const file = pathJoin('/', path.relative(sourceDir, filepath))
+                  res[file] && args.push(res[file])
+                }
+
+                return pathJoin(...args, nanoid(), '/')
               },
             },
           }

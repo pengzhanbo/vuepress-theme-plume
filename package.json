@@ -39,10 +39,10 @@
     "release:version": "bumpp package.json plugins/*/package.json theme/package.json --execute=\"pnpm release:changelog\" --commit \"build: publish v%s\" --all --tag --push"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.0.3",
-    "@commitlint/config-conventional": "^19.0.3",
-    "@pengzhanbo/eslint-config-vue": "^1.6.1",
-    "@pengzhanbo/stylelint-config": "^1.6.1",
+    "@commitlint/cli": "^19.1.0",
+    "@commitlint/config-conventional": "^19.1.0",
+    "@pengzhanbo/eslint-config-vue": "^1.7.0",
+    "@pengzhanbo/stylelint-config": "^1.7.0",
     "@types/lodash.merge": "^4.6.9",
     "@types/node": "20.9.1",
     "@types/webpack-env": "^1.18.4",
@@ -59,7 +59,7 @@
     "stylelint": "^16.2.1",
     "tsconfig-vuepress": "^4.5.0",
     "typescript": "^5.4.2",
-    "vite": "^5.1.5"
+    "vite": "^5.1.6"
   },
   "pnpm": {
     "patchedDependencies": {

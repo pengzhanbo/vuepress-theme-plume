@@ -55,7 +55,7 @@
     "vuepress": "2.0.0-rc.8"
   },
   "dependencies": {
-    "@pengzhanbo/utils": "^1.1.1",
+    "@pengzhanbo/utils": "^1.1.2",
     "@vuepress-plume/plugin-auto-frontmatter": "workspace:*",
     "@vuepress-plume/plugin-baidu-tongji": "workspace:*",
     "@vuepress-plume/plugin-blog-data": "workspace:*",
@@ -81,13 +81,13 @@
     "@vuepress/plugin-toc": "2.0.0-rc.15",
     "@vueuse/core": "^10.9.0",
     "bcrypt-ts": "^5.0.2",
-    "date-fns": "^3.3.1",
+    "date-fns": "^3.4.0",
     "katex": "^0.16.9",
     "lodash.merge": "^4.6.2",
     "nanoid": "^5.0.6",
     "vue": "^3.4.21",
     "vue-router": "4.2.5",
-    "vuepress-plugin-comment2": "2.0.0-rc.25",
-    "vuepress-plugin-md-enhance": "2.0.0-rc.25"
+    "vuepress-plugin-comment2": "2.0.0-rc.30",
+    "vuepress-plugin-md-enhance": "2.0.0-rc.30"
   }
 }

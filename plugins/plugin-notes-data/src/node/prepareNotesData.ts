@@ -37,7 +37,7 @@ function resolvedNotesData(app: App, options: NotesDataOptions, result: NotesDat
   const { include, exclude, notes, dir: _dir, link } = options
   if (!notes || notes.length === 0)
     return
-  const dir = normalizePath(_dir)
+  const dir = normalizePath(_dir).replace(/^\//, '')
   const filter = createFilter(ensureArray(include), ensureArray(exclude), {
     resolve: false,
   })
@@ -152,7 +152,7 @@ function initSidebarByAuto(
     let items = result
     // eslint-disable-next-line no-cond-assign
     while ((dir = paths[index])) {
-      const text = dir.replace(/\.md$/, '')
+      const text = dir.replace(/\.md$/, '').replace(/^\d+\./, '')
       let current = items.find(item => item.text === text)
       if (!current) {
         current = { text, link: undefined, items: [] }

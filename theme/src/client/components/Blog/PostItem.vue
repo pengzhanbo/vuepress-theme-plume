@@ -151,6 +151,12 @@ const createTime = computed(() =>
   }
 }
 
+@media (min-width: 1200px) {
+  .post-item {
+    margin: 0 0 24px;
+  }
+}
+
 .post-meta {
   display: flex;
   flex-wrap: wrap;

@@ -95,4 +95,10 @@ const { archives } = useArchives()
     transition: border-bottom var(--t-color);
   }
 }
+
+@media (min-width: 1200px) {
+  .archives-wrapper {
+    margin-left: 0;
+  }
+}
 </style>

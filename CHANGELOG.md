@@ -1,3 +1,18 @@
+# [1.0.0-rc.43](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.42...v1.0.0-rc.43) (2024-3-15)
+
+
+### Bug Fixes
+
+* **plugin-notes-data:** 侧边栏自动生成  [#57](https://github.com/pengzhanbo/vuepress-theme-plume/issues/57) ([2ba25c9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2ba25c94c7a58a8b26163f2865351dd2253d6c8c))
+
+
+### Performance Improvements
+
+* **theme:**  博客页无博主信息时布局优化 ([9370464](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9370464cc9fed4740f95dd0b7db749966163347c))
+* **theme:** 优化notes链接生成 ([156e5ae](https://github.com/pengzhanbo/vuepress-theme-plume/commit/156e5aef27ff467d74a770f2b0889d79b2c21bc2))
+
+
+
 # [1.0.0-rc.42](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.41...v1.0.0-rc.42) (2024-3-13)
 
 

@@ -87,7 +87,7 @@
     "nanoid": "^5.0.6",
     "vue": "^3.4.21",
     "vue-router": "4.2.5",
-    "vuepress-plugin-comment2": "2.0.0-rc.30",
-    "vuepress-plugin-md-enhance": "2.0.0-rc.30"
+    "vuepress-plugin-comment2": "2.0.0-rc.25",
+    "vuepress-plugin-md-enhance": "2.0.0-rc.25"
   }
 }

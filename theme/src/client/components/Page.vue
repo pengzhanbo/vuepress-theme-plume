@@ -21,14 +21,20 @@ const hasComments = computed(() => {
   return page.value.frontmatter.comments !== false
 })
 
+const enableAside = computed(() => {
+  if (page.value.isBlogPost)
+    return hasAside.value && isPageDecrypted.value && page.value.headers.length
+
+  return hasAside.value && isPageDecrypted.value
+})
+
 const zoom = useMediumZoom()
 onContentUpdated(() => zoom?.refresh())
 </script>
 
 <template>
   <div
-    class="plume-page"
-    :class="{
+    class="plume-page" :class="{
       'has-sidebar': hasSidebar,
       'has-aside': hasAside,
       'is-blog': page.isBlogPost,
@@ -36,7 +42,7 @@ onContentUpdated(() => zoom?.refresh())
     }"
   >
     <div class="container">
-      <div v-if="hasAside && isPageDecrypted" class="aside">
+      <div v-if="enableAside" class="aside">
         <div class="aside-container">
           <div class="aside-content">
             <PageAside />

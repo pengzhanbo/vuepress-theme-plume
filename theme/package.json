@@ -67,6 +67,7 @@
     "@vuepress-plume/plugin-search": "workspace:*",
     "@vuepress-plume/plugin-shikiji": "workspace:*",
     "@vuepress/plugin-active-header-links": "2.0.0-rc.17",
+    "@vuepress/plugin-comment": "2.0.0-rc.20",
     "@vuepress/plugin-container": "2.0.0-rc.15",
     "@vuepress/plugin-docsearch": "2.0.0-rc.15",
     "@vuepress/plugin-external-link-icon": "2.0.0-rc.15",
@@ -87,7 +88,6 @@
     "nanoid": "^5.0.6",
     "vue": "^3.4.21",
     "vue-router": "4.2.5",
-    "vuepress-plugin-comment2": "2.0.0-rc.25",
     "vuepress-plugin-md-enhance": "2.0.0-rc.25"
   }
 }

@@ -5,7 +5,7 @@ import type { BaiduTongjiOptions } from '@vuepress-plume/plugin-baidu-tongji'
 import type { CanIUsePluginOptions } from '@vuepress-plume/plugin-caniuse'
 import type { CopyCodeOptions } from '@vuepress-plume/plugin-copy-code'
 import type { ShikiPluginOptions } from '@vuepress-plume/plugin-shikiji'
-import type { CommentPluginOptions } from 'vuepress-plugin-comment2'
+import type { CommentPluginOptions } from '@vuepress/plugin-comment'
 import type { MarkdownEnhanceOptions } from 'vuepress-plugin-md-enhance'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
 

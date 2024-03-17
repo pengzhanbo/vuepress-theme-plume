@@ -12,3 +12,6 @@ export {
   useThemeData,
   useThemeLocaleData,
 } from './composables/index.js'
+
+export * from 'vuepress-plugin-md-enhance/client'
+export * from '@vuepress/plugin-comment/client'

@@ -1,7 +1,7 @@
 import type { NotesDataOptions, NotesSidebar } from '@vuepress-plume/plugin-notes-data'
 import type { PlumeThemeLocaleOptions } from '../shared/index.js'
 import { resolveLocaleOptions } from './resolveLocaleOptions.js'
-import { pathJoin } from './utils.js'
+import { normalizePath, pathJoin } from './utils.js'
 
 export function resolveNotesList(options: PlumeThemeLocaleOptions) {
   const locales = options.locales || {}
@@ -10,8 +10,9 @@ export function resolveNotesList(options: PlumeThemeLocaleOptions) {
   for (const locale of Object.keys(locales)) {
     const notes = resolveLocaleOptions(options, 'notes', locale, false)
     if (notes) {
-      if (!notes.dir.includes(locale))
-        notes.dir = pathJoin(locale, notes.dir)
+      const dir = normalizePath(`/${notes.dir}`)
+      if (!dir.startsWith(locale))
+        notes.dir = pathJoin(locale, notes.dir).replace(/^\//, '')
 
       notesList.push(notes)
     }

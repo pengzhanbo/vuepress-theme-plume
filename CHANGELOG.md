@@ -1,3 +1,15 @@
+# [1.0.0-rc.44](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.43...v1.0.0-rc.44) (2024-3-17)
+
+
+### Performance Improvements
+
+* replace `vuepress-plugin-comment2` to `@vuepress/plugin-comment` ([b6f2c14](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b6f2c1450b05e614f412e5a880aec76b001930b3))
+* **theme:** 优化 md 增强 UI ([563514f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/563514f047b0dc0e2ea536f6012e02a4a427dc42))
+* **theme:** 优化右侧边栏交互表现 ([2e39974](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2e39974c54bdee7f128dda1ec258822e546d5a57))
+* **theme:** notes list filter ([5c9ae41](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5c9ae4138006f0a2079d709c1099fb2f608beb63))
+
+
+
 # [1.0.0-rc.43](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.42...v1.0.0-rc.43) (2024-3-15)
 
 

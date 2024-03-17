@@ -34,6 +34,10 @@
       margin: 8px 0;
     }
 
+    .vp-code-tab div[class*="language-"] {
+      margin: 0 0 8px;
+    }
+
     div[class*="language-"] code {
       font-weight: 400;
       background-color: transparent;
@@ -145,7 +149,55 @@
   }
 
   .vp-code-tabs-nav {
+    padding: 0 12px;
     margin: 0.85rem 0 0;
+    background-color: var(--vp-code-tab-bg);
+    box-shadow: inset 0 -1px var(--vp-code-tab-divider);
+    transition: background-color var(--t-color), box-shadow var(--t-color);
+  }
+
+  .vp-code-tab-nav {
+    position: relative;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 48px;
+    color: var(--vp-code-tab-text-color);
+    white-space: nowrap;
+    border-bottom: 1px solid transparent;
+    transition: color var(--t-color);
+  }
+
+  .vp-code-tab-nav::before {
+    display: none;
+  }
+
+  .vp-code-tab-nav::after {
+    position: absolute;
+    right: 8px;
+    bottom: -1px;
+    left: 8px;
+    z-index: 1;
+    display: block;
+    width: auto;
+    height: 2px;
+    content: "";
+    background: transparent;
+    border-radius: 2px;
+    transition: background var(--t-color);
+  }
+
+  .vp-code-tab-nav.active {
+    color: var(--vp-code-tab-active-text-color);
+    background: transparent;
+  }
+
+  .vp-code-tab-nav.active::after {
+    background: var(--vp-code-tab-active-bar-color);
+  }
+
+  .vp-code-tab-nav:hover {
+    background: transparent;
   }
 
   @media (max-width: 419px) {
@@ -232,6 +284,77 @@
   }
 }
 
+/* --------------------  Markdown Enhance: markdown Demo  -------------------- */
+.plume-content {
+  .vp-md-demo {
+    margin-bottom: 16px;
+    overflow: hidden;
+    border: solid 1px var(--vp-c-divider);
+    transition: border var(--t-color);
+
+    @media (max-width: 419px) {
+      .vp-md-demo-codes div[class*="language-"] {
+        margin: 0;
+        border-radius: 0;
+      }
+    }
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    .vp-md-demo-header {
+      padding: 8px 12px;
+      font-size: 16px;
+      line-height: 1.7;
+      transition: background-color var(--t-color);
+    }
+
+    .vp-md-demo-toggle-button {
+      margin: 0 12px 0 8px;
+      background-color: var(--vp-c-gray-2);
+      transition: background-color var(--t-color);
+
+      &:hover {
+        background-color: var(--vp-c-gray-1);
+      }
+    }
+
+    .vp-md-demo-title {
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .vp-md-demo-display {
+      border-bottom: transparent;
+    }
+
+    .vp-md-demo-codes div[class*="language-"] {
+      border-bottom: 2px dashed var(--vp-c-divider);
+      transition: border-bottom var(--t-color);
+
+      &:first-of-type {
+        border-top: 1px solid var(--vp-c-divider);
+      }
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+
+    .vp-md-demo-codes div[class*="language-"] pre {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+  }
+
+  @media (max-width: 419px) {
+    .vp-md-demo {
+      margin: 8px -12px;
+    }
+  }
+}
+
 /* ----------------------  Markdown Enhance: Task List ---------------------- */
 .plume-content {
   .task-list-container {
@@ -283,6 +406,57 @@
     transition: border var(--t-color);
   }
 
+  .vp-tabs-nav {
+    padding: 0 12px;
+    background-color: var(--vp-code-tab-bg);
+    box-shadow: inset 0 -1px var(--vp-code-tab-divider);
+    transition: background-color var(--t-color), box-shadow var(--t-color);
+  }
+
+  .vp-tab-nav {
+    position: relative;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 48px;
+    color: var(--vp-code-tab-text-color);
+    white-space: nowrap;
+    border-bottom: 1px solid transparent;
+    transition: color var(--t-color);
+  }
+
+  .vp-tab-nav::before {
+    display: none;
+  }
+
+  .vp-tab-nav::after {
+    position: absolute;
+    right: 8px;
+    bottom: -1px;
+    left: 8px;
+    z-index: 1;
+    display: block;
+    width: auto;
+    height: 2px;
+    content: "";
+    background: transparent;
+    border-radius: 2px;
+    transition: background var(--t-color);
+  }
+
+  .vp-tab-nav.active {
+    color: var(--vp-code-tab-active-text-color);
+    background: transparent;
+  }
+
+  .vp-tab-nav.active::after {
+    background: var(--vp-code-tab-active-bar-color);
+  }
+
+  .vp-tab-nav:hover {
+    background: transparent;
+  }
+
   @media (min-width: 419px) {
     .vp-tabs {
       margin: 1.5rem 0;
@@ -292,9 +466,14 @@
   .hint-container .vp-tabs {
     margin: 1rem -0.45rem 1rem -0.75rem;
 
+    .vp-tabs-nav {
+      background: var(--vp-c-default-soft);
+    }
+
     .vp-tab {
       padding: 0.45rem 0.75rem;
       font-size: 14px;
+      background: transparent;
 
       p {
         margin: 8px 0;
@@ -566,4 +745,30 @@
   .plume-content .demo-wrapper {
     margin: 40px 0;
   }
+}
+
+/* --------------------- Markdown Enhance: Mermaid ------------------------  */
+
+.mermaid-actions {
+  padding-right: 20px;
+}
+
+.mermaid-actions .preview-button,
+.mermaid-actions .download-button {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--vp-c-text-2);
+  transition: color var(--t-color);
+
+  &:hover {
+    color: var(--vp-c-brand-1);
+  }
+}
+
+.mermaid-wrapper svg {
+  display: inline-block;
+}
+
+.flowchart-wrapper svg {
+  display: inline-block;
 }

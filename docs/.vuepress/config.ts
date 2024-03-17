@@ -18,6 +18,8 @@ export default defineUserConfig({
     ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }],
   ],
 
+  pagePatterns: ['**/*.md', '!**/*.snippet.md', '!.vuepress', '!node_modules'],
+
   bundler: viteBundler(),
 
   theme,

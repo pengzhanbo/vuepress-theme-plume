@@ -14,6 +14,10 @@
   "dependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.8",
     "anywhere": "^1.6.0",
+    "chart.js": "^4.4.2",
+    "echarts": "^5.5.0",
+    "flowchart.ts": "^3.0.0",
+    "mermaid": "^10.9.0",
     "vue": "^3.4.21",
     "vuepress-theme-plume": "workspace:*"
   },

@@ -17,10 +17,11 @@ export default config({
     'vue/no-v-text-v-html-on-component': 'off',
   },
 }, {
-  files: ['**/*.md/*.ts'],
+  files: ['**/*.md/*.{js,ts}'],
   rules: {
     'import/no-duplicates': 'off',
     'import/first': 'off',
     'no-new': 'off',
+    'eslint-comments/no-unlimited-disable': 'off',
   },
 })

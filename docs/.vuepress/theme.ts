@@ -30,10 +30,17 @@ export const theme: Theme = themePlume({
     },
   },
   plugins: {
+    frontmatter: { exclude: ['**/*.snippet.*'] },
+
     shiki: { twoslash: true },
+
     markdownEnhance: {
       demo: true,
       include: true,
+      chart: true,
+      echarts: true,
+      mermaid: true,
+      flowchart: true,
     },
     comment: {
       provider: 'Giscus',

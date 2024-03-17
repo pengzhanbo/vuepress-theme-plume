@@ -24,7 +24,7 @@ tags:
 
 ### sticky
 
-- 类型： `boolean \| number`
+- 类型： `boolean | number`
 - 默认值： `false`
 
 是否在文章列表中，置顶当前文章。

@@ -70,6 +70,13 @@ permalink: /config/frontmatter/basic/
 
 当前文章是否 可评论。 仅在启用了评论功能的情况下生效。
 
+### aside
+
+- 类型： `boolean`
+- 默认值： `true`
+
+当前文章是否 显示 右侧边栏。
+
 ### prev
 
 - 类型： `string | { text: string, link: string, icon?: string }`

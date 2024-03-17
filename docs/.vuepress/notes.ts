@@ -20,18 +20,26 @@ export const zhNotes = definePlumeNotesConfig({
           collapsed: false,
           items: [
             '编写文章',
+            '国际化',
             {
               text: 'markdown',
               icon: 'material-symbols:markdown-outline',
-              items: ['markdown-基础', 'markdown-扩展', 'markdown-进阶', 'markdown-试验性'],
+              dir: 'markdown',
+              items: ['基础', '扩展', '进阶', '试验性'],
             },
-            '国际化',
+            {
+              text: '图表',
+              icon: 'mdi:chart-line',
+              dir: '图表',
+              items: ['chart', 'echarts', 'mermaid', 'flowchart'],
+            },
           ],
         },
         {
           text: '功能',
           icon: 'lucide:box',
           collapsed: false,
+          dir: '功能',
           items: ['代码复制', '内容搜索', '评论', '加密', '组件', '友情链接页', 'seo', 'sitemap'],
         },
         {

@@ -13,6 +13,16 @@ const { localeLinks, currentLang } = useLangs({ correspondingLink: true })
 const hasExtraContent = computed(
   () => theme.value.appearance || theme.value.social,
 )
+
+const social = computed(() => {
+  const includes = theme.value.navbarSocialInclude ?? []
+  if (!includes.length)
+    return theme.value.social
+
+  return theme.value.social?.filter(
+    ({ icon }) => typeof icon === 'string' && includes.includes(icon),
+  )
+})
 </script>
 
 <template>
@@ -41,9 +51,9 @@ const hasExtraContent = computed(
       </div>
     </div>
 
-    <div v-if="theme.social" class="group">
+    <div v-if="social" class="group">
       <div class="item social-links">
-        <SocialLinks class="social-links-list" :links="theme.social" />
+        <SocialLinks class="social-links-list" :links="social" />
       </div>
     </div>
   </Flyout>

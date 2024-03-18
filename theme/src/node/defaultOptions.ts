@@ -51,6 +51,7 @@ export const fallbackLocaleOption: Partial<PlumeThemeLocaleOptions> = {
   article: '/article/',
   notes: { link: '/', dir: 'notes', notes: [] },
   appearance: true,
+  navbarSocialInclude: ['github', 'twitter', 'discord', 'facebook'],
   // page meta
   editLink: true,
   lastUpdated: true,

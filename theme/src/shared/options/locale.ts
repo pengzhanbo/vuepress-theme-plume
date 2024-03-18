@@ -19,6 +19,16 @@ export interface PlumeThemeAvatar {
    * 是否显示为圆形头像
    */
   circle?: boolean
+
+  /**
+   * 地理位置
+   */
+  location?: string
+
+  /**
+   * 组织，公司
+   */
+  organization?: string
 }
 
 export interface SocialLink {
@@ -26,7 +36,7 @@ export interface SocialLink {
   link: string
 }
 
-export type SocialLinkIcon =
+export type SocialLinkIconUnion =
   | 'discord'
   | 'facebook'
   | 'github'
@@ -41,7 +51,16 @@ export type SocialLinkIcon =
   | 'qq'
   | 'weibo'
   | 'bilibili'
-  | { svg: string }
+  | 'gitlab'
+  | 'docker'
+  | 'juejin'
+  | 'zhihu'
+  | 'douban'
+  | 'steam'
+  | 'stackoverflow'
+  | 'xbox'
+
+export type SocialLinkIcon = SocialLinkIconUnion | { svg: string }
 
 export interface PlumeThemeBlog {
 
@@ -173,6 +192,12 @@ export interface PlumeThemeLocaleData extends LocaleData {
    * 社交账号配置
    */
   social?: SocialLink[]
+
+  /**
+   * 允许显示在导航栏的社交类型
+   * @default - ['github', 'twitter', 'discord', 'facebook']
+   */
+  navbarSocialInclude?: SocialLinkIconUnion[]
 
   /**
    * 博客配置

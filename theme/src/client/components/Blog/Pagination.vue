@@ -107,4 +107,10 @@ const emit = defineEmits<{ change: [value: number] }>()
     background-color: var(--vp-c-bg-alt);
   }
 }
+
+@media (min-width: 1200px) {
+  .pagination {
+    margin-left: 0;
+  }
+}
 </style>

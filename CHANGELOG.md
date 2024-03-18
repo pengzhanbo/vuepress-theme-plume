@@ -1,3 +1,26 @@
+# [1.0.0-rc.45](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.44...v1.0.0-rc.45) (2024-3-18)
+
+
+### Bug Fixes
+
+* **theme:** 分页 margin-left 错位 ([f44bcec](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f44bcece2ce288ba5ca3227ab79ca669bf27c6f1))
+* **theme:** 提示容器中代码组导航栏错位 ([aee47e8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/aee47e879786d425d0d7cf262f758cc29cb043e2))
+
+
+### Features
+
+* **theme:** 博主信息新增 地理位置和所属组织 ([7d7dede](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7d7dede526eaf994fdd22251144a924c05c5ec04))
+* **theme:** 新增导航栏社交图标过滤器 ([c09cd98](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c09cd98075a5f07acea216e7cfb16772a2de440b))
+* **theme:** 新增更多社交图标支持 ([308c314](https://github.com/pengzhanbo/vuepress-theme-plume/commit/308c31408a8cd90604210e20a3fb7a51521be2be))
+* **theme:** 新增页面跳转过渡动效 ([0fcfe3f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0fcfe3f0d698c9f7b6515e3f40210fa73071e0b0))
+
+
+### Performance Improvements
+
+* delete unused types ([8423e6a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8423e6a203b51e2838578c254c8bd14ed80549f6))
+
+
+
 # [1.0.0-rc.44](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.43...v1.0.0-rc.44) (2024-3-17)
 
 

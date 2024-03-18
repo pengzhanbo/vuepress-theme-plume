@@ -2,6 +2,7 @@
 import { usePageData } from 'vuepress/client'
 import type { PlumeThemePageData } from '../../../shared/index.js'
 import { useThemeLocaleData } from '../../composables/index.js'
+import TransitionFadeSlideY from '../TransitionFadeSlideY.vue'
 import PostList from './PostList.vue'
 import Archives from './Archives.vue'
 import BlogAside from './BlogAside.vue'
@@ -16,10 +17,12 @@ const page = usePageData<PlumeThemePageData>()
 <template>
   <div class="blog-wrapper">
     <div class="blog-container" :class="{ 'no-avatar': !theme.avatar }">
-      <BlogNav v-if="!theme.avatar" is-local />
-      <PostList v-if="page.type === 'blog'" />
-      <Tags v-if="page.type === 'blog-tags'" />
-      <Archives v-if="page.type === 'blog-archives'" />
+      <TransitionFadeSlideY>
+        <BlogNav v-if="!theme.avatar" is-local />
+        <PostList v-if="page.type === 'blog'" />
+        <Tags v-if="page.type === 'blog-tags'" />
+        <Archives v-if="page.type === 'blog-archives'" />
+      </TransitionFadeSlideY>
       <BlogAside />
       <BlogExtract />
     </div>

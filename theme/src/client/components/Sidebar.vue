@@ -29,30 +29,32 @@ watch(
 </script>
 
 <template>
-  <aside
-    v-if="hasSidebar"
-    ref="navEl"
-    class="sidebar-wrapper"
-    :class="{ open }"
-    @click.stop
-  >
-    <div class="curtain" />
-
-    <nav
-      id="SidebarNav"
-      class="nav"
-      aria-labelledby="sidebar-aria-label"
-      tabindex="-1"
+  <Transition name="fade-slide-x" mode="out-in">
+    <aside
+      v-if="hasSidebar"
+      ref="navEl"
+      class="sidebar-wrapper"
+      :class="{ open }"
+      @click.stop
     >
-      <span id="sidebar-aria-label" class="visually-hidden">
-        Sidebar Navigation
-      </span>
+      <div class="curtain" />
 
-      <div v-for="item in sidebarGroups" :key="item.text" class="group">
-        <SidebarItem :item="item" :depth="0" />
-      </div>
-    </nav>
-  </aside>
+      <nav
+        id="SidebarNav"
+        class="nav"
+        aria-labelledby="sidebar-aria-label"
+        tabindex="-1"
+      >
+        <span id="sidebar-aria-label" class="visually-hidden">
+          Sidebar Navigation
+        </span>
+
+        <div v-for="item in sidebarGroups" :key="item.text" class="group">
+          <SidebarItem :item="item" :depth="0" />
+        </div>
+      </nav>
+    </aside>
+  </Transition>
 </template>
 
 <style scoped>

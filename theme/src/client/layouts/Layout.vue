@@ -15,6 +15,7 @@ import SkipLink from '../components/SkipLink.vue'
 import VFooter from '../components/VFooter.vue'
 import BackToTop from '../components/BackToTop.vue'
 import EncryptGlobal from '../components/EncryptGlobal.vue'
+import TransitionFadeSlideY from '../components/TransitionFadeSlideY.vue'
 import {
   useCloseSidebarOnEscape,
   useSidebar,
@@ -56,17 +57,17 @@ provide('is-sidebar-open', isSidebarOpen)
       <SkipLink />
       <Backdrop :show="isSidebarOpen" @click="closeSidebar" />
       <Nav />
-      <LocalNav
-        :open="isSidebarOpen"
-        :show-outline="isPageDecrypted"
-        @open-menu="openSidebar"
-      />
+      <LocalNav :open="isSidebarOpen" :show-outline="isPageDecrypted" @open-menu="openSidebar" />
       <Sidebar :open="isSidebarOpen" />
       <LayoutContent>
         <Home v-if="page.frontmatter.home" />
-        <Friends v-else-if="page.frontmatter.friends" />
-        <Blog v-else-if="isBlogLayout" />
-        <Page v-else />
+        <template v-else>
+          <TransitionFadeSlideY>
+            <Friends v-if="page.frontmatter.friends" />
+            <Blog v-else-if="isBlogLayout" />
+            <Page v-else />
+          </TransitionFadeSlideY>
+        </template>
         <BackToTop />
         <VFooter />
       </LayoutContent>

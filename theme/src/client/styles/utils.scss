@@ -16,3 +16,34 @@
 .vp-iconify {
   margin: 0.3em;
 }
+
+/* ----------------- Transition ------------------------ */
+
+.fade-slide-y-enter-active {
+  transition: all 0.25s ease !important;
+}
+
+.fade-slide-y-leave-active {
+  transition: all 0.25s cubic-bezier(0, 1, 0.3, 1) !important;
+}
+
+.fade-slide-y-enter-from,
+.fade-slide-y-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+
+.fade-slide-x-enter-active {
+  transition: all 0.25s ease !important;
+}
+
+.fade-slide-x-leave-active {
+  transition: all 0.25s cubic-bezier(0, 1, 0.3, 1) !important;
+}
+
+.fade-slide-x-enter-from,
+.fade-slide-x-leave-to {
+  opacity: 0 !important;
+  transform: translateX(-10px) !important;
+}

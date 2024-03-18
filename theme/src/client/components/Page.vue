@@ -10,6 +10,7 @@ import PageAside from './PageAside.vue'
 import PageFooter from './PageFooter.vue'
 import PageMeta from './PageMeta.vue'
 import EncryptPage from './EncryptPage.vue'
+import TransitionFadeSlideY from './TransitionFadeSlideY.vue'
 
 const { hasSidebar, hasAside } = useSidebar()
 const isDark = useDarkMode()
@@ -42,24 +43,29 @@ onContentUpdated(() => zoom?.refresh())
     }"
   >
     <div class="container">
-      <div v-if="enableAside" class="aside">
-        <div class="aside-container">
-          <div class="aside-content">
-            <PageAside />
+      <TransitionFadeSlideY>
+        <div v-if="enableAside" :key="page.path" class="aside">
+          <div class="aside-container">
+            <div class="aside-content">
+              <PageAside />
+            </div>
           </div>
         </div>
-      </div>
+      </TransitionFadeSlideY>
       <div class="content">
         <div class="content-container">
-          <main class="main">
-            <PageMeta />
-            <EncryptPage v-if="!isPageDecrypted" />
-            <template v-else>
-              <Content class="plume-content" />
-              <PageFooter />
-              <PageComment v-if="hasComments" :darkmode="isDark" />
-            </template>
-          </main>
+          <TransitionFadeSlideY>
+            <main :key="page.path" class="main">
+              <PageMeta />
+              <EncryptPage v-if="!isPageDecrypted" />
+              <template v-else>
+                <Content class="plume-content" />
+
+                <PageFooter />
+                <PageComment v-if="hasComments" :darkmode="isDark" />
+              </template>
+            </main>
+          </TransitionFadeSlideY>
         </div>
       </div>
     </div>

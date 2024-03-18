@@ -23,7 +23,9 @@ const { hasSidebar } = useSidebar()
   flex-grow: 1;
   flex-shrink: 0;
   width: 100%;
+  padding-left: 0;
   margin: var(--vp-layout-top-height, 0) auto 0;
+  transition: padding-left 0.2s ease;
 }
 
 .layout-content.is-home {

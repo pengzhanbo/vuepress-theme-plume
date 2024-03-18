@@ -225,8 +225,21 @@ function onCaretClick() {
   color: var(--vp-c-text-1);
 }
 
-.sidebar-item:not(.collapsible) > .item:hover :deep(.vp-iconify),
-.sidebar-item:not(.collapsible).has-active > .item > :deep(.vp-iconify) {
+.sidebar-item.level-0.is-active > .item > :deep(.vp-iconify),
+.sidebar-item.level-1.is-active > .item > :deep(.vp-iconify),
+.sidebar-item.level-2.is-active > .item > :deep(.vp-iconify),
+.sidebar-item.level-3.is-active > .item > :deep(.vp-iconify),
+.sidebar-item.level-4.is-active > .item > :deep(.vp-iconify),
+.sidebar-item.level-5.is-active > .item > :deep(.vp-iconify) {
+  color: var(--vp-c-brand-1);
+}
+
+.sidebar-item.level-0.is-link > .item:hover :deep(.vp-iconify),
+.sidebar-item.level-1.is-link > .item:hover :deep(.vp-iconify),
+.sidebar-item.level-2.is-link > .item:hover :deep(.vp-iconify),
+.sidebar-item.level-3.is-link > .item:hover :deep(.vp-iconify),
+.sidebar-item.level-4.is-link > .item:hover :deep(.vp-iconify),
+.sidebar-item.level-5.is-link > .item:hover :deep(.vp-iconify) {
   color: var(--vp-c-brand-1);
 }
 

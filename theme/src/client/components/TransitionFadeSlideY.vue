@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { Transition } from 'vue'
 import { useScrollPromise } from '../composables/index.js'
 
 const { resolve: onBeforeEnter, pending: onBeforeLeave } = useScrollPromise()

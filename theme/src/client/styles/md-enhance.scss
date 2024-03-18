@@ -51,6 +51,10 @@
       div[class*="language-"] {
         margin: 0.85rem -0.75rem 0.85rem -1rem;
       }
+
+      .vp-code-tab div[class*="language-"] {
+        margin: 0 -0.75rem 0.85rem -1rem;
+      }
     }
 
     &.note {
@@ -203,6 +207,10 @@
   @media (max-width: 419px) {
     .vp-code-tabs-nav {
       margin: 0 -1.5rem -0.85rem;
+    }
+
+    .hint-container .vp-code-tabs-nav {
+      margin: 0.85rem -0.75rem 0 -1rem;
     }
   }
 }

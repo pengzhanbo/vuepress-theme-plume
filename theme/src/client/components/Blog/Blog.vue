@@ -17,8 +17,8 @@ const page = usePageData<PlumeThemePageData>()
 <template>
   <div class="blog-wrapper">
     <div class="blog-container" :class="{ 'no-avatar': !theme.avatar }">
+      <BlogNav v-if="!theme.avatar" is-local />
       <TransitionFadeSlideY>
-        <BlogNav v-if="!theme.avatar" is-local />
         <PostList v-if="page.type === 'blog'" />
         <Tags v-if="page.type === 'blog-tags'" />
         <Archives v-if="page.type === 'blog-archives'" />

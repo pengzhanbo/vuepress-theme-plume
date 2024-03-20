@@ -12,7 +12,7 @@ export const zhNotes = definePlumeNotesConfig({
           text: '快速开始',
           collapsed: false,
           icon: 'carbon:idea',
-          items: ['介绍', '安装与使用', '博客', '知识笔记'],
+          items: ['介绍', '安装与使用', '博客', '知识笔记', '部署'],
         },
         {
           text: '写作',

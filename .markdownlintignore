@@ -1,0 +1,4 @@
+**/node_modules/**
+**/*.snippet.md
+CHANGELOG.*.md
+CHANGELOG.md

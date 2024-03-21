@@ -1,0 +1,25 @@
+{
+  "default": true,
+  "heading-style": {
+    "style": "atx"
+  },
+  "ul-style": {
+    "style": "dash"
+  },
+  "no-duplicate-heading": false,
+  "first-line-h1": false,
+  "first-line-heading": false,
+  "no-blanks-blockquote": false,
+  "line-length": {
+    "line_length": 140,
+    "tables": false,
+    "code_blocks": false
+  },
+  "no-inline-html": false,
+  "hr-style": {
+    "style": "---"
+  },
+  "fenced-code-language": false,
+  "code-block-style": false,
+  "emphasis-style": false
+}

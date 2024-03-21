@@ -11,7 +11,9 @@ pnpm add @vuepress-plume/plugin-iconify
 # or
 yarn add @vuepress-plume/plugin-iconify
 ```
+
 ## Usage
+
 ``` js
 // .vuepress/config.[jt]s
 import { iconifyPlugin } from '@vuepress-plume/plugin-iconify'

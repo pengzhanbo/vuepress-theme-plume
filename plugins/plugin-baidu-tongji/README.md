@@ -11,7 +11,9 @@ pnpm add @vuepress-plume/plugin-baidu-tongji
 # or
 yarn add @vuepress-plume/plugin-baidu-tongji
 ```
+
 ## Usage
+
 ``` js
 // .vuepress/config.[jt]s
 import { baiduTongjiPlugin } from '@vuepress-plume/plugin-baidu-tongji'

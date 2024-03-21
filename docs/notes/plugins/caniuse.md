@@ -15,19 +15,23 @@ permalink: /plugins/plugin-caniuse/
 
 ::: code-tabs
 @tab  npm
+
 ``` sh
 npm install @vuepress-plume/plugin-caniuse
 ```
 
 @tab:active yarn
+
 ``` sh
 yarn add @vuepress-plume/plugin-caniuse
 ```
 
 @tab pnpm
+
 ``` sh
 pnpm add @vuepress-plume/plugin-caniuse
 ```
+
 :::
 
 ## 使用
@@ -38,6 +42,7 @@ pnpm add @vuepress-plume/plugin-caniuse
 
 ::: code-tabs
 @tab .vuepress/config.ts
+
 ``` ts
 import { defineUserConfig } from 'vuepress'
 import { caniusePlugin } from '@vuepress-plume/plugin-caniuse'
@@ -48,6 +53,7 @@ export default defineUserConfig({
   ]
 })
 ```
+
 :::
 
 ### Step2：在markdown中使用
@@ -65,6 +71,7 @@ __示例： 获取 css 伪类选择器 `:dir()` 在各个浏览器的支持情�
 ::: caniuse css-matches-pseudo
 :::
 ```
+
 效果：
 
 ::: caniuse css-matches-pseudo

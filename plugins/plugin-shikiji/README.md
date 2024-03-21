@@ -11,6 +11,7 @@ pnpm add @vuepress-plume/plugin-shikiji
 # or
 yarn add @vuepress-plume/plugin-shikiji
 ```
+
 ## Usage
 
 ``` js

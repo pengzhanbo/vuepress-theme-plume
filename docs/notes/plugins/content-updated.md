@@ -26,17 +26,23 @@ permalink: /plugins/plugin-content-update/
 
 ::: code-tabs
 @tabs npm
+
 ```sh
 npm install @vuepress-plume/plugin-content-update
 ```
+
 @tab pnpm
+
 ```sh
 pnpm add @vuepress-plume/plugin-content-update
 ```
+
 @tab yarn
+
 ```sh
 yarn add @vuepress-plume/plugin-content-update
 ```
+
 :::
 
 ## 使用
@@ -45,6 +51,7 @@ yarn add @vuepress-plume/plugin-content-update
 
 ::: code-tabs
 @tab .vuepress/config.ts
+
 ``` ts
 import { defineUserConfig } from 'vuepress'
 import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
@@ -55,6 +62,7 @@ export default defineUserConfig({
   ]
 })
 ```
+
 :::
 
 在 客户端文件中使用：

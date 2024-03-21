@@ -2,7 +2,8 @@
 
 ## 概览
 
-项目仓库借助于 [pnpm 工作空间](https://pnpm.io/zh/workspaces) 来实现 [Monorepo](https://en.wikipedia.org/wiki/Monorepo) ，存放了多个互相关联的独立 Package 。
+项目仓库借助于 [pnpm 工作空间](https://pnpm.io/zh/workspaces) 来实现
+[Monorepo](https://en.wikipedia.org/wiki/Monorepo) ，存放了多个互相关联的独立 Package 。
 
 - 主题于 `theme` 目录中进行开发维护。
 - 插件于 `plugins` 目录中进行开发维护。

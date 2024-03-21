@@ -15,19 +15,23 @@ permalink: /plugins/plugin-iconify/
 
 ::: code-tabs
 @tab  npm
+
 ``` sh
 npm install @vuepress-plume/plugin-iconify
 ```
 
 @tab:active yarn
+
 ``` sh
 yarn add @vuepress-plume/plugin-iconify
 ```
 
 @tab pnpm
+
 ``` sh
 pnpm add @vuepress-plume/plugin-iconify
 ```
+
 :::
 
 ## 使用

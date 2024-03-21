@@ -13,19 +13,23 @@ permalink: /plugins/plugin-shikiji/
 
 ::: code-tabs
 @tab  npm
+
 ``` sh
 npm install @vuepress-plume/plugin-shikiji
 ```
 
 @tab:active yarn
+
 ``` sh
 yarn add @vuepress-plume/plugin-shikiji
 ```
 
 @tab pnpm
+
 ``` sh
 pnpm add @vuepress-plume/plugin-shikiji
 ```
+
 :::
 
 ## 使用

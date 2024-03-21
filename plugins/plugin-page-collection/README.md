@@ -9,11 +9,13 @@
 - 为什么是在 `netlify functions` 中 连接 `leancloud` ，而不是直接在 web客户端中请求 `leancloud` ?
 
   这是出于数据安全的角度考虑，避免直接在浏览器可见的代码中暴露私密的鉴权信息。
+
 ## 使用方式
 
 > (仅示例，本插件未发布到 npm)
 
 - 在 vuepress 配置插件
+
   ``` ts
   export default defineUserConfig({
     plugins: [
@@ -21,27 +23,33 @@
     ]
   })
   ```
+
 - 在需要做页面记录的路由级组件中引入`<PageCollection>`组件
+
   ``` html
   <Page>
     <PageCollection />
   </Page>
   ```
+
 - 在项目根目录 新建 `.env` 文件
   > 开发时使用，发布到生产时，需要在 netlify 中配置 环境变量。
   > 同时，需要将 `.env` 文件添加到 `.ignore`中，避免暴露
-  ```
+
+  ```sh
   LEAN_CLOUD_APP_ID='your leancloud appId'
   LEAN_CLOUD_APP_KEY='your leancloud appKey'
   LEAN_CLOUD_MASTER_KEY='your leancloud masterKey'
   ```
 
 效果：
+
 ``` html
 阅读数：99
 ```
 
 ## 结构
+
 ``` SH
 .
 ├── database # leancloud-storage

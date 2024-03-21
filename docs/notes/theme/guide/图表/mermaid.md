@@ -20,23 +20,30 @@ permalink: /guide/chart/mermaid/
 
 ::: code-tabs
 @tab pnpm
+
 ```sh
 pnpm add mermaid
 ```
+
 @tab npm
+
 ```sh
 npm install mermaid
 ```
+
 @tab yarn
+
 ```sh
 yarn add mermaid
 ```
+
 :::
 
 然后在 `.vuepress/config.ts` 配置文件中，启用该功能：
 
 ::: code-tabs
 @tab .vuepress/config.ts
+
 ```ts
 export default defineUserConfig({
   theme: plumeTheme({
@@ -48,6 +55,7 @@ export default defineUserConfig({
   })
 })
 ```
+
 :::
 
 ## 语法
@@ -93,7 +101,8 @@ export default defineUserConfig({
 
 ## 高级
 
-你可以在 [客户端配置文件](https://vuejs.press/zh/guide/configuration.html#%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6) 中导入并使用 `defineMermaidConfig` 来自定义 Mermaid 配置:
+你可以在 [客户端配置文件](https://vuejs.press/zh/guide/configuration.html#%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+中导入并使用 `defineMermaidConfig` 来自定义 Mermaid 配置:
 
 ```ts
 import { defineClientConfig } from 'vuepress/client'

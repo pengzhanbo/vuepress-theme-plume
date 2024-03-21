@@ -1,12 +1,9 @@
+<h1 align="center">vuepress-theme-plume</h1>
 <p align="center">
-<img src="/preview/plume.svg" width="200px" />
+<img src="/preview/plume.svg" width="200px" alt="plume" />
 </p>
 
-<h2 align="center">vuepress-theme-plume</h2>
-
-[![npm version](https://img.shields.io/npm/v/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=npm)](https://www.npmjs.com/package/vuepress-theme-plume)
-[![npm download](https://img.shields.io/npm/dy/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads)](https://www.npmjs.com/package/vuepress-theme-plume)
-![](https://img.shields.io/npm/dependency-version/vuepress-theme-plume/peer/vuepress?color=32A9C3&labelColor=1B3C4A)
+![peer dependency](https://img.shields.io/npm/dependency-version/vuepress-theme-plume/peer/vuepress?color=32A9C3&labelColor=1B3C4A)
 ![GitHub License](https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A)
 
 一个简约的，干净的，容易上手的 vuepress 主题，适用于博客和文档。
@@ -74,18 +71,18 @@ __options__ : `PlumeThemeOptions`
 
 ### 效果图
 
-**home page**
+#### home page
 
-![](/preview/preview-home.jpeg)
+![home](/preview/preview-home.jpeg)
 
-**blog page**
+#### blog page
 
-![](/preview/preview-blog.jpeg?t=1)
+![blog](/preview/preview-blog.jpeg?t=1)
 
-**post page**
+#### post page
 
-![](/preview/preview-post.jpeg)
+![post](/preview/preview-post.jpeg)
 
-**note page**
+#### note page
 
-![](/preview/preview-note.jpeg)
+![note](/preview/preview-note.jpeg)

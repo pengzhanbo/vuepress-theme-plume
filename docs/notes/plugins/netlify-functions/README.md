@@ -18,17 +18,21 @@ permalink: /plugins/plugin-netlify-functions/
 
 ::: code-tabs
 @tab npm
+
 ``` sh
 npm install vuepress-plugin-netlify-functions
 ```
 
 @tab:active yarn
+
 ``` sh
 yarn add vuepress-plugin-netlify-functions
 ```
 
 @tab pnpm
+
 ``` sh
 pnpm add vuepress-plugin-netlify-functions
 ```
+
 :::

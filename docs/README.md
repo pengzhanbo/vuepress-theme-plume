@@ -123,23 +123,30 @@ config:
 
 :::code-tabs
 @tab pnpm
+
 ```sh
 pnpm add vuepress@next vuepress-theme-plume vue
 ```
+
 @tab npm
+
 ```sh
 npm install vuepress@next vuepress-theme-plume
 ```
+
 @tab yarn
+
 ```sh
 yarn add vuepress@next vuepress-theme-plume
 ```
+
 :::
 
 ### 配置
 
 ::: code-tabs
 @tab .vuepress/config.ts
+
 ```ts
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
@@ -151,6 +158,7 @@ export default defineUserConfig({
   })
 })
 ```
+
 :::
 
 ### 更新记录

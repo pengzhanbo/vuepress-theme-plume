@@ -10,6 +10,7 @@ permalink: /plugins/plugin-netlify-functions/functions/
 ### 在一个 vuepress 项目中
 
 在默认配置下，如果你 packages.json
+
 ``` json
 {
   "scripts": {
@@ -18,6 +19,7 @@ permalink: /plugins/plugin-netlify-functions/functions/
   }
 }
 ```
+
 即， 你的 `sourceDir` 为 `src` 目录， 那么，你的functions目录则为 `src/.vuepress/functions`。
 
 在这个目录下，直属的 `ts/js` 文件，均为一个个独立的 `function`， 不包括这个目录下的子目录。
@@ -33,6 +35,7 @@ src/.vuepress/functions
 ### 在一个 vuepress plugin 项目中
 
 以官方仓库插件的基本组织结构为例
+
 ``` sh
 src/node
 ├─functions

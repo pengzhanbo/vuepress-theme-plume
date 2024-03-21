@@ -20,23 +20,30 @@ permalink: /guide/chart/flowchart/
 
 ::: code-tabs
 @tab pnpm
+
 ```sh
 pnpm add flowchart.ts
 ```
+
 @tab npm
+
 ```sh
 npm install flowchart.ts
 ```
+
 @tab yarn
+
 ```sh
 yarn add flowchart.ts
 ```
+
 :::
 
 然后在 `.vuepress/config.ts` 配置文件中，启用该功能：
 
 ::: code-tabs
 @tab .vuepress/config.ts
+
 ```ts
 export default defineUserConfig({
   theme: plumeTheme({
@@ -48,6 +55,7 @@ export default defineUserConfig({
   })
 })
 ```
+
 :::
 
 ## 语法
@@ -166,6 +174,7 @@ st->e
 `[Variable]->operation: [Text]`
 
 ::: md-demo 操作
+
 ```flow
 process=>operation: 操作
 e=>end: 结束
@@ -180,6 +189,7 @@ process->e
 `[Variable]->inputoutput: [Text]`
 
 ::: md-demo 输入输出
+
 ```flow
 process=>inputoutput: 输入输出
 e=>end: 结束
@@ -194,6 +204,7 @@ process->e
 `[Variable]->subroutine: [Text]`
 
 ::: md-demo 子程序
+
 ```flow
 process=>subroutine: 子程序
 e=>end: 结束
@@ -211,6 +222,7 @@ process->e
 - `[Variable]([noText])->[Position]`
 
 ::: md-demo 条件
+
 ```flow
 cond=>condition: 是否执行操作?
 process=>operation: 操作
@@ -231,6 +243,7 @@ cond(no)->e
 - `[Variable](path1, direction)->[Position]`
 
 ::: md-demo 平行
+
 ```flow
 para=>parallel: 平行任务
 process=>operation: 操作

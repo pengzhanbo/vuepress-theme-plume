@@ -9,6 +9,7 @@ pnpm add @vuepress-plume/plugin-notes-data
 # or
 yarn add @vuepress-plume/plugin-notes-data
 ```
+
 ## Usage
 
 ``` js

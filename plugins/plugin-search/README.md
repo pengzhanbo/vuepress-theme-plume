@@ -11,7 +11,9 @@ pnpm add @vuepress-plume/plugin-search
 # or
 yarn add @vuepress-plume/plugin-search
 ```
+
 ## Usage
+
 ``` js
 // .vuepress/config.[jt]s
 import { searchPlugin } from '@vuepress-plume/plugin-search'

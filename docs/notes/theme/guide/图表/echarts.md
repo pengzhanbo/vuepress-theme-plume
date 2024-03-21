@@ -20,23 +20,30 @@ permalink: /guide/chart/echarts/
 
 ::: code-tabs
 @tab pnpm
+
 ```sh
 pnpm add echarts
 ```
+
 @tab npm
+
 ```sh
 npm install echarts
 ```
+
 @tab yarn
+
 ```sh
 yarn add echarts
 ```
+
 :::
 
 然后在 `.vuepress/config.ts` 配置文件中，启用该功能：
 
 ::: code-tabs
 @tab .vuepress/config.ts
+
 ```ts
 export default defineUserConfig({
   theme: plumeTheme({
@@ -48,6 +55,7 @@ export default defineUserConfig({
   })
 })
 ```
+
 :::
 
 ## 语法

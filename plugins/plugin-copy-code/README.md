@@ -9,7 +9,9 @@ pnpm add @vuepress-plume/plugin-copy-code
 # or
 yarn add @vuepress-plume/plugin-copy-code
 ```
+
 ## Usage
+
 ``` js
 // .vuepress/config.js
 import { copyCodePlugin } from '@vuepress-plume/plugin-copy-code'

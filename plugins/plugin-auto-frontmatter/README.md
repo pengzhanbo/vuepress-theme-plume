@@ -11,7 +11,9 @@ pnpm add @vuepress-plume/plugin-auto-frontmatter
 # or
 yarn add @vuepress-plume/plugin-auto-frontmatter
 ```
+
 ## Usage
+
 ``` js
 // .vuepress/config.[jt]s
 import { autoFrontmatterPlugin } from '@vuepress-plume/plugin-auto-frontmatter'
@@ -49,6 +51,7 @@ export default {
 
 - `formatter`
   配置`frontmatter`每个字段的生成规则。
+
   ```ts
   interface MarkdownFile {
     filepath: string
@@ -113,7 +116,7 @@ export default {
       }
     }
   ]
-```
+  ```
 
 ## Why ?
 

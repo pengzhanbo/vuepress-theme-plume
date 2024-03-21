@@ -7,6 +7,7 @@ VuePress 2 插件
 在Markdown中添加 [can-i-use](https://caniuse.com/) 支持，这对于你在写前端技术博客时，说明某个feature的兼容性时特别有用。
 
 ## Install
+
 ``` sh
 npm install @vuepress-plume/plugin-caniuse
 # or
@@ -65,5 +66,6 @@ export default {
 ::: caniuse css-matches-pseudo {-2,-1,1}
 :::
 ```
+
 效果：
 ![can-i-use css-matches-pseudo](https://caniuse.bitsofco.de/image/css-dir-pseudo.webp)

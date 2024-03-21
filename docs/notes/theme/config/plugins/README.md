@@ -10,6 +10,7 @@ permalink: /config/plugins/
 ## 配置
 
 所有主题内部使用的插件， 均在 `plugins` 字段中进行配置。
+
 ``` js
 import { plumeTheme } from 'vuepress-theme-plume'
 import { defineUserConfig } from 'vuepress'

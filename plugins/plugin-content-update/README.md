@@ -12,7 +12,9 @@ pnpm add @vuepress-plume/plugin-content-update
 # or
 yarn add @vuepress-plume/plugin-content-update
 ```
+
 ## Usage
+
 ``` js
 // .vuepress/config.[jt]s
 import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'

@@ -1,17 +1,20 @@
-English | [简体中文](./README.md)
-
 # `vuepress-plugin-netlify-functions`
 
-If your vuepress site is deployed on `netlify` and you want to be able to use `netlify functions` for ` serverless`.
+English | [简体中文](./README.md)
+
+If your vuepress site is deployed on `netlify` and you want to be able to use `netlify functions` for `serverless`.
 
 You may need this plugin to provide support.
 
 ## Features
 
 - On the Vuepress local server, start a `Netlify Functions` local service to help you debug `functions` locally.
-- Generate a usable `netlify.toml` and add the appropriate 'functions' configurations if you have already created` netlify.toml`
-- This plugin does not provide specific `function` scripts, only `netlify functions` support; It can be used directly in themes, directly in vuepress projects, or based on this plugin, new plugins can be developed to provide more detailed functionality support.
-- Use `dotenv` to provide support similar to `Netlify Environment variables` in the local service environment. Create `.env` files in the project root directory to hold development-time environment variables
+- Generate a usable `netlify.toml` and add the appropriate 'functions' configurations if you have already created`netlify.toml`
+- This plugin does not provide specific `function` scripts, only `netlify functions` support;
+  It can be used directly in themes, directly in vuepress projects, or based on this plugin,
+  new plugins can be developed to provide more detailed functionality support.
+- Use `dotenv` to provide support similar to `Netlify Environment variables` in the local service
+  environment. Create `.env` files in the project root directory to hold development-time environment variables
 
 ## Install
 
@@ -73,7 +76,7 @@ plugin function
 
 In the Vuepress configuration, or in the Vuepress topic configuration.
 
-__options__
+#### options
 
 - `options.sourceDirectory` functions source directory。
 
@@ -93,9 +96,7 @@ __options__
 
 Used in the plugin when developing the VuePress plugin
 
-__app__: `App`
-
-__options__
+- `app`: **App**
 
 - `options.directory`
 
@@ -103,4 +104,5 @@ __options__
 
 ## Example
 
-- [vuepress-plugin-page-collection](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-page-collection) Log and display the number of page views/visits of blog articles by connecting `leanCloud` in functions based on `netlify-functions`
+- [vuepress-plugin-page-collection](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/packages/plugin-page-collection)
+  Log and display the number of page views/visits of blog articles by connecting `leanCloud` in functions based on `netlify-functions`

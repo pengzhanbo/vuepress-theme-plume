@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.45",
   "private": true,
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@8.15.5",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -15,7 +15,7 @@
   ],
   "engines": {
     "node": "^18 || >=20.0.0",
-    "pnpm": ">=7"
+    "pnpm": ">=8"
   },
   "scripts": {
     "build": "pnpm run clean && pnpm run build:package",
@@ -39,7 +39,7 @@
     "release:version": "bumpp package.json plugins/*/package.json theme/package.json --execute=\"pnpm release:changelog\" --commit \"build: publish v%s\" --all --tag --push"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.1.0",
+    "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
     "@pengzhanbo/eslint-config-vue": "^1.7.0",
     "@pengzhanbo/stylelint-config": "^1.7.0",
@@ -58,12 +58,12 @@
     "rimraf": "^5.0.5",
     "stylelint": "^16.2.1",
     "tsconfig-vuepress": "^4.5.0",
-    "typescript": "^5.4.2",
-    "vite": "^5.1.6"
+    "typescript": "^5.4.3",
+    "vite": "^5.2.4"
   },
   "pnpm": {
     "patchedDependencies": {
-      "@vuepress/markdown@2.0.0-rc.8": "patches/@vuepress__markdown@2.0.0-rc.8.patch"
+      "@vuepress/markdown@2.0.0-rc.9": "patches/@vuepress__markdown@2.0.0-rc.9.patch"
     }
   },
   "lint-staged": {

@@ -31,13 +31,13 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.8"
+    "vuepress": "2.0.0-rc.9"
   },
   "dependencies": {
     "@netlify/functions": "^2.6.0",
     "leancloud-storage": "^4.15.2",
     "vue": "^3.4.21",
-    "vue-router": "4.2.5",
+    "vue-router": "4.3.0",
     "vuepress-plugin-netlify-functions": "workspace:*"
   },
   "publishConfig": {

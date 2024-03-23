@@ -41,7 +41,7 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.8"
+    "vuepress": "2.0.0-rc.9"
   },
   "dependencies": {
     "@iarna/toml": "^2.2.5",
@@ -50,13 +50,13 @@
     "chokidar": "^3.6.0",
     "cpx2": "^7.0.1",
     "dotenv": "^16.4.5",
-    "esbuild": "^0.20.1",
+    "esbuild": "^0.20.2",
     "execa": "^8.0.1",
-    "netlify-cli": "^17.19.3",
+    "netlify-cli": "^17.20.1",
     "portfinder": "^1.0.32"
   },
   "devDependencies": {
-    "@types/node": "^20.11.27"
+    "@types/node": "^20.11.30"
   },
   "publishConfig": {
     "access": "public"

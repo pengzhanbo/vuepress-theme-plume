@@ -43,7 +43,7 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.8"
+    "vuepress": "2.0.0-rc.9"
   },
   "dependencies": {
     "markdown-it-container": "^4.0.0"

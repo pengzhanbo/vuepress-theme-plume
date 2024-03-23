@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useRouter } from 'vuepress/client'
-import { EXTERNAL_URL_RE, normalizeLink } from '../utils/index.js'
+import { resolveRoutePath, useRouter, withBase } from 'vuepress/client'
+import { EXTERNAL_URL_RE } from '../utils/index.js'
 import IconExternalLink from './icons/IconExternalLink.vue'
 
 const props = defineProps<{
@@ -18,12 +18,19 @@ const tag = computed(() => props.tag ?? (props.href ? 'a' : 'span'))
 const isExternal = computed(
   () => props.href && EXTERNAL_URL_RE.test(props.href),
 )
+const link = computed(() => {
+  if (!props.href)
+    return undefined
+  if (isExternal.value)
+    return props.href
+  return withBase(resolveRoutePath(props.href))
+})
 
 function linkTo(e: Event) {
   if (!isExternal.value) {
     e.preventDefault()
-    if (props.href)
-      router.push({ path: props.href })
+    if (link.value)
+      router.push({ path: link.value })
   }
 }
 </script>
@@ -32,8 +39,8 @@ function linkTo(e: Event) {
   <Component
     :is="tag"
     class="auto-link"
-    :class="{ link: href }"
-    :href="href ? normalizeLink(href) : undefined"
+    :class="{ link }"
+    :href="link"
     :target="target ?? (isExternal ? '_blank' : undefined)"
     :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"

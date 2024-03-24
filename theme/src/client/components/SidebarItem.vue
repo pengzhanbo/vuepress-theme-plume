@@ -171,6 +171,12 @@ function onCaretClick() {
   color: var(--vp-c-text-2);
 }
 
+.sidebar-item.level-0.has-active > .item > .text,
+.sidebar-item.level-1.has-active > .item > .text,
+.sidebar-item.level-2.has-active > .item > .text,
+.sidebar-item.level-3.has-active > .item > .text,
+.sidebar-item.level-4.has-active > .item > .text,
+.sidebar-item.level-5.has-active > .item > .text,
 .sidebar-item.level-0.has-active > .item > .link > .text,
 .sidebar-item.level-1.has-active > .item > .link > .text,
 .sidebar-item.level-2.has-active > .item > .link > .text,

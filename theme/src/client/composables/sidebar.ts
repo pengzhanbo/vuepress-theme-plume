@@ -7,13 +7,16 @@ import type {
 import { useNotesData } from '@vuepress-plume/plugin-notes-data/client'
 import { useMediaQuery } from '@vueuse/core'
 import type { ComputedRef, Ref } from 'vue'
-import { computed, onMounted, onUnmounted, ref, watchEffect } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import { isActive } from '../utils/index.js'
 import { useThemeLocaleData } from './themeData.js'
+import { hashRef } from './hash.js'
+
+export { useNotesData }
 
 export function normalizePath(path: string) {
-  return path.replace(/\/\\+/g, '/').replace(/\\+/g, '/')
+  return path.replace(/\/\\+/g, '/').replace(/\/+/g, '/')
 }
 
 export function getSidebarList(path: string, notesData: NotesData) {
@@ -21,6 +24,16 @@ export function getSidebarList(path: string, notesData: NotesData) {
     path.startsWith(normalizePath(withBase(link))),
   )
   return link ? notesData[link] : []
+}
+
+export function getSidebarFirstLink(sidebar: NotesSidebarItem[]) {
+  for (const item of sidebar) {
+    if (item.link)
+      return item.link
+    if (item.items)
+      return getSidebarFirstLink(item.items as NotesSidebarItem[])
+  }
+  return ''
 }
 
 export function useSidebar() {
@@ -112,19 +125,23 @@ export function useCloseSidebarOnEscape(
 export function useSidebarControl(item: ComputedRef<NotesSidebarItem>) {
   const page = usePageData<PageData>()
 
-  const collapsed = ref(false)
+  const collapsed = ref(item.value.collapsed ?? false)
 
   const collapsible = computed(() => {
-    return item.value.collapsed != null
+    return item.value.collapsed !== null && item.value.collapsed !== undefined
   })
 
   const isLink = computed(() => {
     return !!item.value.link
   })
 
-  const isActiveLink = computed(() => {
-    return isActive(page.value.path, item.value.link)
-  })
+  const isActiveLink = ref(false)
+  const updateIsActiveLink = () => {
+    isActiveLink.value = isActive(page.value.path, item.value.link)
+  }
+
+  watch([page, item, hashRef], updateIsActiveLink)
+  onMounted(updateIsActiveLink)
 
   const hasActiveLink = computed(() => {
     if (isActiveLink.value)

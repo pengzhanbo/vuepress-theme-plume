@@ -59,6 +59,7 @@ export function autoFrontmatterPlugin({
           .stringify(data)
           .replace(/\n\s{2}/g, '\n')
           .replace(/"/g, '')
+          .replace(/\s+\n/g, '\n')
       const newContent = yaml ? `${yaml}---\n${content}` : content
 
       fs.writeFileSync(filepath, newContent, 'utf-8')

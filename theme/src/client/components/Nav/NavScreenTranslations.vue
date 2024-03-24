@@ -5,7 +5,7 @@ import AutoLink from '../AutoLink.vue'
 import IconChevronDown from '../icons/IconChevronDown.vue'
 import IconLanguages from '../icons/IconLanguages.vue'
 
-const { localeLinks, currentLang } = useLangs({ correspondingLink: true })
+const { localeLinks, currentLang } = useLangs()
 const isOpen = ref(false)
 
 function toggle() {

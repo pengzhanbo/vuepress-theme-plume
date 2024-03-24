@@ -1,17 +1,17 @@
-import { usePageData, useRouteLocale } from 'vuepress/client'
+import { resolveRoute, usePageData, useRouteLocale, withBase } from 'vuepress/client'
 import { computed } from 'vue'
 import type { PlumeThemePageData } from '../../shared/index.js'
-import { ensureStartingSlash } from '../utils/index.js'
 import { useThemeData } from './themeData.js'
-import { normalizePath } from './sidebar.js'
+import { getSidebarFirstLink, getSidebarList, normalizePath, useNotesData } from './sidebar.js'
 
 export function useLangs({
   removeCurrent = true,
-  correspondingLink = false,
 } = {}) {
   const page = usePageData<PlumeThemePageData>()
   const theme = useThemeData()
   const routeLocale = useRouteLocale()
+  const notesData = useNotesData()
+
   const currentLang = computed(() => {
     const link = routeLocale.value
     return {
@@ -20,53 +20,41 @@ export function useLangs({
     }
   })
 
-  const addPath = computed(() => {
-    if (page.value.frontmatter.home || (page.value.type && page.value.type !== 'friends'))
-      return true
+  const getPageLink = (locale: string) => {
+    const pagePath = page.value.path.slice(routeLocale.value.length)
+    const targetPath = normalizePath(`${locale}${pagePath}`)
+    const { notFound, path } = resolveRoute(targetPath)
+    if (!notFound)
+      return path
+    const locales = theme.value.locales || {}
+    const blog = locales[`/${locale}/`]?.blog
+    const fallback = locales['/']?.blog ?? theme.value.blog
+    if (page.value.isBlogPost)
+      return withBase(blog?.link || normalizePath(`${locale}${fallback?.link || 'blog/'}`))
 
-    return correspondingLink
-  })
+    const sidebarList = getSidebarList(targetPath, notesData.value)
 
-  const getBlogLink = (locale: string) => {
-    const blog = theme.value.locales?.[`/${locale}/`]?.blog
-    const defaultBlog = theme.value.locales?.['/']?.blog ?? theme.value.blog
-    const link = blog?.link ? blog.link : normalizePath(`${locale}${defaultBlog?.link || 'blog/'}`)
-    return link
+    if (sidebarList.length > 0) {
+      const link = getSidebarFirstLink(sidebarList)
+      if (link)
+        return link
+    }
+
+    const home = withBase(theme.value.home || '/')
+    const fallbackResolve = resolveRoute(withBase(locale))
+    return fallbackResolve.notFound ? home : fallbackResolve.path
   }
 
   const localeLinks = computed(() =>
-    Object.entries(theme.value.locales || {}).flatMap(([key, value]) =>
-      removeCurrent && currentLang.value.label === value.selectLanguageName
+    Object.entries(theme.value.locales || {}).flatMap(([key, locale]) =>
+      removeCurrent && currentLang.value.label === locale.selectLanguageName
         ? []
         : {
-            text: value.selectLanguageName,
-            link: page.value.isBlogPost
-              ? getBlogLink(key)
-              : normalizeLink(
-                key,
-                addPath.value,
-                page.value.path.slice(currentLang.value.link.length - 1),
-                true,
-              ),
+            text: locale.selectLanguageName,
+            link: getPageLink(key),
           },
     ),
   )
 
   return { localeLinks, currentLang }
-}
-
-function normalizeLink(
-  link: string,
-  addPath: boolean,
-  path: string,
-  addExt: boolean,
-) {
-  return addPath
-    ? link.replace(/\/$/, '')
-    + ensureStartingSlash(
-      path
-        .replace(/(^|\/)?index.md$/, '$1')
-        .replace(/\.md$/, addExt ? '.html' : ''),
-    )
-    : link
 }

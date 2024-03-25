@@ -1,3 +1,18 @@
+# [1.0.0-rc.47](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.46...v1.0.0-rc.47) (2024-3-25)
+
+
+### Features
+
+* **theme:** 迁移组件型图标至CSS，较少SSR输出大小 ([9641fd0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9641fd0c995358d724b5606f4829b34541a71125))
+* **theme:** add social link aria-label ([15acdf6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/15acdf6b91c0672b564d2a78b80ec31d754be2c0))
+
+
+### Performance Improvements
+
+* update non-major deps ([6ce7fa6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6ce7fa6687b36e4299245c58646c0d36dd19f6ab))
+
+
+
 # [1.0.0-rc.46](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.45...v1.0.0-rc.46) (2024-3-25)
 
 

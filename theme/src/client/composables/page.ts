@@ -2,7 +2,7 @@ import { usePageData, usePageFrontmatter, usePageLang, useRoute } from 'vuepress
 import { isPlainObject, isString } from 'vuepress/shared'
 import { useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
 import type { NotesSidebarItem } from '@vuepress-plume/plugin-notes-data'
-import { computed } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import type { ComputedRef, Ref } from 'vue'
 import type {
   NavItemWithLink,
@@ -54,25 +54,43 @@ export function useEditNavLink(): ComputedRef<null | NavItemWithLink> {
   })
 }
 
-export function useLastUpdated(): ComputedRef<null | string> {
-  const themeLocale = useThemeLocaleData()
+export function useLastUpdated() {
+  const theme = useThemeLocaleData()
   const page = usePageData<PlumeThemePageData>()
   const frontmatter = usePageFrontmatter<PlumeThemePageFrontmatter>()
+  const lang = usePageLang()
 
-  return computed(() => {
-    const showLastUpdated
-      = frontmatter.value.lastUpdated ?? themeLocale.value.lastUpdated ?? true
+  const date = computed(() => new Date(page.value.git?.updatedTime ?? ''))
+  const isoDatetime = computed(() => date.value.toISOString())
 
-    if (!showLastUpdated)
-      return null
+  const datetime = ref('')
 
-    if (!page.value.git?.updatedTime)
-      return null
-
-    const updatedDate = new Date(page.value.git?.updatedTime)
-
-    return updatedDate.toLocaleString()
+  const lastUpdatedText = computed(() => {
+    if (theme.value.lastUpdated === false)
+      return
+    return theme.value.lastUpdated?.text || theme.value.lastUpdatedText || 'Last updated'
   })
+
+  onMounted(() => {
+    watchEffect(() => {
+      if (frontmatter.value.lastUpdated === false || theme.value.lastUpdated === false)
+        return
+
+      datetime.value = new Intl.DateTimeFormat(
+        theme.value.lastUpdated?.formatOptions?.forceLocale ? lang.value : undefined,
+        theme.value.lastUpdated?.formatOptions ?? {
+          dateStyle: 'short',
+          timeStyle: 'short',
+        },
+      ).format(date.value)
+    })
+  })
+
+  return {
+    datetime,
+    isoDatetime,
+    lastUpdatedText,
+  }
 }
 
 export function useContributors(): ComputedRef<

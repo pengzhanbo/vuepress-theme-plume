@@ -9,9 +9,12 @@ const defaultLocales: NonNullable<PlumeThemeLocaleOptions['locales']> = {
     selectLanguageName: 'English',
     selectLanguageText: 'Languages',
     editLinkText: 'Edit this page',
-    lastUpdatedText: 'Last Updated',
     contributorsText: 'Contributors',
     appearanceText: 'Appearance',
+
+    lastUpdated: {
+      text: 'Last Updated',
+    },
 
     encryptButtonText: 'Confirm',
     encryptPlaceholder: 'Enter password',
@@ -28,10 +31,13 @@ const defaultLocales: NonNullable<PlumeThemeLocaleOptions['locales']> = {
     returnToTopLabel: '返回顶部',
     editLinkText: '编辑此页',
     contributorsText: '贡献者',
-    lastUpdatedText: '上次更新',
     appearanceText: '外观',
     prevPageLabel: '上一页',
     nextPageLabel: '下一页',
+
+    lastUpdated: {
+      text: '最后更新于',
+    },
 
     notFound: {
       code: '404',
@@ -54,7 +60,6 @@ export const fallbackLocaleOption: Partial<PlumeThemeLocaleOptions> = {
   navbarSocialInclude: ['github', 'twitter', 'discord', 'facebook'],
   // page meta
   editLink: true,
-  lastUpdated: true,
   contributors: true,
   footer: {
     message:

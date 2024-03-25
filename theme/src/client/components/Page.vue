@@ -34,42 +34,38 @@ onContentUpdated(() => zoom?.refresh())
 </script>
 
 <template>
-  <div
-    class="plume-page" :class="{
-      'has-sidebar': hasSidebar,
-      'has-aside': hasAside,
-      'is-blog': page.isBlogPost,
-      'with-encrypt': !isPageDecrypted,
-    }"
-  >
-    <div class="container">
-      <TransitionFadeSlideY>
-        <div v-if="enableAside" :key="page.path" class="aside">
+  <TransitionFadeSlideY>
+    <div
+      :key="page.path" class="plume-page" :class="{
+        'has-sidebar': hasSidebar,
+        'has-aside': hasAside,
+        'is-blog': page.isBlogPost,
+        'with-encrypt': !isPageDecrypted,
+      }"
+    >
+      <div class="container">
+        <div v-if="enableAside" class="aside">
           <div class="aside-container">
             <div class="aside-content">
               <PageAside />
             </div>
           </div>
         </div>
-      </TransitionFadeSlideY>
-      <div class="content">
-        <div class="content-container">
-          <TransitionFadeSlideY>
-            <main :key="page.path" class="main">
-              <PageMeta />
-              <EncryptPage v-if="!isPageDecrypted" />
-              <template v-else>
-                <Content class="plume-content" />
+        <div class="content">
+          <div class="content-container">
+            <PageMeta />
+            <EncryptPage v-if="!isPageDecrypted" />
+            <template v-else>
+              <Content class="plume-content" />
 
-                <PageFooter />
-                <PageComment v-if="hasComments" :darkmode="isDark" />
-              </template>
-            </main>
-          </TransitionFadeSlideY>
+              <PageFooter />
+              <PageComment v-if="hasComments" :darkmode="isDark" />
+            </template>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </TransitionFadeSlideY>
 </template>
 
 <style scoped>

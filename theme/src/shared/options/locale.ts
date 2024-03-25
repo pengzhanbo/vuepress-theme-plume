@@ -151,6 +151,24 @@ export interface PlumeThemeEncrypt {
   }
 }
 
+export interface LastUpdatedOptions {
+  /**
+   * Set custom last updated text.
+   *
+   * @default 'Last updated'
+   */
+  text?: string
+
+  /**
+   * Set options for last updated time formatting.
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat#using_options
+   *
+   * @default
+   * { dateStyle: 'short', timeStyle: 'short' }
+   */
+  formatOptions?: Intl.DateTimeFormatOptions & { forceLocale?: boolean }
+}
+
 export interface PlumeThemeLocaleData extends LocaleData {
   /**
    * 网站站点首页
@@ -294,12 +312,14 @@ export interface PlumeThemeLocaleData extends LocaleData {
    *
    * Whether to show "Last Updated" or not
    */
-  lastUpdated?: boolean
+  lastUpdated?: false | LastUpdatedOptions
 
   /**
-   * Page meta - last updated config
+   * @deprecated Use `lastUpdated.text` instead.
    *
-   * The text to replace the default "Last Updated"
+   * Set custom last updated text.
+   *
+   * @default 'Last updated'
    */
   lastUpdatedText?: string
 

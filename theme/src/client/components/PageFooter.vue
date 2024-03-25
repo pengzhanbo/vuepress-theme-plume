@@ -12,7 +12,7 @@ import IconEdit from './icons/IconEdit.vue'
 
 const themeLocale = useThemeLocaleData()
 const editNavLink = useEditNavLink()
-const lastUpdated = useLastUpdated()
+const { datetime: lastUpdated, isoDatetime, lastUpdatedText } = useLastUpdated()
 const contributors = useContributors()
 const { prev, next } = usePageNav()
 
@@ -25,11 +25,7 @@ const showFooter = computed(() => {
   <footer v-if="showFooter" class="page-footer">
     <div v-if="editNavLink || lastUpdated" class="edit-info">
       <div v-if="editNavLink" class="edit-link">
-        <AutoLink
-          class="edit-link-button"
-          :href="editNavLink.link"
-          :no-icon="true"
-        >
+        <AutoLink class="edit-link-button" :href="editNavLink.link" :no-icon="true">
           <IconEdit class="edit-link-icon" aria-label="edit icon" />
           {{ editNavLink.text }}
         </AutoLink>
@@ -37,8 +33,8 @@ const showFooter = computed(() => {
 
       <div v-if="lastUpdated" class="last-updated">
         <p class="last-updated-text">
-          {{ themeLocale.lastUpdatedText || 'Last updated' }}:
-          <time :datetime="lastUpdated" class="last-updated-time">
+          {{ lastUpdatedText }}:
+          <time :datetime="isoDatetime" class="last-updated-time">
             {{ lastUpdated }}
           </time>
         </p>
@@ -61,21 +57,13 @@ const showFooter = computed(() => {
 
     <nav v-if="prev?.link || next?.link" class="prev-next">
       <div class="pager">
-        <AutoLink
-          v-if="prev?.link"
-          class="pager-link prev"
-          :href="prev.link"
-        >
+        <AutoLink v-if="prev?.link" class="pager-link prev" :href="prev.link">
           <span class="desc" v-html="themeLocale.prevPageLabel || 'Previous page'" />
           <span class="title" v-html="prev.text" />
         </AutoLink>
       </div>
       <div class="pager">
-        <AutoLink
-          v-if="next?.link"
-          class="pager-link next"
-          :href="next.link"
-        >
+        <AutoLink v-if="next?.link" class="pager-link next" :href="next.link">
           <span class="desc" v-html="themeLocale.nextPageLabel || 'Next page'" />
           <span class="title" v-html="next.text" />
         </AutoLink>

@@ -11,19 +11,19 @@ const avatar = computed(() => theme.value.avatar)
 
 <template>
   <div v-if="avatar" class="avatar-profile">
-    <p v-if="avatar.url" :class="{ circle: avatar.circle }">
+    <p v-if="avatar.url" :class="{ circle: !!avatar.circle }">
       <img :src="avatar.url" :alt="avatar.name">
     </p>
-    <div>
+    <div class="avatar-info">
       <h3>{{ avatar.name }}</h3>
       <p v-if="avatar.description" v-html="avatar.description" />
       <div v-if="avatar.location" class="avatar-location">
         <IconLocation />
-        <p v-html="avatar.location" />
+        <p v-if="avatar.location" v-html="avatar.location" />
       </div>
       <div v-if="avatar.organization" class="avatar-organization">
         <IconOrganization />
-        <p v-html="avatar.organization" />
+        <p v-if="avatar.organization" v-html="avatar.organization" />
       </div>
     </div>
     <div v-if="theme.social" class="avatar-social">

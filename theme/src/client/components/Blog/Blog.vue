@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { usePageData } from 'vuepress/client'
+import { computed } from 'vue'
 import type { PlumeThemePageData } from '../../../shared/index.js'
 import { useThemeLocaleData } from '../../composables/index.js'
 import TransitionFadeSlideY from '../TransitionFadeSlideY.vue'
@@ -12,17 +13,32 @@ import BlogNav from './BlogNav.vue'
 
 const theme = useThemeLocaleData()
 const page = usePageData<PlumeThemePageData>()
+
+const com = {
+  PostList,
+  Tags,
+  Archives,
+}
+
+const type = computed(() => {
+  const type = page.value.type
+  if (type === 'blog-tags')
+    return 'Tags'
+  if (type === 'blog-archives')
+    return 'Archives'
+  return 'PostList'
+})
 </script>
 
 <template>
   <div class="blog-wrapper">
     <div class="blog-container" :class="{ 'no-avatar': !theme.avatar }">
       <BlogNav v-if="!theme.avatar" is-local />
+
       <TransitionFadeSlideY>
-        <PostList v-if="page.type === 'blog'" />
-        <Tags v-if="page.type === 'blog-tags'" />
-        <Archives v-if="page.type === 'blog-archives'" />
+        <component :is="com[type]" />
       </TransitionFadeSlideY>
+
       <BlogAside />
       <BlogExtract />
     </div>

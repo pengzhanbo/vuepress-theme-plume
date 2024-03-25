@@ -1,3 +1,23 @@
+# [1.0.0-rc.46](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.45...v1.0.0-rc.46) (2024-3-25)
+
+
+### Bug Fixes
+
+* **theme:** 博客页无用户信息时过渡动效 ([34106ec](https://github.com/pengzhanbo/vuepress-theme-plume/commit/34106ec7092f5154368a89dce951c2f3e1f2aebe))
+* **theme:** 修复博客页组件过渡效果导致的SSR水合错误 ([c3d9a4e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c3d9a4e6deeaeea73c4cf893cfdf42fb8b3fb090))
+* **theme:** 修复最后更新时间不一致导致的SSR水合过程错误 ([e3f79a8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e3f79a8db692bd8d1129aef93dbf459168ac34cc))
+
+
+### Performance Improvements
+
+*  导航栏链接支持传入文件路径 ([c1a9868](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c1a9868ead553cb905d21f65cee98639a89923c6))
+* **plugin-auto-frontmatter:** 优化 matter生成格式 ([5908363](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5908363aca70090b6ab27850eb5f45efb89fb8bc))
+* **theme:** 优化多语言切换时页面重定向 ([805374d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/805374de71006a49f0df7b951591fcbffd8e0936))
+* **theme:** 优化sidebar 交互 ([6ce9796](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6ce97965a15f33e342bb69d835c814a7b2f044c3))
+* update `vuepress` to `rc.9` ([3cada0b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3cada0bfd2c33dc49d3fac7b6c2125d23e1a0cb6))
+
+
+
 # [1.0.0-rc.45](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.44...v1.0.0-rc.45) (2024-3-18)
 
 

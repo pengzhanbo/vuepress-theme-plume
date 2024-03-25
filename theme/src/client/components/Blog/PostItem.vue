@@ -3,10 +3,6 @@ import { computed } from 'vue'
 import type { PlumeThemeBlogPostItem } from '../../../shared/index.js'
 import { useExtraBlogData } from '../../composables/index.js'
 import AutoLink from '../AutoLink.vue'
-import IconClock from '../icons/IconClock.vue'
-import IconFolder from '../icons/IconFolder.vue'
-import IconTag from '../icons/IconTag.vue'
-import IconLock from '../icons/IconLock.vue'
 
 const props = defineProps<{
   post: PlumeThemeBlogPostItem
@@ -41,21 +37,21 @@ const createTime = computed(() =>
       >
         TOP
       </div>
-      <IconLock v-if="post.encrypt" class="icon-lock" />
+      <span v-if="post.encrypt" class="icon-lock vpi-lock" />
       <AutoLink :href="post.path">
         {{ post.title }}
       </AutoLink>
     </h3>
     <div class="post-meta">
       <div v-if="categoryList.length" class="category-list">
-        <IconFolder class="icon" />
+        <span class="icon vpi-folder" />
         <template v-for="(cate, i) in categoryList" :key="i">
           <span>{{ cate.name }}</span>
           <span v-if="i !== categoryList.length - 1">/</span>
         </template>
       </div>
       <div v-if="tags.length" class="tag-list">
-        <IconTag class="icon" />
+        <span class="icon vpi-tag" />
         <template v-for="tag in tags" :key="tag.name">
           <span
             class="tag"
@@ -66,7 +62,7 @@ const createTime = computed(() =>
         </template>
       </div>
       <div v-if="createTime" class="create-time">
-        <IconClock class="icon" />
+        <span class="icon vpi-clock" />
         <span>{{ createTime }}</span>
       </div>
     </div>

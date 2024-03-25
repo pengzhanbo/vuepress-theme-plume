@@ -6,7 +6,6 @@ import type {
   PlumeThemePageData,
 } from '../../../shared/index.js'
 import { useSidebar, useThemeLocaleData } from '../../composables/index.js'
-import IconAlignLeft from '../icons/IconAlignLeft.vue'
 import LocalNavOutlineDropdown from './LocalNavOutlineDropdown.vue'
 
 const props = defineProps<{
@@ -62,7 +61,7 @@ const showLocalNav = computed(() => {
       aria-controls="SidebarNav"
       @click="$emit('openMenu')"
     >
-      <IconAlignLeft class="menu-icon" />
+      <span class="vpi-align-left menu-icon" />
       <span class="menu-text"> {{ themeData.sidebarMenuLabel || 'Menu' }} </span>
     </button>
 

@@ -2,7 +2,6 @@
 import { computed } from 'vue'
 import { resolveRoutePath, useRouter, withBase } from 'vuepress/client'
 import { EXTERNAL_URL_RE } from '../utils/index.js'
-import IconExternalLink from './icons/IconExternalLink.vue'
 
 const props = defineProps<{
   tag?: string
@@ -37,16 +36,12 @@ function linkTo(e: Event) {
 
 <template>
   <Component
-    :is="tag"
-    class="auto-link"
-    :class="{ link }"
-    :href="link"
-    :target="target ?? (isExternal ? '_blank' : undefined)"
-    :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
+    :is="tag" class="auto-link" :class="{ link }" :href="link"
+    :target="target ?? (isExternal ? '_blank' : undefined)" :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"
   >
     <slot />
-    <IconExternalLink v-if="isExternal && !noIcon" class="icon" />
+    <span v-if="isExternal && !noIcon" class="vpi-external-link icon" />
   </Component>
 </template>
 

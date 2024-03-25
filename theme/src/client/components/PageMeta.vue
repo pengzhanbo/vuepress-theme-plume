@@ -9,10 +9,6 @@ import type {
   PlumeThemePostFrontmatter,
 } from '../../shared/index.js'
 import { useExtraBlogData } from '../composables/index.js'
-import IconBooks from './icons/IconBooks.vue'
-import IconClock from './icons/IconClock.vue'
-import IconTag from './icons/IconTag.vue'
-import IconUser from './icons/IconUser.vue'
 
 const page = usePageData<PlumeThemePageData>()
 const matter = usePageFrontmatter<PlumeThemePostFrontmatter>()
@@ -62,16 +58,16 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
   </h1>
   <div v-if="hasMeta" class="page-meta-wrapper">
     <p v-if="matter.author" class="author">
-      <IconUser class="icon" />
+      <span class="icon vpi-user" />
       <span>{{ matter.author }}</span>
     </p>
     <p v-if="readingTime.time && matter.readingTime !== false" class="reading-time">
-      <IconBooks class="icon" />
+      <span class="vpi-books icon" />
       <span>{{ readingTime.words }}</span>
       <span>{{ readingTime.time }}</span>
     </p>
     <p v-if="tags.length > 0">
-      <IconTag class="icon" />
+      <span class="vpi-tag icon" />
       <span
         v-for="tag in tags"
         :key="tag.name"
@@ -82,7 +78,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
       </span>
     </p>
     <p v-if="createTime" class="create-time">
-      <IconClock class="icon" /><span>{{ createTime }}</span>
+      <span class="vpi-clock icon" /><span>{{ createTime }}</span>
     </p>
   </div>
 </template>

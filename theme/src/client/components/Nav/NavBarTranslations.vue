@@ -3,7 +3,6 @@ import { useLangs } from '../../composables/langs.js'
 import { useThemeLocaleData } from '../../composables/themeData.js'
 import Flyout from '../Flyout/index.vue'
 import MenuLink from '../Flyout/MenuLink.vue'
-import IconLanguages from '../icons/IconLanguages.vue'
 
 const theme = useThemeLocaleData()
 const { currentLang, localeLinks } = useLangs()
@@ -13,7 +12,7 @@ const { currentLang, localeLinks } = useLangs()
   <Flyout
     v-if="localeLinks.length && currentLang.label"
     class="navbar-translations"
-    :icon="IconLanguages"
+    icon="vpi-languages"
     :label="theme.selectLanguageText || 'Change Language'"
   >
     <div class="items">

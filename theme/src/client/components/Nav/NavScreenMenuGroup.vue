@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import IconPlus from '../icons/IconPlus.vue'
 import NavScreenMenuGroupLink from './NavScreenMenuGroupLink.vue'
 import NavScreenMenuGroupSection from './NavScreenMenuGroupSection.vue'
 
@@ -33,7 +32,7 @@ function toggle() {
         <Icon v-if="icon" :name="icon" />
         <i v-text="text" />
       </span>
-      <IconPlus class="button-icon" />
+      <span class="vpi-plus button-icon" />
     </button>
 
     <div :id="groupId" class="items">

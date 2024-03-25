@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useThemeLocaleData } from '../composables/index.js'
-import IconLock from './icons/IconLock.vue'
 
 const props = defineProps<{
   compare: (password: string) => boolean
@@ -30,7 +29,7 @@ function onSubmit() {
   <div class="encrypt-form">
     <p class="encrypt-text" v-html="info ?? 'Only Password can access this site'" />
     <p class="encrypt-input-wrapper">
-      <IconLock class="icon icon-lock" />
+      <span class="vpi-lock icon-lock" />
       <input
         v-model="password"
         class="encrypt-input"
@@ -65,7 +64,7 @@ function onSubmit() {
 
 .icon-lock {
   position: absolute;
-  top: 10px;
+  top: 12px;
   left: 10px;
   color: var(--vp-c-border);
 }

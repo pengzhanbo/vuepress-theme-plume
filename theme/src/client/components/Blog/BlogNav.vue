@@ -2,9 +2,6 @@
 import { useRoute } from 'vuepress/client'
 import { useBlogExtract } from '../../composables/index.js'
 import AutoLink from '../AutoLink.vue'
-import IconArchive from '../icons/IconArchive.vue'
-import IconTag from '../icons/IconTag.vue'
-import IconChevronRight from '../icons/IconChevronRight.vue'
 
 const props = defineProps<{
   isLocal?: boolean
@@ -22,20 +19,20 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
       :class="{ active: route.path === tags.link }"
       :href="tags.link"
     >
-      <IconTag class="icon icon-logo" />
+      <span class="icon icon-logo vpi-tag" />
       <span class="text">{{ tags.text }}</span>
       <span class="total">{{ tags.total }}</span>
-      <IconChevronRight class="icon" />
+      <span class="icon vpi-chevron-right" />
     </AutoLink>
     <AutoLink
       class="nav-link"
       :class="{ active: route.path === archives.link }"
       :href="archives.link"
     >
-      <IconArchive class="icon icon-logo" />
+      <span class="icon icon-logo vpi-archive" />
       <span class="text">{{ archives.text }}</span>
       <span class="total">{{ archives.total }}</span>
-      <IconChevronRight class="icon" />
+      <span class="icon vpi-chevron-right" />
     </AutoLink>
   </div>
 </template>

@@ -2,8 +2,6 @@
 import { ref } from 'vue'
 import { useLangs } from '../../composables/langs.js'
 import AutoLink from '../AutoLink.vue'
-import IconChevronDown from '../icons/IconChevronDown.vue'
-import IconLanguages from '../icons/IconLanguages.vue'
 
 const { localeLinks, currentLang } = useLangs()
 const isOpen = ref(false)
@@ -20,9 +18,9 @@ function toggle() {
     :class="{ open: isOpen }"
   >
     <button class="title" @click="toggle">
-      <IconLanguages class="icon lang" />
+      <span class="vpi-languages icon lang" />
       {{ currentLang.label }}
-      <IconChevronDown class="icon chevron" />
+      <span class="vpi-chevron-down icon chevron" />
     </button>
 
     <ul class="list">
@@ -55,9 +53,7 @@ function toggle() {
 }
 
 .icon {
-  width: 16px;
-  height: 16px;
-  fill: currentcolor;
+  font-size: 16px;
 }
 
 .icon.lang {

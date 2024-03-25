@@ -1,7 +1,10 @@
 @import "@vuepress/plugin-palette/palette";
+
 @import "vars";
 @import "fonts";
 @import "normalize";
+@import "icons";
+@import "social-icons";
 @import "nprogress";
 @import "utils";
 @import "content";
@@ -10,4 +13,5 @@
 @import "twoslash";
 @import "md-enhance";
 @import "search";
+
 @import "@vuepress/plugin-palette/style";

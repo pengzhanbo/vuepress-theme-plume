@@ -3,7 +3,6 @@ import { useElementSize, useWindowScroll, useWindowSize } from '@vueuse/core'
 import { computed, onMounted, ref, shallowRef, watch } from 'vue'
 import { usePageData } from 'vuepress/client'
 import type { PlumeThemePageData } from '../../shared/index.js'
-import IconBackToTop from './icons/IconBackToTop.vue'
 
 const body = shallowRef<HTMLElement | null>()
 const { height: bodyHeight } = useElementSize(body)
@@ -65,7 +64,7 @@ function handleClick() {
       @click="handleClick"
     >
       <span class="percent" :class="{ show: isScrolling }">{{ percent }}</span>
-      <IconBackToTop class="icon" :class="{ show: !isScrolling }" />
+      <span class="icon vpi-back-to-top" :class="{ show: !isScrolling }" />
       <svg aria-hidden="true">
         <circle cx="50%" cy="50%" :style="{ 'stroke-dasharray': stroke }" />
       </svg>

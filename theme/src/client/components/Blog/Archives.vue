@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useArchives, useBlogExtract } from '../../composables/index.js'
-import IconArchive from '../icons/IconArchive.vue'
 import ShortPostList from './ShortPostList.vue'
 
 const { archives: archivesLink } = useBlogExtract()
@@ -10,7 +9,7 @@ const { archives } = useArchives()
 <template>
   <div class="archives-wrapper">
     <h2 class="archives-title">
-      <IconArchive class="icon" />
+      <span class="vpi-archive icon" />
       <span>{{ archivesLink.text }}</span>
     </h2>
     <div v-if="archives.length" class="archives">
@@ -43,8 +42,6 @@ const { archives } = useArchives()
 }
 
 .archives-title .icon {
-  width: 1em;
-  height: 1em;
   margin-right: 8px;
 }
 

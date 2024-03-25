@@ -3,7 +3,6 @@ import type { PageHeader } from 'vuepress/client'
 import { onClickOutside } from '@vueuse/core'
 import { nextTick, ref, watch } from 'vue'
 import { useThemeLocaleData } from '../../composables/index.js'
-import IconChevronRight from '../icons/IconChevronRight.vue'
 import DocOutlineItem from './DocOutlineItem.vue'
 
 const props = defineProps<{
@@ -52,7 +51,7 @@ function scrollToTop() {
   <div class="local-nav-outline-dropdown" :style="{ '--vp-vh': `${vh}px` }">
     <button v-if="headers.length > 0" ref="btn" :class="{ open }" @click="toggle">
       {{ theme.outlineLabel || 'On this page' }}
-      <IconChevronRight class="icon" />
+      <span class="vpi-chevron-right icon" />
     </button>
     <button v-else @click="scrollToTop">
       {{ theme.returnToTopLabel || 'Return to top' }}

@@ -19,14 +19,14 @@ const theme = useThemeLocaleData()
   top: calc(var(--vp-nav-height) + 2rem);
   display: none;
   width: 270px;
-  margin: 2rem 1px 0 2rem;
+  overflow-y: auto;
   text-align: center;
 }
 
 @media (min-width: 768px) {
   .blog-aside-wrapper {
     display: block;
-    margin: 2rem 1rem 2rem 1.5rem;
+    margin: 2rem 1rem 1rem 1.5rem;
   }
 }
 </style>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { usePageEncrypt } from '../composables/encrypt.js'
 import { useThemeLocaleData } from '../composables/index.js'
-import IconLock from './icons/IconLock.vue'
 import EncryptForm from './EncryptForm.vue'
 
 const theme = useThemeLocaleData()
@@ -11,14 +10,19 @@ const { comparePage } = usePageEncrypt()
 <template>
   <div class="page-encrypt-wrapper">
     <div class="logo">
-      <IconLock class="icon icon-lock-head" />
+      <span class="vpi-lock icon-lock-head" />
     </div>
     <EncryptForm :compare="comparePage" :info="theme.encryptPageText" />
   </div>
 </template>
 
 <style scoped>
+.page-encrypt-wrapper .logo {
+  text-align: center;
+}
+
 .icon-lock-head {
+  display: inline-block;
   width: 64px;
   height: 64px;
   margin: auto;

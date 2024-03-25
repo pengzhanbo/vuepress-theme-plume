@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useBlogExtract, useTags } from '../../composables/index.js'
-import IconTag from '../icons/IconTag.vue'
 import ShortPostList from './ShortPostList.vue'
 
 const { tags, currentTag, postList, handleTagClick } = useTags()
@@ -11,7 +10,7 @@ const { tags: tagsLink } = useBlogExtract()
   <div class="tags-wrapper" :class="{ 'has-list': postList.length > 0 }">
     <div class="tags-nav">
       <h2 class="tags-title">
-        <IconTag class="icon" />
+        <span class="vpi-tag icon" />
         <span>{{ tagsLink.text }}</span>
       </h2>
       <div class="tags">

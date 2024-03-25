@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { usePageFrontmatter } from 'vuepress/client'
 import { computed } from 'vue'
-import IconExternalLink from '../icons/IconExternalLink.vue'
 import type { PlumeThemePageFrontmatter } from '../../../shared/index.js'
 
 const matter = usePageFrontmatter<PlumeThemePageFrontmatter>()
@@ -9,7 +8,7 @@ const show = computed(() => matter.value.externalLink !== false)
 </script>
 
 <template>
-  <IconExternalLink v-if="show" class="external-icon" />
+  <span v-if="show" class="vpi-external-link external-icon" />
 </template>
 
 <style scoped>

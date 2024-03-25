@@ -3,7 +3,6 @@ import type { NotesSidebarItem } from '@vuepress-plume/plugin-notes-data'
 import { computed } from 'vue'
 import { useSidebarControl } from '../composables/sidebar.js'
 import AutoLink from './AutoLink.vue'
-import IconChevronRight from './icons/IconChevronRight.vue'
 
 const props = defineProps<{
   item: NotesSidebarItem
@@ -91,7 +90,7 @@ function onCaretClick() {
         @click="onCaretClick"
         @keydown.enter="onCaretClick"
       >
-        <IconChevronRight class="caret-icon" />
+        <span class="vpi-chevron-right caret-icon" />
       </div>
     </div>
 

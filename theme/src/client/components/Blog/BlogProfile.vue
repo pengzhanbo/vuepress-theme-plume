@@ -2,8 +2,6 @@
 import { computed } from 'vue'
 import { useThemeLocaleData } from '../../composables/index.js'
 import SocialLinks from '../SocialLinks.vue'
-import IconLocation from '../icons/IconLocation.vue'
-import IconOrganization from '../icons/IconOrganization.vue'
 
 const theme = useThemeLocaleData()
 const avatar = computed(() => theme.value.avatar)
@@ -18,11 +16,11 @@ const avatar = computed(() => theme.value.avatar)
       <h3>{{ avatar.name }}</h3>
       <p v-if="avatar.description" v-html="avatar.description" />
       <div v-if="avatar.location" class="avatar-location">
-        <IconLocation />
+        <span class="vpi-location" />
         <p v-if="avatar.location" v-html="avatar.location" />
       </div>
       <div v-if="avatar.organization" class="avatar-organization">
-        <IconOrganization />
+        <span class="vpi-organization" />
         <p v-if="avatar.organization" v-html="avatar.organization" />
       </div>
     </div>

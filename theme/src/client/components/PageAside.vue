@@ -3,7 +3,6 @@ import { usePageData } from 'vuepress/client'
 import { computed, ref } from 'vue'
 import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import { useActiveAnchor, useThemeLocaleData } from '../composables/index.js'
-import IconPrint from './icons/IconPrint.vue'
 import PageAsideItem from './PageAsideItem.vue'
 
 const page = usePageData()
@@ -38,7 +37,7 @@ function handlePrint() {
 
         <div class="outline-title">
           <span>{{ theme.outlineLabel || 'On this page' }}</span>
-          <IconPrint class="icon" @click="handlePrint" />
+          <span class="vpi-print icon" @click="handlePrint" />
         </div>
 
         <nav aria-labelledby="doc-outline-aria-label">
@@ -104,8 +103,6 @@ function handlePrint() {
 }
 
 .outline-title .icon {
-  width: 1em;
-  height: 1em;
   margin-left: 4px;
   font-size: 1.2em;
   cursor: pointer;

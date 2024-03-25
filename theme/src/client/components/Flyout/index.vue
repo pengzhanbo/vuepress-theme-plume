@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useFlyout } from '../../composables/flyout.js'
-import IconChevronDown from '../icons/IconChevronDown.vue'
-import IconMoreHorizontal from '../icons/IconMoreHorizontal.vue'
 import VMenu from './VMenu.vue'
 
 defineProps<{
@@ -47,12 +45,12 @@ export default {
     >
       <span v-if="button || icon" class="text">
         <Icon v-if="prefixIcon" :name="prefixIcon" />
-        <Component :is="icon" v-if="icon" class="option-icon" />
-        {{ button }}
-        <IconChevronDown class="text-icon" />
+        <span v-if="icon" class="option-icon" :class="[icon]" />
+        <span v-if="button" v-html="button" />
+        <span class="vpi-chevron-down text-icon" />
       </span>
 
-      <IconMoreHorizontal v-else class="icon" />
+      <span v-else class="vpi-more-horizontal icon" />
     </button>
 
     <div class="menu">
@@ -125,6 +123,12 @@ export default {
   transform: translateY(0);
 }
 
+.button[aria-expanded="false"] + .menu {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(0);
+}
+
 .button {
   display: flex;
   align-items: center;
@@ -135,9 +139,8 @@ export default {
 }
 
 .option-icon {
-  width: 16px;
-  height: 16px;
   margin-right: 0;
+  font-size: 16px;
   fill: currentcolor;
 }
 

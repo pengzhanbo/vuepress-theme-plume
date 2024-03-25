@@ -5,9 +5,6 @@ import { useRoute } from 'vuepress/client'
 import { useBlogExtract, useThemeLocaleData } from '../../composables/index.js'
 import { inBrowser } from '../../utils/index.js'
 import AutoLink from '../AutoLink.vue'
-import IconArchive from '../icons/IconArchive.vue'
-import IconBlogExt from '../icons/IconBlogExt.vue'
-import IconTag from '../icons/IconTag.vue'
 
 const theme = useThemeLocaleData()
 const route = useRoute()
@@ -51,7 +48,7 @@ const showBlogExtract = computed(() => {
 <template>
   <template v-if="showBlogExtract">
     <div class="blog-extract" @click="open = !open">
-      <IconBlogExt class="icon" />
+      <span class="vpi-blog-ext icon" />
     </div>
     <Transition name="fade">
       <div v-show="open" class="blog-modal" @click.self="open = false">
@@ -69,11 +66,11 @@ const showBlogExtract = computed(() => {
           </div>
           <div v-if="hasBlogExtract" class="blog-nav" :class="{ 'no-avatar': !avatar }">
             <AutoLink class="nav-link" :href="tags.link">
-              <IconTag class="icon" />
+              <span class="vpi-tag icon" />
               <span>{{ tags.text }}</span>
             </AutoLink>
             <AutoLink class="nav-link" :href="archives.link">
-              <IconArchive class="icon" />
+              <span class="vpi-archive icon" />
               <span>{{ archives.text }}</span>
             </AutoLink>
           </div>
@@ -103,6 +100,7 @@ const showBlogExtract = computed(() => {
 }
 
 .blog-extract .icon {
+  display: block;
   font-size: 16px;
   color: var(--vp-c-text-2);
   transition: color var(--t-color);

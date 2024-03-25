@@ -5,7 +5,6 @@ import type { PlumeThemeFriendsFrontmatter } from '../../shared/index.js'
 import { useEditNavLink } from '../composables/index.js'
 import AutoLink from './AutoLink.vue'
 import FriendsItem from './FriendsItem.vue'
-import IconEdit from './icons/IconEdit.vue'
 
 const matter = usePageFrontmatter<PlumeThemeFriendsFrontmatter>()
 const editNavLink = useEditNavLink()
@@ -35,7 +34,7 @@ const list = computed(() => matter.value.list || [])
         :href="editNavLink.link"
         :no-icon="true"
       >
-        <IconEdit class="edit-link-icon" aria-label="edit icon" />
+        <span class="vpi-square-pen edit-link-icon" aria-label="edit icon" />
         {{ editNavLink.text }}
       </AutoLink>
     </div>

@@ -8,7 +8,7 @@ import SocialLinks from '../SocialLinks.vue'
 import SwitchAppearance from '../SwitchAppearance.vue'
 
 const theme = useThemeLocaleData()
-const { localeLinks, currentLang } = useLangs({ correspondingLink: true })
+const { localeLinks, currentLang } = useLangs()
 
 const hasExtraContent = computed(
   () => theme.value.appearance || theme.value.social,

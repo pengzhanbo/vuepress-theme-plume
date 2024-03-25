@@ -3,8 +3,6 @@ import { onMounted, ref, watch } from 'vue'
 import { useDarkMode } from '../composables/index.js'
 import { useThemeLocaleData } from '../composables/themeData.js'
 import { APPEARANCE_KEY } from '../utils/index.js'
-import IconMoon from './icons/IconMoon.vue'
-import IconSun from './icons/IconSun.vue'
 import Switch from './Switch.vue'
 
 const theme = useThemeLocaleData()
@@ -70,8 +68,8 @@ watch(checked, (newIsDark) => {
     :aria-checked="checked"
     @click="toggle"
   >
-    <IconSun class="sun" />
-    <IconMoon class="moon" />
+    <span class="vpi-sun sun" />
+    <span class="vpi-moon moon" />
   </Switch>
 </template>
 

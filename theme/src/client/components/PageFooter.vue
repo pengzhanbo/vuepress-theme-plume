@@ -8,7 +8,6 @@ import {
   useThemeLocaleData,
 } from '../composables/index.js'
 import AutoLink from './AutoLink.vue'
-import IconEdit from './icons/IconEdit.vue'
 
 const themeLocale = useThemeLocaleData()
 const editNavLink = useEditNavLink()
@@ -26,7 +25,7 @@ const showFooter = computed(() => {
     <div v-if="editNavLink || lastUpdated" class="edit-info">
       <div v-if="editNavLink" class="edit-link">
         <AutoLink class="edit-link-button" :href="editNavLink.link" :no-icon="true">
-          <IconEdit class="edit-link-icon" aria-label="edit icon" />
+          <span class="vpi-square-pen edit-link-icon" aria-label="edit icon" />
           {{ editNavLink.text }}
         </AutoLink>
       </div>
@@ -108,8 +107,6 @@ const showFooter = computed(() => {
 }
 
 .edit-link-icon {
-  width: 14px;
-  height: 14px;
   margin-right: 8px;
   fill: currentcolor;
 }

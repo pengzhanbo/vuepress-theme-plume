@@ -1,25 +1,25 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import type { SocialLinkIcon } from '../../shared/index.js'
-import { icons } from '../utils/index.js'
 
 const props = defineProps<{
   icon: SocialLinkIcon
   link: string
+  ariaLabel?: string
 }>()
 
 const svg = computed(() => {
   if (typeof props.icon === 'object')
     return props.icon.svg
-  return icons[props.icon]
+  return `<span class="vpi-social-${props.icon}" />`
 })
 </script>
 
 <template>
-  <!-- eslint-disable vue/no-v-html -->
   <a
     class="social-link"
     :href="link"
+    :aria-label="ariaLabel ?? (typeof icon === 'string' ? icon : '')"
     target="_blank"
     rel="noopener"
     v-html="svg"
@@ -41,7 +41,8 @@ const svg = computed(() => {
   color: var(--vp-c-text-1);
 }
 
-.social-link > :deep(svg) {
+.social-link > :deep(svg),
+.social-link > :deep([class^="vpi-social-"]) {
   width: 20px;
   height: 20px;
   fill: currentcolor;

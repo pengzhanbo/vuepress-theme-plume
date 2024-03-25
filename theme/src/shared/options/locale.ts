@@ -34,6 +34,7 @@ export interface PlumeThemeAvatar {
 export interface SocialLink {
   icon: SocialLinkIcon
   link: string
+  ariaLabel?: string
 }
 
 export type SocialLinkIconUnion =

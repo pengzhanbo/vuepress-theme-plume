@@ -6,7 +6,7 @@ import type { PluginWithOptions, Token } from 'markdown-it'
 import type { RuleBlock } from 'markdown-it/lib/parser_block.js'
 import type { Markdown } from 'vuepress/markdown'
 import container from 'markdown-it-container'
-import type { CanIUseMode, CanIUseOptions, CanIUseTokenMeta } from '../shared/index.js'
+import type { CanIUseMode, CanIUseOptions, CanIUseTokenMeta } from '../../shared/index.js'
 
 // @[caniuse]()
 const minLength = 12

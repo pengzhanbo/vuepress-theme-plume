@@ -66,6 +66,13 @@ export const theme: Theme = themePlume({
       mermaid: true,
       flowchart: true,
     },
+    markdownPower: {
+      pdf: true,
+      caniuse: true,
+      bilibili: true,
+      youtube: true,
+      icons: true,
+    },
     comment: {
       provider: 'Giscus',
       comment: true,

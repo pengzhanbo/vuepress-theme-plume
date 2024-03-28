@@ -1,0 +1,69 @@
+{
+  "name": "@vuepress-plume/plugin-md-power",
+  "type": "module",
+  "version": "1.0.0-rc.47",
+  "description": "The Plugin for VuePres 2 - markdown power",
+  "author": "pengzhanbo <volodymyr@foxmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git",
+    "directory": "plugins/plugin-md-power"
+  },
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/node/index.d.ts",
+      "import": "./lib/node/index.js"
+    },
+    "./client": {
+      "types": "./lib/client/index.d.ts",
+      "import": "./lib/client/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "lib/node/index.js",
+  "types": "./lib/node/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "pnpm run copy && pnpm run ts",
+    "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
+    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
+    "ts": "tsc -b tsconfig.build.json"
+  },
+  "peerDependencies": {
+    "@iconify/json": "^2",
+    "vuepress": "2.0.0-rc.9"
+  },
+  "peerDependenciesMeta": {
+    "@iconify/json": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@iconify/utils": "^2.1.22",
+    "@vueuse/core": "^10.9.0",
+    "local-pkg": "^0.5.0",
+    "markdown-it-container": "^4.0.0",
+    "nanoid": "^5.0.6",
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.196",
+    "@types/markdown-it": "^13.0.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keyword": [
+    "VuePress",
+    "vuepress plugin",
+    "markdown power",
+    "vuepress-plugin-md-power"
+  ]
+}

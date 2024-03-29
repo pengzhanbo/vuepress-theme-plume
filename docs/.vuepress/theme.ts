@@ -72,6 +72,7 @@ export const theme: Theme = themePlume({
       bilibili: true,
       youtube: true,
       icons: true,
+      codepen: true,
     },
     comment: {
       provider: 'Giscus',

@@ -4,7 +4,7 @@
  * @[pdf 1 no-toolbar width="100%" height="600px" zoom="1" ratio="1:1"](/xxx)
  */
 import { path } from 'vuepress/utils'
-import type { PluginWithOptions, Token } from 'markdown-it'
+import type { PluginWithOptions } from 'markdown-it'
 import type { RuleBlock } from 'markdown-it/lib/parser_block.js'
 import type { PDFTokenMeta } from '../../shared/pdf.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'

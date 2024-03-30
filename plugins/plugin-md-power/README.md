@@ -161,3 +161,41 @@ pnpm add @iconify/json
 - `ratio` 为视频的宽高比
 - `star` 为开始时间，单位为秒，还可以传入 `mm:ss` 或者 `hh:mm:ss`。
 - `end` 为结束时间，单位为秒，还可以传入 `mm:ss` 或者 `hh:mm:ss`。
+
+### CodePen
+
+插件默认不启用该功能，你需要手动设置 `codepen` 为 `true`
+
+#### 语法
+
+```md
+@[codepen](user/slash)
+@[codepen preview editable title="" height="400px" tab="css,result" theme="dark"](user/slash)
+```
+
+- `user` 为 CodePen 用户名
+- `slash` 为 CodePen slash
+- `preview` 为是否为预览模式
+- `editable` 为是否为可编辑模式
+- `title` 为标题
+- `height` 为高度
+- `tab` 为选项卡，默认为 `result`, 多个以逗号分隔，如 `css,result`
+- `theme` 为主题， 可选值包括 `dark` 和 `light`
+
+### Replit
+
+插件默认不启用该功能，你需要手动设置 `replit` 为 `true`
+
+#### 语法
+
+```md
+@[replit](user/repl-name)
+@[replit title="" height="450px" theme="dark"](user/repl-name#filepath)
+```
+
+- `user` 为 Replit 用户名
+- `repl-name` 为 Replit Repl 名
+- `filepath` 为文件路径
+- `title` 为标题
+- `height` 为高度
+- `theme` 为主题， 可选值包括 `dark` 和 `light`

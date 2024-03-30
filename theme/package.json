@@ -82,7 +82,7 @@
     "@vueuse/core": "^10.9.0",
     "bcrypt-ts": "^5.0.2",
     "date-fns": "^3.6.0",
-    "katex": "^0.16.9",
+    "katex": "^0.16.10",
     "lodash.merge": "^4.6.2",
     "nanoid": "^5.0.6",
     "vue": "^3.4.21",

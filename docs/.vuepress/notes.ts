@@ -33,6 +33,12 @@ export const zhNotes = definePlumeNotesConfig({
               dir: '图表',
               items: ['chart', 'echarts', 'mermaid', 'flowchart'],
             },
+            {
+              text: '资源嵌入',
+              icon: 'dashicons:embed-video',
+              dir: '嵌入',
+              items: ['pdf', 'bilibili', 'youtube'],
+            },
           ],
         },
         {

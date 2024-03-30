@@ -15,7 +15,8 @@
     { "path": "./plugin-page-collection/tsconfig.build.json" },
     { "path": "./plugin-shikiji/tsconfig.build.json" },
     { "path": "./plugin-content-update/tsconfig.build.json" },
-    { "path": "./plugin-search/tsconfig.build.json" }
+    { "path": "./plugin-search/tsconfig.build.json" },
+    { "path": "./plugin-md-power/tsconfig.build.json" }
   ],
   "files": []
 }

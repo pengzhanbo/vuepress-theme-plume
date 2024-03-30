@@ -60,8 +60,8 @@ export function useLastUpdated() {
   const frontmatter = usePageFrontmatter<PlumeThemePageFrontmatter>()
   const lang = usePageLang()
 
-  const date = computed(() => new Date(page.value.git?.updatedTime ?? ''))
-  const isoDatetime = computed(() => date.value.toISOString())
+  const date = computed(() => page.value.git?.updatedTime ? new Date(page.value.git.updatedTime) : null)
+  const isoDatetime = computed(() => date.value?.toISOString())
 
   const datetime = ref('')
 
@@ -76,13 +76,15 @@ export function useLastUpdated() {
       if (frontmatter.value.lastUpdated === false || theme.value.lastUpdated === false)
         return
 
-      datetime.value = new Intl.DateTimeFormat(
-        theme.value.lastUpdated?.formatOptions?.forceLocale ? lang.value : undefined,
-        theme.value.lastUpdated?.formatOptions ?? {
-          dateStyle: 'short',
-          timeStyle: 'short',
-        },
-      ).format(date.value)
+      datetime.value = date.value
+        ? new Intl.DateTimeFormat(
+          theme.value.lastUpdated?.formatOptions?.forceLocale ? lang.value : undefined,
+          theme.value.lastUpdated?.formatOptions ?? {
+            dateStyle: 'short',
+            timeStyle: 'short',
+          },
+        ).format(date.value)
+        : ''
     })
   })
 

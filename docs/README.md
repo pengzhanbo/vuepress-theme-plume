@@ -77,8 +77,11 @@ config:
         title: 加密
         description: 支持全站加密、部分加密（加密目录、加密文章）。
       -
-        title: 代码复制
-        description: 一键复制代码块中的内容
+        title: 代码
+        description: 代码复制，CodePen演示，Replit演示
+      -
+        title: 资源嵌入
+        description: 图表，视频，PDF
   -
     type: text-image
     title: 博客

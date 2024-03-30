@@ -2,18 +2,20 @@ import type { DocsearchOptions } from '@vuepress/plugin-docsearch'
 import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
 import type { AutoFrontmatterOptions } from '@vuepress-plume/plugin-auto-frontmatter'
 import type { BaiduTongjiOptions } from '@vuepress-plume/plugin-baidu-tongji'
-import type { CanIUsePluginOptions } from '@vuepress-plume/plugin-caniuse'
 import type { CopyCodeOptions } from '@vuepress-plume/plugin-copy-code'
 import type { ShikiPluginOptions } from '@vuepress-plume/plugin-shikiji'
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
 import type { MarkdownEnhanceOptions } from 'vuepress-plugin-md-enhance'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
+import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
 
 export interface PlumeThemePluginOptions {
   /**
+   * @deprecated 迁移至 `plugin-md-power` 插件
+   *
    * 是否启用 can-i-use 插件
    */
-  caniuse?: false | CanIUsePluginOptions
+  caniuse?: false
 
   /**
    * 是否启用 external-link-icon 插件
@@ -53,6 +55,8 @@ export interface PlumeThemePluginOptions {
   copyCode?: false | CopyCodeOptions
 
   markdownEnhance?: false | MarkdownEnhanceOptions
+
+  markdownPower?: false | MarkdownPowerPluginOptions
 
   comment?: false | CommentPluginOptions
 

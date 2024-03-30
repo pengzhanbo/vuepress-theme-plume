@@ -1,5 +1,5 @@
-import { inject, onMounted, provide, ref } from 'vue'
-import type { InjectionKey, Ref } from 'vue'
+import { inject, onMounted, ref } from 'vue'
+import type { App, InjectionKey, Ref } from 'vue'
 
 export type DarkModeRef = Ref<boolean>
 
@@ -22,10 +22,18 @@ export function useDarkMode(): DarkModeRef {
  * Create dark mode ref and provide as global computed in setup
  */
 export function setupDarkMode(): void {
-  const isDark = ref<boolean>(false)
+  const isDark = useDarkMode()
   onMounted(() => {
     if (document.documentElement.classList.contains('dark'))
       isDark.value = true
   })
-  provide(darkModeSymbol, isDark)
+}
+
+export function injectDarkMode(app: App): void {
+  const isDark = ref<boolean>(false)
+  app.provide(darkModeSymbol, isDark)
+
+  Object.defineProperty(app.config.globalProperties, '$isDark', {
+    get: () => isDark,
+  })
 }

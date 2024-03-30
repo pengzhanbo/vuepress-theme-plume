@@ -17,6 +17,9 @@
       "@vuepress-plume/*/client": ["./plugins/*/src/client/index.ts"],
       "vuepress-plugin-netlify-functions": [
         "./plugins/plugin-netlify-functions/src/node/index.ts"
+      ],
+      "vuepress-plugin-md-power": [
+        "./plugins/plugin-md-power/src/node/index.ts"
       ]
     },
     "types": ["webpack-env", "vite/client"]

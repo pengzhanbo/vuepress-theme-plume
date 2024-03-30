@@ -10,7 +10,6 @@ import { themeDataPlugin } from '@vuepress/plugin-theme-data'
 import { autoFrontmatterPlugin } from '@vuepress-plume/plugin-auto-frontmatter'
 import { baiduTongjiPlugin } from '@vuepress-plume/plugin-baidu-tongji'
 import { blogDataPlugin } from '@vuepress-plume/plugin-blog-data'
-import { caniusePlugin } from '@vuepress-plume/plugin-caniuse'
 import { copyCodePlugin } from '@vuepress-plume/plugin-copy-code'
 import { iconifyPlugin } from '@vuepress-plume/plugin-iconify'
 import { notesDataPlugin } from '@vuepress-plume/plugin-notes-data'
@@ -22,6 +21,7 @@ import { seoPlugin } from '@vuepress/plugin-seo'
 import { sitemapPlugin } from '@vuepress/plugin-sitemap'
 import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
 import { searchPlugin } from '@vuepress-plume/plugin-search'
+import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
 import type {
   PlumeThemeEncrypt,
   PlumeThemeLocaleOptions,
@@ -139,9 +139,6 @@ export function setupPlugins(
     }))
   }
 
-  if (options.caniuse !== false)
-    plugins.push(caniusePlugin(options.caniuse || { mode: 'embed' }))
-
   if (options.externalLinkIcon !== false) {
     plugins.push(externalLinkIconPlugin({
       locales: Object.entries(localeOptions.locales || {}).reduce(
@@ -203,6 +200,13 @@ export function setupPlugins(
         options.markdownEnhance || {},
       ),
     ))
+  }
+
+  if (options.markdownPower !== false) {
+    plugins.push(markdownPowerPlugin({
+      caniuse: options.caniuse,
+      ...options.markdownPower || {},
+    }))
   }
 
   if (options.comment)

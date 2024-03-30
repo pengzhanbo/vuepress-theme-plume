@@ -15,10 +15,6 @@ const IFRAME_ALLOW = 'accelerometer; autoplay; clipboard-write; encrypted-media;
 const options = toRefs(props)
 
 const { el, width, height, resize } = useSize(options)
-
-function onLoad() {
-  resize()
-}
 </script>
 
 <template>
@@ -30,7 +26,7 @@ function onLoad() {
       :title="title || 'Youtube'"
       :style="{ width, height }"
       :allow="IFRAME_ALLOW"
-      @load="onLoad"
+      @load="resize"
     />
   </ClientOnly>
 </template>

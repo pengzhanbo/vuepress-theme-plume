@@ -7,6 +7,7 @@ import { createIconCSSWriter, iconsPlugin } from './features/icons/index.js'
 import { bilibiliPlugin } from './features/video/bilibili.js'
 import { youtubePlugin } from './features/video/youtube.js'
 import { codepenPlugin } from './features/codepen.js'
+import { replitPlugin } from './features/replit.js'
 
 const __dirname = getDirname(import.meta.url)
 
@@ -57,6 +58,11 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
         if (options.codepen) {
           // @[codepen](user/slash)
           md.use(codepenPlugin)
+        }
+
+        if (options.replit) {
+          // @[replit](user/repl-name)
+          md.use(replitPlugin)
         }
       },
     }

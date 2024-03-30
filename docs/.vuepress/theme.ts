@@ -73,6 +73,7 @@ export const theme: Theme = themePlume({
       youtube: true,
       icons: true,
       codepen: true,
+      replit: true,
     },
     comment: {
       provider: 'Giscus',

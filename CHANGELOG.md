@@ -1,3 +1,28 @@
+# [1.0.0-rc.48](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.47...v1.0.0-rc.48) (2024-3-30)
+
+
+### Bug Fixes
+
+* **theme:** 文件未添加到git时最后更新时间计算错误 ([c554001](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c554001df3f74e5ee38686097f268eefdfa0db1b))
+
+
+### Features
+
+* **plugin-md-power:** add `:[icon]:` syntax supported ([c2fc5ad](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c2fc5ad7b110cb2bf316f9480d4556ac0c6de66f))
+* **plugin-md-power:** add `@[bilibili](url)` syntax supported ([0715ee9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0715ee97bd6632344ab22f99f38679557686a663))
+* **plugin-md-power:** add `@[caniuse](feature)` syntax supported ([53dfcb8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/53dfcb83b13c8b11caa3df1646d12c5779395f21))
+* **plugin-md-power:** add `@[codepen](user/slash)` syntax supported ([041450e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/041450e0d7425080f3fdbd5ed84c24681f8150d4))
+* **plugin-md-power:** add `@[pdf](url)` syntax supported ([cd7485c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cd7485c246291279dbf4a3b119073fb4b012f2f4))
+* **plugin-md-power:** add `@[replit](user/repl-name)` syntax supported ([07b911a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/07b911a5a389687ab446ea4022ce2fb2c55d1ea8))
+* **plugin-md-power:** add `@[youtube](url)` syntax supported ([b8379e2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b8379e224582e85659444d84c6b46eebca51c2ad))
+
+
+### Performance Improvements
+
+* update non-major deps ([29ff7bd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/29ff7bdbd8a6d140f025b3cbd75436cd3f2bc7e0))
+
+
+
 # [1.0.0-rc.47](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.46...v1.0.0-rc.47) (2024-3-25)
 
 

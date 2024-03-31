@@ -12,7 +12,7 @@ export function setupCanIUse(): void {
       const el = document.querySelector(`.ciu_embed[data-feature="${feature}"]:not([data-skip])`)
       if (el) {
         const h = Number.parseInt(height) + 30
-          ; (el.childNodes[0] as any).height = `${h}px`
+          ;(el.childNodes[0] as any).height = `${h}px`
         el.setAttribute('data-skip', 'true')
       }
     }

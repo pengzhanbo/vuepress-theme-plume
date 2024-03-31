@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { computed, getCurrentInstance, ref } from 'vue'
 import type { ReplitTokenMeta } from '../../shared/replit.js'
+import Loading from './Loading.vue'
 
 const props = defineProps<ReplitTokenMeta>()
 
 const current = getCurrentInstance()
 // magic height
 const height = ref('47px')
+const loaded = ref(false)
 
 const REPLIT_LINK = 'https://replit.com/'
 
@@ -23,6 +25,7 @@ const link = computed(() => {
 })
 
 function onload() {
+  loaded.value = true
   height.value = props.height || '450px'
 }
 </script>
@@ -38,6 +41,7 @@ function onload() {
       allowfullscree="true"
       @load="onload"
     />
+    <Loading v-if="!loaded" />
   </ClientOnly>
 </template>
 
@@ -46,7 +50,7 @@ function onload() {
   width: 100%;
   margin: 16px auto;
   border: none;
-  border-top: 1px solid var(--vp-c-divider);
+  border-top: 1px solid var(--vp-c-divider, #e2e2e3);
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
   transition: border 0.25s;

@@ -21,7 +21,7 @@ const { el, width, height, resize } = useSize(options)
   <ClientOnly>
     <iframe
       ref="el"
-      class="video_youtube_iframe"
+      class="video-youtube-iframe"
       :src="src"
       :title="title || 'Youtube'"
       :style="{ width, height }"
@@ -32,7 +32,7 @@ const { el, width, height, resize } = useSize(options)
 </template>
 
 <style>
-.video_youtube_iframe {
+.video-youtube-iframe {
   width: 100%;
   margin: 16px auto;
   border: none;

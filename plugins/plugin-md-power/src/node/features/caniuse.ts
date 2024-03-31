@@ -81,7 +81,7 @@ function resolveCanIUse({ feature, mode, versions }: CanIUseTokenMeta): string {
   const url = 'https://caniuse.bitsofco.de/embed/index.html'
   const src = `${url}?feat=${feature}&periods=${periods}&accessible-colours=${accessible}&image-base=${image}`
 
-  return `<ClientOnly><div class="ciu_embed" style="margin:16px 0" data-feature="${feature}"><iframe src="${src}" frameborder="0" width="100%" height="400px" title="Can I use${feature}"></iframe></div></ClientOnly>`
+  return `<ClientOnly><div class="ciu_embed" style="margin:16px 0" data-feature="${feature}"><iframe src="${src}" frameborder="0" width="100%" height="400px" title="Can I use ${feature}"></iframe></div></ClientOnly>`
 }
 
 function resolveVersions(versions: string): string {

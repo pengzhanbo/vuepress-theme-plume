@@ -8,6 +8,7 @@ import { bilibiliPlugin } from './features/video/bilibili.js'
 import { youtubePlugin } from './features/video/youtube.js'
 import { codepenPlugin } from './features/codepen.js'
 import { replitPlugin } from './features/replit.js'
+import { codeSandboxPlugin } from './features/codeSandbox.js'
 
 const __dirname = getDirname(import.meta.url)
 
@@ -63,6 +64,11 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
         if (options.replit) {
           // @[replit](user/repl-name)
           md.use(replitPlugin)
+        }
+
+        if (options.codeSandbox) {
+          // @[codesandbox](id)
+          md.use(codeSandboxPlugin)
         }
       },
     }

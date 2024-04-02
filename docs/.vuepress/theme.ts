@@ -74,6 +74,7 @@ export const theme: Theme = themePlume({
       icons: true,
       codepen: true,
       replit: true,
+      codeSandbox: true,
     },
     comment: {
       provider: 'Giscus',

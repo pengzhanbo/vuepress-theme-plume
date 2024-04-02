@@ -6,6 +6,7 @@ import PDFViewer from './components/PDFViewer.vue'
 import Bilibili from './components/Bilibili.vue'
 import Youtube from './components/Youtube.vue'
 import Replit from './components/Replit.vue'
+import CodeSandbox from './components/CodeSandbox.vue'
 
 import '@internal/md-power/icons.css'
 
@@ -24,6 +25,9 @@ export default defineClientConfig({
 
     if (pluginOptions.replit)
       app.component('ReplitViewer', Replit)
+
+    if (pluginOptions.codeSandbox)
+      app.component('CodeSandboxViewer', CodeSandbox)
 
     if (__VUEPRESS_SSR__)
       return

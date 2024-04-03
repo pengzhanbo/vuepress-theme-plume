@@ -5,4 +5,6 @@ export * from './video.js'
 export * from './codepen.js'
 export * from './codeSandbox.js'
 export * from './replit.js'
+export * from './jsfiddle.js'
+
 export * from './plugin.js'

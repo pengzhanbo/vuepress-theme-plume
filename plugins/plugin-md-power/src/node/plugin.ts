@@ -9,6 +9,7 @@ import { youtubePlugin } from './features/video/youtube.js'
 import { codepenPlugin } from './features/codepen.js'
 import { replitPlugin } from './features/replit.js'
 import { codeSandboxPlugin } from './features/codeSandbox.js'
+import { jsfiddlePlugin } from './features/jsfiddle.js'
 
 const __dirname = getDirname(import.meta.url)
 
@@ -69,6 +70,11 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
         if (options.codeSandbox) {
           // @[codesandbox](id)
           md.use(codeSandboxPlugin)
+        }
+
+        if (options.jsfiddle) {
+          // @[jsfiddle](user/id)
+          md.use(jsfiddlePlugin)
         }
       },
     }

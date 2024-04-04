@@ -1,7 +1,10 @@
 import config from '@pengzhanbo/eslint-config-vue'
 
 export default config({
-  ignores: ['lib'],
+  ignores: [
+    'lib',
+    'docs/notes/theme/snippet/code-block.snippet.md',
+  ],
   globals: {
     __VUEPRESS_VERSION__: 'readonly',
     __VUEPRESS_BASE__: 'readonly',

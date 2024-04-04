@@ -1,5 +1,5 @@
 ---
-title: 试验性
+title: Two Slash
 author: pengzhanbo
 icon: material-symbols:experiment-outline
 createTime: 2024/03/06 11:46:49
@@ -21,6 +21,7 @@ permalink: /guide/markdown/experiment/
 > - [x] `vuepress@2.0.0-rc.2`
 > - [x] `vuepress@2.0.0-rc.7`
 > - [x] `vuepress@2.0.0-rc.8`
+> - [x] `vuepress@2.0.0-rc.9`
 
 ### 概述
 

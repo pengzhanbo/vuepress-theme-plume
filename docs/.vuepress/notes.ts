@@ -12,20 +12,24 @@ export const zhNotes = definePlumeNotesConfig({
           text: '快速开始',
           collapsed: false,
           icon: 'carbon:idea',
-          items: ['介绍', '安装与使用', '博客', '知识笔记', '部署'],
+          items: ['介绍', '安装与使用', '博客', '知识笔记', '编写文章', '国际化', '部署'],
         },
         {
           text: '写作',
           icon: 'fluent-mdl2:edit-create',
           collapsed: false,
           items: [
-            '编写文章',
-            '国际化',
             {
               text: 'markdown',
               icon: 'material-symbols:markdown-outline',
               dir: 'markdown',
-              items: ['基础', '扩展', '进阶', '试验性'],
+              items: ['基础', '扩展', '进阶'],
+            },
+            {
+              text: '代码块',
+              dir: '代码',
+              icon: 'ph:code-bold',
+              items: ['介绍', '特性支持', '代码组', '导入代码', 'codepen', 'jsFiddle', 'codeSandbox', 'replit', 'twoslash', '代码演示'],
             },
             {
               text: '图表',
@@ -87,7 +91,7 @@ export const zhNotes = definePlumeNotesConfig({
           text: '内置插件',
           dir: 'plugins',
           collapsed: false,
-          items: ['', '代码复制', '代码高亮', '搜索', '阅读统计', 'markdown增强', '百度统计'],
+          items: ['', '代码复制', '代码高亮', '搜索', '阅读统计', 'markdown增强', 'markdownPower', '百度统计'],
         },
       ],
     },
@@ -102,6 +106,7 @@ export const zhNotes = definePlumeNotesConfig({
             'caniuse',
             'iconify',
             'shiki',
+            'md-power',
             'content-updated',
             {
               text: 'plugin-netlify-functions',

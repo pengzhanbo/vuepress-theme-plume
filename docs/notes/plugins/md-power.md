@@ -1,38 +1,81 @@
-# vuepress-plugin-md-power
+---
+title: plugin-md-power
+author: pengzhanbo
+createTime: 2024/04/04 18:44:57
+permalink: /plugins/plugin-md-power/
+---
 
-为 vuepress 提供 丰富的 markdown 语法支持。
+## 指南
 
-## 功能
+插件为 vuepress markdown 注入更多的功能支持。
 
-- caniuse 支持，提供前端各种特性在各个浏览器版本中的支持情况查看器
-- 嵌入 PDF 支持
-- 嵌入 视频支持，当前支持嵌入 bilibili 和 youtube 的视频
-- 内联 iconify 图标支持
+其中，`@[xxx](xx)` 形式的语法，主要用于 资源嵌入类型的支持，包括 嵌入 PDF、视频、代码演示等。
+
+同时，还提供了其它的语法支持。
 
 ## 安装
 
-```sh
+::: code-tabs
+@tab  npm
+
+``` sh
+npm install vuepress-plugin-md-power
+```
+
+@tab:active yarn
+
+``` sh
+yarn add vuepress-plugin-md-power
+```
+
+@tab pnpm
+
+``` sh
 pnpm add vuepress-plugin-md-power
 ```
+
+:::
 
 ## 使用
 
 ```ts
-import { defineUserConfig } from 'vuepress'
-import { md } from 'vuepress-plugin-md-power'
-
-export default defineUserConfig({
+// .vuepress/config.ts
+import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
+module.exports = {
+  // ...
   plugins: [
     markdownPowerPlugin({
-      caniuse: true,
-      pdf: true,
-      bilibili: true,
-      youtube: true,
-      icons: true,
+      pdf: true
     })
   ]
-})
+  // ...
+}
 ```
+
+## Options
+
+```ts
+interface MarkdownPowerPluginOptions {
+  pdf?: boolean | PDFOptions
+
+  // new syntax
+  icons?: boolean | IconsOptions
+
+  // video embed
+  bilibili?: boolean
+  youtube?: boolean
+
+  // code embed
+  codepen?: boolean
+  replit?: boolean
+  codeSandbox?: boolean
+  jsfiddle?: boolean
+
+  caniuse?: boolean | CanIUseOptions
+}
+```
+
+## 使用
 
 ### caniuse
 

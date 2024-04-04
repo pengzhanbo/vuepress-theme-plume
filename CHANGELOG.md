@@ -1,3 +1,19 @@
+# [1.0.0-rc.49](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.48...v1.0.0-rc.49) (2024-4-4)
+
+
+### Features
+
+* **plugin-md-power:** add `@[codesandbox](user/id)` syntax supported ([3a6ebcf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3a6ebcf3d41fd0b00e716882142a47111a5987dd))
+* **plugin-md-power:** add `@[jsfiddle](user/id)` syntax supported ([a590786](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a590786541c3f8277aaccd7f22559d01d8c01604))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** add Loading ([9124f78](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9124f788a3062a518c15d78ce164350e53fb4c9a))
+* **plugin-md-power:** codeSandbox button ([20d06c0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/20d06c0de82f54c0b3ffc3161db31c4717a68128))
+
+
+
 # [1.0.0-rc.48](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.47...v1.0.0-rc.48) (2024-3-30)
 
 

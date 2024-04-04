@@ -1,7 +1,7 @@
 /**
  * @[codesandbox](id)
  * @[codesandbox share](user/id)
- * @[codesanbox title="xxx" layout="Editor+Preview" height="500px" navbar=false console=false](id#filepath)
+ * @[codesanbox title="xxx" layout="Editor+Preview" height="500px" navbar="false" console="false"](id#filepath)
  */
 import type { PluginWithOptions } from 'markdown-it'
 import type { RuleBlock } from 'markdown-it/lib/parser_block.js'
@@ -16,7 +16,7 @@ const MIN_LENGTH = 16
 const START_CODES = [64, 91, 99, 111, 100, 101, 115, 97, 110, 100, 98, 111, 120]
 
 // regexp to match the import syntax
-const SYNTAX_RE = /^@\[codesandbox(?:\s+(embed|share))?(?:\s+([^]*?))?\]\(([^)]*?)\)/
+const SYNTAX_RE = /^@\[codesandbox(?:\s+(embed|button))?(?:\s+([^]*?))?\]\(([^)]*?)\)/
 
 function createCodeSandboxRuleBlock(): RuleBlock {
   return (state, startLine, endLine, silent) => {

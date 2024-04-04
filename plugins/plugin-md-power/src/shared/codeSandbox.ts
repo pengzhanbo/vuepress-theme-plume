@@ -4,7 +4,7 @@ export interface CodeSandboxTokenMeta extends SizeOptions {
   user?: string
   id?: string
   layout?: string
-  type?: 'share' | 'embed'
+  type?: 'button' | 'embed'
   title?: string
   filepath?: string
   navbar?: boolean

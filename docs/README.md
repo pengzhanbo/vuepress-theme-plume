@@ -78,7 +78,7 @@ config:
         description: 支持全站加密、部分加密（加密目录、加密文章）。
       -
         title: 代码
-        description: 代码复制，CodePen演示，Replit演示，JSFiddle演示，CodeSandbox演示，\n代码组，行高亮，行聚焦，行警告，差异对比等。\n
+        description: 代码复制，CodePen演示，Replit演示，JSFiddle演示，CodeSandbox演示，代码组，行高亮，行聚焦，行警告，差异对比等。
       -
         title: 资源嵌入
         description: 图表，视频，PDF

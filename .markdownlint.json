@@ -23,6 +23,7 @@
   "code-block-style": false,
   "emphasis-style": false,
   "no-hard-tabs": {
-    "spaces_per_tab": 2
+    "spaces_per_tab": 2,
+    "ignore_code_languages": ["xml"]
   }
 }

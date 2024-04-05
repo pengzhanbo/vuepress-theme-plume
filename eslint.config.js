@@ -4,6 +4,7 @@ export default config({
   ignores: [
     'lib',
     'docs/notes/theme/snippet/code-block.snippet.md',
+    'docs/notes/theme/snippet/whitespace.snippet.md',
   ],
   globals: {
     __VUEPRESS_VERSION__: 'readonly',

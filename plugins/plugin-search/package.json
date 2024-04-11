@@ -47,7 +47,7 @@
     "focus-trap": "^7.5.4",
     "mark.js": "^8.11.1",
     "minisearch": "^6.3.0",
-    "p-map": "^7.0.1",
+    "p-map": "^7.0.2",
     "vue": "^3.4.21"
   },
   "publishConfig": {

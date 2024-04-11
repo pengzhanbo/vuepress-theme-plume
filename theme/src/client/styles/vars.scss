@@ -248,19 +248,14 @@
 :root {
   --vp-font-family-base:
     "Chinese Quotes",
-    "Inter var",
-    "Inter",
+    inter,
     ui-sans-serif,
     system-ui,
-    -apple-system,
-    blinkmacsystemfont,
-    "Segoe UI",
-    roboto,
-    "Helvetica Neue",
-    helvetica,
-    arial,
-    "Noto Sans",
     sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji",
     "Apple Color Emoji",
     "Segoe UI Emoji",
     "Segoe UI Symbol",
@@ -268,13 +263,14 @@
   --vp-font-family-mono:
     ui-monospace,
     sfmono-regular,
-    "SF Mono",
     menlo,
     monaco,
     consolas,
     "Liberation Mono",
     "Courier New",
     monospace;
+
+  font-optical-sizing: auto;
 }
 
 /**

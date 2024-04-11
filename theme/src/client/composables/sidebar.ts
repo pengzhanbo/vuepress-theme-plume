@@ -47,6 +47,13 @@ export function useSidebar() {
 
   const isOpen = ref(false)
 
+  const sidebarKey = computed(() => {
+    const link = Object.keys(notesData.value).find(link =>
+      route.path.startsWith(normalizePath(withBase(link))),
+    )
+    return link
+  })
+
   const sidebar = computed(() => {
     return theme.value.notes ? getSidebarList(route.path, notesData.value) : []
   })
@@ -88,6 +95,7 @@ export function useSidebar() {
     hasAside,
     isSidebarEnabled,
     sidebarGroups,
+    sidebarKey,
     open,
     close,
     toggle,

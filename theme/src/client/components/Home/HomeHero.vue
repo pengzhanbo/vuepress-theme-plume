@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { usePageFrontmatter, withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import VButton from '../VButton.vue'
 import { useDarkMode } from '../../composables/index.js'
+import { useHomeHeroFilterBackground } from '../../composables/home.js'
 import type { PlumeThemeHomeFrontmatter, PlumeThemeHomeHero } from '../../../shared/index.js'
 
 const props = defineProps<PlumeThemeHomeHero>()
@@ -34,6 +35,9 @@ const heroBackground = computed(() => {
 
 const hero = computed(() => props.hero ?? matter.value.hero ?? {})
 const actions = computed(() => hero.value.actions ?? [])
+
+const canvas = ref<HTMLCanvasElement>()
+useHomeHeroFilterBackground(canvas, computed(() => props.background === 'filter-blur'))
 </script>
 
 <template>
@@ -41,9 +45,7 @@ const actions = computed(() => hero.value.actions ?? [])
     <div v-if="heroBackground" class="home-hero-bg" :style="heroBackground" />
 
     <div v-if="background === 'filter-blur'" class="bg-filter">
-      <div class="g g-1" />
-      <div class="g g-2" />
-      <div class="g g-3" />
+      <canvas ref="canvas" width="32" height="32" />
     </div>
 
     <div class="container">
@@ -181,52 +183,19 @@ const actions = computed(() => hero.value.actions ?? [])
   height: calc(100% + var(--vp-footer-height, 0px));
 }
 
-.bg-filter::before {
+.bg-filter::after {
   position: absolute;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
-  z-index: 1;
+  width: 100%;
+  height: 20%;
   content: "";
-  backdrop-filter: blur(150px);
-  transform: translate3d(0, 0, 0);
+  background: linear-gradient(var(--vp-c-bg) 0, transparent 100%);
 }
 
-.g {
-  position: absolute;
-  opacity: 0.5;
-  transform: translate3d(0, 0, 0);
-}
-
-.g-1 {
-  bottom: 100px;
-  left: 50%;
-  width: 714px;
-  height: 390px;
-  clip-path: polygon(0 10%, 30% 0, 100% 40%, 70% 100%, 20% 90%);
-  background: var(--vp-c-yellow-3);
-  transform: translate(-50%, 0);
-}
-
-.g-2 {
-  bottom: 0;
-  left: 30%;
-  width: 1000px;
-  height: 450px;
-  clip-path: polygon(10% 0, 100% 70%, 100% 100%, 20% 90%);
-  background: var(--vp-c-red-3);
-  transform: translate(-50%, 0);
-}
-
-.g-3 {
-  bottom: 0;
-  left: 70%;
-  width: 1000px;
-  height: 450px;
-  clip-path: polygon(80% 0, 100% 70%, 100% 100%, 20% 90%);
-  background: var(--vp-c-purple-3);
-  transform: translate(-50%, 0);
+.bg-filter canvas {
+  width: 100%;
+  height: 100%;
 }
 
 /* =========== background filter end ======= */

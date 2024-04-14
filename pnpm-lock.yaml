@@ -398,6 +398,9 @@ importers:
       '@vuepress-plume/plugin-shikiji':
         specifier: workspace:*
         version: link:../plugins/plugin-shikiji
+      '@vuepress/helper':
+        specifier: 2.0.0-rc.21
+        version: 2.0.0-rc.21(typescript@5.4.4)(vuepress@2.0.0-rc.9)
       '@vuepress/plugin-active-header-links':
         specifier: 2.0.0-rc.21
         version: 2.0.0-rc.21(typescript@5.4.4)(vuepress@2.0.0-rc.9)

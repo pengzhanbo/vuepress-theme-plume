@@ -65,6 +65,7 @@
     "@vuepress-plume/plugin-notes-data": "workspace:*",
     "@vuepress-plume/plugin-search": "workspace:*",
     "@vuepress-plume/plugin-shikiji": "workspace:*",
+    "@vuepress/helper": "2.0.0-rc.21",
     "@vuepress/plugin-active-header-links": "2.0.0-rc.21",
     "@vuepress/plugin-comment": "2.0.0-rc.21",
     "@vuepress/plugin-container": "2.0.0-rc.21",

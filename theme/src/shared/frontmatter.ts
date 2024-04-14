@@ -1,4 +1,4 @@
-import type { NavItemWithLink, PlumeThemeImage } from '.'
+import type { NavItemWithLink, PlumeThemeImage, WatermarkOptions } from '.'
 
 /* =============================== Home begin ==================================== */
 export interface PlumeThemeHomeFrontmatter extends Omit<PlumeThemeHomeBanner, 'type'> {
@@ -110,6 +110,7 @@ export interface PlumeThemePageFrontmatter {
   backToTop?: boolean
   externalLink?: boolean
   readingTime?: boolean
+  watermark?: boolean | Omit<WatermarkOptions, 'global' | 'matches'>
 }
 
 export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {

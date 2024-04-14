@@ -1,3 +1,30 @@
+# [1.0.0-rc.50](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.49...v1.0.0-rc.50) (2024-4-14)
+
+
+### Bug Fixes
+
+* **theme:** watermark render in ssr ([40e84df](https://github.com/pengzhanbo/vuepress-theme-plume/commit/40e84df411b3a68cb38b86a584f012b9f14b935e))
+
+
+### Features
+
+* **theme:** 补全在移动设备下的博主信息 ([cc4837c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cc4837c45df5727dce0ce2f3cbc712050fd6aba0))
+* **theme:** 新增 文章列表 分页过渡动效 ([82bbc77](https://github.com/pengzhanbo/vuepress-theme-plume/commit/82bbc77c265d39d74cbcebeef20a728202b8a170))
+* **theme:** 新增 文章水印 功能 ([80b3da3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/80b3da3e58fac2871e4a50ea17bd29c355b6f4f4))
+* **theme:** 新增 sidebar 过渡动效 ([1c6ee0f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1c6ee0ff8fe38d4f576dfed8b56d7b6019e8cfda))
+* **theme:** upgrade `Inter` fonts ([ae9fb14](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ae9fb143c02516f022fb24b91fd8b3ee8ef8ab85))
+
+
+### Performance Improvements
+
+* 优化修改 permalink 时存在报错的问题 ([1e6ec5e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1e6ec5e624536faba043ecb075f5cbb0223d5a36))
+* **plugin-md-power:** update markdown-it to `v14.1.0` ([55bb284](https://github.com/pengzhanbo/vuepress-theme-plume/commit/55bb28421920ba190212435e1d17af455b24996b))
+* **theme:** 优化首页 Hero 背景效果 ([c6a2b8c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c6a2b8cab2fa60cefd249cec7b17d7880bded96c))
+* update deps to latest ([7f7d382](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7f7d382961f89569d0acb98eb62d8dcabb21e735))
+* update vuepress non-major deps ([75c29c1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/75c29c1d6d589de0ebf3ee1c3fb824d492b1847a))
+
+
+
 # [1.0.0-rc.49](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.48...v1.0.0-rc.49) (2024-4-4)
 
 

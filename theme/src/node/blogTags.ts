@@ -1,4 +1,5 @@
 import { hasOwn, random, toArray } from '@pengzhanbo/utils'
+
 export type BlogTagsColorsItem = readonly [
   string, // normal color
   string, // hover color

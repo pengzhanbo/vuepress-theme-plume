@@ -62,6 +62,16 @@ const showBlogExtract = computed(() => {
               <p class="desc">
                 {{ avatar.description }}
               </p>
+              <div class="avatar-info">
+                <div v-if="avatar.location" class="avatar-location">
+                  <span class="vpi-location" />
+                  <p v-if="avatar.location" v-html="avatar.location" />
+                </div>
+                <div v-if="avatar.organization" class="avatar-organization">
+                  <span class="vpi-organization" />
+                  <p v-if="avatar.organization" v-html="avatar.organization" />
+                </div>
+              </div>
             </div>
           </div>
           <div v-if="hasBlogExtract" class="blog-nav" :class="{ 'no-avatar': !avatar }">
@@ -87,7 +97,7 @@ const showBlogExtract = computed(() => {
   bottom: 30%;
   z-index: calc(var(--vp-z-index-nav) - 1);
   display: block;
-  padding: 4px 10px;
+  padding: 6px 10px;
   cursor: pointer;
   background-color: var(--vp-c-bg);
   border: solid 1px var(--vp-c-divider);
@@ -211,5 +221,27 @@ const showBlogExtract = computed(() => {
   width: 1em;
   height: 1em;
   margin-right: 4px;
+}
+
+.avatar-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 20px;
+  align-items: center;
+}
+
+.avatar-location,
+.avatar-organization {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--vp-c-text-3);
+  transition: color var(--t-color);
+}
+
+.avatar-location p,
+.avatar-organization p {
+  margin: 0 4px;
 }
 </style>

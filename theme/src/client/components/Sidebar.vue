@@ -4,12 +4,13 @@ import { ref, watch } from 'vue'
 import { useSidebar } from '../composables/sidebar.js'
 import { inBrowser } from '../utils/index.js'
 import SidebarItem from './SidebarItem.vue'
+import TransitionFadeSlideY from './TransitionFadeSlideY.vue'
 
 const props = defineProps<{
   open: boolean
 }>()
 
-const { sidebarGroups, hasSidebar } = useSidebar()
+const { sidebarGroups, hasSidebar, sidebarKey } = useSidebar()
 
 // a11y: focus Nav element when menu has opened
 const navEl = ref<HTMLElement | null>(null)
@@ -39,20 +40,23 @@ watch(
     >
       <div class="curtain" />
 
-      <nav
-        id="SidebarNav"
-        class="nav"
-        aria-labelledby="sidebar-aria-label"
-        tabindex="-1"
-      >
-        <span id="sidebar-aria-label" class="visually-hidden">
-          Sidebar Navigation
-        </span>
+      <TransitionFadeSlideY>
+        <nav
+          id="SidebarNav"
+          :key="sidebarKey"
+          class="nav"
+          aria-labelledby="sidebar-aria-label"
+          tabindex="-1"
+        >
+          <span id="sidebar-aria-label" class="visually-hidden">
+            Sidebar Navigation
+          </span>
 
-        <div v-for="item in sidebarGroups" :key="item.text" class="group">
-          <SidebarItem :item="item" :depth="0" />
-        </div>
-      </nav>
+          <div v-for="item in sidebarGroups" :key="item.text" class="group">
+            <SidebarItem :item="item" :depth="0" />
+          </div>
+        </nav>
+      </TransitionFadeSlideY>
     </aside>
   </Transition>
 </template>

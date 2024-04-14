@@ -15,7 +15,6 @@
   "scss.validate": false,
   "less.validate": false,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "eslint.experimental.useFlatConfig": true,
   "stylelint.packageManager": "pnpm",
   "eslint.rules.customizations": [
     { "rule": "style/*", "severity": "off" },

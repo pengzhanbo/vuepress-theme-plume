@@ -38,13 +38,11 @@ const avatar = computed(() => theme.value.avatar)
   border-radius: 8px;
   box-shadow: var(--vp-shadow-1);
   transition: var(--t-color);
-  transition-property: background-color, color, box-shadow, transform;
-  transform: scale(1);
+  transition-property: background-color, color, box-shadow;
 }
 
 .avatar-profile:hover {
   box-shadow: var(--vp-shadow-2);
-  transform: scale(1.002);
 }
 
 .avatar-profile img {

@@ -41,6 +41,11 @@ export const theme: Theme = themePlume({
     { icon: 'xbox', link: 'https://pengzhanbo.cn' },
   ],
 
+  watermark: {
+    global: false,
+    content: 'VuePress Plume',
+  },
+
   footer: { copyright: 'Copyright © 2021-present pengzhanbo' },
 
   locales: {

@@ -124,3 +124,26 @@ permalink: /config/frontmatter/basic/
 - 默认值： `true`
 
 当前文章是否 显示 文章编辑 按钮。
+
+### watermark
+
+- 类型： `boolean | WatermarkConfig`
+- 默认值： `undefined` 主题不启用水印，或不启用全局水印时，默认值为 `false`，启用全局水印则为 `true`。
+
+配置当前文章 水印。
+
+```ts
+interface WatermarkConfig {
+  content?: string // 水印文字内容，可传入 html 内容
+  textColor?: string // 水印文本颜色
+  image?: string // 水印图片路径，优先于 content
+  opacity?: number // 水印透明度
+  rotate?: number // 水印旋转角度
+  width?: number //  水印宽度
+  height?: number // 水印高度
+  gapX?: number // 水印横向间距
+  gapY?: number // 水印纵向间距
+  fullPage?: boolean // 是否全屏
+  onlyPrint?: boolean // 是否仅在打印时显示
+}
+```

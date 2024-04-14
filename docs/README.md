@@ -8,7 +8,7 @@ config:
     background: filter-blur
     hero:
       name: Theme Plume
-      tagline: Vuepress Next Theme
+      tagline: VuePress Next Theme
       text: 一个简约的，功能丰富的 vuepress 文档&博客 主题
       actions:
         -

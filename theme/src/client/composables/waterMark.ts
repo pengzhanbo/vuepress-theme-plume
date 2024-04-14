@@ -3,6 +3,7 @@ import { isLinkHttp } from 'vuepress/shared'
 import { usePageData, usePageFrontmatter, useRoute, useSiteLocaleData, withBase } from 'vuepress/client'
 import type { PlumeThemePageData, PlumeThemePageFrontmatter, WatermarkOptions } from '../../shared/index.js'
 import { toArray } from '../utils/base.js'
+import { inBrowser } from '../utils/shared.js'
 import { useDarkMode } from './darkMode.js'
 import { useThemeLocaleData } from './themeData.js'
 
@@ -109,6 +110,8 @@ export function useWaterMark() {
   })
 
   const makeImageToBase64 = (url: string) => {
+    if (!inBrowser)
+      return
     const canvas = document.createElement('canvas')
     const image = new Image()
     image.crossOrigin = 'anonymous'

@@ -4,7 +4,7 @@
  * @[codepen preview editable title="" height="400px" tab="css,result" theme="dark"](user/slash)
  */
 import type { PluginWithOptions } from 'markdown-it'
-import type { RuleBlock } from 'markdown-it/lib/parser_block.js'
+import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { parseRect } from '../utils/parseRect.js'
 import type { CodepenTokenMeta } from '../../shared/codepen.js'

@@ -2,8 +2,9 @@
  * @[caniuse embed{1,2,3,4}](feature_name)
  * @[caniuse image](feature_name)
  */
-import type { PluginWithOptions, Token } from 'markdown-it'
-import type { RuleBlock } from 'markdown-it/lib/parser_block.js'
+import type { PluginWithOptions } from 'markdown-it'
+import type Token from 'markdown-it/lib/token.mjs'
+import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
 import type { Markdown } from 'vuepress/markdown'
 import container from 'markdown-it-container'
 import type { CanIUseMode, CanIUseOptions, CanIUseTokenMeta } from '../../shared/index.js'

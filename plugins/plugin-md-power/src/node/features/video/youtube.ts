@@ -3,7 +3,7 @@
  */
 import { URLSearchParams } from 'node:url'
 import type { PluginWithOptions } from 'markdown-it'
-import type { RuleBlock } from 'markdown-it/lib/parser_block.js'
+import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
 import type { YoutubeTokenMeta } from '../../../shared/video.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { parseRect } from '../../utils/parseRect.js'

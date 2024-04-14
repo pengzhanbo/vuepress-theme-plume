@@ -4,7 +4,7 @@
  * @[codesanbox title="xxx" layout="Editor+Preview" height="500px" navbar="false" console="false"](id#filepath)
  */
 import type { PluginWithOptions } from 'markdown-it'
-import type { RuleBlock } from 'markdown-it/lib/parser_block.js'
+import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { parseRect } from '../utils/parseRect.js'
 import type { CodeSandboxTokenMeta } from '../../shared/codeSandbox.js'

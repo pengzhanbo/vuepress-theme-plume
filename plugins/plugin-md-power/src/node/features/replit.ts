@@ -4,7 +4,7 @@
  * @[replit title="" height="400px" width="100%" theme="dark"](user/repl-name)
  */
 import type { PluginWithOptions } from 'markdown-it'
-import type { RuleBlock } from 'markdown-it/lib/parser_block.js'
+import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { parseRect } from '../utils/parseRect.js'
 import type { ReplitTokenMeta } from '../../shared/replit.js'

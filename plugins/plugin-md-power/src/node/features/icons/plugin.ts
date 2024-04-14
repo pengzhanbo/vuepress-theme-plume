@@ -5,7 +5,7 @@
  * :[fluent-mdl2:toggle-filled 128px/#fff]:
  */
 import type { PluginWithOptions } from 'markdown-it'
-import type { RuleInline } from 'markdown-it/lib/parser_inline.js'
+import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
 import { parseRect } from '../../utils/parseRect.js'
 
 type AddIcon = (iconName: string) => string | undefined

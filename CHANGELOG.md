@@ -1,3 +1,12 @@
+# [1.0.0-rc.51](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.50...v1.0.0-rc.51) (2024-4-15)
+
+
+### Bug Fixes
+
+* **theme:** `base` 导致的 链接跳转错误 [#63](https://github.com/pengzhanbo/vuepress-theme-plume/issues/63) ([9a94890](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9a9489031cb64feb968657b8d4ee1db0794e4ec2))
+
+
+
 # [1.0.0-rc.50](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.49...v1.0.0-rc.50) (2024-4-14)
 
 

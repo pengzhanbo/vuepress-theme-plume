@@ -1,7 +1,7 @@
 {
   "name": "vuepress-plugin-md-power",
   "type": "module",
-  "version": "1.0.0-rc.50",
+  "version": "1.0.0-rc.51",
   "description": "The Plugin for VuePres 2 - markdown power",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",

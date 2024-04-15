@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { resolveRoutePath, useRouter, withBase } from 'vuepress/client'
+import { resolveRoutePath, useRouter } from 'vuepress/client'
 import { EXTERNAL_URL_RE } from '../utils/index.js'
 
 const props = defineProps<{

@@ -22,7 +22,7 @@ const link = computed(() => {
     return undefined
   if (isExternal.value)
     return props.href
-  return withBase(resolveRoutePath(props.href))
+  return resolveRoutePath(props.href)
 })
 
 function linkTo(e: Event) {

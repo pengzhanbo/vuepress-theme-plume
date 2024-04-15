@@ -21,7 +21,7 @@ export function normalizePath(path: string) {
 
 export function getSidebarList(path: string, notesData: NotesData) {
   const link = Object.keys(notesData).find(link =>
-    path.startsWith(normalizePath(withBase(link))),
+    path.startsWith(normalizePath(link)),
   )
   return link ? notesData[link] : []
 }

@@ -1,16 +1,26 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { withBase } from 'vuepress/client'
+import { isLinkHttp } from 'vuepress/shared'
 import { useThemeLocaleData } from '../../composables/index.js'
 import SocialLinks from '../SocialLinks.vue'
 
 const theme = useThemeLocaleData()
 const avatar = computed(() => theme.value.avatar)
+const imageUrl = computed(() => {
+  const url = avatar.value?.url
+  if (!url)
+    return ''
+  if (isLinkHttp(url))
+    return url
+  return withBase(url)
+})
 </script>
 
 <template>
   <div v-if="avatar" class="avatar-profile">
-    <p v-if="avatar.url" :class="{ circle: !!avatar.circle }">
-      <img :src="avatar.url" :alt="avatar.name">
+    <p v-if="imageUrl" :class="{ circle: !!avatar.circle }">
+      <img :src="imageUrl" :alt="avatar.name">
     </p>
     <div class="avatar-info">
       <h3>{{ avatar.name }}</h3>

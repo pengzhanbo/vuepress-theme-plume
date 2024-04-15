@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { useScrollLock } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
-import { useRoute } from 'vuepress/client'
+import { useRoute, withBase } from 'vuepress/client'
+import { isLinkHttp } from 'vuepress/shared'
 import { useBlogExtract, useThemeLocaleData } from '../../composables/index.js'
 import { inBrowser } from '../../utils/index.js'
 import AutoLink from '../AutoLink.vue'
@@ -10,6 +11,15 @@ const theme = useThemeLocaleData()
 const route = useRoute()
 
 const avatar = computed(() => theme.value.avatar)
+const imageUrl = computed(() => {
+  const url = avatar.value?.url
+  if (!url)
+    return ''
+  if (isLinkHttp(url))
+    return url
+  return withBase(url)
+})
+
 const { hasBlogExtract, tags, archives } = useBlogExtract()
 const open = ref(false)
 const lazyOpen = ref(false)
@@ -54,8 +64,8 @@ const showBlogExtract = computed(() => {
       <div v-show="open" class="blog-modal" @click.self="open = false">
         <div class="blog-modal-container" :class="{ open: lazyOpen }">
           <div v-if="avatar" class="avatar-profile">
-            <p v-if="avatar.url" class="avatar">
-              <img :src="avatar.url" :alt="avatar.name">
+            <p v-if="imageUrl" class="avatar">
+              <img :src="imageUrl" :alt="avatar.name">
             </p>
             <div>
               <h3>{{ avatar.name }}</h3>

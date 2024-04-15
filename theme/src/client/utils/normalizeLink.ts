@@ -1,4 +1,3 @@
-import { withBase } from 'vuepress/client'
 import { PATHNAME_PROTOCOL_RE, isExternal } from './shared.js'
 
 export function normalizeLink(url: string): string {
@@ -15,5 +14,5 @@ export function normalizeLink(url: string): string {
           `$1${pathname.replace(/(\.md)?$/, '.html')}${search}${hash}`,
       )
 
-  return withBase(normalizedPath)
+  return normalizedPath
 }

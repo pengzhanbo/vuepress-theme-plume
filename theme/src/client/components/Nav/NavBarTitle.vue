@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useRouteLocale, useSiteLocaleData, withBase } from 'vuepress/client'
+import { useRouteLocale, useSiteLocaleData } from 'vuepress/client'
 import { useSidebar } from '../../composables/index.js'
 import { useThemeLocaleData } from '../../composables/themeData.js'
 import AutoLink from '../AutoLink.vue'
@@ -13,7 +13,7 @@ const routeLocale = useRouteLocale()
 
 <template>
   <div class="navbar-title" :class="{ 'has-sidebar': hasSidebar }">
-    <AutoLink class="title" :href="theme.home ?? withBase(routeLocale)">
+    <AutoLink class="title" :href="theme.home ?? routeLocale">
       <VImage
         v-if="theme.logo"
         class="logo"

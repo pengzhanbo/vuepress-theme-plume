@@ -33,6 +33,7 @@ export const zhNavbar = [
     text: '更多',
     icon: 'icon-park-outline:more-three',
     items: [
+      { text: '主题工具', link: '/tools/' },
       { text: '友情链接', link: '/friends/' },
       {
         text: 'Vuepress',

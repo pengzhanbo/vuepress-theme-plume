@@ -124,6 +124,18 @@ export const zhNotes = definePlumeNotesConfig({
         },
       ],
     },
+    {
+      dir: 'tools',
+      link: '/tools/',
+      sidebar: [
+        {
+          text: '工具',
+          icon: 'tabler:tools',
+          link: '/tools/',
+          items: ['home-hero-tint-plate', 'caniuse'],
+        },
+      ],
+    },
   ],
 })
 

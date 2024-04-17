@@ -4,7 +4,7 @@ import { isLinkHttp } from 'vuepress/shared'
 import { computed, ref } from 'vue'
 import VButton from '../VButton.vue'
 import { useDarkMode } from '../../composables/index.js'
-import { useHomeHeroFilterBackground } from '../../composables/home.js'
+import { useHomeHeroTintPlate } from '../../composables/home.js'
 import type { PlumeThemeHomeFrontmatter, PlumeThemeHomeHero } from '../../../shared/index.js'
 
 const props = defineProps<PlumeThemeHomeHero>()
@@ -13,7 +13,7 @@ const matter = usePageFrontmatter<PlumeThemeHomeFrontmatter>()
 const isDark = useDarkMode()
 
 const heroBackground = computed(() => {
-  if (props.background === 'filter-blur')
+  if (props.background === 'tint-plate')
     return null
   const image = props.backgroundImage
     ? typeof props.backgroundImage === 'string'
@@ -37,14 +37,18 @@ const hero = computed(() => props.hero ?? matter.value.hero ?? {})
 const actions = computed(() => hero.value.actions ?? [])
 
 const canvas = ref<HTMLCanvasElement>()
-useHomeHeroFilterBackground(canvas, computed(() => props.background === 'filter-blur'))
+useHomeHeroTintPlate(
+  canvas,
+  computed(() => props.background === 'tint-plate'),
+  computed(() => props.tintPlate),
+)
 </script>
 
 <template>
   <div class="home-hero" :class="{ full: props.full, once: props.onlyOnce }">
     <div v-if="heroBackground" class="home-hero-bg" :style="heroBackground" />
 
-    <div v-if="background === 'filter-blur'" class="bg-filter">
+    <div v-if="background === 'tint-plate'" class="bg-filter">
       <canvas ref="canvas" width="32" height="32" />
     </div>
 
@@ -188,9 +192,9 @@ useHomeHeroFilterBackground(canvas, computed(() => props.background === 'filter-
   top: 0;
   left: 0;
   width: 100%;
-  height: 20%;
+  height: 100%;
   content: "";
-  background: linear-gradient(var(--vp-c-bg) 0, transparent 100%);
+  background: linear-gradient(to bottom, var(--vp-c-bg) 0, transparent 40%, transparent 60%, var(--vp-c-bg) 140%);
 }
 
 .bg-filter canvas {

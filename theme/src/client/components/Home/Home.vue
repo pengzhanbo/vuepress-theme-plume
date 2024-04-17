@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { usePageFrontmatter } from 'vuepress/client'
-import { type Component, computed, resolveComponent } from 'vue'
+import { type Component, computed, nextTick, onUnmounted, resolveComponent, watch } from 'vue'
 import type { PlumeThemeHomeFrontmatter } from '../../../shared/index.js'
 import HomeBanner from './HomeBanner.vue'
 import HomeHero from './HomeHero.vue'
@@ -46,7 +46,7 @@ const config = computed(() => {
   return [{
     type: 'hero',
     full: true,
-    background: 'filter',
+    background: 'tint-plate',
     hero: matter.value.hero ?? DEFAULT_HERO,
   }]
 })
@@ -56,6 +56,19 @@ const onlyOnce = computed(() => config.value.length === 1)
 function resolveComponentName(type: string) {
   return components[type] ?? resolveComponent(type)
 }
+
+let el: HTMLDivElement | null = null
+
+watch(() => onlyOnce.value, value => nextTick(() => {
+  if (typeof document !== 'undefined') {
+    el ??= document.querySelector('#LayoutContent')
+    el?.classList.toggle('footer-no-border', value)
+  }
+}), { immediate: true })
+
+onUnmounted(() => {
+  el?.classList.remove('footer-no-border')
+})
 </script>
 
 <template>

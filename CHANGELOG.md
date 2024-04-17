@@ -1,3 +1,25 @@
+# [1.0.0-rc.52](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.51...v1.0.0-rc.52) (2024-4-17)
+
+
+### Bug Fixes
+
+* **theme:** 修复 `base` 相关的链接跳转错误 ([54a3b08](https://github.com/pengzhanbo/vuepress-theme-plume/commit/54a3b088d72487a3936b02bd1254587e37b6d75e))
+
+
+### Features
+
+* **theme:** 导航栏、侧边栏图标支持图片链接和svg字符串 [#65](https://github.com/pengzhanbo/vuepress-theme-plume/issues/65) ([6dd3bba](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6dd3bbacc0f9f0cf97d24d91c02355773024e97b))
+* **theme:** 新增首页背景色板色调配置 ([837237c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/837237c1184a5907d8deb5c5099c96755913905f))
+
+
+### Performance Improvements
+
+* **theme:** 优化博客列表页翻页过渡 ([72357e9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/72357e9c376a0468aad6eb1846c0e47aa0ca2b47))
+* **theme:** 优化文章列表翻页效果 ([16f7ed6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/16f7ed699b21459b8976760e5d0e93f063538159))
+* update non-major deps to latest ([782f607](https://github.com/pengzhanbo/vuepress-theme-plume/commit/782f607dbb2ba6b3b359cddc4844c0ab77630173))
+
+
+
 # [1.0.0-rc.51](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.50...v1.0.0-rc.51) (2024-4-15)
 
 

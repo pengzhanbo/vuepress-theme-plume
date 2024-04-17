@@ -121,9 +121,13 @@ interface NotesSidebarItem {
    */
   items?: NotesSidebar
   /**
-   * 侧边栏图标
+   * - 支持 iconify 图标，直接使用 iconify name 即可自动加载
+   * @see https://icon-sets.iconify.design/
+   *
+   * - 如果 iconify 图标不满足您的需求，也可以支持传入 svg 字符串。
+   * - 还支持使用 本地图片 或 远程图片，本地图片的路径需要以 `/` 开头。
    */
-  icon?: string
+  icon?: string | { svg: string }
 }
 ```
 
@@ -135,7 +139,8 @@ interface NotesSidebarItem {
 
 ### 侧边栏图标
 
-主题不仅可以通过 侧边栏配置中 `icon` 配置图标，还可以通过 文件中的 frontmatter 中 `icon` 字段 配置图标。
+主题不仅可以通过 侧边栏配置中 `icon` 配置图标，还可以通过 文件中的 frontmatter 中 `icon` 字段 配置图标，
+与 侧边栏配置中的 `icon` 一致。
 
 ```md
 ---

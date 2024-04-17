@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useFlyout } from '../../composables/flyout.js'
+import VIcon from '../VIcon.vue'
 import VMenu from './VMenu.vue'
 
 defineProps<{
-  prefixIcon?: string
+  prefixIcon?: string | { svg: string }
   icon?: any
   button?: string
   label?: string
@@ -44,7 +45,7 @@ export default {
       @click="open = !open"
     >
       <span v-if="button || icon" class="text">
-        <Icon v-if="prefixIcon" :name="prefixIcon" />
+        <VIcon v-if="prefixIcon" :name="prefixIcon" />
         <span v-if="icon" class="option-icon" :class="[icon]" />
         <span v-if="button" v-html="button" />
         <span class="vpi-chevron-down text-icon" />

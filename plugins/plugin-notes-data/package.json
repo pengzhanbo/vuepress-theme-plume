@@ -43,7 +43,7 @@
     "@vue/devtools-api": "6.5.1",
     "chokidar": "^3.6.0",
     "create-filter": "^1.0.1",
-    "vue": "^3.4.21"
+    "vue": "^3.4.22"
   },
   "publishConfig": {
     "access": "public"

@@ -11,15 +11,20 @@ const props = withDefaults(defineProps<Props>(), {
 
 let _transition = ''
 
-function setStyle(item: Element) {
+function beforeAppear(item: Element) {
   const el = item as HTMLElement
-  if (_transition === '') {
-    const value = window.getComputedStyle(el).transition
-    _transition = value && !value.includes('all') ? `${value}, ` : ''
-  }
   el.style.transform = 'translateY(-20px)'
   el.style.opacity = '0'
-  el.style.transition = `transform ${props.duration}s ease-in-out ${props.delay}s, opacity ${props.duration}s ease-in-out ${props.delay}s`
+}
+function setStyle(item: Element) {
+  const el = item as HTMLElement
+
+  if (!_transition) {
+    const value = typeof window !== 'undefined' && window.getComputedStyle ? window.getComputedStyle(el).transition : ''
+    _transition = value && !value.includes('all') ? `${value}, ` : ''
+  }
+
+  el.style.transition = `${_transition}transform ${props.duration}s ease-in-out ${props.delay}s, opacity ${props.duration}s ease-in-out ${props.delay}s`
 }
 
 function unsetStyle(item: Element) {
@@ -35,7 +40,8 @@ function unsetStyle(item: Element) {
     name="drop"
     mode="out-in"
     :appear="appear"
-    @before-appear="setStyle"
+    @appear="setStyle"
+    @before-appear="beforeAppear"
     @after-appear="unsetStyle"
     @enter="setStyle"
     @after-enter="unsetStyle"

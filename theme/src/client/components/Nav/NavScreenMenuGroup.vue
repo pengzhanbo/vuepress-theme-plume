@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
+import VIcon from '../VIcon.vue'
 import NavScreenMenuGroupLink from './NavScreenMenuGroupLink.vue'
 import NavScreenMenuGroupSection from './NavScreenMenuGroupSection.vue'
 
 const props = defineProps<{
   text: string
-  icon?: string
+  icon?: string | { svg: string }
   items: any[]
 }>()
 
@@ -29,7 +30,7 @@ function toggle() {
       @click="toggle"
     >
       <span class="button-text">
-        <Icon v-if="icon" :name="icon" />
+        <VIcon v-if="icon" :name="icon" />
         <i v-text="text" />
       </span>
       <span class="vpi-plus button-icon" />

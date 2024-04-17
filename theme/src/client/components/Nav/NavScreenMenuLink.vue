@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { inject } from 'vue'
 import AutoLink from '../AutoLink.vue'
+import VIcon from '../VIcon.vue'
 
 defineProps<{
   text: string
   link: string
-  icon?: string
+  icon?: string | { svg: string }
 }>()
 
 const closeScreen = inject('close-screen') as () => void
@@ -13,7 +14,7 @@ const closeScreen = inject('close-screen') as () => void
 
 <template>
   <AutoLink class="nav-screen-menu-link" :href="link" @click="closeScreen">
-    <Icon v-if="icon" :name="icon" />
+    <VIcon v-if="icon" :name="icon" />
     <i v-text="text" />
   </AutoLink>
 </template>

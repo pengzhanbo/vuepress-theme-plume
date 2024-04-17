@@ -2,6 +2,7 @@
 import { usePageData } from 'vuepress/client'
 import { isActive } from '../../utils/index.js'
 import AutoLink from '../AutoLink.vue'
+import VIcon from '../VIcon.vue'
 
 defineProps<{
   item: any
@@ -22,7 +23,7 @@ const page = usePageData()
       }"
       :href="item.link"
     >
-      <Icon v-if="item.icon" :name="item.icon" />
+      <VIcon v-if="item.icon" :name="item.icon" />
       <i v-text="item.text" />
     </AutoLink>
   </div>

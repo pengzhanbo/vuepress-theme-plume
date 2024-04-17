@@ -36,11 +36,22 @@ export interface PlumeThemeHomeBanner extends Pick<PlumeHomeConfigBase, 'type' |
   hero: PlumeThemeHero
 }
 
+export interface PlumeThemeHomeHeroTintPlate {
+  r: { value: number, offset: number }
+  g: { value: number, offset: number }
+  b: { value: number, offset: number }
+}
+
 export interface PlumeThemeHomeHero extends PlumeHomeConfigBase {
   type: 'hero'
   hero: PlumeThemeHero
   full?: boolean
-  background?: 'filter-blur' | (string & { zz_IGNORE?: never })
+  background?: 'tint-plate' | (string & { zz_IGNORE?: never })
+  tintPlate?:
+    | string | number
+    | { light?: string | number, dark?: string | number }
+    | PlumeThemeHomeHeroTintPlate
+    | { light?: PlumeThemeHomeHeroTintPlate, dark?: PlumeThemeHomeHeroTintPlate }
   filter?: string
 }
 

@@ -30,5 +30,5 @@
     "docs/.vuepress/**/*",
     "scripts/**/*"
   ],
-  "exclude": ["node_modules", ".cache", "lib", "dist"]
+  "exclude": ["node_modules", ".cache", ".temp", "lib", "dist"]
 }

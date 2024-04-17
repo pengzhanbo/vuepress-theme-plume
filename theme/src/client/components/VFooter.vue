@@ -47,6 +47,10 @@ onMounted(() => {
   transition: all var(--t-color);
 }
 
+.footer-no-border .plume-footer {
+  border-top: none;
+}
+
 .plume-footer p {
   color: var(--vp-c-text-2);
   transition: color var(--t-color);

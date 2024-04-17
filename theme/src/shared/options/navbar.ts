@@ -3,7 +3,7 @@ export type NavItem = NavItemWithLink | NavItemWithChildren
 export interface NavItemWithLink {
   text: string
   link: string
-  icon?: string
+  icon?: string | { svg: string }
 
   /**
    * `activeMatch` is expected to be a regex string. We can't use actual
@@ -14,13 +14,13 @@ export interface NavItemWithLink {
 
 export interface NavItemChildren {
   text?: string
-  icon?: string
+  icon?: string | { svg: string }
   items: NavItemWithLink[]
 }
 
 export interface NavItemWithChildren {
   text?: string
-  icon?: string
+  icon?: string | { svg: string }
   items: (NavItemChildren | NavItemWithLink)[]
 
   /**

@@ -3,6 +3,7 @@ import type { NotesSidebarItem } from '@vuepress-plume/plugin-notes-data'
 import { computed } from 'vue'
 import { useSidebarControl } from '../composables/sidebar.js'
 import AutoLink from './AutoLink.vue'
+import VIcon from './VIcon.vue'
 
 const props = defineProps<{
   item: NotesSidebarItem
@@ -68,7 +69,7 @@ function onCaretClick() {
     >
       <div class="indicator" />
 
-      <Icon v-if="item.icon" :name="item.icon" />
+      <VIcon v-if="item.icon" :name="item.icon" />
 
       <AutoLink
         v-if="item.link"
@@ -220,6 +221,11 @@ function onCaretClick() {
   font-size: 0.9em;
   color: var(--vp-c-text-2);
   transition: color var(--t-color);
+}
+
+.item :deep(.vp__img) {
+  height: 0.9em;
+  margin: 0 0.25rem 0 0;
 }
 
 .item:hover .caret {

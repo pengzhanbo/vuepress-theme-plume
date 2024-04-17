@@ -3,6 +3,7 @@ import { usePageData } from 'vuepress/client'
 import type { NavItemWithLink } from '../../../shared/index.js'
 import { isActive } from '../../utils/index.js'
 import AutoLink from '../AutoLink.vue'
+import VIcon from '../VIcon.vue'
 
 defineProps<{
   item: NavItemWithLink
@@ -23,7 +24,7 @@ const page = usePageData()
     :href="item.link"
     :no-icon="true"
   >
-    <Icon v-if="item.icon" :name="item.icon" />
+    <VIcon v-if="item.icon" :name="item.icon" />
     <i v-text="item.text" />
   </AutoLink>
 </template>

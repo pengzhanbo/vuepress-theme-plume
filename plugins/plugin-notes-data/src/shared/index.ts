@@ -71,7 +71,7 @@ export interface NotesSidebarItem {
   /**
    * 侧边栏图标
    */
-  icon?: string
+  icon?: string | { svg: string }
 }
 
 export type NotesData = Record<string, NotesSidebarItem[]>

@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+import VIcon from '../VIcon.vue'
 import MenuLink from './MenuLink.vue'
 
 defineProps<{
   text?: string
-  icon?: string
+  icon?: string | { svg: string }
   items: any[]
 }>()
 </script>
@@ -11,7 +12,7 @@ defineProps<{
 <template>
   <div class="menu-group">
     <p v-if="text" class="title">
-      <Icon v-if="icon" :name="icon" />
+      <VIcon v-if="icon" :name="icon" />
       <span v-text="text" />
     </p>
 

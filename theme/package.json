@@ -30,6 +30,17 @@
       "types": "./lib/client/index.d.ts",
       "import": "./lib/client/index.js"
     },
+    "./client/components/*": {
+      "import": "./lib/client/components/*"
+    },
+    "./client/composables": {
+      "types": "./lib/client/composables/index.d.ts",
+      "import": "./lib/client/composables/index.js"
+    },
+    "./client/composables/*": {
+      "types": "./lib/client/composables/*.d.ts",
+      "import": "./lib/client/composables/*.js"
+    },
     "./shared": {
       "types": "./lib/shared/index.d.ts",
       "import": "./lib/shared/index.js"
@@ -86,7 +97,7 @@
     "katex": "^0.16.10",
     "lodash.merge": "^4.6.2",
     "nanoid": "^5.0.7",
-    "vue": "^3.4.21",
+    "vue": "^3.4.22",
     "vue-router": "4.3.0",
     "vuepress-plugin-md-enhance": "2.0.0-rc.32",
     "vuepress-plugin-md-power": "workspace:*"

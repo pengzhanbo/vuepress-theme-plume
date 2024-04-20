@@ -8,7 +8,7 @@ import VButton from '../VButton.vue'
 
 const props = defineProps<PlumeThemeHomeBanner>()
 
-const DEFAULT_BANNER = 'http://file.mo7.cc/api/public/bz'
+const DEFAULT_BANNER = 'https://api.pengzhanbo.cn/wallpaper/bing'
 
 const matter = usePageFrontmatter<PlumeThemeHomeFrontmatter>()
 const isDark = useDarkMode()

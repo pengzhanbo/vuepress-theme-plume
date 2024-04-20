@@ -13,7 +13,7 @@ export const theme: Theme = themePlume({
     url: '/plume.png',
     name: 'Plume Theme',
     description: 'The Theme for Vuepress 2.0',
-    location: 'Guangzhou, China',
+    location: 'GuangZhou, China',
     organization: 'pengzhanbo',
   },
 
@@ -40,6 +40,7 @@ export const theme: Theme = themePlume({
     { icon: 'steam', link: 'https://pengzhanbo.cn' },
     { icon: 'xbox', link: 'https://pengzhanbo.cn' },
   ],
+  navbarSocialInclude: ['github'],
 
   watermark: {
     global: false,
@@ -74,6 +75,7 @@ export const theme: Theme = themePlume({
     markdownPower: {
       pdf: true,
       caniuse: true,
+      plot: true,
       bilibili: true,
       youtube: true,
       icons: true,

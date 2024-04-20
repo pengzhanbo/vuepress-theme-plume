@@ -23,7 +23,26 @@ export function getSidebarList(path: string, notesData: NotesData) {
   const link = Object.keys(notesData).find(link =>
     path.startsWith(normalizePath(link)),
   )
-  return link ? notesData[link] : []
+  const sidebar = link ? notesData[link] : []
+
+  const groups: NotesSidebarItem[] = []
+
+  let lastGroupIndex: number = 0
+
+  for (const index in sidebar) {
+    const item = sidebar[index]
+
+    if (item.items && item.items.length) {
+      lastGroupIndex = groups.push(item)
+      continue
+    }
+
+    if (!groups[lastGroupIndex])
+      groups.push({ items: [] })
+
+    groups[lastGroupIndex]!.items!.push(item)
+  }
+  return groups
 }
 
 export function getSidebarFirstLink(sidebar: NotesSidebarItem[]) {

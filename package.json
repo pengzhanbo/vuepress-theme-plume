@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.52",
   "private": true,
-  "packageManager": "pnpm@8.15.7",
+  "packageManager": "pnpm@9.0.4",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -41,8 +41,8 @@
   "devDependencies": {
     "@commitlint/cli": "^19.2.2",
     "@commitlint/config-conventional": "^19.2.2",
-    "@pengzhanbo/eslint-config-vue": "^1.8.1",
-    "@pengzhanbo/stylelint-config": "^1.8.1",
+    "@pengzhanbo/eslint-config-vue": "^1.9.0",
+    "@pengzhanbo/stylelint-config": "^1.9.0",
     "@types/lodash.merge": "^4.6.9",
     "@types/node": "20.9.1",
     "@types/webpack-env": "^1.18.4",

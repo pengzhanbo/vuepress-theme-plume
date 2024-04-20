@@ -10,13 +10,15 @@ import { parseRect } from '../../utils/parseRect.js'
 
 type AddIcon = (iconName: string) => string | undefined
 
+const [openTag, endTag] = [':[', ']:']
+
 function createTokenizer(addIcon: AddIcon): RuleInline {
   return (state, silent) => {
     let found = false
     const max = state.posMax
     const start = state.pos
 
-    if (state.src.slice(start, start + 2) !== ':[')
+    if (state.src.slice(start, start + 2) !== openTag)
       return false
 
     if (silent)
@@ -29,7 +31,7 @@ function createTokenizer(addIcon: AddIcon): RuleInline {
     state.pos = start + 2
 
     while (state.pos < max) {
-      if (state.src.slice(state.pos, state.pos + 2) === ']:') {
+      if (state.src.slice(state.pos, state.pos + 2) === endTag) {
         found = true
         break
       }
@@ -58,7 +60,7 @@ function createTokenizer(addIcon: AddIcon): RuleInline {
     const [size, color] = options.split('/')
 
     const open = state.push('iconify_open', 'span', 1)
-    open.markup = ':['
+    open.markup = openTag
 
     const className = addIcon(iconName)
 
@@ -79,7 +81,7 @@ function createTokenizer(addIcon: AddIcon): RuleInline {
     text.content = className ? '' : iconName
 
     const close = state.push('iconify_close', 'span', -1)
-    close.markup = ']:'
+    close.markup = endTag
 
     state.pos = state.posMax + 2
     state.posMax = max

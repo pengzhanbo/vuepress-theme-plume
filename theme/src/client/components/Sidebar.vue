@@ -52,7 +52,11 @@ watch(
             Sidebar Navigation
           </span>
 
-          <div v-for="item in sidebarGroups" :key="item.text" class="group">
+          <div
+            v-for="item in sidebarGroups"
+            :key="item.text"
+            class="group"
+          >
             <SidebarItem :item="item" :depth="0" />
           </div>
         </nav>

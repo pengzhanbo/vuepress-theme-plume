@@ -6,5 +6,6 @@ export * from './codepen.js'
 export * from './codeSandbox.js'
 export * from './replit.js'
 export * from './jsfiddle.js'
+export * from './plot.js'
 
 export * from './plugin.js'

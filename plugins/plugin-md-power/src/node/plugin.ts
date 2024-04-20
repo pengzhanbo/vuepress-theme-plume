@@ -10,6 +10,7 @@ import { codepenPlugin } from './features/codepen.js'
 import { replitPlugin } from './features/replit.js'
 import { codeSandboxPlugin } from './features/codeSandbox.js'
 import { jsfiddlePlugin } from './features/jsfiddle.js'
+import { plotPlugin } from './features/plot.js'
 
 const __dirname = getDirname(import.meta.url)
 
@@ -75,6 +76,14 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
         if (options.jsfiddle) {
           // @[jsfiddle](user/id)
           md.use(jsfiddlePlugin)
+        }
+
+        if (
+          options.plot === true
+          || (typeof options.plot === 'object' && options.plot.tag !== false)
+        ) {
+          // =|plot|=
+          md.use(plotPlugin)
         }
       },
     }

@@ -30,16 +30,23 @@ export const zhNavbar = [
     activeMatch: '^/(blog|article)/',
   },
   {
+    text: '案例',
+    link: '/demos/',
+    icon: 'map:wind-surfing',
+  },
+  {
     text: '更多',
     icon: 'icon-park-outline:more-three',
     items: [
-      { text: '主题工具', link: '/tools/' },
-      { text: '友情链接', link: '/friends/' },
+      { text: '喝杯奶茶', link: '/sponsor/', icon: 'line-md:coffee-loop' },
+      { text: '主题工具', link: '/tools/', icon: 'jam:tools' },
+      { text: '友情链接', link: '/friends/', icon: 'carbon:friendship' },
       {
         text: 'Vuepress',
+        icon: 'logos:vue',
         items: [
-          { text: '官方文档', link: 'https://v2.vuepress.vuejs.org' },
-          { text: '生态系统', link: 'https://ecosystem.vuejs.press/' },
+          { text: '官方文档', link: 'https://v2.vuepress.vuejs.org', icon: 'logos:vue' },
+          { text: '生态系统', link: 'https://ecosystem.vuejs.press/', icon: 'logos:vue' },
         ],
       },
     ],

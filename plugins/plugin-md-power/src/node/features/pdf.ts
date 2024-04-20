@@ -51,7 +51,7 @@ function createPDFRuleBlock(): RuleBlock {
       src,
       page: +page || 1,
       noToolbar: Boolean(attrs.noToolbar ?? false),
-      zoom: +attrs.zoom || 1,
+      zoom: +attrs.zoom || 50,
       width: attrs.width ? parseRect(attrs.width) : '100%',
       height: attrs.height ? parseRect(attrs.height) : '',
       ratio: attrs.ratio ? parseRect(attrs.ratio) : '',

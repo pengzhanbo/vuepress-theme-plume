@@ -9,25 +9,25 @@ interface Feature {
   value: string
 }
 
-const api = 'https://api.caniuse.bitsofco.de/features'
+const api = 'https://api.pengzhanbo.cn/caniuse/features'
 
 const features = useLocalStorage('caniuse-features', [] as Feature[])
 onMounted(async () => {
   const res = await fetch(api)
   const data = await res.json()
-  features.value = data?.map((item: any) => ({ label: item.title, value: item.id })) || []
+  features.value = data || features.value || []
 })
 
 const browserVersionList = ref([
-  { label: '未来版本 （当前版本 + 3）', value: 3, checked: false },
-  { label: '未来版本 （当前版本 + 2）', value: 2, checked: false },
-  { label: '未来版本 （当前版本 + 1）', value: 1, checked: false },
+  { label: '新版本（当前版本 + 3）', value: 3, checked: false },
+  { label: '新版本（当前版本 + 2）', value: 2, checked: false },
+  { label: '新版本（当前版本 + 1）', value: 1, checked: false },
   { label: '当前版本', value: 0, disabled: true, checked: true },
-  { label: '过去版本 （当前版本 - 1）', value: -1, checked: false },
-  { label: '过去版本 （当前版本 - 2）', value: -2, checked: false },
-  { label: '过去版本 （当前版本 - 3）', value: -3, checked: false },
-  { label: '过去版本 （当前版本 - 4）', value: -4, checked: false },
-  { label: '过去版本 （当前版本 - 5）', value: -5, checked: false },
+  { label: '旧版本（当前版本 - 1）', value: -1, checked: false },
+  { label: '旧版本（当前版本 - 2）', value: -2, checked: false },
+  { label: '旧版本（当前版本 - 3）', value: -3, checked: false },
+  { label: '旧版本（当前版本 - 4）', value: -4, checked: false },
+  { label: '旧版本（当前版本 - 5）', value: -5, checked: false },
 ])
 
 const input = ref('')
@@ -77,7 +77,7 @@ const output = computed(() => {
   if (embedType.value)
     content += ` ${embedType.value}`
 
-  if (browserVersion.value)
+  if (browserVersion.value && !embedType.value)
     content += `{${browserVersion.value}}`
 
   content += ']('
@@ -131,7 +131,7 @@ function render() {
           </label>
         </div>
       </div>
-      <div class="caniuse-form-item">
+      <div v-if="!embedType" class="caniuse-form-item">
         <label for="browserVersion">浏览器版本：</label>
         <div class="caniuse-browser-version">
           <label v-for="item in browserVersionList" :key="item.value">
@@ -143,15 +143,15 @@ function render() {
           </label>
         </div>
       </div>
+      <div class="caniuse-render">
+        <button class="caniuse-render-button" type="button" :disabled="!selected" @click="render">
+          生成预览
+        </button>
+      </div>
     </form>
     <div class="caniuse-output">
       <h4>输出：</h4>
       <CodeViewer lang="md" :content="output" />
-    </div>
-    <div class="caniuse-render">
-      <button class="caniuse-render-button" type="button" :disabled="!selected" @click="render">
-        生成预览
-      </button>
     </div>
     <div v-html="rendered" />
   </div>
@@ -160,8 +160,18 @@ function render() {
 <style scoped>
 .caniuse-config-wrapper form {
   padding: 20px;
+  margin: 0 -16px;
+  background-color: var(--vp-c-bg-safe);
   border: solid 1px var(--vp-c-divider);
   border-radius: 5px;
+  transition: var(--t-color);
+  transition-property: background border;
+}
+
+@media(min-width: 768px) {
+  .caniuse-config-wrapper form {
+    margin: 0;
+  }
 }
 
 .caniuse-form-item {
@@ -169,6 +179,10 @@ function render() {
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 16px;
+}
+
+.caniuse-form-item:nth-child(3) {
+  align-items: baseline;
 }
 
 .feature-input {
@@ -187,7 +201,11 @@ function render() {
 .feature-input__input {
   width: 100%;
   padding: 3px 40px 3px 16px;
+  font-size: 1em;
+  background-color: var(--vp-c-bg);
   border: solid 1px var(--vp-c-divider);
+  transition: var(--t-color);
+  transition-property: border background;
 }
 
 .feature-input__input:focus {
@@ -232,18 +250,31 @@ function render() {
 }
 
 .caniuse-browser-version {
-  display: flex;
   flex: 1;
   flex-wrap: wrap;
-  gap: 10px 30px;
   margin-left: 10px;
+}
+
+.caniuse-browser-version label {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .caniuse-browser-version {
+    display: flex;
+    gap: 10px 0;
+  }
+
+  .caniuse-browser-version label {
+    width: 50%;
+  }
 }
 
 .caniuse-render {
   display: flex;
   justify-content: flex-end;
-  padding-right: 20px;
-  padding-bottom: 20px;
 }
 
 .caniuse-render-button {
@@ -252,7 +283,7 @@ function render() {
   color: var(--vp-c-bg);
   background-color: var(--vp-c-brand-1);
   border-radius: 8px;
-  transition: background-color var(--t-color);
+  transition: background-color var(--t-color), color var(--t-color);
 }
 
 .caniuse-render-button:hover {
@@ -261,7 +292,6 @@ function render() {
 
 .caniuse-render-button[disabled] {
   cursor: not-allowed;
-  background-color: var(--vp-c-brand-1);
-  opacity: 0.5;
+  background-color: var(--vp-c-gray-1);
 }
 </style>

@@ -1,3 +1,19 @@
+# [1.0.0-rc.53](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.52...v1.0.0-rc.53) (2024-4-20)
+
+
+### Features
+
+* **plugin-md-power:** add `<Plot />` and `=||=` syntax ([9a5eda4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9a5eda49a877ba02c8126825acdaa5510ef49d9d))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** 优化 pdf 支持 ([8e9ed08](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8e9ed082c93fc66afdb249d9c6854bccd67819ea))
+* **theme:** 优化 sidebar 数据解析 ([ba721e7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ba721e72f997a07ffcad7eaf5efc36db43066e87))
+* update non-major deps to latest ([2eeaf78](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2eeaf78fc53c55a076335b2e466e6156351ac682))
+
+
+
 # [1.0.0-rc.52](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.51...v1.0.0-rc.52) (2024-4-17)
 
 

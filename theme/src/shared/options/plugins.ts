@@ -5,7 +5,7 @@ import type { BaiduTongjiOptions } from '@vuepress-plume/plugin-baidu-tongji'
 import type { CopyCodeOptions } from '@vuepress-plume/plugin-copy-code'
 import type { ShikiPluginOptions } from '@vuepress-plume/plugin-shikiji'
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
-import type { MarkdownEnhanceOptions } from 'vuepress-plugin-md-enhance'
+import type { MarkdownEnhancePluginOptions } from 'vuepress-plugin-md-enhance'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
 
@@ -54,7 +54,7 @@ export interface PlumeThemePluginOptions {
 
   copyCode?: false | CopyCodeOptions
 
-  markdownEnhance?: false | MarkdownEnhanceOptions
+  markdownEnhance?: false | MarkdownEnhancePluginOptions
 
   markdownPower?: false | MarkdownPowerPluginOptions
 

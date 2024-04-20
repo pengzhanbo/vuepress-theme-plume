@@ -666,3 +666,11 @@ html.dark {
   --code-bg-color: var(--vp-code-block-bg);
   --medium-zoom-bg-color: var(--vp-c-bg);
 }
+
+/* md power plot */
+:root {
+  --vp-c-plot-light: var(--vp-c-bg);
+  --vp-c-bg-plot-light: var(--vp-c-text-1);
+  --vp-c-plot-dark: var(--vp-c-bg);
+  --vp-c-bg-plot-dark: var(--vp-c-text-2);
+}

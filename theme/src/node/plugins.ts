@@ -15,7 +15,7 @@ import { iconifyPlugin } from '@vuepress-plume/plugin-iconify'
 import { notesDataPlugin } from '@vuepress-plume/plugin-notes-data'
 import { shikiPlugin } from '@vuepress-plume/plugin-shikiji'
 import { commentPlugin } from '@vuepress/plugin-comment'
-import { type MarkdownEnhanceOptions, mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
+import { type MarkdownEnhancePluginOptions, mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
 import { readingTimePlugin } from '@vuepress/plugin-reading-time'
 import { seoPlugin } from '@vuepress/plugin-seo'
 import { sitemapPlugin } from '@vuepress/plugin-sitemap'
@@ -196,7 +196,7 @@ export function setupPlugins(
           alert: true,
           footnote: true,
           katex: true,
-        } as MarkdownEnhanceOptions,
+        } as MarkdownEnhancePluginOptions,
         options.markdownEnhance || {},
       ),
     ))

@@ -1,7 +1,6 @@
-import { ensureEndingSlash } from 'vuepress/shared'
+import { ensureEndingSlash, isLinkHttp } from 'vuepress/shared'
 import { withBase } from 'vuepress/client'
 import type { PDFEmbedType, PDFTokenMeta } from '../../shared/pdf.js'
-import { normalizeLink } from '../utils/link.js'
 import { pluginOptions } from '../options.js'
 import { checkIsMobile, checkIsSafari, checkIsiPad } from '../utils/is.js'
 
@@ -28,15 +27,18 @@ export function renderPDF(
 ): void {
   if (!pluginOptions.pdf)
     return
-  url = normalizeLink(url)
+  url = isLinkHttp(url)
+    ? url
+    : new URL(withBase(url), typeof location !== 'undefined' ? location.href : '').toString()
+
   const pdfOptions = pluginOptions.pdf === true ? {} : pluginOptions.pdf
-  const pdfjsUrl = pdfOptions.pdfjsUrl
-    ? `${ensureEndingSlash(withBase(pdfOptions.pdfjsUrl))}web/viewer.html`
-    : ''
+  pdfOptions.pdfjsUrl ??= 'https://static.pengzhanbo.cn/pdfjs/'
+  const pdfjsUrl = `${ensureEndingSlash(withBase(pdfOptions.pdfjsUrl))}web/viewer.html`
+
   const queryString = queryStringify(options)
 
   const source = embedType === 'pdfjs'
-    ? `${pdfjsUrl}?file=${encodeURIComponent(url)}${queryString}`
+    ? `${pdfjsUrl}?file=${url}${queryString}`
     : `${url}${queryString}`
 
   const tagName = embedType === 'pdfjs' || embedType === 'iframe'
@@ -100,8 +102,5 @@ export function usePDF(
     return renderPDF(el, url, embedType, options)
   }
 
-  if (typeof pluginOptions.pdf === 'object' && pluginOptions.pdf.pdfjsUrl)
-    return renderPDF(el, url, 'pdfjs', options)
-
-  el.innerHTML = `<p>This browser does not support embedding PDFs. Please download the PDF to view it: <a href='${url}' target='_blank'>Download PDF</a></p>`
+  return renderPDF(el, url, 'pdfjs', options)
 }

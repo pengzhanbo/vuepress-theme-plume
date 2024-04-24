@@ -20,5 +20,8 @@ export interface MarkdownPowerPluginOptions {
   codeSandbox?: boolean
   jsfiddle?: boolean
 
+  // container
+  repl?: boolean
+
   caniuse?: boolean | CanIUseOptions
 }

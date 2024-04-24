@@ -32,6 +32,12 @@ export const zhNotes = definePlumeNotesConfig({
               items: ['介绍', '特性支持', '代码组', '导入代码', 'codepen', 'jsFiddle', 'codeSandbox', 'replit', 'twoslash', '代码演示'],
             },
             {
+              text: '代码演示',
+              dir: '代码演示',
+              icon: 'carbon:demo',
+              items: ['前端', 'rust', 'golang', 'kotlin'],
+            },
+            {
               text: '图表',
               icon: 'mdi:chart-line',
               dir: '图表',

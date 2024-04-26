@@ -54,7 +54,7 @@
     "vue": "^3.4.25"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.203",
+    "@iconify/json": "^2.2.204",
     "@types/markdown-it": "^14.0.1"
   },
   "publishConfig": {

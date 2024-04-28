@@ -7,7 +7,10 @@ import type Token from 'markdown-it/lib/token.mjs'
 import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
 import type { Markdown } from 'vuepress/markdown'
 import container from 'markdown-it-container'
+import { customAlphabet } from 'nanoid'
 import type { CanIUseMode, CanIUseOptions, CanIUseTokenMeta } from '../../shared/index.js'
+
+const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 5)
 
 // @[caniuse]()
 const minLength = 12
@@ -17,6 +20,7 @@ const START_CODES = [64, 91, 99, 97, 110, 105, 117, 115, 101]
 
 // regexp to match the import syntax
 const SYNTAX_RE = /^@\[caniuse(?:\s*?(embed|image)?(?:{([0-9,\-]*?)})?)\]\(([^)]*)\)/
+const UNDERLINE_RE = /_+/g
 
 function createCanIUseRuleBlock(defaultMode: CanIUseMode): RuleBlock {
   return (state, startLine, endLine, silent) => {
@@ -76,18 +80,16 @@ function resolveCanIUse({ feature, mode, versions }: CanIUseTokenMeta): string {
     </picture></p></ClientOnly>`
   }
 
-  const periods = resolveVersions(versions)
-  const accessible = 'false'
-  const image = 'none'
-  const url = 'https://caniuse.bitsofco.de/embed/index.html'
-  const src = `${url}?feat=${feature}&periods=${periods}&accessible-colours=${accessible}&image-base=${image}`
+  feature = feature.replace(UNDERLINE_RE, '_')
+  const { past, future } = resolveVersions(versions)
+  const meta = nanoid()
 
-  return `<ClientOnly><div class="ciu_embed" style="margin:16px 0" data-feature="${feature}"><iframe src="${src}" frameborder="0" width="100%" height="400px" title="Can I use ${feature}"></iframe></div></ClientOnly>`
+  return `<CanIUseViewer feature="${feature}" meta="${meta}" past="${past}" future="${future}" />`
 }
 
-function resolveVersions(versions: string): string {
+function resolveVersions(versions: string): { past: number, future: number } {
   if (!versions)
-    return 'future_1,current,past_1,past_2'
+    return { past: 2, future: 1 }
 
   const list = versions
     .split(',')
@@ -97,16 +99,10 @@ function resolveVersions(versions: string): string {
   list.push(0)
 
   const uniq = [...new Set(list)].sort((a, b) => b - a)
-  const result: string[] = []
-  uniq.forEach((v) => {
-    if (v < 0)
-      result.push(`past_${Math.abs(v)}`)
-    if (v === 0)
-      result.push('current')
-    if (v > 0)
-      result.push(`future_${v}`)
-  })
-  return result.join(',')
+  return {
+    future: uniq[0],
+    past: Math.abs(uniq[uniq.length - 1]),
+  }
 }
 
 /**

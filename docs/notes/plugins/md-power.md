@@ -41,7 +41,8 @@ pnpm add vuepress-plugin-md-power
 ```ts
 // .vuepress/config.ts
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
-module.exports = {
+
+export default {
   // ...
   plugins: [
     markdownPowerPlugin({
@@ -72,6 +73,7 @@ interface MarkdownPowerPluginOptions {
   jsfiddle?: boolean
 
   caniuse?: boolean | CanIUseOptions
+  repl?: boolean
 }
 ```
 
@@ -85,23 +87,23 @@ interface MarkdownPowerPluginOptions {
 
 ```md
 @[caniuse](feature)
-@[caniuse image](feature)
-@[caniuse embed{versions}](feature)
+@[caniuse image](feature) // 不再推荐使用
+@[caniuse embed{versionRange}](feature)
 ```
 
-你可以从 [caniuse](https://caniuse.bitsofco.de/) 获取 feature 的值。
+你可以从 [caniuse](https://caniuse.pengzhanbo.cn/) 获取 feature 的值。
 
 默认情况下，插件通过 `iframe` 嵌入 `caniuse` 的支持情况查看器。
-你也可以使用 `@[caniuse image](feature)` 直接嵌入图片。
+~~你也可以使用 `@[caniuse image](feature)` 直接嵌入图片。~~
 
-caniuse 默认查看最近的5个浏览器版本。你可以通过 `{versions}` 手动设置查看的浏览器版本。
-格式为 `{number,number,...}`。取值范围为 `-5 ~ 3` 。
+caniuse 默认查看最近的5个浏览器版本。你可以通过 `{versionRange}` 手动设置查看的浏览器版本。
+格式为 `{past,future}` 表示 `{过去版本,未来版本}`。取值范围为 `-5 ~ 3` 。
 
 - 小于0 表示低于当前浏览器版本的支持情况
 - 0 表示当前浏览器版本的支持情况
 - 大于0 表示高于当前浏览器版本的支持情况
 
-如 `{-2,-1,1,2}` 表示查看低于当前 2 个版本 到 高于当前 2 个版本的支持情况。
+如 `{-2,2}` 表示查看低于当前 2 个版本 到 高于当前 2 个版本的支持情况。
 
 ### pdf
 
@@ -280,3 +282,32 @@ pnpm add @iconify/json
 - `tab`: 选项卡， 可选值：`"js" | "css" | "html" | "result"`, 多个用 `","` 分割，
   顺序将决定选项卡的排序，默认为 `js,css,html,result`
 - `height`: 高度
+
+### Repl
+
+插件默认不启用该功能，你需要手动设置 `repl` 为 `true`
+
+提供在 markdown 中为 `golang` 、`kotlin`、`rust` 语言的 在线代码演示 支持。
+在线编译执行代码，并输出结果。
+
+#### 语法
+
+````md
+::: go-repl
+```go
+// your go lang code
+```
+:::
+
+::: kotlin-repl
+```kotlin
+// your kotlin code
+```
+:::
+
+:::rust-repl
+```rust
+// your rust code
+```
+:::
+````

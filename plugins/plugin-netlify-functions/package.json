@@ -52,7 +52,7 @@
     "dotenv": "^16.4.5",
     "esbuild": "^0.20.2",
     "execa": "^8.0.1",
-    "netlify-cli": "^17.22.1",
+    "netlify-cli": "^17.23.0",
     "portfinder": "^1.0.32"
   },
   "devDependencies": {

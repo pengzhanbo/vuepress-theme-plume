@@ -29,7 +29,8 @@ defineProps<{
   justify-content: center;
   font-size: 36px;
   color: currentcolor;
-  background-color: var(--vp-c-bg, #fff);
+  background-color: inherit;
+  transition: background-color var(--t-color);
 }
 
 .md-power-loading.absolute {

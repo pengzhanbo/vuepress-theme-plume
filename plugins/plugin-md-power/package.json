@@ -51,10 +51,10 @@
     "local-pkg": "^0.5.0",
     "markdown-it-container": "^4.0.0",
     "nanoid": "^5.0.7",
-    "vue": "^3.4.23"
+    "vue": "^3.4.25"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.202",
+    "@iconify/json": "^2.2.204",
     "@types/markdown-it": "^14.0.1"
   },
   "publishConfig": {

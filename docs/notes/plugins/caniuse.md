@@ -5,6 +5,11 @@ createTime: 2024/03/11 17:22:52
 permalink: /plugins/plugin-caniuse/
 ---
 
+:::warning Deprecated
+该插件功能已整合到 [vuepress-plugin-md-power](/plugins/plugin-md-power) 。
+因此，此插件不再更新维护，并标记为 弃用。
+:::
+
 ## 指南
 
 为你的 vuepress 站点，在编写文章时， 提供嵌入 [can-i-use](https://caniuse.com/) WEB feature 各平台支持说明 的功能。

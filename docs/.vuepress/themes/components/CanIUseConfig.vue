@@ -1,101 +1,14 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
-import { onClickOutside, useLocalStorage, useThrottleFn } from '@vueuse/core'
-import { resolveCanIUse } from '../composables/caniuse.js'
+import { shallowRef } from 'vue'
+import { useCaniuse, useCaniuseFeaturesSearch, useCaniuseVersionSelect } from '../composables/caniuse.js'
 import CodeViewer from './CodeViewer.vue'
 
-interface Feature {
-  label: string
-  value: string
-}
+const listEl = shallowRef<HTMLUListElement | null>(null)
+const inputEl = shallowRef<HTMLInputElement | null>(null)
 
-const api = 'https://api.pengzhanbo.cn/caniuse/features'
-
-const features = useLocalStorage('caniuse-features', [] as Feature[])
-onMounted(async () => {
-  const res = await fetch(api)
-  const data = await res.json()
-  features.value = data || features.value || []
-})
-
-const browserVersionList = ref([
-  { label: '新版本（当前版本 + 3）', value: 3, checked: false },
-  { label: '新版本（当前版本 + 2）', value: 2, checked: false },
-  { label: '新版本（当前版本 + 1）', value: 1, checked: false },
-  { label: '当前版本', value: 0, disabled: true, checked: true },
-  { label: '旧版本（当前版本 - 1）', value: -1, checked: false },
-  { label: '旧版本（当前版本 - 2）', value: -2, checked: false },
-  { label: '旧版本（当前版本 - 3）', value: -3, checked: false },
-  { label: '旧版本（当前版本 - 4）', value: -4, checked: false },
-  { label: '旧版本（当前版本 - 5）', value: -5, checked: false },
-])
-
-const input = ref('')
-const isFocus = ref(false)
-const searched = ref<Feature[]>()
-
-const selected = ref<Feature | null>(null)
-const embedType = ref('')
-const browserVersion = computed(() => {
-  const values = browserVersionList.value.filter(item => item.checked).map(item => item.value)
-  if (values.length === 1 && values[0] === 0)
-    return ''
-
-  return values.join(',')
-})
-
-watch(() => [features.value, isFocus.value], () => {
-  if (!isFocus.value)
-    searched.value = features.value
-}, { immediate: true })
-
-const listEl = ref<HTMLUListElement | null>(null)
-const inputEl = ref<HTMLInputElement | null>(null)
-onClickOutside(listEl, () => {
-  isFocus.value = false
-}, { ignore: [inputEl] })
-const onInput = useThrottleFn(() => {
-  selected.value = null
-
-  if (!input.value) {
-    searched.value = features.value
-  }
-  else {
-    searched.value = features.value.filter(item => item.label.includes(input.value) || item.value.includes(input.value))
-    if (searched.value.length === 1)
-      selected.value = searched.value[0]
-  }
-}, 300)
-function onSelect(item: Feature) {
-  selected.value = item
-  input.value = item.label
-  isFocus.value = false
-}
-
-const output = computed(() => {
-  let content = '@[caniuse'
-  if (embedType.value)
-    content += ` ${embedType.value}`
-
-  if (browserVersion.value && !embedType.value)
-    content += `{${browserVersion.value}}`
-
-  content += ']('
-
-  if (selected.value)
-    content += selected.value.value
-
-  return `${content})`
-})
-
-const rendered = ref('')
-
-function render() {
-  if (!selected.value)
-    return
-
-  rendered.value = resolveCanIUse(selected.value.value, embedType.value, browserVersion.value)
-}
+const { feature, featureList, onSelect, isFocus } = useCaniuseFeaturesSearch(inputEl, listEl)
+const { past, pastList, future, futureList, embedType, embedTypeList } = useCaniuseVersionSelect()
+const { output, rendered } = useCaniuse({ feature, embedType, past, future })
 </script>
 
 <template>
@@ -105,12 +18,19 @@ function render() {
         <label for="feature">选择特性：</label>
         <div class="feature-input">
           <input
-            ref="inputEl" v-model="input" class="feature-input__input" type="text" name="feature"
-            placeholder="输入特性" @focus="isFocus = true" @input="onInput"
+            ref="inputEl"
+            class="feature-input__input"
+            type="text"
+            name="feature"
+            placeholder="输入特性"
           >
           <span class="vpi-chevron-down" />
           <ul v-show="isFocus" ref="listEl" class="feature-list">
-            <li v-for="item in searched" :key="item.value" @click="onSelect(item)">
+            <li
+              v-for="item in featureList"
+              :key="item.value"
+              @click="onSelect(item)"
+            >
               {{ item.label }}
             </li>
           </ul>
@@ -119,41 +39,35 @@ function render() {
       <div class="caniuse-form-item">
         <label for="embedType">嵌入方式：</label>
         <div class="caniuse-embed-type">
-          <label>
-            <input type="radio" name="embedType" value="" :checked="embedType === ''" @click="embedType = ''">
-            <span>iframe</span>
-          </label>
-          <label>
-            <input
-              type="radio" name="embedType" value="image" :checked="embedType === 'image'"
-              @click="embedType = 'image'"
-            > <span>image</span>
-          </label>
-        </div>
-      </div>
-      <div v-if="!embedType" class="caniuse-form-item">
-        <label for="browserVersion">浏览器版本：</label>
-        <div class="caniuse-browser-version">
-          <label v-for="item in browserVersionList" :key="item.value">
-            <input
-              v-model="item.checked" type="checkbox" name="browserVersion" :checked="item.checked"
-              :disabled="item.disabled"
-            >
+          <label v-for="item in embedTypeList" :key="item.label">
+            <input v-model="embedType" type="radio" name="embedType" :value="item.value">
             <span>{{ item.label }}</span>
           </label>
         </div>
       </div>
-      <div class="caniuse-render">
-        <button class="caniuse-render-button" type="button" :disabled="!selected" @click="render">
-          生成预览
-        </button>
+      <div v-if="!embedType" class="caniuse-form-item">
+        <span>浏览器版本：</span>
+        <div class="caniuse-browser-version">
+          <select v-model="past">
+            <option v-for="item in pastList" :key="item.value" :value="item.value">
+              {{ item.label }}
+            </option>
+          </select>
+          <span>-</span>
+          <select v-model="future">
+            <option v-for="item in futureList" :key="item.value" :value="item.value">
+              {{ item.label }}
+            </option>
+          </select>
+        </div>
       </div>
     </form>
     <div class="caniuse-output">
       <h4>输出：</h4>
       <CodeViewer lang="md" :content="output" />
     </div>
-    <div v-html="rendered" />
+    <div v-if="embedType === 'image'" v-html="rendered" />
+    <CanIUseViewer v-else-if="feature" :feature="feature" :past="past" :future="future" />
   </div>
 </template>
 
@@ -183,6 +97,7 @@ function render() {
 
 .caniuse-form-item:nth-child(3) {
   align-items: baseline;
+  margin-bottom: 0;
 }
 
 .feature-input {
@@ -251,24 +166,40 @@ function render() {
 
 .caniuse-browser-version {
   flex: 1;
-  flex-wrap: wrap;
   margin-left: 10px;
 }
 
-.caniuse-browser-version label {
-  display: block;
+.caniuse-browser-version span {
+  display: none;
+}
+
+.caniuse-browser-version select {
+  flex: 1;
   width: 100%;
-  cursor: pointer;
+  padding: 3px 16px;
+  background-color: var(--vp-c-bg);
+  border: solid 1px var(--vp-c-divider);
+  transition: border var(--t-color), background-color var(--t-color);
+}
+
+.caniuse-browser-version select:first-of-type {
+  margin-bottom: 16px;
 }
 
 @media (min-width: 768px) {
   .caniuse-browser-version {
     display: flex;
-    gap: 10px 0;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
   }
 
-  .caniuse-browser-version label {
-    width: 50%;
+  .caniuse-browser-version span {
+    display: block;
+  }
+
+  .caniuse-browser-version select:first-of-type {
+    margin-bottom: 0;
   }
 }
 

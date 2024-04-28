@@ -31,6 +31,7 @@ export default defineUserConfig({
         // codeSandbox: true, // @[codesandbox](id)  嵌入 CodeSandbox
         // jsfiddle: true, // @[jsfiddle](id)  嵌入 jsfiddle
         // caniuse: true, // @[caniuse](feature)  嵌入 caniuse
+        // repl: true, // :::go-repl   :::kotlin-repl  :::rust-repl
       }
     }
   }),

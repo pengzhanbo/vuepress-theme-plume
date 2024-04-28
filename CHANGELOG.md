@@ -1,3 +1,19 @@
+# [1.0.0-rc.54](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.53...v1.0.0-rc.54) (2024-4-28)
+
+
+### Features
+
+* **plugin-md-power:** add `kotlin`, `golang`, `rust` online repl ([174c7a0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/174c7a0569b707008f6e84cb7095e3a103095075))
+* **plugin-md-power:** upgrade can-i-use ([536ed61](https://github.com/pengzhanbo/vuepress-theme-plume/commit/536ed6110a5ee2211e46102632f6389a499d59a3))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** optimize client config output ([08f0903](https://github.com/pengzhanbo/vuepress-theme-plume/commit/08f090305cb02204dca01650b245a1878aca1b41))
+* update non-major deps ([cd2c5d2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cd2c5d2335085a2621a5e9265f9b3f46c9342ed9))
+
+
+
 # [1.0.0-rc.53](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.52...v1.0.0-rc.53) (2024-4-20)
 
 

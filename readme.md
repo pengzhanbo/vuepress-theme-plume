@@ -19,14 +19,15 @@
 - 💻 响应式布局，适配不同的屏幕尺寸
 - 📖 博客 & 文档
 - 🔗 自动生成文章永久链接
-- ⚖ 支持多语言
+- ⚖  支持多语言
 - 🔑 支持 全站加密、部分加密
 - 👀 支持 搜索、文章评论
 - 👨‍💻‍ 支持 浅色/深色 主题 （包括代码高亮）
 - 📠 markdown 增强，支持 代码块分组、提示容器、任务列表、数学公式、代码演示 等
-- 📚 代码演示，支持 CodePen, Replit, JSFiddle, CodeSandbox 等
-- 📊 嵌入图标，支持 chart.js，Echarts，Mermaid，flowchart
+- 📚 嵌入代码演示，支持 CodePen, Replit, JSFiddle, CodeSandbox 等
+- 📊 嵌入图表，支持 chart.js，Echarts，Mermaid，flowchart
 - 🎛 资源嵌入，支持 PDF, bilibili视频，youtube视频等
+- 🪞 支持全站水印、部分内容水印
 
 ## Install
 

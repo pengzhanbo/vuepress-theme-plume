@@ -57,8 +57,8 @@ export function useCaniuseFeaturesSearch(
   inputEl: Ref<HTMLInputElement | null>,
   listEl: Ref<HTMLUListElement | null>,
 ) {
-  const features = useLocalStorage('caniuse-features', [] as Feature[])
-  const featuresUpdated = useLocalStorage('caniuse-features-updated', Date.now())
+  const features = useLocalStorage('plume:caniuse-feature-list', [] as Feature[])
+  const featuresUpdated = useLocalStorage('plume:caniuse-feature-list-updated', Date.now())
   const maxAge = 1000 * 60 * 60 * 24 * 3 // 3 days
   onMounted(async () => {
     if (typeof document === 'undefined')

@@ -42,19 +42,20 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
           <label v-for="item in embedTypeList" :key="item.label">
             <input v-model="embedType" type="radio" name="embedType" :value="item.value">
             <span>{{ item.label }}</span>
+            <Badge v-if="item.value === 'image'" type="warning" text="不推荐" />
           </label>
         </div>
       </div>
       <div v-if="!embedType" class="caniuse-form-item">
         <span>浏览器版本：</span>
         <div class="caniuse-browser-version">
-          <select v-model="past">
+          <select v-model="past" name="past">
             <option v-for="item in pastList" :key="item.value" :value="item.value">
               {{ item.label }}
             </option>
           </select>
           <span>-</span>
-          <select v-model="future">
+          <select v-model="future" name="future">
             <option v-for="item in futureList" :key="item.value" :value="item.value">
               {{ item.label }}
             </option>

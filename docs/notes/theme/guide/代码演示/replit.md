@@ -6,7 +6,9 @@ createTime: 2024/04/04 10:42:05
 permalink: /guide/code/replit/
 ---
 
-主题支持在 Markdown 文件中嵌入 [Replit](https://replit.com/)。
+<Badge type="danger" text="弃用" />
+
+~~主题支持在 Markdown 文件中嵌入 [Replit](https://replit.com/)。~~
 
 ## 配置
 

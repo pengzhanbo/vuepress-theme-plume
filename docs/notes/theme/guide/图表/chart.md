@@ -74,6 +74,11 @@ export default defineUserConfig({
 
 ## 示例
 
+::: note
+示例 Fork 自 [vuepress-theme-hope](https://theme-hope.vuejs.press/zh/guide/markdown/chart/chartjs.html#%E6%A1%88%E4%BE%8B),
+遵循 [MIT](https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/LICENSE) 许可证。
+:::
+
 ### 块状图
 
 **输入：**

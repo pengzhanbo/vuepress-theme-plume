@@ -58,6 +58,11 @@ export default defineUserConfig({
 
 :::
 
+::: note
+以下文档 Fork 自 [vuepress-theme-hope](https://theme-hope.vuejs.press/zh/guide/markdown/chart/echarts.html),
+遵循 [MIT](https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/LICENSE) 许可证。
+:::
+
 ## 语法
 
 ### JSON 配置

@@ -16,6 +16,9 @@ export interface MarkdownPowerPluginOptions {
 
   // code embed
   codepen?: boolean
+  /**
+   * @deprecated
+   */
   replit?: boolean
   codeSandbox?: boolean
   jsfiddle?: boolean

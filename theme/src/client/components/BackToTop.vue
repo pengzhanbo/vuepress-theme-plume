@@ -19,7 +19,9 @@ const isScrolling = ref(false)
 const progress = computed(
   () => (y.value / (bodyHeight.value - windowHeight.value)) * 100,
 )
-const percent = computed(() => `${Math.round(progress.value) || 0}%`)
+
+// #72 back to top percentage issue
+const percent = computed(() => `${Math.min(Math.round(progress.value), 100) || 0}%`)
 
 const stroke = computed(() =>
   `calc(${Math.PI * progress.value}% - ${4 * Math.PI}px) calc(${Math.PI * 100}% - ${4 * Math.PI}px)`,

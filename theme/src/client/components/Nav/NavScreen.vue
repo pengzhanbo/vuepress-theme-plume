@@ -33,7 +33,7 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
 <style scoped>
 .nav-screen {
   position: fixed;
-  inset: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px)) 0 0 0;
+  inset: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px)) 0 0;
 
   /* rtl:ignore */
 

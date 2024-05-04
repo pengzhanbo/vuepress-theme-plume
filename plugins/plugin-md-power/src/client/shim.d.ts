@@ -1,6 +1,7 @@
-declare module '*.vue' {
-  import type { ComponentOptions } from 'vue'
+import type { ReplEditorData } from '../shared/repl.js'
 
-  const comp: ComponentOptions
-  export default comp
+declare module '@internal/md-power/replEditorData' {
+
+  const res: ReplEditorData
+  export default res
 }

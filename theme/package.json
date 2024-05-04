@@ -97,7 +97,7 @@
     "katex": "^0.16.10",
     "lodash.merge": "^4.6.2",
     "nanoid": "^5.0.7",
-    "vue": "^3.4.25",
+    "vue": "^3.4.26",
     "vue-router": "4.3.0",
     "vuepress-plugin-md-enhance": "2.0.0-rc.37",
     "vuepress-plugin-md-power": "workspace:*"

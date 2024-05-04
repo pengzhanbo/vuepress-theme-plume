@@ -2,6 +2,7 @@ import type { CanIUseOptions } from './caniuse.js'
 import type { PDFOptions } from './pdf.js'
 import type { IconsOptions } from './icons.js'
 import type { PlotOptions } from './plot.js'
+import type { ReplOptions } from './repl.js'
 
 export interface MarkdownPowerPluginOptions {
   pdf?: boolean | PDFOptions
@@ -24,7 +25,7 @@ export interface MarkdownPowerPluginOptions {
   jsfiddle?: boolean
 
   // container
-  repl?: boolean
+  repl?: false | ReplOptions
 
   caniuse?: boolean | CanIUseOptions
 }

@@ -47,15 +47,19 @@
   },
   "dependencies": {
     "@iconify/utils": "^2.1.23",
+    "@vuepress/helper": "2.0.0-rc.24",
     "@vueuse/core": "^10.9.0",
     "local-pkg": "^0.5.0",
     "markdown-it-container": "^4.0.0",
     "nanoid": "^5.0.7",
-    "vue": "^3.4.25"
+    "shiki": "^1.4.0",
+    "tm-grammars": "^1.8.1",
+    "tm-themes": "^1.4.1",
+    "vue": "^3.4.26"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.204",
-    "@types/markdown-it": "^14.0.1"
+    "@iconify/json": "^2.2.206",
+    "@types/markdown-it": "^14.1.1"
   },
   "publishConfig": {
     "access": "public"

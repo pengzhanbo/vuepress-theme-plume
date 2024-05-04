@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import { shallowRef } from 'vue'
+import { defineAsyncComponent, shallowRef } from 'vue'
 import { useCodeRepl } from '../composables/codeRepl.js'
 import IconRun from './IconRun.vue'
 import Loading from './Loading.vue'
 import IconConsole from './IconConsole.vue'
 import IconClose from './IconClose.vue'
+
+defineProps<{
+  editable?: boolean
+  title?: string
+}>()
+
+const Editor = defineAsyncComponent(() => import('./CodeEditor.vue'))
 
 const replEl = shallowRef<HTMLDivElement | null>(null)
 const outputEl = shallowRef<HTMLDivElement | null>(null)
@@ -31,10 +38,16 @@ function runCode() {
 
 <template>
   <div ref="replEl" class="code-repl">
-    <span v-show="loaded && finished" class="icon-run" title="Run Code" @click="runCode">
-      <IconRun />
-    </span>
-    <slot />
+    <div class="code-repl-title">
+      <h4>{{ title }}</h4>
+      <span v-show="loaded && finished" class="icon-run" title="Run Code" @click="runCode">
+        <IconRun />
+      </span>
+    </div>
+    <Editor v-if="editable">
+      <slot />
+    </Editor>
+    <slot v-else />
     <div ref="outputEl" class="code-repl-pin" />
     <div v-if="!firstRun" class="code-repl-output">
       <div class="output-head">
@@ -80,16 +93,43 @@ function runCode() {
   margin-bottom: 16px;
 }
 
+.code-repl :deep(div[class*="language-"]) {
+  margin: 0 -1.5rem;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 .code-repl-output {
   position: relative;
   top: -20px;
   padding-top: 6px;
   margin: 0 -1.5rem;
   background-color: var(--vp-code-block-bg);
-  transition: background-color, var(--t-color);
+  transition: background-color var(--t-color);
 }
 
-@media (min-width: 768px) {
+.code-repl-title {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  margin: 0 -1.5rem;
+  background-color: var(--vp-code-block-bg);
+  border-bottom: solid 1px var(--vp-c-divider);
+  transition: var(--t-color);
+  transition-property: background, border;
+}
+
+@media (min-width: 640px) {
+  .code-repl-title {
+    margin: 0;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  .code-repl :deep(div[class*="language-"]) {
+    margin: 0;
+  }
+
   .code-repl-output {
     margin: 0;
     border-bottom-right-radius: 6px;
@@ -97,34 +137,36 @@ function runCode() {
   }
 }
 
+.code-repl-title h4 {
+  flex: 1;
+  padding: 0 12px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 48px;
+  color: var(--vp-code-tab-active-text-color);
+  white-space: nowrap;
+  transition: color var(--t-color);
+}
+
 .icon-run {
-  position: absolute;
-  top: -10px;
-  right: 10px;
-  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
-  font-size: 16px;
-  color: var(--vp-c-bg);
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  color: var(--vp-c-text-3);
   cursor: pointer;
-  background-color: var(--vp-c-brand-1);
+  border: solid 1px var(--vp-c-text-3);
   border-radius: 100%;
   transition: var(--t-color);
-  transition-property: color, background-color;
-}
-
-@media (min-width: 768px) {
-  .icon-run {
-    top: 60px;
-    right: 16px;
-  }
+  transition-property: color, border;
 }
 
 .icon-run:hover {
-  background-color: var(--vp-c-brand-2);
+  color: var(--vp-c-text-2);
+  border-color: var(--vp-c-text-2);
 }
 
 .code-repl-output .output-head {
@@ -132,7 +174,7 @@ function runCode() {
   align-items: center;
   justify-content: space-between;
   padding: 4px 10px 4px 20px;
-  border-top: solid 2px var(--vp-c-border);
+  border-top: solid 2px var(--vp-c-divider);
   transition: border-color var(--t-color);
 }
 

@@ -41,7 +41,7 @@ export function caniusePlugin({
   }
 
   pluginObj.extendsMarkdown = (md) => {
-    md.use(container, type, { validate, render })
+    md.use(container as any, type, { validate, render })
   }
 
   return pluginObj

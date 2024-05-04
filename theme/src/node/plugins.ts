@@ -166,9 +166,11 @@ export function setupPlugins(
   }
 
   const shikiOption = options.shiki || options.shikiji
+  let shikiTheme: any = { light: 'vitesse-light', dark: 'vitesse-dark' }
   if (shikiOption !== false) {
+    shikiTheme = shikiOption?.theme ?? shikiTheme
     plugins.push(shikiPlugin({
-      theme: { light: 'vitesse-light', dark: 'vitesse-dark' },
+      theme: shikiTheme,
       ...(shikiOption ?? {}),
     }))
   }
@@ -206,6 +208,9 @@ export function setupPlugins(
     plugins.push(markdownPowerPlugin({
       caniuse: options.caniuse,
       ...options.markdownPower || {},
+      repl: options.markdownPower?.repl
+        ? { theme: shikiTheme, ...options.markdownPower?.repl }
+        : options.markdownPower?.repl,
     }))
   }
 

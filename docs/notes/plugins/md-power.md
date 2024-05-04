@@ -73,7 +73,12 @@ interface MarkdownPowerPluginOptions {
   jsfiddle?: boolean
 
   caniuse?: boolean | CanIUseOptions
-  repl?: boolean
+  repl?: false | {
+    go?: boolean
+    rust?: boolean
+    kotlin?: boolean
+    theme?: string | { light: string, dark: string }
+  }
 }
 ```
 

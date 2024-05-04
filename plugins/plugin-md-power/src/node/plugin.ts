@@ -1,4 +1,6 @@
 import type { Plugin } from 'vuepress/core'
+import type MarkdownIt from 'markdown-it'
+import { addViteOptimizeDepsInclude } from '@vuepress/helper'
 import type { CanIUseOptions, MarkdownPowerPluginOptions } from '../shared/index.js'
 import { caniusePlugin, legacyCaniuse } from './features/caniuse.js'
 import { pdfPlugin } from './features/pdf.js'
@@ -18,7 +20,7 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
     const { initIcon, addIcon } = createIconCSSWriter(app, options.icons)
 
     return {
-      name: '@vuepress-plume/plugin-md-power',
+      name: 'vuepress-plugin-md-power',
 
       // clientConfigFile: path.resolve(__dirname, '../client/config.js'),
       clientConfigFile: app => prepareConfigFile(app, options),
@@ -29,7 +31,15 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
 
       onInitialized: async () => await initIcon(),
 
-      extendsMarkdown(md) {
+      extendsBundlerOptions(bundlerOptions) {
+        options.repl && addViteOptimizeDepsInclude(
+          bundlerOptions,
+          app,
+          ['shiki/core', 'shiki/wasm'],
+        )
+      },
+
+      extendsMarkdown: async (md: MarkdownIt, app) => {
         if (options.caniuse) {
           const caniuse = options.caniuse === true ? {} : options.caniuse
           // @[caniuse](feature_name)
@@ -87,7 +97,7 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
         }
 
         if (options.repl)
-          langReplPlugin(md)
+          await langReplPlugin(app, md, options.repl)
       },
     }
   }

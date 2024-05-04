@@ -12,14 +12,14 @@
     "vuepress": "2.0.0-rc.9"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.204",
+    "@iconify/json": "^2.2.206",
     "@vuepress/bundler-vite": "2.0.0-rc.9",
     "anywhere": "^1.6.0",
     "chart.js": "^4.4.2",
     "echarts": "^5.5.0",
     "flowchart.ts": "^3.0.0",
     "mermaid": "^10.9.0",
-    "vue": "^3.4.25",
+    "vue": "^3.4.26",
     "vuepress-theme-plume": "workspace:*"
   },
   "devDependencies": {

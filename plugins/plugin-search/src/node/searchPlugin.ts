@@ -14,17 +14,20 @@ export function searchPlugin({
 }: SearchPluginOptions = {}): Plugin {
   return app => ({
     name: '@vuepress-plume/plugin-search',
+
     clientConfigFile: path.resolve(__dirname, '../client/config.js'),
+
     define: {
       __SEARCH_LOCALES__: locales,
       __SEARCH_OPTIONS__: searchOptions,
     },
+
     extendsBundlerOptions(bundlerOptions) {
       addViteOptimizeDepsInclude(bundlerOptions, app, ['mark.js/src/vanilla.js', '@vueuse/integrations/useFocusTrap', 'minisearch'])
     },
-    onPrepared: async (app) => {
-      await prepareSearchIndex({ app, isSearchable, searchOptions })
-    },
+
+    onPrepared: app => prepareSearchIndex({ app, isSearchable, searchOptions }),
+
     onWatched: async (app, watchers) => {
       const searchIndexWatcher = chokidar.watch('pages/**/*.js', {
         cwd: app.dir.temp(),

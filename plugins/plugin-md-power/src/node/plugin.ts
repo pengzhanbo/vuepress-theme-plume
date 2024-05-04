@@ -1,5 +1,6 @@
 import type { Plugin } from 'vuepress/core'
 import type MarkdownIt from 'markdown-it'
+import { addViteOptimizeDepsInclude } from '@vuepress/helper'
 import type { CanIUseOptions, MarkdownPowerPluginOptions } from '../shared/index.js'
 import { caniusePlugin, legacyCaniuse } from './features/caniuse.js'
 import { pdfPlugin } from './features/pdf.js'
@@ -29,6 +30,14 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
       },
 
       onInitialized: async () => await initIcon(),
+
+      extendsBundlerOptions(bundlerOptions) {
+        options.repl && addViteOptimizeDepsInclude(
+          bundlerOptions,
+          app,
+          ['shiki/core', 'shiki/wasm'],
+        )
+      },
 
       extendsMarkdown: async (md: MarkdownIt, app) => {
         if (options.caniuse) {

@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "docs:build": "vuepress build --clean-cache",
+    "docs:build": "vuepress build --clean-cache --clean-temp",
     "docs:clean": "rimraf .vuepress/.temp .vuepress/.cache .vuepress/dist",
     "docs:dev": "vuepress dev",
     "docs:serve": "anywhere -s -h localhost -d .vuepress/dist"

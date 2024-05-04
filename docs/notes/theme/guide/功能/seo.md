@@ -19,6 +19,11 @@ export default defineUserConfig({
 })
 ```
 
+::: note
+示例 Fork 自 [@vuepress/plugin-seo](https://ecosystem.vuejs.press/zh/plugins/seo/),
+遵循 [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE) 许可证。
+:::
+
 ## 指南
 
 主题会通过向网站 `<head>` 注入标签，让你的网站完全支持 [开放内容协议 OGP](https://ogp.me/)

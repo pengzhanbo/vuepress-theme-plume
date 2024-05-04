@@ -22,7 +22,6 @@ import { sitemapPlugin } from '@vuepress/plugin-sitemap'
 import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
 import { searchPlugin } from '@vuepress-plume/plugin-search'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
-import { isObject } from '@pengzhanbo/utils'
 import type {
   PlumeThemeEncrypt,
   PlumeThemeLocaleOptions,

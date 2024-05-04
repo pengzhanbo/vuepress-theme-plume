@@ -5,7 +5,7 @@
 import type { PluginWithOptions } from 'markdown-it'
 import type Token from 'markdown-it/lib/token.mjs'
 import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
-import type { Markdown } from 'vuepress/markdown'
+import type MarkdownIt from 'markdown-it'
 import container from 'markdown-it-container'
 import { customAlphabet } from 'nanoid'
 import type { CanIUseMode, CanIUseOptions, CanIUseTokenMeta } from '../../shared/index.js'
@@ -145,7 +145,7 @@ export const caniusePlugin: PluginWithOptions<CanIUseOptions> = (
  * ```
  */
 export function legacyCaniuse(
-  md: Markdown,
+  md: MarkdownIt,
   { mode = 'embed' }: CanIUseOptions = {},
 ): void {
   const modeMap: CanIUseMode[] = ['image', 'embed']

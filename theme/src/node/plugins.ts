@@ -22,6 +22,7 @@ import { sitemapPlugin } from '@vuepress/plugin-sitemap'
 import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
 import { searchPlugin } from '@vuepress-plume/plugin-search'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
+import { isObject } from '@pengzhanbo/utils'
 import type {
   PlumeThemeEncrypt,
   PlumeThemeLocaleOptions,
@@ -166,9 +167,11 @@ export function setupPlugins(
   }
 
   const shikiOption = options.shiki || options.shikiji
+  let shikiTheme: any = { light: 'vitesse-light', dark: 'vitesse-dark' }
   if (shikiOption !== false) {
+    shikiTheme = shikiOption?.theme ?? shikiTheme
     plugins.push(shikiPlugin({
-      theme: { light: 'vitesse-light', dark: 'vitesse-dark' },
+      theme: shikiTheme,
       ...(shikiOption ?? {}),
     }))
   }
@@ -206,6 +209,9 @@ export function setupPlugins(
     plugins.push(markdownPowerPlugin({
       caniuse: options.caniuse,
       ...options.markdownPower || {},
+      repl: options.markdownPower?.repl
+        ? { theme: shikiTheme, ...options.markdownPower?.repl }
+        : options.markdownPower?.repl,
     }))
   }
 

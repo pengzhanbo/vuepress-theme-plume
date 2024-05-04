@@ -47,8 +47,8 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
   }
 
   if (options.repl) {
-    imports.add(`import LanguageRepl from '${CLIENT_FOLDER}components/LanguageRepl.vue'`)
-    enhances.add(`app.component('LanguageRepl', LanguageRepl)`)
+    imports.add(`import CodeRepl from '${CLIENT_FOLDER}components/CodeRepl.vue'`)
+    enhances.add(`app.component('CodeRepl', CodeRepl)`)
   }
 
   // enhances.add(`if (__VUEPRESS_SSR__) return`)

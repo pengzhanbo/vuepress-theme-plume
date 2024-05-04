@@ -1,4 +1,4 @@
-import { type Ref, ref } from 'vue'
+import { type Ref, onMounted, ref } from 'vue'
 import { http } from '../utils/http.js'
 import { sleep } from '../utils/sleep.js'
 import { rustExecute } from './rustRepl.js'
@@ -28,20 +28,23 @@ function resolveLang(lang?: string) {
   return lang ? langAlias[lang] || lang : ''
 }
 
+export function resolveCode(el: HTMLElement): string {
+  const clone = el.cloneNode(true) as HTMLElement
+  clone
+    .querySelectorAll(ignoredNodes.join(','))
+    .forEach(node => node.remove())
+
+  return clone.textContent || ''
+}
+
 export function resolveCodeInfo(el: HTMLDivElement) {
-  const wrapper = el.querySelector('[class*=language-]')
+  const wrapper = el.querySelector('div[class*=language-]')
   const lang = wrapper?.className.match(RE_LANGUAGE)?.[1]
-  const codeEl = wrapper?.querySelector('pre code')
+  const codeEl = wrapper?.querySelector('pre') as HTMLElement
   let code = ''
 
-  if (codeEl) {
-    const clone = codeEl.cloneNode(true) as HTMLElement
-    clone
-      .querySelectorAll(ignoredNodes.join(','))
-      .forEach(node => node.remove())
-
-    code = clone.textContent || ''
-  }
+  if (codeEl)
+    code = resolveCode(codeEl)
 
   return { lang: resolveLang(lang) as Lang, code }
 }
@@ -56,6 +59,13 @@ export function useCodeRepl(el: Ref<HTMLDivElement | null>) {
   const stderr = ref<string[]>([]) // like print error
   const error = ref('') // execute error
   const backendVersion = ref('')
+
+  onMounted(() => {
+    if (el.value) {
+      const info = resolveCodeInfo(el.value)
+      lang.value = info.lang
+    }
+  })
 
   const executeMap: ExecuteMap = {
     kotlin: executeKotlin,

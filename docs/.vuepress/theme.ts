@@ -83,7 +83,11 @@ export const theme: Theme = themePlume({
       replit: true,
       codeSandbox: true,
       jsfiddle: true,
-      repl: true,
+      repl: {
+        go: true,
+        rust: true,
+        kotlin: true,
+      },
     },
     comment: {
       provider: 'Giscus',

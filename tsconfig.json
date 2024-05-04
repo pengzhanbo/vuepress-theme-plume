@@ -10,6 +10,9 @@
       "@internal/notesData": [
         "./plugins/plugin-notes-data/src/client/notesData.d.ts"
       ],
+      "@internal/md-power/replEditorData": [
+        "./plugins/plugin-md-power/src/client/shim.d.ts"
+      ],
       "@internal/pageComponents": ["./docs/.vuepress/.temp/internal/pageComponents.js"],
       "@internal/*": ["./docs/.vuepress/.temp/internal/*"],
       "@vuepress-plume/*": ["./plugins/*/src/node/index.ts"],

@@ -45,7 +45,7 @@ importers:
         version: 8.2.2
       conventional-changelog-cli:
         specifier: ^5.0.0
-        version: 5.0.0(conventional-commits-filter@4.0.0)
+        version: 5.0.0(conventional-commits-filter@5.0.0)
       cpx2:
         specifier: ^7.0.1
         version: 7.0.1
@@ -210,6 +210,9 @@ importers:
       '@iconify/utils':
         specifier: ^2.1.23
         version: 2.1.23
+      '@vuepress/helper':
+        specifier: 2.0.0-rc.24
+        version: 2.0.0-rc.24(typescript@5.4.5)(vuepress@2.0.0-rc.9(@vuepress/bundler-vite@2.0.0-rc.9(@types/node@20.12.8)(jiti@1.21.0)(sass@1.75.0)(typescript@5.4.5))(typescript@5.4.5)(vue@3.4.26(typescript@5.4.5)))
       '@vueuse/core':
         specifier: ^10.9.0
         version: 10.9.0(vue@3.4.26(typescript@5.4.5))
@@ -2448,9 +2451,6 @@ packages:
     peerDependencies:
       vue: 3.4.26
 
-  '@vue/shared@3.4.21':
-    resolution: {integrity: sha512-PuJe7vDIi6VYSinuEbUIQgMIRZGgM8e4R+G+/dQTk0X1NEdvgvvgv7m+rfmDH1gZzyA1OjjoWskvHlfRNfQf3g==}
-
   '@vue/shared@3.4.25':
     resolution: {integrity: sha512-k0yappJ77g2+KNrIaF0FFnzwLvUBLUYr8VOwz+/6vLsmItFp51AcxLL7Ey3iPd7BIRyWPOcqUjMnm7OkahXllA==}
 
@@ -3530,10 +3530,6 @@ packages:
   conventional-commits-filter@2.0.7:
     resolution: {integrity: sha512-ASS9SamOP4TbCClsRHxIHXRfcGCnIoQqkvAzCSbZzTFLfcTqJVugB0agRgsEELsqaeWgsXv513eS116wnlSSPA==}
     engines: {node: '>=10'}
-
-  conventional-commits-filter@4.0.0:
-    resolution: {integrity: sha512-rnpnibcSOdFcdclpFwWa+pPlZJhXE7l+XK04zxhbWrhgpR96h33QLz8hITTXbcYICxVr3HZFtbtUAQ+4LdBo9A==}
-    engines: {node: '>=16'}
 
   conventional-commits-filter@5.0.0:
     resolution: {integrity: sha512-tQMagCOC59EVgNZcC5zl7XqO30Wki9i9J3acbUvkaosCT6JX3EeFwJD7Qqp4MCikRnzS18WXV3BLIQ66ytu6+Q==}
@@ -9025,12 +9021,12 @@ snapshots:
       '@types/conventional-commits-parser': 5.0.0
       chalk: 5.3.0
 
-  '@conventional-changelog/git-client@1.0.0(conventional-commits-filter@4.0.0)(conventional-commits-parser@6.0.0)':
+  '@conventional-changelog/git-client@1.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)':
     dependencies:
       '@types/semver': 7.5.8
       semver: 7.6.0
     optionalDependencies:
-      conventional-commits-filter: 4.0.0
+      conventional-commits-filter: 5.0.0
       conventional-commits-parser: 6.0.0
 
   '@cspotcode/source-map-support@0.8.1':
@@ -10934,8 +10930,6 @@ snapshots:
       '@vue/shared': 3.4.26
       vue: 3.4.26(typescript@5.4.5)
 
-  '@vue/shared@3.4.21': {}
-
   '@vue/shared@3.4.25': {}
 
   '@vue/shared@3.4.26': {}
@@ -11002,7 +10996,7 @@ snapshots:
 
   '@vuepress/helper@2.0.0-rc.24(typescript@5.4.5)(vuepress@2.0.0-rc.9(@vuepress/bundler-vite@2.0.0-rc.9(@types/node@20.12.8)(jiti@1.21.0)(sass@1.75.0)(typescript@5.4.5))(typescript@5.4.5)(vue@3.4.26(typescript@5.4.5)))':
     dependencies:
-      '@vue/shared': 3.4.21
+      '@vue/shared': 3.4.26
       cheerio: 1.0.0-rc.12
       fflate: 0.8.2
       gray-matter: 4.0.3
@@ -12135,10 +12129,10 @@ snapshots:
       meow: 8.1.2
       tempfile: 3.0.0
 
-  conventional-changelog-cli@5.0.0(conventional-commits-filter@4.0.0):
+  conventional-changelog-cli@5.0.0(conventional-commits-filter@5.0.0):
     dependencies:
       add-stream: 1.0.0
-      conventional-changelog: 6.0.0(conventional-commits-filter@4.0.0)
+      conventional-changelog: 6.0.0(conventional-commits-filter@5.0.0)
       meow: 13.2.0
       tempfile: 5.0.0
     transitivePeerDependencies:
@@ -12181,14 +12175,14 @@ snapshots:
       read-pkg-up: 3.0.0
       through2: 4.0.2
 
-  conventional-changelog-core@8.0.0(conventional-commits-filter@4.0.0):
+  conventional-changelog-core@8.0.0(conventional-commits-filter@5.0.0):
     dependencies:
       '@hutson/parse-repository-url': 5.0.0
       add-stream: 1.0.0
       conventional-changelog-writer: 8.0.0
       conventional-commits-parser: 6.0.0
-      git-raw-commits: 5.0.0(conventional-commits-filter@4.0.0)(conventional-commits-parser@6.0.0)
-      git-semver-tags: 8.0.0(conventional-commits-filter@4.0.0)(conventional-commits-parser@6.0.0)
+      git-raw-commits: 5.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)
+      git-semver-tags: 8.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)
       hosted-git-info: 7.0.1
       normalize-package-data: 6.0.0
       read-package-up: 11.0.0
@@ -12267,13 +12261,13 @@ snapshots:
       conventional-changelog-jshint: 2.0.9
       conventional-changelog-preset-loader: 2.3.4
 
-  conventional-changelog@6.0.0(conventional-commits-filter@4.0.0):
+  conventional-changelog@6.0.0(conventional-commits-filter@5.0.0):
     dependencies:
       conventional-changelog-angular: 8.0.0
       conventional-changelog-atom: 5.0.0
       conventional-changelog-codemirror: 5.0.0
       conventional-changelog-conventionalcommits: 8.0.0
-      conventional-changelog-core: 8.0.0(conventional-commits-filter@4.0.0)
+      conventional-changelog-core: 8.0.0(conventional-commits-filter@5.0.0)
       conventional-changelog-ember: 5.0.0
       conventional-changelog-eslint: 6.0.0
       conventional-changelog-express: 5.0.0
@@ -12289,9 +12283,6 @@ snapshots:
     dependencies:
       lodash.ismatch: 4.4.0
       modify-values: 1.0.1
-
-  conventional-commits-filter@4.0.0:
-    optional: true
 
   conventional-commits-filter@5.0.0: {}
 
@@ -13880,9 +13871,9 @@ snapshots:
       meow: 12.1.1
       split2: 4.1.0
 
-  git-raw-commits@5.0.0(conventional-commits-filter@4.0.0)(conventional-commits-parser@6.0.0):
+  git-raw-commits@5.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0):
     dependencies:
-      '@conventional-changelog/git-client': 1.0.0(conventional-commits-filter@4.0.0)(conventional-commits-parser@6.0.0)
+      '@conventional-changelog/git-client': 1.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)
       meow: 13.2.0
     transitivePeerDependencies:
       - conventional-commits-filter
@@ -13900,9 +13891,9 @@ snapshots:
       meow: 8.1.2
       semver: 6.3.1
 
-  git-semver-tags@8.0.0(conventional-commits-filter@4.0.0)(conventional-commits-parser@6.0.0):
+  git-semver-tags@8.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0):
     dependencies:
-      '@conventional-changelog/git-client': 1.0.0(conventional-commits-filter@4.0.0)(conventional-commits-parser@6.0.0)
+      '@conventional-changelog/git-client': 1.0.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.0.0)
       meow: 13.2.0
     transitivePeerDependencies:
       - conventional-commits-filter

@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-caniuse",
   "type": "module",
-  "version": "1.0.0-rc.54",
+  "version": "1.0.0-rc.55",
   "description": "The Plugin for VuePres 2, Support Can-I-Use feature",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",

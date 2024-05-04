@@ -1,3 +1,26 @@
+# [1.0.0-rc.55](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.54...v1.0.0-rc.55) (2024-05-04)
+
+
+### Bug Fixes
+
+* back to top percentage issue [#72](https://github.com/pengzhanbo/vuepress-theme-plume/issues/72) ([e1955e8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e1955e8a0363bb0a8947dc324e046ec378c6e529))
+* replit no longer supports embed mode [#74](https://github.com/pengzhanbo/vuepress-theme-plume/issues/74) ([2b2a43e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2b2a43ed6d9d489ff198b359a3dfafbe201250e6))
+* scrollbar in tab and code tabs [#73](https://github.com/pengzhanbo/vuepress-theme-plume/issues/73) ([b2d244c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b2d244c6468b136dcece8fdf8391427d8c0074d9))
+* **theme:** navScreen style `inset` ([5787a47](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5787a47c47ea8587bf5108db843be42d4c2190fe))
+
+
+### Features
+
+* **plugin-md-power:** 支持可编辑的代码演示 ([5addb31](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5addb31e9181be0b7ddfdb431a5f7634ed97057f))
+
+
+### Performance Improvements
+
+* supplement content MIT protocol ([1182f3e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1182f3edc0ba27b7a6eb4827158c106918c9f38a))
+* update non-major deps ([2127ca4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2127ca44a8e97c8b018a4ed65e9bc94f3ef4a633))
+
+
+
 # [1.0.0-rc.54](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.53...v1.0.0-rc.54) (2024-4-28)
 
 

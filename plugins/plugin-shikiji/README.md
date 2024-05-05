@@ -16,12 +16,12 @@ yarn add @vuepress-plume/plugin-shikiji
 
 ``` js
 // .vuepress/config.[jt]s
-import { shikijiPlugin } from '@vuepress-plume/plugin-shikiji'
+import { shikiPlugin } from '@vuepress-plume/plugin-shikiji'
 
 export default {
   // ...
   plugins: [
-    shikijiPlugin()
+    shikiPlugin()
   ]
   // ...
 }

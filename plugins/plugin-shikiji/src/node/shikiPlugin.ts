@@ -1,7 +1,7 @@
 import type { Plugin, PluginObject } from 'vuepress/core'
 import { getDirname, path } from 'vuepress/utils'
 import { highlight } from './highlight.js'
-import type { HighlighterOptions } from './types'
+import type { HighlighterOptions } from './types.js'
 
 export type ShikiPluginOptions = HighlighterOptions
 

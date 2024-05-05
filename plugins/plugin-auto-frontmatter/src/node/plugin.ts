@@ -1,9 +1,10 @@
-import { fs } from 'vuepress/utils'
+import { colors, fs, logger } from 'vuepress/utils'
 import type { Plugin } from 'vuepress/core'
 import chokidar from 'chokidar'
 import { createFilter } from 'create-filter'
 import grayMatter from 'gray-matter'
 import jsonToYaml from 'json2yaml'
+import { promiseParallel } from '@pengzhanbo/utils'
 import type {
   AutoFrontmatterOptions,
   FrontmatterArray,
@@ -12,6 +13,8 @@ import type {
 } from '../shared/index.js'
 import { readMarkdown, readMarkdownList } from './readFiles.js'
 import { ensureArray, isEmptyObject } from './utils.js'
+
+const PLUGIN_NAME = '@vuepress-plume/plugin-auto-frontmatter'
 
 export function autoFrontmatterPlugin({
   include = ['**/*.md'],
@@ -70,11 +73,16 @@ export function autoFrontmatterPlugin({
   }
 
   return {
-    name: '@vuepress-plume/plugin-auto-frontmatter',
+    name: PLUGIN_NAME,
     onInitialized: async (app) => {
+      const start = performance.now()
       const markdownList = await readMarkdownList(app.dir.source(), globFilter)
-      for (const file of markdownList)
-        await formatMarkdown(file)
+      await promiseParallel(
+        markdownList.map(file => () => formatMarkdown(file)),
+        64,
+      )
+      if (app.env.isDebug)
+        logger.info(`\n[${colors.green(PLUGIN_NAME)}] Init time spent: ${(performance.now() - start).toFixed(2)}ms`)
     },
     onWatched: async (app, watchers) => {
       const watcher = chokidar.watch('**/*.md', {

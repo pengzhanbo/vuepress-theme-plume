@@ -1,6 +1,6 @@
-import { shikiPlugin } from './shikijiPlugin.js'
+import { shikiPlugin } from './shikiPlugin.js'
 
-export * from './shikijiPlugin.js'
+export * from './shikiPlugin.js'
 export * from './types.js'
 
 export default shikiPlugin

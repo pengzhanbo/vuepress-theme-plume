@@ -7,7 +7,7 @@ export function notesDataPlugin(options: NotesDataOptions | NotesDataOptions[]):
   return (app: App) => {
     return {
       name: '@vuepress-plume/plugin-notes-data',
-      clientConfigFile: path.resolve(
+      clientConfigFile: path.join(
         getDirname(import.meta.url),
         '../client/clientConfig.js',
       ),

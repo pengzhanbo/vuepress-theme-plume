@@ -1,6 +1,7 @@
 import type { App, Page } from 'vuepress/core'
 import MiniSearch from 'minisearch'
 import pMap from 'p-map'
+import { colors, logger } from 'vuepress/utils'
 import type { SearchOptions, SearchPluginOptions } from '../shared/index.js'
 
 export interface SearchIndexOptions {
@@ -47,11 +48,18 @@ export async function prepareSearchIndex({
   isSearchable,
   searchOptions,
 }: SearchIndexOptions) {
+  const start = performance.now()
   const pages = isSearchable ? app.pages.filter(isSearchable) : app.pages
   await pMap(pages, p => indexFile(p, searchOptions), {
     concurrency: 64,
   })
   await writeTemp(app)
+
+  if (app.env.isDebug) {
+    logger.info(
+      `\n[${colors.green('@vuepress-plume/plugin-search')}] prepare search time spent: ${(performance.now() - start).toFixed(2)}ms`,
+    )
+  }
 }
 
 export async function onSearchIndexUpdated(

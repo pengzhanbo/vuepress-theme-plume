@@ -1,4 +1,4 @@
-import { path } from 'vuepress/utils'
+import { colors, logger, path } from 'vuepress/utils'
 import type { App } from 'vuepress/core'
 import * as chokidar from 'chokidar'
 import { createFilter } from 'create-filter'
@@ -66,6 +66,7 @@ function resolvedNotesData(app: App, options: NotesDataOptions, result: NotesDat
 }
 
 export async function prepareNotesData(app: App, options: NotesDataOptions | NotesDataOptions[]) {
+  const start = performance.now()
   const notesData: NotesData = {}
   const allOptions = ensureArray<NotesDataOptions>(options)
 
@@ -78,6 +79,12 @@ export const notesData = ${JSON.stringify(notesData, null, 2)}
     content += HMR_CODE
 
   await app.writeTemp('internal/notesData.js', content)
+
+  if (app.env.isDebug) {
+    logger.info(
+      `\n[${colors.green('@vuepress-plume/plugin-notes-data')}] prepare notes data time spent: ${(performance.now() - start).toFixed(2)}ms`,
+    )
+  }
 }
 
 export function watchNotesData(app: App, watchers: any[], options: NotesDataOptions | NotesDataOptions[]): void {

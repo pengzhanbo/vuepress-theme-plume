@@ -36,6 +36,7 @@
     "vuepress": "2.0.0-rc.9"
   },
   "dependencies": {
+    "@pengzhanbo/utils": "^1.1.2",
     "chokidar": "^3.6.0",
     "create-filter": "^1.0.1",
     "fast-glob": "^3.3.2",

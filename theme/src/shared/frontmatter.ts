@@ -1,4 +1,5 @@
-import type { NavItemWithLink, PlumeThemeImage, WatermarkOptions } from '.'
+import type { WatermarkPluginFrontmatter } from '@vuepress/plugin-watermark'
+import type { NavItemWithLink, PlumeThemeImage } from '.'
 
 /* =============================== Home begin ==================================== */
 export interface PlumeThemeHomeFrontmatter extends Omit<PlumeThemeHomeBanner, 'type'> {
@@ -121,7 +122,7 @@ export interface PlumeThemePageFrontmatter {
   backToTop?: boolean
   externalLink?: boolean
   readingTime?: boolean
-  watermark?: boolean | Omit<WatermarkOptions, 'global' | 'matches'>
+  watermark?: WatermarkPluginFrontmatter['watermark'] & { fullPage?: boolean }
 }
 
 export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {

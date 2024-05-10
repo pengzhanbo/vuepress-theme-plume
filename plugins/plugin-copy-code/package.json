@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@vuepress-plume/plugin-content-update": "workspace:*",
-    "vue": "^3.4.26"
+    "vue": "^3.4.27"
   },
   "publishConfig": {
     "access": "public"

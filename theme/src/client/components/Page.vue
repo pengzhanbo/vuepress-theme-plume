@@ -11,7 +11,6 @@ import PageFooter from './PageFooter.vue'
 import PageMeta from './PageMeta.vue'
 import EncryptPage from './EncryptPage.vue'
 import TransitionFadeSlideY from './TransitionFadeSlideY.vue'
-import Watermark from './Watermark.vue'
 
 const { hasSidebar, hasAside } = useSidebar()
 const isDark = useDarkMode()
@@ -57,10 +56,7 @@ onContentUpdated(() => zoom?.refresh())
             <PageMeta />
             <EncryptPage v-if="!isPageDecrypted" />
             <template v-else>
-              <div style="position: relative;">
-                <Content class="plume-content" />
-                <Watermark />
-              </div>
+              <Content class="plume-content" />
               <PageFooter />
               <PageComment v-if="hasComments" :darkmode="isDark" />
             </template>

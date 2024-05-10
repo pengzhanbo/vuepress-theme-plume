@@ -8,6 +8,7 @@ import type { CommentPluginOptions } from '@vuepress/plugin-comment'
 import type { MarkdownEnhancePluginOptions } from 'vuepress-plugin-md-enhance'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
+import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
 
 export interface PlumeThemePluginOptions {
   /**
@@ -69,4 +70,9 @@ export interface PlumeThemePluginOptions {
   frontmatter?: Omit<AutoFrontmatterOptions, 'frontmatter'>
 
   readingTime?: false | ReadingTimePluginOptions
+
+  /**
+   * 是否开启 水印
+   */
+  watermark?: boolean | WatermarkPluginOptions
 }

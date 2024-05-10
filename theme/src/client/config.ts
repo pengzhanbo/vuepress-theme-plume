@@ -5,7 +5,7 @@ import type { ClientConfig } from 'vuepress/client'
 import { h } from 'vue'
 import Badge from './components/global/Badge.vue'
 import ExternalLinkIcon from './components/global/ExternalLinkIcon.vue'
-import { injectDarkMode, setupDarkMode, useScrollPromise } from './composables/index.js'
+import { injectDarkMode, setupDarkMode, setupWatermark, useScrollPromise } from './composables/index.js'
 import Layout from './layouts/Layout.vue'
 import NotFound from './layouts/NotFound.vue'
 import HomeBox from './components/Home/HomeBox.vue'
@@ -57,6 +57,7 @@ export default defineClientConfig({
   },
   setup() {
     setupDarkMode()
+    setupWatermark()
   },
   layouts: {
     Layout,

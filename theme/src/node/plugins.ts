@@ -22,6 +22,7 @@ import { sitemapPlugin } from '@vuepress/plugin-sitemap'
 import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
 import { searchPlugin } from '@vuepress-plume/plugin-search'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
+import { watermarkPlugin } from '@vuepress/plugin-watermark'
 import type {
   PlumeThemeEncrypt,
   PlumeThemeLocaleOptions,
@@ -214,10 +215,18 @@ export function setupPlugins(
     }))
   }
 
+  if (options.watermark) {
+    plugins.push(watermarkPlugin({
+      delay: 300,
+      enabled: true,
+      ...typeof options.watermark === 'object' ? options.watermark : {},
+    }))
+  }
+
   if (options.comment)
     plugins.push(commentPlugin(options.comment))
 
-  if (options.baiduTongji !== false && options.baiduTongji?.key)
+  if (options.baiduTongji !== false && options.baiduTongji?.key && isProd)
     plugins.push(baiduTongjiPlugin(options.baiduTongji))
 
   const hostname = resolveLocaleOptions(localeOptions, 'hostname')

@@ -1,3 +1,4 @@
+import process from 'node:process'
 import themePlume from 'vuepress-theme-plume'
 import type { Theme } from 'vuepress'
 import { enNotes, zhNotes } from './notes.js'
@@ -5,7 +6,7 @@ import { enNavbar, zhNavbar } from './navbar.js'
 
 export const theme: Theme = themePlume({
   logo: '/plume.png',
-  hostname: 'https://plume.pengzhanbo.cn',
+  hostname: process.env.SITE_HOST || 'https://plume.pengzhanbo.cn',
   repo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
   docsDir: 'docs',
 
@@ -41,11 +42,6 @@ export const theme: Theme = themePlume({
     { icon: 'xbox', link: 'https://pengzhanbo.cn' },
   ],
   navbarSocialInclude: ['github'],
-
-  watermark: {
-    global: false,
-    content: 'VuePress Plume',
-  },
 
   footer: { copyright: 'Copyright © 2021-present pengzhanbo' },
 
@@ -89,6 +85,7 @@ export const theme: Theme = themePlume({
         kotlin: true,
       },
     },
+
     comment: {
       provider: 'Giscus',
       comment: true,
@@ -101,6 +98,13 @@ export const theme: Theme = themePlume({
       inputPosition: 'top',
       darkTheme: 'dark_protanopia',
       lightTheme: 'light_protanopia',
+    },
+
+    watermark: {
+      enabled: false,
+      watermarkOptions: {
+        content: 'vuepress-theme-plume',
+      },
     },
 
   },

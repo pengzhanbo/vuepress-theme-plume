@@ -40,7 +40,7 @@ export async function netlifyServe({
     // '--debug',
   ]
 
-  const { stdout, cancel } = execa(
+  const { stdout, kill } = execa(
     path.resolve(__dirname, '../../../node_modules/.bin/netlify'),
     argv,
     {
@@ -54,6 +54,6 @@ export async function netlifyServe({
 
   return {
     host: `http://localhost:${port}`,
-    close: () => cancel(),
+    close: () => kill(),
   }
 }

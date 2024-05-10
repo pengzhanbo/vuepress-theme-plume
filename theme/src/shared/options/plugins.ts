@@ -74,5 +74,5 @@ export interface PlumeThemePluginOptions {
   /**
    * 是否开启 水印
    */
-  watermark?: boolean | WatermarkPluginOptions
+  watermark?: boolean | (WatermarkPluginOptions & { fullPage?: boolean })
 }

@@ -40,10 +40,10 @@
     "vuepress": "2.0.0-rc.9"
   },
   "dependencies": {
-    "@vue/devtools-api": "6.5.1",
+    "@vue/devtools-api": "6.6.1",
     "chokidar": "^3.6.0",
     "create-filter": "^1.0.1",
-    "vue": "^3.4.26"
+    "vue": "^3.4.27"
   },
   "publishConfig": {
     "access": "public"

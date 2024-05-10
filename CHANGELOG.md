@@ -1,3 +1,19 @@
+# [1.0.0-rc.56](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.55...v1.0.0-rc.56) (2024-05-10)
+
+
+### Features
+
+* **theme:** use `@vuepress/plugin-watermark` support watermark ([715f48e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/715f48ed569bff792c7996bb71a66f761f74ca57))
+
+
+### Performance Improvements
+
+* add debug log ([251ad88](https://github.com/pengzhanbo/vuepress-theme-plume/commit/251ad8848dfcdc30f9b438327356546b72c15696))
+* **theme:** watermark options ([2238637](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2238637d94aeacb9db6e67ff3273f22c804beca2))
+* update non-major deps to latest ([71e707f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/71e707f312112990c822d3bff7b91d33827a46ac))
+
+
+
 # [1.0.0-rc.55](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.54...v1.0.0-rc.55) (2024-05-04)
 
 

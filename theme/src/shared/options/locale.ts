@@ -1,6 +1,5 @@
 import type { LocaleData } from 'vuepress/core'
 import type { NotesDataOptions } from '@vuepress-plume/plugin-notes-data'
-import type { PlumeThemeImage } from '../base.js'
 import type { NavItem } from './navbar.js'
 
 export interface PlumeThemeAvatar {

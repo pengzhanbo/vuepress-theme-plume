@@ -54,7 +54,6 @@ const emit = defineEmits<{ change: [value: number] }>()
   align-items: center;
   justify-content: space-between;
   padding: 32px 20px 24px;
-  margin-bottom: 64px;
 }
 
 .btn {

@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.56",
   "private": true,
-  "packageManager": "pnpm@9.1.0",
+  "packageManager": "pnpm@9.1.1",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -41,8 +41,8 @@
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@pengzhanbo/eslint-config-vue": "^1.9.1",
-    "@pengzhanbo/stylelint-config": "^1.9.1",
+    "@pengzhanbo/eslint-config-vue": "^1.10.0",
+    "@pengzhanbo/stylelint-config": "^1.10.0",
     "@types/lodash.merge": "^4.6.9",
     "@types/node": "20.12.10",
     "@types/webpack-env": "^1.18.5",
@@ -52,10 +52,10 @@
     "conventional-changelog-cli": "^5.0.0",
     "cpx2": "^7.0.1",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^9.2.0",
+    "eslint": "^9.3.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "rimraf": "^5.0.5",
+    "rimraf": "^5.0.7",
     "stylelint": "^16.5.0",
     "tsconfig-vuepress": "^4.5.0",
     "typescript": "^5.4.5",
@@ -63,7 +63,7 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "@vuepress/markdown@2.0.0-rc.9": "patches/@vuepress__markdown@2.0.0-rc.9.patch"
+      "@vuepress/markdown@2.0.0-rc.11": "patches/@vuepress__markdown@2.0.0-rc.11.patch"
     }
   },
   "lint-staged": {

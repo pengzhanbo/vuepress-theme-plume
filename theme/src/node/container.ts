@@ -1,4 +1,4 @@
-import { containerPlugin } from '@vuepress/plugin-container'
+import { markdownContainerPlugin as containerPlugin } from '@vuepress/plugin-markdown-container'
 import type { Plugin } from 'vuepress/core'
 
 export const customContainers: Plugin[] = [

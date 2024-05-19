@@ -1,7 +1,6 @@
 import type { App, PluginConfig } from 'vuepress/core'
 import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
-import { externalLinkIconPlugin } from '@vuepress/plugin-external-link-icon'
 import { gitPlugin } from '@vuepress/plugin-git'
 import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
@@ -137,21 +136,6 @@ export function setupPlugins(
       selector: '.plume-content > img, .plume-content :not(a) > img',
       zoomOptions: { background: 'var(--vp-c-bg)' },
       delay: 300,
-    }))
-  }
-
-  if (options.externalLinkIcon !== false) {
-    plugins.push(externalLinkIconPlugin({
-      locales: Object.entries(localeOptions.locales || {}).reduce(
-        (result: Record<string, any>, [key, value]) => {
-          result[key] = {
-            openInNewWindow:
-              value.openInNewWindow ?? localeOptions.openInNewWindow,
-          }
-          return result
-        },
-        {},
-      ),
     }))
   }
 

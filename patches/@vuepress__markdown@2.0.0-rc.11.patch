@@ -1,0 +1,13 @@
+diff --git a/dist/index.js b/dist/index.js
+index 7bad660ca70fe8c5873cebd8d237cd2b4257deb9..2c2540df2f278f781e081ac56f038b1e332ec803 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -267,7 +267,7 @@ var codePlugin = (md, {
+     const info = token.info ? md.utils.unescapeAll(token.info).trim() : "";
+     const language = resolveLanguage(info);
+     const languageClass = `${options.langPrefix}${language.name}`;
+-    const code = options.highlight?.(token.content, language.name, "") || md.utils.escapeHtml(token.content);
++    const code = options.highlight?.(token.content, language.name, info || "") || md.utils.escapeHtml(token.content);
+     token.attrJoin("class", languageClass);
+     let result = code.startsWith("<pre") ? code : `<pre${slf.renderAttrs(token)}><code>${code}</code></pre>`;
+     const useVPre = resolveVPre(info) ?? vPreBlock;

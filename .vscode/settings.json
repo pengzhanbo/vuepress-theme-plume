@@ -18,6 +18,7 @@
   "stylelint.packageManager": "pnpm",
   "eslint.rules.customizations": [
     { "rule": "style/*", "severity": "off" },
+    { "rule": "format/*", "severity": "off" },
     { "rule": "*-indent", "severity": "off" },
     { "rule": "*-spacing", "severity": "off" },
     { "rule": "*-spaces", "severity": "off" },
@@ -27,11 +28,11 @@
     { "rule": "*quotes", "severity": "off" },
     { "rule": "*semi", "severity": "off" }
   ],
+  "editor.formatOnSave": false,
+  "prettier.enable": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
-    // "source.fixAll.stylelint": "explicit"
   },
   "editor.formatOnPaste": true,
   "eslint.validate": [

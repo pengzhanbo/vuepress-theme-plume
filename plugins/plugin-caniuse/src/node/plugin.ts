@@ -14,7 +14,7 @@ export function caniusePlugin({
 }: CanIUsePluginOptions): Plugin {
   mode = isMode(mode) ? mode : modeMap[0]
   const type = 'caniuse'
-  const validateReg = new RegExp(`^${type}\\s+(.*)$`)
+  const validateReg = new RegExp(`^${type}(?:$|\s)`)
   const pluginObj: PluginObject = {
     name: '@vuepress-plume/plugin-caniuse',
     clientConfigFile: path.resolve(__dirname, '../client/clientConfig.js'),

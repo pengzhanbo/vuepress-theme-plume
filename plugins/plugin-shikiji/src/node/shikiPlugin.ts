@@ -1,44 +1,86 @@
 import type { Plugin, PluginObject } from 'vuepress/core'
 import { getDirname, path } from 'vuepress/utils'
+import { isPlainObject } from 'vuepress/shared'
 import { highlight } from './highlight.js'
-import type { HighlighterOptions } from './types.js'
+import type {
+  CopyCodeOptions,
+  HighlighterOptions,
+  LineNumberOptions,
+  PreWrapperOptions,
+} from './types.js'
+import {
+  highlightLinesPlugin,
+  lineNumberPlugin,
+  preWrapperPlugin,
+} from './markdown/index.js'
+import { copyCodeButtonPlugin } from './copy-code-button/index.js'
+import { prepareClientConfigFile } from './prepareClientConfigFile.js'
 
-export type ShikiPluginOptions = HighlighterOptions
+export interface ShikiPluginOptions extends HighlighterOptions, LineNumberOptions, PreWrapperOptions {
+  /**
+   * Add copy code button
+   *
+   * @default true
+   */
+  copyCode?: boolean | CopyCodeOptions
+}
 
 const __dirname = getDirname(import.meta.url)
 
-export function shikiPlugin(options: ShikiPluginOptions = {}): Plugin {
-  const plugin: PluginObject = {
+export function shikiPlugin({
+  preWrapper = true,
+  lineNumbers = true,
+  copyCode = true,
+  ...options
+}: ShikiPluginOptions = {}): Plugin {
+  const copyCodeOptions: CopyCodeOptions = isPlainObject(copyCode) ? copyCode : {}
+
+  return {
     name: '@vuepress-plume/plugin-shikiji',
+
+    define: {
+      __CC_DURATION__: copyCodeOptions.duration ?? 2000,
+      __CC_SELECTOR__: `div[class*="language-"] > button.${copyCodeOptions.className || 'copy'}`,
+    },
+
+    clientConfigFile: app => prepareClientConfigFile(app, {
+      copyCode: copyCode !== false,
+      twoslash: options.twoslash ?? false,
+    }),
 
     extendsMarkdown: async (md, app) => {
       const theme = options.theme ?? { light: 'github-light', dark: 'github-dark' }
-      const highlighter = await highlight(theme, options, app.env.isDev)
 
-      md.options.highlight = highlighter
+      md.options.highlight = await highlight(theme, options, app.env.isDev)
+
+      md.use(highlightLinesPlugin)
+      md.use<PreWrapperOptions>(preWrapperPlugin, {
+        preWrapper,
+      })
+      if (preWrapper) {
+        copyCodeButtonPlugin(md, app, copyCode)
+        md.use<LineNumberOptions>(lineNumberPlugin, { lineNumbers })
+      }
     },
-  }
-
-  if (!options.twoslash)
-    return plugin
-
-  return {
-
-    ...plugin,
-
-    clientConfigFile: path.resolve(__dirname, '../client/config.js'),
 
     extendsMarkdownOptions: (options) => {
-      if (options.code === false)
-        return
-
       // 注入 floating-vue 后，需要关闭 代码块 的 v-pre 配置
-      if (options.code?.vPre) {
-        options.code.vPre.block = false
+      if (options.code !== false) {
+        if (options.code?.vPre) {
+          options.code.vPre.block = false
+        }
+        else {
+          options.code ??= {}
+          options.code.vPre = { block: false }
+        }
       }
-      else {
-        options.code ??= {}
-        options.code.vPre = { block: false }
+
+      if ((options as any).vPre !== false) {
+        const vPre = isPlainObject((options as any).vPre) ? (options as any).vPre : { block: true }
+        if (vPre.block) {
+          (options as any).vPre ??= {}
+          ;(options as any).vPre.block = false
+        }
       }
     },
   }

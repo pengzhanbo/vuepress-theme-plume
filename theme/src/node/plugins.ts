@@ -9,7 +9,6 @@ import { themeDataPlugin } from '@vuepress/plugin-theme-data'
 import { autoFrontmatterPlugin } from '@vuepress-plume/plugin-auto-frontmatter'
 import { baiduTongjiPlugin } from '@vuepress-plume/plugin-baidu-tongji'
 import { blogDataPlugin } from '@vuepress-plume/plugin-blog-data'
-import { copyCodePlugin } from '@vuepress-plume/plugin-copy-code'
 import { iconifyPlugin } from '@vuepress-plume/plugin-iconify'
 import { notesDataPlugin } from '@vuepress-plume/plugin-notes-data'
 import { shikiPlugin } from '@vuepress-plume/plugin-shikiji'
@@ -157,13 +156,6 @@ export function setupPlugins(
     plugins.push(shikiPlugin({
       theme: shikiTheme,
       ...(shikiOption ?? {}),
-    }))
-  }
-
-  if (options.copyCode !== false) {
-    plugins.push(copyCodePlugin({
-      selector: '.plume-content div[class*="language-"] pre',
-      ...options.copyCode,
     }))
   }
 

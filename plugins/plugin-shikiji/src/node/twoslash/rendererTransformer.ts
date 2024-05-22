@@ -19,8 +19,6 @@ export interface VitePressPluginTwoslashOptions extends TransformerTwoslashOptio
 
 /**
  * Create a Shiki transformer for VitePress to enable twoslash integration
- *
- * Add this to `markdown.codeTransformers` in `.vitepress/config.ts`
  */
 export function transformerTwoslash(options: VitePressPluginTwoslashOptions = {}): ShikiTransformer {
   const {
@@ -52,7 +50,7 @@ export function transformerTwoslash(options: VitePressPluginTwoslashOptions = {}
 
   return {
     ...twoslash,
-    name: '@shikijs/vuepress-twoslash',
+    name: '@shiki/vuepress-twoslash',
     preprocess(code, options) {
       const cleanup = options.transformers?.find(i => i.name === 'vuepress:clean-up')
       if (cleanup)

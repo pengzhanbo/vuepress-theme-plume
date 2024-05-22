@@ -1,18 +1,29 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
+import { usePageFrontmatter } from 'vuepress/client'
 import { useSidebar } from '../composables/index.js'
+import { useThemeLocaleData } from '../composables/themeData.js'
+import type { PlumeThemePageFrontmatter } from '../../shared/index.js'
 
 const props = defineProps<{
   isNotFound?: boolean
 }>()
 
 const { hasSidebar } = useSidebar()
+
+const theme = useThemeLocaleData()
+const frontmatter = usePageFrontmatter<PlumeThemePageFrontmatter>()
+const enabledExternalIcon = computed(() => {
+  return frontmatter.value.externalLink ?? theme.value.externalLinkIcon ?? true
+})
 </script>
 
 <template>
   <div
-    id="LayoutContent"
-    class="layout-content"
-    :class="{ 'has-sidebar': hasSidebar && !props.isNotFound }"
+    id="LayoutContent" class="layout-content" :class="{
+      'has-sidebar': hasSidebar && !props.isNotFound,
+      'external-link-icon-enabled': enabledExternalIcon,
+    }"
   >
     <slot />
   </div>

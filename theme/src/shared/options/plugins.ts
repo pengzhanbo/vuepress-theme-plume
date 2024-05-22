@@ -19,11 +19,6 @@ export interface PlumeThemePluginOptions {
   caniuse?: false
 
   /**
-   * 是否启用 external-link-icon 插件
-   */
-  externalLinkIcon?: false
-
-  /**
    * plugin-search 配置
    */
   search?: false | Partial<SearchPluginOptions>

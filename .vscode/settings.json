@@ -31,6 +31,7 @@
   "editor.formatOnSave": false,
   "prettier.enable": false,
   "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "explicit",
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
   },

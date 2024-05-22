@@ -336,10 +336,6 @@ export interface PlumeThemeLocaleData extends LocaleData {
    * The text to replace the default "Contributors"
    */
   contributorsText?: string
-  /**
-   * 外部链接打开方式
-   */
-  openInNewWindow?: string | boolean
 
   // backToHome?: string
 
@@ -353,11 +349,21 @@ export interface PlumeThemeLocaleData extends LocaleData {
    */
   returnToTopLabel?: string
 
+  /**
+   * 侧边栏 outline 文本
+   *
+   * @default 'On this page'
+   */
   outlineLabel?: string
 
   prevPageLabel?: string
 
   nextPageLabel?: string
+
+  /**
+   * 是否显示外部链接图标
+   */
+  externalLinkIcon?: string
 
   footer?:
     | false

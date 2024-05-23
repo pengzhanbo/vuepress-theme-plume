@@ -93,7 +93,7 @@ export const theme: Theme = themePlume({
       repoId: 'R_kgDOG_ebNA',
       category: 'docs-comment',
       categoryId: 'DIC_kwDOG_ebNM4Cd0uF',
-      mapping: 'url',
+      mapping: 'pathname',
       reactionsEnabled: true,
       inputPosition: 'top',
       darkTheme: 'dark_protanopia',

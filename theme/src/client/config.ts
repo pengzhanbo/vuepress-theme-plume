@@ -17,10 +17,6 @@ export default defineClientConfig({
     // global component
     app.component('Badge', Badge)
 
-    if (app._context.components.ExternalLinkIcon)
-      delete app._context.components.ExternalLinkIcon
-    app.component('ExternalLinkIcon', ExternalLinkIcon)
-
     app.component('DocSearch', () => {
       const SearchComponent
         = app.component('Docsearch') || app.component('SearchBox')

@@ -149,7 +149,7 @@ export function setupPlugins(
     plugins.push(searchPlugin(resolvedSearchOptions(app, options.search)))
   }
 
-  const shikiOption = options.shiki || options.shikiji
+  const shikiOption = options.shiki
   let shikiTheme: any = { light: 'vitesse-light', dark: 'vitesse-dark' }
   if (shikiOption !== false) {
     shikiTheme = shikiOption?.theme ?? shikiTheme

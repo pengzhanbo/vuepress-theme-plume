@@ -97,7 +97,7 @@ export const zhNotes = definePlumeNotesConfig({
           text: '内置插件',
           dir: 'plugins',
           collapsed: false,
-          items: ['', '代码复制', '代码高亮', '搜索', '阅读统计', 'markdown增强', 'markdownPower', '百度统计'],
+          items: ['', '代码高亮', '搜索', '阅读统计', 'markdown增强', 'markdownPower', '百度统计'],
         },
       ],
     },

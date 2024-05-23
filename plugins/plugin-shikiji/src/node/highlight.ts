@@ -18,7 +18,7 @@ import {
   transformerRenderWhitespace,
 } from '@shikijs/transformers'
 import type { HighlighterOptions, ThemeOptions } from './types.js'
-import { LRUCache, attrsToLines } from './utils/index.js'
+import { LRUCache, attrsToLines, resolveLanguage } from './utils/index.js'
 import { defaultHoverInfoProcessor, transformerTwoslash } from './twoslash/rendererTransformer.js'
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 10)
@@ -90,12 +90,12 @@ export async function highlight(
     },
   ]
 
-  return (str: string, lang: string, attrs: string) => {
+  return (str: string, language: string, attrs: string) => {
     attrs = attrs || ''
-    lang = lang || defaultLang
+    let lang = resolveLanguage(language) || defaultLang
     const vPre = vueRE.test(lang) ? '' : 'v-pre'
 
-    const key = str + lang + attrs
+    const key = str + language + attrs
 
     if (isDev) {
       const rendered = cache.get(key)

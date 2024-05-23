@@ -31,7 +31,7 @@ export interface PlumeThemePluginOptions {
    * @deprecated move to `shiki`
    * 代码高亮 配置
    */
-  shikiji?: false | ShikiPluginOptions
+  shikiji?: never
 
   /**
    * 代码高亮 配置

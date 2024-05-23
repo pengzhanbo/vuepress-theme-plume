@@ -1,6 +1,6 @@
 import type { Page, Theme } from 'vuepress/core'
 import { logger, templateRenderer } from 'vuepress/utils'
-import { addViteConfig, isPlainObject } from '@vuepress/helper'
+import { isPlainObject } from '@vuepress/helper'
 import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
 import { mergeLocaleOptions } from './defaultOptions.js'
 import { setupPlugins } from './plugins.js'
@@ -58,12 +58,6 @@ export function plumeTheme({
           .replace(/^\s+|\s+$/gm, '')
           .replace(/\n/g, '')
         return templateRenderer(template, context)
-      },
-
-      extendsBundlerOptions: (options, app) => {
-        addViteConfig(options, app, {
-          server: { fs: { cachedChecks: false } },
-        })
       },
     }
   }

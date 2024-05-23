@@ -16,7 +16,6 @@ export function useCopyCode({
     return
 
   const timeoutIdMap = new WeakMap<HTMLElement, ReturnType<typeof setTimeout>>()
-
   const { copy } = useClipboard({ legacy: true })
 
   useEventListener('click', (e) => {

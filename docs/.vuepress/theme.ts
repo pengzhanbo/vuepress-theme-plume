@@ -7,7 +7,7 @@ import { enNavbar, zhNavbar } from './navbar.js'
 export const theme: Theme = themePlume({
   logo: '/plume.png',
   hostname: process.env.SITE_HOST || 'https://plume.pengzhanbo.cn',
-  repo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
+  docsRepo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
   docsDir: 'docs',
 
   avatar: {

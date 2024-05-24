@@ -2,12 +2,10 @@ import type { Page, Theme } from 'vuepress/core'
 import { logger, templateRenderer } from 'vuepress/utils'
 import { isPlainObject } from '@vuepress/helper'
 import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
-import { mergeLocaleOptions } from './defaultOptions.js'
 import { setupPlugins } from './plugins.js'
 import { extendsPageData, setupPage } from './setupPages.js'
 import { getThemePackage, resolve, templates } from './utils.js'
-import { resolveEncrypt } from './resolveEncrypt.js'
-import { resolvePageHead } from './resolvePageHead.js'
+import { resolveEncrypt, resolveLocaleOptions, resolvePageHead } from './config/index.js'
 
 const THEME_NAME = 'vuepress-theme-plume'
 
@@ -15,6 +13,7 @@ export function plumeTheme({
   themePlugins,
   plugins,
   encrypt,
+  hostname,
   ...localeOptions
 }: PlumeThemeOptions = {}): Theme {
   const pluginsOptions = plugins ?? themePlugins ?? {}
@@ -30,7 +29,7 @@ export function plumeTheme({
   }
 
   return (app) => {
-    localeOptions = mergeLocaleOptions(app, localeOptions)
+    localeOptions = resolveLocaleOptions(app, localeOptions)
     return {
       name: THEME_NAME,
 
@@ -43,7 +42,7 @@ export function plumeTheme({
 
       clientConfigFile: resolve('client/config.js'),
 
-      plugins: setupPlugins(app, pluginsOptions, localeOptions, encrypt),
+      plugins: setupPlugins({ app, options: pluginsOptions, localeOptions, encrypt, hostname }),
 
       onInitialized: app => setupPage(app, localeOptions),
 

@@ -1,7 +1,7 @@
 import type { LocaleConfig, Page } from 'vuepress/core'
 import type { Options as MiniSearchOptions } from 'minisearch'
 
-export type SearchBoxLocales = LocaleConfig<{
+export interface SearchLocaleOptions {
   placeholder: string
   buttonText: string
   resetButtonTitle: string
@@ -16,7 +16,9 @@ export type SearchBoxLocales = LocaleConfig<{
     closeText: string
     closeKeyAriaLabel: string
   }
-}>
+}
+
+export type SearchBoxLocales = LocaleConfig<SearchLocaleOptions>
 
 export interface SearchPluginOptions extends SearchOptions {
   locales?: SearchBoxLocales

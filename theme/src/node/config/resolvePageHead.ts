@@ -1,5 +1,5 @@
 import type { Page } from 'vuepress'
-import type { PlumeThemeLocaleOptions } from '../shared/index.js'
+import type { PlumeThemeLocaleOptions } from '../../shared/index.js'
 
 export function resolvePageHead(page: Page, localeOptions: PlumeThemeLocaleOptions) {
   page.frontmatter.head ??= []

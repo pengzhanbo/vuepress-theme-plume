@@ -19,14 +19,14 @@ import { resolveLocaleOptions } from './resolveLocaleOptions.js'
 export default function autoFrontmatter(
   app: App,
   options: PlumeThemePluginOptions,
-  localeOption: PlumeThemeLocaleOptions,
+  localeOptions: PlumeThemeLocaleOptions,
 ): AutoFrontmatterOptions {
   const sourceDir = app.dir.source()
   const pkg = getPackage()
-  const { locales = {}, article: articlePrefix = '/article/' } = localeOption
+  const { locales = {}, article: articlePrefix = '/article/' } = localeOptions
   const { frontmatter } = options
-  const avatar = resolveLocaleOptions(localeOption, 'avatar')
-  const notesList = resolveNotesList(localeOption)
+  const avatar = resolveLocaleOptions(localeOptions, 'avatar')
+  const notesList = resolveNotesList(localeOptions)
   const localesNotesDirs = notesList
     .map(({ notes, dir }) => {
       const _dir = dir?.replace(/^\//, '')
@@ -55,10 +55,10 @@ export default function autoFrontmatter(
   const resolveLocale = (filepath: string) => {
     const file = pathJoin('/', path.relative(sourceDir, filepath))
 
-    return resolveLocalePath(localeOption.locales!, file)
+    return resolveLocalePath(localeOptions.locales!, file)
   }
   const notesByLocale = (locale: string) => {
-    const notes = resolveLocaleOptions(localeOption, 'notes', locale)
+    const notes = resolveLocaleOptions(localeOptions, 'notes', locale)
     if (notes === false)
       return undefined
     return notes
@@ -175,7 +175,7 @@ export default function autoFrontmatter(
             if (permalink)
               return permalink
             const locale = resolveLocale(filepath)
-            const prefix = resolveLocaleOptions(localeOption, 'article', locale, false)
+            const prefix = resolveLocaleOptions(localeOptions, 'article', locale, false)
             const args: string[] = []
             prefix
               ? args.push(prefix)

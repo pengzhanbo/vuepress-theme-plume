@@ -4,7 +4,6 @@ import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { gitPlugin } from '@vuepress/plugin-git'
 import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
-import { palettePlugin } from '@vuepress/plugin-palette'
 import { themeDataPlugin } from '@vuepress/plugin-theme-data'
 import { autoFrontmatterPlugin } from '@vuepress-plume/plugin-auto-frontmatter'
 import { baiduTongjiPlugin } from '@vuepress-plume/plugin-baidu-tongji'
@@ -30,17 +29,26 @@ import autoFrontmatter from './autoFrontmatter.js'
 import { resolveLocaleOptions } from './resolveLocaleOptions.js'
 import { pathJoin } from './utils.js'
 import { resolveNotesList } from './resolveNotesList.js'
-import { resolvedDocsearchOption, resolvedSearchOptions } from './searchPluginOptions.js'
 import { customContainers } from './container.js'
 import { BLOG_TAGS_COLORS_PRESET, generateBlogTagsColors } from './blogTags.js'
-import { isEncryptPage } from './resolveEncrypt.js'
+import { isEncryptPage } from './config/resolveEncrypt.js'
+import { resolveDocsearchOptions, resolveSearchOptions, resolveThemeData } from './config/index.js'
 
-export function setupPlugins(
-  app: App,
-  options: PlumeThemePluginOptions,
-  localeOptions: PlumeThemeLocaleOptions,
-  encrypt?: PlumeThemeEncrypt,
-): PluginConfig {
+export interface SetupPluginOptions {
+  app: App
+  options: PlumeThemePluginOptions
+  localeOptions: PlumeThemeLocaleOptions
+  encrypt?: PlumeThemeEncrypt
+  hostname?: string
+}
+
+export function setupPlugins({
+  app,
+  options,
+  localeOptions,
+  encrypt,
+  hostname,
+}: SetupPluginOptions): PluginConfig {
   const isProd = !app.env.isDev
 
   const notesList = resolveNotesList(localeOptions)
@@ -51,9 +59,8 @@ export function setupPlugins(
   const blog = resolveLocaleOptions(localeOptions, 'blog')
 
   const plugins: PluginConfig = [
-    palettePlugin({ preset: 'sass' }),
 
-    themeDataPlugin({ themeData: localeOptions }),
+    themeDataPlugin({ themeData: resolveThemeData(app, localeOptions) }),
 
     autoFrontmatterPlugin(autoFrontmatter(app, options, localeOptions)),
 
@@ -140,13 +147,13 @@ export function setupPlugins(
 
   if (options.docsearch) {
     if (options.docsearch.appId && options.docsearch.apiKey)
-      plugins.push(docsearchPlugin(resolvedDocsearchOption(app, options.docsearch)))
+      plugins.push(docsearchPlugin(resolveDocsearchOptions(app, options.docsearch)))
 
     else
       console.error('docsearch plugin: appId and apiKey are both required')
   }
   else if (options.search !== false) {
-    plugins.push(searchPlugin(resolvedSearchOptions(app, options.search)))
+    plugins.push(searchPlugin(resolveSearchOptions(app, options.search)))
   }
 
   const shikiOption = options.shiki
@@ -205,7 +212,6 @@ export function setupPlugins(
   if (options.baiduTongji !== false && options.baiduTongji?.key && isProd)
     plugins.push(baiduTongjiPlugin(options.baiduTongji))
 
-  const hostname = resolveLocaleOptions(localeOptions, 'hostname')
   if (options.sitemap !== false && hostname && isProd)
     plugins.push(sitemapPlugin({ hostname }))
 

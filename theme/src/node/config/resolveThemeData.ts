@@ -1,10 +1,12 @@
-import { ensureEndingSlash, ensureLeadingSlash, entries, getRootLangPath } from '@vuepress/helper'
+import { entries, getRootLangPath } from '@vuepress/helper'
 import type { App } from 'vuepress'
 import type { NavItem, PlumeThemeLocaleOptions } from '../../shared/index.js'
 import { PRESET_LOCALES } from '../locales/index.js'
-import { normalizePath } from '../utils.js'
+import { withBase } from '../utils.js'
 
 const EXCLUDE_LIST = ['locales', 'sidebar', 'navbar', 'notes', 'article']
+// 过滤不需要出现在多语言配置中的字段
+const EXCLUDE_LOCALE_LIST = [...EXCLUDE_LIST, 'blog', 'appearance']
 
 export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): PlumeThemeLocaleOptions {
   const themeData: PlumeThemeLocaleOptions = { locales: {} }
@@ -18,13 +20,15 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
   entries(options.locales || {}).forEach(([locale, opt]) => {
     themeData.locales![locale] = {}
     entries(opt).forEach(([key, value]) => {
-      if (!EXCLUDE_LIST.includes(key))
+      if (!EXCLUDE_LOCALE_LIST.includes(key))
         themeData.locales![locale][key] = value
     })
   })
 
+  const blog = options.blog || {}
+  const blogLink = blog.link || '/blog/'
   entries(options.locales || {}).forEach(([locale, opt]) => {
-    // 注入预设 导航栏。
+    // 注入预设 导航栏
     // home | blog | tags | archives
     if (opt.navbar !== false && opt.navbar?.length === 0) {
       // fallback navbar option
@@ -33,20 +37,19 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
         text: PRESET_LOCALES[localePath].home,
         link: locale,
       }]
-      if (opt.blog) {
-        navbar.push({
-          text: PRESET_LOCALES[localePath].blog,
-          link: withBase(opt.blog.link ?? '/blog/', locale),
-        })
-        opt.blog.tags && navbar.push({
-          text: PRESET_LOCALES[locale].tag,
-          link: withBase('/tags/', locale),
-        })
-        opt.blog.archives && navbar.push({
-          text: PRESET_LOCALES[locale].archive,
-          link: withBase('/archives/', locale),
-        })
-      }
+      navbar.push({
+        text: PRESET_LOCALES[localePath].blog,
+        link: withBase(blogLink, locale),
+      })
+      blog.tags !== false && navbar.push({
+        text: PRESET_LOCALES[locale].tag,
+        link: withBase(blog.tagsLink || `${blogLink}/tags/`, locale),
+      })
+      blog.archives !== false && navbar.push({
+        text: PRESET_LOCALES[locale].archive,
+        link: withBase(blog.archivesLink || `${blogLink}/archives/`, locale),
+      })
+
       themeData.locales![locale].navbar = navbar
     }
     else {
@@ -55,11 +58,4 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
   })
 
   return themeData
-}
-
-function withBase(path: string, base = '/'): string {
-  path = ensureEndingSlash(ensureLeadingSlash(path))
-  if (path.startsWith(base))
-    return path
-  return normalizePath(`${base}${path}`)
 }

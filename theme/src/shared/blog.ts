@@ -63,9 +63,23 @@ export interface PlumeThemeBlog {
    * @default true
    */
   tags?: boolean
+
+  /**
+   * 自定义标签页链接
+   *
+   * @default '/blog/tags/'
+   */
+  tagsLink?: string
   /**
    * 是否启用归档页
    * @default true
    */
   archives?: boolean
+
+  /**
+   * 自定义归档页链接
+   *
+   * @default '/blog/archives/'
+   */
+  archivesLink?: string
 }

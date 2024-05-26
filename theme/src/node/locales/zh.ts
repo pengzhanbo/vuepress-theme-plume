@@ -37,7 +37,7 @@ export const zhLocale: PlumeThemeLocaleData = {
 
   footer: {
     message:
-      '<a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a> 提供支持',
+      'Power by <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
   },
 }
 

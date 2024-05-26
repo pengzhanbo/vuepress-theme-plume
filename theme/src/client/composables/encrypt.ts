@@ -1,8 +1,8 @@
 import { compareSync, genSaltSync } from 'bcrypt-ts/browser'
 import { type Ref, computed } from 'vue'
 import { hasOwn, useSessionStorage } from '@vueuse/core'
-import { usePageData, useRoute } from 'vuepress/client'
-import type { PlumeThemePageData } from '../../shared/index.js'
+import { useRoute } from 'vuepress/client'
+import { useData } from './data.js'
 
 declare const __PLUME_ENCRYPT_GLOBAL__: boolean
 declare const __PLUME_ENCRYPT_SEPARATOR__: string
@@ -88,7 +88,7 @@ export function useGlobalEncrypt(): {
 }
 
 export function usePageEncrypt() {
-  const page = usePageData<PlumeThemePageData>()
+  const { page } = useData()
   const route = useRoute()
 
   const hasPageEncrypt = computed(() => ruleList.length ? matches.some(toMatch) : false)

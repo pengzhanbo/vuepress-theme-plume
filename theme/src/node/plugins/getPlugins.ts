@@ -24,80 +24,43 @@ import type {
   PlumeThemeEncrypt,
   PlumeThemeLocaleOptions,
   PlumeThemePluginOptions,
-} from '../shared/index.js'
-import autoFrontmatter from './autoFrontmatter.js'
-import { resolveLocaleOptions } from './resolveLocaleOptions.js'
-import { pathJoin } from './utils.js'
-import { resolveNotesList } from './resolveNotesList.js'
-import { customContainers } from './container.js'
-import { BLOG_TAGS_COLORS_PRESET, generateBlogTagsColors } from './blogTags.js'
-import { isEncryptPage } from './config/resolveEncrypt.js'
-import { resolveDocsearchOptions, resolveSearchOptions, resolveThemeData } from './config/index.js'
+} from '../../shared/index.js'
+import {
+  resolveDocsearchOptions,
+  resolveNotesOptions,
+  resolveSearchOptions,
+  resolveThemeData,
+} from '../config/index.js'
+import { resolveAutoFrontmatterOptions } from './resolveAutoFrontmatterOptions.js'
+import { resolveBlogDataOptions } from './resolveBlogDataOptions.js'
+import { customContainerPlugins } from './containerPlugins.js'
 
 export interface SetupPluginOptions {
   app: App
-  options: PlumeThemePluginOptions
+  pluginOptions: PlumeThemePluginOptions
   localeOptions: PlumeThemeLocaleOptions
   encrypt?: PlumeThemeEncrypt
   hostname?: string
 }
 
-export function setupPlugins({
+export function getPlugins({
   app,
-  options,
+  pluginOptions,
   localeOptions,
   encrypt,
   hostname,
 }: SetupPluginOptions): PluginConfig {
   const isProd = !app.env.isDev
 
-  const notesList = resolveNotesList(localeOptions)
-  const notesDirList = notesList
-    .map(notes => notes.dir && pathJoin(notes.dir, '**').replace(/^\//, ''))
-    .filter(Boolean)
-
-  const blog = resolveLocaleOptions(localeOptions, 'blog')
-
   const plugins: PluginConfig = [
 
     themeDataPlugin({ themeData: resolveThemeData(app, localeOptions) }),
 
-    autoFrontmatterPlugin(autoFrontmatter(app, options, localeOptions)),
+    autoFrontmatterPlugin(resolveAutoFrontmatterOptions(pluginOptions, localeOptions)),
 
-    blogDataPlugin({
-      include: blog?.include ?? ['**/*.md'],
-      exclude: [
-        '**/{README,readme,index}.md',
-        '.vuepress/',
-        'node_modules/',
-        ...(blog?.exclude ?? []),
-        ...notesDirList,
-      ].filter(Boolean),
-      sortBy: 'createTime',
-      excerpt: true,
-      pageFilter: (page: any) => page.frontmatter.article !== undefined
-        ? !!page.frontmatter.article
-        : true,
-      extraBlogData(extra) {
-        extra.tagsColorsPreset = BLOG_TAGS_COLORS_PRESET
-        extra.tagsColors = {}
-      },
-      extendBlogData: (page: any, extra) => {
-        const tags = page.frontmatter.tags
-        generateBlogTagsColors(extra.tagsColors, tags)
-        const data: Record<string, any> = {
-          categoryList: page.data.categoryList,
-          tags,
-          sticky: page.frontmatter.sticky,
-          createTime: page.data.frontmatter.createTime,
-          lang: page.lang,
-        }
-        isEncryptPage(page, encrypt) && (data.encrypt = true)
-        return data
-      },
-    }),
+    blogDataPlugin(resolveBlogDataOptions(localeOptions, encrypt)),
 
-    notesDataPlugin(notesList),
+    notesDataPlugin(resolveNotesOptions(localeOptions)),
 
     iconifyPlugin(),
 
@@ -110,10 +73,10 @@ export function setupPlugins({
       offset: 20,
     }),
 
-    ...customContainers,
+    ...customContainerPlugins,
   ]
 
-  if (options.readingTime !== false) {
+  if (pluginOptions.readingTime !== false) {
     plugins.push(readingTimePlugin({
       locales: {
         '/zh/': {
@@ -122,22 +85,22 @@ export function setupPlugins({
           time: '约$time分钟',
         },
       },
-      ...options.readingTime,
+      ...pluginOptions.readingTime,
     }))
   }
 
-  if (options.nprogress !== false)
+  if (pluginOptions.nprogress !== false)
     plugins.push(nprogressPlugin())
 
-  if (options.git !== false) {
+  if (pluginOptions.git ?? isProd) {
     plugins.push(gitPlugin({
       createdTime: false,
-      updatedTime: resolveLocaleOptions(localeOptions, 'lastUpdated') !== false,
-      contributors: resolveLocaleOptions(localeOptions, 'contributors') !== false,
+      updatedTime: true,
+      contributors: true,
     }))
   }
 
-  if (options.mediumZoom !== false) {
+  if (pluginOptions.mediumZoom !== false) {
     plugins.push(mediumZoomPlugin({
       selector: '.plume-content > img, .plume-content :not(a) > img',
       zoomOptions: { background: 'var(--vp-c-bg)' },
@@ -145,18 +108,18 @@ export function setupPlugins({
     }))
   }
 
-  if (options.docsearch) {
-    if (options.docsearch.appId && options.docsearch.apiKey)
-      plugins.push(docsearchPlugin(resolveDocsearchOptions(app, options.docsearch)))
+  if (pluginOptions.docsearch) {
+    if (pluginOptions.docsearch.appId && pluginOptions.docsearch.apiKey)
+      plugins.push(docsearchPlugin(resolveDocsearchOptions(app, pluginOptions.docsearch)))
 
     else
       console.error('docsearch plugin: appId and apiKey are both required')
   }
-  else if (options.search !== false) {
-    plugins.push(searchPlugin(resolveSearchOptions(app, options.search)))
+  else if (pluginOptions.search !== false) {
+    plugins.push(searchPlugin(resolveSearchOptions(app, pluginOptions.search)))
   }
 
-  const shikiOption = options.shiki
+  const shikiOption = pluginOptions.shiki
   let shikiTheme: any = { light: 'vitesse-light', dark: 'vitesse-dark' }
   if (shikiOption !== false) {
     shikiTheme = shikiOption?.theme ?? shikiTheme
@@ -166,7 +129,7 @@ export function setupPlugins({
     }))
   }
 
-  if (options.markdownEnhance !== false) {
+  if (pluginOptions.markdownEnhance !== false) {
     plugins.push(mdEnhancePlugin(
       Object.assign(
         {
@@ -183,42 +146,42 @@ export function setupPlugins({
           footnote: true,
           katex: true,
         } as MarkdownEnhancePluginOptions,
-        options.markdownEnhance || {},
+        pluginOptions.markdownEnhance || {},
       ),
     ))
   }
 
-  if (options.markdownPower !== false) {
+  if (pluginOptions.markdownPower !== false) {
     plugins.push(markdownPowerPlugin({
-      caniuse: options.caniuse,
-      ...options.markdownPower || {},
-      repl: options.markdownPower?.repl
-        ? { theme: shikiTheme, ...options.markdownPower?.repl }
-        : options.markdownPower?.repl,
+      caniuse: pluginOptions.caniuse,
+      ...pluginOptions.markdownPower || {},
+      repl: pluginOptions.markdownPower?.repl
+        ? { theme: shikiTheme, ...pluginOptions.markdownPower?.repl }
+        : pluginOptions.markdownPower?.repl,
     }))
   }
 
-  if (options.watermark) {
+  if (pluginOptions.watermark) {
     plugins.push(watermarkPlugin({
       delay: 300,
       enabled: true,
-      ...typeof options.watermark === 'object' ? options.watermark : {},
+      ...typeof pluginOptions.watermark === 'object' ? pluginOptions.watermark : {},
     }))
   }
 
-  if (options.comment)
-    plugins.push(commentPlugin(options.comment))
+  if (pluginOptions.comment)
+    plugins.push(commentPlugin(pluginOptions.comment))
 
-  if (options.baiduTongji !== false && options.baiduTongji?.key && isProd)
-    plugins.push(baiduTongjiPlugin(options.baiduTongji))
+  if (pluginOptions.baiduTongji !== false && pluginOptions.baiduTongji?.key && isProd)
+    plugins.push(baiduTongjiPlugin(pluginOptions.baiduTongji))
 
-  if (options.sitemap !== false && hostname && isProd)
+  if (pluginOptions.sitemap !== false && hostname && isProd)
     plugins.push(sitemapPlugin({ hostname }))
 
-  if (options.seo !== false && hostname && isProd) {
+  if (pluginOptions.seo !== false && hostname && isProd) {
     plugins.push(seoPlugin({
       hostname,
-      author: resolveLocaleOptions(localeOptions, 'avatar')?.name,
+      author: localeOptions.locales?.['/'].avatar?.name || localeOptions.avatar?.name,
     }))
   }
 

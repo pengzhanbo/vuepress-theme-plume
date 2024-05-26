@@ -1,7 +1,7 @@
 export interface NotesDataOptions {
   /**
    * 保存所有笔记的目录
-   * @default '/notes'
+   * @default '/notes/'
    */
   dir: string
   /**

@@ -1,7 +1,7 @@
 import { markdownContainerPlugin as containerPlugin } from '@vuepress/plugin-markdown-container'
 import type { Plugin } from 'vuepress/core'
 
-export const customContainers: Plugin[] = [
+export const customContainerPlugins: Plugin[] = [
   /**
    * :::demo-wrapper img no-padding title="xxx" height="100px"
    * :::

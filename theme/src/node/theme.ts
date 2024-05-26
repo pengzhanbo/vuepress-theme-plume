@@ -1,13 +1,11 @@
 import type { Page, Theme } from 'vuepress/core'
-import { logger, templateRenderer } from 'vuepress/utils'
+import { templateRenderer } from 'vuepress/utils'
 import { isPlainObject } from '@vuepress/helper'
 import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
-import { setupPlugins } from './plugins.js'
+import { getPlugins } from './plugins/index.js'
 import { extendsPageData, setupPage } from './setupPages.js'
-import { getThemePackage, resolve, templates } from './utils.js'
+import { THEME_NAME, getThemePackage, logger, resolve, templates } from './utils.js'
 import { resolveEncrypt, resolveLocaleOptions, resolvePageHead } from './config/index.js'
-
-const THEME_NAME = 'vuepress-theme-plume'
 
 export function plumeTheme({
   themePlugins,
@@ -16,10 +14,11 @@ export function plumeTheme({
   hostname,
   ...localeOptions
 }: PlumeThemeOptions = {}): Theme {
-  const pluginsOptions = plugins ?? themePlugins ?? {}
+  const pluginOptions = plugins ?? themePlugins ?? {}
   const pkg = getThemePackage()
-  const watermarkFullPage = isPlainObject(pluginsOptions.watermark)
-    ? pluginsOptions.watermark.fullPage !== false
+
+  const watermarkFullPage = isPlainObject(pluginOptions.watermark)
+    ? pluginOptions.watermark.fullPage !== false
     : true
 
   if (themePlugins) {
@@ -42,12 +41,12 @@ export function plumeTheme({
 
       clientConfigFile: resolve('client/config.js'),
 
-      plugins: setupPlugins({ app, options: pluginsOptions, localeOptions, encrypt, hostname }),
+      plugins: getPlugins({ app, pluginOptions, localeOptions, encrypt, hostname }),
 
-      onInitialized: app => setupPage(app, localeOptions),
+      onInitialized: async app => await setupPage(app, localeOptions),
 
       extendsPage: (page) => {
-        extendsPageData(app, page as Page<PlumeThemePageData>, localeOptions)
+        extendsPageData(page as Page<PlumeThemePageData>, localeOptions)
         resolvePageHead(page, localeOptions)
       },
 

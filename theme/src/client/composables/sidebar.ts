@@ -10,7 +10,6 @@ import type { ComputedRef, Ref } from 'vue'
 import { computed, onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import { isActive } from '../utils/index.js'
-import { useThemeLocaleData } from './themeData.js'
 import { hashRef } from './hash.js'
 
 export { useNotesData }
@@ -58,7 +57,6 @@ export function getSidebarFirstLink(sidebar: NotesSidebarItem[]) {
 export function useSidebar() {
   const route = useRoute()
   const notesData = useNotesData()
-  const theme = useThemeLocaleData()
   const frontmatter = usePageFrontmatter()
   const page = usePageData<PlumeThemePageData>()
 
@@ -74,7 +72,7 @@ export function useSidebar() {
   })
 
   const sidebar = computed(() => {
-    return theme.value.notes ? getSidebarList(route.path, notesData.value) : []
+    return getSidebarList(route.path, notesData.value)
   })
   const hasSidebar = computed(() => {
     return (

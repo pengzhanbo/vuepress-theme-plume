@@ -1,6 +1,9 @@
 import process from 'node:process'
 import { customAlphabet } from 'nanoid'
 import { fs, getDirname, path } from 'vuepress/utils'
+import { Logger, ensureEndingSlash, ensureLeadingSlash } from '@vuepress/helper'
+
+export const THEME_NAME = 'vuepress-theme-plume'
 
 const __dirname = getDirname(import.meta.url)
 
@@ -8,6 +11,8 @@ export const resolve = (...args: string[]) => path.resolve(__dirname, '../', ...
 export const templates = (url: string) => resolve('../templates', url)
 
 export const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz', 8)
+
+export const logger = new Logger(THEME_NAME)
 
 export function getPackage() {
   let pkg = {} as any
@@ -30,8 +35,8 @@ export function getThemePackage() {
 }
 
 const RE_SLASH = /(\\|\/)+/g
-export function normalizePath(dir: string) {
-  return dir.replace(RE_SLASH, '/')
+export function normalizePath(path: string) {
+  return path.replace(RE_SLASH, '/')
 }
 
 export function pathJoin(...args: string[]) {
@@ -44,4 +49,11 @@ export function getCurrentDirname(basePath: string | undefined, filepath: string
     .replace(RE_START_END_SLASH, '')
     .split('/')
   return dirList.length > 0 ? dirList[dirList.length - 1] : ''
+}
+
+export function withBase(path = '', base = '/'): string {
+  path = ensureEndingSlash(ensureLeadingSlash(path))
+  if (path.startsWith(base))
+    return normalizePath(path)
+  return normalizePath(`${base}${path}`)
 }

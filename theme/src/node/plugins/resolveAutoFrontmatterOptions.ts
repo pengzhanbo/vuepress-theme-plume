@@ -115,11 +115,11 @@ export function resolveAutoFrontmatterOptions(
                   return
                 const locale = resolveLocale(relativePath)
 
-                const notes = notesByLocale(locale)
+                const prefix = notesByLocale(locale)?.link || ''
                 const note = findNote(relativePath)
                 return pathJoin(
                   locale,
-                  notes?.link || '',
+                  prefix,
                   note?.link || getCurrentDirname(note?.dir, relativePath),
                   '/',
                 )
@@ -160,9 +160,12 @@ export function resolveAutoFrontmatterOptions(
                 const sidebar = note?.sidebar
 
                 if (note && sidebar && sidebar !== 'auto') {
-                  const res = resolveLinkBySidebar(sidebar, pathJoin(prefix, note.dir || ''))
+                  const res = resolveLinkBySidebar(sidebar, pathJoin(notes?.dir || '', note.dir || ''))
                   const file = ensureLeadingSlash(relativePath)
-                  res[file] && args.push(res[file])
+                  if (res[file])
+                    args.push(res[file])
+                  else
+                    res[path.dirname(file)] && args.push(res[path.dirname(file)])
                 }
 
                 return pathJoin(...args, nanoid(), '/')
@@ -231,6 +234,7 @@ function SidebarLink(items: NotesSidebar | undefined, link: string, text: string
         res[pathJoin(dir, 'index.md')] = link
         res[pathJoin(dir, 'readme.md')] = link
       }
+      res[dir] = link
     }
     else {
       const { dir: subDir = '', link: subLink = '/', items: subItems, text: subText = '' } = item

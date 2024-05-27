@@ -85,11 +85,11 @@ const showBlogExtract = computed(() => {
             </div>
           </div>
           <div v-if="hasBlogExtract" class="blog-nav" :class="{ 'no-avatar': !avatar }">
-            <AutoLink class="nav-link" :href="tags.link">
+            <AutoLink class="nav-link" :href="tags.link" no-icon>
               <span class="vpi-tag icon" />
               <span>{{ tags.text }}</span>
             </AutoLink>
-            <AutoLink class="nav-link" :href="archives.link">
+            <AutoLink class="nav-link" :href="archives.link" no-icon>
               <span class="vpi-archive icon" />
               <span>{{ archives.text }}</span>
             </AutoLink>

@@ -15,13 +15,8 @@ permalink: /guide/markdown/experiment/
 并整合在 [@vuepress-plume/plugin-shikiji](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-shikiji) 中。
 
 > [!important]
-> 该功能当前仅在以下版本中通过可用性验证，在后续的所有的版本中均不能保证其可用性，请谨慎使用：
->
-> - [x] `vuepress@2.0.0-rc.0`
-> - [x] `vuepress@2.0.0-rc.2`
-> - [x] `vuepress@2.0.0-rc.7`
-> - [x] `vuepress@2.0.0-rc.8`
-> - [x] `vuepress@2.0.0-rc.9`
+> 从 `vuepress@2.0.0-rc.12` 开始，不再需要对 `@vuepress/markdown` 进行额外的 hack 操作，
+> 因此，现在你可以安全的使用这项功能了！
 
 ### 概述
 
@@ -74,56 +69,7 @@ const c = 1
 
 ### 开启功能
 
-> [!warning]
-> 启用该功能需要对 `@vuepress/markdown` 包的源码进行修改，此操作具有一定的风险。
->
-> 由于需要通过 `pnpm patch` 对 `@vuepress/markdown` 包进行补丁。因此，你需要使用
-> `pnpm` 作为你的项目的包管理器。
-
-#### 步骤一
-
-在项目根目录下，通过 `pnpm patch` 命令对 `@vuepress/markdown` 包进行补丁:
-
-```sh
-pnpm patch @vuepress/markdown --edit-dir _tmp/vuepress__markdown
-```
-
-该命令将会在你的项目根目录下生成一个 `_tmp/vuepress__markdown` 目录，该目录将会包含 `@vuepress/markdown` 包的源码。
-
-#### 步骤二
-
-修改 `@vuepress/markdown` 包的源码, 打开 `_tmp/vuepress__markdown/dist/index.js` 文件，
-找到 `270` 行，其内容如下：
-
-```ts
-const code = options.highlight?.(token.content, language.name, '') || md.utils.escapeHtml(token.content)
-```
-
-对其进行修改：
-
-```ts
-const code = options.highlight?.(token.content, language.name, '') || md.utils.escapeHtml(token.content) // [!code --]
-const code = options.highlight?.(token.content, language.name, info || '') || md.utils.escapeHtml(token.content) // [!code ++]
-```
-
-你可以直接复制上面的代码内容，然后粘贴到 `_tmp/vuepress__markdown/dist/index.js` 文件中替换 `248` 行。
-
-#### 步骤三
-
-将源码修改进行 补丁提交，执行下面的命令：
-
-```sh
-pnpm patch-commit '_tmp/vuepress__markdown'
-```
-
-此命令将会在你的项目根目录下生成一个 `patch` 目录，该目录将会包含 `@vuepress/markdown` 包的补丁，
-并提供 `patchedDependencies` 字段注册到你的项目中。
-
-之后你就可以选择 删除 `_tmp/vuepress__markdown` 目录了。
-
-#### 步骤四
-
-在 主题配置中，将 `twoslash` 选项打开。
+在 主题配置中，启用 `twoslash` 选项。
 
 ```ts
 export default defineUserConfig({

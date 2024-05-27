@@ -71,5 +71,46 @@ interface FriendsItem {
    * 友情链接描述
    */
   desc?: string
+
+  /**
+   * 背景色
+   */
+  backgroundColor?: string | { light: string, dark: string }
+  /**
+   * 字体颜色
+   */
+  color?: string | { light: string, dark: string }
+  /**
+   * 名字颜色
+   */
+  nameColor?: string | { light: string, dark: string }
+  /**
+   * 边框颜色
+   */
+  borderColor?: string | { light: string, dark: string }
+}
+```
+
+### groups
+
+- 类型： `FriendsGroup[]`
+- 默认值: `[]`
+
+友情链接分组
+
+```ts
+interface FriendsGroup {
+  /**
+   * 分组名
+   */
+  title?: string
+  /**
+   * 分组描述
+   */
+  desc?: string
+  /**
+   * 友情链接列表
+   */
+  list?: FriendsItem[]
 }
 ```

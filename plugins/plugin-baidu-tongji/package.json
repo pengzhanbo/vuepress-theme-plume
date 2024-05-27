@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-baidu-tongji",
   "type": "module",
-  "version": "1.0.0-rc.57",
+  "version": "1.0.0-rc.58",
   "description": "The Plugin for VuePres 2 - baidu tongji",
   "author": "pengzhanbo <volodymyr@foxmail.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",

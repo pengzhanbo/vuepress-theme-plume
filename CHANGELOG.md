@@ -1,3 +1,12 @@
+# [1.0.0-rc.58](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.57...v1.0.0-rc.58) (2024-05-27)
+
+
+### Bug Fixes
+
+* **theme:**  blog extract link ([6b30b03](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6b30b038118133f3cc89d2a7661c2fcca345c16c))
+
+
+
 # [1.0.0-rc.57](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.56...v1.0.0-rc.57) (2024-05-27)
 
 

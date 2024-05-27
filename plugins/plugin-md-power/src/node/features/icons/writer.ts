@@ -29,18 +29,24 @@ export function createIconCSSWriter(app: App, opt?: boolean | IconsOptions) {
   const isInstalled = isPackageExists('@iconify/json')
 
   const write = (content: string) => app.writeTemp('internal/md-power/icons.css', content)
+  let timer: NodeJS.Timeout | null = null
 
   const options = resolveOption(opt)
   const prefix = options.prefix
   const defaultContent = getDefaultContent(options)
 
   async function writeCss() {
-    let css = defaultContent
+    if (timer)
+      clearTimeout(timer)
 
-    for (const [, { content, className }] of cache)
-      css += `.${className} {\n  --svg: ${content};\n}\n`
+    timer = setTimeout(async () => {
+      let css = defaultContent
 
-    await write(css)
+      for (const [, { content, className }] of cache)
+        css += `.${className} {\n  --svg: ${content};\n}\n`
+
+      await write(css)
+    }, 100)
   }
 
   function addIcon(iconName: string) {

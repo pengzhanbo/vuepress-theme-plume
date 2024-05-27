@@ -7,15 +7,14 @@ export const zhLocale: PlumeThemeLocaleData = {
   selectLanguageName: '简体中文',
   selectLanguageText: '选择语言',
 
-  blog: {
-    pagination: { prevPageText: '上一页', nextPageText: '下一页' },
-  },
+  appearanceText: '外观',
+  lightModeSwitchTitle: '切换为浅色主题',
+  darkModeSwitchTitle: '切换为深色主题',
 
   outlineLabel: '此页内容',
   returnToTopLabel: '返回顶部',
   editLinkText: '编辑此页',
   contributorsText: '贡献者',
-  appearanceText: '外观',
   prevPageLabel: '上一页',
   nextPageLabel: '下一页',
 

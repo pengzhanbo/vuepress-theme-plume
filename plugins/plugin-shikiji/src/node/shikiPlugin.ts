@@ -1,5 +1,5 @@
-import type { Plugin, PluginObject } from 'vuepress/core'
-import { getDirname, path } from 'vuepress/utils'
+import type { Plugin } from 'vuepress/core'
+import { getDirname } from 'vuepress/utils'
 import { isPlainObject } from 'vuepress/shared'
 import { highlight } from './highlight.js'
 import type {
@@ -65,16 +65,6 @@ export function shikiPlugin({
 
     extendsMarkdownOptions: (options) => {
       // 注入 floating-vue 后，需要关闭 代码块 的 v-pre 配置
-      if (options.code !== false) {
-        if (options.code?.vPre) {
-          options.code.vPre.block = false
-        }
-        else {
-          options.code ??= {}
-          options.code.vPre = { block: false }
-        }
-      }
-
       if ((options as any).vPre !== false) {
         const vPre = isPlainObject((options as any).vPre) ? (options as any).vPre : { block: true }
         if (vPre.block) {

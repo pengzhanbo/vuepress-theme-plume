@@ -142,6 +142,16 @@ export interface FriendsItem {
   link: string
   avatar?: string
   desc?: string
+  backgroundColor?: string | { light: string, dark: string }
+  color?: string | { light: string, dark: string }
+  nameColor?: string | { light: string, dark: string }
+  borderColor?: string | { light: string, dark: string }
+}
+
+export interface FriendGroup {
+  title?: string
+  desc?: string
+  list?: FriendsItem[]
 }
 
 export interface PlumeThemeFriendsFrontmatter {
@@ -149,4 +159,5 @@ export interface PlumeThemeFriendsFrontmatter {
   title?: string
   description?: string
   list?: FriendsItem[]
+  groups?: FriendGroup[]
 }

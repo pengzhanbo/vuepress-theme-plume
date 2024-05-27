@@ -1,18 +1,14 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { usePageFrontmatter } from 'vuepress/client'
-import { useSidebar } from '../composables/index.js'
-import { useThemeLocaleData } from '../composables/themeData.js'
-import type { PlumeThemePageFrontmatter } from '../../shared/index.js'
+import { useData, useSidebar } from '../composables/index.js'
 
 const props = defineProps<{
   isNotFound?: boolean
 }>()
 
 const { hasSidebar } = useSidebar()
+const { theme, frontmatter } = useData()
 
-const theme = useThemeLocaleData()
-const frontmatter = usePageFrontmatter<PlumeThemePageFrontmatter>()
 const enabledExternalIcon = computed(() => {
   return frontmatter.value.externalLink ?? theme.value.externalLinkIcon ?? true
 })

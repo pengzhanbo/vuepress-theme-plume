@@ -5,10 +5,13 @@ import type { PresetLocale } from '../types.js'
 export const enLocale: PlumeThemeLocaleData = {
   selectLanguageName: 'English',
   selectLanguageText: 'Languages',
+
+  appearanceText: 'Appearance',
+  lightModeSwitchTitle: 'Switch to light theme',
+  darkModeSwitchTitle: 'Switch to dark theme',
+
   editLinkText: 'Edit this page',
   contributorsText: 'Contributors',
-  appearanceText: 'Appearance',
-
   lastUpdated: {
     text: 'Last Updated',
   },

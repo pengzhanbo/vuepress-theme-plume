@@ -27,6 +27,9 @@ export interface PlumeThemeLocaleData extends LocaleData {
    */
   appearanceText?: string
 
+  lightModeSwitchTitle?: string
+  darkModeSwitchTitle?: string
+
   /**
    * 配置博主拥有者信息
    *

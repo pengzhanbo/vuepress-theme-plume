@@ -242,6 +242,7 @@ div[class*="language-"] {
   margin: 0 -24px;
   transition: background-color 0.5s;
 
+  /* stylelint-disable-next-line no-descending-specificity */
   &::before {
     position: absolute;
     left: 10px;

@@ -1,17 +1,10 @@
 <script lang="ts" setup>
-import { usePageData, usePageFrontmatter } from 'vuepress/client'
 import { computed } from 'vue'
-import {
-  useReadingTimeLocale,
-} from '@vuepress/plugin-reading-time/client'
-import type {
-  PlumeThemePageData,
-  PlumeThemePostFrontmatter,
-} from '../../shared/index.js'
-import { useExtraBlogData } from '../composables/index.js'
+import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
+import { useData, useExtraBlogData } from '../composables/index.js'
 
-const page = usePageData<PlumeThemePageData>()
-const matter = usePageFrontmatter<PlumeThemePostFrontmatter>()
+const { page, frontmatter: matter } = useData<'post'>()
+
 const extraData = useExtraBlogData()
 const readingTime = useReadingTimeLocale()
 

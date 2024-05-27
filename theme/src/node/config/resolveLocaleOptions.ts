@@ -7,7 +7,7 @@ import { THEME_NAME } from '../utils.js'
 const FALLBACK_OPTIONS: PlumeThemeLocaleData = {
   appearance: true,
 
-  blog: { link: '/blog/', pagination: { perPage: 20 }, tags: true, archives: true, tagsLink: '/blog/tags/', archivesLink: '/blog/archives/' },
+  blog: { link: '/blog/', pagination: { perPage: 15 }, tags: true, archives: true, tagsLink: '/blog/tags/', archivesLink: '/blog/archives/' },
   article: '/article/',
   notes: { link: '/', dir: '/notes/', notes: [] },
   navbarSocialInclude: ['github', 'twitter', 'discord', 'facebook'],

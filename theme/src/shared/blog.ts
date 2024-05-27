@@ -46,16 +46,6 @@ export interface PlumeThemeBlog {
      * @default 20
      */
     perPage?: number
-    /**
-     * 前一页的文本
-     * @default 'Prev'
-     */
-    prevPageText?: string
-    /**
-     * 后一页的文本
-     * @default 'Next'
-     */
-    nextPageText?: string
   }
 
   /**

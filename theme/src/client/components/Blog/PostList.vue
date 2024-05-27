@@ -5,7 +5,6 @@ import PostItem from './PostItem.vue'
 import Pagination from './Pagination.vue'
 
 const {
-  pagination,
   postList,
   page,
   totalPage,
@@ -29,7 +28,6 @@ const {
     </template>
     <Pagination
       v-if="isPaginationEnabled"
-      :pagination="pagination"
       :page="page"
       :total-page="totalPage"
       :page-range="pageRange"

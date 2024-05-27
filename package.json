@@ -54,17 +54,12 @@
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.3.0",
     "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
+    "lint-staged": "^15.2.5",
     "rimraf": "^5.0.7",
-    "stylelint": "^16.5.0",
+    "stylelint": "^16.6.0",
     "tsconfig-vuepress": "^4.5.0",
     "typescript": "^5.4.5",
     "vite": "^5.2.11"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@vuepress/markdown@2.0.0-rc.11": "patches/@vuepress__markdown@2.0.0-rc.11.patch"
-    }
   },
   "lint-staged": {
     "*": "eslint --fix"

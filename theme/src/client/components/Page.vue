@@ -1,10 +1,8 @@
 <script lang="ts" setup>
-import { usePageData } from 'vuepress/client'
 import { computed } from 'vue'
 import { useMediumZoom } from '@vuepress/plugin-medium-zoom/client'
 import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
-import type { PlumeThemePageData } from '../../shared/index.js'
-import { useDarkMode, useSidebar } from '../composables/index.js'
+import { useData, useSidebar } from '../composables/index.js'
 import { usePageEncrypt } from '../composables/encrypt.js'
 import PageAside from './PageAside.vue'
 import PageFooter from './PageFooter.vue'
@@ -13,8 +11,7 @@ import EncryptPage from './EncryptPage.vue'
 import TransitionFadeSlideY from './TransitionFadeSlideY.vue'
 
 const { hasSidebar, hasAside } = useSidebar()
-const isDark = useDarkMode()
-const page = usePageData<PlumeThemePageData>()
+const { page, isDark } = useData()
 
 const { isPageDecrypted } = usePageEncrypt()
 

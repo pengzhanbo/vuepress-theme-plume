@@ -1,4 +1,4 @@
-import type { NotesDataOptions, NotesSidebar } from '@vuepress-plume/plugin-notes-data'
+import type { NotesDataOptions } from '@vuepress-plume/plugin-notes-data'
 import { entries } from '@vuepress/helper'
 import { uniq } from '@pengzhanbo/utils'
 import type { PlumeThemeLocaleOptions } from '../..//shared/index.js'

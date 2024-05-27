@@ -1,3 +1,24 @@
+# [1.0.0-rc.57](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.56...v1.0.0-rc.57) (2024-05-27)
+
+
+### Features
+
+* 调整plot 语法 为 `!! !!` ([12e607e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/12e607e01cfe18d2fe891a4eab424e06881b7678))
+* 移除 externalLink插件，在主题内实现 ([3d7199f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3d7199fe29f6c85568d41f7409664c424b095dad))
+* 优化 shiki 插件 ([4cdd51a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4cdd51a2c6bf145be83c43e7e2ffd320e1650596))
+* 支持友情链接页分组 ([de404b2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/de404b24db653eda8f706911ed83b21b63bd8050))
+* upgrade to `vuepress rc12` ([021f46e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/021f46ef3f9157c8a1d8f6cac4db3ab56ffd2990))
+
+
+### Performance Improvements
+
+* 优化部分正则校验规则 ([5af709a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5af709a7623f698a1630054ee8ffda8f1544b753))
+* **theme:** 优化多语言配置结构 ([e358224](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e3582242172a7438cf0b14a5a7c1861c4b7e50e0))
+* **theme:** blog bottom padding ([ca383cd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ca383cdd7dff1a6888dd18cea31a7d5574e800d5))
+* update vuepress to `rc-11` ([bc38fad](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bc38fad18c3465a778fee976acd9d09c02b740a6))
+
+
+
 # [1.0.0-rc.56](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.55...v1.0.0-rc.56) (2024-05-10)
 
 

@@ -5,11 +5,13 @@ import type { PlumeThemeFriendsFrontmatter } from '../../shared/index.js'
 import { useEditNavLink } from '../composables/index.js'
 import AutoLink from './AutoLink.vue'
 import FriendsItem from './FriendsItem.vue'
+import FriendsGroup from './FriendsGroup.vue'
 
 const matter = usePageFrontmatter<PlumeThemeFriendsFrontmatter>()
 const editNavLink = useEditNavLink()
 
 const list = computed(() => matter.value.list || [])
+const groups = computed(() => matter.value.groups || [])
 </script>
 
 <template>
@@ -27,6 +29,8 @@ const list = computed(() => matter.value.list || [])
         :friend="friend"
       />
     </section>
+
+    <FriendsGroup v-for="(group, index) in groups" :key="index" :group="group" />
 
     <div v-if="editNavLink" class="edit-link">
       <AutoLink
@@ -62,7 +66,7 @@ const list = computed(() => matter.value.list || [])
   margin-bottom: 1rem;
   font-size: 24px;
   font-weight: 700;
-  color: var(--vp-c-brand-1);
+  color: var(--vp-c-text-1);
   outline: none;
 }
 
@@ -87,9 +91,8 @@ const list = computed(() => matter.value.list || [])
 
 @media (min-width: 640px) {
   .friends-wrapper .title,
-  .friends-wrapper .description,
-  .edit-link {
-    padding-left: 0;
+  .friends-wrapper .description {
+    padding-left: 16px;
   }
 
   .friends-list {
@@ -102,6 +105,12 @@ const list = computed(() => matter.value.list || [])
   .friends-wrapper {
     max-width: 784px;
     padding-top: 0;
+  }
+
+  .friends-wrapper .title,
+  .friends-wrapper .description,
+  .edit-link {
+    padding-left: 0;
   }
 
   .friends-list {

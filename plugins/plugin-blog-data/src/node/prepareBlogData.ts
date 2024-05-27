@@ -22,7 +22,7 @@ if (import.meta.hot) {
 }
 `
 
-const headingRe = /<h(\d*).*?>.*?<\/h\1>/gi
+const headingRe = /<h(\d)[^>]*>.*?<\/h\1>/gi
 
 function getTimestamp(time: Date): number {
   return new Date(time).getTime()

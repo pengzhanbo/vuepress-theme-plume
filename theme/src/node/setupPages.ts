@@ -1,4 +1,8 @@
-import { path } from 'vuepress/utils'
+import {
+  ensureLeadingSlash,
+  getRootLang,
+  getRootLangPath,
+} from '@vuepress/helper'
 import type { App, Page } from 'vuepress/core'
 import { createPage } from 'vuepress/core'
 import type {
@@ -6,52 +10,61 @@ import type {
   PlumeThemeLocaleOptions,
   PlumeThemePageData,
 } from '../shared/index.js'
-import { pathJoin } from './utils.js'
-import { resolveLocaleOptions, resolvedAppLocales } from './resolveLocaleOptions.js'
+import { withBase } from './utils.js'
+import { PRESET_LOCALES } from './locales/index.js'
+import { resolveNotesLinkList } from './config/index.js'
 
 export async function setupPage(
   app: App,
   localeOption: PlumeThemeLocaleOptions,
 ) {
-  const locales = resolvedAppLocales(app)
-  const defaultBlog = resolveLocaleOptions(localeOption, 'blog')
-  for (const [, locale] of Object.keys(locales).entries()) {
-    const blog = resolveLocaleOptions(localeOption, 'blog', locale, false)
-    const lang = locales[locale].lang || app.siteData.lang
-    const link = blog?.link
-      ? blog.link
-      : pathJoin('/', locale, defaultBlog?.link || '/blog/')
-    const blogPage = await createPage(app, {
-      path: link,
-      frontmatter: { lang, type: 'blog' },
-    })
-    app.pages.push(blogPage)
+  const pageList: Promise<Page>[] = []
+  const locales = localeOption.locales || {}
+  const rootPath = getRootLangPath(app)
+  const rootLang = getRootLang(app)
 
-    if (blog?.tags !== false || defaultBlog?.tags !== false) {
-      const tagsPage = await createPage(app, {
-        path: pathJoin(link, 'tags/'),
-        frontmatter: { lang, type: 'blog-tags' },
-      })
-      app.pages.push(tagsPage)
-    }
+  const blog = localeOption.blog || {}
+  const link = blog.link || '/blog/'
 
-    if (blog?.archives !== false || defaultBlog?.archives !== false) {
-      const archivesPage = await createPage(app, {
-        path: pathJoin(link, 'archives/'),
-        frontmatter: { lang, type: 'blog-archives' },
-      })
-      app.pages.push(archivesPage)
-    }
+  const getTitle = (locale: string, key: string) => {
+    const opt = PRESET_LOCALES[locale] || PRESET_LOCALES[rootPath] || {}
+    return opt[key] || ''
   }
+
+  for (const localePath of Object.keys(locales)) {
+    const lang = app.siteData.locales?.[localePath]?.lang || rootLang
+    const locale = localePath === '/' ? rootPath : localePath
+
+    // 添加 博客页面
+    pageList.push(createPage(app, {
+      path: withBase(link, localePath),
+      frontmatter: { lang, type: 'blog', title: getTitle(locale, 'blog') },
+    }))
+
+    // 添加 标签页
+    blog.tags !== false && pageList.push(createPage(app, {
+      path: withBase(blog.tagsLink || `${link}/tags/`, localePath),
+      frontmatter: { lang, type: 'blog-tags', title: getTitle(locale, 'tag') },
+    }))
+
+    // 添加归档页
+    blog.archives !== false && pageList.push(createPage(app, {
+      path: withBase(blog.archivesLink || `${link}/archives/`, localePath),
+      frontmatter: { lang, type: 'blog-archives', title: getTitle(locale, 'archive') },
+    }))
+  }
+  app.pages.push(...await Promise.all(pageList))
 }
 
 export function extendsPageData(
-  app: App,
   page: Page<PlumeThemePageData>,
   localeOptions: PlumeThemeLocaleOptions,
 ) {
   page.data.filePathRelative = page.filePathRelative
   page.routeMeta.title = page.title
+
+  if (page.frontmatter.icon)
+    page.routeMeta.icon = page.frontmatter.icon
 
   if (page.frontmatter.friends) {
     page.frontmatter.article = false
@@ -66,7 +79,7 @@ export function extendsPageData(
     page.data.type = page.frontmatter.type as any
   }
 
-  autoCategory(app, page, localeOptions)
+  autoCategory(page, localeOptions)
   pageContentRendered(page)
 }
 
@@ -75,7 +88,6 @@ const cache: Record<string, number> = {}
 const RE_CATEGORY = /^(\d+)?(?:\.?)([^]+)$/
 
 export function autoCategory(
-  app: App,
   page: Page<PlumeThemePageData>,
   options: PlumeThemeLocaleOptions,
 ) {
@@ -83,24 +95,15 @@ export function autoCategory(
 
   if (page.frontmatter.type || !pagePath)
     return
-  const locales = Object.keys(resolvedAppLocales(app))
-  const notesLinks: string[] = []
-  for (const [, locale] of locales.entries()) {
-    const config = options.locales?.[locale]?.notes
-    if (config && config.notes) {
-      notesLinks.push(
-        ...config.notes.map(
-          note => path.join(locale, config.link || '', note.link).replace(/\\+/g, '/'),
-        ),
-      )
-    }
-  }
+  const notesLinks = resolveNotesLinkList(options)
+
   if (notesLinks.some(link => page.path.startsWith(link)))
     return
+
   const RE_LOCALE = new RegExp(
-    `^(${locales.filter(l => l !== '/').join('|')})`,
+    `^(${Object.keys(options.locales || {}).filter(l => l !== '/').join('|')})`,
   )
-  const categoryList: PageCategoryData[] = `/${pagePath}`
+  const categoryList: PageCategoryData[] = ensureLeadingSlash(pagePath)
     .replace(RE_LOCALE, '')
     .replace(/^\//, '')
     .split('/')

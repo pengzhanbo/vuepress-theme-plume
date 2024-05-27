@@ -1,6 +1,7 @@
 import type { ThemeData } from '@vuepress/plugin-theme-data'
 import type { PlumeThemeLocaleData } from './locale.js'
 import type { PlumeThemePluginOptions } from './plugins.js'
+import type { PlumeThemeEncrypt } from './encrypt.js'
 
 export interface PlumeThemeOptions extends PlumeThemeLocaleOptions {
   /**
@@ -14,6 +15,18 @@ export interface PlumeThemeOptions extends PlumeThemeLocaleOptions {
    */
   plugins?: PlumeThemePluginOptions
 
+  /**
+   * 部署站点域名。
+   * 用于生成 sitemap、 seo等。
+   *
+   */
+  hostname?: string
+
+  /**
+   * 加密
+   */
+  encrypt?: PlumeThemeEncrypt
+
 }
 
 export type PlumeThemeLocaleOptions = PlumeThemeData
@@ -23,3 +36,4 @@ export type PlumeThemeData = ThemeData<PlumeThemeLocaleData>
 export * from './locale.js'
 export * from './plugins.js'
 export * from './navbar.js'
+export * from './encrypt.js'

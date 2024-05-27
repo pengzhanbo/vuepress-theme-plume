@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import type { PlumeThemeBlog } from '../../../shared/index.js'
-
-type NonFalseAndNullable<T> = T extends false | null | undefined ? never : T
+import { useData } from '../../composables/index.js'
 
 defineProps<{
-  pagination: NonFalseAndNullable<PlumeThemeBlog['pagination']>
   page: number
   totalPage: number
   isFirstPage: boolean
@@ -12,6 +9,8 @@ defineProps<{
   pageRange: { value: number | string, more?: true }[]
 }>()
 const emit = defineEmits<{ change: [value: number] }>()
+
+const { theme } = useData()
 </script>
 
 <template>
@@ -22,7 +21,7 @@ const emit = defineEmits<{ change: [value: number] }>()
       :disabled="isFirstPage"
       @click="() => emit('change', page - 1)"
     >
-      {{ pagination?.prevPageText || 'Prev' }}
+      {{ theme.prevPageLabel || 'Prev' }}
     </button>
     <div class="page-range">
       <button
@@ -43,7 +42,7 @@ const emit = defineEmits<{ change: [value: number] }>()
       :disabled="isLastPage"
       @click="() => emit('change', page + 1)"
     >
-      {{ pagination?.nextPageText || 'Next' }}
+      {{ theme.nextPageLabel || 'Next' }}
     </button>
   </div>
 </template>

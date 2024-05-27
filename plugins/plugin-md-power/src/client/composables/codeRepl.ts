@@ -4,7 +4,7 @@ import { sleep } from '../utils/sleep.js'
 import { rustExecute } from './rustRepl.js'
 
 const ignoredNodes = ['.diff.remove', '.vp-copy-ignore']
-const RE_LANGUAGE = /language-([\w]+)/
+const RE_LANGUAGE = /language-(\w+)/
 const api = {
   go: 'https://api.pengzhanbo.cn/repl/golang/run',
   kotlin: 'https://api.pengzhanbo.cn/repl/kotlin/run',

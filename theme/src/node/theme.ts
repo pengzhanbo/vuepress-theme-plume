@@ -1,26 +1,24 @@
 import type { Page, Theme } from 'vuepress/core'
-import { logger, templateRenderer } from 'vuepress/utils'
-import { addViteConfig, isPlainObject } from '@vuepress/helper'
+import { templateRenderer } from 'vuepress/utils'
+import { isPlainObject } from '@vuepress/helper'
 import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
-import { mergeLocaleOptions } from './defaultOptions.js'
-import { setupPlugins } from './plugins.js'
+import { getPlugins } from './plugins/index.js'
 import { extendsPageData, setupPage } from './setupPages.js'
-import { getThemePackage, resolve, templates } from './utils.js'
-import { resolveEncrypt } from './resolveEncrypt.js'
-import { resolvePageHead } from './resolvePageHead.js'
-
-const THEME_NAME = 'vuepress-theme-plume'
+import { THEME_NAME, getThemePackage, logger, resolve, templates } from './utils.js'
+import { resolveEncrypt, resolveLocaleOptions, resolvePageHead } from './config/index.js'
 
 export function plumeTheme({
   themePlugins,
   plugins,
   encrypt,
+  hostname,
   ...localeOptions
 }: PlumeThemeOptions = {}): Theme {
-  const pluginsOptions = plugins ?? themePlugins ?? {}
+  const pluginOptions = plugins ?? themePlugins ?? {}
   const pkg = getThemePackage()
-  const watermarkFullPage = isPlainObject(pluginsOptions.watermark)
-    ? pluginsOptions.watermark.fullPage !== false
+
+  const watermarkFullPage = isPlainObject(pluginOptions.watermark)
+    ? pluginOptions.watermark.fullPage !== false
     : true
 
   if (themePlugins) {
@@ -30,7 +28,7 @@ export function plumeTheme({
   }
 
   return (app) => {
-    localeOptions = mergeLocaleOptions(app, localeOptions)
+    localeOptions = resolveLocaleOptions(app, localeOptions)
     return {
       name: THEME_NAME,
 
@@ -43,12 +41,12 @@ export function plumeTheme({
 
       clientConfigFile: resolve('client/config.js'),
 
-      plugins: setupPlugins(app, pluginsOptions, localeOptions, encrypt),
+      plugins: getPlugins({ app, pluginOptions, localeOptions, encrypt, hostname }),
 
-      onInitialized: app => setupPage(app, localeOptions),
+      onInitialized: async app => await setupPage(app, localeOptions),
 
       extendsPage: (page) => {
-        extendsPageData(app, page as Page<PlumeThemePageData>, localeOptions)
+        extendsPageData(page as Page<PlumeThemePageData>, localeOptions)
         resolvePageHead(page, localeOptions)
       },
 
@@ -58,12 +56,6 @@ export function plumeTheme({
           .replace(/^\s+|\s+$/gm, '')
           .replace(/\n/g, '')
         return templateRenderer(template, context)
-      },
-
-      extendsBundlerOptions: (options, app) => {
-        addViteConfig(options, app, {
-          server: { fs: { cachedChecks: false } },
-        })
       },
     }
   }

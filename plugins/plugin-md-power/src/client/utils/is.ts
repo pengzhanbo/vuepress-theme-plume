@@ -3,7 +3,7 @@ export function checkIsMobile(ua: string): boolean {
 }
 
 export function checkIsSafari(ua: string): boolean {
-  return /version\/([\w.]+) .*(mobile ?safari|safari)/i.test(ua)
+  return /version\/[\w.]+ .*(?:mobile ?safari|safari)/i.test(ua)
 }
 
 export function checkIsiPad(ua: string): boolean {

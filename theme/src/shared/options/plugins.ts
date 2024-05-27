@@ -2,7 +2,6 @@ import type { DocsearchOptions } from '@vuepress/plugin-docsearch'
 import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
 import type { AutoFrontmatterOptions } from '@vuepress-plume/plugin-auto-frontmatter'
 import type { BaiduTongjiOptions } from '@vuepress-plume/plugin-baidu-tongji'
-import type { CopyCodeOptions } from '@vuepress-plume/plugin-copy-code'
 import type { ShikiPluginOptions } from '@vuepress-plume/plugin-shikiji'
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
 import type { MarkdownEnhancePluginOptions } from 'vuepress-plugin-md-enhance'
@@ -19,11 +18,6 @@ export interface PlumeThemePluginOptions {
   caniuse?: false
 
   /**
-   * 是否启用 external-link-icon 插件
-   */
-  externalLinkIcon?: false
-
-  /**
    * plugin-search 配置
    */
   search?: false | Partial<SearchPluginOptions>
@@ -37,7 +31,7 @@ export interface PlumeThemePluginOptions {
    * @deprecated move to `shiki`
    * 代码高亮 配置
    */
-  shikiji?: false | ShikiPluginOptions
+  shikiji?: never
 
   /**
    * 代码高亮 配置
@@ -52,8 +46,6 @@ export interface PlumeThemePluginOptions {
   nprogress?: false
 
   mediumZoom?: false
-
-  copyCode?: false | CopyCodeOptions
 
   markdownEnhance?: false | MarkdownEnhancePluginOptions
 

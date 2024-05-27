@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { resolveRoutePath, useRouter } from 'vuepress/client'
-import { EXTERNAL_URL_RE } from '../utils/index.js'
+import { resolveRouteFullPath, useRoute, useRouter } from 'vuepress/client'
+import { isLinkExternal } from '@vuepress/helper/client'
 
 const props = defineProps<{
   tag?: string
@@ -11,18 +11,21 @@ const props = defineProps<{
   rel?: string
 }>()
 
+declare const __VUEPRESS_BASE__: string
+
 const router = useRouter()
+const route = useRoute()
 
 const tag = computed(() => props.tag ?? (props.href ? 'a' : 'span'))
 const isExternal = computed(
-  () => props.href && EXTERNAL_URL_RE.test(props.href),
+  () => props.href && isLinkExternal(props.href, __VUEPRESS_BASE__),
 )
 const link = computed(() => {
   if (!props.href)
     return undefined
   if (isExternal.value)
     return props.href
-  return resolveRoutePath(props.href)
+  return resolveRouteFullPath(props.href, route.path)
 })
 
 function linkTo(e: Event) {

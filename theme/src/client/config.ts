@@ -4,22 +4,16 @@ import { defineClientConfig } from 'vuepress/client'
 import type { ClientConfig } from 'vuepress/client'
 import { h } from 'vue'
 import Badge from './components/global/Badge.vue'
-import ExternalLinkIcon from './components/global/ExternalLinkIcon.vue'
-import { injectDarkMode, setupDarkMode, setupWatermark, useScrollPromise } from './composables/index.js'
+import { setupDarkMode, setupWatermark, useScrollPromise } from './composables/index.js'
 import Layout from './layouts/Layout.vue'
 import NotFound from './layouts/NotFound.vue'
 import HomeBox from './components/Home/HomeBox.vue'
 
 export default defineClientConfig({
   enhance({ app, router }) {
-    injectDarkMode(app)
-
+    setupDarkMode(app)
     // global component
     app.component('Badge', Badge)
-
-    if (app._context.components.ExternalLinkIcon)
-      delete app._context.components.ExternalLinkIcon
-    app.component('ExternalLinkIcon', ExternalLinkIcon)
 
     app.component('DocSearch', () => {
       const SearchComponent
@@ -56,7 +50,6 @@ export default defineClientConfig({
     }
   },
   setup() {
-    setupDarkMode()
     setupWatermark()
   },
   layouts: {

@@ -7,7 +7,7 @@ import { enNavbar, zhNavbar } from './navbar.js'
 export const theme: Theme = themePlume({
   logo: '/plume.png',
   hostname: process.env.SITE_HOST || 'https://plume.pengzhanbo.cn',
-  repo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
+  docsRepo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
   docsDir: 'docs',
 
   avatar: {
@@ -93,7 +93,7 @@ export const theme: Theme = themePlume({
       repoId: 'R_kgDOG_ebNA',
       category: 'docs-comment',
       categoryId: 'DIC_kwDOG_ebNM4Cd0uF',
-      mapping: 'url',
+      mapping: 'pathname',
       reactionsEnabled: true,
       inputPosition: 'top',
       darkTheme: 'dark_protanopia',

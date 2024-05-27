@@ -5,6 +5,7 @@ import type {
   ShikiTransformer,
   ThemeRegistration,
 } from 'shiki'
+import type { LocaleConfig } from 'vuepress/shared'
 
 export type ThemeOptions =
   | ThemeRegistration
@@ -71,4 +72,65 @@ export interface HighlighterOptions {
    * @default false
    */
   whitespace?: boolean
+}
+
+export interface LineNumberOptions {
+  /**
+   * Show line numbers in code blocks
+   * @default true
+   */
+  lineNumbers?: boolean | number
+}
+
+export interface PreWrapperOptions {
+  /**
+   * Wrap the `<pre>` tag with an extra `<div>` or not. Do not disable it unless you
+   * understand what's it for
+   *
+   * - Required for `lineNumbers`
+   * - Required for title display of default theme
+   */
+  preWrapper?: boolean
+}
+
+/**
+ * Options for copy code button
+ *
+ * `<button title="{title}" class="{className}"></button>`
+ */
+export interface CopyCodeOptions {
+  /**
+   * Class name of the button
+   *
+   * @default 'copy'
+   */
+  className?: string
+
+  /**
+   * Duration of the copied text
+   *
+   * @default 2000
+   */
+  duration?: number
+
+  /**
+   * Locale config for copy code button
+   */
+  locales?: LocaleConfig<CopyCodeLocaleOptions>
+}
+
+export interface CopyCodeLocaleOptions {
+  /**
+   * Title of the button
+   *
+   * @default 'Copy code'
+   */
+  title?: string
+
+  /**
+   * Copied text
+   *
+   * @default 'Copied!'
+   */
+  copied?: string
 }

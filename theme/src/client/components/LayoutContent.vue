@@ -1,18 +1,25 @@
 <script lang="ts" setup>
-import { useSidebar } from '../composables/index.js'
+import { computed } from 'vue'
+import { useData, useSidebar } from '../composables/index.js'
 
 const props = defineProps<{
   isNotFound?: boolean
 }>()
 
 const { hasSidebar } = useSidebar()
+const { theme, frontmatter } = useData()
+
+const enabledExternalIcon = computed(() => {
+  return frontmatter.value.externalLink ?? theme.value.externalLinkIcon ?? true
+})
 </script>
 
 <template>
   <div
-    id="LayoutContent"
-    class="layout-content"
-    :class="{ 'has-sidebar': hasSidebar && !props.isNotFound }"
+    id="LayoutContent" class="layout-content" :class="{
+      'has-sidebar': hasSidebar && !props.isNotFound,
+      'external-link-icon-enabled': enabledExternalIcon,
+    }"
   >
     <slot />
   </div>

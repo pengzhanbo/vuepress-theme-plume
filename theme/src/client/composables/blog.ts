@@ -3,7 +3,7 @@ import { useExtraBlogData as _useExtraBlogData, useBlogPostData } from '@vuepres
 import { type Ref, computed } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
-import { useLocaleLink, useRouteQuery, useThemeLocaleData } from '../composables/index.js'
+import { useData, useLocaleLink, useRouteQuery } from '../composables/index.js'
 import { toArray } from '../utils/index.js'
 
 export const useExtraBlogData = _useExtraBlogData as () => Ref<{
@@ -20,11 +20,10 @@ export function useLocalePostList() {
 }
 
 export function usePostListControl() {
-  const themeData = useThemeLocaleData()
+  const { theme } = useData()
 
   const list = useLocalePostList()
-  const blog = computed(() => themeData.value.blog || {})
-  const pagination = computed(() => blog.value.pagination || {})
+  const blog = computed(() => theme.value.blog || {})
   const is960 = useMediaQuery('(max-width: 960px)')
 
   const postList = computed(() => {
@@ -128,7 +127,6 @@ export function usePostListControl() {
   }
 
   return {
-    pagination,
     postList: finalList,
     page,
     totalPage,
@@ -147,14 +145,15 @@ const extractLocales: Record<string, { tags: string, archives: string }> = {
 }
 
 export function useBlogExtract() {
-  const theme = useThemeLocaleData()
+  const { theme } = useData()
   const locale = usePageLang()
   const postList = useLocalePostList()
   const { tags: tagsList } = useTags()
+  const blog = computed(() => theme.value.blog || {})
 
-  const hasBlogExtract = computed(() => theme.value.blog?.archives !== false || theme.value.blog?.tags !== false)
-  const tagsLink = useLocaleLink('blog/tags/')
-  const archiveLink = useLocaleLink('blog/archives/')
+  const hasBlogExtract = computed(() => blog.value.archives !== false || blog.value.tags !== false)
+  const tagsLink = useLocaleLink(blog.value.tagsLink || 'blog/tags/')
+  const archiveLink = useLocaleLink(blog.value.archivesLink || 'blog/archives/')
 
   const tags = computed(() => ({
     link: tagsLink.value,

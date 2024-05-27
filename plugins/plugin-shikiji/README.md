@@ -2,6 +2,10 @@
 
 使用 [`shiki`](https://shiki.style/) 为 Markdown 代码块启用代码高亮。
 
+> [!WARNING]
+> 相比于 官方的 [@vuepress/plugin-shiki](https://ecosystem.vuejs.press/zh/plugins/shiki.html)，
+> 本插件做了很多各种各样的调整，你可以认为这是试验性的。
+
 ## Install
 
 ```sh

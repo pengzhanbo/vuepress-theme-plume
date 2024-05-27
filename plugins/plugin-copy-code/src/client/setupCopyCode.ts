@@ -5,7 +5,7 @@ import type { CopyCodeOptions } from '../shared/index.js'
 declare const __COPY_CODE_OPTIONS__: CopyCodeOptions
 
 const options = __COPY_CODE_OPTIONS__
-const RE_LANGUAGE = /language-([\w]+)/
+const RE_LANGUAGE = /language-(\w+)/
 const RE_START_CODE = /^ *(\$|>)/gm
 const shells = ['shellscript', 'shell', 'bash', 'sh', 'zsh']
 const ignoredNodes = ['.diff.remove', '.vp-copy-ignore']

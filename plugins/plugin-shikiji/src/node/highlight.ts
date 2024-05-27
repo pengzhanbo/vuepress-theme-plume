@@ -9,6 +9,7 @@ import {
   isSpecialLang,
 } from 'shiki'
 import {
+  transformerCompactLineOptions,
   transformerNotationDiff,
   transformerNotationErrorLevel,
   transformerNotationFocus,
@@ -17,9 +18,8 @@ import {
   transformerRenderWhitespace,
 } from '@shikijs/transformers'
 import type { HighlighterOptions, ThemeOptions } from './types.js'
-import { resolveAttrs } from './resolveAttrs.js'
-import { LRUCache } from './lru.js'
-import { defaultHoverInfoProcessor, transformerTwoslash } from './rendererTransformer.js'
+import { LRUCache, attrsToLines, resolveLanguage } from './utils/index.js'
+import { defaultHoverInfoProcessor, transformerTwoslash } from './twoslash/rendererTransformer.js'
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 10)
 const cache = new LRUCache<string, string>(64)
@@ -85,16 +85,17 @@ export async function highlight(
       },
     },
     {
-      name: 'vuepress-shikiji:remove-escape',
+      name: 'vuepress:remove-escape',
       postprocess: code => code.replace(RE_ESCAPE, '[!code'),
     },
   ]
 
-  return (str: string, lang: string, attrs: string) => {
-    lang = lang || defaultLang
+  return (str: string, language: string, attrs: string) => {
+    attrs = attrs || ''
+    let lang = resolveLanguage(language) || defaultLang
     const vPre = vueRE.test(lang) ? '' : 'v-pre'
 
-    const key = str + lang + attrs
+    const key = str + language + attrs
 
     if (isDev) {
       const rendered = cache.get(key)
@@ -114,7 +115,8 @@ export async function highlight(
         lang = defaultLang
       }
     }
-    const { attrs: attributes, rawAttrs } = resolveAttrs(attrs || '')
+    // const { attrs: attributes, rawAttrs } = resolveAttrs(attrs || '')
+    const enabledTwoslash = attrs.includes('twoslash')
     const mustaches = new Map<string, string>()
 
     const removeMustache = (s: string) => {
@@ -133,7 +135,7 @@ export async function highlight(
         s = s.replaceAll(marker, match)
       })
 
-      if (attributes.twoslash && options.twoslash)
+      if (enabledTwoslash && options.twoslash)
         s = s.replace(/{/g, '&#123;')
 
       return `${s}\n`
@@ -141,14 +143,14 @@ export async function highlight(
 
     str = removeMustache(str).trimEnd()
 
-    const inlineTransformers: ShikiTransformer[] = []
+    const inlineTransformers: ShikiTransformer[] = [
+      transformerCompactLineOptions(attrsToLines(attrs)),
+    ]
 
-    if (attributes.twoslash && options.twoslash) {
+    if (enabledTwoslash && options.twoslash) {
       inlineTransformers.push(transformerTwoslash({
         processHoverInfo(info) {
           return defaultHoverInfoProcessor(info)
-            // Remove shiki_core namespace
-            .replace(/_shikijs_core[\w_]*\./g, '')
         },
       }))
     }
@@ -162,10 +164,7 @@ export async function highlight(
       })
     }
 
-    if (
-      (whitespace && attributes.whitespace !== false)
-      || (!whitespace && attributes.whitespace)
-    )
+    if (attrs.includes('whitespace') || whitespace)
       inlineTransformers.push(transformerRenderWhitespace({ position: 'boundary' }))
 
     try {
@@ -176,7 +175,7 @@ export async function highlight(
           ...inlineTransformers,
           ...userTransformers,
         ],
-        meta: { __raw: rawAttrs },
+        meta: { __raw: attrs },
         ...(typeof theme === 'object' && 'light' in theme && 'dark' in theme
           ? { themes: theme, defaultColor: false }
           : { theme }),

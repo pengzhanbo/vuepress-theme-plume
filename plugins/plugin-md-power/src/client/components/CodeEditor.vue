@@ -34,7 +34,7 @@ function highlight() {
     })
     if (container) {
       container.innerHTML = output
-        .replace(/^<pre[^]+?>/, '')
+        .replace(/^<pre[^>]*>/, '')
         .replace(/<\/pre>$/, '')
         .replace(/(<span class="line">)(<\/span>)/g, '$1<wbr>$2')
     }

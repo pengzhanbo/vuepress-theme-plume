@@ -4,7 +4,7 @@
 import type { PluginWithOptions } from 'markdown-it'
 import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
 
-const [openTag, endTag] = ['=|', '|=']
+const [openTag, endTag] = ['!!', '!!']
 
 function createTokenizer(): RuleInline {
   return (state, silent) => {
@@ -18,7 +18,7 @@ function createTokenizer(): RuleInline {
     if (silent)
       return false
 
-    // =||=
+    // - !!!!
     if (max - start < 5)
       return false
 

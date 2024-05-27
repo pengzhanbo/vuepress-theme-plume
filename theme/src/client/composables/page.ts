@@ -25,8 +25,7 @@ export function useEditNavLink(): ComputedRef<null | NavItemWithLink> {
       return null
 
     const {
-      repo,
-      docsRepo = repo,
+      docsRepo,
       docsBranch = 'main',
       docsDir = '',
       editLinkText,

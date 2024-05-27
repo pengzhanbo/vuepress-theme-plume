@@ -20,8 +20,8 @@ function setStyle(item: Element) {
   const el = item as HTMLElement
 
   if (!_transition) {
-    const value = typeof window !== 'undefined' && window.getComputedStyle ? window.getComputedStyle(el).transition : ''
-    _transition = value && !value.includes('all') ? `${value}, ` : ' '
+    const value = typeof window !== 'undefined' ? window.getComputedStyle?.(el).transition : ''
+    _transition = value && !value.includes('all') ? `${value || ''}, ` : ' '
   }
 
   el.style.transition = `${_transition}transform ${props.duration}s ease-in-out ${props.delay}s, opacity ${props.duration}s ease-in-out ${props.delay}s`

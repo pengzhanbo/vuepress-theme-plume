@@ -97,7 +97,7 @@ export const zhNotes = definePlumeNotesConfig({
           text: '内置插件',
           dir: 'plugins',
           collapsed: false,
-          items: ['', '代码复制', '代码高亮', '搜索', '阅读统计', 'markdown增强', 'markdownPower', '百度统计'],
+          items: ['', '代码高亮', '搜索', '阅读统计', 'markdown增强', 'markdownPower', '百度统计'],
         },
       ],
     },
@@ -107,7 +107,6 @@ export const zhNotes = definePlumeNotesConfig({
       sidebar: [
         {
           text: '插件',
-          link: '/plugins/',
           items: [
             'caniuse',
             'iconify',
@@ -117,7 +116,7 @@ export const zhNotes = definePlumeNotesConfig({
             {
               text: 'plugin-netlify-functions',
               dir: 'netlify-functions',
-              link: '/plugins/plugin-netlify-functions/',
+              link: '/plugin-netlify-functions/',
               items: [
                 '介绍',
                 '使用',
@@ -137,7 +136,6 @@ export const zhNotes = definePlumeNotesConfig({
         {
           text: '工具',
           icon: 'tabler:tools',
-          link: '/tools/',
           items: ['home-hero-tint-plate', 'caniuse'],
         },
       ],

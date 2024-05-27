@@ -1,7 +1,7 @@
 import { genSaltSync, hashSync } from 'bcrypt-ts'
 import { isNumber, isString, random, toArray } from '@pengzhanbo/utils'
 import type { Page } from 'vuepress/core'
-import type { PlumeThemeEncrypt, PlumeThemePageData } from '../shared/index.js'
+import type { PlumeThemeEncrypt, PlumeThemePageData } from '../../shared/index.js'
 
 const isStringLike = (value: unknown): boolean => isString(value) || isNumber(value)
 const separator = ':'

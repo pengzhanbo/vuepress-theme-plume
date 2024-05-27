@@ -2,6 +2,7 @@
   "name": "@vuepress-plume/plugin-caniuse",
   "type": "module",
   "version": "1.0.0-rc.56",
+  "private": "true",
   "description": "The Plugin for VuePres 2, Support Can-I-Use feature",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",
@@ -43,7 +44,7 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.9"
+    "vuepress": "2.0.0-rc.12"
   },
   "dependencies": {
     "markdown-it-container": "^4.0.0"

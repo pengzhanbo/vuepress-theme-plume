@@ -71,7 +71,6 @@
     "@vuepress-plume/plugin-baidu-tongji": "workspace:*",
     "@vuepress-plume/plugin-blog-data": "workspace:*",
     "@vuepress-plume/plugin-content-update": "workspace:*",
-    "@vuepress-plume/plugin-copy-code": "workspace:*",
     "@vuepress-plume/plugin-iconify": "workspace:*",
     "@vuepress-plume/plugin-notes-data": "workspace:*",
     "@vuepress-plume/plugin-search": "workspace:*",
@@ -97,7 +96,7 @@
     "nanoid": "^5.0.7",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2",
-    "vuepress-plugin-md-enhance": "^2.0.0-rc.44",
+    "vuepress-plugin-md-enhance": "^2.0.0-rc.45",
     "vuepress-plugin-md-power": "workspace:*"
   }
 }

@@ -1,6 +1,6 @@
 import type { Page, Theme } from 'vuepress/core'
 import { templateRenderer } from 'vuepress/utils'
-import { isPlainObject } from '@vuepress/helper'
+import { addViteConfig, addViteOptimizeDepsInclude, addViteSsrNoExternal, isPlainObject } from '@vuepress/helper'
 import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
 import { getPlugins } from './plugins/index.js'
 import { extendsPageData, setupPage } from './setupPages.js'
@@ -48,6 +48,19 @@ export function plumeTheme({
       extendsPage: (page) => {
         extendsPageData(page as Page<PlumeThemePageData>, localeOptions)
         resolvePageHead(page, localeOptions)
+      },
+
+      extendsBundlerOptions(bundlerOptions, app) {
+        addViteConfig(bundlerOptions, app, {
+          build: {
+            chunkSizeWarningLimit: 1024,
+          },
+        })
+        addViteOptimizeDepsInclude(bundlerOptions, app, '@vueuse/core', true)
+        addViteSsrNoExternal(bundlerOptions, app, [
+          '@vuepress/helper',
+          '@vuepress/plugin-reading-time',
+        ])
       },
 
       templateBuildRenderer(template, context) {

@@ -1,3 +1,12 @@
+# [1.0.0-rc.61](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.60...v1.0.0-rc.61) (2024-05-28)
+
+
+### Bug Fixes
+
+* build fail ([a3c6ea1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a3c6ea16a5b38d24ec076f693b8f3b04de94cd40))
+
+
+
 # [1.0.0-rc.60](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.59...v1.0.0-rc.60) (2024-05-28)
 
 

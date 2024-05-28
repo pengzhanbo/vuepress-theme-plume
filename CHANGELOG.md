@@ -1,3 +1,12 @@
+# [1.0.0-rc.59](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.58...v1.0.0-rc.59) (2024-05-28)
+
+
+### Performance Improvements
+
+* add vite ssr no external ([58b414c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/58b414c975672e9c904cf97f97b42a66c863d4a8))
+
+
+
 # [1.0.0-rc.58](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.57...v1.0.0-rc.58) (2024-05-27)
 
 

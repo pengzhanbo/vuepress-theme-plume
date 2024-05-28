@@ -102,7 +102,7 @@ importers:
         specifier: 2.0.0-rc.12
         version: 2.0.0-rc.12(@vuepress/bundler-vite@2.0.0-rc.12(@types/node@20.12.12)(sass@1.77.2)(typescript@5.4.5))(typescript@5.4.5)(vue@3.4.27(typescript@5.4.5))
       vuepress-theme-plume:
-        specifier: workspace:*
+        specifier: workspace:~
         version: link:../theme
     devDependencies:
       '@types/express':
@@ -182,7 +182,7 @@ importers:
   plugins/plugin-copy-code:
     dependencies:
       '@vuepress-plume/plugin-content-update':
-        specifier: workspace:*
+        specifier: workspace:~
         version: link:../plugin-content-update
       vue:
         specifier: ^3.4.27
@@ -385,28 +385,28 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
       '@vuepress-plume/plugin-auto-frontmatter':
-        specifier: workspace:*
+        specifier: workspace:~
         version: link:../plugins/plugin-auto-frontmatter
       '@vuepress-plume/plugin-baidu-tongji':
-        specifier: workspace:*
+        specifier: workspace:~
         version: link:../plugins/plugin-baidu-tongji
       '@vuepress-plume/plugin-blog-data':
-        specifier: workspace:*
+        specifier: workspace:~
         version: link:../plugins/plugin-blog-data
       '@vuepress-plume/plugin-content-update':
-        specifier: workspace:*
+        specifier: workspace:~
         version: link:../plugins/plugin-content-update
       '@vuepress-plume/plugin-iconify':
-        specifier: workspace:*
+        specifier: workspace:~
         version: link:../plugins/plugin-iconify
       '@vuepress-plume/plugin-notes-data':
-        specifier: workspace:*
+        specifier: workspace:~
         version: link:../plugins/plugin-notes-data
       '@vuepress-plume/plugin-search':
-        specifier: workspace:*
+        specifier: workspace:~
         version: link:../plugins/plugin-search
       '@vuepress-plume/plugin-shikiji':
-        specifier: workspace:*
+        specifier: workspace:~
         version: link:../plugins/plugin-shikiji
       '@vuepress/helper':
         specifier: 2.0.0-rc.31
@@ -475,10 +475,10 @@ importers:
         specifier: 2.0.0-rc.12
         version: 2.0.0-rc.12(@vuepress/bundler-vite@2.0.0-rc.12(@types/node@20.12.10)(sass@1.77.2)(typescript@5.4.5))(typescript@5.4.5)(vue@3.4.27(typescript@5.4.5))
       vuepress-plugin-md-enhance:
-        specifier: ^2.0.0-rc.45
+        specifier: 2.0.0-rc.45
         version: 2.0.0-rc.45(chart.js@4.4.3)(echarts@5.5.0)(flowchart.ts@3.0.0)(katex@0.16.10)(markdown-it@14.1.0)(mermaid@10.9.1)(typescript@5.4.5)(vuepress@2.0.0-rc.12(@vuepress/bundler-vite@2.0.0-rc.12(@types/node@20.12.10)(sass@1.77.2)(typescript@5.4.5))(typescript@5.4.5)(vue@3.4.27(typescript@5.4.5)))
       vuepress-plugin-md-power:
-        specifier: workspace:*
+        specifier: workspace:~
         version: link:../plugins/plugin-md-power
 
 packages:

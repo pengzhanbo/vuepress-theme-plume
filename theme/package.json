@@ -67,14 +67,14 @@
   },
   "dependencies": {
     "@pengzhanbo/utils": "^1.1.2",
-    "@vuepress-plume/plugin-auto-frontmatter": "workspace:*",
-    "@vuepress-plume/plugin-baidu-tongji": "workspace:*",
-    "@vuepress-plume/plugin-blog-data": "workspace:*",
-    "@vuepress-plume/plugin-content-update": "workspace:*",
-    "@vuepress-plume/plugin-iconify": "workspace:*",
-    "@vuepress-plume/plugin-notes-data": "workspace:*",
-    "@vuepress-plume/plugin-search": "workspace:*",
-    "@vuepress-plume/plugin-shikiji": "workspace:*",
+    "@vuepress-plume/plugin-auto-frontmatter": "workspace:~",
+    "@vuepress-plume/plugin-baidu-tongji": "workspace:~",
+    "@vuepress-plume/plugin-blog-data": "workspace:~",
+    "@vuepress-plume/plugin-content-update": "workspace:~",
+    "@vuepress-plume/plugin-iconify": "workspace:~",
+    "@vuepress-plume/plugin-notes-data": "workspace:~",
+    "@vuepress-plume/plugin-search": "workspace:~",
+    "@vuepress-plume/plugin-shikiji": "workspace:~",
     "@vuepress/helper": "2.0.0-rc.31",
     "@vuepress/plugin-active-header-links": "2.0.0-rc.31",
     "@vuepress/plugin-comment": "2.0.0-rc.31",
@@ -96,7 +96,7 @@
     "nanoid": "^5.0.7",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2",
-    "vuepress-plugin-md-enhance": "^2.0.0-rc.45",
-    "vuepress-plugin-md-power": "workspace:*"
+    "vuepress-plugin-md-enhance": "2.0.0-rc.45",
+    "vuepress-plugin-md-power": "workspace:~"
   }
 }

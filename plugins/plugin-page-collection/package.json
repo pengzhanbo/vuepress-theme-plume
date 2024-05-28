@@ -38,7 +38,7 @@
     "leancloud-storage": "^4.15.2",
     "vue": "^3.4.27",
     "vue-router": "4.3.2",
-    "vuepress-plugin-netlify-functions": "workspace:*"
+    "vuepress-plugin-netlify-functions": "workspace:~"
   },
   "publishConfig": {
     "access": "public"

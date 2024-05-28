@@ -60,6 +60,7 @@ export function plumeTheme({
         addViteSsrNoExternal(bundlerOptions, app, [
           '@vuepress/helper',
           '@vuepress/plugin-reading-time',
+          '@vuepress/plugin-watermark',
         ])
       },
 

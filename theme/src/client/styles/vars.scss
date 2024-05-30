@@ -672,3 +672,11 @@ html.dark {
   --vp-c-plot-dark: var(--vp-c-bg);
   --vp-c-bg-plot-dark: var(--vp-c-text-2);
 }
+
+/**
+ * plugin-photo-swipe
+ * -------------------------------------------------------------------------- */
+:root {
+  --photo-swipe-bullet: var(--vp-c-bg);
+  --photo-swipe-bullet-active: var(--vp-c-brand-1);
+}

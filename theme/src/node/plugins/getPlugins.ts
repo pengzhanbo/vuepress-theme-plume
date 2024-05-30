@@ -2,7 +2,7 @@ import type { App, PluginConfig } from 'vuepress/core'
 import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { gitPlugin } from '@vuepress/plugin-git'
-import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom'
+import { photoSwipePlugin } from '@vuepress/plugin-photo-swipe'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
 import { themeDataPlugin } from '@vuepress/plugin-theme-data'
 import { autoFrontmatterPlugin } from '@vuepress-plume/plugin-auto-frontmatter'
@@ -100,10 +100,9 @@ export function getPlugins({
     }))
   }
 
-  if (pluginOptions.mediumZoom !== false) {
-    plugins.push(mediumZoomPlugin({
+  if (pluginOptions.photoSwipe !== false) {
+    plugins.push(photoSwipePlugin({
       selector: '.plume-content > img, .plume-content :not(a) > img',
-      zoomOptions: { background: 'var(--vp-c-bg)' },
       delay: 300,
     }))
   }

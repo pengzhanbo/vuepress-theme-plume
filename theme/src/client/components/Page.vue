@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useMediumZoom } from '@vuepress/plugin-medium-zoom/client'
-import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import { useData, useSidebar } from '../composables/index.js'
 import { usePageEncrypt } from '../composables/encrypt.js'
 import PageAside from './PageAside.vue'
@@ -25,9 +23,6 @@ const enableAside = computed(() => {
 
   return hasAside.value && isPageDecrypted.value
 })
-
-const zoom = useMediumZoom()
-onContentUpdated(() => zoom?.refresh())
 </script>
 
 <template>

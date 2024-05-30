@@ -30,14 +30,14 @@
       "types": "./lib/client/index.d.ts",
       "import": "./lib/client/index.js"
     },
-    "./client/components/*": {
+    "./components/*": {
       "import": "./lib/client/components/*"
     },
-    "./client/composables": {
+    "./composables": {
       "types": "./lib/client/composables/index.d.ts",
       "import": "./lib/client/composables/index.js"
     },
-    "./client/composables/*": {
+    "./composables/*": {
       "types": "./lib/client/composables/*.d.ts",
       "import": "./lib/client/composables/*.js"
     },

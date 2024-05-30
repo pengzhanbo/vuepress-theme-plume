@@ -70,7 +70,7 @@ onMounted(() => {
   text-underline-offset: 4px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1440px) {
   .plume-footer {
     padding: 24px;
   }

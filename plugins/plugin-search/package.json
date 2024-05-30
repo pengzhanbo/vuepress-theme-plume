@@ -41,8 +41,8 @@
   },
   "dependencies": {
     "@vuepress/helper": "2.0.0-rc.33",
-    "@vueuse/core": "^10.9.0",
-    "@vueuse/integrations": "^10.9.0",
+    "@vueuse/core": "^10.10.0",
+    "@vueuse/integrations": "^10.10.0",
     "chokidar": "^3.6.0",
     "focus-trap": "^7.5.4",
     "mark.js": "^8.11.1",

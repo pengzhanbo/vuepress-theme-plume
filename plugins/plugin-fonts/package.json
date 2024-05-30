@@ -1,0 +1,47 @@
+{
+  "name": "@vuepress-plume/plugin-fonts",
+  "type": "module",
+  "version": "1.0.0-rc.61",
+  "description": "The Plugin for VuePres 2 - fonts",
+  "author": "pengzhanbo <volodymyr@foxmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git",
+    "directory": "plugins/plugin-fonts"
+  },
+  "bugs": {
+    "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/node/index.d.ts",
+      "import": "./lib/node/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "lib/node/index.js",
+  "types": "./lib/node/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "pnpm run copy && pnpm run ts",
+    "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
+    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
+    "ts": "tsc -b tsconfig.build.json"
+  },
+  "peerDependencies": {
+    "vuepress": "2.0.0-rc.12"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keyword": [
+    "VuePress",
+    "vuepress plugin",
+    "fonts",
+    "vuepress-plugin-fonts"
+  ]
+}

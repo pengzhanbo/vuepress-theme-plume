@@ -20,6 +20,7 @@ import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
 import { searchPlugin } from '@vuepress-plume/plugin-search'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
 import { watermarkPlugin } from '@vuepress/plugin-watermark'
+import { fontsPlugin } from '@vuepress-plume/plugin-fonts'
 import type {
   PlumeThemeEncrypt,
   PlumeThemeLocaleOptions,
@@ -63,6 +64,8 @@ export function getPlugins({
     notesDataPlugin(resolveNotesOptions(localeOptions)),
 
     iconifyPlugin(),
+
+    fontsPlugin(),
 
     contentUpdatePlugin(),
 

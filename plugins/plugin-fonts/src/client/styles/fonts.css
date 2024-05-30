@@ -248,5 +248,3 @@
     local("Source Han Sans SC");
   unicode-range: U+2018, U+2019, U+201C, U+201D; /* 分别是 ‘’“” */
 }
-
-/* Generate the subsetted fonts using: `pyftsubset <file>.woff2 --unicodes="<range>" --output-file="inter-<style>-<subset>.woff2" --flavor=woff2` */

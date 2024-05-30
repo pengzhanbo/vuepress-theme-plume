@@ -191,6 +191,12 @@ importers:
         specifier: 2.0.0-rc.12
         version: 2.0.0-rc.12(@vuepress/bundler-vite@2.0.0-rc.12(@types/node@20.12.10)(sass@1.77.2)(typescript@5.4.5))(typescript@5.4.5)(vue@3.4.27(typescript@5.4.5))
 
+  plugins/plugin-fonts:
+    dependencies:
+      vuepress:
+        specifier: 2.0.0-rc.12
+        version: 2.0.0-rc.12(@vuepress/bundler-vite@2.0.0-rc.12(@types/node@20.12.10)(sass@1.77.2)(typescript@5.4.5))(typescript@5.4.5)(vue@3.4.27(typescript@5.4.5))
+
   plugins/plugin-iconify:
     dependencies:
       '@iconify/vue':
@@ -396,6 +402,9 @@ importers:
       '@vuepress-plume/plugin-content-update':
         specifier: workspace:*
         version: link:../plugins/plugin-content-update
+      '@vuepress-plume/plugin-fonts':
+        specifier: workspace:*
+        version: link:../plugins/plugin-fonts
       '@vuepress-plume/plugin-iconify':
         specifier: workspace:*
         version: link:../plugins/plugin-iconify

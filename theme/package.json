@@ -71,6 +71,7 @@
     "@vuepress-plume/plugin-baidu-tongji": "workspace:*",
     "@vuepress-plume/plugin-blog-data": "workspace:*",
     "@vuepress-plume/plugin-content-update": "workspace:*",
+    "@vuepress-plume/plugin-fonts": "workspace:*",
     "@vuepress-plume/plugin-iconify": "workspace:*",
     "@vuepress-plume/plugin-notes-data": "workspace:*",
     "@vuepress-plume/plugin-search": "workspace:*",

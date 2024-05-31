@@ -2,7 +2,7 @@
   "name": "vuepress-plugin-md-power",
   "type": "module",
   "version": "1.0.0-rc.61",
-  "description": "The Plugin for VuePres 2 - markdown power",
+  "description": "The Plugin for VuePress 2 - markdown power",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",

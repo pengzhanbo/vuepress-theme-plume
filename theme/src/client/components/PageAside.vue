@@ -1,16 +1,16 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
-import { useActiveAnchor, useData } from '../composables/index.js'
+import { type MenuItem, getHeaders, useActiveAnchor, useData } from '../composables/index.js'
 import PageAsideItem from './PageAsideItem.vue'
 
-const { page, theme } = useData()
+const { theme, frontmatter } = useData()
 
-const headers = ref(page.value.headers)
+const headers = ref<MenuItem[]>([])
 const hasOutline = computed(() => headers.value.length > 0)
 
 onContentUpdated(() => {
-  headers.value = page.value.headers
+  headers.value = getHeaders(frontmatter.value.outline ?? theme.value.outline)
 })
 
 const container = ref()
@@ -84,6 +84,7 @@ function handlePrint() {
   width: 2px;
   height: 18px;
   background-color: var(--vp-c-brand-1);
+  border-radius: 2px;
   opacity: 0;
   transition:
     top 0.25s cubic-bezier(0, 1, 0.5, 1),
@@ -94,9 +95,9 @@ function handlePrint() {
 .outline-title {
   display: flex;
   align-items: center;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 28px;
+  line-height: 32px;
   letter-spacing: 0.4px;
 }
 

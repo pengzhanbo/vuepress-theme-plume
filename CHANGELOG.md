@@ -1,3 +1,19 @@
+# [1.0.0-rc.62](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.61...v1.0.0-rc.62) (2024-06-02)
+
+
+### Features
+
+* move fonts to `plugin-fonts` ([ec00e78](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ec00e7836271b7089fc5b08ebfa6effd6a041865))
+* **theme:** 新增自定义有侧边栏层级配置 ([90f5409](https://github.com/pengzhanbo/vuepress-theme-plume/commit/90f54096427daab4e2ef8d7a3360e041c00682aa))
+* **theme:** use `plugin-photo-swipe` instead `plugin-medium-zoom` ([b6e6a26](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b6e6a2674f95c73c35b44b36250028e87e59bac9))
+
+
+### Performance Improvements
+
+* update deps to latest ([0e07021](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0e070210e24fcb4bf6c49eb37df85b5799099229))
+
+
+
 # [1.0.0-rc.61](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.60...v1.0.0-rc.61) (2024-05-28)
 
 

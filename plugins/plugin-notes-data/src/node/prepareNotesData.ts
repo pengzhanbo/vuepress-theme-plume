@@ -190,7 +190,7 @@ function initSidebarByConfig(
         text: current?.title || text,
         link: current?.link,
         icon: current?.frontmatter.icon,
-        items: [],
+        // items: [],
       }
     }
     else {

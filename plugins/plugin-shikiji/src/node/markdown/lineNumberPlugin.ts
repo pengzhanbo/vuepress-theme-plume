@@ -6,6 +6,7 @@ import type { LineNumberOptions } from '../types.js'
 
 const LINE_NUMBERS_REGEXP = /:line-numbers\b/
 const NO_LINE_NUMBERS_REGEXP = /:no-line-numbers\b/
+const LINE_NUMBERS_START_REGEXP = /:line-numbers=(\d+)\b/
 
 export function lineNumberPlugin(md: Markdown, { lineNumbers = true }: LineNumberOptions = {}): void {
   const rawFence = md.renderer.rules.fence!
@@ -41,11 +42,15 @@ export function lineNumberPlugin(md: Markdown, { lineNumbers = true }: LineNumbe
     )
       return rawCode
 
+    const startNumbers
+      = Number(info.match(LINE_NUMBERS_START_REGEXP)?.[1] ?? 1) - 1
+    const lineNumbersStyle = `style="counter-reset:line-number ${startNumbers}"`
+
     const lineNumbersCode = [...Array(lines.length)]
       .map(() => `<div class="line-number"></div>`)
       .join('')
 
-    const lineNumbersWrapperCode = `<div class="line-numbers" aria-hidden="true">${lineNumbersCode}</div>`
+    const lineNumbersWrapperCode = `<div class="line-numbers" aria-hidden="true" ${lineNumbersStyle}>${lineNumbersCode}</div>`
 
     const finalCode = rawCode
       .replace(/<\/div>$/, `${lineNumbersWrapperCode}</div>`)

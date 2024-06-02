@@ -45,7 +45,7 @@ export interface PlumeThemePluginOptions {
 
   nprogress?: false
 
-  mediumZoom?: false
+  photoSwipe?: false
 
   markdownEnhance?: false | MarkdownEnhancePluginOptions
 

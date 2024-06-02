@@ -119,6 +119,7 @@ export interface PlumeThemePageFrontmatter {
   contributors?: boolean
   prev?: string | NavItemWithLink
   next?: string | NavItemWithLink
+  outline?: false | number | [number, number] | 'deep'
   backToTop?: boolean
   externalLink?: boolean
   readingTime?: boolean

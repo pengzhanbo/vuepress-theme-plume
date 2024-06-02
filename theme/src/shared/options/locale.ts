@@ -74,6 +74,8 @@ export interface PlumeThemeLocaleData extends LocaleData {
    */
   notes?: false | NotesDataOptions
 
+  outline?: false | number | [number, number] | 'deep'
+
   /**
    * language text
    */

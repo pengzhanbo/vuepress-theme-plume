@@ -54,7 +54,7 @@ permalink: /config/frontmatter/basic/
 - 类型： `boolean`
 - 默认值： `true`
 
-当前文章内的 外部链接是否显示 外部链接图标， 即 “ <ExternalLinkIcon /> ” 图标
+当前文章内的 外部链接是否显示 外部链接图标。
 
 ### backToTop
 
@@ -76,6 +76,20 @@ permalink: /config/frontmatter/basic/
 - 默认值： `true`
 
 当前文章是否 显示 右侧边栏。
+
+### outline
+
+- 类型： `false | number | [number, number] | 'deep'`
+- 默认值： `[2, 3]`
+- 详情：
+
+  要显示的标题级别。
+
+  单个数字表示只显示该级别的标题。
+
+  如果传递的是一个元组，第一个数字是最小级别，第二个数字是最大级别。
+
+  `'deep'` 与 `[2, 6]` 相同，将显示从 `<h2>` 到 `<h6>` 的所有标题。
 
 ### prev
 

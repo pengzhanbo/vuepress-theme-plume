@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.61",
   "private": true,
-  "packageManager": "pnpm@9.1.2",
+  "packageManager": "pnpm@9.1.4",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -15,7 +15,7 @@
   ],
   "engines": {
     "node": "^18 || >=20.0.0",
-    "pnpm": ">=8"
+    "pnpm": ">=9"
   },
   "scripts": {
     "build": "pnpm run clean && pnpm run build:package",
@@ -56,10 +56,10 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.5",
     "rimraf": "^5.0.7",
-    "stylelint": "^16.6.0",
+    "stylelint": "^16.6.1",
     "tsconfig-vuepress": "^4.5.0",
     "typescript": "^5.4.5",
-    "vite": "^5.2.11"
+    "vite": "5.2.11"
   },
   "lint-staged": {
     "*": "eslint --fix"

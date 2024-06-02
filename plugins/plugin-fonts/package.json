@@ -1,44 +1,39 @@
 {
-  "name": "plugin-page-collection",
+  "name": "@vuepress-plume/plugin-fonts",
   "type": "module",
   "version": "1.0.0-rc.61",
-  "private": true,
-  "description": "The Plugin for VuePress 2",
+  "description": "The Plugin for VuePress 2 - fonts",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git",
+    "directory": "plugins/plugin-fonts"
   },
   "bugs": {
     "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
   },
   "exports": {
-    ".": "./lib/node/index.js",
-    "./client": "./lib/client/index.js",
+    ".": {
+      "types": "./lib/node/index.d.ts",
+      "import": "./lib/node/index.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "lib/node/index.js",
-  "types": "lib/node/index.d.ts",
+  "types": "./lib/node/index.d.ts",
   "files": [
     "lib"
   ],
   "scripts": {
     "build": "pnpm run copy && pnpm run ts",
     "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
-    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
+    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
     "ts": "tsc -b tsconfig.build.json"
   },
   "peerDependencies": {
     "vuepress": "2.0.0-rc.12"
-  },
-  "dependencies": {
-    "@netlify/functions": "^2.7.0",
-    "leancloud-storage": "^4.15.2",
-    "vue": "^3.4.27",
-    "vue-router": "4.3.2",
-    "vuepress-plugin-netlify-functions": "workspace:~"
   },
   "publishConfig": {
     "access": "public"
@@ -46,7 +41,7 @@
   "keyword": [
     "VuePress",
     "vuepress plugin",
-    "page collection",
-    "vuepress-plugin-page-collection"
+    "fonts",
+    "vuepress-plugin-fonts"
   ]
 }

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { PageHeader } from 'vuepress/client'
+import type { MenuItem } from '../composables/index.js'
 
 defineProps<{
-  headers: PageHeader[]
+  headers: MenuItem[]
   root?: boolean
 }>()
 
@@ -39,7 +39,9 @@ function handleClick({ target: el }: Event) {
 .outline-link {
   display: block;
   overflow: hidden;
-  line-height: 28px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 32px;
   color: var(--vp-c-text-2);
   text-overflow: ellipsis;
   white-space: nowrap;

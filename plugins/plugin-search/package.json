@@ -2,7 +2,7 @@
   "name": "@vuepress-plume/plugin-search",
   "type": "module",
   "version": "1.0.0-rc.61",
-  "description": "The Plugin for VuePres 2 - local search",
+  "description": "The Plugin for VuePress 2 - local search",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
@@ -40,9 +40,9 @@
     "vuepress": "2.0.0-rc.12"
   },
   "dependencies": {
-    "@vuepress/helper": "2.0.0-rc.31",
-    "@vueuse/core": "^10.9.0",
-    "@vueuse/integrations": "^10.9.0",
+    "@vuepress/helper": "2.0.0-rc.33",
+    "@vueuse/core": "^10.10.0",
+    "@vueuse/integrations": "^10.10.0",
     "chokidar": "^3.6.0",
     "focus-trap": "^7.5.4",
     "mark.js": "^8.11.1",

@@ -2,7 +2,7 @@
   "name": "vuepress-plugin-netlify-functions",
   "type": "module",
   "version": "1.0.0-rc.61",
-  "description": "The Plugin for VuePres 2, Support Netlify Functions",
+  "description": "The Plugin for VuePress 2, Support Netlify Functions",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/pengzhanbo/vuepress-theme-plume#readme",
@@ -52,11 +52,11 @@
     "dotenv": "^16.4.5",
     "esbuild": "^0.21.4",
     "execa": "^9.1.0",
-    "netlify-cli": "^17.23.8",
+    "netlify-cli": "^17.25.0",
     "portfinder": "^1.0.32"
   },
   "devDependencies": {
-    "@types/node": "^20.12.12"
+    "@types/node": "^20.12.13"
   },
   "publishConfig": {
     "access": "public"

@@ -7,16 +7,16 @@
 
 - 主题于 `theme` 目录中进行开发维护。
 - 插件于 `plugins` 目录中进行开发维护。
-- 示例于 `docs` 目录中进行开发维护。
+- 文档于 `docs` 目录中进行开发维护。
 
 在 `plugins` 目录中：
 
 - `plugin-auto-frontmatter` ： 为 md 文件自动添加 frontmatter。
 - `plugin-blog-data`： 生成 blog 文章列表数据
 - `plugin-notes-data`： 生成 notes 数据，管理不同 note 的 `sidebar` 的数据
-- `plugin-caniuse`: 添加 `caniuse` 内容容器
+- ~~`plugin-caniuse`: 添加 `caniuse` 内容容器，已弃用，不再维护~~
 - `plugin-content-update`: 重写 `Content` 组件，提供 `onContentUpdated` 钩子
-- `plugin-copy-code`: 为 代码块添加 复制 按钮，并适配 `shikiji`
+- ~~`plugin-copy-code`: 为 代码块添加 复制 按钮，并适配 `shikiji`，已弃用，不再维护~~
 - `plugin-search`: 为主题提供 全文模糊搜索 功能
 - `plugin-shikiji`: 代码高亮插件，支持 highlight、diff、focus、error level
 - `plugin-iconify`: 添加全局组件 `Iconify`
@@ -28,7 +28,7 @@
 开发要求：
 
 - [Node.js](http://nodejs.org/) version 18.16.0+
-- [pnpm](https://pnpm.io/zh/) version 8+
+- [pnpm](https://pnpm.io/zh/) version 9+
 
 克隆代码仓库，并安装依赖：
 

@@ -1,4 +1,4 @@
-import './styles/index.scss'
+import './styles/index.css'
 
 import { defineClientConfig } from 'vuepress/client'
 import type { ClientConfig } from 'vuepress/client'

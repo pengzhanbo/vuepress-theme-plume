@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
+import { useRoute } from 'vuepress/client'
 import { useData, useSidebar } from '../composables/index.js'
 import { usePageEncrypt } from '../composables/encrypt.js'
 import PageAside from './PageAside.vue'
@@ -10,6 +11,7 @@ import TransitionFadeSlideY from './TransitionFadeSlideY.vue'
 
 const { hasSidebar, hasAside } = useSidebar()
 const { page, isDark } = useData()
+const route = useRoute()
 
 const { isPageDecrypted } = usePageEncrypt()
 
@@ -23,6 +25,32 @@ const enableAside = computed(() => {
 
   return hasAside.value && isPageDecrypted.value
 })
+
+const asideEl = ref<HTMLElement>()
+watch(
+  () => route.hash,
+  hash =>
+    nextTick(() => {
+      if (!asideEl.value)
+        return
+      const activeItem = asideEl.value.querySelector(
+        `.outline-link[href="${hash}"]`,
+      )
+      if (!activeItem || !hash) {
+        asideEl.value.scrollTop = 0
+        return
+      }
+
+      const { top: navTop, height: navHeight }
+        = asideEl.value.getBoundingClientRect()
+      const { top: activeTop, height: activeHeight }
+        = activeItem.getBoundingClientRect()
+
+      if (activeTop < navTop || activeTop + activeHeight > navTop + navHeight)
+        activeItem.scrollIntoView({ block: 'center' })
+    }),
+  { immediate: true },
+)
 </script>
 
 <template>
@@ -37,7 +65,7 @@ const enableAside = computed(() => {
     >
       <div class="container">
         <div v-if="enableAside" class="aside">
-          <div class="aside-container">
+          <div ref="asideEl" class="aside-container">
             <div class="aside-content">
               <PageAside />
             </div>

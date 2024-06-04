@@ -34,8 +34,9 @@ export function useNetlifyFunctionsPlugin(app: App, options: UseNetlifyFunctionP
       (plugin: PluginObject) =>
         plugin.name === 'vuepress-plugin-netlify-functions',
     )
-  )
+  ) {
     app.use(netlifyFunctionsPlugin())
+  }
 
   const { proxyPrefix, directory } = getOptions()
   const source = path.join(options.directory, '**/*.js')

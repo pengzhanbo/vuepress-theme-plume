@@ -42,8 +42,9 @@ useEventListener('message', (event) => {
       && payload
       && payload.feature === props.feature
       && payload.meta === props.meta
-  )
+  ) {
     height.value = `${Math.ceil(payload.height)}px`
+  }
 })
 
 function parseData(data: string | MessageData): MessageData {

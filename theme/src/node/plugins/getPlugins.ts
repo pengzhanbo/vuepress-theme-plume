@@ -92,8 +92,9 @@ export function getPlugins({
     }))
   }
 
-  if (pluginOptions.nprogress !== false)
+  if (pluginOptions.nprogress !== false) {
     plugins.push(nprogressPlugin())
+  }
 
   if (pluginOptions.git ?? isProd) {
     plugins.push(gitPlugin({
@@ -171,14 +172,17 @@ export function getPlugins({
     }))
   }
 
-  if (pluginOptions.comment)
+  if (pluginOptions.comment) {
     plugins.push(commentPlugin(pluginOptions.comment))
+  }
 
-  if (pluginOptions.baiduTongji !== false && pluginOptions.baiduTongji?.key && isProd)
+  if (pluginOptions.baiduTongji !== false && pluginOptions.baiduTongji?.key && isProd) {
     plugins.push(baiduTongjiPlugin(pluginOptions.baiduTongji))
+  }
 
-  if (pluginOptions.sitemap !== false && hostname && isProd)
+  if (pluginOptions.sitemap !== false && hostname && isProd) {
     plugins.push(sitemapPlugin({ hostname }))
+  }
 
   if (pluginOptions.seo !== false && hostname && isProd) {
     plugins.push(seoPlugin({

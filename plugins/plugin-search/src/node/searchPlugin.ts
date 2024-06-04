@@ -28,7 +28,7 @@ export function searchPlugin({
 
     onPrepared: app => prepareSearchIndex({ app, isSearchable, searchOptions }),
 
-    onWatched: async (app, watchers) => {
+    onWatched: (app, watchers) => {
       const searchIndexWatcher = chokidar.watch('pages/**/*.js', {
         cwd: app.dir.temp(),
         ignoreInitial: true,

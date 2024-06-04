@@ -1,7 +1,11 @@
-export type PlumeThemeImage =
+export type ThemeImage =
   | string
   | { src: string, alt?: string }
   | { dark: string, light: string, alt?: string }
+
+export type ThemeColor = string | { light: string, dark: string }
+
+export type ThemeOutline = false | number | [number, number] | 'deep'
 
 export interface SocialLink {
   icon: SocialLinkIcon

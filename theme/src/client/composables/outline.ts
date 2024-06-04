@@ -1,6 +1,6 @@
 import { onMounted, onUnmounted, onUpdated } from 'vue'
 import type { Ref } from 'vue'
-import type { PlumeThemeLocaleData } from '../../shared/index.js'
+import type { ThemeOutline } from '../../shared/index.js'
 import { throttleAndDebounce } from '../utils/index.js'
 import { useAside } from './aside.js'
 
@@ -41,7 +41,7 @@ export type MenuItem = Omit<Header, 'slug' | 'children'> & {
   children?: MenuItem[]
 }
 
-export function getHeaders(range: PlumeThemeLocaleData['outline']): MenuItem[] {
+export function getHeaders(range?: ThemeOutline): MenuItem[] {
   const headers = Array.from(
     document.querySelectorAll('.plume-content :where(h1,h2,h3,h4,h5,h6)'),
   )
@@ -68,8 +68,9 @@ function serializeHeader(h: Element): string {
       if (
         (node as Element).classList.contains('badge-view')
         || (node as Element).classList.contains('ignore-header')
-      )
+      ) {
         continue
+      }
 
       ret += node.textContent
     }
@@ -88,7 +89,7 @@ function serializeHeader(h: Element): string {
   return ret.trim()
 }
 
-export function resolveHeaders(headers: MenuItem[], range?: PlumeThemeLocaleData['outline']): MenuItem[] {
+export function resolveHeaders(headers: MenuItem[], range?: ThemeOutline): MenuItem[] {
   if (range === false)
     return []
 

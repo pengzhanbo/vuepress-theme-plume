@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "rootDir": "./src",
-    "types": ["vuepress/client-types", "vite/client"],
+    "types": ["vuepress/client-types", "vite/client", "webpack-env"],
     "outDir": "./lib"
   },
   "files": [],

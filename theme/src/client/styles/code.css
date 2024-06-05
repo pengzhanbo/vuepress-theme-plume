@@ -180,7 +180,7 @@ div[class*="language-"].line-numbers-mode .line-numbers .line-number::before {
   }
 }
 
-.plume-content [class*="language-"] code .highlighted {
+.plume-content div[class*="language-"] code .highlighted {
   z-index: 2;
   display: inline-block;
   width: calc(100% + 48px);
@@ -190,15 +190,15 @@ div[class*="language-"].line-numbers-mode .line-numbers .line-number::before {
   transition: background-color 0.5s;
 }
 
-.plume-content [class*="language-"] code .highlighted.error {
+.plume-content div[class*="language-"] code .highlighted.error {
   background-color: var(--vp-code-line-error-color);
 }
 
-.plume-content [class*="language-"] code .highlighted.warning {
+.plume-content div[class*="language-"] code .highlighted.warning {
   background-color: var(--vp-code-line-warning-color);
 }
 
-.plume-content [class*="language-"] code .highlighted-word {
+.plume-content div[class*="language-"] code .highlighted-word {
   padding: 1px 3px;
   margin: -1px -3px;
   background-color: var(--vp-c-gray-soft);
@@ -206,70 +206,69 @@ div[class*="language-"].line-numbers-mode .line-numbers .line-number::before {
   border-radius: 4px;
 }
 
-.plume-content [class*="language-"] code .tab,
-.plume-content [class*="language-"] code .space {
+.plume-content div[class*="language-"] code .tab,
+.plume-content div[class*="language-"] code .space {
   position: relative;
 }
 
-.plume-content [class*="language-"] code .tab::before {
+.plume-content div[class*="language-"] code .tab::before {
   position: absolute;
   content: "⇥";
   opacity: 0.3;
 }
 
-.plume-content [class*="language-"] code .space::before {
+.plume-content div[class*="language-"] code .space::before {
   position: absolute;
   content: "·";
   opacity: 0.3;
 }
 
-.plume-content [class*="language-"] code .diff {
+.plume-content div[class*="language-"] code .diff {
   display: inline-block;
   width: calc(100% + 48px);
   padding: 0 24px;
   margin: 0 -24px;
   transition: background-color 0.5s;
-  /* stylelint-disable-next-line no-descending-specificity */
 }
 
-.plume-content [class*="language-"] code .diff::before {
+.plume-content div[class*="language-"] code .diff::before {
   position: absolute;
   left: 10px;
 }
 
-.plume-content [class*="language-"] code .diff.remove {
+.plume-content div[class*="language-"] code .diff.remove {
   background-color: var(--vp-code-line-diff-remove-color);
   opacity: 0.7;
 }
 
-.plume-content [class*="language-"] code .diff.remove::before {
+.plume-content div[class*="language-"] code .diff.remove::before {
   color: var(--vp-code-line-diff-remove-symbol-color);
   content: "-";
   transform: translateX(-6px);
 }
 
-.plume-content [class*="language-"] code .diff.add {
+.plume-content div[class*="language-"] code .diff.add {
   background-color: var(--vp-code-line-diff-add-color);
 }
 
-.plume-content [class*="language-"] code .diff.add::before {
+.plume-content div[class*="language-"] code .diff.add::before {
   color: var(--vp-code-line-diff-add-symbol-color);
   content: "+";
   transform: translateX(-6px);
 }
 
-.plume-content [class*="language-"] .has-focused-lines .line:not(.has-focus) {
+.plume-content div[class*="language-"] .has-focused-lines .line:not(.has-focus) {
   filter: blur(0.095rem);
   opacity: 0.7;
   transition: filter 0.35s, opacity 0.35s;
 }
 
-.plume-content [class*="language-"]:hover .has-focused-lines .line:not(.has-focus) {
+.plume-content div[class*="language-"]:hover .has-focused-lines .line:not(.has-focus) {
   filter: blur(0);
   opacity: 1;
 }
 
-[class*="language-"] button.copy {
+div[class*="language-"] button.copy {
   position: absolute;
   top: 12px;
 
@@ -293,20 +292,20 @@ div[class*="language-"].line-numbers-mode .line-numbers .line-number::before {
   direction: ltr;
 }
 
-[class*="language-"]:hover > button.copy,
-[class*="language-"] > button.copy:focus,
-[class*="language-"] > button.copy.copied {
+div[class*="language-"]:hover > button.copy,
+div[class*="language-"] > button.copy:focus,
+div[class*="language-"] > button.copy.copied {
   opacity: 1;
 }
 
-[class*="language-"] > button.copy:hover,
-[class*="language-"] > button.copy.copied {
+div[class*="language-"] > button.copy:hover,
+div[class*="language-"] > button.copy.copied {
   background-color: var(--vp-code-copy-code-hover-bg);
   border-color: var(--vp-code-copy-code-hover-border-color);
 }
 
-[class*="language-"] > button.copy.copied,
-[class*="language-"] > button.copy:hover.copied {
+div[class*="language-"] > button.copy.copied,
+div[class*="language-"] > button.copy:hover.copied {
   background-color: var(--vp-code-copy-code-hover-bg);
   background-image: var(--vp-icon-copied);
 
@@ -314,8 +313,8 @@ div[class*="language-"].line-numbers-mode .line-numbers .line-number::before {
   border-radius: 0 4px 4px 0;
 }
 
-[class*="language-"] > button.copy.copied::before,
-[class*="language-"] > button.copy:hover.copied::before {
+div[class*="language-"] > button.copy.copied::before,
+div[class*="language-"] > button.copy:hover.copied::before {
   position: relative;
   top: -1px;
   display: flex;

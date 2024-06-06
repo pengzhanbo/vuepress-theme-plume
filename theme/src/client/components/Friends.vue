@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-import { usePageFrontmatter } from 'vuepress/client'
 import { computed } from 'vue'
-import type { PlumeThemeFriendsFrontmatter } from '../../shared/index.js'
-import { useEditNavLink } from '../composables/index.js'
+import { useData, useEditNavLink } from '../composables/index.js'
 import AutoLink from './AutoLink.vue'
 import FriendsItem from './FriendsItem.vue'
 import FriendsGroup from './FriendsGroup.vue'
 
-const matter = usePageFrontmatter<PlumeThemeFriendsFrontmatter>()
 const editNavLink = useEditNavLink()
+const { frontmatter: matter } = useData<'friends'>()
 
 const list = computed(() => matter.value.list || [])
 const groups = computed(() => matter.value.groups || [])

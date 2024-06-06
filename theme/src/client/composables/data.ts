@@ -3,6 +3,7 @@ import type { ThemeLocaleDataRef } from '@vuepress/plugin-theme-data/client'
 import {
   usePageData,
   usePageFrontmatter,
+  usePageLang,
   useSiteLocaleData,
 } from 'vuepress/client'
 import type {
@@ -11,6 +12,7 @@ import type {
   SiteLocaleDataRef,
 } from 'vuepress/client'
 import type {
+  PlumeThemeFriendsFrontmatter,
   PlumeThemeLocaleData,
   PlumeThemePageData,
   PlumeThemePageFrontmatter,
@@ -20,16 +22,19 @@ import { useThemeLocaleData } from './themeData.js'
 import { hashRef } from './hash.js'
 import { useDarkMode } from './darkMode.js'
 
-type FrontmatterType = 'post' | 'page'
+type FrontmatterType = 'post' | 'friends' | 'page'
 
 type Frontmatter<T extends FrontmatterType = 'page'> = T extends 'post'
   ? PlumeThemePostFrontmatter
-  : PlumeThemePageFrontmatter
+  : T extends 'friends'
+    ? PlumeThemeFriendsFrontmatter
+    : PlumeThemePageFrontmatter
 
 export interface Data<T extends FrontmatterType = 'page'> {
   theme: ThemeLocaleDataRef<PlumeThemeLocaleData>
   page: PageDataRef<PlumeThemePageData>
   frontmatter: PageFrontmatterRef<Frontmatter<T>>
+  lang: Ref<string>
   hash: Ref<string>
   site: SiteLocaleDataRef
   isDark: Ref<boolean>
@@ -41,6 +46,7 @@ export function useData<T extends FrontmatterType = 'page'>(): Data<T> {
   const frontmatter = usePageFrontmatter<Frontmatter<T>>()
   const site = useSiteLocaleData()
   const isDark = useDarkMode()
+  const lang = usePageLang()
 
-  return { theme, page, frontmatter, hash: hashRef, site, isDark }
+  return { theme, page, frontmatter, lang, hash: hashRef, site, isDark }
 }

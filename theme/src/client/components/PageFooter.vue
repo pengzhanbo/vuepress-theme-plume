@@ -2,14 +2,14 @@
 import { computed } from 'vue'
 import {
   useContributors,
+  useData,
   useEditNavLink,
   useLastUpdated,
   usePageNav,
-  useThemeLocaleData,
 } from '../composables/index.js'
 import AutoLink from './AutoLink.vue'
 
-const themeLocale = useThemeLocaleData()
+const { theme } = useData()
 const editNavLink = useEditNavLink()
 const { datetime: lastUpdated, isoDatetime, lastUpdatedText } = useLastUpdated()
 const contributors = useContributors()
@@ -42,7 +42,7 @@ const showFooter = computed(() => {
 
     <div v-if="contributors && contributors.length" class="contributors">
       <span class="contributors-label">
-        {{ themeLocale.contributorsText || 'Contributors' }}:
+        {{ theme.contributorsText || 'Contributors' }}:
       </span>
       <span class="contributors-info">
         <template v-for="(contributor, index) in contributors" :key="contributor">
@@ -57,13 +57,13 @@ const showFooter = computed(() => {
     <nav v-if="prev?.link || next?.link" class="prev-next">
       <div class="pager">
         <AutoLink v-if="prev?.link" class="pager-link prev" :href="prev.link">
-          <span class="desc" v-html="themeLocale.prevPageLabel || 'Previous page'" />
+          <span class="desc" v-html="theme.prevPageLabel || 'Previous page'" />
           <span class="title" v-html="prev.text" />
         </AutoLink>
       </div>
       <div class="pager">
         <AutoLink v-if="next?.link" class="pager-link next" :href="next.link">
-          <span class="desc" v-html="themeLocale.nextPageLabel || 'Next page'" />
+          <span class="desc" v-html="theme.nextPageLabel || 'Next page'" />
           <span class="title" v-html="next.text" />
         </AutoLink>
       </div>

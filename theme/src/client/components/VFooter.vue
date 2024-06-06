@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useCssVar } from '@vueuse/core'
 import { onMounted, ref } from 'vue'
-import { useSidebar, useThemeLocaleData } from '../composables/index.js'
+import { useData, useSidebar } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
 
-const theme = useThemeLocaleData()
+const { theme } = useData()
 const { hasSidebar } = useSidebar()
 
 const footerHeight = useCssVar('--vp-footer-height', inBrowser ? document.body : null)

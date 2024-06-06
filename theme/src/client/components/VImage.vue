@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import { withBase } from 'vuepress/client'
+import type { ThemeImage } from '../../shared/index.js'
 
 defineProps<{
-  image:
-    | string
-    | { src: string, alt?: string }
-    | { dark: string, light: string, alt?: string }
+  image: ThemeImage
   alt?: string
 }>()
 </script>
@@ -20,7 +18,7 @@ export default {
   <template v-if="image">
     <img
       v-if="typeof image === 'string' || 'src' in image"
-      class="plume-image"
+      class="vp-image"
       v-bind="typeof image === 'string' ? $attrs : { ...image, ...$attrs }"
       :src="withBase(typeof image === 'string' ? image : image.src)"
       :alt="alt ?? (typeof image === 'string' ? '' : image.alt || '')"
@@ -43,11 +41,11 @@ export default {
 </template>
 
 <style scoped>
-html:not(.dark) .plume-image.dark {
+html:not(.dark) .vp-image.dark {
   display: none;
 }
 
-.dark .plume-image.light {
+.dark .vp-image.light {
   display: none;
 }
 </style>

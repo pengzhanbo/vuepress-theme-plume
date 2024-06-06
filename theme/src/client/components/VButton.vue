@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter } from 'vuepress/client'
-import { EXTERNAL_URL_RE } from '../utils/index.js'
+import { isLinkExternal } from 'vuepress/shared'
 
 interface Props {
   tag?: string
@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
 const router = useRouter()
 
 const isExternal = computed(
-  () => props.href && EXTERNAL_URL_RE.test(props.href),
+  () => props.href && isLinkExternal(props.href),
 )
 
 const component = computed(() => {

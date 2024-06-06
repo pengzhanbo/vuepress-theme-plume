@@ -1,14 +1,14 @@
-import { resolveRoute, usePageData, useRouteLocale, withBase } from 'vuepress/client'
+import { resolveRoute, useRouteLocale, withBase } from 'vuepress/client'
 import { computed } from 'vue'
-import type { PlumeThemePageData } from '../../shared/index.js'
 import { useThemeData } from './themeData.js'
+import { useData } from './data.js'
 import { getSidebarFirstLink, getSidebarList, normalizePath, useNotesData } from './sidebar.js'
 
 export function useLangs({
   removeCurrent = true,
 } = {}) {
-  const page = usePageData<PlumeThemePageData>()
   const theme = useThemeData()
+  const { page } = useData()
   const routeLocale = useRouteLocale()
   const notesData = useNotesData()
 

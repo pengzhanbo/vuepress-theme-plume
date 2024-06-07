@@ -52,13 +52,13 @@
     "local-pkg": "^0.5.0",
     "markdown-it-container": "^4.0.0",
     "nanoid": "^5.0.7",
-    "shiki": "^1.6.2",
-    "tm-grammars": "^1.12.7",
+    "shiki": "^1.6.3",
+    "tm-grammars": "^1.12.8",
     "tm-themes": "^1.4.3",
     "vue": "^3.4.27"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.216",
+    "@iconify/json": "^2.2.217",
     "@types/markdown-it": "^14.1.1"
   },
   "publishConfig": {

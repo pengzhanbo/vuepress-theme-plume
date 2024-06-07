@@ -27,6 +27,7 @@ const cache = new LRUCache<string, string>(64)
 const vueRE = /-vue$/
 const RE_ESCAPE = /\[\\\!code/g
 const mustacheRE = /\{\{.*?\}\}/g
+const decorationsRE = /^\/\/ @decorations:(.*?)\n/
 
 export async function highlight(
   theme: ThemeOptions,
@@ -75,8 +76,7 @@ export async function highlight(
     {
       name: 'shiki:inline-decorations',
       preprocess(code, options) {
-        const reg = /^\/\/ @decorations:(.*?)\n/
-        code = code.replace(reg, (match, decorations) => {
+        code = code.replace(decorationsRE, (match, decorations) => {
           options.decorations ||= []
           options.decorations.push(...JSON.parse(decorations))
           return ''
@@ -89,6 +89,8 @@ export async function highlight(
       postprocess: code => code.replace(RE_ESCAPE, '[!code'),
     },
   ]
+
+  const loadedLanguages = highlighter.getLoadedLanguages()
 
   return (str: string, language: string, attrs: string) => {
     attrs = attrs || ''
@@ -104,7 +106,7 @@ export async function highlight(
     }
 
     if (lang) {
-      const langLoaded = highlighter.getLoadedLanguages().includes(lang as any)
+      const langLoaded = loadedLanguages.includes(lang as any)
       if (!langLoaded && !isPlainLang(lang) && !isSpecialLang(lang)) {
         logger.warn(
           c.yellow(

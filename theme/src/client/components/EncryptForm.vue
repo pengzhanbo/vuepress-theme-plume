@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useThemeLocaleData } from '../composables/index.js'
+import { useData } from '../composables/data.js'
 
 const props = defineProps<{
   compare: (password: string) => boolean
   info?: string
 }>()
 
-const theme = useThemeLocaleData()
+const { theme } = useData()
 
 const password = ref('')
 const errorCode = ref(0) // 0: no error, 1: wrong password

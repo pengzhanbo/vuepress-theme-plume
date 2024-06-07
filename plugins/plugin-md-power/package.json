@@ -38,7 +38,7 @@
   },
   "peerDependencies": {
     "@iconify/json": "^2",
-    "vuepress": "2.0.0-rc.12"
+    "vuepress": "2.0.0-rc.13"
   },
   "peerDependenciesMeta": {
     "@iconify/json": {
@@ -47,18 +47,18 @@
   },
   "dependencies": {
     "@iconify/utils": "^2.1.24",
-    "@vuepress/helper": "2.0.0-rc.33",
+    "@vuepress/helper": "2.0.0-rc.34",
     "@vueuse/core": "^10.10.0",
     "local-pkg": "^0.5.0",
     "markdown-it-container": "^4.0.0",
     "nanoid": "^5.0.7",
-    "shiki": "^1.6.1",
-    "tm-grammars": "^1.12.5",
+    "shiki": "^1.6.3",
+    "tm-grammars": "^1.12.8",
     "tm-themes": "^1.4.3",
     "vue": "^3.4.27"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.215",
+    "@iconify/json": "^2.2.217",
     "@types/markdown-it": "^14.1.1"
   },
   "publishConfig": {

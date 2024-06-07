@@ -6,10 +6,6 @@ import {
 } from '../config/index.js'
 import { normalizePath } from '../utils.js'
 import type { PlumeThemeEncrypt, PlumeThemeLocaleOptions } from '../..//shared/index.js'
-import {
-  BLOG_TAGS_COLORS_PRESET,
-  generateBlogTagsColors,
-} from './blogTags.js'
 
 export function resolveBlogDataOptions(
   localeOptions: PlumeThemeLocaleOptions,
@@ -35,13 +31,8 @@ export function resolveBlogDataOptions(
     pageFilter: (page: any) => page.frontmatter.article !== undefined
       ? !!page.frontmatter.article
       : true,
-    extraBlogData(extra) {
-      extra.tagsColorsPreset = BLOG_TAGS_COLORS_PRESET
-      extra.tagsColors = {}
-    },
-    extendBlogData: (page: any, extra) => {
+    extendBlogData: (page: any) => {
       const tags = page.frontmatter.tags
-      generateBlogTagsColors(extra.tagsColors, tags)
       const data: Record<string, any> = {
         categoryList: page.data.categoryList,
         tags,

@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { useElementSize, useWindowScroll, useWindowSize } from '@vueuse/core'
 import { computed, onMounted, ref, shallowRef, watch } from 'vue'
-import { usePageData } from 'vuepress/client'
-import type { PlumeThemePageData } from '../../shared/index.js'
+import { useData } from '../composables/data.js'
 
 const body = shallowRef<HTMLElement | null>()
 const { height: bodyHeight } = useElementSize(body)
@@ -11,7 +10,7 @@ onMounted(() => {
   body.value = document.body
 })
 
-const page = usePageData<PlumeThemePageData>()
+const { page } = useData()
 
 const { y } = useWindowScroll()
 const isScrolling = ref(false)

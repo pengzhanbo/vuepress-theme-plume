@@ -18,8 +18,7 @@ const { tags: tagsLink } = useBlogExtract()
           v-for="tag in tags"
           :key="tag.name"
           class="tag"
-          :class="{ active: tag.name === currentTag }"
-          :style="{ '--vp-tag-color': tag.colors[0], '--vp-tag-hover-color': tag.colors[1] }"
+          :class="{ active: tag.name === currentTag, [tag.className]: true }"
           @click="handleTagClick(tag.name)"
         >
           <span class="tag-name">{{ tag.name }}</span>

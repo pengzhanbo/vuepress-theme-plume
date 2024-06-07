@@ -8,7 +8,5 @@
 }
 
 #nprogress .peg {
-  box-shadow:
-    0 0 10px var(--vp-c-brand-1),
-    0 0 5px var(--vp-c-brand-1);
+  box-shadow: 0 0 10px var(--vp-c-brand-1), 0 0 5px var(--vp-c-brand-1);
 }

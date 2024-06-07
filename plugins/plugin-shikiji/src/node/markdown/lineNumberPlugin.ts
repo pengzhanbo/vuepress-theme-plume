@@ -25,8 +25,9 @@ export function lineNumberPlugin(md: Markdown, { lineNumbers = true }: LineNumbe
     if (
       (!lineNumbers && !enableLineNumbers)
       || (lineNumbers && disableLineNumbers)
-    )
+    ) {
       return rawCode
+    }
 
     const code = rawCode.slice(
       rawCode.indexOf('<code>'),
@@ -39,8 +40,9 @@ export function lineNumberPlugin(md: Markdown, { lineNumbers = true }: LineNumbe
       typeof lineNumbers === 'number'
       && lines.length < lineNumbers
       && !enableLineNumbers
-    )
+    ) {
       return rawCode
+    }
 
     const startNumbers
       = Number(info.match(LINE_NUMBERS_START_REGEXP)?.[1] ?? 1) - 1

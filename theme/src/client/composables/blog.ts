@@ -1,15 +1,11 @@
 import { usePageLang } from 'vuepress/client'
-import { useExtraBlogData as _useExtraBlogData, useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
-import { type Ref, computed } from 'vue'
+import { useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
+import { computed } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 import { useData, useLocaleLink, useRouteQuery } from '../composables/index.js'
 import { toArray } from '../utils/index.js'
-
-export const useExtraBlogData = _useExtraBlogData as () => Ref<{
-  tagsColorsPreset: (readonly [string, string, string])[]
-  tagsColors: Record<string, number>
-}>
+import { useTagColors } from './tag-colors.js'
 
 const DEFAULT_PER_PAGE = 10
 
@@ -179,7 +175,7 @@ export type ShortPostItem = Pick<PlumeThemeBlogPostItem, 'title' | 'path' | 'cre
 export function useTags() {
   const list = useLocalePostList()
 
-  const extraData = useExtraBlogData()
+  const colors = useTagColors()
 
   const tags = computed(() => {
     const tagMap: Record<string, number> = {}
@@ -196,7 +192,7 @@ export function useTags() {
     return Object.keys(tagMap).map(tag => ({
       name: tag,
       count: tagMap[tag] > 99 ? '99+' : tagMap[tag],
-      colors: extraData.value.tagsColorsPreset[extraData.value.tagsColors[tag]] ?? [],
+      className: `vp-tag-${colors.value[tag]}`,
     }))
   })
 

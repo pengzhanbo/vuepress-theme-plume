@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { usePageEncrypt } from '../composables/encrypt.js'
-import { useThemeLocaleData } from '../composables/index.js'
+import { useData } from '../composables/data.js'
 import EncryptForm from './EncryptForm.vue'
 
-const theme = useThemeLocaleData()
+const { theme } = useData()
 const { comparePage } = usePageEncrypt()
 </script>
 

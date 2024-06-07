@@ -72,7 +72,7 @@ const maxWidth = computed(() => {
   }
 }
 
-.content-image :deep(.plume-image) {
+.content-image :deep(.vp-image) {
   width: 100%;
   max-width: 128px;
   margin: 0 auto;
@@ -114,7 +114,7 @@ const maxWidth = computed(() => {
 }
 
 @media (min-width: 768px) {
-  .content-image :deep(.plume-image) {
+  .content-image :deep(.vp-image) {
     max-width: 180px;
     margin: 0 48px;
   }
@@ -129,7 +129,7 @@ const maxWidth = computed(() => {
     gap: 48px;
   }
 
-  .content-image :deep(.plume-image) {
+  .content-image :deep(.vp-image) {
     max-width: 220px;
     margin: 0 96px;
   }

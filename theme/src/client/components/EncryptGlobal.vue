@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useSiteLocaleData } from 'vuepress/client'
-import { useThemeLocaleData } from '../composables/index.js'
+import { useData } from '../composables/data.js'
 import { useGlobalEncrypt } from '../composables/encrypt.js'
 import VFooter from './VFooter.vue'
 import EncryptForm from './EncryptForm.vue'
 
-const theme = useThemeLocaleData()
-const siteData = useSiteLocaleData()
+const { theme, site } = useData()
 const { compareGlobal } = useGlobalEncrypt()
 
 const avatar = computed(() => theme.value.avatar)
-const title = computed(() => avatar.value?.name || siteData.value.title)
+const title = computed(() => avatar.value?.name || site.value.title)
 </script>
 
 <template>

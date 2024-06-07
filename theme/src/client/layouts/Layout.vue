@@ -16,10 +16,7 @@ import VFooter from '../components/VFooter.vue'
 import BackToTop from '../components/BackToTop.vue'
 import EncryptGlobal from '../components/EncryptGlobal.vue'
 import TransitionFadeSlideY from '../components/TransitionFadeSlideY.vue'
-import {
-  useCloseSidebarOnEscape,
-  useSidebar,
-} from '../composables/index.js'
+import { useCloseSidebarOnEscape, useSidebar } from '../composables/index.js'
 import { useGlobalEncrypt, usePageEncrypt } from '../composables/encrypt.js'
 
 const page = usePageData<PlumeThemePageData>()

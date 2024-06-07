@@ -8,17 +8,11 @@
   white-space: nowrap;
 }
 
-// .icon {
-//   width: 20px;
-//   height: 20px;
-// }
-
 .vp-iconify {
   margin: 0.3em;
 }
 
 /* ----------------- Transition ------------------------ */
-
 .fade-slide-y-enter-active {
   transition: all 0.25s ease !important;
 }
@@ -32,7 +26,6 @@
   opacity: 0;
   transform: translateY(10px);
 }
-
 
 .fade-slide-x-enter-active {
   transition: all 0.25s ease !important;

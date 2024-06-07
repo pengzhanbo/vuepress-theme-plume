@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
-import { useData, useExtraBlogData } from '../composables/index.js'
+import { useData, useTagColors } from '../composables/index.js'
 
 const { page, frontmatter: matter } = useData<'post'>()
 
-const extraData = useExtraBlogData()
+const colors = useTagColors()
 const readingTime = useReadingTimeLocale()
 
 const createTime = computed(() => {
@@ -23,7 +23,7 @@ const tags = computed(() => {
   if (matter.value.tags) {
     return matter.value.tags.slice(0, 4).map(tag => ({
       name: tag,
-      colors: extraData.value.tagsColorsPreset[extraData.value.tagsColors[tag]] ?? [],
+      className: `vp-tag-${colors.value[tag]}`,
     }))
   }
 
@@ -65,7 +65,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
         v-for="tag in tags"
         :key="tag.name"
         class="tag"
-        :style="{ '--vp-tag-color': tag.colors[0], '--vp-tag-bg-color': tag.colors[2] }"
+        :class="tag.className"
       >
         {{ tag.name }}
       </span>
@@ -151,7 +151,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
   font-size: 12px;
   line-height: 1;
   color: var(--vp-tag-color, var(--vp-c-text-3));
-  background-color: var(--vp-tag-bg-color, var(--vp-c-default-soft));
+  background-color: var(--vp-tag-bg, var(--vp-c-default-soft));
   border-radius: 3px;
 }
 

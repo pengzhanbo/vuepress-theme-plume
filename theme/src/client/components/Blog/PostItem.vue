@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import type { PlumeThemeBlogPostItem } from '../../../shared/index.js'
-import { useExtraBlogData } from '../../composables/index.js'
+import { useTagColors } from '../../composables/index.js'
 import AutoLink from '../AutoLink.vue'
 
 const props = defineProps<{
   post: PlumeThemeBlogPostItem
 }>()
 
-const extraData = useExtraBlogData()
+const colors = useTagColors()
 
 const categoryList = computed(() =>
   props.post.categoryList ?? [],
@@ -19,7 +19,7 @@ const tags = computed(() =>
     .slice(0, 4)
     .map(tag => ({
       name: tag,
-      colors: extraData.value.tagsColorsPreset[extraData.value.tagsColors[tag]],
+      className: `vp-tag-${colors.value[tag]}`,
     })),
 )
 
@@ -55,7 +55,7 @@ const createTime = computed(() =>
         <template v-for="tag in tags" :key="tag.name">
           <span
             class="tag"
-            :style="{ '--vp-tag-color': tag.colors[0], '--vp-tag-bg-color': tag.colors[2] }"
+            :class="tag.className"
           >
             {{ tag.name }}
           </span>
@@ -188,7 +188,7 @@ const createTime = computed(() =>
   font-size: 12px;
   line-height: 1;
   color: var(--vp-tag-color);
-  background-color: var(--vp-tag-bg-color);
+  background-color: var(--vp-tag-bg);
   border-radius: 3px;
   transition: color var(--t-color), background-color var(--t-color);
 }

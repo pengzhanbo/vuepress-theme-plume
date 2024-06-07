@@ -30,7 +30,7 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
   entries(options.locales || {}).forEach(([locale, opt]) => {
     // 注入预设 导航栏
     // home | blog | tags | archives
-    if (opt.navbar !== false && opt.navbar?.length === 0) {
+    if (opt.navbar !== false && (!opt.navbar || opt.navbar.length === 0)) {
       // fallback navbar option
       const localePath = locale === '/' ? root : locale
       const navbar: NavItem[] = [{

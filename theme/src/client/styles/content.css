@@ -5,7 +5,6 @@
 /**
  * Headings
  * -------------------------------------------------------------------------- */
-
 .plume-content h1,
 .plume-content h2,
 .plume-content h3,
@@ -52,27 +51,27 @@
   position: relative;
   color: inherit;
   text-decoration: none;
+}
 
-  &:hover::before {
-    position: absolute;
-    left: -0.75em;
-    font-size: 0.8em;
-    color: var(--vp-c-brand-1);
-    content: var(--vp-header-anchor-symbol);
-    transition: color var(--t-color);
-  }
+.plume-content .header-anchor:hover::before {
+  position: absolute;
+  left: -0.75em;
+  font-size: 0.8em;
+  color: var(--vp-c-brand-1);
+  content: var(--vp-header-anchor-symbol);
+  transition: color var(--t-color);
+}
 
-  &:focus-visible {
-    outline: none;
+.plume-content .header-anchor:focus-visible {
+  outline: none;
+}
 
-    &::before {
-      position: absolute;
-      left: -0.75em;
-      color: var(--vp-c-brand-1);
-      content: var(--vp-header-anchor-symbol);
-      outline: auto;
-    }
-  }
+.plume-content .header-anchor:focus-visible::before {
+  position: absolute;
+  left: -0.75em;
+  color: var(--vp-c-brand-1);
+  content: var(--vp-header-anchor-symbol);
+  outline: auto;
 }
 
 @media (min-width: 768px) {
@@ -98,7 +97,6 @@
 /**
  * Paragraph and inline elements
  * -------------------------------------------------------------------------- */
-
 .plume-content p,
 .plume-content summary {
   margin: 16px 0;
@@ -129,22 +127,16 @@
   color: var(--vp-c-brand-1);
   text-decoration: underline;
   text-underline-offset: 2px;
-  transition:
-    color var(--t-color),
-    opacity var(--t-color),
-    text-underline-offset var(--t-color);
+  transition: color var(--t-color), opacity var(--t-color), text-underline-offset var(--t-color);
+}
 
-  @media print {
-    &[href^="http://"],
-    &[href^="https://"] {
-      &::after {
-        content: " (" attr(href) ") ";
-      }
-    }
+@media print {
+  .plume-content a[href^="http://"]::after, .plume-content a[href^="https://"]::after {
+    content: " (" attr(href) ") ";
   }
 }
 
-.plume-content :not(h1,h2,h3,h4,h5,h6) a:hover {
+.plume-content :not(h1, h2, h3, h4, h5, h6) a:hover {
   color: var(--vp-c-brand-2);
   text-underline-offset: 5px;
 }
@@ -156,7 +148,6 @@
 /**
  * Lists
  * -------------------------------------------------------------------------- */
-
 .plume-content ul,
 .plume-content ol {
   padding-left: 1.25rem;
@@ -183,7 +174,6 @@
 /**
  * Table
  * -------------------------------------------------------------------------- */
-
 .plume-content table {
   display: block;
   margin: 20px 0;
@@ -226,7 +216,6 @@
 /**
  * Decorational elements
  * -------------------------------------------------------------------------- */
-
 .plume-content hr {
   margin: 16px 0;
   border: none;
@@ -249,9 +238,7 @@
   padding: 3px 6px;
   background-color: var(--vp-code-bg);
   border-radius: 4px;
-  transition:
-    color var(--t-color),
-    background-color var(--t-color);
+  transition: color var(--t-color), background-color var(--t-color);
 }
 
 .plume-content h1 > code,
@@ -272,7 +259,7 @@
 /**
  * External links
  * -------------------------------------------------------------------------- */
-:is(.vp-external-link-icon, .plume-content a[href*='://'], .plume-content a[target='_blank']):not(.no-icon)::after {
+:is(.vp-external-link-icon, .plume-content a[href*="://"], .plume-content a[target=_blank]):not(.no-icon)::after {
   --icon: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' %3E%3Cpath d='M0 0h24v24H0V0z' fill='none' /%3E%3Cpath d='M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5H9z' /%3E%3C/svg%3E");
 
   display: inline-block;
@@ -292,7 +279,7 @@
 }
 
 /* prettier-ignore */
-.external-link-icon-enabled :is(.plume-content a[href*='://'], .plume-content a[target='_blank'])::after {
+.external-link-icon-enabled :is(.plume-content a[href*="://"], .plume-content a[target=_blank])::after {
   color: currentcolor;
   content: "";
 }

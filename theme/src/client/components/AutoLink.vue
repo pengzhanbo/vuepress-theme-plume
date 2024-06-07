@@ -39,8 +39,10 @@ function linkTo(e: Event) {
 
 <template>
   <Component
-    :is="tag" class="auto-link" :class="{ link }" :href="link"
-    :target="target ?? (isExternal ? '_blank' : undefined)" :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
+    :is="tag" class="auto-link" :class="{ link }"
+    :href="link"
+    :target="target ?? (isExternal ? '_blank' : undefined)"
+    :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"
   >
     <slot />

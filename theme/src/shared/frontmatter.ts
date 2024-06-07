@@ -1,5 +1,6 @@
 import type { WatermarkPluginFrontmatter } from '@vuepress/plugin-watermark'
-import type { NavItemWithLink, PlumeThemeImage } from '.'
+import type { ThemeImage, ThemeOutline } from './base.js'
+import type { NavItemWithLink } from './options/navbar.js'
 
 /* =============================== Home begin ==================================== */
 export interface PlumeThemeHomeFrontmatter extends Omit<PlumeThemeHomeBanner, 'type'> {
@@ -58,7 +59,7 @@ export interface PlumeThemeHomeHero extends PlumeHomeConfigBase {
 
 export interface PlumeThemeHomeTextImage extends PlumeHomeConfigBase {
   type: 'text-image' | 'image-text'
-  image: PlumeThemeImage
+  image: ThemeImage
   width?: number | string
   title?: string
   description?: string
@@ -101,7 +102,7 @@ export interface PlumeThemeHomeProfile extends PlumeHomeConfigBase {
   type: 'profile'
   name?: string
   description?: string
-  avatar?: PlumeThemeImage
+  avatar?: ThemeImage
   circle?: boolean
 }
 
@@ -112,6 +113,7 @@ export interface PlumeThemeHomeCustom extends PlumeHomeConfigBase {
 /* =============================== Home end ==================================== */
 
 export interface PlumeThemePageFrontmatter {
+  home?: false
   comments?: boolean
   editLink?: boolean
   editLinkPattern?: string
@@ -119,7 +121,9 @@ export interface PlumeThemePageFrontmatter {
   contributors?: boolean
   prev?: string | NavItemWithLink
   next?: string | NavItemWithLink
-  outline?: false | number | [number, number] | 'deep'
+  sidebar?: string | false
+  aside?: boolean
+  outline?: ThemeOutline
   backToTop?: boolean
   externalLink?: boolean
   readingTime?: boolean

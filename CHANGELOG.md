@@ -1,3 +1,18 @@
+# [1.0.0-rc.63](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.62...v1.0.0-rc.63) (2024-06-07)
+
+
+### Features
+
+* **theme:** 侧边栏自动定位到当前活动项 ([e395e98](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e395e981283dab367474196ec7df7f11db6c2d53))
+* **theme:** 优化文章标签颜色生成方式，所有文章支持标签 ([a0eac82](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a0eac82f4e4d1e7b330d353514bd8be54f9cb876))
+
+
+### Performance Improvements
+
+* **theme:** 优化 node 结构 ([74a6994](https://github.com/pengzhanbo/vuepress-theme-plume/commit/74a69948b801647bca53931c3667343f01e7aedc))
+
+
+
 # [1.0.0-rc.62](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.61...v1.0.0-rc.62) (2024-06-02)
 
 

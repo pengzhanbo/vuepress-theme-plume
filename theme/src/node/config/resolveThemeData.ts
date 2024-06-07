@@ -42,11 +42,11 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
         link: withBase(blogLink, locale),
       })
       blog.tags !== false && navbar.push({
-        text: PRESET_LOCALES[locale].tag,
+        text: PRESET_LOCALES[localePath].tag,
         link: withBase(blog.tagsLink || `${blogLink}/tags/`, locale),
       })
       blog.archives !== false && navbar.push({
-        text: PRESET_LOCALES[locale].archive,
+        text: PRESET_LOCALES[localePath].archive,
         link: withBase(blog.archivesLink || `${blogLink}/archives/`, locale),
       })
 

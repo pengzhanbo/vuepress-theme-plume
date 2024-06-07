@@ -1,4 +1,4 @@
-import type { App, Plugin } from 'vuepress/core'
+import type { Plugin } from 'vuepress/core'
 import { getDirname, path } from 'vuepress/utils'
 import type { NotesDataOptions } from '../shared/index.js'
 import { prepareNotesData, watchNotesData } from './prepareNotesData.js'

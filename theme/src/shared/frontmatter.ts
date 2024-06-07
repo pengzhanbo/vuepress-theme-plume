@@ -113,6 +113,7 @@ export interface PlumeThemeHomeCustom extends PlumeHomeConfigBase {
 /* =============================== Home end ==================================== */
 
 export interface PlumeThemePageFrontmatter {
+  home?: false
   comments?: boolean
   editLink?: boolean
   editLinkPattern?: string
@@ -120,6 +121,8 @@ export interface PlumeThemePageFrontmatter {
   contributors?: boolean
   prev?: string | NavItemWithLink
   next?: string | NavItemWithLink
+  sidebar?: string | false
+  aside?: boolean
   outline?: ThemeOutline
   backToTop?: boolean
   externalLink?: boolean

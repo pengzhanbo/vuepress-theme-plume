@@ -11,6 +11,7 @@ import { computed, onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
 import type { PlumeThemePageData } from '../../shared/index.js'
 import { isActive } from '../utils/index.js'
 import { hashRef } from './hash.js'
+import { useData } from './data.js'
 
 export { useNotesData }
 
@@ -57,8 +58,7 @@ export function getSidebarFirstLink(sidebar: NotesSidebarItem[]) {
 export function useSidebar() {
   const route = useRoute()
   const notesData = useNotesData()
-  const frontmatter = usePageFrontmatter()
-  const page = usePageData<PlumeThemePageData>()
+  const { frontmatter } = useData()
 
   const is960 = useMediaQuery('(min-width: 960px)')
 
@@ -72,12 +72,15 @@ export function useSidebar() {
   })
 
   const sidebar = computed(() => {
-    return getSidebarList(route.path, notesData.value)
+    const link = typeof frontmatter.value.sidebar === 'string'
+      ? frontmatter.value.sidebar
+      : route.path
+    return getSidebarList(link, notesData.value)
   })
+
   const hasSidebar = computed(() => {
     return (
       !frontmatter.value.home
-      && !page.value.isBlogPost
       && sidebar.value.length > 0
       && frontmatter.value.sidebar !== false
     )

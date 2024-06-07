@@ -1,3 +1,12 @@
+# [1.0.0-rc.64](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.63...v1.0.0-rc.64) (2024-06-07)
+
+
+### Bug Fixes
+
+* **theme:** auto navbar ([b2f122c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b2f122c4a2181c1bdcd2ca88c592552763dd289b))
+
+
+
 # [1.0.0-rc.63](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.62...v1.0.0-rc.63) (2024-06-07)
 
 

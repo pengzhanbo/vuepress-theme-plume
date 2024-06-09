@@ -8,10 +8,10 @@ import type { NavItemWithLink } from '../../shared/index.js'
  * - Input: '/README.md'
  * - Output: { text: 'Home', link: '/' }
  */
-export function useNavLink(config: string): NavItemWithLink {
+export function resolveNavLink(link: string): NavItemWithLink {
   const { notFound, meta, path } = resolveRoute<{
     title?: string
-  }>(config)
+  }>(link)
 
   return notFound
     ? { text: path, link: path }

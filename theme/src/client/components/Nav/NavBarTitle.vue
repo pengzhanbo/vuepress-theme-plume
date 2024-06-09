@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { useRouteLocale, useSiteLocaleData } from 'vuepress/client'
-import { useSidebar } from '../../composables/index.js'
-import { useThemeLocaleData } from '../../composables/themeData.js'
+import { useRouteLocale } from 'vuepress/client'
+import { useSidebar } from '../../composables/sidebar.js'
+import { useData } from '../../composables/data.js'
 import AutoLink from '../AutoLink.vue'
 import VImage from '../VImage.vue'
 
-const theme = useThemeLocaleData()
-const site = useSiteLocaleData()
+const { theme, site } = useData()
 const { hasSidebar } = useSidebar()
 const routeLocale = useRouteLocale()
 </script>

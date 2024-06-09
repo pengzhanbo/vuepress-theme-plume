@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useThemeLocaleData } from '../../composables/index.js'
+import { useData } from '../../composables/data.js'
 import SwitchAppearance from '../SwitchAppearance.vue'
 
-const theme = useThemeLocaleData()
+const { theme } = useData()
 </script>
 
 <template>

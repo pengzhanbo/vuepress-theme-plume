@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { PageHeader } from 'vuepress/client'
+import type { MenuItem } from '../../composables/outline.js'
 
 defineProps<{
-  headers: PageHeader[]
+  headers: MenuItem[]
   root?: boolean
 }>()
 

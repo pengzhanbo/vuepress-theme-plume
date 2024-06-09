@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useArchives, useBlogExtract } from '../../composables/index.js'
+import { useArchives, useBlogExtract } from '../../composables/blog.js'
 import ShortPostList from './ShortPostList.vue'
 
 const { archives: archivesLink } = useBlogExtract()

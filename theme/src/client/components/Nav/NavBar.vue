@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { usePageFrontmatter } from 'vuepress/client'
 import { useWindowScroll } from '@vueuse/core'
 import { ref, watchPostEffect } from 'vue'
 import { useSidebar } from '../../composables/sidebar.js'
+import { useData } from '../../composables/data.js'
 import NavBarAppearance from './NavBarAppearance.vue'
 import NavBarExtra from './NavBarExtra.vue'
 import NavBarHamburger from './NavBarHamburger.vue'
@@ -17,7 +17,7 @@ defineProps<{
 }>()
 defineEmits<(e: 'toggleScreen') => void>()
 
-const matter = usePageFrontmatter()
+const { frontmatter } = useData()
 
 const { y } = useWindowScroll()
 const { hasSidebar } = useSidebar()
@@ -26,7 +26,7 @@ const classes = ref<Record<string, boolean>>({})
 watchPostEffect(() => {
   classes.value = {
     'has-sidebar': hasSidebar.value,
-    'top': !!matter.value.home && y.value === 0,
+    'top': !!frontmatter.value.home && y.value === 0,
   }
 })
 </script>

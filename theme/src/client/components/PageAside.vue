@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
-import { type MenuItem, getHeaders, useActiveAnchor, useData } from '../composables/index.js'
+import { type MenuItem, getHeaders, useActiveAnchor } from '../composables/outline.js'
+import { useData } from '../composables/data.js'
 import PageAsideItem from './PageAsideItem.vue'
 
 const { theme, frontmatter } = useData()

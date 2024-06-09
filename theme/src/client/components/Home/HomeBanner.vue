@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { usePageFrontmatter, withBase } from 'vuepress/client'
+import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { computed } from 'vue'
-import type { PlumeThemeHomeBanner, PlumeThemeHomeFrontmatter } from '../../../shared/index.js'
-import { useDarkMode } from '../../composables/darkMode.js'
+import type { PlumeThemeHomeBanner } from '../../../shared/index.js'
+import { useData } from '../../composables/data.js'
 import VButton from '../VButton.vue'
 
 const props = defineProps<PlumeThemeHomeBanner>()
 
 const DEFAULT_BANNER = 'https://api.pengzhanbo.cn/wallpaper/bing'
 
-const matter = usePageFrontmatter<PlumeThemeHomeFrontmatter>()
-const isDark = useDarkMode()
+const { isDark, frontmatter: matter } = useData<'home'>()
 
 const mask = computed(() => {
   const mask = props.bannerMask ?? matter.value.bannerMask

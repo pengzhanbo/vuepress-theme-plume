@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
-import { useData, useTagColors } from '../composables/index.js'
+import { useData } from '../composables/data.js'
+import { useTagColors } from '../composables/tag-colors.js'
 
 const { page, frontmatter: matter } = useData<'post'>()
 

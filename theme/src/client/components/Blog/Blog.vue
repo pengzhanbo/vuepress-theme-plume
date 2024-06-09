@@ -1,8 +1,6 @@
 <script lang="ts" setup>
-import { usePageData } from 'vuepress/client'
 import { computed } from 'vue'
-import type { PlumeThemePageData } from '../../../shared/index.js'
-import { useThemeLocaleData } from '../../composables/index.js'
+import { useData } from '../../composables/data.js'
 import TransitionFadeSlideY from '../TransitionFadeSlideY.vue'
 import PostList from './PostList.vue'
 import Archives from './Archives.vue'
@@ -11,8 +9,7 @@ import BlogExtract from './BlogExtract.vue'
 import Tags from './Tags.vue'
 import BlogNav from './BlogNav.vue'
 
-const theme = useThemeLocaleData()
-const page = usePageData<PlumeThemePageData>()
+const { theme, page } = useData()
 
 const com = {
   PostList,

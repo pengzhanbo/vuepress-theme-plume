@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useThemeData } from '../../composables/index.js'
+import { useData } from '../../composables/data.js'
 import SocialLinks from '../SocialLinks.vue'
 
-const theme = useThemeData()
+const { theme } = useData()
 </script>
 
 <template>

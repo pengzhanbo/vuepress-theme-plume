@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePostListControl } from '../../composables/index.js'
+import { usePostListControl } from '../../composables/blog.js'
 import TransitionDrop from '../TransitionDrop.vue'
 import PostItem from './PostItem.vue'
 import Pagination from './Pagination.vue'

@@ -3,7 +3,7 @@ import { withBase } from 'vuepress/client'
 import { computed, normalizeClass } from 'vue'
 import { isLinkHttp } from 'vuepress/shared'
 import type { PlumeHomeConfigBase } from '../../../shared/index.js'
-import { useDarkMode } from '../../composables/index.js'
+import { useDarkMode } from '../../composables/dark-mode.js'
 
 const props = defineProps<PlumeHomeConfigBase & {
   containerClass?: any
@@ -71,3 +71,4 @@ const containerClass = computed(() => normalizeClass(props.containerClass || '')
   min-height: calc(100vh - var(--vp-nav-height));
 }
 </style>
+../../composables/dark-mode.js

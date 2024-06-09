@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { MenuItem } from '../composables/index.js'
+import type { MenuItem } from '../composables/outline.js'
 
 defineProps<{
   headers: MenuItem[]

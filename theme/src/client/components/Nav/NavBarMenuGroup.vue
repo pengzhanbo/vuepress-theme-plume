@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { usePageData } from 'vuepress/client'
 import { computed } from 'vue'
 import type { NavItem, NavItemWithChildren } from '../../../shared/index.js'
 import { isActive } from '../../utils/index.js'
 import Flyout from '../Flyout/index.vue'
+import { useData } from '../../composables/data.js'
 
 const props = defineProps<{
   item: NavItemWithChildren
 }>()
 
-const page = usePageData()
+const { page } = useData()
 
 function isChildActive(navItem: NavItem) {
   if ('link' in navItem) {

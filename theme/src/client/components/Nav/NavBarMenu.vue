@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { useThemeLocaleData } from '../../composables/themeData.js'
+import { useData } from '../../composables/data.js'
 import NavBarMenuGroup from './NavBarMenuGroup.vue'
 import NavBarMenuLink from './NavBarMenuLink.vue'
 
-const theme = useThemeLocaleData()
+const { theme } = useData()
 </script>
 
 <template>

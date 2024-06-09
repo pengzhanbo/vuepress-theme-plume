@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import type { PageHeader } from 'vuepress/client'
 import { onClickOutside } from '@vueuse/core'
 import { nextTick, ref, watch } from 'vue'
-import { useThemeLocaleData } from '../../composables/index.js'
+import type { MenuItem } from '../../composables/outline.js'
+import { useData } from '../../composables/data.js'
 import DocOutlineItem from './DocOutlineItem.vue'
 
 const props = defineProps<{
-  headers: PageHeader[]
+  headers: MenuItem[]
   navHeight: number
 }>()
 
-const theme = useThemeLocaleData()
+const { theme } = useData()
 const open = ref(false)
 const vh = ref(0)
 const items = ref<HTMLDivElement>()

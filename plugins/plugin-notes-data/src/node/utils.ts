@@ -9,3 +9,7 @@ export function ensureArray<T>(thing: T | T[] | null | undefined): T[] {
 export function normalizePath(str: string) {
   return str.replace(/\\+/g, '/')
 }
+
+export function wait(time: number) {
+  return new Promise(resolve => setTimeout(resolve, time))
+}

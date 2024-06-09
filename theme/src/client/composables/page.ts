@@ -10,8 +10,8 @@ import type {
   PlumeThemePageData,
   PlumeThemePageFrontmatter,
 } from '../../shared/index.js'
-import { useNavLink, useSidebar, useThemeLocaleData } from '../composables/index.js'
-import { resolveEditLink } from '../utils/index.js'
+import { useSidebar, useThemeLocaleData } from '../composables/index.js'
+import { resolveEditLink, resolveNavLink } from '../utils/index.js'
 
 export function useEditNavLink(): ComputedRef<null | NavItemWithLink> {
   const themeLocale = useThemeLocaleData()
@@ -120,7 +120,7 @@ function resolveFromFrontmatterConfig(conf: unknown): null | false | NavItemWith
     return null
 
   if (isString(conf))
-    return useNavLink(conf)
+    return resolveNavLink(conf)
 
   if (isPlainObject<NavItemWithLink>(conf))
     return conf

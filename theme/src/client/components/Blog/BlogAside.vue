@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { useThemeLocaleData } from '../../composables/index.js'
+import { useData } from '../../composables/data.js'
 import BlogNav from './BlogNav.vue'
 import BlogProfile from './BlogProfile.vue'
 
-const theme = useThemeLocaleData()
+const { theme } = useData()
 </script>
 
 <template>

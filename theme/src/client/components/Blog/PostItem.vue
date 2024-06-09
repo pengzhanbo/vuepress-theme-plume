@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import type { PlumeThemeBlogPostItem } from '../../../shared/index.js'
-import { useTagColors } from '../../composables/index.js'
+import { useTagColors } from '../../composables/tag-colors.js'
 import AutoLink from '../AutoLink.vue'
 
 const props = defineProps<{

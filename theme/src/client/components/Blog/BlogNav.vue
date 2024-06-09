@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useRoute } from 'vuepress/client'
-import { useBlogExtract } from '../../composables/index.js'
+import { useBlogExtract } from '../../composables/blog.js'
 import AutoLink from '../AutoLink.vue'
 
 const props = defineProps<{

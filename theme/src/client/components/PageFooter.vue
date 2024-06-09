@@ -2,11 +2,11 @@
 import { computed } from 'vue'
 import {
   useContributors,
-  useData,
   useEditNavLink,
   useLastUpdated,
   usePageNav,
-} from '../composables/index.js'
+} from '../composables/page.js'
+import { useData } from '../composables/data.js'
 import AutoLink from './AutoLink.vue'
 
 const { theme } = useData()

@@ -1,6 +1,6 @@
 import { resolveRoute, useRouteLocale, withBase } from 'vuepress/client'
 import { computed } from 'vue'
-import { useThemeData } from './themeData.js'
+import { useThemeData } from './theme-data.js'
 import { useData } from './data.js'
 import { getSidebarFirstLink, getSidebarList, normalizePath, useNotesData } from './sidebar.js'
 

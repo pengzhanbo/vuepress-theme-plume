@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { usePageFrontmatter } from 'vuepress/client'
 import { type Component, computed, nextTick, onUnmounted, resolveComponent, watch } from 'vue'
-import type { PlumeThemeHomeFrontmatter } from '../../../shared/index.js'
+import { useData } from '../../composables/data.js'
 import HomeBanner from './HomeBanner.vue'
 import HomeHero from './HomeHero.vue'
 import HomeFeatures from './HomeFeatures.vue'
@@ -25,7 +24,7 @@ const DEFAULT_HERO = {
   text: '一个简约的，功能丰富的 vuepress 文档&博客 主题',
 }
 
-const matter = usePageFrontmatter<PlumeThemeHomeFrontmatter>()
+const { frontmatter: matter } = useData<'home'>()
 
 const config = computed(() => {
   const config = matter.value.config

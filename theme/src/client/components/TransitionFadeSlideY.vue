@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useScrollPromise } from '../composables/index.js'
+import { useScrollPromise } from '../composables/scroll-promise.js'
 
 const { resolve: onBeforeEnter, pending: onBeforeLeave } = useScrollPromise()
 </script>
@@ -14,3 +14,4 @@ const { resolve: onBeforeEnter, pending: onBeforeLeave } = useScrollPromise()
     <slot />
   </Transition>
 </template>
+../composables/scroll-promise.js

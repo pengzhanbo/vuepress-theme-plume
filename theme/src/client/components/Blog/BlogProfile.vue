@@ -2,10 +2,10 @@
 import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
-import { useThemeLocaleData } from '../../composables/index.js'
+import { useData } from '../../composables/data.js'
 import SocialLinks from '../SocialLinks.vue'
 
-const theme = useThemeLocaleData()
+const { theme } = useData()
 const avatar = computed(() => theme.value.avatar)
 const imageUrl = computed(() => {
   const url = avatar.value?.url

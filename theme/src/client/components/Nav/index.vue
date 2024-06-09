@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { usePageData } from 'vuepress/client'
 import { computed, provide } from 'vue'
-import type { PlumeThemePageData } from '../../../shared/index.js'
 import { useNav } from '../../composables/nav.js'
+import { useData } from '../../composables/data.js'
 import Navbar from './NavBar.vue'
 import NavScreen from './NavScreen.vue'
 
-const page = usePageData<PlumeThemePageData>()
+const { page } = useData()
 
 const { isScreenOpen, closeScreen, toggleScreen } = useNav()
 

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useThemeLocaleData } from '../../composables/index.js'
+import { useData } from '../../composables/data.js'
 import SocialLinks from '../SocialLinks.vue'
 
-const theme = useThemeLocaleData()
+const { theme } = useData()
 
 const social = computed(() => {
   const includes = theme.value.navbarSocialInclude ?? []

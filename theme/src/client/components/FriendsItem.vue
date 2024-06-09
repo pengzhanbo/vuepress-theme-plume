@@ -2,7 +2,7 @@
 import { isPlainObject } from '@vuepress/helper/client'
 import { computed } from 'vue'
 import type { FriendsItem } from '../../shared/index'
-import { useDarkMode } from '../composables/index.js'
+import { useDarkMode } from '../composables/dark-mode.js'
 import AutoLink from './AutoLink.vue'
 
 const props = defineProps<{
@@ -117,3 +117,4 @@ const friendStyle = computed(() => {
   line-clamp: 3;
 }
 </style>
+../composables/dark-mode.js

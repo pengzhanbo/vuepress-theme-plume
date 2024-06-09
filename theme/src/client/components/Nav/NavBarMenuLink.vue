@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { usePageData } from 'vuepress/client'
 import type { NavItemWithLink } from '../../../shared/index.js'
 import { isActive } from '../../utils/index.js'
 import AutoLink from '../AutoLink.vue'
 import VIcon from '../VIcon.vue'
+import { useData } from '../../composables/data.js'
 
 defineProps<{
   item: NavItemWithLink
 }>()
 
-const page = usePageData()
+const { page } = useData()
 </script>
 
 <template>

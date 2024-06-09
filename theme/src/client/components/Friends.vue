@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useData, useEditNavLink } from '../composables/index.js'
+import { useData } from '../composables/data.js'
+import { useEditNavLink } from '../composables/page.js'
 import AutoLink from './AutoLink.vue'
 import FriendsItem from './FriendsItem.vue'
 import FriendsGroup from './FriendsGroup.vue'

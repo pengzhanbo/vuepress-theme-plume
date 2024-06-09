@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { useLangs } from '../../composables/langs.js'
-import { useThemeLocaleData } from '../../composables/themeData.js'
+import { useData } from '../../composables/data.js'
 import Flyout from '../Flyout/index.vue'
 import MenuLink from '../Flyout/MenuLink.vue'
 
-const theme = useThemeLocaleData()
+const { theme } = useData()
 const { currentLang, localeLinks } = useLangs()
 </script>
 

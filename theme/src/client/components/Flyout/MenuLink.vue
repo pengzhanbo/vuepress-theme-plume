@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePageData } from 'vuepress/client'
+import { useData } from '../../composables/data.js'
 import { isActive } from '../../utils/index.js'
 import AutoLink from '../AutoLink.vue'
 import VIcon from '../VIcon.vue'
@@ -8,7 +8,7 @@ defineProps<{
   item: any
 }>()
 
-const page = usePageData()
+const { page } = useData()
 </script>
 
 <template>

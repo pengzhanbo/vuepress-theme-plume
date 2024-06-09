@@ -1,11 +1,10 @@
 <script lang="ts" setup>
-import { usePageData } from 'vuepress/client'
 import { useWindowScroll } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
-import type {
-  PlumeThemePageData,
-} from '../../../shared/index.js'
-import { useSidebar, useThemeLocaleData } from '../../composables/index.js'
+import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
+import { useSidebar } from '../../composables/sidebar.js'
+import { type MenuItem, getHeaders } from '../../composables/outline.js'
+import { useData } from '../../composables/data.js'
 import LocalNavOutlineDropdown from './LocalNavOutlineDropdown.vue'
 
 const props = defineProps<{
@@ -15,17 +14,21 @@ const props = defineProps<{
 
 defineEmits<(e: 'openMenu') => void>()
 
-const page = usePageData<PlumeThemePageData>()
-const themeData = useThemeLocaleData()
+const { page, theme, frontmatter } = useData()
 
 const { hasSidebar } = useSidebar()
 const { y } = useWindowScroll()
 
 const navHeight = ref(0)
 
-const headers = computed(() => page.value.headers)
+const headers = ref<MenuItem[]>([])
+
 const empty = computed(() => {
   return headers.value.length === 0 && !hasSidebar.value
+})
+
+onContentUpdated(() => {
+  headers.value = getHeaders(frontmatter.value.outline ?? theme.value.outline)
 })
 
 onMounted(() => {
@@ -54,15 +57,14 @@ const showLocalNav = computed(() => {
 <template>
   <div v-if="showLocalNav" :class="classes">
     <button
-      class="menu"
-      :class="{ hidden: page.isBlogPost }"
+      class="menu" :class="{ hidden: page.isBlogPost }"
       :disabled="page.isBlogPost"
       :aria-expanded="open"
       aria-controls="SidebarNav"
       @click="$emit('openMenu')"
     >
       <span class="vpi-align-left menu-icon" />
-      <span class="menu-text"> {{ themeData.sidebarMenuLabel || 'Menu' }} </span>
+      <span class="menu-text"> {{ theme.sidebarMenuLabel || 'Menu' }} </span>
     </button>
 
     <LocalNavOutlineDropdown v-if="showOutline" :headers="headers" :nav-height="navHeight" />

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, inject, ref } from 'vue'
-import { useData } from '../composables/index.js'
+import { useData } from '../composables/data.js'
 import Switch from './Switch.vue'
 
 const checked = ref(false)

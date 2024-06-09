@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useCssVar } from '@vueuse/core'
 import { onMounted, ref } from 'vue'
-import { useData, useSidebar } from '../composables/index.js'
+import { useData } from '../composables/data.js'
+import { useSidebar } from '../composables/sidebar.js'
 import { inBrowser } from '../utils/index.js'
 
 const { theme } = useData()

@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useThemeLocaleData } from '../../composables/index.js'
+import { useData } from '../../composables/data.js'
 import { useLangs } from '../../composables/langs.js'
 import Flyout from '../Flyout/index.vue'
 import MenuLink from '../Flyout/MenuLink.vue'
 import SocialLinks from '../SocialLinks.vue'
 import SwitchAppearance from '../SwitchAppearance.vue'
 
-const theme = useThemeLocaleData()
+const { theme } = useData()
 const { localeLinks, currentLang } = useLangs()
 
 const hasExtraContent = computed(

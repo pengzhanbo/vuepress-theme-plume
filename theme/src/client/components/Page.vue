@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { computed, nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
-import { useData, useSidebar } from '../composables/index.js'
+import { useData } from '../composables/data.js'
+import { useSidebar } from '../composables/sidebar.js'
 import { usePageEncrypt } from '../composables/encrypt.js'
 import PageAside from './PageAside.vue'
 import PageFooter from './PageFooter.vue'

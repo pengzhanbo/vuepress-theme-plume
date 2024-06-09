@@ -2,12 +2,12 @@
 import { computed } from 'vue'
 import type { PlumeThemeHomeProfile } from '../../../shared/index.js'
 import VImage from '../VImage.vue'
-import { useThemeLocaleData } from '../../composables/index.js'
+import { useData } from '../../composables/data.js'
 import HomeBox from './HomeBox.vue'
 
 const props = defineProps<PlumeThemeHomeProfile>()
 
-const theme = useThemeLocaleData()
+const { theme } = useData()
 
 const avatar = computed(() => theme.value.avatar)
 

@@ -3,11 +3,12 @@ import { useScrollLock } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
 import { useRoute, withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
-import { useBlogExtract, useThemeLocaleData } from '../../composables/index.js'
+import { useBlogExtract } from '../../composables/blog.js'
+import { useData } from '../../composables/data.js'
 import { inBrowser } from '../../utils/index.js'
 import AutoLink from '../AutoLink.vue'
 
-const theme = useThemeLocaleData()
+const { theme } = useData()
 const route = useRoute()
 
 const avatar = computed(() => theme.value.avatar)

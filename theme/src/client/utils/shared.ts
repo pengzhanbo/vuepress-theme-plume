@@ -33,10 +33,6 @@ export function normalize(path: string): string {
   return decodeURI(path).replace(HASH_RE, '').replace(EXT_RE, '')
 }
 
-export function isExternal(path: string): boolean {
-  return EXTERNAL_URL_RE.test(path)
-}
-
 export function throttleAndDebounce(fn: () => void, delay: number): () => void {
   let timeoutId: NodeJS.Timeout
   let called = false
@@ -56,8 +52,4 @@ export function throttleAndDebounce(fn: () => void, delay: number): () => void {
       timeoutId = setTimeout(fn, delay)
     }
   }
-}
-
-export function ensureStartingSlash(path: string): string {
-  return /^\//.test(path) ? path : `/${path}`
 }

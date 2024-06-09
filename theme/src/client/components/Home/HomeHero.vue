@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { usePageFrontmatter, withBase } from 'vuepress/client'
+import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { computed, ref } from 'vue'
 import VButton from '../VButton.vue'
-import { useDarkMode } from '../../composables/index.js'
+import { useData } from '../../composables/data.js'
 import { useHomeHeroTintPlate } from '../../composables/home.js'
-import type { PlumeThemeHomeFrontmatter, PlumeThemeHomeHero } from '../../../shared/index.js'
+import type { PlumeThemeHomeHero } from '../../../shared/index.js'
 
 const props = defineProps<PlumeThemeHomeHero>()
 
-const matter = usePageFrontmatter<PlumeThemeHomeFrontmatter>()
-const isDark = useDarkMode()
+const { isDark, frontmatter: matter } = useData<'home'>()
 
 const heroBackground = computed(() => {
   if (props.background === 'tint-plate')

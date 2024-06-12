@@ -2,10 +2,10 @@
 import { useRouteLocale, withBase } from 'vuepress/client'
 import LayoutContent from '../components/LayoutContent.vue'
 import Nav from '../components/Nav/index.vue'
-import { useThemeLocaleData } from '../composables'
+import { useData } from '../composables/data.js'
 
 const root = useRouteLocale()
-const themeData = useThemeLocaleData()
+const { theme } = useData()
 </script>
 
 <template>
@@ -14,19 +14,19 @@ const themeData = useThemeLocaleData()
     <LayoutContent is-not-found>
       <div class="not-found">
         <p class="code">
-          {{ themeData.notFound?.code ?? '404' }}
+          {{ theme.notFound?.code ?? '404' }}
         </p>
         <h1 class="title">
-          {{ themeData.notFound?.title ?? 'PAGE NOT FOUND' }}
+          {{ theme.notFound?.title ?? 'PAGE NOT FOUND' }}
         </h1>
         <div class="divider" />
         <blockquote class="quote">
-          {{ themeData.notFound?.quote ?? `But if you don't change your direction, and if you keep looking, you may end up where you are heading.` }}
+          {{ theme.notFound?.quote ?? `But if you don't change your direction, and if you keep looking, you may end up where you are heading.` }}
         </blockquote>
 
         <div class="action">
-          <a class="link" :href="withBase(root)" :aria-label="themeData.notFound?.linkLabel ?? 'go to home'">
-            {{ themeData.notFound?.linkText ?? 'Take me home' }}
+          <a class="link" :href="withBase(root)" :aria-label="theme.notFound?.linkLabel ?? 'go to home'">
+            {{ theme.notFound?.linkText ?? 'Take me home' }}
           </a>
         </div>
       </div>

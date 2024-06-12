@@ -14,4 +14,3 @@ const { resolve: onBeforeEnter, pending: onBeforeLeave } = useScrollPromise()
     <slot />
   </Transition>
 </template>
-../composables/scroll-promise.js

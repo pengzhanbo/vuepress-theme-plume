@@ -16,7 +16,11 @@ defineProps<{
       {{ group.desc }}
     </p>
     <section v-if="group.list?.length" class="friends-list">
-      <FriendsItem v-for="(friend, index) in group.list" :key="friend.name + index" :friend="friend" />
+      <FriendsItem
+        v-for="(friend, index) in group.list"
+        :key="friend.name + index"
+        :friend="friend"
+      />
     </section>
   </div>
 </template>

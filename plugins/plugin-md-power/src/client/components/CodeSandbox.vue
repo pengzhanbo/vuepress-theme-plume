@@ -35,7 +35,7 @@ const source = computed(() => {
     />
   </ClientOnly>
   <p v-else>
-    <a :href="source" target="_blank" rel="noopener noreferrer" :aria-label="title || 'CodeSandbox'">
+    <a class="code-sandbox-link no-icon" :href="source" target="_blank" rel="noopener noreferrer" :aria-label="title || 'CodeSandbox'">
       <svg xmlns="http://www.w3.org/2000/svg" width="165" height="32" viewBox="0 0 165 32" fill="none">
         <rect width="165" height="32" rx="4" fill="#E3FF73" />
         <rect x="0.5" y="0.5" width="164" height="31" rx="3.5" stroke="black" stroke-opacity="0.1" />
@@ -54,6 +54,10 @@ const source = computed(() => {
 </template>
 
 <style>
+.code-sandbox-link {
+  display: inline-block;
+}
+
 .code-sandbox-iframe {
   width: 100%;
   height: 500px;

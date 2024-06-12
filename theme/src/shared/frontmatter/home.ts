@@ -1,8 +1,5 @@
-import type { WatermarkPluginFrontmatter } from '@vuepress/plugin-watermark'
-import type { ThemeImage, ThemeOutline } from './base.js'
-import type { NavItemWithLink } from './options/navbar.js'
+import type { ThemeImage } from '../base.js'
 
-/* =============================== Home begin ==================================== */
 export interface PlumeThemeHomeFrontmatter extends Omit<PlumeThemeHomeBanner, 'type'> {
   home?: true
   config?: PlumeThemeHomeConfig[]
@@ -85,17 +82,17 @@ export interface PlumeThemeHomeFeature {
 
 export type FeatureIcon = string | {
   src: string
-  alt?: string | undefined
-  width?: string | undefined
-  height?: string | undefined
-  wrap?: boolean | undefined
+  alt?: string
+  width?: string
+  height?: string
+  wrap?: boolean
 } | {
   light: string
   dark: string
-  alt?: string | undefined
-  width?: string | undefined
-  height?: string | undefined
-  wrap?: boolean | undefined
+  alt?: string
+  width?: string
+  height?: string
+  wrap?: boolean
 }
 
 export interface PlumeThemeHomeProfile extends PlumeHomeConfigBase {
@@ -108,61 +105,4 @@ export interface PlumeThemeHomeProfile extends PlumeHomeConfigBase {
 
 export interface PlumeThemeHomeCustom extends PlumeHomeConfigBase {
   type: 'custom'
-}
-
-/* =============================== Home end ==================================== */
-
-export interface PlumeThemePageFrontmatter {
-  home?: false
-  comments?: boolean
-  editLink?: boolean
-  editLinkPattern?: string
-  lastUpdated?: boolean
-  contributors?: boolean
-  prev?: string | NavItemWithLink
-  next?: string | NavItemWithLink
-  sidebar?: string | false
-  aside?: boolean
-  outline?: ThemeOutline
-  backToTop?: boolean
-  externalLink?: boolean
-  readingTime?: boolean
-  watermark?: WatermarkPluginFrontmatter['watermark'] & { fullPage?: boolean }
-}
-
-export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {
-  createTime?: string
-  author?: string
-  tags?: string[]
-  sticky?: boolean | number
-  article?: boolean
-}
-
-export interface PlumeThemeNoteFrontmatter extends PlumeThemePageFrontmatter {
-  createTime?: string
-}
-
-export interface FriendsItem {
-  name: string
-  link: string
-  avatar?: string
-  desc?: string
-  backgroundColor?: string | { light: string, dark: string }
-  color?: string | { light: string, dark: string }
-  nameColor?: string | { light: string, dark: string }
-  borderColor?: string | { light: string, dark: string }
-}
-
-export interface FriendGroup {
-  title?: string
-  desc?: string
-  list?: FriendsItem[]
-}
-
-export interface PlumeThemeFriendsFrontmatter {
-  friends: boolean
-  title?: string
-  description?: string
-  list?: FriendsItem[]
-  groups?: FriendGroup[]
 }

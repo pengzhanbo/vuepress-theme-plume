@@ -2,7 +2,7 @@ import type { LocaleData } from 'vuepress/core'
 import type { NotesDataOptions } from '@vuepress-plume/plugin-notes-data'
 import type { SocialLink, SocialLinkIconUnion, ThemeOutline } from '../base.js'
 import type { PlumeThemeBlog } from '../blog.js'
-import type { NavItem } from './navbar.js'
+import type { NavItem } from '../navbar.js'
 
 export interface PlumeThemeLocaleData extends LocaleData {
   /**

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import VPIcon from '../VPIcon.vue'
-import MenuLink from './MenuLink.vue'
+import VPIcon from './VPIcon.vue'
+import VPMenuLink from './VPMenuLink.vue'
 
 defineProps<{
   text?: string
@@ -17,7 +17,7 @@ defineProps<{
     </p>
 
     <template v-for="item in items">
-      <MenuLink v-if="'link' in item" :key="item?.link" :item="item" />
+      <VPMenuLink v-if="'link' in item" :key="item?.link" :item="item" />
     </template>
   </div>
 </template>

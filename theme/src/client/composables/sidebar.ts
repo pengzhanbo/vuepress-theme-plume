@@ -1,5 +1,4 @@
-import type { PageData } from 'vuepress/client'
-import { usePageData, useRoute, withBase } from 'vuepress/client'
+import { useRoute, withBase } from 'vuepress/client'
 import type {
   NotesData,
   NotesSidebarItem,
@@ -9,7 +8,6 @@ import { useMediaQuery } from '@vueuse/core'
 import type { ComputedRef, Ref } from 'vue'
 import { computed, onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
 import { isActive } from '../utils/index.js'
-import { hashRef } from './hash.js'
 import { useData } from './data.js'
 
 export { useNotesData }
@@ -165,7 +163,8 @@ export function useCloseSidebarOnEscape(
 }
 
 export function useSidebarControl(item: ComputedRef<NotesSidebarItem>) {
-  const page = usePageData<PageData>()
+  const { page } = useData()
+  const route = useRoute()
 
   const collapsed = ref(item.value.collapsed ?? false)
 
@@ -182,7 +181,7 @@ export function useSidebarControl(item: ComputedRef<NotesSidebarItem>) {
     isActiveLink.value = isActive(page.value.path, item.value.link)
   }
 
-  watch([page, item, hashRef], updateIsActiveLink)
+  watch([page, item, () => route.hash], updateIsActiveLink)
   onMounted(updateIsActiveLink)
 
   const hasActiveLink = computed(() => {

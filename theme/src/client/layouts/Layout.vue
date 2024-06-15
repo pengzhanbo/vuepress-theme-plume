@@ -36,13 +36,25 @@ useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
     :class="frontmatter.pageClass"
   >
     <VPEncryptGlobal v-if="!isGlobalDecrypted" />
+
     <template v-else>
       <VPSkipLink />
+
       <VPBackdrop :show="isSidebarOpen" @click="closeSidebar" />
 
       <Nav />
+
       <VPLocalNav :open="isSidebarOpen" :show-outline="isPageDecrypted" @open-menu="openSidebar" />
-      <VPSidebar :open="isSidebarOpen" />
+
+      <VPSidebar :open="isSidebarOpen">
+        <template #sidebar-nav-before>
+          <slot name="sidebar-nav-before" />
+        </template>
+        <template #sidebar-nav-after>
+          <slot name="sidebar-nav-after" />
+        </template>
+      </VPSidebar>
+
       <slot name="custom-content">
         <VPContent>
           <template #page-top>

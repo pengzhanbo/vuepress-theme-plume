@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import MenuGroup from './MenuGroup.vue'
-import MenuLink from './MenuLink.vue'
+import VPMenuGroup from './VPMenuGroup.vue'
+import VPMenuLink from './VPMenuLink.vue'
 
 defineProps<{
   items?: any[]
@@ -8,11 +8,11 @@ defineProps<{
 </script>
 
 <template>
-  <div class="menu-wrapper">
+  <div class="vp-menu">
     <div v-if="items" class="items">
       <template v-for="item in items" :key="item.text">
-        <MenuLink v-if="'link' in item" :item="item" />
-        <MenuGroup
+        <VPMenuLink v-if="'link' in item" :item="item" />
+        <VPMenuGroup
           v-else
           :text="item.text"
           :items="item.items"
@@ -26,7 +26,7 @@ defineProps<{
 </template>
 
 <style scoped>
-.menu-wrapper {
+.vp-menu {
   min-width: 128px;
   max-height: calc(100vh - var(--vp-nav-height));
   padding: 12px;
@@ -38,33 +38,33 @@ defineProps<{
   transition: background-color var(--t-color), border var(--t-color);
 }
 
-.menu-wrapper :deep(.group) {
+.vp-menu :deep(.group) {
   padding: 0 12px 12px;
   margin: 0 -12px;
 }
 
-.menu-wrapper :deep(.group + .group) {
+.vp-menu :deep(.group + .group) {
   padding: 11px 12px 12px;
   border-top: 1px solid var(--vp-c-divider);
   transition: border-top var(--t-color);
 }
 
-.menu-wrapper :deep(.group:last-child) {
+.vp-menu :deep(.group:last-child) {
   padding-bottom: 0;
 }
 
-.menu-wrapper :deep(.group + .item) {
+.vp-menu :deep(.group + .item) {
   padding: 11px 16px 0;
   border-top: 1px solid var(--vp-c-divider);
   transition: border-top var(--t-color);
 }
 
-.menu-wrapper :deep(.item) {
+.vp-menu :deep(.item) {
   padding: 0 16px;
   white-space: nowrap;
 }
 
-.menu-wrapper :deep(.label) {
+.vp-menu :deep(.label) {
   flex-grow: 1;
   font-size: 12px;
   font-weight: 500;
@@ -73,7 +73,7 @@ defineProps<{
   transition: color var(--t-color);
 }
 
-.menu-wrapper :deep(.action) {
+.vp-menu :deep(.action) {
   padding-left: 24px;
 }
 </style>

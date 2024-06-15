@@ -2,8 +2,8 @@
 import { computed } from 'vue'
 import { useData } from '../../composables/data.js'
 import { useLangs } from '../../composables/langs.js'
-import Flyout from '../Flyout/index.vue'
-import MenuLink from '../Flyout/MenuLink.vue'
+import VPFlyout from '../VPFlyout.vue'
+import VPMenuLink from '../VPMenuLink.vue'
 import VPSocialLinks from '../VPSocialLinks.vue'
 import VPSwitchAppearance from '../VPSwitchAppearance.vue'
 
@@ -26,7 +26,7 @@ const social = computed(() => {
 </script>
 
 <template>
-  <Flyout v-if="hasExtraContent" class="navbar-extra" label="extra navigation">
+  <VPFlyout v-if="hasExtraContent" class="navbar-extra" label="extra navigation">
     <div
       v-if="localeLinks.length && currentLang.label"
       class="group translations"
@@ -36,7 +36,7 @@ const social = computed(() => {
       </p>
 
       <template v-for="locale in localeLinks" :key="locale.link">
-        <MenuLink :item="locale" />
+        <VPMenuLink :item="locale" />
       </template>
     </div>
 
@@ -56,7 +56,7 @@ const social = computed(() => {
         <VPSocialLinks class="social-links-list" :links="social" />
       </div>
     </div>
-  </Flyout>
+  </VPFlyout>
 </template>
 
 <style scoped>

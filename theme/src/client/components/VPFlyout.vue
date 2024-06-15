@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useFlyout } from '../../composables/flyout.js'
-import VPIcon from '../VPIcon.vue'
-import VMenu from './VMenu.vue'
+import { useFlyout } from '../composables/flyout.js'
+import VPIcon from './VPIcon.vue'
+import VPMenu from './VPMenu.vue'
 
 defineProps<{
   prefixIcon?: string | { svg: string }
@@ -22,17 +22,10 @@ function onBlur() {
 }
 </script>
 
-<script lang="ts">
-export default {
-
-  name: 'Flyout',
-}
-</script>
-
 <template>
   <div
     ref="el"
-    class="flyout-wrapper"
+    class="vp-flyout"
     @mouseenter="open = true"
     @mouseleave="open = false"
   >
@@ -55,15 +48,15 @@ export default {
     </button>
 
     <div class="menu">
-      <VMenu :items="items">
+      <VPMenu :items="items">
         <slot />
-      </VMenu>
+      </VPMenu>
     </div>
   </div>
 </template>
 
 <style scoped>
-.flyout-wrapper {
+.vp-flyout {
   position: relative;
   transition: color var(--t-color);
 }
@@ -97,27 +90,27 @@ export default {
     transform 0.25s;
 }
 
-.flyout-wrapper:hover {
+.vp-flyout:hover {
   color: var(--vp-c-brand-1);
 }
 
-.flyout-wrapper:hover .text {
+.vp-flyout:hover .text {
   color: var(--vp-c-text-2);
 }
 
-.flyout-wrapper:hover .icon {
+.vp-flyout:hover .icon {
   fill: var(--vp-c-text-2);
 }
 
-.flyout-wrapper.active .text {
+.vp-flyout.active .text {
   color: var(--vp-c-brand-1);
 }
 
-.flyout-wrapper.active:hover .text {
+.vp-flyout.active:hover .text {
   color: var(--vp-c-brand-2);
 }
 
-.flyout-wrapper:hover .menu,
+.vp-flyout:hover .menu,
 .button[aria-expanded="true"] + .menu {
   visibility: visible;
   opacity: 1;

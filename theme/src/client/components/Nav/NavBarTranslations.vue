@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import { useLangs } from '../../composables/langs.js'
 import { useData } from '../../composables/data.js'
-import Flyout from '../Flyout/index.vue'
-import MenuLink from '../Flyout/MenuLink.vue'
+import VPFlyout from '../VPFlyout.vue'
+import VPMenuLink from '../VPMenuLink.vue'
 
 const { theme } = useData()
 const { currentLang, localeLinks } = useLangs()
 </script>
 
 <template>
-  <Flyout
+  <VPFlyout
     v-if="localeLinks.length && currentLang.label"
     class="navbar-translations"
     icon="vpi-languages"
@@ -21,10 +21,10 @@ const { currentLang, localeLinks } = useLangs()
       </p>
 
       <template v-for="locale in localeLinks" :key="locale.link">
-        <MenuLink :item="locale" />
+        <VPMenuLink :item="locale" />
       </template>
     </div>
-  </Flyout>
+  </VPFlyout>
 </template>
 
 <style lang="scss" scoped>

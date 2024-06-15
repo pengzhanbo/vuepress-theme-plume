@@ -20,7 +20,6 @@ import type {
   PlumeThemePostFrontmatter,
 } from '../../shared/index.js'
 import { useThemeLocaleData } from './theme-data.js'
-import { hashRef } from './hash.js'
 import { useDarkMode } from './dark-mode.js'
 
 type FrontmatterType = 'home' | 'post' | 'friends' | 'page'
@@ -37,7 +36,6 @@ export interface Data<T extends FrontmatterType = 'page'> {
   page: PageDataRef<PlumeThemePageData>
   frontmatter: PageFrontmatterRef<Frontmatter<T>>
   lang: Ref<string>
-  hash: Ref<string>
   site: SiteLocaleDataRef
   isDark: Ref<boolean>
 }
@@ -50,5 +48,5 @@ export function useData<T extends FrontmatterType = 'page'>(): Data<T> {
   const isDark = useDarkMode()
   const lang = usePageLang()
 
-  return { theme, page, frontmatter, lang, hash: hashRef, site, isDark }
+  return { theme, page, frontmatter, lang, site, isDark }
 }

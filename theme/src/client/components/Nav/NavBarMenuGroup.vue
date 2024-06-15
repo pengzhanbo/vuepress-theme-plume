@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import type { NavItem, NavItemWithChildren } from '../../../shared/index.js'
 import { isActive } from '../../utils/index.js'
-import Flyout from '../Flyout/index.vue'
+import VPFlyout from '../VPFlyout.vue'
 import { useData } from '../../composables/data.js'
 
 const props = defineProps<{
@@ -27,7 +27,7 @@ const childrenActive = computed(() => isChildActive(props.item))
 </script>
 
 <template>
-  <Flyout
+  <VPFlyout
     class="navbar-menu-group" :class="{
       active: isActive(page.path, item.activeMatch, !!item.activeMatch) || childrenActive,
     }"

@@ -69,6 +69,8 @@ onMounted(() => {
             Sidebar Navigation
           </span>
 
+          <slot name="sidebar-nav-before" />
+
           <div
             v-for="item in sidebarGroups"
             :key="item.text"
@@ -76,6 +78,8 @@ onMounted(() => {
           >
             <VPSidebarItem :item="item" :depth="0" />
           </div>
+
+          <slot name="sidebar-nav-after" />
         </nav>
       </TransitionFadeSlideY>
     </aside>

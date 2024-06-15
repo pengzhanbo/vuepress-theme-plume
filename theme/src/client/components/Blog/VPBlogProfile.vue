@@ -18,30 +18,30 @@ const imageUrl = computed(() => {
 </script>
 
 <template>
-  <div v-if="avatar" class="avatar-profile">
+  <div v-if="avatar" class="vp-blog-profile">
     <p v-if="imageUrl" :class="{ circle: !!avatar.circle }">
       <img :src="imageUrl" :alt="avatar.name">
     </p>
-    <div class="avatar-info">
+    <div class="profile-info">
       <h3>{{ avatar.name }}</h3>
       <p v-if="avatar.description" v-html="avatar.description" />
-      <div v-if="avatar.location" class="avatar-location">
+      <div v-if="avatar.location" class="profile-location">
         <span class="vpi-location" />
         <p v-if="avatar.location" v-html="avatar.location" />
       </div>
-      <div v-if="avatar.organization" class="avatar-organization">
+      <div v-if="avatar.organization" class="profile-organization">
         <span class="vpi-organization" />
         <p v-if="avatar.organization" v-html="avatar.organization" />
       </div>
     </div>
-    <div v-if="theme.social" class="avatar-social">
+    <div v-if="theme.social" class="profile-social">
       <VPSocialLinks :links="theme.social" />
     </div>
   </div>
 </template>
 
 <style scoped>
-.avatar-profile {
+.vp-blog-profile {
   padding: 24px 20px;
   margin-bottom: 24px;
   background-color: var(--vp-c-bg);
@@ -51,36 +51,36 @@ const imageUrl = computed(() => {
   transition-property: background-color, color, box-shadow;
 }
 
-.avatar-profile:hover {
+.vp-blog-profile:hover {
   box-shadow: var(--vp-shadow-2);
 }
 
-.avatar-profile img {
+.vp-blog-profile img {
   width: 60%;
   margin: auto;
 
   object-fit: cover;
 }
 
-.avatar-profile h3 {
+.vp-blog-profile h3 {
   margin-top: 1.5rem;
   font-size: 18px;
   font-weight: 600;
 }
 
-.avatar-profile h3,
-.avatar-profile p {
+.vp-blog-profile h3,
+.vp-blog-profile p {
   color: var(--vp-c-text-1);
   transition: color var(--t-color);
 }
 
-.avatar-profile .circle img {
+.vp-blog-profile .circle img {
   overflow: hidden;
   border-radius: 50%;
 }
 
-.avatar-location,
-.avatar-organization {
+.profile-location,
+.profile-organization {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,28 +90,28 @@ const imageUrl = computed(() => {
   transition: color var(--t-color);
 }
 
-.avatar-location p,
-.avatar-organization p {
+.profile-location p,
+.profile-organization p {
   margin: 0 4px;
 }
 
-.avatar-location + .avatar-organization {
+.profile-location + .profile-organization {
   margin-top: 0;
 }
 
-.avatar-social {
+.profile-social {
   padding-top: 12px;
   margin-top: 12px;
   border-top: 1px solid var(--vp-c-divider);
   transition: border var(--t-color);
 }
 
-.avatar-social :deep(.vp-social-link) {
+.profile-social :deep(.vp-social-link) {
   width: 32px;
   height: 32px;
 }
 
-.avatar-social :deep(.vp-social-link:hover) {
+.profile-social :deep(.vp-social-link:hover) {
   color: var(--vp-c-brand-1);
 }
 </style>

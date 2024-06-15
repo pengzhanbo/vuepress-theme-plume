@@ -29,7 +29,7 @@ const createTime = computed(() =>
 </script>
 
 <template>
-  <div class="post-item">
+  <div class="vp-blog-post-item">
     <h3>
       <div
         v-if="typeof post.sticky === 'boolean' ? post.sticky : post.sticky >= 0"
@@ -71,16 +71,16 @@ const createTime = computed(() =>
 </template>
 
 <style scoped>
-.post-item {
+.vp-blog-post-item {
   padding-top: 1rem;
   margin: 0 1.75rem 2rem;
 }
 
-.post-item:last-of-type {
+.vp-blog-post-item:last-of-type {
   border-bottom: none;
 }
 
-.post-item .sticky {
+.vp-blog-post-item .sticky {
   display: inline-block;
   padding: 3px 6px;
   margin-right: 0.5rem;
@@ -94,7 +94,7 @@ const createTime = computed(() =>
   transition-property: color, background-color;
 }
 
-.post-item .icon-lock {
+.vp-blog-post-item .icon-lock {
   width: 1em;
   height: 1em;
   margin-right: 8px;
@@ -104,7 +104,7 @@ const createTime = computed(() =>
   transition-property: color;
 }
 
-.post-item h3 {
+.vp-blog-post-item h3 {
   display: flex;
   align-items: center;
   margin-bottom: 0.75rem;
@@ -114,16 +114,16 @@ const createTime = computed(() =>
   transition: color var(--t-color);
 }
 
-.post-item h3:hover {
+.vp-blog-post-item h3:hover {
   color: var(--vp-c-brand-1);
 }
 
-.post-item h3:hover .sticky {
+.vp-blog-post-item h3:hover .sticky {
   color: var(--vp-c-text-2);
 }
 
 @media (min-width: 768px) {
-  .post-item {
+  .vp-blog-post-item {
     padding: 24px 20px;
     margin: 0 0 24px 20px;
     background-color: var(--vp-c-bg);
@@ -134,21 +134,21 @@ const createTime = computed(() =>
     will-change: transform;
   }
 
-  .post-item:hover {
+  .vp-blog-post-item:hover {
     box-shadow: var(--vp-shadow-2);
   }
 
-  .post-item .post-meta {
+  .vp-blog-post-item .post-meta {
     margin-bottom: 0;
   }
 
-  .post-item .excerpt {
+  .vp-blog-post-item .excerpt {
     margin-top: 24px;
   }
 }
 
 @media (min-width: 1200px) {
-  .post-item {
+  .vp-blog-post-item {
     margin: 0 0 24px;
   }
 }

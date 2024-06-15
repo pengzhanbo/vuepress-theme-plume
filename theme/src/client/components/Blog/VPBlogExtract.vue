@@ -58,7 +58,7 @@ const showBlogExtract = computed(() => {
 
 <template>
   <template v-if="showBlogExtract">
-    <div class="blog-extract" @click="open = !open">
+    <div class="vp-blog-extract" @click="open = !open">
       <span class="vpi-blog-ext icon" />
     </div>
     <Transition name="fade">
@@ -102,7 +102,7 @@ const showBlogExtract = computed(() => {
 </template>
 
 <style scoped>
-.blog-extract {
+.vp-blog-extract {
   position: fixed;
   right: 0;
   bottom: 30%;
@@ -120,7 +120,7 @@ const showBlogExtract = computed(() => {
   transition-property: background-color, border, box-shadow;
 }
 
-.blog-extract .icon {
+.vp-blog-extract .icon {
   display: block;
   font-size: 16px;
   color: var(--vp-c-text-2);
@@ -128,13 +128,13 @@ const showBlogExtract = computed(() => {
 }
 
 @media (min-width: 768px) {
-  .blog-extract {
+  .vp-blog-extract {
     display: none;
   }
 }
 
 @media print {
-  .blog-extract {
+  .vp-blog-extract {
     display: none;
   }
 }

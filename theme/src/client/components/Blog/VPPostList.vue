@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { usePostListControl } from '../../composables/blog.js'
 import TransitionDrop from '../TransitionDrop.vue'
-import PostItem from './PostItem.vue'
-import Pagination from './Pagination.vue'
+import VPPostItem from './VPPostItem.vue'
+import VPPagination from './VPPagination.vue'
 
 const {
   postList,
@@ -17,16 +17,16 @@ const {
 </script>
 
 <template>
-  <div class="post-list">
+  <div class="vp-blog-post-list">
     <template v-for="(post, index) in postList" :key="post.path">
       <TransitionDrop appear :delay="index * 0.04">
-        <PostItem
+        <VPPostItem
           :key="post.path"
           :post="post"
         />
       </TransitionDrop>
     </template>
-    <Pagination
+    <VPPagination
       v-if="isPaginationEnabled"
       :page="page"
       :total-page="totalPage"
@@ -39,7 +39,7 @@ const {
 </template>
 
 <style scoped>
-.post-list {
+.vp-blog-post-list {
   flex: 1;
   padding-top: 32px;
   padding-bottom: 64px;

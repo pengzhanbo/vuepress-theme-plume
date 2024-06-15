@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { useBlogExtract, useTags } from '../../composables/blog.js'
-import ShortPostList from './ShortPostList.vue'
+import VPShortPostList from './VPShortPostList.vue'
 
 const { tags, currentTag, postList, handleTagClick } = useTags()
 const { tags: tagsLink } = useBlogExtract()
 </script>
 
 <template>
-  <div class="tags-wrapper" :class="{ 'has-list': postList.length > 0 }">
+  <div class="vp-blog-tags" :class="{ 'has-list': postList.length > 0 }">
     <div class="tags-nav">
       <h2 class="tags-title">
         <span class="vpi-tag icon" />
@@ -32,19 +32,19 @@ const { tags: tagsLink } = useBlogExtract()
         {{ currentTag }}
       </h3>
 
-      <ShortPostList v-if="postList.length" :post-list="postList" />
+      <VPShortPostList v-if="postList.length" :post-list="postList" />
     </div>
   </div>
 </template>
 
 <style scoped>
-.tags-wrapper {
+.vp-blog-tags {
   flex: 1;
   padding: 32px 24px;
   margin: 0 auto;
 }
 
-.tags-wrapper.has-list {
+.vp-blog-tags.has-list {
   padding-bottom: 64px;
 }
 
@@ -118,7 +118,7 @@ const { tags: tagsLink } = useBlogExtract()
 }
 
 @media (min-width: 768px) {
-  .tags-wrapper {
+  .vp-blog-tags {
     padding: 32px 0;
     margin-left: 20px;
   }
@@ -149,7 +149,7 @@ const { tags: tagsLink } = useBlogExtract()
 }
 
 @media (min-width: 1200px) {
-  .tags-wrapper {
+  .vp-blog-tags {
     margin-left: 0;
   }
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useData, useSidebar } from '../composables/index.js'
-import Blog from './Blog/Blog.vue'
+import VPBlog from './Blog/VPBlog.vue'
 import VPDoc from './VPDoc.vue'
 import VPPage from './VPPage.vue'
 import Home from './Home/Home.vue'
@@ -29,7 +29,7 @@ const isBlogLayout = computed(() => {
       'is-home': frontmatter.pageLayout === 'home',
     }"
   >
-    <Blog v-if="isBlogLayout" />
+    <VPBlog v-if="isBlogLayout" />
 
     <VPPage v-else-if="frontmatter.pageLayout === 'page'">
       <template #page-top>

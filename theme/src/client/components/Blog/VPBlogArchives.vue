@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { useArchives, useBlogExtract } from '../../composables/blog.js'
-import ShortPostList from './ShortPostList.vue'
+import VPShortPostList from './VPShortPostList.vue'
 
 const { archives: archivesLink } = useBlogExtract()
 const { archives } = useArchives()
 </script>
 
 <template>
-  <div class="archives-wrapper">
+  <div class="vp-blog-archives">
     <h2 class="archives-title">
       <span class="vpi-archive icon" />
       <span>{{ archivesLink.text }}</span>
@@ -18,7 +18,7 @@ const { archives } = useArchives()
           <h3 class="archive-title">
             {{ archive.label }}
           </h3>
-          <ShortPostList :post-list="archive.list" />
+          <VPShortPostList :post-list="archive.list" />
         </div>
       </template>
     </div>
@@ -26,7 +26,7 @@ const { archives } = useArchives()
 </template>
 
 <style scoped>
-.archives-wrapper {
+.vp-blog-archives {
   flex: 1;
   padding: 32px 24px;
   margin: 0 auto;
@@ -61,7 +61,7 @@ const { archives } = useArchives()
 }
 
 @media (min-width: 768px) {
-  .archives-wrapper {
+  .vp-blog-archives {
     padding: 32px 0;
     margin-left: 20px;
   }
@@ -94,7 +94,7 @@ const { archives } = useArchives()
 }
 
 @media (min-width: 1200px) {
-  .archives-wrapper {
+  .vp-blog-archives {
     margin-left: 0;
   }
 }

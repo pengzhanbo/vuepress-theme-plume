@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-  <ul class="post-list">
+  <ul class="vp-blog-short-post-list">
     <li v-for="post in postList" :key="post.path">
       <p class="post-title">
         <VPLink class="post-link" :href="post.path">
@@ -24,12 +24,12 @@ defineProps<{
 </template>
 
 <style scoped>
-.post-list {
+.vp-blog-short-post-list {
   padding: 0 12px;
   margin-top: 32px;
 }
 
-.post-list li {
+.vp-blog-short-post-list li {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,7 +38,7 @@ defineProps<{
   transition: color var(--t-color);
 }
 
-.post-list .post-title {
+.vp-blog-short-post-list .post-title {
   display: -webkit-box;
   flex: 1;
   margin-right: 14px;
@@ -51,16 +51,16 @@ defineProps<{
   line-clamp: 1;
 }
 
-.post-list .post-time {
+.vp-blog-short-post-list .post-time {
   color: var(--vp-c-text-3);
   transition: color var(--t-color);
 }
 
-.post-list li:hover .post-title {
+.vp-blog-short-post-list li:hover .post-title {
   color: var(--vp-c-brand-1);
 }
 
-.post-list li:hover .post-time {
+.vp-blog-short-post-list li:hover .post-time {
   color: var(--vp-c-text-2);
 }
 </style>

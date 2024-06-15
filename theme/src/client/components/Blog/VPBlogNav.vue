@@ -13,7 +13,7 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
 </script>
 
 <template>
-  <div v-if="hasBlogExtract" class="blog-nav" :class="{ local: props.isLocal }">
+  <div v-if="hasBlogExtract" class="vp-blog-nav" :class="{ local: props.isLocal }">
     <VPLink
       class="nav-link"
       :class="{ active: route.path === tags.link }"
@@ -38,25 +38,25 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
 </template>
 
 <style scoped>
-.blog-nav {
+.vp-blog-nav {
   padding: 0;
   text-align: left;
 }
 
-.blog-nav.local {
+.vp-blog-nav.local {
   display: none;
   padding-top: 2rem;
   margin-left: 20px;
 }
 
 @media (min-width: 768px) {
-  .blog-nav.local {
+  .vp-blog-nav.local {
     display: flex;
   }
 }
 
 @media (min-width: 1200px) {
-  .blog-nav.local {
+  .vp-blog-nav.local {
     margin-left: 0;
   }
 }
@@ -88,14 +88,14 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
   color: var(--vp-c-brand-1);
 }
 
-.blog-nav.local .nav-link {
+.vp-blog-nav.local .nav-link {
   flex: 1;
   max-width: 200px;
   margin-right: 20px;
   margin-bottom: 0;
 }
 
-.blog-nav.local .nav-link:last-of-type {
+.vp-blog-nav.local .nav-link:last-of-type {
   margin-right: 0;
 }
 

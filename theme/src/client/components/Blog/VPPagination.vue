@@ -14,7 +14,7 @@ const { theme } = useData()
 </script>
 
 <template>
-  <div class="pagination">
+  <div class="vp-blog-pagination">
     <button
       type="button"
       class="btn prev"
@@ -48,7 +48,7 @@ const { theme } = useData()
 </template>
 
 <style scoped>
-.pagination {
+.vp-blog-pagination {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,7 +81,7 @@ const { theme } = useData()
 }
 
 @media (min-width: 768px) {
-  .pagination {
+  .vp-blog-pagination {
     padding: 20px;
     margin-left: 20px;
     background-color: var(--vp-c-bg);
@@ -107,7 +107,7 @@ const { theme } = useData()
 }
 
 @media (min-width: 1200px) {
-  .pagination {
+  .vp-blog-pagination {
     margin-left: 0;
   }
 }

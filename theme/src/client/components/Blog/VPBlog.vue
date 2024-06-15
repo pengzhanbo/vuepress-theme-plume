@@ -2,48 +2,48 @@
 import { computed } from 'vue'
 import { useData } from '../../composables/data.js'
 import TransitionFadeSlideY from '../TransitionFadeSlideY.vue'
-import PostList from './PostList.vue'
-import Archives from './Archives.vue'
-import BlogAside from './BlogAside.vue'
-import BlogExtract from './BlogExtract.vue'
-import Tags from './Tags.vue'
-import BlogNav from './BlogNav.vue'
+import VPPostList from './VPPostList.vue'
+import VPBlogArchives from './VPBlogArchives.vue'
+import VPBlogAside from './VPBlogAside.vue'
+import VPBlogExtract from './VPBlogExtract.vue'
+import VPBlogTags from './VPBlogTags.vue'
+import VPBlogNav from './VPBlogNav.vue'
 
 const { theme, page } = useData()
 
 const com = {
-  PostList,
-  Tags,
-  Archives,
+  VPPostList,
+  VPBlogTags,
+  VPBlogArchives,
 }
 
 const type = computed(() => {
   const type = page.value.type
   if (type === 'blog-tags')
-    return 'Tags'
+    return 'VPBlogTags'
   if (type === 'blog-archives')
-    return 'Archives'
-  return 'PostList'
+    return 'VPBlogArchives'
+  return 'VPPostList'
 })
 </script>
 
 <template>
-  <div class="blog-wrapper">
+  <div class="vp-blog">
     <div class="blog-container" :class="{ 'no-avatar': !theme.avatar }">
-      <BlogNav v-if="!theme.avatar" is-local />
+      <VPBlogNav v-if="!theme.avatar" is-local />
 
       <TransitionFadeSlideY>
         <component :is="com[type]" />
       </TransitionFadeSlideY>
 
-      <BlogAside />
-      <BlogExtract />
+      <VPBlogAside />
+      <VPBlogExtract />
     </div>
   </div>
 </template>
 
 <style scoped>
-.blog-wrapper {
+.vp-blog {
   position: relative;
   min-height: calc(100vh - var(--vp-footer-height, 0px));
 }
@@ -64,11 +64,11 @@ const type = computed(() => {
 }
 
 @media (min-width: 768px) {
-  .blog-wrapper {
+  .vp-blog {
     min-height: calc(100vh + var(--vp-nav-height) - var(--vp-footer-height, 0px));
   }
 
-  .blog-wrapper {
+  .vp-blog {
     padding-top: var(--vp-nav-height);
     margin-top: calc(var(--vp-nav-height) * -1);
     background-color: var(--vp-c-bg-alt);
@@ -82,7 +82,7 @@ const type = computed(() => {
 }
 
 @media (min-width: 960px) {
-  .blog-wrapper {
+  .vp-blog {
     min-height: calc(100vh - var(--vp-footer-height, 0px));
   }
 

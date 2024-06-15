@@ -1,20 +1,20 @@
 <script lang="ts" setup>
 import { useData } from '../../composables/data.js'
-import BlogNav from './BlogNav.vue'
-import BlogProfile from './BlogProfile.vue'
+import VPBlogNav from './VPBlogNav.vue'
+import VPBlogProfile from './VPBlogProfile.vue'
 
 const { theme } = useData()
 </script>
 
 <template>
-  <div v-if="theme.avatar" class="blog-aside-wrapper">
-    <BlogProfile />
-    <BlogNav />
+  <div v-if="theme.avatar" class="vp-blog-aside">
+    <VPBlogProfile />
+    <VPBlogNav />
   </div>
 </template>
 
 <style scoped>
-.blog-aside-wrapper {
+.vp-blog-aside {
   position: sticky;
   top: calc(var(--vp-nav-height) + 2rem);
   display: none;
@@ -24,7 +24,7 @@ const { theme } = useData()
 }
 
 @media (min-width: 768px) {
-  .blog-aside-wrapper {
+  .vp-blog-aside {
     display: block;
     margin: 2rem 1rem 1rem 1.5rem;
   }

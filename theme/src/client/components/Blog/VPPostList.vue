@@ -42,7 +42,7 @@ const {
 .vp-blog-post-list {
   flex: 1;
   padding-top: 32px;
-  padding-bottom: 64px;
+  padding-bottom: 36px;
   margin: 0 auto;
 }
 </style>

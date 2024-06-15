@@ -35,7 +35,7 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
 </script>
 
 <template>
-  <div class="home-banner" :style="bannerStyle">
+  <div class="vp-home-banner" :style="bannerStyle">
     <div class="banner-mask" :style="{ opacity: mask }" />
     <div class="container">
       <div class="content">
@@ -66,7 +66,7 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
 </template>
 
 <style scoped>
-.home-banner {
+.vp-home-banner {
   position: relative;
   width: 100%;
   min-height: calc(100vh - var(--vp-nav-height));
@@ -76,7 +76,7 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
   transition: all var(--t-color);
 }
 
-.home-banner .banner-mask {
+.vp-home-banner .banner-mask {
   position: absolute;
   top: 0;
   left: 0;
@@ -86,7 +86,7 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
   transition: opacity var(--t-color);
 }
 
-.home-banner .container {
+.vp-home-banner .container {
   position: relative;
   z-index: 1;
   display: flex;
@@ -97,19 +97,19 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
   margin: 0 auto;
 }
 
-.home-banner .content {
+.vp-home-banner .content {
   width: 100%;
   padding: 0 2rem;
 }
 
-.home-banner .content .hero-name {
+.vp-home-banner .content .hero-name {
   font-size: 72px;
   font-weight: 600;
   line-height: 1;
   color: var(--vp-c-text-hero-name);
 }
 
-.home-banner .content .hero-tagline {
+.vp-home-banner .content .hero-tagline {
   display: flex;
   align-items: center;
   margin-top: 1rem;
@@ -119,7 +119,7 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
   color: var(--vp-c-text-hero-tagline);
 }
 
-.home-banner .content .hero-tagline .line {
+.vp-home-banner .content .hero-tagline .line {
   display: inline-block;
   width: 80px;
   height: 0;
@@ -127,7 +127,7 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
   border-top: solid 1px var(--vp-c-text-hero-tagline);
 }
 
-.home-banner .content .hero-text {
+.vp-home-banner .content .hero-text {
   width: 100%;
   max-width: 700px;
   margin-top: 1.5rem;
@@ -138,23 +138,23 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
 }
 
 @media (min-width: 960px) {
-  .home-banner .container {
+  .vp-home-banner .container {
     max-width: 768px;
     padding-top: 8rem;
   }
 
-  .home-banner .content .hero-name {
+  .vp-home-banner .content .hero-name {
     font-size: 100px;
   }
 }
 
 @media (min-width: 1440px) {
-  .home-banner .container {
+  .vp-home-banner .container {
     max-width: 1104px;
     padding-top: 8rem;
   }
 
-  .home-banner .content .hero-tagline {
+  .vp-home-banner .content .hero-tagline {
     font-size: 32px;
   }
 }

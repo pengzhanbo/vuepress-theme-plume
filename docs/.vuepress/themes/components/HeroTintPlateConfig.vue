@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HomeHero from 'vuepress-theme-plume/components/Home/HomeHero.vue'
+import VPHomeHero from 'vuepress-theme-plume/components/Home/VPHomeHero.vue'
 import { useDarkMode } from 'vuepress-theme-plume/composables'
 import type { PlumeThemeHomeHeroTintPlate } from 'vuepress-theme-plume/client'
 import { computed, ref, watch } from 'vue'
@@ -74,7 +74,7 @@ const output = computed(() => {
     <h4>效果预览：</h4>
     <div :class="{ dark: isDark }">
       <DemoWrapper>
-        <HomeHero type="hero" background="tint-plate" :tint-plate="tintPlate" :hero="hero" />
+        <VPHomeHero type="hero" background="tint-plate" :tint-plate="tintPlate" :hero="hero" />
       </DemoWrapper>
     </div>
     <p>

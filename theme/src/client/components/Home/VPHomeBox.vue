@@ -31,7 +31,7 @@ const containerClass = computed(() => normalizeClass(props.containerClass || '')
 </script>
 
 <template>
-  <div class="home-box" :class="{ full: props.full }" :style="styles">
+  <div class="vp-home-box" :class="{ full: props.full }" :style="styles">
     <slot name="before" />
     <div class="container" :class="containerClass">
       <slot />
@@ -41,34 +41,33 @@ const containerClass = computed(() => normalizeClass(props.containerClass || '')
 </template>
 
 <style>
-.home-box {
+.vp-home-box {
   position: relative;
   padding: 24px;
 }
 
 @media (min-width: 640px) {
-  .home-box {
+  .vp-home-box {
     padding: 32px 48px;
   }
 }
 
 @media (min-width: 960px) {
-  .home-box {
+  .vp-home-box {
     padding: 48px;
   }
 }
 
-.home-box .container {
+.vp-home-box .container {
   width: 100%;
   max-width: 1152px;
   margin: 0 auto;
 }
 
-.home-box.full {
+.vp-home-box.full {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - var(--vp-nav-height));
 }
 </style>
-../../composables/dark-mode.js

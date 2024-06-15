@@ -8,7 +8,7 @@ defineProps<PlumeThemeHomeFeature>()
 
 <template>
   <VPLink
-    class="home-feature"
+    class="vp-home-feature"
     :href="link"
     :rel="rel"
     :target="target"
@@ -45,7 +45,7 @@ defineProps<PlumeThemeHomeFeature>()
 </template>
 
 <style scoped>
-.home-feature {
+.vp-home-feature {
   display: block;
   height: 100%;
   background-color: var(--vp-c-bg-soft);
@@ -54,7 +54,7 @@ defineProps<PlumeThemeHomeFeature>()
   transition: border-color var(--t-color), background-color var(--t-color);
 }
 
-.home-feature.link:hover {
+.vp-home-feature.link:hover {
   border-color: var(--vp-c-brand-1);
 }
 

@@ -44,7 +44,7 @@ useHomeHeroTintPlate(
 </script>
 
 <template>
-  <div class="home-hero" :class="{ full: props.full, once: props.onlyOnce }">
+  <div class="vp-home-hero" :class="{ full: props.full, once: props.onlyOnce }">
     <div v-if="heroBackground" class="home-hero-bg" :style="heroBackground" />
 
     <div v-if="background === 'tint-plate'" class="bg-filter">
@@ -76,20 +76,20 @@ useHomeHeroTintPlate(
 </template>
 
 <style scoped>
-.home-hero {
+.vp-home-hero {
   position: relative;
   width: 100%;
 }
 
-.home-hero.full {
+.vp-home-hero.full {
   height: calc(100vh - var(--vp-nav-height));
 }
 
-.home-hero.full.once {
+.vp-home-hero.full.once {
   height: calc(100vh - var(--vp-nav-height) - var(--vp-footer-height, 0px));
 }
 
-.home-hero-bg {
+.vp-home-hero-bg {
   position: absolute;
   z-index: 0;
   width: 100%;
@@ -109,12 +109,12 @@ useHomeHeroTintPlate(
   height: 100%;
 }
 
-.home-hero.full .container {
+.vp-home-hero.full .container {
   align-items: center;
   justify-content: center;
 }
 
-.home-hero:not(.full) .container {
+.vp-home-hero:not(.full) .container {
   padding-top: 80px;
   padding-bottom: 80px;
 }
@@ -126,7 +126,7 @@ useHomeHeroTintPlate(
   text-align: center;
 }
 
-.home-hero.full .container .content {
+.vp-home-hero.full .container .content {
   margin-top: -40px;
 }
 
@@ -139,7 +139,7 @@ useHomeHeroTintPlate(
 }
 
 .hero-name {
-  background: linear-gradient(315deg, var(--vp-c-purple-1) 15%, var(--vp-c-brand-2) 65%, var(--vp-c-brand-2) 100%);
+  background: var(--vp-bg-home-hero-name, linear-gradient(315deg, var(--vp-c-purple-1) 15%, var(--vp-c-brand-2) 65%, var(--vp-c-brand-2) 100%));
   -webkit-background-clip: text;
   background-clip: text;
 
@@ -147,7 +147,7 @@ useHomeHeroTintPlate(
 }
 
 .hero-tagline {
-  color: var(--vp-c-text-2);
+  color: var(--vp-c-home-hero-tagline, var(--vp-c-text-2));
   transition: color var(--t-color);
 }
 
@@ -155,7 +155,7 @@ useHomeHeroTintPlate(
   margin: 18px 0 30px;
   font-size: 18px;
   font-weight: 500;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-home-hero-text, var(--vp-c-text-3));
   white-space: pre-wrap;
   transition: color var(--t-color);
 }
@@ -187,7 +187,7 @@ useHomeHeroTintPlate(
   transform: translate3d(0, 0, 0);
 }
 
-.home-hero.full.once .bg-filter {
+.vp-home-hero.full.once .bg-filter {
   height: calc(100% + var(--vp-footer-height, 0px));
 }
 

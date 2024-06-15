@@ -7,7 +7,7 @@ import VPBadge from './components/global/VPBadge.vue'
 import { setupDarkMode, setupWatermark, useScrollPromise } from './composables/index.js'
 import Layout from './layouts/Layout.vue'
 import NotFound from './layouts/NotFound.vue'
-import HomeBox from './components/Home/HomeBox.vue'
+import VPHomeBox from './components/Home/VPHomeBox.vue'
 
 export default defineClientConfig({
   enhance({ app, router }) {
@@ -41,7 +41,9 @@ export default defineClientConfig({
       return null
     })
 
-    app.component('HomeBox', HomeBox)
+    /** @deprecated */
+    app.component('HomeBox', VPHomeBox)
+    app.component('VPHomeBox', VPHomeBox)
 
     // handle scrollBehavior with transition
     const scrollBehavior = router.options.scrollBehavior!

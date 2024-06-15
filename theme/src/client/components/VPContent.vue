@@ -4,7 +4,7 @@ import { useData, useSidebar } from '../composables/index.js'
 import VPBlog from './Blog/VPBlog.vue'
 import VPDoc from './VPDoc.vue'
 import VPPage from './VPPage.vue'
-import Home from './Home/Home.vue'
+import VPHome from './Home/VPHome.vue'
 import Friends from './Friends.vue'
 
 const props = defineProps<{
@@ -42,7 +42,7 @@ const isBlogLayout = computed(() => {
 
     <Friends v-else-if="frontmatter.pageLayout === 'friends'" />
 
-    <Home v-else-if="frontmatter.pageLayout === 'home'" />
+    <VPHome v-else-if="frontmatter.pageLayout === 'home'" />
 
     <component
       :is="frontmatter.pageLayout"

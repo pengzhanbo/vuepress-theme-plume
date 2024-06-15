@@ -1,21 +1,21 @@
 <script lang="ts" setup>
 import { type Component, computed, nextTick, onUnmounted, resolveComponent, watch } from 'vue'
 import { useData } from '../../composables/data.js'
-import HomeBanner from './HomeBanner.vue'
-import HomeHero from './HomeHero.vue'
-import HomeFeatures from './HomeFeatures.vue'
-import HomeTextImage from './HomeTextImage.vue'
-import HomeProfile from './HomeProfile.vue'
-import HomeCustom from './HomeCustom.vue'
+import VPHomeBanner from './VPHomeBanner.vue'
+import VPHomeHero from './VPHomeHero.vue'
+import VPHomeFeatures from './VPHomeFeatures.vue'
+import VPHomeTextImage from './VPHomeTextImage.vue'
+import VPHomeProfile from './VPHomeProfile.vue'
+import VPHomeCustom from './VPHomeCustom.vue'
 
 const components: Record<string, Component<any, any, any>> = {
-  'banner': HomeBanner,
-  'hero': HomeHero,
-  'features': HomeFeatures,
-  'text-image': HomeTextImage,
-  'image-text': HomeTextImage,
-  'profile': HomeProfile,
-  'custom': HomeCustom,
+  'banner': VPHomeBanner,
+  'hero': VPHomeHero,
+  'features': VPHomeFeatures,
+  'text-image': VPHomeTextImage,
+  'image-text': VPHomeTextImage,
+  'profile': VPHomeProfile,
+  'custom': VPHomeCustom,
 }
 
 const DEFAULT_HERO = {
@@ -71,7 +71,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="plume-home">
+  <div class="vp-home">
     <template
       v-for="(item, index) in config"
       :key="item.type + index"
@@ -88,19 +88,19 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.plume-home {
+.vp-home {
   min-height: calc(100vh - var(--vp-nav-height) - var(--vp-footer-height, 0px));
 }
 
-.plume-home .layout {
+.vp-home .layout {
   transition: background-color var(--t-color);
 }
 
-.plume-home .layout:nth-child(odd) {
+.vp-home .layout:nth-child(odd) {
   background-color: var(--vp-c-bg-alt);
 }
 
-.plume-home .layout:nth-child(even) {
+.vp-home .layout:nth-child(even) {
   background-color: var(--vp-c-bg);
 }
 </style>

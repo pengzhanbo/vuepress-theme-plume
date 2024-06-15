@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import type { PlumeThemeHomeTextImage } from '../../../shared/index.js'
 import VPImage from '../VPImage.vue'
-import HomeBox from './HomeBox.vue'
+import VPHomeBox from './VPHomeBox.vue'
 
 const props = defineProps<PlumeThemeHomeTextImage>()
 
@@ -17,8 +17,8 @@ const maxWidth = computed(() => {
 </script>
 
 <template>
-  <HomeBox
-    class="home-text-image"
+  <VPHomeBox
+    class="vp-home-text-image"
     :type="type"
     :background-image="backgroundImage"
     :background-attachment="backgroundAttachment"
@@ -48,11 +48,11 @@ const maxWidth = computed(() => {
         </ul>
       </section>
     </div>
-  </HomeBox>
+  </VPHomeBox>
 </template>
 
 <style scoped>
-.home-text-image :deep(.container) {
+.vp-home-text-image :deep(.container) {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -63,11 +63,11 @@ const maxWidth = computed(() => {
 }
 
 @media (min-width: 960px) {
-  .home-text-image :deep(.container) {
+  .vp-home-text-image :deep(.container) {
     flex-direction: row;
   }
 
-  .home-text-image :deep(.container.reverse) {
+  .vp-home-text-image :deep(.container.reverse) {
     flex-direction: row-reverse;
   }
 }
@@ -125,7 +125,7 @@ const maxWidth = computed(() => {
 }
 
 @media (min-width: 960px) {
-  .home-text-image :deep(.container) {
+  .vp-home-text-image :deep(.container) {
     gap: 48px;
   }
 

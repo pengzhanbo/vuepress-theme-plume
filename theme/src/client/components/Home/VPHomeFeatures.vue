@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { PlumeThemeHomeFeatures } from '../../../shared/index.js'
-import HomeFeature from './HomeFeature.vue'
-import HomeBox from './HomeBox.vue'
+import VPHomeFeature from './VPHomeFeature.vue'
+import VPHomeBox from './VPHomeBox.vue'
 
 const props = defineProps<PlumeThemeHomeFeatures>()
 
@@ -29,9 +29,9 @@ const grid = computed(() => {
 </script>
 
 <template>
-  <HomeBox
+  <VPHomeBox
     v-if="features"
-    class="home-features"
+    class="vp-home-features"
     :type="type"
     :background-image="backgroundImage"
     :background-attachment="backgroundAttachment"
@@ -47,7 +47,7 @@ const grid = computed(() => {
         class="item"
         :class="[grid]"
       >
-        <HomeFeature
+        <VPHomeFeature
           :icon="feature.icon"
           :title="feature.title"
           :details="feature.details"
@@ -58,7 +58,7 @@ const grid = computed(() => {
         />
       </div>
     </div>
-  </HomeBox>
+  </VPHomeBox>
 </template>
 
 <style scoped>

@@ -41,14 +41,14 @@
   },
   "dependencies": {
     "@vuepress/helper": "2.0.0-rc.34",
-    "@vueuse/core": "^10.10.0",
-    "@vueuse/integrations": "^10.10.0",
+    "@vueuse/core": "^10.11.0",
+    "@vueuse/integrations": "^10.11.0",
     "chokidar": "^3.6.0",
     "focus-trap": "^7.5.4",
     "mark.js": "^8.11.1",
     "minisearch": "^6.3.0",
     "p-map": "^7.0.2",
-    "vue": "^3.4.27"
+    "vue": "^3.4.29"
   },
   "publishConfig": {
     "access": "public"

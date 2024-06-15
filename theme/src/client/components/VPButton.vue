@@ -38,8 +38,7 @@ function linkTo(e: Event) {
 <template>
   <Component
     :is="component"
-    class="VPButton"
-    :class="[size, theme]"
+    class="vp-button" :class="[size, theme]"
     :href="href"
     :target="isExternal ? '_blank' : undefined"
     :rel="isExternal ? 'noreferrer' : undefined"
@@ -50,7 +49,7 @@ function linkTo(e: Event) {
 </template>
 
 <style scoped>
-.VPButton {
+.vp-button {
   display: inline-block;
   font-weight: 600;
   text-align: center;
@@ -60,76 +59,76 @@ function linkTo(e: Event) {
   transition-property: border, color, background-color;
 }
 
-.VPButton:active {
+.vp-button:active {
   transition:
     color 0.1s,
     border-color 0.1s,
     background-color 0.1s;
 }
 
-.VPButton.medium {
+.vp-button.medium {
   padding: 0 20px;
   font-size: 14px;
   line-height: 38px;
   border-radius: 20px;
 }
 
-.VPButton.big {
+.vp-button.big {
   padding: 0 24px;
   font-size: 16px;
   line-height: 46px;
   border-radius: 24px;
 }
 
-.VPButton.brand {
+.vp-button.brand {
   color: var(--vp-button-brand-text);
   background-color: var(--vp-button-brand-bg);
   border-color: var(--vp-button-brand-border);
 }
 
-.VPButton.brand:hover {
+.vp-button.brand:hover {
   color: var(--vp-button-brand-hover-text);
   background-color: var(--vp-button-brand-hover-bg);
   border-color: var(--vp-button-brand-hover-border);
 }
 
-.VPButton.brand:active {
+.vp-button.brand:active {
   color: var(--vp-button-brand-active-text);
   background-color: var(--vp-button-brand-active-bg);
   border-color: var(--vp-button-brand-active-border);
 }
 
-.VPButton.alt {
+.vp-button.alt {
   color: var(--vp-button-alt-text);
   background-color: var(--vp-button-alt-bg);
   border-color: var(--vp-button-alt-border);
 }
 
-.VPButton.alt:hover {
+.vp-button.alt:hover {
   color: var(--vp-button-alt-hover-text);
   background-color: var(--vp-button-alt-hover-bg);
   border-color: var(--vp-button-alt-hover-border);
 }
 
-.VPButton.alt:active {
+.vp-button.alt:active {
   color: var(--vp-button-alt-active-text);
   background-color: var(--vp-button-alt-active-bg);
   border-color: var(--vp-button-alt-active-border);
 }
 
-.VPButton.sponsor {
+.vp-button.sponsor {
   color: var(--vp-button-sponsor-text);
   background-color: var(--vp-button-sponsor-bg);
   border-color: var(--vp-button-sponsor-border);
 }
 
-.VPButton.sponsor:hover {
+.vp-button.sponsor:hover {
   color: var(--vp-button-sponsor-hover-text);
   background-color: var(--vp-button-sponsor-hover-bg);
   border-color: var(--vp-button-sponsor-hover-border);
 }
 
-.VPButton.sponsor:active {
+.vp-button.sponsor:active {
   color: var(--vp-button-sponsor-active-text);
   background-color: var(--vp-button-sponsor-active-bg);
   border-color: var(--vp-button-sponsor-active-border);

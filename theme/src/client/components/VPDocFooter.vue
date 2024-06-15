@@ -7,7 +7,7 @@ import {
   usePageNav,
 } from '../composables/page.js'
 import { useData } from '../composables/data.js'
-import AutoLink from './AutoLink.vue'
+import VPLink from './VPLink.vue'
 
 const { theme } = useData()
 const editNavLink = useEditNavLink()
@@ -21,13 +21,15 @@ const showFooter = computed(() => {
 </script>
 
 <template>
-  <footer v-if="showFooter" class="page-footer">
+  <footer v-if="showFooter" class="vp-doc-footer">
+    <slot name="doc-footer-before" />
+
     <div v-if="editNavLink || lastUpdated" class="edit-info">
       <div v-if="editNavLink" class="edit-link">
-        <AutoLink class="edit-link-button" :href="editNavLink.link" :no-icon="true">
+        <VPLink class="edit-link-button" :href="editNavLink.link" :no-icon="true">
           <span class="vpi-square-pen edit-link-icon" aria-label="edit icon" />
           {{ editNavLink.text }}
-        </AutoLink>
+        </VPLink>
       </div>
 
       <div v-if="lastUpdated" class="last-updated">
@@ -56,23 +58,23 @@ const showFooter = computed(() => {
 
     <nav v-if="prev?.link || next?.link" class="prev-next">
       <div class="pager">
-        <AutoLink v-if="prev?.link" class="pager-link prev" :href="prev.link">
+        <VPLink v-if="prev?.link" class="pager-link prev" :href="prev.link">
           <span class="desc" v-html="theme.prevPageLabel || 'Previous page'" />
           <span class="title" v-html="prev.text" />
-        </AutoLink>
+        </VPLink>
       </div>
       <div class="pager">
-        <AutoLink v-if="next?.link" class="pager-link next" :href="next.link">
+        <VPLink v-if="next?.link" class="pager-link next" :href="next.link">
           <span class="desc" v-html="theme.nextPageLabel || 'Next page'" />
           <span class="title" v-html="next.text" />
-        </AutoLink>
+        </VPLink>
       </div>
     </nav>
   </footer>
 </template>
 
 <style scoped>
-.page-footer {
+.vp-doc-footer {
   margin-top: 96px;
 }
 

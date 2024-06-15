@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { useData } from '../../composables/data.js'
-import SocialLinks from '../SocialLinks.vue'
+import VPSocialLinks from '../VPSocialLinks.vue'
 
 const { theme } = useData()
 const avatar = computed(() => theme.value.avatar)
@@ -35,7 +35,7 @@ const imageUrl = computed(() => {
       </div>
     </div>
     <div v-if="theme.social" class="avatar-social">
-      <SocialLinks :links="theme.social" />
+      <VPSocialLinks :links="theme.social" />
     </div>
   </div>
 </template>
@@ -106,12 +106,12 @@ const imageUrl = computed(() => {
   transition: border var(--t-color);
 }
 
-.avatar-social :deep(.social-link) {
+.avatar-social :deep(.vp-social-link) {
   width: 32px;
   height: 32px;
 }
 
-.avatar-social :deep(.social-link:hover) {
+.avatar-social :deep(.vp-social-link:hover) {
   color: var(--vp-c-brand-1);
 }
 </style>

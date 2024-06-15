@@ -37,7 +37,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 <template>
   <div
     v-if="page.isBlogPost && categoryList.length"
-    class="page-category-wrapper"
+    class="vp-doc-category"
   >
     <template
       v-for="({ type, name }, index) in categoryList"
@@ -47,10 +47,10 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
       <span v-if="index !== categoryList.length - 1" class="dot">&rsaquo;</span>
     </template>
   </div>
-  <h1 class="page-title" :class="{ padding: !hasMeta }">
+  <h1 class="vp-doc-title" :class="{ padding: !hasMeta }">
     {{ page.title }}
   </h1>
-  <div v-if="hasMeta" class="page-meta-wrapper">
+  <div v-if="hasMeta" class="vp-doc-meta">
     <p v-if="matter.author" class="author">
       <span class="icon vpi-user" />
       <span>{{ matter.author }}</span>
@@ -78,7 +78,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 </template>
 
 <style scoped>
-.page-category-wrapper {
+.vp-doc-category {
   padding-left: 1rem;
   margin-bottom: 2rem;
   font-size: 16px;
@@ -87,21 +87,21 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
   transition: border-left var(--t-color);
 }
 
-.page-category-wrapper .category {
+.vp-doc-category .category {
   color: var(--vp-c-text-2);
   transition: color var(--t-color);
 }
 
-.page-category-wrapper .category:hover {
+.vp-doc-category .category:hover {
   color: var(--vp-c-brand-1);
 }
 
-.page-category-wrapper .dot {
+.vp-doc-category .dot {
   margin: 0 0.2rem;
   color: var(--vp-c-text-3);
 }
 
-.page-title {
+.vp-doc-title {
   margin-bottom: 0.7rem;
   font-size: 28px;
   font-weight: 600;
@@ -110,11 +110,11 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
   transition: color var(--t-color);
 }
 
-.page-title.padding {
+.vp-doc-title.padding {
   padding-bottom: 4rem;
 }
 
-.page-meta-wrapper {
+.vp-doc-meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -127,25 +127,25 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
   transition: color var(--t-color), border-bottom var(--t-color);
 }
 
-.page-meta-wrapper p {
+.vp-doc-meta p {
   display: flex;
   align-items: center;
   margin-right: 1rem;
 }
 
-.page-meta-wrapper .icon {
+.vp-doc-meta .icon {
   width: 14px;
   height: 14px;
   margin-right: 0.3rem;
 }
 
-.page-meta-wrapper .author .icon,
-.page-meta-wrapper .author span {
+.vp-doc-meta .author .icon,
+.vp-doc-meta .author span {
   color: var(--vp-c-text-2);
   transition: color var(--t-color);
 }
 
-.page-meta-wrapper .tag {
+.vp-doc-meta .tag {
   display: inline-block;
   padding: 3px 5px;
   margin-right: 6px;
@@ -156,26 +156,26 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
   border-radius: 3px;
 }
 
-.page-meta-wrapper .tag:last-of-type {
+.vp-doc-meta .tag:last-of-type {
   margin-right: 0;
 }
 
-.page-meta-wrapper .reading-time span {
+.vp-doc-meta .reading-time span {
   margin-right: 8px;
 }
 
-.page-meta-wrapper .reading-time span:last-of-type {
+.vp-doc-meta .reading-time span:last-of-type {
   margin-right: 0;
 }
 
-.page-meta-wrapper .create-time {
+.vp-doc-meta .create-time {
   min-width: 110px;
   margin-right: 0;
   text-align: right;
 }
 
 @media (min-width: 768px) {
-  .page-meta-wrapper .create-time {
+  .vp-doc-meta .create-time {
     flex: 1;
     justify-content: right;
   }

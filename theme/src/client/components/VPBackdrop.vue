@@ -6,12 +6,12 @@ defineProps<{
 
 <template>
   <Transition name="fade">
-    <div v-if="show" class="backdrop" />
+    <div v-if="show" class="vp-backdrop" />
   </Transition>
 </template>
 
 <style scoped>
-.backdrop {
+.vp-backdrop {
   position: fixed;
   top: 0;
 
@@ -26,17 +26,17 @@ defineProps<{
   transition: opacity var(--t-color);
 }
 
-.backdrop.fade-enter-from,
-.backdrop.fade-leave-to {
+.vp-backdrop.fade-enter-from,
+.vp-backdrop.fade-leave-to {
   opacity: 0;
 }
 
-.backdrop.fade-leave-active {
+.vp-backdrop.fade-leave-active {
   transition-duration: 0.25s;
 }
 
 @media (min-width: 1280px) {
-  .backdrop {
+  .vp-backdrop {
     display: none;
   }
 }

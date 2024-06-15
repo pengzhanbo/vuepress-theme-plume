@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { PlumeThemeHomeTextImage } from '../../../shared/index.js'
-import VImage from '../VImage.vue'
+import VPImage from '../VPImage.vue'
 import HomeBox from './HomeBox.vue'
 
 const props = defineProps<PlumeThemeHomeTextImage>()
@@ -26,7 +26,7 @@ const maxWidth = computed(() => {
     :container-class="{ reverse: type === 'text-image' }"
   >
     <div class="content-image">
-      <VImage :image="image" :style="{ maxWidth }" />
+      <VPImage :image="image" :style="{ maxWidth }" />
     </div>
 
     <div class="content-text plume-content">

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { useData } from '../../composables/data.js'
 import { isActive } from '../../utils/index.js'
-import AutoLink from '../AutoLink.vue'
-import VIcon from '../VIcon.vue'
+import VPLink from '../VPLink.vue'
+import VPIcon from '../VPIcon.vue'
 
 defineProps<{
   item: any
@@ -13,7 +13,7 @@ const { page } = useData()
 
 <template>
   <div class="menu-link">
-    <AutoLink
+    <VPLink
       :class="{
         active: isActive(
           page.path,
@@ -23,9 +23,9 @@ const { page } = useData()
       }"
       :href="item.link"
     >
-      <VIcon v-if="item.icon" :name="item.icon" />
+      <VPIcon v-if="item.icon" :name="item.icon" />
       <i v-text="item.text" />
-    </AutoLink>
+    </VPLink>
   </div>
 </template>
 

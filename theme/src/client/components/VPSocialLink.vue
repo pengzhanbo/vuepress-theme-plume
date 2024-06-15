@@ -17,17 +17,15 @@ const svg = computed(() => {
 
 <template>
   <a
-    class="social-link"
+    class="vp-social-link"
     :href="link"
     :aria-label="ariaLabel ?? (typeof icon === 'string' ? icon : '')"
-    target="_blank"
-    rel="noopener"
-    v-html="svg"
+    target="_blank" rel="noopener" v-html="svg"
   />
 </template>
 
 <style scoped>
-.social-link {
+.vp-social-link {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,12 +35,12 @@ const svg = computed(() => {
   transition: color var(--t-color);
 }
 
-.social-link:hover {
+.vp-social-link:hover {
   color: var(--vp-c-text-1);
 }
 
-.social-link > :deep(svg),
-.social-link > :deep([class^="vpi-social-"]) {
+.vp-social-link > :deep(svg),
+.vp-social-link > :deep([class^="vpi-social-"]) {
   width: 20px;
   height: 20px;
   fill: currentcolor;

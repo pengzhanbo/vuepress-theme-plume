@@ -2,8 +2,8 @@
 import type { NotesSidebarItem } from '@vuepress-plume/plugin-notes-data'
 import { computed } from 'vue'
 import { useSidebarControl } from '../composables/sidebar.js'
-import AutoLink from './AutoLink.vue'
-import VIcon from './VIcon.vue'
+import VPLink from './VPLink.vue'
+import VPIcon from './VPIcon.vue'
 
 const props = defineProps<{
   item: NotesSidebarItem
@@ -56,7 +56,7 @@ function onCaretClick() {
 </script>
 
 <template>
-  <Component :is="sectionTag" class="sidebar-item" :class="classes">
+  <Component :is="sectionTag" class="vp-sidebar-item" :class="classes">
     <div
       v-if="item.text"
       class="item"
@@ -69,16 +69,16 @@ function onCaretClick() {
     >
       <div class="indicator" />
 
-      <VIcon v-if="item.icon" :name="item.icon" />
+      <VPIcon v-if="item.icon" :name="item.icon" />
 
-      <AutoLink
+      <VPLink
         v-if="item.link"
         :tag="linkTag"
         class="link"
         :href="item.link"
       >
         <Component :is="textTag" class="text" v-html="item.text" />
-      </AutoLink>
+      </VPLink>
 
       <Component :is="textTag" v-else class="text" v-html="item.text" />
 
@@ -97,7 +97,7 @@ function onCaretClick() {
 
     <div v-if="item.items && item.items.length" class="items">
       <template v-if="depth < 5">
-        <SidebarItem
+        <VPSidebarItem
           v-for="i in (item.items as NotesSidebarItem[])"
           :key="i.text"
           :item="i"
@@ -109,11 +109,11 @@ function onCaretClick() {
 </template>
 
 <style scoped>
-.sidebar-item.level-0 {
+.vp-sidebar-item.level-0 {
   padding-bottom: 24px;
 }
 
-.sidebar-item.collapsed.level-0 {
+.vp-sidebar-item.collapsed.level-0 {
   padding-bottom: 10px;
 }
 
@@ -124,7 +124,7 @@ function onCaretClick() {
   width: 100%;
 }
 
-.sidebar-item.collapsible > .item {
+.vp-sidebar-item.collapsible > .item {
   cursor: pointer;
 }
 
@@ -137,10 +137,10 @@ function onCaretClick() {
   transition: background-color var(--t-color);
 }
 
-.sidebar-item.level-2.is-active > .item > .indicator,
-.sidebar-item.level-3.is-active > .item > .indicator,
-.sidebar-item.level-4.is-active > .item > .indicator,
-.sidebar-item.level-5.is-active > .item > .indicator {
+.vp-sidebar-item.level-2.is-active > .item > .indicator,
+.vp-sidebar-item.level-3.is-active > .item > .indicator,
+.vp-sidebar-item.level-4.is-active > .item > .indicator,
+.vp-sidebar-item.level-5.is-active > .item > .indicator {
   background-color: var(--vp-c-brand-1);
 }
 
@@ -157,50 +157,50 @@ function onCaretClick() {
   transition: color var(--t-color);
 }
 
-.sidebar-item.level-0 .text {
+.vp-sidebar-item.level-0 .text {
   font-weight: 700;
   color: var(--vp-c-text-1);
 }
 
-.sidebar-item.level-1 .text,
-.sidebar-item.level-2 .text,
-.sidebar-item.level-3 .text,
-.sidebar-item.level-4 .text,
-.sidebar-item.level-5 .text {
+.vp-sidebar-item.level-1 .text,
+.vp-sidebar-item.level-2 .text,
+.vp-sidebar-item.level-3 .text,
+.vp-sidebar-item.level-4 .text,
+.vp-sidebar-item.level-5 .text {
   font-weight: 500;
   color: var(--vp-c-text-2);
 }
 
-.sidebar-item.level-0.has-active > .item > .text,
-.sidebar-item.level-1.has-active > .item > .text,
-.sidebar-item.level-2.has-active > .item > .text,
-.sidebar-item.level-3.has-active > .item > .text,
-.sidebar-item.level-4.has-active > .item > .text,
-.sidebar-item.level-5.has-active > .item > .text,
-.sidebar-item.level-0.has-active > .item > .link > .text,
-.sidebar-item.level-1.has-active > .item > .link > .text,
-.sidebar-item.level-2.has-active > .item > .link > .text,
-.sidebar-item.level-3.has-active > .item > .link > .text,
-.sidebar-item.level-4.has-active > .item > .link > .text,
-.sidebar-item.level-5.has-active > .item > .link > .text {
+.vp-sidebar-item.level-0.has-active > .item > .text,
+.vp-sidebar-item.level-1.has-active > .item > .text,
+.vp-sidebar-item.level-2.has-active > .item > .text,
+.vp-sidebar-item.level-3.has-active > .item > .text,
+.vp-sidebar-item.level-4.has-active > .item > .text,
+.vp-sidebar-item.level-5.has-active > .item > .text,
+.vp-sidebar-item.level-0.has-active > .item > .link > .text,
+.vp-sidebar-item.level-1.has-active > .item > .link > .text,
+.vp-sidebar-item.level-2.has-active > .item > .link > .text,
+.vp-sidebar-item.level-3.has-active > .item > .link > .text,
+.vp-sidebar-item.level-4.has-active > .item > .link > .text,
+.vp-sidebar-item.level-5.has-active > .item > .link > .text {
   color: var(--vp-c-text-1);
 }
 
-.sidebar-item.level-0.is-active > .item .link > .text,
-.sidebar-item.level-1.is-active > .item .link > .text,
-.sidebar-item.level-2.is-active > .item .link > .text,
-.sidebar-item.level-3.is-active > .item .link > .text,
-.sidebar-item.level-4.is-active > .item .link > .text,
-.sidebar-item.level-5.is-active > .item .link > .text {
+.vp-sidebar-item.level-0.is-active > .item .link > .text,
+.vp-sidebar-item.level-1.is-active > .item .link > .text,
+.vp-sidebar-item.level-2.is-active > .item .link > .text,
+.vp-sidebar-item.level-3.is-active > .item .link > .text,
+.vp-sidebar-item.level-4.is-active > .item .link > .text,
+.vp-sidebar-item.level-5.is-active > .item .link > .text {
   color: var(--vp-c-brand-1);
 }
 
-.sidebar-item.level-0.is-link > .item > .link:hover .text,
-.sidebar-item.level-1.is-link > .item > .link:hover .text,
-.sidebar-item.level-2.is-link > .item > .link:hover .text,
-.sidebar-item.level-3.is-link > .item > .link:hover .text,
-.sidebar-item.level-4.is-link > .item > .link:hover .text,
-.sidebar-item.level-5.is-link > .item > .link:hover .text {
+.vp-sidebar-item.level-0.is-link > .item > .link:hover .text,
+.vp-sidebar-item.level-1.is-link > .item > .link:hover .text,
+.vp-sidebar-item.level-2.is-link > .item > .link:hover .text,
+.vp-sidebar-item.level-3.is-link > .item > .link:hover .text,
+.vp-sidebar-item.level-4.is-link > .item > .link:hover .text,
+.vp-sidebar-item.level-5.is-link > .item > .link:hover .text {
   color: var(--vp-c-brand-1);
 }
 
@@ -236,21 +236,21 @@ function onCaretClick() {
   color: var(--vp-c-text-1);
 }
 
-.sidebar-item.level-0.is-active > .item > :deep(.vp-iconify),
-.sidebar-item.level-1.is-active > .item > :deep(.vp-iconify),
-.sidebar-item.level-2.is-active > .item > :deep(.vp-iconify),
-.sidebar-item.level-3.is-active > .item > :deep(.vp-iconify),
-.sidebar-item.level-4.is-active > .item > :deep(.vp-iconify),
-.sidebar-item.level-5.is-active > .item > :deep(.vp-iconify) {
+.vp-sidebar-item.level-0.is-active > .item > :deep(.vp-iconify),
+.vp-sidebar-item.level-1.is-active > .item > :deep(.vp-iconify),
+.vp-sidebar-item.level-2.is-active > .item > :deep(.vp-iconify),
+.vp-sidebar-item.level-3.is-active > .item > :deep(.vp-iconify),
+.vp-sidebar-item.level-4.is-active > .item > :deep(.vp-iconify),
+.vp-sidebar-item.level-5.is-active > .item > :deep(.vp-iconify) {
   color: var(--vp-c-brand-1);
 }
 
-.sidebar-item.level-0.is-link > .item:hover :deep(.vp-iconify),
-.sidebar-item.level-1.is-link > .item:hover :deep(.vp-iconify),
-.sidebar-item.level-2.is-link > .item:hover :deep(.vp-iconify),
-.sidebar-item.level-3.is-link > .item:hover :deep(.vp-iconify),
-.sidebar-item.level-4.is-link > .item:hover :deep(.vp-iconify),
-.sidebar-item.level-5.is-link > .item:hover :deep(.vp-iconify) {
+.vp-sidebar-item.level-0.is-link > .item:hover :deep(.vp-iconify),
+.vp-sidebar-item.level-1.is-link > .item:hover :deep(.vp-iconify),
+.vp-sidebar-item.level-2.is-link > .item:hover :deep(.vp-iconify),
+.vp-sidebar-item.level-3.is-link > .item:hover :deep(.vp-iconify),
+.vp-sidebar-item.level-4.is-link > .item:hover :deep(.vp-iconify),
+.vp-sidebar-item.level-5.is-link > .item:hover :deep(.vp-iconify) {
   color: var(--vp-c-brand-1);
 }
 
@@ -262,21 +262,21 @@ function onCaretClick() {
   transform: rotate(90deg);
 }
 
-.sidebar-item.collapsed .caret-icon {
+.vp-sidebar-item.collapsed .caret-icon {
   transform: rotate(0);
 }
 
-.sidebar-item.level-1 .items,
-.sidebar-item.level-2 .items,
-.sidebar-item.level-3 .items,
-.sidebar-item.level-4 .items,
-.sidebar-item.level-5 .items {
+.vp-sidebar-item.level-1 .items,
+.vp-sidebar-item.level-2 .items,
+.vp-sidebar-item.level-3 .items,
+.vp-sidebar-item.level-4 .items,
+.vp-sidebar-item.level-5 .items {
   padding-left: 16px;
   border-left: 1px solid var(--vp-c-divider);
   transition: border-left var(--t-color);
 }
 
-.sidebar-item.collapsed .items {
+.vp-sidebar-item.collapsed .items {
   display: none;
 }
 </style>

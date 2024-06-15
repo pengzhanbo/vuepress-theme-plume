@@ -24,13 +24,13 @@ export default {
       :alt="alt ?? (typeof image === 'string' ? '' : image.alt || '')"
     >
     <template v-else>
-      <VImage
+      <VPImage
         class="dark"
         :image="image.dark"
         :alt="image.alt"
         v-bind="$attrs"
       />
-      <VImage
+      <VPImage
         class="light"
         :image="image.light"
         :alt="image.alt"

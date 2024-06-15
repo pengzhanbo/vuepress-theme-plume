@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useLangs } from '../../composables/langs.js'
-import AutoLink from '../AutoLink.vue'
+import VPLink from '../VPLink.vue'
 
 const { localeLinks, currentLang } = useLangs()
 const isOpen = ref(false)
@@ -25,9 +25,9 @@ function toggle() {
 
     <ul class="list">
       <li v-for="locale in localeLinks" :key="locale.link" class="item">
-        <AutoLink class="link" :href="locale.link">
+        <VPLink class="link" :href="locale.link">
           {{ locale.text }}
-        </AutoLink>
+        </VPLink>
       </li>
     </ul>
   </div>

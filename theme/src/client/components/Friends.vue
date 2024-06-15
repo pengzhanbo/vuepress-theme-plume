@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { useData } from '../composables/data.js'
 import { useEditNavLink } from '../composables/page.js'
-import AutoLink from './AutoLink.vue'
+import VPLink from './VPLink.vue'
 import FriendsItem from './FriendsItem.vue'
 import FriendsGroup from './FriendsGroup.vue'
 
@@ -32,14 +32,14 @@ const groups = computed(() => matter.value.groups || [])
     <FriendsGroup v-for="(group, index) in groups" :key="index" :group="group" />
 
     <div v-if="editNavLink" class="edit-link">
-      <AutoLink
+      <VPLink
         class="edit-link-button"
         :href="editNavLink.link"
         :no-icon="true"
       >
         <span class="vpi-square-pen edit-link-icon" aria-label="edit icon" />
         {{ editNavLink.text }}
-      </AutoLink>
+      </VPLink>
     </div>
   </div>
 </template>

@@ -1,7 +1,9 @@
 import type { ThemeImage } from '../base.js'
+import type { PlumeNormalFrontmatter } from './normal.js'
 
-export interface PlumeThemeHomeFrontmatter extends Omit<PlumeThemeHomeBanner, 'type'> {
+export interface PlumeThemeHomeFrontmatter extends PlumeNormalFrontmatter, Omit<PlumeThemeHomeBanner, 'type'> {
   home?: true
+  friends?: never
   config?: PlumeThemeHomeConfig[]
 }
 

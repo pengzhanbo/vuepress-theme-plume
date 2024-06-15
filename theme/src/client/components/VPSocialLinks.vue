@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { SocialLink as SocialLinkType } from '../../shared/index.js'
-import SocialLink from './SocialLink.vue'
+import VPSocialLink from './VPSocialLink.vue'
 
 defineProps<{
   links: SocialLinkType[]
@@ -8,8 +8,8 @@ defineProps<{
 </script>
 
 <template>
-  <div class="social-links">
-    <SocialLink
+  <div class="vp-social-links">
+    <VPSocialLink
       v-for="{ link, icon } in links"
       :key="link"
       :icon="icon"
@@ -19,7 +19,7 @@ defineProps<{
 </template>
 
 <style scoped>
-.social-links {
+.vp-social-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

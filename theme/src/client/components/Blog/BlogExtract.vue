@@ -6,7 +6,7 @@ import { isLinkHttp } from 'vuepress/shared'
 import { useBlogExtract } from '../../composables/blog.js'
 import { useData } from '../../composables/data.js'
 import { inBrowser } from '../../utils/index.js'
-import AutoLink from '../AutoLink.vue'
+import VPLink from '../VPLink.vue'
 
 const { theme } = useData()
 const route = useRoute()
@@ -86,14 +86,14 @@ const showBlogExtract = computed(() => {
             </div>
           </div>
           <div v-if="hasBlogExtract" class="blog-nav" :class="{ 'no-avatar': !avatar }">
-            <AutoLink class="nav-link" :href="tags.link" no-icon>
+            <VPLink class="nav-link" :href="tags.link" no-icon>
               <span class="vpi-tag icon" />
               <span>{{ tags.text }}</span>
-            </AutoLink>
-            <AutoLink class="nav-link" :href="archives.link" no-icon>
+            </VPLink>
+            <VPLink class="nav-link" :href="archives.link" no-icon>
               <span class="vpi-archive icon" />
               <span>{{ archives.text }}</span>
-            </AutoLink>
+            </VPLink>
           </div>
         </div>
       </div>

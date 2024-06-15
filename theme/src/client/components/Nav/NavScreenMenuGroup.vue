@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import VIcon from '../VIcon.vue'
+import VPIcon from '../VPIcon.vue'
 import NavScreenMenuGroupLink from './NavScreenMenuGroupLink.vue'
 import NavScreenMenuGroupSection from './NavScreenMenuGroupSection.vue'
 
@@ -30,7 +30,7 @@ function toggle() {
       @click="toggle"
     >
       <span class="button-text">
-        <VIcon v-if="icon" :name="icon" />
+        <VPIcon v-if="icon" :name="icon" />
         <i v-text="text" />
       </span>
       <span class="vpi-plus button-icon" />

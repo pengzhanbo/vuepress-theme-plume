@@ -77,6 +77,13 @@ export interface PlumeThemeLocaleData extends LocaleData {
   outline?: ThemeOutline
 
   /**
+   * 是否显示侧边栏
+   *
+   * @default true
+   */
+  aside?: boolean | 'left'
+
+  /**
    * language text
    */
   selectLanguageText?: string

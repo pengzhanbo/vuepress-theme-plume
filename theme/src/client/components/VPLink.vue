@@ -39,7 +39,7 @@ function linkTo(e: Event) {
 
 <template>
   <Component
-    :is="tag" class="auto-link" :class="{ link }"
+    :is="tag" class="vp-link" :class="{ link }"
     :href="link"
     :target="target ?? (isExternal ? '_blank' : undefined)"
     :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
@@ -61,7 +61,7 @@ function linkTo(e: Event) {
   transition: fill 0.25s;
 }
 
-.auto-link :deep(i) {
+.vp-link :deep(i) {
   font-style: normal;
   font-weight: inherit;
   line-height: normal;

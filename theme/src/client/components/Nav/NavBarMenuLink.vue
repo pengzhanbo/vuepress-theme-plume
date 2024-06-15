@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { NavItemWithLink } from '../../../shared/index.js'
 import { isActive } from '../../utils/index.js'
-import AutoLink from '../AutoLink.vue'
-import VIcon from '../VIcon.vue'
+import VPLink from '../VPLink.vue'
+import VPIcon from '../VPIcon.vue'
 import { useData } from '../../composables/data.js'
 
 defineProps<{
@@ -13,7 +13,7 @@ const { page } = useData()
 </script>
 
 <template>
-  <AutoLink
+  <VPLink
     class="navbar-menu-link" :class="{
       active: isActive(
         page.path,
@@ -24,9 +24,9 @@ const { page } = useData()
     :href="item.link"
     :no-icon="true"
   >
-    <VIcon v-if="item.icon" :name="item.icon" />
+    <VPIcon v-if="item.icon" :name="item.icon" />
     <i v-text="item.text" />
-  </AutoLink>
+  </VPLink>
 </template>
 
 <style scoped>

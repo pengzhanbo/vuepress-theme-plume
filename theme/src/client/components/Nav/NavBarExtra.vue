@@ -4,8 +4,8 @@ import { useData } from '../../composables/data.js'
 import { useLangs } from '../../composables/langs.js'
 import Flyout from '../Flyout/index.vue'
 import MenuLink from '../Flyout/MenuLink.vue'
-import SocialLinks from '../SocialLinks.vue'
-import SwitchAppearance from '../SwitchAppearance.vue'
+import VPSocialLinks from '../VPSocialLinks.vue'
+import VPSwitchAppearance from '../VPSwitchAppearance.vue'
 
 const { theme } = useData()
 const { localeLinks, currentLang } = useLangs()
@@ -46,14 +46,14 @@ const social = computed(() => {
           {{ theme.appearanceText || 'Appearance' }}
         </p>
         <div class="appearance-action">
-          <SwitchAppearance />
+          <VPSwitchAppearance />
         </div>
       </div>
     </div>
 
     <div v-if="social" class="group">
       <div class="item social-links">
-        <SocialLinks class="social-links-list" :links="social" />
+        <VPSocialLinks class="social-links-list" :links="social" />
       </div>
     </div>
   </Flyout>

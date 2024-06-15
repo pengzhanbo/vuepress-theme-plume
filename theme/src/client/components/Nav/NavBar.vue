@@ -26,7 +26,7 @@ const classes = ref<Record<string, boolean>>({})
 watchPostEffect(() => {
   classes.value = {
     'has-sidebar': hasSidebar.value,
-    'top': !!frontmatter.value.home && y.value === 0,
+    'top': frontmatter.value.pageLayout === 'home' && y.value === 0,
   }
 })
 </script>

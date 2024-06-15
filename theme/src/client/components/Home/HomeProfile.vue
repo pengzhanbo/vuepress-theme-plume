@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { PlumeThemeHomeProfile } from '../../../shared/index.js'
-import VImage from '../VImage.vue'
+import VPImage from '../VPImage.vue'
 import { useData } from '../../composables/data.js'
 import HomeBox from './HomeBox.vue'
 
@@ -29,7 +29,7 @@ const profile = computed(() => {
     :background-attachment="backgroundAttachment"
     :full="full"
   >
-    <VImage v-if="profile.avatar" :image="profile.avatar" :class="{ circle: profile.circle }" />
+    <VPImage v-if="profile.avatar" :image="profile.avatar" :class="{ circle: profile.circle }" />
 
     <h3 v-if="profile.name" v-html="profile.name" />
 

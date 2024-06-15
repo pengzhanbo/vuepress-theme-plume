@@ -21,7 +21,7 @@ onMounted(() => {
   <footer
     v-if="theme.footer"
     ref="footer"
-    class="plume-footer"
+    class="vp-footer"
     :class="{ 'has-sidebar': hasSidebar }"
   >
     <div class="container">
@@ -40,7 +40,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.plume-footer {
+.vp-footer {
   position: relative;
   z-index: var(--vp-z-index-footer);
   padding: 24px;
@@ -48,16 +48,16 @@ onMounted(() => {
   transition: all var(--t-color);
 }
 
-.footer-no-border .plume-footer {
+.footer-no-border .vp-footer {
   border-top: none;
 }
 
-.plume-footer p {
+.vp-footer p {
   color: var(--vp-c-text-2);
   transition: color var(--t-color);
 }
 
-.plume-footer :deep(a) {
+.vp-footer :deep(a) {
   color: var(--vp-c-text-2);
   text-decoration-line: underline;
   text-underline-offset: 2px;
@@ -66,18 +66,24 @@ onMounted(() => {
     text-underline-offset var(--t-color);
 }
 
-.plume-footer :deep(a:hover) {
+.vp-footer :deep(a:hover) {
   color: var(--vp-c-text-1);
   text-underline-offset: 4px;
 }
 
-@media (min-width: 1440px) {
-  .plume-footer {
-    padding: 24px;
+@media (min-width: 960px) {
+  .vp-footer.has-sidebar {
+    margin-left: var(--vp-sidebar-width);
   }
 
-  .plume-footer.has-sidebar {
-    margin-right: calc(0px - ((100vw - var(--vp-layout-max-width)) / 2));
+  .vp-footer.vp-footer.has-sidebar .container {
+    margin-left: calc(0px - var(--vp-sidebar-width));
+  }
+}
+
+@media (min-width: 1440px) {
+  .vp-footer {
+    padding: 24px;
   }
 }
 

@@ -2,10 +2,10 @@
 import { useWindowScroll } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
 import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
-import { useSidebar } from '../../composables/sidebar.js'
-import { type MenuItem, getHeaders } from '../../composables/outline.js'
-import { useData } from '../../composables/data.js'
-import LocalNavOutlineDropdown from './LocalNavOutlineDropdown.vue'
+import { useSidebar } from '../composables/sidebar.js'
+import { type MenuItem, getHeaders } from '../composables/outline.js'
+import { useData } from '../composables/data.js'
+import VPLocalNavOutlineDropdown from './VPLocalNavOutlineDropdown.vue'
 
 const props = defineProps<{
   open: boolean
@@ -41,7 +41,7 @@ onMounted(() => {
 
 const classes = computed(() => {
   return {
-    'local-nav': true,
+    'vp-local-nav': true,
     'fixed': empty.value,
     'reached-top': y.value >= navHeight.value,
     'is-blog': page.value.isBlogPost,
@@ -67,12 +67,12 @@ const showLocalNav = computed(() => {
       <span class="menu-text"> {{ theme.sidebarMenuLabel || 'Menu' }} </span>
     </button>
 
-    <LocalNavOutlineDropdown v-if="showOutline" :headers="headers" :nav-height="navHeight" />
+    <VPLocalNavOutlineDropdown v-if="showOutline" :headers="headers" :nav-height="navHeight" />
   </div>
 </template>
 
 <style scoped>
-.local-nav {
+.vp-local-nav {
   position: sticky;
   top: 0;
 
@@ -93,43 +93,43 @@ const showLocalNav = computed(() => {
     border var(--t-color);
 }
 
-.local-nav.fixed {
+.vp-local-nav.fixed {
   position: fixed;
 }
 
-.local-nav.reached-top {
+.vp-local-nav.reached-top {
   border-top-color: transparent;
 }
 
 @media (min-width: 960px) {
-  .local-nav.is-blog {
+  .vp-local-nav.is-blog {
     display: none;
   }
 
-  .local-nav {
+  .vp-local-nav {
     top: var(--vp-nav-height);
     width: calc(100% - var(--vp-sidebar-width));
     margin-left: var(--vp-sidebar-width);
     border-top: none;
   }
 
-  .local-nav .menu {
+  .vp-local-nav .menu {
     visibility: hidden;
   }
 
-  .local-nav.with-outline {
+  .vp-local-nav.with-outline {
     display: none;
   }
 }
 
 @media (min-width: 1280px) {
-  .local-nav {
+  .vp-local-nav {
     display: none;
   }
 }
 
 @media print {
-  .local-nav {
+  .vp-local-nav {
     display: none;
   }
 }

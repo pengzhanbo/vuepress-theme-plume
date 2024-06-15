@@ -3,7 +3,7 @@ import { isPlainObject } from '@vuepress/helper/client'
 import { computed } from 'vue'
 import type { FriendsItem } from '../../shared/index'
 import { useDarkMode } from '../composables/dark-mode.js'
-import AutoLink from './AutoLink.vue'
+import VPLink from './VPLink.vue'
 
 const props = defineProps<{
   friend: FriendsItem
@@ -30,7 +30,7 @@ const friendStyle = computed(() => {
 
 <template>
   <div class="friend" :style="friendStyle">
-    <AutoLink
+    <VPLink
       class="avatar-link"
       :href="friend.link"
       no-icon
@@ -39,16 +39,16 @@ const friendStyle = computed(() => {
         class="avatar"
         :style="{ backgroundImage: `url(${friend.avatar})` }"
       />
-    </AutoLink>
+    </VPLink>
 
     <div class="content">
-      <AutoLink
+      <VPLink
         class="title"
         :href="friend.link"
         no-icon
       >
         {{ friend.name }}
-      </AutoLink>
+      </VPLink>
       <p v-if="friend.desc">
         {{ friend.desc }}
       </p>

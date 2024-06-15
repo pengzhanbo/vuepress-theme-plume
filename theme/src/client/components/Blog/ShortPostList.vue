@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AutoLink from '../AutoLink.vue'
+import VPLink from '../VPLink.vue'
 
 defineProps<{
   postList: {
@@ -14,9 +14,9 @@ defineProps<{
   <ul class="post-list">
     <li v-for="post in postList" :key="post.path">
       <p class="post-title">
-        <AutoLink class="post-link" :href="post.path">
+        <VPLink class="post-link" :href="post.path">
           {{ post.title }}
-        </AutoLink>
+        </VPLink>
       </p>
       <span class="post-time">{{ post.createTime }}</span>
     </li>

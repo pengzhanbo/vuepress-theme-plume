@@ -11,16 +11,15 @@ import type {
   PlumeThemePageFrontmatter,
 } from '../../shared/index.js'
 import { useSidebar, useThemeLocaleData } from '../composables/index.js'
+import { useData } from '../composables/data.js'
 import { resolveEditLink, resolveNavLink } from '../utils/index.js'
 
 export function useEditNavLink(): ComputedRef<null | NavItemWithLink> {
-  const themeLocale = useThemeLocaleData()
-  const page = usePageData<PlumeThemePageData>()
-  const frontmatter = usePageFrontmatter<PlumeThemePageFrontmatter>()
+  const { theme, page, frontmatter } = useData()
 
   return computed(() => {
     const showEditLink
-      = frontmatter.value.editLink ?? themeLocale.value.editLink ?? true
+      = frontmatter.value.editLink ?? theme.value.editLink ?? true
     if (!showEditLink)
       return null
 
@@ -29,7 +28,7 @@ export function useEditNavLink(): ComputedRef<null | NavItemWithLink> {
       docsBranch = 'main',
       docsDir = '',
       editLinkText,
-    } = themeLocale.value
+    } = theme.value
 
     if (!docsRepo)
       return null
@@ -40,7 +39,7 @@ export function useEditNavLink(): ComputedRef<null | NavItemWithLink> {
       docsDir,
       filePathRelative: page.value.filePathRelative,
       editLinkPattern:
-        frontmatter.value.editLinkPattern ?? themeLocale.value.editLinkPattern,
+        frontmatter.value.editLinkPattern ?? theme.value.editLinkPattern,
     })
 
     if (!editLink)
@@ -54,9 +53,7 @@ export function useEditNavLink(): ComputedRef<null | NavItemWithLink> {
 }
 
 export function useLastUpdated() {
-  const theme = useThemeLocaleData()
-  const page = usePageData<PlumeThemePageData>()
-  const frontmatter = usePageFrontmatter<PlumeThemePageFrontmatter>()
+  const { theme, page, frontmatter } = useData()
   const lang = usePageLang()
 
   const date = computed(() => page.value.git?.updatedTime ? new Date(page.value.git.updatedTime) : null)
@@ -97,13 +94,11 @@ export function useLastUpdated() {
 export function useContributors(): ComputedRef<
   null | Required<PlumeThemePageData['git']>['contributors']
 > {
-  const themeLocale = useThemeLocaleData()
-  const page = usePageData<PlumeThemePageData>()
-  const frontmatter = usePageFrontmatter<PlumeThemePageFrontmatter>()
+  const { theme, page, frontmatter } = useData()
 
   return computed(() => {
     const showContributors
-      = frontmatter.value.contributors ?? themeLocale.value.contributors ?? true
+      = frontmatter.value.contributors ?? theme.value.contributors ?? true
 
     if (!showContributors)
       return null

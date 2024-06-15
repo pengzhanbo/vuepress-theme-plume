@@ -1,25 +1,18 @@
 <script setup lang="ts">
-import { usePageData, useRoute } from 'vuepress/client'
-import { computed, provide, watch } from 'vue'
-import type { PlumeThemePageData } from '../../shared/index.js'
-import Backdrop from '../components/Backdrop.vue'
-import Blog from '../components/Blog/Blog.vue'
-import Friends from '../components/Friends.vue'
-import Home from '../components/Home/Home.vue'
-import LayoutContent from '../components/LayoutContent.vue'
-import LocalNav from '../components/Nav/LocalNav.vue'
+import { useRoute } from 'vuepress/client'
+import { watch } from 'vue'
+import VPBackdrop from '../components/VPBackdrop.vue'
+import VPContent from '../components/VPContent.vue'
+import VPLocalNav from '../components/VPLocalNav.vue'
 import Nav from '../components/Nav/index.vue'
-import Page from '../components/Page.vue'
-import Sidebar from '../components/Sidebar.vue'
-import SkipLink from '../components/SkipLink.vue'
-import VFooter from '../components/VFooter.vue'
-import BackToTop from '../components/BackToTop.vue'
-import EncryptGlobal from '../components/EncryptGlobal.vue'
-import TransitionFadeSlideY from '../components/TransitionFadeSlideY.vue'
-import { useCloseSidebarOnEscape, useSidebar } from '../composables/index.js'
+import VPSidebar from '../components/VPSidebar.vue'
+import VPSkipLink from '../components/VPSkipLink.vue'
+import VPFooter from '../components/VPFooter.vue'
+import VPBackToTop from '../components/VPBackToTop.vue'
+import VPEncryptGlobal from '../components/VPEncryptGlobal.vue'
+import { useCloseSidebarOnEscape, useSidebar } from '../composables/sidebar.js'
 import { useGlobalEncrypt, usePageEncrypt } from '../composables/encrypt.js'
-
-const page = usePageData<PlumeThemePageData>()
+import { useData } from '../composables/data.js'
 
 const {
   isOpen: isSidebarOpen,
@@ -27,53 +20,76 @@ const {
   close: closeSidebar,
 } = useSidebar()
 
+const { frontmatter } = useData()
 const { isGlobalDecrypted } = useGlobalEncrypt()
 const { isPageDecrypted } = usePageEncrypt()
 
 const route = useRoute()
 watch(() => route.path, closeSidebar)
 
-const isBlogLayout = computed(() => {
-  return (
-    page.value.type === 'blog'
-    || page.value.type === 'blog-archives'
-    || page.value.type === 'blog-tags'
-  )
-})
-
 useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
-
-provide('close-sidebar', closeSidebar)
-provide('is-sidebar-open', isSidebarOpen)
 </script>
 
 <template>
-  <div class="theme-plume">
-    <EncryptGlobal v-if="!isGlobalDecrypted" />
+  <div
+    v-if="frontmatter.pageLayout !== false && frontmatter.pageLayout !== 'custom'" class="theme-plume vp-layout"
+    :class="frontmatter.pageClass"
+  >
+    <VPEncryptGlobal v-if="!isGlobalDecrypted" />
     <template v-else>
-      <SkipLink />
-      <Backdrop :show="isSidebarOpen" @click="closeSidebar" />
+      <VPSkipLink />
+      <VPBackdrop :show="isSidebarOpen" @click="closeSidebar" />
+
       <Nav />
-      <LocalNav :open="isSidebarOpen" :show-outline="isPageDecrypted" @open-menu="openSidebar" />
-      <Sidebar :open="isSidebarOpen" />
-      <LayoutContent>
-        <Home v-if="page.frontmatter.home" />
-        <template v-else>
-          <TransitionFadeSlideY>
-            <Friends v-if="page.frontmatter.friends" />
-            <Blog v-else-if="isBlogLayout" />
-            <Page v-else />
-          </TransitionFadeSlideY>
-        </template>
-        <BackToTop />
-        <VFooter />
-      </LayoutContent>
+      <VPLocalNav :open="isSidebarOpen" :show-outline="isPageDecrypted" @open-menu="openSidebar" />
+      <VPSidebar :open="isSidebarOpen" />
+      <slot name="custom-content">
+        <VPContent>
+          <template #page-top>
+            <slot name="page-top" />
+          </template>
+          <template #page-bottom>
+            <slot name="page-bottom" />
+          </template>
+          <template #doc-footer-before>
+            <slot name="doc-footer-before" />
+          </template>
+          <template #doc-before>
+            <slot name="doc-before" />
+          </template>
+          <template #doc-after>
+            <slot name="doc-after" />
+          </template>
+          <template #doc-top>
+            <slot name="doc-top" />
+          </template>
+          <template #doc-bottom>
+            <slot name="doc-bottom" />
+          </template>
+
+          <template #aside-top>
+            <slot name="aside-top" />
+          </template>
+          <template #aside-bottom>
+            <slot name="aside-bottom" />
+          </template>
+          <template #aside-outline-before>
+            <slot name="aside-outline-before" />
+          </template>
+          <template #aside-outline-after>
+            <slot name="aside-outline-after" />
+          </template>
+        </VPContent>
+      </slot>
+      <VPBackToTop />
+      <VPFooter />
     </template>
   </div>
+  <Content v-else />
 </template>
 
 <style scoped>
-.theme-plume {
+.vp-layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;

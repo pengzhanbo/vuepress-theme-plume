@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import { type MenuItem, getHeaders, useActiveAnchor } from '../composables/outline.js'
 import { useData } from '../composables/data.js'
-import PageAsideItem from './PageAsideItem.vue'
+import VPDocOutlineItem from './VPDocOutlineItem.vue'
 
 const { theme, frontmatter } = useData()
 
@@ -25,46 +25,37 @@ function handlePrint() {
 </script>
 
 <template>
-  <div class="page-aside">
-    <div
-      ref="container"
-      class="page-aside-outline"
-      :class="{ 'has-outline': hasOutline }"
-    >
-      <div class="content">
-        <div ref="marker" class="outline-marker" />
+  <nav
+    ref="container"
+    aria-labelledby="doc-outline-aria-label"
+    class="vp-doc-aside-outline"
+    :class="{ 'has-outline': hasOutline }"
+    role="navigation"
+  >
+    <div class="content">
+      <div ref="marker" class="outline-marker" />
 
-        <div class="outline-title">
-          <span>{{ theme.outlineLabel || 'On this page' }}</span>
-          <span class="vpi-print icon" @click="handlePrint" />
-        </div>
-
-        <nav aria-labelledby="doc-outline-aria-label">
-          <span id="doc-outline-aria-label" class="visually-hidden">
-            Table of Contents for current page
-          </span>
-          <PageAsideItem
-            :headers="headers"
-            :root="true"
-          />
-        </nav>
+      <div
+        id="doc-outline-aria-label"
+        aria-level="2"
+        class="outline-title"
+        role="heading"
+      >
+        <span>{{ theme.outlineLabel || 'On this page' }}</span>
+        <span class="vpi-print icon" @click="handlePrint" />
       </div>
+
+      <VPDocOutlineItem :headers="headers" :root="true" />
     </div>
-  </div>
+  </nav>
 </template>
 
 <style scoped>
-.page-aside {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.page-aside-outline {
+.vp-doc-aside-outline {
   display: none;
 }
 
-.page-aside-outline.has-outline {
+.vp-doc-aside-outline.has-outline {
   display: block;
 }
 

@@ -2,8 +2,8 @@
 import { useRouteLocale } from 'vuepress/client'
 import { useSidebar } from '../../composables/sidebar.js'
 import { useData } from '../../composables/data.js'
-import AutoLink from '../AutoLink.vue'
-import VImage from '../VImage.vue'
+import VPLink from '../VPLink.vue'
+import VPImage from '../VPImage.vue'
 
 const { theme, site } = useData()
 const { hasSidebar } = useSidebar()
@@ -12,14 +12,14 @@ const routeLocale = useRouteLocale()
 
 <template>
   <div class="navbar-title" :class="{ 'has-sidebar': hasSidebar }">
-    <AutoLink class="title" :href="theme.home ?? routeLocale">
-      <VImage
+    <VPLink class="title" :href="theme.home ?? routeLocale">
+      <VPImage
         v-if="theme.logo"
         class="logo"
         :image="{ light: theme.logo, dark: theme.logoDark || theme.logo }"
       />
       {{ site.title }}
-    </AutoLink>
+    </VPLink>
   </div>
 </template>
 

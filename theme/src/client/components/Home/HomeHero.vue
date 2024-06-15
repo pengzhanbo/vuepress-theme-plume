@@ -2,7 +2,7 @@
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { computed, ref } from 'vue'
-import VButton from '../VButton.vue'
+import VPButton from '../VPButton.vue'
 import { useData } from '../../composables/data.js'
 import { useHomeHeroTintPlate } from '../../composables/home.js'
 import type { PlumeThemeHomeHero } from '../../../shared/index.js'
@@ -59,9 +59,14 @@ useHomeHeroTintPlate(
 
         <div v-if="actions.length" class="actions">
           <div class="action">
-            <VButton
-              v-for="action in actions" :key="action.link" tag="a" size="medium" :theme="action.theme"
-              :text="action.text" :href="action.link"
+            <VPButton
+              v-for="action in actions"
+              :key="action.link"
+              tag="a"
+              size="medium"
+              :theme="action.theme"
+              :text="action.text"
+              :href="action.link"
             />
           </div>
         </div>
@@ -162,11 +167,11 @@ useHomeHeroTintPlate(
   margin: 30px 0 0;
 }
 
-.action :deep(.VPButton) {
+.action :deep(.vp-button) {
   margin-right: 24px;
 }
 
-.action :deep(.VPButton:last-of-type) {
+.action :deep(.vp-button:last-of-type) {
   margin-right: 0;
 }
 

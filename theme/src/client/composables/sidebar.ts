@@ -57,7 +57,7 @@ export function getSidebarFirstLink(sidebar: NotesSidebarItem[]) {
 export function useSidebar() {
   const route = useRoute()
   const notesData = useNotesData()
-  const { frontmatter } = useData()
+  const { frontmatter, theme } = useData()
 
   const is960 = useMediaQuery('(min-width: 960px)')
 
@@ -79,14 +79,28 @@ export function useSidebar() {
 
   const hasSidebar = computed(() => {
     return (
-      !frontmatter.value.home
+      frontmatter.value.pageLayout !== 'home'
       && sidebar.value.length > 0
       && frontmatter.value.sidebar !== false
+      && frontmatter.value.layout !== 'NotFound'
     )
   })
 
   const hasAside = computed(() => {
-    return !frontmatter.value.home && frontmatter.value.aside !== false
+    if (frontmatter.value.pageLayout === 'home')
+      return false
+    if (frontmatter.value.aside != null)
+      return !!frontmatter.value.aside
+    return theme.value.aside !== false
+  })
+
+  const leftAside = computed(() => {
+    if (hasAside.value) {
+      return frontmatter.value.aside == null
+        ? theme.value.aside === 'left'
+        : frontmatter.value.aside === 'left'
+    }
+    return false
   })
 
   const isSidebarEnabled = computed(() => hasSidebar.value && is960.value)
@@ -112,6 +126,7 @@ export function useSidebar() {
     sidebar,
     hasSidebar,
     hasAside,
+    leftAside,
     isSidebarEnabled,
     sidebarGroups,
     sidebarKey,

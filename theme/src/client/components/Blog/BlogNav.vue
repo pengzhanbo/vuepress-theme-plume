@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useRoute } from 'vuepress/client'
 import { useBlogExtract } from '../../composables/blog.js'
-import AutoLink from '../AutoLink.vue'
+import VPLink from '../VPLink.vue'
 
 const props = defineProps<{
   isLocal?: boolean
@@ -14,7 +14,7 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
 
 <template>
   <div v-if="hasBlogExtract" class="blog-nav" :class="{ local: props.isLocal }">
-    <AutoLink
+    <VPLink
       class="nav-link"
       :class="{ active: route.path === tags.link }"
       :href="tags.link"
@@ -23,8 +23,8 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
       <span class="text">{{ tags.text }}</span>
       <span class="total">{{ tags.total }}</span>
       <span class="icon vpi-chevron-right" />
-    </AutoLink>
-    <AutoLink
+    </VPLink>
+    <VPLink
       class="nav-link"
       :class="{ active: route.path === archives.link }"
       :href="archives.link"
@@ -33,7 +33,7 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
       <span class="text">{{ archives.text }}</span>
       <span class="total">{{ archives.total }}</span>
       <span class="icon vpi-chevron-right" />
-    </AutoLink>
+    </VPLink>
   </div>
 </template>
 

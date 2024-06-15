@@ -89,15 +89,15 @@
     "@vuepress/plugin-sitemap": "2.0.0-rc.34",
     "@vuepress/plugin-theme-data": "2.0.0-rc.34",
     "@vuepress/plugin-watermark": "2.0.0-rc.34",
-    "@vueuse/core": "^10.10.0",
+    "@vueuse/core": "^10.11.0",
     "bcrypt-ts": "^5.0.2",
     "chokidar": "^3.6.0",
     "date-fns": "^3.6.0",
     "katex": "^0.16.10",
     "lodash.merge": "^4.6.2",
     "nanoid": "^5.0.7",
-    "vue": "^3.4.27",
-    "vue-router": "^4.3.2",
+    "vue": "^3.4.29",
+    "vue-router": "^4.3.3",
     "vuepress-plugin-md-enhance": "2.0.0-rc.48",
     "vuepress-plugin-md-power": "workspace:*"
   }

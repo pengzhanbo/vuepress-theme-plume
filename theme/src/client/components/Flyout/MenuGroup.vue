@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import VIcon from '../VIcon.vue'
+import VPIcon from '../VPIcon.vue'
 import MenuLink from './MenuLink.vue'
 
 defineProps<{
@@ -12,7 +12,7 @@ defineProps<{
 <template>
   <div class="menu-group">
     <p v-if="text" class="title">
-      <VIcon v-if="icon" :name="icon" />
+      <VPIcon v-if="icon" :name="icon" />
       <span v-text="text" />
     </p>
 

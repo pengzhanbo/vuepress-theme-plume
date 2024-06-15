@@ -12,7 +12,7 @@ const { isScreenOpen, closeScreen, toggleScreen } = useNav()
 const fixedInclude = ['blog', 'friends', 'blog-archives', 'blog-tags']
 
 const fixed = computed(() => {
-  return fixedInclude.includes(page.value.frontmatter.type as string)
+  return fixedInclude.includes(page.value.type as string)
 })
 
 provide('close-screen', closeScreen)

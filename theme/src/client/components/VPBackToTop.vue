@@ -27,7 +27,7 @@ const stroke = computed(() =>
 )
 
 const mustHidden = computed(() => {
-  return page.value.frontmatter.backToTop === false || (page.value.frontmatter.home && page.value.frontmatter.config && (page.value.frontmatter.config as any).length <= 1)
+  return page.value.frontmatter.backToTop === false || (page.value.frontmatter.pageLayout === 'home' && page.value.frontmatter.config && (page.value.frontmatter.config as any).length <= 1)
 })
 
 const show = computed(() => {
@@ -60,7 +60,7 @@ function handleClick() {
     <button
       v-show="!mustHidden && (show || isScrolling)"
       type="button"
-      class="back-to-top-button"
+      class="vp-back-to-top"
       aria-label="back to top"
       @click="handleClick"
     >
@@ -74,7 +74,7 @@ function handleClick() {
 </template>
 
 <style scoped>
-.back-to-top-button {
+.vp-back-to-top {
   position: fixed;
   inset-inline-end: 1rem;
   right: 24px;
@@ -90,8 +90,8 @@ function handleClick() {
     box-shadow var(--t-color);
 }
 
-.back-to-top-button .percent,
-.back-to-top-button .icon {
+.vp-back-to-top .percent,
+.vp-back-to-top .icon {
   position: absolute;
   top: 0;
   left: 0;
@@ -99,12 +99,12 @@ function handleClick() {
   transition: opacity 0.5s ease, color var(--t-color);
 }
 
-.back-to-top-button .percent.show,
-.back-to-top-button .icon.show {
+.vp-back-to-top .percent.show,
+.vp-back-to-top .icon.show {
   opacity: 1;
 }
 
-.back-to-top-button .percent {
+.vp-back-to-top .percent {
   width: 100%;
   height: 100%;
   font-size: 10px;
@@ -113,7 +113,7 @@ function handleClick() {
   user-select: none;
 }
 
-.back-to-top-button .icon {
+.vp-back-to-top .icon {
   top: 50%;
   left: 50%;
   width: 18px;
@@ -122,12 +122,12 @@ function handleClick() {
   transform: translate(-50%, -50%);
 }
 
-.back-to-top-button svg {
+.vp-back-to-top svg {
   width: 100%;
   height: 100%;
 }
 
-.back-to-top-button svg circle {
+.vp-back-to-top svg circle {
   fill: none;
   stroke: var(--vp-c-brand-2);
   stroke-dasharray: 0% 314.1593%;
@@ -139,23 +139,23 @@ function handleClick() {
 }
 
 @media (min-width: 768px) {
-  .back-to-top-button {
+  .vp-back-to-top {
     bottom: calc(var(--vp-footer-height, 88px) - 24px);
     width: 48px;
     height: 48px;
   }
 
-  .back-to-top-button .percent {
+  .vp-back-to-top .percent {
     font-size: 14px;
     line-height: 48px;
   }
 
-  .back-to-top-button .icon {
+  .vp-back-to-top .icon {
     width: 24px;
     height: 24px;
   }
 
-  .back-to-top-button svg circle {
+  .vp-back-to-top svg circle {
     r: 22;
   }
 }
@@ -171,7 +171,7 @@ function handleClick() {
 }
 
 @media print {
-  .back-to-top-button {
+  .vp-back-to-top {
     display: none;
   }
 }

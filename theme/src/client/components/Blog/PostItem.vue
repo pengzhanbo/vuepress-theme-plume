@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import type { PlumeThemeBlogPostItem } from '../../../shared/index.js'
 import { useTagColors } from '../../composables/tag-colors.js'
-import AutoLink from '../AutoLink.vue'
+import VPLink from '../VPLink.vue'
 
 const props = defineProps<{
   post: PlumeThemeBlogPostItem
@@ -38,9 +38,9 @@ const createTime = computed(() =>
         TOP
       </div>
       <span v-if="post.encrypt" class="icon-lock vpi-lock" />
-      <AutoLink :href="post.path">
+      <VPLink :href="post.path">
         {{ post.title }}
-      </AutoLink>
+      </VPLink>
     </h3>
     <div class="post-meta">
       <div v-if="categoryList.length" class="category-list">

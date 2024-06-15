@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, inject, ref } from 'vue'
 import { useData } from '../composables/data.js'
-import Switch from './Switch.vue'
+import VPSwitch from './VPSwitch.vue'
 
 const checked = ref(false)
 const { theme, isDark } = useData()
@@ -18,15 +18,15 @@ const switchTitle = computed(() => {
 </script>
 
 <template>
-  <Switch
-    class="switch-appearance"
+  <VPSwitch
+    class="vp-switch-appearance"
     :title="switchTitle"
     :aria-checked="checked"
     @click="toggleAppearance"
   >
     <span class="vpi-sun sun" />
     <span class="vpi-moon moon" />
-  </Switch>
+  </VPSwitch>
 </template>
 
 <style scoped>
@@ -46,7 +46,7 @@ const switchTitle = computed(() => {
   opacity: 1;
 }
 
-.dark .switch-appearance :deep(.check) {
+.dark .vp-switch-appearance :deep(.check) {
   /* rtl:ignore */
   transform: translateX(18px);
 }

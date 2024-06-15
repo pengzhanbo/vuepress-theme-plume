@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
 import { nextTick, ref, watch } from 'vue'
-import type { MenuItem } from '../../composables/outline.js'
-import { useData } from '../../composables/data.js'
-import DocOutlineItem from './DocOutlineItem.vue'
+import type { MenuItem } from '../composables/outline.js'
+import { useData } from '../composables/data.js'
+import VPDocOutlineItem from './VPDocOutlineItem.vue'
 
 const props = defineProps<{
   headers: MenuItem[]
@@ -48,7 +48,7 @@ function scrollToTop() {
 </script>
 
 <template>
-  <div class="local-nav-outline-dropdown" :style="{ '--vp-vh': `${vh}px` }">
+  <div class="vp-local-nav-outline-dropdown" :style="{ '--vp-vh': `${vh}px` }">
     <button v-if="headers.length > 0" ref="btn" :class="{ open }" @click="toggle">
       {{ theme.outlineLabel || 'On this page' }}
       <span class="vpi-chevron-right icon" />
@@ -64,7 +64,7 @@ function scrollToTop() {
           </a>
         </div>
         <div class="outline">
-          <DocOutlineItem :headers="headers" />
+          <VPDocOutlineItem :headers="headers" />
         </div>
       </div>
     </Transition>
@@ -72,11 +72,11 @@ function scrollToTop() {
 </template>
 
 <style scoped>
-.local-nav-outline-dropdown {
+.vp-local-nav-outline-dropdown {
   padding: 12px 20px 11px;
 }
 
-.local-nav-outline-dropdown button {
+.vp-local-nav-outline-dropdown button {
   position: relative;
   display: block;
   font-size: 12px;
@@ -86,11 +86,11 @@ function scrollToTop() {
   transition: color var(--t-color);
 }
 
-.local-nav-outline-dropdown button:hover {
+.vp-local-nav-outline-dropdown button:hover {
   color: var(--vp-c-text-1);
 }
 
-.local-nav-outline-dropdown button.open {
+.vp-local-nav-outline-dropdown button.open {
   color: var(--vp-c-text-1);
 }
 

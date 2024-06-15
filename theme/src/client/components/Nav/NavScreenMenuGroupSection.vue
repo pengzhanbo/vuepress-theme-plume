@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { NavItemWithLink } from '../../../shared/index.js'
-import VIcon from '../VIcon.vue'
+import VPIcon from '../VPIcon.vue'
 import NavScreenMenuGroupLink from './NavScreenMenuGroupLink.vue'
 
 defineProps<{
@@ -13,7 +13,7 @@ defineProps<{
 <template>
   <div class="nav-screen-menu-group-section">
     <p v-if="text" class="title">
-      <VIcon v-if="icon" :name="icon" />
+      <VPIcon v-if="icon" :name="icon" />
       {{ text }}
     </p>
     <NavScreenMenuGroupLink

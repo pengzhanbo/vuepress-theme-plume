@@ -32,7 +32,7 @@ function focusOnTargetAnchor({ target }: Event) {
 <template>
   <span ref="backToTop" tabindex="-1" />
   <a
-    href="#LayoutContent"
+    href="#VPContent"
     class="skip-link visually-hidden"
     @click="focusOnTargetAnchor"
   >

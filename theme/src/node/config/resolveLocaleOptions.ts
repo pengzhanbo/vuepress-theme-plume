@@ -11,6 +11,7 @@ const FALLBACK_OPTIONS: PlumeThemeLocaleData = {
   article: '/article/',
   notes: { link: '/', dir: '/notes/', notes: [] },
   navbarSocialInclude: ['github', 'twitter', 'discord', 'facebook'],
+  aside: true,
   outline: [2, 3],
 
   // page meta

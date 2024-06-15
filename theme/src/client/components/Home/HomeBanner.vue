@@ -4,7 +4,7 @@ import { isLinkHttp } from 'vuepress/shared'
 import { computed } from 'vue'
 import type { PlumeThemeHomeBanner } from '../../../shared/index.js'
 import { useData } from '../../composables/data.js'
-import VButton from '../VButton.vue'
+import VPButton from '../VPButton.vue'
 
 const props = defineProps<PlumeThemeHomeBanner>()
 
@@ -51,7 +51,7 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
 
         <div v-if="actions.length" class="actions">
           <div v-for="action in actions" :key="action.link" class="action">
-            <VButton
+            <VPButton
               tag="a"
               size="medium"
               :theme="action.theme"

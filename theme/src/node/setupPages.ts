@@ -38,19 +38,19 @@ export async function setupPage(
     // 添加 博客页面
     pageList.push(createPage(app, {
       path: withBase(link, localePath),
-      frontmatter: { lang, type: 'blog', title: getTitle(locale, 'blog') },
+      frontmatter: { lang, _pageLayout: 'blog', title: getTitle(locale, 'blog') },
     }))
 
     // 添加 标签页
     blog.tags !== false && pageList.push(createPage(app, {
       path: withBase(blog.tagsLink || `${link}/tags/`, localePath),
-      frontmatter: { lang, type: 'blog-tags', title: getTitle(locale, 'tag') },
+      frontmatter: { lang, _pageLayout: 'blog-tags', title: getTitle(locale, 'tag') },
     }))
 
     // 添加归档页
     blog.archives !== false && pageList.push(createPage(app, {
       path: withBase(blog.archivesLink || `${link}/archives/`, localePath),
-      frontmatter: { lang, type: 'blog-archives', title: getTitle(locale, 'archive') },
+      frontmatter: { lang, _pageLayout: 'blog-archives', title: getTitle(locale, 'archive') },
     }))
   }
   app.pages.push(...await Promise.all(pageList))
@@ -61,22 +61,31 @@ export function extendsPageData(
   localeOptions: PlumeThemeLocaleOptions,
 ) {
   page.data.filePathRelative = page.filePathRelative
-  page.routeMeta.title = page.title
+  page.routeMeta.title = page.frontmatter.title || page.title
 
-  if (page.frontmatter.icon)
-    page.routeMeta.icon = page.frontmatter.icon
+  if (page.frontmatter.home) {
+    page.frontmatter.pageLayout = 'home'
+    delete page.frontmatter.home
+  }
 
   if (page.frontmatter.friends) {
     page.frontmatter.article = false
-    page.frontmatter.type = 'friends'
-    page.data.isBlogPost = false
+    page.data.type = 'friends'
     page.permalink = page.permalink ?? '/friends/'
+    page.frontmatter.pageLayout = 'friends'
+    delete page.frontmatter.friends
   }
 
-  if ((page.frontmatter.type as string)?.startsWith('blog')) {
-    page.data.isBlogPost = false
+  const pageType = page.frontmatter._pageLayout as string
+  if (pageType) {
     page.frontmatter.article = false
-    page.data.type = page.frontmatter.type as any
+    page.data.type = pageType as any
+    delete page.frontmatter._pageLayout
+  }
+
+  if ('externalLink' in page.frontmatter) {
+    page.frontmatter.externalLinkIcon = page.frontmatter.externalLink
+    delete page.frontmatter.externalLink
   }
 
   autoCategory(page, localeOptions)
@@ -86,6 +95,7 @@ export function extendsPageData(
 let uuid = 10000
 const cache: Record<string, number> = {}
 const RE_CATEGORY = /^(\d+)?(?:\.?)([^]+)$/
+let LOCALE_RE: RegExp
 
 export function autoCategory(
   page: Page<PlumeThemePageData>,
@@ -93,18 +103,18 @@ export function autoCategory(
 ) {
   const pagePath = page.filePathRelative
 
-  if (page.frontmatter.type || !pagePath)
+  if (page.data.type || !pagePath)
     return
   const notesLinks = resolveNotesLinkList(options)
 
   if (notesLinks.some(link => page.path.startsWith(link)))
     return
 
-  const RE_LOCALE = new RegExp(
+  LOCALE_RE ??= new RegExp(
     `^(${Object.keys(options.locales || {}).filter(l => l !== '/').join('|')})`,
   )
   const categoryList: PageCategoryData[] = ensureLeadingSlash(pagePath)
-    .replace(RE_LOCALE, '')
+    .replace(LOCALE_RE, '')
     .replace(/^\//, '')
     .split('/')
     .slice(0, -1)

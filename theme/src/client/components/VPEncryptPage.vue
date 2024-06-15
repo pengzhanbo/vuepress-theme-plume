@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { usePageEncrypt } from '../composables/encrypt.js'
 import { useData } from '../composables/data.js'
-import EncryptForm from './EncryptForm.vue'
+import VPEncryptForm from './VPEncryptForm.vue'
 
 const { theme } = useData()
 const { comparePage } = usePageEncrypt()
@@ -12,7 +12,7 @@ const { comparePage } = usePageEncrypt()
     <div class="logo">
       <span class="vpi-lock icon-lock-head" />
     </div>
-    <EncryptForm :compare="comparePage" :info="theme.encryptPageText" />
+    <VPEncryptForm :compare="comparePage" :info="theme.encryptPageText" />
   </div>
 </template>
 

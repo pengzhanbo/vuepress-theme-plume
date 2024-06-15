@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useRouteLocale, withBase } from 'vuepress/client'
-import LayoutContent from '../components/LayoutContent.vue'
 import Nav from '../components/Nav/index.vue'
+import VPSkipLink from '../components/VPSkipLink.vue'
+import VPFooter from '../components/VPFooter.vue'
 import { useData } from '../composables/data.js'
 
 const root = useRouteLocale()
@@ -9,45 +10,68 @@ const { theme } = useData()
 </script>
 
 <template>
-  <div class="theme-plume">
-    <Nav />
-    <LayoutContent is-not-found>
-      <div class="not-found">
-        <p class="code">
-          {{ theme.notFound?.code ?? '404' }}
-        </p>
-        <h1 class="title">
-          {{ theme.notFound?.title ?? 'PAGE NOT FOUND' }}
-        </h1>
-        <div class="divider" />
-        <blockquote class="quote">
-          {{ theme.notFound?.quote ?? `But if you don't change your direction, and if you keep looking, you may end up where you are heading.` }}
-        </blockquote>
+  <div vp-not-found class="theme-plume vp-layout">
+    <slot name="layout-top" />
+    <VPSkipLink />
 
-        <div class="action">
-          <a class="link" :href="withBase(root)" :aria-label="theme.notFound?.linkLabel ?? 'go to home'">
-            {{ theme.notFound?.linkText ?? 'Take me home' }}
-          </a>
+    <Nav />
+    <div id="VPContent" class="vp-content">
+      <slot name="not-found">
+        <div class="vp-not-found">
+          <p class="code">
+            {{ theme.notFound?.code ?? '404' }}
+          </p>
+          <h1 class="title">
+            {{ theme.notFound?.title ?? 'PAGE NOT FOUND' }}
+          </h1>
+          <div class="divider" />
+          <blockquote class="quote">
+            {{
+              theme.notFound?.quote
+                ?? "But if you don't change your direction, and if you keep looking, you may end up where you are heading."
+            }}
+          </blockquote>
+
+          <div class="action">
+            <a class="link" :href="withBase(root)" :aria-label="theme.notFound?.linkLabel ?? 'go to home'">
+              {{ theme.notFound?.linkText ?? 'Take me home' }}
+            </a>
+          </div>
         </div>
-      </div>
-    </LayoutContent>
+      </slot>
+    </div>
+    <VPFooter />
+    <slot name="layout-bottom" />
   </div>
 </template>
 
 <style scoped>
-.theme-plume {
+.vp-layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.not-found {
+.vp-content {
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 100%;
+  margin: var(--vp-layout-top-height, 0) auto 0;
+}
+
+@media (min-width: 960px) {
+  .vp-content {
+    padding-top: var(--vp-nav-height);
+  }
+}
+
+.vp-not-found {
   padding: 64px 24px 96px;
   text-align: center;
 }
 
 @media (min-width: 768px) {
-  .not-found {
+  .vp-not-found {
     padding: 96px 32px 168px;
   }
 }
@@ -71,6 +95,7 @@ const { theme } = useData()
   height: 1px;
   margin: 24px auto 18px;
   background-color: var(--vp-c-divider);
+  transition: background-color  var(--t-color);
 }
 
 .quote {
@@ -79,6 +104,7 @@ const { theme } = useData()
   font-size: 14px;
   font-weight: 500;
   color: var(--vp-c-text-2);
+  transition: color var(--t-color);
 }
 
 .action {
@@ -90,16 +116,14 @@ const { theme } = useData()
   padding: 3px 16px;
   font-size: 14px;
   font-weight: 500;
-  color: var(--vp-c-brand);
-  border: 1px solid var(--vp-c-brand);
+  color: var(--vp-c-brand-1);
+  border: 1px solid var(--vp-c-brand-1);
   border-radius: 16px;
-  transition:
-    border-color 0.25s,
-    color 0.25s;
+  transition: color var(--t-color), border-color var(--t-color);
 }
 
 .link:hover {
-  color: var(--vp-c-brand-dark);
-  border-color: var(--vp-c-brand-dark);
+  color: var(--vp-c-brand-2);
+  border-color: var(--vp-c-brand-2);
 }
 </style>

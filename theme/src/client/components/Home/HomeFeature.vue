@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { PlumeThemeHomeFeature } from '../../../shared/index.js'
-import AutoLink from '../AutoLink.vue'
-import VImage from '../VImage.vue'
+import VPLink from '../VPLink.vue'
+import VPImage from '../VPImage.vue'
 
 defineProps<PlumeThemeHomeFeature>()
 </script>
 
 <template>
-  <AutoLink
+  <VPLink
     class="home-feature"
     :href="link"
     :rel="rel"
@@ -17,14 +17,14 @@ defineProps<PlumeThemeHomeFeature>()
   >
     <article class="box">
       <div v-if="typeof icon === 'object' && icon.wrap" class="icon">
-        <VImage
+        <VPImage
           :image="icon"
           :alt="icon.alt"
           :height="icon.height || 48"
           :width="icon.width || 48"
         />
       </div>
-      <VImage
+      <VPImage
         v-else-if="typeof icon === 'object'"
         :image="icon"
         :alt="icon.alt"
@@ -41,7 +41,7 @@ defineProps<PlumeThemeHomeFeature>()
         </p>
       </div>
     </article>
-  </AutoLink>
+  </VPLink>
 </template>
 
 <style scoped>

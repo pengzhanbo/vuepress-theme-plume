@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useData } from '../../composables/data.js'
-import SocialLinks from '../SocialLinks.vue'
+import VPSocialLinks from '../VPSocialLinks.vue'
 
 const { theme } = useData()
 
@@ -17,7 +17,7 @@ const social = computed(() => {
 </script>
 
 <template>
-  <SocialLinks
+  <VPSocialLinks
     v-if="social"
     class="navbar-social-links"
     :links="social"

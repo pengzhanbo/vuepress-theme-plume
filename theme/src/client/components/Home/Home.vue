@@ -60,7 +60,7 @@ let el: HTMLDivElement | null = null
 
 watch(() => onlyOnce.value, value => nextTick(() => {
   if (typeof document !== 'undefined') {
-    el ??= document.querySelector('#LayoutContent')
+    el ??= document.querySelector('#VPContent')
     el?.classList.toggle('footer-no-border', value)
   }
 }), { immediate: true })

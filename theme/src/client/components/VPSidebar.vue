@@ -4,7 +4,7 @@ import { onMounted, ref, watch } from 'vue'
 import { useRoutePath } from 'vuepress/client'
 import { useSidebar } from '../composables/sidebar.js'
 import { inBrowser } from '../utils/index.js'
-import SidebarItem from './SidebarItem.vue'
+import VPSidebarItem from './VPSidebarItem.vue'
 import TransitionFadeSlideY from './TransitionFadeSlideY.vue'
 
 const props = defineProps<{
@@ -32,7 +32,7 @@ watch(
 
 onMounted(() => {
   const activeItem = document.querySelector(
-    `.sidebar-wrapper .auto-link[href*="${routePath.value}"]`,
+    `.vp-sidebar .vp-link[href*="${routePath.value}"]`,
   )
   if (!activeItem || !navEl.value)
     return
@@ -51,7 +51,7 @@ onMounted(() => {
     <aside
       v-if="hasSidebar"
       ref="navEl"
-      class="sidebar-wrapper"
+      class="vp-sidebar"
       :class="{ open }"
       @click.stop
     >
@@ -74,7 +74,7 @@ onMounted(() => {
             :key="item.text"
             class="group"
           >
-            <SidebarItem :item="item" :depth="0" />
+            <VPSidebarItem :item="item" :depth="0" />
           </div>
         </nav>
       </TransitionFadeSlideY>
@@ -83,7 +83,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.sidebar-wrapper {
+.vp-sidebar {
   position: fixed;
   top: var(--vp-layout-top-height, 0);
   bottom: 0;
@@ -106,7 +106,7 @@ onMounted(() => {
   scrollbar-width: thin;
 }
 
-.sidebar-wrapper.open {
+.vp-sidebar.open {
   visibility: visible;
   opacity: 1;
   transition:
@@ -115,12 +115,12 @@ onMounted(() => {
   transform: translateX(0);
 }
 
-.dark .sidebar-wrapper {
+.dark .vp-sidebar {
   box-shadow: var(--vp-shadow-1);
 }
 
 @media (min-width: 960px) {
-  .sidebar-wrapper {
+  .vp-sidebar {
     z-index: 1;
     width: var(--vp-sidebar-width);
     max-width: 100%;
@@ -134,7 +134,7 @@ onMounted(() => {
 }
 
 @media (min-width: 1440px) {
-  .sidebar-wrapper {
+  .vp-sidebar {
     width:
       calc(
         (100% - (var(--vp-layout-max-width) - 64px)) / 2 + var(--vp-sidebar-width) -

@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import type { MenuItem } from '../../composables/outline.js'
+import type { MenuItem } from '../composables/outline.js'
 
 defineProps<{
   headers: MenuItem[]
   root?: boolean
 }>()
 
-function onClick({ target: el }: Event) {
-  const id = (el as HTMLAnchorElement).href!.split('#')[1]
-  const heading = document.getElementById(decodeURIComponent(id))
+function handleClick({ target: el }: Event) {
+  const id = `#${(el as HTMLAnchorElement).href!.split('#')[1]}`
+  const heading = document.querySelector<HTMLAnchorElement>(
+    decodeURIComponent(id),
+  )
   heading?.focus({ preventScroll: true })
 }
 </script>
@@ -16,9 +18,11 @@ function onClick({ target: el }: Event) {
 <template>
   <ul :class="root ? 'root' : 'nested'">
     <li v-for="{ children, link, title } in headers" :key="link">
-      <a class="outline-link" :href="link" :title="title" @click="onClick">{{ title }}</a>
+      <a
+        class="outline-link" :href="link" @click="handleClick"
+      >{{ title }}</a>
       <template v-if="children?.length">
-        <DocOutlineItem :headers="children" />
+        <VPDocOutlineItem :headers="children" />
       </template>
     </li>
   </ul>
@@ -31,14 +35,15 @@ function onClick({ target: el }: Event) {
 }
 
 .nested {
-  padding-left: 16px;
+  padding-left: 13px;
 }
 
 .outline-link {
   display: block;
   overflow: hidden;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 32px;
   color: var(--vp-c-text-2);
   text-overflow: ellipsis;
   white-space: nowrap;

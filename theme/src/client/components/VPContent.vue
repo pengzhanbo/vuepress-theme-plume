@@ -5,7 +5,7 @@ import VPBlog from './Blog/VPBlog.vue'
 import VPDoc from './VPDoc.vue'
 import VPPage from './VPPage.vue'
 import VPHome from './Home/VPHome.vue'
-import Friends from './Friends.vue'
+import VPFriends from './VPFriends.vue'
 
 const props = defineProps<{
   isNotFound?: boolean
@@ -40,7 +40,7 @@ const isBlogLayout = computed(() => {
       </template>
     </VPPage>
 
-    <Friends v-else-if="frontmatter.pageLayout === 'friends'" />
+    <VPFriends v-else-if="frontmatter.pageLayout === 'friends'" />
 
     <VPHome v-else-if="frontmatter.pageLayout === 'home'" />
 

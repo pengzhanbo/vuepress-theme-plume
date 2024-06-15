@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useData } from '../../composables/data.js'
-import TransitionFadeSlideY from '../TransitionFadeSlideY.vue'
+import VPTransitionFadeSlideY from '../VPTransitionFadeSlideY.vue'
 import VPPostList from './VPPostList.vue'
 import VPBlogArchives from './VPBlogArchives.vue'
 import VPBlogAside from './VPBlogAside.vue'
@@ -32,9 +32,9 @@ const type = computed(() => {
     <div class="blog-container" :class="{ 'no-avatar': !theme.avatar }">
       <VPBlogNav v-if="!theme.avatar" is-local />
 
-      <TransitionFadeSlideY>
+      <VPTransitionFadeSlideY>
         <component :is="com[type]" />
-      </TransitionFadeSlideY>
+      </VPTransitionFadeSlideY>
 
       <VPBlogAside />
       <VPBlogExtract />

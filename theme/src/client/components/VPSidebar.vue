@@ -5,7 +5,7 @@ import { useRoutePath } from 'vuepress/client'
 import { useSidebar } from '../composables/sidebar.js'
 import { inBrowser } from '../utils/index.js'
 import VPSidebarItem from './VPSidebarItem.vue'
-import TransitionFadeSlideY from './TransitionFadeSlideY.vue'
+import VPTransitionFadeSlideY from './VPTransitionFadeSlideY.vue'
 
 const props = defineProps<{
   open: boolean
@@ -57,7 +57,7 @@ onMounted(() => {
     >
       <div class="curtain" />
 
-      <TransitionFadeSlideY>
+      <VPTransitionFadeSlideY>
         <nav
           id="SidebarNav"
           :key="sidebarKey"
@@ -81,7 +81,7 @@ onMounted(() => {
 
           <slot name="sidebar-nav-after" />
         </nav>
-      </TransitionFadeSlideY>
+      </VPTransitionFadeSlideY>
     </aside>
   </Transition>
 </template>

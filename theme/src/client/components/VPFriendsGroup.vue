@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { FriendGroup } from '../../shared/index.js'
-import FriendsItem from './FriendsItem.vue'
+import VPFriendsItem from './VPFriendsItem.vue'
 
 defineProps<{
   group: FriendGroup
@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="friends-group">
+  <div class="vp-friends-group">
     <h3 class="title">
       {{ group.title || 'My Friends' }}
     </h3>
@@ -16,7 +16,7 @@ defineProps<{
       {{ group.desc }}
     </p>
     <section v-if="group.list?.length" class="friends-list">
-      <FriendsItem
+      <VPFriendsItem
         v-for="(friend, index) in group.list"
         :key="friend.name + index"
         :friend="friend"
@@ -26,13 +26,13 @@ defineProps<{
 </template>
 
 <style scoped>
-.friends-group {
+.vp-friends-group {
   width: 100%;
   padding: 64px 16px 0;
   margin: 0 auto;
 }
 
-.friends-group .title {
+.vp-friends-group .title {
   padding-top: 2rem;
   padding-bottom: 8px;
   font-size: 20px;
@@ -43,7 +43,7 @@ defineProps<{
   transition: color var(--t-color), border-color var(--t-color);
 }
 
-.friends-group .description {
+.vp-friends-group .description {
   margin-bottom: 16px;
   line-height: 28px;
   color: var(--vp-c-text-1);
@@ -63,7 +63,7 @@ defineProps<{
 }
 
 @media (min-width: 960px) {
-  .friends-group {
+  .vp-friends-group {
     padding: 64px 0 0;
   }
 
@@ -73,7 +73,7 @@ defineProps<{
 }
 
 @media (min-width: 1440px) {
-  .friends-group {
+  .vp-friends-group {
     max-width: 1104px;
   }
 

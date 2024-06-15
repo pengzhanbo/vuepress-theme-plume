@@ -29,7 +29,7 @@ const friendStyle = computed(() => {
 </script>
 
 <template>
-  <div class="friend" :style="friendStyle">
+  <div class="vp-friend" :style="friendStyle">
     <VPLink
       class="avatar-link"
       :href="friend.link"
@@ -57,7 +57,7 @@ const friendStyle = computed(() => {
 </template>
 
 <style scoped>
-.friend {
+.vp-friend {
   display: flex;
   align-items: flex-start;
   padding: 16px;
@@ -69,7 +69,7 @@ const friendStyle = computed(() => {
   transition: all var(--t-color);
 }
 
-.friend:hover {
+.vp-friend:hover {
   box-shadow: var(--vp-shadow-2);
 }
 
@@ -96,7 +96,7 @@ const friendStyle = computed(() => {
   padding-left: 16px;
   margin-bottom: 8px;
   margin-left: -16px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--vp-friends-name-color);
   border-bottom: 1px dashed var(--vp-friends-border-color);
@@ -117,4 +117,3 @@ const friendStyle = computed(() => {
   line-clamp: 3;
 }
 </style>
-../composables/dark-mode.js

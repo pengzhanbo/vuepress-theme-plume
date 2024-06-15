@@ -4,7 +4,7 @@ import { useRoute } from 'vuepress/client'
 import { useData } from '../composables/data.js'
 import { useSidebar } from '../composables/sidebar.js'
 import { usePageEncrypt } from '../composables/encrypt.js'
-import TransitionFadeSlideY from './TransitionFadeSlideY.vue'
+import VPTransitionFadeSlideY from './VPTransitionFadeSlideY.vue'
 import VPDocAside from './VPDocAside.vue'
 import VPDocFooter from './VPDocFooter.vue'
 import VPEncryptPage from './VPEncryptPage.vue'
@@ -64,7 +64,7 @@ watch(
 </script>
 
 <template>
-  <TransitionFadeSlideY>
+  <VPTransitionFadeSlideY>
     <div
       :key="page.path" class="vp-doc-container" :class="{
         'has-sidebar': hasSidebar,
@@ -125,7 +125,7 @@ watch(
         </div>
       </div>
     </div>
-  </TransitionFadeSlideY>
+  </VPTransitionFadeSlideY>
 </template>
 
 <style scoped>

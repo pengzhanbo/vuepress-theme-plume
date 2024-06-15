@@ -3,8 +3,8 @@ import { computed } from 'vue'
 import { useData } from '../composables/data.js'
 import { useEditNavLink } from '../composables/page.js'
 import VPLink from './VPLink.vue'
-import FriendsItem from './FriendsItem.vue'
-import FriendsGroup from './FriendsGroup.vue'
+import VPFriendsItem from './VPFriendsItem.vue'
+import VPFriendsGroup from './VPFriendsGroup.vue'
 
 const editNavLink = useEditNavLink()
 const { frontmatter: matter } = useData<'friends'>()
@@ -14,7 +14,7 @@ const groups = computed(() => matter.value.groups || [])
 </script>
 
 <template>
-  <div class="friends-wrapper">
+  <div class="vp-friends">
     <h2 class="title">
       {{ matter.title || 'My Friends' }}
     </h2>
@@ -22,14 +22,14 @@ const groups = computed(() => matter.value.groups || [])
       {{ matter.description }}
     </p>
     <section v-if="list.length" class="friends-list">
-      <FriendsItem
+      <VPFriendsItem
         v-for="(friend, index) in list"
         :key="friend.name + index"
         :friend="friend"
       />
     </section>
 
-    <FriendsGroup v-for="(group, index) in groups" :key="index" :group="group" />
+    <VPFriendsGroup v-for="(group, index) in groups" :key="index" :group="group" />
 
     <div v-if="editNavLink" class="edit-link">
       <VPLink
@@ -45,7 +45,7 @@ const groups = computed(() => matter.value.groups || [])
 </template>
 
 <style scoped>
-.friends-wrapper {
+.vp-friends {
   width: 100%;
   min-height: calc(100vh - var(--vp-footer-height, 0px));
   padding-top: var(--vp-nav-height);
@@ -54,12 +54,12 @@ const groups = computed(() => matter.value.groups || [])
 }
 
 @media (min-width: 960px) {
-  .friends-wrapper {
+  .vp-friends {
     min-height: calc(100vh - var(--vp-nav-height) - var(--vp-footer-height, 0px));
   }
 }
 
-.friends-wrapper .title {
+.vp-friends .title {
   padding-top: 3rem;
   padding-left: 1rem;
   margin-bottom: 1rem;
@@ -69,7 +69,7 @@ const groups = computed(() => matter.value.groups || [])
   outline: none;
 }
 
-.friends-wrapper .description {
+.vp-friends .description {
   padding-left: 1rem;
   margin-bottom: 16px;
   line-height: 28px;
@@ -89,8 +89,8 @@ const groups = computed(() => matter.value.groups || [])
 }
 
 @media (min-width: 640px) {
-  .friends-wrapper .title,
-  .friends-wrapper .description {
+  .vp-friends .title,
+  .vp-friends .description {
     padding-left: 16px;
   }
 
@@ -101,13 +101,13 @@ const groups = computed(() => matter.value.groups || [])
 }
 
 @media (min-width: 960px) {
-  .friends-wrapper {
+  .vp-friends {
     max-width: 784px;
     padding-top: 0;
   }
 
-  .friends-wrapper .title,
-  .friends-wrapper .description,
+  .vp-friends .title,
+  .vp-friends .description,
   .edit-link {
     padding-left: 0;
   }
@@ -118,7 +118,7 @@ const groups = computed(() => matter.value.groups || [])
 }
 
 @media (min-width: 1440px) {
-  .friends-wrapper {
+  .vp-friends {
     max-width: 1104px;
   }
 

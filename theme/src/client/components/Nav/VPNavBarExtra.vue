@@ -10,10 +10,6 @@ import VPSwitchAppearance from '../VPSwitchAppearance.vue'
 const { theme } = useData()
 const { localeLinks, currentLang } = useLangs()
 
-const hasExtraContent = computed(
-  () => theme.value.appearance || theme.value.social,
-)
-
 const social = computed(() => {
   const includes = theme.value.navbarSocialInclude ?? []
   if (!includes.length)
@@ -23,10 +19,21 @@ const social = computed(() => {
     ({ icon }) => typeof icon === 'string' && includes.includes(icon),
   )
 })
+
+const hasExtraContent = computed(
+  () =>
+    (localeLinks.value.length && currentLang.value.label)
+    || theme.value.appearance
+    || social.value?.length,
+)
 </script>
 
 <template>
-  <VPFlyout v-if="hasExtraContent" class="navbar-extra" label="extra navigation">
+  <VPFlyout
+    v-if="hasExtraContent"
+    class="vp-navbar-extra"
+    label="extra navigation"
+  >
     <div
       v-if="localeLinks.length && currentLang.label"
       class="group translations"
@@ -60,19 +67,19 @@ const social = computed(() => {
 </template>
 
 <style scoped>
-.navbar-extra {
+.vp-navbar-extra {
   display: none;
   margin-right: -12px;
 }
 
 @media (min-width: 768px) {
-  .navbar-extra {
+  .vp-navbar-extra {
     display: block;
   }
 }
 
 @media (min-width: 1280px) {
-  .navbar-extra {
+  .vp-navbar-extra {
     display: none;
   }
 }

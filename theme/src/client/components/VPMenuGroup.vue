@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="menu-group">
+  <div class="vp-menu-group">
     <p v-if="text" class="title">
       <VPIcon v-if="icon" :name="icon" />
       <span v-text="text" />
@@ -23,20 +23,20 @@ defineProps<{
 </template>
 
 <style scoped>
-.menu-group {
+.vp-menu-group {
   padding: 12px 12px 0;
   margin: 12px -12px 0;
   border-top: 1px solid var(--vp-c-divider);
   transition: border-top var(--t-color);
 }
 
-.menu-group:first-child {
+.vp-menu-group:first-child {
   padding-top: 0;
   margin-top: 0;
   border-top: 0;
 }
 
-.menu-group + .menu-group {
+.vp-menu-group + .vp-menu-group {
   margin-top: 12px;
   border-top: 1px solid var(--vp-c-divider);
 }

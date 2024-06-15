@@ -8,7 +8,7 @@ const { theme } = useData()
 <template>
   <div
     v-if="theme.appearance && theme.appearance !== 'force-dark'"
-    class="nav-screen-appearance"
+    class="vp-nav-screen-appearance"
   >
     <p class="text">
       {{ theme.appearanceText ?? 'Appearance' }}
@@ -18,7 +18,7 @@ const { theme } = useData()
 </template>
 
 <style scoped>
-.nav-screen-appearance {
+.vp-nav-screen-appearance {
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -12,7 +12,7 @@ const { page } = useData()
 </script>
 
 <template>
-  <div class="menu-link">
+  <div class="vp-menu-link">
     <VPLink
       :class="{
         active: isActive(
@@ -30,7 +30,7 @@ const { page } = useData()
 </template>
 
 <style scoped>
-.menu-group + .menu-link {
+.vp-menu-group + .vp-menu-link {
   padding: 12px 12px 0;
   margin: 12px -12px 0;
   border-top: 1px solid var(--vp-c-divider);

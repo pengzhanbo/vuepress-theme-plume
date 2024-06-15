@@ -8,7 +8,7 @@ const { theme } = useData()
 <template>
   <VPSocialLinks
     v-if="theme.social"
-    class="VPNavScreenSocialLinks"
+    class="vp-nav-screen-social-links"
     :links="theme.social"
   />
 </template>

@@ -1,6 +1,19 @@
-.navbar-search {
+.vp-navbar-search {
   display: flex;
   align-items: center;
+}
+
+@media (min-width: 768px) {
+  .vp-navbar-search {
+    flex-grow: 1;
+    padding-left: 24px;
+  }
+}
+
+@media (min-width: 960px) {
+  .vp-navbar-search {
+    padding-left: 32px;
+  }
 }
 
 /* plugin-docsearch */
@@ -27,7 +40,7 @@
   --docsearch-hit-shadow: none;
 }
 
-.navbar-search .DocSearch-Button {
+.vp-navbar-search .DocSearch-Button {
   display: flex;
   align-items: center;
   justify-content: center !important;
@@ -39,20 +52,20 @@
   transition: border-color var(--t-color), background var(--t-color);
 }
 
-.navbar-search .DocSearch-Button:hover {
+.vp-navbar-search .DocSearch-Button:hover {
   background: var(--docsearch-searchbox-focus-background);
 }
 
-.navbar-search .DocSearch-Button:focus {
+.vp-navbar-search .DocSearch-Button:focus {
   outline: 1px dotted;
   outline: 5px auto -webkit-focus-ring-color;
 }
 
-.navbar-search .DocSearch-Button:focus:not(:focus-visible) {
+.vp-navbar-search .DocSearch-Button:focus:not(:focus-visible) {
   outline: none !important;
 }
 
-.navbar-search #docsearch-container {
+.vp-navbar-search #docsearch-container {
   min-width: 32px;
 }
 
@@ -166,7 +179,7 @@
 /* plugin-docsearch */
 
 /* plugin-search */
-.navbar-search .search-box input {
+.vp-navbar-search .search-box input {
   padding: 0 0.3rem 0 1.655rem;
   background-position: 0.5rem 0.4rem;
 }
@@ -174,26 +187,26 @@
 /* plugin-search */
 /* stylelint-disable-next-line order/order */
 @media (min-width: 768px) {
-  .navbar-search {
+  .vp-navbar-search {
     flex-grow: 1;
     padding-left: 24px;
   }
 }
 
 @media (min-width: 960px) {
-  .navbar-search {
+  .vp-navbar-search {
     padding-left: 32px;
   }
 }
 
 @media print {
-  .navbar-search {
+  .vp-navbar-search {
     display: none;
   }
 }
 
 @media (min-width: 768px) {
-  .navbar-search .DocSearch-Button {
+  .vp-navbar-search .DocSearch-Button {
     justify-content: flex-start;
     width: 100%;
     height: 40px;
@@ -203,7 +216,7 @@
     border-radius: 8px;
   }
 
-  .navbar-search .DocSearch-Button:hover {
+  .vp-navbar-search .DocSearch-Button:hover {
     background: var(--docsearch-searchbox-focus-background);
     border-color: var(--vp-c-brand-1);
   }

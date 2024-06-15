@@ -9,7 +9,7 @@ defineEmits<(e: 'click') => void>()
 <template>
   <button
     type="button"
-    class="navbar-hamburger"
+    class="vp-navbar-hamburger"
     :class="{ active }"
     aria-label="mobile navigation"
     :aria-expanded="active"
@@ -25,7 +25,7 @@ defineEmits<(e: 'click') => void>()
 </template>
 
 <style scoped>
-.navbar-hamburger {
+.vp-navbar-hamburger {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,7 +34,7 @@ defineEmits<(e: 'click') => void>()
 }
 
 @media (min-width: 768px) {
-  .navbar-hamburger {
+  .vp-navbar-hamburger {
     display: none;
   }
 }
@@ -77,42 +77,42 @@ defineEmits<(e: 'click') => void>()
   transform: translateX(4px);
 }
 
-.navbar-hamburger:hover .top {
+.vp-navbar-hamburger:hover .top {
   top: 0;
   left: 0;
   transform: translateX(4px);
 }
 
-.navbar-hamburger:hover .middle {
+.vp-navbar-hamburger:hover .middle {
   top: 6px;
   left: 0;
   transform: translateX(0);
 }
 
-.navbar-hamburger:hover .bottom {
+.vp-navbar-hamburger:hover .bottom {
   top: 12px;
   left: 0;
   transform: translateX(8px);
 }
 
-.navbar-hamburger.active .top {
+.vp-navbar-hamburger.active .top {
   top: 6px;
   transform: translateX(0) rotate(225deg);
 }
 
-.navbar-hamburger.active .middle {
+.vp-navbar-hamburger.active .middle {
   top: 6px;
   transform: translateX(16px);
 }
 
-.navbar-hamburger.active .bottom {
+.vp-navbar-hamburger.active .bottom {
   top: 6px;
   transform: translateX(0) rotate(135deg);
 }
 
-.navbar-hamburger.active:hover .top,
-.navbar-hamburger.active:hover .middle,
-.navbar-hamburger.active:hover .bottom {
+.vp-navbar-hamburger.active:hover .top,
+.vp-navbar-hamburger.active:hover .middle,
+.vp-navbar-hamburger.active:hover .bottom {
   background-color: var(--vp-c-text-2);
   transition:
     top 0.25s,

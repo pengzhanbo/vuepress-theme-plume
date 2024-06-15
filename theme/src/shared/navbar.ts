@@ -4,6 +4,8 @@ export interface NavItemWithLink {
   text: string
   link: string
   icon?: string | { svg: string }
+  rel?: string
+  target?: string
 
   /**
    * `activeMatch` is expected to be a regex string. We can't use actual

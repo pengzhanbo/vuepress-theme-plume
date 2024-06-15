@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import VPIcon from '../VPIcon.vue'
-import NavScreenMenuGroupLink from './NavScreenMenuGroupLink.vue'
-import NavScreenMenuGroupSection from './NavScreenMenuGroupSection.vue'
+import VPNavScreenMenuGroupLink from './VPNavScreenMenuGroupLink.vue'
+import VPNavScreenMenuGroupSection from './VPNavScreenMenuGroupSection.vue'
 
 const props = defineProps<{
   text: string
@@ -22,7 +22,7 @@ function toggle() {
 </script>
 
 <template>
-  <div class="nav-screen-menu-group" :class="{ open: isOpen }">
+  <div class="vp-nav-screen-menu-group" :class="{ open: isOpen }">
     <button
       class="button"
       :aria-controls="groupId"
@@ -31,7 +31,7 @@ function toggle() {
     >
       <span class="button-text">
         <VPIcon v-if="icon" :name="icon" />
-        <i v-text="text" />
+        <span v-html="text" />
       </span>
       <span class="vpi-plus button-icon" />
     </button>
@@ -39,7 +39,7 @@ function toggle() {
     <div :id="groupId" class="items">
       <template v-for="item in items" :key="item.text">
         <div v-if="'link' in item" :key="item.text" class="item">
-          <NavScreenMenuGroupLink
+          <VPNavScreenMenuGroupLink
             :text="item.text"
             :link="item.link"
             :icon="item.icon"
@@ -47,7 +47,7 @@ function toggle() {
         </div>
 
         <div v-else class="group">
-          <NavScreenMenuGroupSection
+          <VPNavScreenMenuGroupSection
             :text="item.text"
             :items="item.items"
             :icon="item.icon"
@@ -59,22 +59,22 @@ function toggle() {
 </template>
 
 <style scoped>
-.nav-screen-menu-group {
+.vp-nav-screen-menu-group {
   height: 48px;
   overflow: hidden;
   border-bottom: 1px solid var(--vp-c-divider);
   transition: border-color var(--t-color);
 }
 
-.nav-screen-menu-group .items {
+.vp-nav-screen-menu-group .items {
   visibility: hidden;
 }
 
-.nav-screen-menu-group.open .items {
+.vp-nav-screen-menu-group.open .items {
   visibility: visible;
 }
 
-.nav-screen-menu-group.open {
+.vp-nav-screen-menu-group.open {
   height: auto;
   padding-bottom: 10px;
 }
@@ -96,7 +96,7 @@ function toggle() {
   color: var(--vp-c-brand-1);
 }
 
-.nav-screen-menu-group.open .button {
+.vp-nav-screen-menu-group.open .button {
   padding-bottom: 6px;
   color: var(--vp-c-brand-1);
 }
@@ -110,13 +110,9 @@ function toggle() {
     transform 0.25s;
 }
 
-.nav-screen-menu-group.open .button-icon {
+.vp-nav-screen-menu-group.open .button-icon {
   /* rtl:ignore */
   transform: rotate(45deg);
-}
-
-.button-text i {
-  font-style: normal;
 }
 
 .group:first-child {

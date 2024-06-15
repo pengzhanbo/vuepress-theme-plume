@@ -14,7 +14,7 @@ function toggle() {
 <template>
   <div
     v-if="localeLinks.length && currentLang.label"
-    class="nav-screen-translations"
+    class="vp-nav-screen-translations"
     :class="{ open: isOpen }"
   >
     <button class="title" @click="toggle">
@@ -34,12 +34,12 @@ function toggle() {
 </template>
 
 <style lang="scss" scoped>
-.nav-screen-translations {
+.vp-nav-screen-translations {
   height: 24px;
   overflow: hidden;
 }
 
-.nav-screen-translations.open {
+.vp-nav-screen-translations.open {
   height: auto;
 }
 

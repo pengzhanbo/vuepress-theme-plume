@@ -26,7 +26,7 @@ function onSubmit() {
 </script>
 
 <template>
-  <div class="encrypt-form">
+  <div class="vp-encrypt-form">
     <p class="encrypt-text" v-html="info ?? 'Only Password can access this site'" />
     <p class="encrypt-input-wrapper">
       <span class="vpi-lock icon-lock" />
@@ -47,7 +47,7 @@ function onSubmit() {
 </template>
 
 <style scoped>
-.encrypt-form {
+.vp-encrypt-form {
   margin-top: 20px;
 }
 

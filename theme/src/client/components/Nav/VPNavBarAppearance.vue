@@ -8,19 +8,19 @@ const { theme } = useData()
 <template>
   <div
     v-if="theme.appearance && theme.appearance !== 'force-dark'"
-    class="navbar-appearance"
+    class="vp-navbar-appearance"
   >
     <VPSwitchAppearance />
   </div>
 </template>
 
 <style scoped>
-.navbar-appearance {
+.vp-navbar-appearance {
   display: none;
 }
 
 @media (min-width: 1280px) {
-  .navbar-appearance {
+  .vp-navbar-appearance {
     display: flex;
     align-items: center;
   }

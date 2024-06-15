@@ -19,18 +19,18 @@ const social = computed(() => {
 <template>
   <VPSocialLinks
     v-if="social"
-    class="navbar-social-links"
+    class="vp-navbar-social-links"
     :links="social"
   />
 </template>
 
 <style scoped>
-.navbar-social-links {
+.vp-navbar-social-links {
   display: none;
 }
 
 @media (min-width: 1280px) {
-  .navbar-social-links {
+  .vp-navbar-social-links {
     display: flex;
     align-items: center;
   }

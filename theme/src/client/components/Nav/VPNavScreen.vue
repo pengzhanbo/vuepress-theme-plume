@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useScrollLock } from '@vueuse/core'
 import { inBrowser } from '../../utils/index.js'
-import NavScreenAppearance from './NavScreenAppearance.vue'
-import NavScreenMenu from './NavScreenMenu.vue'
-import NavScreenSocialLinks from './NavScreenSocialLinks.vue'
-import NavScreenTranslates from './NavScreenTranslations.vue'
+import VPNavScreenAppearance from './VPNavScreenAppearance.vue'
+import VPNavScreenMenu from './VPNavScreenMenu.vue'
+import VPNavScreenSocialLinks from './VPNavScreenSocialLinks.vue'
+import VPNavScreenTranslates from './VPNavScreenTranslations.vue'
 
 defineProps<{
   open: boolean
@@ -19,25 +19,30 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
     @enter="isLocked = true"
     @after-leave="isLocked = false"
   >
-    <div v-if="open" id="navScreen" class="nav-screen">
+    <div v-if="open" id="navScreen" class="vp-nav-screen">
       <div class="container">
-        <NavScreenMenu class="menu" />
-        <NavScreenTranslates class="translations" />
-        <NavScreenAppearance class="appearance" />
-        <NavScreenSocialLinks class="social-links" />
+        <slot name="nav-screen-content-before" />
+        <VPNavScreenMenu class="menu" />
+        <VPNavScreenTranslates class="translations" />
+        <VPNavScreenAppearance class="appearance" />
+        <VPNavScreenSocialLinks class="social-links" />
+        <slot name="nav-screen-content-after" />
       </div>
     </div>
   </Transition>
 </template>
 
 <style scoped>
-.nav-screen {
+.vp-nav-screen {
   position: fixed;
-  inset: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px)) 0 0;
+  top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 1px);
 
   /* rtl:ignore */
+  right: 0;
+  bottom: 0;
 
   /* rtl:ignore */
+  left: 0;
   width: 100%;
   padding: 0 32px;
   overflow-y: auto;
@@ -53,28 +58,28 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
   margin: 0 auto;
 }
 
-.nav-screen.fade-enter-active,
-.nav-screen.fade-leave-active {
+.vp-nav-screen.fade-enter-active,
+.vp-nav-screen.fade-leave-active {
   transition: opacity var(--t-color);
 }
 
-.nav-screen.fade-enter-active .container,
-.nav-screen.fade-leave-active .container {
+.vp-nav-screen.fade-enter-active .container,
+.vp-nav-screen.fade-leave-active .container {
   transition: transform var(--t-color);
 }
 
-.nav-screen.fade-enter-from,
-.nav-screen.fade-leave-to {
+.vp-nav-screen.fade-enter-from,
+.vp-nav-screen.fade-leave-to {
   opacity: 0;
 }
 
-.nav-screen.fade-enter-from .container,
-.nav-screen.fade-leave-to .container {
+.vp-nav-screen.fade-enter-from .container,
+.vp-nav-screen.fade-leave-to .container {
   transform: translateY(-8px);
 }
 
 @media (min-width: 768px) {
-  .nav-screen {
+  .vp-nav-screen {
     display: none;
   }
 }

@@ -8,7 +8,7 @@ const { comparePage } = usePageEncrypt()
 </script>
 
 <template>
-  <div class="page-encrypt-wrapper">
+  <div class="vp-page-encrypt">
     <div class="logo">
       <span class="vpi-lock icon-lock-head" />
     </div>
@@ -17,7 +17,7 @@ const { comparePage } = usePageEncrypt()
 </template>
 
 <style scoped>
-.page-encrypt-wrapper .logo {
+.vp-page-encrypt .logo {
   text-align: center;
 }
 
@@ -29,7 +29,7 @@ const { comparePage } = usePageEncrypt()
 }
 
 @media (min-width: 768px) {
-  .page-encrypt-wrapper {
+  .vp-page-encrypt {
     width: 400px;
     padding: 20px;
     margin: 40px auto 0;

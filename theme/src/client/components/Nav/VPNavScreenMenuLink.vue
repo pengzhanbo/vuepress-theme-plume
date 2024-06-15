@@ -4,37 +4,36 @@ import VPLink from '../VPLink.vue'
 import VPIcon from '../VPIcon.vue'
 
 defineProps<{
-  icon?: string | { svg: string }
   text: string
   link: string
+  icon?: string | { svg: string }
 }>()
 
 const closeScreen = inject('close-screen') as () => void
 </script>
 
 <template>
-  <VPLink
-    class="nav-screen-menu-group-link"
-    :href="link"
-    @click="closeScreen"
-  >
+  <VPLink class="vp-nav-screen-menu-link" :href="link" @click="closeScreen">
     <VPIcon v-if="icon" :name="icon" />
     <i v-text="text" />
   </VPLink>
 </template>
 
 <style scoped>
-.nav-screen-menu-group-link {
+.vp-nav-screen-menu-link {
   display: block;
-  margin-left: 12px;
+  padding: 12px 0 11px;
   font-size: 14px;
-  font-weight: 400;
-  line-height: 32px;
+  font-weight: 500;
+  line-height: 24px;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  border-bottom: 1px solid var(--vp-c-divider);
+  transition:
+    border-color var(--t-color),
+    color var(--t-color);
 }
 
-.nav-screen-menu-group-link:hover {
+.vp-nav-screen-menu-link:hover {
   color: var(--vp-c-brand-1);
 }
 </style>

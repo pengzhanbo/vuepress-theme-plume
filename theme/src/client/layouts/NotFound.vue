@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRouteLocale, withBase } from 'vuepress/client'
-import Nav from '../components/Nav/index.vue'
+import VPNav from '../components/Nav/VPNav.vue'
 import VPSkipLink from '../components/VPSkipLink.vue'
 import VPFooter from '../components/VPFooter.vue'
 import { useData } from '../composables/data.js'
@@ -14,7 +14,27 @@ const { theme } = useData()
     <slot name="layout-top" />
     <VPSkipLink />
 
-    <Nav />
+    <VPNav>
+      <template #nav-bar-title-before>
+        <slot name="nav-bar-title-before" />
+      </template>
+      <template #nav-bar-title-after>
+        <slot name="nav-bar-title-after" />
+      </template>
+      <template #nav-bar-content-before>
+        <slot name="nav-bar-content-before" />
+      </template>
+      <template #nav-bar-content-after>
+        <slot name="nav-bar-content-after" />
+      </template>
+      <template #nav-screen-content-before>
+        <slot name="nav-screen-content-before" />
+      </template>
+      <template #nav-screen-content-after>
+        <slot name="nav-screen-content-after" />
+      </template>
+    </VPNav>
+
     <div id="VPContent" class="vp-content">
       <slot name="not-found">
         <div class="vp-not-found">

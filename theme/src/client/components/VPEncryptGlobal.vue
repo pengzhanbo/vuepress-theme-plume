@@ -13,7 +13,7 @@ const title = computed(() => avatar.value?.name || site.value.title)
 </script>
 
 <template>
-  <div class="global-encrypt-wrapper">
+  <div class="vp-global-encrypt">
     <div class="global-encrypt-container">
       <div v-if="avatar || title" class="profile">
         <p v-if="avatar" class="avatar" :class="{ circle: avatar.circle }">
@@ -30,7 +30,7 @@ const title = computed(() => avatar.value?.name || site.value.title)
 </template>
 
 <style scoped>
-.global-encrypt-wrapper {
+.vp-global-encrypt {
   display: flex;
   flex: 1;
   width: 100%;
@@ -40,7 +40,7 @@ const title = computed(() => avatar.value?.name || site.value.title)
 }
 
 @media (min-width: 768px) {
-  .global-encrypt-wrapper {
+  .vp-global-encrypt {
     align-items: center;
     justify-content: center;
     background-color: var(--vp-c-bg-soft);

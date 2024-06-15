@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { resolveRouteFullPath } from 'vuepress/client'
 import type { NavItem, NavItemWithChildren } from '../../../shared/index.js'
 import { isActive } from '../../utils/index.js'
 import VPFlyout from '../VPFlyout.vue'
@@ -15,7 +16,7 @@ function isChildActive(navItem: NavItem) {
   if ('link' in navItem) {
     return isActive(
       page.value.path,
-      navItem.link,
+      resolveRouteFullPath(navItem.link),
       !!props.item.activeMatch,
     )
   }
@@ -28,8 +29,11 @@ const childrenActive = computed(() => isChildActive(props.item))
 
 <template>
   <VPFlyout
-    class="navbar-menu-group" :class="{
-      active: isActive(page.path, item.activeMatch, !!item.activeMatch) || childrenActive,
+    class="vp-navbar-menu-group" :class="{
+      active: isActive(
+        page.path, item.activeMatch,
+        !!item.activeMatch,
+      ) || childrenActive,
     }"
     :button="item.text"
     :items="item.items"

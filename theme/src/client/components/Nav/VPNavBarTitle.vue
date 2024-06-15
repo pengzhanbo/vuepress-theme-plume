@@ -11,14 +11,18 @@ const routeLocale = useRouteLocale()
 </script>
 
 <template>
-  <div class="navbar-title" :class="{ 'has-sidebar': hasSidebar }">
+  <div class="vp-navbar-title" :class="{ 'has-sidebar': hasSidebar }">
     <VPLink class="title" :href="theme.home ?? routeLocale">
+      <slot name="nav-bar-title-before" />
+
       <VPImage
         v-if="theme.logo"
         class="logo"
         :image="{ light: theme.logo, dark: theme.logoDark || theme.logo }"
       />
-      {{ site.title }}
+      <span>{{ site.title }}</span>
+
+      <slot name="nav-bar-title-after" />
     </VPLink>
   </div>
 </template>
@@ -36,16 +40,12 @@ const routeLocale = useRouteLocale()
   transition: opacity var(--t-color), color var(--t-color), border-bottom var(--t-color);
 }
 
-.title:hover {
-  opacity: 0.6;
-}
-
 @media (min-width: 960px) {
   .title {
     flex-shrink: 0;
   }
 
-  .navbar-title.has-sidebar .title {
+  .vp-navbar-title.has-sidebar .title {
     border-bottom-color: var(--vp-c-divider);
   }
 }

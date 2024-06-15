@@ -2,10 +2,10 @@
 import { useScrollLock } from '@vueuse/core'
 import { onMounted, ref, watch } from 'vue'
 import { useRoutePath } from 'vuepress/client'
+import VPSidebarItem from '@theme/VPSidebarItem.vue'
+import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { useSidebar } from '../composables/sidebar.js'
 import { inBrowser } from '../utils/index.js'
-import VPSidebarItem from './VPSidebarItem.vue'
-import VPTransitionFadeSlideY from './VPTransitionFadeSlideY.vue'
 
 const props = defineProps<{
   open: boolean

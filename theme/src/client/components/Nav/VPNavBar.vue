@@ -1,16 +1,16 @@
 <script lang="ts" setup>
 import { useWindowScroll } from '@vueuse/core'
 import { ref, watchPostEffect } from 'vue'
-import { useSidebar } from '../../composables/sidebar.js'
+import VPNavBarAppearance from '@theme/Nav/VPNavBarAppearance.vue'
+import VPNavBarExtra from '@theme/Nav/VPNavBarExtra.vue'
+import VPNavBarHamburger from '@theme/Nav/VPNavBarHamburger.vue'
+import VPNavBarMenu from '@theme/Nav/VPNavBarMenu.vue'
+import VPNavBarSearch from '@theme/Nav/VPNavBarSearch.vue'
+import VPNavBarSocialLinks from '@theme/Nav/VPNavBarSocialLinks.vue'
+import VPNavBarTitle from '@theme/Nav/VPNavBarTitle.vue'
+import VPNavBarTranslations from '@theme/Nav/VPNavBarTranslations.vue'
 import { useData } from '../../composables/data.js'
-import VPNavBarAppearance from './VPNavBarAppearance.vue'
-import VPNavBarExtra from './VPNavBarExtra.vue'
-import VPNavBarHamburger from './VPNavBarHamburger.vue'
-import VPNavBarMenu from './VPNavBarMenu.vue'
-import VPNavBarSearch from './VPNavBarSearch.vue'
-import VPNavBarSocialLinks from './VPNavBarSocialLinks.vue'
-import VPNavBarTitle from './VPNavBarTitle.vue'
-import VPNavBarTranslations from './VPNavBarTranslations.vue'
+import { useSidebar } from '../../composables/sidebar.js'
 
 defineProps<{
   isScreenOpen: boolean

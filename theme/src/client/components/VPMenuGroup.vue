@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import VPIcon from './VPIcon.vue'
-import VPMenuLink from './VPMenuLink.vue'
+import VPIcon from '@theme/VPIcon.vue'
+import VPMenuLink from '@theme/VPMenuLink.vue'
 
 defineProps<{
   text?: string

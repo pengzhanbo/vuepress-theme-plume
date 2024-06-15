@@ -2,10 +2,10 @@
 import { useWindowScroll } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
 import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
+import VPLocalNavOutlineDropdown from '@theme/VPLocalNavOutlineDropdown.vue'
 import { useSidebar } from '../composables/sidebar.js'
 import { type MenuItem, getHeaders } from '../composables/outline.js'
 import { useData } from '../composables/data.js'
-import VPLocalNavOutlineDropdown from './VPLocalNavOutlineDropdown.vue'
 
 const props = defineProps<{
   open: boolean

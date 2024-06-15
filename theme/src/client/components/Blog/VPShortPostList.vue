@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import VPLink from '../VPLink.vue'
+import VPLink from '@theme/VPLink.vue'
 
 defineProps<{
   postList: {

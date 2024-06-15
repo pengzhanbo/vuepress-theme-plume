@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import VPFooter from '@theme/VPFooter.vue'
+import VPEncryptForm from '@theme/VPEncryptForm.vue'
 import { useData } from '../composables/data.js'
 import { useGlobalEncrypt } from '../composables/encrypt.js'
-import VPFooter from './VPFooter.vue'
-import VPEncryptForm from './VPEncryptForm.vue'
 
 const { theme, site } = useData()
 const { compareGlobal } = useGlobalEncrypt()

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { computed, provide, watchEffect } from 'vue'
+import VPNavbar from '@theme/Nav/VPNavBar.vue'
+import VPNavScreen from '@theme/Nav/VPNavScreen.vue'
 import { useNav } from '../../composables/nav.js'
 import { useData } from '../../composables/data.js'
 import { inBrowser } from '../../utils/index.js'
-import VPNavbar from './VPNavBar.vue'
-import VPNavScreen from './VPNavScreen.vue'
 
 const { page, frontmatter } = useData()
 

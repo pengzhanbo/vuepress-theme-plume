@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import VPNavScreenMenuGroup from '@theme/Nav/VPNavScreenMenuGroup.vue'
+import VPNavScreenMenuLink from '@theme/Nav/VPNavScreenMenuLink.vue'
 import { useData } from '../../composables/data.js'
-import VPNavScreenMenuGroup from './VPNavScreenMenuGroup.vue'
-import VPNavScreenMenuLink from './VPNavScreenMenuLink.vue'
 
 const { theme } = useData()
 </script>

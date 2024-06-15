@@ -2,8 +2,8 @@
 import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
+import VPSocialLinks from '@theme/VPSocialLinks.vue'
 import { useData } from '../../composables/data.js'
-import VPSocialLinks from '../VPSocialLinks.vue'
 
 const { theme } = useData()
 const avatar = computed(() => theme.value.avatar)

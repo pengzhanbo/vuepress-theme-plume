@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { resolveRouteFullPath } from 'vuepress/client'
+import VPFlyout from '@theme/VPFlyout.vue'
 import type { NavItem, NavItemWithChildren } from '../../../shared/index.js'
 import { isActive } from '../../utils/index.js'
-import VPFlyout from '../VPFlyout.vue'
 import { useData } from '../../composables/data.js'
 
 const props = defineProps<{

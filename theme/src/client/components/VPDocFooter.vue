@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
+import VPLink from '@theme/VPLink.vue'
 import {
   useContributors,
   useEditNavLink,
@@ -7,7 +8,6 @@ import {
   usePageNav,
 } from '../composables/page.js'
 import { useData } from '../composables/data.js'
-import VPLink from './VPLink.vue'
 
 const { theme } = useData()
 const editNavLink = useEditNavLink()

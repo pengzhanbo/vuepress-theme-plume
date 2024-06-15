@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
-import { useData } from '../composables/data.js'
-import { useSidebar } from '../composables/sidebar.js'
+import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
+import VPDocAside from '@theme/VPDocAside.vue'
+import VPDocFooter from '@theme/VPDocFooter.vue'
+import VPEncryptPage from '@theme/VPEncryptPage.vue'
+import VPDocMeta from '@theme/VPDocMeta.vue'
 import { usePageEncrypt } from '../composables/encrypt.js'
-import VPTransitionFadeSlideY from './VPTransitionFadeSlideY.vue'
-import VPDocAside from './VPDocAside.vue'
-import VPDocFooter from './VPDocFooter.vue'
-import VPEncryptPage from './VPEncryptPage.vue'
-import VPDocMeta from './VPDocMeta.vue'
+import { useSidebar } from '../composables/sidebar.js'
+import { useData } from '../composables/data.js'
 
 const { page, theme, frontmatter, isDark } = useData()
 const route = useRoute()

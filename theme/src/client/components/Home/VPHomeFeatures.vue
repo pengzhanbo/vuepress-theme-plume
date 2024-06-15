@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import VPHomeFeature from '@theme/Home/VPHomeFeature.vue'
+import VPHomeBox from '@theme/Home/VPHomeBox.vue'
 import type { PlumeThemeHomeFeatures } from '../../../shared/index.js'
-import VPHomeFeature from './VPHomeFeature.vue'
-import VPHomeBox from './VPHomeBox.vue'
 
 const props = defineProps<PlumeThemeHomeFeatures>()
 

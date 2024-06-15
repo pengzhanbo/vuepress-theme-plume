@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import VPSwitchAppearance from '@theme/VPSwitchAppearance.vue'
 import { useData } from '../../composables/data.js'
-import VPSwitchAppearance from '../VPSwitchAppearance.vue'
 
 const { theme } = useData()
 </script>

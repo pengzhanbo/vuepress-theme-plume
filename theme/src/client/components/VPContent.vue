@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import VPBlog from '@theme/Blog/VPBlog.vue'
+import VPDoc from '@theme/VPDoc.vue'
+import VPPage from '@theme/VPPage.vue'
+import VPHome from '@theme/Home/VPHome.vue'
+import VPFriends from '@theme/VPFriends.vue'
 import { useData, useSidebar } from '../composables/index.js'
-import VPBlog from './Blog/VPBlog.vue'
-import VPDoc from './VPDoc.vue'
-import VPPage from './VPPage.vue'
-import VPHome from './Home/VPHome.vue'
-import VPFriends from './VPFriends.vue'
 
 const props = defineProps<{
   isNotFound?: boolean

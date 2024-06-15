@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import VPDocAsideOutline from './VPDocAsideOutline.vue'
+import VPDocAsideOutline from '@theme/VPDocAsideOutline.vue'
 </script>
 
 <template>

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { useRouteLocale } from 'vuepress/client'
+import VPLink from '@theme/VPLink.vue'
+import VPImage from '@theme/VPImage.vue'
 import { useSidebar } from '../../composables/sidebar.js'
 import { useData } from '../../composables/data.js'
-import VPLink from '../VPLink.vue'
-import VPImage from '../VPImage.vue'
 
 const { theme, site } = useData()
 const { hasSidebar } = useSidebar()

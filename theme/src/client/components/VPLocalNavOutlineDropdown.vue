@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
 import { nextTick, ref, watch } from 'vue'
+import VPDocOutlineItem from '@theme/VPDocOutlineItem.vue'
 import type { MenuItem } from '../composables/outline.js'
 import { useData } from '../composables/data.js'
-import VPDocOutlineItem from './VPDocOutlineItem.vue'
 
 const props = defineProps<{
   headers: MenuItem[]

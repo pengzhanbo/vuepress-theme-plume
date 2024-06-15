@@ -2,9 +2,9 @@
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { computed } from 'vue'
+import VPButton from '@theme/VPButton.vue'
 import type { PlumeThemeHomeBanner } from '../../../shared/index.js'
 import { useData } from '../../composables/data.js'
-import VPButton from '../VPButton.vue'
 
 const props = defineProps<PlumeThemeHomeBanner>()
 

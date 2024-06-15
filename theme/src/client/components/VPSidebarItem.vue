@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { NotesSidebarItem } from '@vuepress-plume/plugin-notes-data'
 import { computed } from 'vue'
+import VPLink from '@theme/VPLink.vue'
+import VPIcon from '@theme/VPIcon.vue'
 import { useSidebarControl } from '../composables/sidebar.js'
-import VPLink from './VPLink.vue'
-import VPIcon from './VPIcon.vue'
 
 const props = defineProps<{
   item: NotesSidebarItem

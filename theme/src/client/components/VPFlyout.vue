@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import VPIcon from '@theme/VPIcon.vue'
+import VPMenu from '@theme/VPMenu.vue'
 import { useFlyout } from '../composables/flyout.js'
-import VPIcon from './VPIcon.vue'
-import VPMenu from './VPMenu.vue'
 
 defineProps<{
   prefixIcon?: string | { svg: string }

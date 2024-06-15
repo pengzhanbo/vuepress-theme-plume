@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { resolveRoutePath } from 'vuepress/client'
+import VPLink from '@theme/VPLink.vue'
+import VPIcon from '@theme/VPIcon.vue'
 import type { NavItemWithLink } from '../../../shared/index.js'
 import { isActive } from '../../utils/index.js'
-import VPLink from '../VPLink.vue'
-import VPIcon from '../VPIcon.vue'
 import { useData } from '../../composables/data.js'
 
 defineProps<{

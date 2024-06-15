@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import VPIcon from '../VPIcon.vue'
-import VPNavScreenMenuGroupLink from './VPNavScreenMenuGroupLink.vue'
-import VPNavScreenMenuGroupSection from './VPNavScreenMenuGroupSection.vue'
+import VPIcon from '@theme/VPIcon.vue'
+import VPNavScreenMenuGroupLink from '@theme/Nav/VPNavScreenMenuGroupLink.vue'
+import VPNavScreenMenuGroupSection from '@theme/Nav/VPNavScreenMenuGroupSection.vue'
 
 const props = defineProps<{
   text: string

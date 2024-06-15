@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { inject } from 'vue'
-import VPLink from '../VPLink.vue'
-import VPIcon from '../VPIcon.vue'
+import VPLink from '@theme/VPLink.vue'
+import VPIcon from '@theme/VPIcon.vue'
 
 defineProps<{
   text: string

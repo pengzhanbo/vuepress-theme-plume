@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import VPSocialLink from '@theme/VPSocialLink.vue'
 import type { SocialLink as SocialLinkType } from '../../shared/index.js'
-import VPSocialLink from './VPSocialLink.vue'
 
 defineProps<{
   links: SocialLinkType[]

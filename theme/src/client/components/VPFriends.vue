@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useData } from '../composables/data.js'
+import VPLink from '@theme/VPLink.vue'
+import VPFriendsItem from '@theme/VPFriendsItem.vue'
+import VPFriendsGroup from '@theme/VPFriendsGroup.vue'
 import { useEditNavLink } from '../composables/page.js'
-import VPLink from './VPLink.vue'
-import VPFriendsItem from './VPFriendsItem.vue'
-import VPFriendsGroup from './VPFriendsGroup.vue'
+import { useData } from '../composables/data.js'
 
 const editNavLink = useEditNavLink()
 const { frontmatter: matter } = useData<'friends'>()

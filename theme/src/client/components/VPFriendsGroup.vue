@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import VPFriendsItem from '@theme/VPFriendsItem.vue'
 import type { FriendGroup } from '../../shared/index.js'
-import VPFriendsItem from './VPFriendsItem.vue'
 
 defineProps<{
   group: FriendGroup

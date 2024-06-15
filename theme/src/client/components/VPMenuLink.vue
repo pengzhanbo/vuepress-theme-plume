@@ -1,8 +1,8 @@
 <script lang="ts" setup>
+import VPLink from '@theme/VPLink.vue'
+import VPIcon from '@theme/VPIcon.vue'
 import { useData } from '../composables/data.js'
 import { isActive } from '../utils/index.js'
-import VPLink from './VPLink.vue'
-import VPIcon from './VPIcon.vue'
 
 defineProps<{
   item: any

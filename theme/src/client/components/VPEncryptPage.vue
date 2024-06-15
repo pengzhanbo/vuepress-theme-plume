@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import VPEncryptForm from '@theme/VPEncryptForm.vue'
 import { usePageEncrypt } from '../composables/encrypt.js'
 import { useData } from '../composables/data.js'
-import VPEncryptForm from './VPEncryptForm.vue'
 
 const { theme } = useData()
 const { comparePage } = usePageEncrypt()

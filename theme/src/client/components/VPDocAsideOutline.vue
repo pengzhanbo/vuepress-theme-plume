@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
+import VPDocOutlineItem from '@theme/VPDocOutlineItem.vue'
 import { type MenuItem, getHeaders, useActiveAnchor } from '../composables/outline.js'
 import { useData } from '../composables/data.js'
-import VPDocOutlineItem from './VPDocOutlineItem.vue'
 
 const { theme, frontmatter } = useData()
 

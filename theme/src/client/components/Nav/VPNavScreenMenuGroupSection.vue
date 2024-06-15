@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import VPIcon from '@theme/VPIcon.vue'
+import VPNavScreenMenuGroupLink from '@theme/Nav/VPNavScreenMenuGroupLink.vue'
 import type { NavItemWithLink } from '../../../shared/index.js'
-import VPIcon from '../VPIcon.vue'
-import VPNavScreenMenuGroupLink from './VPNavScreenMenuGroupLink.vue'
 
 defineProps<{
   icon?: string | { svg: string }

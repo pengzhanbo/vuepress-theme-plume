@@ -1,8 +1,8 @@
 <script lang="ts" setup>
+import VPFlyout from '@theme/VPFlyout.vue'
+import VPMenuLink from '@theme/VPMenuLink.vue'
 import { useLangs } from '../../composables/langs.js'
 import { useData } from '../../composables/data.js'
-import VPFlyout from '../VPFlyout.vue'
-import VPMenuLink from '../VPMenuLink.vue'
 
 const { theme } = useData()
 const { currentLang, localeLinks } = useLangs()

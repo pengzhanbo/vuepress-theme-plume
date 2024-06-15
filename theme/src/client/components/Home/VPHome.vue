@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { type Component, computed, nextTick, onUnmounted, resolveComponent, watch } from 'vue'
+import VPHomeBanner from '@theme/Home/VPHomeBanner.vue'
+import VPHomeHero from '@theme/Home/VPHomeHero.vue'
+import VPHomeFeatures from '@theme/Home/VPHomeFeatures.vue'
+import VPHomeTextImage from '@theme/Home/VPHomeTextImage.vue'
+import VPHomeProfile from '@theme/Home/VPHomeProfile.vue'
+import VPHomeCustom from '@theme/Home/VPHomeCustom.vue'
 import { useData } from '../../composables/data.js'
-import VPHomeBanner from './VPHomeBanner.vue'
-import VPHomeHero from './VPHomeHero.vue'
-import VPHomeFeatures from './VPHomeFeatures.vue'
-import VPHomeTextImage from './VPHomeTextImage.vue'
-import VPHomeProfile from './VPHomeProfile.vue'
-import VPHomeCustom from './VPHomeCustom.vue'
 
 const components: Record<string, Component<any, any, any>> = {
   'banner': VPHomeBanner,

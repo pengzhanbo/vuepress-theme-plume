@@ -1,8 +1,8 @@
 <script lang="ts" setup>
+import VPTransitionDrop from '@theme/VPTransitionDrop.vue'
+import VPPostItem from '@theme/Blog/VPPostItem.vue'
+import VPPagination from '@theme/Blog/VPPagination.vue'
 import { usePostListControl } from '../../composables/blog.js'
-import VPTransitionDrop from '../VPTransitionDrop.vue'
-import VPPostItem from './VPPostItem.vue'
-import VPPagination from './VPPagination.vue'
 
 const {
   postList,

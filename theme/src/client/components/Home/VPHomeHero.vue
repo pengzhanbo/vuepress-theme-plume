@@ -2,7 +2,7 @@
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { computed, ref } from 'vue'
-import VPButton from '../VPButton.vue'
+import VPButton from '@theme/VPButton.vue'
 import { useData } from '../../composables/data.js'
 import { useHomeHeroTintPlate } from '../../composables/home.js'
 import type { PlumeThemeHomeHero } from '../../../shared/index.js'

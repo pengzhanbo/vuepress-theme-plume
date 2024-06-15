@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useScrollLock } from '@vueuse/core'
+import VPNavScreenAppearance from '@theme/Nav/VPNavScreenAppearance.vue'
+import VPNavScreenMenu from '@theme/Nav/VPNavScreenMenu.vue'
+import VPNavScreenSocialLinks from '@theme/Nav/VPNavScreenSocialLinks.vue'
+import VPNavScreenTranslates from '@theme/Nav/VPNavScreenTranslations.vue'
 import { inBrowser } from '../../utils/index.js'
-import VPNavScreenAppearance from './VPNavScreenAppearance.vue'
-import VPNavScreenMenu from './VPNavScreenMenu.vue'
-import VPNavScreenSocialLinks from './VPNavScreenSocialLinks.vue'
-import VPNavScreenTranslates from './VPNavScreenTranslations.vue'
 
 defineProps<{
   open: boolean

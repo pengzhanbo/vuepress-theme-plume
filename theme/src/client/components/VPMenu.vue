@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import VPMenuGroup from './VPMenuGroup.vue'
-import VPMenuLink from './VPMenuLink.vue'
+import VPMenuGroup from '@theme/VPMenuGroup.vue'
+import VPMenuLink from '@theme/VPMenuLink.vue'
 
 defineProps<{
   items?: any[]

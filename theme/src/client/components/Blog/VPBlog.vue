@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
+import VPPostList from '@theme/Blog/VPPostList.vue'
+import VPBlogArchives from '@theme/Blog/VPBlogArchives.vue'
+import VPBlogAside from '@theme/Blog/VPBlogAside.vue'
+import VPBlogExtract from '@theme/Blog/VPBlogExtract.vue'
+import VPBlogTags from '@theme/Blog/VPBlogTags.vue'
+import VPBlogNav from '@theme/Blog/VPBlogNav.vue'
+import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { useData } from '../../composables/data.js'
-import VPTransitionFadeSlideY from '../VPTransitionFadeSlideY.vue'
-import VPPostList from './VPPostList.vue'
-import VPBlogArchives from './VPBlogArchives.vue'
-import VPBlogAside from './VPBlogAside.vue'
-import VPBlogExtract from './VPBlogExtract.vue'
-import VPBlogTags from './VPBlogTags.vue'
-import VPBlogNav from './VPBlogNav.vue'
 
 const { theme, page } = useData()
 

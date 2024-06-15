@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import VPLink from '@theme/VPLink.vue'
 import VPIcon from '@theme/VPIcon.vue'
+import { resolveRouteFullPath } from 'vuepress/client'
 import { useData } from '../composables/data.js'
 import { isActive } from '../utils/index.js'
 
@@ -17,11 +18,10 @@ const { page } = useData()
       :class="{
         active: isActive(
           page.path,
-          item.activeMatch || item.link,
+          item.activeMatch || resolveRouteFullPath(item.link),
           !!item.activeMatch,
         ),
-      }"
-      :href="item.link"
+      }" :href="item.link"
     >
       <VPIcon v-if="item.icon" :name="item.icon" />
       <i v-text="item.text" />

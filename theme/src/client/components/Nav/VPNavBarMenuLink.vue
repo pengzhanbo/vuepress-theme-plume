@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { resolveRoutePath } from 'vuepress/client'
+import { resolveRouteFullPath } from 'vuepress/client'
 import VPLink from '@theme/VPLink.vue'
 import VPIcon from '@theme/VPIcon.vue'
 import type { NavItemWithLink } from '../../../shared/index.js'
@@ -18,7 +18,7 @@ const { page } = useData()
     class="navbar-menu-link" :class="{
       active: isActive(
         page.path,
-        item.activeMatch || resolveRoutePath(item.link),
+        item.activeMatch || resolveRouteFullPath(item.link),
         !!item.activeMatch,
       ),
     }"

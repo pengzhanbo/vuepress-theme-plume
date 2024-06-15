@@ -1,4 +1,4 @@
-import { usePageData, usePageFrontmatter, usePageLang, useRoute } from 'vuepress/client'
+import { resolveRouteFullPath, usePageData, usePageFrontmatter, usePageLang, useRoute } from 'vuepress/client'
 import { isPlainObject, isString } from 'vuepress/shared'
 import { useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
 import type { NotesSidebarItem } from '@vuepress-plume/plugin-notes-data'
@@ -139,7 +139,7 @@ function flatSidebar(sidebar: NotesSidebarItem[], res: NavItemWithLink[] = []): 
  * Resolve `prev` or `next` config from sidebar items
  */
 function resolveFromSidebarItems(sidebarItems: NavItemWithLink[], currentPath: string, offset: number): null | NavItemWithLink {
-  const index = sidebarItems.findIndex(item => item.link === currentPath)
+  const index = sidebarItems.findIndex(item => resolveRouteFullPath(item.link) === currentPath)
   if (index !== -1) {
     const targetItem = sidebarItems[index + offset]
     if (targetItem?.link) {

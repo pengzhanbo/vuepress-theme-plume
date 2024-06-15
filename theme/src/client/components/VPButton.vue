@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRouter } from 'vuepress/client'
+import { resolveRouteFullPath, useRouter, withBase } from 'vuepress/client'
 import { isLinkExternal } from 'vuepress/shared'
 
 interface Props {
@@ -9,12 +9,16 @@ interface Props {
   theme?: 'brand' | 'alt' | 'sponsor'
   text: string
   href?: string
+  target?: string
+  rel?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   size: 'medium',
   theme: 'brand',
   tag: undefined,
   href: undefined,
+  target: undefined,
+  rel: undefined,
 })
 
 const router = useRouter()
@@ -27,10 +31,19 @@ const component = computed(() => {
   return props.tag || props.href ? 'a' : 'button'
 })
 
+const link = computed(() => {
+  if (!props.href)
+    return undefined
+  if (isExternal.value)
+    return props.href
+  return resolveRouteFullPath(props.href)
+})
+
 function linkTo(e: Event) {
   if (!isExternal.value) {
     e.preventDefault()
-    props.href && router.push({ path: props.href })
+    if (link.value)
+      router.push({ path: link.value })
   }
 }
 </script>
@@ -38,10 +51,11 @@ function linkTo(e: Event) {
 <template>
   <Component
     :is="component"
-    class="vp-button" :class="[size, theme]"
-    :href="href"
-    :target="isExternal ? '_blank' : undefined"
-    :rel="isExternal ? 'noreferrer' : undefined"
+    class="vp-button"
+    :class="[size, theme]"
+    :href="withBase(link || '')"
+    :target="target ?? (isExternal ? '_blank' : undefined)"
+    :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"
   >
     {{ text }}

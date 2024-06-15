@@ -1,4 +1,4 @@
-import { useRoute, withBase } from 'vuepress/client'
+import { resolveRouteFullPath, useRoute, withBase } from 'vuepress/client'
 import type {
   NotesData,
   NotesSidebarItem,
@@ -178,7 +178,7 @@ export function useSidebarControl(item: ComputedRef<NotesSidebarItem>) {
 
   const isActiveLink = ref(false)
   const updateIsActiveLink = () => {
-    isActiveLink.value = isActive(page.value.path, item.value.link)
+    isActiveLink.value = isActive(page.value.path, item.value.link ? resolveRouteFullPath(item.value.link) : undefined)
   }
 
   watch([page, item, () => route.hash], updateIsActiveLink)
@@ -231,7 +231,7 @@ export function containsActiveLink(
   if (Array.isArray(items))
     return items.some(item => containsActiveLink(path, item))
 
-  return isActive(path, items.link)
+  return isActive(path, items.link ? resolveRouteFullPath(items.link) : undefined)
     ? true
     : items.items
       ? containsActiveLink(path, items.items as NotesSidebarItem[])

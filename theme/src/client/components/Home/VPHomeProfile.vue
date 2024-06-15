@@ -9,14 +9,14 @@ const props = defineProps<PlumeThemeHomeProfile>()
 
 const { theme } = useData()
 
-const avatar = computed(() => theme.value.avatar)
+const rawProfile = computed(() => theme.value.profile)
 
 const profile = computed(() => {
   return {
-    name: props.name || avatar.value?.name,
-    description: props.description || avatar.value?.description,
-    avatar: props.avatar || avatar.value?.url,
-    circle: props.circle || avatar.value?.circle,
+    name: props.name || rawProfile.value?.name,
+    description: props.description || rawProfile.value?.description,
+    avatar: props.avatar || rawProfile.value?.avatar || rawProfile.value?.url,
+    circle: props.circle || rawProfile.value?.circle,
   }
 })
 </script>

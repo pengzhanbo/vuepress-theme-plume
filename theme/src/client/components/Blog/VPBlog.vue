@@ -29,8 +29,8 @@ const type = computed(() => {
 
 <template>
   <div class="vp-blog">
-    <div class="blog-container" :class="{ 'no-avatar': !theme.avatar }">
-      <VPBlogNav v-if="!theme.avatar" is-local />
+    <div class="blog-container" :class="{ 'no-profile': !theme.profile }">
+      <VPBlogNav v-if="!theme.profile" is-local />
 
       <VPTransitionFadeSlideY>
         <component :is="com[type]" />
@@ -57,7 +57,7 @@ const type = computed(() => {
   margin: 0 auto;
 }
 
-.blog-container.no-avatar {
+.blog-container.no-profile {
   display: block;
   max-width: 784px;
   padding-right: 24px;

@@ -56,9 +56,9 @@ export function resolveAutoFrontmatterOptions(
         return author
       if (data.friends)
         return
-      const avatar = resolveOptions(relativePath).avatar
+      const profile = resolveOptions(relativePath).profile ?? resolveOptions(relativePath).avatar
 
-      return avatar?.name || pkg.author || ''
+      return profile?.name || pkg.author || ''
     },
     createTime(formatTime: string, { createTime }, data: any) {
       if (formatTime)

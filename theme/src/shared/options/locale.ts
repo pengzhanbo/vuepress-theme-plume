@@ -31,11 +31,16 @@ export interface PlumeThemeLocaleData extends LocaleData {
   darkModeSwitchTitle?: string
 
   /**
-   * 配置博主拥有者信息
-   *
-   * 显示在右侧侧边栏
+   * @deprecated 弃用，使用 `profile` 代替
    */
-  avatar?: PlumeThemeAvatar
+  avatar?: PlumeThemeProfile
+
+  /**
+   * 配置博主拥有者 个人资料
+   *
+   * 显示在博客右侧侧边栏
+   */
+  profile?: PlumeThemeProfile
 
   /**
    * 社交账号配置
@@ -238,11 +243,20 @@ export interface PlumeThemeLocaleData extends LocaleData {
 
 /** =========================== Avatar ================================ */
 
-export interface PlumeThemeAvatar {
+/**
+ * 个人资料
+ */
+export interface PlumeThemeProfile {
   /**
+   * @deprecated 弃用，使用 `avatar` 代替
    * 头像链接
    */
   url?: string
+
+  /**
+   * 头像链接地址
+   */
+  avatar?: string
   /**
    * 名称
    */

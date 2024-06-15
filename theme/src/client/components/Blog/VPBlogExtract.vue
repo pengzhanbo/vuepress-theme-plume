@@ -11,9 +11,9 @@ import { inBrowser } from '../../utils/index.js'
 const { theme } = useData()
 const route = useRoute()
 
-const avatar = computed(() => theme.value.avatar)
+const profile = computed(() => theme.value.profile)
 const imageUrl = computed(() => {
-  const url = avatar.value?.url
+  const url = profile.value?.avatar ?? profile.value?.url
   if (!url)
     return ''
   if (isLinkHttp(url))
@@ -52,7 +52,7 @@ watch(
 )
 
 const showBlogExtract = computed(() => {
-  return avatar.value || hasBlogExtract.value
+  return profile.value || hasBlogExtract.value
 })
 </script>
 
@@ -64,28 +64,28 @@ const showBlogExtract = computed(() => {
     <Transition name="fade">
       <div v-show="open" class="blog-modal" @click.self="open = false">
         <div class="blog-modal-container" :class="{ open: lazyOpen }">
-          <div v-if="avatar" class="avatar-profile">
+          <div v-if="profile" class="profile">
             <p v-if="imageUrl" class="avatar">
-              <img :src="imageUrl" :alt="avatar.name">
+              <img :src="imageUrl" :alt="profile.name">
             </p>
             <div>
-              <h3>{{ avatar.name }}</h3>
+              <h3>{{ profile.name }}</h3>
               <p class="desc">
-                {{ avatar.description }}
+                {{ profile.description }}
               </p>
-              <div class="avatar-info">
-                <div v-if="avatar.location" class="avatar-location">
+              <div class="profile-info">
+                <div v-if="profile.location" class="profile-location">
                   <span class="vpi-location" />
-                  <p v-if="avatar.location" v-html="avatar.location" />
+                  <p v-if="profile.location" v-html="profile.location" />
                 </div>
-                <div v-if="avatar.organization" class="avatar-organization">
+                <div v-if="profile.organization" class="profile-organization">
                   <span class="vpi-organization" />
-                  <p v-if="avatar.organization" v-html="avatar.organization" />
+                  <p v-if="profile.organization" v-html="profile.organization" />
                 </div>
               </div>
             </div>
           </div>
-          <div v-if="hasBlogExtract" class="blog-nav" :class="{ 'no-avatar': !avatar }">
+          <div v-if="hasBlogExtract" class="blog-nav" :class="{ 'no-profile': !profile }">
             <VPLink class="nav-link" :href="tags.link" no-icon>
               <span class="vpi-tag icon" />
               <span>{{ tags.text }}</span>
@@ -185,21 +185,21 @@ const showBlogExtract = computed(() => {
   transform: translateY(0);
 }
 
-.avatar-profile {
+.profile {
   display: flex;
   align-items: center;
 }
 
-.avatar-profile .avatar {
+.profile .avatar {
   width: 64px;
   margin-right: 16px;
 }
 
-.avatar-profile h3 {
+.profile h3 {
   font-weight: 600;
 }
 
-.avatar-profile .desc {
+.profile .desc {
   font-size: 14px;
 }
 
@@ -212,7 +212,7 @@ const showBlogExtract = computed(() => {
   border-top: solid 1px var(--vp-c-divider);
 }
 
-.blog-nav.no-avatar {
+.blog-nav.no-profile {
   padding-top: 0;
   margin: 0;
   border-top: none;
@@ -234,15 +234,15 @@ const showBlogExtract = computed(() => {
   margin-right: 4px;
 }
 
-.avatar-info {
+.profile-info {
   display: flex;
   flex-wrap: wrap;
   gap: 0 20px;
   align-items: center;
 }
 
-.avatar-location,
-.avatar-organization {
+.profile-location,
+.profile-organization {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -251,8 +251,8 @@ const showBlogExtract = computed(() => {
   transition: color var(--t-color);
 }
 
-.avatar-location p,
-.avatar-organization p {
+.profile-location p,
+.profile-organization p {
   margin: 0 4px;
 }
 </style>

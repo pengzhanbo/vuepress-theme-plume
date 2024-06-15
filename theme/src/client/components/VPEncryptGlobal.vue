@@ -8,16 +8,16 @@ import { useGlobalEncrypt } from '../composables/encrypt.js'
 const { theme, site } = useData()
 const { compareGlobal } = useGlobalEncrypt()
 
-const avatar = computed(() => theme.value.avatar)
-const title = computed(() => avatar.value?.name || site.value.title)
+const profile = computed(() => theme.value.profile)
+const title = computed(() => profile.value?.name || site.value.title)
 </script>
 
 <template>
   <div class="vp-global-encrypt">
     <div class="global-encrypt-container">
-      <div v-if="avatar || title" class="profile">
-        <p v-if="avatar" class="avatar" :class="{ circle: avatar.circle }">
-          <img :src="avatar.url" :alt="avatar.name">
+      <div v-if="profile || title" class="profile">
+        <p v-if="profile" class="avatar" :class="{ circle: profile.circle }">
+          <img :src="profile.avatar ?? profile.url" :alt="profile.name">
         </p>
         <h3 v-if="title">
           {{ title }}

@@ -187,7 +187,7 @@ export function getPlugins({
   if (pluginOptions.seo !== false && hostname && isProd) {
     plugins.push(seoPlugin({
       hostname,
-      author: localeOptions.locales?.['/'].avatar?.name || localeOptions.avatar?.name,
+      author: localeOptions.locales?.['/'].profile?.name || localeOptions.profile?.name || localeOptions.locales?.['/'].avatar?.name || localeOptions.avatar?.name,
     }))
   }
 

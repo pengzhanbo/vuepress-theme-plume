@@ -6,9 +6,9 @@ import VPSocialLinks from '@theme/VPSocialLinks.vue'
 import { useData } from '../../composables/data.js'
 
 const { theme } = useData()
-const avatar = computed(() => theme.value.avatar)
+const profile = computed(() => theme.value.profile)
 const imageUrl = computed(() => {
-  const url = avatar.value?.url
+  const url = profile.value?.avatar ?? profile.value?.url
   if (!url)
     return ''
   if (isLinkHttp(url))
@@ -18,20 +18,20 @@ const imageUrl = computed(() => {
 </script>
 
 <template>
-  <div v-if="avatar" class="vp-blog-profile">
-    <p v-if="imageUrl" :class="{ circle: !!avatar.circle }">
-      <img :src="imageUrl" :alt="avatar.name">
+  <div v-if="profile" class="vp-blog-profile">
+    <p v-if="imageUrl" :class="{ circle: !!profile.circle }">
+      <img :src="imageUrl" :alt="profile.name">
     </p>
     <div class="profile-info">
-      <h3>{{ avatar.name }}</h3>
-      <p v-if="avatar.description" v-html="avatar.description" />
-      <div v-if="avatar.location" class="profile-location">
+      <h3>{{ profile.name }}</h3>
+      <p v-if="profile.description" v-html="profile.description" />
+      <div v-if="profile.location" class="profile-location">
         <span class="vpi-location" />
-        <p v-if="avatar.location" v-html="avatar.location" />
+        <p v-if="profile.location" v-html="profile.location" />
       </div>
-      <div v-if="avatar.organization" class="profile-organization">
+      <div v-if="profile.organization" class="profile-organization">
         <span class="vpi-organization" />
-        <p v-if="avatar.organization" v-html="avatar.organization" />
+        <p v-if="profile.organization" v-html="profile.organization" />
       </div>
     </div>
     <div v-if="theme.social" class="profile-social">

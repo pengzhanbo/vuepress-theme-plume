@@ -7,7 +7,7 @@ const { theme } = useData()
 </script>
 
 <template>
-  <div v-if="theme.avatar" class="vp-blog-aside">
+  <div v-if="theme.profile" class="vp-blog-aside">
     <VPBlogProfile />
     <VPBlogNav />
   </div>

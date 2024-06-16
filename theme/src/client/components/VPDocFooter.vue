@@ -1,22 +1,34 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import VPLink from '@theme/VPLink.vue'
-import {
-  useContributors,
-  useEditNavLink,
-  useLastUpdated,
-  usePageNav,
-} from '../composables/page.js'
+import { useContributors } from '../composables/contributors.js'
+import { useEditLink } from '../composables/edit-link.js'
+import { useLastUpdated } from '../composables/latest-updated.js'
+import { usePrevNext } from '../composables/prev-next.js'
 import { useData } from '../composables/data.js'
 
-const { theme } = useData()
-const editNavLink = useEditNavLink()
+const { theme, frontmatter } = useData()
+const editLink = useEditLink()
 const { datetime: lastUpdated, isoDatetime, lastUpdatedText } = useLastUpdated()
 const contributors = useContributors()
-const { prev, next } = usePageNav()
+const { prev, next } = usePrevNext()
+
+const hasEditLink = computed(() =>
+  Boolean(theme.value.editLink && frontmatter.value.editLink !== false && editLink.value),
+)
+const hasLastUpdated = computed(() =>
+  Boolean(theme.value.lastUpdated && frontmatter.value.lastUpdated !== false && lastUpdated.value),
+)
+const hasContributors = computed(() =>
+  Boolean(theme.value.contributors && frontmatter.value.contributors !== false && contributors.value?.length),
+)
 
 const showFooter = computed(() => {
-  return editNavLink.value || lastUpdated.value || contributors.value || prev.value || next.value
+  return hasEditLink.value
+    || hasLastUpdated.value
+    || hasContributors.value
+    || prev.value?.link
+    || next.value?.link
 })
 </script>
 
@@ -24,15 +36,15 @@ const showFooter = computed(() => {
   <footer v-if="showFooter" class="vp-doc-footer">
     <slot name="doc-footer-before" />
 
-    <div v-if="editNavLink || lastUpdated" class="edit-info">
-      <div v-if="editNavLink" class="edit-link">
-        <VPLink class="edit-link-button" :href="editNavLink.link" :no-icon="true">
+    <div v-if="hasEditLink || hasLastUpdated" class="edit-info">
+      <div v-if="hasEditLink && editLink" class="edit-link">
+        <VPLink class="edit-link-button" :href="editLink.link" :no-icon="true">
           <span class="vpi-square-pen edit-link-icon" aria-label="edit icon" />
-          {{ editNavLink.text }}
+          {{ editLink.text }}
         </VPLink>
       </div>
 
-      <div v-if="lastUpdated" class="last-updated">
+      <div v-if="hasLastUpdated" class="last-updated">
         <p class="last-updated-text">
           {{ lastUpdatedText }}:
           <time :datetime="isoDatetime" class="last-updated-time">
@@ -42,7 +54,7 @@ const showFooter = computed(() => {
       </div>
     </div>
 
-    <div v-if="contributors && contributors.length" class="contributors">
+    <div v-if="hasContributors && contributors?.length" class="contributors">
       <span class="contributors-label">
         {{ theme.contributorsText || 'Contributors' }}:
       </span>

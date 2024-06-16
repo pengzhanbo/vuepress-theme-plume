@@ -3,10 +3,10 @@ import { computed } from 'vue'
 import VPLink from '@theme/VPLink.vue'
 import VPFriendsItem from '@theme/VPFriendsItem.vue'
 import VPFriendsGroup from '@theme/VPFriendsGroup.vue'
-import { useEditNavLink } from '../composables/page.js'
+import { useEditLink } from '../composables/edit-link.js'
 import { useData } from '../composables/data.js'
 
-const editNavLink = useEditNavLink()
+const editLink = useEditLink()
 const { frontmatter: matter } = useData<'friends'>()
 
 const list = computed(() => matter.value.list || [])
@@ -31,14 +31,14 @@ const groups = computed(() => matter.value.groups || [])
 
     <VPFriendsGroup v-for="(group, index) in groups" :key="index" :group="group" />
 
-    <div v-if="editNavLink" class="edit-link">
+    <div v-if="editLink" class="edit-link">
       <VPLink
         class="edit-link-button"
-        :href="editNavLink.link"
+        :href="editLink.link"
         :no-icon="true"
       >
         <span class="vpi-square-pen edit-link-icon" aria-label="edit icon" />
-        {{ editNavLink.text }}
+        {{ editLink.text }}
       </VPLink>
     </div>
   </div>

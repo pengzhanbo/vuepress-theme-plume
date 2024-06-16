@@ -11,14 +11,12 @@ const props = defineProps<{
   rel?: string
 }>()
 
-declare const __VUEPRESS_BASE__: string
-
 const router = useRouter()
 const route = useRoute()
 
 const tag = computed(() => props.tag ?? (props.href ? 'a' : 'span'))
 const isExternal = computed(
-  () => (props.href && isLinkExternal(props.href, __VUEPRESS_BASE__)) || props.target === '_blank',
+  () => (props.href && isLinkExternal(props.href)) || props.target === '_blank',
 )
 const link = computed(() => {
   if (!props.href)

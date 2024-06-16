@@ -1,3 +1,12 @@
+# [1.0.0-rc.65](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.64...v1.0.0-rc.65) (2024-06-16)
+
+
+### Performance Improvements
+
+* **theme:** 重命名 `avatar` 为 `profile` ([7e06520](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7e065208a9ab02f3caad55975482a8a063e5c98b))
+
+
+
 # [1.0.0-rc.64](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.63...v1.0.0-rc.64) (2024-06-07)
 
 

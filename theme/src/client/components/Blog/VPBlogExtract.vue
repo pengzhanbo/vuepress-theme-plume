@@ -64,6 +64,8 @@ const showBlogExtract = computed(() => {
     <Transition name="fade">
       <div v-show="open" class="blog-modal" @click.self="open = false">
         <div class="blog-modal-container" :class="{ open: lazyOpen }">
+          <slot name="blog-extract-before" />
+
           <div v-if="profile" class="profile">
             <p v-if="imageUrl" class="avatar">
               <img :src="imageUrl" :alt="profile.name">
@@ -95,6 +97,8 @@ const showBlogExtract = computed(() => {
               <span>{{ archives.text }}</span>
             </VPLink>
           </div>
+
+          <slot name="blog-extract-after" />
         </div>
       </div>
     </Transition>

@@ -8,8 +8,10 @@ const { theme } = useData()
 
 <template>
   <div v-if="theme.profile" class="vp-blog-aside">
+    <slot name="blog-aside-top" />
     <VPBlogProfile />
     <VPBlogNav />
+    <slot name="blog-aside-bottom" />
   </div>
 </template>
 

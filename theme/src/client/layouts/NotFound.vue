@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useRouteLocale, withBase } from 'vuepress/client'
-import VPNav from '../components/Nav/VPNav.vue'
-import VPSkipLink from '../components/VPSkipLink.vue'
-import VPFooter from '../components/VPFooter.vue'
+import VPNav from '@theme/Nav/VPNav.vue'
+import VPSkipLink from '@theme/VPSkipLink.vue'
+import VPFooter from '@theme/VPFooter.vue'
 import { useData } from '../composables/data.js'
 
 const root = useRouteLocale()

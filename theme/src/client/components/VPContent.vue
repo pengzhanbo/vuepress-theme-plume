@@ -22,14 +22,52 @@ const isBlogLayout = computed(() => {
 
 <template>
   <div
-    id="VPContent"
-    vp-content
-    class="vp-content" :class="{
+    id="VPContent" vp-content class="vp-content" :class="{
       'has-sidebar': hasSidebar && !props.isNotFound,
       'is-home': frontmatter.pageLayout === 'home',
     }"
   >
-    <VPBlog v-if="isBlogLayout" />
+    <VPBlog v-if="isBlogLayout">
+      <template #blog-top>
+        <slot name="blog-top" />
+      </template>
+      <template #blog-bottom>
+        <slot name="blog-bottom" />
+      </template>
+      <template #blog-archives-before>
+        <slot name="blog-archives-before" />
+      </template>
+      <template #blog-archives-after>
+        <slot name="blog-archives-after" />
+      </template>
+      <template #blog-tags-before>
+        <slot name="blog-tags-before" />
+      </template>
+      <template #blog-tags-after>
+        <slot name="blog-tags-after" />
+      </template>
+      <template #blog-post-list-before>
+        <slot name="blog-post-list-before" />
+      </template>
+      <template #blog-post-list-after>
+        <slot name="blog-post-list-after" />
+      </template>
+      <template #blog-post-list-pagination-after>
+        <slot name="blog-post-list-pagination-after" />
+      </template>
+      <template #blog-aside-top>
+        <slot name="blog-aside-top" />
+      </template>
+      <template #blog-aside-bottom>
+        <slot name="blog-aside-bottom" />
+      </template>
+      <template #blog-extract-before>
+        <slot name="blog-extract-before" />
+      </template>
+      <template #blog-extract-after>
+        <slot name="blog-extract-after" />
+      </template>
+    </VPBlog>
 
     <VPPage v-else-if="frontmatter.pageLayout === 'page'">
       <template #page-top>
@@ -44,10 +82,7 @@ const isBlogLayout = computed(() => {
 
     <VPHome v-else-if="frontmatter.pageLayout === 'home'" />
 
-    <component
-      :is="frontmatter.pageLayout"
-      v-else-if="frontmatter.pageLayout && frontmatter.pageLayout !== 'doc'"
-    />
+    <component :is="frontmatter.pageLayout" v-else-if="frontmatter.pageLayout && frontmatter.pageLayout !== 'doc'" />
 
     <VPDoc v-else>
       <template #doc-top>

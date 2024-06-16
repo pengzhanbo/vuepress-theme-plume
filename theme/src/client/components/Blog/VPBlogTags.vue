@@ -8,6 +8,8 @@ const { tags: tagsLink } = useBlogExtract()
 
 <template>
   <div class="vp-blog-tags" :class="{ 'has-list': postList.length > 0 }">
+    <slot name="blog-tags-before" />
+
     <div class="tags-nav">
       <h2 class="tags-title">
         <span class="vpi-tag icon" />
@@ -34,6 +36,8 @@ const { tags: tagsLink } = useBlogExtract()
 
       <VPShortPostList v-if="postList.length" :post-list="postList" />
     </div>
+
+    <slot name="blog-tags-after" />
   </div>
 </template>
 

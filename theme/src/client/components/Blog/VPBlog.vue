@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
 import VPPostList from '@theme/Blog/VPPostList.vue'
 import VPBlogArchives from '@theme/Blog/VPBlogArchives.vue'
 import VPBlogAside from '@theme/Blog/VPBlogAside.vue'
@@ -10,35 +9,64 @@ import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { useData } from '../../composables/data.js'
 
 const { theme, page } = useData()
-
-const com = {
-  VPPostList,
-  VPBlogTags,
-  VPBlogArchives,
-}
-
-const type = computed(() => {
-  const type = page.value.type
-  if (type === 'blog-tags')
-    return 'VPBlogTags'
-  if (type === 'blog-archives')
-    return 'VPBlogArchives'
-  return 'VPPostList'
-})
 </script>
 
 <template>
   <div class="vp-blog">
+    <slot name="blog-top" />
+
     <div class="blog-container" :class="{ 'no-profile': !theme.profile }">
       <VPBlogNav v-if="!theme.profile" is-local />
 
       <VPTransitionFadeSlideY>
-        <component :is="com[type]" />
+        <VPBlogArchives v-if="page.type === 'blog-archives'">
+          <template #blog-archives-before>
+            <slot name="blog-archives-before" />
+          </template>
+          <template #blog-archives-after>
+            <slot name="blog-archives-after" />
+          </template>
+        </VPBlogArchives>
+        <VPBlogTags v-else-if="page.type === 'blog-tags'">
+          <template #blog-tags-before>
+            <slot name="blog-tags-before" />
+          </template>
+          <template #blog-tags-after>
+            <slot name="blog-tags-after" />
+          </template>
+        </VPBlogTags>
+        <VPPostList v-else>
+          <template #blog-post-list-before>
+            <slot name="blog-post-list-before" />
+          </template>
+          <template #blog-post-list-after>
+            <slot name="blog-post-list-after" />
+          </template>
+          <template #blog-post-list-pagination-after>
+            <slot name="blog-post-list-pagination-after" />
+          </template>
+        </VPPostList>
       </VPTransitionFadeSlideY>
 
-      <VPBlogAside />
-      <VPBlogExtract />
+      <VPBlogAside>
+        <template #blog-aside-top>
+          <slot name="blog-aside-top" />
+        </template>
+        <template #blog-aside-bottom>
+          <slot name="blog-aside-bottom" />
+        </template>
+      </VPBlogAside>
+      <VPBlogExtract>
+        <template #blog-extract-before>
+          <slot name="blog-extract-before" />
+        </template>
+        <template #blog-extract-after>
+          <slot name="blog-extract-after" />
+        </template>
+      </VPBlogExtract>
     </div>
+
+    <slot name="blog-bottom" />
   </div>
 </template>
 

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { useRoute } from 'vuepress/client'
 import { watch } from 'vue'
-import VPBackdrop from '../components/VPBackdrop.vue'
-import VPContent from '../components/VPContent.vue'
-import VPLocalNav from '../components/VPLocalNav.vue'
-import VPNav from '../components/Nav/VPNav.vue'
-import VPSidebar from '../components/VPSidebar.vue'
-import VPSkipLink from '../components/VPSkipLink.vue'
-import VPFooter from '../components/VPFooter.vue'
-import VPBackToTop from '../components/VPBackToTop.vue'
-import VPEncryptGlobal from '../components/VPEncryptGlobal.vue'
+import VPBackdrop from '@theme/VPBackdrop.vue'
+import VPContent from '@theme/VPContent.vue'
+import VPLocalNav from '@theme/VPLocalNav.vue'
+import VPNav from '@theme/Nav/VPNav.vue'
+import VPSidebar from '@theme/VPSidebar.vue'
+import VPSkipLink from '@theme/VPSkipLink.vue'
+import VPFooter from '@theme/VPFooter.vue'
+import VPBackToTop from '@theme/VPBackToTop.vue'
+import VPEncryptGlobal from '@theme/VPEncryptGlobal.vue'
 import { useCloseSidebarOnEscape, useSidebar } from '../composables/sidebar.js'
 import { useGlobalEncrypt, usePageEncrypt } from '../composables/encrypt.js'
 import { useData } from '../composables/data.js'
@@ -109,6 +109,45 @@ useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
           </template>
           <template #aside-outline-after>
             <slot name="aside-outline-after" />
+          </template>
+          <template #blog-top>
+            <slot name="blog-top" />
+          </template>
+          <template #blog-bottom>
+            <slot name="blog-bottom" />
+          </template>
+          <template #blog-archives-before>
+            <slot name="blog-archives-before" />
+          </template>
+          <template #blog-archives-after>
+            <slot name="blog-archives-after" />
+          </template>
+          <template #blog-tags-before>
+            <slot name="blog-tags-before" />
+          </template>
+          <template #blog-tags-after>
+            <slot name="blog-tags-after" />
+          </template>
+          <template #blog-post-list-before>
+            <slot name="blog-post-list-before" />
+          </template>
+          <template #blog-post-list-after>
+            <slot name="blog-post-list-after" />
+          </template>
+          <template #blog-post-list-pagination-after>
+            <slot name="blog-post-list-pagination-after" />
+          </template>
+          <template #blog-aside-top>
+            <slot name="blog-aside-top" />
+          </template>
+          <template #blog-aside-bottom>
+            <slot name="blog-aside-bottom" />
+          </template>
+          <template #blog-extract-before>
+            <slot name="blog-extract-before" />
+          </template>
+          <template #blog-extract-after>
+            <slot name="blog-extract-after" />
           </template>
         </VPContent>
       </slot>

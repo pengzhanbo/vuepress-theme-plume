@@ -18,6 +18,7 @@ const {
 
 <template>
   <div class="vp-blog-post-list">
+    <slot name="blog-post-list-before" />
     <template v-for="(post, index) in postList" :key="post.path">
       <VPTransitionDrop appear :delay="index * 0.04">
         <VPPostItem
@@ -26,6 +27,7 @@ const {
         />
       </VPTransitionDrop>
     </template>
+    <slot name="blog-post-list-after" />
     <VPPagination
       v-if="isPaginationEnabled"
       :page="page"
@@ -35,6 +37,7 @@ const {
       :is-first-page="isFirstPage"
       @change="changePage"
     />
+    <slot name="blog-post-list-pagination-after" />
   </div>
 </template>
 

@@ -8,6 +8,8 @@ const { archives } = useArchives()
 
 <template>
   <div class="vp-blog-archives">
+    <slot name="blog-archives-before" />
+
     <h2 class="archives-title">
       <span class="vpi-archive icon" />
       <span>{{ archivesLink.text }}</span>
@@ -22,6 +24,8 @@ const { archives } = useArchives()
         </div>
       </template>
     </div>
+
+    <slot name="blog-archives-after" />
   </div>
 </template>
 

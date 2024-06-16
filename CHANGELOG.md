@@ -4,6 +4,12 @@
 ### Performance Improvements
 
 * **theme:** 重命名 `avatar` 为 `profile` ([7e06520](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7e065208a9ab02f3caad55975482a8a063e5c98b))
+* **theme:** 重命名所有组件名为 `VP*`
+* **theme:** 支持 命名插槽
+* **theme:** 支持 组件覆写
+* **theme:** 优化模块导出
+* **theme:** 优化布局方案
+* **theme:** 优化导航栏样式
 
 
 

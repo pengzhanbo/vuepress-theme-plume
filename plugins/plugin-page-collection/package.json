@@ -1,7 +1,7 @@
 {
   "name": "plugin-page-collection",
   "type": "module",
-  "version": "1.0.0-rc.65",
+  "version": "1.0.0-rc.66",
   "private": true,
   "description": "The Plugin for VuePress 2",
   "author": "pengzhanbo <volodymyr@foxmail.com>",

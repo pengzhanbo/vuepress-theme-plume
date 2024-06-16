@@ -1,3 +1,17 @@
+# [1.0.0-rc.66](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.65...v1.0.0-rc.66) (2024-06-16)
+
+
+### Bug Fixes
+
+* **theme:** alias path posix in windows ([404a158](https://github.com/pengzhanbo/vuepress-theme-plume/commit/404a158791eeed581568438cec6d41deb91cd5ab))
+
+
+### Features
+
+* **theme:** 优化博客标签颜色 ([dfc525c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/dfc525c1f4127409b1ceade1d4c85ff07836cbfd))
+
+
+
 # [1.0.0-rc.65](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.64...v1.0.0-rc.65) (2024-06-16)
 
 

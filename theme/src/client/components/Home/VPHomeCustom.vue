@@ -8,6 +8,6 @@ const props = defineProps<PlumeThemeHomeCustom>()
 
 <template>
   <VPHomeBox class="vp-home-custom" v-bind="props">
-    <Content class="vp-doc plume-content" />
+    <Content class="vp-doc" />
   </VPHomeBox>
 </template>

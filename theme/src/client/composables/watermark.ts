@@ -12,7 +12,7 @@ export function setupWatermark(): void {
   defineWatermarkConfig(computed(() => {
     const disableFullPage = typeof frontmatter.value.watermark === 'object' && frontmatter.value.watermark.fullPage === false
     return {
-      parent: !FP || disableFullPage ? '.plume-content' : 'body',
+      parent: !FP || disableFullPage ? '.vp-doc' : 'body',
     }
   }))
 }

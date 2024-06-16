@@ -29,7 +29,7 @@ const maxWidth = computed(() => {
       <VPImage :image="image" :style="{ maxWidth }" />
     </div>
 
-    <div class="content-text plume-content">
+    <div class="content-text vp-doc">
       <section>
         <h2 v-if="title" class="title">
           {{ title }}

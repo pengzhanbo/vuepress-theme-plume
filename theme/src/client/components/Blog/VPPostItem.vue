@@ -66,7 +66,7 @@ const createTime = computed(() =>
         <span>{{ createTime }}</span>
       </div>
     </div>
-    <div v-if="post.excerpt" class="plume-content excerpt" v-html="post.excerpt" />
+    <div v-if="post.excerpt" class="vp-doc excerpt" v-html="post.excerpt" />
   </div>
 </template>
 
@@ -205,19 +205,19 @@ const createTime = computed(() =>
   transition: color var(--t-color);
 }
 
-.plume-content :deep(p) {
+.vp-doc :deep(p) {
   margin: 0.5rem 0;
 }
 
-.plume-content :deep(p:first-of-type) {
+.vp-doc :deep(p:first-of-type) {
   margin-top: 0;
 }
 
-.plume-content :deep(p:last-of-type) {
+.vp-doc :deep(p:last-of-type) {
   margin-bottom: 0;
 }
 
-.plume-content :deep(p strong) {
+.vp-doc :deep(p strong) {
   color: var(--vp-c-text-2);
   transition: color var(--t-color);
 }

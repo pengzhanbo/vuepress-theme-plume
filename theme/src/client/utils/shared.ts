@@ -1,9 +1,13 @@
 export const EXTERNAL_URL_RE = /^[a-z]+:/i
 export const PATHNAME_PROTOCOL_RE = /^pathname:\/\//
 export const HASH_RE = /#.*$/
-export const EXT_RE = /(index)?\.(md|html)$/
+export const EXT_RE = /(index|README)?\.(md|html)$/
 
 export const inBrowser = typeof document !== 'undefined'
+
+export function toArray<T>(value: T | T[]): T[] {
+  return Array.isArray(value) ? value : [value]
+}
 
 export function isActive(
   currentPath: string,

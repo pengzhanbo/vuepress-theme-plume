@@ -264,9 +264,11 @@ vite-error-overlay {
 
 mjx-container {
   display: inline-block;
-  margin: auto 2px -2px;
+  margin: auto 2px;
+  vertical-align: middle;
 }
 
 mjx-container > svg {
+  display: inline-block;
   margin: auto;
 }

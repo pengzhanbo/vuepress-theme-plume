@@ -1,4 +1,5 @@
 import type { Page, Theme } from 'vuepress/core'
+import { fs } from 'vuepress/utils'
 import { isPlainObject } from '@vuepress/helper'
 import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
 import { getPlugins } from './plugins/index.js'
@@ -42,6 +43,20 @@ export function plumeTheme({
       templateBuild: templates('build.html'),
 
       clientConfigFile: resolve('client/config.js'),
+
+      alias: {
+        ...Object.fromEntries(
+          fs.readdirSync(
+            resolve('client/components'),
+            { encoding: 'utf-8', recursive: true },
+          )
+            .filter(file => file.endsWith('.vue'))
+            .map(file => [
+              `@theme/${file}`,
+              resolve('client/components', file),
+            ]),
+        ),
+      },
 
       plugins: getPlugins({ app, pluginOptions, localeOptions, encrypt, hostname }),
 

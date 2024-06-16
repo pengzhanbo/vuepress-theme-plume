@@ -4,7 +4,7 @@ import type { NavItem, PlumeThemeLocaleOptions } from '../../shared/index.js'
 import { PRESET_LOCALES } from '../locales/index.js'
 import { withBase } from '../utils.js'
 
-const EXCLUDE_LIST = ['locales', 'sidebar', 'navbar', 'notes', 'article']
+const EXCLUDE_LIST = ['locales', 'sidebar', 'navbar', 'notes', 'article', 'avatar']
 // 过滤不需要出现在多语言配置中的字段
 const EXCLUDE_LOCALE_LIST = [...EXCLUDE_LIST, 'blog', 'appearance']
 
@@ -17,12 +17,22 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
       themeData[key] = value
   })
 
+  // TODO: 正式版中需删除此代码
+  if (options.avatar) {
+    themeData.profile ??= options.avatar
+  }
+
   entries(options.locales || {}).forEach(([locale, opt]) => {
     themeData.locales![locale] = {}
     entries(opt).forEach(([key, value]) => {
       if (!EXCLUDE_LOCALE_LIST.includes(key))
         themeData.locales![locale][key] = value
     })
+
+    // TODO: 正式版中需删除此代码
+    if (opt.avatar) {
+      themeData.locales![locale].profile ??= opt.avatar
+    }
   })
 
   const blog = options.blog || {}

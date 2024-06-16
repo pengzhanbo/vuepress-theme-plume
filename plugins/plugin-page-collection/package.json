@@ -36,7 +36,7 @@
   "dependencies": {
     "@netlify/functions": "^2.7.0",
     "leancloud-storage": "^4.15.2",
-    "vue": "^3.4.27",
+    "vue": "^3.4.29",
     "vue-router": "4.3.2",
     "vuepress-plugin-netlify-functions": "workspace:~"
   },

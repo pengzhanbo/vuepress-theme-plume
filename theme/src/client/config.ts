@@ -3,17 +3,18 @@ import './styles/index.css'
 import { defineClientConfig } from 'vuepress/client'
 import type { ClientConfig } from 'vuepress/client'
 import { h } from 'vue'
-import Badge from './components/global/Badge.vue'
+import VPBadge from './components/global/VPBadge.vue'
 import { setupDarkMode, setupWatermark, useScrollPromise } from './composables/index.js'
 import Layout from './layouts/Layout.vue'
 import NotFound from './layouts/NotFound.vue'
-import HomeBox from './components/Home/HomeBox.vue'
+import VPHomeBox from './components/Home/VPHomeBox.vue'
 
 export default defineClientConfig({
   enhance({ app, router }) {
     setupDarkMode(app)
     // global component
-    app.component('Badge', Badge)
+    app.component('Badge', VPBadge)
+    app.component('VPBadge', VPBadge) // alias
 
     app.component('DocSearch', () => {
       const SearchComponent
@@ -40,7 +41,9 @@ export default defineClientConfig({
       return null
     })
 
-    app.component('HomeBox', HomeBox)
+    /** @deprecated */
+    app.component('HomeBox', VPHomeBox)
+    app.component('VPHomeBox', VPHomeBox)
 
     // handle scrollBehavior with transition
     const scrollBehavior = router.options.scrollBehavior!

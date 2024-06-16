@@ -10,8 +10,8 @@ export const theme: Theme = themePlume({
   docsRepo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
   docsDir: 'docs',
 
-  avatar: {
-    url: '/plume.png',
+  profile: {
+    avatar: '/plume.png',
     name: 'Plume Theme',
     description: 'The Theme for Vuepress 2.0',
     location: 'GuangZhou, China',

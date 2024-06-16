@@ -1,0 +1,66 @@
+<script lang="ts" setup>
+import VPLink from '@theme/VPLink.vue'
+
+defineProps<{
+  postList: {
+    title: string
+    path: string
+    createTime: string
+  }[]
+}>()
+</script>
+
+<template>
+  <ul class="vp-blog-short-post-list">
+    <li v-for="post in postList" :key="post.path">
+      <p class="post-title">
+        <VPLink class="post-link" :href="post.path">
+          {{ post.title }}
+        </VPLink>
+      </p>
+      <span class="post-time">{{ post.createTime }}</span>
+    </li>
+  </ul>
+</template>
+
+<style scoped>
+.vp-blog-short-post-list {
+  padding: 0 12px;
+  margin-top: 32px;
+}
+
+.vp-blog-short-post-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 14px 0;
+  color: var(--vp-c-text-1);
+  transition: color var(--t-color);
+}
+
+.vp-blog-short-post-list .post-title {
+  display: -webkit-box;
+  flex: 1;
+  margin-right: 14px;
+  overflow: hidden;
+  font-weight: 600;
+  transition: all var(--t-color);
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
+
+.vp-blog-short-post-list .post-time {
+  color: var(--vp-c-text-3);
+  transition: color var(--t-color);
+}
+
+.vp-blog-short-post-list li:hover .post-title {
+  color: var(--vp-c-brand-1);
+}
+
+.vp-blog-short-post-list li:hover .post-time {
+  color: var(--vp-c-text-2);
+}
+</style>

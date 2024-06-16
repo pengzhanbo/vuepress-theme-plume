@@ -1,5 +1,5 @@
 import type { BlogPostDataItem } from '@vuepress-plume/plugin-blog-data'
-import type { PageCategoryData } from './page.js'
+import type { PageCategoryData } from './page-data.js'
 
 export interface PlumeThemeBlogPostItem extends BlogPostDataItem {
   tags: string[]

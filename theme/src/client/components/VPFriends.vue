@@ -1,0 +1,151 @@
+<script lang="ts" setup>
+import { computed } from 'vue'
+import VPLink from '@theme/VPLink.vue'
+import VPFriendsItem from '@theme/VPFriendsItem.vue'
+import VPFriendsGroup from '@theme/VPFriendsGroup.vue'
+import { useEditLink } from '../composables/edit-link.js'
+import { useData } from '../composables/data.js'
+
+const editLink = useEditLink()
+const { frontmatter: matter } = useData<'friends'>()
+
+const list = computed(() => matter.value.list || [])
+const groups = computed(() => matter.value.groups || [])
+</script>
+
+<template>
+  <div class="vp-friends">
+    <h2 class="title">
+      {{ matter.title || 'My Friends' }}
+    </h2>
+    <p v-if="matter.description" class="description">
+      {{ matter.description }}
+    </p>
+    <section v-if="list.length" class="friends-list">
+      <VPFriendsItem
+        v-for="(friend, index) in list"
+        :key="friend.name + index"
+        :friend="friend"
+      />
+    </section>
+
+    <VPFriendsGroup v-for="(group, index) in groups" :key="index" :group="group" />
+
+    <div v-if="editLink" class="edit-link">
+      <VPLink
+        class="edit-link-button"
+        :href="editLink.link"
+        :no-icon="true"
+      >
+        <span class="vpi-square-pen edit-link-icon" aria-label="edit icon" />
+        {{ editLink.text }}
+      </VPLink>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.vp-friends {
+  width: 100%;
+  min-height: calc(100vh - var(--vp-footer-height, 0px));
+  padding-top: var(--vp-nav-height);
+  padding-bottom: 5rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 960px) {
+  .vp-friends {
+    min-height: calc(100vh - var(--vp-nav-height) - var(--vp-footer-height, 0px));
+  }
+}
+
+.vp-friends .title {
+  padding-top: 3rem;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  outline: none;
+}
+
+.vp-friends .description {
+  padding-left: 1rem;
+  margin-bottom: 16px;
+  line-height: 28px;
+  color: var(--vp-c-text-1);
+}
+
+.friends-list {
+  display: grid;
+  gap: 16px;
+  padding: 0 16px;
+  margin-top: 64px;
+}
+
+.edit-link {
+  padding-left: 1rem;
+  margin-top: 64px;
+}
+
+@media (min-width: 640px) {
+  .vp-friends .title,
+  .vp-friends .description {
+    padding-left: 16px;
+  }
+
+  .friends-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0 16px;
+  }
+}
+
+@media (min-width: 960px) {
+  .vp-friends {
+    max-width: 784px;
+    padding-top: 0;
+  }
+
+  .vp-friends .title,
+  .vp-friends .description,
+  .edit-link {
+    padding-left: 0;
+  }
+
+  .friends-list {
+    padding: 0;
+  }
+}
+
+@media (min-width: 1440px) {
+  .vp-friends {
+    max-width: 1104px;
+  }
+
+  .friends-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.edit-link-button {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 32px;
+  color: var(--vp-c-brand-1);
+  border: 0;
+  transition: color var(--t-color);
+}
+
+.edit-link-button:hover {
+  color: var(--vp-c-brand-2);
+}
+
+.edit-link-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  fill: currentcolor;
+}
+</style>

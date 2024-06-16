@@ -24,6 +24,9 @@
       ],
       "vuepress-plugin-md-power": [
         "./plugins/plugin-md-power/src/node/index.ts"
+      ],
+      "@theme/*": [
+        "./theme/src/client/components/*"
       ]
     },
     "types": ["webpack-env", "vite/client", "vuepress/client-types"]

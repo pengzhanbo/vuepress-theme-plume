@@ -41,7 +41,7 @@ export interface PlumeThemePluginOptions {
   /**
    * git 插件 配置
    */
-  git?: false
+  git?: boolean
 
   nprogress?: false
 

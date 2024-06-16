@@ -1,9 +1,13 @@
 export const EXTERNAL_URL_RE = /^[a-z]+:/i
 export const PATHNAME_PROTOCOL_RE = /^pathname:\/\//
 export const HASH_RE = /#.*$/
-export const EXT_RE = /(index)?\.(md|html)$/
+export const EXT_RE = /(index|README)?\.(md|html)$/
 
 export const inBrowser = typeof document !== 'undefined'
+
+export function toArray<T>(value: T | T[]): T[] {
+  return Array.isArray(value) ? value : [value]
+}
 
 export function isActive(
   currentPath: string,
@@ -33,10 +37,6 @@ export function normalize(path: string): string {
   return decodeURI(path).replace(HASH_RE, '').replace(EXT_RE, '')
 }
 
-export function isExternal(path: string): boolean {
-  return EXTERNAL_URL_RE.test(path)
-}
-
 export function throttleAndDebounce(fn: () => void, delay: number): () => void {
   let timeoutId: NodeJS.Timeout
   let called = false
@@ -56,8 +56,4 @@ export function throttleAndDebounce(fn: () => void, delay: number): () => void {
       timeoutId = setTimeout(fn, delay)
     }
   }
-}
-
-export function ensureStartingSlash(path: string): string {
-  return /^\//.test(path) ? path : `/${path}`
 }

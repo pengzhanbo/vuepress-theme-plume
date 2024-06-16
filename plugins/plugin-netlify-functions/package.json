@@ -50,9 +50,9 @@
     "chokidar": "^3.6.0",
     "cpx2": "^7.0.1",
     "dotenv": "^16.4.5",
-    "esbuild": "^0.21.4",
+    "esbuild": "^0.21.5",
     "execa": "^9.2.0",
-    "netlify-cli": "^17.26.0",
+    "netlify-cli": "^17.27.0",
     "portfinder": "^1.0.32"
   },
   "devDependencies": {

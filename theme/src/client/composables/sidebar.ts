@@ -1,5 +1,4 @@
-import type { PageData } from 'vuepress/client'
-import { usePageData, useRoute, withBase } from 'vuepress/client'
+import { resolveRouteFullPath, useRoute, withBase } from 'vuepress/client'
 import type {
   NotesData,
   NotesSidebarItem,
@@ -9,7 +8,6 @@ import { useMediaQuery } from '@vueuse/core'
 import type { ComputedRef, Ref } from 'vue'
 import { computed, onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
 import { isActive } from '../utils/index.js'
-import { hashRef } from './hash.js'
 import { useData } from './data.js'
 
 export { useNotesData }
@@ -57,7 +55,7 @@ export function getSidebarFirstLink(sidebar: NotesSidebarItem[]) {
 export function useSidebar() {
   const route = useRoute()
   const notesData = useNotesData()
-  const { frontmatter } = useData()
+  const { frontmatter, theme } = useData()
 
   const is960 = useMediaQuery('(min-width: 960px)')
 
@@ -79,14 +77,28 @@ export function useSidebar() {
 
   const hasSidebar = computed(() => {
     return (
-      !frontmatter.value.home
+      frontmatter.value.pageLayout !== 'home'
       && sidebar.value.length > 0
       && frontmatter.value.sidebar !== false
+      && frontmatter.value.layout !== 'NotFound'
     )
   })
 
   const hasAside = computed(() => {
-    return !frontmatter.value.home && frontmatter.value.aside !== false
+    if (frontmatter.value.pageLayout === 'home')
+      return false
+    if (frontmatter.value.aside != null)
+      return !!frontmatter.value.aside
+    return theme.value.aside !== false
+  })
+
+  const leftAside = computed(() => {
+    if (hasAside.value) {
+      return frontmatter.value.aside == null
+        ? theme.value.aside === 'left'
+        : frontmatter.value.aside === 'left'
+    }
+    return false
   })
 
   const isSidebarEnabled = computed(() => hasSidebar.value && is960.value)
@@ -112,6 +124,7 @@ export function useSidebar() {
     sidebar,
     hasSidebar,
     hasAside,
+    leftAside,
     isSidebarEnabled,
     sidebarGroups,
     sidebarKey,
@@ -150,7 +163,8 @@ export function useCloseSidebarOnEscape(
 }
 
 export function useSidebarControl(item: ComputedRef<NotesSidebarItem>) {
-  const page = usePageData<PageData>()
+  const { page } = useData()
+  const route = useRoute()
 
   const collapsed = ref(item.value.collapsed ?? false)
 
@@ -164,10 +178,10 @@ export function useSidebarControl(item: ComputedRef<NotesSidebarItem>) {
 
   const isActiveLink = ref(false)
   const updateIsActiveLink = () => {
-    isActiveLink.value = isActive(page.value.path, item.value.link)
+    isActiveLink.value = isActive(page.value.path, item.value.link ? resolveRouteFullPath(item.value.link) : undefined)
   }
 
-  watch([page, item, hashRef], updateIsActiveLink)
+  watch([page, item, () => route.hash], updateIsActiveLink)
   onMounted(updateIsActiveLink)
 
   const hasActiveLink = computed(() => {
@@ -217,7 +231,7 @@ export function containsActiveLink(
   if (Array.isArray(items))
     return items.some(item => containsActiveLink(path, item))
 
-  return isActive(path, items.link)
+  return isActive(path, items.link ? resolveRouteFullPath(items.link) : undefined)
     ? true
     : items.items
       ? containsActiveLink(path, items.items as NotesSidebarItem[])

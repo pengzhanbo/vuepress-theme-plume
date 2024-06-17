@@ -43,7 +43,7 @@
 }
 
 .vp-doc .hint-container div[class*="language-"].line-numbers-mode .line-numbers {
-  line-height: 1.5rem;
+  font-size: var(--vp-custom-block-code-font-size);
 }
 
 @media (max-width: 419px) {

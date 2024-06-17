@@ -1,3 +1,22 @@
+# [1.0.0-rc.67](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.66...v1.0.0-rc.67) (2024-06-17)
+
+
+### Bug Fixes
+
+* **theme:** fix code line-number line-height in hint-container ([0b037dc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0b037dcc111771ad44299d6f5bc1e33d3f952eda))
+
+
+### Features
+
+* **theme:** add layout slots ([473da76](https://github.com/pengzhanbo/vuepress-theme-plume/commit/473da760f00c43c718e3e06f23cfaff812ef0282))
+
+
+### Performance Improvements
+
+* **theme:** update tags color ([5479607](https://github.com/pengzhanbo/vuepress-theme-plume/commit/547960769557a813324dc910b1b8d3dbd48fa05d))
+
+
+
 # [1.0.0-rc.66](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.65...v1.0.0-rc.66) (2024-06-16)
 
 

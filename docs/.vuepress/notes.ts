@@ -62,7 +62,7 @@ export const zhNotes = definePlumeNotesConfig({
           text: '自定义',
           icon: 'material-symbols:dashboard-customize-outline-rounded',
           collapsed: false,
-          items: ['自定义首页', '自定义样式'],
+          items: ['自定义首页', '自定义样式', '布局插槽', '组件覆写'],
         },
         {
           text: 'API',
@@ -97,7 +97,7 @@ export const zhNotes = definePlumeNotesConfig({
           text: '内置插件',
           dir: 'plugins',
           collapsed: false,
-          items: ['', '代码高亮', '搜索', '阅读统计', 'markdown增强', 'markdownPower', '百度统计'],
+          items: ['', '代码高亮', '搜索', '阅读统计', 'markdown增强', 'markdownPower', '百度统计', '水印'],
         },
       ],
     },

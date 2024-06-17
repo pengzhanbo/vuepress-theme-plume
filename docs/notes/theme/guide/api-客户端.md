@@ -9,32 +9,119 @@ permalink: /guide/api/client/
 ## 使用
 
 ```ts
-import { useDarkMode } from 'vuepress-theme-plume/client'
+import { Layout } from 'vuepress-theme-plume/client'
 ```
 
-## `useDarkMode()`
+## 布局组件
 
-- 类型： `() => Ref<boolean>`
-
-Composable `useDarkMode()` 用于获取当前的 `dark` 状态。
+- `<Layout />`： 页面布局组件
+- `<NotFound />` ： 404 页面布局组件
 
 ```ts
-import { useDarkMode } from 'vuepress-theme-plume/client'
-
-const isDark = useDarkMode()
+import { Layout, NotFound } from 'vuepress-theme-plume/client'
 ```
 
-## `<HomeBox />`
+## 通用组件
 
-- 类型：`Component`
+- `<VPLink />` ： 链接组件
+- `<VPButton />`: 按钮组件
+- `<VPIcon />`: 图标组件
+- `<VPBadge />`: 徽标组件
+- `<VPImage />`: 图片组件
+- `<VPHomeBox />`: 首页布局组件
 
-自定义首页时，提供给 区域 的 包装容器。
+更多其他组件请查看 [源代码](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/theme/src/client/components)
 
-### Props
+```ts
+import VPLink from 'vuepress-theme-plume/components/VPLink.vue'
+import VPButton from 'vuepress-theme-plume/components/VPButton.vue'
+```
 
-| 名称                  | 类型               | 默认值    | 说明             |
-| --------------------- | ------------------ | --------- | ---------------- |
-| type                  | string             | `''`      | 区域类型         |
-| full                  | boolean            | `false`   | 是否全屏         |
-| background-image      | string             | `''`      | 区域背景图片     |
-| background-attachment | `'fixed'\|'local'` | `'local'` | 区域背景定位方式 |
+## 组合式 API
+
+### `useDarkMode()`
+
+- 类型： `() => Ref<boolean>`
+- 详情：
+
+  获取 是否是深色模式的响应式数据。
+
+```ts
+import { useDarkMode } from 'vuepress-theme-plume/composables'
+
+const isDark = useDarkMode()
+
+// 切换为深色模式
+isDark.value = true
+// 切换为浅色模式
+isDark.value = false
+```
+
+### `useData()`
+
+- 类型： `() => Data`
+- 详情：
+
+  获取 主题 的各项响应式数据。
+
+```ts
+interface Data {
+  // 主题配置
+  theme: ThemeLocaleDataRef<PlumeThemeLocaleData>
+  // 当前页面数据
+  page: PageDataRef<PlumeThemePageData>
+  // 当前 页面 frontmatter
+  frontmatter: PageFrontmatterRef<Frontmatter<T>>
+  // 当前语言
+  lang: Ref<string>
+  // 站点数据
+  site: SiteLocaleDataRef
+  // 是否是深色模式
+  isDark: Ref<boolean>
+}
+```
+
+```ts
+import { useData } from 'vuepress-theme-plume/composables'
+
+const { site, page, frontmatter, isDark, lang } = useData()
+
+// 当前页面标题
+console.log(frontmatter.value.title)
+```
+
+### `useLocalePostList()`
+
+- 类型： `() => Ref<PostItem[]>`
+- 详情：
+
+  获取 文章列表的响应式数据。
+
+```ts
+interface PostItem {
+  path: string
+  title: string
+  excerpt: string
+  tags: string[]
+  sticky: boolean
+  categoryList: CategoryItem[]
+  createTime: string
+  lang: string
+  encrypt?: boolean
+}
+
+interface CategoryItem {
+  type: string | number
+  name: string
+}
+```
+
+```ts
+import { useLocalePostList } from 'vuepress-theme-plume/composables'
+
+const postList = useLocalePostList()
+```
+
+### 更多
+
+其它 组合式 API 请查看 [源代码](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/theme/src/client/composables) 。

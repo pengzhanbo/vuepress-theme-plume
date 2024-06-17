@@ -13,7 +13,7 @@ permalink: /config/frontmatter/friends/
 
 ```md
 ---
-friends: true
+pageLayout: friends
 title: 友情链接
 list:
   -
@@ -26,12 +26,20 @@ list:
 
 ## 配置
 
-### friends
+### friends <Badge type="warning" text="弃用" />
 
 - 类型： `boolean`
 - 默认值： `false`
+- 详情：
 
-当前页面是否为友情链接页。
+  当前页面是否为友情链接页。
+
+### pageLayout
+
+- 类型：`'friends'`
+- 详情：
+
+  声明当前页面为 友情链接页。
 
 ### title
 

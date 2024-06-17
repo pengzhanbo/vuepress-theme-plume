@@ -22,60 +22,114 @@ permalink: /config/frontmatter/basic/
 
 ## 配置
 
+### pageLayout
+
+- 类型： `false | 'home' | 'doc' | 'custom' | 'page' | 'friends' | string`
+- 默认值： `doc`
+- 详情：
+
+  页面布局方式。
+
+  - `'home'`: 主页布局
+  - `'doc'`: 文章页布局，包括左侧侧边栏、文章内容、右侧侧边栏、导航栏、评论等
+  - `'page'`: 仅包含导航栏 和 MD 文件内容，可以使用此布局方式自定义页面内容
+  - `'friends'`: 友链页布局
+  - `'custom'`: 仅包含 MD 文件内容，可以使用此布局方式完全自定义页面内容
+  - `false`: 等同于 `custom`
+  - `string`: 可以传入一个全局组件组件名，该组件将被应用为布局组件
+
+### pageClass
+
+- 类型： `string`
+- 默认值： `''`
+- 详情：
+
+  自定义页面额外的 类名。
+
 ### title
 
-文章标题。
+- 类型： `string`
+- 默认值： `''`
+- 详情：
 
-主题会在文件创建时，自动填充 当前文件名作为 文章标题。
+  文章标题。
+
+  主题会在文件创建时，自动填充 当前文件名作为 文章标题。
 
 ### author
 
-文章作者。
+- 类型： `string`
+- 默认值： `''`
+- 详情：
 
-主题会在文件创建时，自动填充 `avatar.name || packageJson.author` 作为 文章作者。
+  文章作者。
+
+  主题会在文件创建时，自动填充 `avatar.name || packageJson.author` 作为 文章作者。
 
 ### createTime
 
-文章创建时间。
+- 类型： `string`
+- 默认值： `''`
+- 详情：
 
-主题会在文件创建时，自动填充 当前时间作为 文章创建时间。
+  文章创建时间。
+
+  主题会在文件创建时，自动填充 当前时间作为 文章创建时间。
 
 ### permalink
 
-文章永久链接。
+- 类型： `string`
+- 默认值： `''`
+- 详情：
 
-主题会在文件创建时:
+  文章永久链接。
 
-- 博客类型的文章，自动填充 `/article/` + `nanoid 生成的 6 位随机字符串` 作为 文章永久链接
-- notes 目录下的文章，会根据 notes 的配置，自动填充  文章永久链接
+  主题会在文件创建时:
 
-### externalLink
+  - 博客类型的文章，自动填充 `/article/` + `nanoid 生成的 6 位随机字符串` 作为 文章永久链接
+  - notes 目录下的文章，会根据 notes 的配置，自动填充  文章永久链接
+
+### externalLinkIcon
 
 - 类型： `boolean`
 - 默认值： `true`
+- 详情：
 
-当前文章内的 外部链接是否显示 外部链接图标。
+  当前文章内的 外部链接是否显示 外部链接图标。
 
 ### backToTop
 
 - 类型： `boolean`
 - 默认值： `true`
+- 详情：
 
-当前文章是否 显示 回到顶部 的按钮。
+  当前文章是否 显示 回到顶部 的按钮。
 
 ### comments
 
 - 类型： `boolean`
 - 默认值： `true`
+- 详情：
 
-当前文章是否 可评论。 仅在启用了评论功能的情况下生效。
+  当前文章是否 可评论。 仅在启用了评论功能的情况下生效。
 
 ### aside
 
+- 类型： `boolean | 'left'`
+- 默认值： `true`
+- 详情：
+
+  当前文章是否 显示 右侧边栏。
+
+  当设置为 `'left'` 时，右侧边栏将显示在左侧。
+
+### navbar
+
 - 类型： `boolean`
 - 默认值： `true`
+- 详情：
 
-当前文章是否 显示 右侧边栏。
+  当前文章是否 显示 导航栏。
 
 ### outline
 
@@ -95,69 +149,65 @@ permalink: /config/frontmatter/basic/
 
 - 类型： `string | { text: string, link: string, icon?: string }`
 - 默认值： `''`
+- 详情：
 
-自定义当前文章的上一篇文章。
+  自定义当前文章的上一篇文章。
 
-- 博客类型的文章，主题根据时间排序，自动填充上一篇文章的标题和链接。
-- notes 类型的文章，主题根据 note sidebar 配置，自动填充上一篇文章的标题和链接。
+  - 博客类型的文章，主题根据时间排序，自动填充上一篇文章的标题和链接。
+  - notes 类型的文章，主题根据 note sidebar 配置，自动填充上一篇文章的标题和链接。
 
 ### next
 
 - 类型： `string | { text: string, link: string, icon?: string }`
 - 默认值： `''`
+- 详情：
 
-自定义当前文章的下一篇文章。
+  自定义当前文章的下一篇文章。
 
-- 博客类型的文章，主题根据时间排序，自动填充下一篇文章的标题和链接。
-- notes 类型的文章，主题根据 note sidebar 配置，自动填充下一篇文章的标题和链接。
+  - 博客类型的文章，主题根据时间排序，自动填充下一篇文章的标题和链接。
+  - notes 类型的文章，主题根据 note sidebar 配置，自动填充下一篇文章的标题和链接。
 
 ### readingTime
 
 - 类型： `boolean`
 - 默认值： `true`
+- 详情：
 
-当前文章是否 显示 阅读时长。
+  当前文章是否 显示 阅读时长。
 
 ### lastUpdated
 
 - 类型： `boolean`
 - 默认值： `true`
+- 详情：
 
-当前文章是否 显示 最后更新时间。 最后更新时间 根据 git 提交时间自动填充。
+  当前文章是否 显示 最后更新时间。 最后更新时间 根据 git 提交时间自动填充。
 
 ### contributors
 
 - 类型： `boolean`
 - 默认值： `true`
+- 详情：
 
-当前文章是否 显示 贡献者。 贡献者 根据 git 提交者自动填充。
+  当前文章是否 显示 贡献者。 贡献者 根据 git 提交者自动填充。
 
 ### editLink
 
 - 类型： `boolean`
 - 默认值： `true`
+- 详情：
 
-当前文章是否 显示 文章编辑 按钮。
+  当前文章是否 显示 文章编辑 按钮。
 
 ### watermark
 
-- 类型： `boolean | WatermarkConfig`
+- 类型： `boolean | WatermarkOptions`
 - 默认值： `undefined` 主题不启用水印，或不启用全局水印时，默认值为 `false`，启用全局水印则为 `true`。
+- 详情：
+  配置当前文章 水印。
 
-配置当前文章 水印。
+  当类型为 boolean 时，表示是否启用水印。
 
-```ts
-interface WatermarkConfig {
-  content?: string // 水印文字内容，可传入 html 内容
-  textColor?: string // 水印文本颜色
-  image?: string // 水印图片路径，优先于 content
-  opacity?: number // 水印透明度
-  rotate?: number // 水印旋转角度
-  width?: number //  水印宽度
-  height?: number // 水印高度
-  gapX?: number // 水印横向间距
-  gapY?: number // 水印纵向间距
-  fullPage?: boolean // 是否全屏
-  onlyPrint?: boolean // 是否仅在打印时显示
-}
-```
+  当类型为 WatermarkOptions 时，表示当前页面水印配置。
+
+  可以参考 [watermark-js-plus](https://zhensherlock.github.io/watermark-js-plus/zh/config/) 。

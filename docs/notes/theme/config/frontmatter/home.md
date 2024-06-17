@@ -22,11 +22,21 @@ config:
 
 ## 配置
 
-### home
+### home <Badge type="warning" text="弃用" />
 
 - 类型： `boolean`
+- 详情：
 
-声明是否为 首页
+  声明是否为 首页。
+
+  已弃用，请使用 `pageLayout: 'home'` 代替。
+
+### pageLayout
+
+- 类型：`'home'`
+- 详情：
+
+  声明当前页面为 首页。
 
 ### config
 

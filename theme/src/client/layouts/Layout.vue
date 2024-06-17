@@ -38,6 +38,8 @@ useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
     <VPEncryptGlobal v-if="!isGlobalDecrypted" />
 
     <template v-else>
+      <slot name="layout-top" />
+
       <VPSkipLink />
 
       <VPBackdrop :show="isSidebarOpen" @click="closeSidebar" />
@@ -153,6 +155,8 @@ useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
       </slot>
       <VPBackToTop />
       <VPFooter />
+
+      <slot name="layout-bottom" />
     </template>
   </div>
   <Content v-else />

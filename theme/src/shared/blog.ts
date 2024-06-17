@@ -4,7 +4,7 @@ import type { PageCategoryData } from './page-data.js'
 export interface PlumeThemeBlogPostItem extends BlogPostDataItem {
   tags: string[]
   sticky: boolean
-  categoryLost: PageCategoryData[]
+  categoryList: PageCategoryData[]
   createTime: string
   lang: string
   encrypt?: boolean

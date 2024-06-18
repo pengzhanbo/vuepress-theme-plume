@@ -27,6 +27,9 @@ permalink: /guide/markdown/experiment/
 
 比如，在未使用 `twoslash` 时，vuepress 的启动时间区间大约在 `300ms ~ 1000ms` 之间，而在使用 `twoslash` 后，
 可能某一个 `twoslash` 的代码块编译耗时就需要额外再等待 `500ms` 以上。
+
+但不必担心 markdown 文件热更新时的编译耗时，主题针对 代码高亮编译 耗时做了优化，即使 单个 markdown 文件
+中包含多个 代码块，主题也仅会对 **有变更的代码块** 进行编译，因此热更新的速度依然非常快。
 :::
 
 ### 概述

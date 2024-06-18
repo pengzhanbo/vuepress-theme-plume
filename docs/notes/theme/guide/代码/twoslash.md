@@ -14,9 +14,20 @@ permalink: /guide/markdown/experiment/
 该功能由 [shiki](https://shiki.style/) 和 [@shikijs/twoslash](https://shiki.style/packages/twoslash) 提供支持，
 并整合在 [@vuepress-plume/plugin-shikiji](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-shikiji) 中。
 
-> [!important]
-> 从 `vuepress@2.0.0-rc.12` 开始，不再需要对 `@vuepress/markdown` 进行额外的 hack 操作，
-> 因此，现在你可以安全的使用这项功能了！
+:::important
+从 `vuepress@2.0.0-rc.12` 开始，不再需要对 `@vuepress/markdown` 进行额外的 hack 操作，
+因此，现在你可以安全的使用这项功能了！
+:::
+
+::: warning
+`twoslash` 是一个比较耗时的功能，由于它需要对代码进行类型编译，如果代码引入的包 比较大，会花费较长时间。
+
+特别的，由于 vuepress 启动时，会预编译所有的 markdown 文件，因此它会直接影响 vuepress 的启动时间，
+如果 包含了比较多的 `twoslash` 代码块，这可能会使 vuepress 启动时间变得很长。
+
+比如，在未使用 `twoslash` 时，vuepress 的启动时间区间大约在 `300ms ~ 1000ms` 之间，而在使用 `twoslash` 后，
+可能某一个 `twoslash` 的代码块编译耗时就需要额外再等待 `500ms` 以上。
+:::
 
 ### 概述
 

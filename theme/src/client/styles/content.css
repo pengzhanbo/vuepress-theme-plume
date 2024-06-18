@@ -39,9 +39,18 @@
 }
 
 .vp-doc h3 {
-  margin: 32px 0 0;
+  margin: 32px 0 16px;
   font-size: 20px;
   line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+.vp-doc h4,
+.vp-doc h5,
+.vp-doc h6 {
+  margin: 24px 0 16px;
+  font-size: 16px;
+  line-height: 24px;
   letter-spacing: -0.01em;
 }
 
@@ -87,6 +96,10 @@
     line-height: 40px;
     letter-spacing: -0.02em;
   }
+}
+
+.vp-doc img {
+  display: inline-block;
 }
 
 .vp-doc img + img {
@@ -146,10 +159,6 @@
 
 .vp-doc strong {
   font-weight: 600;
-}
-
-.vp-doc a > img {
-  display: inline-block;
 }
 
 /**

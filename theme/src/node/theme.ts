@@ -1,62 +1,40 @@
 import type { Page, Theme } from 'vuepress/core'
-import { fs, path } from 'vuepress/utils'
-import { isPlainObject } from '@vuepress/helper'
 import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
 import { getPlugins } from './plugins/index.js'
 import { extendsPageData, setupPage } from './setupPages.js'
-import { THEME_NAME, logger, resolve, templates } from './utils.js'
-import { resolveEncrypt, resolveLocaleOptions, resolvePageHead } from './config/index.js'
-import { extendsBundlerOptions } from './extendsBundlerOptions.js'
-import { templateBuildRenderer } from './templateBuildRenderer.js'
+import { THEME_NAME, resolve, templates } from './utils.js'
+import {
+  extendsBundlerOptions,
+  resolveAlias,
+  resolveLocaleOptions,
+  resolvePageHead,
+  resolveProvideData,
+  resolveThemeOptions,
+  templateBuildRenderer,
+} from './config/index.js'
 import { setupPrepare, watchPrepare } from './prepare/index.js'
 
-export function plumeTheme({
-  themePlugins,
-  plugins,
-  encrypt,
-  hostname,
-  ...localeOptions
-}: PlumeThemeOptions = {}): Theme {
-  const pluginOptions = plugins ?? themePlugins ?? {}
-
-  const watermarkFullPage = isPlainObject(pluginOptions.watermark)
-    ? pluginOptions.watermark.fullPage !== false
-    : true
-
-  if (themePlugins) {
-    logger.warn(
-      `The 'themePlugins' option is deprecated. Please use 'plugins' instead.`,
-    )
-  }
+export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
+  const {
+    localeOptions: rawLocaleOptions,
+    pluginOptions,
+    hostname,
+    encrypt,
+  } = resolveThemeOptions(options)
 
   return (app) => {
-    localeOptions = resolveLocaleOptions(app, localeOptions)
+    const localeOptions = resolveLocaleOptions(app, rawLocaleOptions)
 
     return {
       name: THEME_NAME,
 
-      define: {
-        ...resolveEncrypt(encrypt),
-        __PLUME_WM_FP__: watermarkFullPage,
-      },
+      define: resolveProvideData(app, pluginOptions, encrypt),
 
       templateBuild: templates('build.html'),
 
       clientConfigFile: resolve('client/config.js'),
 
-      alias: {
-        ...Object.fromEntries(
-          fs.readdirSync(
-            resolve('client/components'),
-            { encoding: 'utf-8', recursive: true },
-          )
-            .filter(file => file.endsWith('.vue'))
-            .map(file => [
-              path.join('@theme', file),
-              resolve('client/components', file),
-            ]),
-        ),
-      },
+      alias: resolveAlias(),
 
       plugins: getPlugins({ app, pluginOptions, localeOptions, encrypt, hostname }),
 

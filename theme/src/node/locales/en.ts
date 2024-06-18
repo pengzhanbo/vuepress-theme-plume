@@ -1,6 +1,5 @@
 import type { SearchLocaleOptions } from '@vuepress-plume/plugin-search'
-import type { PlumeThemeLocaleData } from '../../shared/index.js'
-import type { PresetLocale } from '../types.js'
+import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
 
 export const enLocale: PlumeThemeLocaleData = {
   selectLanguageName: 'English',

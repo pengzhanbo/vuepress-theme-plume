@@ -48,9 +48,9 @@ export interface PlumeThemeLocaleData extends LocaleData {
   social?: SocialLink[]
 
   /**
-   * Navbar config
+   * 导航栏配置
    *
-   * Set to `false` to disable navbar in current locale
+   * 设置为 `false` 将会禁用导航栏
    */
   navbar?: false | NavItem[]
 
@@ -75,114 +75,119 @@ export interface PlumeThemeLocaleData extends LocaleData {
   /**
    * 笔记配置， 笔记中的文章默认不会出现在首页文章列表
    *
-   * 注：你也可以将notes配置到navbar中，默认自动生成在右侧栏目中
+   * 注：也可以将notes配置到navbar中
    */
   notes?: false | NotesDataOptions
 
+  /**
+   * 要显示的标题级别。
+   *
+   * 单个数字表示只显示该级别的标题。
+   *
+   * 如果传递的是一个元组，第一个数字是最小级别，第二个数字是最大级别。
+   *
+   * 'deep' 与 [2, 6] 相同，将显示从 <h2> 到 <h6> 的所有标题。
+   *
+   * @default [2, 3]
+   */
   outline?: ThemeOutline
 
   /**
    * 是否显示侧边栏
+   *
+   * - `false` 表示禁用 右侧边栏
+   * - `true` 表示启用 右侧边栏
+   * - `'left` 表示将有侧边栏移动到文章内容左侧，sidebar 右侧
    *
    * @default true
    */
   aside?: boolean | 'left'
 
   /**
-   * language text
+   * 选择语言菜单 的文本。
    */
   selectLanguageText?: string
   /**
-   * language aria label
+   * 选择语言菜单 的 `aria-label` 属性。
    */
   selectLanguageAriaLabel?: string
   /**
-   * language name
+   * 语言名称
+   *
+   * 仅能在主题配置的 locales 的内部生效 。它将被用作 locale 的语言名称，展示在 选择语言菜单 内。
    */
   selectLanguageName?: string
 
   /**
-   * Page meta - edit link config
    *
-   * Whether to show "Edit this page" or not
+   *
+   * 是否显示 "编辑此页"
    */
   editLink?: boolean
 
   /**
-   * Page meta - edit link config
+   * "编辑此页" 的文本
    *
-   * The text to replace the default "Edit this page"
+   * @default "Edit this page"
    */
   editLinkText?: string
 
   /**
-   * Page meta - edit link config
-   *
-   * Pattern of edit link
+   * "编辑此页" 的链接匹配模式
    *
    * @example ':repo/edit/:branch/:path'
    */
   editLinkPattern?: string
   /**
-   * Page meta - edit link config
-   *
-   * Use `repo` config by default
-   *
-   * Set this config if your docs is placed in a different repo
+   * 文档仓库配置, 用于生成 Edit this page 链接
    */
   docsRepo?: string
 
   /**
-   * Page meta - edit link config
-   *
-   * Set this config if the branch of your docs is not 'main'
+   * 文档仓库分支配置，用于生成 `Edit this page` 链接。
    */
   docsBranch?: string
 
   /**
-   * Page meta - edit link config
-   *
-   * Set this config if your docs is placed in sub dir of your `docsRepo`
+   * 文档仓库目录配置，用于生成 `Edit this page` 链接。
    */
   docsDir?: string
   /**
-   * Page meta - last updated config
+   * 最后更新时间
    *
-   * Whether to show "Last Updated" or not
+   * @default { text: 'Last Updated', formatOptions: { dateStyle: 'short', timeStyle: 'short' } }
    */
   lastUpdated?: false | LastUpdatedOptions
 
   /**
-   * @deprecated Use `lastUpdated.text` instead.
+   * @deprecated 使用 `lastUpdated.text` 代替.
    *
-   * Set custom last updated text.
+   * "最后更新时间" 的文本
    *
    * @default 'Last updated'
    */
   lastUpdatedText?: string
 
   /**
-   * Page meta - contributors config
-   *
-   * Whether to show "Contributors" or not
+   * 是否显示贡献者
    */
   contributors?: boolean
   /**
-   * Page meta - contributors config
-   *
-   * The text to replace the default "Contributors"
+   * 贡献者的文本
    */
   contributorsText?: string
 
-  // backToHome?: string
-
   /**
-   * sidebar menu label
+   * 移动设备下的导航栏中 菜单选项的文字。
+   *
+   * @default 'Menu'
    */
   sidebarMenuLabel?: string
 
   /**
-   * return to top label
+   * 移动设备下的导航栏中返回顶部的文字。
+   *
+   * @default 'return to top'
    */
   returnToTopLabel?: string
 
@@ -193,15 +198,30 @@ export interface PlumeThemeLocaleData extends LocaleData {
    */
   outlineLabel?: string
 
+  /**
+   * 上一页的文本
+   *
+   * @default 'Previous Page'
+   */
   prevPageLabel?: string
 
+  /**
+   * 下一页的文本
+   *
+   * @default 'Next Page'
+   */
   nextPageLabel?: string
 
   /**
    * 是否显示外部链接图标
+   *
+   * @default true
    */
   externalLinkIcon?: string
 
+  /**
+   * 页脚配置。
+   */
   footer?:
     | false
     | {
@@ -210,7 +230,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
     }
 
   /**
-   * 404 page options
+   * 404 页面配置
    */
   notFound?: {
     code?: string | number

@@ -39,6 +39,15 @@ export const customContainerPlugins: Plugin[] = [
       return '</div></div>\n'
     },
   }),
+  containerPlugin({
+    type: 'steps',
+    before() {
+      return '<div class="vp-steps">'
+    },
+    after() {
+      return '</div>'
+    },
+  }),
 ]
 
 /**

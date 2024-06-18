@@ -3,9 +3,8 @@ import { useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
 import { computed } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
-import { useData, useLocaleLink, useRouteQuery } from '../composables/index.js'
-import { toArray } from '../utils/index.js'
-import { useTagColors } from './tag-colors.js'
+import { useData } from './data.js'
+import { useRouteQuery } from './route-query.js'
 
 const DEFAULT_PER_PAGE = 10
 
@@ -132,122 +131,4 @@ export function usePostListControl() {
     isPaginationEnabled,
     changePage,
   }
-}
-
-const extractLocales: Record<string, { tags: string, archives: string }> = {
-  'zh-CN': { tags: '标签', archives: '归档' },
-  'en': { tags: 'Tags', archives: 'Archives' },
-  'zh-TW': { tags: '標籤', archives: '歸檔' },
-}
-
-export function useBlogExtract() {
-  const { theme } = useData()
-  const locale = usePageLang()
-  const postList = useLocalePostList()
-  const { tags: tagsList } = useTags()
-  const blog = computed(() => theme.value.blog || {})
-
-  const hasBlogExtract = computed(() => blog.value.archives !== false || blog.value.tags !== false)
-  const tagsLink = useLocaleLink(blog.value.tagsLink || 'blog/tags/')
-  const archiveLink = useLocaleLink(blog.value.archivesLink || 'blog/archives/')
-
-  const tags = computed(() => ({
-    link: tagsLink.value,
-    text: extractLocales[locale.value]?.tags || extractLocales.en.tags,
-    total: tagsList.value.length,
-  }))
-
-  const archives = computed(() => ({
-    link: archiveLink.value,
-    text: extractLocales[locale.value]?.archives || extractLocales.en.archives,
-    total: postList.value.length,
-  }))
-
-  return {
-    hasBlogExtract,
-    tags,
-    archives,
-  }
-}
-
-export type ShortPostItem = Pick<PlumeThemeBlogPostItem, 'title' | 'path' | 'createTime'>
-
-export function useTags() {
-  const list = useLocalePostList()
-
-  const colors = useTagColors()
-
-  const tags = computed(() => {
-    const tagMap: Record<string, number> = {}
-    list.value.forEach((item) => {
-      if (item.tags) {
-        toArray(item.tags).forEach((tag) => {
-          if (tagMap[tag])
-            tagMap[tag] += 1
-          else
-            tagMap[tag] = 1
-        })
-      }
-    })
-    return Object.keys(tagMap).map(tag => ({
-      name: tag,
-      count: tagMap[tag] > 99 ? '99+' : tagMap[tag],
-      className: `vp-tag-${colors.value[tag]}`,
-    }))
-  })
-
-  const currentTag = useRouteQuery<string>('tag')
-
-  const postList = computed<ShortPostItem[]>(() => {
-    if (!currentTag.value)
-      return []
-
-    return list.value.filter((item) => {
-      if (item.tags)
-        return toArray(item.tags).includes(currentTag.value)
-
-      return false
-    }).map(item => ({
-      title: item.title,
-      path: item.path,
-      createTime: item.createTime.split(' ')[0].replace(/\//g, '-'),
-    }))
-  })
-
-  const handleTagClick = (tag: string) => {
-    currentTag.value = tag
-  }
-
-  return {
-    tags,
-    currentTag,
-    postList,
-    handleTagClick,
-  }
-}
-
-export function useArchives() {
-  const list = useLocalePostList()
-  const archives = computed(() => {
-    const archives: { label: string, list: ShortPostItem[] }[] = []
-
-    list.value.forEach((item) => {
-      const createTime = item.createTime.split(' ')[0]
-      const year = createTime.split('/')[0]
-      let current = archives.find(archive => archive.label === year)
-      if (!current) {
-        current = { label: year, list: [] }
-        archives.push(current)
-      }
-      current.list.push({
-        title: item.title,
-        path: item.path,
-        createTime: createTime.slice(year.length + 1).replace(/\//g, '-'),
-      })
-    })
-
-    return archives
-  })
-
-  return { archives }
 }

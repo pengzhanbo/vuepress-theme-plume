@@ -2,7 +2,7 @@
 import VPTransitionDrop from '@theme/VPTransitionDrop.vue'
 import VPPostItem from '@theme/Blog/VPPostItem.vue'
 import VPPagination from '@theme/Blog/VPPagination.vue'
-import { usePostListControl } from '../../composables/blog.js'
+import { usePostListControl } from '../../composables/blog-post-list.js'
 
 const {
   postList,

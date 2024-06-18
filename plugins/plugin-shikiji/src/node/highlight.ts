@@ -38,6 +38,7 @@ export async function highlight(
     defaultHighlightLang: defaultLang = '',
     codeTransformers: userTransformers = [],
     whitespace = false,
+    languages = Object.keys(bundledLanguages),
   } = options
 
   const highlighter = await getHighlighter({
@@ -45,7 +46,7 @@ export async function highlight(
       typeof theme === 'object' && 'light' in theme && 'dark' in theme
         ? [theme.light, theme.dark]
         : [theme],
-    langs: [...Object.keys(bundledLanguages), ...(options.languages || [])],
+    langs: languages,
     langAlias: options.languageAlias,
   })
 

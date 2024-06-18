@@ -191,14 +191,23 @@ useHomeHeroTintPlate(
   height: calc(100% + var(--vp-footer-height, 0px));
 }
 
+@property --vp-home-hero-bg-filter {
+  inherits: false;
+  initial-value: #fff;
+  syntax: "<color>";
+}
+
 .bg-filter::after {
+  --vp-home-hero-bg-filter: var(--vp-c-bg);
+
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   content: "";
-  background: linear-gradient(to bottom, var(--vp-c-bg) 0, transparent 40%, transparent 60%, var(--vp-c-bg) 140%);
+  background: linear-gradient(to bottom, var(--vp-home-hero-bg-filter) 0, transparent 45%, transparent 55%, var(--vp-home-hero-bg-filter) 140%);
+  transition: --vp-home-hero-bg-filter var(--t-color);
 }
 
 .bg-filter canvas {

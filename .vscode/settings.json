@@ -33,9 +33,10 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.stylelint": "explicit",
     "source.fixAll.eslint": "explicit",
+    "source.fixAll.markdownlint": "explicit",
     "source.organizeImports": "never"
   },
-  "editor.formatOnPaste": true,
+  "editor.formatOnPaste": false,
   "eslint.validate": [
     "javascript",
     "javascriptreact",

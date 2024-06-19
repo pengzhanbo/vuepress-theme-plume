@@ -1,24 +1,13 @@
 <script setup lang="ts">
 import VPLink from '@theme/VPLink.vue'
 import VPIcon from '@theme/VPIcon.vue'
-import { computed } from 'vue'
 
-const props = defineProps<{
+defineProps<{
   href: string
   title: string
   icon?: string | { svg: string }
   description?: string
 }>()
-
-const icon = computed<string | { svg: string } | undefined>(() => {
-  if (props.icon?.[0] === '{') {
-    try {
-      return JSON.parse(icon) as { svg: string }
-    }
-    catch {}
-  }
-  return props.icon
-})
 </script>
 
 <template>

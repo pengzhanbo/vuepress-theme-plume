@@ -37,7 +37,7 @@ const link = computed(() => {
 .vp__img {
   display: inline-block;
   height: 1em;
-  margin: 0.3em;
+  margin: 0 0.3em;
   vertical-align: middle;
 }
 </style>

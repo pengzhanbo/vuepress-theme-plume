@@ -11,6 +11,9 @@ export { default as Layout } from './layouts/Layout.vue'
 export { default as NotFound } from './layouts/NotFound.vue'
 
 export { default as VPBadge } from './components/global/VPBadge.vue'
+export { default as VPCard } from './components/global/VPCard.vue'
+export { default as VPCardGrid } from './components/global/VPCardGrid.vue'
+
 export { default as VPImage } from './components/VPImage.vue'
 export { default as VPButton } from './components/VPButton.vue'
 export { default as VPLink } from './components/VPLink.vue'

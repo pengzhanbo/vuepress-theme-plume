@@ -38,3 +38,10 @@ export type SocialLinkIconUnion =
   | 'xbox'
 
 export type SocialLinkIcon = SocialLinkIconUnion | { svg: string }
+
+export interface PresetLocale {
+  home: string
+  blog: string
+  tag: string
+  archive: string
+}

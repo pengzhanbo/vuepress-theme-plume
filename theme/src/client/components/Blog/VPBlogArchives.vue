@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import VPShortPostList from '@theme/Blog/VPShortPostList.vue'
-import { useArchives, useBlogExtract } from '../../composables/blog.js'
+import { useBlogExtract } from '../../composables/blog-extract.js'
+import { useArchives } from '../../composables/blog-archives.js'
 
 const { archives: archivesLink } = useBlogExtract()
 const { archives } = useArchives()

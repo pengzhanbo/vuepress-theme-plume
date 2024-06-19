@@ -39,6 +39,60 @@ export const customContainerPlugins: Plugin[] = [
       return '</div></div>\n'
     },
   }),
+  /**
+   * :::steps
+   * 1. 步骤 1
+   *    xxx
+   * 2. 步骤 2
+   *    xxx
+   * 3. ...
+   * :::
+   */
+  containerPlugin({
+    type: 'steps',
+    before() {
+      return '<div class="vp-steps">'
+    },
+    after() {
+      return '</div>'
+    },
+  }),
+  /**
+   * ::: card title="xxx" icon="xxx"
+   * xxx
+   * :::
+   */
+  containerPlugin({
+    type: 'card',
+    before(info) {
+      const title = resolveAttr(info, 'title')
+      const icon = resolveAttr(info, 'icon')
+      return `<VPCard${title ? ` title="${title}"` : ''}${icon ? ` icon="${icon}"` : ''}>`
+    },
+    after() {
+      return '</VPCard>'
+    },
+  }),
+
+  /**
+   * :::: card-grid
+   * ::: card
+   * xxx
+   * :::
+   * ::: card
+   * xxx
+   * :::
+   * ::::
+   */
+  containerPlugin({
+    type: 'card-grid',
+    before() {
+      return '<VPCardGrid>'
+    },
+    after() {
+      return '</VPCardGrid>'
+    },
+  }),
 ]
 
 /**

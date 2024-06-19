@@ -1,5 +1,5 @@
 import { type TemplateRendererContext, templateRenderer } from 'vuepress/utils'
-import { getThemePackage } from './utils.js'
+import { getThemePackage } from '../utils.js'
 
 export function templateBuildRenderer(template: string, context: TemplateRendererContext) {
   const pkg = getThemePackage()

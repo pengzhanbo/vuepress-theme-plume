@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import VPShortPostList from '@theme/Blog/VPShortPostList.vue'
-import { useBlogExtract, useTags } from '../../composables/blog.js'
+import { useBlogExtract } from '../../composables/blog-extract.js'
+import { useTags } from '../../composables/blog-tags.js'
 
 const { tags, currentTag, postList, handleTagClick } = useTags()
 const { tags: tagsLink } = useBlogExtract()

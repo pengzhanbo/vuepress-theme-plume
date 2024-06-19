@@ -1,0 +1,86 @@
+<script setup lang="ts">
+import VPLink from '@theme/VPLink.vue'
+import VPIcon from '@theme/VPIcon.vue'
+
+defineProps<{
+  href: string
+  title: string
+  icon?: string | { svg: string }
+  description?: string
+}>()
+</script>
+
+<template>
+  <div class="vp-link-card">
+    <span class="body">
+      <VPLink :href="href" no-icon class="link">
+        <slot name="title">
+          <VPIcon v-if="icon" :name="icon" />
+          <span v-if="title" v-html="title" />
+        </slot>
+      </VPLink>
+      <slot>
+        <p v-if="description" v-html="description" />
+      </slot>
+    </span>
+    <span class="vpi-arrow-right" />
+  </div>
+</template>
+
+<style scoped>
+.vp-link-card {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 16px 20px;
+  margin: 16px 0;
+  background-color: transparent;
+  border: solid 1px var(--vp-c-divider);
+  border-radius: 8px;
+  box-shadow: var(--vp-shadow-1);
+  transition: border-color var(--t-color), box-shadow var(--t-color), background-color var(--t-color);
+}
+
+.vp-link-card:hover {
+  background-color: var(--vp-c-bg-soft);
+  border-color: var(--vp-c-brand-2);
+  box-shadow: var(--vp-shadow-2);
+}
+
+.vp-link-card .body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.vp-link-card .body > :last-child {
+  margin-bottom: 0;
+}
+
+.vp-link-card .link {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+}
+
+.vp-link-card .link::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+}
+
+.vp-link-card .link :deep(.vp-iconify) {
+  margin: 0;
+}
+
+.vpi-arrow-right {
+  margin-top: 2px;
+  font-size: 20px;
+}
+</style>

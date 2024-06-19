@@ -12,6 +12,10 @@
   margin: 0.3em;
 }
 
+.smooth {
+  scroll-behavior: smooth;
+}
+
 /* ----------------- Transition ------------------------ */
 .fade-slide-y-enter-active {
   transition: all 0.25s ease !important;

@@ -4,17 +4,15 @@ import { computed } from 'vue'
 
 const props = defineProps<{
   title?: string
-  icon: string | { svg: string }
+  icon?: string | { svg: string }
 }>()
 
-const icon = computed<string | { svg: string }>(() => {
+const icon = computed<string | { svg: string } | undefined>(() => {
   if (props.icon?.[0] === '{') {
     try {
       return JSON.parse(icon) as { svg: string }
     }
-    catch {
-      return props.icon
-    }
+    catch {}
   }
   return props.icon
 })
@@ -49,6 +47,10 @@ const icon = computed<string | { svg: string }>(() => {
 
 .vp-card-wrapper:hover {
   box-shadow: var(--vp-shadow-2);
+}
+
+.vp-card-wrapper :deep(.vp-iconify) {
+  margin: 0;
 }
 
 .vp-card-wrapper .title {

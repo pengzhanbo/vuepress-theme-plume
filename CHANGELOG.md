@@ -1,3 +1,23 @@
+# [1.0.0-rc.68](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.67...v1.0.0-rc.68) (2024-06-19)
+
+
+### Features
+
+* **theme:** 添加 步骤容器 ([1df3505](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1df3505d892e28a4256660ce1bd4822c7001a972))
+* **theme:** 新增  `<LinkCard>` 链接卡片组件 ([126da9f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/126da9fb5f0e6342714bf4138b507bcacdfdedcc))
+* **theme:** 新增 `<Card>` 卡片组件 ([62e128a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/62e128a9605d8796e99eec92c76878f923007989))
+
+
+### Performance Improvements
+
+* **plugin-shikiji:** 优化代码高亮默认语言 ([3490c47](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3490c47850587e5df4519c75060a7b75cadba33a))
+* **theme:** 优化页面滚动行为 ([5a54fc2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5a54fc2565178fec03a684c000f4027f256b9ec7))
+* **theme:** improve home hero transition ([018cecf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/018cecf7e7b4bb96f767d2eadbf6726a4c84f329))
+* **theme:** improve node structure ([9e19de6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9e19de62bbf39b032bc0d3abb14edbbbb8f26a9a))
+* **theme:** improve styles ([5f743f1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5f743f13c3190dd92b3b8530f8f95e6d8d3ba0e9))
+
+
+
 # [1.0.0-rc.67](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.66...v1.0.0-rc.67) (2024-06-17)
 
 

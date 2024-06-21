@@ -9,11 +9,11 @@
     "docs:serve": "anywhere -s -h localhost -d .vuepress/dist"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.13"
+    "vuepress": "2.0.0-rc.14"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.219",
-    "@vuepress/bundler-vite": "2.0.0-rc.13",
+    "@iconify/json": "^2.2.221",
+    "@vuepress/bundler-vite": "2.0.0-rc.14",
     "anywhere": "^1.6.0",
     "chart.js": "^4.4.3",
     "echarts": "^5.5.0",

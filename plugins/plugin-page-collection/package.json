@@ -31,10 +31,10 @@
     "ts": "tsc -b tsconfig.build.json"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.13"
+    "vuepress": "2.0.0-rc.14"
   },
   "dependencies": {
-    "@netlify/functions": "^2.7.0",
+    "@netlify/functions": "^2.8.0",
     "leancloud-storage": "^4.15.2",
     "vue": "^3.4.29",
     "vue-router": "4.3.2",

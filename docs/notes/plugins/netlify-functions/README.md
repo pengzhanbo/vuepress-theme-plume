@@ -3,6 +3,9 @@ title: plugin-netlify-functions
 author: pengzhanbo
 createTime: 2024/03/12 13:51:09
 permalink: /plugins/plugin-netlify-functions/
+tags:
+  - 插件
+  - netlify
 ---
 
 如果你的 vuepress 站点是部署在 netlify 的，而且希望能够使用netlify functions 来做 serverless。

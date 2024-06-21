@@ -116,7 +116,7 @@ export const zhNotes = definePlumeNotesConfig({
             {
               text: 'plugin-netlify-functions',
               dir: 'netlify-functions',
-              link: '/plugin-netlify-functions/',
+              link: '/plugins/plugin-netlify-functions/',
               items: [
                 '介绍',
                 '使用',

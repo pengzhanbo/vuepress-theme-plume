@@ -3,6 +3,9 @@ title: plugin-iconify
 author: pengzhanbo
 createTime: 2024/03/13 17:28:25
 permalink: /plugins/plugin-iconify/
+tags:
+  - 插件
+  - 图标
 ---
 
 ## 指南

@@ -3,6 +3,9 @@ title: plugin-content-update
 author: pengzhanbo
 createTime: 2024/03/12 19:53:34
 permalink: /plugins/plugin-content-update/
+tags:
+  - 插件
+  - 内容更新
 ---
 
 ## 指南

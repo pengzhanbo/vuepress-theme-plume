@@ -3,6 +3,9 @@ title: plugin-md-power
 author: pengzhanbo
 createTime: 2024/04/04 18:44:57
 permalink: /plugins/plugin-md-power/
+tags:
+  - 插件
+  - markdown
 ---
 
 ## 指南

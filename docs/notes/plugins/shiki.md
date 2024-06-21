@@ -3,6 +3,9 @@ title: plugin-shikiji
 author: pengzhanbo
 createTime: 2024/03/11 17:26:31
 permalink: /plugins/plugin-shikiji/
+tags:
+  - 插件
+  - 代码高亮
 ---
 
 ## 指南

@@ -49,7 +49,8 @@ const icon = computed<string | { svg: string } | undefined>(() => {
   box-shadow: var(--vp-shadow-2);
 }
 
-.vp-card-wrapper :deep(.vp-iconify) {
+.vp-card-wrapper :deep(.vp-iconify),
+.vp-card-wrapper :deep(.vp__img) {
   margin: 0;
 }
 

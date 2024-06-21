@@ -75,7 +75,8 @@ defineProps<{
   content: "";
 }
 
-.vp-link-card .link :deep(.vp-iconify) {
+.vp-link-card .link :deep(.vp-iconify),
+.vp-link-card .link :deep(.vp__img) {
   margin: 0;
 }
 

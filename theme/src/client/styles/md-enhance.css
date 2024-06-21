@@ -2,7 +2,7 @@
 
 /* ------------------ Markdown Enhance: Hint Container  ------------------ */
 .vp-doc .hint-container {
-  padding: 16px 16px 8px;
+  padding: 16px;
   font-size: var(--vp-custom-block-font-size);
   line-height: 24px;
   color: var(--vp-c-text-2);
@@ -18,6 +18,14 @@
   margin: 8px 0;
 }
 
+.vp-doc .hint-container > :not(summary):first-child {
+  margin-top: 0 !important;
+}
+
+.vp-doc .hint-container > :last-child {
+  margin-bottom: 0 !important;
+}
+
 .vp-doc .hint-container code {
   font-size: var(--vp-custom-block-code-font-size);
   color: inherit;
@@ -30,7 +38,7 @@
 }
 
 .vp-doc .hint-container div[class*="language-"] {
-  margin: 8px 0;
+  margin: 16px 0;
 }
 
 .vp-doc .hint-container .vp-code-tab div[class*="language-"] {
@@ -77,19 +85,20 @@
   color: var(--vp-custom-block-danger-text);
 }
 
-.vp-doc .hint-container.detail {
-  color: var(--vp-custom-block-detail-text);
+.vp-doc .hint-container.details {
+  color: var(--vp-custom-block-details-text);
 }
 
-.vp-doc .hint-container.detail summary {
-  margin: -1.5rem -1.5rem -1.1rem;
+.vp-doc .hint-container.details summary {
   font-weight: 700;
   color: var(--vp-c-text-1);
   cursor: pointer;
 }
 
-.vp-doc .hint-container.detail summary + p {
-  margin: 8px 0;
+@media (min-width: 768px) {
+  .vp-doc .hint-container.details summary {
+    margin: -16px;
+  }
 }
 
 .vp-doc .hint-container.note a,
@@ -98,15 +107,15 @@
 .vp-doc .hint-container.info code,
 .vp-doc .hint-container.tip a,
 .vp-doc .hint-container.tip code,
-.vp-doc .hint-container.detail a,
-.vp-doc .hint-container.detail code {
+.vp-doc .hint-container.details a,
+.vp-doc .hint-container.details code {
   color: var(--vp-c-brand-1);
 }
 
 .vp-doc .hint-container.note a:hover,
 .vp-doc .hint-container.info a:hover,
 .vp-doc .hint-container.tip a:hover,
-.vp-doc .hint-container.detail a:hover {
+.vp-doc .hint-container.details a:hover {
   color: var(--vp-c-brand-2);
 }
 

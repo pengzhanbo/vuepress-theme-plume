@@ -1,3 +1,12 @@
+# [1.0.0-rc.69](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.68...v1.0.0-rc.69) (2024-06-21)
+
+
+### Performance Improvements
+
+* update vuepress to `2.0.0.rc-14` ([86a814c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/86a814cb1eb363c53c7f27aa68ddc58cf4876e4a))
+
+
+
 # [1.0.0-rc.68](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.67...v1.0.0-rc.68) (2024-06-19)
 
 

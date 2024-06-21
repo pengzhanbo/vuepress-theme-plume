@@ -1,11 +1,19 @@
 import type {
   BuiltinTheme,
+  BundledLanguage,
   Highlighter,
   LanguageInput,
   ShikiTransformer,
+  SpecialLanguage,
+  StringLiteralUnion,
   ThemeRegistration,
 } from 'shiki'
 import type { LocaleConfig } from 'vuepress/shared'
+
+export type ShikiLang =
+  | LanguageInput
+  | StringLiteralUnion<BundledLanguage>
+  | SpecialLanguage
 
 export type ThemeOptions =
   | ThemeRegistration
@@ -38,7 +46,7 @@ export interface HighlighterOptions {
    * Languages for syntax highlighting.
    * @see https://shiki.style/languages
    */
-  languages?: LanguageInput[]
+  languages?: ShikiLang[]
   /**
    * Custom language aliases.
    *

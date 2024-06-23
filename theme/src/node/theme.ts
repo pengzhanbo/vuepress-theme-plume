@@ -13,6 +13,7 @@ import {
   templateBuildRenderer,
 } from './config/index.js'
 import { setupPrepare, watchPrepare } from './prepare/index.js'
+import { extendsMarkdown } from './extendsMarkdown.js'
 
 export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
   const {
@@ -54,6 +55,8 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
         extendsPageData(page as Page<PlumeThemePageData>, localeOptions)
         resolvePageHead(page, localeOptions)
       },
+
+      extendsMarkdown,
 
       extendsBundlerOptions,
 

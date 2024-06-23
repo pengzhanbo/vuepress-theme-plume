@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { resolveRouteFullPath, useRouter, withBase } from 'vuepress/client'
-import { isLinkExternal } from 'vuepress/shared'
+import { computed, toRef } from 'vue'
+import { useRouter, withBase } from 'vuepress/client'
+import { useLink } from '../composables/link.js'
 
 interface Props {
   tag?: string
@@ -20,24 +20,13 @@ const props = withDefaults(defineProps<Props>(), {
   target: undefined,
   rel: undefined,
 })
-
 const router = useRouter()
-
-const isExternal = computed(
-  () => props.href && isLinkExternal(props.href),
-)
 
 const component = computed(() => {
   return props.tag || props.href ? 'a' : 'button'
 })
 
-const link = computed(() => {
-  if (!props.href)
-    return undefined
-  if (isExternal.value)
-    return props.href
-  return resolveRouteFullPath(props.href)
-})
+const { link, isExternal } = useLink(toRef(props, 'href'), toRef(props, 'target'))
 
 function linkTo(e: Event) {
   if (!isExternal.value) {

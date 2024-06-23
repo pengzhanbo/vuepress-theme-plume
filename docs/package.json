@@ -19,7 +19,7 @@
     "echarts": "^5.5.0",
     "flowchart.ts": "^3.0.0",
     "mermaid": "^10.9.1",
-    "vue": "^3.4.29",
+    "vue": "^3.4.30",
     "vuepress-theme-plume": "workspace:~"
   },
   "devDependencies": {

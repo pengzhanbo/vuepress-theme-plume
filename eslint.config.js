@@ -2,7 +2,7 @@ import config from '@pengzhanbo/eslint-config-vue'
 
 export default config({
   // todo: 正则校验
-  // 当前项目中的 正则 海冰不能完全通过 规则，存在 53 个问题
+  // 当前项目中的 正则 还并不能完全通过 规则，存在 53 个问题
   // 但处理起来比较麻烦，因此将会作为一项比较长期的工作来完成。
   regexp: false,
   ignores: [

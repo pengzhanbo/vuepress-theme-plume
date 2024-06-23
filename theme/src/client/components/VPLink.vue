@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { resolveRouteFullPath, useRoute, useRouter, withBase } from 'vuepress/client'
-import { isLinkExternal } from '@vuepress/helper/client'
+import { computed, toRef } from 'vue'
+import { useRouter, withBase } from 'vuepress/client'
+import { useLink } from '../composables/link.js'
 
 const props = defineProps<{
   tag?: string
@@ -12,19 +12,10 @@ const props = defineProps<{
 }>()
 
 const router = useRouter()
-const route = useRoute()
 
 const tag = computed(() => props.tag ?? (props.href ? 'a' : 'span'))
-const isExternal = computed(
-  () => (props.href && isLinkExternal(props.href)) || props.target === '_blank',
-)
-const link = computed(() => {
-  if (!props.href)
-    return undefined
-  if (isExternal.value)
-    return props.href
-  return resolveRouteFullPath(props.href, route.path)
-})
+
+const { link, isExternal } = useLink(toRef(props, 'href'), toRef(props, 'target'))
 
 function linkTo(e: Event) {
   if (!isExternal.value) {

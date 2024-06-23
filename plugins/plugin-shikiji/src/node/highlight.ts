@@ -4,7 +4,7 @@ import type { ShikiTransformer } from 'shiki'
 import {
   addClassToHast,
   bundledLanguages,
-  getHighlighter,
+  createHighlighter,
   isPlainLang,
   isSpecialLang,
 } from 'shiki'
@@ -41,7 +41,7 @@ export async function highlight(
     languages = Object.keys(bundledLanguages),
   } = options
 
-  const highlighter = await getHighlighter({
+  const highlighter = await createHighlighter({
     themes:
       typeof theme === 'object' && 'light' in theme && 'dark' in theme
         ? [theme.light, theme.dark]

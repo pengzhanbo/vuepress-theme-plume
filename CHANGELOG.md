@@ -1,3 +1,19 @@
+# [1.0.0-rc.70](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.69...v1.0.0-rc.70) (2024-06-23)
+
+
+### Features
+
+* **plugin-shikiji:** rename `getHighlighter` to `createHighlighter` ([4789f1e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4789f1e1043adbfe93275e20446c5d37e481b8b4))
+* **theme:** 新增 `useLink` 组合式 API ([f792bf6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f792bf6cc76410ac7ac67eaf473d52aa0a0a3598))
+* **theme:** 新增 markdown render 缓存，优化开发服务启动时间 ([8c3e5f0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8c3e5f0f067180d97719120b6705d3ca4f11e7e3))
+
+
+### Performance Improvements
+
+* update deps to latest ([7c8a108](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7c8a1084fe3e90190fa59aa06dc2302dc36df576))
+
+
+
 # [1.0.0-rc.69](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.68...v1.0.0-rc.69) (2024-06-21)
 
 

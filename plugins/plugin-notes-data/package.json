@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-notes-data",
   "type": "module",
-  "version": "1.0.0-rc.69",
+  "version": "1.0.0-rc.70",
   "description": "The Plugin for VuePress 2 - notes data",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",

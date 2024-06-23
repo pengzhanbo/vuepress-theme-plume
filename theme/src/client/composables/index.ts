@@ -19,6 +19,7 @@ export * from './blog-tags.js'
 export * from './blog-archives.js'
 export * from './tag-colors.js'
 
+export * from './link.js'
 export * from './locale.js'
 export * from './route-query.js'
 export * from './watermark.js'

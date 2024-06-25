@@ -45,7 +45,7 @@ yarn add vuepress-plugin-netlify-functions
 
 2. In a vuepress plugin:
 
-   ``` js
+   ``` ts
    import { useNetlifyFunctionsPlugin } from 'vuepress-plugin-netlify-functions'
 
    function myPlugin(): Plugin {

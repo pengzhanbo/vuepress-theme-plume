@@ -42,7 +42,7 @@ yarn add vuepress-plugin-netlify-functions
 
 2. 在 vuepress plugin 中：
 
-   ``` js
+   ``` ts
    import { useNetlifyFunctionsPlugin } from 'vuepress-plugin-netlify-functions'
 
    function myPlugin(): Plugin {

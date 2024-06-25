@@ -39,9 +39,9 @@ useEventListener('message', (event) => {
   const { type, payload } = data
   if (
     type === 'ciu_embed'
-      && payload
-      && payload.feature === props.feature
-      && payload.meta === props.meta
+    && payload
+    && payload.feature === props.feature
+    && payload.meta === props.meta
   ) {
     height.value = `${Math.ceil(payload.height)}px`
   }

@@ -15,6 +15,7 @@ import {
   transformerNotationFocus,
   transformerNotationHighlight,
   transformerNotationWordHighlight,
+  transformerRemoveNotationEscape,
   transformerRenderWhitespace,
 } from '@shikijs/transformers'
 import type { HighlighterOptions, ThemeOptions } from './types.js'
@@ -25,7 +26,6 @@ const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 10)
 const cache = new LRUCache<string, string>(64)
 
 const vueRE = /-vue$/
-const RE_ESCAPE = /\[\\\!code/g
 const mustacheRE = /\{\{.*?\}\}/g
 const decorationsRE = /^\/\/ @decorations:(.*?)\n/
 
@@ -85,10 +85,7 @@ export async function highlight(
         return code
       },
     },
-    {
-      name: 'vuepress:remove-escape',
-      postprocess: code => code.replace(RE_ESCAPE, '[!code'),
-    },
+    transformerRemoveNotationEscape(),
   ]
 
   const loadedLanguages = highlighter.getLoadedLanguages()

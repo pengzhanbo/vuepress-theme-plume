@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-copy-code",
   "type": "module",
-  "version": "1.0.0-rc.70",
+  "version": "1.0.0-rc.71",
   "private": "true",
   "description": "The Plugin for VuePress 2 - copy code",
   "author": "pengzhanbo <volodymyr@foxmail.com>",

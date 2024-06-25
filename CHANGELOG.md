@@ -1,3 +1,23 @@
+# [1.0.0-rc.71](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.70...v1.0.0-rc.71) (2024-06-25)
+
+
+### Bug Fixes
+
+* **theme:** navbar divider overflow, close [#104](https://github.com/pengzhanbo/vuepress-theme-plume/issues/104) ([75e7276](https://github.com/pengzhanbo/vuepress-theme-plume/commit/75e72761b52341a4e967096e0e0e6b06f62da421))
+
+
+### Features
+
+* **plugin-shikiji:** remove notation escape ([074ade9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/074ade93a114fbe47c81d8f5d8f80acfd0d20dd9))
+* **theme:** add `transition` options ([babd611](https://github.com/pengzhanbo/vuepress-theme-plume/commit/babd6114c39ee408b8c19ea2243236ae0605761e))
+
+
+### Performance Improvements
+
+* optimize render cache ([787626e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/787626e2e4fb8a4b26ab2615d5ab12a7b3edd09f))
+
+
+
 # [1.0.0-rc.70](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.69...v1.0.0-rc.70) (2024-06-23)
 
 

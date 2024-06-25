@@ -1,6 +1,6 @@
 import type { LocaleData } from 'vuepress/core'
 import type { NotesDataOptions } from '@vuepress-plume/plugin-notes-data'
-import type { SocialLink, SocialLinkIconUnion, ThemeOutline } from '../base.js'
+import type { SocialLink, SocialLinkIconUnion, ThemeOutline, ThemeTransition } from '../base.js'
 import type { PlumeThemeBlog } from '../blog.js'
 import type { NavItem } from '../navbar.js'
 
@@ -104,6 +104,13 @@ export interface PlumeThemeLocaleData extends LocaleData {
   aside?: boolean | 'left'
 
   /**
+   * 是否启用过渡动画效果
+   *
+   * @default true
+   */
+  transition?: boolean | ThemeTransition
+
+  /**
    * 选择语言菜单 的文本。
    */
   selectLanguageText?: string
@@ -119,9 +126,9 @@ export interface PlumeThemeLocaleData extends LocaleData {
   selectLanguageName?: string
 
   /**
-   *
-   *
    * 是否显示 "编辑此页"
+   *
+   * @default true
    */
   editLink?: boolean
 

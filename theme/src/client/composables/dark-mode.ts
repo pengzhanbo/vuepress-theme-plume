@@ -10,16 +10,21 @@ export const darkModeSymbol: InjectionKey<DarkModeRef> = Symbol(
 )
 
 export function setupDarkMode(app: App): void {
-  const themeLocale = useThemeData()
+  const theme = useThemeData()
 
-  const appearance = themeLocale.value.appearance
+  const transition = theme.value.transition
+  const disableTransition = typeof transition === 'object'
+    ? transition.appearance === false
+    : transition === false
+
+  const appearance = theme.value.appearance
   const isDark
     = appearance === 'force-dark'
       ? ref(true)
       : appearance
         ? useDark({
           storageKey: 'vuepress-theme-appearance',
-          disableTransition: false,
+          disableTransition,
           initialValue: () =>
             typeof appearance === 'string' ? appearance : 'auto',
           ...(typeof appearance === 'object' ? appearance : {}),

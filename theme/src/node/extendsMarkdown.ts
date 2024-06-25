@@ -12,45 +12,46 @@
  * 基本只剩下 vuepress 本身的开销和 加载 shiki 所有语言带来 0.5s 左右的开销。
  */
 import { createHash } from 'node:crypto'
+import process from 'node:process'
+import { fs, path } from 'vuepress/utils'
 import type { App } from 'vuepress'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
-import { fs } from 'vuepress/utils'
 
-interface CacheContent {
+export interface CacheData {
   content: string
   env: MarkdownEnv
 }
 
-const cacheDir = 'markdown/render'
-const metaFile = '_metadata.json'
+// { [filepath]: CacheDta }
+export type Cache = Record<string, CacheData>
+
+// { [filepath]: hash }
+export type Metadata = Record<string, string>
+
+const CACHE_DIR = 'markdown/rendered'
+const META_FILE = '_metadata.json'
 
 export async function extendsMarkdown(md: Markdown, app: App): Promise<void> {
-  // 如果是在 构建阶段，且缓存文件夹不存在，则不进行缓存
-  // 因为构建阶段仅一次性产物，生成缓存资源反而会带来额外的开销
-  if (app.env.isBuild && !fs.existsSync(app.dir.cache())) {
+  if (app.env.isBuild && !fs.existsSync(app.dir.cache(CACHE_DIR))) {
     return
   }
+  const basename = app.dir.cache(CACHE_DIR)
 
-  await fs.ensureDir(app.dir.cache(cacheDir))
-  const metadata = await readMetadata(app)
+  await fs.ensureDir(basename)
 
-  const writeCache = (filepath: string, cache: CacheContent) => {
-    const cachePath = app.dir.cache(cacheDir, filepath)
-    const content = JSON.stringify(cache)
-    fs.writeFileSync(cachePath, content, 'utf-8')
+  const speed = checkIOSpeed(basename)
+
+  const metaFilepath = `${basename}/${META_FILE}`
+
+  const metadata = (await readFile<Metadata>(metaFilepath)) || {}
+
+  let timer: ReturnType<typeof setTimeout> | null = null
+  const update = (filepath: string, data: CacheData): void => {
+    writeFile(`${basename}/${filepath}`, data)
+
+    timer && clearTimeout(timer)
+    timer = setTimeout(async () => writeFile(metaFilepath, metadata), 200)
   }
-
-  const readCache = (filepath: string): CacheContent | null => {
-    const cachePath = app.dir.cache(cacheDir, filepath)
-    try {
-      const content = fs.readFileSync(cachePath, 'utf-8')
-      return JSON.parse(content) as CacheContent
-    }
-    catch {}
-
-    return null
-  }
-
   const rawRender = md.render
   md.render = (input, env: MarkdownEnv) => {
     const filepath = env.filePathRelative
@@ -59,53 +60,77 @@ export async function extendsMarkdown(md: Markdown, app: App): Promise<void> {
       return rawRender(input, env)
     }
 
-    const hash = getContentHash(input)
-    const cachePath = normalizePath(filepath)
+    const key = hash(input)
+    const filename = normalizeFilename(filepath)
 
-    if (metadata[filepath] === hash) {
-      const cache = readCache(cachePath)
-      if (cache) {
-        Object.assign(env, cache.env)
-        return cache.content
+    if (metadata[filepath] === key) {
+      const cached = readFileSync<CacheData>(`${basename}/${filename}`)
+      if (cached) {
+        Object.assign(env, cached.env)
+        return cached.content
+      }
+      else {
+        metadata[filepath] = ''
       }
     }
+    const start = performance.now()
+    const content = rawRender(input, env)
 
-    metadata[filepath] = hash
-
-    const renderedContent = rawRender(input, env)
-
-    writeCache(cachePath, { content: renderedContent, env })
-    updateMetadata(app, metadata)
-    return renderedContent
+    /**
+     * High-frequency I/O is also a time-consuming operation,
+     * therefore, for render operations with low overhead, caching is not performed.
+     */
+    if (performance.now() - start > speed) {
+      metadata[filepath] = key
+      update(filename, { content, env })
+    }
+    return content
   }
 }
 
-async function readMetadata(app: App): Promise<Record<string, string>> {
-  const filepath = app.dir.cache(cacheDir, metaFile)
+function hash(data: string): string {
+  return createHash('md5').update(data).digest('hex')
+}
+
+function normalizeFilename(filename: string): string {
+  return hash(filename).slice(0, 10)
+}
+
+async function readFile<T = any>(filepath: string): Promise<T | null> {
   try {
     const content = await fs.readFile(filepath, 'utf-8')
-    return JSON.parse(content)
+    return JSON.parse(content) as T
   }
-  catch {}
-  return {}
+  catch {
+    return null
+  }
 }
 
-let timer: NodeJS.Timeout | null = null
-function updateMetadata(app: App, metadata: Record<string, string>) {
-  const filepath = app.dir.cache(cacheDir, metaFile)
-  timer && clearTimeout(timer)
-  timer = setTimeout(
-    async () => await fs.writeFile(filepath, JSON.stringify(metadata), 'utf-8'),
-    200,
-  )
+function readFileSync<T = any>(filepath: string): T | null {
+  try {
+    const content = fs.readFileSync(filepath, 'utf-8')
+    return JSON.parse(content) as T
+  }
+  catch {
+    return null
+  }
 }
 
-function normalizePath(filepath: string) {
-  return getContentHash(filepath)
+async function writeFile<T = any>(filepath: string, data: T): Promise<void> {
+  return await fs.writeFile(filepath, JSON.stringify(data), 'utf-8')
 }
 
-function getContentHash(content: string): string {
-  const hash = createHash('md5')
-  hash.update(content)
-  return hash.digest('hex')
+export function checkIOSpeed(cwd = process.cwd()): number {
+  try {
+    const tmp = path.join(cwd, 'tmp')
+    fs.writeFileSync(tmp, '{}', 'utf-8')
+    const start = performance.now()
+    readFileSync(tmp)
+    const end = performance.now()
+    fs.unlinkSync(tmp)
+    return end - start
+  }
+  catch {
+    return 0.15
+  }
 }

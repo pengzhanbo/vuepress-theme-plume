@@ -240,6 +240,12 @@ watchPostEffect(() => {
   margin-right: -8px;
 }
 
+@media (min-width: 960px) {
+  .vp-navbar.has-sidebar .divider {
+    padding-left: var(--vp-sidebar-width);
+  }
+}
+
 @media (min-width: 1440px) {
   .vp-navbar.has-sidebar .divider {
     padding-left: calc((100vw - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width));

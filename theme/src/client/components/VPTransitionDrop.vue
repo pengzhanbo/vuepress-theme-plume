@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useData } from '../composables/data.js'
+
 interface Props {
   delay?: number
   duration?: number
@@ -7,6 +10,15 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   delay: 0,
   duration: 0.25,
+})
+
+const { theme } = useData()
+
+const enabledTransition = computed(() => {
+  const transition = theme.value.transition
+  return typeof transition === 'object'
+    ? transition.postList !== false
+    : transition !== false
 })
 
 let _transition = ''
@@ -37,6 +49,7 @@ function unsetStyle(item: Element) {
 
 <template>
   <Transition
+    v-if="enabledTransition"
     name="drop"
     mode="out-in"
     :appear="appear"
@@ -49,4 +62,5 @@ function unsetStyle(item: Element) {
   >
     <slot />
   </Transition>
+  <slot v-else />
 </template>

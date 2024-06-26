@@ -21,8 +21,6 @@
 - `plugin-shikiji`: 代码高亮插件，支持 highlight、diff、focus、error level
 - `plugin-iconify`: 添加全局组件 `Iconify`
 - `plugin-md-power`: 提供 markdown 增强功能
-- `plugin-netlify-functions`: 提供 `netlify functions` 支持
-- `plugin-page-collection`: 一个使用 `plugin-netlify-functions` 的插件示例
 
 ## 开发配置
 

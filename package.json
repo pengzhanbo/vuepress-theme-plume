@@ -19,10 +19,10 @@
   },
   "scripts": {
     "build": "pnpm run clean && pnpm run build:package",
-    "build:package": "pnpm --filter=!vuepress-theme-plume-monorepo --filter=!docs --filter=!plugin-page-collection run -r --stream build",
-    "clean": "pnpm --filter=!vuepress-theme-plume-monorepo --filter=!docs --filter=!plugin-page-collection run -r --stream clean",
+    "build:package": "pnpm --filter=!docs run -r --stream build",
+    "clean": "pnpm --filter=!docs run -r --stream clean",
     "dev": "concurrently \"pnpm run dev:package\" \"pnpm run docs\"",
-    "dev:package": "pnpm --filter=!vuepress-theme-plume-monorepo --filter=!docs --parallel dev",
+    "dev:package": "pnpm  --filter=!docs --parallel dev",
     "dev:theme": "concurrently \"pnpm --filter=vuepress-theme-plume dev\" \"pnpm run docs\"",
     "docs": "pnpm --filter=docs docs:dev",
     "docs:build": "pnpm --filter=docs docs:build",

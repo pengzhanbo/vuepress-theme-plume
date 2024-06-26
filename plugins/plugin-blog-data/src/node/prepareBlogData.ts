@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto'
 import type { App, Page } from 'vuepress/core'
 import { colors, logger } from 'vuepress/utils'
 import type { BlogPostData, BlogPostDataItem } from '../shared/index.js'
@@ -20,11 +21,8 @@ if (import.meta.hot) {
 
 const headingRe = /<h(\d)[^>]*>.*?<\/h\1>/gi
 
-function getTimestamp(time: Date): number {
-  return new Date(time).getTime()
-}
-
 const EXCERPT_SPLIT = '<!-- more -->'
+let contentHash: string | undefined
 
 export async function preparedBlogData(app: App, pageFilter: (id: string) => boolean, options: PluginOption): Promise<void> {
   const start = performance.now()
@@ -84,8 +82,20 @@ export const blogPostData = JSON.parse(${JSON.stringify(
   if (app.env.isDev)
     content += HMR_CODE
 
-  await app.writeTemp('internal/blogData.js', content)
+  const currentHash = hash(content)
+  if (!contentHash || contentHash !== currentHash) {
+    contentHash = currentHash
+    await app.writeTemp('internal/blogData.js', content)
+  }
 
   if (app.env.isDebug)
     logger.info(`\n[${colors.green('@vuepress-plume/plugin-blog-data')}] prepare blog data time spent: ${(performance.now() - start).toFixed(2)}ms`)
+}
+
+function getTimestamp(time: Date): number {
+  return new Date(time).getTime()
+}
+
+function hash(content: string): string {
+  return createHash('md5').update(content).digest('hex')
 }

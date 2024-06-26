@@ -9,7 +9,7 @@ import type {
   NotesSidebar,
   NotesSidebarItem,
 } from '../shared/index.js'
-import { ensureArray, normalizePath } from './utils.js'
+import { ensureArray, hash, normalizePath } from './utils.js'
 
 const HMR_CODE = `
 if (import.meta.webpackHot) {
@@ -65,6 +65,7 @@ function resolvedNotesData(app: App, options: NotesDataOptions, result: NotesDat
   })
 }
 
+let contentHash: string | undefined
 export async function prepareNotesData(app: App, options: NotesDataOptions | NotesDataOptions[]) {
   const start = performance.now()
   const notesData: NotesData = {}
@@ -78,7 +79,11 @@ export const notesData = ${JSON.stringify(notesData, null, 2)}
   if (app.env.isDev)
     content += HMR_CODE
 
-  await app.writeTemp('internal/notesData.js', content)
+  const currentHash = hash(content)
+  if (!contentHash || contentHash !== currentHash) {
+    contentHash = currentHash
+    await app.writeTemp('internal/notesData.js', content)
+  }
 
   if (app.env.isDebug) {
     logger.info(

@@ -53,8 +53,7 @@ const groups = computed(() => matter.value.groups || [])
 }
 
 .vp-friends .title {
-  padding-top: 3rem;
-  padding-left: 1rem;
+  padding: 32px 20px 0;
   margin-bottom: 2rem;
   font-size: 28px;
   font-weight: 700;
@@ -64,7 +63,7 @@ const groups = computed(() => matter.value.groups || [])
 }
 
 .vp-friends .description {
-  padding-left: 1rem;
+  padding: 0 20px;
   margin-bottom: 16px;
   line-height: 28px;
   color: var(--vp-c-text-1);
@@ -74,7 +73,7 @@ const groups = computed(() => matter.value.groups || [])
 .friends-list {
   display: grid;
   gap: 20px;
-  padding: 0 16px;
+  padding: 0 20px;
   margin-top: 48px;
 }
 

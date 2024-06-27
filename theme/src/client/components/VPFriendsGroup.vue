@@ -28,7 +28,7 @@ defineProps<{
 <style scoped>
 .vp-friends-group {
   width: 100%;
-  padding: 64px 16px 0;
+  padding: 64px 20px 0;
   margin: 0 auto;
 }
 

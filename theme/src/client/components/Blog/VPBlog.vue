@@ -74,6 +74,8 @@ const { theme, page } = useData()
 .vp-blog {
   position: relative;
   min-height: calc(100vh - var(--vp-footer-height, 0px));
+  background-color: var(--vp-c-bg);
+  transition: background-color var(--t-color);
 }
 
 .blog-container {
@@ -93,14 +95,7 @@ const { theme, page } = useData()
 
 @media (min-width: 768px) {
   .vp-blog {
-    min-height: calc(100vh + var(--vp-nav-height) - var(--vp-footer-height, 0px));
-  }
-
-  .vp-blog {
-    padding-top: var(--vp-nav-height);
-    margin-top: calc(var(--vp-nav-height) * -1);
-    background-color: var(--vp-c-bg-alt);
-    transition: background-color var(--t-color);
+    background-color: transparent;
   }
 
   .blog-container {

@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, nextTick, watch } from 'vue'
 import VPBlog from '@theme/Blog/VPBlog.vue'
 import VPDoc from '@theme/VPDoc.vue'
 import VPPage from '@theme/VPPage.vue'
 import VPHome from '@theme/Home/VPHome.vue'
 import VPFriends from '@theme/VPFriends.vue'
 import { useData, useSidebar } from '../composables/index.js'
+import { inBrowser } from '../utils/index.js'
 
 const props = defineProps<{
   isNotFound?: boolean
@@ -18,6 +19,13 @@ const isBlogLayout = computed(() => {
   const { type } = page.value
   return type === 'blog' || type === 'blog-archives' || type === 'blog-tags'
 })
+
+watch([isBlogLayout, () => frontmatter.value.pageLayout], () => nextTick(() =>
+  inBrowser && document.documentElement.classList.toggle(
+    'bg-gray',
+    isBlogLayout.value,
+  ),
+), { immediate: true })
 </script>
 
 <template>

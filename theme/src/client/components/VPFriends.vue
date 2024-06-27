@@ -60,6 +60,7 @@ const groups = computed(() => matter.value.groups || [])
   color: var(--vp-c-text-1);
   text-align: center;
   outline: none;
+  transition: color var(--t-color);
 }
 
 .vp-friends .description {
@@ -68,6 +69,7 @@ const groups = computed(() => matter.value.groups || [])
   line-height: 28px;
   color: var(--vp-c-text-1);
   text-align: center;
+  transition: color var(--t-color);
 }
 
 .friends-list {

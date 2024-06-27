@@ -106,6 +106,10 @@ const friendStyle = computed(() => {
   justify-content: flex-start;
 }
 
+.content :deep(.vp-social-link) {
+  color: var(--vp-friends-name-color);
+}
+
 .content p {
   display: -webkit-box;
   padding-top: 8px;

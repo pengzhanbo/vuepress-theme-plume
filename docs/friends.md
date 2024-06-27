@@ -85,6 +85,13 @@ groups:
         backgroundColor: rgb(255,153,0)
         color: rgb(255,255,153)
         nameColor: rgb(255,255,170)
+        socials:
+          -
+            icon: github
+            link: https://github.com/pengzhanbo
+          -
+            icon: twitter
+            link: https://twitter.com/pengzhanbo
       -
         name: pengzhanbo
         link: https://github.com/pengzhanbo

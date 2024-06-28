@@ -2,4 +2,3 @@ packages:
   - docs
   - theme
   - plugins/*
-  - '!plugins/plugin-page-collection'

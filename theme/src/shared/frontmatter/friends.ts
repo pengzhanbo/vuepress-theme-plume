@@ -1,12 +1,14 @@
+import type { SocialLink } from '../base.js'
+
 export interface FriendsItem {
   name: string
   link: string
   avatar?: string
   desc?: string
+  socials?: SocialLink[]
   backgroundColor?: string | { light: string, dark: string }
   color?: string | { light: string, dark: string }
   nameColor?: string | { light: string, dark: string }
-  borderColor?: string | { light: string, dark: string }
 }
 
 export interface FriendGroup {

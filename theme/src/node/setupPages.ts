@@ -68,8 +68,13 @@ export function extendsPageData(
     delete page.frontmatter.home
   }
 
+  if (page.frontmatter.article === false) {
+    page.frontmatter.draft = true
+  }
+  delete page.frontmatter.article
+
   if (page.frontmatter.friends) {
-    page.frontmatter.article = false
+    page.frontmatter.draft = true
     page.data.type = 'friends'
     page.permalink = page.permalink ?? '/friends/'
     page.frontmatter.pageLayout = 'friends'
@@ -78,7 +83,7 @@ export function extendsPageData(
 
   const pageType = page.frontmatter._pageLayout as string
   if (pageType) {
-    page.frontmatter.article = false
+    page.frontmatter.draft = true
     page.data.type = pageType as any
     delete page.frontmatter._pageLayout
   }

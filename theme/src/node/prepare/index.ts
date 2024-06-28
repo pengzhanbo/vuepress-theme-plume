@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import { watch } from 'chokidar'
-import { prepareArticleTagColors } from './prepareArticleTagColor.js'
+import { prepareArticleTagColors, updateArticleTagColor } from './prepareArticleTagColor.js'
 
 export async function setupPrepare(app: App): Promise<void> {
   await prepareArticleTagColors(app)
@@ -12,9 +12,9 @@ export function watchPrepare(app: App, watchers: any[]): void {
     ignoreInitial: true,
   })
 
-  watcher.on('change', () => prepareArticleTagColors(app))
-  watcher.on('add', () => prepareArticleTagColors(app))
-  watcher.on('unlink', () => prepareArticleTagColors(app))
+  watcher.on('change', () => updateArticleTagColor(app))
+  watcher.on('add', () => updateArticleTagColor(app))
+  watcher.on('unlink', () => updateArticleTagColor(app))
 
   watchers.push(watcher)
 }

@@ -1,4 +1,5 @@
 import process from 'node:process'
+import { createHash } from 'node:crypto'
 import { customAlphabet } from 'nanoid'
 import { fs, getDirname, path } from 'vuepress/utils'
 import { Logger, ensureEndingSlash, ensureLeadingSlash } from '@vuepress/helper'
@@ -11,6 +12,8 @@ export const resolve = (...args: string[]) => path.resolve(__dirname, '../', ...
 export const templates = (url: string) => resolve('../templates', url)
 
 export const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz', 8)
+
+export const hash = (content: string) => createHash('md5').update(content).digest('hex')
 
 export const logger = new Logger(THEME_NAME)
 

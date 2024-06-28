@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@vuepress-plume/plugin-content-update": "workspace:~",
-    "vue": "^3.4.30"
+    "vue": "^3.4.31"
   },
   "publishConfig": {
     "access": "public"

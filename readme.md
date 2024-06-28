@@ -3,10 +3,14 @@
 <img src="/preview/plume.svg" width="200px" alt="plume" />
 </p>
 
+<p align="center">
+
 [![npm version](https://img.shields.io/npm/v/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=npm)](https://www.npmjs.com/package/vuepress-theme-plume)
 [![npm download](https://img.shields.io/npm/dy/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads)](https://www.npmjs.com/package/vuepress-theme-plume)
 ![peer dependency](https://img.shields.io/npm/dependency-version/vuepress-theme-plume/peer/vuepress?color=32A9C3&labelColor=1B3C4A)
 ![GitHub License](https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A)
+
+</p>
 
 一个简约的，干净的，容易上手的 vuepress 主题，适用于博客和文档。
 
@@ -77,16 +81,16 @@ __options__ : `PlumeThemeOptions`
 
 #### home page
 
-![home](/preview/preview-home.jpeg)
+![home](/preview/preview-home.jpeg?1)
 
 #### blog page
 
-![blog](/preview/preview-blog.jpeg?t=1)
+![blog](/preview/preview-blog.jpeg?1)
 
 #### post page
 
-![post](/preview/preview-post.jpeg)
+![post](/preview/preview-post.jpeg?1)
 
 #### note page
 
-![note](/preview/preview-note.jpeg)
+![note](/preview/preview-note.jpeg?1)

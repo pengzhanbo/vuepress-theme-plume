@@ -28,16 +28,18 @@ defineProps<{
 <style scoped>
 .vp-friends-group {
   width: 100%;
-  padding: 64px 16px 0;
+  padding: 64px 20px 0;
   margin: 0 auto;
 }
 
 .vp-friends-group .title {
-  padding-top: 2rem;
+  padding-top: 3rem;
   padding-bottom: 8px;
-  font-size: 20px;
+  margin-bottom: 28px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--vp-c-text-1);
+  text-align: center;
   border-top: solid 1px var(--vp-c-divider);
   outline: none;
   transition: color var(--t-color), border-color var(--t-color);
@@ -47,12 +49,13 @@ defineProps<{
   margin-bottom: 16px;
   line-height: 28px;
   color: var(--vp-c-text-1);
+  text-align: center;
   transition: color var(--t-color);
 }
 
 .friends-list {
   display: grid;
-  gap: 16px;
+  gap: 20px;
   margin-top: 32px;
 }
 

@@ -1,12 +1,16 @@
 import { toArray } from '@pengzhanbo/utils'
 import type { App } from 'vuepress'
-import { nanoid } from '../utils.js'
+import { fs } from 'vuepress/utils'
+import { hash, nanoid } from '../utils.js'
 
 export type TagsColorsItem = readonly [
   string, // normal color
   string, // hover color
   string, // background color
 ]
+
+const TEMP_JS = 'internal/articleTagColors.js'
+const TEMP_CSS = 'internal/articleTagColors.css'
 
 export const PRESET: TagsColorsItem[] = [
   ['#6aa1b7', '#5086a1', 'rgba(131, 208, 218, 0.314)'],
@@ -46,8 +50,45 @@ if (import.meta.hot) {
 
 // { index: className }
 const cache: Record<number, string> = {}
+const hashMap: {
+  js: string
+  css: string
+} = { js: '', css: '' }
 
 export async function prepareArticleTagColors(app: App): Promise<void> {
+  const [tempJS, tempCSS] = await Promise.all([
+    readFile(app.dir.temp(TEMP_JS)),
+    readFile(app.dir.temp(TEMP_CSS)),
+  ])
+
+  if (tempJS) {
+    hashMap.js = hash(tempJS)
+  }
+
+  if (tempCSS) {
+    hashMap.css = hash(tempCSS)
+  }
+
+  await updateArticleTagColor(app)
+}
+
+export async function updateArticleTagColor(app: App): Promise<void> {
+  const { js, css } = genCode(app)
+
+  const cssHash = hash(css)
+  if (!css || hashMap.css !== cssHash) {
+    hashMap.css = cssHash
+    await app.writeTemp(TEMP_CSS, css)
+  }
+
+  const jsHash = hash(js)
+  if (hashMap.js !== jsHash) {
+    hashMap.js = jsHash
+    await app.writeTemp(TEMP_JS, js)
+  }
+}
+
+export function genCode(app: App): { js: string, css: string } {
   const articleTagColors: Record<string, string> = {}
   const tagList = new Set<string>()
 
@@ -70,16 +111,16 @@ export async function prepareArticleTagColors(app: App): Promise<void> {
     }
   })
 
-  let code = `\
+  let js = `\
 import './articleTagColors.css'
 export const articleTagColors = ${JSON.stringify(articleTagColors)}
 `
   if (app.env.isDev) {
-    code += HMR_CODE
+    js += HMR_CODE
   }
+  const css = genCSS()
 
-  await app.writeTemp('internal/articleTagColors.css', genTagColorsStyle())
-  await app.writeTemp('internal/articleTagColors.ts', code)
+  return { js, css }
 }
 
 function getTagCode(tag: string): number {
@@ -91,7 +132,7 @@ function getTagCode(tag: string): number {
   return code % PRESET.length
 }
 
-function genTagColorsStyle(): string {
+function genCSS(): string {
   let css = ''
 
   for (const [code, className] of Object.entries(cache)) {
@@ -108,4 +149,12 @@ function genTagColorsStyle(): string {
   }
 
   return css
+}
+
+async function readFile(filepath: string): Promise<string> {
+  try {
+    return await fs.readFile(filepath, 'utf-8')
+  }
+  catch {}
+  return ''
 }

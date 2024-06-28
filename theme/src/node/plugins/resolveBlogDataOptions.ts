@@ -23,14 +23,12 @@ export function resolveBlogDataOptions(
       '**/{README,readme,index}.md',
       '.vuepress/',
       'node_modules/',
-      ...(blog?.exclude ?? []),
+      ...(blog.exclude ?? []),
       ...notesDirList,
     ].filter(Boolean),
     sortBy: 'createTime',
     excerpt: true,
-    pageFilter: (page: any) => page.frontmatter.article !== undefined
-      ? !!page.frontmatter.article
-      : true,
+    pageFilter: (page: any) => page.frontmatter.draft !== true,
     extendBlogData: (page: any) => {
       const tags = page.frontmatter.tags
       const data: Record<string, any> = {

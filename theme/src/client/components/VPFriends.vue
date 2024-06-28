@@ -47,40 +47,36 @@ const groups = computed(() => matter.value.groups || [])
 <style scoped>
 .vp-friends {
   width: 100%;
-  min-height: calc(100vh - var(--vp-footer-height, 0px));
-  padding-top: var(--vp-nav-height);
+  padding-top: calc(var(--vp-nav-height) + 32px);
   padding-bottom: 5rem;
   margin: 0 auto;
 }
 
-@media (min-width: 960px) {
-  .vp-friends {
-    min-height: calc(100vh - var(--vp-nav-height) - var(--vp-footer-height, 0px));
-  }
-}
-
 .vp-friends .title {
-  padding-top: 3rem;
-  padding-left: 1rem;
-  margin-bottom: 1rem;
-  font-size: 24px;
+  padding: 32px 20px 0;
+  margin-bottom: 2rem;
+  font-size: 28px;
   font-weight: 700;
   color: var(--vp-c-text-1);
+  text-align: center;
   outline: none;
+  transition: color var(--t-color);
 }
 
 .vp-friends .description {
-  padding-left: 1rem;
+  padding: 0 20px;
   margin-bottom: 16px;
   line-height: 28px;
   color: var(--vp-c-text-1);
+  text-align: center;
+  transition: color var(--t-color);
 }
 
 .friends-list {
   display: grid;
-  gap: 16px;
-  padding: 0 16px;
-  margin-top: 64px;
+  gap: 20px;
+  padding: 0 20px;
+  margin-top: 48px;
 }
 
 .edit-link {
@@ -103,7 +99,7 @@ const groups = computed(() => matter.value.groups || [])
 @media (min-width: 960px) {
   .vp-friends {
     max-width: 784px;
-    padding-top: 0;
+    padding-top: 48px;
   }
 
   .vp-friends .title,

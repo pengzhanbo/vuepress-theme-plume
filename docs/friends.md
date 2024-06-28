@@ -8,22 +8,59 @@ list:
     name: pengzhanbo
     link: https://github.com/pengzhanbo
     avatar: https://github.com/pengzhanbo.png
-    desc: 即使慢，驰而不息，纵会落后，纵会失败，但必须能够到达他所向的目标。
+  -
+    name: pengzhanbo
+    link: https://github.com/pengzhanbo
+    avatar: https://github.com/pengzhanbo.png
+  -
+    name: pengzhanbo
+    link: https://github.com/pengzhanbo
+    avatar: https://github.com/pengzhanbo.png
+  -
+    name: pengzhanbo
+    link: https://github.com/pengzhanbo
+    avatar: https://github.com/pengzhanbo.png
+    socials:
+      -
+        icon: github
+        link: https://github.com/pengzhanbo
+      -
+        icon: twitter
+        link: https://twitter.com/pengzhanbo
+  -
+    name: pengzhanbo
+    link: https://github.com/pengzhanbo
+    avatar: https://github.com/pengzhanbo.png
+    socials:
+      -
+        icon: github
+        link: https://github.com/pengzhanbo
+      -
+        icon: twitter
+        link: https://twitter.com/pengzhanbo
+  -
+    name: pengzhanbo
+    link: https://github.com/pengzhanbo
+    avatar: https://github.com/pengzhanbo.png
+    socials:
+      -
+        icon: github
+        link: https://github.com/pengzhanbo
+      -
+        icon: twitter
+        link: https://twitter.com/pengzhanbo
   -
     name: pengzhanbo
     link: https://github.com/pengzhanbo
     avatar: https://github.com/pengzhanbo.png
     desc: 即使慢，驰而不息，纵会落后，纵会失败，但必须能够到达他所向的目标。
-  -
-    name: pengzhanbo
-    link: https://github.com/pengzhanbo
-    avatar: https://github.com/pengzhanbo.png
-    desc: 即使慢，驰而不息，纵会落后，纵会失败，但必须能够到达他所向的目标。
-  -
-    name: pengzhanbo
-    link: https://github.com/pengzhanbo
-    avatar: https://github.com/pengzhanbo.png
-    desc: 即使慢，驰而不息，纵会落后，纵会失败，但必须能够到达他所向的目标。
+    socials:
+      -
+        icon: github
+        link: https://github.com/pengzhanbo
+      -
+        icon: twitter
+        link: https://twitter.com/pengzhanbo
   -
     name: pengzhanbo
     link: https://github.com/pengzhanbo
@@ -47,7 +84,13 @@ groups:
         backgroundColor: rgb(255,153,0)
         color: rgb(255,255,153)
         nameColor: rgb(255,255,170)
-        borderColor: rgb(255,255,204)
+        socials:
+          -
+            icon: github
+            link: https://github.com/pengzhanbo
+          -
+            icon: twitter
+            link: https://twitter.com/pengzhanbo
       -
         name: pengzhanbo
         link: https://github.com/pengzhanbo
@@ -56,7 +99,6 @@ groups:
         backgroundColor: rgb(255,102,102)
         color: rgb(255,204,204)
         nameColor: rgb(255,238,238)
-        borderColor: rgb(255,255,238)
       -
         name: pengzhanbo
         link: https://github.com/pengzhanbo
@@ -65,7 +107,6 @@ groups:
         backgroundColor: rgb(0,153,204)
         color: rgb(153,238,255)
         nameColor: rgb(153,255,255)
-        borderColor: rgb(153,238,255)
   -
     title: 分组 2
     desc: 这里是分组 2 的描述文字

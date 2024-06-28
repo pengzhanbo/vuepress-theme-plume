@@ -81,6 +81,11 @@ interface FriendsItem {
   desc?: string
 
   /**
+   * 社交链接
+   */
+  socials?: SocialLink[]
+
+  /**
    * 背景色
    */
   backgroundColor?: string | { light: string, dark: string }
@@ -92,12 +97,10 @@ interface FriendsItem {
    * 名字颜色
    */
   nameColor?: string | { light: string, dark: string }
-  /**
-   * 边框颜色
-   */
-  borderColor?: string | { light: string, dark: string }
 }
 ```
+
+社交链接配置请查看 [配置/主题配置/社交链接](../../config/主题配置.md#social)。
 
 ### groups
 

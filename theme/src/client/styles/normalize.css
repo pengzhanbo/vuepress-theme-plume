@@ -46,6 +46,7 @@ body {
   font-family: var(--vp-font-family-base);
   font-weight: 400;
   line-height: 24px;
+  background-color: var(--vp-c-bg);
 
   direction: ltr;
 }
@@ -53,11 +54,14 @@ body {
 html,
 body {
   color: var(--vp-c-text-1);
-  background-color: var(--vp-c-bg);
   transition: var(--t-color);
   transition-property: color, background-color;
 
   scrollbar-width: thin;
+}
+
+html.bg-gray body {
+  background-color: var(--vp-c-bg-alt);
 }
 
 main {

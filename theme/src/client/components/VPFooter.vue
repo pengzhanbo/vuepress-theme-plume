@@ -44,8 +44,9 @@ onMounted(() => {
   position: relative;
   z-index: var(--vp-z-index-footer);
   padding: 24px;
+  background-color: var(--vp-c-bg);
   border-top: 1px solid var(--vp-c-gutter);
-  transition: all var(--t-color);
+  transition: border-top var(--t-color), background-color var(--t-color);
 }
 
 .footer-no-border .vp-footer {

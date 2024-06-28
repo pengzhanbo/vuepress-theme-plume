@@ -6,7 +6,7 @@ permalink: /demos/
 readingTime: false
 prev: false
 next: false
-article: false
+draft: false
 externalLink: false
 docs:
   -

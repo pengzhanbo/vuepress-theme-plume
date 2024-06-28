@@ -23,7 +23,7 @@ export function resolveBlogDataOptions(
       '**/{README,readme,index}.md',
       '.vuepress/',
       'node_modules/',
-      ...(blog?.exclude ?? []),
+      ...(blog.exclude ?? []),
       ...notesDirList,
     ].filter(Boolean),
     sortBy: 'createTime',

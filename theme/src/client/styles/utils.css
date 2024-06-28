@@ -18,12 +18,12 @@
 
 /* ----------------- Transition ------------------------ */
 .fade-slide-y-enter-active {
-  transition: 0.25s ease !important;
+  transition: 0.15s ease !important;
   transition-property: opacity, transform;
 }
 
 .fade-slide-y-leave-active {
-  transition: 0.25s cubic-bezier(0, 1, 0.3, 1) !important;
+  transition: 0.15s cubic-bezier(0, 1, 0.3, 1) !important;
   transition-property: opacity, transform;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .fade-slide-x-enter-active {
-  transition: 0.25s ease !important;
+  transition: 0.15s ease !important;
   transition-property: opacity, transform;
 }
 

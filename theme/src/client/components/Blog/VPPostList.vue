@@ -20,7 +20,7 @@ const {
   <div class="vp-blog-post-list">
     <slot name="blog-post-list-before" />
     <template v-for="(post, index) in postList" :key="post.path">
-      <VPTransitionDrop appear :delay="index * 0.04">
+      <VPTransitionDrop appear :delay="index * 0.025">
         <VPPostItem
           :key="post.path"
           :post="post"

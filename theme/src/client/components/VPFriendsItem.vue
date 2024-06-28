@@ -32,6 +32,7 @@ const friendStyle = computed(() => {
   <div
     class="vp-friend" :style="friendStyle" :class="{
       'only-title': !friend.desc && (!friend.socials || !friend.socials.length),
+      'no-desc': !friend.desc,
     }"
   >
     <VPLink
@@ -53,10 +54,10 @@ const friendStyle = computed(() => {
       >
         {{ friend.name }}
       </VPLink>
-      <VPSocialLinks v-if="friend.socials" :links="friend.socials" />
       <p v-if="friend.desc">
         {{ friend.desc }}
       </p>
+      <VPSocialLinks v-if="friend.socials" :links="friend.socials" />
     </div>
   </div>
 </template>
@@ -103,8 +104,12 @@ const friendStyle = computed(() => {
 }
 
 .content :deep(.vp-social-links) {
-  justify-content: flex-start;
+  justify-content: flex-end;
   margin-top: 8px;
+}
+
+.vp-friend.no-desc .content :deep(.vp-social-links) {
+  justify-content: flex-start;
 }
 
 .content :deep(.vp-social-link) {

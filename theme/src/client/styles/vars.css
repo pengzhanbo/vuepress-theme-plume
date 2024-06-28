@@ -486,7 +486,7 @@
 :root {
   --vp-friends-text-color: var(--vp-c-text-1);
   --vp-friends-bg-color: var(--vp-c-bg-alt);
-  --vp-friends-name-color: var(--vp-c-text-1);
+  --vp-friends-name-color: var(--vp-c-text-2);
 }
 
 /**

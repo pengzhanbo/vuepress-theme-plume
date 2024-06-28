@@ -104,6 +104,7 @@ const friendStyle = computed(() => {
 
 .content :deep(.vp-social-links) {
   justify-content: flex-start;
+  margin-top: 8px;
 }
 
 .content :deep(.vp-social-link) {
@@ -112,7 +113,7 @@ const friendStyle = computed(() => {
 
 .content p {
   display: -webkit-box;
-  padding-top: 8px;
+  padding-top: 16px;
   overflow: hidden;
   line-height: 1.5;
   color: var(--vp-friends-text-color);

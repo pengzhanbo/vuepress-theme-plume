@@ -73,9 +73,7 @@ export async function preparedBlogData(app: App, pageFilter: (id: string) => boo
   })
 
   let content = `\
-export const blogPostData = JSON.parse(${JSON.stringify(
-    JSON.stringify(blogData),
-  )});
+export const blogPostData = ${JSON.stringify(blogData)};
 `
 
   // inject HMR code

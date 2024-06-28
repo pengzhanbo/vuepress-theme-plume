@@ -1,3 +1,20 @@
+# [1.0.0-rc.72](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.71...v1.0.0-rc.72) (2024-06-28)
+
+
+### Features
+
+* **theme:** optimize friends layout ([7448483](https://github.com/pengzhanbo/vuepress-theme-plume/commit/74484835865fe80a8d787351924a1a69f81d8340))
+* **theme:** rename frontmatter `article` to `draft` ([5a3d62b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5a3d62b8442cc8c388dcc6c7508abd9a14c8e9d6))
+
+
+### Performance Improvements
+
+* bump `create-filter` deps ([10cb625](https://github.com/pengzhanbo/vuepress-theme-plume/commit/10cb625401d648518efa6325003ff44c9982b2ba))
+* improve prepare output ([6952ba9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6952ba94c346fc226ab8cee63671a666abf66bd2))
+* update deps to latest ([e55df63](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e55df63d04710cc539abb239166b7b5eafcb3432))
+
+
+
 # [1.0.0-rc.71](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.70...v1.0.0-rc.71) (2024-06-25)
 
 

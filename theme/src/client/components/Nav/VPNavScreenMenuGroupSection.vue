@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import VPIcon from '@theme/VPIcon.vue'
 import VPNavScreenMenuGroupLink from '@theme/Nav/VPNavScreenMenuGroupLink.vue'
-import type { NavItemWithLink } from '../../../shared/index.js'
+import type { NavItemWithLink, ThemeIcon } from '../../../shared/index.js'
 
 defineProps<{
-  icon?: string | { svg: string }
+  icon?: ThemeIcon
   text?: string
   items: NavItemWithLink[]
 }>()
@@ -19,9 +19,7 @@ defineProps<{
     <VPNavScreenMenuGroupLink
       v-for="item in items"
       :key="item.text"
-      :text="item.text"
-      :link="item.link"
-      :icon="item.icon"
+      :item="item"
     />
   </div>
 </template>

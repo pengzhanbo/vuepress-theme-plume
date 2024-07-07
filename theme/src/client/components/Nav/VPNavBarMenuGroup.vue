@@ -2,17 +2,20 @@
 import { computed } from 'vue'
 import { resolveRouteFullPath } from 'vuepress/client'
 import VPFlyout from '@theme/VPFlyout.vue'
-import type { NavItem, NavItemWithChildren } from '../../../shared/index.js'
+import type {
+  ResolvedNavItem,
+  ResolvedNavItemWithChildren,
+} from '../../../shared/resolved/navbar.js'
 import { isActive } from '../../utils/index.js'
 import { useData } from '../../composables/data.js'
 
 const props = defineProps<{
-  item: NavItemWithChildren
+  item: ResolvedNavItemWithChildren
 }>()
 
 const { page } = useData()
 
-function isChildActive(navItem: NavItem) {
+function isChildActive(navItem: ResolvedNavItem): boolean {
   if ('link' in navItem) {
     return isActive(
       page.value.path,

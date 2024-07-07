@@ -3,26 +3,7 @@ import { type Ref, computed } from 'vue'
 import { hasOwn, useSessionStorage } from '@vueuse/core'
 import { useRoute } from 'vuepress/client'
 import { useData } from './data.js'
-
-declare const __PLUME_ENCRYPT_GLOBAL__: boolean
-declare const __PLUME_ENCRYPT_SEPARATOR__: string
-declare const __PLUME_ENCRYPT_ADMIN__: string
-declare const __PLUME_ENCRYPT_KEYS__: string[]
-declare const __PLUME_ENCRYPT_RULES__: Record<string, string>
-
-const global = __PLUME_ENCRYPT_GLOBAL__
-const separator = __PLUME_ENCRYPT_SEPARATOR__
-const admin = __PLUME_ENCRYPT_ADMIN__
-const matches = __PLUME_ENCRYPT_KEYS__
-const rules = __PLUME_ENCRYPT_RULES__
-
-const admins = admin.split(separator)
-
-const ruleList = Object.keys(rules).map(key => ({
-  key,
-  match: matches[key] as string,
-  rules: rules[key].split(separator),
-}))
+import { useEncryptData } from './encrypt-data.js'
 
 const storage = useSessionStorage('2a0a3d6afb2fdf1f', () => ({
   s: [genSaltSync(10), genSaltSync(10)] as const,
@@ -44,7 +25,7 @@ function splitHash(hash: string) {
 }
 
 const cache = new Map<string, boolean>()
-function compare(content: string, hash: string) {
+function compare(content: string, hash: string, separator = ':') {
   const key = [content, hash].join(separator)
   if (cache.has(key))
     return cache.get(key)
@@ -58,21 +39,23 @@ export function useGlobalEncrypt(): {
   isGlobalDecrypted: Ref<boolean>
   compareGlobal: (password: string) => boolean
 } {
+  const encrypt = useEncryptData()
+
   const isGlobalDecrypted = computed(() => {
-    if (!global)
+    if (!encrypt.value.global)
       return true
 
     const hash = splitHash(storage.value.g)
 
-    return !!hash && admins.includes(hash)
+    return !!hash && encrypt.value.admins.includes(hash)
   })
 
   function compareGlobal(password: string) {
     if (!password)
       return false
 
-    for (const admin of admins) {
-      if (compare(password, admin)) {
+    for (const admin of encrypt.value.admins) {
+      if (compare(password, admin, encrypt.value.separator)) {
         storage.value.g = mergeHash(admin)
         return true
       }
@@ -90,11 +73,12 @@ export function useGlobalEncrypt(): {
 export function usePageEncrypt() {
   const { page } = useData()
   const route = useRoute()
+  const encrypt = useEncryptData()
 
-  const hasPageEncrypt = computed(() => ruleList.length ? matches.some(toMatch) : false)
+  const hasPageEncrypt = computed(() => encrypt.value.ruleList.length ? encrypt.value.matches.some(toMatch) : false)
 
-  const hashList = computed(() => ruleList.length
-    ? ruleList
+  const hashList = computed(() => encrypt.value.ruleList.length
+    ? encrypt.value.ruleList
       .filter(item => toMatch(item.match))
     : [])
 
@@ -103,7 +87,7 @@ export function usePageEncrypt() {
       return true
 
     const hash = splitHash(storage.value.p.__GLOBAL__ || '')
-    if (hash && admins.includes(hash))
+    if (hash && encrypt.value.admins.includes(hash))
       return true
 
     for (const { key, rules } of hashList.value) {
@@ -136,8 +120,8 @@ export function usePageEncrypt() {
     let decrypted = false
 
     // check global
-    for (const admin of admins) {
-      if (compare(password, admin)) {
+    for (const admin of encrypt.value.admins) {
+      if (compare(password, admin, encrypt.value.separator)) {
         decrypted = true
         storage.value.p = {
           ...storage.value.p,
@@ -151,7 +135,7 @@ export function usePageEncrypt() {
       for (const { match, key, rules } of hashList.value) {
         if (toMatch(match)) {
           for (const rule of rules) {
-            if (compare(password, rule)) {
+            if (compare(password, rule, encrypt.value.separator)) {
               decrypted = true
               storage.value.p = {
                 ...storage.value.p,

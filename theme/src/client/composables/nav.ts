@@ -1,6 +1,43 @@
 import type { Ref } from 'vue'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
+import type { NavItem } from '../../shared/index.js'
+import type {
+  ResolvedNavItem,
+  ResolvedNavItemWithLink,
+} from '../../shared/resolved/navbar.js'
+import { normalizeLink, resolveNavLink } from '../utils/index.js'
+import { useData } from './data.js'
+
+export function useNavbarData(): Ref<ResolvedNavItem[]> {
+  const { theme } = useData()
+
+  return computed(() => resolveNavbar(theme.value.navbar || []))
+}
+
+function resolveNavbar(navbar: NavItem[], _prefix = ''): ResolvedNavItem[] {
+  const resolved: ResolvedNavItem[] = []
+  navbar.forEach((item) => {
+    if (typeof item === 'string') {
+      resolved.push(resolveNavLink(normalizeLink(_prefix, item)))
+    }
+    else {
+      const { items, prefix, ...args } = item
+      const res = { ...args } as ResolvedNavItem
+      if ('link' in res) {
+        res.link = normalizeLink(_prefix, res.link)
+      }
+      if (items?.length) {
+        res.items = resolveNavbar(
+          items,
+          normalizeLink(_prefix, prefix),
+        ) as ResolvedNavItemWithLink[]
+      }
+      resolved.push(res)
+    }
+  })
+  return resolved
+}
 
 export interface UseNavReturn {
   isScreenOpen: Ref<boolean>

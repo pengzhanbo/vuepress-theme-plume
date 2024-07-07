@@ -1,5 +1,4 @@
 import type { Ref } from 'vue'
-import type { ThemeLocaleDataRef } from '@vuepress/plugin-theme-data/client'
 import {
   usePageData,
   usePageFrontmatter,
@@ -19,6 +18,7 @@ import type {
   PlumeThemePageFrontmatter,
   PlumeThemePostFrontmatter,
 } from '../../shared/index.js'
+import type { ThemeLocaleDataRef } from './theme-data.js'
 import { useThemeLocaleData } from './theme-data.js'
 import { useDarkMode } from './dark-mode.js'
 

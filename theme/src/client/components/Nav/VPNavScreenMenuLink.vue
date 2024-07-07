@@ -2,20 +2,26 @@
 import { inject } from 'vue'
 import VPLink from '@theme/VPLink.vue'
 import VPIcon from '@theme/VPIcon.vue'
+import type { ResolvedNavItemWithLink } from '../../../shared/resolved/navbar.js'
 
 defineProps<{
-  text: string
-  link: string
-  icon?: string | { svg: string }
+  item: ResolvedNavItemWithLink
 }>()
 
 const closeScreen = inject('close-screen') as () => void
 </script>
 
 <template>
-  <VPLink class="vp-nav-screen-menu-link" :href="link" @click="closeScreen">
-    <VPIcon v-if="icon" :name="icon" />
-    <i v-text="text" />
+  <VPLink
+    class="vp-nav-screen-menu-link"
+    :href="item.link"
+    :target="item.target"
+    :rel="item.rel"
+    :no-icon="item.noIcon"
+    @click="closeScreen"
+  >
+    <VPIcon v-if="item.icon" :name="item.icon" />
+    <span v-html="item.text" />
   </VPLink>
 </template>
 

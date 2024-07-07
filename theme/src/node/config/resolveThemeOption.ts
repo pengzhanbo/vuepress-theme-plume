@@ -1,7 +1,13 @@
 import type { PlumeThemeOptions } from '../../shared/index.js'
-import { logger } from '../utils.js'
+import { logger } from '../utils/index.js'
 
-export function resolveThemeOptions({ themePlugins, plugins, encrypt, hostname, ...localeOptions }: PlumeThemeOptions) {
+export function resolveThemeOptions({
+  themePlugins,
+  plugins,
+  hostname,
+  configFile,
+  ...localeOptions
+}: PlumeThemeOptions) {
   const pluginOptions = plugins ?? themePlugins ?? {}
 
   if (themePlugins) {
@@ -11,8 +17,8 @@ export function resolveThemeOptions({ themePlugins, plugins, encrypt, hostname, 
   }
 
   return {
+    configFile,
     pluginOptions,
-    encrypt,
     hostname,
     localeOptions,
   }

@@ -4,12 +4,8 @@ import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { gitPlugin } from '@vuepress/plugin-git'
 import { photoSwipePlugin } from '@vuepress/plugin-photo-swipe'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
-import { themeDataPlugin } from '@vuepress/plugin-theme-data'
-import { autoFrontmatterPlugin } from '@vuepress-plume/plugin-auto-frontmatter'
 import { baiduTongjiPlugin } from '@vuepress-plume/plugin-baidu-tongji'
-import { blogDataPlugin } from '@vuepress-plume/plugin-blog-data'
 import { iconifyPlugin } from '@vuepress-plume/plugin-iconify'
-import { notesDataPlugin } from '@vuepress-plume/plugin-notes-data'
 import { shikiPlugin } from '@vuepress-plume/plugin-shikiji'
 import { commentPlugin } from '@vuepress/plugin-comment'
 import { type MarkdownEnhancePluginOptions, mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
@@ -21,54 +17,31 @@ import { searchPlugin } from '@vuepress-plume/plugin-search'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
 import { watermarkPlugin } from '@vuepress/plugin-watermark'
 import { fontsPlugin } from '@vuepress-plume/plugin-fonts'
-import type {
-  PlumeThemeEncrypt,
-  PlumeThemeLocaleOptions,
-  PlumeThemePluginOptions,
-} from '../../shared/index.js'
+import type { PlumeThemeLocaleOptions, PlumeThemePluginOptions } from '../../shared/index.js'
 import {
   resolveDocsearchOptions,
-  resolveNotesOptions,
   resolveSearchOptions,
-  resolveThemeData,
 } from '../config/index.js'
-import { resolveAutoFrontmatterOptions } from './resolveAutoFrontmatterOptions.js'
-import { resolveBlogDataOptions } from './resolveBlogDataOptions.js'
 import { customContainerPlugins } from './containerPlugins.js'
 
 export interface SetupPluginOptions {
   app: App
   pluginOptions: PlumeThemePluginOptions
-  localeOptions: PlumeThemeLocaleOptions
-  encrypt?: PlumeThemeEncrypt
   hostname?: string
 }
 
 export function getPlugins({
   app,
   pluginOptions,
-  localeOptions,
-  encrypt,
   hostname,
 }: SetupPluginOptions): PluginConfig {
   const isProd = !app.env.isDev
 
   const plugins: PluginConfig = [
 
-    themeDataPlugin({ themeData: resolveThemeData(app, localeOptions) }),
-
-    autoFrontmatterPlugin(resolveAutoFrontmatterOptions(pluginOptions, localeOptions)),
-
-    blogDataPlugin(resolveBlogDataOptions(localeOptions, encrypt)),
-
-    notesDataPlugin(resolveNotesOptions(localeOptions)),
-
     iconifyPlugin(),
-
     fontsPlugin(),
-
     contentUpdatePlugin(),
-
     activeHeaderLinksPlugin({
       headerLinkSelector: 'a.outline-link',
       headerAnchorSelector: '.header-anchor',
@@ -185,10 +158,7 @@ export function getPlugins({
   }
 
   if (pluginOptions.seo !== false && hostname && isProd) {
-    plugins.push(seoPlugin({
-      hostname,
-      author: localeOptions.locales?.['/'].profile?.name || localeOptions.profile?.name || localeOptions.locales?.['/'].avatar?.name || localeOptions.avatar?.name,
-    }))
+    plugins.push(seoPlugin({ hostname }))
   }
 
   return plugins

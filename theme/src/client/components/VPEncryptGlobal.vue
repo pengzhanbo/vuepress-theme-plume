@@ -3,10 +3,8 @@ import { computed } from 'vue'
 import VPFooter from '@theme/VPFooter.vue'
 import VPEncryptForm from '@theme/VPEncryptForm.vue'
 import { useData } from '../composables/data.js'
-import { useGlobalEncrypt } from '../composables/encrypt.js'
 
 const { theme, site } = useData()
-const { compareGlobal } = useGlobalEncrypt()
 
 const profile = computed(() => theme.value.profile)
 const title = computed(() => profile.value?.name || site.value.title)
@@ -23,7 +21,7 @@ const title = computed(() => profile.value?.name || site.value.title)
           {{ title }}
         </h3>
       </div>
-      <VPEncryptForm :compare="compareGlobal" :info="theme.encryptGlobalText" />
+      <VPEncryptForm global :info="theme.encryptGlobalText" />
     </div>
   </div>
   <VPFooter />

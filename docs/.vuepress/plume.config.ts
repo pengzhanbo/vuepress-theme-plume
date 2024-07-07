@@ -58,4 +58,5 @@ export default defineThemeConfig({
       '/article/enx7c9s/': '123456',
     },
   },
+  autoFrontmatter: { exclude: ['**/*.snippet.*'] },
 })

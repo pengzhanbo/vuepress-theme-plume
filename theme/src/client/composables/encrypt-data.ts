@@ -1,6 +1,4 @@
-import {
-  encrypt as rawEncrypt,
-} from '@internal/encrypt'
+import { encrypt as rawEncrypt } from '@internal/encrypt'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
 
@@ -12,16 +10,18 @@ export type EncryptConfig = readonly [
   Record<string, string>, // rules
 ]
 
+export interface EncryptDataRule {
+  key: string
+  match: string
+  rules: string[]
+}
+
 export interface EncryptData {
   global: boolean
   separator: string
   admins: string[]
   matches: string[]
-  ruleList: {
-    key: string
-    match: string
-    rules: string[]
-  }[]
+  ruleList: EncryptDataRule[]
 }
 
 export type EncryptRef = Ref<EncryptData>

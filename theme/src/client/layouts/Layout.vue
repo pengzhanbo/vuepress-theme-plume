@@ -11,7 +11,7 @@ import VPFooter from '@theme/VPFooter.vue'
 import VPBackToTop from '@theme/VPBackToTop.vue'
 import VPEncryptGlobal from '@theme/VPEncryptGlobal.vue'
 import { useCloseSidebarOnEscape, useSidebar } from '../composables/sidebar.js'
-import { useGlobalEncrypt, usePageEncrypt } from '../composables/encrypt.js'
+import { useEncrypt } from '../composables/encrypt.js'
 import { useData } from '../composables/data.js'
 
 const {
@@ -21,8 +21,7 @@ const {
 } = useSidebar()
 
 const { frontmatter } = useData()
-const { isGlobalDecrypted } = useGlobalEncrypt()
-const { isPageDecrypted } = usePageEncrypt()
+const { isGlobalDecrypted, isPageDecrypted } = useEncrypt()
 
 const route = useRoute()
 watch(() => route.path, closeSidebar)
@@ -65,7 +64,11 @@ useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
         </template>
       </VPNav>
 
-      <VPLocalNav :open="isSidebarOpen" :show-outline="isPageDecrypted" @open-menu="openSidebar" />
+      <VPLocalNav
+        :open="isSidebarOpen"
+        :show-outline="isPageDecrypted"
+        @open-menu="openSidebar"
+      />
 
       <VPSidebar :open="isSidebarOpen">
         <template #sidebar-nav-before>

@@ -5,7 +5,6 @@ import type { Theme } from 'vuepress'
 export const theme: Theme = plumeTheme({
   hostname: process.env.SITE_HOST || 'https://plume.pengzhanbo.cn',
   plugins: {
-    frontmatter: { exclude: ['**/*.snippet.*'] },
 
     shiki: { twoslash: true },
 

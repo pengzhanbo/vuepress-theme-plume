@@ -6,7 +6,7 @@ import VPDocAside from '@theme/VPDocAside.vue'
 import VPDocFooter from '@theme/VPDocFooter.vue'
 import VPEncryptPage from '@theme/VPEncryptPage.vue'
 import VPDocMeta from '@theme/VPDocMeta.vue'
-import { usePageEncrypt } from '../composables/encrypt.js'
+import { useEncrypt } from '../composables/encrypt.js'
 import { useSidebar } from '../composables/sidebar.js'
 import { useData } from '../composables/data.js'
 
@@ -14,7 +14,7 @@ const { page, theme, frontmatter, isDark } = useData()
 const route = useRoute()
 
 const { hasSidebar, hasAside, leftAside } = useSidebar()
-const { isPageDecrypted } = usePageEncrypt()
+const { isPageDecrypted } = useEncrypt()
 
 const hasComments = computed(() => {
   return page.value.frontmatter.comments !== false

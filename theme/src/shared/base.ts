@@ -3,6 +3,8 @@ export type ThemeImage =
   | { src: string, alt?: string }
   | { dark: string, light: string, alt?: string }
 
+export type ThemeIcon = string | { svg: string }
+
 export type ThemeColor = string | { light: string, dark: string }
 
 export type ThemeOutline = false | number | [number, number] | 'deep'

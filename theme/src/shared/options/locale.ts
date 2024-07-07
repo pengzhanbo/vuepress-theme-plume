@@ -1,8 +1,9 @@
 import type { LocaleData } from 'vuepress/core'
-import type { NotesDataOptions } from '@vuepress-plume/plugin-notes-data'
 import type { SocialLink, SocialLinkIconUnion, ThemeOutline, ThemeTransition } from '../base.js'
 import type { PlumeThemeBlog } from '../blog.js'
 import type { NavItem } from '../navbar.js'
+import type { SidebarMulti } from '../sidebar.js'
+import type { NotesOptions } from '../notes.js'
 
 export interface PlumeThemeLocaleData extends LocaleData {
   /**
@@ -77,7 +78,12 @@ export interface PlumeThemeLocaleData extends LocaleData {
    *
    * 注：也可以将notes配置到navbar中
    */
-  notes?: false | NotesDataOptions
+  notes?: false | NotesOptions
+
+  /**
+   * 侧边栏配置
+   */
+  sidebar?: SidebarMulti
 
   /**
    * 要显示的标题级别。

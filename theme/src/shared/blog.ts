@@ -1,10 +1,12 @@
-import type { BlogPostDataItem } from '@vuepress-plume/plugin-blog-data'
 import type { PageCategoryData } from './page-data.js'
 
-export interface PlumeThemeBlogPostItem extends BlogPostDataItem {
-  tags: string[]
-  sticky: boolean
-  categoryList: PageCategoryData[]
+export interface PlumeThemeBlogPostItem {
+  title: string
+  excerpt: string
+  path: string
+  tags?: string[]
+  sticky?: boolean | number
+  categoryList?: PageCategoryData[]
   createTime: string
   lang: string
   encrypt?: boolean
@@ -15,16 +17,21 @@ export type PlumeThemeBlogPostData = PlumeThemeBlogPostItem[]
 export interface PlumeThemeBlog {
 
   /**
-   * blog list link
+   * 博客文章列表页链接
    *
    * @default '/blog/'
    */
   link?: string
 
   /**
-   * 通过 glob string 配置包含文件
+   * 通过 glob string 配置包含文件，
    *
-   * @default - ['**\*.md']
+   * 默认读取 源目录中的所有 `.md` 文件，但会排除 `notes` 配置中用于笔记的目录。
+   *
+   * 如果希望只将某个目录下的文章读取为博客文章，比如 `blog` 目录，可以配置为：
+   * `['blog/**\/*.md']`
+   *
+   * @default - ['**\/*.md']
    */
   include?: string[]
 

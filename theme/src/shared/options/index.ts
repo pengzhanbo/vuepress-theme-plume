@@ -1,4 +1,5 @@
-import type { ThemeData } from '@vuepress/plugin-theme-data'
+import type { LocaleConfig } from 'vuepress/shared'
+import type { AutoFrontmatter } from '../auto-frontmatter.js'
 import type { PlumeThemeLocaleData } from './locale.js'
 import type { PlumeThemePluginOptions } from './plugins.js'
 import type { PlumeThemeEncrypt } from './encrypt.js'
@@ -23,15 +24,24 @@ export interface PlumeThemeOptions extends PlumeThemeLocaleOptions {
   hostname?: string
 
   /**
-   * 加密
+   * 加密配置
    */
   encrypt?: PlumeThemeEncrypt
+
+  /**
+   * 自定义主题配置文件路径
+   */
+  configFile?: string
+
+  autoFrontmatter?: false | Omit<AutoFrontmatter, 'frontmatter'>
 
 }
 
 export type PlumeThemeLocaleOptions = PlumeThemeData
 
-export type PlumeThemeData = ThemeData<PlumeThemeLocaleData>
+export type PlumeThemeData = PlumeThemeLocaleData & {
+  locales?: LocaleConfig<Omit<PlumeThemeLocaleData, 'blog'>>
+}
 
 export * from './locale.js'
 export * from './plugins.js'

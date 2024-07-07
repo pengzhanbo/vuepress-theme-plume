@@ -10,7 +10,7 @@ import type {
   PlumeThemeLocaleOptions,
   PlumeThemePageData,
 } from '../shared/index.js'
-import { withBase } from './utils.js'
+import { withBase } from './utils/index.js'
 import { PRESET_LOCALES } from './locales/index.js'
 import { resolveNotesLinkList } from './config/index.js'
 
@@ -62,6 +62,10 @@ export function extendsPageData(
 ) {
   page.data.filePathRelative = page.filePathRelative
   page.routeMeta.title = page.frontmatter.title || page.title
+
+  if (page.frontmatter.icon) {
+    page.routeMeta.icon = page.frontmatter.icon
+  }
 
   if (page.frontmatter.home) {
     page.frontmatter.pageLayout = 'home'

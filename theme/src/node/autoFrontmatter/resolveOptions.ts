@@ -8,7 +8,6 @@ import type {
   AutoFrontmatterArray,
   AutoFrontmatterObject,
   PlumeThemeLocaleOptions,
-  PlumeThemePluginOptions,
   SidebarItem,
 } from '../../shared/index.js'
 import {

@@ -17,7 +17,7 @@ import { searchPlugin } from '@vuepress-plume/plugin-search'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
 import { watermarkPlugin } from '@vuepress/plugin-watermark'
 import { fontsPlugin } from '@vuepress-plume/plugin-fonts'
-import type { PlumeThemeLocaleOptions, PlumeThemePluginOptions } from '../../shared/index.js'
+import type { PlumeThemePluginOptions } from '../../shared/index.js'
 import {
   resolveDocsearchOptions,
   resolveSearchOptions,

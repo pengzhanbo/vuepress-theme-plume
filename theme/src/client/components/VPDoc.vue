@@ -17,7 +17,7 @@ const { hasSidebar, hasAside, leftAside } = useSidebar()
 const { isPageDecrypted } = useEncrypt()
 
 const hasComments = computed(() => {
-  return page.value.frontmatter.comments !== false
+  return page.value.frontmatter.comments !== false && isPageDecrypted.value
 })
 
 const enableAside = computed(() => {
@@ -114,7 +114,7 @@ watch(
                 :class="[pageName, enabledExternalLinkIcon && 'external-link-icon-enabled']"
               />
             </main>
-            <VPDocFooter>
+            <VPDocFooter v-if="isPageDecrypted">
               <template #doc-footer-before>
                 <slot name="doc-footer-before" />
               </template>

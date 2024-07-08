@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { NotesSidebarItem } from '@vuepress-plume/plugin-notes-data'
 import { computed } from 'vue'
 import VPLink from '@theme/VPLink.vue'
 import VPIcon from '@theme/VPIcon.vue'
 import { useSidebarControl } from '../composables/sidebar.js'
+import type { ResolvedSidebarItem } from '../../shared/resolved/sidebar.js'
 
 const props = defineProps<{
-  item: NotesSidebarItem
+  item: ResolvedSidebarItem
   depth: number
 }>()
 
@@ -98,7 +98,7 @@ function onCaretClick() {
     <div v-if="item.items && item.items.length" class="items">
       <template v-if="depth < 5">
         <VPSidebarItem
-          v-for="i in (item.items as NotesSidebarItem[])"
+          v-for="i in item.items"
           :key="i.text"
           :item="i"
           :depth="depth + 1"

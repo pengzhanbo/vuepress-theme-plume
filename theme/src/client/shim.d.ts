@@ -13,3 +13,48 @@ declare module '@internal/articleTagColors' {
     articleTagColors,
   }
 }
+
+declare module '@internal/themePlumeData' {
+  import type { PlumeThemeData } from '../shared/index.js'
+
+  const themeData: PlumeThemeData
+  export {
+    themeData,
+  }
+}
+
+declare module '@internal/blogData' {
+  import type { PlumeThemeBlogPostData } from '../shared/index.js'
+
+  const blogPostData: PlumeThemeBlogPostData
+  export {
+    blogPostData,
+  }
+}
+
+declare module '@internal/sidebar' {
+  import type { Sidebar, SidebarItem } from '../shared/index.js'
+
+  const sidebar: {
+    __auto__: SidebarItem[]
+    [key: string]: Sidebar
+  }
+  export {
+    sidebar,
+  }
+}
+
+declare module '@internal/encrypt' {
+
+  const encrypt: readonly [
+    boolean, // global
+    string, // separator
+    string, // admin
+    string[], // keys
+    Record<string, string>, // rules
+  ]
+
+  export {
+    encrypt,
+  }
+}

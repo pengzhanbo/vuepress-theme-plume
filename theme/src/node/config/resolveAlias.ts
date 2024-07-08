@@ -1,5 +1,5 @@
 import { fs, path } from 'vuepress/utils'
-import { resolve } from '../utils.js'
+import { resolve } from '../utils/index.js'
 
 export function resolveAlias() {
   return {

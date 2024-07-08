@@ -11,11 +11,11 @@
  * 使用此功能后，本主题原本的启动耗时，由每次 13s 左右 优化到 二次启动时 1.2s 左右。
  * 基本只剩下 vuepress 本身的开销和 加载 shiki 所有语言带来 0.5s 左右的开销。
  */
-import { createHash } from 'node:crypto'
 import process from 'node:process'
 import { fs, path } from 'vuepress/utils'
 import type { App } from 'vuepress'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
+import { hash } from './utils/index.js'
 
 export interface CacheData {
   content: string
@@ -86,10 +86,6 @@ export async function extendsMarkdown(md: Markdown, app: App): Promise<void> {
     }
     return content
   }
-}
-
-function hash(data: string): string {
-  return createHash('md5').update(data).digest('hex')
 }
 
 function normalizeFilename(filename: string): string {

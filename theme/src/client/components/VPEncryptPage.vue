@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import VPEncryptForm from '@theme/VPEncryptForm.vue'
-import { usePageEncrypt } from '../composables/encrypt.js'
 import { useData } from '../composables/data.js'
 
 const { theme } = useData()
-const { comparePage } = usePageEncrypt()
 </script>
 
 <template>
-  <div class="vp-page-encrypt">
-    <div class="logo">
-      <span class="vpi-lock icon-lock-head" />
+  <ClientOnly>
+    <div class="vp-page-encrypt">
+      <div class="logo">
+        <span class="vpi-lock icon-lock-head" />
+      </div>
+      <VPEncryptForm :info="theme.encryptPageText" />
     </div>
-    <VPEncryptForm :compare="comparePage" :info="theme.encryptPageText" />
-  </div>
+  </ClientOnly>
 </template>
 
 <style scoped>
@@ -33,11 +33,15 @@ const { comparePage } = usePageEncrypt()
     width: 400px;
     padding: 20px;
     margin: 40px auto 0;
-    background-color: var(--vp-c-bg-alt);
+    border: solid 1px var(--vp-c-divider);
     border-radius: 8px;
-    box-shadow: var(--vp-shadow-2);
+    box-shadow: var(--vp-shadow-1);
     transition: var(--t-color);
-    transition-property: box-shadow, background-color;
+    transition-property: box-shadow, border-color;
+  }
+
+  .vp-page-encrypt:hover {
+    box-shadow: var(--vp-shadow-2);
   }
 }
 </style>

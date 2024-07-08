@@ -2,7 +2,7 @@ import { entries, fromEntries, getLocaleConfig } from '@vuepress/helper'
 import type { App } from 'vuepress'
 import { LOCALE_OPTIONS } from '../locales/index.js'
 import type { PlumeThemeLocaleData, PlumeThemeLocaleOptions } from '../../shared/index.js'
-import { THEME_NAME } from '../utils.js'
+import { THEME_NAME } from '../utils/index.js'
 
 const FALLBACK_OPTIONS: PlumeThemeLocaleData = {
   appearance: true,
@@ -18,6 +18,10 @@ const FALLBACK_OPTIONS: PlumeThemeLocaleData = {
   editLink: true,
   contributors: true,
 
+  footer: {
+    message:
+      'Power by <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
+  },
 }
 
 export function resolveLocaleOptions(app: App, { locales, ...options }: PlumeThemeLocaleOptions): PlumeThemeLocaleOptions {

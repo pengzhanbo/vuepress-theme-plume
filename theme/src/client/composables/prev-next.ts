@@ -1,11 +1,10 @@
 import { resolveRouteFullPath, usePageLang, useRoute } from 'vuepress/client'
 import { isPlainObject, isString } from 'vuepress/shared'
-import { useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
-import type { NotesSidebarItem } from '@vuepress-plume/plugin-notes-data'
 import { computed } from 'vue'
 import type { Ref } from 'vue'
-import type { NavItemWithLink, PlumeThemeBlogPostItem } from '../../shared/index.js'
+import type { NavItemWithLink, PlumeThemeBlogPostItem, SidebarItem } from '../../shared/index.js'
 import { resolveNavLink } from '../utils/index.js'
+import { useBlogPostData } from './blog-data.js'
 import { useSidebar } from './sidebar.js'
 import { useData } from './data.js'
 
@@ -72,13 +71,13 @@ function resolveFromFrontmatterConfig(conf: unknown): null | false | NavItemWith
   return false
 }
 
-function flatSidebar(sidebar: NotesSidebarItem[], res: NavItemWithLink[] = []): NavItemWithLink[] {
+function flatSidebar(sidebar: SidebarItem[], res: NavItemWithLink[] = []): NavItemWithLink[] {
   for (const item of sidebar) {
     if (item.link)
       res.push({ link: item.link, text: item.text || item.dir || '' })
 
     if (Array.isArray(item.items) && item.items.length)
-      flatSidebar(item.items as NotesSidebarItem[], res)
+      flatSidebar(item.items as SidebarItem[], res)
   }
 
   return res

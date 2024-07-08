@@ -1,8 +1,7 @@
-import type { NotesDataOptions } from '@vuepress-plume/plugin-notes-data'
 import { entries } from '@vuepress/helper'
 import { uniq } from '@pengzhanbo/utils'
-import type { PlumeThemeLocaleOptions } from '../..//shared/index.js'
-import { withBase } from '../utils.js'
+import type { NotesOptions, PlumeThemeLocaleOptions } from '../../shared/index.js'
+import { withBase } from '../utils/index.js'
 
 export function resolveNotesLinkList(localeOptions: PlumeThemeLocaleOptions) {
   const locales = localeOptions.locales || {}
@@ -22,9 +21,9 @@ export function resolveNotesLinkList(localeOptions: PlumeThemeLocaleOptions) {
   return uniq(notesLinks)
 }
 
-export function resolveNotesOptions(localeOptions: PlumeThemeLocaleOptions): NotesDataOptions[] {
+export function resolveNotesOptions(localeOptions: PlumeThemeLocaleOptions): NotesOptions[] {
   const locales = localeOptions.locales || {}
-  const notesOptionsList: NotesDataOptions[] = []
+  const notesOptionsList: NotesOptions[] = []
   for (const [locale, opt] of entries(locales)) {
     const options = locale === '/' ? (opt.notes || localeOptions.notes) : opt.notes
     if (options) {

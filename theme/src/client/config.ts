@@ -2,18 +2,28 @@ import './styles/index.css'
 
 import { defineClientConfig } from 'vuepress/client'
 import type { ClientConfig } from 'vuepress/client'
-import { enhanceScrollBehavior, setupDarkMode, setupWatermark } from './composables/index.js'
+import {
+  enhanceScrollBehavior,
+  setupDarkMode,
+  setupEncrypt,
+  setupSidebar,
+  setupThemeData,
+  setupWatermark,
+} from './composables/index.js'
 import { globalComponents } from './globalComponents.js'
 import Layout from './layouts/Layout.vue'
 import NotFound from './layouts/NotFound.vue'
 
 export default defineClientConfig({
   enhance({ app, router }) {
+    setupThemeData(app)
     setupDarkMode(app)
     enhanceScrollBehavior(router)
     globalComponents(app)
   },
   setup() {
+    setupSidebar()
+    setupEncrypt()
     setupWatermark()
   },
   layouts: { Layout, NotFound },

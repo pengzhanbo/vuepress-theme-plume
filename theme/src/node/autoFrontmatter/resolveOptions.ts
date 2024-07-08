@@ -1,17 +1,14 @@
 import { path } from 'vuepress/utils'
 import { removeLeadingSlash, resolveLocalePath } from 'vuepress/shared'
 import { ensureLeadingSlash } from '@vuepress/helper'
-import type {
-  AutoFrontmatterOptions,
-  FrontmatterArray,
-  FrontmatterObject,
-} from '@vuepress-plume/plugin-auto-frontmatter'
 import { format } from 'date-fns'
 import { uniq } from '@pengzhanbo/utils'
-import type { NotesSidebar } from '@vuepress-plume/plugin-notes-data'
 import type {
+  AutoFrontmatter,
+  AutoFrontmatterArray,
+  AutoFrontmatterObject,
   PlumeThemeLocaleOptions,
-  PlumeThemePluginOptions,
+  SidebarItem,
 } from '../../shared/index.js'
 import {
   getCurrentDirname,
@@ -20,16 +17,15 @@ import {
   normalizePath,
   pathJoin,
   withBase,
-} from '../utils.js'
+} from '../utils/index.js'
 import { resolveNotesOptions } from '../config/index.js'
 
-export function resolveAutoFrontmatterOptions(
-  pluginOptions: PlumeThemePluginOptions,
+export function resolveOptions(
   localeOptions: PlumeThemeLocaleOptions,
-): AutoFrontmatterOptions {
+  frontmatter: AutoFrontmatter,
+): AutoFrontmatter {
   const pkg = getPackage()
   const { locales = {}, article: articlePrefix = '/article/' } = localeOptions
-  const { frontmatter } = pluginOptions
 
   const resolveLocale = (relativeFilepath: string) => {
     const file = ensureLeadingSlash(relativeFilepath)
@@ -50,7 +46,7 @@ export function resolveAutoFrontmatterOptions(
     })
     .filter(Boolean)
 
-  const baseFrontmatter: FrontmatterObject = {
+  const baseFrontmatter: AutoFrontmatterObject = {
     author(author: string, { relativePath }, data: any) {
       if (author)
         return author
@@ -197,26 +193,33 @@ export function resolveAutoFrontmatterOptions(
           },
         },
       },
-    ].filter(Boolean) as FrontmatterArray,
+    ].filter(Boolean) as AutoFrontmatterArray,
   }
 }
 
 function resolveLinkBySidebar(
-  sidebar: NotesSidebar,
-  prefix: string,
+  sidebar: 'auto' | (string | SidebarItem)[],
+  _prefix: string,
 ) {
   const res: Record<string, string> = {}
 
+  if (sidebar === 'auto') {
+    return res
+  }
+
   for (const item of sidebar) {
     if (typeof item !== 'string') {
-      const { dir = '', link = '/', items, text = '' } = item
-      SidebarLink(items, link, text, pathJoin(prefix, dir), res)
+      const { prefix, dir = '', link = '/', items, text = '' } = item
+      getSidebarLink(items, link, text, pathJoin(_prefix, prefix || dir), res)
     }
   }
   return res
 }
 
-function SidebarLink(items: NotesSidebar | undefined, link: string, text: string, dir = '', res: Record<string, string> = {}) {
+function getSidebarLink(items: 'auto' | (string | SidebarItem)[] | undefined, link: string, text: string, dir = '', res: Record<string, string> = {}) {
+  if (items === 'auto')
+    return
+
   if (!items) {
     res[pathJoin(dir, `${text}.md`)] = link
     return
@@ -237,8 +240,8 @@ function SidebarLink(items: NotesSidebar | undefined, link: string, text: string
       res[dir] = link
     }
     else {
-      const { dir: subDir = '', link: subLink = '/', items: subItems, text: subText = '' } = item
-      SidebarLink(subItems, pathJoin(link, subLink), subText, pathJoin(dir, subDir), res)
+      const { prefix, dir: subDir = '', link: subLink = '/', items: subItems, text: subText = '' } = item
+      getSidebarLink(subItems, pathJoin(link, subLink), subText, pathJoin(prefix || dir, subDir), res)
     }
   }
 }

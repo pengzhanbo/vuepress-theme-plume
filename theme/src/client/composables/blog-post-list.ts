@@ -1,8 +1,8 @@
 import { usePageLang } from 'vuepress/client'
-import { useBlogPostData } from '@vuepress-plume/plugin-blog-data/client'
 import { computed } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
+import { useBlogPostData } from './blog-data.js'
 import { useData } from './data.js'
 import { useRouteQuery } from './route-query.js'
 
@@ -23,7 +23,7 @@ export function usePostListControl() {
 
   const postList = computed(() => {
     const stickyList = list.value.filter(item =>
-      typeof item.sticky === 'boolean' ? item.sticky : item.sticky >= 0,
+      item.sticky === true || typeof item.sticky === 'number',
     )
     const otherList = list.value.filter(
       item => item.sticky === undefined || item.sticky === false,
@@ -33,7 +33,7 @@ export function usePostListControl() {
       ...stickyList.sort((prev, next) => {
         if (next.sticky === true && prev.sticky === true)
           return 0
-        return next.sticky > prev.sticky ? 1 : -1
+        return next.sticky! > prev.sticky! ? 1 : -1
       }),
       ...otherList,
     ] as PlumeThemeBlogPostItem[]

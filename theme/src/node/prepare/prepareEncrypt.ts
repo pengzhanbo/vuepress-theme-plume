@@ -1,14 +1,37 @@
 import { genSaltSync, hashSync } from 'bcrypt-ts'
+import type { App } from 'vuepress'
 import { isNumber, isString, random, toArray } from '@pengzhanbo/utils'
 import type { Page } from 'vuepress/core'
 import type { PlumeThemeEncrypt, PlumeThemePageData } from '../../shared/index.js'
+import { hash, resolveContent, writeTemp } from '../utils/index.js'
+
+export type EncryptConfig = readonly [
+  boolean, // global
+  string, // separator
+  string, // admin
+  string[], // keys
+  Record<string, string>, // rules
+]
 
 const isStringLike = (value: unknown): boolean => isString(value) || isNumber(value)
 const separator = ':'
+let contentHash = ''
 
-export function resolveEncrypt(encrypt?: PlumeThemeEncrypt) {
+export async function prepareEncrypt(app: App, encrypt?: PlumeThemeEncrypt) {
+  const currentHash = encrypt ? hash(JSON.stringify(encrypt)) : ''
+
+  if (!contentHash || contentHash !== currentHash) {
+    contentHash = currentHash
+    const content = resolveContent(app, {
+      name: 'encrypt',
+      content: resolveEncrypt(encrypt),
+    })
+    await writeTemp(app, 'internal/encrypt.js', content)
+  }
+}
+
+function resolveEncrypt(encrypt?: PlumeThemeEncrypt): EncryptConfig {
   const salt = () => genSaltSync(random(8, 16))
-
   const admin = encrypt?.admin
     ? toArray(encrypt.admin)
       .filter(isStringLike)
@@ -30,13 +53,7 @@ export function resolveEncrypt(encrypt?: PlumeThemeEncrypt) {
     })
   }
 
-  return {
-    __PLUME_ENCRYPT_GLOBAL__: encrypt?.global ?? false,
-    __PLUME_ENCRYPT_SEPARATOR__: separator,
-    __PLUME_ENCRYPT_ADMIN__: admin,
-    __PLUME_ENCRYPT_KEYS__: keys,
-    __PLUME_ENCRYPT_RULES__: rules,
-  }
+  return [encrypt?.global ?? false, separator, admin, keys, rules]
 }
 
 export function isEncryptPage(page: Page<PlumeThemePageData>, encrypt?: PlumeThemeEncrypt) {

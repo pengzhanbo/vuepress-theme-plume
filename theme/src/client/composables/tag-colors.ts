@@ -10,7 +10,7 @@ const tagColorsRef: TagColorsRef = ref(articleTagColors)
 export const useTagColors = (): TagColorsRef => tagColorsRef
 
 if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {
-  __VUE_HMR_RUNTIME__.updateArticleTagColor = (data: TagColors) => {
+  __VUE_HMR_RUNTIME__.updateArticleTagColors = (data: TagColors) => {
     tagColorsRef.value = data
   }
 }

@@ -1,20 +1,28 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useData } from '../composables/data.js'
+import { useEncryptCompare } from '../composables/encrypt.js'
 
 const props = defineProps<{
-  compare: (password: string) => boolean
+  global?: boolean
   info?: string
 }>()
 
 const { theme } = useData()
+const { compareGlobal, comparePage } = useEncryptCompare()
 
 const password = ref('')
 const errorCode = ref(0) // 0: no error, 1: wrong password
+const unlocking = ref(false)
 
-function onSubmit() {
-  const result = props.compare(password.value)
+async function onSubmit() {
+  if (unlocking.value)
+    return
 
+  const compare = props.global ? compareGlobal : comparePage
+  unlocking.value = true
+  const result = await compare(password.value)
+  unlocking.value = false
   if (!result) {
     errorCode.value = 1
   }
@@ -40,8 +48,9 @@ function onSubmit() {
         @input="password && (errorCode = 0)"
       >
     </p>
-    <button class="encrypt-button" @click="onSubmit">
-      {{ theme.encryptButtonText ?? 'Confirm' }}
+    <button class="encrypt-button" :class="{ unlocking }" @click="onSubmit">
+      <span v-if="!unlocking">{{ theme.encryptButtonText ?? 'Confirm' }}</span>
+      <span v-else class="vpi-loading" />
     </button>
   </div>
 </template>
@@ -103,5 +112,15 @@ function onSubmit() {
 
 .encrypt-button:hover {
   background-color: var(--vp-c-brand-2);
+}
+
+.encrypt-button.unlocking {
+  color: var(--vp-c-brand-1);
+  background-color: var(--vp-c-gray-1);
+}
+
+.vpi-loading {
+  display: inline-block;
+  transform: scale(5);
 }
 </style>

@@ -30,7 +30,7 @@ export default defineClientConfig({
           id: PLUGIN_ID,
           label: PLUGIN_LABEL,
           packageName: '@vuepress-plume/plugin-notes-data',
-          homepage: 'https://pengzhanbo.cn',
+          homepage: 'https://theme-plume.vuejs.press/',
           logo: 'https://v2.vuepress.vuejs.org/images/hero.png',
           componentStateTypes: ['VuePress'],
         },

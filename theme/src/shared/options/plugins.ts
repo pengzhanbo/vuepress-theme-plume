@@ -1,6 +1,5 @@
 import type { DocsearchOptions } from '@vuepress/plugin-docsearch'
 import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
-import type { AutoFrontmatterOptions } from '@vuepress-plume/plugin-auto-frontmatter'
 import type { BaiduTongjiOptions } from '@vuepress-plume/plugin-baidu-tongji'
 import type { ShikiPluginOptions } from '@vuepress-plume/plugin-shikiji'
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
@@ -8,6 +7,7 @@ import type { MarkdownEnhancePluginOptions } from 'vuepress-plugin-md-enhance'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
 import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
+import type { AutoFrontmatter } from '../auto-frontmatter.js'
 
 export interface PlumeThemePluginOptions {
   /**
@@ -59,7 +59,10 @@ export interface PlumeThemePluginOptions {
 
   baiduTongji?: false | BaiduTongjiOptions
 
-  frontmatter?: Omit<AutoFrontmatterOptions, 'frontmatter'>
+  /**
+   * @deprecated 使用 `autoFrontmatter` 代替
+   */
+  frontmatter?: Omit<AutoFrontmatter, 'frontmatter'>
 
   readingTime?: false | ReadingTimePluginOptions
 

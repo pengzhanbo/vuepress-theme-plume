@@ -1,3 +1,25 @@
+# [1.0.0-rc.73](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.72...v1.0.0-rc.73) (2024-07-08)
+
+
+### Features
+
+* 添加单独的主题配置文件支持 ([cbba786](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cbba7868bf87a658bf418025801002db4bc5be90))
+
+
+### Performance Improvements
+
+* 改进类型 ([5a60004](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5a600048d502f633d89cd2526b2b72658abae375))
+* 优化 博客数据生成 ([e677d89](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e677d89104e66a64157330b2e97f47a227c4236a))
+* 优化 侧边栏数据生成 ([617125c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/617125cab2c53ca3b5f63002c7362b35221eabbf))
+* 优化 文章标签数据生成 ([5750052](https://github.com/pengzhanbo/vuepress-theme-plume/commit/57500524c50d99311cd530ecf27acf6b791d924b))
+* 优化 站点加密数据生成 ([b8de316](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b8de316dcf9fd1dcadf63b8c8e59f5f5bcb47e73))
+* 优化 主题数据生成 ([4958f67](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4958f67ea25ccc13a40760268b1ce4d65310d7d0))
+* 优化 frontmatter 生成 ([025a6bf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/025a6bf6809c0701c3a18f9cab77c7646abd9ebb))
+* 优化主题配置解析 ([9a8df18](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9a8df1828634cc0f6a20aa73f7992b7852041c76))
+* **theme:** 优化 站点加密交互 ([d49e70f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d49e70f48e5e6a2ba548ea80759980345fa261f5))
+
+
+
 # [1.0.0-rc.72](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.71...v1.0.0-rc.72) (2024-06-28)
 
 

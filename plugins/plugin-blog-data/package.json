@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-blog-data",
   "type": "module",
-  "version": "1.0.0-rc.72",
+  "version": "1.0.0-rc.73",
   "private": "true",
   "description": "The Plugin for VuePress 2 - blog data",
   "author": "pengzhanbo <volodymyr@foxmail.com>",

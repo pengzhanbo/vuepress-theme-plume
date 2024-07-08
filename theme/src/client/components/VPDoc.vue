@@ -108,9 +108,7 @@ watch(
             <slot name="doc-before" />
             <main class="main">
               <VPDocMeta />
-              <ClientOnly v-if="!isPageDecrypted">
-                <VPEncryptPage />
-              </ClientOnly>
+              <VPEncryptPage v-if="!isPageDecrypted" />
               <Content
                 v-else class="vp-doc plume-content"
                 :class="[pageName, enabledExternalLinkIcon && 'external-link-icon-enabled']"

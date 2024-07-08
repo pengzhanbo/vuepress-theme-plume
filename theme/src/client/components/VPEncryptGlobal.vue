@@ -11,19 +11,21 @@ const title = computed(() => profile.value?.name || site.value.title)
 </script>
 
 <template>
-  <div class="vp-global-encrypt">
-    <div class="global-encrypt-container">
-      <div v-if="profile || title" class="profile">
-        <p v-if="profile" class="avatar" :class="{ circle: profile.circle }">
-          <img :src="profile.avatar ?? profile.url" :alt="profile.name">
-        </p>
-        <h3 v-if="title">
-          {{ title }}
-        </h3>
+  <ClientOnly>
+    <div class="vp-global-encrypt">
+      <div class="global-encrypt-container">
+        <div v-if="profile || title" class="profile">
+          <p v-if="profile" class="avatar" :class="{ circle: profile.circle }">
+            <img :src="profile.avatar ?? profile.url" :alt="profile.name">
+          </p>
+          <h3 v-if="title">
+            {{ title }}
+          </h3>
+        </div>
+        <VPEncryptForm global :info="theme.encryptGlobalText" />
       </div>
-      <VPEncryptForm global :info="theme.encryptGlobalText" />
     </div>
-  </div>
+  </ClientOnly>
   <VPFooter />
 </template>
 

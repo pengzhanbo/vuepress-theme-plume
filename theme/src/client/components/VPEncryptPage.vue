@@ -6,12 +6,14 @@ const { theme } = useData()
 </script>
 
 <template>
-  <div class="vp-page-encrypt">
-    <div class="logo">
-      <span class="vpi-lock icon-lock-head" />
+  <ClientOnly>
+    <div class="vp-page-encrypt">
+      <div class="logo">
+        <span class="vpi-lock icon-lock-head" />
+      </div>
+      <VPEncryptForm :info="theme.encryptPageText" />
     </div>
-    <VPEncryptForm :info="theme.encryptPageText" />
-  </div>
+  </ClientOnly>
 </template>
 
 <style scoped>

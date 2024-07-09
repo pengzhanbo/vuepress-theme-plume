@@ -173,6 +173,10 @@ watch(
     max-width: 784px;
   }
 
+  .vp-doc-container:not(.has-sidebar.has-aside) .content {
+    max-width: 884px;
+  }
+
   .vp-doc-container:not(.has-sidebar) .container {
     max-width: 1104px;
   }

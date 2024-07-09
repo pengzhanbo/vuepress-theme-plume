@@ -50,6 +50,7 @@ onMounted(() => {
 }
 
 .footer-no-border .vp-footer {
+  background-color: transparent;
   border-top: none;
 }
 

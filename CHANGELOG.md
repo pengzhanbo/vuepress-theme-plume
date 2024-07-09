@@ -1,3 +1,20 @@
+# [1.0.0-rc.74](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.73...v1.0.0-rc.74) (2024-07-09)
+
+
+### Bug Fixes
+
+* **theme:** 修复 footer 在首页的错误渲染 ([ff776ef](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ff776efb986c91abbaab54a23a45c1be99427e99))
+
+
+### Performance Improvements
+
+* **theme:** 优化 frontmatter 自动生成 ([8714d76](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8714d76a0e997865b9285275c32dbf40474a196b))
+* **theme:** 优化 headers ([67f7b0e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/67f7b0e0c60969aaa5adcb17ef6c04a5bd593b5f))
+* **theme:** 优化博客页面数据 ([cfbea84](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cfbea845a47785772ddfa3929d5a8cbecba5d3b0))
+* **theme:** 优化侧边栏数据自动生成 ([766285e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/766285e8f820fc5f314d58f8d661f8b683db8274))
+
+
+
 # [1.0.0-rc.73](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.72...v1.0.0-rc.73) (2024-07-08)
 
 

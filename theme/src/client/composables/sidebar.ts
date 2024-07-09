@@ -373,7 +373,7 @@ export function useSidebarControl(item: ComputedRef<ResolvedSidebarItem>): Sideb
     }
 
     return item.value.items
-      ? containsActiveLink(page.value.filePathRelative || '', item.value.items)
+      ? containsActiveLink(page.value.path, item.value.items)
       : false
   })
 

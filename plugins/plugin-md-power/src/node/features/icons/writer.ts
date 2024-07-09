@@ -1,3 +1,4 @@
+import { constants, promises as fsp } from 'node:fs'
 import type { App } from 'vuepress/core'
 import { getIconContentCSS, getIconData } from '@iconify/utils'
 import { fs, logger } from 'vuepress/utils'
@@ -15,6 +16,7 @@ export interface IconCacheItem {
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 8)
 const iconDataCache = new Map<string, any>()
 const URL_CONTENT_RE = /(url\([^]+?\))/
+const CSS_PATH = 'internal/md-power/icons.css'
 
 function resolveOption(opt?: boolean | IconsOptions): Required<IconsOptions> {
   const options = typeof opt === 'object' ? opt : {}
@@ -27,8 +29,16 @@ function resolveOption(opt?: boolean | IconsOptions): Required<IconsOptions> {
 export function createIconCSSWriter(app: App, opt?: boolean | IconsOptions) {
   const cache = new Map<string, IconCacheItem>()
   const isInstalled = isPackageExists('@iconify/json')
+  const currentPath = app.dir.temp(CSS_PATH)
 
-  const write = (content: string) => app.writeTemp('internal/md-power/icons.css', content)
+  const write = async (content: string) => {
+    if (!content && app.env.isDev) {
+      if (existsSync(currentPath) && (await fsp.stat(currentPath)).isFile()) {
+        return
+      }
+    }
+    await app.writeTemp(CSS_PATH, content)
+  }
   let timer: NodeJS.Timeout | null = null
 
   const options = resolveOption(opt)
@@ -42,10 +52,12 @@ export function createIconCSSWriter(app: App, opt?: boolean | IconsOptions) {
     timer = setTimeout(async () => {
       let css = defaultContent
 
-      for (const [, { content, className }] of cache)
-        css += `.${className} {\n  --svg: ${content};\n}\n`
+      if (cache.size > 0) {
+        for (const [, { content, className }] of cache)
+          css += `.${className} {\n  --svg: ${content};\n}\n`
 
-      await write(css)
+        await write(css)
+      }
     }, 100)
   }
 
@@ -131,4 +143,14 @@ async function genIconContent(iconName: string, cb: (content: string) => void) {
   })
   const match = content.match(URL_CONTENT_RE)
   return cb(match ? match[1] : '')
+}
+
+function existsSync(fp: string) {
+  try {
+    fs.accessSync(fp, constants.R_OK)
+    return true
+  }
+  catch {
+    return false
+  }
 }

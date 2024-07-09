@@ -27,7 +27,6 @@ export interface Loader {
   dependencies: string[]
   load: () => Promise<{ config: ThemeConfig, dependencies: string[] }>
   loaded: boolean
-  watcher: FSWatcher | null
   changeEvents: ChangeEvent[]
   whenLoaded: ChangeEvent[]
   defaultConfig: ThemeConfig
@@ -47,7 +46,6 @@ export async function initConfigLoader(
     dependencies: [],
     load: () => compiler(loader!.configFile),
     loaded: false,
-    watcher: null,
     changeEvents: [],
     whenLoaded: [],
     defaultConfig,
@@ -64,7 +62,7 @@ export async function initConfigLoader(
 
   const { config, dependencies = [] } = await loader.load()
   loader.loaded = true
-  addDependencies(dependencies)
+  loader.dependencies = [...dependencies]
   updateResolvedConfig(app, config)
   runChangeEvents()
 
@@ -81,14 +79,14 @@ export function watchConfigFile(app: App, watchers: any[]) {
     cwd: path.join(path.dirname(loader.configFile), '../'),
   })
 
-  addDependencies()
+  addDependencies(watcher)
 
   watcher.on('change', async () => {
     if (loader) {
       loader.loaded = false
       const { config, dependencies = [] } = await loader.load()
       loader.loaded = true
-      addDependencies(dependencies)
+      addDependencies(watcher, dependencies)
       updateResolvedConfig(app, config)
       runChangeEvents()
     }
@@ -98,8 +96,6 @@ export function watchConfigFile(app: App, watchers: any[]) {
     updateResolvedConfig(app)
     runChangeEvents()
   })
-
-  loader.watcher = watcher
 
   watchers.push(watcher)
 }
@@ -147,7 +143,7 @@ function runChangeEvents() {
   }
 }
 
-function addDependencies(dependencies?: string[]) {
+function addDependencies(watcher: FSWatcher, dependencies?: string[]) {
   if (!loader)
     return
 
@@ -155,9 +151,9 @@ function addDependencies(dependencies?: string[]) {
     const deps = dependencies
       .filter(dep => !loader!.dependencies.includes(dep) && dep[0] === '.')
     loader.dependencies.push(...deps)
-    deps.length && loader.watcher?.add(deps)
+    watcher.add(deps)
   }
   else {
-    loader.watcher?.add(loader.dependencies)
+    watcher.add(loader.dependencies)
   }
 }

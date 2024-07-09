@@ -1,3 +1,21 @@
+# [1.0.0-rc.75](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.74...v1.0.0-rc.75) (2024-07-09)
+
+
+### Features
+
+* **theme:** 新增可选的 frontmatter 字段自动生成 ([332d284](https://github.com/pengzhanbo/vuepress-theme-plume/commit/332d28441504119142276a293521cb0958c83504))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** 优化 icons css 输出 ([9a64ee0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9a64ee07bfa8b54b585a05c39d03c24e9cff507d))
+* **theme:** 优化无文章列表时页面最小高度 ([e033880](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e03388098e91883daa2aa595594584eff2881686))
+* **theme:** 优化无右侧边栏时文档宽度 ([27116d7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/27116d70713ac19b2fb1d27d8d8a9d9b5335b14e))
+* **theme:** 优化主题配置文件监听流 ([8438cd5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8438cd546be66e4d8d8ed7ae90fb28b7686d64c7))
+* **theme:** 左侧侧边栏默认展开活动项 ([3cb7d88](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3cb7d8862fbb9ec758fa1468316d6e233eac6083))
+
+
+
 # [1.0.0-rc.74](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.73...v1.0.0-rc.74) (2024-07-09)
 
 

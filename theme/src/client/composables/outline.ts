@@ -1,8 +1,10 @@
-import { onMounted, onUnmounted, onUpdated } from 'vue'
-import type { Ref } from 'vue'
+import { inject, onMounted, onUnmounted, onUpdated, provide, ref } from 'vue'
+import type { InjectionKey, Ref } from 'vue'
+import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import type { ThemeOutline } from '../../shared/index.js'
 import { throttleAndDebounce } from '../utils/index.js'
 import { useAside } from './aside.js'
+import { useData } from './data.js'
 
 export interface Header {
   /**
@@ -39,6 +41,31 @@ const resolvedHeaders: { element: HTMLHeadElement, link: string }[] = []
 export type MenuItem = Omit<Header, 'slug' | 'children'> & {
   element: HTMLHeadElement
   children?: MenuItem[]
+}
+
+export const headersSymbol: InjectionKey<Ref<MenuItem[]>> = Symbol(
+  __VUEPRESS_DEV__ ? 'headers' : '',
+)
+
+export function setupHeaders(): Ref<MenuItem[]> {
+  const { frontmatter, theme } = useData()
+  const headers = ref<MenuItem[]>([])
+
+  onContentUpdated(() => {
+    headers.value = getHeaders(frontmatter.value.outline ?? theme.value.outline)
+  })
+
+  provide(headersSymbol, headers)
+
+  return headers
+}
+
+export function useHeaders(): Ref<MenuItem[]> {
+  const headers = inject(headersSymbol)
+  if (!headers) {
+    throw new Error('useHeaders() is called without provider.')
+  }
+  return headers
 }
 
 export function getHeaders(range?: ThemeOutline): MenuItem[] {

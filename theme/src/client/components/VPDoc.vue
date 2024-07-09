@@ -9,23 +9,20 @@ import VPDocMeta from '@theme/VPDocMeta.vue'
 import { useEncrypt } from '../composables/encrypt.js'
 import { useSidebar } from '../composables/sidebar.js'
 import { useData } from '../composables/data.js'
+import { useHeaders } from '../composables/outline.js'
 
 const { page, theme, frontmatter, isDark } = useData()
 const route = useRoute()
 
 const { hasSidebar, hasAside, leftAside } = useSidebar()
+const headers = useHeaders()
 const { isPageDecrypted } = useEncrypt()
 
 const hasComments = computed(() => {
   return page.value.frontmatter.comments !== false && isPageDecrypted.value
 })
 
-const enableAside = computed(() => {
-  if (page.value.isBlogPost)
-    return hasAside.value && isPageDecrypted.value && page.value.headers.length
-
-  return hasAside.value && isPageDecrypted.value
-})
+const enableAside = computed(() => hasAside.value && headers.value.length)
 
 const pageName = computed(() =>
   route.path.replace(/[./]+/g, '_').replace(/_html$/, ''),
@@ -68,7 +65,7 @@ watch(
     <div
       :key="page.path" class="vp-doc-container" :class="{
         'has-sidebar': hasSidebar,
-        'has-aside': hasAside,
+        'has-aside': enableAside,
         'is-blog': page.isBlogPost,
         'with-encrypt': !isPageDecrypted,
       }"
@@ -207,7 +204,7 @@ watch(
 .aside-container {
   position: sticky;
   top: 0;
-  min-height: calc(100vh - var(--vp-footer-height, 0px));
+  min-height: calc(100vh - var(--vp-nav-height, 0px) - var(--vp-footer-height, 0px));
   max-height: 100vh;
   padding-top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 32px);
   margin-top: calc((var(--vp-nav-height) + var(--vp-layout-top-height, 0px)) * -1 - 32px);
@@ -241,7 +238,7 @@ watch(
 .aside-content {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - (var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 48px));
+  min-height: calc(100vh - (var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + var(--vp-footer-height, 0px) + 48px));
   padding-bottom: 32px;
 }
 

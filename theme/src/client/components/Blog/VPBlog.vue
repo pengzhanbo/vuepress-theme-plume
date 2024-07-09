@@ -106,7 +106,7 @@ const { theme, page } = useData()
 
 @media (min-width: 960px) {
   .vp-blog {
-    min-height: calc(100vh - var(--vp-footer-height, 0px));
+    min-height: calc(100vh - var(--vp-nav-height) - var(--vp-footer-height, 0px));
   }
 
   .blog-container {

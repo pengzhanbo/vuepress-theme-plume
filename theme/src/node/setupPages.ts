@@ -2,17 +2,19 @@ import {
   ensureLeadingSlash,
   getRootLang,
   getRootLangPath,
+  removeLeadingSlash,
 } from '@vuepress/helper'
 import type { App, Page } from 'vuepress/core'
 import { createPage } from 'vuepress/core'
+import { createFilter } from 'create-filter'
 import type {
   PageCategoryData,
   PlumeThemeLocaleOptions,
   PlumeThemePageData,
 } from '../shared/index.js'
-import { withBase } from './utils/index.js'
+import { normalizePath, withBase } from './utils/index.js'
 import { PRESET_LOCALES } from './locales/index.js'
-import { resolveNotesLinkList } from './config/index.js'
+import { resolveNotesLinkList, resolveNotesOptions } from './config/index.js'
 
 export async function setupPage(
   app: App,
@@ -56,12 +58,45 @@ export async function setupPage(
   app.pages.push(...await Promise.all(pageList))
 }
 
+const weakFilter = new WeakMap<PlumeThemeLocaleOptions, (id: string | undefined) => boolean>()
+
+function createBlogFilter(localeOptions: PlumeThemeLocaleOptions) {
+  if (weakFilter.has(localeOptions))
+    return weakFilter.get(localeOptions)!
+
+  const blog = localeOptions.blog || {}
+  const notesList = resolveNotesOptions(localeOptions)
+  const notesDirList = notesList
+    .map(notes => removeLeadingSlash(normalizePath(`${notes.dir}/**`)))
+    .filter(Boolean)
+
+  const filter = createFilter(
+    blog.include ?? ['**/*.md'],
+    [
+      '**/{README,readme,index}.md',
+      '.vuepress/',
+      'node_modules/',
+      ...(blog.exclude ?? []),
+      ...notesDirList,
+    ].filter(Boolean),
+    { resolve: false },
+  )
+
+  weakFilter.set(localeOptions, filter)
+
+  return filter
+}
+
 export function extendsPageData(
   page: Page<PlumeThemePageData>,
   localeOptions: PlumeThemeLocaleOptions,
 ) {
   page.data.filePathRelative = page.filePathRelative
   page.routeMeta.title = page.frontmatter.title || page.title
+
+  if (createBlogFilter(localeOptions)(page.filePathRelative || '')) {
+    page.data.isBlogPost = true
+  }
 
   if (page.frontmatter.icon) {
     page.routeMeta.icon = page.frontmatter.icon

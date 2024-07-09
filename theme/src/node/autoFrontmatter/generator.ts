@@ -69,7 +69,7 @@ export async function generateAFrontmatter(app: App) {
   )
 }
 
-export async function watchAutoFrontmatter(app: App, watchers: any[]) {
+export async function watchAutoFrontmatter(app: App, watchers: any[], enable?: () => boolean) {
   if (!generate)
     return
 
@@ -80,7 +80,8 @@ export async function watchAutoFrontmatter(app: App, watchers: any[]) {
   })
 
   watcher.on('add', async (relativePath) => {
-    if (!generate!.globFilter(relativePath))
+    const enabled = enable ? enable() : true
+    if (!generate!.globFilter(relativePath) || !enabled)
       return
     const file = await readMarkdown(app.dir.source(), relativePath)
     await generator(file)

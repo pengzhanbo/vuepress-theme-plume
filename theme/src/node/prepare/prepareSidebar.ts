@@ -1,6 +1,17 @@
 import type { App, Page } from 'vuepress'
-import { entries, isArray, isPlainObject, removeLeadingSlash } from '@vuepress/helper'
-import type { PlumeThemeLocaleOptions, PlumeThemePageData, Sidebar, SidebarItem, ThemeIcon } from '../../shared/index.js'
+import {
+  entries,
+  isArray,
+  isPlainObject,
+  removeLeadingSlash,
+} from '@vuepress/helper'
+import type {
+  PlumeThemeLocaleOptions,
+  PlumeThemePageData,
+  Sidebar,
+  SidebarItem,
+  ThemeIcon,
+} from '../../shared/index.js'
 import { normalizeLink, resolveContent, writeTemp } from '../utils/index.js'
 import type { ResolvedSidebarItem } from '../../shared/resolved/sidebar.js'
 
@@ -53,6 +64,14 @@ function getSidebarData(
   return resolved
 }
 
+const MD_RE = /\.md$/
+const NUMBER_RE = /^\d+\./
+function resolveTitle(dirname: string) {
+  return dirname
+    .replace(MD_RE, '')
+    .replace(NUMBER_RE, '')
+}
+
 function getAutoDirSidebar(
   app: App,
   localePath: string,
@@ -80,6 +99,7 @@ function getAutoDirSidebar(
   }
 
   const RE_INDEX = ['index.md', 'README.md', 'readme.md']
+
   const result: ResolvedSidebarItem[] = []
   for (const page of pages) {
     const { data, title, path, frontmatter } = page
@@ -90,25 +110,37 @@ function getAutoDirSidebar(
     let index = 0
     let dir: string
     let items = result
+    let parent: ResolvedSidebarItem | undefined
     // eslint-disable-next-line no-cond-assign
     while ((dir = paths[index])) {
-      const text = dir.replace(/\.md$/, '').replace(/^\d+\./, '')
+      const text = resolveTitle(dir)
+      const isHome = RE_INDEX.includes(dir)
       let current = items.find(item => item.text === text)
       if (!current) {
         current = { text, link: undefined, items: [] } as ResolvedSidebarItem
-        !RE_INDEX.includes(dir) ? items.push(current) : items.unshift(current)
+        if (!isHome) {
+          items.push(current)
+        }
+        else {
+          !parent && items.unshift(current)
+        }
       }
       if (dir.endsWith('.md')) {
-        current.link = path
-        current.text = title
+        if (isHome && parent) {
+          parent.link = path
+        }
+        else {
+          current.link = path
+          current.text = title
+        }
       }
-      if (frontmatter.icon)
+      if (frontmatter.icon) {
         current.icon = frontmatter.icon as ThemeIcon
-
-      if (index > 0) {
-        current.collapsed = false
       }
-
+      if (parent?.items?.length) {
+        parent.collapsed = true
+      }
+      parent = current
       items = current.items as ResolvedSidebarItem[]
       index++
     }

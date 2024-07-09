@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import { useWindowScroll } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
-import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import VPLocalNavOutlineDropdown from '@theme/VPLocalNavOutlineDropdown.vue'
 import { useSidebar } from '../composables/sidebar.js'
-import { type MenuItem, getHeaders } from '../composables/outline.js'
+import { useHeaders } from '../composables/outline.js'
 import { useData } from '../composables/data.js'
 
 const props = defineProps<{
@@ -14,21 +13,17 @@ const props = defineProps<{
 
 defineEmits<(e: 'openMenu') => void>()
 
-const { page, theme, frontmatter } = useData()
+const { page, theme } = useData()
 
 const { hasSidebar } = useSidebar()
 const { y } = useWindowScroll()
 
 const navHeight = ref(0)
 
-const headers = ref<MenuItem[]>([])
+const headers = useHeaders()
 
 const empty = computed(() => {
   return headers.value.length === 0 && !hasSidebar.value
-})
-
-onContentUpdated(() => {
-  headers.value = getHeaders(frontmatter.value.outline ?? theme.value.outline)
 })
 
 onMounted(() => {

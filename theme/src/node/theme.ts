@@ -79,10 +79,10 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
       onWatched: (app, watchers) => {
         watchConfigFile(app, watchers)
         watchPrepare(app, watchers)
-        const autoFrontmatter = getResolvedThemeConfig().autoFrontmatter ?? pluginOptions.frontmatter
-        if (autoFrontmatter !== false) {
-          watchAutoFrontmatter(app, watchers)
-        }
+        watchAutoFrontmatter(app, watchers, () => {
+          const autoFrontmatter = getResolvedThemeConfig().autoFrontmatter ?? pluginOptions.frontmatter
+          return autoFrontmatter !== false
+        })
       },
 
       extendsPage: async (page) => {

@@ -1,18 +1,13 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import VPDocOutlineItem from '@theme/VPDocOutlineItem.vue'
-import { type MenuItem, getHeaders, useActiveAnchor } from '../composables/outline.js'
+import { useActiveAnchor, useHeaders } from '../composables/outline.js'
 import { useData } from '../composables/data.js'
 
-const { theme, frontmatter } = useData()
+const { theme } = useData()
 
-const headers = ref<MenuItem[]>([])
+const headers = useHeaders()
 const hasOutline = computed(() => headers.value.length > 0)
-
-onContentUpdated(() => {
-  headers.value = getHeaders(frontmatter.value.outline ?? theme.value.outline)
-})
 
 const container = ref()
 const marker = ref()

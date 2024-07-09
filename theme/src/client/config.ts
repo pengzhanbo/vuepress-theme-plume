@@ -6,6 +6,7 @@ import {
   enhanceScrollBehavior,
   setupDarkMode,
   setupEncrypt,
+  setupHeaders,
   setupSidebar,
   setupThemeData,
   setupWatermark,
@@ -23,6 +24,7 @@ export default defineClientConfig({
   },
   setup() {
     setupSidebar()
+    setupHeaders()
     setupEncrypt()
     setupWatermark()
   },

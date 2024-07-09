@@ -101,7 +101,7 @@ export function resolveOptions(
                 const note = findNote(relativePath)
                 if (note?.text)
                   return note.text
-                return getCurrentDirname(note?.dir, relativePath) || ''
+                return getCurrentDirname('', relativePath) || ''
               },
               ...baseFrontmatter,
               permalink(permalink: string, { relativePath }, data: any) {

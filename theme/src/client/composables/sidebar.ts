@@ -23,6 +23,7 @@ import { isActive, normalizeLink, normalizePrefix, resolveNavLink } from '../uti
 import type { Sidebar, SidebarItem } from '../../shared/index.js'
 import type { ResolvedSidebarItem } from '../../shared/resolved/sidebar.js'
 import { useData } from './data.js'
+import { useEncrypt } from './encrypt.js'
 
 export type SidebarData = Record<string, Sidebar>
 
@@ -229,6 +230,7 @@ export function useSidebar(): UseSidebarReturn {
   const { theme, frontmatter, page } = useData()
   const routeLocal = useRouteLocale()
   const is960 = useMediaQuery('(min-width: 960px)')
+  const { isPageDecrypted } = useEncrypt()
 
   const isOpen = ref(false)
 
@@ -257,6 +259,13 @@ export function useSidebar(): UseSidebarReturn {
   const hasAside = computed(() => {
     if (frontmatter.value.pageLayout === 'home' || frontmatter.value.home)
       return false
+
+    if (frontmatter.value.pageLayout === 'friends' || frontmatter.value.friends)
+      return false
+
+    if (!isPageDecrypted.value)
+      return false
+
     if (frontmatter.value.aside != null)
       return !!frontmatter.value.aside
     return theme.value.aside !== false

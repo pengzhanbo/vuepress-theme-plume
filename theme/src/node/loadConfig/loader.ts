@@ -41,13 +41,11 @@ export async function initConfigLoader(
   defaultConfig: ThemeConfig,
   { configFile, onChange }: InitConfigLoaderOptions = {},
 ) {
-  configFile = await findConfigPath(app, configFile)
-
   const { encrypt, autoFrontmatter, ...localeOptions } = defaultConfig
   loader = {
     configFile,
     dependencies: [],
-    load: () => compiler(configFile),
+    load: () => compiler(loader!.configFile),
     loaded: false,
     watcher: null,
     changeEvents: [],
@@ -59,6 +57,8 @@ export async function initConfigLoader(
       autoFrontmatter,
     },
   }
+
+  loader.configFile = await findConfigPath(app, configFile)
 
   onChange && loader.changeEvents.push(onChange)
 

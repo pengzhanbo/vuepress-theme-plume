@@ -57,8 +57,6 @@ export async function preparedBlogData(
   ) as Page<PlumeThemePageData, PlumeThemePostFrontmatter>[]
 
   const blogData: PlumeThemeBlogPostData = pages.map((page) => {
-    page.data.isBlogPost = true
-
     const tags = page.frontmatter.tags
     const data: PlumeThemeBlogPostItem = {
       path: page.path,
@@ -66,7 +64,7 @@ export async function preparedBlogData(
       categoryList: page.data.categoryList,
       tags,
       sticky: page.frontmatter.sticky,
-      createTime: page.data.frontmatter.createTime!,
+      createTime: page.data.frontmatter.createTime! || page.date?.replaceAll('-', '/') || '',
       lang: page.lang,
       excerpt: '',
     }

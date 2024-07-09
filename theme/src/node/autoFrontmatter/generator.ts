@@ -93,7 +93,6 @@ export async function watchAutoFrontmatter(app: App, watchers: any[], enable?: (
 async function generator(file: AutoFrontmatterMarkdownFile): Promise<void> {
   if (!generate)
     return
-
   const { filepath, relativePath } = file
 
   const current = generate.rules.find(({ filter }) => filter(relativePath))
@@ -115,7 +114,7 @@ async function generator(file: AutoFrontmatterMarkdownFile): Promise<void> {
         .replace(/\s+\n/g, '\n')
     const newContent = yaml ? `${yaml}---\n${content}` : content
 
-    fs.writeFileSync(filepath, newContent, 'utf-8')
+    await fs.promises.writeFile(filepath, newContent, 'utf-8')
   }
   catch (e) {
     console.error(e)

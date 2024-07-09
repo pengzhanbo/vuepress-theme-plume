@@ -22,7 +22,7 @@ import { resolveNotesOptions } from '../config/index.js'
 
 export function resolveOptions(
   localeOptions: PlumeThemeLocaleOptions,
-  frontmatter: AutoFrontmatter,
+  options: AutoFrontmatter,
 ): AutoFrontmatter {
   const pkg = getPackage()
   const { locales = {}, article: articlePrefix = '/article/' } = localeOptions
@@ -46,23 +46,28 @@ export function resolveOptions(
     })
     .filter(Boolean)
 
-  const baseFrontmatter: AutoFrontmatterObject = {
-    author(author: string, { relativePath }, data: any) {
+  const baseFrontmatter: AutoFrontmatterObject = {}
+
+  if (options.author !== false) {
+    baseFrontmatter.author = (author: string, { relativePath }, data) => {
       if (author)
         return author
-      if (data.friends)
+      if (data.friends || data.pageLayout === 'friends')
         return
       const profile = resolveOptions(relativePath).profile ?? resolveOptions(relativePath).avatar
 
       return profile?.name || pkg.author || ''
-    },
-    createTime(formatTime: string, { createTime }, data: any) {
+    }
+  }
+
+  if (options.createTime !== false) {
+    baseFrontmatter.createTime = (formatTime: string, { createTime }, data) => {
       if (formatTime)
         return formatTime
-      if (data.friends)
+      if (data.friends || data.pageLayout === 'friends')
         return
       return format(new Date(createTime), 'yyyy/MM/dd HH:mm:ss')
-    },
+    }
   }
 
   const notesByLocale = (locale: string) => {
@@ -86,8 +91,8 @@ export function resolveOptions(
   }
 
   return {
-    include: frontmatter?.include ?? ['**/*.md'],
-    exclude: uniq(['.vuepress/**/*', 'node_modules', ...(frontmatter?.exclude ?? [])]),
+    include: options?.include ?? ['**/*.md'],
+    exclude: uniq(['.vuepress/**/*', 'node_modules', ...(options?.exclude ?? [])]),
 
     frontmatter: [
       localesNotesDirs.length
@@ -95,31 +100,39 @@ export function resolveOptions(
             // note 首页链接
             include: localesNotesDirs.map(dir => pathJoin(dir, '/{readme,README,index}.md')),
             frontmatter: {
-              title(title: string, { relativePath }) {
-                if (title)
-                  return title
-                const note = findNote(relativePath)
-                if (note?.text)
-                  return note.text
-                return getCurrentDirname('', relativePath) || ''
-              },
+              ...options.title !== false
+                ? {
+                    title(title: string, { relativePath }) {
+                      if (title)
+                        return title
+                      const note = findNote(relativePath)
+                      if (note?.text)
+                        return note.text
+                      return getCurrentDirname('', relativePath) || ''
+                    },
+                  } as AutoFrontmatterObject
+                : undefined,
               ...baseFrontmatter,
-              permalink(permalink: string, { relativePath }, data: any) {
-                if (permalink)
-                  return permalink
-                if (data.friends)
-                  return
-                const locale = resolveLocale(relativePath)
+              ...options.permalink !== false
+                ? {
+                    permalink(permalink: string, { relativePath }, data: any) {
+                      if (permalink)
+                        return permalink
+                      if (data.friends)
+                        return
+                      const locale = resolveLocale(relativePath)
 
-                const prefix = notesByLocale(locale)?.link || ''
-                const note = findNote(relativePath)
-                return pathJoin(
-                  locale,
-                  prefix,
-                  note?.link || getCurrentDirname(note?.dir, relativePath),
-                  '/',
-                )
-              },
+                      const prefix = notesByLocale(locale)?.link || ''
+                      const note = findNote(relativePath)
+                      return pathJoin(
+                        locale,
+                        prefix,
+                        note?.link || getCurrentDirname(note?.dir, relativePath),
+                        '/',
+                      )
+                    },
+                  } as AutoFrontmatterObject
+                : undefined,
             },
           }
         : '',
@@ -127,45 +140,53 @@ export function resolveOptions(
         ? {
             include: localesNotesDirs.map(dir => `${dir}**/**.md`),
             frontmatter: {
-              title(title: string, { relativePath }) {
-                if (title)
-                  return title
+              ...options.title !== false
+                ? {
+                    title(title: string, { relativePath }) {
+                      if (title)
+                        return title
 
-                const note = findNote(relativePath)
-                let basename = path.basename(relativePath, '.md')
-                if (note?.sidebar === 'auto')
-                  basename = basename.replace(/^\d+\./, '')
+                      const note = findNote(relativePath)
+                      let basename = path.basename(relativePath, '.md')
+                      if (note?.sidebar === 'auto')
+                        basename = basename.replace(/^\d+\./, '')
 
-                return basename
-              },
+                      return basename
+                    },
+                  } as AutoFrontmatterObject
+                : undefined,
               ...baseFrontmatter,
-              permalink(permalink: string, { relativePath }, data: any) {
-                if (permalink)
-                  return permalink
-                if (data.friends)
-                  return
-                const locale = resolveLocale(relativePath)
-                const notes = notesByLocale(locale)
-                const note = findNote(relativePath)
-                const prefix = notes?.link || ''
-                const args: string[] = [
-                  locale,
-                  prefix,
-                  note?.link || '',
-                ]
-                const sidebar = note?.sidebar
+              ...options.permalink !== false
+                ? {
+                    permalink(permalink: string, { relativePath }, data: any) {
+                      if (permalink)
+                        return permalink
+                      if (data.friends)
+                        return
+                      const locale = resolveLocale(relativePath)
+                      const notes = notesByLocale(locale)
+                      const note = findNote(relativePath)
+                      const prefix = notes?.link || ''
+                      const args: string[] = [
+                        locale,
+                        prefix,
+                        note?.link || '',
+                      ]
+                      const sidebar = note?.sidebar
 
-                if (note && sidebar && sidebar !== 'auto') {
-                  const res = resolveLinkBySidebar(sidebar, pathJoin(notes?.dir || '', note.dir || ''))
-                  const file = ensureLeadingSlash(relativePath)
-                  if (res[file])
-                    args.push(res[file])
-                  else
-                    res[path.dirname(file)] && args.push(res[path.dirname(file)])
-                }
+                      if (note && sidebar && sidebar !== 'auto') {
+                        const res = resolveLinkBySidebar(sidebar, pathJoin(notes?.dir || '', note.dir || ''))
+                        const file = ensureLeadingSlash(relativePath)
+                        if (res[file])
+                          args.push(res[file])
+                        else
+                          res[path.dirname(file)] && args.push(res[path.dirname(file)])
+                      }
 
-                return pathJoin(...args, nanoid(), '/')
-              },
+                      return pathJoin(...args, nanoid(), '/')
+                    },
+                  } as AutoFrontmatterObject
+                : undefined,
             },
           }
         : '',
@@ -176,21 +197,29 @@ export function resolveOptions(
       {
         include: '*',
         frontmatter: {
-          title(title: string, { relativePath }) {
-            if (title)
-              return title
-            const basename = path.basename(relativePath || '', '.md')
-            return basename
-          },
+          ...options.title !== false
+            ? {
+                title(title: string, { relativePath }) {
+                  if (title)
+                    return title
+                  const basename = path.basename(relativePath || '', '.md')
+                  return basename
+                },
+              } as AutoFrontmatterObject
+            : undefined,
           ...baseFrontmatter,
-          permalink(permalink: string, { relativePath }) {
-            if (permalink)
-              return permalink
-            const locale = resolveLocale(relativePath)
-            const prefix = withBase(articlePrefix, locale)
+          ...options.permalink !== false
+            ? {
+                permalink(permalink: string, { relativePath }) {
+                  if (permalink)
+                    return permalink
+                  const locale = resolveLocale(relativePath)
+                  const prefix = withBase(articlePrefix, locale)
 
-            return normalizePath(`${prefix}/${nanoid()}/`)
-          },
+                  return normalizePath(`${prefix}/${nanoid()}/`)
+                },
+              } as AutoFrontmatterObject
+            : undefined,
         },
       },
     ].filter(Boolean) as AutoFrontmatterArray,

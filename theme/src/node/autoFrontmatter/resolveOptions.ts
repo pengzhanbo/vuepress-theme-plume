@@ -2,7 +2,7 @@ import { path } from 'vuepress/utils'
 import { removeLeadingSlash, resolveLocalePath } from 'vuepress/shared'
 import { ensureLeadingSlash } from '@vuepress/helper'
 import { format } from 'date-fns'
-import { uniq } from '@pengzhanbo/utils'
+import { toArray, uniq } from '@pengzhanbo/utils'
 import type {
   AutoFrontmatter,
   AutoFrontmatterArray,
@@ -194,6 +194,36 @@ export function resolveOptions(
         include: '**/{readme,README,index}.md',
         frontmatter: {},
       },
+      toArray(localeOptions.blog?.include).length
+        ? {
+            include: localeOptions.blog?.include,
+            frontmatter: {
+              ...options.title !== false
+                ? {
+                    title(title: string, { relativePath }) {
+                      if (title)
+                        return title
+                      const basename = path.basename(relativePath || '', '.md')
+                      return basename
+                    },
+                  } as AutoFrontmatterObject
+                : undefined,
+              ...baseFrontmatter,
+              ...options.permalink !== false
+                ? {
+                    permalink(permalink: string, { relativePath }) {
+                      if (permalink)
+                        return permalink
+                      const locale = resolveLocale(relativePath)
+                      const prefix = withBase(articlePrefix, locale)
+
+                      return normalizePath(`${prefix}/${nanoid()}/`)
+                    },
+                  } as AutoFrontmatterObject
+                : undefined,
+            },
+          }
+        : '',
       {
         include: '*',
         frontmatter: {
@@ -213,10 +243,7 @@ export function resolveOptions(
                 permalink(permalink: string, { relativePath }) {
                   if (permalink)
                     return permalink
-                  const locale = resolveLocale(relativePath)
-                  const prefix = withBase(articlePrefix, locale)
-
-                  return normalizePath(`${prefix}/${nanoid()}/`)
+                  return ensureLeadingSlash(normalizePath(relativePath.replace(/\.md$/, '/')))
                 },
               } as AutoFrontmatterObject
             : undefined,

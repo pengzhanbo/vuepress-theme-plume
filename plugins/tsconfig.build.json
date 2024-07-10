@@ -4,13 +4,9 @@
     "composite": true
   },
   "references": [
-    { "path": "./plugin-auto-frontmatter/tsconfig.build.json" },
     { "path": "./plugin-baidu-tongji/tsconfig.build.json" },
-    { "path": "./plugin-blog-data/tsconfig.build.json" },
-    { "path": "./plugin-caniuse/tsconfig.build.json" },
-    { "path": "./plugin-copy-code/tsconfig.build.json" },
     { "path": "./plugin-iconify/tsconfig.build.json" },
-    { "path": "./plugin-notes-data/tsconfig.build.json" },
+    { "path": "./plugin-fonts/tsconfig.build.json" },
     { "path": "./plugin-shikiji/tsconfig.build.json" },
     { "path": "./plugin-content-update/tsconfig.build.json" },
     { "path": "./plugin-search/tsconfig.build.json" },

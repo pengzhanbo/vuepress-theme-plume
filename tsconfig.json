@@ -4,12 +4,6 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@internal/blogData": [
-        "./plugins/plugin-blog-data/src/client/blogPostData.d.ts"
-      ],
-      "@internal/notesData": [
-        "./plugins/plugin-notes-data/src/client/notesData.d.ts"
-      ],
       "@internal/md-power/replEditorData": [
         "./plugins/plugin-md-power/src/client/shim.d.ts"
       ],
@@ -22,9 +16,7 @@
       "vuepress-plugin-md-power": [
         "./plugins/plugin-md-power/src/node/index.ts"
       ],
-      "@theme/*": [
-        "./theme/src/client/components/*"
-      ]
+      "@theme/*": ["./theme/src/client/components/*"]
     },
     "types": ["webpack-env", "vite/client", "vuepress/client-types"]
   },

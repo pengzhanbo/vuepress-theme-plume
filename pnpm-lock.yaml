@@ -106,81 +106,14 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
 
-  plugins/plugin-auto-frontmatter:
-    dependencies:
-      '@pengzhanbo/utils':
-        specifier: ^1.1.2
-        version: 1.1.2
-      chokidar:
-        specifier: ^3.6.0
-        version: 3.6.0
-      create-filter:
-        specifier: ^1.1.0
-        version: 1.1.0
-      fast-glob:
-        specifier: ^3.3.2
-        version: 3.3.2
-      gray-matter:
-        specifier: ^4.0.3
-        version: 4.0.3
-      json2yaml:
-        specifier: ^1.1.0
-        version: 1.1.0
-      vuepress:
-        specifier: 2.0.0-rc.14
-        version: 2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(typescript@5.5.3))(typescript@5.5.3)(vue@3.4.31(typescript@5.5.3))
-
   plugins/plugin-baidu-tongji:
     dependencies:
       vuepress:
         specifier: 2.0.0-rc.14
         version: 2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(typescript@5.5.3))(typescript@5.5.3)(vue@3.4.31(typescript@5.5.3))
 
-  plugins/plugin-blog-data:
-    dependencies:
-      '@vue/devtools-api':
-        specifier: 6.6.3
-        version: 6.6.3
-      chokidar:
-        specifier: ^3.6.0
-        version: 3.6.0
-      create-filter:
-        specifier: ^1.1.0
-        version: 1.1.0
-      vue:
-        specifier: ^3.4.31
-        version: 3.4.31(typescript@5.5.3)
-      vuepress:
-        specifier: 2.0.0-rc.14
-        version: 2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(typescript@5.5.3))(typescript@5.5.3)(vue@3.4.31(typescript@5.5.3))
-
-  plugins/plugin-caniuse:
-    dependencies:
-      markdown-it-container:
-        specifier: ^4.0.0
-        version: 4.0.0
-      vuepress:
-        specifier: 2.0.0-rc.14
-        version: 2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(typescript@5.5.3))(typescript@5.5.3)(vue@3.4.31(typescript@5.5.3))
-    devDependencies:
-      '@types/markdown-it':
-        specifier: ^14.1.1
-        version: 14.1.1
-
   plugins/plugin-content-update:
     dependencies:
-      vue:
-        specifier: ^3.4.31
-        version: 3.4.31(typescript@5.5.3)
-      vuepress:
-        specifier: 2.0.0-rc.14
-        version: 2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(typescript@5.5.3))(typescript@5.5.3)(vue@3.4.31(typescript@5.5.3))
-
-  plugins/plugin-copy-code:
-    dependencies:
-      '@vuepress-plume/plugin-content-update':
-        specifier: workspace:~
-        version: link:../plugin-content-update
       vue:
         specifier: ^3.4.31
         version: 3.4.31(typescript@5.5.3)
@@ -248,24 +181,6 @@ importers:
       '@types/markdown-it':
         specifier: ^14.1.1
         version: 14.1.1
-
-  plugins/plugin-notes-data:
-    dependencies:
-      '@vue/devtools-api':
-        specifier: 6.6.3
-        version: 6.6.3
-      chokidar:
-        specifier: ^3.6.0
-        version: 3.6.0
-      create-filter:
-        specifier: ^1.1.0
-        version: 1.1.0
-      vue:
-        specifier: ^3.4.31
-        version: 3.4.31(typescript@5.5.3)
-      vuepress:
-        specifier: 2.0.0-rc.14
-        version: 2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(typescript@5.5.3))(typescript@5.5.3)(vue@3.4.31(typescript@5.5.3))
 
   plugins/plugin-search:
     dependencies:

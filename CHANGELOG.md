@@ -1,3 +1,14 @@
+# [1.0.0-rc.76](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.75...v1.0.0-rc.76) (2024-07-10)
+
+
+### Performance Improvements
+
+* **theme:** 改进类型 ([1ef9744](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1ef9744e043bf0891fedb06d2491cee246ff6e75))
+* **theme:** 优化 frontmatter 自动生成 ([329049e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/329049ec551805346be55e625b3323f2bac81e9b))
+* **theme:** 优化页面宽度 ([b92135e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b92135e6d96bebc1e6faf4f9c8723e42a62e990e))
+
+
+
 # [1.0.0-rc.75](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.74...v1.0.0-rc.75) (2024-07-09)
 
 

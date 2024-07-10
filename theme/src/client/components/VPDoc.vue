@@ -173,8 +173,8 @@ watch(
     max-width: 784px;
   }
 
-  .vp-doc-container:not(.has-sidebar.has-aside) .content {
-    max-width: 884px;
+  .vp-doc-container.is-blog:not(.has-sidebar.has-aside) .content {
+    max-width: 985px;
   }
 
   .vp-doc-container:not(.has-sidebar) .container {

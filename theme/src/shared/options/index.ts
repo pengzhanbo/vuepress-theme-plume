@@ -40,7 +40,7 @@ export interface PlumeThemeOptions extends PlumeThemeLocaleOptions {
 export type PlumeThemeLocaleOptions = PlumeThemeData
 
 export type PlumeThemeData = PlumeThemeLocaleData & {
-  locales?: LocaleConfig<Omit<PlumeThemeLocaleData, 'blog'>>
+  locales?: LocaleConfig<Omit<PlumeThemeLocaleData, 'blog' | 'article'>>
 }
 
 export * from './locale.js'

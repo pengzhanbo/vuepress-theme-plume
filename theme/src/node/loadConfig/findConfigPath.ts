@@ -21,7 +21,7 @@ export async function findConfigPath(app: App, configPath?: string): Promise<str
     }
   }
   extensions.forEach((ext) => {
-    paths.push(resolve(cwd, `./${configPath}.${ext}`))
+    paths.push(resolve(cwd, `./${CONFIG_FILE_NAME}.${ext}`))
     paths.push(resolve(cwd, `${source}/${CONFIG_FILE_NAME}.${ext}`))
     paths.push(resolve(cwd, `./.vuepress/${CONFIG_FILE_NAME}.${ext}`))
   })

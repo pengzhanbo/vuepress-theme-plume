@@ -108,7 +108,7 @@ export const zhNotes = definePlumeNotesConfig({
         {
           text: '插件',
           items: [
-            'caniuse',
+            // 'caniuse',
             'iconify',
             'shiki',
             'md-power',

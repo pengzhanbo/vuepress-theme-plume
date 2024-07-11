@@ -2,7 +2,7 @@ import { path } from 'vuepress/utils'
 import { removeLeadingSlash, resolveLocalePath } from 'vuepress/shared'
 import { ensureLeadingSlash } from '@vuepress/helper'
 import { format } from 'date-fns'
-import { toArray, uniq } from '@pengzhanbo/utils'
+import { uniq } from '@pengzhanbo/utils'
 import type {
   AutoFrontmatter,
   AutoFrontmatterArray,

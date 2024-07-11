@@ -1,3 +1,12 @@
+# [1.0.0-rc.77](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.76...v1.0.0-rc.77) (2024-07-11)
+
+
+### Bug Fixes
+
+* **theme:** 修复 auto frontmatter 配置 ([7769bc8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7769bc888fd9a32f83e4591ad8e467e6b66b2070))
+
+
+
 # [1.0.0-rc.76](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.75...v1.0.0-rc.76) (2024-07-10)
 
 

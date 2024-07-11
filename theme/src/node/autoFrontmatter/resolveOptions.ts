@@ -194,36 +194,35 @@ export function resolveOptions(
         include: '**/{readme,README,index}.md',
         frontmatter: {},
       },
-      toArray(localeOptions.blog?.include).length
-        ? {
-            include: localeOptions.blog?.include,
-            frontmatter: {
-              ...options.title !== false
-                ? {
-                    title(title: string, { relativePath }) {
-                      if (title)
-                        return title
-                      const basename = path.basename(relativePath || '', '.md')
-                      return basename
-                    },
-                  } as AutoFrontmatterObject
-                : undefined,
-              ...baseFrontmatter,
-              ...options.permalink !== false
-                ? {
-                    permalink(permalink: string, { relativePath }) {
-                      if (permalink)
-                        return permalink
-                      const locale = resolveLocale(relativePath)
-                      const prefix = withBase(articlePrefix, locale)
+      {
+        include: localeOptions.blog?.include ?? ['**/*.md'],
+        frontmatter: {
+          ...options.title !== false
+            ? {
+                title(title: string, { relativePath }) {
+                  if (title)
+                    return title
+                  const basename = path.basename(relativePath || '', '.md')
+                  return basename
+                },
+              } as AutoFrontmatterObject
+            : undefined,
+          ...baseFrontmatter,
+          ...options.permalink !== false
+            ? {
+                permalink(permalink: string, { relativePath }) {
+                  if (permalink)
+                    return permalink
+                  const locale = resolveLocale(relativePath)
+                  const prefix = withBase(articlePrefix, locale)
 
-                      return normalizePath(`${prefix}/${nanoid()}/`)
-                    },
-                  } as AutoFrontmatterObject
-                : undefined,
-            },
-          }
-        : '',
+                  return normalizePath(`${prefix}/${nanoid()}/`)
+                },
+              } as AutoFrontmatterObject
+            : undefined,
+        },
+      },
+
       {
         include: '*',
         frontmatter: {

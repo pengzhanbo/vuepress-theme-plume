@@ -98,10 +98,6 @@
   }
 }
 
-.vp-doc > h1:first-of-type {
-  display: none;
-}
-
 .vp-doc img {
   display: inline-block;
 }

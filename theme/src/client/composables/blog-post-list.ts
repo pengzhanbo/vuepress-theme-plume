@@ -1,18 +1,11 @@
-import { usePageLang } from 'vuepress/client'
 import { computed } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
-import { useBlogPostData } from './blog-data.js'
+import { useLocalePostList } from './blog-data.js'
 import { useData } from './data.js'
 import { useRouteQuery } from './route-query.js'
 
 const DEFAULT_PER_PAGE = 10
-
-export function useLocalePostList() {
-  const locale = usePageLang()
-  const list = useBlogPostData()
-  return computed(() => list.value.filter(item => item.lang === locale.value))
-}
 
 export function usePostListControl() {
   const { theme } = useData()

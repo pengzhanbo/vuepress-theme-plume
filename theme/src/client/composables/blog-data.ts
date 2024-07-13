@@ -1,16 +1,22 @@
 import {
   blogPostData as blogPostDataRaw,
 } from '@internal/blogData'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import type { Ref } from 'vue'
+import { usePageLang } from 'vuepress/client'
 import type { PlumeThemeBlogPostData } from '../../shared/index.js'
 
 export type BlogDataRef = Ref<PlumeThemeBlogPostData>
 
 export const blogPostData: BlogDataRef = ref(blogPostDataRaw)
 
-export function useBlogPostData(): BlogDataRef {
+export function usePostList(): BlogDataRef {
   return blogPostData as BlogDataRef
+}
+
+export function useLocalePostList() {
+  const locale = usePageLang()
+  return computed(() => blogPostData.value.filter(item => item.lang === locale.value))
 }
 
 if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {

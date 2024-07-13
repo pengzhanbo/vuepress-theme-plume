@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
-import { useLocalePostList } from './blog-post-list.js'
+import { useLocalePostList } from './blog-data.js'
 
 export type ShortPostItem = Pick<PlumeThemeBlogPostItem, 'title' | 'path' | 'createTime'>
 

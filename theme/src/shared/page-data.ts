@@ -8,14 +8,14 @@ interface ReadingTime {
 }
 
 export interface PlumeThemePageData extends GitPluginPageData {
-  isBlogPost: boolean
-  type: 'blog' | 'friends' | 'blog-tags' | 'blog-archives'
+  type: 'blog' | 'friends' | 'blog-tags' | 'blog-archives' | 'blog-categories'
   categoryList?: PageCategoryData[]
   filePathRelative: string | null
   readingTime?: ReadingTime
 }
 
 export interface PageCategoryData {
-  type: string | number
+  id: string
+  sort: number
   name: string
 }

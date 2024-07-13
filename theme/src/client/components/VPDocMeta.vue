@@ -1,13 +1,17 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
+import VPLink from '@theme/VPLink.vue'
 import { useData } from '../composables/data.js'
 import { useTagColors } from '../composables/tag-colors.js'
+import { useBlogPost } from '../composables/page.js'
+import { useBlogExtract } from '../composables/blog-extract.js'
 
 const { page, frontmatter: matter } = useData<'post'>()
-
+const { isBlogPost } = useBlogPost()
 const colors = useTagColors()
 const readingTime = useReadingTimeLocale()
+const { categories } = useBlogExtract()
 
 const createTime = computed(() => {
   if (matter.value.createTime)
@@ -36,14 +40,16 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 
 <template>
   <div
-    v-if="page.isBlogPost && categoryList.length"
+    v-if="isBlogPost && categoryList.length"
     class="vp-doc-category"
   >
     <template
-      v-for="({ type, name }, index) in categoryList"
-      :key="`${index}-${type}`"
+      v-for="({ id, name }, index) in categoryList"
+      :key="id"
     >
-      <span class="category">{{ name }}</span>
+      <VPLink :href="`${categories.link}?id=${id}`" class="category">
+        {{ name }}
+      </VPLink>
       <span v-if="index !== categoryList.length - 1" class="dot">&rsaquo;</span>
     </template>
   </div>

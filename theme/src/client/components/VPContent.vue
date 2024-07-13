@@ -17,7 +17,7 @@ const { frontmatter, page } = useData()
 
 const isBlogLayout = computed(() => {
   const { type } = page.value
-  return type === 'blog' || type === 'blog-archives' || type === 'blog-tags'
+  return type === 'blog' || type === 'blog-archives' || type === 'blog-tags' || type === 'blog-categories'
 })
 
 watch([isBlogLayout, () => frontmatter.value.pageLayout], () => nextTick(() =>

@@ -21,7 +21,7 @@ function linkTo(e: Event) {
   if (!isExternal.value) {
     e.preventDefault()
     if (link.value)
-      router.push({ path: link.value })
+      router.push(link.value)
   }
 }
 </script>

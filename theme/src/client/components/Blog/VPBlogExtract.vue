@@ -21,7 +21,7 @@ const imageUrl = computed(() => {
   return withBase(url)
 })
 
-const { hasBlogExtract, tags, archives } = useBlogExtract()
+const { hasBlogExtract, tags, archives, categories } = useBlogExtract()
 const open = ref(false)
 const lazyOpen = ref(false)
 
@@ -91,6 +91,10 @@ const showBlogExtract = computed(() => {
             <VPLink class="nav-link" :href="tags.link" no-icon>
               <span class="vpi-tag icon" />
               <span>{{ tags.text }}</span>
+            </VPLink>
+            <VPLink class="nav-link" :href="categories.link" no-icon>
+              <span class="vpi-category icon" />
+              <span>{{ categories.text }}</span>
             </VPLink>
             <VPLink class="nav-link" :href="archives.link" no-icon>
               <span class="vpi-archive icon" />

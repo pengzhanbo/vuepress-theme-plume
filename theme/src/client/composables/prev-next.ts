@@ -4,23 +4,25 @@ import { computed } from 'vue'
 import type { Ref } from 'vue'
 import type { NavItemWithLink, PlumeThemeBlogPostItem, SidebarItem } from '../../shared/index.js'
 import { resolveNavLink } from '../utils/index.js'
-import { useBlogPostData } from './blog-data.js'
+import { usePostList } from './blog-data.js'
 import { useSidebar } from './sidebar.js'
 import { useData } from './data.js'
+import { useBlogPost } from './page.js'
 
 export function usePrevNext() {
   const route = useRoute()
-  const { page, frontmatter } = useData()
+  const { frontmatter } = useData()
   const { sidebar } = useSidebar()
-  const postList = useBlogPostData() as unknown as Ref<PlumeThemeBlogPostItem[]>
+  const postList = usePostList() as unknown as Ref<PlumeThemeBlogPostItem[]>
   const locale = usePageLang()
+  const { isBlogPost } = useBlogPost()
 
   const prevNavList = computed(() => {
     const prevConfig = resolveFromFrontmatterConfig(frontmatter.value.prev)
     if (prevConfig !== false)
       return prevConfig
 
-    if (page.value.isBlogPost) {
+    if (isBlogPost.value) {
       return resolveFromBlogPostData(
         postList.value.filter(item => item.lang === locale.value),
         route.path,
@@ -37,7 +39,7 @@ export function usePrevNext() {
     if (nextConfig !== false)
       return nextConfig
 
-    if (page.value.isBlogPost) {
+    if (isBlogPost.value) {
       return resolveFromBlogPostData(
         postList.value.filter(item => item.lang === locale.value),
         route.path,

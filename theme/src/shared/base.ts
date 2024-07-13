@@ -46,6 +46,7 @@ export interface PresetLocale {
   blog: string
   tag: string
   archive: string
+  category: string
 }
 
 export interface ThemeTransition {

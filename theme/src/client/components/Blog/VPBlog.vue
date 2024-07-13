@@ -4,6 +4,7 @@ import VPBlogArchives from '@theme/Blog/VPBlogArchives.vue'
 import VPBlogAside from '@theme/Blog/VPBlogAside.vue'
 import VPBlogExtract from '@theme/Blog/VPBlogExtract.vue'
 import VPBlogTags from '@theme/Blog/VPBlogTags.vue'
+import VPBlogCategories from '@theme/Blog/VPBlogCategories.vue'
 import VPBlogNav from '@theme/Blog/VPBlogNav.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { useData } from '../../composables/data.js'
@@ -35,6 +36,14 @@ const { theme, page } = useData()
             <slot name="blog-tags-after" />
           </template>
         </VPBlogTags>
+        <VPBlogCategories v-else-if="page.type === 'blog-categories'">
+          <template #blog-categories-before>
+            <slot name="blog-categories-before" />
+          </template>
+          <template #blog-categories-after>
+            <slot name="blog-tags-after" />
+          </template>
+        </VPBlogCategories>
         <VPPostList v-else>
           <template #blog-post-list-before>
             <slot name="blog-post-list-before" />

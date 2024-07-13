@@ -9,7 +9,7 @@ const props = defineProps<{
 
 const route = useRoute()
 
-const { hasBlogExtract, tags, archives } = useBlogExtract()
+const { hasBlogExtract, tags, archives, categories } = useBlogExtract()
 </script>
 
 <template>
@@ -22,6 +22,16 @@ const { hasBlogExtract, tags, archives } = useBlogExtract()
       <span class="icon icon-logo vpi-tag" />
       <span class="text">{{ tags.text }}</span>
       <span class="total">{{ tags.total }}</span>
+      <span class="icon vpi-chevron-right" />
+    </VPLink>
+    <VPLink
+      class="nav-link"
+      :class="{ active: route.path === categories.link }"
+      :href="categories.link"
+    >
+      <span class="icon icon-logo vpi-category" />
+      <span class="text">{{ categories.text }}</span>
+      <span class="total">{{ categories.total }}</span>
       <span class="icon vpi-chevron-right" />
     </VPLink>
     <VPLink

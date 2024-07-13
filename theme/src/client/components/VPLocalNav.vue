@@ -5,6 +5,7 @@ import VPLocalNavOutlineDropdown from '@theme/VPLocalNavOutlineDropdown.vue'
 import { useSidebar } from '../composables/sidebar.js'
 import { useHeaders } from '../composables/outline.js'
 import { useData } from '../composables/data.js'
+import { useBlogPost } from '../composables/page.js'
 
 const props = defineProps<{
   open: boolean
@@ -13,7 +14,8 @@ const props = defineProps<{
 
 defineEmits<(e: 'openMenu') => void>()
 
-const { page, theme } = useData()
+const { theme } = useData()
+const { isBlogPost } = useBlogPost()
 
 const { hasSidebar } = useSidebar()
 const { y } = useWindowScroll()
@@ -39,21 +41,21 @@ const classes = computed(() => {
     'vp-local-nav': true,
     'fixed': empty.value,
     'reached-top': y.value >= navHeight.value,
-    'is-blog': page.value.isBlogPost,
+    'is-blog': isBlogPost,
     'with-outline': !props.showOutline,
   }
 })
 
 const showLocalNav = computed(() => {
-  return (hasSidebar.value || page.value.isBlogPost) && (!empty.value || y.value >= navHeight.value)
+  return (hasSidebar.value || isBlogPost) && (!empty.value || y.value >= navHeight.value)
 })
 </script>
 
 <template>
   <div v-if="showLocalNav" :class="classes">
     <button
-      class="menu" :class="{ hidden: page.isBlogPost }"
-      :disabled="page.isBlogPost"
+      class="menu" :class="{ hidden: isBlogPost }"
+      :disabled="isBlogPost"
       :aria-expanded="open"
       aria-controls="SidebarNav"
       @click="$emit('openMenu')"

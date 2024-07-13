@@ -10,6 +10,16 @@ const props = defineProps<{
 
 const colors = useTagColors()
 
+const sticky = computed(() => {
+  if (typeof props.post.sticky === 'boolean') {
+    return props.post.sticky
+  }
+  else if (typeof props.post.sticky === 'number') {
+    return props.post.sticky >= 0
+  }
+  return false
+})
+
 const categoryList = computed(() =>
   props.post.categoryList ?? [],
 )
@@ -31,10 +41,7 @@ const createTime = computed(() =>
 <template>
   <div class="vp-blog-post-item">
     <h3>
-      <div
-        v-if="typeof post.sticky === 'boolean' ? post.sticky : post.sticky >= 0"
-        class="sticky"
-      >
+      <div v-if="sticky" class="sticky">
         TOP
       </div>
       <span v-if="post.encrypt" class="icon-lock vpi-lock" />

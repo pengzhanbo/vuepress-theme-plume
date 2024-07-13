@@ -15,6 +15,7 @@ export interface PlumeThemePageData extends GitPluginPageData {
 }
 
 export interface PageCategoryData {
-  type: string | number
+  id: string
+  sort: number
   name: string
 }

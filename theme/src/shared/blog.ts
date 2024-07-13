@@ -79,4 +79,17 @@ export interface PlumeThemeBlog {
    * @default '/blog/archives/'
    */
   archivesLink?: string
+
+  /**
+   * 是否启用分类页
+   * @default true
+   */
+  categories?: boolean
+
+  /**
+   * 自定义分类页链接
+   *
+   * @default '/blog/categories/'
+   */
+  categoriesLink?: string
 }

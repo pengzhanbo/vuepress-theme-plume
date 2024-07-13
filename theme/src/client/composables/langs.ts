@@ -4,6 +4,7 @@ import { normalizeLink } from '../utils/index.js'
 import { useThemeData } from './theme-data.js'
 import { useData } from './data.js'
 import { getSidebarFirstLink, useSidebarData } from './sidebar.js'
+import { useBlogPost } from './page.js'
 
 export function useLangs({
   removeCurrent = true,
@@ -12,6 +13,7 @@ export function useLangs({
   const { page } = useData()
   const routeLocale = useRouteLocale()
   const sidebar = useSidebarData()
+  const { isBlogPost } = useBlogPost()
 
   const currentLang = computed(() => {
     const link = routeLocale.value
@@ -28,7 +30,7 @@ export function useLangs({
     if (!notFound)
       return path
     const blog = theme.value.blog
-    if (page.value.isBlogPost)
+    if (isBlogPost.value)
       return withBase(blog?.link || normalizeLink(locale, 'blog/'))
 
     const sidebarList = sidebar.value

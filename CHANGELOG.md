@@ -1,3 +1,17 @@
+# [1.0.0-rc.78](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.77...v1.0.0-rc.78) (2024-07-13)
+
+
+### Bug Fixes
+
+* **theme:** 修复链接跳转参数丢失 ([7efa63f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7efa63fe319dfcc91fce2e3956e4ab6d889e56b8))
+
+
+### Features
+
+* **theme:** 新增 博客文章分类 支持 ([c1a4d58](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c1a4d586b482a5c0196f3a3dab59d081512434a6))
+
+
+
 # [1.0.0-rc.77](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.76...v1.0.0-rc.77) (2024-07-11)
 
 

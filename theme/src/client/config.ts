@@ -1,7 +1,6 @@
 import './styles/index.css'
 
 import { defineClientConfig } from 'vuepress/client'
-import type { ClientConfig } from 'vuepress/client'
 import {
   enhanceScrollBehavior,
   setupDarkMode,
@@ -29,4 +28,4 @@ export default defineClientConfig({
     setupWatermark()
   },
   layouts: { Layout, NotFound },
-}) as ClientConfig
+})

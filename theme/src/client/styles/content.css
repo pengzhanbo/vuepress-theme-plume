@@ -45,7 +45,13 @@
   letter-spacing: -0.01em;
 }
 
-.vp-doc h4,
+.vp-doc h4 {
+  margin: 24px 0 16px;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+}
+
 .vp-doc h5,
 .vp-doc h6 {
   margin: 24px 0 16px;
@@ -127,15 +133,14 @@
 .vp-doc blockquote {
   padding-left: 16px;
   margin: 16px 0;
+  color: var(--vp-c-text-2);
   border-left: 2px solid var(--vp-c-divider);
-  transition: border-color var(--t-color);
+  transition: border-color var(--t-color), color var(--t-color);
 }
 
 .vp-doc blockquote > p {
   margin: 0;
   font-size: 16px;
-  color: var(--vp-c-text-2);
-  transition: color var(--t-color);
 }
 
 .vp-doc a {
@@ -258,7 +263,8 @@
 
 .vp-doc h1 > code,
 .vp-doc h2 > code,
-.vp-doc h3 > code {
+.vp-doc h3 > code,
+.vp-doc h4 > code {
   font-size: 0.9em;
 }
 

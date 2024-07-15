@@ -2,7 +2,7 @@ import { computed } from 'vue'
 import { useData } from './data.js'
 import { usePostList } from './blog-data.js'
 
-export function useBlogPost() {
+export function useBlogPageData() {
   const { page } = useData()
   const postList = usePostList()
 
@@ -10,7 +10,13 @@ export function useBlogPost() {
     return postList.value.some(item => item.path === page.value.path)
   })
 
+  const isBlogLayout = computed(() => {
+    const type = page.value.type
+    return type === 'blog' || type === 'blog-archives' || type === 'blog-tags' || type === 'blog-categories'
+  })
+
   return {
     isBlogPost,
+    isBlogLayout,
   }
 }

@@ -4,11 +4,11 @@ import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
 import VPLink from '@theme/VPLink.vue'
 import { useData } from '../composables/data.js'
 import { useTagColors } from '../composables/tag-colors.js'
-import { useBlogPost } from '../composables/page.js'
+import { useBlogPageData } from '../composables/page.js'
 import { useBlogExtract } from '../composables/blog-extract.js'
 
 const { page, frontmatter: matter } = useData<'post'>()
-const { isBlogPost } = useBlogPost()
+const { isBlogPost } = useBlogPageData()
 const colors = useTagColors()
 const readingTime = useReadingTimeLocale()
 const { categories } = useBlogExtract()
@@ -53,7 +53,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
       <span v-if="index !== categoryList.length - 1" class="dot">&rsaquo;</span>
     </template>
   </div>
-  <h1 class="vp-doc-title" :class="{ padding: !hasMeta }">
+  <h1 class="vp-doc-title page-title" :class="{ padding: !hasMeta }">
     {{ page.title }}
   </h1>
   <div v-if="hasMeta" class="vp-doc-meta">

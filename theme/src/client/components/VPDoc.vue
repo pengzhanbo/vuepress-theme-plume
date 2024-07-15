@@ -10,13 +10,13 @@ import { useEncrypt } from '../composables/encrypt.js'
 import { useSidebar } from '../composables/sidebar.js'
 import { useData } from '../composables/data.js'
 import { useHeaders } from '../composables/outline.js'
-import { useBlogPost } from '../composables/page.js'
+import { useBlogPageData } from '../composables/page.js'
 
 const { page, theme, frontmatter, isDark } = useData()
 const route = useRoute()
 
 const { hasSidebar, hasAside, leftAside } = useSidebar()
-const { isBlogPost } = useBlogPost()
+const { isBlogPost } = useBlogPageData()
 const headers = useHeaders()
 const { isPageDecrypted } = useEncrypt()
 

@@ -7,7 +7,7 @@ import { resolveNavLink } from '../utils/index.js'
 import { usePostList } from './blog-data.js'
 import { useSidebar } from './sidebar.js'
 import { useData } from './data.js'
-import { useBlogPost } from './page.js'
+import { useBlogPageData } from './page.js'
 
 export function usePrevNext() {
   const route = useRoute()
@@ -15,7 +15,7 @@ export function usePrevNext() {
   const { sidebar } = useSidebar()
   const postList = usePostList() as unknown as Ref<PlumeThemeBlogPostItem[]>
   const locale = usePageLang()
-  const { isBlogPost } = useBlogPost()
+  const { isBlogPost } = useBlogPageData()
 
   const prevNavList = computed(() => {
     const prevConfig = resolveFromFrontmatterConfig(frontmatter.value.prev)

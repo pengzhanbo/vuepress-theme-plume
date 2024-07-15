@@ -12,7 +12,7 @@ import VPNavBarTranslations from '@theme/Nav/VPNavBarTranslations.vue'
 import { useData } from '../../composables/data.js'
 import { useSidebar } from '../../composables/sidebar.js'
 
-defineProps<{
+const props = defineProps<{
   isScreenOpen: boolean
 }>()
 defineEmits<(e: 'toggleScreen') => void>()
@@ -28,6 +28,7 @@ watchPostEffect(() => {
     'has-sidebar': hasSidebar.value,
     'home': frontmatter.value.pageLayout === 'home',
     'top': y.value === 0,
+    'screen-open': props.isScreenOpen,
   }
 })
 </script>
@@ -81,6 +82,12 @@ watchPostEffect(() => {
   pointer-events: none;
   transition: var(--t-color);
   transition-property: background-color, color, border-bottom;
+}
+
+.vp-navbar.screen-open {
+  background-color: var(--vp-nav-bg-color);
+  border-bottom: 1px solid var(--vp-c-divider);
+  transition: none;
 }
 
 .vp-navbar:not(.home) {
@@ -240,6 +247,11 @@ watchPostEffect(() => {
   margin-right: -8px;
 }
 
+.divider {
+  width: 100%;
+  height: 1px;
+}
+
 @media (min-width: 960px) {
   .vp-navbar.has-sidebar .divider {
     padding-left: var(--vp-sidebar-width);
@@ -250,6 +262,10 @@ watchPostEffect(() => {
   .vp-navbar.has-sidebar .divider {
     padding-left: calc((100vw - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width));
   }
+}
+
+.vp-navbar.screen-open .divider {
+  display: none;
 }
 
 .divider-line {

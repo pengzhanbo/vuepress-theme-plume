@@ -38,18 +38,23 @@ function getSidebarData(
     else if (isPlainObject(sidebar)) {
       entries(sidebar).forEach(([dirname, config]) => {
         const prefix = normalizeLink(localePath, dirname)
-        config === 'auto'
-          ? autoDirList.push(prefix)
-          : isArray(config)
-            ? autoDirList.push(...findAutoDirList(config, prefix))
-            : config.items === 'auto'
-              ? autoDirList.push(normalizeLink(prefix, config.prefix))
-              : autoDirList.push(
-                ...findAutoDirList(
-                  config.items || [],
-                  normalizeLink(prefix, config.prefix),
-                ),
-              )
+        if (config === 'auto') {
+          autoDirList.push(prefix)
+        }
+        else if (isArray(config)) {
+          autoDirList.push(...findAutoDirList(config, prefix))
+        }
+        else if (config.items === 'auto') {
+          autoDirList.push(normalizeLink(prefix, config.prefix))
+        }
+        else {
+          autoDirList.push(
+            ...findAutoDirList(
+              config.items || [],
+              normalizeLink(prefix, config.prefix),
+            ),
+          )
+        }
       })
     }
     else if (sidebar === 'auto') {
@@ -121,8 +126,8 @@ function getAutoDirSidebar(
         if (!isHome) {
           items.push(current)
         }
-        else {
-          !parent && items.unshift(current)
+        else if (!parent) {
+          items.unshift(current)
         }
       }
       if (dir.endsWith('.md')) {
@@ -159,9 +164,8 @@ function findAutoDirList(sidebar: (string | SidebarItem)[], prefix = ''): string
       if (item.items === 'auto') {
         list.push(nextPrefix)
       }
-      else {
-        item.items?.length
-        && list.push(...findAutoDirList(item.items, nextPrefix))
+      else if (item.items?.length) {
+        list.push(...findAutoDirList(item.items, nextPrefix))
       }
     }
   })

@@ -32,11 +32,13 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
       onInitialized: async () => await initIcon(),
 
       extendsBundlerOptions(bundlerOptions) {
-        options.repl && addViteOptimizeDepsInclude(
-          bundlerOptions,
-          app,
-          ['shiki/core', 'shiki/wasm'],
-        )
+        if (options.repl) {
+          addViteOptimizeDepsInclude(
+            bundlerOptions,
+            app,
+            ['shiki/core', 'shiki/wasm'],
+          )
+        }
       },
 
       extendsMarkdown: async (md: MarkdownIt, app) => {

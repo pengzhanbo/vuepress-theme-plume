@@ -51,14 +51,18 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
         text: PRESET_LOCALES[localePath].blog,
         link: withBase(blogLink, locale),
       })
-      blog.tags !== false && navbar.push({
-        text: PRESET_LOCALES[localePath].tag,
-        link: withBase(blog.tagsLink || `${blogLink}/tags/`, locale),
-      })
-      blog.archives !== false && navbar.push({
-        text: PRESET_LOCALES[localePath].archive,
-        link: withBase(blog.archivesLink || `${blogLink}/archives/`, locale),
-      })
+      if (blog.tags !== false) {
+        navbar.push({
+          text: PRESET_LOCALES[localePath].tag,
+          link: withBase(blog.tagsLink || `${blogLink}/tags/`, locale),
+        })
+      }
+      if (blog.archives !== false) {
+        navbar.push({
+          text: PRESET_LOCALES[localePath].archive,
+          link: withBase(blog.archivesLink || `${blogLink}/archives/`, locale),
+        })
+      }
 
       themeData.locales![locale].navbar = navbar
     }

@@ -40,7 +40,9 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
       configFile,
       onChange: ({ localeOptions, autoFrontmatter }) => {
         autoFrontmatter ??= pluginOptions.frontmatter
-        autoFrontmatter !== false && initAutoFrontmatter(localeOptions, autoFrontmatter)
+        if (autoFrontmatter !== false) {
+          initAutoFrontmatter(localeOptions, autoFrontmatter)
+        }
       },
     })
 

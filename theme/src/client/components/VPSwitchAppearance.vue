@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, inject, ref, watchPostEffect } from 'vue'
+import { inject, ref, watchPostEffect } from 'vue'
 import VPSwitch from '@theme/VPSwitch.vue'
 import { useData } from '../composables/data.js'
 

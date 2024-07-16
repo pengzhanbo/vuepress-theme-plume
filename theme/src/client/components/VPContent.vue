@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, watch } from 'vue'
+import { nextTick, watch } from 'vue'
 import VPBlog from '@theme/Blog/VPBlog.vue'
 import VPDoc from '@theme/VPDoc.vue'
 import VPPage from '@theme/VPPage.vue'

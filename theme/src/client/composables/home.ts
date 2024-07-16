@@ -91,13 +91,17 @@ export function useHomeHeroTintPlate(
   onMounted(() => {
     if (canvas.value && enable.value) {
       ctx = canvas.value.getContext('2d')!
-      timer && window.cancelAnimationFrame(timer)
+      if (timer) {
+        window.cancelAnimationFrame(timer)
+      }
       run()
     }
   })
 
   onUnmounted(() => {
-    timer && window.cancelAnimationFrame(timer)
+    if (timer) {
+      window.cancelAnimationFrame(timer)
+    }
   })
 
   function run() {

@@ -46,7 +46,9 @@ export function genCode(app: App): { js: string, css: string } {
     const { frontmatter: { tags } } = page
     if (tags) {
       toArray(tags).forEach((tag) => {
-        tag && tagList.add(tag as string)
+        if (tag) {
+          tagList.add(tag as string)
+        }
       })
     }
   })

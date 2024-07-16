@@ -33,10 +33,15 @@ export async function langReplPlugin(app: App, md: markdownIt, {
   kotlin = false,
   rust = false,
 }: ReplOptions) {
-  kotlin && createReplContainer(md, 'kotlin')
-  go && createReplContainer(md, 'go')
-  rust && createReplContainer(md, 'rust')
-
+  if (kotlin) {
+    createReplContainer(md, 'kotlin')
+  }
+  if (go) {
+    createReplContainer(md, 'go')
+  }
+  if (rust) {
+    createReplContainer(md, 'rust')
+  }
   theme ??= { light: 'github-light', dark: 'github-dark' }
 
   const data: ReplEditorData = { grammars: {} } as ReplEditorData

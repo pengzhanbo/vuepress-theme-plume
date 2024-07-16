@@ -130,7 +130,7 @@ async function genIconContent(iconName: string, cb: (content: string) => void) {
       iconJson = JSON.parse(await fs.readFile(filename, 'utf-8'))
       iconDataCache.set(collect, iconJson)
     }
-    catch (e) {
+    catch {
       logger.warn(`[plugin-md-power] Can not find icon, ${collect} is missing!`)
     }
   }

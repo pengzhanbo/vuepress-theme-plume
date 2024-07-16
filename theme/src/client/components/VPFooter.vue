@@ -78,7 +78,7 @@ onMounted(() => {
     margin-left: var(--vp-sidebar-width);
   }
 
-  .vp-footer.vp-footer.has-sidebar .container {
+  .vp-footer.has-sidebar .container {
     margin-left: calc(0px - var(--vp-sidebar-width));
   }
 }

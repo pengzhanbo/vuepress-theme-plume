@@ -47,11 +47,15 @@ function onItemInteraction(e: MouseEvent | Event) {
   if ('key' in e && e.key !== 'Enter')
     return
 
-  !props.item.link && toggle()
+  if (!props.item.link) {
+    toggle()
+  }
 }
 
 function onCaretClick() {
-  props.item.link && toggle()
+  if (props.item.link) {
+    toggle()
+  }
 }
 </script>
 

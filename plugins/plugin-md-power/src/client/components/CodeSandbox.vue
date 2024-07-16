@@ -11,12 +11,19 @@ const SANDBOX = 'allow-forms allow-modals allow-popups allow-presentation allow-
 
 const source = computed(() => {
   const params = new URLSearchParams()
-  props.filepath && params.set(props.type === 'embed' ? 'module' : 'file', encodeURIComponent(props.filepath))
+  if (props.filepath) {
+    params.set(props.type === 'embed' ? 'module' : 'file', encodeURIComponent(props.filepath))
+  }
 
   if (props.type === 'embed') {
     params.set('view', props.layout ? props.layout.replace(/,/g, '+') : 'Editor+Preview')
-    props.console && params.set('expanddevtools', '1')
-    props.navbar === false && params.set('hidenavigation', '1')
+
+    if (props.console) {
+      params.set('expanddevtools', '1')
+    }
+    if (props.navbar === false) {
+      params.set('hidenavigation', '1')
+    }
   }
   else {
     params.set('from-embed', '')

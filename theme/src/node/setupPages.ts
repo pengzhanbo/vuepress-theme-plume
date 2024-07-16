@@ -42,22 +42,28 @@ export async function setupPage(
     }))
 
     // 添加 标签页
-    blog.tags !== false && pageList.push(createPage(app, {
-      path: withBase(blog.tagsLink || `${link}/tags/`, localePath),
-      frontmatter: { lang, _pageLayout: 'blog-tags', title: getTitle(locale, 'tag') },
-    }))
+    if (blog.tags !== false) {
+      pageList.push(createPage(app, {
+        path: withBase(blog.tagsLink || `${link}/tags/`, localePath),
+        frontmatter: { lang, _pageLayout: 'blog-tags', title: getTitle(locale, 'tag') },
+      }))
+    }
 
     // 添加归档页
-    blog.archives !== false && pageList.push(createPage(app, {
-      path: withBase(blog.archivesLink || `${link}/archives/`, localePath),
-      frontmatter: { lang, _pageLayout: 'blog-archives', title: getTitle(locale, 'archive') },
-    }))
+    if (blog.archives !== false) {
+      pageList.push(createPage(app, {
+        path: withBase(blog.archivesLink || `${link}/archives/`, localePath),
+        frontmatter: { lang, _pageLayout: 'blog-archives', title: getTitle(locale, 'archive') },
+      }))
+    }
 
     // 添加分类页
-    blog.categories !== false && pageList.push(createPage(app, {
-      path: withBase(blog.categoriesLink || `${link}/categories/`, localePath),
-      frontmatter: { lang, _pageLayout: 'blog-categories', title: getTitle(locale, 'category') },
-    }))
+    if (blog.categories !== false) {
+      pageList.push(createPage(app, {
+        path: withBase(blog.categoriesLink || `${link}/categories/`, localePath),
+        frontmatter: { lang, _pageLayout: 'blog-categories', title: getTitle(locale, 'category') },
+      }))
+    }
   }
 
   app.pages.push(...await Promise.all(pageList))
@@ -137,7 +143,9 @@ export function autoCategory(
   const categoryList: PageCategoryData[] = list
     .map((category, index) => {
       const match = category.match(RE_CATEGORY) || []
-      !cache[match[2]] && !match[1] && (cache[match[2]] = uuid++)
+      if (!cache[match[2]] && !match[1]) {
+        cache[match[2]] = uuid++
+      }
       return {
         id: hash(list.slice(0, index + 1).join('-')).slice(0, 6),
         sort: Number(match[1] || cache[match[2]]),

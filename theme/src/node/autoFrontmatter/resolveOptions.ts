@@ -177,10 +177,12 @@ export function resolveOptions(
                       if (note && sidebar && sidebar !== 'auto') {
                         const res = resolveLinkBySidebar(sidebar, pathJoin(notes?.dir || '', note.dir || ''))
                         const file = ensureLeadingSlash(relativePath)
-                        if (res[file])
+                        if (res[file]) {
                           args.push(res[file])
-                        else
-                          res[path.dirname(file)] && args.push(res[path.dirname(file)])
+                        }
+                        else if (res[path.dirname(file)]) {
+                          args.push(res[path.dirname(file)])
+                        }
                       }
 
                       return pathJoin(...args, nanoid(), '/')

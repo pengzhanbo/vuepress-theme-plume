@@ -1,3 +1,13 @@
+# [1.0.0-rc.80](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.79...v1.0.0-rc.80) (2024-07-16)
+
+
+### Bug Fixes
+
+* **theme:** fix incorrect code block layout ([b02ccb4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b02ccb4ed9cdeedae92f38693834fb42253944cf))
+* **theme:** incorrect display of the home local nav ([6e494c2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6e494c2d3a5cacb1b7d78b711bfec40bc811ed6c))
+
+
+
 # [1.0.0-rc.79](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.78...v1.0.0-rc.79) (2024-07-16)
 
 

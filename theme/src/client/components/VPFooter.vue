@@ -87,6 +87,12 @@ onMounted(() => {
   .vp-footer {
     padding: 24px;
   }
+  .vp-footer.has-sidebar {
+    margin-left: calc(
+        (100% - (var(--vp-layout-max-width) - 64px)) / 2 + var(--vp-sidebar-width) -
+        32px
+      )
+  }
 }
 
 .container {

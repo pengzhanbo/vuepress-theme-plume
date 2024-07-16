@@ -47,7 +47,7 @@ const classes = computed(() => {
 })
 
 const showLocalNav = computed(() => {
-  return (hasSidebar.value || isBlogPost) && (!empty.value || y.value >= navHeight.value)
+  return (hasSidebar.value || isBlogPost.value) && (!empty.value || y.value >= navHeight.value)
 })
 </script>
 

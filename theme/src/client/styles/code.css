@@ -6,57 +6,34 @@ html:not(.dark) .vp-code span {
   color: var(--shiki-light, rgba(60, 60, 67, 0.78));
 }
 
-div[class*="language-"] pre {
-  padding: 1.3rem 1.5rem;
-  margin: 0 0 0.85rem;
+.vp-doc div[class*="language-"],
+.vp-block {
+  position: relative;
+  margin: 16px -24px;
   overflow-x: auto;
-
-  scrollbar-width: thin;
-}
-
-div[class*="language-"] code {
-  padding: 0;
-  font-size: var(--vp-code-font-size);
-  line-height: var(--vp-code-line-height);
-  color: var(--vp-code-block-color);
-  overflow-wrap: unset;
-  background-color: transparent;
-  border-radius: 0;
-  transition: background-color var(--t-color), color var(--t-color);
-
-  -webkit-font-smoothing: auto;
-  -moz-osx-font-smoothing: auto;
+  background-color: var(--vp-code-block-bg);
+  transition: background-color 0.5s;
 }
 
 @media (min-width: 640px) {
-  div[class*="language-"] pre {
-    border-radius: 6px;
+  .vp-doc div[class*="language-"],
+  .vp-block {
+    margin: 16px 0;
+    border-radius: 8px;
   }
 }
 
-.vp-doc .line-number {
-  font-family: var(--vp-font-family-mono);
-}
-
-div[class*="language-"] {
-  position: relative;
-  margin: 0.85rem -1.5rem;
-  background-color: var(--vp-code-block-bg);
-  transition: background-color var(--t-color);
-}
-
-.vp-doc .code-tabs div[class*="language-"] {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
 @media (max-width: 639px) {
-  .vp-doc li pre {
+  .vp-doc li div[class*="language-"] {
     border-radius: 8px 0 0 8px;
   }
 }
 
-div[class*="language-"]::before {
+.vp-doc div[class*="language-"] + div[class*="language-"] {
+  margin-top: -8px;
+}
+
+.vp-doc div[class*="language-"]::before {
   position: absolute;
   top: 5px;
   right: 1em;
@@ -67,20 +44,37 @@ div[class*="language-"]::before {
   transition: color var(--t-color);
 }
 
-div[class*="language-"] code {
-  display: inline-block;
+.vp-doc div[class*="language-"] code {
+  display: block;
   width: fit-content;
   min-width: 100%;
+  padding: 0 24px;
+  font-size: var(--vp-code-font-size);
+  line-height: var(--vp-code-line-height);
+  color: var(--vp-code-block-color);
+  transition: background-color var(--t-color), color var(--t-color);
+
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
 }
 
-div[class*="language-"] pre {
+.vp-doc div[class*="language-"] pre {
   position: relative;
   z-index: 1;
-  background: transparent !important;
+  padding: 20px 0;
+  margin: 0;
+  overflow-x: auto;
+  background: transparent;
 }
 
-div[class*="language-"] pre,
-div[class*="language-"] code {
+@media (min-width: 640px) {
+  .vp-doc div[class*="language-"] pre {
+    border-radius: 6px;
+  }
+}
+
+.vp-doc div[class*="language-"] pre,
+.vp-doc div[class*="language-"] code {
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
@@ -100,79 +94,45 @@ div[class*="language-"] code {
   direction: ltr;
 }
 
-div[class*="language-"] .highlight-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding-top: 1.3rem;
-  line-height: 1.5;
-  user-select: none;
-}
-
-div[class*="language-"] .highlight-lines .highlight-line {
-  background-color: var(--vp-c-default-soft);
-  transition: background-color var(--t-color);
-}
-
-div[class*="language-"]:not(.line-numbers-mode) .line-numbers {
+.vp-doc div[class*="language-"]:not(.line-numbers-mode) .line-numbers {
   display: none;
 }
 
-div[class*="language-"].line-numbers-mode .highlight-lines .highlight-line {
-  position: relative;
+.vp-doc div[class*="language-"].line-numbers-mode {
+  /* rtl:ignore */
+  padding-left: 32px;
 }
 
-div[class*="language-"].line-numbers-mode .highlight-lines .highlight-line::before {
+.vp-doc div[class*="language-"].line-numbers-mode .line-numbers {
   position: absolute;
   top: 0;
-  left: 0;
-  z-index: 2;
-  display: block;
-  height: 100%;
-  content: " ";
-}
+  bottom: 0;
 
-div[class*="language-"].line-numbers-mode pre {
-  padding-left: 1rem;
-  margin-left: 2rem;
-  vertical-align: middle;
-}
-
-div[class*="language-"].line-numbers-mode .line-numbers {
-  position: absolute;
-  top: 0;
+  /* rtl:ignore */
   left: 0;
-  z-index: 1;
-  width: 2rem;
-  height: 100%;
-  padding-top: 1.3rem;
+  z-index: 3;
+  width: 32px;
+  padding-top: 20px;
+  font-family: var(--vp-font-family-mono);
   font-size: var(--vp-code-font-size);
   line-height: var(--vp-code-line-height);
   color: var(--vp-code-line-number-color);
   text-align: center;
-  counter-reset: line-number;
-  border-right: var(--vp-code-block-divider-color) 1px solid;
+
+  /* rtl:ignore */
+  border-right: 1px solid var(--vp-code-block-divider-color);
   transition: border-right var(--t-color), color var(--t-color);
 }
 
-div[class*="language-"].line-numbers-mode .line-numbers .line-number {
+.vp-doc div[class*="language-"].line-numbers-mode .line-numbers .line-number {
   position: relative;
   z-index: 3;
   user-select: none;
 }
 
-div[class*="language-"].line-numbers-mode .line-numbers .line-number::before {
-  font-size: 0.85em;
+.vp-doc div[class*="language-"].line-numbers-mode .line-numbers .line-number::before {
   content: counter(line-number);
   counter-increment: line-number;
-}
-
-@media (min-width: 640px) {
-  div[class*="language-"] {
-    margin: 0;
-    border-radius: 6px;
-  }
 }
 
 @media (max-width: 639px) {
@@ -269,7 +229,7 @@ div[class*="language-"].line-numbers-mode .line-numbers .line-number::before {
   opacity: 1;
 }
 
-div[class*="language-"] button.copy {
+.vp-doc div[class*="language-"] button.copy {
   position: absolute;
   top: 12px;
 
@@ -293,20 +253,20 @@ div[class*="language-"] button.copy {
   direction: ltr;
 }
 
-div[class*="language-"]:hover > button.copy,
-div[class*="language-"] > button.copy:focus,
-div[class*="language-"] > button.copy.copied {
+.vp-doc div[class*="language-"]:hover > button.copy,
+.vp-doc div[class*="language-"] > button.copy:focus,
+.vp-doc div[class*="language-"] > button.copy.copied {
   opacity: 1;
 }
 
-div[class*="language-"] > button.copy:hover,
-div[class*="language-"] > button.copy.copied {
+.vp-doc div[class*="language-"] > button.copy:hover,
+.vp-doc div[class*="language-"] > button.copy.copied {
   background-color: var(--vp-code-copy-code-hover-bg);
   border-color: var(--vp-code-copy-code-hover-border-color);
 }
 
-div[class*="language-"] > button.copy.copied,
-div[class*="language-"] > button.copy:hover.copied {
+.vp-doc div[class*="language-"] > button.copy.copied,
+.vp-doc div[class*="language-"] > button.copy:hover.copied {
   background-color: var(--vp-code-copy-code-hover-bg);
   background-image: var(--vp-icon-copied);
 
@@ -314,8 +274,8 @@ div[class*="language-"] > button.copy:hover.copied {
   border-radius: 0 4px 4px 0;
 }
 
-div[class*="language-"] > button.copy.copied::before,
-div[class*="language-"] > button.copy:hover.copied::before {
+.vp-doc div[class*="language-"] > button.copy.copied::before,
+.vp-doc div[class*="language-"] > button.copy:hover.copied::before {
   position: relative;
   top: -1px;
   display: flex;

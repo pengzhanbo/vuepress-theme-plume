@@ -59,8 +59,13 @@
     margin: 0.85rem -0.75rem 0.85rem -1rem;
   }
 
+  .vp-doc .hint-container .vp-code-tabs-nav {
+    border-radius: 6px 6px 0 0;
+  }
+
   .vp-doc .hint-container .vp-code-tab div[class*="language-"] {
-    margin: 0 -0.75rem 0.85rem -1rem;
+    margin: 0 -0.75rem 0 -1rem;
+    border-radius: 0 0 6px 6px;
   }
 }
 
@@ -146,10 +151,6 @@
   color: var(--vp-c-danger-2);
 }
 
-.vp-doc .hint-container [class*="language-"] .line-numbers {
-  padding-top: 21px;
-}
-
 /* ------------------ Markdown Enhance: Code Tabs ----------------------- */
 .vp-doc .code-tabs-nav {
   margin-bottom: 0;
@@ -157,11 +158,17 @@
 
 .vp-doc .vp-code-tabs-nav {
   padding: 0 12px;
-  margin: 0.85rem 0 0;
+  margin: 16px 0 0;
   overflow-y: hidden;
   background-color: var(--vp-code-tab-bg);
   box-shadow: inset 0 -1px var(--vp-code-tab-divider);
   transition: background-color var(--t-color), box-shadow var(--t-color);
+}
+
+@media (max-width: 639px) {
+  .vp-doc .vp-code-tabs-nav {
+    margin: 16px -24px 0;
+  }
 }
 
 .vp-doc .vp-code-tab-nav {
@@ -208,11 +215,13 @@
   background: transparent;
 }
 
-@media (max-width: 419px) {
-  .vp-doc .vp-code-tabs-nav {
-    margin: 0 -1.5rem -0.85rem;
-  }
+.vp-doc .vp-code-tab div[class*="language-"] {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
 
+@media (max-width: 419px) {
   .vp-doc .hint-container .vp-code-tabs-nav {
     margin: 0.85rem -0.75rem 0 -1rem;
   }

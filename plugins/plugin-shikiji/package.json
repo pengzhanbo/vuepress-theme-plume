@@ -39,7 +39,7 @@
     "@shikijs/transformers": "^1.10.3",
     "@shikijs/twoslash": "^1.10.3",
     "@types/hast": "^3.0.4",
-    "@vuepress/helper": "2.0.0-rc.37",
+    "@vuepress/helper": "2.0.0-rc.38",
     "floating-vue": "^5.2.2",
     "mdast-util-from-markdown": "^2.0.1",
     "mdast-util-gfm": "^3.0.0",

@@ -40,7 +40,9 @@ const show = computed(() => {
 
 let timer: NodeJS.Timeout | null = null
 function resetScrolling() {
-  timer && clearTimeout(timer)
+  if (timer) {
+    clearTimeout(timer)
+  }
   timer = setTimeout(() => {
     isScrolling.value = false
   }, 1000)

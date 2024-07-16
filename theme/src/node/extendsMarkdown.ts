@@ -49,7 +49,9 @@ export async function extendsMarkdown(md: Markdown, app: App): Promise<void> {
   const update = (filepath: string, data: CacheData): void => {
     writeFile(`${basename}/${filepath}`, data)
 
-    timer && clearTimeout(timer)
+    if (timer) {
+      clearTimeout(timer)
+    }
     timer = setTimeout(async () => writeFile(metaFilepath, metadata), 200)
   }
   const rawRender = md.render

@@ -133,6 +133,12 @@ useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
           <template #blog-tags-after>
             <slot name="blog-tags-after" />
           </template>
+          <template #blog-categories-before>
+            <slot name="blog-categories-before" />
+          </template>
+          <template #blog-categories-after>
+            <slot name="blog-categories-after" />
+          </template>
           <template #blog-post-list-before>
             <slot name="blog-post-list-before" />
           </template>

@@ -2,7 +2,7 @@
 import { useScrollLock } from '@vueuse/core'
 import { onMounted, ref, watch } from 'vue'
 import { useRoutePath } from 'vuepress/client'
-import VPSidebarItem from '@theme/VPSidebarItem.vue'
+import VPSidebarGroup from '@theme/VPSidebarGroup.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { useSidebar } from '../composables/sidebar.js'
 import { inBrowser } from '../utils/index.js'
@@ -71,13 +71,7 @@ onMounted(() => {
 
           <slot name="sidebar-nav-before" />
 
-          <div
-            v-for="item in sidebarGroups"
-            :key="item.text"
-            class="group"
-          >
-            <VPSidebarItem :item="item" :depth="0" />
-          </div>
+          <VPSidebarGroup :items="sidebarGroups" />
 
           <slot name="sidebar-nav-after" />
         </nav>
@@ -169,18 +163,5 @@ onMounted(() => {
 
 .nav {
   outline: 0;
-}
-
-.group + .group {
-  padding-top: 10px;
-  border-top: 1px solid var(--vp-c-divider);
-  transition: border-top var(--t-color);
-}
-
-@media (min-width: 960px) {
-  .group {
-    width: calc(var(--vp-sidebar-width) - 64px);
-    padding-top: 10px;
-  }
 }
 </style>

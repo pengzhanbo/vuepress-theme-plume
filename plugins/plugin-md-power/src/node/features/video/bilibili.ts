@@ -41,11 +41,26 @@ export const bilibiliPlugin: PluginWithOptions<never> = (md) => {
     content(meta) {
       const params = new URLSearchParams()
 
-      meta.bvid && params.set('bvid', meta.bvid)
-      meta.aid && params.set('aid', meta.aid)
-      meta.cid && params.set('cid', meta.cid)
-      meta.page && params.set('p', meta.page.toString())
-      meta.time && params.set('t', meta.time.toString())
+      if (meta.bvid) {
+        params.set('bvid', meta.bvid)
+      }
+
+      if (meta.aid) {
+        params.set('aid', meta.aid)
+      }
+
+      if (meta.cid) {
+        params.set('cid', meta.cid)
+      }
+
+      if (meta.page) {
+        params.set('p', meta.page.toString())
+      }
+
+      if (meta.time) {
+        params.set('t', meta.time.toString())
+      }
+
       params.set('autoplay', meta.autoplay ? '1' : '0')
 
       const source = `${BILIBILI_LINK}?${params.toString()}`

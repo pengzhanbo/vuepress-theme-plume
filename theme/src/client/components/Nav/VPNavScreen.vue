@@ -48,8 +48,7 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
   overflow-y: auto;
   pointer-events: auto;
   background-color: var(--vp-nav-screen-bg-color);
-  border-top: 1px solid var(--vp-c-divider);
-  transition: background-color var(--t-color), border-top var(--t-color);
+  transition: background-color var(--t-color);
 }
 
 .container {

@@ -58,7 +58,9 @@ export async function initConfigLoader(
 
   loader.configFile = await findConfigPath(app, configFile)
 
-  onChange && loader.changeEvents.push(onChange)
+  if (onChange) {
+    loader.changeEvents.push(onChange)
+  }
 
   const { config, dependencies = [] } = await loader.load()
   loader.loaded = true
@@ -103,7 +105,9 @@ export function watchConfigFile(app: App, watchers: any[]) {
 export async function onConfigChange(onChange: ChangeEvent) {
   if (loader && !loader.changeEvents.includes(onChange)) {
     loader.changeEvents.push(onChange)
-    loader.loaded && onChange(loader.resolvedConfig)
+    if (loader.loaded) {
+      onChange(loader.resolvedConfig)
+    }
   }
 }
 

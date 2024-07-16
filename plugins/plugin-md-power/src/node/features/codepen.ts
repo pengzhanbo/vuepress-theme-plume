@@ -34,9 +34,16 @@ export const codepenPlugin: PluginWithOptions<never> = (md) => {
     content: (meta) => {
       const { title = 'Codepen', height, width } = meta
       const params = new URLSearchParams()
-      meta.editable && params.set('editable', 'true')
-      meta.tab && params.set('default-tab', meta.tab)
-      meta.theme && params.set('theme-id', meta.theme)
+
+      if (meta.editable) {
+        params.set('editable', 'true')
+      }
+      if (meta.tab) {
+        params.set('default-tab', meta.tab)
+      }
+      if (meta.theme) {
+        params.set('theme-id', meta.theme)
+      }
 
       const middle = meta.preview ? '/embed/preview/' : '/embed/'
 

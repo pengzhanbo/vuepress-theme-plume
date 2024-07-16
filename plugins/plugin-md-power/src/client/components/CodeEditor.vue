@@ -48,7 +48,9 @@ function highlight() {
 }
 
 function updateScroll() {
-  container && (container.scrollLeft = textAreaEl.value?.scrollLeft || 0)
+  if (container) {
+    container.scrollLeft = textAreaEl.value?.scrollLeft || 0
+  }
 }
 
 watch([input], highlight, { flush: 'post' })

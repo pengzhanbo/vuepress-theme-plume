@@ -57,8 +57,8 @@ export function scrollTo(
     const change = top - currentTop
     const timer = setInterval(() => {
       currentStep++
-      if (currentStep >= step)
-        timer && clearInterval(timer)
+      if (currentStep >= step && timer)
+        clearInterval(timer)
 
       setScrollTop(target, tween(currentStep, currentTop, change, step))
     }, 1000 / 60)

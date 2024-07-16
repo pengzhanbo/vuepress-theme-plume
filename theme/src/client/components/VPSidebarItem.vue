@@ -47,16 +47,20 @@ function onItemInteraction(e: MouseEvent | Event) {
   if ('key' in e && e.key !== 'Enter')
     return
 
-  !props.item.link && toggle()
+  if (!props.item.link) {
+    toggle()
+  }
 }
 
 function onCaretClick() {
-  props.item.link && toggle()
+  if (props.item.link) {
+    toggle()
+  }
 }
 </script>
 
 <template>
-  <Component :is="sectionTag" class="vp-sidebar-item" :class="classes">
+  <Component :is="sectionTag" class="vp-sidebar-item sidebar-item" :class="classes">
     <div
       v-if="item.text"
       class="item"

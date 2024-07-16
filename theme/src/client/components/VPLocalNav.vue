@@ -5,7 +5,7 @@ import VPLocalNavOutlineDropdown from '@theme/VPLocalNavOutlineDropdown.vue'
 import { useSidebar } from '../composables/sidebar.js'
 import { useHeaders } from '../composables/outline.js'
 import { useData } from '../composables/data.js'
-import { useBlogPost } from '../composables/page.js'
+import { useBlogPageData } from '../composables/page.js'
 
 const props = defineProps<{
   open: boolean
@@ -15,7 +15,7 @@ const props = defineProps<{
 defineEmits<(e: 'openMenu') => void>()
 
 const { theme } = useData()
-const { isBlogPost } = useBlogPost()
+const { isBlogPost } = useBlogPageData()
 
 const { hasSidebar } = useSidebar()
 const { y } = useWindowScroll()

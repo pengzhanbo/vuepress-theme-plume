@@ -295,7 +295,12 @@ export function useSidebar(): UseSidebarReturn {
   }
 
   const toggle = (): void => {
-    isOpen.value ? close() : open()
+    if (isOpen.value) {
+      close()
+    }
+    else {
+      open()
+    }
   }
 
   return {
@@ -386,7 +391,9 @@ export function useSidebarControl(item: ComputedRef<ResolvedSidebarItem>): Sideb
   })
 
   watchPostEffect(() => {
-    ;(isActiveLink.value || hasActiveLink.value) && (collapsed.value = false)
+    if (isActiveLink.value || hasActiveLink.value) {
+      collapsed.value = false
+    }
   })
 
   const toggle = (): void => {

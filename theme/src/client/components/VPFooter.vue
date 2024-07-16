@@ -78,7 +78,7 @@ onMounted(() => {
     margin-left: var(--vp-sidebar-width);
   }
 
-  .vp-footer.vp-footer.has-sidebar .container {
+  .vp-footer.has-sidebar .container {
     margin-left: calc(0px - var(--vp-sidebar-width));
   }
 }
@@ -87,11 +87,9 @@ onMounted(() => {
   .vp-footer {
     padding: 24px;
   }
+
   .vp-footer.has-sidebar {
-    margin-left: calc(
-        (100% - (var(--vp-layout-max-width) - 64px)) / 2 + var(--vp-sidebar-width) -
-        32px
-      )
+    margin-left: calc((100% - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width));
   }
 }
 

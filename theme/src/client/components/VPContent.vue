@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, watch } from 'vue'
+import { nextTick, watch } from 'vue'
 import VPBlog from '@theme/Blog/VPBlog.vue'
 import VPDoc from '@theme/VPDoc.vue'
 import VPPage from '@theme/VPPage.vue'
@@ -7,18 +7,15 @@ import VPHome from '@theme/Home/VPHome.vue'
 import VPFriends from '@theme/VPFriends.vue'
 import { useData, useSidebar } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
+import { useBlogPageData } from '../composables/page.js'
 
 const props = defineProps<{
   isNotFound?: boolean
 }>()
 
 const { hasSidebar } = useSidebar()
-const { frontmatter, page } = useData()
-
-const isBlogLayout = computed(() => {
-  const { type } = page.value
-  return type === 'blog' || type === 'blog-archives' || type === 'blog-tags' || type === 'blog-categories'
-})
+const { frontmatter } = useData()
+const { isBlogLayout } = useBlogPageData()
 
 watch([isBlogLayout, () => frontmatter.value.pageLayout], () => nextTick(() =>
   inBrowser && document.documentElement.classList.toggle(
@@ -53,6 +50,12 @@ watch([isBlogLayout, () => frontmatter.value.pageLayout], () => nextTick(() =>
       </template>
       <template #blog-tags-after>
         <slot name="blog-tags-after" />
+      </template>
+      <template #blog-categories-before>
+        <slot name="blog-categories-before" />
+      </template>
+      <template #blog-categories-after>
+        <slot name="blog-categories-after" />
       </template>
       <template #blog-post-list-before>
         <slot name="blog-post-list-before" />

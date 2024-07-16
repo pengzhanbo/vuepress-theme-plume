@@ -41,7 +41,7 @@ const { theme, page } = useData()
             <slot name="blog-categories-before" />
           </template>
           <template #blog-categories-after>
-            <slot name="blog-tags-after" />
+            <slot name="blog-categories-after" />
           </template>
         </VPBlogCategories>
         <VPPostList v-else>

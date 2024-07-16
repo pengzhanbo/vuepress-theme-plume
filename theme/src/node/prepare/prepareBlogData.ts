@@ -69,7 +69,9 @@ export async function preparedBlogData(
       excerpt: '',
     }
 
-    isEncryptPage(page, encrypt) && (data.encrypt = true)
+    if (isEncryptPage(page, encrypt)) {
+      data.encrypt = true
+    }
 
     if (page.contentRendered.includes(EXCERPT_SPLIT)) {
       const contents = page.contentRendered.split(EXCERPT_SPLIT)

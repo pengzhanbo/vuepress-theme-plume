@@ -1,3 +1,28 @@
+# [1.0.0-rc.79](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.78...v1.0.0-rc.79) (2024-07-16)
+
+
+### Bug Fixes
+
+* **theme:** fix incorrect footer layout ([#120](https://github.com/pengzhanbo/vuepress-theme-plume/issues/120)) ([0510e26](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0510e261dfe3e988d91a7c10b815d93d0fbc0971))
+
+
+### Features
+
+* **theme:** 添加 blog categories 插槽 ([b83a69a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b83a69a68179f8d7df6c767728b1e7b02f11c551))
+
+
+### Performance Improvements
+
+* **theme:** 调整 页面数据结构 ([fc23e49](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fc23e4950b74f19b05837a9e89d14931f0cf9ed7))
+* **theme:** 优化 `<h4`> 样式 ([647c291](https://github.com/pengzhanbo/vuepress-theme-plume/commit/647c291d2f55a043d51c740c6fb9ffbc70bf895f))
+* **theme:** 优化 侧边栏 分组结构 ([400bf02](https://github.com/pengzhanbo/vuepress-theme-plume/commit/400bf02856e92bb0fd2d8f87a1a30e7cbce9e308))
+* **theme:** 优化导航栏交互 ([4501a16](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4501a1654ec6b503ccbbd3e8526d9e43131affe7))
+* **theme:** 优化中文字体库 ([198e13d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/198e13d885c6c00867ef4d55ff1206bc2117b724))
+* **theme:** 优化主题配置 ([2219f20](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2219f2019ea768a554b9adea7301ec99ac819ad1))
+* update deps to latest ([98e85b0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/98e85b0ece46ffb11ac7a45302f7b3ffaae57033))
+
+
+
 # [1.0.0-rc.78](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.77...v1.0.0-rc.78) (2024-07-13)
 
 

@@ -35,9 +35,6 @@ importers:
       commitizen:
         specifier: ^4.3.0
         version: 4.3.0(@types/node@20.12.10)(typescript@5.5.3)
-      concurrently:
-        specifier: ^8.2.2
-        version: 8.2.2
       conventional-changelog-cli:
         specifier: ^5.0.0
         version: 5.0.0
@@ -262,9 +259,6 @@ importers:
       '@pengzhanbo/utils':
         specifier: ^1.1.2
         version: 1.1.2
-      '@vue/devtools-api':
-        specifier: 6.6.3
-        version: 6.6.3
       '@vuepress-plume/plugin-baidu-tongji':
         specifier: workspace:*
         version: link:../plugins/plugin-baidu-tongji
@@ -472,10 +466,6 @@ packages:
     resolution: {integrity: sha512-9uUYRm6OqQrCqQdG1iCBwBPZgN8ciDBro2nIOFaiRz1/BCxaI7CNvQbDHvsArAC7Tw9Hda/B3U+6ui9u4HWXPw==}
     engines: {node: '>=6.0.0'}
     hasBin: true
-
-  '@babel/runtime@7.21.5':
-    resolution: {integrity: sha512-8jI69toZqqcsnqGGqwGS4Qb1VwLOEp4hz+CXPywcvjs60u3B4Pom/U/7rm4W8tMOYEB+E9wgD0mW1l3r8qlI9Q==}
-    engines: {node: '>=6.9.0'}
 
   '@babel/types@7.24.6':
     resolution: {integrity: sha512-WaMsgi6Q8zMgMth93GvWPXkhAIEobfsIkLTacoVZoK1J0CevIPGYY2Vo5YvJGqyHqXM6P4ppOYGsIRU8MM9pFQ==}
@@ -2150,11 +2140,6 @@ packages:
   concat-map@0.0.1:
     resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
 
-  concurrently@8.2.2:
-    resolution: {integrity: sha512-1dP4gpXFhei8IOtlXRE/T/4H88ElHgTiUzh71YUmtjTEHMSRS2Z/fgOxHSxxusGHogsRfxNq1vyAwxSC+EVyDg==}
-    engines: {node: ^14.13.0 || >=16.0.0}
-    hasBin: true
-
   confbox@0.1.3:
     resolution: {integrity: sha512-eH3ZxAihl1PhKfpr4VfEN6/vUd87fmgb6JkldHgg/YR6aEBhW63qUDgzP2Y6WM0UumdsYp5H3kibalXAdHfbgg==}
 
@@ -2469,10 +2454,6 @@ packages:
   dargs@8.1.0:
     resolution: {integrity: sha512-wAV9QHOsNbwnWdNW2FYvE1P56wtgSbM+3SZcdGiWQILwVjACCXDCI3Ai8QlCjMDB8YK5zySiXZYBiwGmNY3lnw==}
     engines: {node: '>=12'}
-
-  date-fns@2.30.0:
-    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
-    engines: {node: '>=0.11'}
 
   date-fns@3.6.0:
     resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
@@ -4433,9 +4414,6 @@ packages:
     resolution: {integrity: sha512-J8rn6v4DBb2nnFqkqwy6/NnTYMcgLA+sLr0iIO41qpv0n+ngb7ksag2tMRl0inb1bbO/esUwzW1vbJi7K0sI0g==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
 
-  regenerator-runtime@0.13.11:
-    resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
-
   regexp-ast-analysis@0.7.1:
     resolution: {integrity: sha512-sZuz1dYW/ZsfG17WSAG7eS85r5a0dDsvg+7BiiYR5o6lKCAtUrEwdmRmaGF6rwVj3LcmAeYkOWKEPlbPzN3Y3A==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
@@ -4526,9 +4504,6 @@ packages:
 
   rxjs@7.8.0:
     resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
-
-  rxjs@7.8.1:
-    resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
 
   sade@1.8.1:
     resolution: {integrity: sha512-xal3CZX1Xlo/k4ApwCFrHVACi9fBqJ7V+mwhBsuf/1IOKbBy098Fex+Wa/5QMubw09pSZ/u8EY8PWgevJsXp1A==}
@@ -4647,9 +4622,6 @@ packages:
   source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
-
-  spawn-command@0.0.2:
-    resolution: {integrity: sha512-zC8zGoGkmc8J9ndvml8Xksr1Amk9qBujgbF0JAIWO7kXr43w0h/0GJNM/Vustixu+YE8N/MTrQ7N31FvHUACxQ==}
 
   spdx-correct@3.1.1:
     resolution: {integrity: sha512-cOYcUWwhCuHCXi49RhFRCyJEK3iPj1Ziz9DpViV3tbZOwXD49QzIN3MpOLJNxh2qwq2lJJZaKMVw9qNi4jTC0w==}
@@ -4813,10 +4785,6 @@ packages:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
 
-  supports-color@8.1.1:
-    resolution: {integrity: sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==}
-    engines: {node: '>=10'}
-
   supports-hyperlinks@3.0.0:
     resolution: {integrity: sha512-QBDPHyPQDRTy9ku4URNGY5Lah8PAaXs6tAAwp55sL5WCsSW7GIfdf6W5ixfziW+t7wh3GVvHyHHyQ1ESsoRvaA==}
     engines: {node: '>=14.18'}
@@ -4890,10 +4858,6 @@ packages:
   toml-eslint-parser@0.10.0:
     resolution: {integrity: sha512-khrZo4buq4qVmsGzS5yQjKe/WsFvV8fGfOjDQN0q4iy9FjRfPWRgTFrU8u1R2iu/SfWLhY9WnCi4Jhdrcbtg+g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-
-  tree-kill@1.2.2:
-    resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
-    hasBin: true
 
   trim-lines@3.0.1:
     resolution: {integrity: sha512-kRj8B+YHZCc9kQYdWfJB2/oUl9rA99qbowYYBtr4ui4mZyAQ2JpvVBd/6U2YloATfqBhBTSMhTpgBHtU0Mf3Rg==}
@@ -5425,10 +5389,6 @@ snapshots:
   '@babel/parser@7.24.7':
     dependencies:
       '@babel/types': 7.24.6
-
-  '@babel/runtime@7.21.5':
-    dependencies:
-      regenerator-runtime: 0.13.11
 
   '@babel/types@7.24.6':
     dependencies:
@@ -7285,18 +7245,6 @@ snapshots:
 
   concat-map@0.0.1: {}
 
-  concurrently@8.2.2:
-    dependencies:
-      chalk: 4.1.2
-      date-fns: 2.30.0
-      lodash: 4.17.21
-      rxjs: 7.8.1
-      shell-quote: 1.8.1
-      spawn-command: 0.0.2
-      supports-color: 8.1.1
-      tree-kill: 1.2.2
-      yargs: 17.7.2
-
   confbox@0.1.3: {}
 
   connect-history-api-fallback@2.0.0: {}
@@ -7672,10 +7620,6 @@ snapshots:
       lodash-es: 4.17.21
 
   dargs@8.1.0: {}
-
-  date-fns@2.30.0:
-    dependencies:
-      '@babel/runtime': 7.21.5
 
   date-fns@3.6.0: {}
 
@@ -9943,8 +9887,6 @@ snapshots:
     dependencies:
       '@eslint-community/regexpp': 4.10.0
 
-  regenerator-runtime@0.13.11: {}
-
   regexp-ast-analysis@0.7.1:
     dependencies:
       '@eslint-community/regexpp': 4.10.0
@@ -10037,10 +9979,6 @@ snapshots:
   rw@1.3.3: {}
 
   rxjs@7.8.0:
-    dependencies:
-      tslib: 2.6.2
-
-  rxjs@7.8.1:
     dependencies:
       tslib: 2.6.2
 
@@ -10152,8 +10090,6 @@ snapshots:
   source-map-js@1.2.0: {}
 
   source-map@0.6.1: {}
-
-  spawn-command@0.0.2: {}
 
   spdx-correct@3.1.1:
     dependencies:
@@ -10342,10 +10278,6 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
-  supports-color@8.1.1:
-    dependencies:
-      has-flag: 4.0.0
-
   supports-hyperlinks@3.0.0:
     dependencies:
       has-flag: 4.0.0
@@ -10414,8 +10346,6 @@ snapshots:
   toml-eslint-parser@0.10.0:
     dependencies:
       eslint-visitor-keys: 3.4.3
-
-  tree-kill@1.2.2: {}
 
   trim-lines@3.0.1: {}
 

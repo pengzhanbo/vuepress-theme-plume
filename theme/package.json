@@ -54,11 +54,11 @@
     "templates"
   ],
   "scripts": {
+    "dev": "pnpm '/(copy|ts):watch/'",
     "build": "pnpm run copy && pnpm run ts",
     "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
     "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib -w",
-    "dev": "concurrently \"pnpm copy:watch\" \"pnpm ts:watch\"",
     "ts": "tsc -b tsconfig.build.json",
     "ts:watch": "tsc -b tsconfig.build.json --watch"
   },
@@ -67,7 +67,6 @@
   },
   "dependencies": {
     "@pengzhanbo/utils": "^1.1.2",
-    "@vue/devtools-api": "6.6.3",
     "@vuepress-plume/plugin-baidu-tongji": "workspace:*",
     "@vuepress-plume/plugin-content-update": "workspace:*",
     "@vuepress-plume/plugin-fonts": "workspace:*",

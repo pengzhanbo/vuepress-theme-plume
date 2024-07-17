@@ -4,7 +4,7 @@
 
 import type { Markdown } from 'vuepress/markdown'
 
-const HIGHLIGHT_LINES_REGEXP = /{([\d,-]+)}/
+const HIGHLIGHT_LINES_REGEXP = /\{([\d,-]+)\}/
 
 export function highlightLinesPlugin(md: Markdown): void {
   const rawFence = md.renderer.rules.fence!

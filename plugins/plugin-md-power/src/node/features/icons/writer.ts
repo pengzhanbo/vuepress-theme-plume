@@ -15,7 +15,7 @@ export interface IconCacheItem {
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 8)
 const iconDataCache = new Map<string, any>()
-const URL_CONTENT_RE = /(url\([^]+?\))/
+const URL_CONTENT_RE = /(url\([\s\S]+?\))/
 const CSS_PATH = 'internal/md-power/icons.css'
 
 function resolveOption(opt?: boolean | IconsOptions): Required<IconsOptions> {

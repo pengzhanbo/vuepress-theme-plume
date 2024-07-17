@@ -12,7 +12,7 @@ import { createRuleBlock } from '../utils/createRuleBlock.js'
 export const replitPlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<ReplitTokenMeta>(md, {
     type: 'replit',
-    syntaxPattern: /^@\[replit(?:\s+([^]*?))?\]\(([^)]*?)\)/,
+    syntaxPattern: /^@\[replit([^\]]*)\]\(([^)]*)\)/,
     meta: ([, info = '', source = '']) => {
       const { attrs } = resolveAttrs(info)
       return {

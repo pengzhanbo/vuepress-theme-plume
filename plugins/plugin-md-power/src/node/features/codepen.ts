@@ -14,7 +14,7 @@ const CODEPEN_LINK = 'https://codepen.io/'
 export const codepenPlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<CodepenTokenMeta>(md, {
     type: 'codepen',
-    syntaxPattern: /^@\[codepen(?:\s+([^]*?))?\]\(([^)]*?)\)/,
+    syntaxPattern: /^@\[codepen([^\]]*)\]\(([^)]*)\)/,
     meta: ([, info = '', source = '']) => {
       const { attrs } = resolveAttrs(info)
       const [user, slash] = source.split('/')

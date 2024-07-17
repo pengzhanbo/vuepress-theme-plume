@@ -5,7 +5,7 @@ import type { App } from 'vuepress/core'
 import { fs, getDirname, path } from 'vuepress/utils'
 import type { ReplEditorData, ReplOptions } from '../../shared/repl.js'
 
-const RE_INFO = /^(#editable)?\s*?(.*)$/
+const RE_INFO = /^(#editable)?(.*)$/
 
 function createReplContainer(md: markdownIt, lang: string) {
   const type = `${lang}-repl`

@@ -60,7 +60,7 @@ export function transformerTwoslash(options: VitePressPluginTwoslashOptions = {}
     },
     postprocess(html) {
       if (this.meta.twoslash)
-        return html.replace(/{/g, '&#123;')
+        return html.replace(/\{/g, '&#123;')
 
       return html
     },

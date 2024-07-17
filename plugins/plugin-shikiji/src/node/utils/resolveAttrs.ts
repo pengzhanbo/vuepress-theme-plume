@@ -1,5 +1,5 @@
-const RE_ATTR_VALUE = /(?:^|\s+)(?<attr>[\w\d-]+)(?:=\s*(?<quote>['"])(?<value>.+?)\k<quote>)?(?:\s+|$)/
-const RE_CODE_BLOCKS = /^[\w\d-]*(\s*:[\w\d-]*)?(\s*\{[\d\w-,\s]+\})?\s*/
+const RE_ATTR_VALUE = /(?:^|\s+)(?<attr>[\w-]+)(?:=\s*(?<quote>['"])(?<value>.+?)\k<quote>)?(?:\s+|$)/
+const RE_CODE_BLOCKS = /^[\w\-]*(\s*:[\w\-]*)?(\s*\{[\w\-,\s]+\})?\s*/
 
 export function resolveAttrs(info: string): {
   attrs: Record<string, string | boolean>

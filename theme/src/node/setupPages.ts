@@ -115,7 +115,8 @@ export function extendsPageData(
 
 let uuid = 10000
 const cache: Record<string, number> = {}
-const RE_CATEGORY = /^(\d+)?(?:\.?)([^]+)$/
+// eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group
+const RE_CATEGORY = /^(\d+)?\.?([\s\S]+)$/
 let LOCALE_RE: RegExp
 
 export function autoCategory(

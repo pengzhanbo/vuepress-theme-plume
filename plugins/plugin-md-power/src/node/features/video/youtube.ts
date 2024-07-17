@@ -15,7 +15,7 @@ export const youtubePlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<YoutubeTokenMeta>(md, {
     type: 'youtube',
     name: 'video_youtube',
-    syntaxPattern: /^@\[youtube(?:\s+([^]*?))?\]\(([^)]*)\)/,
+    syntaxPattern: /^@\[youtube([^\]]*)\]\(([^)]*)\)/,
     meta([, info = '', id = '']) {
       const { attrs } = resolveAttrs(info)
 

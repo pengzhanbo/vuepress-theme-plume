@@ -11,7 +11,7 @@ import { createRuleBlock } from '../utils/createRuleBlock.js'
 export const jsfiddlePlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<JSFiddleTokenMeta>(md, {
     type: 'jsfiddle',
-    syntaxPattern: /^@\[jsfiddle(?:\s+([^]*?))?\]\(([^)]*?)\)/,
+    syntaxPattern: /^@\[jsfiddle([^\]]*)\]\(([^)]*)\)/,
     meta([, info = '', source]) {
       const { attrs } = resolveAttrs(info)
       const [user, id] = source.split('/')

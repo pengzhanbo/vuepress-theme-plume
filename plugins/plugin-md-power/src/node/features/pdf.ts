@@ -13,7 +13,8 @@ import { createRuleBlock } from '../utils/createRuleBlock.js'
 export const pdfPlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<PDFTokenMeta>(md, {
     type: 'pdf',
-    syntaxPattern: /^@\[pdf(?:\s+(\d+))?(?:\s+([^]*?))?\]\(([^)]*?)\)/,
+    // eslint-disable-next-line regexp/no-super-linear-backtracking
+    syntaxPattern: /^@\[pdf(?:\s+(\d+))?([^\]]*)\]\(([^)]*)\)/,
     meta([, page, info = '', src = '']) {
       const { attrs } = resolveAttrs(info)
       return {

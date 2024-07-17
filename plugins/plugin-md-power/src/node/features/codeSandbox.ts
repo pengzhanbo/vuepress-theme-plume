@@ -12,7 +12,7 @@ import { createRuleBlock } from '../utils/createRuleBlock.js'
 export const codeSandboxPlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<CodeSandboxTokenMeta>(md, {
     type: 'codesandbox',
-    syntaxPattern: /^@\[codesandbox(?:\s+(embed|button))?(?:\s+([^]*?))?\]\(([^)]*?)\)/,
+    syntaxPattern: /^@\[codesandbox(?:\s+(embed|button))?([^\]]*)\]\(([^)]*)\)/,
     meta([, type, info = '', source = '']) {
       const { attrs } = resolveAttrs(info)
       const [profile, filepath = ''] = source.split('#')

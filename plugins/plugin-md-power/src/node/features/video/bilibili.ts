@@ -18,7 +18,8 @@ export const bilibiliPlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<BilibiliTokenMeta>(md, {
     type: 'bilibili',
     name: 'video_bilibili',
-    syntaxPattern: /^@\[bilibili(?:\s+p(\d+))?(?:\s+([^]*?))?\]\(([^)]*)\)/,
+    // eslint-disable-next-line regexp/no-super-linear-backtracking
+    syntaxPattern: /^@\[bilibili(?:\s+p(\d+))?([^\]]*)\]\(([^)]*)\)/,
     meta([, page, info = '', source = '']) {
       const { attrs } = resolveAttrs(info)
       const ids = source.trim().split(/\s+/)

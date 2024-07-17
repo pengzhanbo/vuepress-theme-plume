@@ -26,11 +26,6 @@
   margin-bottom: 0 !important;
 }
 
-.vp-doc .hint-container code {
-  font-size: var(--vp-custom-block-code-font-size);
-  color: inherit;
-}
-
 .vp-doc .hint-container th,
 .vp-doc .hint-container blockquote > p {
   font-size: var(--vp-custom-block-font-size);
@@ -46,6 +41,7 @@
 }
 
 .vp-doc .hint-container div[class*="language-"] code {
+  font-size: var(--vp-custom-block-code-font-size);
   font-weight: 400;
   background-color: transparent;
 }

@@ -1,6 +1,6 @@
 import { useClipboard, useEventListener } from '@vueuse/core'
 
-const SHELL_RE = /language-(shellscript|shell|bash|sh|zsh)/
+const SHELL_RE = /language-(?:shellscript|shell|bash|sh|zsh)/
 const IGNORE_NODES = ['.vp-copy-ignore', '.diff.remove']
 
 interface CopyCodeOptions {

@@ -24,7 +24,7 @@ export const caniusePlugin: PluginWithOptions<CanIUseOptions> = (
 ): void => {
   createRuleBlock<CanIUseTokenMeta>(md, {
     type: 'caniuse',
-    syntaxPattern: /^@\[caniuse(?:\s*?(embed|image)?(?:{([0-9,\-]*?)})?)\]\(([^)]*)\)/,
+    syntaxPattern: /^@\[caniuse\s*(embed|image)?(?:\{([0-9,\-]*)\})?\]\(([^)]*)\)/,
     meta: ([, mode, versions = '', feature]) => ({
       feature,
       mode: (mode as CanIUseMode) || defaultMode,
@@ -53,7 +53,7 @@ export function legacyCaniuse(
 
   mode = isMode(mode) ? mode : modeMap[0]
   const type = 'caniuse'
-  const validateReg = new RegExp(`^${type}\\s+(.*)$`)
+  const validateReg = new RegExp(`^${type}`)
 
   const validate = (info: string): boolean => {
     return validateReg.test(info.trim())

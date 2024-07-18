@@ -20,8 +20,7 @@ import {
 } from 'vue'
 import { sidebar as sidebarRaw } from '@internal/sidebar'
 import { isActive, normalizeLink, normalizePrefix, resolveNavLink } from '../utils/index.js'
-import type { Sidebar, SidebarItem } from '../../shared/index.js'
-import type { ResolvedSidebarItem } from '../../shared/resolved/sidebar.js'
+import type { ResolvedSidebarItem, Sidebar, SidebarItem } from '../../shared/index.js'
 import { useData } from './data.js'
 import { useEncrypt } from './encrypt.js'
 

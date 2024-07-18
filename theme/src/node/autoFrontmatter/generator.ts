@@ -10,8 +10,8 @@ import type {
   AutoFrontmatterArray,
   AutoFrontmatterMarkdownFile,
   AutoFrontmatterObject,
-} from '../../shared/auto-frontmatter.js'
-import type { PlumeThemeLocaleOptions } from '../../shared/index.js'
+  PlumeThemeLocaleOptions,
+} from '../../shared/index.js'
 import { readMarkdown, readMarkdownList } from './readFile.js'
 import { resolveOptions } from './resolveOptions.js'
 

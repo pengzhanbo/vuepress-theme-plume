@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import VPEncryptForm from '@theme/VPEncryptForm.vue'
-import { useData } from '../composables/data.js'
+import { useData } from '../composables/index.js'
 
 const { theme } = useData()
 </script>

@@ -1,6 +1,6 @@
 import { usePageLang } from 'vuepress/client'
 import { computed, onMounted, ref, watchEffect } from 'vue'
-import { useData } from '../composables/data.js'
+import { useData } from './data.js'
 
 export function useLastUpdated() {
   const { theme, page, frontmatter } = useData()

@@ -1,11 +1,12 @@
 import type { Ref } from 'vue'
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
-import type { NavItem } from '../../shared/index.js'
 import type {
+  NavItem,
   ResolvedNavItem,
   ResolvedNavItemWithLink,
-} from '../../shared/resolved/navbar.js'
+} from '../../shared/index.js'
+
 import { normalizeLink, resolveNavLink } from '../utils/index.js'
 import { useData } from './data.js'
 

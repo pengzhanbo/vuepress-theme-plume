@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useElementSize, useWindowScroll, useWindowSize } from '@vueuse/core'
 import { computed, onMounted, ref, shallowRef, watch } from 'vue'
-import { useData } from '../composables/data.js'
+import { useData } from '../composables/index.js'
 
 const body = shallowRef<HTMLElement | null>()
 const { height: bodyHeight } = useElementSize(body)

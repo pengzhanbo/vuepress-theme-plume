@@ -4,7 +4,7 @@ import { ClientOnly } from 'vuepress/client'
 import type { IconifyRenderMode } from '@iconify/vue'
 import type { StyleValue } from 'vue'
 import { computed, toRefs } from 'vue'
-import { useIconify } from '../composables/iconify.js'
+import { useIconify } from '../composables/index.js'
 
 const props = withDefaults(
   defineProps<{
@@ -31,13 +31,13 @@ const { name } = toRefs(props)
 const { icon, loaded } = useIconify(name)
 
 const size = computed(() => {
-  const size = props.size || __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_SIZE__
+  const size = props.size || __VP_ICONIFY_SIZE__
   if (String(Number(size)) === size)
     return `${size}px`
 
   return size
 })
-const color = computed(() => props.color || __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_COLOR__)
+const color = computed(() => props.color || __VP_ICONIFY_COLOR__)
 
 const bind = computed<any>(() => ({
   icon: icon.value,
@@ -55,8 +55,8 @@ const bind = computed<any>(() => ({
 </script>
 
 <script lang="ts">
-declare const __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_SIZE__: string
-declare const __VUEPRESS_PLUGIN_ICONIFY_DEFAULT_COLOR__: string
+declare const __VP_ICONIFY_SIZE__: string
+declare const __VP_ICONIFY_COLOR__: string
 </script>
 
 <template>

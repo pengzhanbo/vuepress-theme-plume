@@ -10,9 +10,7 @@ import VPSkipLink from '@theme/VPSkipLink.vue'
 import VPFooter from '@theme/VPFooter.vue'
 import VPBackToTop from '@theme/VPBackToTop.vue'
 import VPEncryptGlobal from '@theme/VPEncryptGlobal.vue'
-import { useCloseSidebarOnEscape, useSidebar } from '../composables/sidebar.js'
-import { useEncrypt } from '../composables/encrypt.js'
-import { useData } from '../composables/data.js'
+import { useCloseSidebarOnEscape, useData, useEncrypt, useSidebar } from '../composables/index.js'
 
 const {
   isOpen: isSidebarOpen,

@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import VPIcon from '@theme/VPIcon.vue'
 import VPMenu from '@theme/VPMenu.vue'
-import { useFlyout } from '../composables/flyout.js'
+import { useFlyout } from '../composables/index.js'
 
 defineProps<{
   prefixIcon?: string | { svg: string }

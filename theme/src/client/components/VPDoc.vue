@@ -6,11 +6,13 @@ import VPDocAside from '@theme/VPDocAside.vue'
 import VPDocFooter from '@theme/VPDocFooter.vue'
 import VPEncryptPage from '@theme/VPEncryptPage.vue'
 import VPDocMeta from '@theme/VPDocMeta.vue'
-import { useEncrypt } from '../composables/encrypt.js'
-import { useSidebar } from '../composables/sidebar.js'
-import { useData } from '../composables/data.js'
-import { useHeaders } from '../composables/outline.js'
-import { useBlogPageData } from '../composables/page.js'
+import {
+  useBlogPageData,
+  useData,
+  useEncrypt,
+  useHeaders,
+  useSidebar,
+} from '../composables/index.js'
 
 const { page, theme, frontmatter, isDark } = useData()
 const route = useRoute()

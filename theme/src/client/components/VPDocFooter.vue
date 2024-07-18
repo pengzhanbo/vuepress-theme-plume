@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import VPLink from '@theme/VPLink.vue'
-import { useContributors } from '../composables/contributors.js'
-import { useEditLink } from '../composables/edit-link.js'
-import { useLastUpdated } from '../composables/latest-updated.js'
-import { usePrevNext } from '../composables/prev-next.js'
-import { useData } from '../composables/data.js'
+import {
+  useContributors,
+  useData,
+  useEditLink,
+  useLastUpdated,
+  usePrevNext,
+} from '../composables/index.js'
 
 const { theme, frontmatter } = useData()
 const editLink = useEditLink()

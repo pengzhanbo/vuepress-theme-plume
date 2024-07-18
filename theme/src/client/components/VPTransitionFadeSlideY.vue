@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useScrollPromise } from '../composables/scroll-promise.js'
-import { useData } from '../composables/data.js'
+import { useData, useScrollPromise } from '../composables/index.js'
 
 const { theme } = useData()
 const { resolve: onBeforeEnter, pending: onBeforeLeave } = useScrollPromise()

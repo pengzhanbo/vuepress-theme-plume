@@ -2,8 +2,7 @@
 import { computed, provide, watchEffect } from 'vue'
 import VPNavbar from '@theme/Nav/VPNavBar.vue'
 import VPNavScreen from '@theme/Nav/VPNavScreen.vue'
-import { useNav } from '../../composables/nav.js'
-import { useData } from '../../composables/data.js'
+import { useData, useNav } from '../../composables/index.js'
 import { inBrowser } from '../../utils/index.js'
 
 const { page, frontmatter } = useData()

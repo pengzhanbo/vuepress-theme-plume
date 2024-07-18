@@ -71,11 +71,12 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
         await setupPage(app, localeOptions)
       },
 
-      onPrepared: (app) => {
+      onPrepared: async (app) => {
         onConfigChange(({ localeOptions }) => {
           prepareThemeData(app, localeOptions)
           prepareData(app)
         })
+        await waitForConfigLoaded()
       },
 
       onWatched: (app, watchers) => {

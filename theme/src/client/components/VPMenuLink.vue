@@ -2,7 +2,7 @@
 import VPLink from '@theme/VPLink.vue'
 import VPIcon from '@theme/VPIcon.vue'
 import { resolveRouteFullPath } from 'vuepress/client'
-import { useData } from '../composables/data.js'
+import { useData } from '../composables/index.js'
 import { isActive } from '../utils/index.js'
 
 defineProps<{

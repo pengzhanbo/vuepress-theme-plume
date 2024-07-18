@@ -9,8 +9,7 @@ import VPNavBarSearch from '@theme/Nav/VPNavBarSearch.vue'
 import VPNavBarSocialLinks from '@theme/Nav/VPNavBarSocialLinks.vue'
 import VPNavBarTitle from '@theme/Nav/VPNavBarTitle.vue'
 import VPNavBarTranslations from '@theme/Nav/VPNavBarTranslations.vue'
-import { useData } from '../../composables/data.js'
-import { useSidebar } from '../../composables/sidebar.js'
+import { useData, useSidebar } from '../../composables/index.js'
 
 const props = defineProps<{
   isScreenOpen: boolean

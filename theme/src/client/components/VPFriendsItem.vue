@@ -3,7 +3,7 @@ import { isPlainObject } from '@vuepress/helper/client'
 import { computed } from 'vue'
 import VPLink from '@theme/VPLink.vue'
 import type { FriendsItem } from '../../shared/index'
-import { useDarkMode } from '../composables/dark-mode.js'
+import { useDarkMode } from '../composables/index.js'
 import VPSocialLinks from './VPSocialLinks.vue'
 
 const props = defineProps<{

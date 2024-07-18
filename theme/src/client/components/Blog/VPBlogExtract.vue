@@ -4,8 +4,7 @@ import { computed, ref, watch } from 'vue'
 import { useRoute, withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import VPLink from '@theme/VPLink.vue'
-import { useBlogExtract } from '../../composables/blog-extract.js'
-import { useData } from '../../composables/data.js'
+import { useBlogExtract, useData } from '../../composables/index.js'
 import { inBrowser } from '../../utils/index.js'
 
 const { theme } = useData()

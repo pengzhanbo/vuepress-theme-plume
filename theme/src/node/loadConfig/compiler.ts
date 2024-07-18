@@ -4,7 +4,7 @@ import process from 'node:process'
 import { pathToFileURL } from 'node:url'
 import { build } from 'esbuild'
 import { importFileDefault } from 'vuepress/utils'
-import type { ThemeConfig } from '../../shared/theme-data.js'
+import type { ThemeConfig } from '../../shared/index.js'
 import { hash } from '../utils/index.js'
 
 export async function compiler(configPath?: string,

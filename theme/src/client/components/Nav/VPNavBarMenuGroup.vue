@@ -5,9 +5,9 @@ import VPFlyout from '@theme/VPFlyout.vue'
 import type {
   ResolvedNavItem,
   ResolvedNavItemWithChildren,
-} from '../../../shared/resolved/navbar.js'
+} from '../../../shared/index.js'
 import { isActive } from '../../utils/index.js'
-import { useData } from '../../composables/data.js'
+import { useData } from '../../composables/index.js'
 
 const props = defineProps<{
   item: ResolvedNavItemWithChildren

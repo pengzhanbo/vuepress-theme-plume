@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import VPCategories from '@theme/Blog/VPCategories.vue'
-import { useBlogCategory } from '../../composables/blog-category.js'
-import { useBlogNavTitle } from '../../composables/blog-extract.js'
+import { useBlogCategory, useBlogNavTitle } from '../../composables/index.js'
 
 const title = useBlogNavTitle('category')
 const { categories } = useBlogCategory()

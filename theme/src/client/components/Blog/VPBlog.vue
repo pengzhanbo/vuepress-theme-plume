@@ -7,7 +7,7 @@ import VPBlogTags from '@theme/Blog/VPBlogTags.vue'
 import VPBlogCategories from '@theme/Blog/VPBlogCategories.vue'
 import VPBlogNav from '@theme/Blog/VPBlogNav.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
-import { useData } from '../../composables/data.js'
+import { useData } from '../../composables/index.js'
 
 const { theme, page } = useData()
 </script>

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { toRef } from 'vue'
 import type { SearchBoxLocales } from '../../shared/index.js'
-import { useLocale } from '../composables/locale.js'
+import { useLocale } from '../composables/index.js'
 
 const props = defineProps<{
   locales: SearchBoxLocales

@@ -2,8 +2,8 @@
 import { computed } from 'vue'
 import VPLink from '@theme/VPLink.vue'
 import VPIcon from '@theme/VPIcon.vue'
-import { useSidebarControl } from '../composables/sidebar.js'
-import type { ResolvedSidebarItem } from '../../shared/resolved/sidebar.js'
+import { useSidebarControl } from '../composables/index.js'
+import type { ResolvedSidebarItem } from '../../shared/index.js'
 
 const props = defineProps<{
   item: ResolvedSidebarItem

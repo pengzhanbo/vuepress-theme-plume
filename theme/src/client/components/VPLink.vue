@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, toRef } from 'vue'
 import { useRouter, withBase } from 'vuepress/client'
-import { useLink } from '../composables/link.js'
+import { useLink } from '../composables/index.js'
 
 const props = defineProps<{
   tag?: string

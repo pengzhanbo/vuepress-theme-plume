@@ -6,7 +6,7 @@ import VPHomeFeatures from '@theme/Home/VPHomeFeatures.vue'
 import VPHomeTextImage from '@theme/Home/VPHomeTextImage.vue'
 import VPHomeProfile from '@theme/Home/VPHomeProfile.vue'
 import VPHomeCustom from '@theme/Home/VPHomeCustom.vue'
-import { useData } from '../../composables/data.js'
+import { useData } from '../../composables/index.js'
 
 const components: Record<string, Component<any, any, any>> = {
   'banner': VPHomeBanner,

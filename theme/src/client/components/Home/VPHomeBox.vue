@@ -3,7 +3,7 @@ import { withBase } from 'vuepress/client'
 import { computed, normalizeClass } from 'vue'
 import { isLinkHttp } from 'vuepress/shared'
 import type { PlumeHomeConfigBase } from '../../../shared/index.js'
-import { useDarkMode } from '../../composables/dark-mode.js'
+import { useDarkMode } from '../../composables/index.js'
 
 const props = defineProps<PlumeHomeConfigBase & {
   containerClass?: any

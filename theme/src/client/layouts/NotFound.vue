@@ -3,7 +3,7 @@ import { useRouteLocale, withBase } from 'vuepress/client'
 import VPNav from '@theme/Nav/VPNav.vue'
 import VPSkipLink from '@theme/VPSkipLink.vue'
 import VPFooter from '@theme/VPFooter.vue'
-import { useData } from '../composables/data.js'
+import { useData } from '../composables/index.js'
 
 const root = useRouteLocale()
 const { theme } = useData()

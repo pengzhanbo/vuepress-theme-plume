@@ -2,7 +2,7 @@
 import { inject } from 'vue'
 import VPLink from '@theme/VPLink.vue'
 import VPIcon from '@theme/VPIcon.vue'
-import type { ResolvedNavItemWithLink } from '../../../shared/resolved/navbar.js'
+import type { ResolvedNavItemWithLink } from '../../../shared/index.js'
 
 defineProps<{
   item: ResolvedNavItemWithLink

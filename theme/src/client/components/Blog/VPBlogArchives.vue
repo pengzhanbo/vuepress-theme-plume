@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import VPShortPostList from '@theme/Blog/VPShortPostList.vue'
-import { useBlogNavTitle } from '../../composables/blog-extract.js'
-import { useArchives } from '../../composables/blog-archives.js'
+import { useArchives, useBlogNavTitle } from '../../composables/index.js'
 
 const title = useBlogNavTitle('archive')
 const { archives } = useArchives()

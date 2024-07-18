@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import VPBlogNav from '@theme/Blog/VPBlogNav.vue'
 import VPBlogProfile from '@theme/Blog/VPBlogProfile.vue'
-import { useData } from '../../composables/data.js'
+import { useData } from '../../composables/index.js'
 
 const { theme } = useData()
 </script>

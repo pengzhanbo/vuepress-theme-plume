@@ -2,8 +2,7 @@
 import { useRouteLocale } from 'vuepress/client'
 import VPLink from '@theme/VPLink.vue'
 import VPImage from '@theme/VPImage.vue'
-import { useSidebar } from '../../composables/sidebar.js'
-import { useData } from '../../composables/data.js'
+import { useData, useSidebar } from '../../composables/index.js'
 
 const { theme, site } = useData()
 const { hasSidebar } = useSidebar()

@@ -5,7 +5,7 @@ import {
   isLinkAbsolute,
   isLinkWithProtocol,
 } from '@vuepress/helper/client'
-import type { ResolvedNavItemWithLink } from '../../shared/resolved/navbar.js'
+import type { ResolvedNavItemWithLink } from '../../shared/index.js'
 
 /**
  * Resolve NavLink props from string

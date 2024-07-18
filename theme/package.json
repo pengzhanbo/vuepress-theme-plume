@@ -37,10 +37,6 @@
       "types": "./lib/client/composables/index.d.ts",
       "import": "./lib/client/composables/index.js"
     },
-    "./composables/*": {
-      "types": "./lib/client/composables/*.d.ts",
-      "import": "./lib/client/composables/*.js"
-    },
     "./shared": {
       "types": "./lib/shared/index.d.ts",
       "import": "./lib/shared/index.js"
@@ -54,20 +50,19 @@
     "templates"
   ],
   "scripts": {
-    "dev": "pnpm '/(copy|ts):watch/'",
-    "build": "pnpm run copy && pnpm run ts",
-    "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
+    "dev": "pnpm '/(copy|tsup):watch/'",
+    "build": "pnpm run copy && pnpm run tsup",
+    "clean": "rimraf --glob ./lib",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
     "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib -w",
-    "ts": "tsc -b tsconfig.build.json",
-    "ts:watch": "tsc -b tsconfig.build.json --watch"
+    "tsup": "tsup --config tsup.config.ts",
+    "tsup:watch": "tsup --config tsup.config.ts --watch"
   },
   "peerDependencies": {
     "vuepress": "2.0.0-rc.14"
   },
   "dependencies": {
     "@pengzhanbo/utils": "^1.1.2",
-    "@vuepress-plume/plugin-baidu-tongji": "workspace:*",
     "@vuepress-plume/plugin-content-update": "workspace:*",
     "@vuepress-plume/plugin-fonts": "workspace:*",
     "@vuepress-plume/plugin-iconify": "workspace:*",

@@ -4,19 +4,19 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@internal/md-power/replEditorData": [
-        "./plugins/plugin-md-power/src/client/shim.d.ts"
-      ],
+      "@internal/md-power/replEditorData": ["./plugins/plugin-md-power/src/client/shim.d.ts"],
       "@internal/pageComponents": ["./docs/.vuepress/.temp/internal/pageComponents.js"],
       "@internal/*": ["./docs/.vuepress/.temp/internal/*"],
+      "@theme/*": ["./theme/src/client/components/*"],
+
       "@vuepress-plume/*": ["./plugins/*/src/node/index.ts"],
       "vuepress-theme-plume": ["./theme/src/node/index.ts"],
+      "vuepress-theme-plume/client": ["./theme/src/client/index.ts"],
+      "vuepress-theme-plume/shared": ["./theme/src/shared/index.ts"],
       "vuepress-theme-plume/composables": ["./theme/src/client/composables/index.ts"],
+
       "@vuepress-plume/*/client": ["./plugins/*/src/client/index.ts"],
-      "vuepress-plugin-md-power": [
-        "./plugins/plugin-md-power/src/node/index.ts"
-      ],
-      "@theme/*": ["./theme/src/client/components/*"]
+      "vuepress-plugin-md-power": ["./plugins/plugin-md-power/src/node/index.ts"]
     },
     "types": ["webpack-env", "vite/client", "vuepress/client-types"]
   },
@@ -26,5 +26,11 @@
     "docs/.vuepress/**/*",
     "scripts/**/*"
   ],
-  "exclude": ["**/node_modules/**", "**/.cache/**", "**/.temp/**", "**/lib/**", "**/dist/**"]
+  "exclude": [
+    "**/node_modules/**",
+    "**/.cache/**",
+    "**/.temp/**",
+    "**/lib/**",
+    "**/dist/**"
+  ]
 }

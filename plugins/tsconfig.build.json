@@ -4,12 +4,6 @@
     "composite": true
   },
   "references": [
-    { "path": "./plugin-baidu-tongji/tsconfig.build.json" },
-    { "path": "./plugin-iconify/tsconfig.build.json" },
-    { "path": "./plugin-fonts/tsconfig.build.json" },
-    { "path": "./plugin-shikiji/tsconfig.build.json" },
-    { "path": "./plugin-content-update/tsconfig.build.json" },
-    { "path": "./plugin-search/tsconfig.build.json" },
     { "path": "./plugin-md-power/tsconfig.build.json" }
   ],
   "files": []

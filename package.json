@@ -14,7 +14,7 @@
     "vuepress-theme-plume"
   ],
   "engines": {
-    "node": "^18.19.0 || >=20.0.0",
+    "node": "^18.20.0 || >=20.0.0",
     "pnpm": ">=9"
   },
   "scripts": {
@@ -23,7 +23,7 @@
     "clean": "pnpm -r --stream clean",
     "dev": "pnpm --stream '/(dev:package|docs:dev)/'",
     "dev:package": "pnpm --parallel dev",
-    "docs:dev": "pnpm -F=docs docs:dev",
+    "docs:dev": "wait-on -d 100 theme/lib/node/index.js && pnpm -F=docs docs:dev",
     "docs:build": "pnpm -F=docs docs:build",
     "docs:clean": "pnpm -F=docs docs:clean",
     "docs:serve": "pnpm -F=docs docs:serve",
@@ -55,7 +55,9 @@
     "rimraf": "^6.0.1",
     "stylelint": "^16.7.0",
     "tsconfig-vuepress": "^4.5.0",
-    "typescript": "^5.5.3"
+    "tsup": "^8.1.2",
+    "typescript": "^5.5.3",
+    "wait-on": "^7.2.0"
   },
   "lint-staged": {
     "*": "eslint --fix"

@@ -82,8 +82,6 @@
     "twoslash",
     "vite",
     "vuepress",
-    "vueuse",
-    "Windi",
-    "Windicss"
+    "vueuse"
   ]
 }

@@ -76,21 +76,3 @@ __options__ : `PlumeThemeOptions`
 ## 贡献指南
 
 查看 [[贡献指南]](/CONTRIBUTING.md) 了解更多
-
-### 效果图
-
-#### home page
-
-![home](/preview/preview-home.jpeg?1)
-
-#### blog page
-
-![blog](/preview/preview-blog.jpeg?1)
-
-#### post page
-
-![post](/preview/preview-post.jpeg?1)
-
-#### note page
-
-![note](/preview/preview-note.jpeg?1)

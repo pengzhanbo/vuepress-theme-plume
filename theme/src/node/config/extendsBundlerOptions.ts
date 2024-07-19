@@ -36,4 +36,32 @@ export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
         },
       }))
   })
+
+  addViteConfig(bundlerOptions, app, {
+    css: {
+      preprocessorOptions: {
+        sass: {
+          logger: {
+            warn: (message, { deprecation, deprecationType }) => {
+              if (deprecation && deprecationType.id === 'mixed-decls')
+                return
+
+              console.warn(message)
+            },
+          },
+        },
+        scss: {
+          logger: {
+            warn: (message, { deprecation, deprecationType }) => {
+              if (deprecation && deprecationType.id === 'mixed-decls')
+                return
+              if (!message.includes('repetitive deprecation warnings omitted')) {
+                console.warn(message)
+              }
+            },
+          },
+        },
+      },
+    },
+  })
 }

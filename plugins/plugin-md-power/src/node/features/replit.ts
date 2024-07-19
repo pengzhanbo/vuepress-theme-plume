@@ -6,7 +6,7 @@
 import type { PluginWithOptions } from 'markdown-it'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { parseRect } from '../utils/parseRect.js'
-import type { ReplitTokenMeta } from '../../shared/replit.js'
+import type { ReplitTokenMeta } from '../../shared/index.js'
 import { createRuleBlock } from '../utils/createRuleBlock.js'
 
 export const replitPlugin: PluginWithOptions<never> = (md) => {

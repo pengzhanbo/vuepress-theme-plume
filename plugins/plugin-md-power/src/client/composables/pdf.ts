@@ -13,7 +13,7 @@
 
 import { ensureEndingSlash, isLinkHttp } from 'vuepress/shared'
 import { withBase } from 'vuepress/client'
-import type { PDFEmbedType, PDFTokenMeta } from '../../shared/pdf.js'
+import type { PDFEmbedType, PDFTokenMeta } from '../../shared/index.js'
 import { pluginOptions } from '../options.js'
 import { checkIsMobile, checkIsSafari, checkIsiPad } from '../utils/is.js'
 

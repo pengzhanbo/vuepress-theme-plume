@@ -4,7 +4,7 @@ import { getIconContentCSS, getIconData } from '@iconify/utils'
 import { fs, logger } from 'vuepress/utils'
 import { isPackageExists } from 'local-pkg'
 import { customAlphabet } from 'nanoid'
-import type { IconsOptions } from '../../../shared/icons.js'
+import type { IconsOptions } from '../../../shared/index.js'
 import { interopDefault } from '../../utils/package.js'
 import { parseRect } from '../../utils/parseRect.js'
 

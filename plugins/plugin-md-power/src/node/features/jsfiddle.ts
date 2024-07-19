@@ -5,7 +5,7 @@
 import type { PluginWithOptions } from 'markdown-it'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { parseRect } from '../utils/parseRect.js'
-import type { JSFiddleTokenMeta } from '../../shared/jsfiddle.js'
+import type { JSFiddleTokenMeta } from '../../shared/index.js'
 import { createRuleBlock } from '../utils/createRuleBlock.js'
 
 export const jsfiddlePlugin: PluginWithOptions<never> = (md) => {

@@ -5,7 +5,7 @@
  */
 import { path } from 'vuepress/utils'
 import type { PluginWithOptions } from 'markdown-it'
-import type { PDFTokenMeta } from '../../shared/pdf.js'
+import type { PDFTokenMeta } from '../../shared/index.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { parseRect } from '../utils/parseRect.js'
 import { createRuleBlock } from '../utils/createRuleBlock.js'

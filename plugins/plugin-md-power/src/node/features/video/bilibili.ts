@@ -6,7 +6,7 @@
  */
 import { URLSearchParams } from 'node:url'
 import type { PluginWithOptions } from 'markdown-it'
-import type { BilibiliTokenMeta } from '../../../shared/video.js'
+import type { BilibiliTokenMeta } from '../../../shared/index.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { timeToSeconds } from '../../utils/timeToSeconds.js'

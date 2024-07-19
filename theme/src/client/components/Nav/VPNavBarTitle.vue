@@ -51,7 +51,7 @@ const routeLocale = useRouteLocale()
 }
 
 :deep(.logo) {
-  height: var(--vp-nav-logo-height);
+  height: var(--vp-nav-logo-height, 24px);
   margin-right: 8px;
 }
 </style>

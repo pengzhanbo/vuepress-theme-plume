@@ -1,4 +1,4 @@
-import { fs } from 'vuepress/utils'
+import { fs, hash } from 'vuepress/utils'
 import chokidar from 'chokidar'
 import { createFilter } from 'create-filter'
 import grayMatter from 'gray-matter'
@@ -99,10 +99,15 @@ async function generator(file: AutoFrontmatterMarkdownFile): Promise<void> {
   const formatter = current?.frontmatter || generate.global
   const { data, content } = grayMatter(file.content)
 
+  const beforeHash = hash(data)
+
   for (const key in formatter) {
     const value = await formatter[key](data[key], file, data)
     data[key] = value ?? data[key]
   }
+
+  if (beforeHash === hash(data))
+    return
 
   try {
     const yaml = isEmptyObject(data)

@@ -1,4 +1,4 @@
-const RE_ATTR_VALUE = /(?:^|\s+)(?<attr>[\w\d-]+)(?:=\s*(?<quote>['"])(?<value>.+?)\k<quote>)?(?:\s+|$)/
+const RE_ATTR_VALUE = /(?:^|\s+)(?<attr>[\w-]+)(?:=\s*(?<quote>['"])(?<value>.+?)\k<quote>)?(?:\s+|$)/
 
 export function resolveAttrs(info: string): {
   attrs: Record<string, any>

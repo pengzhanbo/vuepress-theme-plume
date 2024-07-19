@@ -3,8 +3,7 @@ import { computed } from 'vue'
 import VPLink from '@theme/VPLink.vue'
 import VPFriendsItem from '@theme/VPFriendsItem.vue'
 import VPFriendsGroup from '@theme/VPFriendsGroup.vue'
-import { useEditLink } from '../composables/edit-link.js'
-import { useData } from '../composables/data.js'
+import { useData, useEditLink } from '../composables/index.js'
 
 const editLink = useEditLink()
 const { frontmatter: matter } = useData<'friends'>()

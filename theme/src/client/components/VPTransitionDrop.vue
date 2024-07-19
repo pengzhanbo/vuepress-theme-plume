@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from '../composables/data.js'
+import { useData } from '../composables/index.js'
 
 interface Props {
   delay?: number

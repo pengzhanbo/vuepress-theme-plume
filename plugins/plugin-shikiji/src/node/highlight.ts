@@ -27,7 +27,7 @@ const cache = new LRUCache<string, string>(64)
 
 const vueRE = /-vue$/
 const mustacheRE = /\{\{.*?\}\}/g
-const decorationsRE = /^\/\/ @decorations:(.*?)\n/
+const decorationsRE = /^\/\/ @decorations:(.*)\n/
 
 export async function highlight(
   theme: ThemeOptions,
@@ -136,7 +136,7 @@ export async function highlight(
       })
 
       if (enabledTwoslash && options.twoslash)
-        s = s.replace(/{/g, '&#123;')
+        s = s.replace(/\{/g, '&#123;')
 
       return `${s}\n`
     }

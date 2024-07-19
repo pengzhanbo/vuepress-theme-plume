@@ -19,8 +19,9 @@ import {
   watchConfigFile,
 } from './loadConfig/index.js'
 import {
-  generateAFrontmatter,
+  generateAutoFrontmatter,
   initAutoFrontmatter,
+  waitForAutoFrontmatter,
   watchAutoFrontmatter,
 } from './autoFrontmatter/index.js'
 import { prepareData, watchPrepare } from './prepare/index.js'
@@ -49,7 +50,7 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
     waitForConfigLoaded().then(({ autoFrontmatter }) => {
       autoFrontmatter ??= pluginOptions.frontmatter
       if (autoFrontmatter !== false) {
-        generateAFrontmatter(app)
+        generateAutoFrontmatter(app)
       }
     })
 
@@ -71,11 +72,12 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
         await setupPage(app, localeOptions)
       },
 
-      onPrepared: (app) => {
+      onPrepared: async (app) => {
         onConfigChange(({ localeOptions }) => {
           prepareThemeData(app, localeOptions)
           prepareData(app)
         })
+        await waitForConfigLoaded()
       },
 
       onWatched: (app, watchers) => {
@@ -89,6 +91,7 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
 
       extendsPage: async (page) => {
         const { localeOptions } = await waitForConfigLoaded()
+        await waitForAutoFrontmatter()
         extendsPageData(page as Page<PlumeThemePageData>, localeOptions)
         resolvePageHead(page, localeOptions)
       },

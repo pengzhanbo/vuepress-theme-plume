@@ -3,9 +3,9 @@ import container from 'markdown-it-container'
 import type Token from 'markdown-it/lib/token.mjs'
 import type { App } from 'vuepress/core'
 import { fs, getDirname, path } from 'vuepress/utils'
-import type { ReplEditorData, ReplOptions } from '../../shared/repl.js'
+import type { ReplEditorData, ReplOptions } from '../../shared/index.js'
 
-const RE_INFO = /^(#editable)?\s*?(.*)$/
+const RE_INFO = /^(#editable)?(.*)$/
 
 function createReplContainer(md: markdownIt, lang: string) {
   const type = `${lang}-repl`

@@ -6,7 +6,7 @@
  */
 import { URLSearchParams } from 'node:url'
 import type { PluginWithOptions } from 'markdown-it'
-import type { BilibiliTokenMeta } from '../../../shared/video.js'
+import type { BilibiliTokenMeta } from '../../../shared/index.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { timeToSeconds } from '../../utils/timeToSeconds.js'
@@ -18,7 +18,8 @@ export const bilibiliPlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<BilibiliTokenMeta>(md, {
     type: 'bilibili',
     name: 'video_bilibili',
-    syntaxPattern: /^@\[bilibili(?:\s+p(\d+))?(?:\s+([^]*?))?\]\(([^)]*)\)/,
+    // eslint-disable-next-line regexp/no-super-linear-backtracking
+    syntaxPattern: /^@\[bilibili(?:\s+p(\d+))?([^\]]*)\]\(([^)]*)\)/,
     meta([, page, info = '', source = '']) {
       const { attrs } = resolveAttrs(info)
       const ids = source.trim().split(/\s+/)

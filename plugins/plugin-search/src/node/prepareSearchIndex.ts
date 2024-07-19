@@ -147,7 +147,9 @@ async function indexFile(page: Page, options: SearchIndexOptions['searchOptions'
   }
 }
 
+// eslint-disable-next-line regexp/no-super-linear-backtracking
 const headingRegex = /<h(\d*).*?>(<a.*? href="#.*?".*?>.*?<\/a>)<\/h\1>/gi
+// eslint-disable-next-line regexp/no-super-linear-backtracking
 const headingContentRegex = /<a.*? href="#(.*?)".*?>(.*?)<\/a>/i
 
 /**

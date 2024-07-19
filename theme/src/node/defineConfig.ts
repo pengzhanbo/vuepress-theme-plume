@@ -1,9 +1,4 @@
-import type {
-  NoteItem,
-  NotesOptions,
-} from '../shared/notes.js'
-import type { NavItem } from '../shared/index.js'
-import type { ThemeConfig } from '../shared/theme-data.js'
+import type { NavItem, NoteItem, NotesOptions, ThemeConfig } from '../shared/index.js'
 
 export function definePlumeNotesConfig(notes: NotesOptions): NotesOptions {
   return notes

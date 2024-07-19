@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, getCurrentInstance, ref } from 'vue'
-import type { ReplitTokenMeta } from '../../shared/replit.js'
+import type { ReplitTokenMeta } from '../../shared/index.js'
 import Loading from './Loading.vue'
 
 const props = defineProps<ReplitTokenMeta>()

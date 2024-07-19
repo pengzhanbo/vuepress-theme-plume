@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useData } from '../composables/data.js'
-import { useEncryptCompare } from '../composables/encrypt.js'
+import { useData, useEncryptCompare } from '../composables/index.js'
 
 const props = defineProps<{
   global?: boolean

@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import VPSocialLinks from '@theme/VPSocialLinks.vue'
-import { useData } from '../../composables/data.js'
+import { useData } from '../../composables/index.js'
 
 const { theme } = useData()
 const profile = computed(() => theme.value.profile)

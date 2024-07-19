@@ -29,5 +29,5 @@ jobs:
 
       - name: Linter
         run: |
-          pnpm run lint
+          pnpm run lint:check
           pnpm run lint:css

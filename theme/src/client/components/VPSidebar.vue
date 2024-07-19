@@ -4,7 +4,7 @@ import { onMounted, ref, watch } from 'vue'
 import { useRoutePath } from 'vuepress/client'
 import VPSidebarGroup from '@theme/VPSidebarGroup.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
-import { useSidebar } from '../composables/sidebar.js'
+import { useSidebar } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
 
 const props = defineProps<{

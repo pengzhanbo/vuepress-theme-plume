@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import VPNavScreenMenuGroup from '@theme/Nav/VPNavScreenMenuGroup.vue'
 import VPNavScreenMenuLink from '@theme/Nav/VPNavScreenMenuLink.vue'
-import { useNavbarData } from '../../composables/nav.js'
+import { useNavbarData } from '../../composables/index.js'
 
 const navbar = useNavbarData()
 </script>

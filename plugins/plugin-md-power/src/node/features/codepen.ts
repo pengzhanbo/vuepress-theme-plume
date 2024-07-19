@@ -6,7 +6,7 @@
 import type { PluginWithOptions } from 'markdown-it'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { parseRect } from '../utils/parseRect.js'
-import type { CodepenTokenMeta } from '../../shared/codepen.js'
+import type { CodepenTokenMeta } from '../../shared/index.js'
 import { createRuleBlock } from '../utils/createRuleBlock.js'
 
 const CODEPEN_LINK = 'https://codepen.io/'
@@ -14,7 +14,7 @@ const CODEPEN_LINK = 'https://codepen.io/'
 export const codepenPlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<CodepenTokenMeta>(md, {
     type: 'codepen',
-    syntaxPattern: /^@\[codepen(?:\s+([^]*?))?\]\(([^)]*?)\)/,
+    syntaxPattern: /^@\[codepen([^\]]*)\]\(([^)]*)\)/,
     meta: ([, info = '', source = '']) => {
       const { attrs } = resolveAttrs(info)
       const [user, slash] = source.split('/')

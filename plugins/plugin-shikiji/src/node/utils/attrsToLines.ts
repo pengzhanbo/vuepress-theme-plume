@@ -9,6 +9,7 @@ import type { TransformerCompactLineOption } from '@shikijs/transformers'
  *    [{ line: number, classes: string[] }]
  */
 export function attrsToLines(attrs: string): TransformerCompactLineOption[] {
+  // eslint-disable-next-line regexp/optimal-quantifier-concatenation, regexp/no-super-linear-backtracking
   attrs = attrs.replace(/^(?:\[.*?\])?.*?([\d,-]+).*/, '$1').trim()
 
   const result: number[] = []

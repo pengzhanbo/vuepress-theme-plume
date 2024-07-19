@@ -2,10 +2,7 @@
 import { useWindowScroll } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
 import VPLocalNavOutlineDropdown from '@theme/VPLocalNavOutlineDropdown.vue'
-import { useSidebar } from '../composables/sidebar.js'
-import { useHeaders } from '../composables/outline.js'
-import { useData } from '../composables/data.js'
-import { useBlogPageData } from '../composables/page.js'
+import { useBlogPageData, useData, useHeaders, useSidebar } from '../composables/index.js'
 
 const props = defineProps<{
   open: boolean

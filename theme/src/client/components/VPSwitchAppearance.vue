@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { inject, ref, watchPostEffect } from 'vue'
 import VPSwitch from '@theme/VPSwitch.vue'
-import { useData } from '../composables/data.js'
+import { useData } from '../composables/index.js'
 
 const checked = ref(false)
 const { theme, isDark } = useData()

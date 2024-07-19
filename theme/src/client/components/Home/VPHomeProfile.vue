@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import VPImage from '@theme/VPImage.vue'
 import VPHomeBox from '@theme/Home/VPHomeBox.vue'
 import type { PlumeThemeHomeProfile } from '../../../shared/index.js'
-import { useData } from '../../composables/data.js'
+import { useData } from '../../composables/index.js'
 
 const props = defineProps<PlumeThemeHomeProfile>()
 

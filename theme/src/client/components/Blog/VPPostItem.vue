@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import VPLink from '@theme/VPLink.vue'
 import type { PlumeThemeBlogPostItem } from '../../../shared/index.js'
-import { useTagColors } from '../../composables/tag-colors.js'
+import { useTagColors } from '../../composables/index.js'
 
 const props = defineProps<{
   post: PlumeThemeBlogPostItem

@@ -1,4 +1,4 @@
-import { fs } from 'vuepress/utils'
+import { fs, hash } from 'vuepress/utils'
 import chokidar from 'chokidar'
 import { createFilter } from 'create-filter'
 import grayMatter from 'gray-matter'
@@ -10,8 +10,8 @@ import type {
   AutoFrontmatterArray,
   AutoFrontmatterMarkdownFile,
   AutoFrontmatterObject,
-} from '../../shared/auto-frontmatter.js'
-import type { PlumeThemeLocaleOptions } from '../../shared/index.js'
+  PlumeThemeLocaleOptions,
+} from '../../shared/index.js'
 import { readMarkdown, readMarkdownList } from './readFile.js'
 import { resolveOptions } from './resolveOptions.js'
 
@@ -26,6 +26,8 @@ export interface Generate {
 }
 
 let generate: Generate | null = null
+let generated = false
+const whenGenerated: (() => void)[] = []
 
 export function initAutoFrontmatter(
   localeOptions: PlumeThemeLocaleOptions,
@@ -59,14 +61,19 @@ export function initAutoFrontmatter(
   }
 }
 
-export async function generateAFrontmatter(app: App) {
+export async function generateAutoFrontmatter(app: App) {
   if (!generate)
     return
+  generated = false
   const markdownList = await readMarkdownList(app.dir.source(), generate.globFilter)
   await promiseParallel(
     markdownList.map(file => () => generator(file)),
     64,
   )
+
+  generated = true
+  whenGenerated.forEach(resolve => resolve())
+  whenGenerated.length = 0
 }
 
 export async function watchAutoFrontmatter(app: App, watchers: any[], enable?: () => boolean) {
@@ -99,10 +106,15 @@ async function generator(file: AutoFrontmatterMarkdownFile): Promise<void> {
   const formatter = current?.frontmatter || generate.global
   const { data, content } = grayMatter(file.content)
 
+  const beforeHash = hash(data)
+
   for (const key in formatter) {
     const value = await formatter[key](data[key], file, data)
     data[key] = value ?? data[key]
   }
+
+  if (beforeHash === hash(data))
+    return
 
   try {
     const yaml = isEmptyObject(data)
@@ -119,4 +131,13 @@ async function generator(file: AutoFrontmatterMarkdownFile): Promise<void> {
   catch (e) {
     console.error(e)
   }
+}
+
+export function waitForAutoFrontmatter() {
+  return new Promise<void>((resolve) => {
+    if (generate && !generated)
+      whenGenerated.push(resolve)
+    else
+      resolve()
+  })
 }

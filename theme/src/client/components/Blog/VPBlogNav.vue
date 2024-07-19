@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useRoute } from 'vuepress/client'
 import VPLink from '@theme/VPLink.vue'
-import { useBlogExtract } from '../../composables/blog-extract.js'
+import { useBlogExtract } from '../../composables/index.js'
 
 const props = defineProps<{
   isLocal?: boolean

@@ -1,6 +1,5 @@
 import type { DocsearchOptions } from '@vuepress/plugin-docsearch'
 import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
-import type { BaiduTongjiOptions } from '@vuepress-plume/plugin-baidu-tongji'
 import type { ShikiPluginOptions } from '@vuepress-plume/plugin-shikiji'
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
 import type { MarkdownEnhancePluginOptions } from 'vuepress-plugin-md-enhance'
@@ -57,7 +56,11 @@ export interface PlumeThemePluginOptions {
 
   seo?: false
 
-  baiduTongji?: false | BaiduTongjiOptions
+  /**
+   * @deprecated
+   * 请使用 [@vuepress/plugin-baidu-analytics](https://ecosystem.vuejs.press/zh/plugins/analytics/baidu-analytics.html) 代替
+   */
+  baiduTongji?: never
 
   /**
    * @deprecated 使用 `autoFrontmatter` 代替

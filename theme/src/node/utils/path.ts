@@ -3,7 +3,7 @@ import { ensureEndingSlash, ensureLeadingSlash, isLinkAbsolute, isLinkWithProtoc
 
 const __dirname = getDirname(import.meta.url)
 
-export const resolve = (...args: string[]) => path.resolve(__dirname, '../../', ...args)
+export const resolve = (...args: string[]) => path.resolve(__dirname, '../', ...args)
 export const templates = (url: string) => resolve('../templates', url)
 
 const RE_SLASH = /(\\|\/)+/g

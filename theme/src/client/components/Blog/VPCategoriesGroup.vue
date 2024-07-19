@@ -2,7 +2,7 @@
 import { useRoute } from 'vuepress/client'
 import { onMounted, ref, watch } from 'vue'
 import VPCategories from '@theme/Blog/VPCategories.vue'
-import type { BlogCategoryItem } from '../../composables/blog-category.js'
+import type { BlogCategoryItem } from '../../composables/index.js'
 
 const props = defineProps<{
   item: BlogCategoryItem

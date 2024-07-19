@@ -6,13 +6,13 @@
 import type { PluginWithOptions } from 'markdown-it'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { parseRect } from '../utils/parseRect.js'
-import type { CodeSandboxTokenMeta } from '../../shared/codeSandbox.js'
+import type { CodeSandboxTokenMeta } from '../../shared/index.js'
 import { createRuleBlock } from '../utils/createRuleBlock.js'
 
 export const codeSandboxPlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<CodeSandboxTokenMeta>(md, {
     type: 'codesandbox',
-    syntaxPattern: /^@\[codesandbox(?:\s+(embed|button))?(?:\s+([^]*?))?\]\(([^)]*?)\)/,
+    syntaxPattern: /^@\[codesandbox(?:\s+(embed|button))?([^\]]*)\]\(([^)]*)\)/,
     meta([, type, info = '', source = '']) {
       const { attrs } = resolveAttrs(info)
       const [profile, filepath = ''] = source.split('#')

@@ -2,7 +2,7 @@
 import { computed, ref, shallowRef } from 'vue'
 import { onClickOutside, useMediaQuery } from '@vueuse/core'
 import { usePageFrontmatter } from 'vuepress/client'
-import type { PlotOptions } from '../../shared/plot.js'
+import type { PlotOptions } from '../../shared/index.js'
 import { pluginOptions } from '../options.js'
 
 const props = defineProps<Omit<PlotOptions, 'tag'>>()

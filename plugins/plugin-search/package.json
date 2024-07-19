@@ -31,16 +31,16 @@
     "lib"
   ],
   "scripts": {
-    "build": "pnpm run copy && pnpm run ts",
-    "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
+    "build": "pnpm run copy && pnpm run tsup",
+    "clean": "rimraf --glob ./lib",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
-    "ts": "tsc -b tsconfig.build.json"
+    "tsup": "tsup --config tsup.config.ts"
   },
   "peerDependencies": {
     "vuepress": "2.0.0-rc.14"
   },
   "dependencies": {
-    "@vuepress/helper": "2.0.0-rc.38",
+    "@vuepress/helper": "2.0.0-rc.39",
     "@vueuse/core": "^10.11.0",
     "@vueuse/integrations": "^10.11.0",
     "chokidar": "^3.6.0",

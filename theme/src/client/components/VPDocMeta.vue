@@ -2,10 +2,12 @@
 import { computed } from 'vue'
 import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
 import VPLink from '@theme/VPLink.vue'
-import { useData } from '../composables/data.js'
-import { useTagColors } from '../composables/tag-colors.js'
-import { useBlogPageData } from '../composables/page.js'
-import { useBlogExtract } from '../composables/blog-extract.js'
+import {
+  useBlogExtract,
+  useBlogPageData,
+  useData,
+  useTagColors,
+} from '../composables/index.js'
 
 const { page, frontmatter: matter } = useData<'post'>()
 const { isBlogPost } = useBlogPageData()

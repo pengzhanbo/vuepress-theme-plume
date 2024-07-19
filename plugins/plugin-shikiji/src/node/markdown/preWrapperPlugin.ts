@@ -22,7 +22,7 @@ export function preWrapperPlugin(md: Markdown, { preWrapper = true }: PreWrapper
 
     if (!preWrapper) {
       // remove `<code>` attributes
-      result = result.replace(/<code[^]*?>/, '<code>')
+      result = result.replace(/<code[\s\S]*?>/, '<code>')
       result = `<pre class="${languageClass}"${result.slice('<pre'.length)}`
       return result
     }

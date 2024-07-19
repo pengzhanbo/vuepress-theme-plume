@@ -8,12 +8,12 @@ import {
 import type {
   PlumeThemeLocaleOptions,
   PlumeThemePageData,
+  ResolvedSidebarItem,
   Sidebar,
   SidebarItem,
   ThemeIcon,
 } from '../../shared/index.js'
 import { normalizeLink, resolveContent, writeTemp } from '../utils/index.js'
-import type { ResolvedSidebarItem } from '../../shared/resolved/sidebar.js'
 
 export async function prepareSidebar(app: App, localeOptions: PlumeThemeLocaleOptions) {
   const sidebar = getAllSidebar(localeOptions)

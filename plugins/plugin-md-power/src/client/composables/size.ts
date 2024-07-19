@@ -15,7 +15,7 @@ import type { MaybeRef } from '@vueuse/core'
 import { useEventListener } from '@vueuse/core'
 import type { Ref, ShallowRef, ToRefs } from 'vue'
 import { computed, isRef, onMounted, ref, shallowRef, toValue, watch } from 'vue'
-import type { SizeOptions } from '../../shared/size.js'
+import type { SizeOptions } from '../../shared/index.js'
 
 export interface SizeInfo<T extends HTMLElement> {
   el: ShallowRef<T | undefined>

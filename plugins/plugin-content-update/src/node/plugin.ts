@@ -6,6 +6,6 @@ const __dirname = getDirname(import.meta.url)
 export function contentUpdatePlugin(): Plugin {
   return {
     name: '@vuepress-plume/plugin-content-update',
-    clientConfigFile: path.resolve(__dirname, '../client/clientConfig.js'),
+    clientConfigFile: path.resolve(__dirname, '../client/config.js'),
   }
 }

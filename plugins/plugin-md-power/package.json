@@ -31,10 +31,10 @@
     "lib"
   ],
   "scripts": {
-    "build": "pnpm run copy && pnpm run ts",
-    "clean": "rimraf --glob ./lib ./*.tsbuildinfo",
+    "build": "pnpm copy && pnpm tsup",
+    "clean": "rimraf --glob ./lib",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
-    "ts": "tsc -b tsconfig.build.json"
+    "tsup": "tsup --config tsup.config.ts"
   },
   "peerDependencies": {
     "@iconify/json": "^2",
@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@iconify/utils": "^2.1.25",
-    "@vuepress/helper": "2.0.0-rc.38",
+    "@vuepress/helper": "2.0.0-rc.39",
     "@vueuse/core": "^10.11.0",
     "local-pkg": "^0.5.0",
     "markdown-it-container": "^4.0.0",

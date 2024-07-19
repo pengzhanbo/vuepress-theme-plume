@@ -4,7 +4,7 @@ import { isLinkHttp } from 'vuepress/shared'
 import { computed } from 'vue'
 import VPButton from '@theme/VPButton.vue'
 import type { PlumeThemeHomeBanner } from '../../../shared/index.js'
-import { useData } from '../../composables/data.js'
+import { useData } from '../../composables/index.js'
 
 const props = defineProps<PlumeThemeHomeBanner>()
 

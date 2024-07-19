@@ -11,7 +11,7 @@
       "name": "docs:dev",
       "type": "node-terminal",
       "request": "launch",
-      "command": "pnpm run docs"
+      "command": "pnpm run docs:dev"
     },
     {
       "name": "docs:build",

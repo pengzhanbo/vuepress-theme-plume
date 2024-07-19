@@ -4,7 +4,7 @@ import { getIconContentCSS, getIconData } from '@iconify/utils'
 import { fs, logger } from 'vuepress/utils'
 import { isPackageExists } from 'local-pkg'
 import { customAlphabet } from 'nanoid'
-import type { IconsOptions } from '../../../shared/icons.js'
+import type { IconsOptions } from '../../../shared/index.js'
 import { interopDefault } from '../../utils/package.js'
 import { parseRect } from '../../utils/parseRect.js'
 
@@ -15,7 +15,7 @@ export interface IconCacheItem {
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 8)
 const iconDataCache = new Map<string, any>()
-const URL_CONTENT_RE = /(url\([^]+?\))/
+const URL_CONTENT_RE = /(url\([\s\S]+?\))/
 const CSS_PATH = 'internal/md-power/icons.css'
 
 function resolveOption(opt?: boolean | IconsOptions): Required<IconsOptions> {

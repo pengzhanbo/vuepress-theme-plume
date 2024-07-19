@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import VPDocOutlineItem from '@theme/VPDocOutlineItem.vue'
-import { useActiveAnchor, useHeaders } from '../composables/outline.js'
-import { useData } from '../composables/data.js'
+import { useActiveAnchor, useData, useHeaders } from '../composables/index.js'
 
 const { theme } = useData()
 

@@ -56,7 +56,7 @@ export function lineNumberPlugin(md: Markdown, { lineNumbers = true }: LineNumbe
 
     const finalCode = rawCode
       .replace(/<\/div>$/, `${lineNumbersWrapperCode}</div>`)
-      .replace(/"(language-[^"]*?)"/, '"$1 line-numbers-mode"')
+      .replace(/"(language-[^"]*)"/, '"$1 line-numbers-mode"')
 
     return finalCode
   }

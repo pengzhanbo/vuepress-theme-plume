@@ -5,9 +5,8 @@ import VPDoc from '@theme/VPDoc.vue'
 import VPPage from '@theme/VPPage.vue'
 import VPHome from '@theme/Home/VPHome.vue'
 import VPFriends from '@theme/VPFriends.vue'
-import { useData, useSidebar } from '../composables/index.js'
+import { useBlogPageData, useData, useSidebar } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
-import { useBlogPageData } from '../composables/page.js'
 
 const props = defineProps<{
   isNotFound?: boolean

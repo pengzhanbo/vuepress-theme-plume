@@ -1,6 +1,6 @@
 import { fs, path } from 'vuepress/utils'
 import fg from 'fast-glob'
-import type { AutoFrontmatterMarkdownFile } from '../../shared/auto-frontmatter.js'
+import type { AutoFrontmatterMarkdownFile } from '../../shared/index.js'
 
 export async function readMarkdownList(
   sourceDir: string,

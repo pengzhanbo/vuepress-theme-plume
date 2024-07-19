@@ -4,7 +4,6 @@ import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { gitPlugin } from '@vuepress/plugin-git'
 import { photoSwipePlugin } from '@vuepress/plugin-photo-swipe'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
-import { baiduTongjiPlugin } from '@vuepress-plume/plugin-baidu-tongji'
 import { iconifyPlugin } from '@vuepress-plume/plugin-iconify'
 import { shikiPlugin } from '@vuepress-plume/plugin-shikiji'
 import { commentPlugin } from '@vuepress/plugin-comment'
@@ -147,10 +146,6 @@ export function getPlugins({
 
   if (pluginOptions.comment) {
     plugins.push(commentPlugin(pluginOptions.comment))
-  }
-
-  if (pluginOptions.baiduTongji !== false && pluginOptions.baiduTongji?.key && isProd) {
-    plugins.push(baiduTongjiPlugin(pluginOptions.baiduTongji))
   }
 
   if (pluginOptions.sitemap !== false && hostname && isProd) {

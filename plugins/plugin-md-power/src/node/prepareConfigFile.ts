@@ -51,17 +51,10 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('CodeRepl', CodeRepl)`)
   }
 
-  // enhances.add(`if (__VUEPRESS_SSR__) return`)
-
   if (options.caniuse) {
     imports.add(`import CanIUse from '${CLIENT_FOLDER}components/CanIUse.vue'`)
     enhances.add(`app.component('CanIUseViewer', CanIUse)`)
   }
-
-  // if (options.caniuse) {
-  //   imports.add(`import { setupCanIUse } from '${CLIENT_FOLDER}composables/setupCanIUse.js'`)
-  //   enhances.add(`router.afterEach(() => setupCanIUse())`)
-  // }
 
   return app.writeTemp(
     'md-power/config.js',

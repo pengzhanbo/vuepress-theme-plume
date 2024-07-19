@@ -23,7 +23,7 @@ export const Content = defineComponent({
       if (!props.path)
         return pageComponent.value
       const route = resolveRoute(props.path)
-      return defineAsyncComponent(() => route.loader().then(({ comp }) => comp))
+      return defineAsyncComponent(() => route.loader().then(({ comp }) => comp as any))
     })
 
     return () => h(ContentComponent.value, {

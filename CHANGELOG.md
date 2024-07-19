@@ -1,3 +1,23 @@
+# [1.0.0-rc.81](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.80...v1.0.0-rc.81) (2024-07-19)
+
+
+### Features
+
+* **theme:** add custom height support for the navbar logo ([#125](https://github.com/pengzhanbo/vuepress-theme-plume/issues/125)) ([0ab9186](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0ab9186e3a556fcb40a27434fb981de374894d80))
+
+
+### Performance Improvements
+
+* improve `<Content />` type ([696e927](https://github.com/pengzhanbo/vuepress-theme-plume/commit/696e927ae50659ebedef0ba4c6aaf107c0097679))
+* optimize package import ([936b0b4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/936b0b4851501f62d22210bfafcde3ea15d4319d))
+* **plugin-md-power:** optimize package build ([8888d9f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8888d9fe5c27da9262b037b04cd07fed977c0b8a))
+* **theme:** omit sass warnings ([25214d3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/25214d36d31554caafc430ca2b39518449c642b8))
+* **theme:** optimize auto frontmatter ([9398bef](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9398bef54d7dc0c0d36c640e3ac3025925ee2e11))
+* **theme:** optimize auto frontmatter `I/O`, [#124](https://github.com/pengzhanbo/vuepress-theme-plume/issues/124) ([8d07dab](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8d07dab951edab6397d3f632a9c31f0eda2fd8a5))
+* update vuepress to latest ([5d30f5c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5d30f5cf5b68afece6712b8b5d1852c8195e6ba3))
+
+
+
 # [1.0.0-rc.80](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.79...v1.0.0-rc.80) (2024-07-16)
 
 

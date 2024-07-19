@@ -26,6 +26,8 @@ export interface Generate {
 }
 
 let generate: Generate | null = null
+let generated = false
+const whenGenerated: (() => void)[] = []
 
 export function initAutoFrontmatter(
   localeOptions: PlumeThemeLocaleOptions,
@@ -59,14 +61,19 @@ export function initAutoFrontmatter(
   }
 }
 
-export async function generateAFrontmatter(app: App) {
+export async function generateAutoFrontmatter(app: App) {
   if (!generate)
     return
+  generated = false
   const markdownList = await readMarkdownList(app.dir.source(), generate.globFilter)
   await promiseParallel(
     markdownList.map(file => () => generator(file)),
     64,
   )
+
+  generated = true
+  whenGenerated.forEach(resolve => resolve())
+  whenGenerated.length = 0
 }
 
 export async function watchAutoFrontmatter(app: App, watchers: any[], enable?: () => boolean) {
@@ -124,4 +131,13 @@ async function generator(file: AutoFrontmatterMarkdownFile): Promise<void> {
   catch (e) {
     console.error(e)
   }
+}
+
+export function waitForAutoFrontmatter() {
+  return new Promise<void>((resolve) => {
+    if (generate && !generated)
+      whenGenerated.push(resolve)
+    else
+      resolve()
+  })
 }

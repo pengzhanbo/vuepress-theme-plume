@@ -53,12 +53,12 @@
     "markdown-it-container": "^4.0.0",
     "nanoid": "^5.0.7",
     "shiki": "^1.10.3",
-    "tm-grammars": "^1.13.11",
-    "tm-themes": "^1.5.3",
-    "vue": "^3.4.31"
+    "tm-grammars": "^1.13.13",
+    "tm-themes": "^1.5.5",
+    "vue": "^3.4.33"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.228",
+    "@iconify/json": "^2.2.229",
     "@types/markdown-it": "^14.1.1"
   },
   "publishConfig": {

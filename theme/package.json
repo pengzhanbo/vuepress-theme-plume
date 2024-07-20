@@ -91,7 +91,7 @@
     "json2yaml": "^1.1.0",
     "katex": "^0.16.11",
     "nanoid": "^5.0.7",
-    "vue": "^3.4.32",
+    "vue": "^3.4.33",
     "vue-router": "^4.4.0",
     "vuepress-plugin-md-enhance": "2.0.0-rc.52",
     "vuepress-plugin-md-power": "workspace:*"

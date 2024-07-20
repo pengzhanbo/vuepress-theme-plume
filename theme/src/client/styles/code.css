@@ -135,6 +135,16 @@ html:not(.dark) .vp-code span {
   counter-increment: line-number;
 }
 
+@media print {
+  .vp-doc div[class*="language-"].line-numbers-mode {
+    padding-left: 0;
+  }
+
+  .vp-doc div[class*="language-"].line-numbers-mode .line-numbers {
+    display: none;
+  }
+}
+
 @media (max-width: 639px) {
   .vp-doc li div[class*="language-"] {
     border-radius: 8px 0 0 8px;

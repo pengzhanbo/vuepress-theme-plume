@@ -5,13 +5,19 @@
       "name": "dev",
       "request": "launch",
       "type": "node-terminal",
-      "command": "pnpm run dev"
+      "command": "pnpm dev"
+    },
+    {
+      "name": "build",
+      "request": "launch",
+      "type": "node-terminal",
+      "command": "pnpm build"
     },
     {
       "name": "docs:dev",
       "type": "node-terminal",
       "request": "launch",
-      "command": "pnpm run docs:dev"
+      "command": "pnpm docs:dev"
     },
     {
       "name": "docs:build",

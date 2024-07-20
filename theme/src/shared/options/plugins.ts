@@ -60,13 +60,16 @@ export interface PlumeThemePluginOptions {
    * @deprecated
    * 请使用 [@vuepress/plugin-baidu-analytics](https://ecosystem.vuejs.press/zh/plugins/analytics/baidu-analytics.html) 代替
    */
-  baiduTongji?: never
+  baiduTongji?: false | { key: string }
 
   /**
    * @deprecated 使用 `autoFrontmatter` 代替
    */
   frontmatter?: Omit<AutoFrontmatter, 'frontmatter'>
 
+  /**
+   * 阅读时间、字数统计
+   */
   readingTime?: false | ReadingTimePluginOptions
 
   /**

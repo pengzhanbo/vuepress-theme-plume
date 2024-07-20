@@ -26,7 +26,6 @@ import {
 } from './autoFrontmatter/index.js'
 import { prepareData, watchPrepare } from './prepare/index.js'
 import { prepareThemeData } from './prepare/prepareThemeData.js'
-import { extendsMarkdown } from './extendsMarkdown.js'
 
 export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
   const {
@@ -34,6 +33,7 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
     pluginOptions,
     hostname,
     configFile,
+    cache,
   } = resolveThemeOptions(options)
 
   return (app) => {
@@ -65,7 +65,7 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
 
       alias: resolveAlias(),
 
-      plugins: getPlugins({ app, pluginOptions, hostname }),
+      plugins: getPlugins({ app, pluginOptions, hostname, cache }),
 
       onInitialized: async (app) => {
         const { localeOptions } = await waitForConfigLoaded()
@@ -90,13 +90,13 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
       },
 
       extendsPage: async (page) => {
-        const { localeOptions } = await waitForConfigLoaded()
-        await waitForAutoFrontmatter()
+        const { localeOptions, autoFrontmatter } = await waitForConfigLoaded()
+        if ((autoFrontmatter ?? pluginOptions.frontmatter) !== false) {
+          await waitForAutoFrontmatter()
+        }
         extendsPageData(page as Page<PlumeThemePageData>, localeOptions)
         resolvePageHead(page, localeOptions)
       },
-
-      extendsMarkdown,
 
       extendsBundlerOptions,
 

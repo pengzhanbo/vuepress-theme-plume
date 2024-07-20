@@ -259,6 +259,9 @@ importers:
 
   theme:
     dependencies:
+      '@iconify/vue':
+        specifier: ^4.1.2
+        version: 4.1.2(vue@3.4.33(typescript@5.5.3))
       '@pengzhanbo/utils':
         specifier: ^1.1.2
         version: 1.1.2
@@ -283,6 +286,9 @@ importers:
       '@vuepress/plugin-active-header-links':
         specifier: 2.0.0-rc.39
         version: 2.0.0-rc.39(typescript@5.5.3)(vuepress@2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(jiti@1.21.6)(tsx@4.16.0)(typescript@5.5.3)(yaml@2.4.2))(typescript@5.5.3)(vue@3.4.33(typescript@5.5.3)))
+      '@vuepress/plugin-cache':
+        specifier: 2.0.0-rc.39
+        version: 2.0.0-rc.39(vuepress@2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(jiti@1.21.6)(tsx@4.16.0)(typescript@5.5.3)(yaml@2.4.2))(typescript@5.5.3)(vue@3.4.33(typescript@5.5.3)))
       '@vuepress/plugin-comment':
         specifier: 2.0.0-rc.39
         version: 2.0.0-rc.39(typescript@5.5.3)(vuepress@2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(jiti@1.21.6)(tsx@4.16.0)(typescript@5.5.3)(yaml@2.4.2))(typescript@5.5.3)(vue@3.4.33(typescript@5.5.3)))
@@ -361,6 +367,10 @@ importers:
       vuepress-plugin-md-power:
         specifier: workspace:*
         version: link:../plugins/plugin-md-power
+    devDependencies:
+      '@iconify/json':
+        specifier: ^2.2.229
+        version: 2.2.229
 
 packages:
 
@@ -1931,6 +1941,11 @@ packages:
 
   '@vuepress/plugin-active-header-links@2.0.0-rc.39':
     resolution: {integrity: sha512-Nm4srR+/kEoawFikbpXdJmi3dvXKU4RcsuOW6d0Aa6JWdiB8sX9PbCWbJD+ZWvAa8o+ySBBHFNd4exTzfCtBlw==}
+    peerDependencies:
+      vuepress: 2.0.0-rc.14
+
+  '@vuepress/plugin-cache@2.0.0-rc.39':
+    resolution: {integrity: sha512-PVsC797lGMuu8L7jtW9vv2hYM+d5qq5fbWwBJuSyRXEdpcwryhAjGWnz9F19dYe5KWLYG6EbCoANTQObmiyBag==}
     peerDependencies:
       vuepress: 2.0.0-rc.14
 
@@ -3981,13 +3996,12 @@ packages:
     resolution: {integrity: sha512-Ajzxb8CM6WAnFjgiloPsI3bF+WCxcvhdIG3KNA2KN962+tdBsHcuQ4k4qX/EcS/2CRkcc0iAkR956Nib6aXU/Q==}
     engines: {node: '>=0.10.0'}
 
-  lru-cache@10.0.1:
-    resolution: {integrity: sha512-IJ4uwUTi2qCccrioU6g9g/5rvvVl13bsdczUUcqbciD9iLr095yj8DQKdObriEvuNSx325N1rV1O0sJFszx75g==}
-    engines: {node: 14 || >=16.14}
-
   lru-cache@10.0.2:
     resolution: {integrity: sha512-Yj9mA8fPiVgOUpByoTZO5pNrcl5Yk37FcSHsUINpAsaBIEZIuqcCclDZJCVxqQShDsmYX8QG63svJiTbOATZwg==}
     engines: {node: 14 || >=16.14}
+
+  lru-cache@10.4.3:
+    resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
   lru-cache@11.0.0:
     resolution: {integrity: sha512-Qv32eSV1RSCfhY3fpPE2GNZ8jgM9X7rdAfemLWqTUxwiyIC4jJ6Sy0fZ8H+oLWevO6i4/bizg7c8d8i6bxrzbA==}
@@ -7269,6 +7283,11 @@ snapshots:
       - '@vue/composition-api'
       - typescript
 
+  '@vuepress/plugin-cache@2.0.0-rc.39(vuepress@2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(jiti@1.21.6)(tsx@4.16.0)(typescript@5.5.3)(yaml@2.4.2))(typescript@5.5.3)(vue@3.4.33(typescript@5.5.3)))':
+    dependencies:
+      lru-cache: 10.4.3
+      vuepress: 2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(jiti@1.21.6)(tsx@4.16.0)(typescript@5.5.3)(yaml@2.4.2))(typescript@5.5.3)(vue@3.4.33(typescript@5.5.3))
+
   '@vuepress/plugin-comment@2.0.0-rc.39(typescript@5.5.3)(vuepress@2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(jiti@1.21.6)(tsx@4.16.0)(typescript@5.5.3)(yaml@2.4.2))(typescript@5.5.3)(vue@3.4.33(typescript@5.5.3)))':
     dependencies:
       '@vuepress/helper': 2.0.0-rc.39(typescript@5.5.3)(vuepress@2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(jiti@1.21.6)(tsx@4.16.0)(typescript@5.5.3)(yaml@2.4.2))(typescript@5.5.3)(vue@3.4.33(typescript@5.5.3)))
@@ -9534,11 +9553,11 @@ snapshots:
 
   longest@2.0.1: {}
 
-  lru-cache@10.0.1: {}
-
   lru-cache@10.0.2:
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.3
+
+  lru-cache@10.4.3: {}
 
   lru-cache@11.0.0: {}
 
@@ -10331,7 +10350,7 @@ snapshots:
 
   path-scurry@1.10.1:
     dependencies:
-      lru-cache: 10.0.1
+      lru-cache: 10.0.2
       minipass: 5.0.0
 
   path-scurry@2.0.0:

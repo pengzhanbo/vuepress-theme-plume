@@ -24,6 +24,13 @@ export interface PlumeThemeOptions extends PlumeThemeLocaleOptions {
   hostname?: string
 
   /**
+   * 是否启用编译缓存
+   *
+   * @default 'filesystem'
+   */
+  cache?: false | 'memory' | 'filesystem'
+
+  /**
    * 加密配置
    */
   encrypt?: PlumeThemeEncrypt
@@ -33,6 +40,9 @@ export interface PlumeThemeOptions extends PlumeThemeLocaleOptions {
    */
   configFile?: string
 
+  /**
+   * 自动插入 frontmatter
+   */
   autoFrontmatter?: false | Omit<AutoFrontmatter, 'frontmatter'>
 
 }

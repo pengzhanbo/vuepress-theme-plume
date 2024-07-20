@@ -1,5 +1,6 @@
 import type { App, PluginConfig } from 'vuepress/core'
 import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links'
+import { cachePlugin } from '@vuepress/plugin-cache'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { gitPlugin } from '@vuepress/plugin-git'
 import { photoSwipePlugin } from '@vuepress/plugin-photo-swipe'
@@ -27,12 +28,14 @@ export interface SetupPluginOptions {
   app: App
   pluginOptions: PlumeThemePluginOptions
   hostname?: string
+  cache?: false | 'memory' | 'filesystem'
 }
 
 export function getPlugins({
   app,
   pluginOptions,
   hostname,
+  cache,
 }: SetupPluginOptions): PluginConfig {
   const isProd = !app.env.isDev
 
@@ -154,6 +157,10 @@ export function getPlugins({
 
   if (pluginOptions.seo !== false && hostname && isProd) {
     plugins.push(seoPlugin({ hostname }))
+  }
+
+  if (cache !== false) {
+    plugins.push(cachePlugin({ type: cache || 'filesystem' }))
   }
 
   return plugins

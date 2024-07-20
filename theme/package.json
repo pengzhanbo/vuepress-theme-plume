@@ -59,9 +59,16 @@
     "tsup:watch": "tsup --config tsup.config.ts --watch"
   },
   "peerDependencies": {
+    "@iconify/json": "^2",
     "vuepress": "2.0.0-rc.14"
   },
+  "peerDependenciesMeta": {
+    "@iconify/json": {
+      "optional": true
+    }
+  },
   "dependencies": {
+    "@iconify/vue": "^4.1.2",
     "@pengzhanbo/utils": "^1.1.2",
     "@vuepress-plume/plugin-content-update": "workspace:*",
     "@vuepress-plume/plugin-fonts": "workspace:*",
@@ -70,6 +77,7 @@
     "@vuepress-plume/plugin-shikiji": "workspace:*",
     "@vuepress/helper": "2.0.0-rc.39",
     "@vuepress/plugin-active-header-links": "2.0.0-rc.39",
+    "@vuepress/plugin-cache": "2.0.0-rc.39",
     "@vuepress/plugin-comment": "2.0.0-rc.39",
     "@vuepress/plugin-docsearch": "2.0.0-rc.39",
     "@vuepress/plugin-git": "2.0.0-rc.38",
@@ -95,5 +103,8 @@
     "vue-router": "^4.4.0",
     "vuepress-plugin-md-enhance": "2.0.0-rc.52",
     "vuepress-plugin-md-power": "workspace:*"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.229"
   }
 }

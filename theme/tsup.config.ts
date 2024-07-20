@@ -58,6 +58,7 @@ export default defineConfig((cli) => {
       ...DEFAULT_OPTIONS,
       entry: ['./src/client/config.ts'],
       outDir: './lib/client',
+      dts: false,
       external: [
         ...clientExternal,
         './composables/index.js',

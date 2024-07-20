@@ -7,7 +7,7 @@ readingTime: false
 prev: false
 next: false
 draft: true
-externalLink: false
+externalLinkIcon: false
 docs:
   -
     name: VuePress Plume

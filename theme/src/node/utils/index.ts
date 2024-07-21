@@ -7,5 +7,6 @@ export const logger = new Logger(THEME_NAME)
 export * from './hash.js'
 export * from './path.js'
 export * from './package.js'
+export * from './interopDefault.js'
 export * from './resolveContent.js'
 export * from './writeTemp.js'

@@ -10,6 +10,7 @@ import { parseRect } from '../../utils/parseRect.js'
 
 export interface IconCacheItem {
   className: string
+  background: boolean
   content: string
 }
 
@@ -17,6 +18,8 @@ const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW
 const iconDataCache = new Map<string, any>()
 const URL_CONTENT_RE = /(url\([\s\S]+?\))/
 const CSS_PATH = 'internal/md-power/icons.css'
+
+let locate: ((name: string) => any) | undefined
 
 function resolveOption(opt?: boolean | IconsOptions): Required<IconsOptions> {
   const options = typeof opt === 'object' ? opt : {}
@@ -65,19 +68,18 @@ export function createIconCSSWriter(app: App, opt?: boolean | IconsOptions) {
     if (!isInstalled)
       return
 
-    if (cache.has(iconName))
-      return cache.get(iconName)!.className
+    if (cache.has(iconName)) {
+      const item = cache.get(iconName)!
+      return `${item.className}${item.background ? ' bg' : ''}`
+    }
 
     const item: IconCacheItem = {
       className: `${prefix}-${nanoid()}`,
-      content: '',
+      ...genIcon(iconName),
     }
     cache.set(iconName, item)
-    genIconContent(iconName, (content) => {
-      item.content = content
-      writeCss()
-    })
-    return item.className
+    writeCss()
+    return `${item.className}${item.background ? ' bg' : ''}`
   }
 
   async function initIcon() {
@@ -89,6 +91,11 @@ export function createIconCSSWriter(app: App, opt?: boolean | IconsOptions) {
       return
     }
 
+    if (!locate) {
+      const mod = await interopDefault(import('@iconify/json'))
+      locate = mod.locate
+    }
+
     return await writeCss()
   }
 
@@ -97,12 +104,13 @@ export function createIconCSSWriter(app: App, opt?: boolean | IconsOptions) {
 
 function getDefaultContent(options: Required<IconsOptions>) {
   const { prefix, size, color } = options
-  return `[class^="${prefix}-"],
-[class*=" ${prefix}-"] {
+  return `[class^="${prefix}-"] {
   display: inline-block;
   width: ${size};
   height: ${size};
   vertical-align: middle;
+}
+[class^="${prefix}-"]:not(.bg) {
   color: inherit;
   background-color: ${color};
   -webkit-mask: var(--svg) no-repeat;
@@ -110,24 +118,29 @@ function getDefaultContent(options: Required<IconsOptions>) {
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
 }
+[class^="${prefix}-"].bg {
+  background-color: transparent;
+  background-image: var(--svg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
 `
 }
 
-let locate: ((name: string) => any) | undefined
-
-async function genIconContent(iconName: string, cb: (content: string) => void) {
+function genIcon(iconName: string): {
+  content: string
+  background: boolean
+} {
   if (!locate) {
-    const mod = await interopDefault(import('@iconify/json'))
-    locate = mod.locate
+    return { content: '', background: false }
   }
-
   const [collect, name] = iconName.split(':')
   let iconJson: any = iconDataCache.get(collect)
   if (!iconJson) {
     const filename = locate(collect)
 
     try {
-      iconJson = JSON.parse(await fs.readFile(filename, 'utf-8'))
+      iconJson = JSON.parse(fs.readFileSync(filename, 'utf-8'))
       iconDataCache.set(collect, iconJson)
     }
     catch {
@@ -135,14 +148,19 @@ async function genIconContent(iconName: string, cb: (content: string) => void) {
     }
   }
   const data = getIconData(iconJson, name)
-  if (!data)
-    return logger.error(`[plugin-md-power] Can not read icon in ${collect}, ${name} is missing!`)
+  if (!data) {
+    logger.error(`[plugin-md-power] Can not read icon in ${collect}, ${name} is missing!`)
+    return { content: '', background: false }
+  }
 
   const content = getIconContentCSS(data, {
     height: data.height || 24,
   })
   const match = content.match(URL_CONTENT_RE)
-  return cb(match ? match[1] : '')
+  return {
+    content: match ? match[1] : '',
+    background: !data.body.includes('currentColor'),
+  }
 }
 
 function existsSync(fp: string) {

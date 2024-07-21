@@ -73,7 +73,6 @@
     "@pengzhanbo/utils": "^1.1.2",
     "@vuepress-plume/plugin-content-update": "workspace:*",
     "@vuepress-plume/plugin-fonts": "workspace:*",
-    "@vuepress-plume/plugin-iconify": "workspace:*",
     "@vuepress-plume/plugin-search": "workspace:*",
     "@vuepress-plume/plugin-shikiji": "workspace:*",
     "@vuepress/helper": "2.0.0-rc.39",

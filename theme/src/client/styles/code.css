@@ -12,7 +12,7 @@ html:not(.dark) .vp-code span {
   margin: 16px -24px;
   overflow-x: auto;
   background-color: var(--vp-code-block-bg);
-  transition: background-color 0.5s;
+  transition: background-color var(--t-color);
 }
 
 @media (min-width: 640px) {

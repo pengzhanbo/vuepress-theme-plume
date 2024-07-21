@@ -1,14 +1,18 @@
 [class^="vpi-"],
 [class*=" vpi-"],
 .vp-icon {
+  display: inline-block;
   width: 1em;
   height: 1em;
+  vertical-align: middle;
 }
 
 [class^="vpi-"].bg,
 [class*=" vpi-"].bg,
 .vp-icon.bg {
   background-color: transparent;
+  background-image: var(--icon);
+  background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 

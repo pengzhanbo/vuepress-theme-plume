@@ -5,6 +5,7 @@ import VPCard from '@theme/global/VPCard.vue'
 import VPLinkCard from '@theme/global/VPLinkCard.vue'
 import VPBadge from '@theme/global/VPBadge.vue'
 import VPCardGrid from '@theme/global/VPCardGrid.vue'
+import VPIcon from '@theme/VPIcon.vue'
 
 export function globalComponents(app: App) {
   app.component('Badge', VPBadge)
@@ -36,13 +37,8 @@ export function globalComponents(app: App) {
     return null
   })
 
-  app.component('Icon', (props) => {
-    const Iconify = app.component('Iconify')
-    if (Iconify)
-      return h(Iconify, props)
-
-    return null
-  })
+  app.component('Icon', VPIcon)
+  app.component('VPIcon', VPIcon)
 
   /** @deprecated */
   app.component('HomeBox', VPHomeBox)

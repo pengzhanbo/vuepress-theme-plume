@@ -5,7 +5,6 @@ import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { gitPlugin } from '@vuepress/plugin-git'
 import { photoSwipePlugin } from '@vuepress/plugin-photo-swipe'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
-import { iconifyPlugin } from '@vuepress-plume/plugin-iconify'
 import { shikiPlugin } from '@vuepress-plume/plugin-shikiji'
 import { commentPlugin } from '@vuepress/plugin-comment'
 import { type MarkdownEnhancePluginOptions, mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
@@ -41,7 +40,6 @@ export function getPlugins({
 
   const plugins: PluginConfig = [
 
-    iconifyPlugin(),
     fontsPlugin(),
     contentUpdatePlugin(),
     activeHeaderLinksPlugin({

@@ -259,6 +259,9 @@ importers:
 
   theme:
     dependencies:
+      '@iconify/utils':
+        specifier: ^2.1.25
+        version: 2.1.25
       '@iconify/vue':
         specifier: ^4.1.2
         version: 4.1.2(vue@3.4.33(typescript@5.5.3))
@@ -349,6 +352,9 @@ importers:
       katex:
         specifier: ^0.16.11
         version: 0.16.11
+      local-pkg:
+        specifier: ^0.5.0
+        version: 0.5.0
       nanoid:
         specifier: ^5.0.7
         version: 5.0.7
@@ -397,6 +403,9 @@ packages:
     peerDependencies:
       '@algolia/client-search': '>= 4.9.1 < 6'
       algoliasearch: '>= 4.9.1 < 6'
+    peerDependenciesMeta:
+      '@algolia/client-search':
+        optional: true
 
   '@algolia/cache-browser-local-storage@4.20.0':
     resolution: {integrity: sha512-uujahcBt4DxduBTvYdwO3sBfHuJvJokiC3BP1+O70fglmE1ShkH8lpXqZBac1rrU3FnNYSUs4pL9lBdTKeRPOQ==}
@@ -5699,8 +5708,9 @@ snapshots:
 
   '@algolia/autocomplete-shared@1.9.3(@algolia/client-search@4.20.0)(algoliasearch@4.20.0)':
     dependencies:
-      '@algolia/client-search': 4.20.0
       algoliasearch: 4.20.0
+    optionalDependencies:
+      '@algolia/client-search': 4.20.0
 
   '@algolia/cache-browser-local-storage@4.20.0':
     dependencies:

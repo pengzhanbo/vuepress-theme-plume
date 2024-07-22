@@ -220,7 +220,7 @@ function onCaretClick() {
   transition: color var(--t-color);
 }
 
-.item :deep(.vp-iconify) {
+.item :deep(.vp-icon) {
   margin: 0 0.25rem 0 0;
   font-size: 0.9em;
   color: var(--vp-c-text-2);
@@ -240,21 +240,21 @@ function onCaretClick() {
   color: var(--vp-c-text-1);
 }
 
-.vp-sidebar-item.level-0.is-active > .item > :deep(.vp-iconify),
-.vp-sidebar-item.level-1.is-active > .item > :deep(.vp-iconify),
-.vp-sidebar-item.level-2.is-active > .item > :deep(.vp-iconify),
-.vp-sidebar-item.level-3.is-active > .item > :deep(.vp-iconify),
-.vp-sidebar-item.level-4.is-active > .item > :deep(.vp-iconify),
-.vp-sidebar-item.level-5.is-active > .item > :deep(.vp-iconify) {
+.vp-sidebar-item.level-0.is-active > .item > :deep(.vp-icon),
+.vp-sidebar-item.level-1.is-active > .item > :deep(.vp-icon),
+.vp-sidebar-item.level-2.is-active > .item > :deep(.vp-icon),
+.vp-sidebar-item.level-3.is-active > .item > :deep(.vp-icon),
+.vp-sidebar-item.level-4.is-active > .item > :deep(.vp-icon),
+.vp-sidebar-item.level-5.is-active > .item > :deep(.vp-icon) {
   color: var(--vp-c-brand-1);
 }
 
-.vp-sidebar-item.level-0.is-link > .item:hover :deep(.vp-iconify),
-.vp-sidebar-item.level-1.is-link > .item:hover :deep(.vp-iconify),
-.vp-sidebar-item.level-2.is-link > .item:hover :deep(.vp-iconify),
-.vp-sidebar-item.level-3.is-link > .item:hover :deep(.vp-iconify),
-.vp-sidebar-item.level-4.is-link > .item:hover :deep(.vp-iconify),
-.vp-sidebar-item.level-5.is-link > .item:hover :deep(.vp-iconify) {
+.vp-sidebar-item.level-0.is-link > .item:hover :deep(.vp-icon),
+.vp-sidebar-item.level-1.is-link > .item:hover :deep(.vp-icon),
+.vp-sidebar-item.level-2.is-link > .item:hover :deep(.vp-icon),
+.vp-sidebar-item.level-3.is-link > .item:hover :deep(.vp-icon),
+.vp-sidebar-item.level-4.is-link > .item:hover :deep(.vp-icon),
+.vp-sidebar-item.level-5.is-link > .item:hover :deep(.vp-icon) {
   color: var(--vp-c-brand-1);
 }
 

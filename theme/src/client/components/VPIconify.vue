@@ -58,7 +58,7 @@ const bind = computed<any>(() => ({
 
 <template>
   <ClientOnly>
-    <span v-if="!loaded" class="vp-iconify" :style="{ color, width: size, height: size }" />
+    <span v-if="!loaded" class="vp-icon" :style="{ color, width: size, height: size }" />
     <OfflineIcon
       v-else-if="icon"
       class="vp-iconify"
@@ -66,10 +66,3 @@ const bind = computed<any>(() => ({
     />
   </ClientOnly>
 </template>
-
-<style>
-.vp-iconify {
-  display: inline-block;
-  vertical-align: middle;
-}
-</style>

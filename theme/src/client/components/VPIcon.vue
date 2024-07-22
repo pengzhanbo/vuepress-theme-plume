@@ -69,13 +69,13 @@ const style = computed(() => ({
   <img v-if="type === 'link'" class="vp__img" :src="link" alt="" :style="{ height: size }">
   <span
     v-else-if="type === 'svg'"
-    class="vp-iconify"
+    class="vp-icon"
     :style="style"
     v-html="svg"
   />
   <span
     v-else-if="type === 'local' && className"
-    class="vp-iconify" :class="[className]"
+    class="vp-icon" :class="[className]"
     :style="style"
   />
   <VPIconify v-else :name="(name as string)" :size="size" :color="color" />

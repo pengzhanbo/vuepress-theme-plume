@@ -1,3 +1,26 @@
+# [1.0.0-rc.82](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.81...v1.0.0-rc.82) (2024-07-23)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** fix incorrect code editor layout ([9f6368b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9f6368b7a4c677a353055357bb7722c7feeded78))
+
+
+### Features
+
+* **theme:** add `@vuepress/plugin-cache` ([62ac0b3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/62ac0b3371d6c33e923fc8bcd98149190cf436df))
+* **theme:** add support for `iconify` localization ([5d0d626](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5d0d626eeff2bf7db73f73275728ba7c3e15757e))
+
+
+### Performance Improvements
+
+* **theme:** improve media print layout ([9f8de68](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9f8de682fa9f26d4df83a1028d1e7bee557bea10))
+* **theme:** improve navbar logo height ([688c964](https://github.com/pengzhanbo/vuepress-theme-plume/commit/688c96452e39f179636ff486e3541652debddfaa))
+* **theme:** optimize `<VPIcon />` ([fa06931](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fa0693198559a0cb03755725cb2454ed20cb3017))
+* update vue to `3.4.33` ([72ccb48](https://github.com/pengzhanbo/vuepress-theme-plume/commit/72ccb4800c24da675979976a7765d7888c6c4b89))
+
+
+
 # [1.0.0-rc.81](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.80...v1.0.0-rc.81) (2024-07-19)
 
 

@@ -3,6 +3,7 @@ pageLayout: friends
 title: 友情链接
 description: 这里是友情链接的描述文字
 permalink: /friends/
+draft: true
 list:
   -
     name: pengzhanbo

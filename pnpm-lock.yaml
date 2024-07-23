@@ -124,18 +124,6 @@ importers:
         specifier: 2.0.0-rc.14
         version: 2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(jiti@1.21.6)(tsx@4.16.0)(typescript@5.5.3)(yaml@2.4.2))(typescript@5.5.3)(vue@3.4.33(typescript@5.5.3))
 
-  plugins/plugin-iconify:
-    dependencies:
-      '@iconify/vue':
-        specifier: ^4.1.2
-        version: 4.1.2(vue@3.4.33(typescript@5.5.3))
-      vue:
-        specifier: ^3.4.33
-        version: 3.4.33(typescript@5.5.3)
-      vuepress:
-        specifier: 2.0.0-rc.14
-        version: 2.0.0-rc.14(@vuepress/bundler-vite@2.0.0-rc.14(@types/node@20.12.10)(jiti@1.21.6)(tsx@4.16.0)(typescript@5.5.3)(yaml@2.4.2))(typescript@5.5.3)(vue@3.4.33(typescript@5.5.3))
-
   plugins/plugin-md-power:
     dependencies:
       '@iconify/utils':

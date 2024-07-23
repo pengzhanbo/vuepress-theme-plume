@@ -56,7 +56,7 @@ export const zhNotes = definePlumeNotesConfig({
           icon: 'lucide:box',
           collapsed: false,
           dir: '功能',
-          items: ['代码复制', '内容搜索', '评论', '加密', '组件', '文章水印', '友情链接页', 'seo', 'sitemap'],
+          items: ['图标', '代码复制', '内容搜索', '评论', '加密', '组件', '文章水印', '友情链接页', 'seo', 'sitemap'],
         },
         {
           text: '自定义',

@@ -51,7 +51,7 @@ export function shikiPlugin({
     extendsMarkdown: async (md, app) => {
       const theme = options.theme ?? { light: 'github-light', dark: 'github-dark' }
 
-      md.options.highlight = await highlight(theme, options, app.env.isDev)
+      md.options.highlight = await highlight(theme, options)
 
       md.use(highlightLinesPlugin)
       md.use<PreWrapperOptions>(preWrapperPlugin, {

@@ -44,6 +44,7 @@ onBeforeUnmount(() => {
 .group + .group {
   padding-top: 10px;
   border-top: 1px solid var(--vp-c-divider);
+  transition: border var(--t-color);
 }
 
 @media (min-width: 960px) {

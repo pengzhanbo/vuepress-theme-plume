@@ -106,12 +106,13 @@ onUnmounted(() => {
   z-index: 1;
   box-sizing: border-box;
   display: block;
-  padding: 1.3rem 1.5rem;
+  padding: 20px 24px;
   overflow-x: auto;
   font-family: var(--vp-font-family-mono);
   font-size: var(--vp-code-font-size);
   -webkit-hyphens: none;
   hyphens: none;
+  line-height: var(--vp-code-line-height);
   color: transparent;
   text-align: left;
   word-break: normal;
@@ -139,7 +140,7 @@ onUnmounted(() => {
 }
 
 :deep(div[class*="language-"].line-numbers-mode) + .code-repl-input {
-  padding-left: 1rem;
-  margin-left: 2rem;
+  padding-left: 24px;
+  margin-left: 32px;
 }
 </style>

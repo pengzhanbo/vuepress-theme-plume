@@ -5,6 +5,7 @@ import { prepareArticleTagColors } from './prepareArticleTagColor.js'
 import { preparedBlogData } from './prepareBlogData.js'
 import { prepareEncrypt } from './prepareEncrypt.js'
 import { prepareSidebar } from './prepareSidebar.js'
+import { prepareIcons } from './prepareIcons.js'
 
 export async function prepareData(
   app: App,
@@ -15,6 +16,7 @@ export async function prepareData(
     preparedBlogData(app, localeOptions, encrypt),
     prepareSidebar(app, localeOptions),
     prepareEncrypt(app, encrypt),
+    prepareIcons(app, localeOptions),
   ])
 }
 

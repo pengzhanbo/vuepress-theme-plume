@@ -39,12 +39,10 @@ export function resolveOptions(
   }
 
   const notesList = resolveNotesOptions(localeOptions)
-  const localesNotesDirs = notesList
-    .flatMap(({ notes, dir }) => {
-      dir = removeLeadingSlash(dir || '')
-      return notes.map(note => normalizePath(`${dir}/${note.dir || ''}/`))
-    })
-    .filter(Boolean)
+  const localesNotesDirs = uniq(notesList
+    .flatMap(({ notes, dir }) =>
+      notes.map(note => removeLeadingSlash(normalizePath(`${dir}/${note.dir || ''}/`))),
+    ))
 
   const baseFrontmatter: AutoFrontmatterObject = {}
 

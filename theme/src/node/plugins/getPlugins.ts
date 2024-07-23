@@ -1,10 +1,10 @@
 import type { App, PluginConfig } from 'vuepress/core'
 import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links'
+import { cachePlugin } from '@vuepress/plugin-cache'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { gitPlugin } from '@vuepress/plugin-git'
 import { photoSwipePlugin } from '@vuepress/plugin-photo-swipe'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
-import { iconifyPlugin } from '@vuepress-plume/plugin-iconify'
 import { shikiPlugin } from '@vuepress-plume/plugin-shikiji'
 import { commentPlugin } from '@vuepress/plugin-comment'
 import { type MarkdownEnhancePluginOptions, mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
@@ -27,18 +27,19 @@ export interface SetupPluginOptions {
   app: App
   pluginOptions: PlumeThemePluginOptions
   hostname?: string
+  cache?: false | 'memory' | 'filesystem'
 }
 
 export function getPlugins({
   app,
   pluginOptions,
   hostname,
+  cache,
 }: SetupPluginOptions): PluginConfig {
   const isProd = !app.env.isDev
 
   const plugins: PluginConfig = [
 
-    iconifyPlugin(),
     fontsPlugin(),
     contentUpdatePlugin(),
     activeHeaderLinksPlugin({
@@ -154,6 +155,10 @@ export function getPlugins({
 
   if (pluginOptions.seo !== false && hostname && isProd) {
     plugins.push(seoPlugin({ hostname }))
+  }
+
+  if (cache !== false) {
+    plugins.push(cachePlugin({ type: cache || 'filesystem' }))
   }
 
   return plugins

@@ -58,3 +58,10 @@ declare module '@internal/encrypt' {
     encrypt,
   }
 }
+
+declare module '@internal/iconify' {
+  const icons: Record<string, string>
+  export {
+    icons,
+  }
+}

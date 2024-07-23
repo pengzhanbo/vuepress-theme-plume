@@ -286,4 +286,10 @@ watchPostEffect(() => {
     background-color: var(--vp-c-gutter);
   }
 }
+
+@media print {
+  .vp-navbar .hamburger {
+    display: none;
+  }
+}
 </style>

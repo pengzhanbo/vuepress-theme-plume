@@ -19,11 +19,10 @@ import {
   transformerRenderWhitespace,
 } from '@shikijs/transformers'
 import type { HighlighterOptions, ThemeOptions } from './types.js'
-import { LRUCache, attrsToLines, resolveLanguage } from './utils/index.js'
+import { attrsToLines, resolveLanguage } from './utils/index.js'
 import { defaultHoverInfoProcessor, transformerTwoslash } from './twoslash/rendererTransformer.js'
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 10)
-const cache = new LRUCache<string, string>(64)
 
 const vueRE = /-vue$/
 const mustacheRE = /\{\{.*?\}\}/g
@@ -32,7 +31,6 @@ const decorationsRE = /^\/\/ @decorations:(.*)\n/
 export async function highlight(
   theme: ThemeOptions,
   options: HighlighterOptions,
-  isDev: boolean,
 ): Promise<(str: string, lang: string, attrs: string) => string> {
   const {
     defaultHighlightLang: defaultLang = '',
@@ -94,14 +92,6 @@ export async function highlight(
     attrs = attrs || ''
     let lang = resolveLanguage(language) || defaultLang
     const vPre = vueRE.test(lang) ? '' : 'v-pre'
-
-    const key = str + language + attrs
-
-    if (isDev) {
-      const rendered = cache.get(key)
-      if (rendered)
-        return rendered
-    }
 
     if (lang) {
       const langLoaded = loadedLanguages.includes(lang as any)
@@ -182,9 +172,6 @@ export async function highlight(
       })
 
       const rendered = restoreMustache(highlighted)
-
-      if (isDev)
-        cache.set(key, rendered)
 
       return rendered
     }

@@ -25,6 +25,7 @@ export default defineConfig(() => {
       ...DEFAULT_OPTIONS,
       entry: ['./src/client/config.ts'],
       outDir: './lib/client',
+      dts: false,
       external: clientExternal,
     },
   ]

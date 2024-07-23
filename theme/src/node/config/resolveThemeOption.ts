@@ -6,6 +6,7 @@ export function resolveThemeOptions({
   plugins,
   hostname,
   configFile,
+  cache,
   ...localeOptions
 }: PlumeThemeOptions) {
   const pluginOptions = plugins ?? themePlugins ?? {}
@@ -17,6 +18,7 @@ export function resolveThemeOptions({
   }
 
   return {
+    cache,
     configFile,
     pluginOptions,
     hostname,

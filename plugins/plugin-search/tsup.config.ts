@@ -53,6 +53,7 @@ export default defineConfig(() => {
       entry: ['./src/client/config.ts'],
       outDir: './lib/client',
       external: clientExternal,
+      dts: false,
     },
     // client/index.js
     {

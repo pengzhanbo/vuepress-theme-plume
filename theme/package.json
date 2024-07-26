@@ -37,6 +37,9 @@
       "types": "./lib/client/composables/index.d.ts",
       "import": "./lib/client/composables/index.js"
     },
+    "./features/*": {
+      "import": "./lib/client/features/components/*"
+    },
     "./shared": {
       "types": "./lib/shared/index.d.ts",
       "import": "./lib/shared/index.js"

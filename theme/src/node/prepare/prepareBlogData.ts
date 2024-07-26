@@ -25,6 +25,12 @@ export async function preparedBlogData(
   localeOptions: PlumeThemeLocaleOptions,
   encrypt?: PlumeThemeEncrypt,
 ): Promise<void> {
+  if (localeOptions.blog === false) {
+    const content = resolveContent(app, { name: 'blogPostData', content: [] })
+    await writeTemp(app, 'internal/blogData.js', content)
+    return
+  }
+
   const start = performance.now()
 
   const blog = localeOptions.blog || {}

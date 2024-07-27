@@ -64,7 +64,7 @@ export const zhNotes = definePlumeNotesConfig({
           items: ['图标', '代码复制', '内容搜索', '评论', '加密', '组件', '文章水印', '友情链接页', 'seo', 'sitemap', {
             text: '非内置功能',
             icon: 'system-uicons:box-add',
-            collapsed: false,
+            collapsed: true,
             items: ['repoCard', 'npmBadge'],
           }],
         },

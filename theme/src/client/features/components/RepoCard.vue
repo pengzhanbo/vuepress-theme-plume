@@ -17,7 +17,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
           {{ data.ownerType === 'Organization' ? data.fullName : data.name }}
         </a>
       </span>
-      <span class="repo-visibility">{{ data.visibility + (data.template ? ' Template' : '') }} </span>
+      <span class="repo-visibility">{{ data.visibility + (data.template ? ' Template' : '') }}</span>
     </p>
     <p class="repo-desc">
       {{ data.description }}

@@ -1,3 +1,22 @@
+# [1.0.0-rc.83](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.82...v1.0.0-rc.83) (2024-07-28)
+
+
+### Features
+
+* **theme:** add component `<NpmBadge />` ([aa96c35](https://github.com/pengzhanbo/vuepress-theme-plume/commit/aa96c35bd589bcba026add17da8932e8ae5744ce))
+* **theme:** add component `<RepoCard />` ([4c44462](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4c44462e61a0561e01c4c6d80cf79d0315a95f4c))
+* **theme:** add support disable `blog` ([ce544d2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ce544d2dfc931d3e6fda9c93e65fb6c1609ba91c))
+* **theme:** add support for optional `features` ([5e9d2d0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5e9d2d043a4842f9769b0fa856982a4e0dd61aae))
+
+
+### Performance Improvements
+
+* **theme:** improve content layout ([a81c20a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a81c20a21cbcef0c66b6996b518ea3dac1fda824))
+* **theme:** improve prepare icons data ([46b382e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/46b382e0b34cbe0e209d897fd6c09a8fad7eed94))
+* **theme:** improve sidebar active link ([6bf5302](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6bf5302da12689b4e088e068d75edfd7b968b552))
+
+
+
 # [1.0.0-rc.82](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.81...v1.0.0-rc.82) (2024-07-23)
 
 

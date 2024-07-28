@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-shikiji",
   "type": "module",
-  "version": "1.0.0-rc.82",
+  "version": "1.0.0-rc.83",
   "description": "The Plugin for VuePress 2 - shiki",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",

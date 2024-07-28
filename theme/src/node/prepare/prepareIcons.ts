@@ -16,8 +16,8 @@ interface IconData {
 type CollectMap = Record<string, string[]>
 type IconDataMap = Record<string, IconData>
 
-const ICON_REGEXP = /<(?:VP)?Icon(?:ify)?([^>]*)>/g
-const ICON_NAME_REGEXP = /name="([^"]+)"/
+const ICON_REGEXP = /<(?:VP)?(Icon|Card|LinkCard)([^>]*)>/g
+const ICON_NAME_REGEXP = /(?:name|icon)="([^"]+)"/
 const URL_CONTENT_REGEXP = /(url\([\s\S]+\))/
 const JS_FILENAME = 'internal/iconify.js'
 const CSS_FILENAME = 'internal/iconify.css'

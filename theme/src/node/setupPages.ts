@@ -18,6 +18,9 @@ export async function setupPage(
   app: App,
   localeOption: PlumeThemeLocaleOptions,
 ) {
+  if (localeOption.blog === false)
+    return
+
   const pageList: Promise<Page>[] = []
   const locales = localeOption.locales || {}
   const rootPath = getRootLangPath(app)

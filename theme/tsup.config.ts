@@ -1,3 +1,6 @@
+import process from 'node:process'
+import fs from 'node:fs'
+import path from 'node:path'
 import { type Options, defineConfig } from 'tsup'
 
 const sharedExternal: (string | RegExp)[] = [
@@ -11,6 +14,11 @@ const clientExternal: (string | RegExp)[] = [
   /^@theme/,
   /.*\.css$/,
 ]
+
+const featuresComposables = fs.readdirSync(
+  path.join(process.cwd(), 'src/client/features/composables'),
+  { recursive: true, encoding: 'utf-8' },
+)
 
 export default defineConfig((cli) => {
   const DEFAULT_OPTIONS: Options = {
@@ -35,6 +43,7 @@ export default defineConfig((cli) => {
       outDir: './lib/node',
       external: sharedExternal,
       target: 'node18',
+      watch: false,
     },
     // client/utils/index.js
     {
@@ -77,5 +86,16 @@ export default defineConfig((cli) => {
         './config.js',
       ],
     },
+    ...featuresComposables.map(file => ({
+      ...DEFAULT_OPTIONS,
+      entry: [`./src/client/features/composables/${file}`],
+      outDir: `./lib/client/features/composables/`,
+      external: [
+        ...clientExternal,
+        '../../composables/index.js',
+        '../../utils/index.js',
+        ...featuresComposables.map(file => `./${file.replace('.ts', '.js')}`),
+      ],
+    })),
   ]
 })

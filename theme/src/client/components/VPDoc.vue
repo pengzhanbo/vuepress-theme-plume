@@ -174,7 +174,7 @@ watch(
 
 @media (min-width: 1440px) {
   .vp-doc-container:not(.has-sidebar) .content {
-    max-width: 784px;
+    max-width: 884px;
   }
 
   .vp-doc-container.is-blog:not(.has-sidebar.has-aside) .content {
@@ -275,6 +275,6 @@ watch(
 }
 
 .vp-doc-container.has-aside .content-container {
-  max-width: 688px;
+  max-width: 788px;
 }
 </style>

@@ -29,8 +29,9 @@ export function useLangs({
     const { notFound, path } = resolveRoute(targetPath)
     if (!notFound)
       return path
+
     const blog = theme.value.blog
-    if (isBlogPost.value)
+    if (isBlogPost.value && blog !== false)
       return withBase(blog?.link || normalizeLink(locale, 'blog/'))
 
     const sidebarList = sidebar.value

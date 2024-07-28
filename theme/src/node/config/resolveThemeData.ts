@@ -35,8 +35,6 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
     }
   })
 
-  const blog = options.blog || {}
-  const blogLink = blog.link || '/blog/'
   entries(options.locales || {}).forEach(([locale, opt]) => {
     // 注入预设 导航栏
     // home | blog | tags | archives
@@ -47,21 +45,25 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
         text: PRESET_LOCALES[localePath].home,
         link: locale,
       }]
-      navbar.push({
-        text: PRESET_LOCALES[localePath].blog,
-        link: withBase(blogLink, locale),
-      })
-      if (blog.tags !== false) {
+      if (options.blog !== false) {
+        const blog = options.blog || {}
+        const blogLink = blog.link || '/blog/'
         navbar.push({
-          text: PRESET_LOCALES[localePath].tag,
-          link: withBase(blog.tagsLink || `${blogLink}/tags/`, locale),
+          text: PRESET_LOCALES[localePath].blog,
+          link: withBase(blogLink, locale),
         })
-      }
-      if (blog.archives !== false) {
-        navbar.push({
-          text: PRESET_LOCALES[localePath].archive,
-          link: withBase(blog.archivesLink || `${blogLink}/archives/`, locale),
-        })
+        if (blog.tags !== false) {
+          navbar.push({
+            text: PRESET_LOCALES[localePath].tag,
+            link: withBase(blog.tagsLink || `${blogLink}/tags/`, locale),
+          })
+        }
+        if (blog.archives !== false) {
+          navbar.push({
+            text: PRESET_LOCALES[localePath].archive,
+            link: withBase(blog.archivesLink || `${blogLink}/archives/`, locale),
+          })
+        }
       }
 
       themeData.locales![locale].navbar = navbar

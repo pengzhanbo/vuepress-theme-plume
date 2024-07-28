@@ -16,7 +16,6 @@ import {
   ref,
   watch,
   watchEffect,
-  watchPostEffect,
 } from 'vue'
 import { sidebar as sidebarRaw } from '@internal/sidebar'
 import { isActive, normalizeLink, normalizePrefix, resolveNavLink } from '../utils/index.js'
@@ -368,7 +367,7 @@ export function useSidebarControl(item: ComputedRef<ResolvedSidebarItem>): Sideb
     )
   }
 
-  watch([page, item, () => route.hash], updateIsActiveLink)
+  watch([() => page.value.path, item, () => route.hash], updateIsActiveLink)
   onMounted(updateIsActiveLink)
 
   const hasActiveLink = computed(() => {
@@ -389,11 +388,11 @@ export function useSidebarControl(item: ComputedRef<ResolvedSidebarItem>): Sideb
     collapsed.value = !!(collapsible.value && item.value.collapsed)
   })
 
-  watchPostEffect(() => {
+  watch(() => [page.value.path, isActiveLink.value, hasActiveLink.value], () => {
     if (isActiveLink.value || hasActiveLink.value) {
       collapsed.value = false
     }
-  })
+  }, { immediate: true, flush: 'post' })
 
   const toggle = (): void => {
     if (collapsible.value) {

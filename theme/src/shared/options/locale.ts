@@ -64,7 +64,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
   /**
    * 博客配置
    */
-  blog?: PlumeThemeBlog
+  blog?: false | PlumeThemeBlog
 
   /**
    * 文章链接前缀
@@ -274,7 +274,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
   encryptPlaceholder?: string
 }
 
-/** =========================== Avatar ================================ */
+/** =========================== Profile ================================ */
 
 /**
  * 个人资料

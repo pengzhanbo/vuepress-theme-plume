@@ -17,7 +17,7 @@ lastUpdated: false
 搜索 `@property`,点击 `#` 会跳转到 `https://caniuse.com/mdn-css_at-rules_property`，
 可以直接复制 `mdn-css_at-rules_property` ，粘贴到 markdown 文件中:
 
-```md
+```md :no-line-numbers
 @[caniuse](mdn-css_at-rules_property)
 ```
 

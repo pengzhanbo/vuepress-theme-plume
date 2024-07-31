@@ -86,7 +86,7 @@ function getIconsWithPage(page: Page): string[] {
     list.push(page.frontmatter.icon)
   }
 
-  return list
+  return list.filter(icon => !isLinkHttp(icon) && !isLinkAbsolute(icon) && icon[0] !== '{')
 }
 
 function getIconWithThemeConfig(localeOptions: PlumeThemeLocaleOptions): string[] {

@@ -1,23 +1,20 @@
 <script setup lang="ts">
-import 'https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js'
+import '@simonwep/pickr/dist/themes/nano.min.css'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 
 const emit = defineEmits<{ (e: 'update:modelValue', value: string): void }>()
-
-// eslint-disable-next-line ts/no-namespace
-declare namespace window {
-  const Pickr: any
-}
 
 const color = defineModel<string>('modelValue', { default: 'rgba(0,0,0,1)' })
 const pickerEl = ref<HTMLDivElement>()
 let picker: any
 
-onMounted(() => {
+onMounted(async () => {
   if (!pickerEl.value || picker)
     return
 
-  picker = window.Pickr.create({
+  const { default: Pickr } = await import('@simonwep/pickr')
+
+  picker = Pickr.create({
     el: pickerEl.value,
     theme: 'nano',
     default: color.value,

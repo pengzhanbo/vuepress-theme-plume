@@ -48,7 +48,7 @@
     "mark.js": "^8.11.1",
     "minisearch": "^7.1.0",
     "p-map": "^7.0.2",
-    "vue": "^3.4.34"
+    "vue": "^3.4.35"
   },
   "publishConfig": {
     "access": "public"

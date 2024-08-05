@@ -1,6 +1,7 @@
 import * as path from 'node:path'
 import { type UserConfig, defineUserConfig } from 'vuepress'
 import { viteBundler } from '@vuepress/bundler-vite'
+import { addViteOptimizeDepsInclude, addViteSsrExternal } from '@vuepress/helper'
 import { theme } from './theme.js'
 
 export default defineUserConfig({
@@ -20,6 +21,11 @@ export default defineUserConfig({
   ],
 
   pagePatterns: ['**/*.md', '!**/*.snippet.md', '!.vuepress', '!node_modules'],
+
+  extendsBundlerOptions(bundlerOptions, app) {
+    addViteOptimizeDepsInclude(bundlerOptions, app, '@simonwep/pickr')
+    addViteSsrExternal(bundlerOptions, app, '@simonwep/pickr')
+  },
 
   bundler: viteBundler(),
 

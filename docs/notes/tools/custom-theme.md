@@ -8,11 +8,6 @@ readingTime: false
 editLink: false
 contributors: false
 lastUpdated: false
-head:
-  -
-   - link
-   - href: https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css
-     rel: stylesheet
 ---
 
 ::: tip

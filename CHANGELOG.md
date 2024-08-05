@@ -1,3 +1,18 @@
+# [1.0.0-rc.84](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.83...v1.0.0-rc.84) (2024-08-05)
+
+
+### Features
+
+* **theme:** add option for enable `prevPage/nextPage`, close [#132](https://github.com/pengzhanbo/vuepress-theme-plume/issues/132) ([8fa9ec0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8fa9ec0b4a70db7d0a7705e3e1ecb0c8524264ae))
+
+
+### Performance Improvements
+
+* **theme:** improve prepare icons ([5f6825a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5f6825a6459fddb63295d420aa7c43cbcbd80149))
+* update deps to latest ([6928ee4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6928ee4bb461617089fed4c8b2ef7d9a653233d5))
+
+
+
 # [1.0.0-rc.83](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.82...v1.0.0-rc.83) (2024-07-28)
 
 

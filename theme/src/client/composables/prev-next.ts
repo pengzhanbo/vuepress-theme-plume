@@ -11,13 +11,16 @@ import { useBlogPageData } from './page.js'
 
 export function usePrevNext() {
   const route = useRoute()
-  const { frontmatter } = useData()
+  const { frontmatter, theme } = useData()
   const { sidebar } = useSidebar()
   const postList = usePostList() as unknown as Ref<PlumeThemeBlogPostItem[]>
   const locale = usePageLang()
   const { isBlogPost } = useBlogPageData()
 
   const prevNavList = computed(() => {
+    if (theme.value.prevPage === false)
+      return null
+
     const prevConfig = resolveFromFrontmatterConfig(frontmatter.value.prev)
     if (prevConfig !== false)
       return prevConfig
@@ -35,6 +38,9 @@ export function usePrevNext() {
   })
 
   const nextNavList = computed(() => {
+    if (theme.value.nextPage === false)
+      return null
+
     const nextConfig = resolveFromFrontmatterConfig(frontmatter.value.next)
     if (nextConfig !== false)
       return nextConfig

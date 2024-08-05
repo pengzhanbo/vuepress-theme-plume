@@ -212,11 +212,25 @@ export interface PlumeThemeLocaleData extends LocaleData {
   outlineLabel?: string
 
   /**
+   * 是否显示上一页
+   *
+   * @default true
+   */
+  prevPage?: boolean
+
+  /**
    * 上一页的文本
    *
    * @default 'Previous Page'
    */
   prevPageLabel?: string
+
+  /**
+   * 是否显示下一页
+   *
+   * @default true
+   */
+  nextPage?: boolean
 
   /**
    * 下一页的文本

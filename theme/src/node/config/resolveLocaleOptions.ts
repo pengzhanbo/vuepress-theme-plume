@@ -26,6 +26,8 @@ const FALLBACK_OPTIONS: PlumeThemeLocaleData = {
   // page meta
   editLink: true,
   contributors: true,
+  prevPage: true,
+  nextPage: true,
 
   footer: {
     message:

@@ -147,7 +147,7 @@ export const zhNotes = definePlumeNotesConfig({
         {
           text: '工具',
           icon: 'tabler:tools',
-          items: ['home-hero-tint-plate', 'caniuse'],
+          items: ['custom-theme', 'home-hero-tint-plate', 'caniuse'],
         },
       ],
     },

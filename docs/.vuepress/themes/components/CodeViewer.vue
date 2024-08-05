@@ -6,19 +6,19 @@ defineProps<{
 </script>
 
 <template>
-  <div :class="`code-viewer language-${lang}`" :data-ext="lang">
-    <button class="copy-code-button" :data-lang="lang" />
+  <div :class="`code-viewer language-${lang}`" :data-title="lang">
+    <button class="copy" :data-lang="lang" title="Copy code" data-copied="已复制" />
     <pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code"><code>{{ content }}</code></pre>
   </div>
 </template>
 
 <style>
-.code-viewer .copy-code-button {
+.code-viewer .copy {
   display: none;
 }
 
 @media (min-width: 768px) {
-  .code-viewer .copy-code-button {
+  .code-viewer .copy {
     display: block;
   }
 }

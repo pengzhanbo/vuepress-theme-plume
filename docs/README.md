@@ -127,19 +127,19 @@ config:
 :::code-tabs
 @tab pnpm
 
-```sh
+```sh :no-line-numbers
 pnpm add vuepress@next vuepress-theme-plume vue
 ```
 
 @tab npm
 
-```sh
+```sh :no-line-numbers
 npm install vuepress@next vuepress-theme-plume
 ```
 
 @tab yarn
 
-```sh
+```sh :no-line-numbers
 yarn add vuepress@next vuepress-theme-plume
 ```
 
@@ -150,7 +150,7 @@ yarn add vuepress@next vuepress-theme-plume
 ::: code-tabs
 @tab .vuepress/config.ts
 
-```ts
+```ts :no-line-numbers
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -166,7 +166,7 @@ export default defineUserConfig({
 
 ### 更新记录
 
-[Changelog](/changelog/)
+[Changelog](./changelog.md)
 
 ### 贡献者
 

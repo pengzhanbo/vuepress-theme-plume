@@ -42,6 +42,11 @@ export interface NavItemChildren {
   prefix?: string
 
   /**
+   * 导航图标
+   */
+  icon?: ThemeIcon
+
+  /**
    * 导航栏下拉菜单
    */
   items: (string | NavItemWithLink)[]

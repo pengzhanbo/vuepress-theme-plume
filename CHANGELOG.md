@@ -1,3 +1,24 @@
+# [1.0.0-rc.85](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.84...v1.0.0-rc.85) (2024-08-08)
+
+
+### Bug Fixes
+
+* **theme:** incorrect display non-local icons, close [#134](https://github.com/pengzhanbo/vuepress-theme-plume/issues/134) ([64e9a0f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/64e9a0f330004f40630e1c2b5d93b1cbda50196f))
+
+
+### Features
+
+* **theme:** improve `externalLinkIcon` type ([85a923f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/85a923f736e0422ba83407edaf760586d45a7f35))
+* **theme:** improve `navbar` type ([7ccbfef](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7ccbfefe347be959a8e51f7bfd6c35599e685fbc))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** improve icons rules ([f6ae1a1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f6ae1a1149cdac191f8d779aefa3fe9ee9cdaa68))
+* update deps to latest ([60b75e3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/60b75e3e2eeba221b6f1d531672f3695653967d1))
+
+
+
 # [1.0.0-rc.84](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.83...v1.0.0-rc.84) (2024-08-05)
 
 

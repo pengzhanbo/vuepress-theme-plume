@@ -4,7 +4,7 @@ import { addViteOptimizeDepsInclude } from '@vuepress/helper'
 import type { CanIUseOptions, MarkdownPowerPluginOptions } from '../shared/index.js'
 import { caniusePlugin, legacyCaniuse } from './features/caniuse.js'
 import { pdfPlugin } from './features/pdf.js'
-import { createIconCSSWriter, iconsPlugin } from './features/icons/index.js'
+import { iconsPlugin } from './features/icons.js'
 import { bilibiliPlugin } from './features/video/bilibili.js'
 import { youtubePlugin } from './features/video/youtube.js'
 import { codepenPlugin } from './features/codepen.js'
@@ -17,19 +17,14 @@ import { prepareConfigFile } from './prepareConfigFile.js'
 
 export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): Plugin {
   return (app) => {
-    const { initIcon, addIcon } = createIconCSSWriter(app, options.icons)
-
     return {
       name: 'vuepress-plugin-md-power',
 
-      // clientConfigFile: path.resolve(__dirname, '../client/config.js'),
       clientConfigFile: app => prepareConfigFile(app, options),
 
       define: {
         __MD_POWER_INJECT_OPTIONS__: options,
       },
-
-      onInitialized: async () => await initIcon(),
 
       extendsBundlerOptions(bundlerOptions) {
         if (options.repl) {
@@ -57,7 +52,7 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
 
         if (options.icons) {
           // :[collect:name]:
-          md.use(iconsPlugin, addIcon)
+          md.use(iconsPlugin)
         }
 
         if (options.bilibili) {

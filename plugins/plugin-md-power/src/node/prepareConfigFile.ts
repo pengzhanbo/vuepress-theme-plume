@@ -14,8 +14,6 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
   const imports = new Set<string>()
   const enhances = new Set<string>()
 
-  imports.add(`import '@internal/md-power/icons.css'`)
-
   if (options.pdf) {
     imports.add(`import PDFViewer from '${CLIENT_FOLDER}components/PDFViewer.vue'`)
     enhances.add(`app.component('PDFViewer', PDFViewer)`)

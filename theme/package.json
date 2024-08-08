@@ -91,7 +91,7 @@
     "@vuepress/plugin-seo": "2.0.0-rc.40",
     "@vuepress/plugin-sitemap": "2.0.0-rc.40",
     "@vuepress/plugin-watermark": "2.0.0-rc.40",
-    "@vueuse/core": "^10.11.0",
+    "@vueuse/core": "^10.11.1",
     "bcrypt-ts": "^5.0.2",
     "chokidar": "^3.6.0",
     "create-filter": "^1.1.0",
@@ -103,12 +103,12 @@
     "katex": "^0.16.11",
     "local-pkg": "^0.5.0",
     "nanoid": "^5.0.7",
-    "vue": "^3.4.35",
-    "vue-router": "^4.4.2",
+    "vue": "^3.4.37",
+    "vue-router": "^4.4.3",
     "vuepress-plugin-md-enhance": "2.0.0-rc.52",
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.234"
+    "@iconify/json": "^2.2.235"
   }
 }

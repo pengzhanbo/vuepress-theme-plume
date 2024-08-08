@@ -52,7 +52,8 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
+  width: 40px;
+  height: 40px;
   background-color: var(--vp-c-bg-soft);
   border: solid 1px var(--vp-c-divider);
   border-radius: 32px;

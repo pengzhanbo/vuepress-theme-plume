@@ -6,13 +6,10 @@
  */
 import type { PluginWithOptions } from 'markdown-it'
 import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
-import { parseRect } from '../../utils/parseRect.js'
-
-type AddIcon = (iconName: string) => string | undefined
 
 const [openTag, endTag] = [':[', ']:']
 
-function createTokenizer(addIcon: AddIcon): RuleInline {
+function createTokenizer(): RuleInline {
   return (state, silent) => {
     let found = false
     const max = state.posMax
@@ -56,31 +53,20 @@ function createTokenizer(addIcon: AddIcon): RuleInline {
     state.posMax = state.pos
     state.pos = start + 2
 
-    const [iconName, options = ''] = content.split(/\s+/)
+    const [name, options = ''] = content.split(/\s+/)
     const [size, color] = options.split('/')
 
-    const open = state.push('iconify_open', 'span', 1)
-    open.markup = openTag
+    const icon = state.push('vp_iconify_open', 'VPIcon', 1)
+    icon.markup = openTag
 
-    const className = addIcon(iconName)
-
-    if (className)
-      open.attrSet('class', className)
-
-    let style = ''
+    if (name)
+      icon.attrSet('name', name)
     if (size)
-      style += `width:${parseRect(size)};height:${parseRect(size)};`
-
+      icon.attrSet('size', size)
     if (color)
-      style += `color:${color};`
+      icon.attrSet('color', color)
 
-    if (style)
-      open.attrSet('style', style)
-
-    const text = state.push('text', '', 0)
-    text.content = className ? '' : iconName
-
-    const close = state.push('iconify_close', 'span', -1)
+    const close = state.push('vp_iconify_close', 'VPIcon', -1)
     close.markup = endTag
 
     state.pos = state.posMax + 2
@@ -90,9 +76,8 @@ function createTokenizer(addIcon: AddIcon): RuleInline {
   }
 }
 
-export const iconsPlugin: PluginWithOptions<AddIcon> = (
+export const iconsPlugin: PluginWithOptions<never> = (
   md,
-  addIcon = () => '',
 ) => {
-  md.inline.ruler.before('emphasis', 'iconify', createTokenizer(addIcon))
+  md.inline.ruler.before('emphasis', 'iconify', createTokenizer())
 }

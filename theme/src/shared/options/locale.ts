@@ -244,7 +244,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
    *
    * @default true
    */
-  externalLinkIcon?: string
+  externalLinkIcon?: boolean
 
   /**
    * 页脚配置。

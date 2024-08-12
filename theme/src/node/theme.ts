@@ -73,11 +73,13 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
       },
 
       onPrepared: async (app) => {
-        onConfigChange(({ localeOptions }) => {
-          prepareThemeData(app, localeOptions)
-          prepareData(app)
+        onConfigChange(async ({ localeOptions }) => {
+          await prepareThemeData(app, localeOptions)
+          await prepareData(app)
         })
-        await waitForConfigLoaded()
+        const { localeOptions } = await waitForConfigLoaded()
+        await prepareThemeData(app, localeOptions)
+        await prepareData(app)
       },
 
       onWatched: (app, watchers) => {

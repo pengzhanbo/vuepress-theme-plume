@@ -105,7 +105,7 @@ export async function onConfigChange(onChange: ChangeEvent) {
   if (loader && !loader.changeEvents.includes(onChange)) {
     loader.changeEvents.push(onChange)
     if (loader.loaded) {
-      onChange(loader.resolvedConfig)
+      await onChange(loader.resolvedConfig)
     }
   }
 }
@@ -140,9 +140,9 @@ function updateResolvedConfig(app: App, userConfig: ThemeConfig = {}) {
   }
 }
 
-function runChangeEvents() {
+async function runChangeEvents() {
   if (loader) {
-    loader.changeEvents.forEach(fn => fn(loader!.resolvedConfig))
+    await Promise.all(loader.changeEvents.map(fn => fn(loader!.resolvedConfig)))
   }
 }
 

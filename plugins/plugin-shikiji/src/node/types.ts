@@ -79,7 +79,7 @@ export interface HighlighterOptions {
    * Enable transformerRenderWhitespace
    * @default false
    */
-  whitespace?: boolean
+  whitespace?: boolean | 'all' | 'boundary' | 'trailing'
 }
 
 export interface LineNumberOptions {
@@ -99,6 +99,15 @@ export interface PreWrapperOptions {
    * - Required for title display of default theme
    */
   preWrapper?: boolean
+
+  /**
+   * Hide extra rows when exceeding a specific number of lines.
+   *
+   * `true` is equivalent to `15` .
+   *
+   * @default false
+   */
+  collapsedLines?: number | boolean
 }
 
 /**

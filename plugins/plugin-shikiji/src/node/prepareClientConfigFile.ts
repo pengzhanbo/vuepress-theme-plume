@@ -17,6 +17,7 @@ export async function prepareClientConfigFile(app: App, {
     `\
 ${twoslash ? `import { enhanceTwoslash } from '${CLIENT_FOLDER}composables/twoslash.js'` : ''}
 ${copyCode ? `import { useCopyCode } from '${CLIENT_FOLDER}composables/copy-code.js'` : ''}
+import { useCollapsedLines } from '${CLIENT_FOLDER}composables/collapsed-lines.js'
 
 export default {
   ${twoslash
@@ -30,6 +31,7 @@ export default {
       selector: __CC_SELECTOR__,
       duration: __CC_DURATION__,
     })
+    useCollapsedLines()
   },`
 : ''}
 }

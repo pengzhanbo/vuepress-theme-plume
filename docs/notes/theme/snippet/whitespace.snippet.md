@@ -3,7 +3,7 @@
 **输入：**
 
 ````
-```xml whitespace
+```xml :whitespace
 <catalog>
     <book>
         <title>Everyday Italian</title>
@@ -15,7 +15,7 @@
 
 **输出：**
 
-```xml whitespace
+```xml :whitespace :no-line-numbers
 <catalog>
     <book>
         <title>Everyday Italian</title>
@@ -28,7 +28,7 @@
 **输入：**
 
 ````
-```xml whitespace
+```xml :whitespace
 <catalog>
 	<book>
 		<title>Everyday Italian</title>
@@ -39,10 +39,31 @@
 
 **输出：**
 
-```xml whitespace
+```xml :whitespace :no-line-numbers
 <catalog>
 	<book>
 		<title>Everyday Italian</title>
 	</book>
 </catalog>
+```
+
+渲染所有的空格：
+
+**输入：**
+
+````
+```js :whitespace=all
+function foo( ) {
+  return 'Hello World'  
+}
+```
+```
+````
+
+**输出：**
+
+```js :whitespace=all :no-line-numbers
+function foo( ) {
+  return 'Hello World'  
+}
 ```

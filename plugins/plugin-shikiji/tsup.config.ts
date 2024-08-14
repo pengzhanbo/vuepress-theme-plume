@@ -21,6 +21,7 @@ export default defineConfig(() => {
       entry: [
         'copy-code.ts',
         'twoslash.ts',
+        'collapsed-lines.ts',
       ].map(file => `./src/client/composables/${file}`),
       outDir: './lib/client/composables',
       external: [/.*\.css$/],

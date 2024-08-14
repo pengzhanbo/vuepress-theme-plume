@@ -109,6 +109,6 @@
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.235"
+    "@iconify/json": "^2.2.237"
   }
 }

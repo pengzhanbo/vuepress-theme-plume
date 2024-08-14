@@ -45,8 +45,8 @@
     "markdown-it-container": "^4.0.0",
     "nanoid": "^5.0.7",
     "shiki": "^1.12.1",
-    "tm-grammars": "^1.16.3",
-    "tm-themes": "^1.6.2",
+    "tm-grammars": "^1.17.0",
+    "tm-themes": "^1.6.4",
     "vue": "^3.4.37"
   },
   "devDependencies": {

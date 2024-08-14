@@ -1,3 +1,23 @@
+# [1.0.0-rc.86](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.85...v1.0.0-rc.86) (2024-08-14)
+
+
+### Bug Fixes
+
+* **theme:** improve local icons load ([4a49b9f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4a49b9f0275ba61f857e7abcc0ab63c734f73373))
+
+
+### Features
+
+* **plugin-shikiji:** add support for `collapsed lines` ([bb4ee6b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bb4ee6bb2d8523b4264a16bf6ea0066f8f7ea295))
+
+
+### Performance Improvements
+
+* **plugin-shikiji:** improve `highlight whitespace` ([48a6596](https://github.com/pengzhanbo/vuepress-theme-plume/commit/48a659629738399573a451e757652b3c0667528a))
+* **plugin-shikiji:** improve `highlight` ([199bbd9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/199bbd9a9a3663d02218a06c08f97bb16dafb7cb))
+
+
+
 # [1.0.0-rc.85](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.84...v1.0.0-rc.85) (2024-08-08)
 
 

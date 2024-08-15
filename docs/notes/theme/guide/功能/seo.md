@@ -20,7 +20,7 @@ export default defineUserConfig({
 ```
 
 ::: note
-示例 Fork 自 [@vuepress/plugin-seo](https://ecosystem.vuejs.press/zh/plugins/seo/),
+示例 Fork 自 [@vuepress/plugin-seo](https://ecosystem.vuejs.press/zh/plugins/seo/seo/),
 遵循 [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE) 许可证。
 :::
 

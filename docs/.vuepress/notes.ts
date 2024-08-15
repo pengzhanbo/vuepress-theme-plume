@@ -95,6 +95,7 @@ export const zhNotes = definePlumeNotesConfig({
             '主题配置',
             '导航栏配置',
             'notes配置',
+            '侧边栏配置',
           ],
         },
         {

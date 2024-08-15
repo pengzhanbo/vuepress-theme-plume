@@ -49,7 +49,7 @@ export default defineUserConfig({
 interface NotesDataOptions {
   /**
    * 保存所有笔记的目录
-   * @default '/notes'
+   * @default '/notes/'
    */
   dir: string
   /**
@@ -58,20 +58,10 @@ interface NotesDataOptions {
    */
   link: string
   /**
-   * global include，只加载需要加载到笔记中的文件
-   */
-  include?: string | string[]
-  /**
-   * global exclude，排除不需要加载到笔记中的文件
-   */
-  exclude?: string | string[]
-  /**
    * 笔记配置
    */
-  notes: NotesItemOptions[]
+  notes: NoteItem[]
 }
-
-type NotesItemOptions = (Omit<NotesItem, 'text'> & { text?: string })
 
 interface NotesItem {
   /**
@@ -85,50 +75,64 @@ interface NotesItem {
   /**
    * 当前笔记名称
    */
-  text: string
+  text?: string
   /**
-   * 当前笔记的侧边栏配置,
-   * 如果设置为 `auto`，则自动根据目录结构生成侧边栏，根据 `\d+.xxx[.md]` 中 `\d+` 进行排序
+   * 当前笔记的侧边栏配置
+   * - `'auto'` 根据目录结构自动生成侧边栏
+   * - `string` 侧边栏文件路径, 如 `'/notes/sidebar.md'`，主题将会读取该文件作为侧边栏
+   * - `SidebarItem` 单项侧边栏配置
    */
-  sidebar?: NotesSidebar | 'auto'
+  sidebar?: 'auto' | (string | SidebarItem)[]
 }
 
-/**
- * 可以将配置简写为文件名，主题会自动解析
- */
-type NotesSidebar = (NotesSidebarItem | string)[]
-
-interface NotesSidebarItem {
+export interface SidebarItem {
   /**
-   * 侧边栏文本，如果为空，则使用 `dir`
+   * 侧边栏文本
    */
   text?: string
+
   /**
    * 侧边栏链接
    */
   link?: string
+
   /**
-   * 次级侧边栏所在目录
+   * 侧边栏图标
    */
-  dir?: string
+  icon?: ThemeIcon
+
   /**
-   * 是否折叠, 未定义时不可折叠
-   * @default undefined
+   * 次级侧边栏分组
+   * 不超过 3 层
+   */
+  items?: 'auto' | (string | SidebarItem)[]
+
+  /**
+   * 如果未指定，组不可折叠。
+   *
+   * 如果为`true`，组可折叠，并默认折叠。
+   *
+   * 如果为`false`，组可折叠，但默认展开。
    */
   collapsed?: boolean
+
   /**
-   * 次级侧边栏
+   * 当前分组的链接前缀
    */
-  items?: NotesSidebar
-  /**
-   * - 支持 iconify 图标，直接使用 iconify name 即可自动加载
-   * @see https://icon-sets.iconify.design/
-   *
-   * - 如果 iconify 图标不满足您的需求，也可以支持传入 svg 字符串。
-   * - 还支持使用 本地图片 或 远程图片，本地图片的路径需要以 `/` 开头。
-   */
-  icon?: string | { svg: string }
+  prefix?: string
+
+  rel?: string
+  target?: string
 }
+
+/**
+ * - 支持 iconify 图标，直接使用 iconify name 即可自动加载
+ * @see https://icon-sets.iconify.design/
+ *
+ * - 如果 iconify 图标不满足您的需求，也可以支持传入 svg 字符串。
+ * - 还支持使用 本地图片 或 远程图片，本地图片的路径需要以 `/` 开头。
+ */
+export type ThemeIcon = string | { svg: string }
 ```
 
 ### 自动生成侧边栏

@@ -1,24 +1,5 @@
 import type { NavItem, NoteItem, NotesOptions, ThemeConfig } from '../shared/index.js'
 
-export function definePlumeNotesConfig(notes: NotesOptions): NotesOptions {
-  return notes
-}
-
-export function definePlumeNotesItemConfig(item: NoteItem): NoteItem {
-  return item
-}
-
-export function defineNavbarConfig(navbar: NavItem[]): NavItem[] {
-  return navbar
-}
-
-/**
- * @deprecated move to `defineNavbarConfig`
- */
-export function defineNavbar(navbar: NavItem[]): NavItem[] {
-  return navbar
-}
-
 export type {
   NotesOptions,
   NoteItem,
@@ -30,4 +11,46 @@ export type {
  */
 export function defineThemeConfig(config: ThemeConfig): ThemeConfig {
   return config
+}
+
+/**
+ * 主题导航栏配置帮助函数
+ */
+export function defineNavbarConfig(navbar: NavItem[]): NavItem[] {
+  return navbar
+}
+
+/**
+ * 主题 notes 配置帮助函数
+ */
+export function defineNotesConfig(notes: NotesOptions): NotesOptions {
+  return notes
+}
+
+/**
+ * 主题 notes item 配置帮助函数
+ */
+export function defineNoteConfig(note: NoteItem): NoteItem {
+  return note
+}
+
+/**
+ * @deprecated use `defineNotesConfig` instead
+ */
+export function definePlumeNotesConfig(notes: NotesOptions): NotesOptions {
+  return notes
+}
+
+/**
+ * @deprecated use `defineNoteConfig` instead
+ */
+export function definePlumeNotesItemConfig(item: NoteItem): NoteItem {
+  return item
+}
+
+/**
+ * @deprecated move to `defineNavbarConfig`
+ */
+export function defineNavbar(navbar: NavItem[]): NavItem[] {
+  return navbar
 }

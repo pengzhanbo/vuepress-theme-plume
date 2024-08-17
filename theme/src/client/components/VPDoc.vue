@@ -26,7 +26,15 @@ const hasComments = computed(() => {
   return page.value.frontmatter.comments !== false && isPageDecrypted.value
 })
 
-const enableAside = computed(() => hasAside.value && headers.value.length)
+const enableAside = computed(() => {
+  if (!hasAside.value)
+    return false
+
+  if (isBlogPost.value)
+    return headers.value.length > 0
+
+  return true
+})
 
 const pageName = computed(() =>
   route.path.replace(/[./]+/g, '_').replace(/_html$/, ''),

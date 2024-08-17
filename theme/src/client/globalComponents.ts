@@ -5,6 +5,7 @@ import VPCard from '@theme/global/VPCard.vue'
 import VPLinkCard from '@theme/global/VPLinkCard.vue'
 import VPBadge from '@theme/global/VPBadge.vue'
 import VPCardGrid from '@theme/global/VPCardGrid.vue'
+import VPImageCard from '@theme/global/VPImageCard.vue'
 import VPIcon from '@theme/VPIcon.vue'
 
 export function globalComponents(app: App) {
@@ -19,6 +20,9 @@ export function globalComponents(app: App) {
 
   app.component('VPLinkCard', VPLinkCard)
   app.component('LinkCard', VPLinkCard)
+
+  app.component('VPImageCard', VPImageCard)
+  app.component('ImageCard', VPImageCard)
 
   app.component('DocSearch', () => {
     const SearchComponent
@@ -40,7 +44,6 @@ export function globalComponents(app: App) {
   app.component('Icon', VPIcon)
   app.component('VPIcon', VPIcon)
 
-  /** @deprecated */
   app.component('HomeBox', VPHomeBox)
   app.component('VPHomeBox', VPHomeBox)
 }

@@ -86,7 +86,6 @@ watchPostEffect(() => {
 .vp-navbar.screen-open {
   background-color: var(--vp-nav-bg-color);
   border-bottom: 1px solid var(--vp-c-divider);
-  transition: none;
 }
 
 .vp-navbar:not(.home) {

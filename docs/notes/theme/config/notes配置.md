@@ -46,7 +46,7 @@ export default defineUserConfig({
 ## 配置
 
 ```ts
-interface NotesDataOptions {
+interface NotesOptions {
   /**
    * 保存所有笔记的目录
    * @default '/notes/'
@@ -63,7 +63,7 @@ interface NotesDataOptions {
   notes: NoteItem[]
 }
 
-interface NotesItem {
+interface NoteItem {
   /**
    * 保存笔记的目录
    */

@@ -18,7 +18,7 @@ __options__ : `PlumeThemeOptions`
 
 主题配置函数。
 
-查看 [主题配置](/config/basic/) 了解更多。
+查看 [主题配置](../config/主题配置.md) 了解更多。
 
 ## `defineThemeConfig(options)`
 
@@ -28,12 +28,22 @@ __options__ : `PlumeThemeOptions`
 
 ## `defineNavbarConfig(options)`
 
-主题导航栏配置函数。
+主题导航栏配置类型帮助函数。
 
-查看 [主题配置](/config/navigation/) 了解更多。
+查看 [主题配置](../config/导航栏配置.md) 了解更多。
 
-## `definePlumeNotesConfig(options)`
+## `defineNotesConfig(options)`
 
-主题 notes 配置函数
+__options:__ `NotesOptions`
 
-查看 [主题配置](/config/notes/) 了解更多。
+主题 notes 配置类型帮助函数
+
+查看 [主题配置](../config/notes配置.md) 了解更多。
+
+## `defineNoteConfig(options)`
+
+__options:__ `NoteItem`
+
+主题 单个 note (`NoteItem`) 配置类型帮助函数
+
+查看 [主题配置](../config/notes配置.md) 了解更多。

@@ -1,3 +1,22 @@
+# [1.0.0-rc.87](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.86...v1.0.0-rc.87) (2024-08-18)
+
+
+### Features
+
+* **theme:** add component `<ImageCard />` ([edc0297](https://github.com/pengzhanbo/vuepress-theme-plume/commit/edc0297c0ca3f506a5e8200e5722dd296ff1f085))
+* **theme:** add component `<VPImageCard />` ([e6f2e3f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e6f2e3fe648b099e9c0d1f50bcea8dcddc16a26a))
+* **theme:** improve types ([33b7c99](https://github.com/pengzhanbo/vuepress-theme-plume/commit/33b7c993726b72d27a1f427afff40075f898b715))
+
+
+### Performance Improvements
+
+* **theme:** improve doc aside layout ([24229dd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/24229ddb6e8caabcd4898556383c6ea30ce3b0c4))
+* **theme:** navbar transition ([dae7b1c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/dae7b1ccdae666194910be61750a3a17ccee10bf))
+* update deps to latest ([369a170](https://github.com/pengzhanbo/vuepress-theme-plume/commit/369a170813dc8e0b33eb93a892cc97fa970d8c5a))
+* update deps to latest ([5b0d476](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5b0d47678c29d31da069d3041441a2c648cdbe6c))
+
+
+
 # [1.0.0-rc.86](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.85...v1.0.0-rc.86) (2024-08-14)
 
 

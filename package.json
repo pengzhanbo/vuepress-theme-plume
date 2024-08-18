@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.86",
   "private": true,
-  "packageManager": "pnpm@9.7.0",
+  "packageManager": "pnpm@9.7.1",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -53,8 +53,8 @@
     "husky": "^9.1.4",
     "lint-staged": "^15.2.9",
     "rimraf": "^6.0.1",
-    "stylelint": "^16.8.1",
-    "tsconfig-vuepress": "^4.5.0",
+    "stylelint": "^16.8.2",
+    "tsconfig-vuepress": "^5.0.0",
     "tsup": "^8.2.4",
     "typescript": "^5.5.4",
     "wait-on": "^7.2.0"

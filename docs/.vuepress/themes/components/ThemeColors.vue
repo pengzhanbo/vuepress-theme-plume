@@ -16,8 +16,10 @@ const { lightColors, darkColors, css, reset } = useThemeColors()
       <h4>{{ name }}</h4>
       <section v-for="color in group" :key="color.key" class="theme-color">
         <ColorPick v-model="color.value" />
-        <h5>{{ color.name }}</h5>
-        <span class="desc">{{ color.desc }}</span>
+        <div>
+          <h5>{{ color.name }}</h5>
+          <span class="desc">{{ color.desc }}</span>
+        </div>
       </section>
     </div>
   </div>
@@ -27,8 +29,10 @@ const { lightColors, darkColors, css, reset } = useThemeColors()
       <h4>{{ name }}</h4>
       <section v-for="color in group" :key="color.key" class="theme-color">
         <ColorPick v-model="color.value" />
-        <h5>{{ color.name }}</h5>
-        <span class="desc">{{ color.desc }}</span>
+        <div>
+          <h5>{{ color.name }}</h5>
+          <span class="desc">{{ color.desc }}</span>
+        </div>
       </section>
     </div>
   </div>

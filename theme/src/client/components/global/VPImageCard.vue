@@ -13,6 +13,14 @@ const props = defineProps<{
 
 const lang = usePageLang()
 
+const title = computed(() => {
+  if (props.title)
+    return props.title
+  const image = props.image || ''
+  const dirs = image.split('/')
+  return dirs[dirs.length - 1]
+})
+
 const date = computed(() => {
   if (!props.date)
     return ''
@@ -30,8 +38,8 @@ const date = computed(() => {
   <div class="vp-image-card">
     <div class="image-container">
       <img :src="image" :alt="title" loading="lazy">
-      <div v-if="title" class="image-info">
-        <h3 v-if="title" class="title">
+      <div class="image-info">
+        <h3 class="title">
           <a v-if="href" :href="href" target="_blank" rel="noopener noreferrer">{{ title }}</a>
           <span v-else>{{ title }}</span>
         </h3>
@@ -87,7 +95,21 @@ const date = computed(() => {
   transform: translateY(calc(100% - 60px));
 }
 
-.vp-image-card:hover .image-info {
+:where(.vp-card-grid.cols-3) .image-info {
+  padding: 8px 8px 0;
+  font-size: 12px;
+  transform: translateY(calc(100% - 36px));
+}
+
+@media (max-width: 767px) {
+  :where(.vp-card-grid.cols-2) .image-info {
+    padding: 8px 8px 0;
+    font-size: 12px;
+    transform: translateY(calc(100% - 36px));
+  }
+}
+
+.image-info:hover {
   transform: translateY(0);
 }
 
@@ -100,6 +122,22 @@ const date = computed(() => {
   white-space: nowrap;
 }
 
+:where(.vp-card-grid.cols-3) .image-info .title {
+  min-height: 20px;
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@media (max-width: 767px) {
+  :where(.vp-card-grid.cols-2) .image-info .title {
+    min-height: 20px;
+    margin: 0 0 8px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
 .image-info .title a {
   color: inherit;
   text-decoration: none;
@@ -107,7 +145,18 @@ const date = computed(() => {
 
 .image-info p {
   margin: 0;
+  line-height: 24px;
   color: var(--vp-c-white);
+}
+
+:where(.vp-card-grid.cols-3) .image-info p {
+  line-height: 20px;
+}
+
+@media (max-width: 767px) {
+  :where(.vp-card-grid.cols-2) .image-info p {
+    line-height: 20px;
+  }
 }
 
 .image-info p:last-child {
@@ -115,12 +164,28 @@ const date = computed(() => {
 }
 
 .image-info .copyright {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.image-info .copyright span:first-child {
+  flex: 1;
+  overflow: hidden;
   text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .image-info .description {
   flex: 1;
   height: 1px;
   overflow-y: auto;
+}
+
+.image-info .description::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 </style>

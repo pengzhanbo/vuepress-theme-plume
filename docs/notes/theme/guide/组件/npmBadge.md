@@ -3,7 +3,7 @@ title: Npm 徽章
 author: pengzhanbo
 icon: akar-icons:npm-fill
 createTime: 2024/07/26 22:07:23
-permalink: /guide/npm-badge/
+permalink: /guide/components/npm-badge/
 ---
 
 <script setup>

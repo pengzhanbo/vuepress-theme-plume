@@ -66,4 +66,4 @@ interface PlumeHomeConfigBase {
 }
 ```
 
-更多详细配置请参考 [自定义首页](/guide/custom-home/)
+更多详细配置请参考 [自定义首页](../../guide/自定义首页.md)

@@ -1,6 +1,6 @@
-import { definePlumeNotesConfig } from 'vuepress-theme-plume'
+import { defineNotesConfig } from 'vuepress-theme-plume'
 
-export const zhNotes = definePlumeNotesConfig({
+export const zhNotes = defineNotesConfig({
   dir: 'notes',
   link: '/',
   notes: [
@@ -61,12 +61,14 @@ export const zhNotes = definePlumeNotesConfig({
           icon: 'lucide:box',
           collapsed: false,
           prefix: '功能',
-          items: ['图标', '代码复制', '内容搜索', '评论', '加密', '组件', '文章水印', '友情链接页', 'seo', 'sitemap', {
-            text: '非内置功能',
-            icon: 'system-uicons:box-add',
-            collapsed: true,
-            items: ['repoCard', 'npmBadge'],
-          }],
+          items: ['图标', '代码复制', '内容搜索', '评论', '加密', '文章水印', '友情链接页', 'seo', 'sitemap'],
+        },
+        {
+          text: '组件',
+          prefix: '组件',
+          icon: 'uiw:component',
+          collapsed: false,
+          items: ['徽章', '图标', '隐秘文本', '卡片', '链接卡片', '图片卡片', '卡片容器', '首页布局容器', 'repoCard', 'npmBadge'],
         },
         {
           text: '自定义',
@@ -155,7 +157,7 @@ export const zhNotes = definePlumeNotesConfig({
   ],
 })
 
-export const enNotes = definePlumeNotesConfig({
+export const enNotes = defineNotesConfig({
   dir: 'en/notes',
   link: '/',
   notes: [],

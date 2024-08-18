@@ -40,4 +40,4 @@ export default defineUserConfig({
 
 ## 配置
 
-查看 [文档](/plugins/plugin-md-power/)
+查看 [文档](../../../plugins/md-power.md)

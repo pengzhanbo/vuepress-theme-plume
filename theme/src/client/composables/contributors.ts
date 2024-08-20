@@ -1,20 +1,20 @@
 import { computed } from 'vue'
 import type { ComputedRef } from 'vue'
-import type { PlumeThemePageData } from '../../shared/index.js'
 import { useData } from '../composables/data.js'
+import { toArray } from '../utils/index.js'
 
-export function useContributors(): ComputedRef<
-  null | Required<PlumeThemePageData['git']>['contributors']
-> {
+export function useContributors(): ComputedRef<string[]> {
   const { theme, page, frontmatter } = useData()
 
   return computed(() => {
-    const showContributors
-      = frontmatter.value.contributors ?? theme.value.contributors ?? true
+    const config = frontmatter.value.contributors ?? theme.value.contributors ?? true
 
-    if (!showContributors)
-      return null
+    if (config === false)
+      return []
 
-    return page.value.git?.contributors ?? null
+    const contributors = config === true ? [] : toArray(config)
+    const gitContributors = (page.value.git?.contributors ?? []).map(({ name }) => name)
+
+    return Array.from(new Set([...gitContributors, ...contributors]))
   })
 }

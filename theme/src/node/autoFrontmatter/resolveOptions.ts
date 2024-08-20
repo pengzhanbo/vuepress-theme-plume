@@ -12,7 +12,6 @@ import type {
 } from '../../shared/index.js'
 import {
   getCurrentDirname,
-  getPackage,
   nanoid,
   normalizePath,
   pathJoin,
@@ -24,18 +23,12 @@ export function resolveOptions(
   localeOptions: PlumeThemeLocaleOptions,
   options: AutoFrontmatter,
 ): AutoFrontmatter {
-  const pkg = getPackage()
-  const { locales = {}, article: articlePrefix = '/article/' } = localeOptions
+  const { article: articlePrefix = '/article/' } = localeOptions
 
   const resolveLocale = (relativeFilepath: string) => {
     const file = ensureLeadingSlash(relativeFilepath)
 
     return resolveLocalePath(localeOptions.locales!, file)
-  }
-
-  const resolveOptions = (relativeFilepath: string) => {
-    const locale = resolveLocale(relativeFilepath)
-    return locales[locale] || localeOptions
   }
 
   const notesList = resolveNotesOptions(localeOptions)
@@ -45,18 +38,6 @@ export function resolveOptions(
     ))
 
   const baseFrontmatter: AutoFrontmatterObject = {}
-
-  if (options.author !== false) {
-    baseFrontmatter.author = (author: string, { relativePath }, data) => {
-      if (author)
-        return author
-      if (data.friends || data.pageLayout === 'friends')
-        return
-      const profile = resolveOptions(relativePath).profile ?? resolveOptions(relativePath).avatar
-
-      return profile?.name || pkg.author || ''
-    }
-  }
 
   if (options.createTime !== false) {
     baseFrontmatter.createTime = (formatTime: string, { createTime }, data) => {

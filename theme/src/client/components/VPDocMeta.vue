@@ -59,10 +59,10 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
     {{ page.title }}
   </h1>
   <div v-if="hasMeta" class="vp-doc-meta">
-    <p v-if="matter.author" class="author">
+    <!-- <p v-if="matter.author" class="author">
       <span class="icon vpi-user" />
       <span>{{ matter.author }}</span>
-    </p>
+    </p> -->
     <p v-if="readingTime.time && matter.readingTime !== false" class="reading-time">
       <span class="vpi-books icon" />
       <span>{{ readingTime.words }}</span>

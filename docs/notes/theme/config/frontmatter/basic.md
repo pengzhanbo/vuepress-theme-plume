@@ -56,16 +56,6 @@ permalink: /config/frontmatter/basic/
 
   主题会在文件创建时，自动填充 当前文件名作为 文章标题。
 
-### author
-
-- 类型： `string`
-- 默认值： `''`
-- 详情：
-
-  文章作者。
-
-  主题会在文件创建时，自动填充 `avatar.name || packageJson.author` 作为 文章作者。
-
 ### createTime
 
 - 类型： `string`
@@ -186,10 +176,12 @@ permalink: /config/frontmatter/basic/
 ### contributors
 
 - 类型： `boolean`
-- 默认值： `true`
+- 默认值： `true | string | string[]`
 - 详情：
 
   当前文章是否 显示 贡献者。 贡献者 根据 git 提交者自动填充。
+
+  如果您的文章来源于第三方， git 提交不能完整列出所有的作者，您可以在此处补充贡献者。
 
 ### editLink
 

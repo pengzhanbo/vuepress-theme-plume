@@ -91,7 +91,7 @@
     "@vuepress/plugin-seo": "2.0.0-rc.40",
     "@vuepress/plugin-sitemap": "2.0.0-rc.40",
     "@vuepress/plugin-watermark": "2.0.0-rc.40",
-    "@vueuse/core": "^11.0.0",
+    "@vueuse/core": "^11.0.1",
     "bcrypt-ts": "^5.0.2",
     "chokidar": "^3.6.0",
     "create-filter": "^1.1.0",
@@ -109,6 +109,6 @@
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.238"
+    "@iconify/json": "^2.2.239"
   }
 }

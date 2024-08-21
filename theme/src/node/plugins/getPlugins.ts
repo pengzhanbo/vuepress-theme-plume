@@ -69,13 +69,13 @@ export function getPlugins({
     plugins.push(nprogressPlugin())
   }
 
-  // if (pluginOptions.git ?? isProd) {
-  plugins.push(gitPlugin({
-    createdTime: true,
-    updatedTime: true,
-    contributors: true,
-  }))
-  // }
+  if (pluginOptions.git ?? isProd) {
+    plugins.push(gitPlugin({
+      createdTime: true,
+      updatedTime: true,
+      contributors: true,
+    }))
+  }
 
   if (pluginOptions.photoSwipe !== false) {
     plugins.push(photoSwipePlugin({

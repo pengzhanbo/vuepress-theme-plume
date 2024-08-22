@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, toValue, watch } from 'vue'
+import { onMounted, ref, toValue, watch } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 
 const props = defineProps<{
@@ -30,7 +30,7 @@ function getRepeat() {
   return cols.sm
 }
 
-watch([md, lg], () => {
+watch(() => [md.value, lg.value, props.cols], () => {
   repeat.value = getRepeat()
 })
 

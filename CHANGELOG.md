@@ -1,3 +1,23 @@
+# [1.0.0-rc.88](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.87...v1.0.0-rc.88) (2024-08-22)
+
+
+### Bug Fixes
+
+* **theme:** incorrect `<CardGrid>` render, close [#147](https://github.com/pengzhanbo/vuepress-theme-plume/issues/147) ([a7c40e0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a7c40e0bd5d446a20859eb21602cbafff55d71a1))
+
+
+### Features
+
+* **theme:** improve `<mark>` styles ([1358f77](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1358f77b50b2510a2d140c050702e79bf736ec7d))
+* **theme:** remove `frontmatter.author`, and improve `frontmatter.contributors` type ([7832a9b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7832a9b13cd366ebe041de3d284dd57c0802951f))
+
+
+### Performance Improvements
+
+* update deps to latest ([5cb39d2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5cb39d2897419825f2c6502fc73de5ce81ef182a))
+
+
+
 # [1.0.0-rc.87](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.86...v1.0.0-rc.87) (2024-08-18)
 
 

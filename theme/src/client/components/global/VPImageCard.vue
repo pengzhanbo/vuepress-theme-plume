@@ -118,6 +118,7 @@ const date = computed(() => {
   margin: 0 0 16px;
   overflow: hidden;
   font-size: 18px;
+  color: var(--vp-c-white);
   text-overflow: ellipsis;
   white-space: nowrap;
 }

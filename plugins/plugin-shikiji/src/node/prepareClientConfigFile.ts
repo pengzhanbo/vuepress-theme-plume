@@ -21,19 +21,19 @@ import { useCollapsedLines } from '${CLIENT_FOLDER}composables/collapsed-lines.j
 
 export default {
   ${twoslash
-? `enhance({ app }) {
+    ? `enhance({ app }) {
     enhanceTwoslash(app)
   },`
-: ''}
+    : ''}
   ${copyCode
-? `setup() {
+    ? `setup() {
     useCopyCode({
       selector: __CC_SELECTOR__,
       duration: __CC_DURATION__,
     })
     useCollapsedLines()
   },`
-: ''}
+    : ''}
 }
 `,
   )

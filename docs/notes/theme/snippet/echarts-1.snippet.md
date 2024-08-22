@@ -29,11 +29,11 @@ const option = {
       return (
         `${date.getDate()
         }/${
-        date.getMonth() + 1
+          date.getMonth() + 1
         }/${
-        date.getFullYear()
+          date.getFullYear()
         } : ${
-        params.value[1]}`
+          params.value[1]}`
       )
     },
     axisPointer: {

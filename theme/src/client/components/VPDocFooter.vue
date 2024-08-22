@@ -21,9 +21,7 @@ const hasEditLink = computed(() =>
 const hasLastUpdated = computed(() =>
   Boolean(theme.value.lastUpdated && frontmatter.value.lastUpdated !== false && lastUpdated.value),
 )
-const hasContributors = computed(() =>
-  Boolean(theme.value.contributors && frontmatter.value.contributors !== false && contributors.value?.length),
-)
+const hasContributors = computed(() => Boolean(contributors.value.length))
 
 const showFooter = computed(() => {
   return hasEditLink.value
@@ -62,8 +60,8 @@ const showFooter = computed(() => {
       </span>
       <span class="contributors-info">
         <template v-for="(contributor, index) in contributors" :key="contributor">
-          <span class="contributor" :title="`email: ${contributor.email}`">
-            {{ contributor.name }}
+          <span class="contributor">
+            {{ contributor }}
           </span>
           <template v-if="index !== contributors.length - 1">, </template>
         </template>

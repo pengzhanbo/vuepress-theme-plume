@@ -632,3 +632,16 @@ html.dark {
   --photo-swipe-bullet: var(--vp-c-bg);
   --photo-swipe-bullet-active: var(--vp-c-brand-1);
 }
+
+/**
+ * mark
+ * -------------------------------------------------------------------------- */
+:root {
+  --vp-mark-color: var(--vp-c-brand-3);
+  --vp-mark-color-soft: var(--vp-c-brand-soft);
+}
+
+.dark {
+  --vp-mark-color: var(--vp-c-brand-3);
+  --vp-mark-color-soft: var(--vp-c-brand-soft);
+}

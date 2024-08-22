@@ -14,8 +14,8 @@ export function getLanguage(
     if (!langLoaded && !isPlainLang(lang) && !isSpecialLang(lang)) {
       logger.warn(
         c.yellow(
-            `\nThe language '${lang}' is not loaded, falling back to '${defaultLang || 'txt'
-            }' for syntax highlighting.`,
+          `\nThe language '${lang}' is not loaded, falling back to '${defaultLang || 'txt'
+          }' for syntax highlighting.`,
         ),
       )
       lang = defaultLang

@@ -71,7 +71,7 @@ export function getPlugins({
 
   if (pluginOptions.git ?? isProd) {
     plugins.push(gitPlugin({
-      createdTime: false,
+      createdTime: true,
       updatedTime: true,
       contributors: true,
     }))

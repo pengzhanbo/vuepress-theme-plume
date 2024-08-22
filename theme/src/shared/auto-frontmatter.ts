@@ -51,6 +51,8 @@ export interface AutoFrontmatter {
    * 是否自动生成 author
    *
    * 默认读取 `profile.name` 或 `package.json` 的 `author`
+   *
+   * @deprecated 不再默认生成 `author`, 该配置已废弃
    */
   author?: boolean
   /**

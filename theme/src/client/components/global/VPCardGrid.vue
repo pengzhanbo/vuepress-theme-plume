@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { onMounted, ref, toValue, watch } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 
 const props = defineProps<{
@@ -8,8 +8,9 @@ const props = defineProps<{
 
 const md = useMediaQuery('(min-width: 768px)')
 const lg = useMediaQuery('(min-width: 960px)')
+const repeat = ref(1)
 
-const cols = computed(() => {
+function resolveCols() {
   const reset = { sm: 1, md: 2, lg: 2 }
   if (!props.cols)
     return reset
@@ -17,25 +18,29 @@ const cols = computed(() => {
     const cols = Number(props.cols)
     return { sm: cols, md: cols, lg: cols }
   }
-  return { ...reset, ...props.cols }
+  return { ...reset, ...toValue(props.cols) }
+}
+
+function getRepeat() {
+  const cols = resolveCols()
+  if (lg.value)
+    return cols.lg
+  if (md.value)
+    return cols.md
+  return cols.sm
+}
+
+watch(() => [md.value, lg.value, props.cols], () => {
+  repeat.value = getRepeat()
 })
 
-const repeat = computed(() => {
-  if (lg.value)
-    return cols.value.lg
-  else if (md.value)
-    return cols.value.md
-  else
-    return cols.value.sm
+onMounted(() => {
+  repeat.value = getRepeat()
 })
 </script>
 
 <template>
-  <div
-    class="vp-card-grid" :class="[`cols-${repeat}`]" :style="{
-      gridTemplateColumns: `repeat(${repeat}, 1fr)`,
-    }"
-  >
+  <div class="vp-card-grid" :class="[`cols-${repeat}`]" :style="{ gridTemplateColumns: `repeat(${repeat}, 1fr)` }">
     <slot />
   </div>
 </template>

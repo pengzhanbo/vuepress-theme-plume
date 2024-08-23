@@ -2,7 +2,7 @@
 
 [build]
 publish = "docs/.vuepress/dist"
-command = "pnpm install && pnpm build:package && pnpm docs:build"
+command = "pnpm build:package && pnpm docs:build"
 
 [build.environment]
 NODE_VERSION = "18"

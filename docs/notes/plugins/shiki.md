@@ -12,6 +12,12 @@ tags:
 
 使用 [`shiki`](https://shiki.style) 来为 Markdown 代码块启用代码高亮。
 
+::: important
+如果您正在使用 **vuepress-theme-plume** 主题，主题已内置了 本插件，您无需安装本插件。
+
+只需要在 [配置 > 内置插件 > shiki](../theme/config/plugins/代码高亮.md) 中配置本插件即可。
+:::
+
 ## 安装
 
 ::: code-tabs

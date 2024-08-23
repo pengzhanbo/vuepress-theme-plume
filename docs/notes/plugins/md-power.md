@@ -16,6 +16,12 @@ tags:
 
 同时，还提供了其它的语法支持。
 
+::: important
+如果您正在使用 **vuepress-theme-plume** 主题，主题已内置了 本插件，您无需安装本插件。
+
+只需要在 [配置 > 内置插件 > md-power](../theme/config/plugins/markdownPower.md) 中配置本插件即可。
+:::
+
 ## 安装
 
 ::: code-tabs

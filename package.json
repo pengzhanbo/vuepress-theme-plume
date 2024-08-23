@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.88",
   "private": true,
-  "packageManager": "pnpm@9.7.1",
+  "packageManager": "pnpm@9.8.0",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -28,8 +28,9 @@
     "docs:clean": "pnpm -F=docs docs:clean",
     "docs:serve": "pnpm -F=docs docs:serve",
     "lint": "pnpm lint:check && pnpm lint:css",
+    "lint:fix": "pnpm lint:check --fix && pnpm lint:css --fix",
     "lint:check": "eslint .",
-    "lint:css": "stylelint **/*.{css,scss,vue}",
+    "lint:css": "stylelint **/*.{css,vue}",
     "prepare": "husky",
     "release": "pnpm release:check && pnpm release:version && pnpm -r publish",
     "release:changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
@@ -39,8 +40,8 @@
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@pengzhanbo/eslint-config-vue": "^1.13.0",
-    "@pengzhanbo/stylelint-config": "^1.13.0",
+    "@pengzhanbo/eslint-config-vue": "^1.14.0",
+    "@pengzhanbo/stylelint-config": "^1.14.0",
     "@types/lodash.merge": "^4.6.9",
     "@types/node": "20.12.10",
     "@types/webpack-env": "^1.18.5",
@@ -60,7 +61,8 @@
     "wait-on": "^8.0.0"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*": "eslint --fix",
+    "*.{css,vue}": "stylelint --fix"
   },
   "config": {
     "commitizen": {

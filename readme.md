@@ -1,15 +1,17 @@
 <h1 align="center">vuepress-theme-plume</h1>
 <p align="center">
-<img src="/preview/plume.svg" width="200px" alt="plume" />
+<img src="/preview/plume.svg" width="200px" alt="plume">
 </p>
 
 <p align="center">
-
-[![npm version](https://img.shields.io/npm/v/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=npm)](https://www.npmjs.com/package/vuepress-theme-plume)
-[![npm download](https://img.shields.io/npm/dy/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads)](https://www.npmjs.com/package/vuepress-theme-plume)
-![peer dependency](https://img.shields.io/npm/dependency-version/vuepress-theme-plume/peer/vuepress?color=32A9C3&labelColor=1B3C4A)
-![GitHub License](https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A)
-
+  <a href="https://www.npmjs.com/package/vuepress-theme-plume" target="_blank">
+    <img src="https://img.shields.io/npm/v/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=npm" alt="npm version">
+  </a>
+  <a href="https://www.npmjs.com/package/vuepress-theme-plume" target="_blank">
+    <img src="https://img.shields.io/npm/dy/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads" alt="npm download">
+  </a>
+  <img src="https://img.shields.io/npm/dependency-version/vuepress-theme-plume/peer/vuepress?color=32A9C3&labelColor=1B3C4A" alt="peer dependency">
+  <img src="https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A" alt="github license">
 </p>
 
 一个简约的，干净的，容易上手的 vuepress 主题，适用于博客和文档。

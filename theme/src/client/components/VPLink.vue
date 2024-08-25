@@ -54,5 +54,6 @@ function linkTo(e: Event) {
   font-style: normal;
   font-weight: inherit;
   line-height: normal;
+  padding-right: 12px;
 }
 </style>

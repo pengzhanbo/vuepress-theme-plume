@@ -51,6 +51,7 @@ function linkTo(e: Event) {
 }
 
 .vp-link :deep(i) {
+  padding-right: 12px;
   font-style: normal;
   font-weight: inherit;
   line-height: normal;

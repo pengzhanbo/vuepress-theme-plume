@@ -18,7 +18,7 @@ export interface PromptResult {
 }
 
 export async function prompt(dir: string | undefined, cwd: string): Promise<PromptResult> {
-  const result = await group({
+  const result: PromptResult = await group({
     lang: () => selectDisplayLang(),
     targetDir: () => getTargetDir(cwd, dir),
     packageManager: () => select<Options<PackageManager>, PackageManager>({

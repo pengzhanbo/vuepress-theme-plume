@@ -1,6 +1,6 @@
 import process from 'node:process'
 import path from 'node:path'
-import { spinner } from '@clack/prompts'
+import { intro, outro, spinner } from '@clack/prompts'
 import { execaCommand } from 'execa'
 import colors from 'picocolors'
 import { prompt } from './prompt.js'
@@ -9,6 +9,9 @@ import { t } from './translate.js'
 
 export async function run(dir?: string) {
   const cwd = process.cwd()
+
+  intro(colors.cyan('Welcome to VuePress and vuepress-theme-plume !'))
+
   const result = await prompt(dir, cwd)
   const progress = spinner()
 
@@ -32,11 +35,11 @@ export async function run(dir?: string) {
   const runCommand = pm === 'yarn' ? 'yarn dev' : `${pm} run dev`
   const installCommand = pm === 'yarn' ? 'yarn' : `${pm} install`
 
-  progress.stop(`${t('spinner.stop')}
+  progress.stop(t('spinner.stop'))
 
-    ${t('spinner.command')}
+  outro(`${t('spinner.command')}
 
-    ${colors.green(`cd ${target}`)}
-    ${result.install ? '' : `${colors.green(installCommand)} && `}${colors.green(runCommand)}
+      ${colors.green(`cd ${target}`)}
+      ${result.install ? '' : `${colors.green(installCommand)} && `}${colors.green(runCommand)}
 `)
 }

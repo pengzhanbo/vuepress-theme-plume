@@ -4,6 +4,7 @@ import type { PromptResult } from './prompt.js'
 import { createRender } from './render.js'
 import { getTemplate, readFiles, writeFiles } from './utils/index.js'
 import type { File } from './types.js'
+import { DeployType } from './constants.js'
 
 export async function generate(result: PromptResult): Promise<void> {
   const source = 'docs'
@@ -20,6 +21,10 @@ export async function generate(result: PromptResult): Promise<void> {
 
   if (result.git)
     fileList.push(...await readFiles(getTemplate('git')))
+
+  if (result.deploy !== DeployType.custom) {
+    fileList.push(...await readFiles(getTemplate(`deploy/${result.deploy}`)))
+  }
 
   const render = createRender(result)
 

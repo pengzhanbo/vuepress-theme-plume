@@ -7,6 +7,7 @@ export interface Locale {
   'question.multiLanguage': string
   'question.defaultLanguage': string
   'question.git': string
+  'question.deploy': string
   'question.installDeps': string
 
   'spinner.start': string

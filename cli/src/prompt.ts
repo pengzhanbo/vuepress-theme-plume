@@ -4,7 +4,7 @@ import { cancel, confirm, group, select, text } from '@clack/prompts'
 import { setLang, t } from './translate.js'
 import type { Bundler, Langs, Options, PackageManager } from './types.js'
 import { packageManagerList } from './utils/index.js'
-import { languageOptions } from './constants.js'
+import { DeployType, deployOptions, languageOptions } from './constants.js'
 
 export interface PromptResult {
   lang: string
@@ -13,6 +13,7 @@ export interface PromptResult {
   bundler: Bundler
   multiLanguage: boolean
   defaultLanguage: Langs
+  deploy: DeployType
   git: boolean
   install: boolean
 }
@@ -39,6 +40,11 @@ export async function prompt(dir: string | undefined, cwd: string): Promise<Prom
     defaultLanguage: () => select<Options<Langs>, Langs>({
       message: t('question.defaultLanguage'),
       options: languageOptions,
+    }),
+    deploy: () => select<Options<DeployType>, DeployType>({
+      message: t('question.deploy'),
+      options: deployOptions,
+      initialValue: DeployType.custom,
     }),
     git: () => confirm({
       message: t('question.git'),

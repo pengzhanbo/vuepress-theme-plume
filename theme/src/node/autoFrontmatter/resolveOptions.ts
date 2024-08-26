@@ -147,7 +147,7 @@ export function resolveOptions(
                       const note = findNote(relativePath)
                       const prefix = notes?.link || ''
                       const args: string[] = [
-                        locale,
+                        prefix.startsWith(locale) ? '/' : locale,
                         prefix,
                         note?.link || '',
                       ]

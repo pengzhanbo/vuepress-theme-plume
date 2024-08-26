@@ -5,8 +5,6 @@ import { normalizeName } from './utils/index.js'
 export interface RenderData extends PromptResult {
   name: string
   siteName: string
-  isPnpm: boolean
-  isYarn: boolean
   locales: { path: string, lang: string, isEn: boolean, prefix: string }[]
   isEN: boolean
 }
@@ -20,8 +18,6 @@ export function createRender(result: PromptResult) {
     ...result,
     name,
     siteName: name.replace(/-/g, ' '),
-    isPnpm: result.packageManager === 'pnpm',
-    isYarn: result.packageManager === 'yarn',
     isEN: result.defaultLanguage === 'en-US',
     locales: result.defaultLanguage === 'en-US'
       ? [

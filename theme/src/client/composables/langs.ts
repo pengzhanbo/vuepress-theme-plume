@@ -3,7 +3,6 @@ import { computed } from 'vue'
 import { normalizeLink } from '../utils/index.js'
 import { useThemeData } from './theme-data.js'
 import { useData } from './data.js'
-import { getSidebarFirstLink, useSidebarData } from './sidebar.js'
 import { useBlogPageData } from './page.js'
 
 export function useLangs({
@@ -12,7 +11,6 @@ export function useLangs({
   const theme = useThemeData()
   const { page } = useData()
   const routeLocale = useRouteLocale()
-  const sidebar = useSidebarData()
   const { isBlogPost } = useBlogPageData()
 
   const currentLang = computed(() => {
@@ -24,7 +22,10 @@ export function useLangs({
   })
 
   const getPageLink = (locale: string) => {
-    const pagePath = page.value.path.slice(routeLocale.value.length)
+    const filepath = page.value.filePathRelative
+      ? `/${page.value.filePathRelative}`
+      : page.value.path
+    const pagePath = filepath.slice(routeLocale.value.length)
     const targetPath = normalizeLink(locale, pagePath)
     const { notFound, path } = resolveRoute(targetPath)
     if (!notFound)
@@ -33,14 +34,6 @@ export function useLangs({
     const blog = theme.value.blog
     if (isBlogPost.value && blog !== false)
       return withBase(blog?.link || normalizeLink(locale, 'blog/'))
-
-    const sidebarList = sidebar.value
-
-    if (sidebarList.length > 0) {
-      const link = getSidebarFirstLink(sidebarList)
-      if (link)
-        return link
-    }
 
     const home = withBase(theme.value.home || '/')
     const fallbackResolve = resolveRoute(withBase(locale))

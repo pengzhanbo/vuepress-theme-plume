@@ -1,0 +1,28 @@
+import { defineNavbarConfig } from 'vuepress-theme-plume'
+
+{{#if multiLanguage}}
+{{#each locales}}
+export const {{prefix}}Navbar = defineNavbarConfig([
+  { text: '{{#if isEn}}Home{{else}}首页{{/if}}', link: '{{ path }}' },
+  { text: '{{#if isEn}}Blog{{else}}博客{{/if}}', link: '{{ path }}blog/' },
+  { text: '{{#if isEn}}Tags{{else}}标签{{/if}}', link: '{{ path }}blog/tags/' },
+  { text: '{{#if isEn}}Archives{{else}}归档{{/if}}', link: '{{ path }}blog/archives/' },
+  {
+    text: '{{#if isEn}}Notes{{else}}笔记{{/if}}',
+    items: [{ text: '{{#if isEn}}Demo{{else}}示例{{/if}}', link: '{{ path }}notes/demo/README.md' }]
+  },
+])
+
+{{/each}}
+{{else}}
+export const navbar = defineNavbarConfig([
+  { text: '{{#if isEn}}Home{{else}}首页{{/if}}', link: '/' },
+  { text: '{{#if isEn}}Blog{{else}}博客{{/if}}', link: '/blog/' },
+  { text: '{{#if isEn}}Tags{{else}}标签{{/if}}', link: '/blog/tags/' },
+  { text: '{{#if isEn}}Archives{{else}}归档{{/if}}', link: '/blog/archives/' },
+  {
+    text: '{{#if isEn}}Notes{{else}}笔记{{/if}}',
+    items: [{ text: '{{#if isEn}}Demo{{else}}示例{{/if}}', link: '/notes/demo/README.md' }]
+  },
+])
+{{/if}}

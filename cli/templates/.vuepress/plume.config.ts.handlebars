@@ -1,0 +1,57 @@
+import { defineThemeConfig } from 'vuepress-theme-plume'
+{{#if multiLanguage}}
+import { enNavbar, zhNavbar } from './navbar.js'
+import { enNotes, zhNotes } from './notes.js'
+{{else}}
+import { navbar } from './navbar.js'
+import { notes } from './notes.js'
+{{/if}}
+
+/**
+ * @see https://theme-plume.vuejs.press/config/basic/
+ */
+export default defineThemeConfig({
+  logo: 'https://theme-plume.vuejs.press/plume.png',
+  // your git repo url
+  docsRepo: '',
+  docsDir: 'docs',
+
+  appearance: true,
+
+  {{#unless multiLanguage}}
+  profile: {
+    avatar: 'https://theme-plume.vuejs.press/plume.png',
+    name: 'Plume Theme',
+    description: 'The Theme for Vuepress 2.0',
+    // circle: true,
+    // location: '',
+    // organization: '',
+  },
+
+  navbar,
+  notes,
+  {{/unless}}
+  social: [
+    { icon: 'github', link: '/' },
+  ],
+
+  {{#if multiLanguage}}
+  locales: {
+    {{#each locales}}
+    '{{ path }}': {
+      profile: {
+        avatar: 'https://theme-plume.vuejs.press/plume.png',
+        name: 'Plume Theme',
+        description: 'The Theme for Vuepress 2.0',
+        // circle: true,
+        // location: '',
+        // organization: '',
+      },
+
+      navbar: {{ prefix }}Navbar,
+      notes: {{ prefix }}Notes,
+    },
+    {{/each}}
+  },
+  {{/if}}
+})

@@ -49,4 +49,9 @@ defineProps<{
   color: var(--vp-c-text-2);
   transition: color var(--t-color);
 }
+
+.title :deep(.vp-icon),
+.title :deep(.vp-icon-img) {
+  margin-left: 0;
+}
 </style>

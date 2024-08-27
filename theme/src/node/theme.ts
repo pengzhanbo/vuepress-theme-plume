@@ -78,7 +78,6 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
           await prepareData(app)
         })
         const { localeOptions } = await waitForConfigLoaded()
-        await waitForAutoFrontmatter()
         await prepareThemeData(app, localeOptions)
         await prepareData(app)
       },

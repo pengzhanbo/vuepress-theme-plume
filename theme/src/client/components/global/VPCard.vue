@@ -50,7 +50,7 @@ const icon = computed<string | { svg: string } | undefined>(() => {
 }
 
 .vp-card-wrapper :deep(.vp-icon),
-.vp-card-wrapper :deep(.vp__img) {
+.vp-card-wrapper :deep(.vp-icon-img) {
   margin: 0;
 }
 

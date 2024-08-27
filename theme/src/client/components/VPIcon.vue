@@ -66,7 +66,9 @@ const style = computed(() => ({
 </script>
 
 <template>
-  <img v-if="type === 'link'" class="vp__img" :src="link" alt="" :style="{ height: size }">
+  <span v-if="type === 'link'" class="vp-icon-img">
+    <img :src="link" alt="" :style="{ height: size }">
+  </span>
   <span
     v-else-if="type === 'svg'"
     class="vp-icon"
@@ -82,10 +84,15 @@ const style = computed(() => ({
 </template>
 
 <style scoped>
-.vp__img {
+.vp-icon-img {
   display: inline-block;
+  width: max-content;
   height: 1em;
   margin: 0 0.3em;
   vertical-align: middle;
+}
+
+.vp-icon-img img {
+  height: 100%;
 }
 </style>

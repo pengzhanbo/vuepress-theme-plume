@@ -39,7 +39,6 @@ const { page } = useData()
 
 .link {
   display: block;
-  width: max-content;
   padding: 0 12px;
   font-size: 14px;
   font-weight: 500;
@@ -59,5 +58,10 @@ const { page } = useData()
 
 .link.active {
   color: var(--vp-c-brand-1);
+}
+
+.link :deep(.vp-icon),
+.link :deep(.vp-icon-img) {
+  margin-left: 0;
 }
 </style>

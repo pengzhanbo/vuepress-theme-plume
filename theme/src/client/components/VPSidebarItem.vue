@@ -227,7 +227,7 @@ function onCaretClick() {
   transition: color var(--t-color);
 }
 
-.item :deep(.vp__img) {
+.item :deep(.vp-icon-img) {
   height: 0.9em;
   margin: 0 0.25rem 0 0;
 }

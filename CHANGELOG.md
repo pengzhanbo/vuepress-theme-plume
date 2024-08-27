@@ -1,3 +1,18 @@
+# [1.0.0-rc.89](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.88...v1.0.0-rc.89) (2024-08-27)
+
+
+### Bug Fixes
+
+* **theme:** incorrect notes auto frontmatter permalink ([b55a0f7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b55a0f754682b5a295ae034dbf870c677ac28ae8))
+* **theme:** incorrect shadow when title is too long ([#154](https://github.com/pengzhanbo/vuepress-theme-plume/issues/154)) ([7891ca8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7891ca8d787a356dee33d3d030ed863ee376237b))
+
+
+### Performance Improvements
+
+* **theme:** redirect locales page ([543f6ea](https://github.com/pengzhanbo/vuepress-theme-plume/commit/543f6ea66f5cda000b83b242199cf7e249983a78))
+
+
+
 # [1.0.0-rc.88](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.87...v1.0.0-rc.88) (2024-08-22)
 
 

@@ -39,6 +39,7 @@ const { page } = useData()
 
 .link {
   display: block;
+  width: max-content;
   padding: 0 12px;
   font-size: 14px;
   font-weight: 500;

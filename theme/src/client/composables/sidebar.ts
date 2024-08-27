@@ -4,6 +4,7 @@ import {
   isArray,
   isPlainObject,
   isString,
+  removeLeadingSlash,
 } from '@vuepress/helper/client'
 import { useMediaQuery } from '@vueuse/core'
 import type { ComputedRef, InjectionKey, Ref } from 'vue'
@@ -99,7 +100,7 @@ export function getSidebar(routePath: string, routeLocal: string): ResolvedSideb
         .sort((a, b) => b.split('/').length - a.split('/').length)
         .find((dir) => {
           // make sure the multi sidebar key starts with slash too
-          return routePath.startsWith(ensureLeadingSlash(dir))
+          return routePath.startsWith(`${routeLocal}${removeLeadingSlash(dir)}`)
         }) || ''
     const sidebar = dir ? _sidebar[dir] : undefined
 

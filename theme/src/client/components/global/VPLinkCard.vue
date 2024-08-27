@@ -76,7 +76,7 @@ defineProps<{
 }
 
 .vp-link-card .link :deep(.vp-icon),
-.vp-link-card .link :deep(.vp__img) {
+.vp-link-card .link :deep(.vp-icon-img) {
   margin: 0;
 }
 

@@ -104,7 +104,7 @@ export function resolveOptions(
                       const prefix = notesByLocale(locale)?.link || ''
                       const note = findNote(relativePath)
                       return pathJoin(
-                        locale,
+                        prefix.startsWith(locale) ? '/' : locale,
                         prefix,
                         note?.link || getCurrentDirname(note?.dir, relativePath),
                         '/',

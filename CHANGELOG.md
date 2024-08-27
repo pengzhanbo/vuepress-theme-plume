@@ -1,3 +1,15 @@
+# [1.0.0-rc.90](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.89...v1.0.0-rc.90) (2024-08-27)
+
+
+### Bug Fixes
+
+* **theme:** incorrect auto frontmatter ([91981b4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/91981b44eb09a57dfbd2b84de68f3d652e56f97f))
+* **theme:** incorrect generate for notes permalink ([b37de62](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b37de621217675f8872f5be0c7e4a5b2b557fbe5))
+* **theme:** incorrect resolve sidebar ([d87e785](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d87e785e6f7563e3406ff17f57dc33809980b289))
+* **theme:** incorrect shadow when title is too long ([55b9687](https://github.com/pengzhanbo/vuepress-theme-plume/commit/55b96875b1bf7a4968b3b3144df3aca3ace31bd6))
+
+
+
 # [1.0.0-rc.89](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.88...v1.0.0-rc.89) (2024-08-27)
 
 

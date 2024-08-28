@@ -19,33 +19,33 @@ npm i
 {{#if (equal packageManager "pnpm")}}
 ```sh
 # 启动开发服务
-pnpm dev
+pnpm docs:dev
 # 构建生产包
-pnpm build
+pnpm docs:build
 # 本地预览生产服务
-pnpm preview
+pnpm docs:preview
 # 更新 vuepress 和主题
 pnpm vp-update
 ```
 {{else if (equal packageManager "yarn")}}
 ```sh
 # 启动开发服务
-yarn dev
+yarn docs:dev
 # 构建生产包
-yarn build
+yarn docs:build
 # 本地预览生产服务
-yarn preview
+yarn docs:preview
 # update vuepress and theme
 yarn vp-update
 ```
 {{else}}
 ```sh
 # 启动开发服务
-npm run dev
+npm run docs:dev
 # 构建生产包
-npm run build
+npm run docs:build
 # 本地预览生产服务
-npm run preview
+npm run docs:preview
 # 更新 vuepress 和主题
 npm run vp-update
 ```

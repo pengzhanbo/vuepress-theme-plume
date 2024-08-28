@@ -1,9 +1,19 @@
-import type { Langs, Options } from './types.js'
+import type { Bundler, Langs, Options } from './types.js'
 
 export const languageOptions: Options<Langs> = [
   { label: 'English', value: 'en-US' },
   { label: '简体中文', value: 'zh-CN' },
 ]
+
+export const bundlerOptions: Options<Bundler> = [
+  { label: 'Vite', value: 'vite' },
+  { label: 'Webpack', value: 'webpack' },
+]
+
+export enum Mode {
+  init,
+  create,
+}
 
 export enum DeployType {
   github = 'github',

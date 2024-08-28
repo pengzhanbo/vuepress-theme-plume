@@ -20,6 +20,7 @@ jobs:
           # "Last updated time" and other git log-related information require fetching all commit records.
           fetch-depth: 0
 
+{{#if (equal packageManager "pnpm")}}
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -27,19 +28,33 @@ jobs:
           version: 9
           # 使用 pnpm 安装依赖
           run_install: true
-
+{{/if}}
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           # 选择要使用的 node 版本
           node-version: 20
-          # 缓存 pnpm 依赖
-          cache: pnpm
+
+{{#if (equal packageManager "yarn")}}
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+{{/if}}
 
       # 运行构建脚本
       # Run the build script
+{{#unless (equal packageManager "yarn")}}
       - name: Build VuePress site
-        run: pnpm build
+        run: {{packageManager}} run docs:build
+{{/unless}}
+{{#if (equal packageManager "yarn")}}
+      - name: Build VuePress site
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: docs:build
+{{/if}}
+
 
       # 查看 workflow 的文档来获取更多信息
       # @see https://github.com/crazy-max/ghaction-github-pages
@@ -49,7 +64,7 @@ jobs:
           # 部署到 gh-pages 分支
           target_branch: gh-pages
           # 部署目录为 VuePress 的默认输出目录
-          build_dir: docs/.vuepress/dist
+          build_dir: {{docsDir}}/.vuepress/dist
         env:
           # @see https://docs.github.com/cn/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

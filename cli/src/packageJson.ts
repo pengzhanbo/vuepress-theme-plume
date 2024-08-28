@@ -1,36 +1,59 @@
-import sortPackage from 'sort-package-json'
 import { execaCommand } from 'execa'
-import type { PromptResult } from './prompt.js'
-import { getDependenciesVersion, normalizeName, readJsonFile, resolve } from './utils/index.js'
-import type { File } from './types.js'
+import { kebabCase } from '@pengzhanbo/utils'
+import { getDependenciesVersion, readJsonFile, resolve } from './utils/index.js'
+import type { File, ResolvedData } from './types.js'
+import { Mode } from './constants.js'
 
-export async function createPackageJson({
-  targetDir,
-  bundler,
-}: PromptResult): Promise<File> {
-  const pkg: Record<string, any> = {}
-
-  pkg.name = normalizeName(targetDir)
-  pkg.version = '1.0.0'
-  pkg.type = 'module'
-  pkg.description = 'The site generate by vuepress and vuepress-theme-plume'
-  pkg.license = 'MIT'
-
-  const userInfo = await getUserInfo()
-  if (userInfo) {
-    pkg.author = userInfo.username + (userInfo.email ? ` <${userInfo.email}>` : '')
+export async function createPackageJson(
+  mode: Mode,
+  pkg: Record<string, any>,
+  {
+    docsDir,
+    siteName,
+    siteDescription,
+    bundler,
+    injectNpmScripts,
+  }: ResolvedData,
+): Promise<File> {
+  if (mode === Mode.create) {
+    pkg.name = kebabCase(siteName)
+    pkg.type = 'module'
+    pkg.version = '1.0.0'
+    pkg.description = siteDescription
+    const userInfo = await getUserInfo()
+    if (userInfo) {
+      pkg.author = userInfo.username + (userInfo.email ? ` <${userInfo.email}>` : '')
+    }
+    pkg.license = 'MIT'
   }
+
+  if (injectNpmScripts) {
+    pkg.scripts ??= {}
+    pkg.scripts = {
+      ...pkg.scripts,
+      'docs:dev': `vuepress dev ${docsDir}`,
+      'docs:dev-clean': `vuepress dev ${docsDir} --clean-cache --clean-temp`,
+      'docs:build': `vuepress build ${docsDir} --clean-cache --clean-temp`,
+      'docs:preview': `http-server ${docsDir}/.vuepress/dist`,
+    }
+    if (mode === Mode.create) {
+      pkg.scripts['vp-update'] = 'vp-update'
+    }
+  }
+
+  pkg.devDependencies ??= {}
 
   const context = (await readJsonFile(resolve('package.json')))!
   const meta = context['theme-plume']
-  pkg.devDependencies = {
-    'vuepress': `${meta.vuepress}`,
-    'vuepress-theme-plume': `${context.version}`,
-    [`@vuepress/bundler-${bundler}`]: `${meta.vuepress}`,
-    'http-server': '^14.1.1',
-  }
-  const deps: string[] = ['vue']
-  if (bundler === 'webpack')
+  pkg.devDependencies.vuepress = `${meta.vuepress}`
+  pkg.devDependencies['vuepress-theme-plume'] = `${context.version}`
+  pkg.devDependencies[`@vuepress/bundler-${bundler}`] = `${meta.vuepress}`
+  pkg.devDependencies['http-server'] = '^14.1.1'
+
+  const deps: string[] = []
+  if (!pkg.dependencies?.vue && !pkg.devDependencies.vue)
+    deps.push('vue')
+  if (bundler === 'webpack' && !pkg.dependencies?.['sass-loader'] && !pkg.devDependencies['sass-loader'])
     deps.push('sass-loader')
 
   const dv = await getDependenciesVersion(deps)
@@ -38,19 +61,9 @@ export async function createPackageJson({
   for (const [d, v] of Object.entries(dv))
     pkg.devDependencies[d] = `^${v}`
 
-  pkg.scripts = {
-    'dev': 'vuepress dev docs',
-    'dev:clean': 'vuepress dev docs --clean-cache --clean-temp',
-    'build': 'vuepress build docs --clean-cache --clean-temp',
-    'preview': 'http-server docs/.vuepress/dist',
-    'vp-update': 'vp-update',
-  }
-
   return {
     filepath: 'package.json',
-    content: JSON.stringify(sortPackage(pkg, {
-      sortOrder: ['name', 'type', 'version', 'packageManager', 'description', 'author', 'license'],
-    }), null, 2),
+    content: JSON.stringify(pkg, null, 2),
   }
 }
 

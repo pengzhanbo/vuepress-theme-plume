@@ -8,11 +8,16 @@ export default defineUserConfig({
   {{#if multiLanguage}}
   locales: {
     {{#each locales}}
-    '{{ path }}': { title: 'Plume Demo', lang: '{{ lang }}' },
+    '{{ path }}': {
+      title: '{{ siteName }}',
+      lang: '{{ lang }}',
+      description: '{{ siteDescription }}',
+    },
     {{/each}}
   },
   {{else}}
-  title: 'Plume Demo',
+  title: '{{ siteName }}',
+  description: '{{ siteDescription }}',
   {{/if}}
 
   bundler: {{ bundler }}Bundler(),

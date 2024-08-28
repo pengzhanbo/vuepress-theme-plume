@@ -1,12 +1,15 @@
 import type { Locale } from '../types.js'
 
 export const en: Locale = {
-  'question.projectName': 'Please enter your project name',
-  'question.packageManager': 'Select a package manager',
+  'question.root': 'Where would you want to initialize VuePress?',
+  'question.site.name': 'Site Name:',
+  'question.site.description': 'Site Description:',
   'question.bundler': 'Select a bundler',
   'question.multiLanguage': 'Do you want to use multiple languages?',
   'question.defaultLanguage': 'Select the default language of the site',
-  'question.deploy': 'Which deployment method do you want to use?',
+  'question.useTs': 'Use TypeScript?',
+  'question.injectNpmScripts': 'Inject npm scripts?',
+  'question.deploy': 'Deploy type:',
   'question.git': 'Initialize a git repository?',
   'question.installDeps': 'Install dependencies?',
 
@@ -17,5 +20,6 @@ export const en: Locale = {
   'spinner.command': '🔨 Execute the following command to start:',
 
   'hint.cancel': 'Operation cancelled.',
-  'hint.targetDir': 'Project names cannot contain special characters.',
+  'hint.root': 'The path cannot be an absolute path, and cannot contain the parent path.',
+  'hint.root.illegal': 'Project names cannot contain special characters.',
 }

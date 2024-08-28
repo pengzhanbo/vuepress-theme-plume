@@ -8,6 +8,5 @@ export const resolve = (...args: string[]) => path.resolve(__dirname, '../', ...
 export const getTemplate = (dir: string) => resolve('templates', dir)
 
 export * from './fs.js'
-export * from './packageManager.js'
 export * from './depsVersion.js'
-export * from './normalizeName.js'
+export * from './getPackageManager.js'

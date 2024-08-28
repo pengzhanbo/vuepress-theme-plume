@@ -19,33 +19,33 @@ npm i
 {{#if (equal packageManager "pnpm")}}
 ```sh
 # start dev server
-pnpm dev
+pnpm docs:dev
 # build for production
-pnpm build
+pnpm docs:build
 # preview production build in local
-pnpm preview
+pnpm docs:preview
 # update vuepress and theme
 pnpm vp-update
 ```
 {{else if (equal packageManager "yarn")}}
 ```sh
 # start dev server
-yarn dev
+yarn docs:dev
 # build for production
-yarn build
+yarn docs:build
 # preview production build in local
-yarn preview
+yarn docs:preview
 # update vuepress and theme
 yarn vp-update
 ```
 {{else}}
 ```sh
 # start dev server
-npm run dev
+npm run docs:dev
 # build for production
-npm run build
+npm run docs:build
 # preview production build in local
-npm run preview
+npm run docs:preview
 # update vuepress and theme
 npm run vp-update
 ```

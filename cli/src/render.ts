@@ -1,8 +1,8 @@
 import handlebars from 'handlebars'
-import type { PromptResult } from './prompt.js'
-import { normalizeName } from './utils/index.js'
+import { kebabCase } from '@pengzhanbo/utils'
+import type { ResolvedData } from './types.js'
 
-export interface RenderData extends PromptResult {
+export interface RenderData extends ResolvedData {
   name: string
   siteName: string
   locales: { path: string, lang: string, isEn: boolean, prefix: string }[]
@@ -12,12 +12,10 @@ export interface RenderData extends PromptResult {
 handlebars.registerHelper('removeLeadingSlash', (path: string) => path.replace(/^\//, ''))
 handlebars.registerHelper('equal', (a: string, b: string) => a === b)
 
-export function createRender(result: PromptResult) {
-  const name = normalizeName(result.targetDir)
+export function createRender(result: ResolvedData) {
   const data: RenderData = {
     ...result,
-    name,
-    siteName: name.replace(/-/g, ' '),
+    name: kebabCase(result.siteName),
     isEN: result.defaultLanguage === 'en-US',
     locales: result.defaultLanguage === 'en-US'
       ? [

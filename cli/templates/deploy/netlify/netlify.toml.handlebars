@@ -1,0 +1,9 @@
+# prevent Netlify npm install
+
+[build]
+publish = "{{ docsDir }}/.vuepress/dist"
+command = "{{#if (equal packageManager 'yarn')}}yarn && yarn{{else}}{{packageManager}} run{{/if}} docs:build"
+
+[build.environment]
+NODE_VERSION = "20"
+NPM_FLAGS = "--version"

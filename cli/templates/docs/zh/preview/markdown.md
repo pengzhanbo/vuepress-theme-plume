@@ -1,5 +1,7 @@
 ---
 title: Markdown
+tags:
+  - markdown
 ---
 
 ## 标题 2

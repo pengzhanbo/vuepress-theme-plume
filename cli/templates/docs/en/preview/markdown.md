@@ -1,5 +1,7 @@
 ---
 title: Markdown
+tags:
+  - markdown
 ---
 
 ## Heading 2

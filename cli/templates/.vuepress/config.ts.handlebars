@@ -9,9 +9,9 @@ export default defineUserConfig({
   locales: {
     {{#each locales}}
     '{{ path }}': {
-      title: '{{ siteName }}',
+      title: '{{ ../siteName }}',
       lang: '{{ lang }}',
-      description: '{{ siteDescription }}',
+      description: '{{ ../siteDescription }}',
     },
     {{/each}}
   },

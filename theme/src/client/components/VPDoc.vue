@@ -6,6 +6,7 @@ import VPDocAside from '@theme/VPDocAside.vue'
 import VPDocFooter from '@theme/VPDocFooter.vue'
 import VPEncryptPage from '@theme/VPEncryptPage.vue'
 import VPDocMeta from '@theme/VPDocMeta.vue'
+import VPDocBreadcrumbs from '@theme/VPDocBreadcrumbs.vue'
 import {
   useBlogPageData,
   useData,
@@ -116,6 +117,7 @@ watch(
           <div class="content-container">
             <slot name="doc-before" />
             <main class="main">
+              <VPDocBreadcrumbs />
               <VPDocMeta />
               <VPEncryptPage v-if="!isPageDecrypted" />
               <Content

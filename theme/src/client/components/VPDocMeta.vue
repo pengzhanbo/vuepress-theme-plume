@@ -1,29 +1,17 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
-import VPLink from '@theme/VPLink.vue'
-import {
-  useBlogExtract,
-  useBlogPageData,
-  useData,
-  useTagColors,
-} from '../composables/index.js'
+import { useData, useTagColors } from '../composables/index.js'
 
 const { page, frontmatter: matter } = useData<'post'>()
-const { isBlogPost } = useBlogPageData()
 const colors = useTagColors()
 const readingTime = useReadingTimeLocale()
-const { categories } = useBlogExtract()
 
 const createTime = computed(() => {
   if (matter.value.createTime)
     return matter.value.createTime.split(' ')[0].replace(/\//g, '-')
 
   return ''
-})
-
-const categoryList = computed(() => {
-  return page.value.categoryList ?? []
 })
 
 const tags = computed(() => {
@@ -41,28 +29,10 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 </script>
 
 <template>
-  <div
-    v-if="isBlogPost && categoryList.length"
-    class="vp-doc-category"
-  >
-    <template
-      v-for="({ id, name }, index) in categoryList"
-      :key="id"
-    >
-      <VPLink :href="`${categories.link}?id=${id}`" class="category">
-        {{ name }}
-      </VPLink>
-      <span v-if="index !== categoryList.length - 1" class="dot">&rsaquo;</span>
-    </template>
-  </div>
   <h1 class="vp-doc-title page-title" :class="{ padding: !hasMeta }">
     {{ page.title }}
   </h1>
   <div v-if="hasMeta" class="vp-doc-meta">
-    <!-- <p v-if="matter.author" class="author">
-      <span class="icon vpi-user" />
-      <span>{{ matter.author }}</span>
-    </p> -->
     <p v-if="readingTime.time && matter.readingTime !== false" class="reading-time">
       <span class="vpi-books icon" />
       <span>{{ readingTime.words }}</span>
@@ -86,29 +56,6 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 </template>
 
 <style scoped>
-.vp-doc-category {
-  padding-left: 1rem;
-  margin-bottom: 2rem;
-  font-size: 16px;
-  font-weight: 400;
-  border-left: solid 4px var(--vp-c-brand-1);
-  transition: border-left var(--t-color);
-}
-
-.vp-doc-category .category {
-  color: var(--vp-c-text-2);
-  transition: color var(--t-color);
-}
-
-.vp-doc-category .category:hover {
-  color: var(--vp-c-brand-1);
-}
-
-.vp-doc-category .dot {
-  margin: 0 0.2rem;
-  color: var(--vp-c-text-3);
-}
-
 .vp-doc-title {
   margin-bottom: 0.7rem;
   font-size: 28px;

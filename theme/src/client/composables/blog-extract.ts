@@ -30,7 +30,7 @@ export function useBlogExtract() {
     || blog.value.tags !== false
     || blog.value.categories !== false,
   )
-
+  const blogLink = useLocaleLink(blog.value.link || 'blog/')
   const tagsLink = useLocaleLink(blog.value.tagsLink || 'blog/tags/')
   const archiveLink = useLocaleLink(blog.value.archivesLink || 'blog/archives/')
   const categoriesLink = useLocaleLink(blog.value.categoriesLink || 'blog/categories/')
@@ -55,6 +55,10 @@ export function useBlogExtract() {
 
   return {
     hasBlogExtract,
+    blogLink,
+    tagsLink,
+    archiveLink,
+    categoriesLink,
     tags,
     archives,
     categories,

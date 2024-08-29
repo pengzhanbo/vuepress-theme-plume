@@ -35,6 +35,12 @@ const { theme, page } = useData()
           <template #blog-tags-after>
             <slot name="blog-tags-after" />
           </template>
+          <template #blog-tags-title-after>
+            <slot name="blog-tags-title-after" />
+          </template>
+          <template #blog-tags-content-before>
+            <slot name="blog-tags-content-before" />
+          </template>
         </VPBlogTags>
         <VPBlogCategories v-else-if="page.type === 'blog-categories'">
           <template #blog-categories-before>
@@ -42,6 +48,9 @@ const { theme, page } = useData()
           </template>
           <template #blog-categories-after>
             <slot name="blog-categories-after" />
+          </template>
+          <template #blog-categories-content-before>
+            <slot name="blog-categories-content-before" />
           </template>
         </VPBlogCategories>
         <VPPostList v-else>

@@ -1,0 +1,57 @@
+# {{ name }}
+
+The Site is generated using [vuepress](https://vuepress.vuejs.org/) and [vuepress-theme-plume](https://github.com/pengzhanbo/vuepress-theme-plume)
+
+## Install
+
+```sh
+{{#if (equal packageManager "pnpm")}}
+pnpm i
+{{else if (equal packageManager "yarn")}}
+yarn
+{{else}}
+npm i
+{{/if}}
+```
+
+## Usage
+
+{{#if (equal packageManager "pnpm")}}
+```sh
+# start dev server
+pnpm docs:dev
+# build for production
+pnpm docs:build
+# preview production build in local
+pnpm docs:preview
+# update vuepress and theme
+pnpm vp-update
+```
+{{else if (equal packageManager "yarn")}}
+```sh
+# start dev server
+yarn docs:dev
+# build for production
+yarn docs:build
+# preview production build in local
+yarn docs:preview
+# update vuepress and theme
+yarn vp-update
+```
+{{else}}
+```sh
+# start dev server
+npm run docs:dev
+# build for production
+npm run docs:build
+# preview production build in local
+npm run docs:preview
+# update vuepress and theme
+npm run vp-update
+```
+{{/if}}
+
+## Documents
+
+- [vuepress](https://vuepress.vuejs.org/)
+- [vuepress-theme-plume](https://theme-plume.vuejs.press/)

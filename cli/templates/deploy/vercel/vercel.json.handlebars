@@ -1,0 +1,6 @@
+{
+  "framework": null,
+  "buildCommand": "{{#if (equal packageManager 'yarn')}}yarn{{else}}{{packageManager}} run{{/if}} docs:build",
+  "installCommand": "{{#if (equal packageManager 'yarn')}}yarn{{else}}{{packageManager}} install{{/if}}",
+  "outputDirectory": "{{ docsDir }}/.vuepress/dist"
+}

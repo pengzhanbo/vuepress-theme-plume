@@ -1,0 +1,32 @@
+import { defineNoteConfig, defineNotesConfig } from 'vuepress-theme-plume'
+
+{{#if multiLanguage}}
+{{#each locales}}
+/* =================== locale: {{ lang }} ======================= */
+
+const {{ prefix }}DemoNote = defineNoteConfig({
+  dir: 'demo',
+  link: '/demo',
+  sidebar: ['', 'foo', 'bar'],
+})
+
+export const {{ prefix }}Notes = defineNotesConfig({
+  dir: '{{ removeLeadingSlash path }}notes',
+  link: '{{ path }}',
+  notes: [{{ prefix }}DemoNote],
+})
+
+{{/each}}
+{{else}}
+const demoNote = defineNoteConfig({
+  dir: 'demo',
+  link: '/demo',
+  sidebar: ['', 'foo', 'bar'],
+})
+
+export const notes = defineNotesConfig({
+  dir: 'notes',
+  link: '/',
+  notes: [demoNote],
+})
+{{/if}}

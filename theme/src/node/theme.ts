@@ -1,4 +1,5 @@
 import type { Page, Theme } from 'vuepress/core'
+import { sleep } from '@pengzhanbo/utils'
 import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
 import { getPlugins } from './plugins/index.js'
 import { extendsPageData, setupPage } from './setupPages.js'
@@ -47,9 +48,10 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
       },
     })
 
-    waitForConfigLoaded().then(({ autoFrontmatter }) => {
+    waitForConfigLoaded().then(async ({ autoFrontmatter }) => {
       autoFrontmatter ??= pluginOptions.frontmatter
       if (autoFrontmatter !== false) {
+        await sleep(100)
         generateAutoFrontmatter(app)
       }
     })

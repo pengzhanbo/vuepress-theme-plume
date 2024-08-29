@@ -1,10 +1,10 @@
 import { defineThemeConfig } from 'vuepress-theme-plume'
 {{#if multiLanguage}}
-import { enNavbar, zhNavbar } from './navbar.js'
-import { enNotes, zhNotes } from './notes.js'
+import { enNavbar, zhNavbar } from './navbar'
+import { enNotes, zhNotes } from './notes'
 {{else}}
-import { navbar } from './navbar.js'
-import { notes } from './notes.js'
+import { navbar } from './navbar'
+import { notes } from './notes'
 {{/if}}
 
 /**
@@ -21,8 +21,8 @@ export default defineThemeConfig({
   {{#unless multiLanguage}}
   profile: {
     avatar: 'https://theme-plume.vuejs.press/plume.png',
-    name: 'Plume Theme',
-    description: 'The Theme for Vuepress 2.0',
+    name: '{{ siteName }}',
+    description: '{{ siteDescription }}',
     // circle: true,
     // location: '',
     // organization: '',
@@ -41,8 +41,8 @@ export default defineThemeConfig({
     '{{ path }}': {
       profile: {
         avatar: 'https://theme-plume.vuejs.press/plume.png',
-        name: 'Plume Theme',
-        description: 'The Theme for Vuepress 2.0',
+        name: '{{ ../siteName }}',
+        description: '{{ ../siteDescription }}',
         // circle: true,
         // location: '',
         // organization: '',

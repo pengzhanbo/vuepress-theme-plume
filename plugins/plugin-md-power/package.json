@@ -37,10 +37,10 @@
     "tsup": "tsup --config tsup.config.ts"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.14"
+    "vuepress": "2.0.0-rc.15"
   },
   "dependencies": {
-    "@vuepress/helper": "2.0.0-rc.40",
+    "@vuepress/helper": "2.0.0-rc.42",
     "@vueuse/core": "^11.0.3",
     "markdown-it-container": "^4.0.0",
     "nanoid": "^5.0.7",

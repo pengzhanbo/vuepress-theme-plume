@@ -38,6 +38,6 @@
     "picocolors": "^1.0.1"
   },
   "theme-plume": {
-    "vuepress": "2.0.0-rc.14"
+    "vuepress": "2.0.0-rc.15"
   }
 }

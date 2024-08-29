@@ -51,7 +51,11 @@ onMounted(() => {
       <span>{{ item.title }}</span>
     </p>
 
-    <VPCategories v-if="item.items.length" class="group" :items="item.items" />
+    <VPCategories
+      v-if="item.items.length"
+      class="group"
+      :items="item.items"
+    />
   </div>
 </template>
 

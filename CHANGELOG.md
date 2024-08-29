@@ -1,3 +1,25 @@
+# [1.0.0-rc.91](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.90...v1.0.0-rc.91) (2024-08-29)
+
+
+### Bug Fixes
+
+* **theme:** incorrect resolve category name ([9579152](https://github.com/pengzhanbo/vuepress-theme-plume/commit/95791523260cb4b4a197f4c452f401a9057c706a))
+
+
+### Features
+
+* add `create-vuepress-theme-plume` package ([#153](https://github.com/pengzhanbo/vuepress-theme-plume/issues/153)) ([7407939](https://github.com/pengzhanbo/vuepress-theme-plume/commit/74079390f60483ee602fcbe88fe7fef732ae38e2))
+* **theme:** add blog tags and category slots ([a4c6828](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a4c68287d21bb33389f43c86ffb3bd0de3aeece0))
+* **theme:** add breadcrumb nav ([d44ac5f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d44ac5fcd27e45bd8f23484c799de358fda85f4c))
+
+
+### Performance Improvements
+
+* update `vuepress` to `2.0.0-rc.15` ([29b8e0c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/29b8e0caf1980814ecdd51f65c7359b09fa19694))
+* update deps to latest ([2ebde52](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2ebde528a41aebcccf0f282300c47a323526097b))
+
+
+
 # [1.0.0-rc.90](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.89...v1.0.0-rc.90) (2024-08-27)
 
 

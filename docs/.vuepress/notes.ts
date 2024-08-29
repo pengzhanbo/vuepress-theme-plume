@@ -120,6 +120,7 @@ export const zhNotes = defineNotesConfig({
       sidebar: [
         {
           text: '插件',
+          link: '/plugins/',
           items: [
             // 'caniuse',
             // 'iconify',

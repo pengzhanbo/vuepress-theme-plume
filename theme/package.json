@@ -63,7 +63,7 @@
   },
   "peerDependencies": {
     "@iconify/json": "^2",
-    "vuepress": "2.0.0-rc.14"
+    "vuepress": "2.0.0-rc.15"
   },
   "peerDependenciesMeta": {
     "@iconify/json": {
@@ -71,27 +71,27 @@
     }
   },
   "dependencies": {
-    "@iconify/utils": "^2.1.31",
+    "@iconify/utils": "^2.1.32",
     "@iconify/vue": "^4.1.2",
     "@pengzhanbo/utils": "^1.1.2",
     "@vuepress-plume/plugin-content-update": "workspace:*",
     "@vuepress-plume/plugin-fonts": "workspace:*",
     "@vuepress-plume/plugin-search": "workspace:*",
     "@vuepress-plume/plugin-shikiji": "workspace:*",
-    "@vuepress/helper": "2.0.0-rc.40",
-    "@vuepress/plugin-active-header-links": "2.0.0-rc.40",
-    "@vuepress/plugin-cache": "2.0.0-rc.39",
-    "@vuepress/plugin-comment": "2.0.0-rc.40",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.40",
-    "@vuepress/plugin-git": "2.0.0-rc.38",
-    "@vuepress/plugin-markdown-container": "2.0.0-rc.37",
-    "@vuepress/plugin-nprogress": "2.0.0-rc.40",
-    "@vuepress/plugin-photo-swipe": "2.0.0-rc.40",
-    "@vuepress/plugin-reading-time": "2.0.0-rc.40",
-    "@vuepress/plugin-seo": "2.0.0-rc.40",
-    "@vuepress/plugin-sitemap": "2.0.0-rc.40",
-    "@vuepress/plugin-watermark": "2.0.0-rc.40",
-    "@vueuse/core": "^11.0.1",
+    "@vuepress/helper": "2.0.0-rc.42",
+    "@vuepress/plugin-active-header-links": "2.0.0-rc.42",
+    "@vuepress/plugin-cache": "2.0.0-rc.42",
+    "@vuepress/plugin-comment": "2.0.0-rc.42",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.42",
+    "@vuepress/plugin-git": "2.0.0-rc.42",
+    "@vuepress/plugin-markdown-container": "2.0.0-rc.42",
+    "@vuepress/plugin-nprogress": "2.0.0-rc.42",
+    "@vuepress/plugin-photo-swipe": "2.0.0-rc.42",
+    "@vuepress/plugin-reading-time": "2.0.0-rc.42",
+    "@vuepress/plugin-seo": "2.0.0-rc.42",
+    "@vuepress/plugin-sitemap": "2.0.0-rc.42",
+    "@vuepress/plugin-watermark": "2.0.0-rc.42",
+    "@vueuse/core": "^11.0.3",
     "bcrypt-ts": "^5.0.2",
     "chokidar": "^3.6.0",
     "create-filter": "^1.1.0",
@@ -109,6 +109,6 @@
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.239"
+    "@iconify/json": "^2.2.242"
   }
 }

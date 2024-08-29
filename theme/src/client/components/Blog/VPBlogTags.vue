@@ -15,6 +15,7 @@ const title = useBlogNavTitle('tag')
         <span class="vpi-tag icon" />
         <span>{{ title }}</span>
       </h2>
+      <slot name="blog-tags-title-after" />
       <div class="tags">
         <p
           v-for="tag in tags"
@@ -29,6 +30,7 @@ const title = useBlogNavTitle('tag')
       </div>
     </div>
 
+    <slot name="blog-tags-content-before" />
     <div v-if="currentTag" class="tags-container">
       <h3 class="tag-title">
         {{ currentTag }}

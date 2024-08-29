@@ -1,5 +1,5 @@
 ---
-title: 介绍
+title: 插件
 author: pengzhanbo
 createTime: 2024/03/11 17:34:29
 permalink: /plugins/

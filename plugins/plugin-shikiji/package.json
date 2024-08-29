@@ -33,14 +33,14 @@
     "tsup": "tsup --config tsup.config.ts"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.14"
+    "vuepress": "2.0.0-rc.15"
   },
   "dependencies": {
     "@shikijs/transformers": "^1.14.1",
     "@shikijs/twoslash": "^1.14.1",
     "@types/hast": "^3.0.4",
-    "@vuepress/helper": "2.0.0-rc.40",
-    "@vueuse/core": "^11.0.1",
+    "@vuepress/helper": "2.0.0-rc.42",
+    "@vueuse/core": "^11.0.3",
     "floating-vue": "^5.2.2",
     "mdast-util-from-markdown": "^2.0.1",
     "mdast-util-gfm": "^3.0.0",

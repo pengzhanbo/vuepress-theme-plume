@@ -15,6 +15,8 @@ const { categories } = useBlogCategory()
       <span>{{ title }}</span>
     </h2>
 
+    <slot name="blog-categories-content-before" />
+
     <div class="content">
       <VPCategories :items="categories" />
     </div>

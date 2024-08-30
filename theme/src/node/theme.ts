@@ -40,8 +40,9 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
       templateBuildRenderer,
 
       extendsMarkdown: async (_, app) => {
-        const { autoFrontmatter } = await waitForConfigLoaded()
+        const { autoFrontmatter, localeOptions } = await waitForConfigLoaded()
         if (autoFrontmatter !== false) {
+          initAutoFrontmatter(localeOptions, autoFrontmatter)
           await generateAutoFrontmatter(app)
           // wait for autoFrontmatter generated
           // i/o performance

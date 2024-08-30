@@ -1,5 +1,5 @@
 import { defineThemeConfig } from 'vuepress-theme-plume'
-import { enNotes, zhNotes } from './notes.js'
+import { enNotes, zhNotes } from './notes/index.js'
 import { enNavbar, zhNavbar } from './navbar.js'
 
 export default defineThemeConfig({

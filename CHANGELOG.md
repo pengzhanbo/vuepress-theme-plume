@@ -1,3 +1,31 @@
+# [1.0.0-rc.92](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.91...v1.0.0-rc.92) (2024-08-30)
+
+
+### Bug Fixes
+
+* **cli:** incorrect exec context ([233ae33](https://github.com/pengzhanbo/vuepress-theme-plume/commit/233ae3337fbe7574fd042a1d7fd6994916479a49))
+* **theme:** incorrect comments `margin-top` ([d7885aa](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d7885aae483c26fa6f769a3aa70ffc31aa936080))
+* **theme:** incorrect resolve page path when sidebar matched ([03b645e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/03b645e7916db27488c34242a8b419bebb5743f9))
+
+
+### Features
+
+* **theme:** add internal link ([3d3cb43](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3d3cb4324325940b862a0b4dc79dbddb02a1b416))
+* **theme:** add normalize page title markdown plugin ([5f13a1b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5f13a1ba4603c285a421d4619d68795a59d8c65b))
+
+
+### Performance Improvements
+
+* **theme:** breadcrumb ui ([38eb41a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/38eb41a48d3cd916d8bd965fbd045fdaaf49a47b))
+* **theme:** code demo ui ([cc9b5f8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cc9b5f8a40f502fa4d0fa7400e5807387445ee25))
+* **theme:** hidden code block copy button in mobile ([d9c43b5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d9c43b57388cfae4a993a19b5fe6b6b813f4eab9))
+* **theme:** optimize `<LinkCard /> ui ([220940b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/220940b2a574761d69269d0c76c6db1a4d33af01))
+* **theme:** optimize auto frontmatter ([4b2739b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4b2739bff0401e94a4122c2a058daa73edb10b0e))
+* **theme:** optimize composables ([c16cf37](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c16cf37dd1724e78a37903a2f2a5c46b3286699a))
+* **theme:** optimize load theme config ([047e052](https://github.com/pengzhanbo/vuepress-theme-plume/commit/047e0527f5cbcfb8f2a38369e98265b625e5b381))
+
+
+
 # [1.0.0-rc.91](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.90...v1.0.0-rc.91) (2024-08-29)
 
 

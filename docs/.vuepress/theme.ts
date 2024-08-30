@@ -6,7 +6,7 @@ export const theme: Theme = plumeTheme({
   hostname: process.env.SITE_HOST || 'https://plume.pengzhanbo.cn',
   plugins: {
 
-    shiki: { twoslash: true },
+    shiki: { twoslash: true, lineNumbers: 10 },
 
     markdownEnhance: {
       demo: true,

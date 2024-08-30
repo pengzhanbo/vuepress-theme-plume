@@ -65,13 +65,12 @@ export async function initConfigLoader(
   loader.loaded = true
   loader.dependencies = [...dependencies]
   updateResolvedConfig(app, config)
-  runChangeEvents()
 
   loader.whenLoaded.forEach(fn => fn(loader!.resolvedConfig))
   loader.whenLoaded = []
 }
 
-export function watchConfigFile(app: App, watchers: any[]) {
+export function watchConfigFile(app: App, watchers: any[], onChange: ChangeEvent) {
   if (!loader || !loader.configFile)
     return
 
@@ -81,6 +80,8 @@ export function watchConfigFile(app: App, watchers: any[]) {
   })
 
   addDependencies(watcher)
+
+  onConfigChange(onChange)
 
   watcher.on('change', async () => {
     if (loader) {
@@ -121,7 +122,7 @@ export function waitForConfigLoaded() {
   })
 }
 
-export function getResolvedThemeConfig() {
+export function getThemeConfig() {
   return loader!.resolvedConfig
 }
 

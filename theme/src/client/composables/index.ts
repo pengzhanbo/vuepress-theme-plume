@@ -20,6 +20,7 @@ export * from './contributors.js'
 
 export * from './home.js'
 
+export * from './internal-link.js'
 export * from './blog-data.js'
 export * from './blog-post-list.js'
 export * from './blog-extract.js'
@@ -32,8 +33,8 @@ export * from './page.js'
 export * from './encrypt-data.js'
 export * from './encrypt.js'
 
+export * from './preset-locales.js'
 export * from './link.js'
-export * from './locale.js'
 export * from './route-query.js'
 
 export * from './watermark.js'

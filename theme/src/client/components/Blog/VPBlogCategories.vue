@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import VPCategories from '@theme/Blog/VPCategories.vue'
-import { useBlogCategory, useBlogNavTitle } from '../../composables/index.js'
+import { useBlogCategory, useInternalLink } from '../../composables/index.js'
 
-const title = useBlogNavTitle('category')
+const { categories: categoriesLink } = useInternalLink()
 const { categories } = useBlogCategory()
 </script>
 
@@ -12,7 +12,7 @@ const { categories } = useBlogCategory()
 
     <h2 class="categories-title">
       <span class="vpi-category icon" />
-      <span>{{ title }}</span>
+      <span>{{ categoriesLink.text }}</span>
     </h2>
 
     <slot name="blog-categories-content-before" />

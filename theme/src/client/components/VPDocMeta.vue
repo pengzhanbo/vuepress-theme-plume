@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
+import VPLink from '@theme/VPLink.vue'
 import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
-import { useData, useTagColors } from '../composables/index.js'
+import { useData, useInternalLink, useTagColors } from '../composables/index.js'
 
 const { page, frontmatter: matter } = useData<'post'>()
 const colors = useTagColors()
 const readingTime = useReadingTimeLocale()
+const { tags: tagsLink } = useInternalLink()
 
 const createTime = computed(() => {
   if (matter.value.createTime)
@@ -40,14 +42,15 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
     </p>
     <p v-if="tags.length > 0">
       <span class="vpi-tag icon" />
-      <span
+      <VPLink
         v-for="tag in tags"
         :key="tag.name"
         class="tag"
         :class="tag.className"
+        :href="`${tagsLink.link}?tag=${tag.name}`"
       >
         {{ tag.name }}
-      </span>
+      </VPLink>
     </p>
     <p v-if="createTime" class="create-time">
       <span class="vpi-clock icon" /><span>{{ createTime }}</span>

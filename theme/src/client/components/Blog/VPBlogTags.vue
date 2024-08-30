@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import VPShortPostList from '@theme/Blog/VPShortPostList.vue'
-import { useBlogNavTitle, useTags } from '../../composables/index.js'
+import { useInternalLink, useTags } from '../../composables/index.js'
 
+const { tags: tagsLink } = useInternalLink()
 const { tags, currentTag, postList, handleTagClick } = useTags()
-const title = useBlogNavTitle('tag')
 </script>
 
 <template>
@@ -13,7 +13,7 @@ const title = useBlogNavTitle('tag')
     <div class="tags-nav">
       <h2 class="tags-title">
         <span class="vpi-tag icon" />
-        <span>{{ title }}</span>
+        <span>{{ tagsLink.text }}</span>
       </h2>
       <slot name="blog-tags-title-after" />
       <div class="tags">

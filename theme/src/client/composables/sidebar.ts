@@ -95,6 +95,7 @@ export function getSidebar(routePath: string, routeLocal: string): ResolvedSideb
     return resolveSidebarItems(_sidebar, routeLocal)
   }
   else if (isPlainObject(_sidebar)) {
+    routePath = decodeURIComponent(routePath)
     const dir
       = Object.keys(_sidebar)
         .sort((a, b) => b.split('/').length - a.split('/').length)

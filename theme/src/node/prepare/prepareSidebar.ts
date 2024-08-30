@@ -93,8 +93,8 @@ function getAutoDirSidebar(
 
   while (nowIndex < maxIndex) {
     pages = pages.sort((prev, next) => {
-      const pi = prev.splitPath?.[nowIndex]?.match(/(\d+)\.(?=[^/]+$)/)?.[1]
-      const ni = next.splitPath?.[nowIndex]?.match(/(\d+)\.(?=[^/]+$)/)?.[1]
+      const pi = prev.splitPath?.[nowIndex]?.match(/(?:(\d+)\.)?(?=[^/]+$)/)?.[1]
+      const ni = next.splitPath?.[nowIndex]?.match(/(?:(\d+)\.)?(?=[^/]+$)/)?.[1]
       if (!pi || !ni)
         return 0
       return Number.parseFloat(pi) < Number.parseFloat(ni) ? -1 : 1

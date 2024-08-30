@@ -22,6 +22,7 @@ import {
   resolveSearchOptions,
 } from '../config/index.js'
 import { customContainerPlugins } from './containerPlugins.js'
+import { markdownTitlePlugin } from './markdown-title.js'
 
 export interface SetupPluginOptions {
   app: App
@@ -39,7 +40,7 @@ export function getPlugins({
   const isProd = !app.env.isDev
 
   const plugins: PluginConfig = [
-
+    markdownTitlePlugin(),
     fontsPlugin(),
     contentUpdatePlugin(),
     activeHeaderLinksPlugin({

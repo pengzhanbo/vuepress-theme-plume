@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRouteLocale } from 'vuepress/client'
 import VPLink from '@theme/VPLink.vue'
 import {
-  useBlogExtract,
-  useBlogNavTitle,
   useBlogPageData,
   useData,
+  useInternalLink,
   useSidebarData,
 } from '../composables/index.js'
 import type { ResolvedSidebarItem } from '../../shared/index.js'
@@ -18,9 +16,8 @@ interface Breadcrumb {
 }
 
 const { page } = useData<'post'>()
-const routeLocale = useRouteLocale()
 const { isBlogPost } = useBlogPageData()
-const { categoriesLink, blogLink } = useBlogExtract()
+const { home, blog, categories } = useInternalLink()
 const sidebar = useSidebarData()
 
 const hasBreadcrumb = computed(() => {
@@ -28,21 +25,19 @@ const hasBreadcrumb = computed(() => {
     return page.value.categoryList.length > 0
   return sidebar.value.length > 0
 })
-const homeTitle = useBlogNavTitle('home')
-const blogTile = useBlogNavTitle('blog')
 
 const breadcrumbList = computed<Breadcrumb[]>(() => {
   if (!hasBreadcrumb.value)
     return []
-  const list: Breadcrumb[] = [{ text: homeTitle.value, link: routeLocale.value }]
+  const list: Breadcrumb[] = [{ text: home.value.text, link: home.value.link }]
 
   if (isBlogPost.value) {
-    list.push({ text: blogTile.value, link: blogLink.value })
+    list.push({ text: blog.value.text, link: blog.value.link })
     const categoryList = page.value.categoryList ?? []
     for (const category of categoryList) {
       list.push({
         text: category.name,
-        link: `${categoriesLink.value}?id=${category.id}`,
+        link: `${categories.value.link}?id=${category.id}`,
       })
     }
   }
@@ -90,7 +85,7 @@ function resolveSidebar(
           {{ text }}
         </VPLink>
         <span v-if="index !== breadcrumbList.length - 1" class="vpi-chevron-right" />
-        <meta property="position" :content="index + 1">
+        <meta property="position" :content="`${index + 1}`">
       </li>
     </ol>
   </nav>
@@ -98,19 +93,19 @@ function resolveSidebar(
 
 <style scoped>
 .vp-breadcrumb {
-  padding-left: 1rem;
+  padding-left: 8px;
   margin-bottom: 2rem;
-  border-left: solid 4px var(--vp-c-brand-1);
+  border-left: solid 2px var(--vp-c-brand-1);
   transition: border-left var(--t-color);
 }
 
 .vp-breadcrumb ol {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 4px;
   align-items: center;
   justify-content: flex-start;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
 }
 
@@ -120,6 +115,7 @@ function resolveSidebar(
 }
 
 .vp-breadcrumb .breadcrumb {
+  font-weight: bold;
   color: var(--vp-c-brand-2);
   transition: color var(--t-color);
 }
@@ -133,7 +129,8 @@ function resolveSidebar(
 }
 
 .vp-breadcrumb .vpi-chevron-right {
-  margin-left: 8px;
-  color: var(--vp-c-text-3);
+  margin-left: 4px;
+  color: var(--vp-c-border);
+  transition: color var(--t-color);
 }
 </style>

@@ -1,64 +1,44 @@
-import { useRouteLocale } from 'vuepress/client'
 import { computed } from 'vue'
-import type { PresetLocale } from '../../shared/index.js'
 import { useLocalePostList } from './blog-data.js'
 import { useTags } from './blog-tags.js'
 import { type BlogCategory, useBlogCategory } from './blog-category.js'
 import { useData } from './data.js'
-import { useLocaleLink } from './locale.js'
-
-declare const __PLUME_PRESET_LOCALE__: Record<string, PresetLocale>
-
-const presetLocales = __PLUME_PRESET_LOCALE__
-
-export function useBlogNavTitle(name: keyof PresetLocale) {
-  const locale = useRouteLocale()
-
-  return computed(() => presetLocales[locale.value]?.[name] || presetLocales['/'][name])
-}
+import { useInternalLink } from './internal-link.js'
 
 export function useBlogExtract() {
   const { theme } = useData()
-  const locale = useRouteLocale()
   const postList = useLocalePostList()
   const { tags: tagsList } = useTags()
   const { categories: categoryList } = useBlogCategory()
   const blog = computed(() => theme.value.blog || {})
+  const links = useInternalLink()
 
   const hasBlogExtract = computed(() =>
     blog.value.archives !== false
     || blog.value.tags !== false
     || blog.value.categories !== false,
   )
-  const blogLink = useLocaleLink(blog.value.link || 'blog/')
-  const tagsLink = useLocaleLink(blog.value.tagsLink || 'blog/tags/')
-  const archiveLink = useLocaleLink(blog.value.archivesLink || 'blog/archives/')
-  const categoriesLink = useLocaleLink(blog.value.categoriesLink || 'blog/categories/')
 
   const tags = computed(() => ({
-    link: tagsLink.value,
-    text: presetLocales[locale.value]?.tag || presetLocales['/'].tag,
+    link: links.tags.value.link,
+    text: links.tags.value.text,
     total: tagsList.value.length,
   }))
 
   const archives = computed(() => ({
-    link: archiveLink.value,
-    text: presetLocales[locale.value]?.archive || presetLocales['/'].archive,
+    link: links.archive.value.link,
+    text: links.archive.value.text,
     total: postList.value.length,
   }))
 
   const categories = computed(() => ({
-    link: categoriesLink.value,
-    text: presetLocales[locale.value]?.category || presetLocales['/'].category,
+    link: links.categories.value.link,
+    text: links.categories.value.text,
     total: getCategoriesTotal(categoryList.value),
   }))
 
   return {
     hasBlogExtract,
-    blogLink,
-    tagsLink,
-    archiveLink,
-    categoriesLink,
     tags,
     archives,
     categories,

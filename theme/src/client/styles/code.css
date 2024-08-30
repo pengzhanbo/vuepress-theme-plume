@@ -311,6 +311,12 @@ html:not(.dark) .vp-code span {
   transform: translateX(calc(-100% - 1px));
 }
 
+@media (max-width: 419px) {
+  .vp-doc div[class*="language-"] > button.copy {
+    display: none;
+  }
+}
+
 /*
   Collapsed lines
   --------------------------------------------------------------------------

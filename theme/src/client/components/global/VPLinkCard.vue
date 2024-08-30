@@ -52,11 +52,12 @@ defineProps<{
   display: flex;
   flex: 1;
   flex-direction: column;
+  gap: 16px;
   align-items: flex-start;
 }
 
-.vp-link-card .body > :last-child {
-  margin-bottom: 0;
+.vp-link-card .body > * {
+  margin: 0;
 }
 
 .vp-link-card .link {

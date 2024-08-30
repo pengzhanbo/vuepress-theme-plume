@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import { watch } from 'chokidar'
-import { getResolvedThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../loadConfig/index.js'
 import { prepareArticleTagColors } from './prepareArticleTagColor.js'
 import { preparedBlogData } from './prepareBlogData.js'
 import { prepareEncrypt } from './prepareEncrypt.js'
@@ -10,7 +10,7 @@ import { prepareIcons } from './prepareIcons.js'
 export async function prepareData(
   app: App,
 ): Promise<void> {
-  const { localeOptions, encrypt } = getResolvedThemeConfig()
+  const { localeOptions, encrypt } = getThemeConfig()
   await Promise.all([
     prepareArticleTagColors(app),
     preparedBlogData(app, localeOptions, encrypt),

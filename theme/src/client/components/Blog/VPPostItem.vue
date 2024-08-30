@@ -2,13 +2,14 @@
 import { computed } from 'vue'
 import VPLink from '@theme/VPLink.vue'
 import type { PlumeThemeBlogPostItem } from '../../../shared/index.js'
-import { useTagColors } from '../../composables/index.js'
+import { useInternalLink, useTagColors } from '../../composables/index.js'
 
 const props = defineProps<{
   post: PlumeThemeBlogPostItem
 }>()
 
 const colors = useTagColors()
+const { categories: categoriesLink, tags: tagsLink } = useInternalLink()
 
 const sticky = computed(() => {
   if (typeof props.post.sticky === 'boolean') {
@@ -53,19 +54,22 @@ const createTime = computed(() =>
       <div v-if="categoryList.length" class="category-list">
         <span class="icon vpi-folder" />
         <template v-for="(cate, i) in categoryList" :key="i">
-          <span>{{ cate.name }}</span>
+          <VPLink :href="`${categoriesLink.link}?id=${cate.id}`">
+            {{ cate.name }}
+          </VPLink>
           <span v-if="i !== categoryList.length - 1">/</span>
         </template>
       </div>
       <div v-if="tags.length" class="tag-list">
         <span class="icon vpi-tag" />
         <template v-for="tag in tags" :key="tag.name">
-          <span
+          <VPLink
             class="tag"
             :class="tag.className"
+            :href="`${tagsLink.link}?tag=${tag.name}`"
           >
             {{ tag.name }}
-          </span>
+          </VPLink>
         </template>
       </div>
       <div v-if="createTime" class="create-time">

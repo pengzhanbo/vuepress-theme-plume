@@ -4,56 +4,22 @@ import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
 import { getPlugins } from './plugins/index.js'
 import { extendsPageData, setupPage } from './setupPages.js'
 import { THEME_NAME, resolve, templates } from './utils/index.js'
-import {
-  extendsBundlerOptions,
-  resolveAlias,
-  resolvePageHead,
-  resolveProvideData,
-  resolveThemeOptions,
-  templateBuildRenderer,
-} from './config/index.js'
-import {
-  getResolvedThemeConfig,
-  initConfigLoader,
-  onConfigChange,
-  waitForConfigLoaded,
-  watchConfigFile,
-} from './loadConfig/index.js'
-import {
-  generateAutoFrontmatter,
-  initAutoFrontmatter,
-  waitForAutoFrontmatter,
-  watchAutoFrontmatter,
-} from './autoFrontmatter/index.js'
+import { extendsBundlerOptions, resolveAlias, resolvePageHead, resolveProvideData, resolveThemeOptions, templateBuildRenderer } from './config/index.js'
+import { getThemeConfig, initConfigLoader, waitForConfigLoaded, watchConfigFile } from './loadConfig/index.js'
+import { generateAutoFrontmatter, initAutoFrontmatter, watchAutoFrontmatter } from './autoFrontmatter/index.js'
 import { prepareData, watchPrepare } from './prepare/index.js'
 import { prepareThemeData } from './prepare/prepareThemeData.js'
 
 export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
-  const {
-    localeOptions,
-    pluginOptions,
-    hostname,
-    configFile,
-    cache,
-  } = resolveThemeOptions(options)
+  const { localeOptions, pluginOptions, hostname, configFile, cache } = resolveThemeOptions(options)
 
   return (app) => {
     initConfigLoader(app, localeOptions, {
       configFile,
       onChange: ({ localeOptions, autoFrontmatter }) => {
-        autoFrontmatter ??= pluginOptions.frontmatter
-        if (autoFrontmatter !== false) {
+        if (autoFrontmatter !== false)
           initAutoFrontmatter(localeOptions, autoFrontmatter)
-        }
       },
-    })
-
-    waitForConfigLoaded().then(async ({ autoFrontmatter }) => {
-      autoFrontmatter ??= pluginOptions.frontmatter
-      if (autoFrontmatter !== false) {
-        await sleep(100)
-        generateAutoFrontmatter(app)
-      }
     })
 
     return {
@@ -69,42 +35,46 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
 
       plugins: getPlugins({ app, pluginOptions, hostname, cache }),
 
+      extendsBundlerOptions,
+
+      templateBuildRenderer,
+
+      extendsMarkdown: async (_, app) => {
+        const { autoFrontmatter, localeOptions } = await waitForConfigLoaded()
+        if (autoFrontmatter !== false) {
+          initAutoFrontmatter(localeOptions, autoFrontmatter)
+          await generateAutoFrontmatter(app)
+          // wait for autoFrontmatter generated
+          // i/o performance
+          await sleep(100)
+        }
+      },
+
+      extendsPage: async (page) => {
+        const { localeOptions } = getThemeConfig()
+        extendsPageData(page as Page<PlumeThemePageData>, localeOptions)
+        resolvePageHead(page, localeOptions)
+      },
+
       onInitialized: async (app) => {
-        const { localeOptions } = await waitForConfigLoaded()
+        const { localeOptions } = getThemeConfig()
         await setupPage(app, localeOptions)
       },
 
       onPrepared: async (app) => {
-        onConfigChange(async ({ localeOptions }) => {
-          await prepareThemeData(app, localeOptions)
-          await prepareData(app)
-        })
-        const { localeOptions } = await waitForConfigLoaded()
+        const { localeOptions } = getThemeConfig()
         await prepareThemeData(app, localeOptions)
         await prepareData(app)
       },
 
       onWatched: (app, watchers) => {
-        watchConfigFile(app, watchers)
-        watchPrepare(app, watchers)
-        watchAutoFrontmatter(app, watchers, () => {
-          const autoFrontmatter = getResolvedThemeConfig().autoFrontmatter ?? pluginOptions.frontmatter
-          return autoFrontmatter !== false
+        watchConfigFile(app, watchers, async ({ localeOptions }) => {
+          await prepareThemeData(app, localeOptions)
+          await prepareData(app)
         })
+        watchAutoFrontmatter(app, watchers)
+        watchPrepare(app, watchers)
       },
-
-      extendsPage: async (page) => {
-        const { localeOptions, autoFrontmatter } = await waitForConfigLoaded()
-        if ((autoFrontmatter ?? pluginOptions.frontmatter) !== false) {
-          await waitForAutoFrontmatter()
-        }
-        extendsPageData(page as Page<PlumeThemePageData>, localeOptions)
-        resolvePageHead(page, localeOptions)
-      },
-
-      extendsBundlerOptions,
-
-      templateBuildRenderer,
     }
   }
 }

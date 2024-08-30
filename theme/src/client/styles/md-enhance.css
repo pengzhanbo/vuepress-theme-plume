@@ -52,7 +52,7 @@
 
 @media (max-width: 419px) {
   .vp-doc .hint-container div[class*="language-"] {
-    margin: 0.85rem -0.75rem 0.85rem -1rem;
+    margin: 0.85rem -0.75rem;
   }
 
   .vp-doc .hint-container .vp-code-tabs-nav {
@@ -247,8 +247,9 @@
 }
 
 .vp-doc .vp-code-demo .vp-code-demo-code-wrapper {
-  margin-bottom: -0.9rem;
+  margin-bottom: -13px;
 }
+
 
 .vp-doc .vp-code-demo .vp-code-demo-toggle-button {
   margin: 0 12px 0 8px;
@@ -275,7 +276,10 @@
 }
 
 .vp-doc .vp-code-demo .vp-code-demo-codes div[class*="language-"] {
+  margin-top: 0;
+  margin-bottom: 0;
   border-bottom: 2px dashed var(--vp-c-divider);
+  border-radius: 0;
   transition: border-bottom var(--t-color);
 }
 

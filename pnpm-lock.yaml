@@ -166,8 +166,8 @@ importers:
         specifier: ^1.14.1
         version: 1.14.1
       tm-grammars:
-        specifier: ^1.17.4
-        version: 1.17.4
+        specifier: ^1.17.8
+        version: 1.17.8
       tm-themes:
         specifier: ^1.8.1
         version: 1.8.1
@@ -403,9 +403,6 @@ packages:
     peerDependencies:
       '@algolia/client-search': '>= 4.9.1 < 6'
       algoliasearch: '>= 4.9.1 < 6'
-    peerDependenciesMeta:
-      '@algolia/client-search':
-        optional: true
 
   '@algolia/cache-browser-local-storage@4.20.0':
     resolution: {integrity: sha512-uujahcBt4DxduBTvYdwO3sBfHuJvJokiC3BP1+O70fglmE1ShkH8lpXqZBac1rrU3FnNYSUs4pL9lBdTKeRPOQ==}
@@ -5369,8 +5366,8 @@ packages:
   tinyexec@0.2.0:
     resolution: {integrity: sha512-au8dwv4xKSDR+Fw52csDo3wcDztPdne2oM1o/7LFro4h6bdFmvyUAeAfX40pwDtzHgRFqz1XWaUqgKS2G83/ig==}
 
-  tm-grammars@1.17.4:
-    resolution: {integrity: sha512-FuZ+f/pwYcKy4Ci56r75d4mRLBsdLUJunIgF+1u5Oy0co9laQqZFH1rss+F6/vdx1vJljPubZj9clKxrwTKg0A==}
+  tm-grammars@1.17.8:
+    resolution: {integrity: sha512-Qw67JNutL9LCt8FFw5RfsogeQ40iSeqrTHDSp0ecnY/b+ZweK8izlw6y/ZMje2+I6DMtTiBOCgmXEf+2oH11jQ==}
 
   tm-themes@1.8.1:
     resolution: {integrity: sha512-jTUfDRn5TysYhkxxEWBQDo1C1n4yoHcnfNNqXkVxIMGQCgal/9poGuMBsfbnZCPEmFVcN2rtrUwaOJ8s2hVQXg==}
@@ -5907,9 +5904,8 @@ snapshots:
 
   '@algolia/autocomplete-shared@1.9.3(@algolia/client-search@4.20.0)(algoliasearch@4.20.0)':
     dependencies:
-      algoliasearch: 4.20.0
-    optionalDependencies:
       '@algolia/client-search': 4.20.0
+      algoliasearch: 4.20.0
 
   '@algolia/cache-browser-local-storage@4.20.0':
     dependencies:
@@ -11462,7 +11458,7 @@ snapshots:
 
   tinyexec@0.2.0: {}
 
-  tm-grammars@1.17.4: {}
+  tm-grammars@1.17.8: {}
 
   tm-themes@1.8.1: {}
 

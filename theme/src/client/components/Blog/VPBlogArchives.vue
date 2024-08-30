@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import VPShortPostList from '@theme/Blog/VPShortPostList.vue'
-import { useArchives, useBlogNavTitle } from '../../composables/index.js'
+import { useArchives, useInternalLink } from '../../composables/index.js'
 
-const title = useBlogNavTitle('archive')
+const { archive: archiveLink } = useInternalLink()
 const { archives } = useArchives()
 </script>
 
@@ -12,7 +12,7 @@ const { archives } = useArchives()
 
     <h2 class="archives-title">
       <span class="vpi-archive icon" />
-      <span>{{ title }}</span>
+      <span>{{ archiveLink.text }}</span>
     </h2>
     <div v-if="archives.length" class="archives">
       <template v-for="archive in archives" :key="archive.label">

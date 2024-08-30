@@ -1,3 +1,5 @@
+import process from 'node:process'
+import path from 'node:path'
 import { intro, outro, spinner } from '@clack/prompts'
 import { execaCommand } from 'execa'
 import colors from 'picocolors'
@@ -19,16 +21,17 @@ export async function run(mode: Mode, root?: string) {
 
   await generate(mode, data)
 
+  const cwd = path.join(process.cwd(), data.root)
   if (data.git) {
     progress.message(t('spinner.git'))
-    await execaCommand('git init')
+    await execaCommand('git init', { cwd })
   }
 
   const pm = data.packageManager
 
   if (data.install) {
     progress.message(t('spinner.install'))
-    await execaCommand(pm === 'yarn' ? 'yarn' : `${pm} install`)
+    await execaCommand(pm === 'yarn' ? 'yarn' : `${pm} install`, { cwd })
   }
 
   const cdCommand = mode === Mode.create ? colors.green(`cd ${data.root}`) : ''

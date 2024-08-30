@@ -6,7 +6,6 @@ import type { MarkdownEnhancePluginOptions } from 'vuepress-plugin-md-enhance'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
 import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
-import type { AutoFrontmatter } from '../auto-frontmatter.js'
 
 export interface PlumeThemePluginOptions {
   /**
@@ -61,11 +60,6 @@ export interface PlumeThemePluginOptions {
    * 请使用 [@vuepress/plugin-baidu-analytics](https://ecosystem.vuejs.press/zh/plugins/analytics/baidu-analytics.html) 代替
    */
   baiduTongji?: false | { key: string }
-
-  /**
-   * @deprecated 使用 `autoFrontmatter` 代替
-   */
-  frontmatter?: Omit<AutoFrontmatter, 'frontmatter'>
 
   /**
    * 阅读时间、字数统计

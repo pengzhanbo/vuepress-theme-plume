@@ -17,10 +17,8 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
     initConfigLoader(app, localeOptions, {
       configFile,
       onChange: ({ localeOptions, autoFrontmatter }) => {
-        autoFrontmatter ??= pluginOptions.frontmatter
-        if (autoFrontmatter !== false) {
+        if (autoFrontmatter !== false)
           initAutoFrontmatter(localeOptions, autoFrontmatter)
-        }
       },
     })
 
@@ -43,7 +41,7 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
 
       extendsMarkdown: async (_, app) => {
         const { autoFrontmatter } = await waitForConfigLoaded()
-        if ((autoFrontmatter ?? pluginOptions.frontmatter) !== false) {
+        if (autoFrontmatter !== false) {
           await generateAutoFrontmatter(app)
           // wait for autoFrontmatter generated
           // i/o performance
@@ -73,11 +71,7 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
           await prepareThemeData(app, localeOptions)
           await prepareData(app)
         })
-        watchAutoFrontmatter(app, watchers, () => {
-          const autoFrontmatter = getThemeConfig().autoFrontmatter
-            ?? pluginOptions.frontmatter
-          return autoFrontmatter !== false
-        })
+        watchAutoFrontmatter(app, watchers)
         watchPrepare(app, watchers)
       },
     }

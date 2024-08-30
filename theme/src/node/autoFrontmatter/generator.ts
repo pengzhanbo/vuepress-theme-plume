@@ -12,6 +12,7 @@ import type {
   AutoFrontmatterObject,
   PlumeThemeLocaleOptions,
 } from '../../shared/index.js'
+import { getThemeConfig } from '../loadConfig/index.js'
 import { readMarkdown, readMarkdownList } from './readFile.js'
 import { resolveOptions } from './resolveOptions.js'
 
@@ -69,7 +70,7 @@ export async function generateAutoFrontmatter(app: App) {
   )
 }
 
-export async function watchAutoFrontmatter(app: App, watchers: any[], enable?: () => boolean) {
+export async function watchAutoFrontmatter(app: App, watchers: any[]) {
   if (!generate)
     return
 
@@ -80,7 +81,7 @@ export async function watchAutoFrontmatter(app: App, watchers: any[], enable?: (
   })
 
   watcher.on('add', async (relativePath) => {
-    const enabled = enable ? enable() : true
+    const enabled = getThemeConfig().autoFrontmatter !== false
     if (!generate!.globFilter(relativePath) || !enabled)
       return
     const file = await readMarkdown(app.dir.source(), relativePath)

@@ -54,6 +54,12 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('CanIUseViewer', CanIUse)`)
   }
 
+  if (options.fileTree) {
+    imports.add(`import FileTreeItem from '${CLIENT_FOLDER}components/FileTreeItem.vue'`)
+    imports.add(`import '@internal/md-power/file-tree.css'`)
+    enhances.add(`app.component('FileTreeItem', FileTreeItem)`)
+  }
+
   return app.writeTemp(
     'md-power/config.js',
     `\

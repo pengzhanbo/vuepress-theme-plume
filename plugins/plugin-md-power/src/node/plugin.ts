@@ -14,6 +14,7 @@ import { jsfiddlePlugin } from './features/jsfiddle.js'
 import { plotPlugin } from './features/plot.js'
 import { langReplPlugin } from './features/langRepl.js'
 import { prepareConfigFile } from './prepareConfigFile.js'
+import { fileTreePlugin } from './features/fileTree/index.js'
 
 export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): Plugin {
   return (app) => {
@@ -89,12 +90,17 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
           options.plot === true
           || (typeof options.plot === 'object' && options.plot.tag !== false)
         ) {
-          // =|plot|=
+          // !!plot!!
           md.use(plotPlugin)
         }
 
         if (options.repl)
           await langReplPlugin(app, md, options.repl)
+
+        if (options.fileTree) {
+          // ::: file-tree
+          await fileTreePlugin(app, md)
+        }
       },
     }
   }

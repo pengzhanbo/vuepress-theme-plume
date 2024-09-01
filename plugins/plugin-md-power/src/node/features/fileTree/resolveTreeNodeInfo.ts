@@ -39,7 +39,7 @@ export function resolveTreeNodeInfo(
 
   const children = inline.children?.filter(token => (token.type === 'text' && token.content) || token.tag === 'strong') || []
   const filename = children.filter(token => token.type === 'text').map(token => token.content).join(' ').split(/\s+/)[0] ?? ''
-  const focus = children[0].tag === 'strong'
+  const focus = children[0]?.tag === 'strong'
   const type = hasChildren || filename.endsWith('/') ? 'folder' : 'file'
   const info: FileTreeNode = {
     filename: removeLeadingSlash(filename),

@@ -14,7 +14,7 @@ onMounted(() => {
   if (!el.value || props.type !== 'folder')
     return
 
-  el.value.querySelector('.tree-node.folder > .name')?.addEventListener('click', () => {
+  el.value.querySelector('.tree-node.folder')?.addEventListener('click', () => {
     active.value = !active.value
   })
 })
@@ -95,7 +95,7 @@ onMounted(() => {
   display: block;
   width: 10px;
   height: 10px;
-  color: var(--vp-c-text-2);
+  color: var(--vp-c-text-3);
   content: "";
   background-color: currentcolor;
   -webkit-mask: var(--icon) no-repeat;
@@ -120,14 +120,18 @@ onMounted(() => {
 
 .file-tree-item .tree-node [class*="vp-fti-"] {
   display: inline-block;
-  width: 1em;
-  height: 1em;
-  color: inherit;
+  width: 0.9em;
+  height: 0.9em;
+  color: var(--vp-c-text-2);
   background-color: currentcolor;
   -webkit-mask: var(--icon) no-repeat;
   mask: var(--icon) no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
+}
+
+.file-tree-item .tree-node.folder [class*="vp-fti-"] {
+  cursor: pointer;
 }
 
 .vp-file-tree .file-tree-item > ul {

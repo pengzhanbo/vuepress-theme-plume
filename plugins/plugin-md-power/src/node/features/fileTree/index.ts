@@ -67,7 +67,7 @@ export async function fileTreePlugin(app: App, md: Markdown) {
         content += `.${classPrefix}${icon.name} { --icon: ${icon.svg}; }\n`
       }
       await app.writeTemp(styleFilepath, content)
-    }, 300)
+    }, 150)
   }
 
   md.use(container, type, { validate, render })

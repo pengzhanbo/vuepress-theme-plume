@@ -1,7 +1,7 @@
 import type { Plugin } from 'vuepress/core'
 import type { MarkdownEnv } from 'vuepress/markdown'
 
-const REG_HEADING = /^#\s*?(\S.*)?\n/
+const REG_HEADING = /^#\s*?([^#\s].*)?\n/
 
 export function markdownTitlePlugin(): Plugin {
   return {

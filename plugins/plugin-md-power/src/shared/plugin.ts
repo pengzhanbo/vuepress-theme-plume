@@ -26,6 +26,7 @@ export interface MarkdownPowerPluginOptions {
 
   // container
   repl?: false | ReplOptions
+  fileTree?: boolean
 
   caniuse?: boolean | CanIUseOptions
 }

@@ -33,6 +33,7 @@ export default defineConfig(() => {
       entry: ['./src/node/index.ts'],
       outDir: './lib/node',
       target: 'node18',
+      external: ['markdown-it'],
     },
     // client
     ...config.map(({ dir, files }) => ({

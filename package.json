@@ -52,7 +52,7 @@
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.9.1",
     "husky": "^9.1.5",
-    "lint-staged": "^15.2.9",
+    "lint-staged": "^15.2.10",
     "rimraf": "^6.0.1",
     "stylelint": "^16.9.0",
     "tsconfig-vuepress": "^5.0.0",

@@ -51,8 +51,8 @@ importers:
         specifier: ^9.1.5
         version: 9.1.5
       lint-staged:
-        specifier: ^15.2.9
-        version: 15.2.9
+        specifier: ^15.2.10
+        version: 15.2.10
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -96,8 +96,8 @@ importers:
   docs:
     dependencies:
       '@iconify/json':
-        specifier: ^2.2.242
-        version: 2.2.242
+        specifier: ^2.2.243
+        version: 2.2.243
       '@simonwep/pickr':
         specifier: ^1.9.1
         version: 1.9.1
@@ -163,11 +163,11 @@ importers:
         specifier: ^5.0.7
         version: 5.0.7
       shiki:
-        specifier: ^1.14.1
-        version: 1.14.1
+        specifier: ^1.15.2
+        version: 1.15.2
       tm-grammars:
-        specifier: ^1.17.8
-        version: 1.17.8
+        specifier: ^1.17.11
+        version: 1.17.11
       tm-themes:
         specifier: ^1.8.1
         version: 1.8.1
@@ -218,11 +218,11 @@ importers:
   plugins/plugin-shikiji:
     dependencies:
       '@shikijs/transformers':
-        specifier: ^1.14.1
-        version: 1.14.1
+        specifier: ^1.15.2
+        version: 1.15.2
       '@shikijs/twoslash':
-        specifier: ^1.14.1
-        version: 1.14.1(typescript@5.5.4)
+        specifier: ^1.15.2
+        version: 1.15.2(typescript@5.5.4)
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
@@ -248,8 +248,8 @@ importers:
         specifier: ^5.0.7
         version: 5.0.7
       shiki:
-        specifier: ^1.14.1
-        version: 1.14.1
+        specifier: ^1.15.2
+        version: 1.15.2
       twoslash:
         specifier: ^0.2.9
         version: 0.2.9(typescript@5.5.4)
@@ -375,8 +375,8 @@ importers:
         version: link:../plugins/plugin-md-power
     devDependencies:
       '@iconify/json':
-        specifier: ^2.2.242
-        version: 2.2.242
+        specifier: ^2.2.243
+        version: 2.2.243
 
 packages:
 
@@ -1010,8 +1010,8 @@ packages:
     resolution: {integrity: sha512-e5+YUKENATs1JgYHMzTr2MW/NDcXGfYFAuOQU8gJgF/kEh4EqKgfGrfLI67bMD4tbhZVlkigz/9YYwWcbOFthg==}
     engines: {node: '>=10.13.0'}
 
-  '@iconify/json@2.2.242':
-    resolution: {integrity: sha512-cS6eYdx1C1GhqaZm25ztH5yoghCaTXGJBeseUkS259GxxX9obtGLLk0yy+twxpNCD5/F9gjbgxh46BjNWsHtwg==}
+  '@iconify/json@2.2.243':
+    resolution: {integrity: sha512-92pXEKdjDmH8sV3fZwJTxifKpJtp3ie8KD7oCqHRJh/Z+CoGm3bzDcK5UnWs5G5EDbu00kYVcSGM4jRnY9HgGQ==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -1551,14 +1551,14 @@ packages:
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
 
-  '@shikijs/core@1.14.1':
-    resolution: {integrity: sha512-KyHIIpKNaT20FtFPFjCQB5WVSTpLR/n+jQXhWHWVUMm9MaOaG9BGOG0MSyt7yA4+Lm+4c9rTc03tt3nYzeYSfw==}
+  '@shikijs/core@1.15.2':
+    resolution: {integrity: sha512-hi6XZuwHYn6bU4wtXZxST8ynM55aiU2+rVU9aPIrSxqKmEKl4d65puwGsggwcZWTET+7zGXKe7AUj46iQ8Aq8w==}
 
-  '@shikijs/transformers@1.14.1':
-    resolution: {integrity: sha512-JJqL8QBVCJh3L61jqqEXgFq1cTycwjcGj7aSmqOEsbxnETM9hRlaB74QuXvY/fVJNjbNt8nvWo0VwAXKvMSLRg==}
+  '@shikijs/transformers@1.15.2':
+    resolution: {integrity: sha512-J+3kFFXb4hN3esMzdDBGb2GhBsMPX8UC3o/U9G4Jognb8k0ADQAzZkShTARwS76O0g2VFoMu4vnIchiVE6x/uw==}
 
-  '@shikijs/twoslash@1.14.1':
-    resolution: {integrity: sha512-b0krVIqVCpdh9Gji+gTSJp0n2KyepPmnjKEDs+dUb765MUcyfN9qK/vRr7fA/YdAJxab8IDpz1GbLl0GuzAyFQ==}
+  '@shikijs/twoslash@1.15.2':
+    resolution: {integrity: sha512-xGMsTd5QYL1cP7bjAbEl2YckyC7D8EOhsRy/ie13izjszjPPTSWl0fJs6cb5bEOLxa8ivFwUtwepr8RwWlE6yw==}
 
   '@sideway/address@4.1.5':
     resolution: {integrity: sha512-IqO/DUQHUkPeixNQ8n0JA6102hT9CmaljNTPmQ1u8MEhBo/R4Q8eKLN/vGZxuebwOroDB4cbpjheD4+/sKFK4Q==}
@@ -4005,8 +4005,8 @@ packages:
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
 
-  lint-staged@15.2.9:
-    resolution: {integrity: sha512-BZAt8Lk3sEnxw7tfxM7jeZlPRuT4M68O0/CwZhhaw6eeWu0Lz5eERE3m386InivXB64fp/mDID452h48tvKlRQ==}
+  lint-staged@15.2.10:
+    resolution: {integrity: sha512-5dY5t743e1byO19P9I4b3x8HJwalIznL5E1FWYnU6OWw33KxNBSLAc6Cy7F2PsFEO8FKnLwjwm5hx7aMF0jzZg==}
     engines: {node: '>=18.12.0'}
     hasBin: true
 
@@ -4361,10 +4361,6 @@ packages:
 
   micromatch@4.0.5:
     resolution: {integrity: sha512-DMy+ERcEW2q8Z2Po+WNXuw3c5YaUSFjAO5GsJqfEl7UjvtIuFKO6ZrKvcItdy98dwFI2N1tg3zNIdKaQT+aNdA==}
-    engines: {node: '>=8.6'}
-
-  micromatch@4.0.7:
-    resolution: {integrity: sha512-LPP/3KorzCwBxfeUuZmaR6bG2kdeHSbe0P2tY3FLRU4vYrjYz5hI4QZwV0njUx3jeuKe67YukQ1LSPZBKDqO/Q==}
     engines: {node: '>=8.6'}
 
   micromatch@4.0.8:
@@ -5080,8 +5076,8 @@ packages:
   shell-quote@1.8.1:
     resolution: {integrity: sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==}
 
-  shiki@1.14.1:
-    resolution: {integrity: sha512-FujAN40NEejeXdzPt+3sZ3F2dx1U24BY2XTY01+MG8mbxCiA2XukXdcbyMyLAHJ/1AUUnQd1tZlvIjefWWEJeA==}
+  shiki@1.15.2:
+    resolution: {integrity: sha512-M+7QZQZiZw/cZeizrC/yryG3eeG8pTUhu7ZaHxVyzPNFIRIlN46YBciquoNPCiXiwLnx6JB62f3lSuSYQrus1w==}
 
   side-channel@1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
@@ -5366,8 +5362,8 @@ packages:
   tinyexec@0.2.0:
     resolution: {integrity: sha512-au8dwv4xKSDR+Fw52csDo3wcDztPdne2oM1o/7LFro4h6bdFmvyUAeAfX40pwDtzHgRFqz1XWaUqgKS2G83/ig==}
 
-  tm-grammars@1.17.8:
-    resolution: {integrity: sha512-Qw67JNutL9LCt8FFw5RfsogeQ40iSeqrTHDSp0ecnY/b+ZweK8izlw6y/ZMje2+I6DMtTiBOCgmXEf+2oH11jQ==}
+  tm-grammars@1.17.11:
+    resolution: {integrity: sha512-qxTMAxbmY9NqBxTSaeFkI7ZCofhp+SVtrCLdf5OkcX6iiazUTL5LTLpzw0ZSFUW0RRr0Z2kMepIup/WDBha4sQ==}
 
   tm-themes@1.8.1:
     resolution: {integrity: sha512-jTUfDRn5TysYhkxxEWBQDo1C1n4yoHcnfNNqXkVxIMGQCgal/9poGuMBsfbnZCPEmFVcN2rtrUwaOJ8s2hVQXg==}
@@ -6440,7 +6436,7 @@ snapshots:
 
   '@hutson/parse-repository-url@5.0.0': {}
 
-  '@iconify/json@2.2.242':
+  '@iconify/json@2.2.243':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
@@ -6903,17 +6899,17 @@ snapshots:
 
   '@sec-ant/readable-stream@0.4.1': {}
 
-  '@shikijs/core@1.14.1':
+  '@shikijs/core@1.15.2':
     dependencies:
       '@types/hast': 3.0.4
 
-  '@shikijs/transformers@1.14.1':
+  '@shikijs/transformers@1.15.2':
     dependencies:
-      shiki: 1.14.1
+      shiki: 1.15.2
 
-  '@shikijs/twoslash@1.14.1(typescript@5.5.4)':
+  '@shikijs/twoslash@1.15.2(typescript@5.5.4)':
     dependencies:
-      '@shikijs/core': 1.14.1
+      '@shikijs/core': 1.15.2
       twoslash: 0.2.9(typescript@5.5.4)
     transitivePeerDependencies:
       - supports-color
@@ -9774,7 +9770,7 @@ snapshots:
     dependencies:
       uc.micro: 2.1.0
 
-  lint-staged@15.2.9:
+  lint-staged@15.2.10:
     dependencies:
       chalk: 5.3.0
       commander: 12.1.0
@@ -9782,7 +9778,7 @@ snapshots:
       execa: 8.0.1
       lilconfig: 3.1.2
       listr2: 8.2.4
-      micromatch: 4.0.7
+      micromatch: 4.0.8
       pidtree: 0.6.0
       string-argv: 0.3.2
       yaml: 2.5.0
@@ -10430,11 +10426,6 @@ snapshots:
   micromatch@4.0.5:
     dependencies:
       braces: 3.0.2
-      picomatch: 2.3.1
-
-  micromatch@4.0.7:
-    dependencies:
-      braces: 3.0.3
       picomatch: 2.3.1
 
   micromatch@4.0.8:
@@ -11145,9 +11136,9 @@ snapshots:
 
   shell-quote@1.8.1: {}
 
-  shiki@1.14.1:
+  shiki@1.15.2:
     dependencies:
-      '@shikijs/core': 1.14.1
+      '@shikijs/core': 1.15.2
       '@types/hast': 3.0.4
 
   side-channel@1.0.6:
@@ -11458,7 +11449,7 @@ snapshots:
 
   tinyexec@0.2.0: {}
 
-  tm-grammars@1.17.8: {}
+  tm-grammars@1.17.11: {}
 
   tm-themes@1.8.1: {}
 

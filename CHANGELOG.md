@@ -1,3 +1,23 @@
+# [1.0.0-rc.93](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.92...v1.0.0-rc.93) (2024-09-01)
+
+
+### Bug Fixes
+
+* **cli:** incorrect command hint ([cffb935](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cffb935b4faf0404d2d8eda123fc0c164257238b))
+* **theme:** incorrect match page title ([0227195](https://github.com/pengzhanbo/vuepress-theme-plume/commit/022719529e4a88779a0b3405566fdcc1cd69393e))
+
+
+### Features
+
+* **plugin-md-power:** add support `file-tree` container ([db5d816](https://github.com/pengzhanbo/vuepress-theme-plume/commit/db5d81677f335ceb6c2432eb989668029d02e2e3))
+
+
+### Performance Improvements
+
+* update deps to latest ([ef2bda6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ef2bda65a1b85e3dad7f4239e8cb73b975653c70))
+
+
+
 # [1.0.0-rc.92](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.91...v1.0.0-rc.92) (2024-08-30)
 
 

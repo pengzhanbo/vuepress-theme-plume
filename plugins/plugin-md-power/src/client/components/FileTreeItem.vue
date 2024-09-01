@@ -14,7 +14,7 @@ onMounted(() => {
   if (!el.value || props.type !== 'folder')
     return
 
-  el.value.querySelector('.tree-node.folder')?.addEventListener('click', () => {
+  el.value.querySelector('.tree-node.folder > .name')?.addEventListener('click', () => {
     active.value = !active.value
   })
 })
@@ -74,12 +74,15 @@ onMounted(() => {
 
 .file-tree-item .tree-node.folder {
   position: relative;
+}
+
+.file-tree-item .tree-node.folder > .name {
   color: var(--vp-c-text-1);
   cursor: pointer;
   transition: color var(--t-color);
 }
 
-.file-tree-item .tree-node.folder:hover {
+.file-tree-item .tree-node.folder > .name:hover {
   color: var(--vp-c-brand-1);
 }
 
@@ -108,10 +111,11 @@ onMounted(() => {
   transition: color var(--t-color);
 }
 
-.file-tree-item .tree-node.file .comment {
+.file-tree-item .tree-node .comment {
   margin-left: 20px;
   overflow: hidden;
   color: var(--vp-c-text-3);
+  transition: color var(--t-color);
 }
 
 .file-tree-item .tree-node [class*="vp-fti-"] {

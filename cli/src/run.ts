@@ -35,7 +35,7 @@ export async function run(mode: Mode, root?: string) {
   }
 
   const cdCommand = mode === Mode.create ? colors.green(`cd ${data.root}`) : ''
-  const runCommand = colors.green(pm === 'yarn' ? 'yarn dev' : `${pm} run dev`)
+  const runCommand = colors.green(pm === 'yarn' ? 'yarn docs:dev' : `${pm} run docs:dev`)
   const installCommand = colors.green(pm === 'yarn' ? 'yarn' : `${pm} install`)
 
   progress.stop(t('spinner.stop'))

@@ -67,20 +67,16 @@ function runCode() {
         </p>
         <div v-if="stderr.length" class="stderr">
           <h4>Stderr:</h4>
-          <p
+          <pre
             v-for="(item, index) in stderr" :key="index"
             :class="{ error: lang === 'rust' && item.startsWith('error') }"
-          >
-            <pre>{{ item }}</pre>
-          </p>
+          >{{ item }}</pre>
         </div>
         <div v-if="stdout.length" class="stdout">
           <h4 v-if="stderr.length">
             Stdout:
           </h4>
-          <p v-for="(item, index) in stdout" :key="index">
-            <pre>{{ item }}</pre>
-          </p>
+          <pre v-for="(item, index) in stdout" :key="index">{{ item }}</pre>
         </div>
       </div>
     </div>
@@ -214,13 +210,13 @@ function runCode() {
   font-size: 16px;
 }
 
-.output-content p {
+.output-content pre {
   margin: 0;
   font-size: 14px;
   line-height: 20px;
 }
 
-.output-content p pre {
+.output-content pre {
   width: fit-content;
   padding: 0 20px 0 0;
   margin: 0;
@@ -228,13 +224,13 @@ function runCode() {
 }
 
 .output-content .error,
-.output-content .stderr p,
-.output-content.rust .stderr p.error {
+.output-content .stderr pre,
+.output-content.rust .stderr pre.error {
   color: var(--vp-c-danger-1, #b8272c);
   transition: color var(--t-color);
 }
 
-.output-content.rust .stderr p {
+.output-content.rust .stderr pre {
   color: var(--vp-c-text-1);
 }
 

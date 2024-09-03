@@ -99,7 +99,23 @@ watch([isBlogLayout, () => frontmatter.value.pageLayout], () => nextTick(() =>
 
     <VPFriends v-else-if="frontmatter.pageLayout === 'friends'" />
 
-    <VPHome v-else-if="frontmatter.pageLayout === 'home'" />
+    <VPHome v-else-if="frontmatter.pageLayout === 'home'">
+      <template #blog-top>
+        <slot name="blog-top" />
+      </template>
+      <template #blog-bottom>
+        <slot name="blog-bottom" />
+      </template>
+      <template #blog-post-list-before>
+        <slot name="blog-post-list-before" />
+      </template>
+      <template #blog-post-list-after>
+        <slot name="blog-post-list-after" />
+      </template>
+      <template #blog-post-list-pagination-after>
+        <slot name="blog-post-list-pagination-after" />
+      </template>
+    </VPHome>
 
     <component :is="frontmatter.pageLayout" v-else-if="frontmatter.pageLayout && frontmatter.pageLayout !== 'doc'" />
 

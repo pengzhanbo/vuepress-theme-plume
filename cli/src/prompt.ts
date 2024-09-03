@@ -1,5 +1,4 @@
 import process from 'node:process'
-import path from 'node:path'
 import { createRequire } from 'node:module'
 import { cancel, confirm, group, select, text } from '@clack/prompts'
 import { setLang, t } from './translate.js'
@@ -131,35 +130,4 @@ export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
   })
 
   return result
-}
-
-export async function getTargetDir(cwd: string, dir?: string) {
-  if (dir === '.')
-    return cwd
-
-  if (typeof dir === 'string' && dir) {
-    return path.resolve(cwd, dir)
-  }
-
-  const DEFAULT_DIR = 'my-project'
-
-  const dirPath = await text({
-    message: t('question.root'),
-    placeholder: DEFAULT_DIR,
-    validate(value) {
-      if (value && REG_DIR_CHAR.test(value))
-        return t('hint.root.illegal')
-
-      return undefined
-    },
-    defaultValue: DEFAULT_DIR,
-  })
-
-  if (typeof dirPath === 'string') {
-    if (dirPath === '.')
-      return cwd
-
-    return path.join(cwd, dirPath || DEFAULT_DIR)
-  }
-  return dirPath
 }

@@ -9,11 +9,17 @@ import VPBlogNav from '@theme/Blog/VPBlogNav.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { useData } from '../../composables/index.js'
 
+defineProps<{
+  homeBlog?: boolean
+  type?: string
+  onlyOnce?: boolean
+}>()
+
 const { theme, page } = useData()
 </script>
 
 <template>
-  <div class="vp-blog">
+  <div class="vp-blog" :class="{ 'home-blog': homeBlog }">
     <slot name="blog-top" />
 
     <div class="blog-container" :class="{ 'no-profile': !theme.profile }">
@@ -53,7 +59,7 @@ const { theme, page } = useData()
             <slot name="blog-categories-content-before" />
           </template>
         </VPBlogCategories>
-        <VPPostList v-else>
+        <VPPostList v-else :home-blog="homeBlog">
           <template #blog-post-list-before>
             <slot name="blog-post-list-before" />
           </template>
@@ -94,6 +100,12 @@ const { theme, page } = useData()
   min-height: calc(100vh - var(--vp-footer-height, 0px));
   background-color: var(--vp-c-bg);
   transition: background-color var(--t-color);
+}
+
+@media(min-width: 419px) {
+  .vp-blog.home-blog {
+    background-color: var(--vp-c-bg-alt);
+  }
 }
 
 .blog-container {

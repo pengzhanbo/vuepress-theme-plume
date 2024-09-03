@@ -104,11 +104,11 @@
     "local-pkg": "^0.5.0",
     "nanoid": "^5.0.7",
     "vue": "^3.4.38",
-    "vue-router": "^4.4.3",
     "vuepress-plugin-md-enhance": "2.0.0-rc.52",
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.243"
+    "@iconify/json": "^2.2.243",
+    "vue-router": "^4.4.3"
   }
 }

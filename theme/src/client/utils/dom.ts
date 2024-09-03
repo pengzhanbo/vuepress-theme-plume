@@ -67,3 +67,15 @@ export function scrollTo(
     window.scrollTo({ top, behavior: 'smooth' })
   }
 }
+
+export function getOffsetTop<T extends HTMLElement = HTMLElement>(target: T | null): number {
+  if (!target)
+    return 0
+  let parent: HTMLElement | null = target
+  let top = 0
+  while (parent) {
+    top += parent.offsetTop
+    parent = parent.offsetParent as HTMLElement
+  }
+  return top
+}

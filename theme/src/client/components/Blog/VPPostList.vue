@@ -1,8 +1,13 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
 import VPTransitionDrop from '@theme/VPTransitionDrop.vue'
 import VPPostItem from '@theme/Blog/VPPostItem.vue'
 import VPPagination from '@theme/Blog/VPPagination.vue'
 import { usePostListControl } from '../../composables/index.js'
+
+const props = defineProps<{
+  homeBlog?: boolean
+}>()
 
 const {
   postList,
@@ -13,7 +18,7 @@ const {
   isFirstPage,
   isPaginationEnabled,
   changePage,
-} = usePostListControl()
+} = usePostListControl(computed(() => !!props.homeBlog))
 </script>
 
 <template>

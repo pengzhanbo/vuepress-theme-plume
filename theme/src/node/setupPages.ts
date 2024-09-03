@@ -39,10 +39,12 @@ export async function setupPage(
     const locale = localePath === '/' ? rootPath : localePath
 
     // 添加 博客页面
-    pageList.push(createPage(app, {
-      path: withBase(link, localePath),
-      frontmatter: { lang, _pageLayout: 'blog', title: getTitle(locale, 'blog') },
-    }))
+    if (blog.postList !== false) {
+      pageList.push(createPage(app, {
+        path: withBase(link, localePath),
+        frontmatter: { lang, _pageLayout: 'blog', title: getTitle(locale, 'blog') },
+      }))
+    }
 
     // 添加 标签页
     if (blog.tags !== false) {
@@ -106,6 +108,11 @@ export function extendsPageData(
     page.frontmatter.draft = true
     page.data.type = pageType as any
     delete page.frontmatter._pageLayout
+  }
+
+  if (page.frontmatter.pageLayout === 'blog') {
+    page.frontmatter.draft = true
+    page.data.type = 'blog'
   }
 
   if ('externalLink' in page.frontmatter) {

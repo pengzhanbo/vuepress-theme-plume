@@ -17,13 +17,6 @@ export type PlumeThemeBlogPostData = PlumeThemeBlogPostItem[]
 export interface PlumeThemeBlog {
 
   /**
-   * 博客文章列表页链接
-   *
-   * @default '/blog/'
-   */
-  link?: string
-
-  /**
    * 通过 glob string 配置包含文件，
    *
    * 默认读取 源目录中的所有 `.md` 文件，但会排除 `notes` 配置中用于笔记的目录。
@@ -54,6 +47,19 @@ export interface PlumeThemeBlog {
      */
     perPage?: number
   }
+
+  /**
+   * 博客文章列表页链接
+   *
+   * @default '/blog/'
+   */
+  link?: string
+
+  /**
+   * 是否启用博客文章列表
+   * @default true
+   */
+  postList?: boolean
 
   /**
    * 是否启用标签页

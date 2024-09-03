@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { type Ref, computed } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 import { useLocalePostList } from './blog-data.js'
@@ -7,7 +7,7 @@ import { useRouteQuery } from './route-query.js'
 
 const DEFAULT_PER_PAGE = 10
 
-export function usePostListControl() {
+export function usePostListControl(homePage: Ref<boolean>) {
   const { theme } = useData()
 
   const list = useLocalePostList()
@@ -111,7 +111,15 @@ export function usePostListControl() {
     if (page.value === current)
       return
     page.value = current
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    setTimeout(() => {
+      let top = 0
+      if (homePage.value) {
+        top = document.querySelector('.vp-blog')?.getBoundingClientRect().top || 0
+        top += window.scrollY - 64
+      }
+
+      window.scrollTo({ top, behavior: 'instant' })
+    }, 0)
   }
 
   return {

@@ -19,7 +19,7 @@ export interface PlumeNormalFrontmatter extends PageFrontmatter {
   /**
    * page layout
    */
-  pageLayout?: false | 'home' | 'doc' | 'custom' | 'page' | 'friends'
+  pageLayout?: false | 'home' | 'blog' | 'doc' | 'custom' | 'page' | 'friends'
 
   /**
    * 自定义页面 class

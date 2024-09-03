@@ -1,12 +1,32 @@
 <script lang="ts" setup>
-import { type Component, computed, nextTick, onUnmounted, resolveComponent, watch } from 'vue'
+import type { Component } from 'vue'
+import { computed, h, nextTick, onUnmounted, resolveComponent, watch } from 'vue'
 import VPHomeBanner from '@theme/Home/VPHomeBanner.vue'
 import VPHomeHero from '@theme/Home/VPHomeHero.vue'
 import VPHomeFeatures from '@theme/Home/VPHomeFeatures.vue'
 import VPHomeTextImage from '@theme/Home/VPHomeTextImage.vue'
 import VPHomeProfile from '@theme/Home/VPHomeProfile.vue'
 import VPHomeCustom from '@theme/Home/VPHomeCustom.vue'
+import VPBlog from '@theme/Blog/VPBlog.vue'
 import { useData } from '../../composables/index.js'
+
+const slots = defineSlots<{
+  'blog-top': () => any
+  'blog-bottom': () => any
+  'blog-post-list-before': () => any
+  'blog-post-list-after': () => any
+  'blog-post-list-pagination-after': () => any
+}>()
+
+function VPHomeBlog() {
+  return h(VPBlog, { homeBlog: true }, {
+    'blog-top': () => slots['blog-top']?.(),
+    'blog-bottom': () => slots['blog-bottom']?.(),
+    'blog-post-list-before': () => slots['blog-post-list-before']?.(),
+    'blog-post-list-after': () => slots['blog-post-list-after']?.(),
+    'blog-post-list-pagination-after': () => slots['blog-post-list-pagination-after']?.(),
+  })
+}
 
 const components: Record<string, Component<any, any, any>> = {
   'banner': VPHomeBanner,
@@ -15,6 +35,7 @@ const components: Record<string, Component<any, any, any>> = {
   'text-image': VPHomeTextImage,
   'image-text': VPHomeTextImage,
   'profile': VPHomeProfile,
+  'blog': VPHomeBlog,
   'custom': VPHomeCustom,
 }
 

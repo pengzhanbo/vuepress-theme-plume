@@ -1,3 +1,22 @@
+# [1.0.0-rc.94](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.93...v1.0.0-rc.94) (2024-09-03)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** hydration errors ([c5216e1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c5216e122d60f4cb58294b323f17c6660e3a4d34))
+
+
+### Features
+
+* **theme:** add support blog as home page ([f60e4ea](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f60e4ea63ec8c65b6ae03f7be29522ec5a79e68c))
+
+
+### Performance Improvements
+
+* update vue to `3.5` ([0e9e1e7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0e9e1e7900a030a39c3e73c9cc46b004fa43d5b4))
+
+
+
 # [1.0.0-rc.93](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.92...v1.0.0-rc.93) (2024-09-01)
 
 

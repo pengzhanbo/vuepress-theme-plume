@@ -35,7 +35,7 @@
     "cac": "^6.7.14",
     "execa": "^9.3.1",
     "handlebars": "^4.7.8",
-    "picocolors": "^1.0.1"
+    "picocolors": "^1.1.0"
   },
   "theme-plume": {
     "vuepress": "2.0.0-rc.15"

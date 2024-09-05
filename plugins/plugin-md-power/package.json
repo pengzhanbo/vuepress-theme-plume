@@ -44,10 +44,10 @@
     "@vueuse/core": "^11.0.3",
     "markdown-it-container": "^4.0.0",
     "nanoid": "^5.0.7",
-    "shiki": "^1.16.1",
-    "tm-grammars": "^1.17.14",
+    "shiki": "^1.16.2",
+    "tm-grammars": "^1.17.16",
     "tm-themes": "^1.8.1",
-    "vue": "^3.5.0"
+    "vue": "^3.5.2"
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.2"

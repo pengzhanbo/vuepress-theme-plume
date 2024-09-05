@@ -12,7 +12,7 @@ const { archives } = useArchives()
 
     <h2 class="archives-title">
       <span class="vpi-archive icon" />
-      <span>{{ archiveLink.text }}</span>
+      <span>{{ archiveLink?.text ?? 'Archives' }}</span>
     </h2>
     <div v-if="archives.length" class="archives">
       <template v-for="archive in archives" :key="archive.label">

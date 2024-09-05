@@ -13,7 +13,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
     <div class="tags-nav">
       <h2 class="tags-title">
         <span class="vpi-tag icon" />
-        <span>{{ tagsLink.text }}</span>
+        <span>{{ tagsLink?.text ?? 'Tags' }}</span>
       </h2>
       <slot name="blog-tags-title-after" />
       <div class="tags">

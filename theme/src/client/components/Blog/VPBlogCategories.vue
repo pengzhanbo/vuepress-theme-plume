@@ -12,7 +12,7 @@ const { categories } = useBlogCategory()
 
     <h2 class="categories-title">
       <span class="vpi-category icon" />
-      <span>{{ categoriesLink.text }}</span>
+      <span>{{ categoriesLink?.text ?? 'Categories' }}</span>
     </h2>
 
     <slot name="blog-categories-content-before" />

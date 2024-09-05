@@ -1,6 +1,7 @@
-/* eslint-disable node/prefer-global/process */
+import process from 'node:process'
 import type { TransformerTwoslashOptions } from '@shikijs/twoslash/core'
 import { createTransformerFactory } from '@shikijs/twoslash/core'
+import type { VueSpecificOptions } from 'twoslash-vue'
 import { createTwoslasher } from 'twoslash-vue'
 import type { ShikiTransformer } from 'shiki'
 import { removeTwoslashNotations } from 'twoslash'
@@ -9,7 +10,11 @@ import { rendererFloatingVue } from './renderer-floating-vue.js'
 
 export * from './renderer-floating-vue.js'
 
-export interface VitePressPluginTwoslashOptions extends TransformerTwoslashOptions, TwoslashFloatingVueRendererOptions {
+interface TransformerTwoslashVueOptions extends TransformerTwoslashOptions {
+  twoslashOptions?: TransformerTwoslashOptions['twoslashOptions'] & VueSpecificOptions
+}
+
+export interface VitePressPluginTwoslashOptions extends TransformerTwoslashVueOptions, TwoslashFloatingVueRendererOptions {
   /**
    * Requires adding `twoslash` to the code block explicitly to run twoslash
    * @default true
@@ -19,6 +24,8 @@ export interface VitePressPluginTwoslashOptions extends TransformerTwoslashOptio
 
 /**
  * Create a Shiki transformer for VitePress to enable twoslash integration
+ *
+ * Add this to `markdown.codeTransformers` in `.vitepress/config.ts`
  */
 export function transformerTwoslash(options: VitePressPluginTwoslashOptions = {}): ShikiTransformer {
   const {
@@ -38,7 +45,7 @@ export function transformerTwoslash(options: VitePressPluginTwoslashOptions = {}
   }
 
   const twoslash = createTransformerFactory(
-    createTwoslasher(),
+    createTwoslasher(options.twoslashOptions),
   )({
     langs: ['ts', 'tsx', 'js', 'jsx', 'json', 'vue'],
     renderer: rendererFloatingVue(options),
@@ -48,6 +55,10 @@ export function transformerTwoslash(options: VitePressPluginTwoslashOptions = {}
     explicitTrigger,
   })
 
+  const trigger = explicitTrigger instanceof RegExp
+    ? explicitTrigger
+    : /\btwoslash\b/
+
   return {
     ...twoslash,
     name: '@shiki/vuepress-twoslash',
@@ -55,6 +66,13 @@ export function transformerTwoslash(options: VitePressPluginTwoslashOptions = {}
       const cleanup = options.transformers?.find(i => i.name === 'vuepress:clean-up')
       if (cleanup)
         options.transformers?.splice(options.transformers.indexOf(cleanup), 1)
+
+      // Disable v-pre for twoslash, because we need render it with FloatingVue
+      if (!explicitTrigger || options.meta?.__raw?.match(trigger)) {
+        const vPre = options.transformers?.find(i => i.name === 'vitepress:v-pre')
+        if (vPre)
+          options.transformers?.splice(options.transformers.indexOf(vPre), 1)
+      }
 
       return twoslash.preprocess!.call(this, code, options)
     },

@@ -114,16 +114,6 @@ export function setupThemeColors() {
     return content
   }
 
-  function resolveDefaultColors(type: 'light' | 'dark') {
-    return preset.map(group => ({
-      name: group.name,
-      group: group.group.map(item => ({
-        ...item,
-        value: DEFAULT_PRESET[type][item.key],
-      })),
-    }))
-  }
-
   function reset() {
     lightColors.value = resolveDefaultColors('light')
     darkColors.value = resolveDefaultColors('dark')
@@ -135,6 +125,16 @@ export function setupThemeColors() {
     css,
     reset,
   })
+}
+
+function resolveDefaultColors(type: 'light' | 'dark') {
+  return preset.map(group => ({
+    name: group.name,
+    group: group.group.map(item => ({
+      ...item,
+      value: DEFAULT_PRESET[type][item.key],
+    })),
+  }))
 }
 
 export function useThemeColors() {

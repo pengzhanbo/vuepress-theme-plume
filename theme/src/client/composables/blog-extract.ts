@@ -20,20 +20,20 @@ export function useBlogExtract() {
   )
 
   const tags = computed(() => ({
-    link: links.tags.value.link,
-    text: links.tags.value.text,
+    link: links.tags.value?.link,
+    text: links.tags.value?.text,
     total: tagsList.value.length,
   }))
 
   const archives = computed(() => ({
-    link: links.archive.value.link,
-    text: links.archive.value.text,
+    link: links.archive.value?.link,
+    text: links.archive.value?.text,
     total: postList.value.length,
   }))
 
   const categories = computed(() => ({
-    link: links.categories.value.link,
-    text: links.categories.value.text,
+    link: links.categories.value?.link,
+    text: links.categories.value?.text,
     total: getCategoriesTotal(categoryList.value),
   }))
 

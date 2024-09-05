@@ -23,10 +23,18 @@ export function useInternalLink() {
   const blogData = computed(() => theme.value.blog || {})
 
   const home = computed(() => resolveLink('home', '/'))
-  const blog = computed(() => resolveLink('blog', blogData.value.link || 'blog/'))
-  const tags = computed(() => resolveLink('tag', blogData.value.tagsLink || 'blog/tags/'))
-  const archive = computed(() => resolveLink('archive', blogData.value.archivesLink || 'blog/archives/'))
-  const categories = computed(() => resolveLink('category', blogData.value.categoriesLink || 'blog/categories/'))
+  const blog = computed(() => blogData.value.postList !== false
+    ? resolveLink('blog', blogData.value.link || 'blog/')
+    : home.value)
+  const tags = computed(() => blogData.value.tags !== false
+    ? resolveLink('tag', blogData.value.tagsLink || 'blog/tags/')
+    : undefined)
+  const archive = computed(() => blogData.value.archives !== false
+    ? resolveLink('archive', blogData.value.archivesLink || 'blog/archives/')
+    : undefined)
+  const categories = computed(() => blogData.value.categories !== false
+    ? resolveLink('category', blogData.value.categoriesLink || 'blog/categories/')
+    : undefined)
 
   return {
     home,

@@ -2,12 +2,13 @@
 import { computed } from 'vue'
 import VPLink from '@theme/VPLink.vue'
 import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
-import { useData, useInternalLink, useTagColors } from '../composables/index.js'
+import { useBlogPageData, useData, useInternalLink, useTagColors } from '../composables/index.js'
 
 const { page, frontmatter: matter } = useData<'post'>()
 const colors = useTagColors()
 const readingTime = useReadingTimeLocale()
 const { tags: tagsLink } = useInternalLink()
+const { isBlogPost } = useBlogPageData()
 
 const createTime = computed(() => {
   if (matter.value.createTime)
@@ -47,7 +48,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
         :key="tag.name"
         class="tag"
         :class="tag.className"
-        :href="`${tagsLink.link}?tag=${tag.name}`"
+        :href="`${tagsLink?.link && isBlogPost ? `${tagsLink.link}?tag=${tag.name}` : undefined}`"
       >
         {{ tag.name }}
       </VPLink>

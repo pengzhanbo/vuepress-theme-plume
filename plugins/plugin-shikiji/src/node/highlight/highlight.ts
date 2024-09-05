@@ -31,27 +31,6 @@ export async function highlight(
   await options.shikiSetup?.(highlighter)
 
   const loadedLanguages = highlighter.getLoadedLanguages()
-  const removeMustache = (s: string, mustaches: Map<string, string>) => {
-    return s.replace(mustacheRE, (match) => {
-      let marker = mustaches.get(match)
-      if (!marker) {
-        marker = nanoid()
-        mustaches.set(match, marker)
-      }
-      return marker
-    })
-  }
-
-  const restoreMustache = (s: string, mustaches: Map<string, string>, twoslash: boolean) => {
-    mustaches.forEach((marker, match) => {
-      s = s.replaceAll(marker, match)
-    })
-
-    if (twoslash)
-      s = s.replace(/\{/g, '&#123;')
-
-    return `${s}\n`
-  }
 
   return (str: string, language: string, attrs: string = '') => {
     const lang = getLanguage(loadedLanguages, language, defaultLang)
@@ -84,4 +63,26 @@ export async function highlight(
       return str
     }
   }
+}
+
+function removeMustache(s: string, mustaches: Map<string, string>) {
+  return s.replace(mustacheRE, (match) => {
+    let marker = mustaches.get(match)
+    if (!marker) {
+      marker = nanoid()
+      mustaches.set(match, marker)
+    }
+    return marker
+  })
+}
+
+function restoreMustache(s: string, mustaches: Map<string, string>, twoslash: boolean) {
+  mustaches.forEach((marker, match) => {
+    s = s.replaceAll(marker, match)
+  })
+
+  if (twoslash)
+    s = s.replace(/\{/g, '&#123;')
+
+  return `${s}\n`
 }

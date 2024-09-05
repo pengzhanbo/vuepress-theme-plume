@@ -137,7 +137,7 @@ export function resolveHeaders(headers: MenuItem[], range?: ThemeOutline): MenuI
     resolvedHeaders.push({ element, link })
 
   const ret: MenuItem[] = []
-  // eslint-disable-next-line no-labels, no-restricted-syntax
+  // eslint-disable-next-line no-labels
   outer: for (let i = 0; i < headers.length; i++) {
     const cur = headers[i]
     if (i === 0) {

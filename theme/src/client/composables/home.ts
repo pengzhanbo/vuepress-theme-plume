@@ -64,30 +64,6 @@ export function useHomeHeroTintPlate(
     return defaultTint
   })
 
-  function toPlate(plate: number | string) {
-    return typeof plate === 'number' || Number(plate) === Number.parseInt(plate)
-      ? [plate, plate, plate].map(n => Number(n))
-      : plate.includes(',') ? plate.replace(/\s/g, '').split(',').map(n => Number(n)) : []
-  }
-
-  function toTint([r, g, b]: number[]) {
-    return { r: toColor(r), g: toColor(g), b: toColor(b) }
-  }
-
-  function toColor(num: number) {
-    const offset = 256 - num
-    return { value: num, offset: offset > 64 ? 64 : offset }
-  }
-
-  function toNumber(tint: TintPlate): TintPlate {
-    Object.keys(tint).forEach((key) => {
-      const p = tint[key]
-      p.value = Number(p.value)
-      p.offset = Number(p.offset)
-    })
-    return tint
-  }
-
   onMounted(() => {
     if (canvas.value && enable.value) {
       ctx = canvas.value.getContext('2d')!
@@ -134,4 +110,28 @@ export function useHomeHeroTintPlate(
     const b = plate.value.b
     return (Math.floor(b.value + b.offset * Math.sin(5 * Math.sin(t / 9) + ((x - 100) * (x - 100) + (y - 100) * (y - 100)) / 1100)))
   }
+}
+
+function toPlate(plate: number | string) {
+  return typeof plate === 'number' || Number(plate) === Number.parseInt(plate)
+    ? [plate, plate, plate].map(n => Number(n))
+    : plate.includes(',') ? plate.replace(/\s/g, '').split(',').map(n => Number(n)) : []
+}
+
+function toTint([r, g, b]: number[]) {
+  return { r: toColor(r), g: toColor(g), b: toColor(b) }
+}
+
+function toColor(num: number) {
+  const offset = 256 - num
+  return { value: num, offset: offset > 64 ? 64 : offset }
+}
+
+function toNumber(tint: TintPlate): TintPlate {
+  Object.keys(tint).forEach((key) => {
+    const p = tint[key]
+    p.value = Number(p.value)
+    p.offset = Number(p.offset)
+  })
+  return tint
 }

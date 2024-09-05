@@ -30,8 +30,9 @@ export async function prepareEncrypt(app: App, encrypt?: PlumeThemeEncrypt) {
   }
 }
 
+const salt = () => genSaltSync(random(8, 16))
+
 function resolveEncrypt(encrypt?: PlumeThemeEncrypt): EncryptConfig {
-  const salt = () => genSaltSync(random(8, 16))
   const admin = encrypt?.admin
     ? toArray(encrypt.admin)
       .filter(isStringLike)

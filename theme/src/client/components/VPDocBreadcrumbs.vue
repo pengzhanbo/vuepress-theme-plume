@@ -37,7 +37,7 @@ const breadcrumbList = computed<Breadcrumb[]>(() => {
     for (const category of categoryList) {
       list.push({
         text: category.name,
-        link: `${categories.value ? `${categories.value.link}?id=${category.id}` : undefined}`,
+        link: categories.value ? `${categories.value.link}?id=${category.id}` : undefined,
       })
     }
   }

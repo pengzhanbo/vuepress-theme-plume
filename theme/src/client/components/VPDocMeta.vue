@@ -48,7 +48,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
         :key="tag.name"
         class="tag"
         :class="tag.className"
-        :href="`${tagsLink?.link && isBlogPost ? `${tagsLink.link}?tag=${tag.name}` : undefined}`"
+        :href="tagsLink?.link && isBlogPost ? `${tagsLink.link}?tag=${tag.name}` : undefined"
       >
         {{ tag.name }}
       </VPLink>

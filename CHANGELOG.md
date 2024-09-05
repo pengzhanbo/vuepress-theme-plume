@@ -1,3 +1,18 @@
+# [1.0.0-rc.95](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.94...v1.0.0-rc.95) (2024-09-05)
+
+
+### Bug Fixes
+
+* **theme:** incorrect internal link ([aeee0ec](https://github.com/pengzhanbo/vuepress-theme-plume/commit/aeee0ec8de4e730e0a76b097dd0e3a6f528b1995))
+
+
+### Performance Improvements
+
+* **plugin-shikiji:** update `twoslash` ([430c40c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/430c40c3b00c6cd77e1286db4937501131dc24f3))
+* **theme:** optimize internal link ([811f7f4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/811f7f4361c3ce01e519bb2b4e3dee70c088c96b))
+
+
+
 # [1.0.0-rc.94](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.93...v1.0.0-rc.94) (2024-09-03)
 
 

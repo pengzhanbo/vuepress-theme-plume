@@ -47,29 +47,6 @@ export function rendererFloatingVue(options: TwoslashFloatingVueRendererOptions 
     'theme': floatingVueTheme,
   }
 
-  function compose(parts: { token: Element | Text, popup: Element }): Element[] {
-    return [
-      {
-        type: 'element',
-        tagName: 'span',
-        properties: {},
-        children: [parts.token],
-      },
-      {
-        type: 'element',
-        tagName: 'template',
-        properties: {
-          'v-slot:popper': '{}',
-        },
-        content: {
-          type: 'root',
-          children: [vPre(parts.popup)],
-        },
-        children: [],
-      },
-    ]
-  }
-
   const rich = rendererRich({
     classExtra: classCopyIgnore,
     ...options,
@@ -140,6 +117,29 @@ export function rendererFloatingVue(options: TwoslashFloatingVueRendererOptions 
   })
 
   return rich
+}
+
+function compose(parts: { token: Element | Text, popup: Element }): Element[] {
+  return [
+    {
+      type: 'element',
+      tagName: 'span',
+      properties: {},
+      children: [parts.token],
+    },
+    {
+      type: 'element',
+      tagName: 'template',
+      properties: {
+        'v-slot:popper': '{}',
+      },
+      content: {
+        type: 'root',
+        children: [vPre(parts.popup)],
+      },
+      children: [],
+    },
+  ]
 }
 
 function vPre<T extends ElementContent>(el: T): T {

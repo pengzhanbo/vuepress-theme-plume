@@ -15,7 +15,7 @@ const api = 'https://caniuse.pengzhanbo.cn/features.json'
 
 const pastVersions: SelectItem[] = [
   { label: '不显示旧版本', value: '0' },
-  ...Array(5).fill(0).map((_, i) => ({
+  ...Array.from({ length: 5 }).fill(0).map((_, i) => ({
     label: `旧版本（当前版本 - ${i + 1}）`,
     value: `${i + 1}`,
   })),
@@ -23,7 +23,7 @@ const pastVersions: SelectItem[] = [
 
 const futureVersions: SelectItem[] = [
   { label: '不显示未来版本', value: '0' },
-  ...Array(3).fill(0).map((_, i) => ({
+  ...Array.from({ length: 3 }).fill(0).map((_, i) => ({
     label: `未来版本（当前版本 + ${i + 1}）`,
     value: `${i + 1}`,
   })),

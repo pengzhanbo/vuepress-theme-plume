@@ -31,18 +31,6 @@ export function useSize<T extends HTMLElement>(
   const width = computed(() => toValue(options.width) || '100%')
   const height = ref('auto')
 
-  const getRadio = (ratio: number | string | undefined): number => {
-    if (typeof ratio === 'string') {
-      const [width, height] = ratio.split(':')
-      const parsedRadio = Number(width) / Number(height)
-
-      if (!Number.isNaN(parsedRadio))
-        return parsedRadio
-    }
-
-    return typeof ratio === 'number' ? ratio : 16 / 9
-  }
-
   const getHeight = (width: number): string => {
     const height = toValue(options.height)
     const ratio = getRadio(toValue(options.ratio))
@@ -65,4 +53,16 @@ export function useSize<T extends HTMLElement>(
   })
 
   return { el, width, height, resize }
+}
+
+function getRadio(ratio: number | string | undefined): number {
+  if (typeof ratio === 'string') {
+    const [width, height] = ratio.split(':')
+    const parsedRadio = Number(width) / Number(height)
+
+    if (!Number.isNaN(parsedRadio))
+      return parsedRadio
+  }
+
+  return typeof ratio === 'number' ? ratio : 16 / 9
 }

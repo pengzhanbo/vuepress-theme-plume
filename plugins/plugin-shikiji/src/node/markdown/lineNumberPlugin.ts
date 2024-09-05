@@ -48,7 +48,7 @@ export function lineNumberPlugin(md: Markdown, { lineNumbers = true }: LineNumbe
       = Number(info.match(LINE_NUMBERS_START_REGEXP)?.[1] ?? 1) - 1
     const lineNumbersStyle = `style="counter-reset:line-number ${startNumbers}"`
 
-    const lineNumbersCode = [...Array(lines.length)]
+    const lineNumbersCode = [...Array.from({ length: lines.length })]
       .map(() => `<div class="line-number"></div>`)
       .join('')
 

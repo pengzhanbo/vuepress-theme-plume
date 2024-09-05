@@ -1,3 +1,17 @@
+# [1.0.0-rc.96](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.95...v1.0.0-rc.96) (2024-09-05)
+
+
+### Bug Fixes
+
+* **theme:** incorrect internal link ([15a2e4f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/15a2e4fc81d054708fd5e26f691ec120613dead5))
+
+
+### Performance Improvements
+
+* update deps to latest ([74f1e20](https://github.com/pengzhanbo/vuepress-theme-plume/commit/74f1e20d13d781649c1f1838753b1d28e2ff3a24))
+
+
+
 # [1.0.0-rc.95](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.94...v1.0.0-rc.95) (2024-09-05)
 
 

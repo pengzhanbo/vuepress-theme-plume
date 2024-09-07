@@ -49,18 +49,25 @@ export async function generate(mode: Mode, data: ResolvedData): Promise<void> {
   }
 
   // rewrite git files begin ==================================
-  if (data.git)
-    fileList.push(...await readFiles(getTemplate('git')))
-
-  if (mode === Mode.init) {
-    const gitignorePath = path.join(cwd, '.gitignore')
-    const docs = data.docsDir
-    if (fs.existsSync(gitignorePath)) {
-      const content = await fs.promises.readFile(gitignorePath, 'utf-8')
-      fileList.push({
-        filepath: '.gitignore',
-        content: `${content}\n${docs}/.vuepress/.cache\n${docs}/.vuepress/.temp\n${docs}/.vuepress/dist\n`,
-      })
+  if (data.git) {
+    const gitFiles = await readFiles(getTemplate('git'))
+    if (mode === Mode.init) {
+      const gitignorePath = path.join(cwd, '.gitignore')
+      const docs = data.docsDir
+      if (fs.existsSync(gitignorePath)) {
+        const content = await fs.promises.readFile(gitignorePath, 'utf-8')
+        fileList.push({
+          filepath: '.gitignore',
+          content: `${content}\n${docs}/.vuepress/.cache\n${docs}/.vuepress/.temp\n${docs}/.vuepress/dist\n`,
+        })
+        fileList.push(...gitFiles.filter(({ filepath }) => filepath !== '.gitignore'))
+      }
+      else {
+        fileList.push(...gitFiles)
+      }
+    }
+    else {
+      fileList.push(...gitFiles)
     }
   }
   // rewrite git files end ====================================

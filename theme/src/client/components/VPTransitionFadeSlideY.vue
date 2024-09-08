@@ -18,7 +18,7 @@ const enabledTransition = computed(() => {
     v-if="enabledTransition"
     name="fade-slide-y"
     mode="out-in"
-    @before-enter="onBeforeEnter"
+    @after-enter="onBeforeEnter"
     @before-leave="onBeforeLeave"
   >
     <slot />

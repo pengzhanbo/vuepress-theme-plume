@@ -47,8 +47,8 @@
     "mdast-util-to-hast": "^13.2.0",
     "nanoid": "^5.0.7",
     "shiki": "^1.16.2",
-    "twoslash": "^0.2.10",
-    "twoslash-vue": "^0.2.10"
+    "twoslash": "^0.2.11",
+    "twoslash-vue": "^0.2.11"
   },
   "publishConfig": {
     "access": "public"

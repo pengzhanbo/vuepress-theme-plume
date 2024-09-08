@@ -62,7 +62,7 @@ export default defineUserConfig({
 
 __options__ : `PlumeThemeOptions`
 
-[查看 options 详细说明](https://theme-plume.vuejs.press//config/basic/)
+[查看 options 详细说明](https://theme-plume.vuejs.press/config/basic/)
 
 ## 注意
 

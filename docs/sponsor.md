@@ -22,7 +22,7 @@ readingTime: false
 
 | :[bi:alipay]: AliPay                   | :[fa:wechat]: WeChat                      |
 | -------------------------------------- | ----------------------------------------- |
-| ![Alipay](https://static.pengzhanbo.cn/images/sponsor/ali_pay.jpg){width="150px"} | ![WeChat](https://static.pengzhanbo.cn/images/sponsor/wechat_pay.jpg){width="150px"} |
+| ![Alipay](https://static.pengzhanbo.cn/images/sponsor/ali_pay.jpg){width="300" height="300" style="width:150px"} | ![WeChat](https://static.pengzhanbo.cn/images/sponsor/wechat_pay.jpg){width="300" height="300" style="width:150px"} |
 
 ## 打赏记录
 
@@ -31,3 +31,5 @@ readingTime: false
 | **锋 | 2024-04-18 | 6.88   | 支持下作者，加油！ |
 | *杰  | 2024-05-25 | 6.00   | 请你喝杯茶，加油   |
 | **党 | 2024-08-22 | 8.80   | 感谢开源，加油     |
+
+1

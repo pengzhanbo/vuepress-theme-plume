@@ -33,7 +33,7 @@ export default defineConfig(() => {
       entry: ['./src/node/index.ts'],
       outDir: './lib/node',
       target: 'node18',
-      external: ['markdown-it'],
+      external: ['markdown-it', /^@?vuepress/],
     },
     // client
     ...config.map(({ dir, files }) => ({

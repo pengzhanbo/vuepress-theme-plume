@@ -11,7 +11,6 @@ permalink: /plugins/
 
 ## 插件
 
-- [@vuepress-plume/plugin-iconify](/plugins/plugin-iconify/)
 - [@vuepress-plume/plugin-shikiji](/plugins/plugin-shikiji/)
 - [@vuepress-plume/plugin-content-update](/plugins/plugin-content-update/)
 - [vuepress-plugin-netlify-functions](/plugins/plugin-netlify-functions/)

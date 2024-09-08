@@ -15,6 +15,7 @@ import { plotPlugin } from './features/plot.js'
 import { langReplPlugin } from './features/langRepl.js'
 import { prepareConfigFile } from './prepareConfigFile.js'
 import { fileTreePlugin } from './features/fileTree/index.js'
+import { imageSizePlugin } from './features/imageSize.js'
 
 export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): Plugin {
   return (app) => {
@@ -38,6 +39,8 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
       },
 
       extendsMarkdown: async (md: MarkdownIt, app) => {
+        imageSizePlugin(app, md)
+
         if (options.caniuse) {
           const caniuse = options.caniuse === true ? {} : options.caniuse
           // @[caniuse](feature_name)

@@ -32,11 +32,11 @@ config:
       -
         title: 开箱即用
         icon: 🚀
-        details: 支持零配置即可使用，也支持丰富的自定义配置
+        details: 支持零配置开箱即用，也支持丰富的自定义配置
       -
         title: 多语言
         icon: ⚖
-        details: 内置了 中文/英文支持，还可以自定义添加更多的语言支持
+        details: 内置 中文/英文支持，还可以自定义添加更多的语言支持
       -
         title: 双色主题
         icon: 👨‍💻
@@ -71,7 +71,7 @@ config:
         description: 支持 4 种评论系统，你可以自由选择符合你的需求的评论系统。
       -
         title: 搜索
-        description: 支持基于 minisearch 的本地搜索， 支持Algolia搜索。
+        description: 支持基于 minisearch 的本地搜索， 支持 Algolia 搜索。
       -
         title: 加密
         description: 支持全站加密、部分加密（加密目录、加密文章）。
@@ -80,7 +80,7 @@ config:
         description: 代码复制，CodePen演示，Replit演示，JSFiddle演示，CodeSandbox演示，代码组，行高亮，行聚焦，行警告，差异对比等。
       -
         title: 资源嵌入
-        description: 图表，视频，PDF
+        description: 图表：chart.js/ECharts/Mermaid/flowchart，视频：Bilibili/Youtube，PDF
   -
     type: text-image
     title: 博客
@@ -169,8 +169,6 @@ export default defineUserConfig({
 
 ### 贡献者
 
-[![Contributor pengzhanbo](https://img.shields.io/badge/Contributor-pengzhanbo-32A9C3?style=for-the-badge&labelColor=1B3C4A)](https://github.com/pengzhanbo/)
-
-[![Contributor huan_kong](https://img.shields.io/badge/Contributor-huan__kong-32A9C3?style=for-the-badge&labelColor=1B3C4A)](https://github.com/huankong233)
+<Contributors :contributors="['pengzhanbo', 'huankong233', 'northword', 'KrLite', 'shylock-wu', 'hrradev']" />
 
 </div>

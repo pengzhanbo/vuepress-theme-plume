@@ -1,3 +1,23 @@
+# [1.0.0-rc.97](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.96...v1.0.0-rc.97) (2024-09-08)
+
+
+### Bug Fixes
+
+* **theme:** incorrect scroll behavior when `route.hash` changed ([3d3b49d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3d3b49da57ffd627d07a09e06f6a700094ee77fe))
+
+
+### Features
+
+* **plugin-md-power:** add `imageSize` plugin ([1d09eb4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1d09eb4183e4293481b8690ee06d09ceaf27f30a))
+
+
+### Performance Improvements
+
+* **cli:** update templates ([eaa0b46](https://github.com/pengzhanbo/vuepress-theme-plume/commit/eaa0b466ac8031b645d8b30baf2d4b80911b98bc))
+* update deps to latest ([3313229](https://github.com/pengzhanbo/vuepress-theme-plume/commit/33132297e15297dd7459c2176bb46bdaae0bb917))
+
+
+
 # [1.0.0-rc.96](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.95...v1.0.0-rc.96) (2024-09-05)
 
 

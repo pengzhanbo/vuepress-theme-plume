@@ -35,6 +35,13 @@ jobs:
           # 选择要使用的 node 版本
           node-version: 20
 
+{{#if (equal packageManager "npm")}}
+      # 安装依赖
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm ci
+{{/if}}
+
 {{#if (equal packageManager "yarn")}}
       - name: Run install
         uses: borales/actions-yarn@v4

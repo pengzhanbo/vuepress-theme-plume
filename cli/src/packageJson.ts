@@ -8,6 +8,7 @@ export async function createPackageJson(
   mode: Mode,
   pkg: Record<string, any>,
   {
+    packageManager,
     docsDir,
     siteName,
     siteDescription,
@@ -20,11 +21,20 @@ export async function createPackageJson(
     pkg.type = 'module'
     pkg.version = '1.0.0'
     pkg.description = siteDescription
+
+    if (packageManager !== 'npm') {
+      const version = await getPackageManagerVersion(packageManager)
+      if (version) {
+        pkg.packageManager = `${packageManager}@${version}`
+      }
+    }
+
     const userInfo = await getUserInfo()
     if (userInfo) {
       pkg.author = userInfo.username + (userInfo.email ? ` <${userInfo.email}>` : '')
     }
     pkg.license = 'MIT'
+    pkg.engines = { node: '^18.20.0 || >=20.0.0' }
   }
 
   if (injectNpmScripts) {
@@ -72,6 +82,16 @@ async function getUserInfo() {
     const { stdout: username } = await execaCommand('git config --global user.name')
     const { stdout: email } = await execaCommand('git config --global user.email')
     return { username, email }
+  }
+  catch {
+    return null
+  }
+}
+
+async function getPackageManagerVersion(pkg: string) {
+  try {
+    const { stdout } = await execaCommand(`${pkg} -v`)
+    return stdout
   }
   catch {
     return null

@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.97",
   "private": true,
-  "packageManager": "pnpm@9.9.0",
+  "packageManager": "pnpm@9.10.0",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -40,8 +40,8 @@
   "devDependencies": {
     "@commitlint/cli": "^19.4.1",
     "@commitlint/config-conventional": "^19.4.1",
-    "@pengzhanbo/eslint-config-vue": "^1.15.0",
-    "@pengzhanbo/stylelint-config": "^1.15.0",
+    "@pengzhanbo/eslint-config-vue": "^1.16.0",
+    "@pengzhanbo/stylelint-config": "^1.16.0",
     "@types/lodash.merge": "^4.6.9",
     "@types/node": "20.12.10",
     "@types/webpack-env": "^1.18.5",
@@ -55,9 +55,9 @@
     "lint-staged": "^15.2.10",
     "rimraf": "^6.0.1",
     "stylelint": "^16.9.0",
-    "tsconfig-vuepress": "^5.0.0",
+    "tsconfig-vuepress": "^5.2.0",
     "tsup": "^8.2.4",
-    "typescript": "^5.5.4",
+    "typescript": "^5.6.2",
     "wait-on": "^8.0.0"
   },
   "lint-staged": {

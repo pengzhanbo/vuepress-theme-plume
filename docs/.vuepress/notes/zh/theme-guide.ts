@@ -16,6 +16,7 @@ export const themeGuide = defineNoteConfig({
         '编写文章',
         '国际化',
         '部署',
+        '构建优化',
       ],
     },
     {

@@ -76,7 +76,7 @@ permalink: /config/frontmatter/basic/
 
   主题会在文件创建时:
 
-  - 博客类型的文章，自动填充 `/article/` + `nanoid 生成的 6 位随机字符串` 作为 文章永久链接
+  - 博客类型的文章，自动填充 `/article/` + `nanoid 生成的 8 位随机字符串` 作为 文章永久链接
   - notes 目录下的文章，会根据 notes 的配置，自动填充  文章永久链接
 
 ### externalLinkIcon

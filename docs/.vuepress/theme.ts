@@ -17,6 +17,7 @@ export const theme: Theme = plumeTheme({
       flowchart: true,
     },
     markdownPower: {
+      imageSize: 'all',
       pdf: true,
       caniuse: true,
       plot: true,

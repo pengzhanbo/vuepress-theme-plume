@@ -169,6 +169,16 @@ export default defineUserConfig({
 
 ### 贡献者
 
-<Contributors :contributors="['pengzhanbo', 'huankong233', 'northword', 'KrLite', 'shylock-wu', 'hrradev']" />
+<Contributors
+  :contributors="[
+    'pengzhanbo',
+    'huankong233',
+    'northword',
+    'KrLite',
+    'shylock-wu',
+    'hrradev',
+    'TheCoderAlex'
+  ]"
+/>
 
 </div>

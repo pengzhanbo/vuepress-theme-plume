@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import VPButton from '@theme/VPButton.vue'
+import { computed, ref } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
-import { computed, ref } from 'vue'
-import VPButton from '@theme/VPButton.vue'
 import { useData, useHomeHeroTintPlate } from '../../composables/index.js'
 import type { PlumeThemeHomeHero } from '../../../shared/index.js'
 

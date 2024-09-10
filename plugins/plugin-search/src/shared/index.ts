@@ -1,5 +1,5 @@
-import type { LocaleConfig, Page } from 'vuepress/core'
 import type { Options as MiniSearchOptions } from 'minisearch'
+import type { LocaleConfig, Page } from 'vuepress/core'
 
 export interface SearchLocaleOptions {
   placeholder: string

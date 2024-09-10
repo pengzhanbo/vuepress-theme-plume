@@ -1,7 +1,7 @@
 import { getLocaleConfig } from '@vuepress/helper'
-import type { App } from 'vuepress'
 import type { DocsearchPluginOptions } from '@vuepress/plugin-docsearch'
 import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
+import type { App } from 'vuepress'
 import { DOCSEARCH_LOCALES, SEARCH_LOCALES } from '../locales/index.js'
 
 export function resolveSearchOptions(

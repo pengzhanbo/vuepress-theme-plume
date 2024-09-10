@@ -1,8 +1,8 @@
 import { entries, fromEntries, getLocaleConfig } from '@vuepress/helper'
 import type { App } from 'vuepress'
 import { LOCALE_OPTIONS } from '../locales/index.js'
-import type { PlumeThemeLocaleData, PlumeThemeLocaleOptions } from '../../shared/index.js'
 import { THEME_NAME } from '../utils/index.js'
+import type { PlumeThemeLocaleData, PlumeThemeLocaleOptions } from '../../shared/index.js'
 
 const FALLBACK_OPTIONS: PlumeThemeLocaleData = {
   appearance: true,

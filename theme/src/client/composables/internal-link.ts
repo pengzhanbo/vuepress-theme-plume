@@ -1,8 +1,8 @@
 import { computed } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
-import type { PresetLocale } from '../../shared/index.js'
 import { useData } from './data.js'
 import { getPresetLocaleData } from './preset-locales.js'
+import type { PresetLocale } from '../../shared/index.js'
 
 export interface InternalLink {
   text: string

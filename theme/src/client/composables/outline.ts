@@ -1,10 +1,10 @@
+import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import { inject, onMounted, onUnmounted, onUpdated, provide, ref } from 'vue'
 import type { InjectionKey, Ref } from 'vue'
-import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
-import type { ThemeOutline } from '../../shared/index.js'
 import { throttleAndDebounce } from '../utils/index.js'
 import { useAside } from './aside.js'
 import { useData } from './data.js'
+import type { ThemeOutline } from '../../shared/index.js'
 
 export interface Header {
   /**

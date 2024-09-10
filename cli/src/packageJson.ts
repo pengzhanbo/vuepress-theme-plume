@@ -1,8 +1,8 @@
-import { execaCommand } from 'execa'
 import { kebabCase } from '@pengzhanbo/utils'
+import { execaCommand } from 'execa'
+import { Mode } from './constants.js'
 import { getDependenciesVersion, readJsonFile, resolve } from './utils/index.js'
 import type { File, ResolvedData } from './types.js'
-import { Mode } from './constants.js'
 
 export async function createPackageJson(
   mode: Mode,

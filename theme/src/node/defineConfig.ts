@@ -1,9 +1,9 @@
 import type { NavItem, NoteItem, NotesOptions, ThemeConfig } from '../shared/index.js'
 
 export type {
-  NotesOptions,
   NoteItem,
   NoteItem as NotesItem,
+  NotesOptions,
 }
 
 /**

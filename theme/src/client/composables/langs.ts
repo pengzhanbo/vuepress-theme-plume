@@ -1,9 +1,9 @@
-import { resolveRoute, useRouteLocale, withBase } from 'vuepress/client'
 import { computed } from 'vue'
+import { resolveRoute, useRouteLocale, withBase } from 'vuepress/client'
 import { normalizeLink } from '../utils/index.js'
-import { useThemeData } from './theme-data.js'
 import { useData } from './data.js'
 import { useBlogPageData } from './page.js'
+import { useThemeData } from './theme-data.js'
 
 export function useLangs({
   removeCurrent = true,

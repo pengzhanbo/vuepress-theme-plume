@@ -3,13 +3,13 @@ import {
   getRootLangPath,
   isPlainObject,
 } from '@vuepress/helper'
-import type { App, LocaleConfig } from 'vuepress'
 import { ensureLeadingSlash, resolveLocalePath } from 'vuepress/shared'
+import type { App, LocaleConfig } from 'vuepress'
+import { copyCodeButtonLocales } from './copyCodeButtonLocales.js'
 import type {
   CopyCodeLocaleOptions,
   CopyCodeOptions,
 } from '../types.js'
-import { copyCodeButtonLocales } from './copyCodeButtonLocales.js'
 
 export function createCopyCodeButtonRender(app: App, options?: boolean | CopyCodeOptions): ((filePathRelative: string) => string) | null {
   if (options === false)

@@ -1,14 +1,14 @@
-import type { Page, Theme } from 'vuepress/core'
 import { sleep } from '@pengzhanbo/utils'
-import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
-import { getPlugins } from './plugins/index.js'
-import { extendsPageData, setupPage } from './setupPages.js'
-import { THEME_NAME, resolve, templates } from './utils/index.js'
+import type { Page, Theme } from 'vuepress/core'
+import { generateAutoFrontmatter, initAutoFrontmatter, watchAutoFrontmatter } from './autoFrontmatter/index.js'
 import { extendsBundlerOptions, resolveAlias, resolvePageHead, resolveProvideData, resolveThemeOptions, templateBuildRenderer } from './config/index.js'
 import { getThemeConfig, initConfigLoader, waitForConfigLoaded, watchConfigFile } from './loadConfig/index.js'
-import { generateAutoFrontmatter, initAutoFrontmatter, watchAutoFrontmatter } from './autoFrontmatter/index.js'
+import { getPlugins } from './plugins/index.js'
 import { prepareData, watchPrepare } from './prepare/index.js'
 import { prepareThemeData } from './prepare/prepareThemeData.js'
+import { extendsPageData, setupPage } from './setupPages.js'
+import { resolve, templates, THEME_NAME } from './utils/index.js'
+import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
 
 export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
   const { localeOptions, pluginOptions, hostname, configFile, cache } = resolveThemeOptions(options)

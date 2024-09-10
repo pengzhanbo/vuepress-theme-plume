@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { useWindowScroll } from '@vueuse/core'
-import { ref, watchPostEffect } from 'vue'
 import VPNavBarAppearance from '@theme/Nav/VPNavBarAppearance.vue'
 import VPNavBarExtra from '@theme/Nav/VPNavBarExtra.vue'
 import VPNavBarHamburger from '@theme/Nav/VPNavBarHamburger.vue'
@@ -9,6 +7,8 @@ import VPNavBarSearch from '@theme/Nav/VPNavBarSearch.vue'
 import VPNavBarSocialLinks from '@theme/Nav/VPNavBarSocialLinks.vue'
 import VPNavBarTitle from '@theme/Nav/VPNavBarTitle.vue'
 import VPNavBarTranslations from '@theme/Nav/VPNavBarTranslations.vue'
+import { useWindowScroll } from '@vueuse/core'
+import { ref, watchPostEffect } from 'vue'
 import { useData, useSidebar } from '../../composables/index.js'
 
 const props = defineProps<{

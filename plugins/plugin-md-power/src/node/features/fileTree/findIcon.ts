@@ -1,4 +1,4 @@
-import { FileIcons, definitions } from './icons.js'
+import { definitions, FileIcons } from './icons.js'
 
 export interface FileIcon {
   name: string

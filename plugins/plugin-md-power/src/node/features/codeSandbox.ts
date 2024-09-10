@@ -4,10 +4,10 @@
  * @[codesanbox title="xxx" layout="Editor+Preview" height="500px" navbar="false" console="false"](id#filepath)
  */
 import type { PluginWithOptions } from 'markdown-it'
-import { resolveAttrs } from '../utils/resolveAttrs.js'
-import { parseRect } from '../utils/parseRect.js'
-import type { CodeSandboxTokenMeta } from '../../shared/index.js'
 import { createRuleBlock } from '../utils/createRuleBlock.js'
+import { parseRect } from '../utils/parseRect.js'
+import { resolveAttrs } from '../utils/resolveAttrs.js'
+import type { CodeSandboxTokenMeta } from '../../shared/index.js'
 
 export const codeSandboxPlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<CodeSandboxTokenMeta>(md, {

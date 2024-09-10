@@ -1,12 +1,12 @@
-import type { App } from 'vue'
-import { h } from 'vue'
-import VPHomeBox from '@theme/Home/VPHomeBox.vue'
-import VPCard from '@theme/global/VPCard.vue'
-import VPLinkCard from '@theme/global/VPLinkCard.vue'
 import VPBadge from '@theme/global/VPBadge.vue'
+import VPCard from '@theme/global/VPCard.vue'
 import VPCardGrid from '@theme/global/VPCardGrid.vue'
 import VPImageCard from '@theme/global/VPImageCard.vue'
+import VPLinkCard from '@theme/global/VPLinkCard.vue'
+import VPHomeBox from '@theme/Home/VPHomeBox.vue'
 import VPIcon from '@theme/VPIcon.vue'
+import { h } from 'vue'
+import type { App } from 'vue'
 
 export function globalComponents(app: App) {
   app.component('Badge', VPBadge)

@@ -1,7 +1,7 @@
 import type { LocaleConfig } from 'vuepress/shared'
-import type { PlumeThemeLocaleData } from './options/locale.js'
-import type { PlumeThemeEncrypt } from './options/encrypt.js'
 import type { AutoFrontmatter } from './auto-frontmatter.js'
+import type { PlumeThemeEncrypt } from './options/encrypt.js'
+import type { PlumeThemeLocaleData } from './options/locale.js'
 
 export type ThemeConfig = PlumeThemeLocaleData & {
 

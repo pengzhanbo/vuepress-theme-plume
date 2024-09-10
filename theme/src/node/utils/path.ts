@@ -1,5 +1,5 @@
-import { getDirname, path } from 'vuepress/utils'
 import { ensureEndingSlash, ensureLeadingSlash, isLinkAbsolute, isLinkWithProtocol } from '@vuepress/helper'
+import { getDirname, path } from 'vuepress/utils'
 
 const __dirname = getDirname(import.meta.url)
 

@@ -33,8 +33,8 @@ import { Layout, NotFound } from 'vuepress-theme-plume/client'
 更多其他组件请查看 [源代码](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/theme/src/client/components)
 
 ```ts
-import VPLink from 'vuepress-theme-plume/components/VPLink.vue'
 import VPButton from 'vuepress-theme-plume/components/VPButton.vue'
+import VPLink from 'vuepress-theme-plume/components/VPLink.vue'
 ```
 
 ## 组合式 API

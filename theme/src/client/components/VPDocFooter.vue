@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
 import VPLink from '@theme/VPLink.vue'
+import { computed } from 'vue'
 import {
   useContributors,
   useData,

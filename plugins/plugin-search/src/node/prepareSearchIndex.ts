@@ -1,7 +1,7 @@
-import type { App, Page } from 'vuepress/core'
 import MiniSearch from 'minisearch'
 import pMap from 'p-map'
 import { colors, logger } from 'vuepress/utils'
+import type { App, Page } from 'vuepress/core'
 import type { SearchOptions, SearchPluginOptions } from '../shared/index.js'
 
 export interface SearchIndexOptions {

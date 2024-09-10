@@ -4,8 +4,8 @@ import {
   defineAsyncComponent,
   ref,
 } from 'vue'
-import type { SearchBoxLocales, SearchOptions } from '../../shared/index.js'
 import SearchButton from './SearchButton.vue'
+import type { SearchBoxLocales, SearchOptions } from '../../shared/index.js'
 
 defineProps<{
   locales: SearchBoxLocales

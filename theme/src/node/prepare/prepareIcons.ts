@@ -1,11 +1,11 @@
-import type { App, Page } from 'vuepress'
+import { getIconContentCSS, getIconData } from '@iconify/utils'
 import { isArray, isString, uniq } from '@pengzhanbo/utils'
-import { fs } from 'vuepress/utils'
 import { entries, isLinkAbsolute, isLinkHttp, isPlainObject } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
-import { getIconContentCSS, getIconData } from '@iconify/utils'
-import type { NavItem, PlumeThemeLocaleOptions, Sidebar } from '../../shared/index.js'
+import { fs } from 'vuepress/utils'
+import type { App, Page } from 'vuepress'
 import { interopDefault, logger, nanoid, resolveContent, writeTemp } from '../utils/index.js'
+import type { NavItem, PlumeThemeLocaleOptions, Sidebar } from '../../shared/index.js'
 
 interface IconData {
   className: string
@@ -79,7 +79,8 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
 
 function getIconsWithPage(page: Page): string[] {
   const list = page.contentRendered
-    .match(ICON_REGEXP)?.map(match => match.match(ICON_NAME_REGEXP)?.[1])
+    .match(ICON_REGEXP)
+    ?.map(match => match.match(ICON_NAME_REGEXP)?.[1])
     .filter(Boolean) as string[] || []
 
   if (page.frontmatter.icon && isString(page.frontmatter.icon)) {

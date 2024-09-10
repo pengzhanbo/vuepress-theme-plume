@@ -11,11 +11,11 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import { ensureEndingSlash, isLinkHttp } from 'vuepress/shared'
 import { withBase } from 'vuepress/client'
-import type { PDFEmbedType, PDFTokenMeta } from '../../shared/index.js'
+import { ensureEndingSlash, isLinkHttp } from 'vuepress/shared'
 import { pluginOptions } from '../options.js'
-import { checkIsMobile, checkIsSafari, checkIsiPad } from '../utils/is.js'
+import { checkIsiPad, checkIsMobile, checkIsSafari } from '../utils/is.js'
+import type { PDFEmbedType, PDFTokenMeta } from '../../shared/index.js'
 
 function queryStringify(options: PDFTokenMeta): string {
   const { page, noToolbar, zoom } = options
@@ -105,7 +105,7 @@ export function usePDF(
     // We're moving into the age of MIME-less browsers. They mostly all support PDF rendering without plugins.
     && (isModernBrowser
     // Modern versions of Firefox come bundled with PDFJS
-    || isFirefoxWithPDFJS)
+      || isFirefoxWithPDFJS)
 
   if (!url)
     return

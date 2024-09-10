@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { PlumeThemeHomeHeroTintPlate } from 'vuepress-theme-plume/client'
 import { computed, watch } from 'vue'
+import type { PlumeThemeHomeHeroTintPlate } from 'vuepress-theme-plume/client'
 import InputRange from './InputRange.vue'
 
 const min = 20

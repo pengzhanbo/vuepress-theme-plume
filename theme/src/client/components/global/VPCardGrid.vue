@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref, toValue, watch } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
+import { onMounted, ref, toValue, watch } from 'vue'
 
 const props = defineProps<{
   cols?: string | number | { sm?: number, md?: number, lg?: number }

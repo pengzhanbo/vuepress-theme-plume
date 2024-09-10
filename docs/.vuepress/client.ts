@@ -1,9 +1,9 @@
 import { type ClientConfig, defineClientConfig } from 'vuepress/client'
-import HeroTintPlateConfig from './themes/components/HeroTintPlateConfig.vue'
 import CanIUseConfig from './themes/components/CanIUseConfig.vue'
-import Demos from './themes/components/Demos.vue'
-import ThemeColors from './themes/components/ThemeColors.vue'
 import Contributors from './themes/components/Contributors.vue'
+import Demos from './themes/components/Demos.vue'
+import HeroTintPlateConfig from './themes/components/HeroTintPlateConfig.vue'
+import ThemeColors from './themes/components/ThemeColors.vue'
 import { setupThemeColors } from './themes/composables/theme-colors.js'
 
 export default defineClientConfig({

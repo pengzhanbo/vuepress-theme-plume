@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import VPImage from '@theme/VPImage.vue'
 import VPHomeBox from '@theme/Home/VPHomeBox.vue'
-import type { PlumeThemeHomeProfile } from '../../../shared/index.js'
+import VPImage from '@theme/VPImage.vue'
+import { computed } from 'vue'
 import { useData } from '../../composables/index.js'
+import type { PlumeThemeHomeProfile } from '../../../shared/index.js'
 
 const props = defineProps<PlumeThemeHomeProfile>()
 

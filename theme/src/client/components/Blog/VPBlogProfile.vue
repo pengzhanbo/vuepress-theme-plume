@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import VPSocialLinks from '@theme/VPSocialLinks.vue'
 import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
-import VPSocialLinks from '@theme/VPSocialLinks.vue'
 import { useData } from '../../composables/index.js'
 
 const { theme } = useData()

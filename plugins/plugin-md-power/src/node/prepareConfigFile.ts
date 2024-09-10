@@ -1,5 +1,5 @@
-import { getDirname, path } from 'vuepress/utils'
 import { ensureEndingSlash } from '@vuepress/helper'
+import { getDirname, path } from 'vuepress/utils'
 import type { App } from 'vuepress/core'
 import type { MarkdownPowerPluginOptions } from '../shared/index.js'
 

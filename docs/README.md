@@ -172,12 +172,12 @@ export default defineUserConfig({
 <Contributors
   :contributors="[
     'pengzhanbo',
-    'huankong233',
-    'northword',
+    { github: 'huankong233', name: 'huan_kong' },
+    { github: 'northword', name: 'Northword' },
     'KrLite',
     'shylock-wu',
     'hrradev',
-    'TheCoderAlex'
+    { github: 'TheCoderAlex', name: 'Tang Zifeng' },
   ]"
 />
 

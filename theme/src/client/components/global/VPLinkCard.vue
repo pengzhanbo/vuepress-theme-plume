@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import VPLink from '@theme/VPLink.vue'
 import VPIcon from '@theme/VPIcon.vue'
+import VPLink from '@theme/VPLink.vue'
 
 defineProps<{
   href: string

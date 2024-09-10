@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { inject, ref, watchPostEffect } from 'vue'
 import VPSwitch from '@theme/VPSwitch.vue'
+import { inject, ref, watchPostEffect } from 'vue'
 import { useData } from '../composables/index.js'
 
 const checked = ref(false)

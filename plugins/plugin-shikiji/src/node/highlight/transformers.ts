@@ -1,5 +1,3 @@
-import type { ShikiTransformer } from 'shiki'
-import { addClassToHast } from 'shiki'
 import {
   transformerCompactLineOptions,
   transformerNotationDiff,
@@ -10,9 +8,11 @@ import {
   transformerRemoveNotationEscape,
   transformerRenderWhitespace,
 } from '@shikijs/transformers'
-import type { WhitespacePosition } from '../utils/index.js'
-import { attrsToLines, resolveWhitespacePosition } from '../utils/index.js'
+import { addClassToHast } from 'shiki'
+import type { ShikiTransformer } from 'shiki'
 import { defaultHoverInfoProcessor, transformerTwoslash } from '../twoslash/rendererTransformer.js'
+import { attrsToLines, resolveWhitespacePosition } from '../utils/index.js'
+import type { WhitespacePosition } from '../utils/index.js'
 
 const decorationsRE = /^\/\/ @decorations:(.*)\n/
 

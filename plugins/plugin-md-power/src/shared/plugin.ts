@@ -1,6 +1,6 @@
 import type { CanIUseOptions } from './caniuse.js'
-import type { PDFOptions } from './pdf.js'
 import type { IconsOptions } from './icons.js'
+import type { PDFOptions } from './pdf.js'
 import type { PlotOptions } from './plot.js'
 import type { ReplOptions } from './repl.js'
 

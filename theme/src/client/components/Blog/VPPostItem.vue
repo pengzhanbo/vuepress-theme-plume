@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
 import VPLink from '@theme/VPLink.vue'
-import type { PlumeThemeBlogPostItem } from '../../../shared/index.js'
+import { computed } from 'vue'
 import { useInternalLink, useTagColors } from '../../composables/index.js'
+import type { PlumeThemeBlogPostItem } from '../../../shared/index.js'
 
 const props = defineProps<{
   post: PlumeThemeBlogPostItem

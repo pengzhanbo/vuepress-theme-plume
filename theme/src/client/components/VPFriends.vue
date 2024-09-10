@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
-import VPLink from '@theme/VPLink.vue'
-import VPFriendsItem from '@theme/VPFriendsItem.vue'
 import VPFriendsGroup from '@theme/VPFriendsGroup.vue'
+import VPFriendsItem from '@theme/VPFriendsItem.vue'
+import VPLink from '@theme/VPLink.vue'
+import { computed } from 'vue'
 import { useData, useEditLink } from '../composables/index.js'
 
 const editLink = useEditLink()

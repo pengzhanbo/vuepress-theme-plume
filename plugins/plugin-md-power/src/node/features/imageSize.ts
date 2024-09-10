@@ -1,12 +1,12 @@
-import { URL } from 'node:url'
-import http from 'node:https'
 import { Buffer } from 'node:buffer'
-import type { App } from 'vuepress'
-import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
+import http from 'node:https'
+import { URL } from 'node:url'
 import { isLinkExternal } from '@vuepress/helper'
+import imageSize from 'image-size'
 import { fs, path } from 'vuepress/utils'
 import type { RenderRule } from 'markdown-it/lib/renderer.mjs'
-import imageSize from 'image-size'
+import type { App } from 'vuepress'
+import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 
 interface ImgSize {
@@ -151,7 +151,7 @@ function resolveImageUrl(src: string, env: MarkdownEnv, app: App): string {
   if (env.filePath && (src[0] === '.' || src[0] === '/'))
     return path.resolve(env.filePath, src)
 
-  return ''
+  return path.resolve(src)
 }
 
 export async function scanRemoteImageSize(

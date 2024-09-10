@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import VPFooter from '@theme/VPFooter.vue'
 import VPEncryptForm from '@theme/VPEncryptForm.vue'
+import VPFooter from '@theme/VPFooter.vue'
+import { computed } from 'vue'
 import { useData } from '../composables/index.js'
 
 const { theme, site } = useData()

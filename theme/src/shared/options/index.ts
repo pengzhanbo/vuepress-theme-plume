@@ -1,8 +1,8 @@
 import type { LocaleConfig } from 'vuepress/shared'
 import type { AutoFrontmatter } from '../auto-frontmatter.js'
+import type { PlumeThemeEncrypt } from './encrypt.js'
 import type { PlumeThemeLocaleData } from './locale.js'
 import type { PlumeThemePluginOptions } from './plugins.js'
-import type { PlumeThemeEncrypt } from './encrypt.js'
 
 export interface PlumeThemeOptions extends PlumeThemeLocaleOptions {
   /**
@@ -53,6 +53,6 @@ export type PlumeThemeData = PlumeThemeLocaleData & {
   locales?: LocaleConfig<Omit<PlumeThemeLocaleData, 'blog' | 'article'>>
 }
 
+export * from './encrypt.js'
 export * from './locale.js'
 export * from './plugins.js'
-export * from './encrypt.js'

@@ -1,5 +1,5 @@
-import type { PlumeThemeOptions } from '../../shared/index.js'
 import { logger } from '../utils/index.js'
+import type { PlumeThemeOptions } from '../../shared/index.js'
 
 export function resolveThemeOptions({
   themePlugins,

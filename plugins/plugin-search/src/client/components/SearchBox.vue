@@ -1,18 +1,5 @@
 <script setup lang="ts">
 import {
-  type Ref,
-  computed,
-  markRaw,
-  nextTick,
-  onBeforeUnmount,
-  onMounted,
-  ref,
-  shallowRef,
-  toRef,
-  watch,
-} from 'vue'
-import { useRouteLocale, useRouter } from 'vuepress/client'
-import {
   computedAsync,
   debouncedWatch,
   onKeyStroke,
@@ -20,15 +7,28 @@ import {
   useScrollLock,
   useSessionStorage,
 } from '@vueuse/core'
-import Mark from 'mark.js/src/vanilla.js'
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
+import Mark from 'mark.js/src/vanilla.js'
 import MiniSearch, { type SearchResult } from 'minisearch'
+import {
+  computed,
+  markRaw,
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  type Ref,
+  ref,
+  shallowRef,
+  toRef,
+  watch,
+} from 'vue'
+import { useRouteLocale, useRouter } from 'vuepress/client'
 import { useLocale, useSearchIndex } from '../composables/index.js'
-import type { SearchBoxLocales, SearchOptions } from '../../shared/index.js'
 import { LRUCache } from '../utils/index.js'
-import SearchIcon from './icons/SearchIcon.vue'
-import ClearIcon from './icons/ClearIcon.vue'
 import BackIcon from './icons/BackIcon.vue'
+import ClearIcon from './icons/ClearIcon.vue'
+import SearchIcon from './icons/SearchIcon.vue'
+import type { SearchBoxLocales, SearchOptions } from '../../shared/index.js'
 
 const props = defineProps<{
   locales: SearchBoxLocales

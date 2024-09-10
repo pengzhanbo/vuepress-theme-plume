@@ -1,4 +1,4 @@
-import { type Options, defineConfig } from 'tsup'
+import { defineConfig, type Options } from 'tsup'
 
 const clientExternal: (string | RegExp)[] = [
   /.*\.vue$/,

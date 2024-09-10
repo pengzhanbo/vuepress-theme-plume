@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { computed, provide, watchEffect } from 'vue'
 import VPNavbar from '@theme/Nav/VPNavBar.vue'
 import VPNavScreen from '@theme/Nav/VPNavScreen.vue'
+import { computed, provide, watchEffect } from 'vue'
 import { useData, useNav } from '../../composables/index.js'
 import { inBrowser } from '../../utils/index.js'
 

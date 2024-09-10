@@ -49,8 +49,8 @@ cupiditate sequi.
 
 @tab TS
 ```ts
-import MarkdownIt from 'markdown-it'
 import { include } from '@mdit/plugin-include'
+import MarkdownIt from 'markdown-it'
 
 // #region snippet
 const mdIt = MarkdownIt().use(include, {
@@ -66,8 +66,8 @@ mdIt.render('<!-- @include: ./path/to/include/file.md -->', {
 
 @tab JS
 ```js
-const MarkdownIt = require('markdown-it')
 const { include } = require('@mdit/plugin-include')
+const MarkdownIt = require('markdown-it')
 
 // #region snippet
 const mdIt = MarkdownIt().use(include, {

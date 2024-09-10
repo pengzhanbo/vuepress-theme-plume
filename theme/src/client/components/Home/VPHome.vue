@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import type { Component } from 'vue'
-import { computed, h, nextTick, onUnmounted, resolveComponent, watch } from 'vue'
-import VPHomeBanner from '@theme/Home/VPHomeBanner.vue'
-import VPHomeHero from '@theme/Home/VPHomeHero.vue'
-import VPHomeFeatures from '@theme/Home/VPHomeFeatures.vue'
-import VPHomeTextImage from '@theme/Home/VPHomeTextImage.vue'
-import VPHomeProfile from '@theme/Home/VPHomeProfile.vue'
-import VPHomeCustom from '@theme/Home/VPHomeCustom.vue'
 import VPBlog from '@theme/Blog/VPBlog.vue'
+import VPHomeBanner from '@theme/Home/VPHomeBanner.vue'
+import VPHomeCustom from '@theme/Home/VPHomeCustom.vue'
+import VPHomeFeatures from '@theme/Home/VPHomeFeatures.vue'
+import VPHomeHero from '@theme/Home/VPHomeHero.vue'
+import VPHomeProfile from '@theme/Home/VPHomeProfile.vue'
+import VPHomeTextImage from '@theme/Home/VPHomeTextImage.vue'
+import { computed, h, nextTick, onUnmounted, resolveComponent, watch } from 'vue'
+import type { Component } from 'vue'
 import { useData } from '../../composables/index.js'
 
 const slots = defineSlots<{

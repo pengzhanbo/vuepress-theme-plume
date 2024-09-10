@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { useRoute } from 'vuepress/client'
-import { watch } from 'vue'
-import VPBackdrop from '@theme/VPBackdrop.vue'
-import VPContent from '@theme/VPContent.vue'
-import VPLocalNav from '@theme/VPLocalNav.vue'
 import VPNav from '@theme/Nav/VPNav.vue'
+import VPBackdrop from '@theme/VPBackdrop.vue'
+import VPBackToTop from '@theme/VPBackToTop.vue'
+import VPContent from '@theme/VPContent.vue'
+import VPEncryptGlobal from '@theme/VPEncryptGlobal.vue'
+import VPFooter from '@theme/VPFooter.vue'
+import VPLocalNav from '@theme/VPLocalNav.vue'
 import VPSidebar from '@theme/VPSidebar.vue'
 import VPSkipLink from '@theme/VPSkipLink.vue'
-import VPFooter from '@theme/VPFooter.vue'
-import VPBackToTop from '@theme/VPBackToTop.vue'
-import VPEncryptGlobal from '@theme/VPEncryptGlobal.vue'
+import { watch } from 'vue'
+import { useRoute } from 'vuepress/client'
 import { useCloseSidebarOnEscape, useData, useEncrypt, useSidebar } from '../composables/index.js'
 
 const {

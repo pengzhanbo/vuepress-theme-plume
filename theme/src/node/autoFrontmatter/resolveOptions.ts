@@ -1,15 +1,9 @@
-import { path } from 'vuepress/utils'
-import { removeLeadingSlash, resolveLocalePath } from 'vuepress/shared'
+import { uniq } from '@pengzhanbo/utils'
 import { ensureLeadingSlash } from '@vuepress/helper'
 import { format } from 'date-fns'
-import { uniq } from '@pengzhanbo/utils'
-import type {
-  AutoFrontmatter,
-  AutoFrontmatterArray,
-  AutoFrontmatterObject,
-  PlumeThemeLocaleOptions,
-  SidebarItem,
-} from '../../shared/index.js'
+import { removeLeadingSlash, resolveLocalePath } from 'vuepress/shared'
+import { path } from 'vuepress/utils'
+import { resolveNotesOptions } from '../config/index.js'
 import {
   getCurrentDirname,
   nanoid,
@@ -17,7 +11,13 @@ import {
   pathJoin,
   withBase,
 } from '../utils/index.js'
-import { resolveNotesOptions } from '../config/index.js'
+import type {
+  AutoFrontmatter,
+  AutoFrontmatterArray,
+  AutoFrontmatterObject,
+  PlumeThemeLocaleOptions,
+  SidebarItem,
+} from '../../shared/index.js'
 
 export function resolveOptions(
   localeOptions: PlumeThemeLocaleOptions,

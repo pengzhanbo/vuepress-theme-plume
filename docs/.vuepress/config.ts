@@ -1,7 +1,7 @@
 import * as path from 'node:path'
-import { type UserConfig, defineUserConfig } from 'vuepress'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { addViteOptimizeDepsInclude, addViteSsrExternal } from '@vuepress/helper'
+import { defineUserConfig, type UserConfig } from 'vuepress'
 import { peerDependencies } from '../package.json'
 import { theme } from './theme.js'
 

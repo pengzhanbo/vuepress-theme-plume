@@ -1,5 +1,5 @@
-import { removeLeadingSlash } from 'vuepress/shared'
 import Token from 'markdown-it/lib/token.mjs'
+import { removeLeadingSlash } from 'vuepress/shared'
 
 interface FileTreeNode {
   filename: string

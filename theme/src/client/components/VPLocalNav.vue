@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import VPLocalNavOutlineDropdown from '@theme/VPLocalNavOutlineDropdown.vue'
 import { useWindowScroll } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
-import VPLocalNavOutlineDropdown from '@theme/VPLocalNavOutlineDropdown.vue'
 import { useBlogPageData, useData, useHeaders, useSidebar } from '../composables/index.js'
 
 const props = defineProps<{

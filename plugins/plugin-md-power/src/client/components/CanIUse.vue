@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, getCurrentInstance, ref } from 'vue'
 import { useEventListener } from '@vueuse/core'
+import { computed, getCurrentInstance, ref } from 'vue'
 
 interface MessageData {
   type: string

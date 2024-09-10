@@ -1,2 +1,2 @@
-export * from './getPlugins.js'
 export * from './containerPlugins.js'
+export * from './getPlugins.js'

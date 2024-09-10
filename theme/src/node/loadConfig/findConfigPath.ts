@@ -1,8 +1,8 @@
 import fs, { constants, promises as fsp } from 'node:fs'
 import { resolve } from 'node:path'
 import process from 'node:process'
-import type { App } from 'vuepress'
 import { colors } from 'vuepress/utils'
+import type { App } from 'vuepress'
 import { logger } from '../utils/index.js'
 
 const CONFIG_FILE_NAME = 'plume.config'

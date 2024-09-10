@@ -1,2 +1,2 @@
-export * from './searchIndex.js'
 export * from './locale.js'
+export * from './searchIndex.js'

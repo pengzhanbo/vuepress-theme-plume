@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import VPPostList from '@theme/Blog/VPPostList.vue'
 import VPBlogArchives from '@theme/Blog/VPBlogArchives.vue'
 import VPBlogAside from '@theme/Blog/VPBlogAside.vue'
-import VPBlogExtract from '@theme/Blog/VPBlogExtract.vue'
-import VPBlogTags from '@theme/Blog/VPBlogTags.vue'
 import VPBlogCategories from '@theme/Blog/VPBlogCategories.vue'
+import VPBlogExtract from '@theme/Blog/VPBlogExtract.vue'
 import VPBlogNav from '@theme/Blog/VPBlogNav.vue'
+import VPBlogTags from '@theme/Blog/VPBlogTags.vue'
+import VPPostList from '@theme/Blog/VPPostList.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { useData } from '../../composables/index.js'
 

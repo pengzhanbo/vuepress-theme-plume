@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 import VPIcon from '@theme/VPIcon.vue'
 import VPMenu from '@theme/VPMenu.vue'
+import { ref } from 'vue'
 import { useFlyout } from '../composables/index.js'
 
 defineProps<{

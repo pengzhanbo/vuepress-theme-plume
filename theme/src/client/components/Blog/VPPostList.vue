@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
-import VPTransitionDrop from '@theme/VPTransitionDrop.vue'
-import VPPostItem from '@theme/Blog/VPPostItem.vue'
 import VPPagination from '@theme/Blog/VPPagination.vue'
+import VPPostItem from '@theme/Blog/VPPostItem.vue'
+import VPTransitionDrop from '@theme/VPTransitionDrop.vue'
+import { computed } from 'vue'
 import { usePostListControl } from '../../composables/index.js'
 
 const props = defineProps<{

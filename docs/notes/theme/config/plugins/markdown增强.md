@@ -14,8 +14,8 @@ permalink: /config/plugins/markdown-enhance/
 默认配置：
 
 ```ts
-import { plumeTheme } from 'vuepress-theme-plume'
 import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({

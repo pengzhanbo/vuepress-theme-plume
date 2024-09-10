@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useRoute } from 'vuepress/client'
 import VPLink from '@theme/VPLink.vue'
+import { useRoute } from 'vuepress/client'
 import { useBlogExtract } from '../../composables/index.js'
 
 const props = defineProps<{

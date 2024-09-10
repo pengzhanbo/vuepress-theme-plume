@@ -1,7 +1,7 @@
 import { Buffer } from 'node:buffer'
 import http from 'node:https'
 import { URL } from 'node:url'
-import { isLinkExternal } from '@vuepress/helper'
+import { isLinkExternal, isLinkHttp } from '@vuepress/helper'
 import imageSize from 'image-size'
 import { fs, path } from 'vuepress/utils'
 import type { RenderRule } from 'markdown-it/lib/renderer.mjs'
@@ -25,6 +25,8 @@ const BADGE_LIST = [
   'https://vercel.com/button',
 ]
 
+const cache = new Map<string, ImgSize>()
+
 export async function imageSizePlugin(
   app: App,
   md: Markdown,
@@ -33,11 +35,9 @@ export async function imageSizePlugin(
   if (!app.env.isBuild || !type)
     return
 
-  const cache = new Map<string, ImgSize>()
-
   if (type === 'all') {
     try {
-      await scanRemoteImageSize(app, cache)
+      await scanRemoteImageSize(app)
     }
     catch {}
   }
@@ -102,7 +102,7 @@ export async function imageSizePlugin(
     if (width && height)
       return false
 
-    const isExternal = isLinkExternal(src)
+    const isExternal = isLinkExternal(src, env.base)
     const filepath = isExternal ? src : resolveImageUrl(src, env, app)
 
     if (isExternal) {
@@ -154,10 +154,7 @@ function resolveImageUrl(src: string, env: MarkdownEnv, app: App): string {
   return path.resolve(src)
 }
 
-export async function scanRemoteImageSize(
-  app: App,
-  cache: Map<string, ImgSize>,
-) {
+export async function scanRemoteImageSize(app: App) {
   if (!app.env.isBuild)
     return
   const cwd = app.dir.source()
@@ -188,7 +185,7 @@ export async function scanRemoteImageSize(
   }
 
   function addList(src: string) {
-    if (src && isLinkExternal(src)
+    if (src && isLinkHttp(src)
       && !imgList.includes(src)
       && !BADGE_LIST.some(badge => src.startsWith(badge))
     ) {
@@ -225,4 +222,23 @@ function fetchImageSize(src: string): Promise<ImgSize> {
       resolve({ width: width!, height: height! })
     }).on('error', () => resolve({ width: 0, height: 0 }))
   })
+}
+
+export async function resolveImageSize(app: App, url: string, remote = false): Promise<ImgSize> {
+  if (cache.has(url))
+    return cache.get(url)!
+
+  if (isLinkHttp(url) && remote) {
+    return await fetchImageSize(url)
+  }
+
+  if (url[0] === '/') {
+    const filepath = app.dir.public(url.slice(1))
+    if (fs.existsSync(filepath)) {
+      const { width, height } = imageSize(filepath)
+      return { width: width!, height: height! }
+    }
+  }
+
+  return { width: 0, height: 0 }
 }

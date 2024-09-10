@@ -39,7 +39,7 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
       },
 
       extendsMarkdown: async (md: MarkdownIt, app) => {
-        imageSizePlugin(app, md)
+        await imageSizePlugin(app, md, options.imageSize)
 
         if (options.caniuse) {
           const caniuse = options.caniuse === true ? {} : options.caniuse

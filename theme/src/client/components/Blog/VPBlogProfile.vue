@@ -4,9 +4,12 @@ import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { useData } from '../../composables/index.js'
+import type { PlumeThemeProfile } from '../../../shared/index.js'
 
 const { theme } = useData()
-const profile = computed(() => theme.value.profile)
+const profile = computed(() =>
+  theme.value.profile as PlumeThemeProfile & { originalWidth?: number, originalHeight?: number },
+)
 const imageUrl = computed(() => {
   const url = profile.value?.avatar ?? profile.value?.url
   if (!url)
@@ -20,7 +23,7 @@ const imageUrl = computed(() => {
 <template>
   <div v-if="profile" class="vp-blog-profile">
     <p v-if="imageUrl" :class="{ circle: !!profile.circle }">
-      <img :src="imageUrl" :alt="profile.name">
+      <img :src="imageUrl" :alt="profile.name" :width="profile.originalWidth" :height="profile.originalHeight">
     </p>
     <div class="profile-info">
       <h3>{{ profile.name }}</h3>

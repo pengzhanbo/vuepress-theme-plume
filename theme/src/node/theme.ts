@@ -63,13 +63,13 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
 
       onPrepared: async (app) => {
         const { localeOptions } = getThemeConfig()
-        await prepareThemeData(app, localeOptions)
+        await prepareThemeData(app, localeOptions, pluginOptions)
         await prepareData(app)
       },
 
       onWatched: (app, watchers) => {
         watchConfigFile(app, watchers, async ({ localeOptions }) => {
-          await prepareThemeData(app, localeOptions)
+          await prepareThemeData(app, localeOptions, pluginOptions)
           await prepareData(app)
         })
         watchAutoFrontmatter(app, watchers)

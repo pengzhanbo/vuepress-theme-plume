@@ -23,6 +23,7 @@ const FALLBACK_OPTIONS: PlumeThemeLocaleData = {
   navbarSocialInclude: ['github', 'twitter', 'discord', 'facebook'],
   aside: true,
   outline: [2, 3],
+  externalLinkIcon: true,
 
   // page meta
   editLink: true,

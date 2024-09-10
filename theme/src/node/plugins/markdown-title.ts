@@ -21,8 +21,10 @@ export function markdownTitlePlugin(): Plugin {
         })
         source = `${matter}\n${content}`
         const result = render(source, env)
-        if (title)
-          env.title = title
+        if (title) {
+          env.frontmatter ??= {}
+          env.frontmatter.title ??= title
+        }
         return result
       }
     },

@@ -55,13 +55,13 @@ const { hasBlogExtract, tags, archives, categories } = useBlogExtract()
 
 .vp-blog-nav.local {
   display: none;
-  padding-top: 2rem;
-  margin-left: 20px;
+  margin-bottom: 24px;
 }
 
 @media (min-width: 768px) {
   .vp-blog-nav.local {
     display: flex;
+    gap: 24px;
   }
 }
 
@@ -100,8 +100,7 @@ const { hasBlogExtract, tags, archives, categories } = useBlogExtract()
 
 .vp-blog-nav.local .nav-link {
   flex: 1;
-  max-width: 200px;
-  margin-right: 20px;
+  max-width: 50%;
   margin-bottom: 0;
 }
 

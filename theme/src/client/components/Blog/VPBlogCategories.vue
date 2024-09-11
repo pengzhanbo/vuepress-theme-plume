@@ -28,15 +28,16 @@ const { categories } = useBlogCategory()
 <style scoped>
 .vp-blog-categories {
   flex: 1;
-  padding: 32px 0;
-  margin: 0 auto;
+  padding: 16px;
+  margin: 0 -16px 32px;
+  background-color: var(--vp-c-bg);
   transition: background-color var(--t-color), box-shadow var(--t-color);
 }
 
 @media (min-width: 768px) {
   .vp-blog-categories {
-    padding: 20px 0;
-    margin: 32px auto 32px 20px;
+    padding: 20px 24px;
+    margin: 0 0 32px;
     background-color: var(--vp-c-bg);
     border-radius: 8px;
     box-shadow: var(--vp-shadow-1);
@@ -50,11 +51,13 @@ const { categories } = useBlogCategory()
 .categories-title {
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 16px 12px;
+  margin: 0 -16px;
   font-size: 20px;
   font-weight: 700;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  border-bottom: solid 1px var(--vp-c-divider);
+  transition: color var(--t-color), border-color var(--t-color);
 }
 
 .categories-title .icon {
@@ -63,8 +66,8 @@ const { categories } = useBlogCategory()
 
 @media (min-width: 768px) {
   .categories-title {
-    padding-bottom: 20px;
-    margin-top: 0;
+    padding: 0 24px 12px;
+    margin: 0 -24px;
     border-bottom: solid 1px var(--vp-c-divider);
     transition: border-bottom var(--t-color);
   }
@@ -77,6 +80,6 @@ const { categories } = useBlogCategory()
 }
 
 .vp-blog-categories .content {
-  padding: 20px 20px 0;
+  padding: 20px 0 0;
 }
 </style>

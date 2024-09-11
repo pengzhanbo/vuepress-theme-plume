@@ -28,7 +28,6 @@ const { theme } = useData()
 @media (min-width: 768px) {
   .vp-blog-aside {
     display: block;
-    margin: 2rem 1rem 1rem 1.5rem;
   }
 }
 </style>

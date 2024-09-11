@@ -83,8 +83,13 @@ const createTime = computed(() =>
 
 <style scoped>
 .vp-blog-post-item {
-  padding-top: 1rem;
-  margin: 0 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  margin: 0 -16px;
+  background-color: var(--vp-c-bg);
+  transition: background-color var(--t-color);
 }
 
 .vp-blog-post-item:last-of-type {
@@ -118,7 +123,6 @@ const createTime = computed(() =>
 .vp-blog-post-item h3 {
   display: flex;
   align-items: center;
-  margin-bottom: 0.75rem;
   font-size: 18px;
   font-weight: 600;
   color: var(--vp-c-text-1);
@@ -133,11 +137,14 @@ const createTime = computed(() =>
   color: var(--vp-c-text-2);
 }
 
+.vp-blog-post-item .excerpt {
+  margin-top: 12px;
+}
+
 @media (min-width: 768px) {
   .vp-blog-post-item {
     padding: 24px 20px;
-    margin: 0 0 24px 20px;
-    background-color: var(--vp-c-bg);
+    margin: 0;
     border-radius: 8px;
     box-shadow: var(--vp-shadow-1);
     transition: var(--t-color);
@@ -152,16 +159,6 @@ const createTime = computed(() =>
   .vp-blog-post-item .post-meta {
     margin-bottom: 0;
   }
-
-  .vp-blog-post-item .excerpt {
-    margin-top: 24px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .vp-blog-post-item {
-    margin: 0 0 24px;
-  }
 }
 
 .post-meta {
@@ -169,7 +166,6 @@ const createTime = computed(() =>
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  margin-bottom: 0.5rem;
   font-size: 14px;
   font-weight: 400;
   color: var(--vp-c-text-2);

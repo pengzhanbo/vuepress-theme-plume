@@ -48,9 +48,17 @@ const {
 
 <style scoped>
 .vp-blog-post-list {
+  display: flex;
   flex: 1;
-  padding-top: 32px;
-  padding-bottom: 36px;
+  flex-direction: column;
+  gap: 16px;
   margin: 0 auto;
+}
+
+@media (min-width: 419px) {
+  .vp-blog-post-list {
+    gap: 24px;
+    padding-bottom: 24px;
+  }
 }
 </style>

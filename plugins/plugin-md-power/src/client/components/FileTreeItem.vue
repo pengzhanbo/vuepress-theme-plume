@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 const props = defineProps<{
   type: 'file' | 'folder'
@@ -10,13 +10,22 @@ const props = defineProps<{
 const active = ref(!!props.expanded)
 const el = ref<HTMLElement>()
 
+function toggle() {
+  active.value = !active.value
+}
+
 onMounted(() => {
   if (!el.value || props.type !== 'folder')
     return
 
-  el.value.querySelector('.tree-node.folder')?.addEventListener('click', () => {
-    active.value = !active.value
-  })
+  el.value.querySelector('.tree-node.folder')?.addEventListener('click', toggle)
+})
+
+onUnmounted(() => {
+  if (!el.value || props.type !== 'folder')
+    return
+
+  el.value.querySelector('.tree-node.folder')?.removeEventListener('click', toggle)
 })
 </script>
 
@@ -43,6 +52,15 @@ onMounted(() => {
   border: solid 1px var(--vp-c-divider);
   border-radius: 8px;
   transition: border var(--t-color), background-color var(--t-color);
+}
+
+.vp-file-tree .vp-file-tree-title {
+  padding-left: 16px;
+  margin: -16px -16px 0;
+  font-weight: bold;
+  color: var(--vp-c-text-1);
+  border-bottom: solid 1px var(--vp-c-divider);
+  transition: color var(--t-color), border-color var(--t-color);
 }
 
 .vp-file-tree ul {

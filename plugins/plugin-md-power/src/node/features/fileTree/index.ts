@@ -46,7 +46,10 @@ export async function fileTreePlugin(app: App, md: Markdown) {
           token.tag = componentName
         }
       }
-      return '<div class="vp-file-tree">'
+      const info = tokens[idx].info.trim()
+
+      const title = info.slice(type.length).trim()
+      return `<div class="vp-file-tree">${title ? `<p class="vp-file-tree-title">${title}</p>` : ''}`
     }
     else {
       return '</div>'

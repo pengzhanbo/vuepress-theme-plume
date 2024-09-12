@@ -1,3 +1,23 @@
+# [1.0.0-rc.98](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.97...v1.0.0-rc.98) (2024-09-12)
+
+
+### Features
+
+* **cli:** add `packageManager` to `packageJson` template ([2ac70eb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2ac70ebdd13ce180639dc866472f1d792b50bbbc))
+* **plugin-md-power:** add support remote image in `imageSize` ([be47414](https://github.com/pengzhanbo/vuepress-theme-plume/commit/be47414c16ba2bec6a9905734587d7a33516fe85))
+* **theme:** add support `<Swiper>` ([272b921](https://github.com/pengzhanbo/vuepress-theme-plume/commit/272b921168315c77cc6426bf2fd2c4e9c2c57fb0))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** add support `file-tree` title ([cd6edc8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cd6edc89a57202c73b45b490953185ae8b39af22))
+* **plugin-md-power:** optimize `imageSize` ([3760b35](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3760b359e870152467f741827859388110c2f061))
+* **theme:** default page title ([ab7d368](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ab7d368485e0a3381bc50eb232ad262adb45d58b))
+* **theme:** optimize blog layout ([bde059a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bde059ac3ad338d0207803564e6b8a35041febf7))
+* **theme:** optimize profile avatar ([3a78789](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3a787897ab925d4e1c2b20ec84f62ae3a6babcdf))
+
+
+
 # [1.0.0-rc.97](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.96...v1.0.0-rc.97) (2024-09-08)
 
 

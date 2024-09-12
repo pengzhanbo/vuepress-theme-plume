@@ -63,6 +63,7 @@
   },
   "peerDependencies": {
     "@iconify/json": "^2",
+    "swiper": "^11.0.0",
     "vuepress": "2.0.0-rc.15"
   },
   "peerDependenciesMeta": {

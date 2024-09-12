@@ -65,3 +65,13 @@ declare module '@internal/iconify' {
     icons,
   }
 }
+
+declare module 'swiper/css' {
+  const res: any
+  export default res
+}
+
+declare module 'swiper/css/*' {
+  const res: any
+  export default res
+}

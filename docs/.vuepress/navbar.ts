@@ -16,13 +16,13 @@ export const zhNavbar = [
     link: '/notes/theme/config/配置说明.md',
     activeMatch: '^/config/',
   },
-  {
-    text: '插件',
-    icon: 'clarity:plugin-line',
-    // link: '/plugins/',
-    link: '/notes/plugins/README.md',
-    activeMatch: '^/plugins/',
-  },
+  // {
+  //   text: '插件',
+  //   icon: 'clarity:plugin-line',
+  //   // link: '/plugins/',
+  //   link: '/notes/plugins/README.md',
+  //   activeMatch: '^/plugins/',
+  // },
   {
     text: '博客',
     link: '/blog/',

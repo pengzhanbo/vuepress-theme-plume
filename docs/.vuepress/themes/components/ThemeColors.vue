@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import VPButton from '@theme/VPButton.vue'
 import { useThemeColors } from '../composables/theme-colors.js'
-import ColorPick from './ColorPick.vue'
 import CodeViewer from './CodeViewer.vue'
+import ColorPick from './ColorPick.vue'
 
 const { lightColors, darkColors, css, reset } = useThemeColors()
 </script>

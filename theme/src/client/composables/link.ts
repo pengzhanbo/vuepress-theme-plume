@@ -1,6 +1,6 @@
 import { isLinkExternal } from '@vuepress/helper/client'
+import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 import { resolveRouteFullPath, useRoute } from 'vuepress/client'
-import { type MaybeRefOrGetter, computed, toValue } from 'vue'
 import { useData } from './data.js'
 
 const SEARCH_RE = /\.md(?:(?:#|\?).*)?$/

@@ -1,5 +1,5 @@
-import type { Langs, Locale } from './types.js'
 import { locales } from './locales/index.js'
+import type { Langs, Locale } from './types.js'
 
 function createTranslate(lang?: Langs) {
   let current: Langs = lang || 'en-US'

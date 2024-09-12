@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useRouteLocale } from 'vuepress/client'
-import VPLink from '@theme/VPLink.vue'
 import VPImage from '@theme/VPImage.vue'
+import VPLink from '@theme/VPLink.vue'
+import { useRouteLocale } from 'vuepress/client'
 import { useData, useSidebar } from '../../composables/index.js'
 
 const { theme, site } = useData()

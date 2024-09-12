@@ -1,13 +1,13 @@
+import { computed } from 'vue'
 import { resolveRouteFullPath, usePageLang, useRoute } from 'vuepress/client'
 import { isPlainObject, isString } from 'vuepress/shared'
-import { computed } from 'vue'
 import type { Ref } from 'vue'
-import type { NavItemWithLink, PlumeThemeBlogPostItem, SidebarItem } from '../../shared/index.js'
 import { resolveNavLink } from '../utils/index.js'
 import { usePostList } from './blog-data.js'
-import { useSidebar } from './sidebar.js'
 import { useData } from './data.js'
 import { useBlogPageData } from './page.js'
+import { useSidebar } from './sidebar.js'
+import type { NavItemWithLink, PlumeThemeBlogPostItem, SidebarItem } from '../../shared/index.js'
 
 export function usePrevNext() {
   const route = useRoute()

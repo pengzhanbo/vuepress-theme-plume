@@ -5,12 +5,13 @@ import {
   addViteSsrNoExternal,
   chainWebpack,
 } from '@vuepress/helper'
+import { isPackageExists } from 'local-pkg'
 import type { App } from 'vuepress'
 
 export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
   addViteConfig(bundlerOptions, app, {
     build: {
-      chunkSizeWarningLimit: 1024,
+      chunkSizeWarningLimit: 2048,
     },
   })
 
@@ -22,6 +23,11 @@ export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
     '@vuepress/plugin-reading-time',
     '@vuepress/plugin-watermark',
   ])
+
+  if (isPackageExists('swiper')) {
+    addViteOptimizeDepsInclude(bundlerOptions, app, 'swiper', true)
+    addViteSsrNoExternal(bundlerOptions, app, ['swiper'])
+  }
 
   chainWebpack(bundlerOptions, app, (config) => {
     config.module

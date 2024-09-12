@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import VPDocAside from '@theme/VPDocAside.vue'
+import VPDocBreadcrumbs from '@theme/VPDocBreadcrumbs.vue'
+import VPDocFooter from '@theme/VPDocFooter.vue'
+import VPDocMeta from '@theme/VPDocMeta.vue'
+import VPEncryptPage from '@theme/VPEncryptPage.vue'
+import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { computed, nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
-import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
-import VPDocAside from '@theme/VPDocAside.vue'
-import VPDocFooter from '@theme/VPDocFooter.vue'
-import VPEncryptPage from '@theme/VPEncryptPage.vue'
-import VPDocMeta from '@theme/VPDocMeta.vue'
-import VPDocBreadcrumbs from '@theme/VPDocBreadcrumbs.vue'
 import {
   useBlogPageData,
   useData,

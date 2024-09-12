@@ -1,6 +1,6 @@
 import { computed } from 'vue'
-import { useData } from './data.js'
 import { usePostList } from './blog-data.js'
+import { useData } from './data.js'
 
 export function useBlogPageData() {
   const { page } = useData()

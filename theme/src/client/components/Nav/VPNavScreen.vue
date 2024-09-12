@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useScrollLock } from '@vueuse/core'
 import VPNavScreenAppearance from '@theme/Nav/VPNavScreenAppearance.vue'
 import VPNavScreenMenu from '@theme/Nav/VPNavScreenMenu.vue'
 import VPNavScreenSocialLinks from '@theme/Nav/VPNavScreenSocialLinks.vue'
 import VPNavScreenTranslates from '@theme/Nav/VPNavScreenTranslations.vue'
+import { useScrollLock } from '@vueuse/core'
 import { inBrowser } from '../../utils/index.js'
 
 defineProps<{

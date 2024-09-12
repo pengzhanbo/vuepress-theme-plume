@@ -1,7 +1,7 @@
-import type { Ref } from 'vue'
 import { computed, onMounted, onUnmounted } from 'vue'
-import type { PlumeThemeHomeHero } from '../../shared/index.js'
+import type { Ref } from 'vue'
 import { useDarkMode } from './dark-mode.js'
+import type { PlumeThemeHomeHero } from '../../shared/index.js'
 
 export interface TintPlate {
   r: { value: number, offset: number }

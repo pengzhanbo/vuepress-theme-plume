@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
-import VPIcon from '@theme/VPIcon.vue'
 import VPNavScreenMenuGroupLink from '@theme/Nav/VPNavScreenMenuGroupLink.vue'
 import VPNavScreenMenuGroupSection from '@theme/Nav/VPNavScreenMenuGroupSection.vue'
+import VPIcon from '@theme/VPIcon.vue'
+import { computed, ref } from 'vue'
 import type { ThemeIcon } from '../../../shared/index.js'
 
 const props = defineProps<{

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { inject } from 'vue'
-import VPLink from '@theme/VPLink.vue'
 import VPIcon from '@theme/VPIcon.vue'
+import VPLink from '@theme/VPLink.vue'
+import { inject } from 'vue'
 import type { ResolvedNavItemWithLink } from '../../../shared/index.js'
 
 defineProps<{

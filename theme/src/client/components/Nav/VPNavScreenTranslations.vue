@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import VPLink from '@theme/VPLink.vue'
+import { ref } from 'vue'
 import { useLangs } from '../../composables/index.js'
 
 const { localeLinks, currentLang } = useLangs()

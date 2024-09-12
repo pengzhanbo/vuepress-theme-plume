@@ -1,10 +1,13 @@
-import { fs, hash } from 'vuepress/utils'
+import { isArray, isEmptyObject, promiseParallel, toArray } from '@pengzhanbo/utils'
 import chokidar from 'chokidar'
 import { createFilter } from 'create-filter'
 import grayMatter from 'gray-matter'
 import jsonToYaml from 'json2yaml'
-import { isArray, isEmptyObject, promiseParallel, toArray } from '@pengzhanbo/utils'
+import { fs, hash } from 'vuepress/utils'
 import type { App } from 'vuepress'
+import { getThemeConfig } from '../loadConfig/index.js'
+import { readMarkdown, readMarkdownList } from './readFile.js'
+import { resolveOptions } from './resolveOptions.js'
 import type {
   AutoFrontmatter,
   AutoFrontmatterArray,
@@ -12,9 +15,6 @@ import type {
   AutoFrontmatterObject,
   PlumeThemeLocaleOptions,
 } from '../../shared/index.js'
-import { getThemeConfig } from '../loadConfig/index.js'
-import { readMarkdown, readMarkdownList } from './readFile.js'
-import { resolveOptions } from './resolveOptions.js'
 
 export interface Generate {
   globFilter: (id?: string) => boolean

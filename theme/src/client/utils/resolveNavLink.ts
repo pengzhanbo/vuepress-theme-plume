@@ -1,10 +1,10 @@
-import { resolveRoute } from 'vuepress/client'
 import {
   ensureEndingSlash,
   ensureLeadingSlash,
   isLinkAbsolute,
   isLinkWithProtocol,
 } from '@vuepress/helper/client'
+import { resolveRoute } from 'vuepress/client'
 import type { ResolvedNavItemWithLink } from '../../shared/index.js'
 
 /**

@@ -38,7 +38,6 @@ export const themeConfig = defineNoteConfig({
         '阅读统计',
         'markdown增强',
         'markdownPower',
-        '百度统计',
         '水印',
       ],
     },

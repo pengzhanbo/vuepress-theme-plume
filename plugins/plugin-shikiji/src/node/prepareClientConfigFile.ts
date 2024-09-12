@@ -1,6 +1,6 @@
 import { ensureEndingSlash } from '@vuepress/helper'
-import type { App } from 'vuepress'
 import { getDirname, path } from 'vuepress/utils'
+import type { App } from 'vuepress'
 
 const __dirname = getDirname(import.meta.url)
 
@@ -21,19 +21,19 @@ import { useCollapsedLines } from '${CLIENT_FOLDER}composables/collapsed-lines.j
 
 export default {
   ${twoslash
-    ? `enhance({ app }) {
+      ? `enhance({ app }) {
     enhanceTwoslash(app)
   },`
-    : ''}
+      : ''}
   ${copyCode
-    ? `setup() {
+      ? `setup() {
     useCopyCode({
       selector: __CC_SELECTOR__,
       duration: __CC_DURATION__,
     })
     useCollapsedLines()
   },`
-    : ''}
+      : ''}
 }
 `,
   )

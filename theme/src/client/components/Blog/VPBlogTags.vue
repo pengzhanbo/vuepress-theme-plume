@@ -46,12 +46,22 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
 <style scoped>
 .vp-blog-tags {
   flex: 1;
-  padding: 32px 24px;
-  margin: 0 auto;
 }
 
 .vp-blog-tags.has-list {
   padding-bottom: 64px;
+}
+
+.tags-nav,
+.tags-container {
+  padding: 20px 16px;
+  margin: 0 -16px;
+  background-color: var(--vp-c-bg);
+  transition: background-color var(--t-color);
+}
+
+.tags-container {
+  margin-top: 24px;
 }
 
 .tags-title {
@@ -73,6 +83,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
 .tags {
   display: flex;
   flex-wrap: wrap;
+  gap: 16px;
   align-items: center;
   justify-content: flex-start;
 }
@@ -81,7 +92,6 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
   display: flex;
   align-items: center;
   padding: 6px 10px 6px 12px;
-  margin: 6px;
   font-size: 14px;
   line-height: 1;
   color: var(--vp-c-bg);
@@ -94,8 +104,9 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
 }
 
 .tag-title {
-  padding-bottom: 8px;
-  margin: 20px 12px -10px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  margin: 0 -16px;
   font-size: 20px;
   font-weight: 600;
   border-bottom: 1px solid var(--vp-c-divider);
@@ -124,14 +135,10 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
 }
 
 @media (min-width: 768px) {
-  .vp-blog-tags {
-    padding: 32px 0;
-    margin-left: 20px;
-  }
-
   .tags-nav,
   .tags-container {
-    padding: 20px;
+    padding: 16px 24px;
+    margin: 0;
     background-color: var(--vp-c-bg);
     border-radius: 8px;
     box-shadow: var(--vp-shadow-1);
@@ -150,7 +157,8 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
   }
 
   .tags-container .tag-title {
-    margin-top: 0;
+    padding-left: 24px;
+    margin: 0 -24px;
   }
 }
 

@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import VPButton from '@theme/VPButton.vue'
+import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
-import { computed } from 'vue'
-import VPButton from '@theme/VPButton.vue'
-import type { PlumeThemeHomeBanner } from '../../../shared/index.js'
 import { useData } from '../../composables/index.js'
+import type { PlumeThemeHomeBanner } from '../../../shared/index.js'
 
 const props = defineProps<PlumeThemeHomeBanner>()
 

@@ -1,12 +1,12 @@
+import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
-import fs from 'node:fs'
 import { execaCommand } from 'execa'
+import { DeployType, Mode } from './constants.js'
 import { createPackageJson } from './packageJson.js'
 import { createRender } from './render.js'
 import { getTemplate, readFiles, readJsonFile, writeFiles } from './utils/index.js'
 import type { File, ResolvedData } from './types.js'
-import { DeployType, Mode } from './constants.js'
 
 export async function generate(mode: Mode, data: ResolvedData): Promise<void> {
   const cwd = process.cwd()

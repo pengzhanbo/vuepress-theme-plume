@@ -49,8 +49,8 @@ pnpm add @vuepress-plume/plugin-caniuse
 @tab .vuepress/config.ts
 
 ``` ts
-import { defineUserConfig } from 'vuepress'
 import { caniusePlugin } from '@vuepress-plume/plugin-caniuse'
+import { defineUserConfig } from 'vuepress'
 
 export default defineUserConfig({
   plugins: [

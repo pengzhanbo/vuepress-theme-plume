@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import VPLink from '@theme/VPLink.vue'
 import VPIcon from '@theme/VPIcon.vue'
+import VPLink from '@theme/VPLink.vue'
+import { computed } from 'vue'
 import { useSidebarControl } from '../composables/index.js'
 import type { ResolvedSidebarItem } from '../../shared/index.js'
 

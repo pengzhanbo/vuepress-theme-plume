@@ -56,8 +56,8 @@ yarn add @vuepress-plume/plugin-content-update
 @tab .vuepress/config.ts
 
 ``` ts
-import { defineUserConfig } from 'vuepress'
 import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
+import { defineUserConfig } from 'vuepress'
 
 export default defineUserConfig({
   plugins: [
@@ -86,8 +86,8 @@ onContentUpdated(() => {
 
 ```vue
 <script lang="ts" setup>
-import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import { useMediumZoom } from '@vuepress/plugin-medium-zoom/client'
+import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 
 const mediumZoom = useMediumZoom()
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import '@simonwep/pickr/dist/themes/nano.min.css'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
+import '@simonwep/pickr/dist/themes/nano.min.css'
 
 const emit = defineEmits<{ (e: 'update:modelValue', value: string): void }>()
 

@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import VPPostList from '@theme/Blog/VPPostList.vue'
 import VPBlogArchives from '@theme/Blog/VPBlogArchives.vue'
 import VPBlogAside from '@theme/Blog/VPBlogAside.vue'
-import VPBlogExtract from '@theme/Blog/VPBlogExtract.vue'
-import VPBlogTags from '@theme/Blog/VPBlogTags.vue'
 import VPBlogCategories from '@theme/Blog/VPBlogCategories.vue'
+import VPBlogExtract from '@theme/Blog/VPBlogExtract.vue'
 import VPBlogNav from '@theme/Blog/VPBlogNav.vue'
+import VPBlogTags from '@theme/Blog/VPBlogTags.vue'
+import VPPostList from '@theme/Blog/VPPostList.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { useData } from '../../composables/index.js'
 
@@ -19,7 +19,7 @@ const { theme, page } = useData()
 </script>
 
 <template>
-  <div class="vp-blog" :class="{ 'home-blog': homeBlog }">
+  <div class="vp-blog" :class="{ 'home-blog': homeBlog }" vp-blog>
     <slot name="blog-top" />
 
     <div class="blog-container" :class="{ 'no-profile': !theme.profile }">
@@ -98,7 +98,7 @@ const { theme, page } = useData()
 .vp-blog {
   position: relative;
   min-height: calc(100vh - var(--vp-footer-height, 0px));
-  background-color: var(--vp-c-bg);
+  padding: calc(var(--vp-nav-height) + 32px) 16px 32px;
   transition: background-color var(--t-color);
 }
 
@@ -110,24 +110,19 @@ const { theme, page } = useData()
 
 .blog-container {
   display: flex;
+  gap: 24px;
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  padding-top: var(--vp-nav-height);
   margin: 0 auto;
 }
 
 .blog-container.no-profile {
   display: block;
   max-width: 784px;
-  padding-right: 24px;
 }
 
 @media (min-width: 768px) {
-  .vp-blog {
-    background-color: transparent;
-  }
-
   .blog-container {
     position: relative;
     z-index: 2;
@@ -137,10 +132,7 @@ const { theme, page } = useData()
 @media (min-width: 960px) {
   .vp-blog {
     min-height: calc(100vh - var(--vp-nav-height) - var(--vp-footer-height, 0px));
-  }
-
-  .blog-container {
-    padding-top: 0;
+    padding: 32px 24px;
   }
 }
 

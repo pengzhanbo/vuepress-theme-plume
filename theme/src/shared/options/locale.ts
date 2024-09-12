@@ -2,8 +2,8 @@ import type { LocaleData } from 'vuepress/core'
 import type { SocialLink, SocialLinkIconUnion, ThemeOutline, ThemeTransition } from '../base.js'
 import type { PlumeThemeBlog } from '../blog.js'
 import type { NavItem } from '../navbar.js'
-import type { SidebarMulti } from '../sidebar.js'
 import type { NotesOptions } from '../notes.js'
+import type { SidebarMulti } from '../sidebar.js'
 
 export interface PlumeThemeLocaleData extends LocaleData {
   /**

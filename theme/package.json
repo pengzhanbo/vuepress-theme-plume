@@ -68,6 +68,9 @@
   "peerDependenciesMeta": {
     "@iconify/json": {
       "optional": true
+    },
+    "swiper": {
+      "optional": true
     }
   },
   "dependencies": {
@@ -103,12 +106,13 @@
     "katex": "^0.16.11",
     "local-pkg": "^0.5.0",
     "nanoid": "^5.0.7",
-    "vue": "^3.5.3",
+    "vue": "^3.5.4",
     "vuepress-plugin-md-enhance": "2.0.0-rc.52",
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.245",
-    "vue-router": "^4.4.3"
+    "@iconify/json": "^2.2.247",
+    "swiper": "^11.1.12",
+    "vue-router": "^4.4.4"
   }
 }

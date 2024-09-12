@@ -1,9 +1,9 @@
 <script lang="ts" setup>
+import VPLink from '@theme/VPLink.vue'
 import { useScrollLock } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
 import { useRoute, withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
-import VPLink from '@theme/VPLink.vue'
 import { useBlogExtract, useData } from '../../composables/index.js'
 import { inBrowser } from '../../utils/index.js'
 

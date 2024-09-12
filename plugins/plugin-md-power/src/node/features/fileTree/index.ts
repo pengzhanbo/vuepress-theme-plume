@@ -1,10 +1,10 @@
 import fs from 'node:fs'
 import container from 'markdown-it-container'
-import type { Markdown } from 'vuepress/markdown'
 import type Token from 'markdown-it/lib/token.mjs'
 import type { App } from 'vuepress/core'
-import { resolveTreeNodeInfo, updateInlineToken } from './resolveTreeNodeInfo.js'
+import type { Markdown } from 'vuepress/markdown'
 import { type FileIcon, folderIcon, getFileIcon } from './findIcon.js'
+import { resolveTreeNodeInfo, updateInlineToken } from './resolveTreeNodeInfo.js'
 
 const type = 'file-tree'
 const closeType = `container_${type}_close`
@@ -21,7 +21,7 @@ export async function fileTreePlugin(app: App, md: Markdown) {
       for (
         let i = idx + 1;
         !(tokens[i].nesting === -1
-        && tokens[i].type === closeType);
+          && tokens[i].type === closeType);
         ++i
       ) {
         const token = tokens[i]
@@ -46,7 +46,10 @@ export async function fileTreePlugin(app: App, md: Markdown) {
           token.tag = componentName
         }
       }
-      return '<div class="vp-file-tree">'
+      const info = tokens[idx].info.trim()
+
+      const title = info.slice(type.length).trim()
+      return `<div class="vp-file-tree">${title ? `<p class="vp-file-tree-title">${title}</p>` : ''}`
     }
     else {
       return '</div>'

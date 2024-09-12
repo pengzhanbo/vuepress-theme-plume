@@ -1,10 +1,10 @@
 <script lang="ts" setup>
+import VPLink from '@theme/VPLink.vue'
 import { isPlainObject } from '@vuepress/helper/client'
 import { computed } from 'vue'
-import VPLink from '@theme/VPLink.vue'
-import type { FriendsItem } from '../../shared/index'
 import { useDarkMode } from '../composables/index.js'
 import VPSocialLinks from './VPSocialLinks.vue'
+import type { FriendsItem } from '../../shared/index'
 
 const props = defineProps<{
   friend: FriendsItem

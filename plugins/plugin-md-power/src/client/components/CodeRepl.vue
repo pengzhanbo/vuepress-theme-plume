@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { defineAsyncComponent, shallowRef } from 'vue'
 import { useCodeRepl } from '../composables/codeRepl.js'
+import IconClose from './IconClose.vue'
+import IconConsole from './IconConsole.vue'
 import IconRun from './IconRun.vue'
 import Loading from './Loading.vue'
-import IconConsole from './IconConsole.vue'
-import IconClose from './IconClose.vue'
 
 defineProps<{
   editable?: boolean

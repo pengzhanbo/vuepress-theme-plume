@@ -1,13 +1,13 @@
 <script lang="ts" setup>
+import VPFlyout from '@theme/VPFlyout.vue'
 import { computed } from 'vue'
 import { resolveRouteFullPath } from 'vuepress/client'
-import VPFlyout from '@theme/VPFlyout.vue'
+import { useData } from '../../composables/index.js'
+import { isActive } from '../../utils/index.js'
 import type {
   ResolvedNavItem,
   ResolvedNavItemWithChildren,
 } from '../../../shared/index.js'
-import { isActive } from '../../utils/index.js'
-import { useData } from '../../composables/index.js'
 
 const props = defineProps<{
   item: ResolvedNavItemWithChildren

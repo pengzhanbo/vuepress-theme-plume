@@ -1,7 +1,7 @@
 import { themeData as themeDataRaw } from '@internal/themePlumeData'
 import { computed, inject, ref } from 'vue'
+import { type ClientData, clientDataSymbol, type RouteLocale } from 'vuepress/client'
 import type { App, ComputedRef, InjectionKey, Ref } from 'vue'
-import { type ClientData, type RouteLocale, clientDataSymbol } from 'vuepress/client'
 import type { PlumeThemeData } from '../../shared/index.js'
 
 declare const __VUE_HMR_RUNTIME__: Record<string, any>

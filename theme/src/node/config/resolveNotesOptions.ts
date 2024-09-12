@@ -1,7 +1,7 @@
-import { entries } from '@vuepress/helper'
 import { uniq } from '@pengzhanbo/utils'
-import type { NotesOptions, PlumeThemeLocaleOptions } from '../../shared/index.js'
+import { entries } from '@vuepress/helper'
 import { withBase } from '../utils/index.js'
+import type { NotesOptions, PlumeThemeLocaleOptions } from '../../shared/index.js'
 
 export function resolveNotesLinkList(localeOptions: PlumeThemeLocaleOptions) {
   const locales = localeOptions.locales || {}

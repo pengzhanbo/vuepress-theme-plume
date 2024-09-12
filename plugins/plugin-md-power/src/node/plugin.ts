@@ -1,21 +1,21 @@
-import type { Plugin } from 'vuepress/core'
-import type MarkdownIt from 'markdown-it'
 import { addViteOptimizeDepsInclude } from '@vuepress/helper'
-import type { CanIUseOptions, MarkdownPowerPluginOptions } from '../shared/index.js'
+import type MarkdownIt from 'markdown-it'
+import type { Plugin } from 'vuepress/core'
 import { caniusePlugin, legacyCaniuse } from './features/caniuse.js'
-import { pdfPlugin } from './features/pdf.js'
+import { codepenPlugin } from './features/codepen.js'
+import { codeSandboxPlugin } from './features/codeSandbox.js'
+import { fileTreePlugin } from './features/fileTree/index.js'
 import { iconsPlugin } from './features/icons.js'
+import { imageSizePlugin } from './features/imageSize.js'
+import { jsfiddlePlugin } from './features/jsfiddle.js'
+import { langReplPlugin } from './features/langRepl.js'
+import { pdfPlugin } from './features/pdf.js'
+import { plotPlugin } from './features/plot.js'
+import { replitPlugin } from './features/replit.js'
 import { bilibiliPlugin } from './features/video/bilibili.js'
 import { youtubePlugin } from './features/video/youtube.js'
-import { codepenPlugin } from './features/codepen.js'
-import { replitPlugin } from './features/replit.js'
-import { codeSandboxPlugin } from './features/codeSandbox.js'
-import { jsfiddlePlugin } from './features/jsfiddle.js'
-import { plotPlugin } from './features/plot.js'
-import { langReplPlugin } from './features/langRepl.js'
 import { prepareConfigFile } from './prepareConfigFile.js'
-import { fileTreePlugin } from './features/fileTree/index.js'
-import { imageSizePlugin } from './features/imageSize.js'
+import type { CanIUseOptions, MarkdownPowerPluginOptions } from '../shared/index.js'
 
 export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): Plugin {
   return (app) => {
@@ -39,7 +39,7 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
       },
 
       extendsMarkdown: async (md: MarkdownIt, app) => {
-        imageSizePlugin(app, md)
+        await imageSizePlugin(app, md, options.imageSize)
 
         if (options.caniuse) {
           const caniuse = options.caniuse === true ? {} : options.caniuse

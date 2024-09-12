@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { getHighlighterCore } from 'shiki/core'
-import type { HighlighterCore } from 'shiki/core'
 import editorData from '@internal/md-power/replEditorData'
+import { getHighlighterCore } from 'shiki/core'
 import { onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
+import type { HighlighterCore } from 'shiki/core'
 import { resolveCodeInfo } from '../composables/codeRepl.js'
 
 let highlighter: HighlighterCore | null = null

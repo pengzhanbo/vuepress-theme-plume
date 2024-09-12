@@ -1,4 +1,4 @@
-import { type TemplateRendererContext, templateRenderer } from 'vuepress/utils'
+import { templateRenderer, type TemplateRendererContext } from 'vuepress/utils'
 import { getThemePackage } from '../utils/index.js'
 
 export function templateBuildRenderer(template: string, context: TemplateRendererContext) {

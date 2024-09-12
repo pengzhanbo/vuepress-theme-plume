@@ -1,10 +1,11 @@
-import type { App, Page } from 'vuepress'
 import {
   entries,
   isArray,
   isPlainObject,
   removeLeadingSlash,
 } from '@vuepress/helper'
+import type { App, Page } from 'vuepress'
+import { normalizeLink, resolveContent, writeTemp } from '../utils/index.js'
 import type {
   PlumeThemeLocaleOptions,
   PlumeThemePageData,
@@ -13,7 +14,6 @@ import type {
   SidebarItem,
   ThemeIcon,
 } from '../../shared/index.js'
-import { normalizeLink, resolveContent, writeTemp } from '../utils/index.js'
 
 export async function prepareSidebar(app: App, localeOptions: PlumeThemeLocaleOptions) {
   const sidebar = getAllSidebar(localeOptions)

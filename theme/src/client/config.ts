@@ -1,6 +1,5 @@
-import './styles/index.css'
-
 import { defineClientConfig } from 'vuepress/client'
+
 import {
   enhanceScrollBehavior,
   setupDarkMode,
@@ -13,6 +12,7 @@ import {
 import { globalComponents } from './globalComponents.js'
 import Layout from './layouts/Layout.vue'
 import NotFound from './layouts/NotFound.vue'
+import './styles/index.css'
 
 export default defineClientConfig({
   enhance({ app, router }) {

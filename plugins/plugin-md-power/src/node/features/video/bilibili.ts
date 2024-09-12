@@ -6,11 +6,11 @@
  */
 import { URLSearchParams } from 'node:url'
 import type { PluginWithOptions } from 'markdown-it'
-import type { BilibiliTokenMeta } from '../../../shared/index.js'
-import { resolveAttrs } from '../../utils/resolveAttrs.js'
-import { parseRect } from '../../utils/parseRect.js'
-import { timeToSeconds } from '../../utils/timeToSeconds.js'
 import { createRuleBlock } from '../../utils/createRuleBlock.js'
+import { parseRect } from '../../utils/parseRect.js'
+import { resolveAttrs } from '../../utils/resolveAttrs.js'
+import { timeToSeconds } from '../../utils/timeToSeconds.js'
+import type { BilibiliTokenMeta } from '../../../shared/index.js'
 
 const BILIBILI_LINK = 'https://player.bilibili.com/player.html'
 

@@ -1,9 +1,9 @@
-import { type Ref, computed } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
-import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
+import { computed, type Ref } from 'vue'
 import { useLocalePostList } from './blog-data.js'
 import { useData } from './data.js'
 import { useRouteQuery } from './route-query.js'
+import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 
 const DEFAULT_PER_PAGE = 10
 

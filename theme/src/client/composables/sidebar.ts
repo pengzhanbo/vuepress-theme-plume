@@ -1,4 +1,4 @@
-import { resolveRouteFullPath, useRoute, useRouteLocale } from 'vuepress/client'
+import { sidebar as sidebarRaw } from '@internal/sidebar'
 import {
   ensureLeadingSlash,
   isArray,
@@ -7,7 +7,6 @@ import {
   removeLeadingSlash,
 } from '@vuepress/helper/client'
 import { useMediaQuery } from '@vueuse/core'
-import type { ComputedRef, InjectionKey, Ref } from 'vue'
 import {
   computed,
   inject,
@@ -18,11 +17,12 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { sidebar as sidebarRaw } from '@internal/sidebar'
+import { resolveRouteFullPath, useRoute, useRouteLocale } from 'vuepress/client'
+import type { ComputedRef, InjectionKey, Ref } from 'vue'
 import { isActive, normalizeLink, normalizePrefix, resolveNavLink } from '../utils/index.js'
-import type { ResolvedSidebarItem, Sidebar, SidebarItem } from '../../shared/index.js'
 import { useData } from './data.js'
 import { useEncrypt } from './encrypt.js'
+import type { ResolvedSidebarItem, Sidebar, SidebarItem } from '../../shared/index.js'
 
 export type SidebarData = Record<string, Sidebar>
 

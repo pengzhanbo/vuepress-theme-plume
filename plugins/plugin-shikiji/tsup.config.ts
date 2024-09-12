@@ -1,4 +1,4 @@
-import { type Options, defineConfig } from 'tsup'
+import { defineConfig, type Options } from 'tsup'
 
 export default defineConfig(() => {
   const DEFAULT_OPTIONS: Options = {

@@ -1,9 +1,9 @@
-import process from 'node:process'
 import { createRequire } from 'node:module'
+import process from 'node:process'
 import { cancel, confirm, group, select, text } from '@clack/prompts'
+import { bundlerOptions, deployOptions, DeployType, languageOptions, Mode } from './constants.js'
 import { setLang, t } from './translate.js'
 import type { Bundler, Langs, Options, PromptResult } from './types.js'
-import { DeployType, Mode, bundlerOptions, deployOptions, languageOptions } from './constants.js'
 
 const require = createRequire(process.cwd())
 

@@ -25,15 +25,16 @@ defineProps<{
 
 <style scoped>
 .vp-blog-short-post-list {
-  padding: 0 12px;
-  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
 }
 
 .vp-blog-short-post-list li {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 14px 0;
   color: var(--vp-c-text-1);
   transition: color var(--t-color);
 }

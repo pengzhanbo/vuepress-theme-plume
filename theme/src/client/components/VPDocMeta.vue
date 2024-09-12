@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
 import VPLink from '@theme/VPLink.vue'
 import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
+import { computed } from 'vue'
 import { useBlogPageData, useData, useInternalLink, useTagColors } from '../composables/index.js'
 
 const { page, frontmatter: matter } = useData<'post'>()

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, ref, shallowRef } from 'vue'
 import { onClickOutside, useMediaQuery } from '@vueuse/core'
+import { computed, ref, shallowRef } from 'vue'
 import { usePageFrontmatter } from 'vuepress/client'
-import type { PlotOptions } from '../../shared/index.js'
 import { pluginOptions } from '../options.js'
+import type { PlotOptions } from '../../shared/index.js'
 
 const props = defineProps<Omit<PlotOptions, 'tag'>>()
 

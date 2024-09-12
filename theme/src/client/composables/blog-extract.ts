@@ -1,7 +1,7 @@
 import { computed } from 'vue'
+import { type BlogCategory, useBlogCategory } from './blog-category.js'
 import { useLocalePostList } from './blog-data.js'
 import { useTags } from './blog-tags.js'
-import { type BlogCategory, useBlogCategory } from './blog-category.js'
 import { useData } from './data.js'
 import { useInternalLink } from './internal-link.js'
 

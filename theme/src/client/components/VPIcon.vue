@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { isLinkHttp } from 'vuepress/shared'
-import { withBase } from 'vuepress/client'
 import VPIconify from '@theme/VPIconify.vue'
+import { computed } from 'vue'
+import { withBase } from 'vuepress/client'
+import { isLinkHttp } from 'vuepress/shared'
 import { useIconsData } from '../composables/index.js'
 
 const props = defineProps<{

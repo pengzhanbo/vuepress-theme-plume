@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
 import VPSocialLinks from '@theme/VPSocialLinks.vue'
+import { computed } from 'vue'
 import { useData } from '../../composables/index.js'
 
 const { theme } = useData()

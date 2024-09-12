@@ -1,5 +1,5 @@
-import { usePageLang } from 'vuepress/client'
 import { computed, onMounted, ref, watchEffect } from 'vue'
+import { usePageLang } from 'vuepress/client'
 import { useData } from './data.js'
 
 export function useLastUpdated() {

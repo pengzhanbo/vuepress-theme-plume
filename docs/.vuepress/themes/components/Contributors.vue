@@ -1,14 +1,21 @@
 <script setup lang="ts">
-defineProps<{
-  contributors: string[]
+import { computed } from 'vue'
+
+const props = defineProps<{
+  contributors: ({ github: string, name: string } | string)[]
 }>()
+
+const list = computed(() =>
+  props.contributors.map(contributor =>
+    typeof contributor === 'string' ? { github: contributor, name: contributor } : contributor),
+)
 </script>
 
 <template>
   <div class="contributors">
-    <div v-for="contributor in contributors" :key="contributor" class="contributor">
-      <img :src="`https://github.com/${contributor}.png`" :alt="contributor">
-      <a :href="`https://github.com/${contributor}`" target="_blank" rel="noopener noreferrer">{{ contributor }}</a>
+    <div v-for="contributor in list" :key="contributor.github" class="contributor">
+      <img :src="`https://avatars.githubusercontent.com/${contributor.github}?v=4`" :alt="contributor.name">
+      <a :href="`https://github.com/${contributor.github}`" target="_blank" rel="noopener noreferrer">{{ contributor.name }}</a>
     </div>
   </div>
 </template>

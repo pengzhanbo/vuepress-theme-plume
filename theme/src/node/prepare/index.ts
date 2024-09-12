@@ -1,11 +1,11 @@
-import type { App } from 'vuepress'
 import { watch } from 'chokidar'
+import type { App } from 'vuepress'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { prepareArticleTagColors } from './prepareArticleTagColor.js'
 import { preparedBlogData } from './prepareBlogData.js'
 import { prepareEncrypt } from './prepareEncrypt.js'
-import { prepareSidebar } from './prepareSidebar.js'
 import { prepareIcons } from './prepareIcons.js'
+import { prepareSidebar } from './prepareSidebar.js'
 
 export async function prepareData(
   app: App,

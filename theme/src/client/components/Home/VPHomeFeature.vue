@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import VPLink from '@theme/VPLink.vue'
 import VPImage from '@theme/VPImage.vue'
+import VPLink from '@theme/VPLink.vue'
 import type { PlumeThemeHomeFeature } from '../../../shared/index.js'
 
 defineProps<PlumeThemeHomeFeature>()

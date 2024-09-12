@@ -1,5 +1,5 @@
-import { type InjectionKey, type Ref, inject, provide, watch } from 'vue'
 import { useSessionStorage, useStyleTag } from '@vueuse/core'
+import { inject, type InjectionKey, provide, type Ref, watch } from 'vue'
 
 export interface ThemeColor {
   name: string

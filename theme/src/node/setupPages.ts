@@ -3,16 +3,16 @@ import {
   getRootLang,
   getRootLangPath,
 } from '@vuepress/helper'
-import type { App, Page } from 'vuepress/core'
 import { createPage } from 'vuepress/core'
+import type { App, Page } from 'vuepress/core'
+import { resolveNotesLinkList } from './config/index.js'
+import { PRESET_LOCALES } from './locales/index.js'
+import { hash, withBase } from './utils/index.js'
 import type {
   PageCategoryData,
   PlumeThemeLocaleOptions,
   PlumeThemePageData,
 } from '../shared/index.js'
-import { hash, withBase } from './utils/index.js'
-import { PRESET_LOCALES } from './locales/index.js'
-import { resolveNotesLinkList } from './config/index.js'
 
 export async function setupPage(
   app: App,

@@ -32,17 +32,18 @@ const { archives } = useArchives()
 <style scoped>
 .vp-blog-archives {
   flex: 1;
-  padding: 32px 24px;
-  margin: 0 auto;
 }
 
 .archives-title {
   display: flex;
   align-items: center;
-  margin-bottom: 40px;
+  padding: 16px;
+  margin: 0 -16px 40px;
   font-size: 24px;
   font-weight: 700;
   color: var(--vp-c-brand-1);
+  background-color: var(--vp-c-bg);
+  transition: background-color var(--t-color);
 }
 
 .archives-title .icon {
@@ -50,39 +51,34 @@ const { archives } = useArchives()
 }
 
 .archive {
-  padding-bottom: 1rem;
-  border-bottom: 1px dashed var(--vp-c-divider);
-}
-
-.archive:last-of-type {
-  border-bottom: none;
+  padding: 16px;
+  margin: 0 -16px 24px;
+  background-color: var(--vp-c-bg);
+  transition: background-color var(--t-color);
 }
 
 .archive-title {
-  margin-top: 2rem;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  margin: 0 -16px;
   font-size: 18px;
   font-weight: 700;
+  border-bottom: solid 1px var(--vp-c-divider);
+  transition: border-bottom var(--t-color);
 }
 
 @media (min-width: 768px) {
-  .vp-blog-archives {
-    padding: 32px 0;
-    margin-left: 20px;
-  }
-
   .archives-title {
     display: none;
   }
 
   .archive {
-    padding: 20px;
-    margin-bottom: 24px;
-    background-color: var(--vp-c-bg);
-    border-bottom: none;
+    padding: 20px 24px;
+    margin: 0 0 24px;
     border-radius: 8px;
     box-shadow: var(--vp-shadow-1);
     transition: var(--t-color);
-    transition-property: border-bottom, box-shadow, background-color;
+    transition-property: box-shadow, background-color;
   }
 
   .archive:hover {
@@ -90,8 +86,8 @@ const { archives } = useArchives()
   }
 
   .archive-title {
-    padding-bottom: 10px;
-    margin-top: 0;
+    padding-left: 24px;
+    margin: 0 -24px;
     border-bottom: solid 1px var(--vp-c-divider);
     transition: border-bottom var(--t-color);
   }

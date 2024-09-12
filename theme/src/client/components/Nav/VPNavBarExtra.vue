@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
 import VPFlyout from '@theme/VPFlyout.vue'
 import VPMenuLink from '@theme/VPMenuLink.vue'
 import VPSocialLinks from '@theme/VPSocialLinks.vue'
 import VPSwitchAppearance from '@theme/VPSwitchAppearance.vue'
+import { computed } from 'vue'
 import { useData, useLangs } from '../../composables/index.js'
 
 const { theme } = useData()

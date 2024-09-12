@@ -1,6 +1,6 @@
 import cac from 'cac'
-import { run } from './run.js'
 import { Mode } from './constants.js'
+import { run } from './run.js'
 
 declare const __CLI_VERSION__: string
 

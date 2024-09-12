@@ -52,7 +52,10 @@ const { theme } = useData()
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 32px 20px 24px;
+  padding: 16px;
+  margin: 0 -16px;
+  background-color: var(--vp-c-bg);
+  transition: background-color var(--t-color);
 }
 
 .btn {
@@ -82,8 +85,7 @@ const { theme } = useData()
 
 @media (min-width: 768px) {
   .vp-blog-pagination {
-    padding: 20px;
-    margin-left: 20px;
+    margin: 0;
     background-color: var(--vp-c-bg);
     border-radius: 6px;
     box-shadow: var(--vp-shadow-1);

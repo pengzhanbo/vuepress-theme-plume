@@ -122,6 +122,7 @@ export const themeGuide = defineNoteConfig({
         '首页布局容器',
         'repoCard',
         'npmBadge',
+        '轮播图',
       ],
     },
     {

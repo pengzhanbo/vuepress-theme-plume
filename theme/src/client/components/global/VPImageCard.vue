@@ -40,7 +40,7 @@ const date = computed(() => {
       <img :src="image" :alt="title" loading="lazy">
       <div class="image-info">
         <h3 class="title">
-          <a v-if="href" :href="href" target="_blank" rel="noopener noreferrer">{{ title }}</a>
+          <a v-if="href" :href="href" target="_blank" rel="noopener noreferrer" class="no-icon">{{ title }}</a>
           <span v-else>{{ title }}</span>
         </h3>
         <p v-if="author || date" class="copyright">

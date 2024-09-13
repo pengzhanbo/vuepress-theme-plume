@@ -13,7 +13,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
     <p class="repo-name">
       <span class="vpi-github-repo" />
       <span class="repo-link">
-        <a :href="data.url" target="_blank" rel="noopener noreferrer">
+        <a :href="data.url" target="_blank" rel="noopener noreferrer" class="no-icon">
           {{ data.ownerType === 'Organization' ? data.fullName : data.name }}
         </a>
       </span>

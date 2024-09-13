@@ -157,7 +157,7 @@ function onSwiper(swiper: SwiperType) {
       @swiper="onSwiper"
     >
       <SwiperSlide v-for="(item, index) in slideList" :key="item.link + index">
-        <a v-if="item.href" :href="item.href" target="_blank" rel="noopener noreferrer" class="swiper-slide-link">
+        <a v-if="item.href" :href="item.href" target="_blank" rel="noopener noreferrer" class="swiper-slide-link no-icon">
           <img class="swiper-slide-img" :src="item.link" :alt="item.alt" loading="lazy">
         </a>
         <img v-else class="swiper-slide-img" :src="item.link" :alt="item.alt" loading="lazy">

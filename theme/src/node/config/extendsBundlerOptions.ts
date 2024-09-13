@@ -25,7 +25,7 @@ export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
   ])
 
   if (isPackageExists('swiper')) {
-    addViteOptimizeDepsInclude(bundlerOptions, app, 'swiper', true)
+    addViteOptimizeDepsInclude(bundlerOptions, app, ['swiper/modules', 'swiper/vue'], true)
     addViteSsrNoExternal(bundlerOptions, app, ['swiper'])
   }
 

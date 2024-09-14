@@ -326,6 +326,12 @@ export interface PlumeThemeProfile {
    * 组织，公司
    */
   organization?: string
+
+  /**
+   * 布局位置，左侧或者右侧
+   * @default 'right'
+   */
+  layout?: 'left' | 'right'
 }
 
 /** ========================== Page Meta ====================== */

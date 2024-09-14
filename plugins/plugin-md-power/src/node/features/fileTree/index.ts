@@ -18,6 +18,7 @@ export async function fileTreePlugin(app: App, md: Markdown) {
   const validate = (info: string): boolean => info.trim().startsWith(type)
   const render = (tokens: Token[], idx: number): string => {
     if (tokens[idx].nesting === 1) {
+      const hasRes: number[] = [] // level stack
       for (
         let i = idx + 1;
         !(tokens[i].nesting === -1
@@ -28,6 +29,7 @@ export async function fileTreePlugin(app: App, md: Markdown) {
         if (token.type === 'list_item_open') {
           const result = resolveTreeNodeInfo(tokens, token, i)
           if (result) {
+            hasRes.push(token.level)
             const [info, inline] = result
             const { filename, type, expanded, empty } = info
             const icon = type === 'file' ? getFileIcon(filename) : folderIcon
@@ -40,10 +42,15 @@ export async function fileTreePlugin(app: App, md: Markdown) {
             updateInlineToken(inline, info, `${classPrefix}${icon.name}`)
             addIcon(icon)
           }
+          else {
+            hasRes.push(-1)
+          }
         }
         else if (token.type === 'list_item_close') {
-          token.type = itemClose
-          token.tag = componentName
+          if (token.level === hasRes.pop()) {
+            token.type = itemClose
+            token.tag = componentName
+          }
         }
       }
       const info = tokens[idx].info.trim()

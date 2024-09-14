@@ -1,12 +1,12 @@
 // markdown-it plugin for generating line numbers.
 // v-pre block logic is in `../highlight.ts`
 import type { Markdown } from 'vuepress/markdown'
-import { resolveAttr, resolveCollapsedLines, resolveLanguage } from '../utils/index.js'
+import { resolveAttr, resolveLanguage } from '../utils/index.js'
 import type { PreWrapperOptions } from '../types.js'
 
 export function preWrapperPlugin(
   md: Markdown,
-  { preWrapper = true, collapsedLines = false }: PreWrapperOptions = {},
+  { preWrapper = true }: PreWrapperOptions = {},
 ): void {
   const rawFence = md.renderer.rules.fence!
 
@@ -33,12 +33,6 @@ export function preWrapperPlugin(
       `data-ext="${lang}"`,
       `data-title="${title}"`,
     ]
-    const collapsed = resolveCollapsedLines(info, collapsedLines)
-    if (collapsed) {
-      classes.push('has-collapsed', 'collapsed')
-      attrs.push(`style="--vp-collapsed-lines:${collapsed}"`)
-      result += `<div class="collapsed-lines"></div>`
-    }
 
     return `<div class="${classes.join(' ')}" ${attrs.join(' ')}>${result}</div>`
   }

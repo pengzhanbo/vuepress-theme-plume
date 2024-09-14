@@ -3,6 +3,7 @@ import type { Plugin } from 'vuepress/core'
 import { copyCodeButtonPlugin } from './copy-code-button/index.js'
 import { highlight } from './highlight/index.js'
 import {
+  collapsedLinesPlugin,
   highlightLinesPlugin,
   lineNumberPlugin,
   preWrapperPlugin,
@@ -53,14 +54,12 @@ export function shikiPlugin({
       md.options.highlight = await highlight(theme, options)
 
       md.use(highlightLinesPlugin)
-      md.use(preWrapperPlugin, {
-        preWrapper,
-        collapsedLines,
-      })
+      md.use(preWrapperPlugin, { preWrapper })
 
       if (preWrapper) {
         copyCodeButtonPlugin(md, app, copyCode)
-        md.use<LineNumberOptions>(lineNumberPlugin, { lineNumbers })
+        md.use(lineNumberPlugin, { lineNumbers })
+        md.use(collapsedLinesPlugin, { collapsedLines })
       }
     },
 

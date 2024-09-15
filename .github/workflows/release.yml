@@ -6,8 +6,7 @@ on:
       - v*
 
 jobs:
-  release:
-    if: github.repository == 'pengzhanbo/vuepress-theme-plume'
+  changelog:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

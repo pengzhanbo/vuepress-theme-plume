@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import VPBadge from '@theme/global/VPBadge.vue'
 import VPLink from '@theme/VPLink.vue'
 import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
 import { computed } from 'vue'
@@ -28,12 +29,20 @@ const tags = computed(() => {
   return []
 })
 
+const badge = computed(() => {
+  if (matter.value.badge) {
+    return typeof matter.value.badge === 'string' ? { text: matter.value.badge } : matter.value.badge
+  }
+  return false
+})
+
 const hasMeta = computed(() => readingTime.value.time || tags.value.length || createTime.value)
 </script>
 
 <template>
   <h1 class="vp-doc-title page-title" :class="{ padding: !hasMeta }">
     {{ page.title }}
+    <VPBadge v-if="badge" :type="badge.type || 'tip'" :text="badge.text" />
   </h1>
   <div v-if="hasMeta" class="vp-doc-meta">
     <p v-if="readingTime.time && matter.readingTime !== false" class="reading-time">

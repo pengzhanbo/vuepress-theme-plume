@@ -17,4 +17,12 @@ export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {
    * @default false
    */
   draft?: boolean
+
+  /**
+   * 标题徽章
+   */
+  badge?: string | {
+    text: string
+    type?: 'info' | 'tip' | 'warning' | 'danger'
+  }
 }

@@ -3,6 +3,7 @@ title: 通用配置
 author: pengzhanbo
 createTime: 2024/03/02 20:01:09
 permalink: /config/frontmatter/basic/
+badge: 徽章 badge
 ---
 
 ## 概述
@@ -14,7 +15,6 @@ permalink: /config/frontmatter/basic/
 ```md
 ---
 title: 标题
-author: 作者
 createTime: 2024/03/02 20:01:09
 permalink: /config/frontmatter/basic/
 ---
@@ -55,6 +55,12 @@ permalink: /config/frontmatter/basic/
   文章标题。
 
   主题会在文件创建时，自动填充 当前文件名作为 文章标题。
+
+### badge
+
+- 类型： `string | { text: string, type?: 'info' | 'tip' | 'warning' | 'danger' }`
+
+在文章标题右侧显示 徽章。
 
 ### createTime
 

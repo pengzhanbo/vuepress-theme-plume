@@ -22,7 +22,10 @@ const { theme, page } = useData()
   <div class="vp-blog" :class="{ 'home-blog': homeBlog }" vp-blog>
     <slot name="blog-top" />
 
-    <div class="blog-container" :class="{ 'no-profile': !theme.profile }">
+    <div
+      class="blog-container"
+      :class="{ 'no-profile': !theme.profile, 'left': theme.profile?.layout === 'left' }"
+    >
       <VPBlogNav v-if="!theme.profile" is-local />
 
       <VPTransitionFadeSlideY>
@@ -115,6 +118,10 @@ const { theme, page } = useData()
   justify-content: flex-start;
   width: 100%;
   margin: 0 auto;
+}
+
+.blog-container:not(.no-profile).left {
+  flex-direction: row-reverse;
 }
 
 .blog-container.no-profile {

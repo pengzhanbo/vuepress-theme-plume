@@ -23,11 +23,6 @@ jobs:
 {{#if (equal packageManager "pnpm")}}
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          # 选择要使用的 pnpm 版本
-          version: 9
-          # 使用 pnpm 安装依赖
-          run_install: true
 {{/if}}
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -40,6 +35,13 @@ jobs:
       # Install dependencies
       - name: Install Dependencies
         run: npm ci
+{{/if}}
+
+{{#if (equal packageManager "pnpm")}}
+      # 安装依赖
+      # Install dependencies
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
 {{/if}}
 
 {{#if (equal packageManager "yarn")}}

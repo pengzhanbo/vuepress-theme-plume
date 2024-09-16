@@ -1,20 +1,27 @@
 import fg from 'fast-glob'
 import { fs, path } from 'vuepress/utils'
+import type { App } from 'vuepress'
 import type { AutoFrontmatterMarkdownFile } from '../../shared/index.js'
+import type { Generate } from './generator.js'
 
 export async function readMarkdownList(
-  sourceDir: string,
-  filter: (id: string) => boolean,
+  app: App,
+  { globFilter, checkCache }: Generate,
 ): Promise<AutoFrontmatterMarkdownFile[]> {
+  const source = app.dir.source()
   const files: string[] = await fg(['**/*.md'], {
-    cwd: sourceDir,
+    cwd: source,
     ignore: ['node_modules', '.vuepress'],
   })
 
   return await Promise.all(
     files
-      .filter(filter)
-      .map(file => readMarkdown(sourceDir, file)),
+      .filter((id) => {
+        if (!globFilter(id))
+          return false
+        return checkCache(path.join(source, id))
+      })
+      .map(file => readMarkdown(source, file)),
   )
 }
 

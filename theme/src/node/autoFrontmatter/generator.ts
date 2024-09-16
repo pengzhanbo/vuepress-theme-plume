@@ -3,7 +3,7 @@ import chokidar from 'chokidar'
 import { createFilter } from 'create-filter'
 import grayMatter from 'gray-matter'
 import jsonToYaml from 'json2yaml'
-import { fs, hash } from 'vuepress/utils'
+import { fs, hash, path } from 'vuepress/utils'
 import type { App } from 'vuepress'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { readMarkdown, readMarkdownList } from './readFile.js'
@@ -16,6 +16,8 @@ import type {
   PlumeThemeLocaleOptions,
 } from '../../shared/index.js'
 
+const CACHE_FILE = 'markdown/auto-frontmatter.json'
+
 export interface Generate {
   globFilter: (id?: string) => boolean
   global: AutoFrontmatterObject
@@ -24,6 +26,9 @@ export interface Generate {
     filter: (id?: string) => boolean
     frontmatter: AutoFrontmatterObject
   }[]
+  cache: Record<string, string>
+  checkCache: (id: string) => boolean
+  updateCache: (app: App) => Promise<void>
 }
 
 let generate: Generate | null = null
@@ -53,21 +58,46 @@ export function initAutoFrontmatter(
       }
     })
 
+  const cache: Record<string, string> = {}
+
+  function checkCache(filepath: string): boolean {
+    const stats = fs.statSync(filepath)
+
+    if (cache[filepath] && cache[filepath] === stats.mtimeMs.toString())
+      return false
+    cache[filepath] = stats.mtimeMs.toString()
+    return true
+  }
+
+  async function updateCache(app: App): Promise<void> {
+    await fs.writeFile(app.dir.cache(CACHE_FILE), JSON.stringify(cache), 'utf-8')
+  }
+
   generate = {
     globFilter,
     global: globalConfig,
     rules,
+    cache,
+    checkCache,
+    updateCache,
   }
 }
 
 export async function generateAutoFrontmatter(app: App) {
   if (!generate)
     return
-  const markdownList = await readMarkdownList(app.dir.source(), generate.globFilter)
+
+  const cachePath = app.dir.cache(CACHE_FILE)
+  if (fs.existsSync(cachePath)) {
+    generate.cache = JSON.parse(await fs.readFile(cachePath, 'utf-8'))
+  }
+  const markdownList = await readMarkdownList(app, generate)
   await promiseParallel(
     markdownList.map(file => () => generator(file)),
     64,
   )
+
+  await generate.updateCache(app)
 }
 
 export async function watchAutoFrontmatter(app: App, watchers: any[]) {
@@ -88,6 +118,14 @@ export async function watchAutoFrontmatter(app: App, watchers: any[]) {
     await generator(file)
   })
 
+  watcher.on('change', async (relativePath) => {
+    const enabled = getThemeConfig().autoFrontmatter !== false
+    if (!generate!.globFilter(relativePath) || !enabled)
+      return
+    if (generate!.checkCache(path.join(app.dir.source(), relativePath)))
+      await generate!.updateCache(app)
+  })
+
   watchers.push(watcher)
 }
 
@@ -103,8 +141,11 @@ async function generator(file: AutoFrontmatterMarkdownFile): Promise<void> {
   const beforeHash = hash(data)
 
   for (const key in formatter) {
-    const value = await formatter[key](data[key], file, data)
-    data[key] = value ?? data[key]
+    const value = (await formatter[key](data[key], file, data)) ?? data[key]
+    if (typeof value !== 'undefined')
+      data[key] = value
+    else
+      delete data[key]
   }
 
   if (beforeHash === hash(data))
@@ -121,6 +162,7 @@ async function generator(file: AutoFrontmatterMarkdownFile): Promise<void> {
     const newContent = yaml ? `${yaml}---\n${content}` : content
 
     await fs.promises.writeFile(filepath, newContent, 'utf-8')
+    generate.checkCache(filepath)
   }
   catch (e) {
     console.error(e)

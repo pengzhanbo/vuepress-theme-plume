@@ -1,6 +1,6 @@
 import { uniq } from '@pengzhanbo/utils'
-import { entries } from '@vuepress/helper'
-import { withBase } from '../utils/index.js'
+import { entries, removeLeadingSlash } from '@vuepress/helper'
+import { normalizePath, withBase } from '../utils/index.js'
 import type { NotesOptions, PlumeThemeLocaleOptions } from '../../shared/index.js'
 
 export function resolveNotesLinkList(localeOptions: PlumeThemeLocaleOptions) {
@@ -33,4 +33,12 @@ export function resolveNotesOptions(localeOptions: PlumeThemeLocaleOptions): Not
   }
 
   return notesOptionsList
+}
+
+export function resolveNotesDirs(localeOptions: PlumeThemeLocaleOptions): string[] {
+  const notesList = resolveNotesOptions(localeOptions)
+  return uniq(notesList
+    .flatMap(({ notes, dir }) =>
+      notes.map(note => removeLeadingSlash(normalizePath(`${dir}/${note.dir || ''}/`))),
+    ))
 }

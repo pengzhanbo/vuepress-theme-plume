@@ -1,11 +1,11 @@
 import { getIconContentCSS, getIconData } from '@iconify/utils'
-import { isArray, isString, uniq } from '@pengzhanbo/utils'
+import { isArray, uniq } from '@pengzhanbo/utils'
 import { entries, isLinkAbsolute, isLinkHttp, isPlainObject } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
 import type { App, Page } from 'vuepress'
 import { interopDefault, logger, nanoid, resolveContent, writeTemp } from '../utils/index.js'
-import type { NavItem, PlumeThemeLocaleOptions, Sidebar } from '../../shared/index.js'
+import type { NavItem, PlumeThemeHomeConfig, PlumeThemeLocaleOptions, Sidebar } from '../../shared/index.js'
 
 interface IconData {
   className: string
@@ -19,6 +19,7 @@ type IconDataMap = Record<string, IconData>
 const ICON_REGEXP = /<(?:VP)?(Icon|Card|LinkCard)([^>]*)>/g
 const ICON_NAME_REGEXP = /(?:name|icon)="([^"]+)"/
 const URL_CONTENT_REGEXP = /(url\([\s\S]+\))/
+const ICONIFY_NAME = /^[\w-]+:[\w-]+$/
 const JS_FILENAME = 'internal/iconify.js'
 const CSS_FILENAME = 'internal/iconify.css'
 
@@ -27,6 +28,12 @@ let locate!: ((name: string) => any)
 
 // { iconName: { className, content } }
 const cache: IconDataMap = {}
+
+function isIconify(icon: any): icon is string {
+  if (!icon || typeof icon !== 'string' || isLinkAbsolute(icon) || isLinkHttp(icon))
+    return false
+  return icon[0] !== '{' && ICONIFY_NAME.test(icon)
+}
 
 export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOptions) {
   if (!isInstalled) {
@@ -81,13 +88,25 @@ function getIconsWithPage(page: Page): string[] {
   const list = page.contentRendered
     .match(ICON_REGEXP)
     ?.map(match => match.match(ICON_NAME_REGEXP)?.[1])
-    .filter(Boolean) as string[] || []
+    .filter(isIconify) as string[] || []
 
-  if (page.frontmatter.icon && isString(page.frontmatter.icon)) {
-    list.push(page.frontmatter.icon)
+  const fm = page.frontmatter
+  if (fm.icon && isIconify(fm.icon)) {
+    list.push(fm.icon)
   }
 
-  return list.filter(icon => !isLinkHttp(icon) && !isLinkAbsolute(icon) && icon[0] !== '{')
+  if ((fm.home || fm.pageLayout === 'home') && (fm.config as PlumeThemeHomeConfig[])?.length) {
+    for (const config of (fm.config as PlumeThemeHomeConfig[])) {
+      if (config.type === 'features' && config.features.length) {
+        for (const feature of config.features) {
+          if (feature.icon && isIconify(feature.icon))
+            list.push(feature.icon)
+        }
+      }
+    }
+  }
+
+  return list
 }
 
 function getIconWithThemeConfig(localeOptions: PlumeThemeLocaleOptions): string[] {
@@ -108,14 +127,14 @@ function getIconWithThemeConfig(localeOptions: PlumeThemeLocaleOptions): string[
     sidebarList.forEach(sidebar => list.push(...getIconWithSidebar(sidebar)))
   })
 
-  return list
+  return list.filter(isIconify)
 }
 
 function getIconWithNavbar(navbar: NavItem[]): string[] {
   const list: string[] = []
   navbar.forEach((item) => {
     if (typeof item !== 'string') {
-      if (typeof item.icon === 'string' && !isLinkHttp(item.icon) && !isLinkAbsolute(item.icon))
+      if (isIconify(item.icon))
         list.push(item.icon)
       if (item.items?.length)
         list.push(...getIconWithNavbar(item.items))
@@ -129,7 +148,7 @@ function getIconWithSidebar(sidebar: Sidebar): string[] {
   if (isArray(sidebar)) {
     sidebar.forEach((item) => {
       if (typeof item !== 'string') {
-        if (typeof item.icon === 'string' && !isLinkHttp(item.icon) && !isLinkAbsolute(item.icon))
+        if (isIconify(item.icon))
           list.push(item.icon)
         if (item.items?.length)
           list.push(...getIconWithSidebar(item.items))

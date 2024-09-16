@@ -1,9 +1,21 @@
 <script setup lang="ts">
+import VPIcon from '@theme/VPIcon.vue'
 import VPImage from '@theme/VPImage.vue'
 import VPLink from '@theme/VPLink.vue'
+import { isLinkAbsolute, isLinkHttp } from '@vuepress/helper/client'
+import { computed } from 'vue'
 import type { PlumeThemeHomeFeature } from '../../../shared/index.js'
 
-defineProps<PlumeThemeHomeFeature>()
+const props = defineProps<PlumeThemeHomeFeature>()
+
+const ICONIFY_NAME = /^[\w-]+:[\w-]+$/
+
+const isIconify = computed(() => {
+  if (typeof props.icon !== 'string' || isLinkAbsolute(props.icon) || isLinkHttp(props.icon)) {
+    return false
+  }
+  return ICONIFY_NAME.test(props.icon)
+})
 </script>
 
 <template>
@@ -31,6 +43,9 @@ defineProps<PlumeThemeHomeFeature>()
         :height="icon.height || 48"
         :width="icon.width || 48"
       />
+      <div v-else-if="icon && isIconify" class="icon">
+        <VPIcon :name="icon" />
+      </div>
       <div v-else-if="icon" class="icon" v-html="icon" />
       <h2 class="title" v-html="title" />
       <p v-if="details" class="details" v-html="details" />

@@ -24,6 +24,13 @@ blog:
     url: https://pengzhanbo.cn/
     repo: https://github.com/pengzhanbo/pengzhanbo.cn
     preview: /images/demos/pengzhanbo.png
+  -
+    name: 二猫子
+    desc: 老老实实的二猫子，从不胡说八道
+    logo: https://www.ermao.net/images/logo.svg
+    url: https://www.ermao.net/
+    repo: https://github.com/ermaozi
+    preview: /images/demos/ermao.net.png
 ---
 
 :::important

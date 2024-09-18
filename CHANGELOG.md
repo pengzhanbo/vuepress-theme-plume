@@ -1,3 +1,31 @@
+# [1.0.0-rc.99](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.98...v1.0.0-rc.99) (2024-09-18)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** incorrect empty tree node ([#179](https://github.com/pengzhanbo/vuepress-theme-plume/issues/179)) ([be47c9a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/be47c9a025dc6cf3154955dcf2f7b18c2a04974d))
+* **theme:** incorrect external icon ([7dc6319](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7dc63192c8020cba5fb802108e100698e46e8795))
+* **theme:** incorrect render remote iconify icon ([#190](https://github.com/pengzhanbo/vuepress-theme-plume/issues/190)) ([c2ec990](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c2ec990c35879ef6f69014708345f4705d3fd09c))
+
+
+### Features
+
+* **theme:** add page title badge ([#183](https://github.com/pengzhanbo/vuepress-theme-plume/issues/183)) ([b99d926](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b99d926c0b02deeb07c482c272f2139e89c0fbe7))
+* **theme:** add support iconify for home features icon ([#186](https://github.com/pengzhanbo/vuepress-theme-plume/issues/186)) ([3e9ef80](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3e9ef80e3ebf60231cfb094168cb35bf1489c0a8))
+* **theme:** add support layout for blog profile ([#182](https://github.com/pengzhanbo/vuepress-theme-plume/issues/182)) ([db28c8b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/db28c8bd8cfef7b5bc199e0898be66447dfcfecb))
+
+
+### Performance Improvements
+
+* **cli:** optimize github actions deploy ([#184](https://github.com/pengzhanbo/vuepress-theme-plume/issues/184)) ([4907bf4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4907bf4b298d2b72cabe57f4531e252089deef91))
+* **plugin-md-power:** optimize `collapsed-lines` ([#180](https://github.com/pengzhanbo/vuepress-theme-plume/issues/180)) ([0f1ffc7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0f1ffc75322ba39d07a3fc93c3e93bf2b21f0faf))
+* **theme:** optimize `scroll-padding-top` ([#191](https://github.com/pengzhanbo/vuepress-theme-plume/issues/191)) ([1c40b25](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1c40b25cfa40a9e408652b664235e8c2be067d56))
+* **theme:** optimize deps include `swiper` ([fcb2ca4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fcb2ca450700ba77251a8b4620972eb22825a970))
+* **theme:** optimize the startup time of `auto-frontmatter` ([#185](https://github.com/pengzhanbo/vuepress-theme-plume/issues/185)) ([5b5409d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5b5409d2eff6eb88fb5effaf2fe9b8c390ffe712))
+* update deps to latest ([474ee6f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/474ee6f0a00ad85932fa40ca00fff94b63caaf30))
+
+
+
 # [1.0.0-rc.98](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.97...v1.0.0-rc.98) (2024-09-12)
 
 

@@ -123,7 +123,7 @@ onUnmounted(() => {
   transition: color var(--t-color);
 }
 
-.file-tree-item .tree-node.file .name.focus {
+.file-tree-item .tree-node .name.focus {
   font-weight: bold;
   color: var(--vp-c-brand-1);
   transition: color var(--t-color);

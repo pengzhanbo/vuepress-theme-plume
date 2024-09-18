@@ -47,7 +47,7 @@ export function getPlugins({
       headerLinkSelector: 'a.outline-link',
       headerAnchorSelector: '.header-anchor',
       delay: 200,
-      offset: 20,
+      offset: 5,
     }),
 
     ...customContainerPlugins,

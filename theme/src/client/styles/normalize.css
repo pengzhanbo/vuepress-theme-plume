@@ -23,7 +23,17 @@ html {
   font-size: 16px;
   line-height: 1.4;
 
-  scroll-padding-top: 80px;
+  scroll-padding-top: 0;
+}
+
+@media (min-width: 960px) {
+  html {
+    scroll-padding-top: 80px;
+  }
+
+  html.layout-home {
+    scroll-padding-top: var(--vp-nav-height, 80px);
+  }
 }
 
 body {

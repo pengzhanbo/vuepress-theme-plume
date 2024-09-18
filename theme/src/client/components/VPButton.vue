@@ -29,7 +29,7 @@ const component = computed(() => {
 const { link, isExternal } = useLink(toRef(props, 'href'), toRef(props, 'target'))
 
 function linkTo(e: Event) {
-  if (!isExternal.value) {
+  if (!isExternal.value && link.value?.[0] !== '#') {
     e.preventDefault()
     if (link.value)
       router.push(link.value)
@@ -42,7 +42,7 @@ function linkTo(e: Event) {
     :is="component"
     class="vp-button"
     :class="[size, theme]"
-    :href="withBase(link || '')"
+    :href="link?.[0] === '#' ? link : withBase(link || '')"
     :target="target ?? (isExternal ? '_blank' : undefined)"
     :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"

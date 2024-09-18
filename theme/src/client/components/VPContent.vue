@@ -5,6 +5,7 @@ import VPDoc from '@theme/VPDoc.vue'
 import VPFriends from '@theme/VPFriends.vue'
 import VPPage from '@theme/VPPage.vue'
 import { nextTick, watch } from 'vue'
+import { useRoute } from 'vuepress/client'
 import { useBlogPageData, useData, useSidebar } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
 
@@ -15,13 +16,21 @@ const props = defineProps<{
 const { hasSidebar } = useSidebar()
 const { frontmatter } = useData()
 const { isBlogLayout } = useBlogPageData()
+const route = useRoute()
 
-watch([isBlogLayout, () => frontmatter.value.pageLayout], () => nextTick(() =>
-  inBrowser && document.documentElement.classList.toggle(
-    'bg-gray',
-    isBlogLayout.value,
-  ),
-), { immediate: true })
+watch(
+  [isBlogLayout, () => frontmatter.value.pageLayout, () => route.path],
+  () => nextTick(() => {
+    if (inBrowser) {
+      document.documentElement.classList.toggle('bg-gray', isBlogLayout.value)
+      const layout = document.documentElement.className.match(/(?:^|\s)(layout-\S+)(?:$|\s)/)?.[1]
+      if (layout)
+        document.documentElement.classList.remove(layout)
+      document.documentElement.classList.add(`layout-${isBlogLayout.value ? 'blog' : frontmatter.value.pageLayout || 'doc'}`)
+    }
+  }),
+  { immediate: true },
+)
 </script>
 
 <template>

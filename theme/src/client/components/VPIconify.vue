@@ -66,9 +66,3 @@ const bind = computed<any>(() => ({
     />
   </ClientOnly>
 </template>
-
-<style>
-.vp-icon.iconify {
-  background-color: unset;
-}
-</style>

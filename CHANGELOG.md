@@ -1,3 +1,12 @@
+# [1.0.0-rc.100](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.99...v1.0.0-rc.100) (2024-09-18)
+
+
+### Bug Fixes
+
+* **theme:** incorrect auto-frontmatter cache check ([ecee1cf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ecee1cfe2a159bd574d6a67556453f61ee557f02))
+
+
+
 # [1.0.0-rc.99](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.98...v1.0.0-rc.99) (2024-09-18)
 
 

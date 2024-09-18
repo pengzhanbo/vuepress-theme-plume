@@ -29,7 +29,13 @@ export function useLink(
     const currentPath = link.startsWith('./') && SEARCH_RE.test(link)
       ? `/${page.value.filePathRelative!}`
       : route.path
-    return resolveRouteFullPath(link, currentPath)
+    const path = resolveRouteFullPath(link, currentPath)
+    if (path.includes('#')) {
+      if (path.slice(0, path.indexOf('#')) === route.path) {
+        return path.slice(path.indexOf('#'))
+      }
+    }
+    return path
   })
 
   return { isExternal, link }

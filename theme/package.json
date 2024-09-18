@@ -75,7 +75,7 @@
     }
   },
   "dependencies": {
-    "@iconify/utils": "^2.1.32",
+    "@iconify/utils": "^2.1.33",
     "@iconify/vue": "^4.1.2",
     "@pengzhanbo/utils": "^1.1.2",
     "@vuepress-plume/plugin-content-update": "workspace:*",
@@ -95,11 +95,11 @@
     "@vuepress/plugin-seo": "2.0.0-rc.42",
     "@vuepress/plugin-sitemap": "2.0.0-rc.42",
     "@vuepress/plugin-watermark": "2.0.0-rc.42",
-    "@vueuse/core": "^11.0.3",
+    "@vueuse/core": "^11.1.0",
     "bcrypt-ts": "^5.0.2",
-    "chokidar": "^3.6.0",
+    "chokidar": "3.6.0",
     "create-filter": "^1.1.0",
-    "date-fns": "^3.6.0",
+    "date-fns": "^4.1.0",
     "esbuild": "^0.23.1",
     "fast-glob": "^3.3.2",
     "gray-matter": "^4.0.3",
@@ -107,13 +107,13 @@
     "katex": "^0.16.11",
     "local-pkg": "^0.5.0",
     "nanoid": "^5.0.7",
-    "vue": "^3.5.4",
+    "vue": "^3.5.6",
     "vuepress-plugin-md-enhance": "2.0.0-rc.52",
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.247",
-    "swiper": "^11.1.12",
-    "vue-router": "^4.4.4"
+    "@iconify/json": "^2.2.250",
+    "swiper": "^11.1.14",
+    "vue-router": "^4.4.5"
   }
 }

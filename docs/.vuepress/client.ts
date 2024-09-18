@@ -1,4 +1,4 @@
-import { type ClientConfig, defineClientConfig } from 'vuepress/client'
+import { defineClientConfig } from 'vuepress/client'
 import CanIUseConfig from './themes/components/CanIUseConfig.vue'
 import Contributors from './themes/components/Contributors.vue'
 import Demos from './themes/components/Demos.vue'
@@ -17,4 +17,4 @@ export default defineClientConfig({
   setup() {
     setupThemeColors()
   },
-}) as ClientConfig
+})

@@ -70,7 +70,10 @@ export function initAutoFrontmatter(
   }
 
   async function updateCache(app: App): Promise<void> {
-    await fs.writeFile(app.dir.cache(CACHE_FILE), JSON.stringify(cache), 'utf-8')
+    if (!isEmptyObject(cache)) {
+      await fs.mkdir(path.dirname(app.dir.cache(CACHE_FILE)), { recursive: true })
+      await fs.writeFile(app.dir.cache(CACHE_FILE), JSON.stringify(cache), 'utf-8')
+    }
   }
 
   generate = {

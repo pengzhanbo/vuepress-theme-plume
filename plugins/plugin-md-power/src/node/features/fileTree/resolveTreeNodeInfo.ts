@@ -1,5 +1,5 @@
 import Token from 'markdown-it/lib/token.mjs'
-import { removeLeadingSlash } from 'vuepress/shared'
+import { removeEndingSlash, removeLeadingSlash } from 'vuepress/shared'
 
 interface FileTreeNode {
   filename: string
@@ -42,7 +42,7 @@ export function resolveTreeNodeInfo(
   const focus = children[0]?.tag === 'strong'
   const type = hasChildren || filename.endsWith('/') ? 'folder' : 'file'
   const info: FileTreeNode = {
-    filename: removeLeadingSlash(filename),
+    filename: removeLeadingSlash(removeEndingSlash(filename)),
     type,
     focus,
     empty: !hasChildren,
@@ -65,9 +65,9 @@ export function updateInlineToken(inline: Token, info: FileTreeNode, icon: strin
   tokens.push(wrapperOpen)
 
   if (info.filename !== '...' && info.filename !== '…') {
-    const iconOpen = new Token('span_open', 'span', 1)
-    iconOpen.attrSet('class', icon)
-    const iconClose = new Token('span_close', 'span', -1)
+    const iconOpen = new Token('vp_iconify_open', 'VPIcon', 1)
+    iconOpen.attrSet('name', icon)
+    const iconClose = new Token('vp_iconify_close', 'VPIcon', -1)
 
     tokens.push(iconOpen, iconClose)
   }

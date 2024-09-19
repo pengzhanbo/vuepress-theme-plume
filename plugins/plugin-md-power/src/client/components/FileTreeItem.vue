@@ -10,7 +10,10 @@ const props = defineProps<{
 const active = ref(!!props.expanded)
 const el = ref<HTMLElement>()
 
-function toggle() {
+function toggle(e: HTMLElementEventMap['click']) {
+  const target = e.target as HTMLElement
+  if (target.matches('.comment'))
+    return
   active.value = !active.value
 }
 
@@ -18,14 +21,20 @@ onMounted(() => {
   if (!el.value || props.type !== 'folder')
     return
 
-  el.value.querySelector('.tree-node.folder')?.addEventListener('click', toggle)
+  el.value.querySelector('.tree-node.folder')?.addEventListener(
+    'click',
+    toggle as EventListener,
+  )
 })
 
 onUnmounted(() => {
   if (!el.value || props.type !== 'folder')
     return
 
-  el.value.querySelector('.tree-node.folder')?.removeEventListener('click', toggle)
+  el.value.querySelector('.tree-node.folder')?.removeEventListener(
+    'click',
+    toggle as EventListener,
+  )
 })
 </script>
 
@@ -114,6 +123,7 @@ onUnmounted(() => {
   width: 10px;
   height: 10px;
   color: var(--vp-c-text-3);
+  cursor: pointer;
   content: "";
   background-color: currentcolor;
   -webkit-mask: var(--icon) no-repeat;
@@ -124,9 +134,19 @@ onUnmounted(() => {
 }
 
 .file-tree-item .tree-node .name.focus {
+  position: relative;
+  padding: 0 4px;
+  margin: 0 -4px;
   font-weight: bold;
-  color: var(--vp-c-brand-1);
-  transition: color var(--t-color);
+  color: var(--vp-c-bg);
+  background-color: var(--vp-c-brand-2);
+  border-radius: 4px;
+  transition: color var(--t-color), background-color var(--t-color);
+}
+
+.file-tree-item .tree-node .name.focus:hover {
+  color: var(--vp-c-bg);
+  background-color: var(--vp-c-brand-1);
 }
 
 .file-tree-item .tree-node .comment {
@@ -136,19 +156,13 @@ onUnmounted(() => {
   transition: color var(--t-color);
 }
 
-.file-tree-item .tree-node [class*="vp-fti-"] {
-  display: inline-block;
-  width: 0.9em;
-  height: 0.9em;
-  color: var(--vp-c-text-2);
-  background-color: currentcolor;
-  -webkit-mask: var(--icon) no-repeat;
-  mask: var(--icon) no-repeat;
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
+.file-tree-item .tree-node [class*="vpi-"] {
+  width: 1.2em;
+  height: 1.2em;
+  margin: 0;
 }
 
-.file-tree-item .tree-node.folder [class*="vp-fti-"] {
+.file-tree-item .tree-node.folder [class*="vpi-"] {
   cursor: pointer;
 }
 

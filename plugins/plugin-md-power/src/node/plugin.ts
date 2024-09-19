@@ -102,7 +102,7 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
 
         if (options.fileTree) {
           // ::: file-tree
-          await fileTreePlugin(app, md)
+          fileTreePlugin(md)
         }
       },
     }

@@ -12,7 +12,7 @@
     "vuepress": "2.0.0-rc.15"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.250",
+    "@iconify/json": "^2.2.251",
     "@simonwep/pickr": "^1.9.1",
     "@vuepress/bundler-vite": "2.0.0-rc.15",
     "chart.js": "^4.4.4",
@@ -21,7 +21,7 @@
     "http-server": "^14.1.1",
     "mermaid": "^11.2.1",
     "swiper": "^11.1.14",
-    "vue": "^3.5.6",
+    "vue": "^3.5.7",
     "vuepress-theme-plume": "workspace:*"
   },
   "devDependencies": {

@@ -1,9 +1,4 @@
-import { removeLeadingSlash } from '@vuepress/helper'
-import { createFilter } from 'create-filter'
 import type { App, Page } from 'vuepress/core'
-import { resolveNotesOptions } from '../config/index.js'
-import { logger, normalizePath, resolveContent, writeTemp } from '../utils/index.js'
-import { isEncryptPage } from './prepareEncrypt.js'
 import type {
   PlumeThemeBlogPostData,
   PlumeThemeBlogPostItem,
@@ -12,6 +7,11 @@ import type {
   PlumeThemePageData,
   PlumeThemePostFrontmatter,
 } from '../../shared/index.js'
+import { removeLeadingSlash } from '@vuepress/helper'
+import { createFilter } from 'create-filter'
+import { resolveNotesOptions } from '../config/index.js'
+import { logger, normalizePath, resolveContent, writeTemp } from '../utils/index.js'
+import { isEncryptPage } from './prepareEncrypt.js'
 
 const HEADING_RE = /<h(\d)[^>]*>.*?<\/h\1>/gi
 const EXCERPT_SPLIT = '<!-- more -->'

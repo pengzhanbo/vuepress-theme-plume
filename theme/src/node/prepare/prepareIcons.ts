@@ -1,11 +1,11 @@
+import type { App, Page } from 'vuepress'
+import type { NavItem, PlumeThemeHomeConfig, PlumeThemeLocaleOptions, Sidebar } from '../../shared/index.js'
 import { getIconContentCSS, getIconData } from '@iconify/utils'
 import { isArray, uniq } from '@pengzhanbo/utils'
 import { entries, isLinkAbsolute, isLinkHttp, isPlainObject } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
-import type { App, Page } from 'vuepress'
 import { interopDefault, logger, nanoid, resolveContent, writeTemp } from '../utils/index.js'
-import type { NavItem, PlumeThemeHomeConfig, PlumeThemeLocaleOptions, Sidebar } from '../../shared/index.js'
 
 interface IconData {
   className: string

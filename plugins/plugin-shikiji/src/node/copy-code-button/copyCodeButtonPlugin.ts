@@ -1,7 +1,7 @@
 import type { App } from 'vuepress'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
-import { createCopyCodeButtonRender } from './createCopyCodeButtonRender.js'
 import type { CopyCodeOptions } from '../types.js'
+import { createCopyCodeButtonRender } from './createCopyCodeButtonRender.js'
 
 /**
  * This plugin should work after `preWrapperPlugin`,

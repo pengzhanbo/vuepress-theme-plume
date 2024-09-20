@@ -4,10 +4,10 @@
  * @[replit title="" height="400px" width="100%" theme="dark"](user/repl-name)
  */
 import type { PluginWithOptions } from 'markdown-it'
+import type { ReplitTokenMeta } from '../../shared/index.js'
 import { createRuleBlock } from '../utils/createRuleBlock.js'
 import { parseRect } from '../utils/parseRect.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
-import type { ReplitTokenMeta } from '../../shared/index.js'
 
 export const replitPlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<ReplitTokenMeta>(md, {

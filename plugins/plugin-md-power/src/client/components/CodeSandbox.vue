@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { CodeSandboxTokenMeta } from '../../shared/index.js'
+import { computed } from 'vue'
 
 const props = defineProps<CodeSandboxTokenMeta>()
 

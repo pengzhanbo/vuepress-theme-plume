@@ -1,10 +1,10 @@
 <script lang="ts" setup>
+import type { ResolvedNavItemWithLink } from '../../../shared/index.js'
 import VPIcon from '@theme/VPIcon.vue'
 import VPLink from '@theme/VPLink.vue'
 import { resolveRouteFullPath } from 'vuepress/client'
 import { useData } from '../../composables/index.js'
 import { isActive } from '../../utils/index.js'
-import type { ResolvedNavItemWithLink } from '../../../shared/index.js'
 
 defineProps<{
   item: ResolvedNavItemWithLink

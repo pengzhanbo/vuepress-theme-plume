@@ -1,8 +1,8 @@
-import { entries, getRootLangPath } from '@vuepress/helper'
 import type { App } from 'vuepress'
+import type { NavItem, PlumeThemeLocaleOptions } from '../../shared/index.js'
+import { entries, getRootLangPath } from '@vuepress/helper'
 import { PRESET_LOCALES } from '../locales/index.js'
 import { withBase } from '../utils/index.js'
-import type { NavItem, PlumeThemeLocaleOptions } from '../../shared/index.js'
 
 const EXCLUDE_LIST = ['locales', 'sidebar', 'navbar', 'notes', 'sidebar', 'article', 'avatar']
 // 过滤不需要出现在多语言配置中的字段

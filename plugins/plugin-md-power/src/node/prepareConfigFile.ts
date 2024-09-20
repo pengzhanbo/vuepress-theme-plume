@@ -1,7 +1,7 @@
-import { ensureEndingSlash } from '@vuepress/helper'
-import { getDirname, path } from 'vuepress/utils'
 import type { App } from 'vuepress/core'
 import type { MarkdownPowerPluginOptions } from '../shared/index.js'
+import { ensureEndingSlash } from '@vuepress/helper'
+import { getDirname, path } from 'vuepress/utils'
 
 const { url: filepath } = import.meta
 const __dirname = getDirname(filepath)

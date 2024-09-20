@@ -1,17 +1,9 @@
-import {
-  usePageData,
-  usePageFrontmatter,
-  usePageLang,
-  useSiteLocaleData,
-} from 'vuepress/client'
 import type { Ref } from 'vue'
 import type {
   PageDataRef,
   PageFrontmatterRef,
   SiteLocaleDataRef,
 } from 'vuepress/client'
-import { useDarkMode } from './dark-mode.js'
-import { useThemeLocaleData } from './theme-data.js'
 import type {
   PlumeThemeFriendsFrontmatter,
   PlumeThemeHomeFrontmatter,
@@ -21,6 +13,14 @@ import type {
   PlumeThemePostFrontmatter,
 } from '../../shared/index.js'
 import type { ThemeLocaleDataRef } from './theme-data.js'
+import {
+  usePageData,
+  usePageFrontmatter,
+  usePageLang,
+  useSiteLocaleData,
+} from 'vuepress/client'
+import { useDarkMode } from './dark-mode.js'
+import { useThemeLocaleData } from './theme-data.js'
 
 type FrontmatterType = 'home' | 'post' | 'friends' | 'page'
 

@@ -1,6 +1,7 @@
-import { addViteOptimizeDepsInclude } from '@vuepress/helper'
 import type MarkdownIt from 'markdown-it'
 import type { Plugin } from 'vuepress/core'
+import type { CanIUseOptions, MarkdownPowerPluginOptions } from '../shared/index.js'
+import { addViteOptimizeDepsInclude } from '@vuepress/helper'
 import { caniusePlugin, legacyCaniuse } from './features/caniuse.js'
 import { codepenPlugin } from './features/codepen.js'
 import { codeSandboxPlugin } from './features/codeSandbox.js'
@@ -15,7 +16,6 @@ import { replitPlugin } from './features/replit.js'
 import { bilibiliPlugin } from './features/video/bilibili.js'
 import { youtubePlugin } from './features/video/youtube.js'
 import { prepareConfigFile } from './prepareConfigFile.js'
-import type { CanIUseOptions, MarkdownPowerPluginOptions } from '../shared/index.js'
 
 export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): Plugin {
   return (app) => {

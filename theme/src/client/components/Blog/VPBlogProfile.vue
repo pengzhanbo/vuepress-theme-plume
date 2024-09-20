@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import type { PlumeThemeProfile } from '../../../shared/index.js'
 import VPSocialLinks from '@theme/VPSocialLinks.vue'
 import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { useData } from '../../composables/index.js'
-import type { PlumeThemeProfile } from '../../../shared/index.js'
 
 const { theme } = useData()
 const profile = computed(() =>

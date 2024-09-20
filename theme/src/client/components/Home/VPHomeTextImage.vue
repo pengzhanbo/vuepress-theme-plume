@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { PlumeThemeHomeTextImage } from '../../../shared/index.js'
 import VPHomeBox from '@theme/Home/VPHomeBox.vue'
 import VPImage from '@theme/VPImage.vue'
 import { computed } from 'vue'
-import type { PlumeThemeHomeTextImage } from '../../../shared/index.js'
 
 const props = defineProps<PlumeThemeHomeTextImage>()
 

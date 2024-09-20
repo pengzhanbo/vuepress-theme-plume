@@ -1,12 +1,12 @@
+import type { RenderRule } from 'markdown-it/lib/renderer.mjs'
+import type { App } from 'vuepress'
+import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { Buffer } from 'node:buffer'
 import http from 'node:https'
 import { URL } from 'node:url'
 import { isLinkExternal, isLinkHttp } from '@vuepress/helper'
 import imageSize from 'image-size'
 import { fs, path } from 'vuepress/utils'
-import type { RenderRule } from 'markdown-it/lib/renderer.mjs'
-import type { App } from 'vuepress'
-import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 
 interface ImgSize {

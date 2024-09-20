@@ -1,9 +1,9 @@
+import type { HighlighterOptions, ThemeOptions } from '../types.js'
 import { customAlphabet } from 'nanoid'
 import { bundledLanguages, createHighlighter } from 'shiki'
 import { logger } from 'vuepress/utils'
 import { getLanguage } from './getLanguage.js'
 import { baseTransformers, getInlineTransformers } from './transformers.js'
-import type { HighlighterOptions, ThemeOptions } from '../types.js'
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 10)
 const mustacheRE = /\{\{.*?\}\}/g

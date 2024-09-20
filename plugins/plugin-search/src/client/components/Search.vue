@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { SearchBoxLocales, SearchOptions } from '../../shared/index.js'
 import { onKeyStroke } from '@vueuse/core'
 import {
   defineAsyncComponent,
   ref,
 } from 'vue'
 import SearchButton from './SearchButton.vue'
-import type { SearchBoxLocales, SearchOptions } from '../../shared/index.js'
 
 defineProps<{
   locales: SearchBoxLocales

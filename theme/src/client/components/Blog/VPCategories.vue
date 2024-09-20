@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import type { BlogCategoryItem, BlogCategoryItemWithPost } from '../../composables/index.js'
 import VPCategoriesGroup from '@theme/Blog/VPCategoriesGroup.vue'
 import VPLink from '@theme/VPLink.vue'
-import type { BlogCategoryItem, BlogCategoryItemWithPost } from '../../composables/index.js'
 
 defineProps<{
   items: (BlogCategoryItem | BlogCategoryItemWithPost)[]

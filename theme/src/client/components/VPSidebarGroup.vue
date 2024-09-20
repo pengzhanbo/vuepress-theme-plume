@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { ResolvedSidebarItem } from '../../shared/index.js'
 import VPSidebarItem from '@theme/VPSidebarItem.vue'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import type { ResolvedSidebarItem } from '../../shared/index.js'
 
 defineProps<{
   items: ResolvedSidebarItem[]

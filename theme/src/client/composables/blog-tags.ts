@@ -1,9 +1,9 @@
+import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 import { computed } from 'vue'
 import { toArray } from '../utils/index.js'
 import { useLocalePostList } from './blog-data.js'
 import { useRouteQuery } from './route-query.js'
 import { useTagColors } from './tag-colors.js'
-import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 
 type ShortPostItem = Pick<PlumeThemeBlogPostItem, 'title' | 'path' | 'createTime'>
 

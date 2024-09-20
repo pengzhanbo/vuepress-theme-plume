@@ -1,5 +1,11 @@
-import { isPlainObject } from 'vuepress/shared'
 import type { Plugin } from 'vuepress/core'
+import type {
+  CopyCodeOptions,
+  HighlighterOptions,
+  LineNumberOptions,
+  PreWrapperOptions,
+} from './types.js'
+import { isPlainObject } from 'vuepress/shared'
 import { copyCodeButtonPlugin } from './copy-code-button/index.js'
 import { highlight } from './highlight/index.js'
 import {
@@ -9,12 +15,6 @@ import {
   preWrapperPlugin,
 } from './markdown/index.js'
 import { prepareClientConfigFile } from './prepareClientConfigFile.js'
-import type {
-  CopyCodeOptions,
-  HighlighterOptions,
-  LineNumberOptions,
-  PreWrapperOptions,
-} from './types.js'
 
 export interface ShikiPluginOptions
   extends HighlighterOptions, LineNumberOptions, PreWrapperOptions {

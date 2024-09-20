@@ -1,6 +1,6 @@
+import type { File } from '../types.js'
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import type { File } from '../types.js'
 
 export async function readFiles(root: string): Promise<File[]> {
   const filepaths = await fs.readdir(root, { recursive: true })

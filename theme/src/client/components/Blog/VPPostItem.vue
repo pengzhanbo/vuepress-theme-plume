@@ -1,9 +1,9 @@
 <script lang="ts" setup>
+import type { BlogPostCover, PlumeThemeBlogPostItem } from '../../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
 import { useMediaQuery } from '@vueuse/core'
 import { computed } from 'vue'
 import { useData, useInternalLink, useTagColors } from '../../composables/index.js'
-import type { BlogPostCover, PlumeThemeBlogPostItem } from '../../../shared/index.js'
 
 const props = defineProps<{
   post: PlumeThemeBlogPostItem

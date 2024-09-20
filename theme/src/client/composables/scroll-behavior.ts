@@ -1,5 +1,5 @@
-import { nextTick } from 'vue'
 import type { Router } from 'vuepress/client'
+import { nextTick } from 'vue'
 import { inBrowser } from '../utils/index.js'
 import { useScrollPromise } from './scroll-promise.js'
 

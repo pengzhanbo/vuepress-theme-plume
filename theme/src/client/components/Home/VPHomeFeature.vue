@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import type { PlumeThemeHomeFeature } from '../../../shared/index.js'
 import VPIcon from '@theme/VPIcon.vue'
 import VPImage from '@theme/VPImage.vue'
 import VPLink from '@theme/VPLink.vue'
 import { isLinkAbsolute, isLinkHttp } from '@vuepress/helper/client'
 import { computed } from 'vue'
-import type { PlumeThemeHomeFeature } from '../../../shared/index.js'
 
 const props = defineProps<PlumeThemeHomeFeature>()
 

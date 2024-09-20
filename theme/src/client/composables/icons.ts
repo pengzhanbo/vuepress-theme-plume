@@ -1,6 +1,6 @@
+import type { Ref } from 'vue'
 import { icons } from '@internal/iconify'
 import { ref } from 'vue'
-import type { Ref } from 'vue'
 
 type IconsData = Record<string, string>
 type IconsDataRef = Ref<IconsData>

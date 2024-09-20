@@ -1,5 +1,5 @@
-import { toArray } from '@pengzhanbo/utils'
 import type { App } from 'vuepress'
+import { toArray } from '@pengzhanbo/utils'
 import { nanoid, resolveContent, writeTemp } from '../utils/index.js'
 
 export type TagsColorsItem = readonly [

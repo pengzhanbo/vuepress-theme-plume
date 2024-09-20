@@ -1,7 +1,7 @@
-import { entries, fromEntries, getRootLangPath, isPlainObject } from '@vuepress/helper'
 import type { App } from 'vuepress'
-import { PRESET_LOCALES } from '../locales/index.js'
 import type { PlumeThemePluginOptions } from '../../shared/index.js'
+import { entries, fromEntries, getRootLangPath, isPlainObject } from '@vuepress/helper'
+import { PRESET_LOCALES } from '../locales/index.js'
 
 export function resolveProvideData(
   app: App,

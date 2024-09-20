@@ -3,12 +3,12 @@
  * @[pdf 1](/xxx)
  * @[pdf 1 no-toolbar width="100%" height="600px" zoom="1" ratio="1:1"](/xxx)
  */
-import { path } from 'vuepress/utils'
 import type { PluginWithOptions } from 'markdown-it'
+import type { PDFTokenMeta } from '../../shared/index.js'
+import { path } from 'vuepress/utils'
 import { createRuleBlock } from '../utils/createRuleBlock.js'
 import { parseRect } from '../utils/parseRect.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
-import type { PDFTokenMeta } from '../../shared/index.js'
 
 export const pdfPlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<PDFTokenMeta>(md, {

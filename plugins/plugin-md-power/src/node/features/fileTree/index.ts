@@ -1,6 +1,6 @@
-import container from 'markdown-it-container'
 import type Token from 'markdown-it/lib/token.mjs'
 import type { Markdown } from 'vuepress/markdown'
+import container from 'markdown-it-container'
 import { getFileIcon } from './findIcon.js'
 import { resolveTreeNodeInfo, updateInlineToken } from './resolveTreeNodeInfo.js'
 

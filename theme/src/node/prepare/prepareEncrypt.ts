@@ -1,9 +1,9 @@
-import { isNumber, isString, random, toArray } from '@pengzhanbo/utils'
-import { genSaltSync, hashSync } from 'bcrypt-ts'
 import type { App } from 'vuepress'
 import type { Page } from 'vuepress/core'
-import { hash, resolveContent, writeTemp } from '../utils/index.js'
 import type { PlumeThemeEncrypt, PlumeThemePageData } from '../../shared/index.js'
+import { isNumber, isString, random, toArray } from '@pengzhanbo/utils'
+import { genSaltSync, hashSync } from 'bcrypt-ts'
+import { hash, resolveContent, writeTemp } from '../utils/index.js'
 
 export type EncryptConfig = readonly [
   boolean, // global

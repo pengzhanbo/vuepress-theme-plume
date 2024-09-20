@@ -1,10 +1,10 @@
-import { computed } from 'vue'
 import type { ComputedRef } from 'vue'
-import { useData } from '../composables/data.js'
-import { resolveEditLink } from '../utils/index.js'
 import type {
   NavItemWithLink,
 } from '../../shared/index.js'
+import { computed } from 'vue'
+import { useData } from '../composables/data.js'
+import { resolveEditLink } from '../utils/index.js'
 
 export function useEditLink(): ComputedRef<null | NavItemWithLink> {
   const { theme, page, frontmatter } = useData()

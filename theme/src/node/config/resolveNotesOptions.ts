@@ -1,7 +1,7 @@
+import type { NotesOptions, PlumeThemeLocaleOptions } from '../../shared/index.js'
 import { uniq } from '@pengzhanbo/utils'
 import { entries, removeLeadingSlash } from '@vuepress/helper'
 import { normalizePath, withBase } from '../utils/index.js'
-import type { NotesOptions, PlumeThemeLocaleOptions } from '../../shared/index.js'
 
 export function resolveNotesLinkList(localeOptions: PlumeThemeLocaleOptions) {
   const locales = localeOptions.locales || {}

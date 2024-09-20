@@ -1,6 +1,6 @@
+import type { App } from 'vuepress'
 import { ensureEndingSlash } from '@vuepress/helper'
 import { getDirname, path } from 'vuepress/utils'
-import type { App } from 'vuepress'
 
 const __dirname = getDirname(import.meta.url)
 

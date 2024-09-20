@@ -1,3 +1,4 @@
+import type { App } from 'vuepress'
 import {
   addViteConfig,
   addViteOptimizeDepsExclude,
@@ -6,7 +7,6 @@ import {
   chainWebpack,
 } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
-import type { App } from 'vuepress'
 
 export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
   addViteConfig(bundlerOptions, app, {

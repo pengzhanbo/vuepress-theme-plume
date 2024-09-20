@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { withBase } from 'vuepress/client'
 import type { ThemeImage } from '../../shared/index.js'
+import { withBase } from 'vuepress/client'
 
 defineProps<{
   image: ThemeImage

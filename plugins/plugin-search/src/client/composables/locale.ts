@@ -1,7 +1,7 @@
-import { computed, toRef } from 'vue'
-import { useRouteLocale } from 'vuepress/client'
 import type { MaybeRef } from 'vue'
 import type { SearchBoxLocales } from '../../shared/index.js'
+import { computed, toRef } from 'vue'
+import { useRouteLocale } from 'vuepress/client'
 
 const defaultLocales: SearchBoxLocales = {
   '/': {

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { ResolvedSidebarItem } from '../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
 import { computed } from 'vue'
 import {
@@ -7,7 +8,6 @@ import {
   useInternalLink,
   useSidebarData,
 } from '../composables/index.js'
-import type { ResolvedSidebarItem } from '../../shared/index.js'
 
 interface Breadcrumb {
   text: string

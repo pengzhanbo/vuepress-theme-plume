@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { BlogCategoryItem } from '../../composables/index.js'
 import VPCategories from '@theme/Blog/VPCategories.vue'
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
-import type { BlogCategoryItem } from '../../composables/index.js'
 
 const props = defineProps<{
   item: BlogCategoryItem

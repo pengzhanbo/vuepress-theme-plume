@@ -1,5 +1,5 @@
-import { watch } from 'chokidar'
 import type { App } from 'vuepress'
+import { watch } from 'chokidar'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { prepareArticleTagColors } from './prepareArticleTagColor.js'
 import { preparedBlogData } from './prepareBlogData.js'

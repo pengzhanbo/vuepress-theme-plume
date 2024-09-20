@@ -1,8 +1,8 @@
-import { format } from 'date-fns'
 import type {
   AutoFrontmatter,
   AutoFrontmatterObject,
 } from '../../shared/index.js'
+import { format } from 'date-fns'
 
 export function createBaseFrontmatter(options: AutoFrontmatter): AutoFrontmatterObject {
   const res: AutoFrontmatterObject = {}

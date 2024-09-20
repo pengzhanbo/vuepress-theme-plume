@@ -1,5 +1,5 @@
-import { pathJoin } from '../utils/index.js'
 import type { SidebarItem } from '../../shared/index.js'
+import { pathJoin } from '../utils/index.js'
 
 export function resolveLinkBySidebar(
   sidebar: 'auto' | (string | SidebarItem)[],

@@ -1,12 +1,12 @@
+import type { FSWatcher } from 'chokidar'
+import type { App } from 'vuepress'
+import type { AutoFrontmatter, PlumeThemeEncrypt, PlumeThemeLocaleOptions, ThemeConfig } from '../../shared/index.js'
 import { deepMerge } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
 import { path } from 'vuepress/utils'
-import type { FSWatcher } from 'chokidar'
-import type { App } from 'vuepress'
 import { resolveLocaleOptions } from '../config/resolveLocaleOptions.js'
 import { compiler } from './compiler.js'
 import { findConfigPath } from './findConfigPath.js'
-import type { AutoFrontmatter, PlumeThemeEncrypt, PlumeThemeLocaleOptions, ThemeConfig } from '../../shared/index.js'
 
 export interface ResolvedConfig {
   localeOptions: PlumeThemeLocaleOptions

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { SearchBoxLocales, SearchOptions } from '../../shared/index.js'
 import {
   computedAsync,
   debouncedWatch,
@@ -28,7 +29,6 @@ import { LRUCache } from '../utils/index.js'
 import BackIcon from './icons/BackIcon.vue'
 import ClearIcon from './icons/ClearIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
-import type { SearchBoxLocales, SearchOptions } from '../../shared/index.js'
 
 const props = defineProps<{
   locales: SearchBoxLocales

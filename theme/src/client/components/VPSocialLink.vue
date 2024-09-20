@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
 import type { SocialLinkIcon } from '../../shared/index.js'
+import { computed } from 'vue'
 
 const props = defineProps<{
   icon: SocialLinkIcon

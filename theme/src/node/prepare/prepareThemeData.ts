@@ -1,8 +1,8 @@
-import { resolveImageSize } from 'vuepress-plugin-md-power'
 import type { App } from 'vuepress'
+import type { PlumeThemeData, PlumeThemeLocaleOptions, PlumeThemePluginOptions } from '../../shared/index.js'
+import { resolveImageSize } from 'vuepress-plugin-md-power'
 import { resolveThemeData } from '../config/resolveThemeData.js'
 import { resolveContent, writeTemp } from '../utils/index.js'
-import type { PlumeThemeData, PlumeThemeLocaleOptions, PlumeThemePluginOptions } from '../../shared/index.js'
 
 export async function prepareThemeData(
   app: App,

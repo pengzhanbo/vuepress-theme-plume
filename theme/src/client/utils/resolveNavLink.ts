@@ -1,3 +1,4 @@
+import type { ResolvedNavItemWithLink } from '../../shared/index.js'
 import {
   ensureEndingSlash,
   ensureLeadingSlash,
@@ -5,7 +6,6 @@ import {
   isLinkWithProtocol,
 } from '@vuepress/helper/client'
 import { resolveRoute } from 'vuepress/client'
-import type { ResolvedNavItemWithLink } from '../../shared/index.js'
 
 /**
  * Resolve NavLink props from string

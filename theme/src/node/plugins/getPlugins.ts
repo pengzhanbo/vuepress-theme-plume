@@ -1,3 +1,5 @@
+import type { App, PluginConfig } from 'vuepress/core'
+import type { PlumeThemePluginOptions } from '../../shared/index.js'
 import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links'
 import { cachePlugin } from '@vuepress/plugin-cache'
 import { commentPlugin } from '@vuepress/plugin-comment'
@@ -15,14 +17,12 @@ import { searchPlugin } from '@vuepress-plume/plugin-search'
 import { shikiPlugin } from '@vuepress-plume/plugin-shikiji'
 import { type MarkdownEnhancePluginOptions, mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
-import type { App, PluginConfig } from 'vuepress/core'
 import {
   resolveDocsearchOptions,
   resolveSearchOptions,
 } from '../config/index.js'
 import { customContainerPlugins } from './containerPlugins.js'
 import { markdownTitlePlugin } from './markdown-title.js'
-import type { PlumeThemePluginOptions } from '../../shared/index.js'
 
 export interface SetupPluginOptions {
   app: App

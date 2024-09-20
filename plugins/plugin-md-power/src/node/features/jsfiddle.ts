@@ -3,10 +3,10 @@
  * @[jsfiddle theme="dark" tab="js,css,html,result"](user/id)
  */
 import type { PluginWithOptions } from 'markdown-it'
+import type { JSFiddleTokenMeta } from '../../shared/index.js'
 import { createRuleBlock } from '../utils/createRuleBlock.js'
 import { parseRect } from '../utils/parseRect.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
-import type { JSFiddleTokenMeta } from '../../shared/index.js'
 
 export const jsfiddlePlugin: PluginWithOptions<never> = (md) => {
   createRuleBlock<JSFiddleTokenMeta>(md, {

@@ -1,9 +1,9 @@
+import type { Plugin } from 'vuepress/core'
+import type { SearchPluginOptions } from '../shared/index.js'
 import { addViteOptimizeDepsInclude } from '@vuepress/helper'
 import chokidar from 'chokidar'
 import { getDirname, path } from 'vuepress/utils'
-import type { Plugin } from 'vuepress/core'
 import { onSearchIndexRemoved, onSearchIndexUpdated, prepareSearchIndex } from './prepareSearchIndex.js'
-import type { SearchPluginOptions } from '../shared/index.js'
 
 const __dirname = getDirname(import.meta.url)
 

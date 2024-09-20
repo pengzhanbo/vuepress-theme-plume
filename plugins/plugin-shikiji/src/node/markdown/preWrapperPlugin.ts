@@ -1,8 +1,8 @@
 // markdown-it plugin for generating line numbers.
 // v-pre block logic is in `../highlight.ts`
 import type { Markdown } from 'vuepress/markdown'
-import { resolveAttr, resolveLanguage } from '../utils/index.js'
 import type { PreWrapperOptions } from '../types.js'
+import { resolveAttr, resolveLanguage } from '../utils/index.js'
 
 export function preWrapperPlugin(
   md: Markdown,

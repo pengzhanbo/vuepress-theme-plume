@@ -4,10 +4,10 @@
  * @[codepen preview editable title="" height="400px" tab="css,result" theme="dark"](user/slash)
  */
 import type { PluginWithOptions } from 'markdown-it'
+import type { CodepenTokenMeta } from '../../shared/index.js'
 import { createRuleBlock } from '../utils/createRuleBlock.js'
 import { parseRect } from '../utils/parseRect.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
-import type { CodepenTokenMeta } from '../../shared/index.js'
 
 const CODEPEN_LINK = 'https://codepen.io/'
 

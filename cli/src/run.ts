@@ -1,3 +1,4 @@
+import type { PromptResult, ResolvedData } from './types.js'
 import path from 'node:path'
 import process from 'node:process'
 import { intro, outro, spinner } from '@clack/prompts'
@@ -8,7 +9,6 @@ import { generate } from './generate.js'
 import { prompt } from './prompt.js'
 import { t } from './translate.js'
 import { getPackageManager } from './utils/index.js'
-import type { PromptResult, ResolvedData } from './types.js'
 
 export async function run(mode: Mode, root?: string) {
   intro(colors.cyan('Welcome to VuePress and vuepress-theme-plume !'))

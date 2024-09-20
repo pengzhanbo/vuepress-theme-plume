@@ -1,13 +1,13 @@
 /**
  * @[youtube](id)
  */
-import { URLSearchParams } from 'node:url'
 import type { PluginWithOptions } from 'markdown-it'
+import type { YoutubeTokenMeta } from '../../../shared/index.js'
+import { URLSearchParams } from 'node:url'
 import { createRuleBlock } from '../../utils/createRuleBlock.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { timeToSeconds } from '../../utils/timeToSeconds.js'
-import type { YoutubeTokenMeta } from '../../../shared/index.js'
 
 const YOUTUBE_LINK = 'https://www.youtube.com/embed/'
 

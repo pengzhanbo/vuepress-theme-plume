@@ -1,5 +1,5 @@
-import { computed, inject, provide, ref, toValue } from 'vue'
 import type { ComputedRef, InjectionKey, Ref } from 'vue'
+import { computed, inject, provide, ref, toValue } from 'vue'
 
 const DEFAULT_COLOR = '#32A9C3'
 const DEFAULT_LABEL_COLOR = '#1B3C4A'

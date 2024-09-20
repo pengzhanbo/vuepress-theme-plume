@@ -1,6 +1,6 @@
+import type { ResolvedData } from './types.js'
 import { kebabCase } from '@pengzhanbo/utils'
 import handlebars from 'handlebars'
-import type { ResolvedData } from './types.js'
 
 export interface RenderData extends ResolvedData {
   name: string

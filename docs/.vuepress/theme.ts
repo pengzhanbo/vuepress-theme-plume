@@ -1,6 +1,6 @@
+import type { Theme } from 'vuepress'
 import process from 'node:process'
 import { plumeTheme } from 'vuepress-theme-plume'
-import type { Theme } from 'vuepress'
 
 export const theme: Theme = plumeTheme({
   hostname: process.env.SITE_HOST || 'https://plume.pengzhanbo.cn',

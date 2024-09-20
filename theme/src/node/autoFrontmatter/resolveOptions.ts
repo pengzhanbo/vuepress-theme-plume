@@ -1,3 +1,10 @@
+import type {
+  AutoFrontmatter,
+  AutoFrontmatterArray,
+  NoteItem,
+  NotesOptions,
+  PlumeThemeLocaleOptions,
+} from '../../shared/index.js'
 import { uniq } from '@pengzhanbo/utils'
 import { ensureLeadingSlash } from '@vuepress/helper'
 import { resolveLocalePath } from 'vuepress/shared'
@@ -6,13 +13,6 @@ import { resolveNotesDirs } from '../config/index.js'
 import { getCurrentDirname, nanoid, normalizePath, pathJoin, withBase } from '../utils/index.js'
 import { createBaseFrontmatter } from './baseFrontmatter.js'
 import { resolveLinkBySidebar } from './resolveLinkBySidebar.js'
-import type {
-  AutoFrontmatter,
-  AutoFrontmatterArray,
-  NoteItem,
-  NotesOptions,
-  PlumeThemeLocaleOptions,
-} from '../../shared/index.js'
 
 export function resolveOptions(
   localeOptions: PlumeThemeLocaleOptions,

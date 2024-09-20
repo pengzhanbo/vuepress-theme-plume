@@ -1,14 +1,14 @@
-import { computed, ref, watch } from 'vue'
-import { useRoute } from 'vuepress/client'
 import type { Ref } from 'vue'
-import { normalizeLink, resolveNavLink } from '../utils/index.js'
-
-import { useData } from './data.js'
 import type {
   NavItem,
   ResolvedNavItem,
   ResolvedNavItemWithLink,
 } from '../../shared/index.js'
+import { computed, ref, watch } from 'vue'
+import { useRoute } from 'vuepress/client'
+
+import { normalizeLink, resolveNavLink } from '../utils/index.js'
+import { useData } from './data.js'
 
 export function useNavbarData(): Ref<ResolvedNavItem[]> {
   const { theme } = useData()

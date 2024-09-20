@@ -11,11 +11,11 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import type { PDFEmbedType, PDFTokenMeta } from '../../shared/index.js'
 import { withBase } from 'vuepress/client'
 import { ensureEndingSlash, isLinkHttp } from 'vuepress/shared'
 import { pluginOptions } from '../options.js'
 import { checkIsiPad, checkIsMobile, checkIsSafari } from '../utils/is.js'
-import type { PDFEmbedType, PDFTokenMeta } from '../../shared/index.js'
 
 function queryStringify(options: PDFTokenMeta): string {
   const { page, noToolbar, zoom } = options

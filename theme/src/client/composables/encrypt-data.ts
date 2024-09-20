@@ -1,6 +1,6 @@
+import type { Ref } from 'vue'
 import { encrypt as rawEncrypt } from '@internal/encrypt'
 import { ref } from 'vue'
-import type { Ref } from 'vue'
 
 export type EncryptConfig = readonly [
   boolean, // global

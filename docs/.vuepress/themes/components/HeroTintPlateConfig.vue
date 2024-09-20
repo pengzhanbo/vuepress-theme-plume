@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { PlumeThemeHomeHeroTintPlate } from 'vuepress-theme-plume/client'
 import { computed, ref, watch } from 'vue'
 import VPHomeHero from 'vuepress-theme-plume/components/Home/VPHomeHero.vue'
 import { useDarkMode } from 'vuepress-theme-plume/composables'
-import type { PlumeThemeHomeHeroTintPlate } from 'vuepress-theme-plume/client'
 import CodeViewer from './CodeViewer.vue'
 import CustomTintPlate from './CustomTintPlate.vue'
 import DemoWrapper from './DemoWrapper.vue'

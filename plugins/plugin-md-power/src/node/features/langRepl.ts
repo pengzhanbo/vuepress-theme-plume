@@ -1,9 +1,9 @@
-import container from 'markdown-it-container'
-import { fs, getDirname, path } from 'vuepress/utils'
 import type markdownIt from 'markdown-it'
 import type Token from 'markdown-it/lib/token.mjs'
 import type { App } from 'vuepress/core'
 import type { ReplEditorData, ReplOptions } from '../../shared/index.js'
+import container from 'markdown-it-container'
+import { fs, getDirname, path } from 'vuepress/utils'
 
 const RE_INFO = /^(#editable)?(.*)$/
 

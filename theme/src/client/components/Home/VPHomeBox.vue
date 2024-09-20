@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import type { PlumeHomeConfigBase } from '../../../shared/index.js'
 import { computed, normalizeClass } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { useDarkMode } from '../../composables/index.js'
-import type { PlumeHomeConfigBase } from '../../../shared/index.js'
 
 const props = defineProps<PlumeHomeConfigBase & {
   containerClass?: any

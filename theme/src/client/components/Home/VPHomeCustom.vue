@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { PlumeThemeHomeCustom } from '../../../shared/index.js'
 import VPHomeBox from '@theme/Home/VPHomeBox.vue'
 import { Content } from 'vuepress/client'
-import type { PlumeThemeHomeCustom } from '../../../shared/index.js'
 
 const props = defineProps<PlumeThemeHomeCustom>()
 </script>

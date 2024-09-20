@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { AutoplayOptions, SwiperModule, Swiper as SwiperType } from 'swiper/types'
 import {
   Autoplay,
   EffectCards,
@@ -13,7 +14,6 @@ import {
 } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { computed } from 'vue'
-import type { AutoplayOptions, SwiperModule, Swiper as SwiperType } from 'swiper/types'
 
 import 'swiper/css'
 import 'swiper/css/navigation'

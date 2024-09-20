@@ -1,5 +1,5 @@
-import { computed, ref, toValue, watch } from 'vue'
 import type { MaybeRef } from 'vue'
+import { computed, ref, toValue, watch } from 'vue'
 
 export interface GithubRepoInfo {
   name: string

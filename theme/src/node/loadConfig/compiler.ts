@@ -1,3 +1,4 @@
+import type { ThemeConfig } from '../../shared/index.js'
 import { promises as fsp } from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
@@ -5,7 +6,6 @@ import { pathToFileURL } from 'node:url'
 import { build } from 'esbuild'
 import { importFileDefault } from 'vuepress/utils'
 import { hash } from '../utils/index.js'
-import type { ThemeConfig } from '../../shared/index.js'
 
 export async function compiler(configPath?: string,
 ): Promise<{

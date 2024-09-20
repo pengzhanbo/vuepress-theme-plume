@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { NpmBadgeOptions } from '../composables/npm-badge.js'
 import { toRef } from 'vue'
 import { useNpmBadge } from '../composables/npm-badge.js'
-import type { NpmBadgeOptions } from '../composables/npm-badge.js'
 
 const props = defineProps<NpmBadgeOptions>()
 

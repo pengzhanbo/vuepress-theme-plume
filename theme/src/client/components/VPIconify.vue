@@ -1,8 +1,8 @@
 <script lang="ts" setup>
+import type { IconifyIcon } from '@iconify/vue/offline'
 import { loadIcon } from '@iconify/vue'
 import { Icon as OfflineIcon } from '@iconify/vue/offline'
 import { computed, ref, watch } from 'vue'
-import type { IconifyIcon } from '@iconify/vue/offline'
 
 const props = withDefaults(
   defineProps<{

@@ -1,10 +1,10 @@
+import type { Ref } from 'vue'
+import type { PlumeThemeBlogPostData } from '../../shared/index.js'
 import {
   blogPostData as blogPostDataRaw,
 } from '@internal/blogData'
 import { computed, ref } from 'vue'
 import { usePageLang } from 'vuepress/client'
-import type { Ref } from 'vue'
-import type { PlumeThemeBlogPostData } from '../../shared/index.js'
 
 export type BlogDataRef = Ref<PlumeThemeBlogPostData>
 

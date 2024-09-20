@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { PDFTokenMeta } from '../../shared/index.js'
 import { onMounted, toRefs } from 'vue'
 import { usePDF } from '../composables/pdf.js'
 import { useSize } from '../composables/size.js'
-import type { PDFTokenMeta } from '../../shared/index.js'
 
 const props = defineProps<PDFTokenMeta>()
 

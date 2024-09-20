@@ -1,13 +1,4 @@
-import { isArray, isEmptyObject, promiseParallel, toArray } from '@pengzhanbo/utils'
-import chokidar from 'chokidar'
-import { createFilter } from 'create-filter'
-import grayMatter from 'gray-matter'
-import jsonToYaml from 'json2yaml'
-import { fs, hash, path } from 'vuepress/utils'
 import type { App } from 'vuepress'
-import { getThemeConfig } from '../loadConfig/index.js'
-import { readMarkdown, readMarkdownList } from './readFile.js'
-import { resolveOptions } from './resolveOptions.js'
 import type {
   AutoFrontmatter,
   AutoFrontmatterArray,
@@ -15,6 +6,15 @@ import type {
   AutoFrontmatterObject,
   PlumeThemeLocaleOptions,
 } from '../../shared/index.js'
+import { isArray, isEmptyObject, promiseParallel, toArray } from '@pengzhanbo/utils'
+import chokidar from 'chokidar'
+import { createFilter } from 'create-filter'
+import grayMatter from 'gray-matter'
+import jsonToYaml from 'json2yaml'
+import { fs, hash, path } from 'vuepress/utils'
+import { getThemeConfig } from '../loadConfig/index.js'
+import { readMarkdown, readMarkdownList } from './readFile.js'
+import { resolveOptions } from './resolveOptions.js'
 
 const CACHE_FILE = 'markdown/auto-frontmatter.json'
 

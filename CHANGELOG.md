@@ -1,3 +1,20 @@
+# [1.0.0-rc.101](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.100...v1.0.0-rc.101) (2024-09-20)
+
+
+### Features
+
+* **theme:** add support post cover for blog post list ([#196](https://github.com/pengzhanbo/vuepress-theme-plume/issues/196)) ([39ad1c5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/39ad1c56d2f9aecc2ff0c5bebfb7cef21cee577a))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** support more file-tree icons ([#197](https://github.com/pengzhanbo/vuepress-theme-plume/issues/197)) ([defa4d2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/defa4d28ce3b02f45bafd421388f5e26ed812eea))
+* **theme:** optimize blog layout ([#198](https://github.com/pengzhanbo/vuepress-theme-plume/issues/198)) ([ef34b91](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ef34b915b0a6488e15700217000910444c6e910e))
+* **theme:** replace ` file-tree` icons with  colored icons ([#194](https://github.com/pengzhanbo/vuepress-theme-plume/issues/194)) ([bf67227](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bf672279c4e2d42d033b23713557b70c1a9664d1))
+* update deps to latest ([01a3abf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/01a3abf28f4e259e0ea629b12e1f1cc2843631ed))
+
+
+
 # [1.0.0-rc.100](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.99...v1.0.0-rc.100) (2024-09-18)
 
 

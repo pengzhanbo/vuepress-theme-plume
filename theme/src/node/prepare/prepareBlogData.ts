@@ -73,6 +73,7 @@ export async function preparedBlogData(
       createTime: page.data.frontmatter.createTime! || page.date?.replaceAll('-', '/') || '',
       lang: page.lang,
       excerpt: '',
+      cover: page.data.frontmatter.cover,
     }
 
     if (isEncryptPage(page, encrypt)) {

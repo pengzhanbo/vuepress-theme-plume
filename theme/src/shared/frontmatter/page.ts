@@ -62,4 +62,12 @@ export interface PlumeThemePageFrontmatter extends PlumeNormalFrontmatter {
    * 或直接传入 svg 字符串
    */
   icon?: string | { svg: string }
+
+  /**
+   * 标题徽章
+   */
+  badge?: string | {
+    text: string
+    type?: 'info' | 'tip' | 'warning' | 'danger'
+  }
 }

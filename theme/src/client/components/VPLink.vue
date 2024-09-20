@@ -6,6 +6,7 @@ import { useLink } from '../composables/index.js'
 const props = defineProps<{
   tag?: string
   href?: string
+  text?: string
   noIcon?: boolean
   target?: string
   rel?: string
@@ -34,7 +35,9 @@ function linkTo(e: Event) {
     :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"
   >
-    <slot />
+    <slot>
+      {{ text || href }}
+    </slot>
     <span v-if="isExternal && !noIcon" class="vpi-external-link icon" />
   </Component>
 </template>

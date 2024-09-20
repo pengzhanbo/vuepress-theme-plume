@@ -29,6 +29,7 @@ const {
         <VPPostItem
           :key="post.path"
           :post="post"
+          :index="index"
         />
       </VPTransitionDrop>
     </template>

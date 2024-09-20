@@ -1,15 +1,21 @@
 <script lang="ts" setup>
 import VPLink from '@theme/VPLink.vue'
+import { useMediaQuery } from '@vueuse/core'
 import { computed } from 'vue'
-import { useInternalLink, useTagColors } from '../../composables/index.js'
-import type { PlumeThemeBlogPostItem } from '../../../shared/index.js'
+import { useData, useInternalLink, useTagColors } from '../../composables/index.js'
+import type { BlogPostCover, PlumeThemeBlogPostItem } from '../../../shared/index.js'
 
 const props = defineProps<{
   post: PlumeThemeBlogPostItem
+  index: number
 }>()
 
+const { theme } = useData()
 const colors = useTagColors()
 const { categories: categoriesLink, tags: tagsLink } = useInternalLink()
+
+const createTime = computed(() => props.post.createTime?.split(' ')[0].replace(/\//g, '-'))
+const categoryList = computed(() => props.post.categoryList ?? [])
 
 const sticky = computed(() => {
   if (typeof props.post.sticky === 'boolean') {
@@ -21,10 +27,6 @@ const sticky = computed(() => {
   return false
 })
 
-const categoryList = computed(() =>
-  props.post.categoryList ?? [],
-)
-
 const tags = computed(() =>
   (props.post.tags ?? [])
     .slice(0, 4)
@@ -33,70 +35,178 @@ const tags = computed(() =>
       className: `vp-tag-${colors.value[tag]}`,
     })),
 )
+const cover = computed<BlogPostCover | null>(() => {
+  if (!props.post.cover)
+    return null
+  const opt = (typeof theme.value.blog === 'boolean' ? 'right' : theme.value.blog?.postCover) ?? 'right'
+  const options = typeof opt === 'string' ? { layout: opt } : opt
+  const cover = typeof props.post.cover === 'string' ? { url: props.post.cover } : props.post.cover
+  return { layout: 'right', ratio: '4:3', ...options, ...cover }
+})
+const isMobile = useMediaQuery('(max-width: 496px)')
+const coverLayout = computed(() => {
+  if (isMobile.value)
+    return 'top'
+  const layout = cover.value?.layout ?? 'right'
+  const odd = (props.index + 1) % 2 === 1
+  if (layout === 'odd-left')
+    return odd ? 'left' : 'right'
+  if (layout === 'odd-right')
+    return odd ? 'right' : 'left'
+  return layout
+})
+const coverCompact = computed(() => {
+  if (props.post.excerpt || coverLayout.value === 'top')
+    return false
+  return cover.value?.compact ?? false
+})
+const coverStyles = computed(() => {
+  if (!cover.value)
+    return null
+  let ratio: number
+  if (typeof cover.value.ratio === 'number') {
+    ratio = cover.value.ratio
+  }
+  else {
+    const [w, h] = cover.value.ratio!.split(/[:/]/).map(Number)
+    ratio = h / w
+  }
+  if (coverLayout.value === 'left' || coverLayout.value === 'right') {
+    const w = cover.value.width ?? 240
+    return { width: `${w}px`, height: `${w * ratio}px` }
+  }
 
-const createTime = computed(() =>
-  props.post.createTime?.split(' ')[0].replace(/\//g, '-'),
-)
+  return { height: 0, paddingBottom: `${ratio * 100}%` }
+})
 </script>
 
 <template>
-  <div class="vp-blog-post-item">
-    <h3>
-      <div v-if="sticky" class="sticky">
-        TOP
-      </div>
-      <span v-if="post.encrypt" class="icon-lock vpi-lock" />
-      <VPLink :href="post.path">
-        {{ post.title }}
-      </VPLink>
-    </h3>
-    <div class="post-meta">
-      <div v-if="categoryList.length" class="category-list">
-        <span class="icon vpi-folder" />
-        <template v-for="(cate, i) in categoryList" :key="i">
-          <VPLink :href="categoriesLink ? `${categoriesLink.link}?id=${cate.id}` : undefined">
-            {{ cate.name }}
-          </VPLink>
-          <span v-if="i !== categoryList.length - 1">/</span>
-        </template>
-      </div>
-      <div v-if="tags.length" class="tag-list">
-        <span class="icon vpi-tag" />
-        <template v-for="tag in tags" :key="tag.name">
-          <VPLink
-            class="tag"
-            :class="tag.className"
-            :href="tagsLink ? `${tagsLink.link}?tag=${tag.name}` : undefined"
-          >
-            {{ tag.name }}
-          </VPLink>
-        </template>
-      </div>
-      <div v-if="createTime" class="create-time">
-        <span class="icon vpi-clock" />
-        <span>{{ createTime }}</span>
-      </div>
+  <div class="vp-blog-post-item" :class="{ 'has-cover': cover, [coverLayout]: cover }">
+    <div v-if="cover" class="post-cover" :class="{ compact: coverCompact }" :style="coverStyles">
+      <img :src="cover.url" :alt="post.title" loading="lazy">
     </div>
-    <div v-if="post.excerpt" class="vp-doc excerpt" v-html="post.excerpt" />
+    <div class="blog-post-item-content">
+      <h3>
+        <span v-if="sticky" class="sticky">TOP</span>
+        <span v-if="post.encrypt" class="icon-lock vpi-lock" />
+        <VPLink :href="post.path" :text="post.title" />
+      </h3>
+      <div class="post-meta">
+        <div v-if="categoryList.length" class="category-list">
+          <span class="icon vpi-folder" />
+          <template v-for="(cate, i) in categoryList" :key="i">
+            <VPLink :href="categoriesLink ? `${categoriesLink.link}?id=${cate.id}` : undefined">
+              {{ cate.name }}
+            </VPLink>
+            <span v-if="i !== categoryList.length - 1">/</span>
+          </template>
+        </div>
+        <div v-if="tags.length" class="tag-list">
+          <span class="icon vpi-tag" />
+          <template v-for="tag in tags" :key="tag.name">
+            <VPLink
+              class="tag"
+              :class="tag.className"
+              :href="tagsLink ? `${tagsLink.link}?tag=${tag.name}` : undefined"
+            >
+              {{ tag.name }}
+            </VPLink>
+          </template>
+        </div>
+        <div v-if="createTime" class="create-time">
+          <span class="icon vpi-clock" />
+          <span>{{ createTime }}</span>
+        </div>
+      </div>
+      <div v-if="post.excerpt" class="vp-doc excerpt" v-html="post.excerpt" />
+    </div>
   </div>
 </template>
 
 <style scoped>
 .vp-blog-post-item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
   padding: 16px;
   margin: 0 -16px;
   background-color: var(--vp-c-bg);
   transition: background-color var(--t-color);
 }
 
-.vp-blog-post-item:last-of-type {
-  border-bottom: none;
+.vp-blog-post-item.has-cover:where(.left, .right) {
+  display: flex;
+  gap: 20px;
 }
 
-.vp-blog-post-item .sticky {
+.vp-blog-post-item.has-cover.right {
+  flex-direction: row-reverse;
+}
+
+.post-cover {
+  position: relative;
+  align-self: center;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.vp-blog-post-item.has-cover.left .post-cover.compact {
+  margin: -24px 0 -24px -20px;
+}
+
+.vp-blog-post-item.has-cover.right .post-cover.compact {
+  margin: -24px -20px -24px 0;
+}
+
+.vp-blog-post-item.has-cover.top .post-cover {
+  /* width: calc(100% + 32px); */
+  margin: -16px -16px 16px;
+  border-radius: 0;
+}
+
+@media (min-width: 419px) {
+  .vp-blog-post-item.has-cover.top .post-cover {
+    width: calc(100% + 40px);
+    margin: -24px -20px 24px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+}
+
+.post-cover img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform: scale(1);
+
+  object-fit: cover;
+}
+
+.vp-blog-post-item.has-cover:hover .post-cover img {
+  transform: scale(1.02);
+}
+
+.vp-blog-post-item.has-cover.left .post-cover.compact {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.vp-blog-post-item.has-cover.right .post-cover.compact {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.blog-post-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vp-blog-post-item.has-cover .blog-post-item-content {
+  flex: 1;
+}
+
+.blog-post-item-content .sticky {
   display: inline-block;
   padding: 3px 6px;
   margin-right: 0.5rem;
@@ -110,7 +220,7 @@ const createTime = computed(() =>
   transition-property: color, background-color;
 }
 
-.vp-blog-post-item .icon-lock {
+.blog-post-item-content .icon-lock {
   width: 1em;
   height: 1em;
   margin-right: 8px;
@@ -120,7 +230,7 @@ const createTime = computed(() =>
   transition-property: color;
 }
 
-.vp-blog-post-item h3 {
+.blog-post-item-content h3 {
   display: flex;
   align-items: center;
   font-size: 18px;
@@ -129,15 +239,15 @@ const createTime = computed(() =>
   transition: color var(--t-color);
 }
 
-.vp-blog-post-item h3:hover {
+.blog-post-item-content h3:hover {
   color: var(--vp-c-brand-1);
 }
 
-.vp-blog-post-item h3:hover .sticky {
+.blog-post-item-content h3:hover .sticky {
   color: var(--vp-c-text-2);
 }
 
-.vp-blog-post-item .excerpt {
+.blog-post-item-content .excerpt {
   margin-top: 12px;
 }
 
@@ -156,7 +266,7 @@ const createTime = computed(() =>
     box-shadow: var(--vp-shadow-2);
   }
 
-  .vp-blog-post-item .post-meta {
+  .blog-post-item-content .post-meta {
     margin-bottom: 0;
   }
 }
@@ -212,20 +322,30 @@ const createTime = computed(() =>
   transition: color var(--t-color);
 }
 
-.vp-doc :deep(p) {
+.excerpt.vp-doc :deep(p) {
   margin: 0.5rem 0;
 }
 
-.vp-doc :deep(p:first-of-type) {
+.excerpt.vp-doc :deep(p:first-of-type) {
   margin-top: 0;
 }
 
-.vp-doc :deep(p:last-of-type) {
+.excerpt.vp-doc :deep(p:last-of-type) {
   margin-bottom: 0;
 }
 
-.vp-doc :deep(p strong) {
+.excerpt.vp-doc :deep(p strong) {
   color: var(--vp-c-text-2);
   transition: color var(--t-color);
+}
+
+.excerpt.vp-doc :deep([class^="language-"]) {
+  margin: 16px -16px;
+}
+
+@media (min-width: 496px) {
+  .excerpt.vp-doc :deep([class^="language-"]) {
+    margin: 16px 0;
+  }
 }
 </style>

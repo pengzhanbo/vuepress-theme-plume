@@ -10,7 +10,12 @@ export function getFileIcon(fileName: string, type: 'file' | 'folder' = 'file'):
 
 function getFileIconName(fileName: string, type: 'file' | 'folder' = 'file'): string | undefined {
   if (type === 'folder') {
-    return definitions.folders[fileName]
+    const icon = definitions.folders[fileName]
+    if (icon)
+      return icon
+    if (fileName.includes('/'))
+      return definitions.folders[fileName.slice(fileName.lastIndexOf('/') + 1)]
+    return
   }
   let icon: string | undefined = definitions.named[fileName] || definitions.files[fileName]
   if (icon)

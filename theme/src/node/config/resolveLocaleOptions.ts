@@ -8,7 +8,7 @@ const FALLBACK_OPTIONS: PlumeThemeLocaleData = {
   appearance: true,
 
   blog: {
-    pagination: { perPage: 15 },
+    pagination: 15,
     postList: true,
     tags: true,
     archives: true,

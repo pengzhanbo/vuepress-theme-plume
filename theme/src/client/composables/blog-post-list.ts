@@ -42,11 +42,18 @@ export function usePostListControl(homePage: Ref<boolean>) {
     },
   })
 
+  const perPage = computed(() => {
+    if (blog.value.pagination === false)
+      return 0
+    if (typeof blog.value.pagination === 'number')
+      return blog.value.pagination
+    return blog.value.pagination?.perPage || DEFAULT_PER_PAGE
+  })
+
   const totalPage = computed(() => {
     if (blog.value.pagination === false)
       return 0
-    const perPage = blog.value.pagination?.perPage || DEFAULT_PER_PAGE
-    return Math.ceil(postList.value.length / perPage)
+    return Math.ceil(postList.value.length / perPage.value)
   })
   const isLastPage = computed(() => page.value >= totalPage.value)
   const isFirstPage = computed(() => page.value <= 1)
@@ -56,13 +63,12 @@ export function usePostListControl(homePage: Ref<boolean>) {
     if (blog.value.pagination === false)
       return postList.value
 
-    const perPage = blog.value.pagination?.perPage || DEFAULT_PER_PAGE
-    if (postList.value.length <= perPage)
+    if (postList.value.length <= perPage.value)
       return postList.value
 
     return postList.value.slice(
-      (page.value - 1) * perPage,
-      page.value * perPage,
+      (page.value - 1) * perPage.value,
+      page.value * perPage.value,
     )
   })
 

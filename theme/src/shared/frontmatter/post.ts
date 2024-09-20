@@ -1,3 +1,4 @@
+import type { BlogPostCover } from 'vuepress-theme-plume'
 import type { PlumeThemePageFrontmatter } from './page.js'
 
 export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {
@@ -19,10 +20,7 @@ export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {
   draft?: boolean
 
   /**
-   * 标题徽章
+   * 文章封面图
    */
-  badge?: string | {
-    text: string
-    type?: 'info' | 'tip' | 'warning' | 'danger'
-  }
+  cover?: string | BlogPostCover
 }

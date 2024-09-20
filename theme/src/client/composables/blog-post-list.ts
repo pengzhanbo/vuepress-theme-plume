@@ -5,7 +5,7 @@ import { useData } from './data.js'
 import { useRouteQuery } from './route-query.js'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 
-const DEFAULT_PER_PAGE = 10
+const DEFAULT_PER_PAGE = 15
 
 export function usePostListControl(homePage: Ref<boolean>) {
   const { theme } = useData()

@@ -41,10 +41,10 @@ export interface PlumeThemeBlog {
   /**
    * 分页
    */
-  pagination?: false | {
+  pagination?: false | number | {
     /**
      * 每页显示的文章数量
-     * @default 20
+     * @default 15
      */
     perPage?: number
   }

@@ -233,10 +233,16 @@ const coverStyles = computed(() => {
 .blog-post-item-content h3 {
   display: flex;
   align-items: center;
+  margin: 0;
   font-size: 18px;
   font-weight: 600;
   color: var(--vp-c-text-1);
   transition: color var(--t-color);
+}
+
+.blog-post-item-content h3 a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .blog-post-item-content h3:hover {
@@ -271,7 +277,7 @@ const coverStyles = computed(() => {
   }
 }
 
-.post-meta {
+.blog-post-item-content .post-meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -282,23 +288,23 @@ const coverStyles = computed(() => {
   transition: color var(--t-color);
 }
 
-.post-meta > div {
+.blog-post-item-content .post-meta > div {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   margin-right: 1rem;
 }
 
-.post-meta > div:last-of-type {
+.blog-post-item-content .post-meta > div:last-of-type {
   margin-right: 0;
 }
 
-.post-meta .tag-list {
+.blog-post-item-content .post-meta .tag-list {
   display: flex;
   align-items: center;
 }
 
-.post-meta .tag-list .tag {
+.blog-post-item-content .post-meta .tag-list .tag {
   display: inline-block;
   padding: 3px 5px;
   margin-right: 6px;
@@ -310,16 +316,22 @@ const coverStyles = computed(() => {
   transition: color var(--t-color), background-color var(--t-color);
 }
 
-.post-meta .tag-list .tag:last-of-type {
+.blog-post-item-content .post-meta .tag-list .tag:last-of-type {
   margin-right: 0;
 }
 
-.post-meta .icon {
+.blog-post-item-content .post-meta .icon {
   width: 14px;
   height: 14px;
   margin: 0.3rem;
   color: var(--vp-c-text-3);
   transition: color var(--t-color);
+}
+
+.blog-post-item-content .post-meta a {
+  font-weight: normal;
+  color: inherit;
+  text-decoration: none;
 }
 
 .excerpt.vp-doc :deep(p) {

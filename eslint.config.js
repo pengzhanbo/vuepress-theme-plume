@@ -27,5 +27,6 @@ export default config({
     'import/first': 'off',
     'no-new': 'off',
     'eslint-comments/no-unlimited-disable': 'off',
+    'antfu/no-top-level-await': 'off',
   },
 })

@@ -130,7 +130,7 @@ watch(
                 <slot name="doc-footer-before" />
               </template>
             </VPDocFooter>
-            <PageComment v-if="hasComments" :darkmode="isDark" />
+            <CommentService v-if="hasComments" :darkmode="isDark" />
             <slot name="doc-after" />
           </div>
         </div>

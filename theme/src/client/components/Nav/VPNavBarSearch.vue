@@ -1,5 +1,5 @@
 <template>
   <div class="vp-navbar-search">
-    <DocSearch />
+    <SearchBox />
   </div>
 </template>

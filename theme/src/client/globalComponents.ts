@@ -6,7 +6,6 @@ import VPImageCard from '@theme/global/VPImageCard.vue'
 import VPLinkCard from '@theme/global/VPLinkCard.vue'
 import VPHomeBox from '@theme/Home/VPHomeBox.vue'
 import VPIcon from '@theme/VPIcon.vue'
-import { h } from 'vue'
 
 export function globalComponents(app: App) {
   app.component('Badge', VPBadge)
@@ -23,23 +22,6 @@ export function globalComponents(app: App) {
 
   app.component('VPImageCard', VPImageCard)
   app.component('ImageCard', VPImageCard)
-
-  app.component('DocSearch', () => {
-    const SearchComponent
-        = app.component('Docsearch') || app.component('SearchBox')
-    if (SearchComponent)
-      return h(SearchComponent)
-
-    return null
-  })
-
-  app.component('PageComment', (props) => {
-    const CommentService = app.component('CommentService')
-    if (CommentService)
-      return h(CommentService, props)
-
-    return null
-  })
 
   app.component('Icon', VPIcon)
   app.component('VPIcon', VPIcon)

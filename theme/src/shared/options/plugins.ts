@@ -1,5 +1,5 @@
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
-import type { DocsearchOptions } from '@vuepress/plugin-docsearch'
+import type { DocSearchOptions } from '@vuepress/plugin-docsearch'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
 import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
 import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
@@ -23,7 +23,7 @@ export interface PlumeThemePluginOptions {
   /**
    * plugin-docsearch 配置
    */
-  docsearch?: false | DocsearchOptions
+  docsearch?: false | DocSearchOptions
 
   /**
    * @deprecated move to `shiki`

@@ -1,10 +1,13 @@
 /**
- * =|这里的文本将被黑幕隐藏，通过点击或者 hover 才可重现|=
+ * !!这里的文本将被黑幕隐藏，通过点击或者 hover 才可重现!!
  */
 import type { PluginWithOptions } from 'markdown-it'
 import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
 
 const [openTag, endTag] = ['!!', '!!']
+
+export const plotPlugin: PluginWithOptions<never> = md =>
+  md.inline.ruler.before('emphasis', 'plot', createTokenizer())
 
 function createTokenizer(): RuleInline {
   return (state, silent) => {
@@ -64,10 +67,4 @@ function createTokenizer(): RuleInline {
 
     return true
   }
-}
-
-export const plotPlugin: PluginWithOptions<never> = (
-  md,
-) => {
-  md.inline.ruler.before('emphasis', 'plot', createTokenizer())
 }

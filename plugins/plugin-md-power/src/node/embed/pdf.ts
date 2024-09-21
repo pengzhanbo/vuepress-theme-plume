@@ -6,12 +6,12 @@
 import type { PluginWithOptions } from 'markdown-it'
 import type { PDFTokenMeta } from '../../shared/index.js'
 import { path } from 'vuepress/utils'
-import { createRuleBlock } from '../utils/createRuleBlock.js'
 import { parseRect } from '../utils/parseRect.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
+import { createEmbedRuleBlock } from './createEmbedRuleBlock.js'
 
 export const pdfPlugin: PluginWithOptions<never> = (md) => {
-  createRuleBlock<PDFTokenMeta>(md, {
+  createEmbedRuleBlock<PDFTokenMeta>(md, {
     type: 'pdf',
     // eslint-disable-next-line regexp/no-super-linear-backtracking
     syntaxPattern: /^@\[pdf(?:\s+(\d+))?([^\]]*)\]\(([^)]*)\)/,

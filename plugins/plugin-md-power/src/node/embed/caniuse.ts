@@ -8,7 +8,7 @@ import type Token from 'markdown-it/lib/token.mjs'
 import type { CanIUseMode, CanIUseOptions, CanIUseTokenMeta } from '../../shared/index.js'
 import container from 'markdown-it-container'
 import { customAlphabet } from 'nanoid'
-import { createRuleBlock } from '../utils/createRuleBlock.js'
+import { createEmbedRuleBlock } from './createEmbedRuleBlock.js'
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 5)
 const UNDERLINE_RE = /_+/g
@@ -22,7 +22,7 @@ export const caniusePlugin: PluginWithOptions<CanIUseOptions> = (
   md,
   { mode: defaultMode = 'embed' }: CanIUseOptions = {},
 ): void => {
-  createRuleBlock<CanIUseTokenMeta>(md, {
+  createEmbedRuleBlock<CanIUseTokenMeta>(md, {
     type: 'caniuse',
     syntaxPattern: /^@\[caniuse\s*(embed|image)?(?:\{([0-9,\-]*)\})?\]\(([^)]*)\)/,
     meta: ([, mode, versions = '', feature]) => ({

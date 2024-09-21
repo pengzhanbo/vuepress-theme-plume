@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { HighlighterCore } from 'shiki/core'
 import editorData from '@internal/md-power/replEditorData'
-import { getHighlighterCore } from 'shiki/core'
+import { createHighlighterCore } from 'shiki/core'
 import { onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
 import { resolveCodeInfo } from '../composables/codeRepl.js'
 
@@ -17,7 +17,7 @@ const textAreaEl = shallowRef<HTMLTextAreaElement>()
 const input = ref('')
 
 async function init() {
-  highlighter = await getHighlighterCore({
+  highlighter = await createHighlighterCore({
     themes: 'light' in theme && 'dark' in theme ? [theme.light, theme.dark] : [theme],
     langs: Object.keys(grammars).map(key => grammars[key]),
     loadWasm: () => import('shiki/wasm'),

@@ -68,15 +68,11 @@ function parseData(data: string | MessageData): MessageData {
     :data-past="past"
     :data-future="future"
   >
-    <iframe
-      :src="source"
-      :style="{ height }"
-      :title="`Can I use ${feature}`"
-    />
+    <iframe :src="source" :style="{ height }" :title="`Can I use ${feature}`" />
   </div>
 </template>
 
-<style scoped>
+<style>
 .ciu_embed {
   margin: 16px -24px;
 }

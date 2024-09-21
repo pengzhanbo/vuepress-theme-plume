@@ -42,7 +42,7 @@ const { page } = useData()
   font-weight: 500;
   line-height: var(--vp-nav-height);
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .navbar-menu-link.active {

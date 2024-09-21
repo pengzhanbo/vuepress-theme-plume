@@ -42,7 +42,7 @@ defineProps<{
   text-align: center;
   border-top: solid 1px var(--vp-c-divider);
   outline: none;
-  transition: color var(--t-color), border-color var(--t-color);
+  transition: color var(--vp-t-color), border-color var(--vp-t-color);
 }
 
 .vp-friends-group .description {
@@ -50,7 +50,7 @@ defineProps<{
   line-height: 28px;
   color: var(--vp-c-text-1);
   text-align: center;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .friends-list {

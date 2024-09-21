@@ -83,7 +83,7 @@ const { hasBlogExtract, tags, archives, categories } = useBlogExtract()
   background-color: var(--vp-c-bg);
   border-radius: 8px;
   box-shadow: var(--vp-shadow-1);
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: background-color, color, box-shadow, transform;
   transform: scale(1);
 }
@@ -117,7 +117,7 @@ const { hasBlogExtract, tags, archives, categories } = useBlogExtract()
 .nav-link .total {
   padding-right: 8px;
   color: var(--vp-c-text-3);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .nav-link .icon {
@@ -125,7 +125,7 @@ const { hasBlogExtract, tags, archives, categories } = useBlogExtract()
   height: 1em;
   font-size: 1.2em;
   color: var(--vp-c-text-3);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .nav-link .icon-logo {

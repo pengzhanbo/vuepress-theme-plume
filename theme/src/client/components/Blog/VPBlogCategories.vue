@@ -31,7 +31,7 @@ const { categories } = useBlogCategory()
   padding: 16px;
   margin: 0 -16px 32px;
   background-color: var(--vp-c-bg);
-  transition: background-color var(--t-color), box-shadow var(--t-color);
+  transition: background-color var(--vp-t-color), box-shadow var(--vp-t-color);
 }
 
 @media (min-width: 768px) {
@@ -57,7 +57,7 @@ const { categories } = useBlogCategory()
   font-weight: 700;
   color: var(--vp-c-text-1);
   border-bottom: solid 1px var(--vp-c-divider);
-  transition: color var(--t-color), border-color var(--t-color);
+  transition: color var(--vp-t-color), border-color var(--vp-t-color);
 }
 
 .categories-title .icon {
@@ -69,7 +69,7 @@ const { categories } = useBlogCategory()
     padding: 0 24px 12px;
     margin: 0 -24px;
     border-bottom: solid 1px var(--vp-c-divider);
-    transition: border-bottom var(--t-color);
+    transition: border-bottom var(--vp-t-color);
   }
 }
 

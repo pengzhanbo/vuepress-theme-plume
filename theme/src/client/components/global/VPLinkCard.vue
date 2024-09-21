@@ -39,7 +39,7 @@ defineProps<{
   border: solid 1px var(--vp-c-divider);
   border-radius: 8px;
   box-shadow: var(--vp-shadow-1);
-  transition: border-color var(--t-color), box-shadow var(--t-color), background-color var(--t-color);
+  transition: border-color var(--vp-t-color), box-shadow var(--vp-t-color), background-color var(--vp-t-color);
 }
 
 .vp-link-card:hover {

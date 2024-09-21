@@ -79,7 +79,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
   background-color: var(--vp-c-bg-safe);
   border: solid 1px var(--vp-c-divider);
   border-radius: 5px;
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: background border;
 }
 
@@ -120,7 +120,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
   font-size: 1em;
   background-color: var(--vp-c-bg);
   border: solid 1px var(--vp-c-divider);
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: border background;
 }
 
@@ -180,7 +180,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
   padding: 3px 16px;
   background-color: var(--vp-c-bg);
   border: solid 1px var(--vp-c-divider);
-  transition: border var(--t-color), background-color var(--t-color);
+  transition: border var(--vp-t-color), background-color var(--vp-t-color);
 }
 
 .caniuse-browser-version select:first-of-type {
@@ -215,7 +215,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
   color: var(--vp-c-bg);
   background-color: var(--vp-c-brand-1);
   border-radius: 8px;
-  transition: background-color var(--t-color), color var(--t-color);
+  transition: background-color var(--vp-t-color), color var(--vp-t-color);
 }
 
 .caniuse-render-button:hover {

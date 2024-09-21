@@ -57,7 +57,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
   padding: 20px 16px;
   margin: 0 -16px;
   background-color: var(--vp-c-bg);
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .tags-container {
@@ -71,7 +71,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
   font-size: 20px;
   font-weight: 700;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .tags-title .icon {
@@ -100,7 +100,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
   background-color: var(--vp-tag-color);
   border: solid 1px var(--vp-tag-color);
   border-radius: 6px;
-  transition: all var(--t-color);
+  transition: all var(--vp-t-color);
 }
 
 .tag-title {
@@ -110,7 +110,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
   font-size: 20px;
   font-weight: 600;
   border-bottom: 1px solid var(--vp-c-divider);
-  transition: border-bottom var(--t-color);
+  transition: border-bottom var(--vp-t-color);
 }
 
 .tag-count {
@@ -119,7 +119,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
   margin-left: 4px;
   color: var(--vp-c-bg);
   border-left: 1px solid var(--vp-c-bg);
-  transition: color var(--t-color), border-left var(--t-color);
+  transition: color var(--vp-t-color), border-left var(--vp-t-color);
 }
 
 .tags .tag:hover,
@@ -142,7 +142,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
     background-color: var(--vp-c-bg);
     border-radius: 8px;
     box-shadow: var(--vp-shadow-1);
-    transition: var(--t-color);
+    transition: var(--vp-t-color);
     transition-property: background-color, box-shadow;
   }
 

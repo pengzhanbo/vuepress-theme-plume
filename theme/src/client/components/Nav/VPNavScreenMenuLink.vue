@@ -35,8 +35,8 @@ const closeScreen = inject('close-screen') as () => void
   color: var(--vp-c-text-1);
   border-bottom: 1px solid var(--vp-c-divider);
   transition:
-    border-color var(--t-color),
-    color var(--t-color);
+    border-color var(--vp-t-color),
+    color var(--vp-t-color);
 }
 
 .vp-nav-screen-menu-link:hover {

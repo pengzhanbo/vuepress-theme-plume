@@ -53,6 +53,7 @@ onMounted(() => {
       ref="navEl"
       class="vp-sidebar"
       :class="{ open }"
+      vp-sidebar
       @click.stop
     >
       <div class="curtain" />
@@ -95,9 +96,9 @@ onMounted(() => {
   box-shadow: var(--vp-c-shadow-3);
   opacity: 0;
   transition:
-    opacity var(--t-color),
-    background-color var(--t-color),
-    box-shadow var(--t-color),
+    opacity var(--vp-t-color),
+    background-color var(--vp-t-color),
+    box-shadow var(--vp-t-color),
     transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   transform: translateX(-100%);
 
@@ -113,7 +114,7 @@ onMounted(() => {
   transform: translateX(0);
 }
 
-.dark .vp-sidebar {
+[data-theme="dark"] .vp-sidebar {
   box-shadow: var(--vp-shadow-1);
 }
 
@@ -157,7 +158,7 @@ onMounted(() => {
     margin-right: -32px;
     margin-left: -32px;
     background-color: var(--vp-sidebar-bg-color);
-    transition: background-color var(--t-color);
+    transition: background-color var(--vp-t-color);
   }
 }
 

@@ -33,7 +33,7 @@ watchPostEffect(() => {
 </script>
 
 <template>
-  <div class="vp-navbar" :class="classes">
+  <div class="vp-navbar" :class="classes" vp-navbar>
     <div class="wrapper">
       <div class="container">
         <div class="title">
@@ -79,7 +79,7 @@ watchPostEffect(() => {
   height: var(--vp-nav-height);
   white-space: nowrap;
   pointer-events: none;
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: background-color, color, border-bottom;
 }
 
@@ -134,7 +134,7 @@ watchPostEffect(() => {
 .title {
   flex-shrink: 0;
   height: calc(var(--vp-nav-height) - 1px);
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .container > .title,
@@ -197,7 +197,7 @@ watchPostEffect(() => {
 
   height: var(--vp-nav-height);
 
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 @media (min-width: 960px) {
@@ -229,7 +229,7 @@ watchPostEffect(() => {
   margin-left: 8px;
   content: "";
   background-color: var(--vp-c-divider);
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .menu + .appearance::before,
@@ -269,7 +269,7 @@ watchPostEffect(() => {
 .divider-line {
   width: 100%;
   height: 1px;
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-navbar:not(.home) .divider-line {

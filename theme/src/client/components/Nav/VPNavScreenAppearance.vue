@@ -25,7 +25,7 @@ const { theme } = useData()
   padding: 12px 14px 12px 16px;
   background-color: var(--vp-c-bg-soft);
   border-radius: 8px;
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: background-color;
 }
 

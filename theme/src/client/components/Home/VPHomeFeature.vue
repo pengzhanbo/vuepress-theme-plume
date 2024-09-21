@@ -66,7 +66,7 @@ const isIconify = computed(() => {
   background-color: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-bg-soft);
   border-radius: 12px;
-  transition: border-color var(--t-color), background-color var(--t-color);
+  transition: border-color var(--vp-t-color), background-color var(--vp-t-color);
 }
 
 .vp-home-feature.link:hover {
@@ -94,7 +94,7 @@ const isIconify = computed(() => {
   font-size: 24px;
   background-color: var(--vp-c-default-soft);
   border-radius: 6px;
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .title {

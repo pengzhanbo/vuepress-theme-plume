@@ -7,7 +7,7 @@
   border: solid 1px var(--vp-c-divider);
   border-radius: 8px;
   box-shadow: var(--vp-shadow-2);
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: border, box-shadow;
 }
 
@@ -17,7 +17,7 @@
   justify-content: flex-start;
   min-height: 0;
   border-bottom: solid 1px var(--vp-c-divider);
-  transition: border-bottom var(--t-color);
+  transition: border-bottom var(--vp-t-color);
 }
 
 .vp-doc .demo-wrapper .demo-container {
@@ -28,7 +28,7 @@
   background-color: var(--vp-c-bg-alt);
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-doc .demo-wrapper.has-title .demo-head {
@@ -67,7 +67,7 @@
   height: 10px;
   background-color: #ccc;
   border-radius: 100%;
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-doc .demo-wrapper .demo-ctrl i:nth-child(1) {
@@ -93,7 +93,7 @@
   background-color: var(--vp-c-bg-alt);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: color, background-color;
 }
 
@@ -113,7 +113,7 @@
   width: 8px;
   height: 8px;
   content: " ";
-  transition: background var(--t-color);
+  transition: background var(--vp-t-color);
 }
 
 .vp-doc .demo-wrapper .demo-title::before {
@@ -175,7 +175,7 @@
   background-color: var(--vp-c-bg-soft);
   border: solid 1px var(--vp-c-divider);
   border-radius: 100%;
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: color, background-color, border-color;
 }
 
@@ -188,7 +188,7 @@
   width: 1px;
   content: "";
   background-color: var(--vp-c-divider);
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-doc .vp-steps > ol > li > :first-child,

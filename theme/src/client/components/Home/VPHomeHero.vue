@@ -147,7 +147,7 @@ useHomeHeroTintPlate(
 
 .hero-tagline {
   color: var(--vp-c-home-hero-tagline, var(--vp-c-text-2));
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .hero-text {
@@ -156,7 +156,7 @@ useHomeHeroTintPlate(
   font-weight: 500;
   color: var(--vp-c-home-hero-text, var(--vp-c-text-3));
   white-space: pre-wrap;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .actions {
@@ -206,7 +206,7 @@ useHomeHeroTintPlate(
   height: 100%;
   content: "";
   background: linear-gradient(to bottom, var(--vp-home-hero-bg-filter) 0, transparent 45%, transparent 55%, var(--vp-home-hero-bg-filter) 140%);
-  transition: --vp-home-hero-bg-filter var(--t-color);
+  transition: --vp-home-hero-bg-filter var(--vp-t-color);
 }
 
 .bg-filter canvas {

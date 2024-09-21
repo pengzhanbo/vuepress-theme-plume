@@ -59,7 +59,7 @@
   color: var(--vp-c-text-2);
 }
 
-.dark .icon :deep([class^="vpi-"]) {
+[data-theme="dark"] .icon :deep([class^="vpi-"]) {
   color: var(--vp-c-text-1);
   transition: opacity 0.25s !important;
 }

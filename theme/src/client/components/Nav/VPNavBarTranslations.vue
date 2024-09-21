@@ -44,6 +44,6 @@ const { currentLang, localeLinks } = useLangs()
   font-weight: 700;
   line-height: 32px;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 </style>

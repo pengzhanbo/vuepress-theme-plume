@@ -84,7 +84,7 @@ async function onSubmit() {
   border: 1px solid var(--vp-c-border);
   border-radius: 4px;
   outline: none;
-  transition: border-color var(--t-color), background-color var(--t-color);
+  transition: border-color var(--vp-t-color), background-color var(--vp-t-color);
 }
 
 .encrypt-input:focus {
@@ -106,7 +106,7 @@ async function onSubmit() {
   border: none;
   border-radius: 4px;
   outline: none;
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .encrypt-button:hover {

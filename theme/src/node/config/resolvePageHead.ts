@@ -12,12 +12,12 @@ export function resolvePageHead(page: Page, localeOptions: PlumeThemeLocaleOptio
       'script',
       { id: 'check-dark-mode' },
       appearance === 'force-dark'
-        ? `document.documentElement.classList.add('dark')`
+        ? `document.documentElement.dataset.theme = 'dark'`
         : `;(function () {
         const um= localStorage.getItem('vuepress-theme-appearance') || '${appearance}';
         const sm = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (um === 'dark' || (um !== 'light' && sm)) {
-          document.documentElement.classList.add('dark');
+        const isDark = um === 'dark' || (um !== 'light' && sm);
+        document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
         }
       })();`.replace(/^\s+|\s+$/gm, '').replace(/\n/g, ''),
     ])

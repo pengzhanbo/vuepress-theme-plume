@@ -34,7 +34,7 @@ const { page } = useData()
   padding: 12px 12px 0;
   margin: 12px -12px 0;
   border-top: 1px solid var(--vp-c-divider);
-  transition: border-top var(--t-color);
+  transition: border-top var(--vp-t-color);
 }
 
 .link {
@@ -47,8 +47,8 @@ const { page } = useData()
   white-space: nowrap;
   border-radius: 6px;
   transition:
-    background-color var(--t-color),
-    color var(--t-color);
+    background-color var(--vp-t-color),
+    color var(--vp-t-color);
 }
 
 .link:hover {

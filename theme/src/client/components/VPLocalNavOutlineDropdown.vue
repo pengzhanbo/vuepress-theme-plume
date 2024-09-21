@@ -83,7 +83,7 @@ function scrollToTop() {
   font-weight: 500;
   line-height: 24px;
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-local-nav-outline-dropdown button:hover {
@@ -125,7 +125,7 @@ function scrollToTop() {
   border: 1px solid var(--vp-c-border);
   border-radius: 8px;
   box-shadow: var(--vp-shadow-3);
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: background-color, border, box-shadow;
 }
 

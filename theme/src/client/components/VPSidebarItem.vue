@@ -138,7 +138,7 @@ function onCaretClick() {
   bottom: 6px;
   left: -17px;
   width: 1px;
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-sidebar-item.level-2.is-active > .item > .indicator,
@@ -158,7 +158,7 @@ function onCaretClick() {
   padding: 4px 0;
   font-size: 14px;
   line-height: 24px;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-sidebar-item.level-0 .text {
@@ -217,14 +217,14 @@ function onCaretClick() {
   margin-right: -7px;
   color: var(--vp-c-text-3);
   cursor: pointer;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .item :deep(.vp-icon) {
   margin: 0 0.25rem 0 0;
   font-size: 0.9em;
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .item :deep(.vp-icon-img) {
@@ -262,7 +262,7 @@ function onCaretClick() {
   width: 18px;
   height: 18px;
   fill: currentcolor;
-  transition: transform var(--t-color);
+  transition: transform var(--vp-t-color);
   transform: rotate(90deg);
 }
 
@@ -277,7 +277,7 @@ function onCaretClick() {
 .vp-sidebar-item.level-5 .items {
   padding-left: 16px;
   border-left: 1px solid var(--vp-c-divider);
-  transition: border-left var(--t-color);
+  transition: border-left var(--vp-t-color);
 }
 
 .vp-sidebar-item.collapsed .items {

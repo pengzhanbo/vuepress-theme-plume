@@ -101,7 +101,7 @@ function runCode() {
   padding-top: 6px;
   margin: 0 -1.5rem;
   background-color: var(--vp-code-block-bg);
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .code-repl-title {
@@ -111,7 +111,7 @@ function runCode() {
   margin: 0 -1.5rem;
   background-color: var(--vp-code-block-bg);
   border-bottom: solid 1px var(--vp-c-divider);
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: background, border;
 }
 
@@ -142,7 +142,7 @@ function runCode() {
   line-height: 48px;
   color: var(--vp-code-tab-active-text-color);
   white-space: nowrap;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .icon-run {
@@ -156,7 +156,7 @@ function runCode() {
   cursor: pointer;
   border: solid 1px var(--vp-c-text-3);
   border-radius: 100%;
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: color, border;
 }
 
@@ -171,7 +171,7 @@ function runCode() {
   justify-content: space-between;
   padding: 4px 10px 4px 20px;
   border-top: solid 2px var(--vp-c-divider);
-  transition: border-color var(--t-color);
+  transition: border-color var(--vp-t-color);
 }
 
 .output-head .title {
@@ -184,7 +184,7 @@ function runCode() {
 .output-head .output-version {
   font-size: 12px;
   color: var(--vp-c-text-3);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .output-head .icon-close {
@@ -193,7 +193,7 @@ function runCode() {
   margin-left: 20px;
   color: var(--vp-c-text-3);
   cursor: pointer;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .output-head .icon-close:hover {
@@ -227,7 +227,7 @@ function runCode() {
 .output-content .stderr pre,
 .output-content.rust .stderr pre.error {
   color: var(--vp-c-danger-1, #b8272c);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .output-content.rust .stderr pre {
@@ -237,6 +237,6 @@ function runCode() {
 .output-content .stderr + .stdout {
   margin-top: 12px;
   border-top: 1px solid var(--vp-c-divider);
-  transition: border-color var(--t-color);
+  transition: border-color var(--vp-t-color);
 }
 </style>

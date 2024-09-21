@@ -75,7 +75,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
   font-weight: 600;
   line-height: 1.5;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-doc-title.padding {
@@ -92,7 +92,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
   font-size: 14px;
   color: var(--vp-c-text-3);
   border-bottom: solid 1px var(--vp-c-divider);
-  transition: color var(--t-color), border-bottom var(--t-color);
+  transition: color var(--vp-t-color), border-bottom var(--vp-t-color);
 }
 
 .vp-doc-meta p {
@@ -110,7 +110,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 .vp-doc-meta .author .icon,
 .vp-doc-meta .author span {
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-doc-meta .tag {

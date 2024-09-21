@@ -36,7 +36,7 @@ const title = computed(() => profile.value?.name || site.value.title)
   width: 100%;
   overflow-y: auto;
   background-color: var(--vp-c-bg);
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 @media (min-width: 768px) {
@@ -95,6 +95,6 @@ const title = computed(() => profile.value?.name || site.value.title)
   line-height: 1.5;
   color: var(--vp-c-text-1);
   text-align: center;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 </style>

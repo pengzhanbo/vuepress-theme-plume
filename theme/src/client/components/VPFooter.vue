@@ -22,6 +22,7 @@ onMounted(() => {
     ref="footer"
     class="vp-footer"
     :class="{ 'has-sidebar': hasSidebar }"
+    vp-footer
   >
     <div class="container">
       <p
@@ -45,7 +46,7 @@ onMounted(() => {
   padding: 24px;
   background-color: var(--vp-c-bg);
   border-top: 1px solid var(--vp-c-gutter);
-  transition: border-top var(--t-color), background-color var(--t-color);
+  transition: border-top var(--vp-t-color), background-color var(--vp-t-color);
 }
 
 .footer-no-border .vp-footer {
@@ -55,7 +56,7 @@ onMounted(() => {
 
 .vp-footer p {
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-footer :deep(a) {
@@ -63,8 +64,8 @@ onMounted(() => {
   text-decoration-line: underline;
   text-underline-offset: 2px;
   transition:
-    color var(--t-color),
-    text-underline-offset var(--t-color);
+    color var(--vp-t-color),
+    text-underline-offset var(--vp-t-color);
 }
 
 .vp-footer :deep(a:hover) {

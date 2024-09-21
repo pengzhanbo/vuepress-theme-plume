@@ -59,7 +59,7 @@ function handlePrint() {
   font-size: 13px;
   font-weight: 500;
   border-left: 1px solid var(--vp-c-divider);
-  transition: border-left var(--t-color);
+  transition: border-left var(--vp-t-color);
 }
 
 .outline-marker {
@@ -74,8 +74,8 @@ function handlePrint() {
   opacity: 0;
   transition:
     top 0.25s cubic-bezier(0, 1, 0.5, 1),
-    background-color var(--t-color),
-    opacity var(--t-color);
+    background-color var(--vp-t-color),
+    opacity var(--vp-t-color);
 }
 
 .outline-title {

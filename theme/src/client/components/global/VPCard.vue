@@ -42,7 +42,7 @@ const icon = computed<string | { svg: string } | undefined>(() => {
   border: solid 1px var(--vp-c-divider);
   border-radius: 8px;
   box-shadow: var(--vp-shadow-1);
-  transition: border-color var(--t-color), box-shadow var(--t-color);
+  transition: border-color var(--vp-t-color), box-shadow var(--vp-t-color);
 }
 
 .vp-card-wrapper:hover {
@@ -62,7 +62,7 @@ const icon = computed<string | { svg: string } | undefined>(() => {
   font-size: 20px;
   font-weight: 700;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-card-wrapper .body :first-child {

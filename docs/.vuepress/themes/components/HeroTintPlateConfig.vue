@@ -128,7 +128,7 @@ const output = computed(() => {
   background: linear-gradient(to bottom, #fff 0, transparent 40%, transparent 60%, #fff 140%);
 }
 
-.hero-tint-plate-wrapper .dark :deep(.bg-filter::after) {
+.hero-tint-plate-wrapper [data-theme="dark"] :deep(.bg-filter::after) {
   background: linear-gradient(to bottom, #1b1b1f 0, transparent 40%, transparent 60%, #1b1b1f 140%);
 }
 
@@ -142,7 +142,7 @@ const output = computed(() => {
   border-bottom: 1px solid var(--vp-c-divider);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: background-color, border-bottom-color, color;
 }
 

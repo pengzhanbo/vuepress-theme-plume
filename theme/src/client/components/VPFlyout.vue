@@ -58,7 +58,7 @@ function onBlur() {
 <style scoped>
 .vp-flyout {
   position: relative;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .text {
@@ -68,14 +68,14 @@ function onBlur() {
   font-weight: 500;
   line-height: normal;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .icon {
   width: 20px;
   height: 20px;
   fill: currentcolor;
-  transition: fill var(--t-color);
+  transition: fill var(--vp-t-color);
 }
 
 .menu {
@@ -129,7 +129,7 @@ function onBlur() {
   height: var(--vp-nav-height);
   padding: 0 10px;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .option-icon {

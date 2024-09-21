@@ -8,7 +8,7 @@
   --vp-c-neutral-inverse: var(--vp-c-white);
 }
 
-.dark {
+[data-theme="dark"] {
   --vp-c-neutral: var(--vp-c-white);
   --vp-c-neutral-inverse: var(--vp-c-black);
 }
@@ -74,7 +74,7 @@
   --vp-c-sponsor: #db2777;
 }
 
-.dark {
+[data-theme="dark"] {
   --vp-c-gray-1: #515c67;
   --vp-c-gray-2: #414853;
   --vp-c-gray-3: #32363f;
@@ -128,7 +128,7 @@
   --vp-c-bg-safe: #f6f8fa;
 }
 
-.dark {
+[data-theme="dark"] {
   --vp-c-bg: #1b1b1f;
   --vp-c-bg-alt: #161618;
   --vp-c-bg-elv: #202127;
@@ -154,7 +154,7 @@
   --vp-c-gutter: #e2e2e3;
 }
 
-.dark {
+[data-theme="dark"] {
   --vp-c-border: #3c3f44;
   --vp-c-divider: #2e2e32;
   --vp-c-gutter: #000;
@@ -179,7 +179,7 @@
   --vp-c-text-dark-3: rgba(235, 235, 245, 0.38);
 }
 
-.dark {
+[data-theme="dark"] {
   --vp-c-text-1: rgba(255, 255, 245, 0.86);
   --vp-c-text-2: rgba(235, 235, 245, 0.6);
   --vp-c-text-3: rgba(235, 235, 245, 0.38);
@@ -297,12 +297,20 @@
   --vp-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.16);
 }
 
-.dark {
+[data-theme="dark"] {
   --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.27), 0 1px 2px rgba(0, 0, 0, 0.22);
   --vp-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.27);
   --vp-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.3);
   --vp-shadow-4: 0 14px 44px rgba(0, 0, 0, 0.39), 0 3px 9px rgba(0, 0, 0, 0.35);
   --vp-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.42), 0 4px 12px rgba(0, 0, 0, 0.38);
+}
+
+/**
+ * Transitions
+ * -------------------------------------------------------------------------- */
+:root {
+  --vp-t-color: 250ms ease;
+  --vp-t-transform: var(--vp-t-color);
 }
 
 /**
@@ -399,7 +407,7 @@
   --vp-button-alt-active-bg: var(--vp-c-default-1);
 }
 
-.dark {
+[data-theme="dark"] {
   --vp-button-brand-bg: var(--vp-c-brand-2);
   --vp-button-brand-hover-bg: var(--vp-c-brand-1);
   --vp-button-brand-active-bg: var(--vp-c-brand-3);
@@ -554,14 +562,14 @@
   --code-tabs-nav-hover-color: var(--vp-code-block-bg);
 }
 
-.dark {
+[data-theme="dark"] {
   --code-tabs-nav-bg-color: #3a404c;
   --code-tabs-nav-hover-color: #434a57;
 }
 
 /* md enhance hints */
 :root,
-html.dark {
+[data-theme="dark"] {
   /* important */
   --important-title-color: var(--vp-c-text-1);
   --important-bg-color: var(--vp-c-purple-soft);
@@ -612,7 +620,6 @@ html.dark {
 }
 
 :root {
-  --t-color: 250ms ease;
   --code-bg-color: var(--vp-code-block-bg);
   --medium-zoom-bg-color: var(--vp-c-bg);
 }
@@ -641,7 +648,29 @@ html.dark {
   --vp-mark-color-soft: var(--vp-c-brand-soft);
 }
 
-.dark {
+[data-theme="dark"] {
   --vp-mark-color: var(--vp-c-brand-3);
   --vp-mark-color-soft: var(--vp-c-brand-soft);
+}
+
+/**
+ * Compatible with `vuepress` guidelines
+ * -------------------------------------------------------------------------- */
+:root {
+  --vp-c-accent: var(--vp-c-brand-1);
+  --vp-c-accent-hover: var(--vp-c-brand-2);
+  --vp-c-accent-bg: var(--vp-c-brand-3);
+  --vp-c-accent-text: var(--vp-c-brand-1);
+  --vp-c-accent-soft: var(--vp-c-brand-soft);
+
+  --vp-c-text: var(--vp-c-text-1);
+  --vp-c-text-mute: var(--vp-c-text-2);
+  --vp-c-text-subtle: var(--vp-c-text-3);
+
+  --vp-c-shadow: var(--vp-shadow-3);
+  --vp-c-border-hard: var(--vp-c-border);
+
+  --vp-c-control: var(--vp-c-default-3);
+  --vp-c-control-hover: var(--vp-c-default-2);
+  --vp-c-control-disabled: var(--vp-c-default-soft);
 }

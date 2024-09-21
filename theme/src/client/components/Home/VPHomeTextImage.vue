@@ -92,21 +92,21 @@ const maxWidth = computed(() => {
   font-size: 16px;
   font-weight: 500;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .content-text ul h3 {
   margin: 0;
   font-size: 16px;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .content-text ul p {
   margin: 0;
   font-weight: 500;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .content-text ul li :only-child {

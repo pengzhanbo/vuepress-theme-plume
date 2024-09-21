@@ -31,6 +31,7 @@ useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
   <div
     v-if="frontmatter.pageLayout !== false && frontmatter.pageLayout !== 'custom'" class="theme-plume vp-layout"
     :class="frontmatter.pageClass"
+    vp-container
   >
     <VPEncryptGlobal v-if="!isGlobalDecrypted" />
 
@@ -175,7 +176,7 @@ useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
       <slot name="layout-bottom" />
     </template>
   </div>
-  <Content v-else />
+  <Content v-else vp-container vp-content />
 </template>
 
 <style scoped>

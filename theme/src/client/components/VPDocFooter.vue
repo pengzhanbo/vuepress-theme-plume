@@ -107,7 +107,7 @@ const showFooter = computed(() => {
   line-height: 32px;
   color: var(--vp-c-brand-1);
   border: 0;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .edit-link-button:hover {
@@ -130,7 +130,7 @@ const showFooter = computed(() => {
   font-weight: 500;
   line-height: 24px;
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 @media (min-width: 640px) {
@@ -164,16 +164,16 @@ const showFooter = computed(() => {
   padding-right: 10px;
   font-weight: 500;
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .contributors-info {
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 
   .contributor {
     color: var(--vp-c-text-3);
-    transition: color var(--t-color);
+    transition: color var(--vp-t-color);
   }
 }
 
@@ -183,7 +183,7 @@ const showFooter = computed(() => {
   padding-top: 24px;
   margin-top: 10px;
   border-top: 1px solid var(--vp-c-divider);
-  transition: border-top var(--t-color);
+  transition: border-top var(--vp-t-color);
 }
 
 @media (min-width: 640px) {
@@ -206,7 +206,7 @@ const showFooter = computed(() => {
   padding: 11px 16px 13px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
-  transition: border-color var(--t-color);
+  transition: border-color var(--vp-t-color);
 }
 
 .pager-link:hover {
@@ -224,7 +224,7 @@ const showFooter = computed(() => {
   font-weight: 500;
   line-height: 20px;
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .title {
@@ -233,6 +233,6 @@ const showFooter = computed(() => {
   font-weight: 500;
   line-height: 20px;
   color: var(--vp-c-brand-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 </style>

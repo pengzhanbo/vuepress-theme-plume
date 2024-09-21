@@ -50,7 +50,7 @@ const imageUrl = computed(() => {
   background-color: var(--vp-c-bg);
   border-radius: 8px;
   box-shadow: var(--vp-shadow-1);
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: background-color, color, box-shadow;
 }
 
@@ -74,7 +74,7 @@ const imageUrl = computed(() => {
 .vp-blog-profile h3,
 .vp-blog-profile p {
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-blog-profile .circle img {
@@ -90,7 +90,7 @@ const imageUrl = computed(() => {
   margin-top: 16px;
   font-size: 14px;
   color: var(--vp-c-text-3);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .profile-location p,
@@ -106,7 +106,7 @@ const imageUrl = computed(() => {
   padding-top: 12px;
   margin-top: 12px;
   border-top: 1px solid var(--vp-c-divider);
-  transition: border var(--t-color);
+  transition: border var(--vp-t-color);
 }
 
 .profile-social :deep(.vp-social-link) {

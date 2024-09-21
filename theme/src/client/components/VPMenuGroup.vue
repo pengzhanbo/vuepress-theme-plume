@@ -27,7 +27,7 @@ defineProps<{
   padding: 12px 12px 0;
   margin: 12px -12px 0;
   border-top: 1px solid var(--vp-c-divider);
-  transition: border-top var(--t-color);
+  transition: border-top var(--vp-t-color);
 }
 
 .vp-menu-group:first-child {
@@ -47,7 +47,7 @@ defineProps<{
   font-weight: 600;
   line-height: 32px;
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .title :deep(.vp-icon),

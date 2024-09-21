@@ -60,7 +60,7 @@ const date = computed(() => {
 .vp-image-card {
   margin: 16px 0;
   box-shadow: var(--vp-shadow-2);
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: box-shadow;
 }
 
@@ -91,7 +91,7 @@ const date = computed(() => {
   background-color: rgba(0, 0, 0, 0.5);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  transition: transform var(--t-color);
+  transition: transform var(--vp-t-color);
   transform: translateY(calc(100% - 60px));
 }
 

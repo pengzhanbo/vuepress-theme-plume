@@ -40,7 +40,7 @@ defineProps<{
   width: fit-content;
   max-width: 100%;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-categories-item .post:hover {

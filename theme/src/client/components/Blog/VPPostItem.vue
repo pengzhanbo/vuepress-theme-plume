@@ -128,7 +128,7 @@ const coverStyles = computed(() => {
   padding: 16px;
   margin: 0 -16px;
   background-color: var(--vp-c-bg);
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-blog-post-item.has-cover:where(.left, .right) {
@@ -216,7 +216,7 @@ const coverStyles = computed(() => {
   color: var(--vp-c-text-2);
   background-color: var(--vp-c-brand-soft);
   border-radius: 4px;
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: color, background-color;
 }
 
@@ -226,7 +226,7 @@ const coverStyles = computed(() => {
   margin-right: 8px;
   margin-left: 3px;
   color: var(--vp-c-text-3);
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: color;
 }
 
@@ -237,7 +237,7 @@ const coverStyles = computed(() => {
   font-size: 18px;
   font-weight: 600;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .blog-post-item-content h3 a {
@@ -263,7 +263,7 @@ const coverStyles = computed(() => {
     margin: 0;
     border-radius: 8px;
     box-shadow: var(--vp-shadow-1);
-    transition: var(--t-color);
+    transition: var(--vp-t-color);
     transition-property: background-color, color, box-shadow;
     will-change: transform;
   }
@@ -285,7 +285,7 @@ const coverStyles = computed(() => {
   font-size: 14px;
   font-weight: 400;
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .blog-post-item-content .post-meta > div {
@@ -313,7 +313,7 @@ const coverStyles = computed(() => {
   color: var(--vp-tag-color);
   background-color: var(--vp-tag-bg);
   border-radius: 3px;
-  transition: color var(--t-color), background-color var(--t-color);
+  transition: color var(--vp-t-color), background-color var(--vp-t-color);
 }
 
 .blog-post-item-content .post-meta .tag-list .tag:last-of-type {
@@ -325,7 +325,7 @@ const coverStyles = computed(() => {
   height: 14px;
   margin: 0.3rem;
   color: var(--vp-c-text-3);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .blog-post-item-content .post-meta a {
@@ -348,7 +348,7 @@ const coverStyles = computed(() => {
 
 .excerpt.vp-doc :deep(p strong) {
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .excerpt.vp-doc :deep([class^="language-"]) {

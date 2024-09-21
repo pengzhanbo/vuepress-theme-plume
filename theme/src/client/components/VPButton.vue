@@ -58,7 +58,7 @@ function linkTo(e: Event) {
   text-align: center;
   white-space: nowrap;
   border: 1px solid transparent;
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: border, color, background-color;
 }
 

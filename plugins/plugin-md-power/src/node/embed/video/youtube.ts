@@ -4,15 +4,15 @@
 import type { PluginWithOptions } from 'markdown-it'
 import type { YoutubeTokenMeta } from '../../../shared/index.js'
 import { URLSearchParams } from 'node:url'
-import { createRuleBlock } from '../../utils/createRuleBlock.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { timeToSeconds } from '../../utils/timeToSeconds.js'
+import { createEmbedRuleBlock } from '..//createEmbedRuleBlock.js'
 
 const YOUTUBE_LINK = 'https://www.youtube.com/embed/'
 
 export const youtubePlugin: PluginWithOptions<never> = (md) => {
-  createRuleBlock<YoutubeTokenMeta>(md, {
+  createEmbedRuleBlock<YoutubeTokenMeta>(md, {
     type: 'youtube',
     name: 'video_youtube',
     syntaxPattern: /^@\[youtube([^\]]*)\]\(([^)]*)\)/,

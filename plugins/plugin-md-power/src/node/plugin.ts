@@ -1,110 +1,38 @@
-import type MarkdownIt from 'markdown-it'
 import type { Plugin } from 'vuepress/core'
-import type { CanIUseOptions, MarkdownPowerPluginOptions } from '../shared/index.js'
+import type { MarkdownPowerPluginOptions } from '../shared/index.js'
 import { addViteOptimizeDepsInclude } from '@vuepress/helper'
-import { caniusePlugin, legacyCaniuse } from './features/caniuse.js'
-import { codepenPlugin } from './features/codepen.js'
-import { codeSandboxPlugin } from './features/codeSandbox.js'
-import { fileTreePlugin } from './features/fileTree/index.js'
-import { iconsPlugin } from './features/icons.js'
-import { imageSizePlugin } from './features/imageSize.js'
-import { jsfiddlePlugin } from './features/jsfiddle.js'
-import { langReplPlugin } from './features/langRepl.js'
-import { pdfPlugin } from './features/pdf.js'
-import { plotPlugin } from './features/plot.js'
-import { replitPlugin } from './features/replit.js'
-import { bilibiliPlugin } from './features/video/bilibili.js'
-import { youtubePlugin } from './features/video/youtube.js'
+import { containerPlugin } from './container/index.js'
+import { embedSyntaxPlugin } from './embed/index.js'
+import { imageSizePlugin } from './enhance/imageSize.js'
+import { inlineSyntaxPlugin } from './inline/index.js'
 import { prepareConfigFile } from './prepareConfigFile.js'
 
 export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): Plugin {
-  return (app) => {
-    return {
-      name: 'vuepress-plugin-md-power',
+  return {
+    name: 'vuepress-plugin-md-power',
 
-      clientConfigFile: app => prepareConfigFile(app, options),
+    clientConfigFile: app => prepareConfigFile(app, options),
 
-      define: {
-        __MD_POWER_INJECT_OPTIONS__: options,
-      },
+    define: {
+      __MD_POWER_INJECT_OPTIONS__: options,
+    },
 
-      extendsBundlerOptions(bundlerOptions) {
-        if (options.repl) {
-          addViteOptimizeDepsInclude(
-            bundlerOptions,
-            app,
-            ['shiki/core', 'shiki/wasm'],
-          )
-        }
-      },
+    extendsBundlerOptions(bundlerOptions, app) {
+      if (options.repl) {
+        addViteOptimizeDepsInclude(
+          bundlerOptions,
+          app,
+          ['shiki/core', 'shiki/wasm'],
+        )
+      }
+    },
 
-      extendsMarkdown: async (md: MarkdownIt, app) => {
-        await imageSizePlugin(app, md, options.imageSize)
+    extendsMarkdown: async (md, app) => {
+      embedSyntaxPlugin(md, options)
+      inlineSyntaxPlugin(md, options)
 
-        if (options.caniuse) {
-          const caniuse = options.caniuse === true ? {} : options.caniuse
-          // @[caniuse](feature_name)
-          md.use<CanIUseOptions>(caniusePlugin, caniuse)
-          // 兼容旧语法
-          legacyCaniuse(md, caniuse)
-        }
-
-        if (options.pdf) {
-          // @[pdf](url)
-          md.use(pdfPlugin)
-        }
-
-        if (options.icons) {
-          // :[collect:name]:
-          md.use(iconsPlugin)
-        }
-
-        if (options.bilibili) {
-          // @[bilibili](bvid aid cid)
-          md.use(bilibiliPlugin)
-        }
-
-        if (options.youtube) {
-          // @[youtube](id)
-          md.use(youtubePlugin)
-        }
-
-        if (options.codepen) {
-          // @[codepen](user/slash)
-          md.use(codepenPlugin)
-        }
-
-        if (options.replit) {
-          // @[replit](user/repl-name)
-          md.use(replitPlugin)
-        }
-
-        if (options.codeSandbox) {
-          // @[codesandbox](id)
-          md.use(codeSandboxPlugin)
-        }
-
-        if (options.jsfiddle) {
-          // @[jsfiddle](user/id)
-          md.use(jsfiddlePlugin)
-        }
-
-        if (
-          options.plot === true
-          || (typeof options.plot === 'object' && options.plot.tag !== false)
-        ) {
-          // !!plot!!
-          md.use(plotPlugin)
-        }
-
-        if (options.repl)
-          await langReplPlugin(app, md, options.repl)
-
-        if (options.fileTree) {
-          // ::: file-tree
-          fileTreePlugin(md)
-        }
-      },
-    }
+      await containerPlugin(app, md, options)
+      await imageSizePlugin(app, md, options.imageSize)
+    },
   }
 }

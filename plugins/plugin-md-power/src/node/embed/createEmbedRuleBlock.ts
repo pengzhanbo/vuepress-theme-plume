@@ -1,7 +1,7 @@
 import type { RuleOptions } from 'markdown-it/lib/ruler.mjs'
 import type { Markdown } from 'vuepress/markdown'
 
-export interface RuleBlockOptions<Meta extends Record<string, any>> {
+export interface EmbedRuleBlockOptions<Meta extends Record<string, any>> {
   /**
    * @[type]()
    */
@@ -18,7 +18,7 @@ export interface RuleBlockOptions<Meta extends Record<string, any>> {
 }
 
 // @[name]()
-export function createRuleBlock<Meta extends Record<string, any> = Record<string, any>>(
+export function createEmbedRuleBlock<Meta extends Record<string, any> = Record<string, any>>(
   md: Markdown,
   {
     type,
@@ -28,7 +28,7 @@ export function createRuleBlock<Meta extends Record<string, any> = Record<string
     ruleOptions = { alt: ['paragraph', 'reference', 'blockquote', 'list'] },
     meta,
     content,
-  }: RuleBlockOptions<Meta>,
+  }: EmbedRuleBlockOptions<Meta>,
 ): void {
   const MIN_LENGTH = type.length + 5
   const START_CODES = [64, 91, ...type.split('').map(c => c.charCodeAt(0))]

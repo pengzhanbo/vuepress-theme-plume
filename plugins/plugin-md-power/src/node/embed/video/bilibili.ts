@@ -7,15 +7,15 @@
 import type { PluginWithOptions } from 'markdown-it'
 import type { BilibiliTokenMeta } from '../../../shared/index.js'
 import { URLSearchParams } from 'node:url'
-import { createRuleBlock } from '../../utils/createRuleBlock.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { timeToSeconds } from '../../utils/timeToSeconds.js'
+import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
 const BILIBILI_LINK = 'https://player.bilibili.com/player.html'
 
 export const bilibiliPlugin: PluginWithOptions<never> = (md) => {
-  createRuleBlock<BilibiliTokenMeta>(md, {
+  createEmbedRuleBlock<BilibiliTokenMeta>(md, {
     type: 'bilibili',
     name: 'video_bilibili',
     // eslint-disable-next-line regexp/no-super-linear-backtracking

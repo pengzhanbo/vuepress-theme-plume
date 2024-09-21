@@ -9,6 +9,9 @@ import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
 
 const [openTag, endTag] = [':[', ']:']
 
+export const iconsPlugin: PluginWithOptions<never> = md =>
+  md.inline.ruler.before('emphasis', 'iconify', createTokenizer())
+
 function createTokenizer(): RuleInline {
   return (state, silent) => {
     let found = false
@@ -74,10 +77,4 @@ function createTokenizer(): RuleInline {
 
     return true
   }
-}
-
-export const iconsPlugin: PluginWithOptions<never> = (
-  md,
-) => {
-  md.inline.ruler.before('emphasis', 'iconify', createTokenizer())
 }

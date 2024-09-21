@@ -4,15 +4,15 @@
  * @[codepen preview editable title="" height="400px" tab="css,result" theme="dark"](user/slash)
  */
 import type { PluginWithOptions } from 'markdown-it'
-import type { CodepenTokenMeta } from '../../shared/index.js'
-import { createRuleBlock } from '../utils/createRuleBlock.js'
-import { parseRect } from '../utils/parseRect.js'
-import { resolveAttrs } from '../utils/resolveAttrs.js'
+import type { CodepenTokenMeta } from '../../../shared/index.js'
+import { parseRect } from '../../utils/parseRect.js'
+import { resolveAttrs } from '../../utils/resolveAttrs.js'
+import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
 const CODEPEN_LINK = 'https://codepen.io/'
 
 export const codepenPlugin: PluginWithOptions<never> = (md) => {
-  createRuleBlock<CodepenTokenMeta>(md, {
+  createEmbedRuleBlock<CodepenTokenMeta>(md, {
     type: 'codepen',
     syntaxPattern: /^@\[codepen([^\]]*)\]\(([^)]*)\)/,
     meta: ([, info = '', source = '']) => {

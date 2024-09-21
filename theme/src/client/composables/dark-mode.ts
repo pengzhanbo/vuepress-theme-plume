@@ -24,6 +24,9 @@ export function setupDarkMode(app: App): void {
       : appearance
         ? useDark({
           storageKey: 'vuepress-theme-appearance',
+          attribute: 'data-theme',
+          valueLight: 'light',
+          valueDark: 'dark',
           disableTransition,
           initialValue: () =>
             typeof appearance === 'string' ? appearance : 'auto',

@@ -47,7 +47,7 @@ function handleClick({ target: el }: Event) {
   color: var(--vp-c-text-2);
   text-overflow: ellipsis;
   white-space: nowrap;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .outline-link:hover,

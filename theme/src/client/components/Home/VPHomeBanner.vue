@@ -73,7 +73,7 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  transition: all var(--t-color);
+  transition: all var(--vp-t-color);
 }
 
 .vp-home-banner .banner-mask {
@@ -83,7 +83,7 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
   width: 100%;
   height: 100%;
   background-color: rgb(0, 0, 0);
-  transition: opacity var(--t-color);
+  transition: opacity var(--vp-t-color);
 }
 
 .vp-home-banner .container {

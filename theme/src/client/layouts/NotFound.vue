@@ -115,7 +115,7 @@ const { theme } = useData()
   height: 1px;
   margin: 24px auto 18px;
   background-color: var(--vp-c-divider);
-  transition: background-color  var(--t-color);
+  transition: background-color  var(--vp-t-color);
 }
 
 .quote {
@@ -124,7 +124,7 @@ const { theme } = useData()
   font-size: 14px;
   font-weight: 500;
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .action {
@@ -139,7 +139,7 @@ const { theme } = useData()
   color: var(--vp-c-brand-1);
   border: 1px solid var(--vp-c-brand-1);
   border-radius: 16px;
-  transition: color var(--t-color), border-color var(--t-color);
+  transition: color var(--vp-t-color), border-color var(--vp-t-color);
 }
 
 .link:hover {

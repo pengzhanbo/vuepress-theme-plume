@@ -158,7 +158,7 @@
   overflow-y: hidden;
   background-color: var(--vp-code-tab-bg);
   box-shadow: inset 0 -1px var(--vp-code-tab-divider);
-  transition: background-color var(--t-color), box-shadow var(--t-color);
+  transition: background-color var(--vp-t-color), box-shadow var(--vp-t-color);
 }
 
 @media (max-width: 639px) {
@@ -176,7 +176,7 @@
   color: var(--vp-code-tab-text-color);
   white-space: nowrap;
   border-bottom: 1px solid transparent;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-doc .vp-code-tab-nav::before {
@@ -195,7 +195,7 @@
   content: "";
   background: transparent;
   border-radius: 2px;
-  transition: background var(--t-color);
+  transition: background var(--vp-t-color);
 }
 
 .vp-doc .vp-code-tab-nav.active {
@@ -227,7 +227,7 @@
 .vp-doc .vp-code-demo {
   overflow: hidden;
   border: solid 1px var(--vp-c-divider);
-  transition: border var(--t-color);
+  transition: border var(--vp-t-color);
 }
 
 @media (max-width: 419px) {
@@ -243,7 +243,7 @@
 
 .vp-doc .vp-code-demo .vp-code-demo-header {
   padding: 8px 12px;
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-doc .vp-code-demo .vp-code-demo-code-wrapper {
@@ -254,7 +254,7 @@
 .vp-doc .vp-code-demo .vp-code-demo-toggle-button {
   margin: 0 12px 0 8px;
   background-color: var(--vp-c-gray-2);
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-doc .vp-code-demo .vp-code-demo-toggle-button:hover {
@@ -280,7 +280,7 @@
   margin-bottom: 0;
   border-bottom: 2px dashed var(--vp-c-divider);
   border-radius: 0;
-  transition: border-bottom var(--t-color);
+  transition: border-bottom var(--vp-t-color);
 }
 
 .vp-doc .vp-code-demo .vp-code-demo-codes div[class*="language-"]:first-of-type {
@@ -307,7 +307,7 @@
   margin-bottom: 16px;
   overflow: hidden;
   border: solid 1px var(--vp-c-divider);
-  transition: border var(--t-color);
+  transition: border var(--vp-t-color);
 }
 
 @media (max-width: 419px) {
@@ -325,13 +325,13 @@
   padding: 8px 12px;
   font-size: 16px;
   line-height: 1.7;
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-doc .vp-md-demo .vp-md-demo-toggle-button {
   margin: 0 12px 0 8px;
   background-color: var(--vp-c-gray-2);
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-doc .vp-md-demo .vp-md-demo-toggle-button:hover {
@@ -349,7 +349,7 @@
 
 .vp-doc .vp-md-demo .vp-md-demo-codes div[class*="language-"] {
   border-bottom: 2px dashed var(--vp-c-divider);
-  transition: border-bottom var(--t-color);
+  transition: border-bottom var(--vp-t-color);
 }
 
 .vp-doc .vp-md-demo .vp-md-demo-codes div[class*="language-"]:first-of-type {
@@ -414,14 +414,14 @@
   margin: 1.5rem -0.75rem;
   overflow: hidden;
   border: 1px solid var(--vp-c-divider);
-  transition: border var(--t-color);
+  transition: border var(--vp-t-color);
 }
 
 .vp-doc .vp-tabs-nav {
   padding: 0 12px;
   background-color: var(--vp-code-tab-bg);
   box-shadow: inset 0 -1px var(--vp-code-tab-divider);
-  transition: background-color var(--t-color), box-shadow var(--t-color);
+  transition: background-color var(--vp-t-color), box-shadow var(--vp-t-color);
 }
 
 .vp-doc .vp-tab-nav {
@@ -433,7 +433,7 @@
   color: var(--vp-code-tab-text-color);
   white-space: nowrap;
   border-bottom: 1px solid transparent;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-doc .vp-tab-nav::before {
@@ -452,7 +452,7 @@
   content: "";
   background: transparent;
   border-radius: 2px;
-  transition: background var(--t-color);
+  transition: background var(--vp-t-color);
 }
 
 .vp-doc .vp-tab-nav.active {
@@ -506,7 +506,7 @@
   border-radius: 6px;
   box-shadow: var(--vp-shadow-1);
   opacity: 0.75;
-  transition: border var(--t-color), box-shadow var(--t-color);
+  transition: border var(--vp-t-color), box-shadow var(--vp-t-color);
 }
 
 .vp-doc .footnotes::before {
@@ -613,7 +613,7 @@
   width: 1.5rem;
   height: 1.5rem;
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .mermaid-actions .preview-button:hover,

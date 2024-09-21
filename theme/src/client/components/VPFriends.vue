@@ -59,7 +59,7 @@ const groups = computed(() => matter.value.groups || [])
   color: var(--vp-c-text-1);
   text-align: center;
   outline: none;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-friends .description {
@@ -68,7 +68,7 @@ const groups = computed(() => matter.value.groups || [])
   line-height: 28px;
   color: var(--vp-c-text-1);
   text-align: center;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .friends-list {
@@ -130,7 +130,7 @@ const groups = computed(() => matter.value.groups || [])
   line-height: 32px;
   color: var(--vp-c-brand-1);
   border: 0;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .edit-link-button:hover {

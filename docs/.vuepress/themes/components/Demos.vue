@@ -58,7 +58,7 @@ defineProps<{
   border: solid 1px var(--vp-c-divider);
   border-radius: 8px;
   box-shadow: var(--vp-shadow-1);
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: border background box-shadow;
 }
 

@@ -55,7 +55,7 @@ const { theme } = useData()
   padding: 16px;
   margin: 0 -16px;
   background-color: var(--vp-c-bg);
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .btn {
@@ -66,7 +66,7 @@ const { theme } = useData()
   color: var(--vp-c-text-2);
   background-color: transparent;
   border-radius: 4px;
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: color, background-color;
 }
 
@@ -89,7 +89,7 @@ const { theme } = useData()
     background-color: var(--vp-c-bg);
     border-radius: 6px;
     box-shadow: var(--vp-shadow-1);
-    transition: var(--t-color);
+    transition: var(--vp-t-color);
     transition-property: background-color, box-shadow;
   }
 

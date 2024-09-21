@@ -44,7 +44,7 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-html.dark {
+html[data-theme="dark"] {
   color-scheme: dark;
 }
 
@@ -64,7 +64,7 @@ body {
 html,
 body {
   color: var(--vp-c-text-1);
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: color, background-color;
 
   scrollbar-width: thin;
@@ -229,19 +229,19 @@ table {
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
   color: var(--vp-c-text-3);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 input::-ms-input-placeholder,
 textarea::-ms-input-placeholder {
   color: var(--vp-c-text-3);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 input::placeholder,
 textarea::placeholder {
   color: var(--vp-c-text-3);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 input::-webkit-outer-spin-button,

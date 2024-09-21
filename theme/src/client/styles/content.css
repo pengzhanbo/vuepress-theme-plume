@@ -31,7 +31,7 @@
   line-height: 32px;
   letter-spacing: -0.02em;
   border-top: 1px solid var(--vp-c-divider);
-  transition: border-top var(--t-color), color var(--t-color);
+  transition: border-top var(--vp-t-color), color var(--vp-t-color);
 }
 
 .vp-doc h2:first-of-type {
@@ -73,7 +73,7 @@
   color: var(--vp-c-brand-1);
   content: var(--vp-header-anchor-symbol);
   opacity: 0;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-doc .header-anchor:hover {
@@ -123,7 +123,7 @@
 .vp-doc summary {
   margin: 16px 0;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-doc p {
@@ -135,7 +135,7 @@
   margin: 16px 0;
   color: var(--vp-c-text-2);
   border-left: 2px solid var(--vp-c-divider);
-  transition: border-color var(--t-color), color var(--t-color);
+  transition: border-color var(--vp-t-color), color var(--vp-t-color);
 }
 
 .vp-doc blockquote > p {
@@ -148,7 +148,7 @@
   color: var(--vp-c-brand-1);
   text-decoration: underline;
   text-underline-offset: 2px;
-  transition: color var(--t-color), opacity var(--t-color), text-underline-offset var(--t-color);
+  transition: color var(--vp-t-color), opacity var(--vp-t-color), text-underline-offset var(--vp-t-color);
 }
 
 @media print {
@@ -205,7 +205,7 @@
 .vp-doc tr {
   background-color: var(--vp-c-bg);
   border-top: 1px solid var(--vp-c-divider);
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: background-color, border-top;
 }
 
@@ -217,7 +217,7 @@
 .vp-doc td {
   padding: 8px 16px;
   border: 1px solid var(--vp-c-divider);
-  transition: border var(--t-color);
+  transition: border var(--vp-t-color);
 }
 
 .vp-doc th {
@@ -226,7 +226,7 @@
   color: var(--vp-c-text-2);
   text-align: left;
   background-color: var(--vp-c-bg-soft);
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: color, background-color, border;
 }
 
@@ -241,7 +241,7 @@
   margin: 16px 0;
   border: none;
   border-top: 1px solid var(--vp-c-divider);
-  transition: border-top var(--t-color);
+  transition: border-top var(--vp-t-color);
 }
 
 /**
@@ -251,14 +251,14 @@
 .vp-doc :not(pre, h1, h2, h3, h4, h5, h6) > code {
   font-size: var(--vp-code-font-size);
   color: var(--vp-code-color);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-doc :not(pre) > code {
   padding: 3px 6px;
   background-color: var(--vp-code-bg);
   border-radius: 4px;
-  transition: color var(--t-color), background-color var(--t-color);
+  transition: color var(--vp-t-color), background-color var(--vp-t-color);
 }
 
 .vp-doc h1 > code,
@@ -270,7 +270,7 @@
 
 .vp-doc a > code {
   color: var(--vp-code-link-color);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-doc a:hover > code {

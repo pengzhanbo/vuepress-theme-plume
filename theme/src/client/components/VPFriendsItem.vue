@@ -71,7 +71,7 @@ const friendStyle = computed(() => {
   margin-bottom: 8px;
   background-color: var(--vp-friends-bg-color);
   border-radius: 6px;
-  transition: all var(--t-color);
+  transition: all var(--vp-t-color);
 }
 
 .avatar-link {
@@ -100,7 +100,7 @@ const friendStyle = computed(() => {
   font-size: 20px;
   font-weight: 700;
   color: var(--vp-friends-name-color);
-  transition: color var(--t-color), border-bottom var(--t-color);
+  transition: color var(--vp-t-color), border-bottom var(--vp-t-color);
 }
 
 .content :deep(.vp-social-links) {
@@ -122,7 +122,7 @@ const friendStyle = computed(() => {
   overflow: hidden;
   line-height: 1.5;
   color: var(--vp-friends-text-color);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;

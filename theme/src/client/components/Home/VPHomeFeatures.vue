@@ -68,7 +68,7 @@ const grid = computed(() => {
   font-weight: 900;
   color: var(--vp-c-text-1);
   text-align: center;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .description {
@@ -77,7 +77,7 @@ const grid = computed(() => {
   line-height: 1.7;
   color: var(--vp-c-text-1);
   text-align: center;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 @media (min-width: 768px) {

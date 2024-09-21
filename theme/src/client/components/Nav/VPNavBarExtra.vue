@@ -89,7 +89,7 @@ const hasExtraContent = computed(
   font-weight: 700;
   line-height: 32px;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .item.appearance,

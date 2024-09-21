@@ -32,7 +32,7 @@ const svg = computed(() => {
   width: 36px;
   height: 36px;
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-social-link:hover {

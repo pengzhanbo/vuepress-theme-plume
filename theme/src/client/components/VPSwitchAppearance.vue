@@ -39,15 +39,15 @@ watchPostEffect(() => {
   opacity: 0;
 }
 
-.dark .sun {
+[data-theme="dark"] .sun {
   opacity: 0;
 }
 
-.dark .moon {
+[data-theme="dark"] .moon {
   opacity: 1;
 }
 
-.dark .vp-switch-appearance :deep(.check) {
+[data-theme="dark"] .vp-switch-appearance :deep(.check) {
   /* rtl:ignore */
   transform: translateX(18px);
 }

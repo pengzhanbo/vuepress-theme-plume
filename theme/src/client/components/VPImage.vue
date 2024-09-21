@@ -41,11 +41,11 @@ export default {
 </template>
 
 <style scoped>
-html:not(.dark) .vp-image.dark {
+html:not([data-theme="dark"]) .vp-image.dark {
   display: none;
 }
 
-.dark .vp-image.light {
+[data-theme="dark"] .vp-image.light {
   display: none;
 }
 </style>

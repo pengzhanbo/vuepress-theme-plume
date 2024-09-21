@@ -70,6 +70,6 @@ const profile = computed(() => {
   line-height: 1.5;
   color: var(--vp-c-text-2);
   white-space: pre-wrap;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 </style>

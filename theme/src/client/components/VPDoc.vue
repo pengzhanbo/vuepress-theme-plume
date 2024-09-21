@@ -85,7 +85,7 @@ watch(
     >
       <slot name="doc-top" />
       <div class="container">
-        <div v-if="enableAside" class="aside" :class="{ 'left-aside': leftAside }">
+        <div v-if="enableAside" class="aside" :class="{ 'left-aside': leftAside }" vp-outline>
           <div class="aside-curtain" />
           <div ref="asideEl" class="aside-container">
             <div class="aside-content">
@@ -123,6 +123,7 @@ watch(
               <Content
                 v-else class="vp-doc plume-content"
                 :class="[pageName, enabledExternalLinkIcon && 'external-link-icon-enabled']"
+                vp-content
               />
             </main>
             <VPDocFooter v-if="isPageDecrypted">
@@ -130,7 +131,7 @@ watch(
                 <slot name="doc-footer-before" />
               </template>
             </VPDocFooter>
-            <CommentService v-if="hasComments" :darkmode="isDark" />
+            <CommentService v-if="hasComments" :darkmode="isDark" vp-comment />
             <slot name="doc-after" />
           </div>
         </div>
@@ -250,7 +251,7 @@ watch(
   width: 224px;
   height: 32px;
   background: linear-gradient(transparent, var(--vp-aside-curtain-bg) 70%);
-  transition: --vp-aside-curtain-bg var(--t-color);
+  transition: --vp-aside-curtain-bg var(--vp-t-color);
 }
 
 .aside-content {

@@ -81,7 +81,7 @@ function onClick() {
   transition: color ease 0.25s, background-color ease 0.25s;
 }
 
-.dark .vp-plot {
+[data-theme="dark"] .vp-plot {
   background-color: var(--vp-c-bg-plot-dark, #fff);
 }
 
@@ -90,8 +90,8 @@ function onClick() {
   color: var(--vp-c-plot-light, #fff);
 }
 
-.dark .vp-plot.hover:hover,
-.dark .vp-plot.active {
+[data-theme="dark"] .vp-plot.hover:hover,
+[data-theme="dark"] .vp-plot.active {
   color: var(--vp-c-plot-dark, #000);
 }
 </style>

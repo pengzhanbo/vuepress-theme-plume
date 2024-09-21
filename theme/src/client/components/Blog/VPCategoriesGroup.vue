@@ -72,7 +72,7 @@ onMounted(() => {
   display: block;
   content: "";
   border-left: 1px solid var(--vp-c-divider);
-  transition: border var(--t-color);
+  transition: border var(--vp-t-color);
 }
 
 .vp-category-group .folder {
@@ -83,7 +83,7 @@ onMounted(() => {
   font-weight: 600;
   color: var(--vp-c-text-2);
   cursor: pointer;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-category-group .folder:hover {

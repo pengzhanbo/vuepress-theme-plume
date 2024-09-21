@@ -30,7 +30,7 @@ defineProps<{
   font-size: 36px;
   color: currentcolor;
   background-color: inherit;
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .md-power-loading.absolute {

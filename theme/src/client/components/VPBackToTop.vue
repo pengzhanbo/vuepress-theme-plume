@@ -88,8 +88,8 @@ function handleClick() {
   border-radius: 100%;
   box-shadow: var(--vp-shadow-2);
   transition:
-    background-color var(--t-color),
-    box-shadow var(--t-color);
+    background-color var(--vp-t-color),
+    box-shadow var(--vp-t-color);
 }
 
 .vp-back-to-top .percent,
@@ -98,7 +98,7 @@ function handleClick() {
   top: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 0.5s ease, color var(--t-color);
+  transition: opacity 0.5s ease, color var(--vp-t-color);
 }
 
 .vp-back-to-top .percent.show,

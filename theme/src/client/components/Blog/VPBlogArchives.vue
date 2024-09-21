@@ -43,7 +43,7 @@ const { archives } = useArchives()
   font-weight: 700;
   color: var(--vp-c-brand-1);
   background-color: var(--vp-c-bg);
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .archives-title .icon {
@@ -54,7 +54,7 @@ const { archives } = useArchives()
   padding: 16px;
   margin: 0 -16px 24px;
   background-color: var(--vp-c-bg);
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .archive-title {
@@ -64,7 +64,7 @@ const { archives } = useArchives()
   font-size: 18px;
   font-weight: 700;
   border-bottom: solid 1px var(--vp-c-divider);
-  transition: border-bottom var(--t-color);
+  transition: border-bottom var(--vp-t-color);
 }
 
 @media (min-width: 768px) {
@@ -77,7 +77,7 @@ const { archives } = useArchives()
     margin: 0 0 24px;
     border-radius: 8px;
     box-shadow: var(--vp-shadow-1);
-    transition: var(--t-color);
+    transition: var(--vp-t-color);
     transition-property: box-shadow, background-color;
   }
 
@@ -89,7 +89,7 @@ const { archives } = useArchives()
     padding-left: 24px;
     margin: 0 -24px;
     border-bottom: solid 1px var(--vp-c-divider);
-    transition: border-bottom var(--t-color);
+    transition: border-bottom var(--vp-t-color);
   }
 }
 

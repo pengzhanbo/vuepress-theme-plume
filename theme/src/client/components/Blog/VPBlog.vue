@@ -102,7 +102,7 @@ const { theme, page } = useData()
   position: relative;
   min-height: calc(100vh - var(--vp-footer-height, 0px));
   padding: calc(var(--vp-nav-height) + 32px) 16px 32px;
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 @media(min-width: 419px) {

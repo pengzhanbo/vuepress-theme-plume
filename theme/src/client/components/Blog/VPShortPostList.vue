@@ -36,7 +36,7 @@ defineProps<{
   align-items: center;
   justify-content: space-between;
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-blog-short-post-list .post-title {
@@ -45,7 +45,7 @@ defineProps<{
   margin-right: 14px;
   overflow: hidden;
   font-weight: 600;
-  transition: all var(--t-color);
+  transition: all var(--vp-t-color);
 
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -54,7 +54,7 @@ defineProps<{
 
 .vp-blog-short-post-list .post-time {
   color: var(--vp-c-text-3);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-blog-short-post-list li:hover .post-title {

@@ -123,7 +123,7 @@ const showBlogExtract = computed(() => {
   border-top-left-radius: 99px;
   border-bottom-left-radius: 99px;
   box-shadow: var(--vp-shadow-2);
-  transition: var(--t-color);
+  transition: var(--vp-t-color);
   transition-property: background-color, border, box-shadow;
 }
 
@@ -131,7 +131,7 @@ const showBlogExtract = computed(() => {
   display: block;
   font-size: 16px;
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 @media (min-width: 768px) {
@@ -182,7 +182,7 @@ const showBlogExtract = computed(() => {
   transform: translateY(100%);
 }
 
-.dark .blog-modal-container {
+[data-theme="dark"] .blog-modal-container {
   box-shadow:
     0 -3px 12px rgba(0, 0, 0, 0.3),
     0 -1px 4px rgba(0, 0, 0, 0.27);
@@ -232,7 +232,7 @@ const showBlogExtract = computed(() => {
   font-weight: 600;
   color: var(--vp-c-brand-1);
   border-radius: 8px;
-  transition: all var(--t-color);
+  transition: all var(--vp-t-color);
 }
 
 .nav-link .icon {
@@ -255,7 +255,7 @@ const showBlogExtract = computed(() => {
   justify-content: center;
   font-size: 14px;
   color: var(--vp-c-text-3);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .profile-location p,

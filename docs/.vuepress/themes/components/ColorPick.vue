@@ -57,7 +57,7 @@ onUnmounted(() => {
   background-color: var(--vp-c-bg-soft);
   border: solid 1px var(--vp-c-divider);
   border-radius: 32px;
-  transition: border-color var(--t-color), background-color var(--t-color);
+  transition: border-color var(--vp-t-color), background-color var(--vp-t-color);
 }
 
 .pickr .pcr-button {

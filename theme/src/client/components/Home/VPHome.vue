@@ -114,7 +114,7 @@ onUnmounted(() => {
 }
 
 .vp-home .layout {
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-home .layout:nth-child(odd) {

@@ -46,7 +46,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
   margin: 16px 0;
   border: solid 1px var(--vp-c-divider);
   border-radius: 8px;
-  transition: border-color var(--t-color);
+  transition: border-color var(--vp-t-color);
 }
 
 .vp-repo-card:hover {
@@ -78,7 +78,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
   font-weight: 600;
   color: var(--vp-c-brand-1);
   text-decoration: none;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-repo-card .repo-name a:hover {
@@ -93,7 +93,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
   color: var(--vp-c-text-2);
   border: solid 1px var(--vp-c-divider);
   border-radius: 22px;
-  transition: color var(--t-color), border var(--t-color);
+  transition: color var(--vp-t-color), border var(--vp-t-color);
 }
 
 .vp-repo-card .repo-desc {
@@ -101,7 +101,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
   font-size: 14px;
   line-height: 22px;
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-repo-card .repo-info {
@@ -118,12 +118,12 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
   gap: 0 4px;
   align-items: center;
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-repo-card .repo-info p [class^="vpi-github-"] {
   color: var(--vp-c-text-1);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-repo-card .repo-language {
@@ -137,7 +137,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
   --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 16 16'%3E%3Cpath fill='%23000' d='M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7a.75.75 0 1 1-1.072 1.05A2.5 2.5 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.5 2.5 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.25.25 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z'/%3E%3C/svg%3E");
 
   color: var(--vp-c-text-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
   transform: translateY(2px);
 }
 

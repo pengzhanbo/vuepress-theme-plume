@@ -101,7 +101,7 @@ export function setupThemeColors() {
   }, { deep: true, immediate: true })
 
   function resolveContent(colors: ThemeColorsGroup[], type: 'light' | 'dark') {
-    const name = type === 'light' ? ':root' : '.dark'
+    const name = type === 'light' ? ':root' : '[data-theme="dark"]'
     let content = `${name} {\n`
     colors.forEach(({ name, group }) => {
       content += `\n  /**\n   * ${name}\n   * -------------------------------------------------------------------------- */\n\n`

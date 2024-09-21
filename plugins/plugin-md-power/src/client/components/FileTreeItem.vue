@@ -60,7 +60,7 @@ onUnmounted(() => {
   background-color: var(--vp-c-bg-safe);
   border: solid 1px var(--vp-c-divider);
   border-radius: 8px;
-  transition: border var(--t-color), background-color var(--t-color);
+  transition: border var(--vp-t-color), background-color var(--vp-t-color);
 }
 
 .vp-file-tree .vp-file-tree-title {
@@ -69,7 +69,7 @@ onUnmounted(() => {
   font-weight: bold;
   color: var(--vp-c-text-1);
   border-bottom: solid 1px var(--vp-c-divider);
-  transition: color var(--t-color), border-color var(--t-color);
+  transition: color var(--vp-t-color), border-color var(--vp-t-color);
 }
 
 .vp-file-tree ul {
@@ -106,7 +106,7 @@ onUnmounted(() => {
 .file-tree-item .tree-node.folder > .name {
   color: var(--vp-c-text-1);
   cursor: pointer;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .file-tree-item .tree-node.folder > .name:hover {
@@ -130,7 +130,7 @@ onUnmounted(() => {
   mask: var(--icon) no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .file-tree-item .tree-node .name.focus {
@@ -141,7 +141,7 @@ onUnmounted(() => {
   color: var(--vp-c-bg);
   background-color: var(--vp-c-brand-2);
   border-radius: 4px;
-  transition: color var(--t-color), background-color var(--t-color);
+  transition: color var(--vp-t-color), background-color var(--vp-t-color);
 }
 
 .file-tree-item .tree-node .name.focus:hover {
@@ -153,7 +153,7 @@ onUnmounted(() => {
   margin-left: 20px;
   overflow: hidden;
   color: var(--vp-c-text-3);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .file-tree-item .tree-node [class*="vpi-"] {
@@ -170,7 +170,7 @@ onUnmounted(() => {
   padding-left: 8px !important;
   margin: 0 0 0 6px !important;
   border-left: solid 1px var(--vp-c-divider);
-  transition: border-color var(--t-color);
+  transition: border-color var(--vp-t-color);
 }
 
 .file-tree-item:not(.expanded) > ul {

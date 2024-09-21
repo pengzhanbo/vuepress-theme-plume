@@ -1,8 +1,8 @@
-.dark .vp-code span {
+[data-theme="dark"] .vp-code span {
   color: var(--shiki-dark, rgba(235, 235, 245, 0.6));
 }
 
-html:not(.dark) .vp-code span {
+html:not([data-theme="dark"]) .vp-code span {
   color: var(--shiki-light, rgba(60, 60, 67, 0.78));
 }
 
@@ -12,7 +12,7 @@ html:not(.dark) .vp-code span {
   margin: 16px -24px;
   overflow-x: auto;
   background-color: var(--vp-code-block-bg);
-  transition: background-color var(--t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 @media (min-width: 640px) {
@@ -41,7 +41,7 @@ html:not(.dark) .vp-code span {
   font-size: 0.75rem;
   color: var(--vp-code-line-number-color);
   content: attr(data-title);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-doc div[class*="language-"] code {
@@ -52,7 +52,7 @@ html:not(.dark) .vp-code span {
   font-size: var(--vp-code-font-size);
   line-height: var(--vp-code-line-height);
   color: var(--vp-code-block-color);
-  transition: background-color var(--t-color), color var(--t-color);
+  transition: background-color var(--vp-t-color), color var(--vp-t-color);
 
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
@@ -121,7 +121,7 @@ html:not(.dark) .vp-code span {
 
   /* rtl:ignore */
   border-right: 1px solid var(--vp-code-block-divider-color);
-  transition: border-right var(--t-color), color var(--t-color);
+  transition: border-right var(--vp-t-color), color var(--vp-t-color);
 }
 
 .vp-doc div[class*="language-"].line-numbers-mode .line-numbers .line-number {
@@ -347,7 +347,7 @@ html:not(.dark) .vp-code span {
   height: 44px;
   cursor: pointer;
   background: linear-gradient(to bottom, transparent 0%, var(--vp-code-bg-collapsed-lines) 50%, var(--vp-code-bg-collapsed-lines) 100%);
-  transition: --vp-code-bg-collapsed-lines var(--t-color);
+  transition: --vp-code-bg-collapsed-lines var(--vp-t-color);
 }
 
 .vp-doc div[class*="language-"].has-collapsed .collapsed-lines:hover {

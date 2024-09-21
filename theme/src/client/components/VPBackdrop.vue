@@ -23,7 +23,7 @@ defineProps<{
   left: 0;
   z-index: var(--vp-z-index-backdrop);
   background: var(--vp-backdrop-bg-color);
-  transition: opacity var(--t-color);
+  transition: opacity var(--vp-t-color);
 }
 
 .vp-backdrop.fade-enter-from,

@@ -96,7 +96,7 @@ function resolveSidebar(
   padding-left: 8px;
   margin-bottom: 2rem;
   border-left: solid 2px var(--vp-c-brand-1);
-  transition: border-left var(--t-color);
+  transition: border-left var(--vp-t-color);
 }
 
 .vp-breadcrumb ol {
@@ -117,7 +117,7 @@ function resolveSidebar(
 .vp-breadcrumb .breadcrumb {
   font-weight: bold;
   color: var(--vp-c-brand-2);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 
 .vp-breadcrumb .breadcrumb:hover {
@@ -131,6 +131,6 @@ function resolveSidebar(
 .vp-breadcrumb .vpi-chevron-right {
   margin-left: 4px;
   color: var(--vp-c-border);
-  transition: color var(--t-color);
+  transition: color var(--vp-t-color);
 }
 </style>

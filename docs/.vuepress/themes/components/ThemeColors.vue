@@ -36,7 +36,7 @@ const { lightColors, darkColors, css, reset } = useThemeColors()
       </section>
     </div>
   </div>
-  <p>复制下方的代码到您的项目中，请参考 <a href="/custom-style/">主题定制</a> </p>
+  <p>复制下方的代码到您的项目中，请参考 <a href="/guide/custom-style/">主题定制</a> </p>
   <CodeViewer :content="css" lang="css" />
 </template>
 

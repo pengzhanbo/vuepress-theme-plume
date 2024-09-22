@@ -23,6 +23,7 @@ jobs:
 {{#if (equal packageManager "pnpm")}}
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
+
 {{/if}}
       - name: Setup Node.js
         uses: actions/setup-node@v4

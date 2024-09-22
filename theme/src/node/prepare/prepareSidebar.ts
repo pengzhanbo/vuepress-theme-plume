@@ -179,7 +179,10 @@ function getAllSidebar(localeOptions: PlumeThemeLocaleOptions): Record<string, S
   for (const [locale, opt] of entries(localeOptions.locales || {})) {
     const notes = locale === '/' ? (opt.notes || localeOptions.notes) : opt.notes
     const sidebar = locale === '/' ? (opt.sidebar || localeOptions.sidebar) : opt.sidebar
-    locales[locale] = { ...sidebar }
+    locales[locale] = {}
+    for (const [key, value] of entries(sidebar || {})) {
+      locales[locale][normalizeLink(key)] = value
+    }
 
     if (notes && notes.notes?.length) {
       const prefix = notes.link || ''

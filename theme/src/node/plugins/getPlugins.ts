@@ -5,6 +5,7 @@ import { cachePlugin } from '@vuepress/plugin-cache'
 import { commentPlugin } from '@vuepress/plugin-comment'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { gitPlugin } from '@vuepress/plugin-git'
+import { markdownHintPlugin } from '@vuepress/plugin-markdown-hint'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
 import { photoSwipePlugin } from '@vuepress/plugin-photo-swipe'
 import { readingTimePlugin } from '@vuepress/plugin-reading-time'
@@ -49,6 +50,7 @@ export function getPlugins({
       delay: 200,
       offset: 5,
     }),
+    markdownHintPlugin({ hint: true, alert: true, injectStyles: false }),
 
     ...customContainerPlugins,
   ]
@@ -110,13 +112,11 @@ export function getPlugins({
     plugins.push(mdEnhancePlugin(
       Object.assign(
         {
-          hint: true, // info note tip warning danger details
           codetabs: true,
           tabs: true,
           align: true,
           mark: true,
           tasklist: true,
-          attrs: true,
           sup: true,
           sub: true,
           alert: true,
@@ -124,6 +124,7 @@ export function getPlugins({
           katex: true,
         } as MarkdownEnhancePluginOptions,
         pluginOptions.markdownEnhance || {},
+        { hint: false, alert: false } as MarkdownEnhancePluginOptions,
       ),
     ))
   }

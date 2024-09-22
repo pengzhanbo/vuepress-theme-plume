@@ -310,6 +310,9 @@ importers:
       '@vuepress/plugin-markdown-container':
         specifier: 2.0.0-rc.43
         version: 2.0.0-rc.43(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))
+      '@vuepress/plugin-markdown-hint':
+        specifier: 2.0.0-rc.46
+        version: 2.0.0-rc.46(markdown-it@14.1.0)(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))
       '@vuepress/plugin-nprogress':
         specifier: 2.0.0-rc.46
         version: 2.0.0-rc.46(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))
@@ -412,9 +415,6 @@ packages:
     peerDependencies:
       '@algolia/client-search': '>= 4.9.1 < 6'
       algoliasearch: '>= 4.9.1 < 6'
-    peerDependenciesMeta:
-      '@algolia/client-search':
-        optional: true
 
   '@algolia/cache-browser-local-storage@4.20.0':
     resolution: {integrity: sha512-uujahcBt4DxduBTvYdwO3sBfHuJvJokiC3BP1+O70fglmE1ShkH8lpXqZBac1rrU3FnNYSUs4pL9lBdTKeRPOQ==}
@@ -1112,6 +1112,14 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/plugin-alert@0.13.1':
+    resolution: {integrity: sha512-3LMYQQ3QP6TUx6zmtmuoHJScST5SVoPZlNuuF4S6PUZvJIwtlITF+eFNjDrA7UQx0PUdCgVHmwu5kYliq+BNtg==}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-align@0.12.0':
     resolution: {integrity: sha512-rvA+xzaVrlsr44s7XD/xadO3lF0QYWCbeSrOS2dhOroNCIOy4RotVP/1tQPr84eqm4oXcxXF0cbjFuwUgE1jYw==}
     engines: {node: '>= 18'}
@@ -1132,6 +1140,15 @@ packages:
 
   '@mdit/plugin-container@0.12.0':
     resolution: {integrity: sha512-61bWK1ek6Rn4o12/BIKTWgGU0miB9ENcXE19H5D4DRhwG5+4+0zp2U6hRLf/mE73+mRYin7iKVzcwwEsqs+u8w==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-container@0.13.1':
+    resolution: {integrity: sha512-mFfm7YViyLHo8uORVa9oLi9+acZZoSVdPf3WPqzC/yLZAJbF27rfJgWZ9Kylt+tyaAYng8L4DiSeVcSNUIHF1A==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -1978,6 +1995,11 @@ packages:
 
   '@vuepress/plugin-markdown-container@2.0.0-rc.43':
     resolution: {integrity: sha512-vJvNem8nD8FyE0T1CkLkVOi1wXy41yXOfoXE5Nmqwx8Ksh9clIMggsdpJkC+QiKxNgLgEI0NPbn3cJ4iIZKiKQ==}
+    peerDependencies:
+      vuepress: 2.0.0-rc.15
+
+  '@vuepress/plugin-markdown-hint@2.0.0-rc.46':
+    resolution: {integrity: sha512-MOTr8lz/fngoS6B9d1JstPX1xTCzU29Z53BQfmGFJkL5H054qrmRbIqwCi/agOIfbOOPI1KDXdttk7LfLP39dw==}
     peerDependencies:
       vuepress: 2.0.0-rc.15
 
@@ -5859,9 +5881,8 @@ snapshots:
 
   '@algolia/autocomplete-shared@1.9.3(@algolia/client-search@4.20.0)(algoliasearch@4.20.0)':
     dependencies:
-      algoliasearch: 4.20.0
-    optionalDependencies:
       '@algolia/client-search': 4.20.0
+      algoliasearch: 4.20.0
 
   '@algolia/cache-browser-local-storage@4.20.0':
     dependencies:
@@ -6533,6 +6554,12 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.1.0
 
+  '@mdit/plugin-alert@0.13.1(markdown-it@14.1.0)':
+    dependencies:
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.1.0
+
   '@mdit/plugin-align@0.12.0(markdown-it@14.1.0)':
     dependencies:
       '@mdit/plugin-container': 0.12.0(markdown-it@14.1.0)
@@ -6547,6 +6574,12 @@ snapshots:
       markdown-it: 14.1.0
 
   '@mdit/plugin-container@0.12.0(markdown-it@14.1.0)':
+    dependencies:
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.1.0
+
+  '@mdit/plugin-container@0.13.1(markdown-it@14.1.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
     optionalDependencies:
@@ -7510,6 +7543,18 @@ snapshots:
       '@types/markdown-it': 14.1.2
       markdown-it-container: 4.0.0
       vuepress: 2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2))
+
+  '@vuepress/plugin-markdown-hint@2.0.0-rc.46(markdown-it@14.1.0)(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))':
+    dependencies:
+      '@mdit/plugin-alert': 0.13.1(markdown-it@14.1.0)
+      '@mdit/plugin-container': 0.13.1(markdown-it@14.1.0)
+      '@types/markdown-it': 14.1.2
+      '@vuepress/helper': 2.0.0-rc.46(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))
+      vuepress: 2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - markdown-it
+      - typescript
 
   '@vuepress/plugin-nprogress@2.0.0-rc.46(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))':
     dependencies:

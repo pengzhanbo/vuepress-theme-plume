@@ -1,7 +1,7 @@
 import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { MarkdownPowerPluginOptions } from '../../shared/index.js'
-import { fileTreePlugin } from './fileTree/index.js'
+import { fileTreePlugin } from './fileTree.js'
 import { langReplPlugin } from './langRepl.js'
 
 export async function containerPlugin(

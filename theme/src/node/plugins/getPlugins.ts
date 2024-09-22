@@ -6,6 +6,8 @@ import { commentPlugin } from '@vuepress/plugin-comment'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { gitPlugin } from '@vuepress/plugin-git'
 import { markdownHintPlugin } from '@vuepress/plugin-markdown-hint'
+import { markdownImagePlugin } from '@vuepress/plugin-markdown-image'
+import { markdownMathPlugin } from '@vuepress/plugin-markdown-math'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
 import { photoSwipePlugin } from '@vuepress/plugin-photo-swipe'
 import { readingTimePlugin } from '@vuepress/plugin-reading-time'
@@ -121,10 +123,9 @@ export function getPlugins({
           sub: true,
           alert: true,
           footnote: true,
-          katex: true,
         } as MarkdownEnhancePluginOptions,
         pluginOptions.markdownEnhance || {},
-        { hint: false, alert: false } as MarkdownEnhancePluginOptions,
+        { hint: false, alert: false, imgSize: false, imgLazyload: false, imgMark: false, figure: false, obsidianImgSize: false, katex: false, mathjax: false } as MarkdownEnhancePluginOptions,
       ),
     ))
   }
@@ -140,6 +141,14 @@ export function getPlugins({
         ? { theme: shikiTheme, ...pluginOptions.markdownPower?.repl }
         : pluginOptions.markdownPower?.repl,
     }))
+  }
+
+  if (pluginOptions.markdownMath !== false) {
+    plugins.push(markdownMathPlugin(pluginOptions.markdownMath ?? { type: 'katex' }))
+  }
+
+  if (pluginOptions.markdownImage) {
+    plugins.push(markdownImagePlugin(pluginOptions.markdownImage))
   }
 
   if (pluginOptions.watermark) {

@@ -313,6 +313,12 @@ importers:
       '@vuepress/plugin-markdown-hint':
         specifier: 2.0.0-rc.46
         version: 2.0.0-rc.46(markdown-it@14.1.0)(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))
+      '@vuepress/plugin-markdown-image':
+        specifier: 2.0.0-rc.46
+        version: 2.0.0-rc.46(markdown-it@14.1.0)(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))
+      '@vuepress/plugin-markdown-math':
+        specifier: 2.0.0-rc.46
+        version: 2.0.0-rc.46(katex@0.16.11)(markdown-it@14.1.0)(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))
       '@vuepress/plugin-nprogress':
         specifier: 2.0.0-rc.46
         version: 2.0.0-rc.46(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))
@@ -1173,6 +1179,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/plugin-figure@0.13.1':
+    resolution: {integrity: sha512-bxeUVMPAuXHYRqPzU+1ux7R3LkpyHTdavCa05rQUhzDI07N+BZDE7oOABXnnFbx6ESamzu3/FBtq9VKjoifLmw==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-footnote@0.12.0':
     resolution: {integrity: sha512-9B+bJdMndCPoA9De9bxRm4/fyz02PHRcttOyuyPJ3G+wCAgIN1c/7CB8ViT1YJuECUjLogJQ/rrgqh7f0LTqLQ==}
     engines: {node: '>= 18'}
@@ -1181,6 +1196,15 @@ packages:
 
   '@mdit/plugin-img-lazyload@0.12.0':
     resolution: {integrity: sha512-6R42ieXzwkB5BKKZi+ZefqeP/fBG5qo7Sqtl72ewSVqEQ30bgxpk6nkrPI2orRob4tb6z0F/c+R8h6PW5MkTOw==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-img-lazyload@0.13.1':
+    resolution: {integrity: sha512-DPzR+yabbgqHWHb8oetOj56TtZzOcn5YZjSTssoh7lY5hp/Yy7jWvlLDrSw/LiXkYEhyocUee78enhTodBEpHQ==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -1197,8 +1221,26 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/plugin-img-mark@0.13.1':
+    resolution: {integrity: sha512-HOALB1nILV5vkopSKPrclkwwc5WGbpuAWxuOLTz/teOifE8E4JsbiFivcM6URMP1lZXzRBXoniQCCOUhWRis8A==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-img-size@0.12.0':
     resolution: {integrity: sha512-fCcF5gc+ba6gQ5ebrKuI8bK/gFbj8mbeN45FHmBsFDFsfTHa0Xij2v8iok0nP8YEIVj71y8XYojsqCWs6avong==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-img-size@0.13.1':
+    resolution: {integrity: sha512-cgihl72BNzij7GXjrqcKhl2eOqAlqWHiImOgblJPghDFNFKnnynty/Bf9nwbj8hTnhVWznFeuwawzXBfKYNbkg==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -1226,6 +1268,18 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/plugin-katex-slim@0.13.1':
+    resolution: {integrity: sha512-OO4n51aLo0Igv0aICXOaTO5+ZW/jW8Lnl8u1kxs2zkFVNUqpqNHAo8l4QxtscQk5L4XhXGgaTj2ZgAv7rtH96Q==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      katex: ^0.16.9
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      katex:
+        optional: true
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-mark@0.12.0':
     resolution: {integrity: sha512-BDFwbV/tbgUGL8KF2ymYNLEXT2KNBLe8D0rshDrbB4Iko1U2DywACQkmaUbYBJ1VCn7/dff35at9fWrm3QjrwQ==}
     engines: {node: '>= 18'}
@@ -1237,6 +1291,18 @@ packages:
 
   '@mdit/plugin-mathjax-slim@0.12.0':
     resolution: {integrity: sha512-bLM+JnCTN/3XiyKb64Yhpx014VYLfHBexua4n92cUyoKR9g3waB0loF1WMlg6GdyCTc7OvrUSceNjwWj3YRogg==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+      mathjax-full: ^3.2.2
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+      mathjax-full:
+        optional: true
+
+  '@mdit/plugin-mathjax-slim@0.13.1':
+    resolution: {integrity: sha512-ZFtKG2BtLAk1BarJZei9HP4aK0vNU7YvDb+R+nApK7MRmLQ53xHe7upu3qlfNBoOZWHXsdRmcz0G4xL3oxzlqA==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -1310,6 +1376,15 @@ packages:
 
   '@mdit/plugin-tex@0.12.0':
     resolution: {integrity: sha512-ejeSgSeZvcI5P4hFFQ4q5pHrZBGO2fQWVGm6dZ3BhX4ldoV8LjCIzkcMMXhrhSOVjwHnqmF6xOh9EvI0jzak1w==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-tex@0.13.1':
+    resolution: {integrity: sha512-lkRf6XrfVfS11FzT3hiooWdOUPJfAd/cnAv4NN/4WU7qOEz0e0HBVQO8PQb5CPwrE94Ld4+E6rQwJfVH1grkwQ==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -2002,6 +2077,23 @@ packages:
     resolution: {integrity: sha512-MOTr8lz/fngoS6B9d1JstPX1xTCzU29Z53BQfmGFJkL5H054qrmRbIqwCi/agOIfbOOPI1KDXdttk7LfLP39dw==}
     peerDependencies:
       vuepress: 2.0.0-rc.15
+
+  '@vuepress/plugin-markdown-image@2.0.0-rc.46':
+    resolution: {integrity: sha512-GwBmAxjeqCDSJi8I/wjTTovo1EVcTE9JrTZepD6wYKIQa3OwnSdzcwUXPhzViwysgsKpWhOchnmxHVlp7KAlnA==}
+    peerDependencies:
+      vuepress: 2.0.0-rc.15
+
+  '@vuepress/plugin-markdown-math@2.0.0-rc.46':
+    resolution: {integrity: sha512-nkcvq11PAQb0snkPKBNRdN7yJXiodwu6ftSK2NnRTm9izm5qkUllrk3c3A2OqLdjmLQMBv5uPlDpFPdZz9XzjQ==}
+    peerDependencies:
+      katex: ^0.16.10
+      mathjax-full: ^3.2.2
+      vuepress: 2.0.0-rc.15
+    peerDependenciesMeta:
+      katex:
+        optional: true
+      mathjax-full:
+        optional: true
 
   '@vuepress/plugin-nprogress@2.0.0-rc.46':
     resolution: {integrity: sha512-lSVW3+76ny4etghttPy6PR6At4g8vmrOh47gwXXmNAWoSuB0FPQPIbBggaj2nXpEA7KN2JOPa1QGGMrFuunvbg==}
@@ -6597,6 +6689,12 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.1.0
 
+  '@mdit/plugin-figure@0.13.1(markdown-it@14.1.0)':
+    dependencies:
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.1.0
+
   '@mdit/plugin-footnote@0.12.0(markdown-it@14.1.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
@@ -6608,13 +6706,31 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.1.0
 
+  '@mdit/plugin-img-lazyload@0.13.1(markdown-it@14.1.0)':
+    dependencies:
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.1.0
+
   '@mdit/plugin-img-mark@0.12.0(markdown-it@14.1.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
     optionalDependencies:
       markdown-it: 14.1.0
 
+  '@mdit/plugin-img-mark@0.13.1(markdown-it@14.1.0)':
+    dependencies:
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.1.0
+
   '@mdit/plugin-img-size@0.12.0(markdown-it@14.1.0)':
+    dependencies:
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.1.0
+
+  '@mdit/plugin-img-size@0.13.1(markdown-it@14.1.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
     optionalDependencies:
@@ -6636,6 +6752,15 @@ snapshots:
       katex: 0.16.11
       markdown-it: 14.1.0
 
+  '@mdit/plugin-katex-slim@0.13.1(katex@0.16.11)(markdown-it@14.1.0)':
+    dependencies:
+      '@mdit/plugin-tex': 0.13.1(markdown-it@14.1.0)
+      '@types/katex': 0.16.7
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      katex: 0.16.11
+      markdown-it: 14.1.0
+
   '@mdit/plugin-mark@0.12.0(markdown-it@14.1.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
@@ -6645,6 +6770,14 @@ snapshots:
   '@mdit/plugin-mathjax-slim@0.12.0(markdown-it@14.1.0)':
     dependencies:
       '@mdit/plugin-tex': 0.12.0(markdown-it@14.1.0)
+      '@types/markdown-it': 14.1.2
+      upath: 2.0.1
+    optionalDependencies:
+      markdown-it: 14.1.0
+
+  '@mdit/plugin-mathjax-slim@0.13.1(markdown-it@14.1.0)':
+    dependencies:
+      '@mdit/plugin-tex': 0.13.1(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
       upath: 2.0.1
     optionalDependencies:
@@ -6694,6 +6827,12 @@ snapshots:
       markdown-it: 14.1.0
 
   '@mdit/plugin-tex@0.12.0(markdown-it@14.1.0)':
+    dependencies:
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.1.0
+
+  '@mdit/plugin-tex@0.13.1(markdown-it@14.1.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
     optionalDependencies:
@@ -7551,6 +7690,35 @@ snapshots:
       '@types/markdown-it': 14.1.2
       '@vuepress/helper': 2.0.0-rc.46(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))
       vuepress: 2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - markdown-it
+      - typescript
+
+  '@vuepress/plugin-markdown-image@2.0.0-rc.46(markdown-it@14.1.0)(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))':
+    dependencies:
+      '@mdit/plugin-figure': 0.13.1(markdown-it@14.1.0)
+      '@mdit/plugin-img-lazyload': 0.13.1(markdown-it@14.1.0)
+      '@mdit/plugin-img-mark': 0.13.1(markdown-it@14.1.0)
+      '@mdit/plugin-img-size': 0.13.1(markdown-it@14.1.0)
+      '@types/markdown-it': 14.1.2
+      '@vuepress/helper': 2.0.0-rc.46(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))
+      vuepress: 2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - markdown-it
+      - typescript
+
+  '@vuepress/plugin-markdown-math@2.0.0-rc.46(katex@0.16.11)(markdown-it@14.1.0)(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))':
+    dependencies:
+      '@mdit/plugin-katex-slim': 0.13.1(katex@0.16.11)(markdown-it@14.1.0)
+      '@mdit/plugin-mathjax-slim': 0.13.1(markdown-it@14.1.0)
+      '@types/markdown-it': 14.1.2
+      '@vuepress/helper': 2.0.0-rc.46(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2)))
+      vue: 3.5.7(typescript@5.6.2)
+      vuepress: 2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@20.14.8)(jiti@1.21.6)(sass@1.77.8)(tsx@4.16.0)(typescript@5.6.2)(yaml@2.5.0))(typescript@5.6.2)(vue@3.5.7(typescript@5.6.2))
+    optionalDependencies:
+      katex: 0.16.11
     transitivePeerDependencies:
       - '@vue/composition-api'
       - markdown-it

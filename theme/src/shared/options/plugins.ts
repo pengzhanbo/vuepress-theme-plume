@@ -1,5 +1,7 @@
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
 import type { DocSearchOptions } from '@vuepress/plugin-docsearch'
+import type { MarkdownImagePluginOptions } from '@vuepress/plugin-markdown-image'
+import type { MarkdownMathPluginOptions } from '@vuepress/plugin-markdown-math'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
 import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
 import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
@@ -45,9 +47,38 @@ export interface PlumeThemePluginOptions {
 
   photoSwipe?: false
 
-  markdownEnhance?: false | MarkdownEnhancePluginOptions
+  /**
+   * 是否启用 `vuepress-plugin-md-enhance` 插件
+   *
+   * - `hint`, `alert` 已迁移至 `@vuepress/plugin-markdown-hint`, 且主题内置并默认启用。
+   * - `imgSize`, `imgMark`, `imgLazyload`, `figure`, `obsidianImgSize` 已迁移至 `@vuepress/plugin-markdown-image`, 请使用 `plugins.markdownImage` 配置项代替。
+   * - `katex`, `mathjax` 已迁移至 `@vuepress/plugin-markdown-math`, 请使用 `plugins.markdownMath` 配置项代替
+   */
+  markdownEnhance?:
+    | false
+    | Omit<
+      MarkdownEnhancePluginOptions,
+      'hint' | 'alert' | 'imgSize' | 'imgMark' | 'imgLazyload' | 'figure' | 'obsidianImgSize'
+      | 'katex' | 'mathjax'
+    >
 
   markdownPower?: false | MarkdownPowerPluginOptions
+
+  /**
+   * 是否启用 `@vuepress/plugin-markdown-image` 插件
+   *
+   * @default false
+   * @see https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-image.html
+   */
+  markdownImage?: false | MarkdownImagePluginOptions
+
+  /**
+   * 是否启用 `@vuepress/plugin-markdown-math` 插件
+   *
+   * @default { type: 'katex' }
+   * @see https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-math.html
+   */
+  markdownMath?: false | MarkdownMathPluginOptions
 
   comment?: false | CommentPluginOptions
 

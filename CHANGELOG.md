@@ -1,3 +1,19 @@
+# [1.0.0-rc.102](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.101...v1.0.0-rc.102) (2024-09-23)
+
+
+### Bug Fixes
+
+* **cli:** intermittent dependency installation failure ([#207](https://github.com/pengzhanbo/vuepress-theme-plume/issues/207)) ([04f488e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/04f488e3498027971cbc6800b47986b15609aa47))
+* **theme:** `sidebar prefix` validation completion ([#208](https://github.com/pengzhanbo/vuepress-theme-plume/issues/208)) ([a11166d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a11166de6ef07bbe0b19ba5e75bfa98c06b8d723))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** optimize structure ([#204](https://github.com/pengzhanbo/vuepress-theme-plume/issues/204)) ([2cf606b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2cf606b1de119478087f676808e9e2a06cdb04af))
+* update vuepress deps to latest ([#202](https://github.com/pengzhanbo/vuepress-theme-plume/issues/202)) ([533898e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/533898e3a66630f6ca724884c326071d2aec24cd))
+
+
+
 # [1.0.0-rc.101](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.100...v1.0.0-rc.101) (2024-09-20)
 
 

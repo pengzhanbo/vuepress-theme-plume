@@ -120,7 +120,6 @@ export function getPlugins({
           tasklist: true,
           sup: true,
           sub: true,
-          alert: true,
           footnote: true,
         } as MarkdownEnhancePluginOptions,
         pluginOptions.markdownEnhance || {},

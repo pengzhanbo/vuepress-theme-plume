@@ -66,6 +66,9 @@ export async function createPackageJson(
   if (bundler === 'webpack' && !pkg.dependencies?.['sass-loader'] && !pkg.devDependencies['sass-loader'])
     deps.push('sass-loader')
 
+  if (!pkg.dependencies?.['sass-embedded'] && !pkg.devDependencies['sass-embedded'])
+    deps.push('sass-embedded')
+
   const dv = await getDependenciesVersion(deps)
 
   for (const [d, v] of Object.entries(dv))

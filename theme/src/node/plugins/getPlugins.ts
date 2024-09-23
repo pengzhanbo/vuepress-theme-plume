@@ -24,6 +24,7 @@ import {
   resolveDocsearchOptions,
   resolveSearchOptions,
 } from '../config/index.js'
+import { deleteAttrs } from '../utils/index.js'
 import { customContainerPlugins } from './containerPlugins.js'
 import { markdownTitlePlugin } from './markdown-title.js'
 
@@ -111,21 +112,17 @@ export function getPlugins({
   }
 
   if (pluginOptions.markdownEnhance !== false) {
-    plugins.push(mdEnhancePlugin(
-      Object.assign(
-        {
-          attrs: true,
-          align: true,
-          mark: true,
-          tasklist: true,
-          sup: true,
-          sub: true,
-          footnote: true,
-        } as MarkdownEnhancePluginOptions,
-        pluginOptions.markdownEnhance || {},
-        { hint: false, alert: false, imgSize: false, imgLazyload: false, imgMark: false, figure: false, obsidianImgSize: false, katex: false, mathjax: false, tabs: false, codetabs: false } as MarkdownEnhancePluginOptions,
-      ),
-    ))
+    const options: MarkdownEnhancePluginOptions = {
+      attrs: true,
+      align: true,
+      mark: true,
+      tasklist: true,
+      sup: true,
+      sub: true,
+      footnote: true,
+      ...pluginOptions.markdownEnhance,
+    }
+    plugins.push(mdEnhancePlugin(deleteAttrs(options, 'hint', 'alert', 'imgSize', 'imgLazyload', 'imgMark', 'figure', 'obsidianImgSize', 'katex', 'mathjax', 'tabs', 'codetabs')))
   }
 
   if (pluginOptions.markdownPower !== false) {

@@ -41,15 +41,15 @@
   },
   "dependencies": {
     "@mdit/plugin-tab": "^0.13.1",
-    "@vuepress/helper": "2.0.0-rc.46",
+    "@vuepress/helper": "2.0.0-rc.47",
     "@vueuse/core": "^11.1.0",
     "image-size": "^1.1.1",
     "markdown-it-container": "^4.0.0",
     "nanoid": "^5.0.7",
     "shiki": "^1.18.0",
     "tm-grammars": "^1.17.24",
-    "tm-themes": "^1.8.3",
-    "vue": "^3.5.7"
+    "tm-themes": "^1.8.4",
+    "vue": "^3.5.8"
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.2"

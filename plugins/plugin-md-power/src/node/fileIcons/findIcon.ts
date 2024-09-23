@@ -8,7 +8,7 @@ export function getFileIcon(fileName: string, type: 'file' | 'folder' = 'file'):
   return name
 }
 
-function getFileIconName(fileName: string, type: 'file' | 'folder' = 'file'): string | undefined {
+export function getFileIconName(fileName: string, type: 'file' | 'folder' = 'file'): string | undefined {
   if (type === 'folder') {
     const icon = definitions.folders[fileName]
     if (icon)

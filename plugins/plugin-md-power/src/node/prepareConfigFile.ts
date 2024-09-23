@@ -14,6 +14,12 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
   const imports = new Set<string>()
   const enhances = new Set<string>()
 
+  imports.add(`import Tabs from '${CLIENT_FOLDER}components/Tabs.vue'`)
+  enhances.add(`app.component('Tabs', Tabs)`)
+
+  imports.add(`import CodeTabs from '${CLIENT_FOLDER}components/CodeTabs.vue'`)
+  enhances.add(`app.component('CodeTabs', CodeTabs)`)
+
   if (options.pdf) {
     imports.add(`import PDFViewer from '${CLIENT_FOLDER}components/PDFViewer.vue'`)
     enhances.add(`app.component('PDFViewer', PDFViewer)`)

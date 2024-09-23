@@ -114,8 +114,6 @@ export function getPlugins({
     plugins.push(mdEnhancePlugin(
       Object.assign(
         {
-          codetabs: true,
-          tabs: true,
           align: true,
           mark: true,
           tasklist: true,
@@ -125,7 +123,7 @@ export function getPlugins({
           footnote: true,
         } as MarkdownEnhancePluginOptions,
         pluginOptions.markdownEnhance || {},
-        { hint: false, alert: false, imgSize: false, imgLazyload: false, imgMark: false, figure: false, obsidianImgSize: false, katex: false, mathjax: false } as MarkdownEnhancePluginOptions,
+        { hint: false, alert: false, imgSize: false, imgLazyload: false, imgMark: false, figure: false, obsidianImgSize: false, katex: false, mathjax: false, tabs: false, codetabs: false } as MarkdownEnhancePluginOptions,
       ),
     ))
   }

@@ -18,15 +18,13 @@ export const codeTabs: PluginSimple = (md) => {
 
       const titlesContent = titles.map((title, index) => {
         const icon = getFileIconName(title)
-        return `\<template #title${index}="{ value, isActive }">${icon ? `<VPIcon name="${icon}"/>` : ''}<span>${title}</span></template>`
+        return `<template #title${index}="{ value, isActive }">${icon ? `<VPIcon name="${icon}"/>` : ''}<span>${title}</span></template>`
       }).join('')
 
       return `<CodeTabs id="${index}" :data='${stringifyProp(tabsData)}'${active === -1 ? '' : ` :active="${active}"`}${meta.id ? ` tab-id="${meta.id as string}"` : ''}>${titlesContent}`
     },
 
-    tabsCloseRenderer: () => `\
-</CodeTabs>
-`,
+    tabsCloseRenderer: () => `</CodeTabs>`,
 
     tabOpenRenderer: ({ index }, tokens, tokenIndex) => {
       let foundFence = false
@@ -49,13 +47,9 @@ export const codeTabs: PluginSimple = (md) => {
         }
       }
 
-      return `\
-<template #tab${index}="{ value, isActive }">
-`
+      return `<template #tab${index}="{ value, isActive }">`
     },
 
-    tabCloseRenderer: () => `\
-</template>
-`,
+    tabCloseRenderer: () => `</template>`,
   })
 }

@@ -11,13 +11,6 @@ import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
 
 export interface PlumeThemePluginOptions {
   /**
-   * @deprecated 迁移至 `plugin-md-power` 插件
-   *
-   * 是否启用 can-i-use 插件
-   */
-  caniuse?: false
-
-  /**
    * plugin-search 配置
    */
   search?: false | Partial<SearchPluginOptions>
@@ -26,12 +19,6 @@ export interface PlumeThemePluginOptions {
    * plugin-docsearch 配置
    */
   docsearch?: false | DocSearchOptions
-
-  /**
-   * @deprecated move to `shiki`
-   * 代码高亮 配置
-   */
-  shikiji?: never
 
   /**
    * 代码高亮 配置
@@ -85,12 +72,6 @@ export interface PlumeThemePluginOptions {
   sitemap?: false
 
   seo?: false
-
-  /**
-   * @deprecated
-   * 请使用 [@vuepress/plugin-baidu-analytics](https://ecosystem.vuejs.press/zh/plugins/analytics/baidu-analytics.html) 代替
-   */
-  baiduTongji?: false | { key: string }
 
   /**
    * 阅读时间、字数统计

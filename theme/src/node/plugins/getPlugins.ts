@@ -130,7 +130,6 @@ export function getPlugins({
 
   if (pluginOptions.markdownPower !== false) {
     plugins.push(markdownPowerPlugin({
-      caniuse: pluginOptions.caniuse,
       fileTree: true,
       plot: true,
       icons: true,

@@ -2,7 +2,7 @@ import type {
   AutoFrontmatter,
   AutoFrontmatterObject,
 } from '../../shared/index.js'
-import { format } from 'date-fns'
+import dayjs from 'dayjs'
 
 export function createBaseFrontmatter(options: AutoFrontmatter): AutoFrontmatterObject {
   const res: AutoFrontmatterObject = {}
@@ -13,7 +13,7 @@ export function createBaseFrontmatter(options: AutoFrontmatter): AutoFrontmatter
         return formatTime
       if (data.friends || data.pageLayout === 'friends')
         return
-      return format(new Date(createTime), 'yyyy/MM/dd HH:mm:ss')
+      return dayjs(new Date(createTime)).format('YYYY/MM/DD HH:mm:ss')
     }
   }
 

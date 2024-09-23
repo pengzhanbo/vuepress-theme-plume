@@ -114,6 +114,7 @@ export function getPlugins({
     plugins.push(mdEnhancePlugin(
       Object.assign(
         {
+          attrs: true,
           align: true,
           mark: true,
           tasklist: true,

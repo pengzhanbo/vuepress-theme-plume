@@ -105,10 +105,9 @@ const { theme, page } = useData()
   transition: background-color var(--vp-t-color);
 }
 
-@media(min-width: 419px) {
-  .vp-blog.home-blog {
-    background-color: var(--vp-c-bg-alt);
-  }
+.vp-blog.home-blog {
+  padding: 32px 16px;
+  background-color: var(--vp-c-bg-alt);
 }
 
 .blog-container {

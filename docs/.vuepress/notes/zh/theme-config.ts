@@ -38,6 +38,8 @@ export const themeConfig = defineNoteConfig({
         '阅读统计',
         'markdown增强',
         'markdownPower',
+        'markdownImage',
+        'markdownMath',
         '水印',
       ],
     },

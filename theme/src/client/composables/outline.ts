@@ -159,7 +159,7 @@ export function resolveHeaders(headers: MenuItem[], range?: ThemeOutline): MenuI
   return ret
 }
 
-export function useActiveAnchor(container: Ref<HTMLElement>, marker: Ref<HTMLElement>): void {
+export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<HTMLElement | null>): void {
   const { isAsideEnabled } = useAside()
 
   let prevActiveLink: HTMLAnchorElement | null = null
@@ -219,21 +219,25 @@ export function useActiveAnchor(container: Ref<HTMLElement>, marker: Ref<HTMLEle
       prevActiveLink = null
     }
     else {
-      prevActiveLink = container.value.querySelector(
+      prevActiveLink = container.value?.querySelector(
         `a[href="${decodeURIComponent(hash)}"]`,
-      )
+      ) ?? null
     }
 
     const activeLink = prevActiveLink
 
     if (activeLink) {
       activeLink.classList.add('active')
-      marker.value.style.top = `${activeLink.offsetTop + 39}px`
-      marker.value.style.opacity = '1'
+      if (marker.value) {
+        marker.value.style.top = `${activeLink.offsetTop + 39}px`
+        marker.value.style.opacity = '1'
+      }
     }
     else {
-      marker.value.style.top = '33px'
-      marker.value.style.opacity = '0'
+      if (marker.value) {
+        marker.value.style.top = '33px'
+        marker.value.style.opacity = '0'
+      }
     }
   }
 

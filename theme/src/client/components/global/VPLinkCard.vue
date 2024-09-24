@@ -4,7 +4,7 @@ import VPLink from '@theme/VPLink.vue'
 
 defineProps<{
   href: string
-  title: string
+  title?: string
   icon?: string | { svg: string }
   description?: string
 }>()

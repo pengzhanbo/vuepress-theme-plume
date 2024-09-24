@@ -1,13 +1,12 @@
 ---
 title: Markdown Power
-author: pengzhanbo
 createTime: 2024/04/04 06:56:33
-permalink: /config/plugin/markdown-power/
+permalink: /config/plugins/markdown-power/
 ---
 
 ## 概述
 
-提供 Markdown 增强功能。
+为 主题 提供 Markdown 增强功能。
 
 关联插件: [@vuepress-plume/plugin-md-power](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-md-power)
 
@@ -23,9 +22,12 @@ export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
       markdownPower: {
-        // 默认不启用任何功能，你需要手动开启它们
+        fileTree: true, // :::file-tree  文件树容器
+        plot: true, // !!plot!! 隐秘文本
+        icons: true, // :[collect:name]:   内联 iconify 图标
+
+        // 默认不启用以下功能，你需要手动开启它们
         // pdf: true, // @[pdf](url)  嵌入 PDF 文件
-        // icons: true, // :[collect:name]:   内联 iconify 图标
         // bilibili: true, // @[bilibili](bvid)  嵌入 bilibili 视频
         // youtube: true, // @[youtube](id)  嵌入 youtube 视频
         // codepen: true, // @[codepen](user/slash)  嵌入 codepen
@@ -34,8 +36,6 @@ export default defineUserConfig({
         // jsfiddle: true, // @[jsfiddle](id)  嵌入 jsfiddle
         // caniuse: true, // @[caniuse](feature)  嵌入 caniuse
         // repl: true, // :::go-repl   :::kotlin-repl  :::rust-repl
-        // plot: true, // !!plot!! 隐秘文本
-        // fileTree: true, // :::file-tree  文件树容器
 
         // imageSize: true, // 在构建阶段为 图片添加 width/height 属性
       }

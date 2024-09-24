@@ -37,7 +37,7 @@ export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
         api: 'modern-compiler',
         ...options,
         sassOptions: {
-          silenceDeprecations: ['mixed-decls'],
+          silenceDeprecations: ['mixed-decls', 'legacy-js-api'],
           ...options.sassOptions,
         },
       }))
@@ -47,6 +47,7 @@ export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
     css: {
       preprocessorOptions: {
         sass: {
+          silenceDeprecations: ['mixed-decls', 'legacy-js-api'],
           logger: {
             warn: (message, { deprecation, deprecationType }) => {
               if (deprecation && deprecationType.id === 'mixed-decls')
@@ -57,6 +58,7 @@ export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
           },
         },
         scss: {
+          silenceDeprecations: ['mixed-decls', 'legacy-js-api'],
           logger: {
             warn: (message, { deprecation, deprecationType }) => {
               if (deprecation && deprecationType.id === 'mixed-decls')

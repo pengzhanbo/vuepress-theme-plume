@@ -18,7 +18,6 @@ export function resolvePageHead(page: Page, localeOptions: PlumeThemeLocaleOptio
         const sm = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         const isDark = um === 'dark' || (um !== 'light' && sm);
         document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
-        }
       })();`.replace(/^\s+|\s+$/gm, '').replace(/\n/g, ''),
     ])
   }

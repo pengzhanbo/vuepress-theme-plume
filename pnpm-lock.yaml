@@ -156,7 +156,25 @@ importers:
 
   plugins/plugin-md-power:
     dependencies:
+      '@mdit/plugin-attrs':
+        specifier: ^0.13.1
+        version: 0.13.1(markdown-it@14.1.0)
+      '@mdit/plugin-footnote':
+        specifier: ^0.13.1
+        version: 0.13.1(markdown-it@14.1.0)
+      '@mdit/plugin-mark':
+        specifier: ^0.13.1
+        version: 0.13.1(markdown-it@14.1.0)
+      '@mdit/plugin-sub':
+        specifier: ^0.13.1
+        version: 0.13.1(markdown-it@14.1.0)
+      '@mdit/plugin-sup':
+        specifier: ^0.13.1
+        version: 0.13.1(markdown-it@14.1.0)
       '@mdit/plugin-tab':
+        specifier: ^0.13.1
+        version: 0.13.1(markdown-it@14.1.0)
+      '@mdit/plugin-tasklist':
         specifier: ^0.13.1
         version: 0.13.1(markdown-it@14.1.0)
       '@vuepress/helper':

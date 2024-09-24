@@ -40,7 +40,13 @@
     "vuepress": "2.0.0-rc.15"
   },
   "dependencies": {
+    "@mdit/plugin-attrs": "^0.13.1",
+    "@mdit/plugin-footnote": "^0.13.1",
+    "@mdit/plugin-mark": "^0.13.1",
+    "@mdit/plugin-sub": "^0.13.1",
+    "@mdit/plugin-sup": "^0.13.1",
     "@mdit/plugin-tab": "^0.13.1",
+    "@mdit/plugin-tasklist": "^0.13.1",
     "@vuepress/helper": "2.0.0-rc.47",
     "@vueuse/core": "^11.1.0",
     "image-size": "^1.1.1",

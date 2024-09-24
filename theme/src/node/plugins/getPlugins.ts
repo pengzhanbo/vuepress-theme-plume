@@ -113,16 +113,9 @@ export function getPlugins({
 
   if (pluginOptions.markdownEnhance !== false) {
     const options: MarkdownEnhancePluginOptions = {
-      attrs: true,
-      align: true,
-      mark: true,
-      tasklist: true,
-      sup: true,
-      sub: true,
-      footnote: true,
       ...pluginOptions.markdownEnhance,
     }
-    plugins.push(mdEnhancePlugin(deleteAttrs(options, 'hint', 'alert', 'imgSize', 'imgLazyload', 'imgMark', 'figure', 'obsidianImgSize', 'katex', 'mathjax', 'tabs', 'codetabs')))
+    plugins.push(mdEnhancePlugin(deleteAttrs(options, 'hint', 'alert', 'imgSize', 'imgLazyload', 'imgMark', 'figure', 'obsidianImgSize', 'katex', 'mathjax', 'tabs', 'codetabs', 'align', 'mark', 'sub', 'sup', 'attrs', 'tasklist', 'footnote')))
   }
 
   if (pluginOptions.markdownPower !== false) {

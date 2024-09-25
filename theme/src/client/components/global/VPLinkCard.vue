@@ -13,7 +13,7 @@ defineProps<{
 <template>
   <div class="vp-link-card">
     <span class="body">
-      <VPLink :href="href" no-icon class="link">
+      <VPLink :href="href" no-icon class="link no-icon">
         <slot name="title">
           <VPIcon v-if="icon" :name="icon" />
           <span v-if="title" v-html="title" />

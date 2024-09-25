@@ -1,11 +1,5 @@
 export interface IconsOptions {
   /**
-   * The prefix of the icon className
-   * @default 'vp-mdi'
-   */
-  prefix?: string
-
-  /**
    * The size of the icon
    * @default '1em'
    */

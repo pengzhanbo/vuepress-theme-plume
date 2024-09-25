@@ -1,10 +1,16 @@
 import type { CanIUseOptions } from './caniuse.js'
+import type { CodeTabsOptions } from './codeTabs.js'
+import type { FileTreeOptions } from './fileTree.js'
 import type { IconsOptions } from './icons.js'
 import type { PDFOptions } from './pdf.js'
 import type { PlotOptions } from './plot.js'
 import type { ReplOptions } from './repl.js'
 
 export interface MarkdownPowerPluginOptions {
+  /**
+   * 配置代码块分组
+   */
+  codeTabs?: CodeTabsOptions
   /**
    * 是否启用 PDF 嵌入语法
    *
@@ -92,7 +98,7 @@ export interface MarkdownPowerPluginOptions {
    *
    * @default false
    */
-  fileTree?: boolean
+  fileTree?: boolean | FileTreeOptions
 
   /**
    * 是否启用 caniuse 嵌入语法

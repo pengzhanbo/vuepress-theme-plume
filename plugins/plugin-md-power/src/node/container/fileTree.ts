@@ -1,8 +1,9 @@
 import type { Markdown } from 'vuepress/markdown'
+import type { FileTreeIconMode, FileTreeOptions } from '../../shared/index.js'
 import Token from 'markdown-it/lib/token.mjs'
 import container from 'markdown-it-container'
 import { removeEndingSlash, removeLeadingSlash } from 'vuepress/shared'
-import { getFileIcon } from '../fileIcons/index.js'
+import { defaultFile, defaultFolder, getFileIcon } from '../fileIcons/index.js'
 
 interface FileTreeNode {
   filename: string
@@ -17,10 +18,22 @@ const closeType = `container_${type}_close`
 const componentName = 'FileTreeItem'
 const itemOpen = 'file_tree_item_open'
 const itemClose = 'file_tree_item_close'
+const RE_SIMPLE_ICON = /:simple-icon\b/
+const RE_COLORED_ICON = /:colored-icon\b/
 
-export function fileTreePlugin(md: Markdown) {
+export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}) {
+  const getIcon = (filename: string, type: 'folder' | 'file', mode?: FileTreeIconMode): string => {
+    mode ||= options.icon || 'colored'
+    if (mode === 'simple')
+      return type === 'folder' ? defaultFolder : defaultFile
+    return getFileIcon(filename, type)
+  }
+
   const validate = (info: string): boolean => info.trim().startsWith(type)
+
   const render = (tokens: Token[], idx: number): string => {
+    const mode = getFileIconMode(tokens[idx].info)
+
     if (tokens[idx].nesting === 1) {
       const hasRes: number[] = [] // level stack
       for (
@@ -36,7 +49,7 @@ export function fileTreePlugin(md: Markdown) {
             hasRes.push(token.level)
             const [info, inline] = result
             const { filename, type, expanded, empty } = info
-            const icon = getFileIcon(filename, type)
+            const icon = getIcon(filename, type, mode)
 
             token.type = itemOpen
             token.tag = componentName
@@ -56,9 +69,8 @@ export function fileTreePlugin(md: Markdown) {
           }
         }
       }
-      const info = tokens[idx].info.trim()
 
-      const title = info.slice(type.length).trim()
+      const title = resolveTitle(tokens[idx].info)
       return `<div class="vp-file-tree">${title ? `<p class="vp-file-tree-title">${title}</p>` : ''}`
     }
     else {
@@ -67,6 +79,20 @@ export function fileTreePlugin(md: Markdown) {
   }
 
   md.use(container, type, { validate, render })
+}
+
+function getFileIconMode(info: string): FileTreeIconMode | undefined {
+  if (RE_SIMPLE_ICON.test(info))
+    return 'simple'
+  if (RE_COLORED_ICON.test(info))
+    return 'colored'
+  return undefined
+}
+
+function resolveTitle(info: string): string {
+  info = info.trim().slice(type.length).trim()
+  info = info.replace(RE_SIMPLE_ICON, '').replace(RE_COLORED_ICON, '')
+  return info.trim()
 }
 
 export function resolveTreeNodeInfo(

@@ -6,13 +6,14 @@
  */
 import type { PluginWithOptions } from 'markdown-it'
 import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
+import type { IconsOptions } from '../../shared/index.js'
 
 const [openTag, endTag] = [':[', ']:']
 
-export const iconsPlugin: PluginWithOptions<never> = md =>
-  md.inline.ruler.before('emphasis', 'iconify', createTokenizer())
+export const iconsPlugin: PluginWithOptions<IconsOptions> = (md, options = {}) =>
+  md.inline.ruler.before('emphasis', 'iconify', createTokenizer(options))
 
-function createTokenizer(): RuleInline {
+function createTokenizer(options: IconsOptions): RuleInline {
   return (state, silent) => {
     let found = false
     const max = state.posMax
@@ -56,8 +57,8 @@ function createTokenizer(): RuleInline {
     state.posMax = state.pos
     state.pos = start + 2
 
-    const [name, options = ''] = content.split(/\s+/)
-    const [size, color] = options.split('/')
+    const [name, opt = ''] = content.split(/\s+/)
+    const [size = options.size, color = options.color] = opt.split('/')
 
     const icon = state.push('vp_iconify_open', 'VPIcon', 1)
     icon.markup = openTag
@@ -65,7 +66,7 @@ function createTokenizer(): RuleInline {
     if (name)
       icon.attrSet('name', name)
     if (size)
-      icon.attrSet('size', size)
+      icon.attrSet('size', String(size))
     if (color)
       icon.attrSet('color', color)
 

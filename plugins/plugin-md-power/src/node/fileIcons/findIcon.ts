@@ -30,7 +30,7 @@ export function getFileIconName(fileName: string, type: 'file' | 'folder' = 'fil
   return icon
 }
 
-function getFileIconTypeFromExtension(fileName: string): string | undefined {
+export function getFileIconTypeFromExtension(fileName: string): string | undefined {
   const firstDotIndex = fileName.indexOf('.')
   if (firstDotIndex === -1)
     return

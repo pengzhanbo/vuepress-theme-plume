@@ -6,6 +6,7 @@ import { mark } from '@mdit/plugin-mark'
 import { sub } from '@mdit/plugin-sub'
 import { sup } from '@mdit/plugin-sup'
 import { tasklist } from '@mdit/plugin-tasklist'
+import { isPlainObject } from '@vuepress/helper'
 import { iconsPlugin } from './icons.js'
 import { plotPlugin } from './plot.js'
 

@@ -5,7 +5,7 @@ import VPDocFooter from '@theme/VPDocFooter.vue'
 import VPDocMeta from '@theme/VPDocMeta.vue'
 import VPEncryptPage from '@theme/VPEncryptPage.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
-import { computed, nextTick, ref, watch } from 'vue'
+import { computed, nextTick, ref, resolveComponent, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
 import {
   useBlogPageData,
@@ -24,7 +24,7 @@ const headers = useHeaders()
 const { isPageDecrypted } = useEncrypt()
 
 const hasComments = computed(() => {
-  return page.value.frontmatter.comments !== false && isPageDecrypted.value
+  return !!resolveComponent('CommentService') && page.value.frontmatter.comments !== false && isPageDecrypted.value
 })
 
 const enableAside = computed(() => {

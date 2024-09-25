@@ -7,7 +7,9 @@ import { imageSizePlugin } from './enhance/imageSize.js'
 import { inlineSyntaxPlugin } from './inline/index.js'
 import { prepareConfigFile } from './prepareConfigFile.js'
 
-export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): Plugin {
+export function markdownPowerPlugin(
+  options: MarkdownPowerPluginOptions = {},
+): Plugin {
   return {
     name: 'vuepress-plugin-md-power',
 
@@ -19,11 +21,7 @@ export function markdownPowerPlugin(options: MarkdownPowerPluginOptions = {}): P
 
     extendsBundlerOptions(bundlerOptions, app) {
       if (options.repl) {
-        addViteOptimizeDepsInclude(
-          bundlerOptions,
-          app,
-          ['shiki/core', 'shiki/wasm'],
-        )
+        addViteOptimizeDepsInclude(bundlerOptions, app, ['shiki/core', 'shiki/wasm'])
       }
     },
 

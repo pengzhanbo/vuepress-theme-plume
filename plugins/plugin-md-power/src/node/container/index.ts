@@ -24,6 +24,6 @@ export async function containerPlugin(
 
   if (options.fileTree) {
     // ::: file-tree
-    fileTreePlugin(md)
+    fileTreePlugin(md, isPlainObject(options.fileTree) ? options.fileTree : {})
   }
 }

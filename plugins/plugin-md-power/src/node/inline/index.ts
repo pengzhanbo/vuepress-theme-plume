@@ -22,12 +22,12 @@ export function inlineSyntaxPlugin(
 
   if (options.icons) {
     // :[collect:name]:
-    md.use(iconsPlugin)
+    md.use(iconsPlugin, isPlainObject(options.icons) ? options.icons : {})
   }
 
   if (
     options.plot === true
-    || (typeof options.plot === 'object' && options.plot.tag !== false)
+    || (isPlainObject(options.plot) && options.plot.tag !== false)
   ) {
     // !!plot!!
     md.use(plotPlugin)

@@ -27,7 +27,7 @@
 }
 
 /** 深色模式 */
-.dark {
+[data-theme="dark"] {
   /*
   --vp-c-brand-1: #8cccd5;
   --vp-c-brand-2: #6aa1b7;

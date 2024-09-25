@@ -1,3 +1,26 @@
+# [1.0.0-rc.103](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.102...v1.0.0-rc.103) (2024-09-25)
+
+
+### Bug Fixes
+
+* **theme:** improve `home-blog` styles in mobile, close [#210](https://github.com/pengzhanbo/vuepress-theme-plume/issues/210) ([36e311c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/36e311c30170b431a723b36cc0ba8cfddc2ac4c6))
+* **theme:** improve home-blog styles in mobile, close [#210](https://github.com/pengzhanbo/vuepress-theme-plume/issues/210) ([#212](https://github.com/pengzhanbo/vuepress-theme-plume/issues/212)) ([c8089f5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c8089f54a5c7d59b1b4f7d0d0c24fd0c714258db))
+* **theme:** incorrect appearance scripts in head, close [#211](https://github.com/pengzhanbo/vuepress-theme-plume/issues/211) ([#213](https://github.com/pengzhanbo/vuepress-theme-plume/issues/213)) ([52c954a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/52c954a27aaa812afc97cdf6f18b60d71298c625))
+
+
+### Features
+
+* add support optional icon for `file-tree` and `code-tabs` ([eff4ec3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/eff4ec3a1aa477d2276ca9eadab87aa1ab6db4a8))
+* add support optional icon for file-tree and code-tabs ([#216](https://github.com/pengzhanbo/vuepress-theme-plume/issues/216)) ([ca21d1b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ca21d1b8cb55b64b395361aea2b131be91d5e4e1)), closes [#210](https://github.com/pengzhanbo/vuepress-theme-plume/issues/210)
+
+
+### Performance Improvements
+
+* **cli:** update css template ([3998c7e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3998c7edb254cd1e2435fc2b2170b31a41c90a5f))
+* **theme:** silence sass deprecations `legacy-js-api` ([#214](https://github.com/pengzhanbo/vuepress-theme-plume/issues/214)) ([6a3c643](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6a3c64326aa9e3f7ab23d2503b96b315ed2b6456))
+
+
+
 # [1.0.0-rc.102](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.101...v1.0.0-rc.102) (2024-09-23)
 
 

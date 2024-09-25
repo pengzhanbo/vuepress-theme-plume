@@ -169,19 +169,21 @@ export function updateInlineToken(inline: Token, info: FileTreeNode, icon: strin
       if (token.content.includes(' ')) {
         const [first, ...other] = token.content.split(' ')
         const text = new Token('text', '', 0)
-        text.content = first
+        text.content = removeEndingSlash(first)
         tokens.push(text)
         const comment = new Token('text', '', 0)
         comment.content = other.join(' ')
         children.unshift(comment)
       }
       else {
+        token.content = removeEndingSlash(token.content)
         tokens.push(token)
       }
       if (!isStrongTag)
         break
     }
     else if (token.tag === 'strong') {
+      token.content = removeEndingSlash(token.content)
       tokens.push(token)
       if (token.nesting === 1) {
         isStrongTag = true

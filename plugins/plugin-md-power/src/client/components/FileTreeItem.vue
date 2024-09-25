@@ -12,7 +12,7 @@ const el = ref<HTMLElement>()
 
 function toggle(e: HTMLElementEventMap['click']) {
   const target = e.target as HTMLElement
-  if (target.matches('.comment'))
+  if (target.matches('.comment') || e.currentTarget === target)
     return
   active.value = !active.value
 }

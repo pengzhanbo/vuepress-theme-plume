@@ -1,7 +1,6 @@
 import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { MarkdownPowerPluginOptions } from '../../shared/index.js'
-import { isPlainObject } from '@vuepress/helper'
 import { alignPlugin } from './align.js'
 import { codeTabs } from './codeTabs.js'
 import { fileTreePlugin } from './fileTree.js'
@@ -18,7 +17,7 @@ export async function containerPlugin(
   // ::: tabs
   tabs(md)
   // ::: code-tabs
-  codeTabs(md, options.codeTabs)
+  codeTabs(md)
 
   if (options.repl)
     await langReplPlugin(app, md, options.repl)

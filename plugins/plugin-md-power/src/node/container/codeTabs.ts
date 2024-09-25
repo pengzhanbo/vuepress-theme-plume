@@ -1,32 +1,9 @@
-import type { PluginWithOptions } from 'markdown-it'
-import type { CodeTabsOptions } from '../../shared/index.js'
+import type { PluginSimple } from 'markdown-it'
 import { tab } from '@mdit/plugin-tab'
-import { isPlainObject } from '@vuepress/helper'
-import { definitions, getFileIconName, getFileIconTypeFromExtension } from '../fileIcons/index.js'
+import { getFileIconName } from '../fileIcons/index.js'
 import { stringifyProp } from '../utils/stringifyProp.js'
 
-export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTabsOptions = {}) => {
-  const getIcon = (filename: string): string | undefined => {
-    if (options.icon === false)
-      return undefined
-    const { named, extensions } = isPlainObject(options.icon) ? options.icon : {}
-    if (named === false && definitions.named[filename])
-      return undefined
-    if (extensions === false && getFileIconTypeFromExtension(filename)) {
-      return undefined
-    }
-    const hasNamed = named && named.length
-    const hasExt = extensions && extensions.length
-    if (hasNamed || hasExt) {
-      if (hasNamed && named.includes(filename))
-        return definitions.named[filename]
-      if (hasExt && extensions.some(ext => filename.endsWith(ext)))
-        return getFileIconTypeFromExtension(filename)
-      return undefined
-    }
-    return getFileIconName(filename)
-  }
-
+export const codeTabs: PluginSimple = (md) => {
   tab(md, {
     name: 'code-tabs',
 
@@ -40,7 +17,7 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
       })
 
       const titlesContent = titles.map((title, index) => {
-        const icon = getIcon(title)
+        const icon = getFileIconName(title)
         return `<template #title${index}="{ value, isActive }">${icon ? `<VPIcon name="${icon}"/>` : ''}<span>${title}</span></template>`
       }).join('')
 

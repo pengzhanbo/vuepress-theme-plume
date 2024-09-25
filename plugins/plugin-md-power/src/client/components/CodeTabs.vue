@@ -184,10 +184,6 @@ function onTabNavClick(index: number): void {
   transition: background var(--vp-t-color);
 }
 
-.vp-code-tab-nav:focus-visible {
-  outline: none;
-}
-
 .vp-code-tab-nav.active {
   color: var(--vp-code-tab-active-text-color);
   background: transparent;

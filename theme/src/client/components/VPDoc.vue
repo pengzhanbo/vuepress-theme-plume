@@ -136,6 +136,7 @@ watch(
           </div>
         </div>
       </div>
+      <slot name="doc-bottom" />
     </div>
   </VPTransitionFadeSlideY>
 </template>

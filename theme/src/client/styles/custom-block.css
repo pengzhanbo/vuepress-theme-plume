@@ -184,7 +184,7 @@
   position: absolute;
   inset-inline-start: 14px;
   top: 34px;
-  bottom: 6px;
+  bottom: 5px;
   width: 1px;
   content: "";
   background-color: var(--vp-c-divider);
@@ -202,7 +202,11 @@
   border-top: none;
 }
 
+.vp-doc .vp-steps > ol > li > :first-child:where(p) {
+  line-height: 28px;
+}
+
 .vp-doc .vp-steps > ol > li + li,
 .vp-doc .vp-steps > ul > li + li {
-  margin-top: 0;
+  margin-top: 1px;
 }

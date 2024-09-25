@@ -5,6 +5,9 @@ import { cachePlugin } from '@vuepress/plugin-cache'
 import { commentPlugin } from '@vuepress/plugin-comment'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { gitPlugin } from '@vuepress/plugin-git'
+import { markdownHintPlugin } from '@vuepress/plugin-markdown-hint'
+import { markdownImagePlugin } from '@vuepress/plugin-markdown-image'
+import { markdownMathPlugin } from '@vuepress/plugin-markdown-math'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
 import { photoSwipePlugin } from '@vuepress/plugin-photo-swipe'
 import { readingTimePlugin } from '@vuepress/plugin-reading-time'
@@ -21,6 +24,7 @@ import {
   resolveDocsearchOptions,
   resolveSearchOptions,
 } from '../config/index.js'
+import { deleteAttrs } from '../utils/index.js'
 import { customContainerPlugins } from './containerPlugins.js'
 import { markdownTitlePlugin } from './markdown-title.js'
 
@@ -49,6 +53,7 @@ export function getPlugins({
       delay: 200,
       offset: 5,
     }),
+    markdownHintPlugin({ hint: true, alert: true, injectStyles: false }),
 
     ...customContainerPlugins,
   ]
@@ -107,30 +112,14 @@ export function getPlugins({
   }
 
   if (pluginOptions.markdownEnhance !== false) {
-    plugins.push(mdEnhancePlugin(
-      Object.assign(
-        {
-          hint: true, // info note tip warning danger details
-          codetabs: true,
-          tabs: true,
-          align: true,
-          mark: true,
-          tasklist: true,
-          attrs: true,
-          sup: true,
-          sub: true,
-          alert: true,
-          footnote: true,
-          katex: true,
-        } as MarkdownEnhancePluginOptions,
-        pluginOptions.markdownEnhance || {},
-      ),
-    ))
+    const options: MarkdownEnhancePluginOptions = {
+      ...pluginOptions.markdownEnhance,
+    }
+    plugins.push(mdEnhancePlugin(deleteAttrs(options, 'hint', 'alert', 'imgSize', 'imgLazyload', 'imgMark', 'figure', 'obsidianImgSize', 'katex', 'mathjax', 'tabs', 'codetabs', 'align', 'mark', 'sub', 'sup', 'attrs', 'tasklist', 'footnote')))
   }
 
   if (pluginOptions.markdownPower !== false) {
     plugins.push(markdownPowerPlugin({
-      caniuse: pluginOptions.caniuse,
       fileTree: true,
       plot: true,
       icons: true,
@@ -139,6 +128,14 @@ export function getPlugins({
         ? { theme: shikiTheme, ...pluginOptions.markdownPower?.repl }
         : pluginOptions.markdownPower?.repl,
     }))
+  }
+
+  if (pluginOptions.markdownMath !== false) {
+    plugins.push(markdownMathPlugin(pluginOptions.markdownMath ?? { type: 'katex' }))
+  }
+
+  if (pluginOptions.markdownImage) {
+    plugins.push(markdownImagePlugin(pluginOptions.markdownImage))
   }
 
   if (pluginOptions.watermark) {

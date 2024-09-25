@@ -87,7 +87,7 @@ const showFooter = computed(() => {
 
 <style scoped>
 .vp-doc-footer {
-  margin-top: 96px;
+  margin-top: 64px;
 }
 
 @media (min-width: 640px) {

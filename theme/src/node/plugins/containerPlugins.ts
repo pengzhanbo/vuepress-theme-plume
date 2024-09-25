@@ -36,7 +36,7 @@ export const customContainerPlugins: Plugin[] = [
   <div class="demo-container" ${containerStyle ? `style="${containerStyle}"` : ''}>\n`
     },
     after() {
-      return '</div></div>\n'
+      return '</div></div>'
     },
   }),
   /**

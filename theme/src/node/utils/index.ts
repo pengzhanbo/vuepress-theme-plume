@@ -4,6 +4,7 @@ export const THEME_NAME = 'vuepress-theme-plume'
 
 export const logger = new Logger(THEME_NAME)
 
+export * from './deleteAttrs.js'
 export * from './hash.js'
 export * from './interopDefault.js'
 export * from './package.js'

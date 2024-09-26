@@ -20,6 +20,8 @@ export interface PlumeThemeHeroAction {
   theme?: 'brand' | 'alt'
   text: string
   link?: string
+  target?: string
+  rel?: string
 }
 
 export interface PlumeHomeConfigBase {

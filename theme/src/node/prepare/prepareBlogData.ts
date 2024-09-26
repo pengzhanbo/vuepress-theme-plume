@@ -80,14 +80,19 @@ export async function preparedBlogData(
       data.encrypt = true
     }
 
-    if (page.contentRendered.includes(EXCERPT_SPLIT)) {
-      const contents = page.contentRendered.split(EXCERPT_SPLIT)
-      let excerpt = contents[0]
-      // 删除摘要中的标题
-      excerpt = excerpt.replace(HEADING_RE, '')
-      data.excerpt = excerpt
+    const fmExcerpt = page.frontmatter.excerpt
+    if (fmExcerpt !== false) {
+      if (typeof fmExcerpt === 'string') {
+        data.excerpt = fmExcerpt
+      }
+      else if (page.contentRendered.includes(EXCERPT_SPLIT)) {
+        const contents = page.contentRendered.split(EXCERPT_SPLIT)
+        let excerpt = contents[0]
+        // 删除摘要中的标题
+        excerpt = excerpt.replace(HEADING_RE, '')
+        data.excerpt = excerpt
+      }
     }
-
     return data
   })
 

@@ -24,7 +24,7 @@ export function watchPrepare(
   app: App,
   watchers: any[],
 ): void {
-  const pagesWatcher = watch('pages/**', {
+  const pagesWatcher = watch('pages/**/*.js', {
     cwd: app.dir.temp(),
     ignoreInitial: true,
   })

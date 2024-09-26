@@ -1,0 +1,67 @@
+name: 问题报告
+description: 创建一份问题报告以帮助我们改进
+title: '[Bug]'
+labels:
+  - bug
+assignees: pengzhanbo
+body:
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 检查清单
+      description: |-
+        确保你遵循以下陈述。
+      options:
+        - label: 我正在使用**LTS**版本的Node.js。
+          required: true
+
+        - label: 我正在使用 **最新 v2 版本** 的 VuePress 和 VuePress 官方插件。
+          required: true
+
+        - label: 我正在使用此仓库中的 **最新版本** 的 vuepress-theme-plume 及其所有插件。
+          required: true
+
+        - label: 我按照文档操作，并仔细检查了我的配置。
+          required: true
+
+  - type: input
+    id: package
+    attributes:
+      label: 包名
+      description: 您要报告哪个包
+      value: vuepress-theme-plume
+      placeholder: package name
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: operating-systems
+    attributes:
+      label: 你正在使用哪个操作系统？
+      description: 您可以选择多个选项。如果与环境无关，请不要选择任何选项。
+      options:
+        - label: macOS
+        - label: Windows
+        - label: Linux
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 描述该错误
+
+        > 如有需要，请添加截图和日志以帮助解释您的问题。
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 描述该错误
+      description: 一个清晰简洁的错误描述。
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 附加上下文
+      description: 如果你报告的问题不明显，需要提供最小复现仓库及相关日志。
+      placeholder: 在此添加有关问题的其他上下文信息。特别是问题在特定操作系统、浏览器或配置下出现。

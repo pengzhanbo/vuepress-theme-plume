@@ -47,7 +47,7 @@ export async function createPackageJson(
       'docs:preview': `http-server ${docsDir}/.vuepress/dist`,
     }
     if (mode === Mode.create) {
-      pkg.scripts['vp-update'] = 'vp-update'
+      pkg.scripts['vp-update'] = `${packageManager === 'npm' ? 'npx' : `${packageManager} dlx`} vp-update`
     }
   }
 

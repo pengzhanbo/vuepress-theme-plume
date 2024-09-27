@@ -11,5 +11,6 @@ permalink: /tools/
 
 ## 工具列表
 
-- [caniuse 特性搜索](./caniuse.md)
+- [主题配置工具](./config.md)
 - [首页背景色板配置](./home-hero-tint-plate.md)
+- [caniuse 特性搜索](./caniuse.md)

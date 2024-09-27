@@ -38,6 +38,7 @@ export const zhNavbar = [
     text: '更多',
     icon: 'icon-park-outline:more-three',
     items: [
+      { text: '常见问题', link: '/faq/', icon: 'wpf:faq' },
       { text: '喝杯奶茶', link: '/sponsor/', icon: 'line-md:coffee-loop' },
       { text: '主题工具', link: '/tools/', icon: 'jam:tools' },
       { text: '友情链接', link: '/friends/', icon: 'carbon:friendship' },

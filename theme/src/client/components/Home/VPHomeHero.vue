@@ -66,6 +66,8 @@ useHomeHeroTintPlate(
               :theme="action.theme"
               :text="action.text"
               :href="action.link"
+              :target="action.target"
+              :rel="action.rel"
             />
           </div>
         </div>

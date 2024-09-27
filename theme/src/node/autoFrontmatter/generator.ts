@@ -92,7 +92,12 @@ export async function generateAutoFrontmatter(app: App) {
 
   const cachePath = app.dir.cache(CACHE_FILE)
   if (fs.existsSync(cachePath)) {
-    generate.cache = JSON.parse(await fs.readFile(cachePath, 'utf-8'))
+    try {
+      generate.cache = JSON.parse(await fs.readFile(cachePath, 'utf-8'))
+    }
+    catch {
+      generate.cache = {}
+    }
   }
   const markdownList = await readMarkdownList(app, generate)
   await promiseParallel(

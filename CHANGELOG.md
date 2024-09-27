@@ -1,3 +1,22 @@
+# [1.0.0-rc.104](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.103...v1.0.0-rc.104) (2024-09-27)
+
+
+### Features
+
+* **theme:** add `target`/`rel` attrs to hero actions ([#223](https://github.com/pengzhanbo/vuepress-theme-plume/issues/223)) ([b2224d3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b2224d33d4a7d252a9a56c7e6313363fc6106d1a))
+* **theme:** add support frontmatter `excerpt` for blog post, close [#218](https://github.com/pengzhanbo/vuepress-theme-plume/issues/218) ([#224](https://github.com/pengzhanbo/vuepress-theme-plume/issues/224)) ([da64267](https://github.com/pengzhanbo/vuepress-theme-plume/commit/da642674329a08df838e9538089f80a0e92a1c1b))
+
+
+### Performance Improvements
+
+* **cli:** update templates ([#220](https://github.com/pengzhanbo/vuepress-theme-plume/issues/220)) ([1175229](https://github.com/pengzhanbo/vuepress-theme-plume/commit/117522969e1f07d433e9143c31f9439cf1c6f81b))
+* **theme:** improve auto-frontmatter cache ([#222](https://github.com/pengzhanbo/vuepress-theme-plume/issues/222)) ([fe3945c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fe3945ccc356bd78c1039fca456b23c97129c4da))
+* **theme:** improve prepare pages watch ([#225](https://github.com/pengzhanbo/vuepress-theme-plume/issues/225)) ([3c5c027](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3c5c0272d2b9b8872d8ed0eb12868ec00caca85e))
+* **theme:** improve theme exports, close [#215](https://github.com/pengzhanbo/vuepress-theme-plume/issues/215) ([#221](https://github.com/pengzhanbo/vuepress-theme-plume/issues/221)) ([a63ac17](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a63ac17513598e8d182e16ebff28806c083a4ba2))
+* update deps to latest ([1ba4457](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1ba44572e6e58bc47bf711c8e9a621b2d9560d31))
+
+
+
 # [1.0.0-rc.103](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.102...v1.0.0-rc.103) (2024-09-25)
 
 

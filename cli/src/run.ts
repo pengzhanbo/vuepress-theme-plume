@@ -20,7 +20,13 @@ export async function run(mode: Mode, root?: string) {
   const progress = spinner()
   progress.start(t('spinner.start'))
 
-  await generate(mode, data)
+  try {
+    await generate(mode, data)
+  }
+  catch (e) {
+    console.error(`${colors.red('generate files error: ')}\n`, e)
+    process.exit(1)
+  }
 
   // Delay for some time, I/O may not be completed yet,
   // executing subsequent tasks at this point may cause issues.
@@ -29,14 +35,26 @@ export async function run(mode: Mode, root?: string) {
   const cwd = path.join(process.cwd(), data.root)
   if (data.git) {
     progress.message(t('spinner.git'))
-    await execaCommand('git init', { cwd })
+    try {
+      await execaCommand('git init', { cwd })
+    }
+    catch (e) {
+      console.error(`${colors.red('git init error: ')}\n`, e)
+      process.exit(1)
+    }
   }
 
   const pm = data.packageManager
 
   if (data.install) {
     progress.message(t('spinner.install'))
-    await execaCommand(pm === 'yarn' ? 'yarn' : `${pm} install`, { cwd })
+    try {
+      await execaCommand(pm === 'yarn' ? 'yarn' : `${pm} install`, { cwd })
+    }
+    catch (e) {
+      console.error(`${colors.red('install dependencies error: ')}\n`, e)
+      process.exit(1)
+    }
   }
 
   const cdCommand = mode === Mode.create ? colors.green(`cd ${data.root}`) : ''

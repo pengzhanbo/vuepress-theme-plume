@@ -81,9 +81,7 @@ function resolveSidebar(
         property="itemListElement"
         typeof="ListItem"
       >
-        <VPLink :href="link" class="breadcrumb" :class="{ current }" property="item" typeof="WebPage">
-          {{ text }}
-        </VPLink>
+        <VPLink :href="link" class="breadcrumb" :class="{ current }" property="item" typeof="WebPage" :text="text" />
         <span v-if="index !== breadcrumbList.length - 1" class="vpi-chevron-right" />
         <meta property="position" :content="`${index + 1}`">
       </li>

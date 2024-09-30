@@ -24,7 +24,7 @@ const { page } = useData()
       }" :href="item.link"
     >
       <VPIcon v-if="item.icon" :name="item.icon" />
-      <i v-text="item.text" />
+      {{ item.text }}
     </VPLink>
   </div>
 </template>

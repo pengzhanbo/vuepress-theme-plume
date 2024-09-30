@@ -248,30 +248,30 @@ function onTabNavClick(index: number): void {
 }
 
 .vp-doc .hint-container.info .vp-tabs .vp-tabs-nav {
-  background: var(--vp-custom-block-info-code-bg);
+  --vp-code-tab-bg: var(--vp-custom-block-info-code-bg);
 }
 
 .vp-doc .hint-container.note .vp-tabs .vp-tabs-nav {
-  background: var(--vp-custom-block-note-code-bg);
+  --vp-code-tab-bg: var(--vp-custom-block-note-code-bg);
 }
 
 .vp-doc .hint-container.tip .vp-tabs .vp-tabs-nav {
-  background: var(--vp-custom-block-tip-code-bg);
+  --vp-code-tab-bg: var(--vp-custom-block-tip-code-bg);
 }
 
 .vp-doc .hint-container.warning .vp-tabs .vp-tabs-nav {
-  background: var(--vp-custom-block-warning-code-bg);
+  --vp-code-tab-bg: var(--vp-custom-block-warning-code-bg);
 }
 
 .vp-doc .hint-container.danger .vp-tabs .vp-tabs-nav {
-  background: var(--vp-custom-block-danger-code-bg);
+  --vp-code-tab-bg: var(--vp-custom-block-danger-code-bg);
 }
 
 .vp-doc .hint-container.caution .vp-tabs .vp-tabs-nav {
-  background: var(--vp-custom-block-caution-code-bg);
+  --vp-code-tab-bg: var(--vp-custom-block-caution-code-bg);
 }
 
 .vp-doc .hint-container.important .vp-tabs .vp-tabs-nav {
-  background: var(--vp-custom-block-important-code-bg);
+  --vp-code-tab-bg: var(--vp-custom-block-important-code-bg);
 }
 </style>

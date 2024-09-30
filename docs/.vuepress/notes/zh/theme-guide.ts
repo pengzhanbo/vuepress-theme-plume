@@ -33,7 +33,15 @@ export const themeGuide = defineNoteConfig({
           items: [
             '基础',
             '扩展',
-            '进阶',
+            '图标',
+            '卡片',
+            '步骤',
+            '文件树',
+            '选项组',
+            '隐秘文本',
+            '示例容器',
+            'caniuse',
+            '导入文件',
           ],
         },
         {

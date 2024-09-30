@@ -2,6 +2,7 @@
 import type { HighlighterCore } from 'shiki/core'
 import editorData from '@internal/md-power/replEditorData'
 import { createHighlighterCore } from 'shiki/core'
+import { createOnigurumaEngine } from 'shiki/engine/oniguruma'
 import { onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
 import { resolveCodeInfo } from '../composables/codeRepl.js'
 
@@ -20,7 +21,7 @@ async function init() {
   highlighter = await createHighlighterCore({
     themes: 'light' in theme && 'dark' in theme ? [theme.light, theme.dark] : [theme],
     langs: Object.keys(grammars).map(key => grammars[key]),
-    loadWasm: () => import('shiki/wasm'),
+    engine: createOnigurumaEngine(() => import('shiki/wasm')),
   })
 }
 

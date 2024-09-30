@@ -24,7 +24,7 @@ const isIconify = computed(() => {
     :href="link"
     :rel="rel"
     :target="target"
-    :no-icon="true"
+    no-icon
     :tag="link ? 'a' : 'div'"
   >
     <article class="box">

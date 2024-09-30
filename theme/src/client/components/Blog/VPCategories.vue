@@ -17,10 +17,7 @@ defineProps<{
     >
       <p v-if="item.type === 'post'" class="post">
         <span class="vpi-post" />
-        <VPLink
-          :href="item.path"
-          :text="item.title"
-        />
+        <VPLink :href="item.path" :text="item.title" />
       </p>
       <VPCategoriesGroup v-else :item="item" />
     </li>

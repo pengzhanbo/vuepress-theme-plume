@@ -29,7 +29,7 @@ function linkTo(e: Event) {
 
 <template>
   <Component
-    :is="tag" class="vp-link" :class="{ link }"
+    :is="tag" class="vp-link no-icon" :class="{ link }"
     :href="withBase(link || '')"
     :target="target ?? (isExternal ? '_blank' : undefined)"
     :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
@@ -44,18 +44,9 @@ function linkTo(e: Event) {
 
 <style scoped>
 .icon {
-  display: inline-block;
   width: 11px;
   height: 11px;
   margin-top: -1px;
   margin-left: 4px;
-  fill: var(--vp-c-text-3);
-  transition: fill 0.25s;
-}
-
-.vp-link :deep(i) {
-  font-style: normal;
-  font-weight: inherit;
-  line-height: normal;
 }
 </style>

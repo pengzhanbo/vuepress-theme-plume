@@ -20,10 +20,7 @@ import { searchPlugin } from '@vuepress-plume/plugin-search'
 import { shikiPlugin } from '@vuepress-plume/plugin-shikiji'
 import { type MarkdownEnhancePluginOptions, mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
-import {
-  resolveDocsearchOptions,
-  resolveSearchOptions,
-} from '../config/index.js'
+import { resolveDocsearchOptions, resolveSearchOptions } from '../config/index.js'
 import { deleteAttrs } from '../utils/index.js'
 import { customContainerPlugins } from './containerPlugins.js'
 import { markdownTitlePlugin } from './markdown-title.js'

@@ -38,7 +38,7 @@ const showFooter = computed(() => {
 
     <div v-if="hasEditLink || hasLastUpdated" class="edit-info">
       <div v-if="hasEditLink && editLink" class="edit-link">
-        <VPLink class="edit-link-button" :href="editLink.link" :no-icon="true">
+        <VPLink class="edit-link-button" :href="editLink.link" no-icon>
           <span class="vpi-square-pen edit-link-icon" aria-label="edit icon" />
           {{ editLink.text }}
         </VPLink>

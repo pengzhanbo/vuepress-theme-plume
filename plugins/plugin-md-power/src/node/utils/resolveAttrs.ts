@@ -1,13 +1,13 @@
 const RE_ATTR_VALUE = /(?:^|\s+)(?<attr>[\w-]+)(?:=\s*(?<quote>['"])(?<value>.+?)\k<quote>)?(?:\s+|$)/
 
-export function resolveAttrs(info: string): {
-  attrs: Record<string, any>
+export function resolveAttrs<T extends Record<string, any> = Record<string, any>>(info: string): {
+  attrs: T
   rawAttrs: string
 } {
   info = info.trim()
 
   if (!info)
-    return { rawAttrs: '', attrs: {} }
+    return { rawAttrs: '', attrs: {} as T }
 
   const attrs: Record<string, string | boolean> = {}
   const rawAttrs = info
@@ -37,5 +37,5 @@ export function resolveAttrs(info: string): {
     }
   })
 
-  return { attrs, rawAttrs }
+  return { attrs: attrs as T, rawAttrs }
 }

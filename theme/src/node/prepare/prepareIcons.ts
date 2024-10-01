@@ -36,6 +36,7 @@ function isIconify(icon: any): icon is string {
 }
 
 export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOptions) {
+  const start = performance.now()
   if (!isInstalled) {
     await writeTemp(app, JS_FILENAME, resolveContent(app, { name: 'icons', content: '{}' }))
     return
@@ -54,6 +55,12 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
     collectMap[collect].push(name)
   })
 
+  if (app.env.isDebug) {
+    logger.info(`Generate icons with pages and theme config: ${(performance.now() - start).toFixed(2)}ms`)
+  }
+
+  const collectStart = performance.now()
+
   if (!locate) {
     const mod = await interopDefault(import('@iconify/json'))
     locate = mod.locate
@@ -65,6 +72,10 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
 
   if (unknownList.length) {
     logger.warn(`[iconify] Unknown icons: ${unknownList.join(', ')}`)
+  }
+
+  if (app.env.isDebug) {
+    logger.info(`Generate icons with iconify collect: ${(performance.now() - collectStart).toFixed(2)}ms`)
   }
 
   let cssCode = ''
@@ -82,6 +93,10 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
       before: `import './iconify.css'`,
     })),
   ])
+
+  if (app.env.isDebug) {
+    logger.info(`Generate icons total time: ${(performance.now() - start).toFixed(2)}ms`)
+  }
 }
 
 function getIconsWithPage(page: Page): string[] {

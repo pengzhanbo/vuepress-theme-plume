@@ -6,7 +6,11 @@ export const theme: Theme = plumeTheme({
   hostname: process.env.SITE_HOST || 'https://plume.pengzhanbo.cn',
   plugins: {
 
-    shiki: { twoslash: true, lineNumbers: 10 },
+    shiki: {
+      twoslash: true,
+      lineNumbers: 10,
+      languages: ['sh', 'ts', 'md', 'html', 'js', 'go', 'kotlin', 'rust', 'vue', 'css', 'json', 'scss', 'yaml', 'bash', 'c++', 'java', 'py', 'ruby', 'make', 'objc', 'swift', 'php', 'rs', 'sql', 'xml', 'zig', 'pug', 'http', 'less', 'styl', 'jsx', 'tsx', 'astro', 'svelte', 'wasm', 'vb', 'bat', 'cs', 'cpp', 'mermaid'],
+    },
 
     markdownEnhance: {
       demo: true,

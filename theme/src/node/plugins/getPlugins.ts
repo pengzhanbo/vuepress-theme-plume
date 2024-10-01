@@ -38,7 +38,7 @@ export function getPlugins({
   hostname,
   cache,
 }: SetupPluginOptions): PluginConfig {
-  const isProd = !app.env.isDev
+  const isProd = app.env.isBuild
 
   const plugins: PluginConfig = [
     markdownTitlePlugin(),

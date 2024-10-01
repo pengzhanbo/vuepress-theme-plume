@@ -33,22 +33,23 @@
     "tsup": "tsup --config tsup.config.ts"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.15"
+    "vuepress": "2.0.0-rc.17"
   },
   "dependencies": {
-    "@shikijs/transformers": "^1.20.0",
-    "@shikijs/twoslash": "^1.20.0",
+    "@shikijs/transformers": "^1.21.0",
+    "@shikijs/twoslash": "^1.21.0",
     "@types/hast": "^3.0.4",
-    "@vuepress/helper": "2.0.0-rc.47",
+    "@vuepress/helper": "2.0.0-rc.52",
     "@vueuse/core": "^11.1.0",
+    "fast-glob": "^3.3.2",
     "floating-vue": "^5.2.2",
     "mdast-util-from-markdown": "^2.0.1",
     "mdast-util-gfm": "^3.0.0",
     "mdast-util-to-hast": "^13.2.0",
     "nanoid": "^5.0.7",
-    "shiki": "^1.20.0",
-    "twoslash": "^0.2.11",
-    "twoslash-vue": "^0.2.11"
+    "shiki": "^1.21.0",
+    "twoslash": "^0.2.12",
+    "twoslash-vue": "^0.2.12"
   },
   "publishConfig": {
     "access": "public"

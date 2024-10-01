@@ -37,7 +37,7 @@
     "tsup": "tsup --config tsup.config.ts"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.15"
+    "vuepress": "2.0.0-rc.17"
   },
   "dependencies": {
     "@mdit/plugin-attrs": "^0.13.1",
@@ -47,15 +47,15 @@
     "@mdit/plugin-sup": "^0.13.1",
     "@mdit/plugin-tab": "^0.13.2",
     "@mdit/plugin-tasklist": "^0.13.1",
-    "@vuepress/helper": "2.0.0-rc.47",
+    "@vuepress/helper": "2.0.0-rc.52",
     "@vueuse/core": "^11.1.0",
     "image-size": "^1.1.1",
     "markdown-it-container": "^4.0.0",
     "nanoid": "^5.0.7",
-    "shiki": "^1.20.0",
-    "tm-grammars": "^1.17.25",
-    "tm-themes": "^1.8.4",
-    "vue": "^3.5.9"
+    "shiki": "^1.21.0",
+    "tm-grammars": "^1.17.28",
+    "tm-themes": "^1.8.6",
+    "vue": "^3.5.10"
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.2"

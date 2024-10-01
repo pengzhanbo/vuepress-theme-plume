@@ -40,13 +40,13 @@
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
-    "@pengzhanbo/eslint-config-vue": "^1.17.0",
-    "@pengzhanbo/stylelint-config": "^1.17.0",
+    "@pengzhanbo/eslint-config-vue": "^1.18.0",
+    "@pengzhanbo/stylelint-config": "^1.18.0",
     "@types/lodash.merge": "^4.6.9",
     "@types/node": "20.12.10",
     "@types/webpack-env": "^1.18.5",
-    "bumpp": "^9.5.2",
-    "commitizen": "^4.3.0",
+    "bumpp": "^9.6.1",
+    "commitizen": "^4.3.1",
     "conventional-changelog-cli": "^5.0.0",
     "cpx2": "^7.0.1",
     "cz-conventional-changelog": "^3.3.0",
@@ -59,6 +59,9 @@
     "tsup": "^8.3.0",
     "typescript": "^5.6.2",
     "wait-on": "^8.0.1"
+  },
+  "resolutions": {
+    "esbuild": "^0.24.0"
   },
   "lint-staged": {
     "*": "eslint --fix",

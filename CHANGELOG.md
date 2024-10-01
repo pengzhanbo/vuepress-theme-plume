@@ -1,3 +1,26 @@
+# [1.0.0-rc.105](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.104...v1.0.0-rc.105) (2024-10-01)
+
+
+### Features
+
+* **cli:** add cli error logs ([#235](https://github.com/pengzhanbo/vuepress-theme-plume/issues/235)) ([713e7bc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/713e7bcc2a8384a4fae954e2fcf3a01cbd9dfdaf))
+* **cli:** add github page deploy desc to templates ([#236](https://github.com/pengzhanbo/vuepress-theme-plume/issues/236)) ([25c4a78](https://github.com/pengzhanbo/vuepress-theme-plume/commit/25c4a78767ddb7a59eec6609ced967628444c90d))
+* **plugin-shikiji:** auto scan code blocks language ([#243](https://github.com/pengzhanbo/vuepress-theme-plume/issues/243)) ([5d112d0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5d112d0e37c0059aa6fbe6f574c4450afad8af47))
+
+
+### Performance Improvements
+
+* **cli:** improve`config.ts` template ([#242](https://github.com/pengzhanbo/vuepress-theme-plume/issues/242)) ([5115791](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5115791aa73348175f2d2de501bef9284bb32579))
+* **plugin-md-power:** improve `file-tree` attrs parsing ([#238](https://github.com/pengzhanbo/vuepress-theme-plume/issues/238)) ([8a0b0e7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8a0b0e7092281ebd768fa76e7a8222aebc4626d2))
+* **plugin-md-power:** use `engine` instead of `loadWasm` in codeEditor ([#237](https://github.com/pengzhanbo/vuepress-theme-plume/issues/237)) ([1db4319](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1db43196aa7a1371335037a2703dcc3b82440938))
+* **theme:** add debug log ([#245](https://github.com/pengzhanbo/vuepress-theme-plume/issues/245)) ([84c1ae3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/84c1ae39a11c3a813ee4cfe19a03e47f1319844e))
+* **theme:** improve `<VPLink>` ([#239](https://github.com/pengzhanbo/vuepress-theme-plume/issues/239)) ([1e076fe](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1e076fea5a21ad38fa2f5dd8e4639b422414f847))
+* **theme:** improve `findConfigPath` ([#246](https://github.com/pengzhanbo/vuepress-theme-plume/issues/246)) ([1444af6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1444af6533d19ea8602f2b29a207ebc4d6d50530))
+* **theme:** improve types ([#244](https://github.com/pengzhanbo/vuepress-theme-plume/issues/244)) ([341267b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/341267b37e4031bc8e0984f50f9d21ce6946374c))
+* update deps to latest ([#241](https://github.com/pengzhanbo/vuepress-theme-plume/issues/241)) ([e2421a0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e2421a0c92d2bfe4d5b96c789384af9b534a8780))
+
+
+
 # [1.0.0-rc.104](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.103...v1.0.0-rc.104) (2024-09-27)
 
 

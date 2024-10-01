@@ -6,7 +6,7 @@ import http from 'node:https'
 import { URL } from 'node:url'
 import { isLinkExternal, isLinkHttp } from '@vuepress/helper'
 import imageSize from 'image-size'
-import { fs, path } from 'vuepress/utils'
+import { fs, logger, path } from 'vuepress/utils'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 
 interface ImgSize {
@@ -36,10 +36,14 @@ export async function imageSizePlugin(
     return
 
   if (type === 'all') {
+    const start = performance.now()
     try {
       await scanRemoteImageSize(app)
     }
     catch {}
+    if (app.env.isDebug) {
+      logger.info(`[vuepress-plugin-md-power] imageSizePlugin: scan all images time spent: ${performance.now() - start}ms`)
+    }
   }
 
   const imageRule = md.renderer.rules.image!

@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import { toArray } from '@pengzhanbo/utils'
-import { nanoid, resolveContent, writeTemp } from '../utils/index.js'
+import { logger, nanoid, resolveContent, writeTemp } from '../utils/index.js'
 
 export type TagsColorsItem = readonly [
   string, // normal color
@@ -33,9 +33,15 @@ export const PRESET: TagsColorsItem[] = [
 const cache: Record<number, string> = {}
 
 export async function prepareArticleTagColors(app: App): Promise<void> {
+  const start = performance.now()
   const { js, css } = genCode(app)
   await writeTemp(app, 'internal/articleTagColors.css', css)
   await writeTemp(app, 'internal/articleTagColors.js', js)
+  if (app.env.isDebug) {
+    logger.info(
+      `Generate article tag colors: ${(performance.now() - start).toFixed(2)}ms`,
+    )
+  }
 }
 
 export function genCode(app: App): { js: string, css: string } {

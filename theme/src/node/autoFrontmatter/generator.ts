@@ -13,6 +13,7 @@ import grayMatter from 'gray-matter'
 import jsonToYaml from 'json2yaml'
 import { fs, hash, path } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
+import { logger } from '../utils/index.js'
 import { readMarkdown, readMarkdownList } from './readFile.js'
 import { resolveOptions } from './resolveOptions.js'
 
@@ -87,6 +88,7 @@ export function initAutoFrontmatter(
 }
 
 export async function generateAutoFrontmatter(app: App) {
+  const start = performance.now()
   if (!generate)
     return
 
@@ -106,6 +108,10 @@ export async function generateAutoFrontmatter(app: App) {
   )
 
   await generate.updateCache(app)
+
+  if (app.env.isDebug) {
+    logger.info(`Generate auto frontmatter: ${(performance.now() - start).toFixed(2)}ms`)
+  }
 }
 
 export async function watchAutoFrontmatter(app: App, watchers: any[]) {

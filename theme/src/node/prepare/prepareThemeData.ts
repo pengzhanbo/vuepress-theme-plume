@@ -2,19 +2,24 @@ import type { App } from 'vuepress'
 import type { PlumeThemeData, PlumeThemeLocaleOptions, PlumeThemePluginOptions } from '../../shared/index.js'
 import { resolveImageSize } from 'vuepress-plugin-md-power'
 import { resolveThemeData } from '../config/resolveThemeData.js'
-import { resolveContent, writeTemp } from '../utils/index.js'
+import { logger, resolveContent, writeTemp } from '../utils/index.js'
 
 export async function prepareThemeData(
   app: App,
   localeOptions: PlumeThemeLocaleOptions,
   pluginOptions: PlumeThemePluginOptions,
 ): Promise<void> {
+  const start = performance.now()
   const resolvedThemeData = resolveThemeData(app, localeOptions)
 
   await resolveProfileImage(app, resolvedThemeData, pluginOptions)
 
   const content = resolveContent(app, { name: 'themeData', content: resolvedThemeData })
   await writeTemp(app, 'internal/themePlumeData.js', content)
+
+  if (app.env.isDebug) {
+    logger.info(`Generate theme data: ${(performance.now() - start).toFixed(2)}ms`)
+  }
 }
 
 async function resolveProfileImage(

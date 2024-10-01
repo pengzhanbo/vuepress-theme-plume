@@ -3,7 +3,7 @@ import type { Page } from 'vuepress/core'
 import type { PlumeThemeEncrypt, PlumeThemePageData } from '../../shared/index.js'
 import { isNumber, isString, random, toArray } from '@pengzhanbo/utils'
 import { genSaltSync, hashSync } from 'bcrypt-ts'
-import { hash, resolveContent, writeTemp } from '../utils/index.js'
+import { hash, logger, resolveContent, writeTemp } from '../utils/index.js'
 
 export type EncryptConfig = readonly [
   boolean, // global
@@ -18,6 +18,7 @@ const separator = ':'
 let contentHash = ''
 
 export async function prepareEncrypt(app: App, encrypt?: PlumeThemeEncrypt) {
+  const start = performance.now()
   const currentHash = encrypt ? hash(JSON.stringify(encrypt)) : ''
 
   if (!contentHash || contentHash !== currentHash) {
@@ -27,6 +28,9 @@ export async function prepareEncrypt(app: App, encrypt?: PlumeThemeEncrypt) {
       content: resolveEncrypt(encrypt),
     })
     await writeTemp(app, 'internal/encrypt.js', content)
+  }
+  if (app.env.isDebug) {
+    logger.info(`Generate encrypt: ${(performance.now() - start).toFixed(2)}ms`)
   }
 }
 

@@ -20,11 +20,13 @@ export async function findConfigPath(app: App, configPath?: string): Promise<str
       return path
     }
   }
-  extensions.forEach((ext) => {
-    paths.push(resolve(cwd, `./${CONFIG_FILE_NAME}.${ext}`))
-    paths.push(resolve(cwd, `${source}/${CONFIG_FILE_NAME}.${ext}`))
-    paths.push(resolve(cwd, `./.vuepress/${CONFIG_FILE_NAME}.${ext}`))
-  })
+  extensions.forEach(ext =>
+    paths.push(
+      resolve(cwd, `${source}/${CONFIG_FILE_NAME}.${ext}`),
+      resolve(cwd, `./${CONFIG_FILE_NAME}.${ext}`),
+      resolve(cwd, `./.vuepress/${CONFIG_FILE_NAME}.${ext}`),
+    ),
+  )
   let current: string | undefined
   for (const path of paths) {
     if (existsSync(path) && (await fsp.stat(path)).isFile()) {

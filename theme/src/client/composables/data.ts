@@ -34,7 +34,7 @@ type Frontmatter<T extends FrontmatterType = 'page'> = T extends 'home'
 export interface Data<T extends FrontmatterType = 'page'> {
   theme: ThemeLocaleDataRef<PlumeThemeLocaleData>
   page: PageDataRef<PlumeThemePageData>
-  frontmatter: PageFrontmatterRef<Frontmatter<T>>
+  frontmatter: PageFrontmatterRef<Frontmatter<T> & Record<string, unknown>>
   lang: Ref<string>
   site: SiteLocaleDataRef
   isDark: Ref<boolean>
@@ -43,7 +43,7 @@ export interface Data<T extends FrontmatterType = 'page'> {
 export function useData<T extends FrontmatterType = 'page'>(): Data<T> {
   const theme = useThemeLocaleData()
   const page = usePageData<PlumeThemePageData>()
-  const frontmatter = usePageFrontmatter<Frontmatter<T>>()
+  const frontmatter = usePageFrontmatter<Frontmatter<T> & Record<string, unknown>>()
   const site = useSiteLocaleData()
   const isDark = useDarkMode()
   const lang = usePageLang()

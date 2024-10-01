@@ -1,4 +1,5 @@
 import type { SocialLink } from '../base.js'
+import type { PlumeNormalFrontmatter } from './normal.js'
 
 export interface FriendsItem {
   name: string
@@ -17,7 +18,7 @@ export interface FriendGroup {
   list?: FriendsItem[]
 }
 
-export interface PlumeThemeFriendsFrontmatter {
+export interface PlumeThemeFriendsFrontmatter extends PlumeNormalFrontmatter {
   friends: boolean
   title?: string
   description?: string

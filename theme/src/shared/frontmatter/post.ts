@@ -1,4 +1,4 @@
-import type { BlogPostCover } from 'vuepress-theme-plume'
+import type { BlogPostCover } from '../blog.js'
 import type { PlumeThemePageFrontmatter } from './page.js'
 
 export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {

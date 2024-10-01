@@ -60,7 +60,7 @@ export async function preparedBlogData(
     < getTimestamp(next.frontmatter.createTime as Date || next.date)
       ? 1
       : -1,
-  ) as Page<PlumeThemePageData, PlumeThemePostFrontmatter>[]
+  ) as Page<PlumeThemePageData, PlumeThemePostFrontmatter & Record<string, unknown>>[]
 
   const blogData: PlumeThemeBlogPostData = pages.map((page) => {
     const tags = page.frontmatter.tags

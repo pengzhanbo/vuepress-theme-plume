@@ -1,6 +1,6 @@
 import type { PageFrontmatter } from 'vuepress'
 
-export interface PlumeNormalFrontmatter extends PageFrontmatter {
+export type PlumeNormalFrontmatter = PageFrontmatter<{
 
   /**
    * @deprecated
@@ -51,4 +51,4 @@ export interface PlumeNormalFrontmatter extends PageFrontmatter {
    * @deprecated 使用 `externalLinkIcon` 代替
    */
   externalLink?: boolean
-}
+}>

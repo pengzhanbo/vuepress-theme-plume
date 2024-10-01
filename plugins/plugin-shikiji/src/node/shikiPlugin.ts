@@ -7,7 +7,7 @@ import type {
 } from './types.js'
 import { isPlainObject } from 'vuepress/shared'
 import { copyCodeButtonPlugin } from './copy-code-button/index.js'
-import { highlight } from './highlight/index.js'
+import { highlight, scanLanguages } from './highlight/index.js'
 import {
   collapsedLinesPlugin,
   highlightLinesPlugin,
@@ -15,6 +15,7 @@ import {
   preWrapperPlugin,
 } from './markdown/index.js'
 import { prepareClientConfigFile } from './prepareClientConfigFile.js'
+import { logger } from './utils/index.js'
 
 export interface ShikiPluginOptions
   extends HighlighterOptions, LineNumberOptions, PreWrapperOptions {
@@ -49,9 +50,21 @@ export function shikiPlugin({
     }),
 
     extendsMarkdown: async (md, app) => {
+      const start = performance.now()
       const theme = options.theme ?? { light: 'github-light', dark: 'github-dark' }
 
+      if (!options.languages || !options.languages.length) {
+        options.languages = await scanLanguages(app)
+        if (app.env.isDebug) {
+          logger.info(`scan languages: ${JSON.stringify(options.languages)}`)
+          logger.info(`scan languages in: ${(performance.now() - start).toFixed(2)}ms`)
+        }
+      }
+
       md.options.highlight = await highlight(theme, options)
+      if (app.env.isDebug) {
+        logger.info(`highlight Loaded in: ${(performance.now() - start).toFixed(2)}ms`)
+      }
 
       md.use(highlightLinesPlugin)
       md.use(preWrapperPlugin, { preWrapper })

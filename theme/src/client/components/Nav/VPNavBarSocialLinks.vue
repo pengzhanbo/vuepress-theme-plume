@@ -10,9 +10,13 @@ const social = computed(() => {
   if (!includes.length)
     return theme.value.social
 
-  return theme.value.social?.filter(
-    ({ icon }) => typeof icon === 'string' && includes.includes(icon),
-  )
+  return theme.value.social?.filter(({ icon }) => {
+    if (typeof icon === 'string')
+      return includes.includes(icon)
+    if (icon.name)
+      return includes.includes(icon.name)
+    return false
+  })
 })
 </script>
 

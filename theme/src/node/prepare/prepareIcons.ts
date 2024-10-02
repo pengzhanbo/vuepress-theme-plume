@@ -5,7 +5,7 @@ import { isArray, uniq } from '@pengzhanbo/utils'
 import { entries, isLinkAbsolute, isLinkHttp, isPlainObject } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
-import { interopDefault, logger, nanoid, resolveContent, writeTemp } from '../utils/index.js'
+import { createFsCache, type FsCache, interopDefault, logger, nanoid, resolveContent, writeTemp } from '../utils/index.js'
 
 interface IconData {
   className: string
@@ -26,6 +26,7 @@ const CSS_FILENAME = 'internal/iconify.css'
 const isInstalled = isPackageExists('@iconify/json')
 let locate!: ((name: string) => any)
 
+let fsCache: FsCache<IconDataMap> | null = null
 // { iconName: { className, content } }
 const cache: IconDataMap = {}
 
@@ -41,13 +42,21 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
     await writeTemp(app, JS_FILENAME, resolveContent(app, { name: 'icons', content: '{}' }))
     return
   }
+  if (!fsCache && app.env.isDev) {
+    fsCache = createFsCache(app, 'iconify')
+    await fsCache.read()
+  }
 
   const iconList: string[] = []
   app.pages.forEach(page => iconList.push(...getIconsWithPage(page)))
   iconList.push(...getIconWithThemeConfig(localeOptions))
 
   const collectMap: CollectMap = {}
-  uniq(iconList).filter(icon => !cache[icon]).forEach((iconName) => {
+  uniq(iconList).filter((icon) => {
+    if (fsCache?.data?.[icon] && !cache[icon])
+      cache[icon] = fsCache.data[icon]
+    return !cache[icon]
+  }).forEach((iconName) => {
     const [collect, name] = iconName.split(':')
     if (!collectMap[collect])
       collectMap[collect] = []
@@ -94,6 +103,7 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
     })),
   ])
 
+  fsCache?.write(cache)
   if (app.env.isDebug) {
     logger.info(`Generate icons total time: ${(performance.now() - start).toFixed(2)}ms`)
   }

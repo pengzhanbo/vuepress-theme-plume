@@ -34,7 +34,7 @@ permalink: /guide/markdown/experiment/
 
 ### 概述
 
-[twoslash](https://shikijs.github.io/twoslash/) 是一种 `javascript` 和 `typescript` 标记语言。
+[twoslash](https://twoslash.netlify.app/) 是一种 `javascript` 和 `typescript` 标记语言。
 你可以编写一个代码示例来描述整个 `javascript` 项目。
 
 `twoslash` 将 **双斜杠** 作为 代码示例的预处理器。
@@ -109,7 +109,7 @@ const a = 1
 
 ### 语法参考
 
-完整语法请参考 [ts-twoslasher](https://github.com/microsoft/TypeScript-Website/tree/v2/packages/ts-twoslasher) 和 [shikijs-twoslash](https://shikijs.github.io/twoslash/)
+完整语法请参考 [ts-twoslasher](https://github.com/microsoft/TypeScript-Website/tree/v2/packages/ts-twoslasher) 和 [shikijs-twoslash](https://twoslash.netlify.app/)
 
 `twoslash` 将 **双斜杠** 视为代码示例的预处理器。
 因此，所有的标记都是在 `//` 之后添加的。

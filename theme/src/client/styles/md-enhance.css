@@ -154,7 +154,14 @@
   list-style: none;
 }
 
+.vp-doc .task-list-container .task-list-item {
+  position: relative;
+}
+
 .vp-doc .task-list-container .task-list-item input {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 0;
   height: 0;
   padding: 0;
@@ -174,7 +181,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
-  transform: translateY(2px);
+  transform: translateY(4px);
 }
 
 

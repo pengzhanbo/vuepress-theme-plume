@@ -2,7 +2,7 @@ import type { File, ResolvedData } from './types.js'
 import { kebabCase } from '@pengzhanbo/utils'
 import { execaCommand } from 'execa'
 import { Mode } from './constants.js'
-import { getDependenciesVersion, readJsonFile, resolve } from './utils/index.js'
+import { readJsonFile, resolve } from './utils/index.js'
 
 export async function createPackageJson(
   mode: Mode,
@@ -53,26 +53,28 @@ export async function createPackageJson(
 
   pkg.devDependencies ??= {}
 
+  const hasDep = (dep: string) => pkg.devDependencies?.[dep] || pkg.dependencies?.[dep]
+
   const context = (await readJsonFile(resolve('package.json')))!
-  const meta = context['theme-plume']
+  const meta = context['plume-deps']
+
+  pkg.devDependencies[`@vuepress/bundler-${bundler}`] = `${meta.vuepress}`
   pkg.devDependencies.vuepress = `${meta.vuepress}`
   pkg.devDependencies['vuepress-theme-plume'] = `${context.version}`
-  pkg.devDependencies[`@vuepress/bundler-${bundler}`] = `${meta.vuepress}`
   pkg.devDependencies['http-server'] = '^14.1.1'
 
   const deps: string[] = []
-  if (!pkg.dependencies?.vue && !pkg.devDependencies.vue)
+  if (!hasDep('vue'))
     deps.push('vue')
-  if (bundler === 'webpack' && !pkg.dependencies?.['sass-loader'] && !pkg.devDependencies['sass-loader'])
+
+  if (bundler === 'webpack' && !hasDep('sass-loader'))
     deps.push('sass-loader')
 
-  if (!pkg.dependencies?.['sass-embedded'] && !pkg.devDependencies['sass-embedded'])
+  if (!hasDep('sass-embedded'))
     deps.push('sass-embedded')
 
-  const dv = await getDependenciesVersion(deps)
-
-  for (const [d, v] of Object.entries(dv))
-    pkg.devDependencies[d] = `^${v}`
+  for (const dep of deps)
+    pkg.devDependencies[dep] = meta[dep]
 
   return {
     filepath: 'package.json',

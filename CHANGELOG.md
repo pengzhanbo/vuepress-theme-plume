@@ -1,3 +1,23 @@
+# [1.0.0-rc.106](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.105...v1.0.0-rc.106) (2024-10-03)
+
+
+### Bug Fixes
+
+* **theme:** incorrect task list style in mobile, close [#247](https://github.com/pengzhanbo/vuepress-theme-plume/issues/247) ([#252](https://github.com/pengzhanbo/vuepress-theme-plume/issues/252)) ([5509bf4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5509bf460ce4543ddc4e61e97f6bdd53101f89cb))
+
+
+### Features
+
+* **theme:** add attr `name` for navbar social icon ([#249](https://github.com/pengzhanbo/vuepress-theme-plume/issues/249)) ([45b2a36](https://github.com/pengzhanbo/vuepress-theme-plume/commit/45b2a36798592a677fea26647d0ac2805aa889ce))
+* **theme:** add fs cache for encrypt and icons ([#248](https://github.com/pengzhanbo/vuepress-theme-plume/issues/248)) ([2a35570](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2a355705ff206a8a12d9fbaf93d3509d976c8dd9))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** add unset `languages` warning ([#251](https://github.com/pengzhanbo/vuepress-theme-plume/issues/251)) ([6fac619](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6fac619031421daab0901c94145474b49dac9182))
+
+
+
 # [1.0.0-rc.105](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.104...v1.0.0-rc.105) (2024-10-01)
 
 

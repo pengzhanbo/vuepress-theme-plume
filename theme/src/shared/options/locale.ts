@@ -59,7 +59,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
    * 允许显示在导航栏的社交类型
    * @default - ['github', 'twitter', 'discord', 'facebook']
    */
-  navbarSocialInclude?: SocialLinkIconUnion[]
+  navbarSocialInclude?: (SocialLinkIconUnion | (string & { zz_IGNORE_ME?: never }))[]
 
   /**
    * 博客配置

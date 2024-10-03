@@ -39,7 +39,7 @@ export type SocialLinkIconUnion =
   | 'stackoverflow'
   | 'xbox'
 
-export type SocialLinkIcon = SocialLinkIconUnion | { svg: string }
+export type SocialLinkIcon = SocialLinkIconUnion | { svg: string, name?: string }
 
 export interface PresetLocale {
   home: string

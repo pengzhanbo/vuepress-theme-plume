@@ -3,7 +3,7 @@ import type { Page } from 'vuepress/core'
 import type { PlumeThemeEncrypt, PlumeThemePageData } from '../../shared/index.js'
 import { isNumber, isString, random, toArray } from '@pengzhanbo/utils'
 import { genSaltSync, hashSync } from 'bcrypt-ts'
-import { hash, logger, resolveContent, writeTemp } from '../utils/index.js'
+import { createFsCache, type FsCache, hash, logger, resolveContent, writeTemp } from '../utils/index.js'
 
 export type EncryptConfig = readonly [
   boolean, // global
@@ -16,19 +16,30 @@ export type EncryptConfig = readonly [
 const isStringLike = (value: unknown): boolean => isString(value) || isNumber(value)
 const separator = ':'
 let contentHash = ''
+let fsCache: FsCache<[string, EncryptConfig]> | null = null
 
 export async function prepareEncrypt(app: App, encrypt?: PlumeThemeEncrypt) {
   const start = performance.now()
+
+  if (!fsCache && app.env.isDev) {
+    fsCache = createFsCache(app, 'encrypt')
+    await fsCache.read()
+  }
+  contentHash = fsCache?.data?.[0] ?? ''
+  let resolvedEncrypt = fsCache?.data?.[1]
   const currentHash = encrypt ? hash(JSON.stringify(encrypt)) : ''
 
-  if (!contentHash || contentHash !== currentHash) {
+  if (!contentHash || contentHash !== currentHash || !resolvedEncrypt) {
     contentHash = currentHash
-    const content = resolveContent(app, {
-      name: 'encrypt',
-      content: resolveEncrypt(encrypt),
-    })
-    await writeTemp(app, 'internal/encrypt.js', content)
+    resolvedEncrypt = resolveEncrypt(encrypt)
   }
+  await writeTemp(app, 'internal/encrypt.js', resolveContent(app, {
+    name: 'encrypt',
+    content: resolvedEncrypt,
+  }))
+
+  fsCache?.write([currentHash, resolvedEncrypt])
+
   if (app.env.isDebug) {
     logger.info(`Generate encrypt: ${(performance.now() - start).toFixed(2)}ms`)
   }

@@ -47,8 +47,6 @@ export function getPlugins({
     activeHeaderLinksPlugin({
       headerLinkSelector: 'a.outline-link',
       headerAnchorSelector: '.header-anchor',
-      delay: 200,
-      offset: 5,
     }),
     markdownHintPlugin({ hint: true, alert: true, injectStyles: false }),
 

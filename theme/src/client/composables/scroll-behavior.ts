@@ -4,11 +4,13 @@ import { inBrowser } from '../utils/index.js'
 import { useScrollPromise } from './scroll-promise.js'
 
 export function enhanceScrollBehavior(router: Router) {
-  // handle scrollBehavior with transition
-  const scrollBehavior = router.options.scrollBehavior!
-  router.options.scrollBehavior = async (...args) => {
+  router.options.scrollBehavior = async (to, from, savedPosition) => {
     await useScrollPromise().wait()
-    return scrollBehavior(...args)
+    if (savedPosition)
+      return savedPosition
+    if (to.hash)
+      return { el: to.hash, top: 64 }
+    return { top: 0 }
   }
 
   router.beforeEach(() => {

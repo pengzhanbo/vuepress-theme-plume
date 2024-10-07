@@ -37,7 +37,13 @@
     "tsup": "tsup --config tsup.config.ts"
   },
   "peerDependencies": {
+    "markdown-it": "^14.0.0",
     "vuepress": "2.0.0-rc.17"
+  },
+  "peerDependenciesMeta": {
+    "markdown-it": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@mdit/plugin-attrs": "^0.13.1",

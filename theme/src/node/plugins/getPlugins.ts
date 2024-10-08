@@ -1,6 +1,5 @@
 import type { App, PluginConfig } from 'vuepress/core'
 import type { PlumeThemePluginOptions } from '../../shared/index.js'
-import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links'
 import { cachePlugin } from '@vuepress/plugin-cache'
 import { commentPlugin } from '@vuepress/plugin-comment'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
@@ -44,10 +43,6 @@ export function getPlugins({
     markdownTitlePlugin(),
     fontsPlugin(),
     contentUpdatePlugin(),
-    activeHeaderLinksPlugin({
-      headerLinkSelector: 'a.outline-link',
-      headerAnchorSelector: '.header-anchor',
-    }),
     markdownHintPlugin({ hint: true, alert: true, injectStyles: false }),
 
     ...customContainerPlugins,

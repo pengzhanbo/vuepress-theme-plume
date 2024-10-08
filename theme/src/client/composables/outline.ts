@@ -1,7 +1,9 @@
 import type { InjectionKey, Ref } from 'vue'
+import type { Router } from 'vuepress/client'
 import type { ThemeOutline } from '../../shared/index.js'
 import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import { inject, onMounted, onUnmounted, onUpdated, provide, ref } from 'vue'
+import { useRouter } from 'vuepress/client'
 import { throttleAndDebounce } from '../utils/index.js'
 import { useAside } from './aside.js'
 import { useData } from './data.js'
@@ -161,6 +163,7 @@ export function resolveHeaders(headers: MenuItem[], range?: ThemeOutline): MenuI
 
 export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<HTMLElement | null>): void {
   const { isAsideEnabled } = useAside()
+  const router = useRouter()
 
   let prevActiveLink: HTMLAnchorElement | null = null
 
@@ -203,7 +206,7 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
     // find the last header above the top of viewport
     let activeLink: string | null = null
     for (const { link, top } of headers) {
-      if (top > scrollY + 144)
+      if (top > scrollY + 88)
         break
 
       activeLink = link
@@ -239,6 +242,8 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
         marker.value.style.opacity = '0'
       }
     }
+
+    updateHash(router, hash || '')
   }
 
   const onScroll = throttleAndDebounce(setActiveLink, 100)
@@ -272,4 +277,18 @@ function getAbsoluteTop(element: HTMLElement): number {
     element = element.offsetParent as HTMLElement
   }
   return offsetTop
+}
+
+/**
+ * Update current hash and do not trigger `scrollBehavior`
+ */
+async function updateHash(router: Router, hash: string): Promise<void> {
+  const { path, query } = router.currentRoute.value
+  const { scrollBehavior } = router.options
+
+  // temporarily disable `scrollBehavior`
+  router.options.scrollBehavior = undefined
+  await router.replace({ path, query, hash })
+  // restore it after navigation
+  router.options.scrollBehavior = scrollBehavior
 }

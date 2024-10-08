@@ -72,6 +72,13 @@ export async function generate(mode: Mode, data: ResolvedData): Promise<void> {
   }
   // rewrite git files end ====================================
 
+  if (data.packageManager === 'yarn') {
+    fileList.push({
+      filepath: '.yarnrc.yml',
+      content: 'nodeLinker: \'node-modules\'\n',
+    })
+  }
+
   if (data.deploy !== DeployType.custom) {
     fileList.push(...await readFiles(getTemplate(`deploy/${data.deploy}`)))
   }

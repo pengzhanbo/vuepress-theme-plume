@@ -14,6 +14,7 @@ export async function createPackageJson(
     siteDescription,
     bundler,
     injectNpmScripts,
+    useTs,
   }: ResolvedData,
 ): Promise<File> {
   if (mode === Mode.create) {
@@ -23,8 +24,10 @@ export async function createPackageJson(
     pkg.description = siteDescription
 
     if (packageManager !== 'npm') {
-      const version = await getPackageManagerVersion(packageManager)
+      let version = await getPackageManagerVersion(packageManager)
       if (version) {
+        if (packageManager === 'yarn' && version.startsWith('1'))
+          version = '4.5.0'
         pkg.packageManager = `${packageManager}@${version}`
       }
     }
@@ -61,9 +64,8 @@ export async function createPackageJson(
   pkg.devDependencies[`@vuepress/bundler-${bundler}`] = `${meta.vuepress}`
   pkg.devDependencies.vuepress = `${meta.vuepress}`
   pkg.devDependencies['vuepress-theme-plume'] = `${context.version}`
-  pkg.devDependencies['http-server'] = '^14.1.1'
 
-  const deps: string[] = []
+  const deps: string[] = ['http-server']
   if (!hasDep('vue'))
     deps.push('vue')
 
@@ -72,6 +74,9 @@ export async function createPackageJson(
 
   if (!hasDep('sass-embedded'))
     deps.push('sass-embedded')
+
+  if (useTs)
+    deps.push('typescript')
 
   for (const dep of deps)
     pkg.devDependencies[dep] = meta[dep]

@@ -49,7 +49,7 @@ export async function run(mode: Mode, root?: string) {
   if (data.install) {
     progress.message(t('spinner.install'))
     try {
-      await execaCommand(pm === 'yarn' ? 'yarn' : `${pm} install`, { cwd })
+      await execaCommand(`${pm} install`, { cwd })
     }
     catch (e) {
       console.error(`${colors.red('install dependencies error: ')}\n`, e)
@@ -58,8 +58,8 @@ export async function run(mode: Mode, root?: string) {
   }
 
   const cdCommand = mode === Mode.create ? colors.green(`cd ${data.root}`) : ''
-  const runCommand = colors.green(pm === 'yarn' ? 'yarn docs:dev' : `${pm} run docs:dev`)
-  const installCommand = colors.green(pm === 'yarn' ? 'yarn' : `${pm} install`)
+  const runCommand = colors.green(`${pm} run docs:dev`)
+  const installCommand = colors.green(`${pm} install`)
 
   progress.stop(t('spinner.stop'))
 

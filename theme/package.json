@@ -103,7 +103,6 @@
     "@vuepress-plume/plugin-search": "workspace:*",
     "@vuepress-plume/plugin-shikiji": "workspace:*",
     "@vuepress/helper": "2.0.0-rc.52",
-    "@vuepress/plugin-active-header-links": "2.0.0-rc.52",
     "@vuepress/plugin-cache": "2.0.0-rc.52",
     "@vuepress/plugin-comment": "2.0.0-rc.53",
     "@vuepress/plugin-docsearch": "2.0.0-rc.52",

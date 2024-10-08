@@ -24,24 +24,23 @@
  */
 import type Token from 'markdown-it/lib/token.mjs'
 import type { Markdown } from 'vuepress/markdown'
-import type { NpmToOptions } from '../../shared/index.js'
+import type { NpmToOptions, NpmToPackageManager } from '../../shared/index.js'
 import { isArray } from '@vuepress/helper'
 import container from 'markdown-it-container'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 
-type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun' | 'deno'
-type PackageCommand = 'install' | 'add' | 'remove' | 'run' | 'create' | 'npx' | 'ci'
+type PackageCommand = 'install' | 'add' | 'remove' | 'run' | 'create' | 'init' | 'npx' | 'ci'
 interface CommandConfigItem {
   cli: string
   flags?: Record<string, string>
 }
-type CommandConfig = Record<Exclude<PackageManager, 'npm'>, CommandConfigItem | false>
+type CommandConfig = Record<Exclude<NpmToPackageManager, 'npm'>, CommandConfigItem | false>
 type CommandConfigs = Record<PackageCommand, { pattern: RegExp } & CommandConfig>
 
 const ALLOW_LIST = ['npm', 'pnpm', 'yarn', 'bun', 'deno'] as const
 const BOOL_FLAGS: string[] = ['--no-save', '-B', '--save-bundle', '--save-dev', '-D', '--save-prod', '-P', '--save-peer', '-O', '--save-optional', '-E', '--save-exact', '-y', '--yes', '-g', '--global']
 
-const DEFAULT_TABS: PackageManager[] = ['npm', 'pnpm', 'yarn']
+const DEFAULT_TABS: NpmToPackageManager[] = ['npm', 'pnpm', 'yarn']
 
 const MANAGERS_CONFIG: CommandConfigs = {
   install: {
@@ -143,22 +142,17 @@ const MANAGERS_CONFIG: CommandConfigs = {
   },
   create: {
     pattern: /(?:^|\s)npm\s+create\s/,
-    pnpm: {
-      cli: 'pnpm create ',
-      flags: { '-y': '', '--yes': '' },
-    },
-    yarn: {
-      cli: 'yarn create',
-      flags: { '-y': '', '--yes': '' },
-    },
-    bun: {
-      cli: 'bun create ',
-      flags: { '-y': '', '--yes': '' },
-    },
-    deno: {
-      cli: 'deno run -A ',
-      flags: { '-y': '', '--yes': '' },
-    },
+    pnpm: { cli: 'pnpm create', flags: { '-y': '', '--yes': '' } },
+    yarn: { cli: 'yarn create', flags: { '-y': '', '--yes': '' } },
+    bun: { cli: 'bun create', flags: { '-y': '', '--yes': '' } },
+    deno: { cli: 'deno run -A ', flags: { '-y': '', '--yes': '' } },
+  },
+  init: {
+    pattern: /(?:^|\s)npm\s+init/,
+    pnpm: { cli: 'pnpm init', flags: { '-y': '', '--yes': '' } },
+    yarn: { cli: 'yarn init', flags: { '-y': '', '--yes': '' } },
+    bun: { cli: 'bun init', flags: { '-y': '', '--yes': '' } },
+    deno: { cli: 'deno init', flags: { '-y': '', '--yes': '' } },
   },
   npx: {
     pattern: /(?:^|\s)npx\s+/,
@@ -204,7 +198,7 @@ export function npmToPlugins(md: Markdown, options: NpmToOptions): void {
 
   const render = (tokens: Token[], idx: number): string => {
     const { attrs } = resolveAttrs(tokens[idx].info.slice(type.length - 1))
-    const tabs = (attrs.tabs ? attrs.tabs.split(/,\s*/) : defaultTabs) as PackageManager[]
+    const tabs = (attrs.tabs ? attrs.tabs.split(/,\s*/) : defaultTabs) as NpmToPackageManager[]
     if (tokens[idx].nesting === 1) {
       const token = tokens[idx + 1]
       const info = token.info.trim()
@@ -226,7 +220,7 @@ export function npmToPlugins(md: Markdown, options: NpmToOptions): void {
   md.use(container, type, { validate, render })
 }
 
-function resolveNpmTo(lines: string[], info: string, idx: number, tabs: PackageManager[]): string {
+function resolveNpmTo(lines: string[], info: string, idx: number, tabs: NpmToPackageManager[]): string {
   tabs = validateTabs(tabs)
   const res: string[] = []
   const map: Record<string, LineParsed | false> = {}
@@ -273,7 +267,7 @@ function findConfig(line: string): CommandConfig | undefined {
   return undefined
 }
 
-function validateTabs(tabs: PackageManager[]): PackageManager[] {
+function validateTabs(tabs: NpmToPackageManager[]): NpmToPackageManager[] {
   if (tabs.length === 0) {
     return DEFAULT_TABS
   }
@@ -300,7 +294,7 @@ export function parseLine(line: string): false | LineParsed {
 
   const idx = rest.indexOf(' ')
   if (idx === -1)
-    return { env, cli: `${cli} ${rest}`, cmd: '' }
+    return { env, cli: `${cli} ${rest.trim()}`, cmd: '' }
 
   return { env, cli: `${cli} ${rest.slice(0, idx)}`, ...parseArgs(rest.slice(idx + 1)) }
 }

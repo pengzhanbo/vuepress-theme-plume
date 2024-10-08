@@ -66,10 +66,10 @@ function handleClick() {
       aria-label="back to top"
       @click="handleClick"
     >
-      <span class="percent" :class="{ show: isScrolling }">{{ percent }}</span>
+      <span class="percent" :class="{ show: isScrolling }" data-allow-mismatch>{{ percent }}</span>
       <span class="icon vpi-back-to-top" :class="{ show: !isScrolling }" />
       <svg aria-hidden="true">
-        <circle cx="50%" cy="50%" :style="{ 'stroke-dasharray': stroke }" />
+        <circle cx="50%" cy="50%" data-allow-mismatch :style="{ 'stroke-dasharray': stroke }" />
       </svg>
     </button>
   </Transition>

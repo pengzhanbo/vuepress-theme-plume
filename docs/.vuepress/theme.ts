@@ -30,6 +30,7 @@ export const theme: Theme = plumeTheme({
       replit: true,
       codeSandbox: true,
       jsfiddle: true,
+      npmTo: true,
       repl: {
         go: true,
         rust: true,

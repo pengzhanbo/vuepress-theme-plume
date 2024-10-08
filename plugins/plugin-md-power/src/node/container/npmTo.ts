@@ -1,39 +1,60 @@
 /**
+ * 只写一个 npm 代码块，自动转为 代码块分组 [npm, pnpm, yarn, bun, deno]
+ *
  * ::: npm-to
  * ``` sh
  * npm i -D vuepress-theme-plume
  * ```
  * :::
+ * ↓ ↓ ↓ ↓ ↓
+ * ::: code-tabs
+ * @tab npm
+ * ```sh
+ * npm i -D vuepress-theme-plume
+ * ```
+ * @tab pnpm
+ * ```sh
+ * pnpm add -D vuepress-theme-plume
+ * ```
+ * @tab yarn
+ * ```sh
+ * yarn add -D vuepress-theme-plume
+ * ```
+ * :::
  */
 import type Token from 'markdown-it/lib/token.mjs'
 import type { Markdown } from 'vuepress/markdown'
+import type { NpmToOptions } from '../../shared/index.js'
+import { isArray } from '@vuepress/helper'
 import container from 'markdown-it-container'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 
 type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun' | 'deno'
-type PackageCommand = 'install' | 'add' | 'remove' | 'run' | 'create' | 'npx'
+type PackageCommand = 'install' | 'add' | 'remove' | 'run' | 'create' | 'npx' | 'ci'
 interface CommandConfigItem {
-  cmd: string
+  cli: string
   flags?: Record<string, string>
 }
 type CommandConfig = Record<Exclude<PackageManager, 'npm'>, CommandConfigItem | false>
 type CommandConfigs = Record<PackageCommand, { pattern: RegExp } & CommandConfig>
 
 const ALLOW_LIST = ['npm', 'pnpm', 'yarn', 'bun', 'deno'] as const
+const BOOL_FLAGS: string[] = ['--no-save', '-B', '--save-bundle', '--save-dev', '-D', '--save-prod', '-P', '--save-peer', '-O', '--save-optional', '-E', '--save-exact', '-y', '--yes', '-g', '--global']
+
 const DEFAULT_TABS: PackageManager[] = ['npm', 'pnpm', 'yarn']
 
 const MANAGERS_CONFIG: CommandConfigs = {
   install: {
-    pattern: /(?:^|\s)(npm\s+(?:install|i))$/,
-    pnpm: { cmd: 'pnpm install' },
-    yarn: { cmd: 'yarn install' },
-    bun: { cmd: 'bun install' },
-    deno: { cmd: 'deno install' },
+    pattern: /(?:^|\s)npm\s+(?:install|i)$/,
+    pnpm: { cli: 'pnpm install' },
+    yarn: { cli: 'yarn' },
+    bun: { cli: 'bun install' },
+    deno: { cli: 'deno install' },
   },
   add: {
-    pattern: /(?:^|\s)(npm\s+(?:install|i|add))(?:\s|$)/,
+    pattern: /(?:^|\s)npm\s+(?:install|i|add)(?:\s|$)/,
     pnpm: {
-      cmd: 'pnpm add',
+      cli: 'pnpm add',
       flags: {
         '--no-save': '', // unsupported
         '-B': '', // unsupported
@@ -41,7 +62,7 @@ const MANAGERS_CONFIG: CommandConfigs = {
       },
     },
     yarn: {
-      cmd: 'yarn add',
+      cli: 'yarn add',
       flags: {
         '--save-dev': '--dev',
         '--save-prod': '--prod',
@@ -55,7 +76,7 @@ const MANAGERS_CONFIG: CommandConfigs = {
       },
     },
     bun: {
-      cmd: 'bun add',
+      cli: 'bun add',
       flags: {
         '--save-dev': '--development',
         '-P': '', // it's default
@@ -70,7 +91,7 @@ const MANAGERS_CONFIG: CommandConfigs = {
       },
     },
     deno: {
-      cmd: 'deno add',
+      cli: 'deno add',
       flags: {
         '-g': '', // unsupported
         '--global': '', // unsupported
@@ -89,9 +110,9 @@ const MANAGERS_CONFIG: CommandConfigs = {
     },
   },
   run: {
-    pattern: /(?:^|\s)(npm\s+(?:run|run-script|rum|urn))(?:\s|$)/,
+    pattern: /(?:^|\s)npm\s+(?:run|run-script|rum|urn)(?:\s|$)/,
     pnpm: {
-      cmd: 'pnpm',
+      cli: 'pnpm',
       flags: {
         '-w': '-F', // same as `--workspace`
         '--workspace': '--filter', // filter by workspaces
@@ -99,21 +120,21 @@ const MANAGERS_CONFIG: CommandConfigs = {
       },
     },
     yarn: {
-      cmd: 'yarn',
+      cli: 'yarn',
       flags: {
         '-w': '', // unsupported
         '--workspace': '', // unsupported
       },
     },
     bun: {
-      cmd: 'bun run',
+      cli: 'bun run',
       flags: {
         '-w': '--filter', // same as `--workspace`
         '--workspace': '--filter', // filter by workspaces
       },
     },
     deno: {
-      cmd: 'deno run',
+      cli: 'deno run',
       flags: {
         '-w': '', // unsupported
         '--workspace': '', // unsupported
@@ -121,55 +142,69 @@ const MANAGERS_CONFIG: CommandConfigs = {
     },
   },
   create: {
-    pattern: /(?:^|\s)(npm\s+create\s)/,
+    pattern: /(?:^|\s)npm\s+create\s/,
     pnpm: {
-      cmd: 'pnpm create ',
+      cli: 'pnpm create ',
       flags: { '-y': '', '--yes': '' },
     },
     yarn: {
-      cmd: 'yarn dlx create-',
+      cli: 'yarn create',
       flags: { '-y': '', '--yes': '' },
     },
     bun: {
-      cmd: 'bun create ',
+      cli: 'bun create ',
       flags: { '-y': '', '--yes': '' },
     },
     deno: {
-      cmd: 'deno run -A ',
+      cli: 'deno run -A ',
       flags: { '-y': '', '--yes': '' },
     },
   },
   npx: {
-    pattern: /npx\s+/,
-    pnpm: false,
-    yarn: false,
-    bun: false,
-    deno: false,
-    // pnpm: 'pnpm dlx',
-    // yarn: 'yarn dlx',
-    // bun: 'bunx',
-    // deno: false,
+    pattern: /(?:^|\s)npx\s+/,
+    pnpm: { cli: 'pnpm dlx' },
+    yarn: { cli: 'yarn dlx' },
+    bun: { cli: 'bunx' },
+    deno: { cli: 'deno run -A' },
   },
   remove: {
-    pattern: /npm\s+(?:uninstall|r|rm|remove|unlink|un)(?:\s|$)/,
-    pnpm: false,
-    yarn: false,
-    bun: false,
-    deno: false,
-    // pnpm: 'pnpm remove',
-    // yarn: 'yarn remove',
-    // bun: 'bun remove',
-    // deno: 'deno uninstall',
+    pattern: /(?:^|\s)npm\s+(?:uninstall|r|rm|remove|unlink|un)(?:\s|$)/,
+    pnpm: {
+      cli: 'pnpm remove',
+      flags: { '--no-save': '', '--save': '', '-S': '' },
+    },
+    yarn: {
+      cli: 'yarn remove',
+      flags: { '--save-dev': '--dev', '--save': '', '-S': '', '-g': '', '--global': '' },
+    },
+    bun: {
+      cli: 'bun remove',
+      flags: { '--save-dev': '--development', '--save': '', '-S': '', '-g': '', '--global': '' },
+    },
+    deno: {
+      cli: 'deno uninstall',
+      flags: { '--save-dev': '--dev', '--save': '', '-S': '' },
+    },
+  },
+  ci: {
+    pattern: /(?:^|\s)npm\s+ci$/,
+    pnpm: { cli: 'pnpm install --frozen-lockfile' },
+    yarn: { cli: 'yarn install --immutable' },
+    bun: { cli: 'bun install --frozen-lockfile' },
+    deno: { cli: 'deno install --frozen' },
   },
 }
 
-export function npmToPlugins(md: Markdown): void {
+export function npmToPlugins(md: Markdown, options: NpmToOptions): void {
   const type = 'npm-to'
   const validate = (info: string): boolean => info.trim().startsWith(type)
 
+  const opt = isArray(options) ? { tabs: options } : options
+  const defaultTabs = opt.tabs?.length ? opt.tabs : DEFAULT_TABS
+
   const render = (tokens: Token[], idx: number): string => {
     const { attrs } = resolveAttrs(tokens[idx].info.slice(type.length - 1))
-    const tabs = (attrs.tabs ? attrs.tabs.split(/,\s*/) : DEFAULT_TABS) as PackageManager[]
+    const tabs = (attrs.tabs ? attrs.tabs.split(/,\s*/) : defaultTabs) as PackageManager[]
     if (tokens[idx].nesting === 1) {
       const token = tokens[idx + 1]
       const info = token.info.trim()
@@ -194,18 +229,31 @@ export function npmToPlugins(md: Markdown): void {
 function resolveNpmTo(lines: string[], info: string, idx: number, tabs: PackageManager[]): string {
   tabs = validateTabs(tabs)
   const res: string[] = []
+  const map: Record<string, LineParsed | false> = {}
   for (const tab of tabs) {
     const newLines: string[] = []
     for (const line of lines) {
       const config = findConfig(line)
       if (config && config[tab]) {
-        const { pattern, ...pm } = config
-        const { cmd, flags } = pm[tab] as CommandConfigItem
-        let newLine = line.replace(pattern, (match, npmCmd) => match.replace(npmCmd, cmd))
-        for (const [key, value] of Object.entries(flags || {})) {
-          newLine = newLine.replaceAll(key, value)
+        const parsed = (map[line] ??= parseLine(line))
+        const { cli, flags } = config[tab] as CommandConfigItem
+        if (parsed) {
+          let newLine = `${parsed.env ? `${parsed.env} ` : ''}${cli}`
+          if (parsed.args && flags) {
+            let args = parsed.args
+            for (const [key, value] of Object.entries(flags)) {
+              args = args.replaceAll(key, value)
+            }
+            newLine += ` ${args.replace(/\s+-/g, ' -').trim()}`
+          }
+
+          if (parsed.cmd)
+            newLine += ` ${parsed.cmd}`
+
+          if (parsed.scriptArgs)
+            newLine += ` ${parsed.scriptArgs}`
+          newLines.push(newLine.trim())
         }
-        newLines.push(newLine)
       }
       else {
         newLines.push(line)
@@ -216,9 +264,9 @@ function resolveNpmTo(lines: string[], info: string, idx: number, tabs: PackageM
   return `:::code-tabs#npm-to-${idx}\n${res.join('\n')}\n:::`
 }
 
-function findConfig(line: string): CommandConfig & { pattern: RegExp } | undefined {
-  for (const config of Object.values(MANAGERS_CONFIG)) {
-    if (config.pattern.test(line)) {
+function findConfig(line: string): CommandConfig | undefined {
+  for (const { pattern, ...config } of Object.values(MANAGERS_CONFIG)) {
+    if (pattern.test(line)) {
       return config
     }
   }
@@ -232,24 +280,100 @@ function validateTabs(tabs: PackageManager[]): PackageManager[] {
   return tabs.filter(tab => ALLOW_LIST.includes(tab))
 }
 
-export function parseLine(line: string) {
-  const index = line.indexOf('npm')
-  const prefix = index > 0 ? line.slice(0, index) : ''
-  line = index > 0 ? line.slice(index) : line
-  const words = line.split(/\s+/)
-  const cmd = words.slice(0, 2).join(' ')
-  const packages: string[] = []
-  let i = 2
-  for (; i < words.length; i++) {
-    const p = words[i]
-    if (p.startsWith('-')) {
-      break
+interface LineParsed {
+  env: string
+  cli: string
+  cmd: string
+  args?: string
+  scriptArgs?: string
+}
+
+const LINE_REG = /(.*)(npm|npx)\s+(.*)/
+export function parseLine(line: string): false | LineParsed {
+  const match = line.match(LINE_REG)
+  if (!match)
+    return false
+
+  const [, env, cli, rest] = match
+  if (cli === 'npx')
+    return { env, cli, cmd: '', scriptArgs: rest?.trim() }
+
+  const idx = rest.indexOf(' ')
+  if (idx === -1)
+    return { env, cli: `${cli} ${rest}`, cmd: '' }
+
+  return { env, cli: `${cli} ${rest.slice(0, idx)}`, ...parseArgs(rest.slice(idx + 1)) }
+}
+
+function parseArgs(line: string): { cmd: string, args?: string, scriptArgs?: string } {
+  line = line?.trim()
+  if (!line)
+    return { cmd: '' }
+
+  const [npmArgs, scriptArgs] = line.split(/\s+--\s+/)
+  let cmd = ''
+  let args = ''
+  if (npmArgs[0] !== '-') {
+    if (npmArgs[0] === '"' || npmArgs[0] === '\'') {
+      const idx = npmArgs.slice(1).indexOf(npmArgs[0])
+      cmd = npmArgs.slice(0, idx)
+      args = npmArgs.slice(idx + 1)
     }
     else {
-      packages.push(p)
+      const idx = npmArgs.indexOf(' ')
+      if (idx === -1) {
+        cmd = npmArgs
+      }
+      else {
+        cmd = npmArgs.slice(0, idx)
+        args = npmArgs.slice(idx + 1)
+      }
     }
   }
-  const [npmFlags, scriptFlags] = words.slice(i).join(' ').split(/\s+--\s+/)
+  else {
+    let newLine = ''
+    let value = ''
+    let isQuote = false
+    let isBool = false
+    let isNextValue = false
+    let quote = ''
+    for (let i = 0; i < npmArgs.length; i++) {
+      const v = npmArgs[i]
+      if (!isQuote && (v === '"' || v === '\'')) {
+        quote = v
+        isQuote = true
+        value += v
+      }
+      else if (isQuote && v === quote) {
+        isQuote = false
+        value += v
+      }
+      else if ((v === ' ' || v === '=' || i === npmArgs.length - 1) && !isQuote && value) {
+        if (i === npmArgs.length - 1) {
+          value += v
+        }
+        const isKey = value[0] === '-'
+        if (isKey) {
+          isBool = BOOL_FLAGS.includes(value)
+          isNextValue = !isBool
+        }
+        if (!isKey && !isNextValue) {
+          cmd += `${value} `
+        }
+        else {
+          newLine += `${value}${v || ''}`
+          if (!isKey && isNextValue) {
+            isNextValue = false
+          }
+        }
+        value = ''
+      }
+      else {
+        value += v
+      }
+    }
+    args = newLine
+  }
 
-  return { prefix, cmd, packages, npmFlags, scriptFlags }
+  return { cmd, args: args.trim(), scriptArgs }
 }

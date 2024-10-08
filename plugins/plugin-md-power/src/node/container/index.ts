@@ -21,7 +21,9 @@ export async function containerPlugin(
   // ::: code-tabs
   codeTabs(md, options.codeTabs)
 
-  npmToPlugins(md)
+  if (options.npmTo) {
+    npmToPlugins(md, typeof options.npmTo === 'boolean' ? {} : options.npmTo)
+  }
 
   if (options.repl)
     await langReplPlugin(app, md, options.repl)

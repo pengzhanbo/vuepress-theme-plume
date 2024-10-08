@@ -2,6 +2,7 @@ import type { CanIUseOptions } from './caniuse.js'
 import type { CodeTabsOptions } from './codeTabs.js'
 import type { FileTreeOptions } from './fileTree.js'
 import type { IconsOptions } from './icons.js'
+import type { NpmToOptions } from './npmTo.js'
 import type { PDFOptions } from './pdf.js'
 import type { PlotOptions } from './plot.js'
 import type { ReplOptions } from './repl.js'
@@ -11,6 +12,12 @@ export interface MarkdownPowerPluginOptions {
    * 配置代码块分组
    */
   codeTabs?: CodeTabsOptions
+
+  /**
+   * 是否启用 npm-to 容器
+   */
+  npmTo?: boolean | NpmToOptions
+
   /**
    * 是否启用 PDF 嵌入语法
    *

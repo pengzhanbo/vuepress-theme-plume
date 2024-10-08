@@ -1,3 +1,24 @@
+# [1.0.0-rc.107](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.106...v1.0.0-rc.107) (2024-10-08)
+
+
+### Bug Fixes
+
+* **cli:** incorrect `yarn` project creation process, close [#254](https://github.com/pengzhanbo/vuepress-theme-plume/issues/254) ([#255](https://github.com/pengzhanbo/vuepress-theme-plume/issues/255)) ([08eeac7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/08eeac7cb8f9ae2e1675e1c06989641c7d8f6a49))
+* **theme:** `back-to-top` hydration Mismatch ([#257](https://github.com/pengzhanbo/vuepress-theme-plume/issues/257)) ([3fe7497](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3fe7497df17110e34b38cafdb7655e8f5957d621))
+
+
+### Features
+
+* **plugin-md-power:** add support `npm-to` container ([#256](https://github.com/pengzhanbo/vuepress-theme-plume/issues/256)) ([b721bf0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b721bf08f9ecf5c71a8982f479a2909cfc7bd04d))
+
+
+### Performance Improvements
+
+* **theme:** improve scroll behavior ([#253](https://github.com/pengzhanbo/vuepress-theme-plume/issues/253)) ([6d918ca](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6d918ca7b8788be41f3ba92f0315a04eca54a861))
+* update deps to latest ([eb58c60](https://github.com/pengzhanbo/vuepress-theme-plume/commit/eb58c60743afd3b1e16216becc932b74631cb5b4))
+
+
+
 # [1.0.0-rc.106](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.105...v1.0.0-rc.106) (2024-10-03)
 
 

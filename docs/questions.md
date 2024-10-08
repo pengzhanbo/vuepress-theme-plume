@@ -34,20 +34,7 @@ draft: true
 
 复制以下命令到你的项目中运行：
 
-::: code-tabs
-@tab pnpm
-
-```sh
-pnpm dlx vp-update
-```
-
-@tab yarn
-
-```sh
-yarn dlx vp-update
-```
-
-@tab npm
+::: npm-to
 
 ```sh
 npx vp-update
@@ -58,13 +45,13 @@ npx vp-update
 ## 为什么更新主题版本后新的功能没有生效？
 
 由于 VuePress 在启动开发服务时，全量编译源目录中的的 `markdown` 文件耗时较长，主题对 `markdown` 的编译进行了
-缓存，以提高启动速度。主题功能并重启开发服务时，由于源目录中的 `markdown` 文件没有变化，跳过了编译直接使用缓存，
+缓存，以提高启动速度。主题更新后重启开发服务时，由于源目录中的 `markdown` 文件没有变化，跳过了编译直接使用缓存，
 这会导致与 markdown 有关的新功能没有生效。
 
-**只需要删除缓存文件，并重启即可**。
+**只需要删除缓存文件，并重启即可**：
 
-1. 直接删除 `.vuepress/.cache` 目录。
-2. 在启动开发服务命令后面，添加 `--clean-cache` 参数：
+1. 方法一：直接删除 `.vuepress/.cache` 目录。
+2. 方法二：在启动开发服务命令后面，添加 `--clean-cache` 参数：
 
    ```sh
    vuepress dev docs --clean-cache
@@ -76,10 +63,10 @@ npx vp-update
 `plugins.markdownMath` 的配置。它与 [为什么更新主题版本后新的功能没有生效？](#为什么更新主题版本后新的功能没有生效)
 的原因相同。因此
 
-**只需要删除缓存文件，并重启即可**。
+**只需要删除缓存文件，并重启即可**：
 
-1. 直接删除 `.vuepress/.cache` 目录。
-2. 在启动开发服务命令后面，添加 `--clean-cache` 参数：
+1. 方法一：直接删除 `.vuepress/.cache` 目录。
+2. 方法二：在启动开发服务命令后面，添加 `--clean-cache` 参数：
 
    ```sh
    vuepress dev docs --clean-cache

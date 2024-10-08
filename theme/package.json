@@ -129,12 +129,12 @@
     "katex": "^0.16.11",
     "local-pkg": "^0.5.0",
     "nanoid": "^5.0.7",
-    "vue": "^3.5.10",
+    "vue": "^3.5.11",
     "vuepress-plugin-md-enhance": "2.0.0-rc.57",
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.255",
+    "@iconify/json": "^2.2.258",
     "swiper": "^11.1.14",
     "vue-router": "^4.4.5"
   }

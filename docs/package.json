@@ -12,17 +12,17 @@
     "vuepress": "2.0.0-rc.17"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.255",
+    "@iconify/json": "^2.2.258",
     "@simonwep/pickr": "^1.9.1",
     "@vuepress/bundler-vite": "2.0.0-rc.17",
     "chart.js": "^4.4.4",
     "echarts": "^5.5.1",
     "flowchart.ts": "^3.0.1",
     "http-server": "^14.1.1",
-    "mermaid": "^11.2.1",
+    "mermaid": "^11.3.0",
     "sass-embedded": "^1.79.4",
     "swiper": "^11.1.14",
-    "vue": "^3.5.10",
+    "vue": "^3.5.11",
     "vuepress-theme-plume": "workspace:*"
   },
   "devDependencies": {

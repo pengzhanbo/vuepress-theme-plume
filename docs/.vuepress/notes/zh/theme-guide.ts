@@ -40,6 +40,7 @@ export const themeGuide = defineNoteConfig({
             '选项组',
             '隐秘文本',
             '示例容器',
+            'npm-to',
             'caniuse',
             '导入文件',
           ],

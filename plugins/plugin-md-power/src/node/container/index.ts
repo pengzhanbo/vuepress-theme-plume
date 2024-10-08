@@ -6,6 +6,7 @@ import { alignPlugin } from './align.js'
 import { codeTabs } from './codeTabs.js'
 import { fileTreePlugin } from './fileTree.js'
 import { langReplPlugin } from './langRepl.js'
+import { npmToPlugins } from './npmTo.js'
 import { tabs } from './tabs.js'
 
 export async function containerPlugin(
@@ -19,6 +20,10 @@ export async function containerPlugin(
   tabs(md)
   // ::: code-tabs
   codeTabs(md, options.codeTabs)
+
+  if (options.npmTo) {
+    npmToPlugins(md, typeof options.npmTo === 'boolean' ? {} : options.npmTo)
+  }
 
   if (options.repl)
     await langReplPlugin(app, md, options.repl)

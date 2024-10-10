@@ -126,19 +126,19 @@ config:
 :::code-tabs
 @tab pnpm
 
-```sh :no-line-numbers
+```sh
 pnpm add vuepress@next vuepress-theme-plume vue
 ```
 
 @tab npm
 
-```sh :no-line-numbers
+```sh
 npm install vuepress@next vuepress-theme-plume
 ```
 
 @tab yarn
 
-```sh :no-line-numbers
+```sh
 yarn add vuepress@next vuepress-theme-plume
 ```
 

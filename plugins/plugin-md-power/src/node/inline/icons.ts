@@ -58,15 +58,14 @@ function createTokenizer(options: IconsOptions): RuleInline {
     state.pos = start + 2
 
     const [name, opt = ''] = content.split(/\s+/)
-    const [size = options.size, color = options.color] = opt.split('/')
+    const [size, color = options.color] = opt.split('/')
 
     const icon = state.push('vp_iconify_open', 'VPIcon', 1)
     icon.markup = openTag
 
-    if (name)
-      icon.attrSet('name', name)
-    if (size)
-      icon.attrSet('size', String(size))
+    icon.attrSet('name', name)
+    if (size || options.size)
+      icon.attrSet('size', String(size || options.size))
     if (color)
       icon.attrSet('color', color)
 

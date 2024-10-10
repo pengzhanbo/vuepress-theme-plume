@@ -6,7 +6,7 @@ import { definitions, getFileIconName, getFileIconTypeFromExtension } from '../f
 import { stringifyProp } from '../utils/stringifyProp.js'
 
 export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTabsOptions = {}) => {
-  const getIcon = (filename: string): string | undefined => {
+  const getIcon = (filename: string): string | void => {
     if (options.icon === false)
       return undefined
     const { named, extensions } = isPlainObject(options.icon) ? options.icon : {}

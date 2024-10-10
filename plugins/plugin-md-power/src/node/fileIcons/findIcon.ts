@@ -1,9 +1,9 @@
 import { defaultFile, defaultFolder, definitions } from './definitions.js'
 
-export function getFileIcon(fileName: string, type: 'file' | 'folder' = 'file'): string {
+export function getFileIcon(fileName: string, type?: 'file' | 'folder'): string {
   const name = getFileIconName(fileName, type)
   if (!name)
-    return type === 'file' ? defaultFile : defaultFolder
+    return type !== 'folder' ? defaultFile : defaultFolder
 
   return name
 }
@@ -20,7 +20,7 @@ export function getFileIconName(fileName: string, type: 'file' | 'folder' = 'fil
   let icon: string | undefined = definitions.named[fileName] || definitions.files[fileName]
   if (icon)
     return icon
-  icon = getFileIconTypeFromExtension(fileName)
+  icon = getFileIconTypeFromExtension(fileName) || undefined
   if (icon)
     return icon
   for (const [partial, partialIcon] of Object.entries(definitions.partials)) {
@@ -30,7 +30,7 @@ export function getFileIconName(fileName: string, type: 'file' | 'folder' = 'fil
   return icon
 }
 
-export function getFileIconTypeFromExtension(fileName: string): string | undefined {
+export function getFileIconTypeFromExtension(fileName: string): string | void {
   const firstDotIndex = fileName.indexOf('.')
   if (firstDotIndex === -1)
     return
@@ -44,5 +44,4 @@ export function getFileIconTypeFromExtension(fileName: string): string | undefin
       return
     extension = extension.slice(nextDotIndex)
   }
-  return undefined
 }

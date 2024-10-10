@@ -16,7 +16,7 @@ export function resolveAttrs<T extends Record<string, any> = Record<string, any>
 
   // eslint-disable-next-line no-cond-assign
   while (matched = info.match(RE_ATTR_VALUE)) {
-    const { attr, value } = matched.groups || {}
+    const { attr, value } = matched.groups!
     attrs[attr] = value ?? true
     info = info.slice(matched[0].length)
   }

@@ -31,6 +31,7 @@
     "lint:fix": "pnpm lint:check --fix && pnpm lint:css --fix",
     "lint:check": "eslint .",
     "lint:css": "stylelint **/*.{css,vue}",
+    "test": "cross-env TZ=Etc/UTC vitest --coverage",
     "prepare": "husky",
     "release": "pnpm release:check && pnpm release:version && pnpm -r publish",
     "release:changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
@@ -45,19 +46,23 @@
     "@types/lodash.merge": "^4.6.9",
     "@types/node": "20.12.10",
     "@types/webpack-env": "^1.18.5",
+    "@vitest/coverage-istanbul": "^2.1.2",
     "bumpp": "^9.6.1",
     "commitizen": "^4.3.1",
     "conventional-changelog-cli": "^5.0.0",
     "cpx2": "^8.0.0",
+    "cross-env": "7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.12.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
+    "markdown-it": "^14.1.0",
     "rimraf": "^6.0.1",
     "stylelint": "^16.9.0",
     "tsconfig-vuepress": "^5.2.0",
     "tsup": "^8.3.0",
     "typescript": "^5.6.2",
+    "vitest": "^2.1.2",
     "wait-on": "^8.0.1"
   },
   "resolutions": {
@@ -65,7 +70,8 @@
   },
   "lint-staged": {
     "*": "eslint --fix",
-    "*.{css,vue}": "stylelint --fix"
+    "*.{css,vue}": "stylelint --fix",
+    "*.{js,ts,mjs,cjs}": "cross-env TZ=Etc/UTC vitest related --run"
   },
   "config": {
     "commitizen": {

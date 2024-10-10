@@ -1,0 +1,108 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`iconsPlugin > should not work with invalid icon 1`] = `
+"<p>:[ mdi:11 ]:</p>
+"
+`;
+
+exports[`iconsPlugin > should not work with invalid icon 2`] = `
+"<p>:[]:</p>
+"
+`;
+
+exports[`iconsPlugin > should not work with invalid icon 3`] = `
+"<p>:[]&amp;</p>
+"
+`;
+
+exports[`iconsPlugin > should not work with invalid icon 4`] = `
+"<p>:[:[</p>
+"
+`;
+
+exports[`iconsPlugin > should not work with invalid icon 5`] = `
+"<p>:[mdi:11</p>
+"
+`;
+
+exports[`iconsPlugin > should work 1`] = `
+"<p><VPIcon name="mdi:11"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work 2`] = `
+"<p><strong>strong</strong> <VPIcon name="mdi:11"></VPIcon> <VPIcon name="mdi:11"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work 3`] = `
+"<p><strong>strong</strong>
+<VPIcon name="mdi:11"></VPIcon>
+<VPIcon name="mdi:11"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work with options 1`] = `
+"<p><VPIcon name="mdi:11" size="1.25em" color="#ccc"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work with options 2`] = `
+"<p><strong>strong</strong> <VPIcon name="mdi:11" size="1.25em" color="#ccc"></VPIcon> <VPIcon name="mdi:11" size="1.25em" color="#ccc"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work with single icon options 1`] = `
+"<p><VPIcon name="mdi:11" size="36px"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work with single icon options 2`] = `
+"<p><VPIcon name="mdi:11" size="32px" color="#eee"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work with single icon options 3`] = `
+"<p><VPIcon name="mdi:11" color="#eee"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work with single icon options 4`] = `
+"<p><VPIcon name="mdi:11" size="32px"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work with single icon options 5`] = `
+"<p><VPIcon name="mdi:11"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work with single icon options 6`] = `
+"<p><VPIcon name="mdi:11" size="1.25em" color="#ccc"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work with single icon options 7`] = `
+"<p><VPIcon name="mdi:11" size="36px" color="#ccc"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work with single icon options 8`] = `
+"<p><VPIcon name="mdi:11" size="32px" color="#eee"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work with single icon options 9`] = `
+"<p><VPIcon name="mdi:11" size="1.25em" color="#eee"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work with single icon options 10`] = `
+"<p><VPIcon name="mdi:11" size="32px"></VPIcon></p>
+"
+`;
+
+exports[`iconsPlugin > should work with single icon options 11`] = `
+"<p><VPIcon name="mdi:11" size="1.25em"></VPIcon></p>
+"
+`;

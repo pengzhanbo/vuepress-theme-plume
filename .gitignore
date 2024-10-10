@@ -12,3 +12,5 @@ dist/
 *.log
 *.tsbuildinfo
 .mind
+
+coverage/

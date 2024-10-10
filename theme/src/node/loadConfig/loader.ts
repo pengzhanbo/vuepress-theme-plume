@@ -148,7 +148,7 @@ function updateResolvedConfig(app: App, userConfig: ThemeConfig = {}) {
   if (loader) {
     const { encrypt, autoFrontmatter, ...localeOptions } = deepMerge({}, loader.defaultConfig, userConfig)
     loader.resolvedConfig = {
-      localeOptions: resolveLocaleOptions(app, localeOptions),
+      localeOptions: resolveLocaleOptions(app, localeOptions as PlumeThemeLocaleOptions),
       encrypt,
       autoFrontmatter,
     }

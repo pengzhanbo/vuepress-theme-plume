@@ -1,5 +1,5 @@
 /**
- * @[caniuse embed{1,2,3,4}](feature_name)
+ * @[caniuse embed{-2,4}](feature_name)
  * @[caniuse image](feature_name)
  */
 import type { PluginWithOptions } from 'markdown-it'
@@ -7,10 +7,9 @@ import type MarkdownIt from 'markdown-it'
 import type Token from 'markdown-it/lib/token.mjs'
 import type { CanIUseMode, CanIUseOptions, CanIUseTokenMeta } from '../../shared/index.js'
 import container from 'markdown-it-container'
-import { customAlphabet } from 'nanoid'
+import { nanoid } from '../utils/nanoid.js'
 import { createEmbedRuleBlock } from './createEmbedRuleBlock.js'
 
-const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 5)
 const UNDERLINE_RE = /_+/g
 /**
  * @example

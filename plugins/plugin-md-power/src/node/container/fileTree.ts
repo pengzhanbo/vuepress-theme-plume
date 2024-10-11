@@ -128,8 +128,8 @@ export function resolveTreeNodeInfo(
 }
 
 export function updateInlineToken(inline: Token, info: FileTreeNode, icon: string) {
-  const children = inline.children
-  if (!children)
+  const children = inline.children!
+  if (!children || children.length === 0)
     return
 
   const tokens: Token[] = []

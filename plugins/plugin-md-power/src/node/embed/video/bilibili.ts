@@ -20,14 +20,14 @@ export const bilibiliPlugin: PluginWithOptions<never> = (md) => {
     name: 'video_bilibili',
     // eslint-disable-next-line regexp/no-super-linear-backtracking
     syntaxPattern: /^@\[bilibili(?:\s+p(\d+))?([^\]]*)\]\(([^)]*)\)/,
-    meta([, page, info = '', source = '']) {
+    meta([, page, info, source]) {
       const { attrs } = resolveAttrs(info)
       const ids = source.trim().split(/\s+/)
       const bvid = ids.find(id => id.startsWith('BV'))
       const [aid, cid] = ids.filter(id => !id.startsWith('BV'))
 
       return {
-        page: +page || 1,
+        page: +page,
         bvid,
         aid,
         cid,

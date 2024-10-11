@@ -1,0 +1,361 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`npmToPlugin > should work width options: [npm, yarn, pnpm] 1`] = `
+"<CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-0"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-3"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm install
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm install
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-6"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-shell"><div class="language-shell"><pre><code>npm install
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-shell"><div class="language-shell"><pre><code>yarn
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-shell"><div class="language-shell"><pre><code>pnpm install
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-9"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-bash"><div class="language-bash"><pre><code>npm install
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-bash"><div class="language-bash"><pre><code>yarn
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-bash"><div class="language-bash"><pre><code>pnpm install
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-12"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>cross-env NODE_ENV=production npm run docs
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>cross-env NODE_ENV=production  yarn docs
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>cross-env NODE_ENV=production  pnpm docs
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-15"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm i -D package1 package2
+npm i --save-peer package3
+npm run docs
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn add -D package1package2
+yarn add --peer package3
+yarn docs
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm add -D package1package2
+pnpm add --save-peer package3
+pnpm docs
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-18"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm install && npm run docs
+mkdir foo
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn && yarn docs
+mkdir foo
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm install && pnpm docs
+mkdir foo
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-21"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm run docs -- --clean-cache --clean-temp
+
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn docs --clean-cache --clean-temp
+
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm docs --clean-cache --clean-temp
+
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' tab-id="npm-to-24"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm create vuepress-theme-plume@latest
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm create vuepress-theme-plume@latest
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn create vuepress-theme-plume@latest
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"},{"id":"bun"},{"id":"deno"}]' tab-id="npm-to-27"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title3="{ value, isActive }"><VPIcon name="vscode-icons:file-type-bun"/><span>bun</span></template><template #title4="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-deno"/><span>deno</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npx vp-update
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm dlx vp-update
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn dlx vp-update
+
+</code></pre></div></code></pre>
+</template><template #tab3="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>bunx vp-update
+
+</code></pre></div></code></pre>
+</template><template #tab4="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>deno run -A vp-update
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-30"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>mkdir foo
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>mkdir foo
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>mkdir foo
+
+</code></pre></div></code></pre>
+</template></CodeTabs><p>anything</p>
+<pre><code class="language-sh"><div class="language-sh"><pre><code></code></pre></div></code></pre>
+"
+`;
+
+exports[`npmToPlugin > should work width options: { tabs: [npm, yarn, pnpm] } 1`] = `
+"<CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-0"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-3"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm install
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm install
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-6"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-shell"><div class="language-shell"><pre><code>npm install
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-shell"><div class="language-shell"><pre><code>yarn
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-shell"><div class="language-shell"><pre><code>pnpm install
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-9"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-bash"><div class="language-bash"><pre><code>npm install
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-bash"><div class="language-bash"><pre><code>yarn
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-bash"><div class="language-bash"><pre><code>pnpm install
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-12"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>cross-env NODE_ENV=production npm run docs
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>cross-env NODE_ENV=production  yarn docs
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>cross-env NODE_ENV=production  pnpm docs
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-15"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm i -D package1 package2
+npm i --save-peer package3
+npm run docs
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn add -D package1package2
+yarn add --peer package3
+yarn docs
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm add -D package1package2
+pnpm add --save-peer package3
+pnpm docs
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-18"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm install && npm run docs
+mkdir foo
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn && yarn docs
+mkdir foo
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm install && pnpm docs
+mkdir foo
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-21"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm run docs -- --clean-cache --clean-temp
+
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn docs --clean-cache --clean-temp
+
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm docs --clean-cache --clean-temp
+
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' tab-id="npm-to-24"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm create vuepress-theme-plume@latest
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm create vuepress-theme-plume@latest
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn create vuepress-theme-plume@latest
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"},{"id":"bun"},{"id":"deno"}]' tab-id="npm-to-27"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title3="{ value, isActive }"><VPIcon name="vscode-icons:file-type-bun"/><span>bun</span></template><template #title4="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-deno"/><span>deno</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npx vp-update
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm dlx vp-update
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn dlx vp-update
+
+</code></pre></div></code></pre>
+</template><template #tab3="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>bunx vp-update
+
+</code></pre></div></code></pre>
+</template><template #tab4="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>deno run -A vp-update
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"yarn"},{"id":"pnpm"}]' tab-id="npm-to-30"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>mkdir foo
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>mkdir foo
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>mkdir foo
+
+</code></pre></div></code></pre>
+</template></CodeTabs><p>anything</p>
+<pre><code class="language-sh"><div class="language-sh"><pre><code></code></pre></div></code></pre>
+"
+`;
+
+exports[`npmToPlugin > should work with default options 1`] = `
+"<CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' tab-id="npm-to-0"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' tab-id="npm-to-3"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm install
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm install
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' tab-id="npm-to-6"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-shell"><div class="language-shell"><pre><code>npm install
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-shell"><div class="language-shell"><pre><code>pnpm install
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-shell"><div class="language-shell"><pre><code>yarn
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' tab-id="npm-to-9"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-bash"><div class="language-bash"><pre><code>npm install
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-bash"><div class="language-bash"><pre><code>pnpm install
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-bash"><div class="language-bash"><pre><code>yarn
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' tab-id="npm-to-12"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>cross-env NODE_ENV=production npm run docs
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>cross-env NODE_ENV=production  pnpm docs
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>cross-env NODE_ENV=production  yarn docs
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' tab-id="npm-to-15"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm i -D package1 package2
+npm i --save-peer package3
+npm run docs
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm add -D package1package2
+pnpm add --save-peer package3
+pnpm docs
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn add -D package1package2
+yarn add --peer package3
+yarn docs
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' tab-id="npm-to-18"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm install && npm run docs
+mkdir foo
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm install && pnpm docs
+mkdir foo
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn && yarn docs
+mkdir foo
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' tab-id="npm-to-21"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm run docs -- --clean-cache --clean-temp
+
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm docs --clean-cache --clean-temp
+
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn docs --clean-cache --clean-temp
+
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' tab-id="npm-to-24"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm create vuepress-theme-plume@latest
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm create vuepress-theme-plume@latest
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn create vuepress-theme-plume@latest
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"},{"id":"bun"},{"id":"deno"}]' tab-id="npm-to-27"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #title3="{ value, isActive }"><VPIcon name="vscode-icons:file-type-bun"/><span>bun</span></template><template #title4="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-deno"/><span>deno</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npx vp-update
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm dlx vp-update
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn dlx vp-update
+
+</code></pre></div></code></pre>
+</template><template #tab3="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>bunx vp-update
+
+</code></pre></div></code></pre>
+</template><template #tab4="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>deno run -A vp-update
+
+</code></pre></div></code></pre>
+</template></CodeTabs><CodeTabs id="0" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' tab-id="npm-to-30"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>mkdir foo
+
+</code></pre></div></code></pre>
+</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>mkdir foo
+
+</code></pre></div></code></pre>
+</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>mkdir foo
+
+</code></pre></div></code></pre>
+</template></CodeTabs><p>anything</p>
+<pre><code class="language-sh"><div class="language-sh"><pre><code></code></pre></div></code></pre>
+"
+`;

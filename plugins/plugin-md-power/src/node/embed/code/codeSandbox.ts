@@ -13,7 +13,7 @@ export const codeSandboxPlugin: PluginWithOptions<never> = (md) => {
   createEmbedRuleBlock<CodeSandboxTokenMeta>(md, {
     type: 'codesandbox',
     syntaxPattern: /^@\[codesandbox(?:\s+(embed|button))?([^\]]*)\]\(([^)]*)\)/,
-    meta([, type, info = '', source = '']) {
+    meta([, type, info, source]) {
       const { attrs } = resolveAttrs(info)
       const [profile, filepath = ''] = source.split('#')
       const [user, id] = profile.includes('/') ? profile.split('/') : ['', profile]

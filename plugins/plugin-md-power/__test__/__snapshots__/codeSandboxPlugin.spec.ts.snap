@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`codeSandboxPlugin > should not work 1`] = `
+"<CodeSandboxViewer title="" height="500px" width="100%" user="" id="" type="embed" filepath="" :console=false :navbar=true layout="" /><p>@[codesandbox]xxx</p>
+<p>@[codesandbox embed](</p>
+"
+`;
+
+exports[`codeSandboxPlugin > should work 1`] = `"<CodeSandboxViewer title="" height="500px" width="100%" user="user" id="id" type="embed" filepath="" :console=false :navbar=true layout="" /><CodeSandboxViewer title="" height="500px" width="100%" user="user" id="id" type="embed" filepath="" :console=false :navbar=true layout="" /><CodeSandboxViewer title="" height="500px" width="100%" user="user" id="id" type="button" filepath="" :console=false :navbar=true layout="" /><CodeSandboxViewer title="xxx" height="500px" width="100%" user="user" id="slash" type="embed" filepath="filepath" :console=false :navbar=false layout="Editor+Preview" />"`;

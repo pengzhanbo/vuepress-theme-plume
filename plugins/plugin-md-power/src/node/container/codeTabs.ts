@@ -6,7 +6,7 @@ import { definitions, getFileIconName, getFileIconTypeFromExtension } from '../f
 import { stringifyProp } from '../utils/stringifyProp.js'
 
 export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTabsOptions = {}) => {
-  const getIcon = (filename: string): string | undefined => {
+  const getIcon = (filename: string): string | void => {
     if (options.icon === false)
       return undefined
     const { named, extensions } = isPlainObject(options.icon) ? options.icon : {}
@@ -54,20 +54,18 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
 
       // Hide all elements excerpt the first fence
       for (let i = tokenIndex; i < tokens.length; i++) {
-        const { block, type } = tokens[i]
+        const { type } = tokens[i]
 
-        if (block) {
-          if (type === 'code-tabs_tab_close')
-            break
+        if (type === 'code-tabs_tab_close')
+          break
 
-          if ((type === 'fence' || type === 'import_code') && !foundFence) {
-            foundFence = true
-            continue
-          }
-
-          tokens[i].type = 'code_tab_empty'
-          tokens[i].hidden = true
+        if ((type === 'fence' || type === 'import_code') && !foundFence) {
+          foundFence = true
+          continue
         }
+
+        tokens[i].type = 'code_tab_empty'
+        tokens[i].hidden = true
       }
 
       return `<template #tab${index}="{ value, isActive }">`

@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`codeSandboxPlugin > should not work 1`] = `
+"<iframe class="js-fiddle-iframe-wrapper" style="width:100%;height:400px;margin:16px auto;border:none;border-radius:5px;" title="JS Fiddle" src="https://jsfiddle.net//undefined/embedded/js,css,html,result/dark/" allowfullscreen="true" allowpaymentrequest="true"></iframe><p>@[jsfiddle]xxx</p>
+<p>@[jsfiddle](</p>
+"
+`;
+
+exports[`codeSandboxPlugin > should work 1`] = `"<iframe class="js-fiddle-iframe-wrapper" style="width:100%;height:400px;margin:16px auto;border:none;border-radius:5px;" title="JS Fiddle" src="https://jsfiddle.net/user/id/embedded/js,css,html,result/dark/" allowfullscreen="true" allowpaymentrequest="true"></iframe><iframe class="js-fiddle-iframe-wrapper" style="width:100%;height:400px;margin:16px auto;border:none;border-radius:5px;" title="JS Fiddle" src="https://jsfiddle.net/user/id/embedded/js,css,html,result/dark/" allowfullscreen="true" allowpaymentrequest="true"></iframe><iframe class="js-fiddle-iframe-wrapper" style="width:100%;height:400px;margin:16px auto;border:none;border-radius:5px;" title="JS Fiddle" src="https://jsfiddle.net/user/id/embedded/js,css,html,result" allowfullscreen="true" allowpaymentrequest="true"></iframe><iframe class="js-fiddle-iframe-wrapper" style="width:100%;height:500px;margin:16px auto;border:none;border-radius:5px;" title="xxx" src="https://jsfiddle.net/user/id/embedded/js,css,html,result/dark/" allowfullscreen="true" allowpaymentrequest="true"></iframe>"`;

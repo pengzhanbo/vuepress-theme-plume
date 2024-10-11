@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`bilibiliPlugin > should not work 1`] = `
+"<VideoBilibili src="https://player.bilibili.com/player.html?autoplay=0" width="100%" height="" ratio="" title="undefined" /><p>@[bilibili]xxx</p>
+<p>@[ bilibili]BV12345</p>
+<p>@[bilibili](BV12345</p>
+"
+`;
+
+exports[`bilibiliPlugin > should work 1`] = `"<VideoBilibili src="https://player.bilibili.com/player.html?bvid=BV12345&autoplay=0" width="100%" height="" ratio="" title="undefined" /><VideoBilibili src="https://player.bilibili.com/player.html?aid=12432&cid=12345&autoplay=0" width="100%" height="" ratio="" title="undefined" /><VideoBilibili src="https://player.bilibili.com/player.html?bvid=BV12345&aid=12343&cid=45678&autoplay=0" width="100%" height="" ratio="" title="undefined" /><VideoBilibili src="https://player.bilibili.com/player.html?bvid=BV12345&p=1&t=1&autoplay=1" width="100%" height="" ratio="" title="undefined" /><VideoBilibili src="https://player.bilibili.com/player.html?bvid=BV12345&p=1&autoplay=1" width="100%" height="600px" ratio="" title="undefined" /><VideoBilibili src="https://player.bilibili.com/player.html?bvid=BV12345&p=1&autoplay=1" width="100%" height="" ratio="16:9" title="undefined" />"`;

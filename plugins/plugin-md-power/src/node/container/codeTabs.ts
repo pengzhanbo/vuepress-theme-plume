@@ -54,20 +54,18 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
 
       // Hide all elements excerpt the first fence
       for (let i = tokenIndex; i < tokens.length; i++) {
-        const { block, type } = tokens[i]
+        const { type } = tokens[i]
 
-        if (block) {
-          if (type === 'code-tabs_tab_close')
-            break
+        if (type === 'code-tabs_tab_close')
+          break
 
-          if ((type === 'fence' || type === 'import_code') && !foundFence) {
-            foundFence = true
-            continue
-          }
-
-          tokens[i].type = 'code_tab_empty'
-          tokens[i].hidden = true
+        if ((type === 'fence' || type === 'import_code') && !foundFence) {
+          foundFence = true
+          continue
         }
+
+        tokens[i].type = 'code_tab_empty'
+        tokens[i].hidden = true
       }
 
       return `<template #tab${index}="{ value, isActive }">`

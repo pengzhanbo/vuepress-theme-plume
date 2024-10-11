@@ -189,7 +189,7 @@ const MANAGERS_CONFIG: CommandConfigs = {
   },
 }
 
-export function npmToPlugins(md: Markdown, options: NpmToOptions): void {
+export function npmToPlugins(md: Markdown, options: NpmToOptions = {}): void {
   const type = 'npm-to'
   const validate = (info: string): boolean => info.trim().startsWith(type)
 
@@ -197,7 +197,7 @@ export function npmToPlugins(md: Markdown, options: NpmToOptions): void {
   const defaultTabs = opt.tabs?.length ? opt.tabs : DEFAULT_TABS
 
   const render = (tokens: Token[], idx: number): string => {
-    const { attrs } = resolveAttrs(tokens[idx].info.slice(type.length - 1))
+    const { attrs } = resolveAttrs(tokens[idx].info.trim().slice(type.length))
     const tabs = (attrs.tabs ? attrs.tabs.split(/,\s*/) : defaultTabs) as NpmToPackageManager[]
     if (tokens[idx].nesting === 1) {
       const token = tokens[idx + 1]
@@ -229,25 +229,24 @@ function resolveNpmTo(lines: string[], info: string, idx: number, tabs: NpmToPac
     for (const line of lines) {
       const config = findConfig(line)
       if (config && config[tab]) {
-        const parsed = (map[line] ??= parseLine(line))
+        const parsed = (map[line] ??= parseLine(line)) as LineParsed
         const { cli, flags } = config[tab] as CommandConfigItem
-        if (parsed) {
-          let newLine = `${parsed.env ? `${parsed.env} ` : ''}${cli}`
-          if (parsed.args && flags) {
-            let args = parsed.args
-            for (const [key, value] of Object.entries(flags)) {
-              args = args.replaceAll(key, value)
-            }
-            newLine += ` ${args.replace(/\s+-/g, ' -').trim()}`
+
+        let newLine = `${parsed.env ? `${parsed.env} ` : ''}${cli}`
+        if (parsed.args && flags) {
+          let args = parsed.args
+          for (const [key, value] of Object.entries(flags)) {
+            args = args.replaceAll(key, value)
           }
-
-          if (parsed.cmd)
-            newLine += ` ${parsed.cmd}`
-
-          if (parsed.scriptArgs)
-            newLine += ` ${parsed.scriptArgs}`
-          newLines.push(newLine.trim())
+          newLine += ` ${args.replace(/\s+-/g, ' -').trim()}`
         }
+
+        if (parsed.cmd)
+          newLine += ` ${parsed.cmd}`
+
+        if (parsed.scriptArgs)
+          newLine += ` ${parsed.scriptArgs}`
+        newLines.push(newLine.trim())
       }
       else {
         newLines.push(line)
@@ -268,10 +267,11 @@ function findConfig(line: string): CommandConfig | undefined {
 }
 
 function validateTabs(tabs: NpmToPackageManager[]): NpmToPackageManager[] {
+  tabs = tabs.filter(tab => ALLOW_LIST.includes(tab))
   if (tabs.length === 0) {
     return DEFAULT_TABS
   }
-  return tabs.filter(tab => ALLOW_LIST.includes(tab))
+  return tabs
 }
 
 interface LineParsed {
@@ -289,10 +289,20 @@ export function parseLine(line: string): false | LineParsed {
     return false
 
   const [, env, cli, rest] = match
-  if (cli === 'npx')
-    return { env, cli, cmd: '', scriptArgs: rest?.trim() }
+  const idx = rest.trim().indexOf(' ')
+  if (cli === 'npx') {
+    let cmd = ''
+    let scriptArgs = ''
+    if (idx !== -1) {
+      cmd = rest.slice(0, idx)
+      scriptArgs = rest.slice(idx + 1).trim()
+    }
+    else {
+      cmd = rest
+    }
+    return { env, cli, cmd, scriptArgs }
+  }
 
-  const idx = rest.indexOf(' ')
   if (idx === -1)
     return { env, cli: `${cli} ${rest.trim()}`, cmd: '' }
 
@@ -301,8 +311,6 @@ export function parseLine(line: string): false | LineParsed {
 
 function parseArgs(line: string): { cmd: string, args?: string, scriptArgs?: string } {
   line = line?.trim()
-  if (!line)
-    return { cmd: '' }
 
   const [npmArgs, scriptArgs] = line.split(/\s+--\s+/)
   let cmd = ''
@@ -310,11 +318,11 @@ function parseArgs(line: string): { cmd: string, args?: string, scriptArgs?: str
   if (npmArgs[0] !== '-') {
     if (npmArgs[0] === '"' || npmArgs[0] === '\'') {
       const idx = npmArgs.slice(1).indexOf(npmArgs[0])
-      cmd = npmArgs.slice(0, idx)
-      args = npmArgs.slice(idx + 1)
+      cmd = npmArgs.slice(0, idx + 2)
+      args = npmArgs.slice(idx + 2)
     }
     else {
-      const idx = npmArgs.indexOf(' ')
+      const idx = npmArgs.indexOf(' -')
       if (idx === -1) {
         cmd = npmArgs
       }
@@ -346,16 +354,17 @@ function parseArgs(line: string): { cmd: string, args?: string, scriptArgs?: str
         if (i === npmArgs.length - 1) {
           value += v
         }
+
         const isKey = value[0] === '-'
         if (isKey) {
           isBool = BOOL_FLAGS.includes(value)
           isNextValue = !isBool
         }
         if (!isKey && !isNextValue) {
-          cmd += `${value} `
+          cmd += `${value}`
         }
         else {
-          newLine += `${value}${v || ''}`
+          newLine += `${value}${i !== npmArgs.length - 1 ? v : ''}`
           if (!isKey && isNextValue) {
             isNextValue = false
           }
@@ -369,5 +378,5 @@ function parseArgs(line: string): { cmd: string, args?: string, scriptArgs?: str
     args = newLine
   }
 
-  return { cmd, args: args.trim(), scriptArgs }
+  return { cmd: cmd.trim(), args: args.trim(), scriptArgs }
 }

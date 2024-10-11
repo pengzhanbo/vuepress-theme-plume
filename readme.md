@@ -12,6 +12,11 @@
   </a>
   <img src="https://img.shields.io/npm/dependency-version/vuepress-theme-plume/peer/vuepress?color=32A9C3&labelColor=1B3C4A" alt="peer dependency">
   <img src="https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A" alt="github license">
+  <br>
+  <a href="https://codecov.io/gh/pengzhanbo/vuepress-theme-plume" >
+ <img src="https://codecov.io/gh/pengzhanbo/vuepress-theme-plume/graph/badge.svg?token=W6KYBX7WO5" alt="codecov"/>
+ </a>
+
 </p>
 
 一个简约的，干净的，容易上手的 vuepress 主题，适用于博客和文档。

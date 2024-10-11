@@ -1,6 +1,6 @@
 export interface PlotOptions {
   /**
-   * 是否启用 `=| |=`  markdown （该标记为非标准标记，脱离插件将不生效）
+   * 是否启用 `!! !!`  markdown （该标记为非标准标记，脱离插件将不生效）
    * @default true
    */
   tag?: boolean

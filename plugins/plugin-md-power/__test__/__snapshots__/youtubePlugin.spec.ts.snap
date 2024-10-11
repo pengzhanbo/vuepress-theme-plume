@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`youtubePlugin > should not work 1`] = `
+"<VideoYoutube src="https://www.youtube.com/embed//?" width="100%" height="" ratio="" title="undefined" /><p>@[youtube]xxx</p>
+<p>@[ youtube]123456</p>
+<p>@<a href="123456"> youtube</a></p>
+"
+`;
+
+exports[`youtubePlugin > should work 1`] = `"<VideoYoutube src="https://www.youtube.com/embed//123456?" width="100%" height="" ratio="" title="undefined" /><VideoYoutube src="https://www.youtube.com/embed//123456?autoplay=1&loop=1" width="100%" height="" ratio="" title="test" /><VideoYoutube src="https://www.youtube.com/embed//123456?autoplay=1&start=40&end=80" width="100%" height="" ratio="" title="undefined" /><VideoYoutube src="https://www.youtube.com/embed//123456?" width="100%" height="600px" ratio="" title="undefined" /><VideoYoutube src="https://www.youtube.com/embed//123456?" width="100%" height="" ratio="16:9" title="undefined" />"`;

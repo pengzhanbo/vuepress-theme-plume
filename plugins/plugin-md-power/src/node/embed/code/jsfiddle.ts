@@ -12,7 +12,7 @@ export const jsfiddlePlugin: PluginWithOptions<never> = (md) => {
   createEmbedRuleBlock<JSFiddleTokenMeta>(md, {
     type: 'jsfiddle',
     syntaxPattern: /^@\[jsfiddle([^\]]*)\]\(([^)]*)\)/,
-    meta([, info = '', source]) {
+    meta([, info, source]) {
       const { attrs } = resolveAttrs(info)
       const [user, id] = source.split('/')
 
@@ -26,7 +26,7 @@ export const jsfiddlePlugin: PluginWithOptions<never> = (md) => {
         theme: attrs.theme || 'dark',
       }
     },
-    content: ({ title = 'JS Fiddle', height, width, user, id, tab, theme }) => {
+    content: ({ title, height, width, user, id, tab, theme }) => {
       theme = theme === 'dark' ? '/dark/' : ''
 
       const link = `https://jsfiddle.net/${user}/${id}/embedded/${tab}${theme}`

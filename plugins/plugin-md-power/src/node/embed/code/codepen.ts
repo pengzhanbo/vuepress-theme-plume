@@ -15,7 +15,7 @@ export const codepenPlugin: PluginWithOptions<never> = (md) => {
   createEmbedRuleBlock<CodepenTokenMeta>(md, {
     type: 'codepen',
     syntaxPattern: /^@\[codepen([^\]]*)\]\(([^)]*)\)/,
-    meta: ([, info = '', source = '']) => {
+    meta: ([, info, source]) => {
       const { attrs } = resolveAttrs(info)
       const [user, slash] = source.split('/')
 
@@ -27,7 +27,7 @@ export const codepenPlugin: PluginWithOptions<never> = (md) => {
         title: attrs.title,
         preview: attrs.preview,
         editable: attrs.editable,
-        tab: attrs.tab ?? 'result',
+        tab: attrs.tab || 'result',
         theme: attrs.theme,
       }
     },
@@ -38,9 +38,9 @@ export const codepenPlugin: PluginWithOptions<never> = (md) => {
       if (meta.editable) {
         params.set('editable', 'true')
       }
-      if (meta.tab) {
-        params.set('default-tab', meta.tab)
-      }
+
+      params.set('default-tab', meta.tab!)
+
       if (meta.theme) {
         params.set('theme-id', meta.theme)
       }

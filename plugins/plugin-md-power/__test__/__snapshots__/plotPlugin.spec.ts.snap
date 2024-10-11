@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`plotPlugin > should not work with invalid tag 1`] = `
+"<p>!!!!</p>
+"
+`;
+
+exports[`plotPlugin > should not work with invalid tag 2`] = `
+"<p>!!plot!</p>
+"
+`;
+
+exports[`plotPlugin > should not work with invalid tag 3`] = `
+"<p>!!!</p>
+"
+`;
+
+exports[`plotPlugin > should not work with invalid tag 4`] = `
+"<p>!! plot !!</p>
+"
+`;
+
+exports[`plotPlugin > should work 1`] = `
+"<p><Plot>plot</Plot></p>
+"
+`;
+
+exports[`plotPlugin > should work 2`] = `
+"<p>hidden:  <Plot>plot</Plot>  <strong>strong</strong></p>
+"
+`;
+
+exports[`plotPlugin > should work 3`] = `
+"<p>hidden:<br>
+<Plot>plot</Plot><br>
+<Plot>plot</Plot></p>
+"
+`;

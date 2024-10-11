@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`pdfPlugin > should not work 1`] = `
+"<PDFViewer src="" title="" :page="1" :no-toolbar="false" width="100%" height="" ratio="" :zoom="50" /><p>@[pdf]xxx</p>
+<p>@<a href=""> pdf</a></p>
+<p>@[pdf]</p>
+"
+`;
+
+exports[`pdfPlugin > should work 1`] = `"<PDFViewer src="foo.pdf" title="foo.pdf" :page="1" :no-toolbar="false" width="100%" height="" ratio="" :zoom="50" />"`;
+
+exports[`pdfPlugin > should work 2`] = `"<PDFViewer src="foo.pdf" title="foo.pdf" :page="1" :no-toolbar="false" width="100%" height="" ratio="" :zoom="50" /><PDFViewer src="foo.pdf" title="foo.pdf" :page="1" :no-toolbar="true" width="100%" height="" ratio="" :zoom="50" /><PDFViewer src="foo.pdf" title="foo.pdf" :page="2" :no-toolbar="false" width="100%" height="" ratio="" :zoom="50" /><PDFViewer src="foo.pdf" title="foo.pdf" :page="2" :no-toolbar="true" width="100%" height="" ratio="" :zoom="50" /><PDFViewer src="foo.pdf" title="foo.pdf" :page="2" :no-toolbar="true" width="100%" height="600px" ratio="" :zoom="1" /><PDFViewer src="foo.pdf" title="foo.pdf" :page="2" :no-toolbar="true" width="100%" height="" ratio="1:1" :zoom="1" />"`;

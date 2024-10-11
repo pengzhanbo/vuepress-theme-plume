@@ -30,8 +30,10 @@ jobs:
       - name: Unit Test
         env:
           NODE_OPTIONS: --max_old_space_size=8192
-        run: pnpm run test --run
+        run: pnpm run test
 
       - name: Upload coverage
         if: github.ref == 'refs/heads/main'
         uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

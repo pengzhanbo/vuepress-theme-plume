@@ -1,3 +1,19 @@
+# [1.0.0-rc.108](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.107...v1.0.0-rc.108) (2024-10-12)
+
+
+### Bug Fixes
+
+* **plugin-search:** incorrect page path when configuring `base`, close [#265](https://github.com/pengzhanbo/vuepress-theme-plume/issues/265) ([#267](https://github.com/pengzhanbo/vuepress-theme-plume/issues/267)) ([012cbaf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/012cbafaaf9c0b1cee518b8af047b84192e24d3f))
+* **theme:** incorrect anchor link scrolling, close [#266](https://github.com/pengzhanbo/vuepress-theme-plume/issues/266) ([#268](https://github.com/pengzhanbo/vuepress-theme-plume/issues/268)) ([9ef85fe](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9ef85fe858170e3533f379379e4520b94ec473f8))
+
+
+### Performance Improvements
+
+* **theme:** improve types ([2dd8d23](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2dd8d239ce2b51b51d9ec9138df2fe951fbae28b))
+* update deps to latest ([b8c1b68](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b8c1b685195cf119d4994fa38544ee7165247a08))
+
+
+
 # [1.0.0-rc.107](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.106...v1.0.0-rc.107) (2024-10-08)
 
 

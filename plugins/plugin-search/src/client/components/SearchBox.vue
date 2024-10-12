@@ -23,7 +23,7 @@ import {
   toRef,
   watch,
 } from 'vue'
-import { useRouteLocale, useRouter } from 'vuepress/client'
+import { useRouteLocale, useRouter, withBase } from 'vuepress/client'
 import { useLocale, useSearchIndex } from '../composables/index.js'
 import { LRUCache } from '../utils/index.js'
 import BackIcon from './icons/BackIcon.vue'
@@ -359,7 +359,7 @@ function formMarkRegex(terms: Set<string>) {
             :aria-selected="selectedIndex === index ? 'true' : 'false'"
           >
             <a
-              :href="p.id"
+              :href="withBase(p.id)"
               class="result"
               :class="{
                 selected: selectedIndex === index,

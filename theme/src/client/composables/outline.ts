@@ -2,9 +2,9 @@ import type { InjectionKey, Ref } from 'vue'
 import type { Router } from 'vuepress/client'
 import type { ThemeOutline } from '../../shared/index.js'
 import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
+import { useThrottleFn, watchDebounced } from '@vueuse/core'
 import { inject, onMounted, onUnmounted, onUpdated, provide, ref } from 'vue'
 import { useRouter } from 'vuepress/client'
-import { throttleAndDebounce } from '../utils/index.js'
 import { useAside } from './aside.js'
 import { useData } from './data.js'
 
@@ -164,6 +164,7 @@ export function resolveHeaders(headers: MenuItem[], range?: ThemeOutline): MenuI
 export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<HTMLElement | null>): void {
   const { isAsideEnabled } = useAside()
   const router = useRouter()
+  const routeHash = ref<string>(router.currentRoute.value.hash)
 
   let prevActiveLink: HTMLAnchorElement | null = null
 
@@ -215,6 +216,7 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
   }
 
   function activateLink(hash: string | null): void {
+    routeHash.value = hash || ''
     if (prevActiveLink)
       prevActiveLink.classList.remove('active')
 
@@ -242,11 +244,13 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
         marker.value.style.opacity = '0'
       }
     }
-
-    updateHash(router, hash || '')
   }
 
-  const onScroll = throttleAndDebounce(setActiveLink, 100)
+  const onScroll = useThrottleFn(setActiveLink, 100)
+
+  watchDebounced(routeHash, () => {
+    updateHash(router, routeHash.value)
+  }, { debounce: 500 })
 
   onMounted(() => {
     requestAnimationFrame(setActiveLink)

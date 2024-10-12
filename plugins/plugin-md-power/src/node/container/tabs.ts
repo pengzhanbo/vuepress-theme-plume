@@ -17,8 +17,8 @@ export const tabs: PluginSimple = (md) => {
 
       return `<Tabs id="${index}" :data='${stringifyProp(tabsData)}'${active === -1 ? '' : ` :active="${active}"`}${meta.id ? ` tab-id="${meta.id as string}"` : ''}>
 ${titles.map((title, titleIndex) =>
-    `<template #title${titleIndex}="{ value, isActive }">${title}</template>`,
-  ).join('')}`
+  `<template #title${titleIndex}="{ value, isActive }">${title}</template>`,
+).join('')}`
     },
 
     tabsCloseRenderer: () => `</Tabs>`,

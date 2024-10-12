@@ -74,8 +74,8 @@ ${Array.from(imports.values()).join('\n')}
 export default defineClientConfig({
   enhance({ router, app }) {
 ${Array.from(enhances.values())
-    .map(item => `    ${item}`)
-    .join('\n')}
+  .map(item => `    ${item}`)
+  .join('\n')}
   }
 })
 `,

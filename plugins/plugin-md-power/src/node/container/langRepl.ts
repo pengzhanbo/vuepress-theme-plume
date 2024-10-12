@@ -2,8 +2,10 @@ import type markdownIt from 'markdown-it'
 import type Token from 'markdown-it/lib/token.mjs'
 import type { App } from 'vuepress/core'
 import type { ReplEditorData, ReplOptions } from '../../shared/index.js'
+import { promises as fs } from 'node:fs'
+import { resolveModule } from 'local-pkg'
 import container from 'markdown-it-container'
-import { fs, getDirname, path } from 'vuepress/utils'
+import { path } from 'vuepress/utils'
 
 const RE_INFO = /^(#editable)?(.*)$/
 
@@ -15,7 +17,7 @@ function createReplContainer(md: markdownIt, lang: string) {
     const token = tokens[index]
     const info = token.info.trim().slice(type.length).trim() || ''
     // :::lang-repl#editable title
-    const [, editable, title] = info.match(RE_INFO) ?? []
+    const [, editable, title] = info.match(RE_INFO)!
 
     if (token.nesting === 1)
       return `<CodeRepl ${editable ? 'editable' : ''} title="${title || `${lang} playground`}">`
@@ -46,8 +48,8 @@ export async function langReplPlugin(app: App, md: markdownIt, {
 
   const data: ReplEditorData = { grammars: {} } as ReplEditorData
 
-  const themesPath = getDirname(import.meta.resolve('tm-themes'))
-  const grammarsPath = getDirname(import.meta.resolve('tm-grammars'))
+  const themesPath = path.dirname(resolveModule('tm-themes')!)
+  const grammarsPath = path.dirname(resolveModule('tm-grammars')!)
 
   const readTheme = (theme: string) => read(path.join(themesPath, 'themes', `${theme}.json`))
   const readGrammar = (grammar: string) => read(path.join(grammarsPath, 'grammars', `${grammar}.json`))

@@ -21,7 +21,7 @@ export function markdownPowerPlugin(
 
     extendsBundlerOptions(bundlerOptions, app) {
       if (options.repl) {
-        addViteOptimizeDepsInclude(bundlerOptions, app, ['shiki/core', 'shiki/wasm'])
+        addViteOptimizeDepsInclude(bundlerOptions, app, ['shiki/core', 'shiki/wasm', 'shiki/engine/oniguruma'])
       }
     },
 

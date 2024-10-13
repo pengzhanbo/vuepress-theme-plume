@@ -24,16 +24,19 @@ export async function compiler(configPath?: string,
     entryPoints: [configPath],
     outfile: 'out.js',
     write: false,
-    target: ['node18'],
+    target: [`node${process.versions.node}`],
     platform: 'node',
     bundle: true,
     format: 'esm',
+    mainFields: ['main'],
     sourcemap: 'inline',
     metafile: true,
     define: {
       '__dirname': dirnameVarName,
       '__filename': filenameVarName,
       'import.meta.url': importMetaUrlVarName,
+      'import.meta.dirname': dirnameVarName,
+      'import.meta.filename': filenameVarName,
     },
     plugins: [
       {
@@ -52,7 +55,7 @@ export async function compiler(configPath?: string,
         name: 'inject-file-scope-variables',
         setup(build) {
           build.onLoad({ filter: /\.[cm]?[jt]s$/ }, async (args) => {
-            const contents = await fsp.readFile(args.path, 'utf8')
+            const contents = await fsp.readFile(args.path, 'utf-8')
             const injectValues
                 = `const ${dirnameVarName} = ${JSON.stringify(
                   path.dirname(args.path),

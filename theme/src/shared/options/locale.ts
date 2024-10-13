@@ -247,6 +247,13 @@ export interface PlumeThemeLocaleData extends LocaleData {
   externalLinkIcon?: boolean
 
   /**
+   * 是否在文章页显示创建时间
+   *
+   * @default true
+   */
+  createTime?: boolean | 'only-blog'
+
+  /**
    * 页脚配置。
    */
   footer?:

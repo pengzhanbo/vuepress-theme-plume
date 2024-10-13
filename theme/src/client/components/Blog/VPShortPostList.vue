@@ -27,7 +27,7 @@ defineProps<{
 .vp-blog-short-post-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   margin-top: 24px;
 }
 
@@ -62,6 +62,7 @@ defineProps<{
 }
 
 .vp-blog-short-post-list li:hover .post-time {
-  color: var(--vp-c-text-2);
+  font-weight: 500;
+  color: var(--vp-c-text-1);
 }
 </style>

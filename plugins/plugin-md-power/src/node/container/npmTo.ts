@@ -202,10 +202,7 @@ export function npmToPlugins(md: Markdown, options: NpmToOptions = {}): void {
     if (tokens[idx].nesting === 1) {
       const token = tokens[idx + 1]
       const info = token.info.trim()
-      if (
-        token.type === 'fence'
-        && (info.startsWith('sh') || info.startsWith('bash') || info.startsWith('shell'))
-      ) {
+      if (token.type === 'fence') {
         const content = token.content
         token.hidden = true
         token.type = 'text'

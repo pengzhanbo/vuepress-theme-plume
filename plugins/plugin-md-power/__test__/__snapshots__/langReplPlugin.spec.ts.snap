@@ -1,0 +1,131 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`langReplPlugin > should work with custom options 1`] = `
+"<CodeRepl  title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl  title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl  title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl  title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title=" title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl>"
+`;
+
+exports[`langReplPlugin > should work with custom options 2`] = `
+"export default {
+  "grammars": {
+    "kotlin": {
+      "language": "kotlin"
+    },
+    "go": {
+      "language": "go"
+    },
+    "rust": {
+      "language": "rust"
+    }
+  },
+  "theme": {
+    "light": {
+      "theme": "github-light"
+    },
+    "dark": {
+      "theme": "github-dark"
+    }
+  }
+}"
+`;
+
+exports[`langReplPlugin > should work with custom theme 1`] = `
+"<CodeRepl  title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl  title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl  title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl  title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title=" title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl>"
+`;
+
+exports[`langReplPlugin > should work with custom theme 2`] = `
+"export default {
+  "grammars": {
+    "kotlin": {
+      "language": "kotlin"
+    },
+    "go": {
+      "language": "go"
+    },
+    "rust": {
+      "language": "rust"
+    }
+  }
+}"
+`;
+
+exports[`langReplPlugin > should work with default options 1`] = `
+"<p>::: go-repl</p>
+<pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: go-repl#editable</p>
+<pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: kotlin-repl</p>
+<pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: kotlin-repl#editable</p>
+<pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: rust-repl</p>
+<pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: rust-repl#editable</p>
+<pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: rust-repl title</p>
+<pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: rust-repl#editable title</p>
+<pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+<p>:::</p>
+"
+`;
+
+exports[`langReplPlugin > should work with default options 2`] = `
+"export default {
+  "grammars": {},
+  "theme": {
+    "light": {
+      "theme": "github-light"
+    },
+    "dark": {
+      "theme": "github-dark"
+    }
+  }
+}"
+`;

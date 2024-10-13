@@ -1,53 +1,68 @@
 <script setup lang="ts">
 import type { BlogCategoryItem } from '../../composables/index.js'
 import VPCategories from '@theme/Blog/VPCategories.vue'
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
+import { useData } from '../../composables/index.js'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   item: BlogCategoryItem
-}>()
-
+  depth?: number
+}>(), {
+  depth: 0,
+})
+const { theme } = useData()
 const route = useRoute()
 const el = ref<HTMLDivElement | null>(null)
-const active = ref(true)
-const isActive = ref(false)
+const expand = ref(true)
+const isExpand = ref(false)
+
+const expandDepth = computed(() => {
+  const blog = typeof theme.value.blog === 'boolean' ? {} : theme.value.blog
+  const depth = blog?.categoriesExpand ?? 'deep'
+  if (depth === 'deep')
+    return Infinity
+  const d = Number(depth)
+  if (Number.isNaN(d))
+    return Infinity
+  return d
+})
 
 watch(
-  () => [route.query, props.item],
+  () => [route.query, props.item, expandDepth.value],
   () => {
     const id = route.query.id as string
     if (!id) {
-      active.value = true
+      expand.value = props.depth <= expandDepth.value
     }
     else {
-      active.value = hasActive(props.item, id)
+      expand.value = hasExpand(props.item, id)
     }
-    isActive.value = id ? props.item.id === id : false
+    isExpand.value = id ? props.item.id === id : false
   },
   { immediate: true },
 )
 
-function hasActive(item: BlogCategoryItem, id: string) {
+function hasExpand(item: BlogCategoryItem, id: string) {
   return item.id === id
-    || item.items.filter(item => item.type === 'category').some(item => hasActive(item, id))
+    || item.items.filter(item => item.type === 'category').some(item => hasExpand(item, id))
 }
 
 function toggle() {
-  active.value = !active.value
+  expand.value = !expand.value
 }
 
 onMounted(() => {
-  if (el.value && isActive.value) {
+  if (el.value && isExpand.value) {
     el.value.scrollIntoView({ block: 'center' })
   }
 })
 </script>
 
 <template>
-  <div ref="el" class="vp-category-group" :class="{ active }">
+  <div ref="el" class="vp-category-group" :class="{ expand }">
     <p class="folder" @click="toggle">
-      <span class="icon" :class="[active ? 'vpi-folder-open' : 'vpi-folder']" />
+      <span class="icon" :class="[expand ? 'vpi-folder-open' : 'vpi-folder']" />
       <span>{{ item.title }}</span>
     </p>
 
@@ -55,6 +70,7 @@ onMounted(() => {
       v-if="item.items.length"
       class="group"
       :items="item.items"
+      :depth="depth"
     />
   </div>
 </template>
@@ -113,7 +129,7 @@ onMounted(() => {
   }
 }
 
-.vp-category-group.active > .group {
+.vp-category-group.expand > .group {
   display: block;
 }
 </style>

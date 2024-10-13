@@ -3,9 +3,12 @@ import type { BlogCategoryItem, BlogCategoryItemWithPost } from '../../composabl
 import VPCategoriesGroup from '@theme/Blog/VPCategoriesGroup.vue'
 import VPLink from '@theme/VPLink.vue'
 
-defineProps<{
+withDefaults(defineProps<{
   items: (BlogCategoryItem | BlogCategoryItemWithPost)[]
-}>()
+  depth?: number
+}>(), {
+  depth: 0,
+})
 </script>
 
 <template>
@@ -19,7 +22,7 @@ defineProps<{
         <span class="vpi-post" />
         <VPLink :href="item.path" :text="item.title" />
       </p>
-      <VPCategoriesGroup v-else :item="item" />
+      <VPCategoriesGroup v-else :item="item" :depth="depth + 1" />
     </li>
   </ul>
 </template>

@@ -101,6 +101,13 @@ export interface PlumeThemeBlog {
   categoriesLink?: string
 
   /**
+   * 分类页展开深度
+   *
+   * @default 'deep'
+   */
+  categoriesExpand?: number | 'deep'
+
+  /**
    * 博客文章封面图
    *
    * 配置封面图的位置，支持 `'left'`、`'right'`、`'top'`、`'top-inside'`

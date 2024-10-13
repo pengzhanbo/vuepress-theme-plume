@@ -64,6 +64,12 @@ function sortCategory(items: BlogCategory): BlogCategory {
     if (a.type === 'category' && b.type === 'category') {
       return a.sort < b.sort ? -1 : 1
     }
+    if (a.type === 'category' && b.type === 'post') {
+      return -1
+    }
+    if (a.type === 'post' && b.type === 'category') {
+      return 1
+    }
     return 0
   })
 }

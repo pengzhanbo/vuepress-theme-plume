@@ -18,7 +18,7 @@ const { categories } = useBlogCategory()
     <slot name="blog-categories-content-before" />
 
     <div class="content">
-      <VPCategories :items="categories" />
+      <VPCategories :items="categories" :depth="0" />
     </div>
 
     <slot name="blog-categories-after" />

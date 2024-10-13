@@ -5,13 +5,16 @@ import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
 import { computed } from 'vue'
 import { useBlogPageData, useData, useInternalLink, useTagColors } from '../composables/index.js'
 
-const { page, frontmatter: matter } = useData<'post'>()
+const { page, frontmatter: matter, theme } = useData<'post'>()
 const colors = useTagColors()
 const readingTime = useReadingTimeLocale()
 const { tags: tagsLink } = useInternalLink()
 const { isBlogPost } = useBlogPageData()
 
 const createTime = computed(() => {
+  const show = theme.value.createTime ?? true
+  if (!show || (show === 'only-blog' && !isBlogPost.value))
+    return ''
   if (matter.value.createTime)
     return matter.value.createTime.split(' ')[0].replace(/\//g, '-')
 

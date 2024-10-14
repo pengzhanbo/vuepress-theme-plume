@@ -1,4 +1,4 @@
-import type { DocsearchPluginOptions } from '@vuepress/plugin-docsearch'
+import type { DocSearchPluginOptions } from '@vuepress/plugin-docsearch'
 import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
 import type { App } from 'vuepress'
 import { getLocaleConfig } from '@vuepress/helper'
@@ -20,8 +20,8 @@ export function resolveSearchOptions(
 
 export function resolveDocsearchOptions(
   app: App,
-  { locales, ...options }: DocsearchPluginOptions = {},
-): DocsearchPluginOptions {
+  { locales, ...options }: DocSearchPluginOptions = {},
+): DocSearchPluginOptions {
   return {
     ...options,
     locales: getLocaleConfig({

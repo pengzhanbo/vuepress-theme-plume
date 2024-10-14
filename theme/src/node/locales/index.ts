@@ -1,4 +1,4 @@
-import type { DocsearchLocaleOptions } from '@vuepress/plugin-docsearch'
+import type { DocSearchLocaleOptions } from '@vuepress/plugin-docsearch'
 import type { SearchLocaleOptions } from '@vuepress-plume/plugin-search'
 import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
 import { enLocale, enPresetLocale, enSearchLocale } from './en.js'
@@ -14,7 +14,7 @@ export const PRESET_LOCALES: Record<string, PresetLocale> = {
   '/en/': enPresetLocale,
 }
 
-export const DOCSEARCH_LOCALES: Record<string, DocsearchLocaleOptions> = {
+export const DOCSEARCH_LOCALES: Record<string, DocSearchLocaleOptions> = {
   '/zh/': zhDocsearchLocale,
 }
 

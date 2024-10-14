@@ -1,4 +1,4 @@
-import type { DocsearchLocaleOptions } from '@vuepress/plugin-docsearch'
+import type { DocSearchLocaleOptions } from '@vuepress/plugin-docsearch'
 import type { SearchLocaleOptions } from '@vuepress-plume/plugin-search'
 import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
 
@@ -47,7 +47,7 @@ export const zhPresetLocale: PresetLocale = {
   category: '分类',
 }
 
-export const zhDocsearchLocale: DocsearchLocaleOptions = {
+export const zhDocsearchLocale: DocSearchLocaleOptions = {
   placeholder: '搜索文档',
   translations: {
     button: {

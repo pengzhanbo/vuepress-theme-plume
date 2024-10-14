@@ -1,3 +1,27 @@
+# [1.0.0-rc.109](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.108...v1.0.0-rc.109) (2024-10-14)
+
+
+### Bug Fixes
+
+* **theme:** fix grammar mistakes in site footer ([#274](https://github.com/pengzhanbo/vuepress-theme-plume/issues/274)) ([c4025cb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c4025cb489807c2720b0d2df8e24b31a58505820))
+* **theme:** incorrect page layout when `navbar: false`, close [#270](https://github.com/pengzhanbo/vuepress-theme-plume/issues/270) ([#273](https://github.com/pengzhanbo/vuepress-theme-plume/issues/273)) ([c32dd3e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c32dd3eb930f045f354a317218d5c0ed5b072879))
+
+
+### Features
+
+* **theme:** add support for blog category expand depth, close [#271](https://github.com/pengzhanbo/vuepress-theme-plume/issues/271) ([#275](https://github.com/pengzhanbo/vuepress-theme-plume/issues/275)) ([c6907df](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c6907dfe74f79f0d11318f37f57cfc80d3bbacce))
+* **theme:** add support for tags color themes ([#284](https://github.com/pengzhanbo/vuepress-theme-plume/issues/284)) ([a759502](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a7595025b74ce1c9b9e831fbb440d2ca6debcf8c))
+* **theme:** add support for whether to display `createTime`, close [#279](https://github.com/pengzhanbo/vuepress-theme-plume/issues/279) ([#282](https://github.com/pengzhanbo/vuepress-theme-plume/issues/282)) ([aa638a8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/aa638a864f170b8fe6c76fc2e288c5cd6c420309))
+* **theme:** improve loading config file ([#276](https://github.com/pengzhanbo/vuepress-theme-plume/issues/276)) ([b09122e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b09122e1b31d3ed766d6c6aa046f46de62d3bbba))
+* **theme:** reduce the line spacing in the category list ([#281](https://github.com/pengzhanbo/vuepress-theme-plume/issues/281)) ([e347537](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e347537986bebd63c39db31452769d84989d95bd))
+
+
+### Performance Improvements
+
+* update deps to latest ([b8f4326](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b8f43267ad1b13f7133a9bf40aae5d084f49ba77))
+
+
+
 # [1.0.0-rc.108](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.107...v1.0.0-rc.108) (2024-10-12)
 
 ### Bug Fixes

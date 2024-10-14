@@ -22,10 +22,12 @@ const createTime = computed(() => {
 })
 
 const tags = computed(() => {
+  const blog = theme.value.blog || {}
+  const tagTheme = blog.tagsTheme ?? 'colored'
   if (matter.value.tags) {
     return matter.value.tags.slice(0, 4).map(tag => ({
       name: tag,
-      className: `vp-tag-${colors.value[tag]}`,
+      className: colors.value[tag] ? `vp-tag-${colors.value[tag]}` : `tag-${tagTheme}`,
     }))
   }
 
@@ -122,8 +124,8 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
   margin-right: 6px;
   font-size: 12px;
   line-height: 1;
-  color: var(--vp-tag-color, var(--vp-c-text-3));
-  background-color: var(--vp-tag-bg, var(--vp-c-default-soft));
+  color: var(--vp-tag-color);
+  background-color: var(--vp-tag-bg);
   border-radius: 3px;
 }
 

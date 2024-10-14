@@ -27,14 +27,18 @@ const sticky = computed(() => {
   return false
 })
 
-const tags = computed(() =>
-  (props.post.tags ?? [])
+const tags = computed(() => {
+  const blog = theme.value.blog || {}
+  const tagTheme = blog.tagsTheme ?? 'colored'
+
+  return (props.post.tags ?? [])
     .slice(0, 4)
     .map(tag => ({
       name: tag,
-      className: `vp-tag-${colors.value[tag]}`,
-    })),
-)
+      className: colors.value[tag] ? `vp-tag-${colors.value[tag]}` : `tag-${tagTheme}`,
+    }))
+})
+
 const cover = computed<BlogPostCover | null>(() => {
   if (!props.post.cover)
     return null

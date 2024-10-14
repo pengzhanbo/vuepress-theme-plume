@@ -94,11 +94,11 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
   padding: 6px 10px 6px 12px;
   font-size: 14px;
   line-height: 1;
-  color: var(--vp-c-bg);
+  color: var(--vp-tag-color);
   word-wrap: break-word;
   cursor: pointer;
-  background-color: var(--vp-tag-color);
-  border: solid 1px var(--vp-tag-color);
+  background-color: var(--vp-tag-bg);
+  border: 1px solid var(--vp-tag-bg);
   border-radius: 6px;
   transition: all var(--vp-t-color);
 }
@@ -117,8 +117,8 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
   display: inline-block;
   padding-left: 6px;
   margin-left: 4px;
-  color: var(--vp-c-bg);
-  border-left: 1px solid var(--vp-c-bg);
+  color: var(--vp-tag-color);
+  border-left: 1px solid var(--vp-tag-color);
   transition: color var(--vp-t-color), border-left var(--vp-t-color);
 }
 

@@ -690,6 +690,22 @@
 }
 
 /**
+ * post tag
+ * -------------------------------------------------------------------------- */
+.tag:not([class*="vp-tag-"]),
+.tag.tag-gray {
+  --vp-tag-color: var(--vp-c-text-3);
+  --vp-tag-bg: var(--vp-c-default-soft);
+  --vp-tag-hover-color: var(--vp-c-text-3);
+}
+
+.tag.tag-brand {
+  --vp-tag-color: var(--vp-c-brand-1);
+  --vp-tag-bg: var(--vp-c-brand-soft);
+  --vp-tag-hover-color: var(--vp-c-brand-2);
+}
+
+/**
  * Compatible with `vuepress` guidelines
  * -------------------------------------------------------------------------- */
 :root {

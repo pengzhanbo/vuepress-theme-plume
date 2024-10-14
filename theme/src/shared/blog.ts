@@ -74,6 +74,13 @@ export interface PlumeThemeBlog {
    * @default '/blog/tags/'
    */
   tagsLink?: string
+
+  /**
+   * 标签颜色主题
+   *
+   * @default 'colored'
+   */
+  tagsTheme?: 'colored' | 'gray' | 'brand'
   /**
    * 是否启用归档页
    * @default true

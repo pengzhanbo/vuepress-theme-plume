@@ -2,17 +2,22 @@ import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 import { computed } from 'vue'
 import { toArray } from '../utils/index.js'
 import { useLocalePostList } from './blog-data.js'
+import { useData } from './data.js'
 import { useRouteQuery } from './route-query.js'
 import { useTagColors } from './tag-colors.js'
 
 type ShortPostItem = Pick<PlumeThemeBlogPostItem, 'title' | 'path' | 'createTime'>
 
 export function useTags() {
+  const { theme } = useData()
   const list = useLocalePostList()
 
   const colors = useTagColors()
 
   const tags = computed(() => {
+    const blog = theme.value.blog || {}
+    const tagTheme = blog.tagsTheme ?? 'colored'
+
     const tagMap: Record<string, number> = {}
     list.value.forEach((item) => {
       if (item.tags) {
@@ -27,7 +32,7 @@ export function useTags() {
     return Object.keys(tagMap).map(tag => ({
       name: tag,
       count: tagMap[tag] > 99 ? '99+' : tagMap[tag],
-      className: `vp-tag-${colors.value[tag]}`,
+      className: colors.value[tag] ? `vp-tag-${colors.value[tag]}` : `tag-${tagTheme}`,
     }))
   })
 

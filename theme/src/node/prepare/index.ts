@@ -14,7 +14,7 @@ export async function prepareData(
   const start = performance.now()
   const { localeOptions, encrypt } = getThemeConfig()
   await Promise.all([
-    prepareArticleTagColors(app),
+    prepareArticleTagColors(app, localeOptions),
     preparedBlogData(app, localeOptions, encrypt),
     prepareSidebar(app, localeOptions),
     prepareEncrypt(app, encrypt),

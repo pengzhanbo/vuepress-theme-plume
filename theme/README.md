@@ -1,7 +1,7 @@
 # vuepress-theme-plume
 
 <p align="center">
-<img src="https://github.com/pengzhanbo/vuepress-theme-plume/raw/main/preview/plume.svg" width="200px" alt="vuepress=theme-plume" />
+<img src="https://theme-plume.vuejs.press/plume.svg" width="200px" alt="vuepress=theme-plume" />
 </p>
 
 <p align="center">
@@ -10,6 +10,7 @@
 [![npm download](https://img.shields.io/npm/dy/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads)](https://www.npmjs.com/package/vuepress-theme-plume)
 ![peer dependency](https://img.shields.io/npm/dependency-version/vuepress-theme-plume/peer/vuepress?color=32A9C3&labelColor=1B3C4A)
 ![GitHub License](https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A)
+[![coverage](https://codecov.io/gh/pengzhanbo/vuepress-theme-plume/graph/badge.svg?token=W6KYBX7WO5)](https://codecov.io/gh/pengzhanbo/vuepress-theme-plume)
 
 </p>
 
@@ -34,35 +35,7 @@
 - 🎛 资源嵌入，支持 PDF, bilibili视频，youtube视频等
 - 🪞 支持全站水印、部分内容水印
 
-## Install
-
-``` sh
-npm install vuepress@next vuepress-theme-plume
-# or
-pnpm add vuepress@next vuepress-theme-plume vue
-# or
-yarn add vuepress@next vuepress-theme-plume
-```
-
-## Usage
-
-``` ts
-import { defineUserConfig } from 'vuepress'
-import { plumeTheme } from 'vuepress-theme-plume'
-
-export default defineUserConfig({
-  // vuepress config...
-  theme: plumeTheme({
-    // theme config...
-  })
-})
-```
-
-### `plumeTheme(options)`
-
-__options__ : `PlumeThemeOptions`
-
-[查看 options 详细说明](https://theme-plume.vuejs.press/config/basic/)
+## [使用文档](https://theme-plume.vuejs.press)
 
 ## 注意
 
@@ -73,6 +46,12 @@ __options__ : `PlumeThemeOptions`
 ## 贡献指南
 
 查看 [[贡献指南]](/CONTRIBUTING.md) 了解更多
+
+## 贡献者
+
+感谢所有的贡献者！
+
+[![contributors](https://contrib.rocks/image?repo=pengzhanbo/vuepress-theme-plume)](https://github.com/pengzhanbo/vuepress-theme-plume/graphs/contributors)
 
 ## LICENSE
 

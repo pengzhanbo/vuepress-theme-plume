@@ -1,6 +1,6 @@
 <h1 align="center">vuepress-theme-plume</h1>
 <p align="center">
-<img src="/preview/plume.svg" width="200px" alt="plume">
+<img src="https://theme-plume.vuejs.press/plume.svg" width="200px" alt="plume">
 </p>
 
 <p align="center">
@@ -14,8 +14,8 @@
   <img src="https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A" alt="github license">
   <br>
   <a href="https://codecov.io/gh/pengzhanbo/vuepress-theme-plume" >
- <img src="https://codecov.io/gh/pengzhanbo/vuepress-theme-plume/graph/badge.svg?token=W6KYBX7WO5" alt="codecov"/>
- </a>
+  <img src="https://codecov.io/gh/pengzhanbo/vuepress-theme-plume/graph/badge.svg?token=W6KYBX7WO5" alt="codecov"/>
+  </a>
 
 </p>
 
@@ -25,7 +25,7 @@
 
 内置了丰富的强大的功能，旨在让内容更具有表现力。
 
-## Features
+## 特性
 
 - 💻 响应式布局，适配不同的屏幕尺寸
 - 📖 博客 & 文档
@@ -34,41 +34,13 @@
 - 🔑 支持 全站加密、部分加密
 - 👀 支持 搜索、文章评论
 - 👨‍💻‍ 支持 浅色/深色 主题 （包括代码高亮）
-- 📠 markdown 增强，支持 代码块分组、提示容器、任务列表、数学公式、代码演示 等
+- 📠 markdown 增强，支持 代码块分组、提示容器、任务列表、数学公式、代码演示、文件树 等
 - 📚 嵌入代码演示，支持 CodePen, JSFiddle, CodeSandbox 等
 - 📊 嵌入图表，支持 chart.js，Echarts，Mermaid，flowchart
 - 🎛 资源嵌入，支持 PDF, bilibili视频，youtube视频等
 - 🪞 支持全站水印、部分内容水印
 
-## Install
-
-``` sh
-npm install vuepress@next vuepress-theme-plume
-# or
-pnpm add vuepress@next vuepress-theme-plume vue
-# or
-yarn add vuepress@next vuepress-theme-plume
-```
-
-## Usage
-
-``` ts
-import { defineUserConfig } from 'vuepress'
-import { plumeTheme } from 'vuepress-theme-plume'
-
-export default defineUserConfig({
-  // vuepress config...
-  theme: plumeTheme({
-    // theme config...
-  })
-})
-```
-
-### `plumeTheme(options)`
-
-__options__ : `PlumeThemeOptions`
-
-[查看 options 详细说明](https://theme-plume.vuejs.press//config/basic/)
+## [使用文档](https://theme-plume.vuejs.press)
 
 ## 案例
 
@@ -83,3 +55,13 @@ __options__ : `PlumeThemeOptions`
 ## 贡献指南
 
 查看 [[贡献指南]](/CONTRIBUTING.md) 了解更多
+
+## 贡献者
+
+感谢所有的贡献者！
+
+[![contributors](https://contrib.rocks/image?repo=pengzhanbo/vuepress-theme-plume)](https://github.com/pengzhanbo/vuepress-theme-plume/graphs/contributors)
+
+## License
+
+[MIT](/LICENSE)

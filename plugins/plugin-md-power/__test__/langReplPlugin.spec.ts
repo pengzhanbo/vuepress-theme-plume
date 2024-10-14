@@ -5,13 +5,14 @@ import { path } from '@vuepress/utils'
 import { resolveModule } from 'local-pkg'
 import MarkdownIt from 'markdown-it'
 import { fs, vol } from 'memfs'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { langReplPlugin } from '../src/node/container/langRepl.js'
 
-vi.mock('node:fs')
-vi.mock('node:fs/promises')
+vi.mock('node:fs', () => fs)
+vi.mock('node:fs/promises', () => fs.promises)
 
 beforeEach(() => vol.reset())
+afterEach(() => vol.reset())
 
 const FENCE = '```'
 

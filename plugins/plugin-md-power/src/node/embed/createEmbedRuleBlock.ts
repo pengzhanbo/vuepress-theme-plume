@@ -56,6 +56,7 @@ export function createEmbedRuleBlock<Meta extends Record<string, any> = Record<s
         return false
 
       // return true as we have matched the syntax
+      /* istanbul ignore if -- @preserve */
       if (silent)
         return true
 

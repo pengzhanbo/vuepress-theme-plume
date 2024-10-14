@@ -8,9 +8,7 @@ import { createPackageJson } from './packageJson.js'
 import { createRender } from './render.js'
 import { getTemplate, readFiles, readJsonFile, writeFiles } from './utils/index.js'
 
-export async function generate(mode: Mode, data: ResolvedData): Promise<void> {
-  const cwd = process.cwd()
-
+export async function generate(mode: Mode, data: ResolvedData, cwd = process.cwd()): Promise<void> {
   let userPkg: Record<string, any> = {}
   if (mode === Mode.init) {
     const pkgPath = path.join(cwd, 'package.json')

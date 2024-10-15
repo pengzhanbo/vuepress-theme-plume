@@ -39,9 +39,8 @@ export async function prepareArticleTagColors(app: App, localeOptions: PlumeThem
   const blog = isPlainObject(localeOptions.blog) ? localeOptions.blog : {}
 
   const { js, css } = genCode(app, blog.tagsTheme ?? 'colored')
-  if (css)
-    await writeTemp(app, 'internal/articleTagColors.css', css)
 
+  await writeTemp(app, 'internal/articleTagColors.css', css)
   await writeTemp(app, 'internal/articleTagColors.js', js)
 
   if (app.env.isDebug) {

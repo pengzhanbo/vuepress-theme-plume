@@ -29,7 +29,7 @@
 pnpm install
 ```
 
-构建源代码：
+在首次启动开发服务前，先构建源代码：
 
 ```sh
 pnpm build
@@ -41,7 +41,7 @@ pnpm build
 - [ESLint](https://eslint.org/) 用于代码检查和格式化
 - [StyleLint](https://stylelint.io/) 用于代码检查和格式化
 
-### 开发脚本
+### 脚本
 
 #### `pnpm build`
 
@@ -52,11 +52,11 @@ pnpm build
 
 #### `pnpm dev`
 
-`dev` 命令会在本地开启两个服务，一个是运行 主题`theme` 目录的 `tsc watch & copy watch`,
+`dev` 命令会在本地开启两个服务，一个是运行 主题 `theme` 目录的 `tsup:watch & copy:watch`,
 一个是运行 示例 `docs` 目录的 `vuepress` 开发服务。
 
 `plugins` 目录下的所有插件，默认都没有 `dev` 命令，因此，你对 `plugins` 下的改动，可能需要执行 `pnpm build` 命令
-进行重新构建，部分对 `plugins/**/node` 目录下的改动，可能需要 重新执行 `pnpm dev` 才能生效。
+进行重新构建，部分对 `plugins/**/node` 目录下的改动，需要重新执行 `pnpm dev` 才能生效。
 
 #### `pnpm lint`
 
@@ -64,6 +64,10 @@ pnpm build
 
 当 `lint` 给出了错误时，你可以手动修改源码以修复 eslint 的报错。
 也可以执行 `pnpm lint:fix` 来自动修复。
+
+#### `pnpm test`
+
+`test` 命令使用 Vitest 来运行所有测试。
 
 ### IDE 支持
 

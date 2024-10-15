@@ -1,3 +1,12 @@
+# [1.0.0-rc.110](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.109...v1.0.0-rc.110) (2024-10-15)
+
+
+### Bug Fixes
+
+* **theme:** incorrect prepared with tags's temp files, close [#286](https://github.com/pengzhanbo/vuepress-theme-plume/issues/286) ([#287](https://github.com/pengzhanbo/vuepress-theme-plume/issues/287)) ([8e06a44](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8e06a4450fd8dc0b841df5b0f8524fb175a0a365))
+
+
+
 # [1.0.0-rc.109](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.108...v1.0.0-rc.109) (2024-10-14)
 
 

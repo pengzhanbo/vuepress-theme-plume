@@ -1,4 +1,5 @@
 import { defineConfig, type Options } from 'tsup'
+import { argv } from '../../scripts/tsup-args.js'
 
 const clientExternal: (string | RegExp)[] = [
   /.*\.vue$/,
@@ -12,21 +13,28 @@ export default defineConfig(() => {
     splitting: false,
     format: 'esm',
   }
-  return [
-    // node
-    {
+  const options: Options[] = []
+
+  if (argv.node) {
+    options.push({
       ...DEFAULT_OPTIONS,
       entry: ['./src/node/index.ts'],
       outDir: './lib/node',
       target: 'node18',
-    },
-    // client/config.js
-    {
-      ...DEFAULT_OPTIONS,
-      entry: ['./src/client/config.ts'],
-      outDir: './lib/client',
-      dts: false,
-      external: clientExternal,
-    },
-  ]
+    })
+  }
+
+  if (argv.client) {
+    options.push(...[
+      // client/config.js
+      {
+        ...DEFAULT_OPTIONS,
+        entry: ['./src/client/config.ts'],
+        outDir: './lib/client',
+        dts: false,
+        external: clientExternal,
+      },
+    ])
+  }
+  return options
 })

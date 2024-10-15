@@ -42,6 +42,8 @@
 
 ## [使用文档](https://theme-plume.vuejs.press)
 
+QQ 交流群：[792882761](https://qm.qq.com/q/O3HNy4rxYc)
+
 ## 案例
 
 - [我的个人博客](https://pengzhanbo.cn/)

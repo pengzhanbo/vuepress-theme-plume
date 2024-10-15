@@ -59,7 +59,7 @@
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
     "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib -w",
     "tsup": "tsup --config tsup.config.ts",
-    "tsup:watch": "tsup --config tsup.config.ts --watch"
+    "tsup:watch": "tsup --config tsup.config.ts --watch -- -c -s"
   },
   "peerDependencies": {
     "@iconify/json": "^2",

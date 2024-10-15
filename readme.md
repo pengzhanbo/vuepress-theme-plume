@@ -62,6 +62,8 @@ QQ 交流群：[792882761](https://qm.qq.com/q/O3HNy4rxYc)
 
 感谢所有的贡献者！
 
+![GitHub contributors](https://img.shields.io/github/contributors/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&logo=contributorcovenant)
+
 [![contributors](https://contrib.rocks/image?repo=pengzhanbo/vuepress-theme-plume)](https://github.com/pengzhanbo/vuepress-theme-plume/graphs/contributors)
 
 ## License

@@ -2,7 +2,6 @@ export * from './extendsBundlerOptions.js'
 export * from './resolveAlias.js'
 export * from './resolveLocaleOptions.js'
 export * from './resolveNotesOptions.js'
-export * from './resolvePageHead.js'
 
 export * from './resolveProvideData.js'
 export * from './resolveSearchOptions.js'

@@ -2,7 +2,7 @@ import type { Page, Theme } from 'vuepress/core'
 import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
 import { sleep } from '@pengzhanbo/utils'
 import { generateAutoFrontmatter, initAutoFrontmatter, watchAutoFrontmatter } from './autoFrontmatter/index.js'
-import { extendsBundlerOptions, resolveAlias, resolvePageHead, resolveProvideData, resolveThemeOptions, templateBuildRenderer } from './config/index.js'
+import { extendsBundlerOptions, resolveAlias, resolveProvideData, resolveThemeOptions, templateBuildRenderer } from './config/index.js'
 import { getThemeConfig, initConfigLoader, waitForConfigLoaded, watchConfigFile } from './loadConfig/index.js'
 import { getPlugins } from './plugins/index.js'
 import { prepareData, watchPrepare } from './prepare/index.js'
@@ -37,7 +37,8 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
 
       extendsBundlerOptions,
 
-      templateBuildRenderer,
+      templateBuildRenderer: (template, context) =>
+        templateBuildRenderer(template, context, getThemeConfig().localeOptions),
 
       extendsMarkdown: async (_, app) => {
         const { autoFrontmatter, localeOptions } = await waitForConfigLoaded()
@@ -53,7 +54,6 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
       extendsPage: async (page) => {
         const { localeOptions } = getThemeConfig()
         extendsPageData(page as Page<PlumeThemePageData>, localeOptions)
-        resolvePageHead(page, localeOptions)
       },
 
       onInitialized: async (app) => {

@@ -85,8 +85,8 @@ const coverStyles = computed(() => {
 </script>
 
 <template>
-  <div class="vp-blog-post-item" :class="{ 'has-cover': cover, [coverLayout]: cover }">
-    <div v-if="cover" class="post-cover" :class="{ compact: coverCompact }" :style="coverStyles">
+  <div class="vp-blog-post-item" data-allow-mismatch :class="{ 'has-cover': cover, [coverLayout]: cover }">
+    <div v-if="cover" class="post-cover" data-allow-mismatch :class="{ compact: coverCompact }" :style="coverStyles">
       <img :src="cover.url" :alt="post.title" loading="lazy">
     </div>
     <div class="blog-post-item-content">
@@ -140,6 +140,13 @@ const coverStyles = computed(() => {
   gap: 20px;
 }
 
+@media (max-width: 419px) {
+  .vp-blog-post-item.has-cover:where(.left, .right) {
+    display: block;
+    gap: unset;
+  }
+}
+
 .vp-blog-post-item.has-cover.right {
   flex-direction: row-reverse;
 }
@@ -160,7 +167,6 @@ const coverStyles = computed(() => {
 }
 
 .vp-blog-post-item.has-cover.top .post-cover {
-  /* width: calc(100% + 32px); */
   margin: -16px -16px 16px;
   border-radius: 0;
 }

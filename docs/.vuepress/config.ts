@@ -33,6 +33,7 @@ export default defineUserConfig({
   },
 
   bundler: viteBundler(),
+  shouldPrefetch: false,
 
   theme,
 }) as UserConfig

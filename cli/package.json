@@ -33,9 +33,9 @@
     "@clack/prompts": "^0.7.0",
     "@pengzhanbo/utils": "^1.1.2",
     "cac": "^6.7.14",
-    "execa": "^9.4.0",
+    "execa": "^9.4.1",
     "handlebars": "^4.7.8",
-    "picocolors": "^1.1.0"
+    "picocolors": "^1.1.1"
   },
   "plume-deps": {
     "vuepress": "2.0.0-rc.18",

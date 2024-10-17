@@ -12,10 +12,10 @@
     "vuepress": "2.0.0-rc.18"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.260",
+    "@iconify/json": "^2.2.261",
     "@simonwep/pickr": "^1.9.1",
     "@vuepress/bundler-vite": "2.0.0-rc.18",
-    "chart.js": "^4.4.4",
+    "chart.js": "^4.4.5",
     "echarts": "^5.5.1",
     "flowchart.ts": "^3.0.1",
     "http-server": "^14.1.1",

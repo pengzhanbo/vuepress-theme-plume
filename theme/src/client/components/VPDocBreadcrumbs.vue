@@ -15,7 +15,7 @@ interface Breadcrumb {
   current?: boolean
 }
 
-const { page } = useData<'post'>()
+const { page, theme } = useData<'post'>()
 const { isBlogPost } = useBlogPageData()
 const { home, blog, categories } = useInternalLink()
 const sidebar = useSidebarData()
@@ -32,7 +32,10 @@ const breadcrumbList = computed<Breadcrumb[]>(() => {
   const list: Breadcrumb[] = [{ text: home.value.text, link: home.value.link }]
 
   if (isBlogPost.value) {
-    list.push({ text: blog.value.text, link: blog.value.link })
+    const blogConf = theme.value.blog || {}
+    if (blogConf.postList ?? true)
+      list.push({ text: blog.value.text, link: blog.value.link })
+
     const categoryList = page.value.categoryList ?? []
     for (const category of categoryList) {
       list.push({

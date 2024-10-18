@@ -1,81 +1,81 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`codeTabsPlugin > should work with default 1`] = `
-"<CodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><span>tab-1</span></template><template #title1="{ value, isActive }"><span>tab-2</span></template><template #title2="{ value, isActive }"><span>tab-3</span></template><template #tab0="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const a = 1
-</code></pre></div></code></pre>
-</template><template #tab1="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const b = 2
-</code></pre></div></code></pre>
-</template><template #tab2="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const c = 3
-</code></pre></div></code></pre>
-</template></CodeTabs><CodeTabs id="11" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' :active="1"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm i
-</code></pre></div></code></pre>
-</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm i
-</code></pre></div></code></pre>
-</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn
-</code></pre></div></code></pre>
-</template></CodeTabs><CodeTabs id="22" :data='[{"id":"a.ts"},{"id":"a.js"}]' tab-id="pm"><template #title0="{ value, isActive }"><VPIcon name="vscode-icons:file-type-typescript"/><span>a.ts</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-js"/><span>a.js</span></template><template #tab0="{ value, isActive }"><pre><code class="language-ts"><div class="language-ts"><pre><code>const a = 1
-</code></pre></div></code></pre>
-</template><template #tab1="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const a = 1
-</code></pre></div></code></pre>
-</template></CodeTabs>"
+"<CodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><span>tab-1</span></template><template #title1="{ value, isActive }"><span>tab-2</span></template><template #title2="{ value, isActive }"><span>tab-3</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+</code></pre>
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>const b = 2
+</code></pre>
+</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>const c = 3
+</code></pre>
+</div></template></CodeTabs><CodeTabs id="11" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' :active="1"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>npm i
+</code></pre>
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>pnpm i
+</code></pre>
+</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>yarn
+</code></pre>
+</div></template></CodeTabs><CodeTabs id="22" :data='[{"id":"a.ts"},{"id":"a.js"}]' tab-id="pm"><template #title0="{ value, isActive }"><VPIcon name="vscode-icons:file-type-typescript"/><span>a.ts</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-js"/><span>a.js</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+</code></pre>
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+</code></pre>
+</div></template></CodeTabs>"
 `;
 
 exports[`codeTabsPlugin > should work with no icon 1`] = `
-"<CodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><span>tab-1</span></template><template #title1="{ value, isActive }"><span>tab-2</span></template><template #title2="{ value, isActive }"><span>tab-3</span></template><template #tab0="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const a = 1
-</code></pre></div></code></pre>
-</template><template #tab1="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const b = 2
-</code></pre></div></code></pre>
-</template><template #tab2="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const c = 3
-</code></pre></div></code></pre>
-</template></CodeTabs><CodeTabs id="11" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' :active="1"><template #title0="{ value, isActive }"><span>npm</span></template><template #title1="{ value, isActive }"><span>pnpm</span></template><template #title2="{ value, isActive }"><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm i
-</code></pre></div></code></pre>
-</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm i
-</code></pre></div></code></pre>
-</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn
-</code></pre></div></code></pre>
-</template></CodeTabs><CodeTabs id="22" :data='[{"id":"a.ts"},{"id":"a.js"}]' tab-id="pm"><template #title0="{ value, isActive }"><span>a.ts</span></template><template #title1="{ value, isActive }"><span>a.js</span></template><template #tab0="{ value, isActive }"><pre><code class="language-ts"><div class="language-ts"><pre><code>const a = 1
-</code></pre></div></code></pre>
-</template><template #tab1="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const a = 1
-</code></pre></div></code></pre>
-</template></CodeTabs>"
+"<CodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><span>tab-1</span></template><template #title1="{ value, isActive }"><span>tab-2</span></template><template #title2="{ value, isActive }"><span>tab-3</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+</code></pre>
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>const b = 2
+</code></pre>
+</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>const c = 3
+</code></pre>
+</div></template></CodeTabs><CodeTabs id="11" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' :active="1"><template #title0="{ value, isActive }"><span>npm</span></template><template #title1="{ value, isActive }"><span>pnpm</span></template><template #title2="{ value, isActive }"><span>yarn</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>npm i
+</code></pre>
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>pnpm i
+</code></pre>
+</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>yarn
+</code></pre>
+</div></template></CodeTabs><CodeTabs id="22" :data='[{"id":"a.ts"},{"id":"a.js"}]' tab-id="pm"><template #title0="{ value, isActive }"><span>a.ts</span></template><template #title1="{ value, isActive }"><span>a.js</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+</code></pre>
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+</code></pre>
+</div></template></CodeTabs>"
 `;
 
 exports[`codeTabsPlugin > should work with options: \`{ named: false, extensions: false }\` 1`] = `
-"<CodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><span>tab-1</span></template><template #title1="{ value, isActive }"><span>tab-2</span></template><template #title2="{ value, isActive }"><span>tab-3</span></template><template #tab0="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const a = 1
-</code></pre></div></code></pre>
-</template><template #tab1="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const b = 2
-</code></pre></div></code></pre>
-</template><template #tab2="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const c = 3
-</code></pre></div></code></pre>
-</template></CodeTabs><CodeTabs id="11" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' :active="1"><template #title0="{ value, isActive }"><span>npm</span></template><template #title1="{ value, isActive }"><span>pnpm</span></template><template #title2="{ value, isActive }"><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm i
-</code></pre></div></code></pre>
-</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm i
-</code></pre></div></code></pre>
-</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn
-</code></pre></div></code></pre>
-</template></CodeTabs><CodeTabs id="22" :data='[{"id":"a.ts"},{"id":"a.js"}]' tab-id="pm"><template #title0="{ value, isActive }"><span>a.ts</span></template><template #title1="{ value, isActive }"><span>a.js</span></template><template #tab0="{ value, isActive }"><pre><code class="language-ts"><div class="language-ts"><pre><code>const a = 1
-</code></pre></div></code></pre>
-</template><template #tab1="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const a = 1
-</code></pre></div></code></pre>
-</template></CodeTabs>"
+"<CodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><span>tab-1</span></template><template #title1="{ value, isActive }"><span>tab-2</span></template><template #title2="{ value, isActive }"><span>tab-3</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+</code></pre>
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>const b = 2
+</code></pre>
+</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>const c = 3
+</code></pre>
+</div></template></CodeTabs><CodeTabs id="11" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' :active="1"><template #title0="{ value, isActive }"><span>npm</span></template><template #title1="{ value, isActive }"><span>pnpm</span></template><template #title2="{ value, isActive }"><span>yarn</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>npm i
+</code></pre>
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>pnpm i
+</code></pre>
+</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>yarn
+</code></pre>
+</div></template></CodeTabs><CodeTabs id="22" :data='[{"id":"a.ts"},{"id":"a.js"}]' tab-id="pm"><template #title0="{ value, isActive }"><span>a.ts</span></template><template #title1="{ value, isActive }"><span>a.js</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+</code></pre>
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+</code></pre>
+</div></template></CodeTabs>"
 `;
 
 exports[`codeTabsPlugin > should work with options: { named: [npm,pnpm,yarn], extensions: [.js,.ts] } 1`] = `
-"<CodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><span>tab-1</span></template><template #title1="{ value, isActive }"><span>tab-2</span></template><template #title2="{ value, isActive }"><span>tab-3</span></template><template #tab0="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const a = 1
-</code></pre></div></code></pre>
-</template><template #tab1="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const b = 2
-</code></pre></div></code></pre>
-</template><template #tab2="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const c = 3
-</code></pre></div></code></pre>
-</template></CodeTabs><CodeTabs id="11" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' :active="1"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>npm i
-</code></pre></div></code></pre>
-</template><template #tab1="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>pnpm i
-</code></pre></div></code></pre>
-</template><template #tab2="{ value, isActive }"><pre><code class="language-sh"><div class="language-sh"><pre><code>yarn
-</code></pre></div></code></pre>
-</template></CodeTabs><CodeTabs id="22" :data='[{"id":"a.ts"},{"id":"a.js"}]' tab-id="pm"><template #title0="{ value, isActive }"><VPIcon name="vscode-icons:file-type-typescript"/><span>a.ts</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-js"/><span>a.js</span></template><template #tab0="{ value, isActive }"><pre><code class="language-ts"><div class="language-ts"><pre><code>const a = 1
-</code></pre></div></code></pre>
-</template><template #tab1="{ value, isActive }"><pre><code class="language-js"><div class="language-js"><pre><code>const a = 1
-</code></pre></div></code></pre>
-</template></CodeTabs>"
+"<CodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><span>tab-1</span></template><template #title1="{ value, isActive }"><span>tab-2</span></template><template #title2="{ value, isActive }"><span>tab-3</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+</code></pre>
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>const b = 2
+</code></pre>
+</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>const c = 3
+</code></pre>
+</div></template></CodeTabs><CodeTabs id="11" :data='[{"id":"npm"},{"id":"pnpm"},{"id":"yarn"}]' :active="1"><template #title0="{ value, isActive }"><VPIcon name="logos:npm-icon"/><span>npm</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-light-pnpm"/><span>pnpm</span></template><template #title2="{ value, isActive }"><VPIcon name="vscode-icons:file-type-yarn"/><span>yarn</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>npm i
+</code></pre>
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>pnpm i
+</code></pre>
+</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>yarn
+</code></pre>
+</div></template></CodeTabs><CodeTabs id="22" :data='[{"id":"a.ts"},{"id":"a.js"}]' tab-id="pm"><template #title0="{ value, isActive }"><VPIcon name="vscode-icons:file-type-typescript"/><span>a.ts</span></template><template #title1="{ value, isActive }"><VPIcon name="vscode-icons:file-type-js"/><span>a.js</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+</code></pre>
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+</code></pre>
+</div></template></CodeTabs>"
 `;

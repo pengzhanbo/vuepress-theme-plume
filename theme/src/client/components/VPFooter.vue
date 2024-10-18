@@ -24,18 +24,20 @@ onMounted(() => {
     :class="{ 'has-sidebar': hasSidebar }"
     vp-footer
   >
-    <div class="container">
-      <p
-        v-if="theme.footer.message"
-        class="message"
-        v-html="theme.footer.message"
-      />
-      <p
-        v-if="theme.footer.copyright"
-        class="copyright"
-        v-html="theme.footer.copyright"
-      />
-    </div>
+    <slot name="footer-content">
+      <div class="container">
+        <p
+          v-if="theme.footer.message"
+          class="message"
+          v-html="theme.footer.message"
+        />
+        <p
+          v-if="theme.footer.copyright"
+          class="copyright"
+          v-html="theme.footer.copyright"
+        />
+      </div>
+    </slot>
   </footer>
 </template>
 

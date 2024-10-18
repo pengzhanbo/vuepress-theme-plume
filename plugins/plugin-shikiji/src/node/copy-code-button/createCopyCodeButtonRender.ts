@@ -29,12 +29,11 @@ export function createCopyCodeButtonRender(app: App, options?: boolean | CopyCod
       = userLocales[path] || copyCodeButtonLocales[path === '/' ? root : path]
   })
 
-  return (filePathRelative) => {
-    const relativePath = ensureLeadingSlash(filePathRelative ?? '')
+  return (filePathRelative: string) => {
+    const relativePath = ensureLeadingSlash(filePathRelative)
     const localePath = resolveLocalePath(locales, relativePath)
+    const { title, copied } = locales[localePath]
 
-    const { title, copied } = locales[localePath] ?? {}
-
-    return `<button class="${className}" title="${title ?? 'Copy code'}" data-copied="${copied ?? 'Copied'}"></button>`
+    return `<button class="${className}" title="${title}" data-copied="${copied}"></button>`
   }
 }

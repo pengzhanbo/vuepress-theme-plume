@@ -5,9 +5,10 @@ import { codeTabs } from '../src/node/container/codeTabs.js'
 
 function createMarkdown(options?: CodeTabsOptions) {
   const md = new MarkdownIt()
-  md.options.highlight = (str, lang) => {
-    return `<div class="language-${lang}"><pre><code>${str}</code></pre></div>`
-  }
+  md.options.highlight = str => `<pre><code>${str}</code></pre>`
+  const fence = md.renderer.rules.fence!
+  md.renderer.rules.fence = (...args) => `<div class="language-lang">${fence(...args)}</div>`
+
   md.use(codeTabs, options)
   return md
 }

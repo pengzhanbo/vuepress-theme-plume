@@ -29,6 +29,7 @@ export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
     addViteSsrNoExternal(bundlerOptions, app, ['swiper'])
   }
 
+  const silenceDeprecations = ['mixed-decls', 'legacy-js-api', 'import', 'global-builtin']
   chainWebpack(bundlerOptions, app, (config) => {
     config.module
       .rule('scss')
@@ -36,7 +37,7 @@ export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
       .tap((options: any) => ({
         ...options,
         sassOptions: {
-          silenceDeprecations: ['mixed-decls', 'legacy-js-api'],
+          silenceDeprecations,
           ...options.sassOptions,
         },
       }))
@@ -46,10 +47,10 @@ export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
     css: {
       preprocessorOptions: {
         sass: {
-          silenceDeprecations: ['mixed-decls', 'legacy-js-api'],
+          silenceDeprecations,
         },
         scss: {
-          silenceDeprecations: ['mixed-decls', 'legacy-js-api'],
+          silenceDeprecations,
         },
       },
     },

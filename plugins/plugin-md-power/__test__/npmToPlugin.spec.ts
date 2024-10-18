@@ -5,9 +5,14 @@ import { codeTabs } from '../src/node/container/codeTabs.js'
 import { npmToPlugins, parseLine } from '../src/node/container/npmTo.js'
 
 function createMarkdown(options?: NpmToOptions) {
-  return new MarkdownIt({
-    highlight: (str, lang) => `<div class="language-${lang}"><pre><code>${str}</code></pre></div>`,
-  }).use(codeTabs).use(npmToPlugins, options)
+  const md = new MarkdownIt()
+  md.options.highlight = str => `<pre><code>${str}</code></pre>`
+  const fence = md.renderer.rules.fence!
+  md.renderer.rules.fence = (...args) => `<div class="language-lang">${fence(...args)}</div>`
+
+  md.use(codeTabs).use(npmToPlugins, options)
+
+  return md
 }
 
 const FENCE = '```'

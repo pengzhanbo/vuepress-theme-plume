@@ -1,0 +1,456 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`collapsedLinesPlugin > should not work with false 1`] = `
+"<div class="language-"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+</code></pre>
+</div><div class="language-"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+</div><div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:15;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:10;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language-"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+</div>"
+`;
+
+exports[`collapsedLinesPlugin > should not work with includes styles 1`] = `
+"<div class="language-" style="color: red;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+</code></pre>
+</div><div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:15;color: red;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:15;color: red;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:10;color: red;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language-" style="color: red;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+</div>"
+`;
+
+exports[`collapsedLinesPlugin > should work with default 1`] = `
+"<div class="language-"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+</code></pre>
+</div><div class="language-"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+</div><div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:15;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:10;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language-"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+</div>"
+`;
+
+exports[`collapsedLinesPlugin > should work with number 1`] = `
+"<div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:10;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:10;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:15;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:10;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language-"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+</div>"
+`;
+
+exports[`collapsedLinesPlugin > should work with true 1`] = `
+"<div class="language-"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+</code></pre>
+</div><div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:15;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:15;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language- has-collapsed collapsed" style="--vp-collapsed-lines:10;"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+</code></pre>
+<div class="collapsed-lines"></div></div><div class="language-"><pre><code>const line1 = 1
+const line2 = 2
+const line3 = 3
+const line4 = 4
+const line5 = 5
+const line6 = 6
+const line7 = 7
+const line8 = 8
+const line9 = 9
+const line10 = 10
+const line11 = 11
+const line12 = 12
+const line13 = 13
+const line14 = 14
+const line15 = 15
+const line16 = 16
+const line17 = 17
+const line18 = 18
+const line19 = 19
+const line20 = 20
+</code></pre>
+</div>"
+`;

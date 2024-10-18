@@ -59,7 +59,7 @@
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
     "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib -w",
     "tsup": "tsup --config tsup.config.ts",
-    "tsup:watch": "tsup --config tsup.config.ts --watch -- -c -s"
+    "tsup:watch": "tsup --config tsup.config.ts --watch -- -c"
   },
   "peerDependencies": {
     "@iconify/json": "^2",
@@ -130,7 +130,7 @@
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.260",
+    "@iconify/json": "^2.2.261",
     "swiper": "^11.1.14",
     "vue-router": "^4.4.5"
   }

@@ -1,3 +1,20 @@
+# [1.0.0-rc.111](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.110...v1.0.0-rc.111) (2024-10-18)
+
+
+### Bug Fixes
+
+* **theme:** blog cover hydration mismatch in mobile ([#290](https://github.com/pengzhanbo/vuepress-theme-plume/issues/290)) ([cb9d7f1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cb9d7f18ede7a0cd4bbc45c5729dd4c8588dc4b7))
+* **theme:** incorrect breadcrumb when blog home ([#292](https://github.com/pengzhanbo/vuepress-theme-plume/issues/292)) ([38e6009](https://github.com/pengzhanbo/vuepress-theme-plume/commit/38e6009fda79000f1be351aab4ed1b6dc0f6f2bc))
+* **theme:** silent sass `[@import](https://github.com/import)` deprecation warning, close [#291](https://github.com/pengzhanbo/vuepress-theme-plume/issues/291) ([#293](https://github.com/pengzhanbo/vuepress-theme-plume/issues/293)) ([f4cc452](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f4cc4529b8e388969d9e4fcb7b142146cfd03545))
+
+
+### Performance Improvements
+
+* **theme:** improve build template ([#289](https://github.com/pengzhanbo/vuepress-theme-plume/issues/289)) ([1b5d9da](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1b5d9daaa950d3eeabd8c75c8a0625189820a789))
+* update deps to latest ([#295](https://github.com/pengzhanbo/vuepress-theme-plume/issues/295)) ([f006c41](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f006c41be81ddd41b364eb35a051b0d24a870467))
+
+
+
 # [1.0.0-rc.110](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.109...v1.0.0-rc.110) (2024-10-15)
 
 

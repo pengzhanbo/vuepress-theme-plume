@@ -171,7 +171,11 @@ useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
         </VPContent>
       </slot>
       <VPBackToTop />
-      <VPFooter />
+      <VPFooter>
+        <template #footer-content>
+          <slot name="footer-content" />
+        </template>
+      </VPFooter>
 
       <slot name="layout-bottom" />
     </template>

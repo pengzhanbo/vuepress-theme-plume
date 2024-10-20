@@ -60,7 +60,11 @@ const { theme } = useData()
         </div>
       </slot>
     </div>
-    <VPFooter />
+    <VPFooter>
+      <template #footer-content>
+        <slot name="footer-content" />
+      </template>
+    </VPFooter>
     <slot name="layout-bottom" />
   </div>
 </template>

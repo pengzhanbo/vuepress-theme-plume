@@ -12,6 +12,7 @@ export interface PlumeThemePageData extends GitPluginPageData {
   categoryList?: PageCategoryData[]
   filePathRelative: string | null
   readingTime?: ReadingTime
+  bulletin?: boolean
 }
 
 export interface PageCategoryData {

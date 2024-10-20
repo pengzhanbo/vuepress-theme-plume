@@ -4,6 +4,7 @@ import type { PlumeThemeBlog } from '../blog.js'
 import type { NavItem } from '../navbar.js'
 import type { NotesOptions } from '../notes.js'
 import type { SidebarMulti } from '../sidebar.js'
+import type { BulletinOptions } from './bulletin.js'
 
 export interface PlumeThemeLocaleData extends LocaleData {
   /**
@@ -108,6 +109,11 @@ export interface PlumeThemeLocaleData extends LocaleData {
    * @default true
    */
   aside?: boolean | 'left'
+
+  /**
+   * 配置公告
+   */
+  bulletin?: true | BulletinOptions
 
   /**
    * 是否启用过渡动画效果
@@ -254,7 +260,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
   createTime?: boolean | 'only-blog'
 
   /**
-   * 页脚配置。
+   * 页脚配置
    */
   footer?:
     | false

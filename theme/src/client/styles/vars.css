@@ -345,6 +345,7 @@
   --vp-z-index-sidebar: 60;
   --vp-z-index-back-to-top: 70;
   --vp-z-index-overlay: 80;
+  --vp-z-index-bulletin: 90;
 }
 
 /**
@@ -572,14 +573,8 @@
 }
 
 /**
- * Component: Carbon Ads
- * -------------------------------------------------------------------------- */
-
-/**
   * Component: Local Search
   * -------------------------------------------------------------------------- */
-
-/** Component: Search **/
 :root {
   --search-bg-color: var(--vp-c-default-soft);
   --search-text-color: var(--vp-c-text-2);
@@ -589,6 +584,21 @@
   --search-result-width: 20rem;
   --search-border-color: transparent;
   --search-accent-color: var(--vp-c-brand-1);
+}
+
+/**
+ * Component: Bulletin
+ * -------------------------------------------------------------------------- */
+:root {
+  --vp-bulletin-bg-color: var(--vp-c-bg);
+  --vp-bulletin-text-color: var(--vp-c-text-1);
+  --vp-bulletin-title-color: var(--vp-c-text-1);
+  --vp-bulletin-font-size: 16px;
+  --vp-bulletin-title-font-size: 18px;
+  --vp-bulletin-line-height: 24px;
+  --vp-bulletin-border-width: 2px;
+  --vp-bulletin-border: conic-gradient(var(--vp-c-important-3), var(--vp-c-danger-3), var(--vp-c-success-3), var(--vp-c-important-3));
+  --vp-bulletin-width: 320px;
 }
 
 /* md enhance code-tabs */

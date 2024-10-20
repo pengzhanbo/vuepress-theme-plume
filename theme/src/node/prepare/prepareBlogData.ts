@@ -43,8 +43,8 @@ export async function preparedBlogData(
     blog.include ?? ['**/*.md'],
     [
       '**/{README,readme,index}.md',
-      '.vuepress/',
-      'node_modules/',
+      '**/.vuepress/**',
+      '**/node_modules/**',
       ...(blog.exclude ?? []),
       ...notesDirList,
     ].filter(Boolean),

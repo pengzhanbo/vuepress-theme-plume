@@ -24,7 +24,7 @@ const headers = useHeaders()
 const { isPageDecrypted } = useEncrypt()
 
 const hasComments = computed(() => {
-  return !!resolveComponent('CommentService') && page.value.frontmatter.comments !== false && isPageDecrypted.value
+  return resolveComponent('CommentService') !== 'CommentService' && page.value.frontmatter.comments !== false && isPageDecrypted.value
 })
 
 const enableAside = computed(() => {

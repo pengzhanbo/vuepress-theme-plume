@@ -53,6 +53,7 @@ export type PlumeThemeData = PlumeThemeLocaleData & {
   locales?: LocaleConfig<Omit<PlumeThemeLocaleData, 'blog' | 'article'>>
 }
 
+export * from './bulletin.js'
 export * from './encrypt.js'
 export * from './locale.js'
 export * from './plugins.js'

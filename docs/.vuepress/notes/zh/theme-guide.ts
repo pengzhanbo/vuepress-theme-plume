@@ -109,6 +109,7 @@ export const themeGuide = defineNoteConfig({
         '代码复制',
         '内容搜索',
         '评论',
+        '公告板',
         '加密',
         '文章水印',
         '友情链接页',

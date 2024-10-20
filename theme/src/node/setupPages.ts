@@ -1,5 +1,6 @@
 import type { App, Page } from 'vuepress/core'
 import type {
+  BulletinOptions,
   PageCategoryData,
   PlumeThemeLocaleOptions,
   PlumeThemePageData,
@@ -8,6 +9,7 @@ import {
   ensureLeadingSlash,
   getRootLang,
   getRootLangPath,
+  isPlainObject,
 } from '@vuepress/helper'
 import { createPage } from 'vuepress/core'
 import { resolveNotesLinkList } from './config/index.js'
@@ -121,6 +123,7 @@ export function extendsPageData(
   }
 
   autoCategory(page, localeOptions)
+  enableBulletin(page, localeOptions)
 }
 
 let uuid = 10000
@@ -164,4 +167,30 @@ export function autoCategory(
       }
     })
   page.data.categoryList = categoryList
+}
+
+function enableBulletin(
+  page: Page<PlumeThemePageData>,
+  options: PlumeThemeLocaleOptions,
+) {
+  let enablePage: BulletinOptions['enablePage']
+  if (isPlainObject(options.bulletin) && options.bulletin.enablePage) {
+    enablePage = options.bulletin.enablePage
+  }
+  else if (options.locales) {
+    for (const locale of Object.keys(options.locales)) {
+      if (isPlainObject(options.locales[locale].bulletin) && options.locales[locale].bulletin.enablePage) {
+        enablePage = options.locales[locale].bulletin.enablePage
+        break
+      }
+    }
+  }
+
+  if (typeof enablePage === 'function') {
+    page.data.bulletin = enablePage(page) ?? true
+  }
+
+  else {
+    page.data.bulletin = enablePage ?? !!options.bulletin
+  }
 }

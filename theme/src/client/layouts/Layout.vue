@@ -2,6 +2,7 @@
 import VPNav from '@theme/Nav/VPNav.vue'
 import VPBackdrop from '@theme/VPBackdrop.vue'
 import VPBackToTop from '@theme/VPBackToTop.vue'
+import VPBulletin from '@theme/VPBulletin.vue'
 import VPContent from '@theme/VPContent.vue'
 import VPEncryptGlobal from '@theme/VPEncryptGlobal.vue'
 import VPFooter from '@theme/VPFooter.vue'
@@ -177,6 +178,12 @@ useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
     </template>
   </div>
   <Content v-else vp-container vp-content />
+
+  <VPBulletin>
+    <template #bulletin-content>
+      <slot name="bulletin-content" />
+    </template>
+  </VPBulletin>
 </template>
 
 <style scoped>

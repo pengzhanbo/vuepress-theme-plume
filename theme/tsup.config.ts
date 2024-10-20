@@ -23,9 +23,9 @@ const featuresComposables = fs.readdirSync(
 
 export default defineConfig((cli) => {
   const DEFAULT_OPTIONS: Options = {
-    dts: !cli.watch,
     sourcemap: false,
     splitting: false,
+    watch: cli.watch,
     format: 'esm',
     silent: !!cli.watch,
   }

@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import type { NavItem, PlumeThemeLocaleOptions } from '../../shared/index.js'
-import { entries, getRootLangPath } from '@vuepress/helper'
+import { entries, getRootLangPath, isPlainObject } from '@vuepress/helper'
 import { PRESET_LOCALES } from '../locales/index.js'
 import { withBase } from '../utils/index.js'
 
@@ -22,6 +22,11 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
     themeData.profile ??= options.avatar
   }
 
+  if (isPlainObject(themeData.bulletin)) {
+    const { enablePage: _, ...opt } = themeData.bulletin
+    themeData.bulletin = opt
+  }
+
   entries(options.locales || {}).forEach(([locale, opt]) => {
     themeData.locales![locale] = {}
     entries(opt).forEach(([key, value]) => {
@@ -32,6 +37,11 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
     // TODO: 正式版中需删除此代码
     if (opt.avatar) {
       themeData.locales![locale].profile ??= opt.avatar
+    }
+
+    if (isPlainObject(themeData.locales![locale].bulletin)) {
+      const { enablePage: _, ...opt } = themeData.locales![locale].bulletin
+      themeData.locales![locale].bulletin = opt
     }
   })
 

@@ -1,3 +1,23 @@
+# [1.0.0-rc.112](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.111...v1.0.0-rc.112) (2024-10-21)
+
+
+### Bug Fixes
+
+* **theme:** incorrect home hero background styles, close [#304](https://github.com/pengzhanbo/vuepress-theme-plume/issues/304) ([#305](https://github.com/pengzhanbo/vuepress-theme-plume/issues/305)) ([ef78eea](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ef78eeab7aa5bcdd55f476edbc3b0029b8f131fb))
+
+
+### Features
+
+* **theme:** add `footer-content` slot ([#299](https://github.com/pengzhanbo/vuepress-theme-plume/issues/299)) ([3f7fa41](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3f7fa4133ce4cec47fa5f5e58cc714368ab4c283))
+* **theme:** add support for bulletin, close [#280](https://github.com/pengzhanbo/vuepress-theme-plume/issues/280) ([#298](https://github.com/pengzhanbo/vuepress-theme-plume/issues/298)) ([7c779b2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7c779b237fa19c3071ef054104469805704455f7))
+
+
+### Performance Improvements
+
+* update deps to latest ([561d8eb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/561d8eb3c0ee565697a30a452d7b1b0e49f62457))
+
+
+
 # [1.0.0-rc.111](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.110...v1.0.0-rc.111) (2024-10-18)
 
 

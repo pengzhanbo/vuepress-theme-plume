@@ -137,7 +137,7 @@ const { bulletin, showBulletin, enableBulletin, close } = useBulletinControl()
   margin-bottom: 0 !important;
 }
 
-.vp-bulletin:where(.preset) .content :where(p,ul,ol,) {
+.vp-bulletin:where(.preset) .content :where(p,ul,ol) {
   margin: 8px 0;
 }
 

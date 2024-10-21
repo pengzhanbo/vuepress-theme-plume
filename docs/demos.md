@@ -13,9 +13,9 @@ docs:
     name: VuePress Plume
     desc: 一个简约的，功能丰富的 vuepress 文档&博客 主题。
     logo: /plume.png
-    url: https://plume.pengzhanbo.cn
+    url: https://theme-plume.vuejs.press
     repo: https://github.com/pengzhanbo/vuepress-theme-plume
-    preview: /images/demos/plume.png
+    preview: /images/demos/plume.jpg
 blog:
   -
     name: 鹏展博
@@ -23,7 +23,7 @@ blog:
     logo: https://pengzhanbo.cn/images/blogger-fav.png
     url: https://pengzhanbo.cn/
     repo: https://github.com/pengzhanbo/pengzhanbo.cn
-    preview: /images/demos/pengzhanbo.png
+    preview: /images/demos/pengzhanbo.jpg
   -
     name: 二猫子
     desc: 老老实实的二猫子，从不胡说八道
@@ -37,7 +37,7 @@ blog:
     logo: https://www.dingyuqi.com/icon/icon.ico
     url: https://dingyuqi.com
     repo: https://github.com/dingyuqi
-    preview: /images/demos/dingyuqi.com.png
+    preview: /images/demos/dingyuqi.com.jpg
 ---
 
 :::important

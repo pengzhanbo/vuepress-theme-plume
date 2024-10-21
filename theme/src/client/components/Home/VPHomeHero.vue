@@ -90,7 +90,7 @@ useHomeHeroTintPlate(
   height: calc(100vh - var(--vp-nav-height) - var(--vp-footer-height, 0px));
 }
 
-.vp-home-hero-bg {
+.home-hero-bg {
   position: absolute;
   z-index: 0;
   width: 100%;

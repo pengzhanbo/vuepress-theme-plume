@@ -78,8 +78,11 @@ defineProps<{
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
   transform: scale(1);
+
+  object-fit: cover;
 }
 
 .demo-item:hover .demo-img img {

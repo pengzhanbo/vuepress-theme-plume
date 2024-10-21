@@ -31,6 +31,13 @@ blog:
     url: https://www.ermao.net/
     repo: https://github.com/ermaozi
     preview: /images/demos/ermao.net.png
+  -
+    name: Keep It Simple
+    desc: 如无必要, 勿增实体
+    logo: https://www.dingyuqi.com/icon/icon.ico
+    url: https://dingyuqi.com
+    repo: https://github.com/dingyuqi
+    preview: /images/demos/dingyuqi.com.png
 ---
 
 :::important

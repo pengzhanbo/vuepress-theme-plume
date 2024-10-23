@@ -26,7 +26,7 @@ export interface BulletinOptions {
   /**
    * 公告持续时间
    *
-   * @default 'session'
+   * @default 'always'
    *
    * - `'session'` 表示在会话周期内关闭公告后不再显示，在新的会话周期重新显示，刷新页面不会重新显示
    * - `'always'` 表示总是显示，关闭公告后刷新页面会重新显示

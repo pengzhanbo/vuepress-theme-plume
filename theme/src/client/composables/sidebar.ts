@@ -27,18 +27,24 @@ import { useEncrypt } from './encrypt.js'
 export type SidebarData = Record<string, Sidebar>
 
 export type SidebarDataRef = Ref<SidebarData>
-export type AutoDirSidebarRef = Ref<SidebarItem[]>
+export type AutoDirSidebarRef = Ref<SidebarItem[] | {
+  link: string
+  items: SidebarItem[]
+}>
+export type AutoHomeDataRef = Ref<Record<string, string>>
 
-const { __auto__, ...items } = sidebarRaw
+const { __auto__, __home__, ...items } = sidebarRaw
 
 const sidebarData: SidebarDataRef = ref(items)
 const autoDirSidebar: AutoDirSidebarRef = ref(__auto__)
+const autoHomeData: AutoHomeDataRef = ref(__home__)
 
 if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {
   __VUE_HMR_RUNTIME__.updateSidebar = (data: SidebarData) => {
-    const { __auto__, ...items } = data
+    const { __auto__, __home__, ...items } = data
     sidebarData.value = items
     autoDirSidebar.value = __auto__ as SidebarItem[]
+    autoHomeData.value = __home__ as Record<string, string>
   }
 }
 
@@ -127,7 +133,10 @@ export function getSidebar(routePath: string, routeLocal: string): ResolvedSideb
   return []
 }
 
-function resolveSidebarItems(sidebarItems: (string | SidebarItem)[], _prefix = ''): ResolvedSidebarItem[] {
+function resolveSidebarItems(
+  sidebarItems: (string | SidebarItem)[],
+  _prefix = '',
+): ResolvedSidebarItem[] {
   const resolved: ResolvedSidebarItem[] = []
   sidebarItems.forEach((item) => {
     if (isString(item)) {
@@ -144,6 +153,11 @@ function resolveSidebarItems(sidebarItems: (string | SidebarItem)[], _prefix = '
       const nextPrefix = normalizePrefix(_prefix, prefix || dir)
       if (items === 'auto') {
         navLink.items = autoDirSidebar.value[nextPrefix]
+        if (!navLink.link && autoHomeData.value[nextPrefix]) {
+          navLink.link = normalizeLink(autoHomeData.value[nextPrefix])
+          const nav = resolveNavLink(navLink.link)
+          navLink.icon = nav.icon
+        }
       }
       else {
         navLink.items = items?.length

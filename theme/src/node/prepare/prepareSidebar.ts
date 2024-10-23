@@ -18,7 +18,10 @@ import { logger, normalizeLink, resolveContent, writeTemp } from '../utils/index
 export async function prepareSidebar(app: App, localeOptions: PlumeThemeLocaleOptions) {
   const start = performance.now()
   const sidebar = getAllSidebar(localeOptions)
-  sidebar.__auto__ = getSidebarData(app, sidebar)
+
+  const { resolved, autoHome } = getSidebarData(app, sidebar)
+  sidebar.__auto__ = resolved
+  sidebar.__home__ = autoHome as any
   await writeTemp(app, 'internal/sidebar.js', resolveContent(app, { name: 'sidebar', content: sidebar }))
 
   if (app.env.isDebug) {
@@ -29,7 +32,7 @@ export async function prepareSidebar(app: App, localeOptions: PlumeThemeLocaleOp
 function getSidebarData(
   app: App,
   locales: Record<string, Sidebar>,
-): Sidebar {
+): { resolved: Sidebar, autoHome: Record<string, string> } {
   const autoDirList: string[] = []
   const resolved: Sidebar = {}
 
@@ -67,11 +70,16 @@ function getSidebarData(
     }
   })
 
+  const autoHome: Record<string, string> = {}
   autoDirList.forEach((localePath) => {
-    resolved[localePath] = getAutoDirSidebar(app, localePath)
+    const { link, sidebar } = getAutoDirSidebar(app, localePath)
+    resolved[localePath] = sidebar
+    if (link) {
+      autoHome[localePath] = link
+    }
   })
 
-  return resolved
+  return { resolved, autoHome }
 }
 
 const MD_RE = /\.md$/
@@ -85,7 +93,7 @@ function resolveTitle(dirname: string) {
 function getAutoDirSidebar(
   app: App,
   localePath: string,
-): SidebarItem[] {
+): { link: string, sidebar: SidebarItem[] } {
   const locale = removeLeadingSlash(localePath)
   let pages = (app.pages as Page<PlumeThemePageData>[])
     .filter(page => page.data.filePathRelative?.startsWith(locale))
@@ -110,7 +118,8 @@ function getAutoDirSidebar(
 
   const RE_INDEX = ['index.md', 'README.md', 'readme.md']
 
-  const result: ResolvedSidebarItem[] = []
+  const sidebar: ResolvedSidebarItem[] = []
+  let rootLink = ''
   for (const page of pages) {
     const { data, title, path, frontmatter } = page
     const paths = (data.filePathRelative || '')
@@ -119,7 +128,7 @@ function getAutoDirSidebar(
 
     let index = 0
     let dir: string
-    let items = result
+    let items = sidebar
     let parent: ResolvedSidebarItem | undefined
     // eslint-disable-next-line no-cond-assign
     while ((dir = paths[index])) {
@@ -131,13 +140,15 @@ function getAutoDirSidebar(
         if (!isHome) {
           items.push(current)
         }
-        else if (!parent) {
-          items.unshift(current)
-        }
       }
       if (dir.endsWith('.md')) {
-        if (isHome && parent) {
-          parent.link = path
+        if (isHome) {
+          if (parent) {
+            parent.link = path
+          }
+          else {
+            rootLink = path
+          }
         }
         else {
           current.link = path
@@ -155,7 +166,7 @@ function getAutoDirSidebar(
       index++
     }
   }
-  return result
+  return { link: rootLink, sidebar }
 }
 
 function findAutoDirList(sidebar: (string | SidebarItem)[], prefix = ''): string[] {

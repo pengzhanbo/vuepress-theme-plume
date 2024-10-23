@@ -36,7 +36,8 @@ declare module '@internal/sidebar' {
   import type { Sidebar, SidebarItem } from '../shared/index.js'
 
   const sidebar: {
-    __auto__: SidebarItem[]
+    __auto__: SidebarItem[] | { link: string, items: SidebarItem[] }
+    __home__: Record<string, string>
     [key: string]: Sidebar
   }
   export {

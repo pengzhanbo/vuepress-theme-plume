@@ -25,6 +25,8 @@ readingTime: false
 
 ## 打赏记录
 
+<div class="sponsor-list">
+
 | 昵称 | 日期       | 金额  | 备注                                       |
 | ---- | ---------- | ----- | ------------------------------------------ |
 | **锋 | 2024-04-18 | 6.88  | 支持下作者，加油！                         |
@@ -35,3 +37,16 @@ readingTime: false
 | *鼠  | 2024-09-27 | 10.00 | 加油，很心怡这个项目，打算用了             |
 | D*y  | 2024-10-15 | 10.00 | 看得出来作者真的花了很多的心思，文档和代码都维护得非常好，问题也定位得很及时。也很喜欢这种克制的界面设计。 |
 | G*n  | 2024-10-21 | 15.00 | 项目非常好，感谢作者一直回复我的问题，加油 |
+| *健  | 2024-10-22 | 8.88  | 感觉不错                                   |
+
+</div>
+
+<style>
+@media (min-width: 768px) {
+  .vp-doc .sponsor-list table tr td:nth-child(1),
+  .vp-doc .sponsor-list table tr td:nth-child(2),
+  .vp-doc .sponsor-list table tr td:nth-child(3) {
+    white-space: nowrap;
+  }
+}
+</style>

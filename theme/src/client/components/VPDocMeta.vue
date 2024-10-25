@@ -16,7 +16,7 @@ const createTime = computed(() => {
   if (!show || (show === 'only-blog' && !isBlogPost.value))
     return ''
   if (matter.value.createTime)
-    return matter.value.createTime.split(' ')[0].replace(/\//g, '-')
+    return matter.value.createTime.split(/\s|T/)[0].replace(/\//g, '-')
 
   return ''
 })

@@ -1,3 +1,20 @@
+# [1.0.0-rc.113](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.112...v1.0.0-rc.113) (2024-10-25)
+
+
+### Bug Fixes
+
+* **theme:** incorrect auto generate sidebar, close [#307](https://github.com/pengzhanbo/vuepress-theme-plume/issues/307) ([#308](https://github.com/pengzhanbo/vuepress-theme-plume/issues/308)) ([b98f46a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b98f46a9145d915437f34b8617ac77afcab08113))
+* **theme:** incorrect layer for `LinkCard` icon, close [#310](https://github.com/pengzhanbo/vuepress-theme-plume/issues/310) ([#313](https://github.com/pengzhanbo/vuepress-theme-plume/issues/313)) ([4237310](https://github.com/pengzhanbo/vuepress-theme-plume/commit/423731056047c59c183f95ac5c545af684ec6039))
+* **theme:** incorrect time format, close [#312](https://github.com/pengzhanbo/vuepress-theme-plume/issues/312) ([#314](https://github.com/pengzhanbo/vuepress-theme-plume/issues/314)) ([97b59bf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/97b59bfc76f050ef39a80a68f8176189021406f6))
+
+
+### Performance Improvements
+
+* **theme:** improve breadcrumb seo ([3390b49](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3390b49c1f4a4ddbc0f22a3870ff9f691f897fe1))
+* update deps to latest ([ea898f4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ea898f4fc09aa8b9e232a71f2ead39ed097f3389))
+
+
+
 # [1.0.0-rc.112](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.111...v1.0.0-rc.112) (2024-10-21)
 
 

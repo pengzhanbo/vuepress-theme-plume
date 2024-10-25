@@ -44,7 +44,7 @@ blog:
     logo: http://tuyongtao.top/fettjob/imgs/head.jpg
     url: http://tuyongtao.top/fettjob/
     repo: https://github.com/tuyongtao-T
-    preview: /images/demos/tuyongtao.top.png
+    preview: /images/demos/tuyongtao.top.jpeg
 ---
 
 :::important

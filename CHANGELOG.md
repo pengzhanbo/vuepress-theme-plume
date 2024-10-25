@@ -1,89 +1,68 @@
 # [1.0.0-rc.113](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.112...v1.0.0-rc.113) (2024-10-25)
 
-
 ### Bug Fixes
 
-* **theme:** incorrect auto generate sidebar, close [#307](https://github.com/pengzhanbo/vuepress-theme-plume/issues/307) ([#308](https://github.com/pengzhanbo/vuepress-theme-plume/issues/308)) ([b98f46a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b98f46a9145d915437f34b8617ac77afcab08113))
-* **theme:** incorrect layer for `LinkCard` icon, close [#310](https://github.com/pengzhanbo/vuepress-theme-plume/issues/310) ([#313](https://github.com/pengzhanbo/vuepress-theme-plume/issues/313)) ([4237310](https://github.com/pengzhanbo/vuepress-theme-plume/commit/423731056047c59c183f95ac5c545af684ec6039))
-* **theme:** incorrect time format, close [#312](https://github.com/pengzhanbo/vuepress-theme-plume/issues/312) ([#314](https://github.com/pengzhanbo/vuepress-theme-plume/issues/314)) ([97b59bf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/97b59bfc76f050ef39a80a68f8176189021406f6))
-
+- **theme:** incorrect auto generate sidebar, close [#307](https://github.com/pengzhanbo/vuepress-theme-plume/issues/307) ([#308](https://github.com/pengzhanbo/vuepress-theme-plume/issues/308)) ([b98f46a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b98f46a9145d915437f34b8617ac77afcab08113))
+- **theme:** incorrect layer for `LinkCard` icon, close [#310](https://github.com/pengzhanbo/vuepress-theme-plume/issues/310) ([#313](https://github.com/pengzhanbo/vuepress-theme-plume/issues/313)) ([4237310](https://github.com/pengzhanbo/vuepress-theme-plume/commit/423731056047c59c183f95ac5c545af684ec6039))
+- **theme:** incorrect date format, close [#312](https://github.com/pengzhanbo/vuepress-theme-plume/issues/312) ([#314](https://github.com/pengzhanbo/vuepress-theme-plume/issues/314)) ([97b59bf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/97b59bfc76f050ef39a80a68f8176189021406f6))
 
 ### Performance Improvements
 
-* **theme:** improve breadcrumb seo ([3390b49](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3390b49c1f4a4ddbc0f22a3870ff9f691f897fe1))
-* update deps to latest ([ea898f4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ea898f4fc09aa8b9e232a71f2ead39ed097f3389))
-
-
+- **theme:** improve breadcrumb seo ([3390b49](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3390b49c1f4a4ddbc0f22a3870ff9f691f897fe1))
+- update deps to latest ([ea898f4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ea898f4fc09aa8b9e232a71f2ead39ed097f3389))
 
 # [1.0.0-rc.112](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.111...v1.0.0-rc.112) (2024-10-21)
 
-
 ### Bug Fixes
 
-* **theme:** incorrect home hero background styles, close [#304](https://github.com/pengzhanbo/vuepress-theme-plume/issues/304) ([#305](https://github.com/pengzhanbo/vuepress-theme-plume/issues/305)) ([ef78eea](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ef78eeab7aa5bcdd55f476edbc3b0029b8f131fb))
-
+- **theme:** incorrect home hero background styles, close [#304](https://github.com/pengzhanbo/vuepress-theme-plume/issues/304) ([#305](https://github.com/pengzhanbo/vuepress-theme-plume/issues/305)) ([ef78eea](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ef78eeab7aa5bcdd55f476edbc3b0029b8f131fb))
 
 ### Features
 
-* **theme:** add `footer-content` slot ([#299](https://github.com/pengzhanbo/vuepress-theme-plume/issues/299)) ([3f7fa41](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3f7fa4133ce4cec47fa5f5e58cc714368ab4c283))
-* **theme:** add support for bulletin, close [#280](https://github.com/pengzhanbo/vuepress-theme-plume/issues/280) ([#298](https://github.com/pengzhanbo/vuepress-theme-plume/issues/298)) ([7c779b2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7c779b237fa19c3071ef054104469805704455f7))
-
+- **theme:** add `footer-content` slot ([#299](https://github.com/pengzhanbo/vuepress-theme-plume/issues/299)) ([3f7fa41](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3f7fa4133ce4cec47fa5f5e58cc714368ab4c283))
+- **theme:** add support for bulletin, close [#280](https://github.com/pengzhanbo/vuepress-theme-plume/issues/280) ([#298](https://github.com/pengzhanbo/vuepress-theme-plume/issues/298)) ([7c779b2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7c779b237fa19c3071ef054104469805704455f7))
 
 ### Performance Improvements
 
-* update deps to latest ([561d8eb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/561d8eb3c0ee565697a30a452d7b1b0e49f62457))
-
-
+- update deps to latest ([561d8eb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/561d8eb3c0ee565697a30a452d7b1b0e49f62457))
 
 # [1.0.0-rc.111](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.110...v1.0.0-rc.111) (2024-10-18)
 
-
 ### Bug Fixes
 
-* **theme:** blog cover hydration mismatch in mobile ([#290](https://github.com/pengzhanbo/vuepress-theme-plume/issues/290)) ([cb9d7f1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cb9d7f18ede7a0cd4bbc45c5729dd4c8588dc4b7))
-* **theme:** incorrect breadcrumb when blog home ([#292](https://github.com/pengzhanbo/vuepress-theme-plume/issues/292)) ([38e6009](https://github.com/pengzhanbo/vuepress-theme-plume/commit/38e6009fda79000f1be351aab4ed1b6dc0f6f2bc))
-* **theme:** silent sass `[@import](https://github.com/import)` deprecation warning, close [#291](https://github.com/pengzhanbo/vuepress-theme-plume/issues/291) ([#293](https://github.com/pengzhanbo/vuepress-theme-plume/issues/293)) ([f4cc452](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f4cc4529b8e388969d9e4fcb7b142146cfd03545))
-
+- **theme:** blog cover hydration mismatch in mobile ([#290](https://github.com/pengzhanbo/vuepress-theme-plume/issues/290)) ([cb9d7f1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cb9d7f18ede7a0cd4bbc45c5729dd4c8588dc4b7))
+- **theme:** incorrect breadcrumb when blog home ([#292](https://github.com/pengzhanbo/vuepress-theme-plume/issues/292)) ([38e6009](https://github.com/pengzhanbo/vuepress-theme-plume/commit/38e6009fda79000f1be351aab4ed1b6dc0f6f2bc))
+- **theme:** silent sass `[@import](https://github.com/import)` deprecation warning, close [#291](https://github.com/pengzhanbo/vuepress-theme-plume/issues/291) ([#293](https://github.com/pengzhanbo/vuepress-theme-plume/issues/293)) ([f4cc452](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f4cc4529b8e388969d9e4fcb7b142146cfd03545))
 
 ### Performance Improvements
 
-* **theme:** improve build template ([#289](https://github.com/pengzhanbo/vuepress-theme-plume/issues/289)) ([1b5d9da](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1b5d9daaa950d3eeabd8c75c8a0625189820a789))
-* update deps to latest ([#295](https://github.com/pengzhanbo/vuepress-theme-plume/issues/295)) ([f006c41](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f006c41be81ddd41b364eb35a051b0d24a870467))
-
-
+- **theme:** improve build template ([#289](https://github.com/pengzhanbo/vuepress-theme-plume/issues/289)) ([1b5d9da](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1b5d9daaa950d3eeabd8c75c8a0625189820a789))
+- update deps to latest ([#295](https://github.com/pengzhanbo/vuepress-theme-plume/issues/295)) ([f006c41](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f006c41be81ddd41b364eb35a051b0d24a870467))
 
 # [1.0.0-rc.110](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.109...v1.0.0-rc.110) (2024-10-15)
 
-
 ### Bug Fixes
 
-* **theme:** incorrect prepared with tags's temp files, close [#286](https://github.com/pengzhanbo/vuepress-theme-plume/issues/286) ([#287](https://github.com/pengzhanbo/vuepress-theme-plume/issues/287)) ([8e06a44](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8e06a4450fd8dc0b841df5b0f8524fb175a0a365))
-
-
+- **theme:** incorrect prepared with tags's temp files, close [#286](https://github.com/pengzhanbo/vuepress-theme-plume/issues/286) ([#287](https://github.com/pengzhanbo/vuepress-theme-plume/issues/287)) ([8e06a44](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8e06a4450fd8dc0b841df5b0f8524fb175a0a365))
 
 # [1.0.0-rc.109](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.108...v1.0.0-rc.109) (2024-10-14)
 
-
 ### Bug Fixes
 
-* **theme:** fix grammar mistakes in site footer ([#274](https://github.com/pengzhanbo/vuepress-theme-plume/issues/274)) ([c4025cb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c4025cb489807c2720b0d2df8e24b31a58505820))
-* **theme:** incorrect page layout when `navbar: false`, close [#270](https://github.com/pengzhanbo/vuepress-theme-plume/issues/270) ([#273](https://github.com/pengzhanbo/vuepress-theme-plume/issues/273)) ([c32dd3e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c32dd3eb930f045f354a317218d5c0ed5b072879))
-
+- **theme:** fix grammar mistakes in site footer ([#274](https://github.com/pengzhanbo/vuepress-theme-plume/issues/274)) ([c4025cb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c4025cb489807c2720b0d2df8e24b31a58505820))
+- **theme:** incorrect page layout when `navbar: false`, close [#270](https://github.com/pengzhanbo/vuepress-theme-plume/issues/270) ([#273](https://github.com/pengzhanbo/vuepress-theme-plume/issues/273)) ([c32dd3e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c32dd3eb930f045f354a317218d5c0ed5b072879))
 
 ### Features
 
-* **theme:** add support for blog category expand depth, close [#271](https://github.com/pengzhanbo/vuepress-theme-plume/issues/271) ([#275](https://github.com/pengzhanbo/vuepress-theme-plume/issues/275)) ([c6907df](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c6907dfe74f79f0d11318f37f57cfc80d3bbacce))
-* **theme:** add support for tags color themes ([#284](https://github.com/pengzhanbo/vuepress-theme-plume/issues/284)) ([a759502](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a7595025b74ce1c9b9e831fbb440d2ca6debcf8c))
-* **theme:** add support for whether to display `createTime`, close [#279](https://github.com/pengzhanbo/vuepress-theme-plume/issues/279) ([#282](https://github.com/pengzhanbo/vuepress-theme-plume/issues/282)) ([aa638a8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/aa638a864f170b8fe6c76fc2e288c5cd6c420309))
-* **theme:** improve loading config file ([#276](https://github.com/pengzhanbo/vuepress-theme-plume/issues/276)) ([b09122e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b09122e1b31d3ed766d6c6aa046f46de62d3bbba))
-* **theme:** reduce the line spacing in the category list ([#281](https://github.com/pengzhanbo/vuepress-theme-plume/issues/281)) ([e347537](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e347537986bebd63c39db31452769d84989d95bd))
-
+- **theme:** add support for blog category expand depth, close [#271](https://github.com/pengzhanbo/vuepress-theme-plume/issues/271) ([#275](https://github.com/pengzhanbo/vuepress-theme-plume/issues/275)) ([c6907df](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c6907dfe74f79f0d11318f37f57cfc80d3bbacce))
+- **theme:** add support for tags color themes ([#284](https://github.com/pengzhanbo/vuepress-theme-plume/issues/284)) ([a759502](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a7595025b74ce1c9b9e831fbb440d2ca6debcf8c))
+- **theme:** add support for whether to display `createTime`, close [#279](https://github.com/pengzhanbo/vuepress-theme-plume/issues/279) ([#282](https://github.com/pengzhanbo/vuepress-theme-plume/issues/282)) ([aa638a8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/aa638a864f170b8fe6c76fc2e288c5cd6c420309))
+- **theme:** improve loading config file ([#276](https://github.com/pengzhanbo/vuepress-theme-plume/issues/276)) ([b09122e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b09122e1b31d3ed766d6c6aa046f46de62d3bbba))
+- **theme:** reduce the line spacing in the category list ([#281](https://github.com/pengzhanbo/vuepress-theme-plume/issues/281)) ([e347537](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e347537986bebd63c39db31452769d84989d95bd))
 
 ### Performance Improvements
 
-* update deps to latest ([b8f4326](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b8f43267ad1b13f7133a9bf40aae5d084f49ba77))
-
-
+- update deps to latest ([b8f4326](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b8f43267ad1b13f7133a9bf40aae5d084f49ba77))
 
 # [1.0.0-rc.108](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.107...v1.0.0-rc.108) (2024-10-12)
 

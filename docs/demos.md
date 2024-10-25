@@ -38,6 +38,13 @@ blog:
     url: https://dingyuqi.com
     repo: https://github.com/dingyuqi
     preview: /images/demos/dingyuqi.com.jpg
+  -
+    name: 屠永涛
+    desc: 大脑中走得越远，现实中走得越稳！
+    logo: http://tuyongtao.top/fettjob/imgs/head.jpg
+    url: http://tuyongtao.top/fettjob/
+    repo: https://github.com/tuyongtao-T
+    preview: http://tuyongtao.top/fettjob/images/demo.png
 ---
 
 :::important

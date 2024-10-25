@@ -14,7 +14,7 @@ const { theme } = useData()
 const colors = useTagColors()
 const { categories: categoriesLink, tags: tagsLink } = useInternalLink()
 
-const createTime = computed(() => props.post.createTime?.split(' ')[0].replace(/\//g, '-'))
+const createTime = computed(() => props.post.createTime?.split(/\s|T/)[0].replace(/\//g, '-'))
 const categoryList = computed(() => props.post.categoryList ?? [])
 
 const sticky = computed(() => {

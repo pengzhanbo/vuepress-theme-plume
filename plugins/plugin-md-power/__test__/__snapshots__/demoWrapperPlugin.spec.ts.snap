@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`demoWrapperPlugin > should work 1`] = `
+"<div class="demo-wrapper">
+  <div class="demo-head">
+    <div class="demo-ctrl"><i></i><i></i><i></i></div>
+    
+  </div>
+  <div class="demo-container" >
+<p>content</p>
+</div></div><div class="demo-wrapper has-title">
+  <div class="demo-head">
+    <div class="demo-ctrl"><i></i><i></i><i></i></div>
+    <h4 class="demo-title"><p>test</p></h4>
+  </div>
+  <div class="demo-container" >
+<p>content</p>
+</div></div><div class="demo-wrapper only-img no-padding has-height">
+  <div class="demo-head">
+    <div class="demo-ctrl"><i></i><i></i><i></i></div>
+    
+  </div>
+  <div class="demo-container" style="--demo-container-height: 100px;">
+<p><a href="/img.jpg">xxx</a></p>
+</div></div><div class="demo-wrapper only-img no-padding has-height">
+  <div class="demo-head">
+    <div class="demo-ctrl"><i></i><i></i><i></i></div>
+    
+  </div>
+  <div class="demo-container" style="--demo-container-height: 100px;">
+<p><a href="/img.jpg">xxx</a></p>
+</div></div>"
+`;

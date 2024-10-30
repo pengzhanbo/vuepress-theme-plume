@@ -3,6 +3,7 @@ import type { MarkdownPowerPluginOptions } from '../shared/index.js'
 import { addViteOptimizeDepsInclude } from '@vuepress/helper'
 import { containerPlugin } from './container/index.js'
 import { embedSyntaxPlugin } from './embed/index.js'
+import { docsTitlePlugin } from './enhance/docsTitle.js'
 import { imageSizePlugin } from './enhance/imageSize.js'
 import { inlineSyntaxPlugin } from './inline/index.js'
 import { prepareConfigFile } from './prepareConfigFile.js'
@@ -21,11 +22,16 @@ export function markdownPowerPlugin(
 
     extendsBundlerOptions(bundlerOptions, app) {
       if (options.repl) {
-        addViteOptimizeDepsInclude(bundlerOptions, app, ['shiki/core', 'shiki/wasm', 'shiki/engine/oniguruma'])
+        addViteOptimizeDepsInclude(
+          bundlerOptions,
+          app,
+          ['shiki/core', 'shiki/wasm', 'shiki/engine/oniguruma'],
+        )
       }
     },
 
     extendsMarkdown: async (md, app) => {
+      docsTitlePlugin(md)
       embedSyntaxPlugin(md, options)
       inlineSyntaxPlugin(md, options)
 

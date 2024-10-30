@@ -1,5 +1,6 @@
 import type { App, PluginConfig } from 'vuepress/core'
 import type { PlumeThemePluginOptions } from '../../shared/index.js'
+import { isPlainObject } from '@vuepress/helper'
 import { cachePlugin } from '@vuepress/plugin-cache'
 import { commentPlugin } from '@vuepress/plugin-comment'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
@@ -21,8 +22,6 @@ import { type MarkdownEnhancePluginOptions, mdEnhancePlugin } from 'vuepress-plu
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
 import { resolveDocsearchOptions, resolveSearchOptions } from '../config/index.js'
 import { deleteAttrs } from '../utils/index.js'
-import { customContainerPlugins } from './containerPlugins.js'
-import { markdownTitlePlugin } from './markdown-title.js'
 
 export interface SetupPluginOptions {
   app: App
@@ -40,12 +39,9 @@ export function getPlugins({
   const isProd = app.env.isBuild
 
   const plugins: PluginConfig = [
-    markdownTitlePlugin(),
     fontsPlugin(),
     contentUpdatePlugin(),
     markdownHintPlugin({ hint: true, alert: true, injectStyles: false }),
-
-    ...customContainerPlugins,
   ]
 
   if (pluginOptions.readingTime !== false) {
@@ -132,7 +128,7 @@ export function getPlugins({
     plugins.push(watermarkPlugin({
       delay: 300,
       enabled: true,
-      ...typeof pluginOptions.watermark === 'object' ? pluginOptions.watermark : {},
+      ...isPlainObject(pluginOptions.watermark) ? pluginOptions.watermark : {},
     }))
   }
 

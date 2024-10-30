@@ -33,8 +33,6 @@ export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}) {
     return getFileIcon(filename, type)
   }
 
-  const validate = (info: string): boolean => info.trim().startsWith(type)
-
   const render = (tokens: Token[], idx: number): string => {
     const { attrs } = resolveAttrs<FileTreeAttrs>(tokens[idx].info.slice(type.length - 1))
 
@@ -81,7 +79,7 @@ export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}) {
     }
   }
 
-  md.use(container, type, { validate, render })
+  md.use(container, type, { render })
 }
 
 export function resolveTreeNodeInfo(

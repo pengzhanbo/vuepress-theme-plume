@@ -1,0 +1,69 @@
+.vp-doc .vp-steps {
+  margin: 16px 0;
+}
+
+.vp-doc .vp-steps > ol,
+.vp-doc .vp-steps > ul {
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+.vp-doc .vp-steps > ol > li,
+.vp-doc .vp-steps > ul > li {
+  position: relative;
+  min-height: 22px;
+  padding-bottom: 1px;
+  padding-left: 44px;
+}
+
+.vp-doc .vp-steps > ol > li::before,
+.vp-doc .vp-steps > ul > li::before {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--vp-c-text-1);
+  text-align: center;
+  content: counter(list-item);
+  background-color: var(--vp-c-bg-soft);
+  border: solid 1px var(--vp-c-divider);
+  border-radius: 100%;
+  transition: var(--vp-t-color);
+  transition-property: color, background-color, border-color;
+}
+
+.vp-doc .vp-steps > ol > li:not(:last-of-type)::after,
+.vp-doc .vp-steps > ul > li:not(:last-of-type)::after {
+  position: absolute;
+  inset-inline-start: 14px;
+  top: 34px;
+  bottom: 5px;
+  width: 1px;
+  content: "";
+  background-color: var(--vp-c-divider);
+  transition: background-color var(--vp-t-color);
+}
+
+.vp-doc .vp-steps > ol > li > :first-child,
+.vp-doc .vp-steps > ul > li > :first-child {
+  margin-top: 0;
+}
+
+.vp-doc .vp-steps > ol > li > :first-child:where(h1,h2,h3,h4,h5,h6),
+.vp-doc .vp-steps > ul > li > :first-child:where(h1,h2,h3,h4,h5,h6) {
+  padding-top: 0;
+  border-top: none;
+}
+
+.vp-doc .vp-steps > ol > li > :first-child:where(p) {
+  line-height: 28px;
+}
+
+.vp-doc .vp-steps > ol > li + li,
+.vp-doc .vp-steps > ul > li + li {
+  margin-top: 1px;
+}

@@ -191,7 +191,6 @@ const MANAGERS_CONFIG: CommandConfigs = {
 
 export function npmToPlugins(md: Markdown, options: NpmToOptions = {}): void {
   const type = 'npm-to'
-  const validate = (info: string): boolean => info.trim().startsWith(type)
 
   const opt = isArray(options) ? { tabs: options } : options
   const defaultTabs = opt.tabs?.length ? opt.tabs : DEFAULT_TABS
@@ -214,7 +213,7 @@ export function npmToPlugins(md: Markdown, options: NpmToOptions = {}): void {
     return ''
   }
 
-  md.use(container, type, { validate, render })
+  md.use(container, type, { render })
 }
 
 function resolveNpmTo(lines: string[], info: string, idx: number, tabs: NpmToPackageManager[]): string {

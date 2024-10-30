@@ -361,9 +361,6 @@ importers:
       '@vuepress/plugin-git':
         specifier: 2.0.0-rc.56
         version: 2.0.0-rc.56(vuepress@2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@20.12.10)(jiti@1.21.6)(sass-embedded@1.80.3)(sass@1.80.3)(typescript@5.6.3)(yaml@2.5.1))(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3)))
-      '@vuepress/plugin-markdown-container':
-        specifier: 2.0.0-rc.54
-        version: 2.0.0-rc.54(vuepress@2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@20.12.10)(jiti@1.21.6)(sass-embedded@1.80.3)(sass@1.80.3)(typescript@5.6.3)(yaml@2.5.1))(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3)))
       '@vuepress/plugin-markdown-hint':
         specifier: 2.0.0-rc.56
         version: 2.0.0-rc.56(markdown-it@14.1.0)(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3))(vuepress@2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@20.12.10)(jiti@1.21.6)(sass-embedded@1.80.3)(sass@1.80.3)(typescript@5.6.3)(yaml@2.5.1))(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3)))
@@ -2163,11 +2160,6 @@ packages:
 
   '@vuepress/plugin-git@2.0.0-rc.56':
     resolution: {integrity: sha512-hjIYPYQYC6qK0Zwo5pK4h2CkXcA4LMVx77ErdiVTyLpUOWT7ly0FIspNUiwHUgo4jddzMLFtttW2aEX1Q/2vgg==}
-    peerDependencies:
-      vuepress: 2.0.0-rc.18
-
-  '@vuepress/plugin-markdown-container@2.0.0-rc.54':
-    resolution: {integrity: sha512-00TzBHfBDd6nbZlmVRgWdmLb1MFcCg22FcD39n6gwgcFym9C/oZMDcdPnxsRT+sKPGqtxrlJYxKOXdp3Z8OJCA==}
     peerDependencies:
       vuepress: 2.0.0-rc.18
 
@@ -8190,12 +8182,6 @@ snapshots:
   '@vuepress/plugin-git@2.0.0-rc.56(vuepress@2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@20.12.10)(jiti@1.21.6)(sass-embedded@1.80.3)(sass@1.80.3)(typescript@5.6.3)(yaml@2.5.1))(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3)))':
     dependencies:
       execa: 9.4.1
-      vuepress: 2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@20.12.10)(jiti@1.21.6)(sass-embedded@1.80.3)(sass@1.80.3)(typescript@5.6.3)(yaml@2.5.1))(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3))
-
-  '@vuepress/plugin-markdown-container@2.0.0-rc.54(vuepress@2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@20.12.10)(jiti@1.21.6)(sass-embedded@1.80.3)(sass@1.80.3)(typescript@5.6.3)(yaml@2.5.1))(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3)))':
-    dependencies:
-      '@types/markdown-it': 14.1.2
-      markdown-it-container: 4.0.0
       vuepress: 2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@20.12.10)(jiti@1.21.6)(sass-embedded@1.80.3)(sass@1.80.3)(typescript@5.6.3)(yaml@2.5.1))(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3))
 
   '@vuepress/plugin-markdown-hint@2.0.0-rc.56(markdown-it@14.1.0)(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3))(vuepress@2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@20.12.10)(jiti@1.21.6)(sass-embedded@1.80.3)(sass@1.80.3)(typescript@5.6.3)(yaml@2.5.1))(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3)))':

@@ -103,7 +103,6 @@
     "@vuepress/plugin-comment": "2.0.0-rc.56",
     "@vuepress/plugin-docsearch": "2.0.0-rc.56",
     "@vuepress/plugin-git": "2.0.0-rc.56",
-    "@vuepress/plugin-markdown-container": "2.0.0-rc.54",
     "@vuepress/plugin-markdown-hint": "2.0.0-rc.56",
     "@vuepress/plugin-markdown-image": "2.0.0-rc.56",
     "@vuepress/plugin-markdown-math": "2.0.0-rc.56",

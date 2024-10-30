@@ -4,10 +4,10 @@ import { sleep } from '@pengzhanbo/utils'
 import { generateAutoFrontmatter, initAutoFrontmatter, watchAutoFrontmatter } from './autoFrontmatter/index.js'
 import { extendsBundlerOptions, resolveAlias, resolveProvideData, resolveThemeOptions, templateBuildRenderer } from './config/index.js'
 import { getThemeConfig, initConfigLoader, waitForConfigLoaded, watchConfigFile } from './loadConfig/index.js'
+import { createPages, extendsPageData } from './pages/index.js'
 import { getPlugins } from './plugins/index.js'
 import { prepareData, watchPrepare } from './prepare/index.js'
 import { prepareThemeData } from './prepare/prepareThemeData.js'
-import { extendsPageData, setupPage } from './setupPages.js'
 import { resolve, templates, THEME_NAME } from './utils/index.js'
 
 export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
@@ -52,18 +52,15 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
       },
 
       extendsPage: async (page) => {
-        const { localeOptions } = getThemeConfig()
-        extendsPageData(page as Page<PlumeThemePageData>, localeOptions)
+        extendsPageData(page as Page<PlumeThemePageData>, getThemeConfig().localeOptions)
       },
 
       onInitialized: async (app) => {
-        const { localeOptions } = getThemeConfig()
-        await setupPage(app, localeOptions)
+        await createPages(app, getThemeConfig().localeOptions)
       },
 
       onPrepared: async (app) => {
-        const { localeOptions } = getThemeConfig()
-        await prepareThemeData(app, localeOptions, pluginOptions)
+        await prepareThemeData(app, getThemeConfig().localeOptions, pluginOptions)
         await prepareData(app)
       },
 

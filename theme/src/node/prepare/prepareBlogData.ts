@@ -9,6 +9,7 @@ import type {
 } from '../../shared/index.js'
 import { removeLeadingSlash } from '@vuepress/helper'
 import { createFilter } from 'create-filter'
+import dayjs from 'dayjs'
 import { resolveNotesOptions } from '../config/index.js'
 import { logger, normalizePath, resolveContent, writeTemp } from '../utils/index.js'
 import { isEncryptPage } from './prepareEncrypt.js'
@@ -70,7 +71,7 @@ export async function preparedBlogData(
       categoryList: page.data.categoryList,
       tags,
       sticky: page.frontmatter.sticky,
-      createTime: page.data.frontmatter.createTime! || page.date?.replaceAll('-', '/') || '',
+      createTime: dayjs(new Date(page.data.frontmatter.createTime || page.date)).format('YYYY/MM/DD HH:mm:ss'),
       lang: page.lang,
       excerpt: '',
       cover: page.data.frontmatter.cover,

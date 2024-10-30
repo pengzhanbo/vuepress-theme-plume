@@ -10,7 +10,7 @@ export function useArchives() {
     const archives: { label: string, list: ShortPostItem[] }[] = []
 
     list.value.forEach((item) => {
-      const createTime = item.createTime?.split(' ')[0] || ''
+      const createTime = item.createTime?.split(/\s|T/)[0] || ''
       const year = createTime.split('/')[0]
       let current = archives.find(archive => archive.label === year)
       if (!current) {

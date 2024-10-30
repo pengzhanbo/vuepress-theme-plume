@@ -7,7 +7,7 @@ export interface ContainerOptions {
   after?: (info: string, tokens: Token[], idx: number) => string
 }
 
-export function createContainerPlugin(md: Markdown, type: string, options: ContainerOptions) {
+export function createContainerPlugin(md: Markdown, type: string, options: ContainerOptions = {}) {
   const render = (tokens: Token[], index: number): string => {
     const token = tokens[index]
     const info = token.info.trim().slice(type.length).trim() || ''

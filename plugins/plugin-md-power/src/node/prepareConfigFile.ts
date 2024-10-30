@@ -71,6 +71,8 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
 import { defineClientConfig } from 'vuepress/client'
 ${Array.from(imports.values()).join('\n')}
 
+import '${CLIENT_FOLDER}styles/index.css'
+
 export default defineClientConfig({
   enhance({ router, app }) {
 ${Array.from(enhances.values())

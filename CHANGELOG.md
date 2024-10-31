@@ -1,3 +1,18 @@
+# [1.0.0-rc.114](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.113...v1.0.0-rc.114) (2024-10-31)
+
+
+### Bug Fixes
+
+* **theme:** incorrect date format, close [#317](https://github.com/pengzhanbo/vuepress-theme-plume/issues/317) ([#321](https://github.com/pengzhanbo/vuepress-theme-plume/issues/321)) ([e74130c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e74130c19dd01185301de7cd4828225e2b478bc6))
+
+
+### Performance Improvements
+
+* improve markdown container plugin ([#320](https://github.com/pengzhanbo/vuepress-theme-plume/issues/320)) ([30d7070](https://github.com/pengzhanbo/vuepress-theme-plume/commit/30d707036e73ad70ca47d1477e6392d529d538af))
+* update deps to latest ([436a818](https://github.com/pengzhanbo/vuepress-theme-plume/commit/436a818c2e99bbab45ad14886b57d7c11017c2d2))
+
+
+
 # [1.0.0-rc.113](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.112...v1.0.0-rc.113) (2024-10-25)
 
 ### Bug Fixes

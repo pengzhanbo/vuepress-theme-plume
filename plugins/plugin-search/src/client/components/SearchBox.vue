@@ -233,7 +233,7 @@ onKeyStroke('Enter', (e) => {
   }
 
   if (selectedPackage) {
-    router.go(selectedPackage.id)
+    router.push(selectedPackage.id)
     emit('close')
   }
 })
@@ -285,6 +285,12 @@ function formMarkRegex(terms: Set<string>) {
       .join('|'),
     'gi',
   )
+}
+
+function selectedClick(e: MouseEvent, p: SearchResult & Result) {
+  e.preventDefault()
+  router.push(p.id)
+  emit('close')
 }
 </script>
 
@@ -367,7 +373,7 @@ function formMarkRegex(terms: Set<string>) {
               :aria-label="[...p.titles, p.title].join(' > ')"
               @mouseenter="!disableMouseOver && (selectedIndex = index)"
               @focusin="selectedIndex = index"
-              @click="$emit('close')"
+              @click="selectedClick($event, p)"
             >
               <div>
                 <div class="titles">

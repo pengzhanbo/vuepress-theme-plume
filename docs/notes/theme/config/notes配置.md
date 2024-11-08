@@ -152,3 +152,5 @@ title: 主题介绍
 icon: mdi:tooltip-text-outline
 ---
 ```
+
+完整侧边栏使用说明，请查看 [此文档](../guide/知识笔记.md) 。

@@ -85,6 +85,9 @@ const c = 1
 
 在 主题配置中，启用 `twoslash` 选项。
 
+::: code-tabs
+@tab .vuepress/config.ts
+
 ```ts
 export default defineUserConfig({
   theme: plumeTheme({
@@ -94,6 +97,8 @@ export default defineUserConfig({
   }),
 })
 ```
+
+:::
 
 ### 使用
 

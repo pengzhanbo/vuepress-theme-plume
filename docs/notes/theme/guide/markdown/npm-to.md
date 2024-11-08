@@ -87,6 +87,9 @@ npm install -D vuepress vuepress-theme-plume
 
 该功能默认不启用，您需要在 `theme` 配置中启用它。
 
+::: code-tabs
+@tab .vuepress/config.ts
+
 ```ts
 export default defineUserConfig({
   theme: plumeTheme({
@@ -101,6 +104,8 @@ export default defineUserConfig({
   })
 })
 ```
+
+:::
 
 `npm-to` 支持将 `npm` 命令行转换为 `pnpm / yarn / deno / bun` 的命令行。可以根据需求进行配置 `tabs` 。
 

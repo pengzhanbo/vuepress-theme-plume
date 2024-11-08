@@ -13,6 +13,9 @@ permalink: /config/plugins/markdown-enhance/
 
 默认配置：
 
+::: code-tabs
+@tab .vuepress/config.ts
+
 ```ts
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
@@ -47,6 +50,8 @@ export default defineUserConfig({
   }),
 })
 ```
+
+:::
 
 ## 配置
 

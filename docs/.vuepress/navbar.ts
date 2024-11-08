@@ -1,28 +1,19 @@
-import type { NavItem } from 'vuepress-theme-plume'
+import { defineNavbarConfig } from 'vuepress-theme-plume'
 import { version } from '../../package.json'
 
-export const zhNavbar = [
+export const zhNavbar = defineNavbarConfig([
   {
     text: '指南',
     icon: 'icon-park-outline:guide-board',
-    // link: '/guide/intro/',
     link: '/notes/theme/guide/介绍.md',
     activeMatch: '^/guide/',
   },
   {
     text: '配置',
     icon: 'icon-park-outline:setting-two',
-    // link: '/config/intro/',
     link: '/notes/theme/config/配置说明.md',
     activeMatch: '^/config/',
   },
-  // {
-  //   text: '插件',
-  //   icon: 'clarity:plugin-line',
-  //   // link: '/plugins/',
-  //   link: '/notes/plugins/README.md',
-  //   activeMatch: '^/plugins/',
-  // },
   {
     text: '博客',
     link: '/blog/',
@@ -60,9 +51,9 @@ export const zhNavbar = [
       { text: '参与贡献', link: '/contributing/' },
     ],
   },
-] as NavItem[]
+])
 
-export const enNavbar = [
+export const enNavbar = defineNavbarConfig([
   {
     text: 'Guide',
     icon: 'icon-park-outline:guide-board',
@@ -102,4 +93,4 @@ export const enNavbar = [
       { text: 'Contributing', link: '/contributing/' },
     ],
   },
-] as NavItem[]
+])

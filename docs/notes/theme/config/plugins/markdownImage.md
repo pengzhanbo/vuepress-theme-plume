@@ -14,6 +14,9 @@ permalink: /config/plugins/markdown-image/
 
 插件默认不启用任何功能，你需要手动开启它们。
 
+::: code-tabs
+@tab .vuepress/config.ts
+
 ```ts
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
@@ -38,3 +41,5 @@ export default defineUserConfig({
   }),
 })
 ```
+
+:::

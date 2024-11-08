@@ -64,7 +64,7 @@ export function getPlugins(
     plugins.push(nprogressPlugin())
   }
 
-  if (pluginOptions.git !== false) {
+  if (pluginOptions.git ?? isProd) {
     const excludes = ['home', 'friends', 'page', 'custom', false]
     const changelogOptions = isPlainObject(options.changelog) ? options.changelog : {}
     plugins.push(gitPlugin({

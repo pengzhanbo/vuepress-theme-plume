@@ -11,6 +11,9 @@ permalink: /config/plugins/
 
 所有主题内部使用的插件， 均在 `plugins` 字段中进行配置。
 
+::: code-tabs
+@tab .vuepress/config.ts
+
 ``` js
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
@@ -23,6 +26,8 @@ export default defineUserConfig({
   }),
 })
 ```
+
+:::
 
 :::tip
 您无需重复安装这些内置插件，也无需在 [vuepress配置 > plugins](https://v2.vuepress.vuejs.org/zh/reference/config.html#plugins) 中添加它们。主题已在内部完成了这些工作。

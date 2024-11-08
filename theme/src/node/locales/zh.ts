@@ -46,6 +46,7 @@ export const zhPresetLocale: PresetLocale = {
   tag: '标签',
   archive: '归档',
   category: '分类',
+  archiveTotal: '{count} 篇',
 }
 
 export const zhDocsearchLocale: DocSearchLocaleOptions = {

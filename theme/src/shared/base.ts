@@ -47,6 +47,7 @@ export interface PresetLocale {
   tag: string
   archive: string
   category: string
+  archiveTotal: string
 }
 
 export interface ThemeTransition {

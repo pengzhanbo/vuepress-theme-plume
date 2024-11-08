@@ -18,7 +18,8 @@ const { archives } = useArchives()
       <template v-for="archive in archives" :key="archive.label">
         <div class="archive">
           <h3 class="archive-title">
-            {{ archive.label }}
+            {{ archive.title }}
+            <span class="total">{{ archive.label }}</span>
           </h3>
           <VPShortPostList :post-list="archive.list" />
         </div>
@@ -58,6 +59,10 @@ const { archives } = useArchives()
 }
 
 .archive-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-right: 16px;
   padding-bottom: 12px;
   padding-left: 16px;
   margin: 0 -16px;
@@ -65,6 +70,12 @@ const { archives } = useArchives()
   font-weight: 700;
   border-bottom: solid 1px var(--vp-c-divider);
   transition: border-bottom var(--vp-t-color);
+}
+
+.archive-title .total {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 16px;
 }
 
 @media (min-width: 768px) {
@@ -86,6 +97,7 @@ const { archives } = useArchives()
   }
 
   .archive-title {
+    padding-right: 24px;
     padding-left: 24px;
     margin: 0 -24px;
     border-bottom: solid 1px var(--vp-c-divider);

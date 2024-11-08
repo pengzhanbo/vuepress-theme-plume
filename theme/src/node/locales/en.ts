@@ -34,6 +34,7 @@ export const enPresetLocale: PresetLocale = {
   tag: 'Tags',
   archive: 'Archives',
   category: 'Categories',
+  archiveTotal: '{count} articles',
 }
 
 export const enSearchLocale: Partial<SearchLocaleOptions> = {

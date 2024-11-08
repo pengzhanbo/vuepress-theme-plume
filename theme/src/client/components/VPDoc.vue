@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import VPDocAside from '@theme/VPDocAside.vue'
 import VPDocBreadcrumbs from '@theme/VPDocBreadcrumbs.vue'
+import VPDocChangelog from '@theme/VPDocChangelog.vue'
+import VPDocContributor from '@theme/VPDocContributor.vue'
 import VPDocFooter from '@theme/VPDocFooter.vue'
 import VPDocMeta from '@theme/VPDocMeta.vue'
 import VPEncryptPage from '@theme/VPEncryptPage.vue'
@@ -120,11 +122,14 @@ watch(
               <VPDocBreadcrumbs />
               <VPDocMeta />
               <VPEncryptPage v-if="!isPageDecrypted" />
-              <Content
+              <div
                 v-else class="vp-doc plume-content"
-                :class="[pageName, enabledExternalLinkIcon && 'external-link-icon-enabled']"
-                vp-content
-              />
+                :class="[pageName, enabledExternalLinkIcon && 'external-link-icon-enabled']" vp-content
+              >
+                <Content />
+                <VPDocContributor />
+                <VPDocChangelog />
+              </div>
             </main>
             <VPDocFooter v-if="isPageDecrypted">
               <template #doc-footer-before>

@@ -39,7 +39,7 @@
     "@shikijs/transformers": "^1.22.2",
     "@shikijs/twoslash": "^1.22.2",
     "@types/hast": "^3.0.4",
-    "@vuepress/helper": "2.0.0-rc.57",
+    "@vuepress/helper": "2.0.0-rc.60",
     "@vueuse/core": "^11.2.0",
     "fast-glob": "^3.3.2",
     "floating-vue": "^5.2.2",

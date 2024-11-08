@@ -138,13 +138,6 @@ export interface PlumeThemeLocaleData extends LocaleData {
   selectLanguageName?: string
 
   /**
-   * 是否显示 "编辑此页"
-   *
-   * @default true
-   */
-  editLink?: boolean
-
-  /**
    * "编辑此页" 的文本
    *
    * @default "Edit this page"
@@ -157,30 +150,8 @@ export interface PlumeThemeLocaleData extends LocaleData {
    * @example ':repo/edit/:branch/:path'
    */
   editLinkPattern?: string
-  /**
-   * 文档仓库配置, 用于生成 Edit this page 链接
-   */
-  docsRepo?: string
 
   /**
-   * 文档仓库分支配置，用于生成 `Edit this page` 链接。
-   */
-  docsBranch?: string
-
-  /**
-   * 文档仓库目录配置，用于生成 `Edit this page` 链接。
-   */
-  docsDir?: string
-  /**
-   * 最后更新时间
-   *
-   * @default { text: 'Last Updated', formatOptions: { dateStyle: 'short', timeStyle: 'short' } }
-   */
-  lastUpdated?: false | LastUpdatedOptions
-
-  /**
-   * @deprecated 使用 `lastUpdated.text` 代替.
-   *
    * "最后更新时间" 的文本
    *
    * @default 'Last updated'
@@ -188,13 +159,28 @@ export interface PlumeThemeLocaleData extends LocaleData {
   lastUpdatedText?: string
 
   /**
-   * 是否显示贡献者
-   */
-  contributors?: boolean
-  /**
    * 贡献者的文本
    */
   contributorsText?: string
+
+  /**
+   * 变更历史的文本
+   * @default 'Changelog'
+   */
+  changelogText?: string
+
+  /**
+   * 单次变更记录的时间文本
+   * @default 'On'
+   */
+  changelogOnText?: string
+
+  /**
+   * 查看完整的变更历史的文本
+   *
+   * @default 'View All Changelog'
+   */
+  changelogButtonText?: string
 
   /**
    * 移动设备下的导航栏中 菜单选项的文字。
@@ -350,13 +336,6 @@ export interface PlumeThemeProfile {
 /** ========================== Page Meta ====================== */
 
 export interface LastUpdatedOptions {
-  /**
-   * Set custom last updated text.
-   *
-   * @default 'Last updated'
-   */
-  text?: string
-
   /**
    * Set options for last updated time formatting.
    * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat#using_options

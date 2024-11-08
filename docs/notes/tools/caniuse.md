@@ -6,8 +6,6 @@ createTime: 2024/04/16 12:41:26
 permalink: /tools/caniuse/
 readingTime: false
 editLink: false
-contributors: false
-lastUpdated: false
 ---
 
 ::: info 提示

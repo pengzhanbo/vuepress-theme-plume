@@ -1,5 +1,5 @@
 import type { App, PluginConfig } from 'vuepress/core'
-import type { PlumeThemePluginOptions } from '../../shared/index.js'
+import type { PlumeThemeLocaleOptions, PlumeThemePluginOptions } from '../../shared/index.js'
 import { isPlainObject } from '@vuepress/helper'
 import { cachePlugin } from '@vuepress/plugin-cache'
 import { commentPlugin } from '@vuepress/plugin-comment'
@@ -30,12 +30,15 @@ export interface SetupPluginOptions {
   cache?: false | 'memory' | 'filesystem'
 }
 
-export function getPlugins({
-  app,
-  pluginOptions,
-  hostname,
-  cache,
-}: SetupPluginOptions): PluginConfig {
+export function getPlugins(
+  options: PlumeThemeLocaleOptions,
+  {
+    app,
+    pluginOptions,
+    hostname,
+    cache,
+  }: SetupPluginOptions,
+): PluginConfig {
   const isProd = app.env.isBuild
 
   const plugins: PluginConfig = [
@@ -61,11 +64,26 @@ export function getPlugins({
     plugins.push(nprogressPlugin())
   }
 
-  if (pluginOptions.git ?? isProd) {
+  if (pluginOptions.git !== false) {
+    const excludes = ['home', 'friends', 'page', 'custom', false]
+    const changelogOptions = isPlainObject(options.changelog) ? options.changelog : {}
     plugins.push(gitPlugin({
-      createdTime: true,
-      updatedTime: true,
-      contributors: true,
+      createdTime: false,
+      updatedTime: options.lastUpdated !== false,
+      contributors: isPlainObject(options.contributors) || options.contributors === true
+        ? {
+            avatar: true,
+            ...options.contributors === true ? {} : options.contributors,
+          }
+        : false,
+      changelog: options.changelog && (options.docsRepo || changelogOptions.repoUrl)
+        ? { repoUrl: options.docsRepo, ...changelogOptions }
+        : false,
+      filter(page) {
+        if (page.frontmatter.home || excludes.includes(page.frontmatter.pageLayout as string))
+          return false
+        return true
+      },
     }))
   }
 

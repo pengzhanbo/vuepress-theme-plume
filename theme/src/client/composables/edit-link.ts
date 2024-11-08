@@ -3,15 +3,17 @@ import type {
   NavItemWithLink,
 } from '../../shared/index.js'
 import { computed } from 'vue'
-import { useData } from '../composables/data.js'
 import { resolveEditLink } from '../utils/index.js'
+import { useData } from './data.js'
+import { useThemeData } from './theme-data.js'
 
 export function useEditLink(): ComputedRef<null | NavItemWithLink> {
   const { theme, page, frontmatter } = useData()
+  const themeData = useThemeData()
 
   return computed(() => {
     const showEditLink
-      = frontmatter.value.editLink ?? theme.value.editLink ?? true
+      = frontmatter.value.editLink ?? themeData.value.editLink ?? true
     if (!showEditLink)
       return null
 
@@ -19,8 +21,8 @@ export function useEditLink(): ComputedRef<null | NavItemWithLink> {
       docsRepo,
       docsBranch = 'main',
       docsDir = '',
-      editLinkText,
-    } = theme.value
+    } = themeData.value
+    const { editLinkText } = theme.value
 
     if (!docsRepo)
       return null

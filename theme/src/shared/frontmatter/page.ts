@@ -25,7 +25,12 @@ export interface PlumeThemePageFrontmatter extends PlumeNormalFrontmatter {
   /**
    * 是否显示贡献者
    */
-  contributors?: boolean | string | string[]
+  contributors?: boolean | string[]
+
+  /**
+   * 是否显示变更历史
+   */
+  changelog?: boolean
   /**
    * 上一篇
    */

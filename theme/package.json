@@ -129,7 +129,7 @@
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.266",
+    "@iconify/json": "^2.2.269",
     "swiper": "^11.1.14",
     "vue-router": "^4.4.5"
   }

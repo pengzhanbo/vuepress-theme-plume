@@ -60,8 +60,8 @@
     "markdown-it-container": "^4.0.0",
     "nanoid": "^5.0.8",
     "shiki": "^1.22.2",
-    "tm-grammars": "^1.18.9",
-    "tm-themes": "^1.9.0",
+    "tm-grammars": "^1.19.0",
+    "tm-themes": "^1.9.2",
     "vue": "^3.5.12"
   },
   "devDependencies": {

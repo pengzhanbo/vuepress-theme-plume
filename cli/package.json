@@ -40,8 +40,8 @@
   "plume-deps": {
     "vuepress": "2.0.0-rc.18",
     "vue": "^3.5.12",
-    "sass-embedded": "^1.80.5",
-    "sass-loader": "^16.0.2",
+    "sass-embedded": "^1.80.6",
+    "sass-loader": "^16.0.3",
     "http-server": "^14.1.1",
     "typescript": "^5.6.3"
   }

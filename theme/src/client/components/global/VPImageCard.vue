@@ -38,8 +38,8 @@ const date = computed(() => {
   <div class="vp-image-card">
     <div class="image-container">
       <img :src="image" :alt="title" loading="lazy">
-      <div class="image-info">
-        <h3 class="title">
+      <div v-if="title || author || date || description" class="image-info">
+        <h3 v-if="title" class="title">
           <a v-if="href" :href="href" target="_blank" rel="noopener noreferrer" class="no-icon">{{ title }}</a>
           <span v-else>{{ title }}</span>
         </h3>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import VPDocHeader from '@theme/VPDocHeader.vue'
 import VPLink from '@theme/VPLink.vue'
 import { computed } from 'vue'
 import { usePageLang } from 'vuepress/client'
@@ -21,21 +22,14 @@ const list = computed(() => {
 const hasChangelog = computed(() =>
   list.value.length && (frontmatter.value.changelog ?? !!themeData.value.changelog),
 )
-
-const header = computed(() => {
-  const outline = frontmatter.value.outline ?? theme.value.outline
-  const level = Array.isArray(outline) ? outline[0] : outline === 'deep' ? 2 : outline || 2
-  return `h${level}`
-})
 </script>
 
 <template>
   <div v-if="hasChangelog" class="vp-doc-changelog">
-    <component :is="header" id="doc-changelog" tabindex="-1">
-      <a href="#doc-changelog" class="header-anchor">
-        <span>{{ theme.changelogText || 'Changelog' }}</span>
-      </a>
-    </component>
+    <VPDocHeader anchor="doc-changelog">
+      {{ theme.changelogText || 'Changelog' }}
+    </VPDocHeader>
+
     <details class="hint-container details">
       <summary class="changelog-header">
         <span><span class="vpi-changelog" /><span>{{ lastUpdatedText }}:</span> <span>{{ datetime }}</span></span>
@@ -71,10 +65,6 @@ const header = computed(() => {
 </template>
 
 <style scoped>
-.vp-doc .vp-doc-changelog h2 {
-  border-top: 1px solid var(--vp-c-divider);
-}
-
 .vp-doc-changelog .changelog-header {
   display: block;
 }

@@ -1,27 +1,20 @@
 <script setup lang="ts">
+import VPDocHeader from '@theme/VPDocHeader.vue'
 import VPLink from '@theme/VPLink.vue'
 import { computed } from 'vue'
 import { useContributors, useData } from '../composables/index.js'
 
-const { theme, frontmatter } = useData()
+const { theme } = useData()
 
 const { contributors, mode } = useContributors()
 const hasContributors = computed(() => Boolean(contributors.value.length) && mode.value === 'block')
-
-const header = computed(() => {
-  const outline = frontmatter.value.outline ?? theme.value.outline
-  const level = Array.isArray(outline) ? outline[0] : outline === 'deep' ? 2 : outline || 2
-  return `h${level}`
-})
 </script>
 
 <template>
   <div v-if="hasContributors" class="vp-doc-contributor">
-    <component :is="header" id="doc-contributors" tabindex="-1">
-      <a href="#doc-contributors" class="header-anchor">
-        <span>{{ theme.contributorsText || 'Contributors' }}</span>
-      </a>
-    </component>
+    <VPDocHeader anchor="doc-contributors">
+      {{ theme.contributorsText || 'Contributors' }}
+    </VPDocHeader>
 
     <ul class="contributor-list">
       <li v-for="contributor in contributors" :key="contributor.name + contributor.email" class="contributor">
@@ -35,10 +28,6 @@ const header = computed(() => {
 </template>
 
 <style scoped>
-.vp-doc .vp-doc-contributor h2 {
-  border-top: 1px solid var(--vp-c-divider);
-}
-
 .vp-doc-contributor .contributor-list {
   display: flex;
   flex-wrap: wrap;

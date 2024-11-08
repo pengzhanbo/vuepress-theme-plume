@@ -339,3 +339,8 @@
   color: currentcolor;
   content: "";
 }
+
+.vp-doc a[href*="://"]:has(img:only-child)::after,
+.vp-doc a[target=_blank]:has(img:only-child)::after {
+  display: none;
+}

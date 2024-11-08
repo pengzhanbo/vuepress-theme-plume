@@ -5,8 +5,6 @@ import { enNotes, zhNotes } from './notes/index.js'
 
 export default defineThemeConfig({
   logo: '/plume.png',
-  docsRepo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
-  docsDir: 'docs',
 
   profile: {
     avatar: '/plume.png',

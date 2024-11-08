@@ -16,10 +16,11 @@ export const zhLocale: PlumeThemeLocaleData = {
   contributorsText: '贡献者',
   prevPageLabel: '上一页',
   nextPageLabel: '下一页',
+  lastUpdatedText: '最后更新于',
 
-  lastUpdated: {
-    text: '最后更新于',
-  },
+  changelogText: '变更历史',
+  changelogOnText: '于',
+  changelogButtonText: '查看全部变更历史',
 
   notFound: {
     code: '404',

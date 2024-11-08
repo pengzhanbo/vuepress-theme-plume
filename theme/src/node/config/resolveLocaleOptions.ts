@@ -1,10 +1,10 @@
 import type { App } from 'vuepress'
-import type { PlumeThemeLocaleData, PlumeThemeLocaleOptions } from '../../shared/index.js'
+import type { PlumeThemeData, PlumeThemeLocaleOptions } from '../../shared/index.js'
 import { entries, fromEntries, getLocaleConfig } from '@vuepress/helper'
 import { LOCALE_OPTIONS } from '../locales/index.js'
 import { THEME_NAME } from '../utils/index.js'
 
-const FALLBACK_OPTIONS: PlumeThemeLocaleData = {
+const FALLBACK_OPTIONS: PlumeThemeData = {
   appearance: true,
 
   blog: {
@@ -28,6 +28,8 @@ const FALLBACK_OPTIONS: PlumeThemeLocaleData = {
   // page meta
   editLink: true,
   contributors: true,
+  changelog: false,
+
   prevPage: true,
   nextPage: true,
 

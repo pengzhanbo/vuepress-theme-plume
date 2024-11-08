@@ -11,9 +11,11 @@ export const enLocale: PlumeThemeLocaleData = {
 
   editLinkText: 'Edit this page',
   contributorsText: 'Contributors',
-  lastUpdated: {
-    text: 'Last Updated',
-  },
+  lastUpdatedText: 'Last Updated',
+
+  changelogText: 'Changelog',
+  changelogOnText: 'On',
+  changelogButtonText: 'View All Changelog',
 
   encryptButtonText: 'Confirm',
   encryptPlaceholder: 'Enter password',

@@ -30,6 +30,10 @@ function cleanPageData(page: Page<PlumeThemePageData>) {
   }
   delete page.frontmatter.article
 
+  if (page.headers) {
+    page.data.headers = []
+  }
+
   if (page.frontmatter.friends) {
     page.frontmatter.draft = true
     page.data.type = 'friends'

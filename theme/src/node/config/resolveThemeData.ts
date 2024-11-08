@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import type { NavItem, PlumeThemeLocaleOptions } from '../../shared/index.js'
-import { entries, getRootLangPath, isPlainObject } from '@vuepress/helper'
+import { entries, getRootLangPath, isBoolean, isPlainObject } from '@vuepress/helper'
 import { PRESET_LOCALES } from '../locales/index.js'
 import { withBase } from '../utils/index.js'
 
@@ -21,6 +21,12 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
   if (options.avatar) {
     themeData.profile ??= options.avatar
   }
+
+  options.contributors = isPlainObject(options.contributors)
+    ? { mode: options.contributors.mode || 'inline' }
+    : isBoolean(options.contributors) ? options.contributors : true
+
+  options.changelog = !!options.changelog
 
   if (isPlainObject(themeData.bulletin)) {
     const { enablePage: _, ...opt } = themeData.bulletin

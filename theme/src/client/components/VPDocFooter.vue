@@ -7,21 +7,27 @@ import {
   useEditLink,
   useLastUpdated,
   usePrevNext,
+  useThemeData,
 } from '../composables/index.js'
 
-const { theme, frontmatter } = useData()
+const { theme, frontmatter, page } = useData()
+const themeData = useThemeData()
 const editLink = useEditLink()
 const { datetime: lastUpdated, isoDatetime, lastUpdatedText } = useLastUpdated()
-const contributors = useContributors()
+const { contributors, mode } = useContributors()
 const { prev, next } = usePrevNext()
 
+const hasChangelog = computed(() =>
+  page.value.git?.changelog?.length && (frontmatter.value.changelog ?? !!themeData.value.changelog),
+)
+
 const hasEditLink = computed(() =>
-  Boolean(theme.value.editLink && frontmatter.value.editLink !== false && editLink.value),
+  Boolean(themeData.value.editLink && frontmatter.value.editLink !== false && editLink.value),
 )
 const hasLastUpdated = computed(() =>
-  Boolean(theme.value.lastUpdated && frontmatter.value.lastUpdated !== false && lastUpdated.value),
+  Boolean(themeData.value.lastUpdated !== false && frontmatter.value.lastUpdated !== false && lastUpdated.value) && !hasChangelog.value,
 )
-const hasContributors = computed(() => Boolean(contributors.value.length))
+const hasContributors = computed(() => Boolean(contributors.value.length) && mode.value === 'inline')
 
 const showFooter = computed(() => {
   return hasEditLink.value
@@ -44,7 +50,7 @@ const showFooter = computed(() => {
         </VPLink>
       </div>
 
-      <div v-if="hasLastUpdated" class="last-updated">
+      <div v-if="hasLastUpdated" class="last-updated" aria-label="Last updated">
         <p class="last-updated-text">
           {{ lastUpdatedText }}:
           <time :datetime="isoDatetime" class="last-updated-time">
@@ -54,14 +60,18 @@ const showFooter = computed(() => {
       </div>
     </div>
 
-    <div v-if="hasContributors && contributors?.length" class="contributors">
+    <div
+      v-if="hasContributors && contributors?.length"
+      class="contributors" :class="{ right: hasLastUpdated }"
+      aria-label="Contributors"
+    >
       <span class="contributors-label">
         {{ theme.contributorsText || 'Contributors' }}:
       </span>
       <span class="contributors-info">
-        <template v-for="(contributor, index) in contributors" :key="contributor">
+        <template v-for="(contributor, index) in contributors" :key="contributor.name + index">
           <span class="contributor">
-            {{ contributor }}
+            {{ contributor.name }}
           </span>
           <template v-if="index !== contributors.length - 1">, </template>
         </template>
@@ -155,7 +165,7 @@ const showFooter = computed(() => {
 }
 
 @media (min-width: 640px) {
-  .contributors {
+  .contributors.right {
     text-align: right;
   }
 }

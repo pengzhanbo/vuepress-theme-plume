@@ -8,6 +8,8 @@ prev: false
 next: false
 draft: true
 externalLinkIcon: false
+contributors: false
+changelog: false
 docs:
   -
     name: VuePress Plume

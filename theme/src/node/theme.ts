@@ -33,7 +33,7 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
 
       alias: resolveAlias(),
 
-      plugins: getPlugins({ app, pluginOptions, hostname, cache }),
+      plugins: getPlugins(getThemeConfig().localeOptions, { app, pluginOptions, hostname, cache }),
 
       extendsBundlerOptions,
 

@@ -10,6 +10,8 @@ export const darkModeSymbol: InjectionKey<DarkModeRef> = Symbol(
 )
 
 export function enableTransitions() {
+  if (typeof document === 'undefined')
+    return false
   return 'startViewTransition' in document
     && window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 }

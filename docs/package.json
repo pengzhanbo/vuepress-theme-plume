@@ -12,7 +12,7 @@
     "vuepress": "2.0.0-rc.18"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.269",
+    "@iconify/json": "^2.2.270",
     "@simonwep/pickr": "^1.9.1",
     "@vuepress/bundler-vite": "2.0.0-rc.18",
     "chart.js": "^4.4.6",

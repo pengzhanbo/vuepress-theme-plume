@@ -120,8 +120,8 @@ importers:
   docs:
     dependencies:
       '@iconify/json':
-        specifier: ^2.2.269
-        version: 2.2.269
+        specifier: ^2.2.270
+        version: 2.2.270
       '@simonwep/pickr':
         specifier: ^1.9.1
         version: 1.9.1
@@ -229,8 +229,8 @@ importers:
         specifier: ^1.19.0
         version: 1.19.0
       tm-themes:
-        specifier: ^1.9.2
-        version: 1.9.2
+        specifier: ^1.9.3
+        version: 1.9.3
       vue:
         specifier: ^3.5.12
         version: 3.5.12(typescript@5.6.3)
@@ -450,8 +450,8 @@ importers:
         version: link:../plugins/plugin-md-power
     devDependencies:
       '@iconify/json':
-        specifier: ^2.2.269
-        version: 2.2.269
+        specifier: ^2.2.270
+        version: 2.2.270
       swiper:
         specifier: ^11.1.14
         version: 11.1.14
@@ -1041,8 +1041,8 @@ packages:
     resolution: {integrity: sha512-e5+YUKENATs1JgYHMzTr2MW/NDcXGfYFAuOQU8gJgF/kEh4EqKgfGrfLI67bMD4tbhZVlkigz/9YYwWcbOFthg==}
     engines: {node: '>=10.13.0'}
 
-  '@iconify/json@2.2.269':
-    resolution: {integrity: sha512-ouyDWNdmdtwhmIjZt1+wKj8nCq/V8PrT748exRnlXG//Hb8eLc/K4q4nKiO18gQNnwESMPQDGlrk5aTZaANoHg==}
+  '@iconify/json@2.2.270':
+    resolution: {integrity: sha512-BpuvTnPpjmKwzopqhokLz99v69n2BOeWAEvm7ttIsesUM2a8JWr4PTYzu8iMbK9cFNcrGMtWNmBYqDznxRAQcA==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -5889,8 +5889,8 @@ packages:
   tm-grammars@1.19.0:
     resolution: {integrity: sha512-tXtclXqTERNUzY/eZT+MvfVagtdEeg9JHfLtuBhhocA4ZQKwEHYvdUCA5iLL5ZASbNrLpQQ4/0uBBXCK0QifSg==}
 
-  tm-themes@1.9.2:
-    resolution: {integrity: sha512-deWAc0p2H6l9kGNqABKBIxgq3yRpviyJrtPSxOk0oWwT01Pw8YZ/Bz4CyMcv2quk2mfyaQrfoUuesKAyfjQi6A==}
+  tm-themes@1.9.3:
+    resolution: {integrity: sha512-zcHyfj7bgEKkU9JJI/hTjxVbAsK5LBNwO25vb9fX8OmPYvWifJKAhxI6QZtXLwRVFa6XgMsDFIvfF87ycLytOQ==}
 
   tmp@0.0.33:
     resolution: {integrity: sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJRr0y+cYJFmYbImXGw==}
@@ -7027,7 +7027,7 @@ snapshots:
 
   '@hutson/parse-repository-url@5.0.0': {}
 
-  '@iconify/json@2.2.269':
+  '@iconify/json@2.2.270':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
@@ -12421,7 +12421,7 @@ snapshots:
 
   tm-grammars@1.19.0: {}
 
-  tm-themes@1.9.2: {}
+  tm-themes@1.9.3: {}
 
   tmp@0.0.33:
     dependencies:

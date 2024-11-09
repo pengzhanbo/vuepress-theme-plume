@@ -61,7 +61,7 @@
     "nanoid": "^5.0.8",
     "shiki": "^1.22.2",
     "tm-grammars": "^1.19.0",
-    "tm-themes": "^1.9.2",
+    "tm-themes": "^1.9.3",
     "vue": "^3.5.12"
   },
   "devDependencies": {

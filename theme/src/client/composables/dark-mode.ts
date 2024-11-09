@@ -9,13 +9,18 @@ export const darkModeSymbol: InjectionKey<DarkModeRef> = Symbol(
   __VUEPRESS_DEV__ ? 'darkMode' : '',
 )
 
+export function enableTransitions() {
+  return 'startViewTransition' in document
+    && window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+}
+
 export function setupDarkMode(app: App): void {
   const theme = useThemeData()
 
   const transition = theme.value.transition
-  const disableTransition = typeof transition === 'object'
+  const disableTransition = enableTransitions() || (typeof transition === 'object'
     ? transition.appearance === false
-    : transition === false
+    : transition === false)
 
   const appearance = theme.value.appearance
   const isDark

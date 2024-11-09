@@ -63,7 +63,7 @@ export interface ThemeTransition {
   postList?: boolean
   /**
    * 是否启用 深色/浅色 模式切换过渡动画
-   * @default true
+   * @default 'fade'
    */
-  appearance?: boolean
+  appearance?: boolean | 'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip'
 }

@@ -1,7 +1,7 @@
 {
   "name": "create-vuepress-theme-plume",
   "type": "module",
-  "version": "1.0.0-rc.114",
+  "version": "1.0.0-rc.115",
   "description": "The cli for create vuepress-theme-plume's project",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",

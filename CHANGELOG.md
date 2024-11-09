@@ -1,3 +1,28 @@
+# [1.0.0-rc.115](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.114...v1.0.0-rc.115) (2024-11-09)
+
+
+### Bug Fixes
+
+* **plugin-search:** search result navigation failed ([#323](https://github.com/pengzhanbo/vuepress-theme-plume/issues/323)) ([7685f24](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7685f2452539df7bb957c808c502f73e0186a5e0))
+* **theme:** incorrect ssr in `dark-mode` ([bbef6a8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bbef6a8f18f5aa9cb7e5de473d48b21e6956c320))
+
+
+### Features
+
+* **theme:** add `changelog` and improve `contributors`, close [#319](https://github.com/pengzhanbo/vuepress-theme-plume/issues/319) ([#329](https://github.com/pengzhanbo/vuepress-theme-plume/issues/329)) ([08a2d61](https://github.com/pengzhanbo/vuepress-theme-plume/commit/08a2d6107f91573ee84a701b682fac4d0e3c58f4))
+* **theme:** add archive article count, close [#326](https://github.com/pengzhanbo/vuepress-theme-plume/issues/326) ([#330](https://github.com/pengzhanbo/vuepress-theme-plume/issues/330)) ([bf35ec1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bf35ec11d3c10f583531d54ae834e9bc9df75e0b))
+* **theme:** add component `<VPDocHeader>` ([a8f3df3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a8f3df3619060735fc673cc46c9f78fb4f657c72))
+* **theme:** improve `<VPImageCard>` ([ad700d6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ad700d6917f5b5d9721a0885c6b203049fd4ae6f))
+* **theme:** optimize appearance transition, close [#325](https://github.com/pengzhanbo/vuepress-theme-plume/issues/325) ([#333](https://github.com/pengzhanbo/vuepress-theme-plume/issues/333)) ([b36ebad](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b36ebadcb87897e01b314b4a696a281d299085f5))
+
+
+### Performance Improvements
+
+* **theme:** improve `CommentService` ([1f003a4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1f003a42c415b7adfbaf576bb272dc02936a9acd))
+* **theme:** optimize `plugin-git` default options ([b9f7340](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b9f7340c25382801ca52f0b771e47d33179527e8))
+
+
+
 # [1.0.0-rc.114](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.113...v1.0.0-rc.114) (2024-10-31)
 
 

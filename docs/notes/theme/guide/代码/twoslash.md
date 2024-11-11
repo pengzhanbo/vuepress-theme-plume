@@ -343,7 +343,7 @@ import { sum } from './sum'
 sum(4, 'woops')
 ```
 
-### 切割代码
+### 剪切代码
 
 #### `---cut-before---` {#cut-before}
 
@@ -667,7 +667,7 @@ str = 'Hello'
 
 ### `@noErrorsCutted`
 
-忽略在切割代码中发生的错误。
+忽略在剪切代码中发生的错误。
 
 __输入：__
 

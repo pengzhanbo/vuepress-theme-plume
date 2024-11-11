@@ -1,3 +1,12 @@
+# [1.0.0-rc.116](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.115...v1.0.0-rc.116) (2024-11-11)
+
+
+### Features
+
+* **plugin-shikiji:** add support for `twoslashOptions` ([#335](https://github.com/pengzhanbo/vuepress-theme-plume/issues/335)) ([1751730](https://github.com/pengzhanbo/vuepress-theme-plume/commit/175173027d821cf49823ad8549bd64bd2e0922b6))
+
+
+
 # [1.0.0-rc.115](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.114...v1.0.0-rc.115) (2024-11-09)
 
 

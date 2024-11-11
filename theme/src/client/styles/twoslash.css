@@ -18,6 +18,8 @@
   --twoslash-tag-warn-bg: var(--vp-c-warning-soft);
   --twoslash-tag-annotate-color: var(--vp-c-green-1);
   --twoslash-tag-annotate-bg: var(--vp-c-green-soft);
+  --twoslash-highlighted-bg: var(--vp-c-gray-soft);
+  --twoslash-highlighted-border: var(--vp-c-border);
 }
 
 /* Respect people's wishes to not have animations */

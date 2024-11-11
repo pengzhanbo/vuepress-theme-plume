@@ -1,7 +1,7 @@
 import type { HighlighterOptions, ThemeOptions } from '../types.js'
 import { customAlphabet } from 'nanoid'
 import { bundledLanguages, createHighlighter } from 'shiki'
-import { logger } from 'vuepress/utils'
+import { colors, logger } from 'vuepress/utils'
 import { getLanguage } from './getLanguage.js'
 import { baseTransformers, getInlineTransformers } from './transformers.js'
 
@@ -45,7 +45,13 @@ export async function highlight(
         lang,
         transformers: [
           ...baseTransformers,
-          ...getInlineTransformers({ attrs, lang, enabledTwoslash, whitespace }),
+          ...getInlineTransformers({
+            attrs,
+            lang,
+            enabledTwoslash,
+            whitespace,
+            twoslash: options.twoslash,
+          }),
           ...userTransformers,
         ],
         meta: { __raw: attrs },
@@ -59,7 +65,11 @@ export async function highlight(
       return rendered
     }
     catch (e) {
-      logger.error(e)
+      logger.error(
+        (e as Error)?.message,
+        '\n',
+        (e as Error)?.stack ? colors.gray(String((e as Error)?.stack)) : '',
+      )
       return str
     }
   }

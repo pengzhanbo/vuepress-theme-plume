@@ -8,7 +8,7 @@ import type {
 import { isPlainObject } from 'vuepress/shared'
 import { colors } from 'vuepress/utils'
 import { copyCodeButtonPlugin } from './copy-code-button/index.js'
-import { highlight, scanLanguages } from './highlight/index.js'
+import { highlight, resolveTsPaths, scanLanguages } from './highlight/index.js'
 import {
   collapsedLinesPlugin,
   highlightLinesPlugin,
@@ -47,7 +47,7 @@ export function shikiPlugin({
 
     clientConfigFile: app => prepareClientConfigFile(app, {
       copyCode: copyCode !== false,
-      twoslash: options.twoslash ?? false,
+      twoslash: !!options.twoslash,
     }),
 
     extendsMarkdown: async (md, app) => {
@@ -61,6 +61,18 @@ export function shikiPlugin({
         }
         if (app.env.isDebug) {
           logger.info(`scan languages in: ${(performance.now() - start).toFixed(2)}ms`)
+        }
+      }
+
+      if (options.twoslash) {
+        const paths = await resolveTsPaths()
+        if (paths) {
+          options.twoslash = isPlainObject(options.twoslash) ? options.twoslash : {}
+          options.twoslash.compilerOptions ??= {}
+          options.twoslash.compilerOptions.paths = {
+            ...paths,
+            ...options.twoslash.compilerOptions.paths,
+          }
         }
       }
 

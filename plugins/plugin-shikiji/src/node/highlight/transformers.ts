@@ -1,5 +1,8 @@
+import type { TransformerTwoslashOptions } from '@shikijs/twoslash/core'
 import type { ShikiTransformer } from 'shiki'
+import type { VueSpecificOptions } from 'twoslash-vue'
 import type { WhitespacePosition } from '../utils/index.js'
+import process from 'node:process'
 import {
   transformerCompactLineOptions,
   transformerNotationDiff,
@@ -10,7 +13,9 @@ import {
   transformerRemoveNotationEscape,
   transformerRenderWhitespace,
 } from '@shikijs/transformers'
+import { defaultTwoslashOptions } from '@shikijs/twoslash/core'
 import { addClassToHast } from 'shiki'
+import { isPlainObject } from 'vuepress/shared'
 import { defaultHoverInfoProcessor, transformerTwoslash } from '../twoslash/rendererTransformer.js'
 import { attrsToLines, resolveWhitespacePosition } from '../utils/index.js'
 
@@ -53,11 +58,12 @@ export const baseTransformers: ShikiTransformer[] = [
 ]
 
 const vueRE = /-vue$/
-export function getInlineTransformers({ attrs, lang, enabledTwoslash, whitespace }: {
+export function getInlineTransformers({ attrs, lang, enabledTwoslash, whitespace, twoslash }: {
   attrs: string
   lang: string
   enabledTwoslash: boolean
   whitespace: boolean | WhitespacePosition
+  twoslash?: boolean | TransformerTwoslashOptions['twoslashOptions'] & VueSpecificOptions
 }): ShikiTransformer[] {
   const vPre = vueRE.test(lang) ? '' : 'v-pre'
   const inlineTransformers: ShikiTransformer[] = [
@@ -65,9 +71,19 @@ export function getInlineTransformers({ attrs, lang, enabledTwoslash, whitespace
   ]
 
   if (enabledTwoslash) {
+    const { compilerOptions, ...twoslashOptions } = isPlainObject(twoslash) ? twoslash : {}
+    const defaultOptions = defaultTwoslashOptions()
     inlineTransformers.push(transformerTwoslash({
       processHoverInfo(info) {
         return defaultHoverInfoProcessor(info)
+      },
+      twoslashOptions: {
+        ...defaultOptions,
+        ...twoslashOptions,
+        compilerOptions: {
+          baseUrl: process.cwd(),
+          ...compilerOptions,
+        },
       },
     }))
   }

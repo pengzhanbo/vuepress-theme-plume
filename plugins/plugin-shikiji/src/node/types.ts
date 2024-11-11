@@ -1,3 +1,4 @@
+import type { TransformerTwoslashOptions } from '@shikijs/twoslash/core'
 import type {
   BuiltinTheme,
   BundledLanguage,
@@ -8,6 +9,7 @@ import type {
   StringLiteralUnion,
   ThemeRegistration,
 } from 'shiki'
+import type { VueSpecificOptions } from 'twoslash-vue'
 import type { LocaleConfig } from 'vuepress/shared'
 
 export type ShikiLang =
@@ -73,7 +75,7 @@ export interface HighlighterOptions {
    * Enable transformerTwoslash
    * @default false
    */
-  twoslash?: boolean
+  twoslash?: boolean | TransformerTwoslashOptions['twoslashOptions'] & VueSpecificOptions
 
   /**
    * Enable transformerRenderWhitespace

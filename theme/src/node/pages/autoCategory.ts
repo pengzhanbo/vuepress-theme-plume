@@ -1,6 +1,6 @@
 import type { Page } from 'vuepress/core'
 import type { PageCategoryData, PlumeThemeLocaleOptions, PlumeThemePageData } from '../../shared/index.js'
-import { ensureLeadingSlash } from '@vuepress/helper'
+import { ensureLeadingSlash, isPlainObject } from '@vuepress/helper'
 import { resolveNotesLinkList } from '../config/index.js'
 import { hash } from '../utils/index.js'
 
@@ -15,11 +15,13 @@ export function autoCategory(
   options: PlumeThemeLocaleOptions,
 ) {
   const pagePath = page.filePathRelative
+  const blog = isPlainObject(options.blog) ? options.blog : {}
+  const enabled = blog.categories !== false
 
-  if (page.data.type || !pagePath)
+  if (page.data.type || !pagePath || !enabled)
     return
-  const notesLinks = resolveNotesLinkList(options)
 
+  const notesLinks = resolveNotesLinkList(options)
   if (notesLinks.some(link => page.path.startsWith(link)))
     return
 
@@ -44,5 +46,5 @@ export function autoCategory(
         name: match[2],
       }
     })
-  page.data.categoryList = categoryList
+  page.data.categoryList = blog.categoriesTransform?.(categoryList) || categoryList
 }

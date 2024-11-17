@@ -15,6 +15,7 @@ const { hasBlogExtract, tags, archives, categories } = useBlogExtract()
 <template>
   <div v-if="hasBlogExtract" class="vp-blog-nav" :class="{ local: props.isLocal }">
     <VPLink
+      v-if="tags.link"
       class="nav-link"
       :class="{ active: route.path === tags.link }"
       :href="tags.link"
@@ -25,6 +26,7 @@ const { hasBlogExtract, tags, archives, categories } = useBlogExtract()
       <span class="icon vpi-chevron-right" />
     </VPLink>
     <VPLink
+      v-if="categories.link"
       class="nav-link"
       :class="{ active: route.path === categories.link }"
       :href="categories.link"
@@ -35,6 +37,7 @@ const { hasBlogExtract, tags, archives, categories } = useBlogExtract()
       <span class="icon vpi-chevron-right" />
     </VPLink>
     <VPLink
+      v-if="archives.link"
       class="nav-link"
       :class="{ active: route.path === archives.link }"
       :href="archives.link"

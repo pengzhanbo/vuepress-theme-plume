@@ -13,14 +13,6 @@ const props = defineProps<{
 
 const lang = usePageLang()
 
-const title = computed(() => {
-  if (props.title)
-    return props.title
-  const image = props.image || ''
-  const dirs = image.split('/')
-  return dirs[dirs.length - 1]
-})
-
 const date = computed(() => {
   if (!props.date)
     return ''
@@ -59,6 +51,7 @@ const date = computed(() => {
 <style scoped>
 .vp-image-card {
   margin: 16px 0;
+  border-radius: 8px;
   box-shadow: var(--vp-shadow-2);
   transition: var(--vp-t-color);
   transition-property: box-shadow;

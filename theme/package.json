@@ -1,7 +1,7 @@
 {
   "name": "vuepress-theme-plume",
   "type": "module",
-  "version": "1.0.0-rc.116",
+  "version": "1.0.0-rc.117",
   "description": "A Blog&Document Theme for VuePress 2.0",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",

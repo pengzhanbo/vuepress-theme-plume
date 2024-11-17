@@ -1,3 +1,21 @@
+# [1.0.0-rc.117](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.116...v1.0.0-rc.117) (2024-11-17)
+
+
+### Features
+
+* **plugin-shikiji:** improve prepare config file ([#339](https://github.com/pengzhanbo/vuepress-theme-plume/issues/339)) ([64fe1e2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/64fe1e2cd71519f2eb4f7b6e7b4f6b03fac2d303))
+* **theme:** add categories transform and improve ui ([#342](https://github.com/pengzhanbo/vuepress-theme-plume/issues/342)) ([04ada17](https://github.com/pengzhanbo/vuepress-theme-plume/commit/04ada17d5f9fd273a4ef904ca4e31ec3df9d2f04))
+* **theme:** add repo card cache ([#338](https://github.com/pengzhanbo/vuepress-theme-plume/issues/338)) ([c4438af](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c4438afaa52ce0d5f9bc4a57c580dfdf35134e91))
+
+
+### Performance Improvements
+
+* **theme:** improve image card title ([#341](https://github.com/pengzhanbo/vuepress-theme-plume/issues/341)) ([6f2d395](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6f2d3958f4add1202b632bf0b5a775b3034b19f3))
+* **theme:** optimize locales provide ([#340](https://github.com/pengzhanbo/vuepress-theme-plume/issues/340)) ([77ef9c5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/77ef9c55896c83cd77b2b40549b78b76edc5fcc1))
+* update deps to latest ([50e8f4c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/50e8f4c7e2c91871ebdf765f684d2db01b17ca86))
+
+
+
 # [1.0.0-rc.116](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.115...v1.0.0-rc.116) (2024-11-11)
 
 

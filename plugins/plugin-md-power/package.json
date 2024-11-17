@@ -59,10 +59,10 @@
     "local-pkg": "^0.5.0",
     "markdown-it-container": "^4.0.0",
     "nanoid": "^5.0.8",
-    "shiki": "^1.22.2",
-    "tm-grammars": "^1.19.0",
+    "shiki": "^1.23.0",
+    "tm-grammars": "^1.19.3",
     "tm-themes": "^1.9.3",
-    "vue": "^3.5.12"
+    "vue": "^3.5.13"
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.2"

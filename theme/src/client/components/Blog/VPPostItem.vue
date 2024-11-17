@@ -290,6 +290,7 @@ const coverStyles = computed(() => {
 .blog-post-item-content .post-meta {
   display: flex;
   flex-wrap: wrap;
+  gap: 16px;
   align-items: center;
   justify-content: flex-start;
   font-size: 14px;
@@ -302,11 +303,6 @@ const coverStyles = computed(() => {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-right: 1rem;
-}
-
-.blog-post-item-content .post-meta > div:last-of-type {
-  margin-right: 0;
 }
 
 .blog-post-item-content .post-meta .tag-list {
@@ -333,7 +329,7 @@ const coverStyles = computed(() => {
 .blog-post-item-content .post-meta .icon {
   width: 14px;
   height: 14px;
-  margin: 0.3rem;
+  margin-right: 0.3rem;
   color: var(--vp-c-text-3);
   transition: color var(--vp-t-color);
 }

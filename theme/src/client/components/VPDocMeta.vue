@@ -90,6 +90,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 .vp-doc-meta {
   display: flex;
   flex-wrap: wrap;
+  gap: 16px;
   align-items: center;
   justify-content: flex-start;
   padding: 1rem 0 0.5rem;
@@ -103,7 +104,6 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 .vp-doc-meta p {
   display: flex;
   align-items: center;
-  margin-right: 1rem;
 }
 
 .vp-doc-meta .icon {
@@ -143,7 +143,6 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 
 .vp-doc-meta .create-time {
   min-width: 110px;
-  margin-right: 0;
   text-align: right;
 }
 

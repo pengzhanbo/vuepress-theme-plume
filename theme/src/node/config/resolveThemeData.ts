@@ -33,6 +33,11 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
     themeData.bulletin = opt
   }
 
+  if (isPlainObject(themeData.blog)) {
+    const { categoriesTransform: _, ...blog } = themeData.blog
+    themeData.blog = blog
+  }
+
   entries(options.locales || {}).forEach(([locale, opt]) => {
     themeData.locales![locale] = {}
     entries(opt).forEach(([key, value]) => {

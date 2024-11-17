@@ -95,7 +95,8 @@ export interface PlumeThemeBlog {
   archivesLink?: string
 
   /**
-   * 是否启用分类页
+   * 是否启用分类功能
+   * - 启用后会生成分类页
    * @default true
    */
   categories?: boolean
@@ -113,6 +114,13 @@ export interface PlumeThemeBlog {
    * @default 'deep'
    */
   categoriesExpand?: number | 'deep'
+
+  /**
+   * 文章分类列表转换函数，比如排除不需要的一级分类
+   * @param categories 分类列表
+   * @returns 返回一个新的分类列表
+   */
+  categoriesTransform?: (categories: PageCategoryData[]) => PageCategoryData[]
 
   /**
    * 博客文章封面图

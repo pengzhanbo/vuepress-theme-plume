@@ -25,15 +25,15 @@ export default {
     enhanceTwoslash(app)
   },`
     : ''}
-  ${copyCode
-    ? `setup() {
-    useCopyCode({
+  setup() {
+    ${copyCode
+      ? `useCopyCode({
       selector: __CC_SELECTOR__,
       duration: __CC_DURATION__,
-    })
+    })`
+      : ''}
     useCollapsedLines()
-  },`
-    : ''}
+  },
 }
 `,
   )

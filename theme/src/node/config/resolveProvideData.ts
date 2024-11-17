@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import type { PlumeThemePluginOptions } from '../../shared/index.js'
-import { entries, fromEntries, getRootLangPath, isPlainObject } from '@vuepress/helper'
+import { entries, fromEntries, getLocalePaths, getRootLangPath, isPlainObject } from '@vuepress/helper'
 import { PRESET_LOCALES } from '../locales/index.js'
 
 export function resolveProvideData(
@@ -8,6 +8,7 @@ export function resolveProvideData(
   plugins: PlumeThemePluginOptions,
 ): Record<string, any> {
   const root = getRootLangPath(app)
+  const locales = [getLocalePaths(app), root]
 
   return {
     // 注入水印配置
@@ -17,6 +18,7 @@ export function resolveProvideData(
     // 注入多语言配置
     __PLUME_PRESET_LOCALE__: fromEntries(
       entries(PRESET_LOCALES)
+        .filter(([locale]) => locales.includes(locale))
         .map(([locale, value]) => [locale === root ? '/' : locale, value]),
     ),
   }

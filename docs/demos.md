@@ -47,6 +47,13 @@ blog:
     url: http://tuyongtao.top/fettjob/
     repo: https://github.com/tuyongtao-T
     preview: /images/demos/tuyongtao.top.jpeg
+  -
+    name: Hoey
+    desc: 老师,我太想进步了。
+    logo: https://hoeyzheng.top/avatar.jpg
+    url: https://hoeyzheng.top
+    repo: https://github.com/zhenghaoyang24
+    preview: /images/demos/hoeyzheng.top.jpg
 ---
 
 :::important

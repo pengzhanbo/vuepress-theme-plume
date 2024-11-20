@@ -32,7 +32,7 @@ export function createCopyCodeButtonRender(app: App, options?: boolean | CopyCod
   return (filePathRelative: string) => {
     const relativePath = ensureLeadingSlash(filePathRelative)
     const localePath = resolveLocalePath(locales, relativePath)
-    const { title, copied } = locales[localePath]
+    const { title, copied } = locales[localePath] || locales['/']
 
     return `<button class="${className}" title="${title}" data-copied="${copied}"></button>`
   }

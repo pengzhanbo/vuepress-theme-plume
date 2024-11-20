@@ -1,5 +1,5 @@
 import type { LocaleData } from 'vuepress/core'
-import type { SocialLink, SocialLinkIconUnion, ThemeOutline, ThemeTransition } from '../base.js'
+import type { CopyrightLicense, CopyrightOptions, SocialLink, SocialLinkIconUnion, ThemeOutline, ThemeTransition } from '../base.js'
 import type { PlumeThemeBlog } from '../blog.js'
 import type { NavItem } from '../navbar.js'
 import type { NotesOptions } from '../notes.js'
@@ -114,6 +114,48 @@ export interface PlumeThemeLocaleData extends LocaleData {
    * 配置公告
    */
   bulletin?: true | BulletinOptions
+
+  /**
+   * 配置版权信息
+   * @default false
+   */
+  copyright?: boolean | CopyrightLicense | CopyrightOptions
+
+  /**
+   * 版权所有的文本
+   * @default 'Copyright'
+   */
+  copyrightText?: string
+
+  /**
+   * 版权归属者的文本
+   * @default 'Copyright Ownership:'
+   */
+  copyrightAuthorText?: string
+
+  /**
+   * 本文链接的文本
+   * @default 'This article link:'
+   */
+  copyrightCreationOriginalText?: string
+
+  /**
+   * 本文翻译链接的文本
+   * @default 'This article is translated from:'
+   */
+  copyrightCreationTranslateText?: string
+
+  /**
+   * 转载链接的文本
+   * @default 'This article is reprint from:'
+   */
+  copyrightCreationReprintText?: string
+
+  /**
+   * 许可证的文本
+   * @default 'License under:'
+   */
+  copyrightLicenseText?: string
 
   /**
    * 是否启用过渡动画效果

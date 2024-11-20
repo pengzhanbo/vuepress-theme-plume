@@ -199,6 +199,16 @@ permalink: /config/frontmatter/basic/
 
   当前页面是否显示页面变更历史。
 
+### copyright
+
+- 类型： `boolean | CopyrightLicense | CopyrightFrontmatter`
+- 默认值： `false`
+- 详情：
+
+  当前文章是否 显示 版权信息。
+
+  完整信息请查看 [copyright](../../guide/功能/文章版权所有.md)
+
 ### editLink
 
 - 类型： `boolean`

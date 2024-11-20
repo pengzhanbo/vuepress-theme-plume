@@ -69,6 +69,12 @@ const hasChangelog = computed(() =>
   display: block;
 }
 
+@media print {
+  .vp-doc-changelog {
+    display: none;
+  }
+}
+
 .vp-doc-changelog .changelog-header > span {
   display: block;
 }

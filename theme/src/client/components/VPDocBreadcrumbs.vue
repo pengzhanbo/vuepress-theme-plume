@@ -101,6 +101,12 @@ function resolveSidebar(
   transition: border-left var(--vp-t-color);
 }
 
+@media print {
+  .vp-breadcrumb {
+    display: none;
+  }
+}
+
 .vp-breadcrumb ol {
   display: flex;
   flex-wrap: wrap;

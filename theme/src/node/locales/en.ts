@@ -12,10 +12,16 @@ export const enLocale: PlumeThemeLocaleData = {
   editLinkText: 'Edit this page',
   contributorsText: 'Contributors',
   lastUpdatedText: 'Last Updated',
-
   changelogText: 'Changelog',
   changelogOnText: 'On',
   changelogButtonText: 'View All Changelog',
+
+  copyrightText: 'Copyright',
+  copyrightAuthorText: 'Copyright Ownership:',
+  copyrightCreationOriginalText: 'This article link:',
+  copyrightCreationTranslateText: 'This article is translated from:',
+  copyrightCreationReprintText: 'This article is reprint from:',
+  copyrightLicenseText: 'License under:',
 
   encryptButtonText: 'Confirm',
   encryptPlaceholder: 'Enter password',
@@ -29,12 +35,21 @@ export const enLocale: PlumeThemeLocaleData = {
 }
 
 export const enPresetLocale: PresetLocale = {
-  home: 'Home',
-  blog: 'Blog',
-  tag: 'Tags',
-  archive: 'Archives',
-  category: 'Categories',
-  archiveTotal: '{count} articles',
+  'home': 'Home',
+  'blog': 'Blog',
+  'tag': 'Tags',
+  'archive': 'Archives',
+  'category': 'Categories',
+  'archiveTotal': '{count} articles',
+
+  // ------ copyright license ------
+  'CC0': 'CC0 1.0 Universal',
+  'CC-BY-4.0': 'Attribution 4.0 International',
+  'CC-BY-NC-4.0': 'Attribution-NonCommercial 4.0 International',
+  'CC-BY-NC-SA-4.0': 'Attribution-NonCommercial-ShareAlike 4.0 International',
+  'CC-BY-NC-ND-4.0': 'Attribution-NonCommercial-NoDerivatives 4.0 International',
+  'CC-BY-ND-4.0': 'Attribution-NoDerivatives 4.0 International',
+  'CC-BY-SA-4.0': 'Attribution-ShareAlike 4.0 International',
 }
 
 export const enSearchLocale: Partial<SearchLocaleOptions> = {

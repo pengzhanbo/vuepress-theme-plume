@@ -113,6 +113,7 @@ export const themeGuide = defineNoteConfig({
         '加密',
         '文章贡献者',
         '文章变更历史',
+        '文章版权所有',
         '文章水印',
         '友情链接页',
         'seo',

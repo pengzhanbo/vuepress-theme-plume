@@ -1,3 +1,4 @@
+import type { CopyrightFrontmatter, CopyrightLicense } from '../base.js'
 import type { BlogPostCover } from '../blog.js'
 import type { PlumeThemePageFrontmatter } from './page.js'
 
@@ -38,4 +39,9 @@ export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {
    * 是否展示文章摘要，传入 string 时为自定义摘要，此时 `<!-- more -->` 无效
    */
   excerpt?: boolean | string
+
+  /**
+   * 版权信息
+   */
+  copyright?: boolean | CopyrightLicense | CopyrightFrontmatter
 }

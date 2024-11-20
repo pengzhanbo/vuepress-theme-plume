@@ -3,6 +3,7 @@ import VPDocAside from '@theme/VPDocAside.vue'
 import VPDocBreadcrumbs from '@theme/VPDocBreadcrumbs.vue'
 import VPDocChangelog from '@theme/VPDocChangelog.vue'
 import VPDocContributor from '@theme/VPDocContributor.vue'
+import VPDocCopyright from '@theme/VPDocCopyright.vue'
 import VPDocFooter from '@theme/VPDocFooter.vue'
 import VPDocMeta from '@theme/VPDocMeta.vue'
 import VPEncryptPage from '@theme/VPEncryptPage.vue'
@@ -129,6 +130,7 @@ watch(
                 <Content />
                 <VPDocContributor />
                 <VPDocChangelog />
+                <VPDocCopyright />
               </div>
             </main>
             <VPDocFooter v-if="isPageDecrypted">

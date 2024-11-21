@@ -11,8 +11,8 @@ import { markdownMathPlugin } from '@vuepress/plugin-markdown-math'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
 import { photoSwipePlugin } from '@vuepress/plugin-photo-swipe'
 import { readingTimePlugin } from '@vuepress/plugin-reading-time'
-import { seoPlugin } from '@vuepress/plugin-seo'
-import { sitemapPlugin } from '@vuepress/plugin-sitemap'
+import { seoPlugin, type SeoPluginOptions } from '@vuepress/plugin-seo'
+import { sitemapPlugin, type SitemapPluginOptions } from '@vuepress/plugin-sitemap'
 import { watermarkPlugin } from '@vuepress/plugin-watermark'
 import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
 import { fontsPlugin } from '@vuepress-plume/plugin-fonts'
@@ -154,12 +154,19 @@ export function getPlugins(
     plugins.push(commentPlugin(pluginOptions.comment))
   }
 
-  if (pluginOptions.sitemap !== false && hostname && isProd) {
-    plugins.push(sitemapPlugin({ hostname }))
+  if (pluginOptions.sitemap !== false && isProd) {
+    const sitemapOptions = isPlainObject(pluginOptions.sitemap) ? pluginOptions.sitemap : {}
+    sitemapOptions.hostname ||= hostname
+
+    if (sitemapOptions.hostname)
+      plugins.push(sitemapPlugin(sitemapOptions as SitemapPluginOptions))
   }
 
   if (pluginOptions.seo !== false && hostname && isProd) {
-    plugins.push(seoPlugin({ hostname }))
+    const seoOptions = isPlainObject(pluginOptions.seo) ? pluginOptions.seo : {}
+    seoOptions.hostname ||= hostname
+    if (seoOptions.hostname)
+      plugins.push(seoPlugin(seoOptions as SeoPluginOptions))
   }
 
   if (cache !== false) {

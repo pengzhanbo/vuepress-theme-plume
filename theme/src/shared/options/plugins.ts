@@ -3,6 +3,8 @@ import type { DocSearchOptions } from '@vuepress/plugin-docsearch'
 import type { MarkdownImagePluginOptions } from '@vuepress/plugin-markdown-image'
 import type { MarkdownMathPluginOptions } from '@vuepress/plugin-markdown-math'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
+import type { SeoPluginOptions } from '@vuepress/plugin-seo'
+import type { SitemapPluginOptions } from '@vuepress/plugin-sitemap'
 import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
 import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
 import type { ShikiPluginOptions } from '@vuepress-plume/plugin-shikiji'
@@ -69,9 +71,9 @@ export interface PlumeThemePluginOptions {
 
   comment?: false | CommentPluginOptions
 
-  sitemap?: false
+  sitemap?: false | Omit<SitemapPluginOptions, 'hostname'> & { hostname?: string }
 
-  seo?: false
+  seo?: false | Omit<SeoPluginOptions, 'hostname'> & { hostname?: string }
 
   /**
    * 阅读时间、字数统计

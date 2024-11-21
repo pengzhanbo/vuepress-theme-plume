@@ -13,7 +13,7 @@ function createMarkdown(options: boolean | CopyCodeOptions = {}, lang = 'en-US')
     env: { isDebug: false },
     siteData: {
       lang,
-      locales: { '/': { lang }, '/zh/': { lang: 'zh-CN' }, '/en/': { lang: 'en-US' } },
+      locales: { '/': { lang }, '/zh/': { lang: 'zh-CN' }, '/en/': { lang: 'en-US' }, '/xxx/': { lang: 'unknown' } },
     },
   } as unknown as App
   copyCodeButtonPlugin(md, app, options)

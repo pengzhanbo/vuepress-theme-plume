@@ -18,3 +18,19 @@ export default defineUserConfig({
   })
 })
 ```
+
+如需要自定义 sitemap，可以通过 `plugins.sitemap` 配置来实现。
+
+```js
+export default defineUserConfig({
+  theme: plumeTheme({
+    plugins: {
+      sitemap: {
+        // ... sitemap 配置
+      }
+    }
+  })
+})
+```
+
+完整配置请查看 [文档](https://ecosystem.vuejs.press/zh/plugins/seo/sitemap/config.html)

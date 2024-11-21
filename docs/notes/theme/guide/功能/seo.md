@@ -19,6 +19,22 @@ export default defineUserConfig({
 })
 ```
 
+如需要自定义 SEO 优化，可以通过 `plugins.seo` 配置来实现。
+
+```js
+export default defineUserConfig({
+  theme: plumeTheme({
+    plugins: {
+      seo: {
+        // ... seo 配置
+      }
+    }
+  })
+})
+```
+
+完整配置请查看 [文档](https://ecosystem.vuejs.press/zh/plugins/seo/seo/config.html)
+
 ::: note
 示例 Fork 自 [@vuepress/plugin-seo](https://ecosystem.vuejs.press/zh/plugins/seo/seo/),
 遵循 [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE) 许可证。

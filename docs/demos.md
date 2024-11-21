@@ -54,6 +54,13 @@ blog:
     url: https://hoeyzheng.top
     repo: https://github.com/zhenghaoyang24
     preview: /images/demos/hoeyzheng.top.jpg
+  -
+    name: IXYZ
+    desc: Hi,there
+    logo: https://ixyz.org/favicon.ico
+    url: https://ixyz.org
+    repo: https://github.com/ixyzorg
+    preview: /images/demos/ixyz.org.jpg
 ---
 
 :::important

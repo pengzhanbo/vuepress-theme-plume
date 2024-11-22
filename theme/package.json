@@ -112,7 +112,7 @@
     "@vuepress/plugin-seo": "2.0.0-rc.60",
     "@vuepress/plugin-sitemap": "2.0.0-rc.60",
     "@vuepress/plugin-watermark": "2.0.0-rc.60",
-    "@vueuse/core": "^11.2.0",
+    "@vueuse/core": "^11.3.0",
     "bcrypt-ts": "^5.0.3",
     "chokidar": "3.6.0",
     "create-filter": "^1.1.0",
@@ -122,15 +122,15 @@
     "gray-matter": "^4.0.3",
     "json2yaml": "^1.1.0",
     "katex": "^0.16.11",
-    "local-pkg": "^0.5.0",
+    "local-pkg": "^0.5.1",
     "nanoid": "^5.0.8",
     "vue": "^3.5.13",
     "vuepress-plugin-md-enhance": "2.0.0-rc.59",
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.273",
-    "swiper": "^11.1.14",
+    "@iconify/json": "^2.2.275",
+    "swiper": "^11.1.15",
     "vue-router": "^4.4.5"
   }
 }

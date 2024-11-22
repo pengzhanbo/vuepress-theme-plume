@@ -36,18 +36,18 @@
     "vuepress": "2.0.0-rc.18"
   },
   "dependencies": {
-    "@shikijs/transformers": "^1.23.0",
-    "@shikijs/twoslash": "^1.23.0",
+    "@shikijs/transformers": "^1.23.1",
+    "@shikijs/twoslash": "^1.23.1",
     "@types/hast": "^3.0.4",
     "@vuepress/helper": "2.0.0-rc.60",
-    "@vueuse/core": "^11.2.0",
+    "@vueuse/core": "^11.3.0",
     "fast-glob": "^3.3.2",
     "floating-vue": "^5.2.2",
     "mdast-util-from-markdown": "^2.0.2",
     "mdast-util-gfm": "^3.0.0",
     "mdast-util-to-hast": "^13.2.0",
     "nanoid": "^5.0.8",
-    "shiki": "^1.23.0",
+    "shiki": "^1.23.1",
     "twoslash": "^0.2.12",
     "twoslash-vue": "^0.2.12"
   },

@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.117",
   "private": true,
-  "packageManager": "pnpm@9.13.2",
+  "packageManager": "pnpm@9.14.2",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -40,8 +40,8 @@
     "release:version": "bumpp package.json plugins/*/package.json theme/package.json cli/package.json --execute=\"pnpm release:changelog\" --commit \"build: publish v%s\" --all --tag --push"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.5.0",
-    "@commitlint/config-conventional": "^19.5.0",
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
     "@pengzhanbo/eslint-config-vue": "^1.19.0",
     "@pengzhanbo/stylelint-config": "^1.19.0",
     "@types/lodash.merge": "^4.6.9",
@@ -56,7 +56,7 @@
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.15.0",
-    "husky": "^9.1.6",
+    "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
     "markdown-it": "^14.1.0",
     "memfs": "^4.14.0",

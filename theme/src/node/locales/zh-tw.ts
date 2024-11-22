@@ -24,7 +24,7 @@ export const zhTwLocale: PlumeThemeLocaleData = {
   changelogButtonText: '查看全部變更歷史',
 
   copyrightText: '版權所有',
-  copyrightAuthorText: '版權歸屬於：',
+  copyrightAuthorText: '版權歸屬：',
   copyrightCreationOriginalText: '本文連結：',
   copyrightCreationTranslateText: '本文翻譯自：',
   copyrightCreationReprintText: '本文轉載自：',

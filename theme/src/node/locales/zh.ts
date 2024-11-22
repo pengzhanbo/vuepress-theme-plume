@@ -23,7 +23,7 @@ export const zhLocale: PlumeThemeLocaleData = {
   changelogButtonText: '查看全部变更历史',
 
   copyrightText: '版权所有',
-  copyrightAuthorText: '版权归属于：',
+  copyrightAuthorText: '版权归属：',
   copyrightCreationOriginalText: '本文链接：',
   copyrightCreationTranslateText: '本文翻译自：',
   copyrightCreationReprintText: '本文转载自：',

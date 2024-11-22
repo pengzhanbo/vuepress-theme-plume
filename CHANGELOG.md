@@ -1,3 +1,24 @@
+# [1.0.0-rc.118](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.117...v1.0.0-rc.118) (2024-11-22)
+
+
+### Bug Fixes
+
+* **plugin-shikiji:** in copy-code, unknown locales fallback not set ([#348](https://github.com/pengzhanbo/vuepress-theme-plume/issues/348)) ([c09895e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c09895ef1c27e59bdc9c793bf97a760dbc7fda69))
+
+
+### Features
+
+* **theme:** add multiple locales preset ([#347](https://github.com/pengzhanbo/vuepress-theme-plume/issues/347)) ([49c896b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/49c896b8cefe3517a3c7c3f737089feb50a1aaf3))
+* **theme:** add support for article copyright ([#345](https://github.com/pengzhanbo/vuepress-theme-plume/issues/345)) ([6e037dc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6e037dcdc04aaeae17b9b759bd4fb5551ebe808e))
+* **theme:** add support for seo & sitemap plugin options ([#351](https://github.com/pengzhanbo/vuepress-theme-plume/issues/351)) ([f2f2730](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f2f2730759f6359e795107b19bc004f8026710b5))
+
+
+### Performance Improvements
+
+* update deps to latest ([6bf06c9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6bf06c985e664cd1336b01666a2a342a6f149fe4))
+
+
+
 # [1.0.0-rc.117](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.116...v1.0.0-rc.117) (2024-11-17)
 
 

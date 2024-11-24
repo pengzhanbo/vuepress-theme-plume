@@ -62,6 +62,13 @@ blog:
     repo: https://github.com/ixyzorg
     preview: /images/demos/ixyz.org.jpg
   -
+    name: AJohn
+    desc: Never, ever, ever give up
+    logo: https://cdn.jsdelivr.net/gh/zzyAJohn/Image/blog-favicon.png
+    url: https://ajohn.top/
+    repo: https://github.com/zzyAJohn
+    preview: https://cdn.jsdelivr.net/gh/zzyAJohn/Image/blog-preview.png
+  -
     name: Jiawei Wang
     desc: PLUS & WAVE!
     logo: https://plus-wave.github.io/icon/wave+.png

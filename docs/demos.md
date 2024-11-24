@@ -61,6 +61,13 @@ blog:
     url: https://ixyz.org
     repo: https://github.com/ixyzorg
     preview: /images/demos/ixyz.org.jpg
+  -
+    name: Jiawei Wang
+    desc: PLUS & WAVE!
+    logo: https://plus-wave.github.io/icon/wave+.png
+    url: https://plus-wave.github.io
+    repo: https://github.com/PLUS-WAVE
+    preview: https://raw.githubusercontent.com/PLUS-WAVE/blog-image/master/img/blog/2024-11-24/plus-wave.github.io.jpg
 ---
 
 :::important

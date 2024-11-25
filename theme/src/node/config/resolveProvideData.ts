@@ -8,8 +8,7 @@ export function resolveProvideData(
   plugins: PlumeThemePluginOptions,
 ): Record<string, any> {
   const root = getRootLangPath(app)
-  const locales = [getLocalePaths(app), root]
-
+  const locales = [...getLocalePaths(app), root]
   return {
     // 注入水印配置
     __PLUME_WM_FP__: isPlainObject(plugins.watermark)

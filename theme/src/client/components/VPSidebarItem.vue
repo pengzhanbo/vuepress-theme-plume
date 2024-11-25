@@ -154,6 +154,7 @@ function onCaretClick() {
 }
 
 .text {
+  display: inline-block;
   flex-grow: 1;
   padding: 4px 0;
   font-size: 14px;
@@ -204,7 +205,13 @@ function onCaretClick() {
 .vp-sidebar-item.level-2.is-link > .item > .link:hover .text,
 .vp-sidebar-item.level-3.is-link > .item > .link:hover .text,
 .vp-sidebar-item.level-4.is-link > .item > .link:hover .text,
-.vp-sidebar-item.level-5.is-link > .item > .link:hover .text {
+.vp-sidebar-item.level-5.is-link > .item > .link:hover .text,
+.vp-sidebar-item.level-0.is-link > .item > .link:hover :deep(.icon),
+.vp-sidebar-item.level-1.is-link > .item > .link:hover :deep(.icon),
+.vp-sidebar-item.level-2.is-link > .item > .link:hover :deep(.icon),
+.vp-sidebar-item.level-3.is-link > .item > .link:hover :deep(.icon),
+.vp-sidebar-item.level-4.is-link > .item > .link:hover :deep(.icon),
+.vp-sidebar-item.level-5.is-link > .item > .link:hover :deep(.icon) {
   color: var(--vp-c-brand-1);
 }
 

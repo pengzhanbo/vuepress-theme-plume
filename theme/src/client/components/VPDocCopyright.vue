@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { CopyrightFrontmatter } from '../../shared/index.js'
+import type { CopyrightFrontmatter, CopyrightOptions } from '../../shared/index.js'
 import VPCopyright from '@theme/VPCopyright.vue'
 import VPDocHeader from '@theme/VPDocHeader.vue'
 import { computed } from 'vue'
 import { isPlainObject } from 'vuepress/shared'
 import { useData } from '../composables/index.js'
 
-const { theme, frontmatter } = useData()
+const { theme, frontmatter } = useData<'post'>()
 
 const copyright = computed<CopyrightFrontmatter | null>(() => {
   if ((frontmatter.value.copyright ?? theme.value.copyright ?? false) === false) {
@@ -20,12 +20,11 @@ const copyright = computed<CopyrightFrontmatter | null>(() => {
 
   const themeCopyright = (isPlainObject(theme.value.copyright)
     ? theme.value.copyright
-    : { license: theme.value.copyright === true ? '' : theme.value.copyright }) as CopyrightFrontmatter
+    : { license: theme.value.copyright === true ? undefined : theme.value.copyright }) as CopyrightOptions
 
-  return {
-    ...themeCopyright,
-    ...docCopyright,
-  }
+  docCopyright.license ??= themeCopyright.license
+
+  return docCopyright
 })
 </script>
 

@@ -39,7 +39,7 @@ blog:
     logo: https://www.dingyuqi.com/icon/icon.ico
     url: https://dingyuqi.com
     repo: https://github.com/dingyuqi
-    preview: /images/demos/dingyuqi.com.jpg
+    preview: https://www.dingyuqi.com/back-ground/site-home-page.png
   -
     name: 屠永涛
     desc: 大脑中走得越远，现实中走得越稳！

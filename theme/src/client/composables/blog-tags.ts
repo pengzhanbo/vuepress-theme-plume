@@ -9,14 +9,13 @@ import { useTagColors } from './tag-colors.js'
 type ShortPostItem = Pick<PlumeThemeBlogPostItem, 'title' | 'path' | 'createTime'>
 
 export function useTags() {
-  const { theme } = useData()
+  const { blog } = useData()
   const list = useLocalePostList()
 
   const colors = useTagColors()
 
   const tags = computed(() => {
-    const blog = theme.value.blog || {}
-    const tagTheme = blog.tagsTheme ?? 'colored'
+    const tagTheme = blog.value.tagsTheme ?? 'colored'
 
     const tagMap: Record<string, number> = {}
     list.value.forEach((item) => {

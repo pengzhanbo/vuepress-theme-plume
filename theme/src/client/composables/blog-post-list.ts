@@ -8,10 +8,9 @@ import { useRouteQuery } from './route-query.js'
 const DEFAULT_PER_PAGE = 15
 
 export function usePostListControl(homePage: Ref<boolean>) {
-  const { theme } = useData()
+  const { blog } = useData()
 
   const list = useLocalePostList()
-  const blog = computed(() => theme.value.blog || {})
   const is960 = useMediaQuery('(max-width: 960px)')
 
   const postList = computed(() => {

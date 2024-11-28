@@ -11,15 +11,14 @@ const props = withDefaults(defineProps<{
 }>(), {
   depth: 0,
 })
-const { theme } = useData()
+const { blog } = useData()
 const route = useRoute()
 const el = ref<HTMLDivElement | null>(null)
 const expand = ref(true)
 const isExpand = ref(false)
 
 const expandDepth = computed(() => {
-  const blog = typeof theme.value.blog === 'boolean' ? {} : theme.value.blog
-  const depth = blog?.categoriesExpand ?? 'deep'
+  const depth = blog.value.categoriesExpand ?? 'deep'
   if (depth === 'deep')
     return Infinity
   const d = Number(depth)

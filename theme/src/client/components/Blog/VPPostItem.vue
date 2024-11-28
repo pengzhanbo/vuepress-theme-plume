@@ -10,7 +10,7 @@ const props = defineProps<{
   index: number
 }>()
 
-const { theme } = useData()
+const { blog } = useData()
 const colors = useTagColors()
 const { categories: categoriesLink, tags: tagsLink } = useInternalLink()
 
@@ -28,8 +28,7 @@ const sticky = computed(() => {
 })
 
 const tags = computed(() => {
-  const blog = theme.value.blog || {}
-  const tagTheme = blog.tagsTheme ?? 'colored'
+  const tagTheme = blog.value.tagsTheme ?? 'colored'
 
   return (props.post.tags ?? [])
     .slice(0, 4)
@@ -42,7 +41,7 @@ const tags = computed(() => {
 const cover = computed<BlogPostCover | null>(() => {
   if (!props.post.cover)
     return null
-  const opt = (typeof theme.value.blog === 'boolean' ? 'right' : theme.value.blog?.postCover) ?? 'right'
+  const opt = blog.value.postCover ?? 'right'
   const options = typeof opt === 'string' ? { layout: opt } : opt
   const cover = typeof props.post.cover === 'string' ? { url: props.post.cover } : props.post.cover
   return { layout: 'right', ratio: '4:3', ...options, ...cover }

@@ -1,8 +1,8 @@
 import type { App, Page } from 'vuepress/core'
 import type {
+  EncryptOptions,
   PlumeThemeBlogPostData,
   PlumeThemeBlogPostItem,
-  PlumeThemeEncrypt,
   PlumeThemeLocaleOptions,
   PlumeThemePageData,
   PlumeThemePostFrontmatter,
@@ -24,7 +24,7 @@ function getTimestamp(time: Date): number {
 export async function preparedBlogData(
   app: App,
   localeOptions: PlumeThemeLocaleOptions,
-  encrypt?: PlumeThemeEncrypt,
+  encrypt?: EncryptOptions,
 ): Promise<void> {
   if (localeOptions.blog === false) {
     const content = resolveContent(app, { name: 'blogPostData', content: [] })

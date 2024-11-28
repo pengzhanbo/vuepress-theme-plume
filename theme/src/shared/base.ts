@@ -59,24 +59,6 @@ export interface PresetLocale extends Record<CopyrightLicense, string> {
   archiveTotal: string
 }
 
-export interface ThemeTransition {
-  /**
-   * 是否启用 页面间跳转过渡动画
-   * @default true
-   */
-  page?: boolean
-  /**
-   * 是否启用 博客文章列表过渡动画
-   * @default true
-   */
-  postList?: boolean
-  /**
-   * 是否启用 深色/浅色 模式切换过渡动画
-   * @default 'fade'
-   */
-  appearance?: boolean | 'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip'
-}
-
 export type KnownCopyrightLicense =
   | 'CC-BY-4.0'
   | 'CC-BY-SA-4.0'
@@ -88,33 +70,33 @@ export type KnownCopyrightLicense =
 
 export type CopyrightLicense = LiteralUnion<KnownCopyrightLicense>
 
-export interface CopyrightOptions {
-  /**
-   * 版权信息
-   * @see https://creativecommons.org/share-your-work/cclicenses/
-   * @default 'CC-BY-4.0'
-   */
-  license?: CopyrightLicense | { name: string, url: string }
-}
+export type BlogPostCoverLayout = 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
 
-export interface CopyrightFrontmatter extends CopyrightOptions {
+export interface BlogPostCover {
   /**
-   * 作品的作者
+   * 封面图链接地址，只能使用 绝对路径 以及 远程图片地址
+   */
+  url: string
+  /**
+   * 博客文章封面图的位置
+   */
+  layout?: BlogPostCoverLayout
+  /**
+   * 博客文章封面图的比例
    *
-   * 如果是 原创，则默认为 contributors 中的第一个，否则需要手动指定
-   * @default ''
+   * @default '4:3'
    */
-  author?: string | { name: string, url?: string }
+  ratio?: number | `${number}:${number}` | `${number}/${number}`
 
   /**
-   * 作品的创作方式
-   * @default 'original'
+   * 封面图的宽度, 仅在 layout 为 'left' 或 'right' 时生效
+   *
+   * @default 240
    */
-  creation?: 'original' | 'translate' | 'reprint'
-
+  width?: number
   /**
-   * 原文地址，非 原创 作品时需要声明原文地址
-   * @default ''
+   * 是否使用紧凑模式，紧凑模式下，封面图紧贴容器边缘
+   * @default false
    */
-  source?: string
+  compact?: boolean
 }

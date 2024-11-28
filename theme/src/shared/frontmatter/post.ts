@@ -1,5 +1,5 @@
-import type { CopyrightFrontmatter, CopyrightLicense } from '../base.js'
-import type { BlogPostCover } from '../blog.js'
+import type { BlogPostCover, CopyrightLicense } from '../base.js'
+import type { CopyrightOptions } from '../options/copyright.js'
 import type { PlumeThemePageFrontmatter } from './page.js'
 
 export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {
@@ -44,4 +44,26 @@ export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {
    * 版权信息
    */
   copyright?: boolean | CopyrightLicense | CopyrightFrontmatter
+}
+
+export interface CopyrightFrontmatter extends CopyrightOptions {
+  /**
+   * 作品的作者
+   *
+   * 如果是 原创，则默认为 contributors 中的第一个，否则需要手动指定
+   * @default ''
+   */
+  author?: string | { name: string, url?: string }
+
+  /**
+   * 作品的创作方式
+   * @default 'original'
+   */
+  creation?: 'original' | 'translate' | 'reprint'
+
+  /**
+   * 原文地址，非 原创 作品时需要声明原文地址
+   * @default ''
+   */
+  source?: string
 }

@@ -1,10 +1,10 @@
 import type {
-  AutoFrontmatter,
   AutoFrontmatterObject,
+  AutoFrontmatterOptions,
 } from '../../shared/index.js'
 import dayjs from 'dayjs'
 
-export function createBaseFrontmatter(options: AutoFrontmatter): AutoFrontmatterObject {
+export function createBaseFrontmatter(options: AutoFrontmatterOptions): AutoFrontmatterObject {
   const res: AutoFrontmatterObject = {}
 
   if (options.createTime !== false) {

@@ -1,5 +1,5 @@
 import type { Stats } from 'node:fs'
-import type { PlumeThemePageFrontmatter } from './frontmatter/page.js'
+import type { PlumeThemePageFrontmatter } from '../frontmatter/page.js'
 
 export interface AutoFrontmatterMarkdownFile {
   filepath: string
@@ -22,7 +22,7 @@ export type AutoFrontmatterArray = {
   frontmatter: AutoFrontmatterObject
 }[]
 
-export interface AutoFrontmatter {
+export interface AutoFrontmatterOptions {
   /**
    * glob 匹配，被匹配的文件将会自动生成 frontmatter
    *

@@ -1,9 +1,9 @@
 import type { App } from 'vuepress'
 import type {
-  AutoFrontmatter,
   AutoFrontmatterArray,
   AutoFrontmatterMarkdownFile,
   AutoFrontmatterObject,
+  AutoFrontmatterOptions,
   PlumeThemeLocaleOptions,
 } from '../../shared/index.js'
 import { isArray, isEmptyObject, promiseParallel, toArray } from '@pengzhanbo/utils'
@@ -36,7 +36,7 @@ let generate: Generate | null = null
 
 export function initAutoFrontmatter(
   localeOptions: PlumeThemeLocaleOptions,
-  autoFrontmatter: AutoFrontmatter = {},
+  autoFrontmatter: AutoFrontmatterOptions = {},
 ) {
   const { include, exclude, frontmatter = {} } = resolveOptions(localeOptions, autoFrontmatter)
 

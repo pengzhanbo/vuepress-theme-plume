@@ -1,6 +1,9 @@
 import type { Page } from 'vuepress'
 
-export interface BulletinOptions {
+/**
+ * 公告栏配置
+ */
+export type BulletinOptions<T extends Record<string, unknown> = Record<string, unknown>> = T & {
   /**
    * 公告位置
    * @default 'top-right'
@@ -71,6 +74,4 @@ export interface BulletinOptions {
    * - 使用 `.html` 文件时，只能包含公告内容，请不要使用 `<html>` `<body>` `<script>` 等标签。
    */
   contentFile?: string
-
-  [key: string]: any
 }

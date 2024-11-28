@@ -1,4 +1,5 @@
 import type { GitPluginPageData } from '@vuepress/plugin-git'
+import type { BlogPostCover } from './base.js'
 
 interface ReadingTime {
   /** 分钟数 */
@@ -20,3 +21,18 @@ export interface PageCategoryData {
   sort: number
   name: string
 }
+
+export interface PlumeThemeBlogPostItem {
+  title: string
+  excerpt: string
+  path: string
+  tags?: string[]
+  sticky?: boolean | number
+  categoryList?: PageCategoryData[]
+  createTime: string
+  lang: string
+  encrypt?: boolean
+  cover?: string | BlogPostCover
+}
+
+export type PlumeThemeBlogPostData = PlumeThemeBlogPostItem[]

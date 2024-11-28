@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PlumeThemeProfile } from '../../../shared/index.js'
+import type { ProfileOptions } from '../../../shared/index.js'
 import VPSocialLinks from '@theme/VPSocialLinks.vue'
 import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
@@ -8,7 +8,7 @@ import { useData } from '../../composables/index.js'
 
 const { theme } = useData()
 const profile = computed(() =>
-  theme.value.profile as PlumeThemeProfile & { originalWidth?: number, originalHeight?: number },
+  theme.value.profile as ProfileOptions & { originalWidth?: number, originalHeight?: number },
 )
 const imageUrl = computed(() => {
   const url = profile.value?.avatar ?? profile.value?.url

@@ -1,6 +1,6 @@
 import type {
-  AutoFrontmatter,
   AutoFrontmatterArray,
+  AutoFrontmatterOptions,
   NoteItem,
   NotesOptions,
   PlumeThemeLocaleOptions,
@@ -16,8 +16,8 @@ import { resolveLinkBySidebar } from './resolveLinkBySidebar.js'
 
 export function resolveOptions(
   localeOptions: PlumeThemeLocaleOptions,
-  options: AutoFrontmatter,
-): AutoFrontmatter {
+  options: AutoFrontmatterOptions,
+): AutoFrontmatterOptions {
   const resolveLocale = (relativeFilepath: string): string =>
     resolveLocalePath(localeOptions.locales!, ensureLeadingSlash(relativeFilepath))
 

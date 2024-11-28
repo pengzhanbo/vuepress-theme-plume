@@ -6,11 +6,10 @@ import { useData } from './data.js'
 import { useInternalLink } from './internal-link.js'
 
 export function useBlogExtract() {
-  const { theme } = useData()
+  const { blog } = useData()
   const postList = useLocalePostList()
   const { tags: tagsList } = useTags()
   const { categories: categoryList } = useBlogCategory()
-  const blog = computed(() => theme.value.blog || {})
   const links = useInternalLink()
 
   const hasBlogExtract = computed(() =>

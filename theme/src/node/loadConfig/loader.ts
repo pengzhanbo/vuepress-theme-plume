@@ -1,6 +1,7 @@
 import type { FSWatcher } from 'chokidar'
 import type { App } from 'vuepress'
-import type { AutoFrontmatter, PlumeThemeEncrypt, PlumeThemeLocaleOptions, ThemeConfig } from '../../shared/index.js'
+import type { AutoFrontmatterOptions, EncryptOptions, PlumeThemeLocaleOptions } from '../../shared/index.js'
+import type { ThemeConfig } from '../types.js'
 import { deepMerge } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
 import { path } from 'vuepress/utils'
@@ -11,8 +12,8 @@ import { findConfigPath } from './findConfigPath.js'
 
 export interface ResolvedConfig {
   localeOptions: PlumeThemeLocaleOptions
-  encrypt?: PlumeThemeEncrypt
-  autoFrontmatter?: false | Omit<AutoFrontmatter, 'frontmatter'>
+  encrypt?: EncryptOptions
+  autoFrontmatter?: false | Omit<AutoFrontmatterOptions, 'frontmatter'>
 }
 
 export interface InitConfigLoaderOptions {

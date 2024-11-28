@@ -1,10 +1,14 @@
-import type { LocaleData } from 'vuepress/core'
-import type { CopyrightLicense, CopyrightOptions, SocialLink, SocialLinkIconUnion, ThemeOutline, ThemeTransition } from '../base.js'
-import type { PlumeThemeBlog } from '../blog.js'
+import type { ChangelogOptions, ContributorsOptions } from '@vuepress/plugin-git'
+import type { LocaleConfig, LocaleData } from 'vuepress/core'
+import type { CopyrightLicense, SocialLink, SocialLinkIconUnion, ThemeOutline } from '../base.js'
 import type { NavItem } from '../navbar.js'
 import type { NotesOptions } from '../notes.js'
 import type { SidebarMulti } from '../sidebar.js'
+import type { BlogOptions } from './blog.js'
 import type { BulletinOptions } from './bulletin.js'
+import type { CopyrightOptions } from './copyright.js'
+import type { ProfileOptions } from './profile.js'
+import type { TransitionOptions } from './transition.js'
 
 export interface PlumeThemeLocaleData extends LocaleData {
   /**
@@ -28,21 +32,20 @@ export interface PlumeThemeLocaleData extends LocaleData {
    * 深色模式切换按钮的文本
    */
   appearanceText?: string
-
   lightModeSwitchTitle?: string
   darkModeSwitchTitle?: string
 
   /**
    * @deprecated 弃用，使用 `profile` 代替
    */
-  avatar?: PlumeThemeProfile
+  avatar?: ProfileOptions
 
   /**
    * 配置博主拥有者 个人资料
    *
    * 显示在博客右侧侧边栏
    */
-  profile?: PlumeThemeProfile
+  profile?: ProfileOptions
 
   /**
    * 社交账号配置
@@ -58,21 +61,9 @@ export interface PlumeThemeLocaleData extends LocaleData {
 
   /**
    * 允许显示在导航栏的社交类型
-   * @default - ['github', 'twitter', 'discord', 'facebook']
+   * @default ['github', 'twitter', 'discord', 'facebook']
    */
   navbarSocialInclude?: (SocialLinkIconUnion | (string & { zz_IGNORE_ME?: never }))[]
-
-  /**
-   * 博客配置
-   */
-  blog?: false | PlumeThemeBlog
-
-  /**
-   * 文章链接前缀
-   *
-   * @default '/article/'
-   */
-  article?: string
 
   /**
    * 笔记配置， 笔记中的文章默认不会出现在首页文章列表
@@ -162,7 +153,7 @@ export interface PlumeThemeLocaleData extends LocaleData {
    *
    * @default true
    */
-  transition?: boolean | ThemeTransition
+  transition?: boolean | TransitionOptions
 
   /**
    * 选择语言菜单 的文本。
@@ -329,50 +320,61 @@ export interface PlumeThemeLocaleData extends LocaleData {
   encryptPlaceholder?: string
 }
 
-/** =========================== Profile ================================ */
-
-/**
- * 个人资料
- */
-export interface PlumeThemeProfile {
+export type PlumeThemeData = PlumeThemeLocaleData & {
   /**
-   * @deprecated 弃用，使用 `avatar` 代替
-   * 头像链接
+   * 多语言配置
    */
-  url?: string
+  locales?: LocaleConfig<PlumeThemeLocaleData>
 
   /**
-   * 头像链接地址
+   * 博客配置
    */
-  avatar?: string
-  /**
-   * 名称
-   */
-  name?: string
-  /**
-   * 描述
-   */
-  description?: string
-  /**
-   * 是否显示为圆形头像
-   */
-  circle?: boolean
+  blog?: false | BlogOptions
 
   /**
-   * 地理位置
+   * 文章链接前缀
+   *
+   * @default '/article/'
    */
-  location?: string
+  article?: string
 
   /**
-   * 组织，公司
+   * 文档仓库配置, 用于生成 Edit this page 链接
    */
-  organization?: string
+  docsRepo?: string
 
   /**
-   * 布局位置，左侧或者右侧
-   * @default 'right'
+   * 文档仓库分支配置，用于生成 `Edit this page` 链接。
    */
-  layout?: 'left' | 'right'
+  docsBranch?: string
+
+  /**
+   * 文档仓库目录配置，用于生成 `Edit this page` 链接。
+   */
+  docsDir?: string
+  /**
+   * 是否显示 "编辑此页"
+   *
+   * @default true
+   */
+  editLink?: boolean
+
+  /**
+   * 最后更新时间
+   *
+   * @default { formatOptions: { dateStyle: 'short', timeStyle: 'short' } }
+   */
+  lastUpdated?: false | LastUpdatedOptions
+
+  /**
+   * 是否显示贡献者
+   */
+  contributors?: boolean | ContributorsOptions & { mode?: 'inline' | 'block' }
+
+  /**
+   * 页面变更记录配置
+   */
+  changelog?: boolean | ChangelogOptions
 }
 
 /** ========================== Page Meta ====================== */

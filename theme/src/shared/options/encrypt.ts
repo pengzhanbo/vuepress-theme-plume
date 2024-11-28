@@ -1,4 +1,4 @@
-export interface PlumeThemeEncrypt {
+export interface EncryptOptions {
   /**
    * 是否启用全站加密
    * @default false

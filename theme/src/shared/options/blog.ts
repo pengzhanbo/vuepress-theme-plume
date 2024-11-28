@@ -1,22 +1,7 @@
-import type { PageCategoryData } from './page-data.js'
+import type { BlogPostCover, BlogPostCoverLayout } from '../base.js'
+import type { PageCategoryData } from '../page-data.js'
 
-export interface PlumeThemeBlogPostItem {
-  title: string
-  excerpt: string
-  path: string
-  tags?: string[]
-  sticky?: boolean | number
-  categoryList?: PageCategoryData[]
-  createTime: string
-  lang: string
-  encrypt?: boolean
-  cover?: string | BlogPostCover
-}
-
-export type PlumeThemeBlogPostData = PlumeThemeBlogPostItem[]
-
-export interface PlumeThemeBlog {
-
+export interface BlogOptions {
   /**
    * 通过 glob string 配置包含文件，
    *
@@ -130,35 +115,4 @@ export interface PlumeThemeBlog {
    * @default 'right'
    */
   postCover?: BlogPostCoverLayout | Omit<BlogPostCover, 'url'>
-}
-
-export type BlogPostCoverLayout = 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
-
-export interface BlogPostCover {
-  /**
-   * 封面图链接地址，只能使用 绝对路径 以及 远程图片地址
-   */
-  url: string
-  /**
-   * 博客文章封面图的位置
-   */
-  layout?: BlogPostCoverLayout
-  /**
-   * 博客文章封面图的比例
-   *
-   * @default '4:3'
-   */
-  ratio?: number | `${number}:${number}` | `${number}/${number}`
-
-  /**
-   * 封面图的宽度, 仅在 layout 为 'left' 或 'right' 时生效
-   *
-   * @default 240
-   */
-  width?: number
-  /**
-   * 是否使用紧凑模式，紧凑模式下，封面图紧贴容器边缘
-   * @default false
-   */
-  compact?: boolean
 }

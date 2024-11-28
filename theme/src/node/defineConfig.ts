@@ -1,4 +1,5 @@
-import type { NavItem, NoteItem, NotesOptions, ThemeConfig } from '../shared/index.js'
+import type { NavItem, NoteItem, NotesOptions } from '../shared/index.js'
+import type { ThemeConfig } from './types.js'
 
 export type {
   NoteItem,

@@ -36,6 +36,13 @@ export const zhLocale: PlumeThemeLocaleData = {
     linkText: '返回首页',
   },
 
+  homeText: '首页',
+  blogText: '博客',
+  tagText: '标签',
+  archiveText: '归档',
+  categoryText: '分类',
+  archiveTotalText: '{count} 篇',
+
   encryptButtonText: '确认',
   encryptPlaceholder: '请输入密码',
   encryptGlobalText: '本站只允许密码访问',
@@ -48,13 +55,6 @@ export const zhLocale: PlumeThemeLocaleData = {
 }
 
 export const zhPresetLocale: PresetLocale = {
-  'home': '首页',
-  'blog': '博客',
-  'tag': '标签',
-  'archive': '归档',
-  'category': '分类',
-  'archiveTotal': '{count} 篇',
-
   // ------ copyright license ------
   'CC0': 'CC0 1.0 通用',
   'CC-BY-4.0': '署名 4.0 国际',

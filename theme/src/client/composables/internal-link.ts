@@ -2,7 +2,7 @@ import type { PresetLocale } from '../../shared/index.js'
 import { computed } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
 import { useData } from './data.js'
-import { getPresetLocaleData } from './preset-locales.js'
+import { useThemeData } from './theme-data.js'
 
 export interface InternalLink {
   text: string
@@ -10,13 +10,14 @@ export interface InternalLink {
 }
 
 export function useInternalLink() {
-  const { blog } = useData()
+  const { blog, theme } = useData()
+  const themeData = useThemeData()
   const routeLocale = useRouteLocale()
 
   function resolveLink(name: keyof PresetLocale, link: string): InternalLink {
     return {
       link: (routeLocale.value + link).replace(/\/+/g, '/'),
-      text: getPresetLocaleData(routeLocale.value, name),
+      text: theme.value[`${name}Text`] || themeData.value[`${name}Text`],
     }
   }
 

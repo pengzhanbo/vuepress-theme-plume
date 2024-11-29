@@ -2,6 +2,7 @@ import { plumeTheme } from './theme.js'
 
 export * from '../shared/index.js'
 export * from './defineConfig.js'
+export * from './types.js'
 
 export { plumeTheme }
 

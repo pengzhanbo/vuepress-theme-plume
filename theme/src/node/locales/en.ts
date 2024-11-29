@@ -28,6 +28,13 @@ export const enLocale: PlumeThemeLocaleData = {
   encryptGlobalText: 'Only password can access this site',
   encryptPageText: 'Only password can access this page',
 
+  homeText: 'Home',
+  blogText: 'Blog',
+  tagText: 'Tags',
+  archiveText: 'Archives',
+  categoryText: 'Categories',
+  archiveTotalText: '{count} articles',
+
   footer: {
     message:
       'Powered by <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
@@ -35,13 +42,6 @@ export const enLocale: PlumeThemeLocaleData = {
 }
 
 export const enPresetLocale: PresetLocale = {
-  'home': 'Home',
-  'blog': 'Blog',
-  'tag': 'Tags',
-  'archive': 'Archives',
-  'category': 'Categories',
-  'archiveTotal': '{count} articles',
-
   // ------ copyright license ------
   'CC0': 'CC0 1.0 Universal',
   'CC-BY-4.0': 'Attribution 4.0 International',

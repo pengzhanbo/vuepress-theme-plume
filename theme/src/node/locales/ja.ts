@@ -37,6 +37,13 @@ export const jaLocale: PlumeThemeLocaleData = {
     linkText: 'ホームに戻る',
   },
 
+  homeText: 'ホーム',
+  blogText: 'ブログ',
+  tagText: 'タグ',
+  archiveText: 'アーカイブ',
+  categoryText: 'カテゴリー',
+  archiveTotalText: '{count} 件',
+
   encryptButtonText: '確認',
   encryptPlaceholder: 'パスワードを入力してください',
   encryptGlobalText: 'このサイトはパスワードでのみアクセス可能です',
@@ -49,13 +56,6 @@ export const jaLocale: PlumeThemeLocaleData = {
 }
 
 export const jaPresetLocale: PresetLocale = {
-  'home': 'ホーム',
-  'blog': 'ブログ',
-  'tag': 'タグ',
-  'archive': 'アーカイブ',
-  'category': 'カテゴリー',
-  'archiveTotal': '{count} 件',
-
   // ------ copyright license ------
   'CC0': 'CC0 1.0 パブリックドメイン',
   'CC-BY-4.0': '表示 4.0 国際',

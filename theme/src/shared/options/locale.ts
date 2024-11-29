@@ -300,6 +300,32 @@ export interface PlumeThemeLocaleData extends LocaleData {
   }
 
   /**
+   * 首页文本，用于默认生成的导航栏、面包屑导航中
+   */
+  homeText?: string
+  /**
+   * 博客文本，用于默认生成的导航栏、面包屑导航中
+   */
+  blogText?: string
+  /**
+   * 标签文本，用于默认生成的导航栏、博客标签页中
+   */
+  tagText?: string
+  /**
+   * 归档文本，用于默认生成的导航栏、博客归档页中
+   */
+  archiveText?: string
+  /**
+   * 分类文本，用于默认生成的导航栏、博客分类页中
+   */
+  categoryText?: string
+  /**
+   * 博客总数文本，用于默认生成的导航栏、博客归档页中
+   * @default '{count} articles''
+   */
+  archiveTotalText?: string
+
+  /**
    * 全站加密时的提示
    */
   encryptGlobalText?: string

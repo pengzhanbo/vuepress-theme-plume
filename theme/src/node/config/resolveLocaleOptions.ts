@@ -1,6 +1,7 @@
 import type { App } from 'vuepress'
 import type { PlumeThemeData, PlumeThemeLocaleOptions } from '../../shared/index.js'
-import { entries, fromEntries, getLocaleConfig } from '@vuepress/helper'
+import { hasOwn, uniq } from '@pengzhanbo/utils'
+import { entries, fromEntries, getLocaleConfig, isPlainObject } from '@vuepress/helper'
 import { LOCALE_OPTIONS } from '../locales/index.js'
 import { THEME_NAME } from '../utils/index.js'
 
@@ -41,8 +42,7 @@ const FALLBACK_OPTIONS: PlumeThemeData = {
 
 export function resolveLocaleOptions(app: App, { locales, ...options }: PlumeThemeLocaleOptions): PlumeThemeLocaleOptions {
   const resolvedOptions: PlumeThemeLocaleOptions = {
-    ...FALLBACK_OPTIONS,
-    ...options,
+    ...mergeLocaleOptions(FALLBACK_OPTIONS, options),
     locales: getLocaleConfig({
       app,
       name: THEME_NAME,
@@ -53,10 +53,31 @@ export function resolveLocaleOptions(app: App, { locales, ...options }: PlumeThe
           ...locales,
         }).map(([locale, opt]) => [
           locale,
-          { ...options, ...opt },
+          mergeLocaleOptions(options, opt),
         ]),
       ),
     }),
   }
   return resolvedOptions
+}
+
+function mergeLocaleOptions(target: PlumeThemeData, source: PlumeThemeData): PlumeThemeData {
+  const res: PlumeThemeData = {}
+  const keys = uniq([...Object.keys(target), ...Object.keys(source)]) as (keyof PlumeThemeData)[]
+  for (const key of keys) {
+    if (hasOwn(source, key)) {
+      const value = source[key]
+      const targetValue = target[key]
+      if (isPlainObject(targetValue) && isPlainObject(value)) {
+        res[key] = Object.assign({}, targetValue, value) as any
+      }
+      else {
+        res[key] = value as any
+      }
+    }
+    else {
+      res[key] = target[key]
+    }
+  }
+  return res
 }

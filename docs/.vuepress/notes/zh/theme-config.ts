@@ -9,8 +9,8 @@ export const themeConfig = defineNoteConfig({
       collapsed: false,
       items: [
         '配置说明',
-        '多语言配置',
         '主题配置',
+        '多语言配置',
         '导航栏配置',
         'notes配置',
         '侧边栏配置',

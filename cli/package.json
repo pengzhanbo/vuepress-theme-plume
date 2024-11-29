@@ -30,7 +30,7 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@clack/prompts": "^0.8.1",
+    "@clack/prompts": "^0.8.2",
     "@pengzhanbo/utils": "^1.1.2",
     "cac": "^6.7.14",
     "execa": "^9.5.1",

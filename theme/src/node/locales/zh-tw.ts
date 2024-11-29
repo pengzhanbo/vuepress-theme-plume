@@ -37,6 +37,13 @@ export const zhTwLocale: PlumeThemeLocaleData = {
     linkText: '返回首頁',
   },
 
+  homeText: '首頁',
+  blogText: '博客',
+  tagText: '標籤',
+  archiveText: '歸檔',
+  categoryText: '分類',
+  archiveTotalText: '{count} 篇',
+
   encryptButtonText: '確認',
   encryptPlaceholder: '請輸入密碼',
   encryptGlobalText: '本站只允許密碼訪問',
@@ -49,13 +56,6 @@ export const zhTwLocale: PlumeThemeLocaleData = {
 }
 
 export const zhTwPresetLocale: PresetLocale = {
-  'home': '首頁',
-  'blog': '博客',
-  'tag': '標籤',
-  'archive': '歸檔',
-  'category': '分類',
-  'archiveTotal': '{count} 篇',
-
   // ------ copyright license ------
   'CC0': 'CC0 1.0 通用',
   'CC-BY-4.0': '署名 4.0 國際',

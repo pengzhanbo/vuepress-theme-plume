@@ -5,7 +5,7 @@ import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
 import { computed } from 'vue'
 import { useBlogPageData, useData, useInternalLink, useTagColors } from '../composables/index.js'
 
-const { page, frontmatter: matter, theme } = useData<'post'>()
+const { page, frontmatter: matter, theme, blog } = useData<'post'>()
 const colors = useTagColors()
 const readingTime = useReadingTimeLocale()
 const { tags: tagsLink } = useInternalLink()
@@ -22,8 +22,7 @@ const createTime = computed(() => {
 })
 
 const tags = computed(() => {
-  const blog = theme.value.blog || {}
-  const tagTheme = blog.tagsTheme ?? 'colored'
+  const tagTheme = blog.value.tagsTheme ?? 'colored'
   if (matter.value.tags) {
     return matter.value.tags.slice(0, 4).map(tag => ({
       name: tag,

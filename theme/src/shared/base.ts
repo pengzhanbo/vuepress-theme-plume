@@ -50,14 +50,7 @@ export type SocialLinkIconUnion =
 
 export type SocialLinkIcon = SocialLinkIconUnion | { svg: string, name?: string }
 
-export interface PresetLocale extends Record<CopyrightLicense, string> {
-  home: string
-  blog: string
-  tag: string
-  archive: string
-  category: string
-  archiveTotal: string
-}
+export interface PresetLocale extends Record<CopyrightLicense, string> {}
 
 export type KnownCopyrightLicense =
   | 'CC-BY-4.0'

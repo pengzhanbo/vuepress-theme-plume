@@ -1,18 +1,19 @@
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 import { computed } from 'vue'
-import { useRouteLocale } from 'vuepress/client'
 import { useLocalePostList } from './blog-data.js'
-import { getPresetLocaleData } from './preset-locales.js'
+import { useData } from './data.js'
+import { useThemeData } from './theme-data.js'
 
 export type ShortPostItem = Pick<PlumeThemeBlogPostItem, 'title' | 'path' | 'createTime'>
 
 export function useArchives() {
-  const locale = useRouteLocale()
+  const themeData = useThemeData()
   const list = useLocalePostList()
+  const { theme } = useData()
 
   const archives = computed(() => {
     const archives: { title: string, label: string, list: ShortPostItem[] }[] = []
-    const countLocale = getPresetLocaleData(locale.value, 'archiveTotal')
+    const countLocale = theme.value.archiveTotalText || themeData.value.archiveTotalText
 
     list.value.forEach((item) => {
       const createTime = item.createTime?.split(/\s|T/)[0] || ''
@@ -30,7 +31,7 @@ export function useArchives() {
     })
 
     archives.forEach((item) => {
-      item.label = countLocale.replace('{count}', item.list.length.toString())
+      item.label = countLocale?.replace('{count}', item.list.length.toString()) || ''
     })
 
     return archives

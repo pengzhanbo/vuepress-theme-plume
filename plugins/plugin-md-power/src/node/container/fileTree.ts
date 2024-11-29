@@ -1,7 +1,7 @@
 import type { Markdown } from 'vuepress/markdown'
 import type { FileTreeIconMode, FileTreeOptions } from '../../shared/index.js'
-import Token from 'markdown-it/lib/token.mjs'
 import container from 'markdown-it-container'
+import Token from 'markdown-it/lib/token.mjs'
 import { removeEndingSlash, removeLeadingSlash } from 'vuepress/shared'
 import { defaultFile, defaultFolder, getFileIcon } from '../fileIcons/index.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'

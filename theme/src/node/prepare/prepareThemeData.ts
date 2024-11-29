@@ -3,8 +3,8 @@ import type { PlumeThemeData, PlumeThemeLocaleOptions, PlumeThemePluginOptions }
 import fs from 'node:fs/promises'
 import process from 'node:process'
 import { type FSWatcher, watch } from 'chokidar'
-import { hash } from 'vuepress/utils'
 import { resolveImageSize } from 'vuepress-plugin-md-power'
+import { hash } from 'vuepress/utils'
 import { resolveThemeData } from '../config/resolveThemeData.js'
 import { logger, resolveContent, writeTemp } from '../utils/index.js'
 

@@ -34,8 +34,8 @@ import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
 @tab .vuepress/client.ts
 
 ```ts
-import { defineClientConfig } from 'vuepress/client'
 import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
+import { defineClientConfig } from 'vuepress/client'
 
 export default defineClientConfig({
   enhance({ app }) {

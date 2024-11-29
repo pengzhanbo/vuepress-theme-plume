@@ -1,5 +1,5 @@
-import type { DocSearchPluginOptions } from '@vuepress/plugin-docsearch'
 import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
+import type { DocSearchPluginOptions } from '@vuepress/plugin-docsearch'
 import type { App } from 'vuepress'
 import { getLocaleConfig } from '@vuepress/helper'
 import { DOCSEARCH_LOCALES, SEARCH_LOCALES } from '../locales/index.js'

@@ -1,3 +1,26 @@
+# [1.0.0-rc.119](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.118...v1.0.0-rc.119) (2024-11-29)
+
+
+### Bug Fixes
+
+* **theme:** incorrect article copyright, close [#362](https://github.com/pengzhanbo/vuepress-theme-plume/issues/362) ([#363](https://github.com/pengzhanbo/vuepress-theme-plume/issues/363)) ([6533332](https://github.com/pengzhanbo/vuepress-theme-plume/commit/653333228057cab1d3c1eb79008669bfac6daa58))
+* **theme:** locales preset injection failed, close [#354](https://github.com/pengzhanbo/vuepress-theme-plume/issues/354) ([#356](https://github.com/pengzhanbo/vuepress-theme-plume/issues/356)) ([c8afeef](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c8afeef7825f6f99758c0c5633d8d84d40feecd3))
+
+
+### Features
+
+* **theme:** improve locales ([#366](https://github.com/pengzhanbo/vuepress-theme-plume/issues/366)) ([9906f1a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9906f1a4e2e779363d7446f0ea7851f28254d378))
+* **theme:** improve sidebar external link icon ([#358](https://github.com/pengzhanbo/vuepress-theme-plume/issues/358)) ([de2a5a3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/de2a5a3037eb4e3ce963ec448dfddf61886887f5))
+* **theme:** optimize cn font family ([#357](https://github.com/pengzhanbo/vuepress-theme-plume/issues/357)) ([d11dd2d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d11dd2d12ced2444e62296183d3b1738c49fd2d7))
+
+
+### Performance Improvements
+
+* **theme:** improve types ([#365](https://github.com/pengzhanbo/vuepress-theme-plume/issues/365)) ([8b39248](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8b39248f9635d4e45990023ca1b9140b9076a318))
+* update deps to latest ([1262d1a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1262d1a0b7291c1efe5d8312636a1512e75c999b))
+
+
+
 # [1.0.0-rc.118](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.117...v1.0.0-rc.118) (2024-11-22)
 
 

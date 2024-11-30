@@ -9,12 +9,12 @@
     "docs:serve": "http-server .vuepress/dist -d 0"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.18"
+    "vuepress": "catalog:"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.277",
+    "@iconify/json": "catalog:",
     "@simonwep/pickr": "^1.9.1",
-    "@vuepress/bundler-vite": "2.0.0-rc.18",
+    "@vuepress/bundler-vite": "catalog:",
     "chart.js": "^4.4.6",
     "echarts": "^5.5.1",
     "flowchart.ts": "^3.0.1",
@@ -22,7 +22,7 @@
     "mermaid": "^11.4.1",
     "sass-embedded": "^1.81.0",
     "swiper": "^11.1.15",
-    "vue": "^3.5.13",
+    "vue": "catalog:",
     "vuepress-theme-plume": "workspace:*"
   },
   "devDependencies": {

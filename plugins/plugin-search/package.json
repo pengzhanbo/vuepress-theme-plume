@@ -37,18 +37,18 @@
     "tsup": "tsup --config tsup.config.ts"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.18"
+    "vuepress": "catalog:"
   },
   "dependencies": {
-    "@vuepress/helper": "2.0.0-rc.60",
-    "@vueuse/core": "^12.0.0",
-    "@vueuse/integrations": "^12.0.0",
-    "chokidar": "3.6.0",
+    "@vuepress/helper": "catalog:",
+    "@vueuse/core": "catalog:",
+    "@vueuse/integrations": "catalog:",
+    "chokidar": "catalog:",
     "focus-trap": "^7.6.2",
     "mark.js": "^8.11.1",
     "minisearch": "^7.1.1",
     "p-map": "^7.0.2",
-    "vue": "^3.5.13"
+    "vue": "catalog:"
   },
   "publishConfig": {
     "access": "public"

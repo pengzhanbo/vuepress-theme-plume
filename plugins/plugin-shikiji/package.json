@@ -33,20 +33,20 @@
     "tsup": "tsup --config tsup.config.ts"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.18"
+    "vuepress": "catalog:"
   },
   "dependencies": {
     "@shikijs/transformers": "^1.24.0",
     "@shikijs/twoslash": "^1.24.0",
     "@types/hast": "^3.0.4",
-    "@vuepress/helper": "2.0.0-rc.60",
-    "@vueuse/core": "^12.0.0",
-    "fast-glob": "^3.3.2",
+    "@vuepress/helper": "catalog:",
+    "@vueuse/core": "catalog:",
+    "fast-glob": "catalog:",
     "floating-vue": "^5.2.2",
     "mdast-util-from-markdown": "^2.0.2",
     "mdast-util-gfm": "^3.0.0",
     "mdast-util-to-hast": "^13.2.0",
-    "nanoid": "^5.0.9",
+    "nanoid": "catalog:",
     "shiki": "^1.24.0",
     "twoslash": "^0.2.12",
     "twoslash-vue": "^0.2.12"

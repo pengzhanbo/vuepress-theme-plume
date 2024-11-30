@@ -33,7 +33,7 @@
     "tsup": "tsup --config tsup.config.ts"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.18"
+    "vuepress": "catalog:"
   },
   "publishConfig": {
     "access": "public"

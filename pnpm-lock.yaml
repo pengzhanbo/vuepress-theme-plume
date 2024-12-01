@@ -488,7 +488,7 @@ importers:
         specifier: ^0.24.0
         version: 0.24.0
       fast-glob:
-        specifier: ^3.3.2
+        specifier: 'catalog:'
         version: 3.3.2
       gray-matter:
         specifier: 'catalog:'

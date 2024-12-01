@@ -6,7 +6,7 @@ export const theme: Theme = plumeTheme({
   hostname: process.env.SITE_HOST || 'https://plume.pengzhanbo.cn',
   docsRepo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
   docsDir: 'docs',
-  changelog: true,
+  changelog: { maxCount: 10 },
   contributors: { mode: 'block' },
 
   plugins: {

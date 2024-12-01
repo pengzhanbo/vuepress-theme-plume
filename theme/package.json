@@ -118,7 +118,7 @@
     "create-filter": "^1.1.0",
     "dayjs": "^1.11.13",
     "esbuild": "^0.24.0",
-    "fast-glob": "^3.3.2",
+    "fast-glob": "catalog:",
     "gray-matter": "catalog:",
     "json2yaml": "catalog:",
     "katex": "^0.16.11",

@@ -1,4 +1,4 @@
-import type { Bundler, Langs, Options, PromptResult } from './types.js'
+import type { Bundler, Langs, PromptResult } from './types.js'
 import { createRequire } from 'node:module'
 import process from 'node:process'
 import { cancel, confirm, group, select, text } from '@clack/prompts'
@@ -20,7 +20,7 @@ export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
 
   const result: PromptResult = await group({
     displayLang: async () => {
-      const lang = await select<Options<Langs>, Langs>({
+      const lang = await select<Langs>({
         message: 'Select a language to display / 选择显示语言',
         options: languageOptions,
       })
@@ -68,7 +68,7 @@ export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
       initialValue: false,
     }),
 
-    defaultLanguage: () => select<Options<Langs>, Langs>({
+    defaultLanguage: () => select<Langs>({
       message: t('question.defaultLanguage'),
       options: languageOptions,
     }),
@@ -93,7 +93,7 @@ export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
       })
     },
 
-    bundler: () => select<Options<Bundler>, Bundler>({
+    bundler: () => select<Bundler>({
       message: t('question.bundler'),
       options: bundlerOptions,
     }),
@@ -102,7 +102,7 @@ export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
       if (mode === Mode.init) {
         return DeployType.custom
       }
-      return await select<Options<DeployType>, DeployType>({
+      return await select<DeployType>({
         message: t('question.deploy'),
         options: deployOptions,
         initialValue: DeployType.custom,

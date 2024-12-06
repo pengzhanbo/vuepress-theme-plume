@@ -6,7 +6,7 @@ import { colors } from 'vuepress/utils'
 import { logger } from '../utils/index.js'
 
 const CONFIG_FILE_NAME = 'plume.config'
-const extensions: string[] = ['ts', 'js', 'mts', 'cts', 'mjs', 'cjs']
+const extensions: string[] = ['ts', 'js', 'mjs', 'cjs', 'mts', 'cts']
 
 export async function findConfigPath(app: App, configPath?: string): Promise<string | undefined> {
   const cwd = process.cwd()

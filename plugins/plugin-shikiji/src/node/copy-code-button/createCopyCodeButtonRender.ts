@@ -5,7 +5,7 @@ import type {
 } from '../types.js'
 import {
   getLocalePaths,
-  getRootLangPath,
+  inferRootLocalePath,
   isPlainObject,
 } from '@vuepress/helper'
 import { ensureLeadingSlash, resolveLocalePath } from 'vuepress/shared'
@@ -18,7 +18,7 @@ export function createCopyCodeButtonRender(app: App, options?: boolean | CopyCod
   const { className = 'copy', locales: userLocales = {} }
     = isPlainObject(options) ? options : {}
 
-  const root = getRootLangPath(app)
+  const root = inferRootLocalePath(app)
   const locales: LocaleConfig<CopyCodeLocaleOptions> = {
     // fallback locale
     '/': userLocales['/'] || copyCodeButtonLocales[root],

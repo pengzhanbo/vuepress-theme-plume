@@ -21,7 +21,7 @@ import { watermarkPlugin } from '@vuepress/plugin-watermark'
 import { type MarkdownEnhancePluginOptions, mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
 import { resolveDocsearchOptions, resolveSearchOptions } from '../config/index.js'
-import { deleteAttrs } from '../utils/index.js'
+import { omit } from '../utils/index.js'
 
 export interface SetupPluginOptions {
   app: App
@@ -119,7 +119,7 @@ export function getPlugins(
     const options: MarkdownEnhancePluginOptions = {
       ...pluginOptions.markdownEnhance,
     }
-    plugins.push(mdEnhancePlugin(deleteAttrs(options, 'hint', 'alert', 'imgSize', 'imgLazyload', 'imgMark', 'figure', 'obsidianImgSize', 'katex', 'mathjax', 'tabs', 'codetabs', 'align', 'mark', 'sub', 'sup', 'attrs', 'tasklist', 'footnote')))
+    plugins.push(mdEnhancePlugin(omit(options, 'hint', 'alert', 'imgSize', 'imgLazyload', 'imgMark', 'figure', 'obsidianImgSize', 'katex', 'mathjax', 'tabs', 'codetabs', 'align', 'mark', 'sub', 'sup', 'attrs', 'tasklist', 'footnote')))
   }
 
   if (pluginOptions.markdownPower !== false) {

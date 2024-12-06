@@ -11,7 +11,7 @@ import { removeLeadingSlash } from '@vuepress/helper'
 import { createFilter } from 'create-filter'
 import dayjs from 'dayjs'
 import { resolveNotesOptions } from '../config/index.js'
-import { logger, normalizePath, resolveContent, writeTemp } from '../utils/index.js'
+import { normalizePath, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
 import { isEncryptPage } from './prepareEncrypt.js'
 
 const HEADING_RE = /<h(\d)[^>]*>.*?<\/h\1>/gi
@@ -32,7 +32,7 @@ export async function preparedBlogData(
     return
   }
 
-  const start = performance.now()
+  perfMark('prepare:blog-data')
 
   const blog = localeOptions.blog || {}
   const notesList = resolveNotesOptions(localeOptions)
@@ -100,6 +100,5 @@ export async function preparedBlogData(
   const content = resolveContent(app, { name: 'blogPostData', content: blogData })
   await writeTemp(app, 'internal/blogData.js', content)
 
-  if (app.env.isDebug)
-    logger.info(`prepare blog data time spent: ${(performance.now() - start).toFixed(2)}ms`)
+  perfLog('prepare:blog-data', app.env.isDebug)
 }

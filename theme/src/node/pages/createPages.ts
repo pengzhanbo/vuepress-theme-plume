@@ -2,12 +2,13 @@ import type { App, Page } from 'vuepress/core'
 import type { PlumeThemeLocaleOptions } from '../../shared/index.js'
 import { getRootLang } from '@vuepress/helper'
 import { createPage } from 'vuepress/core'
-import { withBase } from '../utils/index.js'
+import { perfLog, perfMark, withBase } from '../utils/index.js'
 
 export async function createPages(app: App, localeOption: PlumeThemeLocaleOptions) {
   if (localeOption.blog === false)
     return
 
+  perfMark('create:blog-pages')
   const pageList: Promise<Page>[] = []
   const locales = localeOption.locales || {}
   const rootLang = getRootLang(app)
@@ -53,4 +54,6 @@ export async function createPages(app: App, localeOption: PlumeThemeLocaleOption
   }
 
   app.pages.push(...await Promise.all(pageList))
+
+  perfLog('create:blog-pages', app.env.isDebug)
 }

@@ -5,7 +5,7 @@ import { isArray, uniq } from '@pengzhanbo/utils'
 import { entries, isLinkAbsolute, isLinkHttp, isPlainObject } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
-import { createFsCache, type FsCache, interopDefault, logger, nanoid, resolveContent, writeTemp } from '../utils/index.js'
+import { createFsCache, type FsCache, interopDefault, logger, nanoid, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
 
 interface IconData {
   className: string
@@ -37,7 +37,7 @@ function isIconify(icon: any): icon is string {
 }
 
 export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOptions) {
-  const start = performance.now()
+  perfMark('prepare:icons:total')
   if (!isInstalled) {
     await writeTemp(app, JS_FILENAME, resolveContent(app, { name: 'icons', content: '{}' }))
     return
@@ -47,6 +47,7 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
     await fsCache.read()
   }
 
+  perfMark('prepare:pages:icons')
   const iconList: string[] = []
   app.pages.forEach(page => iconList.push(...getIconsWithPage(page)))
   iconList.push(...getIconWithThemeConfig(localeOptions))
@@ -64,11 +65,9 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
     collectMap[collect].push(name)
   })
 
-  if (app.env.isDebug) {
-    logger.info(`Generate icons with pages and theme config: ${(performance.now() - start).toFixed(2)}ms`)
-  }
+  perfLog('prepare:pages:icons', app.env.isDebug)
 
-  const collectStart = performance.now()
+  perfMark('prepare:icons:imports')
 
   if (!locate) {
     const mod = await interopDefault(import('@iconify/json'))
@@ -83,9 +82,7 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
     logger.warn(`[iconify] Unknown icons: ${unknownList.join(', ')}`)
   }
 
-  if (app.env.isDebug) {
-    logger.info(`Generate icons with iconify collect: ${(performance.now() - collectStart).toFixed(2)}ms`)
-  }
+  perfLog('prepare:icons:imports', app.env.isDebug)
 
   let cssCode = ''
   const map: Record<string, string> = {}
@@ -104,9 +101,8 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
   ])
 
   fsCache?.write(cache)
-  if (app.env.isDebug) {
-    logger.info(`Generate icons total time: ${(performance.now() - start).toFixed(2)}ms`)
-  }
+
+  perfLog('prepare:icons:total', app.env.isDebug)
 }
 
 function getIconsWithPage(page: Page): string[] {

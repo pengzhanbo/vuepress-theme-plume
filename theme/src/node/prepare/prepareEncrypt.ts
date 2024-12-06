@@ -3,7 +3,7 @@ import type { Page } from 'vuepress/core'
 import type { EncryptOptions, PlumeThemePageData } from '../../shared/index.js'
 import { isNumber, isString, random, toArray } from '@pengzhanbo/utils'
 import { genSaltSync, hashSync } from 'bcrypt-ts'
-import { createFsCache, type FsCache, hash, logger, resolveContent, writeTemp } from '../utils/index.js'
+import { createFsCache, type FsCache, hash, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
 
 export type EncryptConfig = readonly [
   boolean, // global
@@ -19,7 +19,7 @@ let contentHash = ''
 let fsCache: FsCache<[string, EncryptConfig]> | null = null
 
 export async function prepareEncrypt(app: App, encrypt?: EncryptOptions) {
-  const start = performance.now()
+  perfMark('prepare:encrypt')
 
   if (!fsCache && app.env.isDev) {
     fsCache = createFsCache(app, 'encrypt')
@@ -40,9 +40,7 @@ export async function prepareEncrypt(app: App, encrypt?: EncryptOptions) {
 
   fsCache?.write([currentHash, resolvedEncrypt])
 
-  if (app.env.isDebug) {
-    logger.info(`Generate encrypt: ${(performance.now() - start).toFixed(2)}ms`)
-  }
+  perfLog('prepare:encrypt', app.env.isDebug)
 }
 
 const salt = () => genSaltSync(random(8, 16))

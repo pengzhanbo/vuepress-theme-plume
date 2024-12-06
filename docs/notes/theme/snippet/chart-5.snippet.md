@@ -1,5 +1,5 @@
 ````md
-::: chart 雷达图案例
+::: chartjs 雷达图案例
 ```json
 {
   "type": "radar",

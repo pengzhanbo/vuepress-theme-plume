@@ -1,5 +1,5 @@
 ````md
-::: chart 气泡图案例
+::: chartjs 气泡图案例
 ```json
 {
   "type": "bubble",

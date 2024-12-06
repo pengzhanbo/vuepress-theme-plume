@@ -1,5 +1,5 @@
 ````md
-::: chart 折线图案例
+::: chartjs 折线图案例
 ```json
 {
   "type": "line",

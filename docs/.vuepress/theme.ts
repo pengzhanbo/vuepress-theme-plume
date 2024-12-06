@@ -19,8 +19,7 @@ export const theme: Theme = plumeTheme({
 
     markdownEnhance: {
       demo: true,
-      include: true,
-      chart: true,
+      chartjs: true,
       echarts: true,
       mermaid: true,
       flowchart: true,

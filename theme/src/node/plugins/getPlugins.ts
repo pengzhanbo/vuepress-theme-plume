@@ -11,6 +11,7 @@ import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { gitPlugin } from '@vuepress/plugin-git'
 import { markdownHintPlugin } from '@vuepress/plugin-markdown-hint'
 import { markdownImagePlugin } from '@vuepress/plugin-markdown-image'
+import { markdownIncludePlugin } from '@vuepress/plugin-markdown-include'
 import { markdownMathPlugin } from '@vuepress/plugin-markdown-math'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
 import { photoSwipePlugin } from '@vuepress/plugin-photo-swipe'
@@ -18,10 +19,9 @@ import { readingTimePlugin } from '@vuepress/plugin-reading-time'
 import { seoPlugin, type SeoPluginOptions } from '@vuepress/plugin-seo'
 import { sitemapPlugin, type SitemapPluginOptions } from '@vuepress/plugin-sitemap'
 import { watermarkPlugin } from '@vuepress/plugin-watermark'
-import { type MarkdownEnhancePluginOptions, mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
+import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
 import { resolveDocsearchOptions, resolveSearchOptions } from '../config/index.js'
-import { omit } from '../utils/index.js'
 
 export interface SetupPluginOptions {
   app: App
@@ -115,12 +115,8 @@ export function getPlugins(
     }))
   }
 
-  if (pluginOptions.markdownEnhance !== false) {
-    const options: MarkdownEnhancePluginOptions = {
-      ...pluginOptions.markdownEnhance,
-    }
-    plugins.push(mdEnhancePlugin(omit(options, 'hint', 'alert', 'imgSize', 'imgLazyload', 'imgMark', 'figure', 'obsidianImgSize', 'katex', 'mathjax', 'tabs', 'codetabs', 'align', 'mark', 'sub', 'sup', 'attrs', 'tasklist', 'footnote')))
-  }
+  if (pluginOptions.markdownEnhance !== false)
+    plugins.push(mdEnhancePlugin(pluginOptions.markdownEnhance))
 
   if (pluginOptions.markdownPower !== false) {
     plugins.push(markdownPowerPlugin({
@@ -140,6 +136,10 @@ export function getPlugins(
 
   if (pluginOptions.markdownImage) {
     plugins.push(markdownImagePlugin(pluginOptions.markdownImage))
+  }
+
+  if (pluginOptions.markdownInclude !== false) {
+    plugins.push(markdownIncludePlugin(isPlainObject(pluginOptions.markdownInclude) ? pluginOptions.markdownInclude : {}))
   }
 
   if (pluginOptions.watermark) {

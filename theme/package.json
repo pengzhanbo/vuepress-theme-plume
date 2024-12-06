@@ -64,9 +64,9 @@
   "peerDependencies": {
     "@iconify/json": "^2",
     "mathjax-full": "^3.2.2",
-    "sass": "^1.80.0",
-    "sass-embedded": "^1.80.0",
-    "sass-loader": "^16.0.2",
+    "sass": "^1.81.0",
+    "sass-embedded": "^1.81.0",
+    "sass-loader": "^16.0.3",
     "swiper": "^11.0.0",
     "vuepress": "catalog:"
   },
@@ -105,6 +105,7 @@
     "@vuepress/plugin-git": "catalog:",
     "@vuepress/plugin-markdown-hint": "catalog:",
     "@vuepress/plugin-markdown-image": "catalog:",
+    "@vuepress/plugin-markdown-include": "catalog:",
     "@vuepress/plugin-markdown-math": "catalog:",
     "@vuepress/plugin-nprogress": "catalog:",
     "@vuepress/plugin-photo-swipe": "catalog:",
@@ -125,7 +126,7 @@
     "local-pkg": "catalog:",
     "nanoid": "catalog:",
     "vue": "catalog:",
-    "vuepress-plugin-md-enhance": "2.0.0-rc.59",
+    "vuepress-plugin-md-enhance": "2.0.0-rc.60",
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {

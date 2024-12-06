@@ -1,5 +1,5 @@
 ````md
-::: chart 块状图案例
+::: chartjs 块状图案例
 ```json
 {
   "type": "bar",

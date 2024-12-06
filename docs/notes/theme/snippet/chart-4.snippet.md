@@ -1,5 +1,5 @@
 ````md
-::: chart 玫瑰图案例
+::: chartjs 玫瑰图案例
 ```json
 {
   "type": "polarArea",

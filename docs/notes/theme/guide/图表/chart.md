@@ -61,7 +61,7 @@ export default defineUserConfig({
 ## 语法
 
 ````md
-::: chart 标题
+::: chartjs 标题
 ```json
 {
   // 此处为图表配置

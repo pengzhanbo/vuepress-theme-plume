@@ -24,18 +24,9 @@ export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
       markdownEnhance: {
-        align: true, // 对齐容器
-        mark: true, // 标记语法
-        tasklist: true, // 任务列表语法
-        attrs: true, // 属性语法
-        sup: true, // 上标语法
-        sub: true, // 下标语法
-        footnote: true, // 注脚语法
-
         // 以下可选项在 主题中默认不启用，
         // 请在主题中自行配置
-        // include: true, // Markdown 导入支持
-        // chart: true, // 图表支持
+        // chartjs: true, // 图表支持
         // echarts: true, // ECharts 图表支持
         // flowchart: true, // 流程图支持
         // markmap: true, // Markmap 图表支持
@@ -69,4 +60,10 @@ export default defineUserConfig({
 - `imgSize`/`imgLazyload`/`imgMark`/`figure`/`obsidianImgSize` 所实现的功能，您可以使用 `plugins.markdownImage` 重新进行配置。
 - `katex` / `mathjax` 所实现的功能，您可以使用 `plugins.markdownMath` 进行配置。
 - `tabs` / `code-tabs` / `hint` / `alerts` 已变更为 主题的内置功能，您无需额外的配置。
+:::
+
+::: warning
+该插件在 `2.0.0-rc.60` 版本中，移除了 `include` 选项。主题从 `1.0.0-rc.120` 版本开始，适配至最新版。
+由此带来的影响是，使用 `@vuepress/plugin-markdown-include` 插件实现相同的功能，请使用 `plugins.markdownInclude`
+进行配置。
 :::

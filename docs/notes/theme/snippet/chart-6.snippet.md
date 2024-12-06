@@ -1,5 +1,5 @@
 ````md
-::: chart 散点图案例
+::: chartjs 散点图案例
 ```json
 {
   "type": "scatter",

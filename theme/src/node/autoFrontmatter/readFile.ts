@@ -3,6 +3,7 @@ import type { AutoFrontmatterMarkdownFile } from '../../shared/index.js'
 import type { Generate } from './generator.js'
 import fg from 'fast-glob'
 import { fs, path } from 'vuepress/utils'
+import { normalizePath } from '../utils/index.js'
 
 export async function readMarkdownList(
   app: App,
@@ -33,7 +34,7 @@ export async function readMarkdown(
   const stats = await fs.promises.stat(filepath)
   return {
     filepath,
-    relativePath,
+    relativePath: normalizePath(relativePath),
     content: await fs.promises.readFile(filepath, 'utf-8'),
     createTime: getFileCreateTime(stats),
     stats,

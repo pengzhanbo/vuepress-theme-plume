@@ -13,10 +13,10 @@ import {
   isPlainObject,
   removeLeadingSlash,
 } from '@vuepress/helper'
-import { logger, normalizeLink, resolveContent, writeTemp } from '../utils/index.js'
+import { normalizeLink, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
 
 export async function prepareSidebar(app: App, localeOptions: PlumeThemeLocaleOptions) {
-  const start = performance.now()
+  perfMark('prepare:sidebar')
   const sidebar = getAllSidebar(localeOptions)
 
   const { resolved, autoHome } = getSidebarData(app, sidebar)
@@ -24,9 +24,7 @@ export async function prepareSidebar(app: App, localeOptions: PlumeThemeLocaleOp
   sidebar.__home__ = autoHome as any
   await writeTemp(app, 'internal/sidebar.js', resolveContent(app, { name: 'sidebar', content: sidebar }))
 
-  if (app.env.isDebug) {
-    logger.info(`Generate sidebar: ${(performance.now() - start).toFixed(2)}ms`)
-  }
+  perfLog('prepare:sidebar', app.env.isDebug)
 }
 
 function getSidebarData(

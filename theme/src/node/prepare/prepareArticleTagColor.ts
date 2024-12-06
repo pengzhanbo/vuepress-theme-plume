@@ -2,7 +2,7 @@ import type { App } from 'vuepress'
 import type { PlumeThemeLocaleOptions } from '../../shared/index.js'
 import { toArray } from '@pengzhanbo/utils'
 import { isPlainObject } from 'vuepress/shared'
-import { logger, nanoid, resolveContent, writeTemp } from '../utils/index.js'
+import { nanoid, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
 
 export type TagsColorsItem = readonly [
   string, // normal color
@@ -35,19 +35,14 @@ export const PRESET: TagsColorsItem[] = [
 const cache: Record<number, string> = {}
 
 export async function prepareArticleTagColors(app: App, localeOptions: PlumeThemeLocaleOptions): Promise<void> {
-  const start = performance.now()
+  perfMark('prepare:tag-colors')
   const blog = isPlainObject(localeOptions.blog) ? localeOptions.blog : {}
-
   const { js, css } = genCode(app, blog.tagsTheme ?? 'colored')
 
   await writeTemp(app, 'internal/articleTagColors.css', css)
   await writeTemp(app, 'internal/articleTagColors.js', js)
 
-  if (app.env.isDebug) {
-    logger.info(
-      `Generate article tag colors: ${(performance.now() - start).toFixed(2)}ms`,
-    )
-  }
+  perfLog('prepare:tag-colors', app.env.isDebug)
 }
 
 export function genCode(app: App, theme: 'colored' | 'brand' | 'gray'): { js: string, css: string } {

@@ -1,4 +1,4 @@
-export function deleteAttrs<
+export function omit<
   T extends Record<string, any> = Record<string, any>,
 >(obj: T, ...attrs: (keyof T)[]): Omit<T, keyof T> {
   const res = {} as T

@@ -6,7 +6,7 @@ import { type FSWatcher, watch } from 'chokidar'
 import { resolveImageSize } from 'vuepress-plugin-md-power'
 import { hash } from 'vuepress/utils'
 import { resolveThemeData } from '../config/resolveThemeData.js'
-import { logger, resolveContent, writeTemp } from '../utils/index.js'
+import { perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
 
 let bulletinFileWatcher: FSWatcher | null = null
 const bulletinFiles: Record<string, string> = {}
@@ -18,7 +18,7 @@ export async function prepareThemeData(
   localeOptions: PlumeThemeLocaleOptions,
   pluginOptions: PlumeThemePluginOptions,
 ): Promise<void> {
-  const start = performance.now()
+  perfMark('prepare:theme-data')
   const resolvedThemeData = resolveThemeData(app, localeOptions)
 
   await resolveProfileImage(app, resolvedThemeData, pluginOptions)
@@ -31,9 +31,7 @@ export async function prepareThemeData(
   await resolveBulletin(app, resolvedThemeData)
   await updateThemeData(app, resolvedThemeData)
 
-  if (app.env.isDebug) {
-    logger.info(`Generate theme data: ${(performance.now() - start).toFixed(2)}ms`)
-  }
+  perfLog('prepare:theme-data', app.env.isDebug)
 }
 
 async function updateThemeData(app: App, themeData: PlumeThemeData) {

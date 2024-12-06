@@ -6,7 +6,7 @@ import { deepMerge } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
 import { path } from 'vuepress/utils'
 import { resolveLocaleOptions } from '../config/resolveLocaleOptions.js'
-import { logger } from '../utils/index.js'
+import { perfLog, perfMark } from '../utils/index.js'
 import { compiler } from './compiler.js'
 import { findConfigPath } from './findConfigPath.js'
 
@@ -41,7 +41,7 @@ export async function initConfigLoader(
   defaultConfig: ThemeConfig,
   { configFile, onChange }: InitConfigLoaderOptions = {},
 ) {
-  const start = performance.now()
+  perfMark('load-config')
   const { encrypt, autoFrontmatter, ...localeOptions } = defaultConfig
   loader = {
     configFile,
@@ -58,21 +58,18 @@ export async function initConfigLoader(
     },
   }
 
-  const findStart = performance.now()
+  perfMark('load-config:find')
   loader.configFile = await findConfigPath(app, configFile)
-  if (app.env.isDebug) {
-    logger.info(`Find config path: ${(performance.now() - findStart).toFixed(2)}ms`)
-  }
+  perfLog('load-config:find', app.env.isDebug)
 
   if (onChange) {
     loader.changeEvents.push(onChange)
   }
 
-  const loadStart = performance.now()
+  perfMark('load-config:loaded')
   const { config, dependencies = [] } = await loader.load()
-  if (app.env.isDebug) {
-    logger.info(`theme config call load: ${(performance.now() - loadStart).toFixed(2)}ms`)
-  }
+  perfLog('load-config:loaded', app.env.isDebug)
+
   loader.loaded = true
   loader.dependencies = [...dependencies]
   updateResolvedConfig(app, config)
@@ -80,9 +77,7 @@ export async function initConfigLoader(
   loader.whenLoaded.forEach(fn => fn(loader!.resolvedConfig))
   loader.whenLoaded = []
 
-  if (app.env.isDebug) {
-    logger.info(`Load config: ${(performance.now() - start).toFixed(2)}ms`)
-  }
+  perfLog('load-config', app.env.isDebug)
 }
 
 export function watchConfigFile(app: App, watchers: any[], onChange: ChangeEvent) {

@@ -1,3 +1,23 @@
+# [1.0.0-rc.120](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.119...v1.0.0-rc.120) (2024-12-08)
+
+
+### Bug Fixes
+
+* **theme:** unformatted system `sep` cause auto frontmatter error ([#370](https://github.com/pengzhanbo/vuepress-theme-plume/issues/370)) ([cdee6dc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cdee6dc105acb7caa2004ceaebc88ff74c0bcca0))
+
+
+### Features
+
+* **cli:** update deps and template ([829fab5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/829fab5508f10b030a4dd6fc4fc65ca2e134a9ce))
+
+
+### Performance Improvements
+
+* optimize debug logs ([#371](https://github.com/pengzhanbo/vuepress-theme-plume/issues/371)) ([e7ba562](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e7ba5621f75a4b393ed2410f72bf21e6ba54ddcb))
+* **theme:** improve typo ([8d39305](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8d3930560a59ecbc2c70f0eb97f117123fe1d717))
+
+
+
 # [1.0.0-rc.119](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.118...v1.0.0-rc.119) (2024-11-29)
 
 

@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.8.2",
-    "@pengzhanbo/utils": "^1.1.2",
+    "@pengzhanbo/utils": "^1.2.0",
     "cac": "^6.7.14",
     "execa": "^9.5.1",
     "handlebars": "^4.7.8",

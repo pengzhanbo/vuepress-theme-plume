@@ -7,8 +7,8 @@ settings:
 catalogs:
   default:
     '@iconify/json':
-      specifier: ^2.2.279
-      version: 2.2.279
+      specifier: ^2.2.280
+      version: 2.2.280
     '@vuepress/bundler-vite':
       specifier: 2.0.0-rc.18
       version: 2.0.0-rc.18
@@ -186,8 +186,8 @@ importers:
         specifier: ^0.8.2
         version: 0.8.2
       '@pengzhanbo/utils':
-        specifier: ^1.1.2
-        version: 1.1.2
+        specifier: ^1.2.0
+        version: 1.2.0
       cac:
         specifier: ^6.7.14
         version: 6.7.14
@@ -205,7 +205,7 @@ importers:
     dependencies:
       '@iconify/json':
         specifier: 'catalog:'
-        version: 2.2.279
+        version: 2.2.280
       '@simonwep/pickr':
         specifier: ^1.9.1
         version: 1.9.1
@@ -410,14 +410,14 @@ importers:
   theme:
     dependencies:
       '@iconify/utils':
-        specifier: ^2.1.33
-        version: 2.1.33
+        specifier: ^2.2.0
+        version: 2.2.0
       '@iconify/vue':
-        specifier: ^4.1.2
-        version: 4.1.2(vue@3.5.13(typescript@5.7.2))
+        specifier: ^4.2.0
+        version: 4.2.0(vue@3.5.13(typescript@5.7.2))
       '@pengzhanbo/utils':
-        specifier: ^1.1.2
-        version: 1.1.2
+        specifier: ^1.2.0
+        version: 1.2.0
       '@vuepress-plume/plugin-content-update':
         specifier: workspace:*
         version: link:../plugins/plugin-content-update
@@ -538,7 +538,7 @@ importers:
     devDependencies:
       '@iconify/json':
         specifier: 'catalog:'
-        version: 2.2.279
+        version: 2.2.280
       swiper:
         specifier: ^11.1.15
         version: 11.1.15
@@ -1119,8 +1119,8 @@ packages:
     resolution: {integrity: sha512-e5+YUKENATs1JgYHMzTr2MW/NDcXGfYFAuOQU8gJgF/kEh4EqKgfGrfLI67bMD4tbhZVlkigz/9YYwWcbOFthg==}
     engines: {node: '>=10.13.0'}
 
-  '@iconify/json@2.2.279':
-    resolution: {integrity: sha512-9HJWOos32Qik+Mg0fTgP/FgoCpswQPAsFAJtGQv7PN3KQ3Dwta5DDfpEj/QSwdNB9xJ/gI+aFhSlULgeah7eFA==}
+  '@iconify/json@2.2.280':
+    resolution: {integrity: sha512-3N1lTn6XBPQ+wMTiYkBAx+GE4yBD8B3l9/OGzs2sEy4FDsYoq7lLoiSo7S0XA6NN/dK9rv6bup8NPCIwIkOPOw==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -1128,8 +1128,11 @@ packages:
   '@iconify/utils@2.1.33':
     resolution: {integrity: sha512-jP9h6v/g0BIZx0p7XGJJVtkVnydtbgTgt9mVNcGDYwaa7UhdHdI9dvoq+gKj9sijMSJKxUPEG2JyjsgXjxL7Kw==}
 
-  '@iconify/vue@4.1.2':
-    resolution: {integrity: sha512-CQnYqLiQD5LOAaXhBrmj1mdL2/NCJvwcC4jtW2Z8ukhThiFkLDkutarTOV2trfc9EXqUqRs0KqXOL9pZ/IyysA==}
+  '@iconify/utils@2.2.0':
+    resolution: {integrity: sha512-9A5eZQV9eKlNCXlI/SgYsGRS7YmGmB1oAsRpNVIYBmIzGJRgH+hfG+lo4069s+GFWFNnBAtDg10c53vQZBLfnA==}
+
+  '@iconify/vue@4.2.0':
+    resolution: {integrity: sha512-CMynoz9BDWugDO2B7LU/s8L99dHCiqDGCjCki6bhVx5etZhw9x0BTV7wWRdj82jtl1yQTc+QQRcHQmSvUY6R+g==}
     peerDependencies:
       vue: '>=3'
 
@@ -1572,8 +1575,8 @@ packages:
     peerDependencies:
       stylelint: '>=16.0.0'
 
-  '@pengzhanbo/utils@1.1.2':
-    resolution: {integrity: sha512-geM6O5jEs2Hvg3LxwffjxrhZVftqysM6VDFvGHm+XMf2ZwunZIehPkd/W2mwbJBbFoqVqACl+c1/y48MffMiDg==}
+  '@pengzhanbo/utils@1.2.0':
+    resolution: {integrity: sha512-M3sN7SQs6PY/J9lB8U6meyUMhv8qs4iIOU/sG6QWRp4nm9ySM8nvX9GOJpo+RuVGcgcH3CO8qlQugBUa5qADSw==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -3188,6 +3191,15 @@ packages:
 
   debug@4.3.7:
     resolution: {integrity: sha512-Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
+  debug@4.4.0:
+    resolution: {integrity: sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==}
     engines: {node: '>=6.0'}
     peerDependencies:
       supports-color: '*'
@@ -6951,7 +6963,7 @@ snapshots:
 
   '@hutson/parse-repository-url@5.0.0': {}
 
-  '@iconify/json@2.2.279':
+  '@iconify/json@2.2.280':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
@@ -6970,7 +6982,20 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@iconify/vue@4.1.2(vue@3.5.13(typescript@5.7.2))':
+  '@iconify/utils@2.2.0':
+    dependencies:
+      '@antfu/install-pkg': 0.4.1
+      '@antfu/utils': 0.7.10
+      '@iconify/types': 2.0.0
+      debug: 4.4.0
+      globals: 15.13.0
+      kolorist: 1.8.0
+      local-pkg: 0.5.1
+      mlly: 1.7.3
+    transitivePeerDependencies:
+      - supports-color
+
+  '@iconify/vue@4.2.0(vue@3.5.13(typescript@5.7.2))':
     dependencies:
       '@iconify/types': 2.0.0
       vue: 3.5.13(typescript@5.7.2)
@@ -7364,7 +7389,7 @@ snapshots:
 
   '@pengzhanbo/stylelint-config@1.21.0(stylelint@16.11.0(typescript@5.7.2))':
     dependencies:
-      '@pengzhanbo/utils': 1.1.2
+      '@pengzhanbo/utils': 1.2.0
       '@stylelint-types/stylelint-order': 6.0.4(stylelint-define-config@1.8.0(stylelint@16.11.0(typescript@5.7.2)))(stylelint@16.11.0(typescript@5.7.2))
       '@stylelint-types/stylelint-scss': 6.5.0(stylelint-define-config@1.8.0(stylelint@16.11.0(typescript@5.7.2)))(stylelint@16.11.0(typescript@5.7.2))
       '@stylelint-types/stylelint-stylistic': 3.0.1(stylelint-define-config@1.8.0(stylelint@16.11.0(typescript@5.7.2)))(stylelint@16.11.0(typescript@5.7.2))
@@ -7379,7 +7404,7 @@ snapshots:
       stylelint-define-config: 1.8.0(stylelint@16.11.0(typescript@5.7.2))
       stylelint-order: 6.0.4(stylelint@16.11.0(typescript@5.7.2))
 
-  '@pengzhanbo/utils@1.1.2': {}
+  '@pengzhanbo/utils@1.2.0': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
@@ -9264,6 +9289,10 @@ snapshots:
       ms: 2.1.3
 
   debug@4.3.7:
+    dependencies:
+      ms: 2.1.3
+
+  debug@4.4.0:
     dependencies:
       ms: 2.1.3
 

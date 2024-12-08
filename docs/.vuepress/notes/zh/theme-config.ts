@@ -40,6 +40,7 @@ export const themeConfig = defineNoteConfig({
         'markdownPower',
         'markdownImage',
         'markdownMath',
+        'markdownInclude',
         '水印',
       ],
     },

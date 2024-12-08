@@ -2,22 +2,19 @@ import process from 'node:process'
 import { fs, path } from 'vuepress/utils'
 import { resolve } from './path.js'
 
-export function getPackage() {
-  let pkg = {} as any
+export function readJsonFileAsync<T extends Record<string, any> = Record<string, any>>(filePath: string): T {
   try {
-    const content = fs.readFileSync(path.join(process.cwd(), 'package.json'), 'utf-8')
-    pkg = JSON.parse(content)
+    const content = fs.readFileSync(filePath, 'utf-8')
+    return JSON.parse(content)
   }
-  catch { }
-  return pkg
+  catch {}
+  return {} as T
+}
+
+export function getPackage() {
+  return readJsonFileAsync(path.join(process.cwd(), 'package.json'))
 }
 
 export function getThemePackage() {
-  let pkg = {} as any
-  try {
-    const content = fs.readFileSync(resolve('.../../package.json'), 'utf-8')
-    pkg = JSON.parse(content)
-  }
-  catch {}
-  return pkg
+  return readJsonFileAsync(resolve('.../../package.json'))
 }

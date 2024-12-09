@@ -2,6 +2,7 @@
 import type { ResolvedSidebarItem } from '../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
 import { computed } from 'vue'
+import { resolveRouteFullPath } from 'vuepress/client'
 import {
   useBlogPageData,
   useData,
@@ -55,7 +56,8 @@ function resolveSidebar(
   result: Breadcrumb[] = [],
 ): Breadcrumb[] | null {
   for (const item of sidebar) {
-    if (item.link === page.value.path) {
+    const link = item.link ? resolveRouteFullPath(item.link) : undefined
+    if (link === page.value.path) {
       return result
     }
     else if (item.items) {

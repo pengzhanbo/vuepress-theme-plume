@@ -9,6 +9,8 @@ const props = defineProps<{
   href?: string
   author?: string
   date?: string | Date | number
+  width?: string | number
+  center?: boolean
 }>()
 
 const lang = usePageLang()
@@ -24,10 +26,20 @@ const date = computed(() => {
 
   return intl.format(date)
 })
+
+const styles = computed(() => {
+  const width = props.width
+    ? String(Number(props.width)) === props.width
+      ? `${props.width}px`
+      : props.width
+    : undefined
+
+  return { width }
+})
 </script>
 
 <template>
-  <div class="vp-image-card">
+  <div class="vp-image-card" :style="styles" :class="{ center }">
     <div class="image-container">
       <img :src="image" :alt="title" loading="lazy">
       <div v-if="title || author || date || description" class="image-info">
@@ -50,11 +62,16 @@ const date = computed(() => {
 
 <style scoped>
 .vp-image-card {
+  max-width: 100%;
   margin: 16px 0;
   border-radius: 8px;
   box-shadow: var(--vp-shadow-2);
   transition: var(--vp-t-color);
   transition-property: box-shadow;
+}
+
+.vp-image-card.center {
+  margin: 16px auto;
 }
 
 .vp-image-card:hover {
@@ -63,10 +80,19 @@ const date = computed(() => {
 
 .vp-image-card .image-container {
   position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   font-size: 0;
   line-height: 1;
   border-radius: 8px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
 }
 
 .image-info {

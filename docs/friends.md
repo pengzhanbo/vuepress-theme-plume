@@ -1,7 +1,7 @@
 ---
 pageLayout: friends
 title: 友情链接
-description: 这里是友情链接的描述文字
+description: 这里是友情链接的描述文字，此页面仅作为示例展示
 permalink: /friends/
 draft: true
 list:
@@ -17,10 +17,33 @@ list:
     name: pengzhanbo
     link: https://github.com/pengzhanbo
     avatar: https://github.com/pengzhanbo.png
+    location: GuangZhou
+    organization: PengZhanBo
   -
     name: pengzhanbo
     link: https://github.com/pengzhanbo
     avatar: https://github.com/pengzhanbo.png
+    location: GuangZhou
+    organization: PengZhanBo
+  -
+    name: pengzhanbo
+    link: https://github.com/pengzhanbo
+    avatar: https://github.com/pengzhanbo.png
+    location: GuangZhou
+    organization: PengZhanBo
+    socials:
+      -
+        icon: github
+        link: https://github.com/pengzhanbo
+      -
+        icon: twitter
+        link: https://twitter.com/pengzhanbo
+  -
+    name: pengzhanbo
+    link: https://github.com/pengzhanbo
+    avatar: https://github.com/pengzhanbo.png
+    location: GuangZhou
+    organization: PengZhanBo
     socials:
       -
         icon: github
@@ -55,6 +78,11 @@ list:
     link: https://github.com/pengzhanbo
     avatar: https://github.com/pengzhanbo.png
     desc: 即使慢，驰而不息，纵会落后，纵会失败，但必须能够到达他所向的目标。
+  -
+    name: pengzhanbo
+    link: https://github.com/pengzhanbo
+    avatar: https://github.com/pengzhanbo.png
+    desc: 即使慢，驰而不息，纵会落后，纵会失败，但必须能够到达他所向的目标。
     socials:
       -
         icon: github
@@ -66,11 +94,22 @@ list:
     name: pengzhanbo
     link: https://github.com/pengzhanbo
     avatar: https://github.com/pengzhanbo.png
+    location: GuangZhou
+    organization: PengZhanBo
     desc: 即使慢，驰而不息，纵会落后，纵会失败，但必须能够到达他所向的目标。
+    socials:
+      -
+        icon: github
+        link: https://github.com/pengzhanbo
+      -
+        icon: twitter
+        link: https://twitter.com/pengzhanbo
   -
     name: pengzhanbo
     link: https://github.com/pengzhanbo
     avatar: https://github.com/pengzhanbo.png
+    location: GuangZhou
+    organization: PengZhanBo
     desc: 即使慢，驰而不息，纵会落后，纵会失败，但必须能够到达他所向的目标。
 groups:
   -

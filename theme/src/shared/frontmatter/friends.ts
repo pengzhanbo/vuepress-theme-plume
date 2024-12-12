@@ -6,6 +6,8 @@ export interface FriendsItem {
   link: string
   avatar?: string
   desc?: string
+  location?: string
+  organization?: string
   socials?: SocialLink[]
   backgroundColor?: string | { light: string, dark: string }
   color?: string | { light: string, dark: string }

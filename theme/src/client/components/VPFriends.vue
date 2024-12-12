@@ -97,7 +97,7 @@ const groups = computed(() => matter.value.groups || [])
 
 @media (min-width: 960px) {
   .vp-friends {
-    max-width: 784px;
+    max-width: 864px;
     padding-top: 48px;
   }
 
@@ -109,16 +109,6 @@ const groups = computed(() => matter.value.groups || [])
 
   .friends-list {
     padding: 0;
-  }
-}
-
-@media (min-width: 1440px) {
-  .vp-friends {
-    max-width: 1104px;
-  }
-
-  .friends-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

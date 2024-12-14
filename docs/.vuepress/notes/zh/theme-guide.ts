@@ -133,6 +133,7 @@ export const themeGuide = defineNoteConfig({
         '链接卡片',
         '图片卡片',
         '卡片容器',
+        '瀑布流容器',
         '首页布局容器',
         'repoCard',
         'npmBadge',

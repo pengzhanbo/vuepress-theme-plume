@@ -37,6 +37,7 @@ const icon = computed<string | { svg: string } | undefined>(() => {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
   padding: 16px 20px;
   margin: 16px 0;
   border: solid 1px var(--vp-c-divider);

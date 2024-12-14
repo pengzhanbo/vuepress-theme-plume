@@ -33,6 +33,7 @@ defineProps<{
   display: flex;
   gap: 8px;
   align-items: flex-start;
+  width: 100%;
   padding: 16px 20px;
   margin: 16px 0;
   background-color: transparent;

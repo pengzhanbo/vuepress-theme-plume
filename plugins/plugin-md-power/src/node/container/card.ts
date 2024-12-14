@@ -7,6 +7,11 @@ interface CardAttrs {
   icon?: string
 }
 
+interface CardMasonryAttrs {
+  cols?: number
+  gap?: number
+}
+
 export function cardPlugin(md: Markdown) {
   /**
    * ::: card title="xxx" icon="xxx"
@@ -35,5 +40,29 @@ export function cardPlugin(md: Markdown) {
   createContainerPlugin(md, 'card-grid', {
     before: () => '<VPCardGrid>',
     after: () => '</VPCardGrid>',
+  })
+
+  /**
+   * ::: card-masonry cols="2" gap="10"
+   * ::: card
+   * xxx
+   * :::
+   * ::: card
+   * xxx
+   * :::
+   * ::::
+   */
+  createContainerPlugin(md, 'card-masonry', {
+    before: (info) => {
+      const { attrs } = resolveAttrs<CardMasonryAttrs>(info)
+      let cols!: string | number
+      if (attrs.cols) {
+        cols = attrs.cols[0] === '{' ? attrs.cols : Number.parseInt(`${attrs.cols}`)
+      }
+      const gap = Number.parseInt(`${attrs.gap}`)
+
+      return `<VPCardMasonry${cols ? ` :cols="${cols}"` : ''}${gap >= 0 ? ` :gap="${gap}"` : ''}>`
+    },
+    after: () => '</VPCardMasonry>',
   })
 }

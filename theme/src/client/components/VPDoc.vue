@@ -139,7 +139,7 @@ watch(
               </template>
             </VPDocFooter>
             <template v-if="hasComments">
-              <CommentService :darkmode="isDark" vp-comment />
+              <DocComment :darkmode="isDark" vp-comment />
             </template>
             <slot name="doc-after" />
           </div>

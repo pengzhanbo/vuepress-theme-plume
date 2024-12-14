@@ -114,14 +114,14 @@ const styles = computed(() => {
   transform: translateY(calc(100% - 60px));
 }
 
-:where(.vp-card-grid.cols-3) .image-info {
+:where(.vp-card-grid.cols-3, .vp-card-masonry.cols-3) .image-info {
   padding: 8px 8px 0;
   font-size: 12px;
   transform: translateY(calc(100% - 36px));
 }
 
 @media (max-width: 767px) {
-  :where(.vp-card-grid.cols-2) .image-info {
+  :where(.vp-card-grid.cols-2, .vp-card-masonry.cols-2) .image-info {
     padding: 8px 8px 0;
     font-size: 12px;
     transform: translateY(calc(100% - 36px));
@@ -142,7 +142,7 @@ const styles = computed(() => {
   white-space: nowrap;
 }
 
-:where(.vp-card-grid.cols-3) .image-info .title {
+:where(.vp-card-grid.cols-3, .vp-card-masonry.cols-3) .image-info .title {
   min-height: 20px;
   margin: 0 0 8px;
   font-size: 14px;
@@ -150,7 +150,7 @@ const styles = computed(() => {
 }
 
 @media (max-width: 767px) {
-  :where(.vp-card-grid.cols-2) .image-info .title {
+  :where(.vp-card-grid.cols-2, .vp-card-masonry.cols-2) .image-info .title {
     min-height: 20px;
     margin: 0 0 8px;
     font-size: 14px;
@@ -169,12 +169,12 @@ const styles = computed(() => {
   color: var(--vp-c-white);
 }
 
-:where(.vp-card-grid.cols-3) .image-info p {
+:where(.vp-card-grid.cols-3, .vp-card-masonry.cols-3) .image-info p {
   line-height: 20px;
 }
 
 @media (max-width: 767px) {
-  :where(.vp-card-grid.cols-2) .image-info p {
+  :where(.vp-card-grid.cols-2, .vp-card-masonry.cols-2) .image-info p {
     line-height: 20px;
   }
 }

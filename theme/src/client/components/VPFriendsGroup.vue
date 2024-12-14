@@ -74,15 +74,4 @@ defineProps<{
     padding: 0;
   }
 }
-
-@media (min-width: 1440px) {
-  .vp-friends-group {
-    max-width: 1104px;
-  }
-
-  .friends-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    padding: 0;
-  }
-}
 </style>

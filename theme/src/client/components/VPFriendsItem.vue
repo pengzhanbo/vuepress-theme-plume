@@ -31,30 +31,25 @@ const friendStyle = computed(() => {
 <template>
   <div
     class="vp-friend" :style="friendStyle" :class="{
-      'only-title': !friend.desc && (!friend.socials || !friend.socials.length),
+      'only-title': !friend.desc && !friend.socials?.length && !friend.location && !friend.organization,
       'no-desc': !friend.desc,
     }"
   >
-    <VPLink
-      class="avatar-link"
-      :href="friend.link"
-      no-icon
-    >
-      <div
-        class="avatar"
-        :style="{ backgroundImage: `url(${friend.avatar})` }"
-      />
-    </VPLink>
+    <div class="avatar">
+      <img :src="friend.avatar" :alt="friend.name">
+    </div>
 
     <div class="content">
-      <VPLink
-        class="title"
-        :href="friend.link"
-        no-icon
-      >
-        {{ friend.name }}
-      </VPLink>
-      <p v-if="friend.desc">
+      <VPLink class="title" :href="friend.link" no-icon :text="friend.name" />
+      <p v-if="friend.location" class="location">
+        <span class="vpi-location" />
+        <span>{{ friend.location }}</span>
+      </p>
+      <p v-if="friend.organization" class="organization">
+        <span class="vpi-organization" />
+        <span>{{ friend.organization }}</span>
+      </p>
+      <p v-if="friend.desc" class="desc" :class="{ offset: friend.location && friend.organization }">
         {{ friend.desc }}
       </p>
       <VPSocialLinks v-if="friend.socials" :links="friend.socials" />
@@ -66,6 +61,7 @@ const friendStyle = computed(() => {
 .vp-friend {
   position: relative;
   display: flex;
+  gap: 16px;
   align-items: flex-start;
   padding: 20px;
   margin-bottom: 8px;
@@ -74,17 +70,20 @@ const friendStyle = computed(() => {
   transition: all var(--vp-t-color);
 }
 
-.avatar-link {
-  display: inline-block;
-  margin-right: 16px;
+.avatar {
+  width: 88px;
+  height: 88px;
+  overflow: hidden;
+  background-color: var(--vp-c-default-soft);
+  border-radius: 100%;
 }
 
-.avatar {
-  width: 64px;
-  height: 64px;
-  background-color: var(--vp-c-default-soft);
-  background-size: cover;
-  border-radius: 100%;
+.avatar img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: top;
 }
 
 .content {
@@ -92,20 +91,60 @@ const friendStyle = computed(() => {
 }
 
 .vp-friend.only-title .content {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .content .title {
   padding-bottom: 8px;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--vp-friends-name-color);
   transition: color var(--vp-t-color), border-bottom var(--vp-t-color);
 }
 
+.content .title::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  content: "";
+}
+
+.content .location,
+.content .organization {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-top: 16px;
+  font-size: 14px;
+  color: var(--vp-friends-text-color);
+  opacity: 0.8;
+  transition: color var(--vp-t-color);
+}
+
+.content .location + .organization {
+  padding-top: 0;
+}
+
+.content .desc {
+  padding-top: 16px;
+  line-height: 1.5;
+  color: var(--vp-friends-text-color);
+  transition: color var(--vp-t-color);
+}
+
+.content .desc.offset {
+  margin-top: 4px;
+  margin-left: -104px;
+}
+
 .content :deep(.vp-social-links) {
   justify-content: flex-end;
   margin-top: 8px;
+}
+
+.content :deep(.vp-social-links .vp-social-link) {
+  position: relative;
+  z-index: 2;
 }
 
 .vp-friend.no-desc .content :deep(.vp-social-links) {
@@ -114,18 +153,5 @@ const friendStyle = computed(() => {
 
 .content :deep(.vp-social-link) {
   color: var(--vp-friends-name-color);
-}
-
-.content p {
-  display: -webkit-box;
-  padding-top: 16px;
-  overflow: hidden;
-  line-height: 1.5;
-  color: var(--vp-friends-text-color);
-  transition: color var(--vp-t-color);
-
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
 }
 </style>

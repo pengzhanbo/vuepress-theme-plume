@@ -29,7 +29,7 @@ const date = computed(() => {
 
 const styles = computed(() => {
   const width = props.width
-    ? String(Number(props.width)) === props.width
+    ? String(Number(props.width)) === String(props.width)
       ? `${props.width}px`
       : props.width
     : undefined

@@ -20,7 +20,7 @@
     "flowchart.ts": "^3.0.1",
     "http-server": "^14.1.1",
     "mermaid": "^11.4.1",
-    "sass-embedded": "^1.82.0",
+    "sass-embedded": "^1.83.0",
     "swiper": "^11.1.15",
     "vue": "catalog:",
     "vuepress-theme-plume": "workspace:*"

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { VNode } from 'vue'
 import { useDebounceFn, useMediaQuery, useResizeObserver } from '@vueuse/core'
-import { cloneVNode, computed, h, markRaw, nextTick, onMounted, shallowRef, watch } from 'vue'
+import { cloneVNode, computed, markRaw, mergeProps, nextTick, onMounted, shallowRef, useId, watch } from 'vue'
 
 const props = withDefaults(defineProps<{
   cols?: number | { sm?: number, md?: number, lg?: number }
@@ -12,14 +12,17 @@ const props = withDefaults(defineProps<{
 })
 
 const slots = defineSlots<{ default: () => VNode[] | null }>()
+const uuid = useId()
 
 const isMd = useMediaQuery('(min-width: 640px)')
 const isLg = useMediaQuery('(min-width: 960px)')
 
 const rawList = computed(() => {
+  if (__VUEPRESS_SSR__)
+    return []
   const res = slots.default?.()
   return ((Array.isArray(res) ? res : [res]) as VNode[]).map((item, index) =>
-    markRaw(h('div', { className: `masonry-id-${index}` }, cloneVNode(item))),
+    markRaw(cloneVNode(item, mergeProps(item.props ?? {}, { class: `masonry-${uuid}-${index}` }))),
   )
 })
 
@@ -57,35 +60,36 @@ async function drawColumns() {
 
   for (let i = 0; i < rawList.value.length; i++) {
     const item = rawList.value[i]
-    const el = masonry.value.querySelector(`.masonry-id-${i}`) as HTMLElement
+    const el = masonry.value.querySelector(`.masonry-${uuid}-${i}`) as HTMLElement
     const height = el?.offsetHeight ?? 0
     const index = heights.indexOf(Math.min(...heights))
+
     columns[index].push(item)
     heights[index] += height + props.gap
   }
-
   columnsList.value = columns
 }
 
 onMounted(() => {
   drawColumns()
-  watch([rawList, columnsLength], drawColumns, { flush: 'post' })
-  useResizeObserver(masonry, useDebounceFn(drawColumns))
+  const debounceDraw = useDebounceFn(drawColumns)
+  watch([rawList, columnsLength], debounceDraw, { flush: 'post' })
+  useResizeObserver(masonry, debounceDraw)
 })
 </script>
 
 <template>
-  <div ref="masonry" class="vp-card-masonry" :class="[`cols-${columnsLength}`]" :style="{ gap: `${props.gap}px` }">
-    <div v-if="rawList.length <= 1" class="card-masonry-item" :style="{ gap: `${props.gap}px` }">
-      <slot />
-    </div>
-    <template v-else>
-      <ClientOnly>
-        <div v-for="(column, index) in columnsList" :key="index" class="card-masonry-item" :style="{ gap: `${props.gap}px` }">
-          <component :is="item" v-for="item in column" :key="item.props?.className" />
+  <div ref="masonry" class="vp-card-masonry" :class="[`cols-${columnsLength}`]" :style="{ gap: `${props.gap}px` }" data-allow-mismatch>
+    <ClientOnly>
+      <div v-if="rawList.length <= 1" class="card-masonry-item" :style="{ gap: `${props.gap}px` }">
+        <slot />
+      </div>
+      <template v-else>
+        <div v-for="(column, index) in columnsList" :key="`${uuid}-${index}`" class="card-masonry-item" :style="{ gap: `${props.gap}px` }">
+          <component :is="item" v-for="item in column" :key="item.props!.class" />
         </div>
-      </ClientOnly>
-    </template>
+      </template>
+    </ClientOnly>
   </div>
 </template>
 
@@ -102,19 +106,17 @@ onMounted(() => {
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
+  width: 1px;
 }
 
-.vp-card-masonry > .card-masonry-item > [class^="masonry-id-"] {
+.vp-card-masonry > .card-masonry-item > [class*="masonry-v-"] {
   width: 100%;
-}
-
-.vp-card-masonry > .card-masonry-item > [class^="masonry-id-"] > * {
+  max-width: 100%;
   margin: 0 !important;
 }
 
-.card-masonry-item > [class^="masonry-id-"] > img:only-child,
-.card-masonry-item > [class^="masonry-id-"] > p > img:only-child,
-.card-masonry-item > [class^="masonry-id-"] > p > a:only-child > img:only-child {
+.card-masonry-item > [class*="masonry-v-"] > img:only-child,
+.card-masonry-item > [class*="masonry-v-"] > a:only-child > img:only-child {
   display: block;
   border-radius: 8px;
   box-shadow: var(--vp-shadow-2);

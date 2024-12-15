@@ -1,3 +1,27 @@
+# [1.0.0-rc.121](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.120...v1.0.0-rc.121) (2024-12-15)
+
+
+### Bug Fixes
+
+* **theme:** `CardMasonry` hydration mismatch ([d022114](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d022114498867be9f63a4e4786b6f75af758cb57))
+* **theme:** incorrect `link` parsing in breadcrumb nav, close [#369](https://github.com/pengzhanbo/vuepress-theme-plume/issues/369) ([#373](https://github.com/pengzhanbo/vuepress-theme-plume/issues/373)) ([71304ee](https://github.com/pengzhanbo/vuepress-theme-plume/commit/71304ee1607563c4ea08d9d4b38d236508954b67))
+* **theme:** unexpectedly overlooked sidebar icon ([#374](https://github.com/pengzhanbo/vuepress-theme-plume/issues/374)) ([801d1a6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/801d1a6ac78f78dcb7ee38d2cf3e28592ed6b5ac))
+
+
+### Features
+
+* **theme:** add `<CardMasonry>` support ([#379](https://github.com/pengzhanbo/vuepress-theme-plume/issues/379)) ([a93d53c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a93d53c77ae9086266bd2829e8ed0473a13c7d5e))
+* **theme:** add `location/organization` configuration support for friends ([#376](https://github.com/pengzhanbo/vuepress-theme-plume/issues/376)) ([b5ca59d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b5ca59d1fef6b5c68bb28117a29c80bb11498728))
+* **theme:** add `width/center` props  support for `ImageCard` ([#378](https://github.com/pengzhanbo/vuepress-theme-plume/issues/378)) ([e5d732b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e5d732bc79be3a53b7175999a9a5e34422c88f6e))
+* **theme:** improve sidebar collapsed state ([#377](https://github.com/pengzhanbo/vuepress-theme-plume/issues/377)) ([a776852](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a776852a8af086f02fbb5228f3b7d6fc3c1bbef0))
+
+
+### Performance Improvements
+
+* update vuepress to `rc.19` and deps to latest ([#380](https://github.com/pengzhanbo/vuepress-theme-plume/issues/380)) ([1d01d7c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1d01d7c53643c06b4fd77a649daf991c4548662d))
+
+
+
 # [1.0.0-rc.120](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.119...v1.0.0-rc.120) (2024-12-08)
 
 

@@ -33,14 +33,14 @@
     "@clack/prompts": "^0.8.2",
     "@pengzhanbo/utils": "^1.2.0",
     "cac": "^6.7.14",
-    "execa": "^9.5.1",
+    "execa": "^9.5.2",
     "handlebars": "^4.7.8",
     "picocolors": "^1.1.1"
   },
   "plume-deps": {
-    "vuepress": "2.0.0-rc.18",
+    "vuepress": "2.0.0-rc.19",
     "vue": "^3.5.13",
-    "sass-embedded": "^1.82.0",
+    "sass-embedded": "^1.83.0",
     "sass-loader": "^16.0.4",
     "http-server": "^14.1.1",
     "typescript": "^5.7.2"

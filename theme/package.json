@@ -122,11 +122,11 @@
     "fast-glob": "catalog:",
     "gray-matter": "catalog:",
     "json2yaml": "catalog:",
-    "katex": "^0.16.11",
+    "katex": "^0.16.15",
     "local-pkg": "catalog:",
     "nanoid": "catalog:",
     "vue": "catalog:",
-    "vuepress-plugin-md-enhance": "2.0.0-rc.60",
+    "vuepress-plugin-md-enhance": "2.0.0-rc.64",
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {

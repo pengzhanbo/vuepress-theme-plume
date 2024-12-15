@@ -59,9 +59,9 @@
     "local-pkg": "catalog:",
     "markdown-it-container": "^4.0.0",
     "nanoid": "catalog:",
-    "shiki": "^1.24.0",
-    "tm-grammars": "^1.21.0",
-    "tm-themes": "^1.9.3",
+    "shiki": "^1.24.2",
+    "tm-grammars": "^1.21.4",
+    "tm-themes": "^1.9.5",
     "vue": "catalog:"
   },
   "devDependencies": {

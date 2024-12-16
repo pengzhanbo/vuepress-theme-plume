@@ -39,6 +39,10 @@ const hasContributors = computed(() => Boolean(contributors.value.length) && mod
   list-style: none;
 }
 
+.vp-doc-contributor .contributor-list li {
+  margin: 0;
+}
+
 .contributor-list .contributor img {
   width: 32px;
   height: 32px;

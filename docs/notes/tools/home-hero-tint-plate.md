@@ -1,6 +1,5 @@
 ---
 title: 首页背景色板配置
-author: pengzhanbo
 icon: icon-park-outline:hand-painted-plate
 createTime: 2024/04/15 20:17:42
 permalink: /tools/home-hero-tint-plate/

@@ -1,6 +1,5 @@
 ---
 title: caniuse 特性搜索
-author: pengzhanbo
 icon: fa-brands:css3
 createTime: 2024/04/16 12:41:26
 permalink: /tools/caniuse/

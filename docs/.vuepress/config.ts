@@ -1,9 +1,12 @@
-import * as path from 'node:path'
+import fs from 'node:fs'
+import path from 'node:path'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { addViteOptimizeDepsInclude, addViteSsrExternal } from '@vuepress/helper'
 import { defineUserConfig, type UserConfig } from 'vuepress'
-import { peerDependencies } from '../package.json'
 import { theme } from './theme.js'
+
+const pnpmWorkspace = fs.readFileSync(path.resolve(__dirname, '../../pnpm-workspace.yaml'), 'utf-8')
+const vuepress = pnpmWorkspace.match(/vuepress:\s(.*)/)?.[1] || ''
 
 export default defineUserConfig({
   base: '/',
@@ -29,7 +32,7 @@ export default defineUserConfig({
   },
 
   define: {
-    __VUEPRESS_VERSION__: peerDependencies.vuepress,
+    __VUEPRESS_VERSION__: vuepress,
   },
 
   bundler: viteBundler(),

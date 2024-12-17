@@ -30,7 +30,8 @@ export function useLink(
     if (isExternal.value)
       return link
 
-    const path = resolveRouteFullPath(link, `/${page.value.filePathRelative!}`)
+    const currentPath = page.value.filePathRelative ? `/${page.value.filePathRelative}` : undefined
+    const path = resolveRouteFullPath(link, currentPath)
     if (path.includes('#')) {
       if (path.slice(0, path.indexOf('#')) === route.path) {
         return path.slice(path.indexOf('#'))

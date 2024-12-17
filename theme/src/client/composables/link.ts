@@ -3,7 +3,7 @@ import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 import { resolveRouteFullPath, useRoute } from 'vuepress/client'
 import { useData } from './data.js'
 
-const SEARCH_RE = /\.md(?:(?:#|\?).*)?$/
+const ENDING_SLASH = /(?:\/|\.(?:md|html))$/i
 
 export function useLink(
   href: MaybeRefOrGetter<string | undefined>,
@@ -12,13 +12,16 @@ export function useLink(
   const route = useRoute()
   const { page } = useData()
 
-  const isExternal = computed(
-    () => {
-      const link = toValue(href)
-      const rawTarget = toValue(target)
-      return (link && isLinkExternal(link)) || rawTarget === '_blank'
-    },
-  )
+  const isExternal = computed(() => {
+    const link = toValue(href)
+    const rawTarget = toValue(target)
+    if (!link)
+      return false
+    if (rawTarget === '_blank' || isLinkExternal(link))
+      return true
+    const pathname = link.split(/[#?]/)[0]
+    return !ENDING_SLASH.test(pathname)
+  })
 
   const link = computed(() => {
     const link = toValue(href)
@@ -26,10 +29,8 @@ export function useLink(
       return undefined
     if (isExternal.value)
       return link
-    const currentPath = link.startsWith('./') && SEARCH_RE.test(link)
-      ? `/${page.value.filePathRelative!}`
-      : route.path
-    const path = resolveRouteFullPath(link, currentPath)
+
+    const path = resolveRouteFullPath(link, `/${page.value.filePathRelative!}`)
     if (path.includes('#')) {
       if (path.slice(0, path.indexOf('#')) === route.path) {
         return path.slice(path.indexOf('#'))

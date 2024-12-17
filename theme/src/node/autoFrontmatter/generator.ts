@@ -11,7 +11,7 @@ import chokidar from 'chokidar'
 import { createFilter } from 'create-filter'
 import grayMatter from 'gray-matter'
 import jsonToYaml from 'json2yaml'
-import { fs, hash, path } from 'vuepress/utils'
+import { colors, fs, hash, path } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { perfLog, perfMark } from '../utils/index.js'
 import { readMarkdown, readMarkdownList } from './readFile.js'
@@ -177,6 +177,10 @@ async function generator(file: AutoFrontmatterMarkdownFile): Promise<void> {
     generate.checkCache(filepath)
   }
   catch (e) {
-    console.error(e)
+    console.error(
+      colors.red('[vuepress-theme-plume:auto-frontmatter] '),
+      `error in: ${colors.cyan(relativePath)}\n`,
+      e,
+    )
   }
 }

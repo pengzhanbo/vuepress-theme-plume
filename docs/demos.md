@@ -75,6 +75,13 @@ blog:
     url: https://plus-wave.github.io
     repo: https://github.com/PLUS-WAVE
     preview: https://raw.githubusercontent.com/PLUS-WAVE/blog-image/master/img/blog/2024-11-24/plus-wave.github.io.jpg
+  -
+    name: 小沐沐吖
+    desc: 人生如棋，落子无悔；处世之道，贵在从容
+    logo: https://blog.mu00.cn/logo.png
+    url: https://blog.mu00.cn/
+    repo: https://github.com/sunnyboy-mu/sunnyboy-blog
+    preview: /images/demos/sunnyboy_mu.jpg
 ---
 
 :::important

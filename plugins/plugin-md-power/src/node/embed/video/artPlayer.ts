@@ -26,14 +26,14 @@ export const artPlayerPlugin: PluginWithOptions<never> = (md) => {
     meta([, info, source]) {
       const { attrs } = resolveAttrs<ArtPlayerTokenMeta>(info)
       const url = source.trim()
-      checkSupportType(attrs.type ?? url.split('.').pop() ?? '')
+      checkSupportType(attrs.type ?? url.split('.').pop())
 
       return {
         autoplay: attrs.autoplay ?? false,
         muted: attrs.muted ?? attrs.autoplay ?? false,
         autoMini: attrs.autoMini ?? false,
         loop: attrs.loop ?? false,
-        volume: Number(attrs.volume) ?? 0.75,
+        volume: typeof attrs.volume !== 'undefined' ? Number(attrs.volume) : 0.75,
         poster: attrs.poster,
         width: attrs.width ? parseRect(attrs.width) : '100%',
         height: attrs.height ? parseRect(attrs.height) : '',
@@ -53,11 +53,7 @@ export const artPlayerPlugin: PluginWithOptions<never> = (md) => {
         muted || autoplay ? ' muted' : ''
       }${
         poster ? ` poster="${poster}"` : ''
-      }${
-        volume ? ` :volume="${volume}"` : ''
-      }${
-        width ? ` width="${width}"` : ''
-      }${
+      }  :volume="${volume}" width="${width}"${
         height ? ` height="${height}"` : ''
       }${
         ratio ? ` ratio="${ratio}"` : ''
@@ -66,10 +62,11 @@ export const artPlayerPlugin: PluginWithOptions<never> = (md) => {
   })
 }
 
-function checkSupportType(type: string) {
+function checkSupportType(type?: string) {
   if (!type)
     return
 
+  /* istanbul ignore if -- @preserve */
   if (SUPPORTED_VIDEO_TYPES.includes(type)) {
     let name = ''
     switch (type.toLowerCase()) {
@@ -88,11 +85,13 @@ function checkSupportType(type: string) {
         name = !installed.dashjs ? 'dashjs' : ''
         break
     }
+    /* istanbul ignore if -- @preserve */
     if (name) {
       console.warn(`${colors.yellow('[vuepress-plugin-md-power] artPlayer: ')} ${colors.cyan(name)} is not installed, please install it via npm or yarn or pnpm`)
     }
   }
   else {
+    /* istanbul ignore next -- @preserve */
     console.warn(`${colors.yellow('[vuepress-plugin-md-power] artPlayer: ')} unsupported video type: ${colors.cyan(type)}`)
   }
 }

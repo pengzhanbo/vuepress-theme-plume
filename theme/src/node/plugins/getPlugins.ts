@@ -51,9 +51,9 @@ export function getPlugins(
     plugins.push(readingTimePlugin({
       locales: {
         '/zh/': {
-          word: '$word字',
-          less1Minute: '小于1分钟',
-          time: '约$time分钟',
+          word: '$word 字',
+          less1Minute: '小于 1 分钟',
+          time: '约 $time 分钟',
         },
       },
       ...pluginOptions.readingTime,
@@ -90,7 +90,6 @@ export function getPlugins(
   if (pluginOptions.photoSwipe !== false) {
     plugins.push(photoSwipePlugin({
       selector: '.plume-content > img, .plume-content :not(a) > img',
-      delay: 300,
     }))
   }
 

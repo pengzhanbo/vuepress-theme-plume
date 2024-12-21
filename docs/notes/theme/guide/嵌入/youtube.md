@@ -1,6 +1,5 @@
 ---
 title: Youtube 视频
-author: pengzhanbo
 icon: mdi:youtube
 createTime: 2024/03/28 14:30:33
 permalink: /guide/embed/video/youtube/
@@ -8,11 +7,9 @@ permalink: /guide/embed/video/youtube/
 
 ## 概述
 
-有时候，你想在你的文档中嵌入视频，以提高内容的表达能力。
-
 主题提供了 嵌入 Youtube 视频 的功能。
 
-该功能由 [vuepress-plugin-md-power](/) 提供支持。
+该功能由 [vuepress-plugin-md-power](../../config/plugins/markdownPower.md) 提供支持。
 
 ## 配置
 

@@ -88,6 +88,17 @@ function resolveTitle(dirname: string) {
     .replace(NUMBER_RE, '')
 }
 
+const RE_FILE_SORTING = /(?:(\d+)\.)?(?=[^/]+$)/
+function fileSorting(filepath?: string): number | false {
+  if (!filepath)
+    return false
+  const matched = filepath.match(RE_FILE_SORTING)
+  const sorted = matched ? Number(matched[1]) : 0
+  if (Number.isNaN(sorted))
+    return 0
+  return sorted
+}
+
 function getAutoDirSidebar(
   app: App,
   localePath: string,
@@ -104,11 +115,13 @@ function getAutoDirSidebar(
 
   while (nowIndex < maxIndex) {
     pages = pages.sort((prev, next) => {
-      const pi = prev.splitPath?.[nowIndex]?.match(/(?:(\d+)\.)?(?=[^/]+$)/)?.[1]
-      const ni = next.splitPath?.[nowIndex]?.match(/(?:(\d+)\.)?(?=[^/]+$)/)?.[1]
-      if (!pi || !ni)
+      const pi = fileSorting(prev.splitPath?.[nowIndex])
+      const ni = fileSorting(next.splitPath?.[nowIndex])
+      if (pi === false || ni === false)
         return 0
-      return Number.parseFloat(pi) < Number.parseFloat(ni) ? -1 : 1
+      if (pi === ni)
+        return 0
+      return pi < ni ? -1 : 1
     })
 
     nowIndex++
@@ -164,7 +177,23 @@ function getAutoDirSidebar(
       index++
     }
   }
-  return { link: rootLink, sidebar }
+  return { link: rootLink, sidebar: cleanSidebar(sidebar) }
+}
+
+function cleanSidebar(sidebar: (SidebarItem)[]) {
+  for (const item of sidebar) {
+    if (isPlainObject(item)) {
+      if (isArray(item.items)) {
+        if (item.items.length === 0) {
+          delete item.items
+        }
+        else {
+          cleanSidebar(item.items as SidebarItem[])
+        }
+      }
+    }
+  }
+  return sidebar
 }
 
 function findAutoDirList(sidebar: (string | SidebarItem)[], prefix = ''): string[] {

@@ -1,6 +1,7 @@
 import type { Plugin } from 'vuepress/core'
 import type { MarkdownPowerPluginOptions } from '../shared/index.js'
 import { addViteOptimizeDepsInclude } from '@vuepress/helper'
+import { isPackageExists } from 'local-pkg'
 import { containerPlugin } from './container/index.js'
 import { embedSyntaxPlugin } from './embed/index.js'
 import { docsTitlePlugin } from './enhance/docsTitle.js'
@@ -18,6 +19,9 @@ export function markdownPowerPlugin(
 
     define: {
       __MD_POWER_INJECT_OPTIONS__: options,
+      __MD_POWER_DASHJS_INSTALLED__: isPackageExists('dashjs'),
+      __MD_POWER_HLSJS_INSTALLED__: isPackageExists('hls.js'),
+      __MD_POWER_MPEGTSJS_INSTALLED__: isPackageExists('mpegts.js'),
     },
 
     extendsBundlerOptions(bundlerOptions, app) {
@@ -26,6 +30,13 @@ export function markdownPowerPlugin(
           bundlerOptions,
           app,
           ['shiki/core', 'shiki/wasm', 'shiki/engine/oniguruma'],
+        )
+      }
+      if (options.artPlayer) {
+        addViteOptimizeDepsInclude(
+          bundlerOptions,
+          app,
+          ['artplayer', 'dashjs', 'hls.js', 'mpegts.js'],
         )
       }
     },

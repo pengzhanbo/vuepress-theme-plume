@@ -6,6 +6,7 @@ import { codeSandboxPlugin } from './code/codeSandbox.js'
 import { jsfiddlePlugin } from './code/jsfiddle.js'
 import { replitPlugin } from './code/replit.js'
 import { pdfPlugin } from './pdf.js'
+import { artPlayerPlugin } from './video/artPlayer.js'
 import { bilibiliPlugin } from './video/bilibili.js'
 import { youtubePlugin } from './video/youtube.js'
 
@@ -31,6 +32,11 @@ export function embedSyntaxPlugin(md: Markdown, options: MarkdownPowerPluginOpti
   if (options.youtube) {
     // @[youtube](id)
     md.use(youtubePlugin)
+  }
+
+  if (options.artPlayer) {
+    // @[artPlayer](url)
+    md.use(artPlayerPlugin)
   }
 
   if (options.codepen) {

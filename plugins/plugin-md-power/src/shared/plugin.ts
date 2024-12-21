@@ -63,6 +63,13 @@ export interface MarkdownPowerPluginOptions {
    */
   youtube?: boolean
 
+  /**
+   * 是否启用 artPlayer 视频嵌入
+   *
+   * `@[artPlayer](url)`
+   */
+  artPlayer?: boolean
+
   // code embed
   /**
    * 是否启用 codepen 嵌入

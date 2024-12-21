@@ -23,3 +23,14 @@ export interface YoutubeTokenMeta extends SizeOptions {
   start?: string | number
   end?: string | number
 }
+
+export interface ArtPlayerTokenMeta extends SizeOptions {
+  muted?: boolean
+  autoplay?: boolean
+  autoMini?: boolean
+  loop?: boolean
+  volume?: number // 0-1
+  poster?: string
+  url: string
+  type?: string
+}

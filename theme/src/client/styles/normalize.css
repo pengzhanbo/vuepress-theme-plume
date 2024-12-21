@@ -39,7 +39,7 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-synthesis: none;
+  font-synthesis: style weight;
   text-rendering: optimizelegibility;
   -webkit-text-size-adjust: 100%;
 }

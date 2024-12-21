@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { AutoplayOptions, SwiperModule, Swiper as SwiperType } from 'swiper/types'
+import { useMutationObserver } from '@vueuse/core'
 import {
   Autoplay,
   EffectCards,
@@ -13,7 +14,7 @@ import {
   Pagination,
 } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -128,12 +129,26 @@ const hasNavigation = computed(() =>
   props.mode === 'banner' || props.mode === 'broadcast' ? props.navigation : false,
 )
 
-function onSwiper(swiper: SwiperType) {
+let swiper: SwiperType
+function onSwiper(_swiper: SwiperType) {
+  swiper = _swiper
   if (props.mode === 'carousel' && props.pauseOnMouseEnter) {
-    swiper.el.onmouseenter = () => swiper.autoplay.stop()
-    swiper.el.onmouseleave = () => swiper.autoplay.start()
+    swiper.el.onmouseenter = () => swiper!.autoplay.stop()
+    swiper.el.onmouseleave = () => swiper!.autoplay.start()
   }
 }
+
+onMounted(() => {
+  if (props.mode === 'carousel' && !props.pauseOnMouseEnter) {
+    useMutationObserver(() => document.documentElement, () => {
+      if (!swiper)
+        return
+
+      swiper.wrapperEl.style.transform = 'translate3d(0px, 0px, 0px)'
+      setTimeout(() => swiper.update(), 350)
+    }, { attributeFilter: ['data-theme'] })
+  }
+})
 </script>
 
 <template>

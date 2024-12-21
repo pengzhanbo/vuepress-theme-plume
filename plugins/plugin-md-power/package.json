@@ -37,11 +37,27 @@
     "tsup": "tsup --config tsup.config.ts"
   },
   "peerDependencies": {
+    "artplayer": "^5.2.0",
+    "dashjs": "^4.7.4",
+    "hls.js": "^1.5.18",
     "markdown-it": "^14.0.0",
+    "mpegts.js": "^1.7.3",
     "vuepress": "catalog:"
   },
   "peerDependenciesMeta": {
+    "artplayer": {
+      "optional": true
+    },
+    "dashjs": {
+      "optional": true
+    },
+    "hls.js": {
+      "optional": true
+    },
     "markdown-it": {
+      "optional": true
+    },
+    "mpegts.js": {
       "optional": true
     }
   },
@@ -65,7 +81,11 @@
     "vue": "catalog:"
   },
   "devDependencies": {
-    "@types/markdown-it": "^14.1.2"
+    "@types/markdown-it": "^14.1.2",
+    "artplayer": "^5.2.1",
+    "dashjs": "^4.7.4",
+    "hls.js": "^1.5.18",
+    "mpegts.js": "^1.7.3"
   },
   "publishConfig": {
     "access": "public"

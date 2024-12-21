@@ -65,6 +65,11 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('FileTreeItem', FileTreeItem)`)
   }
 
+  if (options.artPlayer) {
+    imports.add(`import ArtPlayer from '${CLIENT_FOLDER}components/ArtPlayer.vue'`)
+    enhances.add(`app.component('ArtPlayer', ArtPlayer)`)
+  }
+
   return app.writeTemp(
     'md-power/config.js',
     `\

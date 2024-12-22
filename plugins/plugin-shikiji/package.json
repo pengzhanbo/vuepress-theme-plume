@@ -36,8 +36,8 @@
     "vuepress": "catalog:"
   },
   "dependencies": {
-    "@shikijs/transformers": "^1.24.2",
-    "@shikijs/twoslash": "^1.24.2",
+    "@shikijs/transformers": "^1.24.4",
+    "@shikijs/twoslash": "^1.24.4",
     "@types/hast": "^3.0.4",
     "@vuepress/helper": "catalog:",
     "@vueuse/core": "catalog:",
@@ -47,7 +47,7 @@
     "mdast-util-gfm": "^3.0.0",
     "mdast-util-to-hast": "^13.2.0",
     "nanoid": "catalog:",
-    "shiki": "^1.24.2",
+    "shiki": "^1.24.4",
     "twoslash": "^0.2.12",
     "twoslash-vue": "^0.2.12"
   },

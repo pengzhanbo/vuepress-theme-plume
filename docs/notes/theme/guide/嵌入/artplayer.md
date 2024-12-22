@@ -1,5 +1,5 @@
 ---
-title: artPlayer
+title: ArtPlayer 视频
 icon: icon-park-outline:video
 createTime: 2024/12/21 16:13:54
 permalink: /guide/embed/video/artplayer/

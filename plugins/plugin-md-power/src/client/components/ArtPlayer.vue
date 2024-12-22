@@ -23,15 +23,17 @@ const props = withDefaults(defineProps<{
   playsInline: true,
 })
 
-const options = toRefs(props)
 const loaded = ref(false)
-
 const lang = usePageLang()
 const brandColor = useCssVar('--vp-c-brand-1')
-const { el, width, height, resize } = useSize<HTMLDivElement>(options)
+const { el, width, height, resize } = useSize<HTMLDivElement>(toRefs(props))
+
 let player: ArtPlayer | null = null
 
 async function createPlayer() {
+  if (!el.value)
+    return
+
   loaded.value = false
   const { default: ArtPlayer } = await import(
     /* webpackChunkName: "artplayer" */ 'artplayer'
@@ -53,7 +55,7 @@ async function createPlayer() {
   }
 
   player = new ArtPlayer({
-    container: el.value!,
+    container: el.value,
     url,
     type,
     ...{
@@ -108,10 +110,7 @@ function initCustomType(type: string): CustomType {
     customType[type] = async function (video, url, art) {
       const mpegts = (await import(/* webpackChunkName: "mpegts.js" */ 'mpegts.js/dist/mpegts.js')).default
       if (mpegts.isSupported()) {
-        const flv = mpegts.createPlayer({
-          type: 'flv',
-          url,
-        })
+        const flv = mpegts.createPlayer({ type: 'flv', url })
 
         flv.attachMediaElement(video)
         flv.load()
@@ -135,12 +134,17 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="el" class="vp-artplayer" :style="{ width, height }">
-    <Loading v-if="!loaded" height="100%" />
+  <div class="vp-artplayer-wrapper">
+    <div ref="el" class="vp-artplayer" :style="{ width, height }" />
+    <Loading v-if="!loaded" absolute />
   </div>
 </template>
 
 <style>
+.vp-artplayer-wrapper {
+  position: relative;
+}
+
 .vp-artplayer {
   margin: 16px 0;
 }
@@ -150,6 +154,7 @@ onUnmounted(() => {
     overflow: hidden;
     border-radius: 8px;
     box-shadow: var(--vp-shadow-2);
+    transition: box-shadow var(--vp-t-color);
   }
 }
 </style>

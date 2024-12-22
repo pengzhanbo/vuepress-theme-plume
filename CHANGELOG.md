@@ -1,3 +1,29 @@
+# [1.0.0-rc.122](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.121...v1.0.0-rc.122) (2024-12-22)
+
+
+### Bug Fixes
+
+* **theme:** fix carousel swiper that stops unexpectedly during appearance switching ([#385](https://github.com/pengzhanbo/vuepress-theme-plume/issues/385)) ([361ef45](https://github.com/pengzhanbo/vuepress-theme-plume/commit/361ef45a0f26fc0fbc28ba6de7ac9adcb143a5ab))
+* **theme:** incorrect `font-synthesis` and `readingTime` format ([#394](https://github.com/pengzhanbo/vuepress-theme-plume/issues/394)) ([2557af8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2557af8e0111d056dadc3f37dc89916617bc8d52))
+* **theme:** incorrect sidebar auto sorting, close [#387](https://github.com/pengzhanbo/vuepress-theme-plume/issues/387) ([#389](https://github.com/pengzhanbo/vuepress-theme-plume/issues/389)) ([d261dc3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d261dc312a8a3637c77078cacb89f9b8b862e2c2))
+
+
+### Features
+
+* **plugin-md-power:** add `artplayer` support ([#393](https://github.com/pengzhanbo/vuepress-theme-plume/issues/393)) ([bd4c350](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bd4c3506dc23d42e8e5b5cbf2a7fc9128d2e43fe))
+* **theme:** improve auto-frontmatter error log ([#383](https://github.com/pengzhanbo/vuepress-theme-plume/issues/383)) ([a21d9ed](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a21d9ed0b53d4769fc7f0ff306a22d3ea67a75e5))
+* **theme:** improve languages selector ([#384](https://github.com/pengzhanbo/vuepress-theme-plume/issues/384)) ([e9b6bce](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e9b6bce8e69364c93ace25f21ffbd06bea447821))
+* **theme:** improve link parsing ([#382](https://github.com/pengzhanbo/vuepress-theme-plume/issues/382)) ([055bf61](https://github.com/pengzhanbo/vuepress-theme-plume/commit/055bf6156c50636a8db6f01f429dd8f642714509))
+
+
+### Performance Improvements
+
+* **theme:** improve `<ArtPlayer/ >` ([0e22ad0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0e22ad0258891d4fec63bf584345d9f0854f048d))
+* **theme:** improve contributors styles ([4d18728](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4d18728234551cf0d76d038d78bb1653cb6a4a5a))
+* update deps to latest ([70dfe79](https://github.com/pengzhanbo/vuepress-theme-plume/commit/70dfe79c2a51c798d38730289569b8da84ec592c))
+
+
+
 # [1.0.0-rc.121](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.120...v1.0.0-rc.121) (2024-12-15)
 
 

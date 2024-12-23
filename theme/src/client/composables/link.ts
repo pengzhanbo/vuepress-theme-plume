@@ -3,8 +3,6 @@ import { computed, type MaybeRefOrGetter, toValue } from 'vue'
 import { resolveRouteFullPath, useRoute } from 'vuepress/client'
 import { useData } from './data.js'
 
-const ENDING_SLASH = /(?:\/|\.(?:md|html))$/i
-
 export function useLink(
   href: MaybeRefOrGetter<string | undefined>,
   target?: MaybeRefOrGetter<string | undefined>,
@@ -19,8 +17,10 @@ export function useLink(
       return false
     if (rawTarget === '_blank' || isLinkExternal(link))
       return true
-    const pathname = link.split(/[#?]/)[0]
-    return !ENDING_SLASH.test(pathname)
+    const filename = link.split(/[#?]/)[0]?.split('/').pop() || ''
+    if (filename === '' || filename.endsWith('.html') || filename.endsWith('.md'))
+      return false
+    return filename.includes('.')
   })
 
   const link = computed(() => {

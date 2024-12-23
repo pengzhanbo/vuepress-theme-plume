@@ -1,3 +1,17 @@
+# [1.0.0-rc.123](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.122...v1.0.0-rc.123) (2024-12-23)
+
+
+### Bug Fixes
+
+* **theme:** incorrect link external parsing ([#396](https://github.com/pengzhanbo/vuepress-theme-plume/issues/396)) ([4e15896](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4e158964d23acfd2065ba67aa14f26a7b7a4d8a7))
+
+
+### Features
+
+* **theme:** improve config template ([d3deac9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d3deac99fd23fe6b746a7cb9adbfc68ffddcaa03))
+
+
+
 # [1.0.0-rc.122](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.121...v1.0.0-rc.122) (2024-12-22)
 
 

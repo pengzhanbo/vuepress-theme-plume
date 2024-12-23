@@ -18,6 +18,15 @@ docs:
     url: https://theme-plume.vuejs.press
     repo: https://github.com/pengzhanbo/vuepress-theme-plume
     preview: /images/demos/plume.jpg
+
+  -
+    name: city walk 城市漫步
+    desc: 致力于汇聚全国350多个城市的户外活动地点与文化场馆的开放数据平台。
+    logo: https://pub-187e90a3327b41ccb8869558b6b8bbc0.r2.dev/city-shenzhen/2024/12/0a08e9417033ccaf116fb71cfc7bcdb9.png
+    url: https://shenzhen.citywalk.group/
+    repo: https://github.com/sunshang-hl/CityWalk
+    preview: https://pub-187e90a3327b41ccb8869558b6b8bbc0.r2.dev/city-shenzhen/2024/12/ed251c4438f722dffd6cb95db86c0d56.jpg
+    
 blog:
   -
     name: 鹏展博

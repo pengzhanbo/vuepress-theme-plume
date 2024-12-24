@@ -70,6 +70,13 @@ export interface MarkdownPowerPluginOptions {
    */
   artPlayer?: boolean
 
+  /**
+   * 是否启用 audioReader 音频嵌入
+   *
+   * `@[audioReader](url)`
+   */
+  audioReader?: boolean
+
   // code embed
   /**
    * 是否启用 codepen 嵌入

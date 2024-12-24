@@ -31,10 +31,13 @@
     "lib"
   ],
   "scripts": {
+    "dev": "pnpm '/(copy|tsup):watch/'",
     "build": "pnpm copy && pnpm tsup",
     "clean": "rimraf --glob ./lib",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
-    "tsup": "tsup --config tsup.config.ts"
+    "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib -w",
+    "tsup": "tsup --config tsup.config.ts",
+    "tsup:watch": "tsup --config tsup.config.ts --watch -- -c"
   },
   "peerDependencies": {
     "artplayer": "^5.2.0",

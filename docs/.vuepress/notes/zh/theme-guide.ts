@@ -96,6 +96,7 @@ export const themeGuide = defineNoteConfig({
             'bilibili',
             'youtube',
             'artplayer',
+            'audioReader',
           ],
         },
       ],

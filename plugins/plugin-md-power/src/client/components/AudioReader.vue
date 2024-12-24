@@ -16,7 +16,7 @@ const { paused, play, pause, seek, setVolume } = useAudioPlayer(
   toRef(() => props.src),
   {
     type: toRef(() => props.type || ''),
-    playWhenReady: !!props.autoplay,
+    autoplay: props.autoplay,
     oncanplay: () => {
       if (props.startTime) {
         seek(props.startTime)
@@ -76,6 +76,7 @@ onMounted(() => {
 <style>
 .vp-audio-reader {
   display: inline-block;
+  color: currentcolor;
   cursor: pointer;
 }
 
@@ -87,10 +88,12 @@ onMounted(() => {
   vertical-align: middle;
 }
 
+.vp-audio-reader,
 .vp-audio-reader .icon-audio {
   transition: color var(--vp-t-color);
 }
 
+.vp-audio-reader:hover,
 .vp-audio-reader:hover .icon-audio {
   color: var(--vp-c-brand-1);
 }

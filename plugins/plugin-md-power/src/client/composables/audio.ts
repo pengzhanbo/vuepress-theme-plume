@@ -18,7 +18,7 @@ export interface BufferedRange {
 
 export interface AudioPlayerOptions {
   type?: MaybeRef<string>
-  playWhenReady?: boolean
+  autoplay?: boolean
   mutex?: boolean
   onload?: HTMLAudioElement['onload']
   onerror?: HTMLAudioElement['onerror']
@@ -53,7 +53,8 @@ export function useAudioPlayer(source: MaybeRef<string>, options: AudioPlayerOpt
     player = document.createElement('audio')
     player.className = 'audio-player'
     player.style.display = 'none'
-    player.preload = options.playWhenReady ? 'auto' : 'none'
+    player.preload = options.autoplay ? 'auto' : 'none'
+    player.autoplay = options.autoplay ?? false
     document.body.appendChild(player)
     playerList.push(player)
 
@@ -70,8 +71,6 @@ export function useAudioPlayer(source: MaybeRef<string>, options: AudioPlayerOpt
         isSupported.value = true
 
       options.oncanplay?.bind(player!)(...args)
-      if (options.playWhenReady)
-        player?.play()
     }
 
     player.onplay = (...args) => {

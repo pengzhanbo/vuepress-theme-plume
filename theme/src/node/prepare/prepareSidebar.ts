@@ -95,7 +95,7 @@ function fileSorting(filepath?: string): number | false {
   const matched = filepath.match(RE_FILE_SORTING)
   const sorted = matched ? Number(matched[1]) : 0
   if (Number.isNaN(sorted))
-    return 0
+    return Number.MAX_SAFE_INTEGER
   return sorted
 }
 
@@ -109,11 +109,9 @@ function getAutoDirSidebar(
     .map((page) => {
       return { ...page, splitPath: page.data.filePathRelative?.split('/') || [] }
     })
-
   const maxIndex = Math.max(...pages.map(page => page.splitPath.length))
-  let nowIndex = 0
-
-  while (nowIndex < maxIndex) {
+  let nowIndex = maxIndex - 1
+  while (nowIndex >= 0) {
     pages = pages.sort((prev, next) => {
       const pi = fileSorting(prev.splitPath?.[nowIndex])
       const ni = fileSorting(next.splitPath?.[nowIndex])
@@ -124,7 +122,7 @@ function getAutoDirSidebar(
       return pi < ni ? -1 : 1
     })
 
-    nowIndex++
+    nowIndex--
   }
 
   const RE_INDEX = ['index.md', 'README.md', 'readme.md']

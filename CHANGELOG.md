@@ -1,3 +1,22 @@
+# [1.0.0-rc.124](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.123...v1.0.0-rc.124) (2024-12-24)
+
+
+### Bug Fixes
+
+* **theme:** incorrect auto sidebar sorting ([#399](https://github.com/pengzhanbo/vuepress-theme-plume/issues/399)) ([0b7a955](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0b7a955343fdbb08684e8e3913ac17c43babab96))
+
+
+### Features
+
+* **plugin-md-power:** add `audioReader` support ([#398](https://github.com/pengzhanbo/vuepress-theme-plume/issues/398)) ([c276a77](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c276a77d4e788bd09e3936af9cbe7bddb2ba7697))
+
+
+### Performance Improvements
+
+* update deps to latest ([ff8acf0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ff8acf090c9a8fb0778b03cf5addb169f231a1a2))
+
+
+
 # [1.0.0-rc.123](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.122...v1.0.0-rc.123) (2024-12-23)
 
 

@@ -31,6 +31,7 @@ export const theme: Theme = plumeTheme({
       bilibili: true,
       youtube: true,
       artPlayer: true,
+      audioReader: true,
       codepen: true,
       replit: true,
       codeSandbox: true,

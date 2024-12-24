@@ -1,5 +1,6 @@
 import type { Markdown } from 'vuepress/markdown'
 import type { MarkdownPowerPluginOptions } from '../../shared/index.js'
+import { audioReaderPlugin } from './audio/reader.js'
 import { caniusePlugin, legacyCaniuse } from './caniuse.js'
 import { codepenPlugin } from './code/codepen.js'
 import { codeSandboxPlugin } from './code/codeSandbox.js'
@@ -37,6 +38,11 @@ export function embedSyntaxPlugin(md: Markdown, options: MarkdownPowerPluginOpti
   if (options.artPlayer) {
     // @[artPlayer](url)
     md.use(artPlayerPlugin)
+  }
+
+  if (options.audioReader) {
+    // @[audioReader](url)
+    md.use(audioReaderPlugin)
   }
 
   if (options.codepen) {

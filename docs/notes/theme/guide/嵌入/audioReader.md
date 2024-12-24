@@ -73,7 +73,7 @@ export default defineUserConfig({
 | autoplay  | `boolean` | 选填，是否自动播放，不建议启用      |
 | startTime | `number`  | 选填，音频起始播放时间点，单位为 秒 |
 | endTime   | `number`  | 选填，音频结束播放时间点，单位为 秒 |
-| volume    | `number   | 选填，音频播放音量，范围为 `0 ~ 1`  |
+| volume    | `number`  | 选填，音频播放音量，范围为 `0 ~ 1`  |
 
 ## 示例
 

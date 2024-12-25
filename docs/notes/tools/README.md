@@ -11,7 +11,7 @@ permalink: /tools/
 
 ## 工具列表
 
-<LinkCard title="主题颜色配置工具" href="./config.md" icon="unjs:theme-colors" />
+<LinkCard title="主题颜色配置工具" href="./custom-theme.md" icon="unjs:theme-colors" />
 
 <LinkCard title="首页背景色板配置" href="./home-hero-tint-plate.md" icon="icon-park-outline:hand-painted-plate" />
 

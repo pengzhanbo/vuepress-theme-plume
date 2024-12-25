@@ -69,8 +69,8 @@ export function setupSidebar() {
   const sidebarData = computed(() => {
     return hasSidebar.value
       ? getSidebar(typeof frontmatter.value.sidebar === 'string'
-        ? frontmatter.value.sidebar
-        : page.value.path, routeLocale.value)
+          ? frontmatter.value.sidebar
+          : page.value.path, routeLocale.value)
       : []
   })
 

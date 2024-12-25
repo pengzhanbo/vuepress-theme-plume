@@ -11,13 +11,13 @@ const tsupArgv = rawArgv.includes('--') ? rawArgv.slice(rawArgv.indexOf('--') + 
 
 const parsed = tsupArgv.length
   ? minimist(tsupArgv, {
-    boolean: ['client', 'node', 'all'],
-    alias: {
-      client: 'c',
-      node: 'n',
-      all: 'a',
-    },
-  })
+      boolean: ['client', 'node', 'all'],
+      alias: {
+        client: 'c',
+        node: 'n',
+        all: 'a',
+      },
+    })
   : {
       client: true,
       node: true,

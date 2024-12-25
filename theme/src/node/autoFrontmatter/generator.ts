@@ -167,10 +167,10 @@ async function generator(file: AutoFrontmatterMarkdownFile): Promise<void> {
     const yaml = isEmptyObject(data)
       ? ''
       : jsonToYaml
-        .stringify(data)
-        .replace(/\n\s{2}/g, '\n')
-        .replace(/"/g, '')
-        .replace(/\s+\n/g, '\n')
+          .stringify(data)
+          .replace(/\n\s{2}/g, '\n')
+          .replace(/"/g, '')
+          .replace(/\s+\n/g, '\n')
     const newContent = yaml ? `${yaml}---\n${content}` : content
 
     await fs.promises.writeFile(filepath, newContent, 'utf-8')

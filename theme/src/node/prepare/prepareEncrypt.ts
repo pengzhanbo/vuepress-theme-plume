@@ -48,9 +48,9 @@ const salt = () => genSaltSync(random(8, 16))
 function resolveEncrypt(encrypt?: EncryptOptions): EncryptConfig {
   const admin = encrypt?.admin
     ? toArray(encrypt.admin)
-      .filter(isStringLike)
-      .map(item => hashSync(String(item), salt()))
-      .join(separator)
+        .filter(isStringLike)
+        .map(item => hashSync(String(item), salt()))
+        .join(separator)
     : ''
 
   const rules: Record<string, string> = {}

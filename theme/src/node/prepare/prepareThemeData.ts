@@ -56,9 +56,9 @@ async function resolveBulletin(app: App, themeData: PlumeThemeData) {
       const type = themeData.bulletin.contentType ?? 'text'
       themeData.bulletin.content = type === 'markdown'
         ? app.markdown.render(themeData.bulletin.content, {
-          filepath: app.dir.source(`/_bulletin.md`),
-          filePathRelative: `_bulletin.md`,
-        })
+            filepath: app.dir.source(`/_bulletin.md`),
+            filePathRelative: `_bulletin.md`,
+          })
         : themeData.bulletin.content
     }
   }
@@ -83,9 +83,9 @@ async function resolveBulletin(app: App, themeData: PlumeThemeData) {
         const type = themeData.locales[locale].bulletin.contentType ?? 'text'
         themeData.locales[locale].bulletin.content = type === 'markdown'
           ? app.markdown.render(themeData.locales[locale].bulletin.content, {
-            filepath: app.dir.source(`${locale}_bulletin.md`),
-            filePathRelative: `${locale.slice(1)}_bulletin.md`,
-          })
+              filepath: app.dir.source(`${locale}_bulletin.md`),
+              filePathRelative: `${locale.slice(1)}_bulletin.md`,
+            })
           : themeData.locales[locale].bulletin.content
       }
     }

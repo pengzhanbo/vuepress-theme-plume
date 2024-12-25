@@ -26,12 +26,12 @@ export function useLastUpdated() {
 
       datetime.value = date.value
         ? new Intl.DateTimeFormat(
-          themeData.value.lastUpdated?.formatOptions?.forceLocale ? lang.value : undefined,
-          themeData.value.lastUpdated?.formatOptions ?? {
-            dateStyle: 'short',
-            timeStyle: 'short',
-          },
-        ).format(date.value)
+            themeData.value.lastUpdated?.formatOptions?.forceLocale ? lang.value : undefined,
+            themeData.value.lastUpdated?.formatOptions ?? {
+              dateStyle: 'short',
+              timeStyle: 'short',
+            },
+          ).format(date.value)
         : ''
     })
   })

@@ -102,7 +102,7 @@ export function setupEncrypt() {
     const filePathRelative = page.value.filePathRelative
     return encrypt.value.ruleList.length
       ? encrypt.value.ruleList
-        .filter(item => toMatch(item.match, pagePath, filePathRelative))
+          .filter(item => toMatch(item.match, pagePath, filePathRelative))
       : []
   })
 

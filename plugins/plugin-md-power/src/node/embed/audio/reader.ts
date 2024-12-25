@@ -43,14 +43,18 @@ const audioReader: RuleInline = (state, silent) => {
       return false
     }
   }
+  else {
+    return false
+  }
 
+  /* istanbul ignore else -- @preserve */
   if (!silent) {
     state.pos = labelStart
     state.posMax = labelEnd
     const info = state.src.slice(labelStart, labelEnd).trim()
     const { attrs } = resolveAttrs(info)
 
-    const tokenOpen = state.push('audio_reader_open', 'audioReader', 1)
+    const tokenOpen = state.push('audio_reader_open', 'AudioReader', 1)
     tokenOpen.info = info
     tokenOpen.attrs = [['src', href]]
 
@@ -69,7 +73,7 @@ const audioReader: RuleInline = (state, silent) => {
     if (attrs.title)
       state.push('text', '', 0).content = attrs.title
 
-    state.push('audio_reader_close', 'audioReader', -1)
+    state.push('audio_reader_close', 'AudioReader', -1)
   }
 
   state.pos = pos + 1

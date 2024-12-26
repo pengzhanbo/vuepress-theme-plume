@@ -52,7 +52,7 @@ function handleClick({ target: el }: Event) {
 
 .outline-link:hover,
 .outline-link.active {
-  color: var(--vp-c-text-1);
+  color: var(--vp-c-brand-1);
 }
 
 .outline-link.nested {

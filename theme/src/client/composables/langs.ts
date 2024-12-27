@@ -1,5 +1,6 @@
 import { computed } from 'vue'
 import { resolveRoute, useRouteLocale } from 'vuepress/client'
+import { removeLeadingSlash } from 'vuepress/shared'
 import { normalizeLink } from '../utils/index.js'
 import { useData } from './data.js'
 import { useBlogPageData } from './page.js'
@@ -41,7 +42,7 @@ export function useLangs({
     // fallback to blog
     const blog = theme.value.blog
     if (isBlogPost.value && blog !== false)
-      return blog?.link || normalizeLink(locale, 'blog/')
+      return normalizeLink(locale, removeLeadingSlash(blog?.link || 'blog/'))
 
     // fallback to home
     const home = theme.value.home || '/'

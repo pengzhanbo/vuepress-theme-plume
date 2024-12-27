@@ -8,8 +8,6 @@ import type { PluginWithOptions } from 'markdown-it'
 import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
 import type { IconsOptions } from '../../shared/index.js'
 
-const [openTag, endTag] = [':[', ']:']
-
 export const iconsPlugin: PluginWithOptions<IconsOptions> = (md, options = {}) =>
   md.inline.ruler.before('emphasis', 'iconify', createTokenizer(options))
 
@@ -19,7 +17,15 @@ function createTokenizer(options: IconsOptions): RuleInline {
     const max = state.posMax
     const start = state.pos
 
-    if (state.src.slice(start, start + 2) !== openTag)
+    // :[
+    if (state.src.charCodeAt(start) !== 0x3A
+      || state.src.charCodeAt(start + 1) !== 0x5B) {
+      return false
+    }
+
+    // :[ xxx
+    //   ^
+    if (state.src.charCodeAt(start + 2) === 0x20)
       return false
 
     if (silent)
@@ -32,7 +38,9 @@ function createTokenizer(options: IconsOptions): RuleInline {
     state.pos = start + 2
 
     while (state.pos < max) {
-      if (state.src.slice(state.pos, state.pos + 2) === endTag) {
+      // ]:
+      if (state.src.charCodeAt(state.pos) === 0x5D
+        && state.src.charCodeAt(state.pos + 1) === 0x3A) {
         found = true
         break
       }
@@ -40,37 +48,35 @@ function createTokenizer(options: IconsOptions): RuleInline {
       state.md.inline.skipToken(state)
     }
 
-    if (!found || start + 2 === state.pos) {
+    if (!found || start + 2 === state.pos
+      // :[xxx ]:
+      //      ^
+      || state.src.charCodeAt(state.pos - 1) === 0x20
+    ) {
       state.pos = start
 
       return false
     }
     const content = state.src.slice(start + 2, state.pos)
 
-    // 不允许前后带有空格
-    if (/^\s|\s$/.test(content)) {
-      state.pos = start
-      return false
-    }
-
     // found!
     state.posMax = state.pos
     state.pos = start + 2
 
-    const [name, opt = ''] = content.split(/\s+/)
-    const [size, color = options.color] = opt.split('/')
+    const [name, opt = ''] = content.split(' ')
+    const [size, color = options.color] = opt.trim().split('/')
 
-    const icon = state.push('vp_iconify_open', 'VPIcon', 1)
-    icon.markup = openTag
+    const icon = state.push('vp_icon_open', 'VPIcon', 1)
+    icon.markup = ':['
+    icon.attrs = [['name', name]]
 
-    icon.attrSet('name', name)
     if (size || options.size)
-      icon.attrSet('size', String(size || options.size))
+      icon.attrs.push(['size', String(size || options.size)])
     if (color)
-      icon.attrSet('color', color)
+      icon.attrs.push(['color', color])
 
-    const close = state.push('vp_iconify_close', 'VPIcon', -1)
-    close.markup = endTag
+    const close = state.push('vp_icon_close', 'VPIcon', -1)
+    close.markup = ']:'
 
     state.pos = state.posMax + 2
     state.posMax = max

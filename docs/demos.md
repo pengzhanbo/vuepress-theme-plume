@@ -25,6 +25,12 @@ docs:
     url: https://shenzhen.citywalk.group/
     repo: https://github.com/sunshang-hl/CityWalk
     preview: https://pub-187e90a3327b41ccb8869558b6b8bbc0.r2.dev/city-shenzhen/2024/12/ed251c4438f722dffd6cb95db86c0d56.jpg
+  -
+    name: 哦麦 MC
+    desc: 我的世界教学文档。
+    logo: https://static.ohmymc.com/img/minecraft-154749_1280.png?max_width=1920&max_height=1920
+    url: https://ohmymc.com/
+    preview: https://static.ohmymc.com/img/20241228225159139.png?max_width=1920&max_height=1920
 
 blog:
   -

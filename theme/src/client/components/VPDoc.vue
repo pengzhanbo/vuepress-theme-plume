@@ -156,6 +156,20 @@ watch(
   padding: 32px 24px 96px;
 }
 
+.vp-doc-container.is-blog {
+  --vp-doc-blog-bg: rgba(190, 190, 190, 0.15);
+
+  background-image:
+    linear-gradient(90deg, var(--vp-doc-blog-bg) 3%, transparent 0),
+    linear-gradient(1turn, var(--vp-doc-blog-bg) 3%, transparent 0);
+  background-position: 50%;
+  background-size: 20px 20px;
+}
+
+[data-theme="dark"] .vp-doc-container.is-blog {
+  --vp-doc-blog-bg: rgba(60, 60, 60, 0.21);
+}
+
 .vp-doc-container.with-encrypt {
   padding: 32px 24px;
 }

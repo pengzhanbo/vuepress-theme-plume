@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`artPlayerPlugin > should not work 1`] = `
+"<p>@[audioReader @<a href="">audioReader</a></p>
+<p>@[audioReader]xxx</p>
+<p>@[ audioReader](123456</p>
+<p>@[audioReader]((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((()</p>
+<p>@<a href="/xxx.mp3"> audioReader</a> xxx</p>
+<p>@<a href="xxx.mp3">audioReader</a> xxx</p>
+<p>@[audioReader](javascript:alert(1)) xxx</p>
+"
+`;
+
+exports[`artPlayerPlugin > should work 1`] = `
+"<p><AudioReader src="/xxx.mp3"></AudioReader> <AudioReader src="/xxx.mp3"></AudioReader></p>
+<p><AudioReader src="/xxx.mp3">title</AudioReader></p>
+<p><AudioReader src="/xxx.mp3" :start-time="0" :end-time="99" :volume="0.55"></AudioReader></p>
+<p>xxx <AudioReader src="/xxx.mp3" type="audio/mp3"></AudioReader> xxx</p>
+"
+`;

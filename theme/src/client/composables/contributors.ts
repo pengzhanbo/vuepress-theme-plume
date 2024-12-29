@@ -25,7 +25,7 @@ export function useContributors(): {
     if (config === false)
       return []
 
-    return (page.value.git?.contributors ?? []).reverse()
+    return (page.value.git?.contributors ?? [])
   })
 
   return { mode, contributors }

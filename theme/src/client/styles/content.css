@@ -357,3 +357,7 @@
 .vp-doc a[target=_blank]:has(img:only-child)::after {
   display: none;
 }
+
+.vp-doc :not(a) > img {
+  cursor: zoom-in;
+}

@@ -1,3 +1,28 @@
+# [1.0.0-rc.125](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.124...v1.0.0-rc.125) (2024-12-29)
+
+
+### Bug Fixes
+
+* **docs:** notes/tools/README.md 404 ([#400](https://github.com/pengzhanbo/vuepress-theme-plume/issues/400)) ([7c7ddda](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7c7dddaf06c9e903ca78a375a3fef5bd0e474d4a))
+* **theme:** incorrect langs switch in blog page, close [#404](https://github.com/pengzhanbo/vuepress-theme-plume/issues/404) ([#405](https://github.com/pengzhanbo/vuepress-theme-plume/issues/405)) ([8dff33a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8dff33a4811421ea2d5cc56361b5873c171fc451))
+
+
+### Features
+
+* **cli:** improve templates ([#406](https://github.com/pengzhanbo/vuepress-theme-plume/issues/406)) ([045f131](https://github.com/pengzhanbo/vuepress-theme-plume/commit/045f131ba44f7e51911bc296233c38711a449035))
+* **theme:** improve doc styles ([#402](https://github.com/pengzhanbo/vuepress-theme-plume/issues/402)) ([0205ec8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0205ec8681e20a85dfb0066b0e98a05a4321d5c0))
+* **theme:** improve styles ([4da8c75](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4da8c75cc735208936e8b08af7278748d1540ff9))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** optimize `icon` rule ([#407](https://github.com/pengzhanbo/vuepress-theme-plume/issues/407)) ([463bbd3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/463bbd3feddaef4b37e41250d2b300a96c24e10b))
+* **plugin-md-power:** optimize `plot` rule ([#408](https://github.com/pengzhanbo/vuepress-theme-plume/issues/408)) ([5b85cc9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5b85cc91a8c87ba52b4d5b8642c17a3747aebd24))
+* update `vuepress` deps to latest ([929e2ce](https://github.com/pengzhanbo/vuepress-theme-plume/commit/929e2ce59e661c35d0c2e392cb50a79e0a67d833))
+* update deps to latest ([96d25a2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/96d25a2df9b25ce6ba52a54b753970a4d80d71b9))
+
+
+
 # [1.0.0-rc.124](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.123...v1.0.0-rc.124) (2024-12-24)
 
 

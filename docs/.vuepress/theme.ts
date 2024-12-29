@@ -3,7 +3,7 @@ import process from 'node:process'
 import { plumeTheme } from 'vuepress-theme-plume'
 
 export const theme: Theme = plumeTheme({
-  hostname: process.env.SITE_HOST || 'https://plume.pengzhanbo.cn',
+  hostname: process.env.SITE_HOST || 'https://theme-plume.vuejs.press',
   docsRepo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
   docsDir: 'docs',
   changelog: { maxCount: 10 },

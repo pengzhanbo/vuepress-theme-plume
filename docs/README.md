@@ -80,7 +80,7 @@ config:
         description: 代码复制，CodePen演示，JSFiddle演示，CodeSandbox演示，代码组，行高亮，行聚焦，行警告，差异对比，代码块折叠等。
       -
         title: 资源嵌入
-        description: 图表：chart.js/ECharts/Mermaid/flowchart<br>视频：Bilibili/Youtube<br>PDF，200K+ Iconify 图标
+        description: 图表：chart.js/ECharts/Mermaid/flowchart<br>视频：Bilibili/Youtube/ArtPlayer<br>PDF，200K+ Iconify 图标
   -
     type: text-image
     title: 博客
@@ -112,13 +112,17 @@ config:
     type: custom
 ---
 
-<div style="max-width: 960px;margin:0 auto;">
+<div style="max-width: 960px;margin:0 auto;" class="home-custom-content">
 
 ::: center
 ![GitHub Repo stars](https://img.shields.io/github/stars/pengzhanbo/vuepress-theme-plume)
 ![npm version](https://img.shields.io/npm/v/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=npm)
-![npm downloads](https://img.shields.io/npm/dy/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads)
+![npm downloads](https://img.shields.io/npm/dm/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads)
+![npm downloads](https://img.shields.io/npm/dt/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads)
 ![github license](https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A)
+
+![peer dependency](https://img.shields.io/npm/dependency-version/vuepress-theme-plume/peer/vuepress?color=32A9C3&labelColor=1B3C4A)
+![codecov](https://codecov.io/gh/pengzhanbo/vuepress-theme-plume/graph/badge.svg?token=W6KYBX7WO5)
 :::
 
 ### 安装
@@ -183,3 +187,9 @@ export default defineUserConfig({
 />
 
 </div>
+
+<style>
+.home-custom-content img {
+  cursor: default !important;
+}
+</style>

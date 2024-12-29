@@ -122,7 +122,7 @@
     "fast-glob": "catalog:",
     "gray-matter": "catalog:",
     "json2yaml": "catalog:",
-    "katex": "^0.16.18",
+    "katex": "^0.16.19",
     "local-pkg": "catalog:",
     "nanoid": "catalog:",
     "vue": "catalog:",

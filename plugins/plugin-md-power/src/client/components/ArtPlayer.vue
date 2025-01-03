@@ -157,4 +157,44 @@ onUnmounted(() => {
     transition: box-shadow var(--vp-t-color);
   }
 }
+
+.vp-artplayer .art-video-player .art-subtitle {
+  z-index: 12;
+}
+
+.vp-artplayer .art-video-player .art-danmuku {
+  z-index: 13;
+}
+
+.vp-artplayer .art-video-player .art-layers {
+  z-index: 14;
+}
+
+.vp-artplayer .art-video-player .art-mask {
+  z-index: 15;
+}
+
+.vp-artplayer .art-video-player .art-bottom {
+  z-index: 16;
+}
+
+.vp-artplayer .art-video-player .art-loading {
+  z-index: 17;
+}
+
+.vp-artplayer .art-video-player .art-notice {
+  z-index: 18;
+}
+
+.vp-artplayer .art-video-player .art-settings {
+  z-index: 19;
+}
+
+.vp-artplayer .art-video-player .art-info {
+  z-index: 20;
+}
+
+.vp-artplayer .art-video-player .art-contextmenu {
+  z-index: 21;
+}
 </style>

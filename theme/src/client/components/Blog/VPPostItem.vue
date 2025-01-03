@@ -185,10 +185,9 @@ const coverStyles = computed(() => {
   left: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
   transition: transform 0.5s;
   transform: scale(1);
-
-  object-fit: cover;
 }
 
 .vp-blog-post-item.has-cover:hover .post-cover img {

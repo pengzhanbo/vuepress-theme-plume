@@ -131,13 +131,12 @@ function handleClick() {
 
 .vp-back-to-top svg circle {
   fill: none;
+  r: 16;
   stroke: var(--vp-c-brand-2);
   stroke-dasharray: 0% 314.1593%;
   stroke-width: 4px;
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
-
-  r: 16;
 }
 
 @media (min-width: 768px) {

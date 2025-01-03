@@ -43,7 +43,7 @@ const hasChangelog = computed(() =>
               <VPLink :href="item.tagUrl" no-icon class="release-tag">
                 <code>{{ item.tag }}</code>
               </VPLink>
-              <span class="datetime">{{ theme.changelogOnText }} {{ item.datetime }}</span>
+              <span class="datetime" data-allow-mismatch>{{ theme.changelogOnText }} {{ item.datetime }}</span>
             </div>
           </li>
           <li v-else class="changelog commit">
@@ -55,7 +55,7 @@ const hasChangelog = computed(() =>
             </div>
             <div>
               <p class="message" v-html="item.message" />
-              <span class="datetime">{{ theme.changelogOnText }} {{ item.datetime }}</span>
+              <span class="datetime" data-allow-mismatch>{{ theme.changelogOnText }} {{ item.datetime }}</span>
             </div>
           </li>
         </template>

@@ -96,6 +96,13 @@ blog:
     url: https://blog.mu00.cn/
     repo: https://github.com/sunnyboy-mu/sunnyboy-blog
     preview: /images/demos/sunnyboy_mu.jpg
+  -
+    name: QiHuang02 的笔记本
+    desc: 𝓔𝔁𝓹𝓮𝓻𝓲𝓮𝓷𝓬𝓮 𝓲𝓼 𝓽𝓱𝓮 𝓫𝓮𝓼𝓽 𝓽𝓮𝓪𝓬𝓱𝓮𝓻.
+    logo: https://qihuang02.cn/favicon.svg
+    url: https://qihuang02.cn/
+    repo: https://github.com/QiHuang02/qihuang02.github.io
+    preview: https://image.qihuang02.cn/file/1736003534894_yulantu.png
 ---
 
 :::important

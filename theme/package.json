@@ -92,7 +92,7 @@
   },
   "dependencies": {
     "@iconify/utils": "^2.2.1",
-    "@iconify/vue": "^4.2.0",
+    "@iconify/vue": "^4.3.0",
     "@pengzhanbo/utils": "^1.2.0",
     "@vuepress-plume/plugin-content-update": "workspace:*",
     "@vuepress-plume/plugin-fonts": "workspace:*",
@@ -131,7 +131,7 @@
   },
   "devDependencies": {
     "@iconify/json": "catalog:",
-    "swiper": "^11.1.15",
+    "swiper": "^11.2.0",
     "vue-router": "^4.5.0"
   }
 }

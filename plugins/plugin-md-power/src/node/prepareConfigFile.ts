@@ -75,6 +75,11 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('AudioReader', AudioReader)`)
   }
 
+  if (options.demo) {
+    imports.add(`import VPDemoVue from '${CLIENT_FOLDER}components/VPDemoVue.vue'`)
+    enhances.add(`app.component('VPDemoVue', VPDemoVue)`)
+  }
+
   return app.writeTemp(
     'md-power/config.js',
     `\

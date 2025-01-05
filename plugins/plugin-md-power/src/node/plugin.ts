@@ -3,6 +3,7 @@ import type { MarkdownPowerPluginOptions } from '../shared/index.js'
 import { addViteOptimizeDepsInclude } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 import { containerPlugin } from './container/index.js'
+import { demoPlugin, extendsPageWithDemo } from './demo/index.js'
 import { embedSyntaxPlugin } from './embed/index.js'
 import { docsTitlePlugin } from './enhance/docsTitle.js'
 import { imageSizePlugin } from './enhance/imageSize.js'
@@ -46,8 +47,16 @@ export function markdownPowerPlugin(
       embedSyntaxPlugin(md, options)
       inlineSyntaxPlugin(md, options)
 
+      if (options.demo)
+        demoPlugin(app, md)
+
       await containerPlugin(app, md, options)
       await imageSizePlugin(app, md, options.imageSize)
+    },
+
+    extendsPage: (page) => {
+      if (options.demo)
+        extendsPageWithDemo(page)
     },
   }
 }

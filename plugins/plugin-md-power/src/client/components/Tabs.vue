@@ -202,11 +202,11 @@ function onTabNavClick(index: number): void {
   padding: 16px;
 }
 
-.vp-doc .vp-tab :nth-child(2) {
+.vp-doc .vp-tab > :nth-child(2) {
   margin-top: 0;
 }
 
-.vp-doc .vp-tab :last-child {
+.vp-doc .vp-tab > :last-child {
   margin-bottom: 0;
 }
 

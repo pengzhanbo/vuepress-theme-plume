@@ -1,7 +1,7 @@
 {
   "name": "vuepress-plugin-md-power",
   "type": "module",
-  "version": "1.0.0-rc.125",
+  "version": "1.0.0-rc.126",
   "description": "The Plugin for VuePress 2 - markdown power",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",
@@ -78,9 +78,9 @@
     "local-pkg": "catalog:",
     "markdown-it-container": "^4.0.0",
     "nanoid": "catalog:",
-    "shiki": "^1.24.4",
-    "tm-grammars": "^1.21.11",
-    "tm-themes": "^1.9.6",
+    "shiki": "^1.26.1",
+    "tm-grammars": "^1.22.1",
+    "tm-themes": "^1.9.7",
     "vue": "catalog:"
   },
   "devDependencies": {

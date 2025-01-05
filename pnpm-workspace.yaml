@@ -4,7 +4,7 @@ packages:
   - cli
   - plugins/*
 catalog:
-  '@iconify/json': ^2.2.290
+  '@iconify/json': ^2.2.292
   '@vuepress/bundler-vite': 2.0.0-rc.19
   '@vuepress/helper': 2.0.0-rc.66
   '@vuepress/plugin-cache': 2.0.0-rc.66
@@ -21,10 +21,10 @@ catalog:
   '@vuepress/plugin-seo': 2.0.0-rc.68
   '@vuepress/plugin-sitemap': 2.0.0-rc.68
   '@vuepress/plugin-watermark': 2.0.0-rc.68
-  '@vueuse/core': ^12.2.0
-  '@vueuse/integrations': ^12.2.0
+  '@vueuse/core': ^12.3.0
+  '@vueuse/integrations': ^12.3.0
   chokidar: 3.6.0
-  fast-glob: ^3.3.2
+  fast-glob: ^3.3.3
   gray-matter: ^4.0.3
   json2yaml: ^1.1.0
   local-pkg: ^0.5.1

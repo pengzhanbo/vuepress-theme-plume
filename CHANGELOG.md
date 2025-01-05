@@ -1,3 +1,19 @@
+# [1.0.0-rc.126](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.125...v1.0.0-rc.126) (2025-01-05)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** incorrect `tabs`  styles ([#412](https://github.com/pengzhanbo/vuepress-theme-plume/issues/412)) ([756cc54](https://github.com/pengzhanbo/vuepress-theme-plume/commit/756cc54e8078447a238249dde9ca06747dea498b))
+* **theme:** doc changelog `mismatch` ([#413](https://github.com/pengzhanbo/vuepress-theme-plume/issues/413)) ([1db995c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1db995c887f1fda87bb853a2b95ad61cd3cc71c2))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** optimize artplayer `z-index` ([#411](https://github.com/pengzhanbo/vuepress-theme-plume/issues/411)) ([71aea89](https://github.com/pengzhanbo/vuepress-theme-plume/commit/71aea89792bebe7d2a5ead1a8e4100011723bda0))
+* update deps to latest ([fe99eb9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fe99eb9881c99fa051ee97af61997806a37e6b08))
+
+
+
 # [1.0.0-rc.125](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.124...v1.0.0-rc.125) (2024-12-29)
 
 

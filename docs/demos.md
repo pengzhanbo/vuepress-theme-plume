@@ -103,6 +103,13 @@ blog:
     url: https://qihuang02.cn/
     repo: https://github.com/QiHuang02/qihuang02.github.io
     preview: https://image.qihuang02.cn/file/1736003534894_yulantu.png
+  -
+    name: 𝕛𝕚𝕒𝕙𝕒𝕠'𝕤 𝕓𝕝𝕠𝕘
+    desc: 近乎无限长的时间 近乎无限广的空间 而我们同时出现在一处 命运就是这样
+    logo: https://s.hijh.top/head.png
+    url: https://hijh.top/
+    repo: https://github.com/oh-yey
+    preview: https://s.hijh.top/demos/blog-preview.png
 ---
 
 :::important

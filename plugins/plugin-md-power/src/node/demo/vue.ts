@@ -1,9 +1,8 @@
 import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
-import fs from 'node:fs'
 import path from 'node:path'
-import { findFile } from './findFile.js'
+import { findFile, readFileSync, writeFileSync } from './file.js'
 import { insertSetupScript } from './insertScript.js'
 
 export function vueEmbed(
@@ -11,32 +10,31 @@ export function vueEmbed(
   md: Markdown,
   env: MarkdownDemoEnv,
   { url, title, desc, codeSetting = '' }: DemoMeta,
-) {
+): string {
   const filepath = findFile(app, env, url)
-  try {
-    const code = fs.readFileSync(filepath, 'utf-8')
-    const basename = path.basename(filepath).replace(/\.vue$/, '')
-    const name = `Demo${basename[0].toUpperCase()}${basename.slice(1)}`
-    const demo: DemoFile = { type: 'vue', export: name, path: filepath }
+  const code = readFileSync(filepath)
+  if (code === false) {
+    console.warn('[vuepress-plugin-md-power] Cannot read vue file:', filepath)
+    return ''
+  }
 
-    env.demoFiles ??= []
+  const basename = path.basename(filepath).replace(/-|\./g, '_')
+  const name = `Demo${basename[0].toUpperCase()}${basename.slice(1)}`
+  const demo: DemoFile = { type: 'vue', export: name, path: filepath }
 
-    if (!env.demoFiles.some(d => d.path === filepath)) {
-      env.demoFiles.push(demo)
-      insertSetupScript(demo, env)
-    }
+  env.demoFiles ??= []
 
-    return `<VPDemoVue${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}>
+  if (!env.demoFiles.some(d => d.path === filepath)) {
+    env.demoFiles.push(demo)
+    insertSetupScript(demo, env)
+  }
+
+  return `<VPDemoVue${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}>
     <${name} />
     <template #code>
       ${md.render(`\`\`\`vue${codeSetting}\n${code}\n\`\`\``, {})}
     </template>
   </VPDemoVue>`
-  }
-  catch {
-    console.warn('[vuepress-plugin-md-power] Cannot read vue file:', filepath)
-    return ''
-  }
 }
 
 const target = 'md-power/demo/vue'
@@ -65,10 +63,9 @@ export const vueContainerRender: DemoContainerRender = {
         content = codeMap.js
       }
 
-      content = transformImports(content, env.filePath || '', app.dir.source())
+      content = transformImports(content, env.filePath || '')
       const script: DemoFile = { type: 'vue', export: componentName, path: scriptOutput, gitignore: true }
-      fs.mkdirSync(path.dirname(scriptOutput), { recursive: true })
-      fs.writeFileSync(scriptOutput, content, 'utf-8')
+      writeFileSync(scriptOutput, content)
 
       if (!env.demoFiles.some(d => d.path === scriptOutput)) {
         env.demoFiles.push(script)
@@ -95,8 +92,7 @@ export const vueContainerRender: DemoContainerRender = {
         styleOutput += '.styl'
         content = codeMap.styl
       }
-      fs.mkdirSync(path.dirname(styleOutput), { recursive: true })
-      fs.writeFileSync(styleOutput, content, 'utf-8')
+      writeFileSync(styleOutput, content)
       const style: DemoFile = { type: 'css', path: styleOutput, gitignore: true }
       if (!env.demoFiles.some(d => d.path === styleOutput)) {
         env.demoFiles.push(style)
@@ -114,13 +110,10 @@ export const vueContainerRender: DemoContainerRender = {
 const IMPORT_RE = /import\s+(?:\w+\s+from\s+)?['"]([^'"]+)['"]/g
 const STYLE_RE = /<style.*?>/
 
-function transformImports(code: string, filepath: string, appSource: string): string {
+function transformImports(code: string, filepath: string): string {
   return code.replace(IMPORT_RE, (matched, url) => {
     if (url.startsWith('./') || url.startsWith('../')) {
       return matched.replace(url, `${path.resolve(path.dirname(filepath), url)}`)
-    }
-    if (url.startsWith('@source/')) {
-      return matched.replace(url, `${appSource}${url.slice('@source/'.length)}`)
     }
     return matched
   })

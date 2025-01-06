@@ -87,6 +87,7 @@ export const definitions: Definitions = {
     'CSS': 'vscode-icons:file-type-css',
     'less': 'vscode-icons:file-type-less',
     'Less': 'vscode-icons:file-type-less',
+    'LESS': 'vscode-icons:file-type-less',
     'scss': 'vscode-icons:file-type-scss',
     'Scss': 'vscode-icons:file-type-scss',
     'SCSS': 'vscode-icons:file-type-scss',

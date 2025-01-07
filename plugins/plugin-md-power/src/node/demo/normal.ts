@@ -6,6 +6,7 @@ import path from 'node:path'
 import { compileScript, compileStyle } from './supports/compiler.js'
 import { findFile, readFileSync, writeFileSync } from './supports/file.js'
 import { insertSetupScript } from './supports/insertScript.js'
+import { checkDemoRender, markDemoRender } from './watcher.js'
 
 interface NormalCode {
   html?: string
@@ -66,6 +67,7 @@ function codeToHtml(md: Markdown, source: NormalCode, info: string): string {
 }
 
 async function compileCode(code: NormalCode, output: string) {
+  markDemoRender()
   const res = { jsLib: [], cssLib: [], script: '', css: '', html: '' }
   if (!fs.existsSync(output))
     writeFileSync(output, `import { ref } from "vue"\nexport default ref(${JSON.stringify(res, null, 2)})`)
@@ -90,6 +92,7 @@ async function compileCode(code: NormalCode, output: string) {
   }
 
   writeFileSync(output, `import { ref } from "vue"\nexport default ref(${JSON.stringify(res, null, 2)})`)
+  checkDemoRender()
 }
 
 export function normalEmbed(

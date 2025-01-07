@@ -303,6 +303,9 @@ importers:
       '@vueuse/core':
         specifier: 'catalog:'
         version: 12.3.0(typescript@5.7.2)
+      chokidar:
+        specifier: 'catalog:'
+        version: 3.6.0
       esbuild:
         specifier: ^0.24.2
         version: 0.24.2

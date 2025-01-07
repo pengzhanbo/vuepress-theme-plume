@@ -6,7 +6,7 @@ import path from 'node:path'
 import { compileScript, compileStyle } from './supports/compiler.js'
 import { findFile, readFileSync, writeFileSync } from './supports/file.js'
 import { insertSetupScript } from './supports/insertScript.js'
-import { checkDemoRender, markDemoRender } from './watcher.js'
+import { addTask, checkDemoRender, markDemoRender } from './watcher.js'
 
 interface NormalCode {
   html?: string
@@ -25,7 +25,7 @@ const styleSupported = ['css', 'scss', 'less', 'stylus', 'styl']
 const target = 'md-power/demo/normal'
 const FENCE = '```'
 
-function parseEmbedCode(code: string): NormalCode {
+export function parseEmbedCode(code: string): NormalCode {
   const res: NormalCode = { html: '', css: '', script: '', imports: '', jsType: 'js', cssType: 'css' }
 
   res.html = code
@@ -66,7 +66,7 @@ function codeToHtml(md: Markdown, source: NormalCode, info: string): string {
   return md.render(content, {})
 }
 
-async function compileCode(code: NormalCode, output: string) {
+export async function compileCode(code: NormalCode, output: string) {
   markDemoRender()
   const res = { jsLib: [], cssLib: [], script: '', css: '', html: '' }
   if (!fs.existsSync(output))
@@ -117,6 +117,7 @@ export function normalEmbed(
   const output = app.dir.temp(target, `${prefix}-${name}.js`)
 
   compileCode(source, output)
+  addTask(app, filepath, output)
 
   env.demoFiles ??= []
 

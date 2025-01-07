@@ -3,7 +3,7 @@ import type { MarkdownPowerPluginOptions } from '../shared/index.js'
 import { addViteOptimizeDepsInclude } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 import { containerPlugin } from './container/index.js'
-import { demoPlugin, extendsPageWithDemo, waitDemoRender } from './demo/index.js'
+import { demoPlugin, demoWatcher, extendsPageWithDemo, waitDemoRender } from './demo/index.js'
 import { embedSyntaxPlugin } from './embed/index.js'
 import { docsTitlePlugin } from './enhance/docsTitle.js'
 import { imageSizePlugin } from './enhance/imageSize.js'
@@ -57,6 +57,12 @@ export function markdownPowerPlugin(
     onPrepared: async () => {
       if (options.demo)
         await waitDemoRender()
+    },
+
+    onWatched(app, watchers) {
+      if (options.demo) {
+        demoWatcher(app, watchers)
+      }
     },
 
     extendsPage: (page) => {

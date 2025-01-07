@@ -5,11 +5,11 @@ export function extendsPageWithDemo(page: Page): void {
   const markdownEnv = page.markdownEnv as MarkdownDemoEnv
   const demoFiles = markdownEnv.demoFiles ?? []
 
-  page.deps.push(
-    ...demoFiles
-      .filter(({ type }) => type !== 'vue')
-      .map(({ path }) => path),
-  )
+  // page.deps.push(
+  //   ...demoFiles
+  //     .filter(({ type }) => type !== 'vue')
+  //     .map(({ path }) => path),
+  // )
 
   ;((page.frontmatter.gitInclude as string[] | undefined) ??= []).push(
     ...demoFiles.filter(({ gitignore }) => !gitignore).map(({ path }) => path),

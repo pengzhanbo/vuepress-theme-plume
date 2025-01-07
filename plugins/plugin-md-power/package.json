@@ -79,6 +79,7 @@
     "@mdit/plugin-tasklist": "^0.14.0",
     "@vuepress/helper": "catalog:",
     "@vueuse/core": "catalog:",
+    "chokidar": "catalog:",
     "image-size": "^1.2.0",
     "local-pkg": "catalog:",
     "lru-cache": "^11.0.2",

@@ -1,5 +1,6 @@
 import { isPackageExists } from 'local-pkg'
 import { LRUCache } from 'lru-cache'
+import { interopDefault } from '../../utils/package.js'
 
 const cache = new LRUCache({ max: 64 })
 
@@ -61,11 +62,11 @@ export async function compileStyle(source: string, type: 'css' | 'less' | 'scss'
 }
 
 export function importer<T>(func: () => T): () => Promise<T> {
-  let imported!: T
+  let imported: T
   return async () => {
     if (!imported) {
-      imported = await func()
+      imported = interopDefault(await func()) as T
     }
-    return (imported as any).default || imported
+    return imported
   }
 }

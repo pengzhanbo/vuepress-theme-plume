@@ -1,3 +1,4 @@
+import type Token from 'markdown-it/lib/token.mjs'
 import type { App } from 'vuepress'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 
@@ -29,4 +30,5 @@ export interface DemoContainerRender {
     codeMap: Record<string, string>
   ) => string
   after: () => string
+  token?: (token: Token, tokens: Token[], index: number) => void
 }

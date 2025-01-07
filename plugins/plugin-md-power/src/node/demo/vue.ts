@@ -2,8 +2,8 @@ import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
 import path from 'node:path'
-import { findFile, readFileSync, writeFileSync } from './file.js'
-import { insertSetupScript } from './insertScript.js'
+import { findFile, readFileSync, writeFileSync } from './supports/file.js'
+import { insertSetupScript } from './supports/insertScript.js'
 
 export function vueEmbed(
   app: App,
@@ -73,7 +73,7 @@ export const vueContainerRender: DemoContainerRender = {
       }
     }
     // generate style file
-    if (codeMap.css || codeMap.scss || codeMap.less || codeMap.styl) {
+    if (codeMap.css || codeMap.scss || codeMap.less || codeMap.stylus) {
       let styleOutput = output
       let content = ''
       if (codeMap.css) {
@@ -88,9 +88,9 @@ export const vueContainerRender: DemoContainerRender = {
         styleOutput += '.less'
         content = codeMap.less
       }
-      else if (codeMap.styl) {
+      else if (codeMap.stylus) {
         styleOutput += '.styl'
-        content = codeMap.styl
+        content = codeMap.stylus
       }
       writeFileSync(styleOutput, content)
       const style: DemoFile = { type: 'css', path: styleOutput, gitignore: true }

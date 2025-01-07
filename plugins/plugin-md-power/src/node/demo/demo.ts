@@ -6,7 +6,8 @@ import type { DemoContainerRender, DemoMeta, MarkdownDemoEnv } from '../../share
 import container from 'markdown-it-container'
 import { createEmbedRuleBlock } from '../embed/createEmbedRuleBlock.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
-import { normalEmbed } from './normal.js'
+import { normalContainerRender, normalEmbed } from './normal.js'
+import { normalizeAlias } from './supports/alias.js'
 import { vueContainerRender, vueEmbed } from './vue.js'
 
 export function demoEmbed(app: App, md: Markdown) {
@@ -40,18 +41,30 @@ export function demoEmbed(app: App, md: Markdown) {
 const INFO_RE = /(vue|normal)?\s?(.*)/
 const renderMap: Record<string, DemoContainerRender> = {
   vue: vueContainerRender,
+  normal: normalContainerRender,
 }
 
 export function demoContainer(app: App, md: Markdown) {
   let currentRender: DemoContainerRender | undefined
-  const render: RenderRule = (tokens: Token[], index: number, _, env: MarkdownDemoEnv): string => {
+  const render: RenderRule = (
+    tokens: Token[],
+    index: number,
+    _,
+    env: MarkdownDemoEnv,
+  ): string => {
     const token = tokens[index]
 
     if (token.nesting === 1) {
       const meta = getContainerMeta(token.info)
       meta.url = `${index}`
       currentRender = renderMap[meta.type]
-      return currentRender?.before(app, md, env, meta, parseCodeMapping(tokens, index)) || ''
+      return currentRender?.before(
+        app,
+        md,
+        env,
+        meta,
+        parseCodeMapping(tokens, index, currentRender.token),
+      ) || ''
     }
     else {
       const res = currentRender?.after() || ''
@@ -63,7 +76,11 @@ export function demoContainer(app: App, md: Markdown) {
   md.use(container, 'demo', { render })
 }
 
-function parseCodeMapping(tokens: Token[], index: number) {
+function parseCodeMapping(
+  tokens: Token[],
+  index: number,
+  cb?: (token: Token, tokens: Token[], index: number) => void,
+) {
   const codeMap: Record<string, string> = {}
   for (
     let i = index + 1;
@@ -73,7 +90,8 @@ function parseCodeMapping(tokens: Token[], index: number) {
   ) {
     const token = tokens[i]
     if (token.type === 'fence') {
-      codeMap[parseFenceName(token.info)] = token.content
+      codeMap[normalizeAlias(token.info)] = token.content.trim()
+      cb?.(token, tokens, i)
     }
   }
   return codeMap
@@ -87,22 +105,4 @@ function getContainerMeta(info: string): DemoMeta {
     type: (type || 'normal') as DemoMeta['type'],
     ...attrs,
   }
-}
-
-function parseFenceName(info: string): string {
-  const [lang] = info.trim().split(/\s+|:|\{/)
-  switch (lang) {
-    case 'vue':
-      return 'vue'
-    case 'js':
-    case 'javascript':
-      return 'js'
-    case 'ts':
-    case 'typescript':
-      return 'ts'
-    case 'stylus':
-    case 'styl':
-      return 'styl'
-  }
-  return lang
 }

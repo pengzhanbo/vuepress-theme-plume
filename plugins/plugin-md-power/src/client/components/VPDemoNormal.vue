@@ -2,6 +2,8 @@
 import { onMounted, ref, useId, useTemplateRef, watch } from 'vue'
 import { loadScript, loadStyle } from '../utils/shared.js'
 
+import '../styles/demo.css'
+
 const props = defineProps<{
   title?: string
   desc?: string
@@ -23,8 +25,6 @@ onMounted(() => {
   const root = draw.value.attachShadow({ mode: 'open' })
 
   watch(() => props.config, async () => {
-    root.innerHTML = ''
-
     root.innerHTML = props.config?.html ?? ''
 
     props.config?.cssLib?.forEach(url => loadStyle(url, root))
@@ -36,14 +36,13 @@ onMounted(() => {
 
     if (props.config?.jsLib?.length) {
       await Promise.all(props.config.jsLib.map(url => loadScript(url)))
+        .catch(e => console.warn(e))
     }
 
     if (props.config?.script) {
       const script = document.createElement('script')
       script.type = 'text/javascript'
-      script.innerHTML = `;(function(document){
-  ${props.config.script}
-})(document.querySelector('#VPDemoNormalDraw${id}').shadowRoot);`
+      script.innerHTML = `;(function(document){\n${props.config.script}\n})(document.querySelector('#VPDemoNormalDraw${id}').shadowRoot);`
       root.appendChild(script)
     }
   }, { immediate: true })

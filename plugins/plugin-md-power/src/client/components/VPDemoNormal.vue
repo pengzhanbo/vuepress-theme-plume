@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref, useId, useTemplateRef, watch } from 'vue'
+import { onClickOutside } from '@vueuse/core'
+import { computed, onMounted, ref, useId, useTemplateRef, watch } from 'vue'
 import { loadScript, loadStyle } from '../utils/shared.js'
 
 import '../styles/demo.css'
@@ -19,6 +20,33 @@ const props = defineProps<{
 
 const draw = useTemplateRef<HTMLDivElement>('draw')
 const id = useId()
+
+const resourcesEl = useTemplateRef<HTMLDivElement>('resourcesEl')
+const resources = computed<{
+  name: string
+  items: { name: string, url: string }[]
+}[]>(() => {
+  if (!props.config)
+    return []
+  return [
+    { name: 'JavaScript', items: props.config.jsLib.map(url => ({ name: normalizeName(url), url })) },
+    { name: 'CSS', items: props.config.cssLib.map(url => ({ name: normalizeName(url), url })) },
+  ].filter(i => i.items.length)
+})
+
+function normalizeName(url: string) {
+  return url.slice(url.lastIndexOf('/') + 1)
+}
+
+const showResources = ref(false)
+
+function toggleResources() {
+  showResources.value = !showResources.value
+}
+
+onClickOutside(resourcesEl, () => {
+  showResources.value = false
+})
 
 onMounted(() => {
   if (!draw.value)
@@ -135,6 +163,21 @@ function toggleCode() {
           <input type="hidden" name="description" :value="desc || ''">
           <input type="hidden" name="resources" :value="[...(config?.jsLib || []), ...(config?.cssLib || [])].join(',')">
         </form>
+      </div>
+      <div v-if="resources.length" class="demo-resources">
+        <span ref="resourcesEl" class="vpi-demo-resources" title="Resources" aria-label="Resources" @click="toggleResources" />
+        <Transition name="fade">
+          <div v-show="showResources" class="demo-resources-container">
+            <div v-for="{ name, items } in resources" :key="name" class="demo-resources-list">
+              <p>{{ name }}</p>
+              <ul v-for="item in items" :key="item.url">
+                <li>
+                  <a :href="item.url" target="_blank" rel="noopener noreferrer" class="no-icon" aria-label="{{ item.name }}">{{ item.name }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </Transition>
       </div>
       <span class="vpi-demo-code" @click="toggleCode" />
     </div>

@@ -9,7 +9,7 @@ export function vueEmbed(
   app: App,
   md: Markdown,
   env: MarkdownDemoEnv,
-  { url, title, desc, codeSetting = '' }: DemoMeta,
+  { url, title, desc, codeSetting = '', expanded = false }: DemoMeta,
 ): string {
   const filepath = findFile(app, env, url)
   const code = readFileSync(filepath)
@@ -29,19 +29,19 @@ export function vueEmbed(
     insertSetupScript(demo, env)
   }
 
-  return `<VPDemoVue${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}>
+  return `<VPDemoBasic type="vue"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
     <${name} />
     <template #code>
       ${md.render(`\`\`\`vue${codeSetting}\n${code}\n\`\`\``, {})}
     </template>
-  </VPDemoVue>`
+  </VPDemoBasic>`
 }
 
 const target = 'md-power/demo/vue'
 
 export const vueContainerRender: DemoContainerRender = {
   before: (app, md, env, meta, codeMap) => {
-    const { url, title, desc } = meta
+    const { url, title, desc, expanded = false } = meta
     const componentName = `DemoContainer${url}`
     const prefix = (env.filePathRelative || '').replace(/\.md$/, '').replace(/\//g, '-')
     env.demoFiles ??= []
@@ -100,11 +100,11 @@ export const vueContainerRender: DemoContainerRender = {
       }
     }
 
-    return `<VPDemoVue${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}>
+    return `<VPDemoBasic${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
     <${componentName} />
     <template #code>\n`
   },
-  after: () => '</template></VPDemoVue>',
+  after: () => '</template></VPDemoBasic>',
 }
 
 const IMPORT_RE = /import\s+(?:\w+\s+from\s+)?['"]([^'"]+)['"]/g

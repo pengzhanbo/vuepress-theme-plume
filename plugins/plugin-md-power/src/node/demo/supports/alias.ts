@@ -12,6 +12,9 @@ export function normalizeAlias(info: string): string {
     case 'stylus':
     case 'styl':
       return 'stylus'
+    case 'md':
+    case 'markdown':
+      return 'md'
   }
   return lang
 }

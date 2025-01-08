@@ -6,6 +6,7 @@ import type { DemoContainerRender, DemoMeta, MarkdownDemoEnv } from '../../share
 import container from 'markdown-it-container'
 import { createEmbedRuleBlock } from '../embed/createEmbedRuleBlock.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
+import { markdownContainerRender, markdownEmbed } from './markdown.js'
 import { normalContainerRender, normalEmbed } from './normal.js'
 import { normalizeAlias } from './supports/alias.js'
 import { vueContainerRender, vueEmbed } from './vue.js'
@@ -13,7 +14,7 @@ import { vueContainerRender, vueEmbed } from './vue.js'
 export function demoEmbed(app: App, md: Markdown) {
   createEmbedRuleBlock<DemoMeta>(md, {
     type: 'demo',
-    syntaxPattern: /^@\[demo(?:\s(vue|normal))?\s?(.*)\]\((.*)\)/,
+    syntaxPattern: /^@\[demo(?:\s(vue|normal|markdown))?\s?(.*)\]\((.*)\)/,
     meta: ([, type, info, url]) => ({
       type: (type || 'normal') as DemoMeta['type'],
       url,
@@ -33,15 +34,20 @@ export function demoEmbed(app: App, md: Markdown) {
         return normalEmbed(app, md, env, meta)
       }
 
+      if (type === 'markdown') {
+        return markdownEmbed(app, md, env, meta)
+      }
+
       return content
     },
   })
 }
 
-const INFO_RE = /(vue|normal)?\s?(.*)/
+const INFO_RE = /(vue|normal|markdown)?\s?(.*)/
 const renderMap: Record<string, DemoContainerRender> = {
   vue: vueContainerRender,
   normal: normalContainerRender,
+  markdown: markdownContainerRender,
 }
 
 export function demoContainer(app: App, md: Markdown) {

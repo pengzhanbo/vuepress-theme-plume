@@ -1,19 +1,23 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-defineProps<{
+import '../styles/demo.css'
+
+const props = defineProps<{
+  type?: 'vue' | 'markdown'
   title?: string
   desc?: string
+  expanded?: boolean
 }>()
 
-const showCode = ref(false)
+const showCode = ref(props.expanded ?? true)
 function toggleCode() {
   showCode.value = !showCode.value
 }
 </script>
 
 <template>
-  <div class="vp-demo-wrapper vue">
+  <div class="vp-demo-wrapper">
     <div class="demo-draw">
       <slot />
     </div>

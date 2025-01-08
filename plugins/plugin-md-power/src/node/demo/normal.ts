@@ -99,7 +99,7 @@ export function normalEmbed(
   app: App,
   md: Markdown,
   env: MarkdownDemoEnv,
-  { url, title, desc, codeSetting = '' }: DemoMeta,
+  { url, title, desc, codeSetting = '', expanded = false }: DemoMeta,
 ): string {
   const filepath = findFile(app, env, url)
   const code = readFileSync(filepath)
@@ -126,14 +126,14 @@ export function normalEmbed(
     insertSetupScript({ ...demo, path: output }, env)
   }
 
-  return `<VPDemoNormal :config="${name}"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}>
+  return `<VPDemoNormal :config="${name}"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
     ${codeToHtml(md, source, codeSetting)}
   </VPDemoNormal>`
 }
 
 export const normalContainerRender: DemoContainerRender = {
   before(app, md, env, meta, codeMap) {
-    const { url, title, desc } = meta
+    const { url, title, desc, expanded = false } = meta
     const name = `DemoContainer${url}`
     const prefix = (env.filePathRelative || '').replace(/\.md$/, '').replace(/\//g, '-')
     const output = app.dir.temp(path.join(target, `${prefix}-${name}.js`))
@@ -148,7 +148,7 @@ export const normalContainerRender: DemoContainerRender = {
     const source = parseContainerCode(codeMap)
     compileCode(source, output)
 
-    return `<VPDemoNormal :config="${name}"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}>`
+    return `<VPDemoNormal :config="${name}"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>`
   },
 
   after: () => '</VPDemoNormal>',

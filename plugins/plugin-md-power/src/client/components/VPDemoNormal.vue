@@ -21,7 +21,7 @@ const props = defineProps<{
 
 const draw = useTemplateRef<HTMLDivElement>('draw')
 const id = useId()
-const loaded = ref(false)
+const loaded = ref(true)
 
 const resourcesEl = useTemplateRef<HTMLDivElement>('resourcesEl')
 const resources = computed<{

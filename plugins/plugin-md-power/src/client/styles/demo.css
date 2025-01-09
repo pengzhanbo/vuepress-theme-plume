@@ -6,7 +6,7 @@
 }
 
 .vp-demo-wrapper .demo-draw {
-  padding: 24px 16px;
+  padding: 24px;
 }
 
 .vp-demo-wrapper .demo-info .title {
@@ -20,7 +20,7 @@
 
 .vp-demo-wrapper .demo-info .title::before {
   display: inline-block;
-  width: 32px;
+  width: 16px;
   height: 0;
   margin-right: 8px;
   content: "";
@@ -39,7 +39,7 @@
 }
 
 .vp-demo-wrapper .demo-info .desc {
-  padding: 0 16px;
+  padding: 0 24px;
   margin-top: 8px;
 }
 
@@ -51,7 +51,7 @@
   display: flex;
   gap: 16px;
   justify-content: flex-end;
-  padding: 8px 16px;
+  padding: 8px 24px;
   border-top: 1px dotted var(--vp-c-divider);
   transition: border-color var(--vp-t-color);
 }

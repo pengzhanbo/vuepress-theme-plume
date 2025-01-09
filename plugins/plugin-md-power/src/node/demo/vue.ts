@@ -19,6 +19,7 @@ export function vueEmbed(
   }
 
   const basename = path.basename(filepath).replace(/-|\./g, '_')
+  const ext = path.extname(filepath).slice(1)
   const name = `Demo${basename[0].toUpperCase()}${basename.slice(1)}`
   const demo: DemoFile = { type: 'vue', export: name, path: filepath }
 
@@ -32,7 +33,7 @@ export function vueEmbed(
   return `<VPDemoBasic type="vue"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
     <${name} />
     <template #code>
-      ${md.render(`\`\`\`vue${codeSetting}\n${code}\n\`\`\``, {})}
+      ${md.render(`\`\`\`${ext}${codeSetting}\n${code}\n\`\`\``, {})}
     </template>
   </VPDemoBasic>`
 }

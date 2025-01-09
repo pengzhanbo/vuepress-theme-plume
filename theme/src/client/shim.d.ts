@@ -5,6 +5,11 @@ declare module '*.vue' {
   export default comp
 }
 
+declare module '*.module.css' {
+  const classes: { [key: string]: string }
+  export default classes
+}
+
 declare const __VUEPRESS_DEV__: string
 
 declare module '@internal/articleTagColors' {

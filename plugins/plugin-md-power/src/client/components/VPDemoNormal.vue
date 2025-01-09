@@ -2,6 +2,7 @@
 import { onClickOutside } from '@vueuse/core'
 import { computed, onMounted, ref, useId, useTemplateRef, watch } from 'vue'
 import { loadScript, loadStyle } from '../utils/shared.js'
+import Loading from './icons/Loading.vue'
 
 import '../styles/demo.css'
 
@@ -20,6 +21,7 @@ const props = defineProps<{
 
 const draw = useTemplateRef<HTMLDivElement>('draw')
 const id = useId()
+const loaded = ref(false)
 
 const resourcesEl = useTemplateRef<HTMLDivElement>('resourcesEl')
 const resources = computed<{
@@ -64,8 +66,10 @@ onMounted(() => {
     }
 
     if (props.config?.jsLib?.length) {
+      loaded.value = false
       await Promise.all(props.config.jsLib.map(url => loadScript(url)))
         .catch(e => console.warn(e))
+      loaded.value = true
     }
 
     if (props.config?.script) {
@@ -94,7 +98,7 @@ onMounted(() => {
   const els = Array.from(fence.value.querySelectorAll('div[class*="language-"]'))
   for (const el of els) {
     const lang = el.className.match(/language-(\w+)/)?.[1] ?? ''
-    const content = (el.querySelector('pre')?.textContent ?? '')
+    const content = el.querySelector('pre')?.textContent ?? ''
     if (lang === 'js' || lang === 'javascript') {
       data.value.js = content
       data.value.jsType = 'js'
@@ -119,6 +123,7 @@ function toggleCode() {
 <template>
   <div class="vp-demo-wrapper normal">
     <div class="demo-draw">
+      <Loading v-if="!loaded" />
       <div :id="`VPDemoNormalDraw${id}`" ref="draw" />
     </div>
     <div v-if="title || desc" class="demo-info">
@@ -131,7 +136,7 @@ function toggleCode() {
     </div>
     <div class="demo-ctrl">
       <div class="extra">
-        <form action="https://codepen.io/pen/define" method="POST" target="_blank">
+        <form action="https://codepen.io/pen/define" method="POST" target="_blank" enctype="application/x-www-form-urlencoded;charset=utf-8">
           <input
             type="hidden" name="data" :value="JSON.stringify({
               title: title || 'Demo',
@@ -149,7 +154,7 @@ function toggleCode() {
             <span class="vpi-demo-codepen" />
           </button>
         </form>
-        <form action="https://jsfiddle.net/api/post/library/pure/" method="POST" target="_blank">
+        <form action="https://jsfiddle.net/api/post/library/pure/" method="POST" target="_blank" enctype="application/x-www-form-urlencoded;charset=UTF-8" accept-charset="UTF-8">
           <button type="submit" title="jsFiddle" aria-label="jsFiddle">
             <span class="vpi-demo-jsfiddle bg" />
           </button>

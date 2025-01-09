@@ -64,7 +64,7 @@ export const themeGuide = defineNoteConfig({
           icon: 'carbon:demo',
           collapsed: true,
           items: [
-            '前端',
+            '前端演示',
             'rust',
             'golang',
             'kotlin',
@@ -72,6 +72,7 @@ export const themeGuide = defineNoteConfig({
             'jsFiddle',
             'codeSandbox',
             'replit',
+            { link: '前端', text: '前端（弃用）' },
           ],
         },
         {

@@ -1,4 +1,4 @@
-import type { DemoFile, MarkdownDemoEnv } from '../../shared/demo.js'
+import type { DemoFile, MarkdownDemoEnv } from '../../../shared/demo.js'
 
 const SCRIPT_RE = /<script.*?>/
 

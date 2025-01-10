@@ -122,6 +122,11 @@ export interface MarkdownPowerPluginOptions {
   fileTree?: boolean | FileTreeOptions
 
   /**
+   * 是否启用 demo 语法
+   */
+  demo?: boolean
+
+  /**
    * 是否启用 caniuse 嵌入语法
    *
    * `@[caniuse](feature_name)`

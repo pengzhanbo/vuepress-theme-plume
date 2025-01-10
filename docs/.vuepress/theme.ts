@@ -36,6 +36,7 @@ export const theme: Theme = plumeTheme({
       replit: true,
       codeSandbox: true,
       jsfiddle: true,
+      demo: true,
       npmTo: ['pnpm', 'yarn', 'npm'],
       repl: {
         go: true,

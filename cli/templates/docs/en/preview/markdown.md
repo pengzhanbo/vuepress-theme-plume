@@ -254,26 +254,36 @@ const c = a + b
 
 **code demo:**
 
-::: normal-demo Demo 演示
+:::: demo title="Demo" desc="A normal demo"
+
+::: code-tabs
+@tab HTML
 
 ```html
-<h1>Hello Word!</h1>
-<p><span id="very">Very</span>Powerful!</p>
+<div id="app">
+  <h3>vuepress-theme-plume</h3>
+</div>
 ```
+
+@tab Javascript
 
 ```js
-document.querySelector('#very').addEventListener('click', () => {
-  alert('Very Powerful')
-})
+const a = 'So Awesome!'
+const app = document.querySelector('#app')
+app.appendChild(window.document.createElement('small')).textContent = a
 ```
 
+@tab CSS
+
 ```css
-span {
-  color: red;
+#app {
+  font-size: 2em;
+  text-align: center;
 }
 ```
 
 :::
+::::
 
 **tab card：**
 

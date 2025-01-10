@@ -1,5 +1,6 @@
 import type { App } from 'vuepress'
 import fs from 'node:fs'
+import path from 'node:path'
 import { type FSWatcher, watch } from 'chokidar'
 import { compileCode, parseEmbedCode } from './normal.js'
 import { readFileSync } from './supports/file.js'
@@ -96,5 +97,6 @@ export function addTask(app: App, path: string, output: string) {
 }
 
 async function updateWatchFiles(app: App) {
+  await fs.promises.mkdir(app.dir.temp(path.dirname(target)), { recursive: true })
   await fs.promises.writeFile(app.dir.temp(target), JSON.stringify(tasks))
 }

@@ -1,3 +1,12 @@
+# [1.0.0-rc.128](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.127...v1.0.0-rc.128) (2025-01-10)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** fix `demo` temp generated ([62b6603](https://github.com/pengzhanbo/vuepress-theme-plume/commit/62b66036a63a92238e9968c5c66f5909683445e5))
+
+
+
 # [1.0.0-rc.127](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.126...v1.0.0-rc.127) (2025-01-10)
 
 

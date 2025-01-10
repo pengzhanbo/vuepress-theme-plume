@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.126",
   "private": true,
-  "packageManager": "pnpm@9.15.2",
+  "packageManager": "pnpm@9.15.3",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -51,7 +51,7 @@
     "@types/stylus": "^0.48.43",
     "@types/webpack-env": "^1.18.5",
     "@vitest/coverage-istanbul": "^2.1.8",
-    "bumpp": "^9.9.2",
+    "bumpp": "^9.10.0",
     "commitizen": "^4.3.1",
     "conventional-changelog-cli": "^5.0.0",
     "cpx2": "^8.0.0",
@@ -62,16 +62,16 @@
     "less": "^4.2.1",
     "lint-staged": "^15.3.0",
     "markdown-it": "^14.1.0",
-    "memfs": "^4.15.3",
+    "memfs": "^4.17.0",
     "minimist": "^1.2.8",
     "rimraf": "^6.0.1",
     "stylelint": "^16.12.0",
     "stylus": "^0.64.0",
     "tsconfig-vuepress": "^5.2.1",
     "tsup": "^8.3.5",
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.3",
     "vitest": "^2.1.8",
-    "wait-on": "^8.0.1"
+    "wait-on": "^8.0.2"
   },
   "resolutions": {
     "esbuild": "^0.24.2"

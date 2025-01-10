@@ -126,7 +126,7 @@
     "local-pkg": "catalog:",
     "nanoid": "catalog:",
     "vue": "catalog:",
-    "vuepress-plugin-md-enhance": "2.0.0-rc.64",
+    "vuepress-plugin-md-enhance": "2.0.0-rc.67",
     "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {

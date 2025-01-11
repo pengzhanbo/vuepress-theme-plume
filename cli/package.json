@@ -1,7 +1,7 @@
 {
   "name": "create-vuepress-theme-plume",
   "type": "module",
-  "version": "1.0.0-rc.126",
+  "version": "1.0.0-rc.128",
   "description": "The cli for create vuepress-theme-plume's project",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
@@ -30,7 +30,7 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@clack/prompts": "^0.9.0",
+    "@clack/prompts": "^0.9.1",
     "@pengzhanbo/utils": "^1.2.0",
     "cac": "^6.7.14",
     "execa": "^9.5.2",

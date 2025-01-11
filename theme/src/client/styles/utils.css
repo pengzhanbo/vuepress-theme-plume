@@ -17,6 +17,21 @@
 }
 
 /* ----------------- Transition ------------------------ */
+.fade-enter-active {
+  transition: 0.25s ease !important;
+  transition-property: opacity;
+}
+
+.fade-leave-active {
+  transition: 0.25s cubic-bezier(0, 1, 0.3, 1) !important;
+  transition-property: opacity;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .fade-slide-y-enter-active {
   transition: 0.15s ease !important;
   transition-property: opacity, transform;

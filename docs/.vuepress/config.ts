@@ -24,7 +24,7 @@ export default defineUserConfig({
     ['meta', { name: 'google-site-verification', content: 'AaTP7bapCAcoO9ZGE67ilpy99GL6tYqtD30tRHjO9Ps' }],
   ],
 
-  pagePatterns: ['**/*.md', '!**/*.snippet.md', '!.vuepress', '!node_modules'],
+  pagePatterns: ['**/*.md', '!**/*.snippet.md', '!.vuepress', '!node_modules', '!docs/notes/theme/guide/代码演示/demo/*'],
 
   extendsBundlerOptions(bundlerOptions, app) {
     addViteOptimizeDepsInclude(bundlerOptions, app, '@simonwep/pickr')

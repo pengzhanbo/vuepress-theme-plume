@@ -1,5 +1,5 @@
 import type { RuleOptions } from 'markdown-it/lib/ruler.mjs'
-import type { Markdown } from 'vuepress/markdown'
+import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 
 export interface EmbedRuleBlockOptions<Meta extends Record<string, any>> {
   /**
@@ -14,7 +14,7 @@ export interface EmbedRuleBlockOptions<Meta extends Record<string, any>> {
   syntaxPattern: RegExp
   ruleOptions?: RuleOptions
   meta: (match: RegExpMatchArray) => Meta
-  content: (meta: Meta) => string
+  content: (meta: Meta, content: string, env: MarkdownEnv) => string
 }
 
 // @[name]()
@@ -51,7 +51,8 @@ export function createEmbedRuleBlock<Meta extends Record<string, any> = Record<s
       }
 
       // check if it's matched the syntax
-      const match = state.src.slice(pos, max).match(syntaxPattern)
+      const content = state.src.slice(pos, max)
+      const match = content.match(syntaxPattern)
       if (!match)
         return false
 
@@ -63,6 +64,7 @@ export function createEmbedRuleBlock<Meta extends Record<string, any> = Record<s
       const token = state.push(name, '', 0)
 
       token.meta = meta(match)
+      token.content = content
       token.map = [startLine, startLine + 1]
 
       state.line = startLine + 1
@@ -72,9 +74,9 @@ export function createEmbedRuleBlock<Meta extends Record<string, any> = Record<s
     ruleOptions,
   )
 
-  md.renderer.rules[name] = (tokens, index) => {
+  md.renderer.rules[name] = (tokens, index, _, env: MarkdownEnv) => {
     const token = tokens[index]
-    token.content = content(token.meta)
+    token.content = content(token.meta, token.content, env)
     return token.content
   }
 }

@@ -120,7 +120,7 @@ debouncedWatch(
     // Search
     results.value = index
       .search(filterTextValue)
-      .slice(0, 16)
+      // .slice(0, 16)
       .map((r) => {
         r.titles = r.titles?.filter(Boolean) || []
         return r

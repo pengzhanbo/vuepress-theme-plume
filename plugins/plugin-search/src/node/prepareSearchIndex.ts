@@ -118,6 +118,12 @@ async function writeTemp(app: App) {
 }
 
 async function indexFile(page: Page, options: SearchIndexOptions['searchOptions']) {
+  if (!page.filePath)
+    return
+
+  if (page.frontmatter?.search === false)
+    return
+
   // get file metadata
   const fileId = page.path
   const locale = page.pathLocale
@@ -140,7 +146,7 @@ async function indexFile(page: Page, options: SearchIndexOptions['searchOptions'
       id,
       text,
       title: titles.at(-1)!,
-      titles: titles.slice(0, -1),
+      titles: [page.frontmatter.title || page.title, ...titles.slice(0, -1)],
     }
     index.add(item)
     cache.push(item)

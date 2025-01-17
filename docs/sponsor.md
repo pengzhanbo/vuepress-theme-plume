@@ -7,6 +7,7 @@ aside: false
 readingTime: false
 contributors: false
 changelog: false
+search: false
 ---
 
 :::important 作者的话

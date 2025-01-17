@@ -72,7 +72,7 @@ export function useHeaders(): Ref<MenuItem[]> {
 
 export function getHeaders(range?: ThemeOutline): MenuItem[] {
   const headers = Array.from(
-    document.querySelectorAll('.vp-doc :where(h1,h2,h3,h4,h5,h6)'),
+    document.querySelectorAll('.vp-doc :where(h1,h2,h3,h4,h5,h6):not(.vp-demo-wrapper :where(h1,h2,h3,h4,h5,h6))'),
   )
     .filter(el => el.id && el.hasChildNodes())
     .map((el) => {

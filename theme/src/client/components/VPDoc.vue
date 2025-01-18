@@ -77,20 +77,20 @@ watch(
 </script>
 
 <template>
-  <VPTransitionFadeSlideY>
-    <div
-      :key="page.path" class="vp-doc-container" :class="{
-        'has-sidebar': hasSidebar,
-        'has-aside': enableAside,
-        'is-blog': isBlogPost,
-        'with-encrypt': !isPageDecrypted,
-      }"
-    >
-      <slot name="doc-top" />
-      <div class="container">
-        <div v-if="enableAside" class="aside" :class="{ 'left-aside': leftAside }" vp-outline>
-          <div class="aside-curtain" />
-          <div ref="asideEl" class="aside-container">
+  <div
+    class="vp-doc-container" :class="{
+      'has-sidebar': hasSidebar,
+      'has-aside': enableAside,
+      'is-blog': isBlogPost,
+      'with-encrypt': !isPageDecrypted,
+    }"
+  >
+    <slot name="doc-top" />
+    <div class="container">
+      <div v-if="enableAside" class="aside" :class="{ 'left-aside': leftAside }" vp-outline>
+        <div class="aside-curtain" />
+        <VPTransitionFadeSlideY>
+          <div ref="asideEl" :key="page.path" class="aside-container">
             <div class="aside-content">
               <VPDocAside>
                 <template #aside-top>
@@ -114,9 +114,10 @@ watch(
               </VPDocAside>
             </div>
           </div>
-        </div>
-
-        <div class="content">
+        </VPTransitionFadeSlideY>
+      </div>
+      <VPTransitionFadeSlideY>
+        <div :key="page.path" class="content">
           <div class="content-container">
             <slot name="doc-before" />
             <main class="main">
@@ -144,10 +145,10 @@ watch(
             <slot name="doc-after" />
           </div>
         </div>
-      </div>
-      <slot name="doc-bottom" />
+      </VPTransitionFadeSlideY>
     </div>
-  </VPTransitionFadeSlideY>
+    <slot name="doc-bottom" />
+  </div>
 </template>
 
 <style scoped>
@@ -184,12 +185,12 @@ watch(
 }
 
 .aside-container {
-  position: sticky;
+  position: fixed;
   top: 0;
-  min-height: calc(100vh - var(--vp-nav-height, 0px) - var(--vp-footer-height, 0px));
-  max-height: 100vh;
-  padding-top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 32px);
-  margin-top: calc((var(--vp-nav-height) + var(--vp-layout-top-height, 0px)) * -1 - 32px);
+  width: 224px;
+  height: 100vh;
+  padding-top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + var(--vp-doc-top-height, 0px) + 44px);
+  padding-bottom: var(--vp-footer-height, 0);
   overflow: hidden auto;
 
   scrollbar-width: none;

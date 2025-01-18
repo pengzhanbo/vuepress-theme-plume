@@ -1,29 +1,21 @@
 import type { Page } from 'vuepress/core'
-import type { BulletinOptions, PlumeThemeLocaleOptions, PlumeThemePageData } from '../../shared/index.js'
-import { isPlainObject } from '@vuepress/helper'
+import type { PlumeThemeLocaleOptions, PlumeThemePageData } from '../../shared/index.js'
+import { isFunction, isPlainObject } from '@vuepress/helper'
 
 export function enableBulletin(
   page: Page<PlumeThemePageData>,
   options: PlumeThemeLocaleOptions,
 ) {
-  let enablePage: BulletinOptions['enablePage']
-  if (isPlainObject(options.bulletin) && options.bulletin.enablePage) {
-    enablePage = options.bulletin.enablePage
+  if (isPlainObject(options.bulletin)) {
+    const enablePage = options.bulletin.enablePage
+    page.data.bulletin = (isFunction(enablePage) ? enablePage(page) : enablePage) ?? true
   }
-  else if (options.locales) {
-    for (const locale of Object.keys(options.locales)) {
-      if (isPlainObject(options.locales[locale].bulletin) && options.locales[locale].bulletin.enablePage) {
-        enablePage = options.locales[locale].bulletin.enablePage
-        break
-      }
+
+  if (options.locales?.[page.pathLocale]) {
+    const bulletin = options.locales?.[page.pathLocale].bulletin
+    if (isPlainObject(bulletin)) {
+      const enablePage = bulletin.enablePage
+      page.data.bulletin = (isFunction(enablePage) ? enablePage(page) : enablePage) ?? true
     }
-  }
-
-  if (typeof enablePage === 'function') {
-    page.data.bulletin = enablePage(page) ?? true
-  }
-
-  else {
-    page.data.bulletin = enablePage ?? !!options.bulletin
   }
 }

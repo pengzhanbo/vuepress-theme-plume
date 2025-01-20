@@ -21,7 +21,6 @@ import { sitemapPlugin, type SitemapPluginOptions } from '@vuepress/plugin-sitem
 import { watermarkPlugin } from '@vuepress/plugin-watermark'
 import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
-import { resolveDocsearchOptions, resolveSearchOptions } from '../config/index.js'
 
 export interface SetupPluginOptions {
   app: App
@@ -95,13 +94,13 @@ export function getPlugins(
 
   if (pluginOptions.docsearch) {
     if (pluginOptions.docsearch.appId && pluginOptions.docsearch.apiKey)
-      plugins.push(docsearchPlugin(resolveDocsearchOptions(app, pluginOptions.docsearch)))
+      plugins.push(docsearchPlugin(pluginOptions.docsearch))
 
     else
       console.error('docsearch plugin: appId and apiKey are both required')
   }
   else if (pluginOptions.search !== false) {
-    plugins.push(searchPlugin(resolveSearchOptions(app, pluginOptions.search)))
+    plugins.push(searchPlugin(pluginOptions.search || {}))
   }
 
   const shikiOption = pluginOptions.shiki

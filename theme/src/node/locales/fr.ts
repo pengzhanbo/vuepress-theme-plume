@@ -1,6 +1,4 @@
 /** 法语 */
-import type { SearchLocaleOptions } from '@vuepress-plume/plugin-search'
-import type { DocSearchLocaleOptions } from '@vuepress/plugin-docsearch'
 import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
 
 export const frLocale: PlumeThemeLocaleData = {
@@ -64,62 +62,4 @@ export const frPresetLocale: PresetLocale = {
   'CC-BY-NC-ND-4.0': 'Attribution-Pas d\'Utilisation Commerciale-Pas de Modification 4.0 International',
   'CC-BY-ND-4.0': 'Attribution-Pas de Modification 4.0 International',
   'CC-BY-SA-4.0': 'Attribution-Partage dans les Mêmes Conditions 4.0 International',
-}
-
-export const frDocsearchLocale: DocSearchLocaleOptions = {
-  placeholder: 'Rechercher dans la documentation',
-  translations: {
-    button: {
-      buttonText: 'Rechercher dans la documentation',
-      buttonAriaLabel: 'Rechercher dans la documentation',
-    },
-    modal: {
-      searchBox: {
-        resetButtonTitle: 'Effacer les critères de recherche',
-        resetButtonAriaLabel: 'Effacer les critères de recherche',
-        cancelButtonText: 'Annuler',
-        cancelButtonAriaLabel: 'Annuler',
-      },
-      startScreen: {
-        recentSearchesTitle: 'Recherches récentes',
-        noRecentSearchesText: 'Aucune recherche récente',
-        saveRecentSearchButtonTitle: 'Enregistrer dans les recherches récentes',
-        removeRecentSearchButtonTitle: 'Supprimer des recherches récentes',
-        favoriteSearchesTitle: 'Favoris',
-        removeFavoriteSearchButtonTitle: 'Supprimer des favoris',
-      },
-      errorScreen: {
-        titleText: 'Impossible d\'obtenir les résultats',
-        helpText: 'Vous devriez vérifier votre connexion Internet',
-      },
-      footer: {
-        selectText: 'sélectionner',
-        navigateText: 'naviguer',
-        closeText: 'fermer',
-        searchByText: 'Recherche par',
-      },
-      noResultsScreen: {
-        noResultsText: 'Aucun résultat trouvé',
-        suggestedQueryText: 'Vous pouvez essayer de rechercher',
-        reportMissingResultsText: 'Pensez-vous que cette recherche devrait avoir des résultats ?',
-        reportMissingResultsLinkText: 'Cliquez pour signaler',
-      },
-    },
-  },
-}
-
-export const frSearchLocale: Partial<SearchLocaleOptions> = {
-  placeholder: 'Rechercher dans la documentation',
-  resetButtonTitle: 'Réinitialiser la recherche',
-  backButtonTitle: 'Fermer',
-  noResultsText: 'Aucun résultat trouvé :',
-  footer: {
-    selectText: 'sélectionner',
-    selectKeyAriaLabel: 'Entrée',
-    navigateText: 'naviguer',
-    navigateUpKeyAriaLabel: 'haut',
-    navigateDownKeyAriaLabel: 'bas',
-    closeText: 'fermer',
-    closeKeyAriaLabel: 'sortie',
-  },
 }

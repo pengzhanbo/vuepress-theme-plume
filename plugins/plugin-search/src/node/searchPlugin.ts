@@ -1,8 +1,9 @@
 import type { Plugin } from 'vuepress/core'
 import type { SearchPluginOptions } from '../shared/index.js'
-import { addViteOptimizeDepsInclude } from '@vuepress/helper'
+import { addViteOptimizeDepsInclude, getFullLocaleConfig } from '@vuepress/helper'
 import chokidar from 'chokidar'
 import { getDirname, path } from 'vuepress/utils'
+import { SEARCH_LOCALES } from './locales/index.js'
 import { onSearchIndexRemoved, onSearchIndexUpdated, prepareSearchIndex } from './prepareSearchIndex.js'
 
 const __dirname = getDirname(import.meta.url)
@@ -18,7 +19,12 @@ export function searchPlugin({
     clientConfigFile: path.resolve(__dirname, '../client/config.js'),
 
     define: {
-      __SEARCH_LOCALES__: locales,
+      __SEARCH_LOCALES__: getFullLocaleConfig({
+        app,
+        name: '@vuepress-plume/plugin-search',
+        default: SEARCH_LOCALES,
+        config: locales,
+      }),
       __SEARCH_OPTIONS__: searchOptions,
     },
 

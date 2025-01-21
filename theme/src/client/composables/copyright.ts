@@ -99,6 +99,9 @@ function resolveAuthor(
 ): { name: string, url?: string } | undefined {
   const contributor = contributors[0]
 
+  if (!author && contributor && creation === 'original')
+    return contributor
+
   const options = typeof author === 'string' ? { name: author } : author
 
   if (options && !options.url) {
@@ -106,8 +109,6 @@ function resolveAuthor(
     if (contributor)
       options.url = contributor.url
   }
-  if (creation === 'original' && contributor)
-    return contributor
 
   return options
 }

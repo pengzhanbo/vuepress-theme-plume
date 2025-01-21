@@ -1,6 +1,4 @@
 /** 日语 */
-import type { SearchLocaleOptions } from '@vuepress-plume/plugin-search'
-import type { DocSearchLocaleOptions } from '@vuepress/plugin-docsearch'
 import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
 
 export const jaLocale: PlumeThemeLocaleData = {
@@ -64,62 +62,4 @@ export const jaPresetLocale: PresetLocale = {
   'CC-BY-NC-ND-4.0': '表示-非営利-改変禁止 4.0 国際',
   'CC-BY-ND-4.0': '表示-改変禁止 4.0 国際',
   'CC-BY-SA-4.0': '表示-継承 4.0 国際',
-}
-
-export const jaDocsearchLocale: DocSearchLocaleOptions = {
-  placeholder: 'ドキュメントを検索',
-  translations: {
-    button: {
-      buttonText: 'ドキュメントを検索',
-      buttonAriaLabel: 'ドキュメントを検索',
-    },
-    modal: {
-      searchBox: {
-        resetButtonTitle: 'クエリをクリア',
-        resetButtonAriaLabel: 'クエリをクリア',
-        cancelButtonText: 'キャンセル',
-        cancelButtonAriaLabel: 'キャンセル',
-      },
-      startScreen: {
-        recentSearchesTitle: '最近の検索',
-        noRecentSearchesText: '最近の検索はありません',
-        saveRecentSearchButtonTitle: '最近の検索に保存',
-        removeRecentSearchButtonTitle: '最近の検索から削除',
-        favoriteSearchesTitle: 'お気に入り',
-        removeFavoriteSearchButtonTitle: 'お気に入りから削除',
-      },
-      errorScreen: {
-        titleText: '結果を取得できません',
-        helpText: 'ネットワーク接続を確認する必要があるかもしれません',
-      },
-      footer: {
-        selectText: '選択',
-        navigateText: '切り替え',
-        closeText: '閉じる',
-        searchByText: '検索提供者',
-      },
-      noResultsScreen: {
-        noResultsText: '関連する結果が見つかりません',
-        suggestedQueryText: 'クエリを試すことができます',
-        reportMissingResultsText: 'このクエリに結果があると思いますか？',
-        reportMissingResultsLinkText: 'フィードバックを送信',
-      },
-    },
-  },
-}
-
-export const jaSearchLocale: Partial<SearchLocaleOptions> = {
-  placeholder: 'ドキュメントを検索',
-  resetButtonTitle: '検索をリセット',
-  backButtonTitle: '閉じる',
-  noResultsText: '検索結果がありません：',
-  footer: {
-    selectText: '選択',
-    selectKeyAriaLabel: '入力',
-    navigateText: '切り替え',
-    navigateUpKeyAriaLabel: '上へ',
-    navigateDownKeyAriaLabel: '下へ',
-    closeText: '閉じる',
-    closeKeyAriaLabel: '終了',
-  },
 }

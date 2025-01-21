@@ -1,6 +1,4 @@
 /** 繁体中文 */
-import type { SearchLocaleOptions } from '@vuepress-plume/plugin-search'
-import type { DocSearchLocaleOptions } from '@vuepress/plugin-docsearch'
 import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
 
 export const zhTwLocale: PlumeThemeLocaleData = {
@@ -64,62 +62,4 @@ export const zhTwPresetLocale: PresetLocale = {
   'CC-BY-NC-ND-4.0': '署名-非商業性-禁止演繹 4.0 國際',
   'CC-BY-ND-4.0': '署名-禁止演繹 4.0 國際',
   'CC-BY-SA-4.0': '署名-相同方式共享 4.0 國際',
-}
-
-export const zhTwDocsearchLocale: DocSearchLocaleOptions = {
-  placeholder: '搜索文檔',
-  translations: {
-    button: {
-      buttonText: '搜索文檔',
-      buttonAriaLabel: '搜索文檔',
-    },
-    modal: {
-      searchBox: {
-        resetButtonTitle: '清除查詢條件',
-        resetButtonAriaLabel: '清除查詢條件',
-        cancelButtonText: '取消',
-        cancelButtonAriaLabel: '取消',
-      },
-      startScreen: {
-        recentSearchesTitle: '搜索歷史',
-        noRecentSearchesText: '沒有搜索歷史',
-        saveRecentSearchButtonTitle: '保存至搜索歷史',
-        removeRecentSearchButtonTitle: '從搜索歷史中移除',
-        favoriteSearchesTitle: '收藏',
-        removeFavoriteSearchButtonTitle: '從收藏中移除',
-      },
-      errorScreen: {
-        titleText: '無法獲取結果',
-        helpText: '你可能需要檢查你的網絡連接',
-      },
-      footer: {
-        selectText: '選擇',
-        navigateText: '切換',
-        closeText: '關閉',
-        searchByText: '搜索提供者',
-      },
-      noResultsScreen: {
-        noResultsText: '無法找到相關結果',
-        suggestedQueryText: '你可以嘗試查詢',
-        reportMissingResultsText: '你認為該查詢應該有結果？',
-        reportMissingResultsLinkText: '點擊反饋',
-      },
-    },
-  },
-}
-
-export const zhTwSearchLocale: Partial<SearchLocaleOptions> = {
-  placeholder: '搜索文檔',
-  resetButtonTitle: '重置搜索',
-  backButtonTitle: '關閉',
-  noResultsText: '無搜索結果：',
-  footer: {
-    selectText: '選擇',
-    selectKeyAriaLabel: '輸入',
-    navigateText: '切換',
-    navigateUpKeyAriaLabel: '向上',
-    navigateDownKeyAriaLabel: '向下',
-    closeText: '關閉',
-    closeKeyAriaLabel: '退出',
-  },
 }

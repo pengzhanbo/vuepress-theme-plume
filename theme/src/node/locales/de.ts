@@ -1,6 +1,4 @@
 /** 德语 */
-import type { SearchLocaleOptions } from '@vuepress-plume/plugin-search'
-import type { DocSearchLocaleOptions } from '@vuepress/plugin-docsearch'
 import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
 
 export const deLocale: PlumeThemeLocaleData = {
@@ -65,62 +63,4 @@ export const dePresetLocale: PresetLocale = {
   'CC-BY-NC-ND-4.0': 'Namensnennung-Nicht kommerziell-Keine Bearbeitung 4.0 International',
   'CC-BY-ND-4.0': 'Namensnennung-Keine Bearbeitung 4.0 International',
   'CC-BY-SA-4.0': 'Namensnennung-Weitergabe unter gleichen Bedingungen 4.0 International',
-}
-
-export const deDocsearchLocale: DocSearchLocaleOptions = {
-  placeholder: 'Dokumente durchsuchen',
-  translations: {
-    button: {
-      buttonText: 'Dokumente durchsuchen',
-      buttonAriaLabel: 'Dokumente durchsuchen',
-    },
-    modal: {
-      searchBox: {
-        resetButtonTitle: 'Suchkriterien löschen',
-        resetButtonAriaLabel: 'Suchkriterien löschen',
-        cancelButtonText: 'Abbrechen',
-        cancelButtonAriaLabel: 'Abbrechen',
-      },
-      startScreen: {
-        recentSearchesTitle: 'Letzte Suchen',
-        noRecentSearchesText: 'Keine letzten Suchen',
-        saveRecentSearchButtonTitle: 'Zu letzten Suchen hinzufügen',
-        removeRecentSearchButtonTitle: 'Aus letzten Suchen entfernen',
-        favoriteSearchesTitle: 'Favoriten',
-        removeFavoriteSearchButtonTitle: 'Aus Favoriten entfernen',
-      },
-      errorScreen: {
-        titleText: 'Ergebnisse konnten nicht abgerufen werden',
-        helpText: 'Möglicherweise müssen Sie Ihre Internetverbindung überprüfen.',
-      },
-      footer: {
-        selectText: 'Auswählen',
-        navigateText: 'Wechseln',
-        closeText: 'Schließen',
-        searchByText: 'Bereitgestellt von',
-      },
-      noResultsScreen: {
-        noResultsText: 'Keine relevanten Ergebnisse gefunden',
-        suggestedQueryText: 'Sie können versuchen, nach',
-        reportMissingResultsText: 'Sie glauben, dass diese Suche Ergebnisse liefern sollte?',
-        reportMissingResultsLinkText: 'Klicken Sie hier, um Feedback zu geben',
-      },
-    },
-  },
-}
-
-export const deSearchLocale: Partial<SearchLocaleOptions> = {
-  placeholder: 'Dokumente durchsuchen',
-  resetButtonTitle: 'Suche zurücksetzen',
-  backButtonTitle: 'Schließen',
-  noResultsText: 'Keine Suchergebnisse:',
-  footer: {
-    selectText: 'Auswählen',
-    selectKeyAriaLabel: 'Eingabe',
-    navigateText: 'Wechseln',
-    navigateUpKeyAriaLabel: 'Nach oben',
-    navigateDownKeyAriaLabel: 'Nach unten',
-    closeText: 'Schließen',
-    closeKeyAriaLabel: 'Beenden',
-  },
 }

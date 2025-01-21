@@ -1,4 +1,3 @@
-import type { SearchLocaleOptions } from '@vuepress-plume/plugin-search'
 import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
 
 export const enLocale: PlumeThemeLocaleData = {
@@ -50,20 +49,4 @@ export const enPresetLocale: PresetLocale = {
   'CC-BY-NC-ND-4.0': 'Attribution-NonCommercial-NoDerivatives 4.0 International',
   'CC-BY-ND-4.0': 'Attribution-NoDerivatives 4.0 International',
   'CC-BY-SA-4.0': 'Attribution-ShareAlike 4.0 International',
-}
-
-export const enSearchLocale: Partial<SearchLocaleOptions> = {
-  placeholder: 'Search',
-  resetButtonTitle: 'Reset search',
-  backButtonTitle: 'Close search',
-  noResultsText: 'No results for',
-  footer: {
-    selectText: 'to select',
-    selectKeyAriaLabel: 'enter',
-    navigateText: 'to navigate',
-    navigateUpKeyAriaLabel: 'up arrow',
-    navigateDownKeyAriaLabel: 'down arrow',
-    closeText: 'to close',
-    closeKeyAriaLabel: 'escape',
-  },
 }

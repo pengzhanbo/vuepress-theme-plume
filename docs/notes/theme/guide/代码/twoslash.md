@@ -42,9 +42,9 @@ outline: [2, 4]
 将鼠标悬停在 __变量__ 或 __函数__ 上查看效果：
 
 ```ts twoslash
-import { getHighlighterCore } from 'shiki/core'
+import { createHighlighter } from 'shiki'
 
-const highlighter = await getHighlighterCore({})
+const highlighter = await createHighlighter({ themes: ['nord'], langs: ['javascript'] })
 //      ^?
 //
 

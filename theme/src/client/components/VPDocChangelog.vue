@@ -13,7 +13,8 @@ const { datetime, lastUpdatedText } = useLastUpdated()
 const list = computed(() => {
   const list = page.value.git?.changelog || []
   const formatter = new Intl.DateTimeFormat(lang.value, { dateStyle: 'short' })
-  return list.map(({ date, ...item }) => {
+  // TODO: plugin-git
+  return [...list].reverse().map(({ date, ...item }) => {
     const datetime = formatter.format(date)
     return { datetime, ...item }
   })

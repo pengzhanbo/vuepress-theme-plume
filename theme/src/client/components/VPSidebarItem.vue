@@ -34,6 +34,8 @@ const textTag = computed(() => {
 
 const itemRole = computed(() => (isLink.value ? undefined : 'button'))
 
+const isSeparator = computed(() => props.item.link?.startsWith('---'))
+
 const classes = computed(() => [
   [`level-${props.depth}`],
   { collapsible: collapsible.value },
@@ -73,10 +75,10 @@ function onCaretClick() {
     >
       <div class="indicator" />
 
-      <VPIcon v-if="item.icon" :name="item.icon" />
+      <VPIcon v-if="item.icon" :name="item.icon" :class="{ separator: isSeparator }" />
 
       <VPLink
-        v-if="item.link"
+        v-if="item.link && !isSeparator"
         :tag="linkTag"
         class="link"
         :href="item.link"
@@ -84,7 +86,7 @@ function onCaretClick() {
         <Component :is="textTag" class="text" v-html="item.text" />
       </VPLink>
 
-      <Component :is="textTag" v-else class="text" v-html="item.text" />
+      <Component :is="textTag" v-else class="text" :class="{ separator: isSeparator }" v-html="item.text" />
 
       <div
         v-if="item.collapsed != null"
@@ -176,6 +178,23 @@ function onCaretClick() {
   color: var(--vp-c-text-2);
 }
 
+.vp-sidebar-item.level-1 .text.separator,
+.vp-sidebar-item.level-2 .text.separator,
+.vp-sidebar-item.level-3 .text.separator,
+.vp-sidebar-item.level-4 .text.separator,
+.vp-sidebar-item.level-5 .text.separator {
+  color: var(--vp-c-text-3);
+}
+
+.vp-sidebar-item.level-0 :deep(.vp-icon.separator),
+.vp-sidebar-item.level-1 :deep(.vp-icon.separator),
+.vp-sidebar-item.level-2 :deep(.vp-icon.separator),
+.vp-sidebar-item.level-3 :deep(.vp-icon.separator),
+.vp-sidebar-item.level-4 :deep(.vp-icon.separator),
+.vp-sidebar-item.level-5 :deep(.vp-icon.separator) {
+  color: var(--vp-c-text-3) !important;
+}
+
 .vp-sidebar-item.level-0.has-active > .item > .text,
 .vp-sidebar-item.level-1.has-active > .item > .text,
 .vp-sidebar-item.level-2.has-active > .item > .text,
@@ -206,12 +225,12 @@ function onCaretClick() {
 .vp-sidebar-item.level-3.is-link > .item > .link:hover .text,
 .vp-sidebar-item.level-4.is-link > .item > .link:hover .text,
 .vp-sidebar-item.level-5.is-link > .item > .link:hover .text,
-.vp-sidebar-item.level-0.is-link > .item > .link:hover :deep(.icon),
-.vp-sidebar-item.level-1.is-link > .item > .link:hover :deep(.icon),
-.vp-sidebar-item.level-2.is-link > .item > .link:hover :deep(.icon),
-.vp-sidebar-item.level-3.is-link > .item > .link:hover :deep(.icon),
-.vp-sidebar-item.level-4.is-link > .item > .link:hover :deep(.icon),
-.vp-sidebar-item.level-5.is-link > .item > .link:hover :deep(.icon) {
+.vp-sidebar-item.level-0.is-link > .item > .link:hover :deep(.vp-icon),
+.vp-sidebar-item.level-1.is-link > .item > .link:hover :deep(.vp-icon),
+.vp-sidebar-item.level-2.is-link > .item > .link:hover :deep(.vp-icon),
+.vp-sidebar-item.level-3.is-link > .item > .link:hover :deep(.vp-icon),
+.vp-sidebar-item.level-4.is-link > .item > .link:hover :deep(.vp-icon),
+.vp-sidebar-item.level-5.is-link > .item > .link:hover :deep(.vp-icon) {
   color: var(--vp-c-brand-1);
 }
 

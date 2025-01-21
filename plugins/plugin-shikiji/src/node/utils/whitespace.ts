@@ -8,11 +8,11 @@ export function resolveWhitespacePosition(info: string, defaultPosition?: boolea
     return false
   }
 
-  defaultPosition = defaultPosition === true ? undefined : defaultPosition
+  const position = defaultPosition === true ? undefined : defaultPosition
 
   const match = info.match(WHITESPACE_REGEXP)
   if (match) {
-    return (match[1] || defaultPosition || 'all') as WhitespacePosition
+    return (match[1] || position || 'all') as WhitespacePosition
   }
-  return defaultPosition ?? false
+  return defaultPosition === true ? 'all' : defaultPosition ?? false
 }

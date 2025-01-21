@@ -10,6 +10,7 @@ draft: true
 externalLinkIcon: false
 contributors: false
 changelog: false
+search: false
 docs:
   -
     name: VuePress Plume

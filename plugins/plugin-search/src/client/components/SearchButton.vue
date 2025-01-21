@@ -13,12 +13,7 @@ const locale = useLocale(toRef(props.locales))
 <template>
   <button type="button" class="mini-search mini-search-button" :aria-label="locale.placeholder">
     <span class="mini-search-button-container">
-      <svg class="mini-search-search-icon" width="20" height="20" viewBox="0 0 20 20" aria-label="search icon">
-        <path
-          d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z"
-          stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"
-        />
-      </svg>
+      <span class="mini-search-search-icon vpi-mini-search" aria-label="search icon" />
       <span class="mini-search-button-placeholder">{{ locale.placeholder }}</span>
     </span>
     <span class="mini-search-button-keys">
@@ -74,6 +69,10 @@ const locale = useLocale(toRef(props.locales))
 .mini-search-button .mini-search-button-container {
   display: flex;
   align-items: center;
+}
+
+.mini-search-button .vpi-mini-search {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' stroke-width='1.6' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' d='m14.386 14.386 4.088 4.088-4.088-4.088A7.533 7.533 0 1 1 3.733 3.733a7.533 7.533 0 0 1 10.653 10.653z'/%3E%3C/svg%3E");
 }
 
 .mini-search-button .mini-search-search-icon {

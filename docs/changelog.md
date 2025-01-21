@@ -10,6 +10,7 @@ comment: false
 editLink: false
 contributors: false
 changelog: false
+search: false
 ---
 
 <!-- @include: ../CHANGELOG.md -->

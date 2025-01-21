@@ -13,6 +13,8 @@ html:not([data-theme="dark"]) .vp-code span {
   overflow-x: auto;
   background-color: var(--vp-code-block-bg);
   transition: background-color var(--vp-t-color);
+
+  scrollbar-width: thin;
 }
 
 @media (min-width: 640px) {

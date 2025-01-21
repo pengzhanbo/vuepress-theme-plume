@@ -1,3 +1,32 @@
+# [1.0.0-rc.129](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.128...v1.0.0-rc.129) (2025-01-21)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** improve steps styles, close [#422](https://github.com/pengzhanbo/vuepress-theme-plume/issues/422) ([#432](https://github.com/pengzhanbo/vuepress-theme-plume/issues/432)) ([9c796c2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9c796c228fd32093076274076646fe20fa6a3337))
+* **plugin-md-power:** incorrect rendering heading from `demo` in `outline`, close [#423](https://github.com/pengzhanbo/vuepress-theme-plume/issues/423) ([#431](https://github.com/pengzhanbo/vuepress-theme-plume/issues/431)) ([4a39d39](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4a39d393313ae0fe41cb2698ea4edf56aa0ff5ce))
+* **plugin-search:** incorrect local search results ([#434](https://github.com/pengzhanbo/vuepress-theme-plume/issues/434)) ([0002996](https://github.com/pengzhanbo/vuepress-theme-plume/commit/000299666dc24ec7c35558bb79e4f2c1f23b2233))
+* **plugin-shikiji:** incorrect render when `whitespace:true`, close [#444](https://github.com/pengzhanbo/vuepress-theme-plume/issues/444) ([#446](https://github.com/pengzhanbo/vuepress-theme-plume/issues/446)) ([30d1c04](https://github.com/pengzhanbo/vuepress-theme-plume/commit/30d1c046ffcf2c9ae0b461a29fff94b880cd7e57))
+* **theme:** fix flickering white border in bottom of home, close [#424](https://github.com/pengzhanbo/vuepress-theme-plume/issues/424) ([#433](https://github.com/pengzhanbo/vuepress-theme-plume/issues/433)) ([40bbb22](https://github.com/pengzhanbo/vuepress-theme-plume/commit/40bbb22487601bf3dac9e95925f62af09fd57cfa))
+* **theme:** improve code block scrollbar, close [#427](https://github.com/pengzhanbo/vuepress-theme-plume/issues/427) ([#435](https://github.com/pengzhanbo/vuepress-theme-plume/issues/435)) ([0ce2754](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0ce2754a34eb3844c74b73977863cdf6471834f9))
+* **theme:** improve page aside layout, close [#429](https://github.com/pengzhanbo/vuepress-theme-plume/issues/429) ([#436](https://github.com/pengzhanbo/vuepress-theme-plume/issues/436)) ([b671875](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b671875bcc6901a6630fe99140f1185f66a10030))
+* **theme:** incorrect copyright author, close [#443](https://github.com/pengzhanbo/vuepress-theme-plume/issues/443) ([#445](https://github.com/pengzhanbo/vuepress-theme-plume/issues/445)) ([363a0dd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/363a0dd425beee5a50ad794373ee36688fa93c19))
+
+
+### Features
+
+* **cli:** add site favicon template ([#439](https://github.com/pengzhanbo/vuepress-theme-plume/issues/439)) ([f81c011](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f81c011e6aed5ed7878d2bd4d41739d918fd6102))
+* improve built-in locales ([#441](https://github.com/pengzhanbo/vuepress-theme-plume/issues/441)) ([62c43d2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/62c43d25ee8977bfb3522a0b39e469d4936e2d1e))
+* **theme:** add separator support for sidebar items, close [#426](https://github.com/pengzhanbo/vuepress-theme-plume/issues/426) ([#437](https://github.com/pengzhanbo/vuepress-theme-plume/issues/437)) ([93a3da2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/93a3da293420882423fa7270ba97e1dc9a79009e))
+
+
+### Performance Improvements
+
+* **theme:** improve bulletin `enablePage` ([#438](https://github.com/pengzhanbo/vuepress-theme-plume/issues/438)) ([8b9c50b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8b9c50b0fee3b989c384e78cfe69a8f3d12b3a21))
+* update deps to latest ([df306e7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/df306e78bcdbdaf33403e15b20503ff57d7a04b3))
+
+
+
 # [1.0.0-rc.128](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.127...v1.0.0-rc.128) (2025-01-10)
 
 

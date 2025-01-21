@@ -20,6 +20,11 @@ export default defineUserConfig({
   description: '{{ siteDescription }}',
   {{/if}}
 
+  head: [
+    // 配置站点图标
+    ['link', { rel: 'icon', type: 'image/png', href: 'https://theme-plume.vuejs.press/favicon-32x32.png' }],
+  ],
+
   bundler: {{ bundler }}Bundler(),
   shouldPrefetch: false, // 站点较大，页面数量较多时，不建议启用
 
@@ -180,6 +185,6 @@ export default defineUserConfig({
      * 加密功能
      * @see https://theme-plume.vuejs.press/guide/features/encryption/
      */
-    encrypt: {},
+    // encrypt: {},
   }),
 })

@@ -9,6 +9,13 @@
   padding: 24px;
 }
 
+.vp-demo-wrapper .demo-draw .draw-iframe {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
 .vp-demo-wrapper .demo-info .title {
   display: flex;
   align-items: center;

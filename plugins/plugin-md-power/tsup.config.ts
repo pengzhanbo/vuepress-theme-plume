@@ -2,8 +2,8 @@ import { defineConfig, type Options } from 'tsup'
 import { argv } from '../../scripts/tsup-args.js'
 
 const config = [
-  { dir: 'composables', files: ['codeRepl.ts', 'pdf.ts', 'rustRepl.ts', 'size.ts', 'audio.ts'] },
-  { dir: 'utils', files: ['http.ts', 'is.ts', 'link.ts', 'sleep.ts', 'shared.ts'] },
+  { dir: 'composables', files: ['codeRepl.ts', 'pdf.ts', 'rustRepl.ts', 'size.ts', 'audio.ts', 'demo.ts'] },
+  { dir: 'utils', files: ['http.ts', 'is.ts', 'link.ts', 'sleep.ts'] },
   { dir: '', files: ['index.ts', 'options.ts'] },
 ]
 

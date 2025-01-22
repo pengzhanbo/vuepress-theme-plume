@@ -80,9 +80,11 @@ export function demoWatcher(app: App, watchers: any[]) {
     watcher!.unwatch(path)
   })
 
-  watchers.push(() => {
-    watcher!.close()
-    watcher = null
+  watchers.push({
+    close: () => {
+      watcher!.close()
+      watcher = null
+    },
   })
 }
 

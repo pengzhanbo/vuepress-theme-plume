@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { onClickOutside } from '@vueuse/core'
-import { computed, onMounted, ref, useId, useTemplateRef, watch } from 'vue'
-import { loadScript, loadStyle } from '../utils/shared.js'
-import Loading from './icons/Loading.vue'
+import { useTemplateRef } from 'vue'
+import { type DemoConfig, useExpand, useFence, useNormalDemo, useResources } from '../composables/demo.js'
 
 import '../styles/demo.css'
 
@@ -10,121 +8,41 @@ const props = defineProps<{
   title?: string
   desc?: string
   expanded?: boolean
-  config?: {
-    html: string
-    css: string
-    script: string
-    jsLib: string[]
-    cssLib: string[]
-  }
+  config?: DemoConfig
 }>()
 
-const draw = useTemplateRef<HTMLDivElement>('draw')
-const id = useId()
-const loaded = ref(true)
+const [showCode, toggleCode] = useExpand(props.expanded)
 
-const resourcesEl = useTemplateRef<HTMLDivElement>('resourcesEl')
-const resources = computed<{
-  name: string
-  items: { name: string, url: string }[]
-}[]>(() => {
-  if (!props.config)
-    return []
-  return [
-    { name: 'JavaScript', items: props.config.jsLib.map(url => ({ name: normalizeName(url), url })) },
-    { name: 'CSS', items: props.config.cssLib.map(url => ({ name: normalizeName(url), url })) },
-  ].filter(i => i.items.length)
-})
+const { resources, showResources, toggleResources } = useResources(
+  useTemplateRef<HTMLDivElement>('resourcesEl'),
+  () => props.config,
+)
 
-function normalizeName(url: string) {
-  return url.slice(url.lastIndexOf('/') + 1)
-}
+const { id, height } = useNormalDemo(
+  useTemplateRef<HTMLIFrameElement>('draw'),
+  () => props.title,
+  () => props.config,
+)
 
-const showResources = ref(false)
-
-function toggleResources() {
-  showResources.value = !showResources.value
-}
-
-onClickOutside(resourcesEl, () => {
-  showResources.value = false
-})
-
-onMounted(() => {
-  if (!draw.value)
-    return
-  const root = draw.value.attachShadow({ mode: 'open' })
-
-  watch(() => props.config, async () => {
-    root.innerHTML = props.config?.html ?? ''
-
-    props.config?.cssLib?.forEach(url => loadStyle(url, root))
-    if (props.config?.css) {
-      const style = document.createElement('style')
-      style.innerHTML = props.config?.css ?? ''
-      root.appendChild(style)
-    }
-
-    if (props.config?.jsLib?.length) {
-      loaded.value = false
-      await Promise.all(props.config.jsLib.map(url => loadScript(url)))
-        .catch(e => console.warn(e))
-      loaded.value = true
-    }
-
-    if (props.config?.script) {
-      const script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.innerHTML = `;(function(document){\n${props.config.script}\n})(document.querySelector('#VPDemoNormalDraw${id}').shadowRoot);`
-      root.appendChild(script)
-    }
-  }, { immediate: true })
-})
-
-const fence = useTemplateRef<HTMLDivElement>('fence')
-const data = ref<{
-  js: string
-  css: string
-  html: string
-  jsType: string
-  cssType: string
-}>({ js: '', css: '', html: '', jsType: '', cssType: '' })
-
-onMounted(() => {
-  if (!fence.value)
-    return
-
-  data.value.html = props.config?.html ?? ''
-  const els = Array.from(fence.value.querySelectorAll('div[class*="language-"]'))
-  for (const el of els) {
-    const lang = el.className.match(/language-(\w+)/)?.[1] ?? ''
-    const content = el.querySelector('pre')?.textContent ?? ''
-    if (lang === 'js' || lang === 'javascript') {
-      data.value.js = content
-      data.value.jsType = 'js'
-    }
-    if (lang === 'ts' || lang === 'typescript') {
-      data.value.js = content
-      data.value.jsType = 'ts'
-    }
-    if (lang === 'css' || lang === 'scss' || lang === 'less' || lang === 'stylus' || lang === 'styl') {
-      data.value.css = content
-      data.value.cssType = lang === 'styl' ? 'stylus' : lang
-    }
-  }
-})
-
-const showCode = ref(props.expanded ?? false)
-function toggleCode() {
-  showCode.value = !showCode.value
-}
+const data = useFence(
+  useTemplateRef<HTMLDivElement>('fence'),
+  () => props.config,
+)
 </script>
 
 <template>
   <div class="vp-demo-wrapper normal">
     <div class="demo-draw">
-      <Loading v-if="!loaded" />
-      <div :id="`VPDemoNormalDraw${id}`" ref="draw" />
+      <iframe
+        :id="`VPDemoNormalDraw${id}`"
+        ref="draw"
+        class="draw-iframe"
+        allow="accelerometer *; bluetooth *; camera *; encrypted-media *; display-capture *; geolocation *; gyroscope *; microphone *; midi *; clipboard-read *; clipboard-write *; web-share *; serial *; xr-spatial-tracking *"
+        allowfullscreen="true"
+        allowpaymentrequest="true"
+        allowtransparency="true"
+        sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups-to-escape-sandbox allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" :style="{ height }"
+      />
     </div>
     <div v-if="title || desc" class="demo-info">
       <p v-if="title" class="title">

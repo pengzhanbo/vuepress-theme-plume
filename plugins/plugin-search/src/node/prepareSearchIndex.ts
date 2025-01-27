@@ -92,7 +92,8 @@ export async function onSearchIndexRemoved(
     const locale = page.pathLocale
     const index = getIndexByLocale(locale, searchOptions)
     const cache = getIndexCache(fileId)
-    index.removeAll(cache)
+    if (cache && cache.length)
+      index.removeAll(cache)
     await writeTemp(app)
   }
 }

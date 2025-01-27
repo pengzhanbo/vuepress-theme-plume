@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useExpand } from '../composables/demo.js'
 
 import '../styles/demo.css'
 
@@ -10,10 +10,7 @@ const props = defineProps<{
   expanded?: boolean
 }>()
 
-const showCode = ref(props.expanded ?? true)
-function toggleCode() {
-  showCode.value = !showCode.value
-}
+const [showCode, toggleCode] = useExpand(props.expanded)
 </script>
 
 <template>

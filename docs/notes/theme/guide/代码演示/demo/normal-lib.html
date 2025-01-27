@@ -5,8 +5,8 @@
 </div>
 
 <script>
-$('#message', document).text('So Awesome!')
-const datetime = $('#datetime', document)
+$('#message').text('So Awesome!')
+const datetime = $('#datetime')
 setInterval(() => {
   datetime.text(dayjs().format('YYYY-MM-DD HH:mm:ss'))
 }, 1000)

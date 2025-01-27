@@ -43,6 +43,10 @@ export function setupDarkMode(app: App): void {
 
   app.provide(darkModeSymbol, isDark)
 
+  if (__VUEPRESS_DEV__ && appearance === 'force-dark' && typeof document !== 'undefined') {
+    document.documentElement.dataset.theme = 'dark'
+  }
+
   Object.defineProperty(app.config.globalProperties, '$isDark', {
     get: () => isDark,
   })

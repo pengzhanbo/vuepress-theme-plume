@@ -1,16 +1,46 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 interface Props {
   text?: string
-  type?: 'info' | 'tip' | 'warning' | 'danger'
+  type?: 'info' | 'tip' | 'warning' | 'danger' | 'custom'
+  color?: string
+  bgColor?: string
+  borderColor?: string
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   type: 'tip',
   text: undefined,
+  color: undefined,
+  bgColor: undefined,
+  borderColor: 'transparent',
+})
+
+const typeClass = computed(() => {
+  if (props.type === 'custom') {
+    return ''
+  }
+  else {
+    return props.type
+  }
+})
+
+const customStyle = computed(() => {
+  if (props.type === 'custom') {
+    return {
+      color: props.color,
+      backgroundColor: props.bgColor,
+      borderColor: props.borderColor,
+    }
+  }
+  else {
+    return {}
+  }
 })
 </script>
 
 <template>
-  <span class="vp-badge" :class="type">
+  <span class="vp-badge" :class="typeClass" :style="customStyle">
     <slot>{{ text }}</slot>
   </span>
 </template>

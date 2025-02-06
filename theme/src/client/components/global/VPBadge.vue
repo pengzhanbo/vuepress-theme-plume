@@ -3,44 +3,33 @@ import { computed } from 'vue'
 
 interface Props {
   text?: string
-  type?: 'info' | 'tip' | 'warning' | 'danger' | 'custom'
+  type?: string
   color?: string
   bgColor?: string
   borderColor?: string
 }
 const props = withDefaults(defineProps<Props>(), {
-  type: 'tip',
+  type: undefined,
   text: undefined,
   color: undefined,
   bgColor: undefined,
   borderColor: 'transparent',
 })
 
-const typeClass = computed(() => {
-  if (props.type === 'custom') {
-    return ''
-  }
-  else {
-    return props.type
-  }
-})
-
 const customStyle = computed(() => {
-  if (props.type === 'custom') {
-    return {
-      color: props.color,
-      backgroundColor: props.bgColor,
-      borderColor: props.borderColor,
-    }
+  if (props.type) {
+    return
   }
-  else {
-    return {}
+  return {
+    color: props.color,
+    backgroundColor: props.bgColor,
+    borderColor: props.borderColor,
   }
 })
 </script>
 
 <template>
-  <span class="vp-badge" :class="typeClass" :style="customStyle">
+  <span class="vp-badge" :class="type" :style="customStyle">
     <slot>{{ text }}</slot>
   </span>
 </template>

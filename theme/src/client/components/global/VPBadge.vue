@@ -9,7 +9,7 @@ interface Props {
   borderColor?: string
 }
 const props = withDefaults(defineProps<Props>(), {
-  type: undefined,
+  type: 'tip',
   text: undefined,
   color: undefined,
   bgColor: undefined,
@@ -17,14 +17,14 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const customStyle = computed(() => {
-  if (props.type) {
-    return
+  if (props.color || props.bgColor) {
+    return {
+      color: props.color,
+      backgroundColor: props.bgColor,
+      borderColor: props.borderColor,
+    }
   }
-  return {
-    color: props.color,
-    backgroundColor: props.bgColor,
-    borderColor: props.borderColor,
-  }
+  return {}
 })
 </script>
 

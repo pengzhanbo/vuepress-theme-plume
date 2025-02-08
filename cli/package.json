@@ -30,7 +30,7 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@clack/prompts": "^0.9.1",
+    "@clack/prompts": "^0.10.0",
     "@pengzhanbo/utils": "^1.2.0",
     "cac": "^6.7.14",
     "execa": "^9.5.2",
@@ -43,6 +43,6 @@
     "sass-embedded": "^1.83.4",
     "sass-loader": "^16.0.4",
     "http-server": "^14.1.1",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.3"
   }
 }

@@ -21,7 +21,7 @@
     "http-server": "^14.1.1",
     "mermaid": "^11.4.1",
     "sass-embedded": "^1.83.4",
-    "swiper": "^11.2.1",
+    "swiper": "^11.2.2",
     "vue": "catalog:",
     "vuepress-theme-plume": "workspace:*"
   },

@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.129",
   "private": true,
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@10.2.1",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -40,24 +40,24 @@
     "release:version": "bumpp package.json plugins/*/package.json theme/package.json cli/package.json --execute=\"pnpm release:changelog\" --commit \"build: publish v%s\" --all --tag --push"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.6.1",
-    "@commitlint/config-conventional": "^19.6.0",
-    "@pengzhanbo/eslint-config-vue": "^1.24.0",
-    "@pengzhanbo/stylelint-config": "^1.24.0",
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "@pengzhanbo/eslint-config-vue": "^1.25.0",
+    "@pengzhanbo/stylelint-config": "^1.25.0",
     "@types/less": "^3.0.8",
     "@types/lodash.merge": "^4.6.9",
     "@types/minimist": "^1.2.5",
-    "@types/node": "^22.12.0",
+    "@types/node": "^22.13.1",
     "@types/stylus": "^0.48.43",
     "@types/webpack-env": "^1.18.8",
-    "@vitest/coverage-istanbul": "^3.0.4",
-    "bumpp": "^10.0.1",
+    "@vitest/coverage-istanbul": "^3.0.5",
+    "bumpp": "^10.0.2",
     "commitizen": "^4.3.1",
     "conventional-changelog-cli": "^5.0.0",
     "cpx2": "^8.0.0",
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^9.19.0",
+    "eslint": "^9.20.0",
     "husky": "^9.1.7",
     "less": "^4.2.2",
     "lint-staged": "^15.4.3",
@@ -70,11 +70,16 @@
     "tsconfig-vuepress": "^5.2.1",
     "tsup": "^8.3.6",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.4",
+    "vitest": "^3.0.5",
     "wait-on": "^8.0.2"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
   "resolutions": {
-    "esbuild": "^0.24.2"
+    "esbuild": "^0.25.0"
   },
   "lint-staged": {
     "*": "eslint --fix",

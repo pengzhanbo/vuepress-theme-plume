@@ -4,7 +4,7 @@ packages:
   - cli
   - plugins/*
 catalog:
-  '@iconify/json': ^2.2.301
+  '@iconify/json': ^2.2.304
   '@vuepress/bundler-vite': 2.0.0-rc.19
   '@vuepress/helper': 2.0.0-rc.73
   '@vuepress/plugin-cache': 2.0.0-rc.66

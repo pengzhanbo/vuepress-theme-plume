@@ -5,6 +5,7 @@ import VPCardMasonry from '@theme/global/VPCardMasonry.vue'
 import VPImageCard from '@theme/global/VPImageCard.vue'
 import VPLinkCard from '@theme/global/VPLinkCard.vue'
 import VPHomeBox from '@theme/Home/VPHomeBox.vue'
+import VPButton from '@theme/VPButton.vue'
 import VPIcon from '@theme/VPIcon.vue'
 import { hasGlobalComponent } from '@vuepress/helper/client'
 import { type App, h, resolveComponent } from 'vue'
@@ -30,6 +31,8 @@ export function globalComponents(app: App) {
 
   app.component('Icon', VPIcon)
   app.component('VPIcon', VPIcon)
+
+  app.component('VPButton', VPButton)
 
   app.component('HomeBox', VPHomeBox)
   app.component('VPHomeBox', VPHomeBox)

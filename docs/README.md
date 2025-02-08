@@ -182,7 +182,8 @@ export default defineUserConfig({
     'shylock-wu',
     'hrradev',
     { github: 'TheCoderAlex', name: 'Tang Zifeng' },
-    { github: 'HydroGest', name: 'MarkChai'}
+    { github: 'HydroGest', name: 'MarkChai' },
+    { github: 'sunnyboy-mu', name: '小沐沐吖' }
   ]"
 />
 

@@ -14,7 +14,7 @@ interface TransformerTwoslashVueOptions extends TransformerTwoslashOptions {
   twoslashOptions?: TransformerTwoslashOptions['twoslashOptions'] & VueSpecificOptions
 }
 
-export interface VitePressPluginTwoslashOptions extends TransformerTwoslashVueOptions, TwoslashFloatingVueRendererOptions {
+export interface VuePressTwoslashOptions extends TransformerTwoslashVueOptions, TwoslashFloatingVueRendererOptions {
   /**
    * Requires adding `twoslash` to the code block explicitly to run twoslash
    * @default true
@@ -23,9 +23,9 @@ export interface VitePressPluginTwoslashOptions extends TransformerTwoslashVueOp
 }
 
 /**
- * Create a Shiki transformer for VitePress to enable twoslash integration
+ * Create a Shiki transformer for VuePress to enable twoslash integration
  */
-export function transformerTwoslash(options: VitePressPluginTwoslashOptions = {}): ShikiTransformer {
+export function transformerTwoslash(options: VuePressTwoslashOptions = {}): ShikiTransformer {
   const {
     explicitTrigger = true,
   } = options
@@ -67,7 +67,7 @@ export function transformerTwoslash(options: VitePressPluginTwoslashOptions = {}
 
       // Disable v-pre for twoslash, because we need render it with FloatingVue
       if (!explicitTrigger || options.meta?.__raw?.match(trigger)) {
-        const vPre = options.transformers?.find(i => i.name === 'vitepress:v-pre')
+        const vPre = options.transformers?.find(i => i.name === 'vuepress:v-pre')
         if (vPre)
           options.transformers?.splice(options.transformers.indexOf(vPre), 1)
       }

@@ -165,8 +165,11 @@ function renderMarkdown(this: ShikiTransformerContextCommon, md: string): Elemen
           if (lang) {
             return <Element>{
               type: 'element',
-              tagName: 'code',
-              properties: {},
+              tagName: 'div',
+              properties: {
+                'class': `language-${lang}`,
+                'data-ext': lang,
+              },
               children: this.codeToHast(
                 node.value,
                 {

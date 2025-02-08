@@ -4,13 +4,14 @@ import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { useScrollLock } from '@vueuse/core'
 import { onMounted, ref, watch } from 'vue'
 import { useRoutePath } from 'vuepress/client'
-import { useSidebar } from '../composables/index.js'
+import { useData, useSidebar } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
 
 const props = defineProps<{
   open: boolean
 }>()
 
+const { theme } = useData()
 const { sidebarGroups, hasSidebar, sidebarKey } = useSidebar()
 const routePath = useRoutePath()
 
@@ -52,7 +53,7 @@ onMounted(() => {
       v-if="hasSidebar"
       ref="navEl"
       class="vp-sidebar"
-      :class="{ open }"
+      :class="{ open, 'hide-scrollbar': !(theme.sidebarScrollbar ?? true) }"
       vp-sidebar
       @click.stop
     >
@@ -112,6 +113,15 @@ onMounted(() => {
     opacity 0.25s,
     transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   transform: translateX(0);
+}
+
+.vp-sidebar.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.vp-sidebar.hide-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 [data-theme="dark"] .vp-sidebar {

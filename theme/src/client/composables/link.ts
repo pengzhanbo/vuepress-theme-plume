@@ -1,5 +1,6 @@
+import type { MaybeRefOrGetter } from 'vue'
 import { isLinkExternal } from '@vuepress/helper/client'
-import { computed, type MaybeRefOrGetter, toValue } from 'vue'
+import { computed, toValue } from 'vue'
 import { resolveRouteFullPath, useRoute } from 'vuepress/client'
 import { useData } from './data.js'
 

@@ -1,5 +1,6 @@
+import type { Ref } from 'vue'
 import { articleTagColors } from '@internal/articleTagColors'
-import { type Ref, ref } from 'vue'
+import { ref } from 'vue'
 
 export type TagColors = Record<string, string>
 

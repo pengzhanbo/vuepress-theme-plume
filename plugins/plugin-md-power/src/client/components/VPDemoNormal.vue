@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import type { DemoConfig } from '../composables/demo.js'
 import { useTemplateRef } from 'vue'
-import { type DemoConfig, useExpand, useFence, useNormalDemo, useResources } from '../composables/demo.js'
+import { useExpand, useFence, useNormalDemo, useResources } from '../composables/demo.js'
 
 import '../styles/demo.css'
 

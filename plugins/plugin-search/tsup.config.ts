@@ -1,4 +1,5 @@
-import { defineConfig, type Options } from 'tsup'
+import type { Options } from 'tsup'
+import { defineConfig } from 'tsup'
 import { argv } from '../../scripts/tsup-args.js'
 
 const sharedExternal: (string | RegExp)[] = [

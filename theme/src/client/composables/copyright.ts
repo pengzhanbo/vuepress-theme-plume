@@ -1,5 +1,6 @@
+import type { ComputedRef } from 'vue'
 import type { CopyrightFrontmatter, CopyrightLicense, CopyrightOptions, GitContributor, KnownCopyrightLicense } from '../../shared/index.js'
-import { computed, type ComputedRef } from 'vue'
+import { computed } from 'vue'
 import { useRoute, useRouteLocale } from 'vuepress/client'
 import { useContributors } from './contributors.js'
 import { useData } from './data.js'

@@ -1,4 +1,5 @@
-import { onMounted, type Ref, ref } from 'vue'
+import type { Ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { http } from '../utils/http.js'
 import { sleep } from '../utils/sleep.js'
 import { rustExecute } from './rustRepl.js'

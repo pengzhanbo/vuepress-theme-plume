@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { SearchResult } from 'minisearch'
+import type { Ref } from 'vue'
 import type { SearchBoxLocales, SearchOptions } from '../../shared/index.js'
 import {
   computedAsync,
@@ -10,14 +12,14 @@ import {
 } from '@vueuse/core'
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import Mark from 'mark.js/src/vanilla.js'
-import MiniSearch, { type SearchResult } from 'minisearch'
+import MiniSearch from 'minisearch'
 import {
   computed,
   markRaw,
   nextTick,
   onBeforeUnmount,
   onMounted,
-  type Ref,
+
   ref,
   shallowRef,
   toRef,

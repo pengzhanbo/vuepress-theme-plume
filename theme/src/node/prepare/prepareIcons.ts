@@ -1,11 +1,12 @@
 import type { App, Page } from 'vuepress'
 import type { NavItem, PlumeThemeHomeConfig, PlumeThemeLocaleOptions, Sidebar } from '../../shared/index.js'
+import type { FsCache } from '../utils/index.js'
 import { getIconContentCSS, getIconData } from '@iconify/utils'
 import { isArray, uniq } from '@pengzhanbo/utils'
 import { entries, isLinkAbsolute, isLinkHttp, isPlainObject } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
-import { createFsCache, type FsCache, interopDefault, logger, nanoid, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
+import { createFsCache, interopDefault, logger, nanoid, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
 
 interface IconData {
   className: string

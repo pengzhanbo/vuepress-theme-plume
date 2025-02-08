@@ -1,5 +1,6 @@
+import type { TemplateRendererContext } from 'vuepress/utils'
 import type { PlumeThemeLocaleOptions } from '../../shared/index.js'
-import { templateRenderer, type TemplateRendererContext } from 'vuepress/utils'
+import { templateRenderer } from 'vuepress/utils'
 import { getThemePackage } from '../utils/index.js'
 
 export function templateBuildRenderer(

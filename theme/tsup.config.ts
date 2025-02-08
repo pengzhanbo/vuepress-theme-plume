@@ -1,7 +1,8 @@
+import type { Options } from 'tsup'
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
-import { defineConfig, type Options } from 'tsup'
+import { defineConfig } from 'tsup'
 import { argv } from '../scripts/tsup-args.js'
 
 const sharedExternal: (string | RegExp)[] = [

@@ -27,7 +27,7 @@ const {
     <p v-if="sourceUrl">
       <span>{{ creationText }}</span>
       <VPLink :href="sourceUrl" :no-icon="creation === 'original'" data-allow-mismatch>
-        {{ sourceUrl }}
+        {{ decodeURIComponent(sourceUrl) }}
       </VPLink>
     </p>
     <p v-if="license">

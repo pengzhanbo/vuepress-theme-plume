@@ -3,6 +3,7 @@ import type { Component } from 'vue'
 import VPBlog from '@theme/Blog/VPBlog.vue'
 import VPHomeBanner from '@theme/Home/VPHomeBanner.vue'
 import VPHomeCustom from '@theme/Home/VPHomeCustom.vue'
+import VPHomeDocHero from '@theme/Home/VPHomeDocHero.vue'
 import VPHomeFeatures from '@theme/Home/VPHomeFeatures.vue'
 import VPHomeHero from '@theme/Home/VPHomeHero.vue'
 import VPHomeProfile from '@theme/Home/VPHomeProfile.vue'
@@ -31,6 +32,7 @@ function VPHomeBlog() {
 const components: Record<string, Component<any, any, any>> = {
   'banner': VPHomeBanner,
   'hero': VPHomeHero,
+  'doc-hero': VPHomeDocHero,
   'features': VPHomeFeatures,
   'text-image': VPHomeTextImage,
   'image-text': VPHomeTextImage,

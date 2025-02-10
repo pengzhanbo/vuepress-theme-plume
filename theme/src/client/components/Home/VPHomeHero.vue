@@ -172,8 +172,10 @@ useHomeHeroTintPlate(
 
 .action {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 16px 24px;
   align-items: center;
+  justify-content: center;
 }
 
 .action :deep(.vp-button) {

@@ -16,6 +16,10 @@ export interface PlumeThemeHero {
   actions: PlumeThemeHeroAction[]
 }
 
+export interface PlumeThemeDocHero extends PlumeThemeHero {
+  image?: ThemeImage
+}
+
 export interface PlumeThemeHeroAction {
   theme?: 'brand' | 'alt'
   text: string
@@ -27,7 +31,7 @@ export interface PlumeThemeHeroAction {
 }
 
 export interface PlumeHomeConfigBase {
-  type: 'banner' | 'hero' | 'text-image' | 'image-text' | 'features' | 'profile' | 'custom'
+  type: 'banner' | 'hero' | 'doc-hero' | 'text-image' | 'image-text' | 'features' | 'profile' | 'custom'
   full?: boolean
   backgroundImage?: string | { light: string, dark: string }
   backgroundAttachment?: 'fixed' | 'local'
@@ -58,6 +62,11 @@ export interface PlumeThemeHomeHero extends PlumeHomeConfigBase {
     | PlumeThemeHomeHeroTintPlate
     | { light?: PlumeThemeHomeHeroTintPlate, dark?: PlumeThemeHomeHeroTintPlate }
   filter?: string
+}
+
+export interface PlumeThemeHomeDocHero extends PlumeHomeConfigBase {
+  type: 'doc-hero'
+  hero: PlumeThemeDocHero
 }
 
 export interface PlumeThemeHomeTextImage extends PlumeHomeConfigBase {

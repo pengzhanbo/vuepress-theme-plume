@@ -1,5 +1,6 @@
+import type { BlogCategory } from './blog-category.js'
 import { computed } from 'vue'
-import { type BlogCategory, useBlogCategory } from './blog-category.js'
+import { useBlogCategory } from './blog-category.js'
 import { useLocalePostList } from './blog-data.js'
 import { useTags } from './blog-tags.js'
 import { useData } from './data.js'

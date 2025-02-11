@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-shikiji",
   "type": "module",
-  "version": "1.0.0-rc.128",
+  "version": "1.0.0-rc.130",
   "description": "The Plugin for VuePress 2 - shiki",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",
@@ -36,8 +36,8 @@
     "vuepress": "catalog:"
   },
   "dependencies": {
-    "@shikijs/transformers": "^1.26.1",
-    "@shikijs/twoslash": "^1.26.1",
+    "@shikijs/transformers": "^2.3.2",
+    "@shikijs/twoslash": "^2.3.2",
     "@types/hast": "^3.0.4",
     "@vuepress/helper": "catalog:",
     "@vueuse/core": "catalog:",
@@ -47,7 +47,7 @@
     "mdast-util-gfm": "^3.0.0",
     "mdast-util-to-hast": "^13.2.0",
     "nanoid": "catalog:",
-    "shiki": "^1.26.1",
+    "shiki": "^2.3.2",
     "twoslash": "^0.2.12",
     "twoslash-vue": "^0.2.12"
   },

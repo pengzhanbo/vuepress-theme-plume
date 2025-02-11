@@ -26,6 +26,7 @@ export async function compileScript(source: string, type: 'ts' | 'js'): Promise<
   const transform = await compiler.script()
   const res = await transform(source, {
     target: 'es2018',
+    platform: 'browser',
     format: 'cjs',
     loader: type === 'ts' ? 'ts' : 'js',
     sourcemap: false,

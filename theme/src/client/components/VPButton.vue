@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import VPIcon from '@theme/VPIcon.vue'
 import { computed, toRef } from 'vue'
 import { useRouter, withBase } from 'vuepress/client'
 import { useLink } from '../composables/index.js'
@@ -7,14 +8,17 @@ interface Props {
   tag?: string
   size?: 'medium' | 'big'
   theme?: 'brand' | 'alt' | 'sponsor'
-  text: string
+  text?: string
   href?: string
   target?: string
   rel?: string
+  icon?: string
+  suffixIcon?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   size: 'medium',
   theme: 'brand',
+  text: '',
   tag: undefined,
   href: undefined,
   target: undefined,
@@ -47,7 +51,11 @@ function linkTo(e: Event) {
     :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"
   >
-    {{ text }}
+    <span class="button-content">
+      <VPIcon v-if="icon" :name="icon" />
+      <slot><span>{{ text }}</span></slot>
+      <VPIcon v-if="suffixIcon" :name="suffixIcon" />
+    </span>
   </Component>
 </template>
 
@@ -135,5 +143,20 @@ function linkTo(e: Event) {
   color: var(--vp-button-sponsor-active-text);
   background-color: var(--vp-button-sponsor-active-bg);
   border-color: var(--vp-button-sponsor-active-border);
+}
+
+.vp-button .button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vp-button .button-content :deep(.vp-icon) {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.vp-button + .vp-button {
+  margin-left: 1em;
 }
 </style>

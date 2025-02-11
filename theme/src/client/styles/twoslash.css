@@ -2,14 +2,8 @@
 
 /* ===== Basic ===== */
 :root {
-  --twoslash-border-color: var(--vp-c-divider);
   --twoslash-jsdoc-color: #888;
-  --twoslash-underline-color: currentcolor;
-  --twoslash-popup-bg: var(--vp-c-neutral-inverse);
   --twoslash-popup-shadow: var(--vp-shadow-2);
-  --twoslash-matched-color: inherit;
-  --twoslash-unmatched-color: #888;
-  --twoslash-cursor-color: #8888;
   --twoslash-error-color: var(--vp-c-danger-1);
   --twoslash-error-bg: var(--vp-c-danger-soft);
   --twoslash-tag-color: var(--vp-c-tip-1);
@@ -20,6 +14,17 @@
   --twoslash-tag-annotate-bg: var(--vp-c-green-soft);
   --twoslash-highlighted-bg: var(--vp-c-gray-soft);
   --twoslash-highlighted-border: var(--vp-c-border);
+  --twoslash-popup-bg: var(--vp-c-bg, inherit);
+  --twoslash-popup-color: var(--vp-c-text-1);
+  --twoslash-docs-color: var(--vp-c-text-1);
+  --twoslash-docs-font: var(--vp-font-family-base);
+  --twoslash-code-font: var(--vp-font-family-mono);
+  --twoslash-code-size: var(--vp-code-font-size);
+  --twoslash-underline-color: var(--vp-c-text-3);
+  --twoslash-border-color: var(--vp-c-border);
+  --twoslash-cursor-color: var(--vp-c-brand-1);
+  --twoslash-matched-color: var(--vp-c-brand-1);
+  --twoslash-unmatched-color: var(--vp-c-text-2);
 }
 
 /* Respect people's wishes to not have animations */
@@ -39,74 +44,6 @@
   border-bottom: 1px dotted transparent;
   transition: border-color 0.3s;
   transition-timing-function: ease;
-}
-
-.twoslash .twoslash-popup-container {
-  position: absolute;
-  z-index: 10;
-  display: inline-flex;
-  flex-direction: column;
-  text-align: left;
-  pointer-events: none;
-  user-select: none;
-  background: var(--twoslash-popup-bg);
-  border: 1px solid var(--twoslash-border-color);
-  border-radius: 4px;
-  box-shadow: var(--twoslash-popup-shadow);
-  opacity: 0;
-  transition: opacity 0.3s;
-  transform: translateY(1.5em);
-}
-
-.twoslash .twoslash-query-presisted .twoslash-popup-container {
-  left: 50%;
-  z-index: 9;
-  transform: translate(-1.3em, 1.8em);
-}
-
-.twoslash .twoslash-hover:hover .twoslash-popup-container,
-.twoslash .twoslash-query-presisted .twoslash-popup-container {
-  pointer-events: auto;
-  opacity: 1;
-}
-
-.twoslash .twoslash-popup-container:hover {
-  user-select: auto;
-}
-
-.twoslash .twoslash-popup-arrow {
-  position: absolute;
-  top: -4px;
-  left: 1em;
-  width: 6px;
-  height: 6px;
-  pointer-events: none;
-  background: var(--twoslash-popup-bg);
-  border-top: 1px solid var(--twoslash-border-color);
-  border-right: 1px solid var(--twoslash-border-color);
-  transform: rotate(-45deg);
-}
-
-.twoslash .twoslash-popup-code,
-.twoslash .twoslash-popup-docs {
-  padding: 6px 8px !important;
-}
-
-.twoslash .twoslash-popup-docs {
-  font-family: sans-serif;
-  font-size: 0.8em;
-  color: var(--twoslash-jsdoc-color);
-  border-top: 1px solid var(--twoslash-border-color);
-}
-
-.twoslash .twoslash-popup-docs-tags {
-  display: flex;
-  flex-direction: column;
-}
-
-.twoslash .twoslash-popup-docs-tags,
-.twoslash .twoslash-popup-docs-tag-name {
-  margin-right: 0.5em;
 }
 
 /* ===== Error Line ===== */
@@ -240,20 +177,6 @@
 }
 
 /* ========== floating vue ================== */
-:root {
-  --twoslash-popup-bg: var(--vp-c-bg, inherit);
-  --twoslash-popup-color: var(--vp-c-text-1);
-  --twoslash-docs-color: var(--vp-c-text-1);
-  --twoslash-docs-font: var(--vp-font-family-base);
-  --twoslash-code-font: var(--vp-font-family-mono);
-  --twoslash-code-size: var(--vp-code-font-size);
-  --twoslash-underline-color: #8888;
-  --twoslash-border-color: var(--vp-c-border);
-  --twoslash-cursor-color: var(--vp-c-brand-1);
-  --twoslash-matched-color: var(--vp-c-brand-1);
-  --twoslash-unmatched-color: var(--vp-c-text-2);
-}
-
 .v-popper--theme-twoslash {
   z-index: calc(var(--vp-z-index-local-nav) - 1);
 }

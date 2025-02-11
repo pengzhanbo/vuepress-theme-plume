@@ -134,6 +134,8 @@ function onTabNavClick(index: number): void {
   border-radius: 6px 6px 0 0;
   box-shadow: inset 0 -1px var(--vp-code-tab-divider);
   transition: background-color var(--vp-t-color), box-shadow var(--vp-t-color);
+
+  scrollbar-width: thin;
 }
 
 @media print {

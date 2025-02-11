@@ -1,7 +1,7 @@
 import type { App } from 'vuepress'
 import type { PlumeThemeData, PlumeThemeLocaleOptions } from '../../shared/index.js'
 import { hasOwn, uniq } from '@pengzhanbo/utils'
-import { entries, fromEntries, getLocaleConfig, isPlainObject } from '@vuepress/helper'
+import { entries, fromEntries, getFullLocaleConfig, isPlainObject } from '@vuepress/helper'
 import { LOCALE_OPTIONS } from '../locales/index.js'
 import { THEME_NAME } from '../utils/index.js'
 
@@ -43,7 +43,7 @@ const FALLBACK_OPTIONS: PlumeThemeData = {
 export function resolveLocaleOptions(app: App, { locales, ...options }: PlumeThemeLocaleOptions): PlumeThemeLocaleOptions {
   const resolvedOptions: PlumeThemeLocaleOptions = {
     ...mergeLocaleOptions(FALLBACK_OPTIONS, options),
-    locales: getLocaleConfig({
+    locales: getFullLocaleConfig({
       app,
       name: THEME_NAME,
       default: LOCALE_OPTIONS,

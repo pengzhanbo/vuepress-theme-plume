@@ -131,7 +131,7 @@ function handleClick() {
 
 .vp-back-to-top svg circle {
   fill: none;
-  r: 16;
+  r: 16px;
   stroke: var(--vp-c-brand-2);
   stroke-dasharray: 0% 314.1593%;
   stroke-width: 4px;
@@ -157,7 +157,7 @@ function handleClick() {
   }
 
   .vp-back-to-top svg circle {
-    r: 22;
+    r: 22px;
   }
 }
 

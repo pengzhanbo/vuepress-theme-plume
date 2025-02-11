@@ -8,6 +8,7 @@ readingTime: false
 editLink: false
 contributors: false
 changelog: false
+search: false
 ---
 
 <!-- @include: ../CONTRIBUTING.md{2-} -->

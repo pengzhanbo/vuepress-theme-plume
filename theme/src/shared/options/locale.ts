@@ -78,6 +78,12 @@ export interface PlumeThemeLocaleData extends LocaleData {
   sidebar?: SidebarMulti
 
   /**
+   * 是否显示侧边栏滚动条
+   * @default true
+   */
+  sidebarScrollbar?: boolean
+
+  /**
    * 要显示的标题级别。
    *
    * 单个数字表示只显示该级别的标题。

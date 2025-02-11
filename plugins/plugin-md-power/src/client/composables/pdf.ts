@@ -93,8 +93,8 @@ export function usePDF(
 
   const isFirefoxWithPDFJS
     = !isMobileDevice
-    && /firefox/iu.test(userAgent)
-    && userAgent.split('rv:').length > 1
+      && /firefox/iu.test(userAgent)
+      && userAgent.split('rv:').length > 1
       ? Number.parseInt(userAgent.split('rv:')[1].split('.')[0], 10) > 18
       : false
 
@@ -103,9 +103,9 @@ export function usePDF(
     // As of Sept 2020 no mobile browsers properly support PDF embeds
     = !isMobileDevice
     // We're moving into the age of MIME-less browsers. They mostly all support PDF rendering without plugins.
-    && (isModernBrowser
-    // Modern versions of Firefox come bundled with PDFJS
-      || isFirefoxWithPDFJS)
+      && (isModernBrowser
+      // Modern versions of Firefox come bundled with PDFJS
+        || isFirefoxWithPDFJS)
 
   if (!url)
     return

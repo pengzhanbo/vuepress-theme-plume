@@ -7,7 +7,7 @@ export interface PlumeThemeHomeFrontmatter extends PlumeNormalFrontmatter, Omit<
   config?: PlumeThemeHomeConfig[]
 }
 
-export type PlumeThemeHomeConfig = PlumeThemeHomeBanner | PlumeThemeHomeTextImage | PlumeThemeHomeFeatures | PlumeThemeHomeProfile
+export type PlumeThemeHomeConfig = PlumeThemeHomeBanner | PlumeThemeHomeTextImage | PlumeThemeHomeFeatures | PlumeThemeHomeProfile | PlumeThemeHomeHero
 
 export interface PlumeThemeHero {
   name: string
@@ -22,6 +22,8 @@ export interface PlumeThemeHeroAction {
   link?: string
   target?: string
   rel?: string
+  icon?: string
+  suffixIcon?: string
 }
 
 export interface PlumeHomeConfigBase {

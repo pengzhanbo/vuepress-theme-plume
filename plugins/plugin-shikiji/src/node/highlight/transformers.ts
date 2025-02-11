@@ -22,14 +22,23 @@ import { attrsToLines, resolveWhitespacePosition } from '../utils/index.js'
 const decorationsRE = /^\/\/ @decorations:(.*)\n/
 
 export const baseTransformers: ShikiTransformer[] = [
-  transformerNotationDiff(),
+  transformerNotationDiff({
+    matchAlgorithm: 'v3',
+  }),
   transformerNotationFocus({
+    matchAlgorithm: 'v3',
     classActiveLine: 'has-focus',
     classActivePre: 'has-focused-lines',
   }),
-  transformerNotationHighlight(),
-  transformerNotationErrorLevel(),
-  transformerNotationWordHighlight(),
+  transformerNotationHighlight({
+    matchAlgorithm: 'v3',
+  }),
+  transformerNotationErrorLevel({
+    matchAlgorithm: 'v3',
+  }),
+  transformerNotationWordHighlight({
+    matchAlgorithm: 'v3',
+  }),
   {
     name: 'vuepress:add-class',
     pre(node) {

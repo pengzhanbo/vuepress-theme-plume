@@ -1,3 +1,4 @@
+import type { Ref } from 'vue'
 import type {
   PageDataRef,
   PageFrontmatterRef,
@@ -13,7 +14,7 @@ import type {
   PlumeThemePostFrontmatter,
 } from '../../shared/index.js'
 import type { ThemeLocaleDataRef } from './theme-data.js'
-import { computed, type Ref } from 'vue'
+import { computed } from 'vue'
 import {
   usePageData,
   usePageFrontmatter,

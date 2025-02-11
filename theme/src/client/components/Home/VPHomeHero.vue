@@ -68,6 +68,8 @@ useHomeHeroTintPlate(
               :href="action.link"
               :target="action.target"
               :rel="action.rel"
+              :icon="action.icon"
+              :suffix-icon="action.suffixIcon"
             />
           </div>
         </div>
@@ -168,8 +170,14 @@ useHomeHeroTintPlate(
   margin: 30px 0 0;
 }
 
+.action {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
 .action :deep(.vp-button) {
-  margin-right: 24px;
+  margin-left: 0;
 }
 
 .action :deep(.vp-button:last-of-type) {

@@ -1,6 +1,7 @@
+import type { Ref } from 'vue'
 import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
 import { useMediaQuery } from '@vueuse/core'
-import { computed, type Ref } from 'vue'
+import { computed } from 'vue'
 import { useLocalePostList } from './blog-data.js'
 import { useData } from './data.js'
 import { useRouteQuery } from './route-query.js'

@@ -1,9 +1,10 @@
 import type { App } from 'vuepress'
 import type { Page } from 'vuepress/core'
 import type { EncryptOptions, PlumeThemePageData } from '../../shared/index.js'
+import type { FsCache } from '../utils/index.js'
 import { isNumber, isString, random, toArray } from '@pengzhanbo/utils'
 import { genSaltSync, hashSync } from 'bcrypt-ts'
-import { createFsCache, type FsCache, hash, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
+import { createFsCache, hash, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
 
 export type EncryptConfig = readonly [
   boolean, // global

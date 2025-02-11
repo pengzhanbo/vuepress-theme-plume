@@ -1,16 +1,35 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 interface Props {
   text?: string
-  type?: 'info' | 'tip' | 'warning' | 'danger'
+  type?: string
+  color?: string
+  bgColor?: string
+  borderColor?: string
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   type: 'tip',
   text: undefined,
+  color: undefined,
+  bgColor: undefined,
+  borderColor: 'transparent',
+})
+
+const customStyle = computed(() => {
+  if (props.color || props.bgColor) {
+    return {
+      color: props.color,
+      backgroundColor: props.bgColor,
+      borderColor: props.borderColor,
+    }
+  }
+  return {}
 })
 </script>
 
 <template>
-  <span class="vp-badge" :class="type">
+  <span class="vp-badge" :class="type" :style="customStyle">
     <slot>{{ text }}</slot>
   </span>
 </template>

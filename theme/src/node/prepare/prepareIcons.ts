@@ -1,11 +1,12 @@
 import type { App, Page } from 'vuepress'
 import type { NavItem, PlumeThemeHomeConfig, PlumeThemeLocaleOptions, Sidebar } from '../../shared/index.js'
+import type { FsCache } from '../utils/index.js'
 import { getIconContentCSS, getIconData } from '@iconify/utils'
 import { isArray, uniq } from '@pengzhanbo/utils'
 import { entries, isLinkAbsolute, isLinkHttp, isPlainObject } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
-import { createFsCache, type FsCache, interopDefault, logger, nanoid, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
+import { createFsCache, interopDefault, logger, nanoid, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
 
 interface IconData {
   className: string
@@ -16,8 +17,8 @@ interface IconData {
 type CollectMap = Record<string, string[]>
 type IconDataMap = Record<string, IconData>
 
-const ICON_REGEXP = /<(?:VP)?(Icon|Card|LinkCard)([^>]*)>/g
-const ICON_NAME_REGEXP = /(?:name|icon)="([^"]+)"/
+const ICON_REGEXP = /<(?:VP)?(Icon|Card|LinkCard|Button)([^>]*)>/g
+const ICON_NAME_REGEXP = /(?:name|icon|suffix-icon)="([^"]+)"/
 const URL_CONTENT_REGEXP = /(url\([\s\S]+\))/
 const ICONIFY_NAME = /^[\w-]+:[\w-]+$/
 const JS_FILENAME = 'internal/iconify.js'
@@ -122,6 +123,14 @@ function getIconsWithPage(page: Page): string[] {
         for (const feature of config.features) {
           if (feature.icon && isIconify(feature.icon))
             list.push(feature.icon)
+        }
+      }
+      if (config.type === 'hero' && config.hero?.actions?.length) {
+        for (const action of config.hero.actions) {
+          if (action.icon && isIconify(action.icon))
+            list.push(action.icon)
+          if (action.suffixIcon && isIconify(action.suffixIcon))
+            list.push(action.suffixIcon)
         }
       }
     }

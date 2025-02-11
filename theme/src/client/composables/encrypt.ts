@@ -1,10 +1,11 @@
 import type { InjectionKey, Ref } from 'vue'
+import type { EncryptDataRule } from './encrypt-data.js'
 import { hasOwn, useSessionStorage } from '@vueuse/core'
 import { compare, genSaltSync } from 'bcrypt-ts/browser'
 import { computed, inject, provide } from 'vue'
 import { useRoute } from 'vuepress/client'
 import { useData } from './data.js'
-import { type EncryptDataRule, useEncryptData } from './encrypt-data.js'
+import { useEncryptData } from './encrypt-data.js'
 
 export interface Encrypt {
   hasPageEncrypt: Ref<boolean>

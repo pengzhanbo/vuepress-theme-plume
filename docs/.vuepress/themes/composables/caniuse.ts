@@ -1,5 +1,6 @@
+import type { Ref } from 'vue'
 import { onClickOutside, useDebounceFn, useEventListener, useLocalStorage } from '@vueuse/core'
-import { computed, onMounted, readonly, type Ref, ref, watch } from 'vue'
+import { computed, onMounted, readonly, ref, watch } from 'vue'
 
 interface Feature {
   label: string

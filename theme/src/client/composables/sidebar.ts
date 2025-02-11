@@ -146,7 +146,7 @@ function resolveSidebarItems(
       const { link, items, prefix, dir, ...args } = item
       const navLink = { ...args } as ResolvedSidebarItem
       if (link) {
-        navLink.link = normalizeLink(_prefix, link)
+        navLink.link = link.startsWith('---') ? link : normalizeLink(_prefix, link)
         const nav = resolveNavLink(navLink.link)
         navLink.icon = nav.icon || navLink.icon
       }

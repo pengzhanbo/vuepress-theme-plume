@@ -93,7 +93,8 @@ const { bulletin, showBulletin, enableBulletin, close } = useBulletinControl()
   mask:
     linear-gradient(var(--vp-c-bg) 0 100%) content-box,
     linear-gradient(var(--vp-c-bg) 0 100%);
-  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  mask-composite: subtract;
 }
 
 .vp-bulletin:where(.preset) .close {

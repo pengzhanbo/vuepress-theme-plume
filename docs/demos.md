@@ -10,6 +10,7 @@ draft: true
 externalLinkIcon: false
 contributors: false
 changelog: false
+search: false
 docs:
   -
     name: VuePress Plume
@@ -110,6 +111,13 @@ blog:
     url: https://hijh.top/
     repo: https://github.com/oh-yey
     preview: https://s.hijh.top/demos/blog-preview.png
+  -
+    name: 阿哲
+    desc: 强大自己是解决问题的唯一办法
+    logo: https://www.azhe.xin/blogger.png
+    url: https://www.azhe.xin/
+    repo: https://github.com/liuzhemax/blog
+    preview: /images/demos/azhe.jpg
 ---
 
 :::important

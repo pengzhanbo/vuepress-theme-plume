@@ -1,4 +1,5 @@
-import { type MaybeRef, onMounted, onUnmounted, ref, toValue, watch } from 'vue'
+import type { MaybeRef } from 'vue'
+import { onMounted, onUnmounted, ref, toValue, watch } from 'vue'
 
 const mimeTypes = {
   'audio/flac': ['flac', 'fla'],

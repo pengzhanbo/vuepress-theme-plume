@@ -1,7 +1,8 @@
+import type { FSWatcher } from 'chokidar'
 import type { App } from 'vuepress'
 import fs from 'node:fs'
 import path from 'node:path'
-import { type FSWatcher, watch } from 'chokidar'
+import { watch } from 'chokidar'
 import { compileCode, parseEmbedCode } from './normal.js'
 import { readFileSync } from './supports/file.js'
 
@@ -80,9 +81,11 @@ export function demoWatcher(app: App, watchers: any[]) {
     watcher!.unwatch(path)
   })
 
-  watchers.push(() => {
-    watcher!.close()
-    watcher = null
+  watchers.push({
+    close: () => {
+      watcher!.close()
+      watcher = null
+    },
   })
 }
 

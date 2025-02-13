@@ -32,6 +32,13 @@ docs:
     logo: https://static.ohmymc.com/img/minecraft-154749_1280.png?max_width=1920&max_height=1920
     url: https://ohmymc.com/
     preview: https://static.ohmymc.com/img/20241228225159139.png?max_width=1920&max_height=1920
+  -
+    name: NcatBotDocs
+    desc: NcatBot，一个 QQ 机器人框架项目的使用文档。
+    logo: https://docs.ncatbot.xyz/images/logo.png
+    url: https://docs.ncatbot.xyz
+    repo: https://github.com/Isaaczhr/NcatBotDocs
+    preview: https://docs.ncatbot.xyz/images/preview.jpg
 
 blog:
   -

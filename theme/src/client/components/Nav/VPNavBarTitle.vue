@@ -11,7 +11,7 @@ const routeLocale = useRouteLocale()
 
 <template>
   <div class="vp-navbar-title" :class="{ 'has-sidebar': hasSidebar }">
-    <VPLink class="title" :href="theme.home ?? routeLocale">
+    <VPLink class="title" :href="theme.home ?? routeLocale" no-icon>
       <slot name="nav-bar-title-before" />
 
       <VPImage

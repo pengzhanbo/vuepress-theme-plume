@@ -1,12 +1,13 @@
 import type { Page } from 'vuepress/core'
-import type { PlumeThemeLocaleOptions, PlumeThemePageData } from '../../shared/index.js'
+import type { PlumeThemePageData } from '../../shared/index.js'
+import { getThemeConfig } from '../loadConfig/index.js'
 import { autoCategory } from './autoCategory.js'
 import { enableBulletin } from './pageBulletin.js'
 
 export function extendsPageData(
   page: Page<PlumeThemePageData>,
-  localeOptions: PlumeThemeLocaleOptions,
 ) {
+  const { localeOptions } = getThemeConfig()
   cleanPageData(page)
   autoCategory(page, localeOptions)
   enableBulletin(page, localeOptions)

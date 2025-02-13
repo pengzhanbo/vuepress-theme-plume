@@ -16,5 +16,5 @@ export function getPackage() {
 }
 
 export function getThemePackage() {
-  return readJsonFileAsync(resolve('.../../package.json'))
+  return readJsonFileAsync(resolve('../../package.json'))
 }

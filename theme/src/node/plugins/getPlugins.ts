@@ -1,7 +1,7 @@
 import type { SeoPluginOptions } from '@vuepress/plugin-seo'
 import type { SitemapPluginOptions } from '@vuepress/plugin-sitemap'
 import type { App, PluginConfig } from 'vuepress/core'
-import type { PlumeThemeLocaleOptions, PlumeThemePluginOptions } from '../../shared/index.js'
+import type { PlumeThemePluginOptions } from '../../shared/index.js'
 import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
 import { fontsPlugin } from '@vuepress-plume/plugin-fonts'
 import { searchPlugin } from '@vuepress-plume/plugin-search'
@@ -23,6 +23,7 @@ import { sitemapPlugin } from '@vuepress/plugin-sitemap'
 import { watermarkPlugin } from '@vuepress/plugin-watermark'
 import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
+import { getThemeConfig } from '../loadConfig/index.js'
 
 export interface SetupPluginOptions {
   app: App
@@ -31,16 +32,14 @@ export interface SetupPluginOptions {
   cache?: false | 'memory' | 'filesystem'
 }
 
-export function getPlugins(
-  options: PlumeThemeLocaleOptions,
-  {
-    app,
-    pluginOptions,
-    hostname,
-    cache,
-  }: SetupPluginOptions,
-): PluginConfig {
+export function getPlugins({
+  app,
+  pluginOptions,
+  hostname,
+  cache,
+}: SetupPluginOptions): PluginConfig {
   const isProd = app.env.isBuild
+  const { localeOptions: options } = getThemeConfig()
 
   const plugins: PluginConfig = [
     fontsPlugin(),

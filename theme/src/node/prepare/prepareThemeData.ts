@@ -1,12 +1,13 @@
 import type { FSWatcher } from 'chokidar'
 import type { App } from 'vuepress'
-import type { PlumeThemeData, PlumeThemeLocaleOptions, PlumeThemePluginOptions } from '../../shared/index.js'
+import type { PlumeThemeData, PlumeThemePluginOptions } from '../../shared/index.js'
 import fs from 'node:fs/promises'
 import process from 'node:process'
 import { watch } from 'chokidar'
 import { resolveImageSize } from 'vuepress-plugin-md-power'
 import { hash } from 'vuepress/utils'
 import { resolveThemeData } from '../config/resolveThemeData.js'
+import { getThemeConfig } from '../loadConfig/index.js'
 import { perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
 
 let bulletinFileWatcher: FSWatcher | null = null
@@ -16,10 +17,10 @@ process.on('exit', () => bulletinFileWatcher?.close())
 
 export async function prepareThemeData(
   app: App,
-  localeOptions: PlumeThemeLocaleOptions,
   pluginOptions: PlumeThemePluginOptions,
 ): Promise<void> {
   perfMark('prepare:theme-data')
+  const { localeOptions } = getThemeConfig()
   const resolvedThemeData = resolveThemeData(app, localeOptions)
 
   await resolveProfileImage(app, resolvedThemeData, pluginOptions)

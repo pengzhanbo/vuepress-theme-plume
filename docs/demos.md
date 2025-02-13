@@ -122,6 +122,7 @@ blog:
     name: jindongjie
     desc: Keep.It.Simple.Stupid
     logo: https://ar0m.com/logo/aptrue-sience-logo.png
+    url: https://ar0m.com
     repo: https://github.com/jindongjie/blog-vuepress-2025
     preview: /image/demos/jindongjie.png
 ---

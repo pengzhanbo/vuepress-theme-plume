@@ -5,6 +5,7 @@ import type {
   LineNumberOptions,
   PreWrapperOptions,
 } from './types.js'
+import { addViteOptimizeDepsInclude } from '@vuepress/helper'
 import { isPlainObject } from 'vuepress/shared'
 import { colors } from 'vuepress/utils'
 import { copyCodeButtonPlugin } from './copy-code-button/index.js'
@@ -94,11 +95,21 @@ export function shikiPlugin({
     extendsMarkdownOptions: (options) => {
       // 注入 floating-vue 后，需要关闭 代码块 的 v-pre 配置
       if ((options as any).vPre !== false) {
-        const vPre = isPlainObject((options as any).vPre) ? (options as any).vPre : { block: true }
+        const vPre = isPlainObject(options.vPre) ? options.vPre : { block: true }
         if (vPre.block) {
-          (options as any).vPre ??= {}
+          options.vPre ??= {}
           ;(options as any).vPre.block = false
         }
+      }
+    },
+
+    extendsBundlerOptions: (bundlerOptions, app) => {
+      if (options.twoslash) {
+        addViteOptimizeDepsInclude(
+          bundlerOptions,
+          app,
+          ['floating-vue'],
+        )
       }
     },
   }

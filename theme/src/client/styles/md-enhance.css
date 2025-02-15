@@ -195,18 +195,19 @@
 
 /* --------------------- Markdown Enhance: Footnote -------------------------------- */
 .vp-doc .footnotes-sep {
-  display: none;
+  /* display: none; */
+  margin-top: 32px;
 }
 
 .vp-doc .footnotes {
   position: relative;
   padding: 12px 0 12px 16px;
-  margin-top: 32px;
+  margin-top: 16px;
   font-size: 14px;
 
   background-color: var(--vp-c-bg-safe);
   border-radius: 6px;
-  opacity: 0.85;
+  opacity: 0.7;
   transition: background var(--vp-t-color);
 }
 

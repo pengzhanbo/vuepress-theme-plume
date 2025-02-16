@@ -37,7 +37,7 @@ export function markdownPowerPlugin(
         addViteOptimizeDepsInclude(
           bundlerOptions,
           app,
-          ['artplayer', 'dashjs', 'hls.js', 'mpegts.js'],
+          ['artplayer', 'dashjs', 'hls.js', 'mpegts.js/dist/mpegts.js'],
         )
       }
     },

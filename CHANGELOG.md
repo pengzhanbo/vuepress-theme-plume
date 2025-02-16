@@ -1,3 +1,24 @@
+# [1.0.0-rc.131](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.130...v1.0.0-rc.131) (2025-02-16)
+
+
+### Bug Fixes
+
+* **theme:** incorrect home hero actions layout in mobile ([#464](https://github.com/pengzhanbo/vuepress-theme-plume/issues/464)) ([29f9b87](https://github.com/pengzhanbo/vuepress-theme-plume/commit/29f9b871287888309378991ad708f1ee6d0aff1e))
+
+
+### Features
+
+* **theme:** add `doc-hero` support for custom home ([#462](https://github.com/pengzhanbo/vuepress-theme-plume/issues/462)) ([6442ffa](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6442ffa25a0299eaca4b6786e0644a50d33887a8))
+
+
+### Performance Improvements
+
+* add vite optimize deps ([#467](https://github.com/pengzhanbo/vuepress-theme-plume/issues/467)) ([b13f172](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b13f1725f182a8d19f3718425892dcd764b51d89))
+* **theme:** improve footnote styles ([#469](https://github.com/pengzhanbo/vuepress-theme-plume/issues/469)) ([e0ae83d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e0ae83d321af275eaa3f33fbe462f60a7b7cdbde))
+* update deps to latest ([9a2e088](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9a2e0881195a06d229ca2ba1540014400897afe7))
+
+
+
 # [1.0.0-rc.130](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.129...v1.0.0-rc.130) (2025-02-08)
 
 

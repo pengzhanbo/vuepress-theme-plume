@@ -3,8 +3,6 @@ import type {
   AutoFrontmatterArray,
   AutoFrontmatterMarkdownFile,
   AutoFrontmatterObject,
-  AutoFrontmatterOptions,
-  PlumeThemeLocaleOptions,
 } from '../../shared/index.js'
 import { isArray, isEmptyObject, promiseParallel, toArray } from '@pengzhanbo/utils'
 import chokidar from 'chokidar'
@@ -34,10 +32,11 @@ export interface Generate {
 
 let generate: Generate | null = null
 
-export function initAutoFrontmatter(
-  localeOptions: PlumeThemeLocaleOptions,
-  autoFrontmatter: AutoFrontmatterOptions = {},
-) {
+export function initAutoFrontmatter() {
+  const { localeOptions, autoFrontmatter = {} } = getThemeConfig()
+  if (autoFrontmatter === false)
+    return
+
   const { include, exclude, frontmatter = {} } = resolveOptions(localeOptions, autoFrontmatter)
 
   const globFilter = createFilter(include, exclude, { resolve: false })

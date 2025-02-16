@@ -64,8 +64,8 @@
   "peerDependencies": {
     "@iconify/json": "^2",
     "mathjax-full": "^3.2.2",
-    "sass": "^1.81.0",
-    "sass-embedded": "^1.81.0",
+    "sass": "^1.83.0",
+    "sass-embedded": "^1.83.0",
     "sass-loader": "^16.0.3",
     "swiper": "^11.0.0",
     "vuepress": "catalog:"
@@ -131,7 +131,7 @@
   },
   "devDependencies": {
     "@iconify/json": "catalog:",
-    "swiper": "^11.2.2",
+    "swiper": "^11.2.4",
     "vue-router": "^4.5.0"
   }
 }

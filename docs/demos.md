@@ -132,6 +132,13 @@ blog:
     url: https://ar0m.com
     repo: https://github.com/jindongjie/blog-vuepress-2025
     preview: /images/demos/jindongjie.jpg
+  -
+    name: 艺述论
+    desc: 一枚喜受艺术的程序员's blog
+    logo: https://yishulun.com/avatar.png
+    url: https://yishulun.com
+    repo: https://github.com/rixingyike/rixingyike.github.io
+    preview: /images/demos/yishulun.com.jpg
 ---
 
 :::important

@@ -10,9 +10,6 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'tip',
-  text: undefined,
-  color: undefined,
-  bgColor: undefined,
   borderColor: 'transparent',
 })
 

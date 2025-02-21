@@ -2,8 +2,12 @@
 import type { PlumeThemeHomeDocHero } from '../../../shared/index.js'
 import VPButton from '@theme/VPButton.vue'
 import VPImage from '@theme/VPImage.vue'
+import { computed } from 'vue'
 
-defineProps<PlumeThemeHomeDocHero>()
+const props = defineProps<PlumeThemeHomeDocHero>()
+
+const hero = computed(() => props.hero ?? {})
+const actions = computed(() => hero.value.actions ?? [])
 </script>
 
 <template>
@@ -16,10 +20,10 @@ defineProps<PlumeThemeHomeDocHero>()
         </h1>
         <p v-if="hero.tagline" class="tagline" v-html="hero.tagline" />
 
-        <div v-if="hero.actions.length" class="actions">
+        <div v-if="actions.length" class="actions">
           <div class="action">
             <VPButton
-              v-for="action in hero.actions"
+              v-for="action in actions"
               :key="action.link"
               tag="a"
               size="medium"

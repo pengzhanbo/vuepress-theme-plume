@@ -678,13 +678,18 @@
  * mark
  * -------------------------------------------------------------------------- */
 :root {
-  --vp-mark-color: var(--vp-c-brand-3);
-  --vp-mark-color-soft: var(--vp-c-brand-soft);
-}
-
-[data-theme="dark"] {
-  --vp-mark-color: var(--vp-c-brand-3);
-  --vp-mark-color-soft: var(--vp-c-brand-soft);
+  --vp-mark-text: marktext;
+  --vp-mark-bg: "";
+  --vp-mark-bg-image:
+    linear-gradient(
+      to bottom,
+      transparent 25%,
+      var(--vp-c-brand-soft) 30%,
+      var(--vp-c-brand-soft) 50%,
+      var(--vp-c-brand-3) 75%,
+      var(--vp-c-brand-3) 90%,
+      var(--vp-c-brand-soft) 100%
+    );
 }
 
 /**

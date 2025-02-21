@@ -82,6 +82,11 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('VPDemoNormal', VPDemoNormal)`)
   }
 
+  if (options.abbr) {
+    imports.add(`import Abbreviation from '${CLIENT_FOLDER}components/Abbreviation.vue'`)
+    enhances.add(`app.component('Abbreviation', Abbreviation)`)
+  }
+
   return app.writeTemp(
     'md-power/config.js',
     `\

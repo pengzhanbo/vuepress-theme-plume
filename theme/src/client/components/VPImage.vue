@@ -1,11 +1,25 @@
 <script lang="ts" setup>
 import type { ThemeImage } from '../../shared/index.js'
+import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
+import { numToUnit } from '../utils/index.js'
 
-defineProps<{
+const props = defineProps<{
   image: ThemeImage
   alt?: string
 }>()
+
+const styles = computed(() => {
+  const image = props.image
+  if (!image || typeof image === 'string')
+    return ''
+  if (!image.width || !image.height)
+    return ''
+  return {
+    width: numToUnit(image.width),
+    height: numToUnit(image.height),
+  }
+})
 </script>
 
 <script lang="ts">
@@ -19,6 +33,7 @@ export default {
     <img
       v-if="typeof image === 'string' || 'src' in image"
       class="vp-image"
+      :style="styles"
       v-bind="typeof image === 'string' ? $attrs : { ...image, ...$attrs }"
       :src="withBase(typeof image === 'string' ? image : image.src)"
       :alt="alt ?? (typeof image === 'string' ? '' : image.alt || '')"

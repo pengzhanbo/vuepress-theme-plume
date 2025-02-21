@@ -9,8 +9,8 @@ export type LiteralUnion<Union extends Base, Base = string> =
 
 export type ThemeImage =
   | string
-  | { src: string, alt?: string }
-  | { dark: string, light: string, alt?: string }
+  | { src: string, alt?: string, width: string | number, height: string | number }
+  | { dark: string, light: string, alt?: string, width: string | number, height: string | number }
 
 export type ThemeIcon = string | { svg: string }
 

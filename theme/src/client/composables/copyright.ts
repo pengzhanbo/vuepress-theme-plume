@@ -52,8 +52,14 @@ export function useCopyright(copyright: ComputedRef<CopyrightFrontmatter>) {
   const author = computed(() => resolveAuthor(copyright.value.author, creation.value, contributors.value))
 
   const sourceUrl = computed(() => {
-    if (creation.value === 'original')
-      return __VUEPRESS_SSR__ ? route.fullPath : location.href.split('#')[0]
+    if (creation.value === 'original') {
+      const url = new URL(__VUEPRESS_SSR__ ? route.fullPath : location.href.split('#')[0])
+      // When using giscus for comments, the redirect link after
+      // logging in contains additional parameters.
+      url.searchParams.delete('giscus')
+
+      return url.toString()
+    }
 
     return copyright.value.source
   })

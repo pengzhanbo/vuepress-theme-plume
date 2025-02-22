@@ -2,9 +2,9 @@ import type { FSWatcher } from 'chokidar'
 import type { App } from 'vuepress'
 import type { AutoFrontmatterOptions, EncryptOptions, PlumeThemeLocaleOptions } from '../../shared/index.js'
 import type { ThemeConfig } from '../types.js'
+import process from 'node:process'
 import { deepMerge } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
-import { path } from 'vuepress/utils'
 import { resolveLocaleOptions } from '../config/resolveLocaleOptions.js'
 import { perfLog, perfMark } from '../utils/index.js'
 import { compiler } from './compiler.js'
@@ -86,7 +86,7 @@ export function watchConfigFile(app: App, watchers: any[], onChange: ChangeEvent
 
   const watcher = watch(loader.configFile, {
     ignoreInitial: true,
-    cwd: path.join(path.dirname(loader.configFile), '../'),
+    cwd: process.cwd(),
   })
 
   addDependencies(watcher)

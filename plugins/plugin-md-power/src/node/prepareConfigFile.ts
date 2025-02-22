@@ -82,6 +82,11 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('VPDemoNormal', VPDemoNormal)`)
   }
 
+  if (options.annotation) {
+    imports.add(`import Annotation from '${CLIENT_FOLDER}components/Annotation.vue'`)
+    enhances.add(`app.component('Annotation', Annotation)`)
+  }
+
   return app.writeTemp(
     'md-power/config.js',
     `\

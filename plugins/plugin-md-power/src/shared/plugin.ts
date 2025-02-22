@@ -9,6 +9,11 @@ import type { ReplOptions } from './repl.js'
 
 export interface MarkdownPowerPluginOptions {
   /**
+   * 是否启用注释
+   * @default false
+   */
+  annotation?: boolean
+  /**
    * 配置代码块分组
    */
   codeTabs?: CodeTabsOptions

@@ -25,5 +25,7 @@
   "no-hard-tabs": {
     "spaces_per_tab": 2,
     "ignore_code_languages": ["xml"]
-  }
+  },
+  "link-image-reference-definitions": false,
+  "no-bare-urls": false
 }

@@ -36,3 +36,12 @@ export function isActive(
 export function normalize(path: string): string {
   return decodeURI(path).replace(HASH_RE, '').replace(EXT_RE, '')
 }
+
+export function numToUnit(value?: string | number): string {
+  if (typeof value === 'undefined')
+    return ''
+  if (String(Number(value)) === String(value)) {
+    return `${value}px`
+  }
+  return value as string
+}

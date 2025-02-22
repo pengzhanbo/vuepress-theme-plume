@@ -26,6 +26,7 @@ export const theme: Theme = plumeTheme({
     },
     markdownPower: {
       annotation: true,
+      abbr: true,
       imageSize: 'all',
       pdf: true,
       caniuse: true,

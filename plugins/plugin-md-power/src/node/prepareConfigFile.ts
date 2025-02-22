@@ -86,7 +86,7 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     imports.add(`import Annotation from '${CLIENT_FOLDER}components/Annotation.vue'`)
     enhances.add(`app.component('Annotation', Annotation)`)
   }
-  
+
   if (options.abbr) {
     imports.add(`import Abbreviation from '${CLIENT_FOLDER}components/Abbreviation.vue'`)
     enhances.add(`app.component('Abbreviation', Abbreviation)`)

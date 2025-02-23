@@ -2,68 +2,78 @@
  * Mark
  * -------------------------------------------------------------------------- */
 mark {
+  --vp-mark-text: currentcolor;
+  --vp-mark-bg: transparent;
+  --vp-mark-bg-shift: 0.55lh;
+  --vp-mark-linear-color: var(--vp-c-brand-3);
+  --vp-mark-bg-image: linear-gradient(to right, var(--vp-mark-linear-color) 50%, transparent 50%);
+
   padding: 2px;
   color: var(--vp-mark-text);
-  background-color: var(--vp-mark-bg, mark);
+  background-color: var(--vp-mark-bg);
   background-image: var(--vp-mark-bg-image);
-}
-
-mark:where([class]) {
-  --vp-mark-bg: mark;
-  --vp-mark-bg-image: none;
-
-  border-radius: 3px;
-}
-
-mark:where(:not([class])) {
-  --vp-mark-text: currentcolor;
-
   background-repeat: no-repeat;
-  background-position: 0 1em;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
+  background-position: 100% var(--vp-mark-bg-shift);
+  background-size: 200%;
   animation: mark-highlight 1.5s 0.5s forwards;
 }
 
-mark:where(.note, .tip, .info, .warning, .danger, .caution, .important) {
-  --vp-mark-text: marktext;
-  --vp-mark-bg-image: none;
-}
-
 mark:where(.note) {
-  --vp-mark-bg: mark;
+  --vp-mark-linear-color: #ff0;
 }
 
 mark:where(.info) {
-  --vp-mark-bg: var(--vp-c-default-1);
+  --vp-mark-linear-color: var(--vp-c-default-1);
 }
 
 mark:where(.tip) {
-  --vp-mark-bg: #3c3;
+  --vp-mark-linear-color: #39ff14;
 }
 
 mark:where(.warning) {
-  --vp-mark-bg: #fc0;
+  --vp-mark-linear-color: #fc0;
 }
 
 mark:where(.caution, .danger) {
-  --vp-mark-bg: #f99;
+  --vp-mark-linear-color: #f99;
 }
 
 mark:where(.important) {
-  --vp-mark-bg: #ccf;
+  --vp-mark-linear-color: #ccf;
 }
 
-:not(h1,h2,h3,h4,h5,h6) mark:where(:not([class])) {
-  font-weight: bold;
+:not(h1,h2,h3,h4,h5,h6) mark {
+  font-weight: 500;
+}
+
+[data-theme="dark"] mark:where(.note) {
+  --vp-mark-linear-color: #660;
+}
+
+[data-theme="dark"] mark:where(.tip) {
+  --vp-mark-linear-color: #063;
+}
+
+[data-theme="dark"] mark:where(.warning) {
+  --vp-mark-linear-color: #c60;
+}
+
+[data-theme="dark"] mark:where(.caution, .danger) {
+  --vp-mark-linear-color: #c66;
+}
+
+[data-theme="dark"] mark:where(.important) {
+  --vp-mark-linear-color: #66c;
 }
 
 @keyframes mark-highlight {
   0% {
-    background-position: 0 1em;
+    color: inherit;
+    background-position: 100% var(--vp-mark-bg-shift);
   }
 
   100% {
-    background-position: 0 0;
+    color: currentcolor;
+    background-position: 0 var(--vp-mark-bg-shift);
   }
 }

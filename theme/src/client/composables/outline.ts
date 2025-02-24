@@ -1,10 +1,9 @@
 import type { InjectionKey, Ref } from 'vue'
 import type { Router } from 'vuepress/client'
 import type { ThemeOutline } from '../../shared/index.js'
-import { onContentUpdated } from '@vuepress-plume/plugin-content-update/client'
 import { useThrottleFn, watchDebounced } from '@vueuse/core'
 import { inject, onMounted, onUnmounted, onUpdated, provide, ref } from 'vue'
-import { useRouter } from 'vuepress/client'
+import { onContentUpdated, useRouter } from 'vuepress/client'
 import { useAside } from './aside.js'
 import { useData } from './data.js'
 

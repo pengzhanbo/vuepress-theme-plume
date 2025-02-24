@@ -2,7 +2,6 @@ import type { SeoPluginOptions } from '@vuepress/plugin-seo'
 import type { SitemapPluginOptions } from '@vuepress/plugin-sitemap'
 import type { App, PluginConfig } from 'vuepress/core'
 import type { PlumeThemePluginOptions } from '../../shared/index.js'
-import { contentUpdatePlugin } from '@vuepress-plume/plugin-content-update'
 import { fontsPlugin } from '@vuepress-plume/plugin-fonts'
 import { searchPlugin } from '@vuepress-plume/plugin-search'
 import { shikiPlugin } from '@vuepress-plume/plugin-shikiji'
@@ -43,7 +42,6 @@ export function getPlugins({
 
   const plugins: PluginConfig = [
     fontsPlugin(),
-    contentUpdatePlugin(),
     markdownHintPlugin({ hint: true, alert: true, injectStyles: false }),
   ]
 

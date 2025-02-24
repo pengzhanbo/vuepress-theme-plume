@@ -139,6 +139,13 @@ blog:
     url: https://yishulun.com
     repo: https://github.com/rixingyike/rixingyike.github.io
     preview: /images/demos/yishulun.com.jpg
+  -
+    name: 菲兹克斯喵
+    desc: 一名物理系学生的笔记和生活
+    logo: https://physnya.top/images/Physics_nya.jpg
+    url: https://physnya.top
+    repo: https://github.com/physnya/blog
+    preview: https://physnya.top/images/preview.png
 ---
 
 :::important

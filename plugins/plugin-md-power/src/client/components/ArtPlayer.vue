@@ -77,9 +77,9 @@ function initCustomType(type: string): CustomType {
 
   if ((type === 'mpd' || type === 'dash') && installed.dashjs) {
     customType[type] = async function (video, url, art) {
-      const dashjs = (await import(/* webpackChunkName: "dashjs" */ 'dashjs')).default
-      if (dashjs.supportsMediaSource()) {
-        const dashPlayer = dashjs.MediaPlayer().create()
+      const { supportsMediaSource, MediaPlayer } = (await import(/* webpackChunkName: "dashjs" */ 'dashjs'))
+      if (supportsMediaSource()) {
+        const dashPlayer = MediaPlayer().create()
         dashPlayer.initialize(video, url, props.autoplay, 0)
         art.on('destroy', () => dashPlayer.destroy())
       }

@@ -690,7 +690,8 @@ svg {
 
 .titles :deep(mark) {
   padding: 0 2px;
-  color: var(--vp-mini-search-highlight-text);
+  font-weight: normal;
+  color: var(--vp-mini-search-highlight-text) !important;
   background-color: var(--vp-mini-search-highlight-bg);
   background-image: none;
   border-radius: 2px;

@@ -1,3 +1,12 @@
+# [1.0.0-rc.133](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.132...v1.0.0-rc.133) (2025-02-24)
+
+
+### Bug Fixes
+
+* **plugin-search:** incorrect search result keyword highlight styles ([8c7c95a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8c7c95a4100ae826ea365cbaaf5ad0ac1077f6ba))
+
+
+
 # [1.0.0-rc.132](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.131...v1.0.0-rc.132) (2025-02-24)
 
 

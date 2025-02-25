@@ -165,7 +165,7 @@ export const annotationPlugin: PluginSimple = (md) => {
 
     return `<Annotation label="${label}" :total="${data.sources.length}">${
       data.sources.map((source, i) => {
-        const annotation = data.rendered[i] ??= md.render(source, {})
+        const annotation = data.rendered[i] ??= md.render(source, env)
         return `<template #item-${i}>${annotation}</template>`
       }).join('')}</Annotation>`
   }

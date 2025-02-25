@@ -174,8 +174,8 @@ export const abbrPlugin: PluginSimple = (md) => {
 
   md.core.ruler.after('linkify', 'abbr_replace', abbrReplace)
 
-  md.renderer.rules.abbreviation = (tokens, idx) => {
+  md.renderer.rules.abbreviation = (tokens, idx, _, env) => {
     const { content, info } = tokens[idx]
-    return `<Abbreviation>${content}${info ? `<template #tooltip>${md.renderInline(info)}</template>` : ''}</Abbreviation>`
+    return `<Abbreviation>${content}${info ? `<template #tooltip>${md.renderInline(info, env)}</template>` : ''}</Abbreviation>`
   }
 }

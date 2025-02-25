@@ -176,9 +176,6 @@ export const abbrPlugin: PluginSimple = (md) => {
 
   md.renderer.rules.abbreviation = (tokens, idx) => {
     const { content, info } = tokens[idx]
-    return `<Abbreviation>
-      ${content}
-      ${info ? `<template #tooltip>${md.renderInline(info)}</template>` : ''}
-    </Abbreviation>`
+    return `<Abbreviation>${content}${info ? `<template #tooltip>${md.renderInline(info)}</template>` : ''}</Abbreviation>`
   }
 }

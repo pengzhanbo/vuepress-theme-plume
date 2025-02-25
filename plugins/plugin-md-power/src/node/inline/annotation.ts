@@ -8,12 +8,14 @@ import type Token from 'markdown-it/lib/token.mjs'
 interface AnnotationToken extends Token {
   meta: {
     label: string
-    annotations: string[]
   }
 }
 
 interface AnnotationEnv extends Record<string, unknown> {
-  annotations: Record<string, string[]>
+  annotations: Record<string, {
+    sources: string[]
+    rendered: string[]
+  }>
 }
 
 interface AnnotationStateBlock extends StateBlock {
@@ -55,7 +57,7 @@ const annotationDef: RuleBlock = (
   }
 
   if (
-    // empty footnote label
+    // empty annotation label
     pos === start + 2
     || pos + 1 >= max
     || state.src.charAt(++pos) !== ':'
@@ -68,16 +70,30 @@ const annotationDef: RuleBlock = (
 
   pos++
 
-  state.env.annotations ??= {}
-
+  const data = state.env.annotations ??= {}
   const label = state.src.slice(start + 2, pos - 2)
-  const annotation = state.src.slice(pos, max).trim()
 
-  state.env.annotations[`:${label}`] ??= []
+  let annotation = state.src.slice(pos, max).trim()
 
-  state.env.annotations[`:${label}`].push(annotation)
+  // 处理多行注释
+  let nextLine = startLine + 1
+  while (nextLine < endLine) {
+    const nextStart = state.bMarks[nextLine] + state.tShift[nextLine]
+    const nextMax = state.eMarks[nextLine]
+    const source = state.src.slice(nextStart, nextMax).trim()
 
-  state.line += 1
+    // 行不为空，且行缩进小于块缩进，则跳出
+    if (state.sCount[nextLine] < state.blkIndent + 2 && source !== '')
+      break
+
+    annotation += `\n${source}`
+    nextLine++
+  }
+
+  const current = data[`:${label}`] ??= { sources: [], rendered: [] }
+  current.sources.push(annotation)
+
+  state.line = nextLine
 
   return true
 }
@@ -120,7 +136,7 @@ const annotationRef: RuleInline = (
   pos++
 
   const label = state.src.slice(start + 2, pos - 1)
-  const annotations = state.env.annotations?.[`:${label}`] ?? []
+  const annotations = state.env.annotations?.[`:${label}`]?.sources ?? []
 
   if (annotations.length === 0)
     return false
@@ -128,10 +144,7 @@ const annotationRef: RuleInline = (
   if (!silent) {
     const refToken = state.push('annotation_ref', '', 0)
 
-    refToken.meta = {
-      label,
-      annotations,
-    } as AnnotationToken['meta']
+    refToken.meta = { label } as AnnotationToken['meta']
   }
 
   state.pos = pos
@@ -144,13 +157,17 @@ export const annotationPlugin: PluginSimple = (md) => {
   md.renderer.rules.annotation_ref = (
     tokens: AnnotationToken[],
     idx: number,
+    _,
+    env: AnnotationEnv,
   ) => {
-    const { label = '', annotations = [] } = tokens[idx].meta ?? {}
-    return `<Annotation label="${label}" :total="${annotations.length}">
-      ${annotations.map((annotation, i) => {
-        return `<template #item-${i}>${md.renderInline(annotation)}</template>`
-      }).join('\n')}
-    </Annotation>`
+    const label = tokens[idx].meta.label
+    const data = env.annotations[`:${label}`]
+
+    return `<Annotation label="${label}" :total="${data.sources.length}">${
+      data.sources.map((source, i) => {
+        const annotation = data.rendered[i] ??= md.render(source, {})
+        return `<template #item-${i}>${annotation}</template>`
+      }).join('')}</Annotation>`
   }
 
   md.inline.ruler.before('image', 'annotation_ref', annotationRef)

@@ -73,6 +73,12 @@ useEventListener('resize', updatePosition)
   transform: rotate(0deg);
 }
 
+@media print {
+  .vpi-annotation {
+    display: none;
+  }
+}
+
 .vp-annotation.active {
   z-index: 10;
 }

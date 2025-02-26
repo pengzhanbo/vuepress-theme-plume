@@ -6,9 +6,9 @@ export const tabs: PluginSimple = (md) => {
   tab(md, {
     name: 'tabs',
 
-    tabsOpenRenderer: ({ active, data }, tokens, index) => {
+    tabsOpenRenderer: ({ active, data }, tokens, index, _, env) => {
       const { meta } = tokens[index]
-      const titles = data.map(({ title }) => md.renderInline(title))
+      const titles = data.map(({ title }) => md.renderInline(title, env))
       const tabsData = data.map((item, dataIndex) => {
         const { id = titles[dataIndex] } = item
 

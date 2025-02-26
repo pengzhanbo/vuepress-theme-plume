@@ -13,25 +13,18 @@ export const jsfiddlePlugin: PluginWithOptions<never> = (md) => {
     type: 'jsfiddle',
     syntaxPattern: /^@\[jsfiddle([^\]]*)\]\(([^)]*)\)/,
     meta([, info, source]) {
-      const { attrs } = resolveAttrs(info)
-      const [user, id] = source.split('/')
+      const { width, height, title, tab, theme } = resolveAttrs<JSFiddleTokenMeta>(info).attrs
 
       return {
-        width: attrs.width ? parseRect(attrs.width) : '100%',
-        height: attrs.height ? parseRect(attrs.height) : '400px',
-        user,
-        id,
-        title: attrs.title || 'JS Fiddle',
-        tab: attrs.tab?.replace(/\s+/g, '') || 'js,css,html,result',
-        theme: attrs.theme || 'dark',
+        width: width ? parseRect(width) : '100%',
+        height: height ? parseRect(height) : '400px',
+        source,
+        title: title || 'JS Fiddle',
+        tab: tab?.replace(/\s+/g, '') || 'js,css,html,result',
+        theme,
       }
     },
-    content: ({ title, height, width, user, id, tab, theme }) => {
-      theme = theme === 'dark' ? '/dark/' : ''
-
-      const link = `https://jsfiddle.net/${user}/${id}/embedded/${tab}${theme}`
-      const style = `width:${width};height:${height};margin:16px auto;border:none;border-radius:5px;`
-      return `<iframe class="js-fiddle-iframe-wrapper" style="${style}" title="${title}" src="${link}" allowfullscreen="true" allowpaymentrequest="true"></iframe>`
-    },
+    content: ({ title, height, width, source, tab, theme }) =>
+      `<JSFiddleViewer source="${source}" title="${title}" tab="${tab}" width="${width}" height="${height}"${theme ? ` theme="${theme}"` : ''} />`,
   })
 }

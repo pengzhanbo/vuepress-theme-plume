@@ -1,5 +1,5 @@
 import type { App, InjectionKey, Ref } from 'vue'
-import { useDark } from '@vueuse/core'
+import { useDark, useEventListener } from '@vueuse/core'
 import { inject, ref } from 'vue'
 import { useThemeData } from './theme-data.js'
 
@@ -49,6 +49,16 @@ export function setupDarkMode(app: App): void {
 
   Object.defineProperty(app.config.globalProperties, '$isDark', {
     get: () => isDark,
+  })
+
+  useEventListener('beforeprint', () => {
+    if (isDark.value)
+      document.documentElement.dataset.theme = 'light'
+  })
+
+  useEventListener('afterprint', () => {
+    if (isDark.value)
+      document.documentElement.dataset.theme = 'dark'
   })
 }
 

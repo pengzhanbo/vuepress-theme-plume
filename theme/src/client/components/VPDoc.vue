@@ -255,14 +255,16 @@ watch(
   }
 }
 
+@media (min-width: 1120px) {
+  .vp-doc-container .aside {
+    display: block;
+  }
+}
+
 @media (min-width: 1280px) {
   .vp-doc-container .container {
     display: flex;
     justify-content: center;
-  }
-
-  .vp-doc-container .aside {
-    display: block;
   }
 }
 

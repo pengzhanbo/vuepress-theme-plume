@@ -8,7 +8,7 @@ config:
     hero:
       name: Theme Plume
       tagline: VuePress Next Theme
-      text: A minimalist, easy-to-use, feature-rich VuePress documentation & blog theme
+      text: A simple, easy-to-use, feature-rich VuePress documentation & blog theme
       actions:
         -
           theme: brand

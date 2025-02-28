@@ -1,12 +1,6 @@
 <h1 align="center">vuepress-theme-plume</h1>
 
 <p align="center">
-<a href="/readme.md">中文</a> | English
-</p>
-
----
-
-<p align="center">
   <img src="https://theme-plume.vuejs.press/plume.svg" width="200px" alt="plume">
 </p>
 
@@ -24,6 +18,12 @@
     <img src="https://codecov.io/gh/pengzhanbo/vuepress-theme-plume/graph/badge.svg?token=W6KYBX7WO5" alt="codecov">
   </a>
 </p>
+
+<p align="center">
+<a href="/readme.md">中文</a> | English
+</p>
+
+<hr>
 
 A simple, clean, and easy-to-use VuePress theme for blogs and documentation.
 

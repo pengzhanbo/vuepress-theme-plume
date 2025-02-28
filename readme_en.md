@@ -23,8 +23,6 @@
 <a href="/readme.md">中文</a> | English
 </p>
 
-<hr>
-
 A simple, clean, and easy-to-use VuePress theme for blogs and documentation.
 
 Ready to use out-of-the-box with minimal configuration, allowing you to focus more on content creation and better express your ideas to form your knowledge notes.
@@ -64,7 +62,7 @@ This means that the functionality is relatively stable, but there is still a sma
 
 ## Contribution Guide
 
-View the [[Contribution Guide]](/CONTRIBUTING.md) for more information
+View the [[Contribution Guide]](/CONTRIBUTING_EN.md) for more information
 
 ## Contributors
 

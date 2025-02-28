@@ -1,4 +1,11 @@
 <h1 align="center">vuepress-theme-plume</h1>
+
+<p align="center">
+<a href="/readme.md">中文</a> | English
+</p>
+
+---
+
 <p align="center">
   <img src="https://theme-plume.vuejs.press/plume.svg" width="200px" alt="plume">
 </p>

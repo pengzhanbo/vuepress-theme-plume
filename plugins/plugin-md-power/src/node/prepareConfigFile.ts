@@ -35,6 +35,16 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('VideoYoutube', Youtube)`)
   }
 
+  if (options.codepen) {
+    imports.add(`import CodePen from '${CLIENT_FOLDER}components/CodePen.vue'`)
+    enhances.add(`app.component('CodePenViewer', CodePen)`)
+  }
+
+  if (options.jsfiddle) {
+    imports.add(`import JSFiddle from '${CLIENT_FOLDER}components/JSFiddle.vue'`)
+    enhances.add(`app.component('JSFiddleViewer', JSFiddle)`)
+  }
+
   if (options.replit) {
     imports.add(`import Replit from '${CLIENT_FOLDER}components/Replit.vue'`)
     enhances.add(`app.component('ReplitViewer', Replit)`)

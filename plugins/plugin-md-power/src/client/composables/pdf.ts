@@ -12,10 +12,10 @@
  */
 
 import type { PDFEmbedType, PDFTokenMeta } from '../../shared/index.js'
+import { checkIsiPad, checkIsMobile, checkIsSafari } from '@vuepress/helper/client'
 import { withBase } from 'vuepress/client'
 import { ensureEndingSlash, isLinkHttp } from 'vuepress/shared'
 import { pluginOptions } from '../options.js'
-import { checkIsiPad, checkIsMobile, checkIsSafari } from '../utils/is.js'
 
 function queryStringify(options: PDFTokenMeta): string {
   const { page, noToolbar, zoom } = options

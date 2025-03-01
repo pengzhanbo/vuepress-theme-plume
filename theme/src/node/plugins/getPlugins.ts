@@ -1,7 +1,9 @@
 import type { SeoPluginOptions } from '@vuepress/plugin-seo'
 import type { SitemapPluginOptions } from '@vuepress/plugin-sitemap'
+import type { ThemeOptions } from 'vuepress-plugin-md-power'
 import type { App, PluginConfig } from 'vuepress/core'
 import type { PlumeThemePluginOptions } from '../../shared/index.js'
+import { uniq } from '@pengzhanbo/utils'
 import { fontsPlugin } from '@vuepress-plume/plugin-fonts'
 import { searchPlugin } from '@vuepress-plume/plugin-search'
 import { isPlainObject } from '@vuepress/helper'
@@ -104,17 +106,38 @@ export function getPlugins({
   }
 
   if (pluginOptions.copyCode !== false) {
-    plugins.push(copyCodePlugin(pluginOptions.copyCode || {}))
+    const { ignoreSelector = [], ...copyCodeOptions } = pluginOptions.copyCode || {}
+    plugins.push(copyCodePlugin({
+      ignoreSelector: uniq(['.vp-copy-ignore', '.diff.remove', ...ignoreSelector]),
+      ...copyCodeOptions,
+    }))
   }
 
-  const shikiOption = pluginOptions.shiki
+  const shikiOptions = pluginOptions.shiki
 
-  const shikiTheme = shikiOption && 'theme' in shikiOption ? shikiOption.theme : shikiOption && 'themes' in shikiOption ? shikiOption.themes : { light: 'vitesse-light', dark: 'vitesse-dark' }
+  const shikiTheme = shikiOptions && 'theme' in shikiOptions ? shikiOptions.theme : shikiOptions && 'themes' in shikiOptions ? shikiOptions.themes : { light: 'vitesse-light', dark: 'vitesse-dark' }
 
-  if (shikiOption !== false) {
+  if (shikiOptions !== false) {
+    const { twoslash, ...restShikiOptions } = isPlainObject(shikiOptions) ? shikiOptions : {}
+    const twoslashOptions = twoslash === true ? {} : twoslash
     plugins.push(shikiPlugin({
-      ...(shikiOption && 'theme' in shikiOption ? {} : { themes: { light: 'vitesse-light', dark: 'vitesse-dark' } }),
-      ...(shikiOption ?? {}),
+      // enable some default features
+      notationDiff: true,
+      notationErrorLevel: true,
+      notationFocus: true,
+      notationHighlight: true,
+      notationWordHighlight: true,
+      highlightLines: true,
+      collapsedLines: false,
+      twoslash: isPlainObject(twoslashOptions)
+        ? {
+            ...twoslashOptions,
+            // inject markdown class
+            floatingVue: { classMarkdown: 'vp-doc', ...twoslashOptions.floatingVue },
+          }
+        : twoslashOptions,
+      ...('theme' in restShikiOptions ? {} : { themes: { light: 'vitesse-light', dark: 'vitesse-dark' } }),
+      ...restShikiOptions,
     }))
   }
 
@@ -127,8 +150,9 @@ export function getPlugins({
       plot: true,
       icons: true,
       ...pluginOptions.markdownPower || {},
+      // TODO: repl 代码主题 配置仅支持 主题名，不支持注册自定义主题
       repl: pluginOptions.markdownPower?.repl
-        ? { theme: shikiTheme, ...pluginOptions.markdownPower?.repl }
+        ? { theme: shikiTheme as ThemeOptions, ...pluginOptions.markdownPower?.repl }
         : pluginOptions.markdownPower?.repl,
     }))
   }

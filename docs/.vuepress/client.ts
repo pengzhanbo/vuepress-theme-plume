@@ -1,6 +1,7 @@
 import { defineClientConfig } from 'vuepress/client'
 import CanIUseConfig from './themes/components/CanIUseConfig.vue'
 import Contributors from './themes/components/Contributors.vue'
+import Countdown from './themes/components/Countdown.vue'
 import Demos from './themes/components/Demos.vue'
 import HeroTintPlateConfig from './themes/components/HeroTintPlateConfig.vue'
 import ThemeColors from './themes/components/ThemeColors.vue'
@@ -13,6 +14,7 @@ export default defineClientConfig({
     app.component('Demos', Demos)
     app.component('ThemeColors', ThemeColors)
     app.component('Contributors', Contributors)
+    app.component('Countdown', Countdown)
   },
   setup() {
     setupThemeColors()

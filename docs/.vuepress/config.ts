@@ -15,8 +15,8 @@ export default defineUserConfig({
   source: path.resolve(__dirname, '../'),
   public: path.resolve(__dirname, 'public'),
   locales: {
-    '/': { title: 'Plume 主题', lang: 'zh-CN' },
-    '/en/': { title: 'Plume Theme', lang: 'en-US' },
+    '/': { title: 'Modenc', lang: 'zh-CN' },
+    // '/en/': { title: 'Modenc', lang: 'en-US' },
   },
 
   head: [

@@ -59,7 +59,7 @@ defineProps<{
   border-radius: 8px;
   box-shadow: var(--vp-shadow-1);
   transition: var(--vp-t-color);
-  transition-property: border background box-shadow;
+  transition-property: border, background-color, box-shadow;
 }
 
 .demo-item:hover {
@@ -79,10 +79,10 @@ defineProps<{
   left: 0;
   width: 100%;
   height: 100%;
-  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
-  transform: scale(1);
 
   object-fit: cover;
+  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+  transform: scale(1);
 }
 
 .demo-item:hover .demo-img img {

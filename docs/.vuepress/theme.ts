@@ -3,7 +3,7 @@ import process from 'node:process'
 import { plumeTheme } from 'vuepress-theme-plume'
 
 export const theme: Theme = plumeTheme({
-  hostname: process.env.SITE_HOST || 'https://theme-plume.vuejs.press',
+  hostname: process.env.SITE_HOST || 'https://modenc.top',
   docsRepo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
   docsDir: 'docs',
   changelog: { maxCount: 10 },
@@ -50,10 +50,10 @@ export const theme: Theme = plumeTheme({
     comment: {
       provider: 'Giscus',
       comment: true,
-      repo: 'pengzhanbo/vuepress-theme-plume',
-      repoId: 'R_kgDOG_ebNA',
-      category: 'docs-comment',
-      categoryId: 'DIC_kwDOG_ebNM4Cd0uF',
+      repo: 'modenicheng/discus-data',
+      repoId: 'R_kgDOOBfQsg',
+      category: 'Announcements',
+      categoryId: 'DIC_kwDOOBfQss4CndTU',
       mapping: 'pathname',
       reactionsEnabled: true,
       inputPosition: 'top',

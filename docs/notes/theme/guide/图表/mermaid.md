@@ -18,23 +18,11 @@ permalink: /guide/chart/mermaid/
 
 你需要在你的项目中安装 [mermaid](https://mermaid.js.org/) 库。
 
-::: code-tabs
+::: npm-to
 @tab pnpm
 
 ```sh
-pnpm add mermaid
-```
-
-@tab npm
-
-```sh
 npm install mermaid
-```
-
-@tab yarn
-
-```sh
-yarn add mermaid
 ```
 
 :::
@@ -49,7 +37,7 @@ export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
       markdownEnhance: {
-        mermaid: true,
+        mermaid: true, // [!code hl]
       },
     }
   })

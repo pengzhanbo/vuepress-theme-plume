@@ -241,6 +241,15 @@ importers:
       http-server:
         specifier: ^14.1.1
         version: 14.1.1
+      markmap-lib:
+        specifier: ^0.18.11
+        version: 0.18.11(markmap-common@0.18.9)
+      markmap-toolbar:
+        specifier: ^0.18.10
+        version: 0.18.10(markmap-common@0.18.9)
+      markmap-view:
+        specifier: ^0.18.10
+        version: 0.18.10(markmap-common@0.18.9)
       mermaid:
         specifier: ^11.4.1
         version: 11.4.1
@@ -569,7 +578,7 @@ importers:
         version: 2.0.0-rc.20(@vuepress/bundler-vite@2.0.0-rc.20(@types/node@22.13.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.85.0)(sass@1.85.0)(stylus@0.64.0)(typescript@5.7.3)(yaml@2.7.0))(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
       vuepress-plugin-md-enhance:
         specifier: 'catalog:'
-        version: 2.0.0-rc.72(chart.js@4.4.8)(echarts@5.6.0)(flowchart.ts@3.0.1)(markdown-it@14.1.0)(mermaid@11.4.1)(sass-embedded@1.85.0)(sass-loader@16.0.5(sass-embedded@1.85.0)(sass@1.85.0))(sass@1.85.0)(typescript@5.7.3)(vuepress@2.0.0-rc.20(@vuepress/bundler-vite@2.0.0-rc.20(@types/node@22.13.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.85.0)(sass@1.85.0)(stylus@0.64.0)(typescript@5.7.3)(yaml@2.7.0))(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))
+        version: 2.0.0-rc.72(chart.js@4.4.8)(echarts@5.6.0)(flowchart.ts@3.0.1)(markdown-it@14.1.0)(markmap-lib@0.18.11(markmap-common@0.18.9))(markmap-toolbar@0.18.10(markmap-common@0.18.9))(markmap-view@0.18.10(markmap-common@0.18.9))(mermaid@11.4.1)(sass-embedded@1.85.0)(sass-loader@16.0.5(sass-embedded@1.85.0)(sass@1.85.0))(sass@1.85.0)(typescript@5.7.3)(vuepress@2.0.0-rc.20(@vuepress/bundler-vite@2.0.0-rc.20(@types/node@22.13.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.85.0)(sass@1.85.0)(stylus@0.64.0)(typescript@5.7.3)(yaml@2.7.0))(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))
       vuepress-plugin-md-power:
         specifier: workspace:*
         version: link:../plugins/plugin-md-power
@@ -727,6 +736,10 @@ packages:
     resolution: {integrity: sha512-WJ/CvmY8Mea8iDXo6a7RK2wbmJITT5fN3BEkRuFlxVyNx8jOKIIhmC4fSkTcPcf8JyavbBwIe6OpiCOBXt/IcA==}
     engines: {node: '>=6.0.0'}
     hasBin: true
+
+  '@babel/runtime@7.26.9':
+    resolution: {integrity: sha512-aA63XwOkcl4xxQa3HjPMqOP6LiK0ZDv3mUPYEFXkpHbaFjtGggE1A61FjFzJnB+p7/oy2gA8E+rcBNl/zC1tMg==}
+    engines: {node: '>=6.9.0'}
 
   '@babel/template@7.25.9':
     resolution: {integrity: sha512-9DGttpmPvIxBb/2uwpVo3dqJ+O6RooAFOS+lB+xDqoE2PVCE8nfoHMdZLpfCQRLwvohzXISPZcgxt80xLfsuwg==}
@@ -1127,6 +1140,9 @@ packages:
 
   '@floating-ui/utils@0.2.8':
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
+
+  '@gera2ld/jsx-dom@2.2.2':
+    resolution: {integrity: sha512-EOqf31IATRE6zS1W1EoWmXZhGfLAoO9FIlwTtHduSrBdud4npYBxYAkv8dZ5hudDPwJeeSjn40kbCL4wAzr8dA==}
 
   '@hapi/hoek@9.3.0':
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
@@ -2273,6 +2289,9 @@ packages:
 
   '@volar/source-map@2.4.11':
     resolution: {integrity: sha512-ZQpmafIGvaZMn/8iuvCFGrW3smeqkq/IIh9F1SdSx9aUl0J4Iurzd6/FhmjNO5g2ejF3rT45dKskgXWiofqlZQ==}
+
+  '@vscode/markdown-it-katex@1.1.1':
+    resolution: {integrity: sha512-3KTlbsRBPJQLE2YmLL7K6nunTlU+W9T5+FjfNdWuIUKgxSS6HWLQHaO3L4MkJi7z7MpIPpY+g4N+cWNBPE/MSA==}
 
   '@vue/compiler-core@3.5.13':
     resolution: {integrity: sha512-oOdAkwqUfW1WqpwSYJce06wvt6HljgY3fGeM9NcVA1HaYOij3mZG9Rkysn0OHuyUAGMbEbARIpsG+LPVlBJ5/Q==}
@@ -4031,6 +4050,10 @@ packages:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
 
+  highlight.js@11.11.1:
+    resolution: {integrity: sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w==}
+    engines: {node: '>=12.0.0'}
+
   hls.js@1.5.20:
     resolution: {integrity: sha512-uu0VXUK52JhihhnN/MVVo1lvqNNuhoxkonqgO3IpjvQiGpJBdIXMGkofjQb/j9zvV7a1SW8U9g1FslWx/1HOiQ==}
 
@@ -4616,6 +4639,18 @@ packages:
   markdown-it-emoji@3.0.0:
     resolution: {integrity: sha512-+rUD93bXHubA4arpEZO3q80so0qgoFJEKRkRbjKX8RTdca89v2kfyF+xR3i2sQTwql9tpPZPOQN5B+PunspXRg==}
 
+  markdown-it-ins@4.0.0:
+    resolution: {integrity: sha512-sWbjK2DprrkINE4oYDhHdCijGT+MIDhEupjSHLXe5UXeVr5qmVxs/nTUVtgi0Oh/qtF+QKV0tNWDhQBEPxiMew==}
+
+  markdown-it-mark@4.0.0:
+    resolution: {integrity: sha512-YLhzaOsU9THO/cal0lUjfMjrqSMPjjyjChYM7oyj4DnyaXEzA8gnW6cVJeyCrCVeyesrY2PlEdUYJSPFYL4Nkg==}
+
+  markdown-it-sub@2.0.0:
+    resolution: {integrity: sha512-iCBKgwCkfQBRg2vApy9vx1C1Tu6D8XYo8NvevI3OlwzBRmiMtsJ2sXupBgEA7PPxiDwNni3qIUkhZ6j5wofDUA==}
+
+  markdown-it-sup@2.0.0:
+    resolution: {integrity: sha512-5VgmdKlkBd8sgXuoDoxMpiU+BiEt3I49GItBzzw7Mxq9CxvnhE/k09HFli09zgfFDRixDQDfDxi0mgBCXtaTvA==}
+
   markdown-it@14.1.0:
     resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
     hasBin: true
@@ -4627,6 +4662,29 @@ packages:
     resolution: {integrity: sha512-rqRix3/TWzE9rIoFGIn8JmsVfhiuC8VIQ8IdX5TfzmeBucdY05/0UlzKaw0eVtpcN/OdVFpBk7CjKGo9iHJ/zA==}
     engines: {node: '>= 18'}
     hasBin: true
+
+  markmap-common@0.18.9:
+    resolution: {integrity: sha512-MV2HQO7IGIm3jWEJXSG8vmdpqf4WIDXcEyAEN52lrWR1qD53Zg5l81JwjXoZ2l0rY5mofKYqUFlmdM2fqTGMVg==}
+
+  markmap-html-parser@0.18.11:
+    resolution: {integrity: sha512-+kC5C4sCGntGUhGvTa5VIb5rtM75cSy/VCy3tzZoNAcn2qZGdgYvljN0WvjsOzrEzp+V6XKgwzO0u2TdzNAiOg==}
+    peerDependencies:
+      markmap-common: '*'
+
+  markmap-lib@0.18.11:
+    resolution: {integrity: sha512-2mBWrWRdK61W5//FlJ0zN20vi+/oVlPtnydyO3xR+0E2bhiTLNPjFwRi0h2RrdT/hUiiHV98s9iRckwXEhDtJg==}
+    peerDependencies:
+      markmap-common: '*'
+
+  markmap-toolbar@0.18.10:
+    resolution: {integrity: sha512-1/ju0NfI0iUGYYTu1FZPdrNcGZGt4oWMNqhF8CJhImvxyM6DnT/RE1zFtTknNLqo077Aif6wZ460IDqzFKrghw==}
+    peerDependencies:
+      markmap-common: '*'
+
+  markmap-view@0.18.10:
+    resolution: {integrity: sha512-2Wi/HpOHwhDjw+Lj6/CoZzWtxvAF2ymkjCpexJKC1uYQERqMhja8Rr5d5hww7oVAith80Bsr6h+ZIYQGgxnhdQ==}
+    peerDependencies:
+      markmap-common: '*'
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -4957,6 +5015,9 @@ packages:
     resolution: {integrity: sha512-9qny7Z9DsQU8Ou39ERsPU4OZQlSTP47ShQzuKZ6PRXpYLtIFgl/DEBYEXKlvcEa+9tHVcK8CF81Y2V72qaZhWA==}
     engines: {node: '>=18'}
 
+  npm2url@0.2.4:
+    resolution: {integrity: sha512-arzGp/hQz0Ey+ZGhF64XVH7Xqwd+1Q/po5uGiBbzph8ebX6T0uvt3N7c1nBHQNsQVykQgHhqoRTX7JFcHecGuw==}
+
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
@@ -5278,6 +5339,10 @@ packages:
     resolution: {integrity: sha512-4yf0QO/sllf/1zbZWYnvWw3NxCQwLXKzIj0G849LSufP15BXKM0rbD2Z3wVnkMfjdn/CB0Dpp444gYAACdsplg==}
     engines: {node: '>=18'}
 
+  prismjs@1.29.0:
+    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
+    engines: {node: '>=6'}
+
   prompts@2.4.2:
     resolution: {integrity: sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q==}
     engines: {node: '>= 6'}
@@ -5338,6 +5403,9 @@ packages:
   refa@0.12.1:
     resolution: {integrity: sha512-J8rn6v4DBb2nnFqkqwy6/NnTYMcgLA+sLr0iIO41qpv0n+ngb7ksag2tMRl0inb1bbO/esUwzW1vbJi7K0sI0g==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
+
+  regenerator-runtime@0.14.1:
+    resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
 
   regex-recursion@6.0.2:
     resolution: {integrity: sha512-0YCaSCq2VRIebiaUviZNs0cBz1kg5kVS2UKUfNIx8YVs1cN3AV7NTctO5FOKBA+UT2BPJIWZauYHPqJODG50cg==}
@@ -6792,6 +6860,10 @@ snapshots:
     dependencies:
       '@babel/types': 7.26.3
 
+  '@babel/runtime@7.26.9':
+    dependencies:
+      regenerator-runtime: 0.14.1
+
   '@babel/template@7.25.9':
     dependencies:
       '@babel/code-frame': 7.26.2
@@ -7176,6 +7248,10 @@ snapshots:
       '@floating-ui/core': 1.6.8
 
   '@floating-ui/utils@0.2.8': {}
+
+  '@gera2ld/jsx-dom@2.2.2':
+    dependencies:
+      '@babel/runtime': 7.26.9
 
   '@hapi/hoek@9.3.0': {}
 
@@ -8325,6 +8401,10 @@ snapshots:
       '@volar/source-map': 2.4.11
 
   '@volar/source-map@2.4.11': {}
+
+  '@vscode/markdown-it-katex@1.1.1':
+    dependencies:
+      katex: 0.16.21
 
   '@vue/compiler-core@3.5.13':
     dependencies:
@@ -10543,6 +10623,8 @@ snapshots:
 
   he@1.2.0: {}
 
+  highlight.js@11.11.1: {}
+
   hls.js@1.5.20: {}
 
   homedir-polyfill@1.0.3:
@@ -11115,6 +11197,14 @@ snapshots:
 
   markdown-it-emoji@3.0.0: {}
 
+  markdown-it-ins@4.0.0: {}
+
+  markdown-it-mark@4.0.0: {}
+
+  markdown-it-sub@2.0.0: {}
+
+  markdown-it-sup@2.0.0: {}
+
   markdown-it@14.1.0:
     dependencies:
       argparse: 2.0.1
@@ -11127,6 +11217,47 @@ snapshots:
   markdown-table@3.0.4: {}
 
   marked@13.0.3: {}
+
+  markmap-common@0.18.9:
+    dependencies:
+      '@babel/runtime': 7.26.9
+      '@gera2ld/jsx-dom': 2.2.2
+      npm2url: 0.2.4
+
+  markmap-html-parser@0.18.11(markmap-common@0.18.9):
+    dependencies:
+      '@babel/runtime': 7.26.9
+      cheerio: 1.0.0
+      markmap-common: 0.18.9
+
+  markmap-lib@0.18.11(markmap-common@0.18.9):
+    dependencies:
+      '@babel/runtime': 7.26.9
+      '@vscode/markdown-it-katex': 1.1.1
+      highlight.js: 11.11.1
+      katex: 0.16.21
+      markdown-it: 14.1.0
+      markdown-it-ins: 4.0.0
+      markdown-it-mark: 4.0.0
+      markdown-it-sub: 2.0.0
+      markdown-it-sup: 2.0.0
+      markmap-common: 0.18.9
+      markmap-html-parser: 0.18.11(markmap-common@0.18.9)
+      markmap-view: 0.18.10(markmap-common@0.18.9)
+      prismjs: 1.29.0
+      yaml: 2.7.0
+
+  markmap-toolbar@0.18.10(markmap-common@0.18.9):
+    dependencies:
+      '@babel/runtime': 7.26.9
+      '@gera2ld/jsx-dom': 2.2.2
+      markmap-common: 0.18.9
+
+  markmap-view@0.18.10(markmap-common@0.18.9):
+    dependencies:
+      '@babel/runtime': 7.26.9
+      d3: 7.9.0
+      markmap-common: 0.18.9
 
   math-intrinsics@1.1.0: {}
 
@@ -11631,6 +11762,8 @@ snapshots:
       path-key: 4.0.0
       unicorn-magic: 0.3.0
 
+  npm2url@0.2.4: {}
+
   nth-check@2.1.1:
     dependencies:
       boolbase: 1.0.0
@@ -11939,6 +12072,8 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
+  prismjs@1.29.0: {}
+
   prompts@2.4.2:
     dependencies:
       kleur: 3.0.3
@@ -12003,6 +12138,8 @@ snapshots:
   refa@0.12.1:
     dependencies:
       '@eslint-community/regexpp': 4.12.1
+
+  regenerator-runtime@0.14.1: {}
 
   regex-recursion@6.0.2:
     dependencies:
@@ -13046,7 +13183,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.3
 
-  vuepress-plugin-md-enhance@2.0.0-rc.72(chart.js@4.4.8)(echarts@5.6.0)(flowchart.ts@3.0.1)(markdown-it@14.1.0)(mermaid@11.4.1)(sass-embedded@1.85.0)(sass-loader@16.0.5(sass-embedded@1.85.0)(sass@1.85.0))(sass@1.85.0)(typescript@5.7.3)(vuepress@2.0.0-rc.20(@vuepress/bundler-vite@2.0.0-rc.20(@types/node@22.13.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.85.0)(sass@1.85.0)(stylus@0.64.0)(typescript@5.7.3)(yaml@2.7.0))(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))):
+  vuepress-plugin-md-enhance@2.0.0-rc.72(chart.js@4.4.8)(echarts@5.6.0)(flowchart.ts@3.0.1)(markdown-it@14.1.0)(markmap-lib@0.18.11(markmap-common@0.18.9))(markmap-toolbar@0.18.10(markmap-common@0.18.9))(markmap-view@0.18.10(markmap-common@0.18.9))(mermaid@11.4.1)(sass-embedded@1.85.0)(sass-loader@16.0.5(sass-embedded@1.85.0)(sass@1.85.0))(sass@1.85.0)(typescript@5.7.3)(vuepress@2.0.0-rc.20(@vuepress/bundler-vite@2.0.0-rc.20(@types/node@22.13.5)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.85.0)(sass@1.85.0)(stylus@0.64.0)(typescript@5.7.3)(yaml@2.7.0))(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))):
     dependencies:
       '@mdit/plugin-container': 0.16.0(markdown-it@14.1.0)
       '@mdit/plugin-demo': 0.16.0(markdown-it@14.1.0)
@@ -13065,6 +13202,9 @@ snapshots:
       chart.js: 4.4.8
       echarts: 5.6.0
       flowchart.ts: 3.0.1
+      markmap-lib: 0.18.11(markmap-common@0.18.9)
+      markmap-toolbar: 0.18.10(markmap-common@0.18.9)
+      markmap-view: 0.18.10(markmap-common@0.18.9)
       mermaid: 11.4.1
       sass: 1.85.0
       sass-embedded: 1.85.0

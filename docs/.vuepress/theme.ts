@@ -67,6 +67,8 @@ export const theme: Theme = plumeTheme({
         content: 'vuepress-theme-plume',
       },
     },
-
+    search: {
+      // more options
+    },
   },
 })

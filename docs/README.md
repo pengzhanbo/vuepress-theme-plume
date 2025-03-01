@@ -18,7 +18,7 @@ config:
         -
           # theme: brand
           text: 知识库 & 笔记 →
-          link: /notes/index/
+          link: /article/
         -
           theme: alt
           text: Github

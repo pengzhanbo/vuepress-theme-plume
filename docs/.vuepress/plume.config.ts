@@ -5,10 +5,11 @@ import { zhNavbar } from './navbar.js'
 import { zhNotes } from './notes/index.js'
 
 export default defineThemeConfig({
-  logo: '/plume.png',
+  logo: '/favicon.svg',
 
   profile: {
-    avatar: '/plume.png',
+    avatar: '/avatar.jpg',
+    circle: true,
     name: 'Modenc',
     description: 'The tech is always here, as well as the beauty.',
     location: 'Beijing, China',
@@ -22,7 +23,7 @@ export default defineThemeConfig({
   navbarSocialInclude: ['bilibili', 'github'],
 
   footer: {
-    copyright: 'Copyright © 2021-present modenc <br \> <a target="_blank" href="https://beian.miit.gov.cn/">京 ICP 备 ----- 号</a>',
+    copyright: 'Copyright © 2025-present modenc <br \> <a target="_blank" href="https://beian.miit.gov.cn/">京 ICP 备 ----- 号</a>',
     message: `Powered by <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a> ${version}`,
   },
 

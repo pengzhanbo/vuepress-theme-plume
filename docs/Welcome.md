@@ -15,4 +15,4 @@ permalink: /blog/ggjj5wzy/
 
 不过管他呢，在赛博空间有小小的一角空间来寄托一丝一时的想法，这就足够了。
 
-Wish you have a happy time here.
+*Wish you a wonderful time here.*

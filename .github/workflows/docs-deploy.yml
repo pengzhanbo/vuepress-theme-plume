@@ -2,8 +2,11 @@ name: Deploy Docs
 
 on:
   push:
-    tags:
-      - v*
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
   workflow_dispatch:
 
 jobs:

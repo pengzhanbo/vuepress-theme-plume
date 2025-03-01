@@ -156,10 +156,10 @@ ${page.contentRendered}`
 }
 
 // eslint-disable-next-line regexp/no-super-linear-backtracking
-const headingRegex = /<h(\d*).*?>(<a.*? href="#.*?".*?>.*?<\/a>)<\/h\1>/gi
+const headingRegex = /<h(\d*).*?>(<a.*? href="#.*?".*?>[\s\S]*?<\/a>)<\/h\1>/gi
 // eslint-disable-next-line regexp/no-super-linear-backtracking
-const headingContentRegex = /<a.*? href="#(.*?)".*?><span>(.*?)<\/span><\/a>/i
-
+const headingContentRegex = /<a.*? href="#(.*?)".*?><span>([\s\S]*?)<\/span><\/a>/i
+const ignoreHeadingRegex = /<template[^>]*>[\s\S]*<\/template>/gi
 /**
  * Splits HTML into sections based on headings
  */
@@ -195,6 +195,8 @@ function getSearchableText(content: string) {
 }
 
 function clearHtmlTags(str: string) {
+  str = str.replace(ignoreHeadingRegex, '')
+  // 移除其他所有HTML标签
   return str.replace(/<[^>]*>/g, '')
 }
 

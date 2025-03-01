@@ -34,18 +34,20 @@ watch(show, () => nextTick(() => {
 <template>
   <span class="vp-abbr" @mouseenter="show = true" @mouseleave="show = false">
     <slot />
-    <Transition name="fade">
-      <span v-show="show" ref="tooltip" class="vp-abbr-tooltip" :style="styles">
-        <slot name="tooltip" />
-      </span>
-    </Transition>
+    <ClientOnly>
+      <Transition name="fade">
+        <span v-show="show" ref="tooltip" class="vp-abbr-tooltip ignore-header" :style="styles">
+          <slot name="tooltip" />
+        </span>
+      </Transition>
+    </ClientOnly>
   </span>
 </template>
 
 <style>
 :root {
   --vp-abbr-bg: var(--vp-c-bg);
-  --vp-abbr-text: var(--vp-c-text-2);
+  --vp-abbr-text: var(--vp-c-text-1);
   --vp-abbr-border: var(--vp-c-divider);
   --vp-abbr-transform: translateX(-50%);
   --vp-abbr-space-transform: translateX(-50%);
@@ -66,7 +68,7 @@ watch(show, () => nextTick(() => {
   width: max-content;
   max-width: min(calc(100vw - 32px), 360px);
   padding: 8px 14px;
-  font-size: 0.875em;
+  font-size: 14px;
   line-height: 1.7;
   color: var(--vp-abbr-text);
   cursor: auto;

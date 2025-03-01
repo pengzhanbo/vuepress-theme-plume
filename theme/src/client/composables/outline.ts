@@ -99,14 +99,15 @@ function serializeHeader(h: Element): string {
       ) {
         continue
       }
-
-      ret += node.textContent
+      const clone = node.cloneNode(true)
+      clearHeaderNodeList(Array.from(clone.childNodes))
+      ret += clone.textContent
     }
     else if (node.nodeType === 3) {
       ret += node.textContent
     }
   }
-  // maybe `<hx><a href="#"></a><a href="xxx"></a</hx>` or more
+  // maybe `<hx><a href="#"></a><a href="xxx"></a></hx>` or more
   let next = anchor?.nextSibling
   while (next) {
     if (next.nodeType === 1 || next.nodeType === 3)
@@ -115,6 +116,21 @@ function serializeHeader(h: Element): string {
     next = next.nextSibling
   }
   return ret.trim()
+}
+
+function clearHeaderNodeList(list?: ChildNode[]) {
+  if (list?.length) {
+    for (const node of list) {
+      if (node.nodeType === 1) {
+        if ((node as Element).classList.contains('ignore-header')) {
+          node.remove()
+        }
+        else {
+          clearHeaderNodeList(Array.from(node.childNodes))
+        }
+      }
+    }
+  }
 }
 
 export function resolveHeaders(headers: MenuItem[], range?: ThemeOutline): MenuItem[] {

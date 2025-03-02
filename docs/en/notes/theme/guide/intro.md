@@ -1,8 +1,13 @@
 ---
 title: Theme Introduction
 author: pengzhanbo
+icon: mdi:tooltip-text-outline
 createTime: 2024/03/04 11:06:24
 permalink: /en/guide/intro/
+tags:
+  - Guide
+  - Quick Start
+---
 ---
 
 ==vuepress-theme-plume== is a theme based on VuePress. Whether you want to write **lifestyle blogs**, **technical blogs**, or **product documentation**, **knowledge bases**, **series documentation**, etc., the theme can meet your needs.
@@ -38,7 +43,7 @@ The interface and interaction have been greatly optimized, making it more beauti
 
 - Support for chart.js, Echarts, Mermaid, flowchart, and other optional ==charts==;
 
-- Flexible markdown container syntax, supporting ==hint containers==, ==file trees==, ==example containers==, etc.;
+- Flexible markdown container syntax, supports ==hint container==, ==file tree==, ==example container==, ==card container==, ==cascade container==, etc.;
 
 - Support for ==layout slots==, ==component overrides==, ==custom styles==, etc., allowing you to flexibly extend components and achieve personalized layouts.
 
@@ -65,5 +70,3 @@ This theme is based on [vuepress-next](https://github.com/vuepress/vuepress-next
 The theme's features and API are stabilizing, but there is still a small probability of breaking changes in future updates.
 
 If you encounter any issues or have new ideas while using the theme, please raise them in the [Issues](https://github.com/pengzhanbo/vuepress-theme-plume/issues). You are also welcome to help improve the theme through [PR](https://github.com/pengzhanbo/vuepress-theme-plume/pulls).
-
-:::

@@ -23,7 +23,7 @@
     "markmap-toolbar": "^0.18.10",
     "markmap-view": "^0.18.10",
     "mermaid": "^11.4.1",
-    "sass-embedded": "^1.85.0",
+    "sass-embedded": "^1.85.1",
     "swiper": "^11.2.4",
     "vue": "catalog:",
     "vuepress-theme-plume": "workspace:*"

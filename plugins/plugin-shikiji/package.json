@@ -36,8 +36,8 @@
     "vuepress": "catalog:"
   },
   "dependencies": {
-    "@shikijs/transformers": "^3.0.0",
-    "@shikijs/twoslash": "^3.0.0",
+    "@shikijs/transformers": "^3.1.0",
+    "@shikijs/twoslash": "^3.1.0",
     "@types/hast": "^3.0.4",
     "@vuepress/helper": "catalog:",
     "@vueuse/core": "catalog:",
@@ -47,9 +47,9 @@
     "mdast-util-gfm": "^3.1.0",
     "mdast-util-to-hast": "^13.2.0",
     "nanoid": "catalog:",
-    "shiki": "^3.0.0",
-    "twoslash": "^0.2.12",
-    "twoslash-vue": "^0.2.12"
+    "shiki": "^3.1.0",
+    "twoslash": "^0.3.1",
+    "twoslash-vue": "^0.3.1"
   },
   "publishConfig": {
     "access": "public"

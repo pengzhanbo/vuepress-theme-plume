@@ -118,7 +118,7 @@ export async function imageSizePlugin(
         if (!fs.existsSync(filepath))
           return false
 
-        const { width: w, height: h } = imageSize(filepath)
+        const { width: w, height: h } = imageSize(fs.readFileSync(filepath))
         if (!w || !h)
           return false
 
@@ -239,7 +239,7 @@ export async function resolveImageSize(app: App, url: string, remote = false): P
   if (url[0] === '/') {
     const filepath = app.dir.public(url.slice(1))
     if (fs.existsSync(filepath)) {
-      const { width, height } = imageSize(filepath)
+      const { width, height } = imageSize(fs.readFileSync(filepath))
       return { width: width!, height: height! }
     }
   }

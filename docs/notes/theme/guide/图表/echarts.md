@@ -18,23 +18,10 @@ permalink: /guide/chart/echarts/
 
 你需要在你的项目中安装 [ECharts](https://echarts.apache.org/zh/index.html) 库。
 
-::: code-tabs
-@tab pnpm
-
-```sh
-pnpm add echarts
-```
-
-@tab npm
+::: npm-to
 
 ```sh
 npm install echarts
-```
-
-@tab yarn
-
-```sh
-yarn add echarts
 ```
 
 :::
@@ -49,7 +36,7 @@ export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
       markdownEnhance: {
-        echarts: true,
+        echarts: true, // [!code hl]
       },
     }
   })

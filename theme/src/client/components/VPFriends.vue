@@ -79,6 +79,7 @@ const groups = computed(() => matter.value.groups || [])
 }
 
 .edit-link {
+  display: flex;
   padding-left: 1rem;
   margin-top: 64px;
 }

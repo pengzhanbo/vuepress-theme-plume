@@ -88,6 +88,8 @@ export const themeGuide = defineNoteConfig({
             'echarts',
             'mermaid',
             'flowchart',
+            'markmap',
+            'plantuml',
           ],
         },
         {

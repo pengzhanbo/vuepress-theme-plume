@@ -250,7 +250,7 @@ function resolveNpmTo(lines: string[], info: string, idx: number, tabs: NpmToPac
     }
     res.push(`@tab ${tab}\n\`\`\`${info}\n${newLines.join('')}\n\`\`\``)
   }
-  return `:::code-tabs#npm-to-${idx}\n${res.join('\n')}\n:::`
+  return `:::code-tabs#npm-to-${tabs.join('-')}\n${res.join('\n')}\n:::`
 }
 
 function findConfig(line: string): CommandConfig | undefined {

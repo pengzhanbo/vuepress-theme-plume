@@ -18,23 +18,10 @@ permalink: /guide/chart/chartjs/
 
 你需要在你的项目中安装 [chart.js](https://www.chartjs.org/docs/latest/) 库。
 
-::: code-tabs
-@tab pnpm
-
-```sh
-pnpm add chart.js
-```
-
-@tab npm
+::: npm-to
 
 ```sh
 npm install chart.js
-```
-
-@tab yarn
-
-```sh
-yarn add chart.js
 ```
 
 :::
@@ -49,7 +36,7 @@ export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
       markdownEnhance: {
-        chart: true,
+        chart: true, // [!code hl]
       },
     }
   })

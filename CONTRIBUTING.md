@@ -11,7 +11,6 @@
 
 在 `plugins` 目录中：
 
-- `plugin-content-update`: 重写 `Content` 组件，提供 `onContentUpdated` 钩子
 - `plugin-search`: 为主题提供 全文模糊搜索 功能
 - `plugin-shikiji`: 代码高亮插件，支持 highlight、diff、focus、error level
 - `plugin-md-power`: 提供 markdown 增强功能
@@ -20,7 +19,7 @@
 
 开发要求：
 
-- [Node.js](http://nodejs.org/) version 18.16.0+
+- [Node.js](http://nodejs.org/) version 20.6.0+
 - [pnpm](https://pnpm.io/zh/) version 9+
 
 克隆代码仓库，并安装依赖：

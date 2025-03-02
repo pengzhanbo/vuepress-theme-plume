@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { useDarkMode } from '@vuepress/helper/client'
 import { useEventListener } from '@vueuse/core'
-import { computed, getCurrentInstance, ref } from 'vue'
+import { computed, ref } from 'vue'
 
 interface MessageData {
   type: string
@@ -23,11 +24,10 @@ const props = withDefaults(defineProps<{
 })
 
 const url = 'https://caniuse.pengzhanbo.cn/'
-const current = getCurrentInstance()
 
 const height = ref('330px')
 
-const isDark = computed(() => current?.appContext.config.globalProperties.$isDark.value)
+const isDark = useDarkMode()
 const source = computed(() => {
   const source = `${url}${props.feature}#past=${props.past}&future=${props.future}&meta=${props.meta}&theme=${isDark.value ? 'dark' : 'light'}`
 

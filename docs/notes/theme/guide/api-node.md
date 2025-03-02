@@ -1,6 +1,5 @@
 ---
 title: Node
-author: pengzhanbo
 icon: fa6-brands:node
 createTime: 2024/03/07 21:59:13
 permalink: /guide/api/node/

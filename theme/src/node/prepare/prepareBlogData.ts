@@ -11,7 +11,7 @@ import { removeLeadingSlash } from '@vuepress/helper'
 import { createFilter } from 'create-filter'
 import dayjs from 'dayjs'
 import { resolveNotesOptions } from '../config/index.js'
-import { normalizePath, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
+import { logger, normalizePath, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
 import { isEncryptPage } from './prepareEncrypt.js'
 
 const HEADING_RE = /<h(\d)[^>]*>.*?<\/h\1>/gi
@@ -75,6 +75,12 @@ export async function preparedBlogData(
       lang: page.lang,
       excerpt: '',
       cover: page.data.frontmatter.cover,
+      coverStyle: page.data.frontmatter.coverStyle,
+    }
+
+    // FIXME validate post cover
+    if (typeof data.cover === 'object') {
+      logger.warn(`cover should be a path string, please use string instead. (${page.filePathRelative})`)
     }
 
     if (isEncryptPage(page, encrypt)) {

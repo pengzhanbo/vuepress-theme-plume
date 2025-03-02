@@ -99,14 +99,15 @@ function serializeHeader(h: Element): string {
       ) {
         continue
       }
-
-      ret += node.textContent
+      const clone = node.cloneNode(true)
+      clearHeaderNodeList(Array.from(clone.childNodes))
+      ret += clone.textContent
     }
     else if (node.nodeType === 3) {
       ret += node.textContent
     }
   }
-  // maybe `<hx><a href="#"></a><a href="xxx"></a</hx>` or more
+  // maybe `<hx><a href="#"></a><a href="xxx"></a></hx>` or more
   let next = anchor?.nextSibling
   while (next) {
     if (next.nodeType === 1 || next.nodeType === 3)
@@ -115,6 +116,21 @@ function serializeHeader(h: Element): string {
     next = next.nextSibling
   }
   return ret.trim()
+}
+
+function clearHeaderNodeList(list?: ChildNode[]) {
+  if (list?.length) {
+    for (const node of list) {
+      if (node.nodeType === 1) {
+        if ((node as Element).classList.contains('ignore-header')) {
+          node.remove()
+        }
+        else {
+          clearHeaderNodeList(Array.from(node.childNodes))
+        }
+      }
+    }
+  }
 }
 
 export function resolveHeaders(headers: MenuItem[], range?: ThemeOutline): MenuItem[] {
@@ -171,7 +187,7 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
     if (!isAsideEnabled.value)
       return
 
-    const scrollY = window.scrollY
+    const scrollY = Math.round(window.scrollY)
     const innerHeight = window.innerHeight
     const offsetHeight = document.body.offsetHeight
     const isBottom = Math.abs(scrollY + innerHeight - offsetHeight) < 1
@@ -206,7 +222,7 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
     // find the last header above the top of viewport
     let activeLink: string | null = null
     for (const { link, top } of headers) {
-      if (top > scrollY + 88)
+      if (top > scrollY + 92)
         break
 
       activeLink = link
@@ -268,18 +284,14 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
 
 function getAbsoluteTop(element: HTMLElement): number {
   let offsetTop = 0
-  while (element !== document.body) {
-    if (element === null) {
-      // child element is:
-      // - not attached to the DOM (display: none)
-      // - set to fixed position (not scrollable)
-      // - body or html element (null offsetParent)
-      return Number.NaN
+  while (element && element !== document.body) {
+    if (window.getComputedStyle(element).position === 'fixed') {
+      return element.offsetTop
     }
     offsetTop += element.offsetTop
     element = element.offsetParent as HTMLElement
   }
-  return offsetTop
+  return element ? offsetTop : Number.NaN
 }
 
 /**

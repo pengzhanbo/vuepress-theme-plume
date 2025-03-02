@@ -9,6 +9,7 @@ catalog:
   '@vuepress/helper': 2.0.0-rc.79
   '@vuepress/plugin-cache': 2.0.0-rc.79
   '@vuepress/plugin-comment': 2.0.0-rc.79
+  '@vuepress/plugin-copy-code': 2.0.0-rc.79
   '@vuepress/plugin-docsearch': 2.0.0-rc.79
   '@vuepress/plugin-git': 2.0.0-rc.79
   '@vuepress/plugin-markdown-hint': 2.0.0-rc.79
@@ -19,8 +20,10 @@ catalog:
   '@vuepress/plugin-photo-swipe': 2.0.0-rc.79
   '@vuepress/plugin-reading-time': 2.0.0-rc.79
   '@vuepress/plugin-seo': 2.0.0-rc.79
+  '@vuepress/plugin-shiki': 2.0.0-rc.79
   '@vuepress/plugin-sitemap': 2.0.0-rc.79
   '@vuepress/plugin-watermark': 2.0.0-rc.79
+  '@vuepress/shiki-twoslash': 2.0.0-rc.79
   '@vueuse/core': ^12.7.0
   '@vueuse/integrations': ^12.7.0
   chokidar: 3.6.0

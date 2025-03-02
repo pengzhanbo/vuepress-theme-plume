@@ -66,6 +66,9 @@ html:not([data-theme="dark"]) .vp-code span {
   padding: 20px 0;
   margin: 0;
   overflow-x: auto;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
   background: transparent;
 }
 
@@ -100,6 +103,10 @@ html:not([data-theme="dark"]) .vp-code span {
   display: none;
 }
 
+.vp-doc div[class*="language-"].line-numbers-mode::after {
+  display: none;
+}
+
 .vp-doc div[class*="language-"].line-numbers-mode {
   /* rtl:ignore */
   padding-left: 32px;
@@ -129,6 +136,7 @@ html:not([data-theme="dark"]) .vp-code span {
 .vp-doc div[class*="language-"].line-numbers-mode .line-numbers .line-number {
   position: relative;
   z-index: 3;
+  font-family: var(--vp-font-family-mono);
   user-select: none;
 }
 
@@ -160,7 +168,7 @@ html:not([data-theme="dark"]) .vp-code span {
   padding: 0 24px;
   margin: 0 -24px;
   background-color: var(--vp-code-line-highlight-color);
-  transition: background-color 0.5s;
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-doc div[class*="language-"] code .highlighted.error {
@@ -201,7 +209,7 @@ html:not([data-theme="dark"]) .vp-code span {
   width: calc(100% + 48px);
   padding: 0 24px;
   margin: 0 -24px;
-  transition: background-color 0.5s;
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-doc div[class*="language-"] code .diff::before {
@@ -217,7 +225,6 @@ html:not([data-theme="dark"]) .vp-code span {
 .vp-doc div[class*="language-"] code .diff.remove::before {
   color: var(--vp-code-line-diff-remove-symbol-color);
   content: "-";
-  transform: translateX(-6px);
 }
 
 .vp-doc div[class*="language-"] code .diff.add {
@@ -227,96 +234,21 @@ html:not([data-theme="dark"]) .vp-code span {
 .vp-doc div[class*="language-"] code .diff.add::before {
   color: var(--vp-code-line-diff-add-symbol-color);
   content: "+";
-  transform: translateX(-6px);
 }
 
-.vp-doc div[class*="language-"] .has-focused-lines .line:not(.has-focus) {
-  filter: blur(0.095rem);
-  opacity: 0.7;
-  transition: filter 0.35s, opacity 0.35s;
+/**
+ * Copy Code Button
+ */
+.vp-copy-code-button {
+  --copy-code-c-text: var(--vp-code-block-color);
+
+  top: 1em;
+  line-height: initial;
+  transition: opacity var(--vp-t-color), background-color var(--vp-t-color);
 }
 
-.vp-doc div[class*="language-"]:hover .has-focused-lines .line:not(.has-focus) {
-  filter: blur(0);
-  opacity: 1;
-}
-
-.vp-doc div[class*="language-"] button.copy {
-  position: absolute;
-  top: 12px;
-
-  /* rtl:ignore */
-  right: 12px;
-  z-index: 3;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  background-color: var(--vp-code-copy-code-bg);
-  background-image: var(--vp-icon-copy);
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: 20px;
-  border: 1px solid var(--vp-code-copy-code-border-color);
-  border-radius: 4px;
-  opacity: 0;
-  transition: border-color 0.25s, background-color 0.25s, opacity 0.25s;
-
-  /* rtl:ignore */
-  direction: ltr;
-}
-
-.vp-doc div[class*="language-"]:hover > button.copy,
-.vp-doc div[class*="language-"] > button.copy:focus,
-.vp-doc div[class*="language-"] > button.copy.copied {
-  opacity: 1;
-}
-
-.vp-doc div[class*="language-"] > button.copy:hover,
-.vp-doc div[class*="language-"] > button.copy.copied {
-  background-color: var(--vp-code-copy-code-hover-bg);
-  border-color: var(--vp-code-copy-code-hover-border-color);
-}
-
-.vp-doc div[class*="language-"] > button.copy.copied,
-.vp-doc div[class*="language-"] > button.copy:hover.copied {
-  background-color: var(--vp-code-copy-code-hover-bg);
-  background-image: var(--vp-icon-copied);
-
-  /* rtl:ignore */
-  border-radius: 0 4px 4px 0;
-}
-
-.vp-doc div[class*="language-"] > button.copy.copied::before,
-.vp-doc div[class*="language-"] > button.copy:hover.copied::before {
-  position: relative;
-  top: -1px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  height: 40px;
-  padding: 0 10px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--vp-code-copy-code-active-text);
-  text-align: center;
-  white-space: nowrap;
-  content: attr(data-copied);
-  background-color: var(--vp-code-copy-code-hover-bg);
-  border: 1px solid var(--vp-code-copy-code-hover-border-color);
-
-  /* rtl:ignore */
-  border-right: 0;
-  border-radius: 4px 0 0 4px;
-
-  /* rtl:ignore */
-  transform: translateX(calc(-100% - 1px));
-}
-
-@media (max-width: 419px) {
-  .vp-doc div[class*="language-"] > button.copy {
-    display: none;
-  }
+.vp-copy-code-button.copied::after {
+  height: 2.5rem;
 }
 
 /*
@@ -324,79 +256,27 @@ html:not([data-theme="dark"]) .vp-code span {
   --------------------------------------------------------------------------
  */
 
-.vp-doc div[class*="language-"].has-collapsed.collapsed {
-  height: calc(var(--vp-collapsed-lines) * var(--vp-code-line-height) * var(--vp-code-font-size) + 62px);
-  overflow-y: hidden;
-}
+.vp-doc div[class*="language-"].has-collapsed-lines .collapsed-lines,
+[data-theme="dark"] .vp-doc div[class*="language-"].has-collapsed-lines .collapsed-lines {
+  --vp-collapsed-lines-bg: var(--vp-code-block-bg);
 
-@property --vp-code-bg-collapsed-lines {
-  inherits: false;
-  initial-value: #fff;
-  syntax: "<color>";
-}
-
-.vp-doc div[class*="language-"].has-collapsed .collapsed-lines {
-  --vp-code-bg-collapsed-lines: var(--vp-code-block-bg);
-
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 44px;
-  cursor: pointer;
-  background: linear-gradient(to bottom, transparent 0%, var(--vp-code-bg-collapsed-lines) 50%, var(--vp-code-bg-collapsed-lines) 100%);
-  transition: --vp-code-bg-collapsed-lines var(--vp-t-color);
+  background: linear-gradient(to bottom, transparent 0%, var(--vp-collapsed-lines-bg) 50%, var(--vp-collapsed-lines-bg) 100%);
 }
 
-.vp-doc div[class*="language-"].has-collapsed .collapsed-lines:hover {
-  --vp-code-bg-collapsed-lines: var(--vp-c-default-soft);
+.vp-doc div[class*="language-"].has-collapsed-lines .collapsed-lines:hover,
+[data-theme="dark"] .vp-doc div[class*="language-"].has-collapsed-lines .collapsed-lines:hover {
+  --vp-collapsed-lines-bg: var(--vp-c-default-soft);
 }
 
-.vp-doc div[class*="language-"].has-collapsed .collapsed-lines::before {
-  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-width='2' d='m18 12l-6 6l-6-6m12-6l-6 6l-6-6'/%3E%3C/svg%3E");
-  --trans-rotate: 0deg;
-
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  pointer-events: none;
-  content: "";
-  background-color: var(--vp-code-block-color);
-  -webkit-mask-image: var(--icon);
-  mask-image: var(--icon);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: 50%;
-  mask-position: 50%;
-  -webkit-mask-size: 20px;
-  mask-size: 20px;
-  animation: code-collapsed-lines 1.2s infinite alternate-reverse ease-in-out;
+.vp-doc div[class*="language-"].has-collapsed-lines.collapsed {
+  height: calc(var(--vp-collapsed-lines) * var(--vp-code-line-height) * var(--vp-code-font-size) + 62px);
 }
 
-.vp-doc div[class*="language-"].has-collapsed:not(.collapsed) code {
+.vp-doc div[class*="language-"].has-collapsed-lines:not(.collapsed) code {
   padding-bottom: 20px;
 }
 
-.vp-doc div[class*="language-"].has-collapsed:not(.collapsed) .collapsed-lines:hover {
-  --vp-code-bg-collapsed-lines: transparent;
-}
-
-.vp-doc div[class*="language-"].has-collapsed:not(.collapsed) .collapsed-lines::before {
-  --trans-rotate: 180deg;
-}
-
-@keyframes code-collapsed-lines {
-  0% {
-    opacity: 0.3;
-    transform: translateY(-2px) rotate(var(--trans-rotate));
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(2px) rotate(var(--trans-rotate));
-  }
+.vp-doc div[class*="language-"].has-collapsed-lines:not(.collapsed) .collapsed-lines:hover {
+  --vp-collapsed-lines-bg: transparent;
 }

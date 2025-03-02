@@ -70,3 +70,5 @@ This theme is based on [vuepress-next](https://github.com/vuepress/vuepress-next
 The theme's features and API are stabilizing, but there is still a small probability of breaking changes in future updates.
 
 If you encounter any issues or have new ideas while using the theme, please raise them in the [Issues](https://github.com/pengzhanbo/vuepress-theme-plume/issues). You are also welcome to help improve the theme through [PR](https://github.com/pengzhanbo/vuepress-theme-plume/pulls).
+
+:::

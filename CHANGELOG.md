@@ -1,3 +1,12 @@
+# [1.0.0-rc.135](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.134...v1.0.0-rc.135) (2025-03-02)
+
+
+### Bug Fixes
+
+* typo error ([ed019ca](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ed019cad06bfdf76e5b7937f2553c76f5da56ab3))
+
+
+
 # [1.0.0-rc.134](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.133...v1.0.0-rc.134) (2025-03-02)
 
 

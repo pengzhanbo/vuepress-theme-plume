@@ -65,11 +65,7 @@ export type CopyrightLicense = LiteralUnion<KnownCopyrightLicense>
 
 export type BlogPostCoverLayout = 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
 
-export interface BlogPostCover {
-  /**
-   * 封面图链接地址，只能使用 绝对路径 以及 远程图片地址
-   */
-  url: string
+export interface BlogPostCoverStyle {
   /**
    * 博客文章封面图的位置
    */

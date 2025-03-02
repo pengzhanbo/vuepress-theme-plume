@@ -10,6 +10,8 @@ export const themeGuide = defineNoteConfig({
       icon: 'carbon:idea',
       items: [
         'intro',
+        'quick-start',
+        'project-structure',
       ],
     },
   ],

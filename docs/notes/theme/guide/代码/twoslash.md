@@ -196,8 +196,8 @@ const foo: Foo = 1
 
 启用该功能后，你只需要在 原有的 markdown 代码块语法中，在代码语言声明后添加 `twoslash` 关键词即可：
 
-````md
-```ts twoslash  // [!code highlight]
+````md{1}
+```ts twoslash
 const a = 1
 ```
 ````

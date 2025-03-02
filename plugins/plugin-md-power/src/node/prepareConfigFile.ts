@@ -41,7 +41,7 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
   }
 
   if (options.jsfiddle) {
-    imports.add(`import JSFiddle from '${CLIENT_FOLDER}components/JSFiddle.vue'`)
+    imports.add(`import JSFiddle from '${CLIENT_FOLDER}components/JsFiddle.vue'`)
     enhances.add(`app.component('JSFiddleViewer', JSFiddle)`)
   }
 

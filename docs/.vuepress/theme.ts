@@ -23,6 +23,7 @@ export const theme: Theme = plumeTheme({
       echarts: true,
       mermaid: true,
       flowchart: true,
+      markmap: true,
     },
     markdownPower: {
       annotation: true,

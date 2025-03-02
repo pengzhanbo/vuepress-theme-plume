@@ -39,6 +39,11 @@
     "release:sync": "node scripts/mirror-sync.mjs",
     "release:version": "bumpp package.json plugins/*/package.json theme/package.json cli/package.json --execute=\"pnpm release:changelog\" --commit \"build: publish v%s\" --all --tag --push"
   },
+  "dependencies": {
+    "markmap-lib": "^0.18.11",
+    "markmap-toolbar": "^0.18.10",
+    "markmap-view": "^0.18.10"
+  },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",

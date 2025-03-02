@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlogPostCover, PlumeThemeBlogPostItem } from '../../../shared/index.js'
+import type { BlogPostCoverStyle, PlumeThemeBlogPostItem } from '../../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
 import { useMediaQuery } from '@vueuse/core'
 import { computed } from 'vue'
@@ -11,6 +11,7 @@ const props = defineProps<{
 }>()
 
 const { blog } = useData()
+const isMobile = useMediaQuery('(max-width: 496px)')
 const colors = useTagColors()
 const { categories: categoriesLink, tags: tagsLink } = useInternalLink()
 
@@ -38,15 +39,14 @@ const tags = computed(() => {
     }))
 })
 
-const cover = computed<BlogPostCover | null>(() => {
+const cover = computed<BlogPostCoverStyle | null>(() => {
   if (!props.post.cover)
     return null
   const opt = blog.value.postCover ?? 'right'
   const options = typeof opt === 'string' ? { layout: opt } : opt
-  const cover = typeof props.post.cover === 'string' ? { url: props.post.cover } : props.post.cover
-  return { layout: 'right', ratio: '4:3', ...options, ...cover }
+  return { layout: 'right', ratio: '4:3', ...options, ...props.post.coverStyle }
 })
-const isMobile = useMediaQuery('(max-width: 496px)')
+
 const coverLayout = computed(() => {
   if (isMobile.value)
     return 'top'
@@ -58,11 +58,13 @@ const coverLayout = computed(() => {
     return odd ? 'right' : 'left'
   return layout
 })
+
 const coverCompact = computed(() => {
   if (props.post.excerpt || coverLayout.value === 'top')
     return false
   return cover.value?.compact ?? false
 })
+
 const coverStyles = computed(() => {
   if (!cover.value)
     return null
@@ -84,9 +86,15 @@ const coverStyles = computed(() => {
 </script>
 
 <template>
-  <div class="vp-blog-post-item" data-allow-mismatch :class="{ 'has-cover': cover, [coverLayout]: cover }">
-    <div v-if="cover" class="post-cover" data-allow-mismatch :class="{ compact: coverCompact }" :style="coverStyles">
-      <img :src="cover.url" :alt="post.title" loading="lazy">
+  <div
+    class="vp-blog-post-item" data-allow-mismatch
+    :class="{ 'has-cover': props.post.cover, [coverLayout]: cover }"
+  >
+    <div
+      v-if="props.post.cover" class="post-cover" data-allow-mismatch
+      :class="{ compact: coverCompact }" :style="coverStyles"
+    >
+      <img :src="props.post.cover" :alt="post.title" loading="lazy">
     </div>
     <div class="blog-post-item-content">
       <h3>

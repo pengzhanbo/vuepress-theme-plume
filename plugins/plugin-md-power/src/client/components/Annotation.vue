@@ -24,32 +24,41 @@ function updatePosition() {
     return
   const { x: _x, y: _y, width: w, height: h } = button.value.getBoundingClientRect()
   const x = _x + w / 2
-  const y = _y + h
+  const y = _y + h / 2
 
   const { width, height } = popover.value.getBoundingClientRect()
   const { clientWidth, clientHeight } = document.documentElement
   position.value.x = x + width + 16 > clientWidth ? clientWidth - x - width - 16 : 0
-  position.value.y = y + height + 16 > clientHeight ? clientHeight - y - height - 16 : 0
+
+  if (y > clientHeight - 16) {
+    active.value = false
+  }
+  else {
+    position.value.y = y + height + 16 > clientHeight ? clientHeight - y - height - 16 : 0
+  }
 }
 
 watch(active, () => nextTick(updatePosition))
 useEventListener('resize', updatePosition)
+useEventListener('scroll', updatePosition, { passive: true })
 </script>
 
 <template>
-  <span class="vp-annotation" :class="{ active, [label]: true }" :aria-label="label">
+  <span class="vp-annotation ignore-header" :class="{ active, [label]: true }" :aria-label="label">
     <span ref="button" class="vpi-annotation" @click="active = !active" />
-    <Transition name="fade">
-      <div
-        v-show="active" ref="popover"
-        class="annotations-popover" :class="{ list: list.length > 1 }"
-        :style="{ '--vp-annotation-x': `${position.x}px`, '--vp-annotation-y': `${position.y}px` }"
-      >
-        <div v-for="i in list" :key="label + i" class="annotation">
-          <slot :name="`item-${i}`" />
+    <ClientOnly>
+      <Transition name="fade">
+        <div
+          v-show="active" ref="popover"
+          class="annotations-popover" :class="{ list: list.length > 1 }"
+          :style="{ '--vp-annotation-x': `${position.x}px`, '--vp-annotation-y': `${position.y}px` }"
+        >
+          <div v-for="i in list" :key="label + i" class="annotation">
+            <slot :name="`item-${i}`" />
+          </div>
         </div>
-      </div>
-    </Transition>
+      </Transition>
+    </ClientOnly>
   </span>
 </template>
 
@@ -73,6 +82,12 @@ useEventListener('resize', updatePosition)
   transform: rotate(0deg);
 }
 
+@media print {
+  .vpi-annotation {
+    display: none;
+  }
+}
+
 .vp-annotation.active {
   z-index: 10;
 }
@@ -94,13 +109,15 @@ useEventListener('resize', updatePosition)
   max-width: min(calc(100vw - 32px), 360px);
   max-height: 360px;
   padding: 8px 12px;
-  overflow-y: auto;
+  overflow: auto;
   font-size: 14px;
+  font-weight: normal;
   background-color: var(--vp-c-bg);
   border: solid 1px var(--vp-c-divider);
   border-radius: 4px;
   box-shadow: var(--vp-shadow-2);
-  transform: translateX(var(--vp-annotation-x, 0)) translateY(var(--vp-annotation-y, 0));
+  transform: translateX(var(--vp-annotation-x, 0)) translateY(var(--vp-annotation-y, 0)) translateZ(0);
+  will-change: transform;
 }
 
 .annotations-popover.list {
@@ -116,5 +133,26 @@ useEventListener('resize', updatePosition)
   background-color: var(--vp-c-bg);
   border-radius: 4px;
   box-shadow: var(--vp-shadow-1);
+}
+
+.annotations-popover :deep(p) {
+  margin: 12px 0;
+  line-height: 24px;
+}
+
+.annotations-popover :deep(:first-child) {
+  margin-top: 4px;
+}
+
+.annotations-popover :deep(:last-child) {
+  margin-bottom: 4px;
+}
+
+.annotations-popover.list :deep(:first-child) {
+  margin-top: 8px;
+}
+
+.annotations-popover.list :deep(:last-child) {
+  margin-bottom: 8px;
 }
 </style>

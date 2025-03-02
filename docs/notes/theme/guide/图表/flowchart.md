@@ -18,23 +18,10 @@ permalink: /guide/chart/flowchart/
 
 你需要在你的项目中安装 [flowchart.ts](http://flowchart.js.org/) 库。
 
-::: code-tabs
-@tab pnpm
-
-```sh
-pnpm add flowchart.ts
-```
-
-@tab npm
+::: npm-to
 
 ```sh
 npm install flowchart.ts
-```
-
-@tab yarn
-
-```sh
-yarn add flowchart.ts
 ```
 
 :::
@@ -49,7 +36,7 @@ export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
       markdownEnhance: {
-        flowchart: true,
+        flowchart: true, // [!code hl]
       },
     }
   })

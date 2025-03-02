@@ -1,4 +1,4 @@
-import type { BlogPostCover, BlogPostCoverLayout } from '../base.js'
+import type { BlogPostCoverLayout, BlogPostCoverStyle } from '../base.js'
 import type { PageCategoryData } from '../page-data.js'
 
 export interface BlogOptions {
@@ -114,5 +114,5 @@ export interface BlogOptions {
    *
    * @default 'right'
    */
-  postCover?: BlogPostCoverLayout | Omit<BlogPostCover, 'url'>
+  postCover?: BlogPostCoverLayout | BlogPostCoverStyle
 }

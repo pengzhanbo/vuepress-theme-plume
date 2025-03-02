@@ -1,3 +1,42 @@
+# [1.0.0-rc.135](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.134...v1.0.0-rc.135) (2025-03-02)
+
+
+### Bug Fixes
+
+* typo error ([ed019ca](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ed019cad06bfdf76e5b7937f2553c76f5da56ab3))
+
+
+
+# [1.0.0-rc.134](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.133...v1.0.0-rc.134) (2025-03-02)
+
+
+### Bug Fixes
+
+* `abbr` incorrectly appears in search results ([#495](https://github.com/pengzhanbo/vuepress-theme-plume/issues/495)) ([7a515b7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7a515b7ba4619ae84d342d82eb2415088a754774))
+* `abbr` incorrectly rendered in `toc`, close [#488](https://github.com/pengzhanbo/vuepress-theme-plume/issues/488) ([#494](https://github.com/pengzhanbo/vuepress-theme-plume/issues/494)) ([2505e7f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2505e7f62391c18514cb4596b75fc25439dc1116))
+* **docs:** incorrect rust icon display in dark mode ([607aaf4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/607aaf453382030e07b299480c170dc2d72c06f8))
+* modify search.css for better display ([#499](https://github.com/pengzhanbo/vuepress-theme-plume/issues/499)) ([901c3d5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/901c3d50635b499420bd926189c7926c68dc6b9b))
+* **plugin-md-power:** incorrect parse image size ([0f4db62](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0f4db622f791c92aa1bfb78e3b3451b51fd83367))
+* **theme:** incorrect calculation of active link in the outline, close [#492](https://github.com/pengzhanbo/vuepress-theme-plume/issues/492) ([#501](https://github.com/pengzhanbo/vuepress-theme-plume/issues/501)) ([00a8587](https://github.com/pengzhanbo/vuepress-theme-plume/commit/00a858761c1e9ed710ef1f59be46928fe4c06b63))
+* **theme:** incorrect toc display in 1200px screen ([#500](https://github.com/pengzhanbo/vuepress-theme-plume/issues/500)) ([6e1992f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6e1992f81108276455ef8d72b0c7ff5c8b4aee2c))
+* **theme:** page should be in light mode while printing, close [#502](https://github.com/pengzhanbo/vuepress-theme-plume/issues/502) ([#503](https://github.com/pengzhanbo/vuepress-theme-plume/issues/503)) ([d4e76e0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d4e76e0b0bdeae280cc5bf8189a6648846130ad4))
+
+
+### Features
+
+* **cli:** add `markdownImage` into template ([783bfc6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/783bfc6583425b3046a62dd93f8509a80ad52bac))
+* **plugin-md-power:** add multiple lines parse for `annotation` syntax ([#496](https://github.com/pengzhanbo/vuepress-theme-plume/issues/496)) ([b879c62](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b879c624427526b27253ed91dea7f327f099d8b9))
+* **plugin-md-power:** add the same `tab-id` to the `npm-to` containers in the same group ([#504](https://github.com/pengzhanbo/vuepress-theme-plume/issues/504)) ([5ee3bc4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5ee3bc4d2f4f928eef59086d70ea8dafc7c257c1))
+* **theme:** split the post `cover` field into `cover` and `coverStyle` ([#512](https://github.com/pengzhanbo/vuepress-theme-plume/issues/512)) ([4227b8a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4227b8a91ed6c88749fdc5b98a1dc47a282c0937))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** improve code embed ([#497](https://github.com/pengzhanbo/vuepress-theme-plume/issues/497)) ([99ba7be](https://github.com/pengzhanbo/vuepress-theme-plume/commit/99ba7be92d530b7d5f3c625a8df6846cd56bb9e3))
+* update deps to latest ([bfa6c6a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bfa6c6ac0e000282f0f88e3cb48587b101df6420))
+
+
+
 # [1.0.0-rc.133](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.132...v1.0.0-rc.133) (2025-02-24)
 
 

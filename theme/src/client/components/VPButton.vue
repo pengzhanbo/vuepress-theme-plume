@@ -19,10 +19,6 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'medium',
   theme: 'brand',
   text: '',
-  tag: undefined,
-  href: undefined,
-  target: undefined,
-  rel: undefined,
 })
 const router = useRouter()
 

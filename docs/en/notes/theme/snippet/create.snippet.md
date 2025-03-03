@@ -2,7 +2,7 @@
 [0;90m┌[0m  [0;36;1mWelcome to VuePress and vuepress-theme-plume ![0m[0m
 [0;90m│[0m[0m
 [0;32m◇[0m  Select a language to display / 选择显示语言[0m
-[0;90m│[0m[0m  Simplified Chinese
+[0;90m│[0m[0m  [0;2mSimplified Chinese[0m[0m
 [0;90m│[0m[0m
 [0;32m◇[0m  Where do you want to initialize VuePress? [0m
 [0;90m│[0m[0m  [0;2m./my-project[0m[0m

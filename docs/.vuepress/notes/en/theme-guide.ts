@@ -12,6 +12,24 @@ export const themeGuide = defineNoteConfig({
         'intro',
         'quick-start',
         'project-structure',
+        'write',
+      ],
+    },
+    {
+      text: 'Write',
+      icon: 'fluent-mdl2:edit-create',
+      collapsed: false,
+      items: [
+        {
+          text: 'markdown',
+          icon: 'material-symbols:markdown-outline',
+          prefix: 'markdown',
+          collapsed: true,
+          items: [
+            'basic',
+            'extensions',
+          ],
+        },
       ],
     },
   ],

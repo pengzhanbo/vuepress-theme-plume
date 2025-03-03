@@ -6,7 +6,7 @@ export const theme: Theme = plumeTheme({
   hostname: process.env.SITE_HOST || 'https://modenc.top',
   docsRepo: 'https://github.com/pengzhanbo/vuepress-theme-plume',
   docsDir: 'docs',
-  changelog: { maxCount: 10 },
+  changelog: { maxCount: 100 },
   contributors: { mode: 'block' },
 
   plugins: {

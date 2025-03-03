@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
 
-const deadline = new Date('2025-06-07T01:00:00.000Z')
+const deadline = new Date('2025-06-07T09:00:00.000')
 const time = ref(deadline.getTime() - Date.now())
 
 let intervalId: number

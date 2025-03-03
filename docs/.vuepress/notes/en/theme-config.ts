@@ -10,6 +10,15 @@ export const themeConfig = defineNoteConfig({
       items: [
         'basic',
         'intro',
+        'notes',
+      ],
+    },
+    {
+      text: 'frontmatter',
+      prefix: 'frontmatter',
+      collapsed: false,
+      items: [
+        'article',
       ],
     },
   ],

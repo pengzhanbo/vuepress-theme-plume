@@ -155,17 +155,17 @@ The theme will generate a category page based on the directory structure.
 - **Blog Articles**
 
   For the names of **blog articles**, the theme has no specific conventions, and you can name them arbitrarily. The default sorting rule for blog articles is based solely on file creation time.
-  You can also use [frontmatter > sticky](../config/frontmatter/post.md#sticky) to configure whether the article is stickied.
+  You can also use [frontmatter > sticky](../config/frontmatter/article.md#sticky) to configure whether the article is stickied.
 
 - **Notes**
 
-  For the names of markdown files in **notes**, the same rules as [Folder Naming Convention](#Folder Naming Convention) still apply.
-  This can provide a basis for sorting the [auto-generated sidebar](../config/Notes Configuration.md#Auto-Generated Sidebar) for notes.
+  For the names of markdown files in **notes**, the same rules as [Folder Naming Convention](#folder-naming-convention) still apply.
+  This can provide a basis for sorting the [auto-generated sidebar](../config/notes.md#auto-generated-sidebar) for notes.
 
 ## Article Writing
 
 You can start writing your own articles by creating Markdown files in `docs` using `markdown` syntax.
-For the supported features of markdown extensions, please refer to [this document](./markdown/Extensions.md).
+For the supported features of markdown extensions, please refer to [this document](./markdown/extensions.md).
 
 Since the theme defaults to auto-generating a `title` for the article's `frontmatter`, the main part of the article content should start with `h2`, i.e., `## Secondary Heading`. If you have disabled `autoFrontmatter.title`, you should start with `h1`, i.e., `# Primary Heading`.
 

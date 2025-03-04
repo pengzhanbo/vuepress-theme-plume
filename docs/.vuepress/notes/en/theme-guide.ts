@@ -13,6 +13,9 @@ export const themeGuide = defineNoteConfig({
         'quick-start',
         'project-structure',
         'write',
+        'blog',
+        'document',
+        'international',
       ],
     },
     {
@@ -30,6 +33,14 @@ export const themeGuide = defineNoteConfig({
             'extensions',
           ],
         },
+      ],
+    },
+    {
+      text: 'Customization',
+      icon: 'material-symbols:dashboard-customize-outline-rounded',
+      collapsed: false,
+      items: [
+        'custom-home',
       ],
     },
   ],

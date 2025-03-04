@@ -8,7 +8,6 @@ tags:
   - Guide
   - Quick Start
 ---
----
 
 ==vuepress-theme-plume== is a theme based on VuePress. Whether you want to write **lifestyle blogs**, **technical blogs**, or **product documentation**, **knowledge bases**, **series documentation**, etc., the theme can meet your needs.
 

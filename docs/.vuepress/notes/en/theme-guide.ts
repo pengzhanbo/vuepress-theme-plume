@@ -16,6 +16,7 @@ export const themeGuide = defineNoteConfig({
         'blog',
         'document',
         'international',
+        'deployment',
       ],
     },
     {

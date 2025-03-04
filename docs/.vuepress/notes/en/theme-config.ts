@@ -10,6 +10,7 @@ export const themeConfig = defineNoteConfig({
       items: [
         'intro',
         'basic',
+        'locales',
         'notes',
       ],
     },

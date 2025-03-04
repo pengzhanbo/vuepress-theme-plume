@@ -13,3 +13,5 @@ todo ...
 ### article
 
 ### blog
+
+## Locales Configuration

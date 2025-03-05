@@ -10,7 +10,6 @@
     </book>
 </catalog>
 ```
-```
 ````
 
 **输出：**
@@ -56,7 +55,6 @@
 function foo( ) {
   return 'Hello World'  
 }
-```
 ```
 ````
 

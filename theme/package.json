@@ -63,6 +63,7 @@
   },
   "peerDependencies": {
     "@iconify/json": "^2",
+    "@vuepress/shiki-twoslash": "catalog:",
     "mathjax-full": "^3.2.2",
     "sass": "^1.85.0",
     "sass-embedded": "^1.85.0",
@@ -72,6 +73,9 @@
   },
   "peerDependenciesMeta": {
     "@iconify/json": {
+      "optional": true
+    },
+    "@vuepress/shiki-twoslash": {
       "optional": true
     },
     "mathjax-full": {
@@ -96,10 +100,10 @@
     "@pengzhanbo/utils": "^1.2.0",
     "@vuepress-plume/plugin-fonts": "workspace:*",
     "@vuepress-plume/plugin-search": "workspace:*",
-    "@vuepress-plume/plugin-shikiji": "workspace:*",
     "@vuepress/helper": "catalog:",
     "@vuepress/plugin-cache": "catalog:",
     "@vuepress/plugin-comment": "catalog:",
+    "@vuepress/plugin-copy-code": "catalog:",
     "@vuepress/plugin-docsearch": "catalog:",
     "@vuepress/plugin-git": "catalog:",
     "@vuepress/plugin-markdown-hint": "catalog:",
@@ -110,6 +114,7 @@
     "@vuepress/plugin-photo-swipe": "catalog:",
     "@vuepress/plugin-reading-time": "catalog:",
     "@vuepress/plugin-seo": "catalog:",
+    "@vuepress/plugin-shiki": "catalog:",
     "@vuepress/plugin-sitemap": "catalog:",
     "@vuepress/plugin-watermark": "catalog:",
     "@vueuse/core": "catalog:",

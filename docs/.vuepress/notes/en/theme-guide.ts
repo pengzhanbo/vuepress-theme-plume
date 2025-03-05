@@ -17,6 +17,7 @@ export const themeGuide = defineNoteConfig({
         'document',
         'international',
         'deployment',
+        'optimize-build',
       ],
     },
     {

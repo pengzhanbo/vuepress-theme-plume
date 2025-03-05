@@ -1,12 +1,13 @@
 import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
-import type { ShikiPluginOptions } from '@vuepress-plume/plugin-shikiji'
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
+import type { CopyCodePluginOptions } from '@vuepress/plugin-copy-code'
 import type { DocSearchOptions } from '@vuepress/plugin-docsearch'
 import type { MarkdownImagePluginOptions } from '@vuepress/plugin-markdown-image'
 import type { MarkdownIncludePluginOptions } from '@vuepress/plugin-markdown-include'
 import type { MarkdownMathPluginOptions } from '@vuepress/plugin-markdown-math'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
 import type { SeoPluginOptions } from '@vuepress/plugin-seo'
+import type { ShikiPluginOptions } from '@vuepress/plugin-shiki'
 import type { SitemapPluginOptions } from '@vuepress/plugin-sitemap'
 import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
 import type { MarkdownEnhancePluginOptions } from 'vuepress-plugin-md-enhance'
@@ -22,6 +23,11 @@ export interface PlumeThemePluginOptions {
    * plugin-docsearch 配置
    */
   docsearch?: false | DocSearchOptions
+
+  /**
+   * 代码块复制按钮配置
+   */
+  copyCode?: false | CopyCodePluginOptions
 
   /**
    * 代码高亮 配置

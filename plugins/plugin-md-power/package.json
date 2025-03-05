@@ -46,7 +46,7 @@
     "hls.js": "^1.5.18",
     "less": "^4.2.1",
     "markdown-it": "^14.0.0",
-    "mpegts.js": "^1.8.0",
+    "mpegts.js": "^1.7.3",
     "sass": "^1.83.0",
     "sass-embedded": "^1.83.0",
     "stylus": ">=0.64.0",
@@ -95,7 +95,7 @@
     "artplayer": "^5.2.2",
     "dashjs": "^5.0.0",
     "hls.js": "^1.5.20",
-    "mpegts.js": "^1.8.0"
+    "mpegts.js": "1.7.3"
   },
   "publishConfig": {
     "access": "public"

@@ -15,6 +15,7 @@
     "@iconify/json": "catalog:",
     "@simonwep/pickr": "^1.9.1",
     "@vuepress/bundler-vite": "catalog:",
+    "@vuepress/shiki-twoslash": "catalog:",
     "chart.js": "^4.4.8",
     "echarts": "^5.6.0",
     "flowchart.ts": "^3.0.1",

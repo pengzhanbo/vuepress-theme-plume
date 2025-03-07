@@ -18,11 +18,16 @@ export const EncryptSymbol: InjectionKey<Encrypt> = Symbol(
   __VUEPRESS_DEV__ ? 'Encrypt' : '',
 )
 
-const storage = useSessionStorage('2a0a3d6afb2fdf1f', () => ({
-  s: [genSaltSync(10), genSaltSync(10)] as const,
-  g: '' as string,
-  p: {} as Record<string, string>,
-}))
+const storage = useSessionStorage('2a0a3d6afb2fdf1f', () => {
+  if (__VUEPRESS_SSR__) {
+    return { s: ['', ''] as const, g: '', p: {} as Record<string, string> }
+  }
+  return {
+    s: [genSaltSync(10), genSaltSync(10)] as const,
+    g: '' as string,
+    p: {} as Record<string, string>,
+  }
+})
 
 function mergeHash(hash: string) {
   const [left, right] = storage.value.s

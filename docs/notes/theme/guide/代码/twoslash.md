@@ -61,9 +61,20 @@ const c = 1
 
 ### 启用功能
 
+在启用功能前，您需要先安装 `@vuepress/shiki-twoslash` 包：
+
+::: npm-to
+
+```sh
+npm i @vuepress/shiki-twoslash
+```
+
+:::
+
 在 主题配置中，启用 `twoslash` 选项。
 
 ::: code-tabs
+
 @tab .vuepress/config.ts
 
 ```ts
@@ -75,6 +86,14 @@ export default defineUserConfig({
   }),
 })
 ```
+
+:::
+
+::: important
+`twoslash` 对于大多数用户而言，不是必要的功能，且 `twoslash` 相关的依赖包体积较大，
+因此将 `twoslash` 的相关实现均迁移到了 `@vuepress/shiki-twoslash` 中，
+这可以有效减少主题的初始安装体积。
+仅在您需要使用 `twoslash` 功能时，才需要安装 `@vuepress/shiki-twoslash`。
 
 :::
 

@@ -53,15 +53,22 @@ export function useGithubRepo(repo: MaybeRef<string>) {
     }
 
     loaded.value = false
-    const res = await fetch(`https://api.pengzhanbo.cn/github/repo/${owner}/${name}`)
-      .then(res => res.json()) as GithubRepoInfo
+    try {
+      const res = await fetch(`https://api.pengzhanbo.cn/github/repo/${owner}/${name}`)
+        .then(res => res.json()) as GithubRepoInfo
 
-    data.value = res
-    loaded.value = true
+      loaded.value = true
 
-    storage.value[key] = {
-      info: res,
-      updatedAt: Date.now(),
+      data.value = res
+
+      storage.value[key] = {
+        info: res,
+        updatedAt: Date.now(),
+      }
+    }
+    catch (e) {
+      loaded.value = true
+      console.error('github repo error:', e)
     }
   }
 

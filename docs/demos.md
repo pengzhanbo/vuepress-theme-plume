@@ -39,7 +39,13 @@ docs:
     url: https://docs.ncatbot.xyz
     repo: https://github.com/Isaaczhr/NcatBotDocs
     preview: https://docs.ncatbot.xyz/images/preview.jpg
-
+  -
+    name: PGuide Docs
+    desc: 一个与计算机自学、校内生活、开放公共服务等相关的大学指南。
+    logo: https://docs.pguide.studio/logo.svg
+    url: https://docs.pguide.studio
+    repo: https://github.com/MultipledMe/PGuide-Docs
+    preview: /images/demos/pguide-doc.jpg
 blog:
   -
     name: 鹏展博

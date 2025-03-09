@@ -10,7 +10,6 @@ The project repository uses [pnpm workspaces](https://pnpm.io/zh/workspaces) to 
 
 In the `plugins` directory:
 
-- `plugin-content-update`: Rewrites the `Content` component and provides the `onContentUpdated` hook.
 - `plugin-search`: Provides full-text fuzzy search functionality for the theme.
 - `plugin-shikiji`: A code highlighting plugin that supports highlight, diff, focus, and error level.
 - `plugin-md-power`: Provides enhanced markdown features.
@@ -19,7 +18,7 @@ In the `plugins` directory:
 
 Development requirements:
 
-- [Node.js](http://nodejs.org/) version 18.16.0+
+- [Node.js](http://nodejs.org/) version 20.6.0+
 - [pnpm](https://pnpm.io/zh/) version 9+
 
 Clone the repository and install dependencies:

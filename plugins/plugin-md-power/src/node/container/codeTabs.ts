@@ -5,11 +5,17 @@ import { isPlainObject } from '@vuepress/helper'
 import { definitions, getFileIconName, getFileIconTypeFromExtension } from '../fileIcons/index.js'
 import { stringifyProp } from '../utils/stringifyProp.js'
 
-export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTabsOptions = {}) => {
-  const getIcon = (filename: string): string | void => {
-    if (options.icon === false)
-      return undefined
-    const { named, extensions } = isPlainObject(options.icon) ? options.icon : {}
+export function createCodeTabIconGetter(
+  options: CodeTabsOptions = {},
+): (filename: string) => string | void {
+  const noop = () => undefined
+
+  if (options.icon === false)
+    return noop
+
+  const { named, extensions } = isPlainObject(options.icon) ? options.icon : {}
+
+  return function getIcon(filename: string): string | void {
     if (named === false && definitions.named[filename])
       return undefined
     if (extensions === false && getFileIconTypeFromExtension(filename)) {
@@ -26,6 +32,10 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
     }
     return getFileIconName(filename)
   }
+}
+
+export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTabsOptions = {}) => {
+  const getIcon = createCodeTabIconGetter(options)
 
   tab(md, {
     name: 'code-tabs',

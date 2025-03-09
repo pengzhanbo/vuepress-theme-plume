@@ -52,6 +52,9 @@
     "lib",
     "templates"
   ],
+  "engines": {
+    "node": "^18.19.0 || ^20.6.0 || >=22.0.0"
+  },
   "scripts": {
     "dev": "pnpm '/(copy|tsup):watch/'",
     "build": "pnpm run copy && pnpm run tsup",
@@ -135,7 +138,7 @@
   },
   "devDependencies": {
     "@iconify/json": "catalog:",
-    "swiper": "^11.2.4",
+    "swiper": "^11.2.5",
     "vue-router": "^4.5.0"
   }
 }

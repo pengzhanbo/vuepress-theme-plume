@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "@mdit/plugin-attrs": "^0.16.7",
-    "@mdit/plugin-footnote": "^0.16.0",
+    "@mdit/plugin-footnote": "^0.16.8",
     "@mdit/plugin-mark": "^0.16.0",
     "@mdit/plugin-sub": "^0.16.0",
     "@mdit/plugin-sup": "^0.16.0",

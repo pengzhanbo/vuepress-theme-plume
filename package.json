@@ -14,7 +14,7 @@
     "vuepress-theme-plume"
   ],
   "engines": {
-    "node": ">=20.6.0",
+    "node": "^18.19.0 || ^20.9.0 || >=22.1.0",
     "pnpm": ">=9"
   },
   "scripts": {
@@ -42,12 +42,12 @@
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
-    "@pengzhanbo/eslint-config-vue": "^1.26.0",
-    "@pengzhanbo/stylelint-config": "^1.26.0",
+    "@pengzhanbo/eslint-config-vue": "^1.27.0",
+    "@pengzhanbo/stylelint-config": "^1.27.0",
     "@types/less": "^3.0.8",
     "@types/lodash.merge": "^4.6.9",
     "@types/minimist": "^1.2.5",
-    "@types/node": "^22.13.8",
+    "@types/node": "^22.13.9",
     "@types/stylus": "^0.48.43",
     "@types/webpack-env": "^1.18.8",
     "@vitest/coverage-istanbul": "^3.0.7",
@@ -81,6 +81,7 @@
     ]
   },
   "resolutions": {
+    "@typescript-eslint/utils": "^8.26.0",
     "esbuild": "^0.25.0",
     "sass": "^1.85.1",
     "sass-embedded": "^1.85.1"

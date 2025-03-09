@@ -25,7 +25,7 @@
     "markmap-view": "^0.18.10",
     "mermaid": "^11.4.1",
     "sass-embedded": "^1.85.1",
-    "swiper": "^11.2.4",
+    "swiper": "^11.2.5",
     "vue": "catalog:",
     "vuepress-theme-plume": "workspace:*"
   },

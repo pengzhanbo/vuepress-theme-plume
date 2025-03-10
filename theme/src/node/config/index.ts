@@ -1,10 +1,8 @@
 export * from './extendsBundlerOptions.js'
-export * from './resolveAlias.js'
-export * from './resolveLocaleOptions.js'
+export * from './initThemeOptions.js'
 export * from './resolveNotesOptions.js'
-
-export * from './resolveProvideData.js'
-
 export * from './resolveThemeData.js'
-export * from './resolveThemeOption.js'
+export * from './setupAlias.js'
+export * from './setupOptions.js'
+export * from './setupProvideData.js'
 export * from './templateBuildRenderer.js'

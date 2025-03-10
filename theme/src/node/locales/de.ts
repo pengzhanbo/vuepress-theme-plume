@@ -1,7 +1,7 @@
 /** 德语 */
-import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
+import type { PresetLocale, ThemeLocaleText } from '../../shared/index.js'
 
-export const deLocale: PlumeThemeLocaleData = {
+export const deLocale: ThemeLocaleText = {
   selectLanguageName: 'Deutsch',
   selectLanguageText: 'Sprache auswählen',
 

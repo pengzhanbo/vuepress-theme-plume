@@ -1,6 +1,6 @@
-import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
+import type { PresetLocale, ThemeLocaleText } from '../../shared/index.js'
 
-export const enLocale: PlumeThemeLocaleData = {
+export const enLocale: ThemeLocaleText = {
   selectLanguageName: 'English',
   selectLanguageText: 'Languages',
 

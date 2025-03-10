@@ -1,10 +1,10 @@
 import type { Page } from 'vuepress/core'
-import type { PlumeThemeLocaleOptions, PlumeThemePageData } from '../../shared/index.js'
+import type { ThemeOptions, ThemePageData } from '../../shared/index.js'
 import { isFunction, isPlainObject } from '@vuepress/helper'
 
 export function enableBulletin(
-  page: Page<PlumeThemePageData>,
-  options: PlumeThemeLocaleOptions,
+  page: Page<ThemePageData>,
+  options: ThemeOptions,
 ) {
   if (isPlainObject(options.bulletin)) {
     const enablePage = options.bulletin.enablePage

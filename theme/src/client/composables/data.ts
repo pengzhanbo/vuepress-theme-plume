@@ -6,12 +6,12 @@ import type {
 } from 'vuepress/client'
 import type {
   BlogOptions,
-  PlumeThemeFriendsFrontmatter,
-  PlumeThemeHomeFrontmatter,
-  PlumeThemeLocaleData,
-  PlumeThemePageData,
-  PlumeThemePageFrontmatter,
-  PlumeThemePostFrontmatter,
+  ThemeFriendsFrontmatter,
+  ThemeHomeFrontmatter,
+  ThemeLocaleData,
+  ThemePageData,
+  ThemePageFrontmatter,
+  ThemePostFrontmatter,
 } from '../../shared/index.js'
 import type { ThemeLocaleDataRef } from './theme-data.js'
 import { computed } from 'vue'
@@ -27,15 +27,15 @@ import { useThemeData, useThemeLocaleData } from './theme-data.js'
 type FrontmatterType = 'home' | 'post' | 'friends' | 'page'
 
 type Frontmatter<T extends FrontmatterType = 'page'> = T extends 'home'
-  ? PlumeThemeHomeFrontmatter : T extends 'post'
-    ? PlumeThemePostFrontmatter
+  ? ThemeHomeFrontmatter : T extends 'post'
+    ? ThemePostFrontmatter
     : T extends 'friends'
-      ? PlumeThemeFriendsFrontmatter
-      : PlumeThemePageFrontmatter
+      ? ThemeFriendsFrontmatter
+      : ThemePageFrontmatter
 
 export interface Data<T extends FrontmatterType = 'page'> {
-  theme: ThemeLocaleDataRef<PlumeThemeLocaleData>
-  page: PageDataRef<PlumeThemePageData>
+  theme: ThemeLocaleDataRef<ThemeLocaleData>
+  page: PageDataRef<ThemePageData>
   frontmatter: PageFrontmatterRef<Frontmatter<T> & Record<string, unknown>>
   blog: Ref<BlogOptions>
   lang: Ref<string>
@@ -46,7 +46,7 @@ export interface Data<T extends FrontmatterType = 'page'> {
 export function useData<T extends FrontmatterType = 'page'>(): Data<T> {
   const themeData = useThemeData()
   const theme = useThemeLocaleData()
-  const page = usePageData<PlumeThemePageData>()
+  const page = usePageData<ThemePageData>()
   const frontmatter = usePageFrontmatter<Frontmatter<T> & Record<string, unknown>>()
   const site = useSiteLocaleData()
   const isDark = useDarkMode()

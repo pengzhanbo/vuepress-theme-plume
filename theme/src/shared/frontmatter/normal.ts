@@ -1,6 +1,6 @@
 import type { PageFrontmatter } from 'vuepress'
 
-export type PlumeNormalFrontmatter = PageFrontmatter<{
+export type ThemeNormalFrontmatter = PageFrontmatter<{
 
   /**
    * @deprecated

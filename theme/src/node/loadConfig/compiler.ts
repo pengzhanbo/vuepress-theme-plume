@@ -1,4 +1,4 @@
-import type { ThemeConfig } from '../types.js'
+import type { ThemeConfig } from '../../shared/index.js'
 import { promises as fsp } from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'

@@ -33,11 +33,11 @@ export interface Generate {
 let generate: Generate | null = null
 
 export function initAutoFrontmatter() {
-  const { localeOptions, autoFrontmatter = {} } = getThemeConfig()
+  const { autoFrontmatter = {}, ...options } = getThemeConfig()
   if (autoFrontmatter === false)
     return
 
-  const { include, exclude, frontmatter = {} } = resolveOptions(localeOptions, autoFrontmatter)
+  const { include, exclude, frontmatter = {} } = resolveOptions(options, autoFrontmatter)
 
   const globFilter = createFilter(include, exclude, { resolve: false })
 

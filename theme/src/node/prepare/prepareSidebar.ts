@@ -1,11 +1,11 @@
 import type { App, Page } from 'vuepress'
 import type {
-  PlumeThemeLocaleOptions,
-  PlumeThemePageData,
   ResolvedSidebarItem,
-  Sidebar,
-  SidebarItem,
   ThemeIcon,
+  ThemeOptions,
+  ThemePageData,
+  ThemeSidebar,
+  ThemeSidebarItem,
 } from '../../shared/index.js'
 import {
   entries,
@@ -13,11 +13,13 @@ import {
   isPlainObject,
   removeLeadingSlash,
 } from '@vuepress/helper'
+import { getThemeConfig } from '../loadConfig/loader.js'
 import { normalizeLink, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
 
-export async function prepareSidebar(app: App, localeOptions: PlumeThemeLocaleOptions) {
+export async function prepareSidebar(app: App) {
   perfMark('prepare:sidebar')
-  const sidebar = getAllSidebar(localeOptions)
+  const options = getThemeConfig()
+  const sidebar = getAllSidebar(options)
 
   const { resolved, autoHome } = getSidebarData(app, sidebar)
   sidebar.__auto__ = resolved
@@ -29,10 +31,10 @@ export async function prepareSidebar(app: App, localeOptions: PlumeThemeLocaleOp
 
 function getSidebarData(
   app: App,
-  locales: Record<string, Sidebar>,
-): { resolved: Sidebar, autoHome: Record<string, string> } {
+  locales: Record<string, ThemeSidebar>,
+): { resolved: ThemeSidebar, autoHome: Record<string, string> } {
   const autoDirList: string[] = []
-  const resolved: Sidebar = {}
+  const resolved: ThemeSidebar = {}
 
   entries(locales).forEach(([localePath, sidebar]) => {
     if (!sidebar)
@@ -102,9 +104,9 @@ function fileSorting(filepath?: string): number | false {
 function getAutoDirSidebar(
   app: App,
   localePath: string,
-): { link: string, sidebar: SidebarItem[] } {
+): { link: string, sidebar: ThemeSidebarItem[] } {
   const locale = removeLeadingSlash(localePath)
-  let pages = (app.pages as Page<PlumeThemePageData>[])
+  let pages = (app.pages as Page<ThemePageData>[])
     .filter(page => page.data.filePathRelative?.startsWith(locale))
     .map((page) => {
       return { ...page, splitPath: page.data.filePathRelative?.split('/') || [] }
@@ -178,7 +180,7 @@ function getAutoDirSidebar(
   return { link: rootLink, sidebar: cleanSidebar(sidebar) }
 }
 
-function cleanSidebar(sidebar: (SidebarItem)[]) {
+function cleanSidebar(sidebar: (ThemeSidebarItem)[]) {
   for (const item of sidebar) {
     if (isPlainObject(item)) {
       if (isArray(item.items)) {
@@ -186,7 +188,7 @@ function cleanSidebar(sidebar: (SidebarItem)[]) {
           delete item.items
         }
         else {
-          cleanSidebar(item.items as SidebarItem[])
+          cleanSidebar(item.items as ThemeSidebarItem[])
         }
       }
     }
@@ -194,7 +196,7 @@ function cleanSidebar(sidebar: (SidebarItem)[]) {
   return sidebar
 }
 
-function findAutoDirList(sidebar: (string | SidebarItem)[], prefix = ''): string[] {
+function findAutoDirList(sidebar: (string | ThemeSidebarItem)[], prefix = ''): string[] {
   const list: string[] = []
   if (!sidebar.length)
     return list
@@ -214,12 +216,12 @@ function findAutoDirList(sidebar: (string | SidebarItem)[], prefix = ''): string
   return list
 }
 
-function getAllSidebar(localeOptions: PlumeThemeLocaleOptions): Record<string, Sidebar> {
-  const locales: Record<string, Sidebar> = {}
+function getAllSidebar(options: ThemeOptions): Record<string, ThemeSidebar> {
+  const locales: Record<string, ThemeSidebar> = {}
 
-  for (const [locale, opt] of entries(localeOptions.locales || {})) {
-    const notes = locale === '/' ? (opt.notes || localeOptions.notes) : opt.notes
-    const sidebar = locale === '/' ? (opt.sidebar || localeOptions.sidebar) : opt.sidebar
+  for (const [locale, opt] of entries(options.locales || {})) {
+    const notes = locale === '/' ? (opt.notes || options.notes) : opt.notes
+    const sidebar = locale === '/' ? (opt.sidebar || options.sidebar) : opt.sidebar
     locales[locale] = {}
     for (const [key, value] of entries(sidebar || {})) {
       locales[locale][normalizeLink(key)] = value

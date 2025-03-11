@@ -7,7 +7,7 @@ export function templateBuildRenderer(
   template: string,
   context: TemplateRendererContext,
 ) {
-  const { localeOptions: options } = getThemeConfig()
+  const options = getThemeConfig()
   const pkg = getThemePackage()
   template = template
     .replace('{{ themeVersion }}', pkg.version || '')

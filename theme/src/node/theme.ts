@@ -9,21 +9,23 @@ import {
 import {
   extendsBundlerOptions,
   setupAlias,
-  setupOptions,
   setupProvideData,
   templateBuildRenderer,
 } from './config/index.js'
+import { detectThemeOptions } from './detector/index.js'
 import { initConfigLoader, waitForConfigLoaded, watchConfigFile } from './loadConfig/index.js'
 import { createPages, extendsPageData } from './pages/index.js'
 import { setupPlugins } from './plugins/index.js'
 import { prepareData, watchPrepare } from './prepare/index.js'
 import { prepareThemeData } from './prepare/prepareThemeData.js'
-import { resolve, templates, THEME_NAME } from './utils/index.js'
+import { perf, resolve, templates, THEME_NAME } from './utils/index.js'
 
 export function plumeTheme(options: ThemeOptions = {}): Theme {
-  const { configFile, plugins, themeOptions } = setupOptions(options)
-
   return (app) => {
+    perf.init(app.env.isDebug)
+
+    const { configFile, plugins, themeOptions } = detectThemeOptions(options)
+
     initConfigLoader(app, {
       configFile,
       defaultConfig: themeOptions,

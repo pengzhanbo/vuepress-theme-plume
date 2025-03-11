@@ -13,6 +13,7 @@ import { markdownIncludePlugin } from '@vuepress/plugin-markdown-include'
 import { markdownMathPlugin } from '@vuepress/plugin-markdown-math'
 import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
+import { MARKDOWN_ENHANCE_FIELDS, MARKDOWN_POWER_FIELDS } from '../detector/index.js'
 import { getThemeConfig } from '../loadConfig/index.js'
 
 export function markdownPlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
@@ -72,10 +73,6 @@ export function markdownPlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfi
   return plugins
 }
 
-const enhanceKeys: (keyof MarkdownEnhancePluginOptions)[] = ['chartjs', 'echarts', 'mermaid', 'markmap', 'plantuml', 'flowchart', 'revealJs', 'playground', 'vuePlayground', 'kotlinPlayground', 'sandpack']
-
-const mdPowerKeys: (keyof MarkdownPowerPluginOptions)[] = ['abbr', 'annotation', 'artPlayer', 'audioReader', 'bilibili', 'caniuse', 'codeSandbox', 'codeTabs', 'codepen', 'demo', 'fileTree', 'icons', 'imageSize', 'jsfiddle', 'npmTo', 'pdf', 'plot', 'repl', 'replit', 'youtube']
-
 function splitMarkdownOptions(options: MarkdownOptions): {
   mdEnhance: MarkdownEnhancePluginOptions
   mdPower: MarkdownPowerPluginOptions
@@ -89,10 +86,10 @@ function splitMarkdownOptions(options: MarkdownOptions): {
   const mdPower: MarkdownPowerPluginOptions = {}
 
   for (const key in restOptions) {
-    if (enhanceKeys.includes(key as keyof MarkdownEnhancePluginOptions)) {
+    if (MARKDOWN_ENHANCE_FIELDS.includes(key as keyof MarkdownEnhancePluginOptions)) {
       mdEnhance[key] = restOptions[key]
     }
-    else if (mdPowerKeys.includes(key as keyof MarkdownPowerPluginOptions)) {
+    else if (MARKDOWN_POWER_FIELDS.includes(key as keyof MarkdownPowerPluginOptions)) {
       mdPower[key] = restOptions[key]
     }
   }

@@ -10,7 +10,7 @@ import { createFilter } from 'create-filter'
 import dayjs from 'dayjs'
 import { resolveNotesOptions } from '../config/index.js'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { logger, normalizePath, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
+import { logger, normalizePath, perf, resolveContent, writeTemp } from '../utils/index.js'
 import { isEncryptPage } from './prepareEncrypt.js'
 
 const HEADING_RE = /<h(\d)[^>]*>.*?<\/h\1>/gi
@@ -29,7 +29,7 @@ export async function preparedBlogData(app: App): Promise<void> {
     return
   }
 
-  perfMark('prepare:blog-data')
+  perf.mark('prepare:blog-data')
 
   const blog = options.blog || {}
   const notesList = resolveNotesOptions(options)
@@ -102,5 +102,5 @@ export async function preparedBlogData(app: App): Promise<void> {
   const content = resolveContent(app, { name: 'blogPostData', content: blogData })
   await writeTemp(app, 'internal/blogData.js', content)
 
-  perfLog('prepare:blog-data', app.env.isDebug)
+  perf.log('prepare:blog-data')
 }

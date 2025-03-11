@@ -4,17 +4,24 @@ import { THEME_NAME } from './constants.js'
 
 export const logger = new Logger(THEME_NAME)
 
-// { mark: startTime }
-const perf: Record<string, number> = {}
+class Perf {
+  isDebug: boolean = false
+  collect: Record<string, number> = {}
 
-export function perfMark(mark: string): void {
-  perf[mark] = performance.now()
+  init(isDebug = false) {
+    this.isDebug = isDebug
+  }
+
+  mark(mark: string) {
+    this.collect[mark] = performance.now()
+  }
+
+  log(mark: string) {
+    const startTime = this.collect[mark]
+    if (!this.isDebug || !startTime)
+      return
+    logger.info('[perf spent time] ', `${colors.green(mark)}: ${colors.cyan(`${(performance.now() - startTime).toFixed(2)}ms`)}`)
+  }
 }
 
-export function perfLog(mark: string, isDebug = false): void {
-  const startTime = perf[mark]
-  if (!startTime || !isDebug)
-    return
-
-  logger.info(`${colors.magenta('[perf spent time]')} ${colors.green(mark)}: ${colors.cyan(`${(performance.now() - startTime).toFixed(2)}ms`)}`)
-}
+export const perf = new Perf()

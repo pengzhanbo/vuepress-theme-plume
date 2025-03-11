@@ -1,7 +1,7 @@
 import type { App, Page } from 'vuepress/core'
 import { createPage } from 'vuepress/core'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { perfLog, perfMark, withBase } from '../utils/index.js'
+import { perf, withBase } from '../utils/index.js'
 
 function getRootLang(app: App): string {
   // infer from siteLocale
@@ -19,7 +19,7 @@ export async function createPages(app: App) {
   if (options.blog === false)
     return
 
-  perfMark('create:blog-pages')
+  perf.mark('create:blog-pages')
   const pageList: Promise<Page>[] = []
   const locales = options.locales || {}
   const rootLang = getRootLang(app)
@@ -66,5 +66,5 @@ export async function createPages(app: App) {
 
   app.pages.push(...await Promise.all(pageList))
 
-  perfLog('create:blog-pages', app.env.isDebug)
+  perf.log('create:blog-pages')
 }

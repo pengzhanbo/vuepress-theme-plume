@@ -5,7 +5,7 @@ import process from 'node:process'
 import { deepMerge } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
 import { initThemeOptions } from '../config/initThemeOptions.js'
-import { perfLog, perfMark } from '../utils/index.js'
+import { perf } from '../utils/index.js'
 import { compiler } from './compiler.js'
 import { findConfigPath } from './findConfigPath.js'
 
@@ -34,7 +34,7 @@ export async function initConfigLoader(
   app: App,
   { configFile, onChange, defaultConfig }: InitConfigLoaderOptions,
 ) {
-  perfMark('load-config')
+  perf.mark('load-config')
   loader = {
     configFile,
     dependencies: [],
@@ -46,17 +46,17 @@ export async function initConfigLoader(
     config: initThemeOptions(app, defaultConfig),
   }
 
-  perfMark('load-config:find')
+  perf.mark('load-config:find')
   loader.configFile = await findConfigPath(app, configFile)
-  perfLog('load-config:find', app.env.isDebug)
+  perf.log('load-config:find')
 
   if (onChange) {
     loader.changeEvents.push(onChange)
   }
 
-  perfMark('load-config:loaded')
+  perf.mark('load-config:loaded')
   const { config, dependencies = [] } = await loader.load()
-  perfLog('load-config:loaded', app.env.isDebug)
+  perf.log('load-config:loaded')
 
   loader.loaded = true
   loader.dependencies = [...dependencies]
@@ -65,7 +65,7 @@ export async function initConfigLoader(
   loader.whenLoaded.forEach(fn => fn(loader!.config))
   loader.whenLoaded = []
 
-  perfLog('load-config', app.env.isDebug)
+  perf.log('load-config')
 }
 
 export function watchConfigFile(app: App, watchers: any[], onChange: ChangeEvent) {

@@ -7,7 +7,7 @@ import { entries, isLinkAbsolute, isLinkHttp, isPlainObject } from '@vuepress/he
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/loader.js'
-import { createFsCache, interopDefault, logger, nanoid, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
+import { createFsCache, interopDefault, logger, nanoid, perf, resolveContent, writeTemp } from '../utils/index.js'
 
 interface IconData {
   className: string
@@ -39,7 +39,7 @@ function isIconify(icon: any): icon is string {
 }
 
 export async function prepareIcons(app: App) {
-  perfMark('prepare:icons:total')
+  perf.mark('prepare:icons:total')
   const options = getThemeConfig()
   if (!isInstalled) {
     await writeTemp(app, JS_FILENAME, resolveContent(app, { name: 'icons', content: '{}' }))
@@ -50,7 +50,7 @@ export async function prepareIcons(app: App) {
     await fsCache.read()
   }
 
-  perfMark('prepare:pages:icons')
+  perf.mark('prepare:pages:icons')
   const iconList: string[] = []
   app.pages.forEach(page => iconList.push(...getIconsWithPage(page)))
   iconList.push(...getIconWithThemeConfig(options))
@@ -68,9 +68,9 @@ export async function prepareIcons(app: App) {
     collectMap[collect].push(name)
   })
 
-  perfLog('prepare:pages:icons', app.env.isDebug)
+  perf.log('prepare:pages:icons')
 
-  perfMark('prepare:icons:imports')
+  perf.mark('prepare:icons:imports')
 
   if (!locate) {
     const mod = await interopDefault(import('@iconify/json'))
@@ -85,7 +85,7 @@ export async function prepareIcons(app: App) {
     logger.warn(`[iconify] Unknown icons: ${unknownList.join(', ')}`)
   }
 
-  perfLog('prepare:icons:imports', app.env.isDebug)
+  perf.log('prepare:icons:imports')
 
   let cssCode = ''
   const map: Record<string, string> = {}
@@ -105,7 +105,7 @@ export async function prepareIcons(app: App) {
 
   fsCache?.write(cache)
 
-  perfLog('prepare:icons:total', app.env.isDebug)
+  perf.log('prepare:icons:total')
 }
 
 function getIconsWithPage(page: Page): string[] {

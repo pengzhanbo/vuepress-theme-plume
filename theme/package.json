@@ -132,6 +132,7 @@
     "katex": "^0.16.21",
     "local-pkg": "catalog:",
     "nanoid": "catalog:",
+    "package-manager-detector": "^1.0.0",
     "vue": "catalog:",
     "vuepress-plugin-md-enhance": "catalog:",
     "vuepress-plugin-md-power": "workspace:*"

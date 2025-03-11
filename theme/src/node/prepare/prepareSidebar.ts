@@ -14,10 +14,10 @@ import {
   removeLeadingSlash,
 } from '@vuepress/helper'
 import { getThemeConfig } from '../loadConfig/loader.js'
-import { normalizeLink, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
+import { normalizeLink, perf, resolveContent, writeTemp } from '../utils/index.js'
 
 export async function prepareSidebar(app: App) {
-  perfMark('prepare:sidebar')
+  perf.mark('prepare:sidebar')
   const options = getThemeConfig()
   const sidebar = getAllSidebar(options)
 
@@ -26,7 +26,7 @@ export async function prepareSidebar(app: App) {
   sidebar.__home__ = autoHome as any
   await writeTemp(app, 'internal/sidebar.js', resolveContent(app, { name: 'sidebar', content: sidebar }))
 
-  perfLog('prepare:sidebar', app.env.isDebug)
+  perf.log('prepare:sidebar')
 }
 
 function getSidebarData(

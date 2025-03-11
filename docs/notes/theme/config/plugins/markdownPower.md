@@ -8,7 +8,7 @@ permalink: /config/plugins/markdown-power/
 
 为 主题 提供 Markdown 增强功能。
 
-关联插件: [@vuepress-plume/plugin-md-power](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-md-power)
+关联插件: [vuepress-plugin-md-power](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-md-power)
 
 ## 配置
 

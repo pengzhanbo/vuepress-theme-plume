@@ -2,7 +2,7 @@ import type { App } from 'vuepress'
 import { toArray } from '@pengzhanbo/utils'
 import { isPlainObject } from 'vuepress/shared'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { nanoid, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
+import { nanoid, perf, resolveContent, writeTemp } from '../utils/index.js'
 
 export type TagsColorsItem = readonly [
   string, // normal color
@@ -35,7 +35,7 @@ export const PRESET: TagsColorsItem[] = [
 const cache: Record<number, string> = {}
 
 export async function prepareArticleTagColors(app: App): Promise<void> {
-  perfMark('prepare:tag-colors')
+  perf.mark('prepare:tag-colors')
   const options = getThemeConfig()
   const blog = isPlainObject(options.blog) ? options.blog : {}
   const { js, css } = genCode(app, blog.tagsTheme ?? 'colored')
@@ -43,7 +43,7 @@ export async function prepareArticleTagColors(app: App): Promise<void> {
   await writeTemp(app, 'internal/articleTagColors.css', css)
   await writeTemp(app, 'internal/articleTagColors.js', js)
 
-  perfLog('prepare:tag-colors', app.env.isDebug)
+  perf.log('prepare:tag-colors')
 }
 
 export function genCode(app: App, theme: 'colored' | 'brand' | 'gray'): { js: string, css: string } {

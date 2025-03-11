@@ -9,65 +9,62 @@ export const theme: Theme = plumeTheme({
   changelog: { maxCount: 10 },
   contributors: { mode: 'block' },
 
-  plugins: {
+  search: { provider: 'local' },
 
-    shiki: {
-      twoslash: true,
-      lineNumbers: 10,
-    },
+  codeHighlighter: {
+    twoslash: true,
+    lineNumbers: 10,
+  },
 
-    markdownEnhance: {
-      demo: true,
-      chartjs: true,
-      echarts: true,
-      markmap: true,
-      plantuml: true,
-      mermaid: true,
-      flowchart: true,
-    },
-    markdownPower: {
-      annotation: true,
-      abbr: true,
-      imageSize: 'all',
-      pdf: true,
-      caniuse: true,
-      bilibili: true,
-      youtube: true,
-      artPlayer: true,
-      audioReader: true,
-      codepen: true,
-      replit: true,
-      codeSandbox: true,
-      jsfiddle: true,
-      demo: true,
-      npmTo: ['pnpm', 'yarn', 'npm'],
-      repl: {
-        go: true,
-        rust: true,
-        kotlin: true,
-      },
-    },
+  markdown: {
+    oldDemo: true,
+    chartjs: true,
+    echarts: true,
+    markmap: true,
+    plantuml: true,
+    mermaid: true,
+    flowchart: true,
 
-    comment: {
-      provider: 'Giscus',
-      comment: true,
-      repo: 'pengzhanbo/vuepress-theme-plume',
-      repoId: 'R_kgDOG_ebNA',
-      category: 'docs-comment',
-      categoryId: 'DIC_kwDOG_ebNM4Cd0uF',
-      mapping: 'pathname',
-      reactionsEnabled: true,
-      inputPosition: 'top',
-      darkTheme: 'dark_protanopia',
-      lightTheme: 'light_protanopia',
+    annotation: true,
+    abbr: true,
+    imageSize: 'all',
+    pdf: true,
+    caniuse: true,
+    bilibili: true,
+    youtube: true,
+    artPlayer: true,
+    audioReader: true,
+    codepen: true,
+    replit: true,
+    codeSandbox: true,
+    jsfiddle: true,
+    demo: true,
+    npmTo: ['pnpm', 'yarn', 'npm'],
+    repl: {
+      go: true,
+      rust: true,
+      kotlin: true,
     },
+  },
 
-    watermark: {
-      enabled: false,
-      watermarkOptions: {
-        content: 'vuepress-theme-plume',
-      },
+  comment: {
+    provider: 'Giscus',
+    comment: true,
+    repo: 'pengzhanbo/vuepress-theme-plume',
+    repoId: 'R_kgDOG_ebNA',
+    category: 'docs-comment',
+    categoryId: 'DIC_kwDOG_ebNM4Cd0uF',
+    mapping: 'pathname',
+    reactionsEnabled: true,
+    inputPosition: 'top',
+    darkTheme: 'dark_protanopia',
+    lightTheme: 'light_protanopia',
+  },
+
+  watermark: {
+    enabled: false,
+    watermarkOptions: {
+      content: 'vuepress-theme-plume',
     },
-
   },
 })

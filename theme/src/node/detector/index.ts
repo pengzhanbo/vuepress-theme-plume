@@ -1,5 +1,6 @@
 import type { ThemeOptions } from '../../shared/index.js'
 import { detectDependencies } from './dependency.js'
+import { detectMarkdown } from './markdown.js'
 import { detectPlugins } from './plugins.js'
 
 export * from './fields.js'
@@ -12,8 +13,11 @@ export function detectThemeOptions({
   configFile,
   ...themeOptions
 }: ThemeOptions) {
-  detectPlugins(plugins)
   detectDependencies(themeOptions, plugins)
+
+  // detect options
+  detectMarkdown(themeOptions)
+  detectPlugins(plugins)
 
   return { configFile, plugins, themeOptions }
 }

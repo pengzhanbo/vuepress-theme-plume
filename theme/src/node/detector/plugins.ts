@@ -13,6 +13,6 @@ export function detectPlugins(plugins: ThemeBuiltinPlugins) {
 
   // 传入未知的 插件配置项
   if (unsupportedPluginsFields.length) {
-    logger.warn(`${colors.green('plugins')} unsupported fields: ${unsupportedPluginsFields.map(field => colors.yellow(`"${field}"`)).join(', ')}, please check your config.`)
+    logger.warn(`\n${colors.green('plugins')} unsupported fields: ${unsupportedPluginsFields.map(field => colors.yellow(`"${field}"`)).join(', ')}, please check your config.`)
   }
 }

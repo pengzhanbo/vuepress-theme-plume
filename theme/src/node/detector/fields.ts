@@ -1,6 +1,6 @@
 import type { MarkdownEnhancePluginOptions } from 'vuepress-plugin-md-enhance'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
-import type { ThemeBuiltinPlugins } from '../../shared/index.js'
+import type { MarkdownOptions, ThemeBuiltinPlugins } from '../../shared/index.js'
 
 export const PLUGINS_SUPPORTED_FIELDS: (keyof ThemeBuiltinPlugins)[] = [
   'search',
@@ -58,4 +58,15 @@ export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
   'repl',
   'replit',
   'youtube',
+]
+
+export const MARKDOWN_SUPPORT_FIELDS: (keyof MarkdownOptions)[] = [
+  ...(MARKDOWN_ENHANCE_FIELDS as (keyof MarkdownOptions)[]),
+  ...MARKDOWN_POWER_FIELDS,
+  'oldDemo',
+  'image',
+  'math',
+  'include',
+  'hint',
+  'alert',
 ]

@@ -24,7 +24,7 @@ import { shikiPlugin } from '@vuepress/plugin-shiki'
 import { sitemapPlugin } from '@vuepress/plugin-sitemap'
 import { watermarkPlugin } from '@vuepress/plugin-watermark'
 import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
-import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
+import { createCodeTabIconGetter, markdownPowerPlugin } from 'vuepress-plugin-md-power'
 import { getThemeConfig } from '../loadConfig/index.js'
 
 export interface SetupPluginOptions {
@@ -118,10 +118,16 @@ export function getPlugins({
   const shikiTheme = shikiOptions && 'theme' in shikiOptions ? shikiOptions.theme : shikiOptions && 'themes' in shikiOptions ? shikiOptions.themes : { light: 'vitesse-light', dark: 'vitesse-dark' }
 
   if (shikiOptions !== false) {
-    const { twoslash, ...restShikiOptions } = isPlainObject(shikiOptions) ? shikiOptions : {}
+    const { twoslash, codeBlockTitle: _, langs = [], ...restShikiOptions } = isPlainObject(shikiOptions) ? shikiOptions : {}
     const twoslashOptions = twoslash === true ? {} : twoslash
+    const markdownPower = isPlainObject(pluginOptions.markdownPower) ? pluginOptions.markdownPower : {}
+    const getIcon = createCodeTabIconGetter(markdownPower.codeTabs)
     plugins.push(shikiPlugin({
       // enable some default features
+      langs: [
+        ...twoslash ? ['js', 'ts', 'vue'] : [],
+        ...langs,
+      ],
       notationDiff: true,
       notationErrorLevel: true,
       notationFocus: true,
@@ -129,6 +135,15 @@ export function getPlugins({
       notationWordHighlight: true,
       highlightLines: true,
       collapsedLines: false,
+      codeBlockTitle: (title, code) => {
+        const icon = getIcon(title)
+        return `<div class="code-block-title">
+  <div class="code-block-title-bar">
+    <span class="title">${icon ? `<VPIcon name="${icon}"/>` : ''}${title}</span>
+  </div>
+  ${code}
+</div>`
+      },
       twoslash: isPlainObject(twoslashOptions)
         ? {
             ...twoslashOptions,
@@ -171,7 +186,6 @@ export function getPlugins({
 
   if (pluginOptions.watermark) {
     plugins.push(watermarkPlugin({
-      delay: 300,
       enabled: true,
       ...isPlainObject(pluginOptions.watermark) ? pluginOptions.watermark : {},
     }))

@@ -42,7 +42,7 @@ html:not([data-theme="dark"]) .vp-code span {
   z-index: 3;
   font-size: 0.75rem;
   color: var(--vp-code-line-number-color);
-  content: attr(data-title);
+  content: attr(data-ext);
   transition: color var(--vp-t-color);
 }
 
@@ -236,8 +236,9 @@ html:not([data-theme="dark"]) .vp-code span {
   content: "+";
 }
 
-/**
- * Copy Code Button
+/*
+  Copy Code Button
+  --------------------------------------------------------------------------
  */
 .vp-copy-code-button {
   --copy-code-c-text: var(--vp-code-block-color);
@@ -279,4 +280,34 @@ html:not([data-theme="dark"]) .vp-code span {
 
 .vp-doc div[class*="language-"].has-collapsed-lines:not(.collapsed) .collapsed-lines:hover {
   --vp-collapsed-lines-bg: transparent;
+}
+
+/*
+  Code Block Title
+  ---------------------------------------------------------------
+ */
+:root {
+  --code-title-c-bg: var(--vp-code-block-bg);
+  --code-title-divider: var(--vp-c-divider);
+  --code-title-c-text: var(--vp-c-text-1);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.vp-doc .code-block-title div[class*="language-"] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.code-block-title .code-block-title-bar {
+  margin-bottom: -16px;
+}
+
+.code-block-title .code-block-title-bar .title {
+  padding: 10px 12px;
+}
+
+.code-block-title .code-block-title-bar .title .vp-icon {
+  width: 18px;
+  height: 18px;
+  margin-left: 0;
 }

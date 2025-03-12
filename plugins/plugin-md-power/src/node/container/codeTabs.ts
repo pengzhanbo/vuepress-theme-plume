@@ -3,6 +3,7 @@ import type { CodeTabsOptions } from '../../shared/index.js'
 import { tab } from '@mdit/plugin-tab'
 import { isPlainObject } from '@vuepress/helper'
 import { definitions, getFileIconName, getFileIconTypeFromExtension } from '../fileIcons/index.js'
+import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { stringifyProp } from '../utils/stringifyProp.js'
 
 export function createCodeTabIconGetter(
@@ -42,7 +43,7 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
 
     tabsOpenRenderer: ({ active, data }, tokens, index, _, env) => {
       const { meta } = tokens[index]
-      const titles = data.map(({ title }) => md.renderInline(title, env))
+      const titles = data.map(({ title }) => md.renderInline(title, cleanMarkdownEnv(env)))
       const tabsData = data.map((item, dataIndex) => {
         const { id = titles[dataIndex] } = item
 

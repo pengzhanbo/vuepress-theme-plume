@@ -8,6 +8,7 @@ import type { RuleCore } from 'markdown-it/lib/parser_core.mjs'
 import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs'
 import type StateCore from 'markdown-it/lib/rules_core/state_core.mjs'
 import type Token from 'markdown-it/lib/token.mjs'
+import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 
 interface AbbrStateBlock extends StateBlock {
   env: {
@@ -176,6 +177,6 @@ export const abbrPlugin: PluginSimple = (md) => {
 
   md.renderer.rules.abbreviation = (tokens, idx, _, env) => {
     const { content, info } = tokens[idx]
-    return `<Abbreviation>${content}${info ? `<template #tooltip>${md.renderInline(info, env)}</template>` : ''}</Abbreviation>`
+    return `<Abbreviation>${content}${info ? `<template #tooltip>${md.renderInline(info, cleanMarkdownEnv(env))}</template>` : ''}</Abbreviation>`
   }
 }

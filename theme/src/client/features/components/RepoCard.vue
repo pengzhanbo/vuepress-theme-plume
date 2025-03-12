@@ -9,7 +9,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
 </script>
 
 <template>
-  <div v-if="loaded && data" class="vp-repo-card">
+  <div v-if="loaded && data?.name" class="vp-repo-card">
     <p class="repo-name">
       <span class="vpi-github-repo" />
       <span class="repo-link">

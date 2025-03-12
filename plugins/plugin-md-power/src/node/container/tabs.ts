@@ -1,5 +1,6 @@
 import type { PluginSimple } from 'markdown-it'
 import { tab } from '@mdit/plugin-tab'
+import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { stringifyProp } from '../utils/stringifyProp.js'
 
 export const tabs: PluginSimple = (md) => {
@@ -8,7 +9,7 @@ export const tabs: PluginSimple = (md) => {
 
     tabsOpenRenderer: ({ active, data }, tokens, index, _, env) => {
       const { meta } = tokens[index]
-      const titles = data.map(({ title }) => md.renderInline(title, env))
+      const titles = data.map(({ title }) => md.renderInline(title, cleanMarkdownEnv(env)))
       const tabsData = data.map((item, dataIndex) => {
         const { id = titles[dataIndex] } = item
 

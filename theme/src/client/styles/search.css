@@ -155,6 +155,12 @@
   content: "Ctrl";
 }
 
+/* remove box-shadow */
+.DocSearch-Button-Key--pressed {
+  box-shadow: none;
+  transform: none;
+}
+
 .mac .DocSearch-Button .DocSearch-Button-Key:first-child::after {
   content: "⌘";
 }

@@ -35,6 +35,16 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('VideoYoutube', Youtube)`)
   }
 
+  if (options.codepen) {
+    imports.add(`import CodePen from '${CLIENT_FOLDER}components/CodePen.vue'`)
+    enhances.add(`app.component('CodePenViewer', CodePen)`)
+  }
+
+  if (options.jsfiddle) {
+    imports.add(`import JSFiddle from '${CLIENT_FOLDER}components/JsFiddle.vue'`)
+    enhances.add(`app.component('JSFiddleViewer', JSFiddle)`)
+  }
+
   if (options.replit) {
     imports.add(`import Replit from '${CLIENT_FOLDER}components/Replit.vue'`)
     enhances.add(`app.component('ReplitViewer', Replit)`)
@@ -80,6 +90,16 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     imports.add(`import VPDemoNormal from '${CLIENT_FOLDER}components/VPDemoNormal.vue'`)
     enhances.add(`app.component('VPDemoBasic', VPDemoBasic)`)
     enhances.add(`app.component('VPDemoNormal', VPDemoNormal)`)
+  }
+
+  if (options.annotation) {
+    imports.add(`import Annotation from '${CLIENT_FOLDER}components/Annotation.vue'`)
+    enhances.add(`app.component('Annotation', Annotation)`)
+  }
+
+  if (options.abbr) {
+    imports.add(`import Abbreviation from '${CLIENT_FOLDER}components/Abbreviation.vue'`)
+    enhances.add(`app.component('Abbreviation', Abbreviation)`)
   }
 
   return app.writeTemp(

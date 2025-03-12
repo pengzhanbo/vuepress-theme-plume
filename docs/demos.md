@@ -32,7 +32,20 @@ docs:
     logo: https://static.ohmymc.com/img/minecraft-154749_1280.png?max_width=1920&max_height=1920
     url: https://ohmymc.com/
     preview: https://static.ohmymc.com/img/20241228225159139.png?max_width=1920&max_height=1920
-
+  -
+    name: NcatBotDocs
+    desc: NcatBot，一个 QQ 机器人框架项目的使用文档。
+    logo: https://docs.ncatbot.xyz/images/logo.png
+    url: https://docs.ncatbot.xyz
+    repo: https://github.com/Isaaczhr/NcatBotDocs
+    preview: https://docs.ncatbot.xyz/images/preview.jpg
+  -
+    name: PGuide Docs
+    desc: 一个与计算机自学、校内生活、开放公共服务等相关的大学指南。
+    logo: https://docs.pguide.studio/logo.svg
+    url: https://docs.pguide.studio
+    repo: https://github.com/MultipledMe/PGuide-Docs
+    preview: /images/demos/pguide-doc.jpg
 blog:
   -
     name: 鹏展博
@@ -118,6 +131,27 @@ blog:
     url: https://www.azhe.xin/
     repo: https://github.com/liuzhemax/blog
     preview: /images/demos/azhe.jpg
+  -
+    name: jindongjie
+    desc: Keep.It.Simple.Stupid
+    logo: https://ar0m.com/logo/aptrue-sience-logo.png
+    url: https://ar0m.com
+    repo: https://github.com/jindongjie/blog-vuepress-2025
+    preview: /images/demos/jindongjie.jpg
+  -
+    name: 艺述论
+    desc: 一枚喜受艺术的程序员's blog
+    logo: https://yishulun.com/avatar.png
+    url: https://yishulun.com
+    repo: https://github.com/rixingyike/rixingyike.github.io
+    preview: /images/demos/yishulun.com.jpg
+  -
+    name: 菲兹克斯喵
+    desc: 一名物理系学生的笔记和生活
+    logo: https://physnya.top/images/Physics_nya.jpg
+    url: https://physnya.top
+    repo: https://github.com/physnya/blog
+    preview: https://physnya.top/images/preview.png
 ---
 
 :::important

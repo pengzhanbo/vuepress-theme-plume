@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-search",
   "type": "module",
-  "version": "1.0.0-rc.130",
+  "version": "1.0.0-rc.135",
   "description": "The Plugin for VuePress 2 - local search",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",
@@ -46,7 +46,7 @@
     "chokidar": "catalog:",
     "focus-trap": "^7.6.4",
     "mark.js": "^8.11.1",
-    "minisearch": "^7.1.1",
+    "minisearch": "^7.1.2",
     "p-map": "^7.0.3",
     "vue": "catalog:"
   },

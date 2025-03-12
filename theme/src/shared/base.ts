@@ -9,8 +9,8 @@ export type LiteralUnion<Union extends Base, Base = string> =
 
 export type ThemeImage =
   | string
-  | { src: string, alt?: string }
-  | { dark: string, light: string, alt?: string }
+  | { src: string, alt?: string, width: string | number, height: string | number }
+  | { dark: string, light: string, alt?: string, width: string | number, height: string | number }
 
 export type ThemeIcon = string | { svg: string }
 
@@ -65,11 +65,7 @@ export type CopyrightLicense = LiteralUnion<KnownCopyrightLicense>
 
 export type BlogPostCoverLayout = 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
 
-export interface BlogPostCover {
-  /**
-   * 封面图链接地址，只能使用 绝对路径 以及 远程图片地址
-   */
-  url: string
+export interface BlogPostCoverStyle {
   /**
    * 博客文章封面图的位置
    */

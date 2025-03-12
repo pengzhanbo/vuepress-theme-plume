@@ -38,7 +38,7 @@ const classes = computed(() => {
     'vp-local-nav': true,
     'fixed': empty.value,
     'reached-top': y.value >= navHeight.value,
-    'is-blog': isBlogPost,
+    'is-blog': isBlogPost.value,
     'with-outline': !props.showOutline,
   }
 })
@@ -96,10 +96,6 @@ const showLocalNav = computed(() => {
 }
 
 @media (min-width: 960px) {
-  .vp-local-nav.is-blog {
-    display: none;
-  }
-
   .vp-local-nav {
     top: var(--vp-nav-height);
     width: calc(100% - var(--vp-sidebar-width));
@@ -107,11 +103,22 @@ const showLocalNav = computed(() => {
     border-top: none;
   }
 
+  .vp-local-nav.is-blog {
+    width: 100%;
+    margin-left: 0;
+  }
+
   .vp-local-nav .menu {
     visibility: hidden;
   }
 
   .vp-local-nav.with-outline {
+    display: none;
+  }
+}
+
+@media (min-width: 1120px) {
+  .vp-local-nav.is-blog {
     display: none;
   }
 }

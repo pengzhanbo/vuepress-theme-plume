@@ -101,7 +101,7 @@ const mark = computedAsync(async () => {
   return markRaw(new Mark(resultsEl.value))
 }, null)
 
-const cache = new LRUCache<string, Map<string, string>>(16) // 16 files
+const cache = new LRUCache<string, Map<string, string>>(64) // 64 files
 
 debouncedWatch(
   () => [searchIndex.value, filterText.value] as const,
@@ -121,12 +121,8 @@ debouncedWatch(
 
     // Search
     results.value = index
-      .search(filterTextValue)
-      // .slice(0, 16)
-      .map((r) => {
-        r.titles = r.titles?.filter(Boolean) || []
-        return r
-      }) as (SearchResult & Result)[]
+      .search(filterTextValue) as (SearchResult & Result)[]
+    // .slice(0, 16)
     enableNoResults.value = true
 
     const terms = new Set<string>()
@@ -694,8 +690,10 @@ svg {
 
 .titles :deep(mark) {
   padding: 0 2px;
-  color: var(--vp-mini-search-highlight-text);
+  font-weight: normal;
+  color: var(--vp-mini-search-highlight-text) !important;
   background-color: var(--vp-mini-search-highlight-bg);
+  background-image: none;
   border-radius: 2px;
 }
 

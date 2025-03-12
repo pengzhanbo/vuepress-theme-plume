@@ -1,8 +1,12 @@
 import { defineNotesConfig } from 'vuepress-theme-plume'
-import { themeGuide } from './theme-guide.js'
+import { themeConfig } from './theme-config'
+import { themeGuide } from './theme-guide'
 
 export const enNotes = defineNotesConfig({
   dir: 'en/notes',
   link: '/',
-  notes: [themeGuide],
+  notes: [
+    themeGuide,
+    themeConfig,
+  ],
 })

@@ -1,13 +1,13 @@
 import type { TemplateRendererContext } from 'vuepress/utils'
-import type { PlumeThemeLocaleOptions } from '../../shared/index.js'
 import { templateRenderer } from 'vuepress/utils'
+import { getThemeConfig } from '../loadConfig/index.js'
 import { getThemePackage } from '../utils/index.js'
 
 export function templateBuildRenderer(
   template: string,
   context: TemplateRendererContext,
-  options: PlumeThemeLocaleOptions,
 ) {
+  const { localeOptions: options } = getThemeConfig()
   const pkg = getThemePackage()
   template = template
     .replace('{{ themeVersion }}', pkg.version || '')

@@ -14,17 +14,20 @@ export const theme: Theme = plumeTheme({
     shiki: {
       twoslash: true,
       lineNumbers: 10,
-      languages: ['sh', 'ts', 'md', 'html', 'js', 'go', 'kotlin', 'rust', 'vue', 'css', 'json', 'scss', 'yaml', 'bash', 'c++', 'java', 'py', 'ruby', 'make', 'objc', 'swift', 'php', 'rs', 'sql', 'xml', 'zig', 'pug', 'http', 'less', 'styl', 'jsx', 'tsx', 'astro', 'svelte', 'wasm', 'vb', 'bat', 'cs', 'cpp', 'mermaid'],
     },
 
     markdownEnhance: {
       demo: true,
       chartjs: true,
       echarts: true,
+      markmap: true,
+      plantuml: true,
       mermaid: true,
       flowchart: true,
     },
     markdownPower: {
+      annotation: true,
+      abbr: true,
       imageSize: 'all',
       pdf: true,
       caniuse: true,

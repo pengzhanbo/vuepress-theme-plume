@@ -26,7 +26,7 @@ const {
     </p>
     <p v-if="sourceUrl">
       <span>{{ creationText }}</span>
-      <VPLink :href="sourceUrl" :no-icon="creation === 'original'" data-allow-mismatch>
+      <VPLink :href="sourceUrl" class="source" :no-icon="creation === 'original'" data-allow-mismatch>
         {{ decodeURIComponent(sourceUrl) }}
       </VPLink>
     </p>
@@ -54,6 +54,7 @@ const {
 }
 
 .vp-doc .copyright-container p span:first-of-type {
+  align-self: baseline;
   font-weight: bold;
 }
 
@@ -62,6 +63,12 @@ const {
   height: 1.2em;
   color: var(--vp-c-text-2);
   transition: color var(--vp-t-color);
+}
+
+.vp-doc .copyright-container .source {
+  flex: 1;
+  width: 1px;
+  word-break: break-all;
 }
 </style>
 

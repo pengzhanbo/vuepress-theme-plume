@@ -131,7 +131,8 @@ async function indexFile(page: Page, options: SearchIndexOptions['searchOptions'
   const index = getIndexByLocale(locale, options)
   const cache = getIndexCache(fileId)
   // retrieve file and split into "sections"
-  const html = page.contentRendered
+  const html = `<h1><a href="#"><span>${page.frontmatter.title || page.title}</span></a></h1>
+${page.contentRendered}`
   const sections = splitPageIntoSections(html)
 
   if (cache && cache.length)
@@ -147,7 +148,7 @@ async function indexFile(page: Page, options: SearchIndexOptions['searchOptions'
       id,
       text,
       title: titles.at(-1)!,
-      titles: [page.frontmatter.title || page.title, ...titles.slice(0, -1)],
+      titles: titles.slice(0, -1),
     }
     index.add(item)
     cache.push(item)
@@ -155,10 +156,10 @@ async function indexFile(page: Page, options: SearchIndexOptions['searchOptions'
 }
 
 // eslint-disable-next-line regexp/no-super-linear-backtracking
-const headingRegex = /<h(\d*).*?>(<a.*? href="#.*?".*?>.*?<\/a>)<\/h\1>/gi
+const headingRegex = /<h(\d*).*?>(<a.*? href="#.*?".*?>[\s\S]*?<\/a>)<\/h\1>/gi
 // eslint-disable-next-line regexp/no-super-linear-backtracking
-const headingContentRegex = /<a.*? href="#(.*?)".*?>(.*?)<\/a>/i
-
+const headingContentRegex = /<a.*? href="#(.*?)".*?><span>([\s\S]*?)<\/span><\/a>/i
+const ignoreHeadingRegex = /<template[^>]*>[\s\S]*<\/template>/gi
 /**
  * Splits HTML into sections based on headings
  */
@@ -175,13 +176,16 @@ function* splitPageIntoSections(html: string) {
     const content = result[i + 2]
     if (!title || !content)
       continue
-    const titles = parentTitles.slice(0, level)
-    titles[level] = title
-    yield { anchor, titles, text: getSearchableText(content) }
+
     if (level === 0)
       parentTitles = [title]
     else
       parentTitles[level] = title
+
+    let titles = parentTitles.slice(0, level)
+    titles[level] = title
+    titles = titles.filter(Boolean)
+    yield { anchor, titles, text: getSearchableText(content) }
   }
 }
 
@@ -191,6 +195,8 @@ function getSearchableText(content: string) {
 }
 
 function clearHtmlTags(str: string) {
+  str = str.replace(ignoreHeadingRegex, '')
+  // 移除其他所有HTML标签
   return str.replace(/<[^>]*>/g, '')
 }
 

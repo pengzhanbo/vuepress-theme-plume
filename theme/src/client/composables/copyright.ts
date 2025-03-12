@@ -1,7 +1,7 @@
 import type { ComputedRef } from 'vue'
 import type { CopyrightFrontmatter, CopyrightLicense, CopyrightOptions, GitContributor, KnownCopyrightLicense } from '../../shared/index.js'
 import { computed } from 'vue'
-import { useRoute, useRouteLocale } from 'vuepress/client'
+import { useRouteLocale } from 'vuepress/client'
 import { useContributors } from './contributors.js'
 import { useData } from './data.js'
 import { getPresetLocaleData } from './preset-locales.js'
@@ -39,7 +39,6 @@ const LICENSE_URL: Record<KnownCopyrightLicense, { url: string, icons: string[] 
 
 export function useCopyright(copyright: ComputedRef<CopyrightFrontmatter>) {
   const { theme } = useData<'post'>()
-  const route = useRoute()
   const routeLocale = useRouteLocale()
   const { contributors } = useContributors()
 
@@ -52,8 +51,16 @@ export function useCopyright(copyright: ComputedRef<CopyrightFrontmatter>) {
   const author = computed(() => resolveAuthor(copyright.value.author, creation.value, contributors.value))
 
   const sourceUrl = computed(() => {
-    if (creation.value === 'original')
-      return __VUEPRESS_SSR__ ? route.fullPath : location.href.split('#')[0]
+    if (creation.value === 'original') {
+      if (__VUEPRESS_SSR__)
+        return ''
+      const url = new URL(location.href.split('#')[0])
+      // When using giscus for comments, the redirect link after
+      // logging in contains additional parameters.
+      url.searchParams.delete('giscus')
+
+      return url.toString()
+    }
 
     return copyright.value.source
   })

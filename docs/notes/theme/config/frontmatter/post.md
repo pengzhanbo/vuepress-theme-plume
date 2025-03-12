@@ -56,21 +56,22 @@ tags:
 
 ### cover
 
-- 类型： `string \| BlogPostCover`
+- 类型： `string`
 - 默认值： `''`
 
 文章封面图。 封面图仅显示在 文章列表页。
 
-当传入为 `string` 时，表示 封面图链接地址。仅支持 绝对路径 以及 远程图片地址。
+仅支持 绝对路径 以及 远程图片地址。
 
-当传入为 `BlogPostCover` 时，表示 封面图配置。
+### coverStyle
+
+- 类型： `BlogPostCoverStyle`
+- 默认值: `null
+
+封面图配置。
 
 ```ts
-interface BlogPostCover {
-  /**
-   * 封面图链接地址，只能使用 绝对路径 以及 远程图片地址
-   */
-  url: string
+interface BlogPostCoverStyle {
   /**
    * 博客文章封面图的位置
    */

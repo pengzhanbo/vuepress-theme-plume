@@ -40,17 +40,17 @@
     "tsup:watch": "tsup --config tsup.config.ts --watch -- -c"
   },
   "peerDependencies": {
-    "artplayer": "^5.2.0",
-    "dashjs": "^5.0.0",
-    "esbuild": ">=0.24.2",
-    "hls.js": "^1.5.18",
-    "less": "^4.2.1",
-    "markdown-it": "^14.0.0",
-    "mpegts.js": "^1.7.3",
-    "sass": "^1.83.0",
-    "sass-embedded": "^1.83.0",
-    "stylus": ">=0.64.0",
-    "vuepress": "catalog:"
+    "artplayer": "catalog:peer",
+    "dashjs": "catalog:peer",
+    "esbuild": "catalog:prod",
+    "hls.js": "catalog:peer",
+    "less": "catalog:dev",
+    "markdown-it": "catalog:dev",
+    "mpegts.js": "catalog:peer",
+    "sass": "catalog:peer",
+    "sass-embedded": "catalog:peer",
+    "stylus": "catalog:dev",
+    "vuepress": "catalog:vuepress"
   },
   "peerDependenciesMeta": {
     "artplayer": {
@@ -70,32 +70,32 @@
     }
   },
   "dependencies": {
-    "@mdit/plugin-attrs": "^0.16.7",
-    "@mdit/plugin-footnote": "^0.16.8",
-    "@mdit/plugin-mark": "^0.16.0",
-    "@mdit/plugin-sub": "^0.16.0",
-    "@mdit/plugin-sup": "^0.16.0",
-    "@mdit/plugin-tab": "^0.16.0",
-    "@mdit/plugin-tasklist": "^0.16.0",
-    "@vuepress/helper": "catalog:",
-    "@vueuse/core": "catalog:",
-    "chokidar": "catalog:",
-    "image-size": "^2.0.0",
-    "local-pkg": "catalog:",
-    "lru-cache": "^11.0.2",
-    "markdown-it-container": "^4.0.0",
-    "nanoid": "catalog:",
-    "shiki": "^3.1.0",
-    "tm-grammars": "^1.22.19",
-    "tm-themes": "^1.9.14",
-    "vue": "catalog:"
+    "@mdit/plugin-attrs": "catalog:prod",
+    "@mdit/plugin-footnote": "catalog:prod",
+    "@mdit/plugin-mark": "catalog:prod",
+    "@mdit/plugin-sub": "catalog:prod",
+    "@mdit/plugin-sup": "catalog:prod",
+    "@mdit/plugin-tab": "catalog:prod",
+    "@mdit/plugin-tasklist": "catalog:prod",
+    "@vuepress/helper": "catalog:vuepress",
+    "@vueuse/core": "catalog:prod",
+    "chokidar": "catalog:prod",
+    "image-size": "catalog:prod",
+    "local-pkg": "catalog:prod",
+    "lru-cache": "catalog:prod",
+    "markdown-it-container": "catalog:prod",
+    "nanoid": "catalog:prod",
+    "shiki": "catalog:prod",
+    "tm-grammars": "catalog:prod",
+    "tm-themes": "catalog:prod",
+    "vue": "catalog:prod"
   },
   "devDependencies": {
-    "@types/markdown-it": "^14.1.2",
-    "artplayer": "^5.2.2",
-    "dashjs": "^5.0.0",
-    "hls.js": "^1.5.20",
-    "mpegts.js": "1.7.3"
+    "@types/markdown-it": "catalog:dev",
+    "artplayer": "catalog:peer",
+    "dashjs": "catalog:peer",
+    "hls.js": "catalog:peer",
+    "mpegts.js": "catalog:peer"
   },
   "publishConfig": {
     "access": "public"

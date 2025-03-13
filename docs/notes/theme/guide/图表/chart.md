@@ -6,9 +6,11 @@ icon: solar:chart-bold
 permalink: /guide/chart/chartjs/
 ---
 
+[chart.js]: https://www.chartjs.org/docs/latest/
+
 ## 概述
 
-主题支持在 文章中 嵌入由 [chart.js](https://www.chartjs.org/docs/latest/) 图表。
+主题支持在 文章中 嵌入由 [chart.js] 图表。
 
 该功能由 [vuepress-plugin-md-enhance](https://plugin-md-enhance.vuejs.press/) 提供支持。
 
@@ -16,7 +18,7 @@ permalink: /guide/chart/chartjs/
 
 主题默认不启用该功能。
 
-你需要在你的项目中安装 [chart.js](https://www.chartjs.org/docs/latest/) 库。
+你需要在你的项目中安装 [chart.js] 库。
 
 ::: npm-to
 
@@ -28,10 +30,7 @@ npm install chart.js
 
 然后在 `.vuepress/config.ts` 配置文件中，启用该功能：
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
@@ -42,8 +41,6 @@ export default defineUserConfig({
   })
 })
 ```
-
-:::
 
 ## 语法
 
@@ -57,7 +54,7 @@ export default defineUserConfig({
 :::
 ````
 
-图标配置请查看 [Chart.js文档](https://www.chartjs.org/docs/latest/) 。
+图标配置请查看 [chart.js] 文档 。
 
 ## 示例
 

@@ -13,7 +13,7 @@ permalink: /config/frontmatter/home/
 
 ```md
 ---
-home: true
+pageLayout: home
 config:
   - type: banner
   - type: custom

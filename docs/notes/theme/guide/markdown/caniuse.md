@@ -15,22 +15,17 @@ permalink: /guide/markdown/caniuse/
 
 此功能默认不启用，你可以在配置文件中启用它。
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
       markdownPower: {
-        caniuse: true, // [!code highlight]
+        caniuse: true, // [!code hl]
       },
     }
   })
 })
 ```
-
-:::
 
 在你的 文章 markdown文件中，使用以下格式：
 

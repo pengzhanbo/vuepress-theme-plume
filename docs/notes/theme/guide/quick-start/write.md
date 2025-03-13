@@ -8,11 +8,11 @@ tags:
   - 快速开始
 ---
 
-VuePress 支持完整的 [Markdown 语法](./markdown/基础.md),
+VuePress 支持完整的 [Markdown 语法](../markdown/基础.md),
 以及使用 [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f)
 定义 frontmatter 页面元数据，例如 标题和创建时间。
 
-主题还对 Markdown 语法进行了 [扩展](./markdown/扩展.md) 支持。你还可以直接在
+主题还对 Markdown 语法进行了 [扩展](../markdown/扩展.md) 支持。你还可以直接在
 Markdown 中写 HTML ，或者使用 Vue 组件。
 
 ## Frontmatter
@@ -20,10 +20,8 @@ Markdown 中写 HTML ，或者使用 Vue 组件。
 你可以通过设置 frontmatter 中的值来自定义 VuePress 里每个页面。
 Frontmatter 是你的文件顶部在 `---` 中间的部分。
 
-::: code-tabs
-@tab post.md
-
-```md
+```md title="post.md"
+<!--[!code ++:5]-->
 ---
 title: 文章标题
 createTime: 2024/09/08 22:53:34
@@ -33,12 +31,10 @@ permalink: /article/9eh4d6ao/
 页面内容在第二个 `---` 后面。
 ```
 
-:::
-
 ::: details 什么是 frontmatter？
 frontmatter 是一个 [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) 格式的配置内容，被放置于 markdown 文件的顶部，通过 `---` 来分隔。
 
-您可以阅读 [这篇文章](../../../4.教程/frontmatter.md) 了解如何正确书写 frontmatter。
+您可以阅读 [这篇文章](../../../../4.教程/frontmatter.md) 了解如何正确书写 frontmatter。
 :::
 
 ## 自动生成 Frontmatter
@@ -77,23 +73,20 @@ __永久链接__ 指的是，文章发布后的 访问地址，这个地址一�
   对于 博客文章，默认使用 `/article/` 作为永久链接的前缀，然后使用 [`nanoid`](https://github.com/ai/nanoid)
   生成长度为 `8` 的随机字符串进行拼接，作为文章的永久链接， 如 `/article/9eh4d6ao/`。
 
-  对于链接前缀，还可以通过修改 [主题配置 > article](../config/主题配置.md#article) 替换默认的 `/article/`。
+  对于链接前缀，还可以通过修改 [主题配置 > article](../../config/主题配置.md#article) 替换默认的 `/article/`。
 
 - __notes__
 
-  对于 notes , 主题使用更为灵活的自定义方案，你可以在 [notes > note.link](../config/notes配置.md#配置) 声明不同的
+  对于 notes , 主题使用更为灵活的自定义方案，你可以在 [notes > note.link](../../config/notes配置.md#配置) 声明不同的
   note 的链接前缀，然后同样适用  [`nanoid`](https://github.com/ai/nanoid)
-  生成长度为 `8` 的随机字符串进行拼接，作为 ntoe 文章的永久链接。
+  生成长度为 `8` 的随机字符串进行拼接，作为 note 文章的永久链接。
 
 ### 禁用自动生成
 
 你可能不想主题做额外的自动生成，希望由自己完全掌控。这完全没问题，主题支持通过配置来控制 自动生成 frontmatter 的行为。
-通过 [主题配置 > autoFrontmatter](../config/主题配置.md#autofrontmatter) 即可轻松做到。
+通过 [主题配置 > autoFrontmatter](../../config/主题配置.md#autofrontmatter) 即可轻松做到。
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -112,12 +105,10 @@ export default defineUserConfig({
 })
 ```
 
-:::
-
 ## 约定
 
 ::: info 提示
-以下内容，以 [项目结构](./项目结构.md) 中的文件结构作为基准。
+以下内容，以 [项目结构](./project-structure.md) 中的文件结构作为基准。
 :::
 
 使用本主题编写文章是一件很轻松的事情，你可以在 `docs`目录中按照你的个人命名喜好新建任意名字的`Markdown`文件。
@@ -128,7 +119,7 @@ export default defineUserConfig({
 
 - 文件夹的名称将作为 `category` 即 __分类__。
 - 允许多级目录，子级目录将作为父目录对应的分类的子项。
-- 如果目录名称 在 [主题配置 notes](../config/notes配置.md) 中声明用于 notes 文章管理，则默认不作为 分类目录。
+- 如果目录名称 在 [主题配置 notes](../../config/notes配置.md) 中声明用于 notes 文章管理，则默认不作为 分类目录。
 
 由于文件夹名称将作为分类名称，且不在主题配置中进行排序配置，对于有排序需要的场景，使用以下规则进行命名：
 
@@ -160,17 +151,17 @@ __example:__
 - __博客文章__
 
   对于 __博客文章__ 的名称，主题没有任何约定，你可以任意命名。博客文章默认排序规则仅根据文件创建时间进行排序。
-  你还可以通过 [frontmatter > sticky](../config/frontmatter/post.md#sticky) 配置文章是否置顶。
+  你还可以通过 [frontmatter > sticky](../../config/frontmatter/post.md#sticky) 配置文章是否置顶。
 
 - __notes__
 
   对于 __notes__ 中的 markdown 文件名称，依然遵循 与 [文件夹命名约定](#文件夹命名约定) 相同的规则。
-  这可以为 notes 的 [自动生成侧边栏](../config/notes配置.md#自动生成侧边栏) 提供排序依据。
+  这可以为 notes 的 [自动生成侧边栏](../../config/notes配置.md#自动生成侧边栏) 提供排序依据。
 
 ## 文章写作
 
 你可以使用 `markdown` 语法开始在 `docs` 下新建 `Markdown` 文件，编写你自己的文章了，
-关于 markdown 扩展的功能支持，请查看 [这个文档](./markdown/扩展.md)
+关于 markdown 扩展的功能支持，请查看 [这个文档](../markdown/扩展.md)
 
 由于主题默认会为文章 的 `frontmatter` 自动生成一个 `title`，因此，文章内容的主体部分的标题，起始应该从 `h2` 即
 `## 二级标题` 开始。如果您禁用了 `autoFrontmatter.title`，那么应该使用 `h1` 即 `# 一级标题` 开始。

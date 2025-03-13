@@ -20,7 +20,7 @@ permalink: /guide/za6z9xie/
 ::: code-tabs
 @tab .vuepress/config.ts
 
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
@@ -31,8 +31,6 @@ export default defineUserConfig({
   })
 })
 ```
-
-:::
 
 ::: note
 以下文档 Fork 自 [vuepress-theme-hope](https://theme-hope.vuejs.press/zh/guide/markdown/chart/plantuml.html),

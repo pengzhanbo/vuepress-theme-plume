@@ -4,6 +4,7 @@ import { uniq } from '@pengzhanbo/utils'
 import { isPlainObject } from '@vuepress/helper'
 import { copyCodePlugin } from '@vuepress/plugin-copy-code'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
+import { createCodeTabIconGetter } from 'vuepress-plugin-md-power'
 import { getThemeConfig } from '../loadConfig/index.js'
 
 export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
@@ -24,8 +25,12 @@ export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
   const shikiOptions = options.codeHighlighter ?? pluginOptions.shiki
 
   if (shikiOptions !== false) {
-    const { twoslash, ...restShikiOptions } = isPlainObject(shikiOptions) ? shikiOptions : {}
+    const { twoslash, langs = [], codeBlockTitle: _, ...restShikiOptions } = isPlainObject(shikiOptions) ? shikiOptions : {}
     const twoslashOptions = twoslash === true ? {} : twoslash
+
+    const mdPower = isPlainObject(pluginOptions.markdownPower) ? pluginOptions.markdownPower : {}
+    const getIcon = createCodeTabIconGetter(options.markdown?.codeTabs ?? mdPower.codeTabs)
+
     plugins.push(shikiPlugin({
       // enable some default features
       notationDiff: true,
@@ -35,6 +40,11 @@ export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
       notationWordHighlight: true,
       highlightLines: true,
       collapsedLines: false,
+      langs: uniq([...twoslash ? ['ts', 'js', 'vue', 'json'] : [], ...langs]),
+      codeBlockTitle: (title, code) => {
+        const icon = getIcon(title)
+        return `<div class="code-block-title"><div class="code-block-title-bar"><span class="title">${icon ? `<VPIcon name="${icon}"/>` : ''}${title}</span></div>${code}</div>`
+      },
       twoslash: isPlainObject(twoslashOptions)
         ? {
             ...twoslashOptions,

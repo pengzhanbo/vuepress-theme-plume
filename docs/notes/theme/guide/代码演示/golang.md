@@ -20,10 +20,7 @@ permalink: /guide/repl/golang/
 
 该功能默认不启用，你可以通过配置来启用它。
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
@@ -36,8 +33,6 @@ export default defineUserConfig({
   })
 })
 ```
-
-:::
 
 ## 使用
 

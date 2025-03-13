@@ -7,7 +7,7 @@ permalink: /guide/project-structure/
 
 本指南将向您说明 VuePress 和 Plume 创建的项目的文件结构，以及如何在项目中使用它们。
 
-当您 [使用命令行工具创建](./安装与使用.md#命令行安装) 的项目，它的文件结构是这样的：
+当您 [使用命令行工具创建](./usage.md#命令行安装) 的项目，它的文件结构是这样的：
 
 ::: file-tree
 
@@ -72,10 +72,7 @@ vuepress dev docs
 
 客户端配置文件，你可以在这里扩展 VuePress 的功能，比如声明新的全局组件等。
 
-::: code-tabs
-@tab .vuepress/client.ts
-
-```ts
+```ts title=".vuepress/client.ts"
 import { defineClientConfig } from 'vuepress/client'
 
 export default defineClientConfig({
@@ -93,16 +90,11 @@ export default defineClientConfig({
 })
 ```
 
-:::
-
 ### `config.ts`
 
 为 VuePress 配置文件，你需要在这里进行一些必要的配置，比如 主题、插件、构建工具等。
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
@@ -115,8 +107,6 @@ export default defineUserConfig({
   bundler: viteBundler(),
 })
 ```
-
-:::
 
 ### `plume.config.ts`
 

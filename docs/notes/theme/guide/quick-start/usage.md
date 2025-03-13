@@ -2,19 +2,15 @@
 title: 安装/使用
 icon: grommet-icons:install
 createTime: 2024/03/04 09:50:07
-permalink: /guide/quick-start/
+permalink: /guide/usage/
 tags:
   - 指南
   - 快速开始
 ---
 
-<script setup>
-const vuepressVersion = __VUEPRESS_VERSION__
-</script>
-
 ## 依赖环境
 
-- [Node.js](https://nodejs.org/) : **^18.19.0 || ^20.6.0 || >= 22.0.0** [+node-versions]
+- [Node.js](https://nodejs.org/) : **^18.19.0 或 ^20.6.0 或 >= 22.0.0** [+node-versions]
 - [npm 8+](https://www.npmjs.com/) 或 [pnpm 8+](https://pnpm.io/zh/) 或 [Yarn 2+](https://yarnpkg.com/)
 
 [+node-versions]: **^18.19.0：** `18.19.0` 及以上但不高于 `19.0.0` 的版本
@@ -57,7 +53,7 @@ npm create vuepress-theme-plume@latest
 
 启动向导后，您只需要回答几个简单的问题：
 
-<!-- @include: ../snippet/create.snippet.md ---->
+<!-- @include: ../../snippet/create.snippet.md ---->
 
 ::: details 怎么使用命令行工具？
 
@@ -124,8 +120,7 @@ cd open-source # 进入 D: 分区下的 open-source 目录
   :::
 
   :::warning
-  主题当前版本 已适配至 <code>vuepress@{{ vuepressVersion }}</code>，你应该安装这个版本的 VuePress。
-  高于或低于这个版本，可能会存在潜在的兼容性问题。
+  主题当前版本 已适配至 <code>vuepress@{{ vuepressVersion }}</code>，你应该安装这个版本的 VuePress。高于或低于这个版本，可能会存在潜在的兼容性问题。
   :::
 
 - ### 在 `package.json` 中添加 `script`
@@ -189,7 +184,7 @@ cd open-source # 进入 D: 分区下的 open-source 目录
 
   :::
 
-  :::warning
+  :::warning 不要忘记设置默认语言
   无论是否需要使用 **多语言** ，你都应该为 VuePress 配置 正确 `lang` 选项值。
   主题需要根据 `lang` 选项来确定语言环境文本。
   :::
@@ -218,7 +213,8 @@ cd open-source # 进入 D: 分区下的 open-source 目录
 
   :::
 
-  Vuepress 会在 [http://localhost:8080](http://localhost:8080) 。启动一个热重载的开发服务器。当你修改你的 Markdown 文件时，浏览器中的内容也会自动更新。
+  VuePress 会在 <http://localhost:8080>
+  启动一个热重载的开发服务器。当修改 Markdown 文件时，浏览器中的内容也会自动更新。
 
 - ### 完成
 
@@ -235,3 +231,7 @@ npx vp-update
 ```
 
 :::
+
+<script setup lang="ts">
+const vuepressVersion = __VUEPRESS_VERSION__
+</script>

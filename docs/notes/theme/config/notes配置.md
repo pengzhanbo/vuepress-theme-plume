@@ -12,7 +12,7 @@ permalink: /config/notes/
 
 默认配置如下：
 
-```ts
+```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -25,7 +25,7 @@ export default defineUserConfig({
 
 如果启用了 多语言配置， 你 也可以在 `locales` 字段中 分别配置 `notes`
 
-```ts
+```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -153,4 +153,4 @@ icon: mdi:tooltip-text-outline
 ---
 ```
 
-完整侧边栏使用说明，请查看 [此文档](../guide/知识笔记.md) 。
+完整侧边栏使用说明，请查看 [此文档](../guide/quick-start/document.md) 。

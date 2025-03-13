@@ -16,10 +16,7 @@ permalink: /config/plugins/markdown-math/
 
 插件默认启用 `katex`。
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -33,5 +30,3 @@ export default defineUserConfig({
   }),
 })
 ```
-
-:::

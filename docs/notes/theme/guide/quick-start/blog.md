@@ -8,14 +8,9 @@ tags:
   - 快速开始
 ---
 
-<script setup lang="ts">
-import VPBlogProfile from 'vuepress-theme-plume/components/Blog/VPBlogProfile.vue'
-import VPPostItem from 'vuepress-theme-plume/components/Blog/VPPostItem.vue'
-</script>
-
 ## 概述
 
-主题默认会将 [文档源目录](./项目结构.md#文档源目录) 下的，除了特定的目录（如 `notes` 目录将作为笔记所在目录），
+主题默认会将 [文档源目录](./project-structure.md#文档源目录) 下的，除了特定的目录（如 `notes` 目录将作为笔记所在目录），
 所有 md 文件作为博客文章。
 
 主题还会根据 md 文件 所在的 文件目录结构，以 **目录名** 作为 博客文章所属的 **分类**。
@@ -27,10 +22,7 @@ import VPPostItem from 'vuepress-theme-plume/components/Blog/VPPostItem.vue'
 
 主题默认启用 博客功能，通常您无需进行额外的配置。
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     // 禁用博客功能
@@ -59,8 +51,6 @@ export default defineUserConfig({
 })
 ```
 
-:::
-
 ## 博主信息
 
 主题支持展示博主的基本信息。
@@ -76,10 +66,7 @@ export default defineUserConfig({
 
 你可以通过 `profile` 属性来设置博主头像等相关信息。
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     profile: {
@@ -99,8 +86,6 @@ export default defineUserConfig({
   })
 })
 ```
-
-:::
 
 ## 文章元数据
 
@@ -131,7 +116,7 @@ tags:
 | coverStyle | `BlogPostCoverStyle`        | `null`             | 文章封面样式                                 |
 | excerpt    | `boolean \| string`         | ''                 | 文章摘要，默认通过 `<!-- more -->` 注释生成, 传入字符串表示自定义内容，不再从正文提取 |
 
-除了以上的字段，你还可以使用 [通用 frontmatter 配置](../config/frontmatter/basic.md) 中的字段，
+除了以上的字段，你还可以使用 [通用 frontmatter 配置](../../config/frontmatter/basic.md) 中的字段，
 灵活的控制当前页面的行为。
 
 ## 文章摘要
@@ -177,10 +162,10 @@ excerpt: 自定义摘要内容
 
 为博客文章添加 封面图，可以在 `frontmatter` 中配置 `cover`:
 
-```md
+```md{3}
 ---
 title: 标题
-cover: /images/cover.jpg  # [!code ++]
+cover: /images/cover.jpg
 ---
 ```
 
@@ -211,10 +196,10 @@ cover: /images/cover.jpg  # [!code ++]
 
 还可以为 封面图 调整 布局位置，以及 尺寸比例：
 
-```md
+```md{4-7}
 ---
 title: 文章标题
-cover: /images/cover.jpg # [!code ++:5]
+cover: /images/cover.jpg
 coverStyle:
   layout: left
   ratio: 16:9
@@ -235,10 +220,10 @@ coverStyle:
 
 当文章没有摘要时，可能会显得比较空，为此你还可以通过 `compact: true` 使 封面图 贴合容器边缘，使整体变得更紧凑：
 
-```md
+```md{8}
 ---
 title: 文章标题
-cover: /images/cover.jpg # [!code ++:6]
+cover: /images/cover.jpg
 coverStyle:
   layout: left
   ratio: 16:9
@@ -259,15 +244,15 @@ coverStyle:
 />
 </div>
 
-::: warning compact: true 仅在文章没有摘要时生效
+::: warning `compact: true` 仅在文章没有摘要时生效
 :::
 
 还可以设置 封面图在 标题上方，此时变为 大图风格：
 
-```md
+```md{5}
 ---
 title: 文章标题
-cover: /images/cover.jpg # [!code ++:5]
+cover: /images/cover.jpg
 coverStyle:
   layout: top
   ratio: 16:9
@@ -292,10 +277,7 @@ coverStyle:
 虽然主题支持为每个文章的封面图使用不同的配置，出于整体布局风格的考虑，以及简化配置的目的，
 主题还支持为封面图预设配置：
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
 
@@ -312,8 +294,6 @@ export default defineUserConfig({
   })
 })
 ```
-
-:::
 
 ```ts
 type BlogPostCoverLayout = 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
@@ -375,7 +355,7 @@ interface BlogPostCoverStyle {
 />
 </div>
 
-::: warning 注意
+::: warning
 当在 移动设备窄屏 上时，出于视觉效果考虑，`layout` 配置强制重置为 `top`。
 :::
 
@@ -417,16 +397,11 @@ interface BlogPostCoverStyle {
 
 - **方式一：配置 主页的 `pageLayout` 属性为 `blog`**
 
-::: code-tabs
-@tab docs/README.md
-
-```md
+```md title="docs/README.md"
 ---
 pageLayout: blog
 ---
 ```
-
-:::
 
 此配置会直接将页面应用 博客布局，显示博客文章列表。
 
@@ -434,11 +409,7 @@ pageLayout: blog
 
 - **方式二：配置 主页的 `pageLayout` 属性为 `home`, 添加 `type: blog` 的首页区域类型**
 
-::: code-tabs
-
-@tab docs/README.md
-
-```md
+```md title="docs/README.md"
 ---
 pageLayout: home
 config:
@@ -446,17 +417,11 @@ config:
 ---
 ```
 
-:::
-
 使用这种方式，你不仅可以在首页中添加 博客文章列表，还可以灵活的在页面的其他区域添加不同的内容。
 
 比如，配置首屏为 `banner`，然后紧跟着 博客文章列表：
 
-::: code-tabs
-
-@tab docs/README.md
-
-```md
+```md title="docs/README.md"
 ---
 pageLayout: home
 config:
@@ -465,20 +430,15 @@ config:
 ---
 ```
 
-:::
-
-更多自定义配置，请参考 [自定义首页](./自定义首页.md)。
+更多自定义配置，请参考 [自定义首页](../自定义首页.md)。
 
 当使用以上两种方式 将首页配置为 博客页后，由于主题默认依然会生成 地址为`/blog/` 的博客文章列表页，
-这导致存在了重复功能的页面，为此，你需要 [主题配置 > 博客配置](../config/主题配置.md#blog) 中，
+这导致存在了重复功能的页面，为此，你需要 [主题配置 > 博客配置](../../config/主题配置.md#blog) 中，
 **关闭自动生成博客文章列表页**：
 
 （还可以重新修改 分类页/标签页/归档页的链接地址）
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -494,4 +454,7 @@ export default defineUserConfig({
 })
 ```
 
-:::
+<script setup lang="ts">
+import VPBlogProfile from 'vuepress-theme-plume/components/Blog/VPBlogProfile.vue'
+import VPPostItem from 'vuepress-theme-plume/components/Blog/VPPostItem.vue'
+</script>

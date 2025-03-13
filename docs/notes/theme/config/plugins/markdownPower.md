@@ -14,10 +14,7 @@ permalink: /config/plugins/markdown-power/
 
 默认配置：
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -46,8 +43,6 @@ export default defineUserConfig({
   }),
 })
 ```
-
-:::
 
 ## 功能
 

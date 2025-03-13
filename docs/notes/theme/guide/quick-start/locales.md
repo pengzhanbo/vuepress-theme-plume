@@ -2,7 +2,7 @@
 title: 国际化
 icon: material-symbols-light:language
 createTime: 2024/03/05 10:01:26
-permalink: /guide/international/
+permalink: /guide/locales/
 tags:
   - 指南
   - i18n
@@ -42,10 +42,7 @@ tags:
 
 在 `.vuepress/config.ts` 中，声明默认的语言：
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
 
 export default defineUserConfig({
@@ -58,8 +55,6 @@ export default defineUserConfig({
 })
 ```
 
-:::
-
 ### 添加其他语言
 
 你需要为每个语言设置 `lang` 选项。即使你只在使用单个语言，你也必须在 `.vuepress/config.{js,ts}` 中设置 `lang`。
@@ -70,10 +65,7 @@ export default defineUserConfig({
 
 在 `.vuepress/config.ts` 中配置：
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
 
 export default defineUserConfig({
@@ -88,8 +80,6 @@ export default defineUserConfig({
   }
 })
 ```
-
-:::
 
 **`locales` 配置中的 `key` 作为 `localPath`, 对应着 `docs` 目录下的语言路径，应该保证它们具有相同的命名。**
 
@@ -108,10 +98,7 @@ export default defineUserConfig({
 
 `locales` 支持 所有主题配置项。
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```js
+```ts title=".vuepress/config.ts"
 import { plumeTheme } from '@vuepress-plume/vuepress-theme-plume'
 import { defineUserConfig } from 'vuepress'
 
@@ -152,13 +139,11 @@ export default defineUserConfig({
 })
 ```
 
-:::
-
 主题 `theme.locales` 配置中的 `key` 应与 `vuepress` 配置中的 `locales` 配置中的 `key` 一致。
 
 您应该为 `theme.locales[localePath]` 配置 `selectLanguageName` 用于在导航栏多语言下拉菜单中显示当前语言的名称。
 
 更多 `locales` 配置请查看
 
-- [主题配置 > Locales 配置](../config/主题配置.md#locale-配置) - 配置主题在不同语言下的行为。
-- [主题配置 > 多语言配置](../config/多语言配置.md) - 配置与语言相关的文本。
+- [主题配置 > Locales 配置](../../config/主题配置.md#locale-配置) - 配置主题在不同语言下的行为。
+- [主题配置 > 多语言配置](../../config/多语言配置.md) - 配置与语言相关的文本。

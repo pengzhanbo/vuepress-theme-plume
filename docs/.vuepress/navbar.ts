@@ -5,7 +5,7 @@ export const zhNavbar = defineNavbarConfig([
   {
     text: '指南',
     icon: 'icon-park-outline:guide-board',
-    link: '/notes/theme/guide/介绍.md',
+    link: '/notes/theme/guide/quick-start/intro.md',
     activeMatch: '^/guide/',
   },
   {

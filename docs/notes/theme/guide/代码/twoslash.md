@@ -73,11 +73,7 @@ npm i @vuepress/shiki-twoslash
 
 在 主题配置中，启用 `twoslash` 选项。
 
-::: code-tabs
-
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
@@ -86,8 +82,6 @@ export default defineUserConfig({
   }),
 })
 ```
-
-:::
 
 ::: important
 `twoslash` 对于大多数用户而言，不是必要的功能，且 `twoslash` 相关的依赖包体积较大，
@@ -132,10 +126,7 @@ __相对路径__ 导入类型文件。
 
 假设你的项目的 `tsconfig.json` 配置如下：
 
-::: code-tabs
-@tab tsconfig.json
-
-```json
+```json title="tsconfig.json"
 {
   "compilerOptions": {
     "baseUrl": ".",
@@ -145,8 +136,6 @@ __相对路径__ 导入类型文件。
   }
 }
 ```
-
-:::
 
 你可以直接在 代码块中使用 `@/` 开头的路径，导入 `src` 目录下的类型文件，如下所示：
 
@@ -162,10 +151,7 @@ const foo: Foo = 1
 
 你可以在 `shiki.twoslash` 中配置 `compilerOptions`，来解决这个问题，如下所示：
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 import path from 'node:path'
 
 export default defineUserConfig({
@@ -187,8 +173,6 @@ export default defineUserConfig({
   }),
 })
 ```
-
-:::
 
 你可以直接在 代码块中使用 `@/` 开头的路径，导入 `src` 目录下的类型文件，如下所示：
 

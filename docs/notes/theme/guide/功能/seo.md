@@ -11,7 +11,7 @@ permalink: /guide/seo/
 主题提供了开箱即用的配置，为 站点 启用 SEO 优化功能。
 要启用它，需要进行以下配置：
 
-```js
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     hostname: 'http://your_site_url',
@@ -21,7 +21,7 @@ export default defineUserConfig({
 
 如需要自定义 SEO 优化，可以通过 `plugins.seo` 配置来实现。
 
-```js
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {

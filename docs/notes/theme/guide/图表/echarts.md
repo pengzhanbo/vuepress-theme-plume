@@ -28,10 +28,7 @@ npm install echarts
 
 然后在 `.vuepress/config.ts` 配置文件中，启用该功能：
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
@@ -42,8 +39,6 @@ export default defineUserConfig({
   })
 })
 ```
-
-:::
 
 ::: note
 以下文档 Fork 自 [vuepress-theme-hope](https://theme-hope.vuejs.press/zh/guide/markdown/chart/echarts.html),

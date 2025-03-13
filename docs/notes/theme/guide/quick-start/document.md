@@ -38,10 +38,7 @@ tags:
 
 接下来，在配置文件中配置 `notes`：
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```js
+```js title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -76,12 +73,10 @@ export default defineUserConfig({
 })
 ```
 
-:::
-
 ::: tip
 
 你应该在创建文件之前，建议先把笔记的目录和链接前缀等配置好。
-主题默认启用了 [auto-frontmatter](../config/主题配置.md#autofrontmatter)，
+主题默认启用了 [auto-frontmatter](../../config/主题配置.md#autofrontmatter)，
 需要根据配置，为目录中的 md 文件生成永久链接，以及侧边栏。
 
 :::
@@ -346,10 +341,7 @@ const typescript = defineNoteConfig({
 
 当传入类型为 `SidebarItem` 时:
 
-::: code-tabs
-@tab .vuepress/notes.ts
-
-```ts
+```ts title=".vuepress/notes.ts"
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -365,14 +357,9 @@ const typescript = defineNoteConfig({
 // ... other code
 ```
 
-:::
-
 也可以进行多层嵌套：
 
-::: code-tabs
-@tab .vuepress/notes.ts
-
-```ts
+```ts title=".vuepress/notes.ts"
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -399,8 +386,6 @@ const typescript = defineNoteConfig({
 // ... other code
 ```
 
-:::
-
 ### 关于 `prefix`
 
 `prefix` 的目的是为了简写与其同层级的 `items` 项内的 链接，它允许你将这些链接的相同的前缀提取到
@@ -408,11 +393,7 @@ const typescript = defineNoteConfig({
 
 需要注意的是，`items` 中的链接 仅有 相对路径的链接才会与 `prefix` 拼接，而绝对路径则不进行处理。
 
-::: code-tabs
-
-@tab .vuepress/notes.ts
-
-```ts
+```ts title=".vuepress/notes.ts"
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -438,16 +419,11 @@ const typescript = defineNoteConfig({
 })
 ```
 
-:::
-
 同时，`items` 内还支持 深层嵌套，内部还依然支持 `prefix`，这里也遵循相同的规则，`prefix` 如果是相对路径，
 则会与 上一层的 `prefix` 拼接，再与 当前层级 `items` 内的 `link` 拼接，如果 `prefix` 是绝对路径，则不与
 上一层级 `prefix` 拼接。
 
-::: code-tabs
-@tab .vuepress/notes.ts
-
-```ts
+```ts title=".vuepress/notes.ts"
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -478,8 +454,6 @@ const typescript = defineNoteConfig({
 })
 ```
 
-:::
-
 **是否是绝对路径的判断标准是，如果以 `/` 开头，则为绝对路径，否则为相对路径**
 
 :::warning
@@ -491,10 +465,7 @@ const typescript = defineNoteConfig({
 为侧边栏添加 图标 有助于 侧边栏更好的呈现。得益于 [iconify](https://iconify.design/) 这个强大的开源图标库，
 你可以使用超过 `200k` 的图标，仅需要添加 `icon` 配置即可。
 
-::: code-tabs
-@tab .vuepress/notes.ts
-
-```ts
+```ts title=".vuepress/notes.ts"
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -513,14 +484,9 @@ const typescript = defineNoteConfig({
 })
 ```
 
-:::
-
 也可以使用本地图标，或者本地图片：
 
-::: code-tabs
-@tab .vuepress/notes.ts
-
-```ts
+```ts title=".vuepress/notes.ts"
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -541,8 +507,6 @@ const typescript = defineNoteConfig({
 })
 ```
 
-:::
-
 **请注意，使用本地图片必须以 `/` 开头，表示为 静态资源路径，它将从 `.vuepress/public/` 目录中加载。**
 
 ::: file-tree
@@ -559,27 +523,19 @@ const typescript = defineNoteConfig({
 你可能已经注意到，`sidebar: auto` 时，该如何配置 侧边栏图标，事实上很简单，直接在 文件的 `frontmatter` 部分，
 添加 一个 `icon` 字段即可。
 
-::: code-tabs
-@tab typescript/guide/intro.md
-
-```md
+```md title="typescript/guide/intro.md"
 ---
 title: 介绍
 icon: ep:guide
 ---
 ```
 
-:::
-
 ### 侧边栏组内分隔
 
 在组内对 项 进行分隔 是一个相对小众的需求，它在组的项比较多，但又不适合拆分为多个组，或者组内拆分多组的情况下，
 可能会比较适用，它提供了一个平级的，使用辅助文本颜色显示一个分隔项名 的方式，对项进行简单的分隔。
 
-::: code-tabs
-@tab .vuepress/notes.ts
-
-```ts
+```ts title=".vuepress/notes.ts"
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -602,8 +558,6 @@ const typescript = defineNoteConfig({
 })
 ```
 
-:::
-
 在组内完成分隔非常简单，你只需要在合适的位置插入一个 `{ text: 'xxxx', link: '---' }` 即可，
 它的重点仅是将 `link` 设置为 连续的 `---` 即可，至少三个 `-` 。
 你可以随意定义文本，还可以添加图标。
@@ -622,12 +576,9 @@ const typescript = defineNoteConfig({
 
 默认情况下，它与 普通的文档页面 没有区别，这是因为 主题 默认对 所有页面 设置了 `pageLayout: docs`。
 
-但你可以直接配置 `pageLayout: 'home'`，就像配置 [站点首页](./自定义首页.md) 一样，为 笔记配置一个个性化的首页！
+但你可以直接配置 `pageLayout: 'home'`，就像配置 [站点首页](../自定义首页.md) 一样，为 笔记配置一个个性化的首页！
 
-::: code-tabs
-@tab typescript/README.md
-
-```md
+```md title="typescript/README.md"
 ---
 pageLayout: home
 config:
@@ -635,5 +586,3 @@ config:
   - type: features
 ---
 ```
-
-:::

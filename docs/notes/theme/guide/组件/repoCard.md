@@ -30,10 +30,7 @@ import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
 
 注册为全局组件：
 
-::: code-tabs
-@tab .vuepress/client.ts
-
-```ts
+```ts title=".vuepress/client.ts"
 import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
 import { defineClientConfig } from 'vuepress/client'
 
@@ -43,8 +40,6 @@ export default defineClientConfig({
   },
 })
 ```
-
-:::
 
 全局组件可在 其他任意 markdown 文件中使用
 

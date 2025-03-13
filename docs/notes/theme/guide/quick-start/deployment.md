@@ -8,8 +8,7 @@ tags:
   - 部署
 ---
 
-::: tip
-此文档 fork 自 [vuepress official doc](https://v2.vuepress.vuejs.org/zh/guide/deployment.html)。
+::: tip 此文档 fork 自 [vuepress official doc](https://v2.vuepress.vuejs.org/zh/guide/deployment.html)。
 :::
 
 下述的指南基于以下条件：
@@ -29,6 +28,8 @@ tags:
 
 ## GitHub Pages
 
+::: steps
+
 1. 设置正确的 [base](https://v2.vuepress.vuejs.org/zh/reference/config.html#base) 选项。
 
    如果你准备发布到 `https://<USERNAME>.github.io/` ，你可以省略这一步，因为 `base` 默认就是 `"/"` 。
@@ -38,6 +39,8 @@ tags:
 2. 选择你想要使用的 CI 工具。这里我们以 [GitHub Actions](https://github.com/features/actions) 为例。
 
    创建 `.github/workflows/docs.yml` 文件来配置工作流。
+
+:::
 
 ::: details 点击展开配置样例
 
@@ -65,7 +68,7 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           # 选择要使用的 pnpm 版本
-          version: 8
+          version: 10
           # 使用 pnpm 安装依赖
           run_install: true
 
@@ -73,7 +76,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           # 选择要使用的 node 版本
-          node-version: 20
+          node-version: 22
           # 缓存 pnpm 依赖
           cache: pnpm
 
@@ -97,11 +100,12 @@ jobs:
 
 :::
 
-::: tip
-请参考 [GitHub Pages 官方指南](https://pages.github.com/) 来获取更多信息。
+::: tip 请参考 [GitHub Pages 官方指南](https://pages.github.com/) 来获取更多信息。
 :::
 
 ## GitLab Pages
+
+::: steps
 
 1. 设置正确的 [base](https://v2.vuepress.vuejs.org/zh/reference/config.html#base) 选项。
 
@@ -111,11 +115,13 @@ jobs:
 
 2. 创建 `.gitlab-ci.yml` 文件来配置 [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/) 工作流。
 
+:::
+
 ::: details 点击展开配置样例
 
 ```yaml
 # 选择你要使用的 docker 镜像
-image: node:18-buster
+image: node:22-buster
 
 pages:
   # 每当 push 到 main 分支时触发部署
@@ -147,19 +153,18 @@ pages:
 
 :::
 
-::: tip
-请参考 [GitLab Pages 官方指南](https://docs.gitlab.com/ce/user/project/pages/#getting-started) 来获取更多信息。
+::: tip 请参考 [GitLab Pages 官方指南](https://docs.gitlab.com/ce/user/project/pages/#getting-started) 来获取更多信息。
 :::
 
 ## Google Firebase
+
+::: steps
 
 1. 请确保你已经安装了 [firebase-tools](https://www.npmjs.com/package/firebase-tools)。
 
 2. 在你项目的根目录下创建 `firebase.json` 和 `.firebaserc`，并包含以下内容：
 
-    `firebase.json`:
-
-    ```json
+    ```json title="firebase.json"
     {
       "hosting": {
         "public": "./docs/.vuepress/dist",
@@ -168,9 +173,7 @@ pages:
     }
     ```
 
-    `.firebaserc`:
-
-    ```json
+    ```json title=".firebaserc"
     {
       "projects": {
         "default": "<YOUR_FIREBASE_ID>"
@@ -180,11 +183,14 @@ pages:
 
 3. 在执行了 `pnpm docs:build` 后, 使用 `firebase deploy` 指令来部署。
 
-::: tip
-请参考 [Firebase CLI 官方指南](https://firebase.google.com/docs/cli) 来获取更多信息。
+:::
+
+::: tip 请参考 [Firebase CLI 官方指南](https://firebase.google.com/docs/cli) 来获取更多信息。
 :::
 
 ## Heroku
+
+::: steps
 
 1. 首先安装 [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)；
 
@@ -198,15 +204,14 @@ pages:
 
 4. 在你的项目根目录中，创建一个名为 `static.json` 的文件，并包含下述内容：
 
-`static.json`:
+    ```json title="static.json"
+    {
+      "root": "./docs/.vuepress/dist"
+    }
+    ```
 
-```json
-{
-  "root": "./docs/.vuepress/dist"
-}
-```
-
-这里是你项目的配置，请参考 [heroku-buildpack-static](https://github.com/heroku/heroku-buildpack-static) 来获取更多信息。
+    这里是你项目的配置，请参考 [heroku-buildpack-static](https://github.com/heroku/heroku-buildpack-static) 来获取更多信息。
+:::
 
 ## Kinsta
 
@@ -217,6 +222,8 @@ pages:
 请查看 [Edgio Documentation > Framework Guides > VuePress](https://docs.edg.io/guides/vuepress) 。
 
 ## Netlify
+
+::: steps
 
 1. 前往 [Netlify](https://netlify.com) ，从 GitHub 创建一个新项目，并进行如下配置：
 
@@ -229,7 +236,11 @@ pages:
 
 3. 点击 deploy 按钮。
 
+:::
+
 ## Vercel
+
+::: steps
 
 1. 前往 [Vercel](https://vercel.com) ，从 GitHub 创建一个新项目，并进行如下配置：
 
@@ -239,12 +250,16 @@ pages:
 
 2. 点击 deploy 按钮。
 
+:::
+
 <!-- 下列平台是中文文档特有的，放在最下方 -->
 
 ## 云开发 CloudBase
 
 [云开发 CloudBase](https://cloudbase.net/?site=vuepress) 是一个云原生一体化的 Serverless 云平台，
 支持静态网站、容器等多种托管能力，并提供简便的部署工具 [CloudBase Framework](https://cloudbase.net/framework.html?site=vuepress) 来一键部署应用。
+
+::: steps
 
 1. 全局安装 CloudBase CLI ：
 
@@ -259,6 +274,8 @@ pages:
     cloudbase init --without-template
     cloudbase framework:deploy
     ```
+
+:::
 
 CloudBase CLI 首先会跳转到控制台进行登录授权，然后将会交互式进行确认。
 

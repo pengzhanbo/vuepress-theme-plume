@@ -19,10 +19,7 @@ permalink: /guide/embed/audio/reader/
 
 该功能默认不启用。你需要在主题配置中开启。
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
@@ -33,8 +30,6 @@ export default defineUserConfig({
   })
 })
 ```
-
-:::
 
 ## markdown 语法
 

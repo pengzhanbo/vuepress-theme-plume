@@ -14,10 +14,7 @@ permalink: /config/plugins/markdown-include/
 
 主题默认启用 `markdownInclude`。你还可以通过配置来自定义行为。
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
@@ -28,8 +25,6 @@ export default defineUserConfig({
   })
 })
 ```
-
-:::
 
 ### resolvePath
 

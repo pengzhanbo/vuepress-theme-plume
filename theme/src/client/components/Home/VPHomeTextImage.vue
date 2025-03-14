@@ -120,7 +120,7 @@ const maxWidth = computed(() => {
   }
 
   .content-text {
-    flex: 1;
+    flex: 1 2;
   }
 }
 

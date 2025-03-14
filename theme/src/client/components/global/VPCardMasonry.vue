@@ -103,7 +103,7 @@ onMounted(() => {
 
 .vp-card-masonry > .card-masonry-item {
   display: flex;
-  flex: 1;
+  flex: 1 2;
   flex-direction: column;
   align-items: flex-start;
   width: 1px;

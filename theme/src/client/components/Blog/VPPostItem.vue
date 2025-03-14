@@ -219,7 +219,7 @@ const coverStyles = computed(() => {
 }
 
 .vp-blog-post-item.has-cover .blog-post-item-content {
-  flex: 1;
+  flex: 1 2;
 }
 
 .blog-post-item-content .sticky {

@@ -1,5 +1,5 @@
 ---
-title: 思维导图
+title: markmap
 icon: ri:mind-map
 createTime: 2025/03/01 14:35:59
 permalink: /guide/chart/markmap/

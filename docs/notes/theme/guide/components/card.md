@@ -3,7 +3,7 @@ title: 卡片
 author: pengzhanbo
 icon: solar:card-broken
 createTime: 2024/08/18 23:09:07
-permalink: /guide/components/cark/
+permalink: /guide/components/card/
 ---
 
 ## 概述

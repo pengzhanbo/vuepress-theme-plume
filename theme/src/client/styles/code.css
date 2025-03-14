@@ -322,13 +322,14 @@ html:not([data-theme="dark"]) .vp-code span {
 
 .code-block-title .code-block-title-bar .title::before {
   position: absolute;
+  right: 8px;
   bottom: 0;
-  left: 0;
+  left: 8px;
   display: inline-block;
-  width: 100%;
   height: 2px;
   content: "";
   background-color: var(--vp-c-brand-2);
+  border-radius: 2px;
 }
 
 .code-block-title .code-block-title-bar .title .vp-icon {

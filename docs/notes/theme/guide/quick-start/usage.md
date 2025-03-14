@@ -39,7 +39,7 @@ tags:
 :::
 ::::
 
-## 命令行安装
+## 命令行安装 <Badge type="tip" text="推荐" />
 
 主题提供了一个 命令行工具，帮助您构建一个基本项目。您可以通过运行以下命令，启动 安装向导。
 
@@ -88,7 +88,7 @@ cd open-source # 进入 D: 分区下的 open-source 目录
 
 - ### 新建文件夹并进入目录
 
-  ``` sh :no-line-numbers
+  ``` sh
   mkdir my-blog
   cd my-blog
   ```
@@ -125,10 +125,7 @@ cd open-source # 进入 D: 分区下的 open-source 目录
 
 - ### 在 `package.json` 中添加 `script`
 
-  ::: code-tabs
-  @tab package.json
-
-  ``` json :no-line-numbers
+  ``` json title="package.json"
   {
     "scripts": {
       "docs:dev": "vuepress dev docs",
@@ -137,8 +134,6 @@ cd open-source # 进入 D: 分区下的 open-source 目录
   }
   ```
 
-  :::
-
   `vuepress` 默认将文档源码放在 `docs` 目录下。
 
 - ### 将默认的临时目录和缓存目录添加到`.gitignore` 文件中
@@ -146,7 +141,7 @@ cd open-source # 进入 D: 分区下的 open-source 目录
   ::: code-tabs
   @tab .gitignore
 
-  ``` txt :no-line-numbers
+  ``` txt
   node_modules
   .temp
   .cache
@@ -154,7 +149,7 @@ cd open-source # 进入 D: 分区下的 open-source 目录
 
   @tab sh
 
-  ``` sh :no-line-numbers
+  ``` sh
   echo 'node_modules' >> .gitignore
   echo '.temp' >> .gitignore
   echo '.cache' >> .gitignore
@@ -164,10 +159,7 @@ cd open-source # 进入 D: 分区下的 open-source 目录
 
 - ### 在 `docs/.vuepress/config.{js,ts}` 中配置主题
 
-  ::: code-tabs
-  @tab docs/.vuepress/config.ts
-
-  ``` ts :no-line-numbers
+  ``` ts title="docs/.vuepress/config.ts"
   import { viteBundler } from '@vuepress/bundler-vite'
   import { defineUserConfig } from 'vuepress'
   import { plumeTheme } from 'vuepress-theme-plume'
@@ -182,8 +174,6 @@ cd open-source # 进入 D: 分区下的 open-source 目录
   })
   ```
 
-  :::
-
   :::warning 不要忘记设置默认语言
   无论是否需要使用 **多语言** ，你都应该为 VuePress 配置 正确 `lang` 选项值。
   主题需要根据 `lang` 选项来确定语言环境文本。
@@ -192,16 +182,12 @@ cd open-source # 进入 D: 分区下的 open-source 目录
 - ### 在 `docs` 目录下新建 `README.md` 文件
 
   声明首页配置。
-  ::: code-tabs
-  @tab README.md
 
-  ``` md :no-line-numbers
+  ``` md title="README.md"
   ---
   home: true
   ---
   ```
-
-  :::
 
 - ### 在本地服务器启动你的文档站点
 

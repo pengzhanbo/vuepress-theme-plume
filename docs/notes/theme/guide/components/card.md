@@ -9,7 +9,7 @@ permalink: /guide/components/card/
 
 使用 `<Card>` 组件在页面中显示卡片。
 
-也可以使用 markdown [卡片容器](/guide/markdown/advance/#卡片) 语法，替代 `<Card>` 组件。
+也可以使用 markdown [卡片容器](../markdown/card.md) 语法，替代 `<Card>` 组件。
 
 ## Props
 

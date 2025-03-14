@@ -138,7 +138,7 @@ export type ThemeIcon = string | { svg: string }
 
 当配置某个 笔记 的 `sidebar` 为 `auto` 时，会自动根据目录结构生成侧边栏。
 
-排序根据 [文件夹命名约定](/guide/write/#文件夹命名约定) 。
+排序根据 [文件夹命名约定](../guide/quick-start/write.md#文件夹命名约定) 。
 
 ### 侧边栏图标
 

@@ -9,7 +9,7 @@ permalink: /guide/embed/pdf/
 
 主题支持在 markdown 中嵌入 PDF 文件，它能够在页面中直接阅读 PDF 。
 
-该功能由 [vuepress-plugin-md-power](../../config/plugins/markdownPower.md) 提供支持。
+该功能由 [vuepress-plugin-md-power](../../config/plugins/markdown-power.md) 提供支持。
 
 ## 配置
 

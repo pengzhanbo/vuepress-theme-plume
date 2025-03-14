@@ -1,7 +1,7 @@
 ---
 title: 主题配置
 createTime: 2024/03/02 18:07:03
-permalink: /config/basic/
+permalink: /config/theme/
 ---
 
 ## 基础配置
@@ -14,7 +14,7 @@ permalink: /config/basic/
 
   自定义主题配置文件的路径。
 
-  查看 [主题配置文件 `plume.config.js`](./配置说明.md#主题配置文件) 了解更多。
+  查看 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 了解更多。
 
 ### plugins
 
@@ -27,7 +27,7 @@ permalink: /config/basic/
   主题使用的插件默认已进行了配置，大多数情况下您不需要进行修改，如果需要使用到细致的定制化，请查阅
 [此文档](./plugins/README.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./配置说明.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### hostname
@@ -40,7 +40,7 @@ permalink: /config/basic/
 
   当 `hostname` 配置为有效域名时，主题将会生成 `sitemap` 和 `seo` 相关的内容。
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./配置说明.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### blog
@@ -51,7 +51,7 @@ permalink: /config/basic/
 
   博客配置。
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./配置说明.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ```ts
@@ -199,7 +199,7 @@ interface BlogPostCoverStyle {
 - 默认值： `/article/`
 - 详情： 文章链接前缀
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./配置说明.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### autoFrontmatter
@@ -263,7 +263,7 @@ interface BlogPostCoverStyle {
   - `'filesystem'`：使用文件系统缓存，此方式可获得相对快且稳定的启动速度，更适合内容多的项目使用
 
   ::: warning
-  该字段不支持在 [主题配置文件 `plume.config.js`](./配置说明.md#主题配置文件) 中进行配置。
+  该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
 
   为了使缓存能够生效，您应该 **删除** `package.json` 中 `vuepress dev` 开发服务启动脚本中的 `--clean-cache` 参数。
   :::
@@ -292,7 +292,7 @@ interface BlogPostCoverStyle {
 - 默认值： `true`
 - 详情： 是否启用 编辑链接
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./配置说明.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### lastUpdated
@@ -315,7 +315,7 @@ interface LastUpdatedOptions {
 }
 ```
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./配置说明.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### contributors
@@ -324,9 +324,9 @@ interface LastUpdatedOptions {
 - 默认值： `true`
 - 详情： 是否显示贡献者
 
-  更多配置请参考 [此文档](../guide/功能/文章贡献者.md)
+  更多配置请参考 [此文档](../guide/features/contributors.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./配置说明.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### changelog
@@ -335,9 +335,9 @@ interface LastUpdatedOptions {
 - 默认值： `false`
 - 详情： 是否显示页面变更历史
 
-  更多配置请参考 [此文档](../guide/功能/文章变更历史.md)
+  更多配置请参考 [此文档](../guide/features/changelog.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./配置说明.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### locales
@@ -346,7 +346,7 @@ interface LastUpdatedOptions {
 - 默认值： `{}`
 - 详情： 多语言配置
 
-不同语言的文本配置，参考 [此文档](./多语言配置.md)
+不同语言的文本配置，参考 [此文档](./locales.md)
 
 多语言配置支持以下 [Locale](#locale-配置) 所有配置选项以控制不同语言下的主题行为。
 
@@ -585,7 +585,7 @@ type NavItem = string | {
 
   你可以将配置的notes 配置到 navbar中，以便浏览查看
 
-详细配置请查看 [此文档](./notes配置.md)
+详细配置请查看 [此文档](./notes.md)
 
 ### sidebar
 
@@ -593,7 +593,7 @@ type NavItem = string | {
 
 - 详情：
 
-  侧边栏配置。**主题更推荐在 [notes 配置](./notes配置.md) 中进行侧边栏配置。**
+  侧边栏配置。**主题更推荐在 [notes 配置](./notes.md) 中进行侧边栏配置。**
 
   当你不希望使用 `notes` 功能，但又期望给文档增加侧边栏时，可以使用此配置。
 
@@ -738,7 +738,7 @@ interface SidebarItem {
 - 默认值： `false`
 - 详情： 公告板配置
 
-  详情请参考 [公告板](../guide/功能/公告板.md)
+  详情请参考 [公告板](../guide/features/bulletin.md)
 
 ### editLinkPattern
 
@@ -754,7 +754,7 @@ interface SidebarItem {
 - 默认值： `false`
 - 详情： 版权配置
 
-  详情请参考 [版权所有](../guide/功能/文章版权所有.md)
+  详情请参考 [版权所有](../guide/features/copyright.md)
 
 ### prevPage
 

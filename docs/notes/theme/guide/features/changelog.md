@@ -120,7 +120,7 @@ export default defineUserConfig({
 ```
 
 ::: warning 注意
-请确保 `changelog.repoUrl` 配置正确， 默认值为 [docsRepo](../../config/主题配置.md#docsrepo)。
+请确保 `changelog.repoUrl` 配置正确， 默认值为 [docsRepo](../../config/theme.md#docsrepo)。
 
 主题默认适配了 `github/gitlab/gitee/bitbucket`  git 托管服务的相关访问地址模式。
 如果您使用的是内建的托管服务或者其他，请自行配置 `commitUrlPattern`、`issueUrlPattern`、`tagUrlPattern`。

@@ -7,7 +7,7 @@ permalink: /guide/components/plot/
 
 ## 概述
 
-使用 `<Plot>` 组件显示 [“隐秘”文本](../markdown/隐秘文本.md) ，能够更灵活的控制行为。
+使用 `<Plot>` 组件显示 [“隐秘”文本](../markdown/plot.md) ，能够更灵活的控制行为。
 
 该组件默认不启用，你需要在 theme 配置中启用。
 

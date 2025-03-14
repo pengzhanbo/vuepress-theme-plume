@@ -112,7 +112,7 @@ VuePress 支持在 Markdown 文件中使用 组件。
 
 ## “隐秘”文本
 
-使用 `<Plot>` 组件显示 [“隐秘”文本](/guide/markdown/advance/#隐秘-文本) ，能够更灵活的控制行为。
+使用 `<Plot>` 组件显示 [“隐秘”文本](../markdown/plot.md) ，能够更灵活的控制行为。
 
 该组件默认不启用，你需要在 theme 配置中启用。
 
@@ -152,7 +152,7 @@ export default defineUserConfig({
 
 使用 `<Card>` 组件在页面中显示卡片。
 
-也可以使用 markdown [卡片容器](/guide/markdown/advance/#卡片) 语法，替代 `<Card>` 组件。
+也可以使用 markdown [卡片容器](../markdown/card.md) 语法，替代 `<Card>` 组件。
 
 ### Props
 

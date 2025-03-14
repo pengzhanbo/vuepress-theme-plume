@@ -7,7 +7,7 @@ badge:
   text: 1.0.0-rc.127 +
 ---
 
-::: important [旧的前端代码演示](./前端.md) 已弃用，请迁移至此新的方案。
+::: important [旧的前端代码演示](./frontend-deprecated.md) 已弃用，请迁移至此新的方案。
 
 旧的方案由 [vuepress-plugin-md-enhance](https://plugin-md-enhance.vuejs.press/zh/) 提供，感谢在过去
 提供的代码演示的支持，在 `vuepress-plugin-md-enhance` 中代码演示功能也将迁移至 [vuepress/ecosystem](https://github.com/vuepress/ecosystem)，
@@ -67,7 +67,7 @@ badge:
 
 ## 配置
 
-前端代码演示 由 [vuepress-plugin-md-power](../../config/plugins/markdownPower.md) 提供支持。
+前端代码演示 由 [vuepress-plugin-md-power](../../config/plugins/markdown-power.md) 提供支持。
 
 前端 代码演示 默认不启用，你可以通过配置来启用它。
 
@@ -122,7 +122,7 @@ export default defineUserConfig({
 `url` 表示演示代码文件的路径，可以是相对路径或绝对路径，
 
 - 相对路径，以 `./` 或 `../` 开头，表示相对于当前的 markdown 文件路径。
-- 绝对路径，以 `/` 开头，表示从 [vuepress 源目录路径](../项目结构.md#文档源目录) 开始。
+- 绝对路径，以 `/` 开头，表示从 [vuepress 源目录路径](../quick-start/project-structure.md#文档源目录) 开始。
 
 ```md
 <!-- 普通代码演示 -->

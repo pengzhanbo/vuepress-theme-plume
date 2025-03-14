@@ -45,7 +45,7 @@ permalink: /guide/components/badge/
 
 **输入：**
 
-1. 在主题 [自定义样式文件](../自定义样式.md) 中，添加预定的样式：
+1. 在主题 [自定义样式文件](../custom/style.md.md) 中，添加预定的样式：
 
     ```css
     /* 浅色主题 */

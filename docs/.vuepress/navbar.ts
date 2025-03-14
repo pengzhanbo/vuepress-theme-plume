@@ -11,7 +11,7 @@ export const zhNavbar = defineNavbarConfig([
   {
     text: '配置',
     icon: 'icon-park-outline:setting-two',
-    link: '/notes/theme/config/配置说明.md',
+    link: '/notes/theme/config/intro.md',
     activeMatch: '^/config/',
   },
   {

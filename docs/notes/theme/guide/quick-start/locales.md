@@ -145,5 +145,5 @@ export default defineUserConfig({
 
 更多 `locales` 配置请查看
 
-- [主题配置 > Locales 配置](../../config/主题配置.md#locale-配置) - 配置主题在不同语言下的行为。
-- [主题配置 > 多语言配置](../../config/多语言配置.md) - 配置与语言相关的文本。
+- [主题配置 > Locales 配置](../../config/theme.md#locale-配置) - 配置主题在不同语言下的行为。
+- [主题配置 > 多语言配置](../../config/locales.md) - 配置与语言相关的文本。

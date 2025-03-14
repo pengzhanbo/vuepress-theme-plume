@@ -9,7 +9,7 @@ permalink: /guide/embed/audio/reader/
 
 主题支持在文档中嵌入 音频阅读 。
 
-该功能由 [vuepress-plugin-md-power](../../config/plugins/markdownPower.md) 提供支持。
+该功能由 [vuepress-plugin-md-power](../../config/plugins/markdown-power.md) 提供支持。
 
 **音频阅读** 并不是一个音乐播放器，它仅是在内容中嵌入一个（ @[audioReader](https://sensearch.baidu.com/gettts?lan=en&spd=3&source=alading&text=audio) ）按钮，点击后播放一段音频。
 

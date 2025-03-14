@@ -76,7 +76,7 @@ export default defineUserConfig({
 ::: tip
 
 你应该在创建文件之前，建议先把笔记的目录和链接前缀等配置好。
-主题默认启用了 [auto-frontmatter](../../config/主题配置.md#autofrontmatter)，
+主题默认启用了 [auto-frontmatter](../../config/theme.md#autofrontmatter)，
 需要根据配置，为目录中的 md 文件生成永久链接，以及侧边栏。
 
 :::
@@ -576,7 +576,7 @@ const typescript = defineNoteConfig({
 
 默认情况下，它与 普通的文档页面 没有区别，这是因为 主题 默认对 所有页面 设置了 `pageLayout: docs`。
 
-但你可以直接配置 `pageLayout: 'home'`，就像配置 [站点首页](../自定义首页.md) 一样，为 笔记配置一个个性化的首页！
+但你可以直接配置 `pageLayout: 'home'`，就像配置 [站点首页](../custom/home.md) 一样，为 笔记配置一个个性化的首页！
 
 ```md title="typescript/README.md"
 ---

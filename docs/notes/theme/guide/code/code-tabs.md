@@ -133,7 +133,7 @@ export default config
 
 主题支持在 代码块分组的组标题上显示图标。 图标根据 标题，即 `@tab 标题` 进行解析适配不同的图标
 
-默认解析规则与 [文件树](../markdown/进阶.md#文件树) 一致。
+默认解析规则与 [文件树](../markdown/file-tree.md) 一致。
 
 如， `pnpm / yarn / npm` 分组图标：
 

@@ -9,7 +9,7 @@ permalink: /guide/markdown/iconify/
 
 在 Markdown 文件中使用 [iconify](https://iconify.design/) 的图标。
 
-主题一方面提供了[`<Icon />`](../功能/组件.md#图标) 组件来支持在 markdown 中使用图标；
+主题一方面提供了[`<Icon />`](../components/icon.md) 组件来支持在 markdown 中使用图标；
 另一方面，主题还提供了图标的 markdown 语法，以更简单的方式，在 Markdown 中使用图标。
 
 为了更好的使用该功能，主题推荐你安装 `@iconify/json` 依赖。主题会自动解析 `@iconify/json` 中的图标数据，

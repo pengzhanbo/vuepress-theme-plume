@@ -17,13 +17,13 @@ Shiki 支持多种编程语言。
 
 ## 特性
 
-- [代码行高亮](../../guide/代码/特性支持.md#在代码块中实现行高亮)
-- [代码聚焦](../../guide/代码/特性支持.md#代码块中聚焦)
-- [代码对比差异](../../guide/代码/特性支持.md#代码块中的颜色差异)
-- [代码高亮“错误”和“警告”](../../guide/代码/特性支持.md#高亮-错误-和-警告)
-- [代码词高亮](../../guide/代码/特性支持.md#代码块中-词高亮)
-- [代码块折叠](../../guide/代码/特性支持.md#折叠代码块)
-- [twoslash](../../guide/代码/twoslash.md#twoslash) ：在代码块内提供内联类型提示。
+- [代码行高亮](../../guide/code/features.md#在代码块中实现行高亮)
+- [代码聚焦](../../guide/code/features.md#代码块中聚焦)
+- [代码对比差异](../../guide/code/features.md#代码块中的颜色差异)
+- [代码高亮“错误”和“警告”](../../guide/code/features.md#高亮-错误-和-警告)
+- [代码词高亮](../../guide/code/features.md#代码块中-词高亮)
+- [代码块折叠](../../guide/code/features.md#折叠代码块)
+- [twoslash](../../guide/code/twoslash.md#twoslash) ：在代码块内提供内联类型提示。
 
 ## 配置
 

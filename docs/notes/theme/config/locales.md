@@ -77,7 +77,7 @@ export default defineThemeConfig({
 
   Locale 的语言名称。
 
-  该配置项 **仅能在主题配置的 [locales](./主题配置.md#locales) 的内部生效** 。它将被用作 locale 的语言名称，展示在 _选择语言菜单_ 内。
+  该配置项 **仅能在主题配置的 [locales](./theme.md#locales) 的内部生效** 。它将被用作 locale 的语言名称，展示在 _选择语言菜单_ 内。
 
 ### selectLanguageText
 
@@ -87,7 +87,7 @@ export default defineThemeConfig({
 
   _选择语言菜单_ 的文本。
 
-  如果你在站点配置中设置了多个 [locales](./主题配置.md#locales) ，那么 _选择语言菜单_ 就会显示在导航栏中仓库按钮的旁边。
+  如果你在站点配置中设置了多个 [locales](./theme.md#locales) ，那么 _选择语言菜单_ 就会显示在导航栏中仓库按钮的旁边。
 
 ### selectLanguageAriaLabel
 

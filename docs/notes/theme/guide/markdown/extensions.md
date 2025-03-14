@@ -40,14 +40,14 @@ tags:
 ```md
 [Markdown](/guide/markdown/)
 
-[Markdown](./基础.md)
+[Markdown](./basic.md)
 ```
 
 渲染为：
 
 [Markdown](/guide/markdown/)
 
-[Markdown](./基础.md)
+[Markdown](./basic.md)
 
 ### 外部链接
 

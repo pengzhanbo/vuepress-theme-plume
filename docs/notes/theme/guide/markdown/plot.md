@@ -72,7 +72,7 @@ interface PlotOptions {
 ```
 
 如果不想使用 非标准的 `!! !!` 标记语法，你可以将 `plot.tag` 设置为 `false` ，
-然后使用 [`<Plot />`](/guide/features/component/#plot) 组件替代。
+然后使用 [`<Plot />`](../components/plot.md) 组件替代。
 
 ## 示例
 

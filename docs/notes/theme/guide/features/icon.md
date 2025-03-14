@@ -9,12 +9,12 @@ permalink: /guide/features/icon/
 
 主题支持 [iconify](https://icon-sets.iconify.design/) 的所有图标，并提供了不同的方式来使用它们：
 
-- [导航栏图标](../../config/导航栏配置.md#配置)
-- [侧边栏图标](../../guide/知识笔记.md#侧边栏图标)
+- [导航栏图标](../../config/navbar.md#配置)
+- [侧边栏图标](../../guide/document.md#侧边栏图标)
 - [图标组件](#图标组件)
-- [图标语法糖](../../guide/markdown/进阶.md#iconify-图标)
-- [文件树图标](../../guide/markdown/进阶.md#文件树)
-- [代码分组标题图标](../代码/代码组.md#分组标题图标)
+- [图标语法糖](../../guide/markdown/icons.md)
+- [文件树图标](../../guide/markdown/file-tree.md)
+- [代码分组标题图标](../code/code-tabs.md#分组标题图标)
 
 ::: tip 主题对图标的优化
 上述的不同的使用图标的方式，主题在内部都采取了相同的解析策略，即使您在不同的位置使用了相同的图标，
@@ -76,11 +76,11 @@ npm install @iconify/json
 
 ## markdown 语法糖
 
-相关内容请查看 [iconify-图标 语法糖](../markdown/图标.md)
+相关内容请查看 [iconify-图标 语法糖](../markdown/icons.md)
 
 ---
 
 ::: tip 说明
-[navbar](../../config/主题配置.md#navbar) 配置和 [notes](../../config/主题配置.md#notes) 配置
+[navbar](../../config/theme.md#navbar) 配置和 [notes](../../config/theme.md#notes) 配置
 中的 `icon` 选项，也支持传入 iconify 图标名，并且当安装了 `@iconify/json`，也会自动解析为本地图标资源。
 :::

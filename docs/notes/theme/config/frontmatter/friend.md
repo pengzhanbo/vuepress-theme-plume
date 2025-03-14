@@ -116,7 +116,7 @@ interface FriendsItem {
 }
 ```
 
-社交链接配置请查看 [配置/主题配置/社交链接](../../config/主题配置.md#social)。
+社交链接配置请查看 [配置/主题配置/社交链接](../../config/theme.md#social)。
 
 ### groups
 

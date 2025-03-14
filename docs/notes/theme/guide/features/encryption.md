@@ -1,6 +1,5 @@
 ---
 title: 加密
-author: pengzhanbo
 icon: mdi:encryption-outline
 createTime: 2024/03/04 15:58:48
 permalink: /guide/features/encryption/

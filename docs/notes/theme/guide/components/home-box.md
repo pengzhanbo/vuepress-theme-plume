@@ -1,6 +1,5 @@
 ---
 title: 首页布局容器
-author: pengzhanbo
 icon: tabler:container
 createTime: 2024/08/18 23:49:40
 permalink: /guide/components/home-box/

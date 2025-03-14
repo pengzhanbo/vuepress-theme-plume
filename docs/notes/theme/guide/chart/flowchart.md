@@ -1,6 +1,5 @@
 ---
 title: flowchart
-author: pengzhanbo
 createTime: 2024/03/16 19:34:31
 icon: f7:flowchart
 permalink: /guide/chart/flowchart/

@@ -1,6 +1,5 @@
 ---
 title: 图片卡片
-author: pengzhanbo
 icon: fa:photo
 createTime: 2024/08/18 23:35:51
 permalink: /guide/components/image-card/

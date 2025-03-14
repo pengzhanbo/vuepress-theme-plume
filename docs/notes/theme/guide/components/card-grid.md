@@ -1,6 +1,5 @@
 ---
 title: 卡片容器
-author: pengzhanbo
 icon: vaadin:grid-h
 createTime: 2024/08/18 23:38:33
 permalink: /guide/components/card-grid/

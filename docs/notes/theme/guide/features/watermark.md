@@ -1,6 +1,5 @@
 ---
 title: 文章水印
-author: pengzhanbo
 icon: material-symbols-light:branding-watermark-outline
 createTime: 2024/04/10 20:14:57
 permalink: /guide/features/watermark/

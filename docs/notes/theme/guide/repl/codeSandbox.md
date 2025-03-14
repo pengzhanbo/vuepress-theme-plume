@@ -1,6 +1,5 @@
 ---
 title: Code Sandbox
-author: pengzhanbo
 icon: lucide:codesandbox
 createTime: 2024/04/04 03:42:13
 permalink: /guide/code/code-sandbox/

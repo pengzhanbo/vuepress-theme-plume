@@ -1,6 +1,5 @@
 ---
 title: 友情链接页
-author: pengzhanbo
 icon: carbon:friendship
 createTime: 2024/03/03 22:44:28
 permalink: /guide/friend-links/

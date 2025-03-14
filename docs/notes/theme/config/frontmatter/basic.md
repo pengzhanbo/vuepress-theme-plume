@@ -1,6 +1,5 @@
 ---
 title: 通用配置
-author: pengzhanbo
 createTime: 2024/03/02 20:01:09
 permalink: /config/frontmatter/basic/
 badge: 徽章 badge

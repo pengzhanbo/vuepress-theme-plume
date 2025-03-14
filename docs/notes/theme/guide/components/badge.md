@@ -1,6 +1,5 @@
 ---
 title: 徽章
-author: pengzhanbo
 icon: iconamoon:badge-light
 createTime: 2024/08/18 22:45:50
 permalink: /guide/components/badge/

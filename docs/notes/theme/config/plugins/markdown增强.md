@@ -1,6 +1,5 @@
 ---
 title: Markdown Enhance
-author: pengzhanbo
 createTime: 2024/03/06 20:25:36
 permalink: /config/plugins/markdown-enhance/
 ---

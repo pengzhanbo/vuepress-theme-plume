@@ -1,6 +1,5 @@
 ---
 title: 首页
-author: pengzhanbo
 createTime: 2024/03/03 15:00:43
 permalink: /config/frontmatter/home/
 ---

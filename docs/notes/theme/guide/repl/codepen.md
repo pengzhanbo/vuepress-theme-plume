@@ -1,6 +1,5 @@
 ---
 title: Code Pen
-author: pengzhanbo
 icon: mingcute:codepen-line
 createTime: 2024/04/04 10:41:58
 permalink: /guide/code/code-pen/

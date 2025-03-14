@@ -1,6 +1,5 @@
 ---
 title: Js Fiddle
-author: pengzhanbo
 icon: bxl:jsfiddle
 createTime: 2024/04/04 10:42:21
 permalink: /guide/code/jsfiddle/

@@ -1,6 +1,5 @@
 ---
 title: 介绍
-author: Plume Theme
 createTime: 2024/03/06 8:26:44
 permalink: /config/plugins/
 ---

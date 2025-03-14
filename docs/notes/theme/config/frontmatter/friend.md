@@ -1,6 +1,5 @@
 ---
 title: 友情链接页
-author: pengzhanbo
 createTime: 2024/03/03 18:00:52
 permalink: /config/frontmatter/friends/
 ---

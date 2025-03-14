@@ -1,6 +1,5 @@
 ---
 title: 组件
-author: pengzhanbo
 icon: radix-icons:component-2
 createTime: 2024/03/06 09:42:42
 outline: 2

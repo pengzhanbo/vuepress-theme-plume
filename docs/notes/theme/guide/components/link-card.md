@@ -1,6 +1,5 @@
 ---
 title: 链接卡片
-author: pengzhanbo
 icon: solar:card-send-linear
 createTime: 2024/08/18 23:14:00
 permalink: /guide/components/link-card/

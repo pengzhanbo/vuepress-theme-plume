@@ -1,6 +1,5 @@
 ---
 title: Rust
-author: pengzhanbo
 icon: simple-icons:rust
 createTime: 2024/04/22 09:44:43
 permalink: /guide/repl/rust/

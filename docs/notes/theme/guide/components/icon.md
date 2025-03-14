@@ -1,6 +1,5 @@
 ---
 title: 图标
-author: pengzhanbo
 icon: grommet-icons:emoji
 createTime: 2024/08/18 22:58:39
 permalink: /guide/components/icon/

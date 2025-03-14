@@ -1,6 +1,5 @@
 ---
 title: Replit
-author: pengzhanbo
 icon: simple-icons:replit
 createTime: 2024/04/04 10:42:05
 permalink: /guide/code/replit/

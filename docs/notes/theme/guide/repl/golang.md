@@ -1,6 +1,5 @@
 ---
 title: Golang
-author: pengzhanbo
 icon: devicon-plain:go
 createTime: 2024/04/22 09:44:30
 permalink: /guide/repl/golang/

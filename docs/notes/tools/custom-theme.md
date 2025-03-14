@@ -1,7 +1,6 @@
 ---
 title: 主题颜色工具
 icon: unjs:theme-colors
-author: pengzhanbo
 createTime: 2024/07/29 13:58:29
 permalink: /tools/theme-colors/
 readingTime: false

@@ -1,6 +1,5 @@
 ---
 title: 内容搜索
-author: pengzhanbo
 icon: material-symbols:search
 createTime: 2024/03/04 09:58:39
 permalink: /guide/features/content-search/

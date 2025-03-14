@@ -1,6 +1,5 @@
 ---
 title: Repo 卡片
-author: pengzhanbo
 icon: octicon:repo-16
 createTime: 2024/07/26 21:11:56
 permalink: /guide/components/github-repo-card/

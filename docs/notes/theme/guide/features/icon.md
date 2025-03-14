@@ -1,7 +1,6 @@
 ---
 title: 图标
 icon: raphael:smile2
-author: pengzhanbo
 createTime: 2024/07/22 10:45:47
 permalink: /guide/features/icon/
 ---

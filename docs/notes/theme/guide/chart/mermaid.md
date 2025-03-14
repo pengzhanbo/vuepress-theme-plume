@@ -1,6 +1,5 @@
 ---
 title: mermaid
-author: pengzhanbo
 createTime: 2024/03/16 19:34:16
 icon: file-icons:mermaid
 permalink: /guide/chart/mermaid/

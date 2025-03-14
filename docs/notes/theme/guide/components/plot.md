@@ -1,6 +1,5 @@
 ---
 title: “隐秘”文本
-author: pengzhanbo
 icon: lets-icons:hide-eye
 createTime: 2024/08/18 23:02:39
 permalink: /guide/components/plot/

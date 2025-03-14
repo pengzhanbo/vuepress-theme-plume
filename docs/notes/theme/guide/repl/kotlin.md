@@ -1,6 +1,5 @@
 ---
 title: Kotlin
-author: pengzhanbo
 icon: tabler:brand-kotlin
 createTime: 2024/04/22 09:44:37
 permalink: /guide/repl/kotlin/

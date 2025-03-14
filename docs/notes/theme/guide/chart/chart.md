@@ -1,6 +1,5 @@
 ---
 title: chart.js
-author: pengzhanbo
 createTime: 2024/03/16 19:33:49
 icon: solar:chart-bold
 permalink: /guide/chart/chartjs/

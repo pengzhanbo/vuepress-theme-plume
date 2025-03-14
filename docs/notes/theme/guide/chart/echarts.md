@@ -1,6 +1,5 @@
 ---
 title: ECharts
-author: pengzhanbo
 createTime: 2024/03/16 19:34:03
 icon: raphael:piechart
 permalink: /guide/chart/echarts/

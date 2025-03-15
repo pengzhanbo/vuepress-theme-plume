@@ -17,10 +17,14 @@ permalink: /config/plugins/markdown-include/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
+    markdown: {
+      include: {
+        // ... options
+      }
+    },
+    // 也可以在 `plugins.markdownInclude` 中配置，但不推荐
     plugins: {
-      markdownInclude: {
-        // ... options,
-      },
+      markdownInclude: {},
     }
   })
 })

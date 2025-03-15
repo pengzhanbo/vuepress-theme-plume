@@ -18,11 +18,9 @@ permalink: /guide/embed/video/youtube/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        youtube: true,
-      },
-    }
+    markdown: {
+      youtube: true, // [!code ++]
+    },
   })
 })
 ```

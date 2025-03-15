@@ -22,13 +22,11 @@ permalink: /guide/repl/rust/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        repl: {
-          rust: true,
-        },
+    markdown: {
+      repl: {
+        rust: true,
       },
-    }
+    },
   })
 })
 ```

@@ -18,25 +18,27 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      // watermark: true,
-      watermark: {
-        // enabled: false,  // boolean 类型控制是否全局启用
-        enabled: page => true, // function 类型 过滤哪些页面启用水印
-        delay: 500, // 添加水印的延时。以毫秒为单位。
+    // watermark: true,
+    watermark: {
+      // enabled: false,  // boolean 类型控制是否全局启用
+      enabled: page => true, // function 类型 过滤哪些页面启用水印
+      delay: 500, // 添加水印的延时。以毫秒为单位。
 
-        /**
-         * 是否全屏水印，默认为 `true`，
-         * 设置为 `false` 时，水印仅在 内容区域中显示。
-         */
-        fullPage: true,
+      /**
+       * 是否全屏水印，默认为 `true`，
+       * 设置为 `false` 时，水印仅在 内容区域中显示。
+       */
+      fullPage: true,
 
-        /** @see https://zhensherlock.github.io/watermark-js-plus/zh/config/ */
-        watermarkOptions: {
-          content: 'your watermark',
-          // ...
-        }
+      /** @see https://zhensherlock.github.io/watermark-js-plus/zh/config/ */
+      watermarkOptions: {
+        content: 'your watermark',
+        // ...
       }
+    },
+    // 也可以通过 plugins.watermark 配置，但不推荐
+    plugins: {
+      watermark: {}
     }
   })
 })

@@ -26,7 +26,7 @@ permalink: /config/locales/
 
 您可以在 `.vuepress/config.ts` ，或者在 `.vuepress/plume.config.ts` 中进行配置：
 
-::: code-tabs
+::: code-tabs#configs
 
 @tab .vuepress/config.ts
 
@@ -62,6 +62,8 @@ export default defineThemeConfig({
 ```
 
 :::
+
+详细配置方法请参考：[国际化](../guide/quick-start/locales.md)
 
 ### appearanceText
 

@@ -30,11 +30,9 @@ npm install flowchart.ts
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownEnhance: {
-        flowchart: true, // [!code hl]
-      },
-    }
+    markdown: {
+      flowchart: true, // [!code ++]
+    },
   })
 })
 ```

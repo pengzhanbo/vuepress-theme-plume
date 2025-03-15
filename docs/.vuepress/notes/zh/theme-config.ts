@@ -14,10 +14,11 @@ export const themeConfig = defineNoteConfig({
         'navbar',
         'notes',
         'sidebar',
+        'markdown',
       ],
     },
     {
-      text: 'frontmatter',
+      text: '页面配置',
       prefix: 'frontmatter',
       collapsed: false,
       items: [

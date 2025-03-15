@@ -18,10 +18,12 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
+    readingTime: {
+      wordPerMinute: 300
+    },
+    // 也可以通过 plugins.readingTime 配置，但不推荐
     plugins: {
-      readingTime: {
-        wordPerMinute: 300
-      },
+      readingTime: {}
     }
   }),
 })
@@ -67,7 +69,7 @@ interface ReadingTimePluginLocaleConfig {
 
 ## 禁用
 
-可以通过配置 `plugins.readingTime` 为 `false` 禁用该插件。
+可以通过配置 `readingTime` 为 `false` 禁用该功能。
 
 禁用后，文章页不会显示字数统计与预计阅读时间。
 
@@ -77,9 +79,7 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      readingTime: false
-    }
+    readingTime: false
   }),
 })
 ```

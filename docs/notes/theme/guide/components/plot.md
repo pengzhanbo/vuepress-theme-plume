@@ -14,11 +14,9 @@ permalink: /guide/components/plot/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        plot: true,
-      },
-    }
+    markdown: {
+      plot: true,
+    },
   })
 })
 ```

@@ -14,11 +14,9 @@ permalink: /guide/code/code-sandbox/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        codesandbox: true, // [!code highlight]
-      },
-    }
+    markdown: {
+      codesandbox: true, // [!code highlight]
+    },
   })
 })
 ```

@@ -21,24 +21,22 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      // watermark: true,
-      watermark: {
-        // enabled: false,  // boolean 类型控制是否全局启用
-        enabled: page => true, // function 类型 过滤哪些页面启用水印
-        delay: 500, // 添加水印的延时。以毫秒为单位。
+    // watermark: true,
+    watermark: {
+      // enabled: false,  // boolean 类型控制是否全局启用
+      enabled: page => true, // function 类型 过滤哪些页面启用水印
+      delay: 500, // 添加水印的延时。以毫秒为单位。
 
-        /**
-         * 是否全屏水印，默认为 `true`，
-         * 设置为 `false` 时，水印仅在 内容区域中显示。
-         */
-        fullPage: true,
+      /**
+       * 是否全屏水印，默认为 `true`，
+       * 设置为 `false` 时，水印仅在 内容区域中显示。
+       */
+      fullPage: true,
 
-        /** @see https://zhensherlock.github.io/watermark-js-plus/zh/config/ */
-        watermarkOptions: {
-          content: 'your watermark',
-          // ...
-        }
+      /** @see https://zhensherlock.github.io/watermark-js-plus/zh/config/ */
+      watermarkOptions: {
+        content: 'your watermark',
+        // ...
       }
     }
   })
@@ -52,9 +50,7 @@ export default defineUserConfig({
 ```ts
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      watermark: true,
-    }
+    watermark: true,
   })
 })
 ```
@@ -68,11 +64,9 @@ export default defineUserConfig({
 ```ts
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      watermark: {
-        // 返回结果为 true 的将启用水印，否则禁用
-        enabled: page => page.path.includes('/article/'),
-      }
+    watermark: {
+      // 返回结果为 true 的将启用水印，否则禁用
+      enabled: page => page.path.includes('/article/'),
     }
   })
 })
@@ -109,16 +103,14 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      watermark: {
-        watermarkOptions: {
-          contentType: 'image',
-          image: '/images/watermark.png',
-          width: 200,
-          height: 200,
-          imageWidth: 100,
-          imageHeight: 100,
-        }
+    watermark: {
+      watermarkOptions: {
+        contentType: 'image',
+        image: '/images/watermark.png',
+        width: 200,
+        height: 200,
+        imageWidth: 100,
+        imageHeight: 100,
       }
     }
   })
@@ -153,12 +145,10 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      watermark: {
-        watermarkOptions: {
-          content: '自定义文字',
-          fontColor: '#fff', // 文字颜色
-        }
+    watermark: {
+      watermarkOptions: {
+        content: '自定义文字',
+        fontColor: '#fff', // 文字颜色
       }
     }
   })

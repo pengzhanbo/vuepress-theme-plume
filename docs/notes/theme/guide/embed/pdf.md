@@ -18,11 +18,9 @@ permalink: /guide/embed/pdf/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        pdf: true,
-      },
-    }
+    markdown: {
+      pdf: true, // [!code ++]
+    },
   })
 })
 ```

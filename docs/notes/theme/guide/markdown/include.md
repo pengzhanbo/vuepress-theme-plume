@@ -6,16 +6,6 @@ permalink: /guide/markdown/include/
 outline: 2
 ---
 
-::: important 注意
-
-从 主题的 `v1.0.0-rc.120` 版本开始，导入文件的功能实现，
-从 [`vuepress-plugin-md-enhance`](https://plugin-md-enhance.vuejs.press)
-迁移到了 [`@vuepress/plugin-markdown-include`](https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-include.html) 。
-
-因此在主题配置中，配置项从 `plugins.markdownEnhance.include` 改名为 `plugins.markdownInclude`。
-如果你有自定义配置，请注意需要进行迁移。
-:::
-
 ## 概述
 
 主题支持在 Markdown 文件中导入文件切片。
@@ -25,9 +15,9 @@ outline: 2
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownInclude: {
-        // ... options, // [!code highlight]
+    markdown: {
+      include: { // [!code ++:3]
+        // ... options
       },
     }
   })
@@ -93,16 +83,13 @@ interface IncludeOptions {
 }
 ```
 
-例如: 你可以使用 @src 作为源文件夹的别名。
+例如: 你可以使用 `@src` 作为源文件夹的别名。
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts{5-11}
+```ts{5-11} title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownInclude: {
+    markdown: {
+      include: {
         resolvePath: (file) => {
           if (file.startsWith('@src'))
             return file.replace('@src', path.resolve(__dirname, '..'))
@@ -115,28 +102,21 @@ export default defineUserConfig({
 })
 ```
 
-:::
-
 此外，如果你想将 Markdown 文件直接放在实际文件旁边，但不希望它们呈现为页面，
 你可以在 VuePress 配置中设置 `pagePatterns` 选项。
 有关详细信息，请参阅 [pagePatterns](https://vuejs.press/zh/reference/config.html#pagepatterns)。
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   // 现在任何带有 `.snippet.md` 扩展名的文件都不会呈现为页面
   pagePatterns: ['**/*.md', '!**/*.snippet.md', '!.vuepress', '!node_modules'], // [!code ++]
   theme: plumeTheme({
-    plugins: {
-      markdownInclude: true
+    markdown: {
+      include: true
     }
   })
 })
 ```
-
-:::
 
 ## 示例
 

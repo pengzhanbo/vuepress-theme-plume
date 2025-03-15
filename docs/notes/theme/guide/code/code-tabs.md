@@ -199,18 +199,16 @@ npm install
 
 ### 配置
 
-您可以通过 `plugins.mdPower.codeTabs` 控制分组图标的行为：
+您可以通过 `markdown.codeTabs` 控制分组图标的行为：
 
 ```ts
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        codeTabs: {
-          icon: true, // CodeTabsOptions
-        }
-      },
-    }
+    markdown: {
+      codeTabs: {
+        icon: true, // CodeTabsOptions
+      }
+    },
   })
 })
 ```

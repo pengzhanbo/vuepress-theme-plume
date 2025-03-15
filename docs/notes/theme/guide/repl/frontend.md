@@ -74,14 +74,9 @@ badge:
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        demo: true, // 启用新的代码演示功能 // [!code ++]
-      },
-      markdownEnhance: {
-        demo: false, // 禁用旧的代码演示功能 // [!code --]
-      }
-    }
+    markdown: {
+      demo: true, // [!code ++]
+    },
   })
 })
 ```

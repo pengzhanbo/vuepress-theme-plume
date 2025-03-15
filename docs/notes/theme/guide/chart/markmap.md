@@ -30,11 +30,9 @@ npm i markmap-lib markmap-toolbar markmap-view
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownEnhance: {
-        markmap: true, // [!code hl]
-      },
-    }
+    markdown: {
+      markmap: true, // [!code ++]
+    },
   })
 })
 ```

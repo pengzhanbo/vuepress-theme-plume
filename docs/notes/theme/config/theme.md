@@ -4,23 +4,69 @@ createTime: 2024/03/02 18:07:03
 permalink: /config/theme/
 ---
 
+## 概述
+
+主题配置用于定制主题的各项功能，以控制主题的行为，
+您可以在 `.vuepress/config.ts` 或者 `.vuepress/plume.config.ts` 中进行配置。
+
+当字段说明包含以下声明时，表示该字段不支持在 `.vuepress/plume.config.ts` 中进行配置：
+
+::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+:::
+
+无以上声明的字段，你可以在 `.vuepress/config.ts` 或者 `.vuepress/plume.config.ts` 的任意一个文件中
+进行配置，一般情况下建议在 `.vuepress/plume.config.ts` 中进行配置。
+
+::: warning 已经在一个配置文件中进行配置的字段，尽量不要在另一个配置文件中重复配置
+:::
+
+::: code-tabs#configs
+
+@tab .vuepress/config.ts
+
+```ts
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    // 主题配置
+  })
+})
+```
+
+@tab .vuepress/plume.config.ts
+
+```ts
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  // 主题配置
+})
+```
+
+:::
+
 ## 基础配置
 
 ### configFile
 
-- 类型： `string`
-- 默认值： `''`
-- 详情：
+- **类型：** `string`
+- **默认值：** `''`
+- **详情：**
 
   自定义主题配置文件的路径。
 
   查看 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 了解更多。
 
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  :::
+
 ### plugins
 
-- 类型：`PlumeThemePluginOptions`
-- 默认值： `{}`
-- 详情：
+- **类型：**`PlumeThemePluginOptions`
+- **默认值：** `{}`
+- **详情：**
 
   对主题内部使用的插件进行自定义配置。
 
@@ -30,11 +76,88 @@ permalink: /config/theme/
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
 
+### markdown <Badge type="tip" text="1.0.0-rc.136 +" />
+
+- **类型：** `MarkdownOptions`
+- **默认值：** `{}`
+- **详情：**
+
+  Markdown 功能配置， 参考 [此文档](./markdown.md)
+
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  :::
+
+### codeHighlighter <Badge type="tip" text="1.0.0-rc.136 +" />
+
+- **类型：** `false | ShikiPluginOptions`
+- **默认值：** `{}`
+- **详情：**
+
+  代码高亮配置， 参考 [此文档](../guide/code/intro.md)
+
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  :::
+
+### search <Badge type="tip" text="1.0.0-rc.136 +" />
+
+- **类型：** `false | SearchOptions`
+- **默认值：** `{ provider: 'local' }`
+- **详情：**
+
+  搜索配置， 参考 [此文档](../guide/features/search.md)
+
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  :::
+
+### comment <Badge type="tip" text="1.0.0-rc.136 +" />
+
+- **类型：** `false | CommentPluginOptions`
+- **默认值：** `false`
+- **详情：**
+
+  评论配置， 参考 [此文档](../guide/features/comments.md)
+
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  :::
+
+### watermark <Badge type="tip" text="1.0.0-rc.136 +" />
+
+- **类型：** `false | WatermarkPluginOptions`
+- **默认值：** `false`
+- **详情：**
+
+  水印配置， 参考 [此文档](../guide/features/watermark.md)
+
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  :::
+
+### readingTime <Badge type="tip" text="1.0.0-rc.136 +" />
+
+- **类型：** `false | ReadingTimePluginOptions`
+- **默认值：** `false`
+- **详情：**
+
+  阅读时长配置， 参考 [此文档](../guide/features/reading-time.md)
+
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  :::
+
+### copyCode <Badge type="tip" text="1.0.0-rc.136 +" />
+
+- **类型：** `false | CopyCodePluginOptions`
+- **默认值：** `{}`
+- **详情：**
+
+  复制代码配置， 参考 [此文档](../guide/features/copy-code.md)
+
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  :::
+
 ### hostname
 
-- 类型： `string`
-- 默认值： `''`
-- 详情：
+- **类型：** `string`
+- **默认值：** `''`
+- **详情：**
 
   部署站点域名。
 
@@ -45,9 +168,9 @@ permalink: /config/theme/
 
 ### blog
 
-- 类型： `false | BlogOptions`
-- 默认值： `{ link: '/blog/',  include: ['**/*.md'], exclude: [] }`
-- 详情：
+- **类型：** `false | BlogOptions`
+- **默认值：** `{ link: '/blog/',  include: ['**/*.md'], exclude: [] }`
+- **详情：**
 
   博客配置。
 
@@ -195,17 +318,17 @@ interface BlogPostCoverStyle {
 
 ### article
 
-- 类型： `string`
-- 默认值： `/article/`
-- 详情： 文章链接前缀
+- **类型：** `string`
+- **默认值：** `/article/`
+- **详情：** 文章链接前缀
 
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### autoFrontmatter
 
-- 类型： `false | AutoFrontmatterOptions`
-- 详情：
+- **类型：** `false | AutoFrontmatterOptions`
+- **详情：**
 
   是否为 markdown 文件自动添加 frontmatter 配置
 
@@ -248,9 +371,9 @@ interface BlogPostCoverStyle {
 
 ### cache
 
-- 类型： `false | 'memory' | 'filesystem'`
-- 默认值： `filesystem`
-- 详情：
+- **类型：** `false | 'memory' | 'filesystem'`
+- **默认值：** `filesystem`
+- **详情：**
 
   是否启用 编译缓存，或配置缓存方式
 
@@ -270,36 +393,36 @@ interface BlogPostCoverStyle {
 
 ### docsRepo
 
-- 类型： `string`
-- 默认值： `''`
-- 详情： 文档仓库配置, 用于生成 `Edit this page` 链接。
+- **类型：** `string`
+- **默认值：** `''`
+- **详情：** 文档仓库配置, 用于生成 `Edit this page` 链接。
 
 ### docsBranch
 
-- 类型： `string`
-- 默认值： `''`
-- 详情： 文档仓库分支配置，用于生成 `Edit this page` 链接。
+- **类型：** `string`
+- **默认值：** `''`
+- **详情：** 文档仓库分支配置，用于生成 `Edit this page` 链接。
 
 ### docsDir
 
-- 类型： `string`
-- 默认值： `''`
-- 详情： 文档仓库目录配置，用于生成 `Edit this page` 链接。
+- **类型：** `string`
+- **默认值：** `''`
+- **详情：** 文档仓库目录配置，用于生成 `Edit this page` 链接。
 
 ### editLink
 
-- 类型： `boolean`
-- 默认值： `true`
-- 详情： 是否启用 编辑链接
+- **类型：** `boolean`
+- **默认值：** `true`
+- **详情：** 是否启用 编辑链接
 
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### lastUpdated
 
-- 类型： `false | LastUpdatedOptions`
-- 默认值： `{ formatOptions: { dateStyle: 'short', timeStyle: 'short' } }`
-- 详情： 最后更新时间
+- **类型：** `false | LastUpdatedOptions`
+- **默认值：** `{ formatOptions: { dateStyle: 'short', timeStyle: 'short' } }`
+- **详情：** 最后更新时间
 
 ```ts
 interface LastUpdatedOptions {
@@ -320,9 +443,9 @@ interface LastUpdatedOptions {
 
 ### contributors
 
-- 类型： `boolean | ContributorsOptions`
-- 默认值： `true`
-- 详情： 是否显示贡献者
+- **类型：** `boolean | ContributorsOptions`
+- **默认值：** `true`
+- **详情：** 是否显示贡献者
 
   更多配置请参考 [此文档](../guide/features/contributors.md)
 
@@ -331,9 +454,9 @@ interface LastUpdatedOptions {
 
 ### changelog
 
-- 类型： `boolean | ChangelogOptions`
-- 默认值： `false`
-- 详情： 是否显示页面变更历史
+- **类型：** `boolean | ChangelogOptions`
+- **默认值：** `false`
+- **详情：** 是否显示页面变更历史
 
   更多配置请参考 [此文档](../guide/features/changelog.md)
 
@@ -342,9 +465,9 @@ interface LastUpdatedOptions {
 
 ### locales
 
-- 类型： `Record<string, PlumeThemeLocaleConfig>`
-- 默认值： `{}`
-- 详情： 多语言配置
+- **类型：** `Record<string, ThemeLocaleData>`
+- **默认值：** `{}`
+- **详情：** 多语言配置
 
 不同语言的文本配置，参考 [此文档](./locales.md)
 
@@ -352,11 +475,14 @@ interface LastUpdatedOptions {
 
 ## Locale 配置
 
+::: tip 以下所有字段也均是基础配置字段，可以与 `locales` 等字段平级配置。
+:::
+
 ### home
 
-- 类型： `false | string`
-- 默认值： `/`
-- 详情：
+- **类型：** `false | string`
+- **默认值：** `/`
+- **详情：**
   首页的路径， 它将被用于：
   - 导航栏中 logo的链接；
   - 404页面的 *返回首页* 的链接；
@@ -364,19 +490,19 @@ interface LastUpdatedOptions {
 ### logo
 
 - 类型: `false | string`
-- 默认值： `false`
-- 详情： 导航栏中的logo。
+- **默认值：** `false`
+- **详情：** 导航栏中的logo。
 
 ### logoDark
 
 - 类型 `false | string`
-- 默认值： `false`
-- 详情： Dark模式下，导航栏中的logo。
+- **默认值：** `false`
+- **详情：** Dark模式下，导航栏中的logo。
 
 ### appearance
 
-- 类型： `boolean | 'dark' | 'force-dark`
-- 默认值： `true`
+- **类型：** `boolean | 'dark' | 'force-dark`
+- **默认值：** `true`
 
 是否启用 深色模式。
 
@@ -389,9 +515,9 @@ interface LastUpdatedOptions {
 
 ### profile
 
-- 类型： `ProfileOptions`
-- 默认值： `{}`
-- 详情：配置站点博主的个人信息
+- **类型：** `ProfileOptions`
+- **默认值：** `{}`
+- **详情：**配置站点博主的个人信息
   - `profile.avatar`: 头像地址，用于右侧博主信息展示
   - `profile.name`: 名称， 用于右侧博主信息展示
   - `profile.description`: 个人描述，用于右侧博主信息展示
@@ -403,7 +529,7 @@ interface LastUpdatedOptions {
 示例：
 
 ``` ts
-export default {
+export default defineUserConfig({
   theme: plumeTheme({
     profile: {
       avatar: '/avatar.jpg',
@@ -415,14 +541,14 @@ export default {
       layout: 'right',
     }
   })
-}
+})
 ```
 
 ### social
 
-- 类型： `false | SocialLink[]`
-- 默认值： `false`
-- 详情： 个人社交信息配置。
+- **类型：** `false | SocialLink[]`
+- **默认值：** `false`
+- **详情：** 个人社交信息配置。
 
   将作为 图标链接 展示在 导航栏最右侧。
 
@@ -453,8 +579,8 @@ export default {
 
 示例：
 
-``` ts :no-line-numbers
-export default {
+``` ts
+export default defineUserConfig({
   theme: plumeTheme({
     social: [
       { icon: 'github', link: 'https://github.com/zhangsan' },
@@ -464,14 +590,14 @@ export default {
       },
     ]
   })
-}
+})
 ```
 
 ### navbarSocialInclude
 
-- 类型： `string[]`
-- 默认值： `['github', 'twitter', 'discord', 'facebook']`
-- 详情：
+- **类型：** `string[]`
+- **默认值：** `['github', 'twitter', 'discord', 'facebook']`
+- **详情：**
 
     允许显示在导航栏的社交链接。
     该配置仅在 PC 端下有效。
@@ -480,11 +606,12 @@ export default {
 
 ### navbar
 
-- 类型： `NavItem[]`
-- 默认值： `[]`
-- 详情： 导航栏配置。
+- **类型：** `NavItem[]`
+- **默认值：** `[]`
+- **详情：** 导航栏配置。
 
-  为了配置导航栏元素，你可以将其设置为 导航栏数组 ，其中的每个元素是 `string` 或 `NavItem` 对象、
+  为了配置导航栏元素，你可以将其设置为 导航栏数组 ，其中的每个元素是 `string` 或 `NavItem` 对象
+
   - `NavItem` 对象应该有一个 text 字段和一个 link 字段，还有一个可选的 `activeMatch` 字段。
   - `string` 表示是一个页面文件路径，或者是一个页面的访问路径。
 
@@ -517,7 +644,7 @@ type NavItem = string | {
 - 示例1：
 
   ``` js
-  export default {
+  export default defineUserConfig({
     theme: plumeTheme({
       navbar: [
         // NavbarItem
@@ -532,13 +659,13 @@ type NavItem = string | {
         '/bar', // 可以直接省略后缀 `.md`
       ],
     }),
-  }
+  })
   ```
 
 - 示例2：
 
   ``` js
-  export default {
+  export default defineUserConfig({
     theme: plumeTheme({
       navbar: [
         // 嵌套 Group - 最大深度为 2
@@ -572,14 +699,14 @@ type NavItem = string | {
         },
       ],
     }),
-  }
+  })
   ```
 
 ### notes
 
-- 类型： `false | NotesOptions`
-- 默认值： `{ link: '/note', dir: 'notes', notes: [] }`
-- 详情：
+- **类型：** `false | NotesOptions`
+- **默认值：** `{ link: '/note', dir: 'notes', notes: [] }`
+- **详情：**
 
   笔记配置， 笔记中的文章默认不会出现在首页文章列表
 
@@ -589,9 +716,9 @@ type NavItem = string | {
 
 ### sidebar
 
-- 类型： `false | SidebarMulti`
+- **类型：** `false | SidebarMulti`
 
-- 详情：
+- **详情：**
 
   侧边栏配置。**主题更推荐在 [notes 配置](./notes.md) 中进行侧边栏配置。**
 
@@ -655,17 +782,17 @@ interface SidebarItem {
 
 ### sidebarScrollbar
 
-- 类型： `boolean`
-- 默认值： `true`
-- 详情： 是否显示侧边栏滚动条
+- **类型：** `boolean`
+- **默认值：** `true`
+- **详情：** 是否显示侧边栏滚动条
 
   设置为 `false` 时，仅隐藏滚动条，但不改变滚动行为。
 
 ### aside
 
-- 类型： `boolean | 'left'`
-- 默认值： `true`
-- 详情：
+- **类型：** `boolean | 'left'`
+- **默认值：** `true`
+- **详情：**
 
   是否显示侧边栏
 
@@ -677,9 +804,9 @@ interface SidebarItem {
 
 ### outline
 
-- 类型： `false | number | [number, number] | 'deep'`
-- 默认值： `[2, 3]`
-- 详情：
+- **类型：** `false | number | [number, number] | 'deep'`
+- **默认值：** `[2, 3]`
+- **详情：**
 
   要显示的标题级别。
 
@@ -695,9 +822,9 @@ interface SidebarItem {
 
 ### transition
 
-- 类型： `boolean | TransitionOptions`
-- 默认值： `true`
-- 详情：
+- **类型：** `boolean | TransitionOptions`
+- **默认值：** `true`
+- **详情：**
 
   是否启用过渡动画。
 
@@ -728,51 +855,51 @@ interface SidebarItem {
 
 ### footer
 
-- 类型： `false | { message: string; copyright: string }`
-- 默认值： `false`
-- 详情：页脚配置。
+- **类型：** `false | { message: string; copyright: string }`
+- **默认值：** `false`
+- **详情：**页脚配置。
 
 ### bulletin
 
-- 类型： `boolean | BulletinOptions`
-- 默认值： `false`
-- 详情： 公告板配置
+- **类型：** `boolean | BulletinOptions`
+- **默认值：** `false`
+- **详情：** 公告板配置
 
   详情请参考 [公告板](../guide/features/bulletin.md)
 
 ### editLinkPattern
 
-- 类型： `string`
-- 默认值： `''`
-- 详情： 编辑链接的正则表达式
+- **类型：** `string`
+- **默认值：** `''`
+- **详情：** 编辑链接的正则表达式
 
   示例： `':repo/edit/:branch/:path'`
 
 ### copyright
 
-- 类型： `boolean | CopyrightLicense | CopyrightOptions`
-- 默认值： `false`
-- 详情： 版权配置
+- **类型：** `boolean | CopyrightLicense | CopyrightOptions`
+- **默认值：** `false`
+- **详情：** 版权配置
 
   详情请参考 [版权所有](../guide/features/copyright.md)
 
 ### prevPage
 
-- 类型： `boolean`
-- 默认值： `true`
-- 详情： 是否显示上一页
+- **类型：** `boolean`
+- **默认值：** `true`
+- **详情：** 是否显示上一页
 
 ### nextPage
 
-- 类型： `boolean`
-- 默认值： `true`
-- 详情： 是否显示下一页
+- **类型：** `boolean`
+- **默认值：** `true`
+- **详情：** 是否显示下一页
 
 ### createTime
 
-- 类型： `boolean | 'only-blog'`
-- 默认值： `true`
-- 详情： 是否显示创建时间
+- **类型：** `boolean | 'only-blog'`
+- **默认值：** `true`
+- **详情：** 是否显示创建时间
 
   - `false` - 不显示
   - `'only-blog'` - 只显示在博客文章页面

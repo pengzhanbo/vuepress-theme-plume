@@ -17,17 +17,12 @@ permalink: /guide/za6z9xie/
 
 在 `.vuepress/config.ts` 配置文件中，启用该功能：
 
-::: code-tabs
-@tab .vuepress/config.ts
-
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownEnhance: {
-        plantuml: true, // [!code hl]
-      },
-    }
+    markdown: {
+      plantuml: true, // [!code ++]
+    },
   })
 })
 ```

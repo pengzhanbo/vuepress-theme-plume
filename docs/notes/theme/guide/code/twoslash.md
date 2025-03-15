@@ -76,8 +76,8 @@ npm i @vuepress/shiki-twoslash
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      shiki: { twoslash: true },
+    codeHighlighter: {
+      twoslash: true,
     },
   }),
 })
@@ -156,19 +156,17 @@ import path from 'node:path'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      shiki: {
-        twoslash: {
-          compilerOptions: { // [!code hl:8]
-            paths: {
-              // 相对于工作目录 `process.cwd()`
-              '@/*': ['./src/*'],
-              // 使用绝对路径
-              '@@/*': [path.resolve(process.cwd(), './src/*')],
-            }
+    codeHighlighter: {
+      twoslash: {
+        compilerOptions: { // [!code hl:8]
+          paths: {
+            // 相对于工作目录 `process.cwd()`
+            '@/*': ['./src/*'],
+            // 使用绝对路径
+            '@@/*': [path.resolve(process.cwd(), './src/*')],
           }
         }
-      },
+      }
     },
   }),
 })

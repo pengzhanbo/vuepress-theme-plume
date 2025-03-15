@@ -6,12 +6,15 @@ permalink: /config/notes/
 
 ## 概述
 
+::: tip notes 配置支持在 `.vuepress/config.ts` ，或者在 `plume.config.ts` 中进行配置。
+:::
+
 主题默认将 `sourceDir` 目录下的 `notes` 目录作为 文档/知识笔记 的存放目录，
 该目录下的所有文件都会被排除在 博客文章之外。
 
 默认配置如下：
 
-```ts title=".vuepress/config.ts"
+```ts
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -24,7 +27,7 @@ export default defineUserConfig({
 
 如果启用了 多语言配置， 你 也可以在 `locales` 字段中 分别配置 `notes`
 
-```ts title=".vuepress/config.ts"
+```ts
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 

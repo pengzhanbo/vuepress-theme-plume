@@ -18,11 +18,9 @@ permalink: /guide/embed/video/bilibili/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        bilibili: true,
-      },
-    }
+    markdown: {
+      bilibili: true, // [!code ++]
+    },
   })
 })
 ```

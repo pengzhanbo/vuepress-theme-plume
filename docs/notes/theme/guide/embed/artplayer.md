@@ -18,11 +18,9 @@ permalink: /guide/embed/video/artplayer/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        artPlayer: true,
-      },
-    }
+    markdown: {
+      artPlayer: true, // [!code ++]
+    },
   })
 })
 ```

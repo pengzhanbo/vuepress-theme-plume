@@ -19,16 +19,14 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      comment: {
-        // 服务提供商
-        provider: '', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
-        // 是否默认启用评论
-        comment: true,
+    comment: {
+      // 服务提供商
+      provider: '', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
+      // 是否默认启用评论
+      comment: true,
 
-        // 其它配置，根据服务提供商进行配置
-        // ...
-      }
+      // 其它配置，根据服务提供商进行配置
+      // ...
     }
   })
 })
@@ -87,15 +85,13 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      comment: {
-        provider: 'Giscus', // "Artalk“ | "Giscus" | "Twikoo" | "Waline"
-        comment: true,
-        repo: 'Your_Repo', // [!code ++]
-        repoId: 'Your_RepoId', // [!code ++]
-        category: 'Your_Category', // [!code ++]
-        categoryId: 'Your_CategoryId', // [!code ++]
-      }
+    comment: {
+      provider: 'Giscus', // "Artalk“ | "Giscus" | "Twikoo" | "Waline"
+      comment: true,
+      repo: 'Your_Repo', // [!code ++]
+      repoId: 'Your_RepoId', // [!code ++]
+      category: 'Your_Category', // [!code ++]
+      categoryId: 'Your_CategoryId', // [!code ++]
     }
   })
 })

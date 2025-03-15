@@ -18,10 +18,8 @@ permalink: /guide/markdown/abbreviation/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        abbr: true,
-      },
+    markdown: {
+      abbr: true, // [!code ++]
     }
   })
 })

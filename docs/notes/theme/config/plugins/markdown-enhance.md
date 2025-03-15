@@ -18,22 +18,19 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownEnhance: {
-        // 以下可选项在 主题中默认不启用，
-        // 请在主题中自行配置
-        // chartjs: true, // 图表支持
-        // echarts: true, // ECharts 图表支持
-        // flowchart: true, // 流程图支持
-        // markmap: true, // Markmap 图表支持
-        // stylize: true, // 对行内语法进行样式化以创建代码片段
-        // playground: true, // 交互演示
-        // kotlinPlayground: true, // Kotlin 交互演示
-        // vuePlayground: true, // Vue 交互演示
-        // sandpack: true, // sandpack 交互演示
-        // demo: true, // 代码案例
-      }
-    }
+    markdown: {
+      // 以下可选项在 主题中默认不启用，
+      // 请在主题中自行配置
+      // chartjs: true, // 图表支持
+      // echarts: true, // ECharts 图表支持
+      // flowchart: true, // 流程图支持
+      // markmap: true, // Markmap 图表支持
+      // stylize: true, // 对行内语法进行样式化以创建代码片段
+      // playground: true, // 交互演示
+      // kotlinPlayground: true, // Kotlin 交互演示
+      // vuePlayground: true, // Vue 交互演示
+      // sandpack: true, // sandpack 交互演示
+    },
   }),
 })
 ```

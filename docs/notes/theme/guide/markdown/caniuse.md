@@ -18,11 +18,9 @@ permalink: /guide/markdown/caniuse/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        caniuse: true, // [!code hl]
-      },
-    }
+    markdownP: {
+      caniuse: true, // [!code ++]
+    },
   })
 })
 ```

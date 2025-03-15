@@ -31,13 +31,13 @@ permalink: /guide/code/features/
 
 ## 代码行号
 
-主题默认显示代码行号，它通过 `plugins.shiki.line-numbers` 来控制。
+主题默认显示代码行号，它通过 `codeHighlighter.line-numbers` 来控制。
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      shiki: { lineNumbers: true }
+    codeHighlighter: {
+      lineNumbers: true, // [!code ++]
     }
   })
 })
@@ -334,13 +334,13 @@ console.log(options.foo) // 这个不会被高亮显示
 
 <!-- @include: ../../snippet/whitespace.snippet.md -->
 
-还可以在 `theme.plugins.shiki` 中全局启用 `whitespace` 功能：
+还可以在 `codeHighlighter` 中全局启用 `whitespace` 功能：
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      shiki: { whitespace: true }
+    codeHighlighter: {
+      whitespace: true, // [!code ++]
     }
   })
 })
@@ -482,7 +482,7 @@ body > div {
 }
 ```
 
-还可以在 `theme.plugins.shiki` 中全局启用 `collapsed-lines` 功能：
+还可以在 `codeHighlighter` 中全局启用 `collapsed-lines` 功能：
 
 ::: code-tabs
 @tab .vuepress/config.ts
@@ -490,8 +490,8 @@ body > div {
 ```ts
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      shiki: { collapsedLines: true }
+    codeHighlighter: {
+      collapsedLines: true // [!code ++]
     }
   })
 })

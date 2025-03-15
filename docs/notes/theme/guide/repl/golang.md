@@ -22,13 +22,11 @@ permalink: /guide/repl/golang/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        repl: {
-          go: true,
-        },
+    markdown: {
+      repl: {
+        go: true,
       },
-    }
+    },
   })
 })
 ```

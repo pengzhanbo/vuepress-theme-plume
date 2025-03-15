@@ -29,10 +29,9 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      search: {
-        // more options
-      }
+    search: { // [!code ++:4]
+      provider: 'local',
+      // more options
     }
   })
 })
@@ -56,10 +55,9 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      docsearch: {
-        // more options
-      }
+    search: { // [!code ++:4]
+      provider: 'algolia',
+      // more options
     }
   })
 })
@@ -225,12 +223,11 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      docsearch: {
-        appId: 'YOUR_APP_ID', // [!code hl:3]
-        apiKey: 'YOUR_API_KEY',
-        indexName: 'YOUR_INDEX_NAME',
-      }
+    search: { // [!code ++:6]
+      provider: 'algolia',
+      appId: 'YOUR_APP_ID',
+      apiKey: 'YOUR_API_KEY',
+      indexName: 'YOUR_INDEX_NAME',
     }
   })
 })

@@ -31,11 +31,9 @@ npm install mermaid
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownEnhance: {
-        mermaid: true, // [!code hl]
-      },
-    }
+    markdown: {
+      mermaid: true, // [!code ++]
+    },
   })
 })
 ```

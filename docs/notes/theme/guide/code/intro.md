@@ -67,10 +67,8 @@ Theme Plume 默认为 代码块使用的主题配置：
 ```ts
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      shiki: {
-        themes: { light: 'vitesse-light', dark: 'vitesse-dark' }, // [!code highlight]
-      }
+    codeHighlighter: {
+      themes: { light: 'vitesse-light', dark: 'vitesse-dark' }, // [!code highlight]
     }
   })
 })

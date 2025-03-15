@@ -20,8 +20,8 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownImage: {
+    markdown: {
+      image: {
         // 启用 figure
         // figure: true,
 
@@ -34,6 +34,10 @@ export default defineUserConfig({
         // 启用图片大小
         // size: true,
       }
+    },
+    // 也可以在 `plugins.markdownImage` 配置，但不推荐
+    plugins: {
+      markdownImage: {}
     }
   }),
 })

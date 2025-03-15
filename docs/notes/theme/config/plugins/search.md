@@ -22,10 +22,13 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
+    search: {
+      provider: 'local', // [!code hl]
+      // more options...
+    },
+    // 也可以通过 plugins.search 配置，但不推荐
     plugins: {
-      search: {
-        // more options
-      }
+      search: {},
     }
   })
 })
@@ -84,13 +87,16 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
+    search: {
+      provider: 'algolia', // [!code hl]
+      appId: 'YOUR_APP_ID',
+      apiKey: 'YOUR_API_KEY',
+      indexName: 'YOUR_INDEX_NAME',
+      // more options
+    },
+    // 也可以通过 plugins.docsearch 配置，但不推荐
     plugins: {
-      docsearch: {
-        appId: 'YOUR_APP_ID',
-        apiKey: 'YOUR_API_KEY',
-        indexName: 'YOUR_INDEX_NAME',
-        // more options
-      }
+      docsearch: {},
     }
   })
 })

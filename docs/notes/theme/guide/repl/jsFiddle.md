@@ -14,11 +14,9 @@ permalink: /guide/code/jsfiddle/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        jsfiddle: true, // [!code highlight]
-      },
-    }
+    markdown: {
+      jsfiddle: true, // [!code highlight]
+    },
   })
 })
 ```

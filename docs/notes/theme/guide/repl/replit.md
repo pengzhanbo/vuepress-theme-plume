@@ -16,11 +16,9 @@ permalink: /guide/code/replit/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        replit: true, // [!code highlight]
-      },
-    }
+    markdown: {
+      replit: true, // [!code ++]
+    },
   })
 })
 ```

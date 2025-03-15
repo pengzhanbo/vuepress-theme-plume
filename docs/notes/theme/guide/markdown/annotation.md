@@ -18,10 +18,8 @@ permalink: /guide/markdown/annotation/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        annotation: true,
-      },
+    markdown: {
+      annotation: true, // [!code ++]
     }
   })
 })

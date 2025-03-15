@@ -90,14 +90,12 @@ npm install -D vuepress vuepress-theme-plume
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        // npmTo: true, // 启用，并使用默认配置
-        npmTo: {
-          tabs: ['npm', 'yarn', 'pnpm'], // 代码块组默认显示顺序
-        }
-      },
-    }
+    markdown: {
+      // npmTo: true, // 启用，并使用默认配置
+      npmTo: {
+        tabs: ['npm', 'yarn', 'pnpm'], // 代码块组默认显示顺序
+      }
+    },
   })
 })
 ```

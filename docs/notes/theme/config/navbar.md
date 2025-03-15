@@ -6,13 +6,16 @@ permalink: /config/navigation/
 
 ## 概述
 
+::: tip 导航栏配置支持在 `.vuepress/config.ts` ，或者在 `plume.config.ts` 中进行配置。
+:::
+
 主题默认会自动生成最简单的导航栏配置，仅包括 **首页** 和 **博客文章列表页** 。
 
 你也可以自己配置导航栏，覆盖默认的的导航栏配置。
 
 默认配置如下：
 
-```ts title=".vuepress/config.ts"
+```ts
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -30,7 +33,7 @@ export default defineUserConfig({
 
 当开启了 多语言配置，则会生成对应语言的导航栏的默认配置：
 
-```ts title=".vuepress/config.ts"
+```ts
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 

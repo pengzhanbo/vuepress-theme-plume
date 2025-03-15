@@ -32,11 +32,9 @@ npm install chart.js
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownEnhance: {
-        chart: true, // [!code hl]
-      },
-    }
+    markdown: {
+      chartjs: true, // [!code ++]
+    },
   })
 })
 ```

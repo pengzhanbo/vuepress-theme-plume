@@ -22,13 +22,11 @@ permalink: /guide/repl/kotlin/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        repl: {
-          kotlin: true,
-        },
+    markdown: {
+      repl: {
+        kotlin: true,
       },
-    }
+    },
   })
 })
 ```

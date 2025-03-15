@@ -22,11 +22,9 @@ permalink: /guide/embed/audio/reader/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        audioReader: true,
-      },
-    }
+    markdown: {
+      audioReader: true, // [!code ++]
+    },
   })
 })
 ```

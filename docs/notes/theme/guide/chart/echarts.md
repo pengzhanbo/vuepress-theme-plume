@@ -30,11 +30,9 @@ npm install echarts
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownEnhance: {
-        echarts: true, // [!code hl]
-      },
-    }
+    markdown: {
+      echarts: true, // [!code ++]
+    },
   })
 })
 ```

@@ -17,6 +17,7 @@ Shiki 支持多种编程语言。
 
 ## 特性
 
+- [代码块标题](../../guide/code/features.md#代码块标题)
 - [代码行高亮](../../guide/code/features.md#在代码块中实现行高亮)
 - [代码聚焦](../../guide/code/features.md#代码块中聚焦)
 - [代码对比差异](../../guide/code/features.md#代码块中的颜色差异)
@@ -35,10 +36,20 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
+    codeHighlighter: {
+      themes: { light: 'vitesse-light', dark: 'vitesse-dark' },
+      notationDiff: true,
+      notationErrorLevel: true,
+      notationFocus: true,
+      notationHighlight: true,
+      notationWordHighlight: true,
+      highlightLines: true,
+      collapsedLines: false,
+      lineNumbers: true,
+    },
+    // 也可以通过 plugins.shiki 配置，但不推荐
     plugins: {
-      shiki: {
-        themes: { light: 'vitesse-light', dark: 'vitesse-dark' },
-      },
+      shiki: {}
     }
   }),
 })

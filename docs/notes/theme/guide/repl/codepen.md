@@ -14,11 +14,9 @@ permalink: /guide/code/code-pen/
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        codepen: true, // [!code highlight]
-      },
-    }
+    markdown: {
+      codepen: true, // [!code highlight]
+    },
   })
 })
 ```

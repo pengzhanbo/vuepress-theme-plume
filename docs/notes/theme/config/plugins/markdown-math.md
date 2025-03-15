@@ -22,10 +22,14 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownMath: {
+    markdown: {
+      math: {
         type: 'katex',
       }
+    },
+    // 也可以在 `plugins.markdownMath` 中进行配置，但不推荐
+    plugins: {
+      markdownMath: {}
     }
   }),
 })

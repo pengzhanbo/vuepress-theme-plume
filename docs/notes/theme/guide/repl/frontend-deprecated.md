@@ -30,11 +30,9 @@ badge:
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownEnhance: {
-        demo: true,
-      },
-    }
+    markdown: {
+      oldDemo: true,
+    },
   })
 })
 ```

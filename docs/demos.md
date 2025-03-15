@@ -1,6 +1,5 @@
 ---
 title: 案例
-author: pengzhanbo
 createTime: 2024/04/18 19:22:07
 permalink: /demos/
 readingTime: false

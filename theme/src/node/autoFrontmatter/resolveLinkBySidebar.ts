@@ -1,8 +1,8 @@
-import type { SidebarItem } from '../../shared/index.js'
+import type { ThemeSidebarItem } from '../../shared/index.js'
 import { pathJoin } from '../utils/index.js'
 
 export function resolveLinkBySidebar(
-  sidebar: 'auto' | (string | SidebarItem)[],
+  sidebar: 'auto' | (string | ThemeSidebarItem)[],
   _prefix: string,
 ) {
   const res: Record<string, string> = {}
@@ -20,7 +20,7 @@ export function resolveLinkBySidebar(
   return res
 }
 
-function getSidebarLink(items: 'auto' | (string | SidebarItem)[] | undefined, link: string, text: string, dir = '', res: Record<string, string> = {}) {
+function getSidebarLink(items: 'auto' | (string | ThemeSidebarItem)[] | undefined, link: string, text: string, dir = '', res: Record<string, string> = {}) {
   if (items === 'auto')
     return
 

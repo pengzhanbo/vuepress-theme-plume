@@ -1,21 +1,21 @@
 import { computed } from 'vue'
 import { useLocalePostList } from './blog-data.js'
 
-export interface BlogCategoryItemWithPost {
+export interface CategoryItemWithPost {
   type: 'post'
   title: string
   path: string
 }
 
-export interface BlogCategoryItem {
+export interface CategoryItem {
   id: string
   type: 'category'
   sort: number
   title: string
-  items: (BlogCategoryItem | BlogCategoryItemWithPost)[]
+  items: (CategoryItem | CategoryItemWithPost)[]
 }
 
-export type BlogCategory = (BlogCategoryItem | BlogCategoryItemWithPost)[]
+export type BlogCategory = (CategoryItem | CategoryItemWithPost)[]
 
 export function useBlogCategory() {
   const postList = useLocalePostList()
@@ -35,12 +35,12 @@ export function useBlogCategory() {
           const { id, name, sort } = categoryList[i]
           const current = cate.find(item => item.type === 'category' && item.id === id)
           if (!current) {
-            const items = [] as BlogCategoryItem[]
+            const items = [] as CategoryItem[]
             cate.push({ type: 'category', title: name, id, sort, items })
             cate = items
           }
           else {
-            cate = (current as BlogCategoryItem).items
+            cate = (current as CategoryItem).items
           }
           i++
         }

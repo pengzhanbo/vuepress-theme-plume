@@ -145,7 +145,7 @@ const showFooter = computed(() => {
 
 @media (min-width: 640px) {
   .last-updated {
-    flex: 1;
+    flex: 1 2;
     text-align: right;
   }
 

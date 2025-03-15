@@ -1,10 +1,11 @@
 import type { App } from 'vuepress'
 import type { Page } from 'vuepress/core'
-import type { EncryptOptions, PlumeThemePageData } from '../../shared/index.js'
+import type { EncryptOptions, ThemePageData } from '../../shared/index.js'
 import type { FsCache } from '../utils/index.js'
 import { isNumber, isString, random, toArray } from '@pengzhanbo/utils'
 import { genSaltSync, hashSync } from 'bcrypt-ts'
-import { createFsCache, hash, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
+import { getThemeConfig } from '../loadConfig/index.js'
+import { createFsCache, hash, perf, resolveContent, writeTemp } from '../utils/index.js'
 
 export type EncryptConfig = readonly [
   boolean, // global
@@ -19,9 +20,9 @@ const separator = ':'
 let contentHash = ''
 let fsCache: FsCache<[string, EncryptConfig]> | null = null
 
-export async function prepareEncrypt(app: App, encrypt?: EncryptOptions) {
-  perfMark('prepare:encrypt')
-
+export async function prepareEncrypt(app: App) {
+  perf.mark('prepare:encrypt')
+  const { encrypt } = getThemeConfig()
   if (!fsCache && app.env.isDev) {
     fsCache = createFsCache(app, 'encrypt')
     await fsCache.read()
@@ -41,7 +42,7 @@ export async function prepareEncrypt(app: App, encrypt?: EncryptOptions) {
 
   fsCache?.write([currentHash, resolvedEncrypt])
 
-  perfLog('prepare:encrypt', app.env.isDebug)
+  perf.log('prepare:encrypt')
 }
 
 const salt = () => genSaltSync(random(8, 16))
@@ -71,7 +72,7 @@ function resolveEncrypt(encrypt?: EncryptOptions): EncryptConfig {
   return [encrypt?.global ?? false, separator, admin, keys, rules]
 }
 
-export function isEncryptPage(page: Page<PlumeThemePageData>, encrypt?: EncryptOptions) {
+export function isEncryptPage(page: Page<ThemePageData>, encrypt?: EncryptOptions) {
   if (!encrypt)
     return false
 

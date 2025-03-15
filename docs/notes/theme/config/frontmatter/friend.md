@@ -1,6 +1,5 @@
 ---
 title: 友情链接页
-author: pengzhanbo
 createTime: 2024/03/03 18:00:52
 permalink: /config/frontmatter/friends/
 ---
@@ -117,7 +116,7 @@ interface FriendsItem {
 }
 ```
 
-社交链接配置请查看 [配置/主题配置/社交链接](../../config/主题配置.md#social)。
+社交链接配置请查看 [配置/主题配置/社交链接](../../config/theme.md#social)。
 
 ### groups
 

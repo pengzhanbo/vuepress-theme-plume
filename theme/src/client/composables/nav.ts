@@ -1,8 +1,8 @@
 import type { Ref } from 'vue'
 import type {
-  NavItem,
   ResolvedNavItem,
   ResolvedNavItemWithLink,
+  ThemeNavItem,
 } from '../../shared/index.js'
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
@@ -16,7 +16,7 @@ export function useNavbarData(): Ref<ResolvedNavItem[]> {
   return computed(() => resolveNavbar(theme.value.navbar || []))
 }
 
-function resolveNavbar(navbar: NavItem[], _prefix = ''): ResolvedNavItem[] {
+function resolveNavbar(navbar: ThemeNavItem[], _prefix = ''): ResolvedNavItem[] {
   const resolved: ResolvedNavItem[] = []
   navbar.forEach((item) => {
     if (typeof item === 'string') {

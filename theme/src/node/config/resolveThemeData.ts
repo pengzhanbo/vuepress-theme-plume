@@ -1,56 +1,78 @@
 import type { App } from 'vuepress'
-import type { NavItem, PlumeThemeLocaleOptions } from '../../shared/index.js'
+import type { ThemeData, ThemeNavItem, ThemeOptions } from '../../shared/index.js'
 import { entries, isBoolean, isPlainObject } from '@vuepress/helper'
 import { withBase } from '../utils/index.js'
 
-const EXCLUDE_LIST = ['locales', 'sidebar', 'navbar', 'notes', 'sidebar', 'article', 'avatar']
+const EXCLUDE_LIST: (keyof ThemeOptions)[] = [
+  'hostname',
+  'locales',
+  'sidebar',
+  'navbar',
+  'notes',
+  'sidebar',
+  'article',
+  'changelog',
+  'contributors',
+  'bulletin',
+  'cache',
+  'autoFrontmatter',
+  'comment',
+  'codeHighlighter',
+  'markdown',
+  'configFile',
+  'encrypt',
+  'plugins',
+  'search',
+  'watermark',
+  'readingTime',
+  'copyCode',
+]
 // 过滤不需要出现在多语言配置中的字段
-const EXCLUDE_LOCALE_LIST = [...EXCLUDE_LIST, 'blog', 'appearance']
+const EXCLUDE_LOCALE_LIST: (keyof ThemeOptions)[] = [...EXCLUDE_LIST, 'blog', 'appearance']
 
-export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): PlumeThemeLocaleOptions {
-  const themeData: PlumeThemeLocaleOptions = { locales: {} }
+export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
+  const themeData: ThemeData = { locales: {} }
 
   entries(options).forEach(([key, value]) => {
-    if (!EXCLUDE_LIST.includes(key))
+    if (!EXCLUDE_LIST.includes(key as keyof ThemeOptions))
       themeData[key] = value
   })
 
-  // TODO: 正式版中需删除此代码
-  if (options.avatar) {
-    themeData.profile ??= options.avatar
-  }
-
-  options.contributors = isPlainObject(options.contributors)
+  themeData.contributors = isPlainObject(options.contributors)
     ? { mode: options.contributors.mode || 'inline' }
     : isBoolean(options.contributors) ? options.contributors : true
 
-  options.changelog = !!options.changelog
+  themeData.changelog = !!options.changelog
 
-  if (isPlainObject(themeData.bulletin)) {
-    const { enablePage: _, ...opt } = themeData.bulletin
+  if (isPlainObject(options.bulletin)) {
+    const { enablePage: _, ...opt } = options.bulletin
     themeData.bulletin = opt
   }
+  else if (options.bulletin) {
+    themeData.bulletin = options.bulletin
+  }
 
-  if (isPlainObject(themeData.blog)) {
-    const { categoriesTransform: _, ...blog } = themeData.blog
+  if (isPlainObject(options.blog)) {
+    const { categoriesTransform, include, exclude, ...blog } = options.blog
     themeData.blog = blog
+  }
+  else {
+    themeData.blog = options.blog
   }
 
   entries(options.locales || {}).forEach(([locale, opt]) => {
     themeData.locales![locale] = {}
     entries(opt).forEach(([key, value]) => {
-      if (!EXCLUDE_LOCALE_LIST.includes(key))
+      if (!EXCLUDE_LOCALE_LIST.includes(key as keyof ThemeOptions))
         themeData.locales![locale][key] = value
     })
 
-    // TODO: 正式版中需删除此代码
-    if (opt.avatar) {
-      themeData.locales![locale].profile ??= opt.avatar
+    if (isPlainObject(opt.bulletin)) {
+      const { enablePage: _, ...rest } = opt.bulletin
+      themeData.locales![locale].bulletin = rest
     }
-
-    if (isPlainObject(themeData.locales![locale].bulletin)) {
-      const { enablePage: _, ...opt } = themeData.locales![locale].bulletin
-      themeData.locales![locale].bulletin = opt
+    else if (opt.bulletin) {
+      themeData.locales![locale].bulletin = opt.bulletin
     }
   })
 
@@ -59,7 +81,7 @@ export function resolveThemeData(app: App, options: PlumeThemeLocaleOptions): Pl
     // home | blog | tags | archives
     if (opt.navbar !== false && (!opt.navbar || opt.navbar.length === 0)) {
       // fallback navbar option
-      const navbar: NavItem[] = [{
+      const navbar: ThemeNavItem[] = [{
         text: opt.homeText || options.homeText || 'Home',
         link: locale,
       }]

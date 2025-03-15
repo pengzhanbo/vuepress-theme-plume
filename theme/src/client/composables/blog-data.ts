@@ -1,12 +1,12 @@
 import type { Ref } from 'vue'
-import type { PlumeThemeBlogPostData } from '../../shared/index.js'
+import type { ThemeBlogPostList } from '../../shared/index.js'
 import {
   blogPostData as blogPostDataRaw,
 } from '@internal/blogData'
 import { computed, ref } from 'vue'
 import { usePageLang } from 'vuepress/client'
 
-export type BlogDataRef = Ref<PlumeThemeBlogPostData>
+export type BlogDataRef = Ref<ThemeBlogPostList>
 
 export const blogPostData: BlogDataRef = ref(blogPostDataRaw)
 
@@ -20,7 +20,7 @@ export function useLocalePostList() {
 }
 
 if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {
-  __VUE_HMR_RUNTIME__.updateBlogPostData = (data: PlumeThemeBlogPostData) => {
+  __VUE_HMR_RUNTIME__.updateBlogPostData = (data: ThemeBlogPostList) => {
     blogPostData.value = data
   }
 }

@@ -1,12 +1,24 @@
-import type { ThemeIcon } from '../base.js'
+import type { ThemeIcon } from '../common/index.js'
 
+/**
+ * 已解析的侧边栏
+ * @internal
+ */
 export type ResolvedSidebar = ResolvedSidebarItem[] | ResolvedSidebarMulti
 
+/**
+ * 已解析的多个侧边栏
+ * @internal
+ */
 export type ResolvedSidebarMulti = Record<
   string,
   ResolvedSidebarItem[] | { items: ResolvedSidebarItem[] }
 >
 
+/**
+ * 已解析的侧边栏子项
+ * @internal
+ */
 export interface ResolvedSidebarItem {
   /**
    * 侧边栏文本

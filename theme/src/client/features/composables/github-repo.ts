@@ -46,7 +46,7 @@ export function useGithubRepo(repo: MaybeRef<string>) {
 
     const key = `${owner}/${name}`
     const cached = storage.value[`${owner}/${name}`]
-    if (cached && Date.now() - cached.updatedAt <= 21600000) {
+    if (cached?.info?.name && Date.now() - cached.updatedAt <= 86400000) {
       data.value = cached.info
       loaded.value = true
       return

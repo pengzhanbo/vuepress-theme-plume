@@ -357,7 +357,7 @@ function parseArgs(line: string): { cmd: string, args?: string, scriptArgs?: str
           isNextValue = !isBool
         }
         if (!isKey && !isNextValue) {
-          cmd += `${value}`
+          cmd += ` ${value}`
         }
         else {
           newLine += `${value}${i !== npmArgs.length - 1 ? v : ''}`
@@ -373,6 +373,5 @@ function parseArgs(line: string): { cmd: string, args?: string, scriptArgs?: str
     }
     args = newLine
   }
-
   return { cmd: cmd.trim(), args: args.trim(), scriptArgs }
 }

@@ -66,7 +66,7 @@ const {
 }
 
 .vp-doc .copyright-container .source {
-  flex: 1;
+  flex: 1 2;
   width: 1px;
   word-break: break-all;
 }

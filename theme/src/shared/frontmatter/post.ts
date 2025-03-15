@@ -1,8 +1,7 @@
-import type { BlogPostCoverStyle, CopyrightLicense } from '../base.js'
-import type { CopyrightOptions } from '../options/copyright.js'
-import type { PlumeThemePageFrontmatter } from './page.js'
+import type { BlogPostCoverStyle, CopyrightLicense, CopyrightOptions } from '../features/index.js'
+import type { ThemePageFrontmatter } from './page.js'
 
-export interface PlumeThemePostFrontmatter extends PlumeThemePageFrontmatter {
+export interface ThemePostFrontmatter extends ThemePageFrontmatter {
   /**
    * 创建时间
    */

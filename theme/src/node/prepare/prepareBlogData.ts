@@ -1,17 +1,16 @@
 import type { App, Page } from 'vuepress/core'
 import type {
-  EncryptOptions,
-  PlumeThemeBlogPostData,
-  PlumeThemeBlogPostItem,
-  PlumeThemeLocaleOptions,
-  PlumeThemePageData,
-  PlumeThemePostFrontmatter,
+  ThemeBlogPostItem,
+  ThemeBlogPostList,
+  ThemePageData,
+  ThemePostFrontmatter,
 } from '../../shared/index.js'
 import { removeLeadingSlash } from '@vuepress/helper'
 import { createFilter } from 'create-filter'
 import dayjs from 'dayjs'
 import { resolveNotesOptions } from '../config/index.js'
-import { logger, normalizePath, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
+import { getThemeConfig } from '../loadConfig/index.js'
+import { logger, normalizePath, perf, resolveContent, writeTemp } from '../utils/index.js'
 import { isEncryptPage } from './prepareEncrypt.js'
 
 const HEADING_RE = /<h(\d)[^>]*>.*?<\/h\1>/gi
@@ -21,21 +20,19 @@ function getTimestamp(time: Date): number {
   return new Date(time).getTime()
 }
 
-export async function preparedBlogData(
-  app: App,
-  localeOptions: PlumeThemeLocaleOptions,
-  encrypt?: EncryptOptions,
-): Promise<void> {
-  if (localeOptions.blog === false) {
+export async function preparedBlogData(app: App): Promise<void> {
+  const options = getThemeConfig()
+  const encrypt = options.encrypt
+  if (options.blog === false) {
     const content = resolveContent(app, { name: 'blogPostData', content: [] })
     await writeTemp(app, 'internal/blogData.js', content)
     return
   }
 
-  perfMark('prepare:blog-data')
+  perf.mark('prepare:blog-data')
 
-  const blog = localeOptions.blog || {}
-  const notesList = resolveNotesOptions(localeOptions)
+  const blog = options.blog || {}
+  const notesList = resolveNotesOptions(options)
   const notesDirList = notesList
     .map(notes => removeLeadingSlash(normalizePath(`${notes.dir}/**`)))
     .filter(Boolean)
@@ -61,11 +58,11 @@ export async function preparedBlogData(
     < getTimestamp(next.frontmatter.createTime as Date || next.date)
       ? 1
       : -1,
-  ) as Page<PlumeThemePageData, PlumeThemePostFrontmatter & Record<string, unknown>>[]
+  ) as Page<ThemePageData, ThemePostFrontmatter & Record<string, unknown>>[]
 
-  const blogData: PlumeThemeBlogPostData = pages.map((page) => {
+  const blogData: ThemeBlogPostList = pages.map((page) => {
     const tags = page.frontmatter.tags
-    const data: PlumeThemeBlogPostItem = {
+    const data: ThemeBlogPostItem = {
       path: page.path,
       title: page.title,
       categoryList: page.data.categoryList,
@@ -78,7 +75,6 @@ export async function preparedBlogData(
       coverStyle: page.data.frontmatter.coverStyle,
     }
 
-    // FIXME validate post cover
     if (typeof data.cover === 'object') {
       logger.warn(`cover should be a path string, please use string instead. (${page.filePathRelative})`)
     }
@@ -106,5 +102,5 @@ export async function preparedBlogData(
   const content = resolveContent(app, { name: 'blogPostData', content: blogData })
   await writeTemp(app, 'internal/blogData.js', content)
 
-  perfLog('prepare:blog-data', app.env.isDebug)
+  perf.log('prepare:blog-data')
 }

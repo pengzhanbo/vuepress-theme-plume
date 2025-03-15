@@ -1,27 +1,21 @@
 import type { FSWatcher } from 'chokidar'
 import type { App } from 'vuepress'
-import type { AutoFrontmatterOptions, EncryptOptions, PlumeThemeLocaleOptions } from '../../shared/index.js'
-import type { ThemeConfig } from '../types.js'
+import type { ThemeConfig, ThemeOptions } from '../../shared/index.js'
 import process from 'node:process'
 import { deepMerge } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
-import { resolveLocaleOptions } from '../config/resolveLocaleOptions.js'
-import { perfLog, perfMark } from '../utils/index.js'
+import { initThemeOptions } from '../config/initThemeOptions.js'
+import { perf } from '../utils/index.js'
 import { compiler } from './compiler.js'
 import { findConfigPath } from './findConfigPath.js'
 
-export interface ResolvedConfig {
-  localeOptions: PlumeThemeLocaleOptions
-  encrypt?: EncryptOptions
-  autoFrontmatter?: false | Omit<AutoFrontmatterOptions, 'frontmatter'>
-}
-
 export interface InitConfigLoaderOptions {
   configFile?: string
+  defaultConfig: ThemeOptions
   onChange?: ChangeEvent
 }
 
-export type ChangeEvent = (config: ResolvedConfig) => void | Promise<void>
+export type ChangeEvent = (config: ThemeConfig) => void | Promise<void>
 
 export interface Loader {
   configFile: string | undefined
@@ -30,19 +24,17 @@ export interface Loader {
   loaded: boolean
   changeEvents: ChangeEvent[]
   whenLoaded: ChangeEvent[]
-  defaultConfig: ThemeConfig
-  resolvedConfig: ResolvedConfig
+  defaultConfig: ThemeOptions
+  config: ThemeOptions
 }
 
 let loader: Loader | null = null
 
 export async function initConfigLoader(
   app: App,
-  defaultConfig: ThemeConfig,
-  { configFile, onChange }: InitConfigLoaderOptions = {},
+  { configFile, onChange, defaultConfig }: InitConfigLoaderOptions,
 ) {
-  perfMark('load-config')
-  const { encrypt, autoFrontmatter, ...localeOptions } = defaultConfig
+  perf.mark('load-config')
   loader = {
     configFile,
     dependencies: [],
@@ -51,33 +43,29 @@ export async function initConfigLoader(
     changeEvents: [],
     whenLoaded: [],
     defaultConfig,
-    resolvedConfig: {
-      localeOptions: resolveLocaleOptions(app, localeOptions),
-      encrypt,
-      autoFrontmatter,
-    },
+    config: initThemeOptions(app, defaultConfig),
   }
 
-  perfMark('load-config:find')
+  perf.mark('load-config:find')
   loader.configFile = await findConfigPath(app, configFile)
-  perfLog('load-config:find', app.env.isDebug)
+  perf.log('load-config:find')
 
   if (onChange) {
     loader.changeEvents.push(onChange)
   }
 
-  perfMark('load-config:loaded')
+  perf.mark('load-config:loaded')
   const { config, dependencies = [] } = await loader.load()
-  perfLog('load-config:loaded', app.env.isDebug)
+  perf.log('load-config:loaded')
 
   loader.loaded = true
   loader.dependencies = [...dependencies]
   updateResolvedConfig(app, config)
 
-  loader.whenLoaded.forEach(fn => fn(loader!.resolvedConfig))
+  loader.whenLoaded.forEach(fn => fn(loader!.config))
   loader.whenLoaded = []
 
-  perfLog('load-config', app.env.isDebug)
+  perf.log('load-config')
 }
 
 export function watchConfigFile(app: App, watchers: any[], onChange: ChangeEvent) {
@@ -116,15 +104,15 @@ export async function onConfigChange(onChange: ChangeEvent) {
   if (loader && !loader.changeEvents.includes(onChange)) {
     loader.changeEvents.push(onChange)
     if (loader.loaded) {
-      await onChange(loader.resolvedConfig)
+      await onChange(loader.config)
     }
   }
 }
 
 export function waitForConfigLoaded() {
-  return new Promise<ResolvedConfig>((resolve) => {
+  return new Promise<ThemeOptions>((resolve) => {
     if (loader?.loaded) {
-      resolve(loader.resolvedConfig)
+      resolve(loader.config)
     }
     else {
       loader?.whenLoaded.push(resolve)
@@ -133,27 +121,19 @@ export function waitForConfigLoaded() {
 }
 
 export function getThemeConfig() {
-  return loader!.resolvedConfig
-}
-
-export function isConfigLoaded() {
-  return loader?.loaded ?? false
+  return loader!.config
 }
 
 function updateResolvedConfig(app: App, userConfig: ThemeConfig = {}) {
   if (loader) {
-    const { encrypt, autoFrontmatter, ...localeOptions } = deepMerge({}, loader.defaultConfig, userConfig)
-    loader.resolvedConfig = {
-      localeOptions: resolveLocaleOptions(app, localeOptions as PlumeThemeLocaleOptions),
-      encrypt,
-      autoFrontmatter,
-    }
+    const config = deepMerge({}, loader.defaultConfig, userConfig) as ThemeOptions
+    loader.config = initThemeOptions(app, config)
   }
 }
 
 async function runChangeEvents() {
   if (loader) {
-    await Promise.all(loader.changeEvents.map(fn => fn(loader!.resolvedConfig)))
+    await Promise.all(loader.changeEvents.map(fn => fn(loader!.config)))
   }
 }
 

@@ -1,7 +1,5 @@
 import type { ComputedRef } from 'vue'
-import type {
-  NavItemWithLink,
-} from '../../shared/index.js'
+import type { NavItemWithLink } from '../../shared/index.js'
 import { computed } from 'vue'
 import { resolveEditLink } from '../utils/index.js'
 import { useData } from './data.js'

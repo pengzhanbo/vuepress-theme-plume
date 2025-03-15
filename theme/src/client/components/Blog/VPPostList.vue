@@ -50,7 +50,7 @@ const {
 <style scoped>
 .vp-blog-post-list {
   display: flex;
-  flex: 1;
+  flex: 1 2;
   flex-direction: column;
   gap: 16px;
   margin: 0 auto;

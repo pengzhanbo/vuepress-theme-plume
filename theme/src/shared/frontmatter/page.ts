@@ -1,9 +1,9 @@
 import type { WatermarkPluginFrontmatter } from '@vuepress/plugin-watermark'
-import type { ThemeOutline } from '../base.js'
-import type { NavItemWithLink } from '../navbar.js'
-import type { PlumeNormalFrontmatter } from './normal.js'
+import type { ThemeOutline } from '../common/index.js'
+import type { NavItemWithLink } from '../features/index.js'
+import type { ThemeNormalFrontmatter } from './normal.js'
 
-export interface PlumeThemePageFrontmatter extends PlumeNormalFrontmatter {
+export interface ThemePageFrontmatter extends ThemeNormalFrontmatter {
   home?: never
   friends?: never
   /**

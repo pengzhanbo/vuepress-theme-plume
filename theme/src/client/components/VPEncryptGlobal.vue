@@ -32,7 +32,7 @@ const title = computed(() => profile.value?.name || site.value.title)
 <style scoped>
 .vp-global-encrypt {
   display: flex;
-  flex: 1;
+  flex: 1 2;
   width: 100%;
   overflow-y: auto;
   background-color: var(--vp-c-bg);

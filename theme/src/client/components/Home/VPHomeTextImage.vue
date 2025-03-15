@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { PlumeThemeHomeTextImage } from '../../../shared/index.js'
+import type { ThemeHomeTextImage } from '../../../shared/index.js'
 import VPHomeBox from '@theme/Home/VPHomeBox.vue'
 import VPImage from '@theme/VPImage.vue'
 import { computed } from 'vue'
 
-const props = defineProps<PlumeThemeHomeTextImage>()
+const props = defineProps<ThemeHomeTextImage>()
 
 const maxWidth = computed(() => {
   const width = props.width
@@ -120,7 +120,7 @@ const maxWidth = computed(() => {
   }
 
   .content-text {
-    flex: 1;
+    flex: 1 2;
   }
 }
 

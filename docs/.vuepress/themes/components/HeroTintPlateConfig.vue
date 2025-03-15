@@ -133,7 +133,7 @@ const output = computed(() => {
 }
 
 .mode-content .mode {
-  flex: 1;
+  flex: 1 2;
   padding: 5px 0;
   color: var(--vp-c-text-1);
   text-align: center;

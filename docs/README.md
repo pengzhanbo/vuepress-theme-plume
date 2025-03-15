@@ -32,11 +32,11 @@ config:
       -
         title: 开箱即用
         icon: twemoji:rocket
-        details: 支持零配置开箱即用，也支持丰富的自定义配置
+        details: 零配置开箱即用，丰富的自定义配置
       -
         title: 多语言
         icon: twemoji:balance-scale
-        details: 内置 中文/英文支持，还可以自定义添加更多的语言支持
+        details: 内置 中文、英文等 7 种语言支持，还可以自定义添加更多的语言支持
       -
         title: 双色主题
         icon: twemoji:cityscape
@@ -56,7 +56,7 @@ config:
       -
         title: Markdown 增强
         icon: twemoji:writing-hand-light-skin-tone
-        details: 支持 Markdown 语法，支持 代码块分组、提示容器、任务列表、数学公式、代码演示等
+        details: 在常规 markdown 语法的基础上，添加数十种增强语法，如自定义容器、文件树、代码分组等
   -
     type: image-text
     title: 功能
@@ -115,6 +115,7 @@ config:
 <div style="max-width: 960px;margin:0 auto;" class="home-custom-content">
 
 ::: center
+
 ![GitHub Repo stars](https://img.shields.io/github/stars/pengzhanbo/vuepress-theme-plume)
 ![npm version](https://img.shields.io/npm/v/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=npm)
 ![npm downloads](https://img.shields.io/npm/dm/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads)
@@ -123,46 +124,27 @@ config:
 
 ![peer dependency](https://img.shields.io/npm/dependency-version/vuepress-theme-plume/peer/vuepress?color=32A9C3&labelColor=1B3C4A)
 ![codecov](https://codecov.io/gh/pengzhanbo/vuepress-theme-plume/graph/badge.svg?token=W6KYBX7WO5)
+
 :::
 
-### 安装
+### 使用
 
-:::code-tabs
-@tab pnpm
+使用以下命令，快速创建一个新的使用本主题的 ==VuePress== 项目。
 
-```sh
-pnpm add vuepress@next vuepress-theme-plume vue
-```
-
-@tab npm
+:::npm-to
 
 ```sh
-npm install vuepress@next vuepress-theme-plume
-```
-
-@tab yarn
-
-```sh
-yarn add vuepress@next vuepress-theme-plume
+npm create vuepress-theme-plume@latest
 ```
 
 :::
 
-### 配置
+### 启动项目
 
-::: code-tabs
-@tab .vuepress/config.ts
+::: npm-to
 
-```ts :no-line-numbers
-import { defineUserConfig } from 'vuepress'
-import { plumeTheme } from 'vuepress-theme-plume'
-
-export default defineUserConfig({
-  // vuepress config...
-  theme: plumeTheme({
-    // theme config...
-  })
-})
+```sh
+npm run docs:dev
 ```
 
 :::
@@ -172,6 +154,8 @@ export default defineUserConfig({
 [Changelog](./changelog.md)
 
 ### 贡献者
+
+感谢所有的贡献者！
 
 <Contributors
   :contributors="[

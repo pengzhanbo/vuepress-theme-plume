@@ -1,7 +1,7 @@
 /** 日语 */
-import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
+import type { PresetLocale, ThemeLocaleText } from '../../shared/index.js'
 
-export const jaLocale: PlumeThemeLocaleData = {
+export const jaLocale: ThemeLocaleText = {
   selectLanguageName: '日本語',
   selectLanguageText: '言語を選択',
 

@@ -11,7 +11,7 @@ import grayMatter from 'gray-matter'
 import jsonToYaml from 'json2yaml'
 import { colors, fs, hash, path } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { perfLog, perfMark } from '../utils/index.js'
+import { perf } from '../utils/index.js'
 import { readMarkdown, readMarkdownList } from './readFile.js'
 import { resolveOptions } from './resolveOptions.js'
 
@@ -33,11 +33,11 @@ export interface Generate {
 let generate: Generate | null = null
 
 export function initAutoFrontmatter() {
-  const { localeOptions, autoFrontmatter = {} } = getThemeConfig()
+  const { autoFrontmatter = {}, ...options } = getThemeConfig()
   if (autoFrontmatter === false)
     return
 
-  const { include, exclude, frontmatter = {} } = resolveOptions(localeOptions, autoFrontmatter)
+  const { include, exclude, frontmatter = {} } = resolveOptions(options, autoFrontmatter)
 
   const globFilter = createFilter(include, exclude, { resolve: false })
 
@@ -87,7 +87,7 @@ export function initAutoFrontmatter() {
 }
 
 export async function generateAutoFrontmatter(app: App) {
-  perfMark('generate:frontmatter')
+  perf.mark('generate:frontmatter')
   if (!generate)
     return
 
@@ -108,7 +108,7 @@ export async function generateAutoFrontmatter(app: App) {
 
   await generate.updateCache(app)
 
-  perfLog('generate:frontmatter', app.env.isDebug)
+  perf.log('generate:frontmatter')
 }
 
 export async function watchAutoFrontmatter(app: App, watchers: any[]) {

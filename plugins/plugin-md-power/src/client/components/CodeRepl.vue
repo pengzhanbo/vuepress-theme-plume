@@ -134,7 +134,7 @@ function runCode() {
 }
 
 .code-repl-title h4 {
-  flex: 1;
+  flex: 1 2;
   padding: 0 12px;
   margin: 0;
   font-size: 14px;
@@ -175,7 +175,7 @@ function runCode() {
 }
 
 .output-head .title {
-  flex: 1;
+  flex: 1 2;
   margin-left: 10px;
   font-size: 14px;
   font-weight: 500;

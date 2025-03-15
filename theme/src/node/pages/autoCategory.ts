@@ -1,5 +1,5 @@
 import type { Page } from 'vuepress/core'
-import type { PageCategoryData, PlumeThemeLocaleOptions, PlumeThemePageData } from '../../shared/index.js'
+import type { BlogCategoryItem, ThemeOptions, ThemePageData } from '../../shared/index.js'
 import { ensureLeadingSlash, isPlainObject } from '@vuepress/helper'
 import { resolveNotesLinkList } from '../config/index.js'
 import { hash } from '../utils/index.js'
@@ -11,8 +11,8 @@ const RE_CATEGORY = /^(?:(\d+)\.)?([\s\S]+)$/
 let LOCALE_RE: RegExp
 
 export function autoCategory(
-  page: Page<PlumeThemePageData>,
-  options: PlumeThemeLocaleOptions,
+  page: Page<ThemePageData>,
+  options: ThemeOptions,
 ) {
   const pagePath = page.filePathRelative
   const blog = isPlainObject(options.blog) ? options.blog : {}
@@ -34,7 +34,7 @@ export function autoCategory(
     .split('/')
     .slice(0, -1)
 
-  const categoryList: PageCategoryData[] = list
+  const categoryList: BlogCategoryItem[] = list
     .map((category, index) => {
       const match = category.match(RE_CATEGORY) || []
       if (!cache[match[2]] && !match[1]) {

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { PlumeThemeHomeFeature } from '../../../shared/index.js'
+import type { ThemeHomeFeature } from '../../../shared/index.js'
 import VPIcon from '@theme/VPIcon.vue'
 import VPImage from '@theme/VPImage.vue'
 import VPLink from '@theme/VPLink.vue'
 import { isLinkAbsolute, isLinkHttp } from '@vuepress/helper/client'
 import { computed } from 'vue'
 
-const props = defineProps<PlumeThemeHomeFeature>()
+const props = defineProps<ThemeHomeFeature>()
 
 const ICONIFY_NAME = /^[\w-]+:[\w-]+$/
 

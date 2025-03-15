@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import type { PlumeThemeHomeHero } from '../../shared/index.js'
+import type { ThemeHomeHero } from '../../shared/index.js'
 import { computed, onMounted, onUnmounted } from 'vue'
 import { useDarkMode } from './dark-mode.js'
 
@@ -24,7 +24,7 @@ const darkTint = {
 export function useHomeHeroTintPlate(
   canvas: Ref<HTMLCanvasElement | undefined>,
   enable: Ref<boolean>,
-  tintPlate: Ref<PlumeThemeHomeHero['tintPlate']>,
+  tintPlate: Ref<ThemeHomeHero['tintPlate']>,
 ) {
   const isDark = useDarkMode()
 

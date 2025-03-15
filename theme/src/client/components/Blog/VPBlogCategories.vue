@@ -27,7 +27,7 @@ const { categories } = useBlogCategory()
 
 <style scoped>
 .vp-blog-categories {
-  flex: 1;
+  flex: 1 2;
   padding: 16px;
   margin: 0 -16px 32px;
   background-color: var(--vp-c-bg);

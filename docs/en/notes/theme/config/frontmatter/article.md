@@ -1,6 +1,5 @@
 ---
 title: Blog Article
-author: pengzhanbo
 createTime: 2025/03/03 19:11:37
 permalink: /en/config/frontmatter/article/
 ---

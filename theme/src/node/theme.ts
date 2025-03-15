@@ -1,5 +1,5 @@
 import type { Page, Theme } from 'vuepress/core'
-import type { PlumeThemeOptions, PlumeThemePageData } from '../shared/index.js'
+import type { ThemeOptions, ThemePageData } from '../shared/index.js'
 import { sleep } from '@pengzhanbo/utils'
 import {
   generateAutoFrontmatter,
@@ -8,45 +8,42 @@ import {
 } from './autoFrontmatter/index.js'
 import {
   extendsBundlerOptions,
-  resolveAlias,
-  resolveProvideData,
-  resolveThemeOptions,
+  setupAlias,
+  setupProvideData,
   templateBuildRenderer,
 } from './config/index.js'
+import { detectThemeOptions } from './detector/index.js'
 import { initConfigLoader, waitForConfigLoaded, watchConfigFile } from './loadConfig/index.js'
 import { createPages, extendsPageData } from './pages/index.js'
-import { getPlugins } from './plugins/index.js'
+import { setupPlugins } from './plugins/index.js'
 import { prepareData, watchPrepare } from './prepare/index.js'
 import { prepareThemeData } from './prepare/prepareThemeData.js'
-import { resolve, templates, THEME_NAME } from './utils/index.js'
+import { perf, resolve, templates, THEME_NAME } from './utils/index.js'
 
-export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
-  const {
-    localeOptions,
-    pluginOptions,
-    hostname,
-    configFile,
-    cache,
-  } = resolveThemeOptions(options)
-
+export function plumeTheme(options: ThemeOptions = {}): Theme {
   return (app) => {
-    initConfigLoader(app, localeOptions, {
+    perf.init(app.env.isDebug)
+
+    const { configFile, plugins, themeOptions } = detectThemeOptions(options)
+
+    initConfigLoader(app, {
       configFile,
+      defaultConfig: themeOptions,
       onChange: initAutoFrontmatter,
     })
 
     return {
       name: THEME_NAME,
 
-      define: resolveProvideData(app, pluginOptions),
+      define: setupProvideData(app, plugins),
 
       templateBuild: templates('build.html'),
 
       clientConfigFile: resolve('client/config.js'),
 
-      alias: resolveAlias(),
+      alias: setupAlias(),
 
-      plugins: getPlugins({ app, pluginOptions, hostname, cache }),
+      plugins: setupPlugins(app, plugins),
 
       extendsBundlerOptions,
 
@@ -63,22 +60,18 @@ export function plumeTheme(options: PlumeThemeOptions = {}): Theme {
         }
       },
 
-      extendsPage: (page) => {
-        extendsPageData(page as Page<PlumeThemePageData>)
-      },
+      extendsPage: page => extendsPageData(page as Page<ThemePageData>),
 
-      onInitialized: async (app) => {
-        await createPages(app)
-      },
+      onInitialized: async app => await createPages(app),
 
       onPrepared: async (app) => {
-        await prepareThemeData(app, pluginOptions)
+        await prepareThemeData(app, plugins)
         await prepareData(app)
       },
 
       onWatched: (app, watchers) => {
         watchConfigFile(app, watchers, async () => {
-          await prepareThemeData(app, pluginOptions)
+          await prepareThemeData(app, plugins)
           await prepareData(app)
         })
         watchAutoFrontmatter(app, watchers)

@@ -1,6 +1,5 @@
 ---
 title: markdown 扩展
-author: pengzhanbo
 createTime: 2024/03/05 22:49:39
 permalink: /article/mcgayb5w/
 tags:

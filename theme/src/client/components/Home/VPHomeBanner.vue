@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { PlumeThemeHomeBanner } from '../../../shared/index.js'
+import type { ThemeHomeBanner } from '../../../shared/index.js'
 import VPButton from '@theme/VPButton.vue'
 import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { useData } from '../../composables/index.js'
 
-const props = defineProps<PlumeThemeHomeBanner>()
+const props = defineProps<ThemeHomeBanner>()
 
 const DEFAULT_BANNER = 'https://api.pengzhanbo.cn/wallpaper/bing'
 

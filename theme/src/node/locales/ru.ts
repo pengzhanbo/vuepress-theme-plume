@@ -1,7 +1,7 @@
 /** 俄语 */
-import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
+import type { PresetLocale, ThemeLocaleText } from '../../shared/index.js'
 
-export const ruLocale: PlumeThemeLocaleData = {
+export const ruLocale: ThemeLocaleText = {
   selectLanguageName: 'Русский',
   selectLanguageText: 'Выберите язык',
 

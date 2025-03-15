@@ -66,7 +66,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
 }
 
 .vp-repo-card .repo-link {
-  flex: 1;
+  flex: 1 2;
   width: 1px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -97,7 +97,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
 }
 
 .vp-repo-card .repo-desc {
-  flex: 1;
+  flex: 1 2;
   font-size: 14px;
   line-height: 22px;
   color: var(--vp-c-text-2);

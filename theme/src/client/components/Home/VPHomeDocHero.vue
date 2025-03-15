@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { PlumeThemeHomeDocHero } from '../../../shared/index.js'
+import type { ThemeHomeDocHero } from '../../../shared/index.js'
 import VPButton from '@theme/VPButton.vue'
 import VPImage from '@theme/VPImage.vue'
 import { computed } from 'vue'
 
-const props = defineProps<PlumeThemeHomeDocHero>()
+const props = defineProps<ThemeHomeDocHero>()
 
 const hero = computed(() => props.hero ?? {})
 const actions = computed(() => hero.value.actions ?? [])

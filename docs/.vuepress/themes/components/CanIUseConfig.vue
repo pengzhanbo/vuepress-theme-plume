@@ -80,7 +80,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
   border: solid 1px var(--vp-c-divider);
   border-radius: 5px;
   transition: var(--vp-t-color);
-  transition-property: background border;
+  transition-property: border;
 }
 
 @media(min-width: 768px) {
@@ -103,7 +103,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
 
 .feature-input {
   position: relative;
-  flex: 1;
+  flex: 1 2;
   margin-left: 10px;
 }
 
@@ -121,7 +121,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
   background-color: var(--vp-c-bg);
   border: solid 1px var(--vp-c-divider);
   transition: var(--vp-t-color);
-  transition-property: border background;
+  transition-property: border;
 }
 
 .feature-input__input:focus {
@@ -166,7 +166,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
 }
 
 .caniuse-browser-version {
-  flex: 1;
+  flex: 1 2;
   margin-left: 10px;
 }
 
@@ -175,7 +175,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
 }
 
 .caniuse-browser-version select {
-  flex: 1;
+  flex: 1 2;
   width: 100%;
   padding: 3px 16px;
   background-color: var(--vp-c-bg);

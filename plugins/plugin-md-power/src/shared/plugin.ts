@@ -14,7 +14,7 @@ export interface MarkdownPowerPluginOptions {
    */
   annotation?: boolean
 
-  /*
+  /**
    * 是否启用 abbr 语法
    * @default false
    */

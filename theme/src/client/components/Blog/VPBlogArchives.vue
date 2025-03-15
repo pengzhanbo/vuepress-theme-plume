@@ -32,7 +32,7 @@ const { archives } = useArchives()
 
 <style scoped>
 .vp-blog-archives {
-  flex: 1;
+  flex: 1 2;
 }
 
 .archives-title {

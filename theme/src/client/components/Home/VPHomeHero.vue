@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { PlumeThemeHomeHero } from '../../../shared/index.js'
+import type { ThemeHomeHero } from '../../../shared/index.js'
 import VPButton from '@theme/VPButton.vue'
 import { computed, ref } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { useData, useHomeHeroTintPlate } from '../../composables/index.js'
 
-const props = defineProps<PlumeThemeHomeHero>()
+const props = defineProps<ThemeHomeHero>()
 
 const { isDark, frontmatter: matter } = useData<'home'>()
 

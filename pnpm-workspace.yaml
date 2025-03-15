@@ -39,10 +39,10 @@ catalogs:
     lint-staged: ^15.5.0
     markdown-it: ^14.1.0
     memfs: ^4.17.0
-    mermaid: ^11.4.1
+    mermaid: ^11.5.0
     minimist: ^1.2.8
     rimraf: ^6.0.1
-    stylelint: ^16.15.0
+    stylelint: ^16.16.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^5.2.1
     tsup: ^8.4.0
@@ -52,12 +52,12 @@ catalogs:
     wait-on: ^8.0.3
 
   peer:
-    '@iconify/json': ^2.2.316
+    '@iconify/json': ^2.2.317
     artplayer: ^5.2.2
     dashjs: ^5.0.0
     hls.js: ^1.5.20
     mathjax-full: ^3.2.2
-    mpegts.js: ^1.7.3
+    mpegts.js: 1.7.3
     sass: ^1.85.1
     sass-embedded: ^1.85.1
     sass-loader: ^16.0.5
@@ -91,7 +91,7 @@ catalogs:
     focus-trap: ^7.6.4
     gray-matter: ^4.0.3
     handlebars: ^4.7.8
-    image-size: ^2.0.0
+    image-size: ^2.0.1
     json2yaml: ^1.1.0
     katex: ^0.16.21
     local-pkg: ^1.1.1

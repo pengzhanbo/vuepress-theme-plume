@@ -88,8 +88,8 @@ catalogs:
       specifier: ^4.17.0
       version: 4.17.0
     mermaid:
-      specifier: ^11.4.1
-      version: 11.4.1
+      specifier: ^11.5.0
+      version: 11.5.0
     minimist:
       specifier: ^1.2.8
       version: 1.2.8
@@ -97,8 +97,8 @@ catalogs:
       specifier: ^6.0.1
       version: 6.0.1
     stylelint:
-      specifier: ^16.15.0
-      version: 16.15.0
+      specifier: ^16.16.0
+      version: 16.16.0
     stylus:
       specifier: ^0.64.0
       version: 0.64.0
@@ -122,8 +122,8 @@ catalogs:
       version: 8.0.3
   peer:
     '@iconify/json':
-      specifier: ^2.2.316
-      version: 2.2.316
+      specifier: ^2.2.317
+      version: 2.2.317
     artplayer:
       specifier: ^5.2.2
       version: 5.2.2
@@ -137,7 +137,7 @@ catalogs:
       specifier: ^3.2.2
       version: 3.2.2
     mpegts.js:
-      specifier: ^1.7.3
+      specifier: 1.7.3
       version: 1.7.3
     sass-loader:
       specifier: ^16.0.5
@@ -225,8 +225,8 @@ catalogs:
       specifier: ^4.7.8
       version: 4.7.8
     image-size:
-      specifier: ^2.0.0
-      version: 2.0.0
+      specifier: ^2.0.1
+      version: 2.0.1
     json2yaml:
       specifier: ^1.1.0
       version: 1.1.0
@@ -367,7 +367,7 @@ importers:
         version: 1.28.0(@typescript-eslint/utils@8.26.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2))(@vue/compiler-sfc@3.5.13)(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)(vitest@3.0.8(@types/debug@4.1.12)(@types/node@22.13.10)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.85.1)(sass@1.85.1)(stylus@0.64.0)(yaml@2.7.0))
       '@pengzhanbo/stylelint-config':
         specifier: catalog:dev
-        version: 1.28.0(stylelint@16.15.0(typescript@5.8.2))
+        version: 1.28.0(stylelint@16.16.0(typescript@5.8.2))
       '@types/less':
         specifier: catalog:dev
         version: 3.0.8
@@ -433,7 +433,7 @@ importers:
         version: 6.0.1
       stylelint:
         specifier: catalog:dev
-        version: 16.15.0(typescript@5.8.2)
+        version: 16.16.0(typescript@5.8.2)
       stylus:
         specifier: catalog:dev
         version: 0.64.0
@@ -478,7 +478,7 @@ importers:
     dependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.316
+        version: 2.2.317
       '@simonwep/pickr':
         specifier: catalog:dev
         version: 1.9.1
@@ -511,7 +511,7 @@ importers:
         version: 0.18.10(markmap-common@0.18.9)
       mermaid:
         specifier: catalog:dev
-        version: 11.4.1
+        version: 11.5.0
       sass-embedded:
         specifier: ^1.85.1
         version: 1.85.1
@@ -575,7 +575,7 @@ importers:
         version: 0.25.1
       image-size:
         specifier: catalog:prod
-        version: 2.0.0
+        version: 2.0.1
       less:
         specifier: catalog:dev
         version: 4.2.2
@@ -798,14 +798,14 @@ importers:
         version: 2.0.0-rc.20(@vuepress/bundler-vite@2.0.0-rc.20(@types/node@22.13.10)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.85.1)(sass@1.85.1)(stylus@0.64.0)(typescript@5.8.2)(yaml@2.7.0))(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
       vuepress-plugin-md-enhance:
         specifier: catalog:vuepress
-        version: 2.0.0-rc.72(chart.js@4.4.8)(echarts@5.6.0)(flowchart.ts@3.0.1)(markdown-it@14.1.0)(markmap-lib@0.18.11(markmap-common@0.18.9))(markmap-toolbar@0.18.10(markmap-common@0.18.9))(markmap-view@0.18.10(markmap-common@0.18.9))(mermaid@11.4.1)(sass-embedded@1.85.1)(sass-loader@16.0.5(sass-embedded@1.85.1)(sass@1.85.1))(sass@1.85.1)(typescript@5.8.2)(vuepress@2.0.0-rc.20(@vuepress/bundler-vite@2.0.0-rc.20(@types/node@22.13.10)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.85.1)(sass@1.85.1)(stylus@0.64.0)(typescript@5.8.2)(yaml@2.7.0))(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
+        version: 2.0.0-rc.72(chart.js@4.4.8)(echarts@5.6.0)(flowchart.ts@3.0.1)(markdown-it@14.1.0)(markmap-lib@0.18.11(markmap-common@0.18.9))(markmap-toolbar@0.18.10(markmap-common@0.18.9))(markmap-view@0.18.10(markmap-common@0.18.9))(mermaid@11.5.0)(sass-embedded@1.85.1)(sass-loader@16.0.5(sass-embedded@1.85.1)(sass@1.85.1))(sass@1.85.1)(typescript@5.8.2)(vuepress@2.0.0-rc.20(@vuepress/bundler-vite@2.0.0-rc.20(@types/node@22.13.10)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.85.1)(sass@1.85.1)(stylus@0.64.0)(typescript@5.8.2)(yaml@2.7.0))(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       vuepress-plugin-md-power:
         specifier: workspace:*
         version: link:../plugins/plugin-md-power
     devDependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.316
+        version: 2.2.317
       swiper:
         specifier: catalog:peer
         version: 11.2.5
@@ -1412,8 +1412,8 @@ packages:
     resolution: {integrity: sha512-e5+YUKENATs1JgYHMzTr2MW/NDcXGfYFAuOQU8gJgF/kEh4EqKgfGrfLI67bMD4tbhZVlkigz/9YYwWcbOFthg==}
     engines: {node: '>=10.13.0'}
 
-  '@iconify/json@2.2.316':
-    resolution: {integrity: sha512-nVBinEhlXrX7ZDNNjiR6pN06SmB/SzqxgpR+DkuNSMglC+/awrBiuF3RUwoCkJ3cDTK9aa86JJoKnIPFXSqo6g==}
+  '@iconify/json@2.2.317':
+    resolution: {integrity: sha512-RMf7b3Wd4FMKR7roYmJ8mO6Lwm1JCzuuuVCi0aPcBvBwZkgoWSNHEOFG504L3GMz95cid5KS5Yc4Gt1TPA5bJA==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -2915,8 +2915,8 @@ packages:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
     engines: {node: '>=8'}
 
-  cacheable@1.8.8:
-    resolution: {integrity: sha512-OE1/jlarWxROUIpd0qGBSKFLkNsotY8pt4GeiVErUYh/NUeTNrT+SBksUgllQv4m6a0W/VZsLuiHb88maavqEw==}
+  cacheable@1.8.9:
+    resolution: {integrity: sha512-FicwAUyWnrtnd4QqYAoRlNs44/a1jTL7XDKqm5gJ90wz1DQPlC7U2Rd1Tydpv+E7WAr4sQHuw8Q8M3nZMAyecQ==}
 
   cachedir@2.3.0:
     resolution: {integrity: sha512-A+Fezp4zxnit6FanDmv9EqXNAi3vt9DWp51/71UEhXukb7QUuvtv9344h91dyAxuTLoSYJFU299qzR3tzwPAhw==}
@@ -3550,8 +3550,8 @@ packages:
     resolution: {integrity: sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==}
     engines: {node: '>= 4'}
 
-  dompurify@3.2.3:
-    resolution: {integrity: sha512-U1U5Hzc2MO0oW3DF+G9qYN0aT7atAou4AgI0XjWz061nyBPbdxkfdhfy5uMgGn6+oLFCfn44ZGbdDqCzVmlOWA==}
+  dompurify@3.2.4:
+    resolution: {integrity: sha512-ysFSFEDVduQpyhzAob/kkuJjf5zWkZD8/A9ywSp1byueyuCfHamrCBa14/Oc2iiB0e51B+NpxSl5gmzn+Ms/mg==}
 
   domutils@3.2.2:
     resolution: {integrity: sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==}
@@ -3949,8 +3949,8 @@ packages:
     resolution: {integrity: sha512-d+l3qxjSesT4V7v2fh+QnmFnUWv9lSpjarhShNTgBOfA0ttejbQUAlHLitbjkoRiDulW0OPoQPYIGhIC8ohejg==}
     engines: {node: '>=18'}
 
-  file-entry-cache@10.0.6:
-    resolution: {integrity: sha512-0wvv16mVo9nN0Md3k7DMjgAPKG/TY4F/gYMBVb/wMThFRJvzrpaqBFqF6km9wf8QfYTN+mNg5aeaBLfy8k35uA==}
+  file-entry-cache@10.0.7:
+    resolution: {integrity: sha512-txsf5fu3anp2ff3+gOJJzRImtrtm/oa9tYLN0iTuINZ++EyVR/nRrg2fKYwvG/pXDofcrvvb0scEbX3NyW/COw==}
 
   file-entry-cache@8.0.0:
     resolution: {integrity: sha512-XXTUwCvisa5oacNGRP9SfNtYBNAMi+RPwBFmblZEF7N7swHYQS6/Zfk7SRwx4D5j3CH211YNRco1DEMNVfZCnQ==}
@@ -3989,8 +3989,8 @@ packages:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
     engines: {node: '>=16'}
 
-  flat-cache@6.1.6:
-    resolution: {integrity: sha512-F+CKgSwp0pzLx67u+Zy1aCueVWFAHWbXepvXlZ+bWVTaASbm5SyCnSJ80Fp1ePEmS57wU+Bf6cx6525qtMZ4lQ==}
+  flat-cache@6.1.7:
+    resolution: {integrity: sha512-qwZ4xf1v1m7Rc9XiORly31YaChvKt6oNVHuqqZcoED/7O+ToyNVGobKsIAopY9ODcWpEDKEBAbrSOCBHtNQvew==}
 
   flatted@3.3.3:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
@@ -4328,8 +4328,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  image-size@2.0.0:
-    resolution: {integrity: sha512-HP07n1SpdIXGUL4VotUIOQz66MQOq8g7VN+Yj02YTVowqZScQ5i/JYU0+lkNr2pwt5j4hOpk94/UBV1ZCbS2fA==}
+  image-size@2.0.1:
+    resolution: {integrity: sha512-NI6NK/2zchlZopsQrcVIS7jxA0/rtIy74B+/rx5s7rKQyFebmQjZVhzxXgRZJROk+WhhOq+S6sUaODxp0L5hfg==}
     engines: {node: '>=16.x'}
     hasBin: true
 
@@ -4611,8 +4611,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  keyv@5.3.0:
-    resolution: {integrity: sha512-XMBcWGBqH1j04AzjzdIulcsAKr5MaGlYC/N2PLyxdwTrEqVhQnuEIP5h1TPpa5UUcPOH1yVJ+xvhYJ2QAEv94w==}
+  keyv@5.3.1:
+    resolution: {integrity: sha512-13hQT2q2VIwOoaJdJa7nY3J8UVbYtMTJFHnwm9LI+SaQRfUiM6Em9KZeOVTCKbMnGcRIL3NSUFpAdjZCq24nLQ==}
 
   khroma@2.1.0:
     resolution: {integrity: sha512-Ls993zuzfayK269Svk9hzpeGUKob/sIgZzyHYdjQoAdQetRKpOLj+k/QQQ/6Qi0Yz65mlROrfd+Ev+1+7dz9Kw==}
@@ -4818,8 +4818,8 @@ packages:
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
 
-  marked@13.0.3:
-    resolution: {integrity: sha512-rqRix3/TWzE9rIoFGIn8JmsVfhiuC8VIQ8IdX5TfzmeBucdY05/0UlzKaw0eVtpcN/OdVFpBk7CjKGo9iHJ/zA==}
+  marked@15.0.7:
+    resolution: {integrity: sha512-dgLIeKGLx5FwziAnsk4ONoGwHwGPJzselimvlVskE9XLN4Orv9u2VA3GWw/lYUqjfA0rUT/6fqKwfZJapP9BEg==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -4923,8 +4923,8 @@ packages:
   merge@2.1.1:
     resolution: {integrity: sha512-jz+Cfrg9GWOZbQAnDQ4hlVnQky+341Yk5ru8bZSe6sIDTCIg8n9i/u7hSQGSVOF3C7lH6mGtqjkiT9G4wFLL0w==}
 
-  mermaid@11.4.1:
-    resolution: {integrity: sha512-Mb01JT/x6CKDWaxigwfZYuYmDZ6xtrNwNlidKZwkSrDaY9n90tdrJTV5Umk+wP1fZscGptmKFXHsXMDEVZ+Q6A==}
+  mermaid@11.5.0:
+    resolution: {integrity: sha512-IYhyukID3zzDj1EihKiN1lp+PXNImoJ3Iyz73qeDAgnus4BNGsJV1n471P4PyeGxPVONerZxignwGxGTSwZnlg==}
 
   mhchemparser@4.2.1:
     resolution: {integrity: sha512-kYmyrCirqJf3zZ9t/0wGgRZ4/ZJw//VwaRVGA75C4nhE60vtnIzhl9J9ndkX/h6hxSN7pjg/cE0VxbnNM+bnDQ==}
@@ -6095,13 +6095,13 @@ packages:
     peerDependencies:
       stylelint: ^16.0.2
 
-  stylelint@16.15.0:
-    resolution: {integrity: sha512-OK6Rs7EPdcdmjqiDycadZY4fw3f5/TC1X6/tGjnF3OosbwCeNs7nG+79MCAtjEg7ckwqTJTsku08e0Rmaz5nUw==}
+  stylelint@16.16.0:
+    resolution: {integrity: sha512-40X5UOb/0CEFnZVEHyN260HlSSUxPES+arrUphOumGWgXERHfwCD0kNBVILgQSij8iliYVwlc0V7M5bcLP9vPg==}
     engines: {node: '>=18.12.0'}
     hasBin: true
 
-  stylis@4.3.4:
-    resolution: {integrity: sha512-osIBl6BGUmSfDkyH2mB7EFvCJntXDrLhKjHTRj/rK6xLH0yuPrHULDRQzKokSOD4VoorhtKpfcfW1GAntu8now==}
+  stylis@4.3.6:
+    resolution: {integrity: sha512-yQ3rwFWRfwNUY7H5vpU0wfdkNSnvnJinhF9830Swlaxl03zsOjCfmX0ugac+3LtK0lYSgwL/KXc8oYL3mG4YFQ==}
 
   stylus@0.64.0:
     resolution: {integrity: sha512-ZIdT8eUv8tegmqy1tTIdJv9We2DumkNZFdCF5mz/Kpq3OcTaxSuCAYZge6HKK2CmNC02G1eJig2RV7XTw5hQrA==}
@@ -6408,8 +6408,8 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  uuid@9.0.1:
-    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+  uuid@11.1.0:
+    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
     hasBin: true
 
   validate-npm-package-license@3.0.4:
@@ -7386,7 +7386,7 @@ snapshots:
 
   '@hutson/parse-repository-url@5.0.0': {}
 
-  '@iconify/json@2.2.316':
+  '@iconify/json@2.2.317':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
@@ -7799,22 +7799,22 @@ snapshots:
       - typescript
       - vitest
 
-  '@pengzhanbo/stylelint-config@1.28.0(stylelint@16.15.0(typescript@5.8.2))':
+  '@pengzhanbo/stylelint-config@1.28.0(stylelint@16.16.0(typescript@5.8.2))':
     dependencies:
       '@pengzhanbo/utils': 1.2.0
-      '@stylelint-types/stylelint-order': 6.0.4(stylelint-define-config@16.15.0(stylelint@16.15.0(typescript@5.8.2)))(stylelint@16.15.0(typescript@5.8.2))
-      '@stylelint-types/stylelint-scss': 6.5.0(stylelint-define-config@16.15.0(stylelint@16.15.0(typescript@5.8.2)))(stylelint@16.15.0(typescript@5.8.2))
-      '@stylelint-types/stylelint-stylistic': 3.1.1(stylelint-define-config@16.15.0(stylelint@16.15.0(typescript@5.8.2)))(stylelint@16.15.0(typescript@5.8.2))
-      '@stylistic/stylelint-plugin': 3.1.2(stylelint@16.15.0(typescript@5.8.2))
+      '@stylelint-types/stylelint-order': 6.0.4(stylelint-define-config@16.15.0(stylelint@16.16.0(typescript@5.8.2)))(stylelint@16.16.0(typescript@5.8.2))
+      '@stylelint-types/stylelint-scss': 6.5.0(stylelint-define-config@16.15.0(stylelint@16.16.0(typescript@5.8.2)))(stylelint@16.16.0(typescript@5.8.2))
+      '@stylelint-types/stylelint-stylistic': 3.1.1(stylelint-define-config@16.15.0(stylelint@16.16.0(typescript@5.8.2)))(stylelint@16.16.0(typescript@5.8.2))
+      '@stylistic/stylelint-plugin': 3.1.2(stylelint@16.16.0(typescript@5.8.2))
       local-pkg: 1.1.1
       postcss: 8.5.3
       postcss-html: 1.8.0
-      stylelint: 16.15.0(typescript@5.8.2)
-      stylelint-config-html: 1.1.0(postcss-html@1.8.0)(stylelint@16.15.0(typescript@5.8.2))
-      stylelint-config-standard: 37.0.0(stylelint@16.15.0(typescript@5.8.2))
-      stylelint-config-standard-scss: 14.0.0(postcss@8.5.3)(stylelint@16.15.0(typescript@5.8.2))
-      stylelint-define-config: 16.15.0(stylelint@16.15.0(typescript@5.8.2))
-      stylelint-order: 6.0.4(stylelint@16.15.0(typescript@5.8.2))
+      stylelint: 16.16.0(typescript@5.8.2)
+      stylelint-config-html: 1.1.0(postcss-html@1.8.0)(stylelint@16.16.0(typescript@5.8.2))
+      stylelint-config-standard: 37.0.0(stylelint@16.16.0(typescript@5.8.2))
+      stylelint-config-standard-scss: 14.0.0(postcss@8.5.3)(stylelint@16.16.0(typescript@5.8.2))
+      stylelint-define-config: 16.15.0(stylelint@16.16.0(typescript@5.8.2))
+      stylelint-order: 6.0.4(stylelint@16.16.0(typescript@5.8.2))
 
   '@pengzhanbo/utils@1.2.0': {}
 
@@ -7946,23 +7946,23 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
-  '@stylelint-types/stylelint-order@6.0.4(stylelint-define-config@16.15.0(stylelint@16.15.0(typescript@5.8.2)))(stylelint@16.15.0(typescript@5.8.2))':
+  '@stylelint-types/stylelint-order@6.0.4(stylelint-define-config@16.15.0(stylelint@16.16.0(typescript@5.8.2)))(stylelint@16.16.0(typescript@5.8.2))':
     dependencies:
-      stylelint-define-config: 16.15.0(stylelint@16.15.0(typescript@5.8.2))
+      stylelint-define-config: 16.15.0(stylelint@16.16.0(typescript@5.8.2))
     optionalDependencies:
-      stylelint: 16.15.0(typescript@5.8.2)
+      stylelint: 16.16.0(typescript@5.8.2)
 
-  '@stylelint-types/stylelint-scss@6.5.0(stylelint-define-config@16.15.0(stylelint@16.15.0(typescript@5.8.2)))(stylelint@16.15.0(typescript@5.8.2))':
+  '@stylelint-types/stylelint-scss@6.5.0(stylelint-define-config@16.15.0(stylelint@16.16.0(typescript@5.8.2)))(stylelint@16.16.0(typescript@5.8.2))':
     dependencies:
-      stylelint-define-config: 16.15.0(stylelint@16.15.0(typescript@5.8.2))
+      stylelint-define-config: 16.15.0(stylelint@16.16.0(typescript@5.8.2))
     optionalDependencies:
-      stylelint: 16.15.0(typescript@5.8.2)
+      stylelint: 16.16.0(typescript@5.8.2)
 
-  '@stylelint-types/stylelint-stylistic@3.1.1(stylelint-define-config@16.15.0(stylelint@16.15.0(typescript@5.8.2)))(stylelint@16.15.0(typescript@5.8.2))':
+  '@stylelint-types/stylelint-stylistic@3.1.1(stylelint-define-config@16.15.0(stylelint@16.16.0(typescript@5.8.2)))(stylelint@16.16.0(typescript@5.8.2))':
     dependencies:
-      stylelint-define-config: 16.15.0(stylelint@16.15.0(typescript@5.8.2))
+      stylelint-define-config: 16.15.0(stylelint@16.16.0(typescript@5.8.2))
     optionalDependencies:
-      stylelint: 16.15.0(typescript@5.8.2)
+      stylelint: 16.16.0(typescript@5.8.2)
 
   '@stylistic/eslint-plugin@4.2.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)':
     dependencies:
@@ -7976,7 +7976,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@stylistic/stylelint-plugin@3.1.2(stylelint@16.15.0(typescript@5.8.2))':
+  '@stylistic/stylelint-plugin@3.1.2(stylelint@16.16.0(typescript@5.8.2))':
     dependencies:
       '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
       '@csstools/css-tokenizer': 3.0.3
@@ -7985,7 +7985,7 @@ snapshots:
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
       style-search: 0.1.0
-      stylelint: 16.15.0(typescript@5.8.2)
+      stylelint: 16.16.0(typescript@5.8.2)
 
   '@svta/common-media-library@0.7.4': {}
 
@@ -9134,10 +9134,10 @@ snapshots:
 
   cac@6.7.14: {}
 
-  cacheable@1.8.8:
+  cacheable@1.8.9:
     dependencies:
       hookified: 1.7.1
-      keyv: 5.3.0
+      keyv: 5.3.1
 
   cachedir@2.3.0: {}
 
@@ -9830,7 +9830,7 @@ snapshots:
     dependencies:
       domelementtype: 2.3.0
 
-  dompurify@3.2.3:
+  dompurify@3.2.4:
     optionalDependencies:
       '@types/trusted-types': 2.0.7
 
@@ -10342,9 +10342,9 @@ snapshots:
     dependencies:
       is-unicode-supported: 2.1.0
 
-  file-entry-cache@10.0.6:
+  file-entry-cache@10.0.7:
     dependencies:
-      flat-cache: 6.1.6
+      flat-cache: 6.1.7
 
   file-entry-cache@8.0.0:
     dependencies:
@@ -10388,9 +10388,9 @@ snapshots:
       flatted: 3.3.3
       keyv: 4.5.4
 
-  flat-cache@6.1.6:
+  flat-cache@6.1.7:
     dependencies:
-      cacheable: 1.8.8
+      cacheable: 1.8.9
       flatted: 3.3.3
       hookified: 1.7.1
 
@@ -10769,7 +10769,7 @@ snapshots:
   image-size@0.5.5:
     optional: true
 
-  image-size@2.0.0: {}
+  image-size@2.0.1: {}
 
   immediate@3.0.6: {}
 
@@ -11013,7 +11013,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  keyv@5.3.0:
+  keyv@5.3.1:
     dependencies:
       '@keyv/serialize': 1.0.3
 
@@ -11238,7 +11238,7 @@ snapshots:
 
   markdown-table@3.0.4: {}
 
-  marked@13.0.3: {}
+  marked@15.0.7: {}
 
   markmap-common@0.18.9:
     dependencies:
@@ -11429,7 +11429,7 @@ snapshots:
 
   merge@2.1.1: {}
 
-  mermaid@11.4.1:
+  mermaid@11.5.0:
     dependencies:
       '@braintree/sanitize-url': 7.1.1
       '@iconify/utils': 2.3.0
@@ -11442,15 +11442,15 @@ snapshots:
       d3-sankey: 0.12.3
       dagre-d3-es: 7.0.11
       dayjs: 1.11.13
-      dompurify: 3.2.3
+      dompurify: 3.2.4
       katex: 0.16.21
       khroma: 2.1.0
       lodash-es: 4.17.21
-      marked: 13.0.3
+      marked: 15.0.7
       roughjs: 4.6.6
-      stylis: 4.3.4
+      stylis: 4.3.6
       ts-dedent: 2.2.0
-      uuid: 9.0.1
+      uuid: 11.1.0
     transitivePeerDependencies:
       - supports-color
 
@@ -12570,58 +12570,58 @@ snapshots:
 
   style-search@0.1.0: {}
 
-  stylelint-config-html@1.1.0(postcss-html@1.8.0)(stylelint@16.15.0(typescript@5.8.2)):
+  stylelint-config-html@1.1.0(postcss-html@1.8.0)(stylelint@16.16.0(typescript@5.8.2)):
     dependencies:
       postcss-html: 1.8.0
-      stylelint: 16.15.0(typescript@5.8.2)
+      stylelint: 16.16.0(typescript@5.8.2)
 
-  stylelint-config-recommended-scss@14.1.0(postcss@8.5.3)(stylelint@16.15.0(typescript@5.8.2)):
+  stylelint-config-recommended-scss@14.1.0(postcss@8.5.3)(stylelint@16.16.0(typescript@5.8.2)):
     dependencies:
       postcss-scss: 4.0.9(postcss@8.5.3)
-      stylelint: 16.15.0(typescript@5.8.2)
-      stylelint-config-recommended: 14.0.1(stylelint@16.15.0(typescript@5.8.2))
-      stylelint-scss: 6.11.1(stylelint@16.15.0(typescript@5.8.2))
+      stylelint: 16.16.0(typescript@5.8.2)
+      stylelint-config-recommended: 14.0.1(stylelint@16.16.0(typescript@5.8.2))
+      stylelint-scss: 6.11.1(stylelint@16.16.0(typescript@5.8.2))
     optionalDependencies:
       postcss: 8.5.3
 
-  stylelint-config-recommended@14.0.1(stylelint@16.15.0(typescript@5.8.2)):
+  stylelint-config-recommended@14.0.1(stylelint@16.16.0(typescript@5.8.2)):
     dependencies:
-      stylelint: 16.15.0(typescript@5.8.2)
+      stylelint: 16.16.0(typescript@5.8.2)
 
-  stylelint-config-recommended@15.0.0(stylelint@16.15.0(typescript@5.8.2)):
+  stylelint-config-recommended@15.0.0(stylelint@16.16.0(typescript@5.8.2)):
     dependencies:
-      stylelint: 16.15.0(typescript@5.8.2)
+      stylelint: 16.16.0(typescript@5.8.2)
 
-  stylelint-config-standard-scss@14.0.0(postcss@8.5.3)(stylelint@16.15.0(typescript@5.8.2)):
+  stylelint-config-standard-scss@14.0.0(postcss@8.5.3)(stylelint@16.16.0(typescript@5.8.2)):
     dependencies:
-      stylelint: 16.15.0(typescript@5.8.2)
-      stylelint-config-recommended-scss: 14.1.0(postcss@8.5.3)(stylelint@16.15.0(typescript@5.8.2))
-      stylelint-config-standard: 36.0.1(stylelint@16.15.0(typescript@5.8.2))
+      stylelint: 16.16.0(typescript@5.8.2)
+      stylelint-config-recommended-scss: 14.1.0(postcss@8.5.3)(stylelint@16.16.0(typescript@5.8.2))
+      stylelint-config-standard: 36.0.1(stylelint@16.16.0(typescript@5.8.2))
     optionalDependencies:
       postcss: 8.5.3
 
-  stylelint-config-standard@36.0.1(stylelint@16.15.0(typescript@5.8.2)):
+  stylelint-config-standard@36.0.1(stylelint@16.16.0(typescript@5.8.2)):
     dependencies:
-      stylelint: 16.15.0(typescript@5.8.2)
-      stylelint-config-recommended: 14.0.1(stylelint@16.15.0(typescript@5.8.2))
+      stylelint: 16.16.0(typescript@5.8.2)
+      stylelint-config-recommended: 14.0.1(stylelint@16.16.0(typescript@5.8.2))
 
-  stylelint-config-standard@37.0.0(stylelint@16.15.0(typescript@5.8.2)):
+  stylelint-config-standard@37.0.0(stylelint@16.16.0(typescript@5.8.2)):
     dependencies:
-      stylelint: 16.15.0(typescript@5.8.2)
-      stylelint-config-recommended: 15.0.0(stylelint@16.15.0(typescript@5.8.2))
+      stylelint: 16.16.0(typescript@5.8.2)
+      stylelint-config-recommended: 15.0.0(stylelint@16.16.0(typescript@5.8.2))
 
-  stylelint-define-config@16.15.0(stylelint@16.15.0(typescript@5.8.2)):
+  stylelint-define-config@16.15.0(stylelint@16.16.0(typescript@5.8.2)):
     dependencies:
       csstype: 3.1.3
-      stylelint: 16.15.0(typescript@5.8.2)
+      stylelint: 16.16.0(typescript@5.8.2)
 
-  stylelint-order@6.0.4(stylelint@16.15.0(typescript@5.8.2)):
+  stylelint-order@6.0.4(stylelint@16.16.0(typescript@5.8.2)):
     dependencies:
       postcss: 8.5.3
       postcss-sorting: 8.0.2(postcss@8.5.3)
-      stylelint: 16.15.0(typescript@5.8.2)
+      stylelint: 16.16.0(typescript@5.8.2)
 
-  stylelint-scss@6.11.1(stylelint@16.15.0(typescript@5.8.2)):
+  stylelint-scss@6.11.1(stylelint@16.16.0(typescript@5.8.2)):
     dependencies:
       css-tree: 3.1.0
       is-plain-object: 5.0.0
@@ -12631,9 +12631,9 @@ snapshots:
       postcss-resolve-nested-selector: 0.1.6
       postcss-selector-parser: 7.1.0
       postcss-value-parser: 4.2.0
-      stylelint: 16.15.0(typescript@5.8.2)
+      stylelint: 16.16.0(typescript@5.8.2)
 
-  stylelint@16.15.0(typescript@5.8.2):
+  stylelint@16.16.0(typescript@5.8.2):
     dependencies:
       '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
       '@csstools/css-tokenizer': 3.0.3
@@ -12648,7 +12648,7 @@ snapshots:
       debug: 4.4.0
       fast-glob: 3.3.3
       fastest-levenshtein: 1.0.16
-      file-entry-cache: 10.0.6
+      file-entry-cache: 10.0.7
       global-modules: 2.0.0
       globby: 11.1.0
       globjoin: 0.1.4
@@ -12677,7 +12677,7 @@ snapshots:
       - supports-color
       - typescript
 
-  stylis@4.3.4: {}
+  stylis@4.3.6: {}
 
   stylus@0.64.0:
     dependencies:
@@ -12962,7 +12962,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  uuid@9.0.1: {}
+  uuid@11.1.0: {}
 
   validate-npm-package-license@3.0.4:
     dependencies:
@@ -13105,7 +13105,7 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.2
 
-  vuepress-plugin-md-enhance@2.0.0-rc.72(chart.js@4.4.8)(echarts@5.6.0)(flowchart.ts@3.0.1)(markdown-it@14.1.0)(markmap-lib@0.18.11(markmap-common@0.18.9))(markmap-toolbar@0.18.10(markmap-common@0.18.9))(markmap-view@0.18.10(markmap-common@0.18.9))(mermaid@11.4.1)(sass-embedded@1.85.1)(sass-loader@16.0.5(sass-embedded@1.85.1)(sass@1.85.1))(sass@1.85.1)(typescript@5.8.2)(vuepress@2.0.0-rc.20(@vuepress/bundler-vite@2.0.0-rc.20(@types/node@22.13.10)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.85.1)(sass@1.85.1)(stylus@0.64.0)(typescript@5.8.2)(yaml@2.7.0))(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))):
+  vuepress-plugin-md-enhance@2.0.0-rc.72(chart.js@4.4.8)(echarts@5.6.0)(flowchart.ts@3.0.1)(markdown-it@14.1.0)(markmap-lib@0.18.11(markmap-common@0.18.9))(markmap-toolbar@0.18.10(markmap-common@0.18.9))(markmap-view@0.18.10(markmap-common@0.18.9))(mermaid@11.5.0)(sass-embedded@1.85.1)(sass-loader@16.0.5(sass-embedded@1.85.1)(sass@1.85.1))(sass@1.85.1)(typescript@5.8.2)(vuepress@2.0.0-rc.20(@vuepress/bundler-vite@2.0.0-rc.20(@types/node@22.13.10)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.85.1)(sass@1.85.1)(stylus@0.64.0)(typescript@5.8.2)(yaml@2.7.0))(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))):
     dependencies:
       '@mdit/plugin-container': 0.16.0(markdown-it@14.1.0)
       '@mdit/plugin-demo': 0.16.0(markdown-it@14.1.0)
@@ -13127,7 +13127,7 @@ snapshots:
       markmap-lib: 0.18.11(markmap-common@0.18.9)
       markmap-toolbar: 0.18.10(markmap-common@0.18.9)
       markmap-view: 0.18.10(markmap-common@0.18.9)
-      mermaid: 11.4.1
+      mermaid: 11.5.0
       sass: 1.85.1
       sass-embedded: 1.85.1
       sass-loader: 16.0.5(sass-embedded@1.85.1)(sass@1.85.1)

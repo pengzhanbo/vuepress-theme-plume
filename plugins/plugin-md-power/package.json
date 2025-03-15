@@ -46,7 +46,7 @@
     "hls.js": "catalog:peer",
     "less": "catalog:dev",
     "markdown-it": "catalog:dev",
-    "mpegts.js": "catalog:peer",
+    "mpegts.js": "^1.7.3",
     "sass": "catalog:peer",
     "sass-embedded": "catalog:peer",
     "stylus": "catalog:dev",

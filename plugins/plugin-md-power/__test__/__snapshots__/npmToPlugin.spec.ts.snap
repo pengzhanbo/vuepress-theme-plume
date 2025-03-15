@@ -48,12 +48,12 @@ npm i --save-peer package3
 npm run docs
 
 </code></pre>
-</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>yarn add -D package1package2
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>yarn add -D package1 package2
 yarn add --peer package3
 yarn docs
 
 </code></pre>
-</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>pnpm add -D package1package2
+</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>pnpm add -D package1 package2
 pnpm add --save-peer package3
 pnpm docs
 
@@ -168,12 +168,12 @@ npm i --save-peer package3
 npm run docs
 
 </code></pre>
-</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>yarn add -D package1package2
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>yarn add -D package1 package2
 yarn add --peer package3
 yarn docs
 
 </code></pre>
-</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>pnpm add -D package1package2
+</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>pnpm add -D package1 package2
 pnpm add --save-peer package3
 pnpm docs
 
@@ -288,12 +288,12 @@ npm i --save-peer package3
 npm run docs
 
 </code></pre>
-</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>pnpm add -D package1package2
+</div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>pnpm add -D package1 package2
 pnpm add --save-peer package3
 pnpm docs
 
 </code></pre>
-</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>yarn add -D package1package2
+</div></template><template #tab2="{ value, isActive }"><div class="language-lang"><pre><code>yarn add -D package1 package2
 yarn add --peer package3
 yarn docs
 

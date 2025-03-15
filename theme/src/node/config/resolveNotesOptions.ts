@@ -1,13 +1,13 @@
-import type { NotesOptions, PlumeThemeLocaleOptions } from '../../shared/index.js'
+import type { ThemeNoteListOptions, ThemeOptions } from '../../shared/index.js'
 import { uniq } from '@pengzhanbo/utils'
 import { entries, removeLeadingSlash } from '@vuepress/helper'
 import { normalizePath, withBase } from '../utils/index.js'
 
-export function resolveNotesLinkList(localeOptions: PlumeThemeLocaleOptions) {
-  const locales = localeOptions.locales || {}
+export function resolveNotesLinkList(options: ThemeOptions) {
+  const locales = options.locales || {}
   const notesLinks: string[] = []
   for (const [locale, opt] of entries(locales)) {
-    const config = locale === '/' ? (opt.notes || localeOptions.notes) : opt.notes
+    const config = locale === '/' ? (opt.notes || options.notes) : opt.notes
     if (config && config.notes?.length) {
       const prefix = config.link || ''
       notesLinks.push(
@@ -21,22 +21,22 @@ export function resolveNotesLinkList(localeOptions: PlumeThemeLocaleOptions) {
   return uniq(notesLinks)
 }
 
-export function resolveNotesOptions(localeOptions: PlumeThemeLocaleOptions): NotesOptions[] {
-  const locales = localeOptions.locales || {}
-  const notesOptionsList: NotesOptions[] = []
+export function resolveNotesOptions(options: ThemeOptions): ThemeNoteListOptions[] {
+  const locales = options.locales || {}
+  const notesOptionsList: ThemeNoteListOptions[] = []
   for (const [locale, opt] of entries(locales)) {
-    const options = locale === '/' ? (opt.notes || localeOptions.notes) : opt.notes
-    if (options) {
-      options.dir = withBase(options.dir, locale)
-      notesOptionsList.push(options)
+    const current = locale === '/' ? (opt.notes || options.notes) : opt.notes
+    if (current) {
+      current.dir = withBase(current.dir, locale)
+      notesOptionsList.push(current)
     }
   }
 
   return notesOptionsList
 }
 
-export function resolveNotesDirs(localeOptions: PlumeThemeLocaleOptions): string[] {
-  const notesList = resolveNotesOptions(localeOptions)
+export function resolveNotesDirs(options: ThemeOptions): string[] {
+  const notesList = resolveNotesOptions(options)
   return uniq(notesList
     .flatMap(({ notes, dir }) =>
       notes.map(note => removeLeadingSlash(normalizePath(`${dir}/${note.dir || ''}/`))),

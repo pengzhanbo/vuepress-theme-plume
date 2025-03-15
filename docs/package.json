@@ -9,27 +9,27 @@
     "docs:serve": "http-server .vuepress/dist -d 0"
   },
   "peerDependencies": {
-    "vuepress": "catalog:"
+    "vuepress": "catalog:vuepress"
   },
   "dependencies": {
-    "@iconify/json": "catalog:",
-    "@simonwep/pickr": "^1.9.1",
-    "@vuepress/bundler-vite": "catalog:",
-    "@vuepress/shiki-twoslash": "catalog:",
-    "chart.js": "^4.4.8",
-    "echarts": "^5.6.0",
-    "flowchart.ts": "^3.0.1",
-    "http-server": "^14.1.1",
-    "markmap-lib": "^0.18.11",
-    "markmap-toolbar": "^0.18.10",
-    "markmap-view": "^0.18.10",
-    "mermaid": "^11.4.1",
-    "sass-embedded": "^1.85.1",
-    "swiper": "^11.2.5",
-    "vue": "catalog:",
+    "@iconify/json": "catalog:peer",
+    "@simonwep/pickr": "catalog:dev",
+    "@vuepress/bundler-vite": "catalog:vuepress",
+    "@vuepress/shiki-twoslash": "catalog:vuepress",
+    "chart.js": "catalog:prod",
+    "echarts": "catalog:prod",
+    "flowchart.ts": "catalog:prod",
+    "http-server": "catalog:dev",
+    "markmap-lib": "catalog:prod",
+    "markmap-toolbar": "catalog:prod",
+    "markmap-view": "catalog:prod",
+    "mermaid": "catalog:dev",
+    "sass-embedded": "catalog:peer",
+    "swiper": "catalog:peer",
+    "vue": "catalog:prod",
     "vuepress-theme-plume": "workspace:*"
   },
   "devDependencies": {
-    "@types/express": "^5.0.0"
+    "@types/express": "catalog:dev"
   }
 }

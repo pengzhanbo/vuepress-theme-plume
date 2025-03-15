@@ -1,6 +1,7 @@
 import config from '@pengzhanbo/eslint-config-vue'
 
 export default config({
+  pnpm: true,
   ignores: [
     'lib',
     'docs/notes/theme/snippet/code-block.snippet.md',

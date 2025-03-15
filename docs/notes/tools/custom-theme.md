@@ -1,7 +1,6 @@
 ---
 title: 主题颜色工具
 icon: unjs:theme-colors
-author: pengzhanbo
 createTime: 2024/07/29 13:58:29
 permalink: /tools/theme-colors/
 readingTime: false
@@ -17,5 +16,9 @@ lastUpdated: false
 
 本工具只能帮助您简单的创建主题颜色。如果您期望更加复杂的主题颜色配置，请查看 [styles/vars.css](https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/theme/src/client/styles/vars.css)
 :::
+
+<script setup>
+import ThemeColors from '@source/.vuepress/themes/components/ThemeColors.vue'
+</script>
 
 <ThemeColors />

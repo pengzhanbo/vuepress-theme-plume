@@ -4,10 +4,10 @@ import type {
 } from '../../shared/index.js'
 import dayjs from 'dayjs'
 
-export function createBaseFrontmatter(options: AutoFrontmatterOptions): AutoFrontmatterObject {
+export function createBaseFrontmatter(autoFrontmatter: AutoFrontmatterOptions): AutoFrontmatterObject {
   const res: AutoFrontmatterObject = {}
 
-  if (options.createTime !== false) {
+  if (autoFrontmatter.createTime !== false) {
     res.createTime = (formatTime: string, { createTime }, data) => {
       if (formatTime)
         return formatTime

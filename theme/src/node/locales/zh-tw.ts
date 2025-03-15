@@ -1,7 +1,7 @@
 /** 繁体中文 */
-import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
+import type { PresetLocale, ThemeLocaleText } from '../../shared/index.js'
 
-export const zhTwLocale: PlumeThemeLocaleData = {
+export const zhTwLocale: ThemeLocaleText = {
   selectLanguageName: '繁體中文',
   selectLanguageText: '選擇語言',
 

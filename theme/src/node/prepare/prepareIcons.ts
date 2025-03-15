@@ -1,12 +1,13 @@
 import type { App, Page } from 'vuepress'
-import type { NavItem, PlumeThemeHomeConfig, PlumeThemeLocaleOptions, Sidebar } from '../../shared/index.js'
+import type { ThemeHomeConfig, ThemeNavItem, ThemeOptions, ThemeSidebar } from '../../shared/index.js'
 import type { FsCache } from '../utils/index.js'
 import { getIconContentCSS, getIconData } from '@iconify/utils'
 import { isArray, uniq } from '@pengzhanbo/utils'
 import { entries, isLinkAbsolute, isLinkHttp, isPlainObject } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
-import { createFsCache, interopDefault, logger, nanoid, perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
+import { getThemeConfig } from '../loadConfig/loader.js'
+import { createFsCache, interopDefault, logger, nanoid, perf, resolveContent, writeTemp } from '../utils/index.js'
 
 interface IconData {
   className: string
@@ -37,8 +38,9 @@ function isIconify(icon: any): icon is string {
   return icon[0] !== '{' && ICONIFY_NAME.test(icon)
 }
 
-export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOptions) {
-  perfMark('prepare:icons:total')
+export async function prepareIcons(app: App) {
+  perf.mark('prepare:icons:total')
+  const options = getThemeConfig()
   if (!isInstalled) {
     await writeTemp(app, JS_FILENAME, resolveContent(app, { name: 'icons', content: '{}' }))
     return
@@ -48,10 +50,10 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
     await fsCache.read()
   }
 
-  perfMark('prepare:pages:icons')
+  perf.mark('prepare:pages:icons')
   const iconList: string[] = []
   app.pages.forEach(page => iconList.push(...getIconsWithPage(page)))
-  iconList.push(...getIconWithThemeConfig(localeOptions))
+  iconList.push(...getIconWithThemeConfig(options))
 
   const collectMap: CollectMap = {}
   uniq(iconList).filter((icon) => {
@@ -66,9 +68,9 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
     collectMap[collect].push(name)
   })
 
-  perfLog('prepare:pages:icons', app.env.isDebug)
+  perf.log('prepare:pages:icons')
 
-  perfMark('prepare:icons:imports')
+  perf.mark('prepare:icons:imports')
 
   if (!locate) {
     const mod = await interopDefault(import('@iconify/json'))
@@ -83,7 +85,7 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
     logger.warn(`[iconify] Unknown icons: ${unknownList.join(', ')}`)
   }
 
-  perfLog('prepare:icons:imports', app.env.isDebug)
+  perf.log('prepare:icons:imports')
 
   let cssCode = ''
   const map: Record<string, string> = {}
@@ -103,7 +105,7 @@ export async function prepareIcons(app: App, localeOptions: PlumeThemeLocaleOpti
 
   fsCache?.write(cache)
 
-  perfLog('prepare:icons:total', app.env.isDebug)
+  perf.log('prepare:icons:total')
 }
 
 function getIconsWithPage(page: Page): string[] {
@@ -117,8 +119,8 @@ function getIconsWithPage(page: Page): string[] {
     list.push(fm.icon)
   }
 
-  if ((fm.home || fm.pageLayout === 'home') && (fm.config as PlumeThemeHomeConfig[])?.length) {
-    for (const config of (fm.config as PlumeThemeHomeConfig[])) {
+  if ((fm.home || fm.pageLayout === 'home') && (fm.config as ThemeHomeConfig[])?.length) {
+    for (const config of (fm.config as ThemeHomeConfig[])) {
       if (config.type === 'features' && config.features.length) {
         for (const feature of config.features) {
           if (feature.icon && isIconify(feature.icon))
@@ -139,15 +141,15 @@ function getIconsWithPage(page: Page): string[] {
   return list
 }
 
-function getIconWithThemeConfig(localeOptions: PlumeThemeLocaleOptions): string[] {
+function getIconWithThemeConfig(options: ThemeOptions): string[] {
   const list: string[] = []
   // navbar notes sidebar
-  const locales = localeOptions.locales || {}
+  const locales = options.locales || {}
   entries(locales).forEach(([, { navbar, sidebar, notes }]) => {
     if (navbar) {
       list.push(...getIconWithNavbar(navbar))
     }
-    const sidebarList: Sidebar[] = Object.values(sidebar || {}) as Sidebar[]
+    const sidebarList: ThemeSidebar[] = Object.values(sidebar || {}) as ThemeSidebar[]
     if (notes) {
       notes.notes.forEach((note) => {
         if (note.sidebar)
@@ -160,7 +162,7 @@ function getIconWithThemeConfig(localeOptions: PlumeThemeLocaleOptions): string[
   return list.filter(isIconify)
 }
 
-function getIconWithNavbar(navbar: NavItem[]): string[] {
+function getIconWithNavbar(navbar: ThemeNavItem[]): string[] {
   const list: string[] = []
   navbar.forEach((item) => {
     if (typeof item !== 'string') {
@@ -173,7 +175,7 @@ function getIconWithNavbar(navbar: NavItem[]): string[] {
   return list
 }
 
-function getIconWithSidebar(sidebar: Sidebar): string[] {
+function getIconWithSidebar(sidebar: ThemeSidebar): string[] {
   const list: string[] = []
   if (isArray(sidebar)) {
     sidebar.forEach((item) => {

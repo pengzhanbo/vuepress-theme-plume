@@ -24,7 +24,7 @@ const value = defineModel<number>({
 
 <style scoped>
 input[type="range"] {
-  flex: 1;
+  flex: 1 2;
 }
 
 input[type="number"] {

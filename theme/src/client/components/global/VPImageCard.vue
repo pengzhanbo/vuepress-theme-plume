@@ -191,7 +191,7 @@ const styles = computed(() => {
 }
 
 .image-info .copyright span:first-child {
-  flex: 1;
+  flex: 1 2;
   overflow: hidden;
   text-align: right;
   text-overflow: ellipsis;
@@ -199,7 +199,7 @@ const styles = computed(() => {
 }
 
 .image-info .description {
-  flex: 1;
+  flex: 1 2;
   height: 1px;
   overflow-y: auto;
 }

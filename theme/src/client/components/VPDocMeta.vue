@@ -147,7 +147,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 
 @media (min-width: 768px) {
   .vp-doc-meta .create-time {
-    flex: 1;
+    flex: 1 2;
     justify-content: right;
   }
 }

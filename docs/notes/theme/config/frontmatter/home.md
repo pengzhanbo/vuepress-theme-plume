@@ -1,6 +1,5 @@
 ---
 title: 首页
-author: pengzhanbo
 createTime: 2024/03/03 15:00:43
 permalink: /config/frontmatter/home/
 ---
@@ -13,7 +12,7 @@ permalink: /config/frontmatter/home/
 
 ```md
 ---
-home: true
+pageLayout: home
 config:
   - type: banner
   - type: custom
@@ -66,4 +65,4 @@ interface PlumeHomeConfigBase {
 }
 ```
 
-更多详细配置请参考 [自定义首页](../../guide/自定义首页.md)
+更多详细配置请参考 [自定义首页](../../guide/custom/home.md)

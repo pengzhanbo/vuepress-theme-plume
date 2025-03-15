@@ -1,26 +1,26 @@
-import type { ThemeImage } from '../base.js'
-import type { PlumeNormalFrontmatter } from './normal.js'
+import type { ThemeImage } from '../common/index.js'
+import type { ThemeNormalFrontmatter } from './normal.js'
 
-export interface PlumeThemeHomeFrontmatter extends PlumeNormalFrontmatter, Omit<PlumeThemeHomeBanner, 'type'> {
+export interface ThemeHomeFrontmatter extends ThemeNormalFrontmatter, Omit<ThemeHomeBanner, 'type'> {
   home?: true
   friends?: never
-  config?: PlumeThemeHomeConfig[]
+  config?: ThemeHomeConfig[]
 }
 
-export type PlumeThemeHomeConfig = PlumeThemeHomeBanner | PlumeThemeHomeTextImage | PlumeThemeHomeFeatures | PlumeThemeHomeProfile | PlumeThemeHomeHero
+export type ThemeHomeConfig = ThemeHomeBanner | ThemeHomeTextImage | ThemeHomeFeatures | ThemeHomeProfile | ThemeHomeHero
 
-export interface PlumeThemeHero {
+export interface ThemeHero {
   name: string
   tagline?: string
   text?: string
-  actions: PlumeThemeHeroAction[]
+  actions: ThemeHeroAction[]
 }
 
-export interface PlumeThemeDocHero extends PlumeThemeHero {
+export interface ThemeDocHero extends ThemeHero {
   image?: ThemeImage
 }
 
-export interface PlumeThemeHeroAction {
+export interface ThemeHeroAction {
   theme?: 'brand' | 'alt'
   text: string
   link?: string
@@ -30,7 +30,7 @@ export interface PlumeThemeHeroAction {
   suffixIcon?: string
 }
 
-export interface PlumeHomeConfigBase {
+export interface ThemeHomeConfigBase {
   type: 'banner' | 'hero' | 'doc-hero' | 'text-image' | 'image-text' | 'features' | 'profile' | 'custom'
   full?: boolean
   backgroundImage?: string | { light: string, dark: string }
@@ -38,11 +38,11 @@ export interface PlumeHomeConfigBase {
   onlyOnce?: boolean
 }
 
-export interface PlumeThemeHomeBanner extends Pick<PlumeHomeConfigBase, 'type' | 'onlyOnce' | 'full'> {
+export interface ThemeHomeBanner extends Pick<ThemeHomeConfigBase, 'type' | 'onlyOnce' | 'full'> {
   type: 'banner'
   banner?: string
   bannerMask?: number | { light?: number, dark?: number }
-  hero: PlumeThemeHero
+  hero: ThemeHero
 }
 
 export interface PlumeThemeHomeHeroTintPlate {
@@ -51,9 +51,9 @@ export interface PlumeThemeHomeHeroTintPlate {
   b: { value: number, offset: number }
 }
 
-export interface PlumeThemeHomeHero extends PlumeHomeConfigBase {
+export interface ThemeHomeHero extends ThemeHomeConfigBase {
   type: 'hero'
-  hero: PlumeThemeHero
+  hero: ThemeHero
   full?: boolean
   background?: 'tint-plate' | (string & { zz_IGNORE?: never })
   tintPlate?:
@@ -64,12 +64,12 @@ export interface PlumeThemeHomeHero extends PlumeHomeConfigBase {
   filter?: string
 }
 
-export interface PlumeThemeHomeDocHero extends PlumeHomeConfigBase {
+export interface ThemeHomeDocHero extends ThemeHomeConfigBase {
   type: 'doc-hero'
-  hero: PlumeThemeDocHero
+  hero: ThemeDocHero
 }
 
-export interface PlumeThemeHomeTextImage extends PlumeHomeConfigBase {
+export interface ThemeHomeTextImage extends ThemeHomeConfigBase {
   type: 'text-image' | 'image-text'
   image: ThemeImage
   width?: number | string
@@ -78,14 +78,14 @@ export interface PlumeThemeHomeTextImage extends PlumeHomeConfigBase {
   list: (string | { title?: string, description?: string })[]
 }
 
-export interface PlumeThemeHomeFeatures extends PlumeHomeConfigBase {
+export interface ThemeHomeFeatures extends ThemeHomeConfigBase {
   type: 'features'
   title?: string
   description?: string
-  features: PlumeThemeHomeFeature[]
+  features: ThemeHomeFeature[]
 }
 
-export interface PlumeThemeHomeFeature {
+export interface ThemeHomeFeature {
   icon?: FeatureIcon
   title: string
   details?: string
@@ -98,19 +98,19 @@ export interface PlumeThemeHomeFeature {
 export type FeatureIcon = string | {
   src: string
   alt?: string
-  width?: string
-  height?: string
+  width?: string | number
+  height?: string | number
   wrap?: boolean
 } | {
   light: string
   dark: string
   alt?: string
-  width?: string
-  height?: string
+  width?: string | number
+  height?: string | number
   wrap?: boolean
 }
 
-export interface PlumeThemeHomeProfile extends PlumeHomeConfigBase {
+export interface ThemeHomeProfile extends ThemeHomeConfigBase {
   type: 'profile'
   name?: string
   description?: string
@@ -118,6 +118,6 @@ export interface PlumeThemeHomeProfile extends PlumeHomeConfigBase {
   circle?: boolean
 }
 
-export interface PlumeThemeHomeCustom extends PlumeHomeConfigBase {
+export interface ThemeHomeCustom extends ThemeHomeConfigBase {
   type: 'custom'
 }

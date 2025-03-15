@@ -41,7 +41,7 @@ defineProps<{
 
 .vp-blog-short-post-list .post-title {
   display: -webkit-box;
-  flex: 1;
+  flex: 1 2;
   margin-right: 14px;
   overflow: hidden;
   font-weight: 600;

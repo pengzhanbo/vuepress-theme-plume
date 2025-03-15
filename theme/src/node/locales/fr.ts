@@ -1,7 +1,7 @@
 /** 法语 */
-import type { PlumeThemeLocaleData, PresetLocale } from '../../shared/index.js'
+import type { PresetLocale, ThemeLocaleText } from '../../shared/index.js'
 
-export const frLocale: PlumeThemeLocaleData = {
+export const frLocale: ThemeLocaleText = {
   selectLanguageName: 'Français',
   selectLanguageText: 'Choisir la langue',
 

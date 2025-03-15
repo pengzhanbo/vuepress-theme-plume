@@ -102,7 +102,7 @@ const { hasBlogExtract, tags, archives, categories } = useBlogExtract()
 }
 
 .vp-blog-nav.local .nav-link {
-  flex: 1;
+  flex: 1 2;
   max-width: 50%;
   margin-bottom: 0;
 }
@@ -112,7 +112,7 @@ const { hasBlogExtract, tags, archives, categories } = useBlogExtract()
 }
 
 .nav-link .text {
-  flex: 1;
+  flex: 1 2;
   min-width: 0;
   padding-right: 14px;
 }

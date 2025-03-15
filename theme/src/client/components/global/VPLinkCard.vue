@@ -51,7 +51,7 @@ defineProps<{
 
 .vp-link-card .body {
   display: flex;
-  flex: 1;
+  flex: 1 2;
   flex-direction: column;
   gap: 16px;
   align-items: flex-start;

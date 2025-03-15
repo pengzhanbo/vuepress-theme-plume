@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import type { NavItemWithLink, PlumeThemeBlogPostItem, SidebarItem } from '../../shared/index.js'
+import type { NavItemWithLink, ThemeBlogPostItem, ThemeSidebarItem } from '../../shared/index.js'
 import { computed } from 'vue'
 import { resolveRouteFullPath, usePageLang, useRoute } from 'vuepress/client'
 import { isPlainObject, isString } from 'vuepress/shared'
@@ -13,7 +13,7 @@ export function usePrevNext() {
   const route = useRoute()
   const { frontmatter, theme } = useData()
   const { sidebar } = useSidebar()
-  const postList = usePostList() as unknown as Ref<PlumeThemeBlogPostItem[]>
+  const postList = usePostList() as unknown as Ref<ThemeBlogPostItem[]>
   const locale = usePageLang()
   const { isBlogPost } = useBlogPageData()
 
@@ -79,13 +79,13 @@ function resolveFromFrontmatterConfig(conf: unknown): null | false | NavItemWith
   return false
 }
 
-function flatSidebar(sidebar: SidebarItem[], res: NavItemWithLink[] = []): NavItemWithLink[] {
+function flatSidebar(sidebar: ThemeSidebarItem[], res: NavItemWithLink[] = []): NavItemWithLink[] {
   for (const item of sidebar) {
     if (item.link)
       res.push({ link: item.link, text: item.text || item.dir || '' })
 
     if (Array.isArray(item.items) && item.items.length)
-      flatSidebar(item.items as SidebarItem[], res)
+      flatSidebar(item.items as ThemeSidebarItem[], res)
   }
 
   return res
@@ -109,7 +109,7 @@ function resolveFromSidebarItems(sidebarItems: NavItemWithLink[], currentPath: s
   return null
 }
 
-function resolveFromBlogPostData(postList: PlumeThemeBlogPostItem[], currentPath: string, offset: number): null | NavItemWithLink {
+function resolveFromBlogPostData(postList: ThemeBlogPostItem[], currentPath: string, offset: number): null | NavItemWithLink {
   const index = postList.findIndex(item => item.path === currentPath)
   if (index !== -1) {
     const targetItem = postList[index + offset]

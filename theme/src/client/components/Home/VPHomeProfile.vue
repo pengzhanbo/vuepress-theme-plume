@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { PlumeThemeHomeProfile } from '../../../shared/index.js'
+import type { ThemeHomeProfile } from '../../../shared/index.js'
 import VPHomeBox from '@theme/Home/VPHomeBox.vue'
 import VPImage from '@theme/VPImage.vue'
 import { computed } from 'vue'
 import { useData } from '../../composables/index.js'
 
-const props = defineProps<PlumeThemeHomeProfile>()
+const props = defineProps<ThemeHomeProfile>()
 
 const { theme } = useData()
 

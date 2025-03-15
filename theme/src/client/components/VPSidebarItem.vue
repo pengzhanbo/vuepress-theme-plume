@@ -143,6 +143,11 @@ function onCaretClick() {
   transition: background-color var(--vp-t-color);
 }
 
+.vp-sidebar-item.level-1.is-active > .item > .indicator {
+  width: 2px;
+}
+
+.vp-sidebar-item.level-1.is-active > .item > .indicator,
 .vp-sidebar-item.level-2.is-active > .item > .indicator,
 .vp-sidebar-item.level-3.is-active > .item > .indicator,
 .vp-sidebar-item.level-4.is-active > .item > .indicator,
@@ -152,7 +157,7 @@ function onCaretClick() {
 
 .link {
   display: block;
-  flex-grow: 1;
+  flex: 1 2;
 }
 
 .text {

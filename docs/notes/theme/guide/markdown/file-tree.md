@@ -112,13 +112,11 @@ permalink: /guide/markdown/file-tree/
 ```ts
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        fileTree: {
-          icon: 'simple', // 'simple' | 'colored'
-        }
-      },
-    }
+    markdown: {
+      fileTree: {
+        icon: 'simple', // 'simple' | 'colored'
+      }
+    },
   })
 })
 ```

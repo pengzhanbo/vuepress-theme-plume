@@ -232,7 +232,7 @@ pages:
 
 2. 设置 [Environment variables](https://docs.netlify.com/configure-builds/environment-variables) 来选择 Node 版本：
 
-   - `NODE_VERSION`: 18
+   - `NODE_VERSION`: 22
 
 3. 点击 deploy 按钮。
 

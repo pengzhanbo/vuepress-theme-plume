@@ -1,3 +1,23 @@
+# [1.0.0-rc.136](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.135...v1.0.0-rc.136) (2025-03-16)
+
+
+### Bug Fixes
+
+* **theme:** optimize mermaid ([de7b25e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/de7b25ed7c192375edd8fba62206741b5ff0ee35))
+
+
+### Features
+
+* add  title render support for code block ([#522](https://github.com/pengzhanbo/vuepress-theme-plume/issues/522)) ([3d9361e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3d9361e2f1029e33a3b5e6a22c4c3b81d541d490))
+* **plugin-md-power:** cleanup the `env` passed into `renderInline` ([#519](https://github.com/pengzhanbo/vuepress-theme-plume/issues/519)) ([fb08a2d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fb08a2dc10452408e1c908d37923a6c0fa25f4ff))
+
+
+### Performance Improvements
+
+* improve nodejs version support ([#520](https://github.com/pengzhanbo/vuepress-theme-plume/issues/520)) ([5a81b41](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5a81b419c39ee7746965a19816d87a9d2c7f0cd3))
+
+
+
 # [1.0.0-rc.135](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.134...v1.0.0-rc.135) (2025-03-02)
 
 

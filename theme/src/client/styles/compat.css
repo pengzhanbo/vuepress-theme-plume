@@ -16,22 +16,3 @@
 .vp-comment {
   margin-top: 80px;
 }
-
-/* ------------------ Mermaid  ------------------ */
-
-.mermaid-preview {
-  background-color: rgba(0, 0, 0, 0.45);
-}
-
-.mermaid-preview > svg {
-  background-color: var(--vp-c-bg);
-}
-
-@media (min-width: 960px) {
-  .mermaid-preview > svg {
-    padding: 16px 24px;
-    margin: 0 16px;
-    border-radius: 8px;
-    box-shadow: var(--vp-shadow-2);
-  }
-}

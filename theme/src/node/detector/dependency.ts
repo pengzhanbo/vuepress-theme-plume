@@ -3,7 +3,7 @@ import { isEmptyObject, isPlainObject } from '@pengzhanbo/utils'
 import { isPackageExists } from 'local-pkg'
 import { getUserAgent, resolveCommand } from 'package-manager-detector'
 import { colors } from 'vuepress/utils'
-import { logger } from '../utils/index.js'
+import { createTranslate, logger } from '../utils/index.js'
 
 const DEPENDENCIES: Record<string, string[]> = {
   twoslash: ['@vuepress/shiki-twoslash'],
@@ -17,6 +17,17 @@ const DEPENDENCIES: Record<string, string[]> = {
   artPlayer: ['artplayer'],
   mathjax: ['mathjax-full'],
 }
+
+const t = createTranslate({
+  en: {
+    notFoundDeps: 'Enabling features such as {{ features }} requires the installation of the following dependencies: {{ dependencies }}',
+    install: 'Run the command to install:  {{ command }}',
+  },
+  zh: {
+    notFoundDeps: '启用 {{ features }} 等功能需要安装以下依赖: {{ dependencies }}',
+    install: '运行安装命令:  {{ command }}',
+  },
+})
 
 /**
  * 部分功能需要手动安装依赖，
@@ -56,20 +67,19 @@ export function detectDependencies(options: ThemeOptions, plugins: ThemeBuiltinP
   const features = Object.keys(shouldInstall)
   const dependencies = Object.values(shouldInstall).flat()
 
-  logger.warn(`\nEnabling features such as ${
-    features.map(feat => colors.green(feat)).join(', ')
-  } requires the installation of the following dependencies: ${
-    dependencies.map(dep => colors.yellow(dep)).join(', ')
-  }`)
+  logger.error(t('notFoundDeps', {
+    features: features.map(feat => colors.green(feat)).join(', '),
+    dependencies: dependencies.map(dep => colors.magenta(dep)).join(', '),
+  }))
 
   const agent = getUserAgent()
   if (agent) {
     const { command = '', args = [] } = resolveCommand(agent, 'add', dependencies) || {}
 
-    logger.info(`Run the command to install:\n  ${
-      colors.cyan(`${command} ${
+    logger.info(t('install', {
+      command: colors.cyan(`${command} ${
         args.join(' ').replace(DEPENDENCIES.twoslash[0], `${DEPENDENCIES.twoslash[0]}@next`)
-      }`)
-    }`)
+      }`),
+    }))
   }
 }

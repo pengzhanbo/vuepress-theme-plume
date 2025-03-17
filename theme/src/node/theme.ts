@@ -18,10 +18,11 @@ import { createPages, extendsPageData } from './pages/index.js'
 import { setupPlugins } from './plugins/index.js'
 import { prepareData, watchPrepare } from './prepare/index.js'
 import { prepareThemeData } from './prepare/prepareThemeData.js'
-import { perf, resolve, templates, THEME_NAME } from './utils/index.js'
+import { perf, resolve, setTranslateLang, templates, THEME_NAME } from './utils/index.js'
 
 export function plumeTheme(options: ThemeOptions = {}): Theme {
   return (app) => {
+    setTranslateLang(app.options.lang)
     perf.init(app.env.isDebug)
 
     const { configFile, plugins, themeOptions } = detectThemeOptions(options)

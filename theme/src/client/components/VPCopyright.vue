@@ -24,7 +24,7 @@ const {
         {{ author.name }}
       </VPLink>
     </p>
-    <p v-if="sourceUrl">
+    <p v-if="sourceUrl" data-allow-mismatch>
       <span>{{ creationText }}</span>
       <VPLink :href="sourceUrl" class="source" :no-icon="creation === 'original'" data-allow-mismatch>
         {{ decodeURIComponent(sourceUrl) }}

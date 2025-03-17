@@ -93,5 +93,5 @@ export default defineClientConfig({
 ```
 
 ::: tip
-主题提供了 [主题颜色工具](../../tools/custom-theme.md) , 你可以使用它来创建自定义颜色。
+主题提供了 [主题颜色工具](../../../tools/custom-theme.md) , 你可以使用它来创建自定义颜色。
 :::

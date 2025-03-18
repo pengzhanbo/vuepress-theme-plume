@@ -5,5 +5,5 @@ publish = "{{ docsDir }}/.vuepress/dist"
 command = "{{#if (equal packageManager 'yarn')}}yarn && yarn{{else}}{{packageManager}} run{{/if}} docs:build"
 
 [build.environment]
-NODE_VERSION = "20"
+NODE_VERSION = "22"
 NPM_FLAGS = "--version"

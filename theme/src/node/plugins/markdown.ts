@@ -22,10 +22,9 @@ export function markdownPlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfi
   let { hint, image, include, math, mdEnhance, mdPower } = splitMarkdownOptions(options.markdown ?? {})
 
   plugins.push(markdownHintPlugin({
-    hint: true,
-    alert: true,
+    hint: hint.hint ?? true,
+    alert: hint.alert ?? true,
     injectStyles: false,
-    ...hint,
   }))
 
   if (pluginOptions.markdownEnhance !== false) {

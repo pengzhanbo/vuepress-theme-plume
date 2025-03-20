@@ -26,3 +26,7 @@ if (installed.hlsjs) {
 if (installed.mpegtsjs) {
   ART_PLAYER_SUPPORTED_VIDEO_TYPES.push('ts', 'flv')
 }
+
+export const INJECT_TIMELINE_KEY = Symbol(
+  __VUEPRESS_DEV__ ? 'timeline' : '',
+)

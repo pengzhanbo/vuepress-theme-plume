@@ -155,6 +155,12 @@ export default defineUserConfig({
 - **默认值**: `true`
 - **详情**: 是否启用文件树容器语法
 
+### timeline
+
+- **类型**: `boolean`
+- **默认值**: `false`
+- **详情**: 是否启用时间线容器语法
+
 ### demo
 
 - **类型**: `boolean`

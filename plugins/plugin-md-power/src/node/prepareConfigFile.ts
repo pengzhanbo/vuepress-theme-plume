@@ -102,6 +102,13 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('Abbreviation', Abbreviation)`)
   }
 
+  if (options.timeline) {
+    imports.add(`import VPTimeline from '${CLIENT_FOLDER}components/VPTimeline.vue'`)
+    imports.add(`import VPTimelineItem from '${CLIENT_FOLDER}components/VPTimelineItem.vue'`)
+    enhances.add(`app.component('VPTimeline', VPTimeline)`)
+    enhances.add(`app.component('VPTimelineItem', VPTimelineItem)`)
+  }
+
   return app.writeTemp(
     'md-power/config.js',
     `\

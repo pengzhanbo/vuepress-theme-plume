@@ -43,6 +43,7 @@ export const themeGuide = defineNoteConfig({
             'steps',
             'file-tree',
             'tabs',
+            'timeline',
             'demo-wrapper',
             'npm-to',
             'caniuse',

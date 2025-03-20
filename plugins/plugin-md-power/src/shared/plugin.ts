@@ -56,6 +56,20 @@ export interface MarkdownPowerPluginOptions {
    */
   plot?: boolean | PlotOptions
 
+  /**
+   * 是否启用 timeline 语法
+   *
+   * ```md
+   * ::: timeline
+   * - title time="Q1" icon="ri:clockwise-line" line="dashed" type="warning" color="red"
+   *   xxx
+   * :::
+   * ```
+   *
+   * @default false
+   */
+  timeline?: boolean
+
   // video embed
   /**
    * 是否启用 bilibili 视频嵌入

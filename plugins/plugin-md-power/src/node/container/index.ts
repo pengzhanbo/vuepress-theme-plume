@@ -11,6 +11,7 @@ import { langReplPlugin } from './langRepl.js'
 import { npmToPlugins } from './npmTo.js'
 import { stepsPlugin } from './steps.js'
 import { tabs } from './tabs.js'
+import { timelinePlugin } from './timeline.js'
 
 export async function containerPlugin(
   app: App,
@@ -46,4 +47,7 @@ export async function containerPlugin(
     // ::: file-tree
     fileTreePlugin(md, isPlainObject(options.fileTree) ? options.fileTree : {})
   }
+
+  if (options.timeline)
+    timelinePlugin(md)
 }

@@ -58,7 +58,7 @@ __语法:__
 @[pdf](url)
 ```
 
-请查看 [完整使用文档](../../guide/嵌入/pdf.md)
+请查看 [完整使用文档](../../guide/embed/pdf.md)
 
 ### iconify 图标
 
@@ -72,7 +72,7 @@ __语法:__
 :[collect:name]:
 ```
 
-请查看 [完整使用文档](../../guide/markdown/图标.md)
+请查看 [完整使用文档](../../guide/markdown/icons.md)
 
 ### bilibili 视频
 
@@ -84,7 +84,7 @@ __语法:__
 @[bilibili](bvid)
 ```
 
-请查看 [完整使用文档](../../guide/嵌入/bilibili.md)
+请查看 [完整使用文档](../../guide/embed/bilibili.md)
 
 ### youtube 视频
 
@@ -96,7 +96,7 @@ __语法:__
 @[youtube](id)
 ```
 
-请查看 [完整使用文档](../../guide/嵌入/youtube.md)
+请查看 [完整使用文档](../../guide/embed/youtube.md)
 
 ### codePen 代码演示
 
@@ -108,7 +108,7 @@ __语法:__
 @[codepen](user/slash)
 ```
 
-请查看 [完整使用文档](../../guide/代码演示/codepen.md)
+请查看 [完整使用文档](../../guide/repl/codepen.md)
 
 ### codeSandbox 代码演示
 
@@ -120,7 +120,7 @@ __语法:__
 @[codesandbox](id)
 ```
 
-请查看 [完整使用文档](../../guide/代码演示/codeSandbox.md)
+请查看 [完整使用文档](../../guide/repl/codeSandbox.md)
 
 ### jsfiddle 代码演示
 
@@ -132,7 +132,7 @@ __语法:__
 @[jsfiddle](id)
 ```
 
-请查看 [完整使用文档](../../guide/代码演示/jsFiddle.md)
+请查看 [完整使用文档](../../guide/repl/jsFiddle.md)
 
 ### caniuse 浏览器支持
 
@@ -194,9 +194,9 @@ __语法:__
 
 请查看完整使用文档:
 
-- [代码演示 > Rust](../../guide/代码演示/rust.md)
-- [代码演示 > Golang](../../guide/代码演示/golang.md)
-- [代码演示 > Kotlin](../../guide/代码演示/kotlin.md)
+- [代码演示 > Rust](../../guide/repl/rust.md)
+- [代码演示 > Golang](../../guide/repl/golang.md)
+- [代码演示 > Kotlin](../../guide/repl/kotlin.md)
 
 ### Plot 隐秘文本
 
@@ -208,7 +208,7 @@ __语法:__
 !!content!!
 ```
 
-请查看 [完整使用文档](../../guide/markdown/隐秘文本.md)
+请查看 [完整使用文档](../../guide/markdown/plot.md)
 
 ### 文件树
 
@@ -229,7 +229,7 @@ __语法:__
 :::
 ```
 
-请查看 [完整使用文档](../../guide/markdown/文件树.md)
+请查看 [完整使用文档](../../guide/markdown/file-tree.md)
 
 ### 图片尺寸
 

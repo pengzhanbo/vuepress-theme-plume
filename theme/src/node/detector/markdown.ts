@@ -1,7 +1,12 @@
 import type { ThemeOptions } from '../../shared/index.js'
 import { colors } from 'vuepress/utils'
-import { logger } from '../utils/index.js'
+import { createTranslate, logger } from '../utils/index.js'
 import { MARKDOWN_SUPPORT_FIELDS } from './fields.js'
+
+const t = createTranslate({
+  en: { message: '{{ markdown }} unsupported fields: {{ unsupported }}, please check your config.' },
+  zh: { message: '{{ markdown }} 不支持以下字段: {{ unsupported }}, 请检查你的配置。' },
+})
 
 export function detectMarkdown(options: ThemeOptions): void {
   const { markdown } = options
@@ -12,6 +17,9 @@ export function detectMarkdown(options: ThemeOptions): void {
   const unsupported = Object.keys(markdown).filter(key => !MARKDOWN_SUPPORT_FIELDS.includes(key as keyof ThemeOptions['markdown']))
 
   if (unsupported.length) {
-    logger.warn(`\n${colors.green('markdown')} unsupported fields: ${unsupported.map(field => colors.yellow(`"${field}"`)).join(', ')}, please check your config.`)
+    logger.warn(t('message', {
+      markdown: colors.green('markdown'),
+      unsupported: unsupported.map(field => colors.magenta(`"${field}"`)).join(', '),
+    }))
   }
 }

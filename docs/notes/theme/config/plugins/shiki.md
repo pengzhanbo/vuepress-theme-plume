@@ -110,7 +110,7 @@ export default defineUserConfig({
 
 <!-- @include: ../../snippet/whitespace.snippet.md{17-23} -->
 
-### collapseLines
+### collapsedLines
 
 - 类型: `boolean | number`
 - 默认值： `false`

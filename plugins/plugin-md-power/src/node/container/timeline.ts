@@ -1,15 +1,21 @@
 /**
  * ::: timeline
  *
- * - title time="Q1" icon="ri:clockwise-line" line="dashed" type="warning" color="red"
- *   xxx
- * - title time="Q2" icon="ri:clockwise-line" line="dashed" type="warning" color="red"
+ * - title
+ *   time="Q1" icon="ri:clockwise-line" line="dashed" type="warning" color="red"
+ *
+ *   content
+ *
+ * - title
+ *   time="Q2" icon="ri:clockwise-line" line="dashed" type="warning" color="red"
+ *
+ *   content
  * :::
  */
 import type Token from 'markdown-it/lib/token.mjs'
 import type { Markdown } from 'vuepress/markdown'
+import { isEmptyObject } from '@pengzhanbo/utils'
 import { resolveAttrs } from '.././utils/resolveAttrs.js'
-import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { createContainerPlugin } from './createContainer.js'
 
 export interface TimelineAttrs {
@@ -20,7 +26,6 @@ export interface TimelineAttrs {
 }
 
 export interface TimelineItemMeta {
-  title: string
   time?: string
   type?: string
   icon?: string
@@ -54,9 +59,9 @@ export function timelinePlugin(md: Markdown) {
     after: () => '</VPTimeline>',
   })
 
-  md.renderer.rules.timeline_item_open = (tokens, idx, _, env) => {
+  md.renderer.rules.timeline_item_open = (tokens, idx) => {
     const token = tokens[idx]
-    const { title, time, type, icon, color, line, card, placement } = token.meta as TimelineItemMeta
+    const { time, type, icon, color, line, card, placement } = token.meta as TimelineItemMeta
     return `<VPTimelineItem${
       time ? ` time="${time}"` : ''
     }${
@@ -69,12 +74,12 @@ export function timelinePlugin(md: Markdown) {
       card === 'true' ? ' card' : card === 'false' ? '' : ' :card="undefined"'
     }${
       placement ? ` placement="${placement}"` : ''
-    }>
-  <template #title>${md.renderInline(title, cleanMarkdownEnv(env))}</template>
-  ${icon ? `<template #icon><VPIcon name="${icon}"/></template>` : ''}`
+    }>${icon ? `<template #icon><VPIcon name="${icon}"/></template>` : ''}`
   }
 
   md.renderer.rules.timeline_item_close = () => '</VPTimelineItem>'
+  md.renderer.rules.timeline_item_title_open = () => '<template #title>'
+  md.renderer.rules.timeline_item_title_close = () => '</template>'
 }
 
 function parseTimeline(tokens: Token[], index: number) {
@@ -101,20 +106,27 @@ function parseTimeline(tokens: Token[], index: number) {
       // 仅处理根级列表项（层级1）
       if (currentLevel === 1) {
         token.type = 'timeline_item_open'
-        const titleOpenToken = tokens[i + 1]
-        const titleCloseToken = tokens[i + 3]
-        titleOpenToken.hidden = true
-        titleCloseToken.hidden = true
+        tokens[i + 1].type = 'timeline_item_title_open'
+        tokens[i + 3].type = 'timeline_item_title_close'
+
+        // - title
+        //   attrs
+        // 列表项 `-` 后面包括紧跟随的后续行均在 type=inline 的 token 中， 并作为 children
         const inlineToken = tokens[i + 2]
-        const softbreakIndex = inlineToken.children!.findIndex(
+        // 找到最后一个 softbreak，最后一行作为 attrs 进行解析
+        const softbreakIndex = inlineToken.children!.findLastIndex(
           token => token.type === 'softbreak',
         )
-        inlineToken.children = softbreakIndex !== -1
-          ? inlineToken.children!.slice(softbreakIndex)
-          : []
-
-        const content = inlineToken.content.replace(/\n[\s\S]*/, '')
-        token.meta = extractTimelineAttributes(content.trim())
+        if (softbreakIndex !== -1) {
+          const lastToken = inlineToken.children![inlineToken.children!.length - 1]
+          token.meta = extractTimelineAttributes(lastToken.content.trim())
+          if (!isEmptyObject(token.meta)) {
+            inlineToken.children = inlineToken.children!.slice(0, softbreakIndex)
+          }
+        }
+        else {
+          token.meta = {}
+        }
       }
     }
     else if (token.type === 'list_item_close') {
@@ -128,27 +140,22 @@ function parseTimeline(tokens: Token[], index: number) {
 
 export function extractTimelineAttributes(rawText: string): TimelineItemMeta {
   const attrKeys = ['time', 'type', 'icon', 'line', 'color', 'card', 'placement'] as const
-  const attrs: Partial<TimelineItemMeta> = {}
+  const attrs: TimelineItemMeta = {}
   let buffer = rawText.trim()
-  const titleSegments: string[] = []
 
   while (buffer.length) {
     // 匹配属性键 (支持大小写)
     const keyMatch = buffer.match(RE_KEY)
     if (!keyMatch) {
-      titleSegments.push(buffer)
       break
     }
 
     // 提取可能的关键字
     const matchedKey = keyMatch[1].toLowerCase()
     if (!attrKeys.includes(matchedKey as any)) {
-      titleSegments.push(buffer)
       break
     }
     const keyStart = keyMatch.index!
-    // 记录非属性内容为标题
-    titleSegments.push(buffer.slice(0, keyStart).trim())
 
     // 跳过已匹配的 key:
     const keyEnd = keyStart + keyMatch[0].length
@@ -167,8 +174,5 @@ export function extractTimelineAttributes(rawText: string): TimelineItemMeta {
     buffer = buffer.slice(valueEnd)
   }
 
-  return {
-    title: titleSegments.join(' ').trim(),
-    ...attrs,
-  }
+  return attrs
 }

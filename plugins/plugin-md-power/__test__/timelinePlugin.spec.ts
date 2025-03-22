@@ -4,28 +4,24 @@ import { extractTimelineAttributes, timelinePlugin } from '../src/node/container
 
 describe('timeline > extractTimelineAttributes()', () => {
   it('should work', () => {
-    const { title, attrs } = extractTimelineAttributes('这是标题 time=Q1')
-    expect(title).toBe('这是标题')
-    expect(attrs).toEqual({ time: 'Q1' })
+    const meta = extractTimelineAttributes('这是标题 time=Q1')
+    expect(meta).toEqual({ title: '这是标题', time: 'Q1' })
   })
 
   it('should work with multi attrs', () => {
-    const { title, attrs } = extractTimelineAttributes('这是标题 time=Q1 icon=ri:clockwise-line card=true placement=left line=dashed')
-    expect(title).toBe('这是标题')
-    expect(attrs).toEqual({ time: 'Q1', icon: 'ri:clockwise-line', card: 'true', placement: 'left', line: 'dashed' })
+    const meta = extractTimelineAttributes('这是标题 time=Q1 icon=ri:clockwise-line card=true placement=left line=dashed')
+    expect(meta).toEqual({ title: '这是标题', time: 'Q1', icon: 'ri:clockwise-line', card: 'true', placement: 'left', line: 'dashed' })
   })
 
   it('should work with title include space', () => {
-    const { title, attrs } = extractTimelineAttributes('这是标题 这也是标题 time=Q1 icon=ri:clockwise-line card=true placement=left line=dashed')
+    const meta = extractTimelineAttributes('这是标题 这也是标题 time=Q1 icon=ri:clockwise-line card=true placement=left line=dashed')
 
-    expect(title).toBe('这是标题 这也是标题')
-    expect(attrs).toEqual({ time: 'Q1', icon: 'ri:clockwise-line', card: 'true', placement: 'left', line: 'dashed' })
+    expect(meta).toEqual({ title: '这是标题 这也是标题', time: 'Q1', icon: 'ri:clockwise-line', card: 'true', placement: 'left', line: 'dashed' })
   })
 
   it('should work with unknown attr', () => {
-    const { title, attrs } = extractTimelineAttributes('这是标题 time=Q1 unknown=true card=true')
-    expect(title).toBe('这是标题  unknown=true card=true')
-    expect(attrs).toEqual({ time: 'Q1' })
+    const meta = extractTimelineAttributes('这是标题 time=Q1 unknown=true card=true')
+    expect(meta).toEqual({ title: '这是标题  unknown=true card=true', time: 'Q1' })
   })
 })
 
@@ -69,6 +65,10 @@ describe('timeline > timelinePlugin()', () => {
   这是内容
 
 - 这是标题 card=true placement=left
+  这是内容
+
+- 这是标题
+
   这是内容
 :::
 `

@@ -6,6 +6,7 @@
  * - title time="Q2" icon="ri:clockwise-line" line="dashed" type="warning" color="red"
  * :::
  */
+import type Token from 'markdown-it/lib/token.mjs'
 import type { Markdown } from 'vuepress/markdown'
 import { resolveAttrs } from '.././utils/resolveAttrs.js'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
@@ -18,7 +19,8 @@ export interface TimelineAttrs {
   line?: string
 }
 
-export interface TimelineItemAttrs {
+export interface TimelineItemMeta {
+  title: string
   time?: string
   type?: string
   icon?: string
@@ -28,10 +30,6 @@ export interface TimelineItemAttrs {
   placement?: string
 }
 
-export interface TimelineItemMeta extends TimelineItemAttrs {
-  title: string
-}
-
 const RE_KEY = /(\w+)=\s*/
 const RE_SEARCH_KEY = /\s+\w+=\s*|$/
 const RE_CLEAN_VALUE = /(?<quote>["'])(.*?)(\k<quote>)/
@@ -39,50 +37,8 @@ const RE_CLEAN_VALUE = /(?<quote>["'])(.*?)(\k<quote>)/
 export function timelinePlugin(md: Markdown) {
   createContainerPlugin(md, 'timeline', {
     before(info, tokens, index) {
-      const listStack: number[] = [] // 记录列表嵌套深度
+      parseTimeline(tokens, index)
 
-      for (let i = index + 1; i < tokens.length; i++) {
-        const token = tokens[i]
-        if (token.type === 'container_timeline_close') {
-          break
-        }
-        // 列表层级追踪
-        if (token.type === 'bullet_list_open') {
-          listStack.push(0) // 每个新列表初始层级为0
-          if (listStack.length === 1)
-            token.hidden = true
-        }
-        else if (token.type === 'bullet_list_close') {
-          listStack.pop()
-          if (listStack.length === 0)
-            token.hidden = true
-        }
-        else if (token.type === 'list_item_open') {
-          const currentLevel = listStack.length
-          // 仅处理根级列表项（层级1）
-          if (currentLevel === 1) {
-            token.type = 'timeline_item_open'
-            const titleOpenToken = tokens[i + 1]
-            const titleCloseToken = tokens[i + 3]
-            titleOpenToken.hidden = true
-            titleCloseToken.hidden = true
-            const inlineToken = tokens[i + 2]
-            const firstChildToken = inlineToken.children?.shift()
-            const { title, attrs } = extractTimelineAttributes(firstChildToken!.content.trim())
-
-            token.meta = {
-              title,
-              ...attrs,
-            } as TimelineItemMeta
-          }
-        }
-        else if (token.type === 'list_item_close') {
-          const currentLevel = listStack.length
-          if (currentLevel === 1) {
-            token.type = 'timeline_item_close'
-          }
-        }
-      }
       const { attrs } = resolveAttrs<TimelineAttrs>(info)
       const { horizontal, card, placement, line } = attrs
       return `<VPTimeline${
@@ -121,13 +77,58 @@ export function timelinePlugin(md: Markdown) {
   md.renderer.rules.timeline_item_close = () => '</VPTimelineItem>'
 }
 
-// 核心属性扫描器
-export function extractTimelineAttributes(rawText: string): {
-  title: string
-  attrs: TimelineItemAttrs
-} {
+function parseTimeline(tokens: Token[], index: number) {
+  const listStack: number[] = [] // 记录列表嵌套深度
+
+  for (let i = index + 1; i < tokens.length; i++) {
+    const token = tokens[i]
+    if (token.type === 'container_timeline_close') {
+      break
+    }
+    // 列表层级追踪
+    if (token.type === 'bullet_list_open') {
+      listStack.push(0) // 每个新列表初始层级为0
+      if (listStack.length === 1)
+        token.hidden = true
+    }
+    else if (token.type === 'bullet_list_close') {
+      listStack.pop()
+      if (listStack.length === 0)
+        token.hidden = true
+    }
+    else if (token.type === 'list_item_open') {
+      const currentLevel = listStack.length
+      // 仅处理根级列表项（层级1）
+      if (currentLevel === 1) {
+        token.type = 'timeline_item_open'
+        const titleOpenToken = tokens[i + 1]
+        const titleCloseToken = tokens[i + 3]
+        titleOpenToken.hidden = true
+        titleCloseToken.hidden = true
+        const inlineToken = tokens[i + 2]
+        const softbreakIndex = inlineToken.children!.findIndex(
+          token => token.type === 'softbreak',
+        )
+        inlineToken.children = softbreakIndex !== -1
+          ? inlineToken.children!.slice(softbreakIndex)
+          : []
+
+        const content = inlineToken.content.replace(/\n[\s\S]*/, '')
+        token.meta = extractTimelineAttributes(content.trim())
+      }
+    }
+    else if (token.type === 'list_item_close') {
+      const currentLevel = listStack.length
+      if (currentLevel === 1) {
+        token.type = 'timeline_item_close'
+      }
+    }
+  }
+}
+
+export function extractTimelineAttributes(rawText: string): TimelineItemMeta {
   const attrKeys = ['time', 'type', 'icon', 'line', 'color', 'card', 'placement'] as const
-  const attrs: Partial<TimelineItemAttrs> = {}
+  const attrs: Partial<TimelineItemMeta> = {}
   let buffer = rawText.trim()
   const titleSegments: string[] = []
 
@@ -160,7 +161,7 @@ export function extractTimelineAttributes(rawText: string): {
       valueEnd = buffer.length
     const value = buffer.slice(0, valueEnd).trim()
     // 存储属性
-    attrs[matchedKey as keyof TimelineItemAttrs] = value.replace(RE_CLEAN_VALUE, '$2')
+    attrs[matchedKey as keyof TimelineItemMeta] = value.replace(RE_CLEAN_VALUE, '$2')
 
     // 跳过已处理的值
     buffer = buffer.slice(valueEnd)
@@ -168,6 +169,6 @@ export function extractTimelineAttributes(rawText: string): {
 
   return {
     title: titleSegments.join(' ').trim(),
-    attrs,
+    ...attrs,
   }
 }

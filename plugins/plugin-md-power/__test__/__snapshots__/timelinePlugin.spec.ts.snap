@@ -36,5 +36,9 @@ exports[`timeline > timelinePlugin() > should work 1`] = `
 这是内容</VPTimelineItem><VPTimelineItem card placement="left">
   <template #title>这是标题</template>
   
-这是内容</VPTimelineItem></VPTimeline>"
+这是内容</VPTimelineItem><VPTimelineItem :card="undefined">
+  <template #title>这是标题</template>
+  
+<p>这是内容</p>
+</VPTimelineItem></VPTimeline>"
 `;

@@ -37,11 +37,13 @@ export default defineUserConfig({
 
 ```md{1,9} title="timeline.md"
 ::: timeline 配置
-- 标题 配置
+- 标题
+  配置
 
   正文内容
 
-- 标题 配置
+- 标题
+  配置
 
   正文内容
 :::
@@ -49,8 +51,12 @@ export default defineUserConfig({
 
 对于列表的每一个项：
 
-- __第一行__: 从起始位置定义 __标题__，在标题之后跟着 `key=value` 的格式配置时间点的 __属性__。
-- __后续行__: 正文内容，==请注意添加正确的缩进=={.important}。
+- 从 __首行开始__ 到 __首个空行__，均为 __标题__ ，在标题后紧跟随的一行，用于 __配置__ 当前项的行为
+
+- __首个空行之后__: 正文内容
+
+:::important 请注意添加正确的缩进
+:::
 
 __一个简单的例子：__
 
@@ -58,15 +64,18 @@ __输入：__
 
 ```md
 ::: timeline
-- 节点一 time=2025-03-20 type=success
+- 节点一
+  time=2025-03-20 type=success
 
   正文内容
 
-- 节点二 time=2025-02-21 type=warning
+- 节点二
+  time=2025-02-21 type=warning
 
   正文内容
 
-- 节点三 time=2025-01-22 type=danger
+- 节点三
+  time=2025-01-22 type=danger
 
   正文内容
 :::
@@ -76,15 +85,18 @@ __输出：__
 
 ::: timeline
 
-- 节点一 time=2025-03-20 type=success
+- 节点一
+  time=2025-03-20 type=success
 
   正文内容
 
-- 节点二 time=2025-02-21 type=warning
+- 节点二
+  time=2025-02-21 type=warning
 
   正文内容
 
-- 节点三 time=2025-01-22 type=danger
+- 节点三
+  time=2025-01-22 type=danger
 
   正文内容
 :::
@@ -100,9 +112,17 @@ __时间线__ 支持非常灵活且灵活的配置项，配置主要分为两个
 
   `::: timeline horizontal` 表示 渲染为 水平方向的时间线。
 
-- __列表项配置__： 在列表的每一个项上的配置，配置项列表项的第一行，跟随在标题之后，如：
+- __列表项配置__： 列表的每一个项的配置，紧跟随在标题之后的一行，如：
 
-  `- 节点一 time=2025-03-20 type=success` 表示 时间点为 `2025-03-20`，节点类型为 `success`。
+  ```md
+  ::: timeline
+  - 标题                          <!--标题行-->
+    也是标题                      <!--标题行-->
+    time=2025-03-20 type=success  <!--配置跟随在最后的标题行之后的单独一行，可选-->
+                                  <!--空行，有正文时必须-->
+    正文内容
+  :::
+  ```
 
 ### 容器配置
 
@@ -202,13 +222,24 @@ __输入：__
 
 ```md /horizontal/
 ::: timeline horizontal
-- 节点一 time=2025-03-20
+- 节点一
+  time=2025-03-20
+
   正文内容
-- 节点二 time=2025-04-20 type=success
+
+- 节点二
+  time=2025-04-20 type=success
+
   正文内容
-- 节点三 time=2025-01-22 type=danger
+
+- 节点三
+  time=2025-01-22 type=danger
+
   正文内容
-- 节点四 time=2025-01-22 type=important
+
+- 节点四
+  time=2025-01-22 type=important
+
   正文内容
 :::
 ```
@@ -217,15 +248,25 @@ __输出：__
 
 ::: timeline horizontal
 
-- 节点一 time=2025-03-20
-  正文内容
-- 节点二 time=2025-04-20 type=success
-  正文内容
-- 节点三 time=2025-01-22 type=danger
-  正文内容
-- 节点四 time=2025-01-22 type=important
+- 节点一
+  time=2025-03-20
+
   正文内容
 
+- 节点二
+  time=2025-04-20 type=success
+
+  正文内容
+
+- 节点三
+  time=2025-01-22 type=danger
+
+  正文内容
+
+- 节点四
+  time=2025-01-22 type=important
+
+  正文内容
 :::
 
 ### 右对齐
@@ -236,13 +277,24 @@ __输入：__
 
 ```md /placement="right"/
 ::: timeline placement="right"
-- 节点一 time=2025-03-20
+- 节点一
+  time=2025-03-20
+
   正文内容
-- 节点二 time=2025-04-20 type=success
+
+- 节点二
+  time=2025-04-20 type=success
+
   正文内容
-- 节点三 time=2025-01-22 type=danger
+
+- 节点三
+  time=2025-01-22 type=danger
+
   正文内容
-- 节点四 time=2025-01-22 type=important
+
+- 节点四
+  time=2025-01-22 type=important
+
   正文内容
 :::
 ```
@@ -251,13 +303,24 @@ __输出：__
 
 ::: timeline placement="right"
 
-- 节点一 time=2025-03-20
+- 节点一
+  time=2025-03-20
+
   正文内容
-- 节点二 time=2025-04-20 type=success
+
+- 节点二
+  time=2025-04-20 type=success
+
   正文内容
-- 节点三 time=2025-01-22 type=danger
+
+- 节点三
+  time=2025-01-22 type=danger
+
   正文内容
-- 节点四 time=2025-01-22 type=important
+
+- 节点四
+  time=2025-01-22 type=important
+
   正文内容
 :::
 
@@ -271,13 +334,24 @@ __输入：__
 
 ```md /placement="between"/ /placement=right/
 ::: timeline placement="between"
-- 节点一 time=2025-03-20 placement=right
+- 节点一
+  time=2025-03-20 placement=right
+
   正文内容
-- 节点二 time=2025-04-20 type=success
+
+- 节点二
+  time=2025-04-20 type=success
+
   正文内容
-- 节点三 time=2025-01-22 type=danger placement=right
+
+- 节点三
+  time=2025-01-22 type=danger placement=right
+
   正文内容
-- 节点四 time=2025-01-22 type=important
+
+- 节点四
+  time=2025-01-22 type=important
+
   正文内容
 :::
 ```
@@ -286,31 +360,53 @@ __输出：__
 
 ::: timeline placement="between"
 
-- 节点一 time=2025-03-20 placement=right
+- 节点一
+  time=2025-03-20 placement=right
+
   正文内容
-- 节点二 time=2025-04-20 type=success
+
+- 节点二
+  time=2025-04-20 type=success
+
   正文内容
-- 节点三 time=2025-01-22 type=danger placement=right
+
+- 节点三
+  time=2025-01-22 type=danger placement=right
+
   正文内容
-- 节点四 time=2025-01-22 type=important
+
+- 节点四
+  time=2025-01-22 type=important
+
   正文内容
 :::
 
 ### 节点类型
 
-在列表项首行标题之后，添加 `type=节点类型` 可以为当前节点设置节点类型。
+在列表项配置中，添加 `type=节点类型` 可以为当前节点设置节点类型。
 
 __输入：__
 
 ```md /type=success/ /type=warning/ /type=danger/ /type=important/
 ::: timeline
-- 节点一 time=2025-03-20 type=success
+- 节点一
+  time=2025-03-20 type=success
+
   正文内容
-- 节点二 time=2025-04-20 type=warning
+
+- 节点二
+  time=2025-04-20 type=warning
+
   正文内容
-- 节点三 time=2025-01-22 type=danger
+
+- 节点三
+  time=2025-01-22 type=danger
+
   正文内容
-- 节点四 time=2025-01-22 type=important
+
+- 节点四
+  time=2025-01-22 type=important
+
   正文内容
 :::
 ```
@@ -319,32 +415,54 @@ __输出：__
 
 ::: timeline
 
-- 节点一 time=2025-03-20 type=success
+- 节点一
+  time=2025-03-20 type=success
+
   正文内容
-- 节点二 time=2025-04-20 type=warning
+
+- 节点二
+  time=2025-04-20 type=warning
+
   正文内容
-- 节点三 time=2025-01-22 type=danger
+
+- 节点三
+  time=2025-01-22 type=danger
+
   正文内容
-- 节点四 time=2025-01-22 type=important
+
+- 节点四
+  time=2025-01-22 type=important
+
   正文内容
 :::
 
 ### 线条风格
 
 - 在容器配置中添加 `line=线条风格` 可以为所有节点设置默认线条风格。
-- 在列表项首行标题之后，添加 `line=线条风格` 可以为节点设置线条风格。
+- 在列表项配置中，添加 `line=线条风格` 可以为节点设置线条风格。
 
 __输入：__
 
 ```md /line="dotted"/ /line=solid/ /line=dashed/
 ::: timeline line="dotted"
-- 节点一 time=2025-03-20
+- 节点一
+  time=2025-03-20
+
   正文内容
-- 节点二 time=2025-04-20 type=success
+
+- 节点二
+  time=2025-04-20 type=success
+
   正文内容
-- 节点三 time=2025-01-22 type=danger line=dashed
+
+- 节点三
+  time=2025-01-22 type=danger line=dashed
+
   正文内容
-- 节点四 time=2025-01-22 type=important line=solid
+
+- 节点四
+  time=2025-01-22 type=important line=solid
+
   正文内容
 :::
 ```
@@ -353,19 +471,30 @@ __输出：__
 
 ::: timeline line="dotted"
 
-- 节点一 time=2025-03-20
+- 节点一
+  time=2025-03-20
+
   正文内容
-- 节点二 time=2025-04-20 type=success
+
+- 节点二
+  time=2025-04-20 type=success
+
   正文内容
-- 节点三 time=2025-01-22 type=danger line=dashed
+
+- 节点三
+  time=2025-01-22 type=danger line=dashed
+
   正文内容
-- 节点四 time=2025-01-22 type=important line=solid
+
+- 节点四
+  time=2025-01-22 type=important line=solid
+
   正文内容
 :::
 
 ### 带图标的节点
 
-在列表项首行标题之后，添加 `icon=图标名称` 可以为节点添加图标。
+在列表项配置中，添加 `icon=图标名称` 可以为节点添加图标。
 
 图标名称支持 [iconify](https://icon-sets.iconify.design/) 的图标名称。
 
@@ -373,13 +502,24 @@ __输入：__
 
 ```md /icon=mdi:balloon/ /icon=mdi:bookmark/
 ::: timeline placement="between"
-- 节点一 time=2025-03-20 placement=right icon=mdi:balloon
+- 节点一
+  time=2025-03-20 placement=right icon=mdi:balloon
+
   正文内容
-- 节点二 time=2025-04-20 type=success icon=mdi:bookmark
+
+- 节点二
+  time=2025-04-20 type=success icon=mdi:bookmark
+
   正文内容
-- 节点三 time=2025-01-22 type=danger placement=right icon=mdi:bullhorn-variant-outline
+
+- 节点三
+  time=2025-01-22 type=danger placement=right icon=mdi:bullhorn-variant-outline
+
   正文内容
-- 节点四 time=2025-01-22 type=important card=true icon="mdi:cake-variant-outline"
+
+- 节点四
+  time=2025-01-22 type=important card=true icon="mdi:cake-variant-outline"
+
   正文内容
 :::
 ```
@@ -388,13 +528,24 @@ __输出：__
 
 ::: timeline placement="between"
 
-- 节点一 time=2025-03-20 placement=right icon=mdi:balloon
+- 节点一
+  time=2025-03-20 placement=right icon=mdi:balloon
+
   正文内容
-- 节点二 time=2025-04-20 type=success icon=mdi:bookmark
+
+- 节点二
+  time=2025-04-20 type=success icon=mdi:bookmark
+
   正文内容
-- 节点三 time=2025-01-22 type=danger placement=right icon=mdi:bullhorn-variant-outline
+
+- 节点三
+  time=2025-01-22 type=danger placement=right icon=mdi:bullhorn-variant-outline
+
   正文内容
-- 节点四 time=2025-01-22 type=important card=true icon="mdi:cake-variant-outline"
+
+- 节点四
+  time=2025-01-22 type=important card=true icon="mdi:cake-variant-outline"
+
   正文内容
 :::
 
@@ -403,25 +554,36 @@ __输出：__
 卡片节点可以很灵活的进行控制：
 
 - 在 容器配置中添加 `card` 即可使每个列表项都是卡片节点。
-- 在列表项首行标题之后，添加 `card=true` 即可为节点设置为卡片节点。
-- 在列表项首行标题之后，添加 `card=false` 即可为节点设置为非卡片节点。
+- 在列表项配置中，添加 `card=true` 即可为节点设置为卡片节点。
+- 在列表项配置中，添加 `card=false` 即可为节点设置为非卡片节点。
 
 卡片节点的样式会受到 `type` 配置的影响。
 
-::: tip 在列表项首行标题之后添加 `card=true` / `card=false` 可以覆盖容器节点的 `card` 配置
+::: tip 在列表项配置中添加 `card=true` / `card=false` 可以覆盖容器节点的 `card` 配置
 :::
 
 __输入：__
 
 ```md{1} /card=false/
 ::: timeline card
-- 节点一 time=2025-03-20
+- 节点一
+  time=2025-03-20
+
   正文内容
-- 节点二 time=2025-04-20 type=success card=false
+
+- 节点二
+  time=2025-04-20 type=success card=false
+
   正文内容
-- 节点三 time=2025-01-22 type=danger
+
+- 节点三
+  time=2025-01-22 type=danger
+
   正文内容
-- 节点四 time=2025-01-22 type=important
+
+- 节点四
+  time=2025-01-22 type=important
+
   正文内容
 :::
 ```
@@ -430,13 +592,24 @@ __输出：__
 
 ::: timeline card
 
-- 节点一 time=2025-03-20
+- 节点一
+  time=2025-03-20
+
   正文内容
-- 节点二 time=2025-04-20 type=success card=false
+
+- 节点二
+  time=2025-04-20 type=success card=false
+
   正文内容
-- 节点三 time=2025-01-22 type=danger
+
+- 节点三
+  time=2025-01-22 type=danger
+
   正文内容
-- 节点四 time=2025-01-22 type=important
+
+- 节点四
+  time=2025-01-22 type=important
+
   正文内容
 :::
 
@@ -480,22 +653,38 @@ __示例：__
 
 ```md /type=your-type/
 ::: timeline
-- 节点一 time=2025-03-20
+- 节点一
+  time=2025-03-20
+
   正文内容
-- 节点二 time=2025-04-20 type=your-type card=true
+
+- 节点二
+  time=2025-04-20 type=your-type card=true
+
   正文内容
-- 节点三 time=2025-01-22 type=danger
+
+- 节点三
+  time=2025-01-22 type=danger
+
   正文内容
 :::
 ```
 
 ::: timeline
 
-- 节点一 time=2025-03-20
+- 节点一
+  time=2025-03-20
+
   正文内容
-- 节点二 time=2025-04-20 type=your-type card=true
+
+- 节点二
+  time=2025-04-20 type=your-type card=true
+
   正文内容
-- 节点三 time=2025-01-22 type=danger
+
+- 节点三
+  time=2025-01-22 type=danger
+
   正文内容
 :::
 

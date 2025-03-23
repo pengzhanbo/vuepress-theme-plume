@@ -11,7 +11,7 @@ export const themeGuide = defineNoteConfig({
       prefix: 'quick-start',
       items: [
         'intro',
-        'quick-start',
+        'usage',
         'project-structure',
         'write',
         'blog',

@@ -58,6 +58,7 @@ export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
   'repl',
   'replit',
   'timeline',
+  'collapse',
   'youtube',
 ]
 

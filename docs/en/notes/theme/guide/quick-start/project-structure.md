@@ -7,7 +7,7 @@ permalink: /en/guide/project-structure/
 
 This guide will illustrate the file structure of a project created with VuePress and Plume, as well as how to utilize them within your project.
 
-When you [create a project using the command-line tool](./quick-start.md#command-line-installation), its file structure looks like this:
+When you [create a project using the command-line tool](quick-start.md#command-line-installation), its file structure looks like this:
 
 ::: file-tree
 

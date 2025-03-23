@@ -15,7 +15,7 @@ import VPPostItem from 'vuepress-theme-plume/components/Blog/VPPostItem.vue'
 
 ## Overview
 
-By default, the theme will treat all md files in the [documentation source directory](./project-structure.md#documentation-source-directory) as blog posts, except for specific directories (e.g., the `notes` directory, which is used for notes).
+By default, the theme will treat all md files in the [documentation source directory](project-structure.md#documentation-source-directory) as blog posts, except for specific directories (e.g., the `notes` directory, which is used for notes).
 
 The theme will also categorize blog posts based on the directory structure of the md files, using the **directory name** as the **category** of the blog post.
 
@@ -129,7 +129,7 @@ The following are the available `frontmatter` properties in blog posts.
 | coverStyle  | `BlogPostCoverStyle`        | `null`                    | Article cover image style                          |
 | excerpt     | `boolean \| string`         | ''                        | Article excerpt, by default generated via `<!-- more -->` comment, passing a string indicates custom content, and it will no longer be extracted from the main text |
 
-In addition to the above fields, you can also use the fields in the [general frontmatter configuration](../config/frontmatter/basic.md) to flexibly control the behavior of the current page.
+In addition to the above fields, you can also use the fields in the [general frontmatter configuration](../../config/frontmatter/basic.md) to flexibly control the behavior of the current page.
 
 ## Article Excerpt
 
@@ -461,9 +461,9 @@ config:
 
 :::
 
-For more customization configurations, please refer to [Customize the Homepage](./custom-home.md).
+For more customization configurations, please refer to [Customize the Homepage](../custom/custom-home.md).
 
-After using the above two methods to configure the homepage as the blog page, since the theme still generates the blog post list page with the address `/blog/` by default, this results in duplicate functional pages. Therefore, you need to [Theme Configuration > Blog Configuration](../config/basic.md#blog) to **disable the automatic generation of the blog post list page**:
+After using the above two methods to configure the homepage as the blog page, since the theme still generates the blog post list page with the address `/blog/` by default, this results in duplicate functional pages. Therefore, you need to [Theme Configuration > Blog Configuration](../../config/basic.md#blog) to **disable the automatic generation of the blog post list page**:
 
 (You can also modify the link addresses of the category page/tag page/archive page)
 

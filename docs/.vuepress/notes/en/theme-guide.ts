@@ -8,6 +8,7 @@ export const themeGuide = defineNoteConfig({
       text: 'Quick Start',
       collapsed: false,
       icon: 'carbon:idea',
+      prefix: 'quick-start',
       items: [
         'intro',
         'quick-start',
@@ -34,6 +35,7 @@ export const themeGuide = defineNoteConfig({
             'basic',
             'extensions',
             'icons',
+            'mark',
           ],
         },
       ],
@@ -42,8 +44,10 @@ export const themeGuide = defineNoteConfig({
       text: 'Customization',
       icon: 'material-symbols:dashboard-customize-outline-rounded',
       collapsed: false,
+      prefix: 'custom',
       items: [
-        'custom-home',
+        'home',
+        'style',
       ],
     },
   ],

@@ -5,6 +5,7 @@ import { isPlainObject } from '@vuepress/helper'
 import { alignPlugin } from './align.js'
 import { cardPlugin } from './card.js'
 import { codeTabs } from './codeTabs.js'
+import { collapsePlugin } from './collapse.js'
 import { demoWrapperPlugin } from './demoWrapper.js'
 import { fileTreePlugin } from './fileTree.js'
 import { langReplPlugin } from './langRepl.js'
@@ -50,4 +51,7 @@ export async function containerPlugin(
 
   if (options.timeline)
     timelinePlugin(md)
+
+  if (options.collapse)
+    collapsePlugin(md)
 }

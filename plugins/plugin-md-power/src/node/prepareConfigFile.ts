@@ -109,6 +109,13 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('VPTimelineItem', VPTimelineItem)`)
   }
 
+  if (options.collapse) {
+    imports.add(`import VPCollapse from '${CLIENT_FOLDER}components/VPCollapse.vue'`)
+    imports.add(`import VPCollapseItem from '${CLIENT_FOLDER}components/VPCollapseItem.vue'`)
+    enhances.add(`app.component('VPCollapse', VPCollapse)`)
+    enhances.add(`app.component('VPCollapseItem', VPCollapseItem)`)
+  }
+
   return app.writeTemp(
     'md-power/config.js',
     `\

@@ -61,7 +61,9 @@ export interface MarkdownPowerPluginOptions {
    *
    * ```md
    * ::: timeline
-   * - title time="Q1" icon="ri:clockwise-line" line="dashed" type="warning" color="red"
+   * - title
+   *   time="Q1" icon="ri:clockwise-line" line="dashed" type="warning" color="red"
+   *
    *   xxx
    * :::
    * ```
@@ -69,6 +71,25 @@ export interface MarkdownPowerPluginOptions {
    * @default false
    */
   timeline?: boolean
+
+  /**
+   * 是否启用 collapse 折叠面板 语法
+   *
+   * ```md
+   * ::: collapse accordion
+   * - + title
+   *
+   *   content
+   *
+   * - - title
+   *
+   *   content
+   * :::
+   * ```
+   *
+   * @default false
+   */
+  collapse?: boolean
 
   // video embed
   /**

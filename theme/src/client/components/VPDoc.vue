@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import VPDocAside from '@theme/VPDocAside.vue'
 import VPDocBreadcrumbs from '@theme/VPDocBreadcrumbs.vue'
-import VPDocChangelog from '@theme/VPDocChangelog.vue'
-import VPDocContributor from '@theme/VPDocContributor.vue'
 import VPDocCopyright from '@theme/VPDocCopyright.vue'
 import VPDocFooter from '@theme/VPDocFooter.vue'
 import VPDocMeta from '@theme/VPDocMeta.vue'
@@ -12,6 +10,7 @@ import { computed, nextTick, ref, resolveComponent, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
 import {
   useBlogPageData,
+  useContributors,
   useData,
   useEncrypt,
   useHeaders,
@@ -25,6 +24,7 @@ const { hasSidebar, hasAside, leftAside } = useSidebar()
 const { isBlogPost } = useBlogPageData()
 const headers = useHeaders()
 const { isPageDecrypted } = useEncrypt()
+const { mode: contributorsMode } = useContributors()
 
 const hasComments = computed(() => {
   return resolveComponent('CommentService') !== 'CommentService' && page.value.frontmatter.comments !== false && isPageDecrypted.value
@@ -129,8 +129,10 @@ watch(
                 :class="[pageName, enabledExternalLinkIcon && 'external-link-icon-enabled']" vp-content
               >
                 <Content />
-                <VPDocContributor />
-                <VPDocChangelog />
+
+                <DocGitContributors v-if="contributorsMode === 'block'" />
+                <DocGitChangelog />
+
                 <VPDocCopyright />
               </div>
             </main>

@@ -118,7 +118,7 @@ catalogs:
     '@vuepress/plugin-comment': 2.0.0-rc.86
     '@vuepress/plugin-copy-code': 2.0.0-rc.86
     '@vuepress/plugin-docsearch': 2.0.0-rc.86
-    '@vuepress/plugin-git': 2.0.0-rc.79
+    '@vuepress/plugin-git': 2.0.0-rc.87
     '@vuepress/plugin-markdown-hint': 2.0.0-rc.86
     '@vuepress/plugin-markdown-image': 2.0.0-rc.86
     '@vuepress/plugin-markdown-include': 2.0.0-rc.86

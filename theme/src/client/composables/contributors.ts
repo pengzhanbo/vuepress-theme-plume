@@ -1,5 +1,6 @@
 import type { ComputedRef } from 'vue'
 import type { GitContributor } from '../../shared/index.js'
+import { useContributors as _useContributors } from '@vuepress/plugin-git/client'
 import { computed } from 'vue'
 import { isPlainObject } from 'vuepress/shared'
 import { useData } from '../composables/data.js'
@@ -8,8 +9,11 @@ import { useThemeData } from './theme-data.js'
 export function useContributors(): {
   mode: ComputedRef<'inline' | 'block'>
   contributors: ComputedRef<GitContributor[]>
+  hasContributors: ComputedRef<boolean>
 } {
-  const { page, frontmatter } = useData()
+  const { frontmatter } = useData()
+  const list = _useContributors()
+
   const theme = useThemeData()
 
   const mode = computed(() => {
@@ -25,8 +29,10 @@ export function useContributors(): {
     if (config === false)
       return []
 
-    return (page.value.git?.contributors ?? [])
+    return list.value
   })
 
-  return { mode, contributors }
+  const hasContributors = computed(() => contributors.value.length > 0)
+
+  return { mode, contributors, hasContributors }
 }

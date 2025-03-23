@@ -44,4 +44,18 @@ export function globalComponents(app: App) {
     }
     return null
   })
+
+  app.component('DocGitContributors', () => {
+    if (hasGlobalComponent('GitContributors')) {
+      return h(resolveComponent('GitContributors'))
+    }
+    return null
+  })
+
+  app.component('DocGitChangelog', () => {
+    if (hasGlobalComponent('GitChangelog')) {
+      return h(resolveComponent('GitChangelog'))
+    }
+    return null
+  })
 }

@@ -71,5 +71,5 @@ export const theme: Theme = plumeTheme({
     },
   },
 
-  plugins: { git: true },
+  // plugins: { git: true },
 })

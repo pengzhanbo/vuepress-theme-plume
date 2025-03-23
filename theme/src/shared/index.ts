@@ -8,4 +8,8 @@ export type * from './pageData.js'
 export type * from './plugins.js'
 export type * from './resolved/index.js'
 export type * from './utils.js'
-export type { GitChangelog, GitContributor } from '@vuepress/plugin-git'
+
+export type {
+  GitChangelogInfo as GitChangelog,
+  GitContributorInfo as GitContributor,
+} from '@vuepress/plugin-git'

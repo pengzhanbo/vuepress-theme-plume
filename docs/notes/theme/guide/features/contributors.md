@@ -303,7 +303,17 @@ export default defineUserConfig({
 
 类似于 `github actions` 、`Netlify` 、 `Vercel` 等服务，默认是不会拉取全部的提交记录的。
 
-在 `github actions` 中，可以通过添加 `--depth 1` 参数来使得 `github actions` 可以正确获取到所有的提交记录。
+在 `github actions` 中，可以通过添加 `--depth 0` 参数来使得 `github actions` 可以正确获取到所有的提交记录。
+
+``` yaml title=".github/workflows/deploy.yml"
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 # [!code focus:3]
+        with: # [!code ++:2]
+          fetch-depth: 0
+```
 
 在 `Netlify` 、 `Vercel` 等服务中，处理方法则会相对复杂一些。这时候您可以先在 `github actions` 完成构建后
 输出将产物输出到另一个单独的分支，然后在 `Netlify` 或者 `Vercel` 中直接使用该分支进行部署。

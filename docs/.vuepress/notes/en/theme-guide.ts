@@ -33,6 +33,7 @@ export const themeGuide = defineNoteConfig({
           items: [
             'basic',
             'extensions',
+            'icons',
           ],
         },
       ],

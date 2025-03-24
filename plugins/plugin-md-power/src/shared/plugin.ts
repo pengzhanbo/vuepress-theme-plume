@@ -91,6 +91,24 @@ export interface MarkdownPowerPluginOptions {
    */
   collapse?: boolean
 
+  /**
+   * 是否启用 chat 容器 语法
+   *
+   * ```md
+   * ::: chat
+   * {:date}
+   *
+   * {user}
+   * message
+   *
+   * {.}
+   * message
+   * :::
+   * ```
+   * @default false
+   */
+  chat?: boolean
+
   // video embed
   /**
    * 是否启用 bilibili 视频嵌入

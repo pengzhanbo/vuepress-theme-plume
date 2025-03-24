@@ -48,6 +48,7 @@ export const themeGuide = defineNoteConfig({
             'collapse',
             'npm-to',
             'caniuse',
+            'chat',
             'include',
           ],
         },

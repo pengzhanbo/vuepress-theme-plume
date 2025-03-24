@@ -167,6 +167,12 @@ export default defineUserConfig({
 - **默认值**: `false`
 - **详情**: 是否启用折叠面板容器语法
 
+### chat
+
+- **类型**: `boolean`
+- **默认值**: `false`
+- **详情**: 是否启用对话记录容器
+
 ### demo
 
 - **类型**: `boolean`

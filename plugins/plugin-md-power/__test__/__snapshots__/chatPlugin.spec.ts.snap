@@ -1,0 +1,147 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`chatPlugin > should not work 1`] = `
+"<p>::: char
+not work
+:::</p>
+"
+`;
+
+exports[`chatPlugin > should work 1`] = `
+"<div class="vp-chat">
+  <div class="vp-chat-header">
+    <p class="vp-chat-title">用户聊天</p>
+  </div>
+  <div class="vp-chat-content">
+    <div class="vp-chat-date"><span>2025-06-01 12:00:00</span></div>
+<div class="vp-chat-message user">
+      <div class="vp-chat-message-body">      
+<p class="vp-chat-username">用户一</p>
+        <div class="message-content">
+          <p>这是用户一的消息</p>
+        </div>
+      </div>
+    </div>
+<div class="vp-chat-message self">
+      <div class="vp-chat-message-body">      
+        <div class="message-content">
+          <p>这是本人的消息</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;
+
+exports[`chatPlugin > should work multiple date and user 1`] = `
+"<div class="vp-chat">
+  <div class="vp-chat-header">
+    <p class="vp-chat-title">Chat</p>
+  </div>
+  <div class="vp-chat-content">
+    <div class="vp-chat-date"><span>2025-06-01 12:00:00</span></div>
+<div class="vp-chat-message user">
+      <div class="vp-chat-message-body">      
+<p class="vp-chat-username">用户一</p>
+        <div class="message-content">
+          <p>这是用户一的消息</p>
+        </div>
+      </div>
+    </div>
+<div class="vp-chat-message self">
+      <div class="vp-chat-message-body">      
+        <div class="message-content">
+          <p>这是本人的消息</p>
+        </div>
+      </div>
+    </div>
+<div class="vp-chat-message user">
+      <div class="vp-chat-message-body">      
+<p class="vp-chat-username">用户二</p>
+        <div class="message-content">
+          <p>这是用户二的消息</p>
+        </div>
+      </div>
+    </div>
+<div class="vp-chat-message self">
+      <div class="vp-chat-message-body">      
+        <div class="message-content">
+          <p>这是本人的消息</p>
+        </div>
+      </div>
+    </div>
+<div class="vp-chat-date"><span>2025-06-05 12:00:00</span></div>
+<div class="vp-chat-message user">
+      <div class="vp-chat-message-body">      
+<p class="vp-chat-username">用户一</p>
+        <div class="message-content">
+          <p>这是用户一的消息</p>
+        </div>
+      </div>
+    </div>
+<div class="vp-chat-message self">
+      <div class="vp-chat-message-body">      
+        <div class="message-content">
+          <p>这是本人的消息</p>
+        </div>
+      </div>
+    </div>
+<div class="vp-chat-message user">
+      <div class="vp-chat-message-body">      
+<p class="vp-chat-username">用户二</p>
+        <div class="message-content">
+          <p>这是用户二的消息</p>
+        </div>
+      </div>
+    </div>
+<div class="vp-chat-message self">
+      <div class="vp-chat-message-body">      
+        <div class="message-content">
+          <p>这是本人的消息</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;
+
+exports[`chatPlugin > should work multiple users 1`] = `
+"<div class="vp-chat">
+  <div class="vp-chat-header">
+    <p class="vp-chat-title">Chat</p>
+  </div>
+  <div class="vp-chat-content">
+    <div class="vp-chat-date"><span>2025-06-01 12:00:00</span></div>
+<div class="vp-chat-message user">
+      <div class="vp-chat-message-body">      
+<p class="vp-chat-username">用户一</p>
+        <div class="message-content">
+          <p>这是用户一的消息</p>
+        </div>
+      </div>
+    </div>
+<div class="vp-chat-message self">
+      <div class="vp-chat-message-body">      
+        <div class="message-content">
+          <p>这是本人的消息</p>
+        </div>
+      </div>
+    </div>
+<div class="vp-chat-message user">
+      <div class="vp-chat-message-body">      
+<p class="vp-chat-username">用户二</p>
+        <div class="message-content">
+          <p>这是用户二的消息</p>
+        </div>
+      </div>
+    </div>
+<div class="vp-chat-message self">
+      <div class="vp-chat-message-body">      
+        <div class="message-content">
+          <p>这是本人的消息</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;

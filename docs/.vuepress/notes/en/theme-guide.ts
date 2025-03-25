@@ -47,6 +47,7 @@ export const themeGuide = defineNoteConfig({
             'demo-wrapper',
             'npm-to',
             'caniuse',
+            'include',
           ],
         },
       ],

@@ -1,7 +1,7 @@
 {
   "name": "create-vuepress-theme-plume",
   "type": "module",
-  "version": "1.0.0-rc.136",
+  "version": "1.0.0-rc.137",
   "description": "The cli for create vuepress-theme-plume's project",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
@@ -40,7 +40,7 @@
   "plume-deps": {
     "vuepress": "2.0.0-rc.20",
     "vue": "^3.5.13",
-    "sass-embedded": "^1.85.1",
+    "sass-embedded": "^1.86.0",
     "sass-loader": "^16.0.5",
     "http-server": "^14.1.1",
     "typescript": "^5.7.3"

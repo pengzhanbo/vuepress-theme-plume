@@ -161,6 +161,12 @@ export default defineUserConfig({
 - **默认值**: `false`
 - **详情**: 是否启用时间线容器语法
 
+### collapse
+
+- **类型**: `boolean`
+- **默认值**: `false`
+- **详情**: 是否启用折叠面板容器语法
+
 ### demo
 
 - **类型**: `boolean`

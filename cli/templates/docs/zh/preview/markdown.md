@@ -4,15 +4,29 @@ tags:
   - markdown
 ---
 
-## 标题 2
+## 标题H2
 
-### 标题 3
+### 标题H3
 
-#### 标题 4
+#### 标题H4
 
-##### 标题 5
+##### 标题H5
 
-###### 标题 6
+###### 标题H6
+
+## 标题2 Badge <Badge type="tip" text="Badge" />
+
+### 标题3 Badge <Badge type="warning" text="Badge" />
+
+#### 标题4 Badge <Badge type="danger" text="Badge" />
+
+正文内容。
+
+`@property` CSS at-rule是 [CSS Houdini API](https://developer.mozilla.org/zh-CN/docs/Web/Guide/Houdini)
+的一部分，它允许开发者显式地定义他们的 [CSS 自定义属性](https://developer.mozilla.org/zh-CN/docs/Web/CSS/--*),
+允许进行属性类型检查、设定默认值以及定义该自定义属性是否可以被继承。
+
+`@property` 的出现，极大的增强了 CSS 的能力。
 
 加粗：**加粗文字**
 
@@ -65,6 +79,8 @@ H~2~O
 [链接](/)
 
 [外部链接](https://github.com/pengzhanbo)
+
+![plume](/plume.svg)
 
 **Badge：**
 
@@ -121,6 +137,68 @@ const obj = {
 }
 ```
 
+**Code Blocks TwoSlash：**
+
+```ts twoslash
+// @errors: 2339
+const welcome = 'Tudo bem gente?'
+const words = welcome.contains(' ')
+```
+
+```ts twoslash
+import express from 'express'
+const app = express()
+app.get('/', (req, res) => {
+  res.send
+})
+app.listen(3000)
+```
+
+```ts twoslash
+import { createHighlighter } from 'shiki'
+
+const highlighter = await createHighlighter({ themes: ['nord'], langs: ['javascript'] })
+// @log: Custom log message
+const a = 1
+// @error: Custom error message
+const b = 1
+// @warn: Custom warning message
+const c = 1
+// @annotate: Custom annotation message
+```
+
+```ts twoslash
+// @errors: 2540
+interface Todo {
+  title: string
+}
+
+const todo: Readonly<Todo> = {
+  title: 'Delete inactive users'.toUpperCase(),
+//  ^?
+}
+
+todo.title = 'Hello'
+
+Number.parseInt('123', 10)
+//      ^|
+
+//
+//
+```
+
+```vue twoslash
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const count = ref(0)
+</script>
+
+<template>
+  <p>{{ count }}</p>
+</template>
+```
+
 **代码分组：**
 
 ::: code-tabs
@@ -165,6 +243,9 @@ function foo() {
   const a = 1 // [!code focus]
 }
 ```
+
+::: tip 仅标题
+:::
 
 ::: note 注释
 注释内容 [link](https://github.com/pengzhanbo) `inline code`
@@ -230,6 +311,11 @@ const b = 2
 const c = a + b
 ```
 
+:::
+
+::: details 详细标题
+
+这里是内容。
 :::
 
 **GFM alert：**

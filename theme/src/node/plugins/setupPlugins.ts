@@ -114,9 +114,9 @@ export function setupPlugins(
             ...options.contributors === true ? {} : options.contributors,
           }
         : false,
-      changelog: options.changelog && (options.docsRepo || changelogOptions.repoUrl)
+      changelog: options.changelog && options.docsRepo
         ? { repoUrl: options.docsRepo, ...changelogOptions }
-        : false,
+        : options.changelog,
       filter(page) {
         if (page.frontmatter.home || excludes.includes(page.frontmatter.pageLayout as string))
           return false

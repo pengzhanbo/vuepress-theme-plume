@@ -1,21 +1,27 @@
-import type Token from 'markdown-it/lib/token.mjs'
+import type { RenderRule } from 'markdown-it/lib/renderer.mjs'
 import type { Markdown } from 'vuepress/markdown'
 import container from 'markdown-it-container'
 
+type RenderRuleParams = Parameters<RenderRule> extends [...infer Args, infer _] ? Args : never
+
 export interface ContainerOptions {
-  before?: (info: string, tokens: Token[], idx: number) => string
-  after?: (info: string, tokens: Token[], idx: number) => string
+  before?: (info: string, ...args: RenderRuleParams) => string
+  after?: (info: string, ...args: RenderRuleParams) => string
 }
 
-export function createContainerPlugin(md: Markdown, type: string, options: ContainerOptions = {}) {
-  const render = (tokens: Token[], index: number): string => {
+export function createContainerPlugin(
+  md: Markdown,
+  type: string,
+  { before, after }: ContainerOptions = {},
+) {
+  const render: RenderRule = (tokens, index, options, env): string => {
     const token = tokens[index]
     const info = token.info.trim().slice(type.length).trim() || ''
     if (token.nesting === 1) {
-      return options.before?.(info, tokens, index) || `<div class="custom-container ${type}">`
+      return before?.(info, tokens, index, options, env) || `<div class="custom-container ${type}">`
     }
     else {
-      return options.after?.(info, tokens, index) || '</div>'
+      return after?.(info, tokens, index, options, env) || '</div>'
     }
   }
 

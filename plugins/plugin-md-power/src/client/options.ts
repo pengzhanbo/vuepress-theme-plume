@@ -30,3 +30,7 @@ if (installed.mpegtsjs) {
 export const INJECT_TIMELINE_KEY = Symbol(
   __VUEPRESS_DEV__ ? 'timeline' : '',
 )
+
+export const INJECT_COLLAPSE_KEY = Symbol(
+  __VUEPRESS_DEV__ ? 'collapse' : '',
+)

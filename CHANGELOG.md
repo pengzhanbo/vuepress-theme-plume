@@ -1,3 +1,27 @@
+# [1.0.0-rc.137](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.136...v1.0.0-rc.137) (2025-03-23)
+
+
+### Bug Fixes
+
+* **theme:** `copyright` component active mismatch ([#525](https://github.com/pengzhanbo/vuepress-theme-plume/issues/525)) ([de69b22](https://github.com/pengzhanbo/vuepress-theme-plume/commit/de69b22dcc47d934f84efd2abfb2f6e4c4773ded))
+* **theme:** incorrect `markdown.hint` default options ([#530](https://github.com/pengzhanbo/vuepress-theme-plume/issues/530)) ([feb35b4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/feb35b43076125972b3eba9fafcb259e4acfa55b))
+
+
+### Features
+
+* **cli:** update template with deploy `nodejs` version to `22` ([#531](https://github.com/pengzhanbo/vuepress-theme-plume/issues/531)) ([414e4fb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/414e4fb433d158452920de6755ebaef4ad2acc3a))
+* **plugin-md-power:** add `collapse` syntax support ([#535](https://github.com/pengzhanbo/vuepress-theme-plume/issues/535)) ([cca923a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cca923a2351f21b32e4edecbf9ace6c6939eeb43))
+* **plugin-md-power:** add `timeline` syntax support ([#529](https://github.com/pengzhanbo/vuepress-theme-plume/issues/529)) ([5173e7f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5173e7f2ede197ff64aad04c182bfbf9beb32c83))
+* **theme:** improve log output ([#526](https://github.com/pengzhanbo/vuepress-theme-plume/issues/526)) ([e346908](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e34690836b2abf1a796a5376cb147cbc8c1f7b8f))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** improve timeline syntax parsing ([#533](https://github.com/pengzhanbo/vuepress-theme-plume/issues/533)) ([7b8fae2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7b8fae22b1bf906e552ed9001c040cde956c476d))
+* update deps to latest ([8275912](https://github.com/pengzhanbo/vuepress-theme-plume/commit/82759121e6f6c8d06d2912647a15204879f66d0f))
+
+
+
 # [1.0.0-rc.136](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.135...v1.0.0-rc.136) (2025-03-16)
 
 

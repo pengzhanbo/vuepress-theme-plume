@@ -45,6 +45,7 @@ export const themeGuide = defineNoteConfig({
             'tabs',
             'timeline',
             'demo-wrapper',
+            'collapse',
             'npm-to',
             'caniuse',
             'include',

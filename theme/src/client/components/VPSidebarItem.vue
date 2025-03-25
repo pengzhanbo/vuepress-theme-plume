@@ -3,6 +3,7 @@ import type { ResolvedSidebarItem } from '../../shared/index.js'
 import VPIcon from '@theme/VPIcon.vue'
 import VPLink from '@theme/VPLink.vue'
 import { computed } from 'vue'
+import { VPFadeInExpandTransition } from 'vuepress-plugin-md-power/client'
 import { useSidebarControl } from '../composables/index.js'
 
 const props = defineProps<{
@@ -101,16 +102,20 @@ function onCaretClick() {
       </div>
     </div>
 
-    <div v-if="item.items && item.items.length" class="items">
-      <template v-if="depth < 5">
-        <VPSidebarItem
-          v-for="i in item.items"
-          :key="i.text"
-          :item="i"
-          :depth="depth + 1"
-        />
-      </template>
-    </div>
+    <template v-if="item.items && item.items.length && depth < 5">
+      <VPFadeInExpandTransition>
+        <div v-show="!collapsed">
+          <div class="items">
+            <VPSidebarItem
+              v-for="i in item.items"
+              :key="i.text"
+              :item="i"
+              :depth="depth + 1"
+            />
+          </div>
+        </div>
+      </VPFadeInExpandTransition>
+    </template>
   </Component>
 </template>
 
@@ -309,9 +314,5 @@ function onCaretClick() {
   padding-left: 16px;
   border-left: 1px solid var(--vp-c-divider);
   transition: border-left var(--vp-t-color);
-}
-
-.vp-sidebar-item.collapsed .items {
-  display: none;
 }
 </style>

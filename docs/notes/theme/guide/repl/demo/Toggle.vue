@@ -23,7 +23,6 @@ const [value, toggle] = useToggle()
 
 <style scoped>
 .btn {
-  padding: 0 8px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
 }

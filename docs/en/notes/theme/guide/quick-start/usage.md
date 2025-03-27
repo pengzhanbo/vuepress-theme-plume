@@ -2,7 +2,7 @@
 title: Installation/Usage
 icon: grommet-icons:install
 createTime: 2025/03/02 13:28:45
-permalink: /en/guide/quick-start/
+permalink: /en/guide/usage/
 tags:
   - Guide
   - Quick Start

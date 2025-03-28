@@ -77,10 +77,10 @@ blog:
   -
     name: Hoey
     desc: 老师,我太想进步了。
-    logo: https://hoeyzheng.top/avatar.jpg
-    url: https://hoeyzheng.top
+    logo: https://zhenghaoyang.cn/avatar.jpg
+    url: https://zhenghaoyang.cn/
     repo: https://github.com/zhenghaoyang24
-    preview: /images/demos/hoeyzheng.top.jpg
+    preview: https://zhenghaoyang.cn/siteshot.png
   -
     name: IXYZ
     desc: Hi,there

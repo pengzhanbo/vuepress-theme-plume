@@ -103,6 +103,7 @@ catalogs:
     markmap-view: ^0.18.10
     minisearch: ^7.1.2
     nanoid: ^5.1.5
+    os-locale: ^6.0.2
     p-map: ^7.0.3
     package-manager-detector: ^1.1.0
     picocolors: ^1.1.1

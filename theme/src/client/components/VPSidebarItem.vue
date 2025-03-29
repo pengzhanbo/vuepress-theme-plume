@@ -2,9 +2,11 @@
 import type { ResolvedSidebarItem } from '../../shared/index.js'
 import VPIcon from '@theme/VPIcon.vue'
 import VPLink from '@theme/VPLink.vue'
+import { FadeInExpandTransition } from '@vuepress/helper/client'
 import { computed } from 'vue'
-import { VPFadeInExpandTransition } from 'vuepress-plugin-md-power/client'
 import { useSidebarControl } from '../composables/index.js'
+
+import '@vuepress/helper/transition/fade-in-height-expand.css'
 
 const props = defineProps<{
   item: ResolvedSidebarItem
@@ -103,7 +105,7 @@ function onCaretClick() {
     </div>
 
     <template v-if="item.items && item.items.length && depth < 5">
-      <VPFadeInExpandTransition>
+      <FadeInExpandTransition>
         <div v-show="!collapsed">
           <div class="items">
             <VPSidebarItem
@@ -114,7 +116,7 @@ function onCaretClick() {
             />
           </div>
         </div>
-      </VPFadeInExpandTransition>
+      </FadeInExpandTransition>
     </template>
   </Component>
 </template>

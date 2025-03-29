@@ -81,6 +81,7 @@ onUnmounted(() => {
 <template>
   <div ref="editorEl" class="code-repl-editor">
     <slot />
+    <!-- eslint-disable-next-line vue-a11y/form-control-has-label -->
     <textarea ref="textAreaEl" v-model="input" class="code-repl-input" />
   </div>
 </template>

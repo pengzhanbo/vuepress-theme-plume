@@ -32,7 +32,13 @@ watch(show, () => nextTick(() => {
 </script>
 
 <template>
-  <span class="vp-abbr" @mouseenter="show = true" @mouseleave="show = false">
+  <span
+    class="vp-abbr"
+    @mouseenter="show = true"
+    @mouseleave="show = false"
+    @focus="show = true"
+    @blur="show = false"
+  >
     <slot />
     <ClientOnly>
       <Transition name="fade">

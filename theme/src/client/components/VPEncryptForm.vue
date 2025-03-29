@@ -36,16 +36,19 @@ async function onSubmit() {
   <div class="vp-encrypt-form">
     <p class="encrypt-text" v-html="info ?? 'Only Password can access this site'" />
     <p class="encrypt-input-wrapper">
-      <span class="vpi-lock icon-lock" />
-      <input
-        v-model="password"
-        class="encrypt-input"
-        :class="{ error: errorCode === 1 }"
-        type="password"
-        :placeholder="theme.encryptPlaceholder ?? 'Enter Password'"
-        @keyup.enter="onSubmit"
-        @input="password && (errorCode = 0)"
-      >
+      <label for="encrypt-input">
+        <span class="vpi-lock icon-lock" />
+        <input
+          id="encrypt-input"
+          v-model="password"
+          class="encrypt-input"
+          :class="{ error: errorCode === 1 }"
+          type="password"
+          :placeholder="theme.encryptPlaceholder ?? 'Enter Password'"
+          @keyup.enter="onSubmit"
+          @input="password && (errorCode = 0)"
+        >
+      </label>
     </p>
     <button class="encrypt-button" :class="{ unlocking }" @click="onSubmit">
       <span v-if="!unlocking">{{ theme.encryptButtonText ?? 'Confirm' }}</span>

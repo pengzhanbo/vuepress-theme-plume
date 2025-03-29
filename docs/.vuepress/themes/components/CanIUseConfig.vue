@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { shallowRef } from 'vue'
+import { shallowRef, useId } from 'vue'
 import { useCaniuse, useCaniuseFeaturesSearch, useCaniuseVersionSelect } from '../composables/caniuse.js'
 import CodeViewer from './CodeViewer.vue'
 
 const listEl = shallowRef<HTMLUListElement | null>(null)
 const inputEl = shallowRef<HTMLInputElement | null>(null)
+const id = useId()
 
 const { feature, featureList, onSelect, isFocus } = useCaniuseFeaturesSearch(inputEl, listEl)
 const { past, pastList, future, futureList, embedType, embedTypeList } = useCaniuseVersionSelect()
@@ -14,10 +15,11 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
 <template>
   <div class="caniuse-config-wrapper">
     <form>
-      <div class="caniuse-form-item">
-        <label for="feature">选择特性：</label>
+      <label class="caniuse-form-item" :for="`caniuse-feature-input-${id}`">
+        <span>选择特性：</span>
         <div class="feature-input">
           <input
+            :id="`caniuse-feature-input-${id}`"
             ref="inputEl"
             class="feature-input__input"
             type="text"
@@ -29,18 +31,28 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
             <li
               v-for="item in featureList"
               :key="item.value"
-              @click="onSelect(item)"
             >
-              {{ item.label }}
+              <button
+                type="button"
+                class="feature-list-item"
+                @click="onSelect(item)"
+                @keydown.enter="onSelect(item)"
+              >
+                {{ item.label }}
+              </button>
             </li>
           </ul>
         </div>
-      </div>
+      </label>
       <div class="caniuse-form-item">
-        <label for="embedType">嵌入方式：</label>
+        <span>嵌入方式：</span>
         <div class="caniuse-embed-type">
-          <label v-for="item in embedTypeList" :key="item.label">
-            <input v-model="embedType" type="radio" name="embedType" :value="item.value">
+          <label
+            v-for="(item, index) in embedTypeList"
+            :key="item.label"
+            :for="`caniuse-embed-${id}-${index}`"
+          >
+            <input :id="`caniuse-embed-${id}-${index}`" v-model="embedType" type="radio" name="embedType" :value="item.value">
             <span>{{ item.label }}</span>
             <Badge v-if="item.value === 'image'" type="warning" text="不推荐" />
           </label>
@@ -49,17 +61,21 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
       <div v-if="!embedType" class="caniuse-form-item">
         <span>浏览器版本：</span>
         <div class="caniuse-browser-version">
-          <select v-model="past" name="past">
-            <option v-for="item in pastList" :key="item.value" :value="item.value">
-              {{ item.label }}
-            </option>
-          </select>
+          <label :for="`caniuse-past-${id}`">
+            <select :id="`caniuse-past-${id}`" v-model="past" name="past">
+              <option v-for="item in pastList" :key="item.value" :value="item.value">
+                {{ item.label }}
+              </option>
+            </select>
+          </label>
           <span>-</span>
-          <select v-model="future" name="future">
-            <option v-for="item in futureList" :key="item.value" :value="item.value">
-              {{ item.label }}
-            </option>
-          </select>
+          <label :for="`caniuse-future-${id}`">
+            <select :id="`caniuse-future-${id}`" v-model="future" name="future">
+              <option v-for="item in futureList" :key="item.value" :value="item.value">
+                {{ item.label }}
+              </option>
+            </select>
+          </label>
         </div>
       </div>
     </form>
@@ -174,7 +190,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
   display: none;
 }
 
-.caniuse-browser-version select {
+.caniuse-browser-version label {
   flex: 1 2;
   width: 100%;
   padding: 3px 16px;

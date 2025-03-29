@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable-next-line vue-a11y/role-has-required-aria-props -->
   <button class="vp-switch" type="button" role="switch">
     <span class="check">
       <span v-if="$slots.default" class="icon">

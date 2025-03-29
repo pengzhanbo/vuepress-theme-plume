@@ -5,7 +5,7 @@ import type { ReplEditorData, ReplOptions } from '../../shared/index.js'
 import { promises as fs } from 'node:fs'
 import { resolveModule } from 'local-pkg'
 import container from 'markdown-it-container'
-import { path } from 'vuepress/utils'
+import { colors, logger, path } from 'vuepress/utils'
 
 const RE_INFO = /^(#editable)?(.*)$/
 
@@ -48,30 +48,35 @@ export async function langReplPlugin(app: App, md: markdownIt, {
 
   const data: ReplEditorData = { grammars: {} } as ReplEditorData
 
-  const themesPath = path.dirname(resolveModule('tm-themes')!)
-  const grammarsPath = path.dirname(resolveModule('tm-grammars')!)
+  try {
+    const themesPath = path.dirname(resolveModule('tm-themes')!)
+    const grammarsPath = path.dirname(resolveModule('tm-grammars')!)
 
-  const readTheme = (theme: string) => read(path.join(themesPath, 'themes', `${theme}.json`))
-  const readGrammar = (grammar: string) => read(path.join(grammarsPath, 'grammars', `${grammar}.json`))
+    const readTheme = (theme: string) => read(path.join(themesPath, 'themes', `${theme}.json`))
+    const readGrammar = (grammar: string) => read(path.join(grammarsPath, 'grammars', `${grammar}.json`))
 
-  if (typeof theme === 'string') {
-    data.theme = await readTheme(theme)
+    if (typeof theme === 'string') {
+      data.theme = await readTheme(theme)
+    }
+    else {
+      data.theme = await Promise.all([
+        readTheme(theme.light),
+        readTheme(theme.dark),
+      ]).then(([light, dark]) => ({ light, dark }))
+    }
+
+    if (kotlin)
+      data.grammars.kotlin = await readGrammar('kotlin')
+
+    if (go)
+      data.grammars.go = await readGrammar('go')
+
+    if (rust)
+      data.grammars.rust = await readGrammar('rust')
   }
-  else {
-    data.theme = await Promise.all([
-      readTheme(theme.light),
-      readTheme(theme.dark),
-    ]).then(([light, dark]) => ({ light, dark }))
+  catch {
+    logger.error('[vuepress-plugin-md-power]', `Failed to load packages: ${colors.green('tm-themes')}, ${colors.green('tm-grammars')}, Please install them manually.`)
   }
-
-  if (kotlin)
-    data.grammars.kotlin = await readGrammar('kotlin')
-
-  if (go)
-    data.grammars.go = await readGrammar('go')
-
-  if (rust)
-    data.grammars.rust = await readGrammar('rust')
 
   await app.writeTemp(
     'internal/md-power/replEditorData.js',

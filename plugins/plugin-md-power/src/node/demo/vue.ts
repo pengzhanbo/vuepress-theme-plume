@@ -101,7 +101,7 @@ export const vueContainerRender: DemoContainerRender = {
       }
     }
 
-    return `<VPDemoBasic${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
+    return `<VPDemoBasic type="vue"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
     <${componentName} />
     <template #code>\n`
   },

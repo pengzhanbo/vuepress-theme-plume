@@ -2,6 +2,7 @@ import type { Bundler, Langs, PromptResult } from './types.js'
 import { createRequire } from 'node:module'
 import process from 'node:process'
 import { cancel, confirm, group, select, text } from '@clack/prompts'
+import { osLocale } from 'os-locale'
 import { bundlerOptions, deployOptions, DeployType, languageOptions, Mode } from './constants.js'
 import { setLang, t } from './translate.js'
 
@@ -20,6 +21,18 @@ export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
 
   const result: PromptResult = await group({
     displayLang: async () => {
+      const locale = await osLocale()
+
+      if (locale === 'zh-CN' || locale === 'zh-Hans') {
+        setLang('zh-CN')
+        return 'zh-CN'
+      }
+
+      if (locale === 'en-US') {
+        setLang('en-US')
+        return 'en-US'
+      }
+
       const lang = await select<Langs>({
         message: 'Select a language to display / 选择显示语言',
         options: languageOptions,

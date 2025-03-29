@@ -35,6 +35,7 @@
     "cac": "catalog:prod",
     "execa": "catalog:prod",
     "handlebars": "catalog:prod",
+    "os-locale": "catalog:prod",
     "picocolors": "catalog:prod"
   },
   "plume-deps": {

@@ -9,6 +9,7 @@ const config = [
 ]
 
 const clientExternal = [
+  /.*\.vue$/,
   /composables\/.*\.js$/,
   /utils\/.*\.js$/,
   /.*\/options\.js$/,

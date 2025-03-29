@@ -116,6 +116,10 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('VPCollapseItem', VPCollapseItem)`)
   }
 
+  if (options.chat) {
+    imports.add(`import '${CLIENT_FOLDER}styles/chat.css'`)
+  }
+
   return app.writeTemp(
     'md-power/config.js',
     `\

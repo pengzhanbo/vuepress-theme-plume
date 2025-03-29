@@ -37,6 +37,7 @@ const data = useFence(
       <iframe
         :id="`VPDemoNormalDraw${id}`"
         ref="draw"
+        :title="title || 'Demo'"
         class="draw-iframe"
         allow="accelerometer *; bluetooth *; camera *; encrypted-media *; display-capture *; geolocation *; gyroscope *; microphone *; midi *; clipboard-read *; clipboard-write *; web-share *; serial *; xr-spatial-tracking *"
         allowfullscreen="true"

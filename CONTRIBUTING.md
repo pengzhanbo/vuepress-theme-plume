@@ -12,7 +12,6 @@
 在 `plugins` 目录中：
 
 - `plugin-search`: 为主题提供 全文模糊搜索 功能
-- `plugin-shikiji`: 代码高亮插件，支持 highlight、diff、focus、error level
 - `plugin-md-power`: 提供 markdown 增强功能
 
 ## 开发配置

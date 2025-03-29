@@ -78,17 +78,20 @@ const output = computed(() => {
       </DemoWrapper>
     </div>
     <p>
-      <label>
-        <input v-model="isDark" type="checkbox"> 深色模式
+      <label for="tint-plate-is-dark">
+        <input id="tint-plate-is-dark" v-model="isDark" type="checkbox"> 深色模式
       </label>
     </p>
     <div class="mode-content">
-      <div
-        v-for="item in modeList" :key="item.value" class="mode" :class="{ active: mode === item.value }"
+      <button
+        v-for="item in modeList"
+        :key="item.value"
+        class="mode" :class="{ active: mode === item.value }"
+        type="button"
         @click="mode = item.value"
       >
         {{ item.label }}
-      </div>
+      </button>
     </div>
     <div class="tint-plate-">
       <SingleTintPlate v-if="mode === 'single'" v-model="singleTintPlate" />

@@ -8,11 +8,11 @@ tags:
   - Quick Start
 ---
 
-VuePress supports the complete [Markdown syntax](./markdown/basic.md),
+VuePress supports the complete [Markdown syntax](../markdown/basic.md),
 and uses [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f)
 to define frontmatter page metadata, such as title and creation time.
 
-The theme also provides [extensions](./markdown/extensions.md) for Markdown syntax. You can also write HTML directly in
+The theme also provides [extensions](../markdown/extensions.md) for Markdown syntax. You can also write HTML directly in
 Markdown, or use Vue components.
 
 ## Frontmatter
@@ -38,7 +38,7 @@ The page content is after the second `---`.
 ::: details What is frontmatter?
 Frontmatter is a [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) formatted configuration content, placed at the top of the markdown file, separated by `---`.
 
-You can read [this article](../../../4.Tutorials/frontmatter.md) to learn how to write frontmatter correctly.
+You can read [this article](../../../../4.Tutorials/frontmatter.md) to learn how to write frontmatter correctly.
 :::
 
 ## Auto-Generated Frontmatter
@@ -74,16 +74,16 @@ Preparing **permalink** in advance is quite valuable. On one hand, it can help i
 
   For blog articles, the default prefix for permalink is `/article/`, and then a random string of length `8` is generated using [`nanoid`](https://github.com/ai/nanoid) for concatenation as the article's permalink, such as `/article/9eh4d6ao/`.
 
-  The link prefix can also be replaced by modifying [Theme Configuration > article](../config/basic.md#article).
+  The link prefix can also be replaced by modifying [Theme Configuration > article](../../config/basic.md#article).
 
 - **Notes**
 
-  For notes, the theme uses a more flexible custom solution. You can declare different link prefixes for notes in [notes > note.link](../config/notes.md#configuration), and then use [`nanoid`](https://github.com/ai/nanoid) to generate a random string of length `8` for concatenation as the permalink for note articles.
+  For notes, the theme uses a more flexible custom solution. You can declare different link prefixes for notes in [notes > note.link](../../config/notes.md#configuration), and then use [`nanoid`](https://github.com/ai/nanoid) to generate a random string of length `8` for concatenation as the permalink for note articles.
 
 ### Disabling Auto-Generation
 
 You may not want the theme to do extra auto-generation and prefer to have full control. This is completely fine, and the theme supports controlling the behavior of auto-generating frontmatter through configuration.
-You can easily achieve this through [Theme Configuration > autoFrontmatter](../config/basic.md#autofrontmatter).
+You can easily achieve this through [Theme Configuration > autoFrontmatter](../../config/basic.md#autofrontmatter).
 
 ::: code-tabs
 @tab .vuepress/config.ts
@@ -112,7 +112,7 @@ export default defineUserConfig({
 ## Conventions
 
 ::: info Note
-The following content is based on the file structure in [Project Structure](./project-structure.md).
+The following content is based on the file structure in [Project Structure](project-structure.md).
 :::
 
 Writing articles with this theme is very easy. You can create `Markdown` files with any name you like in the `docs` directory according to your personal naming preferences.
@@ -123,7 +123,7 @@ For folder naming in `docs`, the theme has a simple set of conventions.
 
 - The folder name will serve as the `category`, i.e., **category**.
 - Multi-level directories are allowed, and subdirectories will be sub-items of the parent directory's category.
-- If the directory name is declared in [Theme Configuration notes](../config/notes.md) for notes article management, it will not be used as a category directory by default.
+- If the directory name is declared in [Theme Configuration notes](../../config/notes.md) for notes article management, it will not be used as a category directory by default.
 
 Since folder names will serve as category names and are not sorted in theme configuration, for scenarios where sorting is needed, use the following rule for naming:
 
@@ -155,17 +155,17 @@ The theme will generate a category page based on the directory structure.
 - **Blog Articles**
 
   For the names of **blog articles**, the theme has no specific conventions, and you can name them arbitrarily. The default sorting rule for blog articles is based solely on file creation time.
-  You can also use [frontmatter > sticky](../config/frontmatter/article.md#sticky) to configure whether the article is stickied.
+  You can also use [frontmatter > sticky](../../config/frontmatter/article.md#sticky) to configure whether the article is stickied.
 
 - **Notes**
 
   For the names of markdown files in **notes**, the same rules as [Folder Naming Convention](#folder-naming-convention) still apply.
-  This can provide a basis for sorting the [auto-generated sidebar](../config/notes.md#auto-generated-sidebar) for notes.
+  This can provide a basis for sorting the [auto-generated sidebar](../../config/notes.md#auto-generated-sidebar) for notes.
 
 ## Article Writing
 
 You can start writing your own articles by creating Markdown files in `docs` using `markdown` syntax.
-For the supported features of markdown extensions, please refer to [this document](./markdown/extensions.md).
+For the supported features of markdown extensions, please refer to [this document](../markdown/extensions.md).
 
 Since the theme defaults to auto-generating a `title` for the article's `frontmatter`, the main part of the article content should start with `h2`, i.e., `## Secondary Heading`. If you have disabled `autoFrontmatter.title`, you should start with `h1`, i.e., `# Primary Heading`.
 

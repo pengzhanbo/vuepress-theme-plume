@@ -29,6 +29,13 @@ export async function createPackageJson(
         if (packageManager === 'yarn' && version.startsWith('1'))
           version = '4.6.0'
         pkg.packageManager = `${packageManager}@${version}`
+
+        // pnpm@10 should add `onlyBuiltDependencies`
+        if (packageManager === 'pnpm' && version.startsWith('10')) {
+          pkg.pnpm = {
+            onlyBuiltDependencies: ['@parcel/watcher', 'esbuild'],
+          }
+        }
       }
     }
 
@@ -37,7 +44,7 @@ export async function createPackageJson(
       pkg.author = userInfo.username + (userInfo.email ? ` <${userInfo.email}>` : '')
     }
     pkg.license = 'MIT'
-    pkg.engines = { node: '^18.20.0 || >=20.0.0' }
+    pkg.engines = { node: '^18.19.0 || ^20.6.0 || >=22.0.0' }
   }
 
   if (injectNpmScripts) {

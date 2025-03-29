@@ -2,7 +2,7 @@
 title: Installation/Usage
 icon: grommet-icons:install
 createTime: 2025/03/02 13:28:45
-permalink: /en/guide/quick-start/
+permalink: /en/guide/usage/
 tags:
   - Guide
   - Quick Start
@@ -53,7 +53,7 @@ npm create vuepress-theme-plume@latest
 
 After starting the wizard, you only need to answer a few simple questions:
 
-<!-- @include: ../snippet/create.snippet.md ---->
+<!-- @include: ../../snippet/create.snippet.md ---->
 
 ::: details How to use the command line tool?
 

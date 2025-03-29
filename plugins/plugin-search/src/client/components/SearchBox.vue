@@ -311,6 +311,7 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
           @pointerup="onSearchBarClick($event)"
           @submit.prevent=""
         >
+          <!-- eslint-disable vue-a11y/label-has-for -->
           <label
             id="localsearch-label"
             :title="buttonText"

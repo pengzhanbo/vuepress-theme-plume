@@ -28,6 +28,8 @@ function onBlur() {
     class="vp-flyout"
     @mouseenter="open = true"
     @mouseleave="open = false"
+    @focus="open = true"
+    @blur="open = false"
   >
     <button
       type="button"

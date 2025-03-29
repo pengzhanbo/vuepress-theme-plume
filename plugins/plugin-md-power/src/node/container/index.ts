@@ -4,6 +4,7 @@ import type { MarkdownPowerPluginOptions } from '../../shared/index.js'
 import { isPlainObject } from '@vuepress/helper'
 import { alignPlugin } from './align.js'
 import { cardPlugin } from './card.js'
+import { chatPlugin } from './chat.js'
 import { codeTabs } from './codeTabs.js'
 import { collapsePlugin } from './collapse.js'
 import { demoWrapperPlugin } from './demoWrapper.js'
@@ -54,4 +55,7 @@ export async function containerPlugin(
 
   if (options.collapse)
     collapsePlugin(md)
+
+  if (options.chat)
+    chatPlugin(md)
 }

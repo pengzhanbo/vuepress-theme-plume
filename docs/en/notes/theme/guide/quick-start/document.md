@@ -80,7 +80,7 @@ export default defineUserConfig({
 ::: tip
 
 It is recommended to configure the note's directory and link prefix before creating files.
-The theme has enabled [auto-frontmatter](../config/basic.md#autofrontmatter) by default,
+The theme has enabled [auto-frontmatter](../../config/basic.md#autofrontmatter) by default,
 which needs to generate permanent links and sidebars for md files in the directory based on the configuration.
 
 :::
@@ -613,7 +613,7 @@ You may have noticed that there is a `README.md` file in the `typescript` direct
 
 By default, it is no different from ordinary documentation pages because the theme sets `pageLayout: docs` for all pages by default.
 
-But you can directly configure `pageLayout: 'home'`, just like configuring the [site home page](./custom-home.md), to customize a home page for the note!
+But you can directly configure `pageLayout: 'home'`, just like configuring the [site home page](../custom/custom-home.md), to customize a home page for the note!
 
 ::: code-tabs
 @tab typescript/README.md

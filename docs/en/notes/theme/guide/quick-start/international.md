@@ -158,5 +158,5 @@ You should configure `selectLanguageName` for `theme.locales[localePath]` to dis
 
 For more `locales` configuration, please refer to
 
-- [Theme Configuration > Locales Configuration](../config/basic.md#locales-configuration) - Configure the behavior of the theme under different languages.
-- [Theme Configuration > Multilingual Configuration](../config/locales.md) - Configure text related to languages.
+- [Theme Configuration > Locales Configuration](../../config/basic.md#locales-configuration) - Configure the behavior of the theme under different languages.
+- [Theme Configuration > Multilingual Configuration](../../config/locales.md) - Configure text related to languages.

@@ -260,6 +260,9 @@ catalogs:
     nanoid:
       specifier: ^5.1.5
       version: 5.1.5
+    os-locale:
+      specifier: ^6.0.2
+      version: 6.0.2
     p-map:
       specifier: ^7.0.3
       version: 7.0.3
@@ -471,7 +474,7 @@ importers:
         specifier: catalog:prod
         version: 4.7.8
       os-locale:
-        specifier: ^6.0.2
+        specifier: catalog:prod
         version: 6.0.2
       picocolors:
         specifier: catalog:prod

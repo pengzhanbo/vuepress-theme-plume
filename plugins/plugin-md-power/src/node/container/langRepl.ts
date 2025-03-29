@@ -75,6 +75,7 @@ export async function langReplPlugin(app: App, md: markdownIt, {
       data.grammars.rust = await readGrammar('rust')
   }
   catch {
+    /* istanbul ignore next -- @preserve */
     logger.error('[vuepress-plugin-md-power]', `Failed to load packages: ${colors.green('tm-themes')}, ${colors.green('tm-grammars')}, Please install them manually.`)
   }
 

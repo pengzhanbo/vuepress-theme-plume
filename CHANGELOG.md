@@ -1,3 +1,32 @@
+# [1.0.0-rc.138](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.137...v1.0.0-rc.138) (2025-04-01)
+
+
+### Bug Fixes
+
+* **theme:** correct path to theme package ([54233a3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/54233a330f681321f64a9ac277fb95e74882854f))
+* **theme:** remove incorrect `CommentService` warning during dev ([2f9ad84](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2f9ad84553f6f71141e917b7bfa4a051060af914))
+
+
+### Features
+
+* **cli:** add support `pnpm@10` ([#541](https://github.com/pengzhanbo/vuepress-theme-plume/issues/541)) ([9a07a82](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9a07a8226b0d283e4122f7b3665693a7faff5a78))
+* **cli:** preset `lang` base on the  os locale ([#544](https://github.com/pengzhanbo/vuepress-theme-plume/issues/544)) ([3731e37](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3731e376e3557155385c3cc32b328c0f97706ddc))
+* enhance a11y ([#546](https://github.com/pengzhanbo/vuepress-theme-plume/issues/546)) ([b28112e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b28112efc2c1dc277ecc7f5ee68da1bf2ca62064))
+* improve `demo vue` scoped styles ([#542](https://github.com/pengzhanbo/vuepress-theme-plume/issues/542)) ([6fd6c0c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6fd6c0c25008880469d5eda1aa06482a563a4bb8))
+* **plugin-md-power:** add `chat` container syntax support ([#537](https://github.com/pengzhanbo/vuepress-theme-plume/issues/537)) ([6237446](https://github.com/pengzhanbo/vuepress-theme-plume/commit/623744648288ce26c730460c46d4dc0b29c7f7bf))
+* **plugin-md-power:** enable high quality for Bilibili video embed ([15e1a00](https://github.com/pengzhanbo/vuepress-theme-plume/commit/15e1a00eddb239ba88785718c430825a78836d74))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** enhance error handling for theme and grammar loading ([2b74689](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2b746892fcc3dbb40ae7c35a87200c5899ee897e))
+* **plugin-search:** improve style ([320b5f7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/320b5f7336323a5d74a020f8b0c55df21fc71af3))
+* **theme:** improve scroll padding top ([86eefba](https://github.com/pengzhanbo/vuepress-theme-plume/commit/86eefbab9b2d99329b7f2f315bcd39b49bd59850))
+* **theme:** improve sidebar transition animation ([#540](https://github.com/pengzhanbo/vuepress-theme-plume/issues/540)) ([e8860a5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e8860a54ecab6c55d60063c8d69f6d63c6988d15))
+* update deps to latest ([52d0463](https://github.com/pengzhanbo/vuepress-theme-plume/commit/52d04631d97d3d29fed68335e771373284635ce7))
+
+
+
 # [1.0.0-rc.137](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.136...v1.0.0-rc.137) (2025-03-23)
 
 

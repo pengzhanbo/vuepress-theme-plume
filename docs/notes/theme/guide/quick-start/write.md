@@ -86,7 +86,7 @@ __永久链接__ 指的是，文章发布后的 访问地址，这个地址一�
 你可能不想主题做额外的自动生成，希望由自己完全掌控。这完全没问题，主题支持通过配置来控制 自动生成 frontmatter 的行为。
 通过 [主题配置 > autoFrontmatter](../../config/theme.md#autofrontmatter) 即可轻松做到。
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 

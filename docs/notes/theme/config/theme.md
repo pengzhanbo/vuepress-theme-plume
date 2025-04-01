@@ -24,7 +24,7 @@ permalink: /config/theme/
 
 @tab .vuepress/config.ts
 
-```ts
+```ts twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -37,7 +37,7 @@ export default defineUserConfig({
 
 @tab .vuepress/plume.config.ts
 
-```ts
+```ts twoslash
 import { defineThemeConfig } from 'vuepress-theme-plume'
 
 export default defineThemeConfig({

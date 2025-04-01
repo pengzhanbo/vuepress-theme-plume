@@ -16,7 +16,7 @@ permalink: /config/plugins/search/
 
 默认配置：
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -81,7 +81,7 @@ interface SearchBoxLocale {
 
 ### 启用
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 

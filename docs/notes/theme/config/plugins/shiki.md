@@ -30,7 +30,7 @@ Shiki 支持多种编程语言。
 
 默认配置：
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 

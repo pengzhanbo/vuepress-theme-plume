@@ -14,7 +14,11 @@ permalink: /config/notes/
 
 默认配置如下：
 
-```ts
+::: code-tabs#configs
+
+@tab .vuepress/config.ts
+
+```ts twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -24,6 +28,18 @@ export default defineUserConfig({
   })
 })
 ```
+
+@tab .vuepress/plume.config.ts
+
+```ts twoslash
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  notes: { link: '/', dir: 'notes', notes: [] }, // [!code highlight]
+})
+```
+
+:::
 
 如果启用了 多语言配置， 你 也可以在 `locales` 字段中 分别配置 `notes`
 

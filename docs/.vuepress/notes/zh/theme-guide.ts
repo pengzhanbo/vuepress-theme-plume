@@ -60,6 +60,7 @@ export const themeGuide = defineNoteConfig({
           items: [
             'intro',
             'features',
+            'copy-code',
             'code-tabs',
             'import',
             'twoslash',
@@ -118,7 +119,6 @@ export const themeGuide = defineNoteConfig({
       prefix: 'features',
       items: [
         'icon',
-        'copy-code',
         'search',
         'comments',
         'bulletin',

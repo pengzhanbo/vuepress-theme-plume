@@ -21,11 +21,15 @@ permalink: /config/sidebar/
 
 你可以在 `notes` 目录下创建多个 `note` ，在每一个 `note` 中单独配置 `sidebar`:
 
-```ts title=".vuepress/config.ts"
+::: code-tabs#configs
+
+@tab .vuepress/config.ts
+
+```ts twoslash
 import { defineUserConfig } from 'vuepress'
 import { defineNoteConfig, plumeTheme } from 'vuepress-theme-plume'
 
-// [!code ++:9]
+// [!code ++:8]
 const noteA = defineNoteConfig({
   dir: 'note A',
   link: '/note-a/',
@@ -46,6 +50,32 @@ export default defineUserConfig({
 })
 ```
 
+@tab .vuepress/plume.config.ts
+
+```ts twoslash
+import { defineNoteConfig, defineThemeConfig } from 'vuepress-theme-plume'
+
+// [!code ++:8]
+const noteA = defineNoteConfig({
+  dir: 'note A',
+  link: '/note-a/',
+  sidebar: [
+    { text: 'one item', link: 'one' },
+    { text: 'two item', link: 'two' },
+  ]
+})
+
+export default defineThemeConfig({
+  notes: {
+    link: '/',
+    dir: 'notes',
+    notes: [noteA], // [!code ++]
+  },
+})
+```
+
+:::
+
 主题提供了 `defineNoteConfig` 来帮助你配置 note , 你可以参考 [这里](./notes.md)来查看如何配置。
 
 ## 通用 Sidebar 配置
@@ -53,7 +83,11 @@ export default defineUserConfig({
 如果你不想使用 `notes` 的方式来管理系列文章，但又期望通过侧边栏来导航到不同的文章，
 可以通过 [sidebar](../config/theme.md#sidebar) 通用配置来实现。
 
-```ts title=".vuepress/config.ts"
+::: code-tabs#configs
+
+@tab .vuepress/config.ts
+
+```ts twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -69,5 +103,23 @@ export default defineUserConfig({
   })
 })
 ```
+
+@tab .vuepress/plume.config.ts
+
+```ts twoslash
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  notes: false,
+  sidebar: {
+    '/config/': [
+      { text: '侧边栏配置', link: 'sidebar-1' },
+      { text: '侧边栏配置', link: 'sidebar-2' },
+    ]
+  }
+})
+```
+
+:::
 
 完整侧边栏使用说明，请查看 [此文档](../guide/quick-start/document.md) 。

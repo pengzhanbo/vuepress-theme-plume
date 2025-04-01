@@ -36,7 +36,7 @@ VuePress 站点的基本配置文件是 `.vuepress/config.js` ，但也同样支
 
 基础配置文件示例：
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
@@ -64,7 +64,7 @@ export default defineUserConfig({
 
 一般我们使用 `.vuepress/config.js` 或者 `.vuepress/config.ts` 来配置主题。
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -122,7 +122,10 @@ export default defineUserConfig({
     - **plume.config.ts**
 :::
 
-```ts title="plume.config.ts"
+```ts title="plume.config.ts" twoslash
+// @filename: ./navbar.ts
+export default []
+// ---cut---
 import { defineThemeConfig } from 'vuepress-theme-plume'
 import navbar from './navbar'
 
@@ -149,7 +152,7 @@ export default defineThemeConfig({
 如果你不希望按照 VuePress 默认的配置文件路径管理你的主题配置文件，
 你也可以在 VuePress 配置文件中指定自己的主题配置文件路径。
 
-```ts
+```ts title=".vuepress/config.ts" twoslash
 import path from 'node:path'
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'

@@ -42,7 +42,7 @@ tags:
 
 在 `.vuepress/config.ts` 中，声明默认的语言：
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'
 
 export default defineUserConfig({
@@ -65,7 +65,7 @@ export default defineUserConfig({
 
 在 `.vuepress/config.ts` 中配置：
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'
 
 export default defineUserConfig({
@@ -98,9 +98,9 @@ export default defineUserConfig({
 
 `locales` 支持 所有主题配置项。
 
-```ts title=".vuepress/config.ts"
-import { plumeTheme } from '@vuepress-plume/vuepress-theme-plume'
+```ts title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   lang: 'zh-CN',

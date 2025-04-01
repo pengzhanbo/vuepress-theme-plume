@@ -88,7 +88,7 @@ const option = {
 你可以在 [客户端配置文件](https://vuejs.press/zh/guide/configuration.html##使用脚本) 中导入并使用 `defineEchartsConfig` 来自定义 Echarts:
 
 ```ts
-import { defineEchartsConfig } from 'vuepress-theme-plume/client'
+import { defineEchartsConfig } from 'vuepress-plugin-md-enhance/client'
 import { defineClientConfig } from 'vuepress/client'
 
 defineEchartsConfig({

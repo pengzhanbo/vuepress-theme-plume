@@ -94,7 +94,7 @@ export default defineClientConfig({
 
 为 VuePress 配置文件，你需要在这里进行一些必要的配置，比如 主题、插件、构建工具等。
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
@@ -117,7 +117,17 @@ export default defineUserConfig({
 ::: code-tabs
 @tab .vuepress/plume.config.ts
 
-```ts
+```ts twoslash
+// @filename: ./navbar.ts
+export default []
+
+// @filename: ./notes.ts
+export default {
+  dir: '/notes/',
+  link: '/',
+  notes: [],
+}
+// ---cut---
 import { defineThemeConfig } from 'vuepress-theme-plume'
 import navbar from './navbar'
 import notes from './notes'
@@ -135,7 +145,7 @@ export default defineThemeConfig({
 
 @tab .vuepress/navbar.ts
 
-```ts
+```ts twoslash
 import { defineNavbarConfig } from 'vuepress-theme-plume'
 
 export default defineNavbarConfig([
@@ -145,11 +155,13 @@ export default defineNavbarConfig([
 
 @tab .vuepress/notes.ts
 
-```ts
+```ts twoslash
 import { defineNotesConfig } from 'vuepress-theme-plume'
 
 export default defineNotesConfig({
-  // ...
+  dir: '/notes/',
+  link: '/',
+  notes: [],
 })
 ```
 

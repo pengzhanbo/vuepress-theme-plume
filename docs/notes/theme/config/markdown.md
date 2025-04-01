@@ -11,7 +11,7 @@ badge:
 
 Markdown 配置用于控制 Markdown 的行为。此配置聚合了主题为 markdown 增强的各种功能的配置。
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -33,10 +33,13 @@ export default defineUserConfig({
 
 **默认配置：**
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
-    // [!code focus:9]
+    // [!code focus:11]
     markdown: {
       hint: true,
       alert: true,
@@ -44,9 +47,9 @@ export default defineUserConfig({
       plot: true,
       icons: true,
       math: { type: 'katex' },
-      include: true,
-      codeTabs: true,
-      tabs: true,
+      include: {
+        // ...option
+      },
     },
   }),
 })

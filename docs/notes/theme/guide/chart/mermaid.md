@@ -90,7 +90,7 @@ export default defineUserConfig({
 中导入并使用 `defineMermaidConfig` 来自定义 Mermaid 配置:
 
 ```ts
-import { defineMermaidConfig } from 'vuepress-theme-plume/client'
+import { defineMermaidConfig } from 'vuepress-plugin-md-enhance/client'
 import { defineClientConfig } from 'vuepress/client'
 
 defineMermaidConfig({

@@ -38,7 +38,7 @@ tags:
 
 接下来，在配置文件中配置 `notes`：
 
-```js title=".vuepress/config.ts"
+```js title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -91,7 +91,7 @@ export default defineUserConfig({
 
 @tab .vuepress/notes.ts
 
-```ts
+```ts twoslash
 import { defineNoteConfig, defineNotesConfig } from 'vuepress-theme-plume'
 
 /**
@@ -121,7 +121,11 @@ export default defineNotesConfig({
 
 @tab .vuepress/config.ts
 
-```ts
+```ts twoslash
+// @filename: ./notes.ts
+export default {}
+
+// ---cut---
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 import notes from './notes' // [!code ++]
@@ -314,10 +318,7 @@ interface SidebarItem {
 
 当 传入类型为 `string` 时，表示 markdown 文件的路径：
 
-::: code-tabs
-@tab .vuepress/notes.ts
-
-```ts
+```ts title=".vuepress/notes.ts" twoslash
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -334,14 +335,12 @@ const typescript = defineNoteConfig({
 // ... other code
 ```
 
-:::
-
 你也可以省略 `.md` 文件后缀，简写为 `/guide/intro` 。主题会解析 对应的文件，获取 **标题** 和 **页面链接地址**
 并将其转换为 `{ text: string, link: string }` 的数据形式。
 
 当传入类型为 `SidebarItem` 时:
 
-```ts title=".vuepress/notes.ts"
+```ts title=".vuepress/notes.ts" twoslash
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -359,7 +358,7 @@ const typescript = defineNoteConfig({
 
 也可以进行多层嵌套：
 
-```ts title=".vuepress/notes.ts"
+```ts title=".vuepress/notes.ts"  twoslash
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -393,7 +392,7 @@ const typescript = defineNoteConfig({
 
 需要注意的是，`items` 中的链接 仅有 相对路径的链接才会与 `prefix` 拼接，而绝对路径则不进行处理。
 
-```ts title=".vuepress/notes.ts"
+```ts title=".vuepress/notes.ts" twoslash
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -423,7 +422,7 @@ const typescript = defineNoteConfig({
 则会与 上一层的 `prefix` 拼接，再与 当前层级 `items` 内的 `link` 拼接，如果 `prefix` 是绝对路径，则不与
 上一层级 `prefix` 拼接。
 
-```ts title=".vuepress/notes.ts"
+```ts title=".vuepress/notes.ts" twoslash
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -465,7 +464,7 @@ const typescript = defineNoteConfig({
 为侧边栏添加 图标 有助于 侧边栏更好的呈现。得益于 [iconify](https://iconify.design/) 这个强大的开源图标库，
 你可以使用超过 `200k` 的图标，仅需要添加 `icon` 配置即可。
 
-```ts title=".vuepress/notes.ts"
+```ts title=".vuepress/notes.ts" twoslash
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -486,7 +485,7 @@ const typescript = defineNoteConfig({
 
 也可以使用本地图标，或者本地图片：
 
-```ts title=".vuepress/notes.ts"
+```ts title=".vuepress/notes.ts" twoslash
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({
@@ -535,7 +534,7 @@ icon: ep:guide
 在组内对 项 进行分隔 是一个相对小众的需求，它在组的项比较多，但又不适合拆分为多个组，或者组内拆分多组的情况下，
 可能会比较适用，它提供了一个平级的，使用辅助文本颜色显示一个分隔项名 的方式，对项进行简单的分隔。
 
-```ts title=".vuepress/notes.ts"
+```ts title=".vuepress/notes.ts" twoslash
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
 const typescript = defineNoteConfig({

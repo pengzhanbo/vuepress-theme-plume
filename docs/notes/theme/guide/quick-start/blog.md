@@ -22,7 +22,10 @@ tags:
 
 主题默认启用 博客功能，通常您无需进行额外的配置。
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     // 禁用博客功能
@@ -66,7 +69,10 @@ export default defineUserConfig({
 
 你可以通过 `profile` 属性来设置博主头像等相关信息。
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     profile: {
@@ -277,7 +283,10 @@ coverStyle:
 虽然主题支持为每个文章的封面图使用不同的配置，出于整体布局风格的考虑，以及简化配置的目的，
 主题还支持为封面图预设配置：
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
 
@@ -438,7 +447,7 @@ config:
 
 （还可以重新修改 分类页/标签页/归档页的链接地址）
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 

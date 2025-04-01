@@ -159,7 +159,7 @@ cd open-source # 进入 D: 分区下的 open-source 目录
 
 - ### 在 `docs/.vuepress/config.{js,ts}` 中配置主题
 
-  ``` ts title="docs/.vuepress/config.ts"
+  ``` ts title="docs/.vuepress/config.ts" twoslash
   import { viteBundler } from '@vuepress/bundler-vite'
   import { defineUserConfig } from 'vuepress'
   import { plumeTheme } from 'vuepress-theme-plume'

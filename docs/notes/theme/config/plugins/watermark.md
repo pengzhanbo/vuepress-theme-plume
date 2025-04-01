@@ -12,7 +12,7 @@ permalink: /config/watermark/
 
 ## 使用
 
-```ts title=".vuepress/config.ts"
+```ts title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -22,7 +22,6 @@ export default defineUserConfig({
     watermark: {
       // enabled: false,  // boolean 类型控制是否全局启用
       enabled: page => true, // function 类型 过滤哪些页面启用水印
-      delay: 500, // 添加水印的延时。以毫秒为单位。
 
       /**
        * 是否全屏水印，默认为 `true`，
@@ -75,18 +74,6 @@ export default defineUserConfig({
 - 详情：添加水印的父元素选择器。
 
   默认插入到 body 中，可以指定插入到页面的某个元素中。
-
-### delay
-
-- 类型： `number`
-
-- 默认值： `500`
-
-- 详情：添加水印的延时。以毫秒为单位。
-
-  延迟时间取决于页面过渡动画时间，可以根据实际情况调整。
-
-  如果水印的父元素在切换页面时被重新渲染，那么延迟时间应该比页面过渡时间长一些。
 
 ## Frontmatter
 

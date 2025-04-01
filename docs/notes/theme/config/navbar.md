@@ -15,7 +15,11 @@ permalink: /config/navigation/
 
 默认配置如下：
 
-```ts
+::: code-tabs#configs
+
+@tab .vuepress/config.ts
+
+```ts twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
@@ -30,6 +34,23 @@ export default defineUserConfig({
   })
 })
 ```
+
+@tab .vuepress/plume.config.ts
+
+```ts twoslash
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  navbar: [
+    { text: '首页', link: '/' },
+    { text: '博客', link: '/blog/' },
+    { text: '标签', link: '/blog/tags/' },
+    { text: '归档', link: '/blog/archives/' }
+  ]
+})
+```
+
+:::
 
 当开启了 多语言配置，则会生成对应语言的导航栏的默认配置：
 
@@ -186,13 +207,13 @@ export default defineUserConfig({
 
 ## 配置帮助函数
 
-主题提供了 `defineNavbar(config)` 函数，为主题使用者提供导航栏配置的类型帮助。
+主题提供了 `defineNavbarConfig(config)` 函数，为主题使用者提供导航栏配置的类型帮助。
 便于将 `navbar` 配置分离到独立的配置文件中。
 
-```ts title="navbar.ts"
-import { defineNavbar } from 'vuepress-theme-plume'
+```ts title="navbar.ts" twoslash
+import { defineNavbarConfig } from 'vuepress-theme-plume'
 
-export default defineNavbar([
+export default defineNavbarConfig([
   { text: '首页', link: '/' },
   { text: '博客', link: '/blog/' },
   // ... more

@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { FadeInExpandTransition } from '@vuepress/helper/client'
 import { useResizeObserver } from '@vueuse/core'
 import { useTemplateRef, watch } from 'vue'
 import { ClientOnly, onContentUpdated } from 'vuepress/client'
 import { useExpand } from '../composables/demo.js'
 
+import '@vuepress/helper/transition/fade-in-height-expand.css'
 import '../styles/demo.css'
 
 const props = defineProps<{
@@ -69,10 +71,14 @@ if (props.type === 'vue' && !__VUEPRESS_SSR__) {
       </p>
     </div>
     <div class="demo-ctrl">
-      <span class="vpi-demo-code" @click="toggleCode" />
+      <button type="button" aria-label="Toggle Code" @click="toggleCode">
+        <span class="vpi-demo-code" />
+      </button>
     </div>
-    <div v-show="showCode" class="demo-code">
-      <slot name="code" />
-    </div>
+    <FadeInExpandTransition>
+      <div v-show="showCode" class="demo-code">
+        <slot name="code" />
+      </div>
+    </FadeInExpandTransition>
   </div>
 </template>

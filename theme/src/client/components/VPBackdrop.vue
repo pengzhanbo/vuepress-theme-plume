@@ -1,11 +1,13 @@
 <script lang="ts" setup>
+import '@vuepress/helper/transition/fade-in.css'
+
 defineProps<{
   show: boolean
 }>()
 </script>
 
 <template>
-  <Transition name="fade">
+  <Transition name="fade-in">
     <div v-if="show" class="vp-backdrop" />
   </Transition>
 </template>

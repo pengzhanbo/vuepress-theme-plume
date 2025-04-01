@@ -6,6 +6,8 @@ import VPNavScreenTranslates from '@theme/Nav/VPNavScreenTranslations.vue'
 import { useScrollLock } from '@vueuse/core'
 import { inBrowser } from '../../utils/index.js'
 
+import '@vuepress/helper/transition/fade-in.css'
+
 defineProps<{
   open: boolean
 }>()
@@ -15,7 +17,7 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
 
 <template>
   <Transition
-    name="fade"
+    name="fade-in"
     @enter="isLocked = true"
     @after-leave="isLocked = false"
   >

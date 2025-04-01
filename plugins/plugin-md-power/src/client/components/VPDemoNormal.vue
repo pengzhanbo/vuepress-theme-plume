@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import type { DemoConfig } from '../composables/demo.js'
+import { FadeInExpandTransition } from '@vuepress/helper/client'
 import { useTemplateRef } from 'vue'
 import { useExpand, useFence, useNormalDemo, useResources } from '../composables/demo.js'
 
+import '@vuepress/helper/transition/fade-in.css'
+import '@vuepress/helper/transition/fade-in-height-expand.css'
 import '../styles/demo.css'
 
 const props = defineProps<{
@@ -91,7 +94,7 @@ const data = useFence(
       </div>
       <div v-if="resources.length" class="demo-resources">
         <span ref="resourcesEl" class="vpi-demo-resources" title="Resources" aria-label="Resources" @click="toggleResources" />
-        <Transition name="fade">
+        <Transition name="fade-in">
           <div v-show="showResources" class="demo-resources-container">
             <div v-for="{ name, items } in resources" :key="name" class="demo-resources-list">
               <p>{{ name }}</p>
@@ -104,10 +107,14 @@ const data = useFence(
           </div>
         </Transition>
       </div>
-      <span class="vpi-demo-code" @click="toggleCode" />
+      <button type="button" aria-label="Toggle Code" @click="toggleCode">
+        <span class="vpi-demo-code" />
+      </button>
     </div>
-    <div v-show="showCode" ref="fence" class="demo-code">
-      <slot />
-    </div>
+    <FadeInExpandTransition>
+      <div v-show="showCode" ref="fence" class="demo-code">
+        <slot />
+      </div>
+    </FadeInExpandTransition>
   </div>
 </template>

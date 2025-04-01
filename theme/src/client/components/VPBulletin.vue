@@ -2,6 +2,7 @@
 import { hasGlobalComponent } from '@vuepress/helper/client'
 import { resolveComponent } from 'vue'
 import { useBulletinControl } from '../composables/index.js'
+import '@vuepress/helper/transition/fade-in-scale-up.css'
 
 const UserBulletin = hasGlobalComponent('Bulletin') ? resolveComponent('Bulletin') : null
 const UserBulletinContent = hasGlobalComponent('BulletinContent') ? resolveComponent('BulletinContent') : null
@@ -10,25 +11,27 @@ const { bulletin, showBulletin, enableBulletin, close } = useBulletinControl()
 </script>
 
 <template>
-  <component :is="UserBulletin" v-if="UserBulletin && enableBulletin && showBulletin" class="vp-bulletin" />
-  <div
-    v-else-if="bulletin && enableBulletin && showBulletin"
-    class="vp-bulletin preset" :class="{
-      border: bulletin.border ?? true,
-      [bulletin.layout ?? 'top-right']: true,
-    }"
-  >
-    <button type="button" class="close" @click="close">
-      <span class="vpi-close" />
-    </button>
-    <slot name="bulletin-content">
-      <h2 v-if="bulletin.title" v-html="bulletin.title" />
-      <div class="container">
-        <component :is="UserBulletinContent" v-if="UserBulletinContent" class="content vp-doc" />
-        <div v-else-if="bulletin.content" class="content vp-doc" v-html="bulletin.content" />
-      </div>
-    </slot>
-  </div>
+  <Transition name="fade-in-scale-up">
+    <component :is="UserBulletin" v-if="UserBulletin && enableBulletin && showBulletin" class="vp-bulletin" />
+    <div
+      v-else-if="bulletin && enableBulletin && showBulletin"
+      class="vp-bulletin preset" :class="{
+        border: bulletin.border ?? true,
+        [bulletin.layout ?? 'top-right']: true,
+      }"
+    >
+      <button type="button" class="close" @click="close">
+        <span class="vpi-close" />
+      </button>
+      <slot name="bulletin-content">
+        <h2 v-if="bulletin.title" v-html="bulletin.title" />
+        <div class="container">
+          <component :is="UserBulletinContent" v-if="UserBulletinContent" class="content vp-doc" />
+          <div v-else-if="bulletin.content" class="content vp-doc" v-html="bulletin.content" />
+        </div>
+      </slot>
+    </div>
+  </Transition>
 </template>
 
 <style>

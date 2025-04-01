@@ -2,6 +2,8 @@
 import { onClickOutside, useEventListener } from '@vueuse/core'
 import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
 
+import '@vuepress/helper/transition/fade-in.css'
+
 const props = defineProps<{
   label: string
   total: number
@@ -44,10 +46,15 @@ useEventListener('scroll', updatePosition, { passive: true })
 </script>
 
 <template>
-  <span class="vp-annotation ignore-header" :class="{ active, [label]: true }" :aria-label="label">
-    <span ref="button" class="vpi-annotation" @click="active = !active" />
+  <span class="vp-annotation ignore-header" :class="{ active, [label]: true }">
+    <span
+      ref="button"
+      :aria-label="label"
+      class="vpi-annotation"
+      @click="active = !active"
+    />
     <ClientOnly>
-      <Transition name="fade">
+      <Transition name="fade-in">
         <div
           v-show="active" ref="popover"
           class="annotations-popover" :class="{ list: list.length > 1 }"
@@ -73,8 +80,8 @@ useEventListener('scroll', updatePosition, { passive: true })
   position: relative;
   top: -2px;
   z-index: 2;
-  width: 1.2em;
-  height: 1.2em;
+  width: 1.5em;
+  height: 1.5em;
   color: currentcolor;
   cursor: pointer;
   opacity: 0.5;

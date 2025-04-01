@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
+import { FadeInExpandTransition } from '@vuepress/helper/client'
 import { inject, ref, watch } from 'vue'
 import { INJECT_COLLAPSE_KEY } from '../options.js'
-import VPFadeInExpandTransition from './VPFadeInExpandTransition.vue'
+
+import '@vuepress/helper/transition/fade-in-height-expand.css'
 
 const props = defineProps<{
   expand?: boolean
@@ -54,13 +56,13 @@ function toggle() {
         <slot name="title" />
       </p>
     </div>
-    <VPFadeInExpandTransition>
+    <FadeInExpandTransition>
       <div v-show="expand" class="vp-collapse-content">
         <div class="vp-collapse-content-inner">
           <slot />
         </div>
       </div>
-    </VPFadeInExpandTransition>
+    </FadeInExpandTransition>
   </div>
 </template>
 

@@ -177,6 +177,8 @@ export const abbrPlugin: PluginSimple = (md) => {
 
   md.renderer.rules.abbreviation = (tokens, idx, _, env) => {
     const { content, info } = tokens[idx]
-    return `<Abbreviation>${content}${info ? `<template #tooltip>${md.renderInline(info, cleanMarkdownEnv(env))}</template>` : ''}</Abbreviation>`
+    const rendered = md.renderInline(info, cleanMarkdownEnv(env))
+    const label = rendered.replace(/<[^>]*>/g, '')
+    return `<Abbreviation aria-label="${label}">${content}${info ? `<template #tooltip>${rendered}</template>` : ''}</Abbreviation>`
   }
 }

@@ -1,10 +1,26 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
+import { onClickOutside, useMediaQuery, useToggle } from '@vueuse/core'
 import { nextTick, ref, useTemplateRef, watch } from 'vue'
 
-const show = ref(false)
+import '@vuepress/helper/transition/fade-in.css'
+
+const [show, toggle] = useToggle(false)
+
+const el = useTemplateRef<HTMLSpanElement>('el')
 const tooltip = useTemplateRef<HTMLSpanElement>('tooltip')
 const styles = ref<CSSProperties>()
+
+const isMobile = useMediaQuery('(max-width: 768px)')
+const showTooltip = () => toggle(true)
+const hiddenTooltip = () => toggle(false)
+
+onClickOutside(el, () => {
+  if (isMobile.value)
+    hiddenTooltip()
+}, {
+  ignore: [tooltip],
+})
 
 watch(show, () => nextTick(() => {
   if (__VUEPRESS_SSR__)
@@ -33,16 +49,23 @@ watch(show, () => nextTick(() => {
 
 <template>
   <span
+    ref="el"
     class="vp-abbr"
-    @mouseenter="show = true"
-    @mouseleave="show = false"
-    @focus="show = true"
-    @blur="show = false"
+    role="tooltip"
+    tabindex="0"
+    v-bind="isMobile ? {
+      onClick: showTooltip,
+    } : {
+      onMouseenter: showTooltip,
+      onMouseleave: hiddenTooltip,
+      onFocus: showTooltip,
+      onBlur: hiddenTooltip,
+    }"
   >
     <slot />
     <ClientOnly>
-      <Transition name="fade">
-        <span v-show="show" ref="tooltip" class="vp-abbr-tooltip ignore-header" :style="styles">
+      <Transition name="fade-in">
+        <span v-show="show" ref="tooltip" class="vp-abbr-tooltip ignore-header" :style="styles" aria-hidden="true">
           <slot name="tooltip" />
         </span>
       </Transition>

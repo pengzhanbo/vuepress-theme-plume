@@ -96,6 +96,7 @@ catalogs:
     katex: ^0.16.21
     local-pkg: ^1.1.1
     lru-cache: ^11.1.0
+    magic-string: ^0.30.17
     mark.js: ^8.11.1
     markdown-it-container: ^4.0.0
     markmap-lib: ^0.18.11
@@ -110,6 +111,7 @@ catalogs:
     shiki: ^3.2.1
     tm-grammars: ^1.23.7
     tm-themes: ^1.10.3
+    unplugin: ^2.2.2
     vue: ^3.5.13
 
   vuepress:

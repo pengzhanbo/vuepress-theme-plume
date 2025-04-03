@@ -8,7 +8,6 @@ export function transformAssets(code: string, pattern: RegExp, rules: Replacemen
   const s = new MagicString(code)
   let matched: RegExpExecArray | null
   let hasMatched = false
-  const resolvedList: [string, string][] = []
   // eslint-disable-next-line no-cond-assign
   while ((matched = pattern.exec(code))) {
     const assetUrl = matched[6] || matched[5] || matched[4] || matched[3] || matched[2] || matched[1]
@@ -22,7 +21,6 @@ export function transformAssets(code: string, pattern: RegExp, rules: Replacemen
     const end = start + matched[0].length
     const resolved = replacementAssetWithRules(rules, assetUrl)
     if (resolved) {
-      resolvedList.push([assetUrl, resolved])
       hasMatched = true
       s.update(start, end, `${left}${resolved}${right}`)
     }

@@ -4,6 +4,7 @@ import type { ChangelogOptions, ContributorsOptions } from '@vuepress/plugin-git
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
 import type { ShikiPluginOptions } from '@vuepress/plugin-shiki'
 import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
+import type { ReplaceAssetsPluginOptions } from 'vuepress-plugin-replace-assets'
 import type { ThemeBaseData, ThemeData } from './data.js'
 import type {
   AutoFrontmatterOptions,
@@ -125,4 +126,9 @@ export interface ThemeFeatureOptions {
    * 代码复制
    */
   copyCode?: false | CopyCodePluginOptions
+
+  /**
+   * 资源链接替换
+   */
+  replaceAssets?: false | ReplaceAssetsPluginOptions
 }

@@ -832,6 +832,9 @@ importers:
       vuepress-plugin-md-power:
         specifier: workspace:*
         version: link:../plugins/plugin-md-power
+      vuepress-plugin-replace-assets:
+        specifier: workspace:*
+        version: link:../plugins/plugin-replace-assets
     devDependencies:
       '@iconify/json':
         specifier: catalog:peer

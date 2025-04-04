@@ -15,6 +15,7 @@ import { readingTimePlugin } from '@vuepress/plugin-reading-time'
 import { seoPlugin } from '@vuepress/plugin-seo'
 import { sitemapPlugin } from '@vuepress/plugin-sitemap'
 import { watermarkPlugin } from '@vuepress/plugin-watermark'
+import { replaceAssetsPlugin } from 'vuepress-plugin-replace-assets'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { codePlugins } from './code.js'
 import { markdownPlugins } from './markdown.js'
@@ -123,6 +124,14 @@ export function setupPlugins(
         return true
       },
     }))
+  }
+
+  /**
+   * 资源替换
+   */
+  const replaceAssets = options.replaceAssets ?? pluginOptions.replaceAssets
+  if (replaceAssets) {
+    plugins.push(replaceAssetsPlugin(replaceAssets))
   }
 
   /**

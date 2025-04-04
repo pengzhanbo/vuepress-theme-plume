@@ -13,6 +13,8 @@ In the `plugins` directory:
 
 - `plugin-search`: Provides full-text fuzzy search functionality for the theme.
 - `plugin-md-power`: Provides enhanced markdown features.
+- `plugin-replace-assets`: Provides resource link replacement functionality
+- `plugin-fonts`: Provides special character font support
 
 ## Development Configuration
 

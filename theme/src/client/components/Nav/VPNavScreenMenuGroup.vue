@@ -3,7 +3,10 @@ import type { ThemeIcon } from '../../../shared/index.js'
 import VPNavScreenMenuGroupLink from '@theme/Nav/VPNavScreenMenuGroupLink.vue'
 import VPNavScreenMenuGroupSection from '@theme/Nav/VPNavScreenMenuGroupSection.vue'
 import VPIcon from '@theme/VPIcon.vue'
+import { FadeInExpandTransition } from '@vuepress/helper/client'
 import { computed, ref } from 'vue'
+
+import '@vuepress/helper/transition/fade-in-height-expand.css'
 
 const props = defineProps<{
   text: string
@@ -37,42 +40,37 @@ function toggle() {
       <span class="vpi-plus button-icon" />
     </button>
 
-    <div :id="groupId" class="items">
-      <template v-for="item in items" :key="item.text">
-        <div v-if="'link' in item" :key="item.text" class="item">
-          <VPNavScreenMenuGroupLink :item="item" />
-        </div>
+    <FadeInExpandTransition>
+      <div v-show="isOpen" :id="groupId" class="vp-nav-screen-menu-group-container">
+        <div class="items">
+          <template v-for="item in items" :key="item.text">
+            <div v-if="'link' in item" :key="item.text" class="item">
+              <VPNavScreenMenuGroupLink :item="item" />
+            </div>
 
-        <div v-else class="group">
-          <VPNavScreenMenuGroupSection
-            :text="item.text"
-            :items="item.items"
-            :icon="item.icon"
-          />
+            <div v-else class="group">
+              <VPNavScreenMenuGroupSection
+                :text="item.text"
+                :items="item.items"
+                :icon="item.icon"
+              />
+            </div>
+          </template>
         </div>
-      </template>
-    </div>
+      </div>
+    </FadeInExpandTransition>
   </div>
 </template>
 
 <style scoped>
 .vp-nav-screen-menu-group {
-  height: 48px;
-  overflow: hidden;
+  min-height: 48px;
   border-bottom: 1px solid var(--vp-c-divider);
   transition: border-color var(--vp-t-color);
 }
 
 .vp-nav-screen-menu-group .items {
-  visibility: hidden;
-}
-
-.vp-nav-screen-menu-group.open .items {
-  visibility: visible;
-}
-
-.vp-nav-screen-menu-group.open {
-  height: auto;
+  padding-top: 6px;
   padding-bottom: 10px;
 }
 
@@ -94,7 +92,6 @@ function toggle() {
 }
 
 .vp-nav-screen-menu-group.open .button {
-  padding-bottom: 6px;
   color: var(--vp-c-brand-1);
 }
 

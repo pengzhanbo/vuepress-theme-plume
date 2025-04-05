@@ -40,7 +40,7 @@ export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
       notationWordHighlight: true,
       highlightLines: true,
       collapsedLines: false,
-      langs: uniq([...twoslash ? ['ts', 'js', 'vue', 'json'] : [], ...langs]),
+      langs: uniq([...twoslash ? ['ts', 'js', 'vue', 'json', 'bash', 'sh'] : [], ...langs]),
       codeBlockTitle: (title, code) => {
         const icon = getIcon(title)
         return `<div class="code-block-title"><div class="code-block-title-bar"><span class="title">${icon ? `<VPIcon name="${icon}"/>` : ''}${title}</span></div>${code}</div>`

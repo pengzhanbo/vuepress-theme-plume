@@ -22,7 +22,7 @@ export function detectVersions(app: App) {
 
 interface DepVersion {
   name: string
-  experted: string
+  expected: string
   current: string
 }
 
@@ -56,7 +56,7 @@ function detectVuepressVersion() {
     for (const [name, version] of Object.entries(deps)) {
       const resolved = resolveVersion(version)
       if (resolved && vuepressDeps[name] && vuepressDeps[name] !== resolved)
-        results.push({ name, experted: vuepressDeps[name], current: version as string })
+        results.push({ name, expected: vuepressDeps[name], current: version as string })
     }
     return results
   }
@@ -67,7 +67,7 @@ function detectVuepressVersion() {
   if (devResults.length || prodResults.length) {
     const output = (deps: DepVersion[]) => deps
       .map(dep =>
-        `  ${colors.green(dep.name)}: ${colors.gray(dep.current)} -> ${colors.cyan(dep.experted)}`)
+        `  ${colors.green(dep.name)}: ${colors.gray(dep.current)} -> ${colors.cyan(dep.expected)}`)
       .join('  \n')
 
     logger.warn(`${t('title')}

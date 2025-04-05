@@ -29,7 +29,7 @@ describe('plugin-replace-assets > normalizeRules', () => {
     }])
   })
 
-  it('should work width single rule', () => {
+  it('should work with single rule', () => {
     const rules = normalizeRules({
       find: '^/images/.*\.(jpe?g|png|gif|svg)$',
       replacement: 'https://example.com/images/',

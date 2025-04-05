@@ -153,6 +153,17 @@ export default defineThemeConfig({
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
 
+### replaceAssets <Badge type="tip" text="1.0.0-rc.139 +" />
+
+- **类型：** `false | ReplaceAssetsPluginOptions`
+- **默认值：** `false`
+- **详情：**
+
+  替换资源配置， 参考 [此文档](../guide/features/replace-assets.md)
+
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  :::
+
 ### hostname
 
 - **类型：** `string`

@@ -135,7 +135,8 @@
     "package-manager-detector": "catalog:prod",
     "vue": "catalog:prod",
     "vuepress-plugin-md-enhance": "catalog:vuepress",
-    "vuepress-plugin-md-power": "workspace:*"
+    "vuepress-plugin-md-power": "workspace:*",
+    "vuepress-plugin-replace-assets": "workspace:*"
   },
   "devDependencies": {
     "@iconify/json": "catalog:peer",

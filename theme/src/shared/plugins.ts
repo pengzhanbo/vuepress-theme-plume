@@ -13,6 +13,7 @@ import type { SitemapPluginOptions } from '@vuepress/plugin-sitemap'
 import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
 import type { MarkdownEnhancePluginOptions } from 'vuepress-plugin-md-enhance'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
+import type { ReplaceAssetsPluginOptions } from 'vuepress-plugin-replace-assets'
 
 export interface ThemeBuiltinPlugins {
   /**
@@ -118,4 +119,9 @@ export interface ThemeBuiltinPlugins {
    * 是否开启 水印
    */
   watermark?: boolean | (WatermarkPluginOptions & { fullPage?: boolean })
+
+  /**
+   * 资源链接替换
+   */
+  replaceAssets?: false | ReplaceAssetsPluginOptions
 }

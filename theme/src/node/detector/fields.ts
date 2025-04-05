@@ -21,6 +21,7 @@ export const PLUGINS_SUPPORTED_FIELDS: (keyof ThemeBuiltinPlugins)[] = [
   'cache',
   'readingTime',
   'watermark',
+  'replaceAssets',
 ]
 
 export const MARKDOWN_ENHANCE_FIELDS: (keyof MarkdownEnhancePluginOptions)[] = [

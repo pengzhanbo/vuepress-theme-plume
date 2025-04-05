@@ -128,6 +128,7 @@ export const themeGuide = defineNoteConfig({
         'copyright',
         'watermark',
         'friend-links',
+        'replace-assets',
         'seo',
         'sitemap',
       ],

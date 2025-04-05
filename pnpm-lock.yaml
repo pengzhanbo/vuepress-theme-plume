@@ -239,6 +239,9 @@ catalogs:
     lru-cache:
       specifier: ^11.1.0
       version: 11.1.0
+    magic-string:
+      specifier: ^0.30.17
+      version: 0.30.17
     mark.js:
       specifier: ^8.11.1
       version: 8.11.1
@@ -281,6 +284,9 @@ catalogs:
     tm-themes:
       specifier: ^1.10.3
       version: 1.10.3
+    unplugin:
+      specifier: ^2.2.2
+      version: 2.2.2
     vue:
       specifier: ^3.5.13
       version: 3.5.13
@@ -644,6 +650,21 @@ importers:
         specifier: catalog:peer
         version: 1.7.3
 
+  plugins/plugin-replace-assets:
+    dependencies:
+      '@vuepress/helper':
+        specifier: catalog:vuepress
+        version: 2.0.0-rc.91(typescript@5.8.2)(vuepress@2.0.0-rc.20(@vuepress/bundler-vite@2.0.0-rc.20(@types/node@22.13.15)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.86.1)(sass@1.86.1)(stylus@0.64.0)(typescript@5.8.2)(yaml@2.7.0))(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
+      magic-string:
+        specifier: catalog:prod
+        version: 0.30.17
+      unplugin:
+        specifier: catalog:prod
+        version: 2.2.2
+      vuepress:
+        specifier: catalog:vuepress
+        version: 2.0.0-rc.20(@vuepress/bundler-vite@2.0.0-rc.20(@types/node@22.13.15)(jiti@2.4.2)(less@4.2.2)(sass-embedded@1.86.1)(sass@1.86.1)(stylus@0.64.0)(typescript@5.8.2)(yaml@2.7.0))(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+
   plugins/plugin-search:
     dependencies:
       '@vuepress/helper':
@@ -811,6 +832,9 @@ importers:
       vuepress-plugin-md-power:
         specifier: workspace:*
         version: link:../plugins/plugin-md-power
+      vuepress-plugin-replace-assets:
+        specifier: workspace:*
+        version: link:../plugins/plugin-replace-assets
     devDependencies:
       '@iconify/json':
         specifier: catalog:peer
@@ -2828,6 +2852,11 @@ packages:
 
   acorn@8.14.0:
     resolution: {integrity: sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
+  acorn@8.14.1:
+    resolution: {integrity: sha512-OvQ/2pUDKmgfCg++xsTX1wGxfTaszcHVcTctW4UJB4hibJx2HXxxO5UmVgyjMa+ZDsiaf5wWLXYpRWMmBI0QHg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -6533,6 +6562,10 @@ packages:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
     engines: {node: '>= 10.0.0'}
 
+  unplugin@2.2.2:
+    resolution: {integrity: sha512-Qp+iiD+qCRnUek+nDoYvtWX7tfnYyXsrOnJ452FRTgOyKmTM7TUJ3l+PLPJOOWPTUyKISKp4isC5JJPSXUjGgw==}
+    engines: {node: '>=18.12.0'}
+
   unrs-resolver@1.3.2:
     resolution: {integrity: sha512-ZKQBC351Ubw0PY8xWhneIfb6dygTQeUHtCcNGd0QB618zabD/WbFMYdRyJ7xeVT+6G82K5v/oyZO0QSHFtbIuw==}
 
@@ -6773,6 +6806,9 @@ packages:
 
   webidl-conversions@4.0.2:
     resolution: {integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==}
+
+  webpack-virtual-modules@0.6.2:
+    resolution: {integrity: sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==}
 
   webworkify-webpack@2.1.5:
     resolution: {integrity: sha512-2akF8FIyUvbiBBdD+RoHpoTbHMQF2HwjcxfDvgztAX5YwbZNyrtfUMgvfgFVsgDhDPVTlkbb5vyasqDHfIDPQw==}
@@ -9145,6 +9181,8 @@ snapshots:
       acorn: 8.14.0
 
   acorn@8.14.0: {}
+
+  acorn@8.14.1: {}
 
   add-stream@1.0.0: {}
 
@@ -13210,6 +13248,11 @@ snapshots:
 
   universalify@2.0.1: {}
 
+  unplugin@2.2.2:
+    dependencies:
+      acorn: 8.14.1
+      webpack-virtual-modules: 0.6.2
+
   unrs-resolver@1.3.2:
     optionalDependencies:
       '@unrs/resolver-binding-darwin-arm64': 1.3.2
@@ -13472,6 +13515,8 @@ snapshots:
       defaults: 1.0.4
 
   webidl-conversions@4.0.2: {}
+
+  webpack-virtual-modules@0.6.2: {}
 
   webworkify-webpack@2.1.5: {}
 

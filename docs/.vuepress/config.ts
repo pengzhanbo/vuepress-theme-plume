@@ -1,4 +1,3 @@
-import type { UserConfig } from 'vuepress'
 import fs from 'node:fs'
 import path from 'node:path'
 import { viteBundler } from '@vuepress/bundler-vite'
@@ -41,4 +40,4 @@ export default defineUserConfig({
   shouldPrefetch: false,
 
   theme,
-}) as UserConfig
+})

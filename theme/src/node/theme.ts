@@ -12,7 +12,7 @@ import {
   setupProvideData,
   templateBuildRenderer,
 } from './config/index.js'
-import { detectThemeOptions } from './detector/index.js'
+import { detectThemeOptions, detectVersions } from './detector/index.js'
 import { initConfigLoader, waitForConfigLoaded, watchConfigFile } from './loadConfig/index.js'
 import { createPages, extendsPageData } from './pages/index.js'
 import { setupPlugins } from './plugins/index.js'
@@ -24,6 +24,8 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
   return (app) => {
     setTranslateLang(app.options.lang)
     perf.init(app.env.isDebug)
+
+    detectVersions(app)
 
     const { configFile, plugins, themeOptions } = detectThemeOptions(options)
 

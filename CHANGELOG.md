@@ -1,3 +1,18 @@
+# [1.0.0-rc.139](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.138...v1.0.0-rc.139) (2025-04-06)
+
+
+### Features
+
+* add `vuepress-plugin-replace-assets` support, close [#545](https://github.com/pengzhanbo/vuepress-theme-plume/issues/545) ([#549](https://github.com/pengzhanbo/vuepress-theme-plume/issues/549)) ([1365c83](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1365c83109c552897340b0e64e67355b1d5b399e))
+* **theme:** add theme deps version detection ([#551](https://github.com/pengzhanbo/vuepress-theme-plume/issues/551)) ([487448d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/487448d6112d124d4ab8405426190b9a6c45a91b))
+
+
+### Performance Improvements
+
+* update deps to latest ([795ec51](https://github.com/pengzhanbo/vuepress-theme-plume/commit/795ec510fdffc212fed62cfdc4e9ff0b87531711))
+
+
+
 # [1.0.0-rc.138](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.137...v1.0.0-rc.138) (2025-04-01)
 
 

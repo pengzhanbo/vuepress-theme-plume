@@ -1,3 +1,12 @@
+# [1.0.0-rc.140](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.139...v1.0.0-rc.140) (2025-04-07)
+
+
+### Bug Fixes
+
+* **theme:** handle empty dependencies in version detection ([74841a9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/74841a9ff638abda4d654384a53c52c3a5b52820))
+
+
+
 # [1.0.0-rc.139](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.138...v1.0.0-rc.139) (2025-04-06)
 
 

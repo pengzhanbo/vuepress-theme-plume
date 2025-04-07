@@ -1,6 +1,7 @@
 import type { App } from 'vuepress'
 import fs from 'node:fs'
 import path from 'node:path'
+import { isEmptyObject } from '@pengzhanbo/utils'
 import { colors } from 'vuepress/utils'
 import { createTranslate, getPackage, getThemePackage, logger } from '../utils/index.js'
 
@@ -51,8 +52,11 @@ function detectVuepressVersion() {
    * 检查依赖是否匹配
    * TODO: 检查 pnpm catalog
    */
-  const detect = (deps: Record<string, string>) => {
+  const detect = (deps?: Record<string, string>) => {
     const results: DepVersion[] = []
+    if (!deps || isEmptyObject(deps))
+      return results
+
     for (const [name, version] of Object.entries(deps)) {
       const resolved = resolveVersion(version)
       if (resolved && vuepressDeps[name] && vuepressDeps[name] !== resolved)

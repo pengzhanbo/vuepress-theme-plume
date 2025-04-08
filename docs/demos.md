@@ -151,6 +151,13 @@ blog:
     url: https://physnya.top
     repo: https://github.com/physnya/blog
     preview: https://physnya.top/images/preview.png
+  -
+    name: XINGJI
+    desc: 迄今所有人生都大写着失败，但不妨碍我继续向前✨
+    logo: https://i.p-i.vip/47/20240920-66ed7b168c38c.jpg
+    url: https://vue.xingji.fun
+    repo: https://github.com/XingJi-love/XingJi-blog-plume
+    preview: https://i.p-i.vip/47/20250407-67f3f1eca1983.png
 ---
 
 :::important

@@ -158,6 +158,13 @@ blog:
     url: https://vue.xingji.fun
     repo: https://github.com/XingJi-love/XingJi-blog-plume
     preview: https://i.p-i.vip/47/20250407-67f3f1eca1983.png
+  -
+    name: Paiad
+    desc: 种一棵树最好的时间是十年前，其次是现在。
+    logo: https://paiad.online/sunflower.png
+    url: https://paiad.online
+    repo: https://github.com/paiad
+    preview: https://paiad.online/paiad-blog.png
 ---
 
 :::important

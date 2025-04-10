@@ -1,8 +1,9 @@
 <script lang="ts" setup>
+import type { Ref } from 'vue'
 import VPBadge from '@theme/global/VPBadge.vue'
 import VPLink from '@theme/VPLink.vue'
 import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
-import { computed } from 'vue'
+import { computed, inject, ref } from 'vue'
 import { useBlogPageData, useData, useInternalLink, useTagColors } from '../composables/index.js'
 
 const { page, frontmatter: matter, theme, blog } = useData<'post'>()
@@ -40,7 +41,15 @@ const badge = computed(() => {
   return false
 })
 
-const hasMeta = computed(() => readingTime.value.time || tags.value.length || createTime.value)
+// 无法准确判断是否存在 doc-meta 插槽，因此需要通过 provide 传递
+const hasDocMetaSlot = inject<Ref<boolean>>('doc-meta-slot-exists', ref(false))
+
+const hasMeta = computed(() =>
+  readingTime.value.time
+  || tags.value.length
+  || createTime.value
+  || hasDocMetaSlot.value,
+)
 </script>
 
 <template>
@@ -48,12 +57,16 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
     {{ page.title }}
     <VPBadge v-if="badge" :type="badge.type || 'tip'" :text="badge.text" />
   </h1>
+
   <div v-if="hasMeta" class="vp-doc-meta">
+    <slot name="doc-meta-before" />
+
     <p v-if="readingTime.time && matter.readingTime !== false" class="reading-time">
       <span class="vpi-books icon" />
       <span>{{ readingTime.words }}</span>
       <span>{{ readingTime.time }}</span>
     </p>
+
     <p v-if="tags.length > 0">
       <span class="vpi-tag icon" />
       <VPLink
@@ -66,6 +79,9 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
         {{ tag.name }}
       </VPLink>
     </p>
+
+    <slot name="doc-meta-after" />
+
     <p v-if="createTime" class="create-time">
       <span class="vpi-clock icon" /><span>{{ createTime }}</span>
     </p>
@@ -89,7 +105,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 .vp-doc-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px 16px;
   align-items: center;
   justify-content: flex-start;
   padding: 1rem 0 0.5rem;
@@ -102,25 +118,18 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
 
 .vp-doc-meta p {
   display: flex;
+  gap: 6px;
   align-items: center;
 }
 
 .vp-doc-meta .icon {
   width: 14px;
   height: 14px;
-  margin-right: 0.3rem;
-}
-
-.vp-doc-meta .author .icon,
-.vp-doc-meta .author span {
-  color: var(--vp-c-text-2);
-  transition: color var(--vp-t-color);
 }
 
 .vp-doc-meta .tag {
   display: inline-block;
   padding: 3px 5px;
-  margin-right: 6px;
   font-size: 12px;
   line-height: 1;
   color: var(--vp-tag-color);
@@ -128,20 +137,7 @@ const hasMeta = computed(() => readingTime.value.time || tags.value.length || cr
   border-radius: 3px;
 }
 
-.vp-doc-meta .tag:last-of-type {
-  margin-right: 0;
-}
-
-.vp-doc-meta .reading-time span {
-  margin-right: 8px;
-}
-
-.vp-doc-meta .reading-time span:last-of-type {
-  margin-right: 0;
-}
-
 .vp-doc-meta .create-time {
-  min-width: 110px;
   text-align: right;
 }
 

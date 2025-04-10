@@ -136,6 +136,13 @@ watch(
         <slot name="doc-bottom" />
       </template>
 
+      <template #doc-meta-before>
+        <slot name="doc-meta-before" />
+      </template>
+      <template #doc-meta-after>
+        <slot name="doc-meta-after" />
+      </template>
+
       <template #doc-footer-before>
         <slot name="doc-footer-before" />
       </template>

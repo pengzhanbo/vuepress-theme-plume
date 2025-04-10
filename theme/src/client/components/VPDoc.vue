@@ -122,7 +122,15 @@ watch(
             <slot name="doc-before" />
             <main class="main">
               <VPDocBreadcrumbs />
-              <VPDocMeta />
+              <VPDocMeta>
+                <template #doc-meta-before>
+                  <slot name="doc-meta-before" />
+                </template>
+                <template #doc-meta-after>
+                  <slot name="doc-meta-after" />
+                </template>
+              </VPDocMeta>
+
               <VPEncryptPage v-if="!isPageDecrypted" />
               <div
                 v-else class="vp-doc plume-content"

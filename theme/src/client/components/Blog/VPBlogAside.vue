@@ -21,7 +21,6 @@ const { theme } = useData()
   top: calc(var(--vp-nav-height) + 2rem);
   display: none;
   width: 270px;
-  overflow-y: auto;
   text-align: center;
 }
 

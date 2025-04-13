@@ -13,15 +13,18 @@ export function enhanceScrollBehavior(router: Router) {
     return { top: 0 }
   }
 
-  router.beforeEach(() => {
+  router.beforeEach((to, from) => {
     if (inBrowser) {
-      document.documentElement.classList.remove('smooth')
+      if (from.path !== to.path)
+        document.documentElement.classList.remove('smooth')
     }
   })
 
   router.afterEach(() => nextTick(() => {
     if (inBrowser) {
-      document.documentElement.classList.add('smooth')
+      setTimeout(() => {
+        document.documentElement.classList.add('smooth')
+      }, 1000)
     }
   }))
 }

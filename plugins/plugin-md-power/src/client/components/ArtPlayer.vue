@@ -31,6 +31,9 @@ const { el, width, height, resize } = useSize<HTMLDivElement>(toRefs(props))
 let player: ArtPlayer | null = null
 
 async function createPlayer() {
+  if (__VUEPRESS_SSR__)
+    return
+
   if (!el.value)
     return
 

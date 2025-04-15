@@ -17,6 +17,7 @@ permalink: /guide/components/link-card/
 | icon        | `string \| { svg: string }` | `''`   | 显示在标题左侧的图标，支持 iconify 所有图标，也可以使用 图片链接 |
 | href        | `string`                    | `''`   | 链接                                                             |
 | description | `string`                    | `''`   | 详情                                                             |
+| target      | `string`                    | `''`   | 链接打开方式                                                             |
 
 ## 插槽
 

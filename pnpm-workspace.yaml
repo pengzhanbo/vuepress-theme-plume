@@ -5,7 +5,7 @@ packages:
   - plugins/*
 
 overrides:
-  '@typescript-eslint/utils': ^8.29.0
+  '@typescript-eslint/utils': ^8.30.1
   esbuild: ^0.25.2
   sass: ^1.86.3
   sass-embedded: ^1.86.3
@@ -22,7 +22,7 @@ catalogs:
     '@types/lodash.merge': ^4.6.9
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^22.14.0
+    '@types/node': ^22.14.1
     '@types/stylus': ^0.48.43
     '@types/webpack-env': ^1.18.8
     '@vitest/coverage-istanbul': ^3.1.1
@@ -36,7 +36,7 @@ catalogs:
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.3.0
-    lint-staged: ^15.5.0
+    lint-staged: ^15.5.1
     markdown-it: ^14.1.0
     memfs: ^4.17.0
     mermaid: ^11.6.0
@@ -52,10 +52,10 @@ catalogs:
     wait-on: ^8.0.3
 
   peer:
-    '@iconify/json': ^2.2.323
+    '@iconify/json': ^2.2.327
     artplayer: ^5.2.2
     dashjs: ^5.0.0
-    hls.js: ^1.6.1
+    hls.js: ^1.6.2
     mathjax-full: ^3.2.2
     mpegts.js: 1.7.3
     sass: ^1.86.3
@@ -64,7 +64,7 @@ catalogs:
     swiper: ^11.2.6
 
   prod:
-    '@clack/prompts': ^0.10.0
+    '@clack/prompts': ^0.10.1
     '@iconify/utils': ^2.3.0
     '@iconify/vue': ^4.3.0
     '@mdit/plugin-attrs': ^0.16.7
@@ -74,12 +74,12 @@ catalogs:
     '@mdit/plugin-sup': ^0.16.0
     '@mdit/plugin-tab': ^0.16.0
     '@mdit/plugin-tasklist': ^0.16.0
-    '@pengzhanbo/utils': ^1.2.0
-    '@vueuse/core': ^13.0.0
-    '@vueuse/integrations': ^13.0.0
+    '@pengzhanbo/utils': ^2.0.0
+    '@vueuse/core': ^13.1.0
+    '@vueuse/integrations': ^13.1.0
     bcrypt-ts: ^6.0.0
     cac: ^6.7.14
-    chart.js: ^4.4.8
+    chart.js: ^4.4.9
     chokidar: 3.6.0
     create-filter: ^1.1.0
     dayjs: ^1.11.13
@@ -93,7 +93,7 @@ catalogs:
     handlebars: ^4.7.8
     image-size: ^2.0.2
     json2yaml: ^1.1.0
-    katex: ^0.16.21
+    katex: ^0.16.22
     local-pkg: ^1.1.1
     lru-cache: ^11.1.0
     magic-string: ^0.30.17
@@ -106,36 +106,36 @@ catalogs:
     nanoid: ^5.1.5
     os-locale: ^6.0.2
     p-map: ^7.0.3
-    package-manager-detector: ^1.1.0
+    package-manager-detector: ^1.2.0
     picocolors: ^1.1.1
-    shiki: ^3.2.1
-    tm-grammars: ^1.23.8
-    tm-themes: ^1.10.3
-    unplugin: ^2.2.2
+    shiki: ^3.2.2
+    tm-grammars: ^1.23.14
+    tm-themes: ^1.10.5
+    unplugin: ^2.3.2
     vue: ^3.5.13
 
   vuepress:
-    '@vuepress/bundler-vite': 2.0.0-rc.20
-    '@vuepress/helper': 2.0.0-rc.91
-    '@vuepress/plugin-cache': 2.0.0-rc.83
-    '@vuepress/plugin-comment': 2.0.0-rc.91
-    '@vuepress/plugin-copy-code': 2.0.0-rc.91
-    '@vuepress/plugin-docsearch': 2.0.0-rc.91
-    '@vuepress/plugin-git': 2.0.0-rc.91
-    '@vuepress/plugin-markdown-hint': 2.0.0-rc.91
-    '@vuepress/plugin-markdown-image': 2.0.0-rc.91
-    '@vuepress/plugin-markdown-include': 2.0.0-rc.91
-    '@vuepress/plugin-markdown-math': 2.0.0-rc.91
-    '@vuepress/plugin-nprogress': 2.0.0-rc.91
-    '@vuepress/plugin-photo-swipe': 2.0.0-rc.91
-    '@vuepress/plugin-reading-time': 2.0.0-rc.91
-    '@vuepress/plugin-seo': 2.0.0-rc.91
-    '@vuepress/plugin-shiki': 2.0.0-rc.91
-    '@vuepress/plugin-sitemap': 2.0.0-rc.91
-    '@vuepress/plugin-watermark': 2.0.0-rc.91
-    '@vuepress/shiki-twoslash': 2.0.0-rc.91
-    vuepress: 2.0.0-rc.20
-    vuepress-plugin-md-enhance: 2.0.0-rc.76
+    '@vuepress/bundler-vite': 2.0.0-rc.21
+    '@vuepress/helper': 2.0.0-rc.94
+    '@vuepress/plugin-cache': 2.0.0-rc.94
+    '@vuepress/plugin-comment': 2.0.0-rc.95
+    '@vuepress/plugin-copy-code': 2.0.0-rc.94
+    '@vuepress/plugin-docsearch': 2.0.0-rc.95
+    '@vuepress/plugin-git': 2.0.0-rc.95
+    '@vuepress/plugin-markdown-hint': 2.0.0-rc.94
+    '@vuepress/plugin-markdown-image': 2.0.0-rc.94
+    '@vuepress/plugin-markdown-include': 2.0.0-rc.94
+    '@vuepress/plugin-markdown-math': 2.0.0-rc.95
+    '@vuepress/plugin-nprogress': 2.0.0-rc.94
+    '@vuepress/plugin-photo-swipe': 2.0.0-rc.95
+    '@vuepress/plugin-reading-time': 2.0.0-rc.95
+    '@vuepress/plugin-seo': 2.0.0-rc.95
+    '@vuepress/plugin-shiki': 2.0.0-rc.94
+    '@vuepress/plugin-sitemap': 2.0.0-rc.95
+    '@vuepress/plugin-watermark': 2.0.0-rc.94
+    '@vuepress/shiki-twoslash': 2.0.0-rc.94
+    vuepress: 2.0.0-rc.21
+    vuepress-plugin-md-enhance: 2.0.0-rc.81
 
 onlyBuiltDependencies:
   - '@parcel/watcher'

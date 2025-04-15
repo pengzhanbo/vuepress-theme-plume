@@ -1,3 +1,18 @@
+# [1.0.0-rc.141](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.140...v1.0.0-rc.141) (2025-04-15)
+
+
+### Features
+
+* **plugin-md-power:** improve async import for ssr ([6bbfc03](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6bbfc031fbf0b311bd0c55c3684b1321ea478831))
+* **theme:** add `doc-meta-before` and `doc-meta-after` slots ([#554](https://github.com/pengzhanbo/vuepress-theme-plume/issues/554)) ([97f0460](https://github.com/pengzhanbo/vuepress-theme-plume/commit/97f046015c236bd37c9ffa49456a0e177b07c5b2))
+* **theme:** add `target/rel` props support for `LinkCard` ([#556](https://github.com/pengzhanbo/vuepress-theme-plume/issues/556)) ([a0de3c6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a0de3c660a60dd24bd4f6d3663e144a4a3c1aa39))
+* **theme:** enhance repo card display and add star/fork conversion ([cbc728b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cbc728b249dc1079b513525c23c1c1af751f826a))
+* **theme:** improve page scroll behavior ([#557](https://github.com/pengzhanbo/vuepress-theme-plume/issues/557)) ([eef2220](https://github.com/pengzhanbo/vuepress-theme-plume/commit/eef222086f4fb7db53cad7a321ec310ab5e2f7ee))
+* **theme:** refactor `VPCardMasonry` for improved layout ([8111351](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8111351224b83471cf09698531ee48d799945145))
+* **theme:** update deps to latest and support vuepress rc.21 ([79d5312](https://github.com/pengzhanbo/vuepress-theme-plume/commit/79d5312cb81087c6a9c7eee95edfd97b8a2a0088))
+
+
+
 # [1.0.0-rc.140](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.139...v1.0.0-rc.140) (2025-04-07)
 
 

@@ -122,14 +122,14 @@ catalogs:
       version: 8.0.3
   peer:
     '@iconify/json':
-      specifier: ^2.2.327
-      version: 2.2.327
+      specifier: ^2.2.328
+      version: 2.2.328
     artplayer:
       specifier: ^5.2.2
       version: 5.2.2
     dashjs:
-      specifier: ^5.0.0
-      version: 5.0.0
+      specifier: ^5.0.1
+      version: 5.0.1
     hls.js:
       specifier: ^1.6.2
       version: 1.6.2
@@ -490,7 +490,7 @@ importers:
     dependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.327
+        version: 2.2.328
       '@simonwep/pickr':
         specifier: catalog:dev
         version: 1.9.1
@@ -642,7 +642,7 @@ importers:
         version: 5.2.2
       dashjs:
         specifier: catalog:peer
-        version: 5.0.0
+        version: 5.0.1
       hls.js:
         specifier: catalog:peer
         version: 1.6.2
@@ -838,7 +838,7 @@ importers:
     devDependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.327
+        version: 2.2.328
       swiper:
         specifier: catalog:peer
         version: 11.2.6
@@ -1460,8 +1460,8 @@ packages:
     resolution: {integrity: sha512-e5+YUKENATs1JgYHMzTr2MW/NDcXGfYFAuOQU8gJgF/kEh4EqKgfGrfLI67bMD4tbhZVlkigz/9YYwWcbOFthg==}
     engines: {node: '>=10.13.0'}
 
-  '@iconify/json@2.2.327':
-    resolution: {integrity: sha512-G9LFSD3ZSNHj+0O98ZStkBOd543I05fomTep3DA8UyrreJRnsbjswAe8Ux9teHc/GE/alcCuaaxNqWyCTdN6PA==}
+  '@iconify/json@2.2.328':
+    resolution: {integrity: sha512-hdkS6oE+U3tfR2onc1QcHZh+2hkKHjLEkagtdQHDZnx/OS2sFIDc6/XoEh+2BtuzDXfyANgGV/Kpd6oy0OBvqQ==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -3707,8 +3707,8 @@ packages:
     resolution: {integrity: sha512-wAV9QHOsNbwnWdNW2FYvE1P56wtgSbM+3SZcdGiWQILwVjACCXDCI3Ai8QlCjMDB8YK5zySiXZYBiwGmNY3lnw==}
     engines: {node: '>=12'}
 
-  dashjs@5.0.0:
-    resolution: {integrity: sha512-2WHZbTwpVhzAaaUErERI0U46SSKEWBlt94kT1yzxn83musvK/PSKA/dWS+MmagtVYdZdhRI6aaQp9KeTofsEUA==}
+  dashjs@5.0.1:
+    resolution: {integrity: sha512-RtWiddkt4tibPrsXwwpnU8a8hH3a4KsxzUDAAOHD/LyzPCv65lNBwch9OPnS0hqFSKv/tepyr7XvTDRJcBpu6A==}
 
   dayjs@1.11.13:
     resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
@@ -7791,7 +7791,7 @@ snapshots:
 
   '@hutson/parse-repository-url@5.0.0': {}
 
-  '@iconify/json@2.2.327':
+  '@iconify/json@2.2.328':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
@@ -10279,7 +10279,7 @@ snapshots:
 
   dargs@8.1.0: {}
 
-  dashjs@5.0.0:
+  dashjs@5.0.1:
     dependencies:
       '@svta/common-media-library': 0.7.4
       bcp-47-match: 2.0.3

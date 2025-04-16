@@ -52,9 +52,9 @@ catalogs:
     wait-on: ^8.0.3
 
   peer:
-    '@iconify/json': ^2.2.327
+    '@iconify/json': ^2.2.328
     artplayer: ^5.2.2
-    dashjs: ^5.0.0
+    dashjs: ^5.0.1
     hls.js: ^1.6.2
     mathjax-full: ^3.2.2
     mpegts.js: 1.7.3

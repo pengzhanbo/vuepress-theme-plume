@@ -1,3 +1,17 @@
+# [1.0.0-rc.142](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.141...v1.0.0-rc.142) (2025-04-16)
+
+
+### Bug Fixes
+
+* **theme:** incorrect git changelog render ([610a34c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/610a34cb52ad28396d304d5be3404c4deb962930))
+
+
+### Performance Improvements
+
+* update dep to latest ([207353d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/207353de032a22cbd5c8e64409dff2aed46ee3de))
+
+
+
 # [1.0.0-rc.141](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.140...v1.0.0-rc.141) (2025-04-15)
 
 

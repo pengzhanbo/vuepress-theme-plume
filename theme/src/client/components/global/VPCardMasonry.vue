@@ -27,6 +27,9 @@ const rawList = computed(() => {
 })
 
 const columnsLength = computed<number>(() => {
+  if (__VUEPRESS_SSR__)
+    return 3
+
   let length = 1
   if (typeof props.cols === 'number') {
     length = props.cols
@@ -67,6 +70,9 @@ async function drawColumns() {
 }
 
 onMounted(() => {
+  if (__VUEPRESS_SSR__)
+    return
+
   drawColumns()
   const debounceDraw = useDebounceFn(drawColumns)
   watch([rawList, columnsLength], debounceDraw, { flush: 'post' })

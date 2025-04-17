@@ -142,7 +142,15 @@ watch(
       <template #doc-meta-after>
         <slot name="doc-meta-after" />
       </template>
-
+      <template #doc-meta-top>
+        <slot name="doc-meta-top" />
+      </template>
+      <template #doc-meta-bottom>
+        <slot name="doc-meta-bottom" />
+      </template>
+      <template #doc-content-before>
+        <slot name="doc-content-before" />
+      </template>
       <template #doc-footer-before>
         <slot name="doc-footer-before" />
       </template>

@@ -122,6 +122,8 @@ watch(
             <slot name="doc-before" />
             <main class="main">
               <VPDocBreadcrumbs />
+
+              <slot name="doc-meta-top" />
               <VPDocMeta>
                 <template #doc-meta-before>
                   <slot name="doc-meta-before" />
@@ -130,17 +132,19 @@ watch(
                   <slot name="doc-meta-after" />
                 </template>
               </VPDocMeta>
+              <slot name="doc-meta-bottom" />
 
               <VPEncryptPage v-if="!isPageDecrypted" />
               <div
                 v-else class="vp-doc plume-content"
                 :class="[pageName, enabledExternalLinkIcon && 'external-link-icon-enabled']" vp-content
               >
+                <slot name="doc-content-before" />
+
                 <Content />
 
                 <DocGitContributors v-if="contributorsMode === 'block'" />
                 <DocGitChangelog />
-
                 <VPDocCopyright />
               </div>
             </main>

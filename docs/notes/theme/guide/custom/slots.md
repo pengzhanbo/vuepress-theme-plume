@@ -96,9 +96,12 @@ export default defineClientConfig({
 
   - `doc-top`
   - `doc-bottom`
+  - `doc-content-before`
   - `doc-footer-before`
   - `doc-before`
   - `doc-after`
+  - `doc-meta-top`
+  - `doc-meta-bottom`
   - `doc-meta-before`
   - `doc-meta-after`
   - `sidebar-nav-before`
@@ -160,7 +163,11 @@ export default defineClientConfig({
 - `nav-bar-title-after`
 - `nav-bar-content-before`
 - `nav-bar-content-after`
+- `nav-bar-menu-before`
+- `nav-bar-menu-after`
 - `nav-screen-content-before`
 - `nav-screen-content-after`
+- `nav-screen-menu-before`
+- `nav-screen-menu-after`
 - `footer-content`
 - `bulletin-content`

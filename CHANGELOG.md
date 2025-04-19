@@ -1,3 +1,13 @@
+# [1.0.0-rc.143](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.142...v1.0.0-rc.143) (2025-04-19)
+
+
+### Features
+
+* **theme:** add badge support for navbar and sidebar ([#559](https://github.com/pengzhanbo/vuepress-theme-plume/issues/559)) ([73ed8dc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/73ed8dc9c544be19318db4e36379f08c4a91a39b))
+* **theme:** add layout slots ([#558](https://github.com/pengzhanbo/vuepress-theme-plume/issues/558)) ([0bceda5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0bceda590c78cd0727d63298eb77f936f4c3fe15))
+
+
+
 # [1.0.0-rc.142](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.141...v1.0.0-rc.142) (2025-04-16)
 
 

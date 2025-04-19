@@ -24,7 +24,9 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
     <div v-if="open" id="navScreen" class="vp-nav-screen">
       <div class="container">
         <slot name="nav-screen-content-before" />
+        <slot name="nav-screen-menu-before" />
         <VPNavScreenMenu class="menu" />
+        <slot name="nav-screen-menu-after" />
         <VPNavScreenTranslates class="translations" />
         <VPNavScreenAppearance class="appearance" />
         <VPNavScreenSocialLinks class="social-links" />

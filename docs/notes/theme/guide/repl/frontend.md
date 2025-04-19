@@ -3,8 +3,6 @@ title: 前端演示
 icon: icon-park-outline:html-five
 createTime: 2025/01/08 21:34:26
 permalink: /guide/repl/frontend/
-badge:
-  text: 1.0.0-rc.127 +
 ---
 
 ::: important [旧的前端代码演示](./frontend-deprecated.md) 已弃用，请迁移至此新的方案。

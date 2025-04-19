@@ -97,6 +97,19 @@ export default defineUserConfig({
 类型: `NavItem[]`
 
 ```ts
+interface ThemeBadge {
+  /* 徽章文本 */
+  text?: string
+  /* 徽章类型，内置： 'info' | 'tip' | 'danger' | 'warning' */
+  type?: string
+  /* 文本颜色 */
+  color?: string
+  /* 背景颜色 */
+  bgColor?: string
+  /* 边框颜色 */
+  borderColor?: string
+}
+
 type NavItem = string | {
   /**
    * 导航栏文本
@@ -110,13 +123,18 @@ type NavItem = string | {
    */
   link: string
   /**
-   * - 支持 iconify 图标，直接使用 iconify name 即可自动加载
+   * 支持 iconify 图标，直接使用 iconify name 即可自动加载
    * @see https://icon-sets.iconify.design/
    *
    * - 如果 iconify 图标不满足您的需求，也可以支持传入 svg 字符串。
    * - 还支持使用 本地图片 或 远程图片，本地图片的路径需要以 `/` 开头。
    */
   icon?: string | { svg: string }
+
+  /**
+   * 徽章，支持自定义徽章样式
+   */
+  badge?: string | ThemeBadge
   /**
    * 控制元素何时被激活
    */
@@ -156,12 +174,14 @@ export default defineUserConfig({
                 text: 'vuepress-theme-plume',
                 link: '/vuepress-theme-plume/',
                 icon: 'mdi:paper-airplane',
+                badge: '徽章'
               },
             ],
           },
           {
             text: 'Vuepress Plugin',
             icon: 'mingcute:plugin-2-fill',
+            badge: { text: '徽章', type: 'warning' },
             items: [
               {
                 text: 'caniuse',
@@ -184,8 +204,8 @@ export default defineUserConfig({
                 icon: 'material-symbols:note-alt-rounded',
               },
               {
-                text: 'shikiji',
-                link: '/vuepress-plugin/shikiji/',
+                text: 'shiki',
+                link: '/vuepress-plugin/shiki/',
                 icon: 'material-symbols-light:code-blocks-outline-rounded',
               },
             ],

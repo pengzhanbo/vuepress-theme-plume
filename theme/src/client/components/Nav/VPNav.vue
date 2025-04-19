@@ -94,4 +94,14 @@ watchEffect(() => {
     position: fixed;
   }
 }
+
+.vp-nav :deep(.vp-menu-badge) {
+  padding: 3px 4px;
+  margin-left: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.2px;
+  border-radius: 6px;
+}
 </style>

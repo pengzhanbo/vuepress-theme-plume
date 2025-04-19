@@ -46,6 +46,7 @@ export const zhNavbar = defineNavbarConfig([
   {
     text: `${version}`,
     icon: 'codicon:versions',
+    badge: '新',
     items: [
       { text: '更新日志', link: '/changelog/' },
       { text: '参与贡献', link: '/contributing/' },

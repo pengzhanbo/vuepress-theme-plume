@@ -1,4 +1,4 @@
-import type { ThemeIcon } from '../common/index.js'
+import type { ThemeBadge, ThemeIcon } from '../common/index.js'
 
 /**
  * 已解析的侧边栏
@@ -34,6 +34,11 @@ export interface ResolvedSidebarItem {
    * 侧边栏图标
    */
   icon?: ThemeIcon
+
+  /**
+   * 侧边栏徽章
+   */
+  badge?: string | ThemeBadge
 
   /**
    * 次级侧边栏分组

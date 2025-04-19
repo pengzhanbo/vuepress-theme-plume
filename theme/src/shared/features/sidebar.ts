@@ -1,4 +1,4 @@
-import type { ThemeIcon } from '../common/index.js'
+import type { ThemeBadge, ThemeIcon } from '../common/index.js'
 
 export type ThemeSidebar = 'auto' | (string | ThemeSidebarItem)[] | ThemeSidebarMulti
 
@@ -24,6 +24,11 @@ export interface ThemeSidebarItem {
    * 侧边栏图标
    */
   icon?: ThemeIcon
+
+  /**
+   * 侧边栏徽章
+   */
+  badge?: string | ThemeBadge
 
   /**
    * 次级侧边栏分组

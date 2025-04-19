@@ -1,15 +1,18 @@
 <script lang="ts" setup>
+import type { ThemeBadge, ThemeIcon } from '../../shared/index.js'
+import VPBadge from '@theme/global/VPBadge.vue'
 import VPIcon from '@theme/VPIcon.vue'
 import VPMenu from '@theme/VPMenu.vue'
 import { ref } from 'vue'
 import { useFlyout } from '../composables/index.js'
 
 defineProps<{
-  prefixIcon?: string | { svg: string }
+  prefixIcon?: ThemeIcon
   icon?: any
   button?: string
   label?: string
   items?: any[]
+  badge?: string | ThemeBadge
 }>()
 
 const open = ref(false)
@@ -43,6 +46,7 @@ function onBlur() {
         <VPIcon v-if="prefixIcon" :name="prefixIcon" />
         <span v-if="icon" class="option-icon" :class="[icon]" />
         <span v-if="button" v-html="button" />
+        <VPBadge v-if="badge" class="vp-menu-badge" v-bind="typeof badge === 'string' ? { text: badge } : badge" />
         <span class="vpi-chevron-down text-icon" />
       </span>
 
@@ -145,5 +149,9 @@ function onBlur() {
   height: 14px;
   margin-left: 4px;
   fill: currentcolor;
+}
+
+.vp-flyout :deep(.vp-menu-badge) {
+  transform: translateY(0);
 }
 </style>

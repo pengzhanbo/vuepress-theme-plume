@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import VPBadge from '@theme/global/VPBadge.vue'
 import VPIcon from '@theme/VPIcon.vue'
 import VPLink from '@theme/VPLink.vue'
 import { resolveRouteFullPath } from 'vuepress/client'
@@ -25,6 +26,11 @@ const { page } = useData()
     >
       <VPIcon v-if="item.icon" :name="item.icon" />
       {{ item.text }}
+      <VPBadge
+        v-if="item.badge"
+        class="vp-menu-badge"
+        v-bind="typeof item.badge === 'string' ? { text: item.badge } : item.badge"
+      />
     </VPLink>
   </div>
 </template>
@@ -63,5 +69,9 @@ const { page } = useData()
 .link :deep(.vp-icon),
 .link :deep(.vp-icon-img) {
   margin-left: 0;
+}
+
+.vp-menu-link .link :deep(.vp-menu-badge) {
+  transform: translateY(-2px);
 }
 </style>

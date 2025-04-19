@@ -2,7 +2,6 @@
 title: 通用配置
 createTime: 2024/03/02 20:01:09
 permalink: /config/frontmatter/basic/
-badge: 徽章 badge
 ---
 
 ## 概述

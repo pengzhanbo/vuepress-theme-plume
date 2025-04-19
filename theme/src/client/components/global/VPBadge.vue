@@ -1,14 +1,8 @@
 <script setup lang="ts">
+import type { ThemeBadge } from '../../../shared/index.js'
 import { computed } from 'vue'
 
-interface Props {
-  text?: string
-  type?: string
-  color?: string
-  bgColor?: string
-  borderColor?: string
-}
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<ThemeBadge>(), {
   type: 'tip',
   borderColor: 'transparent',
 })

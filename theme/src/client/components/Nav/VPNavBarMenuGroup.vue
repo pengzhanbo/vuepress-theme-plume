@@ -41,5 +41,6 @@ const childrenActive = computed(() => isChildActive(props.item))
     :button="item.text"
     :items="item.items"
     :prefix-icon="item.icon"
+    :badge="item.badge"
   />
 </template>

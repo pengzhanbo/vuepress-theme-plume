@@ -1,4 +1,4 @@
-import type { ResolvedNavItemWithLink } from '../../shared/index.js'
+import type { ResolvedNavItemWithLink, ThemeBadge } from '../../shared/index.js'
 import {
   ensureEndingSlash,
   ensureLeadingSlash,
@@ -18,6 +18,7 @@ export function resolveNavLink(link: string): ResolvedNavItemWithLink {
   const { notFound, meta, path } = resolveRoute<{
     title?: string
     icon?: string
+    badge?: string | ThemeBadge
   }>(link)
 
   return notFound
@@ -26,6 +27,7 @@ export function resolveNavLink(link: string): ResolvedNavItemWithLink {
         text: meta.title || path,
         link: path,
         icon: meta.icon,
+        badge: meta.badge,
       }
 }
 

@@ -2,9 +2,6 @@
 title: Markdown 配置
 createTime: 2025/03/15 14:54:19
 permalink: /config/markdown/
-badge:
-  type: tip
-  text: 1.0.0-rc.136 +
 ---
 
 ## 概述

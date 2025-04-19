@@ -1,9 +1,6 @@
 ---
 title: 公告板
 icon: mingcute:announcement-line
-badge:
-  type: tip
-  text: v1.0.0-rc.112 +
 createTime: 2024/10/19 21:51:22
 permalink: /guide/features/bulletin/
 ---

@@ -3,7 +3,6 @@ title: 轮播图
 icon: dashicons:images-alt2
 createTime: 2024/09/12 22:00:22
 permalink: /guide/components/swiper/
-badge: v1.0.0-rc.98 +
 ---
 
 ## 概述

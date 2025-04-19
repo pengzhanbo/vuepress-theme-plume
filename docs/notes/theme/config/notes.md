@@ -103,7 +103,20 @@ interface NoteItem {
   sidebar?: 'auto' | (string | SidebarItem)[]
 }
 
-export interface SidebarItem {
+interface ThemeBadge {
+  /* 徽章文本 */
+  text?: string
+  /* 徽章类型，内置： 'info' | 'tip' | 'danger' | 'warning' */
+  type?: string
+  /* 文本颜色 */
+  color?: string
+  /* 背景颜色 */
+  bgColor?: string
+  /* 边框颜色 */
+  borderColor?: string
+}
+
+interface SidebarItem {
   /**
    * 侧边栏文本
    */
@@ -118,6 +131,11 @@ export interface SidebarItem {
    * 侧边栏图标
    */
   icon?: ThemeIcon
+
+  /**
+   * 徽章
+   */
+  badge?: string | ThemeBadge
 
   /**
    * 次级侧边栏分组

@@ -149,6 +149,7 @@ function resolveSidebarItems(
         navLink.link = link.startsWith('---') ? link : normalizeLink(_prefix, link)
         const nav = resolveNavLink(navLink.link)
         navLink.icon = nav.icon || navLink.icon
+        navLink.badge = nav.badge || navLink.badge
       }
       const nextPrefix = normalizePrefix(_prefix, prefix || dir)
       if (items === 'auto') {
@@ -157,6 +158,7 @@ function resolveSidebarItems(
           navLink.link = normalizeLink(autoHomeData.value[nextPrefix])
           const nav = resolveNavLink(navLink.link)
           navLink.icon = nav.icon || navLink.icon
+          navLink.badge = nav.badge || navLink.badge
         }
       }
       else {

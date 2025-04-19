@@ -3,9 +3,6 @@ title: 对话记录
 icon: cil:chat-bubble
 createTime: 2025/03/24 21:40:18
 permalink: /guide/markdown/chat/
-badge:
-  type: tip
-  text: 1.0.0-rc.138
 ---
 
 ## 前言

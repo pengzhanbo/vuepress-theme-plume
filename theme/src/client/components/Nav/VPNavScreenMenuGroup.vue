@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import type { ThemeIcon } from '../../../shared/index.js'
+import type { ThemeBadge, ThemeIcon } from '../../../shared/index.js'
+import VPBadge from '@theme/global/VPBadge.vue'
 import VPNavScreenMenuGroupLink from '@theme/Nav/VPNavScreenMenuGroupLink.vue'
 import VPNavScreenMenuGroupSection from '@theme/Nav/VPNavScreenMenuGroupSection.vue'
 import VPIcon from '@theme/VPIcon.vue'
@@ -11,6 +12,7 @@ import '@vuepress/helper/transition/fade-in-height-expand.css'
 const props = defineProps<{
   text: string
   icon?: ThemeIcon
+  badge?: string | ThemeBadge
   items: any[]
 }>()
 
@@ -36,6 +38,11 @@ function toggle() {
       <span class="button-text">
         <VPIcon v-if="icon" :name="icon" />
         <span v-html="text" />
+        <VPBadge
+          v-if="badge"
+          class="vp-menu-badge"
+          v-bind="typeof badge === 'string' ? { text: badge } : badge"
+        />
       </span>
       <span class="vpi-plus button-icon" />
     </button>

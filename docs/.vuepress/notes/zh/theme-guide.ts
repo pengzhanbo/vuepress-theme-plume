@@ -80,7 +80,7 @@ export const themeGuide = defineNoteConfig({
             'jsFiddle',
             'codeSandbox',
             'replit',
-            { link: 'frontend-deprecated', text: '前端（弃用）' },
+            'frontend-deprecated',
           ],
         },
         {

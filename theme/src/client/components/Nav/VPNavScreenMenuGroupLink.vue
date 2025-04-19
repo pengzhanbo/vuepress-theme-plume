@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { ResolvedNavItemWithLink } from '../../../shared/index.js'
+import VPBadge from '@theme/global/VPBadge.vue'
 import VPIcon from '@theme/VPIcon.vue'
 import VPLink from '@theme/VPLink.vue'
 import { inject } from 'vue'
@@ -22,6 +23,11 @@ const closeScreen = inject('close-screen') as () => void
   >
     <VPIcon v-if="item.icon" :name="item.icon" />
     <span v-html="item.text" />
+    <VPBadge
+      v-if="item.badge"
+      class="vp-menu-badge"
+      v-bind="typeof item.badge === 'string' ? { text: item.badge } : item.badge"
+    />
   </VPLink>
 </template>
 

@@ -279,6 +279,21 @@ export default defineNoteConfig({
 以下是 侧边栏的 类型定义：
 
 ```ts
+interface ThemeBadge {
+  /* 徽章文本 */
+  text?: string
+  /* 徽章类型，内置： 'info' | 'tip' | 'danger' | 'warning' */
+  type?: string
+  /* 文本颜色 */
+  color?: string
+  /* 背景颜色 */
+  bgColor?: string
+  /* 边框颜色 */
+  borderColor?: string
+}
+
+type ThemeIcon = string | { svg: string }
+
 type Sidebar = (string | SidebarItem)[]
 
 interface SidebarItem {
@@ -296,6 +311,11 @@ interface SidebarItem {
    * 侧边栏图标
    */
   icon?: ThemeIcon
+
+  /**
+   * 侧边栏徽章
+   */
+  badge?: string | ThemeBadge
 
   /**
    * 当前分组的链接前缀，链接前缀会拼接在 `items` 内的 `link` 之前
@@ -461,7 +481,7 @@ const typescript = defineNoteConfig({
 
 ### 侧边栏图标
 
-为侧边栏添加 图标 有助于 侧边栏更好的呈现。得益于 [iconify](https://iconify.design/) 这个强大的开源图标库，
+为侧边栏添加 ==图标== 有助于 侧边栏更好的呈现。得益于 [iconify](https://iconify.design/) 这个强大的开源图标库，
 你可以使用超过 `200k` 的图标，仅需要添加 `icon` 配置即可。
 
 ```ts title=".vuepress/notes.ts" twoslash
@@ -519,13 +539,53 @@ const typescript = defineNoteConfig({
   - …
 :::
 
-你可能已经注意到，`sidebar: auto` 时，该如何配置 侧边栏图标，事实上很简单，直接在 文件的 `frontmatter` 部分，
-添加 一个 `icon` 字段即可。
+当 `sidebar: auto` 时，可在 md 文件的 `frontmatter` 部分，添加 一个 `icon` 字段：
 
-```md title="typescript/guide/intro.md"
+```md title="intro.md"
 ---
 title: 介绍
 icon: ep:guide
+---
+```
+
+### 侧边栏徽章 <Badge text="v1.0.0-rc.143 +" />
+
+主题支持为侧边栏添加徽章，徽章可以用于辅助提供更多的信息。
+
+```ts title=".vuepress/notes.ts" twoslash
+import { defineNoteConfig } from 'vuepress-theme-plume'
+
+const typescript = defineNoteConfig({
+  dir: 'typescript',
+  link: '/typescript/',
+  sidebar: [
+    {
+      text: '指南',
+      prefix: '/guide',
+      badge: { text: '徽章', type: 'danger' }, // [!code hl]
+      items: [
+        { text: '介绍', link: 'intro', badge: '徽章' }, // [!code hl]
+      ],
+    },
+  ]
+})
+```
+
+当 `sidebar: auto` 时，可在 md 文件的 `frontmatter` 部分，添加 一个 `badge` 字段：
+
+```md title="intro.md"
+---
+title: 介绍
+badge:
+  text: 徽章
+  type: danger
+---
+```
+
+```md title="intro.md"
+---
+title: 介绍
+badge: 徽章
 ---
 ```
 

@@ -3,9 +3,6 @@ title: 时间线
 icon: mdi:timeline-text-outline
 createTime: 2025/03/20 18:05:29
 permalink: /guide/markdown/timeline/
-badge:
-  text: 1.0.0-rc.137 +
-  type: tip
 ---
 
 ## 概述

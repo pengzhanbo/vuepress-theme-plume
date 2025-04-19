@@ -21,6 +21,10 @@ function cleanPageData(page: Page<ThemePageData>) {
     page.routeMeta.icon = page.frontmatter.icon
   }
 
+  if (page.frontmatter.badge) {
+    page.routeMeta.badge = page.frontmatter.badge
+  }
+
   if (page.frontmatter.home) {
     page.frontmatter.pageLayout = 'home'
     delete page.frontmatter.home

@@ -1,4 +1,4 @@
-import type { ThemeIcon } from '../common/index.js'
+import type { ThemeBadge, ThemeIcon } from '../common/index.js'
 
 /**
  * 主题内部使用的已解析的导航项
@@ -16,6 +16,7 @@ export interface ResolvedNavItemWithLink {
   text: string
   link: string
   icon?: ThemeIcon
+  badge?: string | ThemeBadge
   items?: never
   activeMatch?: string
   rel?: string
@@ -30,6 +31,7 @@ export interface ResolvedNavItemWithLink {
 export interface ResolvedNavItemChildren {
   text?: string
   icon?: ThemeIcon
+  badge?: string | ThemeBadge
   items: ResolvedNavItemWithLink[]
 }
 
@@ -40,6 +42,7 @@ export interface ResolvedNavItemChildren {
 export interface ResolvedNavItemWithChildren {
   text?: string
   icon?: ThemeIcon
+  badge?: string | ThemeBadge
   items: (ResolvedNavItemChildren | ResolvedNavItemWithLink)[]
   activeMatch?: string
 }

@@ -1,9 +1,6 @@
 ---
 title: 文章版权所有
 icon: lucide:creative-commons
-badge:
-  type: tip
-  text: v1.0.0-rc.118 +
 createTime: 2024/11/20 10:52:49
 permalink: /guide/features/copyright/
 ---

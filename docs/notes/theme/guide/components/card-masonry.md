@@ -3,8 +3,6 @@ title: 瀑布流容器
 icon: ri:layout-masonry-line
 createTime: 2024/12/14 17:17:06
 permalink: /guide/components/card-masonry/
-badge:
-  text: v1.0.0-rc.121 +
 ---
 
 ## 概述

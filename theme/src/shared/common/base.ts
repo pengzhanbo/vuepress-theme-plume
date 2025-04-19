@@ -20,3 +20,14 @@ export type ThemeColor = string | { light: string, dark: string }
  * 页内 heading 导航栏
  */
 export type ThemeOutline = false | number | [number, number] | 'deep'
+
+/**
+ * 徽章
+ */
+export interface ThemeBadge {
+  text?: string
+  type?: string
+  color?: string
+  bgColor?: string
+  borderColor?: string
+}

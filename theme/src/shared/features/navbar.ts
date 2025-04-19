@@ -1,4 +1,4 @@
-import type { ThemeIcon } from '../common/index.js'
+import type { ThemeBadge, ThemeIcon } from '../common/index.js'
 
 /**
  * 导航项
@@ -18,6 +18,11 @@ export interface NavItemWithLink {
    * 导航图标
    */
   icon?: ThemeIcon
+
+  /**
+   * 徽章
+   */
+  badge?: string | ThemeBadge
 
   /**
    * 当前分组的页面前缀
@@ -58,6 +63,11 @@ export interface NavItemChildren {
   icon?: ThemeIcon
 
   /**
+   * 徽章
+   */
+  badge?: string | ThemeBadge
+
+  /**
    * 导航栏下拉菜单
    */
   items: (string | NavItemWithLink)[]
@@ -74,6 +84,11 @@ export interface NavItemWithChildren {
    * 导航图标
    */
   icon?: ThemeIcon
+
+  /**
+   * 徽章
+   */
+  badge?: string | ThemeBadge
 
   /**
    * 导航栏下拉菜单

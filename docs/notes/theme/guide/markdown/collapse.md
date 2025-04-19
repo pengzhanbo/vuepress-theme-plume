@@ -3,9 +3,6 @@ title: 折叠面板
 icon: carbon:collapse-categories
 createTime: 2025/03/22 22:27:22
 permalink: /guide/markdown/collapse/
-badge:
-  type: tip
-  text: 1.0.0-rc.137 +
 ---
 
 ## 概述

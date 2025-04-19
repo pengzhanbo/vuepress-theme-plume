@@ -18,6 +18,7 @@ const navbar = useNavbarData()
         :text="item.text || ''"
         :items="item.items"
         :icon="item.icon"
+        :badge="item.badge"
       />
     </template>
   </nav>

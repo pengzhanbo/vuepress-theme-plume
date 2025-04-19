@@ -32,7 +32,7 @@ catalogs:
     cpx2: ^8.0.0
     cross-env: 7.0.3
     cz-conventional-changelog: ^3.3.0
-    eslint: ^9.24.0
+    eslint: ^9.25.0
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.3.0
@@ -52,7 +52,7 @@ catalogs:
     wait-on: ^8.0.3
 
   peer:
-    '@iconify/json': ^2.2.328
+    '@iconify/json': ^2.2.329
     artplayer: ^5.2.2
     dashjs: ^5.0.1
     hls.js: ^1.6.2

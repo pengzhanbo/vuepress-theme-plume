@@ -1,4 +1,4 @@
-name: Deploy Docs
+name: Deploy Example Layout Slots
 
 on:
   workflow_dispatch:

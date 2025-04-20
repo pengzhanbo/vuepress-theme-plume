@@ -3,6 +3,7 @@ packages:
   - theme
   - cli
   - plugins/*
+  - examples/*
 
 overrides:
   '@typescript-eslint/utils': ^8.30.1

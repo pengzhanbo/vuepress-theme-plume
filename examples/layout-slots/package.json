@@ -1,0 +1,21 @@
+{
+  "name": "layout-slots",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "docs:build": "vuepress build docs --clean-cache --clean-temp",
+    "docs:clean": "rimraf .vuepress/.temp .vuepress/.cache .vuepress/dist",
+    "docs:dev": "vuepress dev docs"
+  },
+  "peerDependencies": {
+    "vuepress": "catalog:vuepress"
+  },
+  "dependencies": {
+    "@iconify/json": "catalog:peer",
+    "@vuepress/bundler-vite": "catalog:vuepress",
+    "http-server": "catalog:dev",
+    "sass-embedded": "catalog:peer",
+    "vue": "catalog:prod",
+    "vuepress-theme-plume": "workspace:*"
+  }
+}

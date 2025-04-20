@@ -1,5 +1,5 @@
 import type { ComputedRef, InjectionKey, Ref } from 'vue'
-import type { ResolvedSidebarItem, Sidebar, SidebarItem } from '../../shared/index.js'
+import type { ResolvedSidebarItem, ThemeSidebar, ThemeSidebarItem } from '../../shared/index.js'
 import { sidebar as sidebarRaw } from '@internal/sidebar'
 import {
   ensureLeadingSlash,
@@ -24,12 +24,12 @@ import { isActive, normalizeLink, normalizePrefix, resolveNavLink } from '../uti
 import { useData } from './data.js'
 import { useEncrypt } from './encrypt.js'
 
-export type SidebarData = Record<string, Sidebar>
+export type SidebarData = Record<string, ThemeSidebar>
 
 export type SidebarDataRef = Ref<SidebarData>
-export type AutoDirSidebarRef = Ref<SidebarItem[] | {
+export type AutoDirSidebarRef = Ref<ThemeSidebarItem[] | {
   link: string
-  items: SidebarItem[]
+  items: ThemeSidebarItem[]
 }>
 export type AutoHomeDataRef = Ref<Record<string, string>>
 
@@ -43,7 +43,7 @@ if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {
   __VUE_HMR_RUNTIME__.updateSidebar = (data: SidebarData) => {
     const { __auto__, __home__, ...items } = data
     sidebarData.value = items
-    autoDirSidebar.value = __auto__ as SidebarItem[]
+    autoDirSidebar.value = __auto__ as ThemeSidebarItem[]
     autoHomeData.value = __home__ as Record<string, string>
   }
 }
@@ -134,7 +134,7 @@ export function getSidebar(routePath: string, routeLocal: string): ResolvedSideb
 }
 
 function resolveSidebarItems(
-  sidebarItems: (string | SidebarItem)[],
+  sidebarItems: (string | ThemeSidebarItem)[],
   _prefix = '',
 ): ResolvedSidebarItem[] {
   const resolved: ResolvedSidebarItem[] = []
@@ -149,6 +149,7 @@ function resolveSidebarItems(
         navLink.link = link.startsWith('---') ? link : normalizeLink(_prefix, link)
         const nav = resolveNavLink(navLink.link)
         navLink.icon = nav.icon || navLink.icon
+        navLink.badge = nav.badge || navLink.badge
       }
       const nextPrefix = normalizePrefix(_prefix, prefix || dir)
       if (items === 'auto') {
@@ -157,6 +158,7 @@ function resolveSidebarItems(
           navLink.link = normalizeLink(autoHomeData.value[nextPrefix])
           const nav = resolveNavLink(navLink.link)
           navLink.icon = nav.icon || navLink.icon
+          navLink.badge = nav.badge || navLink.badge
         }
       }
       else {

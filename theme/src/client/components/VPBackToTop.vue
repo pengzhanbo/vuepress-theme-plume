@@ -3,6 +3,8 @@ import { useElementSize, useWindowScroll, useWindowSize } from '@vueuse/core'
 import { computed, onMounted, ref, shallowRef, watch } from 'vue'
 import { useData } from '../composables/index.js'
 
+import '@vuepress/helper/transition/fade-in.css'
+
 const body = shallowRef<HTMLElement | null>()
 const { height: bodyHeight } = useElementSize(body)
 const { height: windowHeight } = useWindowSize()
@@ -58,7 +60,7 @@ function handleClick() {
 </script>
 
 <template>
-  <Transition name="fade">
+  <Transition name="fade-in">
     <button
       v-show="!mustHidden && (show || isScrolling)"
       type="button"

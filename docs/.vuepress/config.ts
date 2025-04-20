@@ -1,4 +1,3 @@
-import type { UserConfig } from 'vuepress'
 import fs from 'node:fs'
 import path from 'node:path'
 import { viteBundler } from '@vuepress/bundler-vite'
@@ -7,13 +6,14 @@ import { defineUserConfig } from 'vuepress'
 import { theme } from './theme.js'
 
 const pnpmWorkspace = fs.readFileSync(path.resolve(__dirname, '../../pnpm-workspace.yaml'), 'utf-8')
-const vuepress = pnpmWorkspace.match(/vuepress:\s(.*)/)?.[1] || ''
+const vuepress = pnpmWorkspace.match(/vuepress:\s(2.+)/)?.[1] || ''
 
 export default defineUserConfig({
   base: '/',
   lang: 'zh-CN',
   source: path.resolve(__dirname, '../'),
   public: path.resolve(__dirname, 'public'),
+
   locales: {
     '/': { title: 'Plume 主题', lang: 'zh-CN' },
     '/en/': { title: 'Plume Theme', lang: 'en-US' },
@@ -40,4 +40,4 @@ export default defineUserConfig({
   shouldPrefetch: false,
 
   theme,
-}) as UserConfig
+})

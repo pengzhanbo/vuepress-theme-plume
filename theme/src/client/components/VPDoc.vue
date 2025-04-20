@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import VPDocAside from '@theme/VPDocAside.vue'
 import VPDocBreadcrumbs from '@theme/VPDocBreadcrumbs.vue'
-import VPDocChangelog from '@theme/VPDocChangelog.vue'
-import VPDocContributor from '@theme/VPDocContributor.vue'
 import VPDocCopyright from '@theme/VPDocCopyright.vue'
 import VPDocFooter from '@theme/VPDocFooter.vue'
 import VPDocMeta from '@theme/VPDocMeta.vue'
 import VPEncryptPage from '@theme/VPEncryptPage.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
-import { computed, nextTick, ref, resolveComponent, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
 import {
   useBlogPageData,
+  useContributors,
   useData,
   useEncrypt,
   useHeaders,
@@ -25,10 +24,11 @@ const { hasSidebar, hasAside, leftAside } = useSidebar()
 const { isBlogPost } = useBlogPageData()
 const headers = useHeaders()
 const { isPageDecrypted } = useEncrypt()
+const { mode: contributorsMode } = useContributors()
 
-const hasComments = computed(() => {
-  return resolveComponent('CommentService') !== 'CommentService' && page.value.frontmatter.comments !== false && isPageDecrypted.value
-})
+const hasComments = computed(() =>
+  page.value.frontmatter.comments !== false && isPageDecrypted.value,
+)
 
 const enableAside = computed(() => {
   if (!hasAside.value)
@@ -122,15 +122,29 @@ watch(
             <slot name="doc-before" />
             <main class="main">
               <VPDocBreadcrumbs />
-              <VPDocMeta />
+
+              <slot name="doc-meta-top" />
+              <VPDocMeta>
+                <template #doc-meta-before>
+                  <slot name="doc-meta-before" />
+                </template>
+                <template #doc-meta-after>
+                  <slot name="doc-meta-after" />
+                </template>
+              </VPDocMeta>
+              <slot name="doc-meta-bottom" />
+
               <VPEncryptPage v-if="!isPageDecrypted" />
               <div
                 v-else class="vp-doc plume-content"
                 :class="[pageName, enabledExternalLinkIcon && 'external-link-icon-enabled']" vp-content
               >
+                <slot name="doc-content-before" />
+
                 <Content />
-                <VPDocContributor />
-                <VPDocChangelog />
+
+                <DocGitContributors v-if="contributorsMode === 'block'" />
+                <DocGitChangelog />
                 <VPDocCopyright />
               </div>
             </main>
@@ -255,13 +269,11 @@ watch(
   }
 }
 
-@media (min-width: 1120px) {
+@media (min-width: 1280px) {
   .vp-doc-container .aside {
     display: block;
   }
-}
 
-@media (min-width: 1280px) {
   .vp-doc-container .container {
     display: flex;
     justify-content: center;

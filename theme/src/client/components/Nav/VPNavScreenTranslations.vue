@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import VPLink from '@theme/VPLink.vue'
+import { FadeInExpandTransition } from '@vuepress/helper/client'
 import { ref } from 'vue'
 import { useLangs } from '../../composables/index.js'
+
+import '@vuepress/helper/transition/fade-in-height-expand.css'
 
 const { localeLinks, currentLang } = useLangs()
 const isOpen = ref(false)
@@ -23,24 +26,24 @@ function toggle() {
       <span class="vpi-chevron-down icon chevron" />
     </button>
 
-    <ul class="list">
-      <li v-for="locale in localeLinks" :key="locale.link" class="item">
-        <VPLink class="link" :href="locale.link">
-          {{ locale.text }}
-        </VPLink>
-      </li>
-    </ul>
+    <FadeInExpandTransition>
+      <div v-show="isOpen" class="vp-nav-screen-translations-container">
+        <ul class="list">
+          <li v-for="locale in localeLinks" :key="locale.link" class="item">
+            <VPLink class="link" :href="locale.link">
+              {{ locale.text }}
+            </VPLink>
+          </li>
+        </ul>
+      </div>
+    </FadeInExpandTransition>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .vp-nav-screen-translations {
-  height: 24px;
+  min-height: 24px;
   overflow: hidden;
-}
-
-.vp-nav-screen-translations.open {
-  height: auto;
 }
 
 .title {

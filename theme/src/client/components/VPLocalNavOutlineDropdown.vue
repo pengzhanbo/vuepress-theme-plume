@@ -5,6 +5,8 @@ import { onClickOutside } from '@vueuse/core'
 import { nextTick, ref, watch } from 'vue'
 import { useData } from '../composables/index.js'
 
+import '@vuepress/helper/transition/fade-in-scale-up.css'
+
 const props = defineProps<{
   headers: MenuItem[]
   navHeight: number
@@ -56,7 +58,7 @@ function scrollToTop() {
     <button v-else @click="scrollToTop">
       {{ theme.returnToTopLabel || 'Return to top' }}
     </button>
-    <Transition name="flyout">
+    <Transition name="fade-in-scale-up">
       <div v-if="open" ref="items" class="items" @click="onItemClick">
         <div class="header">
           <a class="top-link" href="#" @click="scrollToTop">
@@ -145,19 +147,5 @@ function scrollToTop() {
 .outline {
   padding: 8px 0;
   background-color: var(--vp-c-bg-soft);
-}
-
-.flyout-enter-active {
-  transition: all 0.2s ease-out;
-}
-
-.flyout-leave-active {
-  transition: all 0.15s ease-in;
-}
-
-.flyout-enter-from,
-.flyout-leave-to {
-  opacity: 0;
-  transform: translateY(-16px);
 }
 </style>

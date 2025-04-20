@@ -19,12 +19,12 @@ npmTo 容器用于将 npm 命令行转换为 `pnpm / yarn / deno / bun` 的命�
 
 ## 用法
 
-````md
-::: npm-to <!-- [!code hl] -->
+````md{1,5}
+::: npm-to
 ``` sh
 npm install -D vuepress vuepress-theme-plume
 ```
-::: <!-- [!code hl] -->
+:::
 ````
 
 将 包含 `npm` 命令行的代码块，包裹在 `::: npm-to` 容器中即可。
@@ -65,12 +65,12 @@ npm install -D vuepress vuepress-theme-plume
 
 **输入：**
 
-````md
-::: npm-to tabs="npm,yarn,pnpm,bun,deno" <!-- [!code hl] -->
+````md {1,5}
+::: npm-to tabs="npm,yarn,pnpm,bun,deno"
 ``` sh
 npm install -D vuepress vuepress-theme-plume
 ```
-::: <!-- [!code hl] -->
+:::
 ````
 
 **输出：**
@@ -87,25 +87,18 @@ npm install -D vuepress vuepress-theme-plume
 
 该功能默认不启用，您需要在 `theme` 配置中启用它。
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        // npmTo: true, // 启用，并使用默认配置
-        npmTo: {
-          tabs: ['npm', 'yarn', 'pnpm'], // 代码块组默认显示顺序
-        }
-      },
-    }
+    markdown: {
+      // npmTo: true, // 启用，并使用默认配置
+      npmTo: {
+        tabs: ['npm', 'yarn', 'pnpm'], // 代码块组默认显示顺序
+      }
+    },
   })
 })
 ```
-
-:::
 
 `npm-to` 支持将 `npm` 命令行转换为 `pnpm / yarn / deno / bun` 的命令行。可以根据需求进行配置 `tabs` 。
 

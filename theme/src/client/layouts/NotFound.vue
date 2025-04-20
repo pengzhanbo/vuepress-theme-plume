@@ -28,11 +28,23 @@ const { theme } = useData()
       <template #nav-bar-content-after>
         <slot name="nav-bar-content-after" />
       </template>
+      <template #nav-bar-menu-before>
+        <slot name="nav-bar-menu-before" />
+      </template>
+      <template #nav-bar-menu-after>
+        <slot name="nav-bar-menu-after" />
+      </template>
       <template #nav-screen-content-before>
         <slot name="nav-screen-content-before" />
       </template>
       <template #nav-screen-content-after>
         <slot name="nav-screen-content-after" />
+      </template>
+      <template #nav-screen-menu-before>
+        <slot name="nav-screen-menu-before" />
+      </template>
+      <template #nav-screen-menu-after>
+        <slot name="nav-screen-menu-after" />
       </template>
     </VPNav>
 

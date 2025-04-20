@@ -2,7 +2,7 @@
   "extends": "tsconfig-vuepress/base.json",
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["DOM", "ES2022"],
+    "lib": ["DOM", "ES2024"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "noImplicitAny": false,

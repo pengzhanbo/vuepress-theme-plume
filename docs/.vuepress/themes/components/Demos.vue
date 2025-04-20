@@ -27,9 +27,9 @@ defineProps<{
           <span class="title">
             <a :href="demo.url" target="_blank" rel="noopener noreferrer" :aria-label="demo.name" :title="demo.name">{{ demo.name }}</a>
           </span>
-          <a v-if="demo.repo" :href="demo.repo" class="github" target="_blank" rel="noopener noreferrer"><span
-            class="vpi-social-github"
-          /></a>
+          <a v-if="demo.repo" :href="demo.repo" class="github" target="_blank" rel="noopener noreferrer" :aria-label="`Link to GitHub: ${demo.name}`">
+            <span class="vpi-social-github" />
+          </a>
         </h3>
         <p :title="demo.desc">
           {{ demo.desc }}
@@ -59,7 +59,7 @@ defineProps<{
   border-radius: 8px;
   box-shadow: var(--vp-shadow-1);
   transition: var(--vp-t-color);
-  transition-property: border background box-shadow;
+  transition-property: border;
 }
 
 .demo-item:hover {
@@ -79,10 +79,10 @@ defineProps<{
   left: 0;
   width: 100%;
   height: 100%;
-  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
-  transform: scale(1);
 
   object-fit: cover;
+  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+  transform: scale(1);
 }
 
 .demo-item:hover .demo-img img {
@@ -112,7 +112,7 @@ defineProps<{
 }
 
 .demo-title .title {
-  flex: 1;
+  flex: 1 2;
   width: auto;
   overflow: hidden;
   text-overflow: ellipsis;

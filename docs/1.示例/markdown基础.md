@@ -1,6 +1,5 @@
 ---
 title: Markdown 基础
-author: pengzhanbo
 createTime: 2024/03/06 22:43:52
 permalink: /article/mcz1csb4/
 tags:

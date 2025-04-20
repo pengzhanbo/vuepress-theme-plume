@@ -63,6 +63,7 @@ export const bilibiliPlugin: PluginWithOptions<never> = (md) => {
       }
 
       params.set('autoplay', meta.autoplay ? '1' : '0')
+      params.set('high_quality', '1')
 
       const source = `${BILIBILI_LINK}?${params.toString()}`
 

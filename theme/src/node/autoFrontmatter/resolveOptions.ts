@@ -1,9 +1,9 @@
 import type {
   AutoFrontmatterArray,
   AutoFrontmatterOptions,
-  NoteItem,
-  NotesOptions,
-  PlumeThemeLocaleOptions,
+  ThemeNote,
+  ThemeNoteListOptions,
+  ThemeOptions,
 } from '../../shared/index.js'
 import { uniq } from '@pengzhanbo/utils'
 import { ensureLeadingSlash } from '@vuepress/helper'
@@ -15,18 +15,18 @@ import { createBaseFrontmatter } from './baseFrontmatter.js'
 import { resolveLinkBySidebar } from './resolveLinkBySidebar.js'
 
 export function resolveOptions(
-  localeOptions: PlumeThemeLocaleOptions,
-  options: AutoFrontmatterOptions,
+  options: ThemeOptions,
+  autoFrontmatter: AutoFrontmatterOptions,
 ): AutoFrontmatterOptions {
   const resolveLocale = (relativeFilepath: string): string =>
-    resolveLocalePath(localeOptions.locales!, ensureLeadingSlash(relativeFilepath))
+    resolveLocalePath(options.locales!, ensureLeadingSlash(relativeFilepath))
 
-  const findNotesByLocale = (locale: string): NotesOptions | undefined => {
-    const notes = localeOptions.locales?.[locale]?.notes
+  const findNotesByLocale = (locale: string): ThemeNoteListOptions | undefined => {
+    const notes = options.locales?.[locale]?.notes
     return notes === false ? undefined : notes
   }
 
-  const findNote = (relativeFilepath: string): NoteItem | undefined => {
+  const findNote = (relativeFilepath: string): ThemeNote | undefined => {
     const locale = resolveLocale(relativeFilepath)
     const filepath = ensureLeadingSlash(relativeFilepath)
     const notes = findNotesByLocale(locale)
@@ -39,8 +39,8 @@ export function resolveOptions(
     )
   }
 
-  const baseFrontmatter = createBaseFrontmatter(options)
-  const localesNotesDirs = resolveNotesDirs(localeOptions)
+  const baseFrontmatter = createBaseFrontmatter(autoFrontmatter)
+  const localesNotesDirs = resolveNotesDirs(options)
   const configs: AutoFrontmatterArray = []
 
   if (localesNotesDirs.length) {
@@ -51,7 +51,7 @@ export function resolveOptions(
         title(title: string, { relativePath }) {
           if (title)
             return title
-          if (options.title === false)
+          if (autoFrontmatter.title === false)
             return
           return findNote(relativePath)?.text || getCurrentDirname('', relativePath)
         },
@@ -59,7 +59,7 @@ export function resolveOptions(
         permalink(permalink: string, { relativePath }, data: any) {
           if (permalink)
             return permalink
-          if (options.permalink === false || data.friends || data.pageLayout === 'friends')
+          if (autoFrontmatter.permalink === false || data.friends || data.pageLayout === 'friends')
             return
 
           const locale = resolveLocale(relativePath)
@@ -81,7 +81,7 @@ export function resolveOptions(
         title(title: string, { relativePath }) {
           if (title)
             return title
-          if (options.title === false)
+          if (autoFrontmatter.title === false)
             return
           return path.basename(relativePath, '.md').replace(/^\d+\./, '')
         },
@@ -89,7 +89,7 @@ export function resolveOptions(
         permalink(permalink: string, { relativePath }, data) {
           if (permalink)
             return permalink
-          if (options.permalink === false)
+          if (autoFrontmatter.permalink === false)
             return
           if (data.friends || data.pageLayout === 'friends')
             return
@@ -126,15 +126,15 @@ export function resolveOptions(
     frontmatter: {},
   })
 
-  if (localeOptions.blog !== false) {
+  if (options.blog !== false) {
     // 博客文章
     configs.push({
-      include: localeOptions.blog?.include ?? ['**/*.md'],
+      include: options.blog?.include ?? ['**/*.md'],
       frontmatter: {
         title(title: string, { relativePath }) {
           if (title)
             return title
-          if (options.title === false)
+          if (autoFrontmatter.title === false)
             return
           return path.basename(relativePath || '', '.md')
         },
@@ -142,10 +142,10 @@ export function resolveOptions(
         permalink(permalink: string, { relativePath }) {
           if (permalink)
             return permalink
-          if (options.permalink === false)
+          if (autoFrontmatter.permalink === false)
             return
           const locale = resolveLocale(relativePath)
-          const prefix = withBase(localeOptions.article || '/article/', locale)
+          const prefix = withBase(options.article || '/article/', locale)
 
           return normalizePath(`${prefix}/${nanoid()}/`)
         },
@@ -160,7 +160,7 @@ export function resolveOptions(
       title(title: string, { relativePath }) {
         if (title)
           return title
-        if (options.title === false)
+        if (autoFrontmatter.title === false)
           return
         return path.basename(relativePath || '', '.md')
       },
@@ -168,7 +168,7 @@ export function resolveOptions(
       permalink(permalink: string, { relativePath }) {
         if (permalink)
           return permalink
-        if (options.permalink === false)
+        if (autoFrontmatter.permalink === false)
           return
         return ensureLeadingSlash(normalizePath(relativePath.replace(/\.md$/, '/')))
       },
@@ -176,8 +176,8 @@ export function resolveOptions(
   })
 
   return {
-    include: options?.include ?? ['**/*.md'],
-    exclude: uniq(['.vuepress/**/*', 'node_modules', ...(options?.exclude ?? [])]),
+    include: autoFrontmatter?.include ?? ['**/*.md'],
+    exclude: uniq(['.vuepress/**/*', 'node_modules', ...(autoFrontmatter?.exclude ?? [])]),
     frontmatter: configs,
   }
 }

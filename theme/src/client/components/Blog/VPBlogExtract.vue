@@ -7,6 +7,8 @@ import { isLinkHttp } from 'vuepress/shared'
 import { useBlogExtract, useData } from '../../composables/index.js'
 import { inBrowser } from '../../utils/index.js'
 
+import '@vuepress/helper/transition/fade-in.css'
+
 const { theme } = useData()
 const route = useRoute()
 
@@ -60,7 +62,7 @@ const showBlogExtract = computed(() => {
     <div class="vp-blog-extract" @click="open = !open">
       <span class="vpi-blog-ext icon" />
     </div>
-    <Transition name="fade">
+    <Transition name="fade-in">
       <div v-show="open" class="blog-modal" @click.self="open = false">
         <div class="blog-modal-container" :class="{ open: lazyOpen }">
           <slot name="blog-extract-before" />
@@ -154,17 +156,6 @@ const showBlogExtract = computed(() => {
   z-index: var(--vp-z-index-overlay);
   width: 100%;
   background-color: rgba(0, 0, 0, 0.3);
-  opacity: 1;
-}
-
-.blog-modal.fade-enter-from,
-.blog-modal.fade-leave-to {
-  opacity: 0;
-}
-
-.blog-modal.fade-leave-active,
-.blog-modal.fade-enter-active {
-  transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .blog-modal-container {

@@ -1,6 +1,5 @@
 ---
 title: 博客文章
-author: pengzhanbo
 createTime: 2024/03/03 11:01:03
 permalink: /config/frontmatter/article/
 ---

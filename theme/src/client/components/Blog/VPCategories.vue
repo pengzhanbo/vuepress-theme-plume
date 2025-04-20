@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import type { BlogCategoryItem, BlogCategoryItemWithPost } from '../../composables/index.js'
+import type { CategoryItem, CategoryItemWithPost } from '../../composables/index.js'
 import VPCategoriesGroup from '@theme/Blog/VPCategoriesGroup.vue'
 import VPLink from '@theme/VPLink.vue'
 
 withDefaults(defineProps<{
-  items: (BlogCategoryItem | BlogCategoryItemWithPost)[]
+  items: (CategoryItem | CategoryItemWithPost)[]
   depth?: number
 }>(), {
   depth: 0,
@@ -15,7 +15,7 @@ withDefaults(defineProps<{
   <ul class="vp-categories">
     <li
       v-for="item in items"
-      :key="(item as BlogCategoryItemWithPost).path || (item as BlogCategoryItem).id"
+      :key="(item as CategoryItemWithPost).path || (item as CategoryItem).id"
       class="vp-categories-item"
     >
       <p v-if="item.type === 'post'" class="post">

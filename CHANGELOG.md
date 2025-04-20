@@ -1,3 +1,139 @@
+# [1.0.0-rc.143](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.142...v1.0.0-rc.143) (2025-04-19)
+
+
+### Features
+
+* **theme:** add badge support for navbar and sidebar ([#559](https://github.com/pengzhanbo/vuepress-theme-plume/issues/559)) ([73ed8dc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/73ed8dc9c544be19318db4e36379f08c4a91a39b))
+* **theme:** add layout slots ([#558](https://github.com/pengzhanbo/vuepress-theme-plume/issues/558)) ([0bceda5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0bceda590c78cd0727d63298eb77f936f4c3fe15))
+
+
+
+# [1.0.0-rc.142](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.141...v1.0.0-rc.142) (2025-04-16)
+
+
+### Bug Fixes
+
+* **theme:** incorrect git changelog render ([610a34c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/610a34cb52ad28396d304d5be3404c4deb962930))
+
+
+### Performance Improvements
+
+* update dep to latest ([207353d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/207353de032a22cbd5c8e64409dff2aed46ee3de))
+
+
+
+# [1.0.0-rc.141](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.140...v1.0.0-rc.141) (2025-04-15)
+
+
+### Features
+
+* **plugin-md-power:** improve async import for ssr ([6bbfc03](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6bbfc031fbf0b311bd0c55c3684b1321ea478831))
+* **theme:** add `doc-meta-before` and `doc-meta-after` slots ([#554](https://github.com/pengzhanbo/vuepress-theme-plume/issues/554)) ([97f0460](https://github.com/pengzhanbo/vuepress-theme-plume/commit/97f046015c236bd37c9ffa49456a0e177b07c5b2))
+* **theme:** add `target/rel` props support for `LinkCard` ([#556](https://github.com/pengzhanbo/vuepress-theme-plume/issues/556)) ([a0de3c6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a0de3c660a60dd24bd4f6d3663e144a4a3c1aa39))
+* **theme:** enhance repo card display and add star/fork conversion ([cbc728b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cbc728b249dc1079b513525c23c1c1af751f826a))
+* **theme:** improve page scroll behavior ([#557](https://github.com/pengzhanbo/vuepress-theme-plume/issues/557)) ([eef2220](https://github.com/pengzhanbo/vuepress-theme-plume/commit/eef222086f4fb7db53cad7a321ec310ab5e2f7ee))
+* **theme:** refactor `VPCardMasonry` for improved layout ([8111351](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8111351224b83471cf09698531ee48d799945145))
+* **theme:** update deps to latest and support vuepress rc.21 ([79d5312](https://github.com/pengzhanbo/vuepress-theme-plume/commit/79d5312cb81087c6a9c7eee95edfd97b8a2a0088))
+
+
+
+# [1.0.0-rc.140](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.139...v1.0.0-rc.140) (2025-04-07)
+
+
+### Bug Fixes
+
+* **theme:** handle empty dependencies in version detection ([74841a9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/74841a9ff638abda4d654384a53c52c3a5b52820))
+
+
+
+# [1.0.0-rc.139](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.138...v1.0.0-rc.139) (2025-04-06)
+
+
+### Features
+
+* add `vuepress-plugin-replace-assets` support, close [#545](https://github.com/pengzhanbo/vuepress-theme-plume/issues/545) ([#549](https://github.com/pengzhanbo/vuepress-theme-plume/issues/549)) ([1365c83](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1365c83109c552897340b0e64e67355b1d5b399e))
+* **theme:** add theme deps version detection ([#551](https://github.com/pengzhanbo/vuepress-theme-plume/issues/551)) ([487448d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/487448d6112d124d4ab8405426190b9a6c45a91b))
+
+
+### Performance Improvements
+
+* update deps to latest ([795ec51](https://github.com/pengzhanbo/vuepress-theme-plume/commit/795ec510fdffc212fed62cfdc4e9ff0b87531711))
+
+
+
+# [1.0.0-rc.138](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.137...v1.0.0-rc.138) (2025-04-01)
+
+
+### Bug Fixes
+
+* **theme:** correct path to theme package ([54233a3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/54233a330f681321f64a9ac277fb95e74882854f))
+* **theme:** remove incorrect `CommentService` warning during dev ([2f9ad84](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2f9ad84553f6f71141e917b7bfa4a051060af914))
+
+
+### Features
+
+* **cli:** add support `pnpm@10` ([#541](https://github.com/pengzhanbo/vuepress-theme-plume/issues/541)) ([9a07a82](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9a07a8226b0d283e4122f7b3665693a7faff5a78))
+* **cli:** preset `lang` base on the  os locale ([#544](https://github.com/pengzhanbo/vuepress-theme-plume/issues/544)) ([3731e37](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3731e376e3557155385c3cc32b328c0f97706ddc))
+* enhance a11y ([#546](https://github.com/pengzhanbo/vuepress-theme-plume/issues/546)) ([b28112e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b28112efc2c1dc277ecc7f5ee68da1bf2ca62064))
+* improve `demo vue` scoped styles ([#542](https://github.com/pengzhanbo/vuepress-theme-plume/issues/542)) ([6fd6c0c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6fd6c0c25008880469d5eda1aa06482a563a4bb8))
+* **plugin-md-power:** add `chat` container syntax support ([#537](https://github.com/pengzhanbo/vuepress-theme-plume/issues/537)) ([6237446](https://github.com/pengzhanbo/vuepress-theme-plume/commit/623744648288ce26c730460c46d4dc0b29c7f7bf))
+* **plugin-md-power:** enable high quality for Bilibili video embed ([15e1a00](https://github.com/pengzhanbo/vuepress-theme-plume/commit/15e1a00eddb239ba88785718c430825a78836d74))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** enhance error handling for theme and grammar loading ([2b74689](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2b746892fcc3dbb40ae7c35a87200c5899ee897e))
+* **plugin-search:** improve style ([320b5f7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/320b5f7336323a5d74a020f8b0c55df21fc71af3))
+* **theme:** improve scroll padding top ([86eefba](https://github.com/pengzhanbo/vuepress-theme-plume/commit/86eefbab9b2d99329b7f2f315bcd39b49bd59850))
+* **theme:** improve sidebar transition animation ([#540](https://github.com/pengzhanbo/vuepress-theme-plume/issues/540)) ([e8860a5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e8860a54ecab6c55d60063c8d69f6d63c6988d15))
+* update deps to latest ([52d0463](https://github.com/pengzhanbo/vuepress-theme-plume/commit/52d04631d97d3d29fed68335e771373284635ce7))
+
+
+
+# [1.0.0-rc.137](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.136...v1.0.0-rc.137) (2025-03-23)
+
+
+### Bug Fixes
+
+* **theme:** `copyright` component active mismatch ([#525](https://github.com/pengzhanbo/vuepress-theme-plume/issues/525)) ([de69b22](https://github.com/pengzhanbo/vuepress-theme-plume/commit/de69b22dcc47d934f84efd2abfb2f6e4c4773ded))
+* **theme:** incorrect `markdown.hint` default options ([#530](https://github.com/pengzhanbo/vuepress-theme-plume/issues/530)) ([feb35b4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/feb35b43076125972b3eba9fafcb259e4acfa55b))
+
+
+### Features
+
+* **cli:** update template with deploy `nodejs` version to `22` ([#531](https://github.com/pengzhanbo/vuepress-theme-plume/issues/531)) ([414e4fb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/414e4fb433d158452920de6755ebaef4ad2acc3a))
+* **plugin-md-power:** add `collapse` syntax support ([#535](https://github.com/pengzhanbo/vuepress-theme-plume/issues/535)) ([cca923a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cca923a2351f21b32e4edecbf9ace6c6939eeb43))
+* **plugin-md-power:** add `timeline` syntax support ([#529](https://github.com/pengzhanbo/vuepress-theme-plume/issues/529)) ([5173e7f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5173e7f2ede197ff64aad04c182bfbf9beb32c83))
+* **theme:** improve log output ([#526](https://github.com/pengzhanbo/vuepress-theme-plume/issues/526)) ([e346908](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e34690836b2abf1a796a5376cb147cbc8c1f7b8f))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** improve timeline syntax parsing ([#533](https://github.com/pengzhanbo/vuepress-theme-plume/issues/533)) ([7b8fae2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7b8fae22b1bf906e552ed9001c040cde956c476d))
+* update deps to latest ([8275912](https://github.com/pengzhanbo/vuepress-theme-plume/commit/82759121e6f6c8d06d2912647a15204879f66d0f))
+
+
+
+# [1.0.0-rc.136](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.135...v1.0.0-rc.136) (2025-03-16)
+
+
+### Bug Fixes
+
+* **theme:** optimize mermaid ([de7b25e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/de7b25ed7c192375edd8fba62206741b5ff0ee35))
+
+
+### Features
+
+* add  title render support for code block ([#522](https://github.com/pengzhanbo/vuepress-theme-plume/issues/522)) ([3d9361e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3d9361e2f1029e33a3b5e6a22c4c3b81d541d490))
+* **plugin-md-power:** cleanup the `env` passed into `renderInline` ([#519](https://github.com/pengzhanbo/vuepress-theme-plume/issues/519)) ([fb08a2d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fb08a2dc10452408e1c908d37923a6c0fa25f4ff))
+
+
+### Performance Improvements
+
+* improve nodejs version support ([#520](https://github.com/pengzhanbo/vuepress-theme-plume/issues/520)) ([5a81b41](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5a81b419c39ee7746965a19816d87a9d2c7f0cd3))
+
+
+
 # [1.0.0-rc.135](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.134...v1.0.0-rc.135) (2025-03-02)
 
 

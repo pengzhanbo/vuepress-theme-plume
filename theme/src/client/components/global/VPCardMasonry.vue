@@ -27,6 +27,9 @@ const rawList = computed(() => {
 })
 
 const columnsLength = computed<number>(() => {
+  if (__VUEPRESS_SSR__)
+    return 3
+
   let length = 1
   if (typeof props.cols === 'number') {
     length = props.cols
@@ -39,7 +42,7 @@ const columnsLength = computed<number>(() => {
     else
       length = props.cols.sm || 2
   }
-  length = rawList.value.length < length ? rawList.value.length : length
+
   return Number(length)
 })
 
@@ -47,10 +50,6 @@ const columnsList = shallowRef<VNode[][]>([])
 const masonry = shallowRef<HTMLDivElement>()
 
 async function drawColumns() {
-  if (rawList.value.length <= 1) {
-    columnsList.value = []
-    return
-  }
   await nextTick()
   if (!masonry.value)
     return
@@ -71,6 +70,9 @@ async function drawColumns() {
 }
 
 onMounted(() => {
+  if (__VUEPRESS_SSR__)
+    return
+
   drawColumns()
   const debounceDraw = useDebounceFn(drawColumns)
   watch([rawList, columnsLength], debounceDraw, { flush: 'post' })
@@ -79,34 +81,28 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="masonry" class="vp-card-masonry" :class="[`cols-${columnsLength}`]" :style="{ gap: `${props.gap}px` }" data-allow-mismatch>
+  <div ref="masonry" class="vp-card-masonry" :class="[`cols-${columnsLength}`]" :style="{ 'grid-gap': `${props.gap}px`, '--card-masonry-cols': columnsLength }" data-allow-mismatch>
     <ClientOnly>
-      <div v-if="rawList.length <= 1" class="card-masonry-item" :style="{ gap: `${props.gap}px` }">
-        <slot />
+      <div v-for="(column, index) in columnsList" :key="`${uuid}-${index}`" class="card-masonry-item" :style="{ gap: `${props.gap}px` }">
+        <component :is="item" v-for="item in column" :key="item.props!.class" />
       </div>
-      <template v-else>
-        <div v-for="(column, index) in columnsList" :key="`${uuid}-${index}`" class="card-masonry-item" :style="{ gap: `${props.gap}px` }">
-          <component :is="item" v-for="item in column" :key="item.props!.class" />
-        </div>
-      </template>
     </ClientOnly>
   </div>
 </template>
 
 <style>
 .vp-card-masonry {
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(var(--card-masonry-cols), 1fr);
   height: max-content;
   margin: 16px 0;
 }
 
 .vp-card-masonry > .card-masonry-item {
   display: flex;
-  flex: 1;
   flex-direction: column;
   align-items: flex-start;
-  width: 1px;
+  min-width: 0;
 }
 
 .vp-card-masonry > .card-masonry-item > [class*="masonry-v-"] {

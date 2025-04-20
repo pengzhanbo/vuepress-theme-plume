@@ -13,9 +13,9 @@
   }
 }
 
-*,
-::before,
-::after {
+:where(#app) *,
+:where(#app) ::before,
+:where(#app) ::after {
   box-sizing: border-box;
 }
 
@@ -23,16 +23,18 @@ html {
   font-size: 16px;
   line-height: 1.4;
 
-  scroll-padding-top: 0;
+  scroll-padding-top: 48px;
 }
 
 @media (min-width: 960px) {
   html {
-    scroll-padding-top: 80px;
+    scroll-padding-top: 112px;
   }
+}
 
-  html.layout-home {
-    scroll-padding-top: var(--vp-nav-height, 80px);
+@media (min-width: 1120px) {
+  html {
+    scroll-padding-top: 64px;
   }
 }
 
@@ -78,24 +80,24 @@ main {
   display: block;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:where(#app) h1,
+:where(#app) h2,
+:where(#app) h3,
+:where(#app) h4,
+:where(#app) h5,
+:where(#app) h6 {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
 }
 
-p {
+:where(#app) p {
   margin: 0;
 }
 
-strong,
-b {
+:where(#app) strong,
+:where(#app) b {
   font-weight: 600;
 }
 
@@ -131,8 +133,8 @@ a {
   text-decoration: inherit;
 }
 
-ol,
-ul {
+:where(#app) ol,
+:where(#app) ul {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -142,19 +144,19 @@ blockquote {
   margin: 0;
 }
 
-pre,
-code,
-kbd,
-samp {
+:where(#app) pre,
+:where(#app) code,
+:where(#app) kbd,
+:where(#app) samp {
   font-family: var(--vp-font-family-mono);
 }
 
-img,
-svg,
+:where(#app) img,
+:where(#app) svg,
 video,
 canvas,
 audio,
-iframe,
+:where(#app) iframe,
 embed,
 object {
   display: block;
@@ -164,98 +166,98 @@ figure {
   margin: 0;
 }
 
-img,
-video {
+:where(#app) img,
+:where(#app) video {
   max-width: 100%;
   height: auto;
 }
 
-button,
-input,
-optgroup,
-select,
-textarea {
+:where(#app) button,
+:where(#app) input,
+:where(#app) optgroup,
+:where(#app) select,
+:where(#app) textarea {
   padding: 0;
   line-height: inherit;
   color: inherit;
   border: 0;
 }
 
-textarea {
+:where(#app) textarea {
   resize: vertical;
 }
 
-select {
+:where(#app) select {
   -webkit-appearance: none;
   appearance: none;
 }
 
-input {
+:where(#app) input {
   background-color: transparent;
 }
 
-button {
+:where(#app) button {
   padding: 0;
   font-family: inherit;
   background-color: transparent;
   background-image: none;
 }
 
-button:enabled,
-[role="button"]:enabled {
+:where(#app) button:enabled,
+:where(#app) [role="button"]:enabled {
   cursor: pointer;
 }
 
-button:focus,
-button:focus-visible {
+:where(#app) button:focus,
+:where(#app) button:focus-visible {
   outline: 1px dotted;
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-button:focus:not(:focus-visible) {
+:where(#app) button:focus:not(:focus-visible) {
   outline: none !important;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
+:where(#app) input:focus,
+:where(#app) textarea:focus,
+:where(#app) select:focus {
   outline: none;
 }
 
-table {
+:where(#app) table {
   border-collapse: collapse;
 }
 
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
+:where(#app) input:-ms-input-placeholder,
+:where(#app) textarea:-ms-input-placeholder {
   color: var(--vp-c-text-3);
   transition: color var(--vp-t-color);
 }
 
-input::-ms-input-placeholder,
-textarea::-ms-input-placeholder {
+:where(#app) input::-ms-input-placeholder,
+:where(#app) textarea::-ms-input-placeholder {
   color: var(--vp-c-text-3);
   transition: color var(--vp-t-color);
 }
 
-input::placeholder,
-textarea::placeholder {
+:where(#app) input::placeholder,
+:where(#app) textarea::placeholder {
   color: var(--vp-c-text-3);
   transition: color var(--vp-t-color);
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+:where(#app) input::-webkit-outer-spin-button,
+:where(#app) input::-webkit-inner-spin-button {
   margin: 0;
   -webkit-appearance: none;
 }
 
-input[type="number"] {
+:where(#app) input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
 
-fieldset {
+:where(#app) fieldset {
   padding: 0;
   margin: 0;
 }

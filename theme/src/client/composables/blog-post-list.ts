@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
+import type { ThemeBlogPostItem } from '../../shared/index.js'
 import { useMediaQuery } from '@vueuse/core'
 import { computed } from 'vue'
 import { useLocalePostList } from './blog-data.js'
@@ -29,7 +29,7 @@ export function usePostListControl(homePage: Ref<boolean>) {
         return next.sticky! > prev.sticky! ? 1 : -1
       }),
       ...otherList,
-    ] as PlumeThemeBlogPostItem[]
+    ] as ThemeBlogPostItem[]
   })
 
   const page = useRouteQuery('p', 1, {

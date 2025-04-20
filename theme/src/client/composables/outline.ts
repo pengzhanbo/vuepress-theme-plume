@@ -222,7 +222,7 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
     // find the last header above the top of viewport
     let activeLink: string | null = null
     for (const { link, top } of headers) {
-      if (top > scrollY + 92)
+      if (top > scrollY + 80)
         break
 
       activeLink = link
@@ -268,8 +268,10 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
   }, { debounce: 500 })
 
   onMounted(() => {
-    requestAnimationFrame(setActiveLink)
-    window.addEventListener('scroll', onScroll)
+    setTimeout(() => {
+      setActiveLink()
+      window.addEventListener('scroll', onScroll)
+    }, 1000)
   })
 
   onUpdated(() => {

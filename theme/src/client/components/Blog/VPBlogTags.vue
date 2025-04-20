@@ -45,7 +45,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
 
 <style scoped>
 .vp-blog-tags {
-  flex: 1;
+  flex: 1 2;
 }
 
 .vp-blog-tags.has-list {

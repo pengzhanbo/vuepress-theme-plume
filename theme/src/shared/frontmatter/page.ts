@@ -1,9 +1,9 @@
 import type { WatermarkPluginFrontmatter } from '@vuepress/plugin-watermark'
-import type { ThemeOutline } from '../base.js'
-import type { NavItemWithLink } from '../navbar.js'
-import type { PlumeNormalFrontmatter } from './normal.js'
+import type { ThemeBadge, ThemeIcon, ThemeOutline } from '../common/index.js'
+import type { NavItemWithLink } from '../features/index.js'
+import type { ThemeNormalFrontmatter } from './normal.js'
 
-export interface PlumeThemePageFrontmatter extends PlumeNormalFrontmatter {
+export interface ThemePageFrontmatter extends ThemeNormalFrontmatter {
   home?: never
   friends?: never
   /**
@@ -66,13 +66,10 @@ export interface PlumeThemePageFrontmatter extends PlumeNormalFrontmatter {
    * 支持 本地、远程 svg 图标，直接使用 svg 的 url 即可
    * 或直接传入 svg 字符串
    */
-  icon?: string | { svg: string }
+  icon?: ThemeIcon
 
   /**
    * 标题徽章
    */
-  badge?: string | {
-    text: string
-    type?: 'info' | 'tip' | 'warning' | 'danger'
-  }
+  badge?: string | ThemeBadge
 }

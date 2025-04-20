@@ -14,7 +14,7 @@ export interface MarkdownPowerPluginOptions {
    */
   annotation?: boolean
 
-  /*
+  /**
    * 是否启用 abbr 语法
    * @default false
    */
@@ -55,6 +55,59 @@ export interface MarkdownPowerPluginOptions {
    * @default false
    */
   plot?: boolean | PlotOptions
+
+  /**
+   * 是否启用 timeline 语法
+   *
+   * ```md
+   * ::: timeline
+   * - title
+   *   time="Q1" icon="ri:clockwise-line" line="dashed" type="warning" color="red"
+   *
+   *   xxx
+   * :::
+   * ```
+   *
+   * @default false
+   */
+  timeline?: boolean
+
+  /**
+   * 是否启用 collapse 折叠面板 语法
+   *
+   * ```md
+   * ::: collapse accordion
+   * - + title
+   *
+   *   content
+   *
+   * - - title
+   *
+   *   content
+   * :::
+   * ```
+   *
+   * @default false
+   */
+  collapse?: boolean
+
+  /**
+   * 是否启用 chat 容器 语法
+   *
+   * ```md
+   * ::: chat
+   * {:date}
+   *
+   * {user}
+   * message
+   *
+   * {.}
+   * message
+   * :::
+   * ```
+   * @default false
+   */
+  chat?: boolean
 
   // video embed
   /**

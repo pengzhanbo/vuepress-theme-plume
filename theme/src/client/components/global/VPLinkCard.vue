@@ -7,13 +7,15 @@ defineProps<{
   title?: string
   icon?: string | { svg: string }
   description?: string
+  target?: string
+  rel?: string
 }>()
 </script>
 
 <template>
   <div class="vp-link-card">
     <span class="body">
-      <VPLink :href="href" no-icon class="link no-icon">
+      <VPLink :href="href" no-icon class="link no-icon" v-bind="{ target, rel }">
         <slot name="title">
           <VPIcon v-if="icon" :name="icon" />
           <span v-if="title" v-html="title" />
@@ -51,7 +53,7 @@ defineProps<{
 
 .vp-link-card .body {
   display: flex;
-  flex: 1;
+  flex: 1 2;
   flex-direction: column;
   gap: 16px;
   align-items: flex-start;

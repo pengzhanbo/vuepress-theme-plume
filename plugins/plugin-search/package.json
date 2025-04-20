@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-search",
   "type": "module",
-  "version": "1.0.0-rc.135",
+  "version": "1.0.0-rc.143",
   "description": "The Plugin for VuePress 2 - local search",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",
@@ -37,18 +37,18 @@
     "tsup": "tsup --config tsup.config.ts"
   },
   "peerDependencies": {
-    "vuepress": "catalog:"
+    "vuepress": "catalog:vuepress"
   },
   "dependencies": {
-    "@vuepress/helper": "catalog:",
-    "@vueuse/core": "catalog:",
-    "@vueuse/integrations": "catalog:",
-    "chokidar": "catalog:",
-    "focus-trap": "^7.6.4",
-    "mark.js": "^8.11.1",
-    "minisearch": "^7.1.2",
-    "p-map": "^7.0.3",
-    "vue": "catalog:"
+    "@vuepress/helper": "catalog:vuepress",
+    "@vueuse/core": "catalog:prod",
+    "@vueuse/integrations": "catalog:prod",
+    "chokidar": "catalog:prod",
+    "focus-trap": "catalog:prod",
+    "mark.js": "catalog:prod",
+    "minisearch": "catalog:prod",
+    "p-map": "catalog:prod",
+    "vue": "catalog:prod"
   },
   "publishConfig": {
     "access": "public"

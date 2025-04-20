@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { PlumeThemeHomeFeatures } from '../../../shared/index.js'
+import type { ThemeHomeFeatures } from '../../../shared/index.js'
 import VPHomeBox from '@theme/Home/VPHomeBox.vue'
 import VPHomeFeature from '@theme/Home/VPHomeFeature.vue'
 import { computed } from 'vue'
 
-const props = defineProps<PlumeThemeHomeFeatures>()
+const props = defineProps<ThemeHomeFeatures>()
 
 const grid = computed(() => {
   const length = props.features?.length

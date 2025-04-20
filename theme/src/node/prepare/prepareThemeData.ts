@@ -1,6 +1,6 @@
 import type { FSWatcher } from 'chokidar'
 import type { App } from 'vuepress'
-import type { PlumeThemeData, PlumeThemePluginOptions } from '../../shared/index.js'
+import type { ThemeBuiltinPlugins, ThemeData } from '../../shared/index.js'
 import fs from 'node:fs/promises'
 import process from 'node:process'
 import { watch } from 'chokidar'
@@ -8,7 +8,7 @@ import { resolveImageSize } from 'vuepress-plugin-md-power'
 import { hash } from 'vuepress/utils'
 import { resolveThemeData } from '../config/resolveThemeData.js'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { perfLog, perfMark, resolveContent, writeTemp } from '../utils/index.js'
+import { perf, resolveContent, writeTemp } from '../utils/index.js'
 
 let bulletinFileWatcher: FSWatcher | null = null
 const bulletinFiles: Record<string, string> = {}
@@ -17,13 +17,14 @@ process.on('exit', () => bulletinFileWatcher?.close())
 
 export async function prepareThemeData(
   app: App,
-  pluginOptions: PlumeThemePluginOptions,
+  plugins: ThemeBuiltinPlugins,
 ): Promise<void> {
-  perfMark('prepare:theme-data')
-  const { localeOptions } = getThemeConfig()
-  const resolvedThemeData = resolveThemeData(app, localeOptions)
+  perf.mark('prepare:theme-data')
+  const options = getThemeConfig()
+  const resolvedThemeData = resolveThemeData(app, options)
 
-  await resolveProfileImage(app, resolvedThemeData, pluginOptions)
+  // 用户头像添加尺寸
+  await processProfileImageSize(app, resolvedThemeData, plugins)
 
   if (bulletinFileWatcher) {
     bulletinFileWatcher.close()
@@ -33,15 +34,15 @@ export async function prepareThemeData(
   await resolveBulletin(app, resolvedThemeData)
   await updateThemeData(app, resolvedThemeData)
 
-  perfLog('prepare:theme-data', app.env.isDebug)
+  perf.log('prepare:theme-data')
 }
 
-async function updateThemeData(app: App, themeData: PlumeThemeData) {
+async function updateThemeData(app: App, themeData: ThemeData) {
   const content = resolveContent(app, { name: 'themeData', content: themeData })
   await writeTemp(app, 'internal/themePlumeData.js', content)
 }
 
-async function resolveBulletin(app: App, themeData: PlumeThemeData) {
+async function resolveBulletin(app: App, themeData: ThemeData) {
   if (themeData.bulletin === true)
     themeData.bulletin = {}
 
@@ -122,12 +123,15 @@ async function readBulletinFile(app: App, filepath: string, locale = '/') {
   return ''
 }
 
-async function resolveProfileImage(
+async function processProfileImageSize(
   app: App,
-  themeData: PlumeThemeData,
-  pluginOptions: PlumeThemePluginOptions,
+  themeData: ThemeData,
+  plugins: ThemeBuiltinPlugins,
 ) {
-  const imageSize = typeof pluginOptions.markdownPower === 'boolean' ? false : pluginOptions.markdownPower?.imageSize
+  const options = getThemeConfig()
+  const imageSize = options.markdown?.imageSize
+    ?? (typeof plugins.markdownPower === 'boolean' ? false : plugins.markdownPower?.imageSize)
+
   if (!app.env.isBuild || !imageSize)
     return
 

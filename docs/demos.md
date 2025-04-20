@@ -1,6 +1,5 @@
 ---
 title: 案例
-author: pengzhanbo
 createTime: 2024/04/18 19:22:07
 permalink: /demos/
 readingTime: false
@@ -78,10 +77,10 @@ blog:
   -
     name: Hoey
     desc: 老师,我太想进步了。
-    logo: https://hoeyzheng.top/avatar.jpg
-    url: https://hoeyzheng.top
+    logo: https://zhenghaoyang.cn/avatar.jpg
+    url: https://zhenghaoyang.cn/
     repo: https://github.com/zhenghaoyang24
-    preview: /images/demos/hoeyzheng.top.jpg
+    preview: https://zhenghaoyang.cn/siteshot.png
   -
     name: IXYZ
     desc: Hi,there
@@ -152,6 +151,20 @@ blog:
     url: https://physnya.top
     repo: https://github.com/physnya/blog
     preview: https://physnya.top/images/preview.png
+  -
+    name: XINGJI
+    desc: 迄今所有人生都大写着失败，但不妨碍我继续向前✨
+    logo: https://i.p-i.vip/47/20240920-66ed7b168c38c.jpg
+    url: https://vue.xingji.fun
+    repo: https://github.com/XingJi-love/XingJi-blog-plume
+    preview: https://i.p-i.vip/47/20250407-67f3f1eca1983.png
+  -
+    name: Paiad
+    desc: 种一棵树最好的时间是十年前，其次是现在。
+    logo: https://paiad.online/sunflower.png
+    url: https://paiad.online
+    repo: https://github.com/paiad
+    preview: https://paiad.online/paiad-blog.png
 ---
 
 :::important

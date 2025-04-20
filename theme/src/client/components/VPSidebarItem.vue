@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import type { ResolvedSidebarItem } from '../../shared/index.js'
+import VPBadge from '@theme/global/VPBadge.vue'
 import VPIcon from '@theme/VPIcon.vue'
 import VPLink from '@theme/VPLink.vue'
+import { FadeInExpandTransition } from '@vuepress/helper/client'
 import { computed } from 'vue'
 import { useSidebarControl } from '../composables/index.js'
+
+import '@vuepress/helper/transition/fade-in-height-expand.css'
 
 const props = defineProps<{
   item: ResolvedSidebarItem
@@ -83,10 +87,24 @@ function onCaretClick() {
         class="link"
         :href="item.link"
       >
-        <Component :is="textTag" class="text" v-html="item.text" />
+        <Component :is="textTag" class="text">
+          <span v-html="item.text" />
+          <VPBadge
+            v-if="item.badge"
+            class="vp-menu-badge"
+            v-bind="typeof item.badge === 'string' ? { text: item.badge } : item.badge"
+          />
+        </Component>
       </VPLink>
 
-      <Component :is="textTag" v-else class="text" :class="{ separator: isSeparator }" v-html="item.text" />
+      <Component :is="textTag" v-else class="text" :class="{ separator: isSeparator }">
+        <span v-html="item.text" />
+        <VPBadge
+          v-if="item.badge"
+          class="vp-menu-badge"
+          v-bind="typeof item.badge === 'string' ? { text: item.badge } : item.badge"
+        />
+      </Component>
 
       <div
         v-if="item.collapsed != null"
@@ -101,16 +119,20 @@ function onCaretClick() {
       </div>
     </div>
 
-    <div v-if="item.items && item.items.length" class="items">
-      <template v-if="depth < 5">
-        <VPSidebarItem
-          v-for="i in item.items"
-          :key="i.text"
-          :item="i"
-          :depth="depth + 1"
-        />
-      </template>
-    </div>
+    <template v-if="item.items && item.items.length && depth < 5">
+      <FadeInExpandTransition>
+        <div v-show="!collapsed">
+          <div class="items">
+            <VPSidebarItem
+              v-for="i in item.items"
+              :key="i.text"
+              :item="i"
+              :depth="depth + 1"
+            />
+          </div>
+        </div>
+      </FadeInExpandTransition>
+    </template>
   </Component>
 </template>
 
@@ -143,6 +165,11 @@ function onCaretClick() {
   transition: background-color var(--vp-t-color);
 }
 
+.vp-sidebar-item.level-1.is-active > .item > .indicator {
+  width: 2px;
+}
+
+.vp-sidebar-item.level-1.is-active > .item > .indicator,
 .vp-sidebar-item.level-2.is-active > .item > .indicator,
 .vp-sidebar-item.level-3.is-active > .item > .indicator,
 .vp-sidebar-item.level-4.is-active > .item > .indicator,
@@ -152,7 +179,7 @@ function onCaretClick() {
 
 .link {
   display: block;
-  flex-grow: 1;
+  flex: 1 2;
 }
 
 .text {
@@ -161,6 +188,7 @@ function onCaretClick() {
   padding: 4px 0;
   font-size: 14px;
   line-height: 24px;
+  vertical-align: middle;
   transition: color var(--vp-t-color);
 }
 
@@ -247,10 +275,12 @@ function onCaretClick() {
 }
 
 .item :deep(.vp-icon) {
+  align-self: baseline;
   margin: 0 0.25rem 0 0;
   font-size: 0.9em;
   color: var(--vp-c-text-2);
   transition: color var(--vp-t-color);
+  transform: translateY(9px);
 }
 
 .item :deep(.vp-icon-img) {
@@ -306,7 +336,18 @@ function onCaretClick() {
   transition: border-left var(--vp-t-color);
 }
 
-.vp-sidebar-item.collapsed .items {
-  display: none;
+.vp-sidebar-item .text :deep(.vp-menu-badge) {
+  padding: 3px 4px;
+  margin-top: 0;
+  margin-left: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.2px;
+  border-radius: 6px;
+}
+
+.vp-sidebar-item.collapsible > .item .text :deep(.vp-menu-badge) {
+  transform: translateY(3px);
 }
 </style>

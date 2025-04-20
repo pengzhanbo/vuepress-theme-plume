@@ -1,10 +1,10 @@
-import type { PlumeThemeBlogPostItem } from '../../shared/index.js'
+import type { ThemeBlogPostItem } from '../../shared/index.js'
 import { computed } from 'vue'
 import { useLocalePostList } from './blog-data.js'
 import { useData } from './data.js'
 import { useThemeData } from './theme-data.js'
 
-export type ShortPostItem = Pick<PlumeThemeBlogPostItem, 'title' | 'path' | 'createTime'>
+export type ShortPostItem = Pick<ThemeBlogPostItem, 'title' | 'path' | 'createTime'>
 
 export function useArchives() {
   const themeData = useThemeData()

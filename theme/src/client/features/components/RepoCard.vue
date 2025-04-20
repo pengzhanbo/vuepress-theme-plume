@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { toRef } from 'vue'
+import { ClientOnly } from 'vuepress/client'
 import { useGithubRepo } from '../composables/github-repo.js'
 
 const props = defineProps<{
@@ -9,32 +10,38 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
 </script>
 
 <template>
-  <div v-if="loaded && data" class="vp-repo-card">
-    <p class="repo-name">
-      <span class="vpi-github-repo" />
-      <span class="repo-link">
-        <a :href="data.url" target="_blank" rel="noopener noreferrer" class="no-icon">
-          {{ data.ownerType === 'Organization' ? data.fullName : data.name }}
-        </a>
-      </span>
-      <span class="repo-visibility">{{ data.visibility + (data.template ? ' Template' : '') }}</span>
-    </p>
-    <p class="repo-desc">
-      {{ data.description }}
-    </p>
-    <div class="repo-info">
-      <p v-if="data.language">
-        <span
-          class="repo-language" :style="{ 'background-color': data.languageColor }"
-        /><span>{{ data.language }}</span>
+  <ClientOnly>
+    <div v-if="loaded && data?.name" class="vp-repo-card">
+      <p class="repo-name">
+        <span class="vpi-github-repo" />
+        <span class="repo-link">
+          <a :href="data.url" target="_blank" rel="noopener noreferrer" class="no-icon" :title="data.fullName">
+            {{ data.ownerType === 'Organization' ? data.fullName : data.name }}
+          </a>
+        </span>
+        <span class="repo-visibility">{{ data.visibility + (data.template ? ' Template' : '') }}</span>
       </p>
-      <p><span class="vpi-github-star" /><span>{{ data.stars }}</span></p>
-      <p><span class="vpi-github-fork" /><span>{{ data.forks }}</span></p>
-      <p v-if="data.license">
-        <span class="vpi-github-license" /><span>{{ data.license.name }}</span>
+      <p class="repo-desc">
+        {{ data.description }}
       </p>
+      <div class="repo-info">
+        <p v-if="data.language">
+          <span
+            class="repo-language" :style="{ 'background-color': data.languageColor }"
+          /><span>{{ data.language }}</span>
+        </p>
+        <p :title="`Github Stars: ${data.stars}`">
+          <span class="vpi-github-star" /><span>{{ data.convertStars }}</span>
+        </p>
+        <p :title="`Github Forks: ${data.forks}`">
+          <span class="vpi-github-fork" /><span>{{ data.convertForks }}</span>
+        </p>
+        <p v-if="data.license" :title="`Github License: ${data.license.name}`">
+          <span class="vpi-github-license" /><span>{{ data.license.name }}</span>
+        </p>
+      </div>
     </div>
-  </div>
+  </ClientOnly>
 </template>
 
 <style scoped>
@@ -66,7 +73,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
 }
 
 .vp-repo-card .repo-link {
-  flex: 1;
+  flex: 1 2;
   width: 1px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -97,7 +104,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
 }
 
 .vp-repo-card .repo-desc {
-  flex: 1;
+  flex: 1 2;
   font-size: 14px;
   line-height: 22px;
   color: var(--vp-c-text-2);
@@ -106,17 +113,19 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
 
 .vp-repo-card .repo-info {
   display: flex;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 8px 14px;
   align-items: center;
   justify-content: flex-start;
   font-size: 14px;
-  line-height: 22px;
 }
 
 .vp-repo-card .repo-info p {
   display: flex;
   gap: 0 4px;
   align-items: center;
+  margin: 0;
+  line-height: 1.5;
   color: var(--vp-c-text-2);
   transition: color var(--vp-t-color);
 }

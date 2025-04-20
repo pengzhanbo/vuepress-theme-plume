@@ -87,7 +87,7 @@ const friendStyle = computed(() => {
 }
 
 .content {
-  flex: 1;
+  flex: 1 2;
 }
 
 .vp-friend.only-title .content {

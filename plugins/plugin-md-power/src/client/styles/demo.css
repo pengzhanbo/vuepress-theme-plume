@@ -37,7 +37,7 @@
 
 .vp-demo-wrapper .demo-info .title::after {
   display: inline-block;
-  flex: 1;
+  flex: 1 2;
   height: 0;
   margin-left: 8px;
   content: "";
@@ -65,7 +65,7 @@
 
 .vp-demo-wrapper .demo-ctrl .extra {
   display: flex;
-  flex: 1;
+  flex: 1 2;
   gap: 16px;
   align-items: center;
   justify-content: flex-start;
@@ -145,6 +145,17 @@
   padding: 0;
   margin: 0;
   list-style: none;
+}
+
+.demo-draw-vue {
+  position: absolute;
+  top: -99999px;
+  left: -99999px;
+  z-index: 1;
+  padding: 24px;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: top, left, width, height;
 }
 
 .vpi-demo-code {

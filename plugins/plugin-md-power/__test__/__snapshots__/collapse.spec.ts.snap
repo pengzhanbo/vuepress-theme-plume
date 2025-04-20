@@ -1,0 +1,32 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`collapsePlugin > should work 1`] = `
+"<VPCollapse><VPCollapseItem expand :index="0"><template #title>标题</template><p>内容</p>
+</VPCollapseItem><VPCollapseItem :index="1"><template #title><code>code</code>标题</template><p>内容</p>
+<ul>
+<li>列表 1</li>
+<li>列表 2</li>
+</ul>
+</VPCollapseItem><VPCollapseItem :index="2"><template #title><code>code</code> 标题</template><p>内容</p>
+</VPCollapseItem></VPCollapse>"
+`;
+
+exports[`collapsePlugin > should work with accordion 1`] = `
+"<VPCollapse accordion><VPCollapseItem :index="0"><template #title>标题</template><p>内容</p>
+</VPCollapseItem><VPCollapseItem :index="1"><template #title>标题</template><p>内容</p>
+</VPCollapseItem><VPCollapseItem :index="2"><template #title>标题</template><p>内容</p>
+</VPCollapseItem></VPCollapse><VPCollapse accordion :index="0"><VPCollapseItem :index="0"><template #title>标题</template><p>内容</p>
+</VPCollapseItem><VPCollapseItem :index="1"><template #title>标题</template><p>内容</p>
+</VPCollapseItem><VPCollapseItem :index="2"><template #title>标题</template><p>内容</p>
+</VPCollapseItem></VPCollapse><VPCollapse accordion :index="1"><VPCollapseItem :index="0"><template #title>标题</template><p>内容</p>
+</VPCollapseItem><VPCollapseItem expand :index="1"><template #title>标题</template><p>内容</p>
+</VPCollapseItem><VPCollapseItem :index="2"><template #title>标题</template><p>内容</p>
+</VPCollapseItem></VPCollapse>"
+`;
+
+exports[`collapsePlugin > should work with expand 1`] = `
+"<VPCollapse><VPCollapseItem expand :index="0"><template #title>标题</template><p>内容</p>
+</VPCollapseItem><VPCollapseItem expand :index="1"><template #title>标题</template><p>内容</p>
+</VPCollapseItem><VPCollapseItem :index="2"><template #title>标题</template><p>内容</p>
+</VPCollapseItem></VPCollapse>"
+`;

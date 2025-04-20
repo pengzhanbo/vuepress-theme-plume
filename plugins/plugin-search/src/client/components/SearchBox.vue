@@ -311,6 +311,7 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
           @pointerup="onSearchBarClick($event)"
           @submit.prevent=""
         >
+          <!-- eslint-disable vue-a11y/label-has-for -->
           <label
             id="localsearch-label"
             :title="buttonText"
@@ -538,6 +539,7 @@ svg {
 }
 
 .search-icon {
+  display: block;
   margin: 8px;
 }
 
@@ -551,6 +553,31 @@ svg {
   width: 100%;
   padding: 6px 12px;
   font-size: inherit;
+  border: none;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-input:-ms-input-placeholder {
+  color: var(--vp-c-text-3);
+  transition: color var(--vp-t-color);
+}
+
+.search-input::-ms-input-placeholder {
+  color: var(--vp-c-text-3);
+  transition: color var(--vp-t-color);
+}
+
+.search-input::placeholder {
+  color: var(--vp-c-text-3);
+  transition: color var(--vp-t-color);
+}
+
+.search-input::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
 }
 
 @media (max-width: 767px) {
@@ -577,7 +604,12 @@ svg {
 }
 
 .search-actions button {
-  padding: 8px;
+  padding: 7px;
+  margin: 0;
+  font-family: inherit;
+  line-height: 1;
+  background: transparent;
+  border: none;
 }
 
 .search-actions button:not([disabled]):hover,
@@ -626,8 +658,11 @@ svg {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  padding: 0;
+  margin: 0;
   overflow: hidden auto;
   overscroll-behavior: contain;
+  list-style: none;
 }
 
 .result {

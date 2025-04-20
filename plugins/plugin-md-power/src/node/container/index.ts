@@ -4,13 +4,16 @@ import type { MarkdownPowerPluginOptions } from '../../shared/index.js'
 import { isPlainObject } from '@vuepress/helper'
 import { alignPlugin } from './align.js'
 import { cardPlugin } from './card.js'
+import { chatPlugin } from './chat.js'
 import { codeTabs } from './codeTabs.js'
+import { collapsePlugin } from './collapse.js'
 import { demoWrapperPlugin } from './demoWrapper.js'
 import { fileTreePlugin } from './fileTree.js'
 import { langReplPlugin } from './langRepl.js'
 import { npmToPlugins } from './npmTo.js'
 import { stepsPlugin } from './steps.js'
 import { tabs } from './tabs.js'
+import { timelinePlugin } from './timeline.js'
 
 export async function containerPlugin(
   app: App,
@@ -46,4 +49,13 @@ export async function containerPlugin(
     // ::: file-tree
     fileTreePlugin(md, isPlainObject(options.fileTree) ? options.fileTree : {})
   }
+
+  if (options.timeline)
+    timelinePlugin(md)
+
+  if (options.collapse)
+    collapsePlugin(md)
+
+  if (options.chat)
+    chatPlugin(md)
 }

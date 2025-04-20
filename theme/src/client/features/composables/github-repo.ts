@@ -9,6 +9,8 @@ export interface GithubRepoInfo {
   url: string
   stars: number
   forks: number
+  convertStars: number | string
+  convertForks: number | string
   watchers: number
   language: string
   languageColor: string
@@ -25,7 +27,7 @@ export interface GithubRepoInfo {
  * 由于 github repo api 请求频率过高，vercel 免费额度有限，因此使用本地缓存。
  * 默认缓存 6 小时 时间
  */
-const storage = useLocalStorage('github-repo', {} as Record<string, {
+const storage = useLocalStorage('__VUEPRESS_GITHUB_REPO__', {} as Record<string, {
   info: GithubRepoInfo
   updatedAt: number
 }>)
@@ -46,26 +48,44 @@ export function useGithubRepo(repo: MaybeRef<string>) {
 
     const key = `${owner}/${name}`
     const cached = storage.value[`${owner}/${name}`]
-    if (cached && Date.now() - cached.updatedAt <= 21600000) {
+    if (cached?.info?.name && Date.now() - cached.updatedAt <= 86400000) {
       data.value = cached.info
       loaded.value = true
       return
     }
 
     loaded.value = false
-    const res = await fetch(`https://api.pengzhanbo.cn/github/repo/${owner}/${name}`)
-      .then(res => res.json()) as GithubRepoInfo
+    try {
+      const res = await fetch(`https://api.pengzhanbo.cn/github/repo/${owner}/${name}`)
+        .then(res => res.json()) as GithubRepoInfo
 
-    data.value = res
-    loaded.value = true
+      loaded.value = true
 
-    storage.value[key] = {
-      info: res,
-      updatedAt: Date.now(),
+      res.convertStars = convertThousand(res.stars)
+      res.convertForks = convertThousand(res.forks)
+
+      data.value = res
+
+      storage.value[key] = {
+        info: res,
+        updatedAt: Date.now(),
+      }
+    }
+    catch (e) {
+      loaded.value = true
+      console.error('github repo error:', e)
     }
   }
 
-  watch(repoRef, fetchData, { immediate: true })
+  if (!__VUEPRESS_SSR__) {
+    watch(repoRef, fetchData, { immediate: true })
+  }
 
   return { data, loaded }
+}
+
+function convertThousand(num: number): number | string {
+  if (num < 1000)
+    return num
+  return `${(num / 1000).toFixed(1)}k`
 }

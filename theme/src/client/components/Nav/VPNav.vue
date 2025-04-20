@@ -43,6 +43,12 @@ watchEffect(() => {
       <template #nav-bar-content-after>
         <slot name="nav-bar-content-after" />
       </template>
+      <template #nav-bar-menu-before>
+        <slot name="nav-bar-menu-before" />
+      </template>
+      <template #nav-bar-menu-after>
+        <slot name="nav-bar-menu-after" />
+      </template>
     </VPNavbar>
 
     <VPNavScreen :open="isScreenOpen">
@@ -51,6 +57,12 @@ watchEffect(() => {
       </template>
       <template #nav-screen-content-after>
         <slot name="nav-screen-content-after" />
+      </template>
+      <template #nav-screen-menu-before>
+        <slot name="nav-screen-menu-before" />
+      </template>
+      <template #nav-screen-menu-after>
+        <slot name="nav-screen-menu-after" />
       </template>
     </VPNavScreen>
   </header>
@@ -81,5 +93,15 @@ watchEffect(() => {
   .vp-nav {
     position: fixed;
   }
+}
+
+.vp-nav :deep(.vp-menu-badge) {
+  padding: 3px 4px;
+  margin-left: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.2px;
+  border-radius: 6px;
 }
 </style>

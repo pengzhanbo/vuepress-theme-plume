@@ -544,6 +544,30 @@ importers:
         specifier: catalog:dev
         version: 5.0.1
 
+  examples/layout-slots:
+    dependencies:
+      '@iconify/json':
+        specifier: catalog:peer
+        version: 2.2.329
+      '@vuepress/bundler-vite':
+        specifier: catalog:vuepress
+        version: 2.0.0-rc.21(@types/node@22.14.1)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.86.3)(sass@1.86.3)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.7.0)
+      http-server:
+        specifier: catalog:dev
+        version: 14.1.1
+      sass-embedded:
+        specifier: ^1.86.3
+        version: 1.86.3
+      vue:
+        specifier: catalog:prod
+        version: 3.5.13(typescript@5.8.3)
+      vuepress:
+        specifier: catalog:vuepress
+        version: 2.0.0-rc.21(@vuepress/bundler-vite@2.0.0-rc.21(@types/node@22.14.1)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.86.3)(sass@1.86.3)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.7.0))(typescript@5.8.3)(vue@3.5.13(typescript@5.8.3))
+      vuepress-theme-plume:
+        specifier: workspace:*
+        version: link:../../theme
+
   plugins/plugin-fonts:
     dependencies:
       vuepress:

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useClipboard } from '@vueuse/core'
+import { useMessage } from '../composables/message.js'
+import '@vuepress/helper/message.css'
+
 withDefaults(defineProps<{
   name: string
   w?: number
@@ -8,6 +12,15 @@ withDefaults(defineProps<{
 }>(), {
   h: 60,
 })
+
+const message = useMessage()
+
+const { copy } = useClipboard()
+
+function onCopy(name: string) {
+  copy(name)
+  message.pop(`<span>复制成功: ${name}</span>`, 3000, true)
+}
 </script>
 
 <template>
@@ -16,6 +29,7 @@ withDefaults(defineProps<{
     :class="{ [name]: true, small }"
     :style="{ width: `${w}px`, height: `${h}px`, marginTop: `${mt}px` }"
     :title="name"
+    @click="() => onCopy(name)"
   >
     <span>{{ name }}</span>
   </div>
@@ -64,5 +78,17 @@ withDefaults(defineProps<{
   left: 0;
   z-index: 100;
   width: 100%;
+}
+
+:global(#message-container) {
+  inset: unset !important;
+  top: calc(var(--vp-nav-height) + var(--vp-layout-top-height) + 24px) !important;
+  left: 50% !important;
+  width: fit-content !important;
+  transform: translateX(-50%) !important;
+}
+
+:global(.message-item) {
+  box-shadow: var(--vp-shadow-3);
 }
 </style>

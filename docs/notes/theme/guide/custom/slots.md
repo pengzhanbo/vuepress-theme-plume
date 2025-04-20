@@ -90,6 +90,10 @@ export default defineClientConfig({
 
 ## 插槽
 
+::: info
+您可以预览 <https://plume-layout-slots.netlify.app> 以查看所有可用的插槽在站点中的位置。
+:::
+
 ### `<Layout />` 插槽
 
 - 当 `pageLayout: doc` 时：

@@ -182,3 +182,7 @@ blog:
 ## 博客
 
 <Demos :list="$frontmatter.blog" />
+
+<script setup>
+import Demos from '~/components/Demos.vue'
+</script>

@@ -36,6 +36,12 @@ export default defineUserConfig({
     __VUEPRESS_VERSION__: vuepress,
   },
 
+  alias: {
+    '~/theme': path.resolve(__dirname, './themes'),
+    '~/components': path.resolve(__dirname, './themes/components'),
+    '~/composables': path.resolve(__dirname, './themes/composables'),
+  },
+
   bundler: viteBundler(),
   shouldPrefetch: false,
 

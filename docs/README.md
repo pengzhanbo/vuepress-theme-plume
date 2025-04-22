@@ -179,3 +179,7 @@ npm run docs:dev
   cursor: default !important;
 }
 </style>
+
+<script setup>
+import Contributors from '~/components/Contributors.vue'
+</script>

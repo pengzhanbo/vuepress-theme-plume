@@ -80,6 +80,22 @@ function onCopy(name: string) {
   width: 100%;
 }
 
+.slot-demo.nav-bar-content-before,
+.slot-demo.nav-bar-content-after,
+.slot-demo.nav-bar-menu-before,
+.slot-demo.nav-bar-menu-after {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .slot-demo.nav-bar-content-before,
+  .slot-demo.nav-bar-content-after,
+  .slot-demo.nav-bar-menu-before,
+  .slot-demo.nav-bar-menu-after {
+    display: flex;
+  }
+}
+
 :global(#message-container) {
   inset: unset !important;
   top: calc(var(--vp-nav-height) + var(--vp-layout-top-height) + 24px) !important;

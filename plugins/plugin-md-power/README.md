@@ -95,10 +95,10 @@ pnpm add @iconify/json
 #### 语法
 
 ```md
-:[collect:icon]:
-:[collect:icon size]:
-:[collect:icon /color]:
-:[collect:icon size/color]:
+::collect:icon::
+::collect:icon =size::
+::collect:icon /color::
+::collect:icon =size /color::
 ```
 
 你可以从 [icon-sets.iconify](https://icon-sets.iconify.design/) 获取 图标集。
@@ -106,25 +106,25 @@ pnpm add @iconify/json
 显示 `logos` 图标集合下的 `vue` 图标
 
 ```md
-:[logos:vue]:
+::logos:vue::
 ```
 
-图标默认大小为 `1em` ，你可以通过 `size` 设置图标大小
+图标默认大小为 `1em` ，你可以通过 `=size` 设置图标大小
 
 ```md
-:[logos:vue 1.2em]:
+::logos:vue =1.2em::
 ```
 
 图标默认颜色为 `currentColor` 你可以通过 `/color` 设置图标颜色
 
 ```md
-:[logos:vue /blue]:
+::logos:vue /blue::
 ```
 
-也可以通过 `size/color` 设置图标大小和颜色
+也可以通过 `=size /color` 设置图标大小和颜色
 
 ```md
-:[logos:vue 1.2em/blue]:
+::logos:vue =1.2em /blue::
 ```
 
 ### bilibili

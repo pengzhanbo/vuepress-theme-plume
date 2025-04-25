@@ -42,7 +42,7 @@ export interface MarkdownPowerPluginOptions {
   /**
    * 是否启用 iconify 图标嵌入语法
    *
-   * `:[collect:icon_name]:`
+   * `::collect:icon_name::`
    *
    * @default false
    */

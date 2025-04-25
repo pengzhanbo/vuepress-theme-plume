@@ -80,7 +80,7 @@ export default defineUserConfig({
 然后站点进行全量刷新，这可能需要等待一段时间才能恢复， 当站点内容较少时，这个过程很快，
 而对于一些较大的站点，可能需要等待较长的时间。
 
-特别是频繁修改时，很容易使 VuePress ==服务崩溃=={.caution} :[twemoji:angry-face]:，不得不手动重启。
+特别是频繁修改时，很容易使 VuePress ==服务崩溃=={.caution} ::twemoji:angry-face::，不得不手动重启。
 
 **这给我们在编写站点内容时带来的极大的不便。**
 
@@ -88,7 +88,7 @@ export default defineUserConfig({
 比如 `navbar`、`profile` 等字段，可以通过 热更新 的方式实时生效。
 
 主题添加主题配置文件 `plume.config.ts` 的支持，
-==对该文件的修改将通过热更新的方式实时生效。=={.tip} :[twemoji:confetti-ball]:
+==对该文件的修改将通过热更新的方式实时生效。=={.tip} ::twemoji:confetti-ball::
 
 你可以在这个文件中配置支持热更新的字段，比如 `navbar`、`profile` 等字段。
 

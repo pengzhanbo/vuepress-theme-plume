@@ -72,7 +72,7 @@ export default defineUserConfig({
 下载大约 __70Mb__ 的资源包，如果加载全部的图标到文档站点中，这太大太大了。
 
 但请放心，主题仅会加载您有使用到的图标资源，这包括 导航栏、侧边栏、首页 Features 等配置中的 iconify 图标，
-以及通过语法糖 `:[collect:name]:` 和 组件 `<Icon name="icon_name" />` 等各种方式使用的图标。
+以及通过语法糖 `::collect:name::` 和 组件 `<Icon name="icon_name" />` 等各种方式使用的图标。
 
 当从本地 `@iconify/json` 中加载图标时， iconify 通过 `[collect]:[name]` 的形式为图标命名，其中根据
 `collect` 来区分图标所属的集合，每个集合拥有  100 ~ 1000+ 数量不等的图标，保存在以 `collect` 为维度的 `json`

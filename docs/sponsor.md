@@ -22,7 +22,7 @@ search: false
 ![cat](/images/sponsor/cute-cat.jpg){width="64px"}
 :::
 
-| :[bi:alipay]: AliPay                   | :[fa:wechat]: WeChat                      |
+| ::bi:alipay:: AliPay                   | ::fa:wechat:: WeChat                      |
 | -------------------------------------- | ----------------------------------------- |
 | ![Alipay](https://static.pengzhanbo.cn/images/sponsor/ali_pay.jpg){width="300" height="300" style="width:150px"} | ![WeChat](https://static.pengzhanbo.cn/images/sponsor/wechat_pay.jpg){width="300" height="300" style="width:150px"} |
 

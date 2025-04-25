@@ -9,7 +9,7 @@ import { tasklist } from '@mdit/plugin-tasklist'
 import { isPlainObject } from '@vuepress/helper'
 import { abbrPlugin } from './abbr.js'
 import { annotationPlugin } from './annotation.js'
-import { iconsPlugin } from './icons.js'
+import { iconPlugin } from './icons.js'
 import { plotPlugin } from './plot.js'
 
 export function inlineSyntaxPlugin(
@@ -42,8 +42,8 @@ export function inlineSyntaxPlugin(
   }
 
   if (options.icons) {
-    // :[collect:name]:
-    md.use(iconsPlugin, isPlainObject(options.icons) ? options.icons : {})
+    // ::collect:name::
+    md.use(iconPlugin, isPlainObject(options.icons) ? options.icons : {})
   }
 
   if (

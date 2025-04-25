@@ -40,7 +40,7 @@ export default defineUserConfig({
 rust 代码演示默认是只读的，不可编辑。
 
 ````md
-::: rust-repl 自定义标题
+::: rust-repl title="自定义标题"
 ```rust
 // your rust code
 ```
@@ -49,10 +49,10 @@ rust 代码演示默认是只读的，不可编辑。
 
 ### 可编辑代码演示
 
-如果需要在线编辑并执行，需要将代码块包裹在 `::: rust-repl#editable` 容器语法中
+如果需要在线编辑并执行，需要将代码块包裹在 `::: rust-repl editable` 容器语法中
 
 ````md
-::: rust-repl#editable 自定义标题
+::: rust-repl editable title="自定义标题"
 ```rust
 // your rust code
 ```
@@ -66,7 +66,7 @@ rust 代码演示默认是只读的，不可编辑。
 **输入：**
 
 ````md
-::: rust-repl 打印内容
+::: rust-repl title="打印内容"
 ```rust
 fn main() {
     println!("Hello, world!");
@@ -77,7 +77,7 @@ fn main() {
 
 **输出：**
 
-::: rust-repl 打印内容
+::: rust-repl title="打印内容"
 
 ```rust
 fn main() {
@@ -156,7 +156,7 @@ fn main() {
 **输入：**
 
 ````md
-::: rust-repl#editable
+::: rust-repl editable
 ```rust
 fn main() {
     println!("Hello, world!");
@@ -167,7 +167,7 @@ fn main() {
 
 **输出：**
 
-::: rust-repl#editable
+::: rust-repl editable
 
 ```rust
 fn main() {

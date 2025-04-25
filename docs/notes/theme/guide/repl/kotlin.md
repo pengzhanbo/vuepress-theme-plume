@@ -40,7 +40,7 @@ export default defineUserConfig({
 kotlin 代码演示默认是只读的，不可编辑。
 
 ````md
-::: kotlin-repl 自定义标题
+::: kotlin-repl title="自定义标题"
 ```kotlin
 // your kotlin code
 ```
@@ -49,10 +49,10 @@ kotlin 代码演示默认是只读的，不可编辑。
 
 ### 可编辑代码演示
 
-如果需要在线编辑并执行，需要将代码块包裹在 `::: kotlin-repl#editable` 容器语法中
+如果需要在线编辑并执行，需要将代码块包裹在 `::: kotlin-repl editable` 容器语法中
 
 ````md
-::: kotlin-repl#editable 自定义标题
+::: kotlin-repl editable title="自定义标题"
 ```kotlin
 // your kotlin code
 ```
@@ -114,7 +114,7 @@ fun main(args: Array<String>) {
 **输入：**
 
 ````md
-::: kotlin-repl#editable
+::: kotlin-repl editable
 ```kotlin
 class Contact(val id: Int, var email: String)
 
@@ -128,7 +128,7 @@ fun main(args: Array<String>) {
 
 **输出：**
 
-::: kotlin-repl#editable
+::: kotlin-repl editable
 
 ```kotlin
 class Contact(val id: Int, var email: String)

@@ -6,6 +6,7 @@ import type { YoutubeTokenMeta } from '../../../shared/index.js'
 import { URLSearchParams } from 'node:url'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
+import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
 import { timeToSeconds } from '../../utils/timeToSeconds.js'
 import { createEmbedRuleBlock } from '..//createEmbedRuleBlock.js'
 
@@ -27,32 +28,29 @@ export const youtubePlugin: PluginWithOptions<never> = (md) => {
         end: timeToSeconds(attrs.end),
         title: attrs.title,
         width: attrs.width ? parseRect(attrs.width) : '100%',
-        height: attrs.height ? parseRect(attrs.height) : '',
-        ratio: attrs.ratio ? parseRect(attrs.ratio) : '',
+        height: attrs.height ? parseRect(attrs.height) : undefined,
+        ratio: attrs.ratio ? parseRect(attrs.ratio) : undefined,
       }
     },
     content(meta) {
       const params = new URLSearchParams()
 
-      if (meta.autoplay) {
+      if (meta.autoplay)
         params.set('autoplay', '1')
-      }
 
-      if (meta.loop) {
+      if (meta.loop)
         params.set('loop', '1')
-      }
 
-      if (meta.start) {
+      if (meta.start)
         params.set('start', meta.start.toString())
-      }
 
-      if (meta.end) {
+      if (meta.end)
         params.set('end', meta.end.toString())
-      }
 
       const source = `${YOUTUBE_LINK}/${meta.id}?${params.toString()}`
+      const { width, height, ratio, title } = meta
 
-      return `<VideoYoutube src="${source}" width="${meta.width}" height="${meta.height}" ratio="${meta.ratio}" title="${meta.title}" />`
+      return `<VideoYoutube${stringifyAttrs({ src: source, width, height, ratio, title })} />`
     },
   })
 }

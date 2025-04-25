@@ -167,7 +167,8 @@ export const annotationPlugin: PluginSimple = (md) => {
       data.sources.map((source, i) => {
         const annotation = data.rendered[i] ??= md.render(source, env)
         return `<template #item-${i}>${annotation}</template>`
-      }).join('')}</Annotation>`
+      }).join('')
+    }</Annotation>`
   }
 
   md.inline.ruler.before('image', 'annotation_ref', annotationRef)

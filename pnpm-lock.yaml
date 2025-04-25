@@ -177,8 +177,8 @@ catalogs:
       specifier: ^0.16.0
       version: 0.16.0
     '@pengzhanbo/utils':
-      specifier: ^2.0.0
-      version: 2.0.0
+      specifier: ^2.1.0
+      version: 2.1.0
     '@vueuse/core':
       specifier: ^13.1.0
       version: 13.1.0
@@ -469,7 +469,7 @@ importers:
         version: 0.10.1
       '@pengzhanbo/utils':
         specifier: catalog:prod
-        version: 2.0.0
+        version: 2.1.0
       cac:
         specifier: catalog:prod
         version: 6.7.14
@@ -599,7 +599,7 @@ importers:
         version: 0.16.0(markdown-it@14.1.0)
       '@pengzhanbo/utils':
         specifier: catalog:prod
-        version: 2.0.0
+        version: 2.1.0
       '@vuepress/helper':
         specifier: catalog:vuepress
         version: 2.0.0-rc.94(typescript@5.8.3)(vuepress@2.0.0-rc.21(@vuepress/bundler-vite@2.0.0-rc.21(@types/node@22.14.1)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.86.3)(sass@1.86.3)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.7.0))(typescript@5.8.3)(vue@3.5.13(typescript@5.8.3)))
@@ -732,7 +732,7 @@ importers:
         version: 4.3.0(vue@3.5.13(typescript@5.8.3))
       '@pengzhanbo/utils':
         specifier: catalog:prod
-        version: 2.0.0
+        version: 2.1.0
       '@vuepress-plume/plugin-fonts':
         specifier: workspace:*
         version: link:../plugins/plugin-fonts
@@ -1957,8 +1957,8 @@ packages:
   '@pengzhanbo/utils@1.2.0':
     resolution: {integrity: sha512-M3sN7SQs6PY/J9lB8U6meyUMhv8qs4iIOU/sG6QWRp4nm9ySM8nvX9GOJpo+RuVGcgcH3CO8qlQugBUa5qADSw==}
 
-  '@pengzhanbo/utils@2.0.0':
-    resolution: {integrity: sha512-CGMZYQm4TSvaKxFKJ2JMUxz/GjiHPquf6T18Pr/hVMhzatAdwyfleqOMcUaVy/dxLXpE4Lp6ONY2H4rgylWyNg==}
+  '@pengzhanbo/utils@2.1.0':
+    resolution: {integrity: sha512-mdcNoYZ6S9EhRqAIpjnD2dcFxaP7E9JdMrP2z5uXuEesddNcmQ4GvEs/wcyxKmFXqeFdL88fJu7l8a6hNN4zPQ==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -8273,7 +8273,7 @@ snapshots:
 
   '@pengzhanbo/utils@1.2.0': {}
 
-  '@pengzhanbo/utils@2.0.0': {}
+  '@pengzhanbo/utils@2.1.0': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true

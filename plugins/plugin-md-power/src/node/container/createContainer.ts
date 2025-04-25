@@ -18,10 +18,10 @@ export function createContainerPlugin(
     const token = tokens[index]
     const info = token.info.trim().slice(type.length).trim() || ''
     if (token.nesting === 1) {
-      return before?.(info, tokens, index, options, env) || `<div class="custom-container ${type}">`
+      return before?.(info, tokens, index, options, env) ?? `<div class="custom-container ${type}">`
     }
     else {
-      return after?.(info, tokens, index, options, env) || '</div>'
+      return after?.(info, tokens, index, options, env) ?? '</div>'
     }
   }
 

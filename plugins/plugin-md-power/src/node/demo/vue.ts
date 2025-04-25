@@ -2,6 +2,7 @@ import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
 import path from 'node:path'
+import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { findFile, readFileSync, writeFileSync } from './supports/file.js'
 import { insertSetupScript } from './supports/insertScript.js'
 
@@ -30,12 +31,12 @@ export function vueEmbed(
     insertSetupScript(demo, env)
   }
 
-  return `<VPDemoBasic type="vue"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
+  return `<VPDemoBasic${stringifyAttrs({ type: 'vue', title, desc, expanded })}>
     <${name} />
     <template #code>
       ${md.render(`\`\`\`${ext}${codeSetting}\n${code}\n\`\`\``, {})}
     </template>
-  </VPDemoBasic>`
+  </VPDemoBasic$>`
 }
 
 const target = 'md-power/demo/vue'
@@ -101,7 +102,7 @@ export const vueContainerRender: DemoContainerRender = {
       }
     }
 
-    return `<VPDemoBasic type="vue"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
+    return `<VPDemoBasic${stringifyAttrs({ type: 'vue', title, desc, expanded })}>
     <${componentName} />
     <template #code>\n`
   },

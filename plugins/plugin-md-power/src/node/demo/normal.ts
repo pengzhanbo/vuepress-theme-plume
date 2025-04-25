@@ -3,6 +3,7 @@ import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
 import fs from 'node:fs'
 import path from 'node:path'
+import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { compileScript, compileStyle } from './supports/compiler.js'
 import { findFile, readFileSync, writeFileSync } from './supports/file.js'
 import { insertSetupScript } from './supports/insertScript.js'
@@ -126,9 +127,9 @@ export function normalEmbed(
     insertSetupScript({ ...demo, path: output }, env)
   }
 
-  return `<VPDemoNormal :config="${name}"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
+  return `<VPDemoNormal${stringifyAttrs({ config: name, title, desc, expanded })}>
     ${codeToHtml(md, source, codeSetting)}
-  </VPDemoNormal>`
+  </VPDemoNormal$>`
 }
 
 export const normalContainerRender: DemoContainerRender = {
@@ -148,7 +149,7 @@ export const normalContainerRender: DemoContainerRender = {
     const source = parseContainerCode(codeMap)
     compileCode(source, output)
 
-    return `<VPDemoNormal :config="${name}"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>`
+    return `<VPDemoNormal${stringifyAttrs({ config: name, title, desc, expanded })}>`
   },
 
   after: () => '</VPDemoNormal>',

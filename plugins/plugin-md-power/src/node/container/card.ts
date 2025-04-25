@@ -1,5 +1,6 @@
 import type { Markdown } from 'vuepress/markdown'
-import { resolveAttrs } from '.././utils/resolveAttrs.js'
+import { resolveAttrs } from '../utils/resolveAttrs.js'
+import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerPlugin } from './createContainer.js'
 
 interface CardAttrs {
@@ -21,8 +22,7 @@ export function cardPlugin(md: Markdown) {
   createContainerPlugin(md, 'card', {
     before(info) {
       const { attrs } = resolveAttrs<CardAttrs>(info)
-      const { title, icon } = attrs
-      return `<VPCard${title ? ` title="${title}"` : ''}${icon ? ` icon="${icon}"` : ''}>`
+      return `<VPCard${stringifyAttrs(attrs)}>`
     },
     after: () => '</VPCard>',
   })
@@ -55,13 +55,12 @@ export function cardPlugin(md: Markdown) {
   createContainerPlugin(md, 'card-masonry', {
     before: (info) => {
       const { attrs } = resolveAttrs<CardMasonryAttrs>(info)
-      let cols!: string | number
-      if (attrs.cols) {
-        cols = attrs.cols[0] === '{' ? attrs.cols : Number.parseInt(`${attrs.cols}`)
-      }
-      const gap = Number.parseInt(`${attrs.gap}`)
+      if (attrs.cols)
+        attrs.cols = attrs.cols[0] === '{' ? attrs.cols : Number.parseInt(`${attrs.cols}`)
+      if (attrs.gap)
+        attrs.gap = Number(attrs.gap)
 
-      return `<VPCardMasonry${cols ? ` :cols="${cols}"` : ''}${gap >= 0 ? ` :gap="${gap}"` : ''}>`
+      return `<VPCardMasonry${stringifyAttrs(attrs)}>`
     },
     after: () => '</VPCardMasonry>',
   })

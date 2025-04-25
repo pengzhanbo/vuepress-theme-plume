@@ -1,9 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`codeSandboxPlugin > should not work 1`] = `
-"<CodeSandboxViewer title="" height="500px" width="100%" user="" id="" type="embed" filepath="" :console=false :navbar=true layout="" /><p>@[codesandbox]xxx</p>
+"<CodeSandboxViewer width="100%" height="500px" user="" id="" title="" navbar layout="" type="embed" filepath="" /><p>@[codesandbox]xxx</p>
 <p>@[codesandbox embed](</p>
 "
 `;
 
-exports[`codeSandboxPlugin > should work 1`] = `"<CodeSandboxViewer title="" height="500px" width="100%" user="user" id="id" type="embed" filepath="" :console=false :navbar=true layout="" /><CodeSandboxViewer title="" height="500px" width="100%" user="user" id="id" type="embed" filepath="" :console=false :navbar=true layout="" /><CodeSandboxViewer title="" height="500px" width="100%" user="user" id="id" type="button" filepath="" :console=false :navbar=true layout="" /><CodeSandboxViewer title="xxx" height="500px" width="100%" user="user" id="slash" type="embed" filepath="filepath" :console=false :navbar=false layout="Editor+Preview" />"`;
+exports[`codeSandboxPlugin > should work 1`] = `"<CodeSandboxViewer width="100%" height="500px" user="user" id="id" title="" navbar layout="" type="embed" filepath="" /><CodeSandboxViewer width="100%" height="500px" user="user" id="id" title="" navbar layout="" type="embed" filepath="" /><CodeSandboxViewer width="100%" height="500px" user="user" id="id" title="" navbar layout="" type="button" filepath="" /><CodeSandboxViewer width="100%" height="500px" user="user" id="slash" title="xxx" layout="Editor+Preview" type="embed" filepath="filepath" />"`;

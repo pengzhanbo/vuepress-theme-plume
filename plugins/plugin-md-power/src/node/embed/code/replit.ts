@@ -7,6 +7,7 @@ import type { PluginWithOptions } from 'markdown-it'
 import type { ReplitTokenMeta } from '../../../shared/index.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
+import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
 import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
 export const replitPlugin: PluginWithOptions<never> = (md) => {
@@ -23,8 +24,6 @@ export const replitPlugin: PluginWithOptions<never> = (md) => {
         theme: attrs.theme || '',
       }
     },
-    content({ title, height, width, source, theme }) {
-      return `<ReplitViewer title="${title || ''}" height="${height}" width="${width}" source="${source}" theme="${theme}" />`
-    },
+    content: meta => `<ReplitViewer${stringifyAttrs(meta)} />`,
   })
 }

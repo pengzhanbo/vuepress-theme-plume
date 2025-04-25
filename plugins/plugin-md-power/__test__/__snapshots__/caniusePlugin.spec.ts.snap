@@ -37,7 +37,7 @@ exports[`caniusePlugin > should not work 8`] = `
 "
 `;
 
-exports[`caniusePlugin > should work 1`] = `"<CanIUseViewer feature="feature" meta="test-id" past="2" future="1" />"`;
+exports[`caniusePlugin > should work 1`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="1" />"`;
 
 exports[`caniusePlugin > should work 2`] = `
 "<ClientOnly><p><picture>
@@ -47,13 +47,13 @@ exports[`caniusePlugin > should work 2`] = `
     </picture></p></ClientOnly>"
 `;
 
-exports[`caniusePlugin > should work 3`] = `"<CanIUseViewer feature="feature" meta="test-id" past="2" future="1" />"`;
+exports[`caniusePlugin > should work 3`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="1" />"`;
 
-exports[`caniusePlugin > should work 4`] = `"<CanIUseViewer feature="feature" meta="test-id" past="2" future="0" />"`;
+exports[`caniusePlugin > should work 4`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="0" />"`;
 
-exports[`caniusePlugin > should work 5`] = `"<CanIUseViewer feature="feature" meta="test-id" past="2" future="0" /><CanIUseViewer feature="feature" meta="test-id" past="2" future="0" />"`;
+exports[`caniusePlugin > should work 5`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="0" /><CanIUseViewer feature="feature" meta="test-id" :past="2" :future="0" />"`;
 
-exports[`caniusePlugin > should work 6`] = `"<CanIUseViewer feature="feature" meta="test-id" past="2" future="0" />"`;
+exports[`caniusePlugin > should work 6`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="0" />"`;
 
 exports[`caniusePlugin > should work with options 1`] = `
 "<ClientOnly><p><picture>
@@ -63,13 +63,13 @@ exports[`caniusePlugin > should work with options 1`] = `
     </picture></p></ClientOnly>"
 `;
 
-exports[`caniusePlugin > should work with options 2`] = `"<CanIUseViewer feature="feature" meta="test-id" past="2" future="1" />"`;
+exports[`caniusePlugin > should work with options 2`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="1" />"`;
 
-exports[`caniusePlugin > should work with options 3`] = `"<CanIUseViewer feature="feature" meta="test-id" past="2" future="0" />"`;
+exports[`caniusePlugin > should work with options 3`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="0" />"`;
 
-exports[`legacyCaniuse > should work 1`] = `"<CanIUseViewer feature="feature" meta="test-id" past="2" future="1" />"`;
+exports[`legacyCaniuse > should work 1`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="1" />"`;
 
-exports[`legacyCaniuse > should work 2`] = `"<CanIUseViewer feature="feature{-2,4}" meta="test-id" past="2" future="0" />"`;
+exports[`legacyCaniuse > should work 2`] = `"<CanIUseViewer feature="feature{-2,4}" meta="test-id" :past="2" :future="0" />"`;
 
 exports[`legacyCaniuse > should work 3`] = `""`;
 

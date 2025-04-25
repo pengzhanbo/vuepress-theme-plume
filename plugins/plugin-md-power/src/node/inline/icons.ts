@@ -38,6 +38,7 @@ function createIconRule(
     if (next === 0x20 || next === 0x3A)
       return false
 
+    /* istanbul ignore if -- @preserve */
     if (silent)
       return false
 
@@ -137,8 +138,10 @@ export const iconPlugin: PluginWithOptions<IconsOptions> = (md, options = {}) =>
   )
 
   md.renderer.rules.icon = (tokens, idx, _, env: MarkdownEnv) => {
-    const { content, meta = {} } = tokens[idx]
+    const { content, meta } = tokens[idx]
     let icon = content
+
+    /* istanbul ignore if -- @preserve */
     if (meta.deprecated) {
       const [name, opt = ''] = content.split(' ')
       const [size, color] = opt.trim().split('/')

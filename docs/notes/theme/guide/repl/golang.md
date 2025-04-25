@@ -40,7 +40,7 @@ export default defineUserConfig({
 golang 代码演示默认是只读的，不可编辑。
 
 ````md
-::: go-repl 自定义标题
+::: go-repl title="自定义标题"
 ```go
 // your go code
 ```
@@ -49,10 +49,10 @@ golang 代码演示默认是只读的，不可编辑。
 
 ### 可编辑代码演示
 
-如果需要在线编辑并执行，需要将代码块包裹在 `::: go-repl#editable` 容器语法中
+如果需要在线编辑并执行，需要将代码块包裹在 `::: go-repl editable` 容器语法中
 
 ````md
-::: go-repl#editable 自定义标题
+::: go-repl editable title="自定义标题"
 ```go
 // your go code
 ```
@@ -103,7 +103,7 @@ func main() {
 **输入：**
 
 ````md
-:::go-repl#editable
+:::go-repl editable
 ```go
 package main
 
@@ -120,7 +120,7 @@ func main() {
 
 **输出：**
 
-:::go-repl#editable
+:::go-repl editable
 
 ```go
 package main

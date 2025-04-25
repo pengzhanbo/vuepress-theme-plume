@@ -8,6 +8,7 @@ import type { PDFTokenMeta } from '../../shared/index.js'
 import { path } from 'vuepress/utils'
 import { parseRect } from '../utils/parseRect.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
+import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createEmbedRuleBlock } from './createEmbedRuleBlock.js'
 
 export const pdfPlugin: PluginWithOptions<never> = (md) => {
@@ -28,8 +29,6 @@ export const pdfPlugin: PluginWithOptions<never> = (md) => {
         title: path.basename(src || ''),
       }
     },
-    content({ title, src, page, noToolbar, width, height, ratio, zoom }) {
-      return `<PDFViewer src="${src}" title="${title}" :page="${page}" :no-toolbar="${noToolbar}" width="${width}" height="${height}" ratio="${ratio}" :zoom="${zoom}" />`
-    },
+    content: meta => `<PDFViewer${stringifyAttrs(meta)} />`,
   })
 }

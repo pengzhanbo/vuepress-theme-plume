@@ -1,6 +1,7 @@
 import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
+import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { findFile, readFileSync } from './supports/file.js'
 
 export function markdownEmbed(
@@ -23,19 +24,19 @@ export function markdownEmbed(
     env.demoFiles.push(demo)
   }
 
-  return `<VPDemoBasic type="markdown"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
+  return `<VPDemoBasic${stringifyAttrs({ type: 'markdown', title, desc, expanded })}>
     ${md.render(code, { filepath: env.filePath, filepathRelative: env.filePathRelative })}
     <template #code>
       ${md.render(`\`\`\`md ${codeSetting}\n${code}\n\`\`\``, {})}
     </template>
-  </VPDemoBasic>`
+  </VPDemoBasic$>`
 }
 
 export const markdownContainerRender: DemoContainerRender = {
   before(app, md, env, meta, codeMap) {
     const { title, desc, expanded = false } = meta
     const code = codeMap.md || ''
-    return `<VPDemoBasic type="markdown"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
+    return `<VPDemoBasic${stringifyAttrs({ type: 'markdown', title, desc, expanded })}>
       ${md.render(code, { filepath: env.filePath, filepathRelative: env.filePathRelative })}
       <template #code>`
   },

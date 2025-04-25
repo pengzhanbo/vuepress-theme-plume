@@ -14,12 +14,12 @@ interface MessageData {
 
 const props = withDefaults(defineProps<{
   feature: string
-  past?: string
-  future?: string
+  past?: number
+  future?: number
   meta?: string
 }>(), {
-  past: '2',
-  future: '1',
+  past: 2,
+  future: 1,
   meta: '',
 })
 

@@ -1,6 +1,16 @@
 import type { PluginWithOptions } from 'markdown-it'
 import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
+import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
+
+interface AudioReaderTokenMeta {
+  src?: string
+  startTime?: number
+  endTime?: number
+  type?: string
+  volume?: number
+  title?: string
+}
 
 const audioReader: RuleInline = (state, silent) => {
   const max = state.posMax
@@ -52,28 +62,11 @@ const audioReader: RuleInline = (state, silent) => {
     state.pos = labelStart
     state.posMax = labelEnd
     const info = state.src.slice(labelStart, labelEnd).trim()
-    const { attrs } = resolveAttrs(info)
+    const { attrs } = resolveAttrs<AudioReaderTokenMeta>(info)
 
-    const tokenOpen = state.push('audio_reader_open', 'AudioReader', 1)
-    tokenOpen.info = info
-    tokenOpen.attrs = [['src', href]]
-
-    if (attrs.startTime)
-      tokenOpen.attrs.push([':start-time', attrs.startTime])
-
-    if (attrs.endTime)
-      tokenOpen.attrs.push([':end-time', attrs.endTime])
-
-    if (attrs.type)
-      tokenOpen.attrs.push(['type', attrs.type])
-
-    if (attrs.volume)
-      tokenOpen.attrs.push([':volume', attrs.volume])
-
-    if (attrs.title)
-      state.push('text', '', 0).content = attrs.title
-
-    state.push('audio_reader_close', 'AudioReader', -1)
+    const token = state.push('audio_reader', 'AudioReader', 0)
+    token.info = info
+    token.meta = { src: href, ...attrs } as AudioReaderTokenMeta
   }
 
   state.pos = pos + 1
@@ -81,5 +74,20 @@ const audioReader: RuleInline = (state, silent) => {
   return true
 }
 
-export const audioReaderPlugin: PluginWithOptions<never> = md =>
+export const audioReaderPlugin: PluginWithOptions<never> = (md) => {
+  md.renderer.rules.audio_reader = (tokens, idx) => {
+    const meta = (tokens[idx].meta ?? {}) as AudioReaderTokenMeta
+    if (meta.startTime)
+      meta.startTime = Number(meta.startTime)
+
+    if (meta.endTime)
+      meta.endTime = Number(meta.endTime)
+
+    if (meta.volume)
+      meta.volume = Number(meta.volume)
+
+    return `<AudioReader${stringifyAttrs(meta)} />`
+  }
+
   md.inline.ruler.before('link', 'audio-reader', audioReader)
+}

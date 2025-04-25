@@ -6,6 +6,7 @@ import type { PluginWithOptions } from 'markdown-it'
 import type { JSFiddleTokenMeta } from '../../../shared/index.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
+import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
 import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
 export const jsfiddlePlugin: PluginWithOptions<never> = (md) => {
@@ -24,7 +25,6 @@ export const jsfiddlePlugin: PluginWithOptions<never> = (md) => {
         theme,
       }
     },
-    content: ({ title, height, width, source, tab, theme }) =>
-      `<JSFiddleViewer source="${source}" title="${title}" tab="${tab}" width="${width}" height="${height}"${theme ? ` theme="${theme}"` : ''} />`,
+    content: meta => `<JSFiddleViewer${stringifyAttrs(meta)} />`,
   })
 }

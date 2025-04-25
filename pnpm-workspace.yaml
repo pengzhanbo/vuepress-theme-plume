@@ -75,7 +75,7 @@ catalogs:
     '@mdit/plugin-sup': ^0.16.0
     '@mdit/plugin-tab': ^0.16.0
     '@mdit/plugin-tasklist': ^0.16.0
-    '@pengzhanbo/utils': ^2.0.0
+    '@pengzhanbo/utils': ^2.1.0
     '@vueuse/core': ^13.1.0
     '@vueuse/integrations': ^13.1.0
     bcrypt-ts: ^6.0.0

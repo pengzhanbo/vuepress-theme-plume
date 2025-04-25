@@ -8,6 +8,7 @@ import { isPackageExists } from 'local-pkg'
 import { colors } from 'vuepress/utils'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
+import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
 import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
 const installed = {
@@ -29,6 +30,8 @@ export const artPlayerPlugin: PluginWithOptions<never> = (md) => {
       checkSupportType(attrs.type ?? url.split('.').pop())
 
       return {
+        url,
+        type: attrs.type,
         autoplay: attrs.autoplay ?? false,
         muted: attrs.muted ?? attrs.autoplay ?? false,
         autoMini: attrs.autoMini ?? false,
@@ -36,28 +39,13 @@ export const artPlayerPlugin: PluginWithOptions<never> = (md) => {
         volume: typeof attrs.volume !== 'undefined' ? Number(attrs.volume) : 0.75,
         poster: attrs.poster,
         width: attrs.width ? parseRect(attrs.width) : '100%',
-        height: attrs.height ? parseRect(attrs.height) : '',
-        ratio: attrs.ratio ? parseRect(`${attrs.ratio}`) : '',
-        type: attrs.type,
-        url,
+        height: attrs.height ? parseRect(attrs.height) : undefined,
+        ratio: attrs.ratio ? parseRect(`${attrs.ratio}`) : undefined,
       }
     },
-    content({ autoMini, autoplay, loop, muted, poster, url, type, volume, width, height, ratio }) {
-      return `<ArtPlayer src="${url}" fullscreen flip playback-rate aspect-ratio setting pip ${
-        loop ? ' loop' : ''
-      }${
-        type ? ` type="${type}"` : ''
-      }${
-        autoMini ? ' auto-min' : ''
-      }${autoplay ? ' autoplay' : ''}${
-        muted || autoplay ? ' muted' : ''
-      }${
-        poster ? ` poster="${poster}"` : ''
-      }  :volume="${volume}" width="${width}"${
-        height ? ` height="${height}"` : ''
-      }${
-        ratio ? ` ratio="${ratio}"` : ''
-      }/>`
+    content({ url, ...meta }) {
+      meta.muted = meta.muted || meta.autoplay
+      return `<ArtPlayer src="${url}" fullscreen flip playback-rate aspect-ratio setting pip${stringifyAttrs(meta)}/>`
     },
   })
 }

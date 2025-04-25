@@ -18,7 +18,6 @@ permalink: /guide/chart/mermaid/
 你需要在你的项目中安装 [mermaid](https://mermaid.js.org/) 库。
 
 ::: npm-to
-@tab pnpm
 
 ```sh
 npm install mermaid

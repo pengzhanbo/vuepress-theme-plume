@@ -39,9 +39,10 @@ It includes a rich set of powerful features designed to make content more expres
 - 🔑 Supports full-site encryption and partial encryption
 - 👀 Supports search and article comments
 - 👨‍💻 Supports light/dark themes (including code highlighting)
-- 📠 Markdown enhancement, supports code block grouping, hint containers, task lists, mathematical formulas, code demonstrations, file trees, etc.
+- 📠 Markdown enhancement, supports, hint containers, task lists, mathematical formulas, code demonstrations, file trees, timeline and more.
+- 🧀 Enhanced code blocks, support for grouping, folding, focusing, line highlighting, word highlighting, twoslash, and more.
 - 📚 Embedded code demonstrations, supports CodePen, JSFiddle, CodeSandbox, etc.
-- 📊 Embedded charts, supports chart.js, Echarts, Mermaid, flowchart
+- 📊 Embedded charts, supports chart.js, Echarts, Mermaid, flowchart，plantUML
 - 🎛 Resource embedding, supports PDF, Bilibili videos, YouTube videos, local videos, audio, etc.
 - 🪞 Supports full-site watermark and partial content watermark
 
@@ -72,6 +73,8 @@ Thank you to all contributors!
 ![GitHub contributors](https://img.shields.io/github/contributors/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&logo=contributorcovenant)
 
 [![contributors](https://contrib.rocks/image?repo=pengzhanbo/vuepress-theme-plume)](https://github.com/pengzhanbo/vuepress-theme-plume/graphs/contributors)
+
+![Repo beats](https://repobeats.axiom.co/api/embed/b3e16e8802010e72e933f64864a8047e3163e927.svg "Repo Beats analytics image")
 
 ## License
 

@@ -10,78 +10,15 @@
  * :::
  */
 import type { PluginSimple } from 'markdown-it'
-import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs'
-import type Token from 'markdown-it/lib/token.mjs'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
-import { resolveAttrs } from '.././utils/resolveAttrs.js'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
-
-interface ChatMeta {
-  title?: string
-}
+import { createContainerSyntaxPlugin } from './createContainer.js'
 
 interface ChatMessage {
   sender: 'user' | 'self'
   date: string
   username: string
   content: string[]
-}
-
-export const chatPlugin: PluginSimple = (md) => {
-  md.block.ruler.before('fence', 'chat_def', chatDef)
-
-  md.renderer.rules.chat_container = (tokens: Token[], idx: number, _, env) => {
-    const { meta, content } = tokens[idx]
-    const { title } = meta as ChatMeta
-    const messages = parseChatContent(content)
-    return `<div class="vp-chat">
-  <div class="vp-chat-header">
-    <p class="vp-chat-title">${title || 'Chat'}</p>
-  </div>
-  <div class="vp-chat-content">
-    ${chatMessagesRender(md, env, messages)}
-  </div>
-</div>`
-  }
-}
-
-function chatDef(state: StateBlock, startLine: number, endLine: number, silent: boolean): boolean {
-  const start = state.bMarks[startLine] + state.tShift[startLine]
-  const max = state.eMarks[startLine]
-  let pos = start
-
-  if (state.src.slice(pos, pos + 3) !== ':::')
-    return false
-
-  pos += 3
-
-  const info = state.src.slice(start + 3, max).trim()
-  if (!info.startsWith('chat'))
-    return false
-
-  /* istanbul ignore if -- @preserve */
-  if (silent)
-    return true
-
-  let line = startLine
-  let content = ''
-  while (++line < endLine) {
-    if (state.src.slice(state.bMarks[line], state.eMarks[line]).trim() === ':::') {
-      break
-    }
-
-    content += `${state.src.slice(state.bMarks[line], state.eMarks[line])}\n`
-  }
-
-  const token = state.push('chat_container', '', 0)
-  token.meta = resolveAttrs<ChatMeta>(info).attrs
-  token.content = content
-  token.markup = '::: chat'
-  token.map = [startLine, line + 1]
-
-  state.line = line + 1
-
-  return true
 }
 
 function chatMessagesRender(md: Markdown, env: MarkdownEnv, messages: ChatMessage[]): string {
@@ -142,3 +79,16 @@ function parseChatContent(content: string): ChatMessage[] {
   }
   return messages
 }
+
+export const chatPlugin: PluginSimple = md => createContainerSyntaxPlugin(
+  md,
+  'chat',
+  (tokens, idx, _, env) => `<div class="vp-chat">
+  <div class="vp-chat-header">
+    <p class="vp-chat-title">${tokens[idx].meta?.title || 'Chat'}</p>
+  </div>
+  <div class="vp-chat-content">
+    ${chatMessagesRender(md, env, parseChatContent(tokens[idx].content))}
+  </div>
+</div>`,
+)

@@ -25,7 +25,8 @@
 
 A simple, clean, and easy-to-use VuePress theme for blogs and documentation.
 
-Ready to use out-of-the-box with minimal configuration, allowing you to focus more on content creation and better express your ideas to form your knowledge notes.
+Ready to use out-of-the-box with minimal configuration,
+allowing you to focus more on content creation and better express your ideas to form your knowledge notes.
 
 It includes a rich set of powerful features designed to make content more expressive.
 

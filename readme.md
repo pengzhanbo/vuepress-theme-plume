@@ -20,7 +20,7 @@
 </p>
 
 <p align="center">
-中文 | <a href="/readme_en.md">English</a>
+中文 | <a href="/readme.en-US.md">English</a>
 </p>
 
 一个简约的，干净的，容易上手的 vuepress 主题，适用于博客和文档。

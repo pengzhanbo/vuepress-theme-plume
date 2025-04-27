@@ -71,8 +71,8 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
   }
 
   if (options.fileTree) {
-    imports.add(`import FileTreeItem from '${CLIENT_FOLDER}components/FileTreeItem.vue'`)
-    enhances.add(`app.component('FileTreeItem', FileTreeItem)`)
+    imports.add(`import FileTreeNode from '${CLIENT_FOLDER}components/FileTreeNode.vue'`)
+    enhances.add(`app.component('FileTreeNode', FileTreeNode)`)
   }
 
   if (options.artPlayer) {

@@ -1,17 +1,14 @@
 import type { Markdown } from 'vuepress/markdown'
 import type { FileTreeIconMode, FileTreeOptions } from '../../shared/index.js'
-import container from 'markdown-it-container'
-import Token from 'markdown-it/lib/token.mjs'
-import { removeEndingSlash, removeLeadingSlash } from 'vuepress/shared'
+import { removeEndingSlash } from 'vuepress/shared'
 import { defaultFile, defaultFolder, getFileIcon } from '../fileIcons/index.js'
-import { resolveAttrs } from '../utils/resolveAttrs.js'
+import { stringifyAttrs } from '../utils/stringifyAttrs.js'
+import { createContainerSyntaxPlugin } from './createContainer.js'
 
 interface FileTreeNode {
-  filename: string
-  type: 'folder' | 'file'
-  expanded: boolean
-  focus: boolean
-  empty: boolean
+  info: string
+  level: number
+  children: FileTreeNode[]
 }
 
 interface FileTreeAttrs {
@@ -19,11 +16,63 @@ interface FileTreeAttrs {
   icon?: FileTreeIconMode
 }
 
-const type = 'file-tree'
-const closeType = `container_${type}_close`
-const componentName = 'FileTreeItem'
-const itemOpen = 'file_tree_item_open'
-const itemClose = 'file_tree_item_close'
+export function parseFileTreeRawContent(content: string): FileTreeNode[] {
+  const root: FileTreeNode = { info: '', level: -1, children: [] }
+  const stack: FileTreeNode[] = [root]
+  const lines = content.trim().split('\n')
+  for (const line of lines) {
+    const match = line.match(/^(\s*)-(.*)$/)
+    if (!match)
+      continue
+
+    const level = Math.floor(match[1].length / 2) // 每两个空格为一个层级
+    const info = match[2].trim()
+
+    // 检索当前层级的父节点
+    while (stack.length > 0 && stack[stack.length - 1].level >= level) {
+      stack.pop()
+    }
+
+    const parent = stack[stack.length - 1]
+    const node: FileTreeNode = { info, level, children: [] }
+    parent.children.push(node)
+    stack.push(node)
+  }
+
+  return root.children
+}
+
+const RE_FOCUS = /^\*\*(.*)\*\*(?:$|\s+)/
+
+export function parseFileTreeNodeInfo(info: string) {
+  let filename = ''
+  let comment = ''
+  let focus = false
+  let expanded: boolean | undefined = true
+  let type: 'folder' | 'file' = 'file'
+
+  info = info.replace(RE_FOCUS, (_, matched) => {
+    filename = matched
+    focus = true
+    return ''
+  })
+
+  if (filename === '' && !focus) {
+    const spaceIndex = info.indexOf(' ')
+    filename = info.slice(0, spaceIndex === -1 ? info.length : spaceIndex)
+    info = spaceIndex === -1 ? '' : info.slice(spaceIndex)
+  }
+
+  comment = info.trim()
+
+  if (filename.endsWith('/')) {
+    type = 'folder'
+    expanded = false
+    filename = removeEndingSlash(filename)
+  }
+
+  return { filename, comment, focus, expanded, type }
+}
 
 export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}) {
   const getIcon = (filename: string, type: 'folder' | 'file', mode?: FileTreeIconMode): string => {
@@ -33,166 +82,44 @@ export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}) {
     return getFileIcon(filename, type)
   }
 
-  const render = (tokens: Token[], idx: number): string => {
-    const { attrs } = resolveAttrs<FileTreeAttrs>(tokens[idx].info.slice(type.length - 1))
+  const renderFileTree = (nodes: FileTreeNode[], meta: FileTreeAttrs): string =>
+    nodes.map((node) => {
+      const { info, level, children } = node
+      const { filename, comment, focus, expanded, type } = parseFileTreeNodeInfo(info)
+      const isOmit = filename === '…' || filename === '...' /* fallback */
 
-    if (tokens[idx].nesting === 1) {
-      const hasRes: number[] = [] // level stack
-      for (
-        let i = idx + 1;
-        !(tokens[i].nesting === -1
-          && tokens[i].type === closeType);
-        ++i
-      ) {
-        const token = tokens[i]
-        if (token.type === 'list_item_open') {
-          const result = resolveTreeNodeInfo(tokens, token, i)
-          if (result) {
-            hasRes.push(token.level)
-            const [info, inline] = result
-            const { filename, type, expanded, empty } = info
-            const icon = getIcon(filename, type, attrs.icon)
-
-            token.type = itemOpen
-            token.tag = componentName
-            token.attrSet('type', type)
-            token.attrSet(':expanded', expanded ? 'true' : 'false')
-            token.attrSet(':empty', empty ? 'true' : 'false')
-            updateInlineToken(inline, info, icon)
-          }
-          else {
-            hasRes.push(-1)
-          }
-        }
-        else if (token.type === 'list_item_close') {
-          if (token.level === hasRes.pop()) {
-            token.type = itemClose
-            token.tag = componentName
-          }
-        }
+      if (children.length === 0 && type === 'folder') {
+        children.push({ info: '…', level: level + 1, children: [] })
       }
-      const title = attrs.title
-      return `<div class="vp-file-tree">${title ? `<p class="vp-file-tree-title">${title}</p>` : ''}`
-    }
-    else {
-      return '</div>'
-    }
-  }
 
-  md.use(container, type, { render })
-}
-
-export function resolveTreeNodeInfo(
-  tokens: Token[],
-  current: Token,
-  idx: number,
-): [FileTreeNode, Token] | undefined {
-  let hasInline = false
-  let hasChildren = false
-  let inline!: Token
-  for (
-    let i = idx + 1;
-    !(tokens[i].level === current.level && tokens[i].type === 'list_item_close');
-    ++i
-  ) {
-    if (tokens[i].type === 'inline' && !hasInline) {
-      inline = tokens[i]
-      hasInline = true
-    }
-    else if (tokens[i].tag === 'ul') {
-      hasChildren = true
-    }
-
-    if (hasInline && hasChildren)
-      break
-  }
-
-  if (!hasInline)
-    return undefined
-
-  const children = inline.children!.filter(token => (token.type === 'text' && token.content) || token.tag === 'strong')
-  const filename = children.filter(token => token.type === 'text').map(token => token.content).join(' ').split(/\s+/)[0]
-  const focus = children[0]?.tag === 'strong'
-  const type = hasChildren || filename.endsWith('/') ? 'folder' : 'file'
-  const info: FileTreeNode = {
-    filename: removeLeadingSlash(removeEndingSlash(filename)),
-    type,
-    focus,
-    empty: !hasChildren,
-    expanded: type === 'folder' && !filename.endsWith('/'),
-  }
-
-  return [info, inline] as const
-}
-
-export function updateInlineToken(inline: Token, info: FileTreeNode, icon: string) {
-  const children = inline.children!
-
-  const tokens: Token[] = []
-  const wrapperOpen = new Token('span_open', 'span', 1)
-  const wrapperClose = new Token('span_close', 'span', -1)
-
-  wrapperOpen.attrSet('class', `tree-node ${info.type}`)
-  tokens.push(wrapperOpen)
-
-  if (info.filename !== '...' && info.filename !== '…') {
-    const iconOpen = new Token('vp_iconify_open', 'VPIcon', 1)
-    iconOpen.attrSet('name', icon)
-    const iconClose = new Token('vp_iconify_close', 'VPIcon', -1)
-
-    tokens.push(iconOpen, iconClose)
-  }
-
-  const fileOpen = new Token('span_open', 'span', 1)
-  fileOpen.attrSet('class', `name${info.focus ? ' focus' : ''}`)
-  tokens.push(fileOpen)
-
-  let isStrongTag = false
-  while (children.length) {
-    const token = children.shift()!
-    if (token.type === 'text' && token.content) {
-      if (token.content.includes(' ')) {
-        const [first, ...other] = token.content.split(' ')
-        const text = new Token('text', '', 0)
-        text.content = removeEndingSlash(first)
-        tokens.push(text)
-        const comment = new Token('text', '', 0)
-        comment.content = other.join(' ')
-        children.unshift(comment)
+      const nodeType = children.length > 0 ? 'folder' : type
+      const renderedComment = comment
+        ? `<template #comment>${md.renderInline(comment.replaceAll('#', '\#'))}</template>`
+        : ''
+      const renderedIcon = !isOmit
+        ? `<template #icon><VPIcon name="${getIcon(filename, nodeType, meta.icon)}" /></template>`
+        : ''
+      const props = {
+        expanded: nodeType === 'folder' ? expanded : false,
+        focus,
+        type: nodeType,
+        filename,
       }
-      else {
-        token.content = removeEndingSlash(token.content)
-        tokens.push(token)
-      }
-      if (!isStrongTag)
-        break
-    }
-    else if (token.tag === 'strong') {
-      token.content = removeEndingSlash(token.content)
-      tokens.push(token)
-      if (token.nesting === 1) {
-        isStrongTag = true
-      }
-      else {
-        break
-      }
-    }
-    else {
-      tokens.push(token)
-    }
-  }
+      return `<FileTreeNode${stringifyAttrs(props)}>
+${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children, meta) : ''}
+</FileTreeNode>`
+    }).join('\n')
 
-  const fileClose = new Token('span_close', 'span', -1)
-  tokens.push(fileClose)
-
-  if (children.filter(token => token.type === 'text' && token.content.trim()).length) {
-    const commentOpen = new Token('span_open', 'span', 1)
-    commentOpen.attrSet('class', 'comment')
-    const commentClose = new Token('span_close', 'span', -1)
-
-    tokens.push(commentOpen, ...children, commentClose)
-  }
-
-  tokens.push(wrapperClose)
-  inline.children = tokens
+  return createContainerSyntaxPlugin(
+    md,
+    'file-tree',
+    (tokens, index) => {
+      const token = tokens[index]
+      const nodes = parseFileTreeRawContent(token.content)
+      const meta = token.meta as FileTreeAttrs
+      return `<div class="vp-file-tree">${
+        meta.title ? `<p class="vp-file-tree-title">${meta.title}</p>` : ''
+      }${renderFileTree(nodes, meta)}</div>\n`
+    },
+  )
 }

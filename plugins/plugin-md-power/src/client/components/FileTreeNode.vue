@@ -123,15 +123,15 @@ function toggle(ev: MouseEvent) {
 }
 
 .vp-file-tree .vp-file-tree-info.folder::before {
-  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M5.536 21.886a1 1 0 0 0 1.033-.064l13-9a1 1 0 0 0 0-1.644l-13-9A1 1 0 0 0 5 3v18a1 1 0 0 0 .536.886'/%3E%3C/svg%3E");
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23000' d='m5.157 13.069l4.611-4.685a.546.546 0 0 0 0-.768L5.158 2.93a.55.55 0 0 1 0-.771a.53.53 0 0 1 .759 0l4.61 4.684a1.65 1.65 0 0 1 0 2.312l-4.61 4.684a.53.53 0 0 1-.76 0a.55.55 0 0 1 0-.771'/%3E%3C/svg%3E");
 
   position: absolute;
-  top: 10px;
-  left: -14px;
+  top: 8px;
+  left: -16px;
   display: block;
-  width: 10px;
-  height: 10px;
-  color: var(--vp-c-text-3);
+  width: 12px;
+  height: 12px;
+  color: var(--vp-c-text-2);
   cursor: pointer;
   content: "";
   background-color: currentcolor;

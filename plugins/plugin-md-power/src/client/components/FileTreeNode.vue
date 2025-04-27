@@ -91,12 +91,31 @@ function toggle(ev: MouseEvent) {
   gap: 8px;
   align-items: center;
   justify-content: flex-start;
-  width: fit-content;
   height: 28px;
   padding: 2px 0;
   margin: 0 0 0 16px;
   line-height: 24px;
   text-wrap: nowrap;
+}
+
+.vp-file-tree .vp-file-tree-info::after {
+  position: absolute;
+  top: 1px;
+  right: 0;
+  bottom: 1px;
+  left: -16px;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+  content: "";
+  background-color: transparent;
+  border-radius: 6px;
+  transition: background-color var(--vp-t-color);
+}
+
+.vp-file-tree .vp-file-tree-info.active::after,
+.vp-file-tree .vp-file-tree-info:hover::after {
+  background-color: var(--vp-c-default-soft);
 }
 
 .vp-file-tree .vp-file-tree-info.folder {
@@ -107,7 +126,7 @@ function toggle(ev: MouseEvent) {
   --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M5.536 21.886a1 1 0 0 0 1.033-.064l13-9a1 1 0 0 0 0-1.644l-13-9A1 1 0 0 0 5 3v18a1 1 0 0 0 .536.886'/%3E%3C/svg%3E");
 
   position: absolute;
-  top: 11px;
+  top: 10px;
   left: -14px;
   display: block;
   width: 10px;
@@ -150,9 +169,6 @@ function toggle(ev: MouseEvent) {
 
 .vp-file-tree .vp-file-tree-info.active .name {
   color: var(--vp-c-brand-1);
-  text-decoration: underline;
-  text-decoration-color: currentcolor;
-  text-underline-offset: 6px;
 }
 
 .vp-file-tree .vp-file-tree-info:not(.focus).folder .name:hover {

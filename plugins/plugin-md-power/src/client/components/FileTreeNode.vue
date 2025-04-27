@@ -182,6 +182,7 @@ function toggle(ev: MouseEvent) {
   padding-right: 16px;
   padding-left: 20px;
   margin: -2px 0;
+  line-height: 28px;
   color: var(--vp-c-text-3);
   cursor: auto;
   transition: color var(--vp-t-color);

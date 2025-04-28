@@ -29,4 +29,12 @@ export interface CopyrightOptions {
    * @default 'CC-BY-4.0'
    */
   license?: CopyrightLicense | { name: string, url: string }
+  /**
+   * 版权所有者
+   */
+  author?: string | { name: string, url?: string }
+  /**
+   * 作品的创作方式
+   */
+  creation?: 'original' | 'translate' | 'reprint'
 }

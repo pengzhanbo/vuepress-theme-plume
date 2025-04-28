@@ -51,7 +51,6 @@ export interface CopyrightFrontmatter extends CopyrightOptions {
   /**
    * 作品的作者
    *
-   * 如果是 原创，则默认为 contributors 中的第一个，否则需要手动指定
    * @default ''
    */
   author?: string | { name: string, url?: string }

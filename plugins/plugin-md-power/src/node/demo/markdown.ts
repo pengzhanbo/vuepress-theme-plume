@@ -29,7 +29,7 @@ export function markdownEmbed(
     <template #code>
       ${md.render(`\`\`\`md ${codeSetting}\n${code}\n\`\`\``, {})}
     </template>
-  </VPDemoBasic$>`
+  </VPDemoBasic>`
 }
 
 export const markdownContainerRender: DemoContainerRender = {

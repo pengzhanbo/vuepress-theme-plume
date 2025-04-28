@@ -28,9 +28,9 @@ export function useResources(el: ShallowRef<HTMLDivElement | null>, config: Mayb
     if (!conf)
       return []
     return [
-      { name: 'JavaScript', items: conf.jsLib.map(url => ({ name: normalizeName(url), url })) },
-      { name: 'CSS', items: conf.cssLib.map(url => ({ name: normalizeName(url), url })) },
-    ].filter(i => i.items.length)
+      { name: 'JavaScript', items: conf.jsLib?.map(url => ({ name: normalizeName(url), url })) },
+      { name: 'CSS', items: conf.cssLib?.map(url => ({ name: normalizeName(url), url })) },
+    ].filter(i => i.items?.length)
   })
 
   function normalizeName(url: string) {

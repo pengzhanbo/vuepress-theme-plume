@@ -126,10 +126,9 @@ export function normalEmbed(
     env.demoFiles.push(demo)
     insertSetupScript({ ...demo, path: output }, env)
   }
-
-  return `<VPDemoNormal${stringifyAttrs({ config: name, title, desc, expanded })}>
+  return `<VPDemoNormal${stringifyAttrs({ ':config': name, title, desc, expanded })}>
     ${codeToHtml(md, source, codeSetting)}
-  </VPDemoNormal$>`
+  </VPDemoNormal>`
 }
 
 export const normalContainerRender: DemoContainerRender = {
@@ -148,8 +147,7 @@ export const normalContainerRender: DemoContainerRender = {
 
     const source = parseContainerCode(codeMap)
     compileCode(source, output)
-
-    return `<VPDemoNormal${stringifyAttrs({ config: name, title, desc, expanded })}>`
+    return `<VPDemoNormal${stringifyAttrs({ ':config': name, title, desc, expanded })}>`
   },
 
   after: () => '</VPDemoNormal>',

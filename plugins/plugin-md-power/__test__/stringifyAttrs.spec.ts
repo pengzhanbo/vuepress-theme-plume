@@ -18,6 +18,10 @@ describe('stringifyAttrs', () => {
     expect(stringifyAttrs({ disabled: true, readonly: false, checked: 'true', selected: 'false' })).toBe(' disabled checked')
   })
 
+  it('should handle dymamic attributes', () => {
+    expect(stringifyAttrs({ ':id': 'test' })).toBe(' :id="test"')
+  })
+
   it('should handle null and undefined values', () => {
     expect(stringifyAttrs({ id: null, class: undefined })).toBe('')
     expect(stringifyAttrs({ id: null, class: undefined, foo: 'undefined', bar: 'null' }, true)).toBe(' :id="null" :class="undefined" :foo="undefined" :bar="null"')

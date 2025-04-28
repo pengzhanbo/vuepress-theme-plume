@@ -6,7 +6,7 @@ export function stringifyAttrs<T extends object = object>(
 ): string {
   const result = Object.entries(attrs)
     .map(([key, value]) => {
-      const k = kebabCase(String(key))
+      const k = kebabCase(key)
       if (isUndefined(value) || value === 'undefined')
         return withUndefined ? `:${k}="undefined"` : ''
 
@@ -28,7 +28,8 @@ export function stringifyAttrs<T extends object = object>(
       if (isString(value) && (value[0] === '{' || value[0] === '['))
         return `:${k}="${value.replaceAll('\"', '\'')}"`
 
-      return `${k}="${String(value)}"`
+      const hasDynamic = key[0] === ':'
+      return `${hasDynamic ? ':' : ''}${k}="${String(value)}"`
     })
     .filter(Boolean)
     .join(' ')

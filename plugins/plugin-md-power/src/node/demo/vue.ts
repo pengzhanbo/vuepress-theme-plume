@@ -36,7 +36,7 @@ export function vueEmbed(
     <template #code>
       ${md.render(`\`\`\`${ext}${codeSetting}\n${code}\n\`\`\``, {})}
     </template>
-  </VPDemoBasic$>`
+  </VPDemoBasic>`
 }
 
 const target = 'md-power/demo/vue'

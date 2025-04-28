@@ -218,6 +218,23 @@ export default {
 }
 ```
 
+::: tip 在不同的语言代码块中，应该使用该语言的有效的行注释语法
+比如在 bash 代码块中，应该使用 `# [!code focus]`
+
+````md
+```bash
+mkdir hello && cd hello  # [\!code focus]
+pnpm install
+```
+````
+
+```bash
+mkdir hello && cd hello  # [!code focus]
+pnpm install
+```
+
+:::
+
 ## 代码块中的颜色差异
 
 在某一行添加 `// [!code --]` 或 `// [!code ++]` 注释将会为该行创建 diff，同时保留代码块的颜色。
@@ -250,6 +267,21 @@ export default {
 }
 ```
 
+::: tip 在不同的语言代码块中，应该使用该语言的有效的行注释语法
+比如在 bash 代码块中，应该使用 `# [!code ++]`
+
+````md
+```bash
+mkdir hello && cd hello  # [\!code ++]
+```
+````
+
+```bash
+mkdir hello && cd hello  # [!code ++]
+```
+
+:::
+
 ## 高亮“错误”和“警告”
 
 在某一行添加 `// [!code warning]` 或 `// [!code error]` 注释将会为该行相应的着色。
@@ -281,6 +313,21 @@ export default {
   }
 }
 ```
+
+::: tip 在不同的语言代码块中，应该使用该语言的有效的行注释语法
+比如在 bash 代码块中，应该使用 `# [!code warning]`
+
+````md
+```bash
+mkdir hello && cd hello  # [\!code warning]
+```
+````
+
+```bash
+mkdir hello && cd hello  # [!code warning]
+```
+
+:::
 
 ## 代码块中 词高亮
 
@@ -325,6 +372,21 @@ const options = { foo: 'bar' }
 options.foo = 'baz'
 console.log(options.foo) // 这个不会被高亮显示
 ```
+
+:::tip 在不同的语言代码块中，应该使用该语言的有效的行注释语法
+比如在 bash 代码块中，应该使用 `# [!code word:hello]`
+
+````md
+```bash
+mkdir hello && cd hello  # [\!code word:hello]
+```
+````
+
+```bash
+mkdir hello && cd hello  # [!code word:hello]
+```
+
+:::
 
 ## 代码块中的 空白符
 

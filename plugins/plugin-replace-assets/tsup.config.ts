@@ -16,7 +16,7 @@ export default defineConfig(() => {
       ...DEFAULT_OPTIONS,
       entry: ['./src/index.ts'],
       outDir: './lib',
-      target: 'node18',
+      target: 'node20.6.0',
     })
   }
 

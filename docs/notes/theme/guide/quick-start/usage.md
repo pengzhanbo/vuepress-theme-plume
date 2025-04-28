@@ -10,10 +10,9 @@ tags:
 
 ## 依赖环境
 
-- [Node.js](https://nodejs.org/) : **^18.19.0 或 ^20.6.0 或 >= 22.0.0** [+node-versions]
+- [Node.js](https://nodejs.org/) : **^20.6.0 或 >= 22.0.0** [+node-versions]
 - [npm 8+](https://www.npmjs.com/) 或 [pnpm 8+](https://pnpm.io/zh/) 或 [Yarn 2+](https://yarnpkg.com/)
 
-[+node-versions]: **^18.19.0：** `18.19.0` 及以上但不高于 `19.0.0` 的版本
 [+node-versions]: **^20.6.0：** `20.6.0` 及以上但不高于 `21.0.0` 的版本
 [+node-versions]: **>= 22.0.0：** `22.0.0` 及以上的版本
 

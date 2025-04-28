@@ -14,8 +14,11 @@ const vuepressVersion = __VUEPRESS_VERSION__
 
 ## Dependency Environment
 
-- [Node.js v20.6.0+](https://nodejs.org/)
+- [Node.js](https://nodejs.org/) : **^20.6.0 或 >= 22.0.0** [+node-versions]
 - [npm 8+](https://www.npmjs.com/) or [pnpm 8+](https://pnpm.io/zh/) or [Yarn 2+](https://yarnpkg.com/)
+
+[+node-versions]: **^20.6.0：** Versions `20.6.0` and above but not higher than `21.0.0`
+[+node-versions]: **>= 22.0.0：** Versions `22.0.0` and above
 
 :::: details How to install the dependency environment?
 ::: steps

@@ -91,7 +91,12 @@ export default defineUserConfig({
       license: {
         name: 'MIT', // 许可证名称
         url: 'https://your-license-url' // 许可证地址
-      }
+      },
+      author: {
+        name: 'Your Name', // 版权所有者名称
+        url: 'https://your-author-url' // 版权所有者地址
+      },
+      creation: 'reprint' // 创作方式
     }
   })
 })
@@ -116,12 +121,24 @@ export type CopyrightLicense =
  */
 type CopyrightOptions = boolean | string | CopyrightLicense | {
   /**
-   * 许可证
+   * 版权许可证
    */
-  license: CopyrightLicense | {
+  license?: CopyrightLicense | {
     name: CopyrightLicense | string
     url: string
   }
+  /**
+   * 版权所有者，未配置时，默认从 git 提交记录中获取
+   */
+  author?: {
+    name: string
+    url?: string
+  }
+  /**
+   * 创作方式，原创、翻译、转载
+   * @default 'original'
+   */
+  creation?: 'original' | 'translate' | 'reprint'
 }
 ```
 

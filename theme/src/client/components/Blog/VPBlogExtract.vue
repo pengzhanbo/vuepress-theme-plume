@@ -155,7 +155,7 @@ const showBlogExtract = computed(() => {
   left: 0;
   z-index: var(--vp-z-index-overlay);
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgb(0 0 0 / 0.3);
 }
 
 .blog-modal-container {
@@ -167,16 +167,16 @@ const showBlogExtract = computed(() => {
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   box-shadow:
-    0 -3px 12px rgba(0, 0, 0, 0.1),
-    0 -1px 4px rgba(0, 0, 0, 0.1);
+    0 -3px 12px rgb(0 0 0 / 0.1),
+    0 -1px 4px rgb(0 0 0 / 0.1);
   transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   transform: translateY(100%);
 }
 
 [data-theme="dark"] .blog-modal-container {
   box-shadow:
-    0 -3px 12px rgba(0, 0, 0, 0.3),
-    0 -1px 4px rgba(0, 0, 0, 0.27);
+    0 -3px 12px rgb(0 0 0 / 0.3),
+    0 -1px 4px rgb(0 0 0 / 0.27);
 }
 
 .blog-modal-container.open {

@@ -327,7 +327,7 @@
 }
 
 .mermaid-preview {
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: rgb(0 0 0 / 0.45);
 }
 
 .mermaid-preview > svg {

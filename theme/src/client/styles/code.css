@@ -1,9 +1,9 @@
 [data-theme="dark"] .vp-code span {
-  color: var(--shiki-dark, rgba(235, 235, 245, 0.6));
+  color: var(--shiki-dark, rgb(235 235 245 / 0.6));
 }
 
 html:not([data-theme="dark"]) .vp-code span {
-  color: var(--shiki-light, rgba(60, 60, 67, 0.78));
+  color: var(--shiki-light, rgb(60 60 67 / 0.78));
 }
 
 .vp-doc div[class*="language-"],
@@ -317,7 +317,7 @@ html:not([data-theme="dark"]) .vp-code span {
 
 .code-block-title .code-block-title-bar .title {
   position: relative;
-  padding: 10px 12px;
+  padding: 11px 12px;
 }
 
 .code-block-title .code-block-title-bar .title::before {

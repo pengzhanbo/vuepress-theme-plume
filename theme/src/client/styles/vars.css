@@ -44,32 +44,32 @@
   --vp-c-gray-1: #dddde3;
   --vp-c-gray-2: #e4e4e9;
   --vp-c-gray-3: #ebebef;
-  --vp-c-gray-soft: rgba(142, 150, 170, 0.14);
+  --vp-c-gray-soft: rgb(142 150 170 / 0.14);
 
   --vp-c-turquoise-1: #5086a1;
   --vp-c-turquoise-2: #6aa1b7;
   --vp-c-turquoise-3: #8cccd5;
-  --vp-c-turquoise-soft: rgba(131, 208, 218, 0.314);
+  --vp-c-turquoise-soft: rgb(131 208 218 / 0.314);
 
   --vp-c-green-1: #18794e;
   --vp-c-green-2: #299764;
   --vp-c-green-3: #30a46c;
-  --vp-c-green-soft: rgba(16, 185, 129, 0.14);
+  --vp-c-green-soft: rgb(16 185 129 / 0.14);
 
   --vp-c-yellow-1: #915930;
   --vp-c-yellow-2: #946300;
   --vp-c-yellow-3: #9f6a00;
-  --vp-c-yellow-soft: rgba(234, 179, 8, 0.14);
+  --vp-c-yellow-soft: rgb(234 179 8 / 0.14);
 
   --vp-c-red-1: #b8272c;
   --vp-c-red-2: #d5393e;
   --vp-c-red-3: #e0575b;
-  --vp-c-red-soft: rgba(244, 63, 94, 0.14);
+  --vp-c-red-soft: rgb(244 63 94 / 0.14);
 
   --vp-c-purple-1: #6f42c1;
   --vp-c-purple-2: #7e4cc9;
   --vp-c-purple-3: #8e5cd9;
-  --vp-c-purple-soft: rgba(159, 122, 234, 0.14);
+  --vp-c-purple-soft: rgb(159 122 234 / 0.14);
 
   --vp-c-sponsor: #db2777;
 }
@@ -78,32 +78,32 @@
   --vp-c-gray-1: #515c67;
   --vp-c-gray-2: #414853;
   --vp-c-gray-3: #32363f;
-  --vp-c-gray-soft: rgba(101, 117, 133, 0.16);
+  --vp-c-gray-soft: rgb(101 117 133 / 0.16);
 
   --vp-c-turquoise-1: #8cccd5;
   --vp-c-turquoise-2: #6aa1b7;
   --vp-c-turquoise-3: #5086a1;
-  --vp-c-turquoise-soft: rgba(131, 208, 218, 0.314);
+  --vp-c-turquoise-soft: rgb(131 208 218 / 0.314);
 
   --vp-c-green-1: #3dd68c;
   --vp-c-green-2: #30a46c;
   --vp-c-green-3: #298459;
-  --vp-c-green-soft: rgba(16, 185, 129, 0.16);
+  --vp-c-green-soft: rgb(16 185 129 / 0.16);
 
   --vp-c-yellow-1: #f9b44e;
   --vp-c-yellow-2: #da8b17;
   --vp-c-yellow-3: #a46a0a;
-  --vp-c-yellow-soft: rgba(234, 179, 8, 0.16);
+  --vp-c-yellow-soft: rgb(234 179 8 / 0.16);
 
   --vp-c-red-1: #f66f81;
   --vp-c-red-2: #f14158;
   --vp-c-red-3: #b62a3c;
-  --vp-c-red-soft: rgba(244, 63, 94, 0.16);
+  --vp-c-red-soft: rgb(244 63 94 / 0.16);
 
   --vp-c-purple-1: #c8abfa;
   --vp-c-purple-2: #a879e6;
   --vp-c-purple-3: #8e5cd9;
-  --vp-c-purple-soft: rgba(159, 122, 234, 0.16);
+  --vp-c-purple-soft: rgb(159 122 234 / 0.16);
 }
 
 /**
@@ -170,19 +170,19 @@
  * - `text-3`: Used for subtle texts, such as "placeholders" or "caret icon".
  * -------------------------------------------------------------------------- */
 :root {
-  --vp-c-text-1: rgba(60, 60, 67);
-  --vp-c-text-2: rgba(60, 60, 67, 0.78);
-  --vp-c-text-3: rgba(60, 60, 67, 0.56);
+  --vp-c-text-1: rgb(60 60 67);
+  --vp-c-text-2: rgb(60 60 67 / 0.78);
+  --vp-c-text-3: rgb(60 60 67 / 0.56);
 
-  --vp-c-text-dark-1: rgba(255, 255, 245, 0.86);
-  --vp-c-text-dark-2: rgba(235, 235, 245, 0.6);
-  --vp-c-text-dark-3: rgba(235, 235, 245, 0.38);
+  --vp-c-text-dark-1: rgb(255 255 245 / 0.86);
+  --vp-c-text-dark-2: rgb(235 235 245 / 0.6);
+  --vp-c-text-dark-3: rgb(235 235 245 / 0.38);
 }
 
 [data-theme="dark"] {
-  --vp-c-text-1: rgba(255, 255, 245, 0.86);
-  --vp-c-text-2: rgba(235, 235, 245, 0.6);
-  --vp-c-text-3: rgba(235, 235, 245, 0.38);
+  --vp-c-text-1: rgb(255 255 245 / 0.86);
+  --vp-c-text-2: rgb(235 235 245 / 0.6);
+  --vp-c-text-3: rgb(235 235 245 / 0.38);
 }
 
 /**
@@ -298,19 +298,19 @@
  * Shadows
  * -------------------------------------------------------------------------- */
 :root {
-  --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --vp-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.07);
-  --vp-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
-  --vp-shadow-4: 0 14px 44px rgba(0, 0, 0, 0.12), 0 3px 9px rgba(0, 0, 0, 0.12);
-  --vp-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.16);
+  --vp-shadow-1: 0 1px 2px rgb(0 0 0 / 0.04), 0 1px 2px rgb(0 0 0 / 0.06);
+  --vp-shadow-2: 0 3px 12px rgb(0 0 0 / 0.07), 0 1px 4px rgb(0 0 0 / 0.07);
+  --vp-shadow-3: 0 12px 32px rgb(0 0 0 / 0.1), 0 2px 6px rgb(0 0 0 / 0.08);
+  --vp-shadow-4: 0 14px 44px rgb(0 0 0 / 0.12), 0 3px 9px rgb(0 0 0 / 0.12);
+  --vp-shadow-5: 0 18px 56px rgb(0 0 0 / 0.16), 0 4px 12px rgb(0 0 0 / 0.16);
 }
 
 [data-theme="dark"] {
-  --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.27), 0 1px 2px rgba(0, 0, 0, 0.22);
-  --vp-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.27);
-  --vp-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.3);
-  --vp-shadow-4: 0 14px 44px rgba(0, 0, 0, 0.39), 0 3px 9px rgba(0, 0, 0, 0.35);
-  --vp-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.42), 0 4px 12px rgba(0, 0, 0, 0.38);
+  --vp-shadow-1: 0 1px 2px rgb(0 0 0 / 0.27), 0 1px 2px rgb(0 0 0 / 0.22);
+  --vp-shadow-2: 0 3px 12px rgb(0 0 0 / 0.3), 0 1px 4px rgb(0 0 0 / 0.27);
+  --vp-shadow-3: 0 12px 32px rgb(0 0 0 / 0.35), 0 2px 6px rgb(0 0 0 / 0.3);
+  --vp-shadow-4: 0 14px 44px rgb(0 0 0 / 0.39), 0 3px 9px rgb(0 0 0 / 0.35);
+  --vp-shadow-5: 0 18px 56px rgb(0 0 0 / 0.42), 0 4px 12px rgb(0 0 0 / 0.38);
 }
 
 /**
@@ -509,7 +509,7 @@
  * Colors Backdrop
  * -------------------------------------------------------------------------- */
 :root {
-  --vp-backdrop-bg-color: rgba(0, 0, 0, 0.6);
+  --vp-backdrop-bg-color: rgb(0 0 0 / 0.6);
 }
 
 /**

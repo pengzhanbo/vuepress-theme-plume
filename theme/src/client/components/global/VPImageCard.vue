@@ -107,7 +107,7 @@ const styles = computed(() => {
   overflow-y: hidden;
   font-size: 14px;
   color: var(--vp-c-white);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(0 0 0 / 0.5);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   transition: transform var(--vp-t-color);

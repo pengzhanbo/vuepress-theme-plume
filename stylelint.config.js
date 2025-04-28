@@ -9,5 +9,8 @@ export default stylelintConfig({
       ignoreShorthands: ['inset'],
     }],
     'media-feature-range-notation': null,
+    'color-function-notation': ['modern', {
+      ignore: ['with-var-inside'],
+    }],
   },
 })

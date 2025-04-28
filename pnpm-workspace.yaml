@@ -6,34 +6,34 @@ packages:
   - examples/*
 
 overrides:
-  '@typescript-eslint/utils': ^8.30.1
-  esbuild: ^0.25.2
-  sass: ^1.86.3
-  sass-embedded: ^1.86.3
+  '@typescript-eslint/utils': ^8.31.0
+  esbuild: ^0.25.3
+  sass: ^1.87.0
+  sass-embedded: ^1.87.0
 
 catalogs:
   dev:
     '@commitlint/cli': ^19.8.0
     '@commitlint/config-conventional': ^19.8.0
-    '@pengzhanbo/eslint-config-vue': ^1.29.0
-    '@pengzhanbo/stylelint-config': ^1.29.0
+    '@pengzhanbo/eslint-config-vue': ^1.30.0
+    '@pengzhanbo/stylelint-config': ^1.30.0
     '@simonwep/pickr': ^1.9.1
     '@types/express': ^5.0.1
     '@types/less': ^3.0.8
     '@types/lodash.merge': ^4.6.9
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^22.14.1
+    '@types/node': ^22.15.3
     '@types/stylus': ^0.48.43
     '@types/webpack-env': ^1.18.8
-    '@vitest/coverage-istanbul': ^3.1.1
+    '@vitest/coverage-istanbul': ^3.1.2
     bumpp: ^10.1.0
     commitizen: ^4.3.1
     conventional-changelog-cli: ^5.0.0
     cpx2: ^8.0.0
     cross-env: 7.0.3
     cz-conventional-changelog: ^3.3.0
-    eslint: ^9.25.0
+    eslint: ^9.25.1
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.3.0
@@ -43,24 +43,24 @@ catalogs:
     mermaid: ^11.6.0
     minimist: ^1.2.8
     rimraf: ^6.0.1
-    stylelint: ^16.18.0
+    stylelint: ^16.19.1
     stylus: ^0.64.0
-    tsconfig-vuepress: ^5.2.1
+    tsconfig-vuepress: ^6.0.0
     tsup: ^8.4.0
     typescript: ^5.8.3
-    vitest: ^3.1.1
-    vue-router: ^4.5.0
+    vitest: ^3.1.2
+    vue-router: ^4.5.1
     wait-on: ^8.0.3
 
   peer:
-    '@iconify/json': ^2.2.329
-    artplayer: ^5.2.2
+    '@iconify/json': ^2.2.332
+    artplayer: ^5.2.3
     dashjs: ^5.0.1
     hls.js: ^1.6.2
     mathjax-full: ^3.2.2
     mpegts.js: 1.7.3
-    sass: ^1.86.3
-    sass-embedded: ^1.86.3
+    sass: ^1.87.0
+    sass-embedded: ^1.87.0
     sass-loader: ^16.0.5
     swiper: ^11.2.6
 
@@ -85,7 +85,7 @@ catalogs:
     create-filter: ^1.1.0
     dayjs: ^1.11.13
     echarts: ^5.6.0
-    esbuild: ^0.25.2
+    esbuild: ^0.25.3
     execa: ^9.5.2
     fast-glob: ^3.3.3
     flowchart.ts: ^3.0.1
@@ -109,36 +109,37 @@ catalogs:
     p-map: ^7.0.3
     package-manager-detector: ^1.2.0
     picocolors: ^1.1.1
-    shiki: ^3.2.2
-    tm-grammars: ^1.23.14
+    shiki: ^3.3.0
+    tm-grammars: ^1.23.16
     tm-themes: ^1.10.5
     unplugin: ^2.3.2
     vue: ^3.5.13
 
   vuepress:
-    '@vuepress/bundler-vite': 2.0.0-rc.21
-    '@vuepress/helper': 2.0.0-rc.94
-    '@vuepress/plugin-cache': 2.0.0-rc.94
-    '@vuepress/plugin-comment': 2.0.0-rc.95
-    '@vuepress/plugin-copy-code': 2.0.0-rc.94
-    '@vuepress/plugin-docsearch': 2.0.0-rc.95
-    '@vuepress/plugin-git': 2.0.0-rc.96
-    '@vuepress/plugin-markdown-hint': 2.0.0-rc.94
-    '@vuepress/plugin-markdown-image': 2.0.0-rc.94
-    '@vuepress/plugin-markdown-include': 2.0.0-rc.94
-    '@vuepress/plugin-markdown-math': 2.0.0-rc.95
-    '@vuepress/plugin-nprogress': 2.0.0-rc.94
-    '@vuepress/plugin-photo-swipe': 2.0.0-rc.95
-    '@vuepress/plugin-reading-time': 2.0.0-rc.95
-    '@vuepress/plugin-seo': 2.0.0-rc.96
-    '@vuepress/plugin-shiki': 2.0.0-rc.94
-    '@vuepress/plugin-sitemap': 2.0.0-rc.96
-    '@vuepress/plugin-watermark': 2.0.0-rc.94
-    '@vuepress/shiki-twoslash': 2.0.0-rc.94
-    vuepress: 2.0.0-rc.21
-    vuepress-plugin-md-enhance: 2.0.0-rc.81
+    '@vuepress/bundler-vite': 2.0.0-rc.22
+    '@vuepress/helper': 2.0.0-rc.98
+    '@vuepress/plugin-cache': 2.0.0-rc.98
+    '@vuepress/plugin-comment': 2.0.0-rc.98
+    '@vuepress/plugin-copy-code': 2.0.0-rc.98
+    '@vuepress/plugin-docsearch': 2.0.0-rc.98
+    '@vuepress/plugin-git': 2.0.0-rc.98
+    '@vuepress/plugin-markdown-hint': 2.0.0-rc.98
+    '@vuepress/plugin-markdown-image': 2.0.0-rc.98
+    '@vuepress/plugin-markdown-include': 2.0.0-rc.98
+    '@vuepress/plugin-markdown-math': 2.0.0-rc.98
+    '@vuepress/plugin-nprogress': 2.0.0-rc.98
+    '@vuepress/plugin-photo-swipe': 2.0.0-rc.98
+    '@vuepress/plugin-reading-time': 2.0.0-rc.98
+    '@vuepress/plugin-seo': 2.0.0-rc.98
+    '@vuepress/plugin-shiki': 2.0.0-rc.98
+    '@vuepress/plugin-sitemap': 2.0.0-rc.98
+    '@vuepress/plugin-watermark': 2.0.0-rc.98
+    '@vuepress/shiki-twoslash': 2.0.0-rc.98
+    vuepress: 2.0.0-rc.22
+    vuepress-plugin-md-enhance: 2.0.0-rc.83
 
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - core-js
   - esbuild
+  - unrs-resolver

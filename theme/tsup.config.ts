@@ -47,7 +47,7 @@ export default defineConfig((cli) => {
       entry: ['./src/node/index.ts'],
       outDir: './lib/node',
       external: sharedExternal,
-      target: 'node18',
+      target: 'node20.6.0',
       watch: false,
     })
   }

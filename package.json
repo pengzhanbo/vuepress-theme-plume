@@ -14,7 +14,7 @@
     "vuepress-theme-plume"
   ],
   "engines": {
-    "node": "^18.19.0 || ^20.9.0 || >=22.1.0",
+    "node": "^20.9.0 || >=22.1.0",
     "pnpm": ">=9"
   },
   "scripts": {

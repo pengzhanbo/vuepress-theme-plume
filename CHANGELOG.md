@@ -1,3 +1,24 @@
+# [1.0.0-rc.144](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.143...v1.0.0-rc.144) (2025-04-28)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** incorrect demo container rendering ([0bf7c86](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0bf7c865ac327cae6af8ece39b54389ae4236faf))
+
+
+### Features
+
+* **plugin-md-power:** add createContainerSyntaxPlugin for custom container rendering ([#564](https://github.com/pengzhanbo/vuepress-theme-plume/issues/564)) ([2e7f69b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2e7f69bb623aa9a57868ad029aef645973cfba2e))
+* **plugin-md-power:** refactor file-tree container, close [#565](https://github.com/pengzhanbo/vuepress-theme-plume/issues/565) ([#572](https://github.com/pengzhanbo/vuepress-theme-plume/issues/572)) ([599e43f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/599e43fd3cd6d982af683592e37bbb18754baee6))
+* **theme:** add support for `author` and `creation` in global copyright config, close [#573](https://github.com/pengzhanbo/vuepress-theme-plume/issues/573) ([#576](https://github.com/pengzhanbo/vuepress-theme-plume/issues/576)) ([7ecce2d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7ecce2db5cee72f441eda7ad5d2d557ecc36887d))
+
+
+### Performance Improvements
+
+* update deps to latest ([740bc4e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/740bc4e364f1d2719fdce69a7ba8b5ccf1afed5e))
+
+
+
 # [1.0.0-rc.143](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.142...v1.0.0-rc.143) (2025-04-19)
 
 

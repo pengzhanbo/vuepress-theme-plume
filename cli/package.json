@@ -39,7 +39,7 @@
     "picocolors": "catalog:prod"
   },
   "plume-deps": {
-    "vuepress": "2.0.0-rc.21",
+    "vuepress": "2.0.0-rc.22",
     "vue": "^3.5.13",
     "sass-embedded": "^1.87.0",
     "sass-loader": "^16.0.5",

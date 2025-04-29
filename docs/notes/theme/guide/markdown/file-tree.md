@@ -18,18 +18,20 @@ permalink: /guide/markdown/file-tree/
 
 - 通过加粗文件名或目录名来突出显示，例如 `**README.md**`
 - 通过在名称后添加更多文本来为文件或目录添加注释
+- 通过在名称前添加 `++` 或 `--` 来标记文件或目录为 **新增** 或 **删除**
 - 使用 `...` 或 `…` 作为名称来添加占位符文件和目录。
 - 在 `:::file-tree` 后添加 `icon="simple"` 或 添加 `icon="colored"` 可以切换为简单图标或彩色图标，默认为彩色图标。
+- 在 `:::file-tree` 后添加 `title="xxxx"` 可以为文件树添加标题。
 
 **输入：**
 
-```md
+```md /++/ /--/
 ::: file-tree
 
 - docs
   - .vuepress
-    - config.ts
-  - page1.md
+    - ++ config.ts
+  - -- page1.md
   - README.md
 - theme  一个 **主题** 目录
   - client
@@ -55,8 +57,8 @@ permalink: /guide/markdown/file-tree/
 
 - docs
   - .vuepress
-    - config.ts
-  - page1.md
+    - ++ config.ts
+  - -- page1.md
   - README.md
 - theme  一个 **主题** 目录
   - client

@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import { FadeInExpandTransition } from '@vuepress/helper/client'
 import { inject, ref } from 'vue'
-
-import '@vuepress/helper/transition/fade-in-height-expand.css'
 
 const props = defineProps<{
   type: 'file' | 'folder'
   filename: string
+  level: number
+  diff?: 'add' | 'remove'
   expanded?: boolean
   focus?: boolean
 }>()
@@ -49,18 +48,20 @@ function toggle(ev: MouseEvent) {
         focus,
         expanded: type === 'folder' ? active : false,
         active: type === 'file' ? activeFileTreeNode === filename : false,
+        diff,
+        add: diff === 'add',
+        remove: diff === 'remove',
       }"
+      :style="{ '--file-tree-level': -level }"
       @click="toggle"
     >
       <slot name="icon" />
       <span class="name" :class="[type]">{{ filename }}</span>
       <span v-if="$slots.comment" class="comment"><slot name="comment" /></span>
     </p>
-    <FadeInExpandTransition>
-      <div v-if="type === 'folder'" v-show="active" class="group">
-        <slot />
-      </div>
-    </FadeInExpandTransition>
+    <div v-if="type === 'folder'" v-show="active" class="group">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -100,22 +101,38 @@ function toggle(ev: MouseEvent) {
 
 .vp-file-tree .vp-file-tree-info::after {
   position: absolute;
-  top: 1px;
-  right: 0;
-  bottom: 1px;
-  left: -16px;
+  top: 0;
+  right: -16px;
+  bottom: 0;
+  left: calc(var(--file-tree-level) * 28px - 32px);
   z-index: 0;
   display: block;
   pointer-events: none;
   content: "";
   background-color: transparent;
-  border-radius: 6px;
   transition: background-color var(--vp-t-color);
 }
 
 .vp-file-tree .vp-file-tree-info.active::after,
-.vp-file-tree .vp-file-tree-info:hover::after {
+.vp-file-tree .vp-file-tree-info:not(.diff):hover::after {
   background-color: var(--vp-c-default-soft);
+}
+
+.vp-file-tree .vp-file-tree-info.diff::after {
+  padding-left: 4px;
+  font-weight: 600;
+}
+
+.vp-file-tree .vp-file-tree-info.diff.add::after {
+  color: var(--vp-c-success-1);
+  content: "+";
+  background-color: var(--vp-c-success-soft);
+}
+
+.vp-file-tree .vp-file-tree-info.diff.remove::after {
+  color: var(--vp-c-danger-1);
+  content: "-";
+  background-color: var(--vp-c-danger-soft);
 }
 
 .vp-file-tree .vp-file-tree-info.folder {

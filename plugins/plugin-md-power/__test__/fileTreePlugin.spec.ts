@@ -100,6 +100,14 @@ describe('fileTreePlugin', () => {
 :::
 
 ::: file-tree
+- docs
+  - ++ added.md
+  - -- remove.md
+- ++ src
+- -- source
+:::
+
+::: file-tree
 :::
 `
   it('should work with default options', () => {

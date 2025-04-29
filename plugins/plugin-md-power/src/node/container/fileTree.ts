@@ -50,6 +50,16 @@ export function parseFileTreeNodeInfo(info: string) {
   let focus = false
   let expanded: boolean | undefined = true
   let type: 'folder' | 'file' = 'file'
+  let diff: 'add' | 'remove' | undefined
+
+  if (info.startsWith('++')) {
+    info = info.slice(2).trim()
+    diff = 'add'
+  }
+  else if (info.startsWith('--')) {
+    info = info.slice(2).trim()
+    diff = 'remove'
+  }
 
   info = info.replace(RE_FOCUS, (_, matched) => {
     filename = matched
@@ -71,7 +81,7 @@ export function parseFileTreeNodeInfo(info: string) {
     filename = removeEndingSlash(filename)
   }
 
-  return { filename, comment, focus, expanded, type }
+  return { filename, comment, focus, expanded, type, diff }
 }
 
 export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}) {
@@ -85,7 +95,7 @@ export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}) {
   const renderFileTree = (nodes: FileTreeNode[], meta: FileTreeAttrs): string =>
     nodes.map((node) => {
       const { info, level, children } = node
-      const { filename, comment, focus, expanded, type } = parseFileTreeNodeInfo(info)
+      const { filename, comment, focus, expanded, type, diff } = parseFileTreeNodeInfo(info)
       const isOmit = filename === '…' || filename === '...' /* fallback */
 
       if (children.length === 0 && type === 'folder') {
@@ -103,7 +113,9 @@ export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}) {
         expanded: nodeType === 'folder' ? expanded : false,
         focus,
         type: nodeType,
+        diff,
         filename,
+        level,
       }
       return `<FileTreeNode${stringifyAttrs(props)}>
 ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children, meta) : ''}

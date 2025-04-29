@@ -120,6 +120,11 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     imports.add(`import '${CLIENT_FOLDER}styles/chat.css'`)
   }
 
+  if (options.field) {
+    imports.add(`import VPField from '${CLIENT_FOLDER}components/VPField.vue'`)
+    enhances.add(`app.component('VPField', VPField)`)
+  }
+
   return app.writeTemp(
     'md-power/config.js',
     `\

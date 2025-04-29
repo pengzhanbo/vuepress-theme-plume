@@ -8,6 +8,7 @@ import { chatPlugin } from './chat.js'
 import { codeTabs } from './codeTabs.js'
 import { collapsePlugin } from './collapse.js'
 import { demoWrapperPlugin } from './demoWrapper.js'
+import { fieldPlugin } from './field.js'
 import { fileTreePlugin } from './fileTree.js'
 import { langReplPlugin } from './langRepl.js'
 import { npmToPlugins } from './npmTo.js'
@@ -58,4 +59,7 @@ export async function containerPlugin(
 
   if (options.chat)
     chatPlugin(md)
+
+  if (options.field)
+    fieldPlugin(md)
 }

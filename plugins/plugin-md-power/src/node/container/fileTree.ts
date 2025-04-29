@@ -16,6 +16,16 @@ interface FileTreeAttrs {
   icon?: FileTreeIconMode
 }
 
+interface FileTreeNodeProps {
+  filename: string
+  comment?: string
+  focus?: boolean
+  expanded?: boolean
+  type: 'folder' | 'file'
+  diff?: 'add' | 'remove'
+  level?: number
+}
+
 export function parseFileTreeRawContent(content: string): FileTreeNode[] {
   const root: FileTreeNode = { info: '', level: -1, children: [] }
   const stack: FileTreeNode[] = [root]
@@ -44,7 +54,7 @@ export function parseFileTreeRawContent(content: string): FileTreeNode[] {
 
 const RE_FOCUS = /^\*\*(.*)\*\*(?:$|\s+)/
 
-export function parseFileTreeNodeInfo(info: string) {
+export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
   let filename = ''
   let comment = ''
   let focus = false
@@ -109,7 +119,7 @@ export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}) {
       const renderedIcon = !isOmit
         ? `<template #icon><VPIcon name="${getIcon(filename, nodeType, meta.icon)}" /></template>`
         : ''
-      const props = {
+      const props: FileTreeNodeProps = {
         expanded: nodeType === 'folder' ? expanded : false,
         focus,
         type: nodeType,

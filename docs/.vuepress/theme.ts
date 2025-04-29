@@ -31,6 +31,7 @@ export const theme: Theme = plumeTheme({
     timeline: true,
     collapse: true,
     chat: true,
+    field: true,
     imageSize: 'all',
     pdf: true,
     caniuse: true,

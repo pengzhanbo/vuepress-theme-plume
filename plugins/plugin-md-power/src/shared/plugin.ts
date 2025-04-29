@@ -109,6 +109,12 @@ export interface MarkdownPowerPluginOptions {
    */
   chat?: boolean
 
+  /**
+   * 是否启用 field / field-group 容器
+   *
+   * @default false
+   */
+  field?: boolean
   // video embed
   /**
    * 是否启用 bilibili 视频嵌入

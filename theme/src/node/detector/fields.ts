@@ -50,6 +50,7 @@ export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
   'codepen',
   'demo',
   'fileTree',
+  'field',
   'icons',
   'imageSize',
   'jsfiddle',

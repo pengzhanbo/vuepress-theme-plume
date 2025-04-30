@@ -120,7 +120,7 @@ function toggle(ev: MouseEvent) {
 
 .vp-file-tree .vp-file-tree-info.diff::after {
   padding-left: 4px;
-  font-weight: 600;
+  font-size: 1.25em;
 }
 
 .vp-file-tree .vp-file-tree-info.diff.add::after {

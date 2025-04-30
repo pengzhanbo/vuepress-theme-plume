@@ -28,12 +28,12 @@ defineProps<{
 .vp-field {
   width: 100%;
   margin: 16px 0;
-  border-bottom: solid 1px var(--vp-c-divider);
   transition: border-color var(--vp-t-color);
 }
 
-.vp-field:last-of-type {
-  border-bottom: none;
+.vp-field + .vp-field {
+  padding-top: 8px;
+  border-top: solid 1px var(--vp-c-divider);
 }
 
 .vp-field .field-meta {
@@ -44,7 +44,7 @@ defineProps<{
 }
 
 .vp-field .field-meta .name {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 }
 
@@ -80,6 +80,8 @@ defineProps<{
 }
 
 .vp-field .description :where(p, ul, ol) {
+  margin: 8px 0;
+  line-height: 24px;
   color: var(--vp-c-text-2);
 }
 

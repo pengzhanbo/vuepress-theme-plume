@@ -11,13 +11,29 @@ permalink: /guide/components/link-card/
 
 ## Props
 
-| 名称        | 类型                        | 默认值 | 说明                                                             |
-| ----------- | --------------------------- | ------ | ---------------------------------------------------------------- |
-| title       | `string`                    | `''`   | 标题                                                             |
-| icon        | `string \| { svg: string }` | `''`   | 显示在标题左侧的图标，支持 iconify 所有图标，也可以使用 图片链接 |
-| href        | `string`                    | `''`   | 链接                                                             |
-| description | `string`                    | `''`   | 详情                                                             |
-| target      | `string`                    | `''`   | 链接打开方式                                                             |
+:::: field-group
+
+::: field name="title" type="string" default="''" optional
+链接卡片标题
+:::
+
+::: field name="icon" type="string | { svg: string }" default="''" optional
+显示在标题左侧的图标，支持 iconify 所有图标，也可以使用 图片链接
+:::
+
+::: field name="href" type="string" default="''" optional
+链接卡片跳转地址
+:::
+
+::: field name="description" type="string" default="''" optional
+链接卡片描述，建议使用组件默认插槽添加描述内容
+:::
+
+::: field name="target" type="string" default="''" optional
+链接跳转方式
+:::
+
+::::
 
 ## 插槽
 

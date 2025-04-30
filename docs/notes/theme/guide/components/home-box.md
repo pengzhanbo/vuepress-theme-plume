@@ -11,9 +11,22 @@ permalink: /guide/components/home-box/
 
 ## Props
 
-| 名称                  | 类型               | 默认值    | 说明             |
-| --------------------- | ------------------ | --------- | ---------------- |
-| type                  | string             | `''`      | 区域类型         |
-| full                  | boolean            | `false`   | 是否全屏         |
-| background-image      | string             | `''`      | 区域背景图片     |
-| background-attachment | `'fixed'\|'local'` | `'local'` | 区域背景定位方式 |
+:::: field-group
+
+::: field name="type" type="string" default="''" optional
+区域类型
+:::
+
+::: field name="full" type="boolean" default="false" optional
+是否全屏
+:::
+
+::: field name="background-image" type="string" default="''" optional
+区域背景图片
+:::
+
+::: field name="background-attachment" type="'fixed' | 'local'" default="'local'" optional
+区域背景定位方式
+:::
+
+::::

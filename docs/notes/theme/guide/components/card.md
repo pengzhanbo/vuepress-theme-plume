@@ -13,10 +13,17 @@ permalink: /guide/components/card/
 
 ## Props
 
-| 名称  | 类型                        | 默认值 | 说明                                                             |
-| ----- | --------------------------- | ------ | ---------------------------------------------------------------- |
-| title | `string`                    | `''`   | 标题                                                             |
-| icon  | `string \| { svg: string }` | `''`   | 显示在标题左侧的图标，支持 iconify 所有图标，也可以使用 图片链接 |
+:::: field-group
+
+::: field name="title" type="string" default="''" optional
+卡片标题
+:::
+
+::: field name="icon" type="string | { svg: string }" default="''" optional
+显示在标题左侧的图标，支持 iconify 所有图标，也可以使用 图片链接
+:::
+
+::::
 
 ## 插槽
 

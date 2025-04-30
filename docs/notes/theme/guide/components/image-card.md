@@ -14,16 +14,41 @@ permalink: /guide/components/image-card/
 
 ## Props
 
-| 名称        | 类型                       | 默认值  | 说明                                    |
-| ----------- | -------------------------- | ------- | --------------------------------------- |
-| image       | `string`                   | `''`    | 必填，图片链接                          |
-| title       | `string`                   | `''`    | 可选，标题 (展示其它信息需要依赖此属性) |
-| description | `string`                   | `''`    | 可选，描述                              |
-| author      | `string`                   | `''`    | 可选，作者                              |
-| href        | `string`                   | `''`    | 可选，链接                              |
-| date        | `string \| Date \| number` | `''`    | 可选，日期                              |
-| width       | `string \| number`         | `''`    | 可选，宽度                              |
-| center      | `boolean`                  | `false` | 可选，是否居中                          |
+:::: field-group
+
+::: field name="image" type="string" required
+图片链接地址，本地图片必须使用绝对路径，即以 `/` 开头的路径，指向 `/public` 目录
+:::
+
+::: field name="title" type="string" optional
+图片标题
+:::
+
+::: field name="description" type="string" optional
+图片描述信息
+:::
+
+::: field name="author" type="string" optional
+图片作者
+:::
+
+::: field name="href" type="string" optional
+点击图片标题后的跳转链接
+:::
+
+::: field name="date" type="string | Date | number" optional
+图片 创作日期
+:::
+
+::: field name="width" type="string | number" optional
+图片宽度
+:::
+
+::: field name="center" type="boolean" optional
+图片宽度不满屏时是否居中
+:::
+
+::::
 
 ## 示例
 

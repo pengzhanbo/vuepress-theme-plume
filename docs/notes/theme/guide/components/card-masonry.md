@@ -31,10 +31,10 @@ permalink: /guide/components/card-masonry/
 
 ## Props
 
-| 名称 | 类型                                             | 默认值 | 说明           |
-| :--- | :----------------------------------------------- | :----- | :------------- |
-| cols | `number \| Record<'sm' \| 'md' \| 'lg', number>` | `3`    | 列数           |
-| gap  | `number`                                         | `16`   | 列之间的间距   |
+:::: field-group
+
+::: field name="cols" type="number | { sm: number, md: number, lg: number }" optional
+列数。
 
 组件默认会根据屏幕宽度自动调整列数。在空间足够时，默认显示三列，小屏幕下显示双列。
 
@@ -44,6 +44,13 @@ permalink: /guide/components/card-masonry/
 - `sm` : `< 640px`
 - `md` : `>= 640px < 960px`
 - `lg` : `>= 960px`
+:::
+
+::: field name="gap" type="number" optional default="16"
+列之间的间距。
+:::
+
+::::
 
 ## Markdown 语法支持
 

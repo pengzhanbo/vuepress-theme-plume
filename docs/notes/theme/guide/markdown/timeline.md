@@ -123,91 +123,68 @@ __时间线__ 支持非常灵活且灵活的配置项，配置主要分为两个
 
 ### 容器配置
 
-#### horizontal
+:::: field-group
 
-- __类型:__ `boolean`
-- __默认值:__ `false`
+::: field name="horizontal" type="boolean" default="false" optional
+渲染为 水平方向 的时间线
+:::
 
-渲染为 水平方向的时间线。
+::: field name="card" type="boolean" default="false" optional
+每个时间节点默认渲染为卡片样式（可在列表项配置中覆盖）
+:::
 
-#### card
-
-- __类型:__ `boolean`
-- __默认值:__ `false`
-
-每个时间节点默认渲染为卡片样式（可在列表项配置中覆盖）。
-
-#### placement
-
-- __类型:__ `'left' | 'right' | 'between'`
-- __默认值:__ `'left'`
+::: field name="placement" type="'left' | 'right' | 'between'" default="'left'" optional
 
 时间节点的对齐方式。==仅在垂直方向时生效=={.warning}
 
 - `left` : 时间轴左侧对齐
 - `right` : 时间轴右侧对齐
 - `between` : 时间轴两端对齐 (通过列表项配置中的 `placement` 定义位置，默认为 `left`)
+:::
 
-#### line
-
-- __类型:__ `'solid' | 'dashed' | 'dotted'`
-- __默认值:__ `'solid'`
-
+::: field name="line" type="'solid' | 'dashed' | 'dotted'" default="'solid'" optional
 线条样式（可在列表项配置中覆盖）
+:::
+
+::::
 
 ### 列表项配置
 
-#### time
+:::: field-group
 
-- __类型:__ `string`
-- __默认值:__ `''`
-
+::: field name="time" type="string" default="''" optional
 时间点，可以是任何字符串，比如 `2025-03-20`， `Q1` 等。
+:::
 
-#### type
-
-- __类型:__ `'info' | 'tip' | 'success' | 'warning' | 'danger' | 'caution' | 'important'`
-- __默认值:__ `'info'`
-
+::: field name="type" type="'info' | 'tip' | 'success' | 'warning' | 'danger' | 'caution' | 'important'" default="'info'" optional
 时间节点的类型。
+:::
 
-#### card
+::: field name="card" type="boolean" default="false" optional
+当前 时间节点渲染为卡片样式。默认值从 容器配置 `card` 中继承
+:::
 
-- __类型:__ `boolean`
-- __默认值:__ `false` 从 容器配置 `card` 中继承
+::: field name="line" type="'solid' | 'dashed' | 'dotted'" default="'solid'" optional
+线条样式。 默认值从 容器配置 `line` 中继承
+:::
 
-当前 时间节点渲染为卡片样式。
-
-#### line
-
-- __类型:__ `'solid' | 'dashed' | 'dotted'`
-- __默认值:__ `'solid'` 从 容器配置 `line` 中继承
-
-线条样式
-
-#### icon
-
-- __类型:__ `string`
-- __默认值:__ `''`
-
+::: field name="icon" type="string" default="''" optional
 时间节点的图标，支持所有的 [iconify](https://icon-sets.iconify.design/) 图标。
+:::
 
-#### placement
+::: field name="placement" type="'left' | 'right'" default="'left'" optional
 
-- __类型:__ `'left' | 'right'`
-- __默认值:__ `'left'`
-
-当 容器配置为 `between` 时，定义当前时间节点的位置。
+当 容器配置 `placement` 为 `between` 时，定义当前时间节点的位置。
 
 - `left` : 在时间轴左侧
 - `right` : 在时间轴右侧
+:::
 
-#### color
-
-- __类型:__ `string`
-- __默认值:__ `''`
-
+::: field name="color" type="string" default="''" optional
 时间节点线条颜色，可以是任何有效的颜色值。
+:::
+
+::::
 
 ## 示例
 

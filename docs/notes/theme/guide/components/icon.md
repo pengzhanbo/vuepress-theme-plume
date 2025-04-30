@@ -13,11 +13,21 @@ permalink: /guide/components/icon/
 
 ## Props
 
-| 名称  | 类型   | 默认值           | 说明     |
-| ----- | ------ | ---------------- | -------- |
-| name  | string | `''`             | 图标名   |
-| color | string | `'currentcolor'` | 图标颜色 |
-| size  | string | `'1em'`          | 图标大小 |
+:::: field-group
+
+::: field name="name" type="string" default="''" optional
+图标名称
+:::
+
+::: field name="color" type="string" default="'currentcolor'" optional
+图标颜色
+:::
+
+::: field name="size" type="string" default="'1em'" optional
+图标大小
+:::
+
+::::
 
 ## 示例
 

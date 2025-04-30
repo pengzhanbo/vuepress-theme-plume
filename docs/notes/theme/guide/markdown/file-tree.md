@@ -106,7 +106,7 @@ permalink: /guide/markdown/file-tree/
 
 ## 配置
 
-你可以在 `plugins.mdPower.fileTree` 选项中配置 文件树的图标默认类型：
+你可以在 `markdown.fileTree` 选项中配置 文件树的图标默认类型：
 
 ::: code-tabs
 @tab .vuepress/config.ts

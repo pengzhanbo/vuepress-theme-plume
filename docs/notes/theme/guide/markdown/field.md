@@ -52,12 +52,13 @@ export default defineUserConfig({
 
 ## 属性
 
+:::: field-group
 ::: field name="name" required type="string"
 字段名称
 :::
 
 ::: field name="type" type="string" optional
-字段类型
+字段的类型
 :::
 
 ::: field name="required" type="boolean" optional
@@ -69,8 +70,9 @@ export default defineUserConfig({
 :::
 
 ::: field name="default" type="string" optional
-默认值
+默认值， 如果为空字符串，应该使用 `default="''"`
 :::
+::::
 
 ## 示例
 

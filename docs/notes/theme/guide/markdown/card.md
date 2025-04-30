@@ -36,7 +36,16 @@ permalink: /guide/markdown/card/
 ::::
 ```
 
-卡片 支持 可选的 `title` 和 `icon`。 其中， icon 支持传入 图片链接，也可以传入 iconify 图标名。
+## Props
+
+:::: field-group
+::: field name="title" type="string" optional default="''"
+卡片标题
+:::
+
+::: field name="icon" type="string" optional
+卡片图标 支持传入图片链接，还可以传入 [iconify](https://icon-sets.iconify.design/) 图标名。
+::::
 
 ## 示例
 

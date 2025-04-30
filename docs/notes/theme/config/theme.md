@@ -137,7 +137,7 @@ export default defineThemeConfig({
 - **默认值：** `false`
 - **详情：**
 
-  阅读时长配置， 参考 [此文档](../guide/features/reading-time.md)
+  阅读时长配置， 参考 [此文档](./plugins/reading-time.md)
 
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
@@ -148,7 +148,7 @@ export default defineThemeConfig({
 - **默认值：** `{}`
 - **详情：**
 
-  复制代码配置， 参考 [此文档](../guide/features/copy-code.md)
+  复制代码配置， 参考 [此文档](../guide/code/copy-code.md)
 
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
@@ -868,7 +868,7 @@ interface SidebarItem {
 
 - **类型：** `false | { message: string; copyright: string }`
 - **默认值：** `false`
-- **详情：**页脚配置。
+- **详情：** 页脚配置。
 
 ### bulletin
 

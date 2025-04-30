@@ -1,3 +1,19 @@
+# [1.0.0-rc.145](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.144...v1.0.0-rc.145) (2025-04-30)
+
+
+### Features
+
+* **plugin-md-power:** add `field` and `field-group` container, close [#566](https://github.com/pengzhanbo/vuepress-theme-plume/issues/566) ([#579](https://github.com/pengzhanbo/vuepress-theme-plume/issues/579)) ([56c5eb5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/56c5eb5257fb59a956bb09d313f1d30f452640f3))
+* **plugin-md-power:** add diff syntax in file-tree container, close [#577](https://github.com/pengzhanbo/vuepress-theme-plume/issues/577) ([#578](https://github.com/pengzhanbo/vuepress-theme-plume/issues/578)) ([10708c9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/10708c97b4143bce6ab6ef3ed65b09d00c4a3513))
+* **theme:** add comment and markdown content into friends page ([#580](https://github.com/pengzhanbo/vuepress-theme-plume/issues/580)) ([a3208fc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a3208fc3098df5cc58fc170b7982c4d3c6ae47bf))
+
+
+### Performance Improvements
+
+* update deps to latest ([f13e967](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f13e967c66730bda321557fc9ec83c37b3fa85ef))
+
+
+
 # [1.0.0-rc.144](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.143...v1.0.0-rc.144) (2025-04-28)
 
 

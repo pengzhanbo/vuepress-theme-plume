@@ -62,6 +62,13 @@ list:
 
 友情链接页的描述
 
+### contentPosition <Badge text="新" />
+
+- 类型： `'before' | 'after'`
+- 默认值： `'after'`
+
+markdown 内容在友情链接列表之前还是之后，默认插入到列表之后。
+
 ### list
 
 - 类型： `FriendsItem[]`

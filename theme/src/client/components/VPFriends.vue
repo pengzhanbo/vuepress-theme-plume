@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import VPComment from '@theme/VPComment.vue'
 import VPFriendsGroup from '@theme/VPFriendsGroup.vue'
 import VPFriendsItem from '@theme/VPFriendsItem.vue'
 import VPLink from '@theme/VPLink.vue'
@@ -14,6 +15,8 @@ const groups = computed(() => matter.value.groups || [])
 
 <template>
   <div class="vp-friends">
+    <Content v-if="matter.contentPosition === 'before'" class="vp-doc plume-content before" vp-content />
+
     <h2 class="title">
       {{ matter.title || 'My Friends' }}
     </h2>
@@ -30,6 +33,8 @@ const groups = computed(() => matter.value.groups || [])
 
     <VPFriendsGroup v-for="(group, index) in groups" :key="index" :group="group" />
 
+    <Content v-if="matter.contentPosition !== 'before'" class="vp-doc plume-content after" vp-content />
+
     <div v-if="editLink" class="edit-link">
       <VPLink
         class="edit-link-button"
@@ -40,6 +45,8 @@ const groups = computed(() => matter.value.groups || [])
         {{ editLink.text }}
       </VPLink>
     </div>
+
+    <VPComment />
   </div>
 </template>
 
@@ -133,5 +140,9 @@ const groups = computed(() => matter.value.groups || [])
   height: 14px;
   margin-right: 8px;
   fill: currentcolor;
+}
+
+.vp-friends .vp-doc.after {
+  margin-top: 48px;
 }
 </style>

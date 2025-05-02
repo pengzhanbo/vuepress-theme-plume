@@ -47,6 +47,7 @@ export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
   'caniuse',
   'codeSandbox',
   'codeTabs',
+  'codeTree',
   'codepen',
   'demo',
   'fileTree',

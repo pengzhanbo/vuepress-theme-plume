@@ -1,6 +1,6 @@
 import { camelCase } from '@pengzhanbo/utils'
 
-const RE_ATTR_VALUE = /(?:^|\s+)(?<attr>[\w-]+)(?:=\s*(?<quote>['"])(?<value>.+?)\k<quote>)?(?:\s+|$)/
+const RE_ATTR_VALUE = /(?:^|\s+)(?<attr>[\w-]+)(?:=(?<quote>['"])(?<valueWithQuote>.+?)\k<quote>|=(?<valueWithoutQuote>\S+))?(?:\s+|$)/
 
 export function resolveAttrs<T extends Record<string, any> = Record<string, any>>(info: string): {
   attrs: T
@@ -18,7 +18,8 @@ export function resolveAttrs<T extends Record<string, any> = Record<string, any>
 
   // eslint-disable-next-line no-cond-assign
   while (matched = info.match(RE_ATTR_VALUE)) {
-    const { attr, value = true } = matched.groups!
+    const { attr, valueWithQuote, valueWithoutQuote } = matched.groups!
+    const value = valueWithQuote || valueWithoutQuote || true
     let v = typeof value === 'string' ? value.trim() : value
     if (v === 'true')
       v = true
@@ -30,4 +31,10 @@ export function resolveAttrs<T extends Record<string, any> = Record<string, any>
   }
 
   return { attrs: attrs as T, rawAttrs }
+}
+
+export function resolveAttr(info: string, key: string): string | undefined {
+  const pattern = new RegExp(`(?:^|\\s+)${key}(?:=(?<quote>['"])(?<valueWithQuote>.+?)\\k<quote>|=(?<valueWithoutQuote>\\S+))?(?:\\s+|$)`)
+  const groups = info.match(pattern)?.groups
+  return groups?.valueWithQuote || groups?.valueWithoutQuote
 }

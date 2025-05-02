@@ -9,6 +9,7 @@ const props = defineProps<{
   diff?: 'add' | 'remove'
   expanded?: boolean
   focus?: boolean
+  filepath?: string
 }>()
 
 const activeFileTreeNode = inject<Ref<string>>('active-file-tree-node', ref(''))
@@ -23,7 +24,7 @@ function nodeClick() {
   if (props.filename === '…' || props.filename === '...')
     return
 
-  onNodeClick(props.filename, props.type)
+  onNodeClick(props.filepath || props.filename, props.type)
 }
 
 function toggle(ev: MouseEvent) {
@@ -47,7 +48,7 @@ function toggle(ev: MouseEvent) {
         [type]: true,
         focus,
         expanded: type === 'folder' ? active : false,
-        active: type === 'file' ? activeFileTreeNode === filename : false,
+        active: type === 'file' ? activeFileTreeNode === filepath : false,
         diff,
         add: diff === 'add',
         remove: diff === 'remove',

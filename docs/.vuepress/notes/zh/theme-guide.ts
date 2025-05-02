@@ -42,6 +42,7 @@ export const themeGuide = defineNoteConfig({
             'card',
             'steps',
             'file-tree',
+            'code-tree',
             'field',
             'tabs',
             'timeline',

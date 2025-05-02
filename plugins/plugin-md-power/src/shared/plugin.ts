@@ -1,5 +1,6 @@
 import type { CanIUseOptions } from './caniuse.js'
 import type { CodeTabsOptions } from './codeTabs.js'
+import type { CodeTreeOptions } from './codeTree.js'
 import type { FileTreeOptions } from './fileTree.js'
 import type { IconsOptions } from './icons.js'
 import type { NpmToOptions } from './npmTo.js'
@@ -190,6 +191,21 @@ export interface MarkdownPowerPluginOptions {
    * @default false
    */
   fileTree?: boolean | FileTreeOptions
+
+  /**
+   * 是否启用 代码树 容器语法 和 嵌入语法
+   *
+   * ```md
+   * ::: code-tree
+   * :::
+   * ```
+   *
+   * `@[code-tree](file_path)`
+   *
+   *
+   * @default false
+   */
+  codeTree?: boolean | CodeTreeOptions
 
   /**
    * 是否启用 demo 语法

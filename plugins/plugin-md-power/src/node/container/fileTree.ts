@@ -16,7 +16,7 @@ interface FileTreeAttrs {
   icon?: FileTreeIconMode
 }
 
-interface FileTreeNodeProps {
+export interface FileTreeNodeProps {
   filename: string
   comment?: string
   focus?: boolean

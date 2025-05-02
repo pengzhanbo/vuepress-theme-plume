@@ -115,13 +115,15 @@ html:not([data-theme="dark"]) .vp-code span {
 .vp-doc div[class*="language-"].line-numbers-mode .line-numbers {
   position: absolute;
   top: 0;
-  bottom: 0;
 
   /* rtl:ignore */
   left: 0;
   z-index: 3;
   width: 32px;
+  height: fit-content;
+  min-height: 100%;
   padding-top: 20px;
+  padding-bottom: 20px;
   font-family: var(--vp-font-family-mono);
   font-size: var(--vp-code-font-size);
   line-height: var(--vp-code-line-height);

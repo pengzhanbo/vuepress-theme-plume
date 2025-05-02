@@ -70,9 +70,14 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('CanIUseViewer', CanIUse)`)
   }
 
-  if (options.fileTree) {
+  if (options.fileTree || options.codeTree) {
     imports.add(`import FileTreeNode from '${CLIENT_FOLDER}components/FileTreeNode.vue'`)
     enhances.add(`app.component('FileTreeNode', FileTreeNode)`)
+  }
+
+  if (options.codeTree) {
+    imports.add(`import VPCodeTree from '${CLIENT_FOLDER}components/VPCodeTree.vue'`)
+    enhances.add(`app.component('VPCodeTree', VPCodeTree)`)
   }
 
   if (options.artPlayer) {

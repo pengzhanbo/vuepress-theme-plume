@@ -2,6 +2,7 @@ import type { Plugin } from 'vuepress/core'
 import type { MarkdownPowerPluginOptions } from '../shared/index.js'
 import { addViteOptimizeDepsInclude } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
+import { extendsPageWithCodeTree } from './container/codeTree.js'
 import { containerPlugin } from './container/index.js'
 import { demoPlugin, demoWatcher, extendsPageWithDemo, waitDemoRender } from './demo/index.js'
 import { embedSyntaxPlugin } from './embed/index.js'
@@ -68,6 +69,9 @@ export function markdownPowerPlugin(
     extendsPage: (page) => {
       if (options.demo)
         extendsPageWithDemo(page)
+
+      if (options.codeTree)
+        extendsPageWithCodeTree(page)
     },
   }
 }

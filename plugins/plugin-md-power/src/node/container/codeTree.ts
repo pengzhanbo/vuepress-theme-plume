@@ -1,4 +1,21 @@
-import type { App } from 'vuepress/core'
+/**
+ * @module CodeTree
+ *
+ * code-tree 容器
+ * ````md
+ * ::: code-tree title="Project Name" height="400px" entry="filepath"
+ * ``` lang :active title="filepath"
+ * ```
+ * <!-- more code block -->
+ * :::
+ * ````
+ *
+ * embed syntax
+ *
+ * `@[code-tree title="Project Name" height="400px" entry="filepath"](dir_path)`
+ */
+
+import type { App, Page } from 'vuepress/core'
 import type { Markdown } from 'vuepress/markdown'
 import type { CodeTreeOptions } from '../../shared/codeTree.js'
 import type { FileTreeIconMode } from '../../shared/fileTree.js'
@@ -169,6 +186,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       }
     },
     content: ({ dir, icon, ...props }, _, env) => {
+      const codeTreeFiles = ((env as any).codeTreeFiles ??= []) as string[]
       const root = findFile(app, env, dir)
       const files = globSync('**/*', {
         cwd: root,
@@ -188,6 +206,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
           return ''
         }
         const filepath = path.join(root, file)
+        codeTreeFiles.push(filepath)
         const content = readFileSync(filepath)
         return `\`\`\`${ext || 'txt'} title="${file}"\n${content}\n\`\`\``
       }).filter(Boolean).join('\n')
@@ -198,4 +217,11 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       }</template>${md.render(codeContent)}</VPCodeTree>`
     },
   })
+}
+
+export function extendsPageWithCodeTree(page: Page): void {
+  const markdownEnv = page.markdownEnv
+  const codeTreeFiles = (markdownEnv.codeTreeFiles ?? []) as string[]
+  if (codeTreeFiles.length)
+    page.deps.push(...codeTreeFiles)
 }

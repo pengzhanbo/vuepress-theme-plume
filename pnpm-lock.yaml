@@ -278,6 +278,9 @@ catalogs:
     shiki:
       specifier: ^3.3.0
       version: 3.3.0
+    tinyglobby:
+      specifier: 0.2.13
+      version: 0.2.13
     tm-grammars:
       specifier: ^1.23.16
       version: 1.23.16
@@ -645,6 +648,9 @@ importers:
       stylus:
         specifier: catalog:dev
         version: 0.64.0
+      tinyglobby:
+        specifier: catalog:prod
+        version: 0.2.13
       tm-grammars:
         specifier: catalog:prod
         version: 1.23.16
@@ -4217,14 +4223,6 @@ packages:
   fault@2.0.1:
     resolution: {integrity: sha512-WtySTkS4OKev5JtpHXnib4Gxiurzh5NCGvWrFaZ34m6JehfTUhKZvn9njTfw48t6JumVQOmrKqpmGcdwxnhqBQ==}
 
-  fdir@6.4.3:
-    resolution: {integrity: sha512-PMXmW2y1hDDfTSRc9gaXIuCCRpuoz3Kaz8cUelp3smouvfT632ozg2vrT6lJsHKKOF59YLbOGfAWGUcKEfRMQw==}
-    peerDependencies:
-      picomatch: ^3 || ^4
-    peerDependenciesMeta:
-      picomatch:
-        optional: true
-
   fdir@6.4.4:
     resolution: {integrity: sha512-1NZP+GK4GfuAv3PqKvxQRDMjdSRZjnkq7KfhlNrCNNlZ0ygQFpebfrnfnq/W7fpUnAv9aGWmY1zKx7FYL3gwhg==}
     peerDependencies:
@@ -6578,10 +6576,6 @@ packages:
 
   tinyexec@0.3.2:
     resolution: {integrity: sha512-KQQR9yN7R5+OSwaK0XQoj22pwHoTlgYqmUscPYoknOoWCWfj/5/ABTMRi69FrKU5ffPVh5QcFikpWJI/P1ocHA==}
-
-  tinyglobby@0.2.12:
-    resolution: {integrity: sha512-qkf4trmKSIiMTs/E63cxH+ojC2unam7rJ0WrauAzpT3ECNTxGRMlaXxVbfxMUC/w0LaYk6jQ4y/nGR9uBO3tww==}
-    engines: {node: '>=12.0.0'}
 
   tinyglobby@0.2.13:
     resolution: {integrity: sha512-mEwzpUgrLySlveBwEVDMKk5B57bhLPYovRfPAXD5gA/98Opn0rCDj3GtLwFvCvH5RK9uPCExUROW5NjDwvqkxw==}
@@ -9698,7 +9692,7 @@ snapshots:
       package-manager-detector: 1.1.0
       semver: 7.7.1
       tinyexec: 0.3.2
-      tinyglobby: 0.2.12
+      tinyglobby: 0.2.13
       yaml: 2.7.0
     transitivePeerDependencies:
       - magicast
@@ -10671,7 +10665,7 @@ snapshots:
       jsonc-eslint-parser: 2.4.0
       pathe: 2.0.3
       pnpm-workspace-yaml: 0.3.1
-      tinyglobby: 0.2.12
+      tinyglobby: 0.2.13
       yaml-eslint-parser: 1.3.0
 
   eslint-plugin-regexp@2.7.0(eslint@9.25.1(jiti@2.4.2)):
@@ -10926,10 +10920,6 @@ snapshots:
   fault@2.0.1:
     dependencies:
       format: 0.2.2
-
-  fdir@6.4.3(picomatch@4.0.2):
-    optionalDependencies:
-      picomatch: 4.0.2
 
   fdir@6.4.4(picomatch@4.0.2):
     optionalDependencies:
@@ -13515,11 +13505,6 @@ snapshots:
 
   tinyexec@0.3.2: {}
 
-  tinyglobby@0.2.12:
-    dependencies:
-      fdir: 6.4.3(picomatch@4.0.2)
-      picomatch: 4.0.2
-
   tinyglobby@0.2.13:
     dependencies:
       fdir: 6.4.4(picomatch@4.0.2)
@@ -13593,7 +13578,7 @@ snapshots:
       source-map: 0.8.0-beta.0
       sucrase: 3.35.0
       tinyexec: 0.3.2
-      tinyglobby: 0.2.12
+      tinyglobby: 0.2.13
       tree-kill: 1.2.2
     optionalDependencies:
       postcss: 8.5.3

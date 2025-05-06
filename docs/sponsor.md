@@ -22,11 +22,17 @@ search: false
 ![cat](/images/sponsor/cute-cat.jpg){width="64px"}
 :::
 
+<div class="sponsor-table">
+
 | ::bi:alipay:: AliPay                   | ::fa:wechat:: WeChat                      |
-| -------------------------------------- | ----------------------------------------- |
-| ![Alipay](https://static.pengzhanbo.cn/images/sponsor/ali_pay.jpg){width="300" height="300" style="width:150px"} | ![WeChat](https://static.pengzhanbo.cn/images/sponsor/wechat_pay.jpg){width="300" height="300" style="width:150px"} |
+| :------------------------------------: | :---------------------------------------: |
+| ![Alipay](https://static.pengzhanbo.cn/images/sponsor/ali_pay.jpg){width="300" height="300"} | ![WeChat](https://static.pengzhanbo.cn/images/sponsor/wechat_pay.jpg){width="300" height="300"} |
+
+</div>
 
 ## 打赏记录
+
+感谢大家对主题的大力支持！
 
 <div class="sponsor-list">
 
@@ -64,7 +70,21 @@ search: false
 </div>
 
 <style>
+.vp-doc .sponsor-table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vp-doc .sponsor-table img {
+  width: 150px;
+}
+
 @media (min-width: 768px) {
+  .vp-doc .sponsor-table img {
+    width: 180px;
+  }
+
   .vp-doc .sponsor-list table tr td:nth-child(1),
   .vp-doc .sponsor-list table tr td:nth-child(2),
   .vp-doc .sponsor-list table tr td:nth-child(3) {

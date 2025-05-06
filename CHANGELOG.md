@@ -1,3 +1,17 @@
+# [1.0.0-rc.146](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.145...v1.0.0-rc.146) (2025-05-06)
+
+
+### Features
+
+* **plugin-md-power:** add code-tree container and embed syntax, close [#567](https://github.com/pengzhanbo/vuepress-theme-plume/issues/567) ([#584](https://github.com/pengzhanbo/vuepress-theme-plume/issues/584)) ([31e3b41](https://github.com/pengzhanbo/vuepress-theme-plume/commit/31e3b41a2706e9adb3470a56da9d8822e88eeb96))
+
+
+### Performance Improvements
+
+* update deps to latest ([07822e4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/07822e41853b57b995ea30e90f6bee3e15aee6c5))
+
+
+
 # [1.0.0-rc.145](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.144...v1.0.0-rc.145) (2025-04-30)
 
 

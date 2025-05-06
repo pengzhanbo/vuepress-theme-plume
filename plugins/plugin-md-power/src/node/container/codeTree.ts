@@ -26,6 +26,7 @@ import { removeLeadingSlash } from 'vuepress/shared'
 import { findFile, readFileSync } from '../demo/supports/file.js'
 import { createEmbedRuleBlock } from '../embed/createEmbedRuleBlock.js'
 import { defaultFile, defaultFolder, getFileIcon } from '../fileIcons/index.js'
+import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { parseRect } from '../utils/parseRect.js'
 import { resolveAttr, resolveAttrs } from '../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
@@ -214,7 +215,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       const fileTreeNodes = parseFileNodes(files)
       return `<VPCodeTree${stringifyAttrs(props)}><template #file-tree>${
         renderFileTree(fileTreeNodes, icon)
-      }</template>${md.render(codeContent)}</VPCodeTree>`
+      }</template>${md.render(codeContent, cleanMarkdownEnv(env))}</VPCodeTree>`
     },
   })
 }

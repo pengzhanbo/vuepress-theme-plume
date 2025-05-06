@@ -34,6 +34,8 @@ export default defineUserConfig({
 
   define: {
     __VUEPRESS_VERSION__: vuepress,
+    // debug hydration mismatch
+    // __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
   },
 
   alias: {

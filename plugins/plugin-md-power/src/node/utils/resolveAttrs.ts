@@ -25,6 +25,8 @@ export function resolveAttrs<T extends Record<string, any> = Record<string, any>
       v = true
     else if (v === 'false')
       v = false
+    else if (v === '""' || v === '\'\'')
+      v = ''
     attrs[camelCase(attr)] = v
 
     info = info.slice(matched[0].length)

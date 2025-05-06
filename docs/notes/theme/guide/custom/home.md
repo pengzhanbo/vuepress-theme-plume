@@ -129,7 +129,8 @@ config:
 **效果：**
 
 :::demo-wrapper img no-padding
-<img src="/images/custom-banner.jpg" alt="" />
+
+![banner](/images/custom-banner.jpg)
 :::
 
 ### hero
@@ -433,7 +434,7 @@ config:
 **效果：**
 
 :::demo-wrapper img no-padding
-<img src="/images/custom-features.jpg" alt="" />
+<img src="/images/custom-features.jpg" alt="custom-features" />
 :::
 
 ### text-image | image-text

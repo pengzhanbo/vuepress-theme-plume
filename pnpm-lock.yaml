@@ -24,6 +24,9 @@ catalogs:
     '@types/express':
       specifier: ^5.0.1
       version: 5.0.1
+    '@types/js-yaml':
+      specifier: ^4.0.9
+      version: 4.0.9
     '@types/less':
       specifier: ^3.0.8
       version: 3.0.8
@@ -381,7 +384,7 @@ importers:
         specifier: catalog:dev
         version: 1.30.0(stylelint@16.19.1(typescript@5.8.3))
       '@types/js-yaml':
-        specifier: ^4.0.9
+        specifier: catalog:dev
         version: 4.0.9
       '@types/less':
         specifier: catalog:dev

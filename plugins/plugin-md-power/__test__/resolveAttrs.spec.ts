@@ -10,9 +10,9 @@ describe('resolveAttrs(info)', () => {
       attrs: { a: '1' },
     })
 
-    expect(resolveAttrs('a=1 b=2 c')).toEqual({
-      rawAttrs: 'a=1 b=2 c',
-      attrs: { a: '1', b: '2', c: true },
+    expect(resolveAttrs('a=1 b=2 c d=""')).toEqual({
+      rawAttrs: 'a=1 b=2 c d=""',
+      attrs: { a: '1', b: '2', c: true, d: '' },
     })
 
     expect(resolveAttrs('a=1 b=true c=false')).toEqual({

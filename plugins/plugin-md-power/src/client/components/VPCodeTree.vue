@@ -126,6 +126,13 @@ onMounted(() => {
   border-bottom-left-radius: 0;
 }
 
+@media (min-width: 768px) {
+  .vp-code-tree .code-tree-panel .vp-file-tree,
+  .vp-code-tree .code-panel [class*="language-"] {
+    overscroll-behavior: contain;
+  }
+}
+
 .vp-code-tree .code-panel .code-block-title {
   display: none;
   height: 100%;
@@ -139,6 +146,15 @@ onMounted(() => {
 .vp-code-tree .code-panel .code-block-title .code-block-title-bar {
   margin-top: 0;
   border-radius: 0;
+}
+
+.vp-code-tree .code-panel div[class*="language-"].has-collapsed-lines.collapsed {
+  height: auto;
+  overflow: auto;
+}
+
+.vp-code-tree .code-panel div[class*="language-"].has-collapsed-lines .collapsed-lines {
+  display: none;
 }
 
 .vp-code-tree .code-panel .code-tree-empty {

@@ -8,7 +8,7 @@ import { isArray, isEmptyObject, promiseParallel, toArray } from '@pengzhanbo/ut
 import chokidar from 'chokidar'
 import { createFilter } from 'create-filter'
 import grayMatter from 'gray-matter'
-import jsonToYaml from 'json2yaml'
+import yaml from 'js-yaml'
 import { colors, fs, hash, path } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { perf } from '../utils/index.js'
@@ -163,15 +163,11 @@ async function generator(file: AutoFrontmatterMarkdownFile): Promise<void> {
     return
 
   try {
-    const yaml = isEmptyObject(data)
+    const formatted = isEmptyObject(data)
       ? ''
-      : jsonToYaml
-          .stringify(data)
-          .replace(/\n\s{2}/g, '\n')
-          .replace(/"/g, '')
-          .replace(/\s+\n/g, '\n')
-    const newContent = yaml ? `${yaml}---\n${content}` : content
+      : yaml.dump(data)
 
+    const newContent = formatted ? `---\n${formatted}---\n${content}` : content
     await fs.promises.writeFile(filepath, newContent, 'utf-8')
     generate.checkCache(filepath)
   }

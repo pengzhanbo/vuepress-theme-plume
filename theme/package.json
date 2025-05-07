@@ -128,7 +128,7 @@
     "esbuild": "catalog:prod",
     "fast-glob": "catalog:prod",
     "gray-matter": "catalog:prod",
-    "json2yaml": "catalog:prod",
+    "js-yaml": "catalog:prod",
     "katex": "catalog:prod",
     "local-pkg": "catalog:prod",
     "nanoid": "catalog:prod",

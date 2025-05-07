@@ -24,6 +24,9 @@ catalogs:
     '@types/express':
       specifier: ^5.0.1
       version: 5.0.1
+    '@types/js-yaml':
+      specifier: ^4.0.9
+      version: 4.0.9
     '@types/less':
       specifier: ^3.0.8
       version: 3.0.8
@@ -227,9 +230,9 @@ catalogs:
     image-size:
       specifier: ^2.0.2
       version: 2.0.2
-    json2yaml:
-      specifier: ^1.1.0
-      version: 1.1.0
+    js-yaml:
+      specifier: ^4.1.0
+      version: 4.1.0
     katex:
       specifier: ^0.16.22
       version: 0.16.22
@@ -380,6 +383,9 @@ importers:
       '@pengzhanbo/stylelint-config':
         specifier: catalog:dev
         version: 1.30.0(stylelint@16.19.1(typescript@5.8.3))
+      '@types/js-yaml':
+        specifier: catalog:dev
+        version: 4.0.9
       '@types/less':
         specifier: catalog:dev
         version: 3.0.8
@@ -823,9 +829,9 @@ importers:
       gray-matter:
         specifier: catalog:prod
         version: 4.0.3
-      json2yaml:
+      js-yaml:
         specifier: catalog:prod
-        version: 1.1.0
+        version: 4.1.0
       katex:
         specifier: catalog:prod
         version: 0.16.22
@@ -2418,6 +2424,9 @@ packages:
 
   '@types/http-errors@2.0.4':
     resolution: {integrity: sha512-D0CFMMtydbJAegzOyHjtiKPLlvnm3iTZyZRSZoLq2mRhDdmLfIWOCYPfQJ4cu2erKghU++QvjcUjp/5h7hESpA==}
+
+  '@types/js-yaml@4.0.9':
+    resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -5014,11 +5023,6 @@ packages:
   json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
 
-  json2yaml@1.1.0:
-    resolution: {integrity: sha512-/xse+m0SlllfZahQrNOelmLrFNfeZv4QG0QKlvg7VsPSGIxpB3X+ggLkdffwmI1DdQ3o9XjZX+K+EOI1epdKgg==}
-    engines: {node: '>= 0.2.0'}
-    hasBin: true
-
   json5@2.2.3:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
@@ -6089,9 +6093,6 @@ packages:
 
   rehype-stringify@10.0.1:
     resolution: {integrity: sha512-k9ecfXHmIPuFVI61B9DeLPN0qFHfawM6RsuX48hoqlaKSF61RskNjSm1lI8PhBEM0MRdLxVVm4WmTqJQccH9mA==}
-
-  remedial@1.0.8:
-    resolution: {integrity: sha512-/62tYiOe6DzS5BqVsNpH/nkGlX45C/Sp6V+NtiN6JQNS1Viay7cWkazmRkrQrdFj2eshDe96SIQNIoMxqhzBOg==}
 
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -8897,6 +8898,8 @@ snapshots:
       '@types/unist': 3.0.3
 
   '@types/http-errors@2.0.4': {}
+
+  '@types/js-yaml@4.0.9': {}
 
   '@types/json-schema@7.0.15': {}
 
@@ -11952,10 +11955,6 @@ snapshots:
 
   json-stable-stringify-without-jsonify@1.0.1: {}
 
-  json2yaml@1.1.0:
-    dependencies:
-      remedial: 1.0.8
-
   json5@2.2.3: {}
 
   jsonc-eslint-parser@2.4.0:
@@ -13212,8 +13211,6 @@ snapshots:
       '@types/hast': 3.0.4
       hast-util-to-html: 9.0.5
       unified: 11.0.5
-
-  remedial@1.0.8: {}
 
   require-directory@2.1.1: {}
 

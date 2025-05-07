@@ -44,6 +44,7 @@
     "@commitlint/config-conventional": "catalog:dev",
     "@pengzhanbo/eslint-config-vue": "catalog:dev",
     "@pengzhanbo/stylelint-config": "catalog:dev",
+    "@types/js-yaml": "catalog:dev",
     "@types/less": "catalog:dev",
     "@types/lodash.merge": "catalog:dev",
     "@types/minimist": "catalog:dev",

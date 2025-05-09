@@ -19,10 +19,9 @@ const tag = computed(() => props.tag ?? (props.href ? 'a' : 'span'))
 const { link, isExternal } = useLink(toRef(props, 'href'), toRef(props, 'target'))
 
 function linkTo(e: Event) {
-  if (!isExternal.value) {
+  if (!isExternal.value && link.value) {
     e.preventDefault()
-    if (link.value)
-      router.push(link.value)
+    router.push(link.value)
   }
 }
 </script>
@@ -30,7 +29,7 @@ function linkTo(e: Event) {
 <template>
   <Component
     :is="tag" class="vp-link no-icon" :class="{ link }"
-    :href="withBase(link || '')"
+    :href="link ? withBase(link) : undefined"
     :target="target ?? (isExternal ? '_blank' : undefined)"
     :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"

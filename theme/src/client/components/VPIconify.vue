@@ -48,12 +48,6 @@ const size = computed(() => {
   return size
 })
 const color = computed(() => props.color || 'currentColor')
-
-const bind = computed<any>(() => ({
-  icon: icon.value,
-  color: props.color,
-  height: size.value,
-}))
 </script>
 
 <template>
@@ -62,7 +56,8 @@ const bind = computed<any>(() => ({
     <OfflineIcon
       v-else-if="icon"
       class="vp-icon iconify"
-      v-bind="bind"
+      :icon="icon"
+      :style="{ color, width: size, height: size }"
     />
   </ClientOnly>
 </template>

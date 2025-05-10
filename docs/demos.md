@@ -45,6 +45,13 @@ docs:
     url: https://docs.pguide.studio
     repo: https://github.com/MultipledMe/PGuide-Docs
     preview: /images/demos/pguide-doc.jpg
+  -
+    name: 文档中心 ｜ 手感互动
+    desc: 手感互动是一个专业的现场提问、投票和大屏互动平台，为讲师、主持人、会议组织者提供一站式互动解决方案
+    logo: https://docs.shougan.net/images/logo.png
+    url: https://docs.shougan.net
+    repo: https://github.com/SuJingnan/vuepress-theme-plume
+    preview: https://docs.shougan.net/images/docs-proview.png
 blog:
   -
     name: 鹏展博

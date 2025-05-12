@@ -73,6 +73,4 @@ export const theme: Theme = plumeTheme({
       content: 'vuepress-theme-plume',
     },
   },
-
-  // plugins: { git: true },
 })

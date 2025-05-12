@@ -8,7 +8,6 @@ import { isPlainObject } from '@vuepress/helper'
 import { cachePlugin } from '@vuepress/plugin-cache'
 import { commentPlugin } from '@vuepress/plugin-comment'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
-import { gitPlugin } from '@vuepress/plugin-git'
 import { nprogressPlugin } from '@vuepress/plugin-nprogress'
 import { photoSwipePlugin } from '@vuepress/plugin-photo-swipe'
 import { readingTimePlugin } from '@vuepress/plugin-reading-time'
@@ -18,6 +17,7 @@ import { watermarkPlugin } from '@vuepress/plugin-watermark'
 import { replaceAssetsPlugin } from 'vuepress-plugin-replace-assets'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { codePlugins } from './code.js'
+import { gitPlugin } from './git.js'
 import { markdownPlugins } from './markdown.js'
 
 export function setupPlugins(
@@ -103,28 +103,7 @@ export function setupPlugins(
    * 2. 贡献者列表
    * 3. 更新日志
    */
-  if (pluginOptions.git ?? isProd) {
-    const excludes = ['home', 'friends', 'page', 'custom', false]
-    const changelogOptions = isPlainObject(options.changelog) ? options.changelog : {}
-    plugins.push(gitPlugin({
-      createdTime: false,
-      updatedTime: options.lastUpdated !== false,
-      contributors: isPlainObject(options.contributors) || options.contributors === true
-        ? {
-            avatar: true,
-            ...options.contributors === true ? {} : options.contributors,
-          }
-        : false,
-      changelog: options.changelog && options.docsRepo
-        ? { repoUrl: options.docsRepo, ...changelogOptions }
-        : options.changelog,
-      filter(page) {
-        if (page.frontmatter.home || excludes.includes(page.frontmatter.pageLayout as string))
-          return false
-        return true
-      },
-    }))
-  }
+  plugins.push(...gitPlugin(app, pluginOptions))
 
   /**
    * 资源替换

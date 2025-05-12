@@ -4,6 +4,7 @@ import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { Buffer } from 'node:buffer'
 import http from 'node:https'
 import { URL } from 'node:url'
+import { withTimeout } from '@pengzhanbo/utils'
 import { isLinkExternal, isLinkHttp } from '@vuepress/helper'
 import imageSize from 'image-size'
 import { fs, logger, path } from 'vuepress/utils'
@@ -209,23 +210,33 @@ export async function scanRemoteImageSize(app: App) {
 function fetchImageSize(src: string): Promise<ImgSize> {
   const link = new URL(src)
 
-  return new Promise((resolve) => {
-    http.get(link, async (stream) => {
-      const chunks: any[] = []
-      for await (const chunk of stream) {
-        chunks.push(chunk)
-        try {
-          const { width, height } = imageSize(Buffer.concat(chunks))
-          if (width && height) {
-            return resolve({ width, height })
+  const promise = new Promise<ImgSize>((resolve) => {
+    http
+      .get(link, async (stream) => {
+        const chunks: any[] = []
+        for await (const chunk of stream) {
+          chunks.push(chunk)
+          try {
+            const { width, height } = imageSize(Buffer.concat(chunks))
+            if (width && height) {
+              return resolve({ width, height })
+            }
           }
+          catch {}
         }
-        catch {}
-      }
-      const { width, height } = imageSize(Buffer.concat(chunks))
-      resolve({ width: width!, height: height! })
-    }).on('error', () => resolve({ width: 0, height: 0 }))
+
+        const { width, height } = imageSize(Buffer.concat(chunks))
+        resolve({ width: width!, height: height! })
+      })
+      .on('error', () => resolve({ width: 0, height: 0 }))
   })
+
+  try {
+    return withTimeout(() => promise, 3000)
+  }
+  catch {
+    return Promise.resolve({ width: 0, height: 0 })
+  }
 }
 
 export async function resolveImageSize(app: App, url: string, remote = false): Promise<ImgSize> {

@@ -1,3 +1,26 @@
+# [1.0.0-rc.147](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.146...v1.0.0-rc.147) (2025-05-12)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** incorrect collapsed lines in code-tree, close [#587](https://github.com/pengzhanbo/vuepress-theme-plume/issues/587) ([#588](https://github.com/pengzhanbo/vuepress-theme-plume/issues/588)) ([9fef665](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9fef6654ae31af17db603e90ec26d7f4712dcd73))
+* **theme:** fix git-plugin execute error when `git: false` ([#591](https://github.com/pengzhanbo/vuepress-theme-plume/issues/591)) ([2c9006c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2c9006caf7d6509276cdb11b993d43cd34125bc5))
+* **theme:** improve link handling and href binding logic ([f9276fd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f9276fdb7547c5e504ddcd7660862f44e70b8044))
+* **theme:** simplify icon rendering ([bd0e940](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bd0e9404da5a9afdfda62f1af06f44372d564932))
+* **theme:** yaml parsing error caused by special chars ([#586](https://github.com/pengzhanbo/vuepress-theme-plume/issues/586)) ([61ca08c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/61ca08c8b4c60c6fd38c534a18953de9f6e6920c))
+
+
+### Features
+
+* **plugin-md-power:** add timeout to `image-size` ([#592](https://github.com/pengzhanbo/vuepress-theme-plume/issues/592)) ([79ab31d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/79ab31d0f2409ab3031518db8126f8c98563a003))
+
+
+### Performance Improvements
+
+* update deps to latest ([c4da089](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c4da089745adf2bfbc42b8b2182ce7a206351df1))
+
+
+
 # [1.0.0-rc.146](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.145...v1.0.0-rc.146) (2025-05-06)
 
 

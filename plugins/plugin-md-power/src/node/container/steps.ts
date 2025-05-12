@@ -10,7 +10,7 @@ import { createContainerPlugin } from './createContainer.js'
  * 3. ...
  * :::
  */
-export function stepsPlugin(md: Markdown) {
+export function stepsPlugin(md: Markdown): void {
   createContainerPlugin(md, 'steps', {
     before: () => '<div class="vp-steps">',
   })

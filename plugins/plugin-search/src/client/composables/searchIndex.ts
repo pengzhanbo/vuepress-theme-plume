@@ -1,11 +1,14 @@
+import type { ShallowRef } from 'vue'
 import { searchIndex } from '@internal/minisearchIndex'
 import { shallowRef } from 'vue'
 
 declare const __VUE_HMR_RUNTIME__: Record<string, any>
 
-const searchIndexData = shallowRef(searchIndex)
+type SearchIndexData = Record<string, () => Promise<{ default: string }>>
 
-export function useSearchIndex() {
+const searchIndexData = shallowRef<SearchIndexData>(searchIndex)
+
+export function useSearchIndex(): ShallowRef<SearchIndexData> {
   return searchIndexData
 }
 

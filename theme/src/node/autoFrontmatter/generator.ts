@@ -32,7 +32,7 @@ export interface Generate {
 
 let generate: Generate | null = null
 
-export function initAutoFrontmatter() {
+export function initAutoFrontmatter(): void {
   const { autoFrontmatter = {}, ...options } = getThemeConfig()
   if (autoFrontmatter === false)
     return
@@ -86,7 +86,7 @@ export function initAutoFrontmatter() {
   }
 }
 
-export async function generateAutoFrontmatter(app: App) {
+export async function generateAutoFrontmatter(app: App): Promise<void> {
   perf.mark('generate:frontmatter')
   if (!generate)
     return
@@ -111,7 +111,7 @@ export async function generateAutoFrontmatter(app: App) {
   perf.log('generate:frontmatter')
 }
 
-export async function watchAutoFrontmatter(app: App, watchers: any[]) {
+export async function watchAutoFrontmatter(app: App, watchers: any[]): Promise<void> {
   if (!generate)
     return
 

@@ -15,7 +15,7 @@ export function createContainerPlugin(
   md: Markdown,
   type: string,
   { before, after }: ContainerOptions = {},
-) {
+): void {
   const render: RenderRule = (tokens, index, options, env): string => {
     const token = tokens[index]
     const info = token.info.trim().slice(type.length).trim() || ''
@@ -51,7 +51,7 @@ export function createContainerSyntaxPlugin(
   md: Markdown,
   type: string,
   render?: RenderRule,
-) {
+): void {
   const maker = ':'
   const markerMinLen = 3
 

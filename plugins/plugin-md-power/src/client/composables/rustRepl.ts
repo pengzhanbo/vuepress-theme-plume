@@ -66,7 +66,7 @@ function send(type: string, payload: Record<string, any>, meta: Record<string, a
 export async function rustExecute(
   code: string,
   { onEnd, onError, onStderr, onStdout, onBegin }: RustExecuteOptions,
-) {
+): Promise<void> {
   await connect()
   const meta = { sequenceNumber: uuid++ }
   const payload = {

@@ -94,7 +94,7 @@ export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
   return { filename, comment, focus, expanded, type, diff }
 }
 
-export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}) {
+export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}): void {
   const getIcon = (filename: string, type: 'folder' | 'file', mode?: FileTreeIconMode): string => {
     mode ||= options.icon || 'colored'
     if (mode === 'simple')

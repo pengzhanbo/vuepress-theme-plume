@@ -12,7 +12,7 @@ interface FieldAttrs {
   default?: string
 }
 
-export function fieldPlugin(md: Markdown) {
+export function fieldPlugin(md: Markdown): void {
   createContainerPlugin(md, 'field', {
     before: (info) => {
       const { attrs } = resolveAttrs<FieldAttrs>(info)

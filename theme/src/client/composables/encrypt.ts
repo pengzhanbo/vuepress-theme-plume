@@ -81,7 +81,7 @@ function toMatch(match: string, pagePath: string, filePathRelative: string | nul
   return pagePath.startsWith(match) || relativePath.startsWith(match)
 }
 
-export function setupEncrypt() {
+export function setupEncrypt(): void {
   const { page } = useData()
   const route = useRoute()
   const encrypt = useEncryptData()
@@ -148,13 +148,16 @@ export function useEncrypt(): Encrypt {
   return result
 }
 
-export function useEncryptCompare() {
+export function useEncryptCompare(): {
+  compareGlobal: (password: string) => Promise<boolean>
+  comparePage: (password: string) => Promise<boolean>
+} {
   const encrypt = useEncryptData()
   const { page } = useData()
   const route = useRoute()
   const { hashList } = useEncrypt()
 
-  async function compareGlobal(password: string) {
+  async function compareGlobal(password: string): Promise<boolean> {
     if (!password)
       return false
 
@@ -168,7 +171,7 @@ export function useEncryptCompare() {
     return false
   }
 
-  async function comparePage(password: string) {
+  async function comparePage(password: string): Promise<boolean> {
     if (!password)
       return false
 

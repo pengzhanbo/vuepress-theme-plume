@@ -11,7 +11,7 @@ import { prompt } from './prompt.js'
 import { t } from './translate.js'
 import { getPackageManager } from './utils/index.js'
 
-export async function run(mode: Mode, root?: string) {
+export async function run(mode: Mode, root?: string): Promise<void> {
   intro(colors.cyan('Welcome to VuePress and vuepress-theme-plume !'))
 
   const result = await prompt(mode, root)

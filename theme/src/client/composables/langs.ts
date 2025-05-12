@@ -1,3 +1,4 @@
+import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 import { resolveRoute, useRouteLocale } from 'vuepress/client'
 import { removeLeadingSlash } from 'vuepress/shared'
@@ -6,9 +7,23 @@ import { useData } from './data.js'
 import { useBlogPageData } from './page.js'
 import { useThemeData } from './theme-data.js'
 
+interface Lang {
+  label?: string
+  link: string
+}
+
+interface UseLangOptions {
+  removeCurrent?: boolean
+}
+
+interface UseLangResult {
+  localeLinks: ComputedRef<Lang[]>
+  currentLang: ComputedRef<Lang>
+}
+
 export function useLangs({
   removeCurrent = true,
-} = {}) {
+}: UseLangOptions = {}): UseLangResult {
   const theme = useThemeData()
   const { page } = useData()
   const routeLocale = useRouteLocale()

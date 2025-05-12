@@ -1,4 +1,4 @@
-import type { ThemeOptions } from '../../shared/index.js'
+import type { ThemeBuiltinPlugins, ThemeOptions } from '../../shared/index.js'
 import { detectDependencies } from './dependency.js'
 import { detectMarkdown } from './markdown.js'
 import { detectPlugins } from './plugins.js'
@@ -10,7 +10,11 @@ export function detectThemeOptions({
   plugins = {},
   configFile,
   ...themeOptions
-}: ThemeOptions) {
+}: ThemeOptions): {
+    configFile: string | undefined
+    plugins: ThemeBuiltinPlugins
+    themeOptions: Omit<ThemeOptions, 'plugins' | 'configFile'>
+  } {
   detectDependencies(themeOptions, plugins)
 
   // detect options

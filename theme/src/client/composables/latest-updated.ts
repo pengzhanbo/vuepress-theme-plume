@@ -1,9 +1,14 @@
+import type { ComputedRef, Ref } from 'vue'
 import { computed, onMounted, ref, watchEffect } from 'vue'
 import { usePageLang } from 'vuepress/client'
 import { useData } from './data.js'
 import { useThemeData } from './theme-data.js'
 
-export function useLastUpdated() {
+export function useLastUpdated(): {
+  datetime: Ref<string>
+  isoDatetime: ComputedRef<string | undefined>
+  lastUpdatedText: ComputedRef<string>
+} {
   const { theme, page, frontmatter } = useData()
   const themeData = useThemeData()
   const lang = usePageLang()

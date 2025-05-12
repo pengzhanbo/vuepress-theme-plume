@@ -13,7 +13,7 @@ let LOCALE_RE: RegExp
 export function autoCategory(
   page: Page<ThemePageData>,
   options: ThemeOptions,
-) {
+): void {
   const pagePath = page.filePathRelative
   const blog = isPlainObject(options.blog) ? options.blog : {}
   const enabled = blog.categories !== false

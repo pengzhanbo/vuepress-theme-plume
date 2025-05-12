@@ -11,10 +11,10 @@ export function readJsonFileAsync<T extends Record<string, any> = Record<string,
   return {} as T
 }
 
-export function getPackage() {
+export function getPackage(): Record<string, any> {
   return readJsonFileAsync(path.join(process.cwd(), 'package.json'))
 }
 
-export function getThemePackage() {
+export function getThemePackage(): Record<string, any> {
   return readJsonFileAsync(resolve('../package.json'))
 }

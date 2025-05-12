@@ -2,7 +2,7 @@ import type { DemoFile, MarkdownDemoEnv } from '../../../shared/demo.js'
 
 const SCRIPT_RE = /<script.*?>/
 
-export function insertSetupScript({ export: name, path }: DemoFile, env: MarkdownDemoEnv) {
+export function insertSetupScript({ export: name, path }: DemoFile, env: MarkdownDemoEnv): void {
   const imports = `import ${name ? `${name} from ` : ''}'${path}';`
   const scriptSetup = env.sfcBlocks!.scriptSetup ??= {
     type: 'script',

@@ -1,3 +1,4 @@
+import type { ThemeConfig } from 'vuepress-theme-plume'
 import path from 'node:path'
 import { defineThemeConfig } from 'vuepress-theme-plume'
 import { enNavbar, zhNavbar } from './navbar.js'
@@ -49,4 +50,4 @@ export default defineThemeConfig({
     contentFile: path.join(__dirname, 'bulletin.md'),
     enablePage: page => page.path === '/guide/features/bulletin/',
   },
-})
+}) as ThemeConfig

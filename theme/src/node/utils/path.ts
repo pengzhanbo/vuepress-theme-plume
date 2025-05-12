@@ -3,15 +3,15 @@ import { getDirname, path } from 'vuepress/utils'
 
 const __dirname = getDirname(import.meta.url)
 
-export const resolve = (...args: string[]) => path.resolve(__dirname, '../', ...args)
-export const templates = (url: string) => resolve('../templates', url)
+export const resolve = (...args: string[]): string => path.resolve(__dirname, '../', ...args)
+export const templates = (url: string): string => resolve('../templates', url)
 
 const RE_SLASH = /(\\|\/)+/g
-export function normalizePath(path: string) {
+export function normalizePath(path: string): string {
   return path.replace(RE_SLASH, '/')
 }
 
-export function pathJoin(...args: string[]) {
+export function pathJoin(...args: string[]): string {
   return normalizePath(path.join(...args))
 }
 
@@ -22,7 +22,7 @@ export function normalizeLink(base: string, link = ''): string {
 }
 
 const RE_START_END_SLASH = /^\/|\/$/g
-export function getCurrentDirname(basePath: string | undefined, filepath: string) {
+export function getCurrentDirname(basePath: string | undefined, filepath: string): string {
   const dirList = normalizePath(basePath || path.dirname(filepath))
     .replace(RE_START_END_SLASH, '')
     .split('/')

@@ -52,7 +52,7 @@ function resolveThemeLocaleData(theme: ThemeData, routeLocale: RouteLocale): The
   }
 }
 
-export function setupThemeData(app: App) {
+export function setupThemeData(app: App): void {
   // provide theme data & theme locale data
   const themeData = useThemeData()
   const clientData: ClientData

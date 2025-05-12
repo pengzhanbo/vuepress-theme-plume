@@ -6,11 +6,13 @@ import { isPlainObject } from 'vuepress/shared'
 import { useData } from '../composables/data.js'
 import { useThemeData } from './theme-data.js'
 
-export function useContributors(): {
+interface useContributorsResult {
   mode: ComputedRef<'inline' | 'block'>
   contributors: ComputedRef<GitContributor[]>
   hasContributors: ComputedRef<boolean>
-} {
+}
+
+export function useContributors(): useContributorsResult {
   const { frontmatter } = useData()
   const list = _useContributors()
 

@@ -6,7 +6,7 @@ import { enableBulletin } from './pageBulletin.js'
 
 export function extendsPageData(
   page: Page<ThemePageData>,
-) {
+): void {
   const options = getThemeConfig()
   cleanPageData(page)
   autoCategory(page, options)

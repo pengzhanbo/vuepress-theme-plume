@@ -40,7 +40,7 @@ const RE_KEY = /(\w+)=\s*/
 const RE_SEARCH_KEY = /\s+\w+=\s*|$/
 const RE_CLEAN_VALUE = /(?<quote>["'])(.*?)(\k<quote>)/
 
-export function timelinePlugin(md: Markdown) {
+export function timelinePlugin(md: Markdown): void {
   createContainerPlugin(md, 'timeline', {
     before(info, tokens, index) {
       parseTimeline(tokens, index)

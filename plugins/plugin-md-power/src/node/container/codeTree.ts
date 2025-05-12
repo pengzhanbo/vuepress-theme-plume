@@ -111,7 +111,7 @@ function parseFileNodes(files: string[]): FileTreeNode[] {
   return nodes
 }
 
-export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions = {}) {
+export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions = {}): void {
   const getIcon = (filename: string, type: 'folder' | 'file', mode?: FileTreeIconMode): string => {
     mode ||= options.icon || 'colored'
     if (mode === 'simple')

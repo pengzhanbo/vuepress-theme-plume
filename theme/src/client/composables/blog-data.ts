@@ -1,4 +1,4 @@
-import type { Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
 import type { ThemeBlogPostList } from '../../shared/index.js'
 import {
   blogPostData as blogPostDataRaw,
@@ -14,7 +14,7 @@ export function usePostList(): BlogDataRef {
   return blogPostData as BlogDataRef
 }
 
-export function useLocalePostList() {
+export function useLocalePostList(): ComputedRef<ThemeBlogPostList> {
   const locale = usePageLang()
   return computed(() => blogPostData.value.filter(item => item.lang === locale.value))
 }

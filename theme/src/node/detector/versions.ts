@@ -16,7 +16,7 @@ const t = createTranslate({
   },
 })
 
-export function detectVersions(app: App) {
+export function detectVersions(app: App): void {
   detectVuepressVersion()
   detectThemeVersion(app)
 }

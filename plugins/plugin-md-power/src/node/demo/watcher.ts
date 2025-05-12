@@ -14,13 +14,13 @@ let renderDone: null | ((...args: any[]) => void) = null
 let renderCount = 0
 let renderPromise!: Promise<void>
 
-export function createDemoRender() {
+export function createDemoRender(): void {
   renderPromise = new Promise((resolve) => {
     renderDone = resolve
   })
 }
 
-export async function waitDemoRender() {
+export async function waitDemoRender(): Promise<void> {
   if (renderCount === 0) {
     renderDone?.()
     renderDone = null
@@ -28,11 +28,11 @@ export async function waitDemoRender() {
   await renderPromise
 }
 
-export function markDemoRender() {
+export function markDemoRender(): void {
   renderCount++
 }
 
-export function checkDemoRender() {
+export function checkDemoRender(): void {
   if (renderCount > 0) {
     renderCount--
   }
@@ -47,7 +47,7 @@ let watcher: FSWatcher | null = null
 const tasks: Record<string, string> = {}
 const target = 'md-power/demo/watcher.txt'
 
-export function demoWatcher(app: App, watchers: any[]) {
+export function demoWatcher(app: App, watchers: any[]): void {
   if (!watcher) {
     watcher = watch([], { ignoreInitial: true })
   }
@@ -89,7 +89,7 @@ export function demoWatcher(app: App, watchers: any[]) {
   })
 }
 
-export function addTask(app: App, path: string, output: string) {
+export function addTask(app: App, path: string, output: string): void {
   if (tasks[path])
     return
   tasks[path] = output

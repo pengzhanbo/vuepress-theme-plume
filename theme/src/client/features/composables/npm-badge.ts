@@ -81,7 +81,7 @@ export function useNpmBadge(opt: Ref<NpmBadgeOptions>): ComputedRef<NpmBadgeInfo
   })
 }
 
-export function useNpmBadgeGroup(opt: Ref<NpmBadgeGroupOptions>) {
+export function useNpmBadgeGroup(opt: Ref<NpmBadgeGroupOptions>): void {
   const baseOptions = computed<NpmBadgeBaseOptions>(() => {
     const o = toValue(opt)
     return {

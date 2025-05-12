@@ -38,7 +38,10 @@ export function resolveCode(el: HTMLElement): string {
   return clone.textContent || ''
 }
 
-export function resolveCodeInfo(el: HTMLDivElement) {
+export function resolveCodeInfo(el: HTMLDivElement): {
+  lang: Lang
+  code: string
+} {
   const wrapper = el.querySelector('div[class*=language-]')
   const lang = wrapper?.className.match(RE_LANGUAGE)?.[1]
   const codeEl = wrapper?.querySelector('pre') as HTMLElement
@@ -50,7 +53,20 @@ export function resolveCodeInfo(el: HTMLDivElement) {
   return { lang: resolveLang(lang) as Lang, code }
 }
 
-export function useCodeRepl(el: Ref<HTMLDivElement | null>) {
+interface UseCodeReplResult {
+  lang: Ref<Lang | undefined>
+  loaded: Ref<boolean>
+  firstRun: Ref<boolean>
+  finished: Ref<boolean>
+  stdout: Ref<string[]>
+  stderr: Ref<string[]>
+  error: Ref<string>
+  backendVersion: Ref<string>
+  onCleanRun: () => void
+  onRunCode: () => Promise<void>
+}
+
+export function useCodeRepl(el: Ref<HTMLDivElement | null>): UseCodeReplResult {
   const lang = ref<Lang>()
   const loaded = ref(true)
   const firstRun = ref(true)
@@ -74,7 +90,7 @@ export function useCodeRepl(el: Ref<HTMLDivElement | null>) {
     rust: executeRust,
   }
 
-  function onCleanRun() {
+  function onCleanRun(): void {
     loaded.value = false
     finished.value = false
     stdout.value = []
@@ -84,7 +100,7 @@ export function useCodeRepl(el: Ref<HTMLDivElement | null>) {
     backendVersion.value = ''
   }
 
-  async function onRunCode() {
+  async function onRunCode(): Promise<void> {
     if (!el.value || !loaded.value)
       return
     const info = resolveCodeInfo(el.value)

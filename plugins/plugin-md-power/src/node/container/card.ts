@@ -13,7 +13,7 @@ interface CardMasonryAttrs {
   gap?: number
 }
 
-export function cardPlugin(md: Markdown) {
+export function cardPlugin(md: Markdown): void {
   /**
    * ::: card title="xxx" icon="xxx"
    * xxx

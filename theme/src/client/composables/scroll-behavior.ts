@@ -3,7 +3,7 @@ import { nextTick } from 'vue'
 import { inBrowser } from '../utils/index.js'
 import { useScrollPromise } from './scroll-promise.js'
 
-export function enhanceScrollBehavior(router: Router) {
+export function enhanceScrollBehavior(router: Router): void {
   router.options.scrollBehavior = async (to, from, savedPosition) => {
     await useScrollPromise().wait()
     if (savedPosition)

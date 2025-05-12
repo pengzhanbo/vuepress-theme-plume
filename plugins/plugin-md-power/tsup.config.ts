@@ -51,4 +51,4 @@ export default defineConfig(() => {
     }) as Options))
   }
   return options
-})
+}) as Options[]

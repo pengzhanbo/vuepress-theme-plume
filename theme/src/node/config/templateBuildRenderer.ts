@@ -6,7 +6,7 @@ import { getThemePackage } from '../utils/index.js'
 export function templateBuildRenderer(
   template: string,
   context: TemplateRendererContext,
-) {
+): Promise<string> | string {
   const options = getThemeConfig()
   const pkg = getThemePackage()
   template = template

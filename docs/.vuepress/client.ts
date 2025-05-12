@@ -1,3 +1,4 @@
+import type { ClientConfig } from 'vuepress/client'
 import { h } from 'vue'
 import { Layout } from 'vuepress-theme-plume/client'
 import { defineClientConfig } from 'vuepress/client'
@@ -13,4 +14,4 @@ export default defineClientConfig({
       'aside-outline-after': () => h(AsideNav),
     }),
   },
-})
+}) as ClientConfig

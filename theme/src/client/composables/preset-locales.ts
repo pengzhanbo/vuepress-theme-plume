@@ -1,9 +1,13 @@
 import type { PresetLocale } from '../../shared/index.js'
 
-declare const __PLUME_PRESET_LOCALE__: Record<string, PresetLocale>
+interface PresetLocales {
+  [locale: string]: PresetLocale
+}
 
-export const presetLocales = __PLUME_PRESET_LOCALE__
+declare const __PLUME_PRESET_LOCALE__: PresetLocales
 
-export function getPresetLocaleData(locale: string, name: keyof PresetLocale) {
+export const presetLocales: PresetLocales = __PLUME_PRESET_LOCALE__
+
+export function getPresetLocaleData(locale: string, name: keyof PresetLocale): string {
   return presetLocales[locale]?.[name] || presetLocales['/'][name]
 }

@@ -11,7 +11,7 @@ import VPIcon from '@theme/VPIcon.vue'
 import { hasGlobalComponent } from '@vuepress/helper/client'
 import { h, resolveComponent } from 'vue'
 
-export function globalComponents(app: App) {
+export function globalComponents(app: App): void {
   app.component('Badge', VPBadge)
   app.component('VPBadge', VPBadge)
 

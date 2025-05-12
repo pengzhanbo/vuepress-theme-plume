@@ -1,13 +1,18 @@
-import type { MaybeRefOrGetter } from 'vue'
+import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import { isLinkExternal } from '@vuepress/helper/client'
 import { computed, toValue } from 'vue'
 import { resolveRouteFullPath, useRoute } from 'vuepress/client'
 import { useData } from './data.js'
 
+interface UseLinkResult {
+  isExternal: ComputedRef<boolean>
+  link: ComputedRef<string | undefined>
+}
+
 export function useLink(
   href: MaybeRefOrGetter<string | undefined>,
   target?: MaybeRefOrGetter<string | undefined>,
-) {
+): UseLinkResult {
   const route = useRoute()
   const { page } = useData()
 

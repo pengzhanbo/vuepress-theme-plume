@@ -25,7 +25,7 @@ export function useHomeHeroTintPlate(
   canvas: Ref<HTMLCanvasElement | undefined>,
   enable: Ref<boolean>,
   tintPlate: Ref<ThemeHomeHero['tintPlate']>,
-) {
+): void {
   const isDark = useDarkMode()
 
   let ctx: CanvasRenderingContext2D | null = null

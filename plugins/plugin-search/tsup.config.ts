@@ -78,4 +78,4 @@ export default defineConfig(() => {
   }
 
   return options
-})
+}) as Options[]

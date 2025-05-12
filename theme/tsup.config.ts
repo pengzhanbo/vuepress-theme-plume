@@ -108,4 +108,4 @@ export default defineConfig((cli) => {
     ])
   }
   return options
-})
+}) as Options[]

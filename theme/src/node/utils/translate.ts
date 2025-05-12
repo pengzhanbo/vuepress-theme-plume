@@ -7,10 +7,11 @@ import { isEmptyObject } from '@pengzhanbo/utils'
 
 type TranslateLang = 'zh' | 'en'
 type TranslateLocale = Record<string, string>
+type TranslateData = Record<string, string>
 
-let lang = 'en'
+let lang: TranslateLang = 'en'
 
-export function setTranslateLang(current: string) {
+export function setTranslateLang(current: string): void {
   if (['zh-CN', 'zh', 'zh-Hans', 'zh-Hant'].includes(current)) {
     lang = 'zh'
   }
@@ -19,13 +20,16 @@ export function setTranslateLang(current: string) {
   }
 }
 
-export function createTranslate<Locale extends TranslateLocale = TranslateLocale>(
+export function createTranslate<
+  Data extends TranslateData = TranslateData,
+  Locale extends TranslateLocale = TranslateLocale,
+>(
   locales: Record<TranslateLang, Locale>,
-) {
-  return function t(key: keyof Locale, data?: Record<string, string>) {
+): (key: keyof Locale, data?: Data) => string {
+  return function t(key, data) {
     const resolved = locales[lang][key]
     if (!resolved)
-      return key
+      return String(key)
     if (data && !isEmptyObject(data)) {
       return resolved.replace(/\{\{\s*(\w+)\s*\}\}/g, (_: string, key: string) => data[key] || _)
     }

@@ -11,7 +11,7 @@ import { normalContainerRender, normalEmbed } from './normal.js'
 import { normalizeAlias } from './supports/alias.js'
 import { vueContainerRender, vueEmbed } from './vue.js'
 
-export function demoEmbed(app: App, md: Markdown) {
+export function demoEmbed(app: App, md: Markdown): void {
   createEmbedRuleBlock<DemoMeta>(md, {
     type: 'demo',
     syntaxPattern: /^@\[demo(?:\s(vue|normal|markdown))?\s?(.*)\]\((.*)\)/,
@@ -50,7 +50,7 @@ const renderMap: Record<string, DemoContainerRender> = {
   markdown: markdownContainerRender,
 }
 
-export function demoContainer(app: App, md: Markdown) {
+export function demoContainer(app: App, md: Markdown): void {
   let currentRender: DemoContainerRender | undefined
   const render: RenderRule = (
     tokens: Token[],

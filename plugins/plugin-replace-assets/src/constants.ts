@@ -1,6 +1,6 @@
 export const PLUGIN_NAME = 'vuepress-plugin-replace-assets'
 
-export const KNOWN_IMAGE_EXTENSIONS = [
+export const KNOWN_IMAGE_EXTENSIONS: string[] = [
   'png',
   'jpg',
   'jpeg',
@@ -10,7 +10,7 @@ export const KNOWN_IMAGE_EXTENSIONS = [
   'avif',
 ]
 
-export const KNOWN_MEDIA_EXTENSIONS = [
+export const KNOWN_MEDIA_EXTENSIONS: string[] = [
   'mp4',
   'webm',
   'ogg',
@@ -25,7 +25,7 @@ export const KNOWN_MEDIA_EXTENSIONS = [
   'pdf',
 ]
 
-export const KNOWN_ASSET_EXTENSIONS = [
+export const KNOWN_ASSET_EXTENSIONS: string[] = [
   ...KNOWN_IMAGE_EXTENSIONS,
   ...KNOWN_MEDIA_EXTENSIONS,
 ]

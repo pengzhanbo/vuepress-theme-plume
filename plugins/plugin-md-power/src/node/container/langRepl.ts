@@ -18,7 +18,7 @@ export async function langReplPlugin(app: App, md: markdownIt, {
   go = false,
   kotlin = false,
   rust = false,
-}: ReplOptions) {
+}: ReplOptions): Promise<void> {
   const container = (lang: string): void => createContainerPlugin(md, `${lang}-repl`, {
     before(info) {
       const { attrs } = resolveAttrs<CodeReplMeta>(info)

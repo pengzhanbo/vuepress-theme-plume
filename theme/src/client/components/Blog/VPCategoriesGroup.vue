@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { BlogCategoryItem } from '../../composables/index.js'
+import type { CategoryItem } from '../../composables/index.js'
 import VPCategories from '@theme/Blog/VPCategories.vue'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
 import { useData } from '../../composables/index.js'
 
 const props = withDefaults(defineProps<{
-  item: BlogCategoryItem
+  item: CategoryItem
   depth?: number
 }>(), {
   depth: 0,
@@ -42,7 +42,7 @@ watch(
   { immediate: true },
 )
 
-function hasExpand(item: BlogCategoryItem, id: string) {
+function hasExpand(item: CategoryItem, id: string) {
   return item.id === id
     || item.items.filter(item => item.type === 'category').some(item => hasExpand(item, id))
 }

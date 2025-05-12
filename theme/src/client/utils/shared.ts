@@ -1,9 +1,9 @@
-export const EXTERNAL_URL_RE = /^[a-z]+:/i
-export const PATHNAME_PROTOCOL_RE = /^pathname:\/\//
-export const HASH_RE = /#.*$/
-export const EXT_RE = /(index|README)?\.(md|html)$/
+export const EXTERNAL_URL_RE: RegExp = /^[a-z]+:/i
+export const PATHNAME_PROTOCOL_RE: RegExp = /^pathname:\/\//
+export const HASH_RE: RegExp = /#.*$/
+export const EXT_RE: RegExp = /(index|README)?\.(md|html)$/
 
-export const inBrowser = typeof document !== 'undefined'
+export const inBrowser: boolean = typeof document !== 'undefined'
 
 export function toArray<T>(value: T | T[]): T[] {
   return Array.isArray(value) ? value : [value]

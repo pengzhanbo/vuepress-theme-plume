@@ -2,6 +2,8 @@ import type { InjectionKey, Ref } from 'vue'
 import { useSessionStorage, useStyleTag } from '@vueuse/core'
 import { inject, provide, watch } from 'vue'
 
+declare const __VUEPRESS_DEV__: boolean
+
 export interface ThemeColor {
   name: string
   key: string
@@ -82,14 +84,16 @@ const preset: ThemeColorsGroup[] = [
   },
 ]
 
-const themeColorSymbol: InjectionKey<{
+interface ThemeColorResult {
   lightColors: Ref<ThemeColorsGroup[]>
   darkColors: Ref<ThemeColorsGroup[]>
   css: Ref<string>
   reset: () => void
-}> = Symbol(__VUEPRESS_DEV__ ? 'theme-color' : '')
+}
 
-export function setupThemeColors() {
+const themeColorSymbol: InjectionKey<ThemeColorResult> = Symbol(__VUEPRESS_DEV__ ? 'theme-color' : '')
+
+export function setupThemeColors(): void {
   const lightColors = useSessionStorage<ThemeColorsGroup[]>('custom-theme-colors-light', resolveDefaultColors('light'))
   const darkColors = useSessionStorage<ThemeColorsGroup[]>('custom-theme-colors-dark', resolveDefaultColors('dark'))
 
@@ -138,7 +142,7 @@ function resolveDefaultColors(type: 'light' | 'dark') {
   }))
 }
 
-export function useThemeColors() {
+export function useThemeColors(): ThemeColorResult {
   const result = inject(themeColorSymbol)
 
   if (!result) {

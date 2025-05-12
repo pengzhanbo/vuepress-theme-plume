@@ -3,7 +3,7 @@ import type { Markdown } from 'vuepress/markdown'
 import { demoContainer, demoEmbed } from './demo.js'
 import { createDemoRender } from './watcher.js'
 
-export function demoPlugin(app: App, md: Markdown) {
+export function demoPlugin(app: App, md: Markdown): void {
   createDemoRender()
   demoEmbed(app, md)
   demoContainer(app, md)

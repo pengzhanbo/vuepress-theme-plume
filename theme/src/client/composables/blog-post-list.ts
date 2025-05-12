@@ -1,4 +1,4 @@
-import type { Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
 import type { ThemeBlogPostItem } from '../../shared/index.js'
 import { useMediaQuery } from '@vueuse/core'
 import { computed } from 'vue'
@@ -8,7 +8,21 @@ import { useRouteQuery } from './route-query.js'
 
 const DEFAULT_PER_PAGE = 15
 
-export function usePostListControl(homePage: Ref<boolean>) {
+interface UsePostListControlResult {
+  postList: ComputedRef<ThemeBlogPostItem[]>
+  page: Ref<number>
+  totalPage: ComputedRef<number>
+  pageRange: ComputedRef<{
+    value: number | string
+    more?: true
+  }[]>
+  isLastPage: ComputedRef<boolean>
+  isFirstPage: ComputedRef<boolean>
+  isPaginationEnabled: ComputedRef<boolean>
+  changePage: (page: number) => void
+}
+
+export function usePostListControl(homePage: Ref<boolean>): UsePostListControlResult {
   const { blog } = useData()
 
   const list = useLocalePostList()
@@ -113,7 +127,7 @@ export function usePostListControl(homePage: Ref<boolean>) {
     return range
   })
 
-  const changePage = (current: number) => {
+  const changePage = (current: number): void => {
     if (page.value === current)
       return
     page.value = current

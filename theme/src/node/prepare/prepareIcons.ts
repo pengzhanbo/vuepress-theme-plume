@@ -38,7 +38,7 @@ function isIconify(icon: any): icon is string {
   return icon[0] !== '{' && ICONIFY_NAME.test(icon)
 }
 
-export async function prepareIcons(app: App) {
+export async function prepareIcons(app: App): Promise<void> {
   perf.mark('prepare:icons:total')
   const options = getThemeConfig()
   if (!isInstalled) {

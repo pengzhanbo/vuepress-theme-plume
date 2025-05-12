@@ -52,7 +52,7 @@ const sidebarSymbol: InjectionKey<Ref<ResolvedSidebarItem[]>> = Symbol(
   __VUEPRESS_DEV__ ? 'sidebar' : '',
 )
 
-export function setupSidebar() {
+export function setupSidebar(): void {
   const { page, frontmatter } = useData()
 
   const routeLocale = useRouteLocale()

@@ -21,7 +21,7 @@ export async function containerPlugin(
   app: App,
   md: Markdown,
   options: MarkdownPowerPluginOptions,
-) {
+): Promise<void> {
   // ::: left / right / center / justify
   alignPlugin(md)
   // ::: tabs

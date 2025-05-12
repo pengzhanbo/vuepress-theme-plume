@@ -1,6 +1,7 @@
+import type { ThemeNote } from 'vuepress-theme-plume'
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
-export const themeGuide = defineNoteConfig({
+export const themeGuide: ThemeNote = defineNoteConfig({
   dir: 'theme/guide',
   link: '/guide/',
   sidebar: [

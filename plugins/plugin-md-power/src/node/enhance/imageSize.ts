@@ -32,7 +32,7 @@ export async function imageSizePlugin(
   app: App,
   md: Markdown,
   type: boolean | 'local' | 'all' = false,
-) {
+): Promise<void> {
   if (!app.env.isBuild || !type)
     return
 
@@ -159,7 +159,7 @@ function resolveImageUrl(src: string, env: MarkdownEnv, app: App): string {
   return path.resolve(src)
 }
 
-export async function scanRemoteImageSize(app: App) {
+export async function scanRemoteImageSize(app: App): Promise<void> {
   if (!app.env.isBuild)
     return
   const cwd = app.dir.source()

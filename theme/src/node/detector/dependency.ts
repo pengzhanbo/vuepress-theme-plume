@@ -33,7 +33,7 @@ const t = createTranslate({
  * 部分功能需要手动安装依赖，
  * 检查环境中是否缺少依赖
  */
-export function detectDependencies(options: ThemeOptions, plugins: ThemeBuiltinPlugins) {
+export function detectDependencies(options: ThemeOptions, plugins: ThemeBuiltinPlugins): void {
   const shouldInstall: Record<string, string[]> = {}
 
   const markdown = options.markdown || {}

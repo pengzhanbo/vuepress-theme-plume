@@ -1,5 +1,11 @@
 import type { ComputedRef } from 'vue'
-import type { CopyrightFrontmatter, CopyrightLicense, CopyrightOptions, GitContributor, KnownCopyrightLicense } from '../../shared/index.js'
+import type {
+  CopyrightFrontmatter,
+  CopyrightLicense,
+  CopyrightOptions,
+  GitContributor,
+  KnownCopyrightLicense,
+} from '../../shared/index.js'
 import { computed } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
 import { useContributors } from './contributors.js'
@@ -37,7 +43,18 @@ const LICENSE_URL: Record<KnownCopyrightLicense, { url: string, icons: string[] 
   },
 }
 
-export function useCopyright(copyright: ComputedRef<CopyrightFrontmatter>) {
+interface useCopyrightResult {
+  license: ComputedRef<License>
+  author: ComputedRef<Exclude<CopyrightFrontmatter['author'], string>>
+  hasCopyright: ComputedRef<boolean>
+  creation: ComputedRef<CopyrightFrontmatter['creation']>
+  creationText: ComputedRef<string>
+  sourceUrl: ComputedRef<string | undefined>
+}
+
+export function useCopyright(
+  copyright: ComputedRef<CopyrightFrontmatter>,
+): useCopyrightResult {
   const { theme } = useData<'post'>()
   const routeLocale = useRouteLocale()
   const { contributors } = useContributors()

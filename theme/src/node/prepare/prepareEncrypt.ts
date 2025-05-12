@@ -20,7 +20,7 @@ const separator = ':'
 let contentHash = ''
 let fsCache: FsCache<[string, EncryptConfig]> | null = null
 
-export async function prepareEncrypt(app: App) {
+export async function prepareEncrypt(app: App): Promise<void> {
   perf.mark('prepare:encrypt')
   const { encrypt } = getThemeConfig()
   if (!fsCache && app.env.isDev) {
@@ -72,7 +72,7 @@ function resolveEncrypt(encrypt?: EncryptOptions): EncryptConfig {
   return [encrypt?.global ?? false, separator, admin, keys, rules]
 }
 
-export function isEncryptPage(page: Page<ThemePageData>, encrypt?: EncryptOptions) {
+export function isEncryptPage(page: Page<ThemePageData>, encrypt?: EncryptOptions): boolean {
   if (!encrypt)
     return false
 

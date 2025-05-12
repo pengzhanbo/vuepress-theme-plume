@@ -3,7 +3,7 @@ import { uniq } from '@pengzhanbo/utils'
 import { entries, removeLeadingSlash } from '@vuepress/helper'
 import { normalizePath, withBase } from '../utils/index.js'
 
-export function resolveNotesLinkList(options: ThemeOptions) {
+export function resolveNotesLinkList(options: ThemeOptions): string[] {
   const locales = options.locales || {}
   const notesLinks: string[] = []
   for (const [locale, opt] of entries(locales)) {

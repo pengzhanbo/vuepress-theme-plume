@@ -1,7 +1,8 @@
+import type { ThemeObject } from 'vuepress'
 import { fs, path } from 'vuepress/utils'
 import { resolve } from '../utils/index.js'
 
-export function setupAlias() {
+export function setupAlias(): ThemeObject['alias'] {
   return {
     ...Object.fromEntries(
       fs.readdirSync(

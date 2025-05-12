@@ -67,7 +67,7 @@ function codeToHtml(md: Markdown, source: NormalCode, info: string): string {
   return md.render(content, {})
 }
 
-export async function compileCode(code: NormalCode, output: string) {
+export async function compileCode(code: NormalCode, output: string): Promise<void> {
   markDemoRender()
   const res = { jsLib: [], cssLib: [], script: '', css: '', html: '' }
   if (!fs.existsSync(output))

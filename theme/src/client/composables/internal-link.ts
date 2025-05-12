@@ -1,3 +1,4 @@
+import type { ComputedRef } from 'vue'
 import type { PresetLocale } from '../../shared/index.js'
 import { computed } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
@@ -9,7 +10,13 @@ export interface InternalLink {
   link: string
 }
 
-export function useInternalLink() {
+export function useInternalLink(): {
+  home: ComputedRef<InternalLink>
+  blog: ComputedRef<InternalLink>
+  tags: ComputedRef<InternalLink | undefined>
+  archive: ComputedRef<InternalLink | undefined>
+  categories: ComputedRef<InternalLink | undefined>
+} {
   const { blog, theme } = useData()
   const themeData = useThemeData()
   const routeLocale = useRouteLocale()

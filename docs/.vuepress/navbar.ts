@@ -1,7 +1,8 @@
+import type { ThemeNavItem } from 'vuepress-theme-plume'
 import { defineNavbarConfig } from 'vuepress-theme-plume'
 import { version } from '../../package.json'
 
-export const zhNavbar = defineNavbarConfig([
+export const zhNavbar: ThemeNavItem[] = defineNavbarConfig([
   {
     text: '指南',
     icon: 'icon-park-outline:guide-board',
@@ -54,7 +55,7 @@ export const zhNavbar = defineNavbarConfig([
   },
 ])
 
-export const enNavbar = defineNavbarConfig([
+export const enNavbar: ThemeNavItem[] = defineNavbarConfig([
   {
     text: 'Guide',
     icon: 'icon-park-outline:guide-board',

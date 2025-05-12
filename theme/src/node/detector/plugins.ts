@@ -8,7 +8,7 @@ const t = createTranslate({
   zh: { message: '{{ plugins }} 不支持以下字段: {{ unsupported }}, 请检查你的配置。' },
 })
 
-export function detectPlugins(plugins: ThemeBuiltinPlugins) {
+export function detectPlugins(plugins: ThemeBuiltinPlugins): void {
   // 部分用户可能混淆 plugins 选项与 vuepress 的 plugins 选项，误传入插件数组
   if (Array.isArray(plugins)) {
     logger.warn(`${colors.green('plugins')} only accept object config, please check your config.`)

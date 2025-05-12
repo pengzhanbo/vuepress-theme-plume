@@ -8,12 +8,12 @@ interface UseFlyoutOptions {
   onBlur?: () => void
 }
 
-export const focusedElement = ref<HTMLElement>()
+export const focusedElement: Ref<HTMLElement | undefined> = ref()
 
 let active = false
 let listeners = 0
 
-export function useFlyout(options: UseFlyoutOptions) {
+export function useFlyout(options: UseFlyoutOptions): Readonly<Ref<boolean>> {
   const focus = ref(false)
 
   if (inBrowser) {

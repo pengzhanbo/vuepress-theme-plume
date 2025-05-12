@@ -10,7 +10,7 @@ const CLIENT_FOLDER = ensureEndingSlash(
   path.resolve(__dirname, '../client'),
 )
 
-export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOptions) {
+export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOptions): Promise<string> {
   const imports = new Set<string>()
   const enhances = new Set<string>()
 

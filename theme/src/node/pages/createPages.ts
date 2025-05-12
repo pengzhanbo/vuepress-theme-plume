@@ -13,7 +13,7 @@ function getRootLang(app: App): string {
   return app.siteData.lang
 }
 
-export async function createPages(app: App) {
+export async function createPages(app: App): Promise<void> {
   const options = getThemeConfig()
 
   if (options.blog === false)

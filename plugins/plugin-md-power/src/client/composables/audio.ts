@@ -1,4 +1,4 @@
-import type { MaybeRef } from 'vue'
+import type { MaybeRef, Ref } from 'vue'
 import { onMounted, onUnmounted, ref, toValue, watch } from 'vue'
 
 const mimeTypes = {
@@ -36,9 +36,23 @@ export interface AudioPlayerOptions {
   onwaiting?: HTMLAudioElement['onwaiting']
 }
 
+interface UseAudioPlayerResult {
+  player: HTMLAudioElement | null
+  isSupported: Ref<boolean>
+  loaded: Ref<boolean>
+  paused: Ref<boolean>
+  currentTime: Ref<number>
+  duration: Ref<number>
+  play: () => void
+  pause: () => void
+  seek: (time: number) => void
+  setVolume: (volume: number) => void
+  destroy: () => void
+}
+
 const playerList: HTMLAudioElement[] = []
 
-export function useAudioPlayer(source: MaybeRef<string>, options: AudioPlayerOptions = {}) {
+export function useAudioPlayer(source: MaybeRef<string>, options: AudioPlayerOptions = {}): UseAudioPlayerResult {
   let player: HTMLAudioElement | null = null
 
   let unknownSupport = false
@@ -194,7 +208,7 @@ export function useAudioPlayer(source: MaybeRef<string>, options: AudioPlayerOpt
     return false
   }
 
-  function destroy() {
+  function destroy(): void {
     player?.pause()
     player?.remove()
     playerList.splice(playerList.indexOf(player!), 1)

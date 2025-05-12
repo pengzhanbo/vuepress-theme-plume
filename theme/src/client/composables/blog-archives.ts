@@ -1,3 +1,4 @@
+import type { ComputedRef } from 'vue'
 import type { ThemeBlogPostItem } from '../../shared/index.js'
 import { computed } from 'vue'
 import { useLocalePostList } from './blog-data.js'
@@ -6,12 +7,18 @@ import { useThemeData } from './theme-data.js'
 
 export type ShortPostItem = Pick<ThemeBlogPostItem, 'title' | 'path' | 'createTime'>
 
-export function useArchives() {
+interface ArchiveItem {
+  title: string
+  label: string
+  list: ShortPostItem[]
+}
+
+export function useArchives(): { archives: ComputedRef<ArchiveItem[]> } {
   const themeData = useThemeData()
   const list = useLocalePostList()
   const { theme } = useData()
 
-  const archives = computed(() => {
+  const archives = computed<ArchiveItem[]>(() => {
     const archives: { title: string, label: string, list: ShortPostItem[] }[] = []
     const countLocale = theme.value.archiveTotalText || themeData.value.archiveTotalText
 

@@ -27,8 +27,8 @@
     "lib"
   ],
   "scripts": {
-    "build": "pnpm run tsup",
-    "tsup": "tsup --config tsup.config.ts"
+    "build": "pnpm run tsdown",
+    "tsdown": "tsdown"
   },
   "peerDependencies": {
     "vuepress": "catalog:vuepress"

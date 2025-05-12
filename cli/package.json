@@ -27,7 +27,7 @@
     "templates"
   ],
   "scripts": {
-    "build": "tsup"
+    "build": "tsdown"
   },
   "dependencies": {
     "@clack/prompts": "catalog:prod",

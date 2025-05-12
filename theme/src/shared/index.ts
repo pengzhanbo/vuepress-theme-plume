@@ -13,3 +13,5 @@ export type {
   GitChangelogInfo as GitChangelog,
   GitContributorInfo as GitContributor,
 } from '@vuepress/plugin-git'
+
+export {}

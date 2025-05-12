@@ -69,7 +69,7 @@
     "stylelint": "catalog:dev",
     "stylus": "catalog:dev",
     "tsconfig-vuepress": "catalog:dev",
-    "tsup": "catalog:dev",
+    "tsdown": "catalog:dev",
     "typescript": "catalog:dev",
     "vitest": "catalog:dev",
     "wait-on": "catalog:dev"

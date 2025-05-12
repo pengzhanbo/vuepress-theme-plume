@@ -1,9 +1,6 @@
-import type { Options } from 'tsup'
-import fs from 'node:fs'
-import path from 'node:path'
-import process from 'node:process'
-import { defineConfig } from 'tsup'
-import { argv } from '../scripts/tsup-args.js'
+import type { Options } from 'tsdown'
+import { defineConfig } from 'tsdown'
+import { argv } from '../../scripts/tsup-args.js'
 
 const sharedExternal: (string | RegExp)[] = [
   /.*\/shared\/index\.js$/,
@@ -11,26 +8,18 @@ const sharedExternal: (string | RegExp)[] = [
 
 const clientExternal: (string | RegExp)[] = [
   ...sharedExternal,
-  /.*\.vue$/,
   /^@internal/,
-  /^@theme/,
+  /.*\.vue$/,
   /.*\.css$/,
 ]
 
-const featuresComposables = fs.readdirSync(
-  path.join(process.cwd(), 'src/client/features/composables'),
-  { recursive: true, encoding: 'utf-8' },
-)
-
-export default defineConfig((cli) => {
+export default defineConfig(() => {
   const DEFAULT_OPTIONS: Options = {
     dts: true,
     sourcemap: false,
-    splitting: false,
-    watch: cli.watch,
     format: 'esm',
-    silent: !!cli.watch,
   }
+
   const options: Options[] = []
 
   // shared
@@ -38,7 +27,6 @@ export default defineConfig((cli) => {
     ...DEFAULT_OPTIONS,
     entry: ['./src/shared/index.ts'],
     outDir: './lib/shared',
-    dts: true,
   })
 
   if (argv.node) {
@@ -48,9 +36,9 @@ export default defineConfig((cli) => {
       outDir: './lib/node',
       external: sharedExternal,
       target: 'node20.6.0',
-      watch: false,
     })
   }
+
   if (argv.client) {
     options.push(...[
       // client/utils/index.js
@@ -65,22 +53,15 @@ export default defineConfig((cli) => {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/composables/index.ts'],
         outDir: './lib/client/composables',
-        external: [
-          ...clientExternal,
-          '../utils/index.js',
-        ],
+        external: clientExternal,
       },
       // client/config.js
       {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/config.ts'],
         outDir: './lib/client',
+        external: clientExternal,
         dts: false,
-        external: [
-          ...clientExternal,
-          './composables/index.js',
-          './utils/index.js',
-        ],
       },
       // client/index.js
       {
@@ -90,22 +71,10 @@ export default defineConfig((cli) => {
         external: [
           ...clientExternal,
           './composables/index.js',
-          './utils/index.js',
-          './config.js',
         ],
       },
-      ...featuresComposables.map(file => ({
-        ...DEFAULT_OPTIONS,
-        entry: [`./src/client/features/composables/${file}`],
-        outDir: `./lib/client/features/composables/`,
-        external: [
-          ...clientExternal,
-          '../../composables/index.js',
-          '../../utils/index.js',
-          ...featuresComposables.map(file => `./${file.replace('.ts', '.js')}`),
-        ],
-      })),
     ])
   }
+
   return options
 }) as Options[]

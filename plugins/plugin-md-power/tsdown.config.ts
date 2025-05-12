@@ -1,5 +1,5 @@
-import type { Options } from 'tsup'
-import { defineConfig } from 'tsup'
+import type { Options } from 'tsdown'
+import { defineConfig } from 'tsdown'
 import { argv } from '../../scripts/tsup-args.js'
 
 const config = [
@@ -16,12 +16,12 @@ const clientExternal = [
   /shared\/index\.js$/,
 ]
 
-export default defineConfig(() => {
+export default defineConfig((cli) => {
   const DEFAULT_OPTIONS: Options = {
     dts: true,
     sourcemap: false,
-    splitting: false,
     format: 'esm',
+    clean: !cli.watch,
   }
   const options: Options[] = []
 

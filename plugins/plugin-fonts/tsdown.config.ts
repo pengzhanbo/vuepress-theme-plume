@@ -1,5 +1,5 @@
-import type { Options } from 'tsup'
-import { defineConfig } from 'tsup'
+import type { Options } from 'tsdown'
+import { defineConfig } from 'tsdown'
 import { argv } from '../../scripts/tsup-args.js'
 
 const clientExternal: (string | RegExp)[] = [
@@ -11,7 +11,6 @@ export default defineConfig(() => {
   const DEFAULT_OPTIONS: Options = {
     dts: true,
     sourcemap: false,
-    splitting: false,
     format: 'esm',
   }
   const options: Options[] = []

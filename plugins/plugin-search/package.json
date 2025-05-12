@@ -31,10 +31,10 @@
     "lib"
   ],
   "scripts": {
-    "build": "pnpm run copy && pnpm run tsup",
+    "build": "pnpm run tsdown && pnpm run copy",
     "clean": "rimraf --glob ./lib",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
-    "tsup": "tsup --config tsup.config.ts"
+    "tsdown": "tsdown"
   },
   "peerDependencies": {
     "vuepress": "catalog:vuepress"

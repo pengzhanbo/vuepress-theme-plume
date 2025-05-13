@@ -1,3 +1,12 @@
+# [1.0.0-rc.148](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.147...v1.0.0-rc.148) (2025-05-13)
+
+
+### Bug Fixes
+
+* **cli:** tsdown `define` error ([6677dca](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6677dcae624a5f2a670e8a0e92724ec198795cec))
+
+
+
 # [1.0.0-rc.147](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.146...v1.0.0-rc.147) (2025-05-12)
 
 

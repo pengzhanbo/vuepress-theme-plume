@@ -139,9 +139,11 @@ export default defineUserConfig({
 
 ### icon
 
-- **类型**: `boolean | IconOptions`
-- **默认值**: `true`
-- **详情**: 是否启用图标语法
+- **类型**: `IconOptions`
+- **默认值**: `{ provider: 'iconify' }`
+- **详情**: 图标配置
+
+  [查看 **icon** 使用说明](../../theme/guide/features/icon.md){.read-more}
 
 ### plot
 

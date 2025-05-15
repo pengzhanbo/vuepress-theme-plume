@@ -52,3 +52,11 @@ const extraClasses = computed(() => {
     :style="{ color, ...size }"
   />
 </template>
+
+<style>
+.vp-icon.fontawesome {
+  display: inline-block;
+  line-height: inherit;
+  vertical-align: middle;
+}
+</style>

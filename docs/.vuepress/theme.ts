@@ -26,6 +26,9 @@ export const theme: Theme = plumeTheme({
     mermaid: true,
     flowchart: true,
 
+    // icon: { provider: 'iconfont', assets: '//at.alicdn.com/t/c/font_4920010_cm826bt13ke.css' },
+    icon: { provider: 'fontawesome' },
+
     annotation: true,
     abbr: true,
     timeline: true,

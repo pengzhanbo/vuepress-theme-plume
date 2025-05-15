@@ -57,7 +57,7 @@ export function timelinePlugin(md: Markdown): void {
     const attrs = token.meta as TimelineItemMeta
     attrs.card ??= undefined
     const icon = attrs.icon
-    return `<VPTimelineItem${stringifyAttrs(attrs, true)}>${icon ? `<template #icon><VPIcon name="${icon}"/></template>` : ''}`
+    return `<VPTimelineItem${stringifyAttrs(attrs, true)}>${icon ? `<template #icon><VPIcon provider="iconify" name="${icon}"/></template>` : ''}`
   }
 
   md.renderer.rules.timeline_item_close = () => '</VPTimelineItem>'

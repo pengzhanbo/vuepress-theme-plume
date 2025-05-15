@@ -117,7 +117,7 @@ export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}): voi
         ? `<template #comment>${md.renderInline(comment.replaceAll('#', '\#'))}</template>`
         : ''
       const renderedIcon = !isOmit
-        ? `<template #icon><VPIcon name="${getIcon(filename, nodeType, meta.icon)}" /></template>`
+        ? `<template #icon><VPIcon provider="iconify" name="${getIcon(filename, nodeType, meta.icon)}" /></template>`
         : ''
       const props: FileTreeNodeProps = {
         expanded: nodeType === 'folder' ? expanded : false,

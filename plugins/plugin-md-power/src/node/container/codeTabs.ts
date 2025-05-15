@@ -52,7 +52,7 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
 
       const titlesContent = titles.map((title, index) => {
         const icon = getIcon(title)
-        return `<template #title${index}="{ value, isActive }">${icon ? `<VPIcon name="${icon}"/>` : ''}<span>${title}</span></template>`
+        return `<template #title${index}="{ value, isActive }">${icon ? `<VPIcon provider="iconify" name="${icon}"/>` : ''}<span>${title}</span></template>`
       }).join('')
 
       return `<CodeTabs id="${index}" :data='${stringifyProp(tabsData)}'${active === -1 ? '' : ` :active="${active}"`}${meta.id ? ` tab-id="${meta.id as string}"` : ''}>${titlesContent}`

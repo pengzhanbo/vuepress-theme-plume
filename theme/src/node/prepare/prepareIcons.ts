@@ -1,4 +1,5 @@
 import type { App, Page } from 'vuepress'
+import type { IconOptions } from 'vuepress-plugin-md-power'
 import type { ThemeHomeConfig, ThemeNavItem, ThemeOptions, ThemeSidebar } from '../../shared/index.js'
 import type { FsCache } from '../utils/index.js'
 import { getIconContentCSS, getIconData } from '@iconify/utils'
@@ -22,6 +23,7 @@ const ICON_REGEXP = /<(?:VP)?(Icon|Card|LinkCard|Button)([^>]*)>/g
 const ICON_NAME_REGEXP = /(?:name|icon|suffix-icon)="([^"]+)"/
 const URL_CONTENT_REGEXP = /(url\([\s\S]+\))/
 const ICONIFY_NAME = /^[\w-]+:[\w-]+$/
+
 const JS_FILENAME = 'internal/iconify.js'
 const CSS_FILENAME = 'internal/iconify.css'
 
@@ -31,12 +33,6 @@ let locate!: ((name: string) => any)
 let fsCache: FsCache<IconDataMap> | null = null
 // { iconName: { className, content } }
 const cache: IconDataMap = {}
-
-function isIconify(icon: any): icon is string {
-  if (!icon || typeof icon !== 'string' || isLinkAbsolute(icon) || isLinkHttp(icon))
-    return false
-  return icon[0] !== '{' && ICONIFY_NAME.test(icon)
-}
 
 export async function prepareIcons(app: App): Promise<void> {
   perf.mark('prepare:icons:total')
@@ -51,9 +47,11 @@ export async function prepareIcons(app: App): Promise<void> {
   }
 
   perf.mark('prepare:pages:icons')
+
+  const iconOptions = options.markdown?.icon || {}
   const iconList: string[] = []
-  app.pages.forEach(page => iconList.push(...getIconsWithPage(page)))
-  iconList.push(...getIconWithThemeConfig(options))
+  app.pages.forEach(page => iconList.push(...getIconsWithPage(page, iconOptions)))
+  iconList.push(...getIconWithThemeConfig(options, iconOptions))
 
   const collectMap: CollectMap = {}
   uniq(iconList).filter((icon) => {
@@ -108,31 +106,49 @@ export async function prepareIcons(app: App): Promise<void> {
   perf.log('prepare:icons:total')
 }
 
-function getIconsWithPage(page: Page): string[] {
-  const list = page.contentRendered
-    .match(ICON_REGEXP)
-    ?.map(match => match.match(ICON_NAME_REGEXP)?.[1])
-    .filter(isIconify) as string[] || []
+function isIconify(icon: any): icon is string {
+  if (!icon || typeof icon !== 'string' || isLinkAbsolute(icon) || isLinkHttp(icon))
+    return false
+  return icon[0] !== '{' && ICONIFY_NAME.test(icon)
+}
+
+function withPrefix(icon: string, prefix?: string): string {
+  if (!prefix)
+    return icon
+  return icon.includes(':') ? icon : `${prefix}:${icon}`
+}
+
+function getIconsWithPage(page: Page, { provider = 'iconify', prefix }: IconOptions): string[] {
+  const list: string[] = []
+  const matches = page.contentRendered.match(ICON_REGEXP) || []
+  for (const matched of matches) {
+    if (provider === 'iconify' || matched.includes('provider="iconify"')) {
+      const icon = matched.match(ICON_NAME_REGEXP)?.[1]
+      if (isIconify(icon))
+        list.push(withPrefix(icon, prefix))
+    }
+  }
+
+  const addIcon = (icon: unknown): void => {
+    if (isIconify(icon) && (provider === 'iconify' || icon.startsWith('iconify'))) {
+      list.push(withPrefix(icon.replace(/^iconify /, ''), prefix))
+    }
+  }
 
   const fm = page.frontmatter
-  if (fm.icon && isIconify(fm.icon)) {
-    list.push(fm.icon)
-  }
+  addIcon(fm.icon)
 
   if ((fm.home || fm.pageLayout === 'home') && (fm.config as ThemeHomeConfig[])?.length) {
     for (const config of (fm.config as ThemeHomeConfig[])) {
       if (config.type === 'features' && config.features.length) {
         for (const feature of config.features) {
-          if (feature.icon && isIconify(feature.icon))
-            list.push(feature.icon)
+          addIcon(feature.icon)
         }
       }
       if (config.type === 'hero' && config.hero?.actions?.length) {
         for (const action of config.hero.actions) {
-          if (action.icon && isIconify(action.icon))
-            list.push(action.icon)
-          if (action.suffixIcon && isIconify(action.suffixIcon))
-            list.push(action.suffixIcon)
+          addIcon(action.icon)
+          addIcon(action.suffixIcon)
         }
       }
     }
@@ -141,7 +157,7 @@ function getIconsWithPage(page: Page): string[] {
   return list
 }
 
-function getIconWithThemeConfig(options: ThemeOptions): string[] {
+function getIconWithThemeConfig(options: ThemeOptions, { provider = 'iconify', prefix }: IconOptions): string[] {
   const list: string[] = []
   // navbar notes sidebar
   const locales = options.locales || {}
@@ -159,7 +175,13 @@ function getIconWithThemeConfig(options: ThemeOptions): string[] {
     sidebarList.forEach(sidebar => list.push(...getIconWithSidebar(sidebar)))
   })
 
-  return list.filter(isIconify)
+  const addIcon = (icon: unknown): string | void => {
+    if (isIconify(icon) && (provider === 'iconify' || icon.startsWith('iconify'))) {
+      return withPrefix(icon.replace(/^iconify /, ''), prefix)
+    }
+  }
+
+  return list.map(addIcon).filter(Boolean) as string[]
 }
 
 function getIconWithNavbar(navbar: ThemeNavItem[]): string[] {

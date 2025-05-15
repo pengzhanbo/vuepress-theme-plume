@@ -1,98 +1,85 @@
 <script setup lang="ts">
+import VPIconFa from '@theme/VPIconFa.vue'
+import VPIconfont from '@theme/VPIconfont.vue'
 import VPIconify from '@theme/VPIconify.vue'
+import VPIconImage from '@theme/VPIconImage.vue'
 import { computed } from 'vue'
-import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
-import { useIconsData } from '../composables/index.js'
 
 const props = defineProps<{
+  provider?: 'iconify' | 'iconfont' | 'fontawesome'
   name: string | { svg: string }
   size?: string | number
   color?: string
+  extra?: string
 }>()
 
-const iconsData = useIconsData()
+declare const __MD_POWER_ICON_PROVIDER__: 'iconify' | 'iconfont' | 'fontawesome'
+declare const __MD_POWER_ICON_PREFIX__: string
 
 const type = computed(() => {
+  const provider = props.provider || __MD_POWER_ICON_PROVIDER__
+  // name -> https://example.com/icon.svg
+  // name -> /icon.svg
   if (typeof props.name === 'string' && (isLinkHttp(props.name) || props.name[0] === '/')) {
     return 'link'
   }
+
+  // name -> { svg: '<svg></svg>' }
   if (typeof props.name === 'object' && !!props.name.svg) {
     return 'svg'
   }
-  if (typeof props.name === 'string' && iconsData.value[props.name]) {
-    return 'local'
+
+  if (provider === 'iconfont' || provider === 'fontawesome') {
+    return provider
   }
-  return 'remote'
+
+  return 'iconify'
 })
 
-const svg = computed(() => {
-  if (type.value === 'svg')
-    return (props.name as { svg: string }).svg
-
-  return ''
-})
-const link = computed(() => {
-  if (type.value === 'link') {
-    const link = props.name as string
-    return isLinkHttp(link) ? link : withBase(link)
-  }
-  return ''
-})
-
-const className = computed(() => {
-  if (type.value === 'local') {
-    const name = props.name as string
-    return iconsData.value[name] || ''
-  }
-  return ''
-})
+function parseSize(size: string | number): string {
+  if (String(Number(size)) === String(size))
+    return `${size}px`
+  return String(size)
+}
 
 const size = computed(() => {
   const size = props.size
   if (!size)
     return undefined
-  if (String(Number(size)) === size)
-    return `${size}px`
 
-  return size
+  const [width, height] = String(size)
+    .replaceAll('px', '[UNIT]')
+    .split('x')
+    .map(s => parseSize(s.replaceAll('[UNIT]', 'px').trim()))
+
+  return { width, height: height || width }
 })
-
-const style = computed(() => ({
-  'background-color': props.color,
-  'width': size.value,
-  'height': size.value,
+const binding = computed(() => ({
+  name: props.name as string,
+  color: props.color,
+  size: size.value,
+  prefix: __MD_POWER_ICON_PREFIX__ as any,
 }))
 </script>
 
 <template>
-  <span v-if="type === 'link'" class="vp-icon-img">
-    <img :src="link" alt="" :style="{ height: size }">
-  </span>
-  <span
-    v-else-if="type === 'svg'"
-    class="vp-icon"
-    :style="style"
-    v-html="svg"
+  <VPIconImage
+    v-if="type === 'link' || type === 'svg'"
+    :type="type" :name="name" :color="color" :size="size"
   />
-  <span
-    v-else-if="type === 'local' && className"
-    class="vp-icon" :class="[className]"
-    :style="style"
+  <VPIconfont
+    v-else-if="type === 'iconfont'"
+    v-bind="binding"
   />
-  <VPIconify v-else :name="(name as string)" :size="size" :color="color" />
+  <VPIconFa
+    v-else-if="type === 'fontawesome'"
+    :extra="extra"
+    v-bind="{ ...binding, ...$attrs }"
+  />
+  <VPIconify
+    v-else-if="type === 'iconify'"
+    :extra="extra"
+    v-bind="binding"
+  />
 </template>
-
-<style scoped>
-.vp-icon-img {
-  display: inline-block;
-  width: max-content;
-  height: 1em;
-  margin: 0 0.3em;
-  vertical-align: middle;
-}
-
-.vp-icon-img img {
-  height: 100%;
-}
-</style>

@@ -137,9 +137,9 @@ export default defineUserConfig({
 - **默认值**: `false`
 - **详情**: 是否启用 `npm-to` 容器
 
-### icons
+### icon
 
-- **类型**: `boolean | IconsOptions`
+- **类型**: `boolean | IconOptions`
 - **默认值**: `true`
 - **详情**: 是否启用图标语法
 

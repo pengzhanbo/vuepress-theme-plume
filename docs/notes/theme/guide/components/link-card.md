@@ -18,7 +18,7 @@ permalink: /guide/components/link-card/
 :::
 
 ::: field name="icon" type="string | { svg: string }" default="''" optional
-显示在标题左侧的图标，支持 iconify 所有图标，也可以使用 图片链接
+显示在标题左侧的图标，支持 [markdown.icon](../features/icon.md) 配置的提供商的图标，也可以使用 图片链接
 :::
 
 ::: field name="href" type="string" default="''" optional

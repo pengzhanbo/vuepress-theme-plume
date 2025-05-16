@@ -363,12 +363,12 @@ const coverStyles = computed(() => {
   transition: color var(--vp-t-color);
 }
 
-.excerpt.vp-doc :deep([class^="language-"]) {
+.excerpt.vp-doc :deep(div[class*="language-"]) {
   margin: 16px -16px;
 }
 
 @media (min-width: 496px) {
-  .excerpt.vp-doc :deep([class^="language-"]) {
+  .excerpt.vp-doc :deep(div[class*="language-"]) {
     margin: 16px 0;
   }
 }

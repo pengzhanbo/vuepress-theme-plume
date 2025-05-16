@@ -118,7 +118,7 @@ onMounted(() => {
   grid-column: span 2 / span 2;
 }
 
-.vp-code-tree .code-panel [class*="language-"] {
+.vp-code-tree .code-panel div[class*="language-"] {
   flex: 1 2;
   margin: 16px 0 0;
   overflow: auto;
@@ -128,7 +128,7 @@ onMounted(() => {
 
 @media (min-width: 768px) {
   .vp-code-tree .code-tree-panel .vp-file-tree,
-  .vp-code-tree .code-panel [class*="language-"] {
+  .vp-code-tree .code-panel div[class*="language-"] {
     overscroll-behavior: contain;
   }
 }

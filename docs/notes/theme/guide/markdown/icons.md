@@ -354,7 +354,7 @@ type FontAwesomePrefix =
 
 [在 **Fontawesome** 中，图标通过 families + styles 控制样式，**查看详情**](https://docs.fontawesome.com/web/add-icons/how-to#setting-different-families--styles){.read-more}
 
-为便于管理，可以通过 `::prefix:name` 语法，通过前缀设置 families + styles，默认前缀为 `fas`，可以省略它：
+为便于管理，可以通过 `::prefix:name::` 语法，通过前缀设置 families + styles，默认前缀为 `fas`，可以省略它：
 
 ```md
 ::name:: <!-- prefix = fas -->
@@ -379,7 +379,7 @@ Fontawesome 的免费图标仅支持 `solid` 、部分 `regular` 以及 `brands`
 
   ![fontawesome name](/images/icon/fontawesome-1.png)
 
-- 在 Markdown 中使用 `::prefix:name` 语法插入图标:
+- 在 Markdown 中使用 `::prefix:name::` 语法插入图标:
 
   ```md
   ::circle-user:: <!-- prefix = fas -->

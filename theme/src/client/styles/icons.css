@@ -1,6 +1,5 @@
 [class^="vpi-"],
-[class*=" vpi-"],
-.vp-icon {
+[class*=" vpi-"] {
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -8,8 +7,7 @@
 }
 
 [class^="vpi-"].bg,
-[class*=" vpi-"].bg,
-.vp-icon.bg {
+[class*=" vpi-"].bg {
   background-color: transparent;
   background-image: var(--icon);
   background-repeat: no-repeat;
@@ -17,8 +15,7 @@
 }
 
 [class^="vpi-"]:not(.bg),
-[class*=" vpi-"]:not(.bg),
-.vp-icon:not(.bg) {
+[class*=" vpi-"]:not(.bg) {
   color: inherit;
   background-color: currentcolor;
   -webkit-mask: var(--icon) no-repeat;

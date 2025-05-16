@@ -288,6 +288,10 @@ function onCaretClick() {
   margin: 0 0.25rem 0 0;
 }
 
+.item :deep(.vp-icon.fontawesome) {
+  line-height: 1;
+}
+
 .item:hover .caret {
   color: var(--vp-c-text-2);
 }

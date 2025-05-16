@@ -481,8 +481,19 @@ const typescript = defineNoteConfig({
 
 ### 侧边栏图标
 
-为侧边栏添加 ==图标== 有助于 侧边栏更好的呈现。得益于 [iconify](https://iconify.design/) 这个强大的开源图标库，
-你可以使用超过 `200k` 的图标，仅需要添加 `icon` 配置即可。
+为侧边栏添加 ==图标== 有助于 侧边栏更好的呈现。
+
+支持通过 [markdown -> icon](../guide/features/icon.md) 配置的来源的图标。
+
+- 当 `markdown.icon.provide` 为 `iconify` 时，支持 [iconify](https://iconify.design/) 图标
+- 当 `markdown.icon.provide` 为 `iconfont` 时，支持 [iconfont](https://www.iconfont.cn/) 图标
+- 当 `markdown.icon.provide` 为 `fontawesome` 时，支持 [fontawesome](https://fontawesome.com/) 图标
+
+`markdown.icon.provide` 为非 `iconify` 值时，可以在 图标名称前加上 `iconify` 前缀，强制使用 [iconify](https://iconify.design/) 图标。
+
+```ts
+const item = { text: '首页', link: '/', icon: 'iconify carbon:home' }
+```
 
 ```ts title=".vuepress/notes.ts" twoslash
 import { defineNoteConfig } from 'vuepress-theme-plume'

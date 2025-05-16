@@ -2,6 +2,7 @@ import type { App } from 'vuepress/core'
 import type { MarkdownPowerPluginOptions } from '../shared/index.js'
 import { ensureEndingSlash } from '@vuepress/helper'
 import { getDirname, path } from 'vuepress/utils'
+import { prepareIcon } from './icon/index.js'
 
 const { url: filepath } = import.meta
 const __dirname = getDirname(filepath)
@@ -130,6 +131,8 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('VPField', VPField)`)
   }
 
+  const setupIcon = prepareIcon(imports, options.icon)
+
   return app.writeTemp(
     'md-power/config.js',
     `\
@@ -143,6 +146,9 @@ export default defineClientConfig({
 ${Array.from(enhances.values())
   .map(item => `    ${item}`)
   .join('\n')}
+  },
+  setup() {
+    ${setupIcon}
   }
 })
 `,

@@ -52,7 +52,8 @@ export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
   'demo',
   'fileTree',
   'field',
-  'icons',
+  'icons', // deprecated
+  'icon',
   'imageSize',
   'jsfiddle',
   'npmTo',

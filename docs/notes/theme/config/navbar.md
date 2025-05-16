@@ -123,11 +123,7 @@ type NavItem = string | {
    */
   link: string
   /**
-   * 支持 iconify 图标，直接使用 iconify name 即可自动加载
-   * @see https://icon-sets.iconify.design/
-   *
-   * - 如果 iconify 图标不满足您的需求，也可以支持传入 svg 字符串。
-   * - 还支持使用 本地图片 或 远程图片，本地图片的路径需要以 `/` 开头。
+   * 图标名称，或者 svg 图标
    */
   icon?: string | { svg: string }
 
@@ -224,6 +220,20 @@ export default defineUserConfig({
 **示例：** `activeMatch: '^/(blog|article)/'`
 
 这表示，以 `/blog/` 或 `/article/` 开头的页面链接地址，该链接元素将被激活。
+
+### 图标
+
+支持通过 [markdown -> icon](../guide/features/icon.md) 配置的来源的图标。
+
+- 当 `markdown.icon.provide` 为 `iconify` 时，支持 [iconify](https://iconify.design/) 图标
+- 当 `markdown.icon.provide` 为 `iconfont` 时，支持 [iconfont](https://www.iconfont.cn/) 图标
+- 当 `markdown.icon.provide` 为 `fontawesome` 时，支持 [fontawesome](https://fontawesome.com/) 图标
+
+`markdown.icon.provide` 为非 `iconify` 值时，可以在 图标名称前加上 `iconify` 前缀，强制使用 [iconify](https://iconify.design/) 图标。
+
+```ts
+const item = { text: '首页', link: '/', icon: 'iconify carbon:home' }
+```
 
 ## 配置帮助函数
 

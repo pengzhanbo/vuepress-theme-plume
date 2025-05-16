@@ -2,7 +2,7 @@ import type { CanIUseOptions } from './caniuse.js'
 import type { CodeTabsOptions } from './codeTabs.js'
 import type { CodeTreeOptions } from './codeTree.js'
 import type { FileTreeOptions } from './fileTree.js'
-import type { IconsOptions } from './icons.js'
+import type { IconOptions } from './icon.js'
 import type { NpmToOptions } from './npmTo.js'
 import type { PDFOptions } from './pdf.js'
 import type { PlotOptions } from './plot.js'
@@ -41,13 +41,24 @@ export interface MarkdownPowerPluginOptions {
 
   // new syntax
   /**
+   * 是否启用 图标支持
+   * - iconify - `::collect:icon_name::` => `<VPIcon name="collect:icon_name" />`
+   * - iconfont - `::name::` => `<i class="iconfont icon-name"></i>`
+   * - fontawesome - `::fas:name::` => `<i class="fa-solid fa-name"></i>`
+   *
+   * @default false
+   */
+  icon?: IconOptions
+
+  /**
    * 是否启用 iconify 图标嵌入语法
    *
    * `::collect:icon_name::`
    *
    * @default false
+   * @deprecated use `icon` instead 该配置已弃用，请使用 `icon` 代替
    */
-  icons?: boolean | IconsOptions
+  icons?: boolean | IconOptions
   /**
    * 是否启用 隐秘文本 语法
    *

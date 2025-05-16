@@ -48,6 +48,7 @@ export const themeGuide: ThemeNote = defineNoteConfig({
             'tabs',
             'timeline',
             'demo-wrapper',
+            'flex',
             'collapse',
             'npm-to',
             'caniuse',

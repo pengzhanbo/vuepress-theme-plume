@@ -20,6 +20,21 @@ import { prepareData, watchPrepare } from './prepare/index.js'
 import { prepareThemeData } from './prepare/prepareThemeData.js'
 import { perf, resolve, setTranslateLang, templates, THEME_NAME } from './utils/index.js'
 
+/**
+ * VuePress Theme Plume
+ * @param options 主题配置
+ * @example
+ * ```ts
+ * import { defineUserConfig } from 'vuepress'
+ * import { plumeTheme } from 'vuepress-theme-plume'
+ *
+ * export default defineUserConfig({
+ *   theme: plumeTheme({
+ *     // ...options
+ *   })
+ * })
+ * ```
+ */
 export function plumeTheme(options: ThemeOptions = {}): Theme {
   return (app) => {
     setTranslateLang(app.options.lang)

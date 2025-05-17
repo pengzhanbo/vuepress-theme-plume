@@ -1,3 +1,24 @@
+# [1.0.0-rc.149](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.148...v1.0.0-rc.149) (2025-05-17)
+
+
+### Bug Fixes
+
+* **theme:** task list rendering error within firefox ([0425046](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0425046e9eb52db09654ec4415fd1a80ebc9d641))
+
+
+### Features
+
+* add multiple provider support for icon, close [#568](https://github.com/pengzhanbo/vuepress-theme-plume/issues/568) ([#596](https://github.com/pengzhanbo/vuepress-theme-plume/issues/596)) ([1497325](https://github.com/pengzhanbo/vuepress-theme-plume/commit/149732520a02b2a2042b466869f342e019cb6e88))
+* **plugin-md-power:** add flex container ([#597](https://github.com/pengzhanbo/vuepress-theme-plume/issues/597)) ([79af255](https://github.com/pengzhanbo/vuepress-theme-plume/commit/79af255cd8dd1f01cdc05b95ff7278a28009b5d0))
+
+
+### Performance Improvements
+
+* improve code block styles ([5d25599](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5d255998dbe4f0e008a88a07cc3c3e75b6ce3d00))
+* update deps to latest ([9ef8322](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9ef832294086b576318015312bea0ee7a3a7e616))
+
+
+
 # [1.0.0-rc.148](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.147...v1.0.0-rc.148) (2025-05-13)
 
 

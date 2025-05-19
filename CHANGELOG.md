@@ -1,3 +1,17 @@
+# [1.0.0-rc.150](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.149...v1.0.0-rc.150) (2025-05-19)
+
+
+### Bug Fixes
+
+* **theme:** fix incorrect icon rendering, close [#599](https://github.com/pengzhanbo/vuepress-theme-plume/issues/599) ([#600](https://github.com/pengzhanbo/vuepress-theme-plume/issues/600)) ([cd9c664](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cd9c664e81f93eb877701a7851094c0f09949a08))
+
+
+### Features
+
+* **cli:** improve template ([2ced06b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2ced06b72933eb9ed0e1c940ad029521c7ad7e4d))
+
+
+
 # [1.0.0-rc.149](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.148...v1.0.0-rc.149) (2025-05-17)
 
 

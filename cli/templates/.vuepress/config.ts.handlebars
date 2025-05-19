@@ -1,3 +1,14 @@
+/**
+ * 查看以下文档了解主题配置
+ * - @see https://theme-plume.vuejs.press/config/intro/ 配置说明
+ * - @see https://theme-plume.vuejs.press/config/theme/ 主题配置项
+ *
+ * 请注意，对此文件的修改都会重启 vuepress 服务。
+ * 部分配置项的更新没有必要重启 vuepress 服务，建议请在 `.vuepress/config.{{ useTs ? 'ts' : 'js' }}` 文件中配置
+ *
+ * 特别的，请不要在两个配置文件中重复配置相同的项，当前文件的配置项会被覆盖
+ */
+
 import { {{ bundler }}Bundler } from '@vuepress/bundler-{{ bundler }}'
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
@@ -118,7 +129,7 @@ export default defineUserConfig({
     //   youtube: true,      // 启用嵌入 youtube视频 语法 @[youtube](video_id)
     //   artPlayer: true,    // 启用嵌入 artPlayer 本地视频 语法 @[artPlayer](url)
     //   audioReader: true,  // 启用嵌入音频朗读功能 语法 @[audioReader](url)
-    //   icons: true,        // 启用内置图标语法  ::icon-name::
+    //   icon: { provider: 'iconify' },        // 启用内置图标语法  ::icon-name::
     //   codepen: true,      // 启用嵌入 codepen 语法 @[codepen](user/slash)
     //   replit: true,       // 启用嵌入 replit 语法 @[replit](user/repl-name)
     //   codeSandbox: true,  // 启用嵌入 codeSandbox 语法 @[codeSandbox](id)

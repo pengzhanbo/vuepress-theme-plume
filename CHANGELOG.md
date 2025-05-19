@@ -1,3 +1,12 @@
+# [1.0.0-rc.151](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.150...v1.0.0-rc.151) (2025-05-19)
+
+
+### Bug Fixes
+
+* **cli:** template generate fail ([d63deb5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d63deb5076a21575d64bbb0eac36d0259f4554cc))
+
+
+
 # [1.0.0-rc.150](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.149...v1.0.0-rc.150) (2025-05-19)
 
 

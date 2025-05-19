@@ -1,7 +1,7 @@
 /**
  * @see https://theme-plume.vuejs.press/guide/document/ 查看文档了解配置详情。
  *
- * Notes 配置文件，它在 `.vuepress/plume.config.{{ useTs ? 'ts' : 'js' }}` 中被导入。
+ * Notes 配置文件，它在 `.vuepress/plume.config.{{#if useTs}}ts{{else}}js{{/if}}` 中被导入。
  *
  * 请注意，你应该先在这里配置好 Notes，然后再启动 vuepress，主题会在启动 vuepress 时，
  * 读取这里配置的 Notes，然后在与 Note 相关的 Markdown 文件中，自动生成 permalink。

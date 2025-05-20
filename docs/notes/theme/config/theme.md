@@ -528,7 +528,7 @@ interface LastUpdatedOptions {
 
 - **类型：** `ProfileOptions`
 - **默认值：** `{}`
-- **详情：**配置站点博主的个人信息
+- **详情：** 配置站点博主的个人信息
   - `profile.avatar`: 头像地址，用于右侧博主信息展示
   - `profile.name`: 名称， 用于右侧博主信息展示
   - `profile.description`: 个人描述，用于右侧博主信息展示

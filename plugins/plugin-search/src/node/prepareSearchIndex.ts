@@ -49,6 +49,9 @@ export async function prepareSearchIndex({
   searchOptions,
 }: SearchIndexOptions): Promise<void> {
   const start = performance.now()
+  indexByLocales.clear()
+  indexCache.clear()
+
   const pages = isSearchable ? app.pages.filter(isSearchable) : app.pages
   await pMap(pages, p => indexFile(p, searchOptions), {
     concurrency: 64,

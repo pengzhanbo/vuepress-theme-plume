@@ -1,0 +1,21 @@
+diff --git a/dist/floating-vue.mjs b/dist/floating-vue.mjs
+index d54beb90f1fd341fb0aa41e1503afdbbece12cbb..fa6207d11b72af5249f04978958a147e9e3b4bcf 100644
+--- a/dist/floating-vue.mjs
++++ b/dist/floating-vue.mjs
+@@ -946,6 +946,7 @@ function mt(e, t, o, i, s, r) {
+   const p = P("ResizeObserver");
+   return f(), T("div", {
+     id: e.popperId,
++    'data-allow-mismatch': '',
+     ref: "popover",
+     class: J(["v-popper__popper", [
+       e.themeClass,
+@@ -966,7 +967,7 @@ function mt(e, t, o, i, s, r) {
+       position: e.result.strategy,
+       transform: `translate3d(${Math.round(e.result.x)}px,${Math.round(e.result.y)}px,0)`
+     } : void 0),
+-    "aria-hidden": e.shown ? "false" : "true",
++    "aria-hidden": e.shown || e.autoHide ? "false" : "true",
+     tabindex: e.autoHide ? 0 : void 0,
+     "data-popper-placement": e.result ? e.result.placement : void 0,
+     onKeyup: t[2] || (t[2] = je((a) => e.autoHide && e.$emit("hide"), ["esc"]))

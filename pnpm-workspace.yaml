@@ -4,12 +4,14 @@ packages:
   - cli
   - plugins/*
   - examples/*
-
 overrides:
   '@typescript-eslint/utils': ^8.32.1
   esbuild: ^0.25.4
   sass: ^1.89.0
   sass-embedded: ^1.89.0
+
+patchedDependencies:
+  floating-vue: patches/floating-vue.patch
 
 catalogs:
   dev:
@@ -52,7 +54,6 @@ catalogs:
     vitest: ^3.1.3
     vue-router: ^4.5.1
     wait-on: ^8.0.3
-
   peer:
     '@iconify/json': ^2.2.339
     artplayer: ^5.2.3
@@ -64,7 +65,6 @@ catalogs:
     sass-embedded: ^1.89.0
     sass-loader: ^16.0.5
     swiper: ^11.2.6
-
   prod:
     '@clack/prompts': ^0.10.1
     '@iconify/utils': ^2.3.0
@@ -116,7 +116,6 @@ catalogs:
     tm-themes: ^1.10.6
     unplugin: ^2.3.4
     vue: ^3.5.14
-
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.23
     '@vuepress/helper': 2.0.0-rc.105
@@ -139,7 +138,6 @@ catalogs:
     '@vuepress/shiki-twoslash': 2.0.0-rc.105
     vuepress: 2.0.0-rc.23
     vuepress-plugin-md-enhance: 2.0.0-rc.88
-
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - core-js

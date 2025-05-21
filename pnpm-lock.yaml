@@ -367,6 +367,11 @@ overrides:
   sass: ^1.89.0
   sass-embedded: ^1.89.0
 
+patchedDependencies:
+  floating-vue:
+    hash: c8e9cd61468e959201bb251258241870423ca2ca7ae2e8a184210e0f20619fd5
+    path: patches/floating-vue.patch
+
 importers:
 
   .:
@@ -9509,7 +9514,7 @@ snapshots:
     dependencies:
       '@shikijs/twoslash': 3.4.2(typescript@5.8.3)
       '@vuepress/helper': 2.0.0-rc.105(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.19)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.0)(sass@1.89.0)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
-      floating-vue: 5.2.2(vue@3.5.14(typescript@5.8.3))
+      floating-vue: 5.2.2(patch_hash=c8e9cd61468e959201bb251258241870423ca2ca7ae2e8a184210e0f20619fd5)(vue@3.5.14(typescript@5.8.3))
       mdast-util-from-markdown: 2.0.2
       mdast-util-gfm: 3.1.0
       mdast-util-to-hast: 13.2.0
@@ -11051,7 +11056,7 @@ snapshots:
 
   flatted@3.3.3: {}
 
-  floating-vue@5.2.2(vue@3.5.14(typescript@5.8.3)):
+  floating-vue@5.2.2(patch_hash=c8e9cd61468e959201bb251258241870423ca2ca7ae2e8a184210e0f20619fd5)(vue@3.5.14(typescript@5.8.3)):
     dependencies:
       '@floating-ui/dom': 1.1.1
       vue: 3.5.14(typescript@5.8.3)

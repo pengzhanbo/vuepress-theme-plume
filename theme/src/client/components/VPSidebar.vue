@@ -2,7 +2,7 @@
 import VPSidebarGroup from '@theme/VPSidebarGroup.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { useScrollLock } from '@vueuse/core'
-import { onMounted, ref, watch } from 'vue'
+import { nextTick, onMounted, ref, watch } from 'vue'
 import { useRoutePath } from 'vuepress/client'
 import { useData, useSidebar } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
@@ -31,19 +31,31 @@ watch(
   { immediate: true, flush: 'post' },
 )
 
+/**
+ * Scroll to active item
+ */
 onMounted(() => {
-  const activeItem = document.querySelector(
-    `.vp-sidebar .vp-link[href*="${routePath.value}"]`,
-  )
-  if (!activeItem || !navEl.value)
-    return
+  watch(sidebarKey, async () => {
+    await nextTick()
+    const activeItem = document.querySelector(
+      `.vp-sidebar .vp-link[href*="${routePath.value}"]`,
+    )
+    if (!navEl.value)
+      return
 
-  const { top: navTop, height: navHeight } = navEl.value.getBoundingClientRect()
-  const { top: activeTop, height: activeHeight }
+    if (!activeItem) {
+      // 等待动画进入透明状态后再重置滚动位置，避免内容闪烁
+      setTimeout(() => navEl.value?.scrollTo(0, 0), 200)
+      return
+    }
+
+    const { top: navTop, height: navHeight } = navEl.value.getBoundingClientRect()
+    const { top: activeTop, height: activeHeight }
     = activeItem.getBoundingClientRect()
 
-  if (activeTop < navTop || activeTop + activeHeight > navTop + navHeight)
-    activeItem.scrollIntoView({ block: 'center' })
+    if (activeTop < navTop || activeTop + activeHeight > navTop + navHeight)
+      activeItem.scrollIntoView({ block: 'center' })
+  }, { immediate: true, flush: 'post' })
 })
 </script>
 

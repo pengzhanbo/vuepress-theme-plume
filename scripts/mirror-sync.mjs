@@ -3,6 +3,7 @@ import { request } from 'node:https'
 import path from 'node:path'
 import process from 'node:process'
 import { URL } from 'node:url'
+import pc from 'picocolors'
 
 const pluginsDir = path.resolve(process.cwd(), 'plugins')
 const plugins = fs.readdirSync(pluginsDir)
@@ -23,13 +24,12 @@ async function npmMirrorSync() {
     return new Promise((resolve, reject) => {
       const req = request(url, {
         method: 'PUT',
-        headers: {
-          'Content-Length': 0,
-        },
+        headers: { 'Content-Length': 0 },
       })
       req.write('')
 
       req.on('close', () => {
+        console.log(`${pc.green('✓')} sync ${pc.cyan(pkg)}`)
         resolve()
       })
 
@@ -44,7 +44,7 @@ async function npmMirrorSync() {
 
 try {
   await npmMirrorSync()
-  console.log('npm mirror sync success !')
+  console.log(pc.green('npm mirror sync success !'))
 }
 catch (error) {
   console.error(error)

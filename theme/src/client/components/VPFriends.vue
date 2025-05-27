@@ -7,7 +7,7 @@ import { computed } from 'vue'
 import { useData, useEditLink } from '../composables/index.js'
 
 const editLink = useEditLink()
-const { frontmatter: matter } = useData<'friends'>()
+const { frontmatter: matter, page } = useData<'friends'>()
 
 const list = computed(() => matter.value.list || [])
 const groups = computed(() => matter.value.groups || [])
@@ -20,7 +20,7 @@ const groups = computed(() => matter.value.groups || [])
     <h2 class="title">
       {{ matter.title || 'My Friends' }}
     </h2>
-    <p v-if="matter.description" class="description">
+    <p v-if="matter.description && !page.autoDesc" class="description">
       {{ matter.description }}
     </p>
     <section v-if="list.length" class="friends-list">

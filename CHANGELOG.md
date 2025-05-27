@@ -1,3 +1,23 @@
+# [1.0.0-rc.152](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.151...v1.0.0-rc.152) (2025-05-27)
+
+
+### Bug Fixes
+
+* **plugin-search:** reset search index cache ([#603](https://github.com/pengzhanbo/vuepress-theme-plume/issues/603)) ([7592eaf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7592eafd3861f138f781e8e98c2835c7021a4abb))
+* **theme:** ensure friends description from user ([3ba41b9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3ba41b90b84a565a4c0d35f11585b9af969f13b1))
+
+
+### Features
+
+* **theme:** sidebar auto scroll into active link ([#604](https://github.com/pengzhanbo/vuepress-theme-plume/issues/604)) ([c9ead12](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c9ead12e35624872e3d8b134bdb455c2d52d3c65))
+
+
+### Performance Improvements
+
+* update deps to latest ([d2a849a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d2a849af6499ac3b45df65b62746b4a1dce410f5))
+
+
+
 # [1.0.0-rc.151](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.150...v1.0.0-rc.151) (2025-05-19)
 
 

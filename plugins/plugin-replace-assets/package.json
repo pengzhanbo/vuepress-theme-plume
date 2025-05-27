@@ -1,7 +1,7 @@
 {
   "name": "vuepress-plugin-replace-assets",
   "type": "module",
-  "version": "1.0.0-rc.151",
+  "version": "1.0.0-rc.152",
   "description": "The Plugin for VuePress 2 - replace assets url",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",

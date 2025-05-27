@@ -12,7 +12,7 @@
  */
 
 import type { PDFEmbedType, PDFTokenMeta } from '../../shared/index.js'
-import { checkIsiPad, checkIsMobile, checkIsSafari } from '@vuepress/helper/client'
+import { isiPad, isMobile, isSafari } from '@vuepress/helper/client'
 import { withBase } from 'vuepress/client'
 import { ensureEndingSlash, isLinkHttp } from 'vuepress/shared'
 import { pluginOptions } from '../options.js'
@@ -86,10 +86,10 @@ export function usePDF(
   const isModernBrowser = typeof window.Promise === 'function'
 
   // Quick test for mobile devices.
-  const isMobileDevice = checkIsiPad(userAgent) || checkIsMobile(userAgent)
+  const isMobileDevice = isiPad(userAgent) || isMobile(userAgent)
 
   // Safari desktop requires special handling
-  const isSafariDesktop = !isMobileDevice && checkIsSafari(userAgent)
+  const isSafariDesktop = !isMobileDevice && isSafari(userAgent)
 
   const isFirefoxWithPDFJS
     = !isMobileDevice

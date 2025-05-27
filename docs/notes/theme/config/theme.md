@@ -664,7 +664,7 @@ type NavItem = string | {
         {
           text: 'Group',
           prefix: '/group/',
-          item: ['foo/', 'bar/'],
+          items: ['foo/', 'bar/'],
         },
         // 字符串 - 页面文件路径
         '/bar', // 可以直接省略后缀 `.md`

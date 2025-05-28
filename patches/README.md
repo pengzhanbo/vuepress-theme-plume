@@ -8,7 +8,7 @@
 
 **进度：** 暂不知晓该包何时修复该问题。
 
-**影响：** 在控制台中输出 `hydration hydration mismatch` 错误警告，但不影响站点正常访问和交互。
+**影响：** 在控制台中输出 `hydration mismatch` 错误警告，但不影响站点正常访问和交互。
 
 相关 issue：
 
@@ -58,8 +58,8 @@ hydration mismatch
 4. 在该行下方插入新的一行，内容为：
 
    ```diff
-   id: e.popperId,
-   +    'data-allow-mismatch': '',
+      id: e.popperId,
+   +  'data-allow-mismatch': '',
    ```
 
 5. 复制 步骤 1 中的控制台输出的 `pnpm patch-commit <path>` 命令，并粘贴到控制台中执行。

@@ -5,7 +5,9 @@
 ## floating-vue
 
 **问题：** 水合过程中激活不匹配
+
 **进度：** 暂不知晓该包何时修复该问题。
+
 **影响：** 在控制台中输出 `hydration hydration mismatch` 错误警告，但不影响站点正常访问和交互。
 
 相关 issue：
@@ -17,7 +19,7 @@
 访问部署后的站点，在有使用 `twoslash` 功能的相关页面，会出现下面的错误信息：
 
 ```
-hydration hydration mismatch
+hydration mismatch
 ```
 
 这表示在 水合过程中激活不匹配，即打包后的 SSR 代码与浏览器端代码不匹配。

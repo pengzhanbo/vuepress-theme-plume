@@ -76,7 +76,7 @@ const audioReader: RuleInline = (state, silent) => {
 
 export const audioReaderPlugin: PluginWithOptions<never> = (md) => {
   md.renderer.rules.audio_reader = (tokens, idx) => {
-    const meta = (tokens[idx].meta ?? {}) as AudioReaderTokenMeta
+    const meta = tokens[idx].meta as AudioReaderTokenMeta
     if (meta.startTime)
       meta.startTime = Number(meta.startTime)
 

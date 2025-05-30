@@ -2,6 +2,7 @@ import type { IconOptions } from '../../shared/index.js'
 import { notNullish, toArray, uniqueBy } from '@pengzhanbo/utils'
 import { isLinkAbsolute } from '@vuepress/helper'
 import { isLinkHttp } from 'vuepress/shared'
+import { logger } from '../utils/logger.js'
 
 interface AssetInfo {
   type: 'style' | 'script'
@@ -76,7 +77,7 @@ function normalizeAsset(asset: string, provide?: string): AssetInfo | null {
   if (asset.endsWith('.css')) {
     return { type: 'style', link, provide }
   }
-  console.error(`[vuepress:icon] Can not recognize icon link: "${asset}"`)
+  logger.error('icon', `Can not recognize icon link: "${asset}"`)
   return null
 }
 

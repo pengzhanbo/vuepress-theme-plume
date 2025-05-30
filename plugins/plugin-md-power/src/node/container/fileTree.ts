@@ -5,17 +5,26 @@ import { defaultFile, defaultFolder, getFileIcon } from '../fileIcons/index.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerSyntaxPlugin } from './createContainer.js'
 
+/**
+ * 文件树节点结构
+ */
 interface FileTreeNode {
   info: string
   level: number
   children: FileTreeNode[]
 }
 
+/**
+ * 文件树容器属性
+ */
 interface FileTreeAttrs {
   title?: string
   icon?: FileTreeIconMode
 }
 
+/**
+ * 文件树节点属性（用于渲染组件）
+ */
 export interface FileTreeNodeProps {
   filename: string
   comment?: string
@@ -26,6 +35,11 @@ export interface FileTreeNodeProps {
   level?: number
 }
 
+/**
+ * 解析原始文件树内容为节点树结构
+ * @param content 文件树的原始文本内容
+ * @returns 文件树节点数组
+ */
 export function parseFileTreeRawContent(content: string): FileTreeNode[] {
   const root: FileTreeNode = { info: '', level: -1, children: [] }
   const stack: FileTreeNode[] = [root]
@@ -54,6 +68,11 @@ export function parseFileTreeRawContent(content: string): FileTreeNode[] {
 
 const RE_FOCUS = /^\*\*(.*)\*\*(?:$|\s+)/
 
+/**
+ * 解析单个节点的 info 字符串，提取文件名、注释、类型等属性
+ * @param info 节点描述字符串
+ * @returns 文件树节点属性
+ */
 export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
   let filename = ''
   let comment = ''
@@ -62,6 +81,7 @@ export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
   let type: 'folder' | 'file' = 'file'
   let diff: 'add' | 'remove' | undefined
 
+  // 处理 diff 标记
   if (info.startsWith('++')) {
     info = info.slice(2).trim()
     diff = 'add'
@@ -71,12 +91,14 @@ export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
     diff = 'remove'
   }
 
+  // 处理高亮（focus）标记
   info = info.replace(RE_FOCUS, (_, matched) => {
     filename = matched
     focus = true
     return ''
   })
 
+  // 提取文件名和注释
   if (filename === '' && !focus) {
     const spaceIndex = info.indexOf(' ')
     filename = info.slice(0, spaceIndex === -1 ? info.length : spaceIndex)
@@ -85,6 +107,7 @@ export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
 
   comment = info.trim()
 
+  // 判断是否为文件夹
   if (filename.endsWith('/')) {
     type = 'folder'
     expanded = false
@@ -94,7 +117,15 @@ export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
   return { filename, comment, focus, expanded, type, diff }
 }
 
+/**
+ * 文件树 markdown 插件主函数
+ * @param md markdown 实例
+ * @param options 文件树渲染选项
+ */
 export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}): void {
+  /**
+   * 获取文件或文件夹的图标
+   */
   const getIcon = (filename: string, type: 'folder' | 'file', mode?: FileTreeIconMode): string => {
     mode ||= options.icon || 'colored'
     if (mode === 'simple')
@@ -102,12 +133,16 @@ export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}): voi
     return getFileIcon(filename, type)
   }
 
+  /**
+   * 递归渲染文件树节点
+   */
   const renderFileTree = (nodes: FileTreeNode[], meta: FileTreeAttrs): string =>
     nodes.map((node) => {
       const { info, level, children } = node
       const { filename, comment, focus, expanded, type, diff } = parseFileTreeNodeInfo(info)
       const isOmit = filename === '…' || filename === '...' /* fallback */
 
+      // 文件夹无子节点时补充省略号
       if (children.length === 0 && type === 'folder') {
         children.push({ info: '…', level: level + 1, children: [] })
       }
@@ -132,6 +167,7 @@ ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children
 </FileTreeNode>`
     }).join('\n')
 
+  // 注册自定义容器语法插件
   return createContainerSyntaxPlugin(
     md,
     'file-tree',

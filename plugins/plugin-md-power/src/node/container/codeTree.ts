@@ -61,6 +61,9 @@ const UNSUPPORTED_FILE_TYPES = [
   'xlsx',
 ]
 
+/**
+ * code-tree 容器元信息
+ */
 interface CodeTreeMeta {
   title?: string
   /**
@@ -78,6 +81,9 @@ interface CodeTreeMeta {
   entry?: string
 }
 
+/**
+ * 文件树节点类型
+ */
 interface FileTreeNode {
   level: number
   children?: FileTreeNode[]
@@ -85,6 +91,11 @@ interface FileTreeNode {
   filepath?: string
 }
 
+/**
+ * 将文件路径数组解析为文件树节点结构
+ * @param files 文件路径数组
+ * @returns 文件树节点数组
+ */
 function parseFileNodes(files: string[]): FileTreeNode[] {
   const nodes: FileTreeNode[] = []
   for (const file of files) {
@@ -111,7 +122,16 @@ function parseFileNodes(files: string[]): FileTreeNode[] {
   return nodes
 }
 
+/**
+ * 注册 code-tree 容器和嵌入语法的 markdown 插件
+ * @param md markdown-it 实例
+ * @param app vuepress app 实例
+ * @param options code-tree 配置项
+ */
 export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions = {}): void {
+  /**
+   * 获取文件或文件夹的图标
+   */
   const getIcon = (filename: string, type: 'folder' | 'file', mode?: FileTreeIconMode): string => {
     mode ||= options.icon || 'colored'
     if (mode === 'simple')
@@ -119,6 +139,9 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
     return getFileIcon(filename, type)
   }
 
+  /**
+   * 渲染文件树节点为组件字符串
+   */
   function renderFileTree(nodes: FileTreeNode[], mode?: FileTreeIconMode): string {
     return nodes.map((node) => {
       const props: FileTreeNodeProps & { filepath?: string } = {
@@ -136,8 +159,10 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       .join('\n')
   }
 
+  // 注册 ::: code-tree 容器
   createContainerPlugin(md, 'code-tree', {
     before: (info, tokens, index) => {
+      // 收集 code-tree 容器内的文件名和激活文件
       const files: string[] = []
       let activeFile: string | undefined
       for (
@@ -172,6 +197,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
     after: () => '</VPCodeTree>',
   })
 
+  // 注册 @[code-tree](dir) 语法
   createEmbedRuleBlock(md, {
     type: 'code-tree',
     syntaxPattern: /^@\[code-tree([^\]]*)\]\(([^)]*)\)/,
@@ -187,8 +213,10 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       }
     },
     content: ({ dir, icon, ...props }, _, env) => {
+      // codeTreeFiles 用于页面依赖收集
       const codeTreeFiles = ((env as any).codeTreeFiles ??= []) as string[]
       const root = findFile(app, env, dir)
+      // 获取目录下所有文件
       const files = globSync('**/*', {
         cwd: root,
         onlyFiles: true,
@@ -201,6 +229,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       })
       props.entryFile ||= files[0]
 
+      // 生成所有文件的代码块内容
       const codeContent = files.map((file) => {
         const ext = path.extname(file).slice(1)
         if (UNSUPPORTED_FILE_TYPES.includes(ext)) {
@@ -220,6 +249,10 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
   })
 }
 
+/**
+ * 扩展页面依赖，将 codeTreeFiles 添加到页面依赖中
+ * @param page vuepress 页面对象
+ */
 export function extendsPageWithCodeTree(page: Page): void {
   const markdownEnv = page.markdownEnv
   const codeTreeFiles = (markdownEnv.codeTreeFiles ?? []) as string[]

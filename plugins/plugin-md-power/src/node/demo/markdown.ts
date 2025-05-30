@@ -1,6 +1,8 @@
 import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
+import { colors } from 'vuepress/utils'
+import { logger } from '../utils/logger.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { findFile, readFileSync } from './supports/file.js'
 
@@ -13,7 +15,7 @@ export function markdownEmbed(
   const filepath = findFile(app, env, url)
   const code = readFileSync(filepath)
   if (code === false) {
-    console.warn('[vuepress-plugin-md-power] Cannot read markdown file:', filepath)
+    logger.warn('demo-markdown', `Cannot read markdown file: ${colors.gray(filepath)}\n  at: ${colors.gray(env.filePathRelative || '')}`)
     return ''
   }
   const demo: DemoFile = { type: 'markdown', path: filepath }

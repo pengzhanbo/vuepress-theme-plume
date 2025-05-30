@@ -2,6 +2,7 @@ import type { PluginWithOptions } from 'markdown-it'
 import type { MarkdownEnv } from 'vuepress/markdown'
 import type { IconOptions } from '../../shared/index.js'
 import { colors } from 'vuepress/utils'
+import { logger } from '../utils/logger.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createIconRule } from './createIconRule.js'
 import { resolveIcon } from './resolveIcon.js'
@@ -42,7 +43,7 @@ export const iconPlugin: PluginWithOptions<IconOptions> = (md, options = {}) => 
       const [size, color] = opt.trim().split('/')
       icon = `${name}${size ? ` =${size}` : ''}${color ? ` /${color}` : ''}`
 
-      console.warn(`The icon syntax of \`${colors.yellow(`:[${content}]:`)}\` is deprecated, please use \`${colors.green(`::${icon}::`)}\` instead. (${colors.gray(env.filePathRelative || env.filePath)})`)
+      logger.warn('icon', `The icon syntax of \`${colors.yellow(`:[${content}]:`)}\` is deprecated, please use \`${colors.green(`::${icon}::`)}\` instead. (${colors.gray(env.filePathRelative || env.filePath)})`)
     }
 
     return iconRender(icon, options)

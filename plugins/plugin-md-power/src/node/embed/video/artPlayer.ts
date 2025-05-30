@@ -6,6 +6,7 @@ import type { PluginWithOptions } from 'markdown-it'
 import type { ArtPlayerTokenMeta } from '../../../shared/index.js'
 import { isPackageExists } from 'local-pkg'
 import { colors } from 'vuepress/utils'
+import { logger } from '../../utils/logger.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
@@ -75,11 +76,11 @@ function checkSupportType(type?: string) {
     }
     /* istanbul ignore if -- @preserve */
     if (name) {
-      console.warn(`${colors.yellow('[vuepress-plugin-md-power] artPlayer: ')} ${colors.cyan(name)} is not installed, please install it via npm or yarn or pnpm`)
+      logger.warn('artPlayer', `${colors.cyan(name)} is not installed, please install it via npm or yarn or pnpm`)
     }
   }
   else {
     /* istanbul ignore next -- @preserve */
-    console.warn(`${colors.yellow('[vuepress-plugin-md-power] artPlayer: ')} unsupported video type: ${colors.cyan(type)}`)
+    logger.warn('artPlayer', `unsupported video type: ${colors.cyan(type)}`)
   }
 }

@@ -3,6 +3,8 @@ import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
 import fs from 'node:fs'
 import path from 'node:path'
+import { colors } from 'vuepress/utils'
+import { logger } from '../utils/logger.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { compileScript, compileStyle } from './supports/compiler.js'
 import { findFile, readFileSync, writeFileSync } from './supports/file.js'
@@ -89,7 +91,7 @@ export async function compileCode(code: NormalCode, output: string): Promise<voi
     }
   }
   catch (e) {
-    console.error('[vuepress-plugin-md-power] demo parse error: \n', e)
+    logger.error('demo-normal', 'demo parse error: \n', e)
   }
 
   writeFileSync(output, `import { ref } from "vue"\nexport default ref(${JSON.stringify(res, null, 2)})`)
@@ -106,7 +108,7 @@ export function normalEmbed(
   const code = readFileSync(filepath)
 
   if (code === false) {
-    console.warn('[vuepress-plugin-md-power] Cannot read demo file:', filepath)
+    logger.warn('demo-normal', `Cannot read demo file: ${colors.gray(filepath)}\n  at: ${colors.gray(env.filePathRelative || '')}`)
     return ''
   }
   const source = parseEmbedCode(code)

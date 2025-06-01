@@ -18,7 +18,7 @@ defineProps<{
       <VPLink :href="href" no-icon class="link no-icon" v-bind="{ target, rel }">
         <slot name="title">
           <VPIcon v-if="icon" :name="icon" />
-          <span v-if="title" v-html="title" />
+          <span v-if="title" class="text" v-html="title" />
         </slot>
       </VPLink>
       <slot>
@@ -51,12 +51,18 @@ defineProps<{
   box-shadow: var(--vp-shadow-2);
 }
 
+.vp-link-card :deep(.vp-icon),
+.vp-link-card :deep(.vp-icon-img) {
+  margin: 0;
+}
+
 .vp-link-card .body {
   display: flex;
   flex: 1 2;
   flex-direction: column;
   gap: 16px;
   align-items: flex-start;
+  width: 1px;
 }
 
 .vp-link-card .body > * {
@@ -67,10 +73,12 @@ defineProps<{
   display: flex;
   gap: 8px;
   align-items: center;
+  max-width: 100%;
   font-size: 18px;
   font-weight: 700;
   color: var(--vp-c-text-1);
   text-decoration: none;
+  transition: color var(--vp-t-color);
 }
 
 .vp-link-card .link::before {
@@ -83,6 +91,13 @@ defineProps<{
 .vp-link-card .link :deep(.vp-icon),
 .vp-link-card .link :deep(.vp-icon-img) {
   margin: 0;
+}
+
+.vp-link-card .link .text {
+  display: inline-block;
+  flex: 1 2;
+  min-width: 0;
+  word-wrap: break-word;
 }
 
 .vpi-arrow-right {

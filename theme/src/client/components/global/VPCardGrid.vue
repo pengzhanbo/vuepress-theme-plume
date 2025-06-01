@@ -52,7 +52,8 @@ onMounted(() => {
   margin: 16px 0;
 }
 
-.vp-card-grid > * {
+.vp-card-grid > :deep(*) {
+  min-width: 0;
   margin: 0 !important;
 }
 </style>

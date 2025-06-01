@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { BlogPostCoverStyle, ThemeBlogPostItem } from '../../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
-import { useMediaQuery } from '@vueuse/core'
-import { computed } from 'vue'
+import { isMobile as _isMobile } from '@vuepress/helper/client'
+import { computed, onMounted, ref } from 'vue'
 import { useData, useInternalLink, useTagColors } from '../../composables/index.js'
 
 const props = defineProps<{
@@ -10,8 +10,16 @@ const props = defineProps<{
   index: number
 }>()
 
+const isMobile = ref(false)
+
+onMounted(() => {
+  isMobile.value = _isMobile(navigator.userAgent)
+  window.addEventListener('resize', () => {
+    isMobile.value = _isMobile(navigator.userAgent)
+  })
+})
+
 const { blog } = useData()
-const isMobile = useMediaQuery('(max-width: 496px)')
 const colors = useTagColors()
 const { categories: categoriesLink, tags: tagsLink } = useInternalLink()
 

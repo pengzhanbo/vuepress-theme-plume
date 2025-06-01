@@ -15,6 +15,7 @@ import {
 } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { computed, onMounted } from 'vue'
+import { withBase } from 'vuepress/client'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -68,8 +69,9 @@ const props = withDefaults(defineProps<Props>(), {
 const slideList = computed<SlideItem[]>(() => {
   return props.items?.map((link) => {
     if (typeof link === 'string')
-      return { link }
+      return { link: withBase(link) }
 
+    link.link = withBase(link.link)
     return link
   }) ?? []
 })

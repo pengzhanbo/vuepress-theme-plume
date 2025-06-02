@@ -18,6 +18,7 @@ export async function langReplPlugin(app: App, md: markdownIt, {
   go = false,
   kotlin = false,
   rust = false,
+  python = false,
 }: ReplOptions): Promise<void> {
   const container = (lang: string): void => createContainerPlugin(md, `${lang}-repl`, {
     before(info) {
@@ -36,6 +37,9 @@ export async function langReplPlugin(app: App, md: markdownIt, {
 
   if (rust)
     container('rust')
+
+  if (python)
+    container('python')
 
   theme ??= { light: 'github-light', dark: 'github-dark' }
 
@@ -66,6 +70,9 @@ export async function langReplPlugin(app: App, md: markdownIt, {
 
     if (rust)
       data.grammars.rust = await readGrammar('rust')
+
+    if (python)
+      data.grammars.rust = await readGrammar('python')
   }
   catch {
     /* istanbul ignore next -- @preserve */

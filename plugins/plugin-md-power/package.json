@@ -86,6 +86,7 @@
     "lru-cache": "catalog:prod",
     "markdown-it-container": "catalog:prod",
     "nanoid": "catalog:prod",
+    "pyodide": "catalog:prod",
     "shiki": "catalog:prod",
     "tinyglobby": "catalog:prod",
     "tm-grammars": "catalog:prod",

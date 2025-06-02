@@ -50,6 +50,7 @@ export const theme: Theme = plumeTheme({
       go: true,
       rust: true,
       kotlin: true,
+      python: true,
     },
   },
 

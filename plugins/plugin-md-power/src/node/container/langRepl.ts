@@ -72,7 +72,7 @@ export async function langReplPlugin(app: App, md: markdownIt, {
       data.grammars.rust = await readGrammar('rust')
 
     if (python)
-      data.grammars.rust = await readGrammar('python')
+      data.grammars.python = await readGrammar('python')
   }
   catch {
     /* istanbul ignore next -- @preserve */

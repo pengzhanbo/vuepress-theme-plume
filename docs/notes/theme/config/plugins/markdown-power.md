@@ -190,6 +190,12 @@ __语法:__
 // kotlin code
 ```
 :::
+
+::: python-repl
+```python
+# python code
+```
+:::
 ````
 
 请查看完整使用文档:
@@ -197,6 +203,7 @@ __语法:__
 - [代码演示 > Rust](../../guide/repl/rust.md)
 - [代码演示 > Golang](../../guide/repl/golang.md)
 - [代码演示 > Kotlin](../../guide/repl/kotlin.md)
+- [代码演示 > Python](../../guide/repl/python.md)
 
 ### Plot 隐秘文本
 

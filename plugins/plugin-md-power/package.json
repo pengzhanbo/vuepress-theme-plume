@@ -47,6 +47,7 @@
     "less": "catalog:dev",
     "markdown-it": "catalog:dev",
     "mpegts.js": "^1.7.3",
+    "pyodide": "catalog:peer",
     "sass": "catalog:peer",
     "sass-embedded": "catalog:peer",
     "stylus": "catalog:dev",
@@ -66,6 +67,9 @@
       "optional": true
     },
     "mpegts.js": {
+      "optional": true
+    },
+    "pyodide": {
       "optional": true
     }
   },

@@ -44,7 +44,7 @@ export async function containerPlugin(
   }
 
   if (options.repl)
-    // ::: rust-repl / go-repl / kotlin-repl
+    // ::: rust-repl / go-repl / kotlin-repl / python-repl
     await langReplPlugin(app, md, options.repl)
 
   if (options.fileTree) {

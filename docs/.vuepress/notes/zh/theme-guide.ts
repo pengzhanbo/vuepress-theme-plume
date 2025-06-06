@@ -80,6 +80,7 @@ export const themeGuide: ThemeNote = defineNoteConfig({
             'rust',
             'golang',
             'kotlin',
+            'python',
             'codepen',
             'jsFiddle',
             'codeSandbox',

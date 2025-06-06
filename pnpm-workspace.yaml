@@ -61,6 +61,7 @@ catalogs:
     hls.js: ^1.6.2
     mathjax-full: ^3.2.2
     mpegts.js: 1.7.3
+    pyodide: ^0.27.6
     sass: ^1.89.0
     sass-embedded: ^1.89.0
     sass-loader: ^16.0.5

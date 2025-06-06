@@ -142,6 +142,9 @@ catalogs:
     mpegts.js:
       specifier: 1.7.3
       version: 1.7.3
+    pyodide:
+      specifier: ^0.27.6
+      version: 0.27.6
     sass-loader:
       specifier: ^16.0.5
       version: 16.0.5
@@ -647,6 +650,9 @@ importers:
       nanoid:
         specifier: catalog:prod
         version: 5.1.5
+      pyodide:
+        specifier: catalog:peer
+        version: 0.27.6
       sass:
         specifier: ^1.89.0
         version: 1.89.0
@@ -5787,6 +5793,10 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
+  pyodide@0.27.6:
+    resolution: {integrity: sha512-ahiSHHs6iFKl2f8aO1wALINAlMNDLAtb44xCI87GQyH2tLDk8F8VWip3u1ZNIyglGSCYAOSFzWKwS1f9gBFVdg==}
+    engines: {node: '>=18.0.0'}
+
   qs@6.13.1:
     resolution: {integrity: sha512-EJPeIn0CYrGu+hli1xilKAPXODtJ12T0sP63Ijx2/khC2JtuaN3JyNIpvmnkmaEtha9ocbG4A4cMcr+TvqvwQg==}
     engines: {node: '>=0.6'}
@@ -6978,6 +6988,18 @@ packages:
   write-file-atomic@5.0.1:
     resolution: {integrity: sha512-+QU2zd6OTD8XWIJCbffaiQeH9U73qIqafo1x6V1snCWYGJf6cVE0cDR4D8xRzcEnfI21IFrUPzPGtcPf8AC+Rw==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+
+  ws@8.18.2:
+    resolution: {integrity: sha512-DMricUmwGZUVr++AEAe2uiVM7UoO9MAVZMDu05UQOaUII0lp+zOzLLU4Xqh/JvTqklB1T4uELaaPBKyjE1r4fQ==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
 
   xml-name-validator@4.0.0:
     resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==}
@@ -12569,6 +12591,13 @@ snapshots:
 
   punycode@2.3.1: {}
 
+  pyodide@0.27.6:
+    dependencies:
+      ws: 8.18.2
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
   qs@6.13.1:
     dependencies:
       side-channel: 1.1.0
@@ -13797,6 +13826,8 @@ snapshots:
     dependencies:
       imurmurhash: 0.1.4
       signal-exit: 4.1.0
+
+  ws@8.18.2: {}
 
   xml-name-validator@4.0.0: {}
 

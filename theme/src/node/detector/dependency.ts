@@ -7,6 +7,7 @@ import { createTranslate, logger } from '../utils/index.js'
 
 const DEPENDENCIES: Record<string, string[]> = {
   twoslash: ['@vuepress/shiki-twoslash'],
+  pythonRepl: ['pyodide'],
 
   chartjs: ['chart.js'],
   echarts: ['echarts'],
@@ -48,6 +49,9 @@ export function detectDependencies(options: ThemeOptions, plugins: ThemeBuiltinP
 
   if (options.codeHighlighter && options.codeHighlighter.twoslash)
     add('twoslash')
+
+  if (markdown.repl && markdown.repl.python)
+    add('pythonRepl')
 
   ;['chartjs', 'echarts', 'markmap', 'mermaid', 'flowchart'].forEach((dep) => {
     if (markdown[dep] || mdEnhance[dep])

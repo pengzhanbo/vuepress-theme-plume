@@ -1,3 +1,4 @@
+import type { PyodideInterface } from 'pyodide'
 import type { Ref } from 'vue'
 import { onMounted, ref } from 'vue'
 import { http } from '../utils/http.js'
@@ -10,8 +11,9 @@ const api = {
   go: 'https://api.pengzhanbo.cn/repl/golang/run',
   kotlin: 'https://api.pengzhanbo.cn/repl/kotlin/run',
 }
+let pyodide: PyodideInterface | null = null
 
-type Lang = 'kotlin' | 'go' | 'rust'
+type Lang = 'kotlin' | 'go' | 'rust' | 'python'
 type ExecuteFn = (code: string) => Promise<any>
 type ExecuteMap = Record<Lang, ExecuteFn>
 
@@ -21,9 +23,11 @@ const langAlias: Record<string, string> = {
   go: 'go',
   rust: 'rust',
   rs: 'rust',
+  py: 'python',
+  python: 'python',
 }
 
-const supportLang: Lang[] = ['kotlin', 'go', 'rust']
+const supportLang: Lang[] = ['kotlin', 'go', 'rust', 'python']
 
 function resolveLang(lang?: string) {
   return lang ? langAlias[lang] || lang : ''
@@ -88,6 +92,7 @@ export function useCodeRepl(el: Ref<HTMLDivElement | null>): UseCodeReplResult {
     kotlin: executeKotlin,
     go: executeGolang,
     rust: executeRust,
+    python: executePython,
   }
 
   function onCleanRun(): void {
@@ -188,6 +193,24 @@ export function useCodeRepl(el: Ref<HTMLDivElement | null>): UseCodeReplResult {
         finished.value = true
       },
     })
+  }
+
+  async function executePython(code: string) {
+    loaded.value = false
+    finished.value = false
+    if (pyodide === null) {
+      const { loadPyodide, version } = await import(/* webpackChunkName: "pyodide" */ 'pyodide')
+      pyodide = await loadPyodide({ indexURL: `https://cdn.jsdelivr.net/pyodide/v${version}/full/` })
+    }
+    pyodide.setStdout({ batched: msg => stdout.value.push(msg) })
+    try {
+      stdout.value.push(pyodide.runPython(code))
+    }
+    catch (e: unknown) {
+      stderr.value.push(String(e as Error))
+    }
+    loaded.value = true
+    finished.value = true
   }
 
   return {

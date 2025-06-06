@@ -13,6 +13,7 @@ export interface ReplOptions {
   go?: boolean
   kotlin?: boolean
   rust?: boolean
+  python?: boolean
 }
 
 export interface ReplEditorData {
@@ -20,6 +21,7 @@ export interface ReplEditorData {
     go?: any
     kotlin?: any
     rust?: any
+    python?: any
   }
   theme: ThemeRegistration | {
     light: ThemeRegistration

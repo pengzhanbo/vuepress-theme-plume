@@ -17,6 +17,14 @@ exports[`langReplPlugin > should work with custom options 1`] = `
 </code></pre></div></code></pre>
 </CodeRepl><CodeRepl editable title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
+</CodeRepl><CodeRepl title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
 </CodeRepl>"
 `;
 
@@ -31,6 +39,9 @@ exports[`langReplPlugin > should work with custom options 2`] = `
     },
     "rust": {
       "language": "rust"
+    },
+    "python": {
+      "language": "python"
     }
   },
   "theme": {
@@ -61,6 +72,14 @@ exports[`langReplPlugin > should work with custom theme 1`] = `
 </code></pre></div></code></pre>
 </CodeRepl><CodeRepl editable title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
+</CodeRepl><CodeRepl title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
 </CodeRepl>"
 `;
 
@@ -75,6 +94,9 @@ exports[`langReplPlugin > should work with custom theme 2`] = `
     },
     "rust": {
       "language": "rust"
+    },
+    "python": {
+      "language": "python"
     }
   }
 }"
@@ -111,6 +133,22 @@ exports[`langReplPlugin > should work with default options 1`] = `
 <p>:::</p>
 <p>::: rust-repl editable title=&quot;title&quot;</p>
 <pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: python-repl</p>
+<pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: python-repl editable</p>
+<pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: python-repl title=&quot;title&quot;</p>
+<pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: python-repl editable title=&quot;title&quot;</p>
+<pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
 </code></pre></div></code></pre>
 <p>:::</p>
 "

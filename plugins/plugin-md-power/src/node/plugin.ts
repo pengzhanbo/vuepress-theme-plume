@@ -30,6 +30,9 @@ export function markdownPowerPlugin(
           app,
           ['shiki/core', 'shiki/wasm', 'shiki/engine/oniguruma'],
         )
+
+        if (options.repl.python)
+          addViteOptimizeDepsInclude(bundlerOptions, app, ['pyodide'])
       }
       if (options.artPlayer) {
         addViteOptimizeDepsInclude(

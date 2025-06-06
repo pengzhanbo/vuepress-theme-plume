@@ -142,6 +142,9 @@ catalogs:
     mpegts.js:
       specifier: 1.7.3
       version: 1.7.3
+    pyodide:
+      specifier: ^0.27.6
+      version: 0.27.6
     sass-loader:
       specifier: ^16.0.5
       version: 16.0.5
@@ -278,9 +281,6 @@ catalogs:
     picocolors:
       specifier: ^1.1.1
       version: 1.1.1
-    pyodide:
-      specifier: ^0.27.6
-      version: 0.27.6
     shiki:
       specifier: ^3.4.2
       version: 3.4.2
@@ -651,7 +651,7 @@ importers:
         specifier: catalog:prod
         version: 5.1.5
       pyodide:
-        specifier: catalog:prod
+        specifier: catalog:peer
         version: 0.27.6
       sass:
         specifier: ^1.89.0

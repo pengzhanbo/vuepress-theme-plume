@@ -1,6 +1,5 @@
 import type { PyodideInterface } from 'pyodide'
 import type { Ref } from 'vue'
-import { loadPyodide, version as pyodideVersion } from 'pyodide'
 import { onMounted, ref } from 'vue'
 import { http } from '../utils/http.js'
 import { sleep } from '../utils/sleep.js'
@@ -200,14 +199,15 @@ export function useCodeRepl(el: Ref<HTMLDivElement | null>): UseCodeReplResult {
     loaded.value = false
     finished.value = false
     if (pyodide === null) {
-      pyodide = await loadPyodide({ indexURL: `https://cdn.jsdelivr.net/pyodide/v${pyodideVersion}/full/` })
+      const { loadPyodide, version } = await import(/* webpackChunkName: "pyodide" */ 'pyodide')
+      pyodide = await loadPyodide({ indexURL: `https://cdn.jsdelivr.net/pyodide/v${version}/full/` })
     }
     pyodide.setStdout({ batched: msg => stdout.value.push(msg) })
     try {
       stdout.value.push(pyodide.runPython(code))
     }
-    catch (e) {
-      stderr.value.push(e)
+    catch (e: unknown) {
+      stderr.value.push(String(e as Error))
     }
     loaded.value = true
     finished.value = true

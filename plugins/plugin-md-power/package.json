@@ -47,6 +47,7 @@
     "less": "catalog:dev",
     "markdown-it": "catalog:dev",
     "mpegts.js": "^1.7.3",
+    "pyodide": "catalog:peer",
     "sass": "catalog:peer",
     "sass-embedded": "catalog:peer",
     "stylus": "catalog:dev",
@@ -67,6 +68,9 @@
     },
     "mpegts.js": {
       "optional": true
+    },
+    "pyodide": {
+      "optional": true
     }
   },
   "dependencies": {
@@ -86,7 +90,6 @@
     "lru-cache": "catalog:prod",
     "markdown-it-container": "catalog:prod",
     "nanoid": "catalog:prod",
-    "pyodide": "catalog:prod",
     "shiki": "catalog:prod",
     "tinyglobby": "catalog:prod",
     "tm-grammars": "catalog:prod",

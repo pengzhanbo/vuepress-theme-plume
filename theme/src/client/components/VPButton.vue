@@ -42,7 +42,7 @@ function linkTo(e: Event) {
     :is="component"
     class="vp-button"
     :class="[size, theme]"
-    :href="link?.[0] === '#' ? link : withBase(link || '')"
+    :href=" link ? link[0] === '#' || isExternal ? link : withBase(link) : undefined"
     :target="target ?? (isExternal ? '_blank' : undefined)"
     :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"

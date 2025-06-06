@@ -29,7 +29,7 @@ function linkTo(e: Event) {
 <template>
   <Component
     :is="tag" class="vp-link no-icon" :class="{ link }"
-    :href="link ? withBase(link) : undefined"
+    :href="link ? isExternal ? link : withBase(link) : undefined"
     :target="target ?? (isExternal ? '_blank' : undefined)"
     :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"

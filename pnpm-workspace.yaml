@@ -81,7 +81,7 @@ catalogs:
     '@pengzhanbo/utils': ^2.1.0
     '@vueuse/core': ^13.3.0
     '@vueuse/integrations': ^13.3.0
-    bcrypt-ts: ^7.0.1
+    bcrypt-ts: ^7.0.0
     cac: ^6.7.14
     chart.js: ^4.4.9
     chokidar: 3.6.0

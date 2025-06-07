@@ -192,8 +192,8 @@ catalogs:
       specifier: ^13.3.0
       version: 13.3.0
     bcrypt-ts:
-      specifier: ^7.0.1
-      version: 7.0.1
+      specifier: ^7.0.0
+      version: 7.0.0
     cac:
       specifier: ^6.7.14
       version: 6.7.14
@@ -822,7 +822,7 @@ importers:
         version: 13.3.0(vue@3.5.16(typescript@5.8.3))
       bcrypt-ts:
         specifier: catalog:prod
-        version: 7.0.1
+        version: 7.0.0
       chokidar:
         specifier: catalog:prod
         version: 3.6.0
@@ -3155,8 +3155,8 @@ packages:
   bcp-47@2.1.0:
     resolution: {integrity: sha512-9IIS3UPrvIa1Ej+lVDdDwO7zLehjqsaByECw0bu2RRGP73jALm6FYbzI5gWbgHLvNdkvfXB5YrSbocZdOS0c0w==}
 
-  bcrypt-ts@7.0.1:
-    resolution: {integrity: sha512-WnxFPBUO3CICEneNAw6k+gl/9/2YfYmbwgcmHLk+el83W/vObExc0YX7zYBfsT1rwakOxFs2UPgAafSWsmoCuQ==}
+  bcrypt-ts@7.0.0:
+    resolution: {integrity: sha512-JMr30sbKPwF+2TccaNOYJuDx+nCmnTvHGB2rwkj+To/xZhBTX9f8zpTqGy3kpkS26KWOEYPsQlOJ5MVD00RHQQ==}
     engines: {node: '>=20'}
 
   binary-extensions@2.3.0:
@@ -9567,7 +9567,7 @@ snapshots:
       is-alphanumerical: 2.0.1
       is-decimal: 2.0.1
 
-  bcrypt-ts@7.0.1: {}
+  bcrypt-ts@7.0.0: {}
 
   binary-extensions@2.3.0: {}
 

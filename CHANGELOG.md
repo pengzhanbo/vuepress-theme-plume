@@ -1,3 +1,30 @@
+# [1.0.0-rc.153](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.152...v1.0.0-rc.153) (2025-06-07)
+
+
+### Bug Fixes
+
+* **theme:** fix blog cover layout error in mobile ([#611](https://github.com/pengzhanbo/vuepress-theme-plume/issues/611)) ([3c2a347](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3c2a34729ebcf53573e975dfc992a25d9313ec8d))
+* **theme:** fix blog cover link with `base` ([#608](https://github.com/pengzhanbo/vuepress-theme-plume/issues/608)) ([7ed3f6f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7ed3f6ffd13349c3cea9b9fd01caf4583a796673))
+* **theme:** fix code block highlight word rendering incorrect ([7634455](https://github.com/pengzhanbo/vuepress-theme-plume/commit/76344550fc2fbd76d54ec0368f89a180cd723ce9))
+* **theme:** fix external non-HTTP link redirection ([#614](https://github.com/pengzhanbo/vuepress-theme-plume/issues/614)) ([c21c9bd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c21c9bdefa48bf2564b0fedca7bd89e1501070a2))
+* **theme:** fix swiper slide link with `base` ([#609](https://github.com/pengzhanbo/vuepress-theme-plume/issues/609)) ([46effe8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/46effe886689fad833eb0df600062f54ecf5bff4))
+
+
+### Features
+
+* **cli:** update vue to latest ([921e810](https://github.com/pengzhanbo/vuepress-theme-plume/commit/921e8100aeaddb30cdff41740deb8b2db0cf7255))
+* **plugin-md-power:** enable python code repl([#585](https://github.com/pengzhanbo/vuepress-theme-plume/issues/585)) ([#613](https://github.com/pengzhanbo/vuepress-theme-plume/issues/613)) ([1f89d7f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1f89d7f5152f36cf5bd779868279d564306b6c1f))
+* **plugin-md-power:** improve logger ([#607](https://github.com/pengzhanbo/vuepress-theme-plume/issues/607)) ([d6a4741](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d6a47419e492bb42c6b7f1990e4a8c309ede0524))
+* **plugin-md-power:** update `@mdi/*` deps to latest ([#612](https://github.com/pengzhanbo/vuepress-theme-plume/issues/612)) ([8f9eb16](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8f9eb1666f92d5a319ab383b2d404178a6659f93))
+* **theme:** improve `Card*` styles ([#610](https://github.com/pengzhanbo/vuepress-theme-plume/issues/610)) ([d5ea846](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d5ea846e8aeb9865b166ee8f297c447d9ce49ae9))
+
+
+### Performance Improvements
+
+* update deps to latest ([f864ccb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f864ccb187ba3bcbcb0d972b72a2c715b8d9d963))
+
+
+
 # [1.0.0-rc.152](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.151...v1.0.0-rc.152) (2025-05-27)
 
 

@@ -172,6 +172,13 @@ blog:
     url: https://paiad.online
     repo: https://github.com/paiad
     preview: https://paiad.online/paiad-blog.png
+  -
+    name: 𝙆𝙞𝙖𝙣𝙜
+    desc: 坚持热爱，奔赴山海
+    logo: https://haipeng-lin.oss-cn-shenzhen.aliyuncs.com/20250608222708.png
+    url: https://blog.haipeng-lin.cn/
+    repo: https://github.com/haipeng-lin
+    preview: https://haipeng-lin.oss-cn-shenzhen.aliyuncs.com/20250608223536.png
 ---
 
 :::important

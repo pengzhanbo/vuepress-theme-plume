@@ -52,6 +52,13 @@ docs:
     url: https://docs.shougan.net
     repo: https://github.com/SuJingnan/vuepress-theme-plume
     preview: https://docs.shougan.net/images/docs-proview.png
+  -
+    name: 搜广推宇宙漫游指南
+    desc: 探索搜索、推荐、广告算法的迷人宇宙
+    logo: https://raw.githubusercontent.com/1985312383/search-rec-ads-cosmos-explorer/refs/heads/main/docs/.vuepress/public/img/favicon.png
+    url: https://1985312383.github.io/search-rec-ads-cosmos-explorer/
+    repo: https://github.com/1985312383/search-rec-ads-cosmos-explorer
+    preview: https://raw.githubusercontent.com/1985312383/search-rec-ads-cosmos-explorer/refs/heads/main/docs/.vuepress/public/img/preview.jpg
 blog:
   -
     name: 鹏展博

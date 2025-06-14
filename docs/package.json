@@ -15,6 +15,7 @@
     "@iconify/json": "catalog:peer",
     "@simonwep/pickr": "catalog:dev",
     "@vuepress/bundler-vite": "catalog:vuepress",
+    "@vuepress/plugin-llms": "catalog:vuepress",
     "@vuepress/shiki-twoslash": "catalog:vuepress",
     "chart.js": "catalog:prod",
     "echarts": "catalog:prod",

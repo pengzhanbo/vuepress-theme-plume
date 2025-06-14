@@ -225,8 +225,13 @@ function fetchImageSize(src: string): Promise<ImgSize> {
           catch {}
         }
 
-        const { width, height } = imageSize(Buffer.concat(chunks))
-        resolve({ width: width!, height: height! })
+        try {
+          const { width, height } = imageSize(Buffer.concat(chunks))
+          resolve({ width: width!, height: height! })
+        }
+        catch {
+          resolve({ width: 0, height: 0 })
+        }
       })
       .on('error', () => resolve({ width: 0, height: 0 }))
   })

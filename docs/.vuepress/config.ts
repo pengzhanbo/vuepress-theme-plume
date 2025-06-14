@@ -3,7 +3,9 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { addViteOptimizeDepsInclude, addViteSsrExternal } from '@vuepress/helper'
+import { llmsPlugin } from '@vuepress/plugin-llms'
 import { defineUserConfig } from 'vuepress'
+import { tocGetter } from './llmstxtTOC.js'
 import { theme } from './theme.js'
 
 const pnpmWorkspace = fs.readFileSync(path.resolve(__dirname, '../../pnpm-workspace.yaml'), 'utf-8')
@@ -44,6 +46,16 @@ export default defineUserConfig({
     '~/components': path.resolve(__dirname, './themes/components'),
     '~/composables': path.resolve(__dirname, './themes/composables'),
   },
+
+  plugins: [
+    llmsPlugin({
+      llmsTxtTemplateGetter: {
+        description: '一个简约易用的，功能丰富的 vuepress 文档&博客 主题',
+        details: '',
+        toc: tocGetter,
+      },
+    }),
+  ],
 
   bundler: viteBundler(),
   shouldPrefetch: false,

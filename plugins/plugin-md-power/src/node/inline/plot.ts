@@ -60,9 +60,15 @@ const plotDef: RuleInline = (state, silent) => {
   state.posMax = state.pos
   state.pos = start + 2
 
-  const token = state.push('plot_inline', 'Plot', 0)
-  token.markup = '!!'
-  token.content = content
+  const openToken = state.push('plot_inline_open', 'Plot', 1)
+  openToken.markup = '!!'
+  openToken.content = content
+
+  const contentToken = state.push('text', '', 0)
+  contentToken.content = content
+
+  const closeToken = state.push('plot_inline_close', 'Plot', -1)
+  closeToken.markup = '!!'
 
   state.pos = state.posMax + 2
   state.posMax = max
@@ -71,9 +77,5 @@ const plotDef: RuleInline = (state, silent) => {
 }
 
 export const plotPlugin: PluginWithOptions<never> = (md) => {
-  md.renderer.rules.plot_inline = (tokens, idx) => {
-    const token = tokens[idx]
-    return `<Plot>${token.content}</Plot>`
-  }
   md.inline.ruler.before('emphasis', 'plot', plotDef)
 }

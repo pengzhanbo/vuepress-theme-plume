@@ -1,5 +1,6 @@
 ---
 pageLayout: home
+title: Vuepress Theme Plume
 config:
   -
     type: hero

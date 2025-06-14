@@ -38,6 +38,7 @@ export function tocGetter(llmPages: LLMPage[], llmState: LLMState): string {
     const page = llmPages.find((item) => {
       return ensureLeadingSlash(item.filePathRelative || '') === filepath || link === item.path
     })
+
     if (page) {
       usagePages.push(page)
       return rawGenerateTOCLink(page, llmState)
@@ -48,9 +49,9 @@ export function tocGetter(llmPages: LLMPage[], llmState: LLMState): string {
   const processAutoSidebar = (prefix: string): string[] => {
     const list: string[] = []
     llmPages.forEach((page) => {
-      if (page.path.startsWith(prefix)) {
+      if (ensureLeadingSlash(page.filePathRelative || '').startsWith(prefix)) {
         usagePages.push(page)
-        list.push(generateTOCLink(page.path))
+        list.push(rawGenerateTOCLink(page, llmState))
       }
     })
     return list.filter(Boolean)
@@ -80,17 +81,17 @@ export function tocGetter(llmPages: LLMPage[], llmState: LLMState): string {
   // Notes
   zhNotes.notes.forEach(({ dir, link, sidebar = [] }) => {
     tableOfContent += `### ${noteNames[link]}\n\n`
-
+    const prefix = normalizePath('/notes/', dir)
     if (sidebar === 'auto') {
-      tableOfContent += `${processAutoSidebar(link).join('')}\n`
+      tableOfContent += `${processAutoSidebar(prefix).join('')}\n`
     }
     else if (sidebar.length) {
-      const index = llmPages.findIndex(page => page.path === link)
-      if (index !== -1) {
-        usagePages.push(llmPages[index])
-        tableOfContent += rawGenerateTOCLink(llmPages[index], llmState)
+      const home = generateTOCLink(ensureEndingSlash(prefix))
+      const list = processSidebar(sidebar, prefix)
+      if (home && !list.includes(home)) {
+        list.unshift(home)
       }
-      tableOfContent += `${processSidebar(sidebar, normalizePath('/notes/', dir)).join('')}\n`
+      tableOfContent += `${list.join('')}\n`
     }
   })
 

@@ -8,6 +8,7 @@ import { demoPlugin, demoWatcher, extendsPageWithDemo, waitDemoRender } from './
 import { embedSyntaxPlugin } from './embed/index.js'
 import { docsTitlePlugin } from './enhance/docsTitle.js'
 import { imageSizePlugin } from './enhance/imageSize.js'
+import { linksPlugin } from './enhance/links.js'
 import { iconPlugin } from './icon/index.js'
 import { inlineSyntaxPlugin } from './inline/index.js'
 import { prepareConfigFile } from './prepareConfigFile.js'
@@ -44,6 +45,7 @@ export function markdownPowerPlugin(
     },
 
     extendsMarkdown: async (md, app) => {
+      linksPlugin(md)
       docsTitlePlugin(md)
       embedSyntaxPlugin(md, options)
       inlineSyntaxPlugin(md, options)

@@ -16,7 +16,7 @@ const router = useRouter()
 
 const tag = computed(() => props.tag ?? (props.href ? 'a' : 'span'))
 
-const { link, isExternal } = useLink(toRef(props, 'href'), toRef(props, 'target'))
+const { link, isExternal, isExternalProtocol } = useLink(toRef(props, 'href'), toRef(props, 'target'))
 
 function linkTo(e: Event) {
   if (!isExternal.value && link.value) {
@@ -28,8 +28,8 @@ function linkTo(e: Event) {
 
 <template>
   <Component
-    :is="tag" class="vp-link no-icon" :class="{ link }"
-    :href="link ? isExternal ? link : withBase(link) : undefined"
+    :is="tag" class="vp-link" :class="{ link, 'no-icon': noIcon }"
+    :href="link ? isExternalProtocol ? link : withBase(link) : undefined"
     :target="target ?? (isExternal ? '_blank' : undefined)"
     :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"
@@ -37,12 +37,12 @@ function linkTo(e: Event) {
     <slot>
       {{ text || href }}
     </slot>
-    <span v-if="isExternal && !noIcon" class="vpi-external-link icon" />
+    <span v-if="isExternal && !noIcon" class="vpi-external-link" />
   </Component>
 </template>
 
-<style scoped>
-.icon {
+<style>
+.vp-link .vpi-external-link {
   width: 11px;
   height: 11px;
   margin-top: -1px;

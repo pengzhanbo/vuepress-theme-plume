@@ -29,12 +29,8 @@ export default defineUserConfig({
 鼠标悬停触发，或者点击触发
 :::
 
-::: field name="mask" type="string | { light: string, dark: string }" default="'#000'" optional
-遮罩颜色
-:::
-
-::: field name="color" type="string | { light: string, dark: string }" default="'#fff'" optional
-文本颜色
+::: field name="effect" type="'blur' | 'mask'" default="'mask'" optional
+遮罩层效果，或者文本模糊效果
 :::
 
 ::::

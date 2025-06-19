@@ -46,7 +46,7 @@ catalogs:
     mermaid: ^11.6.0
     minimist: ^1.2.8
     rimraf: ^6.0.1
-    stylelint: ^16.20.0
+    stylelint: ^16.21.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
     tsdown: ^0.12.8
@@ -69,16 +69,16 @@ catalogs:
     '@clack/prompts': ^0.11.0
     '@iconify/utils': ^2.3.0
     '@iconify/vue': ^5.0.0
-    '@mdit/plugin-attrs': ^0.23.0
-    '@mdit/plugin-footnote': ^0.22.1
+    '@mdit/plugin-attrs': ^0.23.1
+    '@mdit/plugin-footnote': ^0.22.2
     '@mdit/plugin-mark': ^0.22.1
     '@mdit/plugin-sub': ^0.22.1
     '@mdit/plugin-sup': ^0.22.1
-    '@mdit/plugin-tab': ^0.22.1
+    '@mdit/plugin-tab': ^0.22.2
     '@mdit/plugin-tasklist': ^0.22.1
     '@pengzhanbo/utils': ^2.1.0
-    '@vueuse/core': ^13.3.0
-    '@vueuse/integrations': ^13.3.0
+    '@vueuse/core': ^13.4.0
+    '@vueuse/integrations': ^13.4.0
     bcrypt-ts: ^7.1.0
     cac: ^6.7.14
     chart.js: ^4.5.0

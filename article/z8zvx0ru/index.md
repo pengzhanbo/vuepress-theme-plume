@@ -1,0 +1,132 @@
+---
+url: /article/z8zvx0ru/index.md
+---
+:::go-repl
+
+```go
+package main
+
+import (
+  "fmt"
+)
+
+func main() {
+  fmt.Println("Hello World")
+}
+```
+
+:::
+
+:::go-repl
+
+```go
+package main
+
+import (
+  "fmt"
+  "math/rand"
+  "time"
+)
+
+func main() {
+  for i := 0; i < 10; i++ {
+    dur := time.Duration(rand.Intn(1000)) * time.Millisecond
+    fmt.Printf("Sleeping for %v\n", dur)
+    // Sleep for a random duration between 0-1000ms
+    time.Sleep(dur)
+  }
+  fmt.Println("Done!")
+}
+```
+
+:::
+
+::: go-repl
+
+```go
+package main
+
+import (
+  "fmt"
+  "io"
+  "log"
+  "net"
+  "net/http"
+  "os"
+)
+
+func main() {
+  http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprint(w, "Hello, playground")
+  })
+
+  log.Println("Starting server...")
+  l, err := net.Listen("tcp", "localhost:8080")
+  if err != nil {
+    log.Fatal(err)
+  }
+  go func() {
+    log.Fatal(http.Serve(l, nil))
+  }()
+
+  log.Println("Sending request...")
+  res, err := http.Get("http://localhost:8080/hello")
+  if err != nil {
+    log.Fatal(err)
+  }
+
+  log.Println("Reading response...")
+  if _, err := io.Copy(os.Stdout, res.Body); err != nil {
+    log.Fatal(err)
+  }
+}
+```
+
+:::
+
+::: kotlin-repl
+
+```kotlin
+class Contact(val id: Int, var email: String)
+
+fun main(args: Array<String>) {
+    val contact = Contact(1, "mary@gmail.com")
+    println(contact.id)
+}
+```
+
+:::
+
+::: kotlin-repl
+
+```kotlin
+fun mul(a: Int, b: Int): Int {
+    return a * b
+}
+
+fun main(args: Array<String>) {
+    print(mul(-2, 4))
+}
+```
+
+:::
+
+::: rust-repl
+
+```rust
+fn main() {
+    println!("Hello, world!");
+}
+```
+
+:::
+
+::: rust-repl
+
+```rust
+fn main() {
+    printlnl!("Hello, world!");
+}
+```
+
+:::

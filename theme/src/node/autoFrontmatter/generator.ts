@@ -115,10 +115,16 @@ export async function watchAutoFrontmatter(app: App, watchers: any[]): Promise<v
   if (!generate)
     return
 
-  const watcher = chokidar.watch('**/*.md', {
+  const watcher = chokidar.watch('.', {
     cwd: app.dir.source(),
     ignoreInitial: true,
-    ignored: /(node_modules|\.vuepress)\//,
+    ignored: (filepath, stats) => {
+      if (filepath.includes('node_modules'))
+        return true
+      if (filepath.includes('.vuepress'))
+        return true
+      return Boolean(stats?.isFile()) && !filepath.endsWith('.md')
+    },
   })
 
   watcher.on('add', async (relativePath) => {

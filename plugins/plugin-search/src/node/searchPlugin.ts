@@ -35,9 +35,10 @@ export function searchPlugin({
     onPrepared: app => prepareSearchIndex({ app, isSearchable, searchOptions }),
 
     onWatched: (app, watchers) => {
-      const searchIndexWatcher = chokidar.watch('pages/**/*.js', {
+      const searchIndexWatcher = chokidar.watch('pages', {
         cwd: app.dir.temp(),
         ignoreInitial: true,
+        ignored: (filepath, stats) => Boolean(stats?.isFile()) && !filepath.endsWith('.js'),
       })
       searchIndexWatcher.on('add', (filepath) => {
         onSearchIndexUpdated(filepath, { app, isSearchable, searchOptions })

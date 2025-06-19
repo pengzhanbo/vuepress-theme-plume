@@ -201,8 +201,8 @@ catalogs:
       specifier: ^4.5.0
       version: 4.5.0
     chokidar:
-      specifier: 3.6.0
-      version: 3.6.0
+      specifier: 4.0.3
+      version: 4.0.3
     create-filter:
       specifier: ^1.1.0
       version: 1.1.0
@@ -628,7 +628,7 @@ importers:
         version: 13.3.0(vue@3.5.17(typescript@5.8.3))
       chokidar:
         specifier: catalog:prod
-        version: 3.6.0
+        version: 4.0.3
       esbuild:
         specifier: ^0.25.5
         version: 0.25.5
@@ -728,7 +728,7 @@ importers:
         version: 13.3.0(axios@1.8.3)(focus-trap@7.6.5)(vue@3.5.17(typescript@5.8.3))
       chokidar:
         specifier: catalog:prod
-        version: 3.6.0
+        version: 4.0.3
       focus-trap:
         specifier: catalog:prod
         version: 7.6.5
@@ -830,7 +830,7 @@ importers:
         version: 7.1.0
       chokidar:
         specifier: catalog:prod
-        version: 3.6.0
+        version: 4.0.3
       create-filter:
         specifier: catalog:prod
         version: 1.1.0

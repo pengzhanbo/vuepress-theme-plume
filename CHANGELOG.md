@@ -1,3 +1,19 @@
+# [1.0.0-rc.154](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.153...v1.0.0-rc.154) (2025-06-19)
+
+
+### Features
+
+* **plugin-md-power:** improve `plot` behavior ([#620](https://github.com/pengzhanbo/vuepress-theme-plume/issues/620)) ([9efa2c1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9efa2c1a801d37ef079bfda0b716374d77d664ea))
+* **theme:** improve markdown link behavior ([#619](https://github.com/pengzhanbo/vuepress-theme-plume/issues/619)) ([a5c874c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a5c874cdcfb6e5a47dd25009b0520947129bad68))
+* use chokidar v4 ([#622](https://github.com/pengzhanbo/vuepress-theme-plume/issues/622)) ([6f15557](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6f15557f11d0b50fdf50c5d87b59a4993141c364))
+
+
+### Performance Improvements
+
+* update deps to latest ([6ef3db1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6ef3db166ad85dff0cebd0e8d7d852a867f2f033))
+
+
+
 # [1.0.0-rc.153](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.152...v1.0.0-rc.153) (2025-06-07)
 
 

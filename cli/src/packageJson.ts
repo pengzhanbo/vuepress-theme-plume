@@ -76,12 +76,6 @@ export async function createPackageJson(
   if (!hasDep('vue'))
     deps.push('vue')
 
-  if (bundler === 'webpack' && !hasDep('sass-loader'))
-    deps.push('sass-loader')
-
-  if (!hasDep('sass-embedded'))
-    deps.push('sass-embedded')
-
   if (useTs)
     deps.push('typescript')
 

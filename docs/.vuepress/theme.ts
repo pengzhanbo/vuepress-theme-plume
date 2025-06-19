@@ -18,7 +18,6 @@ export const theme: Theme = plumeTheme({
   },
 
   markdown: {
-    oldDemo: true,
     chartjs: true,
     echarts: true,
     markmap: true,

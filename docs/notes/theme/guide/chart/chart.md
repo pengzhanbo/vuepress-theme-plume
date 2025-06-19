@@ -11,7 +11,7 @@ permalink: /guide/chart/chartjs/
 
 主题支持在 文章中 嵌入由 [chart.js] 图表。
 
-该功能由 [vuepress-plugin-md-enhance](https://plugin-md-enhance.vuejs.press/) 提供支持。
+该功能由 [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/) 提供支持。
 
 ## 配置
 
@@ -56,8 +56,8 @@ export default defineUserConfig({
 ## 示例
 
 ::: note
-示例 Fork 自 [vuepress-theme-hope](https://theme-hope.vuejs.press/zh/guide/markdown/chart/chartjs.html#%E6%A1%88%E4%BE%8B),
-遵循 [MIT](https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/LICENSE) 许可证。
+示例 Fork 自 [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/chartjs.html),
+遵循 [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE) 许可证。
 :::
 
 ### 块状图

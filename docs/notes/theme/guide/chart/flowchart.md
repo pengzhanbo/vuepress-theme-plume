@@ -9,7 +9,7 @@ permalink: /guide/chart/flowchart/
 
 主题支持在 文章中 嵌入由 [flowchart](http://flowchart.js.org/) 。
 
-该功能由 [vuepress-plugin-md-enhance](https://plugin-md-enhance.vuejs.press/) 提供支持。
+该功能由 [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/) 提供支持。
 
 ## 配置
 
@@ -38,8 +38,8 @@ export default defineUserConfig({
 ```
 
 ::: note
-以下文档 Fork 自 [vuepress-theme-hope](https://theme-hope.vuejs.press/zh/guide/markdown/chart/flowchart.html),
-遵循 [MIT](https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/LICENSE) 许可证。
+以下文档 Fork 自 [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/flowchart.html),
+遵循 [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE) 许可证。
 :::
 
 ## 语法
@@ -61,8 +61,9 @@ export default defineUserConfig({
 
 ## 演示
 
-::: md-demo Vue 主题
+::: demo markdown  title="Vue 主题"
 
+````md
 ```flow
 st=>start: 开始|past:>http://www.google.com[blank]
 e=>end: 结束|future:>http://www.google.com
@@ -79,11 +80,13 @@ cond(no)->sub1(left)->op1
 c2(yes)->io->e
 c2(no)->op2->e
 ```
+````
 
 :::
 
-::: md-demo Ant 主题
+::: demo markdown title="Ant 主题"
 
+````md
 ```flow:ant
 st=>start: 开始|past:>http://www.google.com[blank]
 e=>end: 结束|future:>http://www.google.com
@@ -100,11 +103,13 @@ cond(no)->sub1(left)->op1
 c2(yes)->io->e
 c2(no)->op2->e
 ```
+````
 
 :::
 
-::: md-demo Pie 主题
+::: demo markdown title="Pie 主题"
 
+````md
 ```flow:pie
 st=>start: 开始|past:>http://www.google.com[blank]
 e=>end: 结束|future:>http://www.google.com
@@ -121,6 +126,7 @@ cond(no)->sub1(left)->op1
 c2(yes)->io->e
 c2(no)->op2->e
 ```
+````
 
 :::
 
@@ -142,14 +148,16 @@ c2(no)->op2->e
   被用于流程结束的最后一个节点。
   默认文字为 `End`.
 
-::: md-demo 开始 & 结束
+::: demo markdown title="开始 & 结束"
 
+````md
 ```flow
 st=>start: 开始
 e=>end: 结束
 
 st->e
 ```
+````
 
 :::
 
@@ -157,14 +165,16 @@ st->e
 
 `[Variable]->operation: [Text]`
 
-::: md-demo 操作
+::: demo markdown title="操作"
 
+````md
 ```flow
 process=>operation: 操作
 e=>end: 结束
 
 process->e
 ```
+````
 
 :::
 
@@ -172,14 +182,16 @@ process->e
 
 `[Variable]->inputoutput: [Text]`
 
-::: md-demo 输入输出
+:::demo markdown title="输入输出"
 
+````md
 ```flow
 process=>inputoutput: 输入输出
 e=>end: 结束
 
 process->e
 ```
+````
 
 :::
 
@@ -187,14 +199,16 @@ process->e
 
 `[Variable]->subroutine: [Text]`
 
-::: md-demo 子程序
+::: demo markdown title="子程序"
 
+````md
 ```flow
 process=>subroutine: 子程序
 e=>end: 结束
 
 process->e
 ```
+````
 
 :::
 
@@ -205,8 +219,9 @@ process->e
 - `[Variable]([yesText])->[Position]`
 - `[Variable]([noText])->[Position]`
 
-::: md-demo 条件
+::: demo markdown title="条件"
 
+````md
 ```flow
 cond=>condition: 是否执行操作?
 process=>operation: 操作
@@ -215,6 +230,7 @@ e=>end: 结束
 cond(yes)->process->e
 cond(no)->e
 ```
+````
 
 :::
 
@@ -226,8 +242,9 @@ cond(no)->e
 - `[Variable](path1, direction)->[Position]`
 - `[Variable](path1, direction)->[Position]`
 
-::: md-demo 平行
+::: demo markdown title="平行"
 
+````md
 ```flow
 para=>parallel: 平行任务
 process=>operation: 操作
@@ -236,6 +253,7 @@ e=>end: 结束
 para(path1, bottom)->process->e
 para(path2)->e
 ```
+````
 
 :::
 

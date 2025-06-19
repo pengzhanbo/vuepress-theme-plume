@@ -10,7 +10,7 @@ export const PLUGINS_SUPPORTED_FIELDS: (keyof ThemeBuiltinPlugins)[] = [
   'git',
   'nprogress',
   'photoSwipe',
-  'markdownEnhance',
+  'markdownChart',
   'markdownPower',
   'markdownImage',
   'markdownMath',
@@ -24,18 +24,13 @@ export const PLUGINS_SUPPORTED_FIELDS: (keyof ThemeBuiltinPlugins)[] = [
   'replaceAssets',
 ]
 
-export const MARKDOWN_ENHANCE_FIELDS: (keyof MarkdownEnhancePluginOptions)[] = [
+export const MARKDOWN_CHART_FIELDS: (keyof MarkdownEnhancePluginOptions)[] = [
   'chartjs',
   'echarts',
   'mermaid',
   'markmap',
   'plantuml',
   'flowchart',
-  'revealJs',
-  'playground',
-  'vuePlayground',
-  'kotlinPlayground',
-  'sandpack',
 ]
 
 export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
@@ -68,9 +63,8 @@ export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
 ]
 
 export const MARKDOWN_SUPPORT_FIELDS: (keyof MarkdownOptions)[] = [
-  ...(MARKDOWN_ENHANCE_FIELDS as (keyof MarkdownOptions)[]),
+  ...(MARKDOWN_CHART_FIELDS as (keyof MarkdownOptions)[]),
   ...MARKDOWN_POWER_FIELDS,
-  'oldDemo',
   'image',
   'math',
   'include',

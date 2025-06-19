@@ -25,7 +25,6 @@
     "markmap-toolbar": "catalog:prod",
     "markmap-view": "catalog:prod",
     "mermaid": "catalog:dev",
-    "sass-embedded": "catalog:peer",
     "swiper": "catalog:peer",
     "vue": "catalog:prod",
     "vuepress-theme-plume": "workspace:*"

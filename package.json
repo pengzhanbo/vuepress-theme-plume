@@ -66,6 +66,7 @@
     "memfs": "catalog:dev",
     "minimist": "catalog:dev",
     "rimraf": "catalog:dev",
+    "sass-embedded": "catalog:peer",
     "stylelint": "catalog:dev",
     "stylus": "catalog:dev",
     "tsconfig-vuepress": "catalog:dev",

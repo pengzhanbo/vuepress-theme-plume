@@ -1,6 +1,9 @@
 name: Deploy Example Layout Slots
 
 on:
+  push:
+    tags:
+      - v*
   workflow_dispatch:
 
 jobs:

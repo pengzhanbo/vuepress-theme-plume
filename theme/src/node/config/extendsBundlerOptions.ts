@@ -4,7 +4,6 @@ import {
   addViteOptimizeDepsExclude,
   addViteOptimizeDepsInclude,
   addViteSsrNoExternal,
-  chainWebpack,
 } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 
@@ -32,31 +31,4 @@ export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
     addViteOptimizeDepsInclude(bundlerOptions, app, ['swiper/modules', 'swiper/vue'])
     addViteSsrNoExternal(bundlerOptions, app, ['swiper'])
   }
-
-  const silenceDeprecations = ['mixed-decls', 'legacy-js-api', 'import', 'global-builtin']
-  chainWebpack(bundlerOptions, app, (config) => {
-    config.module
-      .rule('scss')
-      .use('sass-loader')
-      .tap((options: any) => ({
-        ...options,
-        sassOptions: {
-          silenceDeprecations,
-          ...options.sassOptions,
-        },
-      }))
-  })
-
-  addViteConfig(bundlerOptions, app, {
-    css: {
-      preprocessorOptions: {
-        sass: {
-          silenceDeprecations,
-        },
-        scss: {
-          silenceDeprecations,
-        },
-      },
-    },
-  })
 }

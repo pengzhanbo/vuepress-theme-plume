@@ -14,7 +14,6 @@
     "@iconify/json": "catalog:peer",
     "@vuepress/bundler-vite": "catalog:vuepress",
     "http-server": "catalog:dev",
-    "sass-embedded": "catalog:peer",
     "vue": "catalog:prod",
     "vuepress-theme-plume": "workspace:*"
   }

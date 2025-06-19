@@ -85,7 +85,6 @@ export const themeGuide: ThemeNote = defineNoteConfig({
             'jsFiddle',
             'codeSandbox',
             'replit',
-            'frontend-deprecated',
           ],
         },
         {

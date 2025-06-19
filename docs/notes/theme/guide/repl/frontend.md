@@ -5,7 +5,7 @@ createTime: 2025/01/08 21:34:26
 permalink: /guide/repl/frontend/
 ---
 
-::: important [旧的前端代码演示](./frontend-deprecated.md) 已弃用，请迁移至此新的方案。
+::: important 旧的前端代码演示 已弃用，请迁移至此新的方案。
 
 旧的方案由 [vuepress-plugin-md-enhance](https://plugin-md-enhance.vuejs.press/zh/) 提供，感谢在过去
 提供的代码演示的支持，在 `vuepress-plugin-md-enhance` 中代码演示功能也将迁移至 [vuepress/ecosystem](https://github.com/vuepress/ecosystem)，

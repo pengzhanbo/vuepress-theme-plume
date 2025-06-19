@@ -68,9 +68,6 @@
     "@iconify/json": "catalog:peer",
     "@vuepress/shiki-twoslash": "catalog:vuepress",
     "mathjax-full": "catalog:peer",
-    "sass": "catalog:peer",
-    "sass-embedded": "catalog:peer",
-    "sass-loader": "catalog:peer",
     "swiper": "catalog:peer",
     "vuepress": "catalog:vuepress"
   },
@@ -82,15 +79,6 @@
       "optional": true
     },
     "mathjax-full": {
-      "optional": true
-    },
-    "sass": {
-      "optional": true
-    },
-    "sass-embedded": {
-      "optional": true
-    },
-    "sass-loader": {
       "optional": true
     },
     "swiper": {
@@ -109,6 +97,7 @@
     "@vuepress/plugin-copy-code": "catalog:vuepress",
     "@vuepress/plugin-docsearch": "catalog:vuepress",
     "@vuepress/plugin-git": "catalog:vuepress",
+    "@vuepress/plugin-markdown-chart": "catalog:vuepress",
     "@vuepress/plugin-markdown-hint": "catalog:vuepress",
     "@vuepress/plugin-markdown-image": "catalog:vuepress",
     "@vuepress/plugin-markdown-include": "catalog:vuepress",
@@ -134,7 +123,6 @@
     "nanoid": "catalog:prod",
     "package-manager-detector": "catalog:prod",
     "vue": "catalog:prod",
-    "vuepress-plugin-md-enhance": "catalog:vuepress",
     "vuepress-plugin-md-power": "workspace:*",
     "vuepress-plugin-replace-assets": "workspace:*"
   },

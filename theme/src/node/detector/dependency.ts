@@ -39,7 +39,8 @@ export function detectDependencies(options: ThemeOptions, plugins: ThemeBuiltinP
 
   const markdown = options.markdown || {}
   const mdPower = isPlainObject(plugins.markdownPower) ? plugins.markdownPower : {}
-  const mdEnhance = isPlainObject(plugins.markdownEnhance) ? plugins.markdownEnhance : {}
+
+  const mdChart = isPlainObject(plugins.markdownChart) ? plugins.markdownChart : {}
 
   const add = (name: string) => {
     const list = DEPENDENCIES[name].filter(dep => !isPackageExists(dep))
@@ -54,7 +55,7 @@ export function detectDependencies(options: ThemeOptions, plugins: ThemeBuiltinP
     add('pythonRepl')
 
   ;['chartjs', 'echarts', 'markmap', 'mermaid', 'flowchart'].forEach((dep) => {
-    if (markdown[dep] || mdEnhance[dep])
+    if (markdown[dep] || mdChart[dep])
       add(dep)
   })
 

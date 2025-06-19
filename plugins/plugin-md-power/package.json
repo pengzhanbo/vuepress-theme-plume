@@ -63,6 +63,9 @@
     "hls.js": {
       "optional": true
     },
+    "less": {
+      "optional": true
+    },
     "markdown-it": {
       "optional": true
     },
@@ -70,6 +73,15 @@
       "optional": true
     },
     "pyodide": {
+      "optional": true
+    },
+    "sass": {
+      "optional": true
+    },
+    "sass-embedded": {
+      "optional": true
+    },
+    "stylus": {
       "optional": true
     }
   },

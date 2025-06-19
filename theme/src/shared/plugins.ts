@@ -3,6 +3,7 @@ import type { CachePluginOptions } from '@vuepress/plugin-cache'
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
 import type { CopyCodePluginOptions } from '@vuepress/plugin-copy-code'
 import type { DocSearchOptions } from '@vuepress/plugin-docsearch'
+import type { MarkdownChartPluginOptions } from '@vuepress/plugin-markdown-chart'
 import type { MarkdownImagePluginOptions } from '@vuepress/plugin-markdown-image'
 import type { MarkdownIncludePluginOptions } from '@vuepress/plugin-markdown-include'
 import type { MarkdownMathPluginOptions } from '@vuepress/plugin-markdown-math'
@@ -11,7 +12,6 @@ import type { SeoPluginOptions } from '@vuepress/plugin-seo'
 import type { ShikiPluginOptions } from '@vuepress/plugin-shiki'
 import type { SitemapPluginOptions } from '@vuepress/plugin-sitemap'
 import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
-import type { MarkdownEnhancePluginOptions } from 'vuepress-plugin-md-enhance'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
 import type { ReplaceAssetsPluginOptions } from 'vuepress-plugin-replace-assets'
 
@@ -52,13 +52,9 @@ export interface ThemeBuiltinPlugins {
   photoSwipe?: false
 
   /**
-   * 是否启用 `vuepress-plugin-md-enhance` 插件
-   *
-   * - `hint`, `alert` 已迁移至 `@vuepress/plugin-markdown-hint`, 且主题内置并默认启用。
-   * - `imgSize`, `imgMark`, `imgLazyload`, `figure`, `obsidianImgSize` 已迁移至 `@vuepress/plugin-markdown-image`, 请使用 `plugins.markdownImage` 配置项代替。
-   * - `katex`, `mathjax` 已迁移至 `@vuepress/plugin-markdown-math`, 请使用 `plugins.markdownMath` 配置项代替
+   * @deprecated 插件相关功能已迁移至其他官方插件，此插件已弃用
    */
-  markdownEnhance?: false | MarkdownEnhancePluginOptions
+  markdownEnhance?: never
 
   /**
    * 是否启用 `vuepress-plugin-md-power` 插件
@@ -89,6 +85,15 @@ export interface ThemeBuiltinPlugins {
    * @see https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-include.html
    */
   markdownInclude?: boolean | MarkdownIncludePluginOptions
+
+  /**
+   * 是否启用 `@vuepress/plugin-markdown-chart` 插件
+   *
+   * @default false
+   *
+   * @see https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/
+   */
+  markdownChart?: false | MarkdownChartPluginOptions
 
   /**
    * 评论插件

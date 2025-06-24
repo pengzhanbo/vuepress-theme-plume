@@ -338,18 +338,18 @@ interface IconOptions {
 
 type FontAwesomeAssetBuiltin = 'fontawesome' | 'fontawesome-with-brands'
 
-type FontAwesomePrefix =
-  | 'fas' | 's' // fa-solid fa-name
-  | 'far' | 'r' // fa-regular fa-name
-  | 'fal' | 'l' // fa-light fa-name
-  | 'fat' | 't' // fa-thin fa-name
-  | 'fads' | 'ds' // fa-duotone fa-solid fa-name
-  | 'fass' | 'ss' // fa-sharp fa-solid fa-name
-  | 'fasr' | 'sr' // fa-sharp fa-regular fa-name
-  | 'fasl' | 'sl' // fa-sharp fa-light fa-name
-  | 'fast' | 'st' // fa-sharp fa-thin fa-name
-  | 'fasds' | 'sds' // fa-sharp-duotone fa-solid fa-name
-  | 'fab' | 'b' // fa-brands fa-name
+type FontAwesomePrefix
+  = | 'fas' | 's' // fa-solid fa-name
+    | 'far' | 'r' // fa-regular fa-name
+    | 'fal' | 'l' // fa-light fa-name
+    | 'fat' | 't' // fa-thin fa-name
+    | 'fads' | 'ds' // fa-duotone fa-solid fa-name
+    | 'fass' | 'ss' // fa-sharp fa-solid fa-name
+    | 'fasr' | 'sr' // fa-sharp fa-regular fa-name
+    | 'fasl' | 'sl' // fa-sharp fa-light fa-name
+    | 'fast' | 'st' // fa-sharp fa-thin fa-name
+    | 'fasds' | 'sds' // fa-sharp-duotone fa-solid fa-name
+    | 'fab' | 'b' // fa-brands fa-name
 ```
 
 [在 **Fontawesome** 中，图标通过 families + styles 控制样式，**查看详情**](https://docs.fontawesome.com/web/add-icons/how-to#setting-different-families--styles){.read-more}

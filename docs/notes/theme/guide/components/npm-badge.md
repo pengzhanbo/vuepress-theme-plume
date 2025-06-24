@@ -87,19 +87,19 @@ npm 包名，为空则从 `repo` 中获取
 ### Types
 
 ```ts
-type NpmBadgeType =
+type NpmBadgeType
   // github
-  | 'source' // github source
-  | 'stars' // github stars
-  | 'forks' // github forks
-  | 'license' // github license
+  = | 'source' // github source
+    | 'stars' // github stars
+    | 'forks' // github forks
+    | 'license' // github license
   // npm
-  | 'version' // npm version
-  | 'dt' // alias d18m
-  | 'd18m' // npm downloads last 18 months
-  | 'dw' // npm downloads weekly
-  | 'dm' // npm downloads monthly
-  | 'dy' // npm downloads yearly
+    | 'version' // npm version
+    | 'dt' // alias d18m
+    | 'd18m' // npm downloads last 18 months
+    | 'dw' // npm downloads weekly
+    | 'dm' // npm downloads monthly
+    | 'dy' // npm downloads yearly
 
 type NpmBadgeTheme = 'flat' | 'flat-square' | 'plastic' | 'for-the-badge' | 'social'
 ```

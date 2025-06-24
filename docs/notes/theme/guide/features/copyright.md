@@ -105,15 +105,15 @@ export default defineUserConfig({
 **配置类型：**
 
 ```ts
-export type CopyrightLicense =
-  | 'CC-BY-4.0'
-  | 'CC-BY-SA-4.0'
-  | 'CC-BY-NC-4.0'
-  | 'CC-BY-NC-SA-4.0'
-  | 'CC-BY-ND-4.0'
-  | 'CC-BY-NC-ND-4.0'
-  | 'CC0'
-  | string
+export type CopyrightLicense
+  = | 'CC-BY-4.0'
+    | 'CC-BY-SA-4.0'
+    | 'CC-BY-NC-4.0'
+    | 'CC-BY-NC-SA-4.0'
+    | 'CC-BY-ND-4.0'
+    | 'CC-BY-NC-ND-4.0'
+    | 'CC0'
+    | string
 
 /**
  * - 配置为 `true` 时，默认为 `CC-BY-4.0`

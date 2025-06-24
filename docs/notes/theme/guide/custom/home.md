@@ -180,15 +180,15 @@ interface TintPlateObj {
   g: { value: number, offset: number }
   b: { value: number, offset: number }
 }
-type TintPlate =
-  | number // 210
-  | string // '210,210,210' => red,green,blue
+type TintPlate
+  = | number // 210
+    | string // '210,210,210' => red,green,blue
   // { r: { value: 220, offset: 36 }, g: { value: 220, offset: 36 }, b: { value: 220, offset: 36 } }
-  | TintPlate
+    | TintPlate
   // { light: 210, dark: 20 }
   // { light: '210,210,210', dark: '20,20,20' }
-  | { light: number | string, dark: number | string }
-  | { light: TintPlate, dark: TintPlate }
+    | { light: number | string, dark: number | string }
+    | { light: TintPlate, dark: TintPlate }
 ```
 
 **示例：**
@@ -453,10 +453,10 @@ interface PlumeThemeHomeTextImage extends PlumeHomeConfigBase {
   list: (string | { title?: string, description?: string })[]
 }
 
-type PlumeThemeImage =
-  | string
-  | { src: string, alt?: string }
-  | { dark: string, light: string, alt?: string }
+type PlumeThemeImage
+  = | string
+    | { src: string, alt?: string }
+    | { dark: string, light: string, alt?: string }
 ```
 
 **示例：**
@@ -533,10 +533,10 @@ interface PlumeThemeHomeProfile extends PlumeHomeConfigBase {
   circle?: boolean
 }
 
-type PlumeThemeImage =
-  | string
-  | { src: string, alt?: string }
-  | { dark: string, light: string, alt?: string }
+type PlumeThemeImage
+  = | string
+    | { src: string, alt?: string }
+    | { dark: string, light: string, alt?: string }
 ```
 
 **示例：**

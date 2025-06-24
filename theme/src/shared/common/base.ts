@@ -1,10 +1,10 @@
 /**
  * 图片
  */
-export type ThemeImage =
-  | string
-  | { src: string, alt?: string, width?: string | number, height?: string | number }
-  | { dark: string, light: string, alt?: string, width?: string | number, height?: string | number }
+export type ThemeImage
+  = | string
+    | { src: string, alt?: string, width?: string | number, height?: string | number }
+    | { dark: string, light: string, alt?: string, width?: string | number, height?: string | number }
 
 /**
  * 图标

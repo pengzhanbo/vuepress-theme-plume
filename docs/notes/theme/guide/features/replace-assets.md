@@ -68,11 +68,11 @@ export default defineUserConfig({
 /**
  * 资源链接替换配置
  */
-type ReplaceAssetsPluginOptions =
-  | Replacement
-  | ReplacementRule
-  | ReplacementRule[]
-  | ReplaceAssetsOptions
+type ReplaceAssetsPluginOptions
+  = | Replacement
+    | ReplacementRule
+    | ReplacementRule[]
+    | ReplaceAssetsOptions
 
 /**
  * - `string`：拼接在原始资源链接的前面

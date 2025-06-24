@@ -16,7 +16,7 @@ const activeFileTreeNode = inject<Ref<string>>('active-file-tree-node', ref(''))
 
 const onNodeClick = inject<
   (filename: string, type: 'file' | 'folder') => void
->('on-file-tree-node-click', () => {})
+    >('on-file-tree-node-click', () => {})
 
 const active = ref(props.expanded)
 

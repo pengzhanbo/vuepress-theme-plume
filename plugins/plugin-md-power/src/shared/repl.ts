@@ -1,11 +1,11 @@
 import type { BuiltinTheme, ThemeRegistration } from 'shiki'
 
-export type ThemeOptions =
-  | BuiltinTheme
-  | {
-    light: BuiltinTheme
-    dark: BuiltinTheme
-  }
+export type ThemeOptions
+  = | BuiltinTheme
+    | {
+      light: BuiltinTheme
+      dark: BuiltinTheme
+    }
 
 export interface ReplOptions {
   theme?: ThemeOptions

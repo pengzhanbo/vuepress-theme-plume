@@ -68,18 +68,18 @@ export default defineUserConfig({
   - 提供商为 `fontawesome` 时默认为 `'fas'`，可选值如下：
 
     ```ts
-    type FontAwesomePrefix =
-      | 'fas' | 's' // fa-solid fa-name
-      | 'far' | 'r' // fa-regular fa-name
-      | 'fal' | 'l' // fa-light fa-name
-      | 'fat' | 't' // fa-thin fa-name
-      | 'fads' | 'ds' // fa-duotone fa-solid fa-name
-      | 'fass' | 'ss' // fa-sharp fa-solid fa-name
-      | 'fasr' | 'sr' // fa-sharp fa-regular fa-name
-      | 'fasl' | 'sl' // fa-sharp fa-light fa-name
-      | 'fast' | 'st' // fa-sharp fa-thin fa-name
-      | 'fasds' | 'sds' // fa-sharp-duotone fa-solid fa-name
-      | 'fab' | 'b' // fa-brands fa-name
+    type FontAwesomePrefix
+      = | 'fas' | 's' // fa-solid fa-name
+        | 'far' | 'r' // fa-regular fa-name
+        | 'fal' | 'l' // fa-light fa-name
+        | 'fat' | 't' // fa-thin fa-name
+        | 'fads' | 'ds' // fa-duotone fa-solid fa-name
+        | 'fass' | 'ss' // fa-sharp fa-solid fa-name
+        | 'fasr' | 'sr' // fa-sharp fa-regular fa-name
+        | 'fasl' | 'sl' // fa-sharp fa-light fa-name
+        | 'fast' | 'st' // fa-sharp fa-thin fa-name
+        | 'fasds' | 'sds' // fa-sharp-duotone fa-solid fa-name
+        | 'fab' | 'b' // fa-brands fa-name
     ```
 
 ### assets

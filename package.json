@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.154",
   "private": true,
-  "packageManager": "pnpm@10.12.1",
+  "packageManager": "pnpm@10.12.2",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -65,6 +65,7 @@
     "markdown-it": "catalog:dev",
     "memfs": "catalog:dev",
     "minimist": "catalog:dev",
+    "postcss": "catalog:dev",
     "rimraf": "catalog:dev",
     "sass-embedded": "catalog:peer",
     "stylelint": "catalog:dev",

@@ -17,8 +17,8 @@ catalogs:
   dev:
     '@commitlint/cli': ^19.8.1
     '@commitlint/config-conventional': ^19.8.1
-    '@pengzhanbo/eslint-config-vue': ^1.33.0
-    '@pengzhanbo/stylelint-config': ^1.33.0
+    '@pengzhanbo/eslint-config-vue': ^1.34.0
+    '@pengzhanbo/stylelint-config': ^1.34.0
     '@simonwep/pickr': ^1.9.1
     '@types/express': ^5.0.3
     '@types/js-yaml': ^4.0.9
@@ -43,8 +43,9 @@ catalogs:
     lint-staged: ^16.1.2
     markdown-it: ^14.1.0
     memfs: ^4.17.2
-    mermaid: ^11.6.0
+    mermaid: ^11.7.0
     minimist: ^1.2.8
+    postcss: ^8.5.6
     rimraf: ^6.0.1
     stylelint: ^16.21.0
     stylus: ^0.64.0
@@ -55,7 +56,7 @@ catalogs:
     vue-router: ^4.5.1
     wait-on: ^8.0.3
   peer:
-    '@iconify/json': ^2.2.350
+    '@iconify/json': ^2.2.351
     artplayer: ^5.2.3
     dashjs: ^5.0.3
     hls.js: ^1.6.5
@@ -110,7 +111,7 @@ catalogs:
     p-map: ^7.0.3
     package-manager-detector: ^1.3.0
     picocolors: ^1.1.1
-    shiki: ^3.6.0
+    shiki: ^3.7.0
     tinyglobby: 0.2.13
     tm-grammars: ^1.23.26
     tm-themes: ^1.10.6

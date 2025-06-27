@@ -1,31 +1,18 @@
-import type { UnpluginFactory, UnpluginOptions } from 'unplugin'
+import type { UnpluginFactory } from 'unplugin'
 import type { ReplacementRule } from '../options.js'
 import { transformAssets } from './transform.js'
-import { createAssetPattern, isHTMLRequest, isNonJsRequest } from './utils.js'
+import { createAssetPattern } from './utils.js'
 
 export const unpluginFactory: UnpluginFactory<ReplacementRule[]> = (rules) => {
-  const plugins: UnpluginOptions[] = []
-
-  if (rules.length) {
-    plugins.push({
-      name: 'vuepress:replace-assets',
-      enforce: 'pre',
-      transformInclude(id: string) {
-        if (isHTMLRequest(id) || isNonJsRequest(id))
-          return false
-        return true
+  const pattern = createAssetPattern('/[^/]')
+  return {
+    name: 'vuepress:replace-assets',
+    enforce: 'pre',
+    transform: {
+      filter: { id: { exclude: [/\.json(?:$|\?)/, /\.html?$/] } },
+      handler(code) {
+        return transformAssets(code, pattern, rules)
       },
-      transform(code) {
-        return {
-          code: transformAssets(
-            code,
-            createAssetPattern('/[^/]'),
-            rules,
-          ),
-        }
-      },
-    })
+    },
   }
-
-  return plugins
 }

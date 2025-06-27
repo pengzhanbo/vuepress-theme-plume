@@ -7,7 +7,7 @@ describe('plugin-replace-assets > isMatchUrl', () => {
   it.each([
     {
       name: 'string like regexp with ^ and $',
-      find: '^/images/.*\.(jpe?g|png|gif|svg)(\\?.*)?$',
+      find: '^/images/.*\\.(jpe?g|png|gif|svg)(\\?.*)?$',
       expects: [
         ['/images/foo.jpg', true],
         ['/images/foo.png', true],
@@ -31,7 +31,7 @@ describe('plugin-replace-assets > isMatchUrl', () => {
     },
     {
       name: 'string like regexp end with $',
-      find: '\.(jpe?g|png|gif|svg)$',
+      find: '\\.(jpe?g|png|gif|svg)$',
       expects: [
         ['/images/foo.jpg', true],
         ['/images/foo.png', true],

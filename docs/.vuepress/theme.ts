@@ -35,6 +35,7 @@ export const theme: Theme = plumeTheme({
     imageSize: 'all',
     pdf: true,
     caniuse: true,
+    acfun: true,
     bilibili: true,
     youtube: true,
     artPlayer: true,

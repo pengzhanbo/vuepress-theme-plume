@@ -34,10 +34,10 @@ export const bilibiliPlugin: PluginWithOptions<never> = (md) => {
         cid,
         autoplay: attrs.autoplay ?? false,
         time: timeToSeconds(attrs.time),
-        title: attrs.title,
+        title: attrs.title || 'Bilibili',
         width: attrs.width ? parseRect(attrs.width) : '100%',
         height: attrs.height ? parseRect(attrs.height) : undefined,
-        ratio: attrs.ratio ? parseRect(attrs.ratio) : undefined,
+        ratio: attrs.ratio,
       }
     },
     content(meta) {
@@ -61,10 +61,10 @@ export const bilibiliPlugin: PluginWithOptions<never> = (md) => {
       params.set('autoplay', meta.autoplay ? '1' : '0')
       params.set('high_quality', '1')
 
-      const source = `${BILIBILI_LINK}?${params.toString()}`
+      const src = `${BILIBILI_LINK}?${params.toString()}`
       const { width, height, ratio, title } = meta
 
-      return `<VideoBilibili${stringifyAttrs({ src: source, width, height, ratio, title })} />`
+      return `<VPVideoEmbed${stringifyAttrs({ src, width, height, ratio, title, type: 'bilibili' })} />`
     },
   })
 }

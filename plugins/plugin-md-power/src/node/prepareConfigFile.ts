@@ -26,14 +26,9 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('PDFViewer', PDFViewer)`)
   }
 
-  if (options.bilibili) {
-    imports.add(`import Bilibili from '${CLIENT_FOLDER}components/Bilibili.vue'`)
-    enhances.add(`app.component('VideoBilibili', Bilibili)`)
-  }
-
-  if (options.youtube) {
-    imports.add(`import Youtube from '${CLIENT_FOLDER}components/Youtube.vue'`)
-    enhances.add(`app.component('VideoYoutube', Youtube)`)
+  if (options.acfun || options.bilibili || options.youtube) {
+    imports.add(`import VPVideoEmbed from '${CLIENT_FOLDER}components/VPVideoEmbed.vue'`)
+    enhances.add(`app.component('VPVideoEmbed', VPVideoEmbed)`)
   }
 
   if (options.codepen) {

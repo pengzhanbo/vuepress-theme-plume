@@ -4,15 +4,17 @@ defineProps<{
   type?: string
   required?: boolean
   optional?: boolean
+  deprecated?: boolean
   defaultValue?: string
 }>()
 </script>
 
 <template>
-  <div class="vp-field">
+  <div class="vp-field" :class="{ required, optional, deprecated }">
     <p class="field-meta">
       <span class="name">{{ name }}</span>
       <span v-if="required || optional" :class="{ required, optional }">{{ required ? 'Required' : optional ? 'Optional' : '' }}</span>
+      <span v-if="deprecated" class="deprecated">Deprecated</span>
       <span v-if="type" class="type"><code>{{ type }}</code></span>
     </p>
     <p v-if="defaultValue" class="default-value">
@@ -48,8 +50,13 @@ defineProps<{
   font-weight: 500;
 }
 
+.vp-field.deprecated .field-meta .name {
+  text-decoration: line-through;
+}
+
 .vp-field .field-meta .required,
-.vp-field .field-meta .optional {
+.vp-field .field-meta .optional,
+.vp-field .field-meta .deprecated {
   display: inline-block;
   padding: 2px 8px;
   font-size: 12px;
@@ -68,6 +75,11 @@ defineProps<{
   border: solid 1px var(--vp-c-divider);
 }
 
+.vp-field .field-meta .deprecated {
+  color: var(--vp-c-danger-2);
+  border: solid 1px var(--vp-c-danger-2);
+}
+
 .vp-field .field-meta .type {
   flex: 1 2;
   text-align: right;
@@ -76,7 +88,8 @@ defineProps<{
 .vp-field .default-value {
   margin: 0;
   font-size: 14px;
-  line-height: 1;
+  line-height: 1.7;
+  transform: translateY(-4px);
 }
 
 .vp-field .description :where(p, ul, ol) {

@@ -26,4 +26,17 @@ describe('linksPlugin', () => {
     expect(md.render('[link](/path)')).toContain('href="/path"')
     expect(md.render('[link](/path)')).toContain('</VPLink>')
   })
+
+  it('should work with internal link extension and empty env', () => {
+    const env = {}
+    expect(md.render('[link](/path.md)', env)).toContain('href="/path.md"')
+    expect(md.render('[link](../path.md)', env)).toContain('href="../path.md"')
+  })
+
+  it('should work with internal link extension and env', () => {
+    const env = { base: '/', filePathRelative: '../foo.md' }
+    expect(md.render('[link](/path.html)', env)).toContain('href="/path.html"')
+    expect(md.render('[link](/path.md)', env)).toContain('href="/path.md"')
+    expect(md.render('[link](../path.md)', env)).toContain('href="../path.md"')
+  })
 })

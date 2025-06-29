@@ -26,7 +26,7 @@ const { currentLang, localeLinks } = useLangs()
   </VPFlyout>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .vp-navbar-translations {
   display: none;
 }

@@ -1,3 +1,26 @@
+# [1.0.0-rc.155](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.154...v1.0.0-rc.155) (2025-06-29)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** catch `image-size` error ([#634](https://github.com/pengzhanbo/vuepress-theme-plume/issues/634)) ([f7ec566](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f7ec566ae55fa04ab4cb5a5c6adcaae1aadc3a69))
+* **theme:** remove `lang="scss"` in component styles ([79fecda](https://github.com/pengzhanbo/vuepress-theme-plume/commit/79fecda01f2e68bfd84c3fb3541d8c0b1a6cb6b8))
+
+
+### Features
+
+* **plugin-md-power:** add `acfun` video support, close [#625](https://github.com/pengzhanbo/vuepress-theme-plume/issues/625) ([#629](https://github.com/pengzhanbo/vuepress-theme-plume/issues/629)) ([dc42be6](https://github.com/pengzhanbo/vuepress-theme-plume/commit/dc42be6035b48b0127bc24573914c12905bc5ec9))
+* **plugin-md-power:** add `deprecated` prop support for `field` container, close [#627](https://github.com/pengzhanbo/vuepress-theme-plume/issues/627) ([#630](https://github.com/pengzhanbo/vuepress-theme-plume/issues/630)) ([a8fac92](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a8fac92bf023b9ff82619326a94f6a4fd6764836))
+* **plugin-md-power:** add `links` to markdown env ([#631](https://github.com/pengzhanbo/vuepress-theme-plume/issues/631)) ([cd2b7fd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cd2b7fd26d85a56e0d568ac0d549b9221b5a2a6d))
+* **plugin-replace-assets:** improve replace assets ([#628](https://github.com/pengzhanbo/vuepress-theme-plume/issues/628)) ([309be68](https://github.com/pengzhanbo/vuepress-theme-plume/commit/309be687b4eb6f96c4771437ae1ce744f23d68ae))
+
+
+### Performance Improvements
+
+* update deps to latest ([2c43798](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2c437986979d071f1814636c32dc5a5bbf5ebe98))
+
+
+
 # [1.0.0-rc.154](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.153...v1.0.0-rc.154) (2025-06-19)
 
 

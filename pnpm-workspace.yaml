@@ -5,8 +5,8 @@ packages:
   - plugins/*
   - examples/*
 overrides:
-  '@bufbuild/protobuf': ^2.5.2
-  '@typescript-eslint/utils': ^8.34.1
+  '@bufbuild/protobuf': ^2.6.0
+  '@typescript-eslint/utils': ^8.35.0
   esbuild: ^0.25.5
   sass-embedded: ^1.89.2
 
@@ -26,7 +26,7 @@ catalogs:
     '@types/lodash.merge': ^4.6.9
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^24.0.3
+    '@types/node': ^24.0.7
     '@types/stylus': ^0.48.43
     '@types/webpack-env': ^1.18.8
     '@vitest/coverage-istanbul': ^3.2.4
@@ -36,7 +36,7 @@ catalogs:
     cpx2: ^8.0.0
     cross-env: 7.0.3
     cz-conventional-changelog: ^3.3.0
-    eslint: ^9.29.0
+    eslint: ^9.30.0
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.3.0
@@ -50,13 +50,13 @@ catalogs:
     stylelint: ^16.21.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.12.8
+    tsdown: ^0.12.9
     typescript: ^5.8.3
     vitest: ^3.2.4
     vue-router: ^4.5.1
     wait-on: ^8.0.3
   peer:
-    '@iconify/json': ^2.2.351
+    '@iconify/json': ^2.2.353
     artplayer: ^5.2.3
     dashjs: ^5.0.3
     hls.js: ^1.6.5
@@ -65,7 +65,7 @@ catalogs:
     pyodide: ^0.27.7
     sass: ^1.89.2
     sass-embedded: ^1.89.2
-    swiper: ^11.2.8
+    swiper: ^11.2.10
   prod:
     '@clack/prompts': ^0.11.0
     '@iconify/utils': ^2.3.0

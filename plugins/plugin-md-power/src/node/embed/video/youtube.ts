@@ -26,10 +26,10 @@ export const youtubePlugin: PluginWithOptions<never> = (md) => {
         loop: attrs.loop ?? false,
         start: timeToSeconds(attrs.start),
         end: timeToSeconds(attrs.end),
-        title: attrs.title,
+        title: attrs.title || 'YouTube',
         width: attrs.width ? parseRect(attrs.width) : '100%',
         height: attrs.height ? parseRect(attrs.height) : undefined,
-        ratio: attrs.ratio ? parseRect(attrs.ratio) : undefined,
+        ratio: attrs.ratio,
       }
     },
     content(meta) {
@@ -47,10 +47,10 @@ export const youtubePlugin: PluginWithOptions<never> = (md) => {
       if (meta.end)
         params.set('end', meta.end.toString())
 
-      const source = `${YOUTUBE_LINK}/${meta.id}?${params.toString()}`
+      const src = `${YOUTUBE_LINK}/${meta.id}?${params.toString()}`
       const { width, height, ratio, title } = meta
 
-      return `<VideoYoutube${stringifyAttrs({ src: source, width, height, ratio, title })} />`
+      return `<VPVideoEmbed${stringifyAttrs({ src, width, height, ratio, title, type: 'youtube' })} />`
     },
   })
 }

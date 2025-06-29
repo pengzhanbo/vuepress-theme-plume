@@ -129,6 +129,14 @@ export interface MarkdownPowerPluginOptions {
   field?: boolean
   // video embed
   /**
+   * 是否启用 acfun 视频嵌入
+   *
+   * `@[acfun](acid)`
+   *
+   * @default false
+   */
+  acfun?: boolean
+  /**
    * 是否启用 bilibili 视频嵌入
    *
    * `@[bilibili](bid)`

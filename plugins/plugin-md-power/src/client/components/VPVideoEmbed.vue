@@ -5,6 +5,7 @@ import { useSize } from '../composables/size.js'
 const props = defineProps<{
   src: string
   title: string
+  type?: string
   width?: string
   height?: string
   ratio?: string
@@ -21,9 +22,9 @@ const { el, width, height, resize } = useSize(options)
   <ClientOnly>
     <iframe
       ref="el"
-      class="video-youtube-iframe"
+      class="video-iframe" :class="type"
       :src="src"
-      :title="title || 'Youtube'"
+      :title="title || type"
       :style="{ width, height }"
       :allow="IFRAME_ALLOW"
       @load="resize"
@@ -32,7 +33,7 @@ const { el, width, height, resize } = useSize(options)
 </template>
 
 <style>
-.video-youtube-iframe {
+.video-iframe {
   width: 100%;
   margin: 16px auto;
   border: none;

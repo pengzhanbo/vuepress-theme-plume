@@ -109,6 +109,7 @@ export const themeGuide: ThemeNote = defineNoteConfig({
           items: [
             'pdf',
             'bilibili',
+            'acfun',
             'youtube',
             'artplayer',
             'audioReader',

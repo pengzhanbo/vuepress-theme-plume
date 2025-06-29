@@ -29,6 +29,7 @@ export default defineUserConfig({
       // demo: true, // :::demo
       // pdf: true, // @[pdf](url)  嵌入 PDF 文件
       // bilibili: true, // @[bilibili](bvid)  嵌入 bilibili 视频
+      // acfun: true, // @[acfun](id)  嵌入 AcFun 视屏
       // youtube: true, // @[youtube](id)  嵌入 youtube 视频
       // codepen: true, // @[codepen](user/slash)  嵌入 codepen
       // replit: true, // @[replit](user/repl-name)  嵌入 Replit
@@ -85,6 +86,18 @@ __语法:__
 ```
 
 请查看 [完整使用文档](../../guide/embed/bilibili.md)
+
+### AcFun 视频
+
+插件默认不启用该功能，你需要手动设置 `acfun` 为 `true`
+
+__语法:__
+
+```md
+@[acfun](id)
+```
+
+请查看 [完整使用文档](../../guide/embed/video/acfun.md)
 
 ### youtube 视频
 

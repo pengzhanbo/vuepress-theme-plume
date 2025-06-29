@@ -1,4 +1,4 @@
-import type { MarkdownEnhancePluginOptions } from 'vuepress-plugin-md-enhance'
+import type { MarkdownChartPluginOptions } from '@vuepress/plugin-markdown-chart'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
 import type { MarkdownOptions, ThemeBuiltinPlugins } from '../../shared/index.js'
 
@@ -24,7 +24,7 @@ export const PLUGINS_SUPPORTED_FIELDS: (keyof ThemeBuiltinPlugins)[] = [
   'replaceAssets',
 ]
 
-export const MARKDOWN_CHART_FIELDS: (keyof MarkdownEnhancePluginOptions)[] = [
+export const MARKDOWN_CHART_FIELDS: (keyof MarkdownChartPluginOptions)[] = [
   'chartjs',
   'echarts',
   'mermaid',
@@ -35,6 +35,7 @@ export const MARKDOWN_CHART_FIELDS: (keyof MarkdownEnhancePluginOptions)[] = [
 
 export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
   'abbr',
+  'acfun',
   'annotation',
   'artPlayer',
   'audioReader',

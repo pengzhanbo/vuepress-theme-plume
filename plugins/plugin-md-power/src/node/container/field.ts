@@ -9,6 +9,7 @@ interface FieldAttrs {
   type?: string
   required?: boolean
   optional?: boolean
+  deprecated?: boolean
   default?: string
 }
 
@@ -16,8 +17,8 @@ export function fieldPlugin(md: Markdown): void {
   createContainerPlugin(md, 'field', {
     before: (info) => {
       const { attrs } = resolveAttrs<FieldAttrs>(info)
-      const { name, type, required, optional, default: defaultValue } = attrs
-      const props = stringifyAttrs({ name, required, optional })
+      const { name, type, required, optional, deprecated, default: defaultValue } = attrs
+      const props = stringifyAttrs({ name, required, optional, deprecated })
       return `<VPField${props}${
         !isUndefined(type) ? ` type="${type}"` : ''
       }${

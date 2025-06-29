@@ -69,6 +69,10 @@ export default defineUserConfig({
 是否可选
 :::
 
+::: field name="deprecated" type="boolean" optional
+是否弃用
+:::
+
 ::: field name="default" type="string" optional
 默认值， 如果为空字符串，应该使用 `default="''"`
 :::
@@ -111,7 +115,13 @@ export default defineUserConfig({
 :::
 
 ::: field name="callback" type="(...args: any[]) => void" optional default="() => {}"
+<Badge type="tip" text="v1.0.0 新增"  />
 回调函数
+:::
+
+::: field name="other" type="string" deprecated
+<Badge type="danger" text="v0.9.0 弃用"  />
+已弃用属性
 :::
 ::::
 ```
@@ -128,6 +138,12 @@ export default defineUserConfig({
 :::
 
 ::: field name="callback" type="(...args: any[]) => void" optional default="() => {}"
+<Badge type="tip" text="v1.0.0 新增"  />
 回调函数
+:::
+
+::: field name="other" type="string" deprecated
+<Badge type="danger" text="v0.9.0 弃用"  />
+已弃用属性
 :::
 ::::

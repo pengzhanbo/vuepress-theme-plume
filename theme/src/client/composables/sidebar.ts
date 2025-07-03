@@ -153,7 +153,7 @@ function resolveSidebarItems(
       }
       const nextPrefix = normalizePrefix(_prefix, prefix || dir)
       if (items === 'auto') {
-        navLink.items = autoDirSidebar.value[nextPrefix]
+        navLink.items = resolveSidebarItems(autoDirSidebar.value[nextPrefix], nextPrefix)
         if (!navLink.link && autoHomeData.value[nextPrefix]) {
           navLink.link = normalizeLink(autoHomeData.value[nextPrefix])
           const nav = resolveNavLink(navLink.link)

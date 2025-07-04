@@ -43,7 +43,7 @@ export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
       langs: uniq([...twoslash ? ['ts', 'js', 'vue', 'json', 'bash', 'sh'] : [], ...langs]),
       codeBlockTitle: (title, code) => {
         const icon = getIcon(title)
-        return `<div class="code-block-title"><div class="code-block-title-bar"><span class="title">${icon ? `<VPIcon name="${icon}"/>` : ''}${title}</span></div>${code}</div>`
+        return `<div class="code-block-title" data-title="${title}"><div class="code-block-title-bar"><span class="title">${icon ? `<VPIcon provider="iconify" name="${icon}"/>` : ''}${title}</span></div>${code}</div>`
       },
       twoslash: isPlainObject(twoslashOptions)
         ? {

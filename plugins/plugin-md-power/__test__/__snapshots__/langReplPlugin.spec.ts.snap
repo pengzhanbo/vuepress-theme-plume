@@ -1,21 +1,29 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`langReplPlugin > should work with custom options 1`] = `
-"<CodeRepl  title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
+"<CodeRepl title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
 </code></pre></div></code></pre>
 </CodeRepl><CodeRepl editable title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl  title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
+</CodeRepl><CodeRepl title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
 </code></pre></div></code></pre>
 </CodeRepl><CodeRepl editable title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl  title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</CodeRepl><CodeRepl title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
 </CodeRepl><CodeRepl editable title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl  title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</CodeRepl><CodeRepl title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title=" title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</CodeRepl><CodeRepl editable title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
 </code></pre></div></code></pre>
 </CodeRepl>"
 `;
@@ -31,6 +39,9 @@ exports[`langReplPlugin > should work with custom options 2`] = `
     },
     "rust": {
       "language": "rust"
+    },
+    "python": {
+      "language": "python"
     }
   },
   "theme": {
@@ -45,21 +56,29 @@ exports[`langReplPlugin > should work with custom options 2`] = `
 `;
 
 exports[`langReplPlugin > should work with custom theme 1`] = `
-"<CodeRepl  title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
+"<CodeRepl title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
 </code></pre></div></code></pre>
 </CodeRepl><CodeRepl editable title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl  title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
+</CodeRepl><CodeRepl title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
 </code></pre></div></code></pre>
 </CodeRepl><CodeRepl editable title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl  title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</CodeRepl><CodeRepl title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
 </CodeRepl><CodeRepl editable title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl  title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</CodeRepl><CodeRepl title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title=" title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</CodeRepl><CodeRepl editable title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+</CodeRepl><CodeRepl editable title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
 </code></pre></div></code></pre>
 </CodeRepl>"
 `;
@@ -75,6 +94,9 @@ exports[`langReplPlugin > should work with custom theme 2`] = `
     },
     "rust": {
       "language": "rust"
+    },
+    "python": {
+      "language": "python"
     }
   }
 }"
@@ -85,7 +107,7 @@ exports[`langReplPlugin > should work with default options 1`] = `
 <pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
 </code></pre></div></code></pre>
 <p>:::</p>
-<p>::: go-repl#editable</p>
+<p>::: go-repl editable</p>
 <pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
 </code></pre></div></code></pre>
 <p>:::</p>
@@ -93,7 +115,7 @@ exports[`langReplPlugin > should work with default options 1`] = `
 <pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
 </code></pre></div></code></pre>
 <p>:::</p>
-<p>::: kotlin-repl#editable</p>
+<p>::: kotlin-repl editable</p>
 <pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
 </code></pre></div></code></pre>
 <p>:::</p>
@@ -101,16 +123,32 @@ exports[`langReplPlugin > should work with default options 1`] = `
 <pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
 <p>:::</p>
-<p>::: rust-repl#editable</p>
+<p>::: rust-repl editable</p>
 <pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
 <p>:::</p>
-<p>::: rust-repl title</p>
+<p>::: rust-repl title=&quot;title&quot;</p>
 <pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
 <p>:::</p>
-<p>::: rust-repl#editable title</p>
+<p>::: rust-repl editable title=&quot;title&quot;</p>
 <pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: python-repl</p>
+<pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: python-repl editable</p>
+<pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: python-repl title=&quot;title&quot;</p>
+<pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</code></pre></div></code></pre>
+<p>:::</p>
+<p>::: python-repl editable title=&quot;title&quot;</p>
+<pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
 </code></pre></div></code></pre>
 <p>:::</p>
 "

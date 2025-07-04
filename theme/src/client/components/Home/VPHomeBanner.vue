@@ -82,7 +82,7 @@ const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(0 0 0);
   transition: opacity var(--vp-t-color);
 }
 

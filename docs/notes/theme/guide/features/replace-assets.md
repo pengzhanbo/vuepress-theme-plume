@@ -18,7 +18,12 @@ badge: 新
 在这个过程中，通常需要先将资源上传到 CDN 服务，然后再获取 CDN 服务的资源链接，最后才在站点内容中使用。
 
 这看起来并没有什么问题，然而在实际使用过程中，可能需要频繁的进行
-__上传资源 -> 获取资源链接 -> 在内容中使用全量资源链接__ 的操作，内容创作被频繁的打断。
+
+```txt
+上传资源 -> 获取资源链接 -> 在内容中使用全量资源链接
+```
+
+在此过程中，内容创作被频繁的打断。
 
 此功能旨在解决这个问题。在内容创作过程中，只需要直接使用本地资源地址，由主题内部在合适的阶段，完成资源地址的替换。
 :::
@@ -68,11 +73,11 @@ export default defineUserConfig({
 /**
  * 资源链接替换配置
  */
-type ReplaceAssetsPluginOptions =
-  | Replacement
-  | ReplacementRule
-  | ReplacementRule[]
-  | ReplaceAssetsOptions
+type ReplaceAssetsPluginOptions
+  = | Replacement
+    | ReplacementRule
+    | ReplacementRule[]
+    | ReplaceAssetsOptions
 
 /**
  * - `string`：拼接在原始资源链接的前面
@@ -93,7 +98,7 @@ interface ReplacementRule {
 
 interface ReplaceAssetsOptions {
   /**
-   * 自定义替换规则
+   * 自定义资源替换规则
    */
   rules?: ReplacementRule | ReplacementRule[]
   /**

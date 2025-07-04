@@ -4,6 +4,7 @@ import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { Buffer } from 'node:buffer'
 import http from 'node:https'
 import { URL } from 'node:url'
+import { withTimeout } from '@pengzhanbo/utils'
 import { isLinkExternal, isLinkHttp } from '@vuepress/helper'
 import imageSize from 'image-size'
 import { fs, logger, path } from 'vuepress/utils'
@@ -31,7 +32,7 @@ export async function imageSizePlugin(
   app: App,
   md: Markdown,
   type: boolean | 'local' | 'all' = false,
-) {
+): Promise<void> {
   if (!app.env.isBuild || !type)
     return
 
@@ -158,7 +159,7 @@ function resolveImageUrl(src: string, env: MarkdownEnv, app: App): string {
   return path.resolve(src)
 }
 
-export async function scanRemoteImageSize(app: App) {
+export async function scanRemoteImageSize(app: App): Promise<void> {
   if (!app.env.isBuild)
     return
   const cwd = app.dir.source()
@@ -209,23 +210,38 @@ export async function scanRemoteImageSize(app: App) {
 function fetchImageSize(src: string): Promise<ImgSize> {
   const link = new URL(src)
 
-  return new Promise((resolve) => {
-    http.get(link, async (stream) => {
-      const chunks: any[] = []
-      for await (const chunk of stream) {
-        chunks.push(chunk)
+  const promise = new Promise<ImgSize>((resolve) => {
+    http
+      .get(link, async (stream) => {
+        const chunks: any[] = []
+        for await (const chunk of stream) {
+          chunks.push(chunk)
+          try {
+            const { width, height } = imageSize(Buffer.concat(chunks))
+            if (width && height) {
+              return resolve({ width, height })
+            }
+          }
+          catch {}
+        }
+
         try {
           const { width, height } = imageSize(Buffer.concat(chunks))
-          if (width && height) {
-            return resolve({ width, height })
-          }
+          resolve({ width: width!, height: height! })
         }
-        catch {}
-      }
-      const { width, height } = imageSize(Buffer.concat(chunks))
-      resolve({ width: width!, height: height! })
-    }).on('error', () => resolve({ width: 0, height: 0 }))
+        catch {
+          resolve({ width: 0, height: 0 })
+        }
+      })
+      .on('error', () => resolve({ width: 0, height: 0 }))
   })
+
+  try {
+    return withTimeout(() => promise, 3000)
+  }
+  catch {
+    return Promise.resolve({ width: 0, height: 0 })
+  }
 }
 
 export async function resolveImageSize(app: App, url: string, remote = false): Promise<ImgSize> {
@@ -239,8 +255,11 @@ export async function resolveImageSize(app: App, url: string, remote = false): P
   if (url[0] === '/') {
     const filepath = app.dir.public(url.slice(1))
     if (fs.existsSync(filepath)) {
-      const { width, height } = imageSize(fs.readFileSync(filepath))
-      return { width: width!, height: height! }
+      try {
+        const { width, height } = imageSize(fs.readFileSync(filepath))
+        return { width: width!, height: height! }
+      }
+      catch {}
     }
   }
 

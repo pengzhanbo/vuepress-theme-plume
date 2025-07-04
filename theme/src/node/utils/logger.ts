@@ -2,21 +2,21 @@ import { Logger } from '@vuepress/helper'
 import { colors } from 'vuepress/utils'
 import { THEME_NAME } from './constants.js'
 
-export const logger = new Logger(THEME_NAME)
+export const logger: Logger = new Logger(THEME_NAME)
 
 class Perf {
   isDebug: boolean = false
   collect: Record<string, number> = {}
 
-  init(isDebug = false) {
+  init(isDebug = false): void {
     this.isDebug = isDebug
   }
 
-  mark(mark: string) {
+  mark(mark: string): void {
     this.collect[mark] = performance.now()
   }
 
-  log(mark: string) {
+  log(mark: string): void {
     const startTime = this.collect[mark]
     if (!this.isDebug || !startTime)
       return
@@ -24,4 +24,4 @@ class Perf {
   }
 }
 
-export const perf = new Perf()
+export const perf: Perf = new Perf()

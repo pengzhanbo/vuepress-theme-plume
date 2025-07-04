@@ -53,7 +53,7 @@ export default defineClientConfig({
 
 你也可以利用它来覆盖默认主题的预定义 CSS 变量。
 
-以下是部分预定义变量， 完整列表请参考 [vars.scss](https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/theme/src/client/styles/vars.scss)
+以下是部分预定义变量， 完整列表请参考 [vars.css](https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/theme/src/client/styles/vars.css)
 
 ```scss
 :root {

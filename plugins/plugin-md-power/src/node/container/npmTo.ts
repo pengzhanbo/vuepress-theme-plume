@@ -22,200 +22,56 @@
  * ```
  * :::
  */
-import type Token from 'markdown-it/lib/token.mjs'
-import type { Markdown } from 'vuepress/markdown'
+import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import type { NpmToOptions, NpmToPackageManager } from '../../shared/index.js'
+import type { CommandConfig, CommandConfigItem } from './npmToPreset.js'
 import { isArray } from '@vuepress/helper'
-import container from 'markdown-it-container'
+import { colors } from 'vuepress/utils'
+import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
+import { logger } from '../utils/logger.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
+import { createContainerPlugin } from './createContainer.js'
+import { ALLOW_LIST, BOOL_FLAGS, DEFAULT_TABS, MANAGERS_CONFIG } from './npmToPreset.js'
 
-type PackageCommand = 'install' | 'add' | 'remove' | 'run' | 'create' | 'init' | 'npx' | 'ci'
-interface CommandConfigItem {
-  cli: string
-  flags?: Record<string, string>
-}
-type CommandConfig = Record<Exclude<NpmToPackageManager, 'npm'>, CommandConfigItem | false>
-type CommandConfigs = Record<PackageCommand, { pattern: RegExp } & CommandConfig>
-
-const ALLOW_LIST = ['npm', 'pnpm', 'yarn', 'bun', 'deno'] as const
-const BOOL_FLAGS: string[] = ['--no-save', '-B', '--save-bundle', '--save-dev', '-D', '--save-prod', '-P', '--save-peer', '-O', '--save-optional', '-E', '--save-exact', '-y', '--yes', '-g', '--global']
-
-const DEFAULT_TABS: NpmToPackageManager[] = ['npm', 'pnpm', 'yarn']
-
-const MANAGERS_CONFIG: CommandConfigs = {
-  install: {
-    pattern: /(?:^|\s)npm\s+(?:install|i)$/,
-    pnpm: { cli: 'pnpm install' },
-    yarn: { cli: 'yarn' },
-    bun: { cli: 'bun install' },
-    deno: { cli: 'deno install' },
-  },
-  add: {
-    pattern: /(?:^|\s)npm\s+(?:install|i|add)(?:\s|$)/,
-    pnpm: {
-      cli: 'pnpm add',
-      flags: {
-        '--no-save': '', // unsupported
-        '-B': '', // unsupported
-        '--save-bundle': '', // unsupported
-      },
-    },
-    yarn: {
-      cli: 'yarn add',
-      flags: {
-        '--save-dev': '--dev',
-        '--save-prod': '--prod',
-        '-P': '', // in npm, `-P` same as `--save-prod`. but in yarn, `-P` same as `--peer`
-        '--save-peer': '--peer',
-        '--save-optional': '--optional',
-        '--no-save': '', // unsupported
-        '--save-exact': '--exact',
-        '-B': '', // unsupported
-        '--save-bundle': '', // unsupported
-      },
-    },
-    bun: {
-      cli: 'bun add',
-      flags: {
-        '--save-dev': '--development',
-        '-P': '', // it's default
-        '--save-prod': '', // it's default
-        '--save-peer': '', // unsupported
-        '-O': '--optional',
-        '--save-optional': '--optional',
-        '--no-save': '', // unsupported
-        '--save-exact': '--exact',
-        '-B': '', // unsupported
-        '--save-bundle': '', // unsupported
-      },
-    },
-    deno: {
-      cli: 'deno add',
-      flags: {
-        '-g': '', // unsupported
-        '--global': '', // unsupported
-        '--save-dev': '--dev',
-        '-P': '', // unsupported
-        '--save-prod': '', // unsupported
-        '--save-peer': '', // unsupported
-        '-O': '', // unsupported
-        '--save-optional': '', // unsupported
-        '--no-save': '', // unsupported
-        '-E': '', // unsupported
-        '--save-exact': '', // unsupported
-        '-B': '', // unsupported
-        '--save-bundle': '', // unsupported
-      },
-    },
-  },
-  run: {
-    pattern: /(?:^|\s)npm\s+(?:run|run-script|rum|urn)(?:\s|$)/,
-    pnpm: {
-      cli: 'pnpm',
-      flags: {
-        '-w': '-F', // same as `--workspace`
-        '--workspace': '--filter', // filter by workspaces
-        '--': '', // scripts flags
-      },
-    },
-    yarn: {
-      cli: 'yarn',
-      flags: {
-        '-w': '', // unsupported
-        '--workspace': '', // unsupported
-      },
-    },
-    bun: {
-      cli: 'bun run',
-      flags: {
-        '-w': '--filter', // same as `--workspace`
-        '--workspace': '--filter', // filter by workspaces
-      },
-    },
-    deno: {
-      cli: 'deno run',
-      flags: {
-        '-w': '', // unsupported
-        '--workspace': '', // unsupported
-      },
-    },
-  },
-  create: {
-    pattern: /(?:^|\s)npm\s+create\s/,
-    pnpm: { cli: 'pnpm create', flags: { '-y': '', '--yes': '' } },
-    yarn: { cli: 'yarn create', flags: { '-y': '', '--yes': '' } },
-    bun: { cli: 'bun create', flags: { '-y': '', '--yes': '' } },
-    deno: { cli: 'deno run -A ', flags: { '-y': '', '--yes': '' } },
-  },
-  init: {
-    pattern: /(?:^|\s)npm\s+init/,
-    pnpm: { cli: 'pnpm init', flags: { '-y': '', '--yes': '' } },
-    yarn: { cli: 'yarn init', flags: { '-y': '', '--yes': '' } },
-    bun: { cli: 'bun init', flags: { '-y': '', '--yes': '' } },
-    deno: { cli: 'deno init', flags: { '-y': '', '--yes': '' } },
-  },
-  npx: {
-    pattern: /(?:^|\s)npx\s+/,
-    pnpm: { cli: 'pnpm dlx' },
-    yarn: { cli: 'yarn dlx' },
-    bun: { cli: 'bunx' },
-    deno: { cli: 'deno run -A' },
-  },
-  remove: {
-    pattern: /(?:^|\s)npm\s+(?:uninstall|r|rm|remove|unlink|un)(?:\s|$)/,
-    pnpm: {
-      cli: 'pnpm remove',
-      flags: { '--no-save': '', '--save': '', '-S': '' },
-    },
-    yarn: {
-      cli: 'yarn remove',
-      flags: { '--save-dev': '--dev', '--save': '', '-S': '', '-g': '', '--global': '' },
-    },
-    bun: {
-      cli: 'bun remove',
-      flags: { '--save-dev': '--development', '--save': '', '-S': '', '-g': '', '--global': '' },
-    },
-    deno: {
-      cli: 'deno uninstall',
-      flags: { '--save-dev': '--dev', '--save': '', '-S': '' },
-    },
-  },
-  ci: {
-    pattern: /(?:^|\s)npm\s+ci$/,
-    pnpm: { cli: 'pnpm install --frozen-lockfile' },
-    yarn: { cli: 'yarn install --immutable' },
-    bun: { cli: 'bun install --frozen-lockfile' },
-    deno: { cli: 'deno install --frozen' },
-  },
-}
-
+/**
+ * 注册 npm-to 容器插件，将 npm 代码块自动转换为多包管理器命令分组
+ */
 export function npmToPlugins(md: Markdown, options: NpmToOptions = {}): void {
-  const type = 'npm-to'
-
   const opt = isArray(options) ? { tabs: options } : options
   const defaultTabs = opt.tabs?.length ? opt.tabs : DEFAULT_TABS
 
-  const render = (tokens: Token[], idx: number): string => {
-    const { attrs } = resolveAttrs(tokens[idx].info.trim().slice(type.length))
-    const tabs = (attrs.tabs ? attrs.tabs.split(/,\s*/) : defaultTabs) as NpmToPackageManager[]
-    if (tokens[idx].nesting === 1) {
+  createContainerPlugin(md, 'npm-to', {
+    before: (info, tokens, idx, _opt, env: MarkdownEnv) => {
+      const { attrs } = resolveAttrs<{ tabs?: string }>(info)
+      const tabs = (attrs.tabs ? attrs.tabs.split(/,\s*/) : defaultTabs) as NpmToPackageManager[]
       const token = tokens[idx + 1]
-      const info = token.info.trim()
       if (token.type === 'fence') {
         const content = token.content
         token.hidden = true
         token.type = 'text'
         token.content = ''
+        // 拆分命令行内容，转换为多包管理器命令
         const lines = content.split(/(\n|\s*&&\s*)/)
-        return md.render(resolveNpmTo(lines, info, idx, tabs), {})
+        return md.render(
+          resolveNpmTo(lines, token.info.trim(), idx, tabs),
+          cleanMarkdownEnv(env),
+        )
       }
-    }
-    return ''
-  }
-
-  md.use(container, type, { render })
+      // 非法容器警告
+      logger.warn('npm-to', `Invalid npm-to container in ${colors.gray(env.filePathRelative || env.filePath)}`)
+      return ''
+    },
+    after: () => '',
+  })
 }
 
+/**
+ * 将 npm 命令转换为各包管理器命令分组
+ * @param lines 命令行数组
+ * @param info 代码块类型
+ * @param idx token 索引
+ * @param tabs 需要支持的包管理器
+ */
 function resolveNpmTo(lines: string[], info: string, idx: number, tabs: NpmToPackageManager[]): string {
   tabs = validateTabs(tabs)
   const res: string[] = []
@@ -225,6 +81,7 @@ function resolveNpmTo(lines: string[], info: string, idx: number, tabs: NpmToPac
     for (const line of lines) {
       const config = findConfig(line)
       if (config && config[tab]) {
+        // 解析并替换命令参数
         const parsed = (map[line] ??= parseLine(line)) as LineParsed
         const { cli, flags } = config[tab] as CommandConfigItem
 
@@ -248,11 +105,15 @@ function resolveNpmTo(lines: string[], info: string, idx: number, tabs: NpmToPac
         newLines.push(line)
       }
     }
+    // 拼接为 code-tabs 格式
     res.push(`@tab ${tab}\n\`\`\`${info}\n${newLines.join('')}\n\`\`\``)
   }
   return `:::code-tabs#npm-to-${tabs.join('-')}\n${res.join('\n')}\n:::`
 }
 
+/**
+ * 根据命令行内容查找对应的包管理器配置
+ */
 function findConfig(line: string): CommandConfig | undefined {
   for (const { pattern, ...config } of Object.values(MANAGERS_CONFIG)) {
     if (pattern.test(line)) {
@@ -262,6 +123,9 @@ function findConfig(line: string): CommandConfig | undefined {
   return undefined
 }
 
+/**
+ * 校验 tabs 合法性，返回允许的包管理器列表
+ */
 function validateTabs(tabs: NpmToPackageManager[]): NpmToPackageManager[] {
   tabs = tabs.filter(tab => ALLOW_LIST.includes(tab))
   if (tabs.length === 0) {
@@ -270,15 +134,22 @@ function validateTabs(tabs: NpmToPackageManager[]): NpmToPackageManager[] {
   return tabs
 }
 
+/**
+ * 命令行解析结果类型
+ */
 interface LineParsed {
-  env: string
-  cli: string
-  cmd: string
-  args?: string
-  scriptArgs?: string
+  env: string // 环境变量前缀
+  cli: string // 命令行工具（npm/npx ...）
+  cmd: string // 命令/脚本名
+  args?: string // 参数
+  scriptArgs?: string // 脚本参数
 }
 
 const LINE_REG = /(.*)(npm|npx)\s+(.*)/
+
+/**
+ * 解析一行 npm/npx 命令，拆分出环境变量、命令、参数等
+ */
 export function parseLine(line: string): false | LineParsed {
   const match = line.match(LINE_REG)
   if (!match)
@@ -305,6 +176,9 @@ export function parseLine(line: string): false | LineParsed {
   return { env, cli: `${cli} ${rest.slice(0, idx)}`, ...parseArgs(rest.slice(idx + 1)) }
 }
 
+/**
+ * 解析 npm 命令参数，区分命令、参数、脚本参数
+ */
 function parseArgs(line: string): { cmd: string, args?: string, scriptArgs?: string } {
   line = line?.trim()
 
@@ -312,6 +186,7 @@ function parseArgs(line: string): { cmd: string, args?: string, scriptArgs?: str
   let cmd = ''
   let args = ''
   if (npmArgs[0] !== '-') {
+    // 处理命令和参数
     if (npmArgs[0] === '"' || npmArgs[0] === '\'') {
       const idx = npmArgs.slice(1).indexOf(npmArgs[0])
       cmd = npmArgs.slice(0, idx + 2)
@@ -329,6 +204,7 @@ function parseArgs(line: string): { cmd: string, args?: string, scriptArgs?: str
     }
   }
   else {
+    // 处理仅有参数的情况
     let newLine = ''
     let value = ''
     let isQuote = false

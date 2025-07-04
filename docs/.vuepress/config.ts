@@ -1,8 +1,11 @@
+import type { UserConfig } from 'vuepress'
 import fs from 'node:fs'
 import path from 'node:path'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { addViteOptimizeDepsInclude, addViteSsrExternal } from '@vuepress/helper'
+import { llmsPlugin } from '@vuepress/plugin-llms'
 import { defineUserConfig } from 'vuepress'
+import { tocGetter } from './llmstxtTOC.js'
 import { theme } from './theme.js'
 
 const pnpmWorkspace = fs.readFileSync(path.resolve(__dirname, '../../pnpm-workspace.yaml'), 'utf-8')
@@ -34,10 +37,28 @@ export default defineUserConfig({
 
   define: {
     __VUEPRESS_VERSION__: vuepress,
+    // debug hydration mismatch
+    // __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
   },
+
+  alias: {
+    '~/theme': path.resolve(__dirname, './themes'),
+    '~/components': path.resolve(__dirname, './themes/components'),
+    '~/composables': path.resolve(__dirname, './themes/composables'),
+  },
+
+  plugins: [
+    llmsPlugin({
+      llmsTxtTemplateGetter: {
+        description: '一个简约易用的，功能丰富的 vuepress 文档&博客 主题',
+        details: '',
+        toc: tocGetter,
+      },
+    }),
+  ],
 
   bundler: viteBundler(),
   shouldPrefetch: false,
 
   theme,
-})
+}) as UserConfig

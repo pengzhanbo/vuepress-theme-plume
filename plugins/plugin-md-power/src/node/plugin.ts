@@ -1,14 +1,18 @@
 import type { Plugin } from 'vuepress/core'
 import type { MarkdownPowerPluginOptions } from '../shared/index.js'
+import { isPlainObject } from '@pengzhanbo/utils'
 import { addViteOptimizeDepsInclude } from '@vuepress/helper'
-import { isPackageExists } from 'local-pkg'
+import { extendsPageWithCodeTree } from './container/codeTree.js'
 import { containerPlugin } from './container/index.js'
 import { demoPlugin, demoWatcher, extendsPageWithDemo, waitDemoRender } from './demo/index.js'
 import { embedSyntaxPlugin } from './embed/index.js'
 import { docsTitlePlugin } from './enhance/docsTitle.js'
 import { imageSizePlugin } from './enhance/imageSize.js'
+import { linksPlugin } from './enhance/links.js'
+import { iconPlugin } from './icon/index.js'
 import { inlineSyntaxPlugin } from './inline/index.js'
 import { prepareConfigFile } from './prepareConfigFile.js'
+import { provideData } from './provideData.js'
 
 export function markdownPowerPlugin(
   options: MarkdownPowerPluginOptions = {},
@@ -18,12 +22,7 @@ export function markdownPowerPlugin(
 
     clientConfigFile: app => prepareConfigFile(app, options),
 
-    define: {
-      __MD_POWER_INJECT_OPTIONS__: options,
-      __MD_POWER_DASHJS_INSTALLED__: isPackageExists('dashjs'),
-      __MD_POWER_HLSJS_INSTALLED__: isPackageExists('hls.js'),
-      __MD_POWER_MPEGTSJS_INSTALLED__: isPackageExists('mpegts.js'),
-    },
+    define: provideData(options),
 
     extendsBundlerOptions(bundlerOptions, app) {
       if (options.repl) {
@@ -32,6 +31,9 @@ export function markdownPowerPlugin(
           app,
           ['shiki/core', 'shiki/wasm', 'shiki/engine/oniguruma'],
         )
+
+        if (options.repl.python)
+          addViteOptimizeDepsInclude(bundlerOptions, app, ['pyodide'])
       }
       if (options.artPlayer) {
         addViteOptimizeDepsInclude(
@@ -43,9 +45,11 @@ export function markdownPowerPlugin(
     },
 
     extendsMarkdown: async (md, app) => {
+      linksPlugin(md)
       docsTitlePlugin(md)
       embedSyntaxPlugin(md, options)
       inlineSyntaxPlugin(md, options)
+      iconPlugin(md, options.icon ?? (isPlainObject(options.icons) ? options.icons : {}))
 
       if (options.demo)
         demoPlugin(app, md)
@@ -68,6 +72,9 @@ export function markdownPowerPlugin(
     extendsPage: (page) => {
       if (options.demo)
         extendsPageWithDemo(page)
+
+      if (options.codeTree)
+        extendsPageWithCodeTree(page)
     },
   }
 }

@@ -26,14 +26,16 @@
 - 📖 博客 & 文档
 - 🔗 自动生成文章永久链接
 - ⚖  支持多语言
-- 🔑 支持 全站加密、部分加密
 - 👀 支持 搜索、文章评论
 - 👨‍💻‍ 支持 浅色/深色 主题 （包括代码高亮）
-- 📠 markdown 增强，支持 代码块分组、提示容器、任务列表、数学公式、代码演示 等
+- 📠 markdown 增强，支持提示容器、任务列表、数学公式、代码演示、文件树、代码树、时间轴 等
+- 🧀 代码块增强，支持 分组、折叠、聚焦、 行高亮、词高亮、twoslash 等
+- 😀 内置支持 `iconify` 200k+ 图标，支持可选的 `iconfont` / `fontawesome` 图标。
 - 📚 嵌入代码演示，支持 CodePen, JSFiddle, CodeSandbox 等
-- 📊 嵌入图表，支持 chart.js，Echarts，Mermaid，flowchart
-- 🎛 资源嵌入，支持 PDF, bilibili视频，youtube视频等
+- 📊 嵌入图表，支持 chart.js，Echarts，Mermaid，flowchart, plantUML
+- 🎛 资源嵌入，支持 PDF, bilibili视频，youtube视频、本地视频、音频等
 - 🪞 支持全站水印、部分内容水印
+- 🔑 支持 全站加密、部分加密
 
 ## [使用文档](https://theme-plume.vuejs.press)
 
@@ -54,6 +56,8 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&logo=contributorcovenant)
 
 [![contributors](https://contrib.rocks/image?repo=pengzhanbo/vuepress-theme-plume)](https://github.com/pengzhanbo/vuepress-theme-plume/graphs/contributors)
+
+![Repo beats](https://repobeats.axiom.co/api/embed/b3e16e8802010e72e933f64864a8047e3163e927.svg "Repo Beats analytics image")
 
 ## LICENSE
 

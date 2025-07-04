@@ -1,8 +1,12 @@
+import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 import { usePostList } from './blog-data.js'
 import { useData } from './data.js'
 
-export function useBlogPageData() {
+export function useBlogPageData(): {
+  isBlogPost: ComputedRef<boolean>
+  isBlogLayout: ComputedRef<boolean>
+} {
   const { page } = useData()
   const postList = usePostList()
 

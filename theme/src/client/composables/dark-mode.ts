@@ -9,7 +9,7 @@ export const darkModeSymbol: InjectionKey<DarkModeRef> = Symbol(
   __VUEPRESS_DEV__ ? 'darkMode' : '',
 )
 
-export function enableTransitions() {
+export function enableTransitions(): boolean {
   if (typeof document === 'undefined')
     return false
   return 'startViewTransition' in document

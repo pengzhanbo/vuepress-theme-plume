@@ -2,13 +2,17 @@ import type { File, ResolvedData } from './types.js'
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
-import { execaCommand } from 'execa'
+import spawn from 'nano-spawn'
 import { DeployType, Mode } from './constants.js'
 import { createPackageJson } from './packageJson.js'
 import { createRender } from './render.js'
 import { getTemplate, readFiles, readJsonFile, writeFiles } from './utils/index.js'
 
-export async function generate(mode: Mode, data: ResolvedData, cwd = process.cwd()): Promise<void> {
+export async function generate(
+  mode: Mode,
+  data: ResolvedData,
+  cwd: string = process.cwd(),
+): Promise<void> {
   let userPkg: Record<string, any> = {}
   if (mode === Mode.init) {
     const pkgPath = path.join(cwd, 'package.json')
@@ -36,8 +40,8 @@ export async function generate(mode: Mode, data: ResolvedData, cwd = process.cwd
       })
     }
     if (data.packageManager === 'yarn') {
-      const { stdout: yarnVersion } = await execaCommand('yarn --version')
-      if (yarnVersion.startsWith('2')) {
+      const { output } = await spawn('yarn', ['--version'])
+      if (output.startsWith('2')) {
         fileList.push({
           filepath: '.yarnrc.yml',
           content: 'nodeLinker: \'node-modules\'\n',

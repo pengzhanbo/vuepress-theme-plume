@@ -31,7 +31,7 @@ function toggle() {
         <ul class="list">
           <li v-for="locale in localeLinks" :key="locale.link" class="item">
             <VPLink class="link" :href="locale.link">
-              {{ locale.text }}
+              {{ locale.label }}
             </VPLink>
           </li>
         </ul>
@@ -40,7 +40,7 @@ function toggle() {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .vp-nav-screen-translations {
   min-height: 24px;
   overflow: hidden;

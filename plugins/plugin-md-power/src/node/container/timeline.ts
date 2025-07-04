@@ -16,6 +16,7 @@ import type Token from 'markdown-it/lib/token.mjs'
 import type { Markdown } from 'vuepress/markdown'
 import { isEmptyObject } from '@pengzhanbo/utils'
 import { resolveAttrs } from '.././utils/resolveAttrs.js'
+import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerPlugin } from './createContainer.js'
 
 export interface TimelineAttrs {
@@ -39,42 +40,24 @@ const RE_KEY = /(\w+)=\s*/
 const RE_SEARCH_KEY = /\s+\w+=\s*|$/
 const RE_CLEAN_VALUE = /(?<quote>["'])(.*?)(\k<quote>)/
 
-export function timelinePlugin(md: Markdown) {
+export function timelinePlugin(md: Markdown): void {
   createContainerPlugin(md, 'timeline', {
     before(info, tokens, index) {
       parseTimeline(tokens, index)
 
       const { attrs } = resolveAttrs<TimelineAttrs>(info)
-      const { horizontal, card, placement, line } = attrs
-      return `<VPTimeline${
-        horizontal ? ' horizontal' : ''
-      }${
-        card ? ' card' : ' :card="undefined"'
-      }${
-        placement ? ` placement="${placement}"` : ''
-      }${
-        line ? ` line="${line}"` : ''
-      }>`
+      attrs.card ??= undefined
+      return `<VPTimeline${stringifyAttrs(attrs, true)}>`
     },
     after: () => '</VPTimeline>',
   })
 
   md.renderer.rules.timeline_item_open = (tokens, idx) => {
     const token = tokens[idx]
-    const { time, type, icon, color, line, card, placement } = token.meta as TimelineItemMeta
-    return `<VPTimelineItem${
-      time ? ` time="${time}"` : ''
-    }${
-      type ? ` type="${type}"` : ''
-    }${
-      color ? ` color="${color}"` : ''
-    }${
-      line ? ` line="${line}"` : ''
-    }${icon ? ` icon="${icon}"` : ''}${
-      card === 'true' ? ' card' : card === 'false' ? '' : ' :card="undefined"'
-    }${
-      placement ? ` placement="${placement}"` : ''
-    }>${icon ? `<template #icon><VPIcon name="${icon}"/></template>` : ''}`
+    const attrs = token.meta as TimelineItemMeta
+    attrs.card ??= undefined
+    const icon = attrs.icon
+    return `<VPTimelineItem${stringifyAttrs(attrs, true)}>${icon ? `<template #icon><VPIcon provider="iconify" name="${icon}"/></template>` : ''}`
   }
 
   md.renderer.rules.timeline_item_close = () => '</VPTimelineItem>'

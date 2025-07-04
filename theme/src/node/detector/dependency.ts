@@ -7,6 +7,7 @@ import { createTranslate, logger } from '../utils/index.js'
 
 const DEPENDENCIES: Record<string, string[]> = {
   twoslash: ['@vuepress/shiki-twoslash'],
+  pythonRepl: ['pyodide'],
 
   chartjs: ['chart.js'],
   echarts: ['echarts'],
@@ -33,12 +34,13 @@ const t = createTranslate({
  * 部分功能需要手动安装依赖，
  * 检查环境中是否缺少依赖
  */
-export function detectDependencies(options: ThemeOptions, plugins: ThemeBuiltinPlugins) {
+export function detectDependencies(options: ThemeOptions, plugins: ThemeBuiltinPlugins): void {
   const shouldInstall: Record<string, string[]> = {}
 
   const markdown = options.markdown || {}
   const mdPower = isPlainObject(plugins.markdownPower) ? plugins.markdownPower : {}
-  const mdEnhance = isPlainObject(plugins.markdownEnhance) ? plugins.markdownEnhance : {}
+
+  const mdChart = isPlainObject(plugins.markdownChart) ? plugins.markdownChart : {}
 
   const add = (name: string) => {
     const list = DEPENDENCIES[name].filter(dep => !isPackageExists(dep))
@@ -49,8 +51,11 @@ export function detectDependencies(options: ThemeOptions, plugins: ThemeBuiltinP
   if (options.codeHighlighter && options.codeHighlighter.twoslash)
     add('twoslash')
 
+  if (markdown.repl && markdown.repl.python)
+    add('pythonRepl')
+
   ;['chartjs', 'echarts', 'markmap', 'mermaid', 'flowchart'].forEach((dep) => {
-    if (markdown[dep] || mdEnhance[dep])
+    if (markdown[dep] || mdChart[dep])
       add(dep)
   })
 

@@ -3,66 +3,63 @@ import type { IconifyIcon } from '@iconify/vue/offline'
 import { loadIcon } from '@iconify/vue'
 import { Icon as OfflineIcon } from '@iconify/vue/offline'
 import { computed, ref, watch } from 'vue'
+import { useIconsData } from '../composables/index.js'
 
-const props = withDefaults(
-  defineProps<{
-    name?: string
-    size?: string | number
-    color?: string
-  }>(),
-  {
-    name: '',
-    size: '',
-    color: '',
-  },
-)
+const props = defineProps<{
+  name: string
+  size?: { width?: string, height?: string }
+  color?: string
+  prefix?: string
+  extra?: string
+}>()
 
 const icon = ref<IconifyIcon | null>(null)
 const loaded = ref(false)
 
-async function loadIconComponent() {
+const iconsData = useIconsData()
+
+const iconName = computed(() => {
+  const name = props.name
+  if (name.includes(':'))
+    return name
+  return props.prefix ? `${props.prefix}:${name}` : name
+})
+
+const localIconName = computed(() => iconsData.value[iconName.value])
+
+async function loadRemoteIcon() {
   if (icon.value)
     return
 
-  if (!__VUEPRESS_SSR__) {
-    try {
-      loaded.value = false
-      icon.value = await loadIcon(props.name)
-    }
-    finally {
-      loaded.value = true
-    }
+  if (!localIconName.value) {
+    loaded.value = false
+    icon.value = await loadIcon(props.name)
   }
-  else {
-    loaded.value = true
-  }
+  loaded.value = true
 }
 
-watch(() => props.name, loadIconComponent, { immediate: true })
-
-const size = computed(() => {
-  const size = props.size || '1em'
-  if (String(Number(size)) === size)
-    return `${size}px`
-
-  return size
-})
-const color = computed(() => props.color || 'currentColor')
-
-const bind = computed<any>(() => ({
-  icon: icon.value,
-  color: props.color,
-  height: size.value,
-}))
+if (!__VUEPRESS_SSR__)
+  watch(() => props.name, loadRemoteIcon, { immediate: true })
 </script>
 
 <template>
-  <ClientOnly>
-    <span v-if="!loaded" class="vp-icon iconify" :style="{ color, width: size, height: size }" />
+  <span
+    v-if="localIconName"
+    class="vp-icon" :class="[localIconName, extra]"
+    :style="{ color, ...size }"
+    aria-hidden
+    data-provider="iconify"
+  />
+  <ClientOnly v-else>
+    <span v-if="!loaded" class="vp-icon iconify" :style="{ color, ...size }" />
     <OfflineIcon
       v-else-if="icon"
       class="vp-icon iconify"
-      v-bind="bind"
+      :class="[extra]"
+      :icon="icon"
+      :style="{ color, ...size }"
+      aria-hidden
+      data-provider="iconify"
     />
   </ClientOnly>
 </template>

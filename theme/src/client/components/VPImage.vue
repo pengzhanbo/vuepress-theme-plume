@@ -25,7 +25,7 @@ const styles = computed(() => {
 <script lang="ts">
 export default {
   inheritAttrs: false,
-}
+} as { inheritAttrs: boolean }
 </script>
 
 <template>

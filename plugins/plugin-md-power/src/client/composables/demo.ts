@@ -1,4 +1,4 @@
-import type { MaybeRefOrGetter, ShallowRef } from 'vue'
+import type { ComputedRef, MaybeRefOrGetter, Ref, ShallowRef } from 'vue'
 import { onClickOutside, useEventListener } from '@vueuse/core'
 import { computed, getCurrentInstance, onMounted, ref, toValue, useId, watch } from 'vue'
 import { isPlainObject } from 'vuepress/shared'
@@ -11,7 +11,7 @@ export interface DemoConfig {
   cssLib: string[]
 }
 
-export function useExpand(defaultExpand = true) {
+export function useExpand(defaultExpand = true): readonly [Ref<boolean>, () => void] {
   const expanded = ref(defaultExpand)
   function toggle() {
     expanded.value = !expanded.value
@@ -19,18 +19,31 @@ export function useExpand(defaultExpand = true) {
   return [expanded, toggle] as const
 }
 
-export function useResources(el: ShallowRef<HTMLDivElement | null>, config: MaybeRefOrGetter<DemoConfig | undefined>) {
-  const resources = computed<{
-    name: string
-    items: { name: string, url: string }[]
-  }[]>(() => {
+interface ResourceItem {
+  name: string
+  items: SubResourceItem[]
+}
+
+interface SubResourceItem {
+  name: string
+  url: string
+}
+
+interface UseResourcesResult {
+  resources: ComputedRef<ResourceItem[]>
+  showResources: Ref<boolean>
+  toggleResources: () => void
+}
+
+export function useResources(el: ShallowRef<HTMLDivElement | null>, config: MaybeRefOrGetter<DemoConfig | undefined>): UseResourcesResult {
+  const resources = computed<ResourceItem[]>(() => {
     const conf = toValue(config)
     if (!conf)
       return []
     return [
-      { name: 'JavaScript', items: conf.jsLib.map(url => ({ name: normalizeName(url), url })) },
-      { name: 'CSS', items: conf.cssLib.map(url => ({ name: normalizeName(url), url })) },
-    ].filter(i => i.items.length)
+      { name: 'JavaScript', items: conf.jsLib?.map(url => ({ name: normalizeName(url), url })) },
+      { name: 'CSS', items: conf.cssLib?.map(url => ({ name: normalizeName(url), url })) },
+    ].filter(i => i.items?.length)
   })
 
   function normalizeName(url: string) {
@@ -39,7 +52,7 @@ export function useResources(el: ShallowRef<HTMLDivElement | null>, config: Mayb
 
   const showResources = ref(false)
 
-  function toggleResources() {
+  function toggleResources(): void {
     showResources.value = !showResources.value
   }
 
@@ -54,14 +67,16 @@ export function useResources(el: ShallowRef<HTMLDivElement | null>, config: Mayb
   }
 }
 
-export function useFence(fence: ShallowRef<HTMLDivElement | null>, config: MaybeRefOrGetter<DemoConfig | undefined>) {
-  const data = ref<{
-    js: string
-    css: string
-    html: string
-    jsType: string
-    cssType: string
-  }>({ js: '', css: '', html: '', jsType: '', cssType: '' })
+interface FenceData {
+  js: string
+  css: string
+  html: string
+  jsType: string
+  cssType: string
+}
+
+export function useFence(fence: ShallowRef<HTMLDivElement | null>, config: MaybeRefOrGetter<DemoConfig | undefined>): Ref<FenceData> {
+  const data = ref<FenceData>({ js: '', css: '', html: '', jsType: '', cssType: '' })
 
   onMounted(() => {
     if (!fence.value)
@@ -93,7 +108,7 @@ export function useNormalDemo(
   draw: ShallowRef<HTMLIFrameElement | null>,
   title: MaybeRefOrGetter<string | undefined>,
   config: MaybeRefOrGetter<DemoConfig | undefined>,
-) {
+): { id: string, height: Ref<string> } {
   const current = getCurrentInstance()
   const id = useId()
   const isDark = computed(() => current?.appContext.config.globalProperties.$isDark.value)
@@ -157,7 +172,7 @@ function createHTMLTemplate(title: string, id: string, config?: DemoConfig): str
 </html>`
 }
 
-export function parseData(data: any) {
+export function parseData(data: any): any {
   try {
     if (typeof data === 'string') {
       return JSON.parse(data)

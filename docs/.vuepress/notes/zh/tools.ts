@@ -1,6 +1,7 @@
+import type { ThemeNote } from 'vuepress-theme-plume'
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
-export const tools = defineNoteConfig({
+export const tools: ThemeNote = defineNoteConfig({
   dir: 'tools',
   link: '/tools/',
   sidebar: [

@@ -47,8 +47,11 @@ export async function prepareSearchIndex({
   app,
   isSearchable,
   searchOptions,
-}: SearchIndexOptions) {
+}: SearchIndexOptions): Promise<void> {
   const start = performance.now()
+  indexByLocales.clear()
+  indexCache.clear()
+
   const pages = isSearchable ? app.pages.filter(isSearchable) : app.pages
   await pMap(pages, p => indexFile(p, searchOptions), {
     concurrency: 64,
@@ -69,7 +72,7 @@ export async function onSearchIndexUpdated(
     isSearchable,
     searchOptions,
   }: SearchIndexOptions,
-) {
+): Promise<void> {
   const pages = isSearchable ? app.pages.filter(isSearchable) : app.pages
   if (pages.some(p => p.filePathRelative?.endsWith(filepath))) {
     await indexFile(app.pages.find(p => p.filePathRelative?.endsWith(filepath))!, searchOptions)
@@ -84,7 +87,7 @@ export async function onSearchIndexRemoved(
     isSearchable,
     searchOptions,
   }: SearchIndexOptions,
-) {
+): Promise<void> {
   const pages = isSearchable ? app.pages.filter(isSearchable) : app.pages
   if (pages.some(p => p.filePathRelative?.endsWith(filepath))) {
     const page = app.pages.find(p => p.filePathRelative?.endsWith(filepath))!

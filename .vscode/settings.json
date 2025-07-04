@@ -56,6 +56,7 @@
     "vue"
   ],
   "cSpell.words": [
+    "acfun",
     "bilibili",
     "bumpp",
     "caniuse",
@@ -64,9 +65,11 @@
     "composables",
     "Docsearch",
     "esbuild",
+    "fontawesome",
     "frontmatter",
     "gsap",
     "iarna",
+    "iconfont",
     "iconify",
     "katex",
     "leancloud",
@@ -79,6 +82,7 @@
     "taze",
     "Tongji",
     "tsbuildinfo",
+    "tsdown",
     "twoslash",
     "vite",
     "vuepress",

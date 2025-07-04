@@ -4,10 +4,10 @@
  */
 import type { PluginWithOptions } from 'markdown-it'
 import type MarkdownIt from 'markdown-it'
-import type Token from 'markdown-it/lib/token.mjs'
 import type { CanIUseMode, CanIUseOptions, CanIUseTokenMeta } from '../../shared/index.js'
-import container from 'markdown-it-container'
+import { createContainerPlugin } from '../container/createContainer.js'
 import { nanoid } from '../utils/nanoid.js'
+import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createEmbedRuleBlock } from './createEmbedRuleBlock.js'
 
 const UNDERLINE_RE = /_+/g
@@ -51,27 +51,14 @@ export function legacyCaniuse(
   const isMode = (mode: CanIUseMode): boolean => modeMap.includes(mode)
 
   mode = isMode(mode) ? mode : modeMap[0]
-  const type = 'caniuse'
-  const validateReg = new RegExp(`^${type}`)
-
-  const validate = (info: string): boolean => {
-    return validateReg.test(info.trim())
-  }
-
-  const render = (tokens: Token[], index: number): string => {
-    const token = tokens[index]
-    if (token.nesting === 1) {
-      const info = token.info.trim().slice(type.length).trim() || ''
+  createContainerPlugin(md, 'caniuse', {
+    before: (info) => {
       const feature = info.split(/\s+/)[0]
       const versions = info.match(/\{(.*)\}/)?.[1] || ''
       return feature ? resolveCanIUse({ feature, mode, versions }) : ''
-    }
-    else {
-      return ''
-    }
-  }
-
-  md.use(container, type, { validate, render })
+    },
+    after: () => '',
+  })
 }
 
 function resolveCanIUse({ feature, mode, versions }: CanIUseTokenMeta): string {
@@ -92,7 +79,7 @@ function resolveCanIUse({ feature, mode, versions }: CanIUseTokenMeta): string {
   const { past, future } = resolveVersions(versions)
   const meta = nanoid()
 
-  return `<CanIUseViewer feature="${feature}" meta="${meta}" past="${past}" future="${future}" />`
+  return `<CanIUseViewer${stringifyAttrs({ feature, meta, past, future })} />`
 }
 
 function resolveVersions(versions: string): { past: number, future: number } {

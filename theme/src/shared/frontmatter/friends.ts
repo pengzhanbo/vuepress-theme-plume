@@ -83,6 +83,10 @@ export interface ThemeFriendsFrontmatter extends ThemeNormalFrontmatter {
    */
   description?: string
   /**
+   * markdown 内容位置
+   */
+  contentPosition?: 'before' | 'after'
+  /**
    * 友链列表
    */
   list?: FriendsItem[]

@@ -1,3 +1,4 @@
+import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 import { useLocalePostList } from './blog-data.js'
 
@@ -17,10 +18,10 @@ export interface CategoryItem {
 
 export type BlogCategory = (CategoryItem | CategoryItemWithPost)[]
 
-export function useBlogCategory() {
+export function useBlogCategory(): { categories: ComputedRef<BlogCategory> } {
   const postList = useLocalePostList()
 
-  const categories = computed(() => {
+  const categories = computed<BlogCategory>(() => {
     const list: BlogCategory = []
 
     postList.value.forEach((item) => {

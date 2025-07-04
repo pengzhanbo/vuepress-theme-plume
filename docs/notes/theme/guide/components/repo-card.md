@@ -48,7 +48,13 @@ export default defineClientConfig({
 
 ### Props
 
-`RepoCard` 组件的 接收一个 `repo` 参数，传入的是仓库的地址，格式为 `owner/repo`。
+:::: field-group
+
+::: field name="repo" type="string" required
+仓库地址，格式为 `owner/repo`
+:::
+
+::::
 
 ## 示例
 

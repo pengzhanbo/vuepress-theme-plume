@@ -1,7 +1,7 @@
 {
   "name": "vuepress-theme-plume",
   "type": "module",
-  "version": "1.0.0-rc.143",
+  "version": "1.0.0-rc.155",
   "description": "A Blog&Document Theme for VuePress 2.0",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
@@ -53,24 +53,21 @@
     "templates"
   ],
   "engines": {
-    "node": "^18.19.0 || ^20.6.0 || >=22.0.0"
+    "node": "^20.6.0 || >=22.0.0"
   },
   "scripts": {
-    "dev": "pnpm '/(copy|tsup):watch/'",
-    "build": "pnpm run copy && pnpm run tsup",
+    "dev": "pnpm '/(copy|tsdown):watch/'",
+    "build": "pnpm run tsdown && pnpm run copy",
     "clean": "rimraf --glob ./lib",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
     "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib -w",
-    "tsup": "tsup --config tsup.config.ts",
-    "tsup:watch": "tsup --config tsup.config.ts --watch -- -c"
+    "tsdown": "tsdown",
+    "tsdown:watch": "tsdown --watch -- -c"
   },
   "peerDependencies": {
     "@iconify/json": "catalog:peer",
     "@vuepress/shiki-twoslash": "catalog:vuepress",
     "mathjax-full": "catalog:peer",
-    "sass": "catalog:peer",
-    "sass-embedded": "catalog:peer",
-    "sass-loader": "catalog:peer",
     "swiper": "catalog:peer",
     "vuepress": "catalog:vuepress"
   },
@@ -82,15 +79,6 @@
       "optional": true
     },
     "mathjax-full": {
-      "optional": true
-    },
-    "sass": {
-      "optional": true
-    },
-    "sass-embedded": {
-      "optional": true
-    },
-    "sass-loader": {
       "optional": true
     },
     "swiper": {
@@ -109,6 +97,7 @@
     "@vuepress/plugin-copy-code": "catalog:vuepress",
     "@vuepress/plugin-docsearch": "catalog:vuepress",
     "@vuepress/plugin-git": "catalog:vuepress",
+    "@vuepress/plugin-markdown-chart": "catalog:vuepress",
     "@vuepress/plugin-markdown-hint": "catalog:vuepress",
     "@vuepress/plugin-markdown-image": "catalog:vuepress",
     "@vuepress/plugin-markdown-include": "catalog:vuepress",
@@ -128,13 +117,12 @@
     "esbuild": "catalog:prod",
     "fast-glob": "catalog:prod",
     "gray-matter": "catalog:prod",
-    "json2yaml": "catalog:prod",
+    "js-yaml": "catalog:prod",
     "katex": "catalog:prod",
     "local-pkg": "catalog:prod",
     "nanoid": "catalog:prod",
     "package-manager-detector": "catalog:prod",
     "vue": "catalog:prod",
-    "vuepress-plugin-md-enhance": "catalog:vuepress",
     "vuepress-plugin-md-power": "workspace:*",
     "vuepress-plugin-replace-assets": "workspace:*"
   },

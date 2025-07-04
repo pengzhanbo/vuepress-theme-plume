@@ -2,14 +2,14 @@
 title: PlantUML
 icon: arcticons:uml-class-editor
 createTime: 2025/03/01 15:02:08
-permalink: /guide/za6z9xie/
+permalink: /guide/chart/plantuml/
 ---
 
 ## 概述
 
 主题支持在 文章中 嵌入由 [PlantUML](https://plantuml.com/) 。
 
-该功能由 [vuepress-plugin-md-enhance](https://plugin-md-enhance.vuejs.press/) 提供支持。
+该功能由 [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/) 提供支持。
 
 ## 配置
 
@@ -28,8 +28,8 @@ export default defineUserConfig({
 ```
 
 ::: note
-以下文档 Fork 自 [vuepress-theme-hope](https://theme-hope.vuejs.press/zh/guide/markdown/chart/plantuml.html),
-遵循 [MIT](https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/LICENSE) 许可证。
+以下文档 Fork 自 [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/plantuml.html),
+遵循 [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE) 许可证。
 :::
 
 ## 格式

@@ -6,8 +6,10 @@ import { alignPlugin } from './align.js'
 import { cardPlugin } from './card.js'
 import { chatPlugin } from './chat.js'
 import { codeTabs } from './codeTabs.js'
+import { codeTreePlugin } from './codeTree.js'
 import { collapsePlugin } from './collapse.js'
 import { demoWrapperPlugin } from './demoWrapper.js'
+import { fieldPlugin } from './field.js'
 import { fileTreePlugin } from './fileTree.js'
 import { langReplPlugin } from './langRepl.js'
 import { npmToPlugins } from './npmTo.js'
@@ -19,7 +21,7 @@ export async function containerPlugin(
   app: App,
   md: Markdown,
   options: MarkdownPowerPluginOptions,
-) {
+): Promise<void> {
   // ::: left / right / center / justify
   alignPlugin(md)
   // ::: tabs
@@ -42,12 +44,16 @@ export async function containerPlugin(
   }
 
   if (options.repl)
-    // ::: rust-repl / go-repl / kotlin-repl
+    // ::: rust-repl / go-repl / kotlin-repl / python-repl
     await langReplPlugin(app, md, options.repl)
 
   if (options.fileTree) {
     // ::: file-tree
     fileTreePlugin(md, isPlainObject(options.fileTree) ? options.fileTree : {})
+  }
+
+  if (options.codeTree) {
+    codeTreePlugin(md, app, isPlainObject(options.codeTree) ? options.codeTree : {})
   }
 
   if (options.timeline)
@@ -58,4 +64,7 @@ export async function containerPlugin(
 
   if (options.chat)
     chatPlugin(md)
+
+  if (options.field)
+    fieldPlugin(md)
 }

@@ -1,6 +1,9 @@
 import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
+import { colors } from 'vuepress/utils'
+import { logger } from '../utils/logger.js'
+import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { findFile, readFileSync } from './supports/file.js'
 
 export function markdownEmbed(
@@ -12,7 +15,7 @@ export function markdownEmbed(
   const filepath = findFile(app, env, url)
   const code = readFileSync(filepath)
   if (code === false) {
-    console.warn('[vuepress-plugin-md-power] Cannot read markdown file:', filepath)
+    logger.warn('demo-markdown', `Cannot read markdown file: ${colors.gray(filepath)}\n  at: ${colors.gray(env.filePathRelative || '')}`)
     return ''
   }
   const demo: DemoFile = { type: 'markdown', path: filepath }
@@ -23,7 +26,7 @@ export function markdownEmbed(
     env.demoFiles.push(demo)
   }
 
-  return `<VPDemoBasic type="markdown"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
+  return `<VPDemoBasic${stringifyAttrs({ type: 'markdown', title, desc, expanded })}>
     ${md.render(code, { filepath: env.filePath, filepathRelative: env.filePathRelative })}
     <template #code>
       ${md.render(`\`\`\`md ${codeSetting}\n${code}\n\`\`\``, {})}
@@ -35,7 +38,7 @@ export const markdownContainerRender: DemoContainerRender = {
   before(app, md, env, meta, codeMap) {
     const { title, desc, expanded = false } = meta
     const code = codeMap.md || ''
-    return `<VPDemoBasic type="markdown"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
+    return `<VPDemoBasic${stringifyAttrs({ type: 'markdown', title, desc, expanded })}>
       ${md.render(code, { filepath: env.filePath, filepathRelative: env.filePathRelative })}
       <template #code>`
   },

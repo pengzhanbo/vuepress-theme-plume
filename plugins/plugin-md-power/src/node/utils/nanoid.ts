@@ -1,3 +1,3 @@
 import { customAlphabet } from 'nanoid'
 
-export const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 5)
+export const nanoid: (size?: number) => string = customAlphabet('abcdefghijklmnopqrstuvwxyz', 5)

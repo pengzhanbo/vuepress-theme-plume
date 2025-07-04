@@ -129,7 +129,8 @@ config:
 **效果：**
 
 :::demo-wrapper img no-padding
-<img src="/images/custom-banner.jpg" alt="" />
+
+![banner](/images/custom-banner.jpg)
 :::
 
 ### hero
@@ -179,15 +180,15 @@ interface TintPlateObj {
   g: { value: number, offset: number }
   b: { value: number, offset: number }
 }
-type TintPlate =
-  | number // 210
-  | string // '210,210,210' => red,green,blue
+type TintPlate
+  = | number // 210
+    | string // '210,210,210' => red,green,blue
   // { r: { value: 220, offset: 36 }, g: { value: 220, offset: 36 }, b: { value: 220, offset: 36 } }
-  | TintPlate
+    | TintPlate
   // { light: 210, dark: 20 }
   // { light: '210,210,210', dark: '20,20,20' }
-  | { light: number | string, dark: number | string }
-  | { light: TintPlate, dark: TintPlate }
+    | { light: number | string, dark: number | string }
+    | { light: TintPlate, dark: TintPlate }
 ```
 
 **示例：**
@@ -433,7 +434,7 @@ config:
 **效果：**
 
 :::demo-wrapper img no-padding
-<img src="/images/custom-features.jpg" alt="" />
+<img src="/images/custom-features.jpg" alt="custom-features" />
 :::
 
 ### text-image | image-text
@@ -452,10 +453,10 @@ interface PlumeThemeHomeTextImage extends PlumeHomeConfigBase {
   list: (string | { title?: string, description?: string })[]
 }
 
-type PlumeThemeImage =
-  | string
-  | { src: string, alt?: string }
-  | { dark: string, light: string, alt?: string }
+type PlumeThemeImage
+  = | string
+    | { src: string, alt?: string }
+    | { dark: string, light: string, alt?: string }
 ```
 
 **示例：**
@@ -532,10 +533,10 @@ interface PlumeThemeHomeProfile extends PlumeHomeConfigBase {
   circle?: boolean
 }
 
-type PlumeThemeImage =
-  | string
-  | { src: string, alt?: string }
-  | { dark: string, light: string, alt?: string }
+type PlumeThemeImage
+  = | string
+    | { src: string, alt?: string }
+    | { dark: string, light: string, alt?: string }
 ```
 
 **示例：**
@@ -617,10 +618,10 @@ yarn add vuepress@next vuepress-theme-plume
 
 ```vue
 <script setup lang="ts">
-import type { PlumeHomeConfigBase } from 'vuepress-theme-plume'
+import type { ThemeHomeConfigBase } from 'vuepress-theme-plume'
 import { VPHomeBox } from 'vuepress-theme-plume/client'
 
-const props = defineProps<PlumeHomeConfigBase & {
+const props = defineProps<ThemeHomeConfigBase & {
   // 组件 props, frontmatter 中的属性将会传递给组件
 }>()
 </script>

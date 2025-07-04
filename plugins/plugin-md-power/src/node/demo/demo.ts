@@ -4,14 +4,29 @@ import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
 import container from 'markdown-it-container'
+import { colors } from 'vuepress/utils'
 import { createEmbedRuleBlock } from '../embed/createEmbedRuleBlock.js'
+import { logger } from '../utils/logger.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { markdownContainerRender, markdownEmbed } from './markdown.js'
 import { normalContainerRender, normalEmbed } from './normal.js'
 import { normalizeAlias } from './supports/alias.js'
 import { vueContainerRender, vueEmbed } from './vue.js'
 
-export function demoEmbed(app: App, md: Markdown) {
+const embedMap: Record<
+  DemoMeta['type'],
+  (app: App, md: Markdown, env: MarkdownDemoEnv, meta: DemoMeta) => string
+> = {
+  vue: vueEmbed,
+  normal: normalEmbed,
+  markdown: markdownEmbed,
+}
+
+/**
+ * 嵌入语法
+ * @[demo type info](url)
+ */
+export function demoEmbed(app: App, md: Markdown): void {
   createEmbedRuleBlock<DemoMeta>(md, {
     type: 'demo',
     syntaxPattern: /^@\[demo(?:\s(vue|normal|markdown))?\s?(.*)\]\((.*)\)/,
@@ -23,21 +38,13 @@ export function demoEmbed(app: App, md: Markdown) {
     content: (meta, content, env: MarkdownDemoEnv) => {
       const { url, type } = meta
       if (!url) {
-        console.warn('[vuepress-plugin-md-power] Invalid demo url: ', url)
+        logger.warn('demo-vue', `Invalid filepath: ${colors.gray(url)}`)
         return content
       }
-      if (type === 'vue') {
-        return vueEmbed(app, md, env, meta)
-      }
 
-      if (type === 'normal') {
-        return normalEmbed(app, md, env, meta)
+      if (embedMap[type]) {
+        return embedMap[type](app, md, env, meta)
       }
-
-      if (type === 'markdown') {
-        return markdownEmbed(app, md, env, meta)
-      }
-
       return content
     },
   })
@@ -50,7 +57,7 @@ const renderMap: Record<string, DemoContainerRender> = {
   markdown: markdownContainerRender,
 }
 
-export function demoContainer(app: App, md: Markdown) {
+export function demoContainer(app: App, md: Markdown): void {
   let currentRender: DemoContainerRender | undefined
   const render: RenderRule = (
     tokens: Token[],

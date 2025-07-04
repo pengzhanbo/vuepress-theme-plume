@@ -137,11 +137,13 @@ export default defineUserConfig({
 - **默认值**: `false`
 - **详情**: 是否启用 `npm-to` 容器
 
-### icons
+### icon
 
-- **类型**: `boolean | IconsOptions`
-- **默认值**: `true`
-- **详情**: 是否启用图标语法
+- **类型**: `IconOptions`
+- **默认值**: `{ provider: 'iconify' }`
+- **详情**: 图标配置
+
+  [查看 **icon** 使用说明](../../theme/guide/features/icon.md){.read-more}
 
 ### plot
 
@@ -154,6 +156,12 @@ export default defineUserConfig({
 - **类型**: `boolean | FileTreeOptions`
 - **默认值**: `true`
 - **详情**: 是否启用文件树容器语法
+
+### field
+
+- **类型**: `boolean`
+- **默认值**: `false`
+- **详情**: 是否启用字段容器
 
 ### timeline
 

@@ -15,6 +15,7 @@
     "@iconify/json": "catalog:peer",
     "@simonwep/pickr": "catalog:dev",
     "@vuepress/bundler-vite": "catalog:vuepress",
+    "@vuepress/plugin-llms": "catalog:vuepress",
     "@vuepress/shiki-twoslash": "catalog:vuepress",
     "chart.js": "catalog:prod",
     "echarts": "catalog:prod",
@@ -24,7 +25,6 @@
     "markmap-toolbar": "catalog:prod",
     "markmap-view": "catalog:prod",
     "mermaid": "catalog:dev",
-    "sass-embedded": "catalog:peer",
     "swiper": "catalog:peer",
     "vue": "catalog:prod",
     "vuepress-theme-plume": "workspace:*"

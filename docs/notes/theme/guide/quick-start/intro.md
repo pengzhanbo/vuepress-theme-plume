@@ -21,6 +21,8 @@ VuePress 是一个 [静态站点生成器](https://en.wikipedia.org/wiki/Static_
 简而言之，VuePress 获取用 Markdown 编写的内容，对其应用主题，并生成可以轻松部署到任何地方的静态 HTML 页面。
 :::
 
+[前往 **VuePress 官网** 了解更多](https://v2.vuepress.vuejs.org/zh/){.read-more}
+
 ## 优势
 
 与 vuepress 默认主题相比：
@@ -40,13 +42,13 @@ VuePress 是一个 [静态站点生成器](https://en.wikipedia.org/wiki/Static_
 - 可对 ==代码块== 进行 分组、折叠、聚焦、行高亮、差异对比 等，
   支持嵌入 CodePen、JSFiddle、CodeSandbox 等作为 ==代码演示==；
 
-- 内置支持 [iconify](https://icon-sets.iconify.design/)  **200k+** ==图标==；
+- 内置支持 [iconify](https://icon-sets.iconify.design/)  **200k+** ==图标==，还支持可选的 `iconfont` / `fontawesome` 图标；
 
 - 支持 ==嵌入 PDF==、==嵌入 Bilibili /Youtube / 本地 视频==；
 
 - 支持 chart.js、Echarts、Mermaid、Flowchart、Markmap、PlantUML 等多种可选的 ==图表== ；
 
-- 灵活的 markdown 容器语法，支持 ==提示容器==、==文件树==、==示例容器==、==卡片容器==、==瀑布流容器== 等；
+- 灵活的 markdown 容器语法，支持 ==提示容器==、==文件树==、==代码树==、==卡片容器==、==瀑布流容器== 等；
 
 - 支持 ==布局插槽==、==组件覆写== ==自定义样式== 等，你可以灵活地扩展组件，实现 个性化的 布局。
 

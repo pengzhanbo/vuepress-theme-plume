@@ -1,32 +1,16 @@
 import type markdownIt from 'markdown-it'
-import type Token from 'markdown-it/lib/token.mjs'
 import type { App } from 'vuepress/core'
 import type { ReplEditorData, ReplOptions } from '../../shared/index.js'
 import { promises as fs } from 'node:fs'
 import { resolveModule } from 'local-pkg'
-import container from 'markdown-it-container'
 import { colors, logger, path } from 'vuepress/utils'
+import { resolveAttrs } from '../utils/resolveAttrs.js'
+import { stringifyAttrs } from '../utils/stringifyAttrs.js'
+import { createContainerPlugin } from './createContainer.js'
 
-const RE_INFO = /^(#editable)?(.*)$/
-
-function createReplContainer(md: markdownIt, lang: string) {
-  const type = `${lang}-repl`
-  const validate = (info: string): boolean => info.trim().startsWith(type)
-
-  const render = (tokens: Token[], index: number): string => {
-    const token = tokens[index]
-    const info = token.info.trim().slice(type.length).trim() || ''
-    // :::lang-repl#editable title
-    const [, editable, title] = info.match(RE_INFO)!
-
-    if (token.nesting === 1)
-      return `<CodeRepl ${editable ? 'editable' : ''} title="${title || `${lang} playground`}">`
-
-    else
-      return '</CodeRepl>'
-  }
-
-  md.use(container, type, { validate, render })
+interface CodeReplMeta {
+  editable?: boolean
+  title?: string
 }
 
 export async function langReplPlugin(app: App, md: markdownIt, {
@@ -34,16 +18,29 @@ export async function langReplPlugin(app: App, md: markdownIt, {
   go = false,
   kotlin = false,
   rust = false,
-}: ReplOptions) {
-  if (kotlin) {
-    createReplContainer(md, 'kotlin')
-  }
-  if (go) {
-    createReplContainer(md, 'go')
-  }
-  if (rust) {
-    createReplContainer(md, 'rust')
-  }
+  python = false,
+}: ReplOptions): Promise<void> {
+  const container = (lang: string): void => createContainerPlugin(md, `${lang}-repl`, {
+    before(info) {
+      const { attrs } = resolveAttrs<CodeReplMeta>(info)
+      const { editable, title } = attrs
+      return `<CodeRepl${stringifyAttrs({ editable, title: title || `${lang} playground` })}>`
+    },
+    after: () => '</CodeRepl>',
+  })
+
+  if (kotlin)
+    container('kotlin')
+
+  if (go)
+    container('go')
+
+  if (rust)
+    container('rust')
+
+  if (python)
+    container('python')
+
   theme ??= { light: 'github-light', dark: 'github-dark' }
 
   const data: ReplEditorData = { grammars: {} } as ReplEditorData
@@ -73,6 +70,9 @@ export async function langReplPlugin(app: App, md: markdownIt, {
 
     if (rust)
       data.grammars.rust = await readGrammar('rust')
+
+    if (python)
+      data.grammars.python = await readGrammar('python')
   }
   catch {
     /* istanbul ignore next -- @preserve */

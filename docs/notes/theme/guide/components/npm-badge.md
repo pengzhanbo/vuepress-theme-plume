@@ -44,34 +44,62 @@ import NpmBadgeGroup from 'vuepress-theme-plume/features/NpmBadgeGroup.vue'
 
 ### Props
 
-| 名称       | 类型            | 必填            | 默认值      | 说明                                    |
-| ---------- | --------------- | --------------- | ----------- | --------------------------------------- |
-| name       | `string`        | 否              | `''`        | npm 包名，为空则从 `repo` 中获取        |
-| repo       | `string`        | name 为空时必填 | `''`        | 包 github 仓库地址, 格式为 `owner/repo` |
-| type       | `NpmBadgeType`  | 是              | -           | 徽章类型                                |
-| theme      | `NpmBadgeTheme` | 否              | `'flat'`    | 徽章主题                                |
-| label      | `string`        | 否              | `''`        | 徽章标签                                |
-| color      | `string`        | 否              | `'#32A9C3'` | 徽章颜色                                |
-| labelColor | `string`        | 否              | `'#1B3C4A'` | 徽章标签颜色                            |
-| branch     | `string`        | 否              | `'main'`    | 仓库分支                                |
-| dir        | `string`        | 否              | `''`        | 包所在仓库目录，适用于 monorepo 项目    |
+:::: field-group
+
+::: field name="name" type="string" optional
+npm 包名，为空则从 `repo` 中获取
+:::
+
+::: field name="repo" type="string"
+包 github 仓库地址，格式为 `owner/repo`，当 `name` 为空时必填
+:::
+
+::: field name="type" type="NpmBadgeType"
+徽章类型
+:::
+
+::: field name="theme" type="NpmBadgeTheme" optional default="'flat'"
+徽章主题
+:::
+
+::: field name="label" type="string" optional
+徽章标签
+:::
+
+::: field name="color" type="string" optional default="'#32A9C3'"
+徽章颜色
+:::
+
+::: field name="labelColor" type="string" optional default="'#1B3C4A'"
+徽章标签颜色
+:::
+
+::: field name="branch" type="string" optional default="'main'"
+仓库分支
+:::
+
+::: field name="dir" type="string" optional
+包所在仓库目录，适用于 monorepo 项目
+:::
+
+::::
 
 ### Types
 
 ```ts
-type NpmBadgeType =
+type NpmBadgeType
   // github
-  | 'source' // github source
-  | 'stars' // github stars
-  | 'forks' // github forks
-  | 'license' // github license
+  = | 'source' // github source
+    | 'stars' // github stars
+    | 'forks' // github forks
+    | 'license' // github license
   // npm
-  | 'version' // npm version
-  | 'dt' // alias d18m
-  | 'd18m' // npm downloads last 18 months
-  | 'dw' // npm downloads weekly
-  | 'dm' // npm downloads monthly
-  | 'dy' // npm downloads yearly
+    | 'version' // npm version
+    | 'dt' // alias d18m
+    | 'd18m' // npm downloads last 18 months
+    | 'dw' // npm downloads weekly
+    | 'dm' // npm downloads monthly
+    | 'dy' // npm downloads yearly
 
 type NpmBadgeTheme = 'flat' | 'flat-square' | 'plastic' | 'for-the-badge' | 'social'
 ```
@@ -95,16 +123,41 @@ type NpmBadgeTheme = 'flat' | 'flat-square' | 'plastic' | 'for-the-badge' | 'soc
 
 ### Props
 
-| 名称       | 类型            | 必填            | 默认值 | 说明                                    |
-| ---------- | --------------- | --------------- | ------ | --------------------------------------- |
-| name       | `string`        | 否              | `''`   | npm 包名，为空则从 `repo` 中获取        |
-| repo       | `string`        | name 为空时必填 | `''`   | 包 github 仓库地址, 格式为 `owner/repo` |
-| items       | `string \| NpmBadgeType[]` | 否  | -      | 徽章类型列表, 传入 `string` 时用 `','`分隔，会自动转换为 `NpmBadgeType[]`        |
-| theme      | `NpmBadgeTheme` | 否              | `''`   | 徽章主题                                |
-| color      | `string`        | 否              | `''`   | 徽章颜色                                |
-| labelColor | `string`        | 否              | `''`   | 徽章标签颜色                            |
-| branch     | `string`        | 否              | `''`   | 仓库分支                                |
-| dir        | `string`        | 否              | `''`   | 包所在仓库目录，适用于 monorepo 项目    |
+:::: field-group
+
+::: field name="name" type="string" optional
+npm 包名，为空则从 `repo` 中获取
+:::
+
+::: field name="repo" type="string"
+包 github 仓库地址，格式为 `owner/repo`，当 `name` 为空时必填
+:::
+
+::: field name="items" type="string | NpmBadgeType[]" optional default="[]"
+徽章类型列表, 传入 `string` 时用 `','`分隔，会自动转换为 `NpmBadgeType[]`
+:::
+
+::: field name="theme" type="NpmBadgeTheme" optional
+徽章主题
+:::
+
+::: field name="color" type="string" optional
+徽章颜色
+:::
+
+::: field name="labelColor" type="string" optional
+徽章标签颜色
+:::
+
+::: field name="branch" type="string" optional
+仓库分支
+:::
+
+::: field name="dir" type="string" optional
+包所在仓库目录，适用于 monorepo 项目
+:::
+
+::::
 
 ### Slots
 

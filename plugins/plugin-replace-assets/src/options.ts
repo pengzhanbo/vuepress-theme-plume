@@ -12,8 +12,8 @@ export interface ReplaceAssetsOptions {
   media?: Replacement
 }
 
-export type ReplaceAssetsPluginOptions =
-  | Replacement
-  | ReplacementRule
-  | ReplacementRule[]
-  | ReplaceAssetsOptions
+export type ReplaceAssetsPluginOptions
+  = | Replacement
+    | ReplacementRule
+    | ReplacementRule[]
+    | ReplaceAssetsOptions

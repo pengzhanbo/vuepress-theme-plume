@@ -1,9 +1,9 @@
 {
   "name": "vuepress-theme-plume-monorepo",
   "type": "module",
-  "version": "1.0.0-rc.143",
+  "version": "1.0.0-rc.155",
   "private": true,
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@10.12.4",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -14,7 +14,7 @@
     "vuepress-theme-plume"
   ],
   "engines": {
-    "node": "^18.19.0 || ^20.9.0 || >=22.1.0",
+    "node": "^20.9.0 || >=22.1.0",
     "pnpm": ">=9"
   },
   "scripts": {
@@ -44,6 +44,7 @@
     "@commitlint/config-conventional": "catalog:dev",
     "@pengzhanbo/eslint-config-vue": "catalog:dev",
     "@pengzhanbo/stylelint-config": "catalog:dev",
+    "@types/js-yaml": "catalog:dev",
     "@types/less": "catalog:dev",
     "@types/lodash.merge": "catalog:dev",
     "@types/minimist": "catalog:dev",
@@ -64,11 +65,13 @@
     "markdown-it": "catalog:dev",
     "memfs": "catalog:dev",
     "minimist": "catalog:dev",
+    "postcss": "catalog:dev",
     "rimraf": "catalog:dev",
+    "sass-embedded": "catalog:peer",
     "stylelint": "catalog:dev",
     "stylus": "catalog:dev",
     "tsconfig-vuepress": "catalog:dev",
-    "tsup": "catalog:dev",
+    "tsdown": "catalog:dev",
     "typescript": "catalog:dev",
     "vitest": "catalog:dev",
     "wait-on": "catalog:dev"

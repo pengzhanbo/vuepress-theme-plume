@@ -457,7 +457,7 @@ export default defineUserConfig({
       postList: false, // 禁止生成博客文章列表页
       // tagsLink: '/blog/tags/',
       // categoriesLink: '/blog/categories/',
-      // archiveLink: '/blog/archives/',
+      // archivesLink: '/blog/archives/',
     }
   })
 })

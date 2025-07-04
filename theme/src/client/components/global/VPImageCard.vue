@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { usePageLang } from 'vuepress/client'
+import { usePageLang, withBase } from 'vuepress/client'
 
 const props = defineProps<{
   image: string
@@ -41,7 +41,7 @@ const styles = computed(() => {
 <template>
   <div class="vp-image-card" :style="styles" :class="{ center }">
     <div class="image-container">
-      <img :src="image" :alt="title" loading="lazy">
+      <img :src="withBase(image)" :alt="title" loading="lazy">
       <div v-if="title || author || date || description" class="image-info">
         <h3 v-if="title" class="title">
           <a v-if="href" :href="href" target="_blank" rel="noopener noreferrer" class="no-icon">{{ title }}</a>
@@ -107,7 +107,7 @@ const styles = computed(() => {
   overflow-y: hidden;
   font-size: 14px;
   color: var(--vp-c-white);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(0 0 0 / 0.5);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   transition: transform var(--vp-t-color);

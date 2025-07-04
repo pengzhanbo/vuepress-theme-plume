@@ -11,9 +11,10 @@ permalink: /guide/components/card-grid/
 
 ## Props
 
-| 名称 | 类型                                             | 默认值 | 说明           |
-| :--- | :----------------------------------------------- | :----- | :------------- |
-| cols | `number \| Record<'sm' \| 'md' \| 'lg', number>` | `2`    | 卡片排列列数。 |
+:::: field-group
+::: field name="cols" type="number | { sm: number, md: number, lg: number }" default="2"
+
+卡片排列列数。
 
 组件默认会根据屏幕宽度自动调整列数。在空间足够时，默认显示双列，小屏幕下显示单列。
 
@@ -25,6 +26,9 @@ permalink: /guide/components/card-grid/
 - `lg` : `>= 960px`
 
 建议传入的 `number` 不超过 `3`。
+
+:::
+::::
 
 ## 示例
 

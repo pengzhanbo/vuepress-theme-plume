@@ -33,33 +33,23 @@ export default defineUserConfig({
 })
 ```
 
-`markdownPower.plot` 支持传入 `boolean | PlotOptions` 类型
+`markdownPower.plot` 支持传入 `boolean | PlotOptions` 类型，该配置用于控制该功能的默认行为。
 
 ```ts
 interface PlotOptions {
-  /**
-   * 是否启用 `!! !!`  markdown （该标记为非标准标记，脱离插件将不生效）
-   * 如果设置为 false， 则表示不启用该标记，只能使用 <Plot /> 组件
-   * @default true
-   */
-  tag?: boolean
-
-  /**
-   * 遮罩层颜色
-   */
-  mask?: string | { light: string, dark: string }
-
-  /**
-   * 文本颜色
-   */
-  color?: string | { light: string, dark: string }
-
   /**
    * 触发方式
    *
    * @default 'hover'
    */
   trigger?: 'hover' | 'click'
+
+  /**
+   * 遮罩层效果
+   *
+   * @default 'mask'
+   */
+  effect?: 'mask' | 'blur'
 }
 ```
 
@@ -69,21 +59,71 @@ interface PlotOptions {
 !!需要隐秘的内容!!
 ```
 
-如果不想使用 非标准的 `!! !!` 标记语法，你可以将 `plot.tag` 设置为 `false` ，
-然后使用 [`<Plot />`](../components/plot.md) 组件替代。
+还可以通过属性语法控制行为：
+
+```md
+!!需要隐秘的内容!!{.click}
+!!需要隐秘的内容!!{.hover}
+
+!!需要隐秘的内容!!{.mask}
+!!需要隐秘的内容!!{.blur}
+
+!!需要隐秘的内容!!{.blur .click}
+```
+
+- `.click` - 点击触发
+- `.hover` - 鼠标悬停触发
+- `.mask` - 遮罩层效果
+- `.blur` - 文本模糊效果
+
+::: info 你也可以使用 [`<Plot />`](../components/plot.md) 组件替代。
+:::
+
+## Frontmatter
+
+在 Frontmatter 中使用 `plot` 选项来控制在当前页面中该功能的默认行为：
+
+```
+---
+plot:
+  trigger: hover
+  effect: blur
+---
+```
 
 ## 示例
 
-输入：
+**输入**：
 
 ```md
 你知道吗， !!鲁迅!! 曾说过：“ !!我没说过这句话！!! ” 令我醍醐灌顶，深受启发，浑身迸发出无可匹敌的
 力量！于是，!!我在床上翻了个身!! ！
 ```
 
-输出：
+**输出**：
 
 :::demo-wrapper
-你知道吗， !!鲁迅!! 曾说过：“ !!我没说过这句话！!! ” 令我醍醐灌顶，深受启发，浑身迸发出无可匹敌的
+你知道吗， !!鲁迅!! 曾说过：“ !!我没说过这句话！!!” 令我醍醐灌顶，深受启发，浑身迸发出无可匹敌的
 力量！于是，!!我在床上翻了个身!! ！
+:::
+
+**输入**：
+
+```md
+遮罩层效果 + 鼠标悬停：!!鼠标悬停看到我了!!{.mask .hover}
+遮罩层效果 + 点击：!!点击看到我了!!{.mask .click}
+文本模糊效果 + 鼠标悬停：!!鼠标悬停看到我了!!{.blur .hover}
+文本模糊效果 + 点击：!!点击看到我了!!{.blur .click}
+```
+
+**输出**：
+
+:::demo-wrapper
+遮罩层效果 + 鼠标悬停：!!鼠标悬停看到我了!!{.mask .hover}
+
+遮罩层效果 + 点击：!!点击看到我了!!{.mask .click}
+
+文本模糊效果 + 鼠标悬停：!!鼠标悬停看到我了!!{.blur .hover}
+
+文本模糊效果 + 点击：!!点击看到我了!!{.blur .click}
 :::

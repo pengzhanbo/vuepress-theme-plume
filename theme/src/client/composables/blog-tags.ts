@@ -1,3 +1,4 @@
+import type { ComputedRef, Ref } from 'vue'
 import type { ThemeBlogPostItem } from '../../shared/index.js'
 import { computed } from 'vue'
 import { toArray } from '../utils/index.js'
@@ -8,13 +9,26 @@ import { useTagColors } from './tag-colors.js'
 
 type ShortPostItem = Pick<ThemeBlogPostItem, 'title' | 'path' | 'createTime'>
 
-export function useTags() {
+interface BlogTagItem {
+  name: string
+  count: string | number
+  className: string
+}
+
+interface UseTagsResult {
+  tags: ComputedRef<BlogTagItem[]>
+  currentTag: Ref<string>
+  postList: ComputedRef<ShortPostItem[]>
+  handleTagClick: (tag: string) => void
+}
+
+export function useTags(): UseTagsResult {
   const { blog } = useData()
   const list = useLocalePostList()
 
   const colors = useTagColors()
 
-  const tags = computed(() => {
+  const tags = computed<BlogTagItem[]>(() => {
     const tagTheme = blog.value.tagsTheme ?? 'colored'
 
     const tagMap: Record<string, number> = {}
@@ -53,7 +67,7 @@ export function useTags() {
     }))
   })
 
-  const handleTagClick = (tag: string) => {
+  const handleTagClick = (tag: string): void => {
     currentTag.value = tag
   }
 

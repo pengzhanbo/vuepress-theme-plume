@@ -7,19 +7,19 @@ const BADGE_URL = 'https://img.shields.io'
 const GITHUB_URL = 'https://github.com'
 const NPM_URL = 'https://www.npmjs.com/package'
 
-export type NpmBadgeType =
+export type NpmBadgeType
   // github
-  | 'source' // github source
-  | 'stars' // github stars
-  | 'forks' // github forks
-  | 'license' // github license
+  = | 'source' // github source
+    | 'stars' // github stars
+    | 'forks' // github forks
+    | 'license' // github license
   // npm
-  | 'version' // npm version
-  | 'dt' // alias d18m
-  | 'd18m' // npm downloads last 18 months
-  | 'dw' // npm downloads weekly
-  | 'dm' // npm downloads monthly
-  | 'dy' // npm downloads yearly
+    | 'version' // npm version
+    | 'dt' // alias d18m
+    | 'd18m' // npm downloads last 18 months
+    | 'dw' // npm downloads weekly
+    | 'dm' // npm downloads monthly
+    | 'dy' // npm downloads yearly
 
 export type NpmBadgeTheme = 'flat' | 'flat-square' | 'plastic' | 'for-the-badge' | 'social'
 
@@ -81,7 +81,7 @@ export function useNpmBadge(opt: Ref<NpmBadgeOptions>): ComputedRef<NpmBadgeInfo
   })
 }
 
-export function useNpmBadgeGroup(opt: Ref<NpmBadgeGroupOptions>) {
+export function useNpmBadgeGroup(opt: Ref<NpmBadgeGroupOptions>): void {
   const baseOptions = computed<NpmBadgeBaseOptions>(() => {
     const o = toValue(opt)
     return {

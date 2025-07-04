@@ -7,11 +7,12 @@ import { codeSandboxPlugin } from './code/codeSandbox.js'
 import { jsfiddlePlugin } from './code/jsfiddle.js'
 import { replitPlugin } from './code/replit.js'
 import { pdfPlugin } from './pdf.js'
+import { acfunPlugin } from './video/acfun.js'
 import { artPlayerPlugin } from './video/artPlayer.js'
 import { bilibiliPlugin } from './video/bilibili.js'
 import { youtubePlugin } from './video/youtube.js'
 
-export function embedSyntaxPlugin(md: Markdown, options: MarkdownPowerPluginOptions) {
+export function embedSyntaxPlugin(md: Markdown, options: MarkdownPowerPluginOptions): void {
   if (options.caniuse) {
     const caniuse = options.caniuse === true ? {} : options.caniuse
     // @[caniuse](feature_name)
@@ -23,6 +24,11 @@ export function embedSyntaxPlugin(md: Markdown, options: MarkdownPowerPluginOpti
   if (options.pdf) {
     // @[pdf](url)
     md.use(pdfPlugin)
+  }
+
+  if (options.acfun) {
+    // @[acfun](id)
+    md.use(acfunPlugin)
   }
 
   if (options.bilibili) {

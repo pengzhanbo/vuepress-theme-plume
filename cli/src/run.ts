@@ -3,7 +3,7 @@ import path from 'node:path'
 import process from 'node:process'
 import { intro, outro, spinner } from '@clack/prompts'
 import { sleep } from '@pengzhanbo/utils'
-import { execaCommand } from 'execa'
+import spawn from 'nano-spawn'
 import colors from 'picocolors'
 import { Mode } from './constants.js'
 import { generate } from './generate.js'
@@ -11,7 +11,7 @@ import { prompt } from './prompt.js'
 import { t } from './translate.js'
 import { getPackageManager } from './utils/index.js'
 
-export async function run(mode: Mode, root?: string) {
+export async function run(mode: Mode, root?: string): Promise<void> {
   intro(colors.cyan('Welcome to VuePress and vuepress-theme-plume !'))
 
   const result = await prompt(mode, root)
@@ -36,7 +36,7 @@ export async function run(mode: Mode, root?: string) {
   if (data.git) {
     progress.message(t('spinner.git'))
     try {
-      await execaCommand('git init', { cwd })
+      await spawn('git', ['init'], { cwd })
     }
     catch (e) {
       console.error(`${colors.red('git init error: ')}\n`, e)
@@ -49,7 +49,7 @@ export async function run(mode: Mode, root?: string) {
   if (data.install) {
     progress.message(t('spinner.install'))
     try {
-      await execaCommand(`${pm} install`, { cwd })
+      await spawn(pm, ['install'], { cwd })
     }
     catch (e) {
       console.error(`${colors.red('install dependencies error: ')}\n`, e)

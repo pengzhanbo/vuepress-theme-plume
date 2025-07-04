@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/themes/*": ["./.vuepress/themes/*"],
+      "~/components/*": ["./.vuepress/themes/components/*"],
+      "~/composables/*": ["./.vuepress/themes/composables/*"]
+    }
+  },
+  "include": [
+    "./.vuepress/**/*"
+  ],
+  "exclude": [
+    "./.vuepress/.cache",
+    "./.vuepress/.temp",
+    "./.vuepress/dist"
+  ]
+}

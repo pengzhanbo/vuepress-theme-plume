@@ -1,7 +1,7 @@
 {
   "name": "vuepress-plugin-md-power",
   "type": "module",
-  "version": "1.0.0-rc.143",
+  "version": "1.0.0-rc.155",
   "description": "The Plugin for VuePress 2 - markdown power",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",
@@ -31,13 +31,13 @@
     "lib"
   ],
   "scripts": {
-    "dev": "pnpm '/(copy|tsup):watch/'",
-    "build": "pnpm copy && pnpm tsup",
+    "dev": "pnpm '/(copy|tsdown):watch/'",
+    "build": "pnpm tsdown && pnpm copy",
     "clean": "rimraf --glob ./lib",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
     "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib -w",
-    "tsup": "tsup --config tsup.config.ts",
-    "tsup:watch": "tsup --config tsup.config.ts --watch -- -c"
+    "tsdown": "tsdown",
+    "tsdown:watch": "tsdown --watch -- -c"
   },
   "peerDependencies": {
     "artplayer": "catalog:peer",
@@ -47,6 +47,7 @@
     "less": "catalog:dev",
     "markdown-it": "catalog:dev",
     "mpegts.js": "^1.7.3",
+    "pyodide": "catalog:peer",
     "sass": "catalog:peer",
     "sass-embedded": "catalog:peer",
     "stylus": "catalog:dev",
@@ -62,10 +63,25 @@
     "hls.js": {
       "optional": true
     },
+    "less": {
+      "optional": true
+    },
     "markdown-it": {
       "optional": true
     },
     "mpegts.js": {
+      "optional": true
+    },
+    "pyodide": {
+      "optional": true
+    },
+    "sass": {
+      "optional": true
+    },
+    "sass-embedded": {
+      "optional": true
+    },
+    "stylus": {
       "optional": true
     }
   },
@@ -87,6 +103,7 @@
     "markdown-it-container": "catalog:prod",
     "nanoid": "catalog:prod",
     "shiki": "catalog:prod",
+    "tinyglobby": "catalog:prod",
     "tm-grammars": "catalog:prod",
     "tm-themes": "catalog:prod",
     "vue": "catalog:prod"

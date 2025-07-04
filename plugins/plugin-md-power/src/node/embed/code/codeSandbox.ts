@@ -7,6 +7,7 @@ import type { PluginWithOptions } from 'markdown-it'
 import type { CodeSandboxTokenMeta } from '../../../shared/index.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
+import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
 import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
 export const codeSandboxPlugin: PluginWithOptions<never> = (md) => {
@@ -31,8 +32,6 @@ export const codeSandboxPlugin: PluginWithOptions<never> = (md) => {
         filepath,
       }
     },
-    content({ title, height, width, user, id, type, filepath, console, navbar, layout }) {
-      return `<CodeSandboxViewer title="${title}" height="${height}" width="${width}" user="${user}" id="${id}" type="${type}" filepath="${filepath}" :console=${console} :navbar=${navbar} layout="${layout}" />`
-    },
+    content: meta => `<CodeSandboxViewer${stringifyAttrs(meta)} />`,
   })
 }

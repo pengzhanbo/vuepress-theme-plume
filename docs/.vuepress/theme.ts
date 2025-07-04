@@ -18,7 +18,6 @@ export const theme: Theme = plumeTheme({
   },
 
   markdown: {
-    oldDemo: true,
     chartjs: true,
     echarts: true,
     markmap: true,
@@ -31,9 +30,12 @@ export const theme: Theme = plumeTheme({
     timeline: true,
     collapse: true,
     chat: true,
+    codeTree: true,
+    field: true,
     imageSize: 'all',
     pdf: true,
     caniuse: true,
+    acfun: true,
     bilibili: true,
     youtube: true,
     artPlayer: true,
@@ -48,6 +50,7 @@ export const theme: Theme = plumeTheme({
       go: true,
       rust: true,
       kotlin: true,
+      python: true,
     },
   },
 
@@ -71,6 +74,4 @@ export const theme: Theme = plumeTheme({
       content: 'vuepress-theme-plume',
     },
   },
-
-  // plugins: { git: true },
 })

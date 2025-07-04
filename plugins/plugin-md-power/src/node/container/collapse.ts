@@ -8,7 +8,8 @@
  */
 import type Token from 'markdown-it/lib/token.mjs'
 import type { Markdown } from 'vuepress/markdown'
-import { resolveAttrs } from '.././utils/resolveAttrs.js'
+import { resolveAttrs } from '../utils/resolveAttrs.js'
+import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerPlugin } from './createContainer.js'
 
 interface CollapseMeta {
@@ -28,14 +29,14 @@ export function collapsePlugin(md: Markdown): void {
       const idx = parseCollapse(tokens, index, attrs)
       const { accordion } = attrs
 
-      return `<VPCollapse${accordion ? ' accordion' : ''}${idx !== undefined ? ` :index="${idx}"` : ''}>`
+      return `<VPCollapse${stringifyAttrs({ accordion, index: idx })}>`
     },
     after: () => `</VPCollapse>`,
   })
   md.renderer.rules.collapse_item_open = (tokens, idx) => {
     const token = tokens[idx]
     const { expand, index } = token.meta as CollapseItemMeta
-    return `<VPCollapseItem${expand ? ' expand' : ''}${` :index="${index}"`}>`
+    return `<VPCollapseItem${stringifyAttrs({ expand, index })}>`
   }
   md.renderer.rules.collapse_item_close = () => '</VPCollapseItem>'
   md.renderer.rules.collapse_item_title_open = () => '<template #title>'

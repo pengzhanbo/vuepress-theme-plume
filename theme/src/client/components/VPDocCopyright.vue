@@ -15,6 +15,7 @@ const copyright = computed<CopyrightFrontmatter | null>(() => {
   const docCopyright = (isPlainObject(frontmatter.value.copyright)
     ? frontmatter.value.copyright
     : { license: frontmatter.value.copyright === true ? '' : frontmatter.value.copyright }) as CopyrightFrontmatter
+
   if (!theme.value.copyright)
     return docCopyright
 
@@ -23,6 +24,8 @@ const copyright = computed<CopyrightFrontmatter | null>(() => {
     : { license: theme.value.copyright === true ? undefined : theme.value.copyright }) as CopyrightOptions
 
   docCopyright.license ??= themeCopyright.license
+  docCopyright.author ??= themeCopyright.author
+  docCopyright.creation ??= themeCopyright.creation
 
   return docCopyright
 })

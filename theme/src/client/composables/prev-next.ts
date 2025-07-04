@@ -1,4 +1,4 @@
-import type { Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
 import type { NavItemWithLink, ThemeBlogPostItem, ThemeSidebarItem } from '../../shared/index.js'
 import { computed } from 'vue'
 import { resolveRouteFullPath, usePageLang, useRoute } from 'vuepress/client'
@@ -9,7 +9,12 @@ import { useData } from './data.js'
 import { useBlogPageData } from './page.js'
 import { useSidebar } from './sidebar.js'
 
-export function usePrevNext() {
+interface UsePrevNextResult {
+  prev: ComputedRef<NavItemWithLink | null>
+  next: ComputedRef<NavItemWithLink | null>
+}
+
+export function usePrevNext(): UsePrevNextResult {
   const route = useRoute()
   const { frontmatter, theme } = useData()
   const { sidebar } = useSidebar()

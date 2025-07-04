@@ -1,8 +1,7 @@
 import cac from 'cac'
+import { version } from '../package.json'
 import { Mode } from './constants.js'
 import { run } from './run.js'
-
-declare const __CLI_VERSION__: string
 
 const cli = cac('create-vuepress-theme-plume')
 
@@ -16,6 +15,6 @@ cli
 
 cli.help()
 
-cli.version(__CLI_VERSION__)
+cli.version(version)
 
 cli.parse()

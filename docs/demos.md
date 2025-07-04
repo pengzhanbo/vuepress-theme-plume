@@ -45,6 +45,20 @@ docs:
     url: https://docs.pguide.studio
     repo: https://github.com/MultipledMe/PGuide-Docs
     preview: /images/demos/pguide-doc.jpg
+  -
+    name: 文档中心 ｜ 手感互动
+    desc: 手感互动是一个专业的现场提问、投票和大屏互动平台，为讲师、主持人、会议组织者提供一站式互动解决方案
+    logo: https://docs.shougan.net/images/logo.png
+    url: https://docs.shougan.net
+    repo: https://github.com/SuJingnan/vuepress-theme-plume
+    preview: https://docs.shougan.net/images/docs-proview.png
+  -
+    name: 搜广推宇宙漫游指南
+    desc: 探索搜索、推荐、广告算法的迷人宇宙
+    logo: https://raw.githubusercontent.com/1985312383/search-rec-ads-cosmos-explorer/refs/heads/main/docs/.vuepress/public/img/favicon.png
+    url: https://1985312383.github.io/search-rec-ads-cosmos-explorer/
+    repo: https://github.com/1985312383/search-rec-ads-cosmos-explorer
+    preview: https://raw.githubusercontent.com/1985312383/search-rec-ads-cosmos-explorer/refs/heads/main/docs/.vuepress/public/img/preview.jpg
 blog:
   -
     name: 鹏展博
@@ -165,15 +179,24 @@ blog:
     url: https://paiad.online
     repo: https://github.com/paiad
     preview: https://paiad.online/paiad-blog.png
+  -
+    name: 𝙆𝙞𝙖𝙣𝙜
+    desc: 坚持热爱，奔赴山海
+    logo: https://haipeng-lin.oss-cn-shenzhen.aliyuncs.com/20250608222708.png
+    url: https://blog.haipeng-lin.cn/
+    repo: https://github.com/haipeng-lin
+    preview: https://haipeng-lin.oss-cn-shenzhen.aliyuncs.com/20250608223536.png
 ---
 
 :::important
-你可以随时通过 [PR](https://github.com/pengzhanbo/vuepress-theme-plume/edit/main/docs/demos.md) 添加你的 文档 或 博客 到这个页面。
+你可以随时通过 ==PR== 添加你的 文档 或 博客 到这个页面。
 
 站点预览图片请放到 `docs/.vuepress/public/images/demos` 目录下。推荐使用远程链接，以便可以随时更新它。
 
 图片请尽量使用 `.jpg` 格式，体积较大的请使用 [tinypng](https://tinypng.com/) 进行压缩。
 :::
+
+[前往 **Github Pull Request** 提交站点](https://github.com/pengzhanbo/vuepress-theme-plume/edit/main/docs/demos.md){.read-more}
 
 ## 文档
 
@@ -182,3 +205,7 @@ blog:
 ## 博客
 
 <Demos :list="$frontmatter.blog" />
+
+<script setup>
+import Demos from '~/components/Demos.vue'
+</script>

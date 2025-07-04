@@ -9,6 +9,7 @@ import type { BilibiliTokenMeta } from '../../../shared/index.js'
 import { URLSearchParams } from 'node:url'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
+import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
 import { timeToSeconds } from '../../utils/timeToSeconds.js'
 import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
@@ -33,41 +34,37 @@ export const bilibiliPlugin: PluginWithOptions<never> = (md) => {
         cid,
         autoplay: attrs.autoplay ?? false,
         time: timeToSeconds(attrs.time),
-        title: attrs.title,
+        title: attrs.title || 'Bilibili',
         width: attrs.width ? parseRect(attrs.width) : '100%',
-        height: attrs.height ? parseRect(attrs.height) : '',
-        ratio: attrs.ratio ? parseRect(attrs.ratio) : '',
+        height: attrs.height ? parseRect(attrs.height) : undefined,
+        ratio: attrs.ratio,
       }
     },
     content(meta) {
       const params = new URLSearchParams()
 
-      if (meta.bvid) {
+      if (meta.bvid)
         params.set('bvid', meta.bvid)
-      }
 
-      if (meta.aid) {
+      if (meta.aid)
         params.set('aid', meta.aid)
-      }
 
-      if (meta.cid) {
+      if (meta.cid)
         params.set('cid', meta.cid)
-      }
 
-      if (meta.page) {
+      if (meta.page)
         params.set('p', meta.page.toString())
-      }
 
-      if (meta.time) {
+      if (meta.time)
         params.set('t', meta.time.toString())
-      }
 
       params.set('autoplay', meta.autoplay ? '1' : '0')
       params.set('high_quality', '1')
 
-      const source = `${BILIBILI_LINK}?${params.toString()}`
+      const src = `${BILIBILI_LINK}?${params.toString()}`
+      const { width, height, ratio, title } = meta
 
-      return `<VideoBilibili src="${source}" width="${meta.width}" height="${meta.height}" ratio="${meta.ratio}" title="${meta.title}" />`
+      return `<VPVideoEmbed${stringifyAttrs({ src, width, height, ratio, title, type: 'bilibili' })} />`
     },
   })
 }

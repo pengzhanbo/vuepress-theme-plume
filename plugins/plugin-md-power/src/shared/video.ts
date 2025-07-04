@@ -5,6 +5,11 @@ export interface VideoOptions {
   youtube?: boolean
 }
 
+export interface AcFunTokenMeta extends SizeOptions {
+  title?: string
+  id: string
+}
+
 export interface BilibiliTokenMeta extends SizeOptions {
   title?: string
   bvid?: string

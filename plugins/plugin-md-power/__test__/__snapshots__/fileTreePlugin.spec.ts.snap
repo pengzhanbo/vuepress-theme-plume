@@ -1,66 +1,163 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`fileTree > parseFileTreeRawContent > should work 1`] = `
+[
+  {
+    "children": [
+      {
+        "children": [],
+        "info": "README.md",
+        "level": 1,
+      },
+      {
+        "children": [],
+        "info": "foo.md",
+        "level": 1,
+      },
+    ],
+    "info": "docs",
+    "level": 0,
+  },
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [],
+                "info": "**Navbar.vue**",
+                "level": 3,
+              },
+            ],
+            "info": "components",
+            "level": 2,
+          },
+          {
+            "children": [],
+            "info": "index.ts # comment",
+            "level": 2,
+          },
+        ],
+        "info": "client",
+        "level": 1,
+      },
+      {
+        "children": [
+          {
+            "children": [],
+            "info": "index.ts",
+            "level": 2,
+          },
+        ],
+        "info": "node",
+        "level": 1,
+      },
+    ],
+    "info": "src",
+    "level": 0,
+  },
+  {
+    "children": [],
+    "info": ".gitignore",
+    "level": 0,
+  },
+  {
+    "children": [],
+    "info": "package.json",
+    "level": 0,
+  },
+]
+`;
+
 exports[`fileTreePlugin > should work with default options 1`] = `
-"<div class="vp-file-tree"><ul>
-<FileTreeItem type="folder" :expanded="true" :empty="false"><span class="tree-node folder"><VPIcon name="vscode-icons:folder-type-docs"></VPIcon><span class="name">docs</span></span>
-<ul>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="flat-color-icons:info"></VPIcon><span class="name">README.md</span></span></FileTreeItem>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="vscode-icons:file-type-markdown"></VPIcon><span class="name">foo.md</span></span></FileTreeItem>
-</ul>
-</FileTreeItem>
-<FileTreeItem type="folder" :expanded="true" :empty="false"><span class="tree-node folder"><VPIcon name="vscode-icons:folder-type-src"></VPIcon><span class="name">src</span></span>
-<ul>
-<FileTreeItem type="folder" :expanded="true" :empty="false"><span class="tree-node folder"><VPIcon name="vscode-icons:folder-type-client"></VPIcon><span class="name">client</span></span>
-<ul>
-<FileTreeItem type="folder" :expanded="true" :empty="false"><span class="tree-node folder"><VPIcon name="vscode-icons:folder-type-component"></VPIcon><span class="name">components</span></span>
-<ul>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="vscode-icons:file-type-vue"></VPIcon><span class="name focus"><strong>Navbar.vue</strong></span></span></FileTreeItem>
-</ul>
-</FileTreeItem>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="vscode-icons:file-type-typescript"></VPIcon><span class="name">index.ts</span><span class="comment"># comment</span></span></FileTreeItem>
-</ul>
-</FileTreeItem>
-<FileTreeItem type="folder" :expanded="true" :empty="false"><span class="tree-node folder"><VPIcon name="vscode-icons:default-folder"></VPIcon><span class="name">node</span></span>
-<ul>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="vscode-icons:file-type-typescript"></VPIcon><span class="name">index.ts</span></span></FileTreeItem>
-</ul>
-</FileTreeItem>
-</ul>
-</FileTreeItem>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="vscode-icons:file-type-git"></VPIcon><span class="name">.gitignore</span></span></FileTreeItem>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="vscode-icons:file-type-node"></VPIcon><span class="name">package.json</span></span></FileTreeItem>
-</ul>
-</div><div class="vp-file-tree"><p class="vp-file-tree-title">files</p><ul>
-<FileTreeItem type="folder" :expanded="true" :empty="false"><span class="tree-node folder"><VPIcon name="vscode-icons:folder-type-src"></VPIcon><span class="name">src</span></span>
-<ul>
-<FileTreeItem type="folder" :expanded="true" :empty="false"><span class="tree-node folder"><VPIcon name="vscode-icons:default-folder"></VPIcon><span class="name">js</span></span>
-<ul>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><span class="name">…</span></span></FileTreeItem>
-</ul>
-</FileTreeItem>
-<FileTreeItem type="folder" :expanded="false" :empty="true"><span class="tree-node folder"><VPIcon name="vscode-icons:default-folder"></VPIcon><span class="name">vue</span></span></FileTreeItem>
-<FileTreeItem type="folder" :expanded="false" :empty="true"><span class="tree-node folder"><VPIcon name="vscode-icons:folder-type-css"></VPIcon><span class="name">css</span></span></FileTreeItem>
-</ul>
-</FileTreeItem>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="flat-color-icons:info"></VPIcon><span class="name">README.md</span></span></FileTreeItem>
-</ul>
-</div><div class="vp-file-tree"><ul>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="vscode-icons:default-file"></VPIcon><span class="name">docs</span></span></FileTreeItem>
-<FileTreeItem type="folder" :expanded="true" :empty="false"><span class="tree-node folder"><VPIcon name="vscode-icons:default-folder"></VPIcon><span class="name">src</span></span>
-<ul>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="vscode-icons:default-file"></VPIcon><span class="name">a.js</span></span></FileTreeItem>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="vscode-icons:default-file"></VPIcon><span class="name">b.ts</span></span></FileTreeItem>
-</ul>
-</FileTreeItem>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="vscode-icons:default-file"></VPIcon><span class="name">README.md</span></span></FileTreeItem>
-</ul>
-</div><div class="vp-file-tree"><ul>
-<li></li>
-<li>
-<ul>
-<li></li>
-</ul>
-</li>
-</ul>
-</div><div class="vp-file-tree"></div>"
+"<div class="vp-file-tree"><FileTreeNode expanded type="folder" filename="docs" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-docs" /></template><FileTreeNode type="file" filename="README.md" :level="1">
+<template #icon><VPIcon provider="iconify" name="flat-color-icons:info" /></template>
+</FileTreeNode>
+<FileTreeNode type="file" filename="foo.md" :level="1">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-markdown" /></template>
+</FileTreeNode>
+</FileTreeNode>
+<FileTreeNode expanded type="folder" filename="src" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-src" /></template><FileTreeNode expanded type="folder" filename="client" :level="1">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-client" /></template><FileTreeNode expanded type="folder" filename="components" :level="2">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-component" /></template><FileTreeNode focus type="file" filename="Navbar.vue" :level="3">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-vue" /></template>
+</FileTreeNode>
+</FileTreeNode>
+<FileTreeNode type="file" filename="index.ts" :level="2">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-typescript" /></template><template #comment># comment</template>
+</FileTreeNode>
+</FileTreeNode>
+<FileTreeNode expanded type="folder" filename="node" :level="1">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:default-folder" /></template><FileTreeNode type="file" filename="index.ts" :level="2">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-typescript" /></template>
+</FileTreeNode>
+</FileTreeNode>
+</FileTreeNode>
+<FileTreeNode type="file" filename=".gitignore" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-git" /></template>
+</FileTreeNode>
+<FileTreeNode type="file" filename="package.json" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-node" /></template>
+</FileTreeNode></div>
+<div class="vp-file-tree"><p class="vp-file-tree-title">files</p><FileTreeNode expanded type="folder" filename="src" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-src" /></template><FileTreeNode expanded type="folder" filename="js" :level="1">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:default-folder" /></template><FileTreeNode type="file" filename="…" :level="2">
+
+</FileTreeNode>
+</FileTreeNode>
+<FileTreeNode type="folder" filename="vue" :level="1">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:default-folder" /></template><FileTreeNode type="file" filename="…" :level="2">
+
+</FileTreeNode>
+</FileTreeNode>
+<FileTreeNode type="folder" filename="css" :level="1">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-css" /></template><FileTreeNode type="file" filename="…" :level="2">
+
+</FileTreeNode>
+</FileTreeNode>
+</FileTreeNode>
+<FileTreeNode type="file" filename="README.md" :level="0">
+<template #icon><VPIcon provider="iconify" name="flat-color-icons:info" /></template>
+</FileTreeNode></div>
+<div class="vp-file-tree"><FileTreeNode type="file" filename="docs" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
+</FileTreeNode>
+<FileTreeNode expanded type="folder" filename="src" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:default-folder" /></template><FileTreeNode type="file" filename="a.js" :level="1">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
+</FileTreeNode>
+<FileTreeNode type="file" filename="b.ts" :level="1">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
+</FileTreeNode>
+</FileTreeNode>
+<FileTreeNode type="file" filename="README.md" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
+</FileTreeNode></div>
+<div class="vp-file-tree"><FileTreeNode type="file" filename="" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
+</FileTreeNode>
+<FileTreeNode expanded type="folder" filename="" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:default-folder" /></template><FileTreeNode type="file" filename="" :level="1">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
+</FileTreeNode>
+</FileTreeNode></div>
+<div class="vp-file-tree"><FileTreeNode expanded type="folder" filename="docs" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-docs" /></template><FileTreeNode type="file" diff="add" filename="added.md" :level="1">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-markdown" /></template>
+</FileTreeNode>
+<FileTreeNode type="file" diff="remove" filename="remove.md" :level="1">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-markdown" /></template>
+</FileTreeNode>
+</FileTreeNode>
+<FileTreeNode type="file" diff="add" filename="src" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
+</FileTreeNode>
+<FileTreeNode type="file" diff="remove" filename="source" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
+</FileTreeNode></div>
+<div class="vp-file-tree"></div>
+"
 `;

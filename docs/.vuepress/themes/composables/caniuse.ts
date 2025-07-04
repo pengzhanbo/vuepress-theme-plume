@@ -1,4 +1,4 @@
-import type { Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
 import { onClickOutside, useDebounceFn, useEventListener, useLocalStorage } from '@vueuse/core'
 import { computed, onMounted, readonly, ref, watch } from 'vue'
 
@@ -35,7 +35,14 @@ const embedTypes: SelectItem[] = [
   { label: 'image', value: 'image' },
 ]
 
-export function useCaniuseVersionSelect() {
+export function useCaniuseVersionSelect(): {
+  past: Ref<string>
+  future: Ref<string>
+  embedType: Ref<string>
+  pastList: Readonly<SelectItem[]>
+  futureList: Readonly<SelectItem[]>
+  embedTypeList: Readonly<SelectItem[]>
+} {
   const past = ref('2')
   const future = ref('1')
   const embedType = ref('')
@@ -57,7 +64,12 @@ export function useCaniuseVersionSelect() {
 export function useCaniuseFeaturesSearch(
   inputEl: Ref<HTMLInputElement | null>,
   listEl: Ref<HTMLUListElement | null>,
-) {
+): {
+    featureList: Ref<Feature[] | undefined>
+    isFocus: Ref<boolean>
+    feature: ComputedRef<string>
+    onSelect: (item: Feature) => void
+  } {
   const features = useLocalStorage('plume:caniuse-feature-list', [] as Feature[])
   const featuresUpdated = useLocalStorage('plume:caniuse-feature-list-updated', Date.now())
   const maxAge = 1000 * 60 * 60 * 24 * 3 // 3 days
@@ -104,7 +116,7 @@ export function useCaniuseFeaturesSearch(
     isFocus.value = true
   })
 
-  function onSelect(item: Feature) {
+  function onSelect(item: Feature): void {
     selected.value = item
     isFocus.value = false
     if (inputEl.value)
@@ -124,7 +136,10 @@ export function useCaniuse({ feature, embedType, past, future }: {
   embedType: Ref<string>
   past: Ref<string>
   future: Ref<string>
-}) {
+}): {
+    output: ComputedRef<string>
+    rendered: ComputedRef<string>
+  } {
   const output = computed(() => {
     let content = '@[caniuse'
     if (embedType.value)

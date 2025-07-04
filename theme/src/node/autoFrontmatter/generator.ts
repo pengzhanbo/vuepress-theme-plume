@@ -8,7 +8,7 @@ import { isArray, isEmptyObject, promiseParallel, toArray } from '@pengzhanbo/ut
 import chokidar from 'chokidar'
 import { createFilter } from 'create-filter'
 import grayMatter from 'gray-matter'
-import jsonToYaml from 'json2yaml'
+import yaml from 'js-yaml'
 import { colors, fs, hash, path } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { perf } from '../utils/index.js'
@@ -32,7 +32,7 @@ export interface Generate {
 
 let generate: Generate | null = null
 
-export function initAutoFrontmatter() {
+export function initAutoFrontmatter(): void {
   const { autoFrontmatter = {}, ...options } = getThemeConfig()
   if (autoFrontmatter === false)
     return
@@ -86,7 +86,7 @@ export function initAutoFrontmatter() {
   }
 }
 
-export async function generateAutoFrontmatter(app: App) {
+export async function generateAutoFrontmatter(app: App): Promise<void> {
   perf.mark('generate:frontmatter')
   if (!generate)
     return
@@ -111,14 +111,20 @@ export async function generateAutoFrontmatter(app: App) {
   perf.log('generate:frontmatter')
 }
 
-export async function watchAutoFrontmatter(app: App, watchers: any[]) {
+export async function watchAutoFrontmatter(app: App, watchers: any[]): Promise<void> {
   if (!generate)
     return
 
-  const watcher = chokidar.watch('**/*.md', {
+  const watcher = chokidar.watch('.', {
     cwd: app.dir.source(),
     ignoreInitial: true,
-    ignored: /(node_modules|\.vuepress)\//,
+    ignored: (filepath, stats) => {
+      if (filepath.includes('node_modules'))
+        return true
+      if (filepath.includes('.vuepress'))
+        return true
+      return Boolean(stats?.isFile()) && !filepath.endsWith('.md')
+    },
   })
 
   watcher.on('add', async (relativePath) => {
@@ -163,15 +169,11 @@ async function generator(file: AutoFrontmatterMarkdownFile): Promise<void> {
     return
 
   try {
-    const yaml = isEmptyObject(data)
+    const formatted = isEmptyObject(data)
       ? ''
-      : jsonToYaml
-          .stringify(data)
-          .replace(/\n\s{2}/g, '\n')
-          .replace(/"/g, '')
-          .replace(/\s+\n/g, '\n')
-    const newContent = yaml ? `${yaml}---\n${content}` : content
+      : yaml.dump(data)
 
+    const newContent = formatted ? `---\n${formatted}---\n${content}` : content
     await fs.promises.writeFile(filepath, newContent, 'utf-8')
     generate.checkCache(filepath)
   }

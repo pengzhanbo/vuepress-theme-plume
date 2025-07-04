@@ -46,6 +46,7 @@ function initFs() {
     [path.join(grammarsPath, 'grammars/go.json')]: '{ "language": "go" }',
     [path.join(grammarsPath, 'grammars/kotlin.json')]: '{ "language": "kotlin" }',
     [path.join(grammarsPath, 'grammars/rust.json')]: '{ "language": "rust" }',
+    [path.join(grammarsPath, 'grammars/python.json')]: '{ "language": "python" }',
   })
 }
 
@@ -59,7 +60,7 @@ const a = 1
 ${FENCE}
 :::
 
-::: go-repl#editable
+::: go-repl editable
 ${FENCE}go
 const a = 1
 ${FENCE}
@@ -71,7 +72,7 @@ const a = 1
 ${FENCE}
 :::
 
-::: kotlin-repl#editable
+::: kotlin-repl editable
 ${FENCE}kotlin
 const a = 1
 ${FENCE}
@@ -83,24 +84,47 @@ const a = 1
 ${FENCE}
 :::
 
-::: rust-repl#editable
+::: rust-repl editable
 ${FENCE}rust
 const a = 1
 ${FENCE}
 :::
 
-::: rust-repl title
+::: rust-repl title="title"
 ${FENCE}rust
 const a = 1
 ${FENCE}
 :::
 
-::: rust-repl#editable title
+::: rust-repl editable title="title"
 ${FENCE}rust
 const a = 1
 ${FENCE}
 :::
 
+::: python-repl
+${FENCE}python
+hello_world()
+${FENCE}
+:::
+
+::: python-repl editable
+${FENCE}python
+hello_world()
+${FENCE}
+:::
+
+::: python-repl title="title"
+${FENCE}python
+hello_world()
+${FENCE}
+:::
+
+::: python-repl editable title="title"
+${FENCE}python
+hello_world()
+${FENCE}
+:::
 `
   it('should work with default options', async () => {
     initFs()
@@ -117,6 +141,7 @@ ${FENCE}
       go: true,
       kotlin: true,
       rust: true,
+      python: true,
     })
 
     expect(md.render(code)).toMatchSnapshot()
@@ -130,6 +155,7 @@ ${FENCE}
       go: true,
       kotlin: true,
       rust: true,
+      python: true,
       theme: 'vitesse-light',
     })
 

@@ -25,9 +25,10 @@ export function watchPrepare(
   app: App,
   watchers: any[],
 ): void {
-  const pagesWatcher = watch('pages/**/*.js', {
+  const pagesWatcher = watch('pages', {
     cwd: app.dir.temp(),
     ignoreInitial: true,
+    ignored: (filepath, stats) => Boolean(stats?.isFile()) && !filepath.endsWith('.js'),
   })
   watchers.push(pagesWatcher)
 

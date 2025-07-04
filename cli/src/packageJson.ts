@@ -1,6 +1,6 @@
 import type { File, ResolvedData } from './types.js'
 import { kebabCase } from '@pengzhanbo/utils'
-import { execaCommand } from 'execa'
+import spawn from 'nano-spawn'
 import { Mode } from './constants.js'
 import { readJsonFile, resolve } from './utils/index.js'
 
@@ -44,7 +44,7 @@ export async function createPackageJson(
       pkg.author = userInfo.username + (userInfo.email ? ` <${userInfo.email}>` : '')
     }
     pkg.license = 'MIT'
-    pkg.engines = { node: '^18.19.0 || ^20.6.0 || >=22.0.0' }
+    pkg.engines = { node: '^20.6.0 || >=22.0.0' }
   }
 
   if (injectNpmScripts) {
@@ -76,12 +76,6 @@ export async function createPackageJson(
   if (!hasDep('vue'))
     deps.push('vue')
 
-  if (bundler === 'webpack' && !hasDep('sass-loader'))
-    deps.push('sass-loader')
-
-  if (!hasDep('sass-embedded'))
-    deps.push('sass-embedded')
-
   if (useTs)
     deps.push('typescript')
 
@@ -96,8 +90,9 @@ export async function createPackageJson(
 
 async function getUserInfo() {
   try {
-    const { stdout: username } = await execaCommand('git config --global user.name')
-    const { stdout: email } = await execaCommand('git config --global user.email')
+    const { output: username } = await spawn('git', ['config', '--global', 'user.name'])
+    const { output: email } = await spawn('git', ['config', '--global', 'user.email'])
+    console.log('userInfo', username, email)
     return { username, email }
   }
   catch {
@@ -107,8 +102,8 @@ async function getUserInfo() {
 
 async function getPackageManagerVersion(pkg: string) {
   try {
-    const { stdout } = await execaCommand(`${pkg} -v`)
-    return stdout
+    const { output } = await spawn(pkg, ['--version'])
+    return output
   }
   catch {
     return null

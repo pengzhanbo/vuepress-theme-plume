@@ -1,7 +1,8 @@
 import type { CanIUseOptions } from './caniuse.js'
 import type { CodeTabsOptions } from './codeTabs.js'
+import type { CodeTreeOptions } from './codeTree.js'
 import type { FileTreeOptions } from './fileTree.js'
-import type { IconsOptions } from './icons.js'
+import type { IconOptions } from './icon.js'
 import type { NpmToOptions } from './npmTo.js'
 import type { PDFOptions } from './pdf.js'
 import type { PlotOptions } from './plot.js'
@@ -40,13 +41,24 @@ export interface MarkdownPowerPluginOptions {
 
   // new syntax
   /**
-   * 是否启用 iconify 图标嵌入语法
-   *
-   * `:[collect:icon_name]:`
+   * 是否启用 图标支持
+   * - iconify - `::collect:icon_name::` => `<VPIcon name="collect:icon_name" />`
+   * - iconfont - `::name::` => `<i class="iconfont icon-name"></i>`
+   * - fontawesome - `::fas:name::` => `<i class="fa-solid fa-name"></i>`
    *
    * @default false
    */
-  icons?: boolean | IconsOptions
+  icon?: IconOptions
+
+  /**
+   * 是否启用 iconify 图标嵌入语法
+   *
+   * `::collect:icon_name::`
+   *
+   * @default false
+   * @deprecated use `icon` instead 该配置已弃用，请使用 `icon` 代替
+   */
+  icons?: boolean | IconOptions
   /**
    * 是否启用 隐秘文本 语法
    *
@@ -109,7 +121,21 @@ export interface MarkdownPowerPluginOptions {
    */
   chat?: boolean
 
+  /**
+   * 是否启用 field / field-group 容器
+   *
+   * @default false
+   */
+  field?: boolean
   // video embed
+  /**
+   * 是否启用 acfun 视频嵌入
+   *
+   * `@[acfun](acid)`
+   *
+   * @default false
+   */
+  acfun?: boolean
   /**
    * 是否启用 bilibili 视频嵌入
    *
@@ -184,6 +210,21 @@ export interface MarkdownPowerPluginOptions {
    * @default false
    */
   fileTree?: boolean | FileTreeOptions
+
+  /**
+   * 是否启用 代码树 容器语法 和 嵌入语法
+   *
+   * ```md
+   * ::: code-tree
+   * :::
+   * ```
+   *
+   * `@[code-tree](file_path)`
+   *
+   *
+   * @default false
+   */
+  codeTree?: boolean | CodeTreeOptions
 
   /**
    * 是否启用 demo 语法

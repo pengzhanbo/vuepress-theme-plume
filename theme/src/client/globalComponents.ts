@@ -8,10 +8,11 @@ import VPLinkCard from '@theme/global/VPLinkCard.vue'
 import VPHomeBox from '@theme/Home/VPHomeBox.vue'
 import VPButton from '@theme/VPButton.vue'
 import VPIcon from '@theme/VPIcon.vue'
+import VPLink from '@theme/VPLink.vue'
 import { hasGlobalComponent } from '@vuepress/helper/client'
 import { h, resolveComponent } from 'vue'
 
-export function globalComponents(app: App) {
+export function globalComponents(app: App): void {
   app.component('Badge', VPBadge)
   app.component('VPBadge', VPBadge)
 
@@ -29,6 +30,8 @@ export function globalComponents(app: App) {
 
   app.component('VPCardMasonry', VPCardMasonry)
   app.component('CardMasonry', VPCardMasonry)
+
+  app.component('VPLink', VPLink)
 
   app.component('Icon', VPIcon)
   app.component('VPIcon', VPIcon)

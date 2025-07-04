@@ -1,6 +1,6 @@
 import { removeEndingSlash, removeLeadingSlash } from '@vuepress/helper'
 
-export function createAssetPattern(prefix: string) {
+export function createAssetPattern(prefix: string): RegExp {
   const s = `(${prefix}.*?)`
   return new RegExp(
     [
@@ -13,16 +13,6 @@ export function createAssetPattern(prefix: string) {
     ].join('|'),
     'gu',
   )
-}
-
-const htmlLangRE = /\.(?:html|htm)$/
-
-export const isHTMLRequest = (request: string) => htmlLangRE.test(request)
-
-const nonJsRe = /\.json(?:$|\?)/
-
-export function isNonJsRequest(request: string): boolean {
-  return nonJsRe.test(request)
 }
 
 export function normalizeUrl(url: string, base?: string): string {

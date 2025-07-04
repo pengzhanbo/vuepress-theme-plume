@@ -4,7 +4,7 @@ import { pathJoin } from '../utils/index.js'
 export function resolveLinkBySidebar(
   sidebar: 'auto' | (string | ThemeSidebarItem)[],
   _prefix: string,
-) {
+): Record<string, string> {
   const res: Record<string, string> = {}
 
   if (sidebar === 'auto') {

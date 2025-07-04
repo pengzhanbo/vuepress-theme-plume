@@ -33,7 +33,7 @@ let loader: Loader | null = null
 export async function initConfigLoader(
   app: App,
   { configFile, onChange, defaultConfig }: InitConfigLoaderOptions,
-) {
+): Promise<void> {
   perf.mark('load-config')
   loader = {
     configFile,
@@ -68,7 +68,7 @@ export async function initConfigLoader(
   perf.log('load-config')
 }
 
-export function watchConfigFile(app: App, watchers: any[], onChange: ChangeEvent) {
+export function watchConfigFile(app: App, watchers: any[], onChange: ChangeEvent): void {
   if (!loader || !loader.configFile)
     return
 
@@ -100,7 +100,7 @@ export function watchConfigFile(app: App, watchers: any[], onChange: ChangeEvent
   watchers.push(watcher)
 }
 
-export async function onConfigChange(onChange: ChangeEvent) {
+export async function onConfigChange(onChange: ChangeEvent): Promise<void> {
   if (loader && !loader.changeEvents.includes(onChange)) {
     loader.changeEvents.push(onChange)
     if (loader.loaded) {
@@ -109,7 +109,7 @@ export async function onConfigChange(onChange: ChangeEvent) {
   }
 }
 
-export function waitForConfigLoaded() {
+export function waitForConfigLoaded(): Promise<ThemeOptions> {
   return new Promise<ThemeOptions>((resolve) => {
     if (loader?.loaded) {
       resolve(loader.config)
@@ -120,7 +120,7 @@ export function waitForConfigLoaded() {
   })
 }
 
-export function getThemeConfig() {
+export function getThemeConfig(): ThemeOptions {
   return loader!.config
 }
 

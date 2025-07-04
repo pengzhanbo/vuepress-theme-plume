@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import VPComment from '@theme/VPComment.vue'
 import VPDocAside from '@theme/VPDocAside.vue'
 import VPDocBreadcrumbs from '@theme/VPDocBreadcrumbs.vue'
 import VPDocCopyright from '@theme/VPDocCopyright.vue'
@@ -17,7 +18,7 @@ import {
   useSidebar,
 } from '../composables/index.js'
 
-const { page, theme, frontmatter, isDark } = useData()
+const { page, theme, frontmatter } = useData()
 const route = useRoute()
 
 const { hasSidebar, hasAside, leftAside } = useSidebar()
@@ -25,10 +26,6 @@ const { isBlogPost } = useBlogPageData()
 const headers = useHeaders()
 const { isPageDecrypted } = useEncrypt()
 const { mode: contributorsMode } = useContributors()
-
-const hasComments = computed(() =>
-  page.value.frontmatter.comments !== false && isPageDecrypted.value,
-)
 
 const enableAside = computed(() => {
   if (!hasAside.value)
@@ -153,9 +150,9 @@ watch(
                 <slot name="doc-footer-before" />
               </template>
             </VPDocFooter>
-            <template v-if="hasComments">
-              <DocComment :darkmode="isDark" vp-comment />
-            </template>
+
+            <VPComment />
+
             <slot name="doc-after" />
           </div>
         </div>

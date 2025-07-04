@@ -5,7 +5,7 @@ import { isFunction, isPlainObject } from '@vuepress/helper'
 export function enableBulletin(
   page: Page<ThemePageData>,
   options: ThemeOptions,
-) {
+): void {
   if (isPlainObject(options.bulletin)) {
     const enablePage = options.bulletin.enablePage
     page.data.bulletin = (isFunction(enablePage) ? enablePage(page) : enablePage) ?? true

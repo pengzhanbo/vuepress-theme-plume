@@ -4,9 +4,9 @@ import type { ThemeBadge, ThemeIcon } from '../common/index.js'
  * 主题内部使用的已解析的导航项
  * @internal
  */
-export type ResolvedNavItem =
-  | ResolvedNavItemWithLink
-  | ResolvedNavItemWithChildren
+export type ResolvedNavItem
+  = | ResolvedNavItemWithLink
+    | ResolvedNavItemWithChildren
 
 /**
  * 主题内部使用的已解析的导航子项

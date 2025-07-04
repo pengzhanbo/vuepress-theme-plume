@@ -185,6 +185,7 @@ export default defineUserConfig({
 { github: 'HydroGest', name: 'MarkChai' },
 { github: 'sunnyboy-mu', name: '小沐沐吖' },
 { github: 'zhenghaoyang24', name: 'zhenghaoyang24' },
+{ github: 'shuoliuchn', name: 'Shuo Liu' },
 ]"
 />
 

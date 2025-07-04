@@ -13,13 +13,29 @@ permalink: /guide/components/badge/
 
 ## Props
 
-| 名称         | 类型      | 默认值             | 说明                                                               |
-| ------------ | -------- | ------------------ | ------------------------------------------------------------------ |
-| type         | `string` | `'tip'`            | 类型，内置值: `'info' \| 'tip' \| 'warning' \| 'danger'`，允许自定义 |
-| text         | `string` | `''`               | 文本                                                               |
-| color        | `string` | `''`               | 文本颜色                                                           |
-| bg-color     | `string` | `''`               | 背景颜色                                                           |
-| border-color | `string` | `'transparent'`    | 边框颜色                                                           |
+:::: field-group
+
+::: field name="type" type="'info' | 'tip' | 'warning' | 'danger' | string" default="'tip'" optional
+徽章类型，不同的类型使用不同的颜色方案。支持自定义类型
+:::
+
+::: field name="text" type="string" default="''" optional
+徽章文本
+:::
+
+::: field name="color" type="string" optional
+自定义徽章文本颜色
+:::
+
+::: field name="bgColor" type="string" optional
+自定义徽章背景颜色
+:::
+
+::: field name="borderColor" type="string" optional
+自定义徽章边框颜色
+:::
+
+::::
 
 ## 示例
 

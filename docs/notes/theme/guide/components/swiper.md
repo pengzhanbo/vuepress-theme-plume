@@ -59,7 +59,7 @@ import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
 const images = ref([])
 
 async function fetchImage() {
-  const res = await fetch('https://api.pengzhanbo.cn/wallpaper/bing/list/zh/').then((res) => res.json())
+  const res = await fetch('https://api.pengzhanbo.cn/wallpaper/bing/zh/').then((res) => res.json())
   images.value = res.map(item => ({
     name: item.title,
     link: item.url,

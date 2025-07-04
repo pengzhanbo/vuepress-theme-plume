@@ -1,7 +1,7 @@
 {
   "name": "vuepress-plugin-replace-assets",
   "type": "module",
-  "version": "1.0.0-rc.143",
+  "version": "1.0.0-rc.155",
   "description": "The Plugin for VuePress 2 - replace assets url",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",
@@ -27,8 +27,8 @@
     "lib"
   ],
   "scripts": {
-    "build": "pnpm run tsup",
-    "tsup": "tsup --config tsup.config.ts"
+    "build": "pnpm run tsdown",
+    "tsdown": "tsdown"
   },
   "peerDependencies": {
     "vuepress": "catalog:vuepress"

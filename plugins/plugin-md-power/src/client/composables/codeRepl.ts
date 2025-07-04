@@ -1,3 +1,4 @@
+import type { PyodideInterface } from 'pyodide'
 import type { Ref } from 'vue'
 import { onMounted, ref } from 'vue'
 import { http } from '../utils/http.js'
@@ -10,8 +11,9 @@ const api = {
   go: 'https://api.pengzhanbo.cn/repl/golang/run',
   kotlin: 'https://api.pengzhanbo.cn/repl/kotlin/run',
 }
+let pyodide: PyodideInterface | null = null
 
-type Lang = 'kotlin' | 'go' | 'rust'
+type Lang = 'kotlin' | 'go' | 'rust' | 'python'
 type ExecuteFn = (code: string) => Promise<any>
 type ExecuteMap = Record<Lang, ExecuteFn>
 
@@ -21,9 +23,11 @@ const langAlias: Record<string, string> = {
   go: 'go',
   rust: 'rust',
   rs: 'rust',
+  py: 'python',
+  python: 'python',
 }
 
-const supportLang: Lang[] = ['kotlin', 'go', 'rust']
+const supportLang: Lang[] = ['kotlin', 'go', 'rust', 'python']
 
 function resolveLang(lang?: string) {
   return lang ? langAlias[lang] || lang : ''
@@ -38,7 +42,10 @@ export function resolveCode(el: HTMLElement): string {
   return clone.textContent || ''
 }
 
-export function resolveCodeInfo(el: HTMLDivElement) {
+export function resolveCodeInfo(el: HTMLDivElement): {
+  lang: Lang
+  code: string
+} {
   const wrapper = el.querySelector('div[class*=language-]')
   const lang = wrapper?.className.match(RE_LANGUAGE)?.[1]
   const codeEl = wrapper?.querySelector('pre') as HTMLElement
@@ -50,7 +57,20 @@ export function resolveCodeInfo(el: HTMLDivElement) {
   return { lang: resolveLang(lang) as Lang, code }
 }
 
-export function useCodeRepl(el: Ref<HTMLDivElement | null>) {
+interface UseCodeReplResult {
+  lang: Ref<Lang | undefined>
+  loaded: Ref<boolean>
+  firstRun: Ref<boolean>
+  finished: Ref<boolean>
+  stdout: Ref<string[]>
+  stderr: Ref<string[]>
+  error: Ref<string>
+  backendVersion: Ref<string>
+  onCleanRun: () => void
+  onRunCode: () => Promise<void>
+}
+
+export function useCodeRepl(el: Ref<HTMLDivElement | null>): UseCodeReplResult {
   const lang = ref<Lang>()
   const loaded = ref(true)
   const firstRun = ref(true)
@@ -72,9 +92,10 @@ export function useCodeRepl(el: Ref<HTMLDivElement | null>) {
     kotlin: executeKotlin,
     go: executeGolang,
     rust: executeRust,
+    python: executePython,
   }
 
-  function onCleanRun() {
+  function onCleanRun(): void {
     loaded.value = false
     finished.value = false
     stdout.value = []
@@ -84,7 +105,7 @@ export function useCodeRepl(el: Ref<HTMLDivElement | null>) {
     backendVersion.value = ''
   }
 
-  async function onRunCode() {
+  async function onRunCode(): Promise<void> {
     if (!el.value || !loaded.value)
       return
     const info = resolveCodeInfo(el.value)
@@ -172,6 +193,24 @@ export function useCodeRepl(el: Ref<HTMLDivElement | null>) {
         finished.value = true
       },
     })
+  }
+
+  async function executePython(code: string) {
+    loaded.value = false
+    finished.value = false
+    if (pyodide === null) {
+      const { loadPyodide, version } = await import(/* webpackChunkName: "pyodide" */ 'pyodide')
+      pyodide = await loadPyodide({ indexURL: `https://cdn.jsdelivr.net/pyodide/v${version}/full/` })
+    }
+    pyodide.setStdout({ batched: msg => stdout.value.push(msg) })
+    try {
+      stdout.value.push(pyodide.runPython(code))
+    }
+    catch (e: unknown) {
+      stderr.value.push(String(e as Error))
+    }
+    loaded.value = true
+    finished.value = true
   }
 
   return {

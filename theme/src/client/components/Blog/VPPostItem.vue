@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import type { BlogPostCoverStyle, ThemeBlogPostItem } from '../../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
-import { useMediaQuery } from '@vueuse/core'
-import { computed } from 'vue'
+import { isMobile as _isMobile } from '@vuepress/helper/client'
+import { computed, onMounted, ref } from 'vue'
+import { withBase } from 'vuepress/client'
 import { useData, useInternalLink, useTagColors } from '../../composables/index.js'
 
 const props = defineProps<{
@@ -10,8 +11,16 @@ const props = defineProps<{
   index: number
 }>()
 
+const isMobile = ref(false)
+
+onMounted(() => {
+  isMobile.value = _isMobile(navigator.userAgent)
+  window.addEventListener('resize', () => {
+    isMobile.value = _isMobile(navigator.userAgent)
+  })
+})
+
 const { blog } = useData()
-const isMobile = useMediaQuery('(max-width: 496px)')
 const colors = useTagColors()
 const { categories: categoriesLink, tags: tagsLink } = useInternalLink()
 
@@ -88,13 +97,13 @@ const coverStyles = computed(() => {
 <template>
   <div
     class="vp-blog-post-item" data-allow-mismatch
-    :class="{ 'has-cover': props.post.cover, [coverLayout]: cover }"
+    :class="{ 'has-cover': post.cover, [coverLayout]: cover }"
   >
     <div
-      v-if="props.post.cover" class="post-cover" data-allow-mismatch
+      v-if="post.cover" class="post-cover" data-allow-mismatch
       :class="{ compact: coverCompact }" :style="coverStyles"
     >
-      <img :src="props.post.cover" :alt="post.title" loading="lazy">
+      <img :src="withBase(post.cover)" :alt="post.title" loading="lazy">
     </div>
     <div class="blog-post-item-content">
       <h3>
@@ -363,12 +372,12 @@ const coverStyles = computed(() => {
   transition: color var(--vp-t-color);
 }
 
-.excerpt.vp-doc :deep([class^="language-"]) {
+.excerpt.vp-doc :deep(div[class*="language-"]) {
   margin: 16px -16px;
 }
 
 @media (min-width: 496px) {
-  .excerpt.vp-doc :deep([class^="language-"]) {
+  .excerpt.vp-doc :deep(div[class*="language-"]) {
     margin: 16px 0;
   }
 }

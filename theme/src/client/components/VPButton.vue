@@ -26,7 +26,7 @@ const component = computed(() => {
   return props.tag || props.href ? 'a' : 'button'
 })
 
-const { link, isExternal } = useLink(toRef(props, 'href'), toRef(props, 'target'))
+const { link, isExternal, isExternalProtocol } = useLink(toRef(props, 'href'), toRef(props, 'target'))
 
 function linkTo(e: Event) {
   if (!isExternal.value && link.value?.[0] !== '#') {
@@ -42,7 +42,7 @@ function linkTo(e: Event) {
     :is="component"
     class="vp-button"
     :class="[size, theme]"
-    :href="link?.[0] === '#' ? link : withBase(link || '')"
+    :href=" link ? link[0] === '#' || isExternalProtocol ? link : withBase(link) : undefined"
     :target="target ?? (isExternal ? '_blank' : undefined)"
     :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
     @click="linkTo($event)"

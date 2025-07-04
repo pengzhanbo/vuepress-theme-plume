@@ -1,6 +1,11 @@
-import type { MaybeRef } from 'vue'
+import type { MaybeRef, Ref } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
 import { computed, ref, toValue, watch } from 'vue'
+
+interface GithubRepoLicense {
+  name: string
+  url: string
+}
 
 export interface GithubRepoInfo {
   name: string
@@ -17,10 +22,7 @@ export interface GithubRepoInfo {
   visibility: 'Private' | 'Public' // private, public
   template: boolean
   ownerType: 'User' | 'Organization'
-  license: {
-    name: string
-    url: string
-  } | null
+  license: GithubRepoLicense | null
 }
 
 /**
@@ -32,7 +34,12 @@ const storage = useLocalStorage('__VUEPRESS_GITHUB_REPO__', {} as Record<string,
   updatedAt: number
 }>)
 
-export function useGithubRepo(repo: MaybeRef<string>) {
+interface UseGithubRepoResult {
+  data: Ref<GithubRepoInfo | null>
+  loaded: Ref<boolean>
+}
+
+export function useGithubRepo(repo: MaybeRef<string>): UseGithubRepoResult {
   const repoRef = computed(() => {
     const info = toValue(repo)
     const [owner = '', name = ''] = info.split('/')

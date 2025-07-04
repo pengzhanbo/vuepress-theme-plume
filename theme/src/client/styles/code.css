@@ -1,9 +1,9 @@
 [data-theme="dark"] .vp-code span {
-  color: var(--shiki-dark, rgba(235, 235, 245, 0.6));
+  color: var(--shiki-dark, rgb(235 235 245 / 0.6));
 }
 
 html:not([data-theme="dark"]) .vp-code span {
-  color: var(--shiki-light, rgba(60, 60, 67, 0.78));
+  color: var(--shiki-light, rgb(60 60 67 / 0.78));
 }
 
 .vp-doc div[class*="language-"],
@@ -115,13 +115,15 @@ html:not([data-theme="dark"]) .vp-code span {
 .vp-doc div[class*="language-"].line-numbers-mode .line-numbers {
   position: absolute;
   top: 0;
-  bottom: 0;
 
   /* rtl:ignore */
   left: 0;
   z-index: 3;
   width: 32px;
+  height: fit-content;
+  min-height: 100%;
   padding-top: 20px;
+  padding-bottom: 20px;
   font-family: var(--vp-font-family-mono);
   font-size: var(--vp-code-font-size);
   line-height: var(--vp-code-line-height);
@@ -180,11 +182,27 @@ html:not([data-theme="dark"]) .vp-code span {
 }
 
 .vp-doc div[class*="language-"] code .highlighted-word {
-  padding: 1px 3px;
-  margin: -1px -3px;
+  padding: 1px 2px;
+  margin: -1px -2px;
   background-color: var(--vp-c-gray-soft);
   border: 1px solid var(--vp-c-border);
   border-radius: 4px;
+}
+
+.vp-doc div[class*="language-"] code .highlighted-word:has(+ .highlighted-word) {
+  padding-right: 0;
+  margin-right: 0;
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.vp-doc div[class*="language-"] code .highlighted-word + .highlighted-word {
+  padding-left: 0;
+  margin-left: 0;
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .vp-doc div[class*="language-"] code .tab,
@@ -317,7 +335,7 @@ html:not([data-theme="dark"]) .vp-code span {
 
 .code-block-title .code-block-title-bar .title {
   position: relative;
-  padding: 10px 12px;
+  padding: 11px 12px;
 }
 
 .code-block-title .code-block-title-bar .title::before {

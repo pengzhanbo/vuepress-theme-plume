@@ -16,7 +16,7 @@ import {
 import { getThemeConfig } from '../loadConfig/loader.js'
 import { normalizeLink, perf, resolveContent, writeTemp } from '../utils/index.js'
 
-export async function prepareSidebar(app: App) {
+export async function prepareSidebar(app: App): Promise<void> {
   perf.mark('prepare:sidebar')
   const options = getThemeConfig()
   const sidebar = getAllSidebar(options)

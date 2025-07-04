@@ -1,6 +1,6 @@
 import type { Plugin } from 'vuepress/core'
 import type { ReplaceAssetsPluginOptions } from './options.js'
-import { addViteConfig, chainWebpack, getBundlerName } from '@vuepress/helper'
+import { addViteConfig, configWebpack, getBundlerName } from '@vuepress/helper'
 import { PLUGIN_NAME } from './constants.js'
 import { normalizeRules } from './normalizeRules.js'
 import { createVitePlugin, createWebpackPlugin } from './unplugin/index.js'
@@ -22,18 +22,17 @@ export function replaceAssetsPlugin(
       const bundle = getBundlerName(app)
 
       if (bundle === 'vite') {
-        const viteReplaceAssets = createVitePlugin()
+        const replaceAssets = createVitePlugin()
         addViteConfig(bundlerOptions, app, {
-          plugins: [viteReplaceAssets(rules)],
+          plugins: [replaceAssets(rules)],
         })
       }
 
       if (bundle === 'webpack') {
-        chainWebpack(bundlerOptions, app, (config) => {
-          const webpackReplaceAssets = createWebpackPlugin()
-          config
-            .plugin(PLUGIN_NAME)
-            .use(webpackReplaceAssets, [rules])
+        const replaceAssets = createWebpackPlugin()
+        configWebpack(bundlerOptions, app, (config) => {
+          config.plugins ??= []
+          config.plugins.push(replaceAssets(rules))
         })
       }
     },

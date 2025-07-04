@@ -23,7 +23,7 @@ const icon = computed<string | { svg: string } | undefined>(() => {
     <slot name="title">
       <p v-if="title || icon" class="title">
         <VPIcon v-if="icon" :name="icon" />
-        <span v-if="title" v-html="title" />
+        <span v-if="title" class="text" v-html="title" />
       </p>
     </slot>
     <div class="body">
@@ -60,10 +60,15 @@ const icon = computed<string | { svg: string } | undefined>(() => {
   gap: 8px;
   align-items: center;
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--vp-c-text-1);
   transition: color var(--vp-t-color);
+}
+
+.vp-card-wrapper .title .text {
+  flex: 1 2;
+  overflow: hidden;
 }
 
 .vp-card-wrapper .body :first-child {

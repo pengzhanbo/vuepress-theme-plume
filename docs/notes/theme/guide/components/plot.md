@@ -23,11 +23,17 @@ export default defineUserConfig({
 
 ## Props
 
-| 名称    | 类型                                        | 默认值    | 说明                       |
-| ------- | ------------------------------------------- | --------- | -------------------------- |
-| trigger | `'hover' \| 'click'`                        | `'hover'` | 鼠标悬停触发，或者点击触发 |
-| mask    | `string \| { light: string, dark: string }` | `#000`    | 遮罩颜色                   |
-| color   | `string \| { light: string, dark: string }` | `#fff`    | 文本颜色                   |
+:::: field-group
+
+::: field name="trigger" type="'hover' | 'click'" default="'hover'" optional
+鼠标悬停触发，或者点击触发
+:::
+
+::: field name="effect" type="'blur' | 'mask'" default="'mask'" optional
+遮罩层效果，或者文本模糊效果
+:::
+
+::::
 
 ## 示例
 

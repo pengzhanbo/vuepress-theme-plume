@@ -137,7 +137,7 @@ export default defineThemeConfig({
 - **默认值：** `false`
 - **详情：**
 
-  阅读时长配置， 参考 [此文档](../guide/features/reading-time.md)
+  阅读时长配置， 参考 [此文档](./plugins/reading-time.md)
 
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
@@ -148,7 +148,7 @@ export default defineThemeConfig({
 - **默认值：** `{}`
 - **详情：**
 
-  复制代码配置， 参考 [此文档](../guide/features/copy-code.md)
+  复制代码配置， 参考 [此文档](../guide/code/copy-code.md)
 
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
@@ -528,7 +528,7 @@ interface LastUpdatedOptions {
 
 - **类型：** `ProfileOptions`
 - **默认值：** `{}`
-- **详情：**配置站点博主的个人信息
+- **详情：** 配置站点博主的个人信息
   - `profile.avatar`: 头像地址，用于右侧博主信息展示
   - `profile.name`: 名称， 用于右侧博主信息展示
   - `profile.description`: 个人描述，用于右侧博主信息展示
@@ -664,7 +664,7 @@ type NavItem = string | {
         {
           text: 'Group',
           prefix: '/group/',
-          item: ['foo/', 'bar/'],
+          items: ['foo/', 'bar/'],
         },
         // 字符串 - 页面文件路径
         '/bar', // 可以直接省略后缀 `.md`
@@ -868,7 +868,7 @@ interface SidebarItem {
 
 - **类型：** `false | { message: string; copyright: string }`
 - **默认值：** `false`
-- **详情：**页脚配置。
+- **详情：** 页脚配置。
 
 ### bulletin
 

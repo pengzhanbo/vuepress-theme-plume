@@ -9,9 +9,9 @@ import { hash } from '../utils/index.js'
 
 export async function compiler(configPath?: string,
 ): Promise<{
-    config: ThemeConfig
-    dependencies: string[]
-  }> {
+  config: ThemeConfig
+  dependencies: string[]
+}> {
   if (!configPath) {
     return { config: {}, dependencies: [] }
   }

@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`acfunPlugin > should not work 1`] = `
+"<VPVideoEmbed src="https://www.acfun.cn/player/" width="100%" ratio="16:10" title="AcFun" type="acfun" /><p>@[acfun]xxx</p>
+<p>@[ acfun]123456</p>
+<p>@<a href="123456"> acfun</a></p>
+"
+`;
+
+exports[`acfunPlugin > should work 1`] = `"<VPVideoEmbed src="https://www.acfun.cn/player/123456" width="100%" ratio="16:10" title="AcFun" type="acfun" /><VPVideoEmbed src="https://www.acfun.cn/player/123456" width="100%" ratio="16:10" title="test" type="acfun" /><VPVideoEmbed src="https://www.acfun.cn/player/123456" width="100%" height="600px" ratio="16:10" title="AcFun" type="acfun" /><VPVideoEmbed src="https://www.acfun.cn/player/123456" width="100%" ratio="16:9" title="AcFun" type="acfun" />"`;

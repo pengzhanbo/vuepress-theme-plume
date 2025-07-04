@@ -22,7 +22,7 @@ export async function writeFiles(
   files: File[],
   target: string,
   rewrite?: (path: string) => string,
-) {
+): Promise<void> {
   for (const { filepath, content } of files) {
     let root = path.join(target, filepath).replace(/\.handlebars$/, '')
     if (rewrite)

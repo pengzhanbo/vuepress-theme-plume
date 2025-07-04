@@ -11,7 +11,7 @@ let container: HTMLPreElement | null = null
 let lineNumbers: HTMLDivElement | null = null
 const { grammars, theme } = editorData
 
-const lang = ref<'go' | 'rust' | 'kotlin'>()
+const lang = ref<'go' | 'rust' | 'kotlin' | 'python'>()
 
 const editorEl = shallowRef<HTMLDivElement>()
 const textAreaEl = shallowRef<HTMLTextAreaElement>()

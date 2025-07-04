@@ -1,11 +1,11 @@
 import type { BuiltinTheme, ThemeRegistration } from 'shiki'
 
-export type ThemeOptions =
-  | BuiltinTheme
-  | {
-    light: BuiltinTheme
-    dark: BuiltinTheme
-  }
+export type ThemeOptions
+  = | BuiltinTheme
+    | {
+      light: BuiltinTheme
+      dark: BuiltinTheme
+    }
 
 export interface ReplOptions {
   theme?: ThemeOptions
@@ -13,6 +13,7 @@ export interface ReplOptions {
   go?: boolean
   kotlin?: boolean
   rust?: boolean
+  python?: boolean
 }
 
 export interface ReplEditorData {
@@ -20,6 +21,7 @@ export interface ReplEditorData {
     go?: any
     kotlin?: any
     rust?: any
+    python?: any
   }
   theme: ThemeRegistration | {
     light: ThemeRegistration

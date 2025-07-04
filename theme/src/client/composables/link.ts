@@ -1,13 +1,26 @@
-import type { MaybeRefOrGetter } from 'vue'
-import { isLinkExternal } from '@vuepress/helper/client'
+import type { ComputedRef, MaybeRefOrGetter } from 'vue'
+import { isLinkExternal, isLinkWithProtocol } from '@vuepress/helper/client'
 import { computed, toValue } from 'vue'
 import { resolveRouteFullPath, useRoute } from 'vuepress/client'
 import { useData } from './data.js'
 
+interface UseLinkResult {
+  /**
+   * 外部链接
+   */
+  isExternal: ComputedRef<boolean>
+  /**
+   * 外部链接协议
+   * 此项不包含 target="_blank" 的情况
+   */
+  isExternalProtocol: ComputedRef<boolean>
+  link: ComputedRef<string | undefined>
+}
+
 export function useLink(
   href: MaybeRefOrGetter<string | undefined>,
   target?: MaybeRefOrGetter<string | undefined>,
-) {
+): UseLinkResult {
   const route = useRoute()
   const { page } = useData()
 
@@ -41,5 +54,12 @@ export function useLink(
     return path
   })
 
-  return { isExternal, link }
+  const isExternalProtocol = computed(() => {
+    if (!link.value || link.value[0] === '#')
+      return false
+
+    return isLinkWithProtocol(link.value)
+  })
+
+  return { isExternal, isExternalProtocol, link }
 }

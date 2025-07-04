@@ -23,12 +23,13 @@ export default defineUserConfig({
     markdown: {
       fileTree: true, // :::file-tree  文件树容器
       plot: true, // !!plot!! 隐秘文本
-      icons: true, // :[collect:name]:   内联 iconify 图标
+      icons: true, // ::collect:name::   内联 iconify 图标
       // 默认不启用以下功能，你需要手动开启它们
       // npmTo: true, // :::npm-to
       // demo: true, // :::demo
       // pdf: true, // @[pdf](url)  嵌入 PDF 文件
       // bilibili: true, // @[bilibili](bvid)  嵌入 bilibili 视频
+      // acfun: true, // @[acfun](id)  嵌入 AcFun 视屏
       // youtube: true, // @[youtube](id)  嵌入 youtube 视频
       // codepen: true, // @[codepen](user/slash)  嵌入 codepen
       // replit: true, // @[replit](user/repl-name)  嵌入 Replit
@@ -69,7 +70,7 @@ __语法:__
 __语法:__
 
 ```md
-:[collect:name]:
+::collect:name::
 ```
 
 请查看 [完整使用文档](../../guide/markdown/icons.md)
@@ -85,6 +86,18 @@ __语法:__
 ```
 
 请查看 [完整使用文档](../../guide/embed/bilibili.md)
+
+### AcFun 视频
+
+插件默认不启用该功能，你需要手动设置 `acfun` 为 `true`
+
+__语法:__
+
+```md
+@[acfun](id)
+```
+
+请查看 [完整使用文档](../../guide/embed/video/acfun.md)
 
 ### youtube 视频
 
@@ -190,6 +203,12 @@ __语法:__
 // kotlin code
 ```
 :::
+
+::: python-repl
+```python
+# python code
+```
+:::
 ````
 
 请查看完整使用文档:
@@ -197,6 +216,7 @@ __语法:__
 - [代码演示 > Rust](../../guide/repl/rust.md)
 - [代码演示 > Golang](../../guide/repl/golang.md)
 - [代码演示 > Kotlin](../../guide/repl/kotlin.md)
+- [代码演示 > Python](../../guide/repl/python.md)
 
 ### Plot 隐秘文本
 

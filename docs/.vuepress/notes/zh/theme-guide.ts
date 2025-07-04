@@ -1,6 +1,7 @@
+import type { ThemeNote } from 'vuepress-theme-plume'
 import { defineNoteConfig } from 'vuepress-theme-plume'
 
-export const themeGuide = defineNoteConfig({
+export const themeGuide: ThemeNote = defineNoteConfig({
   dir: 'theme/guide',
   link: '/guide/',
   sidebar: [
@@ -42,9 +43,12 @@ export const themeGuide = defineNoteConfig({
             'card',
             'steps',
             'file-tree',
+            'code-tree',
+            'field',
             'tabs',
             'timeline',
             'demo-wrapper',
+            'flex',
             'collapse',
             'npm-to',
             'caniuse',
@@ -76,11 +80,11 @@ export const themeGuide = defineNoteConfig({
             'rust',
             'golang',
             'kotlin',
+            'python',
             'codepen',
             'jsFiddle',
             'codeSandbox',
             'replit',
-            'frontend-deprecated',
           ],
         },
         {
@@ -105,6 +109,7 @@ export const themeGuide = defineNoteConfig({
           items: [
             'pdf',
             'bilibili',
+            'acfun',
             'youtube',
             'artplayer',
             'audioReader',

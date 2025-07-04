@@ -2,6 +2,9 @@ import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
 import path from 'node:path'
+import { colors } from 'vuepress/utils'
+import { logger } from '../utils/logger.js'
+import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { findFile, readFileSync, writeFileSync } from './supports/file.js'
 import { insertSetupScript } from './supports/insertScript.js'
 
@@ -14,7 +17,7 @@ export function vueEmbed(
   const filepath = findFile(app, env, url)
   const code = readFileSync(filepath)
   if (code === false) {
-    console.warn('[vuepress-plugin-md-power] Cannot read vue file:', filepath)
+    logger.warn('demo-vue', `Cannot read vue demo file: ${colors.gray(filepath)}\n  at: ${colors.gray(env.filePathRelative || '')}`)
     return ''
   }
 
@@ -30,7 +33,7 @@ export function vueEmbed(
     insertSetupScript(demo, env)
   }
 
-  return `<VPDemoBasic type="vue"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
+  return `<VPDemoBasic${stringifyAttrs({ type: 'vue', title, desc, expanded })}>
     <${name} />
     <template #code>
       ${md.render(`\`\`\`${ext}${codeSetting}\n${code}\n\`\`\``, {})}
@@ -101,7 +104,7 @@ export const vueContainerRender: DemoContainerRender = {
       }
     }
 
-    return `<VPDemoBasic type="vue"${title ? ` title="${title}"` : ''}${desc ? ` desc="${desc}"` : ''}${expanded ? ' expanded' : ''}>
+    return `<VPDemoBasic${stringifyAttrs({ type: 'vue', title, desc, expanded })}>
     <${componentName} />
     <template #code>\n`
   },

@@ -41,7 +41,7 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
   tab(md, {
     name: 'code-tabs',
 
-    tabsOpenRenderer: ({ active, data }, tokens, index, _, env) => {
+    openRender: ({ active, data }, tokens, index, _, env) => {
       const { meta } = tokens[index]
       const titles = data.map(({ title }) => md.renderInline(title, cleanMarkdownEnv(env)))
       const tabsData = data.map((item, dataIndex) => {
@@ -52,15 +52,15 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
 
       const titlesContent = titles.map((title, index) => {
         const icon = getIcon(title)
-        return `<template #title${index}="{ value, isActive }">${icon ? `<VPIcon name="${icon}"/>` : ''}<span>${title}</span></template>`
+        return `<template #title${index}="{ value, isActive }">${icon ? `<VPIcon provider="iconify" name="${icon}"/>` : ''}<span>${title}</span></template>`
       }).join('')
 
       return `<CodeTabs id="${index}" :data='${stringifyProp(tabsData)}'${active === -1 ? '' : ` :active="${active}"`}${meta.id ? ` tab-id="${meta.id as string}"` : ''}>${titlesContent}`
     },
 
-    tabsCloseRenderer: () => `</CodeTabs>`,
+    closeRender: () => `</CodeTabs>`,
 
-    tabOpenRenderer: ({ index }, tokens, tokenIndex) => {
+    tabOpenRender: ({ index }, tokens, tokenIndex) => {
       let foundFence = false
 
       // Hide all elements excerpt the first fence
@@ -82,6 +82,6 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
       return `<template #tab${index}="{ value, isActive }">`
     },
 
-    tabCloseRenderer: () => `</template>`,
+    tabCloseRender: () => `</template>`,
   })
 }

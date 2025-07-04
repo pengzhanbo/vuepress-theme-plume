@@ -24,11 +24,16 @@ export function resolveNavLink(link: string): ResolvedNavItemWithLink {
   return notFound
     ? { text: path, link: path }
     : {
-        text: meta.title || path,
+        text: meta.title || normalizeTitleWithPath(path),
         link: path,
         icon: meta.icon,
         badge: meta.badge,
       }
+}
+
+function normalizeTitleWithPath(path: string): string {
+  path = path.replace(/index\.html?$/i, '').replace(/\.html?$/i, '').replace(/\/$/, '')
+  return decodeURIComponent(path.slice(path.lastIndexOf('/') + 1))
 }
 
 export function normalizeLink(base = '', link = ''): string {

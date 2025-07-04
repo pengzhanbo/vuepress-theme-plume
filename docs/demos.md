@@ -131,12 +131,12 @@ blog:
     repo: https://github.com/QiHuang02/qihuang02.github.io
     preview: https://image.qihuang02.cn/file/1736003534894_yulantu.png
   -
-    name: 𝕛𝕚𝕒𝕙𝕒𝕠'𝕤 𝕓𝕝𝕠𝕘
-    desc: 近乎无限长的时间 近乎无限广的空间 而我们同时出现在一处 命运就是这样
-    logo: https://s.hijh.top/head.png
-    url: https://hijh.top/
+    name: jiahao
+    desc: 去追寻便好 哪怕是须臾的光亮
+    logo: https://s.jhdev.cn/head.png
+    url: https://jhdev.cn/
     repo: https://github.com/oh-yey
-    preview: https://s.hijh.top/demos/blog-preview.png
+    preview: https://s.jhdev.cn/demos/blog-preview.png
   -
     name: 阿哲
     desc: 强大自己是解决问题的唯一办法

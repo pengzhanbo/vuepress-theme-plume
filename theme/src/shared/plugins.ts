@@ -7,6 +7,7 @@ import type { MarkdownChartPluginOptions } from '@vuepress/plugin-markdown-chart
 import type { MarkdownImagePluginOptions } from '@vuepress/plugin-markdown-image'
 import type { MarkdownIncludePluginOptions } from '@vuepress/plugin-markdown-include'
 import type { MarkdownMathPluginOptions } from '@vuepress/plugin-markdown-math'
+import type { PhotoSwipePluginOptions } from '@vuepress/plugin-photo-swipe'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
 import type { SeoPluginOptions } from '@vuepress/plugin-seo'
 import type { ShikiPluginOptions } from '@vuepress/plugin-shiki'
@@ -49,7 +50,7 @@ export interface ThemeBuiltinPlugins {
   /**
    * 图片预览 插件
    */
-  photoSwipe?: false
+  photoSwipe?: false | PhotoSwipePluginOptions
 
   /**
    * @deprecated 插件相关功能已迁移至其他官方插件，此插件已弃用

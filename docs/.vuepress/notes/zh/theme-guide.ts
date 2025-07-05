@@ -125,6 +125,7 @@ export const themeGuide: ThemeNote = defineNoteConfig({
       items: [
         'icon',
         'search',
+        'image-preview',
         'comments',
         'bulletin',
         'encryption',

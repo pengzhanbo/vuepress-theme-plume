@@ -355,3 +355,9 @@ html:not([data-theme="dark"]) .vp-code span {
   height: 18px;
   margin-left: 0;
 }
+
+@media (max-width: 419px) {
+  .code-block-title-bar {
+    margin-inline: -24px;
+  }
+}

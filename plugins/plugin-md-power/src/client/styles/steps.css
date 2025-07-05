@@ -10,8 +10,8 @@
 .vp-doc .vp-steps > :where(ol,ul) > li {
   position: relative;
   min-height: 28px;
-  padding-bottom: 1px;
   padding-left: 44px;
+  margin-bottom: 16px;
   line-height: 28px;
 }
 
@@ -38,7 +38,7 @@
   position: absolute;
   inset-inline-start: 14px;
   top: 34px;
-  bottom: 5px;
+  bottom: -10px;
   width: 1px;
   content: "";
   background-color: var(--vp-c-divider);

@@ -86,6 +86,7 @@
 
 .vp-chat .vp-chat-message-body {
   flex-shrink: 2;
+  min-width: 0;
   padding-right: 32px;
 }
 

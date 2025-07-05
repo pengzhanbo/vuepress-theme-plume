@@ -35,6 +35,8 @@
 }
 
 .vp-doc h2:first-of-type {
+  padding-top: 12px;
+  margin-top: 32px;
   border-top: none;
 }
 
@@ -106,10 +108,6 @@
 
 .vp-doc img {
   display: inline-block;
-}
-
-.vp-doc img + img {
-  margin-left: 0.5rem;
 }
 
 .vp-doc a img + span {
@@ -325,4 +323,8 @@
 
 .vp-doc :not(a) > img {
   cursor: zoom-in;
+}
+
+.vp-doc img + img:not(.light, .dark, .github-light, .github-dark) {
+  margin-left: 0.5rem;
 }

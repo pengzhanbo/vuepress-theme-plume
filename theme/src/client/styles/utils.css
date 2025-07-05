@@ -49,6 +49,15 @@
   transform: translateX(-10px) !important;
 }
 
+/* ----------------- Image Display Light / Dark Mode ------------------ */
+[data-theme="dark"] .vp-doc img:where(.github-light, .light) {
+  display: none;
+}
+
+[data-theme="light"] .vp-doc img:where(.github-dark, .dark) {
+  display: none;
+}
+
 /* ----------------- Read More Link ------------------ */
 .vp-doc a.read-more,
 .vp-doc a.readmore {

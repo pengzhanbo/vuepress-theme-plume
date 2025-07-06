@@ -1,3 +1,23 @@
+# [1.0.0-rc.156](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.155...v1.0.0-rc.156) (2025-07-06)
+
+
+### Bug Fixes
+
+* **theme:** incorrect `sidebar` when `items` as `auto`, close [#635](https://github.com/pengzhanbo/vuepress-theme-plume/issues/635) ([#638](https://github.com/pengzhanbo/vuepress-theme-plume/issues/638)) ([d27121a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d27121a5583b8cc88871af561ad2c133129d5408))
+
+
+### Features
+
+* **theme:** add `image-preview` configuration ([#637](https://github.com/pengzhanbo/vuepress-theme-plume/issues/637)) ([4590703](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4590703e637ccb5cb399681314966b07ac8ec8da))
+
+
+### Performance Improvements
+
+* **theme:** improve some styles ([3c07909](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3c07909c345b7f7718410e5b361cabb4eb627cd8))
+* update deps to latest ([6f9dc24](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6f9dc249410e97978ee7058afbce66e6a8e22bb6))
+
+
+
 # [1.0.0-rc.155](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.154...v1.0.0-rc.155) (2025-06-29)
 
 

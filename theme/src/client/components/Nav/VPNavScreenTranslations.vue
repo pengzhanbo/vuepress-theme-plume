@@ -16,13 +16,13 @@ function toggle() {
 
 <template>
   <div
-    v-if="localeLinks.length && currentLang.label"
+    v-if="localeLinks.length && currentLang.text"
     class="vp-nav-screen-translations"
     :class="{ open: isOpen }"
   >
     <button class="title" @click="toggle">
       <span class="vpi-languages icon lang" />
-      {{ currentLang.label }}
+      {{ currentLang.text }}
       <span class="vpi-chevron-down icon chevron" />
     </button>
 
@@ -31,7 +31,7 @@ function toggle() {
         <ul class="list">
           <li v-for="locale in localeLinks" :key="locale.link" class="item">
             <VPLink class="link" :href="locale.link">
-              {{ locale.label }}
+              {{ locale.text }}
             </VPLink>
           </li>
         </ul>

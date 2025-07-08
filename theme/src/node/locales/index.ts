@@ -9,11 +9,13 @@ import { deLocale, dePresetLocale } from './de.js'
 import { enLocale, enPresetLocale } from './en.js'
 import { frLocale, frPresetLocale } from './fr.js'
 import { jaLocale, jaPresetLocale } from './ja.js'
+import { koLocale, koPresetLocale } from './ko.js'
 import { ruLocale, ruPresetLocale } from './ru.js'
 import { zhTwLocale, zhTwPresetLocale } from './zh-tw.js'
 import { zhLocale, zhPresetLocale } from './zh.js'
 
 export const LOCALE_OPTIONS: DefaultLocaleInfo<ThemeLocaleText> = [
+  [['ko', 'ko-KR'], koLocale],
   [['en', 'en-US'], enLocale],
   [['zh', 'zh-CN', 'zh-Hans', 'zh-Hant'], zhLocale],
   [['zh-TW'], zhTwLocale],
@@ -24,6 +26,7 @@ export const LOCALE_OPTIONS: DefaultLocaleInfo<ThemeLocaleText> = [
 ]
 
 export const PRESET_LOCALES: DefaultLocaleInfo<PresetLocale> = [
+  [['ko', 'ko-KR'], koPresetLocale],
   [['en', 'en-US'], enPresetLocale],
   [['zh', 'zh-CN', 'zh-Hans', 'zh-Hant'], zhPresetLocale],
   [['zh-TW'], zhTwPresetLocale],

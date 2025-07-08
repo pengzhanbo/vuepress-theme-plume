@@ -8,7 +8,7 @@ import { useBlogPageData } from './page.js'
 import { useThemeData } from './theme-data.js'
 
 interface Lang {
-  label?: string
+  text?: string
   link: string
 }
 
@@ -32,7 +32,7 @@ export function useLangs({
   const currentLang = computed(() => {
     const link = routeLocale.value
     return {
-      label: theme.value.locales?.[link]?.selectLanguageName,
+      text: theme.value.locales?.[link]?.selectLanguageName,
       link,
     }
   })
@@ -67,7 +67,7 @@ export function useLangs({
 
   const localeLinks = computed(() =>
     Object.entries(theme.value.locales || {}).flatMap(([key, locale]) =>
-      removeCurrent && currentLang.value.label === locale.selectLanguageName
+      removeCurrent && currentLang.value.text === locale.selectLanguageName
         ? []
         : {
             text: locale.selectLanguageName,

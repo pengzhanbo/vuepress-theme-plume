@@ -9,14 +9,14 @@ const { currentLang, localeLinks } = useLangs()
 
 <template>
   <VPFlyout
-    v-if="localeLinks.length && currentLang.label"
+    v-if="localeLinks.length && currentLang.text"
     class="vp-navbar-translations"
     icon="vpi-languages"
     :label="theme.selectLanguageText || 'Change Language'"
   >
     <div class="items">
       <p class="title">
-        {{ currentLang.label }}
+        {{ currentLang.text }}
       </p>
 
       <template v-for="locale in localeLinks" :key="locale.link">

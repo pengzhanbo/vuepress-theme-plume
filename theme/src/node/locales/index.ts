@@ -5,11 +5,11 @@
  */
 import type { DefaultLocaleInfo } from '@vuepress/helper'
 import type { PresetLocale, ThemeLocaleText } from '../../shared/index.js'
-import { koLocale, koPresetLocale } from './ko.js'
 import { deLocale, dePresetLocale } from './de.js'
 import { enLocale, enPresetLocale } from './en.js'
 import { frLocale, frPresetLocale } from './fr.js'
 import { jaLocale, jaPresetLocale } from './ja.js'
+import { koLocale, koPresetLocale } from './ko.js'
 import { ruLocale, ruPresetLocale } from './ru.js'
 import { zhTwLocale, zhTwPresetLocale } from './zh-tw.js'
 import { zhLocale, zhPresetLocale } from './zh.js'

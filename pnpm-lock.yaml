@@ -40,8 +40,8 @@ catalogs:
       specifier: ^1.2.5
       version: 1.2.5
     '@types/node':
-      specifier: ^24.0.10
-      version: 24.0.10
+      specifier: ^24.0.12
+      version: 24.0.12
     '@types/stylus':
       specifier: ^0.48.43
       version: 0.48.43
@@ -91,8 +91,8 @@ catalogs:
       specifier: ^4.17.2
       version: 4.17.2
     mermaid:
-      specifier: ^11.8.0
-      version: 11.8.0
+      specifier: ^11.8.1
+      version: 11.8.1
     minimist:
       specifier: ^1.2.8
       version: 1.2.8
@@ -128,8 +128,8 @@ catalogs:
       version: 8.0.3
   peer:
     '@iconify/json':
-      specifier: ^2.2.355
-      version: 2.2.355
+      specifier: ^2.2.356
+      version: 2.2.356
     artplayer:
       specifier: ^5.2.3
       version: 5.2.3
@@ -137,8 +137,8 @@ catalogs:
       specifier: ^5.0.3
       version: 5.0.3
     hls.js:
-      specifier: ^1.6.6
-      version: 1.6.6
+      specifier: ^1.6.7
+      version: 1.6.7
     mathjax-full:
       specifier: ^3.2.2
       version: 3.2.2
@@ -304,76 +304,76 @@ catalogs:
       version: 3.5.17
   vuepress:
     '@vuepress/bundler-vite':
-      specifier: 2.0.0-rc.23
-      version: 2.0.0-rc.23
+      specifier: 2.0.0-rc.24
+      version: 2.0.0-rc.24
     '@vuepress/helper':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-cache':
-      specifier: 2.0.0-rc.103
-      version: 2.0.0-rc.103
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-comment':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-copy-code':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-docsearch':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-git':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-llms':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-markdown-chart':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-markdown-hint':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-markdown-image':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-markdown-include':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-markdown-math':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-nprogress':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-photo-swipe':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-reading-time':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-seo':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-shiki':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-sitemap':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/plugin-watermark':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     '@vuepress/shiki-twoslash':
-      specifier: 2.0.0-rc.110
-      version: 2.0.0-rc.110
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
     vuepress:
-      specifier: 2.0.0-rc.23
-      version: 2.0.0-rc.23
+      specifier: 2.0.0-rc.24
+      version: 2.0.0-rc.24
 
 overrides:
   '@bufbuild/protobuf': ^2.6.0
-  '@typescript-eslint/utils': ^8.35.1
-  esbuild: ^0.25.5
+  '@typescript-eslint/utils': ^8.36.0
+  esbuild: ^0.25.6
   sass-embedded: ^1.89.2
 
 patchedDependencies:
@@ -387,13 +387,13 @@ importers:
     devDependencies:
       '@commitlint/cli':
         specifier: catalog:dev
-        version: 19.8.1(@types/node@24.0.10)(typescript@5.8.3)
+        version: 19.8.1(@types/node@24.0.12)(typescript@5.8.3)
       '@commitlint/config-conventional':
         specifier: catalog:dev
         version: 19.8.1
       '@pengzhanbo/eslint-config-vue':
         specifier: catalog:dev
-        version: 1.34.0(@vue/compiler-sfc@3.5.17)(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))
+        version: 1.34.0(@vue/compiler-sfc@3.5.17)(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))
       '@pengzhanbo/stylelint-config':
         specifier: catalog:dev
         version: 1.34.0(stylelint@16.21.1(typescript@5.8.3))
@@ -411,7 +411,7 @@ importers:
         version: 1.2.5
       '@types/node':
         specifier: catalog:dev
-        version: 24.0.10
+        version: 24.0.12
       '@types/stylus':
         specifier: catalog:dev
         version: 0.48.43
@@ -420,13 +420,13 @@ importers:
         version: 1.18.8
       '@vitest/coverage-istanbul':
         specifier: catalog:dev
-        version: 3.2.4(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))
+        version: 3.2.4(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))
       bumpp:
         specifier: catalog:dev
         version: 10.2.0(magicast@0.3.5)
       commitizen:
         specifier: catalog:dev
-        version: 4.3.1(@types/node@24.0.10)(typescript@5.8.3)
+        version: 4.3.1(@types/node@24.0.12)(typescript@5.8.3)
       conventional-changelog-cli:
         specifier: catalog:dev
         version: 5.0.0(conventional-commits-filter@5.0.0)
@@ -438,7 +438,7 @@ importers:
         version: 7.0.3
       cz-conventional-changelog:
         specifier: catalog:dev
-        version: 3.3.0(@types/node@24.0.10)(typescript@5.8.3)
+        version: 3.3.0(@types/node@24.0.12)(typescript@5.8.3)
       eslint:
         specifier: catalog:dev
         version: 9.30.1(jiti@2.4.2)
@@ -486,7 +486,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: catalog:dev
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
       wait-on:
         specifier: catalog:dev
         version: 8.0.3
@@ -519,19 +519,19 @@ importers:
     dependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.355
+        version: 2.2.356
       '@simonwep/pickr':
         specifier: catalog:dev
         version: 1.9.1
       '@vuepress/bundler-vite':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0)
+        version: 2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0)
       '@vuepress/plugin-llms':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/shiki-twoslash':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       chart.js:
         specifier: catalog:prod
         version: 4.5.0
@@ -555,7 +555,7 @@ importers:
         version: 0.18.12(markmap-common@0.18.9)
       mermaid:
         specifier: catalog:dev
-        version: 11.8.0
+        version: 11.8.1
       swiper:
         specifier: catalog:peer
         version: 11.2.10
@@ -564,7 +564,7 @@ importers:
         version: 3.5.17(typescript@5.8.3)
       vuepress:
         specifier: catalog:vuepress
-        version: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+        version: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
       vuepress-theme-plume:
         specifier: workspace:*
         version: link:../theme
@@ -577,10 +577,10 @@ importers:
     dependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.355
+        version: 2.2.356
       '@vuepress/bundler-vite':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0)
+        version: 2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0)
       http-server:
         specifier: catalog:dev
         version: 14.1.1
@@ -589,7 +589,7 @@ importers:
         version: 3.5.17(typescript@5.8.3)
       vuepress:
         specifier: catalog:vuepress
-        version: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+        version: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
       vuepress-theme-plume:
         specifier: workspace:*
         version: link:../../theme
@@ -598,7 +598,7 @@ importers:
     dependencies:
       vuepress:
         specifier: catalog:vuepress
-        version: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+        version: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
 
   plugins/plugin-md-power:
     dependencies:
@@ -628,7 +628,7 @@ importers:
         version: 2.1.0
       '@vuepress/helper':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vueuse/core':
         specifier: catalog:prod
         version: 13.5.0(vue@3.5.17(typescript@5.8.3))
@@ -636,8 +636,8 @@ importers:
         specifier: catalog:prod
         version: 4.0.3
       esbuild:
-        specifier: ^0.25.5
-        version: 0.25.5
+        specifier: ^0.25.6
+        version: 0.25.6
       image-size:
         specifier: catalog:prod
         version: 2.0.2
@@ -688,7 +688,7 @@ importers:
         version: 3.5.17(typescript@5.8.3)
       vuepress:
         specifier: catalog:vuepress
-        version: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+        version: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     devDependencies:
       '@types/markdown-it':
         specifier: catalog:dev
@@ -701,7 +701,7 @@ importers:
         version: 5.0.3
       hls.js:
         specifier: catalog:peer
-        version: 1.6.6
+        version: 1.6.7
       mpegts.js:
         specifier: catalog:peer
         version: 1.7.3
@@ -710,7 +710,7 @@ importers:
     dependencies:
       '@vuepress/helper':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       magic-string:
         specifier: catalog:prod
         version: 0.30.17
@@ -719,13 +719,13 @@ importers:
         version: 2.3.5
       vuepress:
         specifier: catalog:vuepress
-        version: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+        version: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
 
   plugins/plugin-search:
     dependencies:
       '@vuepress/helper':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vueuse/core':
         specifier: catalog:prod
         version: 13.5.0(vue@3.5.17(typescript@5.8.3))
@@ -752,7 +752,7 @@ importers:
         version: 3.5.17(typescript@5.8.3)
       vuepress:
         specifier: catalog:vuepress
-        version: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+        version: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
 
   theme:
     dependencies:
@@ -773,61 +773,61 @@ importers:
         version: link:../plugins/plugin-search
       '@vuepress/helper':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-cache':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.103(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-comment':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-copy-code':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-docsearch':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(@algolia/client-search@5.18.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(@algolia/client-search@5.18.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-git':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-markdown-chart':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(chart.js@4.5.0)(echarts@5.6.0)(flowchart.ts@3.0.1)(markdown-it@14.1.0)(markmap-lib@0.18.12(markmap-common@0.18.9))(markmap-toolbar@0.18.12(markmap-common@0.18.9))(markmap-view@0.18.12(markmap-common@0.18.9))(mermaid@11.8.0)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(chart.js@4.5.0)(echarts@5.6.0)(flowchart.ts@3.0.1)(markdown-it@14.1.0)(markmap-lib@0.18.12(markmap-common@0.18.9))(markmap-toolbar@0.18.12(markmap-common@0.18.9))(markmap-view@0.18.12(markmap-common@0.18.9))(mermaid@11.8.1)(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-markdown-hint':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(markdown-it@14.1.0)(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(markdown-it@14.1.0)(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-markdown-image':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(markdown-it@14.1.0)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(markdown-it@14.1.0)(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-markdown-include':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(markdown-it@14.1.0)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(markdown-it@14.1.0)(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-markdown-math':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(katex@0.16.22)(markdown-it@14.1.0)(mathjax-full@3.2.2)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(katex@0.16.22)(markdown-it@14.1.0)(mathjax-full@3.2.2)(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-nprogress':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-photo-swipe':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-reading-time':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-seo':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-shiki':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(@vuepress/shiki-twoslash@2.0.0-rc.110(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))))(@vueuse/core@13.5.0(vue@3.5.17(typescript@5.8.3)))(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(@vuepress/shiki-twoslash@2.0.0-rc.112(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))))(@vueuse/core@13.5.0(vue@3.5.17(typescript@5.8.3)))(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-sitemap':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-watermark':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/shiki-twoslash':
         specifier: catalog:vuepress
-        version: 2.0.0-rc.110(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+        version: 2.0.0-rc.112(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vueuse/core':
         specifier: catalog:prod
         version: 13.5.0(vue@3.5.17(typescript@5.8.3))
@@ -844,8 +844,8 @@ importers:
         specifier: catalog:prod
         version: 1.11.13
       esbuild:
-        specifier: ^0.25.5
-        version: 0.25.5
+        specifier: ^0.25.6
+        version: 0.25.6
       fast-glob:
         specifier: catalog:prod
         version: 3.3.3
@@ -875,7 +875,7 @@ importers:
         version: 3.5.17(typescript@5.8.3)
       vuepress:
         specifier: catalog:vuepress
-        version: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+        version: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
       vuepress-plugin-md-power:
         specifier: workspace:*
         version: link:../plugins/plugin-md-power
@@ -885,7 +885,7 @@ importers:
     devDependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.355
+        version: 2.2.356
       swiper:
         specifier: catalog:peer
         version: 11.2.10
@@ -1264,152 +1264,158 @@ packages:
     resolution: {integrity: sha512-BXuN7BII+8AyNtn57euU2Yxo9yA/KUDNzrpXyi3pfqKmBhhysR6ZWOebFh3vyPoqA3/j1SOvGgucElMGwlXing==}
     engines: {node: '>=20.11.0'}
 
-  '@esbuild/aix-ppc64@0.25.5':
-    resolution: {integrity: sha512-9o3TMmpmftaCMepOdA5k/yDw8SfInyzWWTjYTFCX3kPSDJMROQTb8jg+h9Cnwnmm1vOzvxN7gIfB5V2ewpjtGA==}
+  '@esbuild/aix-ppc64@0.25.6':
+    resolution: {integrity: sha512-ShbM/3XxwuxjFiuVBHA+d3j5dyac0aEVVq1oluIDf71hUw0aRF59dV/efUsIwFnR6m8JNM2FjZOzmaZ8yG61kw==}
     engines: {node: '>=18'}
     cpu: [ppc64]
     os: [aix]
 
-  '@esbuild/android-arm64@0.25.5':
-    resolution: {integrity: sha512-VGzGhj4lJO+TVGV1v8ntCZWJktV7SGCs3Pn1GRWI1SBFtRALoomm8k5E9Pmwg3HOAal2VDc2F9+PM/rEY6oIDg==}
+  '@esbuild/android-arm64@0.25.6':
+    resolution: {integrity: sha512-hd5zdUarsK6strW+3Wxi5qWws+rJhCCbMiC9QZyzoxfk5uHRIE8T287giQxzVpEvCwuJ9Qjg6bEjcRJcgfLqoA==}
     engines: {node: '>=18'}
     cpu: [arm64]
     os: [android]
 
-  '@esbuild/android-arm@0.25.5':
-    resolution: {integrity: sha512-AdJKSPeEHgi7/ZhuIPtcQKr5RQdo6OO2IL87JkianiMYMPbCtot9fxPbrMiBADOWWm3T2si9stAiVsGbTQFkbA==}
+  '@esbuild/android-arm@0.25.6':
+    resolution: {integrity: sha512-S8ToEOVfg++AU/bHwdksHNnyLyVM+eMVAOf6yRKFitnwnbwwPNqKr3srzFRe7nzV69RQKb5DgchIX5pt3L53xg==}
     engines: {node: '>=18'}
     cpu: [arm]
     os: [android]
 
-  '@esbuild/android-x64@0.25.5':
-    resolution: {integrity: sha512-D2GyJT1kjvO//drbRT3Hib9XPwQeWd9vZoBJn+bu/lVsOZ13cqNdDeqIF/xQ5/VmWvMduP6AmXvylO/PIc2isw==}
+  '@esbuild/android-x64@0.25.6':
+    resolution: {integrity: sha512-0Z7KpHSr3VBIO9A/1wcT3NTy7EB4oNC4upJ5ye3R7taCc2GUdeynSLArnon5G8scPwaU866d3H4BCrE5xLW25A==}
     engines: {node: '>=18'}
     cpu: [x64]
     os: [android]
 
-  '@esbuild/darwin-arm64@0.25.5':
-    resolution: {integrity: sha512-GtaBgammVvdF7aPIgH2jxMDdivezgFu6iKpmT+48+F8Hhg5J/sfnDieg0aeG/jfSvkYQU2/pceFPDKlqZzwnfQ==}
+  '@esbuild/darwin-arm64@0.25.6':
+    resolution: {integrity: sha512-FFCssz3XBavjxcFxKsGy2DYK5VSvJqa6y5HXljKzhRZ87LvEi13brPrf/wdyl/BbpbMKJNOr1Sd0jtW4Ge1pAA==}
     engines: {node: '>=18'}
     cpu: [arm64]
     os: [darwin]
 
-  '@esbuild/darwin-x64@0.25.5':
-    resolution: {integrity: sha512-1iT4FVL0dJ76/q1wd7XDsXrSW+oLoquptvh4CLR4kITDtqi2e/xwXwdCVH8hVHU43wgJdsq7Gxuzcs6Iq/7bxQ==}
+  '@esbuild/darwin-x64@0.25.6':
+    resolution: {integrity: sha512-GfXs5kry/TkGM2vKqK2oyiLFygJRqKVhawu3+DOCk7OxLy/6jYkWXhlHwOoTb0WqGnWGAS7sooxbZowy+pK9Yg==}
     engines: {node: '>=18'}
     cpu: [x64]
     os: [darwin]
 
-  '@esbuild/freebsd-arm64@0.25.5':
-    resolution: {integrity: sha512-nk4tGP3JThz4La38Uy/gzyXtpkPW8zSAmoUhK9xKKXdBCzKODMc2adkB2+8om9BDYugz+uGV7sLmpTYzvmz6Sw==}
+  '@esbuild/freebsd-arm64@0.25.6':
+    resolution: {integrity: sha512-aoLF2c3OvDn2XDTRvn8hN6DRzVVpDlj2B/F66clWd/FHLiHaG3aVZjxQX2DYphA5y/evbdGvC6Us13tvyt4pWg==}
     engines: {node: '>=18'}
     cpu: [arm64]
     os: [freebsd]
 
-  '@esbuild/freebsd-x64@0.25.5':
-    resolution: {integrity: sha512-PrikaNjiXdR2laW6OIjlbeuCPrPaAl0IwPIaRv+SMV8CiM8i2LqVUHFC1+8eORgWyY7yhQY+2U2fA55mBzReaw==}
+  '@esbuild/freebsd-x64@0.25.6':
+    resolution: {integrity: sha512-2SkqTjTSo2dYi/jzFbU9Plt1vk0+nNg8YC8rOXXea+iA3hfNJWebKYPs3xnOUf9+ZWhKAaxnQNUf2X9LOpeiMQ==}
     engines: {node: '>=18'}
     cpu: [x64]
     os: [freebsd]
 
-  '@esbuild/linux-arm64@0.25.5':
-    resolution: {integrity: sha512-Z9kfb1v6ZlGbWj8EJk9T6czVEjjq2ntSYLY2cw6pAZl4oKtfgQuS4HOq41M/BcoLPzrUbNd+R4BXFyH//nHxVg==}
+  '@esbuild/linux-arm64@0.25.6':
+    resolution: {integrity: sha512-b967hU0gqKd9Drsh/UuAm21Khpoh6mPBSgz8mKRq4P5mVK8bpA+hQzmm/ZwGVULSNBzKdZPQBRT3+WuVavcWsQ==}
     engines: {node: '>=18'}
     cpu: [arm64]
     os: [linux]
 
-  '@esbuild/linux-arm@0.25.5':
-    resolution: {integrity: sha512-cPzojwW2okgh7ZlRpcBEtsX7WBuqbLrNXqLU89GxWbNt6uIg78ET82qifUy3W6OVww6ZWobWub5oqZOVtwolfw==}
+  '@esbuild/linux-arm@0.25.6':
+    resolution: {integrity: sha512-SZHQlzvqv4Du5PrKE2faN0qlbsaW/3QQfUUc6yO2EjFcA83xnwm91UbEEVx4ApZ9Z5oG8Bxz4qPE+HFwtVcfyw==}
     engines: {node: '>=18'}
     cpu: [arm]
     os: [linux]
 
-  '@esbuild/linux-ia32@0.25.5':
-    resolution: {integrity: sha512-sQ7l00M8bSv36GLV95BVAdhJ2QsIbCuCjh/uYrWiMQSUuV+LpXwIqhgJDcvMTj+VsQmqAHL2yYaasENvJ7CDKA==}
+  '@esbuild/linux-ia32@0.25.6':
+    resolution: {integrity: sha512-aHWdQ2AAltRkLPOsKdi3xv0mZ8fUGPdlKEjIEhxCPm5yKEThcUjHpWB1idN74lfXGnZ5SULQSgtr5Qos5B0bPw==}
     engines: {node: '>=18'}
     cpu: [ia32]
     os: [linux]
 
-  '@esbuild/linux-loong64@0.25.5':
-    resolution: {integrity: sha512-0ur7ae16hDUC4OL5iEnDb0tZHDxYmuQyhKhsPBV8f99f6Z9KQM02g33f93rNH5A30agMS46u2HP6qTdEt6Q1kg==}
+  '@esbuild/linux-loong64@0.25.6':
+    resolution: {integrity: sha512-VgKCsHdXRSQ7E1+QXGdRPlQ/e08bN6WMQb27/TMfV+vPjjTImuT9PmLXupRlC90S1JeNNW5lzkAEO/McKeJ2yg==}
     engines: {node: '>=18'}
     cpu: [loong64]
     os: [linux]
 
-  '@esbuild/linux-mips64el@0.25.5':
-    resolution: {integrity: sha512-kB/66P1OsHO5zLz0i6X0RxlQ+3cu0mkxS3TKFvkb5lin6uwZ/ttOkP3Z8lfR9mJOBk14ZwZ9182SIIWFGNmqmg==}
+  '@esbuild/linux-mips64el@0.25.6':
+    resolution: {integrity: sha512-WViNlpivRKT9/py3kCmkHnn44GkGXVdXfdc4drNmRl15zVQ2+D2uFwdlGh6IuK5AAnGTo2qPB1Djppj+t78rzw==}
     engines: {node: '>=18'}
     cpu: [mips64el]
     os: [linux]
 
-  '@esbuild/linux-ppc64@0.25.5':
-    resolution: {integrity: sha512-UZCmJ7r9X2fe2D6jBmkLBMQetXPXIsZjQJCjgwpVDz+YMcS6oFR27alkgGv3Oqkv07bxdvw7fyB71/olceJhkQ==}
+  '@esbuild/linux-ppc64@0.25.6':
+    resolution: {integrity: sha512-wyYKZ9NTdmAMb5730I38lBqVu6cKl4ZfYXIs31Baf8aoOtB4xSGi3THmDYt4BTFHk7/EcVixkOV2uZfwU3Q2Jw==}
     engines: {node: '>=18'}
     cpu: [ppc64]
     os: [linux]
 
-  '@esbuild/linux-riscv64@0.25.5':
-    resolution: {integrity: sha512-kTxwu4mLyeOlsVIFPfQo+fQJAV9mh24xL+y+Bm6ej067sYANjyEw1dNHmvoqxJUCMnkBdKpvOn0Ahql6+4VyeA==}
+  '@esbuild/linux-riscv64@0.25.6':
+    resolution: {integrity: sha512-KZh7bAGGcrinEj4qzilJ4hqTY3Dg2U82c8bv+e1xqNqZCrCyc+TL9AUEn5WGKDzm3CfC5RODE/qc96OcbIe33w==}
     engines: {node: '>=18'}
     cpu: [riscv64]
     os: [linux]
 
-  '@esbuild/linux-s390x@0.25.5':
-    resolution: {integrity: sha512-K2dSKTKfmdh78uJ3NcWFiqyRrimfdinS5ErLSn3vluHNeHVnBAFWC8a4X5N+7FgVE1EjXS1QDZbpqZBjfrqMTQ==}
+  '@esbuild/linux-s390x@0.25.6':
+    resolution: {integrity: sha512-9N1LsTwAuE9oj6lHMyyAM+ucxGiVnEqUdp4v7IaMmrwb06ZTEVCIs3oPPplVsnjPfyjmxwHxHMF8b6vzUVAUGw==}
     engines: {node: '>=18'}
     cpu: [s390x]
     os: [linux]
 
-  '@esbuild/linux-x64@0.25.5':
-    resolution: {integrity: sha512-uhj8N2obKTE6pSZ+aMUbqq+1nXxNjZIIjCjGLfsWvVpy7gKCOL6rsY1MhRh9zLtUtAI7vpgLMK6DxjO8Qm9lJw==}
+  '@esbuild/linux-x64@0.25.6':
+    resolution: {integrity: sha512-A6bJB41b4lKFWRKNrWoP2LHsjVzNiaurf7wyj/XtFNTsnPuxwEBWHLty+ZE0dWBKuSK1fvKgrKaNjBS7qbFKig==}
     engines: {node: '>=18'}
     cpu: [x64]
     os: [linux]
 
-  '@esbuild/netbsd-arm64@0.25.5':
-    resolution: {integrity: sha512-pwHtMP9viAy1oHPvgxtOv+OkduK5ugofNTVDilIzBLpoWAM16r7b/mxBvfpuQDpRQFMfuVr5aLcn4yveGvBZvw==}
+  '@esbuild/netbsd-arm64@0.25.6':
+    resolution: {integrity: sha512-IjA+DcwoVpjEvyxZddDqBY+uJ2Snc6duLpjmkXm/v4xuS3H+3FkLZlDm9ZsAbF9rsfP3zeA0/ArNDORZgrxR/Q==}
     engines: {node: '>=18'}
     cpu: [arm64]
     os: [netbsd]
 
-  '@esbuild/netbsd-x64@0.25.5':
-    resolution: {integrity: sha512-WOb5fKrvVTRMfWFNCroYWWklbnXH0Q5rZppjq0vQIdlsQKuw6mdSihwSo4RV/YdQ5UCKKvBy7/0ZZYLBZKIbwQ==}
+  '@esbuild/netbsd-x64@0.25.6':
+    resolution: {integrity: sha512-dUXuZr5WenIDlMHdMkvDc1FAu4xdWixTCRgP7RQLBOkkGgwuuzaGSYcOpW4jFxzpzL1ejb8yF620UxAqnBrR9g==}
     engines: {node: '>=18'}
     cpu: [x64]
     os: [netbsd]
 
-  '@esbuild/openbsd-arm64@0.25.5':
-    resolution: {integrity: sha512-7A208+uQKgTxHd0G0uqZO8UjK2R0DDb4fDmERtARjSHWxqMTye4Erz4zZafx7Di9Cv+lNHYuncAkiGFySoD+Mw==}
+  '@esbuild/openbsd-arm64@0.25.6':
+    resolution: {integrity: sha512-l8ZCvXP0tbTJ3iaqdNf3pjaOSd5ex/e6/omLIQCVBLmHTlfXW3zAxQ4fnDmPLOB1x9xrcSi/xtCWFwCZRIaEwg==}
     engines: {node: '>=18'}
     cpu: [arm64]
     os: [openbsd]
 
-  '@esbuild/openbsd-x64@0.25.5':
-    resolution: {integrity: sha512-G4hE405ErTWraiZ8UiSoesH8DaCsMm0Cay4fsFWOOUcz8b8rC6uCvnagr+gnioEjWn0wC+o1/TAHt+It+MpIMg==}
+  '@esbuild/openbsd-x64@0.25.6':
+    resolution: {integrity: sha512-hKrmDa0aOFOr71KQ/19JC7az1P0GWtCN1t2ahYAf4O007DHZt/dW8ym5+CUdJhQ/qkZmI1HAF8KkJbEFtCL7gw==}
     engines: {node: '>=18'}
     cpu: [x64]
     os: [openbsd]
 
-  '@esbuild/sunos-x64@0.25.5':
-    resolution: {integrity: sha512-l+azKShMy7FxzY0Rj4RCt5VD/q8mG/e+mDivgspo+yL8zW7qEwctQ6YqKX34DTEleFAvCIUviCFX1SDZRSyMQA==}
+  '@esbuild/openharmony-arm64@0.25.6':
+    resolution: {integrity: sha512-+SqBcAWoB1fYKmpWoQP4pGtx+pUUC//RNYhFdbcSA16617cchuryuhOCRpPsjCblKukAckWsV+aQ3UKT/RMPcA==}
+    engines: {node: '>=18'}
+    cpu: [arm64]
+    os: [openharmony]
+
+  '@esbuild/sunos-x64@0.25.6':
+    resolution: {integrity: sha512-dyCGxv1/Br7MiSC42qinGL8KkG4kX0pEsdb0+TKhmJZgCUDBGmyo1/ArCjNGiOLiIAgdbWgmWgib4HoCi5t7kA==}
     engines: {node: '>=18'}
     cpu: [x64]
     os: [sunos]
 
-  '@esbuild/win32-arm64@0.25.5':
-    resolution: {integrity: sha512-O2S7SNZzdcFG7eFKgvwUEZ2VG9D/sn/eIiz8XRZ1Q/DO5a3s76Xv0mdBzVM5j5R639lXQmPmSo0iRpHqUUrsxw==}
+  '@esbuild/win32-arm64@0.25.6':
+    resolution: {integrity: sha512-42QOgcZeZOvXfsCBJF5Afw73t4veOId//XD3i+/9gSkhSV6Gk3VPlWncctI+JcOyERv85FUo7RxuxGy+z8A43Q==}
     engines: {node: '>=18'}
     cpu: [arm64]
     os: [win32]
 
-  '@esbuild/win32-ia32@0.25.5':
-    resolution: {integrity: sha512-onOJ02pqs9h1iMJ1PQphR+VZv8qBMQ77Klcsqv9CNW2w6yLqoURLcgERAIurY6QE63bbLuqgP9ATqajFLK5AMQ==}
+  '@esbuild/win32-ia32@0.25.6':
+    resolution: {integrity: sha512-4AWhgXmDuYN7rJI6ORB+uU9DHLq/erBbuMoAuB4VWJTu5KtCgcKYPynF0YI1VkBNuEfjNlLrFr9KZPJzrtLkrQ==}
     engines: {node: '>=18'}
     cpu: [ia32]
     os: [win32]
 
-  '@esbuild/win32-x64@0.25.5':
-    resolution: {integrity: sha512-TXv6YnJ8ZMVdX+SXWVBo/0p8LTcrUYngpWjvm91TMjjBQii7Oz11Lw5lbDV5Y0TzuhSJHwiH4hEtC1I42mMS0g==}
+  '@esbuild/win32-x64@0.25.6':
+    resolution: {integrity: sha512-NgJPHHbEpLQgDH2MjQu90pzW/5vvXIZ7KOnPyNBm92A6WgZ/7b6fJyUBjoumLqeOQQGqY2QjQxRo97ah4Sj0cA==}
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
@@ -1521,8 +1527,8 @@ packages:
     resolution: {integrity: sha512-e5+YUKENATs1JgYHMzTr2MW/NDcXGfYFAuOQU8gJgF/kEh4EqKgfGrfLI67bMD4tbhZVlkigz/9YYwWcbOFthg==}
     engines: {node: '>=10.13.0'}
 
-  '@iconify/json@2.2.355':
-    resolution: {integrity: sha512-ZWL7HwY80E6wb6pMSsUWip/Gzg/reGUqDvYp3JzmpsOlbTgGZxrJ7rFh7CYpuPVkz2keQ7y2oI1xEpNWwl0/xQ==}
+  '@iconify/json@2.2.356':
+    resolution: {integrity: sha512-UVUnPLu154x8oa4GFNU3SPKkKcNbVpdNBLAGDhQFPVin2kf6dK6146WK5vDZsxs+366Mfdy8ZDkbatDqjlTcPw==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -1624,8 +1630,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-alert@0.22.1':
-    resolution: {integrity: sha512-p09Lktuwbex3lINhUamAeQ/OFbIOyC2YDycL9RoOCLs3dkL9NvOv7pvJZ85+nYFK8uP+nTBKSCL6BKXviMsFmw==}
+  '@mdit/plugin-alert@0.22.2':
+    resolution: {integrity: sha512-n2oVSeg3yeZBCjqfAqbnJxeu4PGq+CXwUWsiwrrARj39z23QZ62FbgL5WGNyP/WFnDAeHMedLDYtipC9OgIOgA==}
     peerDependencies:
       markdown-it: ^14.1.0
     peerDependenciesMeta:
@@ -1733,8 +1739,8 @@ packages:
       mathjax-full:
         optional: true
 
-  '@mdit/plugin-plantuml@0.22.1':
-    resolution: {integrity: sha512-oLjkXUMDAOqfRXVLjSvFyO5fh8N8/xEUqrfajK9tFamA3eDMnou2Gc0IWytpdQx/u82SAgAOR9pdkDJxd2vkNw==}
+  '@mdit/plugin-plantuml@0.22.2':
+    resolution: {integrity: sha512-PjfYAKaPhnip2f51lYSiKz9cJWvMw+JfZZp/Yzdmmdtfi/la5uzilZfxVRDboJJ6qZ1qnp0pxNTVIcDb65s6DA==}
     peerDependencies:
       markdown-it: ^14.1.0
     peerDependenciesMeta:
@@ -1794,8 +1800,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mermaid-js/parser@0.6.0':
-    resolution: {integrity: sha512-7DNESgpyZ5WG1SIkrYafVBhWmImtmQuoxOO1lawI3gQYWxBX3v1FW3IyuuRfKJAO06XrZR71W0Kif5VEGGd4VA==}
+  '@mermaid-js/parser@0.6.1':
+    resolution: {integrity: sha512-lCQNpV8R4lgsGcjX5667UiuDLk2micCtjtxR1YKbBXvN5w2v+FeLYoHrTSSrjwXdMcDYvE4ZBPvKT31dfeSmmA==}
 
   '@napi-rs/wasm-runtime@0.2.10':
     resolution: {integrity: sha512-bCsCyeZEwVErsGmyPNSzwfwFn4OdxBj0mmv6hOFucB/k81Ojdu68RbZdxYsRQUPc9l6SU5F/cG+bXgWs3oUgsQ==}
@@ -2057,6 +2063,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@rolldown/pluginutils@1.0.0-beta.19':
+    resolution: {integrity: sha512-3FL3mnMbPu0muGOCaKAhhFEYmqv9eTfPSJRJmANrCwtgK8VuxpsZDGK+m0LYAGoyO8+0j5uRe4PeyPDK1yA/hA==}
+
   '@rolldown/pluginutils@1.0.0-beta.21':
     resolution: {integrity: sha512-OTjWr7XYqRZaSzi6dTe0fP25EEsYEQ2H04xIedXG3D0Hrs+Bpe3V5L48R6y+R5ohTygp1ijC09mbrd7vlslpzA==}
 
@@ -2065,8 +2074,18 @@ packages:
     cpu: [arm]
     os: [android]
 
+  '@rollup/rollup-android-arm-eabi@4.44.2':
+    resolution: {integrity: sha512-g0dF8P1e2QYPOj1gu7s/3LVP6kze9A7m6x0BZ9iTdXK8N5c2V7cpBKHV3/9A4Zd8xxavdhK0t4PnqjkqVmUc9Q==}
+    cpu: [arm]
+    os: [android]
+
   '@rollup/rollup-android-arm64@4.40.2':
     resolution: {integrity: sha512-13unNoZ8NzUmnndhPTkWPWbX3vtHodYmy+I9kuLxN+F+l+x3LdVF7UCu8TWVMt1POHLh6oDHhnOA04n8oJZhBw==}
+    cpu: [arm64]
+    os: [android]
+
+  '@rollup/rollup-android-arm64@4.44.2':
+    resolution: {integrity: sha512-Yt5MKrOosSbSaAK5Y4J+vSiID57sOvpBNBR6K7xAaQvk3MkcNVV0f9fE20T+41WYN8hDn6SGFlFrKudtx4EoxA==}
     cpu: [arm64]
     os: [android]
 
@@ -2075,8 +2094,18 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
+  '@rollup/rollup-darwin-arm64@4.44.2':
+    resolution: {integrity: sha512-EsnFot9ZieM35YNA26nhbLTJBHD0jTwWpPwmRVDzjylQT6gkar+zenfb8mHxWpRrbn+WytRRjE0WKsfaxBkVUA==}
+    cpu: [arm64]
+    os: [darwin]
+
   '@rollup/rollup-darwin-x64@4.40.2':
     resolution: {integrity: sha512-47N4hxa01a4x6XnJoskMKTS8XZ0CZMd8YTbINbi+w03A2w4j1RTlnGHOz/P0+Bg1LaVL6ufZyNprSg+fW5nYQQ==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@rollup/rollup-darwin-x64@4.44.2':
+    resolution: {integrity: sha512-dv/t1t1RkCvJdWWxQ2lWOO+b7cMsVw5YFaS04oHpZRWehI1h0fV1gF4wgGCTyQHHjJDfbNpwOi6PXEafRBBezw==}
     cpu: [x64]
     os: [darwin]
 
@@ -2085,8 +2114,18 @@ packages:
     cpu: [arm64]
     os: [freebsd]
 
+  '@rollup/rollup-freebsd-arm64@4.44.2':
+    resolution: {integrity: sha512-W4tt4BLorKND4qeHElxDoim0+BsprFTwb+vriVQnFFtT/P6v/xO5I99xvYnVzKWrK6j7Hb0yp3x7V5LUbaeOMg==}
+    cpu: [arm64]
+    os: [freebsd]
+
   '@rollup/rollup-freebsd-x64@4.40.2':
     resolution: {integrity: sha512-C+AyHBzfpsOEYRFjztcYUFsH4S7UsE9cDtHCtma5BK8+ydOZYgMmWg1d/4KBytQspJCld8ZIujFMAdKG1xyr4Q==}
+    cpu: [x64]
+    os: [freebsd]
+
+  '@rollup/rollup-freebsd-x64@4.44.2':
+    resolution: {integrity: sha512-tdT1PHopokkuBVyHjvYehnIe20fxibxFCEhQP/96MDSOcyjM/shlTkZZLOufV3qO6/FQOSiJTBebhVc12JyPTA==}
     cpu: [x64]
     os: [freebsd]
 
@@ -2095,8 +2134,18 @@ packages:
     cpu: [arm]
     os: [linux]
 
+  '@rollup/rollup-linux-arm-gnueabihf@4.44.2':
+    resolution: {integrity: sha512-+xmiDGGaSfIIOXMzkhJ++Oa0Gwvl9oXUeIiwarsdRXSe27HUIvjbSIpPxvnNsRebsNdUo7uAiQVgBD1hVriwSQ==}
+    cpu: [arm]
+    os: [linux]
+
   '@rollup/rollup-linux-arm-musleabihf@4.40.2':
     resolution: {integrity: sha512-urjaEZubdIkacKc930hUDOfQPysezKla/O9qV+O89enqsqUmQm8Xj8O/vh0gHg4LYfv7Y7UsE3QjzLQzDYN1qg==}
+    cpu: [arm]
+    os: [linux]
+
+  '@rollup/rollup-linux-arm-musleabihf@4.44.2':
+    resolution: {integrity: sha512-bDHvhzOfORk3wt8yxIra8N4k/N0MnKInCW5OGZaeDYa/hMrdPaJzo7CSkjKZqX4JFUWjUGm88lI6QJLCM7lDrA==}
     cpu: [arm]
     os: [linux]
 
@@ -2105,8 +2154,18 @@ packages:
     cpu: [arm64]
     os: [linux]
 
+  '@rollup/rollup-linux-arm64-gnu@4.44.2':
+    resolution: {integrity: sha512-NMsDEsDiYghTbeZWEGnNi4F0hSbGnsuOG+VnNvxkKg0IGDvFh7UVpM/14mnMwxRxUf9AdAVJgHPvKXf6FpMB7A==}
+    cpu: [arm64]
+    os: [linux]
+
   '@rollup/rollup-linux-arm64-musl@4.40.2':
     resolution: {integrity: sha512-j8CgxvfM0kbnhu4XgjnCWJQyyBOeBI1Zq91Z850aUddUmPeQvuAy6OiMdPS46gNFgy8gN1xkYyLgwLYZG3rBOg==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@rollup/rollup-linux-arm64-musl@4.44.2':
+    resolution: {integrity: sha512-lb5bxXnxXglVq+7imxykIp5xMq+idehfl+wOgiiix0191av84OqbjUED+PRC5OA8eFJYj5xAGcpAZ0pF2MnW+A==}
     cpu: [arm64]
     os: [linux]
 
@@ -2115,8 +2174,18 @@ packages:
     cpu: [loong64]
     os: [linux]
 
+  '@rollup/rollup-linux-loongarch64-gnu@4.44.2':
+    resolution: {integrity: sha512-Yl5Rdpf9pIc4GW1PmkUGHdMtbx0fBLE1//SxDmuf3X0dUC57+zMepow2LK0V21661cjXdTn8hO2tXDdAWAqE5g==}
+    cpu: [loong64]
+    os: [linux]
+
   '@rollup/rollup-linux-powerpc64le-gnu@4.40.2':
     resolution: {integrity: sha512-3FCIrnrt03CCsZqSYAOW/k9n625pjpuMzVfeI+ZBUSDT3MVIFDSPfSUgIl9FqUftxcUXInvFah79hE1c9abD+Q==}
+    cpu: [ppc64]
+    os: [linux]
+
+  '@rollup/rollup-linux-powerpc64le-gnu@4.44.2':
+    resolution: {integrity: sha512-03vUDH+w55s680YYryyr78jsO1RWU9ocRMaeV2vMniJJW/6HhoTBwyyiiTPVHNWLnhsnwcQ0oH3S9JSBEKuyqw==}
     cpu: [ppc64]
     os: [linux]
 
@@ -2125,8 +2194,18 @@ packages:
     cpu: [riscv64]
     os: [linux]
 
+  '@rollup/rollup-linux-riscv64-gnu@4.44.2':
+    resolution: {integrity: sha512-iYtAqBg5eEMG4dEfVlkqo05xMOk6y/JXIToRca2bAWuqjrJYJlx/I7+Z+4hSrsWU8GdJDFPL4ktV3dy4yBSrzg==}
+    cpu: [riscv64]
+    os: [linux]
+
   '@rollup/rollup-linux-riscv64-musl@4.40.2':
     resolution: {integrity: sha512-5W6vNYkhgfh7URiXTO1E9a0cy4fSgfE4+Hl5agb/U1sa0kjOLMLC1wObxwKxecE17j0URxuTrYZZME4/VH57Hg==}
+    cpu: [riscv64]
+    os: [linux]
+
+  '@rollup/rollup-linux-riscv64-musl@4.44.2':
+    resolution: {integrity: sha512-e6vEbgaaqz2yEHqtkPXa28fFuBGmUJ0N2dOJK8YUfijejInt9gfCSA7YDdJ4nYlv67JfP3+PSWFX4IVw/xRIPg==}
     cpu: [riscv64]
     os: [linux]
 
@@ -2135,8 +2214,18 @@ packages:
     cpu: [s390x]
     os: [linux]
 
+  '@rollup/rollup-linux-s390x-gnu@4.44.2':
+    resolution: {integrity: sha512-evFOtkmVdY3udE+0QKrV5wBx7bKI0iHz5yEVx5WqDJkxp9YQefy4Mpx3RajIVcM6o7jxTvVd/qpC1IXUhGc1Mw==}
+    cpu: [s390x]
+    os: [linux]
+
   '@rollup/rollup-linux-x64-gnu@4.40.2':
     resolution: {integrity: sha512-lG7Xa+BmBNwpjmVUbmyKxdQJ3Q6whHjMjzQplOs5Z+Gj7mxPtWakGHqzMqNER68G67kmCX9qX57aRsW5V0VOng==}
+    cpu: [x64]
+    os: [linux]
+
+  '@rollup/rollup-linux-x64-gnu@4.44.2':
+    resolution: {integrity: sha512-/bXb0bEsWMyEkIsUL2Yt5nFB5naLAwyOWMEviQfQY1x3l5WsLKgvZf66TM7UTfED6erckUVUJQ/jJ1FSpm3pRQ==}
     cpu: [x64]
     os: [linux]
 
@@ -2145,8 +2234,18 @@ packages:
     cpu: [x64]
     os: [linux]
 
+  '@rollup/rollup-linux-x64-musl@4.44.2':
+    resolution: {integrity: sha512-3D3OB1vSSBXmkGEZR27uiMRNiwN08/RVAcBKwhUYPaiZ8bcvdeEwWPvbnXvvXHY+A/7xluzcN+kaiOFNiOZwWg==}
+    cpu: [x64]
+    os: [linux]
+
   '@rollup/rollup-win32-arm64-msvc@4.40.2':
     resolution: {integrity: sha512-Bjv/HG8RRWLNkXwQQemdsWw4Mg+IJ29LK+bJPW2SCzPKOUaMmPEppQlu/Fqk1d7+DX3V7JbFdbkh/NMmurT6Pg==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@rollup/rollup-win32-arm64-msvc@4.44.2':
+    resolution: {integrity: sha512-VfU0fsMK+rwdK8mwODqYeM2hDrF2WiHaSmCBrS7gColkQft95/8tphyzv2EupVxn3iE0FI78wzffoULH1G+dkw==}
     cpu: [arm64]
     os: [win32]
 
@@ -2155,51 +2254,43 @@ packages:
     cpu: [ia32]
     os: [win32]
 
+  '@rollup/rollup-win32-ia32-msvc@4.44.2':
+    resolution: {integrity: sha512-+qMUrkbUurpE6DVRjiJCNGZBGo9xM4Y0FXU5cjgudWqIBWbcLkjE3XprJUsOFgC6xjBClwVa9k6O3A7K3vxb5Q==}
+    cpu: [ia32]
+    os: [win32]
+
   '@rollup/rollup-win32-x64-msvc@4.40.2':
     resolution: {integrity: sha512-bwspbWB04XJpeElvsp+DCylKfF4trJDa2Y9Go8O6A7YLX2LIKGcNK/CYImJN6ZP4DcuOHB4Utl3iCbnR62DudA==}
     cpu: [x64]
     os: [win32]
 
-  '@shikijs/core@3.6.0':
-    resolution: {integrity: sha512-9By7Xb3olEX0o6UeJyPLI1PE1scC4d3wcVepvtv2xbuN9/IThYN4Wcwh24rcFeASzPam11MCq8yQpwwzCgSBRw==}
+  '@rollup/rollup-win32-x64-msvc@4.44.2':
+    resolution: {integrity: sha512-3+QZROYfJ25PDcxFF66UEk8jGWigHJeecZILvkPkyQN7oc5BvFo4YEXFkOs154j3FTMp9mn9Ky8RCOwastduEA==}
+    cpu: [x64]
+    os: [win32]
 
   '@shikijs/core@3.7.0':
     resolution: {integrity: sha512-yilc0S9HvTPyahHpcum8eonYrQtmGTU0lbtwxhA6jHv4Bm1cAdlPFRCJX4AHebkCm75aKTjjRAW+DezqD1b/cg==}
 
-  '@shikijs/engine-javascript@3.6.0':
-    resolution: {integrity: sha512-7YnLhZG/TU05IHMG14QaLvTW/9WiK8SEYafceccHUSXs2Qr5vJibUwsDfXDLmRi0zHdzsxrGKpSX6hnqe0k8nA==}
-
   '@shikijs/engine-javascript@3.7.0':
     resolution: {integrity: sha512-0t17s03Cbv+ZcUvv+y33GtX75WBLQELgNdVghnsdhTgU3hVcWcMsoP6Lb0nDTl95ZJfbP1mVMO0p3byVh3uuzA==}
-
-  '@shikijs/engine-oniguruma@3.6.0':
-    resolution: {integrity: sha512-nmOhIZ9yT3Grd+2plmW/d8+vZ2pcQmo/UnVwXMUXAKTXdi+LK0S08Ancrz5tQQPkxvjBalpMW2aKvwXfelauvA==}
 
   '@shikijs/engine-oniguruma@3.7.0':
     resolution: {integrity: sha512-5BxcD6LjVWsGu4xyaBC5bu8LdNgPCVBnAkWTtOCs/CZxcB22L8rcoWfv7Hh/3WooVjBZmFtyxhgvkQFedPGnFw==}
 
-  '@shikijs/langs@3.6.0':
-    resolution: {integrity: sha512-IdZkQJaLBu1LCYCwkr30hNuSDfllOT8RWYVZK1tD2J03DkiagYKRxj/pDSl8Didml3xxuyzUjgtioInwEQM/TA==}
-
   '@shikijs/langs@3.7.0':
     resolution: {integrity: sha512-1zYtdfXLr9xDKLTGy5kb7O0zDQsxXiIsw1iIBcNOO8Yi5/Y1qDbJ+0VsFoqTlzdmneO8Ij35g7QKF8kcLyznCQ==}
-
-  '@shikijs/themes@3.6.0':
-    resolution: {integrity: sha512-Fq2j4nWr1DF4drvmhqKq8x5vVQ27VncF8XZMBuHuQMZvUSS3NBgpqfwz/FoGe36+W6PvniZ1yDlg2d4kmYDU6w==}
 
   '@shikijs/themes@3.7.0':
     resolution: {integrity: sha512-VJx8497iZPy5zLiiCTSIaOChIcKQwR0FebwE9S3rcN0+J/GTWwQ1v/bqhTbpbY3zybPKeO8wdammqkpXc4NVjQ==}
 
-  '@shikijs/transformers@3.6.0':
-    resolution: {integrity: sha512-PYkU54lYV0RCaUG8n2FNTF+YWiU3uPhcjLGq2x/C8lIrUX9GVnRb3bK+R5xtdFHbuctntATKm7ondp/H/dux9Q==}
+  '@shikijs/transformers@3.7.0':
+    resolution: {integrity: sha512-VplaqIMRNsNOorCXJHkbF5S0pT6xm8Z/s7w7OPZLohf8tR93XH0krvUafpNy/ozEylrWuShJF0+ftEB+wFRwGA==}
 
-  '@shikijs/twoslash@3.6.0':
-    resolution: {integrity: sha512-AxRxLWtmrVftwxN/2hSL6Hym+bannS+zuUEXpbNuo6BpG4jHTM0KEkICEH3B3Gm5ZNzGdI74NdDiAqAZ6WPJuQ==}
+  '@shikijs/twoslash@3.7.0':
+    resolution: {integrity: sha512-EjnV193iasm/M5UHVDJg6WyX6dIMCb0YhsKKlgWv3OK7iLFjuW7sUp978ZkO2OIn3niqBT6e+CX1LgoPM8jYjQ==}
     peerDependencies:
       typescript: '>=5.5.0'
-
-  '@shikijs/types@3.6.0':
-    resolution: {integrity: sha512-cLWFiToxYu0aAzJqhXTQsFiJRTFDAGl93IrMSBNaGSzs7ixkLfdG6pH11HipuWFGW5vyx4X47W8HDQ7eSrmBUg==}
 
   '@shikijs/types@3.7.0':
     resolution: {integrity: sha512-MGaLeaRlSWpnP0XSAum3kP3a8vtcTsITqoEPYdt3lQG3YCdQH4DnEhodkYcNMcU0uW0RffhoD1O3e0vG5eSBBg==}
@@ -2457,8 +2548,8 @@ packages:
   '@types/node@24.0.10':
     resolution: {integrity: sha512-ENHwaH+JIRTDIEEbDK6QSQntAYGtbvdDXnMXnZaZ6k13Du1dPMmprkEHIL7ok2Wl2aZevetwTAb5S+7yIF+enA==}
 
-  '@types/node@24.0.7':
-    resolution: {integrity: sha512-YIEUUr4yf8q8oQoXPpSlnvKNVKDQlPMWrmOcgzoduo7kvA2UF0/BwJ/eMKFTiTtkNL17I0M6Xe2tvwFU7be6iw==}
+  '@types/node@24.0.12':
+    resolution: {integrity: sha512-LtOrbvDf5ndC9Xi+4QZjVL0woFymF/xSTKZKPgrrl7H7XoeDvnD+E2IclKVDyaK9UM756W/3BXqSU+JEHopA9g==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -2520,8 +2611,8 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4 <5.9.0'
 
-  '@typescript-eslint/project-service@8.35.1':
-    resolution: {integrity: sha512-VYxn/5LOpVxADAuP3NrnxxHYfzVtQzLKeldIhDhzC8UHaiQvYlXvKuVho1qLduFbJjjy5U5bkGwa3rUGUb1Q6Q==}
+  '@typescript-eslint/project-service@8.36.0':
+    resolution: {integrity: sha512-JAhQFIABkWccQYeLMrHadu/fhpzmSQ1F1KXkpzqiVxA/iYI6UnRt2trqXHt1sYEcw1mxLnB9rKMsOxXPxowN/g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       typescript: '>=4.8.4 <5.9.0'
@@ -2530,8 +2621,8 @@ packages:
     resolution: {integrity: sha512-beu6o6QY4hJAgL1E8RaXNC071G4Kso2MGmJskCFQhRhg8VOH/FDbC8soP8NHN7e/Hdphwp8G8cE6OBzC8o41ZA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@typescript-eslint/scope-manager@8.35.1':
-    resolution: {integrity: sha512-s/Bpd4i7ht2934nG+UoSPlYXd08KYz3bmjLEb7Ye1UVob0d1ENiT3lY8bsCmik4RqfSbPw9xJJHbugpPpP5JUg==}
+  '@typescript-eslint/scope-manager@8.36.0':
+    resolution: {integrity: sha512-wCnapIKnDkN62fYtTGv2+RY8FlnBYA3tNm0fm91kc2BjPhV2vIjwwozJ7LToaLAyb1ca8BxrS7vT+Pvvf7RvqA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/tsconfig-utils@8.34.1':
@@ -2540,8 +2631,8 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4 <5.9.0'
 
-  '@typescript-eslint/tsconfig-utils@8.35.1':
-    resolution: {integrity: sha512-K5/U9VmT9dTHoNowWZpz+/TObS3xqC5h0xAIjXPw+MNcKV9qg6eSatEnmeAwkjHijhACH0/N7bkhKvbt1+DXWQ==}
+  '@typescript-eslint/tsconfig-utils@8.36.0':
+    resolution: {integrity: sha512-Nhh3TIEgN18mNbdXpd5Q8mSCBnrZQeY9V7Ca3dqYvNDStNIGRmJA6dmrIPMJ0kow3C7gcQbpsG2rPzy1Ks/AnA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       typescript: '>=4.8.4 <5.9.0'
@@ -2557,8 +2648,8 @@ packages:
     resolution: {integrity: sha512-rjLVbmE7HR18kDsjNIZQHxmv9RZwlgzavryL5Lnj2ujIRTeXlKtILHgRNmQ3j4daw7zd+mQgy+uyt6Zo6I0IGA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@typescript-eslint/types@8.35.1':
-    resolution: {integrity: sha512-q/O04vVnKHfrrhNAscndAn1tuQhIkwqnaW+eu5waD5IPts2eX1dgJxgqcPx5BX109/qAz7IG6VrEPTOYKCNfRQ==}
+  '@typescript-eslint/types@8.36.0':
+    resolution: {integrity: sha512-xGms6l5cTJKQPZOKM75Dl9yBfNdGeLRsIyufewnxT4vZTrjC0ImQT4fj8QmtJK84F58uSh5HVBSANwcfiXxABQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/typescript-estree@8.34.1':
@@ -2567,14 +2658,14 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4 <5.9.0'
 
-  '@typescript-eslint/typescript-estree@8.35.1':
-    resolution: {integrity: sha512-Vvpuvj4tBxIka7cPs6Y1uvM7gJgdF5Uu9F+mBJBPY4MhvjrjWGK4H0lVgLJd/8PWZ23FTqsaJaLEkBCFUk8Y9g==}
+  '@typescript-eslint/typescript-estree@8.36.0':
+    resolution: {integrity: sha512-JaS8bDVrfVJX4av0jLpe4ye0BpAaUW7+tnS4Y4ETa3q7NoZgzYbN9zDQTJ8kPb5fQ4n0hliAt9tA4Pfs2zA2Hg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       typescript: '>=4.8.4 <5.9.0'
 
-  '@typescript-eslint/utils@8.35.1':
-    resolution: {integrity: sha512-lhnwatFmOFcazAsUm3ZnZFpXSxiwoa1Lj50HphnDe1Et01NF4+hrdXONSUHIcbVu2eFb1bAf+5yjXkGVkXBKAQ==}
+  '@typescript-eslint/utils@8.36.0':
+    resolution: {integrity: sha512-VOqmHu42aEMT+P2qYjylw6zP/3E/HvptRwdn/PZxyV27KhZg2IOszXod4NcXisWzPAGSS4trE/g4moNj6XmH2g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
@@ -2584,8 +2675,8 @@ packages:
     resolution: {integrity: sha512-xoh5rJ+tgsRKoXnkBPFRLZ7rjKM0AfVbC68UZ/ECXoDbfggb9RbEySN359acY1vS3qZ0jVTVWzbtfapwm5ztxw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@typescript-eslint/visitor-keys@8.35.1':
-    resolution: {integrity: sha512-VRwixir4zBWCSTP/ljEo091lbpypz57PoeAQ9imjG+vbeof9LplljsL1mos4ccG6H9IjfrVGM359RozUnuFhpw==}
+  '@typescript-eslint/visitor-keys@8.36.0':
+    resolution: {integrity: sha512-vZrhV2lRPWDuGoxcmrzRZyxAggPL+qp3WzUrlZD+slFueDiYHxeBa34dUXPuC0RmGKzl4lS5kFJYvKCq9cnNDA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript/vfs@1.6.1':
@@ -2596,11 +2687,11 @@ packages:
   '@ungap/structured-clone@1.2.1':
     resolution: {integrity: sha512-fEzPV3hSkSMltkw152tJKNARhOupqbH96MZWyRjNaYZOMIzbrTeQDG+MTc6Mr2pgzFQzFxAfmhGDNP5QK++2ZA==}
 
-  '@vitejs/plugin-vue@5.2.3':
-    resolution: {integrity: sha512-IYSLEQj4LgZZuoVpdSUCw3dIynTWQgPlaRP6iAvMle4My0HdYwr5g5wQAfwOeHQBmYwEkqF70nRpSilr6PoUDg==}
-    engines: {node: ^18.0.0 || >=20.0.0}
+  '@vitejs/plugin-vue@6.0.0':
+    resolution: {integrity: sha512-iAliE72WsdhjzTOp2DtvKThq1VBC4REhwRcaA+zPAAph6I+OQhUXv+Xu2KS7ElxYtb7Zc/3R30Hwv1DxEo7NXQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
-      vite: ^5.0.0 || ^6.0.0
+      vite: ^5.0.0 || ^6.0.0 || ^7.0.0
       vue: ^3.2.25
 
   '@vitest/coverage-istanbul@3.2.4':
@@ -2649,11 +2740,11 @@ packages:
   '@vitest/utils@3.2.4':
     resolution: {integrity: sha512-fB2V0JFrQSMsCo9HiSq3Ezpdv4iYaXRG1Sx8edX3MwxfyNn83mKiGzOcH+Fkxt4MHxr3y42fQi1oeAInqgX2QA==}
 
-  '@volar/language-core@2.4.11':
-    resolution: {integrity: sha512-lN2C1+ByfW9/JRPpqScuZt/4OrUUse57GLI6TbLgTIqBVemdl1wNcZ1qYGEo2+Gw8coYLgCy7SuKqn6IrQcQgg==}
+  '@volar/language-core@2.4.17':
+    resolution: {integrity: sha512-chmRZMbKmcGpKMoO7Reb70uiLrzo0KWC2CkFttKUuKvrE+VYgi+fL9vWMJ07Fv5ulX0V1TAyyacN9q3nc5/ecA==}
 
-  '@volar/source-map@2.4.11':
-    resolution: {integrity: sha512-ZQpmafIGvaZMn/8iuvCFGrW3smeqkq/IIh9F1SdSx9aUl0J4Iurzd6/FhmjNO5g2ejF3rT45dKskgXWiofqlZQ==}
+  '@volar/source-map@2.4.17':
+    resolution: {integrity: sha512-QDybtQyO3Ms/NjFqNHTC5tbDN2oK5VH7ZaKrcubtfHBDj63n2pizHC3wlMQ+iT55kQXZUUAbmBX5L1C8CHFeBw==}
 
   '@vscode/markdown-it-katex@1.1.1':
     resolution: {integrity: sha512-3KTlbsRBPJQLE2YmLL7K6nunTlU+W9T5+FjfNdWuIUKgxSS6HWLQHaO3L4MkJi7z7MpIPpY+g4N+cWNBPE/MSA==}
@@ -2676,17 +2767,17 @@ packages:
   '@vue/devtools-api@6.6.4':
     resolution: {integrity: sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==}
 
-  '@vue/devtools-api@7.7.6':
-    resolution: {integrity: sha512-b2Xx0KvXZObePpXPYHvBRRJLDQn5nhKjXh7vUhMEtWxz1AYNFOVIsh5+HLP8xDGL7sy+Q7hXeUxPHB/KgbtsPw==}
+  '@vue/devtools-api@7.7.7':
+    resolution: {integrity: sha512-lwOnNBH2e7x1fIIbVT7yF5D+YWhqELm55/4ZKf45R9T8r9dE2AIOy8HKjfqzGsoTHFbWbr337O4E0A0QADnjBg==}
 
-  '@vue/devtools-kit@7.7.6':
-    resolution: {integrity: sha512-geu7ds7tem2Y7Wz+WgbnbZ6T5eadOvozHZ23Atk/8tksHMFOFylKi1xgGlQlVn0wlkEf4hu+vd5ctj1G4kFtwA==}
+  '@vue/devtools-kit@7.7.7':
+    resolution: {integrity: sha512-wgoZtxcTta65cnZ1Q6MbAfePVFxfM+gq0saaeytoph7nEa7yMXoi6sCPy4ufO111B9msnw0VOWjPEFCXuAKRHA==}
 
-  '@vue/devtools-shared@7.7.6':
-    resolution: {integrity: sha512-yFEgJZ/WblEsojQQceuyK6FzpFDx4kqrz2ohInxNj5/DnhoX023upTv4OD6lNPLAA5LLkbwPVb10o/7b+Y4FVA==}
+  '@vue/devtools-shared@7.7.7':
+    resolution: {integrity: sha512-+udSj47aRl5aKb0memBvcUG9koarqnxNM5yjuREvqwK6T3ap4mn3Zqqc17QrBFTqSMjr3HK1cvStEZpMDpfdyw==}
 
-  '@vue/language-core@2.2.4':
-    resolution: {integrity: sha512-eGGdw7eWUwdIn9Fy/irJ7uavCGfgemuHQABgJ/hU1UgZFnbTg9VWeXvHQdhY+2SPQZWJqWXvRWIg67t4iWEa+Q==}
+  '@vue/language-core@3.0.1':
+    resolution: {integrity: sha512-sq+/Mc1IqIexWEQ+Q2XPiDb5SxSvY5JPqHnMOl/PlF5BekslzduX8dglSkpC17VeiAQB6dpS+4aiwNLJRduCNw==}
     peerDependencies:
       typescript: '*'
     peerDependenciesMeta:
@@ -2710,51 +2801,51 @@ packages:
   '@vue/shared@3.5.17':
     resolution: {integrity: sha512-CabR+UN630VnsJO/jHWYBC1YVXyMq94KKp6iF5MQgZJs5I8cmjw6oVMO1oDbtBkENSHSSn/UadWlW/OAgdmKrg==}
 
-  '@vuepress/bundler-vite@2.0.0-rc.23':
-    resolution: {integrity: sha512-59oBof+QaCyrZVOussrmv3bHxpwFPsLlI9yQbq2ubR+dFNzgfAtb8Dpm2z9iB/duZnx6PgmWPke4qGl9wOjEKw==}
+  '@vuepress/bundler-vite@2.0.0-rc.24':
+    resolution: {integrity: sha512-prgT3f6xOBC43rhfvzlfXY0wJKsI+oV5RC4s0YyVPZ0s5VQKI3RRD1aY+euiVFPks3Mjx+DxEtKBOLsJ7I6crA==}
 
-  '@vuepress/bundlerutils@2.0.0-rc.23':
-    resolution: {integrity: sha512-XgDbIT10xI7m8Pto+N8Mi+o+s1oAg+Mo65WLeHkaCexSRrF9Fa9WRun28EtB5PnyVhaZvnXh5XXuthXZl206JA==}
+  '@vuepress/bundlerutils@2.0.0-rc.24':
+    resolution: {integrity: sha512-gtO0zhb57SyDotgdSI+TMAwJKg7KC75/G4UoWRwkyAHREsbWUInHQfXzzaFMnKmkdcB9YeXXbOnWGwZjRn74ew==}
 
-  '@vuepress/cli@2.0.0-rc.23':
-    resolution: {integrity: sha512-lNAvRf4zyfnl8pgUA/uj2yCgsroJJzUm2dEwmudOIvfSV+N5jMUQuomdE5gZemDDk2oE2gqyRPBOZ12LP2EEIg==}
+  '@vuepress/cli@2.0.0-rc.24':
+    resolution: {integrity: sha512-3IJtADHg67U6q3i1n3klbBtm5TZZI3uO+MkEDq8efgK7kk27LAt+7GhxqxZCq5xJ+GPNZqElc+t3+eG9biDNFA==}
     hasBin: true
 
-  '@vuepress/client@2.0.0-rc.23':
-    resolution: {integrity: sha512-/2sdQTOELCUgoEjy2XGqcDMHSAz1kdaMYBr+8zv5et2aYzpn9rYdW0SzXTprhc354ccN65xNHarr6uIbVJ1m0g==}
+  '@vuepress/client@2.0.0-rc.24':
+    resolution: {integrity: sha512-7W1FbrtsNDdWqkNoLfZKpZl8hv+j6sGCdmKtq90bRwzbaM+P2FJ6WYQ4Px4o/N0pqvr70k1zQe3A42QIeH0Ybw==}
 
-  '@vuepress/core@2.0.0-rc.23':
-    resolution: {integrity: sha512-CkXDOCKJATxFciEuLCDtAzdCkGyNfCcmBYyhsvYLSJU8oiXgt27EjmXNKTpN+MNXSl934/353UERExGafhsTfg==}
+  '@vuepress/core@2.0.0-rc.24':
+    resolution: {integrity: sha512-NfNg6+vo5BJHBsLpoiXO8pU0zKaYCZxQinidW9r4KclNfZzC8PMkeBMeCT0uxcrb+XCaiHOrW19pF0/6NYNs0Q==}
 
-  '@vuepress/helper@2.0.0-rc.110':
-    resolution: {integrity: sha512-HmiAj+Ht4vXlmNW8a76mmFev5QvYEnSOLeONhYxTcBo2S/cWth/QscuyMBCSLDSfvSZjpUcmEqVqn7XnZdbJ4w==}
+  '@vuepress/helper@2.0.0-rc.112':
+    resolution: {integrity: sha512-gj19xHyYbG0wygcoJ6YypCNS+nybVt2AEJFyHTFvl+KiB2BfBhKWuCpWufp4c4Od1xkru4y56I+pSU2b8CGIBQ==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/highlighter-helper@2.0.0-rc.109':
-    resolution: {integrity: sha512-cb2bwucJK/NWY7aqn0fHigaf4zjE/TFU/u6ykwnEOL7Y+3g8Wc35G+VHmrPlUnUWlMlhQZ7yToJk1KJh2sPj9w==}
+  '@vuepress/highlighter-helper@2.0.0-rc.112':
+    resolution: {integrity: sha512-gDNGSOFR6yXS567ObWqn7vc8O8ZqCl1kn5wDdBfa0qe011CQgsJKQbGH6tFxfbi0JznZ1bjpKZmEaUKxsFRbtg==}
     peerDependencies:
-      '@vueuse/core': ^13.3.0
-      vuepress: 2.0.0-rc.23
+      '@vueuse/core': ^13.5.0
+      vuepress: 2.0.0-rc.24
     peerDependenciesMeta:
       '@vueuse/core':
         optional: true
 
-  '@vuepress/markdown@2.0.0-rc.23':
-    resolution: {integrity: sha512-KDC5xtd6GQBKsKkOKchJ5yxof/JES6StsBAmm5+S6WVJGOFRCVw5tpicFO9tgm1alwWFbX0WD5oloPq/ZOJtfA==}
+  '@vuepress/markdown@2.0.0-rc.24':
+    resolution: {integrity: sha512-yYSo89cFbti2F/JWX3Odx9jbPje20PuVO+0SLkZX9AP5wuOv79Mx5QeRVEUS1YfD3faM98ya5LoIyuYWjPjJHw==}
 
-  '@vuepress/plugin-cache@2.0.0-rc.103':
-    resolution: {integrity: sha512-KHo1ahf1kpJlXun8r/8ENMSxdiIxFYusK6pPE3peK9AGJ1m+VnOf2bXPWFpWwa8CR+A/cgQenqh0621dfo+EsA==}
+  '@vuepress/plugin-cache@2.0.0-rc.112':
+    resolution: {integrity: sha512-CgTxOKQk4JYIRJ9464J0p98I5Kb0LG5Sz38zaIcopf9GlE6AeOnevyz2ywWVNHxD+4+DljLacRy6dhmQOciI2Q==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/plugin-comment@2.0.0-rc.110':
-    resolution: {integrity: sha512-o+HLp0W3OXOnAxOfaTfAYxMlZjlX/jR/wHnrsArdOOczRmxMgKGLvB5I1b8w+rphMfnM1+UdppTvlbwZg7N34g==}
+  '@vuepress/plugin-comment@2.0.0-rc.112':
+    resolution: {integrity: sha512-Ty7HE6oUI5Inlth4ykAWf7sug8kY7LD5t77p9zKLpITffRN6eIRipgAEyWRnogmwYYu6lj8THjrAj6Jc7+ACJw==}
     peerDependencies:
       '@waline/client': ^3.5.5
       artalk: ^2.9.1
       twikoo: ^1.6.41
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
     peerDependenciesMeta:
       '@waline/client':
         optional: true
@@ -2763,28 +2854,28 @@ packages:
       twikoo:
         optional: true
 
-  '@vuepress/plugin-copy-code@2.0.0-rc.110':
-    resolution: {integrity: sha512-wtpTLHXJ8iohfCdjkHsKNqh09bV1xTpm/8pP5WJIpacBOb69VXfJemRFhuUyb3cBRugvA0+R/rksXH6YcMDpnQ==}
+  '@vuepress/plugin-copy-code@2.0.0-rc.112':
+    resolution: {integrity: sha512-P0wrNU5O95/1s8LgXHNoMka66VhaJ9K9xiqVI8afJxJKtKOaanQ15pXqlJlhYIjnxMfV9Rh3YvM5qwiB9WSEyg==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/plugin-docsearch@2.0.0-rc.110':
-    resolution: {integrity: sha512-Xd2dcOwRzHO1fXbvGvF6L0Az46bocDcKbamPwDSJHeTrqbwUHiCX6MVDS37Rr8KqJZEtAeTXWT4TDOh4XXjCWg==}
+  '@vuepress/plugin-docsearch@2.0.0-rc.112':
+    resolution: {integrity: sha512-78R6bY2vtRAmY/UyzqU4SOiVCM5HKUcHl33FtwIilDQktKQt1oX3Jx7txvHhQZIvgtq/lbIKM/oLpR80IxCFJg==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/plugin-git@2.0.0-rc.110':
-    resolution: {integrity: sha512-1sEwzuIJd5T2jVWyvRFZuOSr4aea45Iv1fglOI/UXwsbzn6PQMEexCnwKC0KrYrxb9JeYCVZnv58nWWfatFYbg==}
+  '@vuepress/plugin-git@2.0.0-rc.112':
+    resolution: {integrity: sha512-OKnw1wSgJuKFE6z2aFoqg+ldjUSRuTahzW8DVC9jOy32Uss0LDo0zXiL4UCk+XAkJXfERUOc2pXYOMs5seGDmQ==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/plugin-llms@2.0.0-rc.110':
-    resolution: {integrity: sha512-HfDg2/wyMeKN651zRA678gjhRAlA2uo+uZaXBF8qU2v40poq5n7OQ+eQ6QzCOz34jhZhT+qb6OMWqf+l/X3JXg==}
+  '@vuepress/plugin-llms@2.0.0-rc.112':
+    resolution: {integrity: sha512-c7TzSCDLWJtvNHPs+yvIrX120n0G/nVUZTTVsJJTbaNnMOaYcyGx5S7XLkjeh1ZSCu8evI4UmVDcwlV8akBeKg==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/plugin-markdown-chart@2.0.0-rc.110':
-    resolution: {integrity: sha512-alI5i5CS/kXOjw0FEoraJLqIKHh9CnbUIE1gCh0co/uJ0lxU75E7tU4/pe2BdYiFIvHFLPyfvgbYvSc1XCzRyg==}
+  '@vuepress/plugin-markdown-chart@2.0.0-rc.112':
+    resolution: {integrity: sha512-mvmtYKSwD9m5B0ElrLHhqlwudkJbKtz9NstS5CmZ2exFOBkOGQBDeE9kbZGf2vUxHYbCZQQzjqAJB2bIIb+VZA==}
     peerDependencies:
       chart.js: ^4.4.7
       echarts: ^5.6.0
@@ -2792,8 +2883,8 @@ packages:
       markmap-lib: ^0.18.11
       markmap-toolbar: ^0.18.10
       markmap-view: ^0.18.10
-      mermaid: ^11.4.1
-      vuepress: 2.0.0-rc.23
+      mermaid: ^11.8.0
+      vuepress: 2.0.0-rc.24
     peerDependenciesMeta:
       chart.js:
         optional: true
@@ -2810,82 +2901,82 @@ packages:
       mermaid:
         optional: true
 
-  '@vuepress/plugin-markdown-hint@2.0.0-rc.110':
-    resolution: {integrity: sha512-yRh5hVi2blxbwZAUvcEkp61dYuLF3lR6xdOeOypXHRZZ8abLAy2mXzoGpZAJTsaeNCnjhCREm00NtB1I2rV2Jw==}
+  '@vuepress/plugin-markdown-hint@2.0.0-rc.112':
+    resolution: {integrity: sha512-H4QCUIF3gvTh+/Etz0g3MBGCk48MLm9Dep/hJl2//Ke56lNSmldMac059itL8rzPQ4ntl0HoI55060e4zOprxw==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/plugin-markdown-image@2.0.0-rc.110':
-    resolution: {integrity: sha512-VGkuD2E7aUuAMBpEmAcbBvV6ROQmtAzfeP8HbHiZSsxgG8mG3L6zsKBqmL0PJW7fzKKQGzdN2GjBEKFm/jKeig==}
+  '@vuepress/plugin-markdown-image@2.0.0-rc.112':
+    resolution: {integrity: sha512-E2Qju3SKtCLvRkBM1ZvtBWvOZW+eoIr2n1ZBawxcj9k1Zt74vvEy0BP7pKOSP5Qu9bwY6W1MAnT3H+R3QaDP+g==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/plugin-markdown-include@2.0.0-rc.110':
-    resolution: {integrity: sha512-QyB2Mp7nbPnHRpa8Ui/1pVDKdAT6F3JV/IGcQ02O2X1XCh3QMMA5dWfLRbDKv9/xyuaJldX/pgDAPUZtnfv/OQ==}
+  '@vuepress/plugin-markdown-include@2.0.0-rc.112':
+    resolution: {integrity: sha512-zea8MlrUKbgAJm35Aqf/lDLz5Nu4LhVFV1C/IY0OlcvLwEbdyifPi/l1ZB+b2kfrW81GiuEb24a5Nr1JpDx2Gg==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/plugin-markdown-math@2.0.0-rc.110':
-    resolution: {integrity: sha512-FhBF9OxdcBQS8PY2jsU1U+ogtbKbi3DMLW8yHGA9CqF6X6eAE+PxwQuu9CdXOnAgFu9bJewJSjzdwsp4UKiFJw==}
+  '@vuepress/plugin-markdown-math@2.0.0-rc.112':
+    resolution: {integrity: sha512-ZsIT3UKokslL+NUrdV5xTaOfuqEn41ZIlIL4PfCCgCpvUap/ziHbpQizU3sVgciq88mDsYYteVqgBqXcQzNiig==}
     peerDependencies:
       katex: ^0.16.21
       mathjax-full: ^3.2.2
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
     peerDependenciesMeta:
       katex:
         optional: true
       mathjax-full:
         optional: true
 
-  '@vuepress/plugin-nprogress@2.0.0-rc.110':
-    resolution: {integrity: sha512-4hvBETMGJdl4KqCHk7WdD3rmaFkOHLpYAZNcDii34Q4fW5CqHclo5D0SVViMWWLkX26PPLlzH/4neSRYbLBaPQ==}
+  '@vuepress/plugin-nprogress@2.0.0-rc.112':
+    resolution: {integrity: sha512-kNz7SvVx7Z09aQFf4iwQ3C9h1WZBuefa7cKyYpSrWYFciFU2do98SUg3C5Wi8ttJ7oPcM+NmSiGbjJrjwpncig==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/plugin-photo-swipe@2.0.0-rc.110':
-    resolution: {integrity: sha512-/dcRztwpHhFUjXK3OwYmFN5XFO6RWAmgy9n7A83L7hIc2fmmlkEuWxhNFAbrPlNLizvdMlonMmZj5S9mR57mig==}
+  '@vuepress/plugin-photo-swipe@2.0.0-rc.112':
+    resolution: {integrity: sha512-WkkPC9rjwAQCMuVwUqCl14hO8z2Odv5k1yF2pWH2XGBja5VyBJK5t+XUmS1ak7zcjTz40+AYmauglbXo06RUSQ==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/plugin-reading-time@2.0.0-rc.110':
-    resolution: {integrity: sha512-yPhrnUVwdwh8RvmEHuKhnQeNXSMQ3tLrkde4/50bgmXt+sE8CcD0Pcnu97VUCt9Roxn19OUZVuT9nYuRUg8wTA==}
+  '@vuepress/plugin-reading-time@2.0.0-rc.112':
+    resolution: {integrity: sha512-76t64Uvr+1ADAq1z/DbU9ftAXKhVOBjxGKplRkbffobyTQ0mrDjDBM2rArytQiK+8utDgGPTjblCt+oJkxovzg==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/plugin-seo@2.0.0-rc.110':
-    resolution: {integrity: sha512-+l3fp34WVbU9fDGPJWwQZ1qgBsxe2+pdO9oxrUwjSSc08D6iAKCdrn5jbZo9jRRg+S1xuT/LMihWJqWquk1cNg==}
+  '@vuepress/plugin-seo@2.0.0-rc.112':
+    resolution: {integrity: sha512-WWZ0Dx1MxF9Mj6UVdB8TP5GozTNv51ZQQP6EAKYzprKCw0RVQYg5/tXWlg7IWcSw72go5iFiMBj5wZQigN+t4g==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/plugin-shiki@2.0.0-rc.110':
-    resolution: {integrity: sha512-ITgffKxtNGD1cYxaL7Oi/ZvegaTZNsn+pUVenPkjmi6SSKc7/LXC8QlVED3WAkGqqVnLy5byjZbs8WKoGqetOA==}
+  '@vuepress/plugin-shiki@2.0.0-rc.112':
+    resolution: {integrity: sha512-jXPJuAl9zNrYqdMgLRdAakrYCJcHJJCoIJ/73ODtejfU1+78s7PL6HheFEyakWC8MGyReGw+e0vJs+9NisXxIQ==}
     peerDependencies:
-      '@vuepress/shiki-twoslash': 2.0.0-rc.110
-      vuepress: 2.0.0-rc.23
+      '@vuepress/shiki-twoslash': 2.0.0-rc.112
+      vuepress: 2.0.0-rc.24
     peerDependenciesMeta:
       '@vuepress/shiki-twoslash':
         optional: true
 
-  '@vuepress/plugin-sitemap@2.0.0-rc.110':
-    resolution: {integrity: sha512-JXHoV1rGX7yXes0MHr1GT5i3WWD39W+/Kzx3Dkha7NnOl38qNsxvm8tapEPlAXaBKkmmtelduX3WVzsy2cGmlA==}
+  '@vuepress/plugin-sitemap@2.0.0-rc.112':
+    resolution: {integrity: sha512-64a/Kpu+2zY8r7o5AqFbZ1M3VKp44Z3RR6mGcr/747BEzVSl7ULk5ctx7Smtqm6Z2sSLEEU1aC6ZAtV5I+jqeQ==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/plugin-watermark@2.0.0-rc.110':
-    resolution: {integrity: sha512-8ByZEXFDbtOoEC5WewG8k0SqgUbpbZ37nc6poT5rXRu9IsMmukQKwfPMkriqHrDA1MgOffWQT7G7TCCvYDyYeQ==}
+  '@vuepress/plugin-watermark@2.0.0-rc.112':
+    resolution: {integrity: sha512-80oklpp8u4embZ/pgpuS4nsVuXq3xpB23upEvAi605K82M0TyBJKXWle1tUtKkgyMY3BUl51CnUmAmjF28cQhA==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/shared@2.0.0-rc.23':
-    resolution: {integrity: sha512-keUT4ZXVN0LvNWRxDOSjvyePZHoAmedVQvFqFWfH/3JjzLU1nrhn+WXucNtlJh6OqZZD5sdzCxnrotkb7MEnVw==}
+  '@vuepress/shared@2.0.0-rc.24':
+    resolution: {integrity: sha512-CAmJGMcDV5DnFEJ74f7IdCms2CBl8Md62uWbgAW8wEYiYanjRM8Rr1oIrz+cWoBSnWPf1HyPR3JoKYgw7OW4bw==}
 
-  '@vuepress/shiki-twoslash@2.0.0-rc.110':
-    resolution: {integrity: sha512-qXV4Wyn+c6+sOyRQ6gblhqKCY/xuMu/m2xBq21f7HeGQTgI9h38U+31DZE4/NZkK51qtlajnirz90BBPdFx4mg==}
+  '@vuepress/shiki-twoslash@2.0.0-rc.112':
+    resolution: {integrity: sha512-BOkPGP0sKjg93qRWHFFQstikPdyAuAZ/8ger4CTXprG/597tTM1KpaP0jktqicYyxZc6nx/RpJgxT89V1cVwfw==}
     peerDependencies:
-      vuepress: 2.0.0-rc.23
+      vuepress: 2.0.0-rc.24
 
-  '@vuepress/utils@2.0.0-rc.23':
-    resolution: {integrity: sha512-nuert5yo58GS5g9UVGNPY3xCLuob1jg7p5t9gYThUIjWp4treFJZDgV8YGbrhmNxrvrS5pWyC9HYMTWRDdO98A==}
+  '@vuepress/utils@2.0.0-rc.24':
+    resolution: {integrity: sha512-7D6o12Y64efevSdp+k84ivMZ3dSkZjQwbn79ywbHVbYtoZikvnpTE5GuG7lFOLcF3qZWQVqi7sRJVJdZnH9DuA==}
 
   '@vueuse/core@13.5.0':
     resolution: {integrity: sha512-wV7z0eUpifKmvmN78UBZX8T7lMW53Nrk6JP5+6hbzrB9+cJ3jr//hUlhl9TZO/03bUkMK6gGkQpqOPWoabr72g==}
@@ -2979,8 +3070,8 @@ packages:
     resolution: {integrity: sha512-/tfpK2A4FpS0o+S78o3YSdlqXr0MavJIDlFK3XZrlXLy7vaRXJvW5jYg3v5e/wCaF8y0IpMjkYLhoV6QqfpOgw==}
     engines: {node: '>= 14.0.0'}
 
-  alien-signals@1.0.4:
-    resolution: {integrity: sha512-DJqqQD3XcsaQcQ1s+iE2jDUZmmQpXwHiR6fCAim/w87luaW+vmLY8fMlrdkmRwzaFXhkxf3rqPCR59tKVv1MDw==}
+  alien-signals@2.0.5:
+    resolution: {integrity: sha512-PdJB6+06nUNAClInE3Dweq7/2xVAYM64vvvS1IHVHSJmgeOtEdrAGyp7Z2oJtYm0B342/Exd2NT0uMJaThcjLQ==}
 
   ansi-escapes@4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
@@ -3112,9 +3203,6 @@ packages:
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
-
-  birpc@2.3.0:
-    resolution: {integrity: sha512-ijbtkn/F3Pvzb6jHypHRyve2QApOCZDR25D/VnkY2G/lBNcXCTsnsCxgY4k4PkVB7zfwzYbY3O9Lcqe3xufS5g==}
 
   birpc@2.4.0:
     resolution: {integrity: sha512-5IdNxTyhXHv2UlgnPHQ0h+5ypVmkrYHzL8QT+DwFZ//2N/oNV8Ch+BCRmTJ3x6/z9Axo/cXYBc9eprsUVK/Jsg==}
@@ -3269,6 +3357,10 @@ packages:
 
   ci-info@4.2.0:
     resolution: {integrity: sha512-cYY9mypksY8NRqgDB1XD1RiJL338v/551niynFTGkZOO2LHuB2OmOYxDIe/ttN9AHwrqdum1360G3ald0W9kCg==}
+    engines: {node: '>=8'}
+
+  ci-info@4.3.0:
+    resolution: {integrity: sha512-l+2bNRMiQgcfILUi33labAZYIWlH1kWDp+ecNo5iisRKrbm0xcRyCww71/YU0Fkw0mAFpz9bJayXPjey6vkmaQ==}
     engines: {node: '>=8'}
 
   citty@0.1.6:
@@ -3931,8 +4023,8 @@ packages:
   es6-promise@4.2.8:
     resolution: {integrity: sha512-HJDGx5daxeIvxdBxvG2cb9g4tEvwIk3i8+nhX0yGrYmZUzbkdg8QbDevheDB8gd0//uPj4c1EQua8Q+MViT0/w==}
 
-  esbuild@0.25.5:
-    resolution: {integrity: sha512-P8OtKZRv/5J5hhz0cUAdu/cLuPIKXpQl1R9pZtvmHWQvrAUVd0UNIPT4IB4W3rNOqVO0rlqHmCIbSwxh/c9yUQ==}
+  esbuild@0.25.6:
+    resolution: {integrity: sha512-GVuzuUwtdsghE3ocJ9Bs8PNoF13HNQ5TXbEi2AhvVb8xU1Iwt9Fos9FEamfoee+u/TOsn7GUWc04lz46n2bbTg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -4226,6 +4318,14 @@ packages:
 
   fdir@6.4.4:
     resolution: {integrity: sha512-1NZP+GK4GfuAv3PqKvxQRDMjdSRZjnkq7KfhlNrCNNlZ0ygQFpebfrnfnq/W7fpUnAv9aGWmY1zKx7FYL3gwhg==}
+    peerDependencies:
+      picomatch: ^3 || ^4
+    peerDependenciesMeta:
+      picomatch:
+        optional: true
+
+  fdir@6.4.6:
+    resolution: {integrity: sha512-hiFoqpyZcfNm1yc4u8oWCf9A2c4D3QjCrks3zmoVKVxpQRzmPNar1hUJcBG2RQHvEVGDN+Jm81ZheVLAQMK6+w==}
     peerDependencies:
       picomatch: ^3 || ^4
     peerDependenciesMeta:
@@ -4538,8 +4638,8 @@ packages:
     resolution: {integrity: sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w==}
     engines: {node: '>=12.0.0'}
 
-  hls.js@1.6.6:
-    resolution: {integrity: sha512-S4uTCwTHOtImW+/jxMjzG7udbHy5z682YQRbm/4f7VXuVNEoGBRjPJnD3Fxrufomdhzdtv24KnxRhPMXSvL6Fw==}
+  hls.js@1.6.7:
+    resolution: {integrity: sha512-QW2fnwDGKGc9DwQUGLbmMOz8G48UZK7PVNJPcOUql1b8jubKx4/eMHNP5mGqr6tYlJNDG1g10Lx2U/qPzL6zwQ==}
 
   homedir-polyfill@1.0.3:
     resolution: {integrity: sha512-eSmmWE5bZTK2Nou4g0AI3zZ9rswp7GRKoKXS1BLUkvPviOqs4YTN1djQIqrXy9k5gEtdLPy86JjRwsNM9tnDcA==}
@@ -4616,10 +4716,6 @@ packages:
 
   ignore@6.0.2:
     resolution: {integrity: sha512-InwqeHHN2XpumIkMvpl/DCJVrAHgCsG5+cn1XlnLWGwtZBm8QJfSusItfrwx81CTp5agNZqpKU2J/ccC5nGT4A==}
-    engines: {node: '>= 4'}
-
-  ignore@7.0.3:
-    resolution: {integrity: sha512-bAH5jbK/F3T3Jls4I0SO1hmPR0dKU0a7+SY6n1yzRtG54FLO8d6w/nxLFX2Nb7dBu6cCWXPaAME6cYqFUMmuCA==}
     engines: {node: '>= 4'}
 
   ignore@7.0.5:
@@ -5220,8 +5316,8 @@ packages:
   merge@2.1.1:
     resolution: {integrity: sha512-jz+Cfrg9GWOZbQAnDQ4hlVnQky+341Yk5ru8bZSe6sIDTCIg8n9i/u7hSQGSVOF3C7lH6mGtqjkiT9G4wFLL0w==}
 
-  mermaid@11.8.0:
-    resolution: {integrity: sha512-uAZUwnBiqREZcUrFw3G5iQ5Pj3hTYUP95EZc3ec/nGBzHddJZydzYGE09tGZDBS1VoSoDn0symZ85FmypSTo5g==}
+  mermaid@11.8.1:
+    resolution: {integrity: sha512-VSXJLqP1Sqw5sGr273mhvpPRhXwE6NlmMSqBZQw+yZJoAJkOIPPn/uT3teeCBx60Fkt5zEI3FrH2eVT0jXRDzw==}
 
   mhchemparser@4.2.1:
     resolution: {integrity: sha512-kYmyrCirqJf3zZ9t/0wGgRZ4/ZJw//VwaRVGA75C4nhE60vtnIzhl9J9ndkX/h6hxSN7pjg/cE0VxbnNM+bnDQ==}
@@ -5944,6 +6040,11 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
+  rollup@4.44.2:
+    resolution: {integrity: sha512-PVoapzTwSEcelaWGth3uR66u7ZRo6qhPHc0f2uRO9fX6XDVNrIiGYS0Pj9+R8yIIYSD/mCx2b16Ws9itljKSPg==}
+    engines: {node: '>=18.0.0', npm: '>=8.0.0'}
+    hasBin: true
+
   roughjs@4.6.6:
     resolution: {integrity: sha512-ZUz/69+SYpFN/g/lUlo2FXcIjRkSu3nDarreVdGGndHEBJ6cXPdKguS8JGxwj5HA5xIbVKSmLgr5b3AWxtRfvQ==}
 
@@ -6124,9 +6225,6 @@ packages:
   shell-quote@1.8.2:
     resolution: {integrity: sha512-AzqKpGKjrj7EM6rKVQEPpB288oCfnrEIuyoT9cyF4nmGa7V8Zk6f7RRqYisX8X9m+Q7bd632aZW4ky7EhbQztA==}
     engines: {node: '>= 0.4'}
-
-  shiki@3.6.0:
-    resolution: {integrity: sha512-tKn/Y0MGBTffQoklaATXmTqDU02zx8NYBGQ+F6gy87/YjKbizcLd+Cybh/0ZtOBX9r1NEnAy/GTRDKtOsc1L9w==}
 
   shiki@3.7.0:
     resolution: {integrity: sha512-ZcI4UT9n6N2pDuM2n3Jbk0sR4Swzq43nLPgS/4h0E3B/NrFn2HKElrDtceSf8Zx/OWYOo7G1SAtBLypCp+YXqg==}
@@ -6487,8 +6585,8 @@ packages:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
 
-  tokenx@1.0.1:
-    resolution: {integrity: sha512-MhOngUHRuVE0CHP4cNEZ/XpdXETFL65nJpEvoTW+VYPuXsT/MTeNj+UNnekNsnxecmj2DEvUYPebqz+CsPTUSg==}
+  tokenx@1.1.0:
+    resolution: {integrity: sha512-KCjtiC2niPwTSuz4ktM82Ki5bjqBwYpssiHDsGr5BpejN/B3ksacRvrsdoxljdMIh2nCX78alnDkeemBmYUmTA==}
 
   toml-eslint-parser@0.10.0:
     resolution: {integrity: sha512-khrZo4buq4qVmsGzS5yQjKe/WsFvV8fGfOjDQN0q4iy9FjRfPWRgTFrU8u1R2iu/SfWLhY9WnCi4Jhdrcbtg+g==}
@@ -6555,16 +6653,16 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  twoslash-protocol@0.3.1:
-    resolution: {integrity: sha512-BMePTL9OkuNISSyyMclBBhV2s9++DiOCyhhCoV5Kaht6eaWLwVjCCUJHY33eZJPsyKeZYS8Wzz0h+XI01VohVw==}
+  twoslash-protocol@0.3.2:
+    resolution: {integrity: sha512-lWIL1dGcMr7cywSLSn8ufCoeyPab3bIwPE6DmAlQYQSMjJUgzzRvSz/LsQ179eNJafRghYDlIgF2v7pmsjV3Ww==}
 
-  twoslash-vue@0.3.1:
-    resolution: {integrity: sha512-9/PS0/iL2m8G6N2ILdI18sZ8l6ex+W2nN5jIaTpfFPlnY0MOX2G5UxEVs+AuNimM9SwEnwfiIuDY9ubDCIQpSQ==}
+  twoslash-vue@0.3.2:
+    resolution: {integrity: sha512-PzhlfoJBVSNx2H/fA/7vROIsr3s0EMoE4mxaP6k/4kj03woQ8vU0CqEhSfvCojYv4v6xYQJDyHFNhqzQuWT6Vg==}
     peerDependencies:
       typescript: ^5.5.0
 
-  twoslash@0.3.1:
-    resolution: {integrity: sha512-OGqMTGvqXTcb92YQdwGfEdK0nZJA64Aj/ChLOelbl3TfYch2IoBST0Yx4C0LQ7Lzyqm9RpgcpgDxeXQIz4p2Kg==}
+  twoslash@0.3.2:
+    resolution: {integrity: sha512-TB+ja888uMKhbng8HzpTHm+JfxIWbngIHPy4nKEt2N93MFjpqmkqn8ppnPhIKj4kDnrohEsiogMF7T1gMY06rw==}
     peerDependencies:
       typescript: ^5.5.0
 
@@ -6738,6 +6836,46 @@ packages:
       yaml:
         optional: true
 
+  vite@7.0.3:
+    resolution: {integrity: sha512-y2L5oJZF7bj4c0jgGYgBNSdIu+5HF+m68rn2cQXFbGoShdhV1phX9rbnxy9YXj82aS8MMsCLAAFkRxZeWdldrQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^20.19.0 || >=22.12.0
+      jiti: '>=1.21.0'
+      less: ^4.0.0
+      lightningcss: ^1.21.0
+      sass: ^1.70.0
+      sass-embedded: ^1.89.2
+      stylus: '>=0.54.8'
+      sugarss: ^5.0.0
+      terser: ^5.16.0
+      tsx: ^4.8.1
+      yaml: ^2.4.2
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      jiti:
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+      tsx:
+        optional: true
+      yaml:
+        optional: true
+
   vitest@3.2.4:
     resolution: {integrity: sha512-LUCP5ev3GURDysTWiP47wRRUpLKMOfPh+yKTx3kVIEiu5KOMeqzpnYNsKyOoVrULivR8tLcks4+lga33Whn90A==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
@@ -6816,14 +6954,14 @@ packages:
       typescript:
         optional: true
 
-  vuepress@2.0.0-rc.23:
-    resolution: {integrity: sha512-XID/zr7qDGLg7oYGwDTZpWRNXCVQcI1wQTfkN0spyumV2EpHe7XBsmnwICd+dTqRNZuD+JHyJsYLEqDEszFObw==}
-    engines: {node: ^18.19.0 || >=20.4.0}
+  vuepress@2.0.0-rc.24:
+    resolution: {integrity: sha512-56O9fAj3Fr1ezngeHDGyp5I1fWxBnP6gaGerjYjPNtr2RteSZtnqL/fQDzmiw5rFpuMVlfOTXESvQjQUlio8PQ==}
+    engines: {node: ^20.9.0 || >=22.0.0}
     hasBin: true
     peerDependencies:
-      '@vuepress/bundler-vite': 2.0.0-rc.23
-      '@vuepress/bundler-webpack': 2.0.0-rc.23
-      vue: ^3.5.13
+      '@vuepress/bundler-vite': 2.0.0-rc.24
+      '@vuepress/bundler-webpack': 2.0.0-rc.24
+      vue: ^3.5.17
     peerDependenciesMeta:
       '@vuepress/bundler-vite':
         optional: true
@@ -7234,11 +7372,11 @@ snapshots:
       picocolors: 1.1.1
       sisteransi: 1.0.5
 
-  '@commitlint/cli@19.8.1(@types/node@24.0.10)(typescript@5.8.3)':
+  '@commitlint/cli@19.8.1(@types/node@24.0.12)(typescript@5.8.3)':
     dependencies:
       '@commitlint/format': 19.8.1
       '@commitlint/lint': 19.8.1
-      '@commitlint/load': 19.8.1(@types/node@24.0.10)(typescript@5.8.3)
+      '@commitlint/load': 19.8.1(@types/node@24.0.12)(typescript@5.8.3)
       '@commitlint/read': 19.8.1
       '@commitlint/types': 19.8.1
       tinyexec: 1.0.1
@@ -7294,7 +7432,7 @@ snapshots:
       '@commitlint/rules': 19.8.1
       '@commitlint/types': 19.8.1
 
-  '@commitlint/load@19.6.1(@types/node@24.0.10)(typescript@5.8.3)':
+  '@commitlint/load@19.6.1(@types/node@24.0.12)(typescript@5.8.3)':
     dependencies:
       '@commitlint/config-validator': 19.5.0
       '@commitlint/execute-rule': 19.5.0
@@ -7302,7 +7440,7 @@ snapshots:
       '@commitlint/types': 19.8.0
       chalk: 5.4.1
       cosmiconfig: 9.0.0(typescript@5.8.3)
-      cosmiconfig-typescript-loader: 6.1.0(@types/node@24.0.10)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3)
+      cosmiconfig-typescript-loader: 6.1.0(@types/node@24.0.12)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -7311,7 +7449,7 @@ snapshots:
       - typescript
     optional: true
 
-  '@commitlint/load@19.8.1(@types/node@24.0.10)(typescript@5.8.3)':
+  '@commitlint/load@19.8.1(@types/node@24.0.12)(typescript@5.8.3)':
     dependencies:
       '@commitlint/config-validator': 19.8.1
       '@commitlint/execute-rule': 19.8.1
@@ -7319,7 +7457,7 @@ snapshots:
       '@commitlint/types': 19.8.1
       chalk: 5.4.1
       cosmiconfig: 9.0.0(typescript@5.8.3)
-      cosmiconfig-typescript-loader: 6.1.0(@types/node@24.0.10)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3)
+      cosmiconfig-typescript-loader: 6.1.0(@types/node@24.0.12)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -7472,79 +7610,82 @@ snapshots:
       esquery: 1.6.0
       jsdoc-type-pratt-parser: 4.1.0
 
-  '@esbuild/aix-ppc64@0.25.5':
+  '@esbuild/aix-ppc64@0.25.6':
     optional: true
 
-  '@esbuild/android-arm64@0.25.5':
+  '@esbuild/android-arm64@0.25.6':
     optional: true
 
-  '@esbuild/android-arm@0.25.5':
+  '@esbuild/android-arm@0.25.6':
     optional: true
 
-  '@esbuild/android-x64@0.25.5':
+  '@esbuild/android-x64@0.25.6':
     optional: true
 
-  '@esbuild/darwin-arm64@0.25.5':
+  '@esbuild/darwin-arm64@0.25.6':
     optional: true
 
-  '@esbuild/darwin-x64@0.25.5':
+  '@esbuild/darwin-x64@0.25.6':
     optional: true
 
-  '@esbuild/freebsd-arm64@0.25.5':
+  '@esbuild/freebsd-arm64@0.25.6':
     optional: true
 
-  '@esbuild/freebsd-x64@0.25.5':
+  '@esbuild/freebsd-x64@0.25.6':
     optional: true
 
-  '@esbuild/linux-arm64@0.25.5':
+  '@esbuild/linux-arm64@0.25.6':
     optional: true
 
-  '@esbuild/linux-arm@0.25.5':
+  '@esbuild/linux-arm@0.25.6':
     optional: true
 
-  '@esbuild/linux-ia32@0.25.5':
+  '@esbuild/linux-ia32@0.25.6':
     optional: true
 
-  '@esbuild/linux-loong64@0.25.5':
+  '@esbuild/linux-loong64@0.25.6':
     optional: true
 
-  '@esbuild/linux-mips64el@0.25.5':
+  '@esbuild/linux-mips64el@0.25.6':
     optional: true
 
-  '@esbuild/linux-ppc64@0.25.5':
+  '@esbuild/linux-ppc64@0.25.6':
     optional: true
 
-  '@esbuild/linux-riscv64@0.25.5':
+  '@esbuild/linux-riscv64@0.25.6':
     optional: true
 
-  '@esbuild/linux-s390x@0.25.5':
+  '@esbuild/linux-s390x@0.25.6':
     optional: true
 
-  '@esbuild/linux-x64@0.25.5':
+  '@esbuild/linux-x64@0.25.6':
     optional: true
 
-  '@esbuild/netbsd-arm64@0.25.5':
+  '@esbuild/netbsd-arm64@0.25.6':
     optional: true
 
-  '@esbuild/netbsd-x64@0.25.5':
+  '@esbuild/netbsd-x64@0.25.6':
     optional: true
 
-  '@esbuild/openbsd-arm64@0.25.5':
+  '@esbuild/openbsd-arm64@0.25.6':
     optional: true
 
-  '@esbuild/openbsd-x64@0.25.5':
+  '@esbuild/openbsd-x64@0.25.6':
     optional: true
 
-  '@esbuild/sunos-x64@0.25.5':
+  '@esbuild/openharmony-arm64@0.25.6':
     optional: true
 
-  '@esbuild/win32-arm64@0.25.5':
+  '@esbuild/sunos-x64@0.25.6':
     optional: true
 
-  '@esbuild/win32-ia32@0.25.5':
+  '@esbuild/win32-arm64@0.25.6':
     optional: true
 
-  '@esbuild/win32-x64@0.25.5':
+  '@esbuild/win32-ia32@0.25.6':
+    optional: true
+
+  '@esbuild/win32-x64@0.25.6':
     optional: true
 
   '@eslint-community/eslint-plugin-eslint-comments@4.5.0(eslint@9.30.1(jiti@2.4.2))':
@@ -7658,7 +7799,7 @@ snapshots:
 
   '@hutson/parse-repository-url@5.0.0': {}
 
-  '@iconify/json@2.2.355':
+  '@iconify/json@2.2.356':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
@@ -7792,7 +7933,7 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.1.0
 
-  '@mdit/plugin-alert@0.22.1(markdown-it@14.1.0)':
+  '@mdit/plugin-alert@0.22.2(markdown-it@14.1.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
     optionalDependencies:
@@ -7872,7 +8013,7 @@ snapshots:
       markdown-it: 14.1.0
       mathjax-full: 3.2.2
 
-  '@mdit/plugin-plantuml@0.22.1(markdown-it@14.1.0)':
+  '@mdit/plugin-plantuml@0.22.2(markdown-it@14.1.0)':
     dependencies:
       '@mdit/plugin-uml': 0.22.1(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
@@ -7919,7 +8060,7 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.1.0
 
-  '@mermaid-js/parser@0.6.0':
+  '@mermaid-js/parser@0.6.1':
     dependencies:
       langium: 3.3.1
 
@@ -8007,9 +8148,9 @@ snapshots:
       '@parcel/watcher-win32-x64': 2.5.0
     optional: true
 
-  '@pengzhanbo/eslint-config-vue@1.34.0(@vue/compiler-sfc@3.5.17)(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))':
+  '@pengzhanbo/eslint-config-vue@1.34.0(@vue/compiler-sfc@3.5.17)(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))':
     dependencies:
-      '@pengzhanbo/eslint-config': 1.34.0(eslint-plugin-vue@10.2.0(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.1.3(eslint@9.30.1(jiti@2.4.2))))(eslint-plugin-vuejs-accessibility@2.4.1(eslint@9.30.1(jiti@2.4.2)))(eslint-processor-vue-blocks@2.0.0(@vue/compiler-sfc@3.5.17)(eslint@9.30.1(jiti@2.4.2)))(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))(vue-eslint-parser@10.1.3(eslint@9.30.1(jiti@2.4.2)))
+      '@pengzhanbo/eslint-config': 1.34.0(eslint-plugin-vue@10.2.0(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.1.3(eslint@9.30.1(jiti@2.4.2))))(eslint-plugin-vuejs-accessibility@2.4.1(eslint@9.30.1(jiti@2.4.2)))(eslint-processor-vue-blocks@2.0.0(@vue/compiler-sfc@3.5.17)(eslint@9.30.1(jiti@2.4.2)))(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))(vue-eslint-parser@10.1.3(eslint@9.30.1(jiti@2.4.2)))
       eslint: 9.30.1(jiti@2.4.2)
       eslint-plugin-vue: 10.2.0(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.1.3(eslint@9.30.1(jiti@2.4.2)))
       eslint-plugin-vuejs-accessibility: 2.4.1(eslint@9.30.1(jiti@2.4.2))
@@ -8032,7 +8173,7 @@ snapshots:
       - typescript
       - vitest
 
-  '@pengzhanbo/eslint-config@1.34.0(eslint-plugin-vue@10.2.0(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.1.3(eslint@9.30.1(jiti@2.4.2))))(eslint-plugin-vuejs-accessibility@2.4.1(eslint@9.30.1(jiti@2.4.2)))(eslint-processor-vue-blocks@2.0.0(@vue/compiler-sfc@3.5.17)(eslint@9.30.1(jiti@2.4.2)))(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))(vue-eslint-parser@10.1.3(eslint@9.30.1(jiti@2.4.2)))':
+  '@pengzhanbo/eslint-config@1.34.0(eslint-plugin-vue@10.2.0(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.1.3(eslint@9.30.1(jiti@2.4.2))))(eslint-plugin-vuejs-accessibility@2.4.1(eslint@9.30.1(jiti@2.4.2)))(eslint-processor-vue-blocks@2.0.0(@vue/compiler-sfc@3.5.17)(eslint@9.30.1(jiti@2.4.2)))(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))(vue-eslint-parser@10.1.3(eslint@9.30.1(jiti@2.4.2)))':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@eslint-community/eslint-plugin-eslint-comments': 4.5.0(eslint@9.30.1(jiti@2.4.2))
@@ -8040,7 +8181,7 @@ snapshots:
       '@stylistic/eslint-plugin': 5.0.0(eslint@9.30.1(jiti@2.4.2))
       '@typescript-eslint/eslint-plugin': 8.34.1(@typescript-eslint/parser@8.34.1(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3))(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
       '@typescript-eslint/parser': 8.34.1(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
-      '@vitest/eslint-plugin': 1.2.7(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))
+      '@vitest/eslint-plugin': 1.2.7(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))
       eslint: 9.30.1(jiti@2.4.2)
       eslint-config-flat-gitignore: 2.1.0(eslint@9.30.1(jiti@2.4.2))
       eslint-flat-config-utils: 2.1.0
@@ -8142,74 +8283,129 @@ snapshots:
   '@rolldown/binding-win32-x64-msvc@1.0.0-beta.21':
     optional: true
 
+  '@rolldown/pluginutils@1.0.0-beta.19': {}
+
   '@rolldown/pluginutils@1.0.0-beta.21': {}
 
   '@rollup/rollup-android-arm-eabi@4.40.2':
     optional: true
 
+  '@rollup/rollup-android-arm-eabi@4.44.2':
+    optional: true
+
   '@rollup/rollup-android-arm64@4.40.2':
+    optional: true
+
+  '@rollup/rollup-android-arm64@4.44.2':
     optional: true
 
   '@rollup/rollup-darwin-arm64@4.40.2':
     optional: true
 
+  '@rollup/rollup-darwin-arm64@4.44.2':
+    optional: true
+
   '@rollup/rollup-darwin-x64@4.40.2':
+    optional: true
+
+  '@rollup/rollup-darwin-x64@4.44.2':
     optional: true
 
   '@rollup/rollup-freebsd-arm64@4.40.2':
     optional: true
 
+  '@rollup/rollup-freebsd-arm64@4.44.2':
+    optional: true
+
   '@rollup/rollup-freebsd-x64@4.40.2':
+    optional: true
+
+  '@rollup/rollup-freebsd-x64@4.44.2':
     optional: true
 
   '@rollup/rollup-linux-arm-gnueabihf@4.40.2':
     optional: true
 
+  '@rollup/rollup-linux-arm-gnueabihf@4.44.2':
+    optional: true
+
   '@rollup/rollup-linux-arm-musleabihf@4.40.2':
+    optional: true
+
+  '@rollup/rollup-linux-arm-musleabihf@4.44.2':
     optional: true
 
   '@rollup/rollup-linux-arm64-gnu@4.40.2':
     optional: true
 
+  '@rollup/rollup-linux-arm64-gnu@4.44.2':
+    optional: true
+
   '@rollup/rollup-linux-arm64-musl@4.40.2':
+    optional: true
+
+  '@rollup/rollup-linux-arm64-musl@4.44.2':
     optional: true
 
   '@rollup/rollup-linux-loongarch64-gnu@4.40.2':
     optional: true
 
+  '@rollup/rollup-linux-loongarch64-gnu@4.44.2':
+    optional: true
+
   '@rollup/rollup-linux-powerpc64le-gnu@4.40.2':
+    optional: true
+
+  '@rollup/rollup-linux-powerpc64le-gnu@4.44.2':
     optional: true
 
   '@rollup/rollup-linux-riscv64-gnu@4.40.2':
     optional: true
 
+  '@rollup/rollup-linux-riscv64-gnu@4.44.2':
+    optional: true
+
   '@rollup/rollup-linux-riscv64-musl@4.40.2':
+    optional: true
+
+  '@rollup/rollup-linux-riscv64-musl@4.44.2':
     optional: true
 
   '@rollup/rollup-linux-s390x-gnu@4.40.2':
     optional: true
 
+  '@rollup/rollup-linux-s390x-gnu@4.44.2':
+    optional: true
+
   '@rollup/rollup-linux-x64-gnu@4.40.2':
+    optional: true
+
+  '@rollup/rollup-linux-x64-gnu@4.44.2':
     optional: true
 
   '@rollup/rollup-linux-x64-musl@4.40.2':
     optional: true
 
+  '@rollup/rollup-linux-x64-musl@4.44.2':
+    optional: true
+
   '@rollup/rollup-win32-arm64-msvc@4.40.2':
+    optional: true
+
+  '@rollup/rollup-win32-arm64-msvc@4.44.2':
     optional: true
 
   '@rollup/rollup-win32-ia32-msvc@4.40.2':
     optional: true
 
+  '@rollup/rollup-win32-ia32-msvc@4.44.2':
+    optional: true
+
   '@rollup/rollup-win32-x64-msvc@4.40.2':
     optional: true
 
-  '@shikijs/core@3.6.0':
-    dependencies:
-      '@shikijs/types': 3.6.0
-      '@shikijs/vscode-textmate': 10.0.2
-      '@types/hast': 3.0.4
-      hast-util-to-html: 9.0.5
+  '@rollup/rollup-win32-x64-msvc@4.44.2':
+    optional: true
 
   '@shikijs/core@3.7.0':
     dependencies:
@@ -8218,62 +8414,38 @@ snapshots:
       '@types/hast': 3.0.4
       hast-util-to-html: 9.0.5
 
-  '@shikijs/engine-javascript@3.6.0':
-    dependencies:
-      '@shikijs/types': 3.6.0
-      '@shikijs/vscode-textmate': 10.0.2
-      oniguruma-to-es: 4.3.3
-
   '@shikijs/engine-javascript@3.7.0':
     dependencies:
       '@shikijs/types': 3.7.0
       '@shikijs/vscode-textmate': 10.0.2
       oniguruma-to-es: 4.3.3
 
-  '@shikijs/engine-oniguruma@3.6.0':
-    dependencies:
-      '@shikijs/types': 3.6.0
-      '@shikijs/vscode-textmate': 10.0.2
-
   '@shikijs/engine-oniguruma@3.7.0':
     dependencies:
       '@shikijs/types': 3.7.0
       '@shikijs/vscode-textmate': 10.0.2
 
-  '@shikijs/langs@3.6.0':
-    dependencies:
-      '@shikijs/types': 3.6.0
-
   '@shikijs/langs@3.7.0':
     dependencies:
       '@shikijs/types': 3.7.0
-
-  '@shikijs/themes@3.6.0':
-    dependencies:
-      '@shikijs/types': 3.6.0
 
   '@shikijs/themes@3.7.0':
     dependencies:
       '@shikijs/types': 3.7.0
 
-  '@shikijs/transformers@3.6.0':
+  '@shikijs/transformers@3.7.0':
     dependencies:
-      '@shikijs/core': 3.6.0
-      '@shikijs/types': 3.6.0
+      '@shikijs/core': 3.7.0
+      '@shikijs/types': 3.7.0
 
-  '@shikijs/twoslash@3.6.0(typescript@5.8.3)':
+  '@shikijs/twoslash@3.7.0(typescript@5.8.3)':
     dependencies:
-      '@shikijs/core': 3.6.0
-      '@shikijs/types': 3.6.0
-      twoslash: 0.3.1(typescript@5.8.3)
+      '@shikijs/core': 3.7.0
+      '@shikijs/types': 3.7.0
+      twoslash: 0.3.2(typescript@5.8.3)
       typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
-
-  '@shikijs/types@3.6.0':
-    dependencies:
-      '@shikijs/vscode-textmate': 10.0.2
-      '@types/hast': 3.0.4
 
   '@shikijs/types@3.7.0':
     dependencies:
@@ -8346,7 +8518,7 @@ snapshots:
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 24.0.7
+      '@types/node': 24.0.10
 
   '@types/chai@5.2.2':
     dependencies:
@@ -8354,11 +8526,11 @@ snapshots:
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 24.0.7
+      '@types/node': 24.0.10
 
   '@types/conventional-commits-parser@5.0.1':
     dependencies:
-      '@types/node': 24.0.10
+      '@types/node': 24.0.12
 
   '@types/d3-array@3.2.1': {}
 
@@ -8489,7 +8661,7 @@ snapshots:
 
   '@types/express-serve-static-core@5.0.3':
     dependencies:
-      '@types/node': 24.0.7
+      '@types/node': 24.0.10
       '@types/qs': 6.9.17
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
@@ -8503,7 +8675,7 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 24.0.7
+      '@types/node': 24.0.12
 
   '@types/geojson@7946.0.15': {}
 
@@ -8521,7 +8693,7 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 24.0.7
+      '@types/node': 24.0.12
 
   '@types/less@3.0.8': {}
 
@@ -8560,7 +8732,7 @@ snapshots:
     dependencies:
       undici-types: 7.8.0
 
-  '@types/node@24.0.7':
+  '@types/node@24.0.12':
     dependencies:
       undici-types: 7.8.0
 
@@ -8574,24 +8746,24 @@ snapshots:
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 24.0.7
+      '@types/node': 24.0.12
 
   '@types/semver@7.5.8': {}
 
   '@types/send@0.17.4':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 24.0.7
+      '@types/node': 24.0.10
 
   '@types/serve-static@1.15.7':
     dependencies:
       '@types/http-errors': 2.0.4
-      '@types/node': 24.0.7
+      '@types/node': 24.0.10
       '@types/send': 0.17.4
 
   '@types/stylus@0.48.43':
     dependencies:
-      '@types/node': 24.0.10
+      '@types/node': 24.0.12
 
   '@types/trusted-types@2.0.7': {}
 
@@ -8607,7 +8779,7 @@ snapshots:
       '@typescript-eslint/parser': 8.34.1(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
       '@typescript-eslint/scope-manager': 8.34.1
       '@typescript-eslint/type-utils': 8.34.1(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
-      '@typescript-eslint/utils': 8.35.1(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
+      '@typescript-eslint/utils': 8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
       '@typescript-eslint/visitor-keys': 8.34.1
       eslint: 9.30.1(jiti@2.4.2)
       graphemer: 1.4.0
@@ -8639,10 +8811,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/project-service@8.35.1(typescript@5.8.3)':
+  '@typescript-eslint/project-service@8.36.0(typescript@5.8.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.35.1(typescript@5.8.3)
-      '@typescript-eslint/types': 8.35.1
+      '@typescript-eslint/tsconfig-utils': 8.36.0(typescript@5.8.3)
+      '@typescript-eslint/types': 8.36.0
       debug: 4.4.1
       typescript: 5.8.3
     transitivePeerDependencies:
@@ -8653,23 +8825,23 @@ snapshots:
       '@typescript-eslint/types': 8.34.1
       '@typescript-eslint/visitor-keys': 8.34.1
 
-  '@typescript-eslint/scope-manager@8.35.1':
+  '@typescript-eslint/scope-manager@8.36.0':
     dependencies:
-      '@typescript-eslint/types': 8.35.1
-      '@typescript-eslint/visitor-keys': 8.35.1
+      '@typescript-eslint/types': 8.36.0
+      '@typescript-eslint/visitor-keys': 8.36.0
 
   '@typescript-eslint/tsconfig-utils@8.34.1(typescript@5.8.3)':
     dependencies:
       typescript: 5.8.3
 
-  '@typescript-eslint/tsconfig-utils@8.35.1(typescript@5.8.3)':
+  '@typescript-eslint/tsconfig-utils@8.36.0(typescript@5.8.3)':
     dependencies:
       typescript: 5.8.3
 
   '@typescript-eslint/type-utils@8.34.1(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)':
     dependencies:
       '@typescript-eslint/typescript-estree': 8.34.1(typescript@5.8.3)
-      '@typescript-eslint/utils': 8.35.1(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
+      '@typescript-eslint/utils': 8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
       debug: 4.4.1
       eslint: 9.30.1(jiti@2.4.2)
       ts-api-utils: 2.1.0(typescript@5.8.3)
@@ -8679,7 +8851,7 @@ snapshots:
 
   '@typescript-eslint/types@8.34.1': {}
 
-  '@typescript-eslint/types@8.35.1': {}
+  '@typescript-eslint/types@8.36.0': {}
 
   '@typescript-eslint/typescript-estree@8.34.1(typescript@5.8.3)':
     dependencies:
@@ -8697,12 +8869,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/typescript-estree@8.35.1(typescript@5.8.3)':
+  '@typescript-eslint/typescript-estree@8.36.0(typescript@5.8.3)':
     dependencies:
-      '@typescript-eslint/project-service': 8.35.1(typescript@5.8.3)
-      '@typescript-eslint/tsconfig-utils': 8.35.1(typescript@5.8.3)
-      '@typescript-eslint/types': 8.35.1
-      '@typescript-eslint/visitor-keys': 8.35.1
+      '@typescript-eslint/project-service': 8.36.0(typescript@5.8.3)
+      '@typescript-eslint/tsconfig-utils': 8.36.0(typescript@5.8.3)
+      '@typescript-eslint/types': 8.36.0
+      '@typescript-eslint/visitor-keys': 8.36.0
       debug: 4.4.1
       fast-glob: 3.3.3
       is-glob: 4.0.3
@@ -8713,12 +8885,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.35.1(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)':
+  '@typescript-eslint/utils@8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)':
     dependencies:
       '@eslint-community/eslint-utils': 4.7.0(eslint@9.30.1(jiti@2.4.2))
-      '@typescript-eslint/scope-manager': 8.35.1
-      '@typescript-eslint/types': 8.35.1
-      '@typescript-eslint/typescript-estree': 8.35.1(typescript@5.8.3)
+      '@typescript-eslint/scope-manager': 8.36.0
+      '@typescript-eslint/types': 8.36.0
+      '@typescript-eslint/typescript-estree': 8.36.0(typescript@5.8.3)
       eslint: 9.30.1(jiti@2.4.2)
       typescript: 5.8.3
     transitivePeerDependencies:
@@ -8729,9 +8901,9 @@ snapshots:
       '@typescript-eslint/types': 8.34.1
       eslint-visitor-keys: 4.2.1
 
-  '@typescript-eslint/visitor-keys@8.35.1':
+  '@typescript-eslint/visitor-keys@8.36.0':
     dependencies:
-      '@typescript-eslint/types': 8.35.1
+      '@typescript-eslint/types': 8.36.0
       eslint-visitor-keys: 4.2.1
 
   '@typescript/vfs@1.6.1(typescript@5.8.3)':
@@ -8743,12 +8915,13 @@ snapshots:
 
   '@ungap/structured-clone@1.2.1': {}
 
-  '@vitejs/plugin-vue@5.2.3(vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))':
+  '@vitejs/plugin-vue@6.0.0(vite@7.0.3(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))':
     dependencies:
-      vite: 6.3.5(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
+      '@rolldown/pluginutils': 1.0.0-beta.19
+      vite: 7.0.3(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
       vue: 3.5.17(typescript@5.8.3)
 
-  '@vitest/coverage-istanbul@3.2.4(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))':
+  '@vitest/coverage-istanbul@3.2.4(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))':
     dependencies:
       '@istanbuljs/schema': 0.1.3
       debug: 4.4.1
@@ -8760,17 +8933,17 @@ snapshots:
       magicast: 0.3.5
       test-exclude: 7.0.1
       tinyrainbow: 2.0.0
-      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
+      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/eslint-plugin@1.2.7(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))':
+  '@vitest/eslint-plugin@1.2.7(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))':
     dependencies:
-      '@typescript-eslint/utils': 8.35.1(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
+      '@typescript-eslint/utils': 8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
       eslint: 9.30.1(jiti@2.4.2)
     optionalDependencies:
       typescript: 5.8.3
-      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
+      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -8782,13 +8955,13 @@ snapshots:
       chai: 5.2.0
       tinyrainbow: 2.0.0
 
-  '@vitest/mocker@3.2.4(vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))':
+  '@vitest/mocker@3.2.4(vite@6.3.5(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))':
     dependencies:
       '@vitest/spy': 3.2.4
       estree-walker: 3.0.3
       magic-string: 0.30.17
     optionalDependencies:
-      vite: 6.3.5(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
+      vite: 6.3.5(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
 
   '@vitest/pretty-format@3.2.4':
     dependencies:
@@ -8816,11 +8989,11 @@ snapshots:
       loupe: 3.1.4
       tinyrainbow: 2.0.0
 
-  '@volar/language-core@2.4.11':
+  '@volar/language-core@2.4.17':
     dependencies:
-      '@volar/source-map': 2.4.11
+      '@volar/source-map': 2.4.17
 
-  '@volar/source-map@2.4.11': {}
+  '@volar/source-map@2.4.17': {}
 
   '@vscode/markdown-it-katex@1.1.1':
     dependencies:
@@ -8863,32 +9036,32 @@ snapshots:
 
   '@vue/devtools-api@6.6.4': {}
 
-  '@vue/devtools-api@7.7.6':
+  '@vue/devtools-api@7.7.7':
     dependencies:
-      '@vue/devtools-kit': 7.7.6
+      '@vue/devtools-kit': 7.7.7
 
-  '@vue/devtools-kit@7.7.6':
+  '@vue/devtools-kit@7.7.7':
     dependencies:
-      '@vue/devtools-shared': 7.7.6
-      birpc: 2.3.0
+      '@vue/devtools-shared': 7.7.7
+      birpc: 2.4.0
       hookable: 5.5.3
       mitt: 3.0.1
       perfect-debounce: 1.0.0
       speakingurl: 14.0.1
       superjson: 2.2.2
 
-  '@vue/devtools-shared@7.7.6':
+  '@vue/devtools-shared@7.7.7':
     dependencies:
       rfdc: 1.4.1
 
-  '@vue/language-core@2.2.4(typescript@5.8.3)':
+  '@vue/language-core@3.0.1(typescript@5.8.3)':
     dependencies:
-      '@volar/language-core': 2.4.11
+      '@volar/language-core': 2.4.17
       '@vue/compiler-dom': 3.5.17
       '@vue/compiler-vue2': 2.7.16
       '@vue/shared': 3.5.17
-      alien-signals: 1.0.4
-      minimatch: 9.0.5
+      alien-signals: 2.0.5
+      minimatch: 10.0.1
       muggle-string: 0.4.1
       path-browserify: 1.0.1
     optionalDependencies:
@@ -8918,20 +9091,20 @@ snapshots:
 
   '@vue/shared@3.5.17': {}
 
-  '@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0)':
+  '@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0)':
     dependencies:
-      '@vitejs/plugin-vue': 5.2.3(vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      '@vuepress/bundlerutils': 2.0.0-rc.23(typescript@5.8.3)
-      '@vuepress/client': 2.0.0-rc.23(typescript@5.8.3)
-      '@vuepress/core': 2.0.0-rc.23(typescript@5.8.3)
-      '@vuepress/shared': 2.0.0-rc.23
-      '@vuepress/utils': 2.0.0-rc.23
+      '@vitejs/plugin-vue': 6.0.0(vite@7.0.3(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
+      '@vuepress/bundlerutils': 2.0.0-rc.24(typescript@5.8.3)
+      '@vuepress/client': 2.0.0-rc.24(typescript@5.8.3)
+      '@vuepress/core': 2.0.0-rc.24(typescript@5.8.3)
+      '@vuepress/shared': 2.0.0-rc.24
+      '@vuepress/utils': 2.0.0-rc.24
       autoprefixer: 10.4.21(postcss@8.5.6)
       connect-history-api-fallback: 2.0.0
       postcss: 8.5.6
       postcss-load-config: 6.0.1(jiti@2.4.2)(postcss@8.5.6)(yaml@2.8.0)
-      rollup: 4.40.2
-      vite: 6.3.5(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
+      rollup: 4.44.2
+      vite: 7.0.3(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
       vue: 3.5.17(typescript@5.8.3)
       vue-router: 4.5.1(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
@@ -8949,53 +9122,53 @@ snapshots:
       - typescript
       - yaml
 
-  '@vuepress/bundlerutils@2.0.0-rc.23(typescript@5.8.3)':
+  '@vuepress/bundlerutils@2.0.0-rc.24(typescript@5.8.3)':
     dependencies:
-      '@vuepress/client': 2.0.0-rc.23(typescript@5.8.3)
-      '@vuepress/core': 2.0.0-rc.23(typescript@5.8.3)
-      '@vuepress/shared': 2.0.0-rc.23
-      '@vuepress/utils': 2.0.0-rc.23
+      '@vuepress/client': 2.0.0-rc.24(typescript@5.8.3)
+      '@vuepress/core': 2.0.0-rc.24(typescript@5.8.3)
+      '@vuepress/shared': 2.0.0-rc.24
+      '@vuepress/utils': 2.0.0-rc.24
       vue: 3.5.17(typescript@5.8.3)
       vue-router: 4.5.1(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  '@vuepress/cli@2.0.0-rc.23(typescript@5.8.3)':
+  '@vuepress/cli@2.0.0-rc.24(typescript@5.8.3)':
     dependencies:
-      '@vuepress/core': 2.0.0-rc.23(typescript@5.8.3)
-      '@vuepress/shared': 2.0.0-rc.23
-      '@vuepress/utils': 2.0.0-rc.23
+      '@vuepress/core': 2.0.0-rc.24(typescript@5.8.3)
+      '@vuepress/shared': 2.0.0-rc.24
+      '@vuepress/utils': 2.0.0-rc.24
       cac: 6.7.14
       chokidar: 3.6.0
       envinfo: 7.14.0
-      esbuild: 0.25.5
+      esbuild: 0.25.6
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  '@vuepress/client@2.0.0-rc.23(typescript@5.8.3)':
+  '@vuepress/client@2.0.0-rc.24(typescript@5.8.3)':
     dependencies:
-      '@vue/devtools-api': 7.7.6
-      '@vue/devtools-kit': 7.7.6
-      '@vuepress/shared': 2.0.0-rc.23
+      '@vue/devtools-api': 7.7.7
+      '@vue/devtools-kit': 7.7.7
+      '@vuepress/shared': 2.0.0-rc.24
       vue: 3.5.17(typescript@5.8.3)
       vue-router: 4.5.1(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - typescript
 
-  '@vuepress/core@2.0.0-rc.23(typescript@5.8.3)':
+  '@vuepress/core@2.0.0-rc.24(typescript@5.8.3)':
     dependencies:
-      '@vuepress/client': 2.0.0-rc.23(typescript@5.8.3)
-      '@vuepress/markdown': 2.0.0-rc.23
-      '@vuepress/shared': 2.0.0-rc.23
-      '@vuepress/utils': 2.0.0-rc.23
+      '@vuepress/client': 2.0.0-rc.24(typescript@5.8.3)
+      '@vuepress/markdown': 2.0.0-rc.24
+      '@vuepress/shared': 2.0.0-rc.24
+      '@vuepress/utils': 2.0.0-rc.24
       vue: 3.5.17(typescript@5.8.3)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  '@vuepress/helper@2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/helper@2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
       '@vue/shared': 3.5.17
       '@vueuse/core': 13.5.0(vue@3.5.17(typescript@5.8.3))
@@ -9003,17 +9176,17 @@ snapshots:
       fflate: 0.8.2
       gray-matter: 4.0.3
       vue: 3.5.17(typescript@5.8.3)
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - typescript
 
-  '@vuepress/highlighter-helper@2.0.0-rc.109(@vueuse/core@13.5.0(vue@3.5.17(typescript@5.8.3)))(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/highlighter-helper@2.0.0-rc.112(@vueuse/core@13.5.0(vue@3.5.17(typescript@5.8.3)))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     optionalDependencies:
       '@vueuse/core': 13.5.0(vue@3.5.17(typescript@5.8.3))
 
-  '@vuepress/markdown@2.0.0-rc.23':
+  '@vuepress/markdown@2.0.0-rc.24':
     dependencies:
       '@mdit-vue/plugin-component': 2.1.4
       '@mdit-vue/plugin-frontmatter': 2.1.4
@@ -9025,8 +9198,8 @@ snapshots:
       '@mdit-vue/types': 2.1.4
       '@types/markdown-it': 14.1.2
       '@types/markdown-it-emoji': 3.0.1
-      '@vuepress/shared': 2.0.0-rc.23
-      '@vuepress/utils': 2.0.0-rc.23
+      '@vuepress/shared': 2.0.0-rc.24
+      '@vuepress/utils': 2.0.0-rc.24
       markdown-it: 14.1.0
       markdown-it-anchor: 9.2.0(@types/markdown-it@14.1.2)(markdown-it@14.1.0)
       markdown-it-emoji: 3.0.0
@@ -9034,41 +9207,41 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vuepress/plugin-cache@2.0.0-rc.103(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-cache@2.0.0-rc.112(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      ci-info: 4.2.0
+      ci-info: 4.3.0
       lru-cache: 11.1.0
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
 
-  '@vuepress/plugin-comment@2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-comment@2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vueuse/core': 13.5.0(vue@3.5.17(typescript@5.8.3))
       giscus: 1.6.0
       vue: 3.5.17(typescript@5.8.3)
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - typescript
 
-  '@vuepress/plugin-copy-code@2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-copy-code@2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vueuse/core': 13.5.0(vue@3.5.17(typescript@5.8.3))
       vue: 3.5.17(typescript@5.8.3)
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - typescript
 
-  '@vuepress/plugin-docsearch@2.0.0-rc.110(@algolia/client-search@5.18.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-docsearch@2.0.0-rc.112(@algolia/client-search@5.18.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
       '@docsearch/css': 3.9.0
       '@docsearch/js': 3.9.0(@algolia/client-search@5.18.0)(search-insights@2.17.3)
       '@docsearch/react': 3.9.0(@algolia/client-search@5.18.0)(search-insights@2.17.3)
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vueuse/core': 13.5.0(vue@3.5.17(typescript@5.8.3))
       ts-debounce: 4.0.0
       vue: 3.5.17(typescript@5.8.3)
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - '@algolia/client-search'
       - '@types/react'
@@ -9077,42 +9250,42 @@ snapshots:
       - search-insights
       - typescript
 
-  '@vuepress/plugin-git@2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-git@2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vueuse/core': 13.5.0(vue@3.5.17(typescript@5.8.3))
       rehype-parse: 9.0.1
       rehype-sanitize: 6.0.0
       rehype-stringify: 10.0.1
       unified: 11.0.5
       vue: 3.5.17(typescript@5.8.3)
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - typescript
 
-  '@vuepress/plugin-llms@2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-llms@2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       byte-size: 9.0.1
       gray-matter: 4.0.3
       millify: 6.1.0
       remark: 15.0.1
-      tokenx: 1.0.1
+      tokenx: 1.1.0
       unist-util-remove: 4.0.0
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - '@75lb/nature'
       - supports-color
       - typescript
 
-  '@vuepress/plugin-markdown-chart@2.0.0-rc.110(chart.js@4.5.0)(echarts@5.6.0)(flowchart.ts@3.0.1)(markdown-it@14.1.0)(markmap-lib@0.18.12(markmap-common@0.18.9))(markmap-toolbar@0.18.12(markmap-common@0.18.9))(markmap-view@0.18.12(markmap-common@0.18.9))(mermaid@11.8.0)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-markdown-chart@2.0.0-rc.112(chart.js@4.5.0)(echarts@5.6.0)(flowchart.ts@3.0.1)(markdown-it@14.1.0)(markmap-lib@0.18.12(markmap-common@0.18.9))(markmap-toolbar@0.18.12(markmap-common@0.18.9))(markmap-view@0.18.12(markmap-common@0.18.9))(mermaid@11.8.1)(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
       '@mdit/plugin-container': 0.22.1(markdown-it@14.1.0)
-      '@mdit/plugin-plantuml': 0.22.1(markdown-it@14.1.0)
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@mdit/plugin-plantuml': 0.22.2(markdown-it@14.1.0)
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vueuse/core': 13.5.0(vue@3.5.17(typescript@5.8.3))
       vue: 3.5.17(typescript@5.8.3)
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     optionalDependencies:
       chart.js: 4.5.0
       echarts: 5.6.0
@@ -9120,55 +9293,55 @@ snapshots:
       markmap-lib: 0.18.12(markmap-common@0.18.9)
       markmap-toolbar: 0.18.12(markmap-common@0.18.9)
       markmap-view: 0.18.12(markmap-common@0.18.9)
-      mermaid: 11.8.0
+      mermaid: 11.8.1
     transitivePeerDependencies:
       - markdown-it
       - typescript
 
-  '@vuepress/plugin-markdown-hint@2.0.0-rc.110(markdown-it@14.1.0)(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-markdown-hint@2.0.0-rc.112(markdown-it@14.1.0)(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      '@mdit/plugin-alert': 0.22.1(markdown-it@14.1.0)
+      '@mdit/plugin-alert': 0.22.2(markdown-it@14.1.0)
       '@mdit/plugin-container': 0.22.1(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vueuse/core': 13.5.0(vue@3.5.17(typescript@5.8.3))
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - markdown-it
       - typescript
       - vue
 
-  '@vuepress/plugin-markdown-image@2.0.0-rc.110(markdown-it@14.1.0)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-markdown-image@2.0.0-rc.112(markdown-it@14.1.0)(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
       '@mdit/plugin-figure': 0.22.1(markdown-it@14.1.0)
       '@mdit/plugin-img-lazyload': 0.22.1(markdown-it@14.1.0)
       '@mdit/plugin-img-mark': 0.22.1(markdown-it@14.1.0)
       '@mdit/plugin-img-size': 0.22.2(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - markdown-it
       - typescript
 
-  '@vuepress/plugin-markdown-include@2.0.0-rc.110(markdown-it@14.1.0)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-markdown-include@2.0.0-rc.112(markdown-it@14.1.0)(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
       '@mdit/plugin-include': 0.22.1(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - markdown-it
       - typescript
 
-  '@vuepress/plugin-markdown-math@2.0.0-rc.110(katex@0.16.22)(markdown-it@14.1.0)(mathjax-full@3.2.2)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-markdown-math@2.0.0-rc.112(katex@0.16.22)(markdown-it@14.1.0)(mathjax-full@3.2.2)(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
       '@mdit/plugin-katex-slim': 0.23.1(katex@0.16.22)(markdown-it@14.1.0)
       '@mdit/plugin-mathjax-slim': 0.23.1(markdown-it@14.1.0)(mathjax-full@3.2.2)
       '@types/markdown-it': 14.1.2
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       vue: 3.5.17(typescript@5.8.3)
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     optionalDependencies:
       katex: 0.16.22
       mathjax-full: 3.2.2
@@ -9176,99 +9349,99 @@ snapshots:
       - markdown-it
       - typescript
 
-  '@vuepress/plugin-nprogress@2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-nprogress@2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       vue: 3.5.17(typescript@5.8.3)
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - typescript
 
-  '@vuepress/plugin-photo-swipe@2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-photo-swipe@2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vueuse/core': 13.5.0(vue@3.5.17(typescript@5.8.3))
       photoswipe: 5.4.4
       vue: 3.5.17(typescript@5.8.3)
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - typescript
 
-  '@vuepress/plugin-reading-time@2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-reading-time@2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       vue: 3.5.17(typescript@5.8.3)
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - typescript
 
-  '@vuepress/plugin-seo@2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-seo@2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - typescript
 
-  '@vuepress/plugin-shiki@2.0.0-rc.110(@vuepress/shiki-twoslash@2.0.0-rc.110(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))))(@vueuse/core@13.5.0(vue@3.5.17(typescript@5.8.3)))(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-shiki@2.0.0-rc.112(@vuepress/shiki-twoslash@2.0.0-rc.112(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))))(@vueuse/core@13.5.0(vue@3.5.17(typescript@5.8.3)))(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      '@shikijs/transformers': 3.6.0
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
-      '@vuepress/highlighter-helper': 2.0.0-rc.109(@vueuse/core@13.5.0(vue@3.5.17(typescript@5.8.3)))(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@shikijs/transformers': 3.7.0
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/highlighter-helper': 2.0.0-rc.112(@vueuse/core@13.5.0(vue@3.5.17(typescript@5.8.3)))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       nanoid: 5.1.5
-      shiki: 3.6.0
+      shiki: 3.7.0
       synckit: 0.11.8
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     optionalDependencies:
-      '@vuepress/shiki-twoslash': 2.0.0-rc.110(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/shiki-twoslash': 2.0.0-rc.112(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
     transitivePeerDependencies:
       - '@vueuse/core'
       - typescript
 
-  '@vuepress/plugin-sitemap@2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-sitemap@2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       sitemap: 8.0.0
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - typescript
 
-  '@vuepress/plugin-watermark@2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/plugin-watermark@2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vueuse/core': 13.5.0(vue@3.5.17(typescript@5.8.3))
       vue: 3.5.17(typescript@5.8.3)
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
       watermark-js-plus: 1.6.2
     transitivePeerDependencies:
       - typescript
 
-  '@vuepress/shared@2.0.0-rc.23':
+  '@vuepress/shared@2.0.0-rc.24':
     dependencies:
       '@mdit-vue/types': 2.1.4
 
-  '@vuepress/shiki-twoslash@2.0.0-rc.110(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+  '@vuepress/shiki-twoslash@2.0.0-rc.112(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
     dependencies:
-      '@shikijs/twoslash': 3.6.0(typescript@5.8.3)
-      '@vuepress/helper': 2.0.0-rc.110(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@shikijs/twoslash': 3.7.0(typescript@5.8.3)
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       floating-vue: 5.2.2(patch_hash=c8e9cd61468e959201bb251258241870423ca2ca7ae2e8a184210e0f20619fd5)(vue@3.5.17(typescript@5.8.3))
       mdast-util-from-markdown: 2.0.2
       mdast-util-gfm: 3.1.0
       mdast-util-to-hast: 13.2.0
-      twoslash: 0.3.1(typescript@5.8.3)
-      twoslash-vue: 0.3.1(typescript@5.8.3)
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+      twoslash: 0.3.2(typescript@5.8.3)
+      twoslash-vue: 0.3.2(typescript@5.8.3)
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - '@nuxt/kit'
       - supports-color
       - typescript
       - vue
 
-  '@vuepress/utils@2.0.0-rc.23':
+  '@vuepress/utils@2.0.0-rc.24':
     dependencies:
       '@types/debug': 4.1.12
       '@types/fs-extra': 11.0.4
       '@types/hash-sum': 1.0.2
-      '@vuepress/shared': 2.0.0-rc.23
+      '@vuepress/shared': 2.0.0-rc.24
       debug: 4.4.1
       fs-extra: 11.3.0
       globby: 14.1.0
@@ -9348,7 +9521,7 @@ snapshots:
       '@algolia/requester-fetch': 5.18.0
       '@algolia/requester-node-http': 5.18.0
 
-  alien-signals@1.0.4: {}
+  alien-signals@2.0.5: {}
 
   ansi-escapes@4.3.2:
     dependencies:
@@ -9464,8 +9637,6 @@ snapshots:
   bcrypt-ts@7.1.0: {}
 
   binary-extensions@2.3.0: {}
-
-  birpc@2.3.0: {}
 
   birpc@2.4.0: {}
 
@@ -9675,6 +9846,8 @@ snapshots:
 
   ci-info@4.2.0: {}
 
+  ci-info@4.3.0: {}
+
   citty@0.1.6:
     dependencies:
       consola: 3.4.0
@@ -9744,10 +9917,10 @@ snapshots:
 
   comment-parser@1.4.1: {}
 
-  commitizen@4.3.1(@types/node@24.0.10)(typescript@5.8.3):
+  commitizen@4.3.1(@types/node@24.0.12)(typescript@5.8.3):
     dependencies:
       cachedir: 2.3.0
-      cz-conventional-changelog: 3.3.0(@types/node@24.0.10)(typescript@5.8.3)
+      cz-conventional-changelog: 3.3.0(@types/node@24.0.12)(typescript@5.8.3)
       dedent: 0.7.0
       detect-indent: 6.1.0
       find-node-modules: 2.1.3
@@ -9903,9 +10076,9 @@ snapshots:
     dependencies:
       layout-base: 2.0.1
 
-  cosmiconfig-typescript-loader@6.1.0(@types/node@24.0.10)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3):
+  cosmiconfig-typescript-loader@6.1.0(@types/node@24.0.12)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3):
     dependencies:
-      '@types/node': 24.0.10
+      '@types/node': 24.0.12
       cosmiconfig: 9.0.0(typescript@5.8.3)
       jiti: 2.4.2
       typescript: 5.8.3
@@ -9984,16 +10157,16 @@ snapshots:
 
   cytoscape@3.30.4: {}
 
-  cz-conventional-changelog@3.3.0(@types/node@24.0.10)(typescript@5.8.3):
+  cz-conventional-changelog@3.3.0(@types/node@24.0.12)(typescript@5.8.3):
     dependencies:
       chalk: 2.4.2
-      commitizen: 4.3.1(@types/node@24.0.10)(typescript@5.8.3)
+      commitizen: 4.3.1(@types/node@24.0.12)(typescript@5.8.3)
       conventional-commit-types: 3.0.0
       lodash.map: 4.6.0
       longest: 2.0.1
       word-wrap: 1.2.5
     optionalDependencies:
-      '@commitlint/load': 19.6.1(@types/node@24.0.10)(typescript@5.8.3)
+      '@commitlint/load': 19.6.1(@types/node@24.0.12)(typescript@5.8.3)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -10349,33 +10522,34 @@ snapshots:
 
   es6-promise@4.2.8: {}
 
-  esbuild@0.25.5:
+  esbuild@0.25.6:
     optionalDependencies:
-      '@esbuild/aix-ppc64': 0.25.5
-      '@esbuild/android-arm': 0.25.5
-      '@esbuild/android-arm64': 0.25.5
-      '@esbuild/android-x64': 0.25.5
-      '@esbuild/darwin-arm64': 0.25.5
-      '@esbuild/darwin-x64': 0.25.5
-      '@esbuild/freebsd-arm64': 0.25.5
-      '@esbuild/freebsd-x64': 0.25.5
-      '@esbuild/linux-arm': 0.25.5
-      '@esbuild/linux-arm64': 0.25.5
-      '@esbuild/linux-ia32': 0.25.5
-      '@esbuild/linux-loong64': 0.25.5
-      '@esbuild/linux-mips64el': 0.25.5
-      '@esbuild/linux-ppc64': 0.25.5
-      '@esbuild/linux-riscv64': 0.25.5
-      '@esbuild/linux-s390x': 0.25.5
-      '@esbuild/linux-x64': 0.25.5
-      '@esbuild/netbsd-arm64': 0.25.5
-      '@esbuild/netbsd-x64': 0.25.5
-      '@esbuild/openbsd-arm64': 0.25.5
-      '@esbuild/openbsd-x64': 0.25.5
-      '@esbuild/sunos-x64': 0.25.5
-      '@esbuild/win32-arm64': 0.25.5
-      '@esbuild/win32-ia32': 0.25.5
-      '@esbuild/win32-x64': 0.25.5
+      '@esbuild/aix-ppc64': 0.25.6
+      '@esbuild/android-arm': 0.25.6
+      '@esbuild/android-arm64': 0.25.6
+      '@esbuild/android-x64': 0.25.6
+      '@esbuild/darwin-arm64': 0.25.6
+      '@esbuild/darwin-x64': 0.25.6
+      '@esbuild/freebsd-arm64': 0.25.6
+      '@esbuild/freebsd-x64': 0.25.6
+      '@esbuild/linux-arm': 0.25.6
+      '@esbuild/linux-arm64': 0.25.6
+      '@esbuild/linux-ia32': 0.25.6
+      '@esbuild/linux-loong64': 0.25.6
+      '@esbuild/linux-mips64el': 0.25.6
+      '@esbuild/linux-ppc64': 0.25.6
+      '@esbuild/linux-riscv64': 0.25.6
+      '@esbuild/linux-s390x': 0.25.6
+      '@esbuild/linux-x64': 0.25.6
+      '@esbuild/netbsd-arm64': 0.25.6
+      '@esbuild/netbsd-x64': 0.25.6
+      '@esbuild/openbsd-arm64': 0.25.6
+      '@esbuild/openbsd-x64': 0.25.6
+      '@esbuild/openharmony-arm64': 0.25.6
+      '@esbuild/sunos-x64': 0.25.6
+      '@esbuild/win32-arm64': 0.25.6
+      '@esbuild/win32-ia32': 0.25.6
+      '@esbuild/win32-x64': 0.25.6
 
   escalade@3.2.0: {}
 
@@ -10471,7 +10645,7 @@ snapshots:
   eslint-plugin-n@17.20.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3):
     dependencies:
       '@eslint-community/eslint-utils': 4.7.0(eslint@9.30.1(jiti@2.4.2))
-      '@typescript-eslint/utils': 8.35.1(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
+      '@typescript-eslint/utils': 8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
       enhanced-resolve: 5.18.1
       eslint: 9.30.1(jiti@2.4.2)
       eslint-plugin-es-x: 7.8.0(eslint@9.30.1(jiti@2.4.2))
@@ -10490,7 +10664,7 @@ snapshots:
   eslint-plugin-perfectionist@4.15.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3):
     dependencies:
       '@typescript-eslint/types': 8.34.1
-      '@typescript-eslint/utils': 8.35.1(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
+      '@typescript-eslint/utils': 8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
       eslint: 9.30.1(jiti@2.4.2)
       natural-orderby: 5.0.0
     transitivePeerDependencies:
@@ -10736,6 +10910,10 @@ snapshots:
       format: 0.2.2
 
   fdir@6.4.4(picomatch@4.0.2):
+    optionalDependencies:
+      picomatch: 4.0.2
+
+  fdir@6.4.6(picomatch@4.0.2):
     optionalDependencies:
       picomatch: 4.0.2
 
@@ -11006,7 +11184,7 @@ snapshots:
     dependencies:
       '@sindresorhus/merge-streams': 2.3.0
       fast-glob: 3.3.3
-      ignore: 7.0.3
+      ignore: 7.0.5
       path-type: 6.0.0
       slash: 5.1.0
       unicorn-magic: 0.3.0
@@ -11113,7 +11291,7 @@ snapshots:
 
   highlight.js@11.11.1: {}
 
-  hls.js@1.6.6: {}
+  hls.js@1.6.7: {}
 
   homedir-polyfill@1.0.3:
     dependencies:
@@ -11204,8 +11382,6 @@ snapshots:
   ignore@5.3.2: {}
 
   ignore@6.0.2: {}
-
-  ignore@7.0.3: {}
 
   ignore@7.0.5: {}
 
@@ -11879,11 +12055,11 @@ snapshots:
 
   merge@2.1.1: {}
 
-  mermaid@11.8.0:
+  mermaid@11.8.1:
     dependencies:
       '@braintree/sanitize-url': 7.1.1
       '@iconify/utils': 2.3.0
-      '@mermaid-js/parser': 0.6.0
+      '@mermaid-js/parser': 0.6.1
       '@types/d3': 7.4.3
       cytoscape: 3.30.4
       cytoscape-cose-bilkent: 4.1.0(cytoscape@3.30.4)
@@ -12744,6 +12920,32 @@ snapshots:
       '@rollup/rollup-win32-x64-msvc': 4.40.2
       fsevents: 2.3.3
 
+  rollup@4.44.2:
+    dependencies:
+      '@types/estree': 1.0.8
+    optionalDependencies:
+      '@rollup/rollup-android-arm-eabi': 4.44.2
+      '@rollup/rollup-android-arm64': 4.44.2
+      '@rollup/rollup-darwin-arm64': 4.44.2
+      '@rollup/rollup-darwin-x64': 4.44.2
+      '@rollup/rollup-freebsd-arm64': 4.44.2
+      '@rollup/rollup-freebsd-x64': 4.44.2
+      '@rollup/rollup-linux-arm-gnueabihf': 4.44.2
+      '@rollup/rollup-linux-arm-musleabihf': 4.44.2
+      '@rollup/rollup-linux-arm64-gnu': 4.44.2
+      '@rollup/rollup-linux-arm64-musl': 4.44.2
+      '@rollup/rollup-linux-loongarch64-gnu': 4.44.2
+      '@rollup/rollup-linux-powerpc64le-gnu': 4.44.2
+      '@rollup/rollup-linux-riscv64-gnu': 4.44.2
+      '@rollup/rollup-linux-riscv64-musl': 4.44.2
+      '@rollup/rollup-linux-s390x-gnu': 4.44.2
+      '@rollup/rollup-linux-x64-gnu': 4.44.2
+      '@rollup/rollup-linux-x64-musl': 4.44.2
+      '@rollup/rollup-win32-arm64-msvc': 4.44.2
+      '@rollup/rollup-win32-ia32-msvc': 4.44.2
+      '@rollup/rollup-win32-x64-msvc': 4.44.2
+      fsevents: 2.3.3
+
   roughjs@4.6.6:
     dependencies:
       hachure-fill: 0.5.2
@@ -12888,17 +13090,6 @@ snapshots:
   shebang-regex@3.0.0: {}
 
   shell-quote@1.8.2: {}
-
-  shiki@3.6.0:
-    dependencies:
-      '@shikijs/core': 3.6.0
-      '@shikijs/engine-javascript': 3.6.0
-      '@shikijs/engine-oniguruma': 3.6.0
-      '@shikijs/langs': 3.6.0
-      '@shikijs/themes': 3.6.0
-      '@shikijs/types': 3.6.0
-      '@shikijs/vscode-textmate': 10.0.2
-      '@types/hast': 3.0.4
 
   shiki@3.7.0:
     dependencies:
@@ -13289,7 +13480,7 @@ snapshots:
     dependencies:
       is-number: 7.0.0
 
-  tokenx@1.0.1: {}
+  tokenx@1.1.0: {}
 
   toml-eslint-parser@0.10.0:
     dependencies:
@@ -13345,21 +13536,21 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  twoslash-protocol@0.3.1: {}
+  twoslash-protocol@0.3.2: {}
 
-  twoslash-vue@0.3.1(typescript@5.8.3):
+  twoslash-vue@0.3.2(typescript@5.8.3):
     dependencies:
-      '@vue/language-core': 2.2.4(typescript@5.8.3)
-      twoslash: 0.3.1(typescript@5.8.3)
-      twoslash-protocol: 0.3.1
+      '@vue/language-core': 3.0.1(typescript@5.8.3)
+      twoslash: 0.3.2(typescript@5.8.3)
+      twoslash-protocol: 0.3.2
       typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
 
-  twoslash@0.3.1(typescript@5.8.3):
+  twoslash@0.3.2(typescript@5.8.3):
     dependencies:
       '@typescript/vfs': 1.6.1(typescript@5.8.3)
-      twoslash-protocol: 0.3.1
+      twoslash-protocol: 0.3.2
       typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
@@ -13491,13 +13682,13 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite-node@3.2.4(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0):
+  vite-node@3.2.4(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0):
     dependencies:
       cac: 6.7.14
       debug: 4.4.1
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 6.3.5(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
+      vite: 6.3.5(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -13512,16 +13703,16 @@ snapshots:
       - tsx
       - yaml
 
-  vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0):
+  vite@6.3.5(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0):
     dependencies:
-      esbuild: 0.25.5
+      esbuild: 0.25.6
       fdir: 6.4.4(picomatch@4.0.2)
       picomatch: 4.0.2
       postcss: 8.5.6
       rollup: 4.40.2
       tinyglobby: 0.2.13
     optionalDependencies:
-      '@types/node': 24.0.10
+      '@types/node': 24.0.12
       fsevents: 2.3.3
       jiti: 2.4.2
       less: 4.3.0
@@ -13530,11 +13721,29 @@ snapshots:
       stylus: 0.64.0
       yaml: 2.8.0
 
-  vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0):
+  vite@7.0.3(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0):
+    dependencies:
+      esbuild: 0.25.6
+      fdir: 6.4.6(picomatch@4.0.2)
+      picomatch: 4.0.2
+      postcss: 8.5.6
+      rollup: 4.44.2
+      tinyglobby: 0.2.14
+    optionalDependencies:
+      '@types/node': 24.0.12
+      fsevents: 2.3.3
+      jiti: 2.4.2
+      less: 4.3.0
+      sass: 1.89.2
+      sass-embedded: 1.89.2
+      stylus: 0.64.0
+      yaml: 2.8.0
+
+  vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
-      '@vitest/mocker': 3.2.4(vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))
+      '@vitest/mocker': 3.2.4(vite@6.3.5(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0))
       '@vitest/pretty-format': 3.2.4
       '@vitest/runner': 3.2.4
       '@vitest/snapshot': 3.2.4
@@ -13552,12 +13761,12 @@ snapshots:
       tinyglobby: 0.2.14
       tinypool: 1.1.1
       tinyrainbow: 2.0.0
-      vite: 6.3.5(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
-      vite-node: 3.2.4(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
+      vite: 6.3.5(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
+      vite-node: 3.2.4(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(yaml@2.8.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/debug': 4.1.12
-      '@types/node': 24.0.10
+      '@types/node': 24.0.12
     transitivePeerDependencies:
       - jiti
       - less
@@ -13634,17 +13843,17 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.3
 
-  vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)):
+  vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)):
     dependencies:
-      '@vuepress/cli': 2.0.0-rc.23(typescript@5.8.3)
-      '@vuepress/client': 2.0.0-rc.23(typescript@5.8.3)
-      '@vuepress/core': 2.0.0-rc.23(typescript@5.8.3)
-      '@vuepress/markdown': 2.0.0-rc.23
-      '@vuepress/shared': 2.0.0-rc.23
-      '@vuepress/utils': 2.0.0-rc.23
+      '@vuepress/cli': 2.0.0-rc.24(typescript@5.8.3)
+      '@vuepress/client': 2.0.0-rc.24(typescript@5.8.3)
+      '@vuepress/core': 2.0.0-rc.24(typescript@5.8.3)
+      '@vuepress/markdown': 2.0.0-rc.24
+      '@vuepress/shared': 2.0.0-rc.24
+      '@vuepress/utils': 2.0.0-rc.24
       vue: 3.5.17(typescript@5.8.3)
     optionalDependencies:
-      '@vuepress/bundler-vite': 2.0.0-rc.23(@types/node@24.0.10)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0)
+      '@vuepress/bundler-vite': 2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0)
     transitivePeerDependencies:
       - supports-color
       - typescript

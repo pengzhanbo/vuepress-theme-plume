@@ -9,7 +9,7 @@ export interface MarkdownOptions extends MarkdownPowerPluginOptions,
   MarkdownChartPluginOptions,
   Pick<MarkdownHintPluginOptions, 'alert' | 'hint'> {
   /**
-   * 此项为 `vuepress-plugin-md-enhance` 的 `demo` 选项，已弃用
+   * 已弃用
    * @deprecated use `demo` instead
    */
   oldDemo?: never

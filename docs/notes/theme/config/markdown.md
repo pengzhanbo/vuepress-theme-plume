@@ -255,7 +255,7 @@ export default defineUserConfig({
 
 ---
 
-::: tip 以下配置字段由 [vuepress-plugin-md-enhance](https://plugin-md-enhance.vuejs.press/zh/) 插件实现。
+::: tip 以下配置字段由 [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-chart/) 插件实现。
 :::
 
 ### chartjs

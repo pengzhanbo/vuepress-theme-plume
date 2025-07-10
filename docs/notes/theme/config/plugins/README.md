@@ -38,7 +38,9 @@ export default defineUserConfig({
 - [@vuepress/plugin-markdown-image](https://ecosystem.vuejs.press/zh/plugins/markdown/image.html) - Markdown 图片
 - [@vuepress/plugin-markdown-math](https://ecosystem.vuejs.press/zh/plugins/markdown/math.html) - Markdown 数学公式
 - [@vuepress/plugin-markdown-include](https://ecosystem.vuejs.press/zh/plugins/markdown/include.html) - Markdown 导入文件
-- [vuepress-plugin-md-enhance](https://plugin-md-enhance.vuejs.press/zh/) - Markdown 增强
+- [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-chart/) - Markdown 图表
+  chartjs / echarts / mermaid / flowchart / markmap / plantUML
+- [@vuepress/plugin-replace-assets](https://ecosystem.vuejs.press/zh/plugins/tools/replace-assets.html) - 资源链接替换
 - [vuepress-plugin-md-power](./markdown-power.md) - Markdown Power
 - [@vuepress/plugin-git](https://ecosystem.vuejs.press/zh/plugins/development/git.html) - git 提交信息
 - [@vuepress/plugin-cache](https://ecosystem.vuejs.press/zh/plugins/tools/cache.html) - 页面编译缓存

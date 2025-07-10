@@ -105,6 +105,7 @@
     "@vuepress/plugin-nprogress": "catalog:vuepress",
     "@vuepress/plugin-photo-swipe": "catalog:vuepress",
     "@vuepress/plugin-reading-time": "catalog:vuepress",
+    "@vuepress/plugin-replace-assets": "catalog:vuepress",
     "@vuepress/plugin-seo": "catalog:vuepress",
     "@vuepress/plugin-shiki": "catalog:vuepress",
     "@vuepress/plugin-sitemap": "catalog:vuepress",
@@ -123,8 +124,7 @@
     "nanoid": "catalog:prod",
     "package-manager-detector": "catalog:prod",
     "vue": "catalog:prod",
-    "vuepress-plugin-md-power": "workspace:*",
-    "vuepress-plugin-replace-assets": "workspace:*"
+    "vuepress-plugin-md-power": "workspace:*"
   },
   "devDependencies": {
     "@iconify/json": "catalog:peer",

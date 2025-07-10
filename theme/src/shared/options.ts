@@ -2,9 +2,9 @@ import type { CommentPluginOptions } from '@vuepress/plugin-comment'
 import type { CopyCodePluginOptions } from '@vuepress/plugin-copy-code'
 import type { ChangelogOptions, ContributorsOptions } from '@vuepress/plugin-git'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
+import type { ReplaceAssetsPluginOptions } from '@vuepress/plugin-replace-assets'
 import type { ShikiPluginOptions } from '@vuepress/plugin-shiki'
 import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
-import type { ReplaceAssetsPluginOptions } from 'vuepress-plugin-replace-assets'
 import type { ThemeBaseData, ThemeData } from './data.js'
 import type {
   AutoFrontmatterOptions,

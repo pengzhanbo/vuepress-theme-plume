@@ -13,7 +13,6 @@
 
 - `plugin-search`: 为主题提供 全文模糊搜索 功能
 - `plugin-md-power`: 提供 markdown 增强功能
-- `plugin-replace-assets`: 提供资源链接替换功能
 - `plugin-fonts`: 提供特殊字符字体支持
 
 ## 开发配置

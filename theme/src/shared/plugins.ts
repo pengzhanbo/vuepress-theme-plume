@@ -9,12 +9,12 @@ import type { MarkdownIncludePluginOptions } from '@vuepress/plugin-markdown-inc
 import type { MarkdownMathPluginOptions } from '@vuepress/plugin-markdown-math'
 import type { PhotoSwipePluginOptions } from '@vuepress/plugin-photo-swipe'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
+import type { ReplaceAssetsPluginOptions } from '@vuepress/plugin-replace-assets'
 import type { SeoPluginOptions } from '@vuepress/plugin-seo'
 import type { ShikiPluginOptions } from '@vuepress/plugin-shiki'
 import type { SitemapPluginOptions } from '@vuepress/plugin-sitemap'
 import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
-import type { ReplaceAssetsPluginOptions } from 'vuepress-plugin-replace-assets'
 
 export interface ThemeBuiltinPlugins {
   /**

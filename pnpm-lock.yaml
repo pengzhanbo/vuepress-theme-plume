@@ -245,9 +245,6 @@ catalogs:
     lru-cache:
       specifier: ^11.1.0
       version: 11.1.0
-    magic-string:
-      specifier: ^0.30.17
-      version: 0.30.17
     mark.js:
       specifier: ^8.11.1
       version: 8.11.1
@@ -296,9 +293,6 @@ catalogs:
     tm-themes:
       specifier: ^1.10.6
       version: 1.10.6
-    unplugin:
-      specifier: ^2.3.5
-      version: 2.3.5
     vue:
       specifier: ^3.5.17
       version: 3.5.17
@@ -349,6 +343,9 @@ catalogs:
       specifier: 2.0.0-rc.112
       version: 2.0.0-rc.112
     '@vuepress/plugin-reading-time':
+      specifier: 2.0.0-rc.112
+      version: 2.0.0-rc.112
+    '@vuepress/plugin-replace-assets':
       specifier: 2.0.0-rc.112
       version: 2.0.0-rc.112
     '@vuepress/plugin-seo':
@@ -706,21 +703,6 @@ importers:
         specifier: catalog:peer
         version: 1.7.3
 
-  plugins/plugin-replace-assets:
-    dependencies:
-      '@vuepress/helper':
-        specifier: catalog:vuepress
-        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
-      magic-string:
-        specifier: catalog:prod
-        version: 0.30.17
-      unplugin:
-        specifier: catalog:prod
-        version: 2.3.5
-      vuepress:
-        specifier: catalog:vuepress
-        version: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
-
   plugins/plugin-search:
     dependencies:
       '@vuepress/helper':
@@ -813,6 +795,9 @@ importers:
       '@vuepress/plugin-reading-time':
         specifier: catalog:vuepress
         version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@vuepress/plugin-replace-assets':
+        specifier: catalog:vuepress
+        version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       '@vuepress/plugin-seo':
         specifier: catalog:vuepress
         version: 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
@@ -879,9 +864,6 @@ importers:
       vuepress-plugin-md-power:
         specifier: workspace:*
         version: link:../plugins/plugin-md-power
-      vuepress-plugin-replace-assets:
-        specifier: workspace:*
-        version: link:../plugins/plugin-replace-assets
     devDependencies:
       '@iconify/json':
         specifier: catalog:peer
@@ -2940,6 +2922,11 @@ packages:
 
   '@vuepress/plugin-reading-time@2.0.0-rc.112':
     resolution: {integrity: sha512-76t64Uvr+1ADAq1z/DbU9ftAXKhVOBjxGKplRkbffobyTQ0mrDjDBM2rArytQiK+8utDgGPTjblCt+oJkxovzg==}
+    peerDependencies:
+      vuepress: 2.0.0-rc.24
+
+  '@vuepress/plugin-replace-assets@2.0.0-rc.112':
+    resolution: {integrity: sha512-i502eqHUhZU+9kBALOHQ81t/aoJU10i6IegztXE+/ZOnKh8ryeW5q4o8b1uDUQqfEazo4kM4tjGC+l2n//5T3w==}
     peerDependencies:
       vuepress: 2.0.0-rc.24
 
@@ -9371,6 +9358,15 @@ snapshots:
     dependencies:
       '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
       vue: 3.5.17(typescript@5.8.3)
+      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
+    transitivePeerDependencies:
+      - typescript
+
+  '@vuepress/plugin-replace-assets@2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))':
+    dependencies:
+      '@vuepress/helper': 2.0.0-rc.112(typescript@5.8.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      magic-string: 0.30.17
+      unplugin: 2.3.5
       vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.0.12)(jiti@2.4.2)(less@4.3.0)(sass-embedded@1.89.2)(sass@1.89.2)(stylus@0.64.0)(typescript@5.8.3)(yaml@2.8.0))(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - typescript

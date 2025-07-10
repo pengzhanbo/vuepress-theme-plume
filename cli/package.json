@@ -39,7 +39,7 @@
     "picocolors": "catalog:prod"
   },
   "plume-deps": {
-    "vuepress": "2.0.0-rc.23",
+    "vuepress": "2.0.0-rc.24",
     "vue": "^3.5.17",
     "http-server": "^14.1.1",
     "typescript": "^5.8.3"

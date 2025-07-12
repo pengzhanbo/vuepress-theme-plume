@@ -1,3 +1,20 @@
+# [1.0.0-rc.157](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.156...v1.0.0-rc.157) (2025-07-12)
+
+
+### Bug Fixes
+
+* **theme:** locales selector not rendering correctly on mobile, close [#640](https://github.com/pengzhanbo/vuepress-theme-plume/issues/640) ([#641](https://github.com/pengzhanbo/vuepress-theme-plume/issues/641)) ([57d08bd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/57d08bd501dca702f00dfd618cfb78f3506a9630))
+
+
+### Features
+
+* **cli:** update vuepress  to latest ([3e93141](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3e9314194b2edf3a47697833f0895ff577101630))
+* **theme:** add locale support for Korean (ko-KR) ([#642](https://github.com/pengzhanbo/vuepress-theme-plume/issues/642)) ([5346838](https://github.com/pengzhanbo/vuepress-theme-plume/commit/534683817e3ca19b060588eda458c7c3e7df728e))
+* **theme:** migrate to `@vuepress/plugin-replace-assets` ([#644](https://github.com/pengzhanbo/vuepress-theme-plume/issues/644)) ([0fe98a3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0fe98a38f1ed6f5538aa8bc00bb141f4b5d07d72))
+* upgrade vuepress to `rc.24` ([#643](https://github.com/pengzhanbo/vuepress-theme-plume/issues/643)) ([cd1d457](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cd1d457d31879d6724cf681c6ab23fe43ab08cba))
+
+
+
 # [1.0.0-rc.156](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.155...v1.0.0-rc.156) (2025-07-06)
 
 

@@ -186,6 +186,13 @@ blog:
     url: https://blog.haipeng-lin.cn/
     repo: https://github.com/haipeng-lin
     preview: https://haipeng-lin.oss-cn-shenzhen.aliyuncs.com/20250608223536.png
+  -
+    name: PinkDopeyBug
+    desc: 山难现浮槎，心易陷镜花。
+    logo: https://w20241204.dpdns.org/images/avatar.jpg
+    url: https://w20241204.dpdns.org/
+    repo: https://github.com/PinkDopeyBug/blog
+    preview: https://w20241204.dpdns.org/images/demos/preview.png
 ---
 
 :::important

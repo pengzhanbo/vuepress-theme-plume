@@ -1,0 +1,3 @@
+Sitemap: https://plume-layout-slots.netlify.app/sitemap.xml
+User-agent:*
+Disallow:

@@ -195,11 +195,12 @@ blog:
     preview: https://w20241204.dpdns.org/images/demos/preview.png
   -
     name: rand777
-    desc: 华强爱卖瓜，不爱吃牛肉。
+    desc: 华强爱买瓜，不爱吃牛肉。
     logo: https://www.rand777.space/avatar.jpg
     url: https://www.rand777.space/
     repo: https://github.com/Lyrlark/rand777-plume-blog
     preview: https://blog.rand777.space/siteshot.png    
+    
 ---
 
 :::important

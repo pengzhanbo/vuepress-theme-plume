@@ -199,8 +199,7 @@ blog:
     logo: https://www.rand777.space/avatar.jpg
     url: https://www.rand777.space/
     repo: https://github.com/Lyrlark/rand777-plume-blog
-    preview: https://blog.rand777.space/siteshot.png    
-    
+    preview: https://blog.rand777.space/siteshot.png
 ---
 
 :::important

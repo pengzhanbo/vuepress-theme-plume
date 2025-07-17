@@ -40,11 +40,11 @@ docs:
     preview: https://docs.ncatbot.xyz/images/preview.jpg
   -
     name: PGuide Docs
-    desc: 一个与计算机自学、校内生活、开放公共服务等相关的大学指南。
+    desc: 一个与计算机自学、校内生活、开放公共服务等相关的本地化大学指南。
     logo: https://docs.pguide.studio/logo.svg
     url: https://docs.pguide.studio
-    repo: https://github.com/MultipledMe/PGuide-Docs
-    preview: /images/demos/pguide-doc.jpg
+    repo: https://github.com/LyrLark/PGuide-Docs
+    preview: https://github.com/Lyrlark/PGuide-Docs/blob/master/docs/.vuepress/public/src/cover.png
   -
     name: 文档中心 ｜ 手感互动
     desc: 手感互动是一个专业的现场提问、投票和大屏互动平台，为讲师、主持人、会议组织者提供一站式互动解决方案
@@ -193,6 +193,13 @@ blog:
     url: https://w20241204.dpdns.org/
     repo: https://github.com/PinkDopeyBug/blog
     preview: https://w20241204.dpdns.org/images/demos/preview.png
+  -
+    name: rand777
+    desc: 华强爱买瓜，不爱吃牛肉。
+    logo: https://www.rand777.space/avatar.jpg
+    url: https://www.rand777.space/
+    repo: https://github.com/Lyrlark/rand777-plume-blog
+    preview: https://blog.rand777.space/siteshot.png
 ---
 
 :::important

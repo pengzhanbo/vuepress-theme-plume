@@ -1,3 +1,23 @@
+# [1.0.0-rc.158](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.157...v1.0.0-rc.158) (2025-07-20)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** incorrect `html` folder icon ([cc06921](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cc0692145aad56ace2cc3aa5498b258d3b2822bc))
+* **theme:** incorrect image preview selector ([b8ce0cd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b8ce0cd151af017037de72f777a7134ceae23bf8))
+
+
+### Features
+
+* **theme:** ignore npm-badge preview ([11ede17](https://github.com/pengzhanbo/vuepress-theme-plume/commit/11ede1754faa96e72ec558116146689f76b5f3d9))
+
+
+### Performance Improvements
+
+* update deps to latest ([528ddc0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/528ddc06769326bce7aff96ece239106ee388b1a))
+
+
+
 # [1.0.0-rc.157](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.156...v1.0.0-rc.157) (2025-07-12)
 
 

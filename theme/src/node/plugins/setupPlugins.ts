@@ -53,7 +53,7 @@ export function setupPlugins(
   // 图片浏览
   if (pluginOptions.photoSwipe !== false) {
     plugins.push(photoSwipePlugin({
-      selector: '[vp-content] :not(a) > img:not([no-view],.no-view,.ignore)',
+      selector: '.vp-doc :not(a) > img:not([no-view],.no-view,.ignore)',
       ...pluginOptions.photoSwipe,
     }))
   }

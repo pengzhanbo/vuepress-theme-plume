@@ -19,7 +19,7 @@ export default defineUserConfig({
     plugins: {
       photoSwipe: {
         // 图片选择器
-        selector: '[vp-content] :not(a) > img:not([no-view],.no-view,.ignore)',
+        selector: '.vp-doc :not(a) > img:not([no-view],.no-view,.ignore)',
         download: true, // 是否显示下载按钮
         fullscreen: true, // 是否显示全屏按钮
         scrollToClose: true, // 是否在滚动时关闭当前图片

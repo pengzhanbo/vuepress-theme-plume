@@ -5,9 +5,9 @@ packages:
   - plugins/*
   - examples/*
 overrides:
-  '@bufbuild/protobuf': ^2.6.0
-  '@typescript-eslint/utils': ^8.36.0
-  esbuild: ^0.25.6
+  '@bufbuild/protobuf': ^2.6.1
+  '@typescript-eslint/utils': ^8.37.0
+  esbuild: ^0.25.8
   sass-embedded: ^1.89.2
 
 patchedDependencies:
@@ -26,7 +26,7 @@ catalogs:
     '@types/lodash.merge': ^4.6.9
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^24.0.13
+    '@types/node': ^24.0.15
     '@types/stylus': ^0.48.43
     '@types/webpack-env': ^1.18.8
     '@vitest/coverage-istanbul': ^3.2.4
@@ -39,15 +39,15 @@ catalogs:
     eslint: ^9.31.0
     http-server: ^14.1.1
     husky: ^9.1.7
-    less: ^4.3.0
+    less: ^4.4.0
     lint-staged: ^16.1.2
     markdown-it: ^14.1.0
     memfs: ^4.17.2
-    mermaid: ^11.8.1
+    mermaid: ^11.9.0
     minimist: ^1.2.8
     postcss: ^8.5.6
     rimraf: ^6.0.1
-    stylelint: ^16.21.1
+    stylelint: ^16.22.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
     tsdown: ^0.12.9
@@ -56,7 +56,7 @@ catalogs:
     vue-router: ^4.5.1
     wait-on: ^8.0.3
   peer:
-    '@iconify/json': ^2.2.357
+    '@iconify/json': ^2.2.359
     artplayer: ^5.2.3
     dashjs: ^5.0.3
     hls.js: ^1.6.7
@@ -87,7 +87,7 @@ catalogs:
     create-filter: ^1.1.0
     dayjs: ^1.11.13
     echarts: ^5.6.0
-    esbuild: ^0.25.6
+    esbuild: ^0.25.8
     fast-glob: ^3.3.3
     flowchart.ts: ^3.0.1
     focus-trap: ^7.6.5
@@ -110,10 +110,10 @@ catalogs:
     p-map: ^7.0.3
     package-manager-detector: ^1.3.0
     picocolors: ^1.1.1
-    shiki: ^3.7.0
+    shiki: ^3.8.1
     tinyglobby: 0.2.13
-    tm-grammars: ^1.23.26
-    tm-themes: ^1.10.6
+    tm-grammars: ^1.24.0
+    tm-themes: ^1.10.7
     vue: ^3.5.17
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.24

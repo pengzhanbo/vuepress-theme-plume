@@ -10,7 +10,7 @@ const info = useNpmBadge(toRef(() => props))
 
 <template>
   <span class="vp-npm-badge">
-    <img v-if="!info.link" :src="info.badgeUrl" :alt="info.alt">
+    <img v-if="!info.link" :src="info.badgeUrl" class="no-view" :alt="info.alt">
     <a v-else :href="info.link" target="_blank" rel="noreferrer" class="no-icon">
       <img :src="info.badgeUrl" :alt="info.alt">
     </a>

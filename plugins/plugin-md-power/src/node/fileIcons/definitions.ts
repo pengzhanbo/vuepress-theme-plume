@@ -343,7 +343,7 @@ export const definitions: Definitions = {
     'Views': 'vscode-icons:folder-type-view',
     'page': 'vscode-icons:folder-type-view',
     'pages': 'vscode-icons:folder-type-view',
-    'html': 'vscode-icons:folder-type-html',
+    'html': 'vscode-icons:folder-type-view',
 
     'app': 'vscode-icons:folder-type-app',
     'apps': 'vscode-icons:folder-type-app',

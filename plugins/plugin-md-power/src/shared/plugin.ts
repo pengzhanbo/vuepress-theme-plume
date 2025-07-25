@@ -7,6 +7,7 @@ import type { NpmToOptions } from './npmTo.js'
 import type { PDFOptions } from './pdf.js'
 import type { PlotOptions } from './plot.js'
 import type { ReplOptions } from './repl.js'
+import type { TableContainerOptions } from './table.js'
 
 export interface MarkdownPowerPluginOptions {
   /**
@@ -239,6 +240,15 @@ export interface MarkdownPowerPluginOptions {
    * @default false
    */
   caniuse?: boolean | CanIUseOptions
+
+  /**
+   * 是否启用 table 容器语法，为表格提供增强功能
+   *
+   * - `copy`: 是否启用复制功能，支持复制为 html 格式 和 markdown 格式
+   *
+   * @default false
+   */
+  table?: boolean | TableContainerOptions
 
   // enhance
   /**

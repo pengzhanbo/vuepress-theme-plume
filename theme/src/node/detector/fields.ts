@@ -57,6 +57,7 @@ export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
   'plot',
   'repl',
   'replit',
+  'table',
   'timeline',
   'collapse',
   'chat',

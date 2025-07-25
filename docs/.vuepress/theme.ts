@@ -27,6 +27,7 @@ export const theme: Theme = plumeTheme({
 
     annotation: true,
     abbr: true,
+    table: true,
     timeline: true,
     collapse: true,
     chat: true,

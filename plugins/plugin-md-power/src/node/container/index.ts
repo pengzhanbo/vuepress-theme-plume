@@ -14,6 +14,7 @@ import { fileTreePlugin } from './fileTree.js'
 import { langReplPlugin } from './langRepl.js'
 import { npmToPlugins } from './npmTo.js'
 import { stepsPlugin } from './steps.js'
+import { tablePlugin } from './table.js'
 import { tabs } from './tabs.js'
 import { timelinePlugin } from './timeline.js'
 
@@ -67,4 +68,7 @@ export async function containerPlugin(
 
   if (options.field)
     fieldPlugin(md)
+
+  if (options.table)
+    tablePlugin(md, isPlainObject(options.table) ? options.table : {})
 }

@@ -35,6 +35,7 @@ export const themeGuide: ThemeNote = defineNoteConfig({
           items: [
             'basic',
             'extensions',
+            'table',
             'icons',
             'mark',
             'plot',

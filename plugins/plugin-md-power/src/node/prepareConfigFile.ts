@@ -126,6 +126,11 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('VPField', VPField)`)
   }
 
+  if (options.table) {
+    imports.add(`import VPTable from '${CLIENT_FOLDER}components/VPTable.vue'`)
+    enhances.add(`app.component('VPTable', VPTable)`)
+  }
+
   const setupIcon = prepareIcon(imports, options.icon)
 
   return app.writeTemp(

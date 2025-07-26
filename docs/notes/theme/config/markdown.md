@@ -163,6 +163,12 @@ export default defineUserConfig({
 - **默认值**: `false`
 - **详情**: 是否启用字段容器
 
+### table
+
+- **类型**: `boolean | TableContainerOptions`
+- **默认值**: `false`
+- **详情**: 是否启用表格增强容器
+
 ### timeline
 
 - **类型**: `boolean`

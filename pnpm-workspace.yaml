@@ -5,8 +5,8 @@ packages:
   - plugins/*
   - examples/*
 overrides:
-  '@bufbuild/protobuf': ^2.6.1
-  '@typescript-eslint/utils': ^8.37.0
+  '@bufbuild/protobuf': ^2.6.2
+  '@typescript-eslint/utils': ^8.38.0
   esbuild: ^0.25.8
   sass-embedded: ^1.89.2
 
@@ -26,7 +26,7 @@ catalogs:
     '@types/lodash.merge': ^4.6.9
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^24.0.15
+    '@types/node': ^24.1.0
     '@types/stylus': ^0.48.43
     '@types/webpack-env': ^1.18.8
     '@vitest/coverage-istanbul': ^3.2.4
@@ -36,13 +36,13 @@ catalogs:
     cpx2: ^8.0.0
     cross-env: 7.0.3
     cz-conventional-changelog: ^3.3.0
-    eslint: ^9.31.0
+    eslint: ^9.32.0
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.4.0
     lint-staged: ^16.1.2
     markdown-it: ^14.1.0
-    memfs: ^4.17.2
+    memfs: ^4.20.0
     mermaid: ^11.9.0
     minimist: ^1.2.8
     postcss: ^8.5.6
@@ -50,13 +50,13 @@ catalogs:
     stylelint: ^16.22.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.12.9
+    tsdown: ^0.13.0
     typescript: ^5.8.3
     vitest: ^3.2.4
     vue-router: ^4.5.1
-    wait-on: ^8.0.3
+    wait-on: ^8.0.4
   peer:
-    '@iconify/json': ^2.2.359
+    '@iconify/json': ^2.2.362
     artplayer: ^5.2.3
     dashjs: ^5.0.3
     hls.js: ^1.6.7
@@ -114,7 +114,7 @@ catalogs:
     tinyglobby: 0.2.13
     tm-grammars: ^1.24.0
     tm-themes: ^1.10.7
-    vue: ^3.5.17
+    vue: ^3.5.18
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.24
     '@vuepress/helper': 2.0.0-rc.112

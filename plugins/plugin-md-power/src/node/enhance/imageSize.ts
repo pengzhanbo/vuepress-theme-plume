@@ -119,11 +119,16 @@ export async function imageSizePlugin(
         if (!fs.existsSync(filepath))
           return false
 
-        const { width: w, height: h } = imageSize(fs.readFileSync(filepath))
-        if (!w || !h)
-          return false
+        try {
+          const { width: w, height: h } = imageSize(fs.readFileSync(filepath))
+          if (!w || !h)
+            return false
 
-        cache.set(filepath, { width: w, height: h })
+          cache.set(filepath, { width: w, height: h })
+        }
+        catch {
+          return false
+        }
       }
     }
 

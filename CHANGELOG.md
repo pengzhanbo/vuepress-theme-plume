@@ -1,3 +1,19 @@
+# [1.0.0-rc.159](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.158...v1.0.0-rc.159) (2025-07-26)
+
+
+### Features
+
+* **plugin-md-power:** add `table` container, close [#652](https://github.com/pengzhanbo/vuepress-theme-plume/issues/652) ([#655](https://github.com/pengzhanbo/vuepress-theme-plume/issues/655)) ([3718346](https://github.com/pengzhanbo/vuepress-theme-plume/commit/371834640b8be4747116fe05dfae6c29f81be19f))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** improve `image-size` ([0443c6f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0443c6ff059291adfd043807913b49bbbd8b44e7))
+* **theme:** improve iconfont layout ([b120633](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b120633453ea25c4b3226a0a663195acdd07e4f4))
+* update deps to latest ([05bfd4a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/05bfd4add14ac381b6f30d9a88137d3d73786291))
+
+
+
 # [1.0.0-rc.158](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.157...v1.0.0-rc.158) (2025-07-20)
 
 

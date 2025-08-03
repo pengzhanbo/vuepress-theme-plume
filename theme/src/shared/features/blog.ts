@@ -95,6 +95,11 @@ export interface ThemeBlogPostItem {
    * 文章封面图样式
    */
   coverStyle?: BlogPostCoverStyle
+
+  /**
+   * 文章是否为草稿
+   */
+  draft?: boolean
 }
 
 /**

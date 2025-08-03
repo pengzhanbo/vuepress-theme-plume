@@ -54,6 +54,7 @@ const hasMeta = computed(() =>
 
 <template>
   <h1 class="vp-doc-title page-title" :class="{ padding: !hasMeta }">
+    <VPBadge v-if="page.frontmatter.draft" type="warning" text="DRAFT" />
     {{ page.title }}
     <VPBadge v-if="badge" :type="badge.type || 'tip'" :text="badge.text" />
   </h1>

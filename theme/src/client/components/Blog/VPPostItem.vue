@@ -97,7 +97,7 @@ const coverStyles = computed(() => {
 <template>
   <div
     class="vp-blog-post-item" data-allow-mismatch
-    :class="{ 'has-cover': post.cover, [coverLayout]: cover }"
+    :class="{ 'has-cover': post.cover, [coverLayout]: cover, 'draft': post.draft }"
   >
     <div
       v-if="post.cover" class="post-cover" data-allow-mismatch
@@ -108,6 +108,7 @@ const coverStyles = computed(() => {
     <div class="blog-post-item-content">
       <h3>
         <span v-if="sticky" class="sticky">TOP</span>
+        <span v-if="post.draft" class="draft">DRAFT</span>
         <span v-if="post.encrypt" class="icon-lock vpi-lock" />
         <VPLink :href="post.path" :text="post.title" />
       </h3>
@@ -149,6 +150,10 @@ const coverStyles = computed(() => {
   margin: 0 -16px;
   background-color: var(--vp-c-bg);
   transition: background-color var(--vp-t-color);
+}
+
+.vp-blog-post-item.draft {
+  background-color: var(--vp-c-warning-soft);
 }
 
 .vp-blog-post-item.has-cover:where(.left, .right) {
@@ -231,7 +236,8 @@ const coverStyles = computed(() => {
   flex: 1 2;
 }
 
-.blog-post-item-content .sticky {
+.blog-post-item-content .sticky,
+.blog-post-item-content .draft {
   display: inline-block;
   padding: 3px 6px;
   margin-right: 0.5rem;
@@ -243,6 +249,11 @@ const coverStyles = computed(() => {
   border-radius: 4px;
   transition: var(--vp-t-color);
   transition-property: color, background-color;
+}
+
+.blog-post-item-content .draft {
+  color: var(--vp-c-warning-1);
+  background-color: var(--vp-c-warning-soft);
 }
 
 .blog-post-item-content .icon-lock {

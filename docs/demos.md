@@ -5,7 +5,7 @@ permalink: /demos/
 readingTime: false
 prev: false
 next: false
-draft: true
+article: false
 externalLinkIcon: false
 contributors: false
 changelog: false

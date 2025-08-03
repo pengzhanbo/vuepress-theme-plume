@@ -30,10 +30,10 @@ function cleanPageData(page: Page<ThemePageData>) {
     delete page.frontmatter.home
   }
 
-  if (page.frontmatter.article === false) {
-    page.frontmatter.draft = true
-  }
-  delete page.frontmatter.article
+  // if (page.frontmatter.article === false) {
+  //   page.frontmatter.draft = true
+  // }
+  // delete page.frontmatter.article
 
   if (page.headers) {
     page.data.headers = []

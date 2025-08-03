@@ -21,6 +21,7 @@ function getTimestamp(time: Date): number {
 }
 
 export async function preparedBlogData(app: App): Promise<void> {
+  const isBuild = app.env.isBuild
   const options = getThemeConfig()
   const encrypt = options.encrypt
   if (options.blog === false) {
@@ -52,7 +53,8 @@ export async function preparedBlogData(app: App): Promise<void> {
   const pages = app.pages.filter(page =>
     page.filePathRelative
     && filter(page.filePathRelative)
-    && page.frontmatter.draft !== true,
+    && page.frontmatter.article !== false
+    && (page.frontmatter.draft === true ? !isBuild : true),
   ).sort((prev, next) =>
     getTimestamp((prev.frontmatter.createTime as Date) || prev.date)
     < getTimestamp(next.frontmatter.createTime as Date || next.date)
@@ -81,6 +83,10 @@ export async function preparedBlogData(app: App): Promise<void> {
 
     if (isEncryptPage(page, encrypt)) {
       data.encrypt = true
+    }
+
+    if (page.frontmatter.draft && !isBuild) {
+      data.draft = true
     }
 
     const fmExcerpt = page.frontmatter.excerpt

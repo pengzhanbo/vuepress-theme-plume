@@ -17,7 +17,11 @@ export interface ThemePostFrontmatter extends ThemePageFrontmatter {
    */
   sticky?: boolean | number
   /**
-   * @deprecated 使用 `draft` 代替
+   * 标记当前文章是否为博客文章
+   *
+   * `false` 时，从博客列表中排除
+   *
+   * @default true
    */
   article?: boolean
 
@@ -34,6 +38,9 @@ export interface ThemePostFrontmatter extends ThemePageFrontmatter {
    */
   cover?: string
 
+  /**
+   * 文章封面图样式
+   */
   coverStyle?: BlogPostCoverStyle
 
   /**

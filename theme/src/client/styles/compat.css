@@ -32,3 +32,10 @@
   margin-block: 8px;
   list-style: none;
 }
+
+/* ------------------ Plugin PhotoSwipe  ------------------ */
+.vp-doc :not(a) > img.no-view,
+.vp-doc :not(a) > img.ignore,
+.vp-doc :not(a) > img[no-view] {
+  cursor: revert;
+}

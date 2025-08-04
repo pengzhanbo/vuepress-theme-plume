@@ -1,3 +1,20 @@
+# [1.0.0-rc.160](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.159...v1.0.0-rc.160) (2025-08-04)
+
+
+### Features
+
+* **cli:** update plume deps ([e128f52](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e128f524aced2511f2977952d784fdf161741c0a))
+* **plugin-md-power:** add highlight support for table container, close [#660](https://github.com/pengzhanbo/vuepress-theme-plume/issues/660) ([#663](https://github.com/pengzhanbo/vuepress-theme-plume/issues/663)) ([f026179](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f02617908fd1a0b5061f602413eeba280f37286b))
+* **theme:** improve img cursor ([#661](https://github.com/pengzhanbo/vuepress-theme-plume/issues/661)) ([fde9351](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fde93517d9ed5b0d53bbe8877125224ba8a0cb9d))
+* **theme:** improve post draft status ([#662](https://github.com/pengzhanbo/vuepress-theme-plume/issues/662)) ([e113f68](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e113f6850afa6a5a0fbc6972a59f3ef42bc9130e))
+
+
+### Performance Improvements
+
+* update deps to latest ([94d3b4f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/94d3b4fdf86ad7b975cfbdbc7c455022e759d2de))
+
+
+
 # [1.0.0-rc.159](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.158...v1.0.0-rc.159) (2025-07-26)
 
 

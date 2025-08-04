@@ -143,4 +143,45 @@ function onCopy(type: 'html' | 'md') {
 .vp-table .table-content .max-content table {
   width: max-content;
 }
+
+/* -----  Highlight --------- */
+.vp-table table th.tip,
+.vp-table table td.tip,
+.vp-table table th.note,
+.vp-table table td.note {
+  color: var(--vp-c-tip-1);
+  background-color: var(--vp-c-tip-soft);
+}
+
+.vp-table table th.info,
+.vp-table table td.info {
+  color: var(--vp-c-default-1);
+  background-color: var(--vp-c-default-soft);
+}
+
+.vp-table table th.warning,
+.vp-table table td.warning {
+  color: var(--vp-c-warning-1);
+  background-color: var(--vp-c-warning-soft);
+}
+
+.vp-table table th.danger,
+.vp-table table td.danger,
+.vp-table table th.caution,
+.vp-table table td.caution {
+  color: var(--vp-c-danger-1);
+  background-color: var(--vp-c-danger-soft);
+}
+
+.vp-table table th.success,
+.vp-table table td.success {
+  color: var(--vp-c-success-1);
+  background-color: var(--vp-c-success-soft);
+}
+
+.vp-table table th.important,
+.vp-table table td.important {
+  color: var(--vp-c-important-1);
+  background-color: var(--vp-c-important-soft);
+}
 </style>

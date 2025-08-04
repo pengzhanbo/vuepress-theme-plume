@@ -81,14 +81,14 @@ const option = {
   ],
 }
 const timeId = setInterval(() => {
-  if (myChart._disposed)
+  if (echarts._disposed)
     return clearInterval(timeId)
 
   for (let i = 0; i < 5; i++) {
     data.shift()
     data.push(randomData())
   }
-  myChart.setOption({
+  echarts.setOption({
     series: [
       {
         data,

@@ -79,10 +79,61 @@ export default defineUserConfig({
 ::: field name="maxContent" type="boolean" optional default="false"
 行内元素不再自动换行，超出容器宽度时表格显示滚动条
 :::
+
+::: field name="hl-rows" type="string" optional
+配置表格中的行高亮。
+
+值使用 `type:row1,row2` 的格式，可以使用 `;` 组合多个 type row。
+
+示例：
+
+- `hl-rows="warning:1"`: 将第一行设置为 warning 颜色
+- `hl-rows="danger:1,2"`: 将第一行和第二行设置为 danger 颜色
+- `hl-rows="warning:1,2;danger:3,4"`: 将第一行和第二行设置为 warning 颜色，第三行和第四行设置为 danger 颜色
+
+`type` 内置支持：`tip/note/info/success/warning/danger/caution/important`。
+
+`row` 从 1 开始计数。
+:::
+
+::: field name="hl-cols" type="string" optional
+配置表格中的列高亮。
+
+值使用 `type:col1,col2` 的格式，可以使用 `;` 组合多个 type col。
+
+示例：
+
+- `hl-cols="warning:1"`: 将第一列设置为 warning 颜色
+- `hl-cols="danger:1,2"`: 将第一列和第二列设置为 danger 颜色
+- `hl-cols="warning:1,2;danger:3,4"`: 将第一列和第二列设置为 warning 颜色，第三列和第四列设置为 danger 颜色
+
+`type` 内置支持：`tip/note/info/success/warning/danger/caution/important`。
+
+`col` 从 1 开始计数。
+:::
+
+::: field name="hl-cells" type="string" optional
+配置表格中的单元格高亮。
+
+值使用 `type:(row,col)` 的格式，可以使用 `;` 组合多个 type cell。
+
+示例：
+
+- `hl-cells="warning:(1,1)"`: 将第一行第一列设置为 warning 颜色
+- `hl-cells="danger:(1,1)(2,2)"`: 将第一行第一列，第二行第二列设置为 danger 颜色
+- `hl-cells="warning:(1,1)(2,2);danger:(3,3)(4,4)"`: 将第一行第一列，第二行第二列设置为 warning 颜色，第三行第三列，第四行第四列设置为 danger 颜色
+
+`type` 内置支持：`tip/note/info/success/warning/danger/caution/important`。
+
+`row` 从 1 开始计数，`col` 从 1 开始计数。
+
+:::
 ::::
 
 ## 示例
 
+### 表格标题
+
 **输入：**
 
 ```md
@@ -104,6 +155,8 @@ export default defineUserConfig({
 | Row 2    | Data     | Info     |
 
 :::
+
+### 表格对齐
 
 **输入：**
 
@@ -127,6 +180,8 @@ export default defineUserConfig({
 
 :::
 
+### 表格内容宽度
+
 **输入：**
 
 ```md
@@ -147,5 +202,133 @@ export default defineUserConfig({
 |----|-----------------------------------------------------------------------------|--------------|
 | 1  | This is an extremely long description that should trigger text wrapping in most table implementations. | In Progress  |
 | 2  | Short text                                                                  | ✅ Completed |
+
+:::
+
+### 表格行高亮
+
+**输入：**
+
+```md
+::: table title="这是表格标题" hl-rows="tip:1;warning:2;important:3,4"
+| row1 | row1 | row1 |
+| ---- | ---- | ---- |
+| row2 | row2 | row2 |
+| row3 | row3 | row3 |
+| row4 | row4 | row4 |
+:::
+```
+
+**输出：**
+
+::: table title="这是表格标题" hl-rows="tip:1;warning:2;important:3,4"
+
+| row1 | row1 | row1 |
+| ---- | ---- | ---- |
+| row2 | row2 | row2 |
+| row3 | row3 | row3 |
+| row4 | row4 | row4 |
+
+:::
+
+### 表格列高亮
+
+**输入：**
+
+```md
+::: table title="这是表格标题" hl-cols="success:1;warning:2;danger:3,4"
+| col1 | col2 | col3 | col4 |
+| ---- | ---- | ---- | ---- |
+| col1 | col2 | col3 | col4 |
+| col1 | col2 | col3 | col4 |
+| col1 | col2 | col3 | col4 |
+:::
+```
+
+**输出：**
+
+::: table title="这是表格标题" hl-cols="success:1;warning:2;danger:3,4"
+
+| col1 | col2 | col3 | col4 |
+| ---- | ---- | ---- | ---- |
+| col1 | col2 | col3 | col4 |
+| col1 | col2 | col3 | col4 |
+| col1 | col2 | col3 | col4 |
+
+:::
+
+### 表格单元格高亮
+
+**输入：**
+
+```md
+::: table title="这是表格标题" hl-cells="danger:(1,1)(2,2);success:(3,3)(4,4);warning:(1,4)(2,3);important:(3,2)(4,1)"
+| (1,1) | (1,2) | (1,3) | (1,4) |
+| ----- | ----- | ----- | ----- |
+| (2,1) | (2,2) | (2,3) | (2,4) |
+| (3,1) | (3,2) | (3,3) | (3,4) |
+| (4,1) | (4,2) | (4,3) | (4,4) |
+:::
+```
+
+**输出：**
+
+::: table title="这是表格标题" hl-cells="danger:(1,1)(2,2);success:(3,3)(4,4);warning:(1,4)(2,3);important:(3,2)(4,1)"
+
+| (1,1) | (1,2) | (1,3) | (1,4) |
+| ----- | ----- | ----- | ----- |
+| (2,1) | (2,2) | (2,3) | (2,4) |
+| (3,1) | (3,2) | (3,3) | (3,4) |
+| (4,1) | (4,2) | (4,3) | (4,4) |
+
+:::
+
+## 自定义高亮类型
+
+在 [自定义 CSS 样式](../custom/style.md) 中，通过以下格式可以自定义高亮类型：
+
+```css
+.vp-table table th.type,
+.vp-table table td.type {
+  color: #000;
+  background-color: #fff;
+}
+```
+
+比如，添加一个 `blue` 的高亮类型:
+
+```css
+.vp-table table th.blue,
+.vp-table table td.blue {
+  color: #4a7cb9;
+  background-color: #a3c6e5;
+}
+```
+
+<style>
+.vp-table table th.blue,
+.vp-table table td.blue {
+  color: #4a7cb9;
+  background-color: #a3c6e5;
+}
+</style>
+
+然后就可以在表格中使用：
+
+```md
+::: table hl-rows="blue:1" hl-cols="blue:1" hl-cells="blue:(3,3)"
+| Header 1 | Header 2 | Header 3 |
+| -------- | -------- | -------- |
+| Cell 1   | Cell 2   | Cell 3   |
+| Cell 4   | Cell 5   | Cell 6   |
+:::
+```
+
+::: table hl-rows="blue:1" hl-cols="blue:1" hl-cells="blue:(3,3)"
+
+| Header 1 | Header 2 | Header 3 |
+| -------- | -------- | -------- |
+| Cell 1   | Cell 2   | Cell 3   |
+| Cell 4   | Cell 5   | Cell 6   |
 
 :::

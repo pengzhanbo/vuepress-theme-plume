@@ -43,8 +43,8 @@ docs:
     desc: 一个与计算机自学、校内生活、开放公共服务等相关的本地化大学指南。
     logo: https://docs.pguide.studio/logo.svg
     url: https://docs.pguide.studio
-    repo: https://github.com/LyrLark/PGuide-Docs
-    preview: https://github.com/Lyrlark/PGuide-Docs/blob/master/docs/.vuepress/public/src/cover.png
+    repo: https://github.com/PGuideDev/PGuide-Docs
+    preview: https://cos-global.pguide.cloud/pguide-docs/src/pguide-doc.png
   -
     name: 文档中心 ｜ 手感互动
     desc: 手感互动是一个专业的现场提问、投票和大屏互动平台，为讲师、主持人、会议组织者提供一站式互动解决方案

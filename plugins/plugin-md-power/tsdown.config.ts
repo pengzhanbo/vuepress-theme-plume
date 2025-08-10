@@ -1,6 +1,6 @@
 import type { Options, UserConfigFn } from 'tsdown'
 import { defineConfig } from 'tsdown'
-import { argv } from '../../scripts/tsup-args.js'
+import { argv } from '../../scripts/tsdown-args.js'
 
 const config = [
   { dir: 'composables', files: ['codeRepl.ts', 'pdf.ts', 'rustRepl.ts', 'size.ts', 'audio.ts', 'demo.ts'] },

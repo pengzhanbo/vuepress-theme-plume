@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
 import { defineConfig } from 'tsdown'
-import { argv } from '../scripts/tsup-args.js'
+import { argv } from '../scripts/tsdown-args.js'
 
 const sharedExternal: (string | RegExp)[] = [
   /.*\/shared\/index\.js$/,

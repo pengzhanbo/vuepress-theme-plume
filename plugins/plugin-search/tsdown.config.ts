@@ -1,6 +1,6 @@
 import type { Options, UserConfigFn } from 'tsdown'
 import { defineConfig } from 'tsdown'
-import { argv } from '../../scripts/tsup-args.js'
+import { argv } from '../../scripts/tsdown-args.js'
 
 const sharedExternal: (string | RegExp)[] = [
   /.*\/shared\/index\.js$/,

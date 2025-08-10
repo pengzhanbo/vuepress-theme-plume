@@ -1,12 +1,13 @@
-import type { Options, UserConfigFn } from 'tsdown'
 import { defineConfig } from 'tsdown'
-import { argv } from '../../scripts/tsdown-args.js'
+import { argv } from '../../scripts/tsdown-args.mjs'
 
-const sharedExternal: (string | RegExp)[] = [
+/** @import {Options} from 'tsdown' */
+
+const sharedExternal = [
   /.*\/shared\/index\.js$/,
 ]
 
-const clientExternal: (string | RegExp)[] = [
+const clientExternal = [
   ...sharedExternal,
   /^@internal/,
   /.*\.vue$/,
@@ -14,13 +15,15 @@ const clientExternal: (string | RegExp)[] = [
 ]
 
 export default defineConfig(() => {
-  const DEFAULT_OPTIONS: Options = {
+  /** @type {Options} */
+  const DEFAULT_OPTIONS = {
     dts: true,
     sourcemap: false,
     format: 'esm',
   }
 
-  const options: Options[] = []
+  /** @type {Options[]} */
+  const options = []
 
   // shared
   options.push({
@@ -77,4 +80,4 @@ export default defineConfig(() => {
   }
 
   return options
-}) as UserConfigFn
+})

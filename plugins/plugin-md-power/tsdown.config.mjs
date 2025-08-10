@@ -1,6 +1,7 @@
-import type { Options, UserConfigFn } from 'tsdown'
 import { defineConfig } from 'tsdown'
-import { argv } from '../../scripts/tsdown-args.js'
+import { argv } from '../../scripts/tsdown-args.mjs'
+
+/** @import {Options} from 'tsdown' */
 
 const config = [
   { dir: 'composables', files: ['codeRepl.ts', 'pdf.ts', 'rustRepl.ts', 'size.ts', 'audio.ts', 'demo.ts'] },
@@ -17,13 +18,16 @@ const clientExternal = [
 ]
 
 export default defineConfig((cli) => {
-  const DEFAULT_OPTIONS: Options = {
+  /** @type {Options}  */
+  const DEFAULT_OPTIONS = {
     dts: true,
     sourcemap: false,
     format: 'esm',
     clean: !cli.watch,
   }
-  const options: Options[] = []
+
+  /** @type {Options[]} */
+  const options = []
 
   // shared
   options.push({
@@ -48,7 +52,7 @@ export default defineConfig((cli) => {
       entry: files.map(file => `./src/client/${dir}/${file}`),
       outDir: `./lib/client/${dir}`,
       external: clientExternal,
-    }) as Options))
+    })))
   }
   return options
-}) as UserConfigFn
+})

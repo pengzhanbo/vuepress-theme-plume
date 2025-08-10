@@ -1,4 +1,3 @@
-import type { Options } from 'tsdown'
 import { defineConfig } from 'tsdown'
 
 export default defineConfig({
@@ -7,4 +6,4 @@ export default defineConfig({
   dts: true,
   format: 'esm',
   sourcemap: false,
-}) as Options
+})

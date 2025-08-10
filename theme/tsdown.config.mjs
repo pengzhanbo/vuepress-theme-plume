@@ -1,15 +1,16 @@
-import type { Options, UserConfigFn } from 'tsdown'
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
 import { defineConfig } from 'tsdown'
-import { argv } from '../scripts/tsdown-args.js'
+import { argv } from '../scripts/tsdown-args.mjs'
 
-const sharedExternal: (string | RegExp)[] = [
+/** @import {Options} from 'tsdown' */
+
+const sharedExternal = [
   /.*\/shared\/index\.js$/,
 ]
 
-const clientExternal: (string | RegExp)[] = [
+const clientExternal = [
   ...sharedExternal,
   /.*\.vue$/,
   /^@internal/,
@@ -23,7 +24,8 @@ const featuresComposables = fs.readdirSync(
 )
 
 export default defineConfig((cli) => {
-  const DEFAULT_OPTIONS: Options = {
+  /** @type {Options} */
+  const DEFAULT_OPTIONS = {
     dts: true,
     sourcemap: false,
     watch: cli.watch,
@@ -31,7 +33,8 @@ export default defineConfig((cli) => {
     silent: !!cli.watch,
     clean: !cli.watch,
   }
-  const options: Options[] = []
+  /** @type {Options[]} */
+  const options = []
 
   // shared
   options.push({
@@ -110,7 +113,7 @@ export default defineConfig((cli) => {
           ...featuresComposables.map(file => `./${file.replace('.ts', '.js')}`),
         ],
       })),
-    ] as Options[])
+    ])
   }
   return options
-}) as UserConfigFn
+})

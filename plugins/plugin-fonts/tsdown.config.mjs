@@ -1,19 +1,22 @@
-import type { Options, UserConfigFn } from 'tsdown'
 import { defineConfig } from 'tsdown'
-import { argv } from '../../scripts/tsdown-args.js'
+import { argv } from '../../scripts/tsdown-args.mjs'
 
-const clientExternal: (string | RegExp)[] = [
+/** @import {Options} from 'tsdown' */
+
+const clientExternal = [
   /.*\.vue$/,
   /.*\.css$/,
 ]
 
 export default defineConfig(() => {
-  const DEFAULT_OPTIONS: Options = {
+  /** @type {Options} */
+  const DEFAULT_OPTIONS = {
     dts: true,
     sourcemap: false,
     format: 'esm',
   }
-  const options: Options[] = []
+  /** @type {Options[]} */
+  const options = []
 
   if (argv.node) {
     options.push({
@@ -37,4 +40,4 @@ export default defineConfig(() => {
     ])
   }
   return options
-}) as UserConfigFn
+})

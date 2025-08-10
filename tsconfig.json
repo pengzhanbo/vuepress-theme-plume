@@ -14,7 +14,8 @@
     "plugins/**/*",
     "theme/**/*",
     "docs/.vuepress/**/*",
-    "cli/**/*"
+    "cli/**/*",
+    "scripts/**/*"
   ],
   "exclude": [
     "**/node_modules/**",

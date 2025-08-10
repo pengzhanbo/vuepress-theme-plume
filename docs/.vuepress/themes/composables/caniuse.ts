@@ -65,11 +65,11 @@ export function useCaniuseFeaturesSearch(
   inputEl: Ref<HTMLInputElement | null>,
   listEl: Ref<HTMLUListElement | null>,
 ): {
-    featureList: Ref<Feature[] | undefined>
-    isFocus: Ref<boolean>
-    feature: ComputedRef<string>
-    onSelect: (item: Feature) => void
-  } {
+  featureList: Ref<Feature[] | undefined>
+  isFocus: Ref<boolean>
+  feature: ComputedRef<string>
+  onSelect: (item: Feature) => void
+} {
   const features = useLocalStorage('plume:caniuse-feature-list', [] as Feature[])
   const featuresUpdated = useLocalStorage('plume:caniuse-feature-list-updated', Date.now())
   const maxAge = 1000 * 60 * 60 * 24 * 3 // 3 days
@@ -137,9 +137,9 @@ export function useCaniuse({ feature, embedType, past, future }: {
   past: Ref<string>
   future: Ref<string>
 }): {
-    output: ComputedRef<string>
-    rendered: ComputedRef<string>
-  } {
+  output: ComputedRef<string>
+  rendered: ComputedRef<string>
+} {
   const output = computed(() => {
     let content = '@[caniuse'
     if (embedType.value)

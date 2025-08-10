@@ -11,10 +11,10 @@ export function detectThemeOptions({
   configFile,
   ...themeOptions
 }: ThemeOptions): {
-    configFile: string | undefined
-    plugins: ThemeBuiltinPlugins
-    themeOptions: Omit<ThemeOptions, 'plugins' | 'configFile'>
-  } {
+  configFile: string | undefined
+  plugins: ThemeBuiltinPlugins
+  themeOptions: Omit<ThemeOptions, 'plugins' | 'configFile'>
+} {
   detectDependencies(themeOptions, plugins)
 
   // detect options

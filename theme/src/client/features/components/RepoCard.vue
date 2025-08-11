@@ -3,9 +3,10 @@ import { toRef } from 'vue'
 import { ClientOnly } from 'vuepress/client'
 import { useGithubRepo } from '../composables/github-repo.js'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   repo: string
-}>()
+  fullname?: boolean
+}>(), { fullname: undefined })
 const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
 </script>
 
@@ -16,7 +17,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
         <span class="vpi-github-repo" />
         <span class="repo-link">
           <a :href="data.url" target="_blank" rel="noopener noreferrer" class="no-icon" :title="data.fullName">
-            {{ data.ownerType === 'Organization' ? data.fullName : data.name }}
+            {{ fullname || (data.ownerType === 'Organization' && typeof fullname === 'undefined') ? data.fullName : data.name }}
           </a>
         </span>
         <span class="repo-visibility">{{ data.visibility + (data.template ? ' Template' : '') }}</span>

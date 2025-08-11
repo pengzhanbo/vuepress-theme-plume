@@ -19,6 +19,7 @@ export interface GithubRepoInfo {
   watchers: number
   language: string
   languageColor: string
+  archived: boolean
   visibility: 'Private' | 'Public' // private, public
   template: boolean
   ownerType: 'User' | 'Organization'

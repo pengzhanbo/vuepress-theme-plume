@@ -54,6 +54,15 @@ export default defineClientConfig({
 仓库地址，格式为 `owner/repo`
 :::
 
+::: field name="fullname" type="boolean" optional
+是否显示完整的仓库名称。
+
+完整的仓库名称为 `owner/repo`。
+
+- 如果 owner 为个人，则默认不显示完整的仓库名称，仅显示 `repo`。
+- 如果 owner 为组织，则默认显示完整的仓库名称。
+:::
+
 ::::
 
 ## 示例

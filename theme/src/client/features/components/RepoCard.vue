@@ -20,7 +20,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
             {{ fullname || (data.ownerType === 'Organization' && typeof fullname === 'undefined') ? data.fullName : data.name }}
           </a>
         </span>
-        <span class="repo-visibility">{{ data.visibility + (data.template ? ' Template' : '') }}</span>
+        <span class="repo-visibility" :class="{ archived: data.archived }">{{ data.visibility + (data.template ? ' Template' : '') }}{{ data.archived ? ' archive' : '' }}</span>
       </p>
       <p class="repo-desc">
         {{ data.description }}
@@ -102,6 +102,11 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
   border: solid 1px var(--vp-c-divider);
   border-radius: 22px;
   transition: color var(--vp-t-color), border var(--vp-t-color);
+}
+
+.vp-repo-card .repo-visibility.archived {
+  color: var(--vp-c-warning-1);
+  border-color: var(--vp-c-warning-2);
 }
 
 .vp-repo-card .repo-desc {

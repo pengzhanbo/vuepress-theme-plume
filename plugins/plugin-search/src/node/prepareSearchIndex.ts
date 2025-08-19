@@ -147,14 +147,25 @@ ${page.contentRendered}`
       break
     const { anchor, text, titles } = section
     const id = anchor ? [fileId, anchor].join('#') : fileId
-    const item = {
-      id,
-      text,
-      title: titles.at(-1)!,
-      titles: titles.slice(0, -1),
+
+    if (index.has(id)) {
+      if (anchor) {
+        logger.error(`${colors.green('[@vuepress-plume/plugin-search]')} duplicate heading anchor : ${colors.cyan(titles.join(' >> '))} \n at ${colors.cyan(fileId)}`)
+      }
+      else {
+        logger.error(`${colors.green('[@vuepress-plume/plugin-search]')} duplicate page permalink : ${colors.cyan(fileId)}`)
+      }
     }
-    index.add(item)
-    cache.push(item)
+    else {
+      const item = {
+        id,
+        text,
+        title: titles.at(-1)!,
+        titles: titles.slice(0, -1),
+      }
+      index.add(item)
+      cache.push(item)
+    }
   }
 }
 

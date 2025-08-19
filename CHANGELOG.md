@@ -1,3 +1,14 @@
+# [1.0.0-rc.161](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.160...v1.0.0-rc.161) (2025-08-19)
+
+
+### Features
+
+* **plugin-search:** optimize search index logger ([#676](https://github.com/pengzhanbo/vuepress-theme-plume/issues/676)) ([22a5f10](https://github.com/pengzhanbo/vuepress-theme-plume/commit/22a5f10addb7298429345105d64a7fe276130cd6))
+* **theme:** add `fullname` prop support for `RepoCard`, close [#669](https://github.com/pengzhanbo/vuepress-theme-plume/issues/669) ([#670](https://github.com/pengzhanbo/vuepress-theme-plume/issues/670)) ([49d84dc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/49d84dcfb4d9d70fde97e91bb556c44e1fea518e))
+* **theme:** add gitee provider support for repocard, close [#674](https://github.com/pengzhanbo/vuepress-theme-plume/issues/674) ([#675](https://github.com/pengzhanbo/vuepress-theme-plume/issues/675)) ([94e755c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/94e755c4228cf7b5542ef7fd5e81806f8297d434))
+
+
+
 # [1.0.0-rc.160](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.159...v1.0.0-rc.160) (2025-08-04)
 
 

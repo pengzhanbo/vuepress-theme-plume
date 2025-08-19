@@ -58,7 +58,6 @@ function focusOnTargetAnchor({ target }: Event) {
 .vp-skip-link:focus {
   width: auto;
   height: auto;
-  clip: auto;
   clip-path: none;
 }
 

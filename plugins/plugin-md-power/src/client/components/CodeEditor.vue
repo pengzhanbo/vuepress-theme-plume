@@ -118,7 +118,7 @@ onUnmounted(() => {
   color: transparent;
   text-align: left;
   word-break: normal;
-  word-wrap: normal;
+  overflow-wrap: normal;
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;

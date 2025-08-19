@@ -95,7 +95,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
   font-size: 14px;
   line-height: 1;
   color: var(--vp-tag-color);
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   cursor: pointer;
   background-color: var(--vp-tag-bg);
   border: 1px solid var(--vp-tag-bg);

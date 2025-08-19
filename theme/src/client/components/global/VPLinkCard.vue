@@ -97,7 +97,7 @@ defineProps<{
   display: inline-block;
   flex: 1 2;
   min-width: 0;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .vpi-arrow-right {

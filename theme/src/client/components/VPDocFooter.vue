@@ -189,7 +189,7 @@ const showFooter = computed(() => {
 
 .prev-next {
   display: grid;
-  grid-row-gap: 8px;
+  row-gap: 8px;
   padding-top: 24px;
   margin-top: 10px;
   border-top: 1px solid var(--vp-c-divider);
@@ -199,7 +199,7 @@ const showFooter = computed(() => {
 @media (min-width: 640px) {
   .prev-next {
     grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 16px;
+    column-gap: 16px;
   }
 }
 

@@ -2,12 +2,12 @@ import type { MaybeRef, Ref } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
 import { computed, ref, toValue, watch } from 'vue'
 
-interface GithubRepoLicense {
+interface RepoLicense {
   name: string
   url: string
 }
 
-export interface GithubRepoInfo {
+export interface RepoInfo {
   name: string
   fullName: string
   description: string
@@ -23,7 +23,7 @@ export interface GithubRepoInfo {
   visibility: 'Private' | 'Public' // private, public
   template: boolean
   ownerType: 'User' | 'Organization'
-  license: GithubRepoLicense | null
+  license: RepoLicense | null
 }
 
 /**
@@ -31,31 +31,36 @@ export interface GithubRepoInfo {
  * 默认缓存 6 小时 时间
  */
 const storage = useLocalStorage('__VUEPRESS_GITHUB_REPO__', {} as Record<string, {
-  info: GithubRepoInfo
+  info: RepoInfo
   updatedAt: number
 }>)
 
 interface UseGithubRepoResult {
-  data: Ref<GithubRepoInfo | null>
+  data: Ref<RepoInfo | null>
   loaded: Ref<boolean>
 }
 
-export function useGithubRepo(repo: MaybeRef<string>): UseGithubRepoResult {
+export function useGithubRepo(
+  repo: MaybeRef<string>,
+  provider: MaybeRef<'github' | 'gitee' | undefined>,
+): UseGithubRepoResult {
   const repoRef = computed(() => {
     const info = toValue(repo)
     const [owner = '', name = ''] = info.split('/')
     return { owner, name }
   })
-  const data = ref<GithubRepoInfo | null>(null)
+  const providerRef = computed(() => toValue(provider) ?? 'github')
+
+  const data = ref<RepoInfo | null>(null)
   const loaded = ref(false)
 
   async function fetchData() {
-    const { owner, name } = repoRef.value
+    const { owner, name } = toValue(repoRef)
     if (__VUEPRESS_SSR__ || !owner || !name)
       return
 
-    const key = `${owner}/${name}`
-    const cached = storage.value[`${owner}/${name}`]
+    const key = `${providerRef.value === 'github' ? '' : `${providerRef.value}:`}${owner}/${name}`
+    const cached = storage.value[key]
     if (cached?.info?.name && Date.now() - cached.updatedAt <= 86400000) {
       data.value = cached.info
       loaded.value = true
@@ -64,8 +69,8 @@ export function useGithubRepo(repo: MaybeRef<string>): UseGithubRepoResult {
 
     loaded.value = false
     try {
-      const res = await fetch(`https://api.pengzhanbo.cn/github/repo/${owner}/${name}`)
-        .then(res => res.json()) as GithubRepoInfo
+      const res = await fetch(`https://api.pengzhanbo.cn/${providerRef.value}/repo/${owner}/${name}`)
+        .then(res => res.json()) as RepoInfo
 
       loaded.value = true
 

@@ -1,20 +1,21 @@
 <script setup lang="ts">
 import { toRef } from 'vue'
 import { ClientOnly } from 'vuepress/client'
-import { useGithubRepo } from '../composables/github-repo.js'
+import { useGithubRepo } from '../composables/repo.js'
 
 const props = withDefaults(defineProps<{
   repo: string
   fullname?: boolean
-}>(), { fullname: undefined })
-const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
+  provider?: 'github' | 'gitee'
+}>(), { fullname: undefined, provider: 'github' })
+const { loaded, data } = useGithubRepo(toRef(props, 'repo'), toRef(props, 'provider'))
 </script>
 
 <template>
   <ClientOnly>
     <div v-if="loaded && data?.name" class="vp-repo-card">
       <p class="repo-name">
-        <span class="vpi-github-repo" />
+        <span :class="`vpi-${provider}-repo`" />
         <span class="repo-link">
           <a :href="data.url" target="_blank" rel="noopener noreferrer" class="no-icon" :title="data.fullName">
             {{ fullname || (data.ownerType === 'Organization' && typeof fullname === 'undefined') ? data.fullName : data.name }}
@@ -67,10 +68,10 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
 
 .vp-repo-card .repo-name {
   display: flex;
-  gap: 0 8px;
+  gap: 0 6px;
   align-items: center;
   max-width: 100%;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .vp-repo-card .repo-link {
@@ -96,7 +97,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
 .vp-repo-card .repo-visibility {
   display: inline-block;
   padding: 0 8px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 20px;
   color: var(--vp-c-text-2);
   border: solid 1px var(--vp-c-divider);
@@ -111,8 +112,8 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
 
 .vp-repo-card .repo-desc {
   flex: 1 2;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 12px;
+  line-height: 18px;
   color: var(--vp-c-text-2);
   transition: color var(--vp-t-color);
 }
@@ -123,7 +124,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
   gap: 8px 14px;
   align-items: center;
   justify-content: flex-start;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .vp-repo-card .repo-info p {
@@ -146,6 +147,14 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'))
   width: 0.8em;
   height: 0.8em;
   border-radius: 100%;
+}
+
+.vpi-gitee-repo {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23c71d23' d='M11.984 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12a12 12 0 0 0 12-12A12 12 0 0 0 12 0zm6.09 5.333c.328 0 .593.266.592.593v1.482a.594.594 0 0 1-.593.592H9.777c-.982 0-1.778.796-1.778 1.778v5.63c0 .327.266.592.593.592h5.63c.982 0 1.778-.796 1.778-1.778v-.296a.593.593 0 0 0-.592-.593h-4.15a.59.59 0 0 1-.592-.592v-1.482a.593.593 0 0 1 .593-.592h6.815c.327 0 .593.265.593.592v3.408a4 4 0 0 1-4 4H5.926a.593.593 0 0 1-.593-.593V9.778a4.444 4.444 0 0 1 4.445-4.444h8.296Z'/%3E%3C/svg%3E");
+
+  color: #c71d23;
+  transition: color var(--vp-t-color);
+  transform: translateY(2px);
 }
 
 .vpi-github-repo {

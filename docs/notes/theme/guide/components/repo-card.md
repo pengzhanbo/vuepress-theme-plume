@@ -11,7 +11,7 @@ import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
 
 ## 概述
 
-Repo 卡片组件 用于显示 GitHub 仓库信息。
+Repo 卡片组件 用于显示 GitHub / Gitee 仓库信息。
 
 ## 使用
 
@@ -52,6 +52,10 @@ export default defineClientConfig({
 
 ::: field name="repo" type="string" required
 仓库地址，格式为 `owner/repo`
+:::
+
+::: field name="provider" type="github | gitee" optional default="'github'"
+仓库所属平台，当前仅支持 `github / gitee` 。
 :::
 
 ::: field name="fullname" type="boolean" optional
@@ -97,4 +101,20 @@ export default defineClientConfig({
 <CardGrid>
   <RepoCard repo="vuepress/core" />
   <RepoCard repo="vuepress/ecosystem" />
+</CardGrid>
+
+**输入：**
+
+```md
+<CardGrid>
+  <RepoCard repo="pengzb/vuepress-theme-plume" provider="gitee" />
+  <RepoCard repo="pengzb/vite-plugin-mock-dev-server" provider="gitee" />
+</CardGrid>
+```
+
+**输出：**
+
+<CardGrid>
+  <RepoCard repo="pengzb/vuepress-theme-plume" provider="gitee" />
+  <RepoCard repo="pengzb/vite-plugin-mock-dev-server" provider="gitee" />
 </CardGrid>

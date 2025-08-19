@@ -5,9 +5,9 @@ packages:
   - plugins/*
   - examples/*
 overrides:
-  '@bufbuild/protobuf': ^2.6.3
-  '@typescript-eslint/utils': ^8.39.0
-  esbuild: ^0.25.8
+  '@bufbuild/protobuf': ^2.7.0
+  '@typescript-eslint/utils': ^8.40.0
+  esbuild: ^0.25.9
   sass-embedded: ^1.90.0
 
 patchedDependencies:
@@ -17,8 +17,8 @@ catalogs:
   dev:
     '@commitlint/cli': ^19.8.1
     '@commitlint/config-conventional': ^19.8.1
-    '@pengzhanbo/eslint-config-vue': ^1.34.0
-    '@pengzhanbo/stylelint-config': ^1.34.0
+    '@pengzhanbo/eslint-config-vue': ^1.36.0
+    '@pengzhanbo/stylelint-config': ^1.36.0
     '@simonwep/pickr': ^1.9.1
     '@types/express': ^5.0.3
     '@types/js-yaml': ^4.0.9
@@ -26,11 +26,11 @@ catalogs:
     '@types/lodash.merge': ^4.6.9
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^24.2.1
+    '@types/node': ^24.3.0
     '@types/stylus': ^0.48.43
     '@types/webpack-env': ^1.18.8
     '@vitest/coverage-istanbul': ^3.2.4
-    bumpp: ^10.2.2
+    bumpp: ^10.2.3
     commitizen: ^4.3.1
     conventional-changelog-cli: ^5.0.0
     cpx2: ^8.0.0
@@ -39,36 +39,36 @@ catalogs:
     eslint: ^9.33.0
     http-server: ^14.1.1
     husky: ^9.1.7
-    less: ^4.4.0
+    less: ^4.4.1
     lint-staged: ^16.1.5
     markdown-it: ^14.1.0
-    memfs: ^4.36.0
-    mermaid: ^11.9.0
+    memfs: ^4.36.3
+    mermaid: ^11.10.0
     minimist: ^1.2.8
     postcss: ^8.5.6
     rimraf: ^6.0.1
     stylelint: ^16.23.1
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.14.0
+    tsdown: ^0.14.1
     typescript: ^5.9.2
     vitest: ^3.2.4
     vue-router: ^4.5.1
     wait-on: ^8.0.4
   peer:
-    '@iconify/json': ^2.2.368
+    '@iconify/json': ^2.2.376
     artplayer: ^5.2.5
     dashjs: ^5.0.3
-    hls.js: ^1.6.9
+    hls.js: ^1.6.10
     mathjax-full: ^3.2.2
     mpegts.js: 1.7.3
-    pyodide: ^0.28.1
+    pyodide: ^0.28.2
     sass: ^1.90.0
     sass-embedded: ^1.90.0
     swiper: ^11.2.10
   prod:
     '@clack/prompts': ^0.11.0
-    '@iconify/utils': ^3.0.0
+    '@iconify/utils': ^3.0.1
     '@iconify/vue': ^5.0.0
     '@mdit/plugin-attrs': ^0.23.1
     '@mdit/plugin-footnote': ^0.22.2
@@ -78,8 +78,8 @@ catalogs:
     '@mdit/plugin-tab': ^0.22.2
     '@mdit/plugin-tasklist': ^0.22.1
     '@pengzhanbo/utils': ^2.1.0
-    '@vueuse/core': ^13.6.0
-    '@vueuse/integrations': ^13.6.0
+    '@vueuse/core': ^13.7.0
+    '@vueuse/integrations': ^13.7.0
     bcrypt-ts: ^7.1.0
     cac: ^6.7.14
     chart.js: ^4.5.0
@@ -87,7 +87,7 @@ catalogs:
     create-filter: ^1.1.0
     dayjs: ^1.11.13
     echarts: ^6.0.0
-    esbuild: ^0.25.8
+    esbuild: ^0.25.9
     fast-glob: ^3.3.3
     flowchart.ts: ^3.0.1
     focus-trap: ^7.6.5
@@ -110,9 +110,9 @@ catalogs:
     p-map: ^7.0.3
     package-manager-detector: ^1.3.0
     picocolors: ^1.1.1
-    shiki: ^3.9.2
+    shiki: ^3.10.0
     tinyglobby: 0.2.13
-    tm-grammars: ^1.24.2
+    tm-grammars: ^1.24.4
     tm-themes: ^1.10.7
     vue: ^3.5.18
   vuepress:

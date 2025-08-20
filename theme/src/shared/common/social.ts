@@ -14,6 +14,7 @@ export type SocialLinkIcon = SocialLinkIconUnion | { svg: string, name?: string 
 
 export type SocialLinkIconUnion
   = | 'discord'
+    | 'telegram'
     | 'facebook'
     | 'github'
     | 'instagram'

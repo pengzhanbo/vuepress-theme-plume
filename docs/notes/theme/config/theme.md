@@ -569,6 +569,7 @@ export default defineUserConfig({
   - `'npm'`
   - `'docker'`
   - `'discord'`
+  - `'telegram'`
   - `'facebook'`
   - `'instagram'`
   - `'linkedin'`

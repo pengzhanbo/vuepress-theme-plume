@@ -54,6 +54,7 @@ const {
   flex-direction: column;
   gap: 16px;
   margin: 0 auto;
+  max-width: 100%;
 }
 
 @media (min-width: 419px) {

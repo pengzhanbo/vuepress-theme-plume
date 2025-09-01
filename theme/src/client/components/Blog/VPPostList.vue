@@ -53,8 +53,8 @@ const {
   flex: 1 2;
   flex-direction: column;
   gap: 16px;
-  margin: 0 auto;
   max-width: 100%;
+  margin: 0 auto;
 }
 
 @media (min-width: 419px) {

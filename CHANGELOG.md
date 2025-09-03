@@ -1,3 +1,23 @@
+# [1.0.0-rc.162](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.161...v1.0.0-rc.162) (2025-09-03)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** incorrect rending of `footnote` in `annotation` ([#686](https://github.com/pengzhanbo/vuepress-theme-plume/issues/686)) ([2c39edf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2c39edf849a01d40e319e6866298c1d1444d7a8a))
+
+
+### Features
+
+* **theme:** add telegram social icon ([#678](https://github.com/pengzhanbo/vuepress-theme-plume/issues/678)) ([0da7055](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0da7055c2bac0c00bc69cca05159c6ddcba0a248))
+* **theme:** make blog post list responsive to screen width ([#685](https://github.com/pengzhanbo/vuepress-theme-plume/issues/685)) ([46b2da2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/46b2da25a66cdba215b236b296c1ff8a988501cd))
+
+
+### Performance Improvements
+
+* update deps to latest ([cfc9cef](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cfc9cefe789ee51eca69294d1ed81099486e30cd))
+
+
+
 # [1.0.0-rc.161](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.160...v1.0.0-rc.161) (2025-08-19)
 
 

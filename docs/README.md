@@ -171,6 +171,8 @@ npm run docs:dev
     { github: 'sunnyboy-mu', name: '小沐沐吖' },
     { github: 'zhenghaoyang24', name: 'zhenghaoyang24' },
     { github: 'shuoliuchn', name: 'Shuo Liu' },
+    'Hammuu1112',
+    'SherkeyXD',
   ]"
 />
 

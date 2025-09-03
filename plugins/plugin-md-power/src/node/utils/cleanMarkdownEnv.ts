@@ -6,13 +6,16 @@ export interface CleanMarkdownEnv extends MarkdownEnv {
   annotations?: unknown
 }
 
-export function cleanMarkdownEnv(env: CleanMarkdownEnv): CleanMarkdownEnv {
-  return {
-    base: env.base,
-    filePath: env.filePath,
-    filePathRelative: env.filePathRelative,
-    references: env.references,
-    abbreviations: env.abbreviations,
-    annotations: env.annotations,
+const WHITE_LIST = ['base', 'filePath', 'filePathRelative', 'references', 'abbreviations', 'annotations'] as const
+
+type WhiteListUnion = (typeof WHITE_LIST)[number]
+
+export function cleanMarkdownEnv(env: CleanMarkdownEnv, excludes: WhiteListUnion[] = []): CleanMarkdownEnv {
+  const result: CleanMarkdownEnv = {}
+  for (const key of WHITE_LIST) {
+    if (excludes.includes(key))
+      continue
+    result[key] = env[key] as string
   }
+  return result
 }

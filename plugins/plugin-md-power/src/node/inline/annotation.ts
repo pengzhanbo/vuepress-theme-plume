@@ -4,6 +4,7 @@ import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
 import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs'
 import type StateInline from 'markdown-it/lib/rules_inline/state_inline.mjs'
 import type Token from 'markdown-it/lib/token.mjs'
+import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv'
 
 interface AnnotationToken extends Token {
   meta: {
@@ -165,7 +166,7 @@ export const annotationPlugin: PluginSimple = (md) => {
 
     return `<Annotation label="${label}" :total="${data.sources.length}">${
       data.sources.map((source, i) => {
-        const annotation = data.rendered[i] ??= md.render(source, env)
+        const annotation = data.rendered[i] ??= md.render(source, cleanMarkdownEnv(env, ['references']))
         return `<template #item-${i}>${annotation}</template>`
       }).join('')
     }</Annotation>`

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { VNode } from 'vue'
 import { useDebounceFn, useMediaQuery, useResizeObserver } from '@vueuse/core'
-import { cloneVNode, computed, markRaw, mergeProps, nextTick, onMounted, shallowRef, useId, watch } from 'vue'
+import { cloneVNode, computed, markRaw, mergeProps, nextTick, onMounted, ref, shallowRef, useId, watch } from 'vue'
 
 const props = withDefaults(defineProps<{
   cols?: number | { sm?: number, md?: number, lg?: number }
@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<{
 const slots = defineSlots<{ default: () => VNode[] | null }>()
 const uuid = useId()
 
+const columnsLength = ref(3)
 const isMd = useMediaQuery('(min-width: 640px)')
 const isLg = useMediaQuery('(min-width: 960px)')
 
@@ -26,10 +27,7 @@ const rawList = computed(() => {
   )
 })
 
-const columnsLength = computed<number>(() => {
-  if (__VUEPRESS_SSR__)
-    return 3
-
+function resolveColumnsLength() {
   let length = 1
   if (typeof props.cols === 'number') {
     length = props.cols
@@ -43,8 +41,8 @@ const columnsLength = computed<number>(() => {
       length = props.cols.sm || 2
   }
 
-  return Number(length)
-})
+  columnsLength.value = Number(length)
+}
 
 const columnsList = shallowRef<VNode[][]>([])
 const masonry = shallowRef<HTMLDivElement>()
@@ -72,6 +70,8 @@ async function drawColumns() {
 onMounted(() => {
   if (__VUEPRESS_SSR__)
     return
+
+  watch(() => [isMd.value, isLg.value, props.cols], resolveColumnsLength, { immediate: true })
 
   drawColumns()
   const debounceDraw = useDebounceFn(drawColumns)

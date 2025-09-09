@@ -173,6 +173,7 @@ npm run docs:dev
     { github: 'shuoliuchn', name: 'Shuo Liu' },
     'Hammuu1112',
     'SherkeyXD',
+    { github: 'Kinneyzhang', name: 'Geekinney' },
   ]"
 />
 

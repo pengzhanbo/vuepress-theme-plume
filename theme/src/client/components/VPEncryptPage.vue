@@ -2,7 +2,7 @@
 import VPEncryptForm from '@theme/VPEncryptForm.vue'
 import { useData } from '../composables/index.js'
 
-const { theme } = useData()
+const { theme, frontmatter } = useData<'post'>()
 </script>
 
 <template>
@@ -11,7 +11,7 @@ const { theme } = useData()
       <div class="logo">
         <span class="vpi-lock icon-lock-head" />
       </div>
-      <VPEncryptForm :info="theme.encryptPageText" />
+      <VPEncryptForm :info="frontmatter.passwordHint || theme.encryptPageText" />
     </div>
   </ClientOnly>
 </template>

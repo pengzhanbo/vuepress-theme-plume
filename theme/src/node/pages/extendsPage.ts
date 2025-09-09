@@ -2,6 +2,7 @@ import type { Page } from 'vuepress/core'
 import type { ThemePageData } from '../../shared/index.js'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { autoCategory } from './autoCategory.js'
+import { encryptPage } from './encryptPage.js'
 import { enableBulletin } from './pageBulletin.js'
 
 export function extendsPageData(
@@ -9,6 +10,7 @@ export function extendsPageData(
 ): void {
   const options = getThemeConfig()
   cleanPageData(page)
+  encryptPage(page)
   autoCategory(page, options)
   enableBulletin(page, options)
 }
@@ -29,11 +31,6 @@ function cleanPageData(page: Page<ThemePageData>) {
     page.frontmatter.pageLayout = 'home'
     delete page.frontmatter.home
   }
-
-  // if (page.frontmatter.article === false) {
-  //   page.frontmatter.draft = true
-  // }
-  // delete page.frontmatter.article
 
   if (page.headers) {
     page.data.headers = []

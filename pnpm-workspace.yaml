@@ -6,9 +6,9 @@ packages:
   - examples/*
 overrides:
   '@bufbuild/protobuf': ^2.7.0
-  '@typescript-eslint/utils': ^8.42.0
+  '@typescript-eslint/utils': ^8.43.0
   esbuild: ^0.25.9
-  sass-embedded: ^1.92.0
+  sass-embedded: ^1.92.1
 
 patchedDependencies:
   floating-vue: patches/floating-vue.patch
@@ -26,7 +26,7 @@ catalogs:
     '@types/lodash.merge': ^4.6.9
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^24.3.0
+    '@types/node': ^24.3.1
     '@types/stylus': ^0.48.43
     '@types/webpack-env': ^1.18.8
     '@vitest/coverage-istanbul': ^3.2.4
@@ -36,35 +36,35 @@ catalogs:
     cpx2: ^8.0.0
     cross-env: 7.0.3
     cz-conventional-changelog: ^3.3.0
-    eslint: ^9.34.0
+    eslint: ^9.35.0
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.4.1
     lint-staged: ^16.1.6
     markdown-it: ^14.1.0
-    memfs: ^4.38.2
-    mermaid: ^11.10.1
+    memfs: ^4.38.3
+    mermaid: ^11.11.0
     minimist: ^1.2.8
     postcss: ^8.5.6
     rimraf: ^6.0.1
-    stylelint: ^16.23.1
+    stylelint: ^16.24.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.14.2
+    tsdown: ^0.15.0
     typescript: ^5.9.2
     vitest: ^3.2.4
     vue-router: ^4.5.1
     wait-on: ^8.0.4
   peer:
-    '@iconify/json': ^2.2.380
-    artplayer: ^5.2.5
+    '@iconify/json': ^2.2.382
+    artplayer: ^5.3.0
     dashjs: ^5.0.3
-    hls.js: ^1.6.11
+    hls.js: ^1.6.12
     mathjax-full: ^3.2.2
     mpegts.js: 1.7.3
     pyodide: ^0.28.2
-    sass: ^1.92.0
-    sass-embedded: ^1.92.0
+    sass: ^1.92.1
+    sass-embedded: ^1.92.1
     swiper: ^11.2.10
   prod:
     '@clack/prompts': ^0.11.0
@@ -97,14 +97,14 @@ catalogs:
     js-yaml: ^4.1.0
     katex: ^0.16.22
     local-pkg: ^1.1.2
-    lru-cache: ^11.1.0
+    lru-cache: ^11.2.1
     mark.js: ^8.11.1
     markdown-it-container: ^4.0.0
     markmap-lib: ^0.18.12
     markmap-toolbar: ^0.18.12
     markmap-view: ^0.18.12
     minisearch: ^7.1.2
-    nano-spawn: ^1.0.2
+    nano-spawn: ^1.0.3
     nanoid: ^5.1.5
     os-locale: ^6.0.2
     p-map: ^7.0.3
@@ -112,7 +112,7 @@ catalogs:
     picocolors: ^1.1.1
     shiki: ^3.12.2
     tinyglobby: 0.2.13
-    tm-grammars: ^1.24.8
+    tm-grammars: ^1.24.11
     tm-themes: ^1.10.9
     vue: ^3.5.21
   vuepress:

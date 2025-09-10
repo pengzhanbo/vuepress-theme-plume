@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type ArtPlayer from 'artplayer'
-import type { Option as ArtPlayerInitOptions } from 'artplayer/types/option.js'
+import type { Option as ArtPlayerInitOptions } from 'artplayer'
 import { isLinkHttp } from '@vuepress/helper/client'
 import { useCssVar } from '@vueuse/core'
 import { onMounted, onUnmounted, ref, toRefs } from 'vue'

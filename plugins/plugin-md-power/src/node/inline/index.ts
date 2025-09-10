@@ -40,11 +40,8 @@ export function inlineSyntaxPlugin(
     md.use(abbrPlugin)
   }
 
-  if (
-    options.plot === true
-    || (isPlainObject(options.plot) && options.plot.tag !== false)
-  ) {
-    // !!plot!!
+  // !!plot!!
+  if (options.plot === true || isPlainObject(options.plot)) {
     md.use(plotPlugin)
   }
 }

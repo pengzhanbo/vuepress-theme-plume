@@ -89,6 +89,9 @@ export function setupEncrypt(): void {
   const hasPageEncrypt = computed(() => {
     const pagePath = route.path
     const filePathRelative = page.value.filePathRelative
+    if (page.value._e)
+      return true
+
     return encrypt.value.ruleList.length
       ? encrypt.value.matches.some(match => toMatch(match, pagePath, filePathRelative))
       : false
@@ -106,10 +109,16 @@ export function setupEncrypt(): void {
   const hashList = computed(() => {
     const pagePath = route.path
     const filePathRelative = page.value.filePathRelative
-    return encrypt.value.ruleList.length
+    const passwords = typeof page.value._e === 'string' ? page.value._e.split(':') : []
+    const pageRule: EncryptDataRule | undefined = passwords.length
+      ? { key: pagePath.replace(/\//g, '').replace(/\.html$/, ''), match: pagePath, rules: passwords }
+      : undefined
+    const rules = encrypt.value.ruleList.length
       ? encrypt.value.ruleList
           .filter(item => toMatch(item.match, pagePath, filePathRelative))
       : []
+
+    return [pageRule, ...rules].filter(Boolean) as EncryptDataRule[]
   })
 
   const isPageDecrypted = computed(() => {

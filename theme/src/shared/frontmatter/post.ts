@@ -52,6 +52,16 @@ export interface ThemePostFrontmatter extends ThemePageFrontmatter {
    * 版权信息
    */
   copyright?: boolean | CopyrightLicense | CopyrightFrontmatter
+
+  /**
+   * 文章加密密码
+   */
+  password?: string | string[]
+
+  /**
+   * 文章加密密码提示文本
+   */
+  passwordHint?: string
 }
 
 export interface CopyrightFrontmatter extends CopyrightOptions {

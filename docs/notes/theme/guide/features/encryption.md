@@ -89,13 +89,34 @@ export default defineUserConfig({
 - 使用 `encrypt.admin` 解锁后，被认为是管理员访问，其它未解锁页面也默认解锁。
 :::
 
+### Frontmatter
+
+在 Markdown 文件的 `Frontmatter` 中，可以使用 `password` 设置文章的密码。
+
+```md
+---
+title: 加密的文章
+password: 123456
+---
+```
+
+还可以添加 `passwordHint` 选项，用于设置密码提示信息。
+
+```md
+---
+title: 加密的文章
+password: 123456
+passwordHint: 密码是 123456
+---
+```
+
 ## 示例
 
 点击访问 [加密文章，密码：123456](/article/enx7c9s/)
 
 ## 相关配置
 
-以下配置支持在多语言配置中使用。
+以下配置支持在 [多语言配置](../../config/locales.md) 中使用。
 
 ### encryptGlobalText
 

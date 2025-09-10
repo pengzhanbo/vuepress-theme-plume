@@ -2,10 +2,9 @@ import type { App } from 'vuepress'
 import type { Page } from 'vuepress/core'
 import type { EncryptOptions, ThemePageData } from '../../shared/index.js'
 import type { FsCache } from '../utils/index.js'
-import { isNumber, isString, random, toArray } from '@pengzhanbo/utils'
-import { genSaltSync, hashSync } from 'bcrypt-ts'
+import { isNumber, isString, toArray } from '@pengzhanbo/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { createFsCache, hash, perf, resolveContent, writeTemp } from '../utils/index.js'
+import { createFsCache, genEncrypt, hash, perf, resolveContent, writeTemp } from '../utils/index.js'
 
 export type EncryptConfig = readonly [
   boolean, // global
@@ -45,13 +44,11 @@ export async function prepareEncrypt(app: App): Promise<void> {
   perf.log('prepare:encrypt')
 }
 
-const salt = () => genSaltSync(random(8, 16))
-
 function resolveEncrypt(encrypt?: EncryptOptions): EncryptConfig {
   const admin = encrypt?.admin
     ? toArray(encrypt.admin)
         .filter(isStringLike)
-        .map(item => hashSync(String(item), salt()))
+        .map(item => genEncrypt(item))
         .join(separator)
     : ''
 
@@ -64,7 +61,7 @@ function resolveEncrypt(encrypt?: EncryptOptions): EncryptConfig {
 
       rules[String(index)] = toArray(encrypt.rules![key])
         .filter(isStringLike)
-        .map(item => hashSync(String(item), salt()))
+        .map(item => genEncrypt(item))
         .join(separator)
     })
   }
@@ -75,6 +72,9 @@ function resolveEncrypt(encrypt?: EncryptOptions): EncryptConfig {
 export function isEncryptPage(page: Page<ThemePageData>, encrypt?: EncryptOptions): boolean {
   if (!encrypt)
     return false
+
+  if (page.data._e)
+    return true
 
   const rules = encrypt.rules ?? {}
 

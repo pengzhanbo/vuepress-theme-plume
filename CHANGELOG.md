@@ -1,3 +1,22 @@
+# [1.0.0-rc.163](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.162...v1.0.0-rc.163) (2025-09-10)
+
+
+### Bug Fixes
+
+* **theme:** fix `CardMasonry` media query failure ([#688](https://github.com/pengzhanbo/vuepress-theme-plume/issues/688)) ([2757301](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2757301d61b8b64c57bc835e77f3469847fab4b7))
+
+
+### Features
+
+* **theme:** add `password` support for post frontmatter ([#689](https://github.com/pengzhanbo/vuepress-theme-plume/issues/689)) ([0865286](https://github.com/pengzhanbo/vuepress-theme-plume/commit/086528606e95cca2264b4c8685228e490e807807))
+
+
+### Performance Improvements
+
+* update deps to latest ([242ef3a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/242ef3a7a88d4c1843b20de317bdfa149c335721))
+
+
+
 # [1.0.0-rc.162](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.161...v1.0.0-rc.162) (2025-09-03)
 
 

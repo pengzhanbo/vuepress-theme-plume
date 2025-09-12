@@ -1,5 +1,6 @@
 ---
 pageLayout: home
+signDown: true
 title: Vuepress Theme Plume
 config:
   -

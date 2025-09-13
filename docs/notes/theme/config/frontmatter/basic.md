@@ -99,6 +99,14 @@ permalink: /config/frontmatter/basic/
 
   当前文章是否 显示 回到顶部 的按钮。
 
+### signDown
+
+- 类型： `boolean`
+- 默认值： `false`
+- 详情：
+
+  当前文章是否 显示 向下前头 的标志。
+
 ### comments
 
 - 类型： `boolean`

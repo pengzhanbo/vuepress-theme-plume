@@ -41,6 +41,13 @@ export type ThemeNormalFrontmatter = PageFrontmatter<{
   backToTop?: boolean
 
   /**
+   * 是否显示向下箭头标志
+   *
+   * @default false
+   */
+  signDown?: boolean
+
+  /**
    * 当前页面是否显示 外部链接图标
    *
    * @default true

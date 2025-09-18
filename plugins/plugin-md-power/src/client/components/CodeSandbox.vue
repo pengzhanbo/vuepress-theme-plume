@@ -2,6 +2,10 @@
 import type { CodeSandboxTokenMeta } from '../../shared/index.js'
 import { computed } from 'vue'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = defineProps<CodeSandboxTokenMeta>()
 
 const EMBED_LINK = 'https://codesandbox.io/embed/'
@@ -37,9 +41,10 @@ const source = computed(() => {
     <iframe
       :src="source" class="code-sandbox-iframe" :title="title || 'CodeSandbox'" :allow="ALLOW" :sandbox="SANDBOX"
       :style="{ width, height }"
+      v-bind="$attrs"
     />
   </ClientOnly>
-  <p v-else>
+  <p v-else v-bind="$attrs">
     <a class="code-sandbox-link no-icon" :href="source" target="_blank" rel="noopener noreferrer" :aria-label="title || 'CodeSandbox'">
       <svg xmlns="http://www.w3.org/2000/svg" width="165" height="32" viewBox="0 0 165 32" fill="none">
         <rect width="165" height="32" rx="4" fill="#E3FF73" />

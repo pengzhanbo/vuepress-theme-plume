@@ -4,6 +4,10 @@ import { useDarkMode } from '@vuepress/helper/client'
 import { computed, ref } from 'vue'
 import Loading from './icons/Loading.vue'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = defineProps<ReplitTokenMeta>()
 
 // magic height
@@ -37,6 +41,7 @@ function onload() {
       :src="link"
       :title="title || 'Replit'"
       :style="{ width, height }"
+      v-bind="$attrs"
       allowtransparency="true"
       allowfullscree="true"
       @load="onload"

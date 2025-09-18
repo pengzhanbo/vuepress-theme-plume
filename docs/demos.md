@@ -59,6 +59,14 @@ docs:
     url: https://1985312383.github.io/search-rec-ads-cosmos-explorer/
     repo: https://github.com/1985312383/search-rec-ads-cosmos-explorer
     preview: https://raw.githubusercontent.com/1985312383/search-rec-ads-cosmos-explorer/refs/heads/main/docs/.vuepress/public/img/preview.jpg
+  -
+    name: MaaAssistantArknights 文档站
+    desc: 《明日方舟》小助手，自动刷图、智能基建换班，全日常一键长草
+    logo: https://cdn.jsdelivr.net/gh/MaaAssistantArknights/design@main/logo/maa-logo_128x128.jpg
+    url: https://docs.maa.plus
+    repo: https://github.com/MaaAssistantArknights/MaaAssistantArknights/tree/dev/docs
+    preview: https://docs.maa.plus/images/preview.jpg
+
 blog:
   -
     name: 鹏展博

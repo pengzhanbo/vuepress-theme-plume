@@ -3,6 +3,10 @@ import { toRef } from 'vue'
 import { ClientOnly } from 'vuepress/client'
 import { useGithubRepo } from '../composables/repo.js'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(defineProps<{
   repo: string
   fullname?: boolean
@@ -13,7 +17,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'), toRef(props, 'provi
 
 <template>
   <ClientOnly>
-    <div v-if="loaded && data?.name" class="vp-repo-card">
+    <div v-if="loaded && data?.name" class="vp-repo-card" v-bind="$attrs">
       <p class="repo-name">
         <span :class="`vpi-${provider}-repo`" />
         <span class="repo-link">

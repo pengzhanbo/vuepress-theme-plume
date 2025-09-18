@@ -2,6 +2,10 @@
 import { toRefs } from 'vue'
 import { useSize } from '../composables/size.js'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = defineProps<{
   src: string
   title: string
@@ -26,6 +30,7 @@ const { el, width, height, resize } = useSize(options)
       :src="src"
       :title="title || type"
       :style="{ width, height }"
+      v-bind="$attrs"
       :allow="IFRAME_ALLOW"
       @load="resize"
     />

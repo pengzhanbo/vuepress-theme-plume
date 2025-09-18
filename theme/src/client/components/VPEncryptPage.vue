@@ -2,12 +2,16 @@
 import VPEncryptForm from '@theme/VPEncryptForm.vue'
 import { useData } from '../composables/index.js'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const { theme, frontmatter } = useData<'post'>()
 </script>
 
 <template>
   <ClientOnly>
-    <div class="vp-page-encrypt">
+    <div class="vp-page-encrypt" v-bind="$attrs">
       <div class="logo">
         <span class="vpi-lock icon-lock-head" />
       </div>

@@ -53,6 +53,10 @@ interface Props {
   swipe?: boolean // 是否可以鼠标拖动
 }
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(defineProps<Props>(), {
   width: '100%',
   height: '100%',

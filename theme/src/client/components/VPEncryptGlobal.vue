@@ -4,6 +4,10 @@ import VPFooter from '@theme/VPFooter.vue'
 import { computed } from 'vue'
 import { useData } from '../composables/index.js'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const { theme, site } = useData()
 
 const profile = computed(() => theme.value.profile)
@@ -12,7 +16,7 @@ const title = computed(() => profile.value?.name || site.value.title)
 
 <template>
   <ClientOnly>
-    <div class="vp-global-encrypt">
+    <div class="vp-global-encrypt" v-bind="$attrs">
       <div class="global-encrypt-container">
         <div v-if="profile || title" class="profile">
           <p v-if="profile" class="avatar" :class="{ circle: profile.circle }">

@@ -5,6 +5,10 @@ import { Icon as OfflineIcon } from '@iconify/vue/offline'
 import { computed, ref, watch } from 'vue'
 import { useIconsData } from '../composables/index.js'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = defineProps<{
   name: string
   size?: { width?: string, height?: string }
@@ -49,9 +53,10 @@ if (!__VUEPRESS_SSR__)
     :style="{ color, ...size }"
     aria-hidden
     data-provider="iconify"
+    v-bind="$attrs"
   />
   <ClientOnly v-else>
-    <span v-if="!loaded" class="vp-icon iconify" :style="{ color, ...size }" />
+    <span v-if="!loaded" class="vp-icon iconify" :style="{ color, ...size }" v-bind="$attrs" />
     <OfflineIcon
       v-else-if="icon"
       class="vp-icon iconify"

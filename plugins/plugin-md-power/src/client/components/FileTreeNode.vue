@@ -93,6 +93,7 @@ function toggle(ev: MouseEvent) {
   gap: 8px;
   align-items: center;
   justify-content: flex-start;
+  min-width: max-content;
   height: 28px;
   padding: 2px 0;
   margin: 0 0 0 16px;
@@ -167,6 +168,8 @@ function toggle(ev: MouseEvent) {
 
 .vp-file-tree .vp-file-tree-info .name {
   position: relative;
+  flex-shrink: 99;
+  min-width: 0;
   font-family: var(--vp-font-family-mono);
 }
 
@@ -208,6 +211,7 @@ function toggle(ev: MouseEvent) {
 
 .vp-file-tree .vp-file-tree-node .group {
   position: relative;
+  min-width: max-content;
   margin-left: 28px;
 }
 

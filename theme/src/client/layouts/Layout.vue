@@ -8,6 +8,7 @@ import VPEncryptGlobal from '@theme/VPEncryptGlobal.vue'
 import VPFooter from '@theme/VPFooter.vue'
 import VPLocalNav from '@theme/VPLocalNav.vue'
 import VPSidebar from '@theme/VPSidebar.vue'
+import VPSignDown from '@theme/VPSignDown.vue'
 import VPSkipLink from '@theme/VPSkipLink.vue'
 import { watch } from 'vue'
 import { useRoute } from 'vuepress/client'
@@ -199,6 +200,7 @@ useCloseSidebarOnEscape(isSidebarOpen, closeSidebar)
         </VPContent>
       </slot>
       <VPBackToTop />
+      <VPSignDown />
       <VPFooter>
         <template #footer-content>
           <slot name="footer-content" />

@@ -162,7 +162,7 @@ export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}): voi
         filename,
         level,
       }
-      return `<FileTreeNode${stringifyAttrs(props)}>
+      return `<FileTreeNode${stringifyAttrs(props, false, ['filename'])}>
 ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children, meta) : ''}
 </FileTreeNode>`
     }).join('\n')

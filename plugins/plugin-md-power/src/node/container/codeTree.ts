@@ -151,7 +151,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
         expanded: true,
         filepath: node.filepath,
       }
-      return `<FileTreeNode${stringifyAttrs(props)}>
+      return `<FileTreeNode${stringifyAttrs(props, false, ['filename', 'filepath'])}>
   <template #icon><VPIcon provider="iconify" name="${getIcon(node.filename, props.type, mode)}" /></template>
   ${node.children?.length ? renderFileTree(node.children, mode) : ''}
 </FileTreeNode>`

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { ThemeHomeConfig } from 'theme/src/shared/index.js'
-import { useElementSize, useWindowScroll, useWindowSize } from '@vueuse/core'
+import { useElementSize, useWindowSize } from '@vueuse/core'
 import { computed, onMounted, shallowRef } from 'vue'
 import { useData } from '../composables/index.js'
 
@@ -12,7 +12,6 @@ onMounted(() => {
 })
 
 const { page, isDark } = useData()
-const { y } = useWindowScroll()
 
 const mustHidden = computed(() => {
   if (page.value.frontmatter.signDown !== true || page.value.frontmatter.pageLayout !== 'home' || !page.value.frontmatter.config) {
@@ -28,10 +27,8 @@ const mustHidden = computed(() => {
 const show = computed(() => {
   if (bodyHeight.value < windowHeight.value)
     return false
-  else if (y.value < 160)
-    return true
   else
-    return false
+    return true
 })
 </script>
 
@@ -57,8 +54,8 @@ const show = computed(() => {
 }
 
 .vp-sign-down {
-  position: fixed;
-  bottom: 10px;
+  position: absolute;
+  bottom: 8px;
   left: 50%;
   z-index: 100;
   width: 26px;
@@ -75,7 +72,7 @@ const show = computed(() => {
 
 @media (min-width: 768px) {
   .vp-sign-down {
-    bottom: 15px;
+    bottom: 10px;
     width: 34px;
     height: 34px;
   }

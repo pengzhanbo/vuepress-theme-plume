@@ -66,3 +66,11 @@ interface PlumeHomeConfigBase {
 ```
 
 更多详细配置请参考 [自定义首页](../../guide/custom/home.md)
+
+### signDown
+
+- 类型： `boolean`
+- 默认值： `false`
+- 详情：
+
+  是否显示向下前头的标志。

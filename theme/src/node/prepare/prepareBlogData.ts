@@ -5,6 +5,7 @@ import type {
   ThemePageData,
   ThemePostFrontmatter,
 } from '../../shared/index.js'
+import fs from 'node:fs'
 import { removeLeadingSlash } from '@vuepress/helper'
 import { createFilter } from 'create-filter'
 import dayjs from 'dayjs'
@@ -64,17 +65,18 @@ export async function preparedBlogData(app: App): Promise<void> {
 
   const blogData: ThemeBlogPostList = pages.map((page) => {
     const tags = page.frontmatter.tags
+    const date = page.frontmatter.createTime || page.frontmatter.date || (page.date === '0000-00-00' ? fs.statSync(page.filePath!).birthtime : page.date)
     const data: ThemeBlogPostItem = {
       path: page.path,
       title: page.title,
       categoryList: page.data.categoryList,
       tags,
       sticky: page.frontmatter.sticky,
-      createTime: dayjs(new Date(page.data.frontmatter.createTime || page.date)).format('YYYY/MM/DD HH:mm:ss'),
+      createTime: dayjs(new Date(date)).format('YYYY/MM/DD HH:mm:ss'),
       lang: page.lang,
       excerpt: '',
-      cover: page.data.frontmatter.cover,
-      coverStyle: page.data.frontmatter.coverStyle,
+      cover: page.frontmatter.cover,
+      coverStyle: page.frontmatter.coverStyle,
     }
 
     if (typeof data.cover === 'object') {

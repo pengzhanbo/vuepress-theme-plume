@@ -13,10 +13,7 @@ export function useSearchIndex(): ShallowRef<SearchIndexData> {
 }
 
 if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {
-  __VUE_HMR_RUNTIME__.updateSearchIndex = (data) => {
-    searchIndexData.value = data
-  }
-  __VUE_HMR_RUNTIME__.updateSearchIndex = (data) => {
+  __VUE_HMR_RUNTIME__.updateSearchIndex = (data: SearchIndexData) => {
     searchIndexData.value = data
   }
 }

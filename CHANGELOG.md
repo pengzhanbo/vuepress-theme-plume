@@ -1,3 +1,25 @@
+# [1.0.0-rc.164](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.163...v1.0.0-rc.164) (2025-09-20)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** fix `stringifyAttrs` parse fail ([#701](https://github.com/pengzhanbo/vuepress-theme-plume/issues/701)) ([001896b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/001896b5fa8f55ba286cdb977514e769b97628bd))
+* **plugin-md-power:** fix title text overflow, close [#698](https://github.com/pengzhanbo/vuepress-theme-plume/issues/698) ([#699](https://github.com/pengzhanbo/vuepress-theme-plume/issues/699)) ([dd958c3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/dd958c30cf1ec7191c44cf4c9ca15e89de768138))
+* **theme:** fix `createTime` is obtained incorrectly during creation, close [#692](https://github.com/pengzhanbo/vuepress-theme-plume/issues/692) ([#700](https://github.com/pengzhanbo/vuepress-theme-plume/issues/700)) ([69b9d0b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/69b9d0bc3db461436013e6da4526fccb6c09413c))
+
+
+### Features
+
+* add `inheritAttrs` option to components that include `ClientOnly` ([#697](https://github.com/pengzhanbo/vuepress-theme-plume/issues/697)) ([3523df7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3523df74dbe99fe7a5236f7e9e9209d5d237b0c2))
+* **theme:** add `signdown` frontmatter for home page ([#691](https://github.com/pengzhanbo/vuepress-theme-plume/issues/691)) ([5cbf0dd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5cbf0ddfcf54bad54476f398760120e387ea387b))
+
+
+### Performance Improvements
+
+* update deps to latest ([687439e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/687439e69744ddd7ddc028af8144f130794473c0))
+
+
+
 # [1.0.0-rc.163](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.162...v1.0.0-rc.163) (2025-09-10)
 
 

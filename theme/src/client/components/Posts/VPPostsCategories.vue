@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import VPCategories from '@theme/Blog/VPCategories.vue'
+import VPCategories from '@theme/Posts/VPCategories.vue'
 import { useInternalLink, usePostsCategory } from '../../composables/index.js'
 
 const { categories: categoriesLink } = useInternalLink()
@@ -7,26 +7,26 @@ const { categories } = usePostsCategory()
 </script>
 
 <template>
-  <div class="vp-blog-categories">
-    <slot name="blog-categories-before" />
+  <div class="vp-categories">
+    <slot name="posts-categories-before" />
 
     <h2 class="categories-title">
       <span class="vpi-category icon" />
       <span>{{ categoriesLink?.text ?? 'Categories' }}</span>
     </h2>
 
-    <slot name="blog-categories-content-before" />
+    <slot name="posts-categories-content-before" />
 
     <div class="content">
       <VPCategories :items="categories" :depth="0" />
     </div>
 
-    <slot name="blog-categories-after" />
+    <slot name="posts-categories-after" />
   </div>
 </template>
 
 <style scoped>
-.vp-blog-categories {
+.vp-categories {
   flex: 1 2;
   padding: 16px;
   margin: 0 -16px 32px;
@@ -35,7 +35,7 @@ const { categories } = usePostsCategory()
 }
 
 @media (min-width: 768px) {
-  .vp-blog-categories {
+  .vp-categories {
     padding: 20px 24px;
     margin: 0 0 32px;
     background-color: var(--vp-c-bg);
@@ -43,7 +43,7 @@ const { categories } = usePostsCategory()
     box-shadow: var(--vp-shadow-1);
   }
 
-  .vp-blog-categories:hover {
+  .vp-categories:hover {
     box-shadow: var(--vp-shadow-2);
   }
 }
@@ -74,12 +74,12 @@ const { categories } = usePostsCategory()
 }
 
 @media (min-width: 1200px) {
-  .vp-blog-categories {
+  .vp-categories {
     margin-left: 0;
   }
 }
 
-.vp-blog-categories .content {
+.vp-categories .content {
   padding: 20px 0 0;
 }
 </style>

@@ -31,7 +31,7 @@ export function usePrevNext(): UsePrevNextResult {
       return prevConfig
 
     if (isPosts.value) {
-      return resolveFromBlogPostData(
+      return resolveFromPostsData(
         postList.value.filter(item => item.lang === locale.value),
         route.path,
         -1,
@@ -51,7 +51,7 @@ export function usePrevNext(): UsePrevNextResult {
       return nextConfig
 
     if (isPosts.value) {
-      return resolveFromBlogPostData(
+      return resolveFromPostsData(
         postList.value.filter(item => item.lang === locale.value),
         route.path,
         1,
@@ -114,7 +114,7 @@ function resolveFromSidebarItems(sidebarItems: NavItemWithLink[], currentPath: s
   return null
 }
 
-function resolveFromBlogPostData(postList: ThemePostsItem[], currentPath: string, offset: number): null | NavItemWithLink {
+function resolveFromPostsData(postList: ThemePostsItem[], currentPath: string, offset: number): null | NavItemWithLink {
   const index = postList.findIndex(item => item.path === currentPath)
   if (index !== -1) {
     const targetItem = postList[index + offset]

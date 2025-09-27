@@ -96,7 +96,7 @@ const coverStyles = computed(() => {
 
 <template>
   <div
-    class="vp-blog-post-item" data-allow-mismatch
+    class="vp-post-item" data-allow-mismatch
     :class="{ 'has-cover': post.cover, [coverLayout]: cover, 'draft': post.draft }"
   >
     <div
@@ -105,7 +105,7 @@ const coverStyles = computed(() => {
     >
       <img :src="withBase(post.cover)" :alt="post.title" loading="lazy">
     </div>
-    <div class="blog-post-item-content">
+    <div class="post-item-content">
       <h3>
         <span v-if="sticky" class="sticky">TOP</span>
         <span v-if="post.draft" class="draft">DRAFT</span>
@@ -145,30 +145,30 @@ const coverStyles = computed(() => {
 </template>
 
 <style scoped>
-.vp-blog-post-item {
+.vp-post-item {
   padding: 16px;
   margin: 0 -16px;
   background-color: var(--vp-c-bg);
   transition: background-color var(--vp-t-color);
 }
 
-.vp-blog-post-item.draft {
+.vp-post-item.draft {
   background-color: var(--vp-c-warning-soft);
 }
 
-.vp-blog-post-item.has-cover:where(.left, .right) {
+.vp-post-item.has-cover:where(.left, .right) {
   display: flex;
   gap: 20px;
 }
 
 @media (max-width: 419px) {
-  .vp-blog-post-item.has-cover:where(.left, .right) {
+  .vp-post-item.has-cover:where(.left, .right) {
     display: block;
     gap: unset;
   }
 }
 
-.vp-blog-post-item.has-cover.right {
+.vp-post-item.has-cover.right {
   flex-direction: row-reverse;
 }
 
@@ -179,21 +179,21 @@ const coverStyles = computed(() => {
   border-radius: 8px;
 }
 
-.vp-blog-post-item.has-cover.left .post-cover.compact {
+.vp-post-item.has-cover.left .post-cover.compact {
   margin: -24px 0 -24px -20px;
 }
 
-.vp-blog-post-item.has-cover.right .post-cover.compact {
+.vp-post-item.has-cover.right .post-cover.compact {
   margin: -24px -20px -24px 0;
 }
 
-.vp-blog-post-item.has-cover.top .post-cover {
+.vp-post-item.has-cover.top .post-cover {
   margin: -16px -16px 16px;
   border-radius: 0;
 }
 
 @media (min-width: 419px) {
-  .vp-blog-post-item.has-cover.top .post-cover {
+  .vp-post-item.has-cover.top .post-cover {
     width: calc(100% + 40px);
     margin: -24px -20px 24px;
     border-top-left-radius: 8px;
@@ -212,32 +212,32 @@ const coverStyles = computed(() => {
   transform: scale(1);
 }
 
-.vp-blog-post-item.has-cover:hover .post-cover img {
+.vp-post-item.has-cover:hover .post-cover img {
   transform: scale(1.02);
 }
 
-.vp-blog-post-item.has-cover.left .post-cover.compact {
+.vp-post-item.has-cover.left .post-cover.compact {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.vp-blog-post-item.has-cover.right .post-cover.compact {
+.vp-post-item.has-cover.right .post-cover.compact {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.blog-post-item-content {
+.post-item-content {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.vp-blog-post-item.has-cover .blog-post-item-content {
+.vp-post-item.has-cover .post-item-content {
   flex: 1 2;
 }
 
-.blog-post-item-content .sticky,
-.blog-post-item-content .draft {
+.post-item-content .sticky,
+.post-item-content .draft {
   display: inline-block;
   padding: 3px 6px;
   margin-right: 0.5rem;
@@ -251,12 +251,12 @@ const coverStyles = computed(() => {
   transition-property: color, background-color;
 }
 
-.blog-post-item-content .draft {
+.post-item-content .draft {
   color: var(--vp-c-warning-1);
   background-color: var(--vp-c-warning-soft);
 }
 
-.blog-post-item-content .icon-lock {
+.post-item-content .icon-lock {
   width: 1em;
   height: 1em;
   margin-right: 8px;
@@ -266,7 +266,7 @@ const coverStyles = computed(() => {
   transition-property: color;
 }
 
-.blog-post-item-content h3 {
+.post-item-content h3 {
   display: flex;
   align-items: center;
   margin: 0;
@@ -276,25 +276,25 @@ const coverStyles = computed(() => {
   transition: color var(--vp-t-color);
 }
 
-.blog-post-item-content h3 a {
+.post-item-content h3 a {
   color: inherit;
   text-decoration: none;
 }
 
-.blog-post-item-content h3:hover {
+.post-item-content h3:hover {
   color: var(--vp-c-brand-1);
 }
 
-.blog-post-item-content h3:hover .sticky {
+.post-item-content h3:hover .sticky {
   color: var(--vp-c-text-2);
 }
 
-.blog-post-item-content .excerpt {
+.post-item-content .excerpt {
   margin-top: 12px;
 }
 
 @media (min-width: 768px) {
-  .vp-blog-post-item {
+  .vp-post-item {
     padding: 24px 20px;
     margin: 0;
     border-radius: 8px;
@@ -304,16 +304,16 @@ const coverStyles = computed(() => {
     will-change: transform;
   }
 
-  .vp-blog-post-item:hover {
+  .vp-post-item:hover {
     box-shadow: var(--vp-shadow-2);
   }
 
-  .blog-post-item-content .post-meta {
+  .post-item-content .post-meta {
     margin-bottom: 0;
   }
 }
 
-.blog-post-item-content .post-meta {
+.post-item-content .post-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -325,18 +325,18 @@ const coverStyles = computed(() => {
   transition: color var(--vp-t-color);
 }
 
-.blog-post-item-content .post-meta > div {
+.post-item-content .post-meta > div {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
 
-.blog-post-item-content .post-meta .tag-list {
+.post-item-content .post-meta .tag-list {
   display: flex;
   align-items: center;
 }
 
-.blog-post-item-content .post-meta .tag-list .tag {
+.post-item-content .post-meta .tag-list .tag {
   display: inline-block;
   padding: 3px 5px;
   margin-right: 6px;
@@ -348,11 +348,11 @@ const coverStyles = computed(() => {
   transition: color var(--vp-t-color), background-color var(--vp-t-color);
 }
 
-.blog-post-item-content .post-meta .tag-list .tag:last-of-type {
+.post-item-content .post-meta .tag-list .tag:last-of-type {
   margin-right: 0;
 }
 
-.blog-post-item-content .post-meta .icon {
+.post-item-content .post-meta .icon {
   width: 14px;
   height: 14px;
   margin-right: 0.3rem;
@@ -360,7 +360,7 @@ const coverStyles = computed(() => {
   transition: color var(--vp-t-color);
 }
 
-.blog-post-item-content .post-meta a {
+.post-item-content .post-meta a {
   font-weight: normal;
   color: inherit;
   text-decoration: none;

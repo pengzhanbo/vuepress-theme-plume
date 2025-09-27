@@ -62,9 +62,7 @@ export interface ThemePostCollection extends ThemeBaseCollection {
   /**
    * 通过 glob string 配置排除的文件
    *
-   *  _README.md 文件一般作为主页或者某个目录下的主页，不应该被读取为 blog文章_
-   *
-   * @default - ['{README,index}.md']
+   * @default - []
    */
   exclude?: string[]
   /**
@@ -81,7 +79,7 @@ export interface ThemePostCollection extends ThemeBaseCollection {
   /**
    * 文章列表页链接
    *
-   * @default '/blog/'
+   * @default '/{dir}/'
    */
   link?: string
 

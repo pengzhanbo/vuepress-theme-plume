@@ -9,14 +9,14 @@ import { useTagColors } from './tag-colors.js'
 
 type ShortPostItem = Pick<ThemePostsItem, 'title' | 'path' | 'createTime'>
 
-interface BlogTagItem {
+interface PostsTagItem {
   name: string
   count: string | number
   className: string
 }
 
 interface UseTagsResult {
-  tags: ComputedRef<BlogTagItem[]>
+  tags: ComputedRef<PostsTagItem[]>
   currentTag: Ref<string>
   postList: ComputedRef<ShortPostItem[]>
   handleTagClick: (tag: string) => void
@@ -34,7 +34,7 @@ export function useTags(): UseTagsResult {
     return undefined
   })
 
-  const tags = computed<BlogTagItem[]>(() => {
+  const tags = computed<PostsTagItem[]>(() => {
     const tagTheme = postCollection.value?.tagsTheme ?? 'colored'
 
     const tagMap: Record<string, number> = {}

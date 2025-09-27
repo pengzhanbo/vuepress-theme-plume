@@ -59,13 +59,13 @@ const showPostsExtract = computed(() => {
 
 <template>
   <template v-if="showPostsExtract">
-    <div class="vp-blog-extract" @click="open = !open">
-      <span class="vpi-blog-ext icon" />
+    <div class="vp-posts-extract" @click="open = !open">
+      <span class="vpi-posts-ext icon" />
     </div>
     <Transition name="fade-in">
-      <div v-show="open" class="blog-modal" @click.self="open = false">
-        <div class="blog-modal-container" :class="{ open: lazyOpen }">
-          <slot name="blog-extract-before" />
+      <div v-show="open" class="posts-modal" @click.self="open = false">
+        <div class="posts-modal-container" :class="{ open: lazyOpen }">
+          <slot name="posts-extract-before" />
 
           <div v-if="profile" class="profile">
             <p v-if="imageUrl" class="avatar">
@@ -88,7 +88,7 @@ const showPostsExtract = computed(() => {
               </div>
             </div>
           </div>
-          <div v-if="showPostsExtract" class="blog-nav" :class="{ 'no-profile': !profile }">
+          <div v-if="showPostsExtract" class="posts-nav" :class="{ 'no-profile': !profile }">
             <VPLink class="nav-link" :href="tags.link" no-icon>
               <span class="vpi-tag icon" />
               <span>{{ tags.text }}</span>
@@ -103,7 +103,7 @@ const showPostsExtract = computed(() => {
             </VPLink>
           </div>
 
-          <slot name="blog-extract-after" />
+          <slot name="posts-extract-after" />
         </div>
       </div>
     </Transition>
@@ -111,7 +111,7 @@ const showPostsExtract = computed(() => {
 </template>
 
 <style scoped>
-.vp-blog-extract {
+.vp-posts-extract {
   position: fixed;
   right: 0;
   bottom: 30%;
@@ -129,7 +129,7 @@ const showPostsExtract = computed(() => {
   transition-property: background-color, border, box-shadow;
 }
 
-.vp-blog-extract .icon {
+.vp-posts-extract .icon {
   display: block;
   font-size: 16px;
   color: var(--vp-c-text-2);
@@ -137,18 +137,18 @@ const showPostsExtract = computed(() => {
 }
 
 @media (min-width: 768px) {
-  .vp-blog-extract {
+  .vp-posts-extract {
     display: none;
   }
 }
 
 @media print {
-  .vp-blog-extract {
+  .vp-posts-extract {
     display: none;
   }
 }
 
-.blog-modal {
+.posts-modal {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -158,7 +158,7 @@ const showPostsExtract = computed(() => {
   background-color: rgb(0 0 0 / 0.3);
 }
 
-.blog-modal-container {
+.posts-modal-container {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -173,13 +173,13 @@ const showPostsExtract = computed(() => {
   transform: translateY(100%);
 }
 
-[data-theme="dark"] .blog-modal-container {
+[data-theme="dark"] .posts-modal-container {
   box-shadow:
     0 -3px 12px rgb(0 0 0 / 0.3),
     0 -1px 4px rgb(0 0 0 / 0.27);
 }
 
-.blog-modal-container.open {
+.posts-modal-container.open {
   transform: translateY(0);
 }
 
@@ -201,7 +201,7 @@ const showPostsExtract = computed(() => {
   font-size: 14px;
 }
 
-.blog-nav {
+.posts-nav {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -210,7 +210,7 @@ const showPostsExtract = computed(() => {
   border-top: solid 1px var(--vp-c-divider);
 }
 
-.blog-nav.no-profile {
+.posts-nav.no-profile {
   padding-top: 0;
   margin: 0;
   border-top: none;

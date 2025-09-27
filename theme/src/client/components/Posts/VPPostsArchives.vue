@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import VPShortPostList from '@theme/Blog/VPShortPostList.vue'
+import VPShortPostList from '@theme/Posts/VPShortPostList.vue'
 import { useArchives, useInternalLink } from '../../composables/index.js'
 
 const { archive: archiveLink } = useInternalLink()
@@ -7,8 +7,8 @@ const { archives } = useArchives()
 </script>
 
 <template>
-  <div class="vp-blog-archives">
-    <slot name="blog-archives-before" />
+  <div class="vp-archives">
+    <slot name="posts-archives-before" />
 
     <h2 class="archives-title">
       <span class="vpi-archive icon" />
@@ -26,12 +26,12 @@ const { archives } = useArchives()
       </template>
     </div>
 
-    <slot name="blog-archives-after" />
+    <slot name="posts-archives-after" />
   </div>
 </template>
 
 <style scoped>
-.vp-blog-archives {
+.vp-archives {
   flex: 1 2;
 }
 
@@ -106,7 +106,7 @@ const { archives } = useArchives()
 }
 
 @media (min-width: 1200px) {
-  .vp-blog-archives {
+  .vp-archives {
     margin-left: 0;
   }
 }

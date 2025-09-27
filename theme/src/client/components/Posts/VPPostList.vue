@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import VPPagination from '@theme/Blog/VPPagination.vue'
-import VPPostItem from '@theme/Blog/VPPostItem.vue'
+import VPPagination from '@theme/Posts/VPPagination.vue'
+import VPPostItem from '@theme/Posts/VPPostItem.vue'
 import VPTransitionDrop from '@theme/VPTransitionDrop.vue'
 import { computed } from 'vue'
 import { usePostListControl } from '../../composables/index.js'
 
 const props = defineProps<{
-  homeBlog?: boolean
+  homePosts?: boolean
 }>()
 
 const {
@@ -18,12 +18,12 @@ const {
   isFirstPage,
   isPaginationEnabled,
   changePage,
-} = usePostListControl(computed(() => !!props.homeBlog))
+} = usePostListControl(computed(() => !!props.homePosts))
 </script>
 
 <template>
-  <div class="vp-blog-post-list">
-    <slot name="blog-post-list-before" />
+  <div class="vp-post-list">
+    <slot name="posts-post-list-before" />
     <template v-for="(post, index) in postList" :key="post.path">
       <VPTransitionDrop appear :delay="index * 0.025">
         <VPPostItem
@@ -33,7 +33,7 @@ const {
         />
       </VPTransitionDrop>
     </template>
-    <slot name="blog-post-list-after" />
+    <slot name="posts-post-list-after" />
     <VPPagination
       v-if="isPaginationEnabled"
       :page="page"
@@ -43,12 +43,12 @@ const {
       :is-first-page="isFirstPage"
       @change="changePage"
     />
-    <slot name="blog-post-list-pagination-after" />
+    <slot name="posts-post-list-pagination-after" />
   </div>
 </template>
 
 <style scoped>
-.vp-blog-post-list {
+.vp-post-list {
   display: flex;
   flex: 1 2;
   flex-direction: column;
@@ -58,7 +58,7 @@ const {
 }
 
 @media (min-width: 419px) {
-  .vp-blog-post-list {
+  .vp-post-list {
     gap: 24px;
     padding-bottom: 24px;
   }

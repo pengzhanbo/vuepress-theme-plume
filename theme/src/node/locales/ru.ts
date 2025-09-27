@@ -36,7 +36,7 @@ export const ruLocale: ThemeLocaleText = {
   },
 
   homeText: 'Главная',
-  blogText: 'Блог',
+  postsText: 'Блог',
   tagText: 'Теги',
   archiveText: 'Архив',
   categoryText: 'Категории',

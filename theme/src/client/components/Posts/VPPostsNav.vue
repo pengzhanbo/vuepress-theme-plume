@@ -13,7 +13,7 @@ const { hasPostsExtract, tags, archives, categories } = usePostsExtract()
 </script>
 
 <template>
-  <div v-if="hasPostsExtract" class="vp-blog-nav" :class="{ local: props.isLocal }">
+  <div v-if="hasPostsExtract" class="vp-posts-nav" :class="{ local: props.isLocal }">
     <VPLink
       v-if="tags.link"
       class="nav-link"
@@ -51,25 +51,25 @@ const { hasPostsExtract, tags, archives, categories } = usePostsExtract()
 </template>
 
 <style scoped>
-.vp-blog-nav {
+.vp-posts-nav {
   padding: 0;
   text-align: left;
 }
 
-.vp-blog-nav.local {
+.vp-posts-nav.local {
   display: none;
   margin-bottom: 24px;
 }
 
 @media (min-width: 768px) {
-  .vp-blog-nav.local {
+  .vp-posts-nav.local {
     display: flex;
     gap: 24px;
   }
 }
 
 @media (min-width: 1200px) {
-  .vp-blog-nav.local {
+  .vp-posts-nav.local {
     margin-left: 0;
   }
 }
@@ -101,13 +101,13 @@ const { hasPostsExtract, tags, archives, categories } = usePostsExtract()
   color: var(--vp-c-brand-1);
 }
 
-.vp-blog-nav.local .nav-link {
+.vp-posts-nav.local .nav-link {
   flex: 1 2;
   max-width: 50%;
   margin-bottom: 0;
 }
 
-.vp-blog-nav.local .nav-link:last-of-type {
+.vp-posts-nav.local .nav-link:last-of-type {
   margin-right: 0;
 }
 

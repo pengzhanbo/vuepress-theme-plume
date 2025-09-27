@@ -1,6 +1,5 @@
 import type { Page, Theme } from 'vuepress/core'
 import type { ThemeOptions, ThemePageData } from '../shared/index.js'
-import { sleep } from '@pengzhanbo/utils'
 import {
   genAutoFrontmatterRules,
   generateFileListFrontmatter,
@@ -68,9 +67,6 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
         extendsBundlerOptions(bundlerOptions, app)
         await configLoader.waiting()
         await generateFileListFrontmatter(app)
-        // wait for autoFrontmatter generated
-        // i/o performance
-        await sleep(100)
       },
 
       templateBuildRenderer,

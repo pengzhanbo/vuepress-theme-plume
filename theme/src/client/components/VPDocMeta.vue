@@ -14,7 +14,7 @@ const { isPosts } = usePostsPageData()
 
 const createTime = computed(() => {
   const show = theme.value.createTime ?? true
-  if (!show || (show === 'only-blog' && !isPosts.value))
+  if (!show || (show === 'only-posts' && !isPosts.value))
     return ''
   if (matter.value.createTime)
     return matter.value.createTime.split(/\s|T/)[0].replace(/\//g, '-')

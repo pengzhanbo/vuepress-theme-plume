@@ -36,7 +36,7 @@ export async function createPages(app: App): Promise<void> {
       if (post.postList !== false) {
         pageList.push(createPage(app, {
           path: link,
-          frontmatter: { lang, _pageLayout: 'posts', title: post.title || opt.blogText || options.blogText || 'Posts' },
+          frontmatter: { lang, _pageLayout: 'posts', title: post.title || opt.postsText || options.postsText || 'Posts' },
         }))
       }
 

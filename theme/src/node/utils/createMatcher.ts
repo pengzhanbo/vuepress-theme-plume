@@ -4,7 +4,7 @@ import picomatch from 'picomatch'
 
 export function createMatcher(include?: string | string[], exclude?: string | string[], cwd?: string): Matcher {
   const pattern: string[] = []
-  const ignore: string[] = uniq(['**/node_modules**', '**/.vuepress/**', ...toArray(exclude)])
+  const ignore: string[] = uniq(['**/node_modules/**', '**/.vuepress/**', ...toArray(exclude)])
 
   if (!include || include.length === 0) {
     pattern.push('**/*.md')

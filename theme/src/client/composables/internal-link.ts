@@ -42,7 +42,7 @@ export function useInternalLink(): {
     ? {
         text: postCollection.value?.title
           || removeEndingSlash(postCollection.value?.dir || '').split('/').pop()
-          || theme.value.blogText || '',
+          || theme.value.postsText || '',
         link: postsLink.value,
       }
     : undefined)

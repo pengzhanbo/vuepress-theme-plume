@@ -1,6 +1,6 @@
 import type { ComputedRef, Ref } from 'vue'
 import type { ThemePosts } from '../../shared/index.js'
-import { postsData as blogPostDataRaw } from '@internal/postsData'
+import { postsData as postsDataRaw } from '@internal/postsData'
 import { computed, ref } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
 import { removeLeadingSlash } from 'vuepress/shared'
@@ -9,7 +9,7 @@ import { useCollection } from './collections.js'
 
 export type PostsDataRef = Ref<Record<string, ThemePosts>>
 
-export const postsData: PostsDataRef = ref(blogPostDataRaw)
+export const postsData: PostsDataRef = ref(postsDataRaw)
 
 export function usePostsData(): PostsDataRef {
   return postsData as PostsDataRef

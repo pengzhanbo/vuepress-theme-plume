@@ -140,7 +140,7 @@ export function usePostListControl(homePage: Ref<boolean>): UsePostListControlRe
     setTimeout(() => {
       let top = 0
       if (homePage.value) {
-        top = document.querySelector('.vp-blog')?.getBoundingClientRect().top || 0
+        top = document.querySelector('.vp-posts')?.getBoundingClientRect().top || 0
         top += window.scrollY - 64
       }
 

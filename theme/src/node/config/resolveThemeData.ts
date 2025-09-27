@@ -87,7 +87,7 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
       const posts = collections[0]
       const postsLink = posts.link || posts.dir
       navbar.push({
-        text: posts.title || removeEndingSlash(posts.dir).split('/').pop() || opt.blogText || options.blogText || 'Posts',
+        text: posts.title || removeEndingSlash(posts.dir).split('/').pop() || opt.postsText || options.postsText || 'Posts',
         link: withBase(postsLink, locale),
       })
       if (posts.tags !== false) {

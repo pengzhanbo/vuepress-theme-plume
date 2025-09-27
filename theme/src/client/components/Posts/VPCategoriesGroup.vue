@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CategoryItem } from '../../composables/index.js'
-import VPCategories from '@theme/Blog/VPCategories.vue'
+import VPCategories from '@theme/Posts/VPCategories.vue'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
 import { useData } from '../../composables/index.js'

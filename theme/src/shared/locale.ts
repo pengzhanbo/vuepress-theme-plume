@@ -162,7 +162,7 @@ export interface ThemeLocale extends LocaleData {
    *
    * @default true
    */
-  createTime?: boolean | 'only-blog'
+  createTime?: boolean | 'only-posts'
 
   /**
    * 页脚配置
@@ -358,7 +358,7 @@ export interface ThemeLocaleText {
   /**
    * 博客文本，用于默认生成的导航栏、面包屑导航中
    */
-  blogText?: string
+  postsText?: string
   /**
    * 标签文本，用于默认生成的导航栏、博客标签页中
    */

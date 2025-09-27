@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import VPShortPostList from '@theme/Blog/VPShortPostList.vue'
+import VPShortPostList from '@theme/Posts/VPShortPostList.vue'
 import { useInternalLink, useTags } from '../../composables/index.js'
 
 const { tags: tagsLink } = useInternalLink()
@@ -7,15 +7,15 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
 </script>
 
 <template>
-  <div class="vp-blog-tags" :class="{ 'has-list': postList.length > 0 }">
-    <slot name="blog-tags-before" />
+  <div class="vp-tags" :class="{ 'has-list': postList.length > 0 }">
+    <slot name="posts-tags-before" />
 
     <div class="tags-nav">
       <h2 class="tags-title">
         <span class="vpi-tag icon" />
         <span>{{ tagsLink?.text ?? 'Tags' }}</span>
       </h2>
-      <slot name="blog-tags-title-after" />
+      <slot name="posts-tags-title-after" />
       <div class="tags">
         <p
           v-for="tag in tags"
@@ -30,7 +30,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
       </div>
     </div>
 
-    <slot name="blog-tags-content-before" />
+    <slot name="posts-tags-content-before" />
     <div v-if="currentTag" class="tags-container">
       <h3 class="tag-title">
         {{ currentTag }}
@@ -39,16 +39,16 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
       <VPShortPostList v-if="postList.length" :post-list="postList" />
     </div>
 
-    <slot name="blog-tags-after" />
+    <slot name="posts-tags-after" />
   </div>
 </template>
 
 <style scoped>
-.vp-blog-tags {
+.vp-tags {
   flex: 1 2;
 }
 
-.vp-blog-tags.has-list {
+.vp-tags.has-list {
   padding-bottom: 64px;
 }
 
@@ -163,7 +163,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
 }
 
 @media (min-width: 1200px) {
-  .vp-blog-tags {
+  .vp-tags {
     margin-left: 0;
   }
 }

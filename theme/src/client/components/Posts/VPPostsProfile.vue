@@ -21,7 +21,7 @@ const imageUrl = computed(() => {
 </script>
 
 <template>
-  <div v-if="profile" class="vp-blog-profile">
+  <div v-if="profile" class="vp-profile">
     <p v-if="imageUrl" :class="{ circle: !!profile.circle }">
       <img :src="imageUrl" :alt="profile.name" :width="profile.originalWidth" :height="profile.originalHeight">
     </p>
@@ -44,7 +44,7 @@ const imageUrl = computed(() => {
 </template>
 
 <style scoped>
-.vp-blog-profile {
+.vp-profile {
   padding: 24px 20px;
   margin-bottom: 24px;
   background-color: var(--vp-c-bg);
@@ -54,30 +54,30 @@ const imageUrl = computed(() => {
   transition-property: background-color, color, box-shadow;
 }
 
-.vp-blog-profile:hover {
+.vp-profile:hover {
   box-shadow: var(--vp-shadow-2);
 }
 
-.vp-blog-profile img {
+.vp-profile img {
   width: 60%;
   margin: auto;
 
   object-fit: cover;
 }
 
-.vp-blog-profile h3 {
+.vp-profile h3 {
   margin-top: 1.5rem;
   font-size: 18px;
   font-weight: 600;
 }
 
-.vp-blog-profile h3,
-.vp-blog-profile p {
+.vp-profile h3,
+.vp-profile p {
   color: var(--vp-c-text-1);
   transition: color var(--vp-t-color);
 }
 
-.vp-blog-profile .circle img {
+.vp-profile .circle img {
   overflow: hidden;
   border-radius: 50%;
 }

@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import type { ThemeData, ThemeNavItem, ThemeOptions } from '../../shared/index.js'
-import { entries, isBoolean, isPlainObject } from '@vuepress/helper'
+import { entries, isBoolean, isPlainObject, removeEndingSlash } from '@vuepress/helper'
 import { withBase } from '../utils/index.js'
 
 const EXCLUDE_LIST: (keyof ThemeOptions)[] = [
@@ -8,7 +8,9 @@ const EXCLUDE_LIST: (keyof ThemeOptions)[] = [
   'locales',
   'sidebar',
   'navbar',
-  'notes',
+  'blog', // @deprecated
+  'notes', // @deprecated
+  'collections',
   'sidebar',
   'article',
   'changelog',
@@ -52,16 +54,9 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
     themeData.bulletin = options.bulletin
   }
 
-  if (isPlainObject(options.blog)) {
-    const { categoriesTransform, include, exclude, ...blog } = options.blog
-    themeData.blog = blog
-  }
-  else {
-    themeData.blog = options.blog
-  }
-
   entries(options.locales || {}).forEach(([locale, opt]) => {
     themeData.locales![locale] = {}
+
     entries(opt).forEach(([key, value]) => {
       if (!EXCLUDE_LOCALE_LIST.includes(key as keyof ThemeOptions))
         themeData.locales![locale][key] = value
@@ -85,25 +80,27 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
         text: opt.homeText || options.homeText || 'Home',
         link: locale,
       }]
-      if (options.blog !== false) {
-        const blog = options.blog || {}
-        const blogLink = blog.link || '/blog/'
+      const collections = opt.collections?.filter(item => item.type === 'post')
+      if (!collections?.length)
+        return
+
+      const posts = collections[0]
+      const postsLink = posts.link || posts.dir
+      navbar.push({
+        text: posts.title || removeEndingSlash(posts.dir).split('/').pop() || opt.blogText || options.blogText || 'Posts',
+        link: withBase(postsLink, locale),
+      })
+      if (posts.tags !== false) {
         navbar.push({
-          text: opt.blogText || options.blogText || 'Blog',
-          link: withBase(blogLink, locale),
+          text: opt.tagText || options.tagText || 'Tags',
+          link: withBase(posts.tagsLink || `${postsLink}/tags/`, locale),
         })
-        if (blog.tags !== false) {
-          navbar.push({
-            text: opt.tagText || options.tagText || 'Tags',
-            link: withBase(blog.tagsLink || `${blogLink}/tags/`, locale),
-          })
-        }
-        if (blog.archives !== false) {
-          navbar.push({
-            text: opt.archiveText || options.archiveText || 'Archives',
-            link: withBase(blog.archivesLink || `${blogLink}/archives/`, locale),
-          })
-        }
+      }
+      if (posts.archives !== false) {
+        navbar.push({
+          text: opt.archiveText || options.archiveText || 'Archives',
+          link: withBase(posts.archivesLink || `${postsLink}/archives/`, locale),
+        })
       }
 
       themeData.locales![locale].navbar = navbar

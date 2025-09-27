@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlogPostCoverStyle, ThemeBlogPostItem } from '../../../shared/index.js'
+import type { PostsCoverStyle, ThemePostsItem } from '../../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
 import { isMobile as _isMobile } from '@vuepress/helper/client'
 import { computed, onMounted, ref } from 'vue'
@@ -7,7 +7,7 @@ import { withBase } from 'vuepress/client'
 import { useData, useInternalLink, useTagColors } from '../../composables/index.js'
 
 const props = defineProps<{
-  post: ThemeBlogPostItem
+  post: ThemePostsItem
   index: number
 }>()
 
@@ -20,7 +20,7 @@ onMounted(() => {
   })
 })
 
-const { blog } = useData()
+const { collection } = useData<'page', 'post'>()
 const colors = useTagColors()
 const { categories: categoriesLink, tags: tagsLink } = useInternalLink()
 
@@ -38,7 +38,7 @@ const sticky = computed(() => {
 })
 
 const tags = computed(() => {
-  const tagTheme = blog.value.tagsTheme ?? 'colored'
+  const tagTheme = collection.value?.tagsTheme ?? 'colored'
 
   return (props.post.tags ?? [])
     .slice(0, 4)
@@ -48,10 +48,10 @@ const tags = computed(() => {
     }))
 })
 
-const cover = computed<BlogPostCoverStyle | null>(() => {
+const cover = computed<PostsCoverStyle | null>(() => {
   if (!props.post.cover)
     return null
-  const opt = blog.value.postCover ?? 'right'
+  const opt = collection.value?.postCover ?? 'right'
   const options = typeof opt === 'string' ? { layout: opt } : opt
   return { layout: 'right', ratio: '4:3', ...options, ...props.post.coverStyle }
 })

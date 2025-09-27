@@ -4,7 +4,7 @@ import { useScrollLock } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
 import { useRoute, withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
-import { useBlogExtract, useData } from '../../composables/index.js'
+import { useData, usePostsExtract } from '../../composables/index.js'
 import { inBrowser } from '../../utils/index.js'
 
 import '@vuepress/helper/transition/fade-in.css'
@@ -22,7 +22,7 @@ const imageUrl = computed(() => {
   return withBase(url)
 })
 
-const { hasBlogExtract, tags, archives, categories } = useBlogExtract()
+const { hasPostsExtract, tags, archives, categories } = usePostsExtract()
 const open = ref(false)
 const lazyOpen = ref(false)
 
@@ -52,13 +52,13 @@ watch(
   { immediate: true, flush: 'post' },
 )
 
-const showBlogExtract = computed(() => {
-  return profile.value || hasBlogExtract.value
+const showPostsExtract = computed(() => {
+  return profile.value || hasPostsExtract.value
 })
 </script>
 
 <template>
-  <template v-if="showBlogExtract">
+  <template v-if="showPostsExtract">
     <div class="vp-blog-extract" @click="open = !open">
       <span class="vpi-blog-ext icon" />
     </div>
@@ -88,7 +88,7 @@ const showBlogExtract = computed(() => {
               </div>
             </div>
           </div>
-          <div v-if="hasBlogExtract" class="blog-nav" :class="{ 'no-profile': !profile }">
+          <div v-if="showPostsExtract" class="blog-nav" :class="{ 'no-profile': !profile }">
             <VPLink class="nav-link" :href="tags.link" no-icon>
               <span class="vpi-tag icon" />
               <span>{{ tags.text }}</span>

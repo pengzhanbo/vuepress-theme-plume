@@ -1,15 +1,15 @@
 import type { ComputedRef, Ref } from 'vue'
-import type { ThemeBlogPostItem } from '../../shared/index.js'
+import type { ThemePostsItem } from '../../shared/index.js'
 import { useMediaQuery } from '@vueuse/core'
 import { computed } from 'vue'
-import { useLocalePostList } from './blog-data.js'
 import { useData } from './data.js'
+import { useLocalePostList } from './posts-data.js'
 import { useRouteQuery } from './route-query.js'
 
 const DEFAULT_PER_PAGE = 15
 
 interface UsePostListControlResult {
-  postList: ComputedRef<ThemeBlogPostItem[]>
+  postList: ComputedRef<ThemePostsItem[]>
   page: Ref<number>
   totalPage: ComputedRef<number>
   pageRange: ComputedRef<{
@@ -23,10 +23,16 @@ interface UsePostListControlResult {
 }
 
 export function usePostListControl(homePage: Ref<boolean>): UsePostListControlResult {
-  const { blog } = useData()
+  const { collection } = useData<'page', 'post'>()
 
   const list = useLocalePostList()
   const is960 = useMediaQuery('(max-width: 960px)')
+
+  const postCollection = computed(() => {
+    if (collection.value?.type === 'post')
+      return collection.value
+    return undefined
+  })
 
   const postList = computed(() => {
     const stickyList = list.value.filter(item =>
@@ -43,7 +49,7 @@ export function usePostListControl(homePage: Ref<boolean>): UsePostListControlRe
         return next.sticky! > prev.sticky! ? 1 : -1
       }),
       ...otherList,
-    ] as ThemeBlogPostItem[]
+    ] as ThemePostsItem[]
   })
 
   const page = useRouteQuery('p', 1, {
@@ -57,24 +63,24 @@ export function usePostListControl(homePage: Ref<boolean>): UsePostListControlRe
   })
 
   const perPage = computed(() => {
-    if (blog.value.pagination === false)
+    if (postCollection.value?.pagination === false)
       return 0
-    if (typeof blog.value.pagination === 'number')
-      return blog.value.pagination
-    return blog.value.pagination?.perPage || DEFAULT_PER_PAGE
+    if (typeof postCollection.value?.pagination === 'number')
+      return postCollection.value.pagination
+    return postCollection.value?.pagination?.perPage || DEFAULT_PER_PAGE
   })
 
   const totalPage = computed(() => {
-    if (blog.value.pagination === false)
+    if (postCollection.value?.pagination === false)
       return 0
     return Math.ceil(postList.value.length / perPage.value)
   })
   const isLastPage = computed(() => page.value >= totalPage.value)
   const isFirstPage = computed(() => page.value <= 1)
-  const isPaginationEnabled = computed(() => blog.value.pagination !== false && totalPage.value > 1)
+  const isPaginationEnabled = computed(() => postCollection.value?.pagination !== false && totalPage.value > 1)
 
   const finalList = computed(() => {
-    if (blog.value.pagination === false)
+    if (postCollection.value?.pagination === false)
       return postList.value
 
     if (postList.value.length <= perPage.value)

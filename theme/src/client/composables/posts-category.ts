@@ -1,6 +1,6 @@
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
-import { useLocalePostList } from './blog-data.js'
+import { useLocalePostList } from './posts-data.js'
 
 export interface CategoryItemWithPost {
   type: 'post'
@@ -16,13 +16,13 @@ export interface CategoryItem {
   items: (CategoryItem | CategoryItemWithPost)[]
 }
 
-export type BlogCategory = (CategoryItem | CategoryItemWithPost)[]
+export type PostsCategory = (CategoryItem | CategoryItemWithPost)[]
 
-export function useBlogCategory(): { categories: ComputedRef<BlogCategory> } {
+export function usePostsCategory(): { categories: ComputedRef<PostsCategory> } {
   const postList = useLocalePostList()
 
-  const categories = computed<BlogCategory>(() => {
-    const list: BlogCategory = []
+  const categories = computed<PostsCategory>(() => {
+    const list: PostsCategory = []
 
     postList.value.forEach((item) => {
       const categoryList = item.categoryList
@@ -55,7 +55,7 @@ export function useBlogCategory(): { categories: ComputedRef<BlogCategory> } {
   return { categories }
 }
 
-function sortCategory(items: BlogCategory): BlogCategory {
+function sortCategory(items: PostsCategory): PostsCategory {
   for (const item of items) {
     if (item.type === 'category' && item.items.length) {
       item.items = sortCategory(item.items)

@@ -1,4 +1,4 @@
-import type { BlogPostCoverStyle, CopyrightLicense, CopyrightOptions } from '../features/index.js'
+import type { CopyrightLicense, CopyrightOptions, PostsCoverStyle } from '../features/index.js'
 import type { ThemePageFrontmatter } from './page.js'
 
 export interface ThemePostFrontmatter extends ThemePageFrontmatter {
@@ -41,7 +41,7 @@ export interface ThemePostFrontmatter extends ThemePageFrontmatter {
   /**
    * 文章封面图样式
    */
-  coverStyle?: BlogPostCoverStyle
+  coverStyle?: PostsCoverStyle
 
   /**
    * 是否展示文章摘要，传入 string 时为自定义摘要，此时 `<!-- more -->` 无效

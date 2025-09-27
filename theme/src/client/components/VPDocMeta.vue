@@ -4,17 +4,17 @@ import VPBadge from '@theme/global/VPBadge.vue'
 import VPLink from '@theme/VPLink.vue'
 import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
 import { computed, inject, ref } from 'vue'
-import { useBlogPageData, useData, useInternalLink, useTagColors } from '../composables/index.js'
+import { useData, useInternalLink, usePostsPageData, useTagColors } from '../composables/index.js'
 
-const { page, frontmatter: matter, theme, blog } = useData<'post'>()
+const { page, frontmatter: matter, theme, collection } = useData<'post'>()
 const colors = useTagColors()
 const readingTime = useReadingTimeLocale()
 const { tags: tagsLink } = useInternalLink()
-const { isBlogPost } = useBlogPageData()
+const { isPosts } = usePostsPageData()
 
 const createTime = computed(() => {
   const show = theme.value.createTime ?? true
-  if (!show || (show === 'only-blog' && !isBlogPost.value))
+  if (!show || (show === 'only-blog' && !isPosts.value))
     return ''
   if (matter.value.createTime)
     return matter.value.createTime.split(/\s|T/)[0].replace(/\//g, '-')
@@ -23,7 +23,7 @@ const createTime = computed(() => {
 })
 
 const tags = computed(() => {
-  const tagTheme = blog.value.tagsTheme ?? 'colored'
+  const tagTheme = collection.value?.tagsTheme ?? 'colored'
   if (matter.value.tags) {
     return matter.value.tags.slice(0, 4).map(tag => ({
       name: tag,
@@ -75,7 +75,7 @@ const hasMeta = computed(() =>
         :key="tag.name"
         class="tag"
         :class="tag.className"
-        :href="tagsLink?.link && isBlogPost ? `${tagsLink.link}?tag=${tag.name}` : undefined"
+        :href="tagsLink?.link && isPosts ? `${tagsLink.link}?tag=${tag.name}` : undefined"
       >
         {{ tag.name }}
       </VPLink>

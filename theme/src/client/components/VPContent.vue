@@ -6,7 +6,7 @@ import VPFriends from '@theme/VPFriends.vue'
 import VPPage from '@theme/VPPage.vue'
 import { nextTick, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
-import { useBlogPageData, useData, useSidebar } from '../composables/index.js'
+import { useData, usePostsPageData, useSidebar } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
 
 const props = defineProps<{
@@ -15,18 +15,18 @@ const props = defineProps<{
 
 const { hasSidebar } = useSidebar()
 const { frontmatter } = useData()
-const { isBlogLayout } = useBlogPageData()
+const { isPostsLayout } = usePostsPageData()
 const route = useRoute()
 
 watch(
-  [isBlogLayout, () => frontmatter.value.pageLayout, () => route.path],
+  [isPostsLayout, () => frontmatter.value.pageLayout, () => route.path],
   () => nextTick(() => {
     if (inBrowser) {
-      document.documentElement.classList.toggle('bg-gray', isBlogLayout.value)
+      document.documentElement.classList.toggle('bg-gray', isPostsLayout.value)
       const layout = document.documentElement.className.match(/(?:^|\s)(layout-\S+)(?:$|\s)/)?.[1]
       if (layout)
         document.documentElement.classList.remove(layout)
-      document.documentElement.classList.add(`layout-${isBlogLayout.value ? 'blog' : frontmatter.value.pageLayout || 'doc'}`)
+      document.documentElement.classList.add(`layout-${isPostsLayout.value ? 'posts' : frontmatter.value.pageLayout || 'doc'}`)
     }
   }),
   { immediate: true },
@@ -40,7 +40,7 @@ watch(
       'is-home': frontmatter.pageLayout === 'home',
     }"
   >
-    <VPBlog v-if="isBlogLayout">
+    <VPBlog v-if="isPostsLayout">
       <template #blog-top>
         <slot name="blog-top" />
       </template>

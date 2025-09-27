@@ -1,8 +1,8 @@
 import type { ThemeConfig } from 'vuepress-theme-plume'
 import path from 'node:path'
 import { defineThemeConfig } from 'vuepress-theme-plume'
+import { enCollections, zhCollections } from './collections/index.js'
 import { enNavbar, zhNavbar } from './navbar.js'
-import { enNotes, zhNotes } from './notes/index.js'
 
 export default defineThemeConfig({
   logo: '/plume.png',
@@ -27,12 +27,24 @@ export default defineThemeConfig({
 
   locales: {
     '/': {
-      notes: zhNotes,
+      // notes: zhNotes,
       navbar: zhNavbar,
+      collections: [
+        // 博客
+        { type: 'post', dir: '/blog/', link: '/blog/', title: '博客' },
+        // 文档
+        ...zhCollections,
+      ],
     },
     '/en/': {
-      notes: enNotes,
+      // notes: enNotes,
       navbar: enNavbar,
+      collections: [
+        // 博客
+        { type: 'post', dir: '/blog/', link: '/blog/', title: 'Blog' },
+        // 文档
+        ...enCollections,
+      ],
     },
   },
 

@@ -7,15 +7,23 @@ import VPBlogNav from '@theme/Blog/VPBlogNav.vue'
 import VPBlogTags from '@theme/Blog/VPBlogTags.vue'
 import VPPostList from '@theme/Blog/VPPostList.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
-import { useData } from '../../composables/index.js'
+import { watch } from 'vue'
+import { forceUpdateCollection, useData } from '../../composables/index.js'
 
-defineProps<{
+const props = defineProps<{
   homeBlog?: boolean
   type?: string
   onlyOnce?: boolean
+  collection?: string
 }>()
 
 const { theme, page } = useData()
+
+watch(
+  () => [props.homeBlog, props.collection],
+  () => forceUpdateCollection(props.homeBlog ? (props.collection || true) : undefined),
+  { immediate: true },
+)
 </script>
 
 <template>
@@ -29,7 +37,7 @@ const { theme, page } = useData()
       <VPBlogNav v-if="!theme.profile" is-local />
 
       <VPTransitionFadeSlideY>
-        <VPBlogArchives v-if="page.type === 'blog-archives'">
+        <VPBlogArchives v-if="page.type === 'posts-archives'">
           <template #blog-archives-before>
             <slot name="blog-archives-before" />
           </template>
@@ -37,7 +45,7 @@ const { theme, page } = useData()
             <slot name="blog-archives-after" />
           </template>
         </VPBlogArchives>
-        <VPBlogTags v-else-if="page.type === 'blog-tags'">
+        <VPBlogTags v-else-if="page.type === 'posts-tags'">
           <template #blog-tags-before>
             <slot name="blog-tags-before" />
           </template>
@@ -51,7 +59,7 @@ const { theme, page } = useData()
             <slot name="blog-tags-content-before" />
           </template>
         </VPBlogTags>
-        <VPBlogCategories v-else-if="page.type === 'blog-categories'">
+        <VPBlogCategories v-else-if="page.type === 'posts-categories'">
           <template #blog-categories-before>
             <slot name="blog-categories-before" />
           </template>

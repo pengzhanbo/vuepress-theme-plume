@@ -1,12 +1,12 @@
-import type { ComputedRef, Ref } from 'vue'
-import type { NavItemWithLink, ThemeBlogPostItem, ThemeSidebarItem } from '../../shared/index.js'
+import type { ComputedRef } from 'vue'
+import type { NavItemWithLink, ThemePostsItem, ThemeSidebarItem } from '../../shared/index.js'
 import { computed } from 'vue'
 import { resolveRouteFullPath, usePageLang, useRoute } from 'vuepress/client'
 import { isPlainObject, isString } from 'vuepress/shared'
 import { resolveNavLink } from '../utils/index.js'
-import { usePostList } from './blog-data.js'
 import { useData } from './data.js'
-import { useBlogPageData } from './page.js'
+import { usePostsPageData } from './page.js'
+import { useLocalePostList } from './posts-data.js'
 import { useSidebar } from './sidebar.js'
 
 interface UsePrevNextResult {
@@ -18,9 +18,9 @@ export function usePrevNext(): UsePrevNextResult {
   const route = useRoute()
   const { frontmatter, theme } = useData()
   const { sidebar } = useSidebar()
-  const postList = usePostList() as unknown as Ref<ThemeBlogPostItem[]>
+  const postList = useLocalePostList()
   const locale = usePageLang()
-  const { isBlogPost } = useBlogPageData()
+  const { isPosts } = usePostsPageData()
 
   const prevNavList = computed(() => {
     if (theme.value.prevPage === false)
@@ -30,7 +30,7 @@ export function usePrevNext(): UsePrevNextResult {
     if (prevConfig !== false)
       return prevConfig
 
-    if (isBlogPost.value) {
+    if (isPosts.value) {
       return resolveFromBlogPostData(
         postList.value.filter(item => item.lang === locale.value),
         route.path,
@@ -50,7 +50,7 @@ export function usePrevNext(): UsePrevNextResult {
     if (nextConfig !== false)
       return nextConfig
 
-    if (isBlogPost.value) {
+    if (isPosts.value) {
       return resolveFromBlogPostData(
         postList.value.filter(item => item.lang === locale.value),
         route.path,
@@ -114,7 +114,7 @@ function resolveFromSidebarItems(sidebarItems: NavItemWithLink[], currentPath: s
   return null
 }
 
-function resolveFromBlogPostData(postList: ThemeBlogPostItem[], currentPath: string, offset: number): null | NavItemWithLink {
+function resolveFromBlogPostData(postList: ThemePostsItem[], currentPath: string, offset: number): null | NavItemWithLink {
   const index = postList.findIndex(item => item.path === currentPath)
   if (index !== -1) {
     const targetItem = postList[index + offset]

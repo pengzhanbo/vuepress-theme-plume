@@ -5,8 +5,8 @@ import type {
   CopyrightLicense,
   CopyrightOptions,
   ProfileOptions,
+  ThemeCollections,
   ThemeNavItem,
-  ThemeNoteListOptions,
   ThemeSidebarMulti,
   TransitionOptions,
 } from './features/index.js'
@@ -66,13 +66,20 @@ export interface ThemeLocale extends LocaleData {
    * 笔记配置， 笔记中的文章默认不会出现在首页文章列表
    *
    * 注：也可以将notes配置到navbar中
+   *
+   * @deprecated 使用 {@link collections} 代替
    */
-  notes?: false | ThemeNoteListOptions
+  notes?: never
 
   /**
    * 侧边栏配置
    */
   sidebar?: ThemeSidebarMulti
+
+  /**
+   * 文章集合，当前支持 博客类型 或 文档类型
+   */
+  collections?: ThemeCollections
 
   /**
    * 是否显示侧边栏滚动条

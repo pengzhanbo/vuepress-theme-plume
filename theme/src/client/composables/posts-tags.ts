@@ -1,13 +1,13 @@
 import type { ComputedRef, Ref } from 'vue'
-import type { ThemeBlogPostItem } from '../../shared/index.js'
+import type { ThemePostsItem } from '../../shared/index.js'
 import { computed } from 'vue'
 import { toArray } from '../utils/index.js'
-import { useLocalePostList } from './blog-data.js'
 import { useData } from './data.js'
+import { useLocalePostList } from './posts-data.js'
 import { useRouteQuery } from './route-query.js'
 import { useTagColors } from './tag-colors.js'
 
-type ShortPostItem = Pick<ThemeBlogPostItem, 'title' | 'path' | 'createTime'>
+type ShortPostItem = Pick<ThemePostsItem, 'title' | 'path' | 'createTime'>
 
 interface BlogTagItem {
   name: string
@@ -23,13 +23,19 @@ interface UseTagsResult {
 }
 
 export function useTags(): UseTagsResult {
-  const { blog } = useData()
+  const { collection } = useData<'page', 'post'>()
   const list = useLocalePostList()
 
   const colors = useTagColors()
 
+  const postCollection = computed(() => {
+    if (collection.value?.type === 'post')
+      return collection.value
+    return undefined
+  })
+
   const tags = computed<BlogTagItem[]>(() => {
-    const tagTheme = blog.value.tagsTheme ?? 'colored'
+    const tagTheme = postCollection.value?.tagsTheme ?? 'colored'
 
     const tagMap: Record<string, number> = {}
     list.value.forEach((item) => {

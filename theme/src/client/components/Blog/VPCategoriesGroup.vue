@@ -11,14 +11,14 @@ const props = withDefaults(defineProps<{
 }>(), {
   depth: 0,
 })
-const { blog } = useData()
+const { collection } = useData<'page', 'post'>()
 const route = useRoute()
 const el = ref<HTMLDivElement | null>(null)
 const expand = ref(true)
 const isExpand = ref(false)
 
 const expandDepth = computed(() => {
-  const depth = blog.value.categoriesExpand ?? 'deep'
+  const depth = collection.value?.categoriesExpand ?? 'deep'
   if (depth === 'deep')
     return Infinity
   const d = Number(depth)

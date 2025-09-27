@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import VPCategories from '@theme/Blog/VPCategories.vue'
-import { useBlogCategory, useInternalLink } from '../../composables/index.js'
+import { useInternalLink, usePostsCategory } from '../../composables/index.js'
 
 const { categories: categoriesLink } = useInternalLink()
-const { categories } = useBlogCategory()
+const { categories } = usePostsCategory()
 </script>
 
 <template>

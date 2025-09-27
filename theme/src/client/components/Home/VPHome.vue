@@ -38,6 +38,7 @@ const components: Record<string, Component<any, any, any>> = {
   'image-text': VPHomeTextImage,
   'profile': VPHomeProfile,
   'blog': VPHomeBlog,
+  'posts': VPHomeBlog,
   'custom': VPHomeCustom,
 }
 

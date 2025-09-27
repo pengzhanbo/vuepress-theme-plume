@@ -1,8 +1,8 @@
 import type { App, Page } from 'vuepress'
 import type {
   ResolvedSidebarItem,
+  ThemeDocCollection,
   ThemeIcon,
-  ThemeOptions,
   ThemePageData,
   ThemeSidebar,
   ThemeSidebarItem,
@@ -13,13 +13,13 @@ import {
   isPlainObject,
   removeLeadingSlash,
 } from '@vuepress/helper'
-import { getThemeConfig } from '../loadConfig/loader.js'
+import { findCollection } from '../collections/index.js'
+import { getThemeConfig } from '../loadConfig/index.js'
 import { normalizeLink, perf, resolveContent, writeTemp } from '../utils/index.js'
 
 export async function prepareSidebar(app: App): Promise<void> {
   perf.mark('prepare:sidebar')
-  const options = getThemeConfig()
-  const sidebar = getAllSidebar(options)
+  const sidebar = getAllSidebar()
 
   const { resolved, autoHome } = getSidebarData(app, sidebar)
   sidebar.__auto__ = resolved
@@ -136,7 +136,7 @@ function getAutoDirSidebar(
     const paths = (data.filePathRelative || '')
       .slice(localePath.replace(/^\/|\/$/g, '').length + 1)
       .split('/')
-
+    const collection = findCollection(page) as ThemeDocCollection | undefined
     let index = 0
     let dir: string
     let items = sidebar
@@ -147,7 +147,7 @@ function getAutoDirSidebar(
       const isHome = RE_INDEX.includes(dir)
       let current = items.find(item => item.text === text)
       if (!current) {
-        current = { text, link: undefined, items: [] } as ResolvedSidebarItem
+        current = { text, link: undefined, items: [], collapsed: collection?.sidebarCollapsed } as ResolvedSidebarItem
         if (!isHome) {
           items.push(current)
         }
@@ -186,10 +186,14 @@ function cleanSidebar(sidebar: (ThemeSidebarItem)[]) {
       if (isArray(item.items)) {
         if (item.items.length === 0) {
           delete item.items
+          delete item.collapsed
         }
         else {
           cleanSidebar(item.items as ThemeSidebarItem[])
         }
+      }
+      else if (!('items' in item)) {
+        delete item.collapsed
       }
     }
   }
@@ -216,24 +220,24 @@ function findAutoDirList(sidebar: (string | ThemeSidebarItem)[], prefix = ''): s
   return list
 }
 
-function getAllSidebar(options: ThemeOptions): Record<string, ThemeSidebar> {
+function getAllSidebar(): Record<string, ThemeSidebar> {
+  const options = getThemeConfig()
   const locales: Record<string, ThemeSidebar> = {}
 
   for (const [locale, opt] of entries(options.locales || {})) {
-    const notes = locale === '/' ? (opt.notes || options.notes) : opt.notes
+    const rawCollections = locale === '/' ? (opt.collections || options.collections) : opt.collections
     const sidebar = locale === '/' ? (opt.sidebar || options.sidebar) : opt.sidebar
     locales[locale] = {}
     for (const [key, value] of entries(sidebar || {})) {
       locales[locale][normalizeLink(key)] = value
     }
-
-    if (notes && notes.notes?.length) {
-      const prefix = notes.link || ''
-      for (const note of notes.notes) {
-        if (note.sidebar) {
-          locales[locale][normalizeLink(prefix, note.link || '/')] = {
-            items: note.sidebar,
-            prefix: normalizeLink(notes.dir, note.dir),
+    const collections = rawCollections?.filter(item => item.type === 'doc')
+    if (collections?.length) {
+      for (const collection of collections) {
+        if (collection.sidebar) {
+          locales[locale][normalizeLink(collection.linkPrefix || collection.dir)] = {
+            items: collection.sidebar,
+            prefix: normalizeLink(collection.dir),
           }
         }
       }

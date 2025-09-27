@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import type { ResolvedSidebarItem } from '../../shared/index.js'
+import type { ResolvedSidebarItem, ThemePostCollection } from '../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
 import { computed } from 'vue'
-import { resolveRouteFullPath } from 'vuepress/client'
+import { resolveRoute, resolveRouteFullPath, useRouteLocale } from 'vuepress/client'
+import { removeEndingSlash } from 'vuepress/shared'
 import {
-  useBlogPageData,
   useData,
   useInternalLink,
+  usePostsPageData,
   useSidebarData,
 } from '../composables/index.js'
+import { normalizeLink } from '../utils/index.js'
 
 interface Breadcrumb {
   text: string
@@ -16,13 +18,14 @@ interface Breadcrumb {
   current?: boolean
 }
 
-const { page, blog } = useData<'post'>()
-const { isBlogPost } = useBlogPageData()
-const { home, blog: blogLink, categories } = useInternalLink()
+const { page, collection } = useData<'post'>()
+const { isPosts } = usePostsPageData()
+const { home, posts, categories } = useInternalLink()
 const sidebar = useSidebarData()
+const routeLocale = useRouteLocale()
 
 const hasBreadcrumb = computed(() => {
-  if (isBlogPost.value && page.value.categoryList)
+  if (isPosts.value && page.value.categoryList)
     return page.value.categoryList.length > 0
   return sidebar.value.length > 0
 })
@@ -32,9 +35,9 @@ const breadcrumbList = computed<Breadcrumb[]>(() => {
     return []
   const list: Breadcrumb[] = [{ text: home.value.text, link: home.value.link }]
 
-  if (isBlogPost.value) {
-    if (blog.value.postList ?? true)
-      list.push({ text: blogLink.value.text, link: blogLink.value.link })
+  if (isPosts.value) {
+    if (((collection.value as ThemePostCollection | undefined)?.postList ?? true) && posts.value)
+      list.push({ text: posts.value.text, link: posts.value.link })
 
     const categoryList = page.value.categoryList ?? []
     for (const category of categoryList) {
@@ -44,8 +47,18 @@ const breadcrumbList = computed<Breadcrumb[]>(() => {
       })
     }
   }
-  else if (sidebar.value.length > 0) {
-    list.push(...(resolveSidebar(sidebar.value) || []))
+  else {
+    if (collection.value) {
+      const link = normalizeLink(routeLocale.value, collection.value.linkPrefix || collection.value.dir)
+      const { notFound, meta, path } = resolveRoute<{ title?: string }>(link)
+      path !== page.value.path && list.push({
+        link: !notFound ? path : undefined,
+        text: meta.title || collection.value.title || removeEndingSlash(collection.value.dir).split('/').pop() || '',
+      })
+    }
+    if (sidebar.value.length > 0) {
+      list.push(...(resolveSidebar(sidebar.value) || []))
+    }
   }
   list.push({ text: page.value.title, link: page.value.path, current: true })
   return list

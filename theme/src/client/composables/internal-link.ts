@@ -2,6 +2,8 @@ import type { ComputedRef } from 'vue'
 import type { PresetLocale } from '../../shared/index.js'
 import { computed } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
+import { removeEndingSlash, removeLeadingSlash } from 'vuepress/shared'
+import { normalizeLink } from '../utils/resolveNavLink.js'
 import { useData } from './data.js'
 import { useThemeData } from './theme-data.js'
 
@@ -12,14 +14,16 @@ export interface InternalLink {
 
 export function useInternalLink(): {
   home: ComputedRef<InternalLink>
-  blog: ComputedRef<InternalLink>
+  posts: ComputedRef<InternalLink | undefined>
   tags: ComputedRef<InternalLink | undefined>
   archive: ComputedRef<InternalLink | undefined>
   categories: ComputedRef<InternalLink | undefined>
 } {
-  const { blog, theme } = useData()
+  const { collection, theme } = useData<'page', 'post'>()
   const themeData = useThemeData()
   const routeLocale = useRouteLocale()
+
+  const postCollection = computed(() => collection.value?.type === 'post' ? collection.value : undefined)
 
   function resolveLink(name: keyof PresetLocale, link: string): InternalLink {
     return {
@@ -27,24 +31,45 @@ export function useInternalLink(): {
       text: theme.value[`${name}Text`] || themeData.value[`${name}Text`],
     }
   }
-
   const home = computed(() => resolveLink('home', '/'))
-  const blogLink = computed(() => blog.value.postList !== false
-    ? resolveLink('blog', blog.value.link || 'blog/')
-    : home.value)
-  const tags = computed(() => blog.value.tags !== false
-    ? resolveLink('tag', blog.value.tagsLink || 'blog/tags/')
+
+  const postsLink = computed(() => normalizeLink(
+    routeLocale.value,
+    removeLeadingSlash(postCollection.value?.link || postCollection.value?.dir || 'posts/'),
+  ))
+
+  const posts = computed(() => postCollection.value?.postList !== false
+    ? {
+        text: postCollection.value?.title
+          || removeEndingSlash(postCollection.value?.dir || '').split('/').pop()
+          || theme.value.blogText || '',
+        link: postsLink.value,
+      }
     : undefined)
-  const archive = computed(() => blog.value.archives !== false
-    ? resolveLink('archive', blog.value.archivesLink || 'blog/archives/')
+
+  const tags = computed(() => postCollection.value?.tags !== false
+    ? {
+        text: postCollection.value?.tagsText || theme.value.tagText || themeData.value.tagText || 'Tags',
+        link: postCollection.value?.tagsLink ? normalizeLink(routeLocale.value, postCollection.value?.tagsLink) : normalizeLink(postsLink.value, 'tags/'),
+      }
     : undefined)
-  const categories = computed(() => blog.value.categories !== false
-    ? resolveLink('category', blog.value.categoriesLink || 'blog/categories/')
+
+  const archive = computed(() => postCollection.value?.archives !== false
+    ? {
+        text: postCollection.value?.archivesText || theme.value.archiveText || themeData.value.archiveText || 'Archives',
+        link: postCollection.value?.archivesLink ? normalizeLink(routeLocale.value, postCollection.value?.archivesLink) : normalizeLink(postsLink.value, 'archives/'),
+      }
+    : undefined)
+  const categories = computed(() => postCollection.value?.categories !== false
+    ? {
+        text: postCollection.value?.categoriesText || theme.value.categoryText || themeData.value.categoryText || 'Categories',
+        link: postCollection.value?.categoriesLink ? normalizeLink(routeLocale.value, postCollection.value?.categoriesLink) : normalizeLink(postsLink.value, 'categories/'),
+      }
     : undefined)
 
   return {
     home,
-    blog: blogLink,
+    posts,
     tags,
     archive,
     categories,

@@ -92,6 +92,7 @@
     "@vuepress-plume/plugin-fonts": "workspace:*",
     "@vuepress-plume/plugin-search": "workspace:*",
     "@vuepress/helper": "catalog:vuepress",
+    "@vuepress/plugin-auto-frontmatter": "catalog:vuepress",
     "@vuepress/plugin-cache": "catalog:vuepress",
     "@vuepress/plugin-comment": "catalog:vuepress",
     "@vuepress/plugin-copy-code": "catalog:vuepress",
@@ -122,7 +123,9 @@
     "katex": "catalog:prod",
     "local-pkg": "catalog:prod",
     "nanoid": "catalog:prod",
+    "p-map": "catalog:prod",
     "package-manager-detector": "catalog:prod",
+    "picomatch": "catalog:prod",
     "vue": "catalog:prod",
     "vuepress-plugin-md-power": "workspace:*"
   },

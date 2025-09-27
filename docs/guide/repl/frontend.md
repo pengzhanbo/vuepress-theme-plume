@@ -733,7 +733,7 @@ setInterval(() => {
 ```
 
 ::: details 展开查看 `/.vuepress/bulletin.md` 代码
-@[code](../../../../.vuepress/bulletin.md)
+@[code](../../.vuepress/bulletin.md)
 :::
 
 **输出：**

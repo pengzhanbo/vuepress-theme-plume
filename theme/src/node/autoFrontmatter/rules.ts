@@ -91,7 +91,7 @@ function generateWithDoc(
     return data
 
   const { title: et = true, createTime: ec = true, permalink: ep = true } = { ...collection.autoFrontmatter || {}, ...fm }
-  const isRoot = context.filepath.endsWith(path.join(locale, collection.dir, 'README.md'))
+  const isRoot = context.filepath.endsWith(path.join(locale, ensureLeadingSlash(collection.linkPrefix || collection.dir), 'README.md'))
 
   if (et && !hasOwn(data, 'title')) {
     data.title = isRoot ? collection.title : getCurrentName(context.relativePath)
@@ -106,7 +106,7 @@ function generateWithDoc(
       data.permalink = path.join(locale, collection.linkPrefix, '/')
     }
     else if (collection.sidebar && collection.sidebar !== 'auto') {
-      const res = resolveLinkBySidebar(collection.sidebar, collection.dir)
+      const res = resolveLinkBySidebar(collection.sidebar, ensureLeadingSlash(collection.dir))
       const file = ensureLeadingSlash(context.relativePath)
       const link = res[file] || res[path.dirname(file)] || ''
       data.permalink = path.join(locale, collection.linkPrefix, link, isReadme(context.relativePath) ? '' : nanoid(8), '/')
@@ -184,7 +184,13 @@ function getSidebarLink(items: 'auto' | (string | ThemeSidebarItem)[] | undefine
     }
     else {
       const { prefix, dir: subDir = '', link: subLink = '/', items: subItems, text: subText = '' } = item
-      getSidebarLink(subItems, path.join(link, subLink), subText, path.join(prefix || dir, subDir), res)
+      getSidebarLink(
+        subItems,
+        path.join(link, subLink),
+        subText,
+        path.join(prefix?.[0] === '/' ? prefix : `/${dir}/${prefix}`, subDir),
+        res,
+      )
     }
   }
 }

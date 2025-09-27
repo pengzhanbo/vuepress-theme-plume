@@ -74,7 +74,7 @@ function generateWithPost(
   }
 
   if (ep && !hasOwn(data, 'permalink')) {
-    data.permalink = path.join(locale, collection.linkPrefix || collection.link, nanoid(), '/')
+    data.permalink = path.join(locale, collection.linkPrefix || collection.link || collection.dir, nanoid(), '/')
   }
 
   return data

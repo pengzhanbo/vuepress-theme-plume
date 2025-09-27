@@ -3,7 +3,7 @@ import type { ThemePosts } from '../../shared/index.js'
 import { postsData as postsDataRaw } from '@internal/postsData'
 import { computed, ref } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
-import { removeLeadingSlash } from 'vuepress/shared'
+import { ensureEndingSlash, removeLeadingSlash } from 'vuepress/shared'
 import { normalizeLink } from '../utils/resolveNavLink.js'
 import { useCollection } from './collections.js'
 
@@ -20,7 +20,7 @@ export function useLocalePostList(): ComputedRef<ThemePosts> {
   const routeLocale = useRouteLocale()
   return computed(() => {
     if (collection.value) {
-      return postsData.value[normalizeLink(routeLocale.value, removeLeadingSlash(collection.value.dir))] || []
+      return postsData.value[normalizeLink(routeLocale.value, ensureEndingSlash(removeLeadingSlash(collection.value.dir)))] || []
     }
     return []
   })

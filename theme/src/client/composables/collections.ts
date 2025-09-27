@@ -48,8 +48,8 @@ export function setupCollection(): void {
         return page.value.filePathRelative?.startsWith(normalizeLink(routeLocale.value, item.dir).slice(1))
       }
       else {
-        const { link, linkPrefix, tagsLink, categoriesLink, archivesLink } = item as ThemePostCollection
-        return startWith(link) || startWith(linkPrefix) || startWith(tagsLink) || startWith(categoriesLink) || startWith(archivesLink)
+        const { link, linkPrefix, dir, tagsLink, categoriesLink, archivesLink } = item as ThemePostCollection
+        return startWith(link) || startWith(linkPrefix) || startWith(dir) || startWith(tagsLink) || startWith(categoriesLink) || startWith(archivesLink)
       }
     })
   })

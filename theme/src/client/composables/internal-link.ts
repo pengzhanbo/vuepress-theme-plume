@@ -1,5 +1,4 @@
 import type { ComputedRef } from 'vue'
-import type { PresetLocale } from '../../shared/index.js'
 import { computed } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
 import { removeEndingSlash, removeLeadingSlash } from 'vuepress/shared'
@@ -25,13 +24,10 @@ export function useInternalLink(): {
 
   const postCollection = computed(() => collection.value?.type === 'post' ? collection.value : undefined)
 
-  function resolveLink(name: keyof PresetLocale, link: string): InternalLink {
-    return {
-      link: (routeLocale.value + link).replace(/\/+/g, '/'),
-      text: theme.value[`${name}Text`] || themeData.value[`${name}Text`],
-    }
-  }
-  const home = computed(() => resolveLink('home', '/'))
+  const home = computed(() => ({
+    link: normalizeLink(routeLocale.value),
+    text: theme.value.homeText || themeData.value.homeText || 'Home',
+  }))
 
   const postsLink = computed(() => normalizeLink(
     routeLocale.value,

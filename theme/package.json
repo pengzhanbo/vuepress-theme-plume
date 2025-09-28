@@ -115,7 +115,6 @@
     "chokidar": "catalog:prod",
     "dayjs": "catalog:prod",
     "esbuild": "catalog:prod",
-    "fast-glob": "catalog:prod",
     "gray-matter": "catalog:prod",
     "js-yaml": "catalog:prod",
     "katex": "catalog:prod",

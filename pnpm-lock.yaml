@@ -215,9 +215,6 @@ catalogs:
     echarts:
       specifier: ^6.0.0
       version: 6.0.0
-    fast-glob:
-      specifier: ^3.3.3
-      version: 3.3.3
     flowchart.ts:
       specifier: ^3.0.1
       version: 3.0.1
@@ -834,9 +831,6 @@ importers:
       esbuild:
         specifier: ^0.25.10
         version: 0.25.10
-      fast-glob:
-        specifier: catalog:prod
-        version: 3.3.3
       gray-matter:
         specifier: catalog:prod
         version: 4.0.3

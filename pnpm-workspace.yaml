@@ -89,7 +89,6 @@ catalogs:
     dayjs: ^1.11.18
     echarts: ^6.0.0
     esbuild: ^0.25.10
-    fast-glob: ^3.3.3
     flowchart.ts: ^3.0.1
     focus-trap: ^7.6.5
     gray-matter: ^4.0.3

@@ -21,6 +21,8 @@ export class ConfigLoader extends EventEmitter {
   config: ThemeOptions = {}
 
   async init(app: App, defaultConfig: ThemeOptions, configFile?: string): Promise<void> {
+    this.removeAllListeners('change')
+
     this.app = app
     this.defaultConfig = defaultConfig
 
@@ -37,7 +39,6 @@ export class ConfigLoader extends EventEmitter {
 
     this.emit('loaded', this.config)
     this.removeAllListeners('loaded')
-    this.removeAllListeners('change')
   }
 
   watch(watchers: FSWatcher[]): void {

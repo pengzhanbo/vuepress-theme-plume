@@ -43,12 +43,12 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
 
     const { configFile, plugins, themeOptions } = detectThemeOptions(options)
 
+    configLoader.init(app, themeOptions, configFile)
     configLoader.on('change', async () => {
       genAutoFrontmatterRules()
       await prepareThemeData(app, plugins)
       await prepareData(app)
     })
-    configLoader.init(app, themeOptions, configFile)
 
     return {
       name: THEME_NAME,

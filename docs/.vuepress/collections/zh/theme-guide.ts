@@ -19,6 +19,7 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
         'write',
         'blog',
         'document',
+        'collection',
         'locales',
         'deployment',
         'optimize-build',

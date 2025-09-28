@@ -12,11 +12,11 @@
 
 import { defineThemeConfig } from 'vuepress-theme-plume'
 {{#if multiLanguage}}
+import { enCollections, zhCollections } from './collections'
 import { enNavbar, zhNavbar } from './navbar'
-import { enNotes, zhNotes } from './notes'
 {{else}}
 import navbar from './navbar'
-import notes from './notes'
+import collections from './collections'
 {{/if}}
 
 /**
@@ -64,7 +64,7 @@ export default defineThemeConfig({
   },
 
   navbar,
-  notes,
+  collections,
 
   /**
    * 公告板
@@ -102,7 +102,7 @@ export default defineThemeConfig({
       },
 
       navbar: {{ prefix }}Navbar,
-      notes: {{ prefix }}Notes,
+      collections: {{ prefix }}Collections,
 
       /**
        * 公告板

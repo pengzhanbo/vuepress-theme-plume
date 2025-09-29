@@ -16,17 +16,17 @@ permalink: /guide/project-structure/
   - .vuepress  \# vuepress 配置文件夹
     - public/ \# 静态资源目录
     - client.ts \# 客户端配置 (可选)
+    - collections.ts \# collections 配置 (可选)
     - config.ts \# vuepress 配置
     - navbar.ts \# 导航栏配置 (可选)
-    - notes.ts \# notes 配置 (可选)
     - plume.config.ts \# 主题配置文件  (可选)
-  - notes \# 系列文档、知识笔记
-    - demo
-      - foo.md
-      - bar.md
-  - preview \# 博客分类之一
-    - markdown.md \# 分类下的博客文章
-  - article.md \# 博客文章
+  - demo \# doc 类型的 collection 目录
+    - foo.md
+    - bar.md
+  - blog \# post 类型的 collection 目录，这里作为博客
+    - preview \# 博客分类之一
+      - markdown.md \# 分类下的博客文章
+    - article.md \# 博客文章
   - README.md \# 首页
   - …
 - package.json
@@ -121,16 +121,12 @@ export default defineUserConfig({
 // @filename: ./navbar.ts
 export default []
 
-// @filename: ./notes.ts
-export default {
-  dir: '/notes/',
-  link: '/',
-  notes: [],
-}
+// @filename: ./collections.ts
+export default []
 // ---cut---
 import { defineThemeConfig } from 'vuepress-theme-plume'
+import collections from './collections'
 import navbar from './navbar'
-import notes from './notes'
 
 export default defineThemeConfig({
   logo: '/logo.svg',
@@ -138,7 +134,7 @@ export default defineThemeConfig({
     name: 'Theme Plume',
   },
   navbar,
-  notes,
+  collections,
   // ... more
 })
 ```
@@ -153,77 +149,15 @@ export default defineNavbarConfig([
 ])
 ```
 
-@tab .vuepress/notes.ts
+@tab .vuepress/collections.ts
 
 ```ts twoslash
-import { defineNotesConfig } from 'vuepress-theme-plume'
+import { defineCollections } from 'vuepress-theme-plume'
 
-export default defineNotesConfig({
-  dir: '/notes/',
-  link: '/',
-  notes: [],
-})
+export default defineCollections([
+  { type: 'post', dir: 'blog', title: '博客', link: '/blog/', },
+  { type: 'doc', dir: 'demo', linkPrefix: '/demo/', title: '文档示例', sidebar: 'auto' },
+])
 ```
-
-:::
-
-## notes 目录
-
-**notes** 目录用于存放你的 知识笔记、系列文档等。
-
-### 如何理解知识笔记/系列文档 ？
-
-一种很常见的场景是，您正在学习某项技能，并打算把学习心得、重点内容、疑难点等记录在笔记中，这一场景下，
-您可能会写多篇文档进行记录。
-
-或者是，您正在准备面试，想要提前准备好 面试题目和答案，这时候可能会把 每个题目和答案都单独作为一篇文档。
-
-你很容易就会希望把它们都单独放在一个目录下进行管理，与此同时，还希望在生成的文档站点中，能够快速的在
-这项技能笔记 的不同文档之间导航，或者在不同的面试题目之间导航。
-
-这是博客类型的文档满足不了的诉求，而这恰恰是 `notes` 所要解决的一个痛点。
-
-上述的内容，很容易产生以下目录结构：
-
-::: file-tree
-
-- notes
-  - interview  \# 面试题
-    - 自我介绍.md
-    - 我的技能.md
-    - 做过的项目.md
-    - …
-  - typescript \# 学习笔记
-    - 基础
-      - 基本类型.md
-      - 泛型.md
-      - …
-    - 进阶
-      - 函数.md
-      - …
-:::
-
-这可以很方便的管理多个系列文档，每个系列文档都可以有自己的目录结构。
-
-## 其它目录/文件
-
-在 ==文档源目录== 中的 其它目录、文件，除了 `README.md` 被识别为 `主页` 之外，都会被识别为 博客文章。
-而 目录结构 则将被识别为 博客分类。
-
-::: file-tree
-
-- docs
-  - 生活
-    - 旅游日记.md
-    - …
-  - 学习
-    - 考试笔记.md
-    - …
-  - 工作
-    - 番茄时间.md
-    - …
-  - 杂事.md  \# 无分类的文章
-  - README.md  \# 主页
-  - …
 
 :::

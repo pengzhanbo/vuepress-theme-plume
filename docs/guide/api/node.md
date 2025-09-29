@@ -31,18 +31,18 @@ __options__ : `PlumeThemeOptions`
 
 查看 [主题配置](../config/navbar.md) 了解更多。
 
-## `defineNotesConfig(options)`
+## `defineCollections(options)`
 
-__options:__ `NotesOptions`
+__options:__ `(ThemePostCollection | ThemeDocCollection)[]`
 
-主题 notes 配置类型帮助函数
+主题 collections 配置类型帮助函数
 
-查看 [主题配置](../config/notes.md) 了解更多。
+查看 [主题配置](../config/collection.md) 了解更多。
 
-## `defineNoteConfig(options)`
+## `defineCollection(options)`
 
-__options:__ `NoteItem`
+__options:__ `ThemePostCollection | ThemeDocCollection`
 
-主题 单个 note (`NoteItem`) 配置类型帮助函数
+主题 单个 collection  配置类型帮助函数
 
-查看 [主题配置](../config/notes.md) 了解更多。
+查看 [主题配置](../config/collection.md) 了解更多。

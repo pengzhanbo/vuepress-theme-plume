@@ -66,6 +66,13 @@ docs:
     url: https://docs.maa.plus
     repo: https://github.com/MaaAssistantArknights/MaaAssistantArknights/tree/dev/docs
     preview: https://docs.maa.plus/images/preview.jpg
+  -
+    name: Python 入门文档
+    desc: 新手友好的 Python 3 入门文档
+    logo: https://python.yxzl.dev/python-logo-only.svg
+    url: https://python.yxzl.dev/
+    repo: https://github.com/yxzlwz/python-doc-web
+    preview: https://python.yxzl.dev/screenshot.png
 
 blog:
   -
@@ -208,6 +215,13 @@ blog:
     url: https://www.rand777.space/
     repo: https://github.com/Lyrlark/rand777-plume-blog
     preview: https://blog.rand777.space/siteshot.png
+  -
+    name: 异想之旅
+    desc: 异想之旅のBlog
+    logo: https://blog.yxzl.dev/head.png
+    url: https://blog.yxzl.dev/
+    repo: https://github.com/yxzlwz/blog
+    preview: https://blog.yxzl.dev/screenshot.png
 ---
 
 :::important

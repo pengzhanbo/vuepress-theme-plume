@@ -6,20 +6,15 @@ permalink: /config/sidebar/
 
 ## 概述
 
-在本主题中，侧边栏 特指 位于页面 最左侧的内容区域，用于导航到不同的页面。
+侧边栏是主题中位于页面最左侧的核心导航区域，承担着引导用户在不同页面间跳转的重要功能。
 
-在 `vuepress` 的默认主题 `@vuepress/theme-default` 中，侧边栏是通过 `sidebar` 进行配置。
+在 VuePress 生态中，默认主题 `@vuepress/theme-default` 通过 `sidebar` 配置项管理侧边栏。本主题在保留这一经典配置方式的基础上，还提供了更为灵活的集合（Collections）级侧边栏配置方案。
 
-**但在本主题中，为使其更具语义化，主题将侧边栏配置整合到了 [notes 配置](./notes.md) 中** 。
-通过一个 `note` 对应一个 `sidebar` 的方式，实现更加简洁，语义化的侧边栏配置。
+## 集合级侧边栏配置
 
-同时，为了满足 用户不希望使用 `notes` 功能的需求，本主题也提供了 `sidebar` 的选项进行侧边栏配置。
+集合（Collections）是主题中组织系列文档的核心概念。当集合类型设置为 `doc` 时，您可以在 `collection.sidebar` 中定义专属的侧边栏导航。
 
-## Notes 中的侧边栏配置
-
-`notes` 的功能是聚合一系列的文章，通过侧边栏来导航到 notes 中不同的文章。
-
-你可以在 `notes` 目录下创建多个 `note` ，在每一个 `note` 中单独配置 `sidebar`:
+以下示例展示了如何在 `docs` 目录下创建类型为 `doc` 的集合，并配置其侧边栏：
 
 ::: code-tabs#configs
 
@@ -27,13 +22,14 @@ permalink: /config/sidebar/
 
 ```ts twoslash
 import { defineUserConfig } from 'vuepress'
-import { defineNoteConfig, plumeTheme } from 'vuepress-theme-plume'
+import { defineCollection, plumeTheme } from 'vuepress-theme-plume'
 
-// [!code ++:8]
-const noteA = defineNoteConfig({
-  dir: 'note A',
-  link: '/note-a/',
-  sidebar: [
+// 定义文档集合配置 // [!code hl:10]
+const demo = defineCollection({
+  type: 'doc',
+  dir: 'demo', // 文档目录
+  title: 'Demo', // 集合名称
+  sidebar: [ // 侧边栏配置 // [!code ++:4]
     { text: 'one item', link: 'one' },
     { text: 'two item', link: 'two' },
   ]
@@ -41,11 +37,7 @@ const noteA = defineNoteConfig({
 
 export default defineUserConfig({
   theme: plumeTheme({
-    notes: {
-      link: '/',
-      dir: 'notes',
-      notes: [noteA], // [!code ++]
-    },
+    collections: [demo], // 注册集合 // [!code hl]
   })
 })
 ```
@@ -53,12 +45,13 @@ export default defineUserConfig({
 @tab .vuepress/plume.config.ts
 
 ```ts twoslash
-import { defineNoteConfig, defineThemeConfig } from 'vuepress-theme-plume'
+import { defineCollection, defineThemeConfig } from 'vuepress-theme-plume'
 
-// [!code ++:8]
-const noteA = defineNoteConfig({
-  dir: 'note A',
-  link: '/note-a/',
+// 使用独立配置文件定义集合 // [!code hl:10]
+const demo = defineCollection({
+  type: 'doc',
+  dir: 'demo',
+  title: 'Demo',
   sidebar: [
     { text: 'one item', link: 'one' },
     { text: 'two item', link: 'two' },
@@ -66,22 +59,17 @@ const noteA = defineNoteConfig({
 })
 
 export default defineThemeConfig({
-  notes: {
-    link: '/',
-    dir: 'notes',
-    notes: [noteA], // [!code ++]
-  },
+  collections: [demo], // [!code hl]
 })
 ```
 
 :::
 
-主题提供了 `defineNoteConfig` 来帮助你配置 note , 你可以参考 [这里](./notes.md)来查看如何配置。
+主题提供的 `defineCollection` 工具函数简化了集合配置过程。如需了解完整的集合配置选项，请参阅[集合配置文档](./collections.md)。
 
-## 通用 Sidebar 配置
+## 全局侧边栏配置
 
-如果你不想使用 `notes` 的方式来管理系列文章，但又期望通过侧边栏来导航到不同的文章，
-可以通过 [sidebar](../config/theme.md#sidebar) 通用配置来实现。
+如果您希望采用传统的全局配置方式管理侧边栏，可以直接在主题配置中使用 `sidebar` 选项。这种方式适合不需要按集合分组导航的场景。
 
 ::: code-tabs#configs
 
@@ -93,9 +81,9 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    notes: false,
+    // 全局侧边栏配置 // [!code hl:7]
     sidebar: {
-      '/config/': [
+      '/config/': [ // 匹配/config/路径
         { text: '侧边栏配置', link: 'sidebar-1' },
         { text: '侧边栏配置', link: 'sidebar-2' },
       ]
@@ -110,7 +98,7 @@ export default defineUserConfig({
 import { defineThemeConfig } from 'vuepress-theme-plume'
 
 export default defineThemeConfig({
-  notes: false,
+  // 在独立配置文件中定义全局侧边栏 // [!code hl:7]
   sidebar: {
     '/config/': [
       { text: '侧边栏配置', link: 'sidebar-1' },
@@ -122,4 +110,6 @@ export default defineThemeConfig({
 
 :::
 
-完整侧边栏使用说明，请查看 [此文档](../guide/quick-start/document.md) 。
+两种配置方式各有优势：集合级配置适合模块化文档结构，全局配置则便于统一管理简单项目的导航。
+
+如需了解侧边栏的完整配置选项和使用技巧，请参阅[文档指南](../guide/quick-start/document.md)。

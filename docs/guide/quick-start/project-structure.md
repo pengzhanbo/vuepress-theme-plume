@@ -5,29 +5,29 @@ createTime: 2024/09/16 21:59:30
 permalink: /guide/project-structure/
 ---
 
-本指南将向您说明 VuePress 和 Plume 创建的项目的文件结构，以及如何在项目中使用它们。
+本指南详细说明使用 VuePress 和 Plume 主题创建的项目文件结构，帮助您更好地组织和管理项目文件。
 
-当您 [使用命令行工具创建](./usage.md#命令行安装) 的项目，它的文件结构是这样的：
+通过[命令行工具创建](./usage.md#命令行安装)的项目，其典型文件结构如下：
 
 ::: file-tree
 
 - .git/
 - **docs** \# 文档源目录
-  - .vuepress  \# vuepress 配置文件夹
-    - public/ \# 静态资源目录
-    - client.ts \# 客户端配置 (可选)
-    - collections.ts \# collections 配置 (可选)
-    - config.ts \# vuepress 配置
-    - navbar.ts \# 导航栏配置 (可选)
-    - plume.config.ts \# 主题配置文件  (可选)
-  - demo \# doc 类型的 collection 目录
+  - .vuepress  \# VuePress 配置目录
+    - public/ \# 静态资源
+    - client.ts \# 客户端配置（可选）
+    - collections.ts \# Collections 配置（可选）
+    - config.ts \# VuePress 主配置
+    - navbar.ts \# 导航栏配置（可选）
+    - plume.config.ts \# 主题配置文件（可选）
+  - demo \# 文档类型 collection
     - foo.md
     - bar.md
-  - blog \# post 类型的 collection 目录，这里作为博客
-    - preview \# 博客分类之一
-      - markdown.md \# 分类下的博客文章
+  - blog \# 博客类型 collection
+    - preview \# 博客分类
+      - markdown.md \# 分类文章
     - article.md \# 博客文章
-  - README.md \# 首页
+  - README.md \# 站点首页
   - …
 - package.json
 - pnpm-lock.yaml
@@ -35,64 +35,61 @@ permalink: /guide/project-structure/
 - README.md
 :::
 
-::: tip 如果你是手动创建的，也可以参考此文件结构管理您的项目
+::: tip 手动创建的项目也可参考此结构进行组织
 :::
 
 ## 文档源目录
 
-**文档源目录** 指的是，你的站点的所有 markdown 文件所在的目录。该目录一般在使用 命令行工具 启动 VuePress
-时指定：
+**文档源目录**包含站点的所有 Markdown 源文件。在使用命令行工具启动 VuePress 时需指定此目录：
 
 ```sh
 # [!code word:docs]
 vuepress dev docs
-#            这里声明了文档源目录为 docs
+#            ↑ 文档源目录
 ```
+
+对应的 package.json 脚本配置：
 
 ```json title="package.json"
 {
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    //                        ^^^^
     "docs:build": "vuepress build docs"
-    //                            ^^^^
   }
 }
 ```
 
-一般而言，VuePress 仅会接管 该目录，非源目录下的其它文件会被忽略。
+VuePress 仅处理文档源目录内的文件，其他目录将被忽略。
 
-## `.vuepress` 目录
+## `.vuepress` 配置目录
 
-`.vuepress/` 目录是 VuePress 配置文件夹，你还可以在这里创建 自己的组件、自定义主题样式等。
+`.vuepress/` 是 VuePress 的核心配置目录，您可在此配置项目、创建自定义组件和样式。
 
-**在此目录中：**
+### `client.ts` - 客户端配置
 
-### `client.ts`
-
-客户端配置文件，你可以在这里扩展 VuePress 的功能，比如声明新的全局组件等。
+用于扩展 VuePress 客户端功能，如注册全局组件：
 
 ```ts title=".vuepress/client.ts"
 import { defineClientConfig } from 'vuepress/client'
 
 export default defineClientConfig({
   enhance({ app, router, siteData }) {
-    // app: vue app 实例
-    // router: vue router 实例
-    // siteData: vuepress 站点配置
+    // app: Vue 应用实例
+    // router: Vue Router 实例
+    // siteData: 站点数据
 
     // 注册全局组件
     app.component('MyComponent', MyComponent)
   },
   setup() {
-    // 等同于 vue 根组件 上的  setup 方法
+    // Vue 根组件的 setup 方法
   }
 })
 ```
 
-### `config.ts`
+### `config.ts` - 主配置文件
 
-为 VuePress 配置文件，你需要在这里进行一些必要的配置，比如 主题、插件、构建工具等。
+VuePress 的核心配置文件，设置主题、插件和构建工具：
 
 ```ts title=".vuepress/config.ts" twoslash
 import { viteBundler } from '@vuepress/bundler-vite'
@@ -102,17 +99,15 @@ import { plumeTheme } from 'vuepress-theme-plume'
 export default defineUserConfig({
   lang: 'zh-CN',
   theme: plumeTheme({
-    // more...
+    // 主题配置...
   }),
   bundler: viteBundler(),
 })
 ```
 
-### `plume.config.ts`
+### `plume.config.ts` - 主题配置
 
-主题配置文件，由于每次修改 `.vuepress/config.ts`，都需要重启 VuePress 服务，然而实际上大多数时候都不需要这么做。
-
-主题将不需要重启服务的配置移动到了这里。在这里修改配置时，仅通过热更新的方式更新主题。
+专为主题提供的配置文件，支持热更新，修改后无需重启服务：
 
 ::: code-tabs
 @tab .vuepress/plume.config.ts
@@ -135,7 +130,7 @@ export default defineThemeConfig({
   },
   navbar,
   collections,
-  // ... more
+  // 更多配置...
 })
 ```
 
@@ -145,7 +140,7 @@ export default defineThemeConfig({
 import { defineNavbarConfig } from 'vuepress-theme-plume'
 
 export default defineNavbarConfig([
-  // ...
+  // 导航项配置...
 ])
 ```
 
@@ -155,8 +150,19 @@ export default defineNavbarConfig([
 import { defineCollections } from 'vuepress-theme-plume'
 
 export default defineCollections([
-  { type: 'post', dir: 'blog', title: '博客', link: '/blog/', },
-  { type: 'doc', dir: 'demo', linkPrefix: '/demo/', title: '文档示例', sidebar: 'auto' },
+  {
+    type: 'post',
+    dir: 'blog',
+    title: '博客',
+    link: '/blog/'
+  },
+  {
+    type: 'doc',
+    dir: 'demo',
+    linkPrefix: '/demo/',
+    title: '文档示例',
+    sidebar: 'auto'
+  },
 ])
 ```
 

@@ -159,7 +159,7 @@ export interface ThemePostCollection extends ThemeBaseCollection {
   categoriesTransform?: (categories: PostsCategoryItem[]) => PostsCategoryItem[]
 
   /**
-   * 博客文章封面图
+   * 文章封面图
    *
    * 配置封面图的位置，支持 `'left'`、`'right'`、`'top'`、`'top-inside'`
    *
@@ -174,7 +174,7 @@ export interface ThemePostCollection extends ThemeBaseCollection {
 export interface ThemeDocCollection extends ThemeBaseCollection {
   type: 'doc'
   /**
-   * 当前笔记的侧边栏配置
+   * 侧边栏配置
    */
   sidebar?: 'auto' | (string | ThemeSidebarItem)[]
 

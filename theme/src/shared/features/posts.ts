@@ -14,20 +14,20 @@ export interface PostsCategoryItem {
 }
 
 /**
- * 博客封面图布局
+ * 文章封面图布局
  */
 export type PostsCoverLayout = 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
 
 /**
- * 博客文章封面图样式
+ * 文章封面图样式
  */
 export interface PostsCoverStyle {
   /**
-   * 博客文章封面图的位置
+   * 文章封面图的位置
    */
   layout?: PostsCoverLayout
   /**
-   * 博客文章封面图的比例
+   * 文章封面图的比例
    *
    * @default '4:3'
    */

@@ -177,165 +177,6 @@ export default defineThemeConfig({
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
   :::
 
-### blog
-
-- **类型：** `false | BlogOptions`
-- **默认值：** `{ link: '/blog/',  include: ['**/*.md'], exclude: [] }`
-- **详情：**
-
-  博客配置。
-
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
-  :::
-
-```ts
-interface BlogOptions {
-  /**
-   * blog list link
-   *
-   * @default '/blog/'
-   */
-  link?: string
-
-  /**
-   * 在 `{sourceDir}` 目录中，通过 glob string 配置包含文件
-   *
-   * @default - ['**\*.md']
-   */
-  include?: string[]
-
-  /**
-   * 在 `{sourceDir}` 目录中，通过 glob string 配置排除的文件
-   *
-   * @default - ['.vuepress/', 'node_modules/']
-   */
-  exclude?: string[]
-
-  /**
-   * 分页配置
-   *
-   * - `false` - 不启用分页
-   * - `number` - 每页显示的文章数量
-   */
-  pagination?: false | number | {
-    /**
-     * 每页显示的文章数量
-     * @default 10
-     */
-    perPage?: number
-  }
-
-  /**
-   * 是否启用标签页
-   * @default true
-   */
-  tags?: boolean
-
-  /**
-   * 自定义标签页链接
-   *
-   * @default '/blog/tags/'
-   */
-  tagsLink?: string
-
-  /**
-   * 标签颜色主题
-   *
-   * - `colored`： 彩色标签，不同标签颜色不同
-   * - `brand`: 使用主题颜色作为标签颜色
-   * - `gray`: 使用 灰色 作为标签颜色
-   *
-   * @default 'colored'
-   */
-  tagsTheme?: 'colored' | 'gray' | 'brand'
-
-  /**
-   * 是否启用归档页
-   * @default true
-   */
-  archives?: boolean
-
-  /**
-   * 自定义归档页链接
-   *
-   * @default '/blog/archives/'
-   */
-  archivesLink?: string
-
-  /**
-   * 是否启用分类页
-   * @default true
-   */
-  categories?: boolean
-
-  /**
-   * 自定义分类页链接
-   *
-   * @default '/blog/categories/'
-   */
-  categoriesLink?: string
-
-  /**
-   * 分类页展开深度
-   *
-   * @default 'deep'
-   */
-  categoriesExpand?: number | 'deep'
-
-  /**
-   * 文章分类列表转换函数，比如排除不需要的一级分类
-   * @param categories 分类列表
-   * @returns 返回一个新的分类列表
-   */
-  categoriesTransform?: (categories: PageCategoryData[]) => PageCategoryData[]
-
-  /**
-   * 博客文章封面图
-   *
-   * 配置封面图的位置，支持 `'left'`、`'right'`、`'top'`、`'top-inside'`
-   *
-   * @default 'right'
-   */
-  postCover?: BlogPostCoverLayout | BlogPostCoverStyle
-}
-
-type BlogPostCoverLayout = 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
-
-interface BlogPostCoverStyle {
-  /**
-   * 博客文章封面图的位置
-   */
-  layout?: BlogPostCoverLayout
-  /**
-   * 博客文章封面图的比例
-   *
-   * @default '4:3'
-   */
-  ratio?: number | `${number}:${number}`
-
-  /**
-   * 封面图的宽度, 仅在 layout 为 'left' 或 'right' 时生效
-   *
-   * @default 240
-   */
-  width?: number
-  /**
-   * 是否使用紧凑模式，紧凑模式下，封面图紧贴容器边缘
-   * @default false
-   */
-  compact?: boolean
-}
-```
-
-### article
-
-- **类型：** `string`
-- **默认值：** `/article/`
-- **详情：** 文章链接前缀
-
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
-  :::
-
 ### autoFrontmatter
 
 - **类型：** `false | AutoFrontmatterOptions`
@@ -345,18 +186,6 @@ interface BlogPostCoverStyle {
 
   ```ts
   interface AutoFrontmatterOptions {
-    /**
-     * glob 匹配，被匹配的文件将会自动生成 frontmatter
-     *
-     * @default ['**\/*.md']
-     */
-    include?: string | string[]
-
-    /**
-     * glob 匹配，被匹配的文件将不会自动生成 frontmatter
-     */
-    exclude?: string | string[]
-
     /**
      * 是否自动生成 permalink
      *
@@ -714,27 +543,13 @@ type NavItem = string | {
   })
   ```
 
-### notes
-
-- **类型：** `false | NotesOptions`
-- **默认值：** `{ link: '/note', dir: 'notes', notes: [] }`
-- **详情：**
-
-  笔记配置， 笔记中的文章默认不会出现在首页文章列表
-
-  你可以将配置的notes 配置到 navbar中，以便浏览查看
-
-详细配置请查看 [此文档](./notes.md)
-
 ### sidebar
 
 - **类型：** `false | SidebarMulti`
 
 - **详情：**
 
-  侧边栏配置。**主题更推荐在 [notes 配置](./notes.md) 中进行侧边栏配置。**
-
-  当你不希望使用 `notes` 功能，但又期望给文档增加侧边栏时，可以使用此配置。
+  侧边栏配置。**主题更推荐在 [collections 配置](./collections.md) 中进行侧边栏配置。**
 
   配置对象的 `key` 为侧边栏公共访问路径前缀。
 
@@ -775,9 +590,7 @@ interface SidebarItem {
 
   /**
    * 如果未指定，组不可折叠。
-   *
    * 如果为`true`，组可折叠，并默认折叠。
-   *
    * 如果为`false`，组可折叠，但默认展开。
    */
   collapsed?: boolean
@@ -909,10 +722,10 @@ interface SidebarItem {
 
 ### createTime
 
-- **类型：** `boolean | 'only-blog'`
+- **类型：** `boolean | 'only-posts'`
 - **默认值：** `true`
 - **详情：** 是否显示创建时间
 
   - `false` - 不显示
-  - `'only-blog'` - 只显示在博客文章页面
+  - `'only-posts'` - 只显示在文章列表页面
   - `true` - 显示在所有文章页面

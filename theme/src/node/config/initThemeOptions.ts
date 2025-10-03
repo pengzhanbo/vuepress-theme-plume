@@ -2,7 +2,7 @@ import type { App } from 'vuepress'
 import type { ThemeOptions } from '../../shared/index.js'
 import { hasOwn, uniq } from '@pengzhanbo/utils'
 import { entries, fromEntries, getFullLocaleConfig, isPlainObject } from '@vuepress/helper'
-import { compatBlogAndNotesToCollections } from '../collections/index.js'
+import { compatBlogAndNotesToCollections, completeCollections } from '../collections/index.js'
 import { LOCALE_OPTIONS } from '../locales/index.js'
 import { THEME_NAME } from '../utils/index.js'
 
@@ -51,7 +51,10 @@ export function initThemeOptions(app: App, { locales, ...options }: ThemeOptions
     }),
   }
 
+  // 兼容旧的 blog 、 notes 配置
   compatBlogAndNotesToCollections(resolvedOptions)
+  // 补全 collections 可选项
+  completeCollections(resolvedOptions)
 
   return resolvedOptions
 }

@@ -1,4 +1,6 @@
-import type { ThemeDocCollection, ThemeOptions } from '../../shared'
+import type { ThemeDocCollection, ThemeOptions } from '../../shared/index.js'
+import { toArray } from '@pengzhanbo/utils'
+import { removeLeadingSlash } from 'vuepress/shared'
 import { path } from 'vuepress/utils'
 
 /**
@@ -10,7 +12,17 @@ export function compatBlogAndNotesToCollections(options: ThemeOptions): void {
     const collections = (options.collections ||= [])
 
     if (options.blog) {
-      collections.push({ type: 'post', dir: '/blog/', linkPrefix: options.article, ...options.blog as any })
+      const notes = (options.notes || {}) as any
+      collections.push({
+        type: 'post',
+        dir: '/',
+        linkPrefix: options.article,
+        ...options.blog as any,
+        exclude: [
+          ...toArray((options.blog as any).exclude),
+          ...notes.notes?.map(note => removeLeadingSlash(path.join(notes.dir, note.dir))),
+        ],
+      })
     }
 
     if (options.notes) {
@@ -29,7 +41,17 @@ export function compatBlogAndNotesToCollections(options: ThemeOptions): void {
     if (!opt.collections?.length) {
       const collections = (opt.collections ||= [])
       if (options.blog) {
-        collections.push({ type: 'post', dir: '/blog/', linkPrefix: options.article, ...options.blog as any })
+        const notes = opt.notes as any
+        collections.push({
+          type: 'post',
+          dir: '/',
+          linkPrefix: options.article,
+          ...options.blog as any,
+          exclude: [
+            ...toArray((options.blog as any).exclude),
+            ...notes.notes?.map(note => removeLeadingSlash(path.join(notes.dir, note.dir))),
+          ],
+        })
       }
       if (opt.notes) {
         const { dir, link, notes } = opt.notes as any

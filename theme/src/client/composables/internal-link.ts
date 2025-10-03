@@ -38,7 +38,7 @@ export function useInternalLink(): {
     ? {
         text: postCollection.value?.title
           || removeEndingSlash(postCollection.value?.dir || '').split('/').pop()
-          || theme.value.postsText || '',
+          || theme.value.postsText!,
         link: postsLink.value,
       }
     : undefined)

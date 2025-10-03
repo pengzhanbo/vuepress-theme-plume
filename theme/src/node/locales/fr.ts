@@ -36,7 +36,7 @@ export const frLocale: ThemeLocaleText = {
   },
 
   homeText: 'Accueil',
-  blogText: 'Blog',
+  postsText: 'Blog',
   tagText: 'Étiquette',
   archiveText: 'Archives',
   categoryText: 'Catégorie',

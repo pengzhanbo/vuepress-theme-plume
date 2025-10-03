@@ -1,5 +1,8 @@
 import type { ThemeSidebarItem } from './sidebar.js'
 
+/**
+ * @deprecated
+ */
 export interface ThemeNoteListOptions {
   /**
    * 保存所有笔记的目录
@@ -17,6 +20,9 @@ export interface ThemeNoteListOptions {
   notes: ThemeNote[]
 }
 
+/**
+ * @deprecated
+ */
 export interface ThemeNote {
   /**
    * 保存笔记的目录

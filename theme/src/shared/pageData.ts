@@ -1,17 +1,17 @@
 import type { GitPluginPageData } from '@vuepress/plugin-git'
 import type { ReadingTime } from '@vuepress/plugin-reading-time'
-import type { BlogCategoryItem } from './features/index.js'
+import type { PostsCategoryItem } from './features/index.js'
 
 export interface ThemePageData extends GitPluginPageData {
   /**
    * 页面布局类型
    * @internal
    */
-  type: 'friends' | 'blog' | 'blog-tags' | 'blog-archives' | 'blog-categories'
+  type: 'friends' | 'posts' | 'posts-tags' | 'posts-archives' | 'posts-categories'
   /**
    * 博客文章分类列表
    */
-  categoryList?: BlogCategoryItem[]
+  categoryList?: PostsCategoryItem[]
   /**
    * 相对于根目录的文件路径
    */

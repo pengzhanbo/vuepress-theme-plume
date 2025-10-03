@@ -36,7 +36,7 @@ export const deLocale: ThemeLocaleText = {
   },
 
   homeText: 'Startseite',
-  blogText: 'Blog',
+  postsText: 'Blog',
   tagText: 'Tag',
   archiveText: 'Archiv',
   categoryText: 'Kategorie',

@@ -2,13 +2,7 @@ import type { LLMPage, LLMState } from '@vuepress/plugin-llms'
 import type { ThemeSidebarItem } from 'vuepress-theme-plume'
 import { generateTOCLink as rawGenerateTOCLink } from '@vuepress/plugin-llms'
 import { ensureEndingSlash, ensureLeadingSlash } from 'vuepress/shared'
-import { zhNotes } from './notes/zh/index.js'
-
-const noteNames = {
-  '/guide/': '指南',
-  '/config/': '配置',
-  '/tools/': '工具',
-}
+import { zhCollections } from './collections/zh/index.js'
 
 function normalizePath(prefix: string, path = ''): string {
   if (path.startsWith('/'))
@@ -79,9 +73,9 @@ export function tocGetter(llmPages: LLMPage[], llmState: LLMState): string {
   }
 
   // Notes
-  zhNotes.notes.forEach(({ dir, link, sidebar = [] }) => {
-    tableOfContent += `### ${noteNames[link]}\n\n`
-    const prefix = normalizePath('/notes/', dir)
+  zhCollections.filter(note => note.type === 'doc').forEach(({ dir, title, sidebar = [] }) => {
+    tableOfContent += `### ${title}\n\n`
+    const prefix = normalizePath(dir)
     if (sidebar === 'auto') {
       tableOfContent += `${processAutoSidebar(prefix).join('')}\n`
     }

@@ -87,6 +87,7 @@ export async function compiler(configPath?: string,
   }
   return {
     config,
-    dependencies: Object.keys(result.metafile?.inputs ?? {}),
+    // local deps
+    dependencies: Object.keys(result.metafile?.inputs ?? {}).filter(dep => dep[0] === '.'),
   }
 }

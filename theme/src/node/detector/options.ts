@@ -1,4 +1,5 @@
 import type { ThemeBuiltinPlugins, ThemeOptions } from '../../shared/index.js'
+import { detectBreakingChange } from './breakingChange.js'
 import { detectDependencies } from './dependency.js'
 import { detectMarkdown } from './markdown.js'
 import { detectPlugins } from './plugins.js'
@@ -20,6 +21,7 @@ export function detectThemeOptions({
   // detect options
   detectMarkdown(themeOptions)
   detectPlugins(plugins)
+  detectBreakingChange(themeOptions)
 
   return { configFile, plugins, themeOptions }
 }

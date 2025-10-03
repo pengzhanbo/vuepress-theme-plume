@@ -19,7 +19,7 @@ export type ThemeNormalFrontmatter = PageFrontmatter<{
   /**
    * page layout
    */
-  pageLayout?: false | 'home' | 'blog' | 'doc' | 'custom' | 'page' | 'friends'
+  pageLayout?: false | 'home' | 'posts' | 'doc' | 'custom' | 'page' | 'friends'
 
   /**
    * 自定义页面 class

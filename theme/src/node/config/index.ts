@@ -1,6 +1,5 @@
 export * from './extendsBundlerOptions.js'
 export * from './initThemeOptions.js'
-export * from './resolveNotesOptions.js'
 export * from './resolveThemeData.js'
 export * from './setupAlias.js'
 export * from './setupProvideData.js'

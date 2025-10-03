@@ -1,40 +1,32 @@
 import type { Page } from 'vuepress/core'
-import type { BlogCategoryItem, ThemeOptions, ThemePageData } from '../../shared/index.js'
-import { ensureLeadingSlash, isPlainObject } from '@vuepress/helper'
-import { resolveNotesLinkList } from '../config/index.js'
+import type { PostsCategoryItem, ThemePageData } from '../../shared/index.js'
+import { ensureEndingSlash, ensureLeadingSlash, removeLeadingSlash } from '@vuepress/helper'
+import { findCollection } from '../collections/index.js'
 import { hash } from '../utils/index.js'
 
 let uuid = 10000
 const cache: Record<string, number> = {}
 
 const RE_CATEGORY = /^(?:(\d+)\.)?([\s\S]+)$/
-let LOCALE_RE: RegExp
 
-export function autoCategory(
-  page: Page<ThemePageData>,
-  options: ThemeOptions,
-): void {
+export function autoCategory(page: Page<ThemePageData>): void {
+  const collection = findCollection(page)
+
+  // 非 post 类型不需要自动分类
+  if (collection?.type !== 'post')
+    return
+
   const pagePath = page.filePathRelative
-  const blog = isPlainObject(options.blog) ? options.blog : {}
-  const enabled = blog.categories !== false
 
-  if (page.data.type || !pagePath || !enabled)
+  if (page.data.type || !pagePath || collection.categories === false)
     return
 
-  const notesLinks = resolveNotesLinkList(options)
-  if (notesLinks.some(link => page.path.startsWith(link)))
-    return
-
-  LOCALE_RE ??= new RegExp(
-    `^(${Object.keys(options.locales || {}).filter(l => l !== '/').join('|')})`,
-  )
   const list = ensureLeadingSlash(pagePath)
-    .replace(LOCALE_RE, '')
-    .replace(/^\//, '')
+    .slice(page.pathLocale.length + ensureEndingSlash(removeLeadingSlash(collection.dir)).length)
     .split('/')
     .slice(0, -1)
 
-  const categoryList: BlogCategoryItem[] = list
+  const categoryList: PostsCategoryItem[] = list
     .map((category, index) => {
       const match = category.match(RE_CATEGORY) || []
       if (!cache[match[2]] && !match[1]) {
@@ -46,5 +38,5 @@ export function autoCategory(
         name: match[2],
       }
     })
-  page.data.categoryList = blog.categoriesTransform?.(categoryList) || categoryList
+  page.data.categoryList = collection.categoriesTransform?.(categoryList) || categoryList
 }

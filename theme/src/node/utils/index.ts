@@ -1,5 +1,6 @@
 export * from './constants.js'
 export * from './createFsCache.js'
+export * from './createMatcher.js'
 export * from './encrypt.js'
 export * from './hash.js'
 export * from './interopDefault.js'

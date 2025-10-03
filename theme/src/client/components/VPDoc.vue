@@ -10,11 +10,11 @@ import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { computed, nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
 import {
-  useBlogPageData,
   useContributors,
   useData,
   useEncrypt,
   useHeaders,
+  usePostsPageData,
   useSidebar,
 } from '../composables/index.js'
 
@@ -22,7 +22,7 @@ const { page, theme, frontmatter } = useData()
 const route = useRoute()
 
 const { hasSidebar, hasAside, leftAside } = useSidebar()
-const { isBlogPost } = useBlogPageData()
+const { isPosts } = usePostsPageData()
 const headers = useHeaders()
 const { isPageDecrypted } = useEncrypt()
 const { mode: contributorsMode } = useContributors()
@@ -31,7 +31,7 @@ const enableAside = computed(() => {
   if (!hasAside.value)
     return false
 
-  if (isBlogPost.value)
+  if (isPosts.value)
     return headers.value.length > 0
 
   return true
@@ -78,7 +78,7 @@ watch(
     class="vp-doc-container" :class="{
       'has-sidebar': hasSidebar,
       'has-aside': enableAside,
-      'is-blog': isBlogPost,
+      'is-posts': isPosts,
       'with-encrypt': !isPageDecrypted,
     }"
   >
@@ -282,7 +282,7 @@ watch(
     max-width: 884px;
   }
 
-  .vp-doc-container.is-blog:not(.has-sidebar.has-aside) .content {
+  .vp-doc-container.is-posts:not(.has-sidebar.has-aside) .content {
     max-width: 985px;
   }
 

@@ -8,7 +8,6 @@ import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
 import type { ThemeBaseData, ThemeData } from './data.js'
 import type {
   AutoFrontmatterOptions,
-  BlogOptions,
   EncryptOptions,
   LastUpdatedOptions,
   MarkdownOptions,
@@ -63,8 +62,10 @@ export interface ThemeFeatureOptions {
 
   /**
    * 博客配置
+   *
+   * @deprecated 使用 {@link collections} 代替
    */
-  blog?: false | BlogOptions
+  blog?: never
 
   /**
    * 是否显示 "编辑此页"

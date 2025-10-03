@@ -28,7 +28,7 @@ export const enLocale: ThemeLocaleText = {
   encryptPageText: 'Only password can access this page',
 
   homeText: 'Home',
-  blogText: 'Blog',
+  postsText: 'Blog',
   tagText: 'Tags',
   archiveText: 'Archives',
   categoryText: 'Categories',

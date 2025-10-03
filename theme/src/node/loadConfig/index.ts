@@ -4,5 +4,5 @@
  * 因此，将 主题配置 抽离到独立的文件中进行配置，避免服务重启，是非常有必要的。
  */
 export * from './compiler.js'
+export * from './ConfigLoader.js'
 export * from './findConfigPath.js'
-export * from './loader.js'

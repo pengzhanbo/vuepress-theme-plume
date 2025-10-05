@@ -57,13 +57,13 @@ export async function compiler(configPath?: string,
           build.onLoad({ filter: /\.[cm]?[jt]s$/ }, async (args) => {
             const contents = await fsp.readFile(args.path, 'utf-8')
             const injectValues
-                = `const ${dirnameVarName} = ${JSON.stringify(
-                  path.dirname(args.path),
-                )};`
-                + `const ${filenameVarName} = ${JSON.stringify(args.path)};`
-                + `const ${importMetaUrlVarName} = ${JSON.stringify(
-                  pathToFileURL(args.path).href,
-                )};`
+              = `const ${dirnameVarName} = ${JSON.stringify(
+                path.dirname(args.path),
+              )};`
+              + `const ${filenameVarName} = ${JSON.stringify(args.path)};`
+              + `const ${importMetaUrlVarName} = ${JSON.stringify(
+                pathToFileURL(args.path).href,
+              )};`
 
             return {
               loader: args.path.endsWith('ts') ? 'ts' : 'js',

@@ -18,8 +18,8 @@ catalogs:
   dev:
     '@commitlint/cli': ^20.0.0
     '@commitlint/config-conventional': ^20.0.0
-    '@pengzhanbo/eslint-config-vue': ^1.37.0
-    '@pengzhanbo/stylelint-config': ^1.37.0
+    '@pengzhanbo/eslint-config-vue': ^1.38.0
+    '@pengzhanbo/stylelint-config': ^1.38.0
     '@simonwep/pickr': ^1.9.1
     '@types/express': ^5.0.3
     '@types/js-yaml': ^4.0.9
@@ -38,7 +38,7 @@ catalogs:
     cpx2: ^8.0.0
     cross-env: 7.0.3
     cz-conventional-changelog: ^3.3.0
-    eslint: ^9.36.0
+    eslint: ^9.37.0
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.4.1
@@ -49,7 +49,7 @@ catalogs:
     minimist: ^1.2.8
     postcss: ^8.5.6
     rimraf: ^6.0.1
-    stylelint: ^16.24.0
+    stylelint: ^16.25.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
     tsdown: ^0.15.5

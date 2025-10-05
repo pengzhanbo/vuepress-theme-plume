@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { ProfileOptions } from '../../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
 import { useScrollLock } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
@@ -9,11 +10,17 @@ import { inBrowser } from '../../utils/index.js'
 
 import '@vuepress/helper/transition/fade-in.css'
 
-const { theme } = useData()
+const { theme, collection } = useData<'page', 'post'>()
 const route = useRoute()
 
-const profile = computed(() => theme.value.profile)
+const profile = computed(() => {
+  const profile = collection.value?.type === 'post' ? collection.value.profile : undefined
+  return (profile ?? theme.value.profile) as (ProfileOptions & { originalWidth?: number, originalHeight?: number } | false | undefined)
+})
+
 const imageUrl = computed(() => {
+  if (!profile.value)
+    return ''
   const url = profile.value?.avatar ?? profile.value?.url
   if (!url)
     return ''

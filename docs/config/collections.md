@@ -171,7 +171,7 @@ Post 集合专为博客、专栏等碎片化内容设计，提供完整的文章
 
 ### 核心功能
 
-- **文章列表页** - 支持文章置顶、封面图、摘要显示
+- **文章列表页** - 支持文章置顶、封面图、摘要显示、个人信息等
 - **文章分类页** - 基于目录结构自动生成分类
 - **文章标签页** - 灵活的标签管理
 - **文章归档页** - 按时间维度组织内容
@@ -191,7 +191,7 @@ export default defineThemeConfig({
       link: '/blog/', // 列表页链接
       linkPrefix: '/article/', // 文章链接前缀
       postCover: 'top', // 封面图位置
-      autoFrontmatter: true, // 启用自动 frontmatter
+      autoFrontmatter: { permalink: true }, // 自动 frontmatter
     },
     // 面试专栏配置
     {
@@ -382,24 +382,72 @@ interface ThemePostCollection extends ThemeBaseCollection {
    * @default 'right'
    */
   postCover?: PostsCoverLayout | PostsCoverStyle
+  /**
+   * 个人信息配置
+   */
+  profile?: ProfileOptions | false
+  /**
+   * 社交账号配置
+   */
+  social?: SocialLink[] | false
 }
-
 /* 文章分类项 */
 interface PostsCategoryItem {
   id: string
   sort: number
   name: string
 }
-
 /* 封面图布局 */
-export type PostsCoverLayout = 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
-
+type PostsCoverLayout = 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
 /* 封面图样式 */
-export interface PostsCoverStyle {
+interface PostsCoverStyle {
   layout?: PostsCoverLayout
   ratio?: number | `${number}:${number}` | `${number}/${number}`
   width?: number
   compact?: boolean
+}
+/* 社交链接图标 */
+type SocialLinkIcon = SocialLinkIconUnion | { svg: string, name?: string }
+/* 社交链接 */
+interface SocialLink {
+  icon: SocialLinkIcon
+  link: string
+  ariaLabel?: string
+}
+
+/**
+ * 个人资料
+ */
+export interface ProfileOptions {
+  /**
+   * 头像链接地址
+   */
+  avatar?: string
+  /**
+   * 名称
+   */
+  name?: string
+  /**
+   * 描述 / 简介 / 座右铭 / 签名
+   */
+  description?: string
+  /**
+   * 是否显示为圆形头像
+   */
+  circle?: boolean
+  /**
+   * 地理位置
+   */
+  location?: string
+  /**
+   * 组织，公司
+   */
+  organization?: string
+  /**
+   * 布局位置，左侧或者右侧
+   * @default 'right'
+   */
+  layout?: 'left' | 'right'
 }
 ```
 

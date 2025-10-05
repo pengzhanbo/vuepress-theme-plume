@@ -1,11 +1,15 @@
+import type { SocialLink } from '../common/social.js'
 import type { AutoFrontmatterOptions } from './autoFrontmatter.js'
 import type { PostsCategoryItem, PostsCoverLayout, PostsCoverStyle } from './posts.js'
+import type { ProfileOptions } from './profile.js'
 import type { ThemeSidebarItem } from './sidebar.js'
 
 /**
  * 文档集合
  *
  * 主题通过 集合的方式，聚合某个目录下的文章，作为一个独立的文档。
+ *
+ * @since 1.0.0-rc.165
  */
 export type ThemeCollections = ThemeCollectionItem[]
 
@@ -23,7 +27,10 @@ export interface ThemeBaseCollection {
    */
   dir: string
   /**
-   * 文档集合的链接前缀
+   * 当启用 autoFrontmatter 时，文档集合的链接前缀
+   * - `post` 类型，用于文章的自动生成链接前缀
+   * - `doc` 类型，用于文档中文章的自动生成链接前缀
+   * @default '/${dir}/'
    */
   linkPrefix?: string
 
@@ -46,7 +53,7 @@ export interface ThemeBaseCollection {
 }
 
 /**
- * 博客类型的文章集合
+ * post 类型的文章集合
  */
 export interface ThemePostCollection extends ThemeBaseCollection {
   type: 'post'
@@ -79,7 +86,7 @@ export interface ThemePostCollection extends ThemeBaseCollection {
   /**
    * 文章列表页链接
    *
-   * @default '/{dir}/'
+   * @default '/${dir}/'
    */
   link?: string
 
@@ -98,7 +105,7 @@ export interface ThemePostCollection extends ThemeBaseCollection {
   /**
    * 自定义标签页链接
    *
-   * @default '/{link}/tags/'
+   * @default '/${link}/tags/'
    */
   tagsLink?: string
 
@@ -116,7 +123,7 @@ export interface ThemePostCollection extends ThemeBaseCollection {
   /**
    * 自定义归档页链接
    *
-   * @default '/{link}/archives/'
+   * @default '/${link}/archives/'
    */
   archivesLink?: string
 
@@ -135,7 +142,7 @@ export interface ThemePostCollection extends ThemeBaseCollection {
   /**
    * 自定义分类页链接
    *
-   * @default '/{link}/categories/'
+   * @default '/${link}/categories/'
    */
   categoriesLink?: string
 
@@ -166,6 +173,16 @@ export interface ThemePostCollection extends ThemeBaseCollection {
    * @default 'right'
    */
   postCover?: PostsCoverLayout | PostsCoverStyle
+
+  /**
+   * 个人信息配置
+   */
+  profile?: ProfileOptions | false
+
+  /**
+   * 社交账号配置
+   */
+  social?: SocialLink[] | false
 }
 
 /**

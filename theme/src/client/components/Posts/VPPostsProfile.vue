@@ -6,17 +6,26 @@ import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { useData } from '../../composables/index.js'
 
-const { theme } = useData()
-const profile = computed(() =>
-  theme.value.profile as ProfileOptions & { originalWidth?: number, originalHeight?: number },
-)
+const { theme, collection } = useData<'page', 'post'>()
+const profile = computed(() => {
+  const profile = collection.value?.type === 'post' ? collection.value.profile : undefined
+  return (profile ?? theme.value.profile) as (ProfileOptions & { originalWidth?: number, originalHeight?: number } | false | undefined)
+})
 const imageUrl = computed(() => {
+  if (!profile.value)
+    return ''
+
   const url = profile.value?.avatar ?? profile.value?.url
   if (!url)
     return ''
   if (isLinkHttp(url))
     return url
   return withBase(url)
+})
+
+const social = computed(() => {
+  const social = collection.value?.type === 'post' ? collection.value.social : undefined
+  return social ?? theme.value.social
 })
 </script>
 
@@ -37,8 +46,8 @@ const imageUrl = computed(() => {
         <p v-if="profile.organization" v-html="profile.organization" />
       </div>
     </div>
-    <div v-if="theme.social" class="profile-social">
-      <VPSocialLinks :links="theme.social" />
+    <div v-if="social" class="profile-social">
+      <VPSocialLinks :links="social" />
     </div>
   </div>
 </template>

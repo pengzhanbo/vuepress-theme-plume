@@ -85,7 +85,7 @@ type Task = readonly [string, AutoFrontmatterHandle]
  */
 export async function generateFileListFrontmatter(app: App): Promise<void> {
   const { pagePatterns = ['**/*.md', '!.vuepress', '!node_modules'] }
-      = app.options
+    = app.options
   const cwd = app.dir.source()
 
   genAutoFrontmatterRules()
@@ -113,7 +113,7 @@ export async function generateFileListFrontmatter(app: App): Promise<void> {
 
 export function watchAutoFrontmatter(app: App, watchers: FSWatcher[]): void {
   const { pagePatterns = ['**/*.md', '!.vuepress', '!node_modules'] }
-      = app.options
+    = app.options
   const cwd = app.dir.source()
   const filter = createFilter(pagePatterns)
   const watcher = watch('.', {

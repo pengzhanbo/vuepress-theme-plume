@@ -51,7 +51,7 @@ onMounted(() => {
 
     const { top: navTop, height: navHeight } = navEl.value.getBoundingClientRect()
     const { top: activeTop, height: activeHeight }
-    = activeItem.getBoundingClientRect()
+      = activeItem.getBoundingClientRect()
 
     if (activeTop < navTop || activeTop + activeHeight > navTop + navHeight)
       activeItem.scrollIntoView({ block: 'center' })

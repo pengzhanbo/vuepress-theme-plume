@@ -39,7 +39,7 @@ async function createPlayer() {
 
   loaded.value = false
   const { default: ArtPlayer } = await import(
-    /* webpackChunkName: "artplayer" */ 'artplayer'
+    /* webpackChunkName: "artplayer" */ 'artplayer',
   )
   loaded.value = true
   const { src, type: _t, width: _w, height: _h, ratio: _r, ...opt } = props

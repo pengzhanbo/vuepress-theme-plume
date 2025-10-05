@@ -70,10 +70,14 @@ export function useHeaders(): Ref<MenuItem[]> {
 }
 
 export function getHeaders(range?: ThemeOutline): MenuItem[] {
+  const heading = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+  const ignores = Array.from(document.querySelectorAll(
+    heading.map(h => `.vp-demo-wrapper ${h}`).join(','),
+  ))
   const headers = Array.from(
-    document.querySelectorAll('.vp-doc :where(h1,h2,h3,h4,h5,h6):not(.vp-demo-wrapper :where(h1,h2,h3,h4,h5,h6))'),
+    document.querySelectorAll(heading.map(h => `.vp-doc ${h}`).join(',')),
   )
-    .filter(el => el.id && el.hasChildNodes())
+    .filter(el => !ignores.includes(el) && el.id && el.hasChildNodes())
     .map((el) => {
       const level = Number(el.tagName[1])
       return {

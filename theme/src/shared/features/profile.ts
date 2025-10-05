@@ -17,7 +17,7 @@ export interface ProfileOptions {
    */
   name?: string
   /**
-   * 描述
+   * 描述 / 简介 / 座右铭 / 签名
    */
   description?: string
   /**

@@ -63,11 +63,12 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
 
       plugins: setupPlugins(app, plugins),
 
-      extendsBundlerOptions: async (bundlerOptions, app) => {
-        extendsBundlerOptions(bundlerOptions, app)
+      extendsMarkdownOptions: async (_, app) => {
         await configLoader.waiting()
         await generateFileListFrontmatter(app)
       },
+
+      extendsBundlerOptions,
 
       templateBuildRenderer,
 

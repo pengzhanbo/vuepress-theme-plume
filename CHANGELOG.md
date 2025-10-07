@@ -1,3 +1,17 @@
+# [1.0.0-rc.166](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.165...v1.0.0-rc.166) (2025-10-07)
+
+
+### Bug Fixes
+
+* **theme:** incorrect collection auto complete ([2a8385f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2a8385f3aa1c8c2fa1a6de7b99cdf1ae62d8ca57))
+
+
+### Features
+
+* **theme:** add collection breaking change log ([b37af47](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b37af47dca080b3f1d6505602f79c86bde08c57b))
+
+
+
 # [1.0.0-rc.165](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.164...v1.0.0-rc.165) (2025-10-07)
 
 ### &nbsp;&nbsp;&nbsp;🚨 Breaking Changes

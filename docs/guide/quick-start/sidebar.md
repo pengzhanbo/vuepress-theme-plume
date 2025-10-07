@@ -11,65 +11,140 @@ tags:
 
 ## 概述
 
-主题内置了强大的**知识笔记**功能，专门用于组织和聚合相关主题的系列文档。笔记系统作为站点的子文档体系，能够有效管理结构化内容。
+侧边栏是文档常见的页面导航方式，可以快速定位到文档内容。
 
-**核心特性**：
+主题提供了两种方式配置侧边栏，包括:
 
-- 独立的内容分类：`notes/` 目录下的文档不会出现在博客文章列表
-- 结构化导航：支持自动生成侧边栏导航
-- 灵活的配置：提供多种配置方式适应不同规模项目
+- 通过主题配置的 `sidebar` 选项配置侧边栏
+- 在 [类型为 `doc` 的集合](./collection-doc.md) 中配置侧边栏
 
 ## 文件结构与基础配置
 
 ### 目录结构设计
 
-典型的笔记项目结构如下：
+典型的项目结构可能如下：
 
 ::: file-tree
 
 - docs
-  - notes
-    - typescript     # TypeScript 学习笔记
-      - basic.md
-      - types.md
-    - rust           # Rust 编程笔记
-      - tuple.md
-      - struct.md
-  - blog-post.md     # 普通博客文章
+  - typescript     # TypeScript 学习笔记
+    - basic.md
+    - types.md
+  - rust           # Rust 编程笔记
+    - tuple.md
+    - struct.md
   - README.md        # 站点首页
 :::
 
-### 基础配置
+### 通过`sidebar` 配置
 
-在 VuePress 配置文件中设置笔记系统：
+这种方式适用于简单小巧的文档站点。
 
-```js title=".vuepress/config.ts" twoslash
+::: code-tabs#config
+
+@tab .vuepress/config.ts
+
+```ts twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    notes: {
-      dir: '/notes/', // 笔记根目录（默认值）
-      link: '/', // 默认链接前缀（默认值）
-      notes: [
-        {
-          dir: 'typescript', // 相对于 notes.dir 的路径
-          link: '/typescript/', // 笔记访问路径前缀
-          sidebar: 'auto' // 自动生成侧边栏
-        },
-        {
-          dir: 'rust',
-          link: '/rust/',
-          sidebar: [ // 手动配置侧边栏
-            { text: '简介', items: ['foo'] }
-          ]
-        }
+    sidebar: {
+      '/typescript/': [
+        'basic',
+        'types'
+      ],
+      '/rust/': [
+        'tuple',
+        'struct'
       ]
     }
   })
 })
 ```
+
+@tab .vuepress/plume.config.ts
+
+```ts twoslash
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  sidebar: {
+    '/typescript/': [
+      'basic',
+      'types'
+    ],
+    '/rust/': [
+      'tuple',
+      'struct'
+    ]
+  }
+})
+```
+
+:::
+
+### 通过 `collection` 配置 <VPBadge text="推荐" />
+
+`collections` （集合）可以灵活的组织和管理站点中的不同类别的文档，这种方式适用于复杂的站点。
+
+::: code-tabs#config
+
+@tab .vuepress/config.ts
+
+```js twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    collections: [
+      {
+        type: 'doc',
+        dir: 'typescript',
+        linkPrefix: '/typescript/',
+        title: 'TypeScript 笔记',
+        sidebar: ['basic', 'types'],
+      },
+      {
+        type: 'doc',
+        dir: 'rust',
+        linkPrefix: '/rust/',
+        title: 'Rust 笔记',
+        sidebar: ['tuple', 'struct'],
+      }
+    ],
+  })
+})
+```
+
+@tab .vuepress/plume.config.ts
+
+```ts twoslash
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  collections: [
+    {
+      type: 'doc',
+      dir: 'typescript',
+      linkPrefix: '/typescript/',
+      title: 'TypeScript 笔记',
+      sidebar: ['basic', 'types'],
+    },
+    {
+      type: 'doc',
+      dir: 'rust',
+      linkPrefix: '/rust/',
+      title: 'Rust 笔记',
+      sidebar: ['tuple', 'struct'],
+    }
+  ],
+})
+```
+
+:::
 
 ::: tip 配置时机建议
 在创建文档文件前完成笔记配置。主题的 [auto-frontmatter](../../config/theme.md#autofrontmatter) 功能会根据配置自动生成永久链接和侧边栏结构。
@@ -83,44 +158,42 @@ export default defineUserConfig({
 
 ::: code-tabs
 
-@tab .vuepress/notes.ts
+@tab .vuepress/collections.ts
 
 ```ts twoslash
-import { defineNoteConfig, defineNotesConfig } from 'vuepress-theme-plume'
+import { defineCollection, defineCollections } from 'vuepress-theme-plume'
 
-// 单笔记配置
-const typescript = defineNoteConfig({
+// 单个集合配置
+const typescript = defineCollection({
   dir: 'typescript',
-  link: '/typescript/',
+  linkPrefix: '/typescript/',
   sidebar: [
-    '/guide/intro.md',
-    '/guide/getting-start.md',
-    '/config/config-file.md',
+    'guide/intro.md',
+    'guide/getting-start.md',
+    'config/config-file.md',
   ]
 })
 
-// 笔记集合配置
-export default defineNotesConfig({
-  dir: '/notes/',
-  link: '/',
-  notes: [typescript] // [!code ++]
-})
+// 导出所有集合配置
+export default defineCollections([
+  typescript
+])
 ```
 
 @tab .vuepress/config.ts
 
 ```ts twoslash
-// @filename: ./notes.ts
-export default {}
+// @filename: ./collections.ts
+export default []
 
 // ---cut---
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
-import notes from './notes' // [!code ++]
+import collections from './collections' // [!code ++]
 
 export default defineUserConfig({
   theme: plumeTheme({
-    notes // [!code ++]
+    collections // [!code ++]
   }),
 })
 ```
@@ -129,20 +202,19 @@ export default defineUserConfig({
 
 ### 大型项目配置拆分
 
-当笔记数量较多时，可采用模块化配置结构：
+当集合数量较多时，可采用模块化配置结构：
 
 ::: file-tree
 
 - docs
   - .vuepress
-    - notes
+    - collections
       - typescript.ts
       - rust.ts
       - index.ts
       - …
-  - notes
-    - typescript/
-    - rust/
+  - typescript/
+  - rust/
 :::
 
 配置代码组织示例：
@@ -150,47 +222,55 @@ export default defineUserConfig({
 ::: code-tabs
 @tab .vuepress/config.ts
 
-```ts
+```ts twoslash
+// @filename: ./collections/index.ts
+export default []
+
+// ---cut---
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
-import notes from './notes/index.ts' // [!code ++]
+import collections from './collections/index.ts' // [!code ++]
 
 export default defineUserConfig({
   theme: plumeTheme({
-    notes // [!code ++]
+    collections // [!code ++]
   }),
 })
 ```
 
-@tab .vuepress/notes/index.ts
+@tab .vuepress/collections/index.ts
 
-```ts
-import { defineNotesConfig } from 'vuepress-theme-plume'
+```ts twoslash
+// @filename: ./rust.ts
+export default {}
+// @filename: ./typescript.ts
+export default {}
+
+// ---cut---
+import { defineCollections } from 'vuepress-theme-plume'
 import rust from './rust' // [!code ++]
 import typescript from './typescript' // [!code ++]
 
-export default defineNotesConfig({
-  dir: '/notes/',
-  link: '/',
-  notes: [ // [!code ++:4]
-    typescript,
-    rust,
-  ]
-})
+export default defineCollections([
+  rust,
+  typescript,
+])
 ```
 
-@tab .vuepress/notes/typescript.ts
+@tab .vuepress/collections/typescript.ts
 
 ```ts
-import { defineNoteConfig } from 'vuepress-theme-plume'
+import { defineCollection } from 'vuepress-theme-plume'
 
-export default defineNoteConfig({
+export default defineCollection({
+  type: 'doc',
   dir: 'typescript',
   link: '/typescript/',
+  title: 'TypeScript 笔记',
   sidebar: [
-    '/guide/intro.md',
-    '/guide/getting-start.md',
-    '/config/config-file.md',
+    'guide/intro.md',
+    'guide/getting-start.md',
+    'config/config-file.md',
   ]
 })
 ```
@@ -201,26 +281,27 @@ export default defineNoteConfig({
 
 ### 文件结构示例
 
-假设 TypeScript 笔记包含以下结构：
+假设 TypeScript 笔记 包含以下结构：
 
 ::: file-tree
 
-- typescript
-  - guide
-    - intro.md
-    - getting-start.md
-  - config
-    - config-file.md
-    - configuration.md
-  - reference
-    - basic.md
-    - syntax.md
-    - modules.md
-  - built-in
-    - types
-      - Required.md
-      - Omit.md
-  - README.md
+- docs
+  - typescript
+    - guide
+      - intro.md
+      - getting-start.md
+    - config
+      - config-file.md
+      - configuration.md
+    - reference
+      - basic.md
+      - syntax.md
+      - modules.md
+    - built-in
+      - types
+        - Required.md
+        - Omit.md
+    - README.md
 :::
 
 ### 自动生成侧边栏
@@ -228,8 +309,16 @@ export default defineNoteConfig({
 最简单的配置方式使用自动生成：
 
 ```ts
-sidebar: 'auto'
+import { defineCollection } from 'vuepress-theme-plume'
+
+export default defineCollection({
+  type: 'doc',
+  dir: 'typescript',
+  sidebar: 'auto' // 自动生成侧边栏 // [!code ++]
+})
 ```
+
+主题根据目录结构自动配置侧边栏。
 
 **排序控制**：通过数字前缀管理显示顺序
 
@@ -247,6 +336,44 @@ sidebar: 'auto'
 
 数字前缀仅用于排序，不会在侧边栏中显示。
 
+**自动折叠**：默认情况下，侧边栏不会自动折叠，可以通过配置 `sidebarCollapsed` 开启自动折叠：
+
+```ts
+import { defineCollection } from 'vuepress-theme-plume'
+
+export default defineCollection({
+  type: 'doc',
+  dir: 'typescript',
+  sidebar: 'auto',
+  sidebarCollapsed: true, // [!code ++]
+})
+```
+
+`sidebarCollapsed` 有以下可选值：
+
+- `undefined`: 默认，不自动折叠
+- `true`: 默认全部折叠
+- `false`: 默认全部展开
+
+### 自动生成次级侧边栏
+
+为了更加灵活的控制侧边栏，减少配置的复杂度，主题允许配置仅自动生成次级侧边栏：
+
+```ts
+import { defineCollection } from 'vuepress-theme-plume'
+
+export default defineCollection({
+  type: 'doc',
+  dir: 'typescript',
+  sidebar: [
+    // 次级 items 自动读取 typescript/guide 目录
+    { text: '指南', prefix: 'guide', items: 'auto' },
+    // 次级 items 自动读取 typescript/config 目录
+    { text: '配置', prefix: 'config', items: 'auto' },
+  ],
+})
+```
+
 ### 自定义侧边栏配置
 
 #### 基础配置类型
@@ -258,7 +385,7 @@ interface SidebarItem {
   icon?: ThemeIcon // 图标配置
   badge?: string | ThemeBadge // 徽章
   prefix?: string // 链接前缀
-  items?: 'auto' | (string | SidebarItem)[] // 子项
+  items?: 'auto' | (string | SidebarItem)[] // 下一级侧边栏
   collapsed?: boolean // 折叠状态
 }
 ```
@@ -267,11 +394,17 @@ interface SidebarItem {
 
 **基础链接配置**：
 
+采用简写形式，可以传入 md 文件的路径或 页面链接地址，
+主题会自动读取文件的 `frontmatter` 配置作为侧边栏配置。
+
 ```ts
 sidebar: [
-  '/guide/intro.md',
-  '/guide/getting-start.md',
-  '/config/config-file.md',
+  // 绝对路径时，
+  // 在 themeConfig.sidebar 中是相对于 `key` 前缀的路径
+  // 在 collection 中是相对于 `dir` 的路径
+  '/guide/intro.md', // markdown 文件地址
+  '/guide/getting-start/', // 页面链接地址
+  '/config/config-file', // 可以省略 `.md` 后缀
 ]
 ```
 
@@ -312,10 +445,10 @@ sidebar: [
 const sidebarItem: SidebarItem = {
   prefix: '/guide',
   items: [
-    'intro', // → /guide/intro
-    '/config/config-file', // → /config/config-file (绝对路径)
-    { link: 'blog' }, // → /guide/blog
-    { link: '/config' } // → /config (绝对路径)
+    'intro', // → /guide/intro.md
+    '/config/config-file', // → /config/config-file.md (绝对路径)
+    { link: '/blog/' }, // → /guide/blog/
+    { link: '/config/' } // → /config.md (绝对路径)
   ]
 }
 ```
@@ -331,14 +464,14 @@ const sidebarItem: SidebarItem = {
 const sidebarItem: SidebarItem = {
   prefix: '/guide',
   items: [
-    'intro', // → /guide/intro
+    'intro', // → /guide/intro.md
     {
-      prefix: '/config', // 绝对路径
-      items: ['config-file'] // → /config/config-file
+      prefix: '/config', // 绝对路径，抛弃上级的 prefix
+      items: ['config-file'] // → /config/config-file.md
     },
     {
-      prefix: 'blog', // 相对路径
-      items: ['intro'] // → /guide/blog/intro
+      prefix: 'blog', // 相对路径，拼接上级的 prefix
+      items: ['intro'] // → /guide/blog/intro.md
     }
   ]
 }
@@ -442,27 +575,3 @@ sidebar: [
 ```
 
 **分隔符特征**：`link` 字段包含至少三个连续的 `-`
-
-## 笔记首页定制
-
-笔记目录下的 `README.md` 自动作为笔记首页。默认使用文档布局，可通过配置转换为功能丰富的门户页面：
-
-```md title="typescript/README.md"
----
-pageLayout: home
-config:
-  - type: hero
-    title: TypeScript 完全指南
-    description: 从基础到进阶的 TypeScript 学习路径
-  - type: features
-    features:
-      - title: 类型系统
-        details: 深入理解 TypeScript 类型系统
-        icon: mdi:code-braces
-      - title: 高级特性
-        details: 掌握泛型、装饰器等高级功能
-        icon: mdi:rocket-launch
----
-```
-
-通过合理的配置，笔记系统能够成为您知识管理的强大工具，提供清晰的内容结构和优秀的阅读体验。

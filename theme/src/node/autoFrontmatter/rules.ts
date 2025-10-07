@@ -17,6 +17,7 @@ export function getRules(): AutoFrontmatterRule[] {
 
 export function genAutoFrontmatterRules(): void {
   const options = getThemeConfig()
+  const remainExclude: string[] = [...EXCLUDE]
 
   rules.length = 0
 
@@ -27,10 +28,14 @@ export function genAutoFrontmatterRules(): void {
       continue
 
     for (const collection of collections) {
+      const source = removeLeadingSlash(path.join(locale, collection.dir, '**/*.md'))
+      // 无论 集合是否启用 autoFrontmatter，
+      // 在最后的对剩余文件的 auto frontmatter 都需要排除当前集合的文件
+      remainExclude.push(source)
+
       if ((collection.autoFrontmatter ?? autoFrontmatter) === false)
         continue
 
-      const source = removeLeadingSlash(path.join(locale, collection.dir, '**/*.md'))
       if (collection.type === 'post') {
         rules.push({
           filter: [
@@ -49,20 +54,41 @@ export function genAutoFrontmatterRules(): void {
         })
       }
     }
+    if (locale !== '/') {
+      const source = removeLeadingSlash(path.join(locale, '**/*.md'))
+      // locale fallback
+      rules.push({
+        filter: [
+          source,
+          ...remainExclude.map(s => `!${s}`),
+        ],
+        handle: (data, context) => generateWithRemain(data, context, autoFrontmatter, locale),
+      })
+      remainExclude.push(source)
+    }
   }
+  // root fallback
+  rules.push({
+    filter: [
+      '**/*.md',
+      ...remainExclude.map(s => `!${s}`),
+    ],
+    handle: (data, context) => generateWithRemain(data, context, autoFrontmatter, '/'),
+  })
 }
 
-function generateWithPost(
+async function generateWithPost(
   data: AutoFrontmatterData,
   context: AutoFrontmatterContext,
   collection: ThemePostCollection,
   fm: AutoFrontmatterOptions | false,
   locale: string,
-): AutoFrontmatterData {
+): Promise<AutoFrontmatterData> {
   if ((collection.autoFrontmatter ?? fm) === false)
     return data
 
-  const { title: et = true, createTime: ec = true, permalink: ep = true } = { ...collection.autoFrontmatter || {}, ...fm }
+  const { title: et = true, createTime: ec = true, permalink: ep = true } = { ...fm, ...collection.autoFrontmatter }
+  const transform = (collection.autoFrontmatter || {}).transform
   const isRoot = context.filepath.endsWith(path.join(locale, collection.dir, 'README.md'))
 
   if (et && !hasOwn(data, 'title')) {
@@ -77,21 +103,24 @@ function generateWithPost(
     data.permalink = path.join(locale, collection.linkPrefix || collection.link || collection.dir, nanoid(), '/')
   }
 
+  data = await transform?.(data, context, locale) ?? data
+
   return data
 }
 
-function generateWithDoc(
+async function generateWithDoc(
   data: AutoFrontmatterData,
   context: AutoFrontmatterContext,
   collection: ThemeDocCollection,
   fm: AutoFrontmatterOptions | false,
   locale: string,
-): AutoFrontmatterData {
+): Promise<AutoFrontmatterData> {
   if ((collection.autoFrontmatter ?? fm) === false)
     return data
 
-  const { title: et = true, createTime: ec = true, permalink: ep = true } = { ...collection.autoFrontmatter || {}, ...fm }
-  const isRoot = context.filepath.endsWith(path.join(locale, ensureLeadingSlash(collection.linkPrefix || collection.dir), 'README.md'))
+  const { title: et = true, createTime: ec = true, permalink: ep = true } = { ...fm, ...collection.autoFrontmatter }
+  const transform = (collection.autoFrontmatter || {}).transform
+  const isRoot = context.filepath.endsWith(path.join(locale, collection.dir, 'README.md'))
 
   if (et && !hasOwn(data, 'title')) {
     data.title = isRoot ? collection.title : getCurrentName(context.relativePath)
@@ -115,6 +144,41 @@ function generateWithDoc(
       data.permalink = path.join(locale, collection.linkPrefix, nanoid(8), '/')
     }
   }
+
+  data = await transform?.(data, context, locale) ?? data
+
+  return data
+}
+
+async function generateWithRemain(
+  data: AutoFrontmatterData,
+  context: AutoFrontmatterContext,
+  fm: AutoFrontmatterOptions | false,
+  locale: string,
+): Promise<AutoFrontmatterData> {
+  if (fm === false)
+    return data
+
+  const { title: et = true, createTime: ec = true, permalink: ep = true, transform } = fm
+  const isRoot = context.filepath.endsWith(path.join(locale, 'README.md'))
+
+  if (isRoot) {
+    data.pageLayout = 'home'
+  }
+
+  if (et && !hasOwn(data, 'title')) {
+    data.title = isRoot ? 'Home' : getCurrentName(context.relativePath)
+  }
+
+  if (ec && !hasOwn(data, 'createTime') && !isRoot) {
+    data.createTime = getFileCreateTime(context.filepath)
+  }
+
+  if (ep && !hasOwn(data, 'permalink') && !isRoot) {
+    data.permalink = path.join(locale, nanoid(8), '/')
+  }
+
+  data = await transform?.(data, context, locale) ?? data
 
   return data
 }

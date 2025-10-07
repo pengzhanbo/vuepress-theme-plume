@@ -92,32 +92,51 @@ permalink: /guide/collection/
 - **完成**
 ::::
 
-### dir 配置项
+在这其中，需要注意的是：
 
-集合配置中的 `dir` 指向源目录下的某个文件夹，该文件夹下的所有 markdown 文件都将归属于该集合。
+- **dir 配置项**
 
-### type 配置项
+  集合配置中的 `dir` 指向源目录下的某个文件夹，该文件夹下的所有 markdown 文件都将归属于该集合。
 
-集合配置中的 `type` 指定了集合的类型。
+- **type 配置项**
 
-集合的类型决定了该集合下的文档将会提供哪些功能，当前主题支持的类型如下：
+  集合配置中的 `type` 指定了集合的类型。
 
-- `post`：表示碎片化文章的集合，文章之间不存在关联关系或弱关联关系。
-- `doc`: 表示结构化文章的集合，文章之间存在结构化的强关联关系，作为一个整体。
+  集合的类型决定了该集合下的文档将会提供哪些功能，当前主题支持的类型如下：
 
-### title 配置项
+  - `post`：表示碎片化文章的集合，文章之间不存在关联关系或弱关联关系。
+  - `doc`: 表示结构化文章的集合，文章之间存在结构化的强关联关系，作为一个整体。
 
-集合配置中的 `title` 指定了集合的名称。
+- **title 配置项**
 
-在主题中，`title` 用于页面的面包屑导航中。
+  集合配置中的 `title` 指定了集合的名称。
+
+  在主题中，`title` 用于页面的面包屑导航中。
 
 ## 集合类型
 
-::: card-grid
+集合的类型决定了该集合下的文档将会提供哪些功能。
 
-<LinkCard title="post 集合" href="./collection-post.md" icon="mdi:post-outline" />
-<LinkCard title="doc 集合" href="./collection-doc.md" icon="streamline-ultimate:sidebar-line-left" />
-:::
+### post 集合
+
+post 集合提供了以下的功能实现：
+
+- 文章列表页 - 文章置顶、文章封面图、文章摘要等。
+- 文章分类页 - 根据目录结构自动生成分类。
+- 文章标签页 - 根据页面 `frontmatter.tags` 生成标签。
+- 文章归档页 - 根据页面 `frontmatter.createTime` 生成归档。
+
+<LinkCard title="post 集合详细说明" href="./collection-post.md" icon="mdi:post-outline" />
+
+### doc 集合
+
+doc 集合提供了以下的功能实现：
+
+- **侧边导航栏** - 提供清晰的文档结构导航
+- **自动生成目录** - 基于文件结构智能生成侧边栏
+- **多级嵌套支持** - 支持复杂的文档层次结构
+
+<LinkCard title="doc 集合详细说明" href="./collection-doc.md" icon="streamline-ultimate:sidebar-line-left" />
 
 ## 集合配置
 

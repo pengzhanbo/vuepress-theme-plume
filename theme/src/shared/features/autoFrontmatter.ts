@@ -1,4 +1,4 @@
-export type AutoFrontmatterData = Record<string, unknown>
+export type AutoFrontmatterData = Record<string, any>
 
 /**
  * The context of the markdown file
@@ -91,4 +91,31 @@ export interface AutoFrontmatterOptions {
    * 默认读取文件名作为标题
    */
   title?: boolean
+
+  /**
+   * 自定义 frontmatter 生成函数
+   *
+   * - 你应该直接将新字段添加到 `data` 中
+   * - 如果返回全新的 `data` 对象，会覆盖之前的 frontmatter
+   * @param data 页面已存在的 frontmatter
+   * @param context 当前页面的上下文信息
+   * @param locale 当前语言路径
+   * @returns 返回处理后的 frontmatter
+   *
+   * @example
+   * ```ts
+   * {
+   *   transform: (data, context, locale) => {
+   *     data.foo ??= 'foo'
+   *     return data
+   *   }
+   * }
+   * ```
+   */
+  transform?: <
+    D extends AutoFrontmatterData = AutoFrontmatterData,
+  >(data: D,
+    context: AutoFrontmatterContext,
+    locale: string
+  ) => D | Promise<D>
 }

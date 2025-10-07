@@ -1,3 +1,7 @@
+# [1.0.0-rc.165](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.164...v1.0.0-rc.165) (2025-10-07)
+
+
+
 # [1.0.0-rc.164](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.163...v1.0.0-rc.164) (2025-09-20)
 
 

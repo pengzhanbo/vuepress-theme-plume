@@ -1,3 +1,12 @@
+# [1.0.0-rc.167](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.166...v1.0.0-rc.167) (2025-10-07)
+
+
+### Bug Fixes
+
+* **theme:** incorrect configuration loading and page generation sequence ([2e1ad23](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2e1ad231120a40fba5b38e68d7d46ba367fa85f8))
+
+
+
 # [1.0.0-rc.166](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.165...v1.0.0-rc.166) (2025-10-07)
 
 

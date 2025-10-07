@@ -26,17 +26,17 @@ export function detectBreakingChange(options: ThemeOptions): void {
  * @description 博客和笔记已经被删除，迁移到 collections 实现
  */
 function withBlogAndNotesHaveBeenDelete(options: ThemeOptions): void {
-  if ('blog' in options && options.collections?.length === 0) {
+  if ('blog' in options && (!options.collections || options.collections.length === 0)) {
     logger.warn(t('blog'))
   }
 
   let shouldMigrateNotes = false
-  if ((options.notes as any)?.length && options.collections?.length === 0) {
+  if ((options.notes as any)?.length && (!options.collections || options.collections.length === 0)) {
     shouldMigrateNotes = true
   }
 
   for (const locale of Object.values(options.locales || {})) {
-    if ((locale.notes as any)?.length && locale.collections?.length === 0) {
+    if ((locale.notes as any)?.length && (!locale.collections || locale.collections.length === 0)) {
       shouldMigrateNotes = true
     }
   }

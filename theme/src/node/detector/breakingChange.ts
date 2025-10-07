@@ -3,16 +3,17 @@
  * 提醒用户更新配置，或告知用户进行迁移。
  */
 import type { ThemeOptions } from '../../shared/index.js'
+import { colors } from 'vuepress/utils'
 import { createTranslate, logger } from '../utils/index.js'
 
 const t = createTranslate({
   en: {
-    blog: '',
-    notes: '',
+    blog: `${colors.gray('blog')} configuration has been removed and migrated to collections. Please refer to the migration documentation: ${colors.cyan('https://theme-plume.vuejs.press/blog/dk58a4t2/')}`,
+    notes: `${colors.gray('notes')} configuration has been removed and migrated to collections. Please refer to the migration documentation: ${colors.cyan('https://theme-plume.vuejs.press/blog/dk58a4t2/')}`,
   },
   zh: {
-    blog: '',
-    notes: '',
+    blog: `${colors.gray('blog')} 配置已移除，迁移到集合中，请查看迁移文档：${colors.cyan('https://theme-plume.vuejs.press/blog/dk58a4t2/')}`,
+    notes: `${colors.gray('notes')} 配置已移除，迁移到集合中，请查看迁移文档：${colors.cyan('https://theme-plume.vuejs.press/blog/dk58a4t2/')}`,
   },
 })
 

@@ -23,7 +23,6 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
         },
         'sidebar',
         'write',
-        'blog',
         'locales',
         'deployment',
         'optimize-build',

@@ -112,4 +112,4 @@ export default defineThemeConfig({
 
 两种配置方式各有优势：集合级配置适合模块化文档结构，全局配置则便于统一管理简单项目的导航。
 
-如需了解侧边栏的完整配置选项和使用技巧，请参阅[文档指南](../guide/quick-start/sidebar.md)。
+如需了解侧边栏的完整配置选项和使用技巧，请参阅[侧边栏配置指南](../guide/quick-start/sidebar.md)。

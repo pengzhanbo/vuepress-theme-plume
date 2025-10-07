@@ -525,4 +525,4 @@ export interface ThemeBadge {
 
 两种方式具有相同的效果，您可以根据具体场景选择使用。
 
-如需了解侧边栏的完整配置选项和使用技巧，请参阅[文档指南](../guide/quick-start/document.md)。
+如需了解侧边栏的完整配置选项和使用技巧，请参阅[侧边栏配置指南](../guide/quick-start/sidebar.md)。

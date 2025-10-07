@@ -7,7 +7,7 @@ export interface ThemeHomeFrontmatter extends ThemeNormalFrontmatter, Omit<Theme
   config?: ThemeHomeConfig[]
 }
 
-export type ThemeHomeConfig = ThemeHomeBanner | ThemeHomeTextImage | ThemeHomeFeatures | ThemeHomeProfile | ThemeHomeHero
+export type ThemeHomeConfig = ThemeHomeBanner | ThemeHomeTextImage | ThemeHomeFeatures | ThemeHomeProfile | ThemeHomeHero | ThemeHomePosts
 
 export interface ThemeHero {
   name: string
@@ -31,7 +31,7 @@ export interface ThemeHeroAction {
 }
 
 export interface ThemeHomeConfigBase {
-  type: 'banner' | 'hero' | 'doc-hero' | 'text-image' | 'image-text' | 'features' | 'profile' | 'custom'
+  type: 'banner' | 'hero' | 'doc-hero' | 'text-image' | 'image-text' | 'features' | 'profile' | 'custom' | 'posts'
   full?: boolean
   backgroundImage?: string | { light: string, dark: string }
   backgroundAttachment?: 'fixed' | 'local'
@@ -120,4 +120,9 @@ export interface ThemeHomeProfile extends ThemeHomeConfigBase {
 
 export interface ThemeHomeCustom extends ThemeHomeConfigBase {
   type: 'custom'
+}
+
+export interface ThemeHomePosts extends ThemeHomeConfigBase {
+  type: 'posts'
+  collection?: string
 }

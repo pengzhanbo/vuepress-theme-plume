@@ -40,7 +40,11 @@ watch(
       'is-home': frontmatter.pageLayout === 'home',
     }"
   >
-    <VPPosts v-if="isPostsLayout">
+    <VPPosts
+      v-if="isPostsLayout || frontmatter.pageLayout === 'posts'"
+      :home-posts="frontmatter.pageLayout === 'posts'"
+      :collection="frontmatter.collection as string"
+    >
       <template #posts-top>
         <slot name="posts-top" />
       </template>

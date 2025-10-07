@@ -514,9 +514,33 @@ config:
 <img src="/images/custom-text-image.jpg" alt="text-image" />
 :::
 
-### blog
+### posts
 
-将 博客文章列表页 作为一个单独区域，插入到 首页中。
+将 post 集合文章列表页 作为一个单独区域，插入到 首页中。
+
+```ts
+interface PlumeThemeHomePosts extends PlumeHomeConfigBase {
+  type: 'posts'
+  collection?: string
+}
+```
+
+当存在多个 post 集合时，默认读取第一个集合的文章列表页。
+还可以通过 `collection` 配置项来指定读取哪个集合的文章列表页。
+
+`collection` 的值应该与 集合的 `dir` 值相同。
+
+**示例：**
+
+```md
+---
+home: true
+config:
+  -
+    type: posts
+    collection: blog
+---
+```
 
 ### profile
 

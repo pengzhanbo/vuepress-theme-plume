@@ -34,7 +34,7 @@ export const koLocale: ThemeLocaleText = {
   encryptPageText: '이 페이지를 이용하려면 비밀번호가 필요합니다',
 
   homeText: '홈',
-  blogText: '블로그',
+  postsText: '블로그',
   tagText: '태그',
   archiveText: '아카이브',
   categoryText: '카테고리',

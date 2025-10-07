@@ -1,5 +1,5 @@
 import type { LocaleConfig } from 'vuepress'
-import type { BlogOptions, LastUpdatedOptions } from './features/index.js'
+import type { LastUpdatedOptions } from './features/index.js'
 import type { ThemeLocale, ThemeLocaleDeprecated, ThemeLocaleText } from './locale.js'
 
 export type ThemeLocaleData = ThemeLocale & ThemeLocaleDeprecated & ThemeLocaleText
@@ -17,13 +17,15 @@ export interface ThemeData extends ThemeBaseData, ThemeLocaleData {
 
   /**
    * 博客配置
+   * @deprecated
    */
-  blog?: false | Omit<BlogOptions, 'include' | 'exclude'>
+  blog?: never
 
   /**
    * 文章链接前缀
    *
    * @default '/article/'
+   * @deprecated
    */
   article?: string
 

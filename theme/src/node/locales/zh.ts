@@ -35,7 +35,7 @@ export const zhLocale: ThemeLocaleText = {
   },
 
   homeText: '首页',
-  blogText: '博客',
+  postsText: '博客',
   tagText: '标签',
   archiveText: '归档',
   categoryText: '分类',

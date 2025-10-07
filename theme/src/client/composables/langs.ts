@@ -1,10 +1,11 @@
 import type { ComputedRef } from 'vue'
+import type { ThemePostCollection } from '../../shared/index.js'
 import { computed } from 'vue'
 import { resolveRoute, useRouteLocale } from 'vuepress/client'
 import { removeLeadingSlash } from 'vuepress/shared'
 import { normalizeLink } from '../utils/index.js'
 import { useData } from './data.js'
-import { useBlogPageData } from './page.js'
+import { usePostsPageData } from './page.js'
 import { useThemeData } from './theme-data.js'
 
 interface Lang {
@@ -25,9 +26,9 @@ export function useLangs({
   removeCurrent = true,
 }: UseLangOptions = {}): UseLangResult {
   const theme = useThemeData()
-  const { page } = useData()
+  const { page, collection } = useData<'page', 'post'>()
   const routeLocale = useRouteLocale()
-  const { isBlogPost } = useBlogPageData()
+  const { isPosts } = usePostsPageData()
 
   const currentLang = computed(() => {
     const link = routeLocale.value
@@ -54,10 +55,11 @@ export function useLangs({
     if (path)
       return path
 
-    // fallback to blog
-    const blog = theme.value.blog
-    if (isBlogPost.value && blog !== false)
-      return normalizeLink(locale, removeLeadingSlash(blog?.link || 'blog/'))
+    // fallback to posts
+    if (isPosts.value && collection.value) {
+      const col = collection.value as ThemePostCollection
+      return normalizeLink(locale, removeLeadingSlash(col.link || col.dir))
+    }
 
     // fallback to home
     const home = theme.value.home || '/'

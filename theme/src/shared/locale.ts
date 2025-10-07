@@ -5,8 +5,8 @@ import type {
   CopyrightLicense,
   CopyrightOptions,
   ProfileOptions,
+  ThemeCollections,
   ThemeNavItem,
-  ThemeNoteListOptions,
   ThemeSidebarMulti,
   TransitionOptions,
 } from './features/index.js'
@@ -66,13 +66,20 @@ export interface ThemeLocale extends LocaleData {
    * 笔记配置， 笔记中的文章默认不会出现在首页文章列表
    *
    * 注：也可以将notes配置到navbar中
+   *
+   * @deprecated 使用 {@link collections} 代替
    */
-  notes?: false | ThemeNoteListOptions
+  notes?: never
 
   /**
    * 侧边栏配置
    */
   sidebar?: ThemeSidebarMulti
+
+  /**
+   * 文章集合，当前支持 博客类型 或 文档类型
+   */
+  collections?: ThemeCollections
 
   /**
    * 是否显示侧边栏滚动条
@@ -155,7 +162,7 @@ export interface ThemeLocale extends LocaleData {
    *
    * @default true
    */
-  createTime?: boolean | 'only-blog'
+  createTime?: boolean | 'only-posts'
 
   /**
    * 页脚配置
@@ -351,7 +358,7 @@ export interface ThemeLocaleText {
   /**
    * 博客文本，用于默认生成的导航栏、面包屑导航中
    */
-  blogText?: string
+  postsText?: string
   /**
    * 标签文本，用于默认生成的导航栏、博客标签页中
    */

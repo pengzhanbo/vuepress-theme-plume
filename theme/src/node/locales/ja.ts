@@ -36,7 +36,7 @@ export const jaLocale: ThemeLocaleText = {
   },
 
   homeText: 'ホーム',
-  blogText: 'ブログ',
+  postsText: 'ブログ',
   tagText: 'タグ',
   archiveText: 'アーカイブ',
   categoryText: 'カテゴリー',

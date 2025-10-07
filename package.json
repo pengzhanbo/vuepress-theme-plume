@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.164",
   "private": true,
-  "packageManager": "pnpm@10.17.0",
+  "packageManager": "pnpm@10.18.1",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -49,6 +49,7 @@
     "@types/lodash.merge": "catalog:dev",
     "@types/minimist": "catalog:dev",
     "@types/node": "catalog:dev",
+    "@types/picomatch": "catalog:dev",
     "@types/stylus": "catalog:dev",
     "@types/webpack-env": "catalog:dev",
     "@vitest/coverage-istanbul": "catalog:dev",

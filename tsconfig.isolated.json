@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "isolatedDeclarations": true
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "**/node_modules/**",
+    "**/.cache/**",
+    "**/.temp/**",
+    "**/lib/**",
+    "**/dist/**"
+  ]
+}

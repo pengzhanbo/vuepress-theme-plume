@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import VPBlog from '@theme/Blog/VPBlog.vue'
 import VPHome from '@theme/Home/VPHome.vue'
+import VPPosts from '@theme/Posts/VPPosts.vue'
 import VPDoc from '@theme/VPDoc.vue'
 import VPFriends from '@theme/VPFriends.vue'
 import VPPage from '@theme/VPPage.vue'
 import { nextTick, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
-import { useBlogPageData, useData, useSidebar } from '../composables/index.js'
+import { useData, usePostsPageData, useSidebar } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
 
 const props = defineProps<{
@@ -15,18 +15,18 @@ const props = defineProps<{
 
 const { hasSidebar } = useSidebar()
 const { frontmatter } = useData()
-const { isBlogLayout } = useBlogPageData()
+const { isPostsLayout } = usePostsPageData()
 const route = useRoute()
 
 watch(
-  [isBlogLayout, () => frontmatter.value.pageLayout, () => route.path],
+  [isPostsLayout, () => frontmatter.value.pageLayout, () => route.path],
   () => nextTick(() => {
     if (inBrowser) {
-      document.documentElement.classList.toggle('bg-gray', isBlogLayout.value)
+      document.documentElement.classList.toggle('bg-gray', isPostsLayout.value)
       const layout = document.documentElement.className.match(/(?:^|\s)(layout-\S+)(?:$|\s)/)?.[1]
       if (layout)
         document.documentElement.classList.remove(layout)
-      document.documentElement.classList.add(`layout-${isBlogLayout.value ? 'blog' : frontmatter.value.pageLayout || 'doc'}`)
+      document.documentElement.classList.add(`layout-${isPostsLayout.value ? 'posts' : frontmatter.value.pageLayout || 'doc'}`)
     }
   }),
   { immediate: true },
@@ -40,62 +40,66 @@ watch(
       'is-home': frontmatter.pageLayout === 'home',
     }"
   >
-    <VPBlog v-if="isBlogLayout">
-      <template #blog-top>
-        <slot name="blog-top" />
+    <VPPosts
+      v-if="isPostsLayout || frontmatter.pageLayout === 'posts'"
+      :home-posts="frontmatter.pageLayout === 'posts'"
+      :collection="frontmatter.collection as string"
+    >
+      <template #posts-top>
+        <slot name="posts-top" />
       </template>
-      <template #blog-bottom>
-        <slot name="blog-bottom" />
+      <template #posts-bottom>
+        <slot name="posts-bottom" />
       </template>
-      <template #blog-archives-before>
-        <slot name="blog-archives-before" />
+      <template #posts-archives-before>
+        <slot name="posts-archives-before" />
       </template>
-      <template #blog-archives-after>
-        <slot name="blog-archives-after" />
+      <template #posts-archives-after>
+        <slot name="posts-archives-after" />
       </template>
-      <template #blog-tags-before>
-        <slot name="blog-tags-before" />
+      <template #posts-tags-before>
+        <slot name="posts-tags-before" />
       </template>
-      <template #blog-tags-after>
-        <slot name="blog-tags-after" />
+      <template #posts-tags-after>
+        <slot name="posts-tags-after" />
       </template>
-      <template #blog-tags-title-after>
-        <slot name="blog-tags-title-after" />
+      <template #posts-tags-title-after>
+        <slot name="posts-tags-title-after" />
       </template>
-      <template #blog-tags-content-before>
-        <slot name="blog-tags-content-before" />
+      <template #posts-tags-content-before>
+        <slot name="posts-tags-content-before" />
       </template>
-      <template #blog-categories-before>
-        <slot name="blog-categories-before" />
+      <template #posts-categories-before>
+        <slot name="posts-categories-before" />
       </template>
-      <template #blog-categories-after>
-        <slot name="blog-categories-after" />
+      <template #posts-categories-after>
+        <slot name="posts-categories-after" />
       </template>
-      <template #blog-categories-content-before>
-        <slot name="blog-categories-content-before" />
+      <template #posts-categories-content-before>
+        <slot name="posts-categories-content-before" />
       </template>
-      <template #blog-post-list-before>
-        <slot name="blog-post-list-before" />
+      <template #posts-post-list-before>
+        <slot name="posts-post-list-before" />
       </template>
-      <template #blog-post-list-after>
-        <slot name="blog-post-list-after" />
+      <template #posts-post-list-after>
+        <slot name="posts-post-list-after" />
       </template>
-      <template #blog-post-list-pagination-after>
-        <slot name="blog-post-list-pagination-after" />
+      <template #posts-post-list-pagination-after>
+        <slot name="posts-post-list-pagination-after" />
       </template>
-      <template #blog-aside-top>
-        <slot name="blog-aside-top" />
+      <template #posts-aside-top>
+        <slot name="posts-aside-top" />
       </template>
-      <template #blog-aside-bottom>
-        <slot name="blog-aside-bottom" />
+      <template #posts-aside-bottom>
+        <slot name="posts-aside-bottom" />
       </template>
-      <template #blog-extract-before>
-        <slot name="blog-extract-before" />
+      <template #posts-extract-before>
+        <slot name="posts-extract-before" />
       </template>
-      <template #blog-extract-after>
-        <slot name="blog-extract-after" />
+      <template #posts-extract-after>
+        <slot name="posts-extract-after" />
       </template>
-    </VPBlog>
+    </VPPosts>
 
     <VPPage v-else-if="frontmatter.pageLayout === 'page'">
       <template #page-top>
@@ -109,20 +113,20 @@ watch(
     <VPFriends v-else-if="frontmatter.pageLayout === 'friends'" />
 
     <VPHome v-else-if="frontmatter.pageLayout === 'home'">
-      <template #blog-top>
-        <slot name="blog-top" />
+      <template #posts-top>
+        <slot name="posts-top" />
       </template>
-      <template #blog-bottom>
-        <slot name="blog-bottom" />
+      <template #posts-bottom>
+        <slot name="posts-bottom" />
       </template>
-      <template #blog-post-list-before>
-        <slot name="blog-post-list-before" />
+      <template #posts-post-list-before>
+        <slot name="posts-post-list-before" />
       </template>
-      <template #blog-post-list-after>
-        <slot name="blog-post-list-after" />
+      <template #posts-post-list-after>
+        <slot name="posts-post-list-after" />
       </template>
-      <template #blog-post-list-pagination-after>
-        <slot name="blog-post-list-pagination-after" />
+      <template #posts-post-list-pagination-after>
+        <slot name="posts-post-list-pagination-after" />
       </template>
     </VPHome>
 

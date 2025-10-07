@@ -8,7 +8,7 @@
     "noImplicitAny": false,
     "noEmitOnError": true,
     "allowSyntheticDefaultImports": true,
-    "isolatedDeclarations": true,
+    "isolatedDeclarations": false,
     "skipLibCheck": true
   }
 }

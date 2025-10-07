@@ -10,9 +10,6 @@ const extensions: string[] = ['ts', 'js', 'mjs', 'cjs', 'mts', 'cts']
 
 export async function findConfigPath(app: App, configPath?: string): Promise<string | undefined> {
   const cwd = process.cwd()
-  const source = app.dir.source('.vuepress')
-
-  const paths: string[] = []
 
   if (configPath) {
     const path = resolve(cwd, configPath)
@@ -20,6 +17,9 @@ export async function findConfigPath(app: App, configPath?: string): Promise<str
       return path
     }
   }
+
+  const source = app.dir.source('.vuepress')
+  const paths: string[] = []
   extensions.forEach(ext =>
     paths.push(
       resolve(cwd, `${source}/${CONFIG_FILE_NAME}.${ext}`),

@@ -28,12 +28,20 @@ declare module '@internal/themePlumeData' {
   }
 }
 
-declare module '@internal/blogData' {
-  import type { PlumeThemeBlogPostData } from '../shared/index.js'
+declare module '@internal/postsData' {
+  import type { ThemePosts } from '../shared/index.js'
 
-  const blogPostData: PlumeThemeBlogPostData
+  const postsData: Record<string, ThemePosts>
   export {
-    blogPostData,
+    postsData,
+  }
+}
+
+declare module '@internal/collectionsData' {
+  import type { ThemeCollectionItem } from '../shared/index.js'
+  const collections: Record<string, ThemeCollectionItem[]>
+  export {
+    collections,
   }
 }
 

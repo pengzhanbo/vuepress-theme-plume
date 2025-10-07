@@ -2,6 +2,7 @@ import type { ClientConfig } from 'vuepress/client'
 import { defineMermaidConfig } from '@vuepress/plugin-markdown-chart/client'
 import { h } from 'vue'
 import { Layout } from 'vuepress-theme-plume/client'
+import VPPostItem from 'vuepress-theme-plume/components/Posts/VPPostItem.vue'
 import { defineClientConfig } from 'vuepress/client'
 import AsideNav from '~/components/AsideNav.vue'
 import { setupThemeColors } from '~/composables/theme-colors.js'
@@ -14,6 +15,9 @@ defineMermaidConfig({
 })
 
 export default defineClientConfig({
+  enhance({ app }) {
+    app.component('VPPostItem', VPPostItem)
+  },
   setup() {
     setupThemeColors()
   },

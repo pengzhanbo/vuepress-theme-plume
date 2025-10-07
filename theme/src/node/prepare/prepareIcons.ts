@@ -7,7 +7,7 @@ import { isArray, uniq } from '@pengzhanbo/utils'
 import { entries, isLinkAbsolute, isLinkHttp, isPlainObject } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
-import { getThemeConfig } from '../loadConfig/loader.js'
+import { getThemeConfig } from '../loadConfig/index.js'
 import { createFsCache, interopDefault, logger, nanoid, perf, resolveContent, writeTemp } from '../utils/index.js'
 
 interface IconData {
@@ -161,15 +161,15 @@ function getIconWithThemeConfig(options: ThemeOptions, { provider = 'iconify', p
   const list: string[] = []
   // navbar notes sidebar
   const locales = options.locales || {}
-  entries(locales).forEach(([, { navbar, sidebar, notes }]) => {
+  entries(locales).forEach(([, { navbar, sidebar, collections }]) => {
     if (navbar) {
       list.push(...getIconWithNavbar(navbar))
     }
     const sidebarList: ThemeSidebar[] = Object.values(sidebar || {}) as ThemeSidebar[]
-    if (notes) {
-      notes.notes.forEach((note) => {
-        if (note.sidebar)
-          sidebarList.push(note.sidebar)
+    if (collections?.length) {
+      collections.forEach((collection) => {
+        if (collection.type === 'doc' && collection.sidebar)
+          sidebarList.push(collection.sidebar)
       })
     }
     sidebarList.forEach(sidebar => list.push(...getIconWithSidebar(sidebar)))

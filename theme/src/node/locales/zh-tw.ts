@@ -36,7 +36,7 @@ export const zhTwLocale: ThemeLocaleText = {
   },
 
   homeText: '首頁',
-  blogText: '博客',
+  postsText: '博客',
   tagText: '標籤',
   archiveText: '歸檔',
   categoryText: '分類',

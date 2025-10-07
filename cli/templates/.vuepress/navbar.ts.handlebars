@@ -15,7 +15,7 @@ export const {{prefix}}Navbar = defineNavbarConfig([
   { text: '{{#if isEn}}Archives{{else}}归档{{/if}}', link: '{{ path }}blog/archives/' },
   {
     text: '{{#if isEn}}Notes{{else}}笔记{{/if}}',
-    items: [{ text: '{{#if isEn}}Demo{{else}}示例{{/if}}', link: '{{ path }}notes/demo/README.md' }]
+    items: [{ text: '{{#if isEn}}Demo{{else}}示例{{/if}}', link: '{{ path }}demo/README.md' }]
   },
 ])
 
@@ -28,7 +28,7 @@ export default defineNavbarConfig([
   { text: '{{#if isEn}}Archives{{else}}归档{{/if}}', link: '/blog/archives/' },
   {
     text: '{{#if isEn}}Notes{{else}}笔记{{/if}}',
-    items: [{ text: '{{#if isEn}}Demo{{else}}示例{{/if}}', link: '/notes/demo/README.md' }]
+    items: [{ text: '{{#if isEn}}Demo{{else}}示例{{/if}}', link: '/demo/README.md' }]
   },
 ])
 {{/if}}

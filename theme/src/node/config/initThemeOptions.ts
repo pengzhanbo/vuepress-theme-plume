@@ -2,25 +2,12 @@ import type { App } from 'vuepress'
 import type { ThemeOptions } from '../../shared/index.js'
 import { hasOwn, uniq } from '@pengzhanbo/utils'
 import { entries, fromEntries, getFullLocaleConfig, isPlainObject } from '@vuepress/helper'
+import { compatBlogAndNotesToCollections, completeCollections } from '../collections/index.js'
 import { LOCALE_OPTIONS } from '../locales/index.js'
 import { THEME_NAME } from '../utils/index.js'
 
 const FALLBACK_OPTIONS: ThemeOptions = {
   appearance: true,
-
-  blog: {
-    pagination: 15,
-    postList: true,
-    tags: true,
-    archives: true,
-    categories: true,
-    link: '/blog/',
-    tagsLink: '/blog/tags/',
-    archivesLink: '/blog/archives/',
-    categoriesLink: '/blog/categories/',
-  },
-  article: '/article/',
-  notes: { link: '/', dir: '/notes/', notes: [] },
   navbarSocialInclude: ['github', 'twitter', 'discord', 'facebook'],
   aside: true,
   outline: [2, 3],
@@ -63,6 +50,12 @@ export function initThemeOptions(app: App, { locales, ...options }: ThemeOptions
       ),
     }),
   }
+
+  // 兼容旧的 blog 、 notes 配置
+  compatBlogAndNotesToCollections(resolvedOptions)
+  // 补全 collections 可选项
+  completeCollections(resolvedOptions)
+
   return resolvedOptions
 }
 

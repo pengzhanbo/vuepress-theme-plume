@@ -7,19 +7,19 @@ packages:
 
 overrides:
   '@bufbuild/protobuf': ^2.9.0
-  '@typescript-eslint/utils': ^8.44.0
+  '@typescript-eslint/utils': ^8.46.0
   esbuild: ^0.25.10
-  sass-embedded: ^1.93.0
+  sass-embedded: ^1.93.2
 
 patchedDependencies:
   floating-vue: patches/floating-vue.patch
 
 catalogs:
   dev:
-    '@commitlint/cli': ^19.8.1
-    '@commitlint/config-conventional': ^19.8.1
-    '@pengzhanbo/eslint-config-vue': ^1.37.0
-    '@pengzhanbo/stylelint-config': ^1.37.0
+    '@commitlint/cli': ^20.1.0
+    '@commitlint/config-conventional': ^20.0.0
+    '@pengzhanbo/eslint-config-vue': ^1.38.0
+    '@pengzhanbo/stylelint-config': ^1.38.0
     '@simonwep/pickr': ^1.9.1
     '@types/express': ^5.0.3
     '@types/js-yaml': ^4.0.9
@@ -27,45 +27,46 @@ catalogs:
     '@types/lodash.merge': ^4.6.9
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^24.5.2
+    '@types/node': ^24.7.0
+    '@types/picomatch': ^4.0.2
     '@types/stylus': ^0.48.43
     '@types/webpack-env': ^1.18.8
     '@vitest/coverage-istanbul': ^3.2.4
-    bumpp: ^10.2.3
+    bumpp: ^10.3.1
     commitizen: ^4.3.1
     conventional-changelog-cli: ^5.0.0
     cpx2: ^8.0.0
     cross-env: 7.0.3
     cz-conventional-changelog: ^3.3.0
-    eslint: ^9.36.0
+    eslint: ^9.37.0
     http-server: ^14.1.1
     husky: ^9.1.7
-    less: ^4.4.1
-    lint-staged: ^16.1.6
+    less: ^4.4.2
+    lint-staged: ^16.2.3
     markdown-it: ^14.1.0
-    memfs: ^4.42.0
+    memfs: ^4.49.0
     mermaid: ^11.12.0
     minimist: ^1.2.8
     postcss: ^8.5.6
     rimraf: ^6.0.1
-    stylelint: ^16.24.0
+    stylelint: ^16.25.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.15.3
-    typescript: ^5.9.2
+    tsdown: ^0.15.6
+    typescript: ^5.9.3
     vitest: ^3.2.4
     vue-router: ^4.5.1
-    wait-on: ^9.0.0
+    wait-on: ^9.0.1
   peer:
-    '@iconify/json': ^2.2.386
+    '@iconify/json': ^2.2.392
     artplayer: ^5.3.0
     dashjs: ^5.0.3
-    hls.js: ^1.6.12
+    hls.js: ^1.6.13
     mathjax-full: ^3.2.2
     mpegts.js: 1.7.3
-    pyodide: ^0.28.2
-    sass: ^1.93.0
-    sass-embedded: ^1.93.0
+    pyodide: ^0.28.3
+    sass: ^1.93.2
+    sass-embedded: ^1.93.2
     swiper: ^12.0.2
   prod:
     '@clack/prompts': ^0.11.0
@@ -85,20 +86,18 @@ catalogs:
     cac: ^6.7.14
     chart.js: ^4.5.0
     chokidar: 4.0.3
-    create-filter: ^1.1.0
     dayjs: ^1.11.18
     echarts: ^6.0.0
     esbuild: ^0.25.10
-    fast-glob: ^3.3.3
     flowchart.ts: ^3.0.1
     focus-trap: ^7.6.5
     gray-matter: ^4.0.3
     handlebars: ^4.7.8
     image-size: ^2.0.2
     js-yaml: ^4.1.0
-    katex: ^0.16.22
+    katex: ^0.16.23
     local-pkg: ^1.1.2
-    lru-cache: ^11.2.1
+    lru-cache: ^11.2.2
     mark.js: ^8.11.1
     markdown-it-container: ^4.0.0
     markmap-lib: ^0.18.12
@@ -106,16 +105,17 @@ catalogs:
     markmap-view: ^0.18.12
     minisearch: ^7.2.0
     nano-spawn: ^1.0.3
-    nanoid: ^5.1.5
+    nanoid: ^5.1.6
     os-locale: ^6.0.2
     p-map: ^7.0.3
-    package-manager-detector: ^1.3.0
+    package-manager-detector: ^1.4.0
     picocolors: ^1.1.1
+    picomatch: ^4.0.3
     shiki: ^3.13.0
-    tinyglobby: ^0.2.13
-    tm-grammars: ^1.24.12
+    tinyglobby: ^0.2.15
+    tm-grammars: ^1.24.16
     tm-themes: ^1.10.9
-    vue: ^3.5.21
+    vue: ^3.5.22
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.24
     '@vuepress/helper': 2.0.0-rc.112

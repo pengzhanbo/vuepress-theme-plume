@@ -1,6 +1,4 @@
 import { defineThemeConfig } from 'vuepress-theme-plume'
-import { navbar } from './navbar'
-import { notes } from './notes'
 
 /**
  * @see https://theme-plume.vuejs.press/config/basic/
@@ -26,6 +24,20 @@ export default defineThemeConfig({
     // organization: '',
   },
 
-  navbar,
-  notes,
+  navbar: [
+    { text: '首页', link: '/' },
+    { text: '博客', link: '/blog/' },
+    { text: '404', link: '/404/' },
+    { text: '笔记', link: '/demo/README.md' },
+  ],
+  collections: [
+    { type: 'post', dir: 'blog', title: '博客' },
+    {
+      type: 'doc',
+      dir: 'demo',
+      linkPrefix: '/demo/',
+      title: '笔记',
+      sidebar: ['', 'foo', 'bar'],
+    },
+  ],
 })

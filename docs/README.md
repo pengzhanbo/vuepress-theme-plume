@@ -174,6 +174,7 @@ npm run docs:dev
     'Hammuu1112',
     'SherkeyXD',
     { github: 'Kinneyzhang', name: 'Geekinney' },
+    'huyunan',
   ]"
 />
 

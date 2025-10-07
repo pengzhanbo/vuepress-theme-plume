@@ -17,7 +17,7 @@ export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
   addViteOptimizeDepsInclude(
     bundlerOptions,
     app,
-    ['@vueuse/core', 'bcrypt-ts/browser', '@vuepress/helper/client', '@iconify/vue', '@iconify/vue/offline', '@vuepress/plugin-git/client'],
+    ['@vueuse/core', 'bcrypt-ts/browser', '@vuepress/helper/client', '@iconify/vue', '@iconify/vue/offline', '@vuepress/plugin-git/client', '@vuepress/plugin-markdown-chart/client'],
   )
   addViteOptimizeDepsExclude(bundlerOptions, app, '@theme')
 

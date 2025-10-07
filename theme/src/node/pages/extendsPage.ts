@@ -11,7 +11,7 @@ export function extendsPageData(
   const options = getThemeConfig()
   cleanPageData(page)
   encryptPage(page)
-  autoCategory(page, options)
+  autoCategory(page)
   enableBulletin(page, options)
 }
 
@@ -51,9 +51,9 @@ function cleanPageData(page: Page<ThemePageData>) {
     delete page.frontmatter._pageLayout
   }
 
-  if (page.frontmatter.pageLayout === 'blog') {
+  if (page.frontmatter.pageLayout === 'blog' || page.frontmatter.pageLayout === 'posts') {
     page.frontmatter.draft = true
-    page.data.type = 'blog'
+    page.data.type = 'posts'
   }
 
   if ('externalLink' in page.frontmatter) {

@@ -1,7 +1,5 @@
 import type { App } from 'vuepress'
 import { toArray } from '@pengzhanbo/utils'
-import { isPlainObject } from 'vuepress/shared'
-import { getThemeConfig } from '../loadConfig/index.js'
 import { nanoid, perf, resolveContent, writeTemp } from '../utils/index.js'
 
 export type TagsColorsItem = readonly [
@@ -36,9 +34,7 @@ const cache: Record<number, string> = {}
 
 export async function prepareArticleTagColors(app: App): Promise<void> {
   perf.mark('prepare:tag-colors')
-  const options = getThemeConfig()
-  const blog = isPlainObject(options.blog) ? options.blog : {}
-  const { js, css } = genCode(app, blog.tagsTheme ?? 'colored')
+  const { js, css } = genCode(app)
 
   await writeTemp(app, 'internal/articleTagColors.css', css)
   await writeTemp(app, 'internal/articleTagColors.js', js)
@@ -46,19 +42,9 @@ export async function prepareArticleTagColors(app: App): Promise<void> {
   perf.log('prepare:tag-colors')
 }
 
-export function genCode(app: App, theme: 'colored' | 'brand' | 'gray'): { js: string, css: string } {
+export function genCode(app: App): { js: string, css: string } {
   const articleTagColors: Record<string, string> = {}
   const tagList = new Set<string>()
-
-  if (theme !== 'colored') {
-    return {
-      js: resolveContent(app, {
-        name: 'articleTagColors',
-        content: articleTagColors,
-      }),
-      css: '',
-    }
-  }
 
   app.pages.forEach((page) => {
     const { frontmatter: { tags } } = page

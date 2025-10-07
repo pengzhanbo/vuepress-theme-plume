@@ -73,21 +73,23 @@ export function tocGetter(llmPages: LLMPage[], llmState: LLMState): string {
   }
 
   // Notes
-  zhCollections.filter(note => note.type === 'doc').forEach(({ dir, title, sidebar = [] }) => {
-    tableOfContent += `### ${title}\n\n`
-    const prefix = normalizePath(dir)
-    if (sidebar === 'auto') {
-      tableOfContent += `${processAutoSidebar(prefix).join('')}\n`
-    }
-    else if (sidebar.length) {
-      const home = generateTOCLink(ensureEndingSlash(prefix))
-      const list = processSidebar(sidebar, prefix)
-      if (home && !list.includes(home)) {
-        list.unshift(home)
+  zhCollections
+    .filter(collection => collection.type === 'doc')
+    .forEach(({ dir, title, sidebar = [] }) => {
+      tableOfContent += `### ${title}\n\n`
+      const prefix = normalizePath(ensureLeadingSlash(dir))
+      if (sidebar === 'auto') {
+        tableOfContent += `${processAutoSidebar(prefix).join('')}\n`
       }
-      tableOfContent += `${list.join('')}\n`
-    }
-  })
+      else if (sidebar.length) {
+        const home = generateTOCLink(ensureEndingSlash(prefix))
+        const list = processSidebar(sidebar, prefix)
+        if (home && !list.includes(home)) {
+          list.unshift(home)
+        }
+        tableOfContent += `${list.join('')}\n`
+      }
+    })
 
   // Others
   const unUsagePages = llmPages.filter(page => !usagePages.includes(page))

@@ -30,6 +30,6 @@ function completeCollectionItems(collection: ThemeCollectionItem): void {
     collection.categories && (collection.categoriesLink ||= `${collection.linkPrefix}categories/`)
   }
   else {
-    collection.linkPrefix = normalizePath(`/${collection.dir}/`)
+    collection.linkPrefix ||= normalizePath(`/${collection.dir}/`)
   }
 }

@@ -543,6 +543,18 @@ type NavItem = string | {
   })
   ```
 
+### collections
+
+- **类型：** `ThemeCollectionItem[]`
+
+- **默认值：** `[]`
+
+- **详情：** 文档集合配置
+
+  [查看 **集合指南**](../guide/quick-start/collection.md){.read-more}
+
+  [查看 **集合配置** 了解更多](./collections.md){.read-more}
+
 ### sidebar
 
 - **类型：** `false | SidebarMulti`

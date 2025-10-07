@@ -23,7 +23,7 @@
 <a href="/readme.md">中文</a> | English
 </p>
 
-A simple, clean, and easy-to-use VuePress theme for blogs and documentation.
+A simple, clean, and easy-to-use VuePress theme for blogs、columns and documentation.
 
 Ready to use out-of-the-box with minimal configuration,
 allowing you to focus more on content creation and better express your ideas to form your knowledge notes.
@@ -33,7 +33,7 @@ It includes a rich set of powerful features designed to make content more expres
 ## Features
 
 - 💻 Responsive layout, adapts to different screen sizes
-- 📖 Blog & Documentation
+- 📖 Collection: you can simultaneously implement blogs, columns, product documentation, technical documentation, knowledge bases, and more.
 - 🔗 Automatically generates article permanent links
 - ⚖ Supports multiple languages
 - 🔑 Supports full-site encryption and partial encryption

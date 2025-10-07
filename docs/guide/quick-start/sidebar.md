@@ -165,7 +165,9 @@ import { defineCollection, defineCollections } from 'vuepress-theme-plume'
 
 // 单个集合配置
 const typescript = defineCollection({
+  type: 'doc',
   dir: 'typescript',
+  title: 'TypeScript 笔记',
   linkPrefix: '/typescript/',
   sidebar: [
     'guide/intro.md',

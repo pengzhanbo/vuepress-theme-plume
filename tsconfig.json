@@ -10,11 +10,6 @@
     },
     "types": ["webpack-env", "vite/client", "vuepress/client-types"]
   },
-  "references": [
-    {
-      "path": "./tsconfig.isolated.json"
-    }
-  ],
   "include": [
     "plugins/**/*",
     "theme/**/*",

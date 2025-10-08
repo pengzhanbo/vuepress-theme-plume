@@ -131,8 +131,8 @@ catalogs:
       version: 9.0.1
   peer:
     '@iconify/json':
-      specifier: ^2.2.392
-      version: 2.2.392
+      specifier: ^2.2.393
+      version: 2.2.393
     artplayer:
       specifier: ^5.3.0
       version: 5.3.0
@@ -288,8 +288,8 @@ catalogs:
       specifier: ^0.2.15
       version: 0.2.15
     tm-grammars:
-      specifier: ^1.24.16
-      version: 1.24.16
+      specifier: ^1.24.17
+      version: 1.24.17
     tm-themes:
       specifier: ^1.10.9
       version: 1.10.9
@@ -519,7 +519,7 @@ importers:
     dependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.392
+        version: 2.2.393
       '@simonwep/pickr':
         specifier: catalog:dev
         version: 1.9.1
@@ -577,7 +577,7 @@ importers:
     dependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.392
+        version: 2.2.393
       '@vuepress/bundler-vite':
         specifier: catalog:vuepress
         version: 2.0.0-rc.24(@types/node@24.7.0)(jiti@2.5.1)(less@4.4.2)(sass-embedded@1.93.2)(sass@1.93.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1)
@@ -679,7 +679,7 @@ importers:
         version: 0.2.15
       tm-grammars:
         specifier: catalog:prod
-        version: 1.24.16
+        version: 1.24.17
       tm-themes:
         specifier: catalog:prod
         version: 1.10.9
@@ -870,7 +870,7 @@ importers:
     devDependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.392
+        version: 2.2.393
       swiper:
         specifier: catalog:peer
         version: 12.0.2
@@ -1524,8 +1524,8 @@ packages:
     resolution: {integrity: sha512-e5+YUKENATs1JgYHMzTr2MW/NDcXGfYFAuOQU8gJgF/kEh4EqKgfGrfLI67bMD4tbhZVlkigz/9YYwWcbOFthg==}
     engines: {node: '>=10.13.0'}
 
-  '@iconify/json@2.2.392':
-    resolution: {integrity: sha512-WkkQIDpmgetgvIn1jso6XKY3S5Pf9L6QD1J2RNLeiF+jzdouyayoRm2LLxe4dmnp9i3Cbf8w7oRuaVlhwK8Xtg==}
+  '@iconify/json@2.2.393':
+    resolution: {integrity: sha512-Bpf0JrndzclsNHp4TPFm8OBjUotAAxE6S6e0Af1Riu5WroiO0cbvRr2UYAqIy58YhFUJNMxgFQV3A+GHexYf6g==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -6845,8 +6845,8 @@ packages:
     resolution: {integrity: sha512-t2T/WLB2WRgZ9EpE4jgPJ9w+i66UZfDc8wHh0xrwiRNN+UwH98GIJkTeZqX9rg0i0ptwzqW+uYeIF0T4F8LR7A==}
     engines: {node: '>=14.0.0'}
 
-  tm-grammars@1.24.16:
-    resolution: {integrity: sha512-zbT9/jJYh8DJ0NnZJe7P2Egf9Nd6m7dfNDOBYGLLrcWSUwGQ7DqbOterJ5zeU0fE/2AuF/k2NPkRuYwHPmjwcg==}
+  tm-grammars@1.24.17:
+    resolution: {integrity: sha512-ZrxeuxU+D0Fn4PWC1MS5MSUtOaCrjToVGyI0dm/NXYcczu66sxkU12HCwnTs3IKCJA2MZOD+NeVRj0YWME6Plw==}
 
   tm-themes@1.10.9:
     resolution: {integrity: sha512-2pBK8ZHXFibHOoKmi1aE2VF1ISsMpqTU+RS3+YS8LGNEm4WSkmnDqdylbtsmZIfFTxy/8KbsiBKbrmnHYVTZFw==}
@@ -8132,7 +8132,7 @@ snapshots:
 
   '@hutson/parse-repository-url@5.0.0': {}
 
-  '@iconify/json@2.2.392':
+  '@iconify/json@2.2.393':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 2.0.3
@@ -14298,7 +14298,7 @@ snapshots:
 
   tinyspy@4.0.3: {}
 
-  tm-grammars@1.24.16: {}
+  tm-grammars@1.24.17: {}
 
   tm-themes@1.10.9: {}
 

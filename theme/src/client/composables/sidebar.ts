@@ -118,10 +118,10 @@ export function getSidebar(routePath: string, routeLocal: string): ResolvedSideb
       )
     }
     else if (isArray(sidebar)) {
-      return resolveSidebarItems(sidebar, dir)
+      return resolveSidebarItems(sidebar, routeLocal)
     }
     else if (isPlainObject(sidebar)) {
-      const prefix = normalizePrefix(dir, sidebar.prefix)
+      const prefix = normalizePrefix(routeLocal, removeLeadingSlash(sidebar.prefix || ''))
       return resolveSidebarItems(
         sidebar.items === 'auto'
           ? autoDirSidebar.value[prefix]

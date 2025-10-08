@@ -5,6 +5,7 @@ import type {
   AutoFrontmatterHandle,
   AutoFrontmatterRule,
 } from '../../shared/index.js'
+import { sleep } from '@pengzhanbo/utils'
 import { type FSWatcher, watch } from 'chokidar'
 import matter from 'gray-matter'
 import yaml from 'js-yaml'
@@ -106,9 +107,11 @@ export async function generateFileListFrontmatter(app: App): Promise<void> {
   // Limit the number of concurrent tasks
   await pMap(
     tasks,
-    ([filepath, handle]) => generateFileFrontmatter(filepath, cwd, handle),
+    async ([filepath, handle]) => await generateFileFrontmatter(filepath, cwd, handle),
     { concurrency: 64 },
   )
+  // i/o performance
+  await sleep(100)
 }
 
 export function watchAutoFrontmatter(app: App, watchers: FSWatcher[]): void {

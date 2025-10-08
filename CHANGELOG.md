@@ -1,3 +1,18 @@
+# [1.0.0-rc.168](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.167...v1.0.0-rc.168) (2025-10-08)
+
+
+### Bug Fixes
+
+* **theme:** fix I/O race condition causing auto frontmatter not to be written ([3b5e2cc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3b5e2cc5b3ce11e168c501c3885c4663a5fe49da))
+* **theme:** sidebar prefix concat incorrectly ([9f3de6b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9f3de6b8eadfdf95e9d5f47cfcec1320a8adb38a))
+
+
+### Performance Improvements
+
+* update deps to latest ([104370c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/104370ca425ee5478f6485135b2a597abc611f49))
+
+
+
 # [1.0.0-rc.167](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.166...v1.0.0-rc.167) (2025-10-07)
 
 

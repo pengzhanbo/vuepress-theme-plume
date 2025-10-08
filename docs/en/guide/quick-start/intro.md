@@ -1,70 +1,87 @@
 ---
-title: Theme Introduction
+title: Introduction
 icon: mdi:tooltip-text-outline
-createTime: 2024/03/04 11:06:24
+createTime: 2025/10/08 11:06:24
 permalink: /en/guide/intro/
 tags:
   - Guide
   - Quick Start
 ---
 
-==vuepress-theme-plume== is a theme based on VuePress. Whether you want to write **lifestyle blogs**, **technical blogs**, or **product documentation**, **knowledge bases**, **series documentation**, etc., the theme can meet your needs.
+==vuepress-theme-plume== is a modern theme built on VuePress, designed to meet your diverse needs,
+whether you are creating a **technical blog**, **personal journal**, **product documentation**,
+**knowledge base**, or **tutorial series**.
 
-The theme has made extensive optimizations for the presentation of text and image content, especially for the syntax of Markdown content. You can easily use these features to write **attractive, readable, and expressive** content.
+Deep optimizations have been applied to typography and image display,
+with extensive enhancements specifically for Markdown syntax.This allows you to effortlessly
+create professional content that is **aesthetically pleasing, highly readable, and expressive**.
 
-::: details Not familiar with VuePress?
+::: details New to VuePress?
 
-VuePress is a [static site generator](https://en.wikipedia.org/wiki/Static_site_generator) (SSG). It is designed to build fast, content-centric sites. In short, VuePress takes content written in Markdown, applies a theme to it, and generates static HTML pages that can be easily deployed anywhere.
+VuePress is a [Static Site Generator](https://en.wikipedia.org/wiki/Static_site_Generator) (SSG)
+specifically designed for building high-performance content-centric websites.
+In simple terms,it takes your Markdown content, renders it through a theme,
+and generates static HTML pages that can be deployed anywhere.
 :::
 
-## Advantages
+[Visit the **VuePress Official Website** to learn more](https://v2.vuepress.vuejs.org/zh/){.read-more}
 
-Compared to the default VuePress theme:
+## Core Advantages
 
-### Better User Experience
+Significant improvements are offered compared to the default VuePress theme:
 
-The interface and interaction have been greatly optimized, making it more beautiful, concise, and easy to use.
+### 🎨 Superior User Experience
 
-### More Features
+The interface design and interaction logic have been comprehensively optimized to deliver
+a more beautiful, clean, and user-friendly reading experience.
 
-- A flexible, fully customizable ==homepage==;
+### 🚀 Rich Feature Set
 
-- Optional ==blog==, ==documentation==, ==knowledge notes==;
+- **Diverse Layouts**: Support for fully customizable ==homepage==, with optional ==article list== and ==documentation== modes.
+- **Content Enhancement**: Built-in practical features such as ==full-text search==, ==article comments==,
+  ==content encryption==, and ==article watermarking==.
+- **Code Presentation**: Support for code block ==grouping==, ==collapsing==, ==focusing==,
+  ==line highlighting==, ==diff comparison==, and embedding ==code demos== from platforms like CodePen, JSFiddle, and CodeSandbox.
+- **Icon System**: Integration with [iconify](https://icon-sets.iconify.d/) providing access to
+  **200,000+** ==icons==, with optional support for `iconfont` / `fontawesome` icon libraries.
+- **Media Embedding**: Support for ==PDF embedding==, and ==Bilibili/Youtube/Local Video== embedding.
+- **Chart Rendering**: Integration with multiple ==chart engines== including chart.js, Echarts, Mermaid, Flowchart, Markmap, and PlantUML.
+- **Layout Containers**: Flexible Markdown container syntax providing ==callout containers==,
+  ==file trees==, ==code trees==, ==card containers==, ==waterfall flow containers==, and more.
+- **Extensibility**: Support for ==layout slots==, ==component overrides==, and ==custom styles==,
+  enabling easy implementation of personalized layout designs.
 
-- Built-in support for ==full-text search==, ==article comments==, ==content encryption==, ==article watermarking==, etc.;
+### 🎉 Everything is a "Collection"
 
-- ==Code blocks== can be grouped, folded, focused, highlighted by line, compared for differences, and you can embed CodePen, JSFiddle, CodeSandbox, etc., as ==code demonstrations==;
+Content is organized into multiple ==collections==. Each collection has its own independent directory.
+Based on different collection types, diverse requirements such as **blogs**, **columns**,
+**tutorial series**, **knowledge bases**, and **product documentation** can be easily achieved.
 
-- Built-in support for [iconify](https://icon-sets.iconify.design/) **200k+** ==icons==;
+### ⚡ Efficient Development Experience
 
-- Support for embedding ==PDFs==, ==Bilibili/Youtube videos==;
+A compilation caching mechanism is introduced, caching the compilation results of Markdown files
+and the parsing results of complex code blocks, significantly improving build speed.
 
-- Support for chart.js, Echarts, Mermaid, flowchart, and other optional ==charts==;
+### 🔧 Intelligent Configuration Management
 
-- Flexible markdown container syntax, supports ==hint container==, ==file tree==, ==example container==, ==card container==, ==cascade container==, etc.;
+Support for independent theme configuration files avoids frequent VuePress service restarts caused by
+configuration changes. This maintains configuration flexibility while substantially simplifying the
+configuration process and lowering the barrier to use.
 
-- Support for ==layout slots==, ==component overrides==, ==custom styles==, etc., allowing you to flexibly extend components and achieve personalized layouts.
+### 🌟 Out-of-the-Box Solution
 
-There are more features waiting for you to discover!
+The ==plume theme== comes pre-integrated with the common features and configurations needed to build a site.
+This allows you to **focus on content creation** without worrying about technical details,
+fully leveraging the enhanced Markdown syntax to better express your ideas.
 
-### Better Development Experience
+::: tip Version Information
 
-Added compilation caching to cache the compilation of markdown files and the parsing results of complex code block content.
+This theme is developed based on [vuepress-next](https://github.com/vuepress/vuepress-next) and is currently in the Release Candidate (RC) stage.
 
-### Better Configuration
+The functionality and APIs in the current version are relatively stable, but breaking changes might still occur in future updates.
 
-Supports using a separate theme configuration file to avoid frequent restarts of the VuePress service due to configuration changes.
+If you encounter any issues or have suggestions for improvement, please feel free to raise them in the
+[Issues](https://github.com/pengzhanbo/vuepress-theme-plume/issues). Contributions via
+[Pull Requests (PR)](https://github.com/pengzhanbo/vuepress-theme-plume/pulls) are also welcome to help improve the theme.
 
-The configuration has been greatly simplified, making it easier to use while still retaining rich and flexible configuration options to meet personalized needs.
-
-### More
-
-The ==plume theme== includes as many features as possible that you might need, as well as general configurations for building a site. You don't need to worry about these details. The goal is to allow you to focus more on content creation, better express your ideas, and enjoy the convenience of the enhanced Markdown syntax.
-
-::: tip
-
-This theme is based on [vuepress-next](https://github.com/vuepress/vuepress-next), and is currently in the RC stage.
-
-The theme's features and API are stabilizing, but there is still a small probability of breaking changes in future updates.
-
-If you encounter any issues or have new ideas while using the theme, please raise them in the [Issues](https://github.com/pengzhanbo/vuepress-theme-plume/issues). You are also welcome to help improve the theme through [PR](https://github.com/pengzhanbo/vuepress-theme-plume/pulls).
+:::

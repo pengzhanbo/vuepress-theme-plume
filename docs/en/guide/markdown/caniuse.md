@@ -1,19 +1,19 @@
 ---
 title: Can I Use
-createTime: 2025/03/24 22:10:32
+createTime: 2025/10/08 14:50:55
 icon: streamline:desktop-help
 permalink: /en/guide/markdown/caniuse/
 ---
 
 ## Overview
 
-When writing articles, you can embed the support status of [can-i-use](https://caniuse.com/) WEB features across platforms.
+When writing articles, this feature provides the functionality to embed platform support information for WEB features from [can-i-use](https://caniuse.com/).
 
-This makes it easier to describe the support level of a particular WEB feature.
+This allows for a more intuitive representation of a feature's support level when describing a specific WEB feature.
 
 ## Configuration
 
-This feature is not enabled by default. You can enable it in the configuration file.
+This feature is disabled by default. You can enable it in the configuration file.
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
@@ -25,17 +25,18 @@ export default defineUserConfig({
 })
 ```
 
-In your Markdown file, use the following format:
+In your article's markdown file, use the following format:
 
-```md
+``` md
 @[caniuse](feature)
 ```
 
-For convenience, the theme provides a tool: [caniuse feature search](../../../../../notes/tools/caniuse.md), which can help generate the Markdown code.
+For ease of use, the theme provides tool support: [caniuse Feature Search](../../../tools/caniuse.md).
+You can use this tool directly to help generate the markdown code.
 
 ## Syntax
 
-```md
+``` md
 @[caniuse](feature)
 @[caniuse{browser_versions}](feature)
 @[caniuse embed_type](feature)
@@ -44,19 +45,19 @@ For convenience, the theme provides a tool: [caniuse feature search](../../../..
 
 - `feature`
 
-  Required. For correct values, refer to [caniuse-embed.vercel.app](https://caniuse-embed.vercel.app/zh-CN)
+   Required. For correct values, please refer to [caniuse-embed.vercel.app](https://caniuse-embed.vercel.app/zh-CN).
 
 - `{browser_versions}`
 
-  Optional. The support status of the feature across multiple browser versions.
+  Optional. Specifies the support status of the current feature across multiple browser versions.
 
   Default value: `{-2,1}`
 
-  Format: `{past,future}` with values ranging from `-5 ~ 3`
+  Format: `{past,future}` Value range: `-5 ~ 3`
 
-  - Less than `0` indicates support below the current browser version
-  - `0` indicates support at the current browser version
-  - Greater than `0` indicates support above the current browser version
+  - Values less than `0` indicate support status for browser versions lower than the current one.
+  - `0` indicates the support status for the current browser version.
+  - Values greater than `0` indicate support status for browser versions higher than the current one.
 
 - `embed_type`
 
@@ -67,37 +68,40 @@ For convenience, the theme provides a tool: [caniuse feature search](../../../..
   Default value: `'embed'`
 
 :::caution
-The use of image type is no longer recommended. Instead, use the embed type, as the theme has changed the embed implementation, offering faster loading, smaller size, and better interaction.
+The `image` type is no longer recommended. It is advised to use the `embed` type.
+The theme has changed the implementation technology for the embed component.
+The current `embed` type now offers significant advantages over the `image` type,
+including faster loading speed, smaller size, and better interactive experience.
 :::
 
 ## Examples
 
-**Get the browser support status for the CSS pseudo-class selector `:dir()`:**
+**Get the browser support for the CSS pseudo-class selector `:dir()`:**
 
 ```md
 @[caniuse](css-matches-pseudo)
 ```
 
-Effect:
+Result:
 
 @[caniuse](css-matches-pseudo)
 
-**Get the browser support status for the CSS pseudo-class selector `:dir()` as an image:**
+**Get the browser support for the CSS pseudo-class selector `:dir()` as an image:**
 
 ```md
 @[caniuse image](css-matches-pseudo)
 ```
 
-Effect:
+Result:
 
 @[caniuse image](css-matches-pseudo)
 
-**Get the browser support status for the CSS pseudo-class selector `:dir()` for specific browser versions:**
+**Get the browser support for the CSS pseudo-class selector `:dir()` for a specific range of browser versions:**
 
 ```md
 @[caniuse{-2,3}](css-matches-pseudo)
 ```
 
-Effect:
+Result:
 
 @[caniuse{-2,3}](css-matches-pseudo)

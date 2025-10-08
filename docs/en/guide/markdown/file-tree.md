@@ -1,35 +1,38 @@
 ---
 title: File Tree
-createTime: 2025/03/24 20:15:12
+createTime: 2025/10/08 14:41:57
 icon: mdi:file-tree
 permalink: /en/guide/markdown/file-tree/
 ---
 
 ## Overview
 
-In Markdown, you can use the `file-tree` container to display a directory structure with file icons and collapsible subdirectories.
+In Markdown, you can use the `file-tree` container to display directory structures with file icons and collapsible subdirectories.
 
 ## Syntax
 
-In the `::: file-tree` container, use the built-in **Markdown unordered list syntax** to specify the organization of files and directories.
-Use nested list items to create subdirectories; if you want a directory to not display specific content, simply add a slash `/` at the end of the list item.
+Within the `::: file-tree` container, use the built-in **Markdown unordered list syntax** to specify the organization of files and directories.
+Use nested list items to create subdirectories; to indicate that a directory's contents should not be
+displayed, simply add a slash `/` at the end of the list item.
 
 The following syntax can be used to customize the appearance of the file tree:
 
-- Highlight files or directories by bolding their names, e.g., `**README.md**`
-- Add annotations to files or directories by appending additional text after the name
-- Use `...` or `…` as names to add placeholder files and directories.
-- Adding `icon="simple"` or `icon="colored"` after `:::file-tree` can switch to simple icons or colored icons, with colored icons being the default.
+- Emphasize file or directory names by making them bold, e.g., `**README.md**`
+- Add comments to files or directories by adding additional text after the name
+- Mark files or directories as **added** or **deleted** by prefixing the name with `++` or `--`
+- Use `...` or `…` as the name to add placeholder files and directories.
+- Add `icon="simple"` or `icon="colored"` after `:::file-tree` to switch to simple icons or colored icons. The default is colored icons.
+- Add `title="xxxx"` after `:::file-tree` to add a title to the file tree.
 
 **Input:**
 
-```md
+```md /++/ /--/
 ::: file-tree
 
 - docs
   - .vuepress
-    - config.ts
-  - page1.md
+    - ++ config.ts
+  - -- page1.md
   - README.md
 - theme  A **theme** directory
   - client
@@ -55,8 +58,8 @@ The following syntax can be used to customize the appearance of the file tree:
 
 - docs
   - .vuepress
-    - config.ts
-  - page1.md
+    - ++ config.ts
+  - -- page1.md
   - README.md
 - theme  A **theme** directory
   - client
@@ -73,7 +76,7 @@ The following syntax can be used to customize the appearance of the file tree:
 - .gitignore
 - README.md
 - …
-  :::
+:::
 
 ## Using Simple Icons
 
@@ -100,11 +103,11 @@ The following syntax can be used to customize the appearance of the file tree:
   - page1.md
   - README.md
 - package.json
-  :::
+:::
 
 ## Configuration
 
-You can configure the default icon type for the file tree in the `plugins.mdPower.fileTree` option:
+You can configure the default icon type for file trees in the `markdown.fileTree` option:
 
 ::: code-tabs
 @tab .vuepress/config.ts
@@ -123,9 +126,14 @@ export default defineUserConfig({
 
 :::
 
-::: tip Worried that colored icons will affect the build package size?
-You don't need to worry. The colored icons for the file tree are also parsed from `iconify`. We recommend that you install the `@iconify/json` project locally.
-The theme will automatically parse the icon data from `@iconify/json` into local icon resources. Even if you use them multiple times on different pages, including the navbar, sidebar, icon components, etc., the same icon will only exist as one resource!
+::: tip Concerned about colored icons affecting build bundle size?
+You don't need to worry. The colored icons for the file tree are also resolved from `iconify`.
+We recommend installing the `@iconify/json` package locally in your project.
+The theme will automatically parse the icon data from `@iconify/json` into local icon resources.
+Even if you use the same icon multiple times across different pages
+(including navigation bars, sidebars, icon components, etc.), only one copy of the resource will exist for each icon!
 
-Each colored icon is approximately between `1kb ~ 2kb` in size. Even if your file tree uses 100+ different icons, the impact on the final build package size will not be significant.
+Each colored icon is approximately `1kb ~ 2kb` in size.
+Even if your file tree extensively uses 100+ different icons, the impact on the final build bundle size
+will not be significant.
 :::

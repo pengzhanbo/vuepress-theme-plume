@@ -1,6 +1,6 @@
 ---
-title: Import files
-createTime: 2025/03/25 09:15:18
+title: File Inclusion
+createTime: 2025/10/08 14:53:04
 icon: fluent:table-simple-include-16-regular
 permalink: /en/guide/markdown/include/
 outline: 2
@@ -8,9 +8,9 @@ outline: 2
 
 ## Overview
 
-The theme supports importing file slices in Markdown files.
+The theme supports including file snippets in Markdown files.
 
-Importing files is enabled by default, and you can also customize the behavior through configuration.
+File inclusion is enabled by default, and you can customize its behavior through configuration.
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
@@ -26,44 +26,44 @@ export default defineUserConfig({
 
 ## Syntax
 
-Use `<!-- @include: filename -->` to import a file.
+Use `<!-- @include: filename -->` to include a file.
 
-If you want to import a portion of the file, you can specify the line numbers:
+To include specific parts of a file, you can specify line ranges:
 
 - `<!-- @include: filename{start-end} -->`
 - `<!-- @include: filename{start-} -->`
 - `<!-- @include: filename{-end} -->`
 
-You can also import file regions:
+You can also include file regions:
 
 - `<!-- @include: filename#region -->`
 
 ::::tip File Regions
-File regions are a concept in VSCode, where the content is enclosed by `#region` and `#endregion` comments.
+File regions are a concept from VSCode, where region content is surrounded by `#region` and `#endregion` comments.
 
 <!-- @include: ../../snippet/include-1.snippet.md -->
 ::::
 
 ## Configuration
 
-You can also set an object to customize the file path and inclusion behavior.
+You can also configure an object to customize the file path resolution and inclusion behavior.
 
 ```ts
 interface IncludeOptions {
   /**
-   * Process the include file path
+   * Handler for resolving include file paths
    *
    * @default (path) => path
    */
   resolvePath?: (path: string, cwd: string | null) => string
   /**
-   * Whether to deeply import included Markdown files
+   * Whether to deeply include nested Markdown files
    *
    * @default false
    */
   deep?: boolean
   /**
-   * Whether to use `<!-- @include: xxx -->` instead of `@include: xxx` to import files
+   * Whether to use `<!-- @include: xxx -->` instead of `@include: xxx` for file inclusion
    *
    * @default true
    */
@@ -83,7 +83,7 @@ interface IncludeOptions {
 }
 ```
 
-For example: You can use `@src` as an alias for the source folder.
+For example: You can use `@src` as an alias for your source directory.
 
 ```ts{5-11} title=".vuepress/config.ts"
 export default defineUserConfig({
@@ -102,11 +102,13 @@ export default defineUserConfig({
 })
 ```
 
-Additionally, if you want to place Markdown files next to the actual files but do not want them to be rendered as pages, you can set the `pagePatterns` option in the VuePress configuration. For more details, see [pagePatterns](https://vuejs.press/zh/reference/config.html#pagepatterns ).
+Additionally, if you want to place Markdown files directly alongside your actual files but don't
+want them rendered as pages, you can set the `pagePatterns` option in your VuePress configuration.
+For more details, refer to [pagePatterns](https://vuejs.press/zh/reference/config.html#pagepatterns).
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
-  // Now any file with the `.snippet.md` extension will not be rendered as a page
+  // Now any file with `.snippet.md` extension will not be rendered as a page
   pagePatterns: ['**/*.md', '!**/*.snippet.md', '!.vuepress', '!node_modules'], // [!code ++]
   theme: plumeTheme({
     markdown: {
@@ -118,41 +120,41 @@ export default defineUserConfig({
 
 ## Examples
 
-There is a `foo.snippet.md` file in the project:
+Given a `foo.snippet.md` file in your project:
 :::: code-tabs
 @tab foo.snippet.md
 
 ```md
 ### Level 3 Heading
 
-This is the content of the `foo.snippet.md` file.
+This is content from the foo.snippet.md file.
 
 ::: info
-Content of the info container
+Content included in an info container.
 :::
 
 <!-- region snippet -->
-This is the content wrapped by `<!-- region snippet -->`.
+This is content wrapped by `<!-- region snippet -->`.
 
-It can be imported via `<!-- @include: ./foo.snippet.md#snippet -->`.
+Included via `<!-- @include: ./foo.snippet.md#snippet -->`.
 <!-- endregion snippet -->
 ```
 
 ::::
 
-Import the file using `<!-- @include: ./foo.snippet.md -->`：
+Using `<!-- @include: ./foo.snippet.md -->` to include the entire file:
 
 :::: demo-wrapper title="Include by file"
 <!-- @include: ../../snippet/include-2.snippet.md -->
 ::::
 
-Import lines 5 to 7 of the file using `<!-- @include: ./foo.snippet.md{5-7} -->`:
+Using `<!-- @include: ./foo.snippet.md{5-7} -->` to include lines 5-7 of the file:
 
 :::: demo-wrapper title="Include by lines"
 <!-- @include: ../../snippet/include-2.snippet.md{5-7} -->
 ::::
 
-Import the `snippet` region using `<!-- @include: ./foo.snippet.md#snippet -->`:
+Using `<!-- @include: ./foo.snippet.md#snippet -->` to include the `snippet` region:
 
 :::: demo-wrapper title="Include by file region"
 <!-- @include: ../../snippet/include-2.snippet.md#snippet -->

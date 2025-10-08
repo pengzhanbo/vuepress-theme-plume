@@ -2,7 +2,7 @@
 title: 代码树
 icon: stash:side-peek
 createTime: 2025/05/02 05:59:44
-permalink: /guide/6smvgtbx/
+permalink: /guide/markdown/code-tree/
 badge: 新
 ---
 
@@ -161,10 +161,10 @@ createApp(App).mount('#app')
 **输入：**
 
 ```md
-<!-- 此目录为主题仓库 `docs/.vuepress/notes/` -->
-@[code-tree title="Notes 配置" height="400px" entry="index.ts"](/.vuepress/notes)
+<!-- 此目录为主题仓库 `docs/.vuepress/collections/` -->
+@[code-tree title="Collections 配置" height="400px" entry="index.ts"](/.vuepress/collections)
 ```
 
 **输出：**
 
-@[code-tree title="Notes 配置" height="400px" entry="index.ts"](/.vuepress/notes)
+@[code-tree title="Collections 配置" height="400px" entry="index.ts"](/.vuepress/collections)

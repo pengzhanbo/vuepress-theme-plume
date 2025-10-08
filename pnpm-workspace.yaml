@@ -58,7 +58,7 @@ catalogs:
     vue-router: ^4.5.1
     wait-on: ^9.0.1
   peer:
-    '@iconify/json': ^2.2.392
+    '@iconify/json': ^2.2.393
     artplayer: ^5.3.0
     dashjs: ^5.0.3
     hls.js: ^1.6.13
@@ -113,7 +113,7 @@ catalogs:
     picomatch: ^4.0.3
     shiki: ^3.13.0
     tinyglobby: ^0.2.15
-    tm-grammars: ^1.24.16
+    tm-grammars: ^1.24.17
     tm-themes: ^1.10.9
     vue: ^3.5.22
   vuepress:

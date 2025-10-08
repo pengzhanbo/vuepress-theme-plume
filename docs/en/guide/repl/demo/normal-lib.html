@@ -1,0 +1,30 @@
+<div id="app">
+  <h3>vuepress-theme-plume</h3>
+  <p id="message"></p>
+  <datetime id="datetime"></datetime>
+</div>
+
+<script>
+$('#message').text('So Awesome!')
+const datetime = $('#datetime')
+setInterval(() => {
+  datetime.text(dayjs().format('YYYY-MM-DD HH:mm:ss'))
+}, 1000)
+</script>
+
+<style lang="css">
+#app {
+  font-size: 2em;
+  text-align: center;
+}
+</style>
+
+<script type="config">
+{
+  "jsLib": [
+    "https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js",
+    "https://cdn.jsdelivr.net/npm/dayjs@1.11.13/dayjs.min.js"
+  ],
+  "cssLib": ["https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"]
+}
+</script>

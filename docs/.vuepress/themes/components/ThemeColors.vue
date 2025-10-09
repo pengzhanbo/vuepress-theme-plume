@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { LocaleConfig } from 'vuepress'
 import { computed } from 'vue'
 import VPButton from 'vuepress-theme-plume/components/VPButton.vue'
 import { useRouteLocale } from 'vuepress/client'

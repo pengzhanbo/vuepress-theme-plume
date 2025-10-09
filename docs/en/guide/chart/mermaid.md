@@ -38,7 +38,8 @@ export default defineUserConfig({
 ```
 
 ::: note
-The following documentation is forked from [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/mermaid.html) and is provided under the [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE) license.
+The following documentation is forked from [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/mermaid.html)
+and is provided under the[MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE) license.
 :::
 
 ## Syntax

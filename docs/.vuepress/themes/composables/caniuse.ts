@@ -1,6 +1,8 @@
 import type { ComputedRef, Ref } from 'vue'
+import type { LocaleConfig } from 'vuepress'
 import { onClickOutside, useDebounceFn, useEventListener, useLocalStorage } from '@vueuse/core'
 import { computed, onMounted, readonly, ref, watch } from 'vue'
+import { useRouteLocale } from 'vuepress/client'
 
 interface Feature {
   label: string
@@ -14,21 +16,22 @@ interface SelectItem {
 
 const api = 'https://caniuse.pengzhanbo.cn/features.json'
 
-const pastVersions: SelectItem[] = [
-  { label: '不显示旧版本', value: '0' },
-  ...Array.from({ length: 5 }).fill(0).map((_, i) => ({
-    label: `旧版本（当前版本 - ${i + 1}）`,
-    value: `${i + 1}`,
-  })),
-]
-
-const futureVersions: SelectItem[] = [
-  { label: '不显示未来版本', value: '0' },
-  ...Array.from({ length: 3 }).fill(0).map((_, i) => ({
-    label: `未来版本（当前版本 + ${i + 1}）`,
-    value: `${i + 1}`,
-  })),
-]
+const locales: LocaleConfig<
+  Record<'past0' | 'pastIndex' | 'future0' | 'futureIndex', string>
+> = {
+  '/': {
+    past0: '不显示旧版本',
+    pastIndex: '旧版本（当前版本 - {index}）',
+    future0: '不显示未来版本',
+    futureIndex: '未来版本（当前版本 + {index}）',
+  },
+  '/en/': {
+    past0: 'Do not show old versions',
+    pastIndex: 'Old version (current version - {index})',
+    future0: 'Do not show future versions',
+    futureIndex: 'Future version (current version + {index})',
+  },
+}
 
 const embedTypes: SelectItem[] = [
   { label: 'iframe', value: '' },
@@ -39,16 +42,34 @@ export function useCaniuseVersionSelect(): {
   past: Ref<string>
   future: Ref<string>
   embedType: Ref<string>
-  pastList: Readonly<SelectItem[]>
-  futureList: Readonly<SelectItem[]>
+  pastList: ComputedRef<SelectItem[]>
+  futureList: ComputedRef<SelectItem[]>
   embedTypeList: Readonly<SelectItem[]>
 } {
+  const routeLocale = useRouteLocale()
+
   const past = ref('2')
   const future = ref('1')
   const embedType = ref('')
 
-  const pastList = readonly(pastVersions)
-  const futureList = readonly(futureVersions)
+  const pastList = computed(() => {
+    return [
+      { label: locales[routeLocale.value].past0 || '', value: '0' },
+      ...Array.from({ length: 5 }).fill(0).map((_, i) => ({
+        label: locales[routeLocale.value]?.pastIndex?.replace('{index}', `${i + 1}`) ?? '',
+        value: `${i + 1}`,
+      })),
+    ]
+  })
+  const futureList = computed(() => {
+    return [
+      { label: locales[routeLocale.value].future0 || '', value: '0' },
+      ...Array.from({ length: 3 }).fill(0).map((_, i) => ({
+        label: locales[routeLocale.value]?.futureIndex?.replace('{index}', `${i + 1}`) ?? '',
+        value: `${i + 1}`,
+      })),
+    ]
+  })
   const embedTypeList = readonly(embedTypes)
 
   return {

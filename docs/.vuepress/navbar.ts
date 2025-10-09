@@ -78,11 +78,15 @@ export const enNavbar: ThemeNavItem[] = defineNavbarConfig([
     text: 'More',
     icon: 'icon-park-outline:more-three',
     items: [
+      { text: 'FAQ', link: '/en/faq/', icon: 'wpf:faq' },
+      { text: 'Theme Tools', link: '/en/tools/', icon: 'jam:tools' },
+      { text: 'Friend Links', link: '/en/friends/', icon: 'carbon:friendship' },
       {
         text: 'Vuepress',
+        icon: 'logos:vue',
         items: [
-          { text: 'Official Docs', link: 'https://v2.vuepress.vuejs.org' },
-          { text: 'Ecosystem', link: 'https://ecosystem.vuejs.press/' },
+          { text: 'Official Docs', link: 'https://v2.vuepress.vuejs.org', icon: 'logos:vue' },
+          { text: 'Ecosystem', link: 'https://ecosystem.vuejs.press/', icon: 'logos:vue' },
         ],
       },
     ],
@@ -90,9 +94,10 @@ export const enNavbar: ThemeNavItem[] = defineNavbarConfig([
   {
     text: `${version}`,
     icon: 'codicon:versions',
+    badge: '新',
     items: [
-      { text: 'Changelog', link: '/changelog/' },
-      { text: 'Contributing', link: '/contributing/' },
+      { text: 'Changelog', link: '/en/changelog/' },
+      { text: 'Contributing', link: '/en/contributing/' },
     ],
   },
 ])

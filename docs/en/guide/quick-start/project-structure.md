@@ -1,135 +1,129 @@
 ---
 title: Project Structure
 icon: ph:tree-structure-bold
-createTime: 2025/03/02 13:41:25
+createTime: 2025/10/08 21:59:30
 permalink: /en/guide/project-structure/
 ---
 
-This guide will illustrate the file structure of a project created with VuePress and Plume, as well as how to utilize them within your project.
+This guide provides a detailed explanation of the file structure for projects
+created using VuePress and the Plume theme, helping you better organize and manage project files.
 
-When you [create a project using the command-line tool](usage.md#command-line-installation), its file structure looks like this:
+For projects created via the [command-line tool](./usage.md#command-line-installation), the typical file structure is as follows:
 
 ::: file-tree
 
 - .git/
 - **docs** \# Documentation source directory
-  - .vuepress  \# VuePress configuration folder
-    - public/ \# Static resources directory
-    - client.ts \# Client-side configuration (optional)
-    - config.ts \# VuePress configuration
-    - navbar.ts \# Navigation bar configuration (optional)
-    - notes.ts \# Notes configuration (optional)
-    - plume.config.ts \# Theme configuration file  (optional)
-  - notes \# Series documentation, knowledge notes
-    - demo
-      - foo.md
-      - bar.md
-  - preview \# One of the blog categories
-    - markdown.md \# Blog post under the category
-  - article.md \# Blog post
-  - README.md \# Home page
+  - .vuepress  \# VuePress configuration directory
+    - public/ \# Static assets
+    - client.ts \# Client configuration (optional)
+    - collections.ts \# Collections configuration (optional)
+    - config.ts \# VuePress main configuration
+    - navbar.ts \# Navbar configuration (optional)
+    - plume.config.ts \# Theme configuration file (optional)
+  - demo \# `doc` type collection
+    - foo.md
+    - bar.md
+  - blog \# `post` type collection
+    - preview \# Blog category
+      - markdown.md \# Category article
+    - article.md \# Blog article
+  - README.md \# Site homepage
   - …
 - package.json
 - pnpm-lock.yaml
 - .gitignore
 - README.md
-  :::
+:::
 
-::: tip If you created the project manually, you can also manage your project by referring to this file structure.
+::: tip Manually created projects can also be organized using this structure as a reference
 :::
 
 ## Documentation Source Directory
 
-The **documentation source directory** refers to the directory where all your site's markdown files are located. This directory is generally specified when you start VuePress using the command-line tool:
+The **Documentation Source Directory** contains all the Markdown source files for your site.
+This directory must be specified when starting VuePress via the command line:
 
 ```sh
 # [!code word:docs]
 vuepress dev docs
-#            Here, the documentation source directory is declared as docs
+#            ↑ Documentation source directory
 ```
+
+Corresponding package.json script configuration:
 
 ```json title="package.json"
 {
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    //                        ^^^^
     "docs:build": "vuepress build docs"
-    //                            ^^^^
   }
 }
 ```
 
-Generally, VuePress only takes over this directory, and other files outside the source directory will be ignored.
+VuePress only processes files within the documentation source directory; other directories are ignored.
 
-## `.vuepress` Directory
+## `.vuepress` Configuration Directory
 
-The `.vuepress/` directory is the VuePress configuration folder, where you can also create your own components, customize theme styles, etc.
+`.vuepress/` is the core configuration directory for VuePress, where you can configure your project, create custom components, and styles.
 
-**In this directory:**
+### `client.ts` - Client Configuration
 
-### `client.ts`
+Used to extend VuePress client functionality, such as registering global components:
 
-Client-side configuration file, where you can extend VuePress's functionality, such as declaring new global components, etc.
-
-::: code-tabs
-@tab .vuepress/client.ts
-
-```ts
+```ts title=".vuepress/client.ts"
 import { defineClientConfig } from 'vuepress/client'
 
 export default defineClientConfig({
   enhance({ app, router, siteData }) {
-    // app: vue app instance
-    // router: vue router instance
-    // siteData: vuepress site configuration
+    // app: Vue application instance
+    // router: Vue Router instance
+    // siteData: Site metadata
 
     // Register global components
     app.component('MyComponent', MyComponent)
   },
   setup() {
-    // Equivalent to the setup method on the root component of vue
+    // setup method of the Vue root component
   }
 })
 ```
 
-:::
+### `config.ts` - Main Configuration File
 
-### `config.ts`
+The core configuration file for VuePress, used to set up the theme, plugins, and build tool:
 
-The VuePress configuration file, where you need to make some necessary configurations, such as theme, plugins, build tools, etc.
-
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts" twoslash
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
-  lang: 'en-US',
+  lang: 'zh-CN',
   theme: plumeTheme({
-    // more...
+    // Theme configuration...
   }),
   bundler: viteBundler(),
 })
 ```
 
-:::
+### `plume.config.ts` - Theme Configuration
 
-### `plume.config.ts`
-
-Theme configuration file. Since modifying `.vuepress/config.ts` requires restarting the VuePress service each time, which is not necessary in most cases.
-
-The theme moves the configurations that do not require restarting the service to here. When you modify the configuration here, the theme will be updated via hot reload.
+A dedicated configuration file for the theme that supports hot-reload; service restart is not required after modifications:
 
 ::: code-tabs
 @tab .vuepress/plume.config.ts
 
-```ts
+```ts twoslash
+// @filename: ./navbar.ts
+export default []
+
+// @filename: ./collections.ts
+export default []
+// ---cut---
 import { defineThemeConfig } from 'vuepress-theme-plume'
+import collections from './collections'
 import navbar from './navbar'
-import notes from './notes'
 
 export default defineThemeConfig({
   logo: '/logo.svg',
@@ -137,86 +131,41 @@ export default defineThemeConfig({
     name: 'Theme Plume',
   },
   navbar,
-  notes,
-  // ... more
+  collections,
+  // More configuration...
 })
 ```
 
 @tab .vuepress/navbar.ts
 
-```ts
+```ts twoslash
 import { defineNavbarConfig } from 'vuepress-theme-plume'
 
 export default defineNavbarConfig([
-  // ...
+  // Navbar item configuration...
 ])
 ```
 
-@tab .vuepress/notes.ts
+@tab .vuepress/collections.ts
 
-```ts
-import { defineNotesConfig } from 'vuepress-theme-plume'
+```ts twoslash
+import { defineCollections } from 'vuepress-theme-plume'
 
-export default defineNotesConfig({
-  // ...
-})
+export default defineCollections([
+  {
+    type: 'post',
+    dir: 'blog',
+    title: 'Blog',
+    link: '/blog/'
+  },
+  {
+    type: 'doc',
+    dir: 'demo',
+    linkPrefix: '/demo/',
+    title: 'Documentation Examples',
+    sidebar: 'auto'
+  },
+])
 ```
 
-:::
-
-## notes Directory
-
-The **notes** directory is used to store your knowledge notes, series documentation, etc.
-
-### How to Understand Knowledge Notes/Series Documentation?
-
-A common scenario is that you are learning a skill and plan to record your learning experiences, key points, difficulties, etc., in your notes. In this case, you might write multiple documents for recording.
-
-Alternatively, you are preparing for an interview and want to prepare interview questions and answers in advance. You might then have each question and answer as a separate document.
-
-You would easily want to manage them all in a separate directory and, at the same time, be able to quickly navigate between different documents in the skill notes or between different interview questions in the generated documentation site.
-
-This is a requirement that blog-type documentation cannot meet, and it is a pain point that `notes` aims to solve.
-
-The above content can easily result in the following directory structure:
-
-::: file-tree
-
-- notes
-  - interview  \# Interview questions
-    - Self-Introduction.md
-    - My-Skills.md
-    - Projects-Worked.md
-    - …
-  - typescript \# Learning notes
-    - Basics
-      - Basic-Types.md
-      - Generics.md
-      - …
-    - Advanced
-      - Functions.md
-      - …
-:::
-
-This allows for easy management of multiple series of documents, each with its own directory structure.
-
-## Other Directories/Files
-
-In the ==documentation source directory==, other directories and files, except for `README.md` which is recognized as the `home page`, will be identified as blog posts. The directory structure will be recognized as blog categories.
-
-::: file-tree
-
-- docs
-  - Life
-    - Travel-Diary.md
-    - …
-  - Study
-    - Exam-Notes.md
-    - …
-  - Work
-    - Tomato-Time.md
-    - …
-  - Miscellaneous.md  \# Articles without categories
-  - README.md  \# Home page
-  - …
 :::

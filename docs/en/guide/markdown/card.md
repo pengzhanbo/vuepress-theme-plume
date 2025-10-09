@@ -1,26 +1,26 @@
 ---
 title: Card
-createTime: 2025/03/24 19:46:13
+createTime: 2025/10/08 14:37:40
 icon: solar:card-broken
 permalink: /en/guide/markdown/card/
 ---
 
 ## Overview
 
-To highlight content, place it in a card container `::: card`.
+Content that needs to be highlighted can be placed within a card container `::: card`.
 
-To display multiple cards side by side when space allows, use the `card-grid` container around multiple cards.
+When multiple cards need to be displayed side-by-side when space permits, use the `card-grid` container to wrap multiple cards.
 
 ## Syntax
 
 ```md
-<!-- Single card -->
+<!-- Single Card -->
 ::: card title="Title" icon="twemoji:astonished-face"
 
 This is the card content.
 :::
 
-<!-- Multiple cards -->
+<!-- Multiple Cards -->
 :::: card-grid
 
 ::: card title="Card Title 1" icon="twemoji:astonished-face"
@@ -36,9 +36,18 @@ This is the card content.
 ::::
 ```
 
-Cards support optional `title` and `icon`. The icon can be an image URL or an Iconify icon name.
+## Props
 
-## Example
+:::: field-group
+::: field name="title" type="string" optional default="''"
+Card title
+:::
+
+::: field name="icon" type="string" optional
+Card icon. Supports image URLs and [iconify](https://icon-sets.iconify.design/) icon names.
+::::
+
+## Examples
 
 **Input:**
 
@@ -87,5 +96,5 @@ This is the card content.
 ::::
 
 ::: info
-If you prefer to use cards via components, you can check out the [Card Component](/en/guide/features/component/#card).
+If you prefer using cards via components, you can check out the [Card Component](/guide/features/component/#card).
 :::

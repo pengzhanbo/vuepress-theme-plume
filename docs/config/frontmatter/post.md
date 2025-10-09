@@ -1,12 +1,12 @@
 ---
-title: 博客文章
+title: posts文章
 createTime: 2024/03/03 11:01:03
 permalink: /config/frontmatter/article/
 ---
 
 ## 概述
 
-适用于 博客类型的文章。
+适用于 集合类型为 post 的文章。
 
 示例：
 
@@ -68,7 +68,7 @@ tags:
 封面图配置。
 
 ```ts
-interface BlogPostCoverStyle {
+interface PostCoverStyle {
   /**
    * 博客文章封面图的位置
    */

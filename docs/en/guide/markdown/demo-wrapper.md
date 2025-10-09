@@ -1,6 +1,6 @@
 ---
-title: Demo Wrapper
-createTime: 2025/03/24 21:49:01
+title: Demo Container
+createTime: 2025/10/08 14:47:12
 icon: icon-park-outline:eyes
 permalink: /en/guide/markdown/demo-wrapper/
 outline: 2
@@ -8,27 +8,27 @@ outline: 2
 
 ## Overview
 
-Sometimes, you may need to add examples in your content but want them to be presented separately from other content.
-The theme supports adding demo wrapper in Markdown files.
+Sometimes you may need to supplement your content with examples but want them to be presented
+separately from other content. The theme supports adding demo containers in Markdown files.
 
 ## Syntax
 
 ````md
 ::: demo-wrapper
-Add your example here
+Add your demo here
 :::
 ````
 
 ## Options
 
 - `title="xxx"`: Title
-- `no-padding`: No padding
-- `img`: Use when only containing an image
+- `no-padding`: Remove padding
+- `img`: Use when containing only images
 - `height="xxx"`: Height
 
-## Example
+## Examples
 
-Image only:
+Containing only images:
 
 ```md
 ::: demo-wrapper img no-padding
@@ -41,25 +41,25 @@ Image only:
 ![hero](/images/custom-hero.jpg)
 :::
 
-Markdown content:
+Containing markdown syntax:
 
 ```md
 ::: demo-wrapper title="Title"
-### Third-level heading
+### Level 3 Heading
 
-This is the content within the demo wrapper.
+This is content inside the demo container.
 :::
 ```
 
 **Output:**
 ::: demo-wrapper title="Title"
 
-### Third-level heading
+### Level 3 Heading
 
-This is the content within the demo wrapper.
+This is content inside the demo container.
 :::
 
-HTML/Vue code:
+Containing HTML/Vue code:
 
 ```md
 ::: demo-wrapper
@@ -80,7 +80,7 @@ HTML/Vue code:
 **Output:**
 ::: demo-wrapper
 
-<h1 class="your-demo-title">This is a title</h1>
+<h1 class="your-demo-title">This is a heading</h1>
 <p class="your-demo-paragraph">This is a paragraph</p>
 
 <style>

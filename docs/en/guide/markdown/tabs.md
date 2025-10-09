@@ -1,17 +1,17 @@
 ---
-title: Tabs
-createTime: 2025/03/24 21:13:58
+title: Tab Groups
+createTime: 2024/09/30 14:43:40
 icon: vaadin:tabs
 permalink: /en/guide/markdown/tabs/
 ---
 
 ## Overview
 
-Markdown supports tabs functionality.
+Add support for tabs in Markdown.
 
 ## Syntax
 
-You need to wrap the tabs in a `tabs` container.
+You need to wrap tabs in a `tabs` container.
 
 You can add an id suffix to the `tabs` container, which will be used as the tab id.
 All tabs with the same id will share the same toggle event.
@@ -19,16 +19,16 @@ All tabs with the same id will share the same toggle event.
 ```md
 ::: tabs#fruit
 
-<!-- Here, fruit will be used as the id, it is optional -->
+<!-- Here, 'fruit' will be used as the id. This is optional. -->
 
 <!-- Tab content -->
 
 :::
 ```
 
-Within this container, you should use the `@tab` tag to mark and separate the tab content.
+Inside this container, you should use the `@tab` marker to label and separate tab content.
 
-After the `@tab` tag, you can add the text `:active` to default activate the tab, and the subsequent text will be parsed as the tab title.
+After the `@tab` marker, you can add the text `:active` to make a tab active by default. The text following this will be parsed as the tab title.
 
 ```md
 ::: tabs
@@ -43,35 +43,35 @@ After the `@tab` tag, you can add the text `:active` to default activate the tab
 
 @tab:active Title 3
 
-<!-- Tab 3 will be default activated -->
+<!-- Tab 3 will be active by default -->
 
 <!-- Tab 3 content -->
 
 :::
 ```
 
-By default, the title will be used as the tab's value, but you can override it with an id suffix.
+By default, the title is used as the value of the tab, but you can override this using an id suffix.
 
 ```md
 ::: tabs
 
 @tab Title 1
 
-<!-- Here, the tab 1's title "Title 1" will be used as the value. -->
+<!-- Here, the title "Title 1" of Tab 1 will be used as its value. -->
 
 <!-- Tab 1 content -->
 
-@tab Title 2#Value 2
+@tab Title 2#value2
 
-<!-- Here, the tab 2's title will be "Title 2", but it will use "Value 2" as the tab's value -->
+<!-- Here, the title of Tab 2 will be "Title 2", but it will use "value2" as the tab's value -->
 
 <!-- Tab 2 content -->
 
 :::
 ```
 
-You can use Vue syntax and components within each tab, and you can access value and isActive,
-which represent the tab's bound value and whether the tab is active.
+You can use Vue syntax and components within each tab, and you have access to `value` and `isActive`,
+which represent the bound value of the tab and whether the tab is currently active.
 
 ## Example
 
@@ -81,7 +81,7 @@ which represent the tab's bound value and whether the tab is active.
 ::: tabs
 @tab npm
 
-npm should be installed together with Node.js.
+npm should be installed alongside Node.js.
 
 @tab pnpm
 
@@ -98,7 +98,7 @@ corepack use pnpm@8
 ::: tabs
 @tab npm
 
-npm should be installed together with Node.js.
+npm should be installed alongside Node.js.
 
 @tab pnpm
 

@@ -17,7 +17,7 @@ export async function prepareCollections(app: App): Promise<void> {
       collections = fallback
 
     if (!collections?.length)
-      return
+      continue
 
     data[locale] = collections?.map((item) => {
       if (item.type === 'post') {

@@ -1,22 +1,19 @@
 ---
-title: Collapsible panel
+title: Collapse Panel
 icon: carbon:collapse-categories
-createTime: 2025/03/25 10:13:04
+createTime: 2025/10/08 22:27:22
 permalink: /en/guide/markdown/collapse/
-badge:
-  type: tip
-  text: 1.0.0-rc.137 +
 ---
 
 ## Overview
 
-In Markdown, the `::: collapse` container, combined with Markdown unordered list syntax, can be used to create ==collapsible panels==.
+In markdown, use the `::: collapse` container with markdown unordered list syntax to implement ==collapse panels==.
 
-- It supports setting the mode to **accordion** using the `accordion` option.
+- Supports ==accordion== mode via the `accordion` setting
 
 ## Enable
 
-This feature is not enabled by default. You need to enable it in the `theme` configuration.
+This feature is disabled by default. You need to enable it in the `theme` configuration.
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
@@ -30,13 +27,13 @@ export default defineUserConfig({
 
 ## Usage
 
-In Markdown, use the `::: collapse` container with Markdown unordered list syntax, where each item represents a separate collapsible area.
+In markdown, use the `::: collapse` container with markdown unordered list syntax. Each item represents a separate collapsible section.
 
 ```md title="collapse.md"
 ::: collapse
 - Title 1        <!-- Title, click to control expand/collapse -->
-                <!-- There must be an empty line between the title and the content -->
-  Content          <!-- Content, the collapsible area -->
+                 <!-- Must have an empty line between title and content -->
+  Content        <!-- Content, the collapsible area -->
 
 - Title 2
 
@@ -44,225 +41,227 @@ In Markdown, use the `::: collapse` container with Markdown unordered list synta
 :::
 ```
 
-For each item in the list:
+For each list item:
 
-- From the **first line** to the **first empty line** is the **title**.
-- **After the first empty line**: The main content.
+- Everything from the __first line__ to the __first empty line__ is considered the __title__
 
-:::important Please note the correct indentation
+- __After the first empty line__: Content
+
+:::important Please ensure correct indentation
 :::
 
-**A simple example:**
+__A simple example:__
 
-**Input:**
+__Input:__
 
 ```md
 ::: collapse
 - Title 1
 
-  Main content
+  Content
 
 - Title 2
 
-  Main content
+  Content
 :::
 ```
 
-**Output:**
+__Output:__
 
 ::: collapse
 
 - Title 1
 
-  Main content
+  Content
 
 - Title 2
 
-  Main content
+  Content
 :::
 
 ## Configuration
 
-After the `::: collapse` container syntax, you can add configuration options:
+After the `::: collapse` container syntax, follow with configuration options:
 
-- `accordion`: Sets the collapsible panels to ==accordion== mode. In accordion mode, only one panel can be expanded at a time. Clicking another panel will close the previously opened one.
-- `expand`: Expands all panels by default. This option is invalid in accordion mode.
+- `accordion`: Sets the collapse panel to ==accordion== mode. In accordion mode,
+  only one panel can be expanded at a time; clicking other panels will close the previously opened panel.
+- `expand`: Expands panels by default. Invalid in accordion mode.
 
-Before the title of each list item, you can use special markers `:+` or `:-` to set the initial state of the item to **expanded** or **collapsed**.
+In list items, before the title, use special markers `:+` / `:-` to set the initial state of the current item to __expanded / collapsed__.
 
 ## Examples
 
 ### Basic Usage
 
-**Input:**
+__Input:__
 
 ```md
 ::: collapse
 - Title 1
 
-  Main content
+  Content
 
 - Title 2
 
-  Main content
+  Content
 :::
 ```
 
-**Output:**
+__Output:__
 
 ::: collapse
 
 - Title 1
 
-  Main content
+  Content
 
 - Title 2
 
-  Main content
-  :::
+  Content
+:::
 
 ### Expand All by Default
 
 Add the `expand` option to expand all panels by default.
 
-**Input:**
+__Input:__
 
 ```md /expand/
 ::: collapse expand
 - Title 1
 
-  Main content
+  Content
 
 - Title 2
 
-  Main content
+  Content
 :::
 ```
 
-**Output:**
+__Output:__
 
 ::: collapse expand
 
 - Title 1
 
-  Main content
+  Content
 
 - Title 2
 
-  Main content
-  :::
+  Content
+:::
 
 ### Accordion Mode
 
-Add the `accordion` option to set the mode to accordion, allowing only one panel to be expanded at a time. Clicking another panel will close the previously opened one.
+Add the `accordion` option to set accordion mode, where only one panel can be expanded at a time.
 
 ```md /accordion/
 ::: collapse accordion
 - Title 1
 
-  Main content
+  Content
 
 - Title 2
 
-  Main content
+  Content
 
 - Title 3
 
-  Main content
+  Content
 :::
 ```
 
-**Output:**
+__Output:__
 
 ::: collapse accordion
 
 - Title 1
 
-  Main content
+  Content
 
 - Title 2
 
-  Main content
+  Content
 
 - Title 3
 
-  Main content
-  :::
+  Content
+:::
 
-### Expand Items with `:+`
+### `:+` Mark Item as Expanded
 
-By default, all collapsible panels are closed. You can use the `:+` marker to set the initial state of an item to expanded.
+Collapse panels are closed by default. Use `:+` to mark items with an initial expanded state.
 
-**Input:**
+__Input:__
 
 ```md /:+/
 ::: collapse
 - Title 1
 
-  Main content
+  Content
 
 - :+ Title 2
 
-  Main content
+  Content
 
 - :+ Title 3
 
-  Main content
+  Content
 :::
 ```
 
-**Output:**
+__Output:__
 
 ::: collapse
 
 - Title 1
 
-  Main content
+  Content
 
 - :+ Title 2
 
-  Main content
+  Content
 
 - :+ Title 3
 
-  Main content
-  :::
+  Content
+:::
 
-### Collapse Items with `:-`
+### `:-` Mark Item as Collapsed
 
-When the `expand` option is configured, all panels are expanded by default. You can use the `:-` marker to set the initial state of an item to collapsed.
+When collapse panel is configured with `expand`, all panels are expanded by default. Use `:-` to mark items with an initial collapsed state.
 
-**Input:**
+__Input:__
 
 ```md /:-/
 ::: collapse expand
 - Title 1
 
-  Main content
+  Content
 
 - :- Title 2
 
-  Main content
+  Content
 
 - Title 3
 
-  Main content
+  Content
 :::
 ```
 
-**Output:**
+__Output:__
 
 ::: collapse expand
 
 - Title 1
 
-  Main content
+  Content
 
 - :- Title 2
 
-  Main content
+  Content
 
 - Title 3
 
-  Main content
-  :::
+  Content
+:::

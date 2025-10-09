@@ -1,19 +1,19 @@
 ---
-title: Abbreviation
+title: Abbreviations
 icon: mdi:tooltip-question-outline
-createTime: 2025/03/24 17:07:33
+createTime: 2025/10/08 10:48:15
 permalink: /en/guide/markdown/abbreviation/
 ---
 
 ## Overview
 
-**Abbreviations** refer to short forms used in Markdown, such as technical terms like W3C and ECMA.
+**Abbreviations** refer to acronyms used in Markdown, such as professional terms like W3C, ECMA, etc.
 
-When hovering over an abbreviation, the full term will be displayed along with its definition or explanation.
+When hovering over an abbreviation, the full name of the term is displayed, and it can also include the definition and explanation of the abbreviation.
 
 ## Configuration
 
-This feature is disabled by default. Enable it in `theme` configuration:
+This feature is disabled by default. You need to enable it in the `theme` configuration.
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
@@ -27,11 +27,12 @@ export default defineUserConfig({
 
 ## Syntax
 
-In Markdown, define abbreviations using `*[ABBR]: Description` on separate lines. The description may include the abbreviation's definition, explanation, etc.
+In Markdown, use `*[Abbreviation]: Description` on a separate line to define an abbreviation.
+The description can include the definition, explanation, etc., of the abbreviation.
 
-Place the abbreviation within `[]` and its description after `:`. The description supports Markdown inline syntax.
+Fill in the abbreviation within `[]`, and write the description after `:`. Markdown inline syntax can be used in the description.
 
-If the Markdown plain text contains defined abbreviations, the explanation of the abbreviation will be automatically displayed when the mouse moves over it.
+If defined abbreviations appear in regular Markdown text, hovering over them will automatically display the abbreviation's explanation.
 
 **Input:**
 
@@ -50,5 +51,6 @@ The HTML specification is maintained by the W3C.
 *[W3C]:  World Wide Web Consortium
 *[ECMA]: European Computer Manufacturers Association
 
-::: warning Abbreviations should be standalone words or phrases. For Chinese abbreviations, add spaces around the term to ensure proper detection.
+::: warning
+Abbreviations should be independent words or phrases. For Chinese abbreviations, add spaces on both sides of the word to distinguish them.
 :::

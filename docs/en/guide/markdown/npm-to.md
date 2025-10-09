@@ -1,19 +1,22 @@
 ---
 title: npmTo Container
 icon: gg:npm
-createTime: 2025/03/24 21:56:32
+createTime: 2025/10/08 21:56:32
 permalink: /en/guide/markdown/npm-to/
 ---
 
 ## Overview
 
-The npmTo container converts npm command-line code blocks into `pnpm / yarn / deno / bun` command-line code blocks, presenting them as a group of code blocks on the page.
+The npmTo container converts npm command-line code blocks into `pnpm / yarn / deno / bun` command-line
+code blocks, presenting them as a group of code blocks on the page.
 
 Within the `::: npm-to` container, you only need to write the npm command code block once.
 
 ::: details Why do we need the npmTo container?
 When I write documentation, I often need to provide commands for different environments like `pnpm / yarn / npm`.
-This requires multiple code blocks wrapped in the `::: code-tabs` container, which is time-consuming and takes up a lot of space in the Markdown content, leading to a poor experience. That's why I created the `::: npm-to` container to solve this problem.
+This requires multiple code blocks wrapped in the `::: code-tabs` container,
+which is time-consuming and takes up a lot of space in the Markdown content,
+leading to a poor experience. That's why I created the `::: npm-to` container to solve this problem.
 :::
 
 ## Usage
@@ -99,7 +102,8 @@ export default defineUserConfig({
 })
 ```
 
-`npm-to` supports converting `npm` command lines to `pnpm / yarn / deno / bun` command lines. You can configure the `tabs` according to your needs.
+`npm-to` supports converting `npm` command lines to `pnpm / yarn / deno / bun` command lines.
+You can configure the `tabs` according to your needs.
 
 ## Supported Command Lines
 

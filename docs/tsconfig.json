@@ -5,7 +5,8 @@
     "paths": {
       "~/themes/*": ["./.vuepress/themes/*"],
       "~/components/*": ["./.vuepress/themes/components/*"],
-      "~/composables/*": ["./.vuepress/themes/composables/*"]
+      "~/composables/*": ["./.vuepress/themes/composables/*"],
+      "@theme/*": ["../theme/src/client/components/*"]
     }
   },
   "include": [

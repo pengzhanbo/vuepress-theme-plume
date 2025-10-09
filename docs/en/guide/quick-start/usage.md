@@ -1,50 +1,46 @@
 ---
-title: Installation/Usage
+title: Installation & Usage
 icon: grommet-icons:install
-createTime: 2025/03/02 13:28:45
+createTime: 2025/10/08 09:50:07
 permalink: /en/guide/usage/
 tags:
   - Guide
   - Quick Start
 ---
 
-<script setup>
-const vuepressVersion = __VUEPRESS_VERSION__
-</script>
+## Environment Requirements
 
-## Dependency Environment
+- [Node.js](https://nodejs.org/): **^20.6.0 or >= 22.0.0** [+node-versions]
+- Package Manager: [npm 8+](https://www.npmjs.com/), [pnpm 8+](https://pnpm.io/), or [Yarn 2+](https://yarnpkg.com/)
 
-- [Node.js](https://nodejs.org/) : **^20.6.0 或 >= 22.0.0** [+node-versions]
-- [npm 8+](https://www.npmjs.com/) or [pnpm 8+](https://pnpm.io/zh/) or [Yarn 2+](https://yarnpkg.com/)
+[+node-versions]: **^20.6.0:** Versions `20.6.0` and above but below `21.0.0`
+[+node-versions]: **>= 22.0.0:** Versions `22.0.0` and above
 
-[+node-versions]: **^20.6.0：** Versions `20.6.0` and above but not higher than `21.0.0`
-[+node-versions]: **>= 22.0.0：** Versions `22.0.0` and above
-
-:::: details How to install the dependency environment?
+:::: details How to Install Environment Dependencies?
 ::: steps
 
-1. **Please go to the [Node.js Official Website](https://nodejs.org/zh-cn) to download the latest stable version**
+1. **Download Node.js**
 
-   Follow the instructions to complete the installation. Generally, you only need to keep the default settings and choose Next during the installation process.
+   Visit the [Node.js official website](https://nodejs.org/) to download the latest stable version.
+   Follow the installation wizard to complete the installation (typically keeping the default settings is sufficient).
 
-2. **Install PNPM**
+2. **Enable PNPM**
 
-   After you have installed node.js, please open the terminal and run the following command:
+   After installation, open the terminal and execute the following command:
 
    ```sh
    corepack enable
    ```
 
-   The theme recommends using pnpm as the project manager.
+   We recommend using pnpm as the package manager.
 
-3. **Done**
-
+3. **Environment Ready**
 :::
 ::::
 
-## Command Line Installation
+## Command Line Installation <Badge type="tip" text="Recommended" />
 
-The theme provides a command line tool to help you build a basic project. You can run the following command to start the installation wizard.
+We provide a command-line tool for quickly setting up a basic project structure. Execute the following command to start the installation wizard:
 
 ::: npm-to
 
@@ -54,84 +50,82 @@ npm create vuepress-theme-plume@latest
 
 :::
 
-After starting the wizard, you only need to answer a few simple questions:
+After launching, simply answer a few simple questions to complete the configuration:
 
 <!-- @include: ../../snippet/create.snippet.md ---->
 
-::: details How to use the command line tool?
+::: details Command Line Tool Usage Guide
 
-Taking the Windows system as an example, you can use the following methods to start the CMD command line tool:
+Using Windows as an example:
 
-1. Press the `Win + R` keys to open the "Run" dialog.
-2. Enter `cmd` and press the Enter key. (You can also enter `powershell` to open PowerShell)
+1. Press `Win + R` to open the "Run" dialog
+2. Enter `cmd` or `powershell` and press Enter
 
-Note that `cmd` may not be in the directory you expect. You can use the following command to switch to the correct directory:
+If the current directory is incorrect, use the following commands to switch:
 
 ```sh
-D: # This command switches to the D: drive, enter other drives according to the actual situation
-cd open-source # Enter the open-source directory under D:
+D:                    # Switch to D drive (adjust according to your situation)
+cd open-source        # Enter the target directory
 ```
 
-Now, you can create a basic project by entering `pnpm create vuepress-theme-plume@latest` here.
-
-The created project will be located in the `D:\open-source\my-project` directory.
+You can then execute `pnpm create vuepress-theme-plume@latest` to create the project.
+The project will be located in the `D:\open-source\my-project` directory.
 :::
 
 ## Manual Installation
 
-::: info Note
+::: info Important Notes
 
-- When using [pnpm](https://pnpm.io/zh/), you need to install `vue` as a peer-dependency.
-- When using [Yarn 2+](https://yarnpkg.com/), you need to set `nodeLinker: 'node-modules'` in the `.yarnrc.yml` file.
-  :::
+- When using [pnpm](https://pnpm.io/), `vue` must be additionally installed as peer-dependencies
+- When using [Yarn 2+](https://yarnpkg.com/), set `nodeLinker: 'node-modules'` in `.yarnrc.yml`
+:::
 
-To use this theme, you need to first create a new project and install `vuepress@next` and this theme.
+If manual installation is required, follow these steps:
 
 :::: steps
 
-- ### Create a new folder and enter the directory
+- ### Create Project Directory
 
-  ``` sh :no-line-numbers
+  ```sh
   mkdir my-blog
   cd my-blog
   ```
 
-- ### Initialize the project
+- ### Initialize Project
 
   ::: npm-to
 
-  ``` sh
+  ```sh
   git init
   npm init
   ```
 
   :::
 
-- ### Install related dependencies
+- ### Install Core Dependencies
 
-  Install `vuepress@next` and `vuepress-theme-plume` as local dependencies.
+  Install `vuepress@next` and the theme package:
 
   ::: npm-to
 
   ```sh
-  # Install vuepress
+  # Install VuePress
   npm i -D vuepress@next vue
-  # Install theme and bundler
+  # Install theme and build tool
   npm i -D vuepress-theme-plume @vuepress/bundler-vite@next
   ```
 
   :::
 
-  :::warning
-  The current version of the theme has been adapted to <code>vuepress@{{ vuepressVersion }}</code>. You should install this version of VuePress. Versions higher or lower than this may have potential compatibility issues.
+  ::: warning Version Compatibility
+  The current theme is adapted to <code>vuepress@{{ vuepressVersion }}</code>. Using other versions may cause compatibility issues.
   :::
 
-- ### Add `script` in `package.json`
+- ### Configure Build Scripts
 
-  ::: code-tabs
-  @tab package.json
+  Add the following to `package.json`:
 
-  ``` json :no-line-numbers
+  ```json title="package.json"
   {
     "scripts": {
       "docs:dev": "vuepress dev docs",
@@ -140,16 +134,14 @@ To use this theme, you need to first create a new project and install `vuepress@
   }
   ```
 
-  :::
+  VuePress uses the `docs` directory as the documentation root by default.
 
-  `vuepress` defaults to placing the documentation source code in the `docs` directory.
-
-- ### Add the default temporary and cache directories to the `.gitignore` file
+- ### Configure Git Ignore Rules
 
   ::: code-tabs
   @tab .gitignore
 
-  ``` txt :no-line-numbers
+  ```txt
   node_modules
   .temp
   .cache
@@ -157,7 +149,7 @@ To use this theme, you need to first create a new project and install `vuepress@
 
   @tab sh
 
-  ``` sh :no-line-numbers
+  ```sh
   echo 'node_modules' >> .gitignore
   echo '.temp' >> .gitignore
   echo '.cache' >> .gitignore
@@ -165,70 +157,64 @@ To use this theme, you need to first create a new project and install `vuepress@
 
   :::
 
-- ### Configure the theme in `docs/.vuepress/config.{js,ts}`
+- ### Configure Theme
 
-  ::: code-tabs
-  @tab docs/.vuepress/config.ts
-
-  ``` ts :no-line-numbers
+  ```ts title="docs/.vuepress/config.ts" twoslash
   import { viteBundler } from '@vuepress/bundler-vite'
   import { defineUserConfig } from 'vuepress'
   import { plumeTheme } from 'vuepress-theme-plume'
 
   export default defineUserConfig({
-    // Don't forget to set the default language
+    // Default language must be set
     lang: 'zh-CN',
     theme: plumeTheme({
-      // more...
+      // Theme configuration...
     }),
     bundler: viteBundler(),
   })
   ```
 
+  ::: warning Language Configuration Required
+  Regardless of whether multiple languages are used, the `lang` option must be correctly configured.
+  The theme relies on this setting to determine the text language environment.
   :::
 
-  :::warning
-  Whether or not you need to use **multiple languages**, you should configure the correct value for the `lang` option in VuePress. The theme needs to determine the language environment text based on the `lang` option.
-  :::
+- ### Create Homepage Document
 
-- ### Create a new `README.md` file in the `docs` directory
-
-  Declare the home page configuration.
-  ::: code-tabs
-  @tab README.md
-
-  ``` md :no-line-numbers
+  ```md title="README.md"
   ---
   home: true
   ---
   ```
 
-  :::
-
-- ### Start your documentation site on the local server
+- ### Start Development Server
 
   ::: npm-to
 
-  ``` sh
+  ```sh
   npm run docs:dev
   ```
 
   :::
 
-  Vuepress will start a hot-reload development server at [http://localhost:8080](http://localhost:8080). When you modify your Markdown files, the content in the browser will also update automatically.
+  VuePress will start a development server at <http://localhost:8080> with hot-reload support for Markdown files.
 
-- ### Done
+- ### Installation Complete
 
 ::::
 
-## Update the Theme
+## Theme Update
 
-You can run the following command directly in your project to check for available updates:
+Use the following command to check and update the theme:
 
 ::: npm-to
 
-``` sh
+```sh
 npx vp-update
 ```
 
 :::
+
+<script setup lang="ts">
+const vuepressVersion = __VUEPRESS_VERSION__
+</script>

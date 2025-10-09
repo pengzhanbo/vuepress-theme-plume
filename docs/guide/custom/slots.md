@@ -120,38 +120,38 @@ export default defineClientConfig({
   - `page-top`
   - `page-bottom`
 
-- 在 博客页 中 （包括 文章列表页、标签页、归档页 均适用）：
+- 在 post 集合相关页面 中 （包括 文章列表页、标签页、归档页 均适用）：
 
-  - `blog-top`
-  - `blog-bottom`
-  - `blog-aside-top`
-  - `blog-aside-bottom`
-  - `blog-extract-before`
-  - `blog-extract-after`
+  - `posts-top`
+  - `posts-bottom`
+  - `posts-aside-top`
+  - `posts-aside-bottom`
+  - `posts-extract-before`
+  - `posts-extract-after`
 
-- 在 博客文章列表页 中：
+- 在 文章列表页 中：
 
-  - `blog-post-list-before`
-  - `blog-post-list-after`
-  - `blog-post-list-pagination-after`
+  - `posts-post-list-before`
+  - `posts-post-list-after`
+  - `posts-post-list-pagination-after`
 
-- 在 博客标签页 中：
+- 在 标签页 中：
 
-  - `blog-tags-before`
-  - `blog-tags-title-after`
-  - `blog-tags-content-before`
-  - `blog-tags-after`
+  - `posts-tags-before`
+  - `posts-tags-title-after`
+  - `posts-tags-content-before`
+  - `posts-tags-after`
 
-- 在 博客归档页 中：
+- 在 归档页 中：
 
-  - `blog-archives-before`
-  - `blog-archives-after`
+  - `posts-archives-before`
+  - `posts-archives-after`
 
-- 在 博客分类页 中：
+- 在 分类页 中：
 
-  - `blog-categories-before`
-  - `blog-categories-content-before`
-  - `blog-categories-after`
+  - `posts-categories-before`
+  - `posts-categories-content-before`
+  - `posts-categories-after`
 
 ### `<NotFound />` 插槽
 

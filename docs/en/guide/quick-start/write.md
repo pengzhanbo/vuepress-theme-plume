@@ -1,52 +1,49 @@
 ---
 title: Writing Articles
 icon: mingcute:edit-4-line
-createTime: 2025/03/03 13:43:55
+createTime: 2025/10/08 10:06:06
 permalink: /en/guide/write/
 tags:
   - Guide
   - Quick Start
 ---
 
-VuePress supports the complete [Markdown syntax](../markdown/basic.md),
-and uses [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f)
-to define frontmatter page metadata, such as title and creation time.
+VuePress fully supports [Standard Markdown Syntax](../markdown/basic.md),
+while also allowing page metadata (such as title, creation time, etc.) to be defined via Frontmatter
+in [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) format.
 
-The theme also provides [extensions](../markdown/extensions.md) for Markdown syntax. You can also write HTML directly in
-Markdown, or use Vue components.
+Additionally, the theme provides extensive [Markdown Extended Syntax](../markdown/extensions.md).
+You can not only write HTML directly in Markdown but also use Vue components to enhance content expressiveness.
 
-## Frontmatter
+## Frontmatter Page Configuration
 
-You can customize each page in VuePress by setting values in the frontmatter.
-Frontmatter is the part at the top of your file between `---`.
+Frontmatter allows you to customize the properties and behavior of each page.
+Frontmatter is located at the top of the file, enclosed by `---` delimiters.
 
-::: code-tabs
-@tab post.md
-
-```md
+```md title="post.md"
+<!--[!code ++:5]-->
 ---
 title: Article Title
 createTime: 2024/09/08 22:53:34
 permalink: /article/9eh4d6ao/
 ---
 
-The page content is after the second `---`.
+Page content starts after the second `---`.
 ```
 
+::: details What is Frontmatter?
+Frontmatter is a configuration block using
+[YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) format, located at the top of a Markdown file and delimited by `---`.
+
+It is recommended to read the [Frontmatter Detailed Guide](../../../../4.教程/frontmatter.md) for the complete syntax specification.
 :::
 
-::: details What is frontmatter?
-Frontmatter is a [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) formatted configuration content, placed at the top of the markdown file, separated by `---`.
+## Automatic Frontmatter Generation
 
-You can read [this article](../../../../4.Tutorials/frontmatter.md) to learn how to write frontmatter correctly.
-:::
+After the development server starts, the theme automatically generates necessary Frontmatter fields for
+Markdown files in the documentation source directory, including: **title**, **creation time**, and **permalink**.
 
-## Auto-Generated Frontmatter
-
-By default, the theme will help generate some `frontmatter` configurations for markdown files in the source directory after starting the development service.
-These configurations include: **title**, **creation time**, and **permalink**.
-
-On one hand, this can reduce the repetitive work of content creators; on the other hand, these configurations also provide prerequisite support for other features of the theme.
+This feature reduces the repetitive workload for content creators and provides essential data support for the theme's subsequent functionalities.
 
 ```md
 ---
@@ -56,128 +53,131 @@ permalink: /article/9eh4d6ao/
 ---
 ```
 
-### Title
+### Title Generation Rules
 
-The theme defaults to using the file name as the article title. When parsing the file name, the file name named according to the [file naming convention](#file-naming-convention) such as `1.My Article.md`, the parts `1.` and `.md` will be trimmed, and the final article title will be `My Article`.
+The theme uses the filename as the article title by default. During parsing, the sequence number and
+extension from the [File Naming Convention](#file-naming-convention) are automatically removed.
+For example, `1.my-article.md` will generate the title `my-article`.
 
 ### Creation Time
 
-The theme defaults to using the file creation time as the article creation time, and formats it as `yyyy/MM/dd HH:mm:ss`.
+The theme uses the file's creation time as the baseline, formatted as `yyyy/MM/dd HH:mm:ss`, to serve as the article creation time.
 
 ### Permalink
 
-**Permalink** refers to the access address after the article is published. Once this address is generated, it will not change unless you manually modify it, even if the file path or file name changes.
+The **permalink** is the fixed access URL for the article after publication.
+Once generated, this link remains constant even if the file path or name changes.
 
-Preparing **permalink** in advance is quite valuable. On one hand, it can help improve the SEO of the site and avoid frequent changes to the included addresses; on the other hand, the theme uses a set of specifications to generate **permalink**, which makes the link style of the entire site consistent.
+Setting the permalink in advance helps:
 
-- **Blog Articles**
+- Improve **SEO effectiveness** by avoiding frequent changes to indexed URLs
+- Maintain **consistency** in the site's overall link style
 
-  For blog articles, the default prefix for permalink is `/article/`, and then a random string of length `8` is generated using [`nanoid`](https://github.com/ai/nanoid) for concatenation as the article's permalink, such as `/article/9eh4d6ao/`.
+### Disabling Automatic Generation
 
-  The link prefix can also be replaced by modifying [Theme Configuration > article](../../config/basic.md#article).
+If full manual control over Frontmatter is required, automatic generation can be disabled via [Theme Configuration > autoFrontmatter](../../config/theme.md#autofrontmatter).
 
-- **Notes**
-
-  For notes, the theme uses a more flexible custom solution. You can declare different link prefixes for notes in [notes > note.link](../../config/notes.md#configuration), and then use [`nanoid`](https://github.com/ai/nanoid) to generate a random string of length `8` for concatenation as the permalink for note articles.
-
-### Disabling Auto-Generation
-
-You may not want the theme to do extra auto-generation and prefer to have full control. This is completely fine, and the theme supports controlling the behavior of auto-generating frontmatter through configuration.
-You can easily achieve this through [Theme Configuration > autoFrontmatter](../../config/basic.md#autofrontmatter).
-
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    // Completely disable all auto-generation
+    // Completely disable all automatic generation
     // autoFrontmatter: false,
 
-    // Control partial auto-generation
+    // Enable specific features as needed
     autoFrontmatter: {
-      permalink: true, // Whether to generate permalink
-      createTime: true, // Whether to generate creation time
-      title: true, // Whether to generate title
-    }
+      permalink: true, // Generate permalink
+      createTime: true, // Generate creation time
+      title: true, // Generate title
+    },
+    collections: [{
+      type: 'post',
+      dir: 'blog',
+      title: 'Blog',
+      // Configure for specific collection
+      autoFrontmatter: {
+        permalink: true,
+        createTime: true,
+        title: true
+      }
+    }]
   })
 })
 ```
 
-:::
-
-## Conventions
+## File Organization Conventions
 
 ::: info Note
-The following content is based on the file structure in [Project Structure](project-structure.md).
+The following examples are based on the baseline file structure from the [Project Structure](./project-structure.md).
 :::
 
-Writing articles with this theme is very easy. You can create `Markdown` files with any name you like in the `docs` directory according to your personal naming preferences.
+The theme provides a flexible file organization approach. You can create Markdown files with any preferred names within the `docs` directory.
 
-### Folder Naming Convention
+### Directory Naming Convention
 
-For folder naming in `docs`, the theme has a simple set of conventions.
+The theme applies the following rules to directory names within the `docs` directory:
 
-- The folder name will serve as the `category`, i.e., **category**.
-- Multi-level directories are allowed, and subdirectories will be sub-items of the parent directory's category.
-- If the directory name is declared in [Theme Configuration notes](../../config/notes.md) for notes article management, it will not be used as a category directory by default.
+For `post` type collections:
 
-Since folder names will serve as category names and are not sorted in theme configuration, for scenarios where sorting is needed, use the following rule for naming:
+- Directory names serve as article **categories**
+- Multi-level directories are supported, with subdirectories acting as children of parent categories
 
-``` ts :no-line-numbers
+When sorting is required, use the following naming pattern (applicable to all collection types):
+
+```ts :no-line-numbers
 const dir = /\d+\.[\s\S]+/
-// That is, number + . + category name
-// For example: 1.Frontend
+// Format: Number + . + Category Name
+// Example: 1.Frontend
 ```
 
-The number will serve as the basis for **sorting**. If there is no number, the default sorting rule will be applied.
+The numeric part serves as the **sorting basis**. Directories without numbers are sorted according to default rules.
 
-**Example:**
+**Example Structure:**
 
 ::: file-tree
 
 - docs
-  - 1.Frontend
-    - 1.HTML/
-    - 2.CSS/
-    - 3.JavaScript/
-  - 2.Backend/
-  - Operations-And-Maintenance/
+  - blog \# post type collection
+    - 1.Frontend
+      - 1.html/
+      - 2.css/
+      - 3.javascript/
+    - 2.Backend/
+    - DevOps/
+  - typescript \# doc type collection
+    - 1.Basics
+      - 1.Variables.md
+      - 2.Types.md
+    - 2.Advanced.md
 :::
 
-The theme will generate a category page based on the directory structure.
+The theme automatically generates category pages or sidebars based on the directory structure.
 
 ### File Naming Convention
 
-- **Blog Articles**
+File naming follows the same rules as the [Directory Naming Convention](#directory-naming-convention),
+providing sorting basis for the [auto-generated sidebar](../../config/notes.md#auto-generated-sidebar) in the notes feature.
 
-  For the names of **blog articles**, the theme has no specific conventions, and you can name them arbitrarily. The default sorting rule for blog articles is based solely on file creation time.
-  You can also use [frontmatter > sticky](../../config/frontmatter/article.md#sticky) to configure whether the article is stickied.
+## Start Writing
 
-- **Notes**
+You can now create Markdown files under the `docs` directory to start writing.
+For a complete description of Markdown extension features, please refer to the [Extended Syntax Documentation](../markdown/extensions.md).
 
-  For the names of markdown files in **notes**, the same rules as [Folder Naming Convention](#folder-naming-convention) still apply.
-  This can provide a basis for sorting the [auto-generated sidebar](../../config/notes.md#auto-generated-sidebar) for notes.
+Since the theme automatically generates article titles by default,
+the main content should start with level 2 headings `## Level 2 Heading`.
+If `autoFrontmatter.title` is disabled, start with level 1 headings `# Level 1 Heading`.
 
-## Article Writing
+### Article Tags
 
-You can start writing your own articles by creating Markdown files in `docs` using `markdown` syntax.
-For the supported features of markdown extensions, please refer to [this document](../markdown/extensions.md).
-
-Since the theme defaults to auto-generating a `title` for the article's `frontmatter`, the main part of the article content should start with `h2`, i.e., `## Secondary Heading`. If you have disabled `autoFrontmatter.title`, you should start with `h1`, i.e., `# Primary Heading`.
-
-### Tags
-
-You can add tags to an article through `frontmatter.tags`.
+Add tags to articles via `frontmatter.tags`:
 
 ```md
 ---
 title: My Article
 tags:
-  - Tag 1
-  - Tag 2
+  - Tag1
+  - Tag2
 ---
 ```

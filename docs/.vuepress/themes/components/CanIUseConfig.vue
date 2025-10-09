@@ -1,11 +1,37 @@
 <script setup lang="ts">
-import { shallowRef, useId } from 'vue'
+import type { LocaleConfig } from 'vuepress'
+import { computed, shallowRef, useId } from 'vue'
+import { useRouteLocale } from 'vuepress/client'
 import { useCaniuse, useCaniuseFeaturesSearch, useCaniuseVersionSelect } from '../composables/caniuse.js'
 import CodeViewer from './CodeViewer.vue'
+
+const LOCALES: LocaleConfig<
+  Record<'select-feature' | 'placeholder' | 'embed-type' | 'output' | 'browser-version' | 'no-recommend', string>
+> = {
+  '/': {
+    'select-feature': '选择特性：',
+    'placeholder': '输入特性',
+    'embed-type': '嵌入方式：',
+    'output': '输出：',
+    'browser-version': '浏览器版本：',
+    'no-recommend': '不推荐',
+  },
+  '/en/': {
+    'select-feature': 'Select feature:',
+    'placeholder': 'Input feature',
+    'embed-type': 'Embed type: ',
+    'output': 'Output:',
+    'browser-version': 'Browser version: ',
+    'no-recommend': 'Not recommended',
+  },
+}
 
 const listEl = shallowRef<HTMLUListElement | null>(null)
 const inputEl = shallowRef<HTMLInputElement | null>(null)
 const id = useId()
+const routeLocale = useRouteLocale()
+
+const locale = computed(() => LOCALES[routeLocale.value])
 
 const { feature, featureList, onSelect, isFocus } = useCaniuseFeaturesSearch(inputEl, listEl)
 const { past, pastList, future, futureList, embedType, embedTypeList } = useCaniuseVersionSelect()
@@ -16,7 +42,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
   <div class="caniuse-config-wrapper">
     <form>
       <label class="caniuse-form-item" :for="`caniuse-feature-input-${id}`">
-        <span>选择特性：</span>
+        <span>{{ locale['select-feature'] }}</span>
         <div class="feature-input">
           <input
             :id="`caniuse-feature-input-${id}`"
@@ -24,7 +50,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
             class="feature-input__input"
             type="text"
             name="feature"
-            placeholder="输入特性"
+            :placeholder="locale.placeholder"
           >
           <span class="vpi-chevron-down" />
           <ul v-show="isFocus" ref="listEl" class="feature-list">
@@ -45,7 +71,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
         </div>
       </label>
       <div class="caniuse-form-item">
-        <span>嵌入方式：</span>
+        <span>{{ locale['embed-type'] }}</span>
         <div class="caniuse-embed-type">
           <label
             v-for="(item, index) in embedTypeList"
@@ -54,12 +80,12 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
           >
             <input :id="`caniuse-embed-${id}-${index}`" v-model="embedType" type="radio" name="embedType" :value="item.value">
             <span>{{ item.label }}</span>
-            <Badge v-if="item.value === 'image'" type="warning" text="不推荐" />
+            <Badge v-if="item.value === 'image'" type="warning" :text="locale['no-recommend']" />
           </label>
         </div>
       </div>
       <div v-if="!embedType" class="caniuse-form-item">
-        <span>浏览器版本：</span>
+        <span>{{ locale['browser-version'] }}</span>
         <div class="caniuse-browser-version">
           <label :for="`caniuse-past-${id}`">
             <select :id="`caniuse-past-${id}`" v-model="past" name="past">
@@ -80,7 +106,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
       </div>
     </form>
     <div class="caniuse-output">
-      <h4>输出：</h4>
+      <h4>{{ locale.output }}</h4>
       <CodeViewer lang="md" :content="output" />
     </div>
     <div v-if="embedType === 'image'" v-html="rendered" />

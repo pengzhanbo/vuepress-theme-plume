@@ -1,36 +1,171 @@
 ---
 title: Icons
-createTime: 2025/03/23 14:24:45
+createTime: 2025/10/08 14:49:39
 icon: grommet-icons:emoji
-permalink: /en/guide/markdown/iconify/
+permalink: /en/guide/markdown/icon/
 badge:
-  text: Change
+  text: Changed
   type: warning
 ---
 
-::: warning The icon syntax underwent a breaking change in version `1.0.0-rc.144`.
+<script setup>
+import { useStyleTag, useScriptTag } from '@vueuse/core'
+
+useStyleTag(`@import url("//at.alicdn.com/t/c/font_4920010_cm826bt13ke.css");`)
+useScriptTag(
+  'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/js/solid.min.js',
+  () => {},
+  { attrs: { "data-auto-replace-svg": "nest" } }
+)
+useScriptTag(
+  'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/js/regular.min.js',
+  () => {},
+  { attrs: { "data-auto-replace-svg": "nest" } }
+)
+useScriptTag(
+  'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/js/fontawesome.min.js',
+  () => {},
+  { attrs: { "data-auto-replace-svg": "nest" } }
+)
+</script>
+
+::: warning Breaking Change in `1.0.0-rc.144`
 
 The `:[collect:name size/color]:` syntax has been deprecated. Please use `::collect:name =size /color::` instead.
 
-The theme plans to support icons from libraries such as `iconfont`, `fontawesome`, and `lucide` in future versions.
-The original syntax was insufficient to accommodate these new extensions, making this breaking change necessary.
+The theme plans to support icon libraries such as `iconfont`, `fontawesome`, and `lucide` in future versions.
+The original syntax was insufficient for these new extensions, making this breaking change necessary.
 
-The old syntax will remain supported in recent versions but is no longer recommended and will be removed in the future.
+The old syntax remains supported in recent versions but is no longer recommended and will be removed in the future.
 
-The theme will detect if the old syntax is used. If so, a warning message and modification suggestions will be displayed in the console.
-Please adjust accordingly based on these suggestions.
+The theme detects if the old syntax is used. If so, it will output warning messages and modification
+suggestions in the console. Please adjust according to these suggestions.
 
 :::
 
 ## Overview
 
-Use [iconify](https://iconify.design/) icons in Markdown files.
+The theme supports icons from the following sources in Markdown files:
 
-The theme provides an [`<Icon />`](../components/icon.md) component for using icons in Markdown
-and a simplified Markdown syntax for easier icon usage.
+- [iconify](https://iconify.design/) - Supported by default
+- [iconfont](https://www.iconfont.cn/) - Optional
+- [fontawesome](https://fontawesome.com/) - Optional
 
-To enhance this feature, the theme recommends installing the `@iconify/json` dependency.
-It automatically parses icon data from `@iconify/json`, packs used icons as local resources for better access.
+The theme provides Markdown syntax support for icons, offering a simple and flexible way to insert icons in Markdown.
+
+[The theme also provides `<Icon />` component support. Click to learn more](../components/icon.md){.read-more}
+
+## Syntax
+
+Icon syntax is inline syntax and can be mixed with other Markdown syntax within paragraphs.
+
+**Basic Syntax**: Use `::` to wrap the icon name:
+
+```md
+::name::
+```
+
+**Setting Icon Size and Color**: (Note: Spaces are required)
+
+```md
+::name =size::
+::name /color::
+::name =size /color::
+```
+
+- `=size`: Set icon size
+  - `=16`: Icon width and height are `16px`
+  - `=24x16`: Icon width is `24px`, height is `16px`
+  - `=x16`: Icon height is `16px`, width is auto
+  - `=1.2em`: Icon width and height are `1.2em`
+  - `=1.2emx1.5em`: Icon width is `1.2em`, height is `1.5em`
+
+- `/color`: Set icon color, supports `hex`/`rgb`/`rgba`/`hsl`/`hsla` and other valid color values
+  - `/#fff`: Icon color is `#fff`
+  - `/rgb(255,0,0)`: Icon color is `rgb(255,0,0)`
+
+## Iconify
+
+[iconify](https://iconify.design/) provides support for **200K+** open source icons, sufficient for most project needs.
+The theme uses **iconify** as the default icon source.
+
+Use the `::collect:name` syntax in Markdown to insert icons.
+
+### Configuration
+
+```ts title=".vuepress/config.ts" twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: { // [!code ++:3]
+      icon: { provider: 'iconify' } // Supported by default
+    }
+  })
+})
+```
+
+```ts
+interface IconOptions {
+  provider: 'iconify'
+  prefix?: string
+}
+```
+
+### Usage
+
+::: steps
+
+- Search for the desired icon at [iconify search](https://icon-sets.iconify.design/) and copy the icon name:
+
+  ![iconify](/images/icon/iconify-1.png)
+
+- Use the `::collect:name` syntax in Markdown to insert the icon
+
+  ```md
+  ::carbon:home::
+  ```
+
+  **Output:** ::carbon:home::
+
+:::
+
+In Iconify, icons are organized into different `collect`s, each containing several icons.
+In the `::collect:name` syntax, use `:` to separate `collect` and `name`.
+
+If you primarily use icons from a specific `collect`, you can specify `prefix` in the configuration
+to omit the `collect` prefix in the `::collect:name` syntax:
+
+```ts title=".vuepress/config.ts" twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      icon: {
+        provider: 'iconify',
+        prefix: 'carbon', // Use `carbon` icon collection by default // [!code ++]
+      }
+    }
+  })
+})
+```
+
+```md
+::home::    <!-- Uses `carbon` icon collection by default, auto-completes to `carbon:home` -->
+::solar:user-bold::  <!-- Explicitly use other icon collections -->
+```
+
+**Output:** ::carbon:home:: ::solar:user-bold::
+
+### Installation
+
+For enterprise internal projects or situations where external network resources cannot be accessed,
+the theme recommends installing the `@iconify/json` dependency.
+
+The theme automatically parses icon data from `@iconify/json` and packages used icons as local resources.
 
 ::: npm-to
 
@@ -40,37 +175,7 @@ npm install @iconify/json
 
 :::
 
-## Syntax
-
-```md
-::collect:name::
-```
-
-To set icon size and color:
-
-```md
-::collect:name =size::
-::collect:name /color::
-::collect:name =size /color::
-```
-
-Iconify has numerous icons grouped into different `collect` categories. Each `collect` has its own set of icons.
-
-You can find `collect` and `name` at <https://icon-sets.iconify.design/>.
-
-## Examples
-
-Input:
-
-```md
-::ion:logo-markdown::
-```
-
-Output:
-
-::ion:logo-markdown::
-
-This is an inline syntax, allowing use with other Markdown elements in the same line.
+### Examples
 
 Input:
 
@@ -80,7 +185,7 @@ Change color: ::tdesign:logo-github-filled /#f00::
 Change size: ::tdesign:logo-github-filled =36px::
 Change size and color: ::tdesign:logo-github-filled =36px /#f00::
 
-Colored icon: ::skill-icons:vscode-dark =36px::
+Colorful icon ::skill-icons:vscode-dark =36px::
 ```
 
 Output:
@@ -90,4 +195,246 @@ Change color: ::tdesign:logo-github-filled /#f00::
 Change size: ::tdesign:logo-github-filled =36px::
 Change size and color: ::tdesign:logo-github-filled =36px /#f00::
 
-Colored icon: ::skill-icons:vscode-dark =36px::
+Colorful icon ::skill-icons:vscode-dark =36px::
+
+## Iconfont
+
+[iconfont](https://www.iconfont.cn/) provides massive icon support.
+
+### Configuration
+
+```ts title=".vuepress/config.ts" twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: { // [!code ++:3]
+      icon: {
+        provider: 'iconfont',
+        assets: 'https://at.alicdn.com/t/c/xxxx.css' // Example URL
+      }
+    }
+  })
+})
+```
+
+```ts
+interface IconOptions {
+  provider: 'iconfont'
+  /**
+   * Icon prefix
+   * @default 'iconfont icon-'
+   */
+  prefix?: string
+
+  /**
+   * iconfont resource URL
+   */
+  assets: string | string[]
+}
+```
+
+### Usage
+
+[Go to **iconfont Help Center** to learn about **Creating Projects** and **Adding Icons**](https://www.iconfont.cn/help/detail){.read-more}
+
+:::steps
+
+- Get the project resource URL from iconfont, copy and paste it into the `assets` configuration:
+
+  ![iconfont assets](/images/icon/iconfont-1.png)
+
+  ```ts title=".vuepress/config.ts"
+  export default defineUserConfig({
+    theme: plumeTheme({
+      markdown: {
+        icon: {
+          provider: 'iconfont',
+          assets: 'https://at.alicdn.com/t/c/xxxx.css' // Example URL // [!code ++]
+        }
+      }
+    })
+  })
+  ```
+
+  You can also choose to download it locally, store the resources in the `.vuepress/public` directory,
+  and then fill in the local file path in the `assets` configuration.
+
+- Check the iconfont project configuration to get the `prefix` configuration:
+
+  ![iconfont prefix](/images/icon/iconfont-2.png)
+
+  The `prefix` configuration consists of `font family` and `font class` prefix. If the iconfont project uses default settings,
+  then `prefix` is `iconfont icon-`, in which case you can skip this step.
+
+  ```ts title=".vuepress/config.ts"
+  export default defineUserConfig({
+    theme: plumeTheme({
+      markdown: {
+        icon: {
+          provider: 'iconfont',
+          prefix: 'iconfont icon-', // Default value  // [!code ++]
+        }
+      }
+    })
+  })
+  ```
+
+- Use the `::name::` syntax in Markdown to insert icons:
+
+  ![iconfont name](/images/icon/iconfont-3.png)
+
+  Fill the `font class` from the image into the `::name::` syntax:
+
+  ```md
+  ::hot::
+  ::hot =24px::
+  ::hot =24px /#f00::
+  ```
+
+  Output:
+  <VPIcon provider="iconfont" name="hot" />
+  <VPIcon provider="iconfont" name="hot" size="24px" />
+  <VPIcon provider="iconfont" name="hot" size="24px" color="#f00" />
+
+:::
+
+## Fontawesome
+
+[Fontawesome](https://fontawesome.com/) provides both free and paid icon support. Paid icons require a subscription.
+
+[View **Fontawesome** official documentation](https://docs.fontawesome.com/web/setup/get-started){.read-more}
+
+### Configuration
+
+```ts title=".vuepress/config.ts" twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: { // [!code ++:3]
+      icon: {
+        provider: 'fontawesome',
+        assets: 'fontawesome' // Preset resource URL, loaded from CDN
+      }
+    }
+  })
+})
+```
+
+```ts
+interface IconOptions {
+  provider: 'fontawesome'
+  /**
+   * Icon prefix
+   * @default 'fas'
+   */
+  prefix?: FontAwesomePrefix
+  /**
+   * iconfont resource URL
+   */
+  assets: (FontAwesomeAssetBuiltin | string)[]
+}
+
+type FontAwesomeAssetBuiltin = 'fontawesome' | 'fontawesome-with-brands'
+
+type FontAwesomePrefix
+  = | 'fas' | 's' // fa-solid fa-name
+    | 'far' | 'r' // fa-regular fa-name
+    | 'fal' | 'l' // fa-light fa-name
+    | 'fat' | 't' // fa-thin fa-name
+    | 'fads' | 'ds' // fa-duotone fa-solid fa-name
+    | 'fass' | 'ss' // fa-sharp fa-solid fa-name
+    | 'fasr' | 'sr' // fa-sharp fa-regular fa-name
+    | 'fasl' | 'sl' // fa-sharp fa-light fa-name
+    | 'fast' | 'st' // fa-sharp fa-thin fa-name
+    | 'fasds' | 'sds' // fa-sharp-duotone fa-solid fa-name
+    | 'fab' | 'b' // fa-brands fa-name
+```
+
+[In **Fontawesome**, icons are controlled by families + styles. **View details**](https://docs.fontawesome.com/web/add-icons/how-to#setting-different-families--styles){.read-more}
+
+For easier management, you can use the `::prefix:name::` syntax to set families + styles through the prefix.
+The default prefix is `fas`, which can be omitted:
+
+```md
+::name:: <!-- prefix = fas -->
+::fas:name:: <!-- prefix = fas -->
+::s:name:: <!-- prefix = fas, s is shorthand for fas -->
+```
+
+You can modify the default prefix by configuring `markdown.icon.prefix`.
+
+::: tip
+Fontawesome's free icons only support `solid`, some `regular`, and `brands`.
+For the free version, prefixes only support `fas` / `far` / `fab` and their shorthand prefixes.
+:::
+
+### Usage
+
+[Go to **https://fontawesome.com/search?ic=free** to search for free icons](https://fontawesome.com/search?ic=free){.read-more}
+
+:::steps
+
+- Copy the icon name:
+
+  ![fontawesome name](/images/icon/fontawesome-1.png)
+
+- Use the `::prefix:name::` syntax in Markdown to insert the icon:
+
+  ```md
+  ::circle-user:: <!-- prefix = fas -->
+  ::fas:circle-user:: <!-- prefix = fas -->
+  ::s:circle-user:: <!-- prefix = fas, s is shorthand for fas -->
+  ```
+
+:::
+
+### Examples
+
+```md
+::circle-user::
+::circle-user =24px::
+::circle-user =24px /#f00::
+```
+
+Output:
+
+<VPIcon provider="fontawesome" name="circle-user" />
+<VPIcon provider="fontawesome" name="circle-user" size="24px" />
+<VPIcon provider="fontawesome" name="circle-user" size="24px" color="#f00" />
+
+[Add more style support for Fontawesome](https://docs.fontawesome.com/web/style/styling){.read-more}
+
+```
+::circle-user 2xl::  <!-- 2xl is shorthand for fa-2xl, icon size is 2em -->
+::circle-user rotate-90:: <!-- icon rotated 90 degrees -->
+::circle-user beat:: <!-- icon animation -->
+::circle-user border:: <!-- icon border -->
+::circle-user 2xl beat:: <!-- mixed styles -->
+```
+
+Output:
+
+<VPIcon provider="fontawesome" name="circle-user" extra="2xl" />
+<VPIcon provider="fontawesome" name="circle-user" extra="rotate-90" />
+<VPIcon provider="fontawesome" name="circle-user" extra="beat" />
+<VPIcon provider="fontawesome" name="circle-user" extra="border" />
+<VPIcon provider="fontawesome" name="circle-user" extra="2xl beat" />
+
+## Additional Notes
+
+When `markdown.icon.provider` is set to a value other than `iconify`, `iconify` remains supported by default,
+and you can still insert iconify icons in Markdown:
+
+In the `::collect:name::` syntax, add `iconify` at the beginning:
+
+```md /iconify /
+::iconify carbon:home::
+```
+
+Output:
+
+::iconify carbon:home::

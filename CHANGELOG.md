@@ -1,3 +1,12 @@
+# [1.0.0-rc.169](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.168...v1.0.0-rc.169) (2025-10-09)
+
+
+### Bug Fixes
+
+* **theme:** fix post collection links, close [#709](https://github.com/pengzhanbo/vuepress-theme-plume/issues/709) ([#712](https://github.com/pengzhanbo/vuepress-theme-plume/issues/712)) ([b3843c7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b3843c7d97972acf61840ffc6e2e849da60df814))
+
+
+
 # [1.0.0-rc.168](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.167...v1.0.0-rc.168) (2025-10-08)
 
 

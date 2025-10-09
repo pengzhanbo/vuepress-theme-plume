@@ -108,7 +108,7 @@ Render whitespace characters (tabs and spaces) as separate spans (with `tab` or 
 
 Effect:
 
-<!-- @include: ../../snippet/whitespace.snippet.md{17-23} -->
+<!-- @include: ../../../snippet/whitespace.snippet.md{17-23} -->
 
 ### collapsedLines
 

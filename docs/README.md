@@ -158,25 +158,7 @@ npm run docs:dev
 
 感谢所有的贡献者！
 
-<Contributors
-  :contributors="[
-    'pengzhanbo',
-    { github: 'huankong233', name: 'huan_kong' },
-    { github: 'northword', name: 'Northword' },
-    'KrLite',
-    'shylock-wu',
-    'hrradev',
-    { github: 'TheCoderAlex', name: 'Tang Zifeng' },
-    { github: 'HydroGest', name: 'MarkChai' },
-    { github: 'sunnyboy-mu', name: '小沐沐吖' },
-    { github: 'zhenghaoyang24', name: 'zhenghaoyang24' },
-    { github: 'shuoliuchn', name: 'Shuo Liu' },
-    'Hammuu1112',
-    'SherkeyXD',
-    { github: 'Kinneyzhang', name: 'Geekinney' },
-    'huyunan',
-  ]"
-/>
+<Contributors :contributors="data" />
 
 </div>
 
@@ -188,4 +170,5 @@ npm run docs:dev
 
 <script setup>
 import Contributors from '~/components/Contributors.vue'
+import data from '@source/contributors.json'
 </script>

@@ -173,21 +173,7 @@ export default defineUserConfig({
 
 ### Contributors
 
-<Contributors
-:contributors="[
-'pengzhanbo',
-{ github: 'huankong233', name: 'huan_kong' },
-{ github: 'northword', name: 'Northword' },
-'KrLite',
-'shylock-wu',
-'hrradev',
-{ github: 'TheCoderAlex', name: 'Tang Zifeng' },
-{ github: 'HydroGest', name: 'MarkChai' },
-{ github: 'sunnyboy-mu', name: '小沐沐吖' },
-{ github: 'zhenghaoyang24', name: 'zhenghaoyang24' },
-{ github: 'shuoliuchn', name: 'Shuo Liu' },
-]"
-/>
+<Contributors :contributors="data" />
 
 </div>
 
@@ -196,3 +182,8 @@ export default defineUserConfig({
   cursor: default !important;
 }
 </style>
+
+<script setup>
+import Contributors from '~/components/Contributors.vue'
+import data from '@source/contributors.json'
+</script>

@@ -1,18 +1,18 @@
 ---
-title: 布局插槽
+title: Layout Slots
 icon: ph:layout-duotone
-createTime: 2024/06/17 16:19:43
-permalink: /guide/layout-slots/
+createTime: 2025/10/08 16:19:43
+permalink: /en/guide/layout-slots/
 ---
 
-## 概述
+## Overview
 
-主题通过 `<Layout />` 和 `<NotFound />` 提供了 丰富的 布局插槽，可以通过这些插槽，在 页面 的不同位置注入内容。
-以便用户可以个性化的使用主题。
+The theme provides extensive layout slots through `<Layout />` and `<NotFound />` components,
+allowing content injection at different positions of the page. This enables users to personalize the theme according to their needs.
 
-## 使用
+## Usage
 
-以 `<Layout />` 为例，首先，需要创建一个 客户端配置文件： `.vuepress/client.ts`:
+Taking `<Layout />` as an example, first create a client configuration file: `.vuepress/client.ts`:
 
 ```ts title=".vuepress/client.ts"
 import { defineClientConfig } from 'vuepress/client'
@@ -26,13 +26,15 @@ export default defineClientConfig({
 ```
 
 ::: info
-`layouts` 中的 `Layout` 名是固定的，这是 js 的简写语法， 实际上为 `Layout: Layout`，它是实现 布局插槽的关键。
-`NotFound` 也是相同的规则。
+The `Layout` name in `layouts` is fixed. This uses JavaScript shorthand syntax,
+essentially equivalent to `Layout: Layout`, which is crucial for implementing layout slots.
+The same rule applies to `NotFound`.
 
-你传入的其它非 `Layout` / `NotFound` 的组件，被认为是自定义布局组件。
+Other components passed that are not `Layout`/`NotFound` are considered custom layout components.
 :::
 
-然后，创建一个 `.vuepress/layouts/Layout.vue`，作为布局插槽的默认组件，在该组件中引入 当前主题的 `<Layout />` 组件。
+Then, create `.vuepress/layouts/Layout.vue` as the default component for layout slots,
+and import the current theme's `<Layout />` component in this file.
 
 ```vue {7-11} title=".vuepress/layouts/Layout.vue"
 <script setup>
@@ -43,7 +45,7 @@ import { Layout } from 'vuepress-theme-plume/client' // [!code hl]
   <Layout>
     <template #page-bottom>
       <div class="custom-content">
-        自定义内容
+        Custom Content
       </div>
     </template>
   </Layout>
@@ -56,7 +58,7 @@ import { Layout } from 'vuepress-theme-plume/client' // [!code hl]
 </style>
 ```
 
-也可以使用 渲染函数 实现注入内容，在 `.vuepress/client.ts` 中：
+Content injection can also be implemented using render functions in `.vuepress/client.ts`:
 
 ::: code-tabs
 @tab .vuepress/client.ts
@@ -88,15 +90,15 @@ export default defineClientConfig({
 
 :::
 
-## 插槽
+## Slots
 
 ::: info
-您可以预览 <https://plume-layout-slots.netlify.app> 以查看所有可用的插槽在站点中的位置。
+You can preview <https://plume-layout-slots.netlify.app> to see the positions of all available slots in the site.
 :::
 
-### `<Layout />` 插槽
+### `<Layout />` Slots
 
-- 当 `pageLayout: doc` 时：
+- When `pageLayout: doc`:
 
   - `doc-top`
   - `doc-bottom`
@@ -115,12 +117,12 @@ export default defineClientConfig({
   - `aside-outline-before`
   - `aside-outline-after`
 
-- 当 `pageLayout: page` 时：
+- When `pageLayout: page`:
 
   - `page-top`
   - `page-bottom`
 
-- 在 post 集合相关页面 中 （包括 文章列表页、标签页、归档页 均适用）：
+- In post collection related pages (applicable to post list pages, tags pages, and archives pages):
 
   - `posts-top`
   - `posts-bottom`
@@ -129,37 +131,37 @@ export default defineClientConfig({
   - `posts-extract-before`
   - `posts-extract-after`
 
-- 在 文章列表页 中：
+- In post list pages:
 
   - `posts-post-list-before`
   - `posts-post-list-after`
   - `posts-post-list-pagination-after`
 
-- 在 标签页 中：
+- In tags pages:
 
   - `posts-tags-before`
   - `posts-tags-title-after`
   - `posts-tags-content-before`
   - `posts-tags-after`
 
-- 在 归档页 中：
+- In archives pages:
 
   - `posts-archives-before`
   - `posts-archives-after`
 
-- 在 分类页 中：
+- In categories pages:
 
   - `posts-categories-before`
   - `posts-categories-content-before`
   - `posts-categories-after`
 
-### `<NotFound />` 插槽
+### `<NotFound />` Slots
 
 - `not-found`
 
-### 通用插槽
+### Common Slots
 
-以下插槽在 `<Layout />` 和 `<NotFound />` 中都支持：
+The following slots are supported in both `<Layout />` and `<NotFound />`:
 
 - `layout-top`
 - `layout-bottom`

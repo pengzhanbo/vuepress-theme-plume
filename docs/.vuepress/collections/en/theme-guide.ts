@@ -173,6 +173,18 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
       items: [
         'home',
         'style',
+        'slots',
+        'component-overrides',
+      ],
+    },
+    {
+      text: 'API',
+      icon: 'mdi:api',
+      prefix: 'api',
+      collapsed: false,
+      items: [
+        'client',
+        'node',
       ],
     },
   ],

@@ -1,7 +1,7 @@
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
-import { removeEndingSlash, removeLeadingSlash } from 'vuepress/shared'
+import { ensureEndingSlash, removeEndingSlash, removeLeadingSlash } from 'vuepress/shared'
 import { normalizeLink } from '../utils/resolveNavLink.js'
 import { useData } from './data.js'
 import { useThemeData } from './theme-data.js'
@@ -22,6 +22,11 @@ export function useInternalLink(): {
   const themeData = useThemeData()
   const routeLocale = useRouteLocale()
 
+  function resolveLink(link?: string, fallback?: string): string {
+    link = link ? removeLeadingSlash(link) : ''
+    return ensureEndingSlash(normalizeLink(routeLocale.value, link || fallback))
+  }
+
   const postCollection = computed(() => collection.value?.type === 'post' ? collection.value : undefined)
 
   const home = computed(() => ({
@@ -31,7 +36,7 @@ export function useInternalLink(): {
 
   const postsLink = computed(() => normalizeLink(
     routeLocale.value,
-    removeLeadingSlash(postCollection.value?.link || postCollection.value?.dir || 'posts/'),
+    resolveLink(postCollection.value?.link || postCollection.value?.dir, 'posts/'),
   ))
 
   const posts = computed(() => postCollection.value?.postList !== false
@@ -46,20 +51,20 @@ export function useInternalLink(): {
   const tags = computed(() => postCollection.value?.tags !== false
     ? {
         text: postCollection.value?.tagsText || theme.value.tagText || themeData.value.tagText || 'Tags',
-        link: postCollection.value?.tagsLink ? normalizeLink(routeLocale.value, postCollection.value?.tagsLink) : normalizeLink(postsLink.value, 'tags/'),
+        link: resolveLink(postCollection.value?.tagsLink, 'tags/'),
       }
     : undefined)
 
   const archive = computed(() => postCollection.value?.archives !== false
     ? {
         text: postCollection.value?.archivesText || theme.value.archiveText || themeData.value.archiveText || 'Archives',
-        link: postCollection.value?.archivesLink ? normalizeLink(routeLocale.value, postCollection.value?.archivesLink) : normalizeLink(postsLink.value, 'archives/'),
+        link: resolveLink(postCollection.value?.archivesLink, 'archives/'),
       }
     : undefined)
   const categories = computed(() => postCollection.value?.categories !== false
     ? {
         text: postCollection.value?.categoriesText || theme.value.categoryText || themeData.value.categoryText || 'Categories',
-        link: postCollection.value?.categoriesLink ? normalizeLink(routeLocale.value, postCollection.value?.categoriesLink) : normalizeLink(postsLink.value, 'categories/'),
+        link: resolveLink(postCollection.value?.categoriesLink, 'categories/'),
       }
     : undefined)
 

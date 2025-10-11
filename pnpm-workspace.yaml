@@ -18,6 +18,7 @@ catalogs:
   dev:
     '@commitlint/cli': ^20.1.0
     '@commitlint/config-conventional': ^20.0.0
+    '@lunariajs/core': ^0.1.1
     '@pengzhanbo/eslint-config-vue': ^1.38.0
     '@pengzhanbo/stylelint-config': ^1.38.0
     '@simonwep/pickr': ^1.9.1

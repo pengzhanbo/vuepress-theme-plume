@@ -1,0 +1,31 @@
+{
+  "$schema": "./node_modules/@lunariajs/core/config.schema.json",
+  "repository": {
+    "name": "pengzhanbo/vuepress-theme-plume",
+    "rootDir": "docs"
+  },
+  "files": [
+    {
+      "location": "**/*.md",
+      "pattern": "@lang/@path",
+      "type": "universal",
+      "ignore": [".vuepress/**", "./snippet/**", "node_modules", "**/*.snippet.md"]
+    }
+  ],
+  "defaultLocale": {
+    "label": "简体中文",
+    "lang": "zh"
+  },
+  "locales": [
+    {
+      "label": "简体中文",
+      "lang": "zh"
+    },
+    {
+      "label": "English",
+      "lang": "en"
+    }
+  ],
+  "outDir": ".vuepress/dist/_translations",
+  "ignoreKeywords": ["lunaria-ignore"]
+}

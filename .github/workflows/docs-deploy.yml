@@ -32,7 +32,7 @@ jobs:
       - name: Docs build
         env:
           NODE_OPTIONS: --max_old_space_size=8192
-        run: pnpm docs:build
+        run: pnpm docs:build && pnpm lunaria:build
 
       - name: Deploy docs
         uses: JamesIves/github-pages-deploy-action@v4

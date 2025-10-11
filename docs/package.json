@@ -6,13 +6,16 @@
     "docs:build": "vuepress build --clean-cache --clean-temp",
     "docs:clean": "rimraf .vuepress/.temp .vuepress/.cache .vuepress/dist",
     "docs:dev": "vuepress dev",
-    "docs:serve": "http-server .vuepress/dist -d 0"
+    "docs:serve": "http-server .vuepress/dist -d 0",
+    "lunaria:build": "lunaria build",
+    "lunaria:preview": "lunaria preview"
   },
   "peerDependencies": {
     "vuepress": "catalog:vuepress"
   },
   "dependencies": {
     "@iconify/json": "catalog:peer",
+    "@lunariajs/core": "catalog:dev",
     "@simonwep/pickr": "catalog:dev",
     "@vuepress/bundler-vite": "catalog:vuepress",
     "@vuepress/plugin-llms": "catalog:vuepress",

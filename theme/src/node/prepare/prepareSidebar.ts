@@ -8,6 +8,7 @@ import type {
   ThemeSidebarItem,
 } from '../../shared/index.js'
 import {
+  ensureLeadingSlash,
   entries,
   isArray,
   isPlainObject,
@@ -45,7 +46,7 @@ function getSidebarData(
     }
     else if (isPlainObject(sidebar)) {
       entries(sidebar).forEach(([dirname, config]) => {
-        const prefix = normalizeLink(localePath, dirname)
+        const prefix = normalizeLink(localePath, removeLeadingSlash(dirname))
         if (config === 'auto') {
           autoDirList.push(prefix)
         }
@@ -103,11 +104,11 @@ function fileSorting(filepath?: string): number | false {
 
 function getAutoDirSidebar(
   app: App,
-  localePath: string,
+  prefix: string,
 ): { link: string, sidebar: ThemeSidebarItem[] } {
-  const locale = removeLeadingSlash(localePath)
+  const rootPath = removeLeadingSlash(prefix)
   let pages = (app.pages as Page<ThemePageData>[])
-    .filter(page => page.data.filePathRelative?.startsWith(locale))
+    .filter(page => page.data.filePathRelative?.startsWith(rootPath))
     .map((page) => {
       return { ...page, splitPath: page.data.filePathRelative?.split('/') || [] }
     })
@@ -134,7 +135,7 @@ function getAutoDirSidebar(
   for (const page of pages) {
     const { data, title, path, frontmatter } = page
     const paths = (data.filePathRelative || '')
-      .slice(localePath.replace(/^\/|\/$/g, '').length + 1)
+      .slice(rootPath.replace(/^\/|\/$/g, '').length + 1)
       .split('/')
     const collection = findCollection(page) as ThemeDocCollection | undefined
     let index = 0
@@ -229,7 +230,7 @@ function getAllSidebar(): Record<string, ThemeSidebar> {
     const sidebar = locale === '/' ? (opt.sidebar || options.sidebar) : opt.sidebar
     locales[locale] = {}
     for (const [key, value] of entries(sidebar || {})) {
-      locales[locale][normalizeLink(key)] = value
+      locales[locale][ensureLeadingSlash(key)] = value
     }
     const collections = rawCollections?.filter(item => item.type === 'doc')
     if (collections?.length) {
@@ -237,7 +238,7 @@ function getAllSidebar(): Record<string, ThemeSidebar> {
         if (collection.sidebar) {
           locales[locale][normalizeLink(collection.linkPrefix || collection.dir)] = {
             items: collection.sidebar,
-            prefix: normalizeLink(collection.dir),
+            prefix: normalizeLink(locale, removeLeadingSlash(collection.dir)),
           }
         }
       }

@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "docs:build": "vuepress build --clean-cache --clean-temp",
+    "docs:build": "vuepress build --clean-cache --clean-temp && pnpm lunaria:build",
     "docs:clean": "rimraf .vuepress/.temp .vuepress/.cache .vuepress/dist",
     "docs:dev": "vuepress dev",
     "docs:serve": "http-server .vuepress/dist -d 0",

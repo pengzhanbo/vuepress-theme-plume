@@ -11,7 +11,7 @@ interface AssetInfo {
 }
 
 function getFontAwesomeCDNLink(type: string): string {
-  return `https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/js/${type}.min.js`
+  return `https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/js/${type}.min.js`
 }
 
 export function prepareIcon(
@@ -38,7 +38,7 @@ export function prepareIcon(
       if (asset === 'fontawesome-with-brands') {
         return normalizeAsset(getFontAwesomeCDNLink('brands'), 'fontawesome')
       }
-      return null
+      return normalizeAsset(asset, 'fontawesome')
     }).flat().filter(notNullish))
   }
   let hasStyle = false

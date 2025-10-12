@@ -1,3 +1,14 @@
+# [1.0.0-rc.170](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.169...v1.0.0-rc.170) (2025-10-12)
+
+
+### Bug Fixes
+
+* **theme:** fix page transition flickering ([#717](https://github.com/pengzhanbo/vuepress-theme-plume/issues/717)) ([8cec3f2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8cec3f23e4765560424b160ac17891098c8ee97a))
+* **theme:** incorrect sidebar link prefix, close [#714](https://github.com/pengzhanbo/vuepress-theme-plume/issues/714), [#710](https://github.com/pengzhanbo/vuepress-theme-plume/issues/710) ([#715](https://github.com/pengzhanbo/vuepress-theme-plume/issues/715)) ([3a07f59](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3a07f590cbed071eaaea6f99703e1791a1794550))
+* **theme:** optimize post category styles ([338ca4a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/338ca4ad7c3479a4821f53771e485faaecc0d075))
+
+
+
 # [1.0.0-rc.169](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.168...v1.0.0-rc.169) (2025-10-09)
 
 

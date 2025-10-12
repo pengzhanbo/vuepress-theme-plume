@@ -7,7 +7,7 @@ const { categories } = usePostsCategory()
 </script>
 
 <template>
-  <div class="vp-categories">
+  <div class="vp-post-categories">
     <slot name="posts-categories-before" />
 
     <h2 class="categories-title">
@@ -26,7 +26,7 @@ const { categories } = usePostsCategory()
 </template>
 
 <style scoped>
-.vp-categories {
+.vp-post-categories {
   flex: 1 2;
   padding: 16px;
   margin: 0 -16px 32px;
@@ -35,7 +35,7 @@ const { categories } = usePostsCategory()
 }
 
 @media (min-width: 768px) {
-  .vp-categories {
+  .vp-post-categories {
     padding: 20px 24px;
     margin: 0 0 32px;
     background-color: var(--vp-c-bg);
@@ -43,7 +43,7 @@ const { categories } = usePostsCategory()
     box-shadow: var(--vp-shadow-1);
   }
 
-  .vp-categories:hover {
+  .vp-post-categories:hover {
     box-shadow: var(--vp-shadow-2);
   }
 }
@@ -74,12 +74,12 @@ const { categories } = usePostsCategory()
 }
 
 @media (min-width: 1200px) {
-  .vp-categories {
+  .vp-post-categories {
     margin-left: 0;
   }
 }
 
-.vp-categories .content {
+.vp-post-categories .content {
   padding: 20px 0 0;
 }
 </style>

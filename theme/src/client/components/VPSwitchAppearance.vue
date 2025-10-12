@@ -71,6 +71,7 @@ const toggleAppearance = inject('toggle-appearance', async ({ clientX: x, client
     {
       duration,
       easing: 'ease-in',
+      fill: 'forwards',
       pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
     },
   )
@@ -120,10 +121,15 @@ watchPostEffect(() => {
 </style>
 
 <style>
+::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   mix-blend-mode: normal;
-  animation: none;
+  transition: none !important;
+  animation: none !important;
 }
 
 ::view-transition-old(root),

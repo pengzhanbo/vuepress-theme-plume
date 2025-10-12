@@ -52,6 +52,7 @@ export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
   'icon',
   'imageSize',
   'jsfiddle',
+  'mark',
   'npmTo',
   'pdf',
   'plot',

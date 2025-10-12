@@ -3,6 +3,7 @@ import type { CodeTabsOptions } from './codeTabs.js'
 import type { CodeTreeOptions } from './codeTree.js'
 import type { FileTreeOptions } from './fileTree.js'
 import type { IconOptions } from './icon.js'
+import type { MarkOptions } from './mark.js'
 import type { NpmToOptions } from './npmTo.js'
 import type { PDFOptions } from './pdf.js'
 import type { PlotOptions } from './plot.js'
@@ -21,6 +22,11 @@ export interface MarkdownPowerPluginOptions {
    * @default false
    */
   abbr?: boolean
+  /**
+   * 马克笔动画模式
+   * @default 'eager'
+   */
+  mark?: MarkOptions
   /**
    * 配置代码块分组
    */

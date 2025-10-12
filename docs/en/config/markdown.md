@@ -129,6 +129,12 @@ The `include` configuration is implemented by the
 - **Default:** `false`
 - **Details:** Whether to enable abbreviation syntax.
 
+### mark
+
+- **Type:** `MarkOptions`
+- **Default:** `'eager'`
+- **Details:** Sets when the `==mark==` animation runs.
+
 ### codeTabs
 
 - **Type:** `boolean | CodeTabsOptions`

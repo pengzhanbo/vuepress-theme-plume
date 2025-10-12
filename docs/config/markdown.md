@@ -119,6 +119,12 @@ export default defineUserConfig({
 - **默认值**: `false`
 - **详情**: 是否启用缩写语法
 
+### mark
+
+- **类型**: `MarkOptions`
+- **默认值**: `'eager'`
+- **详情**: 设置 `==马克笔==` 的动画播放模式
+
 ### codeTabs
 
 - **类型**: `boolean | CodeTabsOptions`

@@ -15,7 +15,7 @@ mark {
   background-repeat: no-repeat;
   background-position: 100% var(--vp-mark-bg-shift);
   background-size: 200%;
-  animation: mark-highlight 1.5s 0.5s forwards;
+  animation: var(--vp-mark-animation, mark-highlight 1.5s 0.5s forwards);
 }
 
 mark:where(.note) {
@@ -64,6 +64,14 @@ mark:where(.important) {
 
 [data-theme="dark"] mark:where(.important) {
   --vp-mark-linear-color: #66c;
+}
+
+[data-mark-mode="lazy"] mark {
+  --vp-mark-animation: none;
+}
+
+[data-mark-mode="lazy"] mark.vp-mark-visible {
+  animation: mark-highlight 1.5s 0.2s forwards;
 }
 
 @keyframes mark-highlight {

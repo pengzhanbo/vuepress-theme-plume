@@ -81,6 +81,15 @@ mark {
   --vp-mark-bg-shift: 0.55lh;
   --vp-mark-linear-color: var(--vp-c-brand-3);
   --vp-mark-bg-image: linear-gradient(to right, var(--vp-mark-linear-color) 50%, transparent 50%);
+  animation: var(--vp-mark-animation, mark-highlight 1.5s 0.5s forwards);
+}
+
+[data-mark-mode="lazy"] mark {
+  --vp-mark-animation: none;
+}
+
+[data-mark-mode="lazy"] mark.vp-mark-visible {
+  animation: mark-highlight 1.5s 0.2s forwards;
 }
 
 mark.note {
@@ -145,3 +154,19 @@ mark.classname {
 Use `==Mark=={.classname}` in Markdown.
 
 You can name `classname` freely and add other CSS properties besides modifying CSS variables.
+
+## Animation Modes
+
+By default, the highlight animation plays as soon as the page renders.
+
+If you prefer to animate only when the marker enters the viewport, set `markdown.mark` to `'lazy'` in your theme config:
+
+```ts title=".vuepress/config.ts" {5}
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      mark: 'lazy',
+    },
+  }),
+})
+```

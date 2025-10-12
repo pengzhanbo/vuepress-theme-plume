@@ -82,6 +82,15 @@ mark {
   --vp-mark-bg-shift: 0.55lh;
   --vp-mark-linear-color: var(--vp-c-brand-3);
   --vp-mark-bg-image: linear-gradient(to right, var(--vp-mark-linear-color) 50%, transparent 50%);
+  animation: var(--vp-mark-animation, mark-highlight 1.5s 0.5s forwards);
+}
+
+[data-mark-mode="lazy"] mark {
+  --vp-mark-animation: none;
+}
+
+[data-mark-mode="lazy"] mark.vp-mark-visible {
+  animation: mark-highlight 1.5s 0.2s forwards;
 }
 
 mark.note {
@@ -146,3 +155,19 @@ mark.classname {
 然后在 Markdown 中使用 `==Mark=={.classname}` 进行标记。
 
 你可以随意命名 `classname`，除了修改 CSS 变量，也可以添加其他的 CSS 样式属性。
+
+## 动画模式
+
+默认情况下，马克笔会在页面渲染时立即播放描线动画。
+
+如果希望在滚动到可视区域后再播放动画，可以在主题配置中将 `markdown.mark` 设置为 `'lazy'`：
+
+```ts title=".vuepress/config.ts" {5}
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      mark: 'lazy',
+    },
+  }),
+})
+```

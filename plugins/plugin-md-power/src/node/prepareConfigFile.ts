@@ -132,6 +132,18 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
   }
 
   const setupIcon = prepareIcon(imports, options.icon)
+  const setupStmts: string[] = []
+  const iconSetup = setupIcon.trim()
+  if (iconSetup)
+    setupStmts.push(iconSetup)
+
+  const markMode = options.mark === 'lazy' ? 'lazy' : 'eager'
+  imports.add(`import { setupMarkHighlight } from '${CLIENT_FOLDER}composables/mark.js'`)
+  setupStmts.push(`setupMarkHighlight(${JSON.stringify(markMode)})`)
+
+  const setupContent = setupStmts.length
+    ? `    ${setupStmts.join('\n    ')}\n`
+    : ''
 
   return app.writeTemp(
     'md-power/config.js',
@@ -148,7 +160,7 @@ ${Array.from(enhances.values())
   .join('\n')}
   },
   setup() {
-    ${setupIcon}
+    ${setupContent}
   }
 })
 `,

@@ -56,6 +56,8 @@ const extraClasses = computed(() => {
 <style>
 .vp-icon.fontawesome {
   display: inline-block;
+  width: initial;
+  height: initial;
   line-height: inherit;
   vertical-align: middle;
 }

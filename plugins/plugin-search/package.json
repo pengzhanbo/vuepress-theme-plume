@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-search",
   "type": "module",
-  "version": "1.0.0-rc.170",
+  "version": "1.0.0-rc.171",
   "description": "The Plugin for VuePress 2 - local search",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",

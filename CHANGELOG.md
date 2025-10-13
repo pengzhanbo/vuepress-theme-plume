@@ -1,3 +1,18 @@
+# [1.0.0-rc.171](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.170...v1.0.0-rc.171) (2025-10-13)
+
+
+### Bug Fixes
+
+* **theme:** fix `fontawesome` icon, close [#720](https://github.com/pengzhanbo/vuepress-theme-plume/issues/720) ([#721](https://github.com/pengzhanbo/vuepress-theme-plume/issues/721)) ([89cb6a5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/89cb6a585aa43b447e35c9c83fc234aa6ef7b368))
+* **theme:** fix sidebar link concatenation error ([#722](https://github.com/pengzhanbo/vuepress-theme-plume/issues/722)) ([c476c20](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c476c2059b98590ba2909dcc6186ae656b93e1b9))
+
+
+### Features
+
+* **plugin-md-power:** add lazy animation mode for mark highlights ([#718](https://github.com/pengzhanbo/vuepress-theme-plume/issues/718)) ([5c0d211](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5c0d211d8223e64a9186ce5f3c7d887e969bbefc))
+
+
+
 # [1.0.0-rc.170](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.169...v1.0.0-rc.170) (2025-10-12)
 
 

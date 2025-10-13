@@ -1,7 +1,7 @@
 {
   "name": "@vuepress-plume/plugin-fonts",
   "type": "module",
-  "version": "1.0.0-rc.170",
+  "version": "1.0.0-rc.171",
   "description": "The Plugin for VuePress 2 - fonts",
   "author": "pengzhanbo <volodymyr@foxmail.com>",
   "license": "MIT",

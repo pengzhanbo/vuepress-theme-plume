@@ -41,6 +41,7 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
           items: [
             'basic',
             'extensions',
+            'table',
             'icons',
             'mark',
             'plot',

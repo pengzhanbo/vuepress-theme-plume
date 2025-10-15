@@ -22,7 +22,7 @@ export default defineUserConfig({
 
     /* 文档仓库配置，用于 editLink */
     docsRepo: 'pengzhanbo/vuepress-theme-plume',
-    docsDir: 'examples/layout-slots/docs',
+    docsDir: 'examples/pure-blog/docs',
 
     /* 页内信息 */
     contributors: { mode: 'block' },

@@ -113,6 +113,7 @@ catalogs:
     picocolors: ^1.1.1
     picomatch: ^4.0.3
     shiki: ^3.13.0
+    sort-package-json: ^3.4.0
     tinyglobby: ^0.2.15
     tm-grammars: ^1.24.17
     tm-themes: ^1.10.9

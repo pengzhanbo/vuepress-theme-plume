@@ -36,7 +36,8 @@
     "handlebars": "catalog:prod",
     "nano-spawn": "catalog:prod",
     "os-locale": "catalog:prod",
-    "picocolors": "catalog:prod"
+    "picocolors": "catalog:prod",
+    "sort-package-json": "catalog:prod"
   },
   "plume-deps": {
     "vuepress": "2.0.0-rc.24",

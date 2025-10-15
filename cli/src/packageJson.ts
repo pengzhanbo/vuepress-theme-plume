@@ -1,8 +1,15 @@
 import type { File, ResolvedData } from './types.js'
 import { kebabCase } from '@pengzhanbo/utils'
 import spawn from 'nano-spawn'
+import _sortPackageJson from 'sort-package-json'
 import { Mode } from './constants.js'
 import { readJsonFile, resolve } from './utils/index.js'
+
+function sortPackageJson(json: Record<any, any>) {
+  return _sortPackageJson(json, {
+    sortOrder: ['name', 'type', 'version', 'private', 'description', 'packageManager', 'author', 'license', 'scripts', 'devDependencies', 'dependencies', 'pnpm'],
+  })
+}
 
 export async function createPackageJson(
   mode: Mode,
@@ -26,8 +33,9 @@ export async function createPackageJson(
     if (packageManager !== 'npm') {
       let version = await getPackageManagerVersion(packageManager)
       if (version) {
-        if (packageManager === 'yarn' && version.startsWith('1'))
-          version = '4.6.0'
+        if (packageManager === 'yarn' && version.startsWith('1')) {
+          version = '4.10.3'
+        }
         pkg.packageManager = `${packageManager}@${version}`
 
         // pnpm@10 should add `onlyBuiltDependencies`
@@ -84,7 +92,7 @@ export async function createPackageJson(
 
   return {
     filepath: 'package.json',
-    content: JSON.stringify(pkg, null, 2),
+    content: JSON.stringify(sortPackageJson(pkg), null, 2),
   }
 }
 

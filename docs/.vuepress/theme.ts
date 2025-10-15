@@ -10,7 +10,12 @@ export const theme: Theme = plumeTheme({
   changelog: { maxCount: 10 },
   contributors: { mode: 'block' },
 
-  search: { provider: 'local' },
+  search: {
+    provider: 'algolia',
+    appId: 'KRJOJ00KBL',
+    apiKey: '3f3b13613235873fbcbc9d304de18126',
+    indexName: 'pengzhanbo',
+  },
 
   codeHighlighter: {
     twoslash: true,

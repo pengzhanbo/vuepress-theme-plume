@@ -49,6 +49,8 @@
   padding: 0;
   margin: 0;
   background: var(--docsearch-searchbox-background);
+  border: none;
+  border-radius: 100%;
   transition: border-color var(--vp-t-color), background var(--vp-t-color);
 }
 
@@ -89,7 +91,7 @@
 
 .DocSearch-Button .DocSearch-Button-Placeholder {
   display: none;
-  padding: 0 16px 0 0;
+  padding: 0 8px 0 0;
   margin-top: 2px;
   font-size: 13px;
   font-weight: 500;
@@ -104,6 +106,7 @@
 .DocSearch-Button .DocSearch-Button-Keys {
   display: none;
   min-width: auto;
+  background: transparent;
 
   /* rtl:ignore */
   direction: ltr;
@@ -130,6 +133,12 @@
   transition: color var(--vp-t-color), border-color var(--vp-t-color);
 }
 
+.DocSearch-Button .DocSearch-Button-Key {
+  font-size: 1px;
+  color: transparent;
+  letter-spacing: -12px;
+}
+
 .DocSearch-Button .DocSearch-Button-Key + .DocSearch-Button-Key {
   padding-right: 6px;
   padding-left: 2px;
@@ -142,12 +151,6 @@
   /* rtl:end:ignore */
 }
 
-.DocSearch-Button .DocSearch-Button-Key:first-child {
-  font-size: 1px;
-  color: transparent;
-  letter-spacing: -12px;
-}
-
 .DocSearch-Button .DocSearch-Button-Key:first-child::after {
   font-size: 12px;
   color: var(--docsearch-muted-color);
@@ -155,9 +158,16 @@
   content: "Ctrl";
 }
 
+.DocSearch-Button .DocSearch-Button-Key:last-child::after {
+  font-size: 12px;
+  color: var(--docsearch-muted-color);
+  letter-spacing: normal;
+  content: "K";
+}
+
 /* remove box-shadow */
 .DocSearch-Button-Key--pressed {
-  box-shadow: none;
+  box-shadow: none !important;
   transform: none;
 }
 
@@ -165,7 +175,7 @@
   content: "⌘";
 }
 
-.DocSearch-Button .DocSearch-Button-Key:first-child > * {
+.DocSearch-Button .DocSearch-Button-Key svg {
   display: none;
 }
 
@@ -214,7 +224,7 @@
 @media (min-width: 768px) {
   .vp-navbar-search .DocSearch-Button {
     justify-content: flex-start;
-    width: 100%;
+    width: max-content;
     height: 40px;
     padding: 0 10px 0 12px;
     background-color: var(--vp-c-bg-alt);

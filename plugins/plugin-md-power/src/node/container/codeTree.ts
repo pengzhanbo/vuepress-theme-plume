@@ -21,8 +21,8 @@ import type { CodeTreeOptions } from '../../shared/codeTree.js'
 import type { FileTreeIconMode } from '../../shared/fileTree.js'
 import type { FileTreeNodeProps } from './fileTree.js'
 import path from 'node:path'
-import { globSync } from 'tinyglobby'
 import { removeLeadingSlash } from 'vuepress/shared'
+import { tinyglobby } from 'vuepress/utils'
 import { findFile, readFileSync } from '../demo/supports/file.js'
 import { createEmbedRuleBlock } from '../embed/createEmbedRuleBlock.js'
 import { defaultFile, defaultFolder, getFileIcon } from '../fileIcons/index.js'
@@ -217,7 +217,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       const codeTreeFiles = ((env as any).codeTreeFiles ??= []) as string[]
       const root = findFile(app, env, dir)
       // 获取目录下所有文件
-      const files = globSync('**/*', {
+      const files = tinyglobby.globSync('**/*', {
         cwd: root,
         onlyFiles: true,
         dot: true,

@@ -10,7 +10,7 @@ import { type FSWatcher, watch } from 'chokidar'
 import matter from 'gray-matter'
 import yaml from 'js-yaml'
 import pMap from 'p-map'
-import { fs, hash as getHash, globby, path } from 'vuepress/utils'
+import { fs, hash as getHash, path, tinyglobby } from 'vuepress/utils'
 import { logger } from '../utils/index.js'
 import { createFilter } from './createFilter.js'
 import { genAutoFrontmatterRules, getRules } from './rules.js'
@@ -92,7 +92,7 @@ export async function generateFileListFrontmatter(app: App): Promise<void> {
   genAutoFrontmatterRules()
   const rules = getRules()
   const tasks: Task[] = []
-  const fileList = await globby(pagePatterns, { cwd })
+  const fileList = await tinyglobby.glob(pagePatterns, { cwd })
 
   for (const filepath of fileList) {
     const rule = findRule(rules, filepath)

@@ -40,7 +40,7 @@
     "sort-package-json": "catalog:prod"
   },
   "plume-deps": {
-    "vuepress": "2.0.0-rc.24",
+    "vuepress": "2.0.0-rc.26",
     "vue": "^3.5.22",
     "http-server": "^14.1.1",
     "typescript": "^5.9.3"

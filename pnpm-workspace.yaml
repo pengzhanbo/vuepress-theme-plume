@@ -7,8 +7,8 @@ packages:
 
 overrides:
   '@bufbuild/protobuf': ^2.9.0
-  '@typescript-eslint/utils': ^8.46.0
-  esbuild: ^0.25.10
+  '@typescript-eslint/utils': ^8.46.1
+  esbuild: ^0.25.11
   sass-embedded: ^1.93.2
 
 patchedDependencies:
@@ -28,7 +28,7 @@ catalogs:
     '@types/lodash.merge': ^4.6.9
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^24.7.0
+    '@types/node': ^24.7.2
     '@types/picomatch': ^4.0.2
     '@types/stylus': ^0.48.43
     '@types/webpack-env': ^1.18.8
@@ -43,7 +43,7 @@ catalogs:
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.4.2
-    lint-staged: ^16.2.3
+    lint-staged: ^16.2.4
     markdown-it: ^14.1.0
     memfs: ^4.49.0
     mermaid: ^11.12.0
@@ -53,13 +53,13 @@ catalogs:
     stylelint: ^16.25.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.15.6
+    tsdown: ^0.15.7
     typescript: ^5.9.3
     vitest: ^3.2.4
-    vue-router: ^4.5.1
+    vue-router: ^4.6.2
     wait-on: ^9.0.1
   peer:
-    '@iconify/json': ^2.2.393
+    '@iconify/json': ^2.2.395
     artplayer: ^5.3.0
     dashjs: ^5.0.3
     hls.js: ^1.6.13
@@ -85,18 +85,18 @@ catalogs:
     '@vueuse/integrations': ^13.9.0
     bcrypt-ts: ^7.1.0
     cac: ^6.7.14
-    chart.js: ^4.5.0
+    chart.js: ^4.5.1
     chokidar: 4.0.3
     dayjs: ^1.11.18
     echarts: ^6.0.0
-    esbuild: ^0.25.10
+    esbuild: ^0.25.11
     flowchart.ts: ^3.0.1
     focus-trap: ^7.6.5
     gray-matter: ^4.0.3
     handlebars: ^4.7.8
     image-size: ^2.0.2
     js-yaml: ^4.1.0
-    katex: ^0.16.23
+    katex: ^0.16.25
     local-pkg: ^1.1.2
     lru-cache: ^11.2.2
     mark.js: ^8.11.1
@@ -105,43 +105,42 @@ catalogs:
     markmap-toolbar: ^0.18.12
     markmap-view: ^0.18.12
     minisearch: ^7.2.0
-    nano-spawn: ^1.0.3
+    nano-spawn: ^2.0.0
     nanoid: ^5.1.6
     os-locale: ^6.0.2
     p-map: ^7.0.3
-    package-manager-detector: ^1.4.0
+    package-manager-detector: ^1.4.1
     picocolors: ^1.1.1
     picomatch: ^4.0.3
     shiki: ^3.13.0
     sort-package-json: ^3.4.0
-    tinyglobby: ^0.2.15
-    tm-grammars: ^1.24.17
-    tm-themes: ^1.10.9
+    tm-grammars: ^1.24.22
+    tm-themes: ^1.10.11
     vue: ^3.5.22
   vuepress:
-    '@vuepress/bundler-vite': 2.0.0-rc.24
-    '@vuepress/helper': 2.0.0-rc.112
-    '@vuepress/plugin-cache': 2.0.0-rc.112
-    '@vuepress/plugin-comment': 2.0.0-rc.112
-    '@vuepress/plugin-copy-code': 2.0.0-rc.112
-    '@vuepress/plugin-docsearch': 2.0.0-rc.112
-    '@vuepress/plugin-git': 2.0.0-rc.112
-    '@vuepress/plugin-llms': 2.0.0-rc.112
-    '@vuepress/plugin-markdown-chart': 2.0.0-rc.112
-    '@vuepress/plugin-markdown-hint': 2.0.0-rc.112
-    '@vuepress/plugin-markdown-image': 2.0.0-rc.112
-    '@vuepress/plugin-markdown-include': 2.0.0-rc.112
-    '@vuepress/plugin-markdown-math': 2.0.0-rc.112
-    '@vuepress/plugin-nprogress': 2.0.0-rc.112
-    '@vuepress/plugin-photo-swipe': 2.0.0-rc.112
-    '@vuepress/plugin-reading-time': 2.0.0-rc.112
-    '@vuepress/plugin-replace-assets': 2.0.0-rc.112
-    '@vuepress/plugin-seo': 2.0.0-rc.112
-    '@vuepress/plugin-shiki': 2.0.0-rc.112
-    '@vuepress/plugin-sitemap': 2.0.0-rc.112
-    '@vuepress/plugin-watermark': 2.0.0-rc.112
-    '@vuepress/shiki-twoslash': 2.0.0-rc.112
-    vuepress: 2.0.0-rc.24
+    '@vuepress/bundler-vite': 2.0.0-rc.26
+    '@vuepress/helper': 2.0.0-rc.114
+    '@vuepress/plugin-cache': 2.0.0-rc.114
+    '@vuepress/plugin-comment': 2.0.0-rc.114
+    '@vuepress/plugin-copy-code': 2.0.0-rc.114
+    '@vuepress/plugin-docsearch': 2.0.0-rc.114
+    '@vuepress/plugin-git': 2.0.0-rc.114
+    '@vuepress/plugin-llms': 2.0.0-rc.114
+    '@vuepress/plugin-markdown-chart': 2.0.0-rc.114
+    '@vuepress/plugin-markdown-hint': 2.0.0-rc.114
+    '@vuepress/plugin-markdown-image': 2.0.0-rc.114
+    '@vuepress/plugin-markdown-include': 2.0.0-rc.114
+    '@vuepress/plugin-markdown-math': 2.0.0-rc.114
+    '@vuepress/plugin-nprogress': 2.0.0-rc.114
+    '@vuepress/plugin-photo-swipe': 2.0.0-rc.114
+    '@vuepress/plugin-reading-time': 2.0.0-rc.114
+    '@vuepress/plugin-replace-assets': 2.0.0-rc.114
+    '@vuepress/plugin-seo': 2.0.0-rc.114
+    '@vuepress/plugin-shiki': 2.0.0-rc.114
+    '@vuepress/plugin-sitemap': 2.0.0-rc.114
+    '@vuepress/plugin-watermark': 2.0.0-rc.114
+    '@vuepress/shiki-twoslash': 2.0.0-rc.114
+    vuepress: 2.0.0-rc.26
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - core-js

@@ -82,13 +82,19 @@ const showFooter = computed(() => {
       <div class="pager">
         <VPLink v-if="prev?.link" class="pager-link prev" :href="prev.link">
           <span class="desc" v-html="theme.prevPageLabel || 'Previous page'" />
-          <span class="title" v-html="prev.text" />
+          <span class="title">
+            <VPIcon v-if="prev.icon" :name="prev.icon" />
+            <span v-html="prev.text" />
+          </span>
         </VPLink>
       </div>
       <div class="pager">
         <VPLink v-if="next?.link" class="pager-link next" :href="next.link">
           <span class="desc" v-html="theme.nextPageLabel || 'Next page'" />
-          <span class="title" v-html="next.text" />
+          <span class="title">
+            <VPIcon v-if="next.icon" :name="next.icon" />
+            <span v-html="next.text" />
+          </span>
         </VPLink>
       </div>
     </nav>
@@ -244,5 +250,10 @@ const showFooter = computed(() => {
   line-height: 20px;
   color: var(--vp-c-brand-1);
   transition: color var(--vp-t-color);
+}
+
+.title .vp-icon {
+  margin-left: 0;
+  transform: translateY(-1px);
 }
 </style>

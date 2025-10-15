@@ -22,7 +22,7 @@ export function usePrevNext(): UsePrevNextResult {
   const locale = usePageLang()
   const { isPosts } = usePostsPageData()
 
-  const prevNavList = computed(() => {
+  const prevNavLink = computed(() => {
     if (theme.value.prevPage === false)
       return null
 
@@ -42,7 +42,7 @@ export function usePrevNext(): UsePrevNextResult {
     }
   })
 
-  const nextNavList = computed(() => {
+  const nextNavLink = computed(() => {
     if (theme.value.nextPage === false)
       return null
 
@@ -63,8 +63,8 @@ export function usePrevNext(): UsePrevNextResult {
   })
 
   return {
-    prev: prevNavList,
-    next: nextNavList,
+    prev: prevNavLink,
+    next: nextNavLink,
   }
 }
 
@@ -87,7 +87,7 @@ function resolveFromFrontmatterConfig(conf: unknown): null | false | NavItemWith
 function flatSidebar(sidebar: ThemeSidebarItem[], res: NavItemWithLink[] = []): NavItemWithLink[] {
   for (const item of sidebar) {
     if (item.link)
-      res.push({ link: item.link, text: item.text || item.dir || '' })
+      res.push({ link: item.link, text: item.text || '', icon: item.icon })
 
     if (Array.isArray(item.items) && item.items.length)
       flatSidebar(item.items as ThemeSidebarItem[], res)
@@ -104,10 +104,7 @@ function resolveFromSidebarItems(sidebarItems: NavItemWithLink[], currentPath: s
   if (index !== -1) {
     const targetItem = sidebarItems[index + offset]
     if (targetItem?.link) {
-      return {
-        link: targetItem.link,
-        text: targetItem.text,
-      }
+      return targetItem
     }
   }
 
@@ -121,10 +118,7 @@ function resolveFromPostsData(postList: ThemePostsItem[], currentPath: string, o
     if (!targetItem?.path)
       return null
 
-    return {
-      link: targetItem.path,
-      text: targetItem.title,
-    }
+    return { link: targetItem.path, text: targetItem.title }
   }
   return null
 }

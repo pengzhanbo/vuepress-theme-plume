@@ -686,7 +686,7 @@ interface SidebarItem {
      * 或配置过渡动画类型
      * @default 'fade'
      */
-    appearance?: boolean | 'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip'
+    appearance?: boolean | 'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip' | 'blinds-vertical' | 'blinds-horizontal' | 'soft-blur-fade' | 'diamond-reveal'
   }
   ```
 

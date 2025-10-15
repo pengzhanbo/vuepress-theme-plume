@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import VPSwitch from '@theme/VPSwitch.vue'
 import { computed, inject, nextTick, ref, watchPostEffect } from 'vue'
-import { enableTransitions, useData } from '../composables/index.js'
+import { enableTransitions, resolveTransitionKeyframes, useData } from '../composables/index.js'
 
 const checked = ref(false)
 const { theme, isDark } = useData()
@@ -15,7 +15,7 @@ const transitionMode = computed(() => {
   return typeof options.appearance === 'string' ? options.appearance : 'fade'
 })
 
-const toggleAppearance = inject('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
+const toggleAppearance = inject('toggle-appearance', async ({ clientX, clientY }: MouseEvent) => {
   if (!enableTransitions() || transitionMode.value === false) {
     isDark.value = !isDark.value
     return
@@ -26,45 +26,12 @@ const toggleAppearance = inject('toggle-appearance', async ({ clientX: x, client
     await nextTick()
   }).ready
 
-  const keyframes: PropertyIndexedKeyframes = {}
-  const mode = transitionMode.value
-  let duration = 400
-
-  if (mode === 'circle-clip') {
-    const clipPath = [
-      `circle(0px at ${x}px ${y}px)`,
-      `circle(${Math.hypot(
-        Math.max(x, innerWidth - x),
-        Math.max(y, innerHeight - y),
-      )}px at ${x}px ${y}px)`,
-    ]
-    keyframes.clipPath = isDark.value ? clipPath.reverse() : clipPath
-  }
-  else if (mode === 'horizontal-clip') {
-    const clipPath = [
-      `inset(0px ${innerWidth}px 0px 0px)`,
-      `inset(0px 0px 0px 0px)`,
-    ]
-    keyframes.clipPath = isDark.value ? clipPath.reverse() : clipPath
-  }
-  else if (mode === 'vertical-clip') {
-    const clipPath = [
-      `inset(0px 0px ${innerHeight}px 0px)`,
-      `inset(0px 0px 0px 0px)`,
-    ]
-    keyframes.clipPath = isDark.value ? clipPath.reverse() : clipPath
-  }
-  else if (mode === 'skew-clip') {
-    const clipPath = [
-      'polygon(0px 0px, 0px 0px, 0px 0px)',
-      `polygon(0px 0px, ${innerWidth * 2}px 0px, 0px ${innerHeight * 2}px)`,
-    ]
-    keyframes.clipPath = isDark.value ? clipPath.reverse() : clipPath
-  }
-  else {
-    keyframes.opacity = isDark.value ? [1, 0] : [0, 1]
-    duration = 300
-  }
+  const { keyframes, duration } = resolveTransitionKeyframes(
+    clientX,
+    clientY,
+    transitionMode.value,
+    isDark.value,
+  )
 
   document.documentElement.animate(
     keyframes,
@@ -86,12 +53,7 @@ watchPostEffect(() => {
 </script>
 
 <template>
-  <VPSwitch
-    class="vp-switch-appearance"
-    :title="switchTitle"
-    :aria-checked="checked"
-    @click="toggleAppearance"
-  >
+  <VPSwitch class="vp-switch-appearance" :title="switchTitle" :aria-checked="checked" @click="toggleAppearance">
     <span class="vpi-sun sun" />
     <span class="vpi-moon moon" />
   </VPSwitch>
@@ -121,13 +83,23 @@ watchPostEffect(() => {
 </style>
 
 <style>
+[data-theme] {
+  will-change: clip-path, filter, opacity;
+}
+
 ::view-transition-image-pair(root) {
   isolation: auto;
 }
 
+::view-transition-group(root) {
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
+  clip-path: none;
   mix-blend-mode: normal;
+  mask: none;
   transition: none !important;
   animation: none !important;
 }

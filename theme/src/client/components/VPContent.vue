@@ -14,7 +14,7 @@ const props = defineProps<{
 }>()
 
 const { hasSidebar } = useSidebar()
-const { frontmatter } = useData()
+const { frontmatter, collection } = useData()
 const { isPostsLayout } = usePostsPageData()
 const route = useRoute()
 
@@ -27,6 +27,13 @@ watch(
       if (layout)
         document.documentElement.classList.remove(layout)
       document.documentElement.classList.add(`layout-${isPostsLayout.value ? 'posts' : frontmatter.value.pageLayout || 'doc'}`)
+
+      if (collection.value) {
+        const collectionCls = document.documentElement.className.match(/(?:^|\s)(collection-\S+)(?:$|\s)/)?.[1]
+        if (collectionCls)
+          document.documentElement.classList.remove(collectionCls)
+        document.documentElement.classList.add(`collection-${collection.value.type}-${collection.value.linkPrefix?.replace(/^\/|\/$/g, '').replace(/\//g, '_') || 'default'}`)
+      }
     }
   }),
   { immediate: true },

@@ -61,7 +61,13 @@ const breadcrumbList = computed<Breadcrumb[]>(() => {
     }
   }
   list.push({ text: page.value.title, link: page.value.path, current: true })
-  return list
+
+  return list.reduce<Breadcrumb[]>((acc, item, index) => {
+    const prev = acc[index - 1]
+    if (prev && (prev.link === item.link || prev.text === item.text))
+      return acc
+    return [...acc, item]
+  }, [])
 })
 
 function resolveSidebar(

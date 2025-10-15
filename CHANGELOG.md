@@ -1,3 +1,24 @@
+# [1.0.0-rc.172](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.171...v1.0.0-rc.172) (2025-10-15)
+
+
+### Bug Fixes
+
+* **theme:** fix post category sort error ([#727](https://github.com/pengzhanbo/vuepress-theme-plume/issues/727)) ([707d534](https://github.com/pengzhanbo/vuepress-theme-plume/commit/707d534b9579aca35824a3948d6b9f95515171d6))
+
+
+### Features
+
+* **cli:** sort package.json ([d30325d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d30325dd96983df8153f8a521ba8c8eae01ddad4))
+* **theme:** add icon to doc footer prev-next ([#726](https://github.com/pengzhanbo/vuepress-theme-plume/issues/726)) ([4abc1ee](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4abc1eeb5863794f8c729b70c1785a989c021969))
+* **theme:** optimize view transition ([#725](https://github.com/pengzhanbo/vuepress-theme-plume/issues/725)) ([1503a20](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1503a20fbe41f5ba73f975ef16a602583b1d8f35))
+
+
+### Performance Improvements
+
+* update deps to latest ([74b4ddf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/74b4ddf8f560cde157c29094d630e4ec98a782c2))
+
+
+
 # [1.0.0-rc.171](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.170...v1.0.0-rc.171) (2025-10-13)
 
 

@@ -13,5 +13,5 @@ export interface TransitionOptions {
    * 是否启用 深色/浅色 模式切换过渡动画
    * @default 'fade'
    */
-  appearance?: boolean | 'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip'
+  appearance?: boolean | 'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip' | 'blinds-vertical' | 'blinds-horizontal' | 'soft-blur-fade' | 'diamond-reveal'
 }

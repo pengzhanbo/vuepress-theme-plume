@@ -691,7 +691,7 @@ interface SidebarItem {
      * or configure the transition animation type.
      * @default 'fade'
      */
-    appearance?: boolean | 'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip'
+    appearance?: boolean | 'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip' | 'blinds-vertical' | 'blinds-horizontal' | 'soft-blur-fade' | 'diamond-reveal'
   }
   ```
 

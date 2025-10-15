@@ -1,6 +1,7 @@
 import type { Page } from 'vuepress/core'
 import type { PostsCategoryItem, ThemePageData } from '../../shared/index.js'
-import { ensureEndingSlash, ensureLeadingSlash, removeLeadingSlash } from '@vuepress/helper'
+import { ensureEndingSlash, ensureLeadingSlash } from '@vuepress/helper'
+import { path } from 'vuepress/utils'
 import { findCollection } from '../collections/index.js'
 import { hash } from '../utils/index.js'
 
@@ -21,11 +22,11 @@ export function autoCategory(page: Page<ThemePageData>): void {
   if (page.data.type || !pagePath || collection.categories === false)
     return
 
+  const collectionDir = ensureEndingSlash(path.join(page.pathLocale, collection.dir))
   const list = ensureLeadingSlash(pagePath)
-    .slice(page.pathLocale.length + ensureEndingSlash(removeLeadingSlash(collection.dir)).length)
+    .slice(collectionDir.length)
     .split('/')
     .slice(0, -1)
-
   const categoryList: PostsCategoryItem[] = list
     .map((category, index) => {
       const match = category.match(RE_CATEGORY) || []

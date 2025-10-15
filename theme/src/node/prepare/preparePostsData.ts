@@ -6,9 +6,9 @@ import type {
   ThemePosts,
   ThemePostsItem,
 } from '../../shared/index.js'
-import fs from 'node:fs'
 import { removeLeadingSlash } from '@vuepress/helper'
 import dayjs from 'dayjs'
+import { fs, path } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { createMatcher, logger, perf, resolveContent, withBase, writeTemp } from '../utils/index.js'
 import { isEncryptPage } from './prepareEncrypt.js'
@@ -97,10 +97,11 @@ export async function preparedPostsData(app: App): Promise<void> {
       continue
     for (const { include, exclude, dir } of collections.filter(item => item.type === 'post')) {
       const source = app.dir.source(removeLeadingSlash(withBase(dir, locale)))
-      const isMatched = createMatcher(include, exclude, source)
-
+      const isMatched = createMatcher(include, exclude)
       postsData[withBase(dir, locale)] = pages
-        .filter(({ filePath }) => filePath?.startsWith(source) && isMatched(filePath))
+        .filter(({ filePath }) => {
+          return filePath?.startsWith(source) && isMatched(path.relative(source, filePath!))
+        })
         .sort(sortPage)
         .map(page => processPostData(page, isBuild, encrypt))
     }

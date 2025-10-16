@@ -210,10 +210,10 @@ blog:
     preview: https://w20241204.dpdns.org/images/demos/preview.png
   -
     name: rand777
-    desc: 华强爱买瓜，不爱吃牛肉。
-    logo: https://www.rand777.space/avatar.jpg
-    url: https://www.rand777.space/
-    repo: https://github.com/Lyrlark/rand777-plume-blog
+    desc: 摇摇晃晃，也能到达目的地。
+    logo: https://blog.rand777.space/avatar.jpg
+    url: https://blog.rand777.space
+    repo: https://github.com/rand777gg/rand777-plume-blog
     preview: https://blog.rand777.space/siteshot.png
   -
     name: 异想之旅

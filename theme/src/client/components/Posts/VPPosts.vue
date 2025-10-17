@@ -7,7 +7,7 @@ import VPPostsExtract from '@theme/Posts/VPPostsExtract.vue'
 import VPPostsNav from '@theme/Posts/VPPostsNav.vue'
 import VPPostsTags from '@theme/Posts/VPPostsTags.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
-import { watch } from 'vue'
+import { onBeforeUnmount, watch } from 'vue'
 import { forceUpdateCollection, useData } from '../../composables/index.js'
 
 const props = defineProps<{
@@ -24,6 +24,8 @@ watch(
   () => forceUpdateCollection(props.homePosts ? (props.collection || true) : undefined),
   { immediate: true },
 )
+
+onBeforeUnmount(() => forceUpdateCollection(undefined))
 </script>
 
 <template>

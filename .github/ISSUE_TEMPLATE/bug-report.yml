@@ -69,5 +69,5 @@ body:
     id: additional-context
     attributes:
       label: Additional context
-      description: If you are not reporting something obvious, a minimal reproduction repo and related log is required.
+      description: If you are not reporting something obvious, related log is required.
       placeholder: Add any other context about the problem here. Especially the issue occurs in certain OS, browser or configuration.

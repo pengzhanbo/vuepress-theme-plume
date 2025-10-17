@@ -69,5 +69,5 @@ body:
     id: additional-context
     attributes:
       label: 附加上下文
-      description: 如果你报告的问题不明显，需要提供最小复现仓库及相关日志。
+      description: 如果你报告的问题不明显，需要提供相关日志。
       placeholder: 在此添加有关问题的其他上下文信息。特别是问题在特定操作系统、浏览器或配置下出现。

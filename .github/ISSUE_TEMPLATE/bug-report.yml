@@ -1,6 +1,6 @@
 name: Bug report
 description: Create a report to help us improve
-title: '[Bug]'
+title: '[Bug] '
 labels:
   - bug
 assignees: pengzhanbo
@@ -58,7 +58,13 @@ body:
       description: A clear and concise description of what the bug is.
     validations:
       required: true
-
+  - type: input
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: |-
+        If you are not reporting something obvious, a minimal reproduction repo and related log is required. you can fork [stackblitz.com](https://stackblitz.com/edit/vuepress-theme-plume-playground) to create a minimal reproduction.
+      placeholder: reproduction repo url
   - type: textarea
     id: additional-context
     attributes:

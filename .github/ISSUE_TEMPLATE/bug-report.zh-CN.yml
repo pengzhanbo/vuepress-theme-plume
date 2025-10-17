@@ -1,6 +1,6 @@
 name: 问题报告
 description: 创建一份问题报告以帮助我们改进
-title: '[Bug]'
+title: '[Bug] '
 labels:
   - bug
 assignees: pengzhanbo
@@ -58,7 +58,13 @@ body:
       description: 一个清晰简洁的错误描述。
     validations:
       required: true
-
+  - type: input
+    id: reproduction
+    attributes:
+      label: 最小复现
+      description: |-
+        若非报告显而易见的问题，需提供最小化复现仓库及相关日志。你可通过 fork [stackblitz.com](https://stackblitz.com/edit/vuepress-theme-plume-playground) 来创建最小化复现环境。
+      placeholder: 复现项目 url
   - type: textarea
     id: additional-context
     attributes:

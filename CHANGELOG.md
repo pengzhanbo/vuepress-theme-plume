@@ -1,3 +1,18 @@
+# [1.0.0-rc.173](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.172...v1.0.0-rc.173) (2025-10-17)
+
+
+### Bug Fixes
+
+* **theme:** fix collection type error when the homepage is set as a posts, close [#729](https://github.com/pengzhanbo/vuepress-theme-plume/issues/729) ([#732](https://github.com/pengzhanbo/vuepress-theme-plume/issues/732)) ([0a23b94](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0a23b94232a407eded9cf402702fb81ddd1e1a89))
+* **theme:** fix the layout misalignment of the `<VPButton />` fontawesome icon ([1471547](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1471547bcdce4c6ad4ca2e97422a6627d2876bdc))
+
+
+### Performance Improvements
+
+* update deps to latest ([ded49c4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ded49c4e8890bcb1bcf920856c72a8ec4a943daf))
+
+
+
 # [1.0.0-rc.172](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.171...v1.0.0-rc.172) (2025-10-15)
 
 

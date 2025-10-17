@@ -152,6 +152,11 @@ function linkTo(e: Event) {
   height: 1.2em;
 }
 
+.vp-button .button-content :deep(.vp-icon.fontawesome) {
+  width: initial;
+  height: initial;
+}
+
 .vp-button + .vp-button {
   margin-left: 1em;
 }

@@ -222,6 +222,13 @@ blog:
     url: https://blog.yxzl.dev/
     repo: https://github.com/yxzlwz/blog
     preview: https://blog.yxzl.dev/screenshot.png
+  -
+    name: Honahec
+    desc: Honahec's Blog
+    logo: https://image.honahec.cc/avatar-circle.png
+    url: https://blog.honahec.cc/
+    repo: https://github.com/Honahec/blog
+    preview: https://image.honahec.cc/20251018223321710.png
 ---
 
 :::important

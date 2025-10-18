@@ -190,10 +190,10 @@ blog:
   -
     name: Paiad
     desc: 种一棵树最好的时间是十年前，其次是现在。
-    logo: https://paiad.online/sunflower.png
-    url: https://paiad.online
+    logo: https://paiad-blog.vercel.app/sunflower.png
+    url: https://paiad-blog.vercel.app
     repo: https://github.com/paiad
-    preview: https://paiad.online/paiad-blog.png
+    preview: https://paiad-blog.vercel.app/paiad-blog.png
   -
     name: 𝙆𝙞𝙖𝙣𝙜
     desc: 坚持热爱，奔赴山海

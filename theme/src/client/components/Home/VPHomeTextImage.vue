@@ -24,6 +24,7 @@ const maxWidth = computed(() => {
     :background-attachment="backgroundAttachment"
     :full="full"
     :container-class="{ reverse: type === 'text-image' }"
+    :index="index"
   >
     <div class="content-image">
       <VPImage :image="image" :style="{ maxWidth }" />

@@ -104,6 +104,7 @@ onUnmounted(() => {
         <component
           :is="resolveComponentName(item.type)"
           v-bind="item"
+          :index="index"
           :only-once="onlyOnce"
         />
       </div>

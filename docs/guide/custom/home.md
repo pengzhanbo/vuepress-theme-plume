@@ -139,8 +139,6 @@ config:
 
 适用于 文档 类型站点，放置于 首位。
 
-**工具支持： [首页背景色板配置工具](../../tools/home-hero-tint-plate.md)**
-
 ```ts
 interface PlumeThemeHomeHero extends PlumeHomeConfigBase {
   type: 'hero'
@@ -159,95 +157,22 @@ interface PlumeThemeHomeHero extends PlumeHomeConfigBase {
     }
   }
   /**
-   * 背景图片，"tint-plate" 为预设效果, 也可以配置为图片地址
+   * 主题内置的背景效果，如果为非预设背景效果，则可以传入背景图片链接地址
    */
-  background?: 'tint-plate' | string
-
+  effect?: 'tint-plate' | 'prism' | 'pixel-blast' | 'hyper-speed' | 'liquid-ether'
+    | 'dot-grid' | 'iridescence' | 'orb' | 'beams' | 'lightning' | string
   /**
-   * 当 background 为预设背景时，可以配置 RGB 值，用于调整背景
-   * 该配置仅在 `background` 为 `tint-plate` 时生效
+   * 背景效果配置项，根据 `effect` 值不同，配置项不同
    */
-  tintPlate?: TintPlate
+  effectConfig?: any
   /**
    * 如果是非预设背景，可以设置背景图片的滤镜效果
    */
   filter?: string
 }
-interface TintPlateObj {
-  // value 表示 基准色值，范围为 0 ~ 255
-  // offset 表示 基准色值的偏移量，范围为 0 ~ (255 - value)
-  r: { value: number, offset: number }
-  g: { value: number, offset: number }
-  b: { value: number, offset: number }
-}
-type TintPlate
-  = | number // 210
-    | string // '210,210,210' => red,green,blue
-  // { r: { value: 220, offset: 36 }, g: { value: 220, offset: 36 }, b: { value: 220, offset: 36 } }
-    | TintPlate
-  // { light: 210, dark: 20 }
-  // { light: '210,210,210', dark: '20,20,20' }
-    | { light: number | string, dark: number | string }
-    | { light: TintPlate, dark: TintPlate }
 ```
 
-**示例：**
-
-```md
----
-home: true
-config:
- -
-    type: hero
-    full: true
-    background: tint-plate
-    hero:
-      name: Theme Plume
-      tagline: Vuepress Next Theme
-      text: 一个简约的，功能丰富的 vuepress 文档&博客 主题
-      actions:
-        -
-          theme: brand
-          text: 快速开始 →
-          link: /
-        -
-          theme: alt
-          text: Github
-          link: https://github.com/pengzhanbo/vuepress-theme-plume
----
-```
-
-**效果：**
-
-:::demo-wrapper img no-padding
-<img src="/images/custom-hero.jpg" alt="Theme Plume" />
-:::
-
-当 `background` 配置为 `tint-plate` 时，还可以额外配置 `tintPlate` 调整 背景色调，范围为 `0 ~ 255`：
-
-```md
----
-home: true
-config:
- -
-    type: hero
-    full: true
-    background: tint-plate
-    tintPlate: 210
----
-```
-
-`tintPlate` 用于配置 RGB 值：
-
-- 配置为单个值时，表示配置 red,green,blue 三个颜色值为相同值，范围： 0 - 255。示例： `210`。
-- 配置为三个值时，表示配置 red,green,blue 三个颜色值为不同值，范围： 0 - 255。示例： `210,210,210`。
-- 配置为 `TintPlate`，则可以更加灵活的控制每个颜色值和对应的偏移量。
-- 还可以配置为 `{ light, dark }`，在深色模式和浅色模式下使用不同的颜色值。
-
-::: info
-为了便于用户配置 美观的个性化的背景，主题还提供了 [首页背景色板配置工具](../../tools/custom-theme.md)
-进行可视化操作，生成配置内容，你可以直接复制它们用于自己的项目中。
-:::
+[查看 **背景效果 配置 & 演示** 了解更多](./home-hero-effect.md){.read-more}
 
 主题还支持自定义 `name`, `tagline`， `text` 的颜色。
 

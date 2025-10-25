@@ -45,3 +45,9 @@ export function numToUnit(value?: string | number): string {
   }
   return value as string
 }
+
+const gradient: string[] = ['linear-gradient', 'radial-gradient', 'repeating-linear-gradient', 'repeating-radial-gradient', 'conic-gradient']
+
+export function isGradient(value: string): boolean {
+  return gradient.some(v => value.startsWith(v))
+}

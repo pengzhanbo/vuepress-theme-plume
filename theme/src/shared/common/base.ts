@@ -31,3 +31,5 @@ export interface ThemeBadge {
   bgColor?: string
   borderColor?: string
 }
+
+export type ThemeLightDark<T> = T | { light?: T, dark?: T }

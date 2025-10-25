@@ -12,8 +12,8 @@ const actions = computed(() => hero.value.actions ?? [])
 
 <template>
   <div class="vp-home-doc-hero" :class="{ 'has-image': hero.image }">
-    <div class="container">
-      <div class="main">
+    <div class="doc-hero-container">
+      <div class="doc-hero-main">
         <h1 class="heading">
           <span v-if="hero.name" class="name clip" v-html="hero.name" />
           <span v-if="hero.text" class="text" v-html="hero.text" />
@@ -69,7 +69,7 @@ const actions = computed(() => hero.value.actions ?? [])
   }
 }
 
-.container {
+.doc-hero-container {
   display: flex;
   flex-direction: column;
   max-width: 1152px;
@@ -77,12 +77,12 @@ const actions = computed(() => hero.value.actions ?? [])
 }
 
 @media (min-width: 960px) {
-  .container {
+  .doc-hero-container {
     flex-direction: row;
   }
 }
 
-.main {
+.doc-hero-main {
   position: relative;
   z-index: 10;
   flex-grow: 1;
@@ -90,23 +90,23 @@ const actions = computed(() => hero.value.actions ?? [])
   order: 2;
 }
 
-.vp-home-doc-hero.has-image .container {
+.vp-home-doc-hero.has-image .doc-hero-container {
   text-align: center;
 }
 
 @media (min-width: 960px) {
-  .vp-home-doc-hero.has-image .container {
+  .vp-home-doc-hero.has-image .doc-hero-container {
     text-align: left;
   }
 }
 
 @media (min-width: 960px) {
-  .main {
+  .doc-hero-main {
     order: 1;
     width: calc((100% / 3) * 2);
   }
 
-  .vp-home-doc-hero.has-image .main {
+  .vp-home-doc-hero.has-image .doc-hero-main {
     max-width: 592px;
   }
 }

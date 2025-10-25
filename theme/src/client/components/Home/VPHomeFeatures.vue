@@ -36,6 +36,7 @@ const grid = computed(() => {
     :background-image="backgroundImage"
     :background-attachment="backgroundAttachment"
     :full="full"
+    :index="index"
   >
     <h2 v-if="title" class="title" v-html="title" />
     <p v-if="description" class="description" v-html="description" />

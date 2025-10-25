@@ -51,6 +51,7 @@
     "@types/node": "catalog:dev",
     "@types/picomatch": "catalog:dev",
     "@types/stylus": "catalog:dev",
+    "@types/three": "catalog:dev",
     "@types/webpack-env": "catalog:dev",
     "@vitest/coverage-istanbul": "catalog:dev",
     "bumpp": "catalog:dev",

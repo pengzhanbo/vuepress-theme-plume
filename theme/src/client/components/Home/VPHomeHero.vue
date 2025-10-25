@@ -1,57 +1,93 @@
 <script setup lang="ts">
 import type { ThemeHomeHero } from '../../../shared/index.js'
+import { effectComponents, effects } from '@internal/home-hero-effects'
+import ImageBg from '@theme/background/ImageBg.vue'
 import VPButton from '@theme/VPButton.vue'
-import { computed, ref } from 'vue'
-import { withBase } from 'vuepress/client'
-import { isLinkHttp } from 'vuepress/shared'
-import { useData, useHomeHeroTintPlate } from '../../composables/index.js'
+import { computed, nextTick, onMounted, onUnmounted, watch } from 'vue'
+import { isPlainObject } from 'vuepress/shared'
+import { useData } from '../../composables/index.js'
+import { inBrowser } from '../../utils/index.js'
 
 const props = defineProps<ThemeHomeHero>()
 
-const { isDark, frontmatter: matter } = useData<'home'>()
+const { frontmatter, isDark } = useData<'home'>()
+const hero = computed(() => props.hero ?? frontmatter.value.hero ?? {})
+const actions = computed(() => hero.value.actions ?? [])
 
-const heroBackground = computed(() => {
-  if (props.background === 'tint-plate')
+const effect = computed(() => {
+  const effect = props.effect || props.background
+  if (!effect || !effects.includes(effect))
     return null
-  const image = props.backgroundImage
-    ? typeof props.backgroundImage === 'string'
-      ? props.backgroundImage
-      : (props.backgroundImage[isDark.value ? 'dark' : 'light'] ?? props.backgroundImage.light)
-    : ''
-  const background = image || props.background
+  return effect as typeof effects[number]
+})
 
-  if (!background)
+const effectConfig = computed(() => {
+  // compatibility
+  if (effect.value === 'tint-plate') {
+    const plate = props.tintPlate ?? props.effectConfig
+    if (typeof plate === 'number' || typeof plate === 'string') {
+      return { rgb: plate }
+    }
+    return plate
+  }
+  // guide compatible
+  if (!isPlainObject(props.effectConfig))
     return null
 
-  const link = isLinkHttp(background) ? background : withBase(background)
-  return {
-    'background-image': `url(${link})`,
-    'background-attachment': props.backgroundAttachment || '',
-    '--vp-hero-bg-filter': props.filter,
+  return props.effectConfig
+})
+
+function noTransition() {
+  document.documentElement.classList.add('no-transition')
+  setTimeout(() => {
+    document.documentElement.classList.remove('no-transition')
+  }, 300)
+}
+
+let defaultTheme: string | undefined
+watch(() => props.forceDark, () => {
+  if (inBrowser && props.forceDark) {
+    defaultTheme ??= document.documentElement.dataset.theme
+    document.documentElement.dataset.theme = 'dark'
+    document.documentElement.classList.add('force-dark')
+    nextTick(() => isDark.value = true)
+    noTransition()
+  }
+  document.documentElement.classList.add(`effect-${effect.value}`)
+}, { immediate: true })
+
+onMounted(() => {
+  if (props.forceDark) {
+    window.addEventListener('unload', () => {
+      isDark.value = defaultTheme === 'dark'
+    })
   }
 })
 
-const hero = computed(() => props.hero ?? matter.value.hero ?? {})
-const actions = computed(() => hero.value.actions ?? [])
-
-const canvas = ref<HTMLCanvasElement>()
-useHomeHeroTintPlate(
-  canvas,
-  computed(() => props.background === 'tint-plate'),
-  computed(() => props.tintPlate),
-)
+onUnmounted(() => {
+  if (props.forceDark) {
+    isDark.value = defaultTheme === 'dark'
+    document.documentElement.classList.remove('force-dark', `effect-${effect.value}`)
+    noTransition()
+  }
+})
 </script>
 
 <template>
-  <div class="vp-home-hero" :class="{ full: props.full, once: props.onlyOnce }">
-    <div v-if="heroBackground" class="home-hero-bg" :style="heroBackground" />
+  <div
+    class="vp-home-hero"
+    :class="{
+      full,
+      once: onlyOnce,
+      first: props.index === 0,
+      [effect ?? '']: !!effect,
+    }"
+  >
+    <component :is="effectComponents[effect]" v-if="effect" v-bind="effectConfig" />
+    <ImageBg v-else v-bind="props" />
 
-    <div v-if="background === 'tint-plate'" class="bg-filter">
-      <canvas ref="canvas" width="32" height="32" />
-    </div>
-
-    <div class="container">
-      <div class="content">
+    <div class="hero-container">
+      <div class="hero-content">
         <h1 v-if="hero.name" class="hero-name" v-html="hero.name" />
         <p v-if="hero.tagline" class="hero-tagline" v-html="hero.tagline" />
         <p v-if="hero.text" class="hero-text" v-html="hero.text" />
@@ -84,61 +120,60 @@ useHomeHeroTintPlate(
   width: 100%;
 }
 
+.vp-home-hero.first {
+  margin-top: calc(0px - var(--vp-nav-height));
+}
+
 .vp-home-hero.full {
-  height: calc(100vh - var(--vp-nav-height));
+  height: 100vh;
 }
 
 .vp-home-hero.full.once {
-  height: calc(100vh - var(--vp-nav-height) - var(--vp-footer-height, 0px));
+  height: calc(100vh - var(--vp-footer-height, 0px));
 }
 
-.home-hero-bg {
-  position: absolute;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  filter: var(--vp-hero-bg-filter);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  transform: translate3d(0, 0, 0);
-}
-
-.container {
+.hero-container {
   position: relative;
   z-index: 1;
   display: flex;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 
-.vp-home-hero.full .container {
+.vp-home-hero.full .hero-container {
   align-items: center;
   justify-content: center;
 }
 
-.vp-home-hero:not(.full) .container {
+.vp-home-hero:not(.full) .hero-container {
   padding-top: 80px;
   padding-bottom: 80px;
 }
 
-.content {
+.hero-content {
+  width: max-content;
   max-width: 960px;
   padding: 0 20px;
   margin: 0 auto;
   text-align: center;
+  pointer-events: none;
 }
 
-.vp-home-hero.full .container .content {
+.vp-home-hero.full .hero-container .hero-content {
   margin-top: -40px;
 }
 
 .hero-name,
 .hero-tagline {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
   font-size: 48px;
   font-weight: 900;
   line-height: 1.25;
   letter-spacing: -0.5px;
+  pointer-events: auto;
 }
 
 .hero-name {
@@ -160,6 +195,7 @@ useHomeHeroTintPlate(
   font-weight: 500;
   color: var(--vp-c-home-hero-text, var(--vp-c-text-3));
   white-space: pre-wrap;
+  pointer-events: auto;
   transition: color var(--vp-t-color);
 }
 
@@ -180,53 +216,12 @@ useHomeHeroTintPlate(
 
 .action :deep(.vp-button) {
   margin-left: 0;
+  pointer-events: auto;
 }
 
 .action :deep(.vp-button:last-of-type) {
   margin-right: 0;
 }
-
-/* =========== background filter begin ======= */
-.bg-filter {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  transform: translate3d(0, 0, 0);
-}
-
-.vp-home-hero.full.once .bg-filter {
-  height: calc(100% + var(--vp-footer-height, 0px));
-}
-
-@property --vp-home-hero-bg-filter {
-  inherits: false;
-  initial-value: #fff;
-  syntax: "<color>";
-}
-
-.bg-filter::after {
-  --vp-home-hero-bg-filter: var(--vp-c-bg);
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  content: "";
-  background: linear-gradient(to bottom, var(--vp-home-hero-bg-filter) 0, transparent 45%, transparent 55%, var(--vp-home-hero-bg-filter) 140%);
-  transition: --vp-home-hero-bg-filter var(--vp-t-color);
-}
-
-.bg-filter canvas {
-  width: 100%;
-  height: 100%;
-}
-
-/* =========== background filter end ======= */
 
 @media (min-width: 768px) {
   .hero-name,
@@ -248,5 +243,34 @@ useHomeHeroTintPlate(
   .hero-text {
     font-size: 24px;
   }
+}
+</style>
+
+<style>
+html.no-transition *,
+html.no-transition *::before,
+html.no-transition *::after {
+  background-attachment: initial !important;
+  transition-delay: 0s !important;
+  transition-duration: 0s !important;
+  animation-duration: 1ms !important;
+  animation-delay: -1ms !important;
+  animation-iteration-count: 1 !important;
+}
+
+html[class*="effect-"].force-dark .vp-navbar-appearance {
+  display: none;
+}
+
+html[class*="effect-"].force-dark * {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizelegibility !important;
+}
+
+html[class*="effect-"].force-dark .vp-navbar,
+html[class*="effect-"].force-dark .vp-navbar:not(.top) {
+  background: rgb(15 15 15 / 0.7) !important;
+  backdrop-filter: blur(10px);
 }
 </style>

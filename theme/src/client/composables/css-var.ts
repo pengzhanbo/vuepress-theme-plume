@@ -15,7 +15,7 @@ export function useCssVar(
 
   function updateCssVar() {
     const _window = typeof window ? window : null
-    const target = _window?.document.documentElement
+    const target = _window?.document?.documentElement
     const key = toValue(prop)
     if (target && key) {
       const value = _window.getComputedStyle(target).getPropertyValue(key)?.trim()

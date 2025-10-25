@@ -46,7 +46,9 @@ function noTransition() {
 
 let defaultTheme: string | undefined
 watch(() => props.forceDark, () => {
-  if (inBrowser && props.forceDark) {
+  if (!inBrowser || __VUEPRESS_SSR__)
+    return
+  if (props.forceDark) {
     defaultTheme ??= document.documentElement.dataset.theme
     document.documentElement.dataset.theme = 'dark'
     document.documentElement.classList.add('force-dark')

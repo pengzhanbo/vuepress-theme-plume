@@ -28,6 +28,7 @@ const profile = computed(() => {
     :background-image="backgroundImage"
     :background-attachment="backgroundAttachment"
     :full="full"
+    :index="index"
   >
     <VPImage v-if="profile.avatar" :image="profile.avatar" :class="{ circle: profile.circle }" />
 

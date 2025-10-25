@@ -80,6 +80,18 @@ declare module '@internal/iconify' {
   }
 }
 
+declare module '@internal/home-hero-effects' {
+  import type { ComponentOptions } from 'vue'
+
+  const effectComponents: Record<string, ComponentOptions>
+  const effects: string[]
+
+  export {
+    effectComponents,
+    effects,
+  }
+}
+
 declare module 'swiper/css' {
   const res: any
   export default res

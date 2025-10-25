@@ -17,6 +17,9 @@ const styles = computed(() => {
 
   const image = typeof props.backgroundImage === 'string' ? props.backgroundImage : (props.backgroundImage[isDark.value ? 'dark' : 'light'] ?? props.backgroundImage.light)
 
+  if (!image)
+    return null
+
   const link = isLinkHttp(image) ? props.backgroundImage : withBase(image)
   return {
     'background-image': `url(${link})`,

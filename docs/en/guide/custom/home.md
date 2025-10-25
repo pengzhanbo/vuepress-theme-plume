@@ -140,8 +140,6 @@ config:
 
 Suitable for documentation-type sites, placed at the top.
 
-**Tool Support: [Homepage Hero Tint Plate Configuration Tool](../../tools/home-hero-tint-plate.md)**
-
 ```ts
 interface PlumeThemeHomeHero extends PlumeHomeConfigBase {
   type: 'hero'
@@ -160,97 +158,22 @@ interface PlumeThemeHomeHero extends PlumeHomeConfigBase {
     }
   }
   /**
-   * Background image. "tint-plate" is a preset effect, or a custom image URL can be provided.
+   * The built-in background effects of the theme, if they are not preset background effects, allow for a background image link address to be passed in.
    */
-  background?: 'tint-plate' | string
-
+  effect?: 'tint-plate' | 'prism' | 'pixel-blast' | 'hyper-speed' | 'liquid-ether'
+    | 'dot-grid' | 'iridescence' | 'orb' | 'beams' | 'lightning' | string
   /**
-   * When background is the preset, configure RGB values to adjust the background color.
-   * This configuration only takes effect when `background` is set to `tint-plate`.
+   * Background effect configuration options vary depending on the value of `effect`.
    */
-  tintPlate?: TintPlate
+  effectConfig?: any
   /**
    * If using a non-preset background, set the filter effect for the background image.
    */
   filter?: string
 }
-interface TintPlateObj {
-  // value represents the base color value, range 0 ~ 255
-  // offset represents the offset from the base value, range 0 ~ (255 - value)
-  r: { value: number, offset: number }
-  g: { value: number, offset: number }
-  b: { value: number, offset: number }
-}
-type TintPlate
-  = | number // e.g., 210
-    | string // e.g., '210,210,210' => red,green,blue
-  // e.g., { r: { value: 220, offset: 36 }, g: { value: 220, offset: 36 }, b: { value: 220, offset: 36 } }
-    | TintPlateObj
-  // e.g., { light: 210, dark: 20 }
-  // e.g., { light: '210,210,210', dark: '20,20,20' }
-    | { light: number | string, dark: number | string }
-    | { light: TintPlateObj, dark: TintPlateObj }
 ```
 
-**Example:**
-
-```md
----
-home: true
-config:
- -
-    type: hero
-    full: true
-    background: tint-plate
-    hero:
-      name: Theme Plume
-      tagline: Vuepress Next Theme
-      text: A minimalistic, feature-rich vuepress documentation & blog theme
-      actions:
-        -
-          theme: brand
-          text: Get Started →
-          link: /
-        -
-          theme: alt
-          text: Github
-          link: https://github.com/pengzhanbo/vuepress-theme-plume
----
-```
-
-**Result:**
-
-:::demo-wrapper img no-padding
-<img src="/images/custom-hero.jpg" alt="Theme Plume" />
-:::
-
-When `background` is configured as `tint-plate`, you can additionally configure `tintPlate` to adjust
-the background hue, with a range of `0 ~ 255`:
-
-```md
----
-home: true
-config:
- -
-    type: hero
-    full: true
-    background: tint-plate
-    tintPlate: 210
----
-```
-
-`tintPlate` is used to configure RGB values:
-
-- When configured as a single number, it sets the red, green, and blue color channels to the same value (range: 0 - 255). Example: `210`.
-- When configured as three comma-separated values, it sets the red, green, and blue channels to different values (range: 0 - 255). Example: `210,210,210`.
-- When configured as a `TintPlateObj`, it allows more granular control over each color channel and its corresponding offset.
-- It can also be configured as `{ light, dark }` to use different color values in dark and light modes.
-
-::: info
-To facilitate the configuration of aesthetically pleasing and personalized backgrounds,
-the theme also provides a [Homepage Hero Tint Plate Configuration Tool](../../tools/custom-theme.md)
-for visual configuration. You can generate configuration content and copy it directly for use in your own project.
-:::
+[See **Background Effects Configuration & Demo** to learn more.](./home-hero-effect.md){.read-more}
 
 The theme also supports customizing the colors of `name`, `tagline`, and `text`.
 

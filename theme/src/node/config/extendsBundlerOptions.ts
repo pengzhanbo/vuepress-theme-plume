@@ -31,4 +31,24 @@ export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
     addViteOptimizeDepsInclude(bundlerOptions, app, ['swiper/modules', 'swiper/vue'])
     addViteSsrNoExternal(bundlerOptions, app, ['swiper'])
   }
+
+  if (isPackageExists('three')) {
+    addViteOptimizeDepsInclude(bundlerOptions, app, ['three', 'three/src/math/MathUtils.js'])
+    addViteSsrNoExternal(bundlerOptions, app, ['three', 'three/src/math/MathUtils.js'])
+  }
+
+  if (isPackageExists('gsap')) {
+    addViteOptimizeDepsInclude(bundlerOptions, app, ['gsap', 'gsap/InertiaPlugin'])
+    addViteSsrNoExternal(bundlerOptions, app, ['gsap', 'gsap/InertiaPlugin'])
+  }
+
+  if (isPackageExists('postprocessing')) {
+    addViteOptimizeDepsInclude(bundlerOptions, app, ['postprocessing'])
+    addViteSsrNoExternal(bundlerOptions, app, ['postprocessing'])
+  }
+
+  if (isPackageExists('ogl')) {
+    addViteOptimizeDepsInclude(bundlerOptions, app, ['ogl'])
+    addViteSsrNoExternal(bundlerOptions, app, ['ogl'])
+  }
 }

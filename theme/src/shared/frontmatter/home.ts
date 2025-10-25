@@ -1,4 +1,6 @@
-import type { ThemeImage } from '../common/index.js'
+import type { ThemeImage, ThemeLightDark } from '../common/index.js'
+import type { LiteralUnion } from '../utils.js'
+import type { ThemeHomeHeroEffect, ThemeHomeHeroEffectConfig, ThemeHomeHeroTintPlate } from './homeHeroEffects.js'
 import type { ThemeNormalFrontmatter } from './normal.js'
 
 export interface ThemeHomeFrontmatter extends ThemeNormalFrontmatter, Omit<ThemeHomeBanner, 'type'> {
@@ -9,15 +11,20 @@ export interface ThemeHomeFrontmatter extends ThemeNormalFrontmatter, Omit<Theme
 
 export type ThemeHomeConfig = ThemeHomeBanner | ThemeHomeTextImage | ThemeHomeFeatures | ThemeHomeProfile | ThemeHomeHero | ThemeHomePosts
 
+export interface ThemeHomeConfigBase {
+  type: 'banner' | 'hero' | 'doc-hero' | 'text-image' | 'image-text' | 'features' | 'profile' | 'custom' | 'posts'
+  full?: boolean
+  backgroundImage?: ThemeLightDark<string>
+  backgroundAttachment?: 'fixed' | 'local'
+  onlyOnce?: boolean
+  index: number
+}
+
 export interface ThemeHero {
   name: string
   tagline?: string
   text?: string
   actions: ThemeHeroAction[]
-}
-
-export interface ThemeDocHero extends ThemeHero {
-  image?: ThemeImage
 }
 
 export interface ThemeHeroAction {
@@ -30,38 +37,29 @@ export interface ThemeHeroAction {
   suffixIcon?: string
 }
 
-export interface ThemeHomeConfigBase {
-  type: 'banner' | 'hero' | 'doc-hero' | 'text-image' | 'image-text' | 'features' | 'profile' | 'custom' | 'posts'
-  full?: boolean
-  backgroundImage?: string | { light: string, dark: string }
-  backgroundAttachment?: 'fixed' | 'local'
-  onlyOnce?: boolean
+export interface ThemeDocHero extends ThemeHero {
+  image?: ThemeImage
 }
 
 export interface ThemeHomeBanner extends Pick<ThemeHomeConfigBase, 'type' | 'onlyOnce' | 'full'> {
   type: 'banner'
   banner?: string
-  bannerMask?: number | { light?: number, dark?: number }
+  bannerMask?: ThemeLightDark<number>
   hero: ThemeHero
-}
-
-export interface PlumeThemeHomeHeroTintPlate {
-  r: { value: number, offset: number }
-  g: { value: number, offset: number }
-  b: { value: number, offset: number }
 }
 
 export interface ThemeHomeHero extends ThemeHomeConfigBase {
   type: 'hero'
   hero: ThemeHero
   full?: boolean
-  background?: 'tint-plate' | (string & { zz_IGNORE?: never })
-  tintPlate?:
-    | string | number
-    | { light?: string | number, dark?: string | number }
-    | PlumeThemeHomeHeroTintPlate
-    | { light?: PlumeThemeHomeHeroTintPlate, dark?: PlumeThemeHomeHeroTintPlate }
+  /** @deprecated use `effect` instead */
+  background?: LiteralUnion<'tint-plate'>
+  /** @deprecated use `effectConfig` instead */
+  tintPlate?: ThemeHomeHeroTintPlate
+  effect?: ThemeHomeHeroEffect
+  effectConfig?: ThemeHomeHeroEffectConfig
   filter?: string
+  forceDark?: boolean
 }
 
 export interface ThemeHomeDocHero extends ThemeHomeConfigBase {

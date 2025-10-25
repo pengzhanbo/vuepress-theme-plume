@@ -172,7 +172,7 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
       collapsed: false,
       prefix: 'custom',
       items: [
-        'home',
+        { text: '自定义首页', link: 'home', items: ['home-hero-effect'] },
         'style',
         'slots',
         'component-overrides',

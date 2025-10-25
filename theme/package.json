@@ -67,8 +67,12 @@
   "peerDependencies": {
     "@iconify/json": "catalog:peer",
     "@vuepress/shiki-twoslash": "catalog:vuepress",
+    "gsap": "catalog:peer",
     "mathjax-full": "catalog:peer",
+    "ogl": "catalog:peer",
+    "postprocessing": "catalog:peer",
     "swiper": "catalog:peer",
+    "three": "catalog:peer",
     "vuepress": "catalog:vuepress"
   },
   "peerDependenciesMeta": {
@@ -78,10 +82,22 @@
     "@vuepress/shiki-twoslash": {
       "optional": true
     },
+    "gsap": {
+      "optional": true
+    },
     "mathjax-full": {
       "optional": true
     },
+    "ogl": {
+      "optional": true
+    },
+    "postprocessing": {
+      "optional": true
+    },
     "swiper": {
+      "optional": true
+    },
+    "three": {
       "optional": true
     }
   },
@@ -128,7 +144,11 @@
   },
   "devDependencies": {
     "@iconify/json": "catalog:peer",
+    "gsap": "catalog:peer",
+    "ogl": "catalog:peer",
+    "postprocessing": "catalog:peer",
     "swiper": "catalog:peer",
+    "three": "catalog:peer",
     "vue-router": "catalog:dev"
   }
 }

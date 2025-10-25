@@ -21,7 +21,7 @@ catalogs:
     '@pengzhanbo/eslint-config-vue': ^1.38.0
     '@pengzhanbo/stylelint-config': ^1.38.0
     '@simonwep/pickr': ^1.9.1
-    '@types/express': ^5.0.3
+    '@types/express': ^5.0.4
     '@types/js-yaml': ^4.0.9
     '@types/less': ^3.0.8
     '@types/lodash.merge': ^4.6.9
@@ -32,7 +32,7 @@ catalogs:
     '@types/stylus': ^0.48.43
     '@types/three': ^0.180.0
     '@types/webpack-env': ^1.18.8
-    '@vitest/coverage-istanbul': ^3.2.4
+    '@vitest/coverage-istanbul': ^4.0.3
     bumpp: ^10.3.1
     commitizen: ^4.3.1
     conventional-changelog-cli: ^5.0.0
@@ -43,7 +43,7 @@ catalogs:
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.4.2
-    lint-staged: ^16.2.5
+    lint-staged: ^16.2.6
     markdown-it: ^14.1.0
     memfs: ^4.49.0
     mermaid: ^11.12.0
@@ -55,11 +55,11 @@ catalogs:
     tsconfig-vuepress: ^7.0.0
     tsdown: ^0.15.9
     typescript: ^5.9.3
-    vitest: ^3.2.4
+    vitest: ^4.0.3
     vue-router: ^4.6.3
     wait-on: ^9.0.1
   peer:
-    '@iconify/json': ^2.2.398
+    '@iconify/json': ^2.2.399
     artplayer: ^5.3.0
     dashjs: ^5.0.3
     gsap: ^3.13.0
@@ -71,7 +71,7 @@ catalogs:
     pyodide: ^0.29.0
     sass: ^1.93.2
     sass-embedded: ^1.93.2
-    swiper: ^12.0.2
+    swiper: ^12.0.3
     three: ^0.180.0
   prod:
     '@clack/prompts': ^0.11.0
@@ -85,8 +85,8 @@ catalogs:
     '@mdit/plugin-tab': ^0.22.3
     '@mdit/plugin-tasklist': ^0.22.2
     '@pengzhanbo/utils': ^2.1.0
-    '@vueuse/core': ^13.9.0
-    '@vueuse/integrations': ^13.9.0
+    '@vueuse/core': ^14.0.0
+    '@vueuse/integrations': ^14.0.0
     bcrypt-ts: ^7.1.0
     cac: ^6.7.14
     chart.js: ^4.5.1
@@ -118,8 +118,8 @@ catalogs:
     picomatch: ^4.0.3
     shiki: ^3.13.0
     sort-package-json: ^3.4.0
-    tm-grammars: ^1.24.24
-    tm-themes: ^1.10.11
+    tm-grammars: ^1.25.0
+    tm-themes: ^1.10.12
     vue: ^3.5.22
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.26

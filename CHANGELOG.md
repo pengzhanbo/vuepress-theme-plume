@@ -1,3 +1,24 @@
+# [1.0.0-rc.174](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.173...v1.0.0-rc.174) (2025-10-25)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** avoid spellcheck in CodeEditor ([#736](https://github.com/pengzhanbo/vuepress-theme-plume/issues/736)) ([441b991](https://github.com/pengzhanbo/vuepress-theme-plume/commit/441b991b65ccda884f8fa7da33d8088e594507e4))
+* **theme:** fix ssr compile error ([be565ba](https://github.com/pengzhanbo/vuepress-theme-plume/commit/be565baf597c94508f00706e88d9a9ba31c89654))
+
+
+### Features
+
+* **theme:** add home hero effects ([#738](https://github.com/pengzhanbo/vuepress-theme-plume/issues/738)) ([aa6168c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/aa6168c31dd06d7ebbc2085fae06f037cdd2d0bd))
+
+
+### Performance Improvements
+
+* update deps to latest ([ca39869](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ca3986917cc4e20ce14e7ed414f002667e48f78f))
+* update deps to latest ([51e1f52](https://github.com/pengzhanbo/vuepress-theme-plume/commit/51e1f5260cf9a825146e9fb3abcceeca7dc73b48))
+
+
+
 # [1.0.0-rc.173](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.172...v1.0.0-rc.173) (2025-10-17)
 
 

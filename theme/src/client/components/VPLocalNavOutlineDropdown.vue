@@ -42,11 +42,6 @@ function onItemClick(e: Event) {
     })
   }
 }
-
-function scrollToTop() {
-  open.value = false
-  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-}
 </script>
 
 <template>
@@ -55,16 +50,8 @@ function scrollToTop() {
       {{ theme.outlineLabel || 'On this page' }}
       <span class="vpi-chevron-right icon" />
     </button>
-    <button v-else @click="scrollToTop">
-      {{ theme.returnToTopLabel || 'Return to top' }}
-    </button>
     <Transition name="fade-in-scale-up">
       <div v-if="open" ref="items" class="items" @click="onItemClick">
-        <div class="header">
-          <a class="top-link" href="#" @click="scrollToTop">
-            {{ theme.returnToTopLabel || 'Return to top' }}
-          </a>
-        </div>
         <div class="outline">
           <VPDocOutlineItem :headers="headers" />
         </div>
@@ -129,19 +116,6 @@ function scrollToTop() {
   box-shadow: var(--vp-shadow-3);
   transition: var(--vp-t-color);
   transition-property: background-color, border, box-shadow;
-}
-
-.header {
-  background-color: var(--vp-c-bg-soft);
-}
-
-.top-link {
-  display: block;
-  padding: 0 16px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 48px;
-  color: var(--vp-c-brand-1);
 }
 
 .outline {

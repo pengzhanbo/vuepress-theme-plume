@@ -12,7 +12,7 @@ const props = defineProps<{
 defineEmits<(e: 'openMenu') => void>()
 
 const { theme } = useData()
-const { isPosts } = usePostsPageData()
+const { isPosts, isPostsLayout } = usePostsPageData()
 
 const { hasSidebar } = useSidebar()
 const { y } = useWindowScroll()
@@ -38,13 +38,13 @@ const classes = computed(() => {
     'vp-local-nav': true,
     'fixed': empty.value,
     'reached-top': y.value >= navHeight.value,
-    'is-posts': isPosts.value,
+    'is-posts': isPosts.value && !isPostsLayout.value,
     'with-outline': !props.showOutline,
   }
 })
 
 const showLocalNav = computed(() => {
-  return (hasSidebar.value || isPosts.value) && (!empty.value || y.value >= navHeight.value)
+  return (hasSidebar.value || (isPosts.value && !isPostsLayout.value)) && !empty.value
 })
 </script>
 

@@ -25,7 +25,7 @@ const social = computed(() => {
 
 const hasExtraContent = computed(
   () =>
-    (localeLinks.value.length && currentLang.value.label)
+    (localeLinks.value.length && currentLang.value.text)
     || theme.value.appearance
     || social.value?.length,
 )
@@ -38,11 +38,11 @@ const hasExtraContent = computed(
     label="extra navigation"
   >
     <div
-      v-if="localeLinks.length && currentLang.label"
+      v-if="localeLinks.length && currentLang.text"
       class="group translations"
     >
       <p class="trans-title">
-        {{ currentLang.label }}
+        {{ currentLang.text }}
       </p>
 
       <template v-for="locale in localeLinks" :key="locale.link">

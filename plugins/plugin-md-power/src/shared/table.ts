@@ -28,4 +28,11 @@ export interface TableContainerOptions {
    * @default false
    */
   maxContent?: boolean
+
+  /**
+   * 表格宽度是否填充整行宽度
+   *
+   * @default false
+   */
+  fullWidth?: boolean
 }

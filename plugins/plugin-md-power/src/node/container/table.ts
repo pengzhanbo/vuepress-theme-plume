@@ -47,7 +47,7 @@ export interface TableContainerAttrs extends TableContainerOptions {
 export function tablePlugin(md: Markdown, options: TableContainerOptions = {}): void {
   createContainerSyntaxPlugin(md, 'table', (tokens, index, opt, env) => {
     const { hlCols = '', hlRows = '', hlCells = '', ...meta } = tokens[index].meta as TableContainerAttrs
-    const props = { copy: true, maxContent: false, ...options, ...meta } as TableContainerAttrs & { markdown?: string }
+    const props = { copy: true, maxContent: false, fullWidth: false, ...options, ...meta } as TableContainerAttrs & { markdown?: string }
     const content = tokens[index].content
 
     if (props.copy) {

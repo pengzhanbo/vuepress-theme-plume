@@ -33,6 +33,8 @@ export default defineUserConfig({
         // Whether the table width is the max-content width
         // Inline elements will not wrap automatically; a scrollbar is displayed when the content exceeds the container width.
         maxContent: false,
+        // The table width defaults to occupying the entire row.
+        fullWidth: false,
         /**
          * Copy as HTML/Markdown
          * `true` is equivalent to `'all'`, enabling both HTML and Markdown copying.
@@ -80,6 +82,10 @@ Displays a copy button in the top-right corner of the table for copying as HTML 
 
 ::: field name="maxContent" type="boolean" optional default="false"
 Inline elements will not wrap automatically; a scrollbar is displayed when the content exceeds the container width.
+:::
+
+::: field name="fullWidth" type="boolean" optional default="false"
+The table width defaults to occupying the entire row.
 :::
 
 ::: field name="hl-rows" type="string" optional
@@ -205,6 +211,28 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 |----|-----------------------------------------------------------------------------|--------------|
 | 1  | This is an extremely long description that should trigger text wrapping in most table implementations. | In Progress  |
 | 2  | Short text                                                                  | ✅ Completed |
+
+:::
+
+**Input:**
+
+```md
+::: table full-width
+| Header 1 | Header 2 | Header 3 |
+|----------|----------|----------|
+| Cell 1   | Cell 2   | Cell 3   |
+| Row 2    | Data     | Info     |
+:::
+```
+
+**Output:**
+
+::: table full-width
+
+| Header 1 | Header 2 | Header 3 |
+|----------|----------|----------|
+| Cell 1   | Cell 2   | Cell 3   |
+| Row 2    | Data     | Info     |
 
 :::
 

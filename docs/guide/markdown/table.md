@@ -31,6 +31,8 @@ export default defineUserConfig({
         // 表格宽度是否为最大内容宽度
         // 行内元素不再自动换行，超出容器宽度时表格显示滚动条
         maxContent: false,
+        // 表格宽度默认占据整行
+        fullWidth: false,
         /**
          * 复制为 html/markdown
          * true 相当于 `all`，相当于同时启用 html 和 markdown
@@ -78,6 +80,10 @@ export default defineUserConfig({
 
 ::: field name="maxContent" type="boolean" optional default="false"
 行内元素不再自动换行，超出容器宽度时表格显示滚动条
+:::
+
+::: field name="fullWidth" type="boolean" optional default="false"
+表格宽度默认占据整行
 :::
 
 ::: field name="hl-rows" type="string" optional
@@ -202,6 +208,28 @@ export default defineUserConfig({
 |----|-----------------------------------------------------------------------------|--------------|
 | 1  | This is an extremely long description that should trigger text wrapping in most table implementations. | In Progress  |
 | 2  | Short text                                                                  | ✅ Completed |
+
+:::
+
+**输入：**
+
+```md
+::: table full-width
+| Header 1 | Header 2 | Header 3 |
+|----------|----------|----------|
+| Cell 1   | Cell 2   | Cell 3   |
+| Row 2    | Data     | Info     |
+:::
+```
+
+**输出：**
+
+::: table full-width
+
+| Header 1 | Header 2 | Header 3 |
+|----------|----------|----------|
+| Cell 1   | Cell 2   | Cell 3   |
+| Row 2    | Data     | Info     |
 
 :::
 

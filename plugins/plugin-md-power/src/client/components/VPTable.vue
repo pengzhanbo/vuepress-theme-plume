@@ -12,6 +12,8 @@ const props = defineProps<{
   copy?: false | 'all' | 'html' | 'md'
   /** 最大化内容 */
   maxContent?: boolean
+  /** 填充整行宽度 */
+  fullWidth?: boolean
   /** @internal */
   markdown?: string
 }>()
@@ -33,7 +35,7 @@ function onCopy(type: 'html' | 'md') {
 </script>
 
 <template>
-  <div class="vp-table" :class="{ [align || 'left']: true }">
+  <div class="vp-table" :class="{ [align || 'left']: true, full: fullWidth }">
     <div class="table-container">
       <div class="table-content">
         <div v-if="copy" class="table-toolbar">
@@ -142,6 +144,13 @@ function onCopy(type: 'html' | 'md') {
 
 .vp-table .table-content .max-content table {
   width: max-content;
+}
+
+.vp-table.full,
+.vp-table.full .table-container,
+.vp-table.full .table-content,
+.vp-table.full .table-content table {
+  min-width: 100%;
 }
 
 /* -----  Highlight --------- */

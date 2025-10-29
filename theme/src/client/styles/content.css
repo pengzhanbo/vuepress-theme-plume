@@ -207,7 +207,7 @@
  * Table
  * -------------------------------------------------------------------------- */
 .vp-doc table {
-  display: block;
+  display: table;
   margin: 20px 0;
   overflow-x: auto;
   border-collapse: collapse;

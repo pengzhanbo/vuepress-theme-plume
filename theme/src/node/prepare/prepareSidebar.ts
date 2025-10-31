@@ -171,7 +171,7 @@ function getAutoDirSidebar(
         current.icon = frontmatter.icon as ThemeIcon
       }
       if (parent?.items?.length) {
-        parent.collapsed = false
+        parent.collapsed ??= false
       }
       parent = current
       items = current.items as ResolvedSidebarItem[]

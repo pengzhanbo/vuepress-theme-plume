@@ -43,6 +43,7 @@ config:
 - [orb](#orb)
 - [beams](#beams)
 - [lightning](#lightning)
+- [dark-veil](#dark-veil)
 
 `effectConfig` 需要根据不同的 `effect` 值，进行不同的配置。通常你不需要配置，主题会自动应用预设配置。
 
@@ -1299,5 +1300,73 @@ config:
       speed: 1
       intensity: 1
       size: 1
+---
+```
+
+### dark-veil
+
+#### 效果预览
+
+![dark-veil](/images/hero-effects/dark-veil.png)
+
+#### 使用方法
+
+```md {8}
+---
+pageLayout: home
+home: true
+config:
+ -
+    type: hero
+    full: true
+    effect: dark-veil
+---
+```
+
+#### 配置项
+
+::::field-group
+:::field name="hueShift" type="number" optional default="0"
+调整整个动画的色调。
+:::
+:::field name="noiseIntensity" type="number" optional default="0"
+噪声/颗粒效果的强度。
+:::
+:::field name="scanlineIntensity" type="number" optional default="0"
+扫描线效果的强度。
+:::
+:::field name="speed" type="number" optional default="0.5"
+动画速度。
+:::
+:::field name="scanlineFrequency" type="number" optional default="0"
+扫描线的频率。
+:::
+:::field name="warpAmount" type="number" optional default="0"
+应用于效果的扭曲变形量。
+:::
+:::field name="resolutionScale" type="number" optional default="1"
+分辨率缩放比例。
+:::
+::::
+
+**示例**:
+
+```md
+---
+pageLayout: home
+home: true
+config:
+ -
+    type: hero
+    full: true
+    effect: dark-veil
+    effectConfig:
+      hueShift: 0
+      noiseIntensity: 0
+      scanlineIntensity: 0
+      speed: 0.5
+      scanlineFrequency: 0
+      warpAmount: 0
+      resolutionScale: 1
 ---
 ```

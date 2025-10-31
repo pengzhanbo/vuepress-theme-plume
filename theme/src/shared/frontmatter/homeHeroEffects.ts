@@ -3,7 +3,7 @@ import type { CSSProperties } from 'vue'
 import type { ThemeLightDark } from '../common/index.js'
 import type { LiteralUnion } from '../utils.js'
 
-export type ThemeHomeHeroEffect = LiteralUnion<'tint-plate' | 'prism' | 'pixel-blast' | 'hyper-speed' | 'liquid-ether' | 'dot-grid' | 'iridescence' | 'orb' | 'beams' | 'lightning'>
+export type ThemeHomeHeroEffect = LiteralUnion<'tint-plate' | 'prism' | 'pixel-blast' | 'hyper-speed' | 'liquid-ether' | 'dot-grid' | 'iridescence' | 'orb' | 'beams' | 'lightning' | 'dark-veil'>
 
 export type ThemeHomeHeroEffectConfig
   = | ThemeHomeHeroTintPlate
@@ -16,6 +16,7 @@ export type ThemeHomeHeroEffectConfig
     | ThemeHomeHeroOrb
     | ThemeHomeHeroBeams
     | ThemeHomeHeroLightning
+    | ThemeHomeHeroDarkVeil
 
 export type ThemeHomeHeroTintPlate = ThemeLightDark<{ rgb: string | number } | {
   r: { value: number, offset: number }
@@ -556,4 +557,42 @@ export interface ThemeHomeHeroLightning {
    * 光束的缩放因子。
    */
   size?: number
+}
+
+export interface ThemeHomeHeroDarkVeil {
+  /**
+   * Shifts the hue of the entire animation.
+   * 调整整个动画的色调。
+   */
+  hueShift?: number
+  /**
+   * Intensity of the noise/grain effect.
+   * 噪声/颗粒效果的强度。
+   */
+  noiseIntensity?: number
+  /**
+   * Intensity of the scanline effect.
+   * 扫描线效果的强度。
+   */
+  scanlineIntensity?: number
+  /**
+   * Speed of the animation.
+   * 动画速度。
+   */
+  speed?: number
+  /**
+   * Frequency of the scanlines.
+   * 扫描线的频率。
+   */
+  scanlineFrequency?: number
+  /**
+   * Amount of warp distortion applied to the effect.
+   * 应用于效果的扭曲变形量。
+   */
+  warpAmount?: number
+  /**
+   * Scale factor for the resolution.
+   * 分辨率缩放比例。
+   */
+  resolutionScale?: number
 }

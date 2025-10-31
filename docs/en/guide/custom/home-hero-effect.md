@@ -43,6 +43,7 @@ The `effect` property supports the following values:
 - [orb](#orb)
 - [beams](#beams)
 - [lightning](#lightning)
+- [dark-veil](#dark-veil)
 
 The `effectConfig` should be configured according to the selected `effect`.
 In most cases, you don’t need to configure it—the theme will automatically apply preset configurations.
@@ -1302,5 +1303,73 @@ config:
       speed: 1
       intensity: 1
       size: 1
+---
+```
+
+### dark-veil
+
+#### Effect Preview
+
+![dark-veil](/images/hero-effects/dark-veil.png)
+
+#### Usage
+
+```md {8}
+---
+pageLayout: home
+home: true
+config:
+ -
+    type: hero
+    full: true
+    effect: dark-veil
+---
+```
+
+#### Configuration
+
+::::field-group
+:::field name="hueShift" type="number" optional default="0"
+Shifts the hue of the entire animation.
+:::
+:::field name="noiseIntensity" type="number" optional default="0"
+Intensity of the noise/grain effect.
+:::
+:::field name="scanlineIntensity" type="number" optional default="0"
+Intensity of the scanline effect.
+:::
+:::field name="speed" type="number" optional default="0.5"
+Speed of the animation.
+:::
+:::field name="scanlineFrequency" type="number" optional default="0"
+Frequency of the scanlines.
+:::
+:::field name="warpAmount" type="number" optional default="0"
+Amount of warp distortion applied to the effect.
+:::
+:::field name="resolutionScale" type="number" optional default="1"
+Scale factor for the resolution.
+:::
+::::
+
+**Example**:
+
+```md
+---
+pageLayout: home
+home: true
+config:
+ -
+    type: hero
+    full: true
+    effect: dark-veil
+    effectConfig:
+      hueShift: 0
+      noiseIntensity: 0
+      scanlineIntensity: 0
+      speed: 0.5
+      scanlineFrequency: 0
+      warpAmount: 0
+      resolutionScale: 1
 ---
 ```

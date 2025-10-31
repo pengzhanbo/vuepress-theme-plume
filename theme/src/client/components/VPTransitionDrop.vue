@@ -7,10 +7,7 @@ interface Props {
   duration?: number
   appear?: boolean
 }
-const props = withDefaults(defineProps<Props>(), {
-  delay: 0,
-  duration: 0.25,
-})
+const { delay = 0, duration = 0.25, appear } = defineProps<Props>()
 
 const { theme } = useData()
 
@@ -36,7 +33,7 @@ function setStyle(item: Element) {
     _transition = value && !value.includes('all') ? `${value || ''}, ` : ' '
   }
 
-  el.style.transition = `${_transition}transform ${props.duration}s ease-in-out ${props.delay}s, opacity ${props.duration}s ease-in-out ${props.delay}s`
+  el.style.transition = `${_transition}transform ${duration}s ease-in-out ${delay}s, opacity ${duration}s ease-in-out ${delay}s`
 }
 
 function unsetStyle(item: Element) {

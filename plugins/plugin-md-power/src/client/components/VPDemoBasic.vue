@@ -8,14 +8,14 @@ import { useExpand } from '../composables/demo.js'
 import '@vuepress/helper/transition/fade-in-height-expand.css'
 import '../styles/demo.css'
 
-const props = defineProps<{
+const { type, title, desc, expanded } = defineProps<{
   type?: 'vue' | 'markdown'
   title?: string
   desc?: string
   expanded?: boolean
 }>()
 
-const [showCode, toggleCode] = useExpand(props.expanded)
+const [showCode, toggleCode] = useExpand(expanded)
 
 const draw = useTemplateRef<HTMLIFrameElement>('draw')
 const vueDraw = useTemplateRef<HTMLIFrameElement>('draw-vue')
@@ -30,7 +30,7 @@ function resizeAndPositionVueDraw() {
   vueDraw.value.style.left = `${rect.x + scrollLeft}px`
 }
 
-if (props.type === 'vue' && !__VUEPRESS_SSR__) {
+if (type === 'vue' && !__VUEPRESS_SSR__) {
   watch([draw, vueDraw], () => {
     resizeAndPositionVueDraw()
     if (draw.value && vueDraw.value) {

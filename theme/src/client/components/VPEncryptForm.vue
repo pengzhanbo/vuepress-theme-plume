@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useData, useEncryptCompare } from '../composables/index.js'
 
-const props = defineProps<{
+const { global, info } = defineProps<{
   global?: boolean
   info?: string
 }>()
@@ -18,7 +18,7 @@ async function onSubmit() {
   if (unlocking.value)
     return
 
-  const compare = props.global ? compareGlobal : comparePage
+  const compare = global ? compareGlobal : comparePage
   unlocking.value = true
   const result = await compare(password.value)
   unlocking.value = false

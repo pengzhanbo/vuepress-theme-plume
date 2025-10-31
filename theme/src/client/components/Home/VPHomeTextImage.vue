@@ -4,11 +4,9 @@ import VPHomeBox from '@theme/Home/VPHomeBox.vue'
 import VPImage from '@theme/VPImage.vue'
 import { computed } from 'vue'
 
-const props = defineProps<ThemeHomeTextImage>()
+const { width, title, description, list, image, type, backgroundImage, backgroundAttachment, full, index } = defineProps<ThemeHomeTextImage>()
 
 const maxWidth = computed(() => {
-  const width = props.width
-
   if (typeof width === 'number')
     return `${width}px`
 
@@ -19,12 +17,8 @@ const maxWidth = computed(() => {
 <template>
   <VPHomeBox
     class="vp-home-text-image"
-    :type="type"
-    :background-image="backgroundImage"
-    :background-attachment="backgroundAttachment"
-    :full="full"
     :container-class="{ reverse: type === 'text-image' }"
-    :index="index"
+    v-bind="{ type, backgroundAttachment, backgroundImage, full, index }"
   >
     <div class="content-image">
       <VPImage :image="image" :style="{ maxWidth }" />
@@ -39,7 +33,7 @@ const maxWidth = computed(() => {
         <p v-if="description" class="description" v-html="description" />
 
         <ul v-if="list && list.length" class="list">
-          <li v-for="(item, index) in list" :key="index">
+          <li v-for="(item, i) in list" :key="i">
             <template v-if="typeof item === 'object'">
               <h3 v-if="item.title" v-html="item.title" />
               <p v-if="item.description" v-html="item.description" />

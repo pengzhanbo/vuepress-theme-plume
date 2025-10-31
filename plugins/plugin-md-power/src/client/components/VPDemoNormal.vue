@@ -8,29 +8,29 @@ import '@vuepress/helper/transition/fade-in.css'
 import '@vuepress/helper/transition/fade-in-height-expand.css'
 import '../styles/demo.css'
 
-const props = defineProps<{
+const { title, desc, expanded, config } = defineProps<{
   title?: string
   desc?: string
   expanded?: boolean
   config?: DemoConfig
 }>()
 
-const [showCode, toggleCode] = useExpand(props.expanded)
+const [showCode, toggleCode] = useExpand(expanded)
 
 const { resources, showResources, toggleResources } = useResources(
   useTemplateRef<HTMLDivElement>('resourcesEl'),
-  () => props.config,
+  () => config,
 )
 
 const { id, height } = useNormalDemo(
   useTemplateRef<HTMLIFrameElement>('draw'),
-  () => props.title,
-  () => props.config,
+  () => title,
+  () => config,
 )
 
 const data = useFence(
   useTemplateRef<HTMLDivElement>('fence'),
-  () => props.config,
+  () => config,
 )
 </script>
 

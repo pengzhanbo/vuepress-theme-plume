@@ -12,16 +12,12 @@ interface MessageData {
   }
 }
 
-const props = withDefaults(defineProps<{
+const { feature, past = 2, future = 1, meta = '' } = defineProps<{
   feature: string
   past?: number
   future?: number
   meta?: string
-}>(), {
-  past: 2,
-  future: 1,
-  meta: '',
-})
+}>()
 
 const url = 'https://caniuse.pengzhanbo.cn/'
 
@@ -29,7 +25,7 @@ const height = ref('330px')
 
 const isDark = useDarkMode()
 const source = computed(() => {
-  const source = `${url}${props.feature}#past=${props.past}&future=${props.future}&meta=${props.meta}&theme=${isDark.value ? 'dark' : 'light'}`
+  const source = `${url}${feature}#past=${past}&future=${future}&meta=${meta}&theme=${isDark.value ? 'dark' : 'light'}`
 
   return source
 })
@@ -40,8 +36,8 @@ useEventListener('message', (event) => {
   if (
     type === 'ciu_embed'
     && payload
-    && payload.feature === props.feature
-    && payload.meta === props.meta
+    && payload.feature === feature
+    && payload.meta === meta
   ) {
     height.value = `${Math.ceil(payload.height)}px`
   }

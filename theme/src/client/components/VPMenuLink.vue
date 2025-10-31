@@ -6,7 +6,7 @@ import { resolveRouteFullPath } from 'vuepress/client'
 import { useData } from '../composables/index.js'
 import { isActive } from '../utils/index.js'
 
-defineProps<{
+const { item } = defineProps<{
   item: any
 }>()
 

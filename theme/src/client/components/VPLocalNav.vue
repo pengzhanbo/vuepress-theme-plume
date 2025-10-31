@@ -4,7 +4,7 @@ import { useWindowScroll } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
 import { useData, useHeaders, usePostsPageData, useSidebar } from '../composables/index.js'
 
-const props = defineProps<{
+const { open, showOutline } = defineProps<{
   open: boolean
   showOutline: boolean
 }>()
@@ -39,7 +39,7 @@ const classes = computed(() => {
     'fixed': empty.value,
     'reached-top': y.value >= navHeight.value,
     'is-posts': isPosts.value && !isPostsLayout.value,
-    'with-outline': !props.showOutline,
+    'with-outline': !showOutline,
   }
 })
 

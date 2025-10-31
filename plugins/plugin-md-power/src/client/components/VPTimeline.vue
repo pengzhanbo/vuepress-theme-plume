@@ -2,7 +2,7 @@
 import { computed, provide } from 'vue'
 import { INJECT_TIMELINE_KEY } from '../options.js'
 
-const props = defineProps<{
+const { horizontal, card, placement, line } = defineProps<{
   horizontal?: boolean
   card?: boolean
   placement?: 'left' | 'right' | 'between'
@@ -10,10 +10,10 @@ const props = defineProps<{
 }>()
 
 provide(INJECT_TIMELINE_KEY, computed(() => ({
-  line: props.line || 'solid',
-  card: props.card ?? false,
-  horizontal: props.horizontal ?? false,
-  placement: props.placement || 'left',
+  line: line || 'solid',
+  card: card ?? false,
+  horizontal: horizontal ?? false,
+  placement: placement || 'left',
 })))
 </script>
 

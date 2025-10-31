@@ -2,15 +2,15 @@
 import { provide, ref } from 'vue'
 import { INJECT_COLLAPSE_KEY } from '../options.js'
 
-const props = defineProps<{
+const { accordion, index } = defineProps<{
   accordion?: boolean
   index?: number
 }>()
 
-const currentIndex = ref<number | undefined>(props.index)
+const currentIndex = ref<number | undefined>(index)
 
 provide(INJECT_COLLAPSE_KEY, {
-  accordion: props.accordion ?? false,
+  accordion: accordion ?? false,
   index: currentIndex,
 })
 </script>

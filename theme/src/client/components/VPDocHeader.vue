@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { useData } from '../composables/index.js'
 
-defineProps<{
+const { title, anchor } = defineProps<{
   title?: string
   anchor: string
 }>()

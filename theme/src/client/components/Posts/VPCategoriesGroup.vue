@@ -5,12 +5,11 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
 import { useData } from '../../composables/index.js'
 
-const props = withDefaults(defineProps<{
+const { item, depth = 0 } = defineProps<{
   item: CategoryItem
   depth?: number
-}>(), {
-  depth: 0,
-})
+}>()
+
 const { collection } = useData<'page', 'post'>()
 const route = useRoute()
 const el = ref<HTMLDivElement | null>(null)
@@ -28,16 +27,16 @@ const expandDepth = computed(() => {
 })
 
 watch(
-  () => [route.query, props.item, expandDepth.value],
+  () => [route.query, item, expandDepth.value],
   () => {
     const id = route.query.id as string
     if (!id) {
-      expand.value = props.depth <= expandDepth.value
+      expand.value = depth <= expandDepth.value
     }
     else {
-      expand.value = hasExpand(props.item, id)
+      expand.value = hasExpand(item, id)
     }
-    isExpand.value = id ? props.item.id === id : false
+    isExpand.value = id ? item.id === id : false
   },
   { immediate: true },
 )

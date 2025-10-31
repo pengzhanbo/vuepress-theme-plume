@@ -3,7 +3,7 @@ import type { ResolvedSidebarItem } from '../../shared/index.js'
 import VPSidebarItem from '@theme/VPSidebarItem.vue'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 
-defineProps<{
+const { items } = defineProps<{
   items: ResolvedSidebarItem[]
 }>()
 

@@ -3,12 +3,10 @@ import type { CategoryItem, CategoryItemWithPost } from '../../composables/index
 import VPCategoriesGroup from '@theme/Posts/VPCategoriesGroup.vue'
 import VPLink from '@theme/VPLink.vue'
 
-withDefaults(defineProps<{
+const { items, depth = 0 } = defineProps<{
   items: (CategoryItem | CategoryItemWithPost)[]
   depth?: number
-}>(), {
-  depth: 0,
-})
+}>()
 </script>
 
 <template>

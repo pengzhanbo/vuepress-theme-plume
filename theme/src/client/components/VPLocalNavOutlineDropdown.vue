@@ -7,7 +7,7 @@ import { useData } from '../composables/index.js'
 
 import '@vuepress/helper/transition/fade-in-scale-up.css'
 
-const props = defineProps<{
+const { headers, navHeight } = defineProps<{
   headers: MenuItem[]
   navHeight: number
 }>()
@@ -18,7 +18,7 @@ const vh = ref(0)
 const items = ref<HTMLDivElement>()
 const btn = ref<HTMLButtonElement>()
 
-watch(() => props.headers, () => {
+watch(() => headers, () => {
   open.value = false
 })
 
@@ -28,7 +28,7 @@ onClickOutside(items, () => {
 
 function toggle() {
   open.value = !open.value
-  vh.value = window.innerHeight + Math.min(window.scrollY - props.navHeight, 0)
+  vh.value = window.innerHeight + Math.min(window.scrollY - navHeight, 0)
 }
 
 function onItemClick(e: Event) {

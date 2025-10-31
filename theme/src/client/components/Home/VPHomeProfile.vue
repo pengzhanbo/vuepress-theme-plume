@@ -5,7 +5,7 @@ import VPImage from '@theme/VPImage.vue'
 import { computed } from 'vue'
 import { useData } from '../../composables/index.js'
 
-const props = defineProps<ThemeHomeProfile>()
+const { name, description, avatar, circle, type, backgroundImage, backgroundAttachment, full, index } = defineProps<ThemeHomeProfile>()
 
 const { theme } = useData()
 
@@ -13,10 +13,10 @@ const rawProfile = computed(() => theme.value.profile)
 
 const profile = computed(() => {
   return {
-    name: props.name || rawProfile.value?.name,
-    description: props.description || rawProfile.value?.description,
-    avatar: props.avatar || rawProfile.value?.avatar || rawProfile.value?.url,
-    circle: props.circle || rawProfile.value?.circle,
+    name: name || rawProfile.value?.name,
+    description: description || rawProfile.value?.description,
+    avatar: avatar || rawProfile.value?.avatar || rawProfile.value?.url,
+    circle: circle || rawProfile.value?.circle,
   }
 })
 </script>
@@ -24,11 +24,7 @@ const profile = computed(() => {
 <template>
   <VPHomeBox
     class="vp-home-profile"
-    :type="type"
-    :background-image="backgroundImage"
-    :background-attachment="backgroundAttachment"
-    :full="full"
-    :index="index"
+    v-bind="{ type, backgroundAttachment, backgroundImage, full, index }"
   >
     <VPImage v-if="profile.avatar" :image="profile.avatar" :class="{ circle: profile.circle }" />
 

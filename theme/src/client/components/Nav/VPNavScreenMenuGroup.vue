@@ -9,7 +9,7 @@ import { computed, ref } from 'vue'
 
 import '@vuepress/helper/transition/fade-in-height-expand.css'
 
-const props = defineProps<{
+const { text, icon, badge, items } = defineProps<{
   text: string
   icon?: ThemeIcon
   badge?: string | ThemeBadge
@@ -19,7 +19,7 @@ const props = defineProps<{
 const isOpen = ref(false)
 
 const groupId = computed(
-  () => `nav-screen-menu-group-${props.text.replace(' ', '-').toLowerCase()}`,
+  () => `nav-screen-menu-group-${text.replace(' ', '-').toLowerCase()}`,
 )
 
 function toggle() {

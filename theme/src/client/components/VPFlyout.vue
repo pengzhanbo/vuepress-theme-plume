@@ -6,7 +6,7 @@ import VPMenu from '@theme/VPMenu.vue'
 import { ref } from 'vue'
 import { useFlyout } from '../composables/index.js'
 
-defineProps<{
+const { prefixIcon, icon, button, label, items, badge } = defineProps<{
   prefixIcon?: ThemeIcon
   icon?: any
   button?: string

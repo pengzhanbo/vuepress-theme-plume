@@ -6,7 +6,7 @@ import { computed } from 'vue'
 import { useDarkMode } from '../composables/index.js'
 import VPSocialLinks from './VPSocialLinks.vue'
 
-const props = defineProps<{
+const { friend } = defineProps<{
   friend: FriendsItem
 }>()
 
@@ -21,9 +21,9 @@ function getStyle(name: string, color?: string | { light: string, dark: string }
 
 const friendStyle = computed(() => {
   return {
-    ...getStyle('--vp-friends-text-color', props.friend.color),
-    ...getStyle('--vp-friends-bg-color', props.friend.backgroundColor),
-    ...getStyle('--vp-friends-name-color', props.friend.nameColor),
+    ...getStyle('--vp-friends-text-color', friend.color),
+    ...getStyle('--vp-friends-bg-color', friend.backgroundColor),
+    ...getStyle('--vp-friends-name-color', friend.nameColor),
   }
 })
 </script>

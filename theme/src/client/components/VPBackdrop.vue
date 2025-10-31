@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import '@vuepress/helper/transition/fade-in.css'
 
-defineProps<{
+const { show } = defineProps<{
   show: boolean
 }>()
 </script>

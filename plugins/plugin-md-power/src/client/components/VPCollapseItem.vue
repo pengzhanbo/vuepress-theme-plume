@@ -6,7 +6,7 @@ import { INJECT_COLLAPSE_KEY } from '../options.js'
 
 import '@vuepress/helper/transition/fade-in-height-expand.css'
 
-const props = defineProps<{
+const { expand, index } = defineProps<{
   expand?: boolean
   index: number
 }>()
@@ -20,36 +20,36 @@ if (__VUEPRESS_DEV__ && !collapse) {
   throw new Error('<VPCollapseItem /> must be used inside <VPCollapse />')
 }
 
-const expand = ref(
+const expanded = ref(
   collapse?.accordion && typeof collapse.index.value !== 'undefined'
-    ? props.index === collapse.index.value
-    : props.expand,
+    ? index === collapse.index.value
+    : expand,
 )
 
 if (collapse?.accordion) {
   watch(collapse?.index, () => {
-    expand.value = collapse?.index.value === props.index
+    expanded.value = collapse?.index.value === index
   })
 }
 
 function toggle() {
   if (collapse?.accordion) {
-    if (collapse.index.value === props.index && expand.value) {
-      expand.value = false
+    if (collapse.index.value === index && expanded.value) {
+      expanded.value = false
     }
     else {
-      collapse!.index.value = props.index!
-      expand.value = true
+      collapse!.index.value = index!
+      expanded.value = true
     }
   }
   else {
-    expand.value = !expand.value
+    expanded.value = !expanded.value
   }
 }
 </script>
 
 <template>
-  <div class="vp-collapse-item" :class="{ expand }">
+  <div class="vp-collapse-item" :class="{ expanded }">
     <div class="vp-collapse-header" @click="toggle">
       <span class="vpi-chevron-right" />
       <p class="vp-collapse-title">
@@ -57,7 +57,7 @@ function toggle() {
       </p>
     </div>
     <FadeInExpandTransition>
-      <div v-show="expand" class="vp-collapse-content">
+      <div v-show="expanded" class="vp-collapse-content">
         <div class="vp-collapse-content-inner">
           <slot />
         </div>
@@ -95,7 +95,7 @@ function toggle() {
   transform: rotate(0deg);
 }
 
-.vp-collapse-item.expand .vpi-chevron-right {
+.vp-collapse-item.expanded .vpi-chevron-right {
   transform: rotate(90deg);
 }
 

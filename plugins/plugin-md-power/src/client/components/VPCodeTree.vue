@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { onMounted, provide, ref, useTemplateRef, watch } from 'vue'
 
-const props = withDefaults(defineProps<{
+const { title, height = '320px', entryFile } = defineProps<{
   title?: string
   height?: string
   entryFile?: string
-}>(), { height: '320px' })
+}>()
 
-const activeNode = ref(props.entryFile || '')
+const activeNode = ref(entryFile || '')
 const isEmpty = ref(true)
 const codePanel = useTemplateRef<HTMLDivElement>('codePanel')
 
@@ -44,7 +44,7 @@ onMounted(() => {
 
 <template>
   <div class="vp-code-tree">
-    <div class="code-tree-panel" :style="{ 'max-height': props.height }">
+    <div class="code-tree-panel" :style="{ 'max-height': height }">
       <div v-if="title" class="code-tree-title" :title="title">
         <span>{{ title }}</span>
       </div>
@@ -52,7 +52,7 @@ onMounted(() => {
         <slot name="file-tree" />
       </div>
     </div>
-    <div ref="codePanel" class="code-panel" :style="{ height: props.height }">
+    <div ref="codePanel" class="code-panel" :style="{ height }">
       <slot />
       <div v-if="isEmpty" class="code-tree-empty">
         <span class="vpi-code-tree-empty" />

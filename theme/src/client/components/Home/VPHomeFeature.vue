@@ -6,15 +6,15 @@ import VPLink from '@theme/VPLink.vue'
 import { isLinkAbsolute, isLinkHttp } from '@vuepress/helper/client'
 import { computed } from 'vue'
 
-const props = defineProps<ThemeHomeFeature>()
+const { icon, link, linkText, rel, target, title, details } = defineProps<ThemeHomeFeature>()
 
 const ICONIFY_NAME = /^[\w-]+:[\w-]+$/
 
 const isIconify = computed(() => {
-  if (typeof props.icon !== 'string' || isLinkAbsolute(props.icon) || isLinkHttp(props.icon)) {
+  if (typeof icon !== 'string' || isLinkAbsolute(icon) || isLinkHttp(icon)) {
     return false
   }
-  return ICONIFY_NAME.test(props.icon)
+  return ICONIFY_NAME.test(icon)
 })
 </script>
 

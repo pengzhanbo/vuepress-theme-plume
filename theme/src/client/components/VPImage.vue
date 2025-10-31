@@ -4,13 +4,12 @@ import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { numToUnit } from '../utils/index.js'
 
-const props = defineProps<{
+const { image, alt } = defineProps<{
   image: ThemeImage
   alt?: string
 }>()
 
 const styles = computed(() => {
-  const image = props.image
   if (!image || typeof image === 'string')
     return ''
   if (!image.width || !image.height)

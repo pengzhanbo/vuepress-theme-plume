@@ -2,7 +2,7 @@
 import type { Ref } from 'vue'
 import { inject, ref } from 'vue'
 
-const props = defineProps<{
+const { type, filename, level, diff, expanded, focus, filepath } = defineProps<{
   type: 'file' | 'folder'
   filename: string
   level: number
@@ -18,17 +18,17 @@ const onNodeClick = inject<
   (filename: string, type: 'file' | 'folder') => void
 >('on-file-tree-node-click', () => {})
 
-const active = ref(props.expanded)
+const active = ref(expanded)
 
 function nodeClick() {
-  if (props.filename === '…' || props.filename === '...')
+  if (filename === '…' || filename === '...')
     return
 
-  onNodeClick(props.filepath || props.filename, props.type)
+  onNodeClick(filepath || filename, type)
 }
 
 function toggle(ev: MouseEvent) {
-  if (props.type === 'folder') {
+  if (type === 'folder') {
     const el = ev.target as HTMLElement
     if (!el.matches('.comment, .comment *')) {
       active.value = !active.value

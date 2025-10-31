@@ -4,7 +4,7 @@ import { useMediaQuery } from '@vueuse/core'
 import { computed, inject } from 'vue'
 import { INJECT_TIMELINE_KEY } from '../options.js'
 
-const props = defineProps<{
+const { time, type, card, line, icon, color, placement } = defineProps<{
   time?: string
   type?: 'info' | 'tip' | 'success' | 'warning' | 'danger' | 'caution' | 'important' | (string & {})
   card?: boolean
@@ -25,17 +25,17 @@ const defaultOptions = inject<ComputedRef<{
 
 const timeline = computed(() => {
   const between = defaultOptions?.value.placement === 'between' && !is639.value
-  const placement = defaultOptions?.value.placement === 'between' ? 'left' : defaultOptions?.value.placement
+  const defaultPlacement = defaultOptions?.value.placement === 'between' ? 'left' : defaultOptions?.value.placement
   return {
-    time: props.time,
-    type: props.type || 'info',
-    line: props.line || defaultOptions?.value.line || 'solid',
-    icon: props.icon,
-    color: props.color,
+    time,
+    type: type || 'info',
+    line: line || defaultOptions?.value.line || 'solid',
+    icon,
+    color,
     horizontal: defaultOptions?.value.horizontal ?? false,
-    between: between ? props.placement || 'left' : false,
-    placement: between ? '' : (placement || 'left'),
-    card: props.card ?? defaultOptions?.value.card ?? false,
+    between: between ? placement || 'left' : false,
+    placement: between ? '' : (defaultPlacement || 'left'),
+    card: card ?? defaultOptions?.value.card ?? false,
   }
 })
 </script>

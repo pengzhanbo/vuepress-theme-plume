@@ -5,38 +5,38 @@ import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { useDarkMode } from '../../composables/index.js'
 
-const props = defineProps<ThemeHomeConfigBase & {
+const { backgroundAttachment, backgroundImage, containerClass, full } = defineProps<ThemeHomeConfigBase & {
   containerClass?: any
 }>()
 
 const isDark = useDarkMode()
 
 const styles = computed(() => {
-  if (!props.backgroundImage)
+  if (!backgroundImage)
     return null
 
-  const image = typeof props.backgroundImage === 'string' ? props.backgroundImage : (props.backgroundImage[isDark.value ? 'dark' : 'light'] ?? props.backgroundImage.light)
+  const image = typeof backgroundImage === 'string' ? backgroundImage : (backgroundImage[isDark.value ? 'dark' : 'light'] ?? backgroundImage.light)
 
   if (!image)
     return null
 
-  const link = isLinkHttp(image) ? props.backgroundImage : withBase(image)
+  const link = isLinkHttp(image) ? backgroundImage : withBase(image)
   return {
     'background-image': `url(${link})`,
     'background-size': 'cover',
     'background-position': 'center',
     'background-repeat': 'no-repeat',
-    'background-attachment': props.backgroundAttachment || '',
+    'background-attachment': backgroundAttachment || '',
   }
 })
 
-const containerClass = computed(() => normalizeClass(props.containerClass || ''))
+const containerClasses = computed(() => normalizeClass(containerClass || ''))
 </script>
 
 <template>
-  <div class="vp-home-box" :class="{ full: props.full }" :style="styles">
+  <div class="vp-home-box" :class="{ full }" :style="styles">
     <slot name="before" />
-    <div class="container" :class="containerClass">
+    <div class="container" :class="containerClasses">
       <slot />
     </div>
     <slot name="after" />

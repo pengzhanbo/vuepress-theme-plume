@@ -6,7 +6,7 @@ import { computed, onMounted, ref } from 'vue'
 import { withBase } from 'vuepress/client'
 import { useData, useInternalLink, useTagColors } from '../../composables/index.js'
 
-const props = defineProps<{
+const { post, index } = defineProps<{
   post: ThemePostsItem
   index: number
 }>()
@@ -14,9 +14,9 @@ const props = defineProps<{
 const isMobile = ref(false)
 
 onMounted(() => {
-  isMobile.value = _isMobile(navigator.userAgent)
+  isMobile.value = _isMobile()
   window.addEventListener('resize', () => {
-    isMobile.value = _isMobile(navigator.userAgent)
+    isMobile.value = _isMobile()
   })
 })
 
@@ -24,15 +24,15 @@ const { collection } = useData<'page', 'post'>()
 const colors = useTagColors()
 const { categories: categoriesLink, tags: tagsLink } = useInternalLink()
 
-const createTime = computed(() => props.post.createTime?.split(/\s|T/)[0].replace(/\//g, '-'))
-const categoryList = computed(() => props.post.categoryList ?? [])
+const createTime = computed(() => post.createTime?.split(/\s|T/)[0].replace(/\//g, '-'))
+const categoryList = computed(() => post.categoryList ?? [])
 
 const sticky = computed(() => {
-  if (typeof props.post.sticky === 'boolean') {
-    return props.post.sticky
+  if (typeof post.sticky === 'boolean') {
+    return post.sticky
   }
-  else if (typeof props.post.sticky === 'number') {
-    return props.post.sticky >= 0
+  else if (typeof post.sticky === 'number') {
+    return post.sticky >= 0
   }
   return false
 })
@@ -40,7 +40,7 @@ const sticky = computed(() => {
 const tags = computed(() => {
   const tagTheme = collection.value?.tagsTheme ?? 'colored'
 
-  return (props.post.tags ?? [])
+  return (post.tags ?? [])
     .slice(0, 4)
     .map(tag => ({
       name: tag,
@@ -49,18 +49,18 @@ const tags = computed(() => {
 })
 
 const cover = computed<PostsCoverStyle | null>(() => {
-  if (!props.post.cover)
+  if (!post.cover)
     return null
   const opt = collection.value?.postCover ?? 'right'
   const options = typeof opt === 'string' ? { layout: opt } : opt
-  return { layout: 'right', ratio: '4:3', ...options, ...props.post.coverStyle }
+  return { layout: 'right', ratio: '4:3', ...options, ...post.coverStyle }
 })
 
 const coverLayout = computed(() => {
   if (isMobile.value)
     return 'top'
   const layout = cover.value?.layout ?? 'right'
-  const odd = (props.index + 1) % 2 === 1
+  const odd = (index + 1) % 2 === 1
   if (layout === 'odd-left')
     return odd ? 'left' : 'right'
   if (layout === 'odd-right')
@@ -69,7 +69,7 @@ const coverLayout = computed(() => {
 })
 
 const coverCompact = computed(() => {
-  if (props.post.excerpt || coverLayout.value === 'top')
+  if (post.excerpt || coverLayout.value === 'top')
     return false
   return cover.value?.compact ?? false
 })

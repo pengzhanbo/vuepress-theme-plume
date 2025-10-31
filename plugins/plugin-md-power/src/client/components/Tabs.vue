@@ -5,27 +5,27 @@ import { onMounted, ref, shallowRef, watch } from 'vue'
 interface TabProps extends Record<string, unknown> {
   id: string
 }
-const props = withDefaults(defineProps<{
+const { id, tabId = '', active = 0, data } = defineProps<{
   id: string
   tabId?: string
   active?: number
   data: TabProps[]
-}>(), { active: 0, tabId: '' })
+}>()
 
 const TAB_STORE_NAME = 'VUEPRESS_TAB_STORE'
 
 const tabStore = useStorage<Record<string, string>>(TAB_STORE_NAME, {})
 
 // Index of current active item
-const activeIndex = ref(props.active)
+const activeIndex = ref(active)
 
 // Refs of the tab buttons
 const tabRefs = shallowRef<HTMLUListElement[]>([])
 
 // Update store
 function updateStore(): void {
-  if (props.tabId)
-    tabStore.value[props.tabId] = props.data[activeIndex.value].id
+  if (tabId)
+    tabStore.value[tabId] = data[activeIndex.value]?.id
 }
 
 // Activate next tab
@@ -59,26 +59,26 @@ function keyboardHandler(event: KeyboardEvent, index: number): void {
 }
 
 function getInitialIndex(): number {
-  if (props.tabId) {
-    const valueIndex = props.data.findIndex(
-      ({ id }) => tabStore.value[props.tabId] === id,
+  if (tabId) {
+    const valueIndex = data.findIndex(
+      ({ id }) => tabStore.value[tabId] === id,
     )
 
     if (valueIndex !== -1)
       return valueIndex
   }
 
-  return props.active
+  return active
 }
 
 onMounted(() => {
   activeIndex.value = getInitialIndex()
 
   watch(
-    () => tabStore.value[props.tabId],
+    () => tabStore.value[tabId],
     (newValue, oldValue) => {
-      if (props.tabId && newValue !== oldValue) {
-        const index = props.data.findIndex(({ id }) => id === newValue)
+      if (tabId && newValue !== oldValue) {
+        const index = data.findIndex(({ id }) => id === newValue)
 
         if (index !== -1)
           activeIndex.value = index

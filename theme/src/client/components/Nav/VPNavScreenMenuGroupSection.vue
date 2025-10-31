@@ -3,7 +3,7 @@ import type { NavItemWithLink, ThemeIcon } from '../../../shared/index.js'
 import VPNavScreenMenuGroupLink from '@theme/Nav/VPNavScreenMenuGroupLink.vue'
 import VPIcon from '@theme/VPIcon.vue'
 
-defineProps<{
+const { icon, text, items } = defineProps<{
   icon?: ThemeIcon
   text?: string
   items: NavItemWithLink[]

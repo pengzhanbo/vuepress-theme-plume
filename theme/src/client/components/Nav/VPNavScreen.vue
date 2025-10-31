@@ -8,7 +8,7 @@ import { inBrowser } from '../../utils/index.js'
 
 import '@vuepress/helper/transition/fade-in.css'
 
-defineProps<{
+const { open } = defineProps<{
   open: boolean
 }>()
 

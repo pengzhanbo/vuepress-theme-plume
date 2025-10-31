@@ -5,7 +5,7 @@ import VPIcon from '@theme/VPIcon.vue'
 import VPLink from '@theme/VPLink.vue'
 import { inject } from 'vue'
 
-defineProps<{
+const { item } = defineProps<{
   item: ResolvedNavItemWithLink
 }>()
 

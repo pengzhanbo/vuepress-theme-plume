@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { PlumeThemeHomeHeroTintPlate } from 'vuepress-theme-plume/client'
 import { computed, ref, watch } from 'vue'
 import VPHomeHero from 'vuepress-theme-plume/components/Home/VPHomeHero.vue'
 import { useDarkMode } from 'vuepress-theme-plume/composables'
@@ -10,6 +9,11 @@ import SingleTintPlate from './SingleTintPlate.vue'
 import TripletTintPlate from './TripletTintPlate.vue'
 
 type Mode = 'single' | 'triplet' | 'custom'
+interface HeroTripletTintPlate {
+  r: { value: number, offset: number }
+  g: { value: number, offset: number }
+  b: { value: number, offset: number }
+}
 
 const hero = { name: 'Theme Plume', tagline: 'Next Theme', text: '简约的，功能丰富', actions: [] }
 const modeList: { value: Mode, label: string }[] = [
@@ -21,7 +25,7 @@ const modeList: { value: Mode, label: string }[] = [
 const mode = ref<Mode>('single')
 const singleTintPlate = ref<number>(220)
 const tripletTintPlate = ref<[number, number, number]>([220, 220, 220])
-const customTintPlate = ref<PlumeThemeHomeHeroTintPlate>({
+const customTintPlate = ref<HeroTripletTintPlate>({
   r: { value: 220, offset: 36 },
   g: { value: 220, offset: 36 },
   b: { value: 220, offset: 36 },
@@ -30,13 +34,13 @@ const customTintPlate = ref<PlumeThemeHomeHeroTintPlate>({
 const tintPlate = computed(() => {
   switch (mode.value) {
     case 'single':
-      return singleTintPlate.value
+      return { rgb: singleTintPlate.value }
     case 'triplet':
-      return tripletTintPlate.value.join(',')
+      return { rgb: tripletTintPlate.value.join(',') }
     case 'custom':
       return customTintPlate.value
     default:
-      return ''
+      return { rgb: '' }
   }
 })
 
@@ -48,11 +52,11 @@ watch(useDarkMode(), (value) => {
 
 const output = computed(() => {
   const tint = tintPlate.value
-  let content = `---\nhome: true\nconfig:\n  -\n    type: hero\n    background: tint-plate\n    tintPlate:`
-  if (typeof tint === 'number' || typeof tint === 'string')
-    content += `  ${tint}`
-
-  if (typeof tint === 'object') {
+  let content = `---\nhome: true\nconfig:\n  -\n    type: hero\n    effect: tint-plate\n    effectConfig:`
+  if ('rgb' in tint) {
+    content += ` ${tint.rgb}`
+  }
+  else if (typeof tint === 'object') {
     content += `
       r:
         value: ${tint.r.value}
@@ -72,9 +76,9 @@ const output = computed(() => {
 <template>
   <div class="hero-tint-plate-wrapper">
     <h4>效果预览：</h4>
-    <div :class="{ dark: isDark }">
+    <div :data-theme="isDark ? 'dark' : 'light'">
       <DemoWrapper>
-        <VPHomeHero type="hero" background="tint-plate" :tint-plate="tintPlate" :hero="hero" />
+        <VPHomeHero type="hero" effect="TintPlate" :effect-config="tintPlate" :hero="hero" :index="0" />
       </DemoWrapper>
     </div>
     <p>

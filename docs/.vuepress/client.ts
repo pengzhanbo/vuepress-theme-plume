@@ -1,6 +1,6 @@
 import type { ClientConfig } from 'vuepress/client'
 import { defineMermaidConfig } from '@vuepress/plugin-markdown-chart/client'
-import { h } from 'vue'
+import { defineAsyncComponent, h } from 'vue'
 import { Layout } from 'vuepress-theme-plume/client'
 import VPPostItem from 'vuepress-theme-plume/components/Posts/VPPostItem.vue'
 import { defineClientConfig } from 'vuepress/client'
@@ -17,6 +17,7 @@ defineMermaidConfig({
 export default defineClientConfig({
   enhance({ app }) {
     app.component('VPPostItem', VPPostItem)
+    app.component('TintPlate', defineAsyncComponent(() => import('vuepress-theme-plume/components/background/TintPlate.vue')))
   },
   setup() {
     setupThemeColors()

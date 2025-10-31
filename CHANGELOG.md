@@ -1,3 +1,26 @@
+# [1.0.0-rc.175](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.174...v1.0.0-rc.175) (2025-10-31)
+
+
+### Bug Fixes
+
+* **theme:** fix auto-sidebar collapsed ([#746](https://github.com/pengzhanbo/vuepress-theme-plume/issues/746)) ([192017b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/192017b892198458f028638279b27ead309b232b))
+* **theme:** fix language component not displaying correctly ([19868d1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/19868d147e59a74695c73226f8b061dddd96c8ad))
+
+
+### Features
+
+* **plugin-md-power:** add `full-width` support for table container, close [#740](https://github.com/pengzhanbo/vuepress-theme-plume/issues/740) ([#741](https://github.com/pengzhanbo/vuepress-theme-plume/issues/741)) ([0e38265](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0e38265f961f73a901f2e3fee6e02e2949bca4c8))
+* **theme:** add `dark-veil` home hero effect ([#747](https://github.com/pengzhanbo/vuepress-theme-plume/issues/747)) ([3d48446](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3d48446769ec466c96072dc63019c5ffef6a1c40))
+* **theme:** optimize local nav ([fbb6ec9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fbb6ec9a634ae7a26c16df2a97ea1c16a3a24d46))
+
+
+### Performance Improvements
+
+* **theme:** cleanup home hero effect when unmounted ([802911c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/802911c1796b29ca0ee154179c91f8f083b50c5e))
+* update deps to latest ([606f47a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/606f47a5a68cd6d2842d2892d180d781c47e1b78))
+
+
+
 # [1.0.0-rc.174](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.173...v1.0.0-rc.174) (2025-10-25)
 
 

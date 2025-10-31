@@ -448,6 +448,12 @@ onMounted(() => {
 
 onUnmounted(() => {
   cleanup()
+  renderer = null
+  scene = null
+  camera = null
+  beamMesh = null
+  directionalLight = null
+  ambientLight = null
 })
 </script>
 

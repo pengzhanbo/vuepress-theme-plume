@@ -254,6 +254,8 @@ onUnmounted(() => {
   if (animationId) {
     cancelAnimationFrame(animationId)
   }
+  gl = null
+  program = null
 })
 
 watch(

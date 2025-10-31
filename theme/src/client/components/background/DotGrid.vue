@@ -288,6 +288,7 @@ onUnmounted(() => {
 
   if (resizeObserver) {
     resizeObserver.disconnect()
+    resizeObserver = null
   }
   else {
     window.removeEventListener('resize', buildGrid)

@@ -11,7 +11,7 @@ import { useWindowScroll } from '@vueuse/core'
 import { ref, watchPostEffect } from 'vue'
 import { useData, useSidebar } from '../../composables/index.js'
 
-const props = defineProps<{
+const { isScreenOpen } = defineProps<{
   isScreenOpen: boolean
 }>()
 defineEmits<(e: 'toggleScreen') => void>()
@@ -27,7 +27,7 @@ watchPostEffect(() => {
     'has-sidebar': hasSidebar.value,
     'home': frontmatter.value.pageLayout === 'home',
     'top': y.value === 0,
-    'screen-open': props.isScreenOpen,
+    'screen-open': isScreenOpen,
   }
 })
 </script>

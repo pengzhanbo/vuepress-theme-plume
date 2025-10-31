@@ -2,7 +2,7 @@
 import type { FontAwesomePrefix } from 'vuepress-plugin-md-power/client'
 import { computed } from 'vue'
 
-const props = defineProps<{
+const { name, size, color, prefix, extra } = defineProps<{
   name: string
   size?: { width?: string, height?: string }
   color?: string
@@ -25,20 +25,19 @@ const configs: Record<string, FontAwesomePrefix[]> = {
 }
 
 const iconName = computed(() => {
-  const icon = props.name.includes(':') ? props.name : `${props.prefix || 'fas'}:${props.name}`
-  const [type, name] = icon.split(':')
-  let prefix = 'solid'
+  const icon = name.includes(':') ? name : `${prefix || 'fas'}:${name}`
+  const [type, iconName] = icon.split(':')
+  let _prefix = 'solid'
   for (const [key, alias] of Object.entries(configs)) {
     if (alias.includes(type as FontAwesomePrefix)) {
-      prefix = key
+      _prefix = key
       break
     }
   }
-  return `${prefix.split(' ').map(v => `fa-${v.trim()}`).join(' ')} fa-${name}`
+  return `${_prefix.split(' ').map(v => `fa-${v.trim()}`).join(' ')} fa-${iconName}`
 })
 
 const extraClasses = computed(() => {
-  const extra = props.extra
   if (!extra)
     return []
   return extra.split(' ').map(v => v.trim().startsWith('fa-') ? v : `fa-${v}`)

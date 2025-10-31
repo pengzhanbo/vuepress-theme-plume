@@ -3,7 +3,7 @@ import { useInterval } from '@vueuse/core'
 import { onMounted, toRef, watch } from 'vue'
 import { useAudioPlayer } from '../composables/audio.js'
 
-const props = defineProps<{
+const { src, autoplay, type, volume, startTime, endTime } = defineProps<{
   src: string
   autoplay?: boolean
   type?: string
@@ -13,20 +13,19 @@ const props = defineProps<{
 }>()
 
 const { paused, play, pause, seek, setVolume } = useAudioPlayer(
-  toRef(() => props.src),
+  toRef(() => src),
   {
-    type: toRef(() => props.type || ''),
-    autoplay: props.autoplay,
+    type: toRef(() => type || ''),
+    autoplay,
     oncanplay: () => {
-      if (props.startTime) {
-        seek(props.startTime)
-      }
+      if (startTime)
+        seek(startTime)
     },
     ontimeupdate: (time) => {
-      if (props.endTime && time >= props.endTime) {
+      if (endTime && time >= endTime) {
         pause()
-        if (props.startTime) {
-          seek(props.startTime)
+        if (startTime) {
+          seek(startTime)
         }
       }
     },
@@ -56,7 +55,7 @@ function toggle() {
 }
 
 onMounted(() => {
-  watch(() => props.volume, (volume) => {
+  watch(() => volume, (volume) => {
     if (typeof volume !== 'undefined') {
       setVolume(volume)
     }

@@ -3,13 +3,10 @@ import type { VNode } from 'vue'
 import { useDebounceFn, useMediaQuery, useResizeObserver } from '@vueuse/core'
 import { cloneVNode, computed, markRaw, mergeProps, nextTick, onMounted, ref, shallowRef, useId, watch } from 'vue'
 
-const props = withDefaults(defineProps<{
+const { cols = { sm: 2, md: 2, lg: 3 }, gap = 16 } = defineProps<{
   cols?: number | { sm?: number, md?: number, lg?: number }
   gap?: number
-}>(), {
-  cols: () => ({ sm: 2, md: 2, lg: 3 }),
-  gap: 16,
-})
+}>()
 
 const slots = defineSlots<{ default: () => VNode[] | null }>()
 const uuid = useId()
@@ -29,16 +26,16 @@ const rawList = computed(() => {
 
 function resolveColumnsLength() {
   let length = 1
-  if (typeof props.cols === 'number') {
-    length = props.cols
+  if (typeof cols === 'number') {
+    length = cols
   }
-  else if (typeof props.cols === 'object') {
+  else if (typeof cols === 'object') {
     if (isLg.value)
-      length = props.cols.lg || 3
+      length = cols.lg || 3
     else if (isMd.value)
-      length = props.cols.md || 2
+      length = cols.md || 2
     else
-      length = props.cols.sm || 2
+      length = cols.sm || 2
   }
 
   columnsLength.value = Number(length)
@@ -62,7 +59,7 @@ async function drawColumns() {
     const index = heights.indexOf(Math.min(...heights))
 
     columns[index].push(item)
-    heights[index] += height + props.gap
+    heights[index] += height + gap
   }
   columnsList.value = columns
 }
@@ -71,7 +68,7 @@ onMounted(() => {
   if (__VUEPRESS_SSR__)
     return
 
-  watch(() => [isMd.value, isLg.value, props.cols], resolveColumnsLength, { immediate: true })
+  watch([isMd, isLg, () => cols], resolveColumnsLength, { immediate: true })
 
   drawColumns()
   const debounceDraw = useDebounceFn(drawColumns)
@@ -81,9 +78,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="masonry" class="vp-card-masonry" :class="[`cols-${columnsLength}`]" :style="{ 'grid-gap': `${props.gap}px`, '--card-masonry-cols': columnsLength }" data-allow-mismatch>
+  <div ref="masonry" class="vp-card-masonry" :class="[`cols-${columnsLength}`]" :style="{ 'grid-gap': `${gap}px`, '--card-masonry-cols': columnsLength }" data-allow-mismatch>
     <ClientOnly>
-      <div v-for="(column, index) in columnsList" :key="`${uuid}-${index}`" class="card-masonry-item" :style="{ gap: `${props.gap}px` }">
+      <div v-for="(column, index) in columnsList" :key="`${uuid}-${index}`" class="card-masonry-item" :style="{ gap: `${gap}px` }">
         <component :is="item" v-for="item in column" :key="item.props!.class" />
       </div>
     </ClientOnly>

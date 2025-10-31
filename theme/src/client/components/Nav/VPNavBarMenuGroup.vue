@@ -9,7 +9,7 @@ import { resolveRouteFullPath } from 'vuepress/client'
 import { useData } from '../../composables/index.js'
 import { isActive } from '../../utils/index.js'
 
-const props = defineProps<{
+const { item } = defineProps<{
   item: ResolvedNavItemWithChildren
 }>()
 
@@ -20,14 +20,14 @@ function isChildActive(navItem: ResolvedNavItem): boolean {
     return isActive(
       page.value.path,
       resolveRouteFullPath(navItem.link),
-      !!props.item.activeMatch,
+      !!item.activeMatch,
     )
   }
   else {
     return navItem.items.some(isChildActive)
   }
 }
-const childrenActive = computed(() => isChildActive(props.item))
+const childrenActive = computed(() => isChildActive(item))
 </script>
 
 <template>

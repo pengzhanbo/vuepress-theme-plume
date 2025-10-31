@@ -32,7 +32,7 @@ import BackIcon from './icons/BackIcon.vue'
 import ClearIcon from './icons/ClearIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
 
-const props = defineProps<{
+const { locales, options } = defineProps<{
   locales: SearchBoxLocales
   options: SearchOptions
 }>()
@@ -42,7 +42,7 @@ const emit = defineEmits<{
 }>()
 
 const routeLocale = useRouteLocale()
-const locale = useLocale(toRef(props.locales))
+const locale = useLocale(toRef(() => locales))
 
 const el = shallowRef<HTMLElement>()
 const resultsEl = shallowRef<HTMLElement>()
@@ -71,15 +71,15 @@ const searchIndex = computedAsync(async () =>
           prefix: true,
           boost: { title: 4, text: 2, titles: 1 },
         },
-        ...props.options.miniSearch?.searchOptions,
-        ...props.options.miniSearch?.options,
+        ...options.miniSearch?.searchOptions,
+        ...options.miniSearch?.options,
       },
     ),
   ),
 )
 
 const disableQueryPersistence = computed(() =>
-  props.options?.disableQueryPersistence === true,
+  options?.disableQueryPersistence === true,
 )
 const filterText = disableQueryPersistence.value
   ? ref('')

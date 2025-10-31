@@ -2,17 +2,14 @@
 import type { ThemeBadge } from '../../../shared/index.js'
 import { computed } from 'vue'
 
-const props = withDefaults(defineProps<ThemeBadge>(), {
-  type: 'tip',
-  borderColor: 'transparent',
-})
+const { type = 'tip', text, color, bgColor, borderColor = 'transparent' } = defineProps<ThemeBadge>()
 
 const customStyle = computed(() => {
-  if (props.color || props.bgColor) {
+  if (color || bgColor) {
     return {
-      color: props.color,
-      backgroundColor: props.bgColor,
-      borderColor: props.borderColor,
+      color,
+      backgroundColor: bgColor,
+      borderColor,
     }
   }
   return {}

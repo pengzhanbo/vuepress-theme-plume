@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { usePageLang, withBase } from 'vuepress/client'
 
-const props = defineProps<{
+const { image, title, description, href, author, date, width, center } = defineProps<{
   image: string
   title?: string
   description?: string
@@ -15,42 +15,40 @@ const props = defineProps<{
 
 const lang = usePageLang()
 
-const date = computed(() => {
-  if (!props.date)
+const dateStr = computed(() => {
+  if (!date)
     return ''
-  const date = props.date instanceof Date ? props.date : new Date(props.date)
+  const instance = date instanceof Date ? date : new Date(date)
   const intl = new Intl.DateTimeFormat(
     lang.value,
     { year: 'numeric', month: 'short', day: 'numeric' },
   )
 
-  return intl.format(date)
+  return intl.format(instance)
 })
 
-const styles = computed(() => {
-  const width = props.width
-    ? String(Number(props.width)) === String(props.width)
-      ? `${props.width}px`
-      : props.width
-    : undefined
-
-  return { width }
-})
+const styles = computed(() => ({
+  width: width
+    ? String(Number(width)) === String(width)
+      ? `${width}px`
+      : width
+    : undefined,
+}))
 </script>
 
 <template>
   <div class="vp-image-card" :style="styles" :class="{ center }">
     <div class="image-container">
       <img :src="withBase(image)" :alt="title" loading="lazy">
-      <div v-if="title || author || date || description" class="image-info">
+      <div v-if="title || author || dateStr || description" class="image-info">
         <h3 v-if="title" class="title">
           <a v-if="href" :href="href" target="_blank" rel="noopener noreferrer" class="no-icon">{{ title }}</a>
           <span v-else>{{ title }}</span>
         </h3>
         <p v-if="author || date" class="copyright">
           <span v-if="author">{{ author }}</span>
-          <span v-if="author && date"> | </span>
-          <span v-if="date">{{ date }}</span>
+          <span v-if="author && dateStr"> | </span>
+          <span v-if="dateStr">{{ dateStr }}</span>
         </p>
         <p v-if="description" class="description">
           {{ description }}

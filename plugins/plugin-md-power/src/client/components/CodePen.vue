@@ -2,7 +2,7 @@
 import { useDarkMode } from '@vuepress/helper/client'
 import { computed } from 'vue'
 
-const props = defineProps<{
+const { user, slash, title, preview, editable, tab, theme, width, height } = defineProps<{
   user: string
   slash: string
   title?: string
@@ -19,16 +19,16 @@ const CODEPEN_LINK = 'https://codepen.io/'
 const isDark = useDarkMode()
 
 const link = computed(() => {
-  const middle = props.preview ? '/embed/preview/' : '/embed/'
+  const middle = preview ? '/embed/preview/' : '/embed/'
   const params = new URLSearchParams()
 
-  props.editable && params.set('editable', 'true')
-  props.tab && params.set('default-tab', props.tab)
+  editable && params.set('editable', 'true')
+  tab && params.set('default-tab', tab)
 
-  const theme = props.theme ?? (isDark.value ? 'dark' : 'light')
-  theme && params.set('theme-id', theme)
+  const themeMode = theme ?? (isDark.value ? 'dark' : 'light')
+  themeMode && params.set('theme-id', themeMode)
 
-  return `${CODEPEN_LINK}${props.user}${middle}${props.slash}?${params.toString()}`
+  return `${CODEPEN_LINK}${user}${middle}${slash}?${params.toString()}`
 })
 </script>
 

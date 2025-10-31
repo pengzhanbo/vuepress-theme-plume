@@ -3,7 +3,8 @@ import type { ThemeHomeHero } from '../../../shared/index.js'
 import { effectComponents, effects } from '@internal/home-hero-effects'
 import ImageBg from '@theme/background/ImageBg.vue'
 import VPButton from '@theme/VPButton.vue'
-import { computed, nextTick, onMounted, onUnmounted, watch } from 'vue'
+import { hasGlobalComponent } from '@vuepress/helper/client'
+import { computed, markRaw, nextTick, onMounted, onUnmounted, resolveComponent, watch } from 'vue'
 import { isPlainObject } from 'vuepress/shared'
 import { useData } from '../../composables/index.js'
 import { inBrowser } from '../../utils/index.js'
@@ -15,10 +16,11 @@ const hero = computed(() => props.hero ?? frontmatter.value.hero ?? {})
 const actions = computed(() => hero.value.actions ?? [])
 
 const effect = computed(() => {
-  const effect = props.effect || props.background
-  if (!effect || !effects.includes(effect))
-    return null
-  return effect as typeof effects[number]
+  if (props.effect)
+    return props.effect
+  if (props.background && effects.includes(props.background))
+    return props.background
+  return null
 })
 
 const effectConfig = computed(() => {
@@ -35,6 +37,17 @@ const effectConfig = computed(() => {
     return null
 
   return props.effectConfig
+})
+
+const realEffectComponent = computed(() => {
+  if (!effect.value)
+    return null
+  if (effectComponents[effect.value])
+    return markRaw(effectComponents[effect.value])
+  if (hasGlobalComponent(effect.value))
+    return resolveComponent(effect.value)
+
+  return null
 })
 
 function noTransition() {
@@ -85,7 +98,7 @@ onUnmounted(() => {
       [effect ?? '']: !!effect,
     }"
   >
-    <component :is="effectComponents[effect]" v-if="effect" v-bind="effectConfig" />
+    <component :is="realEffectComponent" v-if="realEffectComponent" v-bind="effectConfig" />
     <ImageBg v-else v-bind="props" />
 
     <div class="hero-container">

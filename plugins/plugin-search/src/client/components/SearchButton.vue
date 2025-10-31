@@ -3,11 +3,11 @@ import type { SearchBoxLocales } from '../../shared/index.js'
 import { toRef } from 'vue'
 import { useLocale } from '../composables/index.js'
 
-const props = defineProps<{
+const { locales } = defineProps<{
   locales: SearchBoxLocales
 }>()
 
-const locale = useLocale(toRef(props.locales))
+const locale = useLocale(toRef(() => locales))
 </script>
 
 <template>

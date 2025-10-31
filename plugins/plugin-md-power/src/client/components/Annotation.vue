@@ -4,13 +4,13 @@ import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
 
 import '@vuepress/helper/transition/fade-in.css'
 
-const props = defineProps<{
+const { label, total } = defineProps<{
   label: string
   total: number
 }>()
 
 const active = ref(false)
-const list = computed(() => Array.from({ length: props.total }, (_, i) => i))
+const list = computed(() => Array.from({ length: total }, (_, i) => i))
 const position = ref({ x: 0, y: 0 })
 
 const popover = useTemplateRef<HTMLDivElement>('popover')

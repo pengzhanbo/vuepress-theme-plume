@@ -2,7 +2,7 @@
 import VPIcon from '@theme/VPIcon.vue'
 import VPMenuLink from '@theme/VPMenuLink.vue'
 
-defineProps<{
+const { text, icon, items } = defineProps<{
   text?: string
   icon?: string | { svg: string }
   items: any[]

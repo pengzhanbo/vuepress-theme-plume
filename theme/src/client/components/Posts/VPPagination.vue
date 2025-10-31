@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useData } from '../../composables/index.js'
 
-defineProps<{
+const { page, isFirstPage, isLastPage, pageRange } = defineProps<{
   page: number
   totalPage: number
   isFirstPage: boolean

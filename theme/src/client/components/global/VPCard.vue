@@ -2,19 +2,19 @@
 import VPIcon from '@theme/VPIcon.vue'
 import { computed } from 'vue'
 
-const props = defineProps<{
+const { title, icon = '' } = defineProps<{
   title?: string
   icon?: string | { svg: string }
 }>()
 
-const icon = computed<string | { svg: string } | undefined>(() => {
-  if (props.icon?.[0] === '{') {
+const iconName = computed<string | { svg: string }>(() => {
+  if (typeof icon === 'string' && icon?.[0] === '{') {
     try {
       return JSON.parse(icon) as { svg: string }
     }
     catch {}
   }
-  return props.icon
+  return icon
 })
 </script>
 
@@ -22,7 +22,7 @@ const icon = computed<string | { svg: string } | undefined>(() => {
   <article class="vp-card-wrapper">
     <slot name="title">
       <p v-if="title || icon" class="title">
-        <VPIcon v-if="icon" :name="icon" />
+        <VPIcon v-if="icon" :name="iconName" />
         <span v-if="title" class="text" v-html="title" />
       </p>
     </slot>

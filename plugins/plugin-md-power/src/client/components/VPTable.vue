@@ -3,7 +3,7 @@ import { decodeData } from '@vuepress/helper/client'
 import { useClipboard, useToggle } from '@vueuse/core'
 import { computed, useTemplateRef } from 'vue'
 
-const props = defineProps<{
+const { title, align = 'left', copy, maxContent, fullWidth, markdown } = defineProps<{
   /** 表格标题 */
   title?: string
   /** 对其方式 */
@@ -19,7 +19,7 @@ const props = defineProps<{
 }>()
 
 const tableEl = useTemplateRef('table')
-const rawContent = computed(() => props.markdown ? decodeData(props.markdown) : '')
+const rawContent = computed(() => markdown ? decodeData(markdown) : '')
 
 const [isHTMLCopied, toggleHTMLCopy] = useToggle()
 const [isMDCopied, toggleMDCopy] = useToggle()
@@ -35,7 +35,7 @@ function onCopy(type: 'html' | 'md') {
 </script>
 
 <template>
-  <div class="vp-table" :class="{ [align || 'left']: true, full: fullWidth }">
+  <div class="vp-table" :class="{ [align]: true, full: fullWidth }">
     <div class="table-container">
       <div class="table-content">
         <div v-if="copy" class="table-toolbar">

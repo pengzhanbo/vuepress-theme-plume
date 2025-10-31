@@ -6,14 +6,14 @@ import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { useData } from '../../composables/index.js'
 
-const props = defineProps<ThemeHomeBanner>()
+const { banner, bannerMask, hero } = defineProps<ThemeHomeBanner>()
 
 const DEFAULT_BANNER = 'https://api.pengzhanbo.cn/wallpaper/bing'
 
 const { isDark, frontmatter: matter } = useData<'home'>()
 
 const mask = computed(() => {
-  const mask = props.bannerMask ?? matter.value.bannerMask
+  const mask = bannerMask ?? matter.value.bannerMask
   if (typeof mask !== 'object')
     return mask || 0
 
@@ -21,17 +21,17 @@ const mask = computed(() => {
 })
 
 const bannerStyle = computed(() => {
-  const banner = props.banner ?? matter.value.banner
-  const link = banner ? isLinkHttp(banner) ? banner : withBase(banner) : DEFAULT_BANNER
+  const _banner = banner ?? matter.value.banner
+  const link = _banner ? isLinkHttp(_banner) ? _banner : withBase(_banner) : DEFAULT_BANNER
   return {
     'background-image': `url(${link})`,
   }
 })
 
-const name = computed(() => props.hero?.name ?? matter.value.hero?.name ?? 'Plume')
-const tagline = computed(() => props.hero?.tagline ?? matter.value.hero?.tagline ?? 'A VuePress Theme')
-const text = computed(() => props.hero?.text ?? matter.value.hero?.text)
-const actions = computed(() => props.hero?.actions ?? matter.value.hero?.actions ?? [])
+const name = computed(() => hero?.name ?? matter.value.hero?.name ?? 'Plume')
+const tagline = computed(() => hero?.tagline ?? matter.value.hero?.tagline ?? 'A VuePress Theme')
+const text = computed(() => hero?.text ?? matter.value.hero?.text)
+const actions = computed(() => hero?.actions ?? matter.value.hero?.actions ?? [])
 </script>
 
 <template>

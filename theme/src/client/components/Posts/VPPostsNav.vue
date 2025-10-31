@@ -3,7 +3,7 @@ import VPLink from '@theme/VPLink.vue'
 import { useRoute } from 'vuepress/client'
 import { usePostsExtract } from '../../composables/index.js'
 
-const props = defineProps<{
+const { isLocal } = defineProps<{
   isLocal?: boolean
 }>()
 
@@ -13,7 +13,7 @@ const { hasPostsExtract, tags, archives, categories } = usePostsExtract()
 </script>
 
 <template>
-  <div v-if="hasPostsExtract" class="vp-posts-nav" :class="{ local: props.isLocal }">
+  <div v-if="hasPostsExtract" class="vp-posts-nav" :class="{ local: isLocal }">
     <VPLink
       v-if="tags.link"
       class="nav-link"

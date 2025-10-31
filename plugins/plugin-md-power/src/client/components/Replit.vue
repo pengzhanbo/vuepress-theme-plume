@@ -8,7 +8,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = defineProps<ReplitTokenMeta>()
+const { source, theme, width, height: h, title } = defineProps<ReplitTokenMeta>()
 
 // magic height
 const height = ref('47px')
@@ -19,18 +19,18 @@ const REPLIT_LINK = 'https://replit.com/'
 const isDark = useDarkMode()
 
 const link = computed(() => {
-  const url = new URL(`/${props.source}`, REPLIT_LINK)
+  const url = new URL(`/${source}`, REPLIT_LINK)
   url.searchParams.set('embed', 'true')
 
-  const theme = props.theme || (isDark.value ? 'dark' : 'light')
-  url.searchParams.set('theme', theme)
+  const themeMode = theme || (isDark.value ? 'dark' : 'light')
+  url.searchParams.set('theme', themeMode)
 
   return url.toString()
 })
 
 function onload() {
   loaded.value = true
-  height.value = props.height || '450px'
+  height.value = h || '450px'
 }
 </script>
 

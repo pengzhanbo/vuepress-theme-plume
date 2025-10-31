@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import VPLink from '@theme/VPLink.vue'
 
-defineProps<{
+const { postList } = defineProps<{
   postList: {
     title: string
     path: string

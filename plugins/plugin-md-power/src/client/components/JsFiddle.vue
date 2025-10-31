@@ -2,7 +2,7 @@
 import { useDarkMode } from '@vuepress/helper/client'
 import { computed } from 'vue'
 
-const props = defineProps<{
+const { source, title, tab, theme, width, height } = defineProps<{
   source: string
   title?: string
   tab: string
@@ -14,8 +14,8 @@ const props = defineProps<{
 const isDark = useDarkMode()
 
 const link = computed(() => {
-  const theme = props.theme === 'dark' ? '/dark/' : isDark.value ? '/dark/' : ''
-  return `https://jsfiddle.net/${props.source}/embedded/${props.tab}${theme}`
+  const themeMode = theme === 'dark' ? '/dark/' : isDark.value ? '/dark/' : ''
+  return `https://jsfiddle.net/${source}/embedded/${tab}${themeMode}`
 })
 </script>
 

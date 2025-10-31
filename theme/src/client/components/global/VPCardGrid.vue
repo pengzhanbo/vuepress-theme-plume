@@ -2,7 +2,7 @@
 import { useMediaQuery } from '@vueuse/core'
 import { onMounted, ref, toValue, watch } from 'vue'
 
-const props = defineProps<{
+const { cols } = defineProps<{
   cols?: string | number | { sm?: number, md?: number, lg?: number }
 }>()
 
@@ -12,13 +12,13 @@ const repeat = ref(1)
 
 function resolveCols() {
   const reset = { sm: 1, md: 2, lg: 2 }
-  if (!props.cols)
+  if (!cols)
     return reset
-  if (typeof props.cols === 'number' || typeof props.cols === 'string') {
-    const cols = Number(props.cols)
-    return { sm: cols, md: cols, lg: cols }
+  if (typeof cols === 'number' || typeof cols === 'string') {
+    const res = Number(cols)
+    return { sm: res, md: res, lg: res }
   }
-  return { ...reset, ...toValue(props.cols) }
+  return { ...reset, ...toValue(cols) }
 }
 
 function getRepeat() {
@@ -30,7 +30,7 @@ function getRepeat() {
   return cols.sm
 }
 
-watch(() => [md.value, lg.value, props.cols], () => {
+watch([md, lg, () => cols], () => {
   repeat.value = getRepeat()
 })
 

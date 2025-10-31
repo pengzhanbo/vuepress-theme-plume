@@ -4,10 +4,10 @@ import VPHomeBox from '@theme/Home/VPHomeBox.vue'
 import VPHomeFeature from '@theme/Home/VPHomeFeature.vue'
 import { computed } from 'vue'
 
-const props = defineProps<ThemeHomeFeatures>()
+const { features, title, description, type, backgroundImage, backgroundAttachment, full, index } = defineProps<ThemeHomeFeatures>()
 
 const grid = computed(() => {
-  const length = props.features?.length
+  const length = features?.length
 
   if (!length)
     return undefined
@@ -32,11 +32,13 @@ const grid = computed(() => {
   <VPHomeBox
     v-if="features"
     class="vp-home-features"
-    :type="type"
-    :background-image="backgroundImage"
-    :background-attachment="backgroundAttachment"
-    :full="full"
-    :index="index"
+    v-bind="{
+      type,
+      backgroundAttachment,
+      backgroundImage,
+      full,
+      index,
+    }"
   >
     <h2 v-if="title" class="title" v-html="title" />
     <p v-if="description" class="description" v-html="description" />
@@ -48,15 +50,7 @@ const grid = computed(() => {
         class="item"
         :class="[grid]"
       >
-        <VPHomeFeature
-          :icon="feature.icon"
-          :title="feature.title"
-          :details="feature.details"
-          :link="feature.link"
-          :link-text="feature.linkText"
-          :rel="feature.rel"
-          :target="feature.target"
-        />
+        <VPHomeFeature v-bind="feature" />
       </div>
     </div>
   </VPHomeBox>

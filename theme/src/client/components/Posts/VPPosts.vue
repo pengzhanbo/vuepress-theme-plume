@@ -10,7 +10,7 @@ import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { onBeforeUnmount, watch } from 'vue'
 import { forceUpdateCollection, useData } from '../../composables/index.js'
 
-const props = defineProps<{
+const { homePosts, collection } = defineProps<{
   homePosts?: boolean
   type?: string
   onlyOnce?: boolean
@@ -20,8 +20,8 @@ const props = defineProps<{
 const { theme, page } = useData()
 
 watch(
-  () => [props.homePosts, props.collection],
-  () => forceUpdateCollection(props.homePosts ? (props.collection || true) : undefined),
+  () => [homePosts, collection],
+  () => forceUpdateCollection(homePosts ? (collection || true) : undefined),
   { immediate: true },
 )
 

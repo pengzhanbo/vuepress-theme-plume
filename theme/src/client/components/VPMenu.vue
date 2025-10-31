@@ -2,7 +2,7 @@
 import VPMenuGroup from '@theme/VPMenuGroup.vue'
 import VPMenuLink from '@theme/VPMenuLink.vue'
 
-defineProps<{
+const { items } = defineProps<{
   items?: any[]
 }>()
 </script>

@@ -2,7 +2,7 @@
 import VPIcon from '@theme/VPIcon.vue'
 import VPLink from '@theme/VPLink.vue'
 
-defineProps<{
+const { href, title, icon, description, target, rel } = defineProps<{
   href: string
   title?: string
   icon?: string | { svg: string }

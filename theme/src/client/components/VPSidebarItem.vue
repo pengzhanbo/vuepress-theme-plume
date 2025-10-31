@@ -9,7 +9,7 @@ import { useSidebarControl } from '../composables/index.js'
 
 import '@vuepress/helper/transition/fade-in-height-expand.css'
 
-const props = defineProps<{
+const { item, depth } = defineProps<{
   item: ResolvedSidebarItem
   depth: number
 }>()
@@ -22,7 +22,7 @@ const {
   hasActiveLink,
   hasChildren,
   toggle,
-} = useSidebarControl(computed(() => props.item))
+} = useSidebarControl(computed(() => item))
 
 const sectionTag = computed(() => (hasChildren.value ? 'section' : `div`))
 
@@ -31,17 +31,17 @@ const linkTag = computed(() => (isLink.value ? 'a' : 'div'))
 const textTag = computed(() => {
   return !hasChildren.value
     ? 'p'
-    : props.depth + 2 === 7
+    : depth + 2 === 7
       ? 'p'
-      : `h${props.depth + 2}`
+      : `h${depth + 2}`
 })
 
 const itemRole = computed(() => (isLink.value ? undefined : 'button'))
 
-const isSeparator = computed(() => props.item.link?.startsWith('---'))
+const isSeparator = computed(() => item.link?.startsWith('---'))
 
 const classes = computed(() => [
-  [`level-${props.depth}`],
+  [`level-${depth}`],
   { collapsible: collapsible.value },
   { collapsed: collapsed.value },
   { 'is-link': isLink.value },
@@ -53,13 +53,13 @@ function onItemInteraction(e: MouseEvent | Event) {
   if ('key' in e && e.key !== 'Enter')
     return
 
-  if (!props.item.link) {
+  if (!item.link) {
     toggle()
   }
 }
 
 function onCaretClick() {
-  if (props.item.link) {
+  if (item.link) {
     toggle()
   }
 }

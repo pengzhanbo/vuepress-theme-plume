@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 
-const props = defineProps<{
+const { type, name, color, size } = defineProps<{
   type: 'link' | 'svg'
   name: string | { svg: string }
   color?: string
@@ -11,14 +11,14 @@ const props = defineProps<{
 }>()
 
 const svg = computed(() => {
-  if (props.type === 'svg' && typeof props.name === 'object' && 'svg' in props.name) {
-    return props.name.svg
+  if (type === 'svg' && typeof name === 'object' && 'svg' in name) {
+    return name.svg
   }
   return ''
 })
 const link = computed(() => {
-  if (props.type === 'link') {
-    const link = props.name as string
+  if (type === 'link') {
+    const link = name as string
     return isLinkHttp(link) ? link : withBase(link)
   }
   return ''

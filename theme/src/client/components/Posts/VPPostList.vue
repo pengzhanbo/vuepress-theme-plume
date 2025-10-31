@@ -5,7 +5,7 @@ import VPTransitionDrop from '@theme/VPTransitionDrop.vue'
 import { computed } from 'vue'
 import { usePostListControl } from '../../composables/index.js'
 
-const props = defineProps<{
+const { homePosts } = defineProps<{
   homePosts?: boolean
 }>()
 
@@ -18,7 +18,7 @@ const {
   isFirstPage,
   isPaginationEnabled,
   changePage,
-} = usePostListControl(computed(() => !!props.homePosts))
+} = usePostListControl(computed(() => !!homePosts))
 </script>
 
 <template>

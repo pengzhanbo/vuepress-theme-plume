@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MenuItem } from '../composables/index.js'
 
-defineProps<{
+const { headers, root } = defineProps<{
   headers: MenuItem[]
   root?: boolean
 }>()

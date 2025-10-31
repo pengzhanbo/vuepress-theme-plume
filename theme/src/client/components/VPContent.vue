@@ -9,7 +9,7 @@ import { useRoute } from 'vuepress/client'
 import { useData, usePostsPageData, useSidebar } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
 
-const props = defineProps<{
+const { isNotFound } = defineProps<{
   isNotFound?: boolean
 }>()
 
@@ -43,7 +43,7 @@ watch(
 <template>
   <div
     id="VPContent" vp-content class="vp-content" :class="{
-      'has-sidebar': hasSidebar && !props.isNotFound,
+      'has-sidebar': hasSidebar && !isNotFound,
       'is-home': frontmatter.pageLayout === 'home',
     }"
   >

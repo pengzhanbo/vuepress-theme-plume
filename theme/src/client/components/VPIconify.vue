@@ -9,7 +9,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = defineProps<{
+const { name, size, color, prefix, extra } = defineProps<{
   name: string
   size?: { width?: string, height?: string }
   color?: string
@@ -23,10 +23,9 @@ const loaded = ref(false)
 const iconsData = useIconsData()
 
 const iconName = computed(() => {
-  const name = props.name
   if (name.includes(':'))
     return name
-  return props.prefix ? `${props.prefix}:${name}` : name
+  return prefix ? `${prefix}:${name}` : name
 })
 
 const localIconName = computed(() => iconsData.value[iconName.value])
@@ -37,13 +36,13 @@ async function loadRemoteIcon() {
 
   if (!localIconName.value) {
     loaded.value = false
-    icon.value = await loadIcon(props.name)
+    icon.value = await loadIcon(name)
   }
   loaded.value = true
 }
 
 if (!__VUEPRESS_SSR__)
-  watch(() => props.name, loadRemoteIcon, { immediate: true })
+  watch(() => name, loadRemoteIcon, { immediate: true })
 </script>
 
 <template>

@@ -2,7 +2,7 @@
 import type { FriendGroup } from '../../shared/index.js'
 import VPFriendsItem from '@theme/VPFriendsItem.vue'
 
-defineProps<{
+const { group } = defineProps<{
   group: FriendGroup
 }>()
 </script>

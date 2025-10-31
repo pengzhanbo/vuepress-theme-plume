@@ -7,7 +7,7 @@ import { useRoutePath } from 'vuepress/client'
 import { useData, useSidebar } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
 
-const props = defineProps<{
+const { open } = defineProps<{
   open: boolean
 }>()
 
@@ -20,9 +20,9 @@ const navEl = ref<HTMLElement | null>(null)
 const isLocked = useScrollLock(inBrowser ? document.body : null)
 
 watch(
-  [() => props.open, navEl],
+  [() => open, navEl],
   () => {
-    if (props.open) {
+    if (open) {
       isLocked.value = true
       navEl.value?.focus()
     }

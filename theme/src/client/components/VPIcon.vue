@@ -6,7 +6,7 @@ import VPIconImage from '@theme/VPIconImage.vue'
 import { computed } from 'vue'
 import { isLinkHttp } from 'vuepress/shared'
 
-const props = defineProps<{
+const { provider, name, size, color, extra } = defineProps<{
   provider?: 'iconify' | 'iconfont' | 'fontawesome'
   name: string | { svg: string }
   size?: string | number
@@ -18,20 +18,20 @@ declare const __MD_POWER_ICON_PROVIDER__: 'iconify' | 'iconfont' | 'fontawesome'
 declare const __MD_POWER_ICON_PREFIX__: string
 
 const type = computed(() => {
-  const provider = props.provider || __MD_POWER_ICON_PROVIDER__
   // name -> https://example.com/icon.svg
   // name -> /icon.svg
-  if (typeof props.name === 'string' && (isLinkHttp(props.name) || props.name[0] === '/')) {
+  if (typeof name === 'string' && (isLinkHttp(name) || name[0] === '/')) {
     return 'link'
   }
 
   // name -> { svg: '<svg></svg>' }
-  if (typeof props.name === 'object' && !!props.name.svg) {
+  if (typeof name === 'object' && !!name.svg) {
     return 'svg'
   }
 
-  if (provider === 'iconfont' || provider === 'fontawesome') {
-    return provider
+  const _provider = provider || __MD_POWER_ICON_PROVIDER__
+  if (_provider === 'iconfont' || _provider === 'fontawesome') {
+    return _provider
   }
 
   return 'iconify'
@@ -43,8 +43,7 @@ function parseSize(size: string | number): string {
   return String(size)
 }
 
-const size = computed(() => {
-  const size = props.size
+const rect = computed(() => {
   if (!size)
     return undefined
 
@@ -56,9 +55,9 @@ const size = computed(() => {
   return { width, height: height || width }
 })
 const binding = computed(() => ({
-  name: props.name as string,
-  color: props.color,
-  size: size.value,
+  name: name as string,
+  color,
+  size: rect.value,
   prefix: __MD_POWER_ICON_PREFIX__ as any,
 }))
 </script>
@@ -66,7 +65,7 @@ const binding = computed(() => ({
 <template>
   <VPIconImage
     v-if="type === 'link' || type === 'svg'"
-    :type="type" :name="name" :color="color" :size="size"
+    :type="type" :name="name" :color="color" :size="rect"
   />
   <VPIconfont
     v-else-if="type === 'iconfont'"

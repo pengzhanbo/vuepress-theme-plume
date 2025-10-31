@@ -8,7 +8,7 @@ interface TransitionResult extends PropertyIndexedKeyframes {
 type TransitionStrategy = {
   [key in NonNullable<TransitionMode>]: (
     reverse: (effect: string[]) => string[],
-    context: { x: number, y: number, isDark: boolean }
+    context: { x: number, y: number, isDark: boolean },
   ) => TransitionResult
 }
 

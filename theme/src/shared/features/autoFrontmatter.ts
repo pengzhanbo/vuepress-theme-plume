@@ -116,6 +116,6 @@ export interface AutoFrontmatterOptions {
     D extends AutoFrontmatterData = AutoFrontmatterData,
   >(data: D,
     context: AutoFrontmatterContext,
-    locale: string
+    locale: string,
   ) => D | Promise<D>
 }

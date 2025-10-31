@@ -28,7 +28,7 @@ export interface DemoContainerRender {
     md: Markdown,
     env: MarkdownDemoEnv,
     meta: DemoMeta,
-    codeMap: Record<string, string>
+    codeMap: Record<string, string>,
   ) => string
   after: () => string
   token?: (token: Token, tokens: Token[], index: number) => void

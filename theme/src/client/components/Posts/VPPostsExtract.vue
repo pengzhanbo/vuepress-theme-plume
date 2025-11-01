@@ -96,15 +96,15 @@ const showPostsExtract = computed(() => {
             </div>
           </div>
           <div v-if="showPostsExtract" class="posts-nav" :class="{ 'no-profile': !profile }">
-            <VPLink class="nav-link" :href="tags.link" no-icon>
+            <VPLink v-if="tags.link" class="nav-link" :href="tags.link" no-icon>
               <span class="vpi-tag icon" />
               <span>{{ tags.text }}</span>
             </VPLink>
-            <VPLink class="nav-link" :href="categories.link" no-icon>
+            <VPLink v-if="categories.link" class="nav-link" :href="categories.link" no-icon>
               <span class="vpi-category icon" />
               <span>{{ categories.text }}</span>
             </VPLink>
-            <VPLink class="nav-link" :href="archives.link" no-icon>
+            <VPLink v-if="archives.link" class="nav-link" :href="archives.link" no-icon>
               <span class="vpi-archive icon" />
               <span>{{ archives.text }}</span>
             </VPLink>

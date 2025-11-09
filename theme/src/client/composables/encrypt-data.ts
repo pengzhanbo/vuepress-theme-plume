@@ -1,5 +1,6 @@
 import type { Ref } from 'vue'
 import { encrypt as rawEncrypt } from '@internal/encrypt'
+import { decodeData } from '@vuepress/helper/client'
 import { ref } from 'vue'
 
 export type EncryptConfig = readonly [
@@ -35,14 +36,15 @@ export function useEncryptData(): EncryptRef {
 function resolveEncryptData(
   [global, separator, admin, matches, rules]: EncryptConfig,
 ): EncryptData {
+  const keys = matches.map(match => decodeData(match))
   return {
     global,
     separator,
-    matches,
+    matches: keys,
     admins: admin.split(separator),
     ruleList: Object.keys(rules).map(key => ({
       key,
-      match: matches[key] as string,
+      match: keys[key] as string,
       rules: rules[key].split(separator),
     })),
   }

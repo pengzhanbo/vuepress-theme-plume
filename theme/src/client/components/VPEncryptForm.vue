@@ -7,6 +7,10 @@ const { global, info } = defineProps<{
   info?: string
 }>()
 
+const emit = defineEmits<{
+  (e: 'validate', isValidate: boolean): void
+}>()
+
 const { theme } = useData()
 const { compareGlobal, comparePage } = useEncryptCompare()
 
@@ -29,6 +33,7 @@ async function onSubmit() {
     errorCode.value = 0
     password.value = ''
   }
+  emit('validate', errorCode.value === 0)
 }
 </script>
 
@@ -44,8 +49,10 @@ async function onSubmit() {
           class="encrypt-input"
           :class="{ error: errorCode === 1 }"
           type="password"
+          autocomplete="off"
           :placeholder="theme.encryptPlaceholder ?? 'Enter Password'"
           @keyup.enter="onSubmit"
+          @focus="!password && (errorCode = 0)"
           @input="password && (errorCode = 0)"
         >
       </label>
@@ -83,9 +90,9 @@ async function onSubmit() {
 .encrypt-input {
   width: 100%;
   padding: 8px 12px 8px 32px;
-  background-color: transparent;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 4px;
+  background-color: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 21px;
   outline: none;
   transition: border-color var(--vp-t-color), background-color var(--vp-t-color);
 }

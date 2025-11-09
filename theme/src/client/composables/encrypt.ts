@@ -4,6 +4,7 @@ import { hasOwn, useSessionStorage } from '@vueuse/core'
 import { compare, genSaltSync } from 'bcrypt-ts/browser'
 import { computed, inject, provide } from 'vue'
 import { useRoute } from 'vuepress/client'
+import { removeLeadingSlash } from 'vuepress/shared'
 import { useData } from './data.js'
 import { useEncryptData } from './encrypt-data.js'
 
@@ -73,12 +74,12 @@ function toMatch(match: string, pagePath: string, filePathRelative: string | nul
   const relativePath = filePathRelative || ''
   if (match[0] === '^') {
     const regex = createMatchRegex(match)
-    return regex.test(pagePath) || (relativePath && regex.test(relativePath))
+    return regex.test(pagePath) || regex.test(relativePath)
   }
   if (match.endsWith('.md'))
     return relativePath && relativePath.endsWith(match)
 
-  return pagePath.startsWith(match) || relativePath.startsWith(match)
+  return pagePath.startsWith(match) || relativePath.startsWith(removeLeadingSlash(match))
 }
 
 export function setupEncrypt(): void {

@@ -293,7 +293,7 @@ watch(
 
 @media (min-width: 960px) {
   .content {
-    padding: 0 32px 128px;
+    padding: 0 32px 88px;
   }
 }
 

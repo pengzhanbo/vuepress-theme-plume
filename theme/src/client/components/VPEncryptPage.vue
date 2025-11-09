@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import VPEncryptForm from '@theme/VPEncryptForm.vue'
+import { useTemplateRef } from 'vue'
 import { useData } from '../composables/index.js'
 
 defineOptions({
@@ -7,20 +8,42 @@ defineOptions({
 })
 
 const { theme, frontmatter } = useData<'post'>()
+
+const el = useTemplateRef<HTMLElement>('el')
+function onValidate(isValidate: boolean) {
+  if (!isValidate) {
+    el.value?.classList.add('animation')
+    setTimeout(() => {
+      el.value?.classList.remove('animation')
+    }, 800)
+  }
+}
 </script>
 
 <template>
   <ClientOnly>
-    <div class="vp-page-encrypt" v-bind="$attrs">
+    <div ref="el" class="vp-page-encrypt" v-bind="$attrs">
       <div class="logo">
         <span class="vpi-lock icon-lock-head" />
       </div>
-      <VPEncryptForm :info="frontmatter.passwordHint || theme.encryptPageText" />
+      <VPEncryptForm :info="frontmatter.passwordHint || theme.encryptPageText" @validate="onValidate" />
     </div>
   </ClientOnly>
 </template>
 
 <style scoped>
+.vp-page-encrypt {
+  transition: var(--vp-t-color);
+  transition-property: box-shadow, border-color, transform;
+}
+
+.vp-page-encrypt.animation {
+  animation-name: encrypt-error;
+  animation-duration: 0.15s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 4;
+}
+
 .vp-page-encrypt .logo {
   text-align: center;
 }
@@ -37,15 +60,26 @@ const { theme, frontmatter } = useData<'post'>()
     width: 400px;
     padding: 20px;
     margin: 40px auto 0;
-    border: solid 1px var(--vp-c-divider);
+    background: var(--vp-c-bg-soft);
     border-radius: 8px;
-    box-shadow: var(--vp-shadow-1);
-    transition: var(--vp-t-color);
-    transition-property: box-shadow, border-color;
+  }
+}
+
+@keyframes encrypt-error {
+  0% {
+    transform: translateX(0);
   }
 
-  .vp-page-encrypt:hover {
-    box-shadow: var(--vp-shadow-2);
+  33% {
+    transform: translateX(-4px);
+  }
+
+  67% {
+    transform: translateX(4px);
+  }
+
+  100% {
+    transform: translateX(0);
   }
 }
 </style>

@@ -14,6 +14,7 @@ export default defineConfig(() => {
     dts: true,
     sourcemap: false,
     format: 'esm',
+    fixedExtension: false,
   }
   /** @type {Options[]} */
   const options = []

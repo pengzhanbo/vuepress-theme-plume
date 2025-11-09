@@ -32,6 +32,7 @@ export default defineConfig((cli) => {
     format: 'esm',
     silent: !!cli.watch,
     clean: !cli.watch,
+    fixedExtension: false,
   }
   /** @type {Options[]} */
   const options = []

@@ -24,6 +24,7 @@ export default defineConfig((cli) => {
     sourcemap: false,
     format: 'esm',
     clean: !cli.watch,
+    fixedExtension: false,
   }
 
   /** @type {Options[]} */

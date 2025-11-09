@@ -1,3 +1,24 @@
+# [1.0.0-rc.176](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.175...v1.0.0-rc.176) (2025-11-09)
+
+
+### Bug Fixes
+
+* **cli:**  corrects function call for defining multiple collections ([#748](https://github.com/pengzhanbo/vuepress-theme-plume/issues/748)) ([2fc6ea5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2fc6ea5064031274a7f9e293e507768bc14ec8d4))
+* **theme:** conditionally render post navigation links on mobile devices ([#749](https://github.com/pengzhanbo/vuepress-theme-plume/issues/749)) ([b6ee4a4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b6ee4a4b3dc1d70463cb89bd0e3167338fc5b107))
+* **theme:** fix use admin decrypt page error ([a63c094](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a63c094df941f198ece32346f9623c282d0f9b6a))
+
+
+### Features
+
+* **theme:** optimize page encrypt ([#750](https://github.com/pengzhanbo/vuepress-theme-plume/issues/750)) ([a5dfef7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a5dfef7202e2eb3abf34236de4abc8d2eea41638))
+
+
+### Performance Improvements
+
+* update deps to latest ([3362056](https://github.com/pengzhanbo/vuepress-theme-plume/commit/336205627e517336c66c5a3558a5608ef632754e))
+
+
+
 # [1.0.0-rc.175](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.174...v1.0.0-rc.175) (2025-10-31)
 
 

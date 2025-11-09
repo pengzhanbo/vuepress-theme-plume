@@ -126,7 +126,7 @@ export function setupEncrypt(): void {
     if (!hasPageEncrypt.value)
       return true
 
-    const hash = splitHash(storage.value.p.__GLOBAL__ || '')
+    const hash = splitHash(storage.value.g || '')
     if (hash && encrypt.value.admins.includes(hash))
       return true
 

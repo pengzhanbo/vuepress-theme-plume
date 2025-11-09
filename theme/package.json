@@ -65,7 +65,7 @@
     "tsdown:watch": "tsdown --watch -- -c"
   },
   "peerDependencies": {
-    "@iconify/json": "catalog:peer",
+    "@iconify/json": ">=2",
     "@vuepress/shiki-twoslash": "catalog:vuepress",
     "gsap": "catalog:peer",
     "mathjax-full": "catalog:peer",

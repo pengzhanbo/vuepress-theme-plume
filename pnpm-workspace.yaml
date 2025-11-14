@@ -6,9 +6,9 @@ packages:
   - examples/*
 
 overrides:
-  '@bufbuild/protobuf': ^2.10.0
-  '@typescript-eslint/utils': ^8.46.3
-  esbuild: ^0.26.0
+  '@bufbuild/protobuf': ^2.10.1
+  '@typescript-eslint/utils': ^8.46.4
+  esbuild: ^0.27.0
   sass-embedded: ^1.93.3
   vue-router: ^4.6.3
 
@@ -28,12 +28,12 @@ catalogs:
     '@types/lodash.merge': ^4.6.9
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^24.10.0
+    '@types/node': ^24.10.1
     '@types/picomatch': ^4.0.2
     '@types/stylus': ^0.48.43
     '@types/three': ^0.181.0
     '@types/webpack-env': ^1.18.8
-    '@vitest/coverage-istanbul': ^4.0.8
+    '@vitest/coverage-istanbul': ^4.0.9
     bumpp: ^10.3.1
     commitizen: ^4.3.1
     conventional-changelog-cli: ^5.0.0
@@ -46,7 +46,7 @@ catalogs:
     less: ^4.4.2
     lint-staged: ^16.2.6
     markdown-it: ^14.1.0
-    memfs: ^4.50.0
+    memfs: ^4.51.0
     mermaid: ^11.12.1
     minimist: ^1.2.8
     postcss: ^8.5.6
@@ -54,13 +54,13 @@ catalogs:
     stylelint: ^16.25.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.16.1
+    tsdown: ^0.16.4
     typescript: ^5.9.3
-    vitest: ^4.0.8
+    vitest: ^4.0.9
     vue-router: ^4.6.3
     wait-on: ^9.0.3
   peer:
-    '@iconify/json': ^2.2.404
+    '@iconify/json': ^2.2.407
     artplayer: ^5.3.0
     dashjs: ^5.0.3
     gsap: ^3.13.0
@@ -70,10 +70,10 @@ catalogs:
     ogl: ^1.0.11
     postprocessing: ^6.38.0
     pyodide: ^0.29.0
-    sass: ^1.93.3
+    sass: ^1.94.0
     sass-embedded: ^1.93.3
     swiper: ^12.0.3
-    three: ^0.181.0
+    three: ^0.181.1
   prod:
     '@clack/prompts': ^0.11.0
     '@iconify/utils': ^3.0.2
@@ -94,13 +94,13 @@ catalogs:
     chokidar: 4.0.3
     dayjs: ^1.11.19
     echarts: ^6.0.0
-    esbuild: ^0.26.0
+    esbuild: ^0.27.0
     flowchart.ts: ^3.0.1
     focus-trap: ^7.6.6
     gray-matter: ^4.0.3
     handlebars: ^4.7.8
     image-size: ^2.0.2
-    js-yaml: ^4.1.0
+    js-yaml: ^4.1.1
     katex: ^0.16.25
     local-pkg: ^1.1.2
     lru-cache: ^11.2.2
@@ -113,7 +113,7 @@ catalogs:
     nano-spawn: ^2.0.0
     nanoid: ^5.1.6
     os-locale: ^6.0.2
-    p-map: ^7.0.3
+    p-map: ^7.0.4
     package-manager-detector: ^1.5.0
     picocolors: ^1.1.1
     picomatch: ^4.0.3

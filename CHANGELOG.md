@@ -1,3 +1,25 @@
+# [1.0.0-rc.177](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.176...v1.0.0-rc.177) (2025-11-14)
+
+
+### Bug Fixes
+
+* **theme:** fix `fixed` position failure in Safari ([4119b67](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4119b67e0bc4adcd88a3b2590debcbcf93dc29bb))
+* **theme:** fix table max-width overflow ([05d55e5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/05d55e5035b6f71eca6ef680f68391087960b959))
+
+
+### Features
+
+* **cli:** typescript as a required dependency ([6fc6385](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6fc6385de4e1eb4ca6477bb08de4fac1dac4fa02))
+* **theme:** optimize `VPCollapse` styles within `Card` ([f95e7c8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f95e7c841270424da23387e3f2283a218052bfba))
+* **theme:** when `navbar` is empty, no preset is applied ([ab26dec](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ab26dec4574bf4d280348be5670be6c717ccc159))
+
+
+### Performance Improvements
+
+* update deps to latest ([5b07f2d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5b07f2dd2132d053de66bc0809bc6838fd78ad77))
+
+
+
 # [1.0.0-rc.176](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.175...v1.0.0-rc.176) (2025-11-09)
 
 

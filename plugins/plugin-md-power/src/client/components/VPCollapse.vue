@@ -28,4 +28,8 @@ provide(INJECT_COLLAPSE_KEY, {
   gap: 16px;
   margin: 16px 0;
 }
+
+.vp-card-wrapper .body > :first-child:where(.vp-collapse) > .vp-collapse-item:first-child {
+  padding-top: 0;
+}
 </style>

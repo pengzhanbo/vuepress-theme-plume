@@ -58,7 +58,7 @@ function onCopy(type: 'html' | 'md') {
             <span>Markdown</span>
           </button>
         </div>
-        <div ref="table" :class="{ 'max-content': maxContent }">
+        <div ref="table" class="table-inner" :class="{ 'max-content': maxContent }">
           <slot />
         </div>
       </div>
@@ -98,6 +98,11 @@ function onCopy(type: 'html' | 'md') {
   margin: 0 auto;
 }
 
+.vp-table .table-content .table-inner {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 .vp-table .table-title {
   margin: 8px auto;
   font-weight: 500;
@@ -135,11 +140,6 @@ function onCopy(type: 'html' | 'md') {
 
 .vpi-table-copied {
   --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='m9 20.42l-6.21-6.21l2.83-2.83L9 14.77l9.88-9.89l2.83 2.83z'/%3E%3C/svg%3E");
-}
-
-.vp-table .table-content .max-content {
-  max-width: 100%;
-  overflow-x: auto;
 }
 
 .vp-table .table-content .max-content table {

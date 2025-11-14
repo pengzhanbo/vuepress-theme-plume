@@ -21,7 +21,6 @@ export async function createPackageJson(
     siteDescription,
     bundler,
     injectNpmScripts,
-    useTs,
   }: ResolvedData,
 ): Promise<File> {
   if (mode === Mode.create) {
@@ -84,8 +83,7 @@ export async function createPackageJson(
   if (!hasDep('vue'))
     deps.push('vue')
 
-  if (useTs)
-    deps.push('typescript')
+  deps.push('typescript')
 
   for (const dep of deps)
     pkg.devDependencies[dep] = meta[dep]

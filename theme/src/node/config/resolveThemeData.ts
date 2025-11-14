@@ -74,7 +74,7 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
   entries(options.locales || {}).forEach(([locale, opt]) => {
     // 注入预设 导航栏
     // home | blog | tags | archives
-    if (opt.navbar !== false && (!opt.navbar || opt.navbar.length === 0)) {
+    if (!opt.navbar) {
       // fallback navbar option
       const navbar: ThemeNavItem[] = [{
         text: opt.homeText || options.homeText || 'Home',

@@ -83,10 +83,6 @@ watchPostEffect(() => {
 </style>
 
 <style>
-[data-theme] {
-  will-change: clip-path, filter, opacity;
-}
-
 ::view-transition-image-pair(root) {
   isolation: auto;
 }

@@ -71,11 +71,11 @@ const iconName = computed<string | { svg: string }>(() => {
   overflow: hidden;
 }
 
-.vp-card-wrapper .body :first-child {
+.vp-card-wrapper .body > :first-child {
   margin-top: 0;
 }
 
-.vp-card-wrapper .body :last-child {
+.vp-card-wrapper .body > :last-child {
   margin-bottom: 0;
 }
 </style>

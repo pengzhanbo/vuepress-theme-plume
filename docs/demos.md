@@ -73,6 +73,13 @@ docs:
     url: https://python.yxzl.dev/
     repo: https://github.com/yxzlwz/python-doc-web
     preview: https://python.yxzl.dev/screenshot.png
+  -
+    name: TinyPiXOS
+    desc: 一款国产自主可控、架构轻量且高度定制化的嵌入式移动设备桌面操作系统！
+    logo: https://file.tinypixos.com/tinypixos/tplogo.svg
+    url: https://www.tinypixos.com/
+    repo: https://github.com/TinyPiXOS/TinyPiXOS
+    preview: https://file.tinypixos.com/tinypixos/plume_theme_case.jpg
 
 blog:
   -

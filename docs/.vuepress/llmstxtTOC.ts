@@ -2,7 +2,8 @@ import type { LLMPage, LLMState } from '@vuepress/plugin-llms'
 import type { ThemeSidebarItem } from 'vuepress-theme-plume'
 import { generateTOCLink as rawGenerateTOCLink } from '@vuepress/plugin-llms'
 import { ensureEndingSlash, ensureLeadingSlash } from 'vuepress/shared'
-import { zhCollections } from './collections/zh/index.js'
+import { path } from 'vuepress/utils'
+import { enCollections, zhCollections } from './collections/index.js'
 
 function normalizePath(prefix: string, path = ''): string {
   if (path.startsWith('/'))
@@ -11,20 +12,46 @@ function normalizePath(prefix: string, path = ''): string {
   return `${ensureEndingSlash(prefix)}${path}`
 }
 
+function withBase(url = '', base = '/'): string {
+  if (!url)
+    return ''
+  if (url.startsWith(base))
+    return normalizePath(url)
+  return path.join(base, url)
+}
+
+function genStarsWith(stars: string | undefined, locale: string) {
+  return (url: string): boolean => {
+    if (!stars)
+      return false
+    return url.startsWith(withBase(stars, locale))
+  }
+}
+
 export function tocGetter(llmPages: LLMPage[], llmState: LLMState): string {
+  const { currentLocale } = llmState
+  const isZh = currentLocale === '/'
+  const collections = isZh ? zhCollections : enCollections
+
   let tableOfContent = ''
   const usagePages: LLMPage[] = []
 
-  // Blog
-  tableOfContent += `### 博客\n\n`
-  const blogList: string[] = []
-  llmPages.forEach((page) => {
-    if (page.path.startsWith('/article/') || page.path.startsWith('/blog/')) {
-      usagePages.push(page)
-      blogList.push(rawGenerateTOCLink(page, llmState))
-    }
-  })
-  tableOfContent += `${blogList.filter(Boolean).join('')}\n`
+  collections
+    .filter(item => item.type === 'post')
+    .forEach(({ title, linkPrefix, link }) => {
+      tableOfContent += `### ${title}\n\n`
+      const withLinkPrefix = genStarsWith(linkPrefix, currentLocale)
+      const withLink = genStarsWith(link, currentLocale)
+      const withFallback = genStarsWith('/article/', currentLocale)
+      const list: string[] = []
+      llmPages.forEach((page) => {
+        if (withLinkPrefix(page.path) || withLink(page.path) || withFallback(page.path)) {
+          usagePages.push(page)
+          list.push(rawGenerateTOCLink(page, llmState))
+        }
+      })
+      tableOfContent += `${list.filter(Boolean).join('')}\n`
+    })
 
   const generateTOCLink = (path: string): string => {
     const filepath = path.endsWith('/') ? `${path}README.md` : path.endsWith('.md') ? path : `${path || 'README'}.md`
@@ -72,12 +99,12 @@ export function tocGetter(llmPages: LLMPage[], llmState: LLMState): string {
     return result
   }
 
-  // Notes
-  zhCollections
+  // Collections
+  collections
     .filter(collection => collection.type === 'doc')
     .forEach(({ dir, title, sidebar = [] }) => {
       tableOfContent += `### ${title}\n\n`
-      const prefix = normalizePath(ensureLeadingSlash(dir))
+      const prefix = normalizePath(ensureLeadingSlash(withBase(dir, currentLocale)))
       if (sidebar === 'auto') {
         tableOfContent += `${processAutoSidebar(prefix).join('')}\n`
       }

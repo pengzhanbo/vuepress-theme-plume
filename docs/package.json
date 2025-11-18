@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "docs:build": "vuepress build --clean-cache --clean-temp && pnpm lunaria:build",
+    "docs:build-local": "NODE_OPTIONS=\"--max_old_space_size=8192\" vuepress build --clean-cache --clean-temp",
     "docs:clean": "rimraf .vuepress/.temp .vuepress/.cache .vuepress/dist",
     "docs:dev": "vuepress dev",
     "docs:serve": "http-server .vuepress/dist -d 0",

@@ -29,24 +29,12 @@ export default defineThemeConfig({
 
   locales: {
     '/': {
-      // notes: zhNotes,
       navbar: zhNavbar,
-      collections: [
-        // 博客
-        { type: 'post', dir: '/blog/', link: '/blog/', title: '博客' },
-        // 文档
-        ...zhCollections,
-      ],
+      collections: zhCollections,
     },
     '/en/': {
-      // notes: enNotes,
       navbar: enNavbar,
-      collections: [
-        // 博客
-        { type: 'post', dir: '/blog/', link: '/blog/', title: 'Blog' },
-        // 文档
-        ...enCollections,
-      ],
+      collections: enCollections,
     },
   },
 

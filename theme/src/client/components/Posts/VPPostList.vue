@@ -53,6 +53,7 @@ const {
   flex: 1 2;
   flex-direction: column;
   gap: 16px;
+  min-width: 0;
   max-width: 100%;
   margin: 0 auto;
 }

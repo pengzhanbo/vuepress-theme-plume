@@ -162,12 +162,14 @@ const actions = computed(() => hero?.actions ?? matter.value.hero?.actions ?? []
 .actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   padding-top: 24px;
   margin: -6px;
 }
 
 .action {
   flex-shrink: 0;
+  min-width: 0;
   padding: 6px;
 }
 </style>

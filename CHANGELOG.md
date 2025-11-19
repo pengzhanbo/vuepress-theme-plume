@@ -1,3 +1,22 @@
+# [1.0.0-rc.178](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.177...v1.0.0-rc.178) (2025-11-19)
+
+
+### Bug Fixes
+
+* **theme:** fix post-list width overflow ([ad1f02d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ad1f02de620d462e59ee832ae224e713772229e8))
+
+
+### Features
+
+* **theme:** add `plugin-llms` and `<PageContextMenu />` component ([#753](https://github.com/pengzhanbo/vuepress-theme-plume/issues/753)) ([20728f5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/20728f504d2ddba55e4bcca2f7a1b6793fa9ba04))
+
+
+### Performance Improvements
+
+* update deps to latest ([4884b1a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4884b1acce103c0dc97a2ba204652cb3362b1f42))
+
+
+
 # [1.0.0-rc.177](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.176...v1.0.0-rc.177) (2025-11-14)
 
 

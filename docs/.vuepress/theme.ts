@@ -76,4 +76,16 @@ export const theme: Theme = plumeTheme({
       content: 'vuepress-theme-plume',
     },
   },
+
+  llmstxt: {
+    locale: 'all',
+    llmsTxtTemplateGetter: {
+      description: (_, { currentLocale }) => {
+        return currentLocale === '/'
+          ? '一个简约易用的，功能丰富的 vuepress 文档&博客 主题'
+          : 'An easy-to-use and feature-rich vuepress documentation and blog theme'
+      },
+      details: '',
+    },
+  },
 })

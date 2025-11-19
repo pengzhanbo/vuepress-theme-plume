@@ -396,4 +396,14 @@ export interface ThemeLocaleText {
    * 加密时输入框的 placeholder
    */
   encryptPlaceholder?: string
+
+  copyPageText?: string
+  copiedPageText?: string
+  copingPageText?: string
+  copyTagline?: string
+  viewMarkdown?: string
+  viewMarkdownTagline?: string
+  askAIText?: string
+  askAITagline?: string
+  askAIMessage?: string
 }

@@ -113,6 +113,7 @@
     "@vuepress/plugin-copy-code": "catalog:vuepress",
     "@vuepress/plugin-docsearch": "catalog:vuepress",
     "@vuepress/plugin-git": "catalog:vuepress",
+    "@vuepress/plugin-llms": "catalog:vuepress",
     "@vuepress/plugin-markdown-chart": "catalog:vuepress",
     "@vuepress/plugin-markdown-hint": "catalog:vuepress",
     "@vuepress/plugin-markdown-image": "catalog:vuepress",

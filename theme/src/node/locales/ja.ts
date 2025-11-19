@@ -51,6 +51,16 @@ export const jaLocale: ThemeLocaleText = {
     message:
       '<a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a> によって提供されています',
   },
+
+  copyPageText: 'ページをコピー',
+  copiedPageText: 'コピーしました',
+  copingPageText: 'コピー中..',
+  copyTagline: 'ページをMarkdown形式でコピーしてLLMで使用',
+  viewMarkdown: 'Markdown形式で表示',
+  viewMarkdownTagline: 'このページをプレーンテキストで表示',
+  askAIText: '{name} で開く',
+  askAITagline: 'このページについて {name} に質問する',
+  askAIMessage: '{link} を読み、内容に関する質問に答えてください。',
 }
 
 export const jaPresetLocale: PresetLocale = {

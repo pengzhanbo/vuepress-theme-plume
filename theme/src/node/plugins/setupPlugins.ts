@@ -18,6 +18,7 @@ import { watermarkPlugin } from '@vuepress/plugin-watermark'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { codePlugins } from './code.js'
 import { gitPlugin } from './git.js'
+import { llmsPlugin } from './llms.js'
 import { markdownPlugins } from './markdown.js'
 
 export function setupPlugins(
@@ -112,6 +113,11 @@ export function setupPlugins(
   const replaceAssets = options.replaceAssets ?? pluginOptions.replaceAssets
   if (replaceAssets) {
     plugins.push(replaceAssetsPlugin(replaceAssets))
+  }
+
+  const llmstxt = options.llmstxt ?? pluginOptions.llmstxt
+  if (llmstxt) {
+    plugins.push(...llmsPlugin(app, llmstxt))
   }
 
   /**

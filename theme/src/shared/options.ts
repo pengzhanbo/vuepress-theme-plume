@@ -1,6 +1,7 @@
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
 import type { CopyCodePluginOptions } from '@vuepress/plugin-copy-code'
 import type { ChangelogOptions, ContributorsOptions } from '@vuepress/plugin-git'
+import type { LlmsPluginOptions } from '@vuepress/plugin-llms'
 import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
 import type { ReplaceAssetsPluginOptions } from '@vuepress/plugin-replace-assets'
 import type { ShikiPluginOptions } from '@vuepress/plugin-shiki'
@@ -94,7 +95,10 @@ export interface ThemeFeatureOptions {
   /**
    * 站点搜索配置
    *
-   * @default { provider: 'local' }
+   * @default
+   * ```
+   * { provider: 'local' }
+   * ```
    */
   search?: boolean | SearchOptions
 
@@ -132,4 +136,9 @@ export interface ThemeFeatureOptions {
    * 资源链接替换
    */
   replaceAssets?: false | ReplaceAssetsPluginOptions
+
+  /**
+   * llmstxt 配置
+   */
+  llmstxt?: boolean | LlmsPluginOptions
 }

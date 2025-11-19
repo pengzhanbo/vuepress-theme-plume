@@ -53,11 +53,15 @@ const hasMeta = computed(() =>
 </script>
 
 <template>
-  <h1 class="vp-doc-title page-title" :class="{ padding: !hasMeta }">
-    <VPBadge v-if="page.frontmatter.draft" type="warning" text="DRAFT" />
-    {{ page.title }}
-    <VPBadge v-if="badge" :type="badge.type || 'tip'" :text="badge.text" />
-  </h1>
+  <div class="vp-doc-title">
+    <slot name="doc-title-before" />
+    <h1 class="page-title" :class="{ padding: !hasMeta }">
+      <VPBadge v-if="page.frontmatter.draft" type="warning" text="DRAFT" />
+      {{ page.title }}
+      <VPBadge v-if="badge" :type="badge.type || 'tip'" :text="badge.text" />
+    </h1>
+    <slot name="doc-title-after" />
+  </div>
 
   <div v-if="hasMeta" class="vp-doc-meta">
     <slot name="doc-meta-before" />
@@ -90,7 +94,18 @@ const hasMeta = computed(() =>
 </template>
 
 <style scoped>
-.vp-doc-title {
+@media (min-width: 768px) {
+  .vp-doc-title {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+
+.page-title {
+  flex: 1;
+  min-width: 0;
   margin-bottom: 0.7rem;
   font-size: 28px;
   font-weight: 600;
@@ -99,7 +114,7 @@ const hasMeta = computed(() =>
   transition: color var(--vp-t-color);
 }
 
-.vp-doc-title.padding {
+.page-title.padding {
   padding-bottom: 4rem;
 }
 

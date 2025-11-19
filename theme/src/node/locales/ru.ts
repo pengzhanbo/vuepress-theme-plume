@@ -51,6 +51,16 @@ export const ruLocale: ThemeLocaleText = {
     message:
       'Работает на <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
   },
+
+  copyPageText: 'Копировать страницу',
+  copiedPageText: 'Скопировано успешно',
+  copingPageText: 'Копируется...',
+  copyTagline: 'Скопировать страницу в формате Markdown для использования в LLM',
+  viewMarkdown: 'Просмотреть в Markdown',
+  viewMarkdownTagline: 'Просмотреть эту страницу в виде простого текста',
+  askAIText: 'Открыть в {name}',
+  askAITagline: 'Спросить {name} об этой странице',
+  askAIMessage: 'Прочитайте {link} и ответьте на вопросы, связанные с содержанием.',
 }
 
 export const ruPresetLocale: PresetLocale = {

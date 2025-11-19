@@ -3,6 +3,7 @@ import type { CachePluginOptions } from '@vuepress/plugin-cache'
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
 import type { CopyCodePluginOptions } from '@vuepress/plugin-copy-code'
 import type { DocSearchOptions } from '@vuepress/plugin-docsearch'
+import type { LlmsPluginOptions } from '@vuepress/plugin-llms'
 import type { MarkdownChartPluginOptions } from '@vuepress/plugin-markdown-chart'
 import type { MarkdownImagePluginOptions } from '@vuepress/plugin-markdown-image'
 import type { MarkdownIncludePluginOptions } from '@vuepress/plugin-markdown-include'
@@ -130,4 +131,9 @@ export interface ThemeBuiltinPlugins {
    * 资源链接替换
    */
   replaceAssets?: false | ReplaceAssetsPluginOptions
+
+  /**
+   * llmstxt 配置
+   */
+  llmstxt?: boolean | LlmsPluginOptions
 }

@@ -38,6 +38,16 @@ export const enLocale: ThemeLocaleText = {
     message:
       'Powered by <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
   },
+
+  copyPageText: 'Copy page',
+  copiedPageText: 'Copied !',
+  copingPageText: 'Copying..',
+  copyTagline: 'Copy page as Markdown for LLMs',
+  viewMarkdown: 'View as Markdown',
+  viewMarkdownTagline: 'View this page as plain text',
+  askAIText: 'Open in {name}',
+  askAITagline: 'Ask {name} about this page',
+  askAIMessage: 'Read {link} and answer content-related questions.',
 }
 
 export const enPresetLocale: PresetLocale = {

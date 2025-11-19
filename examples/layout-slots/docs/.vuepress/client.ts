@@ -30,6 +30,8 @@ export default defineClientConfig({
       'doc-footer-before': () => h(SlotDemo, { name: 'doc-footer-before' }),
       'doc-before': () => h(SlotDemo, { name: 'doc-before', mt: 16 }),
       'doc-after': () => h(SlotDemo, { name: 'doc-after' }),
+      'doc-title-before': () => h(SlotDemo, { name: 'doc-title-before', h: 24 }),
+      'doc-title-after': () => h(SlotDemo, { name: 'doc-title-after', h: 24 }),
       'doc-meta-before': () => h(SlotDemo, { name: 'doc-meta-before', h: 24 }),
       'doc-meta-after': () => h(SlotDemo, { name: 'doc-meta-after', h: 24 }),
       'doc-meta-top': () => h(SlotDemo, { name: 'doc-meta-top' }),

@@ -51,6 +51,16 @@ export const deLocale: ThemeLocaleText = {
     message:
       'Unterstützt von <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
   },
+
+  copyPageText: 'Seite kopieren',
+  copiedPageText: 'Kopieren !',
+  copingPageText: 'Wird kopiert..',
+  copyTagline: 'Seite als Markdown für LLMs kopieren',
+  viewMarkdown: 'Als Markdown anzeigen',
+  viewMarkdownTagline: 'Diese Seite als Nur-Text anzeigen',
+  askAIText: 'In {name} öffnen',
+  askAITagline: '{name} zu dieser Seite befragen',
+  askAIMessage: 'Lese {link} und beantworte Fragen zum Inhalt.',
 }
 
 export const dePresetLocale: PresetLocale = {

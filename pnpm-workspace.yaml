@@ -7,7 +7,7 @@ packages:
 
 overrides:
   '@bufbuild/protobuf': ^2.10.1
-  '@typescript-eslint/utils': ^8.46.4
+  '@typescript-eslint/utils': ^8.47.0
   esbuild: ^0.27.0
   sass-embedded: ^1.93.3
   vue-router: ^4.6.3
@@ -33,7 +33,7 @@ catalogs:
     '@types/stylus': ^0.48.43
     '@types/three': ^0.181.0
     '@types/webpack-env': ^1.18.8
-    '@vitest/coverage-istanbul': ^4.0.9
+    '@vitest/coverage-istanbul': ^4.0.10
     bumpp: ^10.3.1
     commitizen: ^4.3.1
     conventional-changelog-cli: ^5.0.0
@@ -54,26 +54,26 @@ catalogs:
     stylelint: ^16.25.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.16.4
+    tsdown: ^0.16.5
     typescript: ^5.9.3
-    vitest: ^4.0.9
+    vitest: ^4.0.10
     vue-router: ^4.6.3
     wait-on: ^9.0.3
   peer:
-    '@iconify/json': ^2.2.407
+    '@iconify/json': ^2.2.408
     artplayer: ^5.3.0
     dashjs: ^5.0.3
     gsap: ^3.13.0
-    hls.js: ^1.6.14
+    hls.js: ^1.6.15
     mathjax-full: ^3.2.2
     mpegts.js: 1.7.3
     ogl: ^1.0.11
     postprocessing: ^6.38.0
     pyodide: ^0.29.0
-    sass: ^1.94.0
+    sass: ^1.94.1
     sass-embedded: ^1.93.3
     swiper: ^12.0.3
-    three: ^0.181.1
+    three: ^0.181.2
   prod:
     '@clack/prompts': ^0.11.0
     '@iconify/utils': ^3.0.2

@@ -40,6 +40,7 @@ export const themeConfig: ThemeCollectionItem = defineCollection({
         'shiki',
         'search',
         'reading-time',
+        'llms',
         'markdown-enhance',
         'markdown-power',
         'markdown-image',

@@ -106,6 +106,8 @@ You can preview <https://plume-layout-slots.netlify.app> to see the positions of
   - `doc-footer-before`
   - `doc-before`
   - `doc-after`
+  - `doc-title-before`
+  - `doc-title-after`
   - `doc-meta-top`
   - `doc-meta-bottom`
   - `doc-meta-before`

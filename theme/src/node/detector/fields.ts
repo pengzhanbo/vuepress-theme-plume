@@ -22,6 +22,7 @@ export const PLUGINS_SUPPORTED_FIELDS: (keyof ThemeBuiltinPlugins)[] = [
   'readingTime',
   'watermark',
   'replaceAssets',
+  'llmstxt',
 ]
 
 export const MARKDOWN_CHART_FIELDS: (keyof MarkdownChartPluginOptions)[] = [

@@ -50,6 +50,16 @@ export const zhLocale: ThemeLocaleText = {
     message:
       'Powered by <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
   },
+
+  copyPageText: '复制页面',
+  copiedPageText: '复制成功',
+  copingPageText: '复制中..',
+  copyTagline: '将页面以 Markdown 格式复制供 LLMs 使用',
+  viewMarkdown: '以 Markdown 格式查看',
+  viewMarkdownTagline: '以纯文本查看此页面',
+  askAIText: '在 {name} 中打开',
+  askAITagline: '向 {name} 提问有关此页面',
+  askAIMessage: '阅读 {link} 并回答内容相关的问题。',
 }
 
 export const zhPresetLocale: PresetLocale = {

@@ -3,6 +3,7 @@ import { defineMermaidConfig } from '@vuepress/plugin-markdown-chart/client'
 import { defineAsyncComponent, h } from 'vue'
 import { Layout } from 'vuepress-theme-plume/client'
 import VPPostItem from 'vuepress-theme-plume/components/Posts/VPPostItem.vue'
+import PageContextMenu from 'vuepress-theme-plume/features/PageContextMenu.vue'
 import { defineClientConfig } from 'vuepress/client'
 import AsideNav from '~/components/AsideNav.vue'
 import { setupThemeColors } from '~/composables/theme-colors.js'
@@ -25,6 +26,7 @@ export default defineClientConfig({
   layouts: {
     Layout: h(Layout, null, {
       'aside-outline-after': () => h(AsideNav),
+      'doc-title-after': () => h(PageContextMenu),
     }),
   },
 }) as ClientConfig

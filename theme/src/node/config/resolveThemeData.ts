@@ -28,6 +28,7 @@ const EXCLUDE_LIST: (keyof ThemeOptions)[] = [
   'watermark',
   'readingTime',
   'copyCode',
+  'llmstxt',
 ]
 // 过滤不需要出现在多语言配置中的字段
 const EXCLUDE_LOCALE_LIST: (keyof ThemeOptions)[] = [...EXCLUDE_LIST, 'blog', 'appearance']

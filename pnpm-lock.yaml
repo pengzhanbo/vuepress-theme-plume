@@ -551,9 +551,6 @@ importers:
       '@vuepress/bundler-vite':
         specifier: catalog:vuepress
         version: 2.0.0-rc.26(@types/node@24.10.1)(jiti@2.5.1)(less@4.4.2)(sass-embedded@1.93.3)(sass@1.94.0)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1)
-      '@vuepress/plugin-llms':
-        specifier: catalog:vuepress
-        version: 2.0.0-rc.118(typescript@5.9.3)(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@24.10.1)(jiti@2.5.1)(less@4.4.2)(sass-embedded@1.93.3)(sass@1.94.0)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3)))
       '@vuepress/shiki-twoslash':
         specifier: catalog:vuepress
         version: 2.0.0-rc.118(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3))(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@24.10.1)(jiti@2.5.1)(less@4.4.2)(sass-embedded@1.93.3)(sass@1.94.0)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3)))
@@ -815,6 +812,9 @@ importers:
         specifier: catalog:vuepress
         version: 2.0.0-rc.118(@algolia/client-search@5.35.0)(react@19.2.0)(search-insights@2.17.3)(typescript@5.9.3)(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@24.10.1)(jiti@2.5.1)(less@4.4.2)(sass-embedded@1.93.3)(sass@1.94.0)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3)))
       '@vuepress/plugin-git':
+        specifier: catalog:vuepress
+        version: 2.0.0-rc.118(typescript@5.9.3)(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@24.10.1)(jiti@2.5.1)(less@4.4.2)(sass-embedded@1.93.3)(sass@1.94.0)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3)))
+      '@vuepress/plugin-llms':
         specifier: catalog:vuepress
         version: 2.0.0-rc.118(typescript@5.9.3)(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@24.10.1)(jiti@2.5.1)(less@4.4.2)(sass-embedded@1.93.3)(sass@1.94.0)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3)))
       '@vuepress/plugin-markdown-chart':

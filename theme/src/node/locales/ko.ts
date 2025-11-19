@@ -51,6 +51,16 @@ export const koLocale: ThemeLocaleText = {
     message:
       'Powered by <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
   },
+
+  copyPageText: '페이지 복사',
+  copiedPageText: '복사 완료',
+  copingPageText: '복사 중..',
+  copyTagline: '페이지를 마크다운 형식으로 복사하여 LLM에서 사용',
+  viewMarkdown: 'Markdown 형식으로 보기',
+  viewMarkdownTagline: '이 페이지를 일반 텍스트로 보기',
+  askAIText: '{name} 에서 열기',
+  askAITagline: '이 페이지에 대해 {name} 에 질문하기',
+  askAIMessage: '{link} 을(를) 읽고 내용과 관련된 질문에 답변해 주세요.',
 }
 
 export const koPresetLocale: PresetLocale = {

@@ -122,6 +122,12 @@ watch(
 
               <slot name="doc-meta-top" />
               <VPDocMeta>
+                <template #doc-title-before>
+                  <slot name="doc-title-before" />
+                </template>
+                <template #doc-title-after>
+                  <slot name="doc-title-after" />
+                </template>
                 <template #doc-meta-before>
                   <slot name="doc-meta-before" />
                 </template>

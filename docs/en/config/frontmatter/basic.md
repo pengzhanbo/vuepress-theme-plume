@@ -228,3 +228,11 @@ Display a badge on the right side of the article title.
   When the type is WatermarkOptions, it represents the watermark configuration for the current page.
 
   You can refer to [watermark-js-plus](https://zhensherlock.github.io/watermark-js-plus/zh/config/).
+
+### footer
+
+- Type: `boolean`
+- Default: `true`
+- Details:
+
+  Whether to display the footer for the current article.

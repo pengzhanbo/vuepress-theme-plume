@@ -4,21 +4,21 @@ import { onMounted, ref } from 'vue'
 import { useData, useSidebar } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
 
-const { theme } = useData()
+const { theme, frontmatter } = useData()
 const { hasSidebar } = useSidebar()
 
 const footerHeight = useCssVar('--vp-footer-height', inBrowser ? document.body : null)
 const footer = ref<HTMLElement | null>(null)
 
 onMounted(() => {
-  if (theme.value.footer && footer.value)
+  if (theme.value.footer && frontmatter.value.footer !== false && footer.value)
     footerHeight.value = `${footer.value.offsetHeight}px`
 })
 </script>
 
 <template>
   <footer
-    v-if="theme.footer"
+    v-if="theme.footer && frontmatter.footer !== false"
     ref="footer"
     class="vp-footer"
     :class="{ 'has-sidebar': hasSidebar }"

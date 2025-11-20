@@ -227,3 +227,11 @@ permalink: /config/frontmatter/basic/
   当类型为 WatermarkOptions 时，表示当前页面水印配置。
 
   可以参考 [watermark-js-plus](https://zhensherlock.github.io/watermark-js-plus/zh/config/) 。
+
+### footer
+
+- 类型： `boolean`
+- 默认值： `true`
+- 详情：
+
+  当前文章是否 显示 页脚信息。

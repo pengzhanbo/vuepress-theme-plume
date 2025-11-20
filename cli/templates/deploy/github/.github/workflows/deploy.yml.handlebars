@@ -56,11 +56,15 @@ jobs:
       # Run the build script
 {{#unless (equal packageManager "yarn")}}
       - name: Build VuePress site
+        env:
+          NODE_OPTIONS: --max_old_space_size=8192
         run: {{packageManager}} run docs:build
 {{/unless}}
 {{#if (equal packageManager "yarn")}}
       - name: Build VuePress site
         uses: borales/actions-yarn@v4
+        env:
+          NODE_OPTIONS: --max_old_space_size=8192
         with:
           cmd: docs:build
 {{/if}}

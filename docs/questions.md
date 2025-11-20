@@ -78,3 +78,104 @@ npx vp-update
 这时候的 依赖锁定文件如 `package-lock.json` 或 `pnpm-lock.yaml` 已经被污染。
 
 请直接删除 `package-lock.json` 或 `pnpm-lock.yaml` 等依赖锁定文件，以及删除 `node_modules` 目录，然后重新安装依赖。
+
+## 怎么隐藏页面的页脚？
+
+可以在 Markdown 文件的 frontmatter 中，添加 `footer: false` 字段来隐藏页脚。
+
+```md title="post.md"
+---
+footer: false
+---
+
+content
+```
+
+[配置文档：**frontmatter > 页脚**](./config/frontmatter/basic.md#footer){.read-more}
+
+或者在主题配置文件中，添加 `footer: false` 字段来隐藏整个主站所有页面的页脚。
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    footer: false, // [!code ++]
+  })
+})
+```
+
+[配置文档：**主题配置**](./config/theme.md#footer){.read-more}
+
+## 构建时错误：`JavaScript heap out of memory`
+
+在执行 `npm run docs:build` 时，出现类似以下错误：
+
+```sh
+<--- Last few GCs --->
+
+[69161:0x7fe63aa00000]   137006 ms: xxxxxx
+[69161:0x7fe63aa00000]   139327 ms: xxxxxxxx
+
+<--- JS stacktrace --->
+FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+1: 0x107ce7c84 xxxxxxxxxxxx
+...
+```
+
+这是由于 nodejs 内存不足导致。
+
+通过添加以下环境变量，修改 nodejs 内存限制：
+
+**方式一 在当前命令行工具的会话期内**：
+
+```sh
+export NODE_OPTIONS="--max_old_space_size=8192"
+npm run docs:build
+```
+
+==注意此方式仅在当前命令行工具的会话期内有效。=={.warning}
+
+**方式二 在本地环境中**：
+
+需要长期保持此环境变量，可以通过以下方式在本地环境中修改 nodejs 内存限制:
+
+:::: steps
+
+- 在项目中安装 `cross-env`
+
+  ::: npm-to
+
+  ```sh
+  npm install -D cross-env
+  ```
+
+  :::
+
+- 在 `package.json` 中添加 `scripts`:
+
+  ```json
+  {
+    "scripts": {
+      "docs:build-local": "cross-env NODE_OPTIONS=\"--max_old_space_size=8192\" vuepress build docs --clean-cache --clean-temp"
+    }
+  }
+  ```
+
+::::
+
+在本地构建时，使用 `npm run docs:build-local` 构建包。
+
+**方式三 在 Github Actions 中**：
+
+修改 `.github/workflows/deploy.yml` 文件，添加以下环境变量:
+
+```yaml
+# ...
+- name: Build VuePress site
+  env: # [!code ++:2]
+    NODE_OPTIONS: --max_old_space_size=8192
+  run: npm run docs:build
+
+# ...
+```

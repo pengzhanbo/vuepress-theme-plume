@@ -88,7 +88,7 @@ blog:
     logo: https://pengzhanbo.cn/images/blogger-fav.png
     url: https://pengzhanbo.cn/
     repo: https://github.com/pengzhanbo/pengzhanbo.cn
-    preview: /images/demos/pengzhanbo.jpg
+    preview: /images/demos/pengzhanbo.webp
   -
     name: 二猫子
     desc: 老老实实的二猫子，从不胡说八道

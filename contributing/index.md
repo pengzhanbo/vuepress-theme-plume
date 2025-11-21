@@ -1,0 +1,4 @@
+---
+url: /contributing/index.md
+---
+

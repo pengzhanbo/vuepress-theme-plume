@@ -56,9 +56,10 @@ export function useLink(
 
   const isExternal = computed(() => {
     const link = preProcessLink.value
-    if (maybeIsExternal.value || !link)
+    if (maybeIsExternal.value)
       return true
-    if (link[0] === '#')
+
+    if (!link || link[0] === '#')
       return false
 
     // 判断是否为不存在的路由

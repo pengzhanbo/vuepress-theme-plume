@@ -225,10 +225,10 @@ blog:
   -
     name: 异想之旅
     desc: 异想之旅のBlog
-    logo: https://blog.yxzl.dev/head.png
-    url: https://blog.yxzl.dev/
+    logo: https://yxzl.dev/head.png
+    url: https://yxzl.dev/
     repo: https://github.com/yxzlwz/blog
-    preview: https://blog.yxzl.dev/screenshot.png
+    preview: https://yxzl.dev/screenshot.png
   -
     name: Honahec
     desc: Honahec's Blog

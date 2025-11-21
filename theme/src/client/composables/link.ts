@@ -1,7 +1,7 @@
 import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import { isLinkExternal, isLinkWithProtocol } from '@vuepress/helper/client'
 import { computed, toValue } from 'vue'
-import { resolveRouteFullPath, useRoute } from 'vuepress/client'
+import { resolveRoute, resolveRouteFullPath, useRoute } from 'vuepress/client'
 import { useData } from './data.js'
 
 interface UseLinkResult {
@@ -24,34 +24,56 @@ export function useLink(
   const route = useRoute()
   const { page } = useData()
 
-  const isExternal = computed(() => {
+  // 预判断是否可以直接认为是外部链接
+  // 在此时并不能完全确认是否一定是内部链接
+  const maybeIsExternal = computed(() => {
     const link = toValue(href)
     const rawTarget = toValue(target)
     if (!link)
       return false
     if (rawTarget === '_blank' || isLinkExternal(link))
       return true
-    const filename = link.split(/[#?]/)[0]?.split('/').pop() || ''
-    if (filename === '' || filename.endsWith('.html') || filename.endsWith('.md'))
-      return false
-    return filename.includes('.')
+    return false
   })
 
-  const link = computed(() => {
+  // 预处理链接，尝试转为内部的链接
+  const preProcessLink = computed(() => {
     const link = toValue(href)
-    if (!link)
-      return undefined
-    if (isExternal.value)
+    if (!link || maybeIsExternal.value)
       return link
 
     const currentPath = page.value.filePathRelative ? `/${page.value.filePathRelative}` : undefined
     const path = resolveRouteFullPath(link, currentPath)
     if (path.includes('#')) {
+      // 将路径 + 锚点 与 当前路由路径进行比较
+      // 转为锚点链接，避免页面发生刷新
       if (path.slice(0, path.indexOf('#')) === route.path) {
         return path.slice(path.indexOf('#'))
       }
     }
     return path
+  })
+
+  const isExternal = computed(() => {
+    const link = preProcessLink.value
+    if (maybeIsExternal.value)
+      return true
+
+    if (!link || link[0] === '#')
+      return false
+
+    // 判断是否为不存在的路由
+    const routePath = link.split(/[?#]/)[0]
+    const { notFound } = resolveRoute(routePath)
+    return notFound
+  })
+
+  const link = computed(() => {
+    // 外部链接保持原样
+    if (isExternal.value) {
+      return toValue(href)
+    }
+    return preProcessLink.value
   })
 
   const isExternalProtocol = computed(() => {

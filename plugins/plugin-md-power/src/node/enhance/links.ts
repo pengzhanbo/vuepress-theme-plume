@@ -44,6 +44,7 @@ export function linksPlugin(md: Markdown): void {
     // convert starting tag of internal link
     hasOpenInternalLink = true
     token.tag = internalTag
+    token.attrJoin(':no-icon', 'true')
 
     const matched = hrefLink.match(/^([^#?]*?(?:\/|\.md|\.html))([#?].*)?$/)
 

@@ -1,4 +1,4 @@
-name: Add Release Tag
+name: Release
 
 on:
   push:

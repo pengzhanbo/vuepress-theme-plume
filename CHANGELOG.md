@@ -1,3 +1,20 @@
+# [1.0.0-rc.179](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.178...v1.0.0-rc.179) (2025-11-25)
+
+
+### Features
+
+* **cli:** add env config to template ([a4bea82](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a4bea8202b96728affdb01887535911d27b9a575))
+* **theme:** add `footer` frontmatter ([ddb77a0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ddb77a06a5bea91593d797ee307fcf2f115dd60b))
+* **theme:** add support for `{data-outline="level"}` attribute syntax for  headings, close [#757](https://github.com/pengzhanbo/vuepress-theme-plume/issues/757) ([#759](https://github.com/pengzhanbo/vuepress-theme-plume/issues/759)) ([fc3676d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fc3676d6dcb89ab4f175c8e54d3b61697e0f9233))
+* **theme:** exclude encrypt page in llmstxt ([#758](https://github.com/pengzhanbo/vuepress-theme-plume/issues/758)) ([73f4935](https://github.com/pengzhanbo/vuepress-theme-plume/commit/73f4935ca9656a0ce73005995f896a1602e0a63c))
+
+
+### Performance Improvements
+
+* update deps to latest ([c1f59cf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c1f59cf4510247eebbfa7d74d4629e9441998928))
+
+
+
 # [1.0.0-rc.178](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.177...v1.0.0-rc.178) (2025-11-19)
 
 

@@ -3,7 +3,7 @@ import { onClickOutside, useClipboard, useToggle } from '@vueuse/core'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { withBase } from 'vuepress/client'
 import { ensureEndingSlash } from 'vuepress/shared'
-import { useData } from '../../composables/index.js'
+import { useData, useEncrypt } from '../../composables/index.js'
 
 import '@vuepress/helper/transition/fade-in.css'
 
@@ -12,6 +12,7 @@ interface MenuItem {
   text: string
   tagline: string
   icon: string
+  type?: string
 }
 
 const { claude = true, chatgpt = true } = defineProps<{
@@ -20,6 +21,7 @@ const { claude = true, chatgpt = true } = defineProps<{
 }>()
 
 const { page, frontmatter, theme } = useData()
+const { isPageDecrypted } = useEncrypt()
 
 const markdownLink = computed(() => {
   const url = withBase(page.value.path)
@@ -46,6 +48,7 @@ const menuList = computed(() => {
     text: theme.value.viewMarkdown ?? 'View as Markdown',
     tagline: theme.value.viewMarkdownTagline ?? 'View this page as plain text',
     icon: 'vpi-markdown',
+    type: 'text/markdown',
   })
 
   if (chatgpt) {
@@ -116,7 +119,7 @@ const copyPageText = computed(() => {
 </script>
 
 <template>
-  <div v-if="frontmatter.llmstxt !== false" class="vp-page-context-menu">
+  <div v-if="frontmatter.llmstxt !== false && isPageDecrypted" class="vp-page-context-menu">
     <div class="page-context-button" type="button">
       <span class="page-context-copy" @click="onCopy">
         <span class="vpi-copy" :class="{ loading: !loaded, copied }" />
@@ -140,7 +143,8 @@ const copyPageText = computed(() => {
         <li v-for="item in menuList" :key="item.text">
           <a
             :href="item.link" target="_blank" rel="noopener noreferrer"
-            :aria-label="item.text" data-allow-mismatch
+            :aria-label="item.text" :type="item.type"
+            data-allow-mismatch
           >
             <span :class="item.icon" />
             <span>

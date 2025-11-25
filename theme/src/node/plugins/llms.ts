@@ -1,9 +1,10 @@
 import type { LLMPage, LlmsPluginOptions, LLMState } from '@vuepress/plugin-llms'
-import type { App, PluginConfig } from 'vuepress'
-import type { ThemeSidebarItem } from '../../shared/index.js'
+import type { App, Page, PluginConfig } from 'vuepress'
+import type { ThemePageData, ThemeSidebarItem } from '../../shared/index.js'
 import { generateTOCLink as rawGenerateTOCLink, llmsPlugin as rawLlmsPlugin } from '@vuepress/plugin-llms'
 import { ensureEndingSlash, ensureLeadingSlash, isPlainObject } from 'vuepress/shared'
 import { getThemeConfig } from '../loadConfig/index.js'
+import { isEncryptPage } from '../prepare/prepareEncrypt.js'
 import { withBase } from '../utils/index.js'
 
 export function llmsPlugin(app: App, userOptions: true | LlmsPluginOptions): PluginConfig {
@@ -117,7 +118,10 @@ export function llmsPlugin(app: App, userOptions: true | LlmsPluginOptions): Plu
     return tableOfContent
   }
 
+  const options = getThemeConfig()
   return [rawLlmsPlugin({
+    // 启用全站加密、或者页面被加密的情况下不启用
+    filter: page => options.encrypt?.global ? false : !isEncryptPage(page as Page<ThemePageData>, options.encrypt),
     ...userLLMsTxt,
     llmsTxtTemplateGetter: {
       toc: tocGetter,

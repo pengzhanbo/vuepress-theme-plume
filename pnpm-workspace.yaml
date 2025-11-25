@@ -7,7 +7,7 @@ packages:
 
 overrides:
   '@bufbuild/protobuf': ^2.10.1
-  '@typescript-eslint/utils': ^8.47.0
+  '@typescript-eslint/utils': ^8.48.0
   esbuild: ^0.27.0
   sass-embedded: ^1.93.3
   vue-router: ^4.6.3
@@ -19,8 +19,8 @@ catalogs:
     '@commitlint/cli': ^20.1.0
     '@commitlint/config-conventional': ^20.0.0
     '@lunariajs/core': ^0.1.1
-    '@pengzhanbo/eslint-config-vue': ^1.40.0
-    '@pengzhanbo/stylelint-config': ^1.40.0
+    '@pengzhanbo/eslint-config-vue': ^1.41.0
+    '@pengzhanbo/stylelint-config': ^1.41.0
     '@simonwep/pickr': ^1.9.1
     '@types/express': ^5.0.5
     '@types/js-yaml': ^4.0.9
@@ -33,7 +33,7 @@ catalogs:
     '@types/stylus': ^0.48.43
     '@types/three': ^0.181.0
     '@types/webpack-env': ^1.18.8
-    '@vitest/coverage-istanbul': ^4.0.10
+    '@vitest/coverage-istanbul': ^4.0.14
     bumpp: ^10.3.1
     commitizen: ^4.3.1
     conventional-changelog-cli: ^5.0.0
@@ -44,25 +44,25 @@ catalogs:
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.4.2
-    lint-staged: ^16.2.6
+    lint-staged: ^16.2.7
     markdown-it: ^14.1.0
     memfs: ^4.51.0
     mermaid: ^11.12.1
     minimist: ^1.2.8
     postcss: ^8.5.6
-    rimraf: ^6.1.0
-    stylelint: ^16.25.0
+    rimraf: ^6.1.2
+    stylelint: ^16.26.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.16.5
+    tsdown: ^0.16.7
     typescript: ^5.9.3
-    vitest: ^4.0.10
+    vitest: ^4.0.14
     vue-router: ^4.6.3
     wait-on: ^9.0.3
   peer:
-    '@iconify/json': ^2.2.408
+    '@iconify/json': ^2.2.410
     artplayer: ^5.3.0
-    dashjs: ^5.0.3
+    dashjs: ^5.1.0
     gsap: ^3.13.0
     hls.js: ^1.6.15
     mathjax-full: ^3.2.2
@@ -70,7 +70,7 @@ catalogs:
     ogl: ^1.0.11
     postprocessing: ^6.38.0
     pyodide: ^0.29.0
-    sass: ^1.94.1
+    sass: ^1.94.2
     sass-embedded: ^1.93.3
     swiper: ^12.0.3
     three: ^0.181.2
@@ -85,7 +85,7 @@ catalogs:
     '@mdit/plugin-sup': ^0.22.2
     '@mdit/plugin-tab': ^0.22.3
     '@mdit/plugin-tasklist': ^0.22.2
-    '@pengzhanbo/utils': ^2.1.0
+    '@pengzhanbo/utils': ^2.1.2
     '@vueuse/core': ^14.0.0
     '@vueuse/integrations': ^14.0.0
     bcrypt-ts: ^7.1.0
@@ -121,7 +121,7 @@ catalogs:
     sort-package-json: ^3.4.0
     tm-grammars: ^1.25.3
     tm-themes: ^1.10.12
-    vue: ^3.5.24
+    vue: ^3.5.25
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.26
     '@vuepress/helper': 2.0.0-rc.118

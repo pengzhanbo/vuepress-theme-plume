@@ -138,6 +138,30 @@ Display a badge on the right side of the article title.
 
   `'deep'` is the same as `[2, 6]`, which displays all headings from `<h2>` to `<h6>`.
 
+::: tip Tips
+In markdown content, using the attribute syntax `{data-outline="level"}` / `{outline="level"}`
+after a heading allows you to reset the maximum display level for descendant headings under the current heading.
+
+**For example**:
+
+```md /{data-outline="5"}/
+## Heading 1 {data-outline="5"} <!-- Only affects descendant headings of the current heading -->
+
+### Level 3 Heading
+#### Level 4 Heading
+##### Level 5 Heading <!-- Level 3, 4, and 5 headings will appear in the sidebar -->
+###### Level 6 Heading <!-- This heading will NOT appear in the sidebar -->
+
+## Heading 2 <!-- Headings at the same level are not affected -->
+
+### Level 3 Heading <!-- By default, only up to level 3 headings are shown -->
+#### Level 4 Heading <!-- Level 4 headings are not shown -->
+```
+
+Note that the value of `level` should be greater than the level of the current heading; otherwise, it will not take effect.
+
+:::
+
 ### prev
 
 - Type: `string | { text: string, link: string, icon?: string }`

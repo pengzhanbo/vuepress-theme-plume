@@ -42,6 +42,7 @@ const resolvedHeaders: { element: HTMLHeadElement, link: string }[] = []
 export type MenuItem = Omit<Header, 'slug' | 'children'> & {
   element: HTMLHeadElement
   children?: MenuItem[]
+  lowLevel?: number
 }
 
 export const headersSymbol: InjectionKey<Ref<MenuItem[]>> = Symbol(
@@ -85,9 +86,41 @@ export function getHeaders(range?: ThemeOutline): MenuItem[] {
         title: serializeHeader(el),
         link: `#${el.id}`,
         level,
+        lowLevel: getLowLevel(el as HTMLHeadElement, level),
       }
     })
-  return resolveHeaders(headers, range)
+  if (range === false)
+    return []
+
+  const [high, low] = getRange(range)
+  return resolveSubRangeHeader(resolveHeaders(headers, high), low)
+}
+
+function getRange(range?: Exclude<ThemeOutline, boolean>): readonly [number, number] {
+  const levelsRange = range || 2
+  // [high, low]
+  return typeof levelsRange === 'number'
+    ? [levelsRange, levelsRange]
+    : levelsRange === 'deep'
+      ? [2, 6]
+      : levelsRange
+}
+
+function getLowLevel(el: HTMLHeadElement, level: number): number | undefined {
+  if (!el.hasAttribute('data-outline') && !el.hasAttribute('outline'))
+    return
+
+  // only support
+  // data-outline="3"      -> star, end -> [level, 3]
+  const str = (el.getAttribute('data-outline') || el.getAttribute('outline'))?.trim()
+  if (!str)
+    return
+
+  const num = Number(str)
+  if (!Number.isNaN(num) && num >= level)
+    return num
+
+  return undefined
 }
 
 function serializeHeader(h: Element): string {
@@ -137,20 +170,8 @@ function clearHeaderNodeList(list?: ChildNode[]) {
   }
 }
 
-export function resolveHeaders(headers: MenuItem[], range?: ThemeOutline): MenuItem[] {
-  if (range === false)
-    return []
-
-  const levelsRange = range || 2
-
-  const [high, low]: [number, number]
-    = typeof levelsRange === 'number'
-      ? [levelsRange, levelsRange]
-      : levelsRange === 'deep'
-        ? [2, 6]
-        : levelsRange
-
-  headers = headers.filter(h => h.level >= high && h.level <= low)
+export function resolveHeaders(headers: MenuItem[], high: number): MenuItem[] {
+  headers = headers.filter(h => h.level >= high)
   // clear previous caches
   resolvedHeaders.length = 0
   // update global header list for active link rendering
@@ -178,6 +199,17 @@ export function resolveHeaders(headers: MenuItem[], range?: ThemeOutline): MenuI
   }
 
   return ret
+}
+
+function resolveSubRangeHeader(headers: MenuItem[], low: number): MenuItem[] {
+  return headers.map((header) => {
+    if (header.children?.length) {
+      const current = header.lowLevel ? Math.max(header.lowLevel, low) : low
+      const children = header.children.filter(({ level }) => level <= current)
+      header.children = resolveSubRangeHeader(children, header.lowLevel || low)
+    }
+    return header
+  })
 }
 
 export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<HTMLElement | null>): void {

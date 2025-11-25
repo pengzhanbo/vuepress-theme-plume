@@ -36,7 +36,8 @@
     "vuepress": "catalog:vuepress"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "keyword": [
     "VuePress",

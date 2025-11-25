@@ -1,4 +1,4 @@
-name: Deploy Docs
+name: Deploy Example Layout Slots
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
   deploy-docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -18,9 +18,9 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - name: Install deps
@@ -32,11 +32,11 @@ jobs:
       - name: Docs build
         env:
           NODE_OPTIONS: --max_old_space_size=8192
-        run: pnpm docs:build
+        run: cd examples/layout-slots && pnpm docs:build
 
       - name: Deploy docs
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
-          folder: docs/.vuepress/dist
+          branch: gh-pages-layout-slots
+          folder: examples/layout-slots/docs/.vuepress/dist
           single-commit: true

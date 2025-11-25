@@ -51,7 +51,8 @@
     "vue": "catalog:prod"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "keyword": [
     "VuePress",

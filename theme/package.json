@@ -8,7 +8,8 @@
   "homepage": "https://theme-plume.vuejs.press/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git"
+    "url": "git+https://github.com/pengzhanbo/vuepress-theme-plume.git",
+    "directory": "theme"
   },
   "bugs": {
     "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
@@ -151,5 +152,9 @@
     "swiper": "catalog:peer",
     "three": "catalog:peer",
     "vue-router": "catalog:dev"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

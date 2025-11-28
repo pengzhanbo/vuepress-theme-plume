@@ -104,7 +104,7 @@ function resolveSidebar(
         property="itemListElement"
         typeof="ListItem"
       >
-        <VPLink :href="link" class="breadcrumb" :class="{ current }" property="item" typeof="WebPage" :text="text" />
+        <VPLink :href="link" class="breadcrumb" :class="{ current }" property="item" typeof="WebPage" :text="text" no-icon />
         <span v-if="index !== breadcrumbList.length - 1" class="vpi-chevron-right" />
         <meta property="name" :content="text">
         <meta property="position" :content="`${index + 1}`">

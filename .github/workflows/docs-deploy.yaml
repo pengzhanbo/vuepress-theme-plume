@@ -5,7 +5,9 @@ on:
     branches:
       - main
     paths:
-      - docs/**
+      # 以下文件发生变化时触发部署，这些文件与版本无关，因此可以自动更新
+      - docs/demos.md
+      - docs/sponsor.md
       - CONTRIBUTING.md
       - CONTRIBUTING.en-US.md
   workflow_dispatch:

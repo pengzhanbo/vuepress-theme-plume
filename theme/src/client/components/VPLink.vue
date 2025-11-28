@@ -28,7 +28,8 @@ function linkTo(e: Event) {
 
 <template>
   <Component
-    :is="tag" class="vp-link" :class="{ link, 'no-icon': noIcon }"
+    :is="tag"
+    class="vp-link" :class="{ link, 'no-icon': noIcon, 'vp-external-link-icon': isExternal }"
     :href="link ? isExternalProtocol ? link : isExternal ? link : withBase(link) : undefined"
     :target="target ?? (isExternal ? '_blank' : undefined)"
     :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
@@ -37,15 +38,5 @@ function linkTo(e: Event) {
     <slot>
       {{ text || href }}
     </slot>
-    <span v-if="isExternal && !noIcon" class="vpi-external-link" />
   </Component>
 </template>
-
-<style>
-.vp-link .vpi-external-link {
-  width: 11px;
-  height: 11px;
-  margin-top: -1px;
-  margin-left: 4px;
-}
-</style>

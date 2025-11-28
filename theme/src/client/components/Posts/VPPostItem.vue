@@ -116,7 +116,7 @@ const coverStyles = computed(() => {
         <div v-if="categoryList.length" class="category-list">
           <span class="icon vpi-folder" />
           <template v-for="(cate, i) in categoryList" :key="i">
-            <VPLink :href="categoriesLink ? `${categoriesLink.link}?id=${cate.id}` : undefined">
+            <VPLink :href="categoriesLink ? `${categoriesLink.link}?id=${cate.id}` : undefined" no-icon>
               {{ cate.name }}
             </VPLink>
             <span v-if="i !== categoryList.length - 1">/</span>

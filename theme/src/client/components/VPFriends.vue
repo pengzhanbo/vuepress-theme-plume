@@ -39,7 +39,7 @@ const groups = computed(() => matter.value.groups || [])
       <VPLink
         class="edit-link-button"
         :href="editLink.link"
-        :no-icon="true"
+        no-icon
       >
         <span class="vpi-square-pen edit-link-icon" aria-label="edit icon" />
         {{ editLink.text }}

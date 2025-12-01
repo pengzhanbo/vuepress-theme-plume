@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.179",
   "private": true,
-  "packageManager": "pnpm@10.23.0",
+  "packageManager": "pnpm@10.24.0",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -14,7 +14,7 @@
     "vuepress-theme-plume"
   ],
   "engines": {
-    "node": "^20.9.0 || >=22.1.0",
+    "node": "^20.19.0 || >=22.1.0",
     "pnpm": ">=9"
   },
   "scripts": {
@@ -47,7 +47,6 @@
     "@pengzhanbo/stylelint-config": "catalog:dev",
     "@types/js-yaml": "catalog:dev",
     "@types/less": "catalog:dev",
-    "@types/lodash.merge": "catalog:dev",
     "@types/minimist": "catalog:dev",
     "@types/node": "catalog:dev",
     "@types/picomatch": "catalog:dev",

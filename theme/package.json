@@ -54,7 +54,7 @@
     "templates"
   ],
   "engines": {
-    "node": "^20.6.0 || >=22.0.0"
+    "node": "^20.19.0 || >=22.0.0"
   },
   "scripts": {
     "dev": "pnpm '/(copy|tsdown):watch/'",
@@ -67,9 +67,9 @@
   },
   "peerDependencies": {
     "@iconify/json": ">=2",
+    "@mathjax/src": "catalog:peer",
     "@vuepress/shiki-twoslash": "catalog:vuepress",
     "gsap": "catalog:peer",
-    "mathjax-full": "catalog:peer",
     "ogl": "catalog:peer",
     "postprocessing": "catalog:peer",
     "swiper": "catalog:peer",
@@ -80,13 +80,13 @@
     "@iconify/json": {
       "optional": true
     },
+    "@mathjax/src": {
+      "optional": true
+    },
     "@vuepress/shiki-twoslash": {
       "optional": true
     },
     "gsap": {
-      "optional": true
-    },
-    "mathjax-full": {
       "optional": true
     },
     "ogl": {

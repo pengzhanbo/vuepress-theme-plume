@@ -49,7 +49,11 @@ export function markdownPlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfi
 
   mdChart ??= pluginOptions.markdownChart
   if (mdChart) {
-    plugins.push(markdownChartPlugin(mdChart))
+    plugins.push(markdownChartPlugin({
+      DANGEROUS_ALLOW_SCRIPT_EXECUTION: true,
+      DANGEROUS_SCRIPT_EXECUTION_ALLOWLIST: '*',
+      ...mdChart,
+    }))
   }
 
   math ??= pluginOptions.markdownMath

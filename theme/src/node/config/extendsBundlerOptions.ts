@@ -9,9 +9,7 @@ import { isPackageExists } from 'local-pkg'
 
 export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
   addViteConfig(bundlerOptions, app, {
-    build: {
-      chunkSizeWarningLimit: 2048,
-    },
+    build: { chunkSizeWarningLimit: 2048 },
   })
 
   addViteOptimizeDepsInclude(

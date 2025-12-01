@@ -1,3 +1,26 @@
+# [1.0.0-rc.180](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.179...v1.0.0-rc.180) (2025-12-01)
+
+
+### Bug Fixes
+
+* support nested ordered lists in collapse plugin ([#764](https://github.com/pengzhanbo/vuepress-theme-plume/issues/764)) ([bba9898](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bba98984d6d367f1b1f64f17bc8fbb4143484b67))
+* **theme:** fix hybrid  mismatch ([#763](https://github.com/pengzhanbo/vuepress-theme-plume/issues/763)) ([41d2a81](https://github.com/pengzhanbo/vuepress-theme-plume/commit/41d2a81a09604f45c32a76b04e784b737525f238))
+* **theme:** incorrect displaying external link icon ([#760](https://github.com/pengzhanbo/vuepress-theme-plume/issues/760)) ([e0b972c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e0b972c3cbc51a53563a8255a319e9dbb54d025c))
+* **theme:** llmstxt should exclude encrypt page ([#761](https://github.com/pengzhanbo/vuepress-theme-plume/issues/761)) ([f599a42](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f599a4223cc68886ef7c37103437c77bab5493b6))
+
+
+### Features
+
+* **cli:** optimize template ([#765](https://github.com/pengzhanbo/vuepress-theme-plume/issues/765)) ([c97a5af](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c97a5af473ac7417fffc866a4823dba948ee3ade))
+
+
+### Performance Improvements
+
+* **theme:** optimize `VPFooter` and `VPFriends` layout ([#762](https://github.com/pengzhanbo/vuepress-theme-plume/issues/762)) ([6a3babc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6a3babcf76a67ad161aec24c951fabaf257442c2))
+* update deps to latest ([3a907e0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3a907e0ba8849754bd868b08b67b123d247cdc1d))
+
+
+
 # [1.0.0-rc.179](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.178...v1.0.0-rc.179) (2025-11-25)
 
 

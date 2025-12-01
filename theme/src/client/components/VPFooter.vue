@@ -26,12 +26,12 @@ onMounted(() => {
   >
     <slot name="footer-content">
       <div class="container">
-        <p
+        <div
           v-if="theme.footer.message"
           class="message"
           v-html="theme.footer.message"
         />
-        <p
+        <div
           v-if="theme.footer.copyright"
           class="copyright"
           v-html="theme.footer.copyright"

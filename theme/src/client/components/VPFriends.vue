@@ -53,9 +53,17 @@ const groups = computed(() => matter.value.groups || [])
 <style scoped>
 .vp-friends {
   width: 100%;
-  padding-top: calc(var(--vp-nav-height) + 32px);
-  padding-bottom: 5rem;
+  max-width: 100%;
+  padding: 32px 24px 5rem;
   margin: 0 auto;
+}
+
+@media (min-width: 960px) {
+  .vp-friends {
+    padding-top: calc(var(--vp-nav-height) + 32px);
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
 
 .vp-friends .title {

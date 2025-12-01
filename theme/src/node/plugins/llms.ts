@@ -118,10 +118,12 @@ export function llmsPlugin(app: App, userOptions: true | LlmsPluginOptions): Plu
     return tableOfContent
   }
 
-  const options = getThemeConfig()
   return [rawLlmsPlugin({
     // 启用全站加密、或者页面被加密的情况下不启用
-    filter: page => options.encrypt?.global ? false : !isEncryptPage(page as Page<ThemePageData>, options.encrypt),
+    filter: (page) => {
+      const options = getThemeConfig()
+      return options.encrypt?.global ? false : !isEncryptPage(page as Page<ThemePageData>, options.encrypt)
+    },
     ...userLLMsTxt,
     llmsTxtTemplateGetter: {
       toc: tocGetter,

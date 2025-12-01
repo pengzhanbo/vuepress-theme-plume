@@ -56,13 +56,13 @@ export default defineUserConfig({
 
     /**
      * 编译缓存，加快编译速度
-     * @see https://theme-plume.vuejs.press/config/basic/#cache
+     * @see https://theme-plume.vuejs.press/config/theme/#cache
      */
     cache: 'filesystem',
 
     /**
      * 为 markdown 文件自动添加 frontmatter 配置
-     * @see https://theme-plume.vuejs.press/config/basic/#autofrontmatter
+     * @see https://theme-plume.vuejs.press/config/theme/#autofrontmatter
      */
     // autoFrontmatter: {
     //   permalink: true,  // 是否生成永久链接
@@ -120,6 +120,7 @@ export default defineUserConfig({
     //   jsfiddle: true,     // 启用嵌入 jsfiddle 语法 @[jsfiddle](user/id)
     //   npmTo: true,        // 启用 npm-to 容器  ::: npm-to
     //   demo: true,         // 启用 demo 容器  ::: demo
+    //   collapse: true,     // 启用折叠容器  ::: collapse
     //   repl: {             // 启用 代码演示容器
     //     go: true,         // ::: go-repl
     //     rust: true,       // ::: rust-repl
@@ -176,5 +177,18 @@ export default defineUserConfig({
      * @see https://theme-plume.vuejs.press/guide/features/encryption/
      */
     // encrypt: {},
+
+    /**
+     * 启用 llmstxt 插件，用于为大语言模型提供更友好的内容
+     * @see https://theme-plume.vuejs.press/guide/features/llmstxt/
+     */
+    // llmstxt: {
+    {{#if multiLanguage}}
+    //   locale: '/',    // 默认仅为主语言生成 llms 友好内容
+    //   locale: 'all',  // 为所有语言生成 llms 友好内容
+    {{else}}
+    //   locale: '/',    // 默认仅为主语言生成 llms 友好内容
+    {{/if}}
+    // }
   }),
 })

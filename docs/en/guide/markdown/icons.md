@@ -3,9 +3,6 @@ title: Icons
 createTime: 2025/10/08 14:49:39
 icon: grommet-icons:emoji
 permalink: /en/guide/markdown/icon/
-badge:
-  text: Changed
-  type: warning
 ---
 
 <script setup>
@@ -28,20 +25,6 @@ useScriptTag(
   { attrs: { "data-auto-replace-svg": "nest" } }
 )
 </script>
-
-::: warning Breaking Change in `1.0.0-rc.144`
-
-The `:[collect:name size/color]:` syntax has been deprecated. Please use `::collect:name =size /color::` instead.
-
-The theme plans to support icon libraries such as `iconfont`, `fontawesome`, and `lucide` in future versions.
-The original syntax was insufficient for these new extensions, making this breaking change necessary.
-
-The old syntax remains supported in recent versions but is no longer recommended and will be removed in the future.
-
-The theme detects if the old syntax is used. If so, it will output warning messages and modification
-suggestions in the console. Please adjust according to these suggestions.
-
-:::
 
 ## Overview
 

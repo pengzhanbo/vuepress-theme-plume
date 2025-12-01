@@ -10,10 +10,10 @@ tags:
 
 ## 环境要求
 
-- [Node.js](https://nodejs.org/)：**^20.6.0 或 >= 22.0.0** [+node-versions]
+- [Node.js](https://nodejs.org/)：**^20.19.0 或 >= 22.0.0** [+node-versions]
 - 包管理器：[npm 8+](https://www.npmjs.com/)、[pnpm 8+](https://pnpm.io/zh/) 或 [Yarn 2+](https://yarnpkg.com/)
 
-[+node-versions]: **^20.6.0：** `20.6.0` 及以上但低于 `21.0.0` 的版本
+[+node-versions]: **^20.19.0：** `20.19.0` 及以上但低于 `21.0.0` 的版本
 [+node-versions]: **>= 22.0.0：** `22.0.0` 及以上的版本
 
 :::: details 如何安装环境依赖？

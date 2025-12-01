@@ -54,12 +54,12 @@ function parseCollapse(tokens: Token[], index: number, attrs: CollapseMeta): num
       break
     }
     // 列表层级追踪
-    if (token.type === 'bullet_list_open') {
+    if (token.type === 'bullet_list_open' || token.type === 'ordered_list_open') {
       listStack.push(0) // 每个新列表初始层级为0
       if (listStack.length === 1)
         token.hidden = true
     }
-    else if (token.type === 'bullet_list_close') {
+    else if (token.type === 'bullet_list_close' || token.type === 'ordered_list_close') {
       listStack.pop()
       if (listStack.length === 0)
         token.hidden = true

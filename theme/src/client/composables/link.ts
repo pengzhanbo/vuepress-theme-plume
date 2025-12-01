@@ -65,6 +65,10 @@ export function useLink(
     // 判断是否为不存在的路由
     const routePath = link.split(/[?#]/)[0]
     const { notFound } = resolveRoute(routePath)
+
+    if (__VUEPRESS_DEV__)
+      notFound && console.warn(`[VuePress Dead Link] "${toValue(href)}" is not found in (${page.value.filePathRelative || page.value.path})`)
+
     return notFound
   })
 

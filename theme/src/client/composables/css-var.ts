@@ -14,7 +14,7 @@ export function useCssVar(
   const variable = shallowRef(initialValue)
 
   function updateCssVar() {
-    const _window = typeof window ? window : null
+    const _window = typeof window !== 'undefined' ? window : null
     const target = _window?.document?.documentElement
     const key = toValue(prop)
     if (target && key) {

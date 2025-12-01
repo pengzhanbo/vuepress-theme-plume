@@ -137,68 +137,6 @@ const obj = {
 }
 ```
 
-**Code Blocks TwoSlash：**
-
-```ts twoslash
-// @errors: 2339
-const welcome = 'Tudo bem gente?'
-const words = welcome.contains(' ')
-```
-
-```ts twoslash
-import express from 'express'
-const app = express()
-app.get('/', (req, res) => {
-  res.send
-})
-app.listen(3000)
-```
-
-```ts twoslash
-import { createHighlighter } from 'shiki'
-
-const highlighter = await createHighlighter({ themes: ['nord'], langs: ['javascript'] })
-// @log: Custom log message
-const a = 1
-// @error: Custom error message
-const b = 1
-// @warn: Custom warning message
-const c = 1
-// @annotate: Custom annotation message
-```
-
-```ts twoslash
-// @errors: 2540
-interface Todo {
-  title: string
-}
-
-const todo: Readonly<Todo> = {
-  title: 'Delete inactive users'.toUpperCase(),
-//  ^?
-}
-
-todo.title = 'Hello'
-
-Number.parseInt('123', 10)
-//      ^|
-
-//
-//
-```
-
-```vue twoslash
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const count = ref(0)
-</script>
-
-<template>
-  <p>{{ count }}</p>
-</template>
-```
-
 **代码分组：**
 
 ::: code-tabs

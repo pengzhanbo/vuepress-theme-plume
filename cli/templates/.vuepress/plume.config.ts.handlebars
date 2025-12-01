@@ -20,7 +20,7 @@ import collections from './collections'
 {{/if}}
 
 /**
- * @see https://theme-plume.vuejs.press/config/basic/
+ * @see https://theme-plume.vuejs.press/config/theme/
  */
 export default defineThemeConfig({
   logo: 'https://theme-plume.vuejs.press/plume.png',
@@ -52,7 +52,7 @@ export default defineThemeConfig({
 
   {{#unless multiLanguage}}
   /**
-   * @see https://theme-plume.vuejs.press/config/basic/#profile
+   * @see https://theme-plume.vuejs.press/config/theme/#profile
    */
   profile: {
     avatar: 'https://theme-plume.vuejs.press/plume.png',
@@ -78,7 +78,7 @@ export default defineThemeConfig({
   // },
 
   {{/unless}}
-  /* 过渡动画 @see https://theme-plume.vuejs.press/config/basic/#transition */
+  /* 过渡动画 @see https://theme-plume.vuejs.press/config/theme/#transition */
   // transition: {
   //   page: true,        // 启用 页面间跳转过渡动画
   //   postList: true,    // 启用 博客文章列表过渡动画
@@ -90,7 +90,7 @@ export default defineThemeConfig({
     {{#each locales}}
     '{{ path }}': {
       /**
-       * @see https://theme-plume.vuejs.press/config/basic/#profile
+       * @see https://theme-plume.vuejs.press/config/theme/#profile
        */
       profile: {
         avatar: 'https://theme-plume.vuejs.press/plume.png',

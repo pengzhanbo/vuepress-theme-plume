@@ -290,6 +290,8 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 
 ### Table Cell Highlighting
 
+#### Method One
+
 **Input:**
 
 ```md
@@ -311,6 +313,34 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 | (2,1) | (2,2) | (2,3) | (2,4) |
 | (3,1) | (3,2) | (3,3) | (3,4) |
 | (4,1) | (4,2) | (4,3) | (4,4) |
+
+:::
+
+#### Method Two
+
+Using the [Attribute Support](./attrs.md) syntax
+
+**Input:**
+
+```md
+::: table title="This is the Table Title"
+| (1,1) {.danger}    | (1,2)              | (1,3)            | (1,4)  {.warning} |
+| ------------------ | ------------------ | ---------------- | ----------------- |
+| (2,1)              | (2,2) {.danger}    | (2,3) {.warning} | (2,4)             |
+| (3,1)              | (3,2) {.important} | (3,3) {.danger}  | (3,4)             |
+| (4,1) {.important} | (4,2)              | (4,3)            | (4,4) {.danger}   |
+:::
+```
+
+**Output:**
+
+::: table title="This is the Table Title"
+
+| (1,1) {.danger}    | (1,2)              | (1,3)            | (1,4)  {.warning} |
+| ------------------ | ------------------ | ---------------- | ----------------- |
+| (2,1)              | (2,2) {.danger}    | (2,3) {.warning} | (2,4)             |
+| (3,1)              | (3,2) {.important} | (3,3) {.danger}  | (3,4)             |
+| (4,1) {.important} | (4,2)              | (4,3)            | (4,4) {.danger}   |
 
 :::
 
@@ -363,3 +393,29 @@ This custom type can then be used in tables:
 | Cell 4   | Cell 5   | Cell 6   |
 
 :::
+
+## Table Cell Merging
+
+Table cell merging is implemented through the attribute syntax supported by [markdown-it-attrs](https://github.com/arve0/markdown-it-attrs).
+Therefore, it does not need to be used within the `:::table` container; you can use it in any table.
+
+Inside a table cell, add `rowspan=rows` or `colspan=cols` (or a combination) using
+the attribute syntax `{}` at the end of the cell content to achieve table cell merging.
+
+**Input:**
+
+```md
+| A                       | B   | C   | D                |
+| ----------------------- | --- | --- | ---------------- |
+| 1                       | 11  | 111 | 1111 {rowspan=3} |
+| 2 {colspan=2 rowspan=2} | 22  | 222 | 2222             |
+| 3                       | 33  | 333 | 3333             |
+```
+
+**Output:**
+
+| A                       | B   | C   | D                |
+| ----------------------- | --- | --- | ---------------- |
+| 1                       | 11  | 111 | 1111 {rowspan=3} |
+| 2 {colspan=2 rowspan=2} | 22  | 222 | 2222             |
+| 3                       | 33  | 333 | 3333             |

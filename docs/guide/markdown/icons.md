@@ -3,9 +3,6 @@ title: 图标
 createTime: 2024/09/30 14:49:39
 icon: grommet-icons:emoji
 permalink: /guide/markdown/icon/
-badge:
-  text: 变更
-  type: warning
 ---
 
 <script setup>
@@ -28,19 +25,6 @@ useScriptTag(
   { attrs: { "data-auto-replace-svg": "nest" } }
 )
 </script>
-
-::: warning 图标语法糖在 `1.0.0-rc.144` 版本中进行了破坏性变更。
-
-`:[collect:name size/color]:` 语法糖已弃用，请使用 `::collect:name =size /color::` 代替。
-
-主题计划在未来的版本中，支持如 `iconfont` / `fontawesome` / `lucide` 等图标库的图标，原有语法糖
-不足以支持新的扩展，因此此破坏性变更是必要的。
-
-旧的语法在近期的版本中依然支持，但不再推荐使用，且在未来会删除。
-
-主题会检测是否使用旧的语法，如果使用，会在控制台输出警告信息和修改建议，请根据修改建议进行调整。
-
-:::
 
 ## 概述
 

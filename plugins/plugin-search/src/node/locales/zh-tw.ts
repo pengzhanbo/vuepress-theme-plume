@@ -2,10 +2,10 @@
 import type { SearchLocaleOptions } from '../../shared/index.js'
 
 export const zhTwSearchLocale: Partial<SearchLocaleOptions> = {
-  placeholder: '搜索文檔',
-  resetButtonTitle: '重置搜索',
+  placeholder: '搜尋文件',
+  resetButtonTitle: '重設搜尋',
   backButtonTitle: '關閉',
-  noResultsText: '無搜索結果：',
+  noResultsText: '無搜尋結果：',
   footer: {
     selectText: '選擇',
     selectKeyAriaLabel: '輸入',

@@ -26,7 +26,7 @@ export const zhTwLocale: ThemeLocaleText = {
   copyrightCreationOriginalText: '本文連結：',
   copyrightCreationTranslateText: '本文翻譯自：',
   copyrightCreationReprintText: '本文轉載自：',
-  copyrightLicenseText: '許可證：',
+  copyrightLicenseText: '授權條款：',
 
   notFound: {
     code: '404',
@@ -36,7 +36,7 @@ export const zhTwLocale: ThemeLocaleText = {
   },
 
   homeText: '首頁',
-  postsText: '博客',
+  postsText: '部落格',
   tagText: '標籤',
   archiveText: '歸檔',
   categoryText: '分類',

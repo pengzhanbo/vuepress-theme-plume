@@ -5,7 +5,7 @@ import VPDocBreadcrumbs from '@theme/VPDocBreadcrumbs.vue'
 import VPDocCopyright from '@theme/VPDocCopyright.vue'
 import VPDocFooter from '@theme/VPDocFooter.vue'
 import VPDocMeta from '@theme/VPDocMeta.vue'
-import VPEncryptPage from '@theme/VPEncryptPage.vue'
+import VPEncrypt from '@theme/VPEncrypt.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { computed, nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
@@ -137,25 +137,27 @@ watch(
               </VPDocMeta>
               <slot name="doc-meta-bottom" />
 
-              <VPEncryptPage v-if="!isPageDecrypted" />
-              <div
-                v-else class="vp-doc plume-content"
-                :class="[pageName, enabledExternalLinkIcon && 'external-link-icon-enabled']" vp-content
-              >
-                <slot name="doc-content-before" />
+              <VPEncrypt>
+                <div
+                  class="vp-doc plume-content"
+                  :class="[pageName, enabledExternalLinkIcon && 'external-link-icon-enabled']" vp-content
+                >
+                  <slot name="doc-content-before" />
 
-                <Content />
+                  <Content />
 
-                <DocGitContributors v-if="contributorsMode === 'block'" />
-                <DocGitChangelog />
-                <VPDocCopyright />
-              </div>
+                  <DocGitContributors v-if="contributorsMode === 'block'" />
+                  <DocGitChangelog />
+                  <VPDocCopyright />
+
+                  <VPDocFooter>
+                    <template #doc-footer-before>
+                      <slot name="doc-footer-before" />
+                    </template>
+                  </VPDocFooter>
+                </div>
+              </VPEncrypt>
             </main>
-            <VPDocFooter v-if="isPageDecrypted">
-              <template #doc-footer-before>
-                <slot name="doc-footer-before" />
-              </template>
-            </VPDocFooter>
 
             <VPComment />
 

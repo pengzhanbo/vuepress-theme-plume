@@ -8,6 +8,7 @@ import VPHomeHero from '@theme/Home/VPHomeHero.vue'
 import VPHomeProfile from '@theme/Home/VPHomeProfile.vue'
 import VPHomeTextImage from '@theme/Home/VPHomeTextImage.vue'
 import VPPosts from '@theme/Posts/VPPosts.vue'
+import VPEncrypt from '@theme/VPEncrypt.vue'
 import { computed, h, nextTick, onUnmounted, resolveComponent, watch } from 'vue'
 import { useData } from '../../composables/index.js'
 
@@ -96,19 +97,21 @@ onUnmounted(() => {
 
 <template>
   <div class="vp-home">
-    <template
-      v-for="(item, index) in config"
-      :key="item.type + index"
-    >
-      <div :class="{ layout: index > 0 && item.type !== 'features' && item.type !== 'custom' }">
-        <component
-          :is="resolveComponentName(item.type)"
-          v-bind="item"
-          :index="index"
-          :only-once="onlyOnce"
-        />
-      </div>
-    </template>
+    <VPEncrypt>
+      <template
+        v-for="(item, index) in config"
+        :key="item.type + index"
+      >
+        <div :class="{ layout: index > 0 && item.type !== 'features' && item.type !== 'custom' }">
+          <component
+            :is="resolveComponentName(item.type)"
+            v-bind="item"
+            :index="index"
+            :only-once="onlyOnce"
+          />
+        </div>
+      </template>
+    </VPEncrypt>
   </div>
 </template>
 

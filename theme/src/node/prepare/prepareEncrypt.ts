@@ -4,6 +4,7 @@ import type { EncryptOptions, ThemePageData } from '../../shared/index.js'
 import type { FsCache } from '../utils/index.js'
 import { isEmptyObject, isNumber, isString, toArray } from '@pengzhanbo/utils'
 import { encodeData, removeLeadingSlash } from '@vuepress/helper'
+import pMap from 'p-map'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { createFsCache, genEncrypt, hash, perf, resolveContent, writeTemp } from '../utils/index.js'
 
@@ -34,7 +35,7 @@ export async function prepareEncrypt(app: App): Promise<void> {
 
   if (!contentHash || contentHash !== currentHash || !resolvedEncrypt) {
     contentHash = currentHash
-    resolvedEncrypt = resolveEncrypt(encrypt)
+    resolvedEncrypt = await resolveEncrypt(encrypt)
   }
   await writeTemp(app, 'internal/encrypt.js', resolveContent(app, {
     name: 'encrypt',
@@ -46,12 +47,12 @@ export async function prepareEncrypt(app: App): Promise<void> {
   perf.log('prepare:encrypt')
 }
 
-function resolveEncrypt(encrypt?: EncryptOptions): EncryptConfig {
+async function resolveEncrypt(encrypt?: EncryptOptions): Promise<EncryptConfig> {
   const admin = encrypt?.admin
-    ? toArray(encrypt.admin)
-        .filter(isStringLike)
-        .map(item => genEncrypt(item))
-        .join(separator)
+    ? (await pMap(
+        toArray(encrypt.admin).filter(isStringLike),
+        item => genEncrypt(item),
+      )).join(separator)
     : ''
 
   const encryptRules = Object.keys(encrypt?.rules ?? {}).reduce((acc, key) => {
@@ -63,14 +64,13 @@ function resolveEncrypt(encrypt?: EncryptOptions): EncryptConfig {
   const keys = Object.keys(encryptRules)
 
   if (!isEmptyObject(encryptRules)) {
-    Object.keys(encryptRules).forEach((key) => {
+    for (const key of keys) {
       const index = keys.indexOf(key)
-
-      rules[String(index)] = toArray(encryptRules[key])
-        .filter(isStringLike)
-        .map(item => genEncrypt(item))
-        .join(separator)
-    })
+      rules[String(index)] = (await pMap(
+        toArray(encryptRules[key]).filter(isStringLike),
+        item => genEncrypt(item),
+      )).join(separator)
+    }
   }
 
   return [encrypt?.global ?? false, separator, admin, keys, rules]

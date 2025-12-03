@@ -72,7 +72,7 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
 
       templateBuildRenderer,
 
-      extendsPage: page => extendsPageData(page as Page<ThemePageData>),
+      extendsPage: async page => await extendsPageData(page as Page<ThemePageData>),
 
       onInitialized: async app => await createPages(app),
 

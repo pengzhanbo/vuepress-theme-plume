@@ -1,18 +1,16 @@
 import type { Page } from 'vuepress/core'
 import type { ThemePageData } from '../../shared/index.js'
-import { getThemeConfig } from '../loadConfig/index.js'
 import { autoCategory } from './autoCategory.js'
 import { encryptPage } from './encryptPage.js'
 import { enableBulletin } from './pageBulletin.js'
 
-export function extendsPageData(
+export async function extendsPageData(
   page: Page<ThemePageData>,
-): void {
-  const options = getThemeConfig()
+): Promise<void> {
   cleanPageData(page)
-  encryptPage(page)
   autoCategory(page)
-  enableBulletin(page, options)
+  enableBulletin(page)
+  await encryptPage(page)
 }
 
 function cleanPageData(page: Page<ThemePageData>) {

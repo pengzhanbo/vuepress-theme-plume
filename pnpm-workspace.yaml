@@ -88,7 +88,6 @@ catalogs:
     '@pengzhanbo/utils': ^2.1.2
     '@vueuse/core': ^14.1.0
     '@vueuse/integrations': ^14.1.0
-    bcrypt-ts: ^7.1.0
     cac: ^6.7.14
     chart.js: ^4.5.1
     chokidar: 5.0.0
@@ -99,6 +98,7 @@ catalogs:
     focus-trap: ^7.6.6
     gray-matter: ^4.0.3
     handlebars: ^4.7.8
+    hash-wasm: ^4.12.0
     image-size: ^2.0.2
     js-yaml: ^4.1.1
     katex: ^0.16.25

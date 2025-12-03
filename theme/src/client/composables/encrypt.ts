@@ -1,7 +1,7 @@
 import type { InjectionKey, Ref } from 'vue'
 import type { EncryptDataRule } from './encrypt-data.js'
-import { hasOwn, useSessionStorage } from '@vueuse/core'
-import { compare, genSaltSync } from 'bcrypt-ts/browser'
+import { computedAsync, useSessionStorage } from '@vueuse/core'
+import { bcryptVerify, md5 } from 'hash-wasm'
 import { computed, inject, provide } from 'vue'
 import { useRoute } from 'vuepress/client'
 import { removeLeadingSlash } from 'vuepress/shared'
@@ -21,27 +21,13 @@ export const EncryptSymbol: InjectionKey<Encrypt> = Symbol(
 
 const storage = useSessionStorage('2a0a3d6afb2fdf1f', () => {
   if (__VUEPRESS_SSR__) {
-    return { s: ['', ''] as const, g: '', p: {} as Record<string, string> }
+    return { g: '', p: [] as string[] }
   }
   return {
-    s: [genSaltSync(10), genSaltSync(10)] as const,
-    g: '' as string,
-    p: {} as Record<string, string>,
+    g: '',
+    p: [] as string[],
   }
 })
-
-function mergeHash(hash: string) {
-  const [left, right] = storage.value.s
-  return left + hash + right
-}
-
-function splitHash(hash: string) {
-  const [left, right] = storage.value.s
-  if (!hash.startsWith(left) || !hash.endsWith(right))
-    return ''
-
-  return hash.slice(left.length, hash.length - right.length)
-}
 
 const compareCache = new Map<string, boolean>()
 async function compareDecrypt(content: string, hash: string, separator = ':'): Promise<boolean> {
@@ -50,7 +36,7 @@ async function compareDecrypt(content: string, hash: string, separator = ':'): P
     return compareCache.get(key)!
 
   try {
-    const result = await compare(content, hash)
+    const result = await bcryptVerify({ password: content, hash })
     compareCache.set(key, result)
     return result
   }
@@ -98,14 +84,17 @@ export function setupEncrypt(): void {
       : false
   })
 
-  const isGlobalDecrypted = computed(() => {
+  const isGlobalDecrypted = computedAsync(async () => {
+    const hash = storage.value.g
     if (!encrypt.value.global)
       return true
 
-    const hash = splitHash(storage.value.g)
-
-    return !!hash && encrypt.value.admins.includes(hash)
-  })
+    for (const admin of encrypt.value.admins) {
+      if (hash && hash === await md5(admin))
+        return true
+    }
+    return false
+  }, !encrypt.value.global)
 
   const hashList = computed(() => {
     const pagePath = route.path
@@ -122,24 +111,27 @@ export function setupEncrypt(): void {
     return [pageRule, ...rules].filter(Boolean) as EncryptDataRule[]
   })
 
-  const isPageDecrypted = computed(() => {
+  const isPageDecrypted = computedAsync(async () => {
     if (!hasPageEncrypt.value)
       return true
 
-    const hash = splitHash(storage.value.g || '')
-    if (hash && encrypt.value.admins.includes(hash))
-      return true
+    const hash = storage.value.g
+
+    for (const admin of encrypt.value.admins) {
+      if (hash && hash === await md5(admin))
+        return true
+    }
 
     for (const { key, rules } of hashList.value) {
-      if (hasOwn(storage.value.p, key)) {
-        const hash = splitHash(storage.value.p[key])
-        if (hash && rules.includes(hash))
+      const hash = storage.value.p[key]
+      for (const rule of rules) {
+        if (hash && hash === await md5(rule))
           return true
       }
     }
 
     return false
-  })
+  }, !hasPageEncrypt.value)
 
   provide(EncryptSymbol, {
     hasPageEncrypt,
@@ -173,7 +165,7 @@ export function useEncryptCompare(): {
 
     for (const admin of encrypt.value.admins) {
       if (await compareDecrypt(password, admin, encrypt.value.separator)) {
-        storage.value.g = mergeHash(admin)
+        storage.value.g = await md5(admin)
         return true
       }
     }
@@ -195,10 +187,7 @@ export function useEncryptCompare(): {
         for (const rule of rules) {
           if (await compareDecrypt(password, rule, encrypt.value.separator)) {
             decrypted = true
-            storage.value.p = {
-              ...storage.value.p,
-              [key]: mergeHash(rule),
-            }
+            storage.value.p[key] = await md5(rule)
             break
           }
         }

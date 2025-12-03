@@ -209,9 +209,6 @@ catalogs:
     '@vueuse/integrations':
       specifier: ^14.1.0
       version: 14.1.0
-    bcrypt-ts:
-      specifier: ^7.1.0
-      version: 7.1.0
     cac:
       specifier: ^6.7.14
       version: 6.7.14
@@ -236,6 +233,9 @@ catalogs:
     handlebars:
       specifier: ^4.7.8
       version: 4.7.8
+    hash-wasm:
+      specifier: ^4.12.0
+      version: 4.12.0
     image-size:
       specifier: ^2.0.2
       version: 2.0.2
@@ -863,9 +863,6 @@ importers:
       '@vueuse/core':
         specifier: catalog:prod
         version: 14.1.0(vue@3.5.25(typescript@5.9.3))
-      bcrypt-ts:
-        specifier: catalog:prod
-        version: 7.1.0
       chokidar:
         specifier: ^5.0.0
         version: 5.0.0
@@ -878,6 +875,9 @@ importers:
       gray-matter:
         specifier: catalog:prod
         version: 4.0.3
+      hash-wasm:
+        specifier: catalog:prod
+        version: 4.12.0
       js-yaml:
         specifier: catalog:prod
         version: 4.1.1
@@ -3299,10 +3299,6 @@ packages:
   bcp-47@2.1.0:
     resolution: {integrity: sha512-9IIS3UPrvIa1Ej+lVDdDwO7zLehjqsaByECw0bu2RRGP73jALm6FYbzI5gWbgHLvNdkvfXB5YrSbocZdOS0c0w==}
 
-  bcrypt-ts@7.1.0:
-    resolution: {integrity: sha512-t/Dqr9YzYmn/+oPQBgotBPUuezpZD5CPBwapM5Ep1p3zsLmEycMdXOfZpWbztSBWJ41DlB7EluJBUDsAGSiUeQ==}
-    engines: {node: '>=20'}
-
   birpc@2.6.1:
     resolution: {integrity: sha512-LPnFhlDpdSH6FJhJyn4M0kFO7vtQ5iPw24FnG0y21q09xC7e8+1LeR31S1MAIrDAHp4m7aas4bEkTDTvMAtebQ==}
 
@@ -4820,6 +4816,9 @@ packages:
 
   hash-sum@2.0.0:
     resolution: {integrity: sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==}
+
+  hash-wasm@4.12.0:
+    resolution: {integrity: sha512-+/2B2rYLb48I/evdOIhP+K/DD2ca2fgBjp6O+GBEnCDk2e4rpeXIK8GvIyRPjTezgmWn9gmKwkQjjx6BtqDHVQ==}
 
   hashery@1.2.0:
     resolution: {integrity: sha512-43XJKpwle72Ik5Zpam7MuzRWyNdwwdf6XHlh8wCj2PggvWf+v/Dm5B0dxGZOmddidgeO6Ofu9As/o231Ti/9PA==}
@@ -10207,8 +10206,6 @@ snapshots:
       is-alphanumerical: 2.0.1
       is-decimal: 2.0.1
 
-  bcrypt-ts@7.1.0: {}
-
   birpc@2.6.1: {}
 
   birpc@2.8.0: {}
@@ -11982,6 +11979,8 @@ snapshots:
       has-symbols: 1.1.0
 
   hash-sum@2.0.0: {}
+
+  hash-wasm@4.12.0: {}
 
   hashery@1.2.0:
     dependencies:

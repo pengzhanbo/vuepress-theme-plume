@@ -100,6 +100,7 @@
     "image-size": "catalog:prod",
     "local-pkg": "catalog:prod",
     "lru-cache": "catalog:prod",
+    "markdown-it-cjk-friendly": "catalog:prod",
     "markdown-it-container": "catalog:prod",
     "nanoid": "catalog:prod",
     "shiki": "catalog:prod",

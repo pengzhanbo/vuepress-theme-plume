@@ -7,6 +7,7 @@ import { sub } from '@mdit/plugin-sub'
 import { sup } from '@mdit/plugin-sup'
 import { tasklist } from '@mdit/plugin-tasklist'
 import { isPlainObject } from '@vuepress/helper'
+import cjsFriendly from 'markdown-it-cjk-friendly'
 import { abbrPlugin } from './abbr.js'
 import { annotationPlugin } from './annotation.js'
 import { plotPlugin } from './plot.js'
@@ -15,6 +16,7 @@ export function inlineSyntaxPlugin(
   md: Markdown,
   options: MarkdownPowerPluginOptions,
 ): void {
+  md.use(cjsFriendly)
   md.use(attrs)
   md.use(mark)
   md.use(sub)

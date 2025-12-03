@@ -1,6 +1,13 @@
-import { random } from '@pengzhanbo/utils'
-import { genSaltSync, hashSync } from 'bcrypt-ts'
+import crypto from 'node:crypto'
+import { bcrypt } from 'hash-wasm'
 
-export function genEncrypt(pwd: string): string {
-  return hashSync(String(pwd), genSaltSync(random(8, 16)))
+export async function genEncrypt(password: string): Promise<string> {
+  const salt = new Uint8Array(16)
+  crypto.getRandomValues(salt)
+  return bcrypt({
+    password,
+    salt,
+    costFactor: 11,
+    outputType: 'encoded',
+  })
 }

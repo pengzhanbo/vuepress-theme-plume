@@ -77,6 +77,7 @@ watchEffect(() => {
   left: 0;
   z-index: var(--vp-z-index-nav);
   width: 100%;
+  overflow-x: clip;
   pointer-events: none;
 }
 

@@ -6,6 +6,7 @@ import VPPostsCategories from '@theme/Posts/VPPostsCategories.vue'
 import VPPostsExtract from '@theme/Posts/VPPostsExtract.vue'
 import VPPostsNav from '@theme/Posts/VPPostsNav.vue'
 import VPPostsTags from '@theme/Posts/VPPostsTags.vue'
+import VPEncrypt from '@theme/VPEncrypt.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { onBeforeUnmount, watch } from 'vue'
 import { forceUpdateCollection, useData } from '../../composables/index.js'
@@ -30,80 +31,82 @@ onBeforeUnmount(() => forceUpdateCollection(undefined))
 
 <template>
   <div class="vp-posts" :class="{ 'home-posts': homePosts }" vp-posts>
-    <slot name="posts-top" />
+    <VPEncrypt>
+      <slot name="posts-top" />
 
-    <div
-      class="posts-container"
-      :class="{ 'no-profile': !theme.profile, 'left': theme.profile?.layout === 'left' }"
-    >
-      <VPPostsNav v-if="!theme.profile" is-local />
+      <div
+        class="posts-container"
+        :class="{ 'no-profile': !theme.profile, 'left': theme.profile?.layout === 'left' }"
+      >
+        <VPPostsNav v-if="!theme.profile" is-local />
 
-      <VPTransitionFadeSlideY>
-        <VPPostsArchives v-if="page.type === 'posts-archives'">
-          <template #posts-archives-before>
-            <slot name="posts-archives-before" />
-          </template>
-          <template #posts-archives-after>
-            <slot name="posts-archives-after" />
-          </template>
-        </VPPostsArchives>
-        <VPPostsTags v-else-if="page.type === 'posts-tags'">
-          <template #posts-tags-before>
-            <slot name="posts-tags-before" />
-          </template>
-          <template #posts-tags-after>
-            <slot name="posts-tags-after" />
-          </template>
-          <template #posts-tags-title-after>
-            <slot name="posts-tags-title-after" />
-          </template>
-          <template #posts-tags-content-before>
-            <slot name="posts-tags-content-before" />
-          </template>
-        </VPPostsTags>
-        <VPPostsCategories v-else-if="page.type === 'posts-categories'">
-          <template #posts-categories-before>
-            <slot name="posts-categories-before" />
-          </template>
-          <template #posts-categories-after>
-            <slot name="posts-categories-after" />
-          </template>
-          <template #posts-categories-content-before>
-            <slot name="posts-categories-content-before" />
-          </template>
-        </VPPostsCategories>
-        <VPPostList v-else :home-posts="homePosts">
-          <template #posts-post-list-before>
-            <slot name="posts-post-list-before" />
-          </template>
-          <template #posts-post-list-after>
-            <slot name="posts-post-list-after" />
-          </template>
-          <template #posts-post-list-pagination-after>
-            <slot name="posts-post-list-pagination-after" />
-          </template>
-        </VPPostList>
-      </VPTransitionFadeSlideY>
+        <VPTransitionFadeSlideY>
+          <VPPostsArchives v-if="page.type === 'posts-archives'">
+            <template #posts-archives-before>
+              <slot name="posts-archives-before" />
+            </template>
+            <template #posts-archives-after>
+              <slot name="posts-archives-after" />
+            </template>
+          </VPPostsArchives>
+          <VPPostsTags v-else-if="page.type === 'posts-tags'">
+            <template #posts-tags-before>
+              <slot name="posts-tags-before" />
+            </template>
+            <template #posts-tags-after>
+              <slot name="posts-tags-after" />
+            </template>
+            <template #posts-tags-title-after>
+              <slot name="posts-tags-title-after" />
+            </template>
+            <template #posts-tags-content-before>
+              <slot name="posts-tags-content-before" />
+            </template>
+          </VPPostsTags>
+          <VPPostsCategories v-else-if="page.type === 'posts-categories'">
+            <template #posts-categories-before>
+              <slot name="posts-categories-before" />
+            </template>
+            <template #posts-categories-after>
+              <slot name="posts-categories-after" />
+            </template>
+            <template #posts-categories-content-before>
+              <slot name="posts-categories-content-before" />
+            </template>
+          </VPPostsCategories>
+          <VPPostList v-else :home-posts="homePosts">
+            <template #posts-post-list-before>
+              <slot name="posts-post-list-before" />
+            </template>
+            <template #posts-post-list-after>
+              <slot name="posts-post-list-after" />
+            </template>
+            <template #posts-post-list-pagination-after>
+              <slot name="posts-post-list-pagination-after" />
+            </template>
+          </VPPostList>
+        </VPTransitionFadeSlideY>
 
-      <VPPostsAside>
-        <template #posts-aside-top>
-          <slot name="posts-aside-top" />
-        </template>
-        <template #posts-aside-bottom>
-          <slot name="posts-aside-bottom" />
-        </template>
-      </VPPostsAside>
-      <VPPostsExtract>
-        <template #posts-extract-before>
-          <slot name="posts-extract-before" />
-        </template>
-        <template #posts-extract-after>
-          <slot name="posts-extract-after" />
-        </template>
-      </VPPostsExtract>
-    </div>
+        <VPPostsAside>
+          <template #posts-aside-top>
+            <slot name="posts-aside-top" />
+          </template>
+          <template #posts-aside-bottom>
+            <slot name="posts-aside-bottom" />
+          </template>
+        </VPPostsAside>
+        <VPPostsExtract>
+          <template #posts-extract-before>
+            <slot name="posts-extract-before" />
+          </template>
+          <template #posts-extract-after>
+            <slot name="posts-extract-after" />
+          </template>
+        </VPPostsExtract>
+      </div>
 
-    <slot name="posts-bottom" />
+      <slot name="posts-bottom" />
+    </VPEncrypt>
   </div>
 </template>
 

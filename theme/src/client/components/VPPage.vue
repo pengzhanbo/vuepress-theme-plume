@@ -1,17 +1,13 @@
 <script setup lang="ts">
-import VPEncryptPage from '@theme/VPEncryptPage.vue'
-import { useEncrypt } from '../composables/index.js'
-
-const { isPageDecrypted } = useEncrypt()
+import VPEncrypt from '@theme/VPEncrypt.vue'
 </script>
 
 <template>
   <div class="vp-page">
-    <VPEncryptPage v-if="!isPageDecrypted" />
-    <template v-else>
+    <VPEncrypt>
       <slot name="page-top" />
       <Content class="vp-doc plume-content" vp-content />
       <slot name="page-bottom" />
-    </template>
+    </VPEncrypt>
   </div>
 </template>

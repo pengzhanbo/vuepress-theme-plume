@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import VPEncryptForm from '@theme/VPEncryptForm.vue'
 import { useTemplateRef } from 'vue'
-import { useData } from '../composables/index.js'
+import { useData, useEncrypt } from '../composables/index.js'
 
 defineOptions({
   inheritAttrs: false,
 })
+
+const { isPageDecrypted } = useEncrypt()
 
 const { theme, frontmatter } = useData<'post'>()
 
@@ -21,7 +23,7 @@ function onValidate(isValidate: boolean) {
 </script>
 
 <template>
-  <ClientOnly>
+  <ClientOnly v-if="!isPageDecrypted">
     <div ref="el" class="vp-page-encrypt" v-bind="$attrs">
       <div class="logo">
         <span class="vpi-lock icon-lock-head" />
@@ -29,6 +31,7 @@ function onValidate(isValidate: boolean) {
       <VPEncryptForm :info="frontmatter.passwordHint || theme.encryptPageText" @validate="onValidate" />
     </div>
   </ClientOnly>
+  <slot v-else />
 </template>
 
 <style scoped>

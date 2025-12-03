@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import VPComment from '@theme/VPComment.vue'
+import VPEncrypt from '@theme/VPEncrypt.vue'
 import VPFriendsGroup from '@theme/VPFriendsGroup.vue'
 import VPFriendsItem from '@theme/VPFriendsItem.vue'
 import VPLink from '@theme/VPLink.vue'
@@ -15,36 +16,38 @@ const groups = computed(() => matter.value.groups || [])
 
 <template>
   <div class="vp-friends">
-    <Content v-if="matter.contentPosition === 'before'" class="vp-doc plume-content before" vp-content />
+    <VPEncrypt>
+      <Content v-if="matter.contentPosition === 'before'" class="vp-doc plume-content before" vp-content />
 
-    <h2 class="title">
-      {{ matter.title || 'My Friends' }}
-    </h2>
-    <p v-if="matter.description && !page.autoDesc" class="description">
-      {{ matter.description }}
-    </p>
-    <section v-if="list.length" class="friends-list">
-      <VPFriendsItem
-        v-for="(friend, index) in list"
-        :key="friend.name + index"
-        :friend="friend"
-      />
-    </section>
+      <h2 class="title">
+        {{ matter.title || 'My Friends' }}
+      </h2>
+      <p v-if="matter.description && !page.autoDesc" class="description">
+        {{ matter.description }}
+      </p>
+      <section v-if="list.length" class="friends-list">
+        <VPFriendsItem
+          v-for="(friend, index) in list"
+          :key="friend.name + index"
+          :friend="friend"
+        />
+      </section>
 
-    <VPFriendsGroup v-for="(group, index) in groups" :key="index" :group="group" />
+      <VPFriendsGroup v-for="(group, index) in groups" :key="index" :group="group" />
 
-    <Content v-if="matter.contentPosition !== 'before'" class="vp-doc plume-content after" vp-content />
+      <Content v-if="matter.contentPosition !== 'before'" class="vp-doc plume-content after" vp-content />
 
-    <div v-if="editLink" class="edit-link">
-      <VPLink
-        class="edit-link-button"
-        :href="editLink.link"
-        no-icon
-      >
-        <span class="vpi-square-pen edit-link-icon" aria-label="edit icon" />
-        {{ editLink.text }}
-      </VPLink>
-    </div>
+      <div v-if="editLink" class="edit-link">
+        <VPLink
+          class="edit-link-button"
+          :href="editLink.link"
+          no-icon
+        >
+          <span class="vpi-square-pen edit-link-icon" aria-label="edit icon" />
+          {{ editLink.text }}
+        </VPLink>
+      </div>
+    </VPEncrypt>
 
     <VPComment />
   </div>

@@ -17,9 +17,9 @@ const config = computed(() => {
     return rgb
   }
   if (light || dark) {
-    return { light, dark }
+    return cleanObject({ light, dark })
   }
-  return { r, g, b }
+  return cleanObject({ r, g, b })
 })
 
 const lightTint = {
@@ -32,6 +32,14 @@ const darkTint = {
   r: { value: 32, offset: 36 },
   g: { value: 32, offset: 36 },
   b: { value: 32, offset: 36 },
+}
+
+function cleanObject(obj: any) {
+  for (const key in obj) {
+    if (obj[key] === undefined)
+      delete obj[key]
+  }
+  return obj
 }
 
 function toPlate(plate: number | string) {

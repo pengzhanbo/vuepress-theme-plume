@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`qrcodePlugin > should not work with container syntax 1`] = `"<VPQRCode  text="text" mode="img" />"`;
+
+exports[`qrcodePlugin > should not work with container syntax 2`] = `"<VPQRCode  text="text" svg mode="card" />"`;
+
+exports[`qrcodePlugin > should not work with container syntax 3`] = `"<VPQRCode  text="text" title="title" mode="img" />"`;
+
+exports[`qrcodePlugin > should work with embed syntax 1`] = `"<VPQRCode text="text" mode="img" />"`;
+
+exports[`qrcodePlugin > should work with embed syntax 2`] = `"<VPQRCode text="text" svg mode="card" />"`;
+
+exports[`qrcodePlugin > should work with embed syntax 3`] = `"<VPQRCode text="text" title="title" mode="img" />"`;

@@ -131,15 +131,19 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
     enhances.add(`app.component('VPTable', VPTable)`)
   }
 
+  if (options.qrcode) {
+    imports.add(`import VPQRCode from '${CLIENT_FOLDER}components/VPQRCode.vue'`)
+    enhances.add(`app.component('VPQRCode', VPQRCode)`)
+  }
+
   const setupIcon = prepareIcon(imports, options.icon)
   const setupStmts: string[] = []
   const iconSetup = setupIcon.trim()
   if (iconSetup)
     setupStmts.push(iconSetup)
 
-  const markMode = options.mark === 'lazy' ? 'lazy' : 'eager'
   imports.add(`import { setupMarkHighlight } from '${CLIENT_FOLDER}composables/mark.js'`)
-  setupStmts.push(`setupMarkHighlight(${JSON.stringify(markMode)})`)
+  setupStmts.push(`setupMarkHighlight(${JSON.stringify(options.mark === 'lazy' ? 'lazy' : 'eager')})`)
 
   const setupContent = setupStmts.length
     ? `    ${setupStmts.join('\n    ')}\n`

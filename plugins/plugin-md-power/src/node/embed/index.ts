@@ -7,6 +7,7 @@ import { codeSandboxPlugin } from './code/codeSandbox.js'
 import { jsfiddlePlugin } from './code/jsfiddle.js'
 import { replitPlugin } from './code/replit.js'
 import { pdfPlugin } from './pdf.js'
+import { qrcodePlugin } from './qrcode.js'
 import { acfunPlugin } from './video/acfun.js'
 import { artPlayerPlugin } from './video/artPlayer.js'
 import { bilibiliPlugin } from './video/bilibili.js'
@@ -69,5 +70,10 @@ export function embedSyntaxPlugin(md: Markdown, options: MarkdownPowerPluginOpti
   if (options.jsfiddle) {
     // @[jsfiddle](user/id)
     md.use(jsfiddlePlugin)
+  }
+
+  if (options.qrcode) {
+    // @[qrcode svg card title="xxx"](text)
+    md.use(qrcodePlugin)
   }
 }

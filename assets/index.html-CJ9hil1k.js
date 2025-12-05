@@ -1,0 +1,1 @@
+import{N as e,T as t,t as n}from"./app-DIFPIS_T.js";var r={};function i(n,r){return e(),t(`div`)}var a=n(r,[[`render`,i]]),o=JSON.parse(`{"path":"/blog/tags/","title":"标签","lang":"zh-CN","frontmatter":{"lang":"zh-CN","title":"标签","draft":true},"readingTime":{"minutes":0,"words":0},"git":{},"filePathRelative":null,"headers":[],"type":"posts-tags"}`);export{a as comp,o as data};

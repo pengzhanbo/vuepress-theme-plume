@@ -1,3 +1,31 @@
+# [1.0.0-rc.181](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.180...v1.0.0-rc.181) (2025-12-05)
+
+
+### Bug Fixes
+
+* **i18n:** update Traditional Chinese translations for search and theme locales ([#767](https://github.com/pengzhanbo/vuepress-theme-plume/issues/767)) ([3df96e2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3df96e270287ad091be16db4f94c8656ac01cdb4))
+* **theme:** blockquote icon color in dark mode ([#769](https://github.com/pengzhanbo/vuepress-theme-plume/issues/769)) ([4957c8b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4957c8b1de238693a24915c2809de6bd45da9a70))
+* **theme:** fix doc-footer text decoration ([#778](https://github.com/pengzhanbo/vuepress-theme-plume/issues/778)) ([9b2b73e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9b2b73e05ba322e169a5953ab14adb673e2248e2))
+* **theme:** fix home hero background `tint-plate` rendering fail, close [#775](https://github.com/pengzhanbo/vuepress-theme-plume/issues/775) ([#776](https://github.com/pengzhanbo/vuepress-theme-plume/issues/776)) ([5f82bde](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5f82bdeb6779b462a80377300531575c0c24a245))
+* **theme:** fix navbar horizontal overflow ([#772](https://github.com/pengzhanbo/vuepress-theme-plume/issues/772)) ([3553022](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3553022597f5d8b34c5eba23c73b96fcf926a82d))
+* **theme:** fix parsing error for relative path link ([#779](https://github.com/pengzhanbo/vuepress-theme-plume/issues/779)) ([0771024](https://github.com/pengzhanbo/vuepress-theme-plume/commit/07710247bbb020cd6b4f2b9604900d1e4015b252))
+* **theme:** fix sidebar curtain position-top ([#771](https://github.com/pengzhanbo/vuepress-theme-plume/issues/771)) ([cd37921](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cd3792197506767b64f05cfb8a92e05564d4ec2f))
+
+
+### Features
+
+* **plugin-md-power:** add  qrcode syntax plugin for markdown ([#777](https://github.com/pengzhanbo/vuepress-theme-plume/issues/777)) ([157281a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/157281aec83f9029b7319825a49403ca115729ca))
+* **plugin-md-power:** add markdown-it-cjk-friendly plugin ([#773](https://github.com/pengzhanbo/vuepress-theme-plume/issues/773)) ([32f4a8b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/32f4a8be5a237b773f79a9c3cff387975250ec43))
+* **theme:** migrate `bcrypt-ts` to `hash-wasm` ([#774](https://github.com/pengzhanbo/vuepress-theme-plume/issues/774)) ([4b1cecf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4b1cecf2bd2b60d5b12f7b04993a0598ad314f5c))
+* **theme:** support encryption for all page layouts ([#770](https://github.com/pengzhanbo/vuepress-theme-plume/issues/770)) ([20ebeb5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/20ebeb5e6290d9d9816fd0ea5b84c98fd21c957f))
+
+
+### Performance Improvements
+
+* update deps to latest ([8faba7b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8faba7bf1057c98fbf327867455f2d3c38d0fcdf))
+
+
+
 # [1.0.0-rc.180](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.179...v1.0.0-rc.180) (2025-12-01)
 
 

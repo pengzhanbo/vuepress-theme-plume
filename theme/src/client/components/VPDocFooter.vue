@@ -122,6 +122,7 @@ const showFooter = computed(() => {
   font-weight: 500;
   line-height: 32px;
   color: var(--vp-c-brand-1);
+  text-decoration: none;
   border: 0;
   transition: color var(--vp-t-color);
 }
@@ -220,6 +221,7 @@ const showFooter = computed(() => {
   width: 100%;
   height: 100%;
   padding: 11px 16px 13px;
+  text-decoration: none;
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
   transition: border-color var(--vp-t-color);

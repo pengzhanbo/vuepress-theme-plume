@@ -62,7 +62,7 @@ onMounted(async () => {
         return
       }
 
-      qr ??= (await import('qrcode' /* webpackChunkName: "qrcode" */)).default
+      qr ??= (await import(/* webpackChunkName: "qrcode" */ 'qrcode')).default
       const opts: QRCodeToDataURLOptions & QRCodeToStringOptions = {
         version,
         maskPattern: mask,

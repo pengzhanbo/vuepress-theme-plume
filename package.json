@@ -50,6 +50,7 @@
     "@types/minimist": "catalog:dev",
     "@types/node": "catalog:dev",
     "@types/picomatch": "catalog:dev",
+    "@types/qrcode": "catalog:dev",
     "@types/stylus": "catalog:dev",
     "@types/three": "catalog:dev",
     "@types/webpack-env": "catalog:dev",

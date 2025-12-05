@@ -42,6 +42,9 @@ export function markdownPowerPlugin(
           ['artplayer', 'dashjs', 'hls.js', 'mpegts.js/dist/mpegts.js'],
         )
       }
+      if (options.qrcode) {
+        addViteOptimizeDepsInclude(bundlerOptions, app, ['qrcode'])
+      }
     },
 
     extendsMarkdown: async (md, app) => {

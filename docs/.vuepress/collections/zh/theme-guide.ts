@@ -58,6 +58,7 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
             'code-tree',
             'field',
             'tabs',
+            'qrcode',
             'timeline',
             'demo-wrapper',
             'flex',

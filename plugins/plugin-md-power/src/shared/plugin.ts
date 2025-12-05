@@ -256,6 +256,13 @@ export interface MarkdownPowerPluginOptions {
    */
   table?: boolean | TableContainerOptions
 
+  /**
+   * 是否启用 二维码 嵌入语法
+   *
+   * @default false
+   */
+  qrcode?: boolean
+
   // enhance
   /**
    * 是否启用 自动填充 图片宽高属性

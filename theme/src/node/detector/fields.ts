@@ -64,6 +64,7 @@ export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
   'collapse',
   'chat',
   'youtube',
+  'qrcode',
 ]
 
 export const MARKDOWN_SUPPORT_FIELDS: (keyof MarkdownOptions)[] = [

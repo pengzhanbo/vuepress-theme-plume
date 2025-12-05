@@ -30,6 +30,7 @@ catalogs:
     '@types/minimist': ^1.2.5
     '@types/node': ^24.10.1
     '@types/picomatch': ^4.0.2
+    '@types/qrcode': ^1.5.6
     '@types/stylus': ^0.48.43
     '@types/three': ^0.181.0
     '@types/webpack-env': ^1.18.8
@@ -118,6 +119,7 @@ catalogs:
     package-manager-detector: ^1.6.0
     picocolors: ^1.1.1
     picomatch: ^4.0.3
+    qrcode: ^1.5.4
     shiki: ^3.17.0
     sort-package-json: ^3.5.0
     tm-grammars: ^1.26.0

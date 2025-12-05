@@ -45,6 +45,9 @@ catalogs:
     '@types/picomatch':
       specifier: ^4.0.2
       version: 4.0.2
+    '@types/qrcode':
+      specifier: ^1.5.6
+      version: 1.5.6
     '@types/stylus':
       specifier: ^0.48.43
       version: 0.48.43
@@ -427,7 +430,7 @@ importers:
         specifier: catalog:dev
         version: 4.0.2
       '@types/qrcode':
-        specifier: ^1.5.6
+        specifier: catalog:dev
         version: 1.5.6
       '@types/stylus':
         specifier: catalog:dev
@@ -9312,7 +9315,7 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 24.10.0
+      '@types/node': 24.10.1
 
   '@types/less@3.0.8': {}
 

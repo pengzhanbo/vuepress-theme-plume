@@ -45,6 +45,10 @@ describe('stringifyAttrs', () => {
     expect(stringifyAttrs({ id: '{ "foo": "bar", baz: 1 }', class: '["a", "b"]' })).toBe(' :id="{ \'foo\': \'bar\', baz: 1 }" :class="[\'a\', \'b\']"')
   })
 
+  it('should handle like json string values with force stringify', () => {
+    expect(stringifyAttrs({ id: '{ "foo": "bar", baz: 1 }', class: '["a", "b"]' }, false, ['class'])).toBe(' :id="{ \'foo\': \'bar\', baz: 1 }" class="[\'a\', \'b\']"')
+  })
+
   it('should handle kebabCase keys', () => {
     expect(stringifyAttrs({ 'data-foo': 'bar', 'data-baz': 1, 'fooBaz': 'bar' })).toBe(' data-foo="bar" :data-baz="1" foo-baz="bar"')
   })

@@ -7,23 +7,24 @@ packages:
 
 overrides:
   '@bufbuild/protobuf': ^2.10.1
-  '@typescript-eslint/utils': ^8.48.0
+  '@typescript-eslint/utils': ^8.48.1
   chokidar: ^5.0.0
-  esbuild: ^0.27.0
+  esbuild: ^0.27.1
   sass-embedded: ^1.93.3
+  vite: ^8.0.0-beta.0
   vue-router: ^4.6.3
 
 patchedDependencies:
   floating-vue: patches/floating-vue.patch
 catalogs:
   dev:
-    '@commitlint/cli': ^20.1.0
-    '@commitlint/config-conventional': ^20.0.0
+    '@commitlint/cli': ^20.2.0
+    '@commitlint/config-conventional': ^20.2.0
     '@lunariajs/core': ^0.1.1
     '@pengzhanbo/eslint-config-vue': ^1.43.0
     '@pengzhanbo/stylelint-config': ^1.43.0
     '@simonwep/pickr': ^1.9.1
-    '@types/express': ^5.0.5
+    '@types/express': ^5.0.6
     '@types/js-yaml': ^4.0.9
     '@types/less': ^3.0.8
     '@types/markdown-it': ^14.1.2
@@ -34,7 +35,7 @@ catalogs:
     '@types/stylus': ^0.48.43
     '@types/three': ^0.181.0
     '@types/webpack-env': ^1.18.8
-    '@vitest/coverage-istanbul': ^4.0.14
+    '@vitest/coverage-istanbul': ^4.0.15
     bumpp: ^10.3.2
     commitizen: ^4.3.1
     conventional-changelog-cli: ^5.0.0
@@ -48,20 +49,20 @@ catalogs:
     lint-staged: ^16.2.7
     markdown-it: ^14.1.0
     memfs: ^4.51.1
-    mermaid: ^11.12.1
+    mermaid: ^11.12.2
     minimist: ^1.2.8
     postcss: ^8.5.6
     rimraf: ^6.1.2
     stylelint: ^16.26.1
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.16.8
+    tsdown: ^0.17.0
     typescript: ^5.9.3
-    vitest: ^4.0.14
+    vitest: ^4.0.15
     vue-router: ^4.6.3
     wait-on: ^9.0.3
   peer:
-    '@iconify/json': ^2.2.412
+    '@iconify/json': ^2.2.414
     '@mathjax/src': ^4.0.0
     artplayer: ^5.3.0
     dashjs: ^5.1.0
@@ -79,12 +80,12 @@ catalogs:
     '@clack/prompts': ^0.11.0
     '@iconify/utils': ^3.1.0
     '@iconify/vue': ^5.0.0
-    '@mdit/plugin-attrs': ^0.23.3
+    '@mdit/plugin-attrs': ^0.24.1
     '@mdit/plugin-footnote': ^0.22.3
     '@mdit/plugin-mark': ^0.22.1
-    '@mdit/plugin-sub': ^0.22.2
-    '@mdit/plugin-sup': ^0.22.2
-    '@mdit/plugin-tab': ^0.22.3
+    '@mdit/plugin-sub': ^0.23.0
+    '@mdit/plugin-sup': ^0.23.0
+    '@mdit/plugin-tab': ^0.23.0
     '@mdit/plugin-tasklist': ^0.22.2
     '@pengzhanbo/utils': ^2.1.2
     '@vueuse/core': ^14.1.0
@@ -94,7 +95,7 @@ catalogs:
     chokidar: 5.0.0
     dayjs: ^1.11.19
     echarts: ^6.0.0
-    esbuild: ^0.27.0
+    esbuild: ^0.27.1
     flowchart.ts: ^3.0.1
     focus-trap: ^7.6.6
     gray-matter: ^4.0.3
@@ -120,7 +121,7 @@ catalogs:
     picocolors: ^1.1.1
     picomatch: ^4.0.3
     qrcode: ^1.5.4
-    shiki: ^3.17.0
+    shiki: ^3.19.0
     sort-package-json: ^3.5.0
     tm-grammars: ^1.26.0
     tm-themes: ^1.10.13

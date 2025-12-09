@@ -5,8 +5,9 @@ import EventEmitter from 'node:events'
 import process from 'node:process'
 import { deepMerge } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
+import { colors } from 'vuepress/utils'
 import { initThemeOptions } from '../config/index.js'
-import { perf } from '../utils/index.js'
+import { logger, normalizePath, perf } from '../utils/index.js'
 import { compiler } from './compiler.js'
 import { findConfigPath } from './findConfigPath.js'
 
@@ -45,16 +46,19 @@ export class ConfigLoader extends EventEmitter {
     if (!this.configFile)
       return
 
+    const cwd = process.cwd()
     const watcher = watch([this.configFile, ...this.dependencies], {
       ignoreInitial: true,
-      cwd: process.cwd(),
+      cwd,
     })
 
-    watcher.on('change', async () => {
+    watcher.on('change', async (filepath) => {
       const dependencies = await this.load()
       watcher.add(dependencies.filter(dep => !this.dependencies.includes(dep)))
       this.dependencies = [...dependencies]
       this.emit('change', this.config)
+
+      logger.info(`${colors.gray('theme config')} ${colors.magenta(normalizePath(filepath))} ${colors.gray('is modified.')}`)
     })
 
     watchers.push(watcher)

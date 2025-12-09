@@ -83,7 +83,7 @@ function getEffectsByFrontmatter(app: App) {
   for (const page of app.pages) {
     const fm = page.frontmatter
     const config = fm.config as ThemeHomeConfig[]
-    if (!(fm.home || fm.pageLayout === 'home') || config?.length === 0)
+    if (!(fm.home || fm.pageLayout === 'home') || !config?.length)
       continue
 
     for (const item of config) {

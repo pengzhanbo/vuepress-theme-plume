@@ -3,7 +3,8 @@
 @import url("./vars.css");
 @import url("./normalize.css");
 @import url("./icons.css");
-@import url("./social-icons.css");
+
+/* @import url("./social-icons.css"); */
 @import url("./compat.css");
 @import url("./utils.css");
 @import url("./content.css");

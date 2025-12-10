@@ -1,6 +1,6 @@
 import type { App, Page } from 'vuepress'
 import type { IconOptions } from 'vuepress-plugin-md-power'
-import type { ThemeHomeConfig, ThemeNavItem, ThemeOptions, ThemeSidebar } from '../../shared/index.js'
+import type { FriendGroup, FriendsItem, SocialLink, ThemeHomeConfig, ThemeNavItem, ThemeOptions, ThemeSidebar } from '../../shared/index.js'
 import type { FsCache } from '../utils/index.js'
 import { getIconContentCSS, getIconData } from '@iconify/utils'
 import { isArray, uniq } from '@pengzhanbo/utils'
@@ -8,7 +8,7 @@ import { entries, isLinkAbsolute, isLinkHttp, isPlainObject } from '@vuepress/he
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { createFsCache, interopDefault, logger, nanoid, perf, resolveContent, writeTemp } from '../utils/index.js'
+import { createFsCache, interopDefault, logger, perf, resolveContent, writeTemp } from '../utils/index.js'
 
 interface IconData {
   className: string
@@ -34,11 +34,17 @@ let fsCache: FsCache<IconDataMap> | null = null
 // { iconName: { className, content } }
 const cache: IconDataMap = {}
 
+// 旧版本内置图标别名，映射回 simple-icons 集合中的名称
+const socialFallbacks: Record<string, string> = {
+  twitter: 'x',
+  weibo: 'sinaweibo',
+}
+
 export async function prepareIcons(app: App): Promise<void> {
   perf.mark('prepare:icons:total')
   const options = getThemeConfig()
   if (!isInstalled) {
-    await writeTemp(app, JS_FILENAME, resolveContent(app, { name: 'icons', content: '{}' }))
+    await writeTemp(app, JS_FILENAME, resolveContent(app, { name: 'icons', content: '[]' }))
     return
   }
   if (!fsCache && app.env.isDev) {
@@ -86,9 +92,10 @@ export async function prepareIcons(app: App): Promise<void> {
   perf.log('prepare:icons:imports')
 
   let cssCode = ''
-  const map: Record<string, string> = {}
+  const shouldBackground: string[] = []
   for (const [iconName, { className, content, background }] of entries(cache)) {
-    map[iconName] = `${className}${background ? ' bg' : ''}`
+    if (background)
+      shouldBackground.push(iconName)
     cssCode += `.${className} {\n  --icon: ${content};\n}\n`
   }
 
@@ -96,7 +103,7 @@ export async function prepareIcons(app: App): Promise<void> {
     writeTemp(app, CSS_FILENAME, cssCode),
     writeTemp(app, JS_FILENAME, resolveContent(app, {
       name: 'icons',
-      content: map,
+      content: shouldBackground,
       before: `import './iconify.css'`,
     })),
   ])
@@ -106,10 +113,11 @@ export async function prepareIcons(app: App): Promise<void> {
   perf.log('prepare:icons:total')
 }
 
-function isIconify(icon: any): icon is string {
+function isIconify(icon: unknown): icon is string {
   if (!icon || typeof icon !== 'string' || isLinkAbsolute(icon) || isLinkHttp(icon))
     return false
-  return icon[0] !== '{' && ICONIFY_NAME.test(icon)
+  const ic = icon.trim()
+  return ic[0] !== '{' && ICONIFY_NAME.test(ic)
 }
 
 function withPrefix(icon: string, prefix?: string): string {
@@ -130,7 +138,7 @@ function getIconsWithPage(page: Page, { provider = 'iconify', prefix }: IconOpti
   }
 
   const addIcon = (icon: unknown): void => {
-    if (isIconify(icon) && (provider === 'iconify' || icon.startsWith('iconify'))) {
+    if (icon && isIconify(icon) && (provider === 'iconify' || icon.startsWith('iconify'))) {
       list.push(withPrefix(icon.replace(/^iconify /, ''), prefix))
     }
   }
@@ -153,30 +161,58 @@ function getIconsWithPage(page: Page, { provider = 'iconify', prefix }: IconOpti
       }
     }
   }
+  if (fm.pageLayout === 'friends') {
+    const socialList: SocialLink[] = []
+    if ((fm.list as FriendsItem[])?.length) {
+      for (const { socials } of fm.list as FriendsItem[]) {
+        socialList.push(...(socials || []))
+      }
+    }
+    if ((fm.groups as FriendGroup[])?.length) {
+      for (const { list } of fm.groups as FriendGroup[]) {
+        if (!list?.length)
+          continue
+        for (const { socials } of list as FriendsItem[]) {
+          socialList.push(...(socials || []))
+        }
+      }
+    }
+    socialList.forEach(social => addIcon(getIconWithSocial(social)))
+  }
 
   return list
 }
 
 function getIconWithThemeConfig(options: ThemeOptions, { provider = 'iconify', prefix }: IconOptions): string[] {
   const list: string[] = []
-  // navbar notes sidebar
+  // navbar /  doc collection sidebar / social
   const locales = options.locales || {}
-  entries(locales).forEach(([, { navbar, sidebar, collections }]) => {
+  entries(locales).forEach(([, { navbar, sidebar, collections, social }]) => {
+    // navbar icon
     if (navbar) {
       list.push(...getIconWithNavbar(navbar))
     }
+    // social
+    const socialList: SocialLink[] = social ? [...social] : []
+    // sidebar icon
     const sidebarList: ThemeSidebar[] = Object.values(sidebar || {}) as ThemeSidebar[]
+
     if (collections?.length) {
       collections.forEach((collection) => {
         if (collection.type === 'doc' && collection.sidebar)
           sidebarList.push(collection.sidebar)
+
+        if (collection.type === 'post' && collection.social)
+          socialList.push(...collection.social)
       })
     }
     sidebarList.forEach(sidebar => list.push(...getIconWithSidebar(sidebar)))
+    // social
+    socialList.forEach(social => list.push(getIconWithSocial(social)))
   })
 
   const addIcon = (icon: unknown): string | void => {
-    if (isIconify(icon) && (provider === 'iconify' || icon.startsWith('iconify'))) {
+    if (icon && isIconify(icon) && (provider === 'iconify' || icon.startsWith('iconify'))) {
       return withPrefix(icon.replace(/^iconify /, ''), prefix)
     }
   }
@@ -224,6 +260,15 @@ function getIconWithSidebar(sidebar: ThemeSidebar): string[] {
   return list
 }
 
+function getIconWithSocial({ icon }: SocialLink): string {
+  if (!icon || typeof icon !== 'string')
+    return ''
+  const name = socialFallbacks[icon] || icon
+  if (name.includes(':'))
+    return name
+  return `simple-icons:${name}`
+}
+
 async function resolveCollect(collect: string, names: string[]) {
   const filepath = locate(collect)
   const config = await readJSON(filepath)
@@ -251,13 +296,18 @@ async function resolveCollect(collect: string, names: string[]) {
        */
       const background = !data.body.includes('currentColor')
       cache[icon] = {
-        className: `vpi-${nanoid()}`,
+        className: normalizeClassname(icon),
         background,
         content: matched,
       }
     }
   }
   return unknownList
+}
+
+function normalizeClassname(icon: string): string {
+  const [collect, name] = icon.split(':')
+  return `vpi-${collect}-${name}`
 }
 
 async function readJSON(filepath: string) {

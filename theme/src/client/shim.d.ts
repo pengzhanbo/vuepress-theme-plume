@@ -74,7 +74,7 @@ declare module '@internal/encrypt' {
 }
 
 declare module '@internal/iconify' {
-  const icons: Record<string, string>
+  const icons: string[]
   export {
     icons,
   }

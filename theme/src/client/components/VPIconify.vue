@@ -3,7 +3,7 @@ import type { IconifyIcon } from '@iconify/vue/offline'
 import { loadIcon } from '@iconify/vue'
 import { Icon as OfflineIcon } from '@iconify/vue/offline'
 import { computed, ref, watch } from 'vue'
-import { useIconsData } from '../composables/index.js'
+import { normalizeIconClassname } from '../composables/index.js'
 
 defineOptions({
   inheritAttrs: false,
@@ -20,15 +20,13 @@ const { name, size, color, prefix, extra } = defineProps<{
 const icon = ref<IconifyIcon | null>(null)
 const loaded = ref(false)
 
-const iconsData = useIconsData()
-
 const iconName = computed(() => {
   if (name.includes(':'))
     return name
   return prefix ? `${prefix}:${name}` : name
 })
 
-const localIconName = computed(() => iconsData.value[iconName.value])
+const localIconName = computed(() => normalizeIconClassname(iconName.value))
 
 async function loadRemoteIcon() {
   if (icon.value)

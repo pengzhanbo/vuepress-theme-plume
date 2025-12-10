@@ -397,31 +397,57 @@ export default defineUserConfig({
 
   Displayed as icon links on the far right of the navbar.
 
-  Available icon options:
-  - `'github'`
-  - `'gitlab'`
-  - `'npm'`
-  - `'docker'`
-  - `'discord'`
-  - `'telegram'`
-  - `'facebook'`
-  - `'instagram'`
-  - `'linkedin'`
-  - `'mastodon'`
-  - `'slack'`
-  - `'twitter'`
-  - `'x'`
-  - `'youtube'`
-  - `'juejin'`
-  - `'stackoverflow'`
-  - `'qq'`
-  - `'weibo'`
-  - `'bilibili'`
-  - `'zhihu'`
-  - `'douban'`
-  - `'steam'`
-  - `'xbox'`
-  - `{ svg: string, name?: string }`: Custom icon, pass the SVG source string. The optional `name` field is used to configure [`navbarSocialInclude`](#navbarsocialinclude).
+  Supports any icon from [Iconify](https://icon-sets.iconify.design/). Simply use the iconify name to load it automatically.
+
+  For icons in the `simple-icons` collection, you can omit the `simple-icons:` prefix.
+  For example, `simple-icons:github` can be abbreviated as `github`.
+
+  Examples of common social icons:
+
+  ::: flex
+
+  <div style="flex: 1">
+
+  - discord ::simple-icons:discord::
+  - telegram ::simple-icons:telegram::
+  - facebook ::simple-icons:facebook::
+  - github ::simple-icons:github::
+  - instagram ::simple-icons:instagram::
+  - linkedin ::simple-icons:linkedin::
+  - mastodon ::simple-icons:mastodon::
+  - npm  ::simple-icons:npm::
+  - slack ::simple-icons:slack::
+  - twitter ::simple-icons:twitter::
+  - x ::simple-icons:x::
+  - youtube ::simple-icons:youtube::
+  - bluesky ::simple-icons:bluesky::
+  - tiktok ::simple-icons:tiktok::
+
+  </div><div style="flex: 1">
+
+  - qq ::simple-icons:qq::
+  - weibo ::simple-icons:sinaweibo::
+  - bilibili ::simple-icons:bilibili::
+  - gitlab ::simple-icons:gitlab::
+  - docker ::simple-icons:docker::
+  - juejin ::simple-icons:juejin::
+  - zhihu ::simple-icons:zhihu::
+  - douban ::simple-icons:douban::
+  - steam ::simple-icons:steam::
+  - stackoverflow ::simple-icons:stackoverflow::
+  - xbox ::simple-icons:xbox::
+  - kuaishou ::simple-icons:kuaishou::
+  - twitch ::simple-icons:twitch::
+  - xiaohongshu ::simple-icons:xiaohongshu::
+
+  </div>
+
+  :::
+
+  [You can view all available icons for **simple-icons** here](https://icon-sets.iconify.design/simple-icons/){.readmore}
+
+  If **Iconify** does not meet your needs, you can pass in the format `{ svg: string, name?: string }` to use a custom icon.
+  Pass in the SVG source code string, with the optional `name` field for configuring [`navbarSocialInclude`](#navbarsocialinclude).
 
 Example:
 
@@ -429,8 +455,10 @@ Example:
 export default defineUserConfig({
   theme: plumeTheme({
     social: [
+      // use iconify name
       { icon: 'github', link: 'https://github.com/zhangsan' },
       {
+        // use custom icon
         icon: { svg: '<svg>xxxxx</svg>', name: 'xxx' },
         link: 'https://xxx.com'
       },

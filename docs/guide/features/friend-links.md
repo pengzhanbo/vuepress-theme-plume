@@ -19,6 +19,7 @@ title: 友情链接
 description: 友情链接描述文本
 permalink: /friends/
 contentPosition: after
+cols: 2
 list:
   -
     name: pengzhanbo

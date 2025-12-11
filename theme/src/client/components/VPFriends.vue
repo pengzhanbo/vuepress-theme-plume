@@ -12,10 +12,20 @@ const { frontmatter: matter, page } = useData<'friends'>()
 
 const list = computed(() => matter.value.list || [])
 const groups = computed(() => matter.value.groups || [])
+const cols = computed(() => {
+  const cols = matter.value.cols || 2
+  if (cols < 1)
+    return 1
+
+  return cols
+})
 </script>
 
 <template>
-  <div class="vp-friends">
+  <div
+    class="vp-friends" :class="{ 'cols-large': cols >= 3 }"
+    :style="{ '--vp-friends-cols': cols }"
+  >
     <VPEncrypt>
       <Content v-if="matter.contentPosition === 'before'" class="vp-doc plume-content before" vp-content />
 
@@ -128,6 +138,16 @@ const groups = computed(() => matter.value.groups || [])
 
   .friends-list {
     padding: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .vp-friends.cols-large {
+    max-width: 1152px;
+  }
+
+  .friends-list {
+    grid-template-columns: repeat(var(--vp-friends-cols), minmax(0, 1fr));
   }
 }
 

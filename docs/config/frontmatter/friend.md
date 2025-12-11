@@ -14,6 +14,7 @@ permalink: /config/frontmatter/friends/
 ---
 pageLayout: friends
 title: 友情链接
+cols: 2
 list:
   -
     name: pengzhanbo
@@ -62,12 +63,19 @@ list:
 
 友情链接页的描述
 
-### contentPosition <Badge text="新" />
+### contentPosition
 
 - 类型： `'before' | 'after'`
 - 默认值： `'after'`
 
 markdown 内容在友情链接列表之前还是之后，默认插入到列表之后。
+
+### cols <Badge text="新" />
+
+- 类型： `number`
+- 默认值： `2`
+
+友情链接列表每行最大显示的列数，一般设置为 `2` / `3` 时最佳。
 
 ### list
 

@@ -74,4 +74,10 @@ const { group } = defineProps<{
     padding: 0;
   }
 }
+
+@media (min-width: 1280px) {
+  .friends-list {
+    grid-template-columns: repeat(var(--vp-friends-cols), minmax(0, 1fr));
+  }
+}
 </style>

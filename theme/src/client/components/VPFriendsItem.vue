@@ -67,7 +67,12 @@ const friendStyle = computed(() => {
   margin-bottom: 8px;
   background-color: var(--vp-friends-bg-color);
   border-radius: 6px;
+  box-shadow: 0 0 0 transparent;
   transition: all var(--vp-t-color);
+}
+
+.vp-friend:hover {
+  box-shadow: var(--vp-shadow-2);
 }
 
 .avatar {
@@ -96,7 +101,7 @@ const friendStyle = computed(() => {
 
 .content .title {
   padding-bottom: 8px;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--vp-friends-name-color);
   transition: color var(--vp-t-color), border-bottom var(--vp-t-color);

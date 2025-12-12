@@ -94,4 +94,10 @@ export interface ThemeFriendsFrontmatter extends ThemeNormalFrontmatter {
    * 友链分组
    */
   groups?: FriendGroup[]
+
+  /**
+   * 最大列数
+   * @default 2
+   */
+  cols?: number
 }

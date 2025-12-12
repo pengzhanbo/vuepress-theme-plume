@@ -17,6 +17,7 @@ friends: true
 title: Friend Links
 description: Description text for friend links
 permalink: /friends/
+cols: 2
 contentPosition: after
 list:
   -

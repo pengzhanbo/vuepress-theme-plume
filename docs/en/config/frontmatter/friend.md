@@ -14,6 +14,7 @@ Example:
 ---
 pageLayout: friends
 title: Friends Links
+cols: 2
 list:
   -
     name: pengzhanbo
@@ -68,6 +69,13 @@ The description of the friends links page.
 - Default: `'after'`
 
 Whether the markdown content is placed before or after the friends links list. By default, it is inserted after the list.
+
+### cols
+
+- Type: `number`
+- Default: `1`
+
+The maximum number of columns displayed per line in the friends link list is generally best set to `2` / `3`.
 
 ### list
 

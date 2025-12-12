@@ -51,7 +51,7 @@ export async function createPackageJson(
       pkg.author = userInfo.username + (userInfo.email ? ` <${userInfo.email}>` : '')
     }
     pkg.license = 'MIT'
-    pkg.engines = { node: '^20.6.0 || >=22.0.0' }
+    pkg.engines = { node: '^20.19.0 || >=22.0.0' }
   }
 
   if (injectNpmScripts) {

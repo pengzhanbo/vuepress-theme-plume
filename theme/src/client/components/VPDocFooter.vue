@@ -143,6 +143,7 @@ const showFooter = computed(() => {
 }
 
 .last-updated-text {
+  margin: 0;
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;

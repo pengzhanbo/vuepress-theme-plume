@@ -97,8 +97,6 @@ function runCode() {
 
 .code-repl-output {
   position: relative;
-  top: -20px;
-  padding-top: 6px;
   margin: 0 -1.5rem;
   background-color: var(--vp-code-block-bg);
   transition: background-color var(--vp-t-color);

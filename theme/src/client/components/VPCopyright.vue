@@ -17,7 +17,8 @@ const {
 </script>
 
 <template>
-  <div class="hint-container tip copyright-container">
+  <div class="vp-copyright">
+    <span class="copyright-mask" />
     <p v-if="author">
       <span>{{ theme.copyrightAuthorText || 'Copyright Ownership:' }}</span>
       <VPLink :href="author.url" no-icon>
@@ -26,9 +27,11 @@ const {
     </p>
     <p v-if="sourceUrl" data-allow-mismatch>
       <span>{{ creationText }}</span>
-      <VPLink :href="sourceUrl" class="source" :no-icon="creation === 'original'" data-allow-mismatch>
-        {{ decodeURIComponent(sourceUrl) }}
-      </VPLink>
+      <span class="source">
+        <VPLink :href="sourceUrl" :no-icon="creation === 'original'" data-allow-mismatch>
+          {{ decodeURIComponent(sourceUrl) }}
+        </VPLink>
+      </span>
     </p>
     <p v-if="license">
       <span>{{ theme.copyrightLicenseText || 'License under' }}</span>
@@ -43,38 +46,95 @@ const {
 </template>
 
 <style scoped>
-.vp-doc .copyright-container p {
+@property --vp-copyright-bg-pos {
+  inherits: false;
+  initial-value: 0%;
+  syntax: "<percentage>";
+}
+
+.vp-copyright {
+  --vp-copyright-bg-pos: 70%;
+
+  position: relative;
+  padding: 16px 20px;
+  margin: 16px 0;
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--vp-c-default-soft) -20%, var(--vp-c-bg) var(--vp-copyright-bg-pos));
+  border: solid 1px var(--vp-c-divider);
+  border-radius: 8px;
+  transition: --vp-copyright-bg-pos var(--vp-t-color);
+}
+
+.vp-copyright:hover {
+  --vp-copyright-bg-pos: 40%;
+}
+
+.vp-copyright .copyright-mask {
+  position: absolute;
+  top: -40px;
+  right: -25px;
+  bottom: 30px;
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  background-color: var(--vp-c-bg-soft);
+  -webkit-mask: var(--vp-license-cc) no-repeat;
+  mask: var(--vp-license-cc) no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+@media (min-width: 768px) {
+  .vp-copyright .copyright-mask {
+    top: -50px;
+    right: 0;
+    bottom: -50px;
+  }
+}
+
+.vp-copyright p {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-wrap: nowrap;
   gap: 4px;
   align-items: center;
   justify-content: flex-start;
   margin: 8px 0;
+  font-size: 14px;
   line-height: 20px;
 }
 
-.vp-doc .copyright-container p span:first-of-type {
+.vp-copyright p span:first-of-type {
   align-self: baseline;
   font-weight: bold;
+  color: var(--vp-c-text-2);
 }
 
-.vp-doc .copyright-container [class*="vpi-"] {
+.vp-copyright p :deep(.vp-link) {
+  text-decoration: none;
+}
+
+.vp-copyright [class*="vpi-"] {
   width: 1.2em;
   height: 1.2em;
   color: var(--vp-c-text-2);
   transition: color var(--vp-t-color);
 }
 
-.vp-doc .copyright-container .source {
-  flex: 1 2;
-  width: 1px;
+.vp-copyright .source {
+  flex: 1;
+  min-width: 0;
   word-break: break-all;
 }
 </style>
 
 <style>
+:root {
+  --vp-license-cc: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M9 8c1.104 0 2.105.448 2.829 1.173l-1.414 1.413a2 2 0 1 0 0 2.828l1.413 1.414A4.001 4.001 0 0 1 5 12c0-2.208 1.792-4 4-4m9.829 1.173A4.001 4.001 0 0 0 12 12a4.001 4.001 0 0 0 6.828 2.828l-1.414-1.414a2 2 0 1 1 0-2.828zM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12m10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16'/%3E%3C/svg%3E");
+}
+
 .vpi-license-cc {
-  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M9 8c1.104 0 2.105.448 2.829 1.173l-1.414 1.413a2 2 0 1 0 0 2.828l1.413 1.414A4.001 4.001 0 0 1 5 12c0-2.208 1.792-4 4-4m9.829 1.173A4.001 4.001 0 0 0 12 12a4.001 4.001 0 0 0 6.828 2.828l-1.414-1.414a2 2 0 1 1 0-2.828zM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12m10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16'/%3E%3C/svg%3E");
+  --icon: var(--vp-license-cc);
 }
 
 .vpi-license-by {

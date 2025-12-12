@@ -429,7 +429,7 @@ export default defineThemeConfig({
 
 ## 社交链接
 
-个人信息区域支持社交链接配置，未配置时继承[主题默认 social 设置](../../config/theme.md#social)。
+个人信息区域支持社交链接配置，未配置时继承 [主题默认 social 设置](../../config/theme.md#social)。
 
 ::: code-tabs#config
 
@@ -446,9 +446,15 @@ export default defineUserConfig({
         type: 'post',
         dir: 'blog',
         title: '博客',
-        // [!code hl:4]
+        // [!code hl:9]
         social: [
-          { icon: 'github', link: 'https://github.com/pengzhanbo' },
+        // 使用 iconify name
+          { icon: 'github', link: 'https://github.com/zhangsan' },
+          {
+            // 使用自定义图标
+            icon: { svg: '<svg>xxxxx</svg>', name: 'xxx' },
+            link: 'https://xxx.com'
+          },
         ],
       }
     ]
@@ -467,9 +473,15 @@ export default defineThemeConfig({
       type: 'post',
       dir: 'blog',
       title: '博客',
-      // [!code hl:4]
+      // [!code hl:9]
       social: [
-        { icon: 'github', link: 'https://github.com/pengzhanbo' },
+        // 使用 iconify name
+        { icon: 'github', link: 'https://github.com/zhangsan' },
+        {
+        // 使用自定义图标
+          icon: { svg: '<svg>xxxxx</svg>', name: 'xxx' },
+          link: 'https://xxx.com'
+        },
       ],
     }
   ]
@@ -478,42 +490,55 @@ export default defineThemeConfig({
 
 :::
 
-### 内置图标库
+支持 [Iconify](https://icon-sets.iconify.design/) 任意图标，直接使用 iconify name 即可自动加载。
+
+对于 `simple-icons` 集合下的图标，可以省略 `simple-icons:` 前缀，如 `simple-icons:github` 可以简写为 `github`
+
+常见的社交图标示例：
 
 ::: flex
 
 <div style="flex: 1">
 
-- discord
-- telegram
-- facebook
-- github
-- instagram
-- linkedin
-- mastodon
-- npm
-- slack
-- twitter
-- x
-- youtube
+- discord ::simple-icons:discord::
+- telegram ::simple-icons:telegram::
+- facebook ::simple-icons:facebook::
+- github ::simple-icons:github::
+- instagram ::simple-icons:instagram::
+- linkedin ::simple-icons:linkedin::
+- mastodon ::simple-icons:mastodon::
+- npm  ::simple-icons:npm::
+- slack ::simple-icons:slack::
+- twitter ::simple-icons:twitter::
+- x ::simple-icons:x::
+- youtube ::simple-icons:youtube::
+- bluesky ::simple-icons:bluesky::
+- tiktok ::simple-icons:tiktok::
 
 </div><div style="flex: 1">
 
-- qq
-- weibo
-- bilibili
-- gitlab
-- docker
-- juejin
-- zhihu
-- douban
-- steam
-- stackoverflow
-- xbox
+- qq ::simple-icons:qq::
+- weibo ::simple-icons:sinaweibo::
+- bilibili ::simple-icons:bilibili::
+- gitlab ::simple-icons:gitlab::
+- docker ::simple-icons:docker::
+- juejin ::simple-icons:juejin::
+- zhihu ::simple-icons:zhihu::
+- douban ::simple-icons:douban::
+- steam ::simple-icons:steam::
+- stackoverflow ::simple-icons:stackoverflow::
+- xbox ::simple-icons:xbox::
+- kuaishou ::simple-icons:kuaishou::
+- twitch ::simple-icons:twitch::
+- xiaohongshu ::simple-icons:xiaohongshu::
 
 </div>
 
 :::
+
+[你可以在这里查看 **simple-icons** 所有可用图标](https://icon-sets.iconify.design/simple-icons/){.readmore}
+
+如果 **Iconify** 无法满足你的需求，可以传入 `{ svg: string, name?: string }`的格式，使用自定义图标，传入 svg 源码字符串。
 
 ## 文章封面配置
 

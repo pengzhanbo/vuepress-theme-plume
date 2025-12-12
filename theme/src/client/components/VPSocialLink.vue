@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { SocialLinkIcon } from '../../shared/index.js'
+import VPIcon from '@theme/VPIcon.vue'
 import { computed } from 'vue'
+import { socialFallbacks } from '../composables/index.js'
 
 const { icon, link, ariaLabel } = defineProps<{
   icon: SocialLinkIcon
@@ -8,10 +10,22 @@ const { icon, link, ariaLabel } = defineProps<{
   ariaLabel?: string
 }>()
 
-const svg = computed(() => {
-  if (typeof icon === 'object')
-    return icon.svg
-  return `<span class="vpi-social-${icon}" />`
+const iconName = computed(() => {
+  if (typeof icon === 'string') {
+    const name = socialFallbacks[icon] || icon
+    if (name.includes(':'))
+      return name
+    return `simple-icons:${name}`
+  }
+  return icon
+})
+
+const label = computed(() => {
+  if (ariaLabel)
+    return ariaLabel
+  if (typeof icon === 'string')
+    return icon.includes(':') ? icon.split(':')[1] : icon
+  return icon.name
 })
 </script>
 
@@ -19,9 +33,12 @@ const svg = computed(() => {
   <a
     class="vp-social-link no-icon"
     :href="link"
-    :aria-label="ariaLabel ?? (typeof icon === 'string' ? icon : '')"
-    target="_blank" rel="noopener" v-html="svg"
-  />
+    :aria-label="label"
+    :title="label"
+    target="_blank" rel="noopener"
+  >
+    <VPIcon :name="iconName" />
+  </a>
 </template>
 
 <style scoped>
@@ -40,7 +57,7 @@ const svg = computed(() => {
 }
 
 .vp-social-link > :deep(svg),
-.vp-social-link > :deep([class^="vpi-social-"]) {
+.vp-social-link > :deep([class*="vpi-"]) {
   width: 20px;
   height: 20px;
   fill: currentcolor;

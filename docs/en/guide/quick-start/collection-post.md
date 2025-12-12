@@ -450,9 +450,15 @@ export default defineUserConfig({
         type: 'post',
         dir: 'blog',
         title: 'Blog',
-        // [!code hl:4]
+        // [!code hl:9]
         social: [
-          { icon: 'github', link: 'https://github.com/pengzhanbo' },
+        // use iconify name
+          { icon: 'github', link: 'https://github.com/zhangsan' },
+          {
+            // use custom icon
+            icon: { svg: '<svg>xxxxx</svg>', name: 'xxx' },
+            link: 'https://xxx.com'
+          },
         ],
       }
     ]
@@ -471,9 +477,15 @@ export default defineThemeConfig({
       type: 'post',
       dir: 'blog',
       title: 'Blog',
-      // [!code hl:4]
+      // [!code hl:9]
       social: [
-        { icon: 'github', link: 'https://github.com/pengzhanbo' },
+        // use iconify name
+        { icon: 'github', link: 'https://github.com/zhangsan' },
+        {
+        // use custom icon
+          icon: { svg: '<svg>xxxxx</svg>', name: 'xxx' },
+          link: 'https://xxx.com'
+        },
       ],
     }
   ]
@@ -482,42 +494,57 @@ export default defineThemeConfig({
 
 :::
 
-### Built-in Icon Library
+Supports any icon from [Iconify](https://icon-sets.iconify.design/). Simply use the iconify name to load it automatically.
+
+For icons in the `simple-icons` collection, the `simple-icons:` prefix can be omitted.
+For example, `simple-icons:github` can be abbreviated as `github`.
+
+Examples of common social icons:
 
 ::: flex
 
 <div style="flex: 1">
 
-- discord
-- telegram
-- facebook
-- github
-- instagram
-- linkedin
-- mastodon
-- npm
-- slack
-- twitter
-- x
-- youtube
+- discord ::simple-icons:discord::
+- telegram ::simple-icons:telegram::
+- facebook ::simple-icons:facebook::
+- github ::simple-icons:github::
+- instagram ::simple-icons:instagram::
+- linkedin ::simple-icons:linkedin::
+- mastodon ::simple-icons:mastodon::
+- npm  ::simple-icons:npm::
+- slack ::simple-icons:slack::
+- twitter ::simple-icons:twitter::
+- x ::simple-icons:x::
+- youtube ::simple-icons:youtube::
+- bluesky ::simple-icons:bluesky::
+- tiktok ::simple-icons:tiktok::
 
 </div><div style="flex: 1">
 
-- qq
-- weibo
-- bilibili
-- gitlab
-- docker
-- juejin
-- zhihu
-- douban
-- steam
-- stackoverflow
-- xbox
+- qq ::simple-icons:qq::
+- weibo ::simple-icons:sinaweibo::
+- bilibili ::simple-icons:bilibili::
+- gitlab ::simple-icons:gitlab::
+- docker ::simple-icons:docker::
+- juejin ::simple-icons:juejin::
+- zhihu ::simple-icons:zhihu::
+- douban ::simple-icons:douban::
+- steam ::simple-icons:steam::
+- stackoverflow ::simple-icons:stackoverflow::
+- xbox ::simple-icons:xbox::
+- kuaishou ::simple-icons:kuaishou::
+- twitch ::simple-icons:twitch::
+- xiaohongshu ::simple-icons:xiaohongshu::
 
 </div>
 
 :::
+
+[You can view all available icons of **simple-icons** here](https://icon-sets.iconify.design/simple-icons/){.readmore}
+
+If **Iconify** cannot meet your needs, you can pass in the format `{ svg: string, name?: string }`
+to use custom icons by providing the SVG source code string.
 
 ## Article Cover Configuration
 

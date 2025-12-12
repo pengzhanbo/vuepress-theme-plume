@@ -392,31 +392,55 @@ export default defineUserConfig({
 
   将作为 图标链接 展示在 导航栏最右侧。
 
-  图标可选值：
-  - `'github'`
-  - `'gitlab'`
-  - `'npm'`
-  - `'docker'`
-  - `'discord'`
-  - `'telegram'`
-  - `'facebook'`
-  - `'instagram'`
-  - `'linkedin'`
-  - `'mastodon'`
-  - `'slack'`
-  - `'twitter'`
-  - `'x'`
-  - `'youtube'`
-  - `'juejin'`
-  - `'stackoverflow'`
-  - `'qq'`
-  - `'weibo'`
-  - `'bilibili'`
-  - `'zhihu'`
-  - `'douban'`
-  - `'steam'`
-  - `'xbox'`
-  - `{ svg: string, name?: string }`: 自定义图标，传入 svg 源码字符串，可选 `name` 字段，用于配置 [`navbarSocialInclude`](#navbarsocialinclude)
+  支持 [Iconify](https://icon-sets.iconify.design/) 任意图标，直接使用 iconify name 即可自动加载。
+
+  对于 `simple-icons` 集合下的图标，可以省略 `simple-icons:` 前缀，如 `simple-icons:github` 可以简写为 `github`
+
+  常见的社交图标示例：
+
+  ::: flex
+
+  <div style="flex: 1">
+
+  - discord ::simple-icons:discord::
+  - telegram ::simple-icons:telegram::
+  - facebook ::simple-icons:facebook::
+  - github ::simple-icons:github::
+  - instagram ::simple-icons:instagram::
+  - linkedin ::simple-icons:linkedin::
+  - mastodon ::simple-icons:mastodon::
+  - npm  ::simple-icons:npm::
+  - slack ::simple-icons:slack::
+  - twitter ::simple-icons:twitter::
+  - x ::simple-icons:x::
+  - youtube ::simple-icons:youtube::
+  - bluesky ::simple-icons:bluesky::
+  - tiktok ::simple-icons:tiktok::
+
+  </div><div style="flex: 1">
+
+  - qq ::simple-icons:qq::
+  - weibo ::simple-icons:sinaweibo::
+  - bilibili ::simple-icons:bilibili::
+  - gitlab ::simple-icons:gitlab::
+  - docker ::simple-icons:docker::
+  - juejin ::simple-icons:juejin::
+  - zhihu ::simple-icons:zhihu::
+  - douban ::simple-icons:douban::
+  - steam ::simple-icons:steam::
+  - stackoverflow ::simple-icons:stackoverflow::
+  - xbox ::simple-icons:xbox::
+  - kuaishou ::simple-icons:kuaishou::
+  - twitch ::simple-icons:twitch::
+  - xiaohongshu ::simple-icons:xiaohongshu::
+
+  </div>
+
+  :::
+
+  [你可以在这里查看 **simple-icons** 所有可用图标](https://icon-sets.iconify.design/simple-icons/){.readmore}
+
+  如果 **Iconify** 无法满足你的需求，可以传入 `{ svg: string, name?: string }`的格式，使用自定义图标，传入 svg 源码字符串，可选 `name` 字段，用于配置 [`navbarSocialInclude`](#navbarsocialinclude)
 
 示例：
 
@@ -424,8 +448,10 @@ export default defineUserConfig({
 export default defineUserConfig({
   theme: plumeTheme({
     social: [
+      // 使用 iconify name
       { icon: 'github', link: 'https://github.com/zhangsan' },
       {
+        // 使用自定义图标
         icon: { svg: '<svg>xxxxx</svg>', name: 'xxx' },
         link: 'https://xxx.com'
       },

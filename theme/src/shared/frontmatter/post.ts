@@ -5,7 +5,7 @@ export interface ThemePostFrontmatter extends ThemePageFrontmatter {
   /**
    * 创建时间
    */
-  createTime?: string
+  createTime?: string | false
 
   /**
    * 文章标签

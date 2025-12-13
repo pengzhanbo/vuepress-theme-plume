@@ -1,3 +1,5 @@
+import type { ReadingTime } from '@vuepress/plugin-reading-time'
+
 export interface PostsCategoryItem {
   /**
    * 分类 ID
@@ -100,6 +102,11 @@ export interface ThemePostsItem {
    * 文章是否为草稿
    */
   draft?: boolean
+
+  /**
+   * 阅读统计
+   */
+  readingTime?: ReadingTime
 }
 
 /**

@@ -48,6 +48,7 @@ function processPostData(
     excerpt: '',
     cover: page.frontmatter.cover,
     coverStyle: page.frontmatter.coverStyle,
+    readingTime: page.data.readingTime,
   }
 
   if (typeof data.cover === 'object') {

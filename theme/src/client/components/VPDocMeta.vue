@@ -12,17 +12,26 @@ const readingTime = useReadingTimeLocale()
 const { tags: tagsLink } = useInternalLink()
 const { isPosts } = usePostsPageData()
 
+const metaConfig = computed(() => collection.value?.meta ?? {})
+
 const createTime = computed(() => {
+  if (matter.value.createTime === false || metaConfig.value.createTime === false)
+    return ''
+
+  const format = metaConfig.value.createTime === true ? 'short' : metaConfig.value.createTime ?? 'short'
   const show = theme.value.createTime ?? true
   if (!show || (show === 'only-posts' && !isPosts.value))
     return ''
-  if (matter.value.createTime)
-    return matter.value.createTime.split(/\s|T/)[0].replace(/\//g, '-')
+  const createTime = matter.value.createTime
+  if (createTime)
+    return (format !== 'short' ? createTime : createTime.split(/\s|T/)[0]).replace(/\//g, '-')
 
   return ''
 })
 
 const tags = computed(() => {
+  if (metaConfig.value.tags === false)
+    return []
   const tagTheme = collection.value?.tagsTheme ?? 'colored'
   if (matter.value.tags) {
     return matter.value.tags.slice(0, 4).map(tag => ({
@@ -45,7 +54,7 @@ const badge = computed(() => {
 const hasDocMetaSlot = inject<Ref<boolean>>('doc-meta-slot-exists', ref(false))
 
 const hasMeta = computed(() =>
-  readingTime.value.time
+  (readingTime.value.time && (metaConfig.value.readingTime !== false || metaConfig.value.wordCount !== false))
   || tags.value.length
   || createTime.value
   || hasDocMetaSlot.value,
@@ -66,10 +75,10 @@ const hasMeta = computed(() =>
   <div v-if="hasMeta" class="vp-doc-meta">
     <slot name="doc-meta-before" />
 
-    <p v-if="readingTime.time && matter.readingTime !== false" class="reading-time">
+    <p v-if="readingTime.time && matter.readingTime !== false && (metaConfig.readingTime !== false || metaConfig.wordCount !== false)" class="reading-time">
       <span class="vpi-books icon" />
-      <span>{{ readingTime.words }}</span>
-      <span>{{ readingTime.time }}</span>
+      <span v-if="metaConfig.wordCount !== false">{{ readingTime.words }}</span>
+      <span v-if="metaConfig.readingTime !== false">{{ readingTime.time }}</span>
     </p>
 
     <p v-if="tags.length > 0">

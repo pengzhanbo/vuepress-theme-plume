@@ -2,6 +2,7 @@
 import type { PostsCoverStyle, ThemePostsItem } from '../../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
 import { isMobile as _isMobile } from '@vuepress/helper/client'
+import { getReadingTimeLocale, useReadingTimeLocaleConfig } from '@vuepress/plugin-reading-time/client'
 import { computed, onMounted, ref } from 'vue'
 import { withBase } from 'vuepress/client'
 import { useData, useInternalLink, useTagColors } from '../../composables/index.js'
@@ -24,8 +25,25 @@ const { collection } = useData<'page', 'post'>()
 const colors = useTagColors()
 const { categories: categoriesLink, tags: tagsLink } = useInternalLink()
 
-const createTime = computed(() => post.createTime?.split(/\s|T/)[0].replace(/\//g, '-'))
+const metaConfig = computed(() => collection.value?.meta ?? {})
+const createTime = computed(() => {
+  if (!post.createTime || metaConfig.value.createTime === false)
+    return ''
+
+  const format = metaConfig.value.createTime === true ? 'short' : metaConfig.value.createTime ?? 'short'
+  return (format !== 'short' ? post.createTime : post.createTime?.split(/\s|T/)[0]).replace(/\//g, '-')
+})
 const categoryList = computed(() => post.categoryList ?? [])
+
+const readingTimeLocale = useReadingTimeLocaleConfig()
+const readingTime = computed(() => {
+  const fallback = { time: '', words: '' }
+  if (!post.readingTime)
+    return fallback
+  const res = readingTimeLocale.value ? getReadingTimeLocale(post.readingTime, readingTimeLocale.value) : fallback
+  res.time = res.time.replace(/^\D+/, '')
+  return res
+})
 
 const sticky = computed(() => {
   if (typeof post.sticky === 'boolean') {
@@ -121,6 +139,11 @@ const coverStyles = computed(() => {
             </VPLink>
             <span v-if="i !== categoryList.length - 1">/</span>
           </template>
+        </div>
+        <div v-if="readingTime.time && (metaConfig.readingTime !== false || metaConfig.wordCount !== false)" class="reading-time">
+          <span class="vpi-books icon" />
+          <span v-if="metaConfig.wordCount !== false">{{ readingTime.words }}</span>
+          <span v-if="metaConfig.readingTime !== false">{{ readingTime.time }}</span>
         </div>
         <div v-if="tags.length" class="tag-list">
           <span class="icon vpi-tag" />
@@ -316,7 +339,7 @@ const coverStyles = computed(() => {
 .post-item-content .post-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 0 16px;
   align-items: center;
   justify-content: flex-start;
   font-size: 14px;
@@ -327,19 +350,14 @@ const coverStyles = computed(() => {
 
 .post-item-content .post-meta > div {
   display: flex;
+  gap: 0 6px;
   align-items: center;
   justify-content: flex-start;
-}
-
-.post-item-content .post-meta .tag-list {
-  display: flex;
-  align-items: center;
 }
 
 .post-item-content .post-meta .tag-list .tag {
   display: inline-block;
   padding: 3px 5px;
-  margin-right: 6px;
   font-size: 12px;
   line-height: 1;
   color: var(--vp-tag-color);
@@ -355,7 +373,6 @@ const coverStyles = computed(() => {
 .post-item-content .post-meta .icon {
   width: 14px;
   height: 14px;
-  margin-right: 0.3rem;
   color: var(--vp-c-text-3);
   transition: color var(--vp-t-color);
 }
@@ -370,11 +387,11 @@ const coverStyles = computed(() => {
   margin: 0.5rem 0;
 }
 
-.excerpt.vp-doc :deep(p:first-of-type) {
+.excerpt.vp-doc :deep(:first-of-type) {
   margin-top: 0;
 }
 
-.excerpt.vp-doc :deep(p:last-of-type) {
+.excerpt.vp-doc :deep(:last-of-type) {
   margin-bottom: 0;
 }
 
@@ -389,6 +406,12 @@ const coverStyles = computed(() => {
 
 @media (min-width: 496px) {
   .excerpt.vp-doc :deep(div[class*="language-"]) {
+    margin: 16px 0;
+  }
+}
+
+@media (max-width: 419px) {
+  .excerpt.vp-doc :deep(.hint-container) {
     margin: 16px 0;
   }
 }

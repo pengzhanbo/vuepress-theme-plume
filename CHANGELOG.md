@@ -1,3 +1,18 @@
+# [1.0.0-rc.183](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.182...v1.0.0-rc.183) (2025-12-13)
+
+
+### Bug Fixes
+
+* fix incorrect icon rendering, close [#799](https://github.com/pengzhanbo/vuepress-theme-plume/issues/799) ([#800](https://github.com/pengzhanbo/vuepress-theme-plume/issues/800)) ([a15f4e2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a15f4e206df3324de24c7d8ca7654a702b84e871))
+* **theme:** fix incorrect code block rendering within card, close [#798](https://github.com/pengzhanbo/vuepress-theme-plume/issues/798) ([#801](https://github.com/pengzhanbo/vuepress-theme-plume/issues/801)) ([ce19b84](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ce19b842327d8cedbc2718cc4a3fc36548d08e4b))
+
+
+### Performance Improvements
+
+* update deps to latest ([eb73f3d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/eb73f3d3f1d45cc295900bc3b29ac535ca3d379f))
+
+
+
 # [1.0.0-rc.182](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.181...v1.0.0-rc.182) (2025-12-13)
 
 

@@ -744,7 +744,75 @@ Automatically switches to `top` layout on narrow-screen devices to ensure displa
 
 ## Article Metadata
 
-Configure article metadata through frontmatter:
+## 文章元数据
+
+In the collection, the `meta` option allows you to set the display method of article metadata,
+This setting will directly affect the display of metadata on both the **article list page** and the **article content page**:
+
+::: code-tabs#config
+
+@tab .vuepress/config.ts
+
+```ts
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    collections: [
+      {
+        type: 'post',
+        dir: 'blog',
+        title: '博客',
+        // [!code hl:11]
+        meta: {
+          tags: true, // Whether to display labels
+          /**
+           * Whether to display the creation time, or set the time format
+           * - 'short': Display as `2022-01-01`, default
+           * - 'long': Display as `2022-01-01 00:00:00`
+           */
+          createTime: true, // boolean | 'short' | 'long'
+          readingTime: true, // Whether to display the reading time estimate
+          wordCount: true, // Whether to display the word count
+        }
+      }
+    ]
+  })
+})
+```
+
+@tab .vuepress/plume.config.ts
+
+``` ts
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  collections: [
+    {
+      type: 'post',
+      dir: 'blog',
+      title: '博客',
+      // [!code hl:11]
+      meta: {
+        tags: true, // Whether to display labels
+        /**
+         * Whether to display the creation time, or set the time format
+         * - 'short': Display as `2022-01-01`, default
+         * - 'long': Display as `2022-01-01 00:00:00`
+         */
+        createTime: true, // boolean | 'short' | 'long'
+        readingTime: true, // Whether to display the reading time estimate
+        wordCount: true, // Whether to display the word count
+      }
+    }
+  ]
+})
+```
+
+:::
+
+In markdown, configure article metadata through frontmatter:
 
 ```md
 ---
@@ -760,16 +828,16 @@ tags:
 
 ### Available Properties
 
-| Property   | Type                | Default | Description                               |
-| ---------- | ------------------- | ------- | ----------------------------------------- |
-| title      | `string`            | File name | Article title                           |
-| createTime | `string`            | Current time | Creation time                         |
-| tags       | `string[]`          | `[]`    | Article tags                            |
-| sticky     | `boolean \| number` | false   | Sticky flag, higher numbers sort first  |
-| draft      | `boolean`           | false   | Draft mode, hidden after build          |
-| cover      | `string`            | `''`    | Cover image path                        |
-| coverStyle | `PostCoverStyle`    | `null`  | Cover style configuration               |
-| excerpt    | `boolean \| string` | ''      | Excerpt content, supports auto-extraction |
+| Property   | Type                | Default      | Description                               |
+| ---------- | ------------------- | ------------ | ----------------------------------------- |
+| title      | `string`            | File name    | Article title                             |
+| createTime | `string`            | Current time | Creation time                             |
+| tags       | `string[]`          | `[]`         | Article tags                              |
+| sticky     | `boolean \| number` | false        | Sticky flag, higher numbers sort first    |
+| draft      | `boolean`           | false        | Draft mode, hidden after build            |
+| cover      | `string`            | `''`         | Cover image path                          |
+| coverStyle | `PostCoverStyle`    | `null`       | Cover style configuration                 |
+| excerpt    | `boolean \| string` | ''           | Excerpt content, supports auto-extraction |
 
 Also supports all fields from [common frontmatter configuration](../../config/frontmatter/basic.md).
 

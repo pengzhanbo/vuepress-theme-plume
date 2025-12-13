@@ -228,6 +228,97 @@ permalink: /guide/a1b2c3d4/
 ---
 ```
 
+## 文章元数据
+
+在集合中通过 `meta` 选项，可以设置文章元数据的显示方式：
+
+::: code-tabs#config
+
+@tab .vuepress/config.ts
+
+```ts
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    collections: [
+      {
+        type: 'doc',
+        dir: 'guide',
+        title: '指南',
+        // [!code hl:11]
+        meta: {
+          tags: true, // 是否显示标签
+          /**
+           * 是否显示创建时间，或设置时间格式
+           * - 'short': 显示为 `2022-01-01`，默认
+           * - 'long': 显示为 `2022-01-01 00:00:00`
+           */
+          createTime: true, // boolean | 'short' | 'long'
+          readingTime: true, // 是否显示阅读时间估算
+          wordCount: true, // 是否显示字数统计
+        }
+      }
+    ]
+  })
+})
+```
+
+@tab .vuepress/plume.config.ts
+
+``` ts
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  collections: [
+    {
+      type: 'doc',
+      dir: 'guide',
+      title: '指南',
+      // [!code hl:11]
+      meta: {
+        tags: true, // 是否显示标签
+        /**
+         * 是否显示创建时间，或设置时间格式
+         * - 'short': 显示为 `2022-01-01`，默认
+         * - 'long': 显示为 `2022-01-01 00:00:00`
+         */
+        createTime: true, // boolean | 'short' | 'long'
+        readingTime: true, // 是否显示阅读时间估算
+        wordCount: true, // 是否显示字数统计
+      }
+    }
+  ]
+})
+```
+
+:::
+
+在 markdown 中，通过 frontmatter 配置文章元数据：
+
+```md
+---
+title: 文章标题
+createTime: 2024/01/01 00:00:00
+tags:
+  - tag1
+  - tag2
+---
+```
+
+`title` 和 `createTime` 在文件创建时自动生成，支持手动修改。
+
+### 可用属性
+
+| 属性       | 类型                | 默认值   | 说明                       |
+| ---------- | ------------------- | -------- | -------------------------- |
+| title      | `string`            | 文件名   | 文章标题                   |
+| createTime | `string`            | 当前时间 | 创建时间                   |
+| tags       | `string[]`          | `[]`     | 文章标签                   |
+
+同时支持[通用 frontmatter 配置](../../config/frontmatter/basic.md)中的所有字段。
+
 ## 侧边栏配置
 
 提供灵活的侧边栏导航配置选项：

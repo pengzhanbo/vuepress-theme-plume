@@ -50,6 +50,36 @@ export interface ThemeBaseCollection {
    * 自动生成文章的 frontmatter
    */
   autoFrontmatter?: AutoFrontmatterOptions | false
+
+  /**
+   * 文章元数据配置
+   * - 设置文章列表中的文章元信息 显示方式
+   * - 设置文章内容页元信息显示方式
+   */
+  meta?: {
+    /**
+     * 元数据中是否显示标签
+     * @default true
+     */
+    tags?: boolean
+    /**
+     * 元数据中是否显示阅读时间
+     * @default true
+     */
+    readingTime?: boolean
+    /**
+     * 元数据中是否显示字数
+     * @default true
+     */
+    wordCount?: boolean
+    /**
+     * 元数据中是否显示创建时间，或者创建时间的显示格式
+     * - `short`: 2022-01-01
+     * - `long`: 2022-01-01 00:00:00
+     * @default 'short'
+     */
+    createTime?: 'short' | 'long' | boolean
+  }
 }
 
 /**

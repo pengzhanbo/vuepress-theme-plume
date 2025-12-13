@@ -1,3 +1,28 @@
+# [1.0.0-rc.182](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.181...v1.0.0-rc.182) (2025-12-13)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** fix `file-tree` container incorrectly rendering in nesting content, close [#795](https://github.com/pengzhanbo/vuepress-theme-plume/issues/795) ([#797](https://github.com/pengzhanbo/vuepress-theme-plume/issues/797)) ([956869a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/956869ab1eaf9aac7db4c99a7e49457373cf6be2))
+* **plugin-md-power:** fix `mark` lazy animation, close [#789](https://github.com/pengzhanbo/vuepress-theme-plume/issues/789) ([#791](https://github.com/pengzhanbo/vuepress-theme-plume/issues/791)) ([a350e62](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a350e62645e5597195766aa88dd8c3469114a3c9))
+* **theme:** fix boundary detection error for `config` on  home ([#785](https://github.com/pengzhanbo/vuepress-theme-plume/issues/785)) ([6383347](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6383347813353f7b367dca150b1137cf77979b80))
+* **theme:** fix render overflow of code block within Card on mobile, close [#782](https://github.com/pengzhanbo/vuepress-theme-plume/issues/782) ([#787](https://github.com/pengzhanbo/vuepress-theme-plume/issues/787)) ([46797a0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/46797a07573b60783e5f4081591d9a60f705b6b8))
+
+
+### Features
+
+* **cli:** update lowest version support for nodejs ([#786](https://github.com/pengzhanbo/vuepress-theme-plume/issues/786)) ([65da846](https://github.com/pengzhanbo/vuepress-theme-plume/commit/65da8469ce76aaa0679533205d63dd77099336ee))
+* **theme:** add `cols` frontmatter support for `friends` page, close [#781](https://github.com/pengzhanbo/vuepress-theme-plume/issues/781) ([#792](https://github.com/pengzhanbo/vuepress-theme-plume/issues/792)) ([15e6201](https://github.com/pengzhanbo/vuepress-theme-plume/commit/15e62010c2ec5d3155068e2e104b756eb4afcaca))
+* **theme:** add meta config support for collection, close [#781](https://github.com/pengzhanbo/vuepress-theme-plume/issues/781) ([#796](https://github.com/pengzhanbo/vuepress-theme-plume/issues/796)) ([6e601f9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6e601f9f0e623d85fded8b879982777d0c660691))
+* **theme:** add theme config changed logger ([#784](https://github.com/pengzhanbo/vuepress-theme-plume/issues/784)) ([2c360ac](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2c360ac59e845aae9a94c7b54e9928f2f7254399))
+
+
+### Performance Improvements
+
+* update deps to latest ([98684ed](https://github.com/pengzhanbo/vuepress-theme-plume/commit/98684ed66a442b0a038849c68961d9b30912a4dc))
+
+
+
 # [1.0.0-rc.181](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.180...v1.0.0-rc.181) (2025-12-05)
 
 

@@ -79,11 +79,15 @@ const iconName = computed<string | { svg: string }>(() => {
   margin-bottom: 0;
 }
 
-@media (max-width: 419px) {
+@media (max-width: 639px) {
   .vp-card-wrapper .body :where(div[class*="language-"], .vp-block) {
     margin: 16px -20px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+  }
+
+  .vp-card-wrapper .body :where(.vp-code-tabs-nav) {
+    margin: 16px -20px 0;
   }
 
   .vp-card-wrapper .body :deep(.code-block-title-bar) {

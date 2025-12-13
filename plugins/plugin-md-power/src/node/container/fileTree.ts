@@ -43,13 +43,15 @@ export interface FileTreeNodeProps {
 export function parseFileTreeRawContent(content: string): FileTreeNode[] {
   const root: FileTreeNode = { info: '', level: -1, children: [] }
   const stack: FileTreeNode[] = [root]
-  const lines = content.trim().split('\n')
+  const lines = content.trimEnd().split('\n')
+  const spaceLength = lines[0].match(/^\s*/)?.[0].length ?? 0 // 去除行首空格/)
+
   for (const line of lines) {
     const match = line.match(/^(\s*)-(.*)$/)
     if (!match)
       continue
 
-    const level = Math.floor(match[1].length / 2) // 每两个空格为一个层级
+    const level = Math.floor((match[1].length - spaceLength) / 2) // 每两个空格为一个层级
     const info = match[2].trim()
 
     // 检索当前层级的父节点

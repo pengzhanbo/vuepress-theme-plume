@@ -74,7 +74,11 @@ declare module '@internal/encrypt' {
 }
 
 declare module '@internal/iconify' {
-  const icons: string[]
+  const icons: {
+    co: string[]
+    bg: Record<number, string[]>
+    mask: Record<number, string[]>
+  }
   export {
     icons,
   }

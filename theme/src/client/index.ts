@@ -11,6 +11,7 @@ export { default as VPHomeHero } from './components/Home/VPHomeHero.vue'
 export { default as VPHomeProfile } from './components/Home/VPHomeProfile.vue'
 export { default as VPHomeTextImage } from './components/Home/VPHomeTextImage.vue'
 export { default as VPButton } from './components/VPButton.vue'
+export { default as VPIcon } from './components/VPIcon.vue'
 export { default as VPImage } from './components/VPImage.vue'
 export { default as VPLink } from './components/VPLink.vue'
 

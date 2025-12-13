@@ -62,6 +62,21 @@ export interface IconifyProvider extends IconProviderBase {
    * @default ''
    */
   prefix?: LiteralUnion<IconifyPrefix>
+
+  /**
+   * preload iconify icons
+   *
+   * 预加载 iconify 图标，
+   *
+   *
+   * - `string[]` 需要预加载的图标名称，`collect:name` 格式
+   * - `Record<collect, name[]>` 以 collect 为 key, value 为需要预加载的图标 `name`
+   *    其中，如果 key 为 `preflight` 时，value 为预加载图标的 `collect:name` 格式
+   *
+   * 此配置主要用于开发组件时，在组件中直接使用 `<VPIcon name="xx" />` 时无法触发
+   * 主题的图标本地资源分析功能，通过预加载的方式直接预设为本地资源图标。
+   */
+  preload?: string[] | Record<LiteralUnion<IconifyPrefix | 'preflight'>, string[]>
 }
 
 export type FontAwesomeAssetBuiltIn = 'fontawesome' | 'fontawesome-with-brands'

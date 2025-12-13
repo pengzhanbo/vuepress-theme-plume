@@ -1,5 +1,5 @@
 import type { App, Page } from 'vuepress'
-import type { IconOptions } from 'vuepress-plugin-md-power'
+import type { IconifyProvider, IconOptions } from 'vuepress-plugin-md-power'
 import type { FriendGroup, FriendsItem, SocialLink, ThemeHomeConfig, ThemeNavItem, ThemeOptions, ThemeSidebar } from '../../shared/index.js'
 import type { FsCache } from '../utils/index.js'
 import { getIconContentCSS, getIconData } from '@iconify/utils'
@@ -14,6 +14,14 @@ interface IconData {
   className: string
   background?: boolean
   content: string
+  collect: string
+  name: string
+}
+
+interface UsageIcons {
+  co: string[]
+  bg: Record<number, string[]>
+  mask: Record<number, string[]>
 }
 
 type CollectMap = Record<string, string[]>
@@ -43,8 +51,9 @@ const socialFallbacks: Record<string, string> = {
 export async function prepareIcons(app: App): Promise<void> {
   perf.mark('prepare:icons:total')
   const options = getThemeConfig()
+  const icons: UsageIcons = { co: [], bg: {}, mask: {} }
   if (!isInstalled) {
-    await writeTemp(app, JS_FILENAME, resolveContent(app, { name: 'icons', content: '[]' }))
+    await writeTemp(app, JS_FILENAME, resolveContent(app, { name: 'icons', content: icons }))
     return
   }
   if (!fsCache && app.env.isDev) {
@@ -54,8 +63,22 @@ export async function prepareIcons(app: App): Promise<void> {
 
   perf.mark('prepare:pages:icons')
 
-  const iconOptions = options.markdown?.icon || {}
+  const iconOptions = (options.markdown?.icon || {}) as IconifyProvider
   const iconList: string[] = []
+
+  // 预加载的图标
+  const preload = iconOptions.preload
+  if (isArray(preload)) {
+    iconList.push(...preload)
+  }
+  else if (isPlainObject(preload)) {
+    const { preflight = [], ...rest } = preload
+    iconList.push(...preflight)
+    for (const [collect, names] of entries(rest)) {
+      iconList.push(...names.map(name => `${collect}:${name}`))
+    }
+  }
+
   app.pages.forEach(page => iconList.push(...getIconsWithPage(page, iconOptions)))
   iconList.push(...getIconWithThemeConfig(options, iconOptions))
 
@@ -92,10 +115,14 @@ export async function prepareIcons(app: App): Promise<void> {
   perf.log('prepare:icons:imports')
 
   let cssCode = ''
-  const shouldBackground: string[] = []
-  for (const [iconName, { className, content, background }] of entries(cache)) {
-    if (background)
-      shouldBackground.push(iconName)
+  for (const [, { className, content, background, collect, name }] of entries(cache)) {
+    if (!icons.co.includes(collect))
+      icons.co.push(collect)
+    const index = icons.co.indexOf(collect)
+    const key = background ? 'bg' : 'mask'
+    icons[key][index] ??= []
+    icons[key][index].push(name)
+
     cssCode += `.${className} {\n  --icon: ${content};\n}\n`
   }
 
@@ -103,7 +130,7 @@ export async function prepareIcons(app: App): Promise<void> {
     writeTemp(app, CSS_FILENAME, cssCode),
     writeTemp(app, JS_FILENAME, resolveContent(app, {
       name: 'icons',
-      content: shouldBackground,
+      content: icons,
       before: `import './iconify.css'`,
     })),
   ])
@@ -299,6 +326,8 @@ async function resolveCollect(collect: string, names: string[]) {
         className: normalizeClassname(icon),
         background,
         content: matched,
+        collect,
+        name,
       }
     }
   }

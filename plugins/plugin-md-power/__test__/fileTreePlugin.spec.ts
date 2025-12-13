@@ -60,7 +60,8 @@ function createMarkdown(options?: FileTreeOptions) {
 }
 
 describe('fileTreePlugin', () => {
-  const code = `\
+  it('should work with default options', () => {
+    const code = `\
 :::file-tree
 - docs
   - README.md
@@ -110,7 +111,27 @@ describe('fileTreePlugin', () => {
 ::: file-tree
 :::
 `
-  it('should work with default options', () => {
+    const md = createMarkdown()
+
+    expect(md.render(code)).toMatchSnapshot()
+  })
+
+  // fix #795
+  it('should work with nesting content', () => {
+    const code = `\
+- item1
+
+  ::: file-tree
+  - docs/
+  - src
+    - a.js
+    - b.ts
+  - README.md
+  :::
+
+- item2
+`
+
     const md = createMarkdown()
 
     expect(md.render(code)).toMatchSnapshot()

@@ -161,3 +161,31 @@ exports[`fileTreePlugin > should work with default options 1`] = `
 <div class="vp-file-tree"></div>
 "
 `;
+
+exports[`fileTreePlugin > should work with nesting content 1`] = `
+"<ul>
+<li>
+<p>item1</p>
+<div class="vp-file-tree"><FileTreeNode type="folder" filename="docs" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-docs" /></template><FileTreeNode type="file" filename="…" :level="1">
+
+</FileTreeNode>
+</FileTreeNode>
+<FileTreeNode expanded type="folder" filename="src" :level="0">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-src" /></template><FileTreeNode type="file" filename="a.js" :level="1">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-js" /></template>
+</FileTreeNode>
+<FileTreeNode type="file" filename="b.ts" :level="1">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-typescript" /></template>
+</FileTreeNode>
+</FileTreeNode>
+<FileTreeNode type="file" filename="README.md" :level="0">
+<template #icon><VPIcon provider="iconify" name="flat-color-icons:info" /></template>
+</FileTreeNode></div>
+</li>
+<li>
+<p>item2</p>
+</li>
+</ul>
+"
+`;

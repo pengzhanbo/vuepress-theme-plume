@@ -6,13 +6,13 @@ packages:
   - examples/*
 
 overrides:
-  '@bufbuild/protobuf': ^2.10.1
-  '@typescript-eslint/utils': ^8.48.1
+  '@bufbuild/protobuf': ^2.10.2
+  '@typescript-eslint/utils': ^8.49.0
   chokidar: ^5.0.0
   esbuild: ^0.27.1
-  sass-embedded: ^1.93.3
-  vite: ^8.0.0-beta.0
-  vue-router: ^4.6.3
+  sass-embedded: ^1.96.0
+  vite: ^8.0.0-beta.2
+  vue-router: ^4.6.4
 
 patchedDependencies:
   floating-vue: patches/floating-vue.patch
@@ -29,11 +29,11 @@ catalogs:
     '@types/less': ^3.0.8
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^24.10.1
+    '@types/node': ^25.0.1
     '@types/picomatch': ^4.0.2
     '@types/qrcode': ^1.5.6
     '@types/stylus': ^0.48.43
-    '@types/three': ^0.181.0
+    '@types/three': ^0.182.0
     '@types/webpack-env': ^1.18.8
     '@vitest/coverage-istanbul': ^4.0.15
     bumpp: ^10.3.2
@@ -42,7 +42,7 @@ catalogs:
     cpx2: ^8.0.0
     cross-env: 7.0.3
     cz-conventional-changelog: ^3.3.0
-    eslint: ^9.39.1
+    eslint: ^9.39.2
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.4.2
@@ -56,26 +56,26 @@ catalogs:
     stylelint: ^16.26.1
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.17.0
+    tsdown: ^0.17.3
     typescript: ^5.9.3
     vitest: ^4.0.15
-    vue-router: ^4.6.3
+    vue-router: ^4.6.4
     wait-on: ^9.0.3
   peer:
-    '@iconify/json': ^2.2.414
+    '@iconify/json': ^2.2.417
     '@mathjax/src': ^4.0.0
     artplayer: ^5.3.0
     dashjs: ^5.1.0
-    gsap: ^3.13.0
+    gsap: ^3.14.2
     hls.js: ^1.6.15
     mpegts.js: 1.7.3
     ogl: ^1.0.11
     postprocessing: ^6.38.0
     pyodide: ^0.29.0
-    sass: ^1.94.2
-    sass-embedded: ^1.93.3
+    sass: ^1.96.0
+    sass-embedded: ^1.96.0
     swiper: ^12.0.3
-    three: ^0.181.2
+    three: ^0.182.0
   prod:
     '@clack/prompts': ^0.11.0
     '@iconify/utils': ^3.1.0
@@ -103,7 +103,7 @@ catalogs:
     hash-wasm: ^4.12.0
     image-size: ^2.0.2
     js-yaml: ^4.1.1
-    katex: ^0.16.25
+    katex: ^0.16.27
     local-pkg: ^1.1.2
     lru-cache: ^11.2.4
     mark.js: ^8.11.1
@@ -121,8 +121,8 @@ catalogs:
     picocolors: ^1.1.1
     picomatch: ^4.0.3
     qrcode: ^1.5.4
-    shiki: ^3.19.0
-    sort-package-json: ^3.5.0
+    shiki: ^3.20.0
+    sort-package-json: ^3.5.1
     tm-grammars: ^1.26.0
     tm-themes: ^1.10.13
     vue: ^3.5.25

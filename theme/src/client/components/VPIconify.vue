@@ -26,16 +26,14 @@ const iconName = computed(() => {
   return prefix ? `${prefix}:${name}` : name
 })
 
-const localIconName = computed(() => normalizeIconClassname(iconName.value))
+const classname = computed(() => normalizeIconClassname(iconName.value))
 
 async function loadRemoteIcon() {
-  if (icon.value)
+  if (classname.value || icon.value)
     return
 
-  if (!localIconName.value) {
-    loaded.value = false
-    icon.value = await loadIcon(name)
-  }
+  loaded.value = false
+  icon.value = await loadIcon(name)
   loaded.value = true
 }
 
@@ -45,8 +43,8 @@ if (!__VUEPRESS_SSR__)
 
 <template>
   <span
-    v-if="localIconName"
-    class="vp-icon" :class="[localIconName, extra]"
+    v-if="classname"
+    class="vp-icon" :class="[classname, extra]"
     :style="{ color, ...size }"
     aria-hidden
     data-provider="iconify"

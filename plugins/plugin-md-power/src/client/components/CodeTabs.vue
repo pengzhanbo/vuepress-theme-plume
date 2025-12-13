@@ -157,6 +157,9 @@ function onTabNavClick(index: number): void {
 
 .vp-code-tab-nav {
   position: relative;
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
   padding: 0 12px;
   font-size: 14px;
   font-weight: 500;
@@ -202,7 +205,7 @@ function onTabNavClick(index: number): void {
 .vp-code-tab-nav .vp-icon {
   width: 18px;
   height: 18px;
-  margin-left: 0;
+  margin: 0;
 }
 
 .vp-code-tab-nav span {

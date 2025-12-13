@@ -1,12 +1,20 @@
 <script setup lang="ts">
-import type { PlumeThemeHomeHeroTintPlate } from 'vuepress-theme-plume/client'
 import { computed, watch } from 'vue'
 import InputRange from './InputRange.vue'
 
 const min = 20
 const max = 240
 
-const tintPlate = defineModel<PlumeThemeHomeHeroTintPlate>({
+interface PlateItem {
+  value: number
+  offset: number
+}
+
+const tintPlate = defineModel<{
+  r: PlateItem
+  g: PlateItem
+  b: PlateItem
+}>({
   required: true,
 })
 

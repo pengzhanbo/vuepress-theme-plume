@@ -18,6 +18,15 @@ export const theme: Theme = plumeTheme({
   },
 
   markdown: {
+    icon: {
+      provider: 'iconify',
+      preload: [
+        // used within <AsideNae />
+        'tabler:star',
+        'octicon:issue-opened-16',
+        'ep:milk-tea',
+      ],
+    },
     chartjs: true,
     echarts: true,
     markmap: true,

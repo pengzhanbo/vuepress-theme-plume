@@ -28,7 +28,7 @@ defineProps<{
             <a :href="demo.url" target="_blank" rel="noopener noreferrer" :aria-label="demo.name" :title="demo.name">{{ demo.name }}</a>
           </span>
           <a v-if="demo.repo" :href="demo.repo" class="github" target="_blank" rel="noopener noreferrer" :aria-label="`Link to GitHub: ${demo.name}`">
-            <span class="vpi-social-github" />
+            <span class="vpi-simple-icons-github" />
           </a>
         </h3>
         <p :title="demo.desc">

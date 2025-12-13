@@ -1,0 +1,1 @@
+import{N as e,T as t,t as n}from"./app-CjwdfPJ_.js";var r={};function i(n,r){return e(),t(`div`)}var a=n(r,[[`render`,i]]),o=JSON.parse(`{"path":"/blog/","title":"博客","lang":"zh-CN","frontmatter":{"lang":"zh-CN","title":"博客","draft":true},"readingTime":{"minutes":0,"words":0},"git":{},"filePathRelative":null,"headers":[],"type":"posts"}`);export{a as comp,o as data};

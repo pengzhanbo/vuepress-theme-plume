@@ -202,12 +202,12 @@ blog:
     repo: https://github.com/paiad
     preview: https://paiad-blog.vercel.app/paiad-blog.png
   -
-    name: 𝙆𝙞𝙖𝙣𝙜
+    name: 𝙁𝙡𝙖𝙨𝙝
     desc: 坚持热爱，奔赴山海
-    logo: https://haipeng-lin.oss-cn-shenzhen.aliyuncs.com/20250608222708.png
-    url: https://blog.haipeng-lin.cn/
+    logo: https://haipeng-lin.cn/images/avatar.jpg
+    url: https://haipeng-lin.cn/
     repo: https://github.com/haipeng-lin
-    preview: https://haipeng-lin.oss-cn-shenzhen.aliyuncs.com/20250608223536.png
+    preview: https://img.haipeng-lin.cn/20251214233720.png
   -
     name: PinkDopeyBug
     desc: 山难现浮槎，心易陷镜花。

@@ -80,6 +80,13 @@ docs:
     url: https://www.tinypixos.com/
     repo: https://github.com/TinyPiXOS/TinyPiXOS
     preview: https://file.tinypixos.com/tinypixos/plume_theme_case.jpg
+  -
+    name: HEUOpenResource
+    desc: 哈尔滨工程大学资源共享计划
+    logo: https://cdn.jsdelivr.net/gh/HEUOpenResource/HEUOpenResource.github.io@main/docs/.vuepress/public/avatar.jpg
+    url: https://heu.us.kg/
+    repo: https://github.com/HEUOpenResource/HEUOpenResource.github.io
+    preview: https://cdn.jsdelivr.net/gh/HEUOpenResource/HEUOpenResource.github.io@main/docs/.vuepress/public/intro.png
 
 blog:
   -

@@ -26,7 +26,7 @@ search: false
 
 | ::bi:alipay:: AliPay                   | ::fa:wechat:: WeChat                      |
 | :------------------------------------: | :---------------------------------------: |
-| ![Alipay](https://static.pengzhanbo.cn/images/sponsor/ali_pay.jpg){width="300" height="300"} | ![WeChat](https://static.pengzhanbo.cn/images/sponsor/wechat_pay.jpg){width="300" height="300"} |
+| <VPQRCode text="https://qr.alipay.com/fkx10904qgiga1onjzovz78" dark="#1677FF" /> | <VPQRCode text="wxp://f2f0fm4LwtLUcjuNGJmgbdigQiQE6S9FRMPFonPtYIeVI98" dark="#07C160" /> |
 
 </div>
 
@@ -103,6 +103,10 @@ search: false
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.vp-doc .sponsor-table .vp-qrcode {
+  margin: 0;
 }
 
 .vp-doc .sponsor-table img {

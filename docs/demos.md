@@ -243,6 +243,13 @@ blog:
     url: https://blog.honahec.cc/
     repo: https://github.com/Honahec/blog
     preview: https://image.honahec.cc/20251018223321710.png
+  -
+    name: Lucas
+    desc: Ad astra abyssosque.
+    logo: https://static.lucas04.top/static/favicon/favicon-64.png
+    url: https://blog.lucas04.top/
+    repo: https://github.com/lucas0-nhr/lucas04-nhr.github.io
+    preview: https://static.lucas04.top/static/blog_preview.png
 ---
 
 :::important

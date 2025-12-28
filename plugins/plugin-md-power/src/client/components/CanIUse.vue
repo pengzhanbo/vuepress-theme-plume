@@ -12,20 +12,21 @@ interface MessageData {
   }
 }
 
-const { feature, past = 2, future = 1, meta = '' } = defineProps<{
+const { feature, past = 2, future = 1, meta = '', baseline = false } = defineProps<{
   feature: string
   past?: number
   future?: number
   meta?: string
+  baseline?: boolean
 }>()
 
 const url = 'https://caniuse.pengzhanbo.cn/'
 
-const height = ref('330px')
+const height = ref(baseline ? '150px' : '350px')
 
 const isDark = useDarkMode()
 const source = computed(() => {
-  const source = `${url}${feature}#past=${past}&future=${future}&meta=${meta}&theme=${isDark.value ? 'dark' : 'light'}`
+  const source = `${url}${feature}${baseline ? '/baseline#' : `#past=${past}&future=${future}&`}meta=${meta}&theme=${isDark.value ? 'dark' : 'light'}`
 
   return source
 })
@@ -34,7 +35,7 @@ useEventListener('message', (event) => {
   const data = parseData(event.data)
   const { type, payload } = data
   if (
-    type === 'ciu_embed'
+    type === 'ciu-embed'
     && payload
     && payload.feature === feature
     && payload.meta === meta
@@ -57,13 +58,7 @@ function parseData(data: string | MessageData): MessageData {
 </script>
 
 <template>
-  <div
-    class="ciu_embed"
-    :data-feature="feature"
-    :data-meta="meta"
-    :data-past="past"
-    :data-future="future"
-  >
+  <div class="ciu_embed" :class="{ baseline }">
     <iframe :src="source" :style="{ height }" :title="`Can I use ${feature}`" />
   </div>
 </template>
@@ -71,6 +66,11 @@ function parseData(data: string | MessageData): MessageData {
 <style>
 .ciu_embed {
   margin: 16px -24px;
+}
+
+.ciu_embed.baseline {
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .ciu_embed iframe {

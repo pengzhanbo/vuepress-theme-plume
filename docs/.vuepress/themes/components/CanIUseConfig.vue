@@ -35,7 +35,7 @@ const locale = computed(() => LOCALES[routeLocale.value])
 
 const { feature, featureList, onSelect, isFocus } = useCaniuseFeaturesSearch(inputEl, listEl)
 const { past, pastList, future, futureList, embedType, embedTypeList } = useCaniuseVersionSelect()
-const { output, rendered } = useCaniuse({ feature, embedType, past, future })
+const { output } = useCaniuse({ feature, embedType, past, future })
 </script>
 
 <template>
@@ -63,9 +63,8 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
                 class="feature-list-item"
                 @click="onSelect(item)"
                 @keydown.enter="onSelect(item)"
-              >
-                {{ item.label }}
-              </button>
+                v-html="item.label"
+              />
             </li>
           </ul>
         </div>
@@ -80,7 +79,6 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
           >
             <input :id="`caniuse-embed-${id}-${index}`" v-model="embedType" type="radio" name="embedType" :value="item.value">
             <span>{{ item.label }}</span>
-            <Badge v-if="item.value === 'image'" type="warning" :text="locale['no-recommend']" />
           </label>
         </div>
       </div>
@@ -109,8 +107,7 @@ const { output, rendered } = useCaniuse({ feature, embedType, past, future })
       <h4>{{ locale.output }}</h4>
       <CodeViewer lang="md" :content="output" />
     </div>
-    <div v-if="embedType === 'image'" v-html="rendered" />
-    <CanIUseViewer v-else-if="feature" :feature="feature" :past="past" :future="future" />
+    <CanIUseViewer v-if="feature" :feature="feature" :past="past" :future="future" :baseline="embedType === 'baseline'" />
   </div>
 </template>
 

@@ -1,4 +1,8 @@
-export type CanIUseMode = 'embed' | 'image'
+export type CanIUseMode
+  = | 'embed'
+    | 'baseline'
+    /** @deprecated */
+    | 'image'
 
 export interface CanIUseTokenMeta {
   feature: string

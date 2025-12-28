@@ -34,8 +34,8 @@ const locales: LocaleConfig<
 }
 
 const embedTypes: SelectItem[] = [
-  { label: 'iframe', value: '' },
-  { label: 'image', value: 'image' },
+  { label: 'caniuse', value: '' },
+  { label: 'baseline', value: 'baseline' },
 ]
 
 export function useCaniuseVersionSelect(): {
@@ -159,18 +159,19 @@ export function useCaniuse({ feature, embedType, past, future }: {
   future: Ref<string>
 }): {
   output: ComputedRef<string>
-  rendered: ComputedRef<string>
 } {
   const output = computed(() => {
     let content = '@[caniuse'
     if (embedType.value)
       content += ` ${embedType.value}`
 
-    if (past.value !== '-2' || future.value !== '1') {
-      if (past.value === '0' && future.value === '0')
-        content += '{0}'
-      else
-        content += `{-${past.value},${future.value}}`
+    if (embedType.value !== 'baseline') {
+      if (past.value !== '-2' || future.value !== '1') {
+        if (past.value === '0' && future.value === '0')
+          content += '{0}'
+        else
+          content += `{-${past.value},${future.value}}`
+      }
     }
 
     content += ']('
@@ -181,21 +182,5 @@ export function useCaniuse({ feature, embedType, past, future }: {
     return `${content})`
   })
 
-  const rendered = computed(() => {
-    if (!feature.value || !embedType.value)
-      return ''
-    return resolveCanIUse(feature.value)
-  })
-
-  return { output, rendered }
-}
-
-function resolveCanIUse(feature: string): string {
-  const link = 'https://caniuse.bitsofco.de/image/'
-  const alt = `Data on support for the ${feature} feature across the major browsers from caniuse.com`
-  return `<p><picture>
-    <source type="image/webp" srcset="${link}${feature}.webp">
-    <source type="image/png" srcset="${link}${feature}.png">
-    <img src="${link}${feature}.jpg" alt="${alt}" width="100%">
-  </picture></p>`
+  return { output }
 }

@@ -1,3 +1,17 @@
+# [1.0.0-rc.184](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.183...v1.0.0-rc.184) (2025-12-28)
+
+
+### Bug Fixes
+
+* **theme:** incorrect url convert in `PageContextMenu` ([#807](https://github.com/pengzhanbo/vuepress-theme-plume/issues/807)) ([9bbba1a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9bbba1ada670c2f927414534605b6b3744c246e8))
+
+
+### Features
+
+* **plugin-md-power:** improve caniuse syntax ([#806](https://github.com/pengzhanbo/vuepress-theme-plume/issues/806)) ([fe9ee0d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fe9ee0dbfce9896fdaea72d8f77e7d065577d97d))
+
+
+
 # [1.0.0-rc.183](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.182...v1.0.0-rc.183) (2025-12-13)
 
 

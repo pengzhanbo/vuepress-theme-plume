@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.183",
   "private": true,
-  "packageManager": "pnpm@10.25.0",
+  "packageManager": "pnpm@10.26.2",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -54,7 +54,7 @@
     "@types/stylus": "catalog:dev",
     "@types/three": "catalog:dev",
     "@types/webpack-env": "catalog:dev",
-    "@vitest/coverage-istanbul": "catalog:dev",
+    "@vitest/coverage-v8": "catalog:dev",
     "bumpp": "catalog:dev",
     "commitizen": "catalog:dev",
     "conventional-changelog-cli": "catalog:dev",
@@ -79,14 +79,25 @@
     "vitest": "catalog:dev",
     "wait-on": "catalog:dev"
   },
-  "lint-staged": {
-    "*": "eslint --fix",
-    "*.{css,vue}": "stylelint --fix",
-    "*.{js,ts,mjs,cjs}": "cross-env TZ=Etc/UTC vitest related --run"
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "resolutions": {
+    "@bufbuild/protobuf": "^2.10.2",
+    "@eslint-community/eslint-utils": "catalog:peer",
+    "@typescript-eslint/types": "catalog:peer",
+    "@typescript-eslint/utils": "catalog:peer",
+    "chokidar": "catalog:prod",
+    "esbuild": "catalog:prod",
+    "sass-embedded": "catalog:peer",
+    "vite": "catalog:dev",
+    "vue-router": "catalog:dev"
+  },
+  "lint-staged": {
+    "*": "eslint --fix",
+    "*.{css,vue}": "stylelint --fix",
+    "*.{js,ts,mjs,cjs}": "cross-env TZ=Etc/UTC vitest related --run"
   }
 }

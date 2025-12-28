@@ -1,18 +1,18 @@
+catalogMode: prefer
+ignoreWorkspaceRootCheck: true
+shamefullyHoist: true
+shellEmulator: true
+trustPolicy: no-downgrade
+strictPeerDependencies: false
+trustPolicyExclude:
+  - ua-parser-js
+
 packages:
   - docs
   - theme
   - cli
   - plugins/*
   - examples/*
-
-overrides:
-  '@bufbuild/protobuf': ^2.10.2
-  '@typescript-eslint/utils': ^8.49.0
-  chokidar: ^5.0.0
-  esbuild: ^0.27.1
-  sass-embedded: ^1.96.0
-  vite: ^8.0.0-beta.2
-  vue-router: ^4.6.4
 
 patchedDependencies:
   floating-vue: patches/floating-vue.patch
@@ -21,21 +21,21 @@ catalogs:
     '@commitlint/cli': ^20.2.0
     '@commitlint/config-conventional': ^20.2.0
     '@lunariajs/core': ^0.1.1
-    '@pengzhanbo/eslint-config-vue': ^1.43.0
-    '@pengzhanbo/stylelint-config': ^1.43.0
+    '@pengzhanbo/eslint-config-vue': ^1.45.0
+    '@pengzhanbo/stylelint-config': ^1.45.0
     '@simonwep/pickr': ^1.9.1
     '@types/express': ^5.0.6
     '@types/js-yaml': ^4.0.9
     '@types/less': ^3.0.8
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^25.0.1
+    '@types/node': ^25.0.3
     '@types/picomatch': ^4.0.2
     '@types/qrcode': ^1.5.6
     '@types/stylus': ^0.48.43
     '@types/three': ^0.182.0
     '@types/webpack-env': ^1.18.8
-    '@vitest/coverage-istanbul': ^4.0.15
+    '@vitest/coverage-v8': ^4.0.16
     bumpp: ^10.3.2
     commitizen: ^4.3.1
     conventional-changelog-cli: ^5.0.0
@@ -45,7 +45,7 @@ catalogs:
     eslint: ^9.39.2
     http-server: ^14.1.1
     husky: ^9.1.7
-    less: ^4.4.2
+    less: ^4.5.1
     lint-staged: ^16.2.7
     markdown-it: ^14.1.0
     memfs: ^4.51.1
@@ -56,24 +56,28 @@ catalogs:
     stylelint: ^16.26.1
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.17.3
+    tsdown: ^0.18.3
     typescript: ^5.9.3
-    vitest: ^4.0.15
+    vite: ^8.0.0-beta.5
+    vitest: ^4.0.16
     vue-router: ^4.6.4
     wait-on: ^9.0.3
   peer:
-    '@iconify/json': ^2.2.417
-    '@mathjax/src': ^4.0.0
+    '@eslint-community/eslint-utils': ^4.9.0
+    '@iconify/json': ^2.2.421
+    '@mathjax/src': ^4.1.0
+    '@typescript-eslint/types': ^8.50.1
+    '@typescript-eslint/utils': ^8.50.1
     artplayer: ^5.3.0
-    dashjs: ^5.1.0
+    dashjs: ^5.1.1
     gsap: ^3.14.2
     hls.js: ^1.6.15
     mpegts.js: 1.7.3
     ogl: ^1.0.11
-    postprocessing: ^6.38.0
+    postprocessing: ^6.38.2
     pyodide: ^0.29.0
-    sass: ^1.96.0
-    sass-embedded: ^1.96.0
+    sass: ^1.97.1
+    sass-embedded: ^1.97.1
     swiper: ^12.0.3
     three: ^0.182.0
   prod:
@@ -95,9 +99,9 @@ catalogs:
     chokidar: 5.0.0
     dayjs: ^1.11.19
     echarts: ^6.0.0
-    esbuild: ^0.27.1
+    esbuild: ^0.27.2
     flowchart.ts: ^3.0.1
-    focus-trap: ^7.6.6
+    focus-trap: ^7.7.0
     gray-matter: ^4.0.3
     handlebars: ^4.7.8
     hash-wasm: ^4.12.0
@@ -122,10 +126,10 @@ catalogs:
     picomatch: ^4.0.3
     qrcode: ^1.5.4
     shiki: ^3.20.0
-    sort-package-json: ^3.5.1
+    sort-package-json: ^3.6.0
     tm-grammars: ^1.26.0
     tm-themes: ^1.10.13
-    vue: ^3.5.25
+    vue: ^3.5.26
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.26
     '@vuepress/helper': 2.0.0-rc.121
@@ -150,8 +154,10 @@ catalogs:
     '@vuepress/plugin-watermark': 2.0.0-rc.121
     '@vuepress/shiki-twoslash': 2.0.0-rc.121
     vuepress: 2.0.0-rc.26
+
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - core-js
   - esbuild
   - unrs-resolver
+  - less

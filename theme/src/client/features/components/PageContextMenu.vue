@@ -2,7 +2,6 @@
 import { onClickOutside, useClipboard, useToggle } from '@vueuse/core'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { withBase } from 'vuepress/client'
-import { ensureEndingSlash } from 'vuepress/shared'
 import { useData, useEncrypt } from '../../composables/index.js'
 
 import '@vuepress/helper/transition/fade-in.css'
@@ -27,7 +26,9 @@ const markdownLink = computed(() => {
   const url = withBase(page.value.path)
   if (url.endsWith('.html'))
     return `${url.slice(0, -5)}.md`
-  return `${ensureEndingSlash(url)}index.md`
+  if (url[url.length - 1] !== '/')
+    return `${url}.md`
+  return `${url}index.md`
 })
 
 const message = computed(() => {

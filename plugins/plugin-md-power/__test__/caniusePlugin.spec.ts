@@ -21,7 +21,7 @@ describe('caniusePlugin', () => {
     const md = createMarkdown()
 
     expect(md.render('@[caniuse](feature)')).toMatchSnapshot()
-    expect(md.render('@[caniuse image](feature)')).toMatchSnapshot()
+    expect(md.render('@[caniuse baseline](feature)')).toMatchSnapshot()
     expect(md.render('@[caniuse embed](feature)')).toMatchSnapshot()
     expect(md.render('@[caniuse {-2,4}](feature)')).toMatchSnapshot()
     expect(md.render(`\
@@ -32,7 +32,7 @@ describe('caniusePlugin', () => {
   })
 
   it('should work with options', () => {
-    const md = createMarkdown({ mode: 'image' })
+    const md = createMarkdown({ mode: 'baseline' })
 
     expect(md.render('@[caniuse](feature)')).toMatchSnapshot()
     expect(md.render('@[caniuse embed](feature)')).toMatchSnapshot()

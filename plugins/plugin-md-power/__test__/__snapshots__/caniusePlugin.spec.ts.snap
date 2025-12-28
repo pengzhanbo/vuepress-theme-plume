@@ -39,13 +39,7 @@ exports[`caniusePlugin > should not work 8`] = `
 
 exports[`caniusePlugin > should work 1`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="1" />"`;
 
-exports[`caniusePlugin > should work 2`] = `
-"<ClientOnly><p><picture>
-      <source type="image/webp" srcset="https://caniuse.bitsofco.de/image/feature.webp">
-      <source type="image/png" srcset="https://caniuse.bitsofco.de/image/feature.png">
-      <img src="https://caniuse.bitsofco.de/image/feature.jpg" alt="Data on support for the feature feature across the major browsers from caniuse.com" width="100%">
-    </picture></p></ClientOnly>"
-`;
+exports[`caniusePlugin > should work 2`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="1" baseline />"`;
 
 exports[`caniusePlugin > should work 3`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="1" />"`;
 
@@ -55,13 +49,7 @@ exports[`caniusePlugin > should work 5`] = `"<CanIUseViewer feature="feature" me
 
 exports[`caniusePlugin > should work 6`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="0" />"`;
 
-exports[`caniusePlugin > should work with options 1`] = `
-"<ClientOnly><p><picture>
-      <source type="image/webp" srcset="https://caniuse.bitsofco.de/image/feature.webp">
-      <source type="image/png" srcset="https://caniuse.bitsofco.de/image/feature.png">
-      <img src="https://caniuse.bitsofco.de/image/feature.jpg" alt="Data on support for the feature feature across the major browsers from caniuse.com" width="100%">
-    </picture></p></ClientOnly>"
-`;
+exports[`caniusePlugin > should work with options 1`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="1" baseline />"`;
 
 exports[`caniusePlugin > should work with options 2`] = `"<CanIUseViewer feature="feature" meta="test-id" :past="2" :future="1" />"`;
 
@@ -74,17 +62,17 @@ exports[`legacyCaniuse > should work 2`] = `"<CanIUseViewer feature="feature{-2,
 exports[`legacyCaniuse > should work 3`] = `""`;
 
 exports[`legacyCaniuse > should work with unknown mode 1`] = `
-"<ClientOnly><p><picture>
+"<p><picture>
       <source type="image/webp" srcset="https://caniuse.bitsofco.de/image/feature.webp">
       <source type="image/png" srcset="https://caniuse.bitsofco.de/image/feature.png">
       <img src="https://caniuse.bitsofco.de/image/feature.jpg" alt="Data on support for the feature feature across the major browsers from caniuse.com" width="100%">
-    </picture></p></ClientOnly>"
+    </picture></p>"
 `;
 
 exports[`legacyCaniuse > should work with unknown mode 2`] = `
-"<ClientOnly><p><picture>
+"<p><picture>
       <source type="image/webp" srcset="https://caniuse.bitsofco.de/image/feature{-2,4}.webp">
       <source type="image/png" srcset="https://caniuse.bitsofco.de/image/feature{-2,4}.png">
       <img src="https://caniuse.bitsofco.de/image/feature{-2,4}.jpg" alt="Data on support for the feature{-2,4} feature across the major browsers from caniuse.com" width="100%">
-    </picture></p></ClientOnly>"
+    </picture></p>"
 `;

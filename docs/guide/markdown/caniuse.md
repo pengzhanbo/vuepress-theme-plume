@@ -3,6 +3,7 @@ title: Can I Use
 createTime: 2024/09/30 14:50:55
 icon: streamline:desktop-help
 permalink: /guide/markdown/caniuse/
+badge: 新
 ---
 
 ## 概述
@@ -43,34 +44,39 @@ export default defineUserConfig({
 @[caniuse embed_type{browser_versions}](feature)
 ```
 
+:::info 使用主题提供的 caniuse 工具：[caniuse 特性搜索](../../../tools/caniuse.md) 帮助生成 markdown 代码。
+:::
+
 - `feature`
 
    必填。 正确取值请参考 [caniuse-embed.vercel.app](https://caniuse-embed.vercel.app/zh-CN)
 
-- `{browser_versions}`
+- `{browser_period}`
 
-  可选。当前特性在多个版本中的支持情况。
+  可选。当前特性在多个版本周期中的支持情况。
 
   默认值为: `{-2,1}`
 
   格式： `{past,future}`  取值范围为 `-5 ~ 3`
 
-  - 小于`0` 表示低于当前浏览器版本的支持情况
+  - 小于`0` 表示过去的浏览器版本周期的支持情况
   - `0` 表示当前浏览器版本的支持情况
-  - 大于`0` 表示高于当前浏览器版本的支持情况
+  - 大于`0` 表示未来的浏览器版本周期的支持情况
 
 - `embed_type`
 
-  可选。 资源嵌入的类型。
+  可选。 嵌入的类型。
 
-  类型： `'embed' | 'image'`
+  类型： `'embed' | 'baseline'`
 
   默认值为：`'embed'`
 
-:::caution
-不再推荐使用 image 类型，建议使用 embed 类型，主题更换了 embed 实现技术方案，
-现在的 embed 类型优势已远远超过 image 类型，加载速度更快，体积更小，交互体验更好。
-:::
+  - `embed` 表示嵌入为 类似 `caniuse.com` 的版本兼容数据表格
+  - `baseline` 表示嵌入为 特性的基线支持情况。
+    - `Wildly available` 表示受到所有主流浏览器的广泛支持
+    - `Newly available` 表示仅受到最新主流浏览器的支持
+    - `limit available` 表示主流浏览器可能部分支持，但支持程度有限，或者不支持
+    - `deprecated` 表示主流浏览器已将其标记为 **弃用**，不推荐使用
 
 ## 示例
 
@@ -84,22 +90,12 @@ export default defineUserConfig({
 
 @[caniuse](css-matches-pseudo)
 
-**以图片的形式，获取 css 伪类选择器 `:dir()` 在各个浏览器的支持情况：**
+**显示 css 伪类选择器 `:dir()` 的基线支持情况：**
 
 ```md
-@[caniuse image](css-matches-pseudo)
+@[caniuse baseline](css-matches-pseudo)
 ```
 
 效果：
 
-@[caniuse image](css-matches-pseudo)
-
-**获取 css 伪类选择器 `:dir()` 特定范围浏览器的支持情况：**
-
-```md
-@[caniuse{-2,3}](css-matches-pseudo)
-```
-
-效果：
-
-@[caniuse{-2,3}](css-matches-pseudo)
+@[caniuse baseline](css-matches-pseudo)

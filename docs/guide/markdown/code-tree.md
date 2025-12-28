@@ -8,7 +8,7 @@ badge: 新
 
 ## 概述
 
-在 markdown 中，使用 `::: code-tress` 容器，或者使用 `@[code-tree](dir_path)`，
+在 markdown 中，使用 `::: code-tree` 容器，或者使用 `@[code-tree](dir_path)`，
 可以显示一个带有文件树的代码块区域。
 
 相比于 代码块分组，代码树 可以更加清晰地展示代码文件的组织结构，以及文件的依赖关系。

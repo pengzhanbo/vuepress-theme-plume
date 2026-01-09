@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import VPLink from '@theme/VPLink.vue'
-import { computed } from 'vue'
+import { computed, inject, ref, toValue } from 'vue'
 import {
   useContributors,
   useData,
@@ -29,12 +29,16 @@ const hasLastUpdated = computed(() =>
 )
 const hasContributors = computed(() => Boolean(contributors.value.length) && mode.value === 'inline')
 
+// 无法准确判断是否存在 doc-footer 插槽，因此需要通过 provide 传递
+const hasSlot = inject('doc-footer-slot-exists', ref(false))
+
 const showFooter = computed(() => {
   return hasEditLink.value
     || hasLastUpdated.value
     || hasContributors.value
     || prev.value?.link
     || next.value?.link
+    || toValue(hasSlot)
 })
 </script>
 

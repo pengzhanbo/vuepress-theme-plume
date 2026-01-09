@@ -10,6 +10,7 @@ import type {
   ThemeSidebarMulti,
   TransitionOptions,
 } from './features/index.js'
+import type { LiteralUnion } from './utils.js'
 
 /**
  * 内置的多语言配置
@@ -60,7 +61,7 @@ export interface ThemeLocale extends LocaleData {
    * 允许显示在导航栏的社交类型
    * @default ['github', 'twitter', 'discord', 'facebook']
    */
-  navbarSocialInclude?: (SocialLinkIconUnion | (string & { zz_IGNORE_ME?: never }))[]
+  navbarSocialInclude?: LiteralUnion<SocialLinkIconUnion>[]
 
   /**
    * 笔记配置， 笔记中的文章默认不会出现在首页文章列表

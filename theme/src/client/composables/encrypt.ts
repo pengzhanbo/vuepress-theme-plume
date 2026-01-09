@@ -56,7 +56,7 @@ function createMatchRegex(match: string) {
   return regex
 }
 
-function toMatch(match: string, pagePath: string, filePathRelative: string | null) {
+function toMatch(match: string, pagePath: string, filePathRelative?: string | null) {
   const relativePath = filePathRelative || ''
   if (match[0] === '^') {
     const regex = createMatchRegex(match)

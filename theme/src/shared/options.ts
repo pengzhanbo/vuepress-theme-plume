@@ -1,3 +1,4 @@
+import type { Prettify } from '@pengzhanbo/utils'
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
 import type { CopyCodePluginOptions } from '@vuepress/plugin-copy-code'
 import type { ChangelogOptions, ContributorsOptions } from '@vuepress/plugin-git'
@@ -85,7 +86,7 @@ export interface ThemeFeatureOptions {
   /**
    * 贡献者配置
    */
-  contributors?: boolean | ContributorsOptions & { mode?: 'inline' | 'block' }
+  contributors?: boolean | Prettify<ContributorsOptions & { mode?: 'inline' | 'block' }>
 
   /**
    * 页面变更记录配置
@@ -120,7 +121,7 @@ export interface ThemeFeatureOptions {
   /**
    * 水印配置
    */
-  watermark?: boolean | (WatermarkPluginOptions & { fullPage?: boolean })
+  watermark?: boolean | Prettify<WatermarkPluginOptions & { fullPage?: boolean }>
 
   /**
    * 阅读时间、字数统计

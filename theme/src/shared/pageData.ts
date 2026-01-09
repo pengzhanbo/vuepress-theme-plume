@@ -1,3 +1,4 @@
+import type { Nullable } from '@pengzhanbo/utils'
 import type { GitPluginPageData } from '@vuepress/plugin-git'
 import type { ReadingTime } from '@vuepress/plugin-reading-time'
 import type { PostsCategoryItem } from './features/index.js'
@@ -15,7 +16,7 @@ export interface ThemePageData extends GitPluginPageData {
   /**
    * 相对于根目录的文件路径
    */
-  filePathRelative: string | null
+  filePathRelative: Nullable<string>
   /**
    * 阅读时间
    */

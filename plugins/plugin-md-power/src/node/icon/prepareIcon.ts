@@ -1,5 +1,5 @@
 import type { IconOptions } from '../../shared/index.js'
-import { notNullish, toArray, uniqueBy } from '@pengzhanbo/utils'
+import { notNullish, toArray, uniqWith } from '@pengzhanbo/utils'
 import { isLinkAbsolute } from '@vuepress/helper'
 import { isLinkHttp } from 'vuepress/shared'
 import { logger } from '../utils/logger.js'
@@ -44,7 +44,7 @@ export function prepareIcon(
   let hasStyle = false
   let hasScript = false
 
-  for (const asset of uniqueBy(assets, (a, b) => a.link === b.link)) {
+  for (const asset of uniqWith(assets, (a, b) => a.link === b.link)) {
     if (asset.type === 'style') {
       hasStyle = true
       setupContent.push(`useStyleTag('@import url("${asset.link}");')`)

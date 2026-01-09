@@ -1,3 +1,4 @@
+import type { Prettify } from '@pengzhanbo/utils'
 import type { SearchPluginOptions } from '@vuepress-plume/plugin-search'
 import type { CachePluginOptions } from '@vuepress/plugin-cache'
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
@@ -105,12 +106,12 @@ export interface ThemeBuiltinPlugins {
   /**
    * 生成站点地图
    */
-  sitemap?: false | Omit<SitemapPluginOptions, 'hostname'> & { hostname?: string }
+  sitemap?: false | Prettify<Omit<SitemapPluginOptions, 'hostname'> & { hostname?: string }>
 
   /**
    * SEO
    */
-  seo?: false | Omit<SeoPluginOptions, 'hostname'> & { hostname?: string }
+  seo?: false | Prettify<Omit<SeoPluginOptions, 'hostname'> & { hostname?: string }>
 
   /**
    * 缓存
@@ -125,7 +126,7 @@ export interface ThemeBuiltinPlugins {
   /**
    * 是否开启 水印
    */
-  watermark?: boolean | (WatermarkPluginOptions & { fullPage?: boolean })
+  watermark?: boolean | Prettify<WatermarkPluginOptions & { fullPage?: boolean }>
 
   /**
    * 资源链接替换

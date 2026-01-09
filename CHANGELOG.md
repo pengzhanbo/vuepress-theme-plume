@@ -1,3 +1,23 @@
+# [1.0.0-rc.185](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.184...v1.0.0-rc.185) (2026-01-09)
+
+
+### Bug Fixes
+
+* **theme:** add slot existence check in VPDocFooter, close [#809](https://github.com/pengzhanbo/vuepress-theme-plume/issues/809) ([#811](https://github.com/pengzhanbo/vuepress-theme-plume/issues/811)) ([2cadb7d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2cadb7d88cbdcce1688f1e58cdb9c3a74090057f))
+* **theme:** fix custom social icon rendering misalignment ([#812](https://github.com/pengzhanbo/vuepress-theme-plume/issues/812)) ([7ed7023](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7ed70230afd5fa2f388320c529a364dd572481e9))
+
+
+### Features
+
+* **theme:** add support for base64 for profile avatars ([#808](https://github.com/pengzhanbo/vuepress-theme-plume/issues/808)) ([cc3582c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cc3582c1f9e3bfc96b2a6164dac8e68cea8c0521))
+
+
+### Performance Improvements
+
+* update deps to latest ([a74c475](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a74c475d7cf93b295dd95f934ca820135e64fb6b))
+
+
+
 # [1.0.0-rc.184](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.183...v1.0.0-rc.184) (2025-12-28)
 
 

@@ -20,6 +20,8 @@ const imageUrl = computed(() => {
     return ''
   if (isLinkHttp(url))
     return url
+  if (url.startsWith('data:image/'))
+    return url
   return withBase(url)
 })
 

@@ -65,7 +65,8 @@ const binding = computed(() => ({
 <template>
   <VPIconImage
     v-if="type === 'link' || type === 'svg'"
-    :type="type" :name="name" :color="color" :size="rect"
+    :type="type"
+    v-bind="binding"
   />
   <VPIconfont
     v-else-if="type === 'iconfont'"

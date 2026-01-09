@@ -3,6 +3,10 @@ import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const { type, name, color, size } = defineProps<{
   type: 'link' | 'svg'
   name: string | { svg: string }
@@ -31,7 +35,7 @@ const link = computed(() => {
   </span>
   <span
     v-else-if="type === 'svg'"
-    class="vp-icon"
+    class="vp-icon is-svg"
     :style="{ color, ...size }"
     aria-hidden
     v-html="svg"
@@ -49,5 +53,10 @@ const link = computed(() => {
 
 .vp-icon-img img {
   height: 100%;
+}
+
+.vp-icon.is-svg :deep(svg) {
+  width: inherit;
+  height: inherit;
 }
 </style>

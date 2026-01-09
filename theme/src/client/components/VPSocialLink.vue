@@ -56,8 +56,8 @@ const label = computed(() => {
   color: var(--vp-c-text-1);
 }
 
-.vp-social-link > :deep(svg),
-.vp-social-link > :deep([class*="vpi-"]) {
+.vp-social-link > :deep([class*="vpi-"]),
+.vp-social-link > :deep(.vp-icon.is-svg) {
   width: 20px;
   height: 20px;
   fill: currentcolor;

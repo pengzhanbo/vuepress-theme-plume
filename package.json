@@ -89,6 +89,7 @@
     "@eslint-community/eslint-utils": "catalog:peer",
     "@typescript-eslint/types": "catalog:peer",
     "@typescript-eslint/utils": "catalog:peer",
+    "baseline-browser-mapping": "^2.9.13",
     "chokidar": "catalog:prod",
     "esbuild": "catalog:prod",
     "sass-embedded": "catalog:peer",

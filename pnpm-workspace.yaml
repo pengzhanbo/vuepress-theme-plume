@@ -18,8 +18,8 @@ patchedDependencies:
   floating-vue: patches/floating-vue.patch
 catalogs:
   dev:
-    '@commitlint/cli': ^20.2.0
-    '@commitlint/config-conventional': ^20.2.0
+    '@commitlint/cli': ^20.3.1
+    '@commitlint/config-conventional': ^20.3.1
     '@lunariajs/core': ^0.1.1
     '@pengzhanbo/eslint-config-vue': ^1.45.0
     '@pengzhanbo/stylelint-config': ^1.45.0
@@ -56,18 +56,18 @@ catalogs:
     stylelint: ^16.26.1
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.18.3
+    tsdown: ^0.18.4
     typescript: ^5.9.3
-    vite: ^8.0.0-beta.5
+    vite: ^8.0.0-beta.7
     vitest: ^4.0.16
     vue-router: ^4.6.4
     wait-on: ^9.0.3
   peer:
-    '@eslint-community/eslint-utils': ^4.9.0
-    '@iconify/json': ^2.2.421
+    '@eslint-community/eslint-utils': ^4.9.1
+    '@iconify/json': ^2.2.426
     '@mathjax/src': ^4.1.0
-    '@typescript-eslint/types': ^8.50.1
-    '@typescript-eslint/utils': ^8.50.1
+    '@typescript-eslint/types': ^8.52.0
+    '@typescript-eslint/utils': ^8.52.0
     artplayer: ^5.3.0
     dashjs: ^5.1.1
     gsap: ^3.14.2
@@ -75,9 +75,9 @@ catalogs:
     mpegts.js: 1.7.3
     ogl: ^1.0.11
     postprocessing: ^6.38.2
-    pyodide: ^0.29.0
-    sass: ^1.97.1
-    sass-embedded: ^1.97.1
+    pyodide: ^0.29.1
+    sass: ^1.97.2
+    sass-embedded: ^1.97.2
     swiper: ^12.0.3
     three: ^0.182.0
   prod:
@@ -91,7 +91,7 @@ catalogs:
     '@mdit/plugin-sup': ^0.23.0
     '@mdit/plugin-tab': ^0.23.0
     '@mdit/plugin-tasklist': ^0.22.2
-    '@pengzhanbo/utils': ^2.1.2
+    '@pengzhanbo/utils': ^3.0.1
     '@vueuse/core': ^14.1.0
     '@vueuse/integrations': ^14.1.0
     cac: ^6.7.14
@@ -101,7 +101,7 @@ catalogs:
     echarts: ^6.0.0
     esbuild: ^0.27.2
     flowchart.ts: ^3.0.1
-    focus-trap: ^7.7.0
+    focus-trap: ^7.7.1
     gray-matter: ^4.0.3
     handlebars: ^4.7.8
     hash-wasm: ^4.12.0
@@ -125,10 +125,10 @@ catalogs:
     picocolors: ^1.1.1
     picomatch: ^4.0.3
     qrcode: ^1.5.4
-    shiki: ^3.20.0
+    shiki: ^3.21.0
     sort-package-json: ^3.6.0
-    tm-grammars: ^1.26.0
-    tm-themes: ^1.10.13
+    tm-grammars: ^1.27.1
+    tm-themes: ^1.10.15
     vue: ^3.5.26
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.26

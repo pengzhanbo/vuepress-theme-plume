@@ -54,3 +54,52 @@ The HTML specification is maintained by the W3C.
 ::: warning
 Abbreviations should be independent words or phrases. For Chinese abbreviations, add spaces on both sides of the word to distinguish them.
 :::
+
+## Global Presets
+
+For convenience, commonly used abbreviations can be preset in the configuration to avoid repeatedly
+defining abbreviations in each markdown file.
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      // [!code ++:4]
+      abbr: {
+        W3C: 'World Wide Web Consortium',
+        ECMA: 'European Computer Manufacturers Association'
+      },
+    }
+  })
+})
+```
+
+It can also be achieved by configuring the `abbreviations` option in `markdown.env`.
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      env: {
+        // [!code ++:4]
+        abbreviations: {
+          W3C: 'World Wide Web Consortium',
+          ECMA: 'European Computer Manufacturers Association'
+        }
+      }
+    }
+  })
+})
+```
+
+Globally preset abbreviations can be used in any markdown file.
+
+**Input：**
+
+```md
+The HTML specification is maintained by the W3C.
+```
+
+**Output：**
+
+The HTML specification is maintained by the W3C.

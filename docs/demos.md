@@ -87,6 +87,12 @@ docs:
     url: https://heu.us.kg/
     repo: https://github.com/HEUOpenResource/HEUOpenResource.github.io
     preview: https://cdn.jsdelivr.net/gh/HEUOpenResource/HEUOpenResource.github.io@main/docs/.vuepress/public/intro.png
+  -
+    name: SKYCRAFT 服务器文档
+    desc: Minecraft服务器SKYCRAFT的文档。
+    logo: https://official.skycraft.cn/i/3.jpg
+    url: https://docs.skycraft.cn/
+    preview: https://bbsimage.skycraft.cn/docs-preview.jpg
 
 blog:
   -

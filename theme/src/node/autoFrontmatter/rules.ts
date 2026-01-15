@@ -1,13 +1,24 @@
-import type { AutoFrontmatterContext, AutoFrontmatterData, AutoFrontmatterOptions, AutoFrontmatterRule, ThemeDocCollection, ThemeSidebarItem } from '../../shared/index.js'
+import type {
+  AutoFrontmatterContext,
+  AutoFrontmatterData,
+  AutoFrontmatterOptions,
+  AutoFrontmatterRule,
+  ThemeDocCollection,
+} from '../../shared/index.js'
 import type { ThemePostCollection } from '../../shared/index.js'
 import { hasOwn, toArray } from '@pengzhanbo/utils'
-import dayjs from 'dayjs'
-import { ensureLeadingSlash, removeLeadingSlash } from 'vuepress/shared'
-import { fs, path } from 'vuepress/utils'
+import { ensureEndingSlash, ensureLeadingSlash, removeLeadingSlash } from 'vuepress/shared'
+import { path } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { nanoid } from '../utils/index.js'
-
-const EXCLUDE = ['!**/.vuepress/', '!**/node_modules/']
+import {
+  EXCLUDE,
+  getCurrentName,
+  getFileCreateTime,
+  getPermalinkByFilepath,
+  isReadme,
+} from './helper.js'
+import { resolveLinkBySidebar } from './resolveLinkBySidebar.js'
 
 const rules: AutoFrontmatterRule[] = []
 
@@ -100,7 +111,14 @@ async function generateWithPost(
   }
 
   if (ep && !hasOwn(data, 'permalink')) {
-    data.permalink = path.join(locale, collection.linkPrefix || collection.link || collection.dir, nanoid(), '/')
+    data.permalink = path.join(
+      locale,
+      collection.linkPrefix || collection.link || collection.dir,
+      ep === 'filepath'
+        ? await getPermalinkByFilepath(context.relativePath, path.join(locale, collection.dir))
+        : nanoid(),
+      '/',
+    )
   }
 
   data = await transform?.(data, context, locale) ?? data
@@ -136,12 +154,32 @@ async function generateWithDoc(
     }
     else if (collection.sidebar && collection.sidebar !== 'auto') {
       const res = resolveLinkBySidebar(collection.sidebar, ensureLeadingSlash(collection.dir))
-      const file = ensureLeadingSlash(context.relativePath)
-      const link = res[file] || res[path.dirname(file)] || ''
-      data.permalink = path.join(locale, collection.linkPrefix, link, isReadme(context.relativePath) ? '' : nanoid(8), '/')
+      const file = path.dirname(context.relativePath)
+      const link = res[ensureLeadingSlash(ensureEndingSlash(file))] || '/'
+      data.permalink = path.join(
+        locale,
+        collection.linkPrefix,
+        link,
+        isReadme(context.relativePath)
+          ? ''
+          : ep === 'filepath'
+            ? await getPermalinkByFilepath(
+                link === '/' ? context.relativePath : path.basename(context.relativePath),
+                link === '/' ? path.join(locale, collection.dir) : '',
+              )
+            : nanoid(8),
+        '/',
+      )
     }
     else {
-      data.permalink = path.join(locale, collection.linkPrefix, nanoid(8), '/')
+      data.permalink = path.join(
+        locale,
+        collection.linkPrefix,
+        ep === 'filepath'
+          ? await getPermalinkByFilepath(context.relativePath, path.join(locale, collection.dir))
+          : nanoid(8),
+        '/',
+      )
     }
   }
 
@@ -175,86 +213,14 @@ async function generateWithRemain(
   }
 
   if (ep && !hasOwn(data, 'permalink') && !isRoot) {
-    data.permalink = path.join(locale, nanoid(8), '/')
+    data.permalink = path.join(
+      locale,
+      ep === 'filepath' ? await getPermalinkByFilepath(context.relativePath, locale) : nanoid(8),
+      '/',
+    )
   }
 
   data = await transform?.(data, context, locale) ?? data
 
   return data
-}
-
-function isReadme(filepath: string): boolean {
-  return filepath.endsWith('README.md') || filepath.endsWith('index.md') || filepath.endsWith('readme.md')
-}
-
-function normalizeTitle(title: string): string {
-  return title.replace(/^\d+\./, '').trim()
-}
-
-function getFileCreateTime(filepath: string): string {
-  const stats = fs.statSync(filepath)
-  const time = stats.birthtime.getFullYear() !== 1970 ? stats.birthtime : stats.atime
-  return dayjs(new Date(time)).format('YYYY/MM/DD HH:mm:ss')
-}
-
-function getCurrentName(filepath: string): string {
-  if (isReadme(filepath))
-    return normalizeTitle(path.dirname(filepath).slice(-1).split('/').pop() || 'Home')
-
-  return normalizeTitle(path.basename(filepath, '.md'))
-}
-
-export function resolveLinkBySidebar(
-  sidebar: 'auto' | (string | ThemeSidebarItem)[],
-  _prefix: string,
-): Record<string, string> {
-  const res: Record<string, string> = {}
-
-  if (sidebar === 'auto') {
-    return res
-  }
-
-  for (const item of sidebar) {
-    if (typeof item !== 'string') {
-      const { prefix, dir = '', link = '/', items, text = '' } = item
-      getSidebarLink(items, link, text, path.join(_prefix, prefix || dir), res)
-    }
-  }
-  return res
-}
-
-function getSidebarLink(items: 'auto' | (string | ThemeSidebarItem)[] | undefined, link: string, text: string, dir = '', res: Record<string, string> = {}) {
-  if (items === 'auto')
-    return
-
-  if (!items) {
-    res[path.join(dir, `${text}.md`)] = link
-    return
-  }
-
-  for (const item of items) {
-    if (typeof item === 'string') {
-      if (!link)
-        continue
-      if (item) {
-        res[path.join(dir, `${item}.md`)] = link
-      }
-      else {
-        res[path.join(dir, 'README.md')] = link
-        res[path.join(dir, 'index.md')] = link
-        res[path.join(dir, 'readme.md')] = link
-      }
-      res[dir] = link
-    }
-    else {
-      const { prefix, dir: subDir = '', link: subLink = '/', items: subItems, text: subText = '' } = item
-      getSidebarLink(
-        subItems,
-        path.join(link, subLink),
-        subText,
-        path.join(prefix?.[0] === '/' ? prefix : `/${dir}/${prefix}`, subDir),
-        res,
-      )
-    }
-  }
 }

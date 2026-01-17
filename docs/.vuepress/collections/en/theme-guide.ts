@@ -23,6 +23,7 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
         },
         'sidebar',
         'write',
+        'auto-frontmatter',
         'locales',
         'deployment',
         'optimize-build',

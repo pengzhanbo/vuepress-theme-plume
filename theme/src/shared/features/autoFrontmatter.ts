@@ -1,4 +1,9 @@
-export type AutoFrontmatterData = Record<string, any>
+import type { LiteralUnion } from '@pengzhanbo/utils'
+
+export type AutoFrontmatterData = Record<
+  LiteralUnion<'title' | 'createTime' | 'permalink'>,
+  any
+>
 
 /**
  * The context of the markdown file
@@ -76,9 +81,16 @@ export interface AutoFrontmatterOptions {
   /**
    * 是否自动生成 permalink
    *
+   * - `false`: 不自动生成 permalink
+   * - `true`: 自动生成 permalink ，使用 nanoid 生成 8 位数随机字符串
+   * - `filepath`: 根据文件路径生成 permalink
+   *
+   * 对于 `filepath`，如果文件路径中包含中文，可以手动安装 `pinyin-pro` ，
+   * 主题内部会加载 `pinyin-pro` 进行中文拼音转换
+   *
    * @default true
    */
-  permalink?: boolean
+  permalink?: boolean | 'filepath'
   /**
    * 是否自动生成 createTime
    *
@@ -112,10 +124,5 @@ export interface AutoFrontmatterOptions {
    * }
    * ```
    */
-  transform?: <
-    D extends AutoFrontmatterData = AutoFrontmatterData,
-  >(data: D,
-    context: AutoFrontmatterContext,
-    locale: string,
-  ) => D | Promise<D>
+  transform?: (data: AutoFrontmatterData, context: AutoFrontmatterContext, locale: string) => AutoFrontmatterData | Promise<AutoFrontmatterData>
 }

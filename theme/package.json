@@ -71,6 +71,7 @@
     "@vuepress/shiki-twoslash": "catalog:vuepress",
     "gsap": "catalog:peer",
     "ogl": "catalog:peer",
+    "pinyin-pro": "catalog:peer",
     "postprocessing": "catalog:peer",
     "swiper": "catalog:peer",
     "three": "catalog:peer",
@@ -90,6 +91,9 @@
       "optional": true
     },
     "ogl": {
+      "optional": true
+    },
+    "pinyin-pro": {
       "optional": true
     },
     "postprocessing": {
@@ -146,8 +150,10 @@
   },
   "devDependencies": {
     "@iconify/json": "catalog:peer",
+    "@pinyin-pro/data": "catalog:peer",
     "gsap": "catalog:peer",
     "ogl": "catalog:peer",
+    "pinyin-pro": "catalog:peer",
     "postprocessing": "catalog:peer",
     "swiper": "catalog:peer",
     "three": "catalog:peer",

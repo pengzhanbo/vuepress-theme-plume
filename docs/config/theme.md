@@ -190,8 +190,11 @@ export default defineThemeConfig({
      * 是否自动生成 permalink
      *
      * @default true
+     * - true: 自动生成 permalink
+     * - false: 不生成 permalink
+     * - 'filepath': 根据文件路径生成 permalink
      */
-    permalink?: boolean
+    permalink?: boolean | 'filepath'
 
     /**
      * 是否自动生成 createTime

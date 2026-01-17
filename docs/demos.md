@@ -216,11 +216,11 @@ blog:
     preview: https://blog.paiad.top/paiad-blog.png
   -
     name: 𝙁𝙡𝙖𝙨𝙝
-    desc: 坚持热爱，奔赴山海
+    desc: 路漫漫其修远兮，吾将上下而求索
     logo: https://haipeng-lin.cn/images/avatar.jpg
-    url: https://haipeng-lin.cn/
-    repo: https://github.com/haipeng-lin
-    preview: https://img.haipeng-lin.cn/20251214233720.png
+    url: https://haipeng-lin.cn
+    repo: https://gitee.com/linhaipengg
+    preview: https://img.haipeng-lin.cn/1768622018580.png
   -
     name: PinkDopeyBug
     desc: 山难现浮槎，心易陷镜花。

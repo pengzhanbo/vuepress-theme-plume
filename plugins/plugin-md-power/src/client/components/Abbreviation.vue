@@ -93,7 +93,7 @@ watch(show, () => nextTick(() => {
   position: absolute;
   top: calc(100% + 12px);
   left: 50%;
-  z-index: 1;
+  z-index: 3;
   width: max-content;
   max-width: min(calc(100vw - 32px), 360px);
   padding: 8px 14px;

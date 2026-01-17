@@ -2,12 +2,13 @@
  * Forked and modified from https://github.com/markdown-it/markdown-it-abbr/blob/master/index.mjs
  */
 
-import type { PluginSimple } from 'markdown-it'
+import type { PluginWithOptions } from 'markdown-it'
 import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
 import type { RuleCore } from 'markdown-it/lib/parser_core.mjs'
 import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs'
 import type StateCore from 'markdown-it/lib/rules_core/state_core.mjs'
 import type Token from 'markdown-it/lib/token.mjs'
+import { isEmptyObject, objectMap } from '@pengzhanbo/utils'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 
 interface AbbrStateBlock extends StateBlock {
@@ -22,9 +23,12 @@ interface AbbrStateCore extends StateCore {
   }
 }
 
-export const abbrPlugin: PluginSimple = (md) => {
+export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, globalAbbreviations = {}) => {
   const { arrayReplaceAt, escapeRE, lib } = md.utils
-
+  globalAbbreviations = objectMap(
+    globalAbbreviations,
+    (key, value) => [key.startsWith(':') ? key : `:${key}`, value],
+  )
   // ASCII characters in Cc, Sc, Sm, Sk categories we should terminate on;
   // you can check character classes here:
   // http://www.unicode.org/Public/UNIDATA/UnicodeData.txt
@@ -88,11 +92,12 @@ export const abbrPlugin: PluginSimple = (md) => {
 
   const abbrReplace: RuleCore = (state: AbbrStateCore) => {
     const tokens = state.tokens
-    const { abbreviations } = state.env
+    const { abbreviations: localAbbreviations } = state.env
 
-    if (!abbreviations)
+    if (!localAbbreviations && isEmptyObject(globalAbbreviations))
       return
 
+    const abbreviations = { ...globalAbbreviations, ...localAbbreviations }
     const abbreviationsRegExpText = Object.keys(abbreviations)
       .map(x => x.substring(1))
       .sort((a, b) => b.length - a.length)

@@ -1,6 +1,7 @@
 import type { CanIUseOptions } from './caniuse.js'
 import type { CodeTabsOptions } from './codeTabs.js'
 import type { CodeTreeOptions } from './codeTree.js'
+import type { MarkdownEnvPreset } from './env.js'
 import type { FileTreeOptions } from './fileTree.js'
 import type { IconOptions } from './icon.js'
 import type { MarkOptions } from './mark.js'
@@ -11,17 +12,44 @@ import type { ReplOptions } from './repl.js'
 import type { TableContainerOptions } from './table.js'
 
 export interface MarkdownPowerPluginOptions {
-  /**
-   * 是否启用注释
-   * @default false
-   */
-  annotation?: boolean
 
   /**
-   * 是否启用 abbr 语法
+   * 是否预设 markdown env，如 预设链接引用、缩写词、内容注释等
+   *
+   * 预设可以在任何 markdown 文件中使用
+   *
+   * @example
+   * ```ts
+   * env: {
+   *   references: {
+   *     vue: 'https://vuejs.org',
+   *   },
+   *   abbreviations: {
+   *     vue: 'Vue.js',
+   *   },
+   *   annotations: {
+   *     vue: 'Vue.js',
+   *   },
+   * }
+   * ```
+   * use `*.md`
+   * ```markdown
+   * [vue link][vue]
+   * vue is a framework, [+vue] is modern framework
+   * ```
+   */
+  env?: MarkdownEnvPreset
+  /**
+   * 是否启用注释， 或者预设内容注释
    * @default false
    */
-  abbr?: boolean
+  annotation?: boolean | MarkdownEnvPreset['annotations']
+
+  /**
+   * 是否启用 abbr 语法， 或者预设缩写词
+   * @default false
+   */
+  abbr?: boolean | MarkdownEnvPreset['abbreviations']
   /**
    * 马克笔动画模式
    * @default 'eager'

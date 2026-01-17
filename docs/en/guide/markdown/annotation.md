@@ -152,3 +152,59 @@ The ancient Chinese **Four Great Classical Novels** [+novels] are household name
 
   Depicts the story of 108 outlaws, led by Song Jiang, who gather at Liangshan Marsh during the late
   Northern Song Dynasty to rebel against the imperial government, showcasing the social reality of oppression leading to rebellion.
+
+## Global Presets
+
+For convenience, commonly used content annotations can be preset in the configuration to avoid repetitive definitions in each markdown file.
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      annotation: {
+        vuepress: 'VuePress is a [Static Site Generator](https://en.wikipedia.org/wiki/Static_site_generator) (SSG).It is specifically designed for building fast, content-centric sites.',
+        novels: [
+          '**"Romance of the Three Kingdoms":**\nSet against the backdrop of the Three Kingdoms period in Chinese history, it depicts the political and military struggles between the states of Wei, Shu, and Wu, shaping the images of numerous historical figures such as Zhuge Liang, Cao Cao, Guan Yu, and Liu Bei.',
+          '**"Journey to the West":**\nTells the story of the monk Xuanzang and his three disciples (Sun Wukong, Zhu Bajie, Sha Wujing, and the White Dragon Horse) on their journey to the West to obtain sacred Buddhist texts, filled with mythological elements and fantastical adventures.',
+          '**"Dream of the Red Chamber":**\nSet against the backdrop of the decline of the four major families Jia, Shi, Wang, and Xue, it depicts the love tragedy between Jia Baoyu, Lin Daiyu, and Xue Baochai, revealing the corruption and decay of feudal society.',
+          '**"Water Margin":**\nDepicts the story of 108 outlaws, led by Song Jiang, who gather at Liangshan Marsh during the late Northern Song Dynasty to rebel against the imperial government, showcasing the social reality of oppression leading to rebellion.'
+        ],
+      }
+    }
+  })
+})
+```
+
+It can also be achieved by configuring the `annotations` option in `markdown.env`.
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      env: {
+        annotations: {
+          vuepress: 'VuePress is a [Static Site Generator](https://en.wikipedia.org/wiki/Static_site_generator) (SSG).It is specifically designed for building fast, content-centric sites.',
+          novels: [
+            '**"Romance of the Three Kingdoms":**\nSet against the backdrop of the Three Kingdoms period in Chinese history, it depicts the political and military struggles between the states of Wei, Shu, and Wu, shaping the images of numerous historical figures such as Zhuge Liang, Cao Cao, Guan Yu, and Liu Bei.',
+            '**"Journey to the West":**\nTells the story of the monk Xuanzang and his three disciples (Sun Wukong, Zhu Bajie, Sha Wujing, and the White Dragon Horse) on their journey to the West to obtain sacred Buddhist texts, filled with mythological elements and fantastical adventures.',
+            '**"Dream of the Red Chamber":**\nSet against the backdrop of the decline of the four major families Jia, Shi, Wang, and Xue, it depicts the love tragedy between Jia Baoyu, Lin Daiyu, and Xue Baochai, revealing the corruption and decay of feudal society.',
+            '**"Water Margin":**\nDepicts the story of 108 outlaws, led by Song Jiang, who gather at Liangshan Marsh during the late Northern Song Dynasty to rebel against the imperial government, showcasing the social reality of oppression leading to rebellion.'
+          ],
+        }
+      }
+    }
+  })
+})
+```
+
+Globally preset content annotations can be used in any markdown file.
+
+**Input:**
+
+```md
+The ancient Chinese **Four Great Classical Novels** [+novels] are household names.
+```
+
+**Output:**
+
+The ancient Chinese **Four Great Classical Novels** [+novels] are household names.

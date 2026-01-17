@@ -5,7 +5,7 @@ import process from 'node:process'
 import { pathToFileURL } from 'node:url'
 import { build } from 'esbuild'
 import { importFileDefault } from 'vuepress/utils'
-import { hash } from '../utils/index.js'
+import { hash, normalizePath } from '../utils/index.js'
 
 export async function compiler(configPath?: string,
 ): Promise<{
@@ -88,6 +88,8 @@ export async function compiler(configPath?: string,
   return {
     config,
     // local deps
-    dependencies: Object.keys(result.metafile?.inputs ?? {}).filter(dep => dep[0] === '.'),
+    dependencies: Object.keys(result.metafile?.inputs ?? {})
+      .filter(dep => dep[0] === '.')
+      .map(normalizePath),
   }
 }

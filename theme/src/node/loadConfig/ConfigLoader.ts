@@ -3,7 +3,7 @@ import type { App } from 'vuepress'
 import type { ThemeOptions } from '../../shared/index.js'
 import EventEmitter from 'node:events'
 import process from 'node:process'
-import { deepMerge } from '@pengzhanbo/utils'
+import { deepMerge, difference } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
 import { colors } from 'vuepress/utils'
 import { initThemeOptions } from '../config/index.js'
@@ -50,11 +50,15 @@ export class ConfigLoader extends EventEmitter {
     const watcher = watch([this.configFile, ...this.dependencies], {
       ignoreInitial: true,
       cwd,
+      ignored: (filepath, stats) => {
+        const isFile = Boolean(stats?.isFile())
+        return isFile && filepath.includes('node_modules')
+      },
     })
 
     watcher.on('change', async (filepath) => {
       const dependencies = await this.load()
-      watcher.add(dependencies.filter(dep => !this.dependencies.includes(dep)))
+      watcher.add(difference(dependencies, this.dependencies))
       this.dependencies = [...dependencies]
       this.emit('change', this.config)
 

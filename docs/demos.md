@@ -256,6 +256,13 @@ blog:
     url: https://blog.lucas04.top/
     repo: https://github.com/lucas0-nhr/lucas04-nhr.github.io
     preview: https://static.lucas04.top/static/blog_preview.png
+  -
+    name: Kairui's Website
+    desc: 数学是精确表达思想的艺术。
+    logo: https://kairui.ca/uoft.svg
+    url: https://kairui.ca
+    repo: https://github.com/orderization
+    preview: https://kairui.ca/img/homepage_demo.png
 ---
 
 :::important

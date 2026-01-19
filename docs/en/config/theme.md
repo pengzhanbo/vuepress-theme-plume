@@ -190,8 +190,11 @@ export default defineThemeConfig({
      * Whether to automatically generate permalink
      *
      * @default true
+     * - true: auto generate permalink
+     * - false: do not generate permalink
+     * - 'filepath': generate permalink based on file path
      */
-    permalink?: boolean
+    permalink?: boolean | 'filepath'
 
     /**
      * Whether to automatically generate createTime

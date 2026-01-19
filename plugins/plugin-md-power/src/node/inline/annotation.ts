@@ -1,9 +1,10 @@
-import type { PluginSimple } from 'markdown-it'
+import type { PluginWithOptions } from 'markdown-it'
 import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
 import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
 import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs'
 import type StateInline from 'markdown-it/lib/rules_inline/state_inline.mjs'
 import type Token from 'markdown-it/lib/token.mjs'
+import { objectMap, toArray } from '@pengzhanbo/utils'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv'
 
 interface AnnotationToken extends Token {
@@ -154,7 +155,17 @@ const annotationRef: RuleInline = (
   return true
 }
 
-export const annotationPlugin: PluginSimple = (md) => {
+export const annotationPlugin: PluginWithOptions<Record<string, string | string[]>> = (
+  md,
+  globalAnnotations = {},
+) => {
+  const annotations = objectMap(globalAnnotations, (key, value) => {
+    return [
+      key.startsWith(':') ? key : `:${key}`,
+      { sources: toArray(value), rendered: [] },
+    ]
+  })
+
   md.renderer.rules.annotation_ref = (
     tokens: AnnotationToken[],
     idx: number,
@@ -162,7 +173,7 @@ export const annotationPlugin: PluginSimple = (md) => {
     env: AnnotationEnv,
   ) => {
     const label = tokens[idx].meta.label
-    const data = env.annotations[`:${label}`]
+    const data = env.annotations[`:${label}`] || annotations[`:${label}`]
 
     return `<Annotation label="${label}" :total="${data.sources.length}">${
       data.sources.map((source, i) => {

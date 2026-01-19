@@ -47,6 +47,7 @@ export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
   'codeTree',
   'codepen',
   'demo',
+  'env',
   'fileTree',
   'field',
   'icons', // deprecated

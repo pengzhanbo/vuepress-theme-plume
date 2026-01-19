@@ -52,3 +52,51 @@ The HTML specification is maintained by the W3C.
 
 ::: warning 缩写词应该是独立的单词或词组。对于中文的缩写词，应该在词的左右加空格以区分。
 :::
+
+## 全局预设
+
+为了方便使用，可以在配置中预设一些常用的缩写词，从而避免在每个 markdown 文件中重复定义缩写词。
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      // [!code ++:4]
+      abbr: {
+        W3C: 'World Wide Web Consortium',
+        ECMA: 'European Computer Manufacturers Association'
+      },
+    }
+  })
+})
+```
+
+也可以通过 `markdown.env` 配置 `abbreviations` 选项来实现。
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      env: {
+        // [!code ++:4]
+        abbreviations: {
+          W3C: 'World Wide Web Consortium',
+          ECMA: 'European Computer Manufacturers Association'
+        }
+      }
+    }
+  })
+})
+```
+
+全局预设的缩写词可以在任何 markdown 文件中使用。
+
+**输入：**
+
+```md
+The HTML specification is maintained by the W3C.
+```
+
+**输出：**
+
+The HTML specification is maintained by the W3C.

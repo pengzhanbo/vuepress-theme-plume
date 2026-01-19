@@ -67,6 +67,7 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
             'caniuse',
             'chat',
             'include',
+            'env',
           ],
         },
         {

@@ -30,7 +30,7 @@ type IconDataMap = Record<string, IconData>
 const ICON_REGEXP = /<(?:VP)?(Icon|Card|LinkCard|Button)([^>]*)>/g
 const ICON_NAME_REGEXP = /(?:name|icon|suffix-icon)="([^"]+)"/
 const URL_CONTENT_REGEXP = /(url\([\s\S]+\))/
-const ICONIFY_NAME = /^[\w-]+:[\w-]+$/
+const ICONIFY_NAME = /^(?:iconify\s+)?[\w-]+:[\w-]+$/
 
 const JS_FILENAME = 'internal/iconify.js'
 const CSS_FILENAME = 'internal/iconify.css'
@@ -148,6 +148,7 @@ function isIconify(icon: unknown): icon is string {
 }
 
 function withPrefix(icon: string, prefix?: string): string {
+  icon = icon.replace(/^iconify /, '')
   if (!prefix)
     return icon
   return icon.includes(':') ? icon : `${prefix}:${icon}`
@@ -166,7 +167,7 @@ function getIconsWithPage(page: Page, { provider = 'iconify', prefix }: IconOpti
 
   const addIcon = (icon: unknown): void => {
     if (icon && isIconify(icon) && (provider === 'iconify' || icon.startsWith('iconify'))) {
-      list.push(withPrefix(icon.replace(/^iconify /, ''), prefix))
+      list.push(withPrefix(icon, prefix))
     }
   }
 
@@ -240,7 +241,7 @@ function getIconWithThemeConfig(options: ThemeOptions, { provider = 'iconify', p
 
   const addIcon = (icon: unknown): string | void => {
     if (icon && isIconify(icon) && (provider === 'iconify' || icon.startsWith('iconify'))) {
-      return withPrefix(icon.replace(/^iconify /, ''), prefix)
+      return withPrefix(icon, prefix)
     }
   }
 

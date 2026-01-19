@@ -1,3 +1,26 @@
+# [1.0.0-rc.186](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.185...v1.0.0-rc.186) (2026-01-19)
+
+
+### Bug Fixes
+
+* **theme:** fix multiple icon provider ([#826](https://github.com/pengzhanbo/vuepress-theme-plume/issues/826)) ([85fc35f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/85fc35f11916b2e3460dd820a5a6cf38113458cf))
+* **theme:** fix page encrypt password type error ([#819](https://github.com/pengzhanbo/vuepress-theme-plume/issues/819)) ([1dfbb87](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1dfbb872f7d3eb79ae907497690e18e4414cc5ea))
+* **theme:** fix theme config hmr fail ([#820](https://github.com/pengzhanbo/vuepress-theme-plume/issues/820)) ([48970dd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/48970dd559f3d09e54382cf5e6051cddfb25ebc5))
+
+
+### Features
+
+* **plugin-md-power:** add markdown env presets, [#815](https://github.com/pengzhanbo/vuepress-theme-plume/issues/815) ([#818](https://github.com/pengzhanbo/vuepress-theme-plume/issues/818)) ([f51dff1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f51dff1d582d7f825ed8a020642a4ec6e9671453))
+* **theme:** add filepath permalink support for auto frontmatter, [#815](https://github.com/pengzhanbo/vuepress-theme-plume/issues/815) ([#822](https://github.com/pengzhanbo/vuepress-theme-plume/issues/822)) ([a3d8e22](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a3d8e225b96b8950d72ba6bb1a43cfecd926afd5))
+* **theme:** add perplexity to context menu ([#817](https://github.com/pengzhanbo/vuepress-theme-plume/issues/817)) ([79397fa](https://github.com/pengzhanbo/vuepress-theme-plume/commit/79397faa65860591489d34eec92075fdd5d44831))
+
+
+### Performance Improvements
+
+* update deps to latest ([2a5bd30](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2a5bd30fe3853c8cb722a76a7be5f3426fab03b3))
+
+
+
 # [1.0.0-rc.185](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.184...v1.0.0-rc.185) (2026-01-09)
 
 

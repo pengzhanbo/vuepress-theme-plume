@@ -66,7 +66,9 @@ const rect = computed(() => {
   return { width, height: height || width }
 })
 const binding = computed(() => ({
-  name: (name as string).replace(/^(iconify|iconfont|fontawesome)\s+/, ''),
+  name: typeof name === 'string'
+    ? name.replace(/^(iconify|iconfont|fontawesome)\s+/, '')
+    : name as unknown as string,
   color,
   size: rect.value,
   prefix: __MD_POWER_ICON_PREFIX__ as any,

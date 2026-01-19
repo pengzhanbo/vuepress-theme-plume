@@ -1,3 +1,12 @@
+# [1.0.0-rc.187](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.186...v1.0.0-rc.187) (2026-01-19)
+
+
+### Bug Fixes
+
+* **theme:** incorrect icon name validation ([6a41d44](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6a41d4432221371c58aac0c1326ecd89f23b5d92))
+
+
+
 # [1.0.0-rc.186](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.185...v1.0.0-rc.186) (2026-01-19)
 
 

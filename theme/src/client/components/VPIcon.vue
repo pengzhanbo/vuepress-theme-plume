@@ -29,6 +29,17 @@ const type = computed(() => {
     return 'svg'
   }
 
+  if (typeof name === 'string') {
+    if (name.startsWith('iconify'))
+      return 'iconify'
+
+    if (name.startsWith('iconfont'))
+      return 'iconfont'
+
+    if (name.startsWith('fontawesome'))
+      return 'fontawesome'
+  }
+
   const _provider = provider || __MD_POWER_ICON_PROVIDER__
   if (_provider === 'iconfont' || _provider === 'fontawesome') {
     return _provider
@@ -55,7 +66,7 @@ const rect = computed(() => {
   return { width, height: height || width }
 })
 const binding = computed(() => ({
-  name: name as string,
+  name: (name as string).replace(/^(iconify|iconfont|fontawesome)\s+/, ''),
   color,
   size: rect.value,
   prefix: __MD_POWER_ICON_PREFIX__ as any,

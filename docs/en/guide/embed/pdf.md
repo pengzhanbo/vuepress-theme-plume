@@ -58,57 +58,57 @@ Additional options can be added to `@[pdf ]` for more flexible control:
 Input:
 
 ```md
-@[pdf](https://plume.pengzhanbo.cn/files/sample.pdf)
+@[pdf](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 Output:
 
-@[pdf](/files/sample.pdf)
+@[pdf](/files/sample-1.pdf)
 
 ### Set Page Number to 2
 
 Input:
 
 ```md
-@[pdf 2](https://plume.pengzhanbo.cn/files/sample.pdf)
+@[pdf 2](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 Output:
 
-@[pdf 2 zoom="95"](/files/sample.pdf)
+@[pdf 2 zoom="95"](/files/sample-1.pdf)
 
 ### Hide Toolbar
 
 Input:
 
 ```md
-@[pdf no-toolbar](https://plume.pengzhanbo.cn/files/sample.pdf)
+@[pdf no-toolbar](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 Output:
 
-@[pdf no-toolbar](/files/sample.pdf)
+@[pdf no-toolbar](/files/sample-1.pdf)
 
 ### 90% Zoom Level
 
 Input:
 
 ```md
-@[pdf zoom="90"](https://plume.pengzhanbo.cn/files/sample.pdf)
+@[pdf zoom="90"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 Output:
 
-@[pdf zoom="90"](/files/sample.pdf)
+@[pdf zoom="90"](/files/sample-1.pdf)
 
 ### 21:29 Aspect Ratio
 
 Input:
 
 ```md
-@[pdf zoom="95" ratio="21:29"](https://plume.pengzhanbo.cn/files/sample.pdf)
+@[pdf zoom="95" ratio="21:29"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 Output:
 
-@[pdf zoom="95" ratio="21:29"](/files/sample.pdf)
+@[pdf zoom="95" ratio="21:29"](/files/sample-1.pdf)

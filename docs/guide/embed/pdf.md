@@ -58,57 +58,57 @@ export default defineUserConfig({
 输入：
 
 ```md
-@[pdf](https://plume.pengzhanbo.cn/files/sample.pdf)
+@[pdf](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 输出：
 
-@[pdf](/files/sample.pdf)
+@[pdf](/files/sample-1.pdf)
 
 ### 设置页码为 2
 
 输入：
 
 ```md
-@[pdf 2](https://plume.pengzhanbo.cn/files/sample.pdf)
+@[pdf 2](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 输出：
 
-@[pdf 2 zoom="95"](/files/sample.pdf)
+@[pdf 2 zoom="95"](/files/sample-1.pdf)
 
 ### 不显示工具栏
 
 输入：
 
 ```md
-@[pdf no-toolbar](https://plume.pengzhanbo.cn/files/sample.pdf)
+@[pdf no-toolbar](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 输出：
 
-@[pdf no-toolbar](/files/sample.pdf)
+@[pdf no-toolbar](/files/sample-1.pdf)
 
 ### 缩放比 90%
 
 输入：
 
 ```md
-@[pdf zoom="90"](https://plume.pengzhanbo.cn/files/sample.pdf)
+@[pdf zoom="90"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 输出：
 
-@[pdf zoom="90"](/files/sample.pdf)
+@[pdf zoom="90"](/files/sample-1.pdf)
 
 ### 宽高比 21:29
 
 输入：
 
 ```md
-@[pdf zoom="95" ratio="21:29"](https://plume.pengzhanbo.cn/files/sample.pdf)
+@[pdf zoom="95" ratio="21:29"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 输出：
 
-@[pdf zoom="95" ratio="21:29"](/files/sample.pdf)
+@[pdf zoom="95" ratio="21:29"](/files/sample-1.pdf)

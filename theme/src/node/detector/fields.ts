@@ -66,6 +66,8 @@ export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
   'chat',
   'youtube',
   'qrcode',
+  'encrypt',
+  'locales',
 ]
 
 export const MARKDOWN_SUPPORT_FIELDS: (keyof MarkdownOptions)[] = [

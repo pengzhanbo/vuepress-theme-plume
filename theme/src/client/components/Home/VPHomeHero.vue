@@ -61,6 +61,7 @@ let defaultTheme: string | undefined
 watch(() => props.forceDark, () => {
   if (!inBrowser || __VUEPRESS_SSR__)
     return
+
   if (props.forceDark) {
     defaultTheme ??= document.documentElement.dataset.theme
     document.documentElement.dataset.theme = 'dark'
@@ -69,7 +70,7 @@ watch(() => props.forceDark, () => {
     noTransition()
   }
   document.documentElement.classList.add(`effect-${effect.value}`)
-}, { immediate: true })
+}, { immediate: true, flush: 'post' })
 
 onMounted(() => {
   if (props.forceDark) {
@@ -273,7 +274,9 @@ html.no-transition *::after {
   animation-iteration-count: 1 !important;
 }
 
-html[class*="effect-"].force-dark .vp-navbar-appearance {
+html[class*="effect-"].force-dark .vp-navbar-appearance,
+html[class*="effect-"].force-dark .vp-navbar-extra .group.appearance,
+html[class*="effect-"].force-dark .vp-nav-screen .vp-nav-screen-appearance {
   display: none;
 }
 

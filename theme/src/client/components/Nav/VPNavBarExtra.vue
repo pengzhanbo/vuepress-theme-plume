@@ -50,7 +50,7 @@ const hasExtraContent = computed(
       </template>
     </div>
 
-    <div v-if="theme.appearance && theme.appearance !== 'force-dark'" class="group">
+    <div v-if="theme.appearance && theme.appearance !== 'force-dark'" class="group appearance">
       <div class="item appearance">
         <p class="label">
           {{ theme.appearanceText || 'Appearance' }}
@@ -61,7 +61,7 @@ const hasExtraContent = computed(
       </div>
     </div>
 
-    <div v-if="social" class="group">
+    <div v-if="social" class="group social">
       <div class="item social-links">
         <VPSocialLinks class="social-links-list" :links="social" />
       </div>

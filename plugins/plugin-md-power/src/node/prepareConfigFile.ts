@@ -21,6 +21,11 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
   imports.add(`import CodeTabs from '${CLIENT_FOLDER}components/CodeTabs.vue'`)
   enhances.add(`app.component('CodeTabs', CodeTabs)`)
 
+  if (options.encrypt) {
+    imports.add(`import VPEncryptSnippet from '${CLIENT_FOLDER}components/VPEncryptSnippet.vue'`)
+    enhances.add(`app.component('VPEncryptSnippet', VPEncryptSnippet)`)
+  }
+
   if (options.pdf) {
     imports.add(`import PDFViewer from '${CLIENT_FOLDER}components/PDFViewer.vue'`)
     enhances.add(`app.component('PDFViewer', PDFViewer)`)

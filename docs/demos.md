@@ -266,7 +266,7 @@ blog:
   -
     name: 此方的秘密基地
     desc: 记录技术与生活的自留地
-    logo: https://raw.githubusercontent.com/Konata9/pic-base/main/pics/20260126223726455.png 
+    logo: https://raw.githubusercontent.com/Konata9/pic-base/main/pics/20260126223726455.png
     url: https://konata9.cc/
     preview: https://raw.githubusercontent.com/Konata9/pic-base/main/pics/20260125225910673.webp
 ---

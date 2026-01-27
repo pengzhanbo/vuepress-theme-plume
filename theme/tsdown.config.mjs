@@ -50,8 +50,8 @@ export default defineConfig((cli) => {
       ...DEFAULT_OPTIONS,
       entry: ['./src/node/index.ts'],
       outDir: './lib/node',
-      external: sharedExternal,
-      target: 'node20.6.0',
+      external: [...sharedExternal, '@pinyin-pro/data/complete'],
+      target: 'node20.19.0',
       watch: false,
     })
   }

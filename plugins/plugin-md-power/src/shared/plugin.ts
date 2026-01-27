@@ -1,9 +1,12 @@
+import type { LocaleConfig } from 'vuepress'
 import type { CanIUseOptions } from './caniuse.js'
 import type { CodeTabsOptions } from './codeTabs.js'
 import type { CodeTreeOptions } from './codeTree.js'
+import type { EncryptSnippetOptions } from './encrypt.js'
 import type { MarkdownEnvPreset } from './env.js'
 import type { FileTreeOptions } from './fileTree.js'
 import type { IconOptions } from './icon.js'
+import type { MDPowerLocaleData } from './locale.js'
 import type { MarkOptions } from './mark.js'
 import type { NpmToOptions } from './npmTo.js'
 import type { PDFOptions } from './pdf.js'
@@ -55,6 +58,13 @@ export interface MarkdownPowerPluginOptions {
    * @default 'eager'
    */
   mark?: MarkOptions
+
+  /**
+   * 是否启用 内容片段加密容器
+   *
+   * @default false
+   */
+  encrypt?: boolean | EncryptSnippetOptions
   /**
    * 配置代码块分组
    */
@@ -310,4 +320,6 @@ export interface MarkdownPowerPluginOptions {
    * @default false
    */
   imageSize?: boolean | 'local' | 'all'
+
+  locales?: LocaleConfig<MDPowerLocaleData>
 }

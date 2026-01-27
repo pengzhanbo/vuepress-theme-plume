@@ -4,11 +4,10 @@ import { decodeData } from '@vuepress/helper/client'
 import { ref } from 'vue'
 
 export type EncryptConfig = readonly [
-  boolean, // global
-  string, // separator
-  string, // admin
-  string[], // keys
-  Record<string, string>, // rules
+  keys: string, // keys
+  rules: string, // rules
+  global: number, // global
+  admin: string, // admin
 ]
 
 export interface EncryptDataRule {
@@ -19,7 +18,6 @@ export interface EncryptDataRule {
 
 export interface EncryptData {
   global: boolean
-  separator: string
   admins: string[]
   matches: string[]
   ruleList: EncryptDataRule[]
@@ -34,20 +32,25 @@ export function useEncryptData(): EncryptRef {
 }
 
 function resolveEncryptData(
-  [global, separator, admin, matches, rules]: EncryptConfig,
+  [rawKeys, rawRules, global, admin]: EncryptConfig,
 ): EncryptData {
-  const keys = matches.map(match => decodeData(match))
+  const keys = unwrapData<string[]>(rawKeys).map(key => decodeData(key))
+  const rules = unwrapData<Record<string, string>>(rawRules)
+  const separator = ':'
   return {
-    global,
-    separator,
+    global: !!global,
     matches: keys,
     admins: admin.split(separator),
     ruleList: Object.keys(rules).map(key => ({
       key,
-      match: keys[key] as string,
+      match: keys[key],
       rules: rules[key].split(separator),
     })),
   }
+}
+
+function unwrapData<T>(raw: string): T {
+  return JSON.parse(decodeData(raw)) as T
 }
 
 if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {

@@ -15,7 +15,6 @@ import { zhTwLocale, zhTwPresetLocale } from './zh-tw.js'
 import { zhLocale, zhPresetLocale } from './zh.js'
 
 export const LOCALE_OPTIONS: DefaultLocaleInfo<ThemeLocaleText> = [
-  [['ko', 'ko-KR'], koLocale],
   [['en', 'en-US'], enLocale],
   [['zh', 'zh-CN', 'zh-Hans', 'zh-Hant'], zhLocale],
   [['zh-TW'], zhTwLocale],
@@ -23,10 +22,10 @@ export const LOCALE_OPTIONS: DefaultLocaleInfo<ThemeLocaleText> = [
   [['fr', 'fr-FR'], frLocale],
   [['ru', 'ru-RU'], ruLocale],
   [['ja', 'ja-JP'], jaLocale],
+  [['ko', 'ko-KR'], koLocale],
 ]
 
 export const PRESET_LOCALES: DefaultLocaleInfo<PresetLocale> = [
-  [['ko', 'ko-KR'], koPresetLocale],
   [['en', 'en-US'], enPresetLocale],
   [['zh', 'zh-CN', 'zh-Hans', 'zh-Hant'], zhPresetLocale],
   [['zh-TW'], zhTwPresetLocale],
@@ -34,4 +33,5 @@ export const PRESET_LOCALES: DefaultLocaleInfo<PresetLocale> = [
   [['fr', 'fr-FR'], frPresetLocale],
   [['ru', 'ru-RU'], ruPresetLocale],
   [['ja', 'ja-JP'], jaPresetLocale],
+  [['ko', 'ko-KR'], koPresetLocale],
 ]

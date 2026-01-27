@@ -1,4 +1,12 @@
+import type { LocaleConfig } from 'vuepress'
+import type { EncryptSnippetLocale } from '../shared/encrypt.js'
 import type { MarkdownPowerPluginOptions } from '../shared/index.js'
+
+declare const __MD_POWER_INJECT_OPTIONS__: MarkdownPowerPluginOptions
+declare const __MD_POWER_DASHJS_INSTALLED__: boolean
+declare const __MD_POWER_HLSJS_INSTALLED__: boolean
+declare const __MD_POWER_MPEGTSJS_INSTALLED__: boolean
+declare const __MD_POWER_ENCRYPT_LOCALES__: LocaleConfig<EncryptSnippetLocale>
 
 export const pluginOptions: MarkdownPowerPluginOptions = __MD_POWER_INJECT_OPTIONS__
 
@@ -33,3 +41,5 @@ export const INJECT_TIMELINE_KEY: symbol = Symbol(
 export const INJECT_COLLAPSE_KEY: symbol = Symbol(
   __VUEPRESS_DEV__ ? 'collapse' : '',
 )
+
+export const ENCRYPT_LOCALES = __MD_POWER_ENCRYPT_LOCALES__

@@ -61,11 +61,10 @@ declare module '@internal/sidebar' {
 declare module '@internal/encrypt' {
 
   const encrypt: readonly [
-    boolean, // global
-    string, // separator
-    string, // admin
-    string[], // keys
-    Record<string, string>, // rules
+    keys: string,
+    rules: string,
+    global: number,
+    admin: string,
   ]
 
   export {

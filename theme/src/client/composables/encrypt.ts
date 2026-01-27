@@ -30,7 +30,8 @@ const storage = useSessionStorage('2a0a3d6afb2fdf1f', () => {
 })
 
 const compareCache = new Map<string, boolean>()
-async function compareDecrypt(content: string, hash: string, separator = ':'): Promise<boolean> {
+const separator = ':'
+async function compareDecrypt(content: string, hash: string): Promise<boolean> {
   const key = [content, hash].join(separator)
   if (compareCache.has(key))
     return compareCache.get(key)!
@@ -164,7 +165,7 @@ export function useEncryptCompare(): {
       return false
 
     for (const admin of encrypt.value.admins) {
-      if (await compareDecrypt(password, admin, encrypt.value.separator)) {
+      if (await compareDecrypt(password, admin)) {
         storage.value.g = await md5(admin)
         return true
       }
@@ -185,7 +186,7 @@ export function useEncryptCompare(): {
     for (const { match, key, rules } of hashList.value) {
       if (toMatch(match, pagePath, filePathRelative)) {
         for (const rule of rules) {
-          if (await compareDecrypt(password, rule, encrypt.value.separator)) {
+          if (await compareDecrypt(password, rule)) {
             decrypted = true
             storage.value.p[key] = await md5(rule)
             break

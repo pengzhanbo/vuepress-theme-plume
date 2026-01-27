@@ -9,6 +9,7 @@ import { codeTabs } from './codeTabs.js'
 import { codeTreePlugin } from './codeTree.js'
 import { collapsePlugin } from './collapse.js'
 import { demoWrapperPlugin } from './demoWrapper.js'
+import { encryptPlugin } from './encrypt.js'
 import { fieldPlugin } from './field.js'
 import { fileTreePlugin } from './fileTree.js'
 import { langReplPlugin } from './langRepl.js'
@@ -38,6 +39,11 @@ export async function containerPlugin(
 
   // ::: card / card-grid
   cardPlugin(md)
+
+  if (options.encrypt) {
+    // ::: encrypt password="xxx"
+    encryptPlugin(app, md, typeof options.encrypt === 'boolean' ? {} : options.encrypt)
+  }
 
   if (options.npmTo) {
     // ::: npm-to

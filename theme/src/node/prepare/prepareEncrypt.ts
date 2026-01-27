@@ -9,11 +9,10 @@ import { getThemeConfig } from '../loadConfig/index.js'
 import { createFsCache, genEncrypt, hash, perf, resolveContent, writeTemp } from '../utils/index.js'
 
 export type EncryptConfig = readonly [
-  boolean, // global
-  string, // separator
-  string, // admin
-  string[], // keys
-  Record<string, string>, // rules
+  keys: string, // keys
+  rules: string, // rules
+  global: number, // global
+  admin: string, // admin
 ]
 
 const isStringLike = (value: unknown): boolean => isString(value) || isNumber(value)
@@ -73,7 +72,12 @@ async function resolveEncrypt(encrypt?: EncryptOptions): Promise<EncryptConfig> 
     }
   }
 
-  return [encrypt?.global ?? false, separator, admin, keys, rules]
+  return [
+    encodeData(JSON.stringify(keys)), // keys
+    encodeData(JSON.stringify(rules)), // rules
+    encrypt?.global ? 1 : 0, // global
+    admin, // admin
+  ]
 }
 
 export function isEncryptPage(page: Page<ThemePageData>, encrypt?: EncryptOptions): boolean {

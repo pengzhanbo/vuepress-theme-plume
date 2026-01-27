@@ -120,13 +120,13 @@ function onBlur() {
 .button[aria-expanded="true"] + .menu {
   visibility: visible;
   opacity: 1;
-  transform: translateY(0);
+  transform: translateZ(0);
 }
 
 .button[aria-expanded="false"] + .menu {
   visibility: hidden;
   opacity: 0;
-  transform: translateY(0);
+  transform: translateZ(0);
 }
 
 .button {

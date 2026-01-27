@@ -60,7 +60,11 @@ const breadcrumbList = computed<Breadcrumb[]>(() => {
       list.push(...(resolveSidebar(sidebar.value) || []))
     }
   }
-  list.push({ text: page.value.title, link: page.value.path, current: true })
+  list.push({
+    text: page.value.frontmatter.title || page.value.title,
+    link: page.value.path,
+    current: true,
+  })
 
   return list.reduce<Breadcrumb[]>((acc, item, index) => {
     const prev = acc[index - 1]

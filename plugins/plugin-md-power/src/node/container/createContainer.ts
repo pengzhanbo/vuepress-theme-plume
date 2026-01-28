@@ -95,8 +95,6 @@ export function createContainerSyntaxPlugin(
     if (state.src[pos] !== maker)
       return false
 
-    pos += markerMinLen
-
     // 检查 marker 长度是否满足要求
     for (pos = start + 1; pos <= max; pos++) {
       if (state.src[pos] !== maker)

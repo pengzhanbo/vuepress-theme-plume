@@ -1,5 +1,6 @@
 import type { Markdown } from 'vuepress/markdown'
 import type { FileTreeIconMode, FileTreeOptions } from '../../shared/index.js'
+import { encodeData } from '@vuepress/helper'
 import { removeEndingSlash } from 'vuepress/shared'
 import { defaultFile, defaultFolder, getFileIcon } from '../fileIcons/index.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
@@ -8,8 +9,7 @@ import { createContainerSyntaxPlugin } from './createContainer.js'
 /**
  * 文件树节点结构
  */
-interface FileTreeNode {
-  info: string
+interface FileTreeNode extends FileTreeNodeProps {
   level: number
   children: FileTreeNode[]
 }
@@ -41,7 +41,7 @@ export interface FileTreeNodeProps {
  * @returns 文件树节点数组
  */
 export function parseFileTreeRawContent(content: string): FileTreeNode[] {
-  const root: FileTreeNode = { info: '', level: -1, children: [] }
+  const root: FileTreeNode = { level: -1, children: [] } as unknown as FileTreeNode
   const stack: FileTreeNode[] = [root]
   const lines = content.trimEnd().split('\n')
   const spaceLength = lines[0].match(/^\s*/)?.[0].length ?? 0 // 去除行首空格/)
@@ -60,7 +60,7 @@ export function parseFileTreeRawContent(content: string): FileTreeNode[] {
     }
 
     const parent = stack[stack.length - 1]
-    const node: FileTreeNode = { info, level, children: [] }
+    const node: FileTreeNode = { level, children: [], ...parseFileTreeNodeInfo(info) }
     parent.children.push(node)
     stack.push(node)
   }
@@ -140,13 +140,12 @@ export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}): voi
    */
   const renderFileTree = (nodes: FileTreeNode[], meta: FileTreeAttrs): string =>
     nodes.map((node) => {
-      const { info, level, children } = node
-      const { filename, comment, focus, expanded, type, diff } = parseFileTreeNodeInfo(info)
+      const { level, children, filename, comment, focus, expanded, type, diff } = node
       const isOmit = filename === '…' || filename === '...' /* fallback */
 
       // 文件夹无子节点时补充省略号
       if (children.length === 0 && type === 'folder') {
-        children.push({ info: '…', level: level + 1, children: [] })
+        children.push({ level: level + 1, children: [], filename: '…', type: 'file' } as unknown as FileTreeNode)
       }
 
       const nodeType = children.length > 0 ? 'folder' : type
@@ -177,9 +176,24 @@ ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children
       const token = tokens[index]
       const nodes = parseFileTreeRawContent(token.content)
       const meta = token.meta as FileTreeAttrs
+      const cmdText = fileTreeToCMDText(nodes).trim()
       return `<div class="vp-file-tree">${
         meta.title ? `<p class="vp-file-tree-title">${meta.title}</p>` : ''
-      }${renderFileTree(nodes, meta)}</div>\n`
+      }<VPCopyButton text="${encodeData(cmdText)}" encode />${
+        renderFileTree(nodes, meta)
+      }</div>\n`
     },
   )
+}
+
+function fileTreeToCMDText(nodes: FileTreeNode[], prefix = ''): string {
+  let content = prefix ? '' : '.\n'
+  for (let i = 0, l = nodes.length; i < l; i++) {
+    const { filename, children } = nodes[i]
+    content += `${prefix + (i === l - 1 ? '└── ' : '├── ')}${filename}\n`
+    const child = children.filter(n => n.filename !== '…')
+    if (child.length)
+      content += fileTreeToCMDText(child, prefix + (i === l - 1 ? '    ' : '│   '))
+  }
+  return content
 }

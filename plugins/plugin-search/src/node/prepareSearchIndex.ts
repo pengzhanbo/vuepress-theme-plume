@@ -21,12 +21,16 @@ const SEARCH_INDEX_DIR = 'internal/minisearchIndex/'
 const indexByLocales = new Map<string, MiniSearch<IndexObject>>()
 const indexCache = new Map<string, IndexObject[]>()
 
-function getIndexByLocale(locale: string, options: SearchIndexOptions['searchOptions']) {
+function getIndexByLocale(locale: string, lang: string, options: SearchIndexOptions['searchOptions']) {
+  const segmenter = new Intl.Segmenter(lang, { granularity: 'word' })
   let index = indexByLocales.get(locale)
   if (!index) {
     index = new MiniSearch<IndexObject>({
       fields: ['title', 'titles', 'text'],
       storeFields: ['title', 'titles'],
+      tokenize(text) {
+        return Array.from(segmenter.segment(text)).map(s => s.segment)
+      },
       ...options.miniSearch?.options,
     })
     indexByLocales.set(locale, index)
@@ -93,7 +97,8 @@ export async function onSearchIndexRemoved(
     const page = app.pages.find(p => p.filePathRelative?.endsWith(filepath))!
     const fileId = page.path
     const locale = page.pathLocale
-    const index = getIndexByLocale(locale, searchOptions)
+    const lang = page.lang
+    const index = getIndexByLocale(locale, lang, searchOptions)
     const cache = getIndexCache(fileId)
     if (cache && cache.length)
       index.removeAll(cache)
@@ -131,7 +136,8 @@ async function indexFile(page: Page, options: SearchIndexOptions['searchOptions'
   // get file metadata
   const fileId = page.path
   const locale = page.pathLocale
-  const index = getIndexByLocale(locale, options)
+  const lang = page.lang
+  const index = getIndexByLocale(locale, lang, options)
   const cache = getIndexCache(fileId)
   // retrieve file and split into "sections"
   const html = `<h1><a href="#"><span>${page.frontmatter.title || page.title}</span></a></h1>

@@ -2,15 +2,16 @@
 import VPImage from '@theme/VPImage.vue'
 import VPLink from '@theme/VPLink.vue'
 import { useRouteLocale } from 'vuepress/client'
-import { useData, useSidebar } from '../../composables/index.js'
+import { useData, useLayout, useSidebarControl } from '../../composables/index.js'
 
 const { theme, site } = useData()
-const { hasSidebar } = useSidebar()
+const { hasSidebar } = useLayout()
 const routeLocale = useRouteLocale()
+const { isSidebarCollapsed } = useSidebarControl()
 </script>
 
 <template>
-  <div class="vp-navbar-title" :class="{ 'has-sidebar': hasSidebar }">
+  <div class="vp-navbar-title" :class="{ 'has-sidebar': hasSidebar && !isSidebarCollapsed }">
     <VPLink class="title" :href="theme.home ?? routeLocale" no-icon>
       <slot name="nav-bar-title-before" />
 

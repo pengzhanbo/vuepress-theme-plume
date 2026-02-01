@@ -2,7 +2,7 @@
 import VPLocalNavOutlineDropdown from '@theme/VPLocalNavOutlineDropdown.vue'
 import { useWindowScroll } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
-import { useData, useHeaders, usePostsPageData, useSidebar } from '../composables/index.js'
+import { useData, useHeaders, useLayout, usePostsPageData, useSidebarControl } from '../composables/index.js'
 
 const { open, showOutline } = defineProps<{
   open: boolean
@@ -14,7 +14,8 @@ defineEmits<(e: 'openMenu') => void>()
 const { theme } = useData()
 const { isPosts, isPostsLayout } = usePostsPageData()
 
-const { hasSidebar } = useSidebar()
+const { hasSidebar, hasLocalNav } = useLayout()
+const { isSidebarCollapsed } = useSidebarControl()
 const { y } = useWindowScroll()
 
 const navHeight = ref(0)
@@ -22,7 +23,7 @@ const navHeight = ref(0)
 const headers = useHeaders()
 
 const empty = computed(() => {
-  return headers.value.length === 0 && !hasSidebar.value
+  return !hasLocalNav.value && !hasSidebar.value
 })
 
 onMounted(() => {
@@ -40,6 +41,7 @@ const classes = computed(() => {
     'reached-top': y.value >= navHeight.value,
     'is-posts': isPosts.value && !isPostsLayout.value,
     'with-outline': !showOutline,
+    'has-sidebar': hasSidebar.value && !isSidebarCollapsed.value,
   }
 })
 
@@ -98,9 +100,12 @@ const showLocalNav = computed(() => {
 @media (min-width: 960px) {
   .vp-local-nav {
     top: var(--vp-nav-height);
+    border-top: none;
+  }
+
+  .vp-local-nav.has-sidebar {
     width: calc(100% - var(--vp-sidebar-width));
     margin-left: var(--vp-sidebar-width);
-    border-top: none;
   }
 
   .vp-local-nav.is-posts {

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { ThemeHomeConfig } from 'theme/src/shared/index.js'
-import { useElementSize, useMediaQuery, useWindowSize } from '@vueuse/core'
+import { useElementSize, useWindowSize } from '@vueuse/core'
 import { computed, onMounted, shallowRef } from 'vue'
-import { useData } from '../composables/index.js'
+import { useData, useLayout } from '../composables/index.js'
 
 const body = shallowRef<HTMLElement | null>()
 const { height: bodyHeight } = useElementSize(body)
@@ -31,7 +31,8 @@ const show = computed(() => {
     return true
 })
 
-const is960 = useMediaQuery('(min-width: 960px)')
+const { is960 } = useLayout()
+
 function onClick() {
   document.documentElement.scrollTo({
     top: document.documentElement.clientHeight - (is960.value ? 64 : 0),

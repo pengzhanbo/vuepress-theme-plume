@@ -6,14 +6,15 @@ import VPFriends from '@theme/VPFriends.vue'
 import VPPage from '@theme/VPPage.vue'
 import { nextTick, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
-import { useData, usePostsPageData, useSidebar } from '../composables/index.js'
+import { useData, useLayout, usePostsPageData, useSidebarControl } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
 
 const { isNotFound } = defineProps<{
   isNotFound?: boolean
 }>()
 
-const { hasSidebar } = useSidebar()
+const { hasSidebar, isHome } = useLayout()
+const { isSidebarCollapsed } = useSidebarControl()
 const { frontmatter, collection } = useData()
 const { isPostsLayout } = usePostsPageData()
 const route = useRoute()
@@ -43,8 +44,8 @@ watch(
 <template>
   <div
     id="VPContent" vp-content class="vp-content" :class="{
-      'has-sidebar': hasSidebar && !isNotFound,
-      'is-home': frontmatter.pageLayout === 'home',
+      'has-sidebar': hasSidebar && !isSidebarCollapsed && !isNotFound,
+      'is-home': isHome,
     }"
   >
     <VPPosts
@@ -220,6 +221,8 @@ watch(
 @media (min-width: 960px) {
   .vp-content {
     padding-top: var(--vp-nav-height);
+    padding-left: 0;
+    transition: padding-left var(--vp-t-color);
   }
 
   .vp-content.has-sidebar {

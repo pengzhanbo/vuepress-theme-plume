@@ -1,11 +1,11 @@
-import type { InjectionKey, Ref } from 'vue'
+import type { Ref } from 'vue'
 import type { Router } from 'vuepress/client'
 import type { ThemeOutline } from '../../shared/index.js'
 import { useThrottleFn, watchDebounced } from '@vueuse/core'
-import { inject, onMounted, onUnmounted, onUpdated, provide, ref } from 'vue'
+import { onMounted, onUnmounted, onUpdated, ref } from 'vue'
 import { onContentUpdated, useRouter } from 'vuepress/client'
-import { useAside } from './aside.js'
 import { useData } from './data.js'
+import { useLayout } from './layout.js'
 
 export interface Header {
   /**
@@ -45,28 +45,19 @@ export type MenuItem = Omit<Header, 'slug' | 'children'> & {
   lowLevel?: number
 }
 
-export const headersSymbol: InjectionKey<Ref<MenuItem[]>> = Symbol(
-  __VUEPRESS_DEV__ ? 'headers' : '',
-)
+const headers = ref<MenuItem[]>([])
 
 export function setupHeaders(): Ref<MenuItem[]> {
   const { frontmatter, theme } = useData()
-  const headers = ref<MenuItem[]>([])
 
   onContentUpdated(() => {
     headers.value = getHeaders(frontmatter.value.outline ?? theme.value.outline)
   })
 
-  provide(headersSymbol, headers)
-
   return headers
 }
 
 export function useHeaders(): Ref<MenuItem[]> {
-  const headers = inject(headersSymbol)
-  if (!headers) {
-    throw new Error('useHeaders() is called without provider.')
-  }
   return headers
 }
 
@@ -213,7 +204,7 @@ function resolveSubRangeHeader(headers: MenuItem[], low: number): MenuItem[] {
 }
 
 export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<HTMLElement | null>): void {
-  const { isAsideEnabled } = useAside()
+  const { isAsideEnabled } = useLayout()
   const router = useRouter()
   const routeHash = ref<string>(router.currentRoute.value.hash)
 

@@ -4,7 +4,7 @@ import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { useScrollLock } from '@vueuse/core'
 import { nextTick, onMounted, ref, watch } from 'vue'
 import { useRoutePath } from 'vuepress/client'
-import { useData, useSidebar } from '../composables/index.js'
+import { useData, useLayout, useSidebar, useSidebarControl } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
 
 const { open } = defineProps<{
@@ -12,7 +12,9 @@ const { open } = defineProps<{
 }>()
 
 const { theme } = useData()
-const { sidebarGroups, hasSidebar, sidebarKey } = useSidebar()
+const { hasSidebar } = useLayout()
+const { sidebarGroups, sidebarKey } = useSidebar()
+const { isSidebarCollapsed, toggleSidebarCollapse } = useSidebarControl()
 const routePath = useRoutePath()
 
 // a11y: focus Nav element when menu has opened
@@ -65,7 +67,11 @@ onMounted(() => {
       v-if="hasSidebar"
       ref="navEl"
       class="vp-sidebar"
-      :class="{ open, 'hide-scrollbar': !(theme.sidebarScrollbar ?? true) }"
+      :class="{
+        open,
+        'hide-scrollbar': !(theme.sidebarScrollbar ?? true),
+        'collapsed': isSidebarCollapsed,
+      }"
       vp-sidebar
       @click.stop
     >
@@ -92,6 +98,15 @@ onMounted(() => {
       </VPTransitionFadeSlideY>
     </aside>
   </Transition>
+  <div v-if="hasSidebar" class="vp-sidebar-control" :class="{ collapsed: isSidebarCollapsed }">
+    <button
+      type="button" class="toggle-sidebar-btn"
+      aria-label="Toggle sidebar"
+      @click="toggleSidebarCollapse()"
+    >
+      <span :class="`vpi-sidebar-${isSidebarCollapsed ? 'open' : 'close'}`" />
+    </button>
+  </div>
 </template>
 
 <style scoped>
@@ -152,6 +167,11 @@ onMounted(() => {
     opacity: 1;
     transform: translateX(0);
   }
+
+  .vp-sidebar:not(.open).collapsed {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
 }
 
 @media (min-width: 1440px) {
@@ -186,5 +206,69 @@ onMounted(() => {
 
 .nav {
   outline: 0;
+}
+
+.vp-sidebar-control {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: calc(var(--vp-z-index-sidebar) + 1);
+  display: none;
+  width: calc(100vw - 64px);
+  max-width: 320px;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transform: translateX(0);
+}
+
+.vp-sidebar-control .toggle-sidebar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 8px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  box-shadow: 0 0 0 transparent;
+  transition: background-color var(--vp-t-color), box-shadow var(--vp-t-color), border-color var(--vp-t-color);
+}
+
+.vp-sidebar-control [class^="vpi-sidebar-"] {
+  font-size: 20px;
+  color: var(--vp-c-text-3);
+  transition: color var(--vp-t-color);
+}
+
+@media (min-width: 960px) {
+  .vp-sidebar-control {
+    display: flex;
+    justify-content: flex-end;
+    width: var(--vp-sidebar-width);
+    max-width: 100%;
+    padding-right: 7px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .vp-sidebar-control {
+    width:
+      calc(
+        (100% - (var(--vp-layout-max-width) - 64px)) / 2 + var(--vp-sidebar-width) -
+        32px
+      );
+  }
+}
+
+.vp-sidebar-control.collapsed {
+  transform: translateX(calc(-100% + 54px));
+}
+
+.vp-sidebar-control.collapsed .toggle-sidebar-btn {
+  width: 36px;
+  height: 36px;
+  background-color: var(--vp-c-bg-safe);
+  border-color: var(--vp-c-divider);
+  box-shadow: var(--vp-shadow-2);
 }
 </style>

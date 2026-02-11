@@ -144,7 +144,7 @@ function onTabNavClick(index: number): void {
 
 .vp-doc .vp-tabs-nav {
   padding: 0 12px;
-  overflow-x: auto;
+  overflow: auto hidden;
   white-space: nowrap;
   background-color: var(--vp-code-tab-bg);
   box-shadow: inset 0 -1px var(--vp-code-tab-divider);

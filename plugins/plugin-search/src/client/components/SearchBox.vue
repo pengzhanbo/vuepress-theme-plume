@@ -25,7 +25,7 @@ import {
   toRef,
   watch,
 } from 'vue'
-import { useRouteLocale, useRouter, withBase } from 'vuepress/client'
+import { usePageLang, useRouteLocale, useRouter, withBase } from 'vuepress/client'
 import { useLocale, useSearchIndex } from '../composables/index.js'
 import { LRUCache } from '../utils/index.js'
 import BackIcon from './icons/BackIcon.vue'
@@ -43,6 +43,7 @@ const emit = defineEmits<{
 
 const routeLocale = useRouteLocale()
 const locale = useLocale(toRef(() => locales))
+const lang = usePageLang()
 
 const el = shallowRef<HTMLElement>()
 const resultsEl = shallowRef<HTMLElement>()
@@ -59,8 +60,14 @@ const { activate } = useFocusTrap(el, {
   immediate: true,
 })
 
-const searchIndex = computedAsync(async () =>
-  markRaw(
+const searchIndex = computedAsync(async () => {
+  let tokenize: ((str: string) => string[]) | undefined
+  if (typeof Intl.Segmenter !== 'undefined') {
+    const segmenter = new Intl.Segmenter(lang.value, { granularity: 'word' })
+    tokenize = str => Array.from(segmenter.segment(str)).map(s => s.segment)
+  }
+
+  return markRaw(
     MiniSearch.loadJSON<Result>(
       (await searchIndexData.value[routeLocale.value]?.())?.default,
       {
@@ -70,13 +77,14 @@ const searchIndex = computedAsync(async () =>
           fuzzy: 0.2,
           prefix: true,
           boost: { title: 4, text: 2, titles: 1 },
+          tokenize,
         },
         ...options.miniSearch?.searchOptions,
         ...options.miniSearch?.options,
       },
     ),
-  ),
-)
+  )
+})
 
 const disableQueryPersistence = computed(() =>
   options?.disableQueryPersistence === true,

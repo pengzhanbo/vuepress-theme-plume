@@ -1,8 +1,8 @@
 import type { ComputedRef, Ref } from 'vue'
 import type { ThemePostsItem } from '../../shared/index.js'
-import { useMediaQuery } from '@vueuse/core'
 import { computed } from 'vue'
 import { useData } from './data.js'
+import { useLayout } from './layout.js'
 import { useLocalePostList } from './posts-data.js'
 import { useRouteQuery } from './route-query.js'
 
@@ -26,7 +26,7 @@ export function usePostListControl(homePage: Ref<boolean>): UsePostListControlRe
   const { collection } = useData<'page', 'post'>()
 
   const list = useLocalePostList()
-  const is960 = useMediaQuery('(max-width: 960px)')
+  const { is960 } = useLayout()
 
   const postCollection = computed(() => {
     if (collection.value?.type === 'post')

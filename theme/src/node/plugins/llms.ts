@@ -124,6 +124,7 @@ export function llmsPlugin(app: App, userOptions: true | LlmsPluginOptions): Plu
       const options = getThemeConfig()
       return options.encrypt?.global ? false : !isEncryptPage(page as Page<ThemePageData>, options.encrypt)
     },
+    locale: '/',
     ...userLLMsTxt,
     llmsTxtTemplateGetter: {
       toc: tocGetter,

@@ -21,14 +21,14 @@ const iconName = computed<string | { svg: string }>(() => {
 <template>
   <article class="vp-card-wrapper">
     <slot name="title">
-      <p v-if="title || icon" class="title">
+      <header v-if="title || icon" class="title">
         <VPIcon v-if="icon" :name="iconName" />
         <span v-if="title" class="text" v-html="title" />
-      </p>
+      </header>
     </slot>
-    <div class="body">
+    <section class="body">
       <slot />
-    </div>
+    </section>
   </article>
 </template>
 
@@ -68,6 +68,7 @@ const iconName = computed<string | { svg: string }>(() => {
 
 .vp-card-wrapper .title .text {
   flex: 1 2;
+  min-width: 0;
   overflow: hidden;
 }
 

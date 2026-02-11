@@ -14,6 +14,8 @@ interface UsePrevNextResult {
   next: ComputedRef<NavItemWithLink | null>
 }
 
+const SEPARATOR_RE = /^-{3,}$/
+
 export function usePrevNext(): UsePrevNextResult {
   const route = useRoute()
   const { frontmatter, theme } = useData()
@@ -100,10 +102,13 @@ function flatSidebar(sidebar: ThemeSidebarItem[], res: NavItemWithLink[] = []): 
  * Resolve `prev` or `next` config from sidebar items
  */
 function resolveFromSidebarItems(sidebarItems: NavItemWithLink[], currentPath: string, offset: number): null | NavItemWithLink {
-  const index = sidebarItems.findIndex(item => resolveRouteFullPath(item.link) === currentPath)
-  if (index !== -1) {
-    const targetItem = sidebarItems[index + offset]
-    if (targetItem?.link) {
+  let index = sidebarItems.findIndex(item => resolveRouteFullPath(item.link) === currentPath)
+  if (index === -1)
+    return null
+  // eslint-disable-next-line no-cond-assign
+  while ((index += offset) >= 0) {
+    const targetItem = sidebarItems[index]
+    if (targetItem?.link && !SEPARATOR_RE.test(targetItem.link)) {
       return targetItem
     }
   }

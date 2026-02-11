@@ -38,7 +38,8 @@ const textTag = computed(() => {
 
 const itemRole = computed(() => (isLink.value ? undefined : 'button'))
 
-const isSeparator = computed(() => item.link?.startsWith('---'))
+const SEPARATOR_RE = /^-{3,}$/
+const isSeparator = computed(() => item.link && SEPARATOR_RE.test(item.link))
 
 const classes = computed(() => [
   [`level-${depth}`],

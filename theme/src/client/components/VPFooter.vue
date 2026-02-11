@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { useCssVar } from '@vueuse/core'
 import { onMounted, ref } from 'vue'
-import { useData, useSidebar } from '../composables/index.js'
+import { useData, useLayout, useSidebarControl } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
 
 const { theme, frontmatter } = useData()
-const { hasSidebar } = useSidebar()
+const { hasSidebar } = useLayout()
+const { isSidebarCollapsed } = useSidebarControl()
 
 const footerHeight = useCssVar('--vp-footer-height', inBrowser ? document.body : null)
 const footer = ref<HTMLElement | null>(null)
@@ -21,7 +22,7 @@ onMounted(() => {
     v-if="theme.footer && frontmatter.footer !== false"
     ref="footer"
     class="vp-footer"
-    :class="{ 'has-sidebar': hasSidebar }"
+    :class="{ 'has-sidebar': hasSidebar && !isSidebarCollapsed }"
     vp-footer
   >
     <slot name="footer-content">

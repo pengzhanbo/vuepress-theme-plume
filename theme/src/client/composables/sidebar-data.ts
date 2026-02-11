@@ -1,4 +1,4 @@
-import type { InjectionKey, Ref } from 'vue'
+import type { Ref } from 'vue'
 import type { ResolvedSidebarItem, ThemeSidebar, ThemeSidebarItem } from '../../shared/index.js'
 import { sidebar as sidebarRaw } from '@internal/sidebar'
 import {
@@ -7,12 +7,7 @@ import {
   isString,
   removeLeadingSlash,
 } from '@vuepress/helper/client'
-import {
-  computed,
-  inject,
-  provide,
-  ref,
-} from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
 import { normalizeLink, normalizePrefix, resolveNavLink } from '../utils/index.js'
 import { useData } from './data.js'
@@ -41,9 +36,7 @@ if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {
   }
 }
 
-const sidebarSymbol: InjectionKey<Ref<ResolvedSidebarItem[]>> = Symbol(
-  __VUEPRESS_DEV__ ? 'sidebar' : '',
-)
+const sidebar: Ref<ResolvedSidebarItem[]> = ref([])
 
 export function setupSidebar(): void {
   const { page, frontmatter } = useData()
@@ -59,23 +52,22 @@ export function setupSidebar(): void {
     )
   })
 
-  const sidebarData = computed(() => {
-    return hasSidebar.value
+  watch([
+    hasSidebar,
+    routeLocale,
+    () => frontmatter.value.sidebar,
+    () => page.value.path,
+  ], () => {
+    sidebar.value = hasSidebar.value
       ? getSidebar(typeof frontmatter.value.sidebar === 'string'
           ? frontmatter.value.sidebar
           : page.value.path, routeLocale.value)
       : []
-  })
-
-  provide(sidebarSymbol, sidebarData)
+  }, { immediate: true })
 }
 
 export function useSidebarData(): Ref<ResolvedSidebarItem[]> {
-  const sidebarData = inject(sidebarSymbol)
-  if (!sidebarData) {
-    throw new Error('useSidebarData() is called without provider.')
-  }
-  return sidebarData
+  return sidebar
 }
 
 /**

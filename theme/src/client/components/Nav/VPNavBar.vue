@@ -9,23 +9,22 @@ import VPNavBarTitle from '@theme/Nav/VPNavBarTitle.vue'
 import VPNavBarTranslations from '@theme/Nav/VPNavBarTranslations.vue'
 import { useWindowScroll } from '@vueuse/core'
 import { ref, watchPostEffect } from 'vue'
-import { useData, useSidebar } from '../../composables/index.js'
+import { useLayout, useSidebarControl } from '../../composables/index.js'
 
 const { isScreenOpen } = defineProps<{
   isScreenOpen: boolean
 }>()
 defineEmits<(e: 'toggleScreen') => void>()
 
-const { frontmatter } = useData()
-
 const { y } = useWindowScroll()
-const { hasSidebar } = useSidebar()
+const { hasSidebar, isHome } = useLayout()
+const { isSidebarCollapsed } = useSidebarControl()
 
 const classes = ref<Record<string, boolean>>({})
 watchPostEffect(() => {
   classes.value = {
-    'has-sidebar': hasSidebar.value,
-    'home': frontmatter.value.pageLayout === 'home',
+    'has-sidebar': hasSidebar.value && !isSidebarCollapsed.value,
+    'home': isHome.value,
     'top': y.value === 0,
     'screen-open': isScreenOpen,
   }

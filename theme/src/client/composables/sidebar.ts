@@ -1,12 +1,11 @@
 import type { ComputedRef, Ref } from 'vue'
 import type { ResolvedSidebarItem } from '../../shared/index.js'
 import { ensureLeadingSlash, isArray } from '@vuepress/helper/client'
-import { useMediaQuery } from '@vueuse/core'
 import { computed, onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
 import { resolveRouteFullPath, useRoute, useRouteLocale } from 'vuepress/client'
 import { isActive } from '../utils/index.js'
 import { useData } from './data.js'
-import { useEncrypt } from './encrypt.js'
+import { useLayout } from './layout.js'
 import { getSidebarGroups, sidebarData, useSidebarData } from './sidebar-data.js'
 
 /**
@@ -27,39 +26,56 @@ export function hasActiveLink(path: string, items: ResolvedSidebarItem | Resolve
       : false
 }
 
-export interface SidebarControl {
-  collapsed: Ref<boolean>
-  collapsible: ComputedRef<boolean>
-  isLink: ComputedRef<boolean>
-  isActiveLink: Ref<boolean>
-  hasActiveLink: ComputedRef<boolean>
-  hasChildren: ComputedRef<boolean>
-  toggle: () => void
-}
-
-export interface UseSidebarReturn {
-  isOpen: Ref<boolean>
-  sidebar: Ref<ResolvedSidebarItem[]>
-  sidebarKey: Ref<string>
-  sidebarGroups: Ref<ResolvedSidebarItem[]>
-  hasSidebar: ComputedRef<boolean>
-  hasAside: ComputedRef<boolean>
-  leftAside: ComputedRef<boolean>
-  isSidebarEnabled: ComputedRef<boolean>
-  open: () => void
-  close: () => void
-  toggle: () => void
-}
-
 const containsActiveLink = hasActiveLink
 
-export function useSidebar(): UseSidebarReturn {
-  const { theme, frontmatter, page } = useData()
-  const routeLocal = useRouteLocale()
-  const is960 = useMediaQuery('(min-width: 960px)')
-  const { isPageDecrypted } = useEncrypt()
+const isSidebarEnabled = ref(false)
+const isSidebarCollapsed = ref(false)
 
-  const isOpen = ref(false)
+export function useSidebarControl() {
+  const enableSidebar = (): void => {
+    isSidebarEnabled.value = true
+  }
+
+  const disableSidebar = (): void => {
+    isSidebarEnabled.value = false
+  }
+
+  const toggleSidebarEnabled = (): void => {
+    if (isSidebarEnabled.value) {
+      disableSidebar()
+    }
+    else {
+      enableSidebar()
+    }
+  }
+
+  function toggleSidebarCollapse(collapse?: boolean) {
+    isSidebarCollapsed.value = collapse ?? !isSidebarCollapsed.value
+  }
+
+  return {
+    isSidebarEnabled,
+    enableSidebar,
+    disableSidebar,
+    toggleSidebarEnabled,
+    isSidebarCollapsed,
+    toggleSidebarCollapse,
+  }
+}
+
+export function useSidebar(): {
+  sidebar: Ref<ResolvedSidebarItem[]>
+  sidebarKey: ComputedRef<string>
+  sidebarGroups: ComputedRef<ResolvedSidebarItem[]>
+} {
+  const { page } = useData()
+  const routeLocal = useRouteLocale()
+  const { hasSidebar } = useLayout()
+  const sidebar = useSidebarData()
+
+  const sidebarGroups = computed(() => {
+    return hasSidebar.value ? getSidebarGroups(sidebar.value) : []
+  })
 
   const sidebarKey = computed(() => {
     const _sidebar = sidebarData.value[routeLocal.value]
@@ -73,87 +89,19 @@ export function useSidebar(): UseSidebarReturn {
       }) || ''
   })
 
-  const sidebar = useSidebarData()
-
-  const hasSidebar = computed(() => {
-    return (
-      frontmatter.value.sidebar !== false
-      && sidebar.value.length > 0
-      && frontmatter.value.pageLayout !== 'home'
-    )
-  })
-
-  const hasAside = computed(() => {
-    if (frontmatter.value.pageLayout === 'home' || frontmatter.value.home)
-      return false
-
-    if (frontmatter.value.pageLayout === 'friends' || frontmatter.value.friends)
-      return false
-
-    if (!isPageDecrypted.value)
-      return false
-
-    if (frontmatter.value.aside != null)
-      return !!frontmatter.value.aside
-    return theme.value.aside !== false
-  })
-
-  const leftAside = computed(() => {
-    if (hasAside.value) {
-      return frontmatter.value.aside == null
-        ? theme.value.aside === 'left'
-        : frontmatter.value.aside === 'left'
-    }
-    return false
-  })
-
-  const isSidebarEnabled = computed(() => hasSidebar.value && is960.value)
-
-  const sidebarGroups = computed(() => {
-    return hasSidebar.value ? getSidebarGroups(sidebar.value) : []
-  })
-
-  const open = (): void => {
-    isOpen.value = true
-  }
-
-  const close = (): void => {
-    isOpen.value = false
-  }
-
-  const toggle = (): void => {
-    if (isOpen.value) {
-      close()
-    }
-    else {
-      open()
-    }
-  }
-
-  return {
-    isOpen,
-    sidebar,
-    sidebarKey,
-    sidebarGroups,
-    hasSidebar,
-    hasAside,
-    leftAside,
-    isSidebarEnabled,
-    open,
-    close,
-    toggle,
-  }
+  return { sidebar, sidebarKey, sidebarGroups }
 }
 
 /**
  * a11y: cache the element that opened the Sidebar (the menu button) then
  * focus that button again when Menu is closed with Escape key.
  */
-export function useCloseSidebarOnEscape(isOpen: Ref<boolean>, close: () => void): void {
+export function useCloseSidebarOnEscape(): void {
+  const { disableSidebar } = useSidebarControl()
   let triggerElement: HTMLButtonElement | undefined
 
   watchEffect(() => {
-    triggerElement = isOpen.value
+    triggerElement = isSidebarEnabled.value
       ? (document.activeElement as HTMLButtonElement)
       : undefined
   })
@@ -167,14 +115,14 @@ export function useCloseSidebarOnEscape(isOpen: Ref<boolean>, close: () => void)
   })
 
   function onEscape(e: KeyboardEvent): void {
-    if (e.key === 'Escape' && isOpen.value) {
-      close()
+    if (e.key === 'Escape' && isSidebarEnabled.value) {
+      disableSidebar()
       triggerElement?.focus()
     }
   }
 }
 
-export function useSidebarControl(item: ComputedRef<ResolvedSidebarItem>): SidebarControl {
+export function useSidebarItemControl(item: ComputedRef<ResolvedSidebarItem>): SidebarItemControl {
   const { page } = useData()
   const route = useRoute()
 
@@ -239,4 +187,14 @@ export function useSidebarControl(item: ComputedRef<ResolvedSidebarItem>): Sideb
     hasChildren,
     toggle,
   }
+}
+
+export interface SidebarItemControl {
+  collapsed: Ref<boolean>
+  collapsible: ComputedRef<boolean>
+  isLink: ComputedRef<boolean>
+  isActiveLink: Ref<boolean>
+  hasActiveLink: ComputedRef<boolean>
+  hasChildren: ComputedRef<boolean>
+  toggle: () => void
 }

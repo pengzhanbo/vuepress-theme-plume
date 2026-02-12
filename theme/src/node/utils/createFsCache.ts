@@ -12,7 +12,7 @@ export interface FsCache<T> {
   hash: string
   data: T | null
   read: () => Promise<T | null>
-  write: (data: T) => Promise<void>
+  write: (data: T, clear?: boolean) => Promise<void>
 }
 
 const CACHE_BASE = 'markdown'
@@ -37,7 +37,7 @@ export function createFsCache<T = any>(app: App, name: string): FsCache<T> {
   }
 
   let timer: NodeJS.Timeout | null = null
-  const write = async (data: T) => {
+  const write = async (data: T, clear?: boolean) => {
     const currentHash = hash(data)
     if (cache.hash && currentHash === cache.hash)
       return
@@ -49,6 +49,10 @@ export function createFsCache<T = any>(app: App, name: string): FsCache<T> {
     timer = setTimeout(async () => {
       await fs.mkdir(path.dirname(filepath), { recursive: true })
       await fs.writeFile(filepath, JSON.stringify(cache), 'utf-8')
+      if (clear) {
+        cache.data = null
+        cache.hash = ''
+      }
     }, 300)
   }
 

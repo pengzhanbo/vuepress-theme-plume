@@ -22,9 +22,9 @@ const indexByLocales = new Map<string, MiniSearch<IndexObject>>()
 const indexCache = new Map<string, IndexObject[]>()
 
 function getIndexByLocale(locale: string, lang: string, options: SearchIndexOptions['searchOptions']) {
-  const segmenter = new Intl.Segmenter(lang, { granularity: 'word' })
   let index = indexByLocales.get(locale)
   if (!index) {
+    const segmenter = new Intl.Segmenter(lang, { granularity: 'word' })
     index = new MiniSearch<IndexObject>({
       fields: ['title', 'titles', 'text'],
       storeFields: ['title', 'titles'],
@@ -61,6 +61,11 @@ export async function prepareSearchIndex({
     concurrency: 64,
   })
   await writeTemp(app)
+
+  if (app.env.isBuild) {
+    indexByLocales.clear()
+    indexCache.clear()
+  }
 
   if (app.env.isDebug) {
     logger.info(

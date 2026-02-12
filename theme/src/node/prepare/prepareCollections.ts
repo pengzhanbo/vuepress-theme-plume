@@ -9,7 +9,7 @@ export async function prepareCollections(app: App): Promise<void> {
 
   const { collections: fallback, locales } = getThemeConfig()
 
-  const data: Record<string, ThemeCollectionItem[]> = {}
+  let data: Record<string, ThemeCollectionItem[]> = {}
 
   for (const [locale, opt] of Object.entries(locales || {})) {
     let collections = opt.collections
@@ -31,6 +31,10 @@ export async function prepareCollections(app: App): Promise<void> {
 
   const content = resolveContent(app, { name: 'collections', content: data })
   await writeTemp(app, 'internal/collectionsData.js', content)
+
+  if (app.env.isBuild) {
+    data = {}
+  }
 
   perf.log('prepare:collections')
 }

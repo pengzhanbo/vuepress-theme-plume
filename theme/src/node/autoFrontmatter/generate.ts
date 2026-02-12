@@ -26,7 +26,7 @@ async function getMarkdownInfo(relativePath: string, cwd: string): Promise<{
   const raw = await fs.promises.readFile(filepath, 'utf-8')
   const { data, content } = matter(raw)
   return {
-    data,
+    data: data as AutoFrontmatterData,
     context: {
       filepath,
       relativePath,

@@ -42,7 +42,7 @@ export async function prepareEncrypt(app: App): Promise<void> {
     content: resolvedEncrypt,
   }))
 
-  fsCache?.write([currentHash, resolvedEncrypt])
+  fsCache?.write([currentHash, resolvedEncrypt], app.env.isBuild)
 
   perf.log('prepare:encrypt')
 }

@@ -6,7 +6,7 @@ import { isPackageExists } from 'local-pkg'
 import { LOCALE_OPTIONS } from './locales/index.js'
 
 export function provideData(app: App, options: MarkdownPowerPluginOptions): Record<string, unknown> {
-  const mardownOptions = {
+  const markdownOptions = {
     plot: options.plot,
     pdf: options.pdf,
   }
@@ -20,7 +20,7 @@ export function provideData(app: App, options: MarkdownPowerPluginOptions): Reco
   const icon = options.icon ?? { provider: 'iconify' }
 
   return {
-    __MD_POWER_INJECT_OPTIONS__: mardownOptions,
+    __MD_POWER_INJECT_OPTIONS__: markdownOptions,
     __MD_POWER_DASHJS_INSTALLED__: isPackageExists('dashjs'),
     __MD_POWER_HLSJS_INSTALLED__: isPackageExists('hls.js'),
     __MD_POWER_MPEGTSJS_INSTALLED__: isPackageExists('mpegts.js'),

@@ -7,11 +7,13 @@ import { getThemeConfig } from '../loadConfig/index.js'
 import { isEncryptPage } from '../prepare/prepareEncrypt.js'
 import { withBase } from '../utils/index.js'
 
+const ENCRYPT_CONTAINER_RE = /(?:^|\n)(?<marker>\s*:{3,})\s*encrypt\b[\s\S]*?\n\k<marker>(?:\n|$)/g
+
 export function llmsPlugin(app: App, userOptions: true | LlmsPluginOptions): PluginConfig {
   if (!app.env.isBuild)
     return []
 
-  const { llmsTxtTemplateGetter, ...userLLMsTxt } = isPlainObject(userOptions) ? userOptions : {}
+  const { llmsTxtTemplateGetter, transformMarkdown, ...userLLMsTxt } = isPlainObject(userOptions) ? userOptions : {}
 
   function tocGetter(llmPages: LLMPage[], llmState: LLMState): string {
     const options = getThemeConfig()
@@ -126,6 +128,10 @@ export function llmsPlugin(app: App, userOptions: true | LlmsPluginOptions): Plu
     },
     locale: '/',
     ...userLLMsTxt,
+    transformMarkdown(markdown, page) {
+      markdown = markdown.replaceAll(ENCRYPT_CONTAINER_RE, '')
+      return transformMarkdown?.(markdown, page) ?? markdown
+    },
     llmsTxtTemplateGetter: {
       toc: tocGetter,
       ...llmsTxtTemplateGetter,

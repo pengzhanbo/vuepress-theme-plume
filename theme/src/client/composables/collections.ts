@@ -1,5 +1,10 @@
 import type { Ref } from 'vue'
-import type { ThemeBaseCollection, ThemeCollectionItem, ThemeDocCollection, ThemePostCollection } from '../../shared/index.js'
+import type {
+  ThemeBaseCollection,
+  ThemeCollectionItem,
+  ThemeDocCollection,
+  ThemePostCollection,
+} from '../../shared/index.js'
 import { collections as collectionsRaw } from '@internal/collectionsData'
 import { ref, watchEffect } from 'vue'
 import { useRouteLocale } from 'vuepress/client'

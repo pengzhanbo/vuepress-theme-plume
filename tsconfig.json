@@ -4,7 +4,6 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@internal/md-power/replEditorData": ["./plugins/plugin-md-power/src/client/shim.d.ts"],
       "@internal/*": ["./docs/.vuepress/.temp/internal/*"],
       "@theme/*": ["./theme/src/client/components/*"]
     },

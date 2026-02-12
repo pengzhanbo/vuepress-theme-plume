@@ -5,13 +5,17 @@ import { generateTOCLink as rawGenerateTOCLink, llmsPlugin as rawLlmsPlugin } fr
 import { ensureEndingSlash, ensureLeadingSlash, isPlainObject } from 'vuepress/shared'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { isEncryptPage } from '../prepare/prepareEncrypt.js'
-import { withBase } from '../utils/index.js'
+import { hash, withBase } from '../utils/index.js'
+
+const CODE_BLOCK_RE = /(?:^|\n)(?<marker>\s*`{3,})([\s\w])[\s\S]*?\n\k<marker>(?:\n|$)/g
+const ENCRYPT_CONTAINER_RE = /(?:^|\n)(?<marker>\s*:{3,})\s*encrypt\b[\s\S]*?\n\k<marker>(?:\n|$)/g
+const RESTORE_RE = /<!-- llms-code-block:(\w+) -->/g
 
 export function llmsPlugin(app: App, userOptions: true | LlmsPluginOptions): PluginConfig {
   if (!app.env.isBuild)
     return []
 
-  const { llmsTxtTemplateGetter, ...userLLMsTxt } = isPlainObject(userOptions) ? userOptions : {}
+  const { llmsTxtTemplateGetter, transformMarkdown, ...userLLMsTxt } = isPlainObject(userOptions) ? userOptions : {}
 
   function tocGetter(llmPages: LLMPage[], llmState: LLMState): string {
     const options = getThemeConfig()
@@ -124,7 +128,23 @@ export function llmsPlugin(app: App, userOptions: true | LlmsPluginOptions): Plu
       const options = getThemeConfig()
       return options.encrypt?.global ? false : !isEncryptPage(page as Page<ThemePageData>, options.encrypt)
     },
+    locale: '/',
     ...userLLMsTxt,
+    transformMarkdown(markdown, page) {
+      // { hash: content }
+      let rematches: Record<string, string> = {}
+      markdown = markdown.replaceAll(CODE_BLOCK_RE, (content) => {
+        const contentHash = hash(content)
+        rematches[contentHash] = content
+        return `<!-- llms-code-block:${contentHash} -->`
+      })
+      markdown = markdown.replaceAll(ENCRYPT_CONTAINER_RE, '')
+      markdown = markdown.replaceAll(RESTORE_RE, (_, hash) => {
+        return rematches[hash] || ''
+      })
+      rematches = {}
+      return transformMarkdown?.(markdown, page) ?? markdown
+    },
     llmsTxtTemplateGetter: {
       toc: tocGetter,
       ...llmsTxtTemplateGetter,

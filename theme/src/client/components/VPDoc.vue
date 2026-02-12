@@ -14,14 +14,16 @@ import {
   useData,
   useEncrypt,
   useHeaders,
+  useLayout,
   usePostsPageData,
-  useSidebar,
+  useSidebarControl,
 } from '../composables/index.js'
 
 const { page, theme, frontmatter } = useData()
 const route = useRoute()
 
-const { hasSidebar, hasAside, leftAside } = useSidebar()
+const { hasSidebar, hasAside, leftAside } = useLayout()
+const { isSidebarCollapsed } = useSidebarControl()
 const { isPosts } = usePostsPageData()
 const headers = useHeaders()
 const { isPageDecrypted } = useEncrypt()
@@ -76,7 +78,7 @@ watch(
 <template>
   <div
     class="vp-doc-container" :class="{
-      'has-sidebar': hasSidebar,
+      'has-sidebar': hasSidebar && !isSidebarCollapsed,
       'has-aside': enableAside,
       'is-posts': isPosts,
       'with-encrypt': !isPageDecrypted,

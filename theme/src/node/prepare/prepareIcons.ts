@@ -40,7 +40,7 @@ let locate!: ((name: string) => any)
 
 let fsCache: FsCache<IconDataMap> | null = null
 // { iconName: { className, content } }
-const cache: IconDataMap = {}
+let cache: IconDataMap = {}
 
 // 旧版本内置图标别名，映射回 simple-icons 集合中的名称
 const socialFallbacks: Record<string, string> = {
@@ -135,7 +135,11 @@ export async function prepareIcons(app: App): Promise<void> {
     })),
   ])
 
-  fsCache?.write(cache)
+  fsCache?.write(cache, app.env.isBuild)
+
+  if (app.env.isBuild) {
+    cache = {}
+  }
 
   perf.log('prepare:icons:total')
 }

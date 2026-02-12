@@ -22,7 +22,14 @@ export function markdownPowerPlugin(
 
     clientConfigFile: app => prepareConfigFile(app, options),
 
-    define: provideData(options),
+    define: app => provideData(app, options),
+
+    alias: (_, isServer) => {
+      if (!isServer) {
+        return { ...options.encrypt ? { '/^vue$/': 'vue/dist/vue.esm-bundler.js' } : undefined }
+      }
+      return {}
+    },
 
     extendsBundlerOptions(bundlerOptions, app) {
       if (options.repl) {

@@ -7,19 +7,18 @@ permalink: /en/guide/features/encryption/
 
 ## Encryption
 
-This theme supports multiple flexible encryption methods, including **full-site encryption** and **partial encryption**.
+In this topic, various flexible encryption methods such as **full-site encryption** and **partial encryption** are supported.
 
 ::: warning Note
-Due to the inherent limitations of `vuepress` as a static site generator,
-the **encryption** only makes content *appear* invisible and excludes the content from being pre-rendered
-into `html` during compilation. However, the content can still be accessed from the site's source files.
-
-Therefore, the **encryption** feature should not be considered **secure and reliable**.
+Due to the limitations of `vuepress` as a static site, **encryption** only makes the content *appear* invisible.
+During compilation, the content is not pre-rendered into the `html`,
+but it can still be retrieved from the site's source files.
+Therefore, the **encryption** feature should not be considered as completely secure or reliable.
 
 Avoid using the **encryption feature** for content that requires **strict confidentiality**.
 :::
 
-**Unlocked articles are only visible within the current session.**
+**Unlocked articles are only visible during the current session.**
 
 ## Enabling Encryption
 
@@ -40,8 +39,8 @@ export default defineUserConfig({
 
 ## Full-Site Encryption
 
-In some cases, you may need to encrypt the entire site. Configure full-site encryption using the `encrypt.
-global` option, then set one or more passwords using the `encrypt.admin` option.
+In some cases, you may need to encrypt the entire site.
+You can configure full-site encryption using the `encrypt.global` option and set one or more passwords with `encrypt.admin`.
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
@@ -56,22 +55,23 @@ export default defineUserConfig({
 
 ## Partial Encryption
 
-In most cases, you may only need to encrypt specific articles, directories, etc. Configure partial encryption using the `encrypt.rules` option.
+In most cases, you may only need to encrypt a specific article, directory, etc.
+You can configure partial encryption using the `encrypt.rules` option.
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     encrypt: {
       rules: {
-        // Can be relative path to md file - encrypts this file
+        // Can be the relative path of an MD file to encrypt that file
         '前端/基础.md': '123456',
-        // Can be directory path - encrypts all articles under this directory
+        // Can be a directory path to encrypt all articles under that directory
         '/notes/vuepress-theme-plume/': '123456',
-        // Can be request path - encrypts all articles under this access path
+        // Can be a request path to encrypt all articles under that path
         '/vuepress-theme-plume/': '123456',
-        // Can be specific page request path - encrypts this page
+        // Can be a specific page's request path to encrypt that page
         '/article/f8dnci3/': '123456',
-        // If starting with `^`, pages matching this regex will also be encrypted
+        // If prefixed with `^`, pages matching the regex will also be encrypted
         '^/(a|b)/': '123456',
       }
     }
@@ -79,19 +79,20 @@ export default defineUserConfig({
 })
 ```
 
-The **keys** in `encrypt.rules` serve as matching rules, and the **values** serve as passwords for those rules. You can set one or multiple passwords.
+The **key** in `encrypt.rules` serves as the matching rule,
+and the **value** is the corresponding password (or multiple passwords) for that rule.
 
 :::tip Notes
 
 - Passwords must be plain strings.
-- If an entire directory is encrypted, unlocking applies to the entire directory, not individual articles within it.
+- If encrypting an entire directory, unlocking applies to the entire directory, not individual articles within it.
 - `encrypt.admin` can also be used to unlock **partially encrypted** pages.
-- After unlocking with `encrypt.admin`, the user is considered an administrator and other locked pages are unlocked by default.
+- After unlocking with `encrypt.admin`, the user is considered an admin, and all other locked pages are unlocked by default.
 :::
 
 ### Frontmatter
 
-Use the `password` field in Markdown file `Frontmatter` to set article passwords.
+In the `Frontmatter` of a Markdown file, you can set the article's password using the `password` field.
 
 ```md
 ---
@@ -100,7 +101,7 @@ password: 123456
 ---
 ```
 
-You can also add the `passwordHint` option to set password hint information.
+You can also add the `passwordHint` option to provide a password hint.
 
 ```md
 ---
@@ -114,9 +115,9 @@ passwordHint: The password is 123456
 
 Click to visit [Encrypted Article, Password: 123456](/article/enx7c9s/)
 
-## Related Configuration
+## Related Configurations
 
-The following configurations support use in [multilingual configuration](../../config/locales.md).
+The following configurations can be used in [multilingual settings](../../config/locales.md).
 
 ### encryptGlobalText
 
@@ -124,7 +125,7 @@ The following configurations support use in [multilingual configuration](../../c
 - **Default**: `'Only password can access this site'`
 - **Description**:
 
-  Prompt message for full-site encryption. Supports HTML. Useful if you want to provide contact information for visitors to obtain passwords.
+  The prompt message for full-site encryption. Supports HTML. Useful if you want to provide contact information for visitors to obtain the password.
 
 ### encryptPageText
 
@@ -132,19 +133,19 @@ The following configurations support use in [multilingual configuration](../../c
 - **Default**: `'Only password can access this page'`
 - **Description**:
 
-  Prompt message for partial encryption. Supports HTML. Useful if you want to provide contact information for visitors to obtain passwords.
+  The prompt message for partial encryption. Supports HTML. Useful if you want to provide contact information for visitors to obtain the password.
 
 ### encryptButtonText
 
 - **Type**: `string`
 - **Default**: `'Confirm'`
-- **Description**: Text for the confirmation button
+- **Description**: The text for the confirmation button.
 
 ### encryptPlaceholder
 
 - **Type**: `string`
 - **Default**: `'Enter password'`
-- **Description**: Placeholder text for the password input field
+- **Description**: The placeholder text for the password input field.
 
 ### Example
 

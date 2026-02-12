@@ -5,7 +5,7 @@ import VPIcon from '@theme/VPIcon.vue'
 import VPLink from '@theme/VPLink.vue'
 import { FadeInExpandTransition } from '@vuepress/helper/client'
 import { computed } from 'vue'
-import { useSidebarControl } from '../composables/index.js'
+import { useSidebarItemControl } from '../composables/index.js'
 
 import '@vuepress/helper/transition/fade-in-height-expand.css'
 
@@ -22,7 +22,7 @@ const {
   hasActiveLink,
   hasChildren,
   toggle,
-} = useSidebarControl(computed(() => item))
+} = useSidebarItemControl(computed(() => item))
 
 const sectionTag = computed(() => (hasChildren.value ? 'section' : `div`))
 
@@ -38,7 +38,8 @@ const textTag = computed(() => {
 
 const itemRole = computed(() => (isLink.value ? undefined : 'button'))
 
-const isSeparator = computed(() => item.link?.startsWith('---'))
+const SEPARATOR_RE = /^-{3,}$/
+const isSeparator = computed(() => item.link && SEPARATOR_RE.test(item.link))
 
 const classes = computed(() => [
   [`level-${depth}`],

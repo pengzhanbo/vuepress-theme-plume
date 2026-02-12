@@ -1,5 +1,6 @@
 import type { Page } from 'vuepress/core'
 import type { ThemePageData } from '../../shared/index.js'
+import { findCollection } from '../collections/findCollection.js'
 import { autoCategory } from './autoCategory.js'
 import { encryptPage } from './encryptPage.js'
 import { enableBulletin } from './pageBulletin.js'
@@ -57,5 +58,17 @@ function cleanPageData(page: Page<ThemePageData>) {
   if ('externalLink' in page.frontmatter) {
     page.frontmatter.externalLinkIcon = page.frontmatter.externalLink
     delete page.frontmatter.externalLink
+  }
+
+  // is markdown file
+  if (page.data.filePathRelative?.endsWith('.md')) {
+    if (!(page as any)._rawTitle)
+      (page as any)._rawTitle = page.frontmatter.title || page.data.title || page.title
+    const title = (page as any)._rawTitle
+    const collection = findCollection(page)
+    if (collection) {
+      const newTitle = `${title} | ${collection.title}`
+      page.data.title = newTitle
+    }
   }
 }

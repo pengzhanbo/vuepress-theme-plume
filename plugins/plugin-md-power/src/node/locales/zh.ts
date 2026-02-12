@@ -1,6 +1,10 @@
 import type { MDPowerLocaleData } from '../../shared/locale'
 
 export const zhLocale: MDPowerLocaleData = {
+  common: {
+    copy: '复制',
+    copied: '已复制',
+  },
   encrypt: {
     hint: '内容已加密，请解锁后查看。',
     placeholder: '输入密码',

@@ -15,6 +15,9 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
   const imports = new Set<string>()
   const enhances = new Set<string>()
 
+  imports.add(`import VPCopyButton from '${CLIENT_FOLDER}components/VPCopyButton.vue'`)
+  enhances.add(`app.component('VPCopyButton', VPCopyButton)`)
+
   imports.add(`import Tabs from '${CLIENT_FOLDER}components/Tabs.vue'`)
   enhances.add(`app.component('Tabs', Tabs)`)
 

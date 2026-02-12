@@ -56,7 +56,9 @@ describe('fileTree > parseFileTreeNodeInfo', () => {
 })
 
 function createMarkdown(options?: FileTreeOptions) {
-  return new MarkdownIt().use(fileTreePlugin, options)
+  const md = new MarkdownIt()
+  fileTreePlugin(md, options, {})
+  return md
 }
 
 describe('fileTreePlugin', () => {

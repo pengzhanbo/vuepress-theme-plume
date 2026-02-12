@@ -6,17 +6,32 @@ exports[`fileTree > parseFileTreeRawContent > should work 1`] = `
     "children": [
       {
         "children": [],
-        "info": "README.md",
+        "comment": "",
+        "diff": undefined,
+        "expanded": true,
+        "filename": "README.md",
+        "focus": false,
         "level": 1,
+        "type": "file",
       },
       {
         "children": [],
-        "info": "foo.md",
+        "comment": "",
+        "diff": undefined,
+        "expanded": true,
+        "filename": "foo.md",
+        "focus": false,
         "level": 1,
+        "type": "file",
       },
     ],
-    "info": "docs",
+    "comment": "",
+    "diff": undefined,
+    "expanded": true,
+    "filename": "docs",
+    "focus": false,
     "level": 0,
+    "type": "file",
   },
   {
     "children": [
@@ -26,52 +41,97 @@ exports[`fileTree > parseFileTreeRawContent > should work 1`] = `
             "children": [
               {
                 "children": [],
-                "info": "**Navbar.vue**",
+                "comment": "",
+                "diff": undefined,
+                "expanded": true,
+                "filename": "Navbar.vue",
+                "focus": true,
                 "level": 3,
+                "type": "file",
               },
             ],
-            "info": "components",
+            "comment": "",
+            "diff": undefined,
+            "expanded": true,
+            "filename": "components",
+            "focus": false,
             "level": 2,
+            "type": "file",
           },
           {
             "children": [],
-            "info": "index.ts # comment",
+            "comment": "# comment",
+            "diff": undefined,
+            "expanded": true,
+            "filename": "index.ts",
+            "focus": false,
             "level": 2,
+            "type": "file",
           },
         ],
-        "info": "client",
+        "comment": "",
+        "diff": undefined,
+        "expanded": true,
+        "filename": "client",
+        "focus": false,
         "level": 1,
+        "type": "file",
       },
       {
         "children": [
           {
             "children": [],
-            "info": "index.ts",
+            "comment": "",
+            "diff": undefined,
+            "expanded": true,
+            "filename": "index.ts",
+            "focus": false,
             "level": 2,
+            "type": "file",
           },
         ],
-        "info": "node",
+        "comment": "",
+        "diff": undefined,
+        "expanded": true,
+        "filename": "node",
+        "focus": false,
         "level": 1,
+        "type": "file",
       },
     ],
-    "info": "src",
+    "comment": "",
+    "diff": undefined,
+    "expanded": true,
+    "filename": "src",
+    "focus": false,
     "level": 0,
+    "type": "file",
   },
   {
     "children": [],
-    "info": ".gitignore",
+    "comment": "",
+    "diff": undefined,
+    "expanded": true,
+    "filename": ".gitignore",
+    "focus": false,
     "level": 0,
+    "type": "file",
   },
   {
     "children": [],
-    "info": "package.json",
+    "comment": "",
+    "diff": undefined,
+    "expanded": true,
+    "filename": "package.json",
+    "focus": false,
     "level": 0,
+    "type": "file",
   },
 ]
 `;
 
 exports[`fileTreePlugin > should work with default options 1`] = `
-"<div class="vp-file-tree"><FileTreeNode expanded type="folder" filename="docs" :level="0">
+"<div class="vp-file-tree"><VPCopyButton text="eJzT43o0Zc6jKQ1ApJCSn1wM5DYpKCggBINcHV18XfVyU+AyU6Ayafn5EGGY0uKiZAztyTmZqXklcGE0yfzcgvw8oDzCWmQSZpFfYllSYpFeWWkqmjKYgsy8lNQKPSRTYBJ5+SkwPSCAVQfMMXrpmSWZ6Xn5RSAdMHUFicnZiempelnF+XkANX+Jpw==" encode aria-label="Copy" data-copied="Copied" /><FileTreeNode expanded type="folder" filename="docs" :level="0">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-docs" /></template><FileTreeNode type="file" filename="README.md" :level="1">
 <template #icon><VPIcon provider="iconify" name="flat-color-icons:info" /></template>
 </FileTreeNode>
@@ -102,7 +162,7 @@ exports[`fileTreePlugin > should work with default options 1`] = `
 <FileTreeNode type="file" filename="package.json" :level="0">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-node" /></template>
 </FileTreeNode></div>
-<div class="vp-file-tree"><p class="vp-file-tree-title">files</p><FileTreeNode expanded type="folder" filename="src" :level="0">
+<div class="vp-file-tree"><p class="vp-file-tree-title">files</p><VPCopyButton text="eJzT43o0Zc6jKQ1ApFBclAzkNSkoKCDEsooxhMpKU+FiU6BiycUgdTBekKuji6+rXm4KAKLWLVo=" encode aria-label="Copy" data-copied="Copied" /><FileTreeNode expanded type="folder" filename="src" :level="0">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-src" /></template><FileTreeNode expanded type="folder" filename="js" :level="1">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:default-folder" /></template><FileTreeNode type="file" filename="…" :level="2">
 
@@ -122,7 +182,7 @@ exports[`fileTreePlugin > should work with default options 1`] = `
 <FileTreeNode type="file" filename="README.md" :level="0">
 <template #icon><VPIcon provider="iconify" name="flat-color-icons:info" /></template>
 </FileTreeNode></div>
-<div class="vp-file-tree"><FileTreeNode type="file" filename="docs" :level="0">
+<div class="vp-file-tree"><VPCopyButton text="eJzT43o0Zc6jKQ1ApJCSn1yMxC0uSgbymhQUFBBiiXpZICUQwSlQwSS9EpAgjBvk6uji66qXmwIAUH4sGA==" encode aria-label="Copy" data-copied="Copied" /><FileTreeNode type="file" filename="docs" :level="0">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
 </FileTreeNode>
 <FileTreeNode expanded type="folder" filename="src" :level="0">
@@ -136,7 +196,7 @@ exports[`fileTreePlugin > should work with default options 1`] = `
 <FileTreeNode type="file" filename="README.md" :level="0">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
 </FileTreeNode></div>
-<div class="vp-file-tree"><FileTreeNode type="file" filename="" :level="0">
+<div class="vp-file-tree"><VPCopyButton text="eJzT43o0Zc6jKQ1ApABkToExFYAAzgUAZ2oS9w==" encode aria-label="Copy" data-copied="Copied" /><FileTreeNode type="file" filename="" :level="0">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
 </FileTreeNode>
 <FileTreeNode expanded type="folder" filename="" :level="0">
@@ -144,7 +204,7 @@ exports[`fileTreePlugin > should work with default options 1`] = `
 <template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
 </FileTreeNode>
 </FileTreeNode></div>
-<div class="vp-file-tree"><FileTreeNode expanded type="folder" filename="docs" :level="0">
+<div class="vp-file-tree"><VPCopyButton text="eJzT43o0Zc6jKQ1ApJCSn1wM5DYpKCggBBNTUlJT9HJT4BJToBJFqbn5ZakQGZji4qJkIA+moji/tCg5FQAkoS+X" encode aria-label="Copy" data-copied="Copied" /><FileTreeNode expanded type="folder" filename="docs" :level="0">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-docs" /></template><FileTreeNode type="file" diff="add" filename="added.md" :level="1">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-markdown" /></template>
 </FileTreeNode>
@@ -158,7 +218,7 @@ exports[`fileTreePlugin > should work with default options 1`] = `
 <FileTreeNode type="file" diff="remove" filename="source" :level="0">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
 </FileTreeNode></div>
-<div class="vp-file-tree"></div>
+<div class="vp-file-tree"><VPCopyButton text="eJzTAwAALwAv" encode aria-label="Copy" data-copied="Copied" /></div>
 "
 `;
 
@@ -166,7 +226,7 @@ exports[`fileTreePlugin > should work with nesting content 1`] = `
 "<ul>
 <li>
 <p>item1</p>
-<div class="vp-file-tree"><FileTreeNode type="folder" filename="docs" :level="0">
+<div class="vp-file-tree"><VPCopyButton text="eJzT43o0Zc6jKQ1ApJCSn1yMxC0uSgbymhQUFBBiiXpZICUQwSlQwSS9EpAgjBvk6uji66qXmwIAUH4sGA==" encode aria-label="Copy" data-copied="Copied" /><FileTreeNode type="folder" filename="docs" :level="0">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-docs" /></template><FileTreeNode type="file" filename="…" :level="1">
 
 </FileTreeNode>

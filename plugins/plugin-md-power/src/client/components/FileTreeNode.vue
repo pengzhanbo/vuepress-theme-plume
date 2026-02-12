@@ -68,6 +68,7 @@ function toggle(ev: MouseEvent) {
 
 <style>
 .vp-file-tree {
+  position: relative;
   max-width: 100%;
   padding: 16px;
   overflow: auto hidden;
@@ -85,6 +86,14 @@ function toggle(ev: MouseEvent) {
   color: var(--vp-c-text-1);
   border-bottom: solid 1px var(--vp-c-divider);
   transition: color var(--vp-t-color), border-color var(--vp-t-color);
+}
+
+.vp-file-tree .vp-file-tree-title + .vp-copy-code-button {
+  top: calc(45px + 1em);
+}
+
+.vp-file-tree:hover .vp-copy-code-button {
+  opacity: 1;
 }
 
 .vp-file-tree .vp-file-tree-info {

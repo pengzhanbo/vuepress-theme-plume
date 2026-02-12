@@ -24,8 +24,11 @@ export function markdownPowerPlugin(
 
     define: app => provideData(app, options),
 
-    alias: {
-      ...options.encrypt ? { vue: 'vue/dist/vue.esm-bundler.js' } : undefined,
+    alias: (_, isServer) => {
+      if (!isServer) {
+        return { ...options.encrypt ? { '/^vue$/': 'vue/dist/vue.esm-bundler.js' } : undefined }
+      }
+      return {}
     },
 
     extendsBundlerOptions(bundlerOptions, app) {

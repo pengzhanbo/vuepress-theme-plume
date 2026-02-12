@@ -30,7 +30,7 @@ export const PRESET: TagsColorsItem[] = [
 ]
 
 // { index: className }
-const cache: Record<number, string> = {}
+let cache: Record<number, string> = {}
 
 export async function prepareArticleTagColors(app: App): Promise<void> {
   perf.mark('prepare:tag-colors')
@@ -38,6 +38,10 @@ export async function prepareArticleTagColors(app: App): Promise<void> {
 
   await writeTemp(app, 'internal/articleTagColors.css', css)
   await writeTemp(app, 'internal/articleTagColors.js', js)
+
+  if (app.env.isBuild) {
+    cache = {}
+  }
 
   perf.log('prepare:tag-colors')
 }

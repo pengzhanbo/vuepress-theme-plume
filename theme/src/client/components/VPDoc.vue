@@ -265,7 +265,7 @@ watch(
     padding: 48px 32px 0;
   }
 
-  .vp-doc-container:not(.has-sidebar) .container, {
+  .vp-doc-container:not(.has-sidebar) .container {
     display: flex;
     justify-content: center;
     max-width: 992px;

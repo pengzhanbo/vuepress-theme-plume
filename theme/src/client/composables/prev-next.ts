@@ -106,7 +106,7 @@ function resolveFromSidebarItems(sidebarItems: NavItemWithLink[], currentPath: s
   if (index === -1)
     return null
   // eslint-disable-next-line no-cond-assign
-  while ((index += offset) >= 0) {
+  while ((index += offset) >= 0 && index < sidebarItems.length) {
     const targetItem = sidebarItems[index]
     if (targetItem?.link && !SEPARATOR_RE.test(targetItem.link)) {
       return targetItem

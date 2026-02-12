@@ -1,6 +1,10 @@
 import type { MDPowerLocaleData } from '../../shared/locale'
 
 export const ruLocale: MDPowerLocaleData = {
+  common: {
+    copy: 'Копировать',
+    copied: 'Скопировано',
+  },
   encrypt: {
     hint: 'Контент зашифрован, разблокируйте для просмотра.',
     placeholder: 'Введите пароль',

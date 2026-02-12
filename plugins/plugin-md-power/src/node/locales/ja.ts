@@ -1,6 +1,10 @@
 import type { MDPowerLocaleData } from '../../shared/locale'
 
 export const jaLocale: MDPowerLocaleData = {
+  common: {
+    copy: 'コピー',
+    copied: 'コピー済み',
+  },
   encrypt: {
     hint: 'コンテンツは暗号化されています。閲覧するにはロックを解除してください。',
     placeholder: 'パスワードを入力',

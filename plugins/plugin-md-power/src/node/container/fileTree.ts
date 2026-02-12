@@ -1,7 +1,7 @@
-import type { Markdown } from 'vuepress/markdown'
-import type { FileTreeIconMode, FileTreeOptions } from '../../shared/index.js'
+import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
+import type { CommonLocaleData, FileTreeIconMode, FileTreeOptions } from '../../shared/index.js'
 import { encodeData } from '@vuepress/helper'
-import { removeEndingSlash } from 'vuepress/shared'
+import { ensureLeadingSlash, removeEndingSlash, resolveLocalePath } from 'vuepress/shared'
 import { defaultFile, defaultFolder, getFileIcon } from '../fileIcons/index.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerSyntaxPlugin } from './createContainer.js'
@@ -124,7 +124,11 @@ export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
  * @param md markdown 实例
  * @param options 文件树渲染选项
  */
-export function fileTreePlugin(md: Markdown, options: FileTreeOptions = {}): void {
+export function fileTreePlugin(
+  md: Markdown,
+  options: FileTreeOptions = {},
+  locales: Record<string, CommonLocaleData>,
+): void {
   /**
    * 获取文件或文件夹的图标
    */
@@ -172,14 +176,16 @@ ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children
   return createContainerSyntaxPlugin(
     md,
     'file-tree',
-    (tokens, index) => {
+    (tokens, index, _, env: MarkdownEnv) => {
       const token = tokens[index]
       const nodes = parseFileTreeRawContent(token.content)
       const meta = token.meta as FileTreeAttrs
       const cmdText = fileTreeToCMDText(nodes).trim()
+      const localePath = resolveLocalePath(locales, ensureLeadingSlash(env.filePathRelative || ''))
+      const data = locales[localePath] ?? {}
       return `<div class="vp-file-tree">${
         meta.title ? `<p class="vp-file-tree-title">${meta.title}</p>` : ''
-      }<VPCopyButton text="${encodeData(cmdText)}" encode />${
+      }<VPCopyButton text="${encodeData(cmdText)}" encode aria-label="${data.copy || 'Copy'}" data-copied="${data.copied || 'Copied'}" />${
         renderFileTree(nodes, meta)
       }</div>\n`
     },

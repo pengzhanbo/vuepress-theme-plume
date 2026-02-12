@@ -1,6 +1,10 @@
 import type { MDPowerLocaleData } from '../../shared/locale'
 
 export const enLocale: MDPowerLocaleData = {
+  common: {
+    copy: 'Copy',
+    copied: 'Copied',
+  },
   encrypt: {
     hint: 'The content is encrypted, please unlock to view.',
     placeholder: 'Enter password',

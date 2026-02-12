@@ -1,22 +1,17 @@
-import type { App, LocaleConfig } from 'vuepress'
-import type { MarkdownPowerPluginOptions } from '../shared/index.js'
-import type { MDPowerLocaleData } from '../shared/locale.js'
-import { getFullLocaleConfig } from '@vuepress/helper'
+import type { ExactLocaleConfig } from '@vuepress/helper'
+import type { MarkdownPowerPluginOptions, MDPowerLocaleData } from '../shared/index.js'
 import { isPackageExists } from 'local-pkg'
-import { LOCALE_OPTIONS } from './locales/index.js'
+import { findLocales } from './utils/findLocales.js'
 
-export function provideData(app: App, options: MarkdownPowerPluginOptions): Record<string, unknown> {
+export function provideData(
+  options: MarkdownPowerPluginOptions,
+  locales: ExactLocaleConfig<MDPowerLocaleData>,
+): Record<string, unknown> {
   const markdownOptions = {
     plot: options.plot,
     pdf: options.pdf,
   }
 
-  const locales = getFullLocaleConfig({
-    app,
-    name: 'vuepress-plugin-md-power',
-    default: LOCALE_OPTIONS,
-    config: options.locales,
-  })
   const icon = options.icon ?? { provider: 'iconify' }
 
   return {
@@ -28,17 +23,4 @@ export function provideData(app: App, options: MarkdownPowerPluginOptions): Reco
     __MD_POWER_ICON_PREFIX__: icon.prefix || '',
     __MD_POWER_ENCRYPT_LOCALES__: options.encrypt ? findLocales(locales, 'encrypt') : {},
   }
-}
-
-function findLocales<
-  T extends MDPowerLocaleData,
-  K extends keyof T,
->(locales: LocaleConfig<T>, key: K): Record<string, T[K]> {
-  const res: Record<string, T[K]> = {}
-
-  for (const [locale, value] of Object.entries(locales)) {
-    res[locale] = value[key] ?? {} as T[K]
-  }
-
-  return res
 }

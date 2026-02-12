@@ -1,7 +1,9 @@
 import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { MarkdownPowerPluginOptions } from '../../shared/index.js'
-import { isPlainObject } from '@vuepress/helper'
+import type { MDPowerLocaleData } from '../../shared/locale.js'
+import { type ExactLocaleConfig, isPlainObject } from '@vuepress/helper'
+import { findLocales } from '../utils/findLocales.js'
 import { alignPlugin } from './align.js'
 import { cardPlugin } from './card.js'
 import { chatPlugin } from './chat.js'
@@ -23,6 +25,7 @@ export async function containerPlugin(
   app: App,
   md: Markdown,
   options: MarkdownPowerPluginOptions,
+  locales: ExactLocaleConfig<MDPowerLocaleData>,
 ): Promise<void> {
   // ::: left / right / center / justify
   alignPlugin(md)
@@ -56,7 +59,7 @@ export async function containerPlugin(
 
   if (options.fileTree) {
     // ::: file-tree
-    fileTreePlugin(md, isPlainObject(options.fileTree) ? options.fileTree : {})
+    fileTreePlugin(md, isPlainObject(options.fileTree) ? options.fileTree : {}, findLocales(locales, 'common'))
   }
 
   if (options.codeTree) {

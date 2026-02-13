@@ -1,3 +1,32 @@
+# [1.0.0-rc.188](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.187...v1.0.0-rc.188) (2026-02-13)
+
+
+### Bug Fixes
+
+* **theme:** broken card a11y, close [#841](https://github.com/pengzhanbo/vuepress-theme-plume/issues/841) ([#848](https://github.com/pengzhanbo/vuepress-theme-plume/issues/848)) ([5a73b59](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5a73b59297f50fedce0a4aa4ddd6f209d38d87cc))
+* **theme:** fix overflow scrolling in the tab container nav, close [#842](https://github.com/pengzhanbo/vuepress-theme-plume/issues/842) ([#847](https://github.com/pengzhanbo/vuepress-theme-plume/issues/847)) ([98a969c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/98a969c112af90c492e022a706f892461f6923f8))
+* **theme:** fix prev/next nav when include sep, close [#846](https://github.com/pengzhanbo/vuepress-theme-plume/issues/846) ([#849](https://github.com/pengzhanbo/vuepress-theme-plume/issues/849)) ([d2b4654](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d2b4654ae361d9ab0adfcb2075cccad7bfccfa48))
+* **theme:** navbar dropdown renders incorrectly in Safari, close [#830](https://github.com/pengzhanbo/vuepress-theme-plume/issues/830) ([#832](https://github.com/pengzhanbo/vuepress-theme-plume/issues/832)) ([a13ed1f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a13ed1f50397e65fa4697897138369a8177bbbf2))
+
+
+### Features
+
+* add agent skills ([#823](https://github.com/pengzhanbo/vuepress-theme-plume/issues/823)) ([07c274c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/07c274cdbf2f55e319fb862a332b0f2cf32a2c18))
+* **plugin-md-power:** add `::: encrypt` container, close [#815](https://github.com/pengzhanbo/vuepress-theme-plume/issues/815) ([#831](https://github.com/pengzhanbo/vuepress-theme-plume/issues/831)) ([b1f996c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b1f996cb0ec9ebd9135adf855de4363696f0161e))
+* **plugin-md-power:** add copy button for file-tree container, close [#835](https://github.com/pengzhanbo/vuepress-theme-plume/issues/835) ([#837](https://github.com/pengzhanbo/vuepress-theme-plume/issues/837)) ([2780abd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2780abd7824ad670e2f482ca90c24fa53fd110fe))
+* **plugin-md-power:** add icons about ai ([#836](https://github.com/pengzhanbo/vuepress-theme-plume/issues/836)) ([32e4f92](https://github.com/pengzhanbo/vuepress-theme-plume/commit/32e4f92c6198672bc45d31a9fcc3e4a47c8bca36))
+* **plugin-search:** add language-based text segmentation support for search ([#838](https://github.com/pengzhanbo/vuepress-theme-plume/issues/838)) ([8cd08f4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8cd08f4f02de72f6c02cc07ec1e1ab3103081dd4))
+* **theme:** add sidebar collapse button, close [#687](https://github.com/pengzhanbo/vuepress-theme-plume/issues/687) ([#839](https://github.com/pengzhanbo/vuepress-theme-plume/issues/839)) ([3e68b44](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3e68b44771f4c3b0604af312e33e2edc4e8a1e12))
+* **theme:** improve title template ([#833](https://github.com/pengzhanbo/vuepress-theme-plume/issues/833)) ([d573fad](https://github.com/pengzhanbo/vuepress-theme-plume/commit/d573fada7a4cdd6e16885f9d0774d25bf4d1759a))
+
+
+### Performance Improvements
+
+* optimize memory usage during build time ([#850](https://github.com/pengzhanbo/vuepress-theme-plume/issues/850)) ([78a2859](https://github.com/pengzhanbo/vuepress-theme-plume/commit/78a28593987ff7b5032f2eac5674f753d81e68ea))
+* update deps to latest ([8d4ce99](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8d4ce99c16d1f67d3352f29de8cab83de225a8cc))
+
+
+
 # [1.0.0-rc.187](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.186...v1.0.0-rc.187) (2026-01-19)
 
 

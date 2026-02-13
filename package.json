@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.187",
   "private": true,
-  "packageManager": "pnpm@10.28.1",
+  "packageManager": "pnpm@10.29.3",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -85,11 +85,11 @@
     }
   },
   "resolutions": {
-    "@bufbuild/protobuf": "^2.10.2",
+    "@bufbuild/protobuf": "^2.11.0",
     "@eslint-community/eslint-utils": "catalog:peer",
     "@typescript-eslint/types": "catalog:peer",
     "@typescript-eslint/utils": "catalog:peer",
-    "baseline-browser-mapping": "^2.9.15",
+    "baseline-browser-mapping": "^2.9.19",
     "chokidar": "catalog:prod",
     "esbuild": "catalog:prod",
     "sass-embedded": "catalog:peer",

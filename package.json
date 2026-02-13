@@ -94,7 +94,7 @@
     "esbuild": "catalog:prod",
     "sass-embedded": "catalog:peer",
     "vite": "catalog:dev",
-    "vue-router": "catalog:dev"
+    "vue-router": "catalog:prod"
   },
   "lint-staged": {
     "*": "eslint --fix",

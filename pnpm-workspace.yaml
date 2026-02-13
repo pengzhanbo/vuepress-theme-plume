@@ -64,7 +64,6 @@ catalogs:
     typescript: ^5.9.3
     vite: ^8.0.0-beta.14
     vitest: ^4.0.18
-    vue-router: ^5.0.2
     wait-on: ^9.0.4
   peer:
     '@eslint-community/eslint-utils': ^4.9.1
@@ -136,6 +135,7 @@ catalogs:
     tm-grammars: ^1.30.8
     tm-themes: ^1.11.1
     vue: ^3.5.28
+    vue-router: ^5.0.2
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.26
     '@vuepress/helper': 2.0.0-rc.123

@@ -197,8 +197,7 @@ export async function scanRemoteImageSize(app: App): Promise<void> {
   function addList(src: string) {
     if (src && isLinkHttp(src)
       && !imgList.includes(src)
-      && !BADGE_LIST.some(badge => src.startsWith(badge))
-    ) {
+      && !BADGE_LIST.some(badge => src.startsWith(badge))) {
       imgList.push(src)
     }
   }

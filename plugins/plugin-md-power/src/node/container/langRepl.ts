@@ -8,11 +8,32 @@ import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerPlugin } from './createContainer.js'
 
+/**
+ * Code REPL metadata
+ *
+ * 代码 REPL 元数据
+ */
 interface CodeReplMeta {
   editable?: boolean
   title?: string
 }
 
+/**
+ * Language REPL plugin - Enable interactive code playgrounds
+ *
+ * 语言 REPL 插件 - 启用交互式代码游乐场
+ *
+ * Supports: kotlin, go, rust, python
+ *
+ * @param app - VuePress app / VuePress 应用
+ * @param md - Markdown-it instance / Markdown-it 实例
+ * @param options - REPL options / REPL 选项
+ * @param options.theme - Editor theme / 编辑器主题
+ * @param options.go - Enable Go playground / 启用 Go 游乐场
+ * @param options.kotlin - Enable Kotlin playground / 启用 Kotlin 游乐场
+ * @param options.rust - Enable Rust playground / 启用 Rust 游乐场
+ * @param options.python - Enable Python playground / 启用 Python 游乐场
+ */
 export async function langReplPlugin(app: App, md: markdownIt, {
   theme,
   go = false,
@@ -20,6 +41,11 @@ export async function langReplPlugin(app: App, md: markdownIt, {
   rust = false,
   python = false,
 }: ReplOptions): Promise<void> {
+  /**
+   * Create container for specific language
+   *
+   * 为特定语言创建容器
+   */
   const container = (lang: string): void => createContainerPlugin(md, `${lang}-repl`, {
     before(info) {
       const { attrs } = resolveAttrs<CodeReplMeta>(info)
@@ -85,6 +111,14 @@ export async function langReplPlugin(app: App, md: markdownIt, {
   )
 }
 
+/**
+ * Read JSON file
+ *
+ * 读取 JSON 文件
+ *
+ * @param file - File path / 文件路径
+ * @returns Parsed JSON / 解析后的 JSON
+ */
 async function read(file: string): Promise<any> {
   try {
     const content = await fs.readFile(file, 'utf-8')

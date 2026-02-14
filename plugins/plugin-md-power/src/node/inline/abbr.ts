@@ -1,5 +1,7 @@
 /**
  * Forked and modified from https://github.com/markdown-it/markdown-it-abbr/blob/master/index.mjs
+ *
+ * 从 https://github.com/markdown-it/markdown-it-abbr/blob/master/index.mjs 分叉并修改
  */
 
 import type { PluginWithOptions } from 'markdown-it'
@@ -11,18 +13,59 @@ import type Token from 'markdown-it/lib/token.mjs'
 import { isEmptyObject, objectMap } from '@pengzhanbo/utils'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 
+/**
+ * Abbreviation state block
+ *
+ * 缩写词状态块
+ */
 interface AbbrStateBlock extends StateBlock {
+  /**
+   * Environment
+   *
+   * 环境
+   */
   env: {
+    /**
+     * Abbreviations record
+     *
+     * 缩写词记录
+     */
     abbreviations?: Record<string, string>
   }
 }
 
+/**
+ * Abbreviation state core
+ *
+ * 缩写词核心状态
+ */
 interface AbbrStateCore extends StateCore {
+  /**
+   * Environment
+   *
+   * 环境
+   */
   env: {
+    /**
+     * Abbreviations record
+     *
+     * 缩写词记录
+     */
     abbreviations?: Record<string, string>
   }
 }
 
+/**
+ * Abbreviation plugin - Enable abbreviation syntax
+ *
+ * 缩写词插件 - 启用缩写词语法
+ *
+ * Definition syntax: *[ABBREV]: Full description
+ * 定义语法：*[缩写]: 完整描述
+ *
+ * @param md - Markdown-it instance / Markdown-it 实例
+ * @param globalAbbreviations - Global abbreviations preset / 全局缩写词预设
+ */
 export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, globalAbbreviations = {}) => {
   const { arrayReplaceAt, escapeRE, lib } = md.utils
   globalAbbreviations = objectMap(
@@ -37,6 +80,17 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
   const UNICODE_SPACE_REGEXP = (lib.ucmicro.Z as RegExp).source
   const WORDING_REGEXP_TEXT = `${UNICODE_PUNCTUATION_REGEXP}|${UNICODE_SPACE_REGEXP}|[${OTHER_CHARS.split('').map(escapeRE).join('')}]`
 
+  /**
+   * Abbreviation definition rule
+   *
+   * 缩写词定义规则
+   *
+   * @param state - State block / 状态块
+   * @param startLine - Start line number / 开始行号
+   * @param _endLine - End line number / 结束行号
+   * @param silent - Silent mode / 静默模式
+   * @returns Whether matched / 是否匹配
+   */
   const abbrDefinition: RuleBlock = (
     state: AbbrStateBlock,
     startLine,
@@ -90,6 +144,13 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
     return true
   }
 
+  /**
+   * Abbreviation replace rule
+   *
+   * 缩写词替换规则
+   *
+   * @param state - State core / 核心状态
+   */
   const abbrReplace: RuleCore = (state: AbbrStateCore) => {
     const tokens = state.tokens
     const { abbreviations: localAbbreviations } = state.env

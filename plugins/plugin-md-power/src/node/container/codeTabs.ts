@@ -6,6 +6,14 @@ import { definitions, getFileIconName, getFileIconTypeFromExtension } from '../f
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { stringifyProp } from '../utils/stringifyProp.js'
 
+/**
+ * Create code tab icon getter function
+ *
+ * 创建代码标签页图标获取函数
+ *
+ * @param options - Code tabs options / 代码标签页选项
+ * @returns Icon getter function / 图标获取函数
+ */
 export function createCodeTabIconGetter(
   options: CodeTabsOptions = {},
 ): (filename: string) => string | void {
@@ -35,6 +43,14 @@ export function createCodeTabIconGetter(
   }
 }
 
+/**
+ * Code tabs plugin - Enable code tabs container
+ *
+ * 代码标签页插件 - 启用代码标签页容器
+ *
+ * @param md - Markdown-it instance / Markdown-it 实例
+ * @param options - Code tabs options / 代码标签页选项
+ */
 export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTabsOptions = {}) => {
   const getIcon = createCodeTabIconGetter(options)
 

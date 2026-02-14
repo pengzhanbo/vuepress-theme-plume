@@ -3,6 +3,11 @@ import type { ThemePageData } from '../../shared/index.js'
 import { isFunction, isPlainObject } from '@vuepress/helper'
 import { getThemeConfig } from '../loadConfig/index.js'
 
+/**
+ * Enable bulletin for page
+ *
+ * 为页面启用公告栏，根据全局或语言环境配置决定是否显示公告栏
+ */
 export function enableBulletin(
   page: Page<ThemePageData>,
 ): void {

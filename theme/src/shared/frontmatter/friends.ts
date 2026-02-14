@@ -2,6 +2,8 @@ import type { SocialLink, ThemeColor } from '../common/index.js'
 import type { ThemeNormalFrontmatter } from './normal.js'
 
 /**
+ * Friend link item
+ *
  * 友链
  */
 export interface FriendsItem {
@@ -48,6 +50,8 @@ export interface FriendsItem {
 }
 
 /**
+ * Friend group
+ *
  * 友链分组
  */
 export interface FriendGroup {
@@ -66,7 +70,9 @@ export interface FriendGroup {
 }
 
 /**
- * 友情链接
+ * Friends page frontmatter
+ *
+ * 友链页面 frontmatter
  */
 export interface ThemeFriendsFrontmatter extends ThemeNormalFrontmatter {
   /**

@@ -3,8 +3,18 @@ import type { CSSProperties } from 'vue'
 import type { ThemeLightDark } from '../common/index.js'
 import type { LiteralUnion } from '../utils.js'
 
+/**
+ * Home page hero effect type
+ *
+ * 首页 Hero 动画效果类型
+ */
 export type ThemeHomeHeroEffect = LiteralUnion<'tint-plate' | 'prism' | 'pixel-blast' | 'hyper-speed' | 'liquid-ether' | 'dot-grid' | 'iridescence' | 'orb' | 'beams' | 'lightning' | 'dark-veil'>
 
+/**
+ * Home page hero effect configuration
+ *
+ * 首页 Hero 动画效果配置
+ */
 export type ThemeHomeHeroEffectConfig
   = | ThemeHomeHeroTintPlate
     | ThemeHomeHeroPrism
@@ -18,12 +28,22 @@ export type ThemeHomeHeroEffectConfig
     | ThemeHomeHeroLightning
     | ThemeHomeHeroDarkVeil
 
+/**
+ * Tint plate effect configuration
+ *
+ * 色调板效果配置
+ */
 export type ThemeHomeHeroTintPlate = ThemeLightDark<{ rgb: string | number } | {
   r: { value: number, offset: number }
   g: { value: number, offset: number }
   b: { value: number, offset: number }
 }>
 
+/**
+ * Prism effect configuration
+ *
+ * 棱镜效果配置
+ */
 export interface ThemeHomeHeroPrism {
   /**
    * Apex height of the prism (world units)
@@ -102,8 +122,18 @@ export interface ThemeHomeHeroPrism {
   timeScale?: number
 }
 
+/**
+ * Pixel blast variant type
+ *
+ * 像素爆炸变体类型
+ */
 export type ThemeHomeHeroPixelBlastVariant = 'square' | 'circle' | 'triangle' | 'diamond'
 
+/**
+ * Pixel blast effect configuration
+ *
+ * 像素爆炸效果配置
+ */
 export interface ThemeHomeHeroPixelPixelBlast {
   /**
    * Pixel shape variant
@@ -220,16 +250,31 @@ export interface ThemeHomeHeroPixelPixelBlast {
   backgroundAttachment?: 'fixed' | 'local'
 }
 
+/**
+ * Hyper speed distortion
+ *
+ * 高速扭曲配置
+ */
 export interface ThemeHomeHeroHyperSpeedDistortion {
   uniforms: Record<string, { value: unknown }>
   getDistortion: string
   getJS?: (progress: number, time: number) => THREE.Vector3
 }
 
+/**
+ * Hyper speed distortions
+ *
+ * 高速扭曲集合
+ */
 export interface ThemeHomeHeroHyperSpeedDistortions {
   [key: string]: ThemeHomeHeroHyperSpeedDistortion
 }
 
+/**
+ * Hyper speed colors
+ *
+ * 高速颜色配置
+ */
 export interface ThemeHomeHeroHyperSpeedColors {
   roadColor: number
   islandColor: number
@@ -241,6 +286,11 @@ export interface ThemeHomeHeroHyperSpeedColors {
   sticks: number
 }
 
+/**
+ * Hyper speed effect configuration
+ *
+ * 高速效果配置
+ */
 export interface ThemeHomeHeroHyperSpeed {
   onSpeedUp?: (ev: MouseEvent) => void
   onSlowDown?: (ev: MouseEvent) => void

@@ -10,6 +10,11 @@ const cache: Record<string, number> = {}
 
 const RE_CATEGORY = /^(?:(\d+)\.)?([\s\S]+)$/
 
+/**
+ * Auto category for page
+ *
+ * 自动为页面生成分类信息，根据文件路径和集合配置自动确定页面所属的分类
+ */
 export function autoCategory(page: Page<ThemePageData>): void {
   const collection = findCollection(page)
 

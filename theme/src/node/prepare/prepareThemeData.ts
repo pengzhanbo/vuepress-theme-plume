@@ -15,6 +15,11 @@ const bulletinFiles: Record<string, string> = {}
 
 process.on('exit', () => bulletinFileWatcher?.close())
 
+/**
+ * Prepare theme data
+ *
+ * 准备主题数据，解析主题配置、处理头像尺寸、解析公告栏并更新主题数据
+ */
 export async function prepareThemeData(
   app: App,
   plugins: ThemeBuiltinPlugins,

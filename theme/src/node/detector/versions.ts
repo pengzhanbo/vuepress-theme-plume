@@ -16,6 +16,11 @@ const t = createTranslate({
   },
 })
 
+/**
+ * Detect version compatibility
+ *
+ * 检测版本兼容性
+ */
 export function detectVersions(app: App): void {
   detectVuepressVersion()
   detectThemeVersion(app)

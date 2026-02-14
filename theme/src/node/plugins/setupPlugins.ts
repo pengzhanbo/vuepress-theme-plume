@@ -21,6 +21,11 @@ import { gitPlugin } from './git.js'
 import { llmsPlugin } from './llms.js'
 import { markdownPlugins } from './markdown.js'
 
+/**
+ * Setup theme plugins
+ *
+ * 设置主题插件，根据配置初始化搜索、评论、SEO、水印等插件
+ */
 export function setupPlugins(
   app: App,
   pluginOptions: ThemeBuiltinPlugins,

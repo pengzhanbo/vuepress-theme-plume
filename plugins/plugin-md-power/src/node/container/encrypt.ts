@@ -10,16 +10,35 @@ import { encryptContent } from '../utils/encryptContent'
 import { logger } from '../utils/logger'
 import { createContainerSyntaxPlugin } from './createContainer'
 
+/**
+ * Encryption options
+ *
+ * 加密选项
+ */
 interface EncryptOptions {
   password: string
   salt: Uint8Array
   iv: Uint8Array
 }
 
+/**
+ * Encrypt plugin - Enable encrypted content container
+ *
+ * 加密插件 - 启用加密内容容器
+ *
+ * @param app - VuePress app / VuePress 应用
+ * @param md - Markdown instance / Markdown 实例
+ * @param options - Encrypt snippet options / 加密片段选项
+ */
 export function encryptPlugin(app: App, md: Markdown, options: EncryptSnippetOptions): void {
   const encrypted: Set<string> = new Set()
   const entryFile = 'internal/encrypt-snippets/index.js'
 
+  /**
+   * Write encrypted content to temp file
+   *
+   * 将加密内容写入临时文件
+   */
   const writeTemp = async (
     hash: string,
     content: string,
@@ -29,6 +48,11 @@ export function encryptPlugin(app: App, md: Markdown, options: EncryptSnippetOpt
     await app.writeTemp(`internal/encrypt-snippets/${hash}.js`, `export default ${JSON.stringify(encrypted)}`)
   }
 
+  /**
+   * Write entry file with all encrypted snippets
+   *
+   * 写入包含所有加密片段的入口文件
+   */
   const writeEntry = debounce(150, async () => {
     let content = `export default {\n`
     for (const hash of encrypted) {
@@ -39,11 +63,17 @@ export function encryptPlugin(app: App, md: Markdown, options: EncryptSnippetOpt
   })
 
   if (!fs.existsSync(app.dir.temp(entryFile))) {
-    // 初始化
+    // Initialize
     app.writeTemp(entryFile, 'export default {}\n')
   }
 
   const localKeys = Object.keys(app.options.locales || {}).filter(key => key !== '/')
+
+  /**
+   * Get locale from relative path
+   *
+   * 从相对路径获取本地化
+   */
   const getLocale = (relativePath: string) => {
     const relative = ensureLeadingSlash(relativePath)
     return localKeys.find(key => relative.startsWith(key)) || '/'

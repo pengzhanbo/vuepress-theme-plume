@@ -10,6 +10,8 @@ import { getSidebarGroups, sidebarData, useSidebarData } from './sidebar-data.js
 
 /**
  * Check if the given sidebar item contains any active link.
+ *
+ * 检查给定的侧边栏项是否包含活动链接
  */
 export function hasActiveLink(path: string, items: ResolvedSidebarItem | ResolvedSidebarItem[]): boolean {
   if (Array.isArray(items)) {
@@ -31,6 +33,11 @@ const containsActiveLink = hasActiveLink
 const isSidebarEnabled = ref(false)
 const isSidebarCollapsed = ref(false)
 
+/**
+ * Use sidebar control
+ *
+ * 侧边栏控制，提供启用/禁用侧边栏和折叠/展开的控制函数
+ */
 export function useSidebarControl() {
   const enableSidebar = (): void => {
     isSidebarEnabled.value = true
@@ -63,6 +70,11 @@ export function useSidebarControl() {
   }
 }
 
+/**
+ * Use sidebar
+ *
+ * 侧边栏数据，获取当前路由的侧边栏项目和分组
+ */
 export function useSidebar(): {
   sidebar: Ref<ResolvedSidebarItem[]>
   sidebarKey: ComputedRef<string>
@@ -93,8 +105,9 @@ export function useSidebar(): {
 }
 
 /**
- * a11y: cache the element that opened the Sidebar (the menu button) then
- * focus that button again when Menu is closed with Escape key.
+ * Use close sidebar on escape
+ *
+ * a11y: 缓存打开侧边栏的元素（菜单按钮），当使用 Escape 关闭菜单时重新聚焦该按钮
  */
 export function useCloseSidebarOnEscape(): void {
   const { disableSidebar } = useSidebarControl()
@@ -122,6 +135,11 @@ export function useCloseSidebarOnEscape(): void {
   }
 }
 
+/**
+ * Use sidebar item control
+ *
+ * 侧边栏项目控制，管理单个侧边栏项目的折叠状态、激活状态等
+ */
 export function useSidebarItemControl(item: ComputedRef<ResolvedSidebarItem>): SidebarItemControl {
   const { page } = useData()
   const route = useRoute()

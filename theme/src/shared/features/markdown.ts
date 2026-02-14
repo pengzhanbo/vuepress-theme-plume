@@ -5,6 +5,11 @@ import type { MarkdownIncludePluginOptions } from '@vuepress/plugin-markdown-inc
 import type { MarkdownMathPluginOptions } from '@vuepress/plugin-markdown-math'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
 
+/**
+ * Markdown enhancement options
+ *
+ * Markdown 增强选项
+ */
 export interface MarkdownOptions extends MarkdownPowerPluginOptions,
   MarkdownChartPluginOptions,
   Pick<MarkdownHintPluginOptions, 'alert' | 'hint'> {

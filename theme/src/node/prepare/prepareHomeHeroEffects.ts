@@ -47,6 +47,11 @@ const t = createTranslate({
   },
 })
 
+/**
+ * Prepare home page hero effects
+ *
+ * 准备首页 Hero 动画效果，从 frontmatter 收集效果配置并写入临时文件，同时检测缺失的依赖
+ */
 export async function prepareHomeHeroEffects(app: App): Promise<void> {
   perf.mark('prepare:home-hero-effects')
 

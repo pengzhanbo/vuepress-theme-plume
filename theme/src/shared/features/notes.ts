@@ -1,6 +1,8 @@
 import type { ThemeSidebarItem } from './sidebar.js'
 
 /**
+ * Notes list options
+ *
  * @deprecated
  */
 export interface ThemeNoteListOptions {
@@ -21,6 +23,8 @@ export interface ThemeNoteListOptions {
 }
 
 /**
+ * Note item
+ *
  * @deprecated
  */
 export interface ThemeNote {

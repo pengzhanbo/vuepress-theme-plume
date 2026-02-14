@@ -9,6 +9,11 @@ import { usePostsPageData } from './page.js'
 import { useLocalePostList } from './posts-data.js'
 import { useSidebar } from './sidebar.js'
 
+/**
+ * Use prev next result
+ *
+ * 上一页/下一页结果类型
+ */
 interface UsePrevNextResult {
   prev: ComputedRef<NavItemWithLink | null>
   next: ComputedRef<NavItemWithLink | null>
@@ -16,6 +21,11 @@ interface UsePrevNextResult {
 
 const SEPARATOR_RE = /^-{3,}$/
 
+/**
+ * Use prev next
+ *
+ * 获取上一页和下一页链接
+ */
 export function usePrevNext(): UsePrevNextResult {
   const route = useRoute()
   const { frontmatter, theme } = useData()

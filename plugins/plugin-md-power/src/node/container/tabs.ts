@@ -3,6 +3,23 @@ import { tab } from '@mdit/plugin-tab'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { stringifyProp } from '../utils/stringifyProp.js'
 
+/**
+ * Tabs plugin - Enable tabs container
+ *
+ * 标签页插件 - 启用标签页容器
+ *
+ * Syntax:
+ * ```md
+ * :::tabs
+ * @tab Tab 1
+ * Content 1
+ * @tab Tab 2
+ * Content 2
+ * :::
+ * ```
+ *
+ * @param md - Markdown-it instance / Markdown-it 实例
+ */
 export const tabs: PluginSimple = (md) => {
   tab(md, {
     name: 'tabs',

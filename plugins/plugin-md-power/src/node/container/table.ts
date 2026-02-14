@@ -4,19 +4,30 @@ import { encodeData } from '@vuepress/helper'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerSyntaxPlugin } from './createContainer.js'
 
+/**
+ * Table container attributes
+ *
+ * 表格容器属性
+ */
 export interface TableContainerAttrs extends TableContainerOptions {
   /**
+   * Table title
+   *
    * 表格标题
    */
   title?: string
 
   /**
+   * Highlighted rows
+   *
    * 表格高亮的行
    *
    * @example hl-rows="warning:1,2,3;error:4,5,6"
    */
   hlRows?: string
   /**
+   * Highlighted columns
+   *
    * 表格高亮的列
    *
    * @example hl-cols="warning:1;error:2,3"
@@ -24,6 +35,8 @@ export interface TableContainerAttrs extends TableContainerOptions {
   hlCols?: string
 
   /**
+   * Highlighted cells
+   *
    * 表格高亮的单元格
    *
    * @example hl-cells="warning:(1,2)(2,3);error:(3,4)(4,5)"
@@ -32,7 +45,9 @@ export interface TableContainerAttrs extends TableContainerOptions {
 }
 
 /**
- *  在不破坏表格语法的前提下，通过容器语法将表格包裹起来，为表格提供增强功能
+ * Table plugin - Wrap table with container for enhanced features
+ *
+ * 表格插件 - 通过容器语法将表格包裹起来，为表格提供增强功能
  *
  * @example
  * ```md
@@ -43,6 +58,9 @@ export interface TableContainerAttrs extends TableContainerOptions {
  * | xx | xx | xx |
  * :::
  * ```
+ *
+ * @param md - Markdown instance / Markdown 实例
+ * @param options - Table container options / 表格容器选项
  */
 export function tablePlugin(md: Markdown, options: TableContainerOptions = {}): void {
   createContainerSyntaxPlugin(md, 'table', (tokens, index, opt, env) => {
@@ -96,6 +114,14 @@ export function tablePlugin(md: Markdown, options: TableContainerOptions = {}): 
   })
 }
 
+/**
+ * Parse highlight string
+ *
+ * 解析高亮字符串
+ *
+ * @param hl - Highlight string / 高亮字符串
+ * @returns Parsed highlight map / 解析后的高亮映射
+ */
 function parseHl(hl: string) {
   const res: Record<number, string> = {}
   if (!hl)
@@ -110,6 +136,14 @@ function parseHl(hl: string) {
   return res
 }
 
+/**
+ * Parse highlight cells string
+ *
+ * 解析高亮单元格字符串
+ *
+ * @param hl - Highlight cells string / 高亮单元格字符串
+ * @returns Parsed highlight cells map / 解析后的高亮单元格映射
+ */
 function parseHlCells(hl: string) {
   const res: Record<string, Record<number, string>> = {}
   if (!hl)

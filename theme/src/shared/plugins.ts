@@ -18,28 +18,43 @@ import type { SitemapPluginOptions } from '@vuepress/plugin-sitemap'
 import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
 
+/**
+ * Theme built-in plugins configuration
+ *
+ * 主题内置插件配置
+ */
 export interface ThemeBuiltinPlugins {
   /**
+   * plugin-search configuration
+   *
    * plugin-search 配置
    */
   search?: false | Partial<SearchPluginOptions>
 
   /**
+   * plugin-docsearch configuration
+   *
    * plugin-docsearch 配置
    */
   docsearch?: false | DocSearchOptions
 
   /**
+   * Code block copy button configuration
+   *
    * 代码块复制按钮配置
    */
   copyCode?: false | CopyCodePluginOptions
 
   /**
+   * Code highlighting configuration
+   *
    * 代码高亮 配置
    */
   shiki?: false | ShikiPluginOptions
 
   /**
+   * Git plugin configuration
+   *
    * git 插件 配置
    */
   git?: boolean

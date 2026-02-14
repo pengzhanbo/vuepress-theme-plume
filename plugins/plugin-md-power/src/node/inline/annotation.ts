@@ -7,29 +7,105 @@ import type Token from 'markdown-it/lib/token.mjs'
 import { objectMap, toArray } from '@pengzhanbo/utils'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv'
 
+/**
+ * Annotation token with meta information
+ *
+ * 带元信息的注释令牌
+ */
 interface AnnotationToken extends Token {
+  /**
+   * Token meta information
+   *
+   * 令牌元信息
+   */
   meta: {
+    /**
+     * Annotation label
+     *
+     * 注释标签
+     */
     label: string
   }
 }
 
+/**
+ * Annotation environment
+ *
+ * 注释环境
+ */
 interface AnnotationEnv extends Record<string, unknown> {
+  /**
+   * Annotations record
+   *
+   * 注释记录
+   */
   annotations: Record<string, {
+    /**
+     * Source texts
+     *
+     * 源文本
+     */
     sources: string[]
+    /**
+     * Rendered contents
+     *
+     * 渲染后的内容
+     */
     rendered: string[]
   }>
 }
 
+/**
+ * Annotation state block
+ *
+ * 注释状态块
+ */
 interface AnnotationStateBlock extends StateBlock {
+  /**
+   * Tokens array
+   *
+   * 令牌数组
+   */
   tokens: AnnotationToken[]
+  /**
+   * Environment
+   *
+   * 环境
+   */
   env: AnnotationEnv
 }
 
+/**
+ * Annotation state inline
+ *
+ * 注释行内状态
+ */
 interface AnnotationStateInline extends StateInline {
+  /**
+   * Tokens array
+   *
+   * 令牌数组
+   */
   tokens: AnnotationToken[]
+  /**
+   * Environment
+   *
+   * 环境
+   */
   env: AnnotationEnv
 }
 
+/**
+ * Annotation definition rule
+ *
+ * 注释定义规则
+ *
+ * @param state - State block / 状态块
+ * @param startLine - Start line number / 开始行号
+ * @param endLine - End line number / 结束行号
+ * @param silent - Silent mode / 静默模式
+ * @returns Whether matched / 是否匹配
+ */
 const annotationDef: RuleBlock = (
   state: AnnotationStateBlock,
   startLine: number,
@@ -100,6 +176,15 @@ const annotationDef: RuleBlock = (
   return true
 }
 
+/**
+ * Annotation reference rule
+ *
+ * 注释引用规则
+ *
+ * @param state - State inline / 行内状态
+ * @param silent - Silent mode / 静默模式
+ * @returns Whether matched / 是否匹配
+ */
 const annotationRef: RuleInline = (
   state: AnnotationStateInline,
   silent: boolean,
@@ -155,6 +240,20 @@ const annotationRef: RuleInline = (
   return true
 }
 
+/**
+ * Annotation plugin - Enable annotation syntax
+ *
+ * 注释插件 - 启用注释语法
+ *
+ * Definition syntax: [+label]: annotation content
+ * Reference syntax: [+label]
+ *
+ * 定义语法：[+label]: 注释内容
+ * 引用语法：[+label]
+ *
+ * @param md - Markdown-it instance / Markdown-it 实例
+ * @param globalAnnotations - Global annotations preset / 全局注释预设
+ */
 export const annotationPlugin: PluginWithOptions<Record<string, string | string[]>> = (
   md,
   globalAnnotations = {},

@@ -11,6 +11,23 @@ function sortPackageJson(json: Record<any, any>) {
   })
 }
 
+/**
+ * Create package.json file for VuePress project
+ *
+ * 为 VuePress 项目创建 package.json 文件
+ *
+ * @param mode - Operation mode (init or create) / 操作模式（初始化或创建）
+ * @param pkg - Existing package.json data / 现有的 package.json 数据
+ * @param data - Resolved configuration data / 解析后的配置数据
+ * @param data.packageManager - Package manager to use / 要使用的包管理器
+ * @param data.siteName - Site name / 站点名称
+ * @param data.siteDescription - Site description / 站点描述
+ * @param data.docsDir - Documentation directory path / 文档目录路径
+ * @param data.bundler - Bundler to use / 要使用的打包器
+ * @param data.injectNpmScripts - Whether to inject npm scripts / 是否注入 npm 脚本
+ *
+ * @returns File object with package.json content / 包含 package.json 内容的文件对象
+ */
 export async function createPackageJson(
   mode: Mode,
   pkg: Record<string, any>,

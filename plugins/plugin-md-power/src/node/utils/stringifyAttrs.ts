@@ -1,5 +1,16 @@
 import { isBoolean, isNull, isNumber, isString, isUndefined, kebabCase } from '@pengzhanbo/utils'
 
+/**
+ * Stringify attributes object to HTML attribute string
+ *
+ * 将属性对象字符串化为 HTML 属性字符串
+ *
+ * @param attrs - Attributes object / 属性对象
+ * @param withUndefinedOrNull - Whether to include undefined/null values / 是否包含 undefined/null 值
+ * @param forceStringify - Keys to force stringify / 强制字符串化的键
+ * @returns HTML attribute string / HTML 属性字符串
+ * @typeParam T - Attribute type / 属性类型
+ */
 export function stringifyAttrs<T extends object = object>(
   attrs: T,
   withUndefinedOrNull = false,

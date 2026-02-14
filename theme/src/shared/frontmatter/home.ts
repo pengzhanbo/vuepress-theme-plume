@@ -3,6 +3,11 @@ import type { LiteralUnion } from '../utils.js'
 import type { ThemeHomeHeroEffect, ThemeHomeHeroEffectConfig, ThemeHomeHeroTintPlate } from './homeHeroEffects.js'
 import type { ThemeNormalFrontmatter } from './normal.js'
 
+/**
+ * Home page frontmatter
+ *
+ * 首页 frontmatter
+ */
 export interface ThemeHomeFrontmatter extends ThemeNormalFrontmatter, Omit<ThemeHomeBanner, 'type'> {
   home?: true
   friends?: never

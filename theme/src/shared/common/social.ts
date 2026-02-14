@@ -1,5 +1,7 @@
 import type { LiteralUnion } from '../utils.js'
 /**
+ * Social link
+ *
  * 社交链接
  */
 export interface SocialLink {
@@ -9,10 +11,17 @@ export interface SocialLink {
 }
 
 /**
+ * Social link icon
+ *
  * 社交链接图标
  */
 export type SocialLinkIcon = LiteralUnion<SocialLinkIconUnion> | { svg: string, name?: string }
 
+/**
+ * Social link icon type
+ *
+ * 社交链接图标类型
+ */
 export type SocialLinkIconUnion
   = | 'discord'
     | 'telegram'

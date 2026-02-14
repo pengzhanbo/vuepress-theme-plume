@@ -66,6 +66,11 @@ export function setupSidebar(): void {
   }, { immediate: true })
 }
 
+/**
+ * Use sidebar data
+ *
+ * 获取侧边栏数据
+ */
 export function useSidebarData(): Ref<ResolvedSidebarItem[]> {
   return sidebar
 }

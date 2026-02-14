@@ -18,6 +18,11 @@ import { findCollection } from '../collections/index.js'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { normalizeLink, perf, resolveContent, writeTemp } from '../utils/index.js'
 
+/**
+ * Prepare sidebar data
+ *
+ * 准备侧边栏数据，处理所有语言环境的侧边栏配置并生成临时文件
+ */
 export async function prepareSidebar(app: App): Promise<void> {
   perf.mark('prepare:sidebar')
   const sidebar = getAllSidebar()

@@ -13,6 +13,11 @@ function getRootLang(app: App): string {
   return app.siteData.lang
 }
 
+/**
+ * Create additional pages
+ *
+ * 创建额外页面，根据集合配置生成文章列表页、标签页、分类页、归档页等
+ */
 export async function createPages(app: App): Promise<void> {
   const options = getThemeConfig()
 

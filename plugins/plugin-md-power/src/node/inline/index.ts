@@ -13,6 +13,14 @@ import { annotationPlugin } from './annotation.js'
 import { envPresetPlugin } from './env-preset.js'
 import { plotPlugin } from './plot.js'
 
+/**
+ * Inline syntax plugin - Register all inline markdown syntax plugins
+ *
+ * 行内语法插件 - 注册所有行内 Markdown 语法插件
+ *
+ * @param md - Markdown instance / Markdown 实例
+ * @param options - Plugin options / 插件选项
+ */
 export function inlineSyntaxPlugin(
   md: Markdown,
   options: MarkdownPowerPluginOptions,

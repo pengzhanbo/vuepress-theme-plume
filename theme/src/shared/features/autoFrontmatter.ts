@@ -1,5 +1,10 @@
 import type { LiteralUnion } from '@pengzhanbo/utils'
 
+/**
+ * Auto frontmatter data fields
+ *
+ * 自动 frontmatter 数据字段
+ */
 export type AutoFrontmatterData = Record<
   LiteralUnion<'title' | 'createTime' | 'permalink'>,
   any
@@ -48,6 +53,11 @@ export type AutoFrontmatterHandle<
   D extends AutoFrontmatterData = AutoFrontmatterData,
 > = (data: D, context: AutoFrontmatterContext) => D | Promise<D>
 
+/**
+ * Auto frontmatter rule
+ *
+ * 自动 frontmatter 规则
+ */
 export interface AutoFrontmatterRule {
   /**
    * File filter, matches the relative path of the file
@@ -77,6 +87,11 @@ export interface AutoFrontmatterRule {
   handle: AutoFrontmatterHandle
 }
 
+/**
+ * Auto frontmatter options
+ *
+ * 自动 frontmatter 选项
+ */
 export interface AutoFrontmatterOptions {
   /**
    * 是否自动生成 permalink

@@ -2,6 +2,11 @@ import type { Markdown } from 'vuepress/markdown'
 import { resolveAttrs } from '.././utils/resolveAttrs.js'
 import { createContainerPlugin } from './createContainer.js'
 
+/**
+ * Demo wrapper attributes
+ *
+ * 演示包装器属性
+ */
 interface DemoWrapperAttrs {
   title?: string
   img?: string
@@ -10,8 +15,14 @@ interface DemoWrapperAttrs {
 }
 
 /**
- * :::demo-wrapper img no-padding title="xxx" height="100px"
- * :::
+ * Demo wrapper plugin - Enable demo wrapper container
+ *
+ * 演示包装器插件 - 启用演示包装器容器
+ *
+ * Syntax: :::demo-wrapper img no-padding title="xxx" height="100px"
+ * 语法：:::demo-wrapper img no-padding title="xxx" height="100px"
+ *
+ * @param md - Markdown instance / Markdown 实例
  */
 export function demoWrapperPlugin(md: Markdown): void {
   createContainerPlugin(md, 'demo-wrapper', {

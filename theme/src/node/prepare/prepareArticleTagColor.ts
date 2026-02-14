@@ -32,6 +32,11 @@ export const PRESET: TagsColorsItem[] = [
 // { index: className }
 let cache: Record<number, string> = {}
 
+/**
+ * Prepare article tag colors
+ *
+ * 准备文章标签颜色，收集页面中使用的标签并生成对应的 CSS 和 JS 文件
+ */
 export async function prepareArticleTagColors(app: App): Promise<void> {
   perf.mark('prepare:tag-colors')
   const { js, css } = genCode(app)
@@ -46,6 +51,11 @@ export async function prepareArticleTagColors(app: App): Promise<void> {
   perf.log('prepare:tag-colors')
 }
 
+/**
+ * Generate tag color CSS and JS code
+ *
+ * 生成标签颜色的 CSS 和 JS 代码，遍历所有页面收集标签并生成对应的样式和脚本
+ */
 export function genCode(app: App): { js: string, css: string } {
   const articleTagColors: Record<string, string> = {}
   const tagList = new Set<string>()

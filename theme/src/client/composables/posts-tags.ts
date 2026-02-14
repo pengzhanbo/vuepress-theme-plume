@@ -9,12 +9,22 @@ import { useTagColors } from './tag-colors.js'
 
 type ShortPostItem = Pick<ThemePostsItem, 'title' | 'path' | 'createTime'>
 
+/**
+ * Posts tag item
+ *
+ * 标签项，包含名称、数量和样式类名
+ */
 interface PostsTagItem {
   name: string
   count: string | number
   className: string
 }
 
+/**
+ * Use tags result
+ *
+ * 标签结果类型
+ */
 interface UseTagsResult {
   tags: ComputedRef<PostsTagItem[]>
   currentTag: Ref<string>
@@ -22,6 +32,11 @@ interface UseTagsResult {
   handleTagClick: (tag: string) => void
 }
 
+/**
+ * Use tags
+ *
+ * 获取标签列表和当前选中的标签，处理标签相关逻辑
+ */
 export function useTags(): UseTagsResult {
   const { collection } = useData<'page', 'post'>()
   const list = useLocalePostList()

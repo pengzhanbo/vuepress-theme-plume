@@ -72,19 +72,22 @@ watch(() => props.forceDark, () => {
   document.documentElement.classList.add(`effect-${effect.value}`)
 }, { immediate: true, flush: 'post' })
 
+function fallbackDarkMode() {
+  isDark.value = defaultTheme === 'dark'
+}
+
 onMounted(() => {
   if (props.forceDark) {
-    window.addEventListener('unload', () => {
-      isDark.value = defaultTheme === 'dark'
-    })
+    window.addEventListener('unload', fallbackDarkMode)
   }
 })
 
 onUnmounted(() => {
   if (props.forceDark) {
-    isDark.value = defaultTheme === 'dark'
+    fallbackDarkMode()
     document.documentElement.classList.remove('force-dark', `effect-${effect.value}`)
     noTransition()
+    window.removeEventListener('unload', fallbackDarkMode)
   }
 })
 </script>

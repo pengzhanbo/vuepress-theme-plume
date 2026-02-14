@@ -3,7 +3,7 @@ import type { PostsCoverStyle, ThemePostsItem } from '../../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
 import { isMobile as _isMobile } from '@vuepress/helper/client'
 import { getReadingTimeLocale, useReadingTimeLocaleConfig } from '@vuepress/plugin-reading-time/client'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { withBase } from 'vuepress/client'
 import { useData, useInternalLink, useTagColors } from '../../composables/index.js'
 
@@ -14,11 +14,17 @@ const { post, index } = defineProps<{
 
 const isMobile = ref(false)
 
-onMounted(() => {
+function updateIsMobile() {
   isMobile.value = _isMobile()
-  window.addEventListener('resize', () => {
-    isMobile.value = _isMobile()
-  })
+}
+
+onMounted(() => {
+  updateIsMobile()
+  window.addEventListener('resize', updateIsMobile)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateIsMobile)
 })
 
 const { collection } = useData<'page', 'post'>()

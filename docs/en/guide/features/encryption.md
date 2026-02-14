@@ -115,6 +115,109 @@ passwordHint: The password is 123456
 
 Click to visit [Encrypted Article, Password: 123456](/article/enx7c9s/)
 
+## Partial Content Encryption
+
+### Configuration
+
+Partial content encryption is implemented through the `::: encrypt` container. You need to configure the `markdown.encrypt` option:
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      encrypt: true, // [!code ++]
+    }
+  })
+})
+```
+
+You can also set a unified default password for the `::: encrypt` container:
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      encrypt: {
+        password: 123456, // [!code ++]
+      }
+    }
+  })
+})
+```
+
+### Usage
+
+Use the `::: encrypt` container to wrap the content that needs to be encrypted.
+You can add `password` / `pwd` attribute to the container to set the password for that container.
+If no password is set, the default password will be used.
+
+You can also add a `hint` attribute to set a password hint.
+
+```md /password="123456"/
+::: encrypt password="123456" hint="The password is 6 consecutive digits"
+This is encrypted content
+:::
+```
+
+::: info Only one password is effective; multiple passwords are not supported simultaneously.
+:::
+
+### Example
+
+**Input:**
+
+```md
+::: encrypt password="123456"
+This is encrypted content
+:::
+```
+
+**Output:**
+
+::: encrypt password="123456"
+This is encrypted content
+:::
+
+**Input:**
+
+```md
+::: encrypt password="654321" hint="The password is 6 consecutive digits"
+This is encrypted content 2
+:::
+```
+
+**Output:**
+
+::: encrypt password="654321" hint="The password is 6 consecutive digits"
+This is encrypted content 2
+:::
+
+::: warning Usage Limitations
+**For encrypted content, you can use:**
+
+- All standard markdown syntax
+- Most extended syntax provided by the theme, except:
+  - `@[demo]()` code examples imported from directories
+  - `@[code]()` code snippets imported from directories
+  - `@[code-tree]()` code trees imported from directories
+- Global Vue components provided by the theme
+- User-defined global Vue components
+- Encrypted content cannot contain executable scripts; for special interactions, please implement through components.
+
+**Network Environment Requirements:**
+Partial content encryption is implemented using [Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Crypto),
+therefore, it will not work properly in **non-HTTPS environments**.
+:::
+
+::: details If you are a technical developer, you may need to know
+
+The original markdown content is first rendered into HTML content, then encrypted; transmitted to the client, then decrypted and rendered.
+The decrypted content is wrapped as a dynamic Vue component, with HTML passed as the template to the dynamic component.
+This involves runtime template compilation. As a result, if partial content encryption is enabled,
+Vue needs to be switched to the `esm-bundler` version to support runtime compilation,
+which has slightly worse performance and larger size compared to the default `runtime-only` version.
+:::
+
 ## Related Configurations
 
 The following configurations can be used in [multilingual settings](../../config/locales.md).

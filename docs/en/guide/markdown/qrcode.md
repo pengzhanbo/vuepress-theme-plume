@@ -1,9 +1,9 @@
 ---
-title: qrcode
+title: QR Code
 icon: uiw:qrcode
-createTime: 2025/12/05 16:16:06
+createTime: 2025/12/05 10:37:43
 permalink: /en/guide/markdown/qrcode/
-badge: 新
+badge: New
 ---
 
 @[qrcode](https://github.com/pengzhanbo/vuepress-theme-plume)

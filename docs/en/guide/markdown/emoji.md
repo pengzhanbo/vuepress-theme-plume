@@ -12,9 +12,9 @@ import { people, nature, foods, places, activities, symbols, objects, flags } fr
 
 ## Quick Start
 
-在 Markdown 中使用表情符号非常简单，只需用冒号包裹表情代码即可：
+Using emoji in Markdown is very simple, just wrap the emoji code with colons:
 
-**Input：**
+**Input:**
 
 ```md
 :tada: :100:

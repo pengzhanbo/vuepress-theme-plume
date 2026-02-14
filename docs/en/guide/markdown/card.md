@@ -96,5 +96,5 @@ This is the card content.
 ::::
 
 ::: info
-If you prefer using cards via components, you can check out the [Card Component](/guide/features/component/#card).
+If you prefer using cards via components, you can check out the [Card Component](../features/component.md#card).
 :::

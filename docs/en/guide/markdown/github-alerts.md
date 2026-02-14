@@ -1,6 +1,7 @@
 ---
-title: github-alerts
-createTime: 2025/11/29 21:20:21
+title: GitHub Alerts
+icon: mdi:alert-outline
+createTime: 2025/11/29 19:59:45
 permalink: /en/guide/markdown/github-alerts/
 ---
 

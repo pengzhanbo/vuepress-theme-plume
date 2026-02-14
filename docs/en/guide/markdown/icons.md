@@ -2,7 +2,7 @@
 title: Icons
 createTime: 2025/10/08 14:49:39
 icon: grommet-icons:emoji
-permalink: /en/guide/markdown/icon/
+permalink: /en/guide/markdown/icons/
 ---
 
 <script setup>

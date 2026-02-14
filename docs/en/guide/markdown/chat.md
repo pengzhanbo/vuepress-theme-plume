@@ -36,7 +36,7 @@ Bad news: I've used you as the example \[doge\]
 
 ## Overview
 
-In Markdown, wrapping specially formatted text content within a `:: chat` container allows you to display ==chat records== within the documentation.
+In Markdown, wrapping specially formatted text content within a `::: chat` container allows you to display ==chat records== within the documentation.
 
 ::: warning This is a feature you likely won't need most of the time.
 Please consider carefully whether you should use it when the need arises.

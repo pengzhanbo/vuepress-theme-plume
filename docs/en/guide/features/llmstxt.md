@@ -2,7 +2,7 @@
 title: LLMs txt
 icon: ri:ai
 createTime: 2025/12/01 10:46:46
-permalink: /en/features/llmstxt/
+permalink: /en/guide/features/llmstxt/
 ---
 
 ## Overview

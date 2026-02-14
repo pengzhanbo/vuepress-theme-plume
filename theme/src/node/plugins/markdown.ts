@@ -16,6 +16,11 @@ import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
 import { MARKDOWN_CHART_FIELDS, MARKDOWN_POWER_FIELDS } from '../detector/index.js'
 import { getThemeConfig } from '../loadConfig/index.js'
 
+/**
+ * Setup markdown plugins
+ *
+ * 设置 Markdown 增强插件，包括提示、图像、数学公式、图表等功能
+ */
 export function markdownPlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
   const options = getThemeConfig()
   const plugins: PluginConfig = []

@@ -79,6 +79,11 @@ function processPostData(
   return data
 }
 
+/**
+ * Prepare posts data
+ *
+ * 准备文章数据，过滤非草稿文章并为每个集合和语言环境生成文章列表数据
+ */
 export async function preparedPostsData(app: App): Promise<void> {
   const isBuild = app.env.isBuild
   const { encrypt, locales } = getThemeConfig()

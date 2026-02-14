@@ -45,6 +45,11 @@ export interface Data<T extends FrontmatterType = 'page', C extends FrontmatterC
   collection: CollectionItemRef<C extends 'doc' ? ThemeDocCollection : ThemePostCollection>
 }
 
+/**
+ * Use data
+ *
+ * 获取页面数据，包括主题配置、页面数据、frontmatter、语言、站点信息、暗黑模式和集合信息
+ */
 export function useData<T extends FrontmatterType = 'page', C extends FrontmatterCollectionType = 'doc'>(): Data<T, C> {
   const theme = useThemeLocaleData()
   const page = usePageData<ThemePageData>()

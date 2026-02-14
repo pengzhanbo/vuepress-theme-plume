@@ -13,6 +13,8 @@ import type {
 import type { LiteralUnion } from './utils.js'
 
 /**
+ * Built-in multilingual configuration
+ *
  * 内置的多语言配置
  */
 export interface PresetLocale extends Record<CopyrightLicense, string> {}
@@ -177,6 +179,8 @@ export interface ThemeLocale extends LocaleData {
 }
 
 /**
+ * Deprecated theme locale configuration
+ *
  * 已弃用的配置
  */
 export interface ThemeLocaleDeprecated {
@@ -187,6 +191,8 @@ export interface ThemeLocaleDeprecated {
 }
 
 /**
+ * Theme multilingual text configuration
+ *
  * 主题多语言文本配置
  */
 export interface ThemeLocaleText {

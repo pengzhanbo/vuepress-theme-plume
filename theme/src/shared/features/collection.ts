@@ -5,6 +5,8 @@ import type { ProfileOptions } from './profile.js'
 import type { ThemeSidebarItem } from './sidebar.js'
 
 /**
+ * Document collection
+ *
  * 文档集合
  *
  * 主题通过 集合的方式，聚合某个目录下的文章，作为一个独立的文档。
@@ -15,6 +17,11 @@ export type ThemeCollections = ThemeCollectionItem[]
 
 export type ThemeCollectionItem = ThemePostCollection | ThemeDocCollection
 
+/**
+ * Base collection configuration
+ *
+ * 基础集合配置
+ */
 export interface ThemeBaseCollection {
   /**
    * 文档集合类型
@@ -83,6 +90,8 @@ export interface ThemeBaseCollection {
 }
 
 /**
+ * Post type article collection
+ *
  * post 类型的文章集合
  */
 export interface ThemePostCollection extends ThemeBaseCollection {
@@ -216,6 +225,8 @@ export interface ThemePostCollection extends ThemeBaseCollection {
 }
 
 /**
+ * Document type article collection
+ *
  * 文档类型的文章集合
  */
 export interface ThemeDocCollection extends ThemeBaseCollection {

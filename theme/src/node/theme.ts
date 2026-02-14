@@ -21,7 +21,10 @@ import { perf, resolve, setTranslateLang, templates, THEME_NAME } from './utils/
 
 /**
  * VuePress Theme Plume
- * @param options 主题配置
+ *
+ * VuePress 主题 Plume
+ *
+ * @param options Theme options / 主题配置
  * @example
  * ```ts
  * import { defineUserConfig } from 'vuepress'

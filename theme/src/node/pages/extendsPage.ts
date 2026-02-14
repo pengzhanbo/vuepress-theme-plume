@@ -5,6 +5,11 @@ import { autoCategory } from './autoCategory.js'
 import { encryptPage } from './encryptPage.js'
 import { enableBulletin } from './pageBulletin.js'
 
+/**
+ * Extend page data
+ *
+ * 扩展页面数据，清理页面数据、自动分类、启用公告栏、加密页面
+ */
 export async function extendsPageData(
   page: Page<ThemePageData>,
 ): Promise<void> {

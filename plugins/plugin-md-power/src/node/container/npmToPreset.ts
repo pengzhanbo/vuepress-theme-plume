@@ -1,22 +1,62 @@
 import type { NpmToPackageManager } from '../../shared/index.js'
 
+/**
+ * Package command types
+ *
+ * 包命令类型
+ */
 export type PackageCommand = 'install' | 'add' | 'remove' | 'run' | 'create' | 'init' | 'npx' | 'ci'
 
+/**
+ * Command config item
+ *
+ * 命令配置项
+ */
 export interface CommandConfigItem {
   cli: string
   flags?: Record<string, string>
 }
 
+/**
+ * Command config for package managers (excluding npm)
+ *
+ * 包管理器的命令配置（不包括 npm）
+ */
 export type CommandConfig = Record<Exclude<NpmToPackageManager, 'npm'>, CommandConfigItem | false>
 
+/**
+ * Command configs for all package commands
+ *
+ * 所有包命令的配置
+ */
 export type CommandConfigs = Record<PackageCommand, { pattern: RegExp } & CommandConfig>
 
+/**
+ * Allowed package managers list
+ *
+ * 允许的包管理器列表
+ */
 export const ALLOW_LIST = ['npm', 'pnpm', 'yarn', 'bun', 'deno'] as const
 
+/**
+ * Boolean flags for npm commands
+ *
+ * npm 命令的布尔标志
+ */
 export const BOOL_FLAGS: string[] = ['--no-save', '-B', '--save-bundle', '--save-dev', '-D', '--save-prod', '-P', '--save-peer', '-O', '--save-optional', '-E', '--save-exact', '-y', '--yes', '-g', '--global']
 
+/**
+ * Default tabs to display
+ *
+ * 默认显示的标签
+ */
 export const DEFAULT_TABS: NpmToPackageManager[] = ['npm', 'pnpm', 'yarn']
 
+/**
+ * Package manager configurations
+ *
+ * 包管理器配置
+ */
 export const MANAGERS_CONFIG: CommandConfigs = {
   install: {
     pattern: /(?:^|\s)npm\s+(?:install|i)$/,

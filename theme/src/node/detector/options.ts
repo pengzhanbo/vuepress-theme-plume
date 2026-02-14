@@ -5,6 +5,8 @@ import { detectMarkdown } from './markdown.js'
 import { detectPlugins } from './plugins.js'
 
 /**
+ * Detect theme options
+ *
  * 检测主题选项
  */
 export function detectThemeOptions({

@@ -10,14 +10,49 @@ import imageSize from 'image-size'
 import { fs, logger, path } from 'vuepress/utils'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 
+/**
+ * Image size interface
+ *
+ * 图片尺寸接口
+ */
 interface ImgSize {
+  /**
+   * Image width
+   *
+   * 图片宽度
+   */
   width: number
+  /**
+   * Image height
+   *
+   * 图片高度
+   */
   height: number
 }
 
+/**
+ * Regular expression for matching markdown image syntax
+ *
+ * 匹配 markdown 图片语法的正则表达式
+ */
 const REG_IMG = /!\[.*?\]\(.*?\)/g
+/**
+ * Regular expression for matching HTML img tag
+ *
+ * 匹配 HTML img 标签的正则表达式
+ */
 const REG_IMG_TAG = /<img(.*?)>/g
+/**
+ * Regular expression for matching src/srcset attribute
+ *
+ * 匹配 src/srcset 属性的正则表达式
+ */
 const REG_IMG_TAG_SRC = /src(?:set)?=(['"])(.+?)\1/g
+/**
+ * List of badge URLs to exclude
+ *
+ * 要排除的徽章 URL 列表
+ */
 const BADGE_LIST = [
   'https://img.shields.io',
   'https://badge.fury.io',
@@ -26,8 +61,22 @@ const BADGE_LIST = [
   'https://vercel.com/button',
 ]
 
+/**
+ * Cache for image sizes
+ *
+ * 图片尺寸缓存
+ */
 const cache = new Map<string, ImgSize>()
 
+/**
+ * Image size plugin - Add width and height attributes to images
+ *
+ * 图片尺寸插件 - 为图片添加宽度和高度属性
+ *
+ * @param app - VuePress app / VuePress 应用
+ * @param md - Markdown instance / Markdown 实例
+ * @param type - Image size type: 'local', 'all', or false / 图片尺寸类型：'local'、'all' 或 false
+ */
 export async function imageSizePlugin(
   app: App,
   md: Markdown,
@@ -71,6 +120,14 @@ export async function imageSizePlugin(
   md.renderer.rules.html_block = createHtmlRule(rawHtmlBlockRule)
   md.renderer.rules.html_inline = createHtmlRule(rawHtmlInlineRule)
 
+  /**
+   * Create HTML rule for processing img tags
+   *
+   * 创建处理 img 标签的 HTML 规则
+   *
+   * @param rawHtmlRule - Original HTML rule / 原始 HTML 规则
+   * @returns New HTML rule / 新的 HTML 规则
+   */
   function createHtmlRule(rawHtmlRule: RenderRule): RenderRule {
     return (tokens, idx, options, env, self) => {
       const token = tokens[idx]
@@ -95,6 +152,17 @@ export async function imageSizePlugin(
     }
   }
 
+  /**
+   * Resolve image size from source
+   *
+   * 从源解析图片尺寸
+   *
+   * @param src - Image source / 图片源
+   * @param width - Existing width / 现有宽度
+   * @param height - Existing height / 现有高度
+   * @param env - Markdown environment / Markdown 环境
+   * @returns Image size or false / 图片尺寸或 false
+   */
   function resolveSize(
     src: string | null | undefined,
     width: string | null | undefined,
@@ -150,6 +218,16 @@ export async function imageSizePlugin(
   }
 }
 
+/**
+ * Resolve image URL from source
+ *
+ * 从源解析图片 URL
+ *
+ * @param src - Image source / 图片源
+ * @param env - Markdown environment / Markdown 环境
+ * @param app - VuePress app / VuePress 应用
+ * @returns Resolved image URL / 解析后的图片 URL
+ */
 function resolveImageUrl(src: string, env: MarkdownEnv, app: App): string {
   if (src[0] === '/')
     return app.dir.public(src.slice(1))
@@ -164,6 +242,13 @@ function resolveImageUrl(src: string, env: MarkdownEnv, app: App): string {
   return path.resolve(src)
 }
 
+/**
+ * Scan remote image sizes in markdown files
+ *
+ * 扫描 markdown 文件中的远程图片尺寸
+ *
+ * @param app - VuePress app / VuePress 应用
+ */
 export async function scanRemoteImageSize(app: App): Promise<void> {
   if (!app.env.isBuild)
     return
@@ -194,6 +279,13 @@ export async function scanRemoteImageSize(app: App): Promise<void> {
     }
   }
 
+  /**
+   * Add source to image list
+   *
+   * 将源添加到图片列表
+   *
+   * @param src - Image source / 图片源
+   */
   function addList(src: string) {
     if (src && isLinkHttp(src)
       && !imgList.includes(src)
@@ -211,6 +303,14 @@ export async function scanRemoteImageSize(app: App): Promise<void> {
   }))
 }
 
+/**
+ * Fetch image size from remote URL
+ *
+ * 从远程 URL 获取图片尺寸
+ *
+ * @param src - Image URL / 图片 URL
+ * @returns Image size / 图片尺寸
+ */
 function fetchImageSize(src: string): Promise<ImgSize> {
   const link = new URL(src)
 
@@ -248,6 +348,16 @@ function fetchImageSize(src: string): Promise<ImgSize> {
   }
 }
 
+/**
+ * Resolve image size from URL
+ *
+ * 从 URL 解析图片尺寸
+ *
+ * @param app - VuePress app / VuePress 应用
+ * @param url - Image URL / 图片 URL
+ * @param remote - Whether to fetch remote images / 是否获取远程图片
+ * @returns Image size / 图片尺寸
+ */
 export async function resolveImageSize(app: App, url: string, remote = false): Promise<ImgSize> {
   if (cache.has(url))
     return cache.get(url)!

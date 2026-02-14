@@ -1,3 +1,8 @@
+/**
+ * Last updated options
+ *
+ * 最后更新时间选项
+ */
 export interface LastUpdatedOptions {
   /**
    * Set options for last updated time formatting.

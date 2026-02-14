@@ -10,6 +10,11 @@ import { useCloseSidebarOnEscape, useSidebarControl } from './sidebar.js'
 const is960 = shallowRef(false)
 const is1280 = shallowRef(false)
 
+/**
+ * Use layout
+ *
+ * 获取当前页面布局相关信息，包括是否首页、是否有侧边栏、是否显示目录等
+ */
 export function useLayout() {
   const { frontmatter, theme } = useData()
   const { isPageDecrypted } = useEncrypt()

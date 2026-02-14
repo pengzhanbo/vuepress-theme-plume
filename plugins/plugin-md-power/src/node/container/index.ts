@@ -21,6 +21,16 @@ import { tablePlugin } from './table.js'
 import { tabs } from './tabs.js'
 import { timelinePlugin } from './timeline.js'
 
+/**
+ * Container plugin - Register all container plugins
+ *
+ * 容器插件 - 注册所有容器插件
+ *
+ * @param app - VuePress app / VuePress 应用
+ * @param md - Markdown instance / Markdown 实例
+ * @param options - Plugin options / 插件选项
+ * @param locales - Locale configuration / 本地化配置
+ */
 export async function containerPlugin(
   app: App,
   md: Markdown,

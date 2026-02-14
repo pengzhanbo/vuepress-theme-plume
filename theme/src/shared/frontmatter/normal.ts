@@ -1,5 +1,10 @@
 import type { PageFrontmatter } from 'vuepress'
 
+/**
+ * Normal page frontmatter
+ *
+ * 普通页面 frontmatter
+ */
 export type ThemeNormalFrontmatter = PageFrontmatter<{
 
   /**
@@ -17,16 +22,22 @@ export type ThemeNormalFrontmatter = PageFrontmatter<{
   friends?: boolean
 
   /**
-   * page layout
+   * Page layout
+   *
+   * 页面布局
    */
   pageLayout?: false | 'home' | 'posts' | 'doc' | 'custom' | 'page' | 'friends'
 
   /**
+   * Custom page class
+   *
    * 自定义页面 class
    */
   pageClass?: string
 
   /**
+   * Show navigation bar
+   *
    * 是否显示导航栏
    *
    * @default true
@@ -34,6 +45,8 @@ export type ThemeNormalFrontmatter = PageFrontmatter<{
   navbar?: boolean
 
   /**
+   * Show back to top button
+   *
    * 是否显示返回顶部按钮
    *
    * @default true
@@ -41,6 +54,8 @@ export type ThemeNormalFrontmatter = PageFrontmatter<{
   backToTop?: boolean
 
   /**
+   * Show down arrow sign
+   *
    * 是否显示向下箭头标志
    *
    * @default false
@@ -48,6 +63,8 @@ export type ThemeNormalFrontmatter = PageFrontmatter<{
   signDown?: boolean
 
   /**
+   * Show external link icon on current page
+   *
    * 当前页面是否显示 外部链接图标
    *
    * @default true

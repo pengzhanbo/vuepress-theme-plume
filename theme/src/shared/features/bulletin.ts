@@ -1,6 +1,8 @@
 import type { Page } from 'vuepress'
 
 /**
+ * Bulletin board configuration
+ *
  * 公告栏配置
  */
 export type BulletinOptions<T extends Record<string, unknown> = Record<string, unknown>> = T & {

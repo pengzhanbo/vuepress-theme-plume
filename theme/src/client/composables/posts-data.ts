@@ -9,12 +9,27 @@ import { useCollection } from './collections.js'
 
 export type PostsDataRef = Ref<Record<string, ThemePosts>>
 
+/**
+ * Posts data ref
+ *
+ * 文章数据引用，包含所有语言环境的文章列表
+ */
 export const postsData: PostsDataRef = ref(postsDataRaw)
 
+/**
+ * Use posts data
+ *
+ * 获取文章数据
+ */
 export function usePostsData(): PostsDataRef {
   return postsData as PostsDataRef
 }
 
+/**
+ * Use locale post list
+ *
+ * 获取当前语言环境的文章列表
+ */
 export function useLocalePostList(): ComputedRef<ThemePosts> {
   const collection = useCollection()
   const routeLocale = useRouteLocale()

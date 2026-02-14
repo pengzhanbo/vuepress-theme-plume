@@ -11,6 +11,11 @@ const CODE_BLOCK_RE = /(?:^|\n)(?<marker>\s*`{3,})([\s\w])[\s\S]*?\n\k<marker>(?
 const ENCRYPT_CONTAINER_RE = /(?:^|\n)(?<marker>\s*:{3,})\s*encrypt\b[\s\S]*?\n\k<marker>(?:\n|$)/g
 const RESTORE_RE = /<!-- llms-code-block:(\w+) -->/g
 
+/**
+ * Setup LLMs plugin
+ *
+ * 设置 LLM 插件，用于生成 LLM 友好的网站内容，支持自定义 Markdown 转换和模板
+ */
 export function llmsPlugin(app: App, userOptions: true | LlmsPluginOptions): PluginConfig {
   if (!app.env.isBuild)
     return []

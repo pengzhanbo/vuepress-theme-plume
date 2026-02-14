@@ -1,4 +1,10 @@
 /**
+ * Chat container plugin
+ *
+ * 聊天容器插件
+ *
+ * Syntax:
+ * ```md
  * ::: chat
  * {:time}
  *
@@ -8,12 +14,18 @@
  * {.}
  * xxxxxx
  * :::
+ * ```
  */
 import type { PluginSimple } from 'markdown-it'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { createContainerSyntaxPlugin } from './createContainer.js'
 
+/**
+ * Chat message structure
+ *
+ * 聊天消息结构
+ */
 interface ChatMessage {
   sender: 'user' | 'self'
   date: string
@@ -21,6 +33,16 @@ interface ChatMessage {
   content: string[]
 }
 
+/**
+ * Render chat messages to HTML
+ *
+ * 渲染聊天消息为 HTML
+ *
+ * @param md - Markdown instance / Markdown 实例
+ * @param env - Markdown environment / Markdown 环境
+ * @param messages - Chat messages / 聊天消息数组
+ * @returns Rendered HTML / 渲染后的 HTML
+ */
 function chatMessagesRender(md: Markdown, env: MarkdownEnv, messages: ChatMessage[]): string {
   let currentDate = ''
   return messages.map(({ sender, username, date, content }) => {
@@ -43,7 +65,14 @@ function chatMessagesRender(md: Markdown, env: MarkdownEnv, messages: ChatMessag
     .join('\n')
 }
 
-// 解析聊天内容的核心逻辑
+/**
+ * Parse chat content to messages
+ *
+ * 解析聊天内容为消息数组
+ *
+ * @param content - Raw chat content / 原始聊天内容
+ * @returns Parsed chat messages / 解析后的聊天消息
+ */
 function parseChatContent(content: string): ChatMessage[] {
   const lines = content.split('\n')
   const messages: ChatMessage[] = []
@@ -53,13 +82,13 @@ function parseChatContent(content: string): ChatMessage[] {
 
   for (const line of lines) {
     const lineStr = line.trim()
-    // 解析时间标记
+    // Parse time marker
     if (lineStr.startsWith('{:') && lineStr.endsWith('}')) {
       currentDate = lineStr.slice(2, -1).trim()
       continue
     }
 
-    // 解析用户 / 本人标记
+    // Parse user/self marker
     if (lineStr.startsWith('{') && lineStr.endsWith('}')) {
       const username = lineStr.slice(1, -1).trim()
       message = {
@@ -72,7 +101,7 @@ function parseChatContent(content: string): ChatMessage[] {
       continue
     }
 
-    // 收集消息内容
+    // Collect message content
     if (message?.sender) {
       message.content.push(line)
     }
@@ -80,6 +109,13 @@ function parseChatContent(content: string): ChatMessage[] {
   return messages
 }
 
+/**
+ * Chat plugin - Enable chat container
+ *
+ * 聊天插件 - 启用聊天容器
+ *
+ * @param md - Markdown-it instance / Markdown-it 实例
+ */
 export const chatPlugin: PluginSimple = md => createContainerSyntaxPlugin(
   md,
   'chat',

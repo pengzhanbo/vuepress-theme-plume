@@ -3,7 +3,12 @@ import type { MarkdownEnvPreset } from '../../shared/index.js'
 import { isEmptyObject, isString, objectMap } from '@pengzhanbo/utils'
 
 /**
- * inject preset to markdown env
+ * Environment preset plugin - Inject preset references to markdown env
+ *
+ * 环境预设插件 - 向 Markdown 环境注入预设引用
+ *
+ * @param md - Markdown-it instance / Markdown-it 实例
+ * @param env - Environment preset configuration / 环境预设配置
  */
 export const envPresetPlugin: PluginWithOptions<MarkdownEnvPreset> = (md, env = {}) => {
   if (isEmptyObject(env))

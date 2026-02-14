@@ -8,6 +8,15 @@ import { createPackageJson } from './packageJson.js'
 import { createRender } from './render.js'
 import { getTemplate, readFiles, readJsonFile, writeFiles } from './utils/index.js'
 
+/**
+ * Generate VuePress project files
+ *
+ * 生成 VuePress 项目文件
+ *
+ * @param mode - Operation mode (init or create) / 操作模式（初始化或创建）
+ * @param data - Resolved configuration data / 解析后的配置数据
+ * @param cwd - Current working directory / 当前工作目录
+ */
 export async function generate(
   mode: Mode,
   data: ResolvedData,
@@ -106,6 +115,14 @@ export async function generate(
   })
 }
 
+/**
+ * Create documentation files based on configuration
+ *
+ * 根据配置创建文档文件
+ *
+ * @param data - Resolved configuration data / 解析后的配置数据
+ * @returns Array of file objects / 文件对象数组
+ */
 async function createDocsFiles(data: ResolvedData): Promise<File[]> {
   const fileList: File[] = []
   if (data.multiLanguage) {
@@ -131,6 +148,15 @@ async function createDocsFiles(data: ResolvedData): Promise<File[]> {
   return updateFileListTarget(fileList, data.docsDir)
 }
 
+/**
+ * Update file list target path
+ *
+ * 更新文件列表的目标路径
+ *
+ * @param fileList - Array of files / 文件数组
+ * @param target - Target directory path / 目标目录路径
+ * @returns Updated file array / 更新后的文件数组
+ */
 function updateFileListTarget(fileList: File[], target: string): File[] {
   return fileList.map(({ filepath, content }) => ({
     filepath: path.join(target, filepath),

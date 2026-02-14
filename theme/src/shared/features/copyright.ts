@@ -1,6 +1,8 @@
 import type { LiteralUnion } from '../utils.js'
 
 /**
+ * Built-in supported copyright licenses
+ *
  * 内置支持的版权协议
  */
 export type KnownCopyrightLicense
@@ -13,6 +15,8 @@ export type KnownCopyrightLicense
     | 'CC0'
 
 /**
+ * Article copyright license
+ *
  * 文章版权协议
  *
  * @see https://creativecommons.org/licenses/
@@ -20,6 +24,8 @@ export type KnownCopyrightLicense
 export type CopyrightLicense = LiteralUnion<KnownCopyrightLicense>
 
 /**
+ * Copyright configuration
+ *
  * 版权配置
  */
 export interface CopyrightOptions {

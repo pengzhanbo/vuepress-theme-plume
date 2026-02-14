@@ -11,6 +11,14 @@ import { prompt } from './prompt.js'
 import { t } from './translate.js'
 import { getPackageManager } from './utils/index.js'
 
+/**
+ * Run the CLI workflow for VuePress project initialization or creation
+ *
+ * 执行 VuePress 项目初始化或创建的 CLI 工作流程
+ *
+ * @param mode - Operation mode (init or create) / 操作模式（初始化或创建）
+ * @param root - Root directory path / 根目录路径
+ */
 export async function run(mode: Mode, root?: string): Promise<void> {
   intro(colors.cyan('Welcome to VuePress and vuepress-theme-plume !'))
 

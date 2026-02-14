@@ -1,9 +1,20 @@
 /**
  * !!这里的文本将被黑幕隐藏，通过点击或者 hover 才可重现!!
+ *
+ * !!The text here will be hidden by a spoiler, and can only be revealed by clicking or hovering!!
  */
 import type { PluginWithOptions } from 'markdown-it'
 import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
 
+/**
+ * Plot inline rule definition
+ *
+ * 黑幕行内规则定义
+ *
+ * @param state - Markdown-it state / Markdown-it 状态
+ * @param silent - Silent mode / 静默模式
+ * @returns Whether matched / 是否匹配
+ */
 const plotDef: RuleInline = (state, silent) => {
   let found = false
   const max = state.posMax
@@ -76,6 +87,16 @@ const plotDef: RuleInline = (state, silent) => {
   return true
 }
 
+/**
+ * Plot plugin - Hide text with spoiler effect
+ *
+ * 黑幕插件 - 使用黑幕效果隐藏文本
+ *
+ * Syntax: !!hidden text!!
+ * 语法：!!隐藏文本!!
+ *
+ * @param md - Markdown-it instance / Markdown-it 实例
+ */
 export const plotPlugin: PluginWithOptions<never> = (md) => {
   md.inline.ruler.before('emphasis', 'plot', plotDef)
 }

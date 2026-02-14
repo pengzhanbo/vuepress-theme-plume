@@ -1,4 +1,10 @@
 /* eslint-disable jsdoc/no-multi-asterisks */
+
+/**
+ * Markdown Environment Preset Configuration
+ *
+ * Markdown 环境预设配置
+ */
 export interface MarkdownEnvPreset {
   /**
    * markdown reference preset, use in any markdown file
@@ -20,7 +26,7 @@ export interface MarkdownEnvPreset {
    * [link][label-1]
    * [link][label-2]
    * ```
-   * same as 等价于
+   * same as / 等价于
    * ```markdown
    * [label-1]: http://example.com/
    * [label-2]: http://example.com/ "title"
@@ -47,7 +53,7 @@ export interface MarkdownEnvPreset {
    * ```markdown
    * The HTML specification is maintained by the W3C.
    * ```
-   * same as 等价于
+   * same as / 等价于
    * ```markdown
    * *[HTML]: Hyper Text Markup Language
    * *[W3C]: World Wide Web Consortium
@@ -73,7 +79,7 @@ export interface MarkdownEnvPreset {
    * ```markdown
    * [+vuepress-theme-plume] is a theme for [+vuepress]
    * ```
-   * same as 等价于
+   * same as / 等价于
    * ```markdown
    * [+vuepress]: vuepress is a Vue.js based documentation generator
    * [+vuepress-theme-plume]: vuepress-theme-plume is a theme for vuepress

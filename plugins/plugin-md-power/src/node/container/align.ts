@@ -3,6 +3,36 @@ import { parseRect } from '../utils/parseRect.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { createContainerPlugin } from './createContainer.js'
 
+/**
+ * Flex container attributes
+ *
+ * Flex 容器属性
+ */
+interface FlexContainerAttrs {
+  center?: boolean
+  wrap?: boolean
+  between?: boolean
+  around?: boolean
+  start?: boolean
+  end?: boolean
+  gap?: string
+  column?: boolean
+}
+
+/**
+ * Align plugin - Enable text alignment containers
+ *
+ * 对齐插件 - 启用文本对齐容器
+ *
+ * Syntax:
+ * - ::: left
+ * - ::: center
+ * - ::: right
+ * - ::: justify
+ * - ::: flex [options]
+ *
+ * @param md - Markdown instance / Markdown 实例
+ */
 export function alignPlugin(md: Markdown): void {
   const alignList = ['left', 'center', 'right', 'justify']
 
@@ -37,15 +67,4 @@ export function alignPlugin(md: Markdown): void {
       return `<div style="${styles.join(';')}">`
     },
   })
-}
-
-interface FlexContainerAttrs {
-  center?: boolean
-  wrap?: boolean
-  between?: boolean
-  around?: boolean
-  start?: boolean
-  end?: boolean
-  gap?: string
-  column?: boolean
 }

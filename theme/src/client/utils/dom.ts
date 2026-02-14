@@ -1,5 +1,14 @@
 import { tween } from './animate.js'
 
+/**
+ * Get the computed CSS value of an element as a number
+ *
+ * 获取元素的计算 CSS 值并转换为数字
+ *
+ * @param el - Target element / 目标元素
+ * @param property - CSS property name / CSS 属性名
+ * @returns The numeric value of the CSS property, 0 if not found or invalid / CSS 属性的数值，如果未找到或无效则返回 0
+ */
 export function getCssValue(el: HTMLElement | null, property: string): number {
   const val = el?.ownerDocument?.defaultView?.getComputedStyle(el, null)?.[
     property as any
@@ -8,6 +17,14 @@ export function getCssValue(el: HTMLElement | null, property: string): number {
   return Number.isNaN(num) ? 0 : num
 }
 
+/**
+ * Get the scrollTop value of a target element or document
+ *
+ * 获取目标元素或文档的 scrollTop 值
+ *
+ * @param target - Target element or document, defaults to document / 目标元素或文档，默认为 document
+ * @returns Current scrollTop value / 当前 scrollTop 值
+ */
 export function getScrollTop(
   target: Document | HTMLElement = document,
 ): number {
@@ -24,6 +41,14 @@ export function getScrollTop(
   }
 }
 
+/**
+ * Set the scrollTop value of a target element or document
+ *
+ * 设置目标元素或文档的 scrollTop 值
+ *
+ * @param target - Target element or document, defaults to document / 目标元素或文档，默认为 document
+ * @param scrollTop - ScrollTop value to set / 要设置的 scrollTop 值
+ */
 export function setScrollTop(
   target: Document | HTMLElement = document,
   scrollTop = 0,
@@ -45,6 +70,15 @@ export function setScrollTop(
   }
 }
 
+/**
+ * Smoothly scroll to a specific position
+ *
+ * 平滑滚动到指定位置
+ *
+ * @param target - Target element or document / 目标元素或文档
+ * @param top - Target scrollTop position / 目标 scrollTop 位置
+ * @param time - Animation duration in milliseconds, defaults to 300ms / 动画持续时间（毫秒），默认为 300ms
+ */
 export function scrollTo(
   target: Document | HTMLElement,
   top: number,
@@ -68,6 +102,14 @@ export function scrollTo(
   }
 }
 
+/**
+ * Get the offset top of an element relative to the document
+ *
+ * 获取元素相对于文档的 offsetTop 值
+ *
+ * @param target - Target element / 目标元素
+ * @returns The total offsetTop value / 总的 offsetTop 值
+ */
 export function getOffsetTop<T extends HTMLElement = HTMLElement>(target: T | null): number {
   if (!target)
     return 0

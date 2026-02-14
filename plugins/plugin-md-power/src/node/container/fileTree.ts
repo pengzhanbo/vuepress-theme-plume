@@ -7,6 +7,8 @@ import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerSyntaxPlugin } from './createContainer.js'
 
 /**
+ * File tree node structure
+ *
  * 文件树节点结构
  */
 interface FileTreeNode extends FileTreeNodeProps {
@@ -15,6 +17,8 @@ interface FileTreeNode extends FileTreeNodeProps {
 }
 
 /**
+ * File tree container attributes
+ *
  * 文件树容器属性
  */
 interface FileTreeAttrs {
@@ -23,6 +27,8 @@ interface FileTreeAttrs {
 }
 
 /**
+ * File tree node props (for rendering component)
+ *
  * 文件树节点属性（用于渲染组件）
  */
 export interface FileTreeNodeProps {
@@ -36,25 +42,28 @@ export interface FileTreeNodeProps {
 }
 
 /**
+ * Parse raw file tree content to node tree structure
+ *
  * 解析原始文件树内容为节点树结构
- * @param content 文件树的原始文本内容
- * @returns 文件树节点数组
+ *
+ * @param content - Raw file tree text content / 文件树的原始文本内容
+ * @returns File tree node array / 文件树节点数组
  */
 export function parseFileTreeRawContent(content: string): FileTreeNode[] {
   const root: FileTreeNode = { level: -1, children: [] } as unknown as FileTreeNode
   const stack: FileTreeNode[] = [root]
   const lines = content.trimEnd().split('\n')
-  const spaceLength = lines[0].match(/^\s*/)?.[0].length ?? 0 // 去除行首空格/)
+  const spaceLength = lines[0].match(/^\s*/)?.[0].length ?? 0 // Remove leading spaces
 
   for (const line of lines) {
     const match = line.match(/^(\s*)-(.*)$/)
     if (!match)
       continue
 
-    const level = Math.floor((match[1].length - spaceLength) / 2) // 每两个空格为一个层级
+    const level = Math.floor((match[1].length - spaceLength) / 2) // Two spaces per level
     const info = match[2].trim()
 
-    // 检索当前层级的父节点
+    // Find parent node at current level
     while (stack.length > 0 && stack[stack.length - 1].level >= level) {
       stack.pop()
     }
@@ -68,12 +77,20 @@ export function parseFileTreeRawContent(content: string): FileTreeNode[] {
   return root.children
 }
 
+/**
+ * Regex for focus marker
+ *
+ * 高亮标记正则
+ */
 const RE_FOCUS = /^\*\*(.*)\*\*(?:$|\s+)/
 
 /**
+ * Parse single node info string, extract filename, comment, type, etc.
+ *
  * 解析单个节点的 info 字符串，提取文件名、注释、类型等属性
- * @param info 节点描述字符串
- * @returns 文件树节点属性
+ *
+ * @param info - Node description string / 节点描述字符串
+ * @returns File tree node props / 文件树节点属性
  */
 export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
   let filename = ''
@@ -83,7 +100,7 @@ export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
   let type: 'folder' | 'file' = 'file'
   let diff: 'add' | 'remove' | undefined
 
-  // 处理 diff 标记
+  // Process diff marker
   if (info.startsWith('++')) {
     info = info.slice(2).trim()
     diff = 'add'
@@ -93,14 +110,14 @@ export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
     diff = 'remove'
   }
 
-  // 处理高亮（focus）标记
+  // Process focus marker
   info = info.replace(RE_FOCUS, (_, matched) => {
     filename = matched
     focus = true
     return ''
   })
 
-  // 提取文件名和注释
+  // Extract filename and comment
   if (filename === '' && !focus) {
     const spaceIndex = info.indexOf(' ')
     filename = info.slice(0, spaceIndex === -1 ? info.length : spaceIndex)
@@ -109,7 +126,7 @@ export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
 
   comment = info.trim()
 
-  // 判断是否为文件夹
+  // Determine if folder
   if (filename.endsWith('/')) {
     type = 'folder'
     expanded = false
@@ -120,9 +137,13 @@ export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
 }
 
 /**
+ * File tree markdown plugin main function
+ *
  * 文件树 markdown 插件主函数
- * @param md markdown 实例
- * @param options 文件树渲染选项
+ *
+ * @param md - Markdown instance / markdown 实例
+ * @param options - File tree render options / 文件树渲染选项
+ * @param locales - Locale data / 本地化数据
  */
 export function fileTreePlugin(
   md: Markdown,
@@ -130,6 +151,8 @@ export function fileTreePlugin(
   locales: Record<string, CommonLocaleData>,
 ): void {
   /**
+   * Get file or folder icon
+   *
    * 获取文件或文件夹的图标
    */
   const getIcon = (filename: string, type: 'folder' | 'file', mode?: FileTreeIconMode): string => {
@@ -140,6 +163,8 @@ export function fileTreePlugin(
   }
 
   /**
+   * Recursively render file tree nodes
+   *
    * 递归渲染文件树节点
    */
   const renderFileTree = (nodes: FileTreeNode[], meta: FileTreeAttrs): string =>
@@ -147,7 +172,7 @@ export function fileTreePlugin(
       const { level, children, filename, comment, focus, expanded, type, diff } = node
       const isOmit = filename === '…' || filename === '...' /* fallback */
 
-      // 文件夹无子节点时补充省略号
+      // Add ellipsis for folder without children
       if (children.length === 0 && type === 'folder') {
         children.push({ level: level + 1, children: [], filename: '…', type: 'file' } as unknown as FileTreeNode)
       }
@@ -172,7 +197,7 @@ ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children
 </FileTreeNode>`
     }).join('\n')
 
-  // 注册自定义容器语法插件
+  // Register custom container syntax plugin
   return createContainerSyntaxPlugin(
     md,
     'file-tree',
@@ -192,6 +217,15 @@ ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children
   )
 }
 
+/**
+ * Convert file tree to command line text format
+ *
+ * 将文件树转换为命令行文本格式
+ *
+ * @param nodes - File tree nodes / 文件树节点
+ * @param prefix - Line prefix / 行前缀
+ * @returns CMD text / CMD 文本
+ */
 function fileTreeToCMDText(nodes: FileTreeNode[], prefix = ''): string {
   let content = prefix ? '' : '.\n'
   for (let i = 0, l = nodes.length; i < l; i++) {

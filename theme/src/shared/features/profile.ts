@@ -1,4 +1,6 @@
 /**
+ * Profile options
+ *
  * 个人资料
  */
 export interface ProfileOptions {

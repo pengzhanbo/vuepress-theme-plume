@@ -14,10 +14,19 @@ import type { PlotOptions } from './plot.js'
 import type { ReplOptions } from './repl.js'
 import type { TableContainerOptions } from './table.js'
 
+/**
+ * Markdown Power Plugin Options
+ *
+ * Markdown Power 插件配置选项
+ */
 export interface MarkdownPowerPluginOptions {
 
   /**
+   * Whether to preset markdown env, such as preset link references, abbreviations, content annotations, etc.
+   *
    * 是否预设 markdown env，如 预设链接引用、缩写词、内容注释等
+   *
+   * Presets can be used in any markdown file
    *
    * 预设可以在任何 markdown 文件中使用
    *
@@ -43,42 +52,56 @@ export interface MarkdownPowerPluginOptions {
    */
   env?: MarkdownEnvPreset
   /**
+   * Whether to enable annotation, or preset content annotations
+   *
    * 是否启用注释， 或者预设内容注释
    * @default false
    */
   annotation?: boolean | MarkdownEnvPreset['annotations']
 
   /**
+   * Whether to enable abbr syntax, or preset abbreviations
+   *
    * 是否启用 abbr 语法， 或者预设缩写词
    * @default false
    */
   abbr?: boolean | MarkdownEnvPreset['abbreviations']
   /**
+   * Mark pen animation mode
+   *
    * 马克笔动画模式
    * @default 'eager'
    */
   mark?: MarkOptions
 
   /**
+   * Whether to enable content snippet encryption container
+   *
    * 是否启用 内容片段加密容器
    *
    * @default false
    */
   encrypt?: boolean | EncryptSnippetOptions
   /**
+   * Configure code block grouping
+   *
    * 配置代码块分组
    */
   codeTabs?: CodeTabsOptions
 
   /**
+   * Whether to enable npm-to container
+   *
    * 是否启用 npm-to 容器
    */
   npmTo?: boolean | NpmToOptions
 
   /**
-   * 是否启用 PDF 嵌入语法
+   * Whether to enable PDF embed syntax
    *
    * `@[pdf](pdf_url)`
+   *
+   * 是否启用 PDF 嵌入语法
    *
    * @default false
    */
@@ -86,35 +109,41 @@ export interface MarkdownPowerPluginOptions {
 
   // new syntax
   /**
-   * 是否启用 图标支持
+   * Whether to enable icon support
    * - iconify - `::collect:icon_name::` => `<VPIcon name="collect:icon_name" />`
    * - iconfont - `::name::` => `<i class="iconfont icon-name"></i>`
    * - fontawesome - `::fas:name::` => `<i class="fa-solid fa-name"></i>`
+   *
+   * 是否启用 图标支持
    *
    * @default false
    */
   icon?: IconOptions
 
   /**
-   * 是否启用 iconify 图标嵌入语法
+   * Whether to enable iconify icon embed syntax
    *
    * `::collect:icon_name::`
    *
+   * 是否启用 iconify 图标嵌入语法
+   *
    * @default false
-   * @deprecated use `icon` instead 该配置已弃用，请使用 `icon` 代替
+   * @deprecated use `icon` instead / 该配置已弃用，请使用 `icon` 代替
    */
   icons?: boolean | IconOptions
   /**
-   * 是否启用 隐秘文本 语法
+   * Whether to enable hidden text syntax
    *
    * `!!plot_content!!`
+   *
+   * 是否启用 隐秘文本 语法
    *
    * @default false
    */
   plot?: boolean | PlotOptions
 
   /**
-   * 是否启用 timeline 语法
+   * Whether to enable timeline syntax
    *
    * ```md
    * ::: timeline
@@ -125,12 +154,14 @@ export interface MarkdownPowerPluginOptions {
    * :::
    * ```
    *
+   * 是否启用 timeline 语法
+   *
    * @default false
    */
   timeline?: boolean
 
   /**
-   * 是否启用 collapse 折叠面板 语法
+   * Whether to enable collapse folding panel syntax
    *
    * ```md
    * ::: collapse accordion
@@ -144,12 +175,14 @@ export interface MarkdownPowerPluginOptions {
    * :::
    * ```
    *
+   * 是否启用 collapse 折叠面板 语法
+   *
    * @default false
    */
   collapse?: boolean
 
   /**
-   * 是否启用 chat 容器 语法
+   * Whether to enable chat container syntax
    *
    * ```md
    * ::: chat
@@ -162,11 +195,16 @@ export interface MarkdownPowerPluginOptions {
    * message
    * :::
    * ```
+   *
+   * 是否启用 chat 容器 语法
+   *
    * @default false
    */
   chat?: boolean
 
   /**
+   * Whether to enable field / field-group container
+   *
    * 是否启用 field / field-group 容器
    *
    * @default false
@@ -174,49 +212,61 @@ export interface MarkdownPowerPluginOptions {
   field?: boolean
   // video embed
   /**
-   * 是否启用 acfun 视频嵌入
+   * Whether to enable acfun video embed
    *
    * `@[acfun](acid)`
+   *
+   * 是否启用 acfun 视频嵌入
    *
    * @default false
    */
   acfun?: boolean
   /**
-   * 是否启用 bilibili 视频嵌入
+   * Whether to enable bilibili video embed
    *
    * `@[bilibili](bid)`
+   *
+   * 是否启用 bilibili 视频嵌入
    *
    * @default false
    */
   bilibili?: boolean
   /**
-   * 是否启用 youtube 视频嵌入
+   * Whether to enable youtube video embed
    *
    * `@[youtube](video_id)`
+   *
+   * 是否启用 youtube 视频嵌入
    *
    * @default false
    */
   youtube?: boolean
 
   /**
-   * 是否启用 artPlayer 视频嵌入
+   * Whether to enable artPlayer video embed
    *
    * `@[artPlayer](url)`
+   *
+   * 是否启用 artPlayer 视频嵌入
    */
   artPlayer?: boolean
 
   /**
-   * 是否启用 audioReader 音频嵌入
+   * Whether to enable audioReader audio embed
    *
    * `@[audioReader](url)`
+   *
+   * 是否启用 audioReader 音频嵌入
    */
   audioReader?: boolean
 
   // code embed
   /**
-   * 是否启用 codepen 嵌入
+   * Whether to enable codepen embed
    *
    * `@[codepen](pen_id)`
+   *
+   * 是否启用 codepen 嵌入
    *
    * @default false
    */
@@ -226,17 +276,21 @@ export interface MarkdownPowerPluginOptions {
    */
   replit?: boolean
   /**
-   * 是否启用 codeSandbox 嵌入
+   * Whether to enable codeSandbox embed
    *
    * `@[codesandbox](codesandbox_id)`
+   *
+   * 是否启用 codeSandbox 嵌入
    *
    * @default false
    */
   codeSandbox?: boolean
   /**
-   * 是否启用 jsfiddle 嵌入
+   * Whether to enable jsfiddle embed
    *
    * `@[jsfiddle](jsfiddle_id)`
+   *
+   * 是否启用 jsfiddle 嵌入
    *
    * @default false
    */
@@ -244,12 +298,16 @@ export interface MarkdownPowerPluginOptions {
 
   // container
   /**
+   * Whether to enable REPL container syntax
+   *
    * 是否启用 REPL 容器语法
    *
    * @default false
    */
   repl?: false | ReplOptions
   /**
+   * Whether to enable file tree container syntax
+   *
    * 是否启用 文件树 容器语法
    *
    * @default false
@@ -257,7 +315,7 @@ export interface MarkdownPowerPluginOptions {
   fileTree?: boolean | FileTreeOptions
 
   /**
-   * 是否启用 代码树 容器语法 和 嵌入语法
+   * Whether to enable code tree container syntax and embed syntax
    *
    * ```md
    * ::: code-tree
@@ -267,25 +325,35 @@ export interface MarkdownPowerPluginOptions {
    * `@[code-tree](file_path)`
    *
    *
+   * 是否启用 代码树 容器语法 和 嵌入语法
+   *
    * @default false
    */
   codeTree?: boolean | CodeTreeOptions
 
   /**
+   * Whether to enable demo syntax
+   *
    * 是否启用 demo 语法
    */
   demo?: boolean
 
   /**
-   * 是否启用 caniuse 嵌入语法
+   * Whether to enable caniuse embed syntax
    *
    * `@[caniuse](feature_name)`
+   *
+   * 是否启用 caniuse 嵌入语法
    *
    * @default false
    */
   caniuse?: boolean | CanIUseOptions
 
   /**
+   * Whether to enable table container syntax, providing enhanced functionality for tables
+   *
+   * - `copy`: Whether to enable copy functionality, supports copying as html format and markdown format
+   *
    * 是否启用 table 容器语法，为表格提供增强功能
    *
    * - `copy`: 是否启用复制功能，支持复制为 html 格式 和 markdown 格式
@@ -295,6 +363,8 @@ export interface MarkdownPowerPluginOptions {
   table?: boolean | TableContainerOptions
 
   /**
+   * Whether to enable QR code embed syntax
+   *
    * 是否启用 二维码 嵌入语法
    *
    * @default false
@@ -303,6 +373,21 @@ export interface MarkdownPowerPluginOptions {
 
   // enhance
   /**
+   * Whether to enable automatic filling of image width and height attributes
+   *
+   * __Please note that regardless of whether it is enabled, this feature only takes effect when building production packages__
+   *
+   * - If `true`, equivalent to `'local'`
+   * - If `local`, only add width and height for local images
+   * - If `all`, add width and height for all images (including local and remote)
+   *
+   * If images load slowly, the process from loading to completion can cause unstable page layout and content flickering.
+   * This feature solves this problem by adding `width` and `height` attributes to images.
+   *
+   * Please use the `all` option with caution. This option will initiate network requests during the build phase,
+   * attempting to load remote images to obtain image size information,
+   * which may cause build times to become longer (fortunately, obtaining size information only requires loading a few KB of image data packets, so the time consumption will not be too long)
+   *
    * 是否启用 自动填充 图片宽高属性
    *
    * __请注意，无论是否启用，该功能仅在构建生产包时生效__

@@ -7,6 +7,11 @@ import { shikiPlugin } from '@vuepress/plugin-shiki'
 import { createCodeTabIconGetter } from 'vuepress-plugin-md-power'
 import { getThemeConfig } from '../loadConfig/index.js'
 
+/**
+ * Setup code-related plugins
+ *
+ * 设置代码相关插件，包括代码复制和代码高亮
+ */
 export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
   const options = getThemeConfig()
   const plugins: PluginConfig = []

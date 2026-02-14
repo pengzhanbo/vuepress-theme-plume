@@ -4,6 +4,11 @@ import { omit } from '@pengzhanbo/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { perf, resolveContent, writeTemp } from '../utils/index.js'
 
+/**
+ * Prepare collections data
+ *
+ * 准备集合数据，为每个语言环境处理集合配置并生成临时文件
+ */
 export async function prepareCollections(app: App): Promise<void> {
   perf.mark('prepare:collections')
 

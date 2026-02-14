@@ -8,6 +8,11 @@ import { useRouteQuery } from './route-query.js'
 
 const DEFAULT_PER_PAGE = 15
 
+/**
+ * Use post list control result
+ *
+ * 文章列表控制结果类型，包含分页相关的数据和方法
+ */
 interface UsePostListControlResult {
   postList: ComputedRef<ThemePostsItem[]>
   page: Ref<number>
@@ -22,6 +27,11 @@ interface UsePostListControlResult {
   changePage: (page: number) => void
 }
 
+/**
+ * Use post list control
+ *
+ * 文章列表控制，管理分页逻辑和文章列表数据
+ */
 export function usePostListControl(homePage: Ref<boolean>): UsePostListControlResult {
   const { collection } = useData<'page', 'post'>()
 

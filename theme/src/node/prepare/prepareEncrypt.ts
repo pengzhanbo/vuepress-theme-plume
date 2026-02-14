@@ -21,6 +21,11 @@ const separator = ':'
 let contentHash = ''
 let fsCache: FsCache<[string, EncryptConfig]> | null = null
 
+/**
+ * Prepare encryption configuration
+ *
+ * 准备加密配置，处理主题的加密选项并生成加密相关的临时文件
+ */
 export async function prepareEncrypt(app: App): Promise<void> {
   perf.mark('prepare:encrypt')
   const { encrypt } = getThemeConfig()
@@ -80,6 +85,11 @@ async function resolveEncrypt(encrypt?: EncryptOptions): Promise<EncryptConfig> 
   ]
 }
 
+/**
+ * Check if a page is encrypted
+ *
+ * 检查页面是否需要加密，根据页面的路径或文件相对路径匹配加密规则
+ */
 export function isEncryptPage(page: Page<ThemePageData>, encrypt?: EncryptOptions): boolean {
   if (!encrypt)
     return false

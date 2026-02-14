@@ -9,6 +9,11 @@ import { prepareIcons } from './prepareIcons.js'
 import { preparedPostsData } from './preparePostsData.js'
 import { prepareSidebar } from './prepareSidebar.js'
 
+/**
+ * Prepare all theme data
+ *
+ * 准备所有主题数据，包括文章标签颜色、文章列表、侧边栏、集合、加密、图标、Hero 动画效果等
+ */
 export async function prepareData(app: App): Promise<void> {
   perf.mark('prepare:data')
 
@@ -25,6 +30,11 @@ export async function prepareData(app: App): Promise<void> {
   perf.log('prepare:data')
 }
 
+/**
+ * Watch for changes in prepared data and re-prepare when needed
+ *
+ * 监听准备数据的变化，并在需要时重新准备数据
+ */
 export function watchPrepare(
   app: App,
   watchers: any[],

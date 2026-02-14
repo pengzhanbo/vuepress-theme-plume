@@ -7,5 +7,7 @@ export { plumeTheme }
 
 /**
  * @deprecated 请使用 具名导出 替代 默认导出
+ *
+ * @deprecated Please use named exports instead of default export
  */
 export default plumeTheme

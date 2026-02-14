@@ -13,6 +13,14 @@ import { artPlayerPlugin } from './video/artPlayer.js'
 import { bilibiliPlugin } from './video/bilibili.js'
 import { youtubePlugin } from './video/youtube.js'
 
+/**
+ * Embed syntax plugin - Register all embed syntax plugins
+ *
+ * 嵌入语法插件 - 注册所有嵌入语法插件
+ *
+ * @param md - Markdown instance / Markdown 实例
+ * @param options - Plugin options / 插件选项
+ */
 export function embedSyntaxPlugin(md: Markdown, options: MarkdownPowerPluginOptions): void {
   if (options.caniuse) {
     const caniuse = options.caniuse === true ? {} : options.caniuse

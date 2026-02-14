@@ -48,6 +48,11 @@ const socialFallbacks: Record<string, string> = {
   weibo: 'sinaweibo',
 }
 
+/**
+ * Prepare icon data for theme
+ *
+ * 准备主题图标数据，收集页面中使用的图标并生成对应的 CSS 和 JS 文件
+ */
 export async function prepareIcons(app: App): Promise<void> {
   perf.mark('prepare:icons:total')
   const options = getThemeConfig()

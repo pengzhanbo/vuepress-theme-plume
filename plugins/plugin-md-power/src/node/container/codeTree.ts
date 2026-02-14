@@ -1,5 +1,5 @@
 /**
- * @module CodeTree
+ * Code tree container plugin
  *
  * code-tree 容器
  * ````md
@@ -10,7 +10,7 @@
  * :::
  * ````
  *
- * embed syntax
+ * Embed syntax
  *
  * `@[code-tree title="Project Name" height="400px" entry="filepath"](dir_path)`
  */
@@ -32,6 +32,11 @@ import { resolveAttr, resolveAttrs } from '../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerPlugin } from './createContainer.js'
 
+/**
+ * Unsupported file types for code tree
+ *
+ * 代码树不支持的文件类型
+ */
 const UNSUPPORTED_FILE_TYPES = [
   /* image */
   'jpg',
@@ -62,26 +67,36 @@ const UNSUPPORTED_FILE_TYPES = [
 ]
 
 /**
+ * Code tree metadata
+ *
  * code-tree 容器元信息
  */
 interface CodeTreeMeta {
   title?: string
   /**
+   * File icon type
+   *
    * 文件图标类型
    */
   icon?: FileTreeIconMode
   /**
+   * Code tree container height
+   *
    * 代码树容器高度
    */
   height?: string
 
   /**
+   * Entry file, opened by default
+   *
    * 入口文件，默认打开
    */
   entry?: string
 }
 
 /**
+ * File tree node type
+ *
  * 文件树节点类型
  */
 interface FileTreeNode {
@@ -92,9 +107,12 @@ interface FileTreeNode {
 }
 
 /**
+ * Parse file paths to file tree node structure
+ *
  * 将文件路径数组解析为文件树节点结构
- * @param files 文件路径数组
- * @returns 文件树节点数组
+ *
+ * @param files - File path array / 文件路径数组
+ * @returns File tree node array / 文件树节点数组
  */
 function parseFileNodes(files: string[]): FileTreeNode[] {
   const nodes: FileTreeNode[] = []
@@ -123,13 +141,18 @@ function parseFileNodes(files: string[]): FileTreeNode[] {
 }
 
 /**
+ * Code tree plugin - Register code-tree container and embed syntax
+ *
  * 注册 code-tree 容器和嵌入语法的 markdown 插件
- * @param md markdown-it 实例
- * @param app vuepress app 实例
- * @param options code-tree 配置项
+ *
+ * @param md - Markdown-it instance / markdown-it 实例
+ * @param app - VuePress app instance / vuepress app 实例
+ * @param options - Code tree options / code-tree 配置项
  */
 export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions = {}): void {
   /**
+   * Get file or folder icon
+   *
    * 获取文件或文件夹的图标
    */
   const getIcon = (filename: string, type: 'folder' | 'file', mode?: FileTreeIconMode): string => {
@@ -140,6 +163,8 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
   }
 
   /**
+   * Render file tree nodes to component string
+   *
    * 渲染文件树节点为组件字符串
    */
   function renderFileTree(nodes: FileTreeNode[], mode?: FileTreeIconMode): string {
@@ -159,10 +184,10 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       .join('\n')
   }
 
-  // 注册 ::: code-tree 容器
+  // Register ::: code-tree container
   createContainerPlugin(md, 'code-tree', {
     before: (info, tokens, index) => {
-      // 收集 code-tree 容器内的文件名和激活文件
+      // Collect filenames and active file in code-tree container
       const files: string[] = []
       let activeFile: string | undefined
       for (
@@ -197,7 +222,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
     after: () => '</VPCodeTree>',
   })
 
-  // 注册 @[code-tree](dir) 语法
+  // Register @[code-tree](dir) syntax
   createEmbedRuleBlock(md, {
     type: 'code-tree',
     syntaxPattern: /^@\[code-tree([^\]]*)\]\(([^)]*)\)/,
@@ -213,10 +238,10 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       }
     },
     content: ({ dir, icon, ...props }, _, env) => {
-      // codeTreeFiles 用于页面依赖收集
+      // codeTreeFiles for page dependency collection
       const codeTreeFiles = ((env as any).codeTreeFiles ??= []) as string[]
       const root = findFile(app, env, dir)
-      // 获取目录下所有文件
+      // Get all files in directory
       const files = tinyglobby.globSync('**/*', {
         cwd: root,
         onlyFiles: true,
@@ -229,7 +254,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       })
       props.entryFile ||= files[0]
 
-      // 生成所有文件的代码块内容
+      // Generate code block content for all files
       const codeContent = files.map((file) => {
         const ext = path.extname(file).slice(1)
         if (UNSUPPORTED_FILE_TYPES.includes(ext)) {
@@ -250,8 +275,11 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
 }
 
 /**
+ * Extend page dependencies with codeTreeFiles
+ *
  * 扩展页面依赖，将 codeTreeFiles 添加到页面依赖中
- * @param page vuepress 页面对象
+ *
+ * @param page - VuePress page object / vuepress 页面对象
  */
 export function extendsPageWithCodeTree(page: Page): void {
   const markdownEnv = page.markdownEnv

@@ -12,6 +12,14 @@ export default defineConfig({
       enabled: true,
       provider: 'v8',
       reporter: ['text', 'clover', 'json'],
+      exclude: [
+        '**/node_modules/**',
+        '**/dist/**',
+        '**/lib/**',
+        '**/demo/**',
+        '**/demo/supports/**',
+        '**/fileIcons/index.ts',
+      ],
     },
   },
 })

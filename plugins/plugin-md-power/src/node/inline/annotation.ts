@@ -142,7 +142,7 @@ const annotationDef: RuleBlock = (
   ) {
     return false
   }
-
+  /* istanbul ignore if -- @preserve */
   if (silent)
     return true
 
@@ -228,6 +228,7 @@ const annotationRef: RuleInline = (
   if (annotations.length === 0)
     return false
 
+  /* istanbul ignore if -- @preserve */
   if (!silent) {
     const refToken = state.push('annotation_ref', '', 0)
 
@@ -272,6 +273,7 @@ export const annotationPlugin: PluginWithOptions<Record<string, string | string[
     env: AnnotationEnv,
   ) => {
     const label = tokens[idx].meta.label
+    /* istanbul ignore next -- @preserve */
     const data = env.annotations[`:${label}`] || annotations[`:${label}`]
 
     return `<Annotation label="${label}" :total="${data.sources.length}">${

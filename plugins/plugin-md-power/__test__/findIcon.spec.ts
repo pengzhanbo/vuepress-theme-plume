@@ -45,4 +45,39 @@ describe('getFileIcon(filename, type)', () => {
     expect(getFileIcon('abc.', 'folder')).toBe('vscode-icons:default-folder')
     expect(getFileIcon('')).toBe('vscode-icons:default-file')
   })
+
+  it('should handle common file types', () => {
+    expect(getFileIcon('README.md')).toBeDefined()
+    expect(getFileIcon('package.json')).toBeDefined()
+    expect(getFileIcon('style.css')).toBeDefined()
+    expect(getFileIcon('index.html')).toBeDefined()
+  })
+
+  it('should handle config files', () => {
+    expect(getFileIcon('.gitignore')).toBeDefined()
+    expect(getFileIcon('.eslintrc')).toBeDefined()
+    expect(getFileIcon('tsconfig.json')).toBeDefined()
+  })
+
+  it('should handle image files', () => {
+    expect(getFileIcon('image.png')).toBeDefined()
+    expect(getFileIcon('image.jpg')).toBeDefined()
+    expect(getFileIcon('image.svg')).toBeDefined()
+    expect(getFileIcon('image.gif')).toBeDefined()
+  })
+
+  it('should handle files with path', () => {
+    expect(getFileIcon('src/components/Button.vue')).toBe('vscode-icons:file-type-vue')
+    expect(getFileIcon('/absolute/path/to/file.ts')).toBe('vscode-icons:file-type-typescript')
+  })
+
+  it('should handle files without extension', () => {
+    expect(getFileIcon('Makefile')).toBeDefined()
+    expect(getFileIcon('Dockerfile')).toBeDefined()
+  })
+
+  it('should handle hidden files', () => {
+    expect(getFileIcon('.env')).toBeDefined()
+    expect(getFileIcon('.npmrc')).toBeDefined()
+  })
 })

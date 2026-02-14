@@ -52,4 +52,29 @@ describe('stringifyAttrs', () => {
   it('should handle kebabCase keys', () => {
     expect(stringifyAttrs({ 'data-foo': 'bar', 'data-baz': 1, 'fooBaz': 'bar' })).toBe(' data-foo="bar" :data-baz="1" foo-baz="bar"')
   })
+
+  it('should handle empty string values', () => {
+    expect(stringifyAttrs({ id: '' })).toBe(' id=""')
+  })
+
+  it('should handle special characters in values', () => {
+    expect(stringifyAttrs({ 'data-value': '<script>alert(1)</script>' })).toBe(' data-value="<script>alert(1)</script>"')
+  })
+
+  it('should handle unicode values', () => {
+    expect(stringifyAttrs({ title: '你好世界' })).toBe(' title="你好世界"')
+    expect(stringifyAttrs({ 'data-emoji': '🎉🎊' })).toBe(' data-emoji="🎉🎊"')
+  })
+
+  it('should handle zero values', () => {
+    expect(stringifyAttrs({ width: 0, height: 0 })).toBe(' :width="0" :height="0"')
+  })
+
+  it('should handle negative numbers', () => {
+    expect(stringifyAttrs({ offset: -1 })).toBe(' :offset="-1"')
+  })
+
+  it('should handle float numbers', () => {
+    expect(stringifyAttrs({ ratio: 1.5 })).toBe(' :ratio="1.5"')
+  })
 })

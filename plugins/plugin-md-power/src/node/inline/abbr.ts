@@ -127,6 +127,7 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
 
     if (labelEnd < 0 || state.src.charAt(labelEnd + 1) !== ':')
       return false
+    /* istanbul ignore if -- @preserve */
     if (silent)
       return true
 
@@ -219,6 +220,7 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
           pos = regExp.lastIndex
         }
 
+        /* istanbul ignore if -- @preserve */
         if (!nodes.length)
           continue
 

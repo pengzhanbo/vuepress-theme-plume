@@ -2,6 +2,7 @@ import type { FSWatcher } from 'chokidar'
 import type { App } from 'vuepress'
 import fs from 'node:fs'
 import path from 'node:path'
+import { deleteKey } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
 import { compileCode, parseEmbedCode } from './normal.js'
 import { readFileSync } from './supports/file.js'
@@ -77,7 +78,7 @@ export function demoWatcher(app: App, watchers: any[]): void {
   })
 
   watcher.on('unlink', (path) => {
-    delete tasks[path]
+    deleteKey(tasks, path)
     watcher!.unwatch(path)
   })
 

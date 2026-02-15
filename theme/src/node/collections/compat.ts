@@ -1,5 +1,5 @@
 import type { ThemeDocCollection, ThemeOptions } from '../../shared/index.js'
-import { toArray } from '@pengzhanbo/utils'
+import { deleteKey, toArray } from '@pengzhanbo/utils'
 import { removeLeadingSlash } from 'vuepress/shared'
 import { path } from 'vuepress/utils'
 
@@ -64,10 +64,8 @@ export function compatBlogAndNotesToCollections(options: ThemeOptions): void {
         }) as ThemeDocCollection))
       }
     }
-
-    delete opt.notes
+    deleteKey(opt, 'notes')
   }
 
-  delete options.blog
-  delete options.notes
+  deleteKey(options, ['blog', 'notes'])
 }

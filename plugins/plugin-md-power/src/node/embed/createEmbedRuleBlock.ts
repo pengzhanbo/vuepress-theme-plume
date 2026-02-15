@@ -66,11 +66,12 @@ export interface EmbedRuleBlockOptions<Meta extends Record<string, any>> {
  *
  * 创建嵌入规则块
  *
- * Syntax: @[name]()
- * 语法：@[name]()
+ * Syntax: \@\[name]()
+ *
+ * 语法：\@\[name]()
  *
  * @param md - Markdown instance / Markdown 实例
- * @param options - Embed rule block options / 嵌入规则块选项
+ * @param {EmbedRuleBlockOptions} options - Embed rule block options / 嵌入规则块选项
  * @typeParam Meta - Metadata type / 元数据类型
  */
 export function createEmbedRuleBlock<Meta extends Record<string, any> = Record<string, any>>(

@@ -1,5 +1,6 @@
 import type { Page } from 'vuepress/core'
 import type { ThemePageData } from '../../shared/index.js'
+import { deleteKey } from '@pengzhanbo/utils'
 import { findCollection } from '../collections/findCollection.js'
 import { autoCategory } from './autoCategory.js'
 import { encryptPage } from './encryptPage.js'
@@ -33,7 +34,7 @@ function cleanPageData(page: Page<ThemePageData>) {
 
   if (page.frontmatter.home) {
     page.frontmatter.pageLayout = 'home'
-    delete page.frontmatter.home
+    deleteKey(page.frontmatter, 'home')
   }
 
   if (page.headers) {
@@ -45,14 +46,14 @@ function cleanPageData(page: Page<ThemePageData>) {
     page.data.type = 'friends'
     page.permalink = page.permalink ?? '/friends/'
     page.frontmatter.pageLayout = 'friends'
-    delete page.frontmatter.friends
+    deleteKey(page.frontmatter, 'friends')
   }
 
   const pageType = page.frontmatter._pageLayout as string
   if (pageType) {
     page.frontmatter.draft = true
     page.data.type = pageType as any
-    delete page.frontmatter._pageLayout
+    deleteKey(page.frontmatter, '_pageLayout')
   }
 
   if (page.frontmatter.pageLayout === 'blog' || page.frontmatter.pageLayout === 'posts') {
@@ -62,7 +63,7 @@ function cleanPageData(page: Page<ThemePageData>) {
 
   if ('externalLink' in page.frontmatter) {
     page.frontmatter.externalLinkIcon = page.frontmatter.externalLink
-    delete page.frontmatter.externalLink
+    deleteKey(page.frontmatter, 'externalLink')
   }
 
   // is markdown file

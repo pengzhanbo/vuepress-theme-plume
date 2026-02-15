@@ -21,7 +21,7 @@ const REG_HEADING = /^#\s*?([^#\s].*)?\n/
  * @param md - Markdown instance / Markdown 实例
  */
 export function docsTitlePlugin(md: Markdown): void {
-  const render = md.render
+  const render = md.render.bind(md)
   md.render = (source, env: MarkdownEnv) => {
     if (!env.filePathRelative)
       return render(source, env)

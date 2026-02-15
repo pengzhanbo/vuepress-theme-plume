@@ -7,6 +7,7 @@ import type {
   ThemeSidebar,
   ThemeSidebarItem,
 } from '../../shared/index.js'
+import { deleteKey } from '@pengzhanbo/utils'
 import {
   ensureLeadingSlash,
   entries,
@@ -191,15 +192,14 @@ function cleanSidebar(sidebar: (ThemeSidebarItem)[]) {
     if (isPlainObject(item)) {
       if (isArray(item.items)) {
         if (item.items.length === 0) {
-          delete item.items
-          delete item.collapsed
+          deleteKey(item, ['items', 'collapsed'])
         }
         else {
           cleanSidebar(item.items as ThemeSidebarItem[])
         }
       }
       else if (!('items' in item)) {
-        delete item.collapsed
+        deleteKey(item, 'collapsed')
       }
     }
   }

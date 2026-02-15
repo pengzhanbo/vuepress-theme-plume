@@ -33,9 +33,14 @@ export function searchPlugin({
     },
 
     onPrepared: async (app) => {
-      const placeholder = prepareSearchIndexPlaceholder(app)
-      prepareSearchIndex({ app, isSearchable, searchOptions })
-      await placeholder
+      if (app.env.isBuild) {
+        await prepareSearchIndex({ app, isSearchable, searchOptions })
+      }
+      else {
+        const placeholder = prepareSearchIndexPlaceholder(app)
+        await placeholder
+        placeholder.then(() => prepareSearchIndex({ app, isSearchable, searchOptions }))
+      }
     },
 
     onWatched: (app, watchers) => {

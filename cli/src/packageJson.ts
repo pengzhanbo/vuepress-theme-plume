@@ -1,5 +1,5 @@
 import type { File, ResolvedData } from './types.js'
-import { kebabCase } from '@pengzhanbo/utils'
+import { attemptAsync, kebabCase } from '@pengzhanbo/utils'
 import spawn from 'nano-spawn'
 import _sortPackageJson from 'sort-package-json'
 import { Mode } from './constants.js'
@@ -47,7 +47,7 @@ export async function createPackageJson(
     pkg.description = siteDescription
 
     if (packageManager !== 'npm') {
-      let version = await getPackageManagerVersion(packageManager)
+      let [, version] = await attemptAsync(getPackageManagerVersion, packageManager)
       if (version) {
         if (packageManager === 'yarn' && version.startsWith('1')) {
           version = '4.10.3'
@@ -63,7 +63,7 @@ export async function createPackageJson(
       }
     }
 
-    const userInfo = await getUserInfo()
+    const [, userInfo] = await attemptAsync(getUserInfo)
     if (userInfo) {
       pkg.author = userInfo.username + (userInfo.email ? ` <${userInfo.email}>` : '')
     }
@@ -112,23 +112,12 @@ export async function createPackageJson(
 }
 
 async function getUserInfo() {
-  try {
-    const { output: username } = await spawn('git', ['config', '--global', 'user.name'])
-    const { output: email } = await spawn('git', ['config', '--global', 'user.email'])
-    console.log('userInfo', username, email)
-    return { username, email }
-  }
-  catch {
-    return null
-  }
+  const { output: username } = await spawn('git', ['config', '--global', 'user.name'])
+  const { output: email } = await spawn('git', ['config', '--global', 'user.email'])
+  return { username, email }
 }
 
 async function getPackageManagerVersion(pkg: string) {
-  try {
-    const { output } = await spawn(pkg, ['--version'])
-    return output
-  }
-  catch {
-    return null
-  }
+  const { output } = await spawn(pkg, ['--version'])
+  return output
 }

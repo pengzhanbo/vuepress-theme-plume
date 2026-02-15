@@ -134,20 +134,18 @@ npm run docs:dev
 
 [查看更多案例](https://theme-plume.vuejs.press/demos/)
 
+## 交流与支持
+
+- QQ 交流群：[792882761](https://qm.qq.com/q/O3HNy4rxYc)
+- 问题反馈：[GitHub Issues](https://github.com/pengzhanbo/vuepress-theme-plume/issues)
+- 讨论交流：[GitHub Discussions](https://github.com/pengzhanbo/vuepress-theme-plume/discussions)
+
 ## 常见问题
 
 ### 如何更新主题？
 
 ```bash
 npx vp-update
-```
-
-### 更新后新功能未生效？
-
-由于缓存机制，更新主题后需要清除缓存：
-
-```bash
-vuepress dev docs --clean-cache
 ```
 
 ### 构建时内存溢出？
@@ -195,12 +193,6 @@ pnpm dev
 ![GitHub contributors](https://img.shields.io/github/contributors/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&logo=contributorcovenant)
 
 [![contributors](https://contrib.rocks/image?repo=pengzhanbo/vuepress-theme-plume)](https://github.com/pengzhanbo/vuepress-theme-plume/graphs/contributors)
-
-## 交流与支持
-
-- QQ 交流群：[792882761](https://qm.qq.com/q/O3HNy4rxYc)
-- 问题反馈：[GitHub Issues](https://github.com/pengzhanbo/vuepress-theme-plume/issues)
-- 讨论交流：[GitHub Discussions](https://github.com/pengzhanbo/vuepress-theme-plume/discussions)
 
 ## License
 

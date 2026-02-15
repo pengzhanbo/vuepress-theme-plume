@@ -136,20 +136,18 @@ For detailed documentation, visit: [https://theme-plume.vuejs.press](https://the
 
 [View more examples](https://theme-plume.vuejs.press/demos/)
 
+## Community & Support
+
+- QQ Group: [792882761](https://qm.qq.com/q/O3HNy4rxYc)
+- Issue Tracker: [GitHub Issues](https://github.com/pengzhanbo/vuepress-theme-plume/issues)
+- Discussions: [GitHub Discussions](https://github.com/pengzhanbo/vuepress-theme-plume/discussions)
+
 ## FAQ
 
 ### How to update the theme?
 
 ```bash
 npx vp-update
-```
-
-### New features not working after update?
-
-Due to the caching mechanism, you need to clear the cache after updating the theme:
-
-```bash
-vuepress dev docs --clean-cache
 ```
 
 ### Out of memory during build?
@@ -197,12 +195,6 @@ Thank you to all contributors!
 ![GitHub contributors](https://img.shields.io/github/contributors/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&logo=contributorcovenant)
 
 [![contributors](https://contrib.rocks/image?repo=pengzhanbo/vuepress-theme-plume)](https://github.com/pengzhanbo/vuepress-theme-plume/graphs/contributors)
-
-## Community & Support
-
-- QQ Group: [792882761](https://qm.qq.com/q/O3HNy4rxYc)
-- Issue Tracker: [GitHub Issues](https://github.com/pengzhanbo/vuepress-theme-plume/issues)
-- Discussions: [GitHub Discussions](https://github.com/pengzhanbo/vuepress-theme-plume/discussions)
 
 ## License
 

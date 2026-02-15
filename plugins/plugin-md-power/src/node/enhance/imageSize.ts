@@ -4,9 +4,10 @@ import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { Buffer } from 'node:buffer'
 import http from 'node:https'
 import { URL } from 'node:url'
-import { withTimeout } from '@pengzhanbo/utils'
-import { isLinkExternal, isLinkHttp } from '@vuepress/helper'
+import { attempt, withTimeout } from '@pengzhanbo/utils'
+import { isLinkHttp } from '@vuepress/helper'
 import imageSize from 'image-size'
+import pMap from 'p-map'
 import { fs, logger, path } from 'vuepress/utils'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 
@@ -35,13 +36,13 @@ interface ImgSize {
  *
  * 匹配 markdown 图片语法的正则表达式
  */
-const REG_IMG = /!\[.*?\]\(.*?\)/g
+const REG_IMG = /!\[[^\]]*\]\([^)]*\)/g
 /**
  * Regular expression for matching HTML img tag
  *
  * 匹配 HTML img 标签的正则表达式
  */
-const REG_IMG_TAG = /<img(.*?)>/g
+const REG_IMG_TAG = /<img([^>]*)>/g
 /**
  * Regular expression for matching src/srcset attribute
  *
@@ -62,13 +63,6 @@ const BADGE_LIST = [
 ]
 
 /**
- * Cache for image sizes
- *
- * 图片尺寸缓存
- */
-const cache = new Map<string, ImgSize>()
-
-/**
  * Image size plugin - Add width and height attributes to images
  *
  * 图片尺寸插件 - 为图片添加宽度和高度属性
@@ -85,40 +79,35 @@ export async function imageSizePlugin(
   if (!app.env.isBuild || !type)
     return
 
-  if (type === 'all') {
-    const start = performance.now()
-    try {
-      await scanRemoteImageSize(app)
-    }
-    catch {}
-    if (app.env.isDebug) {
-      logger.info(`[vuepress-plugin-md-power] imageSizePlugin: scan all images time spent: ${performance.now() - start}ms`)
-    }
+  const start = performance.now()
+  const images = await scanImage(app)
+  const sizes = await getAllImageOriginalSize(images, type === 'all')
+
+  if (app.env.isDebug) {
+    logger.info(`[vuepress-plugin-md-power] imageSizePlugin: scan all images time spent: ${performance.now() - start}ms`)
   }
 
-  const imageRule = md.renderer.rules.image!
+  const imageRule = md.renderer.rules.image!.bind(md)
   md.renderer.rules.image = (tokens, idx, options, env: MarkdownEnv, self) => {
-    if (!env.filePathRelative || !env.filePath)
-      return imageRule(tokens, idx, options, env, self)
-
     const token = tokens[idx]
-    const src = token.attrGet('src')
     const width = token.attrGet('width')
     const height = token.attrGet('height')
-    const size = resolveSize(src, width, height, env)
+    const src = token.attrGet('src')
+    const url = resolveImagePath(app, src, env.filePath)
 
-    if (size) {
-      token.attrSet('width', `${size.width}`)
-      token.attrSet('height', `${size.height}`)
-    }
+    if ((width && height) || !url || !sizes[url] || src?.startsWith('data:'))
+      return imageRule(tokens, idx, options, env, self)
+
+    const size = resolveSize(sizes[url], width, height)
+
+    token.attrSet('width', `${size.width}`)
+    token.attrSet('height', `${size.height}`)
 
     return imageRule(tokens, idx, options, env, self)
   }
 
-  const rawHtmlBlockRule = md.renderer.rules.html_block!
-  const rawHtmlInlineRule = md.renderer.rules.html_inline!
-  md.renderer.rules.html_block = createHtmlRule(rawHtmlBlockRule)
-  md.renderer.rules.html_inline = createHtmlRule(rawHtmlInlineRule)
+  md.renderer.rules.html_block = createHtmlRule(md.renderer.rules.html_block!.bind(md))
+  md.renderer.rules.html_inline = createHtmlRule(md.renderer.rules.html_inline!.bind(md))
 
   /**
    * Create HTML rule for processing img tags
@@ -134,10 +123,13 @@ export async function imageSizePlugin(
       token.content = token.content.replace(REG_IMG_TAG, (raw, info) => {
         const { attrs } = resolveAttrs(info)
         const src = attrs.src || attrs.srcset
-        const size = resolveSize(src, attrs.width, attrs.height, env)
+        const url = resolveImagePath(app, src, env.filepath)
+        const { width, height } = attrs
 
-        if (!size)
+        if ((width && height) || !url || !sizes[url] || src?.startsWith('data:'))
           return raw
+
+        const size = resolveSize(sizes[url], width, height)
 
         attrs.width = size.width
         attrs.height = size.height
@@ -157,50 +149,17 @@ export async function imageSizePlugin(
    *
    * 从源解析图片尺寸
    *
-   * @param src - Image source / 图片源
+   * @param original - Image source / 图片源
    * @param width - Existing width / 现有宽度
    * @param height - Existing height / 现有高度
-   * @param env - Markdown environment / Markdown 环境
-   * @returns Image size or false / 图片尺寸或 false
+   * @returns Image size / 图片尺寸
    */
   function resolveSize(
-    src: string | null | undefined,
-    width: string | null | undefined,
-    height: string | null | undefined,
-    env: MarkdownEnv,
-  ): false | ImgSize {
-    if (!src || src.startsWith('data:'))
-      return false
-
-    if (width && height)
-      return false
-
-    const isExternal = isLinkExternal(src, env.base)
-    const filepath = isExternal ? src : resolveImageUrl(src, env, app)
-
-    if (isExternal) {
-      if (!cache.has(filepath))
-        return false
-    }
-    else {
-      if (!cache.has(filepath)) {
-        if (!fs.existsSync(filepath))
-          return false
-
-        try {
-          const { width: w, height: h } = imageSize(fs.readFileSync(filepath))
-          if (!w || !h)
-            return false
-
-          cache.set(filepath, { width: w, height: h })
-        }
-        catch {
-          return false
-        }
-      }
-    }
-
-    const { width: originalWidth, height: originalHeight } = cache.get(filepath)!
+    original: ImgSize,
+    width: string | null,
+    height: string | null,
+  ): ImgSize {
+    const { width: originalWidth, height: originalHeight } = original
 
     const ratio = originalWidth / originalHeight
 
@@ -208,99 +167,123 @@ export async function imageSizePlugin(
       const w = Number.parseInt(width, 10)
       return { width: w, height: Math.round(w / ratio) }
     }
-    else if (height && !width) {
+    if (height && !width) {
       const h = Number.parseInt(height, 10)
       return { width: Math.round(h * ratio), height: h }
     }
-    else {
-      return { width: originalWidth, height: originalHeight }
-    }
+    return { width: originalWidth, height: originalHeight }
   }
 }
 
 /**
- * Resolve image URL from source
+ * Scan all images in the source directory
  *
- * 从源解析图片 URL
- *
- * @param src - Image source / 图片源
- * @param env - Markdown environment / Markdown 环境
- * @param app - VuePress app / VuePress 应用
- * @returns Resolved image URL / 解析后的图片 URL
- */
-function resolveImageUrl(src: string, env: MarkdownEnv, app: App): string {
-  if (src[0] === '/')
-    return app.dir.public(src.slice(1))
-
-  if (env.filePathRelative && src[0] === '.')
-    return app.dir.source(path.join(path.dirname(env.filePathRelative), src))
-
-  // fallback
-  if (env.filePath && (src[0] === '.' || src[0] === '/'))
-    return path.resolve(env.filePath, src)
-
-  return path.resolve(src)
-}
-
-/**
- * Scan remote image sizes in markdown files
- *
- * 扫描 markdown 文件中的远程图片尺寸
+ * 扫描源目录中的所有图片
  *
  * @param app - VuePress app / VuePress 应用
+ * @returns List of image URLs / 图片 URL 列表
  */
-export async function scanRemoteImageSize(app: App): Promise<void> {
+async function scanImage(app: App): Promise<string[]> {
   if (!app.env.isBuild)
-    return
+    return []
+
   const cwd = app.dir.source()
   const files = await fs.readdir(cwd, { recursive: true })
-  const imgList: string[] = []
-  for (const file of files) {
+  const result = new Set<string>()
+
+  await pMap(files as string[], async (file) => {
     const filepath = path.join(cwd, file)
     if (
       (await (fs.stat(filepath))).isFile()
+      && filepath.endsWith('.md')
       && !filepath.includes('.vuepress')
       && !filepath.includes('node_modules')
-      && filepath.endsWith('.md')
     ) {
       const content = await fs.readFile(filepath, 'utf-8')
       // [xx](xxx)
       const syntaxMatched = content.match(REG_IMG) ?? []
       for (const img of syntaxMatched) {
-        const src = img.slice(img.indexOf('](') + 2, -1)
-        addList(src.split(/\s+/)[0])
+        const url = resolveImagePath(app, img.slice(img.indexOf('](') + 2, -1).split(/\s+/)[0], filepath)
+        url && result.add(url)
       }
       // <img src=""> or <img srcset="xxx">
       const tagMatched = content.match(REG_IMG_TAG) ?? []
       for (const img of tagMatched) {
-        const src = img.match(REG_IMG_TAG_SRC)?.[2] ?? ''
-        addList(src)
+        const url = resolveImagePath(app, img.match(REG_IMG_TAG_SRC)?.[2] ?? '', filepath)
+        url && result.add(url)
       }
     }
-  }
+  }, { concurrency: 64 })
 
-  /**
-   * Add source to image list
-   *
-   * 将源添加到图片列表
-   *
-   * @param src - Image source / 图片源
-   */
-  function addList(src: string) {
-    if (src && isLinkHttp(src)
-      && !imgList.includes(src)
-      && !BADGE_LIST.some(badge => src.startsWith(badge))) {
-      imgList.push(src)
-    }
-  }
+  return Array.from(result)
+}
 
-  await Promise.all(imgList.map(async (src) => {
-    if (!cache.has(src)) {
-      const { width, height } = await fetchImageSize(src)
-      if (width && height)
-        cache.set(src, { width, height })
-    }
-  }))
+/**
+ * Get original size of all images
+ *
+ * 获取所有图片的原始尺寸
+ *
+ * @param images - List of image URLs / 图片 URL 列表
+ * @param includeRemote - Whether to include remote images / 是否包含远程图片
+ * @returns Record of image URLs and their sizes / 图片 URL 及其尺寸的记录
+ */
+async function getAllImageOriginalSize(
+  images: string[],
+  includeRemote = false,
+): Promise<Record<string, ImgSize>> {
+  const result: Record<string, ImgSize> = {}
+
+  await pMap(images, async (src) => {
+    const size = await getImageOriginalSize(src, includeRemote)
+    if (size)
+      result[src] = size
+  }, { concurrency: 64 })
+
+  return result
+}
+
+export async function getImageOriginalSize(
+  image: string | null | undefined,
+  includeRemote = false,
+): Promise<ImgSize | null> {
+  if (!image)
+    return null
+
+  const isRemote = isLinkHttp(image)
+  // remote image
+  if (isRemote && includeRemote && !BADGE_LIST.some(badge => image.startsWith(badge))) {
+    const { width, height } = await fetchRemoteImageSize(image.startsWith('//') ? `https:${image}` : image)
+    if (width && height)
+      return { width, height }
+  }
+  if (!isRemote) {
+    const [, data] = attempt(() => imageSize(fs.readFileSync(image)))
+    if (data?.width && data?.height)
+      return { width: data.width, height: data.height }
+  }
+  return null
+}
+
+/**
+ * Resolve image path from source
+ *
+ * 从源解析图片路径
+ *
+ * @param app - VuePress app / VuePress 应用
+ * @param src - Image source / 图片源
+ * @param currentPath - Current path / 当前路径
+ * @returns Image path / 图片路径
+ */
+export function resolveImagePath(app: App, src?: string | null, currentPath?: string | null): string {
+  if (!src)
+    return ''
+  if (isLinkHttp(src))
+    return src
+
+  if (src[0] === '/')
+    return app.dir.public(src.slice(1))
+
+  return currentPath ? path.resolve(currentPath, src) : ''
 }
 
 /**
@@ -311,7 +294,7 @@ export async function scanRemoteImageSize(app: App): Promise<void> {
  * @param src - Image URL / 图片 URL
  * @returns Image size / 图片尺寸
  */
-function fetchImageSize(src: string): Promise<ImgSize> {
+function fetchRemoteImageSize(src: string): Promise<ImgSize> {
   const link = new URL(src)
 
   const promise = new Promise<ImgSize>((resolve) => {
@@ -320,22 +303,11 @@ function fetchImageSize(src: string): Promise<ImgSize> {
         const chunks: any[] = []
         for await (const chunk of stream) {
           chunks.push(chunk)
-          try {
-            const { width, height } = imageSize(Buffer.concat(chunks))
-            if (width && height) {
-              return resolve({ width, height })
-            }
-          }
-          catch {}
+          const [, data] = attempt(imageSize, Buffer.concat(chunks))
+          if (data && data.width && data.height)
+            return resolve(data)
         }
-
-        try {
-          const { width, height } = imageSize(Buffer.concat(chunks))
-          resolve({ width: width!, height: height! })
-        }
-        catch {
-          resolve({ width: 0, height: 0 })
-        }
+        resolve({ width: 0, height: 0 })
       })
       .on('error', () => resolve({ width: 0, height: 0 }))
   })
@@ -346,36 +318,4 @@ function fetchImageSize(src: string): Promise<ImgSize> {
   catch {
     return Promise.resolve({ width: 0, height: 0 })
   }
-}
-
-/**
- * Resolve image size from URL
- *
- * 从 URL 解析图片尺寸
- *
- * @param app - VuePress app / VuePress 应用
- * @param url - Image URL / 图片 URL
- * @param remote - Whether to fetch remote images / 是否获取远程图片
- * @returns Image size / 图片尺寸
- */
-export async function resolveImageSize(app: App, url: string, remote = false): Promise<ImgSize> {
-  if (cache.has(url))
-    return cache.get(url)!
-
-  if (isLinkHttp(url) && remote) {
-    return await fetchImageSize(url)
-  }
-
-  if (url[0] === '/') {
-    const filepath = app.dir.public(url.slice(1))
-    if (fs.existsSync(filepath)) {
-      try {
-        const { width, height } = imageSize(fs.readFileSync(filepath))
-        return { width: width!, height: height! }
-      }
-      catch {}
-    }
-  }
-
-  return { width: 0, height: 0 }
 }

@@ -2,6 +2,7 @@
 title: Frequently Asked Questions
 createTime: 2025/10/08 08:47:36
 permalink: /en/faq/
+article: false
 ---
 
 This document primarily covers common issues and solutions you might encounter while using the theme.
@@ -85,3 +86,104 @@ files (like `package-lock.json` or `pnpm-lock.yaml`) might be corrupted.
 
 Please directly delete the dependency lock files (`package-lock.json`, `pnpm-lock.yaml`, etc.)
 and the `node_modules` directory, then reinstall the dependencies.
+
+## How to hide the page footer?
+
+You can hide the footer by adding `footer: false` in the frontmatter of the Markdown file.
+
+```md title="post.md"
+---
+footer: false
+---
+
+content
+```
+
+[Configuration Documentation: **frontmatter > Footer**](../config/frontmatter/basic.md#footer){.read-more}
+
+Or you can hide the footer for all pages on the main site by adding `footer: false` in the theme configuration file.
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    footer: false, // [!code ++]
+  })
+})
+```
+
+[Configuration Documentation: **Theme Configuration**](../config/theme.md#footer){.read-more}
+
+## Build error: `JavaScript heap out of memory`
+
+When executing `npm run docs:build`, you encounter an error similar to:
+
+```sh
+<--- Last few GCs --->
+
+[69161:0x7fe63aa00000]   137006 ms: xxxxxx
+[69161:0x7fe63aa00000]   139327 ms: xxxxxxxx
+
+<--- JS stacktrace --->
+FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+1: 0x107ce7c84 xxxxxxxxxxxx
+...
+```
+
+This is due to insufficient Node.js memory.
+
+Modify the Node.js memory limit by adding the following environment variables:
+
+**Method 1: In the current terminal session**:
+
+```sh
+export NODE_OPTIONS="--max_old_space_size=8192"
+npm run docs:build
+```
+
+==Note that this method is only effective for the current terminal session.=={.warning}
+
+**Method 2: In the local environment**:
+
+If you need to keep this environment variable long-term, you can modify the Node.js memory limit in your local environment:
+
+:::: steps
+
+- Install `cross-env` in your project
+
+  ::: npm-to
+
+  ```sh
+  npm install -D cross-env
+  ```
+
+  :::
+
+- Add `scripts` in `package.json`:
+
+  ```json
+  {
+    "scripts": {
+      "docs:build-local": "cross-env NODE_OPTIONS=\"--max_old_space_size=8192\" vuepress build docs --clean-cache --clean-temp"
+    }
+  }
+  ```
+
+::::
+
+When building locally, use `npm run docs:build-local` to build the package.
+
+**Method 3: In GitHub Actions**:
+
+Modify the `.github/workflows/deploy.yml` file and add the following environment variables:
+
+```yaml
+# ...
+- name: Build VuePress site
+  env: # [!code ++:2]
+    NODE_OPTIONS: --max_old_space_size=8192
+  run: npm run docs:build
+
+# ...
+```

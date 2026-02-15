@@ -1,5 +1,6 @@
 ---
 pageLayout: home
+title: Vuepress Theme Plume
 config:
   -
     type: hero
@@ -37,7 +38,7 @@ config:
       -
         title: Multi-language
         icon: twemoji:balance-scale
-        details: Built-in support for Chinese/English, and you can customize and add more language support
+        details: Built-in support for 7 languages including Chinese and English, and you can customize and add more language support
       -
         title: Dual Color Theme
         icon: twemoji:cityscape
@@ -57,7 +58,7 @@ config:
       -
         title: Markdown Enhancement
         icon: twemoji:writing-hand-light-skin-tone
-        details: Supports Markdown syntax, code block grouping, hint containers, task lists, mathematical formulas, code demonstrations, etc.
+        details: Based on regular markdown syntax, adds dozens of enhanced syntaxes such as custom containers, file trees, code groups, etc.
   -
     type: image-text
     title: Features
@@ -69,7 +70,7 @@ config:
         description: Add tags, categories, word count, reading time, writing date, and other information to articles.
       -
         title: Comments
-        description: Supports 4 comment systems： Giscus, Waline, Twikoo, Artalk<br>You can freely choose the comment system that suits your needs.
+        description: "Supports 4 comment systems: Giscus, Waline, Twikoo, Artalk<br>You can freely choose the comment system that suits your needs."
       -
         title: Search
         description: Supports local search based on minisearch, and also supports Algolia search.
@@ -81,7 +82,7 @@ config:
         description: Code copying, CodePen demonstration, JSFiddle demonstration, CodeSandbox demonstration, code groups, line highlighting, line focusing, line warnings, difference comparison, code block folding, etc.
       -
         title: Resource Embedding
-        description: Charts：chart.js/ECharts/Mermaid/flowchart<br>Videos：Bilibili/Youtube/ArtPlayer<br>PDF, 200K+ Iconify icons
+        description: "Charts: chart.js/ECharts/Mermaid/flowchart<br>Videos: Bilibili/Youtube/ArtPlayer<br>PDF, 200K+ Iconify icons"
   -
     type: text-image
     title: Blog
@@ -116,63 +117,47 @@ config:
 <div style="max-width: 960px;margin:0 auto;" class="home-custom-content">
 
 ::: center
-![GitHub Repo stars](https://img.shields.io/github/stars/pengzhanbo/vuepress-theme-plume)
-![npm version](https://img.shields.io/npm/v/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=npm)
-![npm downloads](https://img.shields.io/npm/dm/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads)
-![npm downloads](https://img.shields.io/npm/dt/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads)
-![github license](https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A)
 
-![peer dependency](https://img.shields.io/npm/dependency-version/vuepress-theme-plume/peer/vuepress?color=32A9C3&labelColor=1B3C4A)
-![codecov](https://codecov.io/gh/pengzhanbo/vuepress-theme-plume/graph/badge.svg?token=W6KYBX7WO5)
+![GitHub Repo stars](https://img.shields.io/github/stars/pengzhanbo/vuepress-theme-plume){.no-view}
+![npm version](https://img.shields.io/npm/v/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=npm){.no-view}
+![npm downloads](https://img.shields.io/npm/dm/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads){.no-view}
+![npm downloads](https://img.shields.io/npm/dt/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A&label=downloads){.no-view}
+![github license](https://img.shields.io/github/license/pengzhanbo/vuepress-theme-plume?color=32A9C3&labelColor=1B3C4A){.no-view}
+
+![peer dependency](https://img.shields.io/npm/dependency-version/vuepress-theme-plume/peer/vuepress?color=32A9C3&labelColor=1B3C4A){.no-view}
+![codecov](https://codecov.io/gh/pengzhanbo/vuepress-theme-plume/graph/badge.svg?token=W6KYBX7WO5){.no-view}
+
 :::
 
-### Installation
+### Usage
 
-:::code-tabs
-@tab pnpm
+Use the following command to quickly create a new ==VuePress== project using this theme.
 
-```sh
-pnpm add vuepress@next vuepress-theme-plume vue
-```
-
-@tab npm
+:::npm-to
 
 ```sh
-npm install vuepress@next vuepress-theme-plume
-```
-
-@tab yarn
-
-```sh
-yarn add vuepress@next vuepress-theme-plume
+npm create vuepress-theme-plume@latest
 ```
 
 :::
 
-### Configuration
+### Start the project
 
-::: code-tabs
-@tab .vuepress/config.ts
+::: npm-to
 
-```ts :no-line-numbers
-import { defineUserConfig } from 'vuepress'
-import { plumeTheme } from 'vuepress-theme-plume'
-
-export default defineUserConfig({
-  // vuepress config...
-  theme: plumeTheme({
-    // theme config...
-  })
-})
+```sh
+npm run docs:dev
 ```
 
 :::
 
-### Update Log
+### Changelog
 
-[Changelog](../changelog)
+[Changelog](./changelog)
 
 ### Contributors
+
+Thanks to all contributors!
 
 <Contributors :contributors="data" />
 

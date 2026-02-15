@@ -1,0 +1,1 @@
+import{E as e,P as t,t as n}from"./app-RTCN23BF.js";var r={};function i(n,r){return t(),e(`div`)}var a=n(r,[[`render`,i]]),o=JSON.parse(`{"path":"/blog/","title":"博客","lang":"zh-CN","frontmatter":{"lang":"zh-CN","title":"博客","draft":true},"readingTime":{"minutes":0,"words":0},"git":{},"filePathRelative":null,"headers":[],"type":"posts"}`);export{a as comp,o as data};

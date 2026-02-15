@@ -3,8 +3,9 @@ import type { App } from 'vuepress'
 import type { ThemeBuiltinPlugins, ThemeData } from '../../shared/index.js'
 import fs from 'node:fs/promises'
 import process from 'node:process'
+import { deleteKey } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
-import { resolveImageSize } from 'vuepress-plugin-md-power'
+import { getImageOriginalSize, resolveImagePath } from 'vuepress-plugin-md-power'
 import { hash } from 'vuepress/utils'
 import { resolveThemeData } from '../config/resolveThemeData.js'
 import { getThemeConfig } from '../loadConfig/index.js'
@@ -57,7 +58,7 @@ async function resolveBulletin(app: App, themeData: ThemeData) {
   if (themeData.bulletin) {
     if (bulletinFiles.root || themeData.bulletin.contentFile) {
       bulletinFiles.root = themeData.bulletin.contentFile || bulletinFiles.root
-      delete themeData.bulletin.contentFile
+      deleteKey(themeData.bulletin, 'contentFile')
       themeData.bulletin!.content = await readBulletinFile(app, bulletinFiles.root)
     }
     else if (themeData.bulletin.content) {
@@ -84,7 +85,7 @@ async function resolveBulletin(app: App, themeData: ThemeData) {
 
       if (bulletinFiles[locale] || themeData.locales[locale].bulletin.contentFile) {
         bulletinFiles[locale] = themeData.locales[locale].bulletin?.contentFile || bulletinFiles[locale]
-        delete themeData.locales[locale].bulletin.contentFile
+        deleteKey(themeData.locales[locale].bulletin, 'contentFile')
         themeData.locales[locale].bulletin.content = await readBulletinFile(app, bulletinFiles[locale], locale)
       }
       else if (themeData.locales[locale].bulletin.content) {
@@ -142,24 +143,24 @@ async function processProfileImageSize(
 
   const remote = imageSize === 'all'
   if (themeData.profile?.avatar) {
-    const { width, height } = await resolveImageSize(app, themeData.profile.avatar, remote)
-    if (width && height) {
+    const size = await getImageOriginalSize(resolveImagePath(app, themeData.profile.avatar), remote)
+    if (size) {
       themeData.profile = {
         ...themeData.profile,
-        originalWidth: width,
-        originalHeight: height,
+        originalWidth: size.width,
+        originalHeight: size.height,
       } as any
     }
   }
   if (themeData.locales) {
     for (const locale of Object.keys(themeData.locales)) {
       if (themeData.locales[locale].profile?.avatar) {
-        const { width, height } = await resolveImageSize(app, themeData.locales[locale].profile.avatar, remote)
-        if (width && height) {
+        const size = await getImageOriginalSize(resolveImagePath(app, themeData.locales[locale].profile.avatar), remote)
+        if (size) {
           themeData.locales[locale].profile = {
             ...themeData.locales[locale].profile,
-            originalWidth: width,
-            originalHeight: height,
+            originalWidth: size.width,
+            originalHeight: size.height,
           } as any
         }
       }

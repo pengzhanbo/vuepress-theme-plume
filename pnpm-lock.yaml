@@ -719,6 +719,9 @@ importers:
       nanoid:
         specifier: catalog:prod
         version: 5.1.6
+      p-map:
+        specifier: catalog:prod
+        version: 7.0.4
       pyodide:
         specifier: catalog:peer
         version: 0.29.3

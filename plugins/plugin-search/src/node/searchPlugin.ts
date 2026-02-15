@@ -4,7 +4,7 @@ import { addViteOptimizeDepsInclude, getFullLocaleConfig } from '@vuepress/helpe
 import chokidar from 'chokidar'
 import { getDirname, path } from 'vuepress/utils'
 import { SEARCH_LOCALES } from './locales/index.js'
-import { onSearchIndexRemoved, onSearchIndexUpdated, prepareSearchIndex } from './prepareSearchIndex.js'
+import { onSearchIndexRemoved, onSearchIndexUpdated, prepareSearchIndex, prepareSearchIndexPlaceholder } from './prepareSearchIndex.js'
 
 const __dirname = getDirname(import.meta.url)
 
@@ -32,7 +32,11 @@ export function searchPlugin({
       addViteOptimizeDepsInclude(bundlerOptions, app, ['mark.js/src/vanilla.js', '@vueuse/integrations/useFocusTrap', 'minisearch'])
     },
 
-    onPrepared: app => prepareSearchIndex({ app, isSearchable, searchOptions }),
+    onPrepared: async (app) => {
+      const placeholder = prepareSearchIndexPlaceholder(app)
+      prepareSearchIndex({ app, isSearchable, searchOptions })
+      await placeholder
+    },
 
     onWatched: (app, watchers) => {
       const searchIndexWatcher = chokidar.watch('pages', {

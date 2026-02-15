@@ -1,3 +1,13 @@
+# [1.0.0-rc.190](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.189...v1.0.0-rc.190) (2026-02-15)
+
+
+### Bug Fixes
+
+* **plugin-md-power:**  fix timeout issue when retrieving image size ([f2fe79f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f2fe79f923d9bd83f14604e116cdd11d5d66eafe))
+* **plugin-search:** fix incorrect prepare search index ([7234eeb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7234eebe7e00c42ccf7d08c95eb617ac274ce049))
+
+
+
 # [1.0.0-rc.189](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.188...v1.0.0-rc.189) (2026-02-15)
 
 

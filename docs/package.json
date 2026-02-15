@@ -28,7 +28,9 @@
     "markmap-toolbar": "catalog:prod",
     "markmap-view": "catalog:prod",
     "mermaid": "catalog:dev",
+    "postprocessing": "catalog:peer",
     "swiper": "catalog:peer",
+    "three": "catalog:peer",
     "vue": "catalog:prod",
     "vuepress-theme-plume": "workspace:*"
   },

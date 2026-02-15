@@ -57,7 +57,7 @@ catalogs:
     minimist: ^1.2.8
     postcss: ^8.5.6
     rimraf: ^6.1.2
-    stylelint: ^17.2.0
+    stylelint: ^17.3.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
     tsdown: ^0.20.3
@@ -83,7 +83,7 @@ catalogs:
     pyodide: ^0.29.3
     sass: ^1.97.3
     sass-embedded: ^1.97.3
-    swiper: ^12.1.0
+    swiper: ^12.1.1
     three: ^0.182.0
   prod:
     '@clack/prompts': ^1.0.1
@@ -132,8 +132,8 @@ catalogs:
     qrcode: ^1.5.4
     shiki: ^3.22.0
     sort-package-json: ^3.6.1
-    tm-grammars: ^1.30.8
-    tm-themes: ^1.11.1
+    tm-grammars: ^1.30.9
+    tm-themes: ^1.11.2
     vue: ^3.5.28
     vue-router: ^5.0.2
   vuepress:

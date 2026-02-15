@@ -47,6 +47,10 @@ function getIndexCache(filepath: string) {
   return index
 }
 
+export async function prepareSearchIndexPlaceholder(app: App) {
+  await app.writeTemp(`${SEARCH_INDEX_DIR}index.js`, 'export const searchIndex = {}')
+}
+
 export async function prepareSearchIndex({
   app,
   isSearchable,
@@ -56,10 +60,10 @@ export async function prepareSearchIndex({
   indexByLocales.clear()
   indexCache.clear()
 
-  const pages = isSearchable ? app.pages.filter(isSearchable) : app.pages
-  await pMap(pages, p => indexFile(p, searchOptions), {
+  await pMap(app.pages, p => indexFile(p, searchOptions, isSearchable), {
     concurrency: 64,
   })
+
   await writeTemp(app)
 
   if (app.env.isBuild) {
@@ -84,7 +88,11 @@ export async function onSearchIndexUpdated(
 ): Promise<void> {
   const pages = isSearchable ? app.pages.filter(isSearchable) : app.pages
   if (pages.some(p => p.filePathRelative?.endsWith(filepath))) {
-    await indexFile(app.pages.find(p => p.filePathRelative?.endsWith(filepath))!, searchOptions)
+    await indexFile(
+      app.pages.find(p => p.filePathRelative?.endsWith(filepath))!,
+      searchOptions,
+      isSearchable,
+    )
     await writeTemp(app)
   }
 }
@@ -113,29 +121,35 @@ export async function onSearchIndexRemoved(
 
 async function writeTemp(app: App) {
   const records: string[] = []
+  const promises: Promise<string>[] = []
   for (const [locale] of indexByLocales) {
     const index = indexByLocales.get(locale)!
     const localeName = locale.replace(/^\/|\/$/g, '').replace(/\//g, '_') || 'default'
     const filename = `searchBox-${localeName}.js`
     records.push(`${JSON.stringify(locale)}: () => import('@${SEARCH_INDEX_DIR}${filename}')`)
-    await app.writeTemp(
-      `${SEARCH_INDEX_DIR}${filename}`,
-      `export default ${JSON.stringify(
-        JSON.stringify(index) ?? {},
-      )}`,
+    promises.push(
+      app.writeTemp(
+        `${SEARCH_INDEX_DIR}${filename}`,
+        `export default ${JSON.stringify(
+          JSON.stringify(index) ?? {},
+        )}`,
+      ),
     )
   }
-  await app.writeTemp(
-    `${SEARCH_INDEX_DIR}index.js`,
-    `export const searchIndex = {${records.join(',')}}${app.env.isDev ? `\n${genHmrCode('searchIndex')}` : ''}`,
+  promises.push(
+    app.writeTemp(
+      `${SEARCH_INDEX_DIR}index.js`,
+      `export const searchIndex = {${records.join(',')}}${app.env.isDev ? `\n${genHmrCode('searchIndex')}` : ''}`,
+    ),
   )
+  await Promise.all(promises)
 }
 
-async function indexFile(page: Page, options: SearchIndexOptions['searchOptions']) {
-  if (!page.filePath)
+async function indexFile(page: Page, options: SearchIndexOptions['searchOptions'], isSearchable: SearchPluginOptions['isSearchable']) {
+  if (!page.filePath || page.frontmatter?.search === false)
     return
 
-  if (page.frontmatter?.search === false)
+  if (isSearchable && !isSearchable(page))
     return
 
   // get file metadata

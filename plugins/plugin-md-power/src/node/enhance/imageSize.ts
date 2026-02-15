@@ -233,11 +233,11 @@ async function getAllImageOriginalSize(
 ): Promise<Record<string, ImgSize>> {
   const result: Record<string, ImgSize> = {}
 
-  await pMap(images, async (src) => {
+  for (const src of images) {
     const size = await getImageOriginalSize(src, includeRemote)
     if (size)
       result[src] = size
-  }, { concurrency: 64 })
+  }
 
   return result
 }

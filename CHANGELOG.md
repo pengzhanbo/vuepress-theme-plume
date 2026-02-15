@@ -1,3 +1,12 @@
+# [1.0.0-rc.189](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.188...v1.0.0-rc.189) (2026-02-15)
+
+
+### Bug Fixes
+
+* **cli:** fix failure to retrieve OS language ([#851](https://github.com/pengzhanbo/vuepress-theme-plume/issues/851)) ([77da8a3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/77da8a347023f2f4b9d2a4a03c9aa3ef306ca456))
+
+
+
 # [1.0.0-rc.188](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.187...v1.0.0-rc.188) (2026-02-13)
 
 

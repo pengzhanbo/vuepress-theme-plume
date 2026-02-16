@@ -10,7 +10,6 @@ import { chatPlugin } from './chat.js'
 import { codeTabs } from './codeTabs.js'
 import { codeTreePlugin } from './codeTree.js'
 import { collapsePlugin } from './collapse.js'
-import { demoWrapperPlugin } from './demoWrapper.js'
 import { encryptPlugin } from './encrypt.js'
 import { fieldPlugin } from './field.js'
 import { fileTreePlugin } from './fileTree.js'
@@ -20,6 +19,7 @@ import { stepsPlugin } from './steps.js'
 import { tablePlugin } from './table.js'
 import { tabs } from './tabs.js'
 import { timelinePlugin } from './timeline.js'
+import { windowPlugin } from './window.js'
 
 /**
  * Container plugin - Register all container plugins
@@ -44,8 +44,8 @@ export async function containerPlugin(
   // ::: code-tabs
   codeTabs(md, options.codeTabs)
 
-  // ::: demo-wrapper
-  demoWrapperPlugin(md)
+  // ::: window
+  windowPlugin(md)
 
   // ::: steps
   stepsPlugin(md)

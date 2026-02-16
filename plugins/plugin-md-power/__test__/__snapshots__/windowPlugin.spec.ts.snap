@@ -1,0 +1,80 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`windowPlugin > legacy demo-wrapper container 1`] = `
+"<article class="window-wrapper">
+  <header class="window-header">
+    <div class="window-left"><i></i><i></i><i></i></div>
+    
+    <div class="window-right"><i class="vpi-window-share"></i><i class="vpi-window-add"></i><i class="vpi-window-copy"></i></div>
+  </header>
+  <section class="window-content" style="--window-gap:20px;"><p>content</p>
+</section></article><article class="window-wrapper has-title">
+  <header class="window-header">
+    <div class="window-left"><i></i><i></i><i></i></div>
+    <div class="window-center"><h4 class="window-title ignore-header"><span>test</span><i class="vpi-window-reload"></i></h4></div>
+    <div class="window-right"><i class="vpi-window-share"></i><i class="vpi-window-add"></i><i class="vpi-window-copy"></i></div>
+  </header>
+  <section class="window-content" style="--window-gap:20px;"><p>content</p>
+</section></article><article class="window-wrapper">
+  <header class="window-header">
+    <div class="window-left"><i></i><i></i><i></i></div>
+    
+    <div class="window-right"><i class="vpi-window-share"></i><i class="vpi-window-add"></i><i class="vpi-window-copy"></i></div>
+  </header>
+  <section class="window-content" style="--window-gap:20px;--window-height:100px"><p><img src="/img.jpg" alt="xxx"></p>
+</section></article><article class="window-wrapper">
+  <header class="window-header">
+    <div class="window-left"><i></i><i></i><i></i></div>
+    
+    <div class="window-right"><i class="vpi-window-share"></i><i class="vpi-window-add"></i><i class="vpi-window-copy"></i></div>
+  </header>
+  <section class="window-content" style="--window-gap:20px;--window-height:100px"><p><img src="/img.jpg" alt="xxx"></p>
+</section></article>"
+`;
+
+exports[`windowPlugin > should work 1`] = `
+"<article class="window-wrapper">
+  <header class="window-header">
+    <div class="window-left"><i></i><i></i><i></i></div>
+    
+    <div class="window-right"><i class="vpi-window-share"></i><i class="vpi-window-add"></i><i class="vpi-window-copy"></i></div>
+  </header>
+  <section class="window-content" style="--window-gap:20px;"><p>content</p>
+</section></article><article class="window-wrapper has-title">
+  <header class="window-header">
+    <div class="window-left"><i></i><i></i><i></i></div>
+    <div class="window-center"><h4 class="window-title ignore-header"><span>test</span><i class="vpi-window-reload"></i></h4></div>
+    <div class="window-right"><i class="vpi-window-share"></i><i class="vpi-window-add"></i><i class="vpi-window-copy"></i></div>
+  </header>
+  <section class="window-content" style="--window-gap:20px;"><p>content</p>
+</section></article><article class="window-wrapper">
+  <header class="window-header">
+    <div class="window-left"><i></i><i></i><i></i></div>
+    
+    <div class="window-right"><i class="vpi-window-share"></i><i class="vpi-window-add"></i><i class="vpi-window-copy"></i></div>
+  </header>
+  <section class="window-content" style="--window-gap:0;--window-height:100px"><img src="/img.jpg" alt="xxx"></section></article><article class="window-wrapper">
+  <header class="window-header">
+    <div class="window-left"><i></i><i></i><i></i></div>
+    
+    <div class="window-right"><i class="vpi-window-share"></i><i class="vpi-window-add"></i><i class="vpi-window-copy"></i></div>
+  </header>
+  <section class="window-content" style="--window-gap:20px;--window-height:100px"><img src="/img.jpg" alt="xxx"></section></article><article class="window-wrapper">
+  <header class="window-header">
+    <div class="window-left"><i></i><i></i><i></i></div>
+    
+    <div class="window-right"><i class="vpi-window-share"></i><i class="vpi-window-add"></i><i class="vpi-window-copy"></i></div>
+  </header>
+  <section class="window-content" style="--window-gap:0;">  <img src="/img.jpg" alt="xxx">
+</section></article><article class="window-wrapper">
+  <header class="window-header">
+    <div class="window-left"><i></i><i></i><i></i></div>
+    
+    <div class="window-right"><i class="vpi-window-share"></i><i class="vpi-window-add"></i><i class="vpi-window-copy"></i></div>
+  </header>
+  <section class="window-content" style="--window-gap:0;">  <picture>
+    <source srcset="/img.jpg" type="image/webp" />
+    <img src="/img.jpg" alt="xxx" />
+  </picture>
+</section></article>"
+`;

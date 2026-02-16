@@ -129,8 +129,7 @@ config:
 
 **Result:**
 
-:::demo-wrapper img no-padding
-
+::: window
 ![banner](/images/custom-banner.jpg)
 :::
 
@@ -246,7 +245,7 @@ config:
 
 **Result:**
 
-:::demo-wrapper img no-padding
+::: window
 <img src="/images/custom-doc-hero.jpg" alt="Theme Plume" />
 :::
 
@@ -359,7 +358,7 @@ config:
 
 **Result:**
 
-:::demo-wrapper img no-padding
+:::window
 <img src="/images/custom-features.jpg" alt="custom-features" />
 :::
 
@@ -432,11 +431,11 @@ config:
 
 **Result:**
 
-:::demo-wrapper img no-padding
+:::window
 <img src="/images/custom-image-text.jpg" alt="image-text" />
 :::
 
-:::demo-wrapper img no-padding
+:::window
 <img src="/images/custom-text-image.jpg" alt="text-image" />
 :::
 
@@ -505,7 +504,7 @@ config:
 
 **Result:**
 
-:::demo-wrapper img no-padding
+:::window
 <img src="/images/custom-profile.jpg" alt="profile" />
 :::
 
@@ -551,7 +550,7 @@ yarn add vuepress@next vuepress-theme-plume
 
 **Result:**
 
-:::demo-wrapper img no-padding
+:::window
 <img src="/images/custom-content.jpg" alt="content" />
 :::
 

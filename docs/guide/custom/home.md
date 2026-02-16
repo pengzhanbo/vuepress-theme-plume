@@ -128,7 +128,7 @@ config:
 
 **效果：**
 
-:::demo-wrapper img no-padding
+:::window
 
 ![banner](/images/custom-banner.jpg)
 :::
@@ -245,7 +245,7 @@ config:
 
 **效果：**
 
-:::demo-wrapper img no-padding
+:::window
 <img src="/images/custom-doc-hero.jpg" alt="Theme Plume" />
 :::
 
@@ -358,7 +358,7 @@ config:
 
 **效果：**
 
-:::demo-wrapper img no-padding
+:::window
 <img src="/images/custom-features.jpg" alt="custom-features" />
 :::
 
@@ -431,11 +431,11 @@ config:
 
 **效果：**
 
-:::demo-wrapper img no-padding
+:::window
 <img src="/images/custom-image-text.jpg" alt="image-text" />
 :::
 
-:::demo-wrapper img no-padding
+:::window
 <img src="/images/custom-text-image.jpg" alt="text-image" />
 :::
 
@@ -504,7 +504,7 @@ config:
 
 **效果：**
 
-:::demo-wrapper img no-padding
+:::window
 <img src="/images/custom-profile.jpg" alt="profile" />
 :::
 
@@ -550,7 +550,7 @@ yarn add vuepress@next vuepress-theme-plume
 
 **效果：**
 
-:::demo-wrapper img no-padding
+:::window
 <img src="/images/custom-content.jpg" alt="content" />
 :::
 

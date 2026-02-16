@@ -1,20 +1,23 @@
 ---
 title: 示例容器
 createTime: 2024/09/30 14:47:12
-icon: icon-park-outline:eyes
-permalink: /guide/markdown/demo-wrapper/
+icon: fxemoji:window
+permalink: /guide/markdown/window/
 outline: 2
+badge:
+  text: 变更
+  type: warning
 ---
 
 ## 概述
 
 有时候，你可能需要在 内容中补充一些 示例，但期望能与 其它内容 分隔开来呈现。
-主题支持在 Markdown 文件中添加示例容器。
+主题支持在 Markdown 文件中添加示例窗口容器。
 
 ## 语法
 
 ````md
-::: demo-wrapper
+::: window
 添加你的示例
 :::
 ````
@@ -22,29 +25,28 @@ outline: 2
 ## 选项
 
 - `title="xxx"`：标题
-- `no-padding`：不添加内边距
-- `img`: 仅包含图片时使用
-- `height="xxx"`: 高度
+- `height="200px"`: 高度
+- `gap="20px"`: 左右内边距
 
 ## 示例
 
 仅包含图片:
 
 ```md
-::: demo-wrapper img no-padding
+::: window
 ![hero](/images/custom-hero.jpg)
 :::
 ```
 
 **输出：**
-::: demo-wrapper img no-padding
+::: window
 ![hero](/images/custom-hero.jpg)
 :::
 
 包含 markdown 语法：
 
 ```md
-::: demo-wrapper title="标题"
+::: window title="标题"
 ### 三级标题
 
 这是示例容器中的内容。
@@ -52,7 +54,7 @@ outline: 2
 ```
 
 **输出：**
-::: demo-wrapper title="标题"
+::: window title="标题"
 
 ### 三级标题
 
@@ -62,8 +64,8 @@ outline: 2
 包含 html /vue 代码：
 
 ```md
-::: demo-wrapper
-<h1 class="your-demo-title">这是标题</h1>
+::: window
+<h2 class="your-demo-title">这是标题</h2>
 <p class="your-demo-paragraph">这是段落</p>
 
 <style>
@@ -78,9 +80,9 @@ outline: 2
 ```
 
 **输出：**
-::: demo-wrapper
+::: window
 
-<h1 class="your-demo-title">这是标题</h1>
+<h2 class="your-demo-title">这是标题</h2>
 <p class="your-demo-paragraph">这是段落</p>
 
 <style>

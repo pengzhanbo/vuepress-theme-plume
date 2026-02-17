@@ -218,9 +218,9 @@ blog:
     name: 𝙁𝙡𝙖𝙨𝙝
     desc: 路漫漫其修远兮，吾将上下而求索
     logo: https://haipeng-lin.cn/images/avatar.jpg
-    url: https://haipeng-lin.cn
+    url: https://blog.haipeng-lin.cn
     repo: https://gitee.com/linhaipengg
-    preview: https://img.haipeng-lin.cn/1768622018580.png
+    preview: https://img.haipeng-lin.cn/index.webp
   -
     name: PinkDopeyBug
     desc: 山难现浮槎，心易陷镜花。

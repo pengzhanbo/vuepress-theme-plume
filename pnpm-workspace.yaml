@@ -9,6 +9,11 @@ trustPolicyExclude:
   - cached-factory
   - memfs
   - semver
+  - '@mdit/plugin-attrs'
+  - '@mdit/plugin-mark'
+  - '@mdit/plugin-sup'
+  - '@mdit/plugin-sub'
+  - '@mdit/plugin-tab'
 
 packages:
   - docs
@@ -22,22 +27,22 @@ patchedDependencies:
 
 catalogs:
   dev:
-    '@commitlint/cli': ^20.4.1
-    '@commitlint/config-conventional': ^20.4.1
+    '@commitlint/cli': ^20.4.2
+    '@commitlint/config-conventional': ^20.4.2
     '@lunariajs/core': ^0.1.1
-    '@pengzhanbo/eslint-config-vue': ^2.0.0
-    '@pengzhanbo/stylelint-config': ^2.0.0
+    '@pengzhanbo/eslint-config-vue': ^2.0.1
+    '@pengzhanbo/stylelint-config': ^2.0.1
     '@simonwep/pickr': ^1.9.1
     '@types/express': ^5.0.6
     '@types/js-yaml': ^4.0.9
     '@types/less': ^3.0.8
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^25.2.3
+    '@types/node': ^25.3.0
     '@types/picomatch': ^4.0.2
     '@types/qrcode': ^1.5.6
     '@types/stylus': ^0.48.43
-    '@types/three': ^0.182.0
+    '@types/three': ^0.183.1
     '@types/webpack-env': ^1.18.8
     '@vitest/coverage-v8': ^4.0.18
     bumpp: ^10.4.1
@@ -46,32 +51,32 @@ catalogs:
     cpx2: ^8.0.0
     cross-env: 7.0.3
     cz-conventional-changelog: ^3.3.0
-    eslint: ^10.0.0
+    eslint: ^10.0.2
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.5.1
     lint-staged: ^16.2.7
     markdown-it: ^14.1.1
     memfs: ^4.56.10
-    mermaid: ^11.12.2
+    mermaid: ^11.12.3
     minimist: ^1.2.8
     postcss: ^8.5.6
-    rimraf: ^6.1.2
-    stylelint: ^17.3.0
+    rimraf: ^6.1.3
+    stylelint: ^17.4.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
     tsdown: ^0.20.3
     typescript: ^5.9.3
-    vite: ^8.0.0-beta.14
+    vite: ^8.0.0-beta.15
     vitest: ^4.0.18
     wait-on: ^9.0.4
   peer:
     '@eslint-community/eslint-utils': ^4.9.1
-    '@iconify/json': ^2.2.439
-    '@mathjax/src': ^4.1.0
-    '@pinyin-pro/data': ^1.3.0
-    '@typescript-eslint/types': ^8.55.0
-    '@typescript-eslint/utils': ^8.55.0
+    '@iconify/json': ^2.2.443
+    '@mathjax/src': ^4.1.1
+    '@pinyin-pro/data': ^1.3.1
+    '@typescript-eslint/types': ^8.56.1
+    '@typescript-eslint/utils': ^8.56.1
     artplayer: ^5.3.0
     dashjs: ^5.1.1
     gsap: ^3.14.2
@@ -79,24 +84,24 @@ catalogs:
     mpegts.js: 1.7.3
     ogl: ^1.0.11
     pinyin-pro: ^3.28.0
-    postprocessing: ^6.38.2
+    postprocessing: ^6.38.3
     pyodide: ^0.29.3
     sass: ^1.97.3
     sass-embedded: ^1.97.3
-    swiper: ^12.1.1
-    three: ^0.182.0
+    swiper: ^12.1.2
+    three: ^0.183.1
   prod:
     '@clack/prompts': ^1.0.1
     '@iconify/utils': ^3.1.0
     '@iconify/vue': ^5.0.0
-    '@mdit/plugin-attrs': ^0.24.2
-    '@mdit/plugin-footnote': ^0.22.4
-    '@mdit/plugin-mark': ^0.22.2
-    '@mdit/plugin-sub': ^0.23.1
-    '@mdit/plugin-sup': ^0.23.1
-    '@mdit/plugin-tab': ^0.23.1
-    '@mdit/plugin-tasklist': ^0.22.3
-    '@pengzhanbo/utils': ^3.2.0
+    '@mdit/plugin-attrs': ^0.25.0
+    '@mdit/plugin-footnote': ^0.23.0
+    '@mdit/plugin-mark': ^0.23.0
+    '@mdit/plugin-sub': ^0.24.0
+    '@mdit/plugin-sup': ^0.24.0
+    '@mdit/plugin-tab': ^0.24.0
+    '@mdit/plugin-tasklist': ^0.23.0
+    '@pengzhanbo/utils': ^3.3.1
     '@vueuse/core': ^14.2.1
     '@vueuse/integrations': ^14.2.1
     cac: ^6.7.14
@@ -112,7 +117,7 @@ catalogs:
     hash-wasm: ^4.12.0
     image-size: ^2.0.2
     js-yaml: ^4.1.1
-    katex: ^0.16.28
+    katex: ^0.16.33
     local-pkg: ^1.1.2
     lru-cache: ^11.2.6
     mark.js: ^8.11.1
@@ -130,12 +135,12 @@ catalogs:
     picocolors: ^1.1.1
     picomatch: ^4.0.3
     qrcode: ^1.5.4
-    shiki: ^3.22.0
+    shiki: ^3.23.0
     sort-package-json: ^3.6.1
-    tm-grammars: ^1.30.9
-    tm-themes: ^1.11.2
-    vue: ^3.5.28
-    vue-router: ^5.0.2
+    tm-grammars: ^1.31.0
+    tm-themes: ^1.12.0
+    vue: ^3.5.29
+    vue-router: ^5.0.3
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.26
     '@vuepress/helper': 2.0.0-rc.123

@@ -1,0 +1,3271 @@
+
+		<!doctype html>
+		<html dir="ltr" lang="en">
+			<head>
+				<!-- Built-in/custom meta tags -->
+				
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+	<title>Localization Status</title>
+	<meta name="description" content="Online localization status dashboard of the project " />
+	
+	<meta property="og:title" content="Localization Status" />
+	<meta property="og:type" content="website" />
+	
+	<meta property="og:description" content="Online localization status dashboard of the project " />
+	 
+
+				<!-- Additional head tags -->
+				
+				<!-- Built-in styles -->
+				
+	<style>
+		:root {
+			/** Fonts */
+			--ln-font-fallback: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif,
+				Apple Color Emoji, Segoe UI Emoji;
+			--ln-font-body: system-ui, var(--ln-font-fallback);
+			--ln-font-mono: 'IBM Plex Mono', Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console',
+				'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono',
+				'Nimbus Mono L', Monaco, 'Courier New', Courier, monospace;
+
+			/* Light theme colors */
+			--ln-color-white: #f9fafb;
+			--ln-color-gray-1: #f3f4f6;
+			--ln-color-gray-2: #e5e7eb;
+			--ln-color-gray-3: #d1d5db;
+			--ln-color-gray-4: #9ca3af;
+			--ln-color-gray-5: #6b7280;
+			--ln-color-gray-6: #4b5563;
+			--ln-color-gray-7: #374151;
+			--ln-color-black: #030712;
+			--ln-color-blue: #3b82f6;
+			--ln-color-orange: #f97316;
+			--ln-color-purple: #a855f7;
+
+			/** Contextual colors */
+			--ln-color-background: var(--ln-color-white);
+			--ln-color-link: var(--ln-color-blue);
+			--ln-color-done: var(--ln-color-purple);
+			--ln-color-outdated: var(--ln-color-orange);
+			--ln-color-missing: var(--ln-color-black);
+			--ln-color-table-border: var(--ln-color-gray-3);
+			--ln-color-table-background: var(--ln-color-gray-1);
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:root {
+				/* Dark theme colors */
+				--ln-color-white: #030712;
+				--ln-color-gray-1: #374151;
+				--ln-color-gray-2: #4b5563;
+				--ln-color-gray-3: #6b7280;
+				--ln-color-gray-4: #9ca3af;
+				--ln-color-gray-5: #d1d5db;
+				--ln-color-gray-6: #e5e7eb;
+				--ln-color-gray-7: #f3f4f6;
+				--ln-color-black: #f9fafb;
+				--ln-color-blue: #60a5fa;
+				--ln-color-orange: #fb923c;
+				--ln-color-purple: #c084fc;
+			}
+		}
+
+		* {
+			box-sizing: border-box;
+			margin: 0;
+		}
+
+		html {
+			background: var(--ln-color-background);
+			scrollbar-gutter: stable;
+		}
+
+		body {
+			color: var(--ln-color-black);
+			display: flex;
+			flex-direction: column;
+			font-family: var(--ln-font-body);
+			font-size: 16px;
+			line-height: 1.5;
+			margin-block: 2rem;
+			margin-inline: 1rem;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin-bottom: 1rem;
+			font-weight: bold;
+			line-height: 1.3;
+		}
+
+		h1,
+		h2 {
+			max-width: 40ch;
+		}
+
+		h1 {
+			font-size: 2.25rem;
+			font-weight: 900;
+		}
+
+		h2 {
+			font-size: 1.875rem;
+			margin-top: 4rem;
+		}
+
+		h3,
+		h4 {
+			margin-top: 3rem;
+		}
+
+		h5,
+		h6 {
+			margin-top: 2rem;
+		}
+
+		main {
+			max-width: 80ch;
+			margin-inline: auto;
+		}
+
+		.limit-to-viewport {
+			max-width: calc(100vw - 2rem);
+		}
+
+		p + p {
+			margin-top: 1.25rem;
+		}
+
+		a {
+			color: var(--ln-color-link);
+			text-decoration: none;
+		}
+
+		h2 a {
+			color: inherit;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		ul {
+			font-size: 0.875rem;
+		}
+
+		.progress-details {
+			margin-bottom: 1.25rem;
+		}
+
+		details summary {
+			cursor: pointer;
+			user-select: none;
+		}
+
+		details summary:hover strong,
+		details summary:hover::marker {
+			color: var(--ln-color-gray-5);
+		}
+
+		details p {
+			margin-top: 1.2rem;
+		}
+
+		details h3 {
+			margin-top: 1.2rem;
+			font-size: 0.8rem;
+		}
+
+		details h4 {
+			margin-top: 1rem;
+			font-size: 0.8rem;
+		}
+
+		details > :last-child {
+			margin-bottom: 1rem;
+		}
+
+		.create-button {
+			padding: 0.1em 0.5em;
+			font-weight: bold;
+			font-size: 0.75rem;
+		}
+
+		.status-by-file {
+			margin-bottom: 1rem;
+			border-collapse: collapse;
+			border: 1px solid var(--ln-color-table-border);
+			font-size: 0.8125rem;
+			column-gap: 64px;
+		}
+
+		.status-by-file tr:first-of-type td {
+			padding-top: 0.5rem;
+		}
+
+		.status-by-file tr:last-of-type td {
+			padding-bottom: 0.5rem;
+		}
+
+		.status-by-file tr td:first-of-type {
+			padding-inline: 1rem;
+		}
+
+		.status-by-file th {
+			border-bottom: 1px solid var(--ln-color-table-border);
+			background: var(--ln-color-table-background);
+			position: sticky;
+			top: -1px;
+			white-space: nowrap;
+			padding-inline: 0.3rem;
+		}
+
+		.status-by-file th,
+		.status-by-file td {
+			padding-block: 0.2rem;
+		}
+
+		.status-by-file tbody tr:hover td {
+			background: var(--ln-color-table-background);
+		}
+
+		.status-by-file th:first-of-type,
+		.status-by-file td:first-of-type {
+			text-align: left;
+			padding-inline-start: 1rem;
+		}
+
+		.status-by-file th:last-of-type,
+		.status-by-file td:last-of-type {
+			text-align: center;
+			padding-inline-end: 1rem;
+		}
+
+		.status-by-file td:not(:first-of-type) {
+			min-width: 2rem;
+			text-align: center;
+			cursor: default;
+		}
+
+		.status-by-file td:not(:first-of-type) a {
+			text-decoration: none;
+		}
+
+		.progress-summary {
+			font-size: 0.8125rem;
+		}
+
+		.progress-bar {
+			display: flex;
+			flex-direction: row;
+			margin-top: 0.5rem;
+		}
+
+		.progress-bar div:first-of-type {
+			border-radius: 36px 0px 0px 36px;
+		}
+
+		.progress-bar div:last-of-type {
+			border-radius: 0px 36px 36px 0px;
+		}
+
+		.done-bar,
+		.outdated-bar,
+		.missing-bar {
+			width: 1rem;
+			height: 1rem;
+		}
+
+		.done-bar {
+			background-color: var(--ln-color-done);
+		}
+
+		.outdated-bar {
+			background-color: var(--ln-color-outdated);
+		}
+
+		.missing-bar {
+			background-color: var(--ln-color-missing);
+		}
+
+		.capitalize {
+			text-transform: capitalize;
+		}
+	</style>
+
+				<!-- Custom styles -->
+				
+			</head>
+			<body>
+				<!-- Built-in/custom body content -->
+				
+		<main>
+			<div class="limit-to-viewport">
+				
+				<h1>Localization Status</h1>
+				
+				
+		<h2 id="by-locale">
+			<a href="#by-locale">Localization progress by locale</a>
+		</h2>
+		
+		<details class="progress-details">
+			<summary>
+				<strong
+					>简体中文 (zh)</strong
+				>
+				<br />
+				<span class="progress-summary"
+					>160 done, 0 outdated, 0 missing</span
+				>
+				<br />
+				
+		<div class="progress-bar" aria-hidden="true">
+			<div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div> 
+			
+		</div>
+	
+			</summary>
+			
+			
+			<p>This localization is complete, amazing job! 🎉</p>
+		</details>
+	
+		<details class="progress-details">
+			<summary>
+				<strong
+					>English (en)</strong
+				>
+				<br />
+				<span class="progress-summary"
+					>131 done, 3 outdated, 26 missing</span
+				>
+				<br />
+				
+		<div class="progress-bar" aria-hidden="true">
+			<div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div><div class="done-bar"></div> 
+			<div class="missing-bar"></div><div class="missing-bar"></div><div class="missing-bar"></div>
+		</div>
+	
+			</summary>
+			
+		<h3 class="capitalize">outdated</h3>
+		<ul>
+			
+					<li>
+						 
+		<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/demos.md">demos.md</a>
+		(<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/demos.md">outdated localization</a>,
+				  <a href="https://github.com/pengzhanbo/vuepress-theme-plume/commits/main/docs/demos.md?since=2026-02-15T04:24:31.000Z">source change history</a>)
+	 
+					</li>
+				
+					<li>
+						 
+		<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/code-tree.md">guide/markdown/code-tree.md</a>
+		(<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/code-tree.md">outdated localization</a>,
+				  <a href="https://github.com/pengzhanbo/vuepress-theme-plume/commits/main/docs/guide/markdown/code-tree.md?since=2025-10-09T07:46:05.000Z">source change history</a>)
+	 
+					</li>
+				
+					<li>
+						 
+		<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/tools/README.md">tools/README.md</a>
+		(<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/tools/README.md">outdated localization</a>,
+				  <a href="https://github.com/pengzhanbo/vuepress-theme-plume/commits/main/docs/tools/README.md?since=2025-10-09T07:46:05.000Z">source change history</a>)
+	 
+					</li>
+				
+		</ul>
+	
+			<h3 class="capitalize">missing</h3>
+						<ul>
+							
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/markdown基础.md">blog/1.示例/markdown基础.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/markdown基础.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/markdown扩展.md">blog/1.示例/markdown扩展.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/markdown扩展.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/全屏水印.md">blog/1.示例/全屏水印.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/全屏水印.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/内容水印.md">blog/1.示例/内容水印.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/内容水印.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/加密文章.md">blog/1.示例/加密文章.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/加密文章.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/图片水印.md">blog/1.示例/图片水印.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/图片水印.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/照片类作品示例.md">blog/1.示例/照片类作品示例.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/照片类作品示例.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章.md">blog/1.示例/示例文章.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章2.md">blog/1.示例/示例文章2.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章2.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章3.md">blog/1.示例/示例文章3.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章3.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章4.md">blog/1.示例/示例文章4.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章4.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章5.md">blog/1.示例/示例文章5.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章5.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章6.md">blog/1.示例/示例文章6.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章6.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章7.md">blog/1.示例/示例文章7.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章7.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章8.md">blog/1.示例/示例文章8.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章8.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章9.md">blog/1.示例/示例文章9.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章9.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/2.preview/主题效果预览.md">blog/2.preview/主题效果预览.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/2.preview/主题效果预览.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/102-103.md">blog/3.更新说明/102-103.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/3.更新说明/102-103.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/120.md">blog/3.更新说明/120.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/3.更新说明/120.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/144.md">blog/3.更新说明/144.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/3.更新说明/144.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/154.md">blog/3.更新说明/154.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/3.更新说明/154.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/165.md">blog/3.更新说明/165.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/3.更新说明/165.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/73-77.md">blog/3.更新说明/73-77.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/3.更新说明/73-77.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/4.教程/frontmatter.md">blog/4.教程/frontmatter.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/4.教程/frontmatter.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/frontend-deprecated.md">guide/repl/frontend-deprecated.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/guide/repl/frontend-deprecated.md">Create file</a>
+									</li>
+								
+									<li>
+										<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/sponsor.md">sponsor.md</a>
+										<a class="create-button" href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/sponsor.md">Create file</a>
+									</li>
+								
+						</ul>
+			
+		</details>
+	
+	
+				
+			</div>
+			
+		<h2 id="by-file">
+			<a href="#by-file">Localization status by file</a>
+		</h2>
+		<table class="status-by-file">
+			<thead>
+				<tr>
+					<th>File</th><th>zh</th><th>en</th>
+				</tr>
+			</thead>
+			
+		<tbody>
+			
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/README.md">README.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/README.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/README.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/markdown基础.md">blog/1.示例/markdown基础.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/markdown基础.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/markdown基础.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/markdown扩展.md">blog/1.示例/markdown扩展.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/markdown扩展.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/markdown扩展.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/全屏水印.md">blog/1.示例/全屏水印.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/全屏水印.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/全屏水印.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/内容水印.md">blog/1.示例/内容水印.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/内容水印.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/内容水印.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/加密文章.md">blog/1.示例/加密文章.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/加密文章.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/加密文章.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/图片水印.md">blog/1.示例/图片水印.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/图片水印.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/图片水印.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/照片类作品示例.md">blog/1.示例/照片类作品示例.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/照片类作品示例.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/照片类作品示例.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章.md">blog/1.示例/示例文章.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章2.md">blog/1.示例/示例文章2.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章2.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章2.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章3.md">blog/1.示例/示例文章3.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章3.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章3.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章4.md">blog/1.示例/示例文章4.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章4.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章4.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章5.md">blog/1.示例/示例文章5.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章5.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章5.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章6.md">blog/1.示例/示例文章6.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章6.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章6.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章7.md">blog/1.示例/示例文章7.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章7.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章7.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章8.md">blog/1.示例/示例文章8.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章8.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章8.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章9.md">blog/1.示例/示例文章9.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/1.示例/示例文章9.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/1.示例/示例文章9.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/2.preview/主题效果预览.md">blog/2.preview/主题效果预览.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/2.preview/主题效果预览.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/2.preview/主题效果预览.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/102-103.md">blog/3.更新说明/102-103.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/102-103.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/3.更新说明/102-103.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/120.md">blog/3.更新说明/120.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/120.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/3.更新说明/120.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/144.md">blog/3.更新说明/144.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/144.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/3.更新说明/144.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/154.md">blog/3.更新说明/154.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/154.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/3.更新说明/154.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/165.md">blog/3.更新说明/165.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/165.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/3.更新说明/165.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/73-77.md">blog/3.更新说明/73-77.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/3.更新说明/73-77.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/3.更新说明/73-77.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/4.教程/frontmatter.md">blog/4.教程/frontmatter.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/blog/4.教程/frontmatter.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/blog/4.教程/frontmatter.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/changelog.md">changelog.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/changelog.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/changelog.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/collections.md">config/collections.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/collections.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/collections.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/frontmatter/basic.md">config/frontmatter/basic.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/frontmatter/basic.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/frontmatter/basic.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/frontmatter/friend.md">config/frontmatter/friend.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/frontmatter/friend.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/frontmatter/friend.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/frontmatter/home.md">config/frontmatter/home.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/frontmatter/home.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/frontmatter/home.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/frontmatter/post.md">config/frontmatter/post.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/frontmatter/post.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/frontmatter/post.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/intro.md">config/intro.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/intro.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/intro.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/locales.md">config/locales.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/locales.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/locales.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/markdown.md">config/markdown.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/markdown.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/markdown.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/navbar.md">config/navbar.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/navbar.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/navbar.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/README.md">config/plugins/README.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/README.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/plugins/README.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/llms.md">config/plugins/llms.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/llms.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/plugins/llms.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/markdown-enhance.md">config/plugins/markdown-enhance.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/markdown-enhance.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/plugins/markdown-enhance.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/markdown-image.md">config/plugins/markdown-image.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/markdown-image.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/plugins/markdown-image.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/markdown-include.md">config/plugins/markdown-include.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/markdown-include.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/plugins/markdown-include.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/markdown-math.md">config/plugins/markdown-math.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/markdown-math.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/plugins/markdown-math.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/markdown-power.md">config/plugins/markdown-power.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/markdown-power.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/plugins/markdown-power.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/reading-time.md">config/plugins/reading-time.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/reading-time.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/plugins/reading-time.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/search.md">config/plugins/search.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/search.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/plugins/search.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/shiki.md">config/plugins/shiki.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/shiki.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/plugins/shiki.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/watermark.md">config/plugins/watermark.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/plugins/watermark.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/plugins/watermark.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/sidebar.md">config/sidebar.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/sidebar.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/sidebar.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/theme.md">config/theme.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/config/theme.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/config/theme.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/contributing.md">contributing.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/contributing.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/contributing.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/demos.md">demos.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/demos.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/demos.md" title="outdated">
+				<span aria-hidden="true">🔄</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/friends.md">friends.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/friends.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/friends.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/api/client.md">guide/api/client.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/api/client.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/api/client.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/api/node.md">guide/api/node.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/api/node.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/api/node.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/chart/chart.md">guide/chart/chart.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/chart/chart.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/chart/chart.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/chart/echarts.md">guide/chart/echarts.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/chart/echarts.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/chart/echarts.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/chart/flowchart.md">guide/chart/flowchart.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/chart/flowchart.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/chart/flowchart.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/chart/markmap.md">guide/chart/markmap.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/chart/markmap.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/chart/markmap.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/chart/mermaid.md">guide/chart/mermaid.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/chart/mermaid.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/chart/mermaid.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/chart/plantuml.md">guide/chart/plantuml.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/chart/plantuml.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/chart/plantuml.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/code/code-tabs.md">guide/code/code-tabs.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/code/code-tabs.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/code/code-tabs.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/code/copy-code.md">guide/code/copy-code.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/code/copy-code.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/code/copy-code.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/code/features.md">guide/code/features.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/code/features.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/code/features.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/code/import.md">guide/code/import.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/code/import.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/code/import.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/code/intro.md">guide/code/intro.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/code/intro.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/code/intro.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/code/twoslash.md">guide/code/twoslash.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/code/twoslash.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/code/twoslash.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/badge.md">guide/components/badge.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/badge.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/components/badge.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/card-grid.md">guide/components/card-grid.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/card-grid.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/components/card-grid.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/card-masonry.md">guide/components/card-masonry.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/card-masonry.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/components/card-masonry.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/card.md">guide/components/card.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/card.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/components/card.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/home-box.md">guide/components/home-box.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/home-box.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/components/home-box.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/icon.md">guide/components/icon.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/icon.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/components/icon.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/image-card.md">guide/components/image-card.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/image-card.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/components/image-card.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/link-card.md">guide/components/link-card.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/link-card.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/components/link-card.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/npm-badge.md">guide/components/npm-badge.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/npm-badge.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/components/npm-badge.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/plot.md">guide/components/plot.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/plot.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/components/plot.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/repo-card.md">guide/components/repo-card.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/repo-card.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/components/repo-card.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/swiper.md">guide/components/swiper.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/components/swiper.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/components/swiper.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/custom/component-overrides.md">guide/custom/component-overrides.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/custom/component-overrides.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/custom/component-overrides.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/custom/home-hero-effect.md">guide/custom/home-hero-effect.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/custom/home-hero-effect.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/custom/home-hero-effect.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/custom/home.md">guide/custom/home.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/custom/home.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/custom/home.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/custom/slots.md">guide/custom/slots.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/custom/slots.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/custom/slots.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/custom/style.md">guide/custom/style.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/custom/style.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/custom/style.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/embed/acfun.md">guide/embed/acfun.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/embed/acfun.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/embed/acfun.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/embed/artplayer.md">guide/embed/artplayer.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/embed/artplayer.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/embed/artplayer.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/embed/audioReader.md">guide/embed/audioReader.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/embed/audioReader.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/embed/audioReader.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/embed/bilibili.md">guide/embed/bilibili.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/embed/bilibili.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/embed/bilibili.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/embed/pdf.md">guide/embed/pdf.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/embed/pdf.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/embed/pdf.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/embed/youtube.md">guide/embed/youtube.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/embed/youtube.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/embed/youtube.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/bulletin.md">guide/features/bulletin.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/bulletin.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/bulletin.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/changelog.md">guide/features/changelog.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/changelog.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/changelog.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/comments.md">guide/features/comments.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/comments.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/comments.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/contributors.md">guide/features/contributors.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/contributors.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/contributors.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/copyright.md">guide/features/copyright.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/copyright.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/copyright.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/encryption.md">guide/features/encryption.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/encryption.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/encryption.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/friend-links.md">guide/features/friend-links.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/friend-links.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/friend-links.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/icon.md">guide/features/icon.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/icon.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/icon.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/image-preview.md">guide/features/image-preview.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/image-preview.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/image-preview.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/llmstxt.md">guide/features/llmstxt.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/llmstxt.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/llmstxt.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/replace-assets.md">guide/features/replace-assets.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/replace-assets.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/replace-assets.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/search.md">guide/features/search.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/search.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/search.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/seo.md">guide/features/seo.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/seo.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/seo.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/sitemap.md">guide/features/sitemap.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/sitemap.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/sitemap.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/watermark.md">guide/features/watermark.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/features/watermark.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/features/watermark.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/abbr.md">guide/markdown/abbr.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/abbr.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/abbr.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/annotation.md">guide/markdown/annotation.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/annotation.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/annotation.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/attrs.md">guide/markdown/attrs.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/attrs.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/attrs.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/basic.md">guide/markdown/basic.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/basic.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/basic.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/caniuse.md">guide/markdown/caniuse.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/caniuse.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/caniuse.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/card.md">guide/markdown/card.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/card.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/card.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/chat.md">guide/markdown/chat.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/chat.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/chat.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/code-tree.md">guide/markdown/code-tree.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/code-tree.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/code-tree.md" title="outdated">
+				<span aria-hidden="true">🔄</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/collapse.md">guide/markdown/collapse.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/collapse.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/collapse.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/container.md">guide/markdown/container.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/container.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/container.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/demo-wrapper.md">guide/markdown/demo-wrapper.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/demo-wrapper.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/demo-wrapper.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/emoji.md">guide/markdown/emoji.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/emoji.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/emoji.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/env.md">guide/markdown/env.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/env.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/env.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/extensions.md">guide/markdown/extensions.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/extensions.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/extensions.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/field.md">guide/markdown/field.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/field.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/field.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/file-tree.md">guide/markdown/file-tree.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/file-tree.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/file-tree.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/flex.md">guide/markdown/flex.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/flex.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/flex.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/github-alerts.md">guide/markdown/github-alerts.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/github-alerts.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/github-alerts.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/icons.md">guide/markdown/icons.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/icons.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/icons.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/include.md">guide/markdown/include.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/include.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/include.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/mark.md">guide/markdown/mark.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/mark.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/mark.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/math.md">guide/markdown/math.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/math.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/math.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/npm-to.md">guide/markdown/npm-to.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/npm-to.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/npm-to.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/plot.md">guide/markdown/plot.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/plot.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/plot.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/qrcode.md">guide/markdown/qrcode.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/qrcode.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/qrcode.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/steps.md">guide/markdown/steps.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/steps.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/steps.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/table.md">guide/markdown/table.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/table.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/table.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/tabs.md">guide/markdown/tabs.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/tabs.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/tabs.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/timeline.md">guide/markdown/timeline.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/markdown/timeline.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/markdown/timeline.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/auto-frontmatter.md">guide/quick-start/auto-frontmatter.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/auto-frontmatter.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/quick-start/auto-frontmatter.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/collection-doc.md">guide/quick-start/collection-doc.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/collection-doc.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/quick-start/collection-doc.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/collection-post.md">guide/quick-start/collection-post.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/collection-post.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/quick-start/collection-post.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/collection.md">guide/quick-start/collection.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/collection.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/quick-start/collection.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/deployment.md">guide/quick-start/deployment.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/deployment.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/quick-start/deployment.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/intro.md">guide/quick-start/intro.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/intro.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/quick-start/intro.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/locales.md">guide/quick-start/locales.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/locales.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/quick-start/locales.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/optimize-build.md">guide/quick-start/optimize-build.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/optimize-build.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/quick-start/optimize-build.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/project-structure.md">guide/quick-start/project-structure.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/project-structure.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/quick-start/project-structure.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/sidebar.md">guide/quick-start/sidebar.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/sidebar.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/quick-start/sidebar.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/usage.md">guide/quick-start/usage.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/usage.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/quick-start/usage.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/write.md">guide/quick-start/write.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/quick-start/write.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/quick-start/write.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/codeSandbox.md">guide/repl/codeSandbox.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/codeSandbox.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/repl/codeSandbox.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/codepen.md">guide/repl/codepen.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/codepen.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/repl/codepen.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/frontend-deprecated.md">guide/repl/frontend-deprecated.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/frontend-deprecated.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/guide/repl/frontend-deprecated.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/frontend.md">guide/repl/frontend.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/frontend.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/repl/frontend.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/golang.md">guide/repl/golang.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/golang.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/repl/golang.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/jsFiddle.md">guide/repl/jsFiddle.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/jsFiddle.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/repl/jsFiddle.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/kotlin.md">guide/repl/kotlin.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/kotlin.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/repl/kotlin.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/python.md">guide/repl/python.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/python.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/repl/python.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/replit.md">guide/repl/replit.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/replit.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/repl/replit.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/rust.md">guide/repl/rust.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/guide/repl/rust.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/guide/repl/rust.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/questions.md">questions.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/questions.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/questions.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/sponsor.md">sponsor.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/sponsor.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/new/main?filename=docs/en/sponsor.md" title="missing">
+				<span aria-hidden="true">❌</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/tools/README.md">tools/README.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/tools/README.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/tools/README.md" title="outdated">
+				<span aria-hidden="true">🔄</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/tools/caniuse.md">tools/caniuse.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/tools/caniuse.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/tools/caniuse.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/tools/custom-theme.md">tools/custom-theme.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/tools/custom-theme.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/tools/custom-theme.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/tools/home-hero-tint-plate.md">tools/home-hero-tint-plate.md</a></td>
+						
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/tools/home-hero-tint-plate.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+		<td>
+			<a href="https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/docs/en/tools/home-hero-tint-plate.md" title="done">
+				<span aria-hidden="true">✔</span>
+		  </a>
+		</td>
+	
+					</td>
+				</tr>
+		</tbody>
+	
+		</table>
+		<sup class="capitalize"
+			>❌ missing &nbsp; 🔄 outdated &nbsp; ✔ done
+		</sup>
+	
+			
+		</main>
+	
+			</body>
+		</html>
+	

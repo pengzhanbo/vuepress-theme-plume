@@ -1,3 +1,24 @@
+# [1.0.0-rc.191](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.190...v1.0.0-rc.191) (2026-02-25)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** fix timeout when retrieving remote image size ([#860](https://github.com/pengzhanbo/vuepress-theme-plume/issues/860)) ([09a95b7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/09a95b7597f18a889ac9fd2189820ce6ea6de9f7))
+* **plugin-search:** fix temporary file IO race condition ([#861](https://github.com/pengzhanbo/vuepress-theme-plume/issues/861)) ([948c317](https://github.com/pengzhanbo/vuepress-theme-plume/commit/948c31779b1358be976893d517cbceccb5cc343c))
+
+
+### Features
+
+* **plugin-md-power:** rename `demo-wrapper` container to `window` ([#858](https://github.com/pengzhanbo/vuepress-theme-plume/issues/858)) ([ce32605](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ce32605aeee40ca873962e21ff8012f320001523))
+* rewrite `app.writeTemp` to resolve IO race conditions ([#862](https://github.com/pengzhanbo/vuepress-theme-plume/issues/862)) ([c109d54](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c109d5496152660c436d3fe0ca75b72252808aab))
+
+
+### Performance Improvements
+
+* update deps to latest ([c541e05](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c541e05997efd03882e92a8f723e91e0fdd01f4f))
+
+
+
 # [1.0.0-rc.190](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.189...v1.0.0-rc.190) (2026-02-15)
 
 

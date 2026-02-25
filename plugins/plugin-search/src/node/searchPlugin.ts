@@ -37,9 +37,8 @@ export function searchPlugin({
         await prepareSearchIndex({ app, isSearchable, searchOptions })
       }
       else {
-        const placeholder = prepareSearchIndexPlaceholder(app)
-        await placeholder
-        placeholder.then(() => prepareSearchIndex({ app, isSearchable, searchOptions }))
+        await prepareSearchIndexPlaceholder(app)
+        prepareSearchIndex({ app, isSearchable, searchOptions })
       }
     },
 

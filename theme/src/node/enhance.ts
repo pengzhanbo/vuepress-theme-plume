@@ -4,7 +4,7 @@
  */
 
 import type { App } from 'vuepress'
-import { fs, hash } from '@vuepress/utils'
+import { fs, hash } from 'vuepress/utils'
 
 interface WriteTempCache {
   hash?: string // content hash

@@ -12,6 +12,7 @@ import {
   templateBuildRenderer,
 } from './config/index.js'
 import { detectThemeOptions, detectVersions } from './detector/index.js'
+import { enhanceApp } from './enhance.js'
 import { configLoader } from './loadConfig/index.js'
 import { createPages, extendsPageData } from './pages/index.js'
 import { setupPlugins } from './plugins/index.js'
@@ -39,6 +40,8 @@ import { perf, resolve, setTranslateLang, templates, THEME_NAME } from './utils/
  */
 export function plumeTheme(options: ThemeOptions = {}): Theme {
   return (app) => {
+    enhanceApp(app)
+
     setTranslateLang(app.options.lang)
     perf.init(app.env.isDebug)
 

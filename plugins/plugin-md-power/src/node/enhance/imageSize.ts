@@ -294,7 +294,7 @@ export function resolveImagePath(app: App, src?: string | null, currentPath?: st
  * @param src - Image URL / 图片 URL
  * @returns Image size / 图片尺寸
  */
-function fetchRemoteImageSize(src: string): Promise<ImgSize> {
+async function fetchRemoteImageSize(src: string): Promise<ImgSize> {
   const link = new URL(src)
 
   const promise = new Promise<ImgSize>((resolve) => {
@@ -313,9 +313,9 @@ function fetchRemoteImageSize(src: string): Promise<ImgSize> {
   })
 
   try {
-    return withTimeout(() => promise, 3000)
+    return await withTimeout(() => promise, 3000)
   }
-  catch {
-    return Promise.resolve({ width: 0, height: 0 })
-  }
+  catch {}
+
+  return { width: 0, height: 0 }
 }

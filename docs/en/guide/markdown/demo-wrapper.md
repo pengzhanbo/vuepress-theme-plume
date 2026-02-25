@@ -1,9 +1,12 @@
 ---
 title: Demo Container
 createTime: 2025/10/08 14:47:12
-icon: icon-park-outline:eyes
-permalink: /en/guide/markdown/demo-wrapper/
+icon: fxemoji:window
+permalink: /en/guide/markdown/window/
 outline: 2
+badge:
+  text: Change
+  type: warning
 ---
 
 ## Overview
@@ -14,7 +17,7 @@ separately from other content. The theme supports adding demo containers in Mark
 ## Syntax
 
 ````md
-::: demo-wrapper
+::: window
 Add your demo here
 :::
 ````
@@ -31,20 +34,20 @@ Add your demo here
 Containing only images:
 
 ```md
-::: demo-wrapper img no-padding
+::: window
 ![hero](/images/custom-hero.jpg)
 :::
 ```
 
 **Output:**
-::: demo-wrapper img no-padding
+::: window
 ![hero](/images/custom-hero.jpg)
 :::
 
 Containing markdown syntax:
 
 ```md
-::: demo-wrapper title="Title"
+::: window title="Title"
 ### Level 3 Heading
 
 This is content inside the demo container.
@@ -52,7 +55,7 @@ This is content inside the demo container.
 ```
 
 **Output:**
-::: demo-wrapper title="Title"
+::: window title="Title"
 
 ### Level 3 Heading
 
@@ -62,7 +65,7 @@ This is content inside the demo container.
 Containing HTML/Vue code:
 
 ```md
-::: demo-wrapper
+::: window
 <h1 class="your-demo-title">This is a heading</h1>
 <p class="your-demo-paragraph">This is a paragraph</p>
 
@@ -78,7 +81,7 @@ Containing HTML/Vue code:
 ```
 
 **Output:**
-::: demo-wrapper
+::: window
 
 <h1 class="your-demo-title">This is a heading</h1>
 <p class="your-demo-paragraph">This is a paragraph</p>

@@ -12,7 +12,7 @@ This could be to pique readers' curiosity or simply to add a bit of reading diff
 
 To satisfy this playful intention, the theme provides a fun little feature called **"plot" text**. It looks like this:
 
-:::demo-wrapper
+:::window
 Did you know that !!Lu Xun!! once said: "!!I never said this!!!" It was an enlightening revelation that deeply
 inspired me, filling me with unparalleled strength! So, !!I turned over in bed!!!
 :::
@@ -102,7 +102,7 @@ Did you know that !!Lu Xun!! once said: "!!I never said this!!!" It was an enlig
 
 **Output**:
 
-:::demo-wrapper
+:::window
 Did you know that !!Lu Xun!! once said: "!!I never said this!!!" It was an enlightening revelation that
 deeply inspired me, filling me with unparalleled strength! So, !!I turned over in bed!!!!
 :::
@@ -118,7 +118,7 @@ Blur effect + click: !!Click to see me!!{.blur .click}
 
 **Output**:
 
-:::demo-wrapper
+:::window
 Mask effect + hover: !!Hover to see me!!{.mask .hover}
 
 Mask effect + click: !!Click to see me!!{.mask .click}

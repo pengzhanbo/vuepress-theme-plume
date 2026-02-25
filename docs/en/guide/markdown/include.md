@@ -144,18 +144,18 @@ Included via `<!-- @include: ./foo.snippet.md#snippet -->`.
 
 Using `<!-- @include: ./foo.snippet.md -->` to include the entire file:
 
-:::: demo-wrapper title="Include by file"
+:::: window title="Include by file"
 <!-- @include: ../../snippet/include-2.snippet.md -->
 ::::
 
 Using `<!-- @include: ./foo.snippet.md{5-7} -->` to include lines 5-7 of the file:
 
-:::: demo-wrapper title="Include by lines"
+:::: window title="Include by lines"
 <!-- @include: ../../snippet/include-2.snippet.md{5-7} -->
 ::::
 
 Using `<!-- @include: ./foo.snippet.md#snippet -->` to include the `snippet` region:
 
-:::: demo-wrapper title="Include by file region"
+:::: window title="Include by file region"
 <!-- @include: ../../snippet/include-2.snippet.md#snippet -->
 ::::

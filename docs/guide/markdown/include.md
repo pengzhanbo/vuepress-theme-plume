@@ -144,18 +144,18 @@ export default defineUserConfig({
 
 使用 `<!-- @include: ./foo.snippet.md -->` 导入文件：
 
-:::: demo-wrapper title="Include by file"
+:::: window title="Include by file"
 <!-- @include: ../../snippet/include-2.snippet.md -->
 ::::
 
 使用 `<!-- @include: ./foo.snippet.md{5-7} -->` 导入文件内的 5 到 7 行：
 
-:::: demo-wrapper title="Include by lines"
+:::: window title="Include by lines"
 <!-- @include: ../../snippet/include-2.snippet.md{5-7} -->
 ::::
 
 使用 `<!-- @include: ./foo.snippet.md#snippet -->` 导入 `snippet` 区域
 
-:::: demo-wrapper title="Include by file region"
+:::: window title="Include by file region"
 <!-- @include: ../../snippet/include-2.snippet.md#snippet -->
 ::::

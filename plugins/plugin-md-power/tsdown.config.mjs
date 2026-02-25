@@ -42,7 +42,7 @@ export default defineConfig((cli) => {
       ...DEFAULT_OPTIONS,
       entry: ['./src/node/index.ts'],
       outDir: './lib/node',
-      target: 'node20.6.0',
+      target: 'node20.19.0',
       external: ['markdown-it', /^@?vuepress/],
     })
   }

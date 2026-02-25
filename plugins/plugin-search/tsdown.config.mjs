@@ -39,7 +39,7 @@ export default defineConfig(() => {
       entry: ['./src/node/index.ts'],
       outDir: './lib/node',
       external: sharedExternal,
-      target: 'node20.6.0',
+      target: 'node20.19.0',
     })
   }
 

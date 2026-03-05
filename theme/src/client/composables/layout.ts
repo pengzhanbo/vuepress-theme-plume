@@ -90,12 +90,19 @@ export function registerWatchers() {
     }, { passive: true })
   }
 
+  const { lang } = useData()
   const route = useRoute()
   const { disableSidebar, toggleSidebarCollapse } = useSidebarControl()
   watch(() => route.path, () => {
     disableSidebar()
     toggleSidebarCollapse(false)
   })
+
+  if (inBrowser) {
+    watch(lang, (newLang) => {
+      document.documentElement.lang = newLang
+    }, { immediate: true })
+  }
 
   useCloseSidebarOnEscape()
 }

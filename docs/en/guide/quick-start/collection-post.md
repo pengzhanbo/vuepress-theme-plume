@@ -595,7 +595,7 @@ title: Article Title
 cover: /images/cover.jpg
 coverStyle:
   layout: left
-  ratio: 16:9
+  ratio: 16/9
   width: 300
 ---
 ```
@@ -606,7 +606,7 @@ Display effect:
 <VPPostItem
   :post="{ path: '/article/ecxnxxd0/', title: 'Article Title',
   categoryList: [{id:'65f30c',sort:4,name:'Tutorial'}], createTime: '2024/09/18 09:19:36',
-  lang:'en-US', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing', coverStyle: { layout: 'left', ratio: '16:9', width: 300 } }"
+  lang:'en-US', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing', coverStyle: { layout: 'left', ratio: '16/9', width: 300 } }"
   :index="1"
 />
 </div>
@@ -621,7 +621,7 @@ title: Article Title
 cover: /images/cover.jpg
 coverStyle:
   layout: left
-  ratio: 16:9
+  ratio: 16/9
   width: 300
   compact: true
 ---
@@ -634,7 +634,7 @@ Display effect:
   :post="{ path: '/article/ecxnxxd0/', title: 'Article Title',
   categoryList: [{id:'65f30c',sort:4,name:'Tutorial'}], createTime: '2024/09/18 09:19:36',
   lang:'en-US', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing',
-  coverStyle: { layout: 'left', ratio: '16:9', width: 300, compact: true } }"
+  coverStyle: { layout: 'left', ratio: '16/9', width: 300, compact: true } }"
   :index="1"
 />
 </div>
@@ -650,7 +650,7 @@ title: Article Title
 cover: /images/cover.jpg
 coverStyle:
   layout: top
-  ratio: 16:9
+  ratio: 16/9
   width: 300
 ---
 ```
@@ -662,7 +662,7 @@ Display effect:
   :post="{ path: '/article/ecxnxxd0/', title: 'Article Title',
   categoryList: [{id:'65f30c',sort:4,name:'Tutorial'}], createTime: '2024/09/18 09:19:36',
   lang:'en-US', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing',
-  coverStyle: { layout: 'top', ratio: '16:9', width: 300 } }"
+  coverStyle: { layout: 'top', ratio: '16/9', width: 300 } }"
   :index="1"
 />
 </div>
@@ -684,7 +684,7 @@ export default defineUserConfig({
         title: 'Blog',
         postCover: {
           layout: 'left',
-          ratio: '16:9',
+          ratio: '16/9',
           width: 300,
           compact: true
         }
@@ -701,11 +701,27 @@ type PostCoverLayout = 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
 
 interface PostCoverStyle {
   layout?: PostCoverLayout // Layout position
-  ratio?: number | `${number}:${number}` // Aspect ratio, default '4:3'
+  ratio?: number | `${number}/${number}` | `${number}:${number}` // Aspect ratio, default '4/3'
   width?: number // Width (effective for left/right layouts), default 240
   compact?: boolean // Compact mode, default false
 }
 ```
+
+:::warning Known Issue: Parsing Problem with `ratio` in Markdown Frontmatter
+
+When defining `ratio` in markdown frontmatter, using the `:` separator may cause parsing errors.
+It is recommended to use the `/` separator instead.
+
+If you still prefer to use `:`, you can wrap it with `''`. Example:
+
+```md '16:9'
+---
+coverStyle:
+  ratio: '16:9'   # instead of ratio: 16:9
+---
+```
+
+:::
 
 Special layout modes:
 
@@ -719,21 +735,21 @@ Special layout modes:
   :post="{ path: '/article/ecxnxxd0/', title: 'Article Title',
   categoryList: [{id:'65f30c',sort:4,name:'Tutorial'}], createTime: '2024/09/18 09:19:36',
   lang:'en-US', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing',
-  coverStyle: { layout: 'odd-left', ratio: '16:9', width: 300, compact: true } }"
+  coverStyle: { layout: 'odd-left', ratio: '16/9', width: 300, compact: true } }"
   :index="0"
 />
 <VPPostItem
   :post="{ path: '/article/ecxnxxd0/', title: 'Article Title',
   categoryList: [{id:'65f30c',sort:4,name:'Tutorial'}], createTime: '2024/09/18 09:19:36',
   lang:'en-US', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing',
-  coverStyle: { layout: 'odd-left', ratio: '16:9', width: 300,compact: true } }"
+  coverStyle: { layout: 'odd-left', ratio: '16/9', width: 300,compact: true } }"
   :index="1"
 />
 <VPPostItem
   :post="{ path: '/article/ecxnxxd0/', title: 'Article Title',
   categoryList: [{id:'65f30c',sort:4,name:'Tutorial'}], createTime: '2024/09/18 09:19:36',
   lang:'en-US', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing',
-  coverStyle: { layout: 'odd-left', ratio: '16:9', width: 300, compact: true } }"
+  coverStyle: { layout: 'odd-left', ratio: '16/9', width: 300, compact: true } }"
   :index="2"
 />
 </div>

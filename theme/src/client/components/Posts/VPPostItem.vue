@@ -77,7 +77,7 @@ const cover = computed<PostsCoverStyle | null>(() => {
     return null
   const opt = collection.value?.postCover ?? 'right'
   const options = typeof opt === 'string' ? { layout: opt } : opt
-  return { layout: 'right', ratio: '4:3', ...options, ...post.coverStyle }
+  return { layout: 'right', ratio: '4/3', ...options, ...post.coverStyle }
 })
 
 const coverLayout = computed(() => {
@@ -101,6 +101,7 @@ const coverCompact = computed(() => {
 const coverStyles = computed(() => {
   if (!cover.value)
     return null
+
   let ratio: number
   if (typeof cover.value.ratio === 'number') {
     ratio = cover.value.ratio
@@ -127,7 +128,9 @@ const coverStyles = computed(() => {
       v-if="post.cover" class="post-cover" data-allow-mismatch
       :class="{ compact: coverCompact }" :style="coverStyles"
     >
-      <img :src="withBase(post.cover)" :alt="post.title" loading="lazy">
+      <VPLink :href="post.path">
+        <img :src="withBase(post.cover)" :alt="post.title" loading="lazy">
+      </VPLink>
     </div>
     <div class="post-item-content">
       <h3>
@@ -230,10 +233,16 @@ const coverStyles = computed(() => {
   }
 }
 
-.post-cover img {
+.post-cover :deep(.vp-link) {
   position: absolute;
   top: 0;
   left: 0;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.post-cover img {
   width: 100%;
   height: 100%;
   object-fit: cover;

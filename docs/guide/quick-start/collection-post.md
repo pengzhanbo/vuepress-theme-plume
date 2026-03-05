@@ -589,7 +589,7 @@ title: 文章标题
 cover: /images/cover.jpg
 coverStyle:
   layout: left
-  ratio: 16:9
+  ratio: 16/9
   width: 300
 ---
 ```
@@ -600,7 +600,7 @@ coverStyle:
 <VPPostItem
   :post="{ path: '/article/ecxnxxd0/', title: '文章标题',
   categoryList: [{id:'65f30c',sort:4,name:'教程'}], createTime: '2024/09/18 09:19:36',
-  lang:'zh-CN', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing', coverStyle: { layout: 'left', ratio: '16:9', width: 300 } }"
+  lang:'zh-CN', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing', coverStyle: { layout: 'left', ratio: '16/9', width: 300 } }"
   :index="1"
 />
 </div>
@@ -615,7 +615,7 @@ title: 文章标题
 cover: /images/cover.jpg
 coverStyle:
   layout: left
-  ratio: 16:9
+  ratio: 16/9
   width: 300
   compact: true
 ---
@@ -628,7 +628,7 @@ coverStyle:
   :post="{ path: '/article/ecxnxxd0/', title: '文章标题',
   categoryList: [{id:'65f30c',sort:4,name:'教程'}], createTime: '2024/09/18 09:19:36',
   lang:'zh-CN', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing',
-  coverStyle: { layout: 'left', ratio: '16:9', width: 300, compact: true } }"
+  coverStyle: { layout: 'left', ratio: '16/9', width: 300, compact: true } }"
   :index="1"
 />
 </div>
@@ -644,7 +644,7 @@ title: 文章标题
 cover: /images/cover.jpg
 coverStyle:
   layout: top
-  ratio: 16:9
+  ratio: 16/9
   width: 300
 ---
 ```
@@ -656,7 +656,7 @@ coverStyle:
   :post="{ path: '/article/ecxnxxd0/', title: '文章标题',
   categoryList: [{id:'65f30c',sort:4,name:'教程'}], createTime: '2024/09/18 09:19:36',
   lang:'zh-CN', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing',
-  coverStyle: { layout: 'top', ratio: '16:9', width: 300 } }"
+  coverStyle: { layout: 'top', ratio: '16/9', width: 300 } }"
   :index="1"
 />
 </div>
@@ -678,7 +678,7 @@ export default defineUserConfig({
         title: '博客',
         postCover: {
           layout: 'left',
-          ratio: '16:9',
+          ratio: '16/9',
           width: 300,
           compact: true
         }
@@ -695,11 +695,26 @@ type PostCoverLayout = 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
 
 interface PostCoverStyle {
   layout?: PostCoverLayout // 布局位置
-  ratio?: number | `${number}:${number}` // 宽高比，默认 '4:3'
+  ratio?: number | `${number}/${number}` | `${number}:${number}` // 宽高比，默认 '4/3'
   width?: number // 宽度（左右布局生效），默认 240
   compact?: boolean // 紧凑模式，默认 false
 }
 ```
+
+:::warning 已知问题: `ratio` 在 markdown frontmatter 下解析问题
+
+在 markdown frontmatter 中定义 `ratio` 时，使用 `:` 分隔符会导致解析错误，建议使用 `/` 分隔符。
+
+如果您依然期望使用 `:` ，可以使用 `''` 包裹起来。示例：
+
+```md /'16:9'/
+---
+coverStyle:
+  ratio: '16:9'   # 而不是 ratio: 16:9
+---
+```
+
+:::
 
 特殊布局模式：
 
@@ -713,21 +728,21 @@ interface PostCoverStyle {
   :post="{ path: '/article/ecxnxxd0/', title: '文章标题',
   categoryList: [{id:'65f30c',sort:4,name:'教程'}], createTime: '2024/09/18 09:19:36',
   lang:'zh-CN', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing',
-  coverStyle: { layout: 'odd-left', ratio: '16:9', width: 300, compact: true } }"
+  coverStyle: { layout: 'odd-left', ratio: '16/9', width: 300, compact: true } }"
   :index="0"
 />
 <VPPostItem
   :post="{ path: '/article/ecxnxxd0/', title: '文章标题',
   categoryList: [{id:'65f30c',sort:4,name:'教程'}], createTime: '2024/09/18 09:19:36',
   lang:'zh-CN', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing',
-  coverStyle: { layout: 'odd-left', ratio: '16:9', width: 300,compact: true } }"
+  coverStyle: { layout: 'odd-left', ratio: '16/9', width: 300,compact: true } }"
   :index="1"
 />
 <VPPostItem
   :post="{ path: '/article/ecxnxxd0/', title: '文章标题',
   categoryList: [{id:'65f30c',sort:4,name:'教程'}], createTime: '2024/09/18 09:19:36',
   lang:'zh-CN', excerpt:'', cover: 'https://api.pengzhanbo.cn/wallpaper/bing',
-  coverStyle: { layout: 'odd-left', ratio: '16:9', width: 300, compact: true } }"
+  coverStyle: { layout: 'odd-left', ratio: '16/9', width: 300, compact: true } }"
   :index="2"
 />
 </div>

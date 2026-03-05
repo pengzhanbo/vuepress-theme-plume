@@ -20,8 +20,8 @@ const slots = defineSlots<{
   'posts-post-list-pagination-after': () => any
 }>()
 
-function VPHomePosts() {
-  return h(VPPosts, { homePosts: true }, {
+function VPHomePosts(props: Record<string, any> = {}) {
+  return h(VPPosts, { homePosts: true, ...props }, {
     'posts-top': () => slots['posts-top']?.(),
     'posts-bottom': () => slots['posts-bottom']?.(),
     'posts-post-list-before': () => slots['posts-post-list-before']?.(),

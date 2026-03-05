@@ -109,10 +109,10 @@ function parseCollapse(tokens: Token[], index: number, attrs: CollapseMeta): num
         idx++
 
         const inlineToken = tokens[i + 2]
-        const firstToken = inlineToken.children![0]
+        const firstToken = inlineToken.children?.[0]
         let flag: string = ''
         let expand: boolean | undefined
-        if (firstToken.type === 'text') {
+        if (firstToken?.type === 'text') {
           firstToken.content = firstToken.content.trim().replace(/^:[+\-]\s*/, (match) => {
             flag = match.trim()
             return ''

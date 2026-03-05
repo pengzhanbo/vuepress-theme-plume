@@ -36,11 +36,11 @@ For more configuration options, please refer to [@vuepress/plugin-photo-swipe](h
 Image preview can be disabled by using the `no-view` or `ignore` class names, or the `no-view` attribute.
 
 ```md
-![](path/to/image){.no-view}
-![](path/to/image){.ignore}
-![](path/to/image){no-view}
+![alt text](path/to/image){.no-view}
+![alt text](path/to/image){.ignore}
+![alt text](path/to/image){no-view}
 
-<img src="path/to/image" class="no-view">
-<img src="path/to/image" class="ignore">
-<img src="path/to/image" no-view>
+<img src="path/to/image" class="no-view" alt="alt text">
+<img src="path/to/image" class="ignore" alt="alt text">
+<img src="path/to/image" no-view alt="alt text">
 ```

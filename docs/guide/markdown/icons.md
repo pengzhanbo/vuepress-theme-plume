@@ -389,7 +389,7 @@ Fontawesome 的免费图标仅支持 `solid` 、部分 `regular` 以及 `brands`
 
 [为 Fontawesome 添加更多样式支持](https://docs.fontawesome.com/web/style/styling){.read-more}
 
-```
+```md
 ::circle-user 2xl::  <!-- 2xl 为 fa-2xl 的缩写, 图标大小为 2em -->
 ::circle-user rotate-90:: <!-- 图标旋转 90 度 -->
 ::circle-user beat:: <!-- 图标动画 -->

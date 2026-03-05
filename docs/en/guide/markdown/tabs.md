@@ -77,7 +77,7 @@ which represent the bound value of the tab and whether the tab is currently acti
 
 **Input:**
 
-````
+````md
 ::: tabs
 @tab npm
 

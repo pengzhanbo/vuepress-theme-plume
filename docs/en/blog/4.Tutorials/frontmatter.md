@@ -269,7 +269,7 @@ books:
     - 1984:
         author: *gOrwell
     - animal-farm:
-        author: *gOrwell
+        author:*gOrwell
 ---
 ```
 

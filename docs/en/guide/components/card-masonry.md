@@ -61,7 +61,7 @@ In Markdown, the `::: card-masonry` container can be used instead of `<CardMason
 ``` md
 ::: card-masonry cols="3" gap="16" <!-- [!code hl]-->
 
-![](/images/1.png)
+![alt text](/images/1.png)
 
 <!-- More content -->
 
@@ -79,17 +79,17 @@ Masonry layout is particularly suitable for displaying images. You can directly 
 ``` md
 ::: card-masonry
 
-![](image_url)
+![alt text](image_url)
 
-![](image_url)
+![alt text](image_url)
 
-![](image_url)
+![alt text](image_url)
 
-![](image_url)
+![alt text](image_url)
 
-![](image_url)
+![alt text](image_url)
 
-![](image_url)
+![alt text](image_url)
 
 :::
 ```

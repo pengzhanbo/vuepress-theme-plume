@@ -260,7 +260,7 @@ object NewYork
 
 map CapitalCity {
  UK *-> London
- USA *--> Washington
+ USA*--> Washington
  Germany *---> Berlin
 }
 
@@ -427,9 +427,9 @@ rectangle "Investigate" as I <<$bProcess>><<behavior>> #Business
 rectangle "Pay" as P <<$bProcess>><<behavior>> #Business
 
 HC *-down- CI
-HC *-down- NAS
+HC*-down- NAS
 HC *-down- V
-HC *-down- I
+HC*-down- I
 HC *-down- P
 
 CI -right->> NAS
@@ -574,16 +574,16 @@ caption figure 1
 title My super title
 
 * <&flag>Debian
-** <&globe>Ubuntu
-*** Linux Mint
+**<&globe>Ubuntu
+***Linux Mint
 *** Kubuntu
-*** Lubuntu
+***Lubuntu
 *** KDE Neon
 ** <&graph>LMDE
-** <&pulse>SolydXK
+**<&pulse>SolydXK
 ** <&people>SteamOS
 ** <&star>Raspbian with a very long name
-*** <s>Raspmbc</s> => OSMC
+***<s>Raspmbc</s> => OSMC
 *** <s>Raspyfi</s> => Volumio
 
 header
@@ -630,9 +630,9 @@ endlegend
 
 ```md
 @startjson
-#highlight "lastName"
-#highlight "address" / "city"
-#highlight "phoneNumbers" / "0" / "number"
+# highlight "lastName"
+# highlight "address" / "city"
+# highlight "phoneNumbers" / "0" / "number"
 {
   "firstName": "John",
   "lastName": "Smith",

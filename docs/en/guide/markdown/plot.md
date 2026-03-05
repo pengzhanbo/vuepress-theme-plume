@@ -84,7 +84,7 @@ You can also control behavior through attribute syntax:
 
 Use the `plot` option in Frontmatter to control the default behavior of this feature on the current page:
 
-```
+```md
 ---
 plot:
   trigger: hover

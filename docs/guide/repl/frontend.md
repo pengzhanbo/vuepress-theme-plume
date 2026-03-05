@@ -522,7 +522,8 @@ export default defineComponent({
 /* css 代码 */
 ```
 :::
-```
+````
+
 ::::
 
 还可以在 `::: demo` 中包裹 `::: code-tabs` 以获得更好的代码块展示效果：
@@ -552,7 +553,8 @@ export default defineComponent({
 ```
 :::
 ::::
-```
+````
+
 :::::
 
 ---

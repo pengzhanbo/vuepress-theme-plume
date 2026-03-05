@@ -346,6 +346,6 @@ Symbols that should probably not be used in text: `=>`, `->`, `:>`, `|`, `@>`, a
 
 To emphasize a specific path in the flowchart, you can additionally define it as follows:
 
-```
+```md
 st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"classic-wide-long"})@>c2({"stroke":"Red"})@>op2({"stroke":"Red"})@>e({"stroke":"Red"})
 ```

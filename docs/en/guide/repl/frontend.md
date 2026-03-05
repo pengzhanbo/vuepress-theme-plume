@@ -532,7 +532,8 @@ Using the demo container to wrap demo code in a markdown file allows for quick d
 /* css code */
 ```
 :::
-```
+````
+
 ::::
 
 You can also wrap `::: code-tabs` within `::: demo` for better code block presentation:
@@ -562,7 +563,8 @@ You can also wrap `::: code-tabs` within `::: demo` for better code block presen
 ```
 :::
 ::::
-```
+````
+
 :::::
 
 ---

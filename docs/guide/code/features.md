@@ -48,7 +48,7 @@ export default defineUserConfig({
 
 **输入：**
 
-````
+````md
 ```ts:line-numbers
 // 启用行号
 const line2 = 'This is line 2'
@@ -94,7 +94,7 @@ const line4 = 'This is line 4'
 
 **输入：**
 
-````
+````md
 ```js{4}
 export default {
   data () {
@@ -126,7 +126,7 @@ export default {
 
 **输入：**
 
-````
+````md
 ```js{1,4,6-8}
 export default { // Highlighted
   data () {
@@ -162,10 +162,10 @@ export default { // Highlighted
 
 **输入：**
 
-````
+````md
 ```js
 export default {
-  data () {
+  data() {
     return {
       msg: 'Highlighted!' // [\!code highlight]
     }
@@ -194,10 +194,10 @@ export default {
 
 **输入：**
 
-````
+````md
 ```js
 export default {
-  data () {
+  data() {
     return {
       msg: 'Focused!' // [\!code focus]
     }
@@ -241,10 +241,10 @@ pnpm install
 
 **输入：**
 
-````
+````md
 ```js
 export default {
-  data () {
+  data() {
     return {
       error: 'Removed', // [\!code --]
       warning: 'Added' // [\!code ++]
@@ -288,10 +288,10 @@ mkdir hello && cd hello  # [!code ++]
 
 **输入：**
 
-````
+````md
 ```js
 export default {
-  data () {
+  data() {
     return {
       error: 'Error', // [\!code error]
       warning: 'Warning' // [\!code warning]
@@ -333,7 +333,7 @@ mkdir hello && cd hello  # [!code warning]
 
 **输入：**
 
-````
+````md
 ```ts
 export function foo() { // [\!code word:Hello]
   const msg = 'Hello World'
@@ -355,7 +355,7 @@ export function foo() { // [!code word:Hello]
 
 **输入：**
 
-````
+````md
 ```ts
 // [\!code word:options:2]
 const options = { foo: 'bar' }

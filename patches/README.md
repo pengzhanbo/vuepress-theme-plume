@@ -18,7 +18,7 @@
 当在项目中启用了 `twoslash` 功能，并额外安装了 `@vuepress/shiki-twoslash` 包，在项目进行 `vuepress build` 构建部署包并部署后。
 访问部署后的站点，在有使用 `twoslash` 功能的相关页面，会出现下面的错误信息：
 
-```
+```txt
 hydration mismatch
 ```
 

@@ -49,7 +49,7 @@ for example `:line-numbers=2` indicates that line numbers in the code block star
 
 **Input:**
 
-````
+````md
 ```ts:line-numbers
 // Line numbers enabled
 const line2 = 'This is line 2'
@@ -95,7 +95,7 @@ Add `{xxxx}` immediately after `[lang]` to enable line highlighting, where `xxx`
 
 **Input:**
 
-````
+````md
 ```js{4}
 export default {
   data () {
@@ -127,7 +127,7 @@ In addition to single lines, you can specify multiple single lines, line ranges,
 
 **Input:**
 
-````
+````md
 ```js{1,4,6-8}
 export default { // Highlighted
   data () {
@@ -163,10 +163,10 @@ You can also use the `// [!code highlight]` comment to enable line highlighting.
 
 **Input:**
 
-````
+````md
 ```js
 export default {
-  data () {
+  data() {
     return {
       msg: 'Highlighted!' // [\!code highlight]
     }
@@ -195,10 +195,10 @@ Additionally, you can use `// [!code focus:<lines>]` to define the number of lin
 
 **Input:**
 
-````
+````md
 ```js
 export default {
-  data () {
+  data() {
     return {
       msg: 'Focused!' // [\!code focus]
     }
@@ -242,10 +242,10 @@ Adding `// [!code --]` or `// [!code ++]` comments to a line will create a diff 
 
 **Input:**
 
-````
+````md
 ```js
 export default {
-  data () {
+  data() {
     return {
       error: 'Removed', // [\!code --]
       warning: 'Added' // [\!code ++]
@@ -289,10 +289,10 @@ Adding `// [!code warning]` or `// [!code error]` comments to a line will apply 
 
 **Input:**
 
-````
+````md
 ```js
 export default {
-  data () {
+  data() {
     return {
       error: 'Error', // [\!code error]
       warning: 'Warning' // [\!code warning]
@@ -334,7 +334,7 @@ mkdir hello && cd hello  # [!code warning]
 
 **Input:**
 
-````
+````md
 ```ts
 export function foo() { // [\!code word:Hello]
   const msg = 'Hello World'
@@ -357,7 +357,7 @@ will highlight only the first two occurrences of `options`.
 
 **Input:**
 
-````
+````md
 ```ts
 // [\!code word:options:2]
 const options = { foo: 'bar' }

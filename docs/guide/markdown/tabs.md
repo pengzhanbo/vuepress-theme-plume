@@ -77,7 +77,7 @@ permalink: /guide/markdown/tabs/
 
 **输入：**
 
-````
+````md
 ::: tabs
 @tab npm
 

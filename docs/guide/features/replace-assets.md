@@ -89,7 +89,7 @@ export default defineUserConfig({
 ```md
 ![foo](/images/foo.jpg)
 
-<img src="/images/foo.jpg">
+<img src="/images/foo.jpg" alt="foo">
 ```
 
 在 `javascript` 中：

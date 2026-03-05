@@ -90,7 +90,7 @@ In markdown, use local asset paths directly:
 ```md
 ![foo](/images/foo.jpg)
 
-<img src="/images/foo.jpg">
+<img src="/images/foo.jpg" alt="foo">
 ```
 
 In `javascript`:

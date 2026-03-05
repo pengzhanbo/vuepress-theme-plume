@@ -83,7 +83,7 @@ interface PlotOptions {
 
 在 Frontmatter 中使用 `plot` 选项来控制在当前页面中该功能的默认行为：
 
-```
+```md
 ---
 plot:
   trigger: hover

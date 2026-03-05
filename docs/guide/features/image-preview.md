@@ -36,11 +36,11 @@ export default defineUserConfig({
 可以通过 `no-view` 或 `ignore` 类名，或者 `no-view` 属性来忽略图片预览。
 
 ```md
-![](path/to/image){.no-view}
-![](path/to/image){.ignore}
-![](path/to/image){no-view}
+![alt text](path/to/image){.no-view}
+![alt text](path/to/image){.ignore}
+![alt text](path/to/image){no-view}
 
-<img src="path/to/image" class="no-view">
-<img src="path/to/image" class="ignore">
-<img src="path/to/image" no-view>
+<img src="path/to/image" class="no-view" alt="alt text">
+<img src="path/to/image" class="ignore" alt="alt text">
+<img src="path/to/image" no-view alt="alt text">
 ```

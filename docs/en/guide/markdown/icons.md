@@ -391,7 +391,7 @@ Output:
 
 [Add more style support for Fontawesome](https://docs.fontawesome.com/web/style/styling){.read-more}
 
-```
+```md
 ::circle-user 2xl::  <!-- 2xl is shorthand for fa-2xl, icon size is 2em -->
 ::circle-user rotate-90:: <!-- icon rotated 90 degrees -->
 ::circle-user beat:: <!-- icon animation -->

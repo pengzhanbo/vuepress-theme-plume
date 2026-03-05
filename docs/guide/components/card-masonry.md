@@ -59,7 +59,7 @@ permalink: /guide/components/card-masonry/
 ``` md
 ::: card-masonry cols="3" gap="16" <!-- [!code hl]-->
 
-![](/images/1.png)
+![alt text](/images/1.png)
 
 <!-- 更多内容 -->
 
@@ -77,17 +77,19 @@ permalink: /guide/components/card-masonry/
 ``` md
 ::: card-masonry
 
-![](image_url)
+![alt text](/images/1.png)
 
-![](image_url)
+![alt text](/images/2.png)
 
-![](image_url)
+![alt text](image_url)
 
-![](image_url)
+![alt text](image_url)
 
-![](image_url)
+![alt text](image_url)
 
-![](image_url)
+![alt text](image_url)
+
+![alt text](image_url)
 
 :::
 ```

@@ -1,6 +1,6 @@
 ---
 name: vuepress-plume-config
-description: Generate and write VuePress Plume theme config. Invoke when user asks to init or update theme config.
+description: Generate and write VuePress Plume theme config. Invoke when user asks to init or update theme config, including collections, navbar, sidebar, locales, plugins, and all theme features like search, comments, watermark, encryption, bulletin, copyright, etc.
 ---
 
 # VuePress Plume Config Skill
@@ -10,18 +10,24 @@ This skill generates, manages, and writes VuePress Plume theme configuration fil
 **When to Invoke**
 
 - Initialize or update Plume theme configuration
-- Dynamically generate themeConfig, collections, navbar, sidebar, locales according to input
+- Configure collections (post/doc types), navbar, sidebar, locales
+- Setup plugins (search, comments, watermark, etc.)
+- Configure encryption, bulletin, copyright, and other advanced features
 - Write the generated configuration into a specified target file
 
 **Documentation Sources**
 
-- [Theme Configuration](https://theme-plume.vuejs.press/config/theme/index.md)
-- [Locales Configuration](https://theme-plume.vuejs.press/config/locales/index.md)
-- [Collections Configuration](https://theme-plume.vuejs.press/config/collections/index.md)
-- [Navbar](https://theme-plume.vuejs.press/config/navigation/index.md)
-- [Sidebar](https://theme-plume.vuejs.press/config/sidebar/index.md)
-- [Markdown](https://theme-plume.vuejs.press/config/markdown/index.md)
-- [Plugins](https://theme-plume.vuejs.press/config/plugins/index.md)
+- [Theme Configuration](https://theme-plume.vuejs.press/config/theme/)
+- [Locales Configuration](https://theme-plume.vuejs.press/config/locales/)
+- [Collections Configuration](https://theme-plume.vuejs.press/config/collections/)
+- [Navbar](https://theme-plume.vuejs.press/config/navigation/)
+- [Sidebar](https://theme-plume.vuejs.press/config/sidebar/)
+- [Markdown](https://theme-plume.vuejs.press/config/markdown/)
+- [Plugins](https://theme-plume.vuejs.press/config/plugins/)
+- [Frontmatter - Basic](https://theme-plume.vuejs.press/config/frontmatter/basic/)
+- [Frontmatter - Post](https://theme-plume.vuejs.press/config/frontmatter/post/)
+- [Frontmatter - Home](https://theme-plume.vuejs.press/config/frontmatter/home/)
+- [Frontmatter - Friend](https://theme-plume.vuejs.press/config/frontmatter/friend/)
 
 ## Input Schema
 
@@ -43,7 +49,7 @@ This skill generates, manages, and writes VuePress Plume theme configuration fil
       "type": "object",
       "description": "VuePress site-level config (config.ts/js only)",
       "properties": {
-        "lang": { "type": "string", "description": "Default language" },
+        "lang": { "type": "string", "description": "Default language, e.g., 'zh-CN', 'en-US'", "default": "zh-CN" },
         "title": { "type": "string", "description": "Site title" },
         "description": { "type": "string", "description": "Site description" },
         "base": { "type": "string", "description": "Deployment base path like /subpath/" },
@@ -66,12 +72,13 @@ This skill generates, manages, and writes VuePress Plume theme configuration fil
       "type": "object",
       "description": "Plume theme configuration (themeConfig)",
       "properties": {
-        "hostname": { "type": "string", "default": "", "description": "Deployment hostname (for sitemap/SEO)" },
+        "hostname": { "type": "string", "default": "", "description": "Deployment hostname (for sitemap/SEO). Not supported in plume.config.ts" },
+        "configFile": { "type": "string", "default": "", "description": "Custom theme config file path. Not supported in plume.config.ts" },
         "autoFrontmatter": {
           "type": ["object", "boolean"],
           "default": { "permalink": true, "createTime": true, "title": true },
           "properties": {
-            "permalink": { "type": "boolean", "default": true },
+            "permalink": { "type": ["boolean", "string"], "default": true, "description": "true|false|'filepath'" },
             "createTime": { "type": "boolean", "default": true },
             "title": { "type": "boolean", "default": true }
           },
@@ -81,22 +88,23 @@ This skill generates, manages, and writes VuePress Plume theme configuration fil
           "type": ["string", "boolean"],
           "enum": ["memory", "filesystem", false],
           "default": "filesystem",
-          "description": "Compilation cache (config.ts/js only)"
+          "description": "Compilation cache: 'memory', 'filesystem', or false. Not supported in plume.config.ts"
         },
-        "docsRepo": { "type": "string", "default": "", "description": "Docs repository url" },
+        "docsRepo": { "type": "string", "default": "", "description": "Docs repository url for edit link" },
         "docsBranch": { "type": "string", "default": "", "description": "Docs repository branch" },
         "docsDir": { "type": "string", "default": "", "description": "Docs directory (relative to repo root)" },
-        "editLink": { "type": "boolean", "default": true, "description": "Enable edit link (config.ts/js only)" },
+        "editLink": { "type": "boolean", "default": true, "description": "Enable edit link. Not supported in plume.config.ts" },
+        "editLinkPattern": { "type": "string", "default": "", "description": "Edit link pattern, e.g., ':repo/edit/:branch/:path'" },
         "lastUpdated": {
           "type": ["object", "boolean"],
           "default": { "formatOptions": { "dateStyle": "short", "timeStyle": "short" } },
           "properties": {
             "formatOptions": { "type": "object", "description": "Intl.DateTimeFormatOptions & { forceLocale?: boolean }" }
           },
-          "description": "Last updated time (config.ts/js only)"
+          "description": "Last updated time. Not supported in plume.config.ts"
         },
-        "contributors": { "type": ["boolean", "object"], "default": true, "description": "Show contributors (config.ts/js only)" },
-        "changelog": { "type": ["boolean", "object"], "default": false, "description": "Show page change history (config.ts/js only)" },
+        "contributors": { "type": ["boolean", "object"], "default": true, "description": "Show contributors. Not supported in plume.config.ts" },
+        "changelog": { "type": ["boolean", "object"], "default": false, "description": "Show page change history. Not supported in plume.config.ts" },
         "home": { "type": ["string", "boolean"], "default": "/", "description": "Home path" },
         "logo": { "type": ["string", "boolean"], "default": false, "description": "Navbar logo" },
         "logoDark": { "type": ["string", "boolean"], "default": false, "description": "Navbar logo for dark mode" },
@@ -104,19 +112,19 @@ This skill generates, manages, and writes VuePress Plume theme configuration fil
           "type": ["string", "boolean"],
           "enum": [true, false, "dark", "force-dark"],
           "default": true,
-          "description": "Dark mode toggle and default mode"
+          "description": "Dark mode: true (auto), false (disabled), 'dark' (default dark), 'force-dark' (forced dark)"
         },
         "profile": {
           "type": "object",
           "default": {},
-          "description": "Site profile info",
+          "description": "Site profile info for blogger display",
           "properties": {
-            "avatar": { "type": "string" },
-            "name": { "type": "string" },
-            "description": { "type": "string" },
-            "circle": { "type": "boolean" },
-            "location": { "type": "string" },
-            "organization": { "type": "string" },
+            "avatar": { "type": "string", "description": "Avatar URL" },
+            "name": { "type": "string", "description": "Blogger name" },
+            "description": { "type": "string", "description": "Description/motto" },
+            "circle": { "type": "boolean", "description": "Circle avatar" },
+            "location": { "type": "string", "description": "User location" },
+            "organization": { "type": "string", "description": "User organization/company" },
             "layout": { "type": "string", "enum": ["left", "right"], "default": "right" }
           }
         },
@@ -127,7 +135,7 @@ This skill generates, manages, and writes VuePress Plume theme configuration fil
           "items": {
             "type": "object",
             "properties": {
-              "icon": { "type": ["string", "object"] },
+              "icon": { "type": ["string", "object"], "description": "Iconify name or { svg: string, name?: string }" },
               "link": { "type": "string" },
               "ariaLabel": { "type": "string" }
             },
@@ -138,7 +146,7 @@ This skill generates, manages, and writes VuePress Plume theme configuration fil
           "type": "array",
           "default": ["github", "twitter", "discord", "facebook"],
           "items": { "type": "string" },
-          "description": "Social links allowed to display in navbar (PC)"
+          "description": "Social links allowed to display in navbar (PC only)"
         },
         "navbar": {
           "type": "array",
@@ -149,10 +157,11 @@ This skill generates, manages, and writes VuePress Plume theme configuration fil
             "properties": {
               "text": { "type": "string" },
               "link": { "type": "string" },
-              "prefix": { "type": "string" },
-              "items": { "type": "array" },
-              "icon": { "type": ["string", "object"] },
-              "activeMatch": { "type": "string" }
+              "prefix": { "type": "string", "description": "Page prefix for group" },
+              "items": { "type": "array", "description": "Nested nav items (max depth 2)" },
+              "icon": { "type": ["string", "object"], "description": "Iconify icon or { svg: string }" },
+              "badge": { "type": ["string", "object"], "description": "Badge text or { text, type, color, bgColor, borderColor }" },
+              "activeMatch": { "type": "string", "description": "Regex pattern for active state" }
             }
           }
         },
@@ -164,45 +173,46 @@ This skill generates, manages, and writes VuePress Plume theme configuration fil
             "type": "object",
             "required": ["type", "dir", "title"],
             "properties": {
-              "type": { "type": "string", "enum": ["post", "doc"] },
-              "dir": { "type": "string" },
-              "title": { "type": "string" },
-              "linkPrefix": { "type": "string" },
+              "type": { "type": "string", "enum": ["post", "doc"], "description": "Collection type" },
+              "dir": { "type": "string", "description": "Directory relative to source" },
+              "title": { "type": "string", "description": "Collection title for breadcrumb" },
+              "linkPrefix": { "type": "string", "description": "Article link prefix" },
               "tagsTheme": { "type": "string", "enum": ["colored", "gray", "brand"], "default": "colored" },
               "autoFrontmatter": { "type": ["object", "boolean"] },
-              "include": { "type": "array", "items": { "type": "string" } },
-              "exclude": { "type": "array", "items": { "type": "string" } },
+              "include": { "type": "array", "items": { "type": "string" }, "description": "Glob patterns for included files" },
+              "exclude": { "type": "array", "items": { "type": "string" }, "description": "Glob patterns for excluded files" },
               "pagination": {
                 "type": ["boolean", "number", "object"],
                 "properties": { "perPage": { "type": "number", "default": 15 } }
               },
-              "link": { "type": "string" },
-              "postList": { "type": "boolean" },
-              "tags": { "type": "boolean" },
+              "link": { "type": "string", "description": "Post list page link" },
+              "postList": { "type": "boolean", "default": true, "description": "Enable post list page (post type only)" },
+              "tags": { "type": "boolean", "default": true, "description": "Enable tags page (post type only)" },
               "tagsLink": { "type": "string" },
               "tagsText": { "type": "string" },
-              "archives": { "type": "boolean" },
+              "archives": { "type": "boolean", "default": true, "description": "Enable archives page (post type only)" },
               "archivesLink": { "type": "string" },
               "archivesText": { "type": "string" },
-              "categories": { "type": "boolean" },
+              "categories": { "type": "boolean", "default": true, "description": "Enable categories (post type only)" },
               "categoriesLink": { "type": "string" },
               "categoriesText": { "type": "string" },
-              "categoriesExpand": { "type": ["number", "string"], "enum": ["deep"] },
+              "categoriesExpand": { "type": ["number", "string"], "enum": ["deep"], "default": "deep" },
+              "categoriesTransform": { "type": "string", "description": "Function name for categories transform" },
               "postCover": {
                 "type": ["string", "object"],
-                "description": "Layout or style",
+                "description": "Post cover layout/style",
                 "properties": {
                   "layout": { "type": "string", "enum": ["left", "right", "odd-left", "odd-right", "top"] },
-                  "ratio": { "type": "string" },
-                  "width": { "type": "number" },
-                  "compact": { "type": "boolean" }
+                  "ratio": { "type": ["number", "string"], "description": "Aspect ratio like '16:9' or number" },
+                  "width": { "type": "number", "default": 240 },
+                  "compact": { "type": "boolean", "default": false }
                 }
               },
-              "profile": { "type": ["object", "boolean"] },
-              "social": { "type": ["array", "boolean"] },
-              "sidebar": { "type": ["string", "array"], "description": "Doc type only" },
-              "sidebarScrollbar": { "type": "boolean" },
-              "sidebarCollapsed": { "type": "boolean" }
+              "profile": { "type": ["object", "boolean"], "description": "Profile config for this collection" },
+              "social": { "type": ["array", "boolean"], "description": "Social links for this collection" },
+              "sidebar": { "type": ["string", "array"], "description": "Doc type only: 'auto' or sidebar config" },
+              "sidebarScrollbar": { "type": "boolean", "default": true },
+              "sidebarCollapsed": { "type": "boolean", "default": false }
             }
           }
         },
@@ -211,13 +221,55 @@ This skill generates, manages, and writes VuePress Plume theme configuration fil
           "description": "Global sidebar (prefer configuring in collections)"
         },
         "sidebarScrollbar": { "type": "boolean", "default": true },
-        "aside": { "type": ["boolean", "string"], "enum": [true, false, "left"], "default": true },
+        "aside": { "type": ["boolean", "string"], "enum": [true, false, "left"], "default": true, "description": "Right sidebar/outline display" },
         "outline": { "type": ["boolean", "number", "array", "string"], "default": [2, 3], "description": "false|n|[min,max]|'deep'" },
         "transition": {
           "type": ["boolean", "object"],
           "default": true,
-          "properties": { "page": { "type": "boolean", "default": true } }
+          "properties": {
+            "page": { "type": "boolean", "default": true, "description": "Page transition animation" },
+            "postList": { "type": "boolean", "default": true, "description": "Post list transition animation" },
+            "appearance": { "type": ["boolean", "string"], "default": "fade", "description": "Theme switch animation: fade, circle-clip, horizontal-clip, vertical-clip, skew-clip, blinds-vertical, blinds-horizontal, soft-blur-fade, diamond-reveal" }
+          }
         },
+        "footer": {
+          "type": ["boolean", "object"],
+          "default": false,
+          "description": "Footer config",
+          "properties": {
+            "message": { "type": "string" },
+            "copyright": { "type": "string" }
+          }
+        },
+        "bulletin": {
+          "type": ["boolean", "object"],
+          "default": false,
+          "description": "Bulletin/announcement board config",
+          "properties": {
+            "layout": { "type": "string", "enum": ["top-left", "top-right", "bottom-left", "bottom-right", "center"], "default": "top-right" },
+            "border": { "type": "boolean", "default": true },
+            "enablePage": { "type": ["boolean", "string"], "description": "Boolean or function name" },
+            "lifetime": { "type": "string", "enum": ["session", "always", "once"], "default": "always" },
+            "id": { "type": "string", "description": "Bulletin unique ID" },
+            "title": { "type": "string" },
+            "content": { "type": "string" },
+            "contentType": { "type": "string", "enum": ["markdown", "text"], "default": "text" },
+            "contentFile": { "type": "string", "description": "Path to markdown/html file" }
+          }
+        },
+        "copyright": {
+          "type": ["boolean", "string", "object"],
+          "default": false,
+          "description": "Copyright config: true (CC-BY-4.0), license string, or object",
+          "properties": {
+            "license": { "type": ["string", "object"], "description": "License: CC-BY-4.0, CC-BY-SA-4.0, CC-BY-NC-4.0, CC-BY-NC-SA-4.0, CC-BY-ND-4.0, CC-BY-NC-ND-4.0, CC0, or { name, url }" },
+            "author": { "type": ["string", "object"], "description": "Author name or { name, url }" },
+            "creation": { "type": "string", "enum": ["original", "translate", "reprint"], "default": "original" }
+          }
+        },
+        "prevPage": { "type": "boolean", "default": true, "description": "Show previous page link" },
+        "nextPage": { "type": "boolean", "default": true, "description": "Show next page link" },
+        "createTime": { "type": ["boolean", "string"], "enum": [true, false, "only-posts"], "default": true, "description": "Show create time" },
         "locales": {
           "type": "object",
           "description": "Theme locales (texts and per-locale theme config)",
@@ -251,6 +303,10 @@ This skill generates, manages, and writes VuePress Plume theme configuration fil
               "copyrightLicenseText": { "type": "string" },
               "prevPageLabel": { "type": "string" },
               "nextPageLabel": { "type": "string" },
+              "encryptGlobalText": { "type": "string" },
+              "encryptPageText": { "type": "string" },
+              "encryptButtonText": { "type": "string" },
+              "encryptPlaceholder": { "type": "string" },
               "notFound": {
                 "type": "object",
                 "properties": {
@@ -267,16 +323,25 @@ This skill generates, manages, and writes VuePress Plume theme configuration fil
         },
         "plugins": {
           "type": "object",
-          "description": "Built-in plugin options for the theme (config.ts/js only)"
+          "description": "Built-in plugin options. Not supported in plume.config.ts"
         },
-        "markdown": { "type": "object", "description": "Markdown options (config.ts/js only)" },
-        "codeHighlighter": { "type": ["object", "boolean"], "description": "Code highlighter (config.ts/js only)" },
-        "search": { "type": ["object", "boolean"], "description": "Search (config.ts/js only)" },
-        "comment": { "type": ["object", "boolean"], "description": "Comments (config.ts/js only)" },
-        "watermark": { "type": ["object", "boolean"], "description": "Watermark (config.ts/js only)" },
-        "readingTime": { "type": ["object", "boolean"], "description": "Reading time (config.ts/js only)" },
-        "copyCode": { "type": ["object", "boolean"], "description": "Copy code (config.ts/js only)" },
-        "replaceAssets": { "type": ["object", "boolean"], "description": "Replace assets (config.ts/js only)" }
+        "markdown": { "type": "object", "description": "Markdown options. Not supported in plume.config.ts" },
+        "codeHighlighter": { "type": ["object", "boolean"], "description": "Code highlighter options. Not supported in plume.config.ts" },
+        "search": { "type": ["object", "boolean"], "description": "Search config: { provider: 'local'|'algolia', ...options }. Not supported in plume.config.ts" },
+        "comment": { "type": ["object", "boolean"], "description": "Comments config: { provider: 'Giscus'|'Waline'|'Twikoo'|'Artalk', ...options }. Not supported in plume.config.ts" },
+        "watermark": { "type": ["object", "boolean"], "description": "Watermark config. Not supported in plume.config.ts" },
+        "readingTime": { "type": ["object", "boolean"], "description": "Reading time config. Not supported in plume.config.ts" },
+        "copyCode": { "type": ["object", "boolean"], "description": "Copy code config. Not supported in plume.config.ts" },
+        "replaceAssets": { "type": ["object", "boolean"], "description": "Replace assets config. Not supported in plume.config.ts" },
+        "encrypt": {
+          "type": ["object", "boolean"],
+          "description": "Encryption config. Not supported in plume.config.ts",
+          "properties": {
+            "global": { "type": "boolean", "default": false, "description": "Enable global site encryption" },
+            "admin": { "type": "array", "items": { "type": "string" }, "description": "Admin passwords" },
+            "rules": { "type": "object", "description": "Path-based encryption rules: { 'path/or/pattern': 'password' | ['password1', 'password2'] }" }
+          }
+        }
       }
     }
   }
@@ -287,7 +352,7 @@ This skill generates, manages, and writes VuePress Plume theme configuration fil
 
 - Parse input and validate `format` and fields
 - If `format=plume-config-ts`:
-  - Only write fields supported in `.vuepress/plume.config.ts` (ignore and report fields like `plugins`, `markdown`, `search`, etc.)
+  - Only write fields supported in `.vuepress/plume.config.ts` (ignore and report fields like `plugins`, `markdown`, `search`, `comment`, `watermark`, `encrypt`, etc.)
   - Generate `defineThemeConfig({ ...theme })`
 - If `format=vuepress-config-ts`:
   - Generate `defineUserConfig({ site..., theme: plumeTheme({ ...theme }) })`
@@ -305,8 +370,9 @@ import { defineThemeConfig } from 'vuepress-theme-plume'
 
 export default defineThemeConfig({
   // Supported fields in plume.config.ts: hostname, home, logo, logoDark, appearance, profile, social,
-  // navbarSocialInclude, navbar, collections, sidebar, sidebarScrollbar,
-  // aside, outline, transition, locales, docsRepo/docsBranch/docsDir, autoFrontmatter
+  // navbarSocialInclude, navbar, collections, sidebar, sidebarScrollbar, aside, outline, transition,
+  // footer, bulletin, copyright, prevPage, nextPage, createTime, locales, docsRepo/docsBranch/docsDir,
+  // autoFrontmatter, editLinkPattern
 })
 ```
 
@@ -319,7 +385,7 @@ import { plumeTheme } from 'vuepress-theme-plume'
 export default defineUserConfig({
   // Optional site-level config: lang, title, description, base, head, locales
   theme: plumeTheme({
-    // Full theme config available, including plugins/markdown/search/comment etc.
+    // Full theme config available, including plugins/markdown/search/comment/watermark/encrypt etc.
   })
 })
 ```
@@ -340,12 +406,145 @@ module.exports = defineUserConfig({
 ## Validation and Hints
 
 - Check consistency between `format` and `target_file` extension
-- If `format=plume-config-ts` and input contains `plugins/markdown/codeHighlighter/search/comment/watermark/readingTime/copyCode/replaceAssets/editLink/lastUpdated/contributors/changelog/cache`:
-  - Exclude these fields from output
-  - Report they are only supported in `.vuepress/config.ts`/`.js`
+- If `format=plume-config-ts` and input contains fields only supported in config.ts/js:
+  - Exclude these fields from output: `plugins`, `markdown`, `codeHighlighter`, `search`, `comment`, `watermark`, `readingTime`, `copyCode`, `replaceAssets`, `editLink`, `lastUpdated`, `contributors`, `changelog`, `cache`, `hostname`, `configFile`, `encrypt`
+  - Report them as ignored with reasons
 - In `collections`, `type` must be `post` or `doc`; `dir` and `title` are required
 - `navbar` accepts strings (paths) and objects (with `text/link`)
 - Keys in `locales` should be path prefixes like `'/'`, `'/en/'`, `'/zh/'`
+- For `encrypt.rules`, keys can be: file paths, directory paths, URL paths, or regex patterns (starting with `^`)
+- For `copyright`, support both preset licenses (CC-BY-4.0, etc.) and custom { name, url } format
+
+## Common Configuration Patterns
+
+### Blog Setup
+
+```json
+{
+  "collections": [
+    {
+      "type": "post",
+      "dir": "blog",
+      "title": "博客",
+      "link": "/blog/",
+      "postCover": "right",
+      "tags": true,
+      "archives": true,
+      "categories": true
+    }
+  ],
+  "profile": {
+    "name": "博主名称",
+    "description": "博主描述",
+    "avatar": "/avatar.png"
+  },
+  "social": [
+    { "icon": "github", "link": "https://github.com/username" }
+  ]
+}
+```
+
+### Documentation Setup
+
+```json
+{
+  "collections": [
+    {
+      "type": "doc",
+      "dir": "guide",
+      "title": "指南",
+      "sidebar": "auto"
+    }
+  ],
+  "navbar": [
+    { "text": "指南", "link": "/guide/", "icon": "mdi:book-open-outline" }
+  ]
+}
+```
+
+### Multi-language Setup
+
+```json
+{
+  "locales": {
+    "/": {
+      "selectLanguageName": "简体中文",
+      "selectLanguageText": "选择语言"
+    },
+    "/en/": {
+      "selectLanguageName": "English",
+      "selectLanguageText": "Languages"
+    }
+  }
+}
+```
+
+### Search Configuration
+
+```text
+// Local search (default)
+{
+  search: {
+    provider: 'local'
+  }
+}
+
+// Algolia DocSearch
+{
+  search: {
+    provider: 'algolia',
+    appId: 'YOUR_APP_ID',
+    apiKey: 'YOUR_API_KEY',
+    indexName: 'YOUR_INDEX_NAME'
+  }
+}
+```
+
+### Comments Configuration
+
+```text
+// Giscus
+{
+  comment: {
+    provider: 'Giscus',
+    repo: 'owner/repo',
+    repoId: '...',
+    category: 'Announcements',
+    categoryId: '...'
+  }
+}
+
+// Waline
+{
+  comment: {
+    provider: 'Waline',
+    serverURL: 'https://your-waline-server.vercel.app'
+  }
+}
+```
+
+### Encryption Configuration
+
+```text
+// Global encryption
+{
+  encrypt: {
+    global: true,
+    admin: ['password1', 'password2']
+  }
+}
+
+// Partial encryption
+{
+  encrypt: {
+    rules: {
+      'secret/': 'password',
+      '/article/secret/': ['pass1', 'pass2'],
+      '^/private/': 'private-pass'
+    }
+  }
+}
+```
 
 ## Execution Feedback
 
@@ -353,9 +552,17 @@ module.exports = defineUserConfig({
 - Summary of generated fields (collections count, navbar items, locales count)
 - Ignored fields list with reasons
 - For cache to take effect, remind removing `--clean-cache` from dev script
+- For encrypt to work properly, remind HTTPS requirement for partial content encryption
 
 ## References
 
-- Theme: [theme.md](https://theme-plume.vuejs.press/config/theme/index.md)
-- Locales: [locales.md](https://theme-plume.vuejs.press/config/locales/index.md)
-- Collections: [collections.md](https://theme-plume.vuejs.press/config/collections/index.md)
+- Theme: [theme.md](https://theme-plume.vuejs.press/config/theme/)
+- Locales: [locales.md](https://theme-plume.vuejs.press/config/locales/)
+- Collections: [collections.md](https://theme-plume.vuejs.press/config/collections/)
+- Navbar: [navbar.md](https://theme-plume.vuejs.press/config/navigation/)
+- Sidebar: [sidebar.md](https://theme-plume.vuejs.press/config/sidebar/)
+- Markdown: [markdown.md](https://theme-plume.vuejs.press/config/markdown/)
+- Plugins: [plugins/README.md](https://theme-plume.vuejs.press/config/plugins/)
+- Encryption: [encryption.md](https://theme-plume.vuejs.press/guide/features/encryption/)
+- Bulletin: [bulletin.md](https://theme-plume.vuejs.press/guide/features/bulletin/)
+- Copyright: [copyright.md](https://theme-plume.vuejs.press/guide/features/copyright/)

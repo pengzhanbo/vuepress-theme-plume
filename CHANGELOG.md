@@ -1,3 +1,24 @@
+# [1.0.0-rc.192](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.191...v1.0.0-rc.192) (2026-03-05)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** fix potential null pointer exceptions when parsing collapse containers ([#866](https://github.com/pengzhanbo/vuepress-theme-plume/issues/866)) ([916e914](https://github.com/pengzhanbo/vuepress-theme-plume/commit/916e9141d9a5a482a40722f80d2cbb64d28651dc))
+* **theme:** fix missing attribute for `<VPHomePosts>` ([#864](https://github.com/pengzhanbo/vuepress-theme-plume/issues/864)) ([f11e850](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f11e8501d0e9ebf4805ef8f09f409c68d86126ee))
+* **theme:** fix the calculation error in the post cover ratio and add link to cover, close [#863](https://github.com/pengzhanbo/vuepress-theme-plume/issues/863) ([#865](https://github.com/pengzhanbo/vuepress-theme-plume/issues/865)) ([ca51a34](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ca51a345fb8b680804555b4b96fdae1d894c6264))
+
+
+### Features
+
+* **theme:** add lang switch to update html lang attr ([#867](https://github.com/pengzhanbo/vuepress-theme-plume/issues/867)) ([fd1dd7c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fd1dd7c695bb5b6be9a833b8f7851aa252983022))
+
+
+### Performance Improvements
+
+* update deps to latest ([aa19049](https://github.com/pengzhanbo/vuepress-theme-plume/commit/aa19049f5b8410838d0d84679e78eabd0f3a47c6))
+
+
+
 # [1.0.0-rc.191](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.190...v1.0.0-rc.191) (2026-02-25)
 
 

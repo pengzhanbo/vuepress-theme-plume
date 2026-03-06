@@ -10,8 +10,8 @@ Enable in `.vuepress/config.ts`:
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
-      hint: true, // Enable info, tip, warning, caution, note containers
-      alert: true, // Enable GitHub-style alerts
+      hint: true, // Enable info, tip, warning, caution, note containers (default: true)
+      alert: true, // Enable GitHub-style alerts (default: true)
     }
   })
 })
@@ -45,6 +45,14 @@ Content here
 ### Basic Alerts
 
 ```md
+::: note
+This is a note with default title.
+:::
+
+::: info
+This is an info box.
+:::
+
 ::: tip
 This is a tip with default title.
 :::
@@ -57,7 +65,7 @@ This tip has a custom title.
 Be careful with this step.
 :::
 
-::: danger STOP!
+::: caution STOP!
 This action is irreversible.
 :::
 ```

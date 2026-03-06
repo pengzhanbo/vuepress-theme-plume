@@ -23,6 +23,71 @@ It helps users write rich content using the features provided by the theme.
 - [Code Features](https://theme-plume.vuejs.press/guide/code/features/)
 - [Code Intro](https://theme-plume.vuejs.press/guide/code/intro/)
 
+## Enabling Features
+
+Most markdown extensions need to be enabled in `.vuepress/config.ts`:
+
+```ts
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      // Containers
+      hint: true, // Info, tip, warning, caution containers (default: true)
+      alert: true, // GitHub-style alerts (default: true)
+
+      // Code
+      codeTabs: true, // Code block tabs (default: true)
+      tabs: true, // General tabs (default: true)
+
+      // Content
+      annotation: false, // Inline annotations
+      abbr: false, // Abbreviations
+      mark: 'eager', // Mark/highlight text (default: 'eager')
+
+      // Layout
+      fileTree: true, // File tree container (default: true)
+      flex: false, // Flex layout
+      collapse: false, // Collapsible sections
+      chat: false, // Chat dialog
+      timeline: false, // Timeline
+      field: false, // Field container
+      table: false, // Enhanced table container
+      demo: false, // Demo container
+
+      // Embeds
+      pdf: false, // PDF embed
+      bilibili: false, // Bilibili video
+      youtube: false, // YouTube video
+      artPlayer: false, // ArtPlayer video
+      audioReader: false, // Audio
+
+      // Code demos
+      codepen: false, // CodePen
+      codeSandbox: false, // CodeSandbox
+      jsfiddle: false, // JSFiddle
+      repl: false, // REPL
+
+      // Charts
+      chartjs: false, // Chart.js
+      echarts: false, // ECharts
+      mermaid: false, // Mermaid
+      markmap: false, // Markmap
+      plantuml: false, // PlantUML
+      flowchart: false, // Flowchart
+
+      // Other
+      npmTo: false, // npm/yarn/pnpm switcher
+      caniuse: false, // Can I Use embed
+      icon: { provider: 'iconify' }, // Icons (default: iconify)
+      plot: true, // Hidden text (spoiler) (default: true)
+      imageSize: false, // Auto image dimensions
+      include: true, // Include markdown files (default: true)
+      math: { type: 'katex' }, // Math formulas (default: katex)
+    },
+  }),
+})
+```
+
 ## Markdown Extensions
 
 ### Containers
@@ -77,6 +142,7 @@ It helps users write rich content using the features provided by the theme.
 
 See [resources/code-features.md](resources/code-features.md) for detailed code block features:
 
+- **Code Title** - `title="filename.ext"` after language
 - **Line Numbers** - `:line-numbers`, `:no-line-numbers`, `:line-numbers=2`
 - **Line Highlighting** - `{1,3,5-7}` or `// [!code highlight]`
 - **Line Focus** - `// [!code focus]` or `// [!code focus:3]`
@@ -85,69 +151,6 @@ See [resources/code-features.md](resources/code-features.md) for detailed code b
 - **Word Highlight** - `// [!code word:keyword]` or `// [!code word:keyword:2]`
 - **Whitespace** - `:whitespace` to show tabs/spaces
 - **Collapsed Lines** - `:collapsed-lines` or `:collapsed-lines=10`
-- **Code Title** - `title="filename.ext"` after language
-
-## Enabling Features
-
-Most markdown extensions need to be enabled in `.vuepress/config.ts`:
-
-```ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      // Containers
-      hint: true, // Info, tip, warning, caution containers
-      alert: true, // GitHub-style alerts
-
-      // Code
-      codeTabs: true, // Code block tabs
-      tabs: true, // General tabs
-
-      // Content
-      annotation: true, // Inline annotations
-      abbr: true, // Abbreviations
-      mark: 'eager', // Mark/highlight text
-
-      // Layout
-      fileTree: true, // File tree container
-      flex: true, // Flex layout
-      collapse: true, // Collapsible sections
-      chat: true, // Chat dialog
-      timeline: true, // Timeline
-
-      // Embeds
-      pdf: true, // PDF embed
-      bilibili: true, // Bilibili video
-      youtube: true, // YouTube video
-      artPlayer: true, // ArtPlayer video
-      audioReader: true, // Audio
-
-      // Code demos
-      codepen: true, // CodePen
-      codeSandbox: true, // CodeSandbox
-      jsfiddle: true, // JSFiddle
-      repl: true, // REPL
-
-      // Charts
-      chartjs: true, // Chart.js
-      echarts: true, // ECharts
-      mermaid: true, // Mermaid
-      markmap: true, // Markmap
-      plantuml: true, // PlantUML
-      flowchart: true, // Flowchart
-
-      // Other
-      npmTo: true, // npm/yarn/pnpm switcher
-      caniuse: true, // Can I Use embed
-      icon: { // Icons
-        provider: 'iconify' // or 'iconfont', 'fontawesome'
-      },
-      plot: true, // Hidden text (spoiler)
-      imageSize: true, // Auto image dimensions
-    }
-  })
-})
-```
 
 ## Standard Markdown Extensions
 
@@ -175,7 +178,7 @@ code content
 ### With Features
 
 ````md
-```ts:title="example.ts":line-numbers {2,4-6}
+```ts title="example.ts":line-numbers {2,4-6}
 // [!code highlight]
 const example = 'highlighted'
 // [!code ++]
@@ -192,6 +195,39 @@ const focused = 'focused line'
 console.log(example)
 ```
 ````
+
+### Language-Specific Comments
+
+Different languages use different comment syntax:
+
+| Language | Highlight | Focus | Diff Add | Diff Remove |
+|----------|-----------|-------|----------|-------------|
+| JS/TS/JSX/TSX | `// [!code highlight]` | `// [!code focus]` | `// [!code ++]` | `// [!code --]` |
+| Python/Ruby/YAML | `# [!code highlight]` | `# [!code focus]` | `# [!code ++]` | `# [!code --]` |
+| CSS/SCSS | `/* [!code highlight] */` | `/* [!code focus] */` | `/* [!code ++] */` | `/* [!code --] */` |
+| HTML/XML | `<!-- [!code highlight] -->` | `<!-- [!code focus] -->` | `<!-- [!code ++] -->` | `<!-- [!code --] -->` |
+| Bash/Shell | `# [!code highlight]` | `# [!code focus]` | `# [!code ++]` | `# [!code --]` |
+| SQL | `-- [!code highlight]` | `-- [!code focus]` | `-- [!code ++]` | `-- [!code --]` |
+
+### Global Configuration
+
+Enable features globally in `.vuepress/config.ts`:
+
+```ts
+export default defineUserConfig({
+  theme: plumeTheme({
+    codeHighlighter: {
+      lineNumbers: true, // Enable line numbers globally
+      whitespace: false, // Show whitespace globally
+      collapsedLines: false, // Collapse lines globally
+      theme: { light: 'github-light', dark: 'github-dark' },
+      twoslash: false, // TypeScript twoslash
+    },
+  }),
+})
+```
+
+When enabled globally, use `:no-line-numbers`, `:no-whitespace`, `:no-collapsed-lines` to disable per block.
 
 ## Frontmatter
 
@@ -226,12 +262,14 @@ coverStyle:
 ```
 
 ### Home Page Frontmatter
-
 ```md
 ---
 pageLayout: home
 config:
   - type: hero
+    full: true
+    effect: hyper-speed
+    forceDark: true
     hero:
       name: Site Name
       tagline: Tagline
@@ -245,10 +283,70 @@ config:
       - title: Feature 1
         icon: icon-name
         details: Description
+  - type: image-text
+    title: Section Title
+    image: /images/feature.svg
+    list:
+      - title: Item 1
+        description: Description
+  - type: text-image
+    title: Section Title
+    image: /images/feature.svg
+    list:
+      - title: Item 1
+        description: Description
+  - type: custom
 ---
 ```
+
+## LLMs txt Markup
+
+When `llmstxt` is enabled, you can use special markup:
+
+### `<llm-only>` - Content visible only to LLMs
+```md
+<llm-only>
+
+## Section for LLMs
+
+This content only appears in LLM-generated files.
+
+</llm-only>
+```
+
+### `<llm-exclude>` - Content hidden from LLMs
+```md
+<llm-exclude>
+
+## Section for humans
+
+This content will not appear in LLM files.
+
+</llm-exclude>
+```
+
+## Components
+
+### Swiper (Carousel)
+
+Requires installing `swiper`:
+
+```bash
+npm install swiper
+```
+
+```md
+<script setup>
+import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
+</script>
+
+<Swiper :items="['img1.jpg', 'img2.jpg']" />
+```
+
+Props: `items`, `width`, `height`, `mode` ('banner'|'carousel'|'broadcast'), `navigation`, `effect`, `delay`, `speed`, `loop`, `pauseOnMouseEnter`, `swipe`
 
 ## References
 
 - [VuePress Markdown](https://v2.vuepress.vuejs.org/guide/markdown.html)
 - [Plume Theme Docs](https://theme-plume.vuejs.press/)
+- [Markdown Configuration](https://theme-plume.vuejs.press/config/markdown/)

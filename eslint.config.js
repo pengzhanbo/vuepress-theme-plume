@@ -7,6 +7,7 @@ export default config({
   },
   ignores: [
     'lib',
+    'skills',
     'docs/snippet/code-block.snippet.md',
     'docs/snippet/whitespace.snippet.md',
   ],

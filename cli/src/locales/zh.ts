@@ -1,5 +1,10 @@
 import type { Locale } from '../types.js'
 
+/**
+ * Chinese (Simplified) locale configuration for CLI prompts and messages.
+ *
+ * CLI 提示和消息的简体中文本地化配置。
+ */
 export const zh: Locale = {
   'question.root': '您想在哪里初始化 VuePress？',
   'question.site.name': '站点名称：',

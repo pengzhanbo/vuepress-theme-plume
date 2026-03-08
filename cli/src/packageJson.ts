@@ -5,6 +5,14 @@ import _sortPackageJson from 'sort-package-json'
 import { Mode } from './constants.js'
 import { readJsonFile, resolve } from './utils/index.js'
 
+/**
+ * Sort package.json fields in a consistent order.
+ *
+ * 按一致顺序排序 package.json 字段。
+ *
+ * @param json - Package.json object to sort / 要排序的 package.json 对象
+ * @returns Sorted package.json object / 排序后的 package.json 对象
+ */
 function sortPackageJson(json: Record<any, any>) {
   return _sortPackageJson(json, {
     sortOrder: ['name', 'type', 'version', 'private', 'description', 'packageManager', 'author', 'license', 'scripts', 'devDependencies', 'dependencies', 'pnpm'],
@@ -111,12 +119,29 @@ export async function createPackageJson(
   }
 }
 
+/**
+ * Get user information from git global configuration.
+ *
+ * 从 git 全局配置获取用户信息。
+ *
+ * @returns User information object with username and email / 包含用户名和邮箱的用户信息对象
+ * @throws Error if git command fails / 如果 git 命令失败则抛出错误
+ */
 async function getUserInfo() {
   const { output: username } = await spawn('git', ['config', '--global', 'user.name'])
   const { output: email } = await spawn('git', ['config', '--global', 'user.email'])
   return { username, email }
 }
 
+/**
+ * Get the version of a package manager.
+ *
+ * 获取包管理器的版本。
+ *
+ * @param pkg - Package manager name (npm, yarn, pnpm) / 包管理器名称
+ * @returns Version string of the package manager / 包管理器的版本字符串
+ * @throws Error if package manager command fails / 如果包管理器命令失败则抛出错误
+ */
 async function getPackageManagerVersion(pkg: string) {
   const { output } = await spawn(pkg, ['--version'])
   return output

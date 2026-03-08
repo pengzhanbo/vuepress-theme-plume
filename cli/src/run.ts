@@ -78,6 +78,15 @@ export async function run(mode: Mode, root?: string): Promise<void> {
   }
 }
 
+/**
+ * Resolve prompt result into final configuration data.
+ *
+ * 将提示结果解析为最终配置数据。
+ *
+ * @param result - Prompt result from user input / 用户输入的提示结果
+ * @param mode - Operation mode (init or create) / 操作模式（初始化或创建）
+ * @returns Resolved configuration data / 解析后的配置数据
+ */
 function resolveData(result: PromptResult, mode: Mode): ResolvedData {
   return {
     ...result,

@@ -1,5 +1,10 @@
 import type { Locale } from '../types.js'
 
+/**
+ * English locale configuration for CLI prompts and messages.
+ *
+ * CLI 提示和消息的英语本地化配置。
+ */
 export const en: Locale = {
   'question.root': 'Where would you want to initialize VuePress?',
   'question.site.name': 'Site Name:',

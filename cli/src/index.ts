@@ -1,3 +1,15 @@
+/**
+ * VuePress Theme Plume CLI Entry Point
+ *
+ * VuePress Theme Plume CLI 入口文件
+ *
+ * This module provides command-line interface for creating and initializing
+ * VuePress projects with vuepress-theme-plume.
+ *
+ * 本模块提供用于创建和初始化 VuePress 项目的命令行接口。
+ *
+ * @module cli
+ */
 import cac from 'cac'
 import { version } from '../package.json'
 import { Mode } from './constants.js'

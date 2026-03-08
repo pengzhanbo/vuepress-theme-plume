@@ -1,6 +1,17 @@
-/** 繁体中文 */
+/**
+ * Traditional Chinese (Taiwan) locale configuration for search plugin.
+ *
+ * 搜索插件的繁体中文（台湾）本地化配置。
+ *
+ * @module plugin-search/node/locales/zh-tw
+ */
 import type { SearchLocaleOptions } from '../../shared/index.js'
 
+/**
+ * Traditional Chinese (Taiwan) search locale strings.
+ *
+ * 繁体中文（台湾）搜索本地化字符串。
+ */
 export const zhTwSearchLocale: Partial<SearchLocaleOptions> = {
   placeholder: '搜尋文件',
   resetButtonTitle: '重設搜尋',

@@ -1,5 +1,17 @@
+/**
+ * Simplified Chinese locale configuration for search plugin.
+ *
+ * 搜索插件的简体中文本地化配置。
+ *
+ * @module plugin-search/node/locales/zh
+ */
 import type { SearchLocaleOptions } from '../../shared/index.js'
 
+/**
+ * Simplified Chinese search locale strings.
+ *
+ * 简体中文搜索本地化字符串。
+ */
 export const zhSearchLocale: Partial<SearchLocaleOptions> = {
   placeholder: '搜索文档',
   resetButtonTitle: '重置搜索',

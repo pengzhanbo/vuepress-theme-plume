@@ -8,6 +8,36 @@ import { onSearchIndexRemoved, onSearchIndexUpdated, prepareSearchIndex, prepare
 
 const __dirname = getDirname(import.meta.url)
 
+/**
+ * Create a VuePress search plugin instance.
+ *
+ * 创建 VuePress 搜索插件实例。
+ *
+ * @param options - Plugin configuration options / 插件配置选项
+ * @param options.locales - Locale-specific search configurations / 特定语言的搜索配置
+ * @param options.isSearchable - Function to determine if a page should be indexed / 判断页面是否应被索引的函数
+ * @param options.searchOptions - MiniSearch options / MiniSearch 配置选项
+ * @returns VuePress plugin object / VuePress 插件对象
+ * @example
+ * // Basic usage
+ * export default {
+ *   plugins: [
+ *     searchPlugin()
+ *   ]
+ * }
+ *
+ * // With custom options
+ * export default {
+ *   plugins: [
+ *     searchPlugin({
+ *       locales: {
+ *         '/zh/': { placeholder: '搜索文档' }
+ *       },
+ *       isSearchable: (page) => page.path !== '/secret/'
+ *     })
+ *   ]
+ * }
+ */
 export function searchPlugin({
   locales = {},
   isSearchable,

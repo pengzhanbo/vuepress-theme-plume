@@ -17,6 +17,14 @@ import { withBase } from 'vuepress/client'
 import { ensureEndingSlash, isLinkHttp } from 'vuepress/shared'
 import { pluginOptions } from '../options.js'
 
+/**
+ * Build query string from PDF options.
+ *
+ * 从 PDF 选项构建查询字符串。
+ *
+ * @param options - PDF token metadata / PDF 令牌元数据
+ * @returns Query string / 查询字符串
+ */
 function queryStringify(options: PDFTokenMeta): string {
   const { page, noToolbar, zoom } = options
   const params = [
@@ -32,6 +40,16 @@ function queryStringify(options: PDFTokenMeta): string {
   return queryString
 }
 
+/**
+ * Render PDF viewer in the specified element.
+ *
+ * 在指定元素中渲染 PDF 查看器。
+ *
+ * @param el - Container element / 容器元素
+ * @param url - PDF URL / PDF URL
+ * @param embedType - Embed type: 'pdfjs', 'iframe', or 'embed' / 嵌入类型
+ * @param options - PDF token metadata / PDF 令牌元数据
+ */
 export function renderPDF(
   el: HTMLElement,
   url: string,
@@ -72,6 +90,20 @@ export function renderPDF(
   el.appendChild(pdf)
 }
 
+/**
+ * Composable for PDF viewer functionality.
+ *
+ * PDF 查看器功能的组合式函数。
+ *
+ * This function detects browser capabilities and chooses the appropriate
+ * embedding method for PDF display (PDF.js, iframe, or embed).
+ *
+ * 该函数检测浏览器能力并选择适当的嵌入方法来显示 PDF（PDF.js、iframe 或 embed）。
+ *
+ * @param el - Container element / 容器元素
+ * @param url - PDF URL / PDF URL
+ * @param options - PDF token metadata / PDF 令牌元数据
+ */
 export function usePDF(
   el: HTMLElement,
   url: string,
@@ -86,10 +118,10 @@ export function usePDF(
   const isModernBrowser = typeof window.Promise === 'function'
 
   // Quick test for mobile devices.
-  const isMobileDevice = isiPad(userAgent) || isMobile(userAgent)
+  const isMobileDevice = isiPad() || isMobile()
 
   // Safari desktop requires special handling
-  const isSafariDesktop = !isMobileDevice && isSafari(userAgent)
+  const isSafariDesktop = !isMobileDevice && isSafari()
 
   const isFirefoxWithPDFJS
     = !isMobileDevice

@@ -5,18 +5,63 @@ import { http } from '../utils/http.js'
 import { sleep } from '../utils/sleep.js'
 import { rustExecute } from './rustRepl.js'
 
+/**
+ * CSS selectors for nodes to ignore when extracting code.
+ *
+ * 提取代码时要忽略的节点的 CSS 选择器。
+ */
 const ignoredNodes = ['.diff.remove', '.vp-copy-ignore']
+
+/**
+ * Regular expression for matching language class.
+ *
+ * 匹配语言类的正则表达式。
+ */
 const RE_LANGUAGE = /language-(\w+)/
+
+/**
+ * API endpoints for code execution backends.
+ *
+ * 代码执行后端的 API 端点。
+ */
 const api = {
   go: 'https://api.pengzhanbo.cn/repl/golang/run',
   kotlin: 'https://api.pengzhanbo.cn/repl/kotlin/run',
 }
+
+/**
+ * Pyodide instance for Python execution.
+ *
+ * 用于 Python 执行的 Pyodide 实例。
+ */
 let pyodide: PyodideInterface | null = null
 
+/**
+ * Supported languages for code execution.
+ *
+ * 支持代码执行的语言。
+ */
 type Lang = 'kotlin' | 'go' | 'rust' | 'python'
+
+/**
+ * Function type for code execution.
+ *
+ * 代码执行的函数类型。
+ */
 type ExecuteFn = (code: string) => Promise<any>
+
+/**
+ * Map of language to execution function.
+ *
+ * 语言到执行函数的映射。
+ */
 type ExecuteMap = Record<Lang, ExecuteFn>
 
+/**
+ * Language alias mapping.
+ *
+ * 语言别名映射。
+ */
 const langAlias: Record<string, string> = {
   kt: 'kotlin',
   kotlin: 'kotlin',
@@ -27,12 +72,33 @@ const langAlias: Record<string, string> = {
   python: 'python',
 }
 
+/**
+ * List of supported languages.
+ *
+ * 支持的语言列表。
+ */
 const supportLang: Lang[] = ['kotlin', 'go', 'rust', 'python']
 
+/**
+ * Resolve language name from alias.
+ *
+ * 从别名解析语言名称。
+ *
+ * @param lang - Language or alias / 语言或别名
+ * @returns Resolved language name / 解析后的语言名称
+ */
 function resolveLang(lang?: string) {
   return lang ? langAlias[lang] || lang : ''
 }
 
+/**
+ * Resolve code content from HTML element, ignoring specified nodes.
+ *
+ * 从 HTML 元素解析代码内容，忽略指定的节点。
+ *
+ * @param el - HTML element / HTML 元素
+ * @returns Code content / 代码内容
+ */
 export function resolveCode(el: HTMLElement): string {
   const clone = el.cloneNode(true) as HTMLElement
   clone
@@ -42,6 +108,14 @@ export function resolveCode(el: HTMLElement): string {
   return clone.textContent || ''
 }
 
+/**
+ * Resolve code information from HTML element.
+ *
+ * 从 HTML 元素解析代码信息。
+ *
+ * @param el - HTML element / HTML 元素
+ * @returns Object with language and code / 包含语言和代码的对象
+ */
 export function resolveCodeInfo(el: HTMLDivElement): {
   lang: Lang
   code: string
@@ -57,19 +131,55 @@ export function resolveCodeInfo(el: HTMLDivElement): {
   return { lang: resolveLang(lang) as Lang, code }
 }
 
+/**
+ * Result interface for useCodeRepl composable.
+ *
+ * useCodeRepl 组合式函数的结果接口。
+ */
 interface UseCodeReplResult {
+  /** Current language / 当前语言 */
   lang: Ref<Lang | undefined>
+  /** Whether the code is loaded / 代码是否已加载 */
   loaded: Ref<boolean>
+  /** Whether this is the first run / 是否为首次运行 */
   firstRun: Ref<boolean>
+  /** Whether execution is finished / 执行是否完成 */
   finished: Ref<boolean>
+  /** Standard output lines / 标准输出行 */
   stdout: Ref<string[]>
+  /** Standard error lines / 标准错误行 */
   stderr: Ref<string[]>
+  /** Error message / 错误信息 */
   error: Ref<string>
+  /** Backend version / 后端版本 */
   backendVersion: Ref<string>
+  /** Clean run state / 清理运行状态 */
   onCleanRun: () => void
+  /** Run code execution / 运行代码执行 */
   onRunCode: () => Promise<void>
 }
 
+/**
+ * Composable for code REPL functionality.
+ *
+ * 代码 REPL 功能的组合式函数。
+ *
+ * This composable provides functionality to execute code in various languages
+ * (Kotlin, Go, Rust, Python) and manage the execution state.
+ *
+ * 该组合式函数提供在各种语言（Kotlin、Go、Rust、Python）中执行代码和管理执行状态的功能。
+ *
+ * @param el - Reference to the code element / 代码元素的引用
+ * @returns REPL state and methods / REPL 状态和方法
+ *
+ * @example
+ * ```vue
+ * <script setup>
+ * const codeEl = ref(null)
+ * const { onRunCode, stdout, stderr, loaded } = useCodeRepl(codeEl)
+ * </script>
+ * ```
+ */
 export function useCodeRepl(el: Ref<HTMLDivElement | null>): UseCodeReplResult {
   const lang = ref<Lang>()
   const loaded = ref(true)
@@ -227,36 +337,74 @@ export function useCodeRepl(el: Ref<HTMLDivElement | null>): UseCodeReplResult {
   }
 }
 
+/**
+ * Request interface for Golang execution API.
+ *
+ * Golang 执行 API 的请求接口。
+ */
 interface GolangRequest {
+  /** Code to execute / 要执行的代码 */
   code: string
+  /** Go version / Go 版本 */
   version?: '' | 'goprev' | 'gotip'
 }
 
+/**
+ * Response interface for Golang execution API.
+ *
+ * Golang 执行 API 的响应接口。
+ */
 interface GolangResponse {
+  /** Execution events / 执行事件 */
   events?: {
+    /** Event message / 事件消息 */
     message: ''
+    /** Event kind / 事件类型 */
     kind: 'stdout' | 'stderr'
+    /** Event delay / 事件延迟 */
     delay: number
   }[]
+  /** Error message / 错误信息 */
   error?: string
+  /** Go version / Go 版本 */
   version: string
 }
 
+/**
+ * Request interface for Kotlin execution API.
+ *
+ * Kotlin 执行 API 的请求接口。
+ */
 interface KotlinRequest {
+  /** Command line arguments / 命令行参数 */
   args?: string
+  /** Files to compile / 要编译的文件 */
   files: {
+    /** File name / 文件名 */
     name: string
+    /** Public ID / 公共 ID */
     publicId: string
+    /** File content / 文件内容 */
     text: string
   }[]
 }
 
+/**
+ * Response interface for Kotlin execution API.
+ *
+ * Kotlin 执行 API 的响应接口。
+ */
 interface KotlinResponse {
+  /** Execution output / 执行输出 */
   text: string
+  /** Kotlin version / Kotlin 版本 */
   version: string
+  /** Compilation errors / 编译错误 */
   errors: {
     [filename: string]: {
+      /** Error message / 错误信息 */
       message: string
+      /** Error severity / 错误严重程度 */
       severity: 'ERROR' | 'WARNING'
     }[]
   }

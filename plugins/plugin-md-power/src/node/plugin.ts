@@ -16,6 +16,41 @@ import { LOCALE_OPTIONS } from './locales/index.js'
 import { prepareConfigFile } from './prepareConfigFile.js'
 import { provideData } from './provideData.js'
 
+/**
+ * Create markdown power plugin for VuePress.
+ *
+ * 为 VuePress 创建 markdown 增强插件。
+ *
+ * This plugin provides various markdown enhancements including:
+ * - Custom containers (tabs, collapse, timeline, etc.)
+ * - Code blocks enhancements (code tabs, file tree, demo)
+ * - Embed syntax (video, PDF, code playground)
+ * - Inline syntax (mark, subscript, superscript, footnote)
+ * - Icon support
+ *
+ * 该插件提供多种 markdown 增强功能，包括：
+ * - 自定义容器（标签页、折叠面板、时间线等）
+ * - 代码块增强（代码标签页、文件树、演示）
+ * - 嵌入语法（视频、PDF、代码游乐场）
+ * - 行内语法（标记、下标、上标、脚注）
+ * - 图标支持
+ *
+ * @param options - Plugin options / 插件配置选项
+ * @returns VuePress plugin instance / VuePress 插件实例
+ *
+ * @example
+ * ```ts
+ * // Basic usage
+ * markdownPowerPlugin()
+ *
+ * // With options
+ * markdownPowerPlugin({
+ *   tabs: true,
+ *   collapse: true,
+ *   pdf: true,
+ * })
+ * ```
+ */
 export function markdownPowerPlugin(
   options: MarkdownPowerPluginOptions = {},
 ): Plugin {

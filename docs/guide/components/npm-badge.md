@@ -12,7 +12,7 @@ import NpmBadgeGroup from 'vuepress-theme-plume/features/NpmBadgeGroup.vue'
 
 ## 概述
 
-Npm 徽章组件 用于显示 npm 包信息，并提供相关的链接。
+Npm 徽章组件用于显示 npm 包信息，并提供相关的链接。
 
 徽章由 <https://shields.io> 提供支持。
 

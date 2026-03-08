@@ -13,7 +13,7 @@ whether you are creating a **technical blog**, **personal journal**, **product d
 **knowledge base**, or **tutorial series**.
 
 Deep optimizations have been applied to typography and image display,
-with extensive enhancements specifically for Markdown syntax.This allows you to effortlessly
+with extensive enhancements specifically for Markdown syntax. This allows you to effortlessly
 create professional content that is **aesthetically pleasing, highly readable, and expressive**.
 
 ::: details New to VuePress?
@@ -42,7 +42,7 @@ a more beautiful, clean, and user-friendly reading experience.
   ==content encryption==, and ==article watermarking==.
 - **Code Presentation**: Support for code block ==grouping==, ==collapsing==, ==focusing==,
   ==line highlighting==, ==diff comparison==, and embedding ==code demos== from platforms like CodePen, JSFiddle, and CodeSandbox.
-- **Icon System**: Integration with [iconify](https://icon-sets.iconify.d/) providing access to
+- **Icon System**: Integration with [iconify](https://icon-sets.iconify.design/) providing access to
   **200,000+** ==icons==, with optional support for `iconfont` / `fontawesome` icon libraries.
 - **Media Embedding**: Support for ==PDF embedding==, and ==Bilibili/Youtube/Local Video== embedding.
 - **Chart Rendering**: Integration with multiple ==chart engines== including chart.js, Echarts, Mermaid, Flowchart, Markmap, and PlantUML.

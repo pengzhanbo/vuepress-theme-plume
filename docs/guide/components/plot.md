@@ -1,5 +1,5 @@
 ---
-title: “隐秘”文本
+title: “隐秘” 文本
 icon: lets-icons:hide-eye
 createTime: 2024/08/18 23:02:39
 permalink: /guide/components/plot/
@@ -7,7 +7,7 @@ permalink: /guide/components/plot/
 
 ## 概述
 
-使用 `<Plot>` 组件显示 [“隐秘”文本](../markdown/plot.md) ，能够更灵活的控制行为。
+使用 `<Plot>` 组件显示 ["隐秘"文本](../markdown/plot.md)，能够更灵活地控制行为。
 
 该组件默认不启用，你需要在 theme 配置中启用。
 

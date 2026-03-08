@@ -64,7 +64,7 @@ export default defineUserConfig({
     encrypt: {
       rules: {
         // Can be the relative path of an MD file to encrypt that file
-        '前端/基础.md': '123456',
+        'frontend/basics.md': '123456',
         // Can be a directory path to encrypt all articles under that directory
         '/notes/vuepress-theme-plume/': '123456',
         // Can be a request path to encrypt all articles under that path

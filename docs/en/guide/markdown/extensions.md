@@ -159,13 +159,13 @@ Right-aligned content
 **Input:**
 
 ````md
-The farthest distance in the world Is not the distance between life and death But you don't know I love you when I stand in front of you.[^footnote1]。
+The farthest distance in the world Is not the distance between life and death But you don't know I love you when I stand in front of you.[^footnote1].
 
 [^footnote1]: From India.Rabindranath Tagore **The Farthest Distance in the World**
 ````
 
 **Output:**
 
-The farthest distance in the world Is not the distance between life and death But you don't know I love you when I stand in front of you.[^footnote1]。
+The farthest distance in the world Is not the distance between life and death But you don't know I love you when I stand in front of you.[^footnote1].
 
 [^footnote1]: From India.Rabindranath Tagore **The Farthest Distance in the World**

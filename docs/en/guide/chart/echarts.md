@@ -86,7 +86,7 @@ Refer to the [ECharts documentation](https://echarts.apache.org/handbook/zh/get-
 ## Advanced
 
 You can import and use `defineEchartsConfig` in the
-[client configuration file](https://vuejs.press/zh/guide/configuration.html##使用脚本) to customize ECharts:
+[client configuration file](https://vuejs.press/guide/configuration.html#client-config-file) to customize ECharts:
 
 ```ts
 import { defineEchartsConfig } from '@vuepress/plugin-markdown-chart/client'

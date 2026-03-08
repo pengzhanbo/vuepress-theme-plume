@@ -124,8 +124,8 @@ export default defineUserConfig({
       '/': {
         // Chinese collection configuration // [!code focus:4]
         collections: [
-          { type: 'post', dir: 'blog', title: '博客' },
-          { type: 'doc', dir: 'typescript', title: 'TypeScript笔记', sidebar: 'auto' }
+          { type: 'post', dir: 'blog', title: 'Blog' },
+          { type: 'doc', dir: 'typescript', title: 'TypeScript Notes', sidebar: 'auto' }
         ],
       },
       '/en/': {
@@ -150,8 +150,8 @@ export default defineThemeConfig({
     '/': {
       // Chinese collection configuration // [!code focus:4]
       collections: [
-        { type: 'post', dir: 'blog', title: '博客' },
-        { type: 'doc', dir: 'typescript', title: 'TypeScript笔记', sidebar: 'auto' }
+        { type: 'post', dir: 'blog', title: 'Blog' },
+        { type: 'doc', dir: 'typescript', title: 'TypeScript Notes', sidebar: 'auto' }
       ],
     },
     '/en/': {

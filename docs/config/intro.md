@@ -82,7 +82,7 @@ export default defineUserConfig({
 
 主题提供了 `plume.config.ts` 配置文件，==对该文件的修改支持热更新，无需重启服务=={.tip} ::twemoji:confetti-ball::。
 
-你可以在其中配置支持热更新的字段，如 `navbar`、`profile` 等。
+您可以在其中配置支持热更新的字段，如 `navbar`、`profile` 等。
 
 ::: tip
 这些字段仍可在 VuePress 配置文件的 `theme` 中配置，但主题配置文件的设置最终会合并到主配置中。

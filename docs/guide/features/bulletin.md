@@ -320,7 +320,7 @@ const {
 
 公告板的唯一标识由 `bulletin.id` 配置。
 
-唯一标识是用于区分公告板，并根据 该表示 决定 `bulletin.lifetime` 的有效期。
+唯一标识是用于区分公告板，并根据该标识决定 `bulletin.lifetime` 的有效期。
 
 ```ts
 export default defineUserConfig({

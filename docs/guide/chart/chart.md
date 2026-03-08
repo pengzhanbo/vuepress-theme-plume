@@ -51,7 +51,7 @@ export default defineUserConfig({
 :::
 ````
 
-图标配置请查看 [chart.js] 文档 。
+图表配置请查看 [chart.js] 文档。
 
 ## 示例
 

@@ -87,7 +87,7 @@ permalink: /guide/collection/
 
   :::
 
-  `blog` 目录下的 markdown 文章，在 post 集合中读取为文章列表，并生成列表页、分类页、标签页等页面。
+  `blog` 目录下的 Markdown 文章将被读取为文章列表，并自动生成列表页、分类页、标签页等页面。
 
 - **完成**
 ::::

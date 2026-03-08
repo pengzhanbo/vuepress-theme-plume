@@ -5,19 +5,19 @@ createTime: 2024/04/22 09:44:37
 permalink: /en/guide/repl/kotlin/
 ---
 
-## 概述
+## Overview
 
-主题提供了 Kotlin 代码演示，支持 在线运行 Kotlin 代码。
+The theme provides Kotlin code demonstrations, supporting online execution of Kotlin code.
 
 ::: important
-该功能通过将 代码提交到 服务器 进行 编译并执行，且一次只能提交单个代码文件。
+This feature works by submitting code to a server for compilation and execution, and only a single code file can be submitted at a time.
 
-因此，请不要使用此功能 执行 过于复杂的代码，也不要过于频繁的进行执行请求。
+Therefore, please do not use this feature to execute overly complex code, and avoid making execution requests too frequently.
 :::
 
-## 配置
+## Configuration
 
-该功能默认不启用，你可以通过配置来启用它。
+This feature is disabled by default. You can enable it through configuration.
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
@@ -31,39 +31,39 @@ export default defineUserConfig({
 })
 ```
 
-## 使用
+## Usage
 
-使用 `::: kotlin-repl` 容器语法 将 kotlin 代码块包裹起来。主题会检查代码块并添加执行按钮。
+Use the `::: kotlin-repl` container syntax to wrap Kotlin code blocks. The theme will inspect the code block and add an execution button.
 
-### 只读代码演示
+### Read-Only Code Demo
 
-kotlin 代码演示默认是只读的，不可编辑。
+Kotlin code demos are read-only by default and cannot be edited.
 
 ````md
-::: kotlin-repl title="自定义标题"
+::: kotlin-repl title="Custom Title"
 ```kotlin
 // your kotlin code
 ```
 :::
 ````
 
-### 可编辑代码演示
+### Editable Code Demo
 
-如果需要在线编辑并执行，需要将代码块包裹在 `::: kotlin-repl editable` 容器语法中
+If you need online editing and execution, wrap the code block in the `::: kotlin-repl editable` container syntax.
 
 ````md
-::: kotlin-repl editable title="自定义标题"
+::: kotlin-repl editable title="Custom Title"
 ```kotlin
 // your kotlin code
 ```
 :::
 ````
 
-## 示例
+## Examples
 
-### 打印内容
+### Print Content
 
-**输入：**
+**Input:**
 
 ````md
 ::: kotlin-repl
@@ -78,7 +78,7 @@ fun main(args: Array<String>) {
 :::
 ````
 
-**输出：**
+**Output:**
 
 ::: kotlin-repl
 
@@ -93,7 +93,7 @@ fun main(args: Array<String>) {
 
 :::
 
-### 运算
+### Computation
 
 ::: kotlin-repl
 
@@ -109,9 +109,9 @@ fun main(args: Array<String>) {
 
 :::
 
-### 可编辑代码演示
+### Editable Code Demo
 
-**输入：**
+**Input:**
 
 ````md
 ::: kotlin-repl editable
@@ -126,7 +126,7 @@ fun main(args: Array<String>) {
 :::
 ````
 
-**输出：**
+**Output:**
 
 ::: kotlin-repl editable
 

@@ -536,9 +536,9 @@ export default defineThemeConfig({
 
 :::
 
-[你可以在这里查看 **simple-icons** 所有可用图标](https://icon-sets.iconify.design/simple-icons/){.readmore}
+[您可以在这里查看 **simple-icons** 所有可用图标](https://icon-sets.iconify.design/simple-icons/){.readmore}
 
-如果 **Iconify** 无法满足你的需求，可以传入 `{ svg: string, name?: string }`的格式，使用自定义图标，传入 svg 源码字符串。
+如果 **Iconify** 无法满足您的需求，可以传入 `{ svg: string, name?: string }` 格式使用自定义图标，传入 SVG 源码字符串。
 
 ## 文章封面配置
 
@@ -938,9 +938,7 @@ config:
 
 更多自定义配置，请参考 [自定义首页](../custom/home.md)。
 
-当使用以上两种方式 将首页配置为 文章列表页后，由于主题默认依然会生成 文章列表页，
-这导致存在了重复功能的页面。为此，你可能需要在 集合配置中，
-**关闭自动生成博客文章列表页**：
+当使用以上两种方式将首页配置为文章列表页后，由于主题默认依然会生成文章列表页，这导致存在了重复功能的页面。为此，您可能需要在集合配置中**关闭自动生成博客文章列表页**：
 
 （还可以重新修改 分类页/标签页/归档页的链接地址）
 

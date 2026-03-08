@@ -8,11 +8,9 @@ tags:
   - 快速开始
 ---
 
-VuePress 完整支持 [标准 Markdown 语法](../markdown/basic.md)，同时允许通过
-[YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f)
-格式的 Frontmatter 定义页面元数据（如标题、创建时间等）。
+VuePress 完整支持 [标准 Markdown 语法](../markdown/basic.md)，同时允许通过 [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) 格式的 Frontmatter 定义页面元数据（如标题、创建时间等）。
 
-此外，主题还提供了丰富的 [Markdown 扩展语法](../markdown/extensions.md)。您不仅可以在 Markdown 中直接编写 HTML，还能使用 Vue 组件来增强内容表现力。
+此外，主题还提供了丰富的 [Markdown 扩展语法](../markdown/extensions.md)，您不仅可以在 Markdown 中直接编写 HTML，还能使用 Vue 组件来增强内容表现力。
 
 ## Frontmatter 页面配置
 

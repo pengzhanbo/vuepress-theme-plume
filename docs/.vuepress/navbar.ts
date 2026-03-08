@@ -94,7 +94,7 @@ export const enNavbar: ThemeNavItem[] = defineNavbarConfig([
   {
     text: `${version}`,
     icon: 'codicon:versions',
-    badge: '新',
+    badge: 'New',
     items: [
       { text: 'Changelog', link: '/en/changelog/' },
       { text: 'Contributing', link: '/en/contributing/' },

@@ -14,8 +14,7 @@ permalink: /config/theme/
 ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
 :::
 
-无以上声明的字段，你可以在 `.vuepress/config.ts` 或者 `.vuepress/plume.config.ts` 的任意一个文件中
-进行配置，一般情况下建议在 `.vuepress/plume.config.ts` 中进行配置。
+无以上声明的字段，您可以在 `.vuepress/config.ts` 或者 `.vuepress/plume.config.ts` 的任意一个文件中进行配置，一般情况下建议在 `.vuepress/plume.config.ts` 中进行配置。
 
 ::: warning 已经在一个配置文件中进行配置的字段，尽量不要在另一个配置文件中重复配置
 :::
@@ -441,9 +440,9 @@ export default defineUserConfig({
 
   :::
 
-  [你可以在这里查看 **simple-icons** 所有可用图标](https://icon-sets.iconify.design/simple-icons/){.readmore}
+  [您可以在这里查看 **simple-icons** 所有可用图标](https://icon-sets.iconify.design/simple-icons/){.readmore}
 
-  如果 **Iconify** 无法满足你的需求，可以传入 `{ svg: string, name?: string }`的格式，使用自定义图标，传入 svg 源码字符串，可选 `name` 字段，用于配置 [`navbarSocialInclude`](#navbarsocialinclude)
+如果 **Iconify** 无法满足您的需求，可以传入 `{ svg: string, name?: string }` 格式使用自定义图标，传入 SVG 源码字符串，可选 `name` 字段用于配置 [`navbarSocialInclude`](#navbarsocialinclude)
 
 示例：
 

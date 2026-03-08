@@ -122,7 +122,7 @@ export default defineUserConfig({
 
   贡献者信息列表。
 
-  用户在本地 git 服务中配置的 用户名和邮箱 可能与 git 托管服务（如 github、gitlab、gitee）的用户信息不一致。
+  用户在本地 git 服务中配置的用户名和邮箱可能与 git 托管服务（如 github、gitlab、gitee）的用户信息不一致。
   可以在此预先配置贡献者信息。
 
   (对于非 github 的其他 git 托管服务，诸如 gitlab、gitee，由于不能通过用户名直接获取头像和用户地址，请在此

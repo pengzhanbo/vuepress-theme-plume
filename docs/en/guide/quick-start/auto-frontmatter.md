@@ -94,7 +94,7 @@ export default defineUserConfig({
       {
         type: 'doc',
         dir: 'guide',
-        title: '指南',
+        title: 'Guide',
         // autoFrontmatter: true, // Theme built-in configuration
         autoFrontmatter: {
           title: true, // Auto-generate title
@@ -117,7 +117,7 @@ export default defineThemeConfig({
     {
       type: 'doc',
       dir: 'guide',
-      title: '指南',
+      title: 'Guide',
       // autoFrontmatter: true, // Theme built-in configuration
       autoFrontmatter: {
         title: true, // Auto-generate title
@@ -297,23 +297,23 @@ Example:
 
 ::: code-tree
 
-```md title="docs/blog/服务.md"
+```md title="docs/blog/service.md"
 ---
-title: 服务
-permalink: /blog/wu-fu/
+title: Service
+permalink: /blog/service/
 ---
 ```
 
-```md title="docs/blog/都城.md"
+```md title="docs/blog/capital.md"
 ---
-title: 都城
-permalink: /blog/dou-cheng/
+title: Capital
+permalink: /blog/capital/
 ---
 ```
 
 :::
 
-You probably noticed that in the example, the permalink for the `都城.md` file is `/blog/dou-cheng/`,
+You probably noticed that in the example, the permalink for the `capital.md` file is `/blog/capital/`,
 which is incorrect. This is because `pinyin-pro`'s default dictionary cannot accurately identify polyphonic
 characters. If you need a more precise conversion result,you can manually install `@pinyin-pro/data`,
 and the theme will automatically load this dictionary to improve accuracy.
@@ -326,9 +326,9 @@ npm i @pinyin-pro/data
 
 :::
 
-```md title="docs/blog/都城.md"
+```md title="docs/blog/capital.md"
 ---
-title: 都城
-permalink: /blog/du-cheng/
+title: Capital
+permalink: /blog/capital/
 ---
 ```

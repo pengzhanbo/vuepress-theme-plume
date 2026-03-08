@@ -35,7 +35,7 @@ Page content starts after the second `---`.
 Frontmatter is a configuration block using
 [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) format, located at the top of a Markdown file and delimited by `---`.
 
-It is recommended to read the [Frontmatter Detailed Guide](../../../../4.教程/frontmatter.md) for the complete syntax specification.
+It is recommended to read the [Frontmatter Detailed Guide](../auto-frontmatter.md) for the complete syntax specification.
 :::
 
 ## Automatic Frontmatter Generation

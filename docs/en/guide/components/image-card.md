@@ -132,4 +132,4 @@ It can also be placed within a `<CardGrid>` component.
   />
 </CardGrid>
 
-[View Photography Works Example](../../../../../blog/1.示例/照片类作品示例.md)
+[View Photography Works Example](/en/demos/)

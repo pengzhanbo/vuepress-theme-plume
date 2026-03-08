@@ -760,8 +760,6 @@ Automatically switches to `top` layout on narrow-screen devices to ensure displa
 
 ## Article Metadata
 
-## 文章元数据
-
 In the collection, the `meta` option allows you to set the display method of article metadata,
 This setting will directly affect the display of metadata on both the **article list page** and the **article content page**:
 
@@ -779,7 +777,7 @@ export default defineUserConfig({
       {
         type: 'post',
         dir: 'blog',
-        title: '博客',
+        title: 'Blog',
         // [!code hl:11]
         meta: {
           tags: true, // Whether to display labels
@@ -808,7 +806,7 @@ export default defineThemeConfig({
     {
       type: 'post',
       dir: 'blog',
-      title: '博客',
+      title: 'Blog',
       // [!code hl:11]
       meta: {
         tags: true, // Whether to display labels

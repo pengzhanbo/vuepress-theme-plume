@@ -7,7 +7,7 @@ permalink: /guide/components/home-box/
 
 ## 首页布局容器
 
-自定义首页时，使用 `<HomeBox>` 提供给 区域 的 包装容器。
+自定义首页时，使用 `<HomeBox>` 提供给区域的包装容器。
 
 ## Props
 

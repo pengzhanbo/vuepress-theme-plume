@@ -11,7 +11,7 @@ import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
 
 ## 概述
 
-Repo 卡片组件 用于显示 GitHub / Gitee 仓库信息。
+Repo 卡片组件用于显示 GitHub / Gitee 仓库信息。
 
 ## 使用
 

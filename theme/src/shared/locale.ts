@@ -340,6 +340,13 @@ export interface ThemeLocaleText {
   nextPageLabel?: string
 
   /**
+   * 打开新窗口的文本
+   *
+   * @default '(Open in new window)'
+   */
+  openNewWindowText?: string
+
+  /**
    * 404 页面配置
    */
   notFound?: {
@@ -404,13 +411,44 @@ export interface ThemeLocaleText {
    */
   encryptPlaceholder?: string
 
+  // 以下字段与 PageContextMenu 相关 ------ start
+
+  /**
+   * 复制页面的文本
+   */
   copyPageText?: string
+  /**
+   * 复制页面成功的文本
+   */
   copiedPageText?: string
+  /**
+   * 复制页面中的文本
+   */
   copingPageText?: string
+  /**
+   * 复制页面的标签文本
+   */
   copyTagline?: string
+  /**
+   * 查看 Markdown 文本
+   */
   viewMarkdown?: string
+  /**
+   * 查看 Markdown 标签文本
+   */
   viewMarkdownTagline?: string
+  /**
+   * 咨询 AI 文本
+   */
   askAIText?: string
+  /**
+   * 咨询 AI 标签文本
+   */
   askAITagline?: string
+  /**
+   * 咨询 AI 消息文本
+   */
   askAIMessage?: string
+
+  // 以上字段与 PageContextMenu 相关 ------ end
 }

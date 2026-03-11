@@ -40,6 +40,8 @@ export const koLocale: ThemeLocaleText = {
   categoryText: '카테고리',
   archiveTotalText: '{count}개의 글',
 
+  openNewWindowText: '(새 창에서 열기)',
+
   notFound: {
     code: '404',
     title: '페이지를 찾을 수 없습니다',

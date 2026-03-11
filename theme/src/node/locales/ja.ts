@@ -28,6 +28,8 @@ export const jaLocale: ThemeLocaleText = {
   copyrightCreationReprintText: '本文の転載元：',
   copyrightLicenseText: 'ライセンス：',
 
+  openNewWindowText: '(新しいウィンドウで開く)',
+
   notFound: {
     code: '404',
     title: 'ページが見つかりません',

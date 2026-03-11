@@ -27,6 +27,8 @@ export const zhLocale: ThemeLocaleText = {
   copyrightCreationReprintText: '本文转载自：',
   copyrightLicenseText: '许可证：',
 
+  openNewWindowText: '（在新窗口打开）',
+
   notFound: {
     code: '404',
     title: '页面未找到',

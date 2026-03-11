@@ -22,6 +22,8 @@ export const enLocale: ThemeLocaleText = {
   copyrightCreationReprintText: 'This article is reprint from:',
   copyrightLicenseText: 'License under:',
 
+  openNewWindowText: '(Open in new window)',
+
   encryptButtonText: 'Confirm',
   encryptPlaceholder: 'Enter password',
   encryptGlobalText: 'Only password can access this site',

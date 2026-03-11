@@ -138,6 +138,10 @@ function onBlur() {
   transition: color var(--vp-t-color);
 }
 
+.vp-flyout .button:focus-visible {
+  outline-offset: 4px;
+}
+
 .option-icon {
   margin-right: 0;
   font-size: 16px;

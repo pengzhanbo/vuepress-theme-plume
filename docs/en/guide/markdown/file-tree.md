@@ -3,6 +3,9 @@ title: File Tree
 createTime: 2025/10/08 14:41:57
 icon: mdi:file-tree
 permalink: /en/guide/markdown/file-tree/
+badge:
+  text: Change
+  type: warning
 ---
 
 ## Overview
@@ -18,7 +21,7 @@ displayed, simply add a slash `/` at the end of the list item.
 The following syntax can be used to customize the appearance of the file tree:
 
 - Emphasize file or directory names by making them bold, e.g., `**README.md**`
-- Add comments to files or directories by adding additional text after the name
+- Add comments to files or directories by appending a comment starting with `#` after the name, for example, `README.md This is a README file`
 - Mark files or directories as **added** or **deleted** by prefixing the name with `++` or `--`
 - Use `...` or `…` as the name to add placeholder files and directories.
 - Add `icon="simple"` or `icon="colored"` after `:::file-tree` to switch to simple icons or colored icons. The default is colored icons.
@@ -34,7 +37,7 @@ The following syntax can be used to customize the appearance of the file tree:
     - ++ config.ts
   - -- page1.md
   - README.md
-- theme  A **theme** directory
+- theme  # A **theme** directory
   - client
     - components
       - **Navbar.vue**
@@ -61,7 +64,7 @@ The following syntax can be used to customize the appearance of the file tree:
     - ++ config.ts
   - -- page1.md
   - README.md
-- theme  A **theme** directory
+- theme  # A **theme** directory
   - client
     - components
       - **Navbar.vue**

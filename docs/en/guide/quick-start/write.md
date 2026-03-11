@@ -139,14 +139,14 @@ The numeric part serves as the **sorting basis**. Directories without numbers ar
 ::: file-tree
 
 - docs
-  - blog \# post type collection
+  - blog  # post type collection
     - 1.Frontend
       - 1.html/
       - 2.css/
       - 3.javascript/
     - 2.Backend/
     - DevOps/
-  - typescript \# doc type collection
+  - typescript  # doc type collection
     - 1.Basics
       - 1.Variables.md
       - 2.Types.md

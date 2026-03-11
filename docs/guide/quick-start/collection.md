@@ -27,10 +27,10 @@ permalink: /guide/collection/
 :::file-tree
 
 - my-site
-  - docs \# 源目录
+  - docs # 源目录
     - .vuepress/
     - …
-    - README.md \# 首页
+    - README.md # 首页
   - package.json
 
 :::

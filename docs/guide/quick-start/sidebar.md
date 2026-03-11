@@ -33,7 +33,7 @@ tags:
   - rust           # Rust 编程笔记
     - tuple.md
     - struct.md
-  - README.md        # 站点首页
+  - README.md      # 站点首页
 :::
 
 ### 通过`sidebar` 配置

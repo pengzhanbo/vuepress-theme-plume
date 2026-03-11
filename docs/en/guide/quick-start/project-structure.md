@@ -13,22 +13,22 @@ For projects created via the [command-line tool](./usage.md#command-line-install
 ::: file-tree
 
 - .git/
-- **docs** \# Documentation source directory
-  - .vuepress  \# VuePress configuration directory
-    - public/ \# Static assets
-    - client.ts \# Client configuration (optional)
-    - collections.ts \# Collections configuration (optional)
-    - config.ts \# VuePress main configuration
-    - navbar.ts \# Navbar configuration (optional)
-    - plume.config.ts \# Theme configuration file (optional)
-  - demo \# `doc` type collection
+- **docs**              # Documentation source directory
+  - .vuepress/          # VuePress configuration directory
+    - public/           # Static assets
+    - client.ts         # Client configuration (optional)
+    - collections.ts    # Collections configuration (optional)
+    - config.ts         # VuePress main configuration
+    - navbar.ts         # Navbar configuration (optional)
+    - plume.config.ts   # Theme configuration file (optional)
+  - demo                 # `doc` type collection
     - foo.md
     - bar.md
-  - blog \# `post` type collection
-    - preview \# Blog category
-      - markdown.md \# Category article
-    - article.md \# Blog article
-  - README.md \# Site homepage
+  - blog                 # `post` type collection
+    - preview            # Blog category
+      - markdown.md      # Category article
+    - article.md         # Blog article
+  - README.md            # Site homepage
   - …
 - package.json
 - pnpm-lock.yaml

@@ -130,14 +130,14 @@ const dir = /\d+\.[\s\S]+/
 ::: file-tree
 
 - docs
-  - blog \# post 类型 collection
+  - blog  # post 类型 collection
     - 1.前端
       - 1.html/
       - 2.css/
       - 3.javascript/
     - 2.后端/
     - 运维/
-  - typescript \# doc 类型 collection
+  - typescript  # doc 类型 collection
     - 1.基础
       - 1.变量.md
       - 2.类型.md

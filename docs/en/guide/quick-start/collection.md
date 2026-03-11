@@ -28,10 +28,10 @@ A typical VuePress static site has the following file structure:
 :::file-tree
 
 - my-site
-  - docs \# Source directory
+  - docs # Source directory
     - .vuepress/
     - …
-    - README.md \# Homepage
+    - README.md # Homepage
   - package.json
 
 :::

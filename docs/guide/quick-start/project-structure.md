@@ -12,22 +12,22 @@ permalink: /guide/project-structure/
 ::: file-tree
 
 - .git/
-- **docs** \# 文档源目录
-  - .vuepress  \# VuePress 配置目录
-    - public/ \# 静态资源
-    - client.ts \# 客户端配置（可选）
-    - collections.ts \# Collections 配置（可选）
-    - config.ts \# VuePress 主配置
-    - navbar.ts \# 导航栏配置（可选）
-    - plume.config.ts \# 主题配置文件（可选）
-  - demo \# `doc` 类型 collection
+- **docs**               # 文档源目录
+  - .vuepress/           # VuePress 配置目录
+    - public/            # 静态资源
+    - client.ts          # 客户端配置（可选）
+    - collections.ts     # Collections 配置（可选）
+    - config.ts          # VuePress 主配置
+    - navbar.ts          # 导航栏配置（可选）
+    - plume.config.ts    # 主题配置文件（可选）
+  - demo                 # `doc` 类型 collection
     - foo.md
     - bar.md
-  - blog \# `post` 类型 collection
-    - preview \# 博客分类
-      - markdown.md \# 分类文章
-    - article.md \# 博客文章
-  - README.md \# 站点首页
+  - blog                 # `post` 类型 collection
+    - preview            # 博客分类
+      - markdown.md      # 分类文章
+    - article.md         # 博客文章
+  - README.md            # 站点首页
   - …
 - package.json
 - pnpm-lock.yaml

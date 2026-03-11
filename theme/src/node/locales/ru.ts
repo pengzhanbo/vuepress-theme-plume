@@ -28,6 +28,8 @@ export const ruLocale: ThemeLocaleText = {
   copyrightCreationReprintText: 'Перепечатано из:',
   copyrightLicenseText: 'Лицензия:',
 
+  openNewWindowText: '(Открыть в новой вкладке)',
+
   notFound: {
     code: '404',
     title: 'Страница не найдена',

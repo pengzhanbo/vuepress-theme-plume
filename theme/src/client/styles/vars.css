@@ -703,3 +703,12 @@
   --vp-c-control-hover: var(--vp-c-default-2);
   --vp-c-control-disabled: var(--vp-c-default-soft);
 }
+
+/**
+ * Focus ring
+ * -------------------------------------------------------------------------- */
+:root {
+  --vp-focus-ring-color: var(--vp-c-brand-1);
+  --vp-focus-ring-width: 2px;
+  --vp-focus-ring-offset: 2px;
+}

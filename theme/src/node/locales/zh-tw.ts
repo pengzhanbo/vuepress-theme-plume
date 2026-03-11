@@ -28,6 +28,8 @@ export const zhTwLocale: ThemeLocaleText = {
   copyrightCreationReprintText: '本文轉載自：',
   copyrightLicenseText: '授權條款：',
 
+  openNewWindowText: '（在新窗口打開）',
+
   notFound: {
     code: '404',
     title: '頁面未找到',

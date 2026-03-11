@@ -58,12 +58,6 @@ function onItemInteraction(e: MouseEvent | Event) {
     toggle()
   }
 }
-
-function onCaretClick() {
-  if (item.link) {
-    toggle()
-  }
-}
 </script>
 
 <template>
@@ -107,17 +101,16 @@ function onCaretClick() {
         />
       </Component>
 
-      <div
+      <button
         v-if="item.collapsed != null"
+        type="button"
         class="caret"
-        role="button"
-        aria-label="toggle section"
-        tabindex="0"
-        @click="onCaretClick"
-        @keydown.enter="onCaretClick"
+        :aria-label="`${collapsed ? 'Expand' : 'Collapse'} ${item.text}`"
+        :aria-expanded="!collapsed"
+        tabindex="-1"
       >
         <span class="vpi-chevron-right caret-icon" />
-      </div>
+      </button>
     </div>
 
     <template v-if="item.items && item.items.length && depth < 5">

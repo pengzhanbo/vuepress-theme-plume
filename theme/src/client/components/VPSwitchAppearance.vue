@@ -6,6 +6,10 @@ import { enableTransitions, resolveTransitionKeyframes, useData } from '../compo
 const checked = ref(false)
 const { theme, isDark } = useData()
 
+watchPostEffect(() => {
+  checked.value = isDark.value
+})
+
 const transitionMode = computed(() => {
   const transition = theme.value.transition
   const options = typeof transition === 'object' ? transition : {}
@@ -15,8 +19,12 @@ const transitionMode = computed(() => {
   return typeof options.appearance === 'string' ? options.appearance : 'fade'
 })
 
+function shouldReduceMotion(): boolean {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 const toggleAppearance = inject('toggle-appearance', async ({ clientX, clientY }: MouseEvent) => {
-  if (!enableTransitions() || transitionMode.value === false) {
+  if (!enableTransitions() || transitionMode.value === false || shouldReduceMotion()) {
     isDark.value = !isDark.value
     return
   }
@@ -79,6 +87,12 @@ watchPostEffect(() => {
 [data-theme="dark"] .vp-switch-appearance :deep(.check) {
   /* rtl:ignore */
   transform: translateX(18px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-switch-appearance :deep(.check) {
+    transition: none !important;
+  }
 }
 </style>
 

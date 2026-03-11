@@ -56,6 +56,11 @@ const label = computed(() => {
   color: var(--vp-c-text-1);
 }
 
+.vp-social-link:focus-visible {
+  border-radius: 50%;
+  outline-offset: 4px;
+}
+
 .vp-social-link > :deep([class*="vpi-"]),
 .vp-social-link > :deep(.vp-icon.is-svg) {
   width: 20px;

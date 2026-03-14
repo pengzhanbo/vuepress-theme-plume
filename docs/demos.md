@@ -269,6 +269,13 @@ blog:
     logo: https://raw.githubusercontent.com/Konata9/pic-base/main/pics/20260126223726455.png
     url: https://konata9.cc/
     preview: https://raw.githubusercontent.com/Konata9/pic-base/main/pics/20260125225910673.webp
+  -
+    name: Esyka
+    desc: Esyka's Blog
+    logo: https://www.esyka.top/images/logo.png
+    url: https://www.esyka.top/
+    repo: https://gitee.com/hzqlingmou
+    preview: https://www.esyka.top/images/preview.png
 ---
 
 :::important

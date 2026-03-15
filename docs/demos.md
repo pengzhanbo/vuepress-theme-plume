@@ -274,7 +274,7 @@ blog:
     desc: Esyka's Blog
     logo: https://www.esyka.top/images/logo.png
     url: https://www.esyka.top/
-    repo: https://gitee.com/hzqlingmou
+    repo: https://github.com/esyka114514
     preview: https://www.esyka.top/images/preview.png
 ---
 

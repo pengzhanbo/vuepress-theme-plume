@@ -16,7 +16,7 @@ The theme supports icons from the following sources:
 Icons are used in the same way across the following theme features:
 
 - [Navbar Icons](../../config/navbar.md#configuration)
-- [Sidebar Icons](../../guide/document.md#sidebar-icons)
+- [Sidebar Icons](../../guide/quick-start/sidebar.md#visual-enhancement-features)
 - [File Tree Icons](../../guide/markdown/file-tree.md)
 - [Code Group Title Icons](../code/code-tabs.md#group-title-icons)
 

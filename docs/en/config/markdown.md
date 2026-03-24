@@ -159,7 +159,7 @@ The `include` configuration is implemented by the
 - **Default:** `{ provider: 'iconify' }`
 - **Details:** Icon configuration.
 
-  [View **icon** usage instructions](../../theme/guide/features/icon.md){.read-more}
+  [View **icon** usage instructions](../guide/features/icon.md){.read-more}
 
 ### plot
 

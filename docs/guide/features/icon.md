@@ -16,7 +16,7 @@ permalink: /guide/features/icon/
 在主题的以下功能中以相同的方式使用图标：
 
 - [导航栏图标](../../config/navbar.md#配置)
-- [侧边栏图标](../../guide/document.md#侧边栏图标)
+- [侧边栏图标](../quick-start/sidebar.md#视觉增强功能)
 - [文件树图标](../../guide/markdown/file-tree.md)
 - [代码分组标题图标](../code/code-tabs.md#分组标题图标)
 

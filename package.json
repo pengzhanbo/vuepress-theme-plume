@@ -18,9 +18,9 @@
     "pnpm": ">=9"
   },
   "scripts": {
-    "build": "pnpm clean && pnpm build:package",
+    "build": "pnpm run clean && pnpm build:package",
     "build:package": "pnpm -r --stream build",
-    "clean": "pnpm -r --stream clean",
+    "clean": "pnpm -r --stream run clean",
     "dev": "pnpm --stream '/(dev:package|docs:dev)/'",
     "dev:package": "pnpm --parallel dev",
     "docs:dev": "wait-on -d 100 theme/lib/node/index.js && pnpm -F=docs docs:dev",

@@ -104,6 +104,8 @@ export function useHeaders(): Ref<MenuItem[]> {
   return headers
 }
 
+const IGNORE_WRAPPERS = ['.vp-bulletin', '.vp-demo-wrapper']
+
 /**
  * Get headers from the page content
  * Extracts and filters headings based on the outline configuration
@@ -117,7 +119,7 @@ export function useHeaders(): Ref<MenuItem[]> {
 export function getHeaders(range?: ThemeOutline): MenuItem[] {
   const heading = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
   const ignores = Array.from(document.querySelectorAll(
-    heading.map(h => `.vp-demo-wrapper ${h}`).join(','),
+    heading.map(h => IGNORE_WRAPPERS.map(w => `${w} ${h}`)).flat().join(','),
   ))
   const headers = Array.from(
     document.querySelectorAll(heading.map(h => `.vp-doc ${h}`).join(',')),

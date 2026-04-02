@@ -93,6 +93,12 @@ docs:
     logo: https://official.skycraft.cn/i/3.jpg
     url: https://docs.skycraft.cn/
     preview: https://bbsimage.skycraft.cn/docs-preview.jpg
+  -
+    name: mcenahle Docs
+    desc: mcenahle 的文档网站。
+    logo: https://d.mcenahle.cn/images/logo.png
+    url: https://d.mcenahle.cn/
+    preview: https://mcenahle.cn/resources/docs-site-preview.jpg
 
 blog:
   -

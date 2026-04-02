@@ -235,7 +235,12 @@ function getAllSidebar(): Record<string, ThemeSidebar> {
     const sidebar = locale === '/' ? (opt.sidebar || options.sidebar) : opt.sidebar
     locales[locale] = {}
     for (const [key, value] of entries(sidebar || {})) {
-      locales[locale][ensureLeadingSlash(key)] = value
+      locales[locale][ensureLeadingSlash(key)] = isPlainObject(value) && 'items' in value
+        ? { ...value, prefix: value.prefix?.startsWith('/') ? value.prefix : normalizeLink(locale, removeLeadingSlash(key)) }
+        : {
+            items: value,
+            prefix: normalizeLink(locale, removeLeadingSlash(key)),
+          }
     }
     const collections = rawCollections?.filter(item => item.type === 'doc')
     if (collections?.length) {

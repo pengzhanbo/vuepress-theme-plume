@@ -28,9 +28,9 @@ docs:
   -
     name: 哦麦 MC
     desc: 我的世界教学文档。
-    logo: https://static.ohmymc.com/img/minecraft-154749_1280.png?max_width=1920&max_height=1920
+    logo: https://s.xc.life/img/img/minecraft-154749_1280.png
     url: https://ohmymc.com/
-    preview: https://static.ohmymc.com/img/20241228225159139.png?max_width=1920&max_height=1920
+    preview: https://s.xc.life/img/img/20241228225159139.png
   -
     name: NcatBotDocs
     desc: NcatBot，一个 QQ 机器人框架项目的使用文档。

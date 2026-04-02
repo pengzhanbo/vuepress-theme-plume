@@ -14,32 +14,26 @@ export function resolveLinkBySidebar(
 
   for (const item of sidebar) {
     if (typeof item !== 'string') {
-      const { prefix, dir = '', link = '/', items, text = '' } = item
-      getSidebarLink(items, link, text, path.join(_prefix, prefix || dir), res)
+      const { prefix, dir = '', link = '/', items } = item
+      getSidebarLink(items, link, path.join(_prefix, prefix || dir), res)
     }
   }
   return res
 }
 
-function getSidebarLink(items: 'auto' | (string | ThemeSidebarItem)[] | undefined, link: string, text: string, dir = '', res: Record<string, string> = {}) {
-  if (items === 'auto')
+function getSidebarLink(items: 'auto' | (string | ThemeSidebarItem)[] | undefined, link: string, dir = '', res: Record<string, string> = {}) {
+  if (items === 'auto' || !items)
     return
-
-  if (!items) {
-    res[ensureEndingSlash(dir)] = link
-    return
-  }
 
   for (const item of items) {
     if (typeof item === 'string') {
       res[ensureEndingSlash(dir)] = link
     }
     else {
-      const { prefix = '', dir: subDir = '', link: subLink = '/', items: subItems, text: subText = '' } = item
+      const { prefix = '', dir: subDir = '', link: subLink = '/', items: subItems } = item
       getSidebarLink(
         subItems,
         path.join(link, subLink),
-        subText,
         path.join(prefix[0] === '/' ? prefix : `/${dir}/${prefix || subDir}`),
         res,
       )

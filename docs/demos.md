@@ -28,9 +28,9 @@ docs:
   -
     name: 哦麦 MC
     desc: 我的世界教学文档。
-    logo: https://s.xc.life/img/img/minecraft-154749_1280.png
+    logo: https://static.ohmymc.com/img/minecraft-154749_1280.png?max_width=1920&max_height=1920
     url: https://ohmymc.com/
-    preview: https://s.xc.life/img/img/20241228225159139.png
+    preview: https://static.ohmymc.com/img/20241228225159139.png?max_width=1920&max_height=1920
   -
     name: NcatBotDocs
     desc: NcatBot，一个 QQ 机器人框架项目的使用文档。
@@ -93,6 +93,12 @@ docs:
     logo: https://official.skycraft.cn/i/3.jpg
     url: https://docs.skycraft.cn/
     preview: https://bbsimage.skycraft.cn/docs-preview.jpg
+  -
+    name: mcenahle Docs
+    desc: mcenahle 的文档网站。
+    logo: https://d.mcenahle.cn/images/logo.png
+    url: https://d.mcenahle.cn/
+    preview: https://mcenahle.cn/resources/docs-site-preview.jpg
 
 blog:
   -

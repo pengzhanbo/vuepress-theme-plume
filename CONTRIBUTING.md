@@ -19,7 +19,7 @@
 
 开发要求：
 
-- [Node.js](http://nodejs.org/) version 20.6.0+
+- [Node.js](http://nodejs.org/) version 20.19.0+
 - [pnpm](https://pnpm.io/zh/) version 9+
 
 克隆代码仓库，并安装依赖：

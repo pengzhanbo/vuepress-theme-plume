@@ -1,3 +1,25 @@
+# [1.0.0-rc.193](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.192...v1.0.0-rc.193) (2026-04-02)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** fix tsdown icon ([#878](https://github.com/pengzhanbo/vuepress-theme-plume/issues/878)) ([a01bc13](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a01bc13c66266651efe9ee3e9b30ab922c5466cc))
+* **theme:** add bulletin to outline ignores ([#879](https://github.com/pengzhanbo/vuepress-theme-plume/issues/879)) ([1b213d4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1b213d4c28a7416e9be48af061f43142533bf387))
+* **theme:** fix auto-sidebar group icon error inherit, close [#873](https://github.com/pengzhanbo/vuepress-theme-plume/issues/873) ([#883](https://github.com/pengzhanbo/vuepress-theme-plume/issues/883)) ([dbc6f0b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/dbc6f0be0fe0826770a7b33536d77759e1e89056))
+* **theme:** fix incorrect auto-sidebar-link parse ([#880](https://github.com/pengzhanbo/vuepress-theme-plume/issues/880)) ([7febfbf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7febfbf237c1d5b61031d8b4205a1b30bc21519d))
+* **theme:** fix MarkdownOptions types ([9fe294b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9fe294b9dd2edb97fb6e8be340ada16328c1bee5))
+* **theme:** fix sidebar items prefix not handled correctly, close [#876](https://github.com/pengzhanbo/vuepress-theme-plume/issues/876) ([#885](https://github.com/pengzhanbo/vuepress-theme-plume/issues/885)) ([e9fe35b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e9fe35bc4f172ff6a004e0170b476173cce2e4c1))
+* **theme:** twoslash comment error ([#881](https://github.com/pengzhanbo/vuepress-theme-plume/issues/881)) ([aede6f5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/aede6f5d87f836febb8e5bf9fba74ffad197a327))
+
+
+### Features
+
+* improve accessibility features ([#869](https://github.com/pengzhanbo/vuepress-theme-plume/issues/869)) ([fe0d4bb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fe0d4bbc926eb6f5113707c0bc1535a957ee2304))
+
+
+### Performance Improvements
+
+* update deps to latest ([cbc5c55](https://github.com/pengzhanbo/vuepress-theme-plume/commit/cbc5c558919f9fcf8ef3e98b000939e3323fdc13))
 # [1.0.0-rc.192](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.191...v1.0.0-rc.192) (2026-03-05)
 
 

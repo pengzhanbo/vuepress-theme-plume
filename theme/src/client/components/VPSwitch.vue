@@ -1,6 +1,16 @@
+<script lang="ts" setup>
+defineProps<{
+  ariaChecked?: boolean
+}>()
+</script>
+
 <template>
-  <!-- eslint-disable-next-line vue-a11y/role-has-required-aria-props -->
-  <button class="vp-switch" type="button" role="switch">
+  <button
+    class="vp-switch"
+    type="button"
+    role="switch"
+    :aria-checked="ariaChecked ?? false"
+  >
     <span class="check">
       <span v-if="$slots.default" class="icon">
         <slot />
@@ -26,6 +36,10 @@
 
 .vp-switch:hover {
   border-color: var(--vp-c-brand-1);
+}
+
+.vp-switch:focus-visible {
+  outline-offset: 4px;
 }
 
 .check {

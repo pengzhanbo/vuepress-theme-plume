@@ -262,6 +262,11 @@ figure {
   margin: 0;
 }
 
+:where(#app) :focus-visible {
+  outline: var(--vp-focus-ring-width) solid var(--vp-focus-ring-color);
+  outline-offset: var(--vp-focus-ring-offset);
+}
+
 h1,
 h2,
 h3,

@@ -28,6 +28,8 @@ export const deLocale: ThemeLocaleText = {
   copyrightCreationReprintText: 'Nachdruck von:',
   copyrightLicenseText: 'Lizenz:',
 
+  openNewWindowText: '(In neuem Fenster öffnen)',
+
   notFound: {
     code: '404',
     title: 'Seite nicht gefunden',

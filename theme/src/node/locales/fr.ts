@@ -28,6 +28,8 @@ export const frLocale: ThemeLocaleText = {
   copyrightCreationReprintText: 'Reproduit de :',
   copyrightLicenseText: 'Licence :',
 
+  openNewWindowText: '(Ouvrir dans une nouvelle fenêtre)',
+
   notFound: {
     code: '404',
     title: 'Page non trouvée',

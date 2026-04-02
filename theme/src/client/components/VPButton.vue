@@ -2,7 +2,7 @@
 import VPIcon from '@theme/VPIcon.vue'
 import { computed, toRef } from 'vue'
 import { useRouter, withBase } from 'vuepress/client'
-import { useLink } from '../composables/index.js'
+import { useData, useLink } from '../composables/index.js'
 
 interface Props {
   tag?: string
@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
   text: '',
 })
 const router = useRouter()
-
+const { theme: themeData } = useData()
 const component = computed(() => {
   return props.tag || props.href ? 'a' : 'button'
 })
@@ -44,12 +44,15 @@ function linkTo(e: Event) {
     :class="[size, theme]"
     :href=" link ? link[0] === '#' || isExternalProtocol ? link : withBase(link) : undefined"
     :target="target ?? (isExternal ? '_blank' : undefined)"
-    :rel="rel ?? (isExternal ? 'noreferrer' : undefined)"
+    :rel="rel ?? (isExternal ? 'noopener noreferrer' : undefined)"
     @click="linkTo($event)"
   >
     <span class="button-content">
       <VPIcon v-if="icon" :name="icon" />
       <slot><span>{{ text }}</span></slot>
+      <span v-if="isExternal" class="visually-hidden">
+        {{ themeData.openNewWindowText || '(Open in new window)' }}
+      </span>
       <VPIcon v-if="suffixIcon" :name="suffixIcon" />
     </span>
   </Component>
@@ -71,6 +74,10 @@ function linkTo(e: Event) {
     color 0.1s,
     border-color 0.1s,
     background-color 0.1s;
+}
+
+.vp-button:focus-visible {
+  outline-offset: 4px;
 }
 
 .vp-button.medium {

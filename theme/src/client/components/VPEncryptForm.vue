@@ -51,6 +51,8 @@ async function onSubmit() {
           type="password"
           autocomplete="off"
           :placeholder="theme.encryptPlaceholder ?? 'Enter Password'"
+          :aria-invalid="errorCode === 1"
+          :aria-describedby="errorCode === 1 ? 'encrypt-error' : undefined"
           @keyup.enter="onSubmit"
           @focus="!password && (errorCode = 0)"
           @input="password && (errorCode = 0)"

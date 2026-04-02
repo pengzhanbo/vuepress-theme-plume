@@ -173,7 +173,7 @@ function getAutoDirSidebar(
           current.text = title
         }
       }
-      if (frontmatter.icon) {
+      if (frontmatter.icon && dir.endsWith('.md')) {
         current.icon = frontmatter.icon as ThemeIcon
       }
       if (parent?.items?.length) {

@@ -13,6 +13,7 @@ permalink: /config/watermark/
 ## 使用
 
 ```ts title=".vuepress/config.ts" twoslash
+// @errors: 7006
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 

@@ -13,6 +13,7 @@ Related plugin: [@vuepress/plugin-watermark](https://ecosystem.vuejs.press/zh/pl
 ## Usage
 
 ```ts title=".vuepress/config.ts" twoslash
+// @errors: 7006
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 

@@ -82,6 +82,7 @@ Refer to [Algolia DocSearch Reference](/guide/features/content-search/#algolia-d
 ### Enable
 
 ```ts title=".vuepress/config.ts" twoslash
+// @errors: 2353
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 

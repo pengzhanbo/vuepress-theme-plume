@@ -26,3 +26,7 @@
   --twoslash-matched-color: var(--vp-c-brand-1);
   --twoslash-unmatched-color: var(--vp-c-text-2);
 }
+
+.v-popper__popper[data-popper-placement^="bottom"] .v-popper__arrow-inner {
+  top: -4.5px !important;
+}

@@ -82,6 +82,7 @@ interface SearchBoxLocale {
 ### 启用
 
 ```ts title=".vuepress/config.ts" twoslash
+// @errors: 2353
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 

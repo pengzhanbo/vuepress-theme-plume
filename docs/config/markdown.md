@@ -149,7 +149,7 @@ export default defineUserConfig({
 - **默认值**: `{ provider: 'iconify' }`
 - **详情**: 图标配置
 
-  [查看 **icon** 使用说明](../../theme/guide/features/icon.md){.read-more}
+  [查看 **icon** 使用说明](../guide/features/icon.md){.read-more}
 
 ### plot
 

@@ -12,7 +12,7 @@ import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
  */
 export interface MarkdownOptions extends MarkdownPowerPluginOptions,
   MarkdownChartPluginOptions,
-  Pick<MarkdownHintPluginOptions, 'alert' | 'hint'> {
+  Partial<Pick<MarkdownHintPluginOptions, 'alert' | 'hint'>> {
   /**
    * 已弃用
    * @deprecated use `demo` instead

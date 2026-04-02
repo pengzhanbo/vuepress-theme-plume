@@ -170,9 +170,9 @@ export async function prepareSearchIndex({
  *
  * 当页面被修改时处理搜索索引更新。
  *
- * @param filepath - Path of the modified file relative to project root / 相对于项目根目录的修改文件路径
+ * @param app - VuePress application instance / VuePress 应用实例
  * @param options - Search index preparation options / 搜索索引准备选项
- * @param options.app - VuePress application instance / VuePress 应用实例
+ * @param options.page - VuePress page instance / VuePress 页面实例
  * @param options.isSearchable - Function to filter searchable pages / 过滤可搜索页面的函数
  * @param options.searchOptions - MiniSearch configuration / MiniSearch 配置
  */
@@ -196,9 +196,9 @@ export async function onSearchIndexUpdated(
  *
  * 当页面被删除时处理搜索索引更新。
  *
- * @param filepath - Path of the removed file relative to project root / 相对于项目根目录的删除文件路径
+ * @param app - VuePress application instance / VuePress 应用实例
  * @param options - Search index preparation options / 搜索索引准备选项
- * @param options.app - VuePress application instance / VuePress 应用实例
+ * @param options.page - VuePress page instance / VuePress 页面实例
  * @param options.isSearchable - Function to filter searchable pages / 过滤可搜索页面的函数
  * @param options.searchOptions - MiniSearch configuration / MiniSearch 配置
  */

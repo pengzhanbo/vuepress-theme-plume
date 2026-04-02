@@ -1,7 +1,5 @@
-import { defineConfig } from 'tsdown'
-import { argv } from '../../scripts/tsdown-args.mjs'
-
-/** @import {Options} from 'tsdown' */
+import { defineConfig, type UserConfig } from 'tsdown'
+import { argv } from '../../scripts/tsdown-args'
 
 const clientExternal = [
   /.*\.vue$/,
@@ -9,15 +7,13 @@ const clientExternal = [
 ]
 
 export default defineConfig(() => {
-  /** @type {Options} */
-  const DEFAULT_OPTIONS = {
+  const DEFAULT_OPTIONS: UserConfig = {
     dts: true,
     sourcemap: false,
     format: 'esm',
     fixedExtension: false,
   }
-  /** @type {Options[]} */
-  const options = []
+  const options: UserConfig[] = []
 
   if (argv.node) {
     options.push({
@@ -36,7 +32,7 @@ export default defineConfig(() => {
         entry: ['./src/client/config.ts'],
         outDir: './lib/client',
         dts: false,
-        external: clientExternal,
+        deps: { neverBundle: clientExternal },
       },
     ])
   }

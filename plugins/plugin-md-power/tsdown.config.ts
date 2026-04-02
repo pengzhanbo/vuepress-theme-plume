@@ -1,7 +1,5 @@
-import { defineConfig } from 'tsdown'
-import { argv } from '../../scripts/tsdown-args.mjs'
-
-/** @import {Options} from 'tsdown' */
+import { defineConfig, type UserConfig } from 'tsdown'
+import { argv } from '../../scripts/tsdown-args'
 
 const config = [
   { dir: 'composables', files: ['codeRepl.ts', 'pdf.ts', 'rustRepl.ts', 'size.ts', 'audio.ts', 'demo.ts', 'mark.ts', 'decrypt.ts'] },
@@ -18,8 +16,7 @@ const clientExternal = [
 ]
 
 export default defineConfig((cli) => {
-  /** @type {Options}  */
-  const DEFAULT_OPTIONS = {
+  const DEFAULT_OPTIONS: UserConfig = {
     dts: true,
     sourcemap: false,
     format: 'esm',
@@ -27,8 +24,7 @@ export default defineConfig((cli) => {
     fixedExtension: false,
   }
 
-  /** @type {Options[]} */
-  const options = []
+  const options: UserConfig[] = []
 
   // shared
   options.push({
@@ -43,7 +39,7 @@ export default defineConfig((cli) => {
       entry: ['./src/node/index.ts'],
       outDir: './lib/node',
       target: 'node20.19.0',
-      external: ['markdown-it', /^@?vuepress/],
+      deps: { neverBundle: ['markdown-it', /^@?vuepress/] },
     })
   }
 
@@ -52,7 +48,7 @@ export default defineConfig((cli) => {
       ...DEFAULT_OPTIONS,
       entry: files.map(file => `./src/client/${dir}/${file}`),
       outDir: `./lib/client/${dir}`,
-      external: clientExternal,
+      deps: { neverBundle: clientExternal },
     })))
   }
   return options

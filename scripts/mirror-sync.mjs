@@ -33,9 +33,7 @@ async function npmMirrorSync() {
         resolve()
       })
 
-      req.on('error', (error) => {
-        reject(error)
-      })
+      req.on('error', reject)
 
       req.end()
     })

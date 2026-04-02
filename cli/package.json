@@ -27,7 +27,7 @@
     "templates"
   ],
   "scripts": {
-    "build": "tsdown"
+    "build": "tsdown --config-loader unrun"
   },
   "dependencies": {
     "@clack/prompts": "catalog:prod",

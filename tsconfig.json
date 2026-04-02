@@ -14,7 +14,8 @@
     "theme/**/*",
     "docs/.vuepress/**/*",
     "cli/**/*",
-    "scripts/**/*"
+    "scripts/**/*",
+    "**/tsdown.config.ts"
   ],
   "exclude": [
     "**/node_modules/**",

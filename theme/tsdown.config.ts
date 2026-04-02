@@ -1,8 +1,8 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
-import { defineConfig } from 'tsdown'
-import { argv } from '../scripts/tsdown-args.mjs'
+import { defineConfig, type UserConfig } from 'tsdown'
+import { argv } from '../scripts/tsdown-args'
 
 /** @import {Options} from 'tsdown' */
 
@@ -24,25 +24,22 @@ const featuresComposables = fs.readdirSync(
 )
 
 export default defineConfig((cli) => {
-  /** @type {Options} */
-  const DEFAULT_OPTIONS = {
+  const DEFAULT_OPTIONS: UserConfig = {
     dts: true,
     sourcemap: false,
     watch: cli.watch,
     format: 'esm',
-    silent: !!cli.watch,
     clean: !cli.watch,
     fixedExtension: false,
   }
-  /** @type {Options[]} */
-  const options = []
+  const options: UserConfig[] = []
 
   // shared
   options.push({
     ...DEFAULT_OPTIONS,
     entry: ['./src/shared/index.ts'],
     outDir: './lib/shared',
-    external: ['sax'],
+    deps: { neverBundle: ['sax'] },
   })
 
   if (argv.node) {
@@ -50,20 +47,20 @@ export default defineConfig((cli) => {
       ...DEFAULT_OPTIONS,
       entry: ['./src/node/index.ts'],
       outDir: './lib/node',
-      external: [...sharedExternal, '@pinyin-pro/data/complete'],
+      deps: { neverBundle: [...sharedExternal, '@pinyin-pro/data/complete'] },
       target: 'node20.19.0',
       watch: false,
     })
   }
   if (argv.client) {
-    options.push(...[
+    options.push(
       // client/utils/index.js
       {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/utils/index.ts'],
         outDir: './lib/client/utils',
         platform: 'browser',
-        external: clientExternal,
+        deps: { neverBundle: clientExternal },
       },
       // client/composables/index.js
       {
@@ -71,10 +68,10 @@ export default defineConfig((cli) => {
         entry: ['./src/client/composables/index.ts'],
         outDir: './lib/client/composables',
         platform: 'browser',
-        external: [
+        deps: { neverBundle: [
           ...clientExternal,
           '../utils/index.js',
-        ],
+        ] },
       },
       // client/config.js
       {
@@ -83,11 +80,11 @@ export default defineConfig((cli) => {
         outDir: './lib/client',
         dts: false,
         platform: 'browser',
-        external: [
+        deps: { neverBundle: [
           ...clientExternal,
           './composables/index.js',
           './utils/index.js',
-        ],
+        ] },
       },
       // client/index.js
       {
@@ -95,26 +92,26 @@ export default defineConfig((cli) => {
         entry: ['./src/client/index.ts'],
         outDir: './lib/client',
         platform: 'browser',
-        external: [
+        deps: { neverBundle: [
           ...clientExternal,
           './composables/index.js',
           './utils/index.js',
           './config.js',
-        ],
+        ] },
       },
       ...featuresComposables.map(file => ({
         ...DEFAULT_OPTIONS,
         entry: [`./src/client/features/composables/${file}`],
         outDir: `./lib/client/features/composables/`,
         platform: 'browser',
-        external: [
+        deps: { neverBundle: [
           ...clientExternal,
           '../../composables/index.js',
           '../../utils/index.js',
           ...featuresComposables.map(file => `./${file.replace('.ts', '.js')}`),
-        ],
-      })),
-    ])
+        ] },
+      } as UserConfig)),
+    )
   }
   return options
 })

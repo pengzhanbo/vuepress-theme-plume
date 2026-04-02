@@ -30,7 +30,7 @@
     "build": "pnpm run tsdown && pnpm run copy",
     "clean": "rimraf --glob ./lib",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
-    "tsdown": "tsdown"
+    "tsdown": "tsdown --config-loader unrun"
   },
   "peerDependencies": {
     "vuepress": "catalog:vuepress"

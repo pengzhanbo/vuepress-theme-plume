@@ -1,7 +1,5 @@
-import { defineConfig } from 'tsdown'
-import { argv } from '../../scripts/tsdown-args.mjs'
-
-/** @import {Options} from 'tsdown' */
+import { defineConfig, type UserConfig } from 'tsdown'
+import { argv } from '../../scripts/tsdown-args'
 
 const sharedExternal = [
   /.*\/shared\/index\.js$/,
@@ -15,16 +13,14 @@ const clientExternal = [
 ]
 
 export default defineConfig(() => {
-  /** @type {Options} */
-  const DEFAULT_OPTIONS = {
+  const DEFAULT_OPTIONS: UserConfig = {
     dts: true,
     sourcemap: false,
     format: 'esm',
     fixedExtension: false,
   }
 
-  /** @type {Options[]} */
-  const options = []
+  const options: UserConfig[] = []
 
   // shared
   options.push({
@@ -38,7 +34,7 @@ export default defineConfig(() => {
       ...DEFAULT_OPTIONS,
       entry: ['./src/node/index.ts'],
       outDir: './lib/node',
-      external: sharedExternal,
+      deps: { neverBundle: sharedExternal },
       target: 'node20.19.0',
     })
   }
@@ -50,21 +46,21 @@ export default defineConfig(() => {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/utils/index.ts'],
         outDir: './lib/client/utils',
-        external: clientExternal,
+        deps: { neverBundle: clientExternal },
       },
       // client/composables/index.js
       {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/composables/index.ts'],
         outDir: './lib/client/composables',
-        external: clientExternal,
+        deps: { neverBundle: clientExternal },
       },
       // client/config.js
       {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/config.ts'],
         outDir: './lib/client',
-        external: clientExternal,
+        deps: { neverBundle: clientExternal },
         dts: false,
       },
       // client/index.js
@@ -72,10 +68,10 @@ export default defineConfig(() => {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/index.ts'],
         outDir: './lib/client',
-        external: [
+        deps: { neverBundle: [
           ...clientExternal,
           './composables/index.js',
-        ],
+        ] },
       },
     ])
   }

@@ -62,8 +62,8 @@
     "clean": "rimraf --glob ./lib",
     "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
     "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib -w",
-    "tsdown": "tsdown",
-    "tsdown:watch": "tsdown --watch -- -c"
+    "tsdown": "tsdown --config-loader unrun",
+    "tsdown:watch": "tsdown --config-loader unrun --watch -- -c"
   },
   "peerDependencies": {
     "@iconify/json": ">=2",

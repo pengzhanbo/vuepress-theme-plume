@@ -1,5 +1,4 @@
 import type { App } from 'vuepress'
-import { watch } from 'chokidar'
 import { perf } from '../utils/index.js'
 import { prepareArticleTagColors } from './prepareArticleTagColor.js'
 import { prepareCollections } from './prepareCollections.js'
@@ -28,25 +27,4 @@ export async function prepareData(app: App): Promise<void> {
   ])
 
   perf.log('prepare:data')
-}
-
-/**
- * Watch for changes in prepared data and re-prepare when needed
- *
- * 监听准备数据的变化，并在需要时重新准备数据
- */
-export function watchPrepare(
-  app: App,
-  watchers: any[],
-): void {
-  const pagesWatcher = watch('pages', {
-    cwd: app.dir.temp(),
-    ignoreInitial: true,
-    ignored: (filepath, stats) => Boolean(stats?.isFile()) && !filepath.endsWith('.js'),
-  })
-  watchers.push(pagesWatcher)
-
-  pagesWatcher.on('change', () => prepareData(app))
-  pagesWatcher.on('add', () => prepareData(app))
-  pagesWatcher.on('unlink', () => prepareData(app))
 }

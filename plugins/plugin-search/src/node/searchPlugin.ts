@@ -1,7 +1,6 @@
 import type { Plugin } from 'vuepress/core'
 import type { SearchPluginOptions } from '../shared/index.js'
 import { addViteOptimizeDepsInclude, getFullLocaleConfig } from '@vuepress/helper'
-import chokidar from 'chokidar'
 import { getDirname, path } from 'vuepress/utils'
 import { SEARCH_LOCALES } from './locales/index.js'
 import { onSearchIndexRemoved, onSearchIndexUpdated, prepareSearchIndex, prepareSearchIndexPlaceholder } from './prepareSearchIndex.js'
@@ -72,22 +71,34 @@ export function searchPlugin({
       }
     },
 
-    onWatched: (app, watchers) => {
-      const searchIndexWatcher = chokidar.watch('pages', {
-        cwd: app.dir.temp(),
-        ignoreInitial: true,
-        ignored: (filepath, stats) => Boolean(stats?.isFile()) && !filepath.endsWith('.js'),
-      })
-      searchIndexWatcher.on('add', (filepath) => {
-        onSearchIndexUpdated(filepath, { app, isSearchable, searchOptions })
-      })
-      searchIndexWatcher.on('change', (filepath) => {
-        onSearchIndexUpdated(filepath, { app, isSearchable, searchOptions })
-      })
-      searchIndexWatcher.on('unlink', (filepath) => {
-        onSearchIndexRemoved(filepath, { app, isSearchable, searchOptions })
-      })
-      watchers.push(searchIndexWatcher)
+    onPageUpdated: (app, type, page) => {
+      if (!page?.filePathRelative)
+        return
+
+      if (type === 'create' || type === 'update') {
+        onSearchIndexUpdated(page?.filePathRelative, { app, isSearchable, searchOptions })
+      }
+      else if (type === 'delete') {
+        onSearchIndexRemoved(page?.filePathRelative, { app, isSearchable, searchOptions })
+      }
     },
+
+    // onWatched: (app, watchers) => {
+    //   const searchIndexWatcher = chokidar.watch('pages', {
+    //     cwd: app.dir.temp(),
+    //     ignoreInitial: true,
+    //     ignored: (filepath, stats) => Boolean(stats?.isFile()) && !filepath.endsWith('.js'),
+    //   })
+    //   searchIndexWatcher.on('add', (filepath) => {
+    //     onSearchIndexUpdated(filepath, { app, isSearchable, searchOptions })
+    //   })
+    //   searchIndexWatcher.on('change', (filepath) => {
+    //     onSearchIndexUpdated(filepath, { app, isSearchable, searchOptions })
+    //   })
+    //   searchIndexWatcher.on('unlink', (filepath) => {
+    //     onSearchIndexRemoved(filepath, { app, isSearchable, searchOptions })
+    //   })
+    //   watchers.push(searchIndexWatcher)
+    // },
   })
 }

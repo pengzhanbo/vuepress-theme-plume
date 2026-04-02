@@ -15,3 +15,6 @@ dist/
 
 coverage/
 .idea
+
+.claude/
+!.claude/skills/

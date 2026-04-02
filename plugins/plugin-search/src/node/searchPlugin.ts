@@ -71,34 +71,16 @@ export function searchPlugin({
       }
     },
 
-    onPageUpdated: (app, type, page) => {
+    onPageUpdated: async (app, type, page) => {
       if (!page?.filePathRelative)
         return
 
       if (type === 'create' || type === 'update') {
-        onSearchIndexUpdated(page?.filePathRelative, { app, isSearchable, searchOptions })
+        await onSearchIndexUpdated(app, { page, isSearchable, searchOptions })
       }
       else if (type === 'delete') {
-        onSearchIndexRemoved(page?.filePathRelative, { app, isSearchable, searchOptions })
+        await onSearchIndexRemoved(app, { page, isSearchable, searchOptions })
       }
     },
-
-    // onWatched: (app, watchers) => {
-    //   const searchIndexWatcher = chokidar.watch('pages', {
-    //     cwd: app.dir.temp(),
-    //     ignoreInitial: true,
-    //     ignored: (filepath, stats) => Boolean(stats?.isFile()) && !filepath.endsWith('.js'),
-    //   })
-    //   searchIndexWatcher.on('add', (filepath) => {
-    //     onSearchIndexUpdated(filepath, { app, isSearchable, searchOptions })
-    //   })
-    //   searchIndexWatcher.on('change', (filepath) => {
-    //     onSearchIndexUpdated(filepath, { app, isSearchable, searchOptions })
-    //   })
-    //   searchIndexWatcher.on('unlink', (filepath) => {
-    //     onSearchIndexRemoved(filepath, { app, isSearchable, searchOptions })
-    //   })
-    //   watchers.push(searchIndexWatcher)
-    // },
   })
 }

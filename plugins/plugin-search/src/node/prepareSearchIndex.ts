@@ -31,6 +31,11 @@ export interface SearchIndexOptions {
   isSearchable: SearchPluginOptions['isSearchable']
 }
 
+interface UpdateSearchIndexOptions extends Omit<SearchIndexOptions, 'app'> {
+  /** VuePress page instance / VuePress 页面实例 */
+  page: Page
+}
+
 /**
  * Internal index object structure for MiniSearch.
  *
@@ -172,22 +177,18 @@ export async function prepareSearchIndex({
  * @param options.searchOptions - MiniSearch configuration / MiniSearch 配置
  */
 export async function onSearchIndexUpdated(
-  filepath: string,
+  app: App,
   {
-    app,
+    page,
     isSearchable,
     searchOptions,
-  }: SearchIndexOptions,
+  }: UpdateSearchIndexOptions,
 ): Promise<void> {
-  const pages = isSearchable ? app.pages.filter(isSearchable) : app.pages
-  if (pages.some(p => p.filePathRelative?.endsWith(filepath))) {
-    await indexFile(
-      app.pages.find(p => p.filePathRelative?.endsWith(filepath))!,
-      searchOptions,
-      isSearchable,
-    )
-    await writeTemp(app)
-  }
+  if (isSearchable && !isSearchable(page))
+    return
+
+  await indexFile(page, searchOptions, isSearchable)
+  await writeTemp(app)
 }
 
 /**
@@ -202,16 +203,17 @@ export async function onSearchIndexUpdated(
  * @param options.searchOptions - MiniSearch configuration / MiniSearch 配置
  */
 export async function onSearchIndexRemoved(
-  filepath: string,
+  app: App,
   {
-    app,
+    page,
     isSearchable,
     searchOptions,
-  }: SearchIndexOptions,
+  }: UpdateSearchIndexOptions,
 ): Promise<void> {
-  const pages = isSearchable ? app.pages.filter(isSearchable) : app.pages
-  if (pages.some(p => p.filePathRelative?.endsWith(filepath))) {
-    const page = app.pages.find(p => p.filePathRelative?.endsWith(filepath))!
+  if (isSearchable && !isSearchable(page))
+    return
+
+  if (page.filePathRelative) {
     const fileId = page.path
     const locale = page.pathLocale
     const lang = page.lang

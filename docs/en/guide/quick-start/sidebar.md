@@ -33,7 +33,7 @@ A typical project structure might look like:
   - rust           # Rust Programming Notes
     - tuple.md
     - struct.md
-  - README.md        # Site Homepage
+  - README.md      # Site Homepage
 :::
 
 ### Configuration via `sidebar`

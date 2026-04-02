@@ -72,7 +72,7 @@ describe('fileTreePlugin', () => {
   - client
     - components
       - **Navbar.vue**
-    - index.ts \# comment
+    - index.ts # comment
   - node
     - index.ts
 - .gitignore

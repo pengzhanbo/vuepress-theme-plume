@@ -119,9 +119,9 @@ export function parseFileTreeNodeInfo(info: string): FileTreeNodeProps {
 
   // Extract filename and comment
   if (filename === '' && !focus) {
-    const spaceIndex = info.indexOf(' ')
-    filename = info.slice(0, spaceIndex === -1 ? info.length : spaceIndex)
-    info = spaceIndex === -1 ? '' : info.slice(spaceIndex)
+    const sharpIndex = info.indexOf('#')
+    filename = info.slice(0, sharpIndex === -1 ? info.length : sharpIndex).trim()
+    info = sharpIndex === -1 ? '' : info.slice(sharpIndex)
   }
 
   comment = info.trim()

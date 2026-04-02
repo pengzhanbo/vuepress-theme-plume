@@ -3,6 +3,9 @@ title: 文件树
 createTime: 2024/09/30 14:41:57
 icon: mdi:file-tree
 permalink: /guide/markdown/file-tree/
+badge:
+  text: 变更
+  type: warning
 ---
 
 ## 概述
@@ -17,11 +20,18 @@ permalink: /guide/markdown/file-tree/
 以下语法可用于自定义文件树的外观：
 
 - 通过加粗文件名或目录名来突出显示，例如 `**README.md**`
-- 通过在名称后添加更多文本来为文件或目录添加注释
+- 通过在名称后添加以 `#` 开头的注释来为文件或目录添加注释，例如 `README.md # 这是一个 README 文件`
 - 通过在名称前添加 `++` 或 `--` 来标记文件或目录为 **新增** 或 **删除**
 - 使用 `...` 或 `…` 作为名称来添加占位符文件和目录。
 - 在 `:::file-tree` 后添加 `icon="simple"` 或 添加 `icon="colored"` 可以切换为简单图标或彩色图标，默认为彩色图标。
 - 在 `:::file-tree` 后添加 `title="xxxx"` 可以为文件树添加标题。
+
+::: important `rc.193` 主题更新说明
+过去 `file-tree` 使用 **空格** 来区分文件名和注释，这在某些情况下会导致问题，例如文件名中包含空格时。
+为了解决这个问题，我们引入了 **# 号注释** 语法，您可以在文件名后添加以 `#` 开头的注释，例如 `README.md # 这是一个 README 文件`。
+
+**此修改为 ==破坏性更新=={.danger} 更新。**
+:::
 
 **输入：**
 
@@ -33,7 +43,7 @@ permalink: /guide/markdown/file-tree/
     - ++ config.ts
   - -- page1.md
   - README.md
-- theme  一个 **主题** 目录
+- theme  # 一个 **主题** 目录
   - client
     - components
       - **Navbar.vue**
@@ -60,7 +70,7 @@ permalink: /guide/markdown/file-tree/
     - ++ config.ts
   - -- page1.md
   - README.md
-- theme  一个 **主题** 目录
+- theme  # 一个 **主题** 目录
   - client
     - components
       - **Navbar.vue**

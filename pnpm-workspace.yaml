@@ -24,29 +24,29 @@ catalogs:
     '@commitlint/cli': ^20.5.0
     '@commitlint/config-conventional': ^20.5.0
     '@lunariajs/core': ^0.1.1
-    '@pengzhanbo/eslint-config-vue': ^2.2.0
-    '@pengzhanbo/stylelint-config': ^2.2.0
+    '@pengzhanbo/eslint-config-vue': ^2.3.0
+    '@pengzhanbo/stylelint-config': ^2.3.0
     '@simonwep/pickr': ^1.9.1
     '@types/express': ^5.0.6
     '@types/js-yaml': ^4.0.9
     '@types/less': ^3.0.8
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^25.5.0
-    '@types/picomatch': ^4.0.2
+    '@types/node': ^25.6.0
+    '@types/picomatch': ^4.0.3
     '@types/qrcode': ^1.5.6
     '@types/stylus': ^0.48.43
     '@types/three': ^0.183.1
     '@types/webpack-env': ^1.18.8
-    '@vitest/coverage-v8': ^4.1.2
+    '@vitest/coverage-v8': ^4.1.4
     bumpp: ^11.0.1
     commitizen: ^4.3.1
     conventional-changelog: ^7.2.0
     conventional-changelog-angular: ^8.3.1
-    cpx2: ^8.0.0
+    cpx2: ^8.0.2
     cross-env: 7.0.3
     cz-conventional-changelog: ^3.3.0
-    eslint: ^10.1.0
+    eslint: ^10.2.0
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.6.4
@@ -55,34 +55,34 @@ catalogs:
     memfs: ^4.57.1
     mermaid: ^11.14.0
     minimist: ^1.2.8
-    postcss: ^8.5.8
+    postcss: ^8.5.9
     rimraf: ^6.1.3
-    stylelint: ^17.6.0
+    stylelint: ^17.7.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.21.7
-    typescript: ^5.9.3
-    vite: ^8.0.3
-    vitest: ^4.1.2
-    wait-on: ^9.0.4
+    tsdown: ^0.21.8
+    typescript: ^6.0.2
+    vite: ^8.0.8
+    vitest: ^4.1.4
+    wait-on: ^9.0.5
   peer:
     '@eslint-community/eslint-utils': ^4.9.1
-    '@iconify/json': ^2.2.458
+    '@iconify/json': ^2.2.462
     '@mathjax/src': ^4.1.1
     '@pinyin-pro/data': ^1.3.1
-    '@typescript-eslint/types': ^8.58.0
-    '@typescript-eslint/utils': ^8.58.0
+    '@typescript-eslint/types': ^8.58.2
+    '@typescript-eslint/utils': ^8.58.2
     artplayer: ^5.4.0
     dashjs: ^5.1.1
-    gsap: ^3.14.2
-    hls.js: ^1.6.15
+    gsap: ^3.15.0
+    hls.js: ^1.6.16
     mpegts.js: 1.7.3
     ogl: ^1.0.11
-    pinyin-pro: ^3.28.0
+    pinyin-pro: ^3.28.1
     postprocessing: ^6.39.0
     pyodide: ^0.29.3
-    sass: ^1.98.0
-    sass-embedded: ^1.98.0
+    sass: ^1.99.0
+    sass-embedded: ^1.99.0
     swiper: ^12.1.3
     three: ^0.183.2
   prod:
@@ -104,7 +104,7 @@ catalogs:
     chokidar: 5.0.0
     dayjs: ^1.11.20
     echarts: ^6.0.0
-    esbuild: ^0.27.5
+    esbuild: ^0.28.0
     flowchart.ts: ^3.0.1
     focus-trap: ^8.0.1
     gray-matter: ^4.0.3
@@ -112,9 +112,9 @@ catalogs:
     hash-wasm: ^4.12.0
     image-size: ^2.0.2
     js-yaml: ^4.1.1
-    katex: ^0.16.44
+    katex: ^0.16.45
     local-pkg: ^1.1.2
-    lru-cache: ^11.2.7
+    lru-cache: ^11.3.5
     mark.js: ^8.11.1
     markdown-it-cjk-friendly: ^2.0.2
     markdown-it-container: ^4.0.0
@@ -134,7 +134,7 @@ catalogs:
     sort-package-json: ^3.6.1
     tm-grammars: ^1.31.15
     tm-themes: ^1.12.2
-    vue: ^3.5.31
+    vue: ^3.5.32
     vue-router: ^5.0.4
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.28

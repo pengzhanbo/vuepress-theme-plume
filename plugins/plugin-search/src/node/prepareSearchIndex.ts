@@ -165,6 +165,14 @@ export async function prepareSearchIndex({
   }
 }
 
+let updateQueue = Promise.resolve()
+
+async function queueUpdateIndexFile({ page, isSearchable, searchOptions }: UpdateSearchIndexOptions) {
+  updateQueue = updateQueue
+    .then(() => indexFile(page, searchOptions, isSearchable))
+  return updateQueue
+}
+
 /**
  * Handle search index update when a page is modified.
  *
@@ -187,7 +195,8 @@ export async function onSearchIndexUpdated(
   if (isSearchable && !isSearchable(page))
     return
 
-  await indexFile(page, searchOptions, isSearchable)
+  // FIXME: onPageUpdated 存在竞态问题，当前使用异步队列避免
+  await queueUpdateIndexFile({ page, isSearchable, searchOptions })
   await writeTemp(app)
 }
 
@@ -297,8 +306,11 @@ async function indexFile(page: Page, options: SearchIndexOptions['searchOptions'
 ${page.contentRendered}`
   const sections = splitPageIntoSections(html)
 
-  if (cache && cache.length)
-    index.removeAll(cache)
+  try {
+    if (cache && cache.length)
+      index.removeAll(cache)
+  }
+  catch {}
 
   // add sections to the locale index
   for await (const section of sections) {

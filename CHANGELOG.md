@@ -1,3 +1,10 @@
+# [1.0.0-rc.194](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.193...v1.0.0-rc.194) (2026-04-14)
+
+
+### Bug Fixes
+
+* **plugin-search:** fix search index race condition on pageUpdated, close [#888](https://github.com/pengzhanbo/vuepress-theme-plume/issues/888) ([#889](https://github.com/pengzhanbo/vuepress-theme-plume/issues/889)) ([28963eb](https://github.com/pengzhanbo/vuepress-theme-plume/commit/28963eb419e9a1707157929fe546dc44d1ef771e))
+
 # [1.0.0-rc.193](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.193...v1.0.0-rc.192) (2026-04-02)
 
 ### Bug Fixes

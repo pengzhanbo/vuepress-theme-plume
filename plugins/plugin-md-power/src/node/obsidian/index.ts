@@ -11,7 +11,7 @@ export function obsidianPlugin(
   app: App,
   options: MarkdownPowerPluginOptions,
 ) {
-  if (!options.obsidian)
+  if (options.obsidian === false)
     return
 
   const obsidian = isPlainObject(options.obsidian) ? options.obsidian : {}

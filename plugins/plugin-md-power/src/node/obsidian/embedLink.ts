@@ -24,6 +24,7 @@ import { hash, path } from 'vuepress/utils'
 import { checkSupportType, SUPPORTED_VIDEO_TYPES } from '../embed/video/artPlayer.js'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { parseRect } from '../utils/parseRect.js'
+import { slugify } from '../utils/slugify.js'
 import { findFirstPage } from './wikiLink.js'
 
 interface EmbedLinkMeta {
@@ -183,7 +184,9 @@ export function embedLinkPlugin(md: Markdown, app: App): void {
 
     // 其他资源，解析为链接
     const url = ensureLeadingSlash(filename[0] === '.' ? path.join(path.dirname(env.filePathRelative ?? ''), filename) : filename)
-    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${
+    const anchor = hashes.at(-1)
+    const slug = anchor ? `#${slugify(anchor)}` : ''
+    return `<a href="${url}${slug}" target="_blank" rel="noopener noreferrer">${
       settings || (filename + (hashes.length ? ` > ${hashes.join(' > ')}` : ''))
     }</a>`
   }

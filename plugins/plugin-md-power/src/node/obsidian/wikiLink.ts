@@ -119,7 +119,7 @@ export function wikiLinkPlugin(md: Markdown, app: App) {
 
     // other asset url
     const url = ensureLeadingSlash(filename[0] === '.' ? path.join(path.dirname(env.filePathRelative ?? ''), filename) : filename)
-    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${
+    return `<a href="${url}${slug}" target="_blank" rel="noopener noreferrer">${
       alias || (filename + (titles.length ? ` > ${titles.join(' > ')}` : ''))
     }</a>`
   }
@@ -136,6 +136,7 @@ export function findFirstPage(app: App, filename: string, relativePath: string) 
       return true
 
     const relative = page.filePathRelative
+    /* istanbul ignore if -- @preserve */
     if (!relative)
       return false
 

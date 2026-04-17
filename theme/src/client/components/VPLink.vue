@@ -2,6 +2,7 @@
 import { computed, toRef } from 'vue'
 import { useRouter, withBase } from 'vuepress/client'
 import { useData, useLink } from '../composables/index.js'
+import { resolveNavLink } from '../utils/index.js'
 
 const props = defineProps<{
   tag?: string
@@ -18,6 +19,13 @@ const { theme } = useData()
 const tag = computed(() => props.tag ?? (props.href ? 'a' : 'span'))
 
 const { link, isExternal, isExternalProtocol } = useLink(toRef(props, 'href'), toRef(props, 'target'))
+
+const resolvedText = computed(() => {
+  if (props.text || isExternal.value || !link.value)
+    return props.text
+  const { text } = resolveNavLink(link.value)
+  return text
+})
 
 function linkTo(e: Event) {
   if (!isExternal.value && link.value) {
@@ -36,9 +44,8 @@ function linkTo(e: Event) {
     :rel="rel ?? (isExternal ? 'noopener noreferrer' : undefined)"
     @click="linkTo($event)"
   >
-    <slot>
-      {{ text || href }}
-    </slot>
+    <slot>{{ resolvedText || href }}</slot>
+    <slot name="after-text" />
     <span v-if="isExternal && !noIcon" class="visually-hidden">
       {{ theme.openNewWindowText || '(Open in new window)' }}
     </span>

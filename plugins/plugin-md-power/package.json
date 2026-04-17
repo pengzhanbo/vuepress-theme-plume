@@ -97,6 +97,7 @@
     "@vuepress/helper": "catalog:vuepress",
     "@vueuse/core": "catalog:prod",
     "chokidar": "catalog:prod",
+    "gray-matter": "catalog:prod",
     "image-size": "catalog:prod",
     "local-pkg": "catalog:prod",
     "lru-cache": "catalog:prod",

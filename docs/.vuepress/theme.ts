@@ -58,6 +58,7 @@ export const theme: Theme = plumeTheme({
     jsfiddle: true,
     demo: true,
     encrypt: true,
+    obsidian: true,
     npmTo: ['pnpm', 'yarn', 'npm'],
     repl: {
       go: true,

@@ -18,7 +18,7 @@ const installed = {
   mpegtsjs: isPackageExists('mpegts.js'),
 }
 
-const SUPPORTED_VIDEO_TYPES = ['mp4', 'mp3', 'webm', 'ogg', 'mpd', 'dash', 'm3u8', 'hls', 'ts', 'flv']
+export const SUPPORTED_VIDEO_TYPES = ['mp4', 'mp3', 'webm', 'ogg', 'mpd', 'dash', 'm3u8', 'hls', 'ts', 'flv', 'mkv', 'mov', 'ogv']
 
 export const artPlayerPlugin: PluginWithOptions<never> = (md) => {
   createEmbedRuleBlock<ArtPlayerTokenMeta>(md, {
@@ -51,7 +51,7 @@ export const artPlayerPlugin: PluginWithOptions<never> = (md) => {
   })
 }
 
-function checkSupportType(type?: string) {
+export function checkSupportType(type?: string) {
   if (!type)
     return
 

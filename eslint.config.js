@@ -10,6 +10,8 @@ export default config({
     'skills',
     'docs/snippet/code-block.snippet.md',
     'docs/snippet/whitespace.snippet.md',
+    'docs/en/guide/markdown/obsidian.md',
+    'docs/guide/markdown/obsidian.md',
   ],
   globals: {
     __VUEPRESS_VERSION__: 'readonly',

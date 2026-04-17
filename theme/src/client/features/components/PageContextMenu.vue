@@ -189,6 +189,12 @@ const copyPageText = computed(() => {
   width: fit-content;
 }
 
+@media print {
+  .vp-page-context-menu {
+    display: none;
+  }
+}
+
 .page-context-button {
   height: 32px;
   overflow: hidden;

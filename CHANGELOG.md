@@ -1,3 +1,10 @@
+# [1.0.0-rc.195](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.194...v1.0.0-rc.195) (2026-04-18)
+
+
+### Features
+
+* **plugin-md-power:** compat obsidian official markdown syntax ([#890](https://github.com/pengzhanbo/vuepress-theme-plume/issues/890)) ([bfd0c84](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bfd0c8409c4c55c82f6c55d681f6b3eaafeaddfb))
+
 # [1.0.0-rc.194](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.193...v1.0.0-rc.194) (2026-04-14)
 
 

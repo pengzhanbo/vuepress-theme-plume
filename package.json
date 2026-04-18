@@ -93,7 +93,7 @@
     "@typescript-eslint/types": "catalog:peer",
     "@typescript-eslint/utils": "catalog:peer",
     "@xmldom/xmldom": ">=0.9.9",
-    "baseline-browser-mapping": "^2.10.18",
+    "baseline-browser-mapping": "^2.10.19",
     "chokidar": "catalog:prod",
     "esbuild": "catalog:prod",
     "lodash": ">=4.18.1",

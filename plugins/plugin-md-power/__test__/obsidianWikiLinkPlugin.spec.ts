@@ -91,7 +91,7 @@ describe('wikiLinkPlugin', () => {
   it('should render external link with heading but no alias', () => {
     const result = md.render('[[https://example.com/page#section]]')
     expect(result).toContain('href="https://example.com/page#section"')
-    expect(result).toContain('https://example.com/page > section</a>')
+    expect(result).toContain('https://example.com/page &gt; section</a>')
   })
 
   it('should render internal hash link for empty filename', () => {
@@ -112,7 +112,7 @@ describe('wikiLinkPlugin', () => {
     const env = createMockEnv('docs/page.md')
     const result = md.render('[[#anchor1#anchor2]]', env)
     expect(result).toContain('href="#anchor2"')
-    expect(result).toContain('> anchor1 > anchor2</template>')
+    expect(result).toContain('&gt; anchor1 &gt; anchor2</template>')
   })
 
   it('should render relative path wiki link as anchor when not found', () => {
@@ -133,7 +133,7 @@ describe('wikiLinkPlugin', () => {
     const env = createMockEnv('docs/page.md')
     const result = md.render('[[../api/other.md#section]]', env)
     expect(result).toContain('href="/api/other.md#section"')
-    expect(result).toContain('../api/other.md > section</a>')
+    expect(result).toContain('../api/other.md &gt; section</a>')
   })
 
   it('should add to links array in env', () => {

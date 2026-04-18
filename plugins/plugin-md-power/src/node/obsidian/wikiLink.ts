@@ -94,13 +94,14 @@ export function wikiLinkPlugin(md: Markdown, app: App) {
     const slug = anchor ? `#${slugify(anchor)}` : ''
     // external link
     if (isLinkHttp(filename)) {
+      const text = alias || (filename + (titles.length ? ` > ${titles.join(' > ')}` : ''))
       return `<a href="${filename}${slug}" target="_blank" rel="noopener noreferrer">${
-        alias || (filename + (titles.length ? ` > ${titles.join(' > ')}` : ''))
+        md.utils.escapeHtml(text)
       }</a>`
     }
     // internal hash link
     if (!filename) { // internal page hash link
-      return `<VPLink href="${slug}">${alias || (titles.length ? `<template #after-text> > ${titles.join(' > ')}</template>` : '')}</VPLink>`
+      return `<VPLink href="${slug}">${md.utils.escapeHtml(alias) || (titles.length ? `<template #after-text>${md.utils.escapeHtml(` > ${titles.join(' > ')}`)}</template>` : '')}</VPLink>`
     }
     const internal = findFirstPage(app, filename, env.filePathRelative ?? '')
     if (internal) {
@@ -114,13 +115,14 @@ export function wikiLinkPlugin(md: Markdown, app: App) {
         absolute: absolutePath,
         relative: relativePath,
       })
-      return `<VPLink href="${internal.path}${slug}">${alias || (titles.length ? `<template #after-text> > ${titles.join(' > ')}</template>` : '')}</VPLink>`
+      return `<VPLink href="${internal.path}${slug}">${md.utils.escapeHtml(alias) || (titles.length ? `<template #after-text>${md.utils.escapeHtml(` > ${titles.join(' > ')}`)}</template>` : '')}</VPLink>`
     }
 
     // other asset url
     const url = ensureLeadingSlash(filename[0] === '.' ? path.join(path.dirname(env.filePathRelative ?? ''), filename) : filename)
+    const text = alias || (filename + (titles.length ? ` > ${titles.join(' > ')}` : ''))
     return `<a href="${url}${slug}" target="_blank" rel="noopener noreferrer">${
-      alias || (filename + (titles.length ? ` > ${titles.join(' > ')}` : ''))
+      md.utils.escapeHtml(text)
     }</a>`
   }
 }
@@ -142,11 +144,12 @@ export function findFirstPage(app: App, filename: string, relativePath: string) 
 
     const filepath = filename[0] === '.' ? path.join(dirname, filename) : removeLeadingSlash(filename)
 
-    if ((filepath.slice(-1) === '/' && (relative === `${filepath}README.md` || relative === `${filename}index.html`)) || relative === withExt) {
+    // 精确匹配
+    if ((filepath.slice(-1) === '/' && (relative === `${filepath}README.md` || relative === `${filepath}index.html`)) || relative === withExt) {
       return true
     }
 
     // 模糊匹配，优先从最短路径匹配，sorted 已按照路径长度排序
-    return (filepath.slice(-1) === '/' && (relative.endsWith(`${filepath}README.md`) || relative.endsWith(`${filename}index.html`))) || relative.endsWith(withExt)
+    return (filepath.slice(-1) === '/' && (relative.endsWith(`${filepath}README.md`) || relative.endsWith(`${filepath}index.html`))) || relative.endsWith(withExt)
   })
 }

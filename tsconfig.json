@@ -2,8 +2,6 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "jsx": "preserve",
-    "baseUrl": ".",
-    "ignoreDeprecations": "6.0",
     "paths": {
       "@internal/*": ["./docs/.vuepress/.temp/internal/*"],
       "@theme/*": ["./theme/src/client/components/*"]

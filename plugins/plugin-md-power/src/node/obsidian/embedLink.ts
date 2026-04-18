@@ -186,8 +186,9 @@ export function embedLinkPlugin(md: Markdown, app: App): void {
     const url = ensureLeadingSlash(filename[0] === '.' ? path.join(path.dirname(env.filePathRelative ?? ''), filename) : filename)
     const anchor = hashes.at(-1)
     const slug = anchor ? `#${slugify(anchor)}` : ''
+    const text = settings || (filename + (hashes.length ? ` > ${hashes.join(' > ')}` : ''))
     return `<a href="${url}${slug}" target="_blank" rel="noopener noreferrer">${
-      settings || (filename + (hashes.length ? ` > ${hashes.join(' > ')}` : ''))
+      md.utils.escapeHtml(text)
     }</a>`
   }
 }
@@ -206,7 +207,8 @@ interface ParsedHeading {
 }
 
 // 支持: ## 标题 {#id .class key=value} 或 ## 标题 {#id}
-const HEADING_REG = /^(#+)([^{#]+)(?:\{[^}]*\})?$/
+const HEADING_HASH_REG = /^#+/
+const HEADING_ATTRS_REG = /(?:\{[^}]*\})?$/
 
 function extractContentByHeadings(content: string, headings: string[]): string {
   if (!headings.length)
@@ -224,11 +226,14 @@ function extractContentByHeadings(content: string, headings: string[]): string {
   const allHeadings: ParsedHeading[] = []
 
   for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trimEnd()
-    const match = line.match(HEADING_REG)
-    if (match) {
-      const level = match[1].length
-      const text = match[2].trim()
+    let text = lines[i].trimEnd()
+    let level = 0
+    text = text.replace(HEADING_HASH_REG, (matched) => {
+      level = matched.length
+      return ''
+    })
+    if (level) {
+      text = text.replace(HEADING_ATTRS_REG, '').trim()
       allHeadings.push({ lineIndex: i, level, text })
     }
   }
@@ -274,6 +279,7 @@ function extractContentByHeadings(content: string, headings: string[]): string {
   }
 
   if (targetHeadingIndex === -1) {
+    console.warn(`No heading found for ${headings.join(' > ')}`)
     return ''
   }
 

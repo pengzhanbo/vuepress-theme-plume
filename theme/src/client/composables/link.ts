@@ -56,7 +56,7 @@ export function useLink(
   const maybeIsExternal = computed(() => {
     const link = toValue(href)
     const rawTarget = toValue(target)
-    if (!link)
+    if (!link || link[0] === '#')
       return false
     if (rawTarget === '_blank' || isLinkExternal(link))
       return true
@@ -70,8 +70,12 @@ export function useLink(
     if (!link || maybeIsExternal.value)
       return link
 
+    if (link[0] === '#')
+      return page.value.path + link
+
     const currentPath = page.value.filePathRelative ? `/${page.value.filePathRelative}` : undefined
     const path = resolveRouteFullPath(link, currentPath)
+
     if (path.includes('#')) {
       // Compare path + anchor with current route path
       // Convert to anchor link to avoid page refresh

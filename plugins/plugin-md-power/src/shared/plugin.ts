@@ -9,6 +9,7 @@ import type { IconOptions } from './icon.js'
 import type { MDPowerLocaleData } from './locale.js'
 import type { MarkOptions } from './mark.js'
 import type { NpmToOptions } from './npmTo.js'
+import type { ObsidianOptions } from './obsidian.js'
 import type { PDFOptions } from './pdf.js'
 import type { PlotOptions } from './plot.js'
 import type { ReplOptions } from './repl.js'
@@ -405,6 +406,13 @@ export interface MarkdownPowerPluginOptions {
    * @default false
    */
   imageSize?: boolean | 'local' | 'all'
+
+  /**
+   * 是否启用 obsidian 官方 markdown 扩展语法的兼容性支持
+   *
+   * @default false
+   */
+  obsidian?: boolean | ObsidianOptions
 
   locales?: LocaleConfig<MDPowerLocaleData>
 }

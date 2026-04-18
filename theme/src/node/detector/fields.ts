@@ -67,6 +67,7 @@ export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
   'youtube',
   'qrcode',
   'encrypt',
+  'obsidian',
   'locales',
 ]
 

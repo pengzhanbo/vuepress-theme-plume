@@ -69,6 +69,7 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
             'chat',
             'include',
             'env',
+            'obsidian',
           ],
         },
         {

@@ -711,6 +711,9 @@ importers:
       esbuild:
         specifier: ^0.28.0
         version: 0.28.0
+      gray-matter:
+        specifier: catalog:prod
+        version: 4.0.3
       image-size:
         specifier: catalog:prod
         version: 2.0.2

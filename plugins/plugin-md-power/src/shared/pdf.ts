@@ -18,7 +18,7 @@ export interface PDFTokenMeta extends SizeOptions {
    *
    * 要显示的页码
    */
-  page?: number
+  page?: number | string
   /**
    * Whether to hide toolbar
    *

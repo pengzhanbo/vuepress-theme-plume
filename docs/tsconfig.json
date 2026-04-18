@@ -2,6 +2,7 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
     "paths": {
       "~/themes/*": ["./.vuepress/themes/*"],
       "~/components/*": ["./.vuepress/themes/components/*"],

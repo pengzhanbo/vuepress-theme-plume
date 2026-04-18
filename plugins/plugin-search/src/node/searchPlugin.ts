@@ -3,7 +3,7 @@ import type { SearchPluginOptions } from '../shared/index.js'
 import { addViteOptimizeDepsInclude, getFullLocaleConfig } from '@vuepress/helper'
 import { getDirname, path } from 'vuepress/utils'
 import { SEARCH_LOCALES } from './locales/index.js'
-import { onSearchIndexRemoved, onSearchIndexUpdated, prepareSearchIndex, prepareSearchIndexPlaceholder } from './prepareSearchIndex.js'
+import { /* onSearchIndexRemoved, onSearchIndexUpdated, */ prepareSearchIndex, prepareSearchIndexPlaceholder } from './prepareSearchIndex.js'
 
 const __dirname = getDirname(import.meta.url)
 
@@ -71,16 +71,16 @@ export function searchPlugin({
       }
     },
 
-    onPageUpdated: async (app, type, page) => {
-      if (!page?.filePathRelative)
-        return
+    // onPageUpdated: async (app, type, page) => {
+    //   if (!page?.filePathRelative)
+    //     return
 
-      if (type === 'create' || type === 'update') {
-        await onSearchIndexUpdated(app, { page, isSearchable, searchOptions })
-      }
-      else if (type === 'delete') {
-        await onSearchIndexRemoved(app, { page, isSearchable, searchOptions })
-      }
-    },
+    //   if (type === 'create' || type === 'update') {
+    //     await onSearchIndexUpdated(app, { page, isSearchable, searchOptions })
+    //   }
+    //   else if (type === 'delete') {
+    //     await onSearchIndexRemoved(app, { page, isSearchable, searchOptions })
+    //   }
+    // },
   })
 }

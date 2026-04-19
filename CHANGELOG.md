@@ -1,3 +1,12 @@
+# [1.0.0-rc.196](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.195...v1.0.0-rc.196) (2026-04-19)
+
+
+### Bug Fixes
+
+* fix security ([e512666](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e5126663ef50b4f720424412b38ad3b22a7178da))
+* **plugin-md-power:** fix cell display issue caused by colspan in table ([#891](https://github.com/pengzhanbo/vuepress-theme-plume/issues/891)) ([6ebb1bd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6ebb1bda6e4ef379e156e7299c149e10c472d705))
+* **theme:** remove `cwd` options from `picomatch` ([#892](https://github.com/pengzhanbo/vuepress-theme-plume/issues/892)) ([58ea2fc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/58ea2fc8cbcef0cb968997ad6dead2f4960d465a))
+
 # [1.0.0-rc.195](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.194...v1.0.0-rc.195) (2026-04-18)
 
 

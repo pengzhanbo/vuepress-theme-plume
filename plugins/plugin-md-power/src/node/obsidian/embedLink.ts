@@ -17,15 +17,16 @@
 import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
 import type { App } from 'vuepress'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
+import { attempt } from '@pengzhanbo/utils'
 import grayMatter from 'gray-matter'
 import Token from 'markdown-it/lib/token.mjs'
 import { ensureLeadingSlash, isLinkHttp } from 'vuepress/shared'
-import { hash, path } from 'vuepress/utils'
+import { fs, hash, path } from 'vuepress/utils'
 import { checkSupportType, SUPPORTED_VIDEO_TYPES } from '../embed/video/artPlayer.js'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { parseRect } from '../utils/parseRect.js'
 import { slugify } from '../utils/slugify.js'
-import { findFirstPage } from './wikiLink.js'
+import { findFirstPage } from './findFirstPage.js'
 
 interface EmbedLinkMeta {
   filename: string
@@ -173,13 +174,22 @@ export function embedLinkPlugin(md: Markdown, app: App): void {
   md.renderer.rules.obsidian_embed_link = (tokens, idx, _, env: MarkdownEnv) => {
     const token = tokens[idx]
     const { filename, hashes, settings } = token.meta as EmbedLinkMeta
-    const internalPage = findFirstPage(app, filename, env.filePathRelative ?? '')
+    const pagePath = findFirstPage(filename, env.filePathRelative ?? '')
     // 解析为内部 markdown 资源，提取 markdown 片段并插入到当前页面
-    if (internalPage) {
-      const { content: rawContent } = grayMatter(internalPage.content)
+    if (pagePath) {
+      const [error, markdown] = attempt(() => fs.readFileSync(app.dir.source(pagePath), 'utf-8'))
+      if (error) {
+        console.warn(`[embedLinkPlugin] can not read file: ${pagePath}`)
+        return ''
+      }
+      const { content: rawContent } = grayMatter(markdown)
+      if (!rawContent) {
+        console.warn(`[embedLinkPlugin] file ${pagePath} is empty`)
+        return ''
+      }
       const content = extractContentByHeadings(rawContent, hashes)
-      internalPage.filePathRelative && (env.importedFiles ??= []).push(internalPage.filePathRelative)
-      return md.render(content, cleanMarkdownEnv(internalPage.markdownEnv))
+      pagePath && (env.importedFiles ??= []).push(pagePath)
+      return md.render(content, cleanMarkdownEnv(env))
     }
 
     // 其他资源，解析为链接

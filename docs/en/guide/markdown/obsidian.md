@@ -7,8 +7,7 @@ permalink: /en/guide/markdown/obsidian/
 
 ## Overview
 
-The theme provides compatibility support for Obsidian's official Markdown extension syntax through the `vuepress-plugin-md-power` plugin,
-enabling Obsidian users to write documentation using familiar syntax.
+The theme provides compatibility support for Obsidian's official Markdown extension syntax through the `vuepress-plugin-md-power` plugin, enabling Obsidian users to write documentation using familiar syntax.
 
 Currently supported Obsidian extension syntax includes:
 
@@ -21,7 +20,7 @@ Currently supported Obsidian extension syntax includes:
 
 ## Wiki Links
 
-Wiki Links are syntax for linking to other notes in Obsidian.
+Wiki Links are syntax used in Obsidian for linking to other notes. Use double brackets `[[]]` to wrap content to create internal links.
 
 ### Syntax
 
@@ -31,6 +30,7 @@ Wiki Links are syntax for linking to other notes in Obsidian.
 [[filename#heading#subheading]]
 [[filename|alias]]
 [[filename#heading|alias]]
+[[https://example.com|External Link]]
 ```
 
 ### Filename Search Rules
@@ -39,15 +39,14 @@ When using Wiki Links, filenames are matched according to the following rules:
 
 **Match Priority:**
 
-1. **Page Title** - Priority matching against page titles
-2. **Full Path** - Exact match against file paths
-3. **Fuzzy Match** - Match filenames at the end of paths
+1. **Full Path** - Exact match against file paths
+2. **Fuzzy Match** - Match filenames at the end of paths, prioritizing the shortest path
 
 **Path Resolution Rules:**
 
 - **Relative paths** (starting with `.`): Resolved relative to the current file's directory
-- **Absolute paths** (not starting with `.`): Searched throughout the document tree, with shortest path taking precedence
-- **Directory form** (ending with `/`): Matches `README.md` or `index.html` within that directory
+- **Absolute paths** (not starting with `.`): Searched throughout the document tree, prioritizing the shortest path
+- **Directory form** (ending with `/`): Matches `README.md` in that directory
 
 **Example:**
 
@@ -55,22 +54,21 @@ Assuming the following document structure:
 
 ```txt
 docs/
-├── README.md          (title: "Home")
+├── README.md
 ├── guide/
-│   ├── README.md     (title: "Guide")
+│   ├── README.md
 │   └── markdown/
 │       └── obsidian.md
 ```
 
 In `docs/guide/markdown/obsidian.md`:
 
-| Syntax       | Match Result                                            |
-| ------------ | ------------------------------------------------------- |
-| `[[Home]]`   | Matches `docs/README.md` (via title)                    |
-| `[[Guide]]`  | Matches `docs/guide/README.md` (via title)              |
-| `[[./]]`     | Matches `docs/guide/markdown/README.md` (relative path) |
-| `[[../]]`    | Matches `docs/guide/README.md` (parent directory)       |
-| `[[guide/]]` | Matches `docs/guide/README.md` (directory form)         |
+| Syntax             | Match Result                                                                              |
+| ------------------ | ----------------------------------------------------------------------------------------- |
+| `[[obsidian]]`     | Matches `docs/guide/markdown/obsidian.md` (matched via filename)                          |
+| `[[./]]`           | Matches `docs/guide/markdown/README.md` (relative path)                                   |
+| `[[../]]`          | Matches `docs/guide/README.md` (parent directory)                                        |
+| `[[guide/]]`      | Matches `docs/guide/README.md` (directory form)                                          |
 
 ### Examples
 
@@ -86,23 +84,18 @@ In `docs/guide/markdown/obsidian.md`:
 
 [[https://example.com|External Link]]
 
----
-
 **Internal Anchor Links:**
 
 **Input:**
 
 ```md
-[[QR Code]]  <!-- Search by title -->
 [[npm-to]]  <!-- Search by filename -->
 [[guide/markdown/math]]  <!-- Search by file path -->
 [[#Wiki Links]]  <!-- Heading on current page -->
-[[file-tree#configuration]]  <!-- Search by filename, link to heading -->
+[[file-tree#Configuration]]  <!-- Search by filename, link to heading -->
 ```
 
 **Output:**
-
-[[QR Code]]
 
 [[npm-to]]
 
@@ -110,7 +103,7 @@ In `docs/guide/markdown/obsidian.md`:
 
 [[#Wiki Links]]
 
-[[file-tree#configuration]]
+[[file-tree#Configuration]]
 
 [Obsidian Official - **Wiki Links**](https://obsidian.md/en/help/links){.readmore}
 
@@ -136,22 +129,38 @@ Filename search rules are the same as [Wiki Links](#filename-search-rules).
 **Syntax:**
 
 ```md
-![[image.png]]
-![[image.png|300]]
-![[image.png|300x200]]
+![[image]]
+![[image|300]]
+![[image|300x200]]
 ```
 
 Supported formats: `jpg`, `jpeg`, `png`, `gif`, `avif`, `webp`, `svg`, `bmp`, `ico`, `tiff`, `apng`, `jfif`, `pjpeg`, `pjp`, `xbm`
 
-**Input:**
+**Example:**
+
+::: demo markdown title="Basic Image" expanded
 
 ```md
 ![[images/custom-hero.jpg]]
 ```
 
-**Output:**
+:::
 
-![[images/custom-hero.jpg]]
+::: demo markdown title="Set Width" expanded
+
+```md
+![[images/custom-hero.jpg|300]]
+```
+
+:::
+
+::: demo markdown title="Set Width and Height" expanded
+
+```md
+![[images/custom-hero.jpg|300x200]]
+```
+
+:::
 
 ### PDF Embeds
 
@@ -162,26 +171,21 @@ Supported formats: `jpg`, `jpeg`, `png`, `gif`, `avif`, `webp`, `svg`, `bmp`, `i
 
 ```md
 ![[document.pdf]]
-![[document.pdf#page=1]] <!-- #page=1 means first page -->
-![[document.pdf#page=1#height=300]] <!-- #height=300 means height of 300px -->
+![[document.pdf#page=1]]  <!-- #page=1 means first page -->
+![[document.pdf#page=1#height=300]]  <!-- #page=page number #height=height -->
 ```
+
+Supported formats: `pdf`
 
 ---
 
 ### Audio Embeds
 
-> [!note]
-> Audio embeds require the file path to be correct and the file to exist in the document directory.
-
-**Input:**
+**Syntax:**
 
 ```md
-![[audio.mp3]]
+![[audio file]]
 ```
-
-**Output:**
-
-![[https://publish-01.obsidian.md/access/cf01a21839823cd6cbe18031acf708c0/Attachments/audio/Excerpt%20from%20Mother%20of%20All%20Demos%20(1968).ogg]]
 
 Supported formats: `mp3`, `flac`, `wav`, `ogg`, `opus`, `webm`, `acc`
 
@@ -189,18 +193,15 @@ Supported formats: `mp3`, `flac`, `wav`, `ogg`, `opus`, `webm`, `acc`
 
 ### Video Embeds
 
-> [!note]
+> [!NOTE]
 > Video embeds require the `markdown.artPlayer` plugin to be enabled for proper functionality.
 
-**Input:**
+**Syntax:**
 
 ```md
-![[video.mp4]]
+![[video file]]
+![[video file#height=400]]  <!-- Set video height -->
 ```
-
-**Output:**
-
-![[https://artplayer.org/assets/sample/video.mp4]]
 
 Supported formats: `mp4`, `webm`, `mov`, etc.
 
@@ -214,12 +215,12 @@ Content fragments under a specified heading can be embedded using `#heading`:
 
 ```md
 ![[my-note]]
-![[my-note#heading-one]]
-![[my-note#heading-one#subheading]]
+![[my-note#Heading One]]
+![[my-note#Heading One#Subheading]]
 ```
 
-[Obsidian Official - Embeds](https://obsidian.md/en/help/embeds){.readmore}
-[Obsidian Official - File Formats](https://obsidian.md/en/help/file-formats){.readmore}
+[Obsidian Official - **Insert Files**](https://obsidian.md/en/help/embeds){.readmore}
+[Obsidian Official - **File Formats**](https://obsidian.md/en/help/file-formats){.readmore}
 
 ## Comments
 
@@ -280,28 +281,25 @@ Content before the comment
 
 %%
 This is a block comment.
-
-It can span multiple lines.
 %%
 
-Content after the comment
+It can span multiple lines.
 
-> Related Documentation: [Obsidian Official - Comments](https://obsidian.md/en/help/syntax#%E6%B3%A8%E9%87%8B)
+[Obsidian Official - **Comments**](https://obsidian.md/en/help/syntax#%E6%B3%A8%E9%87%8B){.readmore}
 
 ## Configuration
 
-You can enable or disable these plugins in the theme configuration:
+Obsidian compatibility features are all enabled by default. You can selectively enable or disable them through configuration:
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
       mdPower: {
-        // Obsidian compatibility plugin configuration
         obsidian: {
           wikiLink: true,    // Wiki Links
-          embedLink: true,   // Embeds
-          comment: true,     // Comments
+          embedLink: true,  // Embeds
+          comment: true,    // Comments
         },
         pdf: true,          // PDF embed functionality
         artPlayer: true,    // Video embed functionality
@@ -316,15 +314,15 @@ export default defineUserConfig({
 :::: field-group
 
 ::: field name="wikiLink" type="boolean" default="true" optional
-Enable Wiki Links syntax
+Enable Wiki Links syntax.
 :::
 
 ::: field name="embedLink" type="boolean" default="true" optional
-Enable embed content syntax
+Enable embed content syntax.
 :::
 
 ::: field name="comment" type="boolean" default="true" optional
-Enable comment syntax
+Enable comment syntax.
 :::
 
 ::::
@@ -332,7 +330,8 @@ Enable comment syntax
 ## Notes
 
 - These plugins provide **compatibility support** and do not fully implement all of Obsidian's functionality
-- Some Obsidian-specific features (such as the graph view for internal links, bidirectional links, etc.) are outside the scope of this support
+- Some Obsidian-specific features (such as internal link graph views, bidirectional links, etc.) are outside the scope of this support
 - When embedding content, the embedded page also participates in the theme's build process
-- PDF embeds require the `pdf` plugin to be enabled simultaneously
-- Video embeds require the `artPlayer` plugin to be enabled simultaneously
+- PDF embeds require the `markdown.pdf` plugin to be enabled simultaneously
+- Video embeds require the `markdown.artPlayer` plugin to be enabled simultaneously
+- Embed resources starting with `/` or using `./` form are loaded from the `public` directory

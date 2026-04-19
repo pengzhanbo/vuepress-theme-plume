@@ -88,6 +88,7 @@ export function tablePlugin(md: Markdown, options: TableContainerOptions = {}): 
     let isTable = false
     let colIndex = 0
     let rowIndex = 0
+    let skipCells = 0
     for (const token of tableTokens) {
       if (token.type === 'table_open')
         isTable = true
@@ -100,13 +101,39 @@ export function tablePlugin(md: Markdown, options: TableContainerOptions = {}): 
       if (token.type === 'tr_open') {
         rowIndex++
         colIndex = 0
+        // 当 th 设置了 colspan 时，需要跳过空单元格
+        skipCells = 0
       }
       // cell (rowIndex, colIndex)
       if (token.type === 'th_open' || token.type === 'td_open') {
+        if (skipCells > 0) {
+          // Skip this empty cell，`th` element only
+          if (token.type === 'th_open')
+            token.hidden = true
+          skipCells--
+          continue
+        }
+
         colIndex++
         const classes = cells[rowIndex]?.[colIndex] || rows[rowIndex] || cols[colIndex]
         if (classes)
           token.attrJoin('class', classes)
+
+        // Check for colspan attribute
+        const colspanIndex = token.attrIndex('colspan')
+        if (colspanIndex >= 0) {
+          const colspanValue = Number.parseInt(token.attrs![colspanIndex][1])
+          if (!Number.isNaN(colspanValue) && colspanValue > 1) {
+            skipCells = colspanValue - 1
+          }
+        }
+      }
+      // Skip the content and close tokens for skipped cells
+      if (skipCells > 0 && (token.type === 'text' || token.type === 'th_close' || token.type === 'td_close')) {
+        if (token.type === 'th_close')
+          // Skip this empty cell，`th` element only
+          token.hidden = true
+        continue
       }
     }
 

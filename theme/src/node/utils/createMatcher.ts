@@ -46,12 +46,11 @@ export function resolveMatcherPattern(include?: string | string[], exclude?: str
  *
  * @param include - Patterns to include / 要包含的模式
  * @param exclude - Patterns to exclude / 要排除的模式
- * @param cwd - Current working directory for relative path matching / 用于相对路径匹配的当前工作目录
  * @returns Matcher function that tests file paths / 测试文件路径的匹配器函数
  */
-export function createMatcher(include?: string | string[], exclude?: string | string[], cwd?: string): Matcher {
+export function createMatcher(include?: string | string[], exclude?: string | string[]): Matcher {
   exclude = ['**/node_modules/**', '**/.vuepress/**', ...toArray(exclude)]
   const { pattern, ignore } = resolveMatcherPattern(include, exclude)
 
-  return picomatch(pattern, { ignore, cwd })
+  return picomatch(pattern, { ignore })
 }

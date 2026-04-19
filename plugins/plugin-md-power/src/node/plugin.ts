@@ -13,7 +13,7 @@ import { linksPlugin } from './enhance/links.js'
 import { iconPlugin } from './icon/index.js'
 import { inlineSyntaxPlugin } from './inline/index.js'
 import { LOCALE_OPTIONS } from './locales/index.js'
-import { obsidianPlugin } from './obsidian/index.js'
+import { obsidianPlugin, updatePagePaths } from './obsidian/index.js'
 import { prepareConfigFile } from './prepareConfigFile.js'
 import { provideData } from './provideData.js'
 
@@ -106,13 +106,14 @@ export function markdownPowerPlugin(
         embedSyntaxPlugin(md, options)
         inlineSyntaxPlugin(md, options)
         iconPlugin(md, options.icon ?? (isPlainObject(options.icons) ? options.icons : {}))
-        obsidianPlugin(md, app, options)
 
         if (options.demo)
           demoPlugin(app, md)
 
         await containerPlugin(app, md, options, locales)
         await imageSizePlugin(app, md, options.imageSize)
+
+        obsidianPlugin(app, md, options)
       },
 
       onPrepared: async () => {
@@ -132,6 +133,13 @@ export function markdownPowerPlugin(
 
         if (options.codeTree)
           extendsPageWithCodeTree(page)
+      },
+
+      onPageUpdated(_app, type, newPage, oldPage) {
+        if (type === 'create')
+          updatePagePaths(newPage?.filePathRelative ?? '', 'create')
+        if (type === 'delete')
+          updatePagePaths(oldPage?.filePathRelative ?? newPage?.filePathRelative ?? '', 'delete')
       },
     }
   }

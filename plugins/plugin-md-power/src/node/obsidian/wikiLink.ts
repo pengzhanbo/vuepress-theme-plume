@@ -9,13 +9,12 @@
  */
 
 import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
-import type { App } from 'vuepress'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
-import { sortBy } from '@pengzhanbo/utils'
-import { ensureLeadingSlash, isLinkHttp, removeLeadingSlash } from 'vuepress/shared'
+import { ensureLeadingSlash, isLinkHttp } from 'vuepress/shared'
 import { path } from 'vuepress/utils'
 import { resolvePaths } from '../enhance/links.js'
 import { slugify } from '../utils/slugify.js'
+import { findFirstPage } from './findFirstPage.js'
 
 interface WikiLinkMeta {
   filename: string
@@ -85,7 +84,7 @@ const wikiLinkDef: RuleInline = (state, silent) => {
   return true
 }
 
-export function wikiLinkPlugin(md: Markdown, app: App) {
+export function wikiLinkPlugin(md: Markdown) {
   md.inline.ruler.before('emphasis', 'obsidian_wiki_link', wikiLinkDef)
   md.renderer.rules.obsidian_wiki_link = (tokens, idx, _, env: MarkdownEnv) => {
     const token = tokens[idx]
@@ -103,19 +102,19 @@ export function wikiLinkPlugin(md: Markdown, app: App) {
     if (!filename) { // internal page hash link
       return `<VPLink href="${slug}">${md.utils.escapeHtml(alias) || (titles.length ? `<template #after-text>${md.utils.escapeHtml(` > ${titles.join(' > ')}`)}</template>` : '')}</VPLink>`
     }
-    const internal = findFirstPage(app, filename, env.filePathRelative ?? '')
-    if (internal) {
+    const pagePath = findFirstPage(filename, env.filePathRelative ?? '')
+    if (pagePath) {
       const { absolutePath, relativePath } = resolvePaths(
-        internal.filePathRelative!,
+        pagePath,
         env.base || '/',
         env.filePathRelative ?? null,
       )
       ;(env.links ??= []).push({
-        raw: internal.filePathRelative!,
+        raw: pagePath,
         absolute: absolutePath,
         relative: relativePath,
       })
-      return `<VPLink href="${internal.path}${slug}">${md.utils.escapeHtml(alias) || (titles.length ? `<template #after-text>${md.utils.escapeHtml(` > ${titles.join(' > ')}`)}</template>` : '')}</VPLink>`
+      return `<VPLink href="${ensureLeadingSlash(pagePath)}${slug}">${md.utils.escapeHtml(alias) || (titles.length ? `<template #after-text>${md.utils.escapeHtml(` > ${titles.join(' > ')}`)}</template>` : '')}</VPLink>`
     }
 
     // other asset url
@@ -125,31 +124,4 @@ export function wikiLinkPlugin(md: Markdown, app: App) {
       md.utils.escapeHtml(text)
     }</a>`
   }
-}
-
-export function findFirstPage(app: App, filename: string, relativePath: string) {
-  const dirname = path.dirname(relativePath)
-  const withExt = path.extname(filename) ? filename : `${filename}.md`
-  const sorted = sortBy(app.pages ?? [], page => page.filePathRelative?.split('/').length ?? Infinity)
-  return sorted.find((page) => {
-    const title = page.title || page.frontmatter?.title || page.data.title
-    // 匹配标题, 优先从最短路径开始匹配
-    if (title === filename)
-      return true
-
-    const relative = page.filePathRelative
-    /* istanbul ignore if -- @preserve */
-    if (!relative)
-      return false
-
-    const filepath = filename[0] === '.' ? path.join(dirname, filename) : removeLeadingSlash(filename)
-
-    // 精确匹配
-    if ((filepath.slice(-1) === '/' && (relative === `${filepath}README.md` || relative === `${filepath}index.html`)) || relative === withExt) {
-      return true
-    }
-
-    // 模糊匹配，优先从最短路径匹配，sorted 已按照路径长度排序
-    return (filepath.slice(-1) === '/' && (relative.endsWith(`${filepath}README.md`) || relative.endsWith(`${filepath}index.html`))) || relative.endsWith(withExt)
-  })
 }

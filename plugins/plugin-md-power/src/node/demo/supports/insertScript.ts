@@ -1,6 +1,6 @@
 import type { DemoFile, MarkdownDemoEnv } from '../../../shared/demo.js'
 
-const SCRIPT_RE = /<script.*?>/
+const SCRIPT_RE = /<script\b[^>]*>/
 
 export function insertSetupScript({ export: name, path }: DemoFile, env: MarkdownDemoEnv): void {
   const imports = `import ${name ? `${name} from ` : ''}'${path}';`

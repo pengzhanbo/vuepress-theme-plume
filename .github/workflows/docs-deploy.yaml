@@ -13,6 +13,9 @@ on:
   workflow_dispatch:
   workflow_call:
 
+permissions:
+  contents: write
+
 jobs:
   deploy-docs:
     runs-on: ubuntu-latest

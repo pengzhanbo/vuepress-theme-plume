@@ -46,10 +46,10 @@ You can install these skills into your project or globally using the `skills` CL
 
     ```bash
     # Install into your current project (recommended for teams)
-    npx skills add https://github.com/pengzhanbo/vuepress-plume
+    npx skills add https://github.com/pengzhanbo/vuepress-theme-plume
 
     # Install specific skill only
-    npx skills add https://github.com/pengzhanbo/vuepress-plume --skill vuepress-plume-config
+    npx skills add https://github.com/pengzhanbo/vuepress-theme-plume --skill vuepress-plume-config
     ```
 
 2. **Verify Installation:**
@@ -72,7 +72,7 @@ Claude Code automatically detects skills in the `.claude/skills` directory or th
 
 ```bash
 # Install for Claude Code specifically
-npx skills add https://github.com/pengzhanbo/vuepress-plume -a claude-code
+npx skills add https://github.com/pengzhanbo/vuepress-theme-plume -a claude-code
 ```
 
 **Configuration:**
@@ -86,7 +86,7 @@ OpenCode supports the open agent skills standard.
 
 ```bash
 # Install for OpenCode
-npx skills add https://github.com/pengzhanbo/vuepress-plume -a opencode
+npx skills add https://github.com/pengzhanbo/vuepress-theme-plume -a opencode
 ```
 
 **Usage:**

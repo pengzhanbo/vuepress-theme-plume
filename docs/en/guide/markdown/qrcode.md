@@ -6,7 +6,7 @@ permalink: /en/guide/markdown/qrcode/
 badge: New
 ---
 
-@[qrcode](https://github.com/pengzhanbo/vuepress-theme-plume)
+@[qrcode logo="/plume.png" logo-size=0.25](https://github.com/pengzhanbo/vuepress-theme-plume)
 
 ## Overview
 
@@ -42,7 +42,7 @@ Inline syntax is suitable for shorter `text`, such as links.
 <!-- Basic Syntax -->
 @[qrcode](text)
 <!-- With Attributes -->
-@[qrcode card svg title="xxx" align="center"](text)
+@[qrcode card title="xxx" align="center" logo="/plume.png"](text)
 ```
 
 ### Container Syntax
@@ -50,7 +50,7 @@ Inline syntax is suitable for shorter `text`, such as links.
 Container syntax is suitable for longer `text`, such as paragraphs or multi-line text.
 
 ```md
-::: qrcode card svg title="xxx" align="center"
+::: qrcode card title="xxx" align="center"
 text
 :::
 ```
@@ -64,8 +64,13 @@ text
 ::: field name="card" type="boolean" optional default="false"
 Whether to enable the card style.
 :::
-::: field name="svg" type="boolean" optional default="false"
-Whether to render the QR code in SVG format. The default format is PNG.
+::: field name="logo" type="string" optional
+The path to the logo image displayed at the center of the QR code.
+
+Only absolute paths are supported.
+:::
+::: field name="logoSize" type="number" optional default="0.2"
+The size ratio of the logo relative to the QR code.
 :::
 ::: field name="title" type="string" optional
 The title of the QR code.
@@ -100,6 +105,8 @@ Four levels are available depending on the operating environment.
 Higher levels provide better error resistance but reduce the data capacity of the symbol.
 
 If the QR code symbol is unlikely to be damaged, lower error correction levels like Low or Medium can be safely used.
+
+When the QR code contains a logo, the default value is `H`.
 :::
 ::: field name="version" type="number" optional
 **QR Code Version**
@@ -129,7 +136,22 @@ If not specified, a more suitable value will be automatically calculated.
 
 @[qrcode](https://github.com/pengzhanbo/vuepress-theme-plume)
 
+### QR Code with Logo
+
+**Input:**
+
+```md
+@[qrcode logo="/plume.png" logo-size=0.25](https://github.com/pengzhanbo/vuepress-theme-plume)
+```
+
+**Output:**
+
+@[qrcode logo="/plume.png" logo-size=0.25](https://github.com/pengzhanbo/vuepress-theme-plume)
+
 ### Internal Page Path
+
+::: tip Internal page links will automatically have a logo added
+:::
 
 **Input:**
 

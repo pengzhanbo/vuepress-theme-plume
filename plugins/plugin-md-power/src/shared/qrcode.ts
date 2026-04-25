@@ -33,6 +33,26 @@ export interface QRCodeProps {
    * 二维码内容
    */
   text?: string
+
+  /**
+   * Logo image
+   *
+   * 二维码中的 logo 图片
+   */
+  logo?: string
+
+  /**
+   * Logo image size
+   *
+   * Unit: percentage of QR code width
+   *
+   * 二维码中的 logo 图片大小
+   *
+   * 单位：二维码宽度的百分比
+   *
+   * @default 0.2
+   */
+  logoSize?: string
   /**
    * QR code width
    *
@@ -44,7 +64,6 @@ export interface QRCodeProps {
    * Display mode
    * - img: Display QR code as image
    * - card: Display as card with left-right layout, QR code on left, title + content on right
-   * @default 'img'
    *
    * 显示模式
    * - img: 以图片的形式显示二维码
@@ -62,7 +81,6 @@ export interface QRCodeProps {
 
   /**
    * QR code alignment
-   * @default 'left'
    *
    * 二维码的对齐方式
    * @default 'left'
@@ -70,19 +88,8 @@ export interface QRCodeProps {
   align?: 'left' | 'center' | 'right'
 
   /**
-   * Whether to render as SVG format
-   * Default output is PNG format dataURL
-   * @default false
-   *
-   * 是否渲染为 SVG 格式的二维码
-   * 默认输出为 PNG 格式的 dataURL
-   * @default false
-   */
-  svg?: boolean
-  /**
    * Error correction level.
    * Possible values: Low, Medium, Quartile, High, corresponding to L, M, Q, H.
-   * @default 'M'
    *
    * 纠错等级。
    * 可能的取值为低、中、四分位、高，分别对应 L、M、Q、H。
@@ -109,7 +116,6 @@ export interface QRCodeProps {
   mask?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
   /**
    * Define how wide the quiet zone should be.
-   * @default 4
    *
    * 定义静区应有多宽。
    * @default 4
@@ -125,7 +131,6 @@ export interface QRCodeProps {
   /**
    * Color of dark modules. Value must be in hexadecimal format (RGBA).
    * Note: Dark should always be darker than light module color.
-   * @default '#000000ff'
    *
    * 暗色模块的颜色。值必须为十六进制格式（RGBA）。
    * 注意：暗色应始终比浅色模块的颜色更深。
@@ -136,7 +141,6 @@ export interface QRCodeProps {
   /**
    * Color of light modules. Value must be in hexadecimal format (RGBA).
    * Note: Light should always be lighter than dark module color.
-   * @default '#ffffffff'
    *
    * 亮色模块的颜色。值必须为十六进制格式（RGBA）。
    * 注意：亮色应始终比暗色模块的颜色更浅。

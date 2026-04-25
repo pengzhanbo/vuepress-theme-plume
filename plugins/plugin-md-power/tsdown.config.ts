@@ -2,7 +2,7 @@ import { defineConfig, type UserConfig } from 'tsdown'
 import { argv } from '../../scripts/tsdown-args'
 
 const config = [
-  { dir: 'composables', files: ['codeRepl.ts', 'pdf.ts', 'rustRepl.ts', 'size.ts', 'audio.ts', 'demo.ts', 'mark.ts', 'decrypt.ts'] },
+  { dir: 'composables', files: ['codeRepl.ts', 'pdf.ts', 'rustRepl.ts', 'size.ts', 'audio.ts', 'demo.ts', 'mark.ts', 'decrypt.ts', 'qrcode.ts'] },
   { dir: 'utils', files: ['http.ts', 'link.ts', 'sleep.ts'] },
   { dir: '', files: ['index.ts', 'options.ts'] },
 ]

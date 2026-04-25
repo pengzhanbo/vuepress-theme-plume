@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import type { QRCodeToDataURLOptions, QRCodeToStringOptions } from 'qrcode'
 import type { QRCodeProps } from '../../shared/index.js'
 import { isLinkWithProtocol } from '@vuepress/helper/client'
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { resolveRoute, usePage, withBase } from 'vuepress/client'
+import { attemptLoadLogo, generateQRCode } from '../composables/qrcode.js'
 
-const { title, text, mode, align = 'left', reverse = false, svg = false, width, level, version, mask, margin = 2, scale = 4, light, dark } = defineProps<QRCodeProps>()
+const { title, text, mode, align = 'left', reverse = false, width, level, version, mask, margin = 2, scale = 4, light, dark, logo, logoSize = '0.2' } = defineProps<QRCodeProps>()
 
 const page = usePage()
 
-let qr: typeof import('qrcode') | null = null
-
 const qrcode = ref('')
 const parsedText = ref('')
+const imgWidth = ref(300)
 const isLink = ref(false)
+const isInternalLink = ref(false)
 
 const styles = computed(() => {
   const size = typeof width === 'number' ? width : width ? Number.parseInt(width) : undefined
@@ -26,6 +26,7 @@ function parseText(): string | void {
     return ''
 
   if (text === '.') {
+    isInternalLink.value = true
     isLink.value = true
     return location.href.split(/[?#]/)[0]
   }
@@ -42,6 +43,7 @@ function parseText(): string | void {
     if (notFound) {
       return text
     }
+    isInternalLink.value = true
     isLink.value = true
     return new URL(`${withBase(path)}${rest.join('')}`, location.href).toString()
   }
@@ -50,10 +52,8 @@ function parseText(): string | void {
 }
 
 onMounted(async () => {
-  const callback = (_: any, url: string) => qrcode.value = url
-
   watch(
-    () => [text, svg, level, version, mask, margin, scale, light, dark],
+    () => [text, level, version, mask, margin, scale, light, dark, logo, logoSize],
     async () => {
       const text = parseText()
       parsedText.value = text || ''
@@ -62,36 +62,39 @@ onMounted(async () => {
         return
       }
 
-      qr ??= (await import(/* webpackChunkName: "qrcode" */ 'qrcode')).default
-      const opts: QRCodeToDataURLOptions & QRCodeToStringOptions = {
-        version,
-        maskPattern: mask,
-        errorCorrectionLevel: (level ? level.toUpperCase() : 'M') as any,
-        width: 300 * Math.round(window.devicePixelRatio || 1),
-        margin,
-        scale,
-        color: { dark, light },
-      }
-
-      if (svg)
-        qr.toString(text, { type: 'svg', ...opts }, callback)
-      else
-        qr.toDataURL(text, { type: 'image/png', ...opts }, callback)
+      imgWidth.value = 300 * Math.round(window.devicePixelRatio || 1)
+      qrcode.value = await generateQRCode(
+        {
+          text,
+          logo: await attemptLoadLogo(text, logo, isInternalLink.value),
+          logoSize,
+        },
+        {
+          version,
+          maskPattern: mask,
+          width: imgWidth.value,
+          margin,
+          scale,
+          color: { dark, light },
+        },
+      )
     },
     { immediate: true },
   )
-})
-
-onUnmounted(() => {
-  qr = null
 })
 </script>
 
 <template>
   <div v-if="qrcode" class="vp-qrcode" :class="{ card: mode === 'card', reverse, [align]: true }">
     <div class="qrcode-content">
-      <div v-if="svg" class="qrcode-svg" :style="styles" :title="parsedText" v-html="qrcode" />
-      <img v-else class="qrcode-img" :src="qrcode" :alt="parsedText" :title="parsedText" :style="styles">
+      <img
+        class="qrcode-img"
+        :src="qrcode"
+        :alt="parsedText"
+        :title="parsedText"
+        :style="styles"
+        :width="imgWidth" :height="imgWidth"
+      >
       <div v-if="title && mode !== 'card'" class="qrcode-label">
         {{ title }}
       </div>
@@ -166,17 +169,11 @@ onUnmounted(() => {
   border-radius: 8px;
 }
 
-.vp-qrcode .qrcode-svg,
 .vp-qrcode .qrcode-img {
   width: var(--vp-qrcode-size);
   max-width: 100%;
   height: var(--vp-qrcode-size);
   aspect-ratio: 1/1;
-}
-
-.vp-qrcode .qrcode-svg :deep(svg) {
-  max-width: 100%;
-  max-height: 100%;
 }
 
 .vp-qrcode .qrcode-info {

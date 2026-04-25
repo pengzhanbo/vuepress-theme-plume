@@ -6,7 +6,7 @@ permalink: /guide/markdown/qrcode/
 badge: 新
 ---
 
-@[qrcode](https://github.com/pengzhanbo/vuepress-theme-plume)
+@[qrcode logo="/plume.png" logo-size=0.25](https://github.com/pengzhanbo/vuepress-theme-plume)
 
 ## 概述
 
@@ -42,7 +42,7 @@ export default defineUserConfig({
 <!-- 基础语法-->
 @[qrcode](text)
 <!-- 添加属性 -->
-@[qrcode card svg title="xxx" align="center"](text)
+@[qrcode card title="xxx" align="center" logo="/plume.png"](text)
 ```
 
 ### 容器语法
@@ -50,7 +50,7 @@ export default defineUserConfig({
 容器语法适用于 `text` 文本较长时，比如 段落，多行文本 等。
 
 ```md
-::: qrcode card svg title="xxx" align="center"
+::: qrcode card title="xxx" align="center"
 text
 :::
 ```
@@ -64,8 +64,13 @@ text
 ::: field name="card" type="boolean" optional default="false"
 是否启用卡片样式。
 :::
-::: field name="svg" type="boolean" optional default="false"
-是否将二维码渲染为 SVG 格式。默认渲染为 PNG 格式。
+::: field name="logo" type="string" optional
+二维码 logo 图片路径。显示于二维码中心。
+
+仅支持 绝对路径。
+:::
+::: field name="logoSize" type="number" optional default="0.2"
+logo 相对于二维码 大小比例
 :::
 ::: field name="title" type="string" optional
 二维码标题。
@@ -98,6 +103,8 @@ text
 更高级别提供更好的抗错能力，但会降低符号的容量。
 
 如果二维码符号可能被损坏的几率较低，则可以安全使用低纠错级别，如低或中。
+
+当二维码中包含 logo 时，默认值为 `H`。
 :::
 ::: field name="version" type="number" optional
 **二维码版本**
@@ -127,7 +134,22 @@ text
 
 @[qrcode](https://github.com/pengzhanbo/vuepress-theme-plume)
 
+### 带 logo 的二维码
+
+**输入：**
+
+```md
+@[qrcode logo="/plume.png" logo-size=0.25](https://github.com/pengzhanbo/vuepress-theme-plume)
+```
+
+**输出：**
+
+@[qrcode logo="/plume.png" logo-size=0.25](https://github.com/pengzhanbo/vuepress-theme-plume)
+
 ### 站内的页面路径
+
+::: tip 站内页面链接自动添加 logo 图片
+:::
 
 **输入：**
 

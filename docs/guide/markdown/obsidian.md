@@ -13,10 +13,56 @@ permalink: /guide/markdown/obsidian/
 
 - [Wiki 链接](#wiki-链接) - 页面间相互链接的语法
 - [嵌入内容](#嵌入内容) - 将其他文件内容嵌入到当前页面
+- [Callout](#callout) - 使用样式容器突出显示重要信息
 - [注释](#注释) - 添加仅在编辑时可见的注释
 
 ::: warning 不计划支持 Obsidian 社区第三方插件提供的扩展语法
 :::
+
+## 配置
+
+Obsidian 兼容功能默认全部启用，你可以通过配置选择性地启用或禁用：
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    plugins: {
+      mdPower: {
+        obsidian: {
+          wikiLink: true,    // Wiki 链接
+          embedLink: true,  // 嵌入内容
+          callout: true,    // Callout
+          comment: true,    // 注释
+        },
+        pdf: true,          // PDF 嵌入功能
+        artPlayer: true,    // 视频嵌入功能
+      }
+    }
+  })
+})
+```
+
+### 配置项
+
+:::: field-group
+
+::: field name="wikiLink" type="boolean" default="true" optional
+启用 [Wiki 链接](#wiki-链接) 语法。
+:::
+
+::: field name="embedLink" type="boolean" default="true" optional
+启用 [嵌入内容](#嵌入内容) 语法。
+:::
+
+::: field name="callout" type="boolean" default="true" optional
+启用 [Callout](#callout) 语法。
+:::
+
+::: field name="comment" type="boolean" default="true" optional
+启用 [注释](#注释) 语法。
+:::
+
+::::
 
 ## Wiki 链接
 
@@ -222,6 +268,123 @@ docs/
 [Obsidian 官方 - 插入文件](https://obsidian.md/zh/help/embeds){.readmore}
 [Obsidian 官方 - 文件格式](https://obsidian.md/zh/help/file-formats){.readmore}
 
+## Callout
+
+Callout 是一种用于突出显示重要信息的语法，类似于 VuePress 的 `::: hint` 提示框语法。
+
+### 语法
+
+```md
+> [!note]
+> 内容
+```
+
+**可选标题：**
+
+```md
+> [!tip] 自定义标题
+> 内容
+```
+
+### 类型
+
+Callout 支持以下类型，别名会自动映射到对应的主要类型：
+
+| 类型 | 别名 | 说明 |
+| ---- | ---- | ---- |
+| `note` | `quote`, `cite` | 笔记、引用 |
+| `tip` | `hint` | 技巧、提示 |
+| `info` | `todo` | 信息、待办 |
+| `success` | `check`, `done` | 成功、完成 |
+| `warning` | `question`, `help`, `faq` | 警告、问题、帮助 |
+| `caution` | `attention`, `failure`, `fail`, `missing`, `danger`, `error`, `bug` | 注意、失败、危险 |
+| `important` | `example` | 重要、示例 |
+| `details` | `abstract`, `summary`, `tldr` | 详情、摘要 |
+
+### 示例
+
+**基础用法：**
+
+**输入：**
+
+```md
+> [!NOTE]
+> 这是一个笔记提示框。
+```
+
+**输出：**
+
+> [!NOTE]
+> 这是一个笔记提示框。
+
+---
+
+**带标题：**
+
+**输入：**
+
+```md
+> [!TIP] 实用技巧
+> 使用 `pnpm` 可以显著加快依赖安装速度。
+```
+
+**输出：**
+
+> [!TIP] 实用技巧
+> 使用 `pnpm` 可以显著加快依赖安装速度。
+
+---
+
+**多种类型：**
+
+**输入：**
+
+```md
+> [!success]
+> 操作成功完成！
+>
+> [!warning]
+> 这是一个警告信息。
+>
+> [!caution]
+> 请谨慎操作，此操作不可撤销。
+```
+
+**输出：**
+
+> [!success]
+> 操作成功完成！
+
+> [!warning]
+> 这是一个警告信息。
+
+> [!caution]
+> 请谨慎操作，此操作不可撤销。
+
+---
+
+**Details 类型：**
+
+`details` 类型会渲染为 HTML `<details>` 元素，支持折叠展开：
+
+**输入：**
+
+```md
+> [!details]
+> 点我展开更多内容
+>
+> 这是一段隐藏的内容。
+```
+
+**输出：**
+
+> [!details]
+> 点我展开更多内容
+>
+> 这是一段隐藏的内容。
+
+[Obsidian 官方 - Callout](https://obsidian.md/zh/help/callouts){.readmore}
+
 ## 注释
 
 使用 `%%` 包裹的内容会被当作注释，不会渲染到页面中。
@@ -286,46 +449,6 @@ docs/
 可以跨越多行。
 
 [Obsidian 官方 - 注释](https://obsidian.md/zh/help/syntax#%E6%B3%A8%E9%87%8A){.readmore}
-
-## 配置
-
-Obsidian 兼容功能默认全部启用，你可以通过配置选择性地启用或禁用：
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    plugins: {
-      mdPower: {
-        obsidian: {
-          wikiLink: true,    // Wiki 链接
-          embedLink: true,  // 嵌入内容
-          comment: true,    // 注释
-        },
-        pdf: true,          // PDF 嵌入功能
-        artPlayer: true,    // 视频嵌入功能
-      }
-    }
-  })
-})
-```
-
-### 配置项
-
-:::: field-group
-
-::: field name="wikiLink" type="boolean" default="true" optional
-启用 Wiki 链接语法。
-:::
-
-::: field name="embedLink" type="boolean" default="true" optional
-启用嵌入内容语法。
-:::
-
-::: field name="comment" type="boolean" default="true" optional
-启用注释语法。
-:::
-
-::::
 
 ## 注意事项
 

@@ -7,16 +7,63 @@ permalink: /en/guide/markdown/obsidian/
 
 ## Overview
 
-The theme provides compatibility support for Obsidian's official Markdown extension syntax through the `vuepress-plugin-md-power` plugin, enabling Obsidian users to write documentation using familiar syntax.
+The theme provides compatibility support for Obsidian's official Markdown extension syntax through the `vuepress-plugin-md-power` plugin,
+enabling Obsidian users to write documentation using familiar syntax.
 
 Currently supported Obsidian extension syntax includes:
 
 - [Wiki Links](#wiki-links) - Syntax for inter-page linking
 - [Embeds](#embeds) - Embed content from other files into the current page
+- [Callout](#callout) - Highlight important information with styled containers
 - [Comments](#comments) - Add comments visible only during editing
 
 ::: warning No plans to support extension syntax provided by Obsidian's third-party community plugins
 :::
+
+## Configuration
+
+Obsidian compatibility features are all enabled by default. You can selectively enable or disable them through configuration:
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    plugins: {
+      mdPower: {
+        obsidian: {
+          wikiLink: true,    // Wiki Links
+          embedLink: true,  // Embeds
+          callout: true,    // Callout
+          comment: true,    // Comments
+        },
+        pdf: true,          // PDF embed functionality
+        artPlayer: true,    // Video embed functionality
+      }
+    }
+  })
+})
+```
+
+### Configuration Options
+
+:::: field-group
+
+::: field name="wikiLink" type="boolean" default="true" optional
+Enable [Wiki Links](#wiki-links) syntax.
+:::
+
+::: field name="embedLink" type="boolean" default="true" optional
+Enable [Embeds](#embeds) syntax.
+:::
+
+::: field name="callout" type="boolean" default="true" optional
+Enable [Callout](#callout) syntax.
+:::
+
+::: field name="comment" type="boolean" default="true" optional
+Enable [Comments](#comments) syntax.
+:::
+
+::::
 
 ## Wiki Links
 
@@ -67,8 +114,8 @@ In `docs/guide/markdown/obsidian.md`:
 | ------------------ | ----------------------------------------------------------------------------------------- |
 | `[[obsidian]]`     | Matches `docs/guide/markdown/obsidian.md` (matched via filename)                          |
 | `[[./]]`           | Matches `docs/guide/markdown/README.md` (relative path)                                   |
-| `[[../]]`          | Matches `docs/guide/README.md` (parent directory)                                        |
-| `[[guide/]]`      | Matches `docs/guide/README.md` (directory form)                                          |
+| `[[../]]`          | Matches `docs/guide/README.md` (parent directory)                                         |
+| `[[guide/]]`       | Matches `docs/guide/README.md` (directory form)                                           |
 
 ### Examples
 
@@ -222,6 +269,123 @@ Content fragments under a specified heading can be embedded using `#heading`:
 [Obsidian Official - **Insert Files**](https://obsidian.md/en/help/embeds){.readmore}
 [Obsidian Official - **File Formats**](https://obsidian.md/en/help/file-formats){.readmore}
 
+## Callout
+
+Callout is a syntax for highlighting important information, similar to VuePress's `::: hint` container syntax.
+
+### Syntax
+
+```md
+> [!note]
+> Content
+```
+
+**Optional Title:**
+
+```md
+> [!tip] Custom Title
+> Content
+```
+
+### Types
+
+Callout supports the following types, with aliases automatically mapped to their corresponding primary types:
+
+| Type | Aliases | Description |
+| ---- | ------- | ----------- |
+| `note` | `quote`, `cite` | Notes, quotes |
+| `tip` | `hint` | Tips, hints |
+| `info` | `todo` | Information, todos |
+| `success` | `check`, `done` | Success, done |
+| `warning` | `question`, `help`, `faq` | Warnings, questions, help |
+| `caution` | `attention`, `failure`, `fail`, `missing`, `danger`, `error`, `bug` | Caution, failure, danger |
+| `important` | `example` | Important, examples |
+| `details` | `abstract`, `summary`, `tldr` | Details, summary |
+
+### Examples
+
+**Basic Usage:**
+
+**Input:**
+
+```md
+> [!NOTE]
+> This is a note callout.
+```
+
+**Output:**
+
+> [!NOTE]
+> This is a note callout.
+
+---
+
+**With Title:**
+
+**Input:**
+
+```md
+> [!TIP] Useful Tip
+> Using `pnpm` can significantly speed up dependency installation.
+```
+
+**Output:**
+
+> [!TIP] Useful Tip
+> Using `pnpm` can significantly speed up dependency installation.
+
+---
+
+**Multiple Types:**
+
+**Input:**
+
+```md
+> [!success]
+> Operation completed successfully!
+>
+> [!warning]
+> This is a warning message.
+>
+> [!caution]
+> Please proceed with caution, this action cannot be undone.
+```
+
+**Output:**
+
+> [!success]
+> Operation completed successfully!
+
+> [!warning]
+> This is a warning message.
+
+> [!caution]
+> Please proceed with caution, this action cannot be undone.
+
+---
+
+**Details Type:**
+
+The `details` type renders as an HTML `<details>` element, supporting collapse/expand:
+
+**Input:**
+
+```md
+> [!details]
+> Click to expand more content
+>
+> This is hidden content.
+```
+
+**Output:**
+
+> [!details]
+> Click to expand more content
+>
+> This is hidden content.
+
+[Obsidian Official - **Callout**](https://obsidian.md/en/help/callouts){.readmore}
+
 ## Comments
 
 Content wrapped in `%%` is treated as a comment and will not be rendered on the page.
@@ -286,46 +450,6 @@ This is a block comment.
 It can span multiple lines.
 
 [Obsidian Official - **Comments**](https://obsidian.md/en/help/syntax#%E6%B3%A8%E9%87%8B){.readmore}
-
-## Configuration
-
-Obsidian compatibility features are all enabled by default. You can selectively enable or disable them through configuration:
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    plugins: {
-      mdPower: {
-        obsidian: {
-          wikiLink: true,    // Wiki Links
-          embedLink: true,  // Embeds
-          comment: true,    // Comments
-        },
-        pdf: true,          // PDF embed functionality
-        artPlayer: true,    // Video embed functionality
-      }
-    }
-  })
-})
-```
-
-### Configuration Options
-
-:::: field-group
-
-::: field name="wikiLink" type="boolean" default="true" optional
-Enable Wiki Links syntax.
-:::
-
-::: field name="embedLink" type="boolean" default="true" optional
-Enable embed content syntax.
-:::
-
-::: field name="comment" type="boolean" default="true" optional
-Enable comment syntax.
-:::
-
-::::
 
 ## Notes
 

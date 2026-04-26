@@ -1,5 +1,6 @@
 import type { LocaleData } from 'vuepress'
 import type { EncryptSnippetLocale } from './encrypt'
+import type { ObsidianLocaleData } from './obsidian'
 
 /**
  * Markdown Power Plugin Locale Data
@@ -19,6 +20,12 @@ export interface MDPowerLocaleData extends LocaleData {
    * 加密片段本地化数据
    */
   encrypt?: EncryptSnippetLocale
+  /**
+   * Obsidian locale data
+   *
+   * Obsidian 本地化数据
+   */
+  obsidian?: ObsidianLocaleData
 }
 
 /**

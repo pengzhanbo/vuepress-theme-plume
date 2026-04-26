@@ -15,6 +15,9 @@
  */
 
 import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
+import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
+import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs'
+import type StateInline from 'markdown-it/lib/rules_inline/state_inline.mjs'
 import type { App } from 'vuepress'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { attempt } from '@pengzhanbo/utils'
@@ -23,6 +26,7 @@ import Token from 'markdown-it/lib/token.mjs'
 import { ensureLeadingSlash, isLinkHttp } from 'vuepress/shared'
 import { fs, hash, path } from 'vuepress/utils'
 import { checkSupportType, SUPPORTED_VIDEO_TYPES } from '../embed/video/artPlayer.js'
+import { resolvePaths } from '../enhance/links.js'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { parseRect } from '../utils/parseRect.js'
 import { slugify } from '../utils/slugify.js'
@@ -32,13 +36,14 @@ interface EmbedLinkMeta {
   filename: string
   hashes: string[]
   settings: string
+  isInline: boolean
 }
 
 const EXTENSION_IMAGES: string[] = ['.jpg', '.jpeg', '.png', '.gif', '.avif', '.webp', '.svg', '.bmp', '.ico', '.tiff', '.apng', '.jfif', '.pjpeg', '.pjp', '.xbm']
 const EXTENSION_AUDIOS: string[] = ['.mp3', '.flac', '.wav', '.ogg', '.opus', '.webm', '.acc']
 const EXTENSION_VIDEOS: string[] = SUPPORTED_VIDEO_TYPES.map(ext => `.${ext}`)
 
-const embedLinkDef: RuleBlock = (state, startLine, endLine, silent) => {
+const blockEmbedLinkDef: RuleBlock = (state, startLine, endLine, silent) => {
   const start = state.bMarks[startLine] + state.tShift[startLine]
   const max = state.eMarks[startLine]
 
@@ -71,7 +76,124 @@ const embedLinkDef: RuleBlock = (state, startLine, endLine, silent) => {
   // ![[xxxx]]
   //    ^^^^  <- content
   const content = line.slice(3, -2).trim()
+  genEmbedAsset(state, content)
 
+  state.line = startLine + 1
+  return true
+}
+
+const inlineEmbedLinkDef: RuleInline = (state, silent) => {
+  let found = false
+  const max = state.posMax
+  const start = state.pos
+
+  if (
+    state.src.charCodeAt(start) !== 0x21 // \!
+    || state.src.charCodeAt(start + 1) !== 0x5B // [
+    || state.src.charCodeAt(start + 2) !== 0x5B // [
+  ) {
+    return false
+  }
+
+  /* istanbul ignore if -- @preserve */
+  if (silent)
+    return false
+
+  // - ![[]]
+  if (max - start < 6)
+    return false
+
+  state.pos = start + 2
+
+  // 查找 ]]
+  while (state.pos < max) {
+    if (state.src.charCodeAt(state.pos) === 0x5D
+      && state.src.charCodeAt(state.pos + 1) === 0x5D) {
+      found = true
+      break
+    }
+
+    state.md.inline.skipToken(state)
+  }
+
+  if (!found || start + 2 === state.pos) {
+    state.pos = start
+    return false
+  }
+  // [[xxxx]]
+  //   ^^^^  <- content
+  const content = state.src.slice(start + 3, state.pos).trim()
+  // found!
+  state.posMax = state.pos
+  state.pos = start + 3
+
+  genEmbedAsset(state, content, true)
+
+  state.pos = state.posMax + 2
+  state.posMax = max
+
+  return true
+}
+
+export function embedLinkPlugin(md: Markdown, app: App): void {
+  md.block.ruler.before(
+    'import_code',
+    'obsidian_block_embed_link',
+    blockEmbedLinkDef,
+    { alt: ['paragraph', 'reference', 'blockquote', 'list'] },
+  )
+  md.inline.ruler.before('emphasis', 'obsidian_inline_embed_link', inlineEmbedLinkDef)
+
+  md.renderer.rules.obsidian_embed_link = (tokens, idx, _, env: MarkdownEnv) => {
+    const token = tokens[idx]
+    const { filename, hashes, settings, isInline } = token.meta as EmbedLinkMeta
+    const pagePath = findFirstPage(filename, env.filePathRelative ?? '')
+    // 行内规则，解析为链接
+    if (isInline && pagePath) {
+      const anchor = hashes.at(-1)
+      const slug = anchor ? `#${slugify(anchor)}` : ''
+      const { absolutePath, relativePath } = resolvePaths(
+        pagePath,
+        env.base || '/',
+        env.filePathRelative ?? null,
+      )
+      ;(env.links ??= []).push({
+        raw: pagePath,
+        absolute: absolutePath,
+        relative: relativePath,
+      })
+      return `<VPLink href="${ensureLeadingSlash(pagePath)}${slug}">${md.utils.escapeHtml(settings) || (hashes.length ? `<template #after-text>${md.utils.escapeHtml(` > ${hashes.join(' > ')}`)}</template>` : '')}</VPLink>`
+    }
+
+    // 解析为内部 markdown 资源，提取 markdown 片段并插入到当前页面
+    if (pagePath) {
+      const [error, markdown] = attempt(() => fs.readFileSync(app.dir.source(pagePath), 'utf-8'))
+      if (error) {
+        console.warn(`[embedLinkPlugin] can not read file: ${pagePath}`)
+        return ''
+      }
+      const { content: rawContent } = grayMatter(markdown)
+      if (!rawContent) {
+        console.warn(`[embedLinkPlugin] file ${pagePath} is empty`)
+        return ''
+      }
+      const content = extractContentByHeadings(rawContent, hashes)
+      pagePath && (env.importedFiles ??= []).push(pagePath)
+      return md.render(content, cleanMarkdownEnv(env))
+    }
+
+    // 其他资源，解析为链接
+    const url = ensureLeadingSlash(filename[0] === '.' ? path.join(path.dirname(env.filePathRelative ?? ''), filename) : filename)
+    const anchor = hashes.at(-1)
+    const slug = anchor ? `#${slugify(anchor)}` : ''
+    const text = settings || (filename + (hashes.length ? ` > ${hashes.join(' > ')}` : ''))
+    return `<a href="${url}${slug}" target="_blank" rel="noopener noreferrer">${
+      md.utils.escapeHtml(text)
+    }</a>`
+  }
+}
+
+function genEmbedAsset(state: StateBlock | StateInline, content: string, isInline = false): void {
   const [file, settings] = content.split('|').map(x => x.trim())
   const [filename, ...hashes] = file.trim().split('#').map(x => x.trim())
   const extname = path.extname(filename).toLowerCase()
@@ -156,50 +278,9 @@ const embedLinkDef: RuleBlock = (state, startLine, endLine, silent) => {
       filename: filename.trim(),
       hashes: hashes.map(hash => hash.trim()),
       settings: settings?.trim(),
+      isInline,
     } as EmbedLinkMeta
     token.content = content
-  }
-
-  state.line = startLine + 1
-  return true
-}
-
-export function embedLinkPlugin(md: Markdown, app: App): void {
-  md.block.ruler.before(
-    'import_code',
-    'obsidian_embed_link',
-    embedLinkDef,
-    { alt: ['paragraph', 'reference', 'blockquote', 'list'] },
-  )
-  md.renderer.rules.obsidian_embed_link = (tokens, idx, _, env: MarkdownEnv) => {
-    const token = tokens[idx]
-    const { filename, hashes, settings } = token.meta as EmbedLinkMeta
-    const pagePath = findFirstPage(filename, env.filePathRelative ?? '')
-    // 解析为内部 markdown 资源，提取 markdown 片段并插入到当前页面
-    if (pagePath) {
-      const [error, markdown] = attempt(() => fs.readFileSync(app.dir.source(pagePath), 'utf-8'))
-      if (error) {
-        console.warn(`[embedLinkPlugin] can not read file: ${pagePath}`)
-        return ''
-      }
-      const { content: rawContent } = grayMatter(markdown)
-      if (!rawContent) {
-        console.warn(`[embedLinkPlugin] file ${pagePath} is empty`)
-        return ''
-      }
-      const content = extractContentByHeadings(rawContent, hashes)
-      pagePath && (env.importedFiles ??= []).push(pagePath)
-      return md.render(content, cleanMarkdownEnv(env))
-    }
-
-    // 其他资源，解析为链接
-    const url = ensureLeadingSlash(filename[0] === '.' ? path.join(path.dirname(env.filePathRelative ?? ''), filename) : filename)
-    const anchor = hashes.at(-1)
-    const slug = anchor ? `#${slugify(anchor)}` : ''
-    const text = settings || (filename + (hashes.length ? ` > ${hashes.join(' > ')}` : ''))
-    return `<a href="${url}${slug}" target="_blank" rel="noopener noreferrer">${
-      md.utils.escapeHtml(text)
-    }</a>`
   }
 }
 

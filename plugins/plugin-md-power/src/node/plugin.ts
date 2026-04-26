@@ -113,7 +113,7 @@ export function markdownPowerPlugin(
         await containerPlugin(app, md, options, locales)
         await imageSizePlugin(app, md, options.imageSize)
 
-        obsidianPlugin(app, md, options)
+        obsidianPlugin(app, md, options, locales)
       },
 
       onPrepared: async () => {

@@ -36,7 +36,7 @@ describe('obsidianPlugin', () => {
   it('should enable all plugins by default', () => {
     const md = createMarkdownWithMockRules()
     const mockApp = createMockApp([{ path: '/', filePathRelative: 'README.md', title: 'Home' }] as unknown as App['pages'])
-    obsidianPlugin(mockApp, md, {})
+    obsidianPlugin(mockApp, md, {}, {})
 
     // Wiki link should not work since findFirstPage returns undefined when pagePaths is empty
     const wikiResult = md.render('[[Home]]')
@@ -49,7 +49,7 @@ describe('obsidianPlugin', () => {
   it('should allow disabling specific plugins', () => {
     const md = createMarkdownWithMockRules()
     const mockApp = createMockApp()
-    obsidianPlugin(mockApp, md, { obsidian: { wikiLink: false } })
+    obsidianPlugin(mockApp, md, { obsidian: { wikiLink: false } }, {})
 
     const wikiResult = md.render('[[Page]]')
     expect(wikiResult).not.toContain('<VPLink')
@@ -59,7 +59,7 @@ describe('obsidianPlugin', () => {
   it('should disable all plugins when obsidian is false', () => {
     const md = createMarkdownWithMockRules()
     const mockApp = createMockApp()
-    obsidianPlugin(mockApp, md, { obsidian: false })
+    obsidianPlugin(mockApp, md, { obsidian: false }, {})
 
     const result = md.render('![[image.png]]')
     expect(result).toContain('![[image.png]]')
@@ -68,7 +68,7 @@ describe('obsidianPlugin', () => {
   it('should disable embedLink when explicitly set to false', () => {
     const md = createMarkdownWithMockRules()
     const mockApp = createMockApp()
-    obsidianPlugin(mockApp, md, { obsidian: { embedLink: false } })
+    obsidianPlugin(mockApp, md, { obsidian: { embedLink: false } }, {})
 
     const result = md.render('![[image.png]]')
     expect(result).not.toContain('<img')
@@ -77,7 +77,7 @@ describe('obsidianPlugin', () => {
   it('should disable comment when explicitly set to false', () => {
     const md = createMarkdownWithMockRules()
     const mockApp = createMockApp()
-    obsidianPlugin(mockApp, md, { obsidian: { comment: false } })
+    obsidianPlugin(mockApp, md, { obsidian: { comment: false } }, {})
 
     const commentResult = md.render('%%comment%%')
     expect(commentResult).toContain('%%comment%%')

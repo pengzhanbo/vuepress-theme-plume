@@ -25,10 +25,11 @@ export function markdownPlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfi
   const options = getThemeConfig()
   const plugins: PluginConfig = []
   let { hint, image, include, math, mdChart, mdPower } = splitMarkdownOptions(options.markdown ?? {})
-
+  const obsidian = isPlainObject(mdPower.obsidian) ? mdPower.obsidian : {}
   plugins.push(markdownHintPlugin({
     hint: hint.hint ?? true,
-    alert: hint.alert ?? true,
+    // 如果启用了 obsidian 兼容，则禁用 hint.alert，obsidian callout 已处理 alert
+    alert: !mdPower.obsidian ? (hint.alert ?? true) : obsidian.callout === false,
     injectStyles: false,
   }))
 

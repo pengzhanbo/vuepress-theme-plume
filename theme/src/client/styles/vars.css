@@ -442,6 +442,11 @@
   --vp-custom-block-important-bg: var(--vp-c-important-soft);
   --vp-custom-block-important-code-bg: var(--vp-c-important-soft);
 
+  --vp-custom-block-success-border: transparent;
+  --vp-custom-block-success-text: var(--vp-c-text-1);
+  --vp-custom-block-success-bg: var(--vp-c-success-soft);
+  --vp-custom-block-success-code-bg: var(--vp-c-success-soft);
+
   --vp-custom-block-warning-border: transparent;
   --vp-custom-block-warning-text: var(--vp-c-text-1);
   --vp-custom-block-warning-bg: var(--vp-c-warning-soft);

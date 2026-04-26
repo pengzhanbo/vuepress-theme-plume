@@ -110,6 +110,7 @@ function onCopy(type: 'html' | 'md') {
 }
 
 .vp-table .table-container table {
+  display: table;
   margin: 0;
 }
 

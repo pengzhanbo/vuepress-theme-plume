@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.196",
   "private": true,
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@10.33.2",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -86,16 +86,16 @@
     }
   },
   "resolutions": {
-    "@bufbuild/protobuf": "^2.11.0",
+    "@bufbuild/protobuf": "^2.12.0",
     "@eslint-community/eslint-utils": "catalog:peer",
     "@shikijs/core": "^4.0.2",
     "@shikijs/twoslash": "^4.0.2",
     "@typescript-eslint/types": "catalog:peer",
     "@typescript-eslint/utils": "catalog:peer",
     "@xmldom/xmldom": ">=0.9.10",
-    "baseline-browser-mapping": "^2.10.20",
+    "baseline-browser-mapping": "^2.10.22",
     "chokidar": "catalog:prod",
-    "dompurify": ">=3.4.0",
+    "dompurify": ">=3.4.1",
     "esbuild": "catalog:prod",
     "follow-redirects": ">=1.16.0",
     "lodash": ">=4.18.1",

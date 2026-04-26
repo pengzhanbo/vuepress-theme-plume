@@ -21,7 +21,7 @@ patchedDependencies:
   floating-vue: patches/floating-vue.patch
 catalogs:
   dev:
-    '@commitlint/cli': ^20.5.0
+    '@commitlint/cli': ^20.5.2
     '@commitlint/config-conventional': ^20.5.0
     '@lunariajs/core': ^0.1.1
     '@pengzhanbo/eslint-config-vue': ^2.4.0
@@ -38,7 +38,7 @@ catalogs:
     '@types/stylus': ^0.48.43
     '@types/three': ^0.184.0
     '@types/webpack-env': ^1.18.8
-    '@vitest/coverage-v8': ^4.1.4
+    '@vitest/coverage-v8': ^4.1.5
     bumpp: ^11.0.1
     commitizen: ^4.3.1
     conventional-changelog: ^7.2.0
@@ -57,21 +57,21 @@ catalogs:
     minimist: ^1.2.8
     postcss: ^8.5.10
     rimraf: ^6.1.3
-    stylelint: ^17.8.0
+    stylelint: ^17.9.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.21.9
+    tsdown: ^0.21.10
     typescript: ^6.0.3
-    vite: ^8.0.8
-    vitest: ^4.1.4
+    vite: ^8.0.10
+    vitest: ^4.1.5
     wait-on: ^9.0.5
   peer:
     '@eslint-community/eslint-utils': ^4.9.1
-    '@iconify/json': ^2.2.464
+    '@iconify/json': ^2.2.466
     '@mathjax/src': ^4.1.1
     '@pinyin-pro/data': ^1.3.1
-    '@typescript-eslint/types': ^8.58.2
-    '@typescript-eslint/utils': ^8.58.2
+    '@typescript-eslint/types': ^8.59.0
+    '@typescript-eslint/utils': ^8.59.0
     artplayer: ^5.4.0
     dashjs: ^5.1.1
     gsap: ^3.15.0
@@ -87,7 +87,7 @@ catalogs:
     three: ^0.184.0
   prod:
     '@clack/prompts': ^1.2.0
-    '@iconify/utils': ^3.1.0
+    '@iconify/utils': ^3.1.1
     '@iconify/vue': ^5.0.0
     '@mdit/plugin-attrs': ^0.25.2
     '@mdit/plugin-footnote': ^0.23.2
@@ -96,7 +96,7 @@ catalogs:
     '@mdit/plugin-sup': ^0.24.2
     '@mdit/plugin-tab': ^0.24.2
     '@mdit/plugin-tasklist': ^0.23.2
-    '@pengzhanbo/utils': ^3.3.1
+    '@pengzhanbo/utils': ^3.5.1
     '@vueuse/core': ^14.2.1
     '@vueuse/integrations': ^14.2.1
     cac: ^7.0.0
@@ -106,7 +106,7 @@ catalogs:
     echarts: ^6.0.0
     esbuild: ^0.28.0
     flowchart.ts: ^3.0.1
-    focus-trap: ^8.0.1
+    focus-trap: ^8.1.0
     gray-matter: ^4.0.3
     handlebars: ^4.7.9
     hash-wasm: ^4.12.0
@@ -134,8 +134,8 @@ catalogs:
     sort-package-json: ^3.6.1
     tm-grammars: ^1.31.15
     tm-themes: ^1.12.2
-    vue: ^3.5.32
-    vue-router: ^5.0.4
+    vue: ^3.5.33
+    vue-router: ^5.0.6
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.28
     '@vuepress/helper': 2.0.0-rc.128

@@ -1,3 +1,10 @@
+# [1.0.0-rc.198](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.197...v1.0.0-rc.198) (2026-04-26)
+
+
+### Bug Fixes
+
+* **theme:** fix plugin-hint default options ([26c588a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/26c588ab237659b7f46e7b8d9db8031892e46511))
+
 # [1.0.0-rc.197](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.196...v1.0.0-rc.197) (2026-04-26)
 
 

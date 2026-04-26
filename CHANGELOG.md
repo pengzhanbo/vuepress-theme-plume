@@ -1,3 +1,22 @@
+# [1.0.0-rc.197](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.196...v1.0.0-rc.197) (2026-04-26)
+
+
+### Bug Fixes
+
+* **theme:** fix  table horizontal overflow on narrow screens ([#895](https://github.com/pengzhanbo/vuepress-theme-plume/issues/895)) ([2bfdec8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2bfdec82d7c9a07a84d55b6540b21e90d9ed9b38))
+* **theme:** fix collapse interaction failed when sidebar group set `link` ([#896](https://github.com/pengzhanbo/vuepress-theme-plume/issues/896)) ([3265be8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3265be84a9b10007e65780ac897852e5ec6b29fc))
+
+
+### Features
+
+* **plugin-md-power:** add `logo` support for qrcode ([#898](https://github.com/pengzhanbo/vuepress-theme-plume/issues/898)) ([4614041](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4614041bbfb8092c9d25f04f027862774723866c))
+* **plugin-md-power:** add support for obsidian callout syntax ([#897](https://github.com/pengzhanbo/vuepress-theme-plume/issues/897)) ([a9ddb04](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a9ddb04acdc0158e6a41f083aa3b6a255140c93d))
+
+
+### Performance Improvements
+
+* update deps to latest ([32fb93b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/32fb93bf35007432a26d46ebeb47727d2b83e2f8))
+
 # [1.0.0-rc.196](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.195...v1.0.0-rc.196) (2026-04-19)
 
 

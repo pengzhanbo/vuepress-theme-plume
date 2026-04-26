@@ -6,7 +6,7 @@ import type { MarkdownMathPluginOptions } from '@vuepress/plugin-markdown-math'
 import type { PluginConfig } from 'vuepress'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
 import type { MarkdownOptions, ThemeBuiltinPlugins } from '../../shared/index.js'
-import { isPlainObject } from '@vuepress/helper'
+import { isPlainObject } from '@pengzhanbo/utils'
 import { markdownChartPlugin } from '@vuepress/plugin-markdown-chart'
 import { markdownHintPlugin } from '@vuepress/plugin-markdown-hint'
 import { markdownImagePlugin } from '@vuepress/plugin-markdown-image'
@@ -29,7 +29,7 @@ export function markdownPlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfi
   plugins.push(markdownHintPlugin({
     hint: hint.hint ?? true,
     // 如果启用了 obsidian 兼容，则禁用 hint.alert，obsidian callout 已处理 alert
-    alert: !mdPower.obsidian ? (hint.alert ?? true) : obsidian.callout === false,
+    alert: mdPower.obsidian === false ? (hint.alert ?? true) : obsidian.callout === false,
     injectStyles: false,
   }))
 

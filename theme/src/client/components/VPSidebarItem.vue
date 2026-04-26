@@ -108,6 +108,7 @@ function onItemInteraction(e: MouseEvent | Event) {
         :aria-label="`${collapsed ? 'Expand' : 'Collapse'} ${item.text}`"
         :aria-expanded="!collapsed"
         tabindex="-1"
+        @click.capture="item.link && toggle()"
       >
         <span class="vpi-chevron-right caret-icon" />
       </button>

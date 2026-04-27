@@ -96,8 +96,8 @@ docs:
   -
     name: mcenahle Docs
     desc: mcenahle 的文档网站。
-    logo: https://d.mcenahle.cn/images/logo.png
-    url: https://d.mcenahle.cn/
+    logo: https://d.mcenahle.com/images/logo.png
+    url: https://d.mcenahle.com/
     preview: https://mcenahle.cn/resources/docs-site-preview.jpg
 
 blog:

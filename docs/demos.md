@@ -17,7 +17,7 @@ docs:
     logo: /plume.png
     url: https://theme-plume.vuejs.press
     repo: https://github.com/pengzhanbo/vuepress-theme-plume
-    preview: /images/demos/plume.jpg
+    preview: /images/demos/plume.webp
   -
     name: city walk 城市漫步
     desc: 致力于汇聚全国350多个城市的户外活动地点与文化场馆的开放数据平台。
@@ -25,12 +25,6 @@ docs:
     url: https://shenzhen.citywalk.group/
     repo: https://github.com/sunshang-hl/CityWalk
     preview: https://pub-187e90a3327b41ccb8869558b6b8bbc0.r2.dev/city-shenzhen/2024/12/ed251c4438f722dffd6cb95db86c0d56.jpg
-  -
-    name: 哦麦 MC
-    desc: 我的世界教学文档。
-    logo: https://s.xc.life/img/img/minecraft-154749_1280.png
-    url: https://ohmymc.com/
-    preview: https://s.xc.life/img/img/20241228225159139.png
   -
     name: NcatBotDocs
     desc: NcatBot，一个 QQ 机器人框架项目的使用文档。
@@ -193,13 +187,6 @@ blog:
     repo: https://github.com/jindongjie/blog-vuepress-2025
     preview: /images/demos/jindongjie.jpg
   -
-    name: 艺述论
-    desc: 一枚喜受艺术的程序员's blog
-    logo: https://yishulun.com/avatar.png
-    url: https://yishulun.com
-    repo: https://github.com/rixingyike/rixingyike.github.io
-    preview: /images/demos/yishulun.com.jpg
-  -
     name: 菲兹克斯喵
     desc: 一名物理系学生的笔记和生活
     logo: https://physnya.top/images/Physics_nya.jpg
@@ -293,6 +280,12 @@ blog:
 :::
 
 [前往 **Github Pull Request** 提交站点](https://github.com/pengzhanbo/vuepress-theme-plume/edit/main/docs/demos.md){.read-more}
+
+::: info 案例每半年检查一次，以下情况的站点将会被移除
+
+- 站点链接无法访问
+- 已不再使用 vuepress-theme-plume 主题
+:::
 
 ## 文档
 

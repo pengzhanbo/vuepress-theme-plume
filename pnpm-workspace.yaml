@@ -41,6 +41,7 @@ overrides:
   tmp: '>=0.2.5'
   uuid: '>=11.1.1'
   vite: 'catalog:dev'
+  vue: 'catalog:prod'
   vue-router: 'catalog:prod'
 
 allowBuilds:

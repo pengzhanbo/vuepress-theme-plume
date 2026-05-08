@@ -43,6 +43,11 @@ overrides:
   vite: 'catalog:dev'
   vue-router: 'catalog:prod'
 
+allowBuilds:
+  '@parcel/watcher': true
+  core-js: true
+  esbuild: true
+
 patchedDependencies:
   floating-vue: patches/floating-vue.patch
 
@@ -188,8 +193,3 @@ catalogs:
     '@vuepress/plugin-watermark': 2.0.0-rc.128
     '@vuepress/shiki-twoslash': 2.0.0-rc.128
     vuepress: 2.0.0-rc.28
-
-allowBuilds:
-  '@parcel/watcher': true
-  core-js: true
-  esbuild: true

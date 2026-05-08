@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.198",
   "private": true,
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@11.0.8",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [
@@ -77,6 +77,7 @@
     "tsconfig-vuepress": "catalog:dev",
     "tsdown": "catalog:dev",
     "typescript": "catalog:dev",
+    "unrun": "catalog:dev",
     "vitest": "catalog:dev",
     "wait-on": "catalog:dev"
   },
@@ -84,27 +85,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "resolutions": {
-    "@bufbuild/protobuf": "^2.12.0",
-    "@eslint-community/eslint-utils": "catalog:peer",
-    "@shikijs/core": "^4.0.2",
-    "@shikijs/twoslash": "^4.0.2",
-    "@typescript-eslint/types": "catalog:peer",
-    "@typescript-eslint/utils": "catalog:peer",
-    "@xmldom/xmldom": ">=0.9.10",
-    "baseline-browser-mapping": "^2.10.22",
-    "chokidar": "catalog:prod",
-    "dompurify": ">=3.4.1",
-    "esbuild": "catalog:prod",
-    "follow-redirects": ">=1.16.0",
-    "lodash": ">=4.18.1",
-    "lodash-es": ">=4.18.1",
-    "sass-embedded": "catalog:peer",
-    "shiki": "^4.0.2",
-    "tmp": ">=0.2.5",
-    "vite": "catalog:dev",
-    "vue-router": "catalog:prod"
   },
   "lint-staged": {
     "*": "eslint --fix",

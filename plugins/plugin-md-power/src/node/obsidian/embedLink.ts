@@ -197,12 +197,17 @@ function genEmbedAsset(state: StateBlock | StateInline, content: string, isInlin
   const [file, settings] = content.split('|').map(x => x.trim())
   const [filename, ...hashes] = file.trim().split('#').map(x => x.trim())
   const extname = path.extname(filename).toLowerCase()
+  const env = state.env as MarkdownEnv
 
   // 渲染为 图片
   if (EXTENSION_IMAGES.includes(extname)) {
     const token = state.push('image', 'img', 1)
     token.content = filename
-    token.attrSet('src', resolveFilenameToAssetPath(filename))
+    token.attrSet('src', resolveFilenameToAssetPath(
+      filename,
+      env.filePath || '',
+      env.filePathRelative ?? '',
+    ))
     token.attrSet('alt', filename)
     if (settings) {
       const [width, height] = settings.split('x').map(x => x.trim())
@@ -284,9 +289,19 @@ function genEmbedAsset(state: StateBlock | StateInline, content: string, isInlin
   }
 }
 
-function resolveFilenameToAssetPath(filename: string): string {
+function resolveFilenameToAssetPath(filename: string, absolutePath = '', relativePath = ''): string {
   if (isLinkHttp(filename) || filename[0] === '.' || filename[0] === '/') {
     return filename
+  }
+  if (!absolutePath || !relativePath)
+    return `/${filename}`
+
+  const rootPath = absolutePath.replace(relativePath, '')
+  const dirname = path.dirname(absolutePath)
+  const actualPath = [path.join(rootPath, filename), path.join(dirname, filename)].find(x => fs.existsSync(x))
+  if (actualPath) {
+    const relative = path.relative(dirname, actualPath)
+    return relative[0] === '.' ? relative : `./${relative}`
   }
   return `/${filename}`
 }

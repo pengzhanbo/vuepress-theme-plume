@@ -177,7 +177,7 @@ export function useCaniuse({ feature, embedType, past, future }: {
     content += ']('
 
     if (feature.value)
-      content += feature.value
+      content += feature.value.toLowerCase()
 
     return `${content})`
   })

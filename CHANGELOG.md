@@ -1,3 +1,16 @@
+# [1.0.0-rc.199](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.198...v1.0.0-rc.199) (2026-05-09)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** fix obsidian `embed-link` image path parse, close [#903](https://github.com/pengzhanbo/vuepress-theme-plume/issues/903) ([#904](https://github.com/pengzhanbo/vuepress-theme-plume/issues/904)) ([a9d0bdf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a9d0bdf962336d9631262d2f21322b5a98083e9c))
+* **theme:** fix social links vertical align ([#905](https://github.com/pengzhanbo/vuepress-theme-plume/issues/905)) ([6006d87](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6006d877c5ffc37bf92bf862697ea1bedcded96f))
+
+
+### Performance Improvements
+
+* **theme:** optimize vite bundle build code splitting ([#906](https://github.com/pengzhanbo/vuepress-theme-plume/issues/906)) ([928ca33](https://github.com/pengzhanbo/vuepress-theme-plume/commit/928ca33602132bd8cafdd78b9eab64eaa592ef57))
+
 # [1.0.0-rc.198](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.197...v1.0.0-rc.198) (2026-04-26)
 
 

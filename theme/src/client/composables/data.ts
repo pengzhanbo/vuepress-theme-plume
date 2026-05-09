@@ -2,6 +2,7 @@ import type { Ref } from 'vue'
 import type {
   PageDataRef,
   PageFrontmatterRef,
+  PageLangRef,
   SiteLocaleDataRef,
 } from 'vuepress/client'
 import type {
@@ -39,7 +40,7 @@ export interface Data<T extends FrontmatterType = 'page', C extends FrontmatterC
   theme: ThemeLocaleDataRef<ThemeLocaleData>
   page: PageDataRef<ThemePageData>
   frontmatter: PageFrontmatterRef<Frontmatter<T> & Record<string, unknown>>
-  lang: Ref<string>
+  lang: PageLangRef
   site: SiteLocaleDataRef
   isDark: Ref<boolean>
   collection: CollectionItemRef<C extends 'doc' ? ThemeDocCollection : ThemePostCollection>

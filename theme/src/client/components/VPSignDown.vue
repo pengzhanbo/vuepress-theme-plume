@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ThemeHomeConfig } from 'theme/src/shared/index.js'
+import type { ThemeHomeConfig } from '../../shared/index.js'
 import { useElementSize, useWindowSize } from '@vueuse/core'
 import { computed, onMounted, shallowRef } from 'vue'
 import { useData, useLayout } from '../composables/index.js'

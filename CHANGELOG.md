@@ -1,3 +1,10 @@
+# [1.0.0-rc.200](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.199...v1.0.0-rc.200) (2026-05-09)
+
+
+### Performance Improvements
+
+* optimize vite bundle build code splitting ([2f9a4a8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/2f9a4a8c9e76aed2a5e5d4609c41e7f715fb565b))
+
 # [1.0.0-rc.199](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.198...v1.0.0-rc.199) (2026-05-09)
 
 

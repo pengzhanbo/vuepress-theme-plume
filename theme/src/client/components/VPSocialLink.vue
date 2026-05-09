@@ -67,4 +67,8 @@ const label = computed(() => {
   height: 20px;
   fill: currentcolor;
 }
+
+.vp-social-link > :deep([class*="vpi-"], .vp-icon) {
+  vertical-align: initial;
+}
 </style>

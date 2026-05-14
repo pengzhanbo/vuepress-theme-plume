@@ -224,10 +224,10 @@ blog:
   -
     name: rand777
     desc: 摇摇晃晃，也能到达目的地。
-    logo: https://blog.rand777.space/avatar.jpg
-    url: https://blog.rand777.space
+    logo: https://www.rand777.com/avatar.jpg
+    url: https://www.rand777.com
     repo: https://github.com/rand777gg/rand777-plume-blog
-    preview: https://blog.rand777.space/siteshot.png
+    preview: https://www.rand777.com/siteshot.jpg
   -
     name: 异想之旅
     desc: 异想之旅のBlog

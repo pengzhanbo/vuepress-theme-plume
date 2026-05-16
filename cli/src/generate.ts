@@ -44,7 +44,7 @@ export async function generate(
     fileList.push(...await readFiles(getTemplate('common')))
     if (data.packageManager === 'pnpm') {
       fileList.push({
-        filepath: '.npmrc',
+        filepath: 'pnpm-workspace.yaml',
         content: 'shamefully-hoist=true\nshell-emulator=true',
       })
     }

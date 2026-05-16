@@ -1,3 +1,11 @@
+# [1.0.0-rc.201](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.200...v1.0.0-rc.201) (2026-05-16)
+
+
+### Features
+
+* **cli:** auto generate `pnpm-workspace.yaml` config file ([431cd78](https://github.com/pengzhanbo/vuepress-theme-plume/commit/431cd7848db0e296e9097593e5b5a3cbf54ea1f8))
+* update vuepress to `rc.30` ([c9af859](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c9af8594785bf35534c49616a85fdc4a4f16d581))
+
 # [1.0.0-rc.200](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.199...v1.0.0-rc.200) (2026-05-09)
 
 

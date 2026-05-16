@@ -118,7 +118,7 @@ export default defineClientConfig({
 
 **输出：**
 
-<!-- @include: ../../snippet/echarts-1.snippet.md{2-100} -->
+<!-- @include: ../../snippet/echarts-1.snippet.md{2-94} -->
 
 ### 柱状图
 
@@ -130,7 +130,7 @@ export default defineClientConfig({
 
 **输出：**
 
-<!-- @include: ../../snippet/echarts-2.snippet.md{2-75} -->
+<!-- @include: ../../snippet/echarts-2.snippet.md{2-78} -->
 
 ### 饼图
 
@@ -178,7 +178,7 @@ export default defineClientConfig({
 
 **输出：**
 
-<!-- @include: ../../snippet/echarts-6.snippet.md{2-308} -->
+<!-- @include: ../../snippet/echarts-6.snippet.md{2-307} -->
 
 ### 雷达图
 
@@ -202,7 +202,7 @@ export default defineClientConfig({
 
 **输出：**
 
-<!-- @include: ../../snippet/echarts-8.snippet.md{2-179} -->
+<!-- @include: ../../snippet/echarts-8.snippet.md{2-165} -->
 
 ### 树图
 

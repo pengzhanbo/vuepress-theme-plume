@@ -25,7 +25,7 @@ export async function compileScript(source: string, type: 'ts' | 'js'): Promise<
     return cache.get(key) as string
   const transform = await compiler.script()
   const res = await transform(source, {
-    target: 'es2018',
+    target: ['es2023', 'chrome111', 'edge111', 'firefox114', 'safari16.4'],
     platform: 'browser',
     format: 'cjs',
     loader: type === 'ts' ? 'ts' : 'js',

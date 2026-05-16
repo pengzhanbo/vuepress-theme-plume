@@ -1,11 +1,11 @@
-import { isFunction } from '@pengzhanbo/utils'
+import { isArray, isFunction, LRUCache } from '@pengzhanbo/utils'
 import picomatch from 'picomatch'
 import { hash } from 'vuepress/utils'
 
 type Matcher = (filepath: string) => boolean
 type Pattern = Matcher | string[] | string
 
-const matchers = new Map<string[] | string, Matcher>()
+const matchers = new LRUCache<string[] | string, Matcher>({ maxSize: 1024 })
 
 /**
  * Create Filter from pattern
@@ -15,11 +15,11 @@ export function createFilter(pattern: Pattern): Matcher {
     return pattern
   }
   const key = hash(pattern)
-  if (matchers.has(key)) {
-    return matchers.get(key)!
-  }
+  const value = matchers.get(key)
+  if (value)
+    return value
 
-  if (!Array.isArray(pattern)) {
+  if (!isArray(pattern)) {
     const matcher = picomatch(pattern)
     matchers.set(pattern, matcher)
     return matcher

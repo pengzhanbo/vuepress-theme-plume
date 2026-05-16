@@ -2,7 +2,7 @@ import type { FSWatcher } from 'chokidar'
 import type { App } from 'vuepress'
 import fs from 'node:fs'
 import path from 'node:path'
-import { deleteKey } from '@pengzhanbo/utils'
+import { deleteKey, objectEntries, objectKeys } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
 import { compileCode, parseEmbedCode } from './normal.js'
 import { readFileSync } from './supports/file.js'
@@ -53,14 +53,12 @@ export function demoWatcher(app: App, watchers: any[]): void {
     watcher = watch([], { ignoreInitial: true })
   }
 
-  Object.keys(tasks).forEach((path) => {
-    watcher!.add(path)
-  })
+  watcher!.add(objectKeys(tasks))
 
   const code = readFileSync(app.dir.temp(target))
   if (code) {
     const paths = JSON.parse(code || '{}') as Record<string, string>
-    Object.entries(paths).forEach(([path, output]) => {
+    objectEntries(paths).forEach(([path, output]) => {
       watcher!.add(path)
       tasks[path] = output
     })

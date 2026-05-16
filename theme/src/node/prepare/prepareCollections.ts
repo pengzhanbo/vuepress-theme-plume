@@ -1,6 +1,7 @@
 import type { App } from 'vuepress'
 import type { ThemeCollectionItem } from '../../shared/index.js'
 import { omit } from '@pengzhanbo/utils'
+import { entries } from '@vuepress/helper'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { perf, resolveContent, writeTemp } from '../utils/index.js'
 
@@ -16,7 +17,7 @@ export async function prepareCollections(app: App): Promise<void> {
 
   let data: Record<string, ThemeCollectionItem[]> = {}
 
-  for (const [locale, opt] of Object.entries(locales || {})) {
+  for (const [locale, opt] of entries(locales || {})) {
     let collections = opt.collections
     if (locale === '/' && !collections?.length)
       collections = fallback

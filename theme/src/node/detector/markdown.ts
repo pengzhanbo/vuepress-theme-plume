@@ -1,4 +1,5 @@
 import type { ThemeOptions } from '../../shared/index.js'
+import { objectKeys } from '@pengzhanbo/utils'
 import { colors } from 'vuepress/utils'
 import { createTranslate, logger } from '../utils/index.js'
 import { MARKDOWN_SUPPORT_FIELDS } from './fields.js'
@@ -14,7 +15,7 @@ export function detectMarkdown(options: ThemeOptions): void {
   if (!markdown)
     return
 
-  const unsupported = Object.keys(markdown).filter(key => !MARKDOWN_SUPPORT_FIELDS.includes(key as keyof ThemeOptions['markdown']))
+  const unsupported = objectKeys(markdown).filter(key => !MARKDOWN_SUPPORT_FIELDS.includes(key as keyof ThemeOptions['markdown']))
 
   if (unsupported.length) {
     logger.warn(t('message', {

@@ -10,7 +10,7 @@ import type { RuleCore } from 'markdown-it/lib/parser_core.mjs'
 import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs'
 import type StateCore from 'markdown-it/lib/rules_core/state_core.mjs'
 import type Token from 'markdown-it/lib/token.mjs'
-import { isEmptyObject, objectMap } from '@pengzhanbo/utils'
+import { isEmptyObject, objectKeys, objectMap } from '@pengzhanbo/utils'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 
 /**
@@ -160,7 +160,7 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
       return
 
     const abbreviations = { ...globalAbbreviations, ...localAbbreviations }
-    const abbreviationsRegExpText = Object.keys(abbreviations)
+    const abbreviationsRegExpText = objectKeys(abbreviations)
       .map(x => x.substring(1))
       .sort((a, b) => b.length - a.length)
       .map(escapeRE)

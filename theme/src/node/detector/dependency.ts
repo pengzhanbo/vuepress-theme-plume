@@ -1,5 +1,5 @@
 import type { ThemeBuiltinPlugins, ThemeOptions } from '../../shared/index.js'
-import { isEmptyObject, isPlainObject } from '@pengzhanbo/utils'
+import { isEmptyObject, isPlainObject, objectKeys } from '@pengzhanbo/utils'
 import { isPackageExists } from 'local-pkg'
 import { getUserAgent, resolveCommand } from 'package-manager-detector'
 import { colors } from 'vuepress/utils'
@@ -69,7 +69,7 @@ export function detectDependencies(options: ThemeOptions, plugins: ThemeBuiltinP
   if (isEmptyObject(shouldInstall))
     return
 
-  const features = Object.keys(shouldInstall)
+  const features = objectKeys(shouldInstall)
   const dependencies = Object.values(shouldInstall).flat()
 
   logger.error(t('notFoundDeps', {

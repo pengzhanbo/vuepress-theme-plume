@@ -6,7 +6,7 @@ import type {
   ThemeDocCollection,
 } from '../../shared/index.js'
 import type { ThemePostCollection } from '../../shared/index.js'
-import { hasOwn, toArray } from '@pengzhanbo/utils'
+import { hasOwn, objectEntries, toArray } from '@pengzhanbo/utils'
 import { ensureEndingSlash, ensureLeadingSlash, removeLeadingSlash } from 'vuepress/shared'
 import { path } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
@@ -34,7 +34,7 @@ export function genAutoFrontmatterRules(): void {
 
   const autoFrontmatter = options.autoFrontmatter ?? {}
 
-  for (const [locale, { collections }] of Object.entries(options.locales || {})) {
+  for (const [locale, { collections }] of objectEntries(options.locales || {})) {
     if (!collections?.length)
       continue
 

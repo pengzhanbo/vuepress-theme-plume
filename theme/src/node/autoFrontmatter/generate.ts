@@ -5,7 +5,7 @@ import type {
   AutoFrontmatterHandle,
   AutoFrontmatterRule,
 } from '../../shared/index.js'
-import { sleep } from '@pengzhanbo/utils'
+import { objectKeys, sleep } from '@pengzhanbo/utils'
 import { type FSWatcher, watch } from 'chokidar'
 import matter from 'gray-matter'
 import yaml from 'js-yaml'
@@ -66,7 +66,7 @@ export async function generateFileFrontmatter(filepath: string, cwd: string, han
     // 这个版本 stringify 后的内容，值会包裹在 `""` 中，但不符合通常的 yaml 书写格式
     // 而如果通过匹配删除 `""`, 又会导致特殊字符无法正常解析
     // 这些问题在 `js-yaml@4.x` 中已经解决
-    const formatted = Object.keys(result).length === 0 ? '' : yaml.dump(result)
+    const formatted = objectKeys(result).length === 0 ? '' : yaml.dump(result)
 
     await fs.promises.writeFile(
       context.filepath,

@@ -1,5 +1,6 @@
 import type Token from 'markdown-it/lib/token.mjs'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
+import { objectEntries } from '@pengzhanbo/utils'
 import { removeLeadingSlash } from '@vuepress/shared'
 import { path } from '@vuepress/utils'
 import { isLinkWithProtocol } from 'vuepress/shared'
@@ -53,7 +54,7 @@ export function linksPlugin(md: Markdown): void {
     if (isLinkWithProtocol(hrefLink)) {
       // set `externalAttrs` to current token
       // 将 `externalAttrs` 设置到当前令牌
-      Object.entries(externalAttrs).forEach(([key, val]) => {
+      objectEntries(externalAttrs).forEach(([key, val]) => {
         token.attrSet(key, val)
       })
       return

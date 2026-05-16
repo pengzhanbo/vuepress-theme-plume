@@ -1,6 +1,7 @@
 import type { App } from 'vuepress'
 import type { ThemeData, ThemeNavItem, ThemeOptions } from '../../shared/index.js'
-import { entries, isBoolean, isPlainObject, removeEndingSlash } from '@vuepress/helper'
+import { isBoolean, isPlainObject, objectEntries } from '@pengzhanbo/utils'
+import { removeEndingSlash } from '@vuepress/helper'
 import { withBase } from '../utils/index.js'
 
 const EXCLUDE_LIST: (keyof ThemeOptions)[] = [
@@ -36,7 +37,7 @@ const EXCLUDE_LOCALE_LIST: (keyof ThemeOptions)[] = [...EXCLUDE_LIST, 'blog', 'a
 export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
   const themeData: ThemeData = { locales: {} }
 
-  entries(options).forEach(([key, value]) => {
+  objectEntries(options).forEach(([key, value]) => {
     if (!EXCLUDE_LIST.includes(key as keyof ThemeOptions))
       themeData[key] = value
   })
@@ -55,12 +56,12 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
     themeData.bulletin = options.bulletin
   }
 
-  entries(options.locales || {}).forEach(([locale, opt]) => {
+  objectEntries(options.locales || {}).forEach(([locale, opt]) => {
     themeData.locales![locale] = {}
 
-    entries(opt).forEach(([key, value]) => {
+    objectEntries(opt).forEach(([key, value]) => {
       if (!EXCLUDE_LOCALE_LIST.includes(key as keyof ThemeOptions))
-        themeData.locales![locale][key] = value
+        themeData.locales![locale][key] = value as any
     })
 
     if (isPlainObject(opt.bulletin)) {
@@ -72,7 +73,7 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
     }
   })
 
-  entries(options.locales || {}).forEach(([locale, opt]) => {
+  objectEntries(options.locales || {}).forEach(([locale, opt]) => {
     // 注入预设 导航栏
     // home | blog | tags | archives
     if (!opt.navbar) {

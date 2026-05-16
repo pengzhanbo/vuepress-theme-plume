@@ -1,4 +1,5 @@
 import process from 'node:process'
+import { attempt } from '@pengzhanbo/utils'
 import { fs, path } from 'vuepress/utils'
 import { resolve } from './path.js'
 
@@ -8,12 +9,11 @@ import { resolve } from './path.js'
  * 异步读取和解析 JSON 文件
  */
 export function readJsonFileAsync<T extends Record<string, any> = Record<string, any>>(filePath: string): T {
-  try {
+  const [, data] = attempt(() => {
     const content = fs.readFileSync(filePath, 'utf-8')
     return JSON.parse(content)
-  }
-  catch {}
-  return {} as T
+  })
+  return data || {}
 }
 
 /**

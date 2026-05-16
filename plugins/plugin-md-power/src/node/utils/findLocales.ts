@@ -1,5 +1,6 @@
 import type { LocaleConfig } from 'vuepress'
 import type { MDPowerLocaleData } from '../../shared/index.js'
+import { objectEntries } from '@pengzhanbo/utils'
 
 /**
  * Find locale configurations for a specific key
@@ -16,7 +17,7 @@ export function findLocales<
 >(locales: LocaleConfig<T>, key: K): Record<string, T[K]> {
   const res: Record<string, T[K]> = {}
 
-  for (const [locale, value] of Object.entries(locales)) {
+  for (const [locale, value] of objectEntries(locales)) {
     res[locale] = value[key] ?? {} as T[K]
   }
 

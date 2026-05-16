@@ -1,5 +1,5 @@
 import type { App } from 'vuepress'
-import { toArray } from '@pengzhanbo/utils'
+import { objectEntries, toArray } from '@pengzhanbo/utils'
 import { nanoid, perf, resolveContent, writeTemp } from '../utils/index.js'
 
 export type TagsColorsItem = readonly [
@@ -103,7 +103,7 @@ function getTagCode(tag: string): number {
 function genCSS(): string {
   let css = ''
 
-  for (const [code, className] of Object.entries(cache)) {
+  for (const [code, className] of objectEntries(cache)) {
     const index = Number(code)
     const [color, hoverColor, backgroundColor] = PRESET[index]
 

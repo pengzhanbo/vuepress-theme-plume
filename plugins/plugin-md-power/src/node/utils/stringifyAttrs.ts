@@ -1,4 +1,4 @@
-import { isBoolean, isNull, isNumber, isString, isUndefined, kebabCase } from '@pengzhanbo/utils'
+import { isBoolean, isNull, isNumber, isString, isUndefined, kebabCase, objectEntries } from '@pengzhanbo/utils'
 
 /**
  * Stringify attributes object to HTML attribute string
@@ -16,9 +16,9 @@ export function stringifyAttrs<T extends object = object>(
   withUndefinedOrNull = false,
   forceStringify: (keyof T)[] = [],
 ): string {
-  const result = Object.entries(attrs)
+  const result = objectEntries(attrs)
     .map(([key, value]) => {
-      const k = kebabCase(key)
+      const k = kebabCase(key as string)
       if (isUndefined(value) || value === 'undefined')
         return withUndefinedOrNull ? `:${k}="undefined"` : ''
 
@@ -26,9 +26,9 @@ export function stringifyAttrs<T extends object = object>(
         return withUndefinedOrNull ? `:${k}="null"` : ''
 
       if (value === 'true')
-        value = true
+        value = true as T[keyof T]
       if (value === 'false')
-        value = false
+        value = false as T[keyof T]
 
       if (isBoolean(value))
         return value ? `${k}` : ''

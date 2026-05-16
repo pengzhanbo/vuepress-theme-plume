@@ -1,7 +1,7 @@
 import type { App } from 'vuepress'
 import fs from 'node:fs'
 import path from 'node:path'
-import { isEmptyObject } from '@pengzhanbo/utils'
+import { isEmptyObject, objectEntries } from '@pengzhanbo/utils'
 import { colors } from 'vuepress/utils'
 import { createTranslate, getPackage, getThemePackage, logger } from '../utils/index.js'
 
@@ -41,7 +41,7 @@ function detectVuepressVersion() {
   const themePackage = getThemePackage()
   const userPackage = getPackage()
 
-  const vuepressDeps = Object.entries({
+  const vuepressDeps = objectEntries<Record<string, string>>({
     'vuepress-theme-plume': themePackage.version,
     '@vuepress/bundler-vite': themePackage.peerDependencies?.vuepress,
     '@vuepress/bundler-webpack': themePackage.peerDependencies?.vuepress,
@@ -62,7 +62,7 @@ function detectVuepressVersion() {
     if (!deps || isEmptyObject(deps))
       return results
 
-    for (const [name, version] of Object.entries(deps)) {
+    for (const [name, version] of objectEntries(deps)) {
       const resolved = resolveVersion(version)
       if (resolved && vuepressDeps[name] && vuepressDeps[name] !== resolved)
         results.push({ name, expected: vuepressDeps[name], current: version as string })

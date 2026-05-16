@@ -1,4 +1,5 @@
 import type { App, Page } from 'vuepress/core'
+import { objectKeys } from '@pengzhanbo/utils'
 import { createPage } from 'vuepress/core'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { perf, withBase } from '../utils/index.js'
@@ -27,7 +28,7 @@ export async function createPages(app: App): Promise<void> {
   const locales = options.locales || {}
   const rootLang = getRootLang(app)
 
-  for (const localePath of Object.keys(locales)) {
+  for (const localePath of objectKeys(locales)) {
     const lang = app.siteData.locales?.[localePath]?.lang || rootLang
     const opt = locales[localePath]
     const collections = opt.collections?.filter(item => item.type === 'post')

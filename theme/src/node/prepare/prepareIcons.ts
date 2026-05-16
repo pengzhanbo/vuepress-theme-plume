@@ -3,8 +3,8 @@ import type { IconifyProvider, IconOptions } from 'vuepress-plugin-md-power'
 import type { FriendGroup, FriendsItem, SocialLink, ThemeHomeConfig, ThemeNavItem, ThemeOptions, ThemeSidebar } from '../../shared/index.js'
 import type { FsCache } from '../utils/index.js'
 import { getIconContentCSS, getIconData } from '@iconify/utils'
-import { isArray, uniq } from '@pengzhanbo/utils'
-import { entries, isLinkAbsolute, isLinkHttp, isPlainObject } from '@vuepress/helper'
+import { isArray, isPlainObject, isString, objectEntries, uniq } from '@pengzhanbo/utils'
+import { isLinkAbsolute, isLinkHttp } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
@@ -79,7 +79,7 @@ export async function prepareIcons(app: App): Promise<void> {
   else if (isPlainObject(preload)) {
     const { preflight = [], ...rest } = preload
     iconList.push(...preflight)
-    for (const [collect, names] of entries(rest)) {
+    for (const [collect, names] of objectEntries(rest)) {
       iconList.push(...names.map(name => `${collect}:${name}`))
     }
   }
@@ -110,7 +110,7 @@ export async function prepareIcons(app: App): Promise<void> {
   }
 
   const unknownList = (await Promise.all(
-    entries(collectMap).map(([collect, names]) => resolveCollect(collect, names)),
+    objectEntries(collectMap).map(([collect, names]) => resolveCollect(collect, names)),
   )).flat()
 
   if (unknownList.length) {
@@ -120,7 +120,7 @@ export async function prepareIcons(app: App): Promise<void> {
   perf.log('prepare:icons:imports')
 
   let cssCode = ''
-  for (const [, { className, content, background, collect, name }] of entries(cache)) {
+  for (const [, { className, content, background, collect, name }] of objectEntries(cache)) {
     if (!icons.co.includes(collect))
       icons.co.push(collect)
     const index = icons.co.indexOf(collect)
@@ -150,7 +150,7 @@ export async function prepareIcons(app: App): Promise<void> {
 }
 
 function isIconify(icon: unknown): icon is string {
-  if (!icon || typeof icon !== 'string' || isLinkAbsolute(icon) || isLinkHttp(icon))
+  if (!icon || !isString(icon) || isLinkAbsolute(icon) || isLinkHttp(icon))
     return false
   const ic = icon.trim()
   return ic[0] !== '{' && ICONIFY_NAME.test(ic)
@@ -224,7 +224,7 @@ function getIconWithThemeConfig(options: ThemeOptions, { provider = 'iconify', p
   const list: string[] = []
   // navbar /  doc collection sidebar / social
   const locales = options.locales || {}
-  entries(locales).forEach(([, { navbar, sidebar, collections, social }]) => {
+  objectEntries(locales).forEach(([, { navbar, sidebar, collections, social }]) => {
     // navbar icon
     if (navbar) {
       list.push(...getIconWithNavbar(navbar))
@@ -260,7 +260,7 @@ function getIconWithThemeConfig(options: ThemeOptions, { provider = 'iconify', p
 function getIconWithNavbar(navbar: ThemeNavItem[]): string[] {
   const list: string[] = []
   navbar.forEach((item) => {
-    if (typeof item !== 'string') {
+    if (!isString(item)) {
       if (isIconify(item.icon))
         list.push(item.icon)
       if (item.items?.length)
@@ -274,7 +274,7 @@ function getIconWithSidebar(sidebar: ThemeSidebar): string[] {
   const list: string[] = []
   if (isArray(sidebar)) {
     sidebar.forEach((item) => {
-      if (typeof item !== 'string') {
+      if (!isString(item)) {
         if (isIconify(item.icon))
           list.push(item.icon)
         if (item.items?.length)
@@ -283,8 +283,8 @@ function getIconWithSidebar(sidebar: ThemeSidebar): string[] {
     })
   }
   else if (isPlainObject(sidebar)) {
-    entries(sidebar).forEach(([, item]) => {
-      if (typeof item !== 'string') {
+    objectEntries(sidebar).forEach(([, item]) => {
+      if (!isString(item)) {
         if (isArray(item)) {
           list.push(...getIconWithSidebar(item))
         }

@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import type { ThemeOptions } from '../../shared/index.js'
-import { hasOwn, uniq } from '@pengzhanbo/utils'
+import { hasOwn, objectKeys, uniq } from '@pengzhanbo/utils'
 import { entries, fromEntries, getFullLocaleConfig, isPlainObject } from '@vuepress/helper'
 import { compatBlogAndNotesToCollections, completeCollections } from '../collections/index.js'
 import { LOCALE_OPTIONS } from '../locales/index.js'
@@ -61,7 +61,7 @@ export function initThemeOptions(app: App, { locales, ...options }: ThemeOptions
 
 function mergeOptions(target: ThemeOptions, source: ThemeOptions): ThemeOptions {
   const res: ThemeOptions = {}
-  const keys = uniq([...Object.keys(target), ...Object.keys(source)]) as (keyof ThemeOptions)[]
+  const keys = uniq([...objectKeys(target), ...objectKeys(source)])
   for (const key of keys) {
     if (hasOwn(source, key)) {
       const value = source[key]

@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import type { ThemeHomeConfig } from '../../shared/index.js'
-import { isEmptyObject, uniq } from '@pengzhanbo/utils'
+import { isEmptyObject, objectKeys, uniq } from '@pengzhanbo/utils'
 import { isPackageExists } from 'local-pkg'
 import { getUserAgent, resolveCommand } from 'package-manager-detector'
 import { colors } from 'vuepress/utils'
@@ -32,7 +32,7 @@ const effectMapping: Record<string, string> = {
   'dark-veil': 'DarkVeil',
 }
 
-const allEffects = Object.keys(effectMapping)
+const allEffects = objectKeys(effectMapping)
 
 const t = createTranslate({
   en: {

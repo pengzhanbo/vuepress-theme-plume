@@ -6,6 +6,7 @@
  * 通过缓存内容哈希优化文件 I/O。
  */
 import type { App } from 'vuepress'
+import { LRUCache } from '@pengzhanbo/utils'
 import { hash } from './hash.js'
 
 /**
@@ -15,7 +16,7 @@ import { hash } from './hash.js'
  * 内容哈希缓存，用于检测变更。
  * 将文件路径映射到其内容哈希。
  */
-export const contentHash: Map<string, string> = new Map()
+export const contentHash: LRUCache<string, string> = new LRUCache<string, string>({ maxSize: 64 })
 
 /**
  * Write content to a temporary file if it has changed.

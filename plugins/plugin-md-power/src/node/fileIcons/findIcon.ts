@@ -1,3 +1,4 @@
+import { objectEntries } from '@pengzhanbo/utils'
 import { defaultFile, defaultFolder, definitions } from './definitions.js'
 
 export function getFileIcon(fileName: string, type?: 'file' | 'folder'): string {
@@ -23,7 +24,7 @@ export function getFileIconName(fileName: string, type: 'file' | 'folder' = 'fil
   icon = getFileIconTypeFromExtension(fileName) || undefined
   if (icon)
     return icon
-  for (const [partial, partialIcon] of Object.entries(definitions.partials)) {
+  for (const [partial, partialIcon] of objectEntries(definitions.partials)) {
     if (fileName.includes(partial))
       return partialIcon
   }

@@ -7,14 +7,8 @@ import type {
   ThemeSidebar,
   ThemeSidebarItem,
 } from '../../shared/index.js'
-import { deleteKey } from '@pengzhanbo/utils'
-import {
-  ensureLeadingSlash,
-  entries,
-  isArray,
-  isPlainObject,
-  removeLeadingSlash,
-} from '@vuepress/helper'
+import { deleteKey, isArray, isPlainObject, objectEntries } from '@pengzhanbo/utils'
+import { ensureLeadingSlash, removeLeadingSlash } from '@vuepress/helper'
 import { findCollection } from '../collections/index.js'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { normalizeLink, perf, resolveContent, writeTemp } from '../utils/index.js'
@@ -43,7 +37,7 @@ function getSidebarData(
   const autoDirList: string[] = []
   const resolved: ThemeSidebar = {}
 
-  entries(locales).forEach(([localePath, sidebar]) => {
+  objectEntries(locales).forEach(([localePath, sidebar]) => {
     if (!sidebar)
       return
 
@@ -51,7 +45,7 @@ function getSidebarData(
       autoDirList.push(...findAutoDirList(sidebar))
     }
     else if (isPlainObject(sidebar)) {
-      entries(sidebar).forEach(([dirname, config]) => {
+      objectEntries(sidebar).forEach(([dirname, config]) => {
         const prefix = normalizeLink(localePath, removeLeadingSlash(dirname))
         if (config === 'auto') {
           autoDirList.push(prefix)
@@ -230,11 +224,11 @@ function getAllSidebar(): Record<string, ThemeSidebar> {
   const options = getThemeConfig()
   const locales: Record<string, ThemeSidebar> = {}
 
-  for (const [locale, opt] of entries(options.locales || {})) {
+  for (const [locale, opt] of objectEntries(options.locales || {})) {
     const rawCollections = locale === '/' ? (opt.collections || options.collections) : opt.collections
     const sidebar = locale === '/' ? (opt.sidebar || options.sidebar) : opt.sidebar
     locales[locale] = {}
-    for (const [key, value] of entries(sidebar || {})) {
+    for (const [key, value] of objectEntries(sidebar || {})) {
       locales[locale][ensureLeadingSlash(key)] = isPlainObject(value) && 'items' in value
         ? { ...value, prefix: value.prefix?.startsWith('/') ? value.prefix : normalizeLink(locale, removeLeadingSlash(key)) }
         : {

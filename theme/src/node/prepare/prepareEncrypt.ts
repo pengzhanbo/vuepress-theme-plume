@@ -2,7 +2,7 @@ import type { App } from 'vuepress'
 import type { Page } from 'vuepress/core'
 import type { EncryptOptions, ThemePageData } from '../../shared/index.js'
 import type { FsCache } from '../utils/index.js'
-import { isEmptyObject, isNumber, isString, toArray } from '@pengzhanbo/utils'
+import { isEmptyObject, isNumber, isString, objectKeys, toArray } from '@pengzhanbo/utils'
 import { encodeData, removeLeadingSlash } from '@vuepress/helper'
 import pMap from 'p-map'
 import { getThemeConfig } from '../loadConfig/index.js'
@@ -59,13 +59,13 @@ async function resolveEncrypt(encrypt?: EncryptOptions): Promise<EncryptConfig> 
       )).join(separator)
     : ''
 
-  const encryptRules = Object.keys(encrypt?.rules ?? {}).reduce((acc, key) => {
+  const encryptRules = objectKeys(encrypt?.rules ?? {}).reduce((acc, key) => {
     acc[encodeData(key)] = encrypt!.rules![key]
     return acc
   }, {} as Record<string, string | string[]>)
 
   const rules: Record<string, string> = {}
-  const keys = Object.keys(encryptRules)
+  const keys = objectKeys(encryptRules)
 
   if (!isEmptyObject(encryptRules)) {
     for (const key of keys) {
@@ -99,7 +99,7 @@ export function isEncryptPage(page: Page<ThemePageData>, encrypt?: EncryptOption
 
   const rules = encrypt.rules ?? {}
 
-  return Object.keys(rules).some((match) => {
+  return objectKeys(rules).some((match) => {
     const relativePath = page.data.filePathRelative || ''
     if (match[0] === '^') {
       const regex = new RegExp(match)

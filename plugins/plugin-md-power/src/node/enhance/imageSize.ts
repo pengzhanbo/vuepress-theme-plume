@@ -4,7 +4,7 @@ import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { Buffer } from 'node:buffer'
 import http from 'node:https'
 import { URL } from 'node:url'
-import { attempt, withTimeout } from '@pengzhanbo/utils'
+import { attempt, isBoolean, objectEntries, withTimeout } from '@pengzhanbo/utils'
 import { isLinkHttp } from '@vuepress/helper'
 import imageSize from 'image-size'
 import pMap from 'p-map'
@@ -134,8 +134,8 @@ export async function imageSizePlugin(
         attrs.width = size.width
         attrs.height = size.height
 
-        const imgAttrs = Object.entries(attrs)
-          .map(([key, value]) => typeof value === 'boolean' ? key : `${key}="${value}"`)
+        const imgAttrs = objectEntries(attrs)
+          .map(([key, value]) => isBoolean(value) ? key : `${key}="${value}"`)
           .join(' ')
 
         return `<img ${imgAttrs}>`

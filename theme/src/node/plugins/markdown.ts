@@ -6,7 +6,7 @@ import type { MarkdownMathPluginOptions } from '@vuepress/plugin-markdown-math'
 import type { PluginConfig } from 'vuepress'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
 import type { MarkdownOptions, ThemeBuiltinPlugins } from '../../shared/index.js'
-import { isPlainObject } from '@pengzhanbo/utils'
+import { isPlainObject, objectKeys } from '@pengzhanbo/utils'
 import { markdownChartPlugin } from '@vuepress/plugin-markdown-chart'
 import { markdownHintPlugin } from '@vuepress/plugin-markdown-hint'
 import { markdownImagePlugin } from '@vuepress/plugin-markdown-image'
@@ -101,7 +101,7 @@ function splitMarkdownOptions(options: MarkdownOptions): {
     }
   }
 
-  const mdChartKeys = Object.keys(mdChart)
+  const mdChartKeys = objectKeys(mdChart)
 
   return {
     hint: { hint, alert },

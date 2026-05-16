@@ -4,6 +4,7 @@
  */
 import type { PluginWithOptions } from 'markdown-it'
 import type { ArtPlayerTokenMeta } from '../../../shared/index.js'
+import { isNil } from '@pengzhanbo/utils'
 import { isPackageExists } from 'local-pkg'
 import { colors } from 'vuepress/utils'
 import { logger } from '../../utils/logger.js'
@@ -37,7 +38,7 @@ export const artPlayerPlugin: PluginWithOptions<never> = (md) => {
         muted: attrs.muted ?? attrs.autoplay ?? false,
         autoMini: attrs.autoMini ?? false,
         loop: attrs.loop ?? false,
-        volume: typeof attrs.volume !== 'undefined' ? Number(attrs.volume) : 0.75,
+        volume: isNil(attrs.volume) ? 0.75 : Number(attrs.volume),
         poster: attrs.poster,
         width: attrs.width ? parseRect(attrs.width) : '100%',
         height: attrs.height ? parseRect(attrs.height) : undefined,

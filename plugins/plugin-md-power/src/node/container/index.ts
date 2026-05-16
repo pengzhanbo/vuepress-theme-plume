@@ -1,8 +1,9 @@
+import type { ExactLocaleConfig } from '@vuepress/helper'
 import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { MarkdownPowerPluginOptions } from '../../shared/index.js'
 import type { MDPowerLocaleData } from '../../shared/locale.js'
-import { type ExactLocaleConfig, isPlainObject } from '@vuepress/helper'
+import { isPlainObject } from '@pengzhanbo/utils'
 import { findLocales } from '../utils/findLocales.js'
 import { alignPlugin } from './align.js'
 import { cardPlugin } from './card.js'
@@ -55,12 +56,12 @@ export async function containerPlugin(
 
   if (options.encrypt) {
     // ::: encrypt password="xxx"
-    encryptPlugin(app, md, typeof options.encrypt === 'boolean' ? {} : options.encrypt)
+    encryptPlugin(app, md, isPlainObject(options.encrypt) ? options.encrypt : {})
   }
 
   if (options.npmTo) {
     // ::: npm-to
-    npmToPlugins(md, typeof options.npmTo === 'boolean' ? {} : options.npmTo)
+    npmToPlugins(md, isPlainObject(options.npmTo) ? options.npmTo : {})
   }
 
   if (options.repl)

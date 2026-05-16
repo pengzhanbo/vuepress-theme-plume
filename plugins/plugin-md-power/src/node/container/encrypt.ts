@@ -2,7 +2,7 @@ import type { App } from 'vuepress/core'
 import type { Markdown } from 'vuepress/markdown'
 import type { EncryptSnippetOptions } from '../../shared/encrypt'
 import { getRandomValues } from 'node:crypto'
-import { debounce } from '@pengzhanbo/utils'
+import { debounce, objectKeys } from '@pengzhanbo/utils'
 import { encodeData, ensureLeadingSlash } from '@vuepress/helper'
 import { colors, fs, hash } from 'vuepress/utils'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv'
@@ -67,7 +67,7 @@ export function encryptPlugin(app: App, md: Markdown, options: EncryptSnippetOpt
     app.writeTemp(entryFile, 'export default {}\n')
   }
 
-  const localKeys = Object.keys(app.options.locales || {}).filter(key => key !== '/')
+  const localKeys = objectKeys(app.options.locales || {}).filter(key => key !== '/')
 
   /**
    * Get locale from relative path

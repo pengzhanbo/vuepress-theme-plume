@@ -3,6 +3,7 @@ import { promises as fsp } from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
 import { pathToFileURL } from 'node:url'
+import { objectKeys } from '@pengzhanbo/utils'
 import { build } from 'esbuild'
 import { importFileDefault } from 'vuepress/utils'
 import { hash, normalizePath } from '../utils/index.js'
@@ -88,7 +89,7 @@ export async function compiler(configPath?: string,
   return {
     config,
     // local deps
-    dependencies: Object.keys(result.metafile?.inputs ?? {})
+    dependencies: objectKeys(result.metafile?.inputs ?? {})
       .filter(dep => dep[0] === '.')
       .map(normalizePath),
   }

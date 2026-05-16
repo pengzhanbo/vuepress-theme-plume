@@ -7,8 +7,9 @@ let now = new Date(1997, 9, 3)
 let value = Math.random() * 1000
 
 function randomData() {
-  now = new Date(+now + oneDay)
+  now = new Date(now.getTime() + oneDay)
   value = value + Math.random() * 21 - 10
+
   return {
     name: now.toString(),
     value: [
@@ -23,18 +24,13 @@ for (let i = 0; i < 1000; i++) data.push(randomData())
 const option = {
   tooltip: {
     trigger: 'axis',
-    formatter(params) {
-      params = params[0]
-      const date = new Date(params.name)
-      return (
-        `${date.getDate()
-        }/${
-          date.getMonth() + 1
-        }/${
-          date.getFullYear()
-        } : ${
-          params.value[1]}`
-      )
+    formatter: (params) => {
+      const item = params[0]
+      const date = new Date(item.name)
+
+      return `${date.getDate()}/${
+        date.getMonth() + 1
+      }/${date.getFullYear()} : ${item.value[1]}`
     },
     axisPointer: {
       animation: false,
@@ -81,19 +77,17 @@ const option = {
   ],
 }
 const timeId = setInterval(() => {
-  if (echarts._disposed)
-    return clearInterval(timeId)
+  if (myChart._disposed) {
+    clearInterval(timeId)
+    return
+  }
 
   for (let i = 0; i < 5; i++) {
     data.shift()
     data.push(randomData())
   }
-  echarts.setOption({
-    series: [
-      {
-        data,
-      },
-    ],
+  myChart.setOption({
+    series: [{ data }],
   })
 }, 1000)
 ```

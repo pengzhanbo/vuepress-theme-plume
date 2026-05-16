@@ -119,7 +119,7 @@ export default defineClientConfig({
 
 **Output:**
 
-<!-- @include: ../../../snippet/echarts-1.snippet.md{2-100} -->
+<!-- @include: ../../../snippet/echarts-1.snippet.md{2-94} -->
 
 ### Bar Chart
 
@@ -131,7 +131,7 @@ export default defineClientConfig({
 
 **Output:**
 
-<!-- @include: ../../../snippet/echarts-2.snippet.md{2-75} -->
+<!-- @include: ../../../snippet/echarts-2.snippet.md{2-78} -->
 
 ### Pie Chart
 
@@ -179,7 +179,7 @@ export default defineClientConfig({
 
 **Output:**
 
-<!-- @include: ../../../snippet/echarts-6.snippet.md{2-308} -->
+<!-- @include: ../../../snippet/echarts-6.snippet.md{2-307} -->
 
 ### Radar Chart
 
@@ -203,7 +203,7 @@ export default defineClientConfig({
 
 **Output:**
 
-<!-- @include: ../../../snippet/echarts-8.snippet.md{2-179} -->
+<!-- @include: ../../../snippet/echarts-8.snippet.md{2-165} -->
 
 ### Tree Chart
 

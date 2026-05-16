@@ -1,7 +1,5 @@
 catalogMode: prefer
-
 ignoreWorkspaceRootCheck: true
-
 shamefullyHoist: true
 shellEmulator: true
 strictPeerDependencies: false
@@ -28,20 +26,21 @@ overrides:
   '@typescript-eslint/types': 'catalog:peer'
   '@typescript-eslint/utils': 'catalog:peer'
   '@xmldom/xmldom': '>=0.9.10'
-  axios: '>=1.15.2'
-  baseline-browser-mapping: ^2.10.27
+  axios: '>=1.16.1'
+  baseline-browser-mapping: ^2.10.29
   chokidar: 'catalog:prod'
-  dompurify: '>=3.4.2'
+  dompurify: '>=3.4.3'
   esbuild: 'catalog:prod'
-  fast-uri: '>=3.1.1'
+  fast-uri: '>=3.1.2'
   follow-redirects: '>=1.16.0'
   lodash: '>=4.18.1'
   lodash-es: '>=4.18.1'
-  postcss: '>=8.5.10'
+  mermaid: '>=11.15.0'
+  postcss: '>=8.5.14'
   sass-embedded: 'catalog:peer'
   simple-git: '>=3.36.0'
   tmp: '>=0.2.5'
-  uuid: '>=11.1.1'
+  uuid: '>=13.0.2'
   vite: 'catalog:dev'
   vue: 'catalog:prod'
   vue-router: 'catalog:prod'
@@ -56,8 +55,8 @@ patchedDependencies:
 
 catalogs:
   dev:
-    '@commitlint/cli': ^21.0.0
-    '@commitlint/config-conventional': ^21.0.0
+    '@commitlint/cli': ^21.0.1
+    '@commitlint/config-conventional': ^21.0.1
     '@lunariajs/core': ^0.1.1
     '@pengzhanbo/eslint-config-vue': ^2.4.1
     '@pengzhanbo/stylelint-config': ^2.4.1
@@ -67,13 +66,13 @@ catalogs:
     '@types/less': ^3.0.8
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^25.6.2
+    '@types/node': ^25.8.0
     '@types/picomatch': ^4.0.3
     '@types/qrcode': ^1.5.6
     '@types/stylus': ^0.48.43
     '@types/three': ^0.184.1
     '@types/webpack-env': ^1.18.8
-    '@vitest/coverage-v8': ^4.1.5
+    '@vitest/coverage-v8': ^4.1.6
     bumpp: ^11.1.0
     commitizen: ^4.3.1
     conventional-changelog: ^7.2.0
@@ -81,33 +80,33 @@ catalogs:
     cpx2: ^8.0.2
     cross-env: 7.0.3
     cz-conventional-changelog: ^3.3.0
-    eslint: ^10.3.0
+    eslint: ^10.4.0
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.6.4
-    lint-staged: ^17.0.2
+    lint-staged: ^17.0.4
     markdown-it: ^14.1.1
     memfs: ^4.57.2
-    mermaid: ^11.14.0
+    mermaid: ^11.15.0
     minimist: ^1.2.8
     postcss: ^8.5.14
     rimraf: ^6.1.3
-    stylelint: ^17.11.0
+    stylelint: ^17.11.1
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
     tsdown: ^0.22.0
     typescript: ^6.0.3
-    unrun: ^0.2.37
-    vite: ^8.0.11
-    vitest: ^4.1.5
-    wait-on: ^9.0.5
+    unrun: ^0.2.39
+    vite: ^8.0.13
+    vitest: ^4.1.6
+    wait-on: ^9.0.10
   peer:
     '@eslint-community/eslint-utils': ^4.9.1
-    '@iconify/json': ^2.2.470
+    '@iconify/json': ^2.2.474
     '@mathjax/src': ^4.1.2
     '@pinyin-pro/data': ^1.3.1
-    '@typescript-eslint/types': ^8.59.2
-    '@typescript-eslint/utils': ^8.59.2
+    '@typescript-eslint/types': ^8.59.3
+    '@typescript-eslint/utils': ^8.59.3
     artplayer: ^5.4.0
     dashjs: ^5.1.1
     gsap: ^3.15.0
@@ -122,7 +121,7 @@ catalogs:
     swiper: ^12.1.4
     three: ^0.184.0
   prod:
-    '@clack/prompts': ^1.3.0
+    '@clack/prompts': ^1.4.0
     '@iconify/utils': ^3.1.3
     '@iconify/vue': ^5.0.1
     '@mdit/plugin-attrs': ^0.25.2
@@ -132,7 +131,7 @@ catalogs:
     '@mdit/plugin-sup': ^0.24.2
     '@mdit/plugin-tab': ^0.24.2
     '@mdit/plugin-tasklist': ^0.23.2
-    '@pengzhanbo/utils': ^3.6.0
+    '@pengzhanbo/utils': ^3.7.2
     '@vueuse/core': ^14.3.0
     '@vueuse/integrations': ^14.3.0
     cac: ^7.0.0
@@ -148,7 +147,7 @@ catalogs:
     hash-wasm: ^4.12.0
     image-size: ^2.0.2
     js-yaml: ^4.1.1
-    katex: ^0.16.45
+    katex: ^0.16.47
     local-pkg: ^1.1.2
     lru-cache: ^11.3.6
     mark.js: ^8.11.1
@@ -171,28 +170,28 @@ catalogs:
     tm-grammars: ^1.31.15
     tm-themes: ^1.12.2
     vue: ^3.5.34
-    vue-router: ^5.0.6
+    vue-router: ^5.0.7
   vuepress:
-    '@vuepress/bundler-vite': 2.0.0-rc.28
-    '@vuepress/helper': 2.0.0-rc.128
-    '@vuepress/plugin-cache': 2.0.0-rc.128
-    '@vuepress/plugin-comment': 2.0.0-rc.128
-    '@vuepress/plugin-copy-code': 2.0.0-rc.128
-    '@vuepress/plugin-docsearch': 2.0.0-rc.128
-    '@vuepress/plugin-git': 2.0.0-rc.128
-    '@vuepress/plugin-llms': 2.0.0-rc.128
-    '@vuepress/plugin-markdown-chart': 2.0.0-rc.128
-    '@vuepress/plugin-markdown-hint': 2.0.0-rc.128
-    '@vuepress/plugin-markdown-image': 2.0.0-rc.128
-    '@vuepress/plugin-markdown-include': 2.0.0-rc.128
-    '@vuepress/plugin-markdown-math': 2.0.0-rc.128
-    '@vuepress/plugin-nprogress': 2.0.0-rc.128
-    '@vuepress/plugin-photo-swipe': 2.0.0-rc.128
-    '@vuepress/plugin-reading-time': 2.0.0-rc.128
-    '@vuepress/plugin-replace-assets': 2.0.0-rc.128
-    '@vuepress/plugin-seo': 2.0.0-rc.128
-    '@vuepress/plugin-shiki': 2.0.0-rc.128
-    '@vuepress/plugin-sitemap': 2.0.0-rc.128
-    '@vuepress/plugin-watermark': 2.0.0-rc.128
-    '@vuepress/shiki-twoslash': 2.0.0-rc.128
-    vuepress: 2.0.0-rc.28
+    '@vuepress/bundler-vite': 2.0.0-rc.30
+    '@vuepress/helper': 2.0.0-rc.130
+    '@vuepress/plugin-cache': 2.0.0-rc.130
+    '@vuepress/plugin-comment': 2.0.0-rc.130
+    '@vuepress/plugin-copy-code': 2.0.0-rc.130
+    '@vuepress/plugin-docsearch': 2.0.0-rc.130
+    '@vuepress/plugin-git': 2.0.0-rc.130
+    '@vuepress/plugin-llms': 2.0.0-rc.130
+    '@vuepress/plugin-markdown-chart': 2.0.0-rc.130
+    '@vuepress/plugin-markdown-hint': 2.0.0-rc.130
+    '@vuepress/plugin-markdown-image': 2.0.0-rc.130
+    '@vuepress/plugin-markdown-include': 2.0.0-rc.130
+    '@vuepress/plugin-markdown-math': 2.0.0-rc.130
+    '@vuepress/plugin-nprogress': 2.0.0-rc.130
+    '@vuepress/plugin-photo-swipe': 2.0.0-rc.130
+    '@vuepress/plugin-reading-time': 2.0.0-rc.130
+    '@vuepress/plugin-replace-assets': 2.0.0-rc.130
+    '@vuepress/plugin-seo': 2.0.0-rc.130
+    '@vuepress/plugin-shiki': 2.0.0-rc.130
+    '@vuepress/plugin-sitemap': 2.0.0-rc.130
+    '@vuepress/plugin-watermark': 2.0.0-rc.130
+    '@vuepress/shiki-twoslash': 2.0.0-rc.130
+    vuepress: 2.0.0-rc.30

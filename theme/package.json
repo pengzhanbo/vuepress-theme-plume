@@ -110,6 +110,7 @@
     "@iconify/utils": "catalog:prod",
     "@iconify/vue": "catalog:prod",
     "@pengzhanbo/utils": "catalog:prod",
+    "@shikijs/colorized-brackets": "catalog:prod",
     "@vuepress-plume/plugin-fonts": "workspace:*",
     "@vuepress-plume/plugin-search": "workspace:*",
     "@vuepress/helper": "catalog:vuepress",
@@ -135,7 +136,6 @@
     "@vueuse/core": "catalog:prod",
     "chokidar": "catalog:prod",
     "dayjs": "catalog:prod",
-    "esbuild": "catalog:prod",
     "gray-matter": "catalog:prod",
     "hash-wasm": "catalog:prod",
     "js-yaml": "catalog:prod",
@@ -145,6 +145,7 @@
     "p-map": "catalog:prod",
     "package-manager-detector": "catalog:prod",
     "picomatch": "catalog:prod",
+    "rolldown": "catalog:prod",
     "vue": "catalog:prod",
     "vue-router": "catalog:prod",
     "vuepress-plugin-md-power": "workspace:*"

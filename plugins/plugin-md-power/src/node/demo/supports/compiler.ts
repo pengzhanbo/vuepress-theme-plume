@@ -1,13 +1,28 @@
+import type { OutputChunk } from 'rolldown'
+import { randomUUID } from 'node:crypto'
+import { tmpdir } from 'node:os'
 import { isPackageExists } from 'local-pkg'
 import { LRUCache } from 'lru-cache'
+import { fs, hash, path } from 'vuepress/utils'
 import { interopDefault } from '../../utils/package.js'
 
 const cache = new LRUCache({ max: 64 })
 
 const compiler = {
   script: importer(async () => {
-    const { transform } = await import('esbuild')
-    return transform
+    const { rolldown } = await import('rolldown')
+    return async (source: string, type: 'ts' | 'js') => {
+      const tmpfile = path.join(tmpdir(), `${hash(source)}-${randomUUID()}.${type}`)
+      await fs.writeFile(tmpfile, source, 'utf-8')
+      const bundle = await rolldown({ input: tmpfile, platform: 'browser', treeshake: false, tsconfig: false })
+      const result = await bundle.generate({ format: 'cjs', sourcemap: false, codeSplitting: false, minify: true })
+      await bundle.close()
+      await fs.unlink(tmpfile)
+      const entryChunk = result.output.find(
+        (chunk): chunk is OutputChunk => chunk.type === 'chunk' && chunk.isEntry,
+      )!
+      return entryChunk.code
+    }
   }),
   less: importer(() => import('less')),
   sass: importer(async () => {
@@ -20,23 +35,17 @@ const compiler = {
 }
 
 export async function compileScript(source: string, type: 'ts' | 'js'): Promise<string> {
-  const key = `${type}:::${source}`
+  const key = hash(`${type}:${source}`)
   if (cache.has(key))
     return cache.get(key) as string
   const transform = await compiler.script()
-  const res = await transform(source, {
-    target: ['es2023', 'chrome111', 'edge111', 'firefox114', 'safari16.4'],
-    platform: 'browser',
-    format: 'cjs',
-    loader: type === 'ts' ? 'ts' : 'js',
-    sourcemap: false,
-  })
-  cache.set(key, res.code)
-  return res.code
+  const res = await transform(source, type)
+  cache.set(key, res)
+  return res
 }
 
 export async function compileStyle(source: string, type: 'css' | 'less' | 'scss' | 'stylus'): Promise<string> {
-  const key = `${type}:::${source}`
+  const key = hash(`${type}:${source}`)
   if (cache.has(key))
     return cache.get(key) as string
   if (type === 'css')

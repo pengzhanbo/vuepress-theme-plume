@@ -35,7 +35,7 @@ docs:
   -
     name: PGuide Docs
     desc: 一个与计算机自学、校内生活、开放公共服务等相关的本地化大学指南。
-    logo: https://docs.pguide.studio/logo.svg
+    logo: https://docs.pguide.studio/icon/logo.svg
     url: https://docs.pguide.studio
     repo: https://github.com/PGuideDev/PGuide-Docs
     preview: https://cos-global.pguide.cloud/pguide-docs/src/pguide-doc.png
@@ -281,12 +281,6 @@ blog:
 
 [前往 **Github Pull Request** 提交站点](https://github.com/pengzhanbo/vuepress-theme-plume/edit/main/docs/demos.md){.read-more}
 
-::: info 案例每半年检查一次，以下情况的站点将会被移除
-
-- 站点链接无法访问
-- 已不再使用 vuepress-theme-plume 主题
-:::
-
 ## 文档
 
 <Demos :list="$frontmatter.docs" />
@@ -294,6 +288,12 @@ blog:
 ## 博客
 
 <Demos :list="$frontmatter.blog" />
+
+::: details 案例每半年检查一次，以下情况的站点将会被移除
+
+- 站点链接无法访问
+- 已不再使用 vuepress-theme-plume 主题
+:::
 
 <script setup>
 import Demos from '~/components/Demos.vue'

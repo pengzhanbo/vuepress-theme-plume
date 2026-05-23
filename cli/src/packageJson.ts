@@ -65,7 +65,7 @@ export async function createPackageJson(
         // pnpm@10 should add `onlyBuiltDependencies`
         if (packageManager === 'pnpm' && version.startsWith('10')) {
           pkg.pnpm = {
-            onlyBuiltDependencies: ['@parcel/watcher', 'esbuild'],
+            onlyBuiltDependencies: ['@parcel/watcher'],
           }
         }
       }

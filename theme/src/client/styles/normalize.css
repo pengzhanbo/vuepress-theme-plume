@@ -42,8 +42,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-synthesis: style weight;
+  text-autospace: normal;
   text-rendering: optimizelegibility;
   -webkit-text-size-adjust: 100%;
+  text-spacing-trim: normal;
 }
 
 html[data-theme="dark"] {
@@ -149,6 +151,8 @@ blockquote {
 :where(#app) kbd,
 :where(#app) samp {
   font-family: var(--vp-font-family-mono);
+
+  text-autospace: no-autospace;
 }
 
 :where(#app) img,

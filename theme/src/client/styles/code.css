@@ -99,6 +99,10 @@ html:not([data-theme="dark"]) .vp-code span {
   direction: ltr;
 }
 
+.vp-doc div[class*="language-"] code span {
+  unicode-bidi: isolate;
+}
+
 .vp-doc div[class*="language-"]:not(.line-numbers-mode) .line-numbers {
   display: none;
 }

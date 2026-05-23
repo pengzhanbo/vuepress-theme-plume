@@ -42,7 +42,6 @@
   "peerDependencies": {
     "artplayer": "catalog:peer",
     "dashjs": "catalog:peer",
-    "esbuild": "catalog:prod",
     "hls.js": "catalog:peer",
     "less": "catalog:dev",
     "markdown-it": "catalog:dev",
@@ -106,6 +105,7 @@
     "nanoid": "catalog:prod",
     "p-map": "catalog:prod",
     "qrcode": "catalog:prod",
+    "rolldown": "catalog:prod",
     "shiki": "catalog:prod",
     "tm-grammars": "catalog:prod",
     "tm-themes": "catalog:prod",

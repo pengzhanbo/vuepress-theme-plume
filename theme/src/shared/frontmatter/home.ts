@@ -91,7 +91,7 @@ export interface ThemeHomeFeatures extends ThemeHomeConfigBase {
 export interface ThemeHomeFeature {
   icon?: FeatureIcon
   title: string
-  details?: string
+  details?: string | string[]
   link?: string
   linkText?: string
   rel?: string

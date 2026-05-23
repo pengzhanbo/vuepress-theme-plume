@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { MenuItem } from '../composables/index.js'
 import VPDocOutlineItem from '@theme/VPDocOutlineItem.vue'
-import { onClickOutside } from '@vueuse/core'
+import { onClickOutside, onKeyStroke } from '@vueuse/core'
 import { nextTick, ref, watch } from 'vue'
+import { onContentUpdated } from 'vuepress/client'
 import { useData } from '../composables/index.js'
 
 import '@vuepress/helper/transition/fade-in-scale-up.css'
+import '@vuepress/helper/transition/fade-in.css'
 
 const { headers, navHeight } = defineProps<{
   headers: MenuItem[]
@@ -25,6 +27,14 @@ watch(() => headers, () => {
 onClickOutside(items, () => {
   open.value = false
 }, { ignore: [btn] })
+
+onKeyStroke('Escape', () => {
+  open.value = false
+})
+
+onContentUpdated(() => {
+  open.value = false
+})
 
 function toggle() {
   open.value = !open.value
@@ -50,6 +60,9 @@ function onItemClick(e: Event) {
       {{ theme.outlineLabel || 'On this page' }}
       <span class="vpi-chevron-right icon" />
     </button>
+    <Transition name="fade-in">
+      <div v-if="open" class="outline-mask" />
+    </Transition>
     <Transition name="fade-in-scale-up">
       <div v-if="open" ref="items" class="items" @click="onItemClick">
         <div class="outline">
@@ -101,18 +114,29 @@ function onItemClick(e: Event) {
   transform: rotate(90deg);
 }
 
+.outline-mask {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  left: 0;
+  height: calc(100vh - 49px);
+  background-color: color-mix(in srgb, var(--vp-c-bg) 60%, transparent);
+  backdrop-filter: blur(3px);
+}
+
 .items {
   position: absolute;
-  top: 64px;
-  right: 16px;
-  left: 16px;
+  top: 48px;
+  right: 0;
   display: grid;
   gap: 1px;
+  min-width: 50vw;
+  max-width: 100%;
   max-height: calc(var(--vp-vh, 100vh) - 86px);
   overflow: hidden auto;
-  background-color: var(--vp-c-gutter);
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
+  background-color: color-mix(in srgb, var(--vp-c-bg) 60%, transparent);
+  backdrop-filter: blur(25px);
+  border-bottom-left-radius: 8px;
   box-shadow: var(--vp-shadow-3);
   transition: var(--vp-t-color);
   transition-property: background-color, border, box-shadow;
@@ -120,6 +144,7 @@ function onItemClick(e: Event) {
 
 .outline {
   padding: 8px 0;
-  background-color: var(--vp-c-bg-soft);
+  padding-right: 16px;
+  background-color: var(--vp-c-bg);
 }
 </style>

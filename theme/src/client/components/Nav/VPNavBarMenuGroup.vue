@@ -15,6 +15,13 @@ const { item } = defineProps<{
 
 const { page } = useData()
 
+const isActiveGroup = computed(() => {
+  if (item.activeMatch) {
+    return isActive(page.value.path, item.activeMatch, !!item.activeMatch)
+  }
+  return isChildActive(item)
+})
+
 function isChildActive(navItem: ResolvedNavItem): boolean {
   if ('link' in navItem) {
     return isActive(
@@ -23,21 +30,13 @@ function isChildActive(navItem: ResolvedNavItem): boolean {
       !!item.activeMatch,
     )
   }
-  else {
-    return navItem.items.some(isChildActive)
-  }
+  return navItem.items.some(isChildActive)
 }
-const childrenActive = computed(() => isChildActive(item))
 </script>
 
 <template>
   <VPFlyout
-    class="vp-navbar-menu-group" :class="{
-      active: isActive(
-        page.path, item.activeMatch,
-        !!item.activeMatch,
-      ) || childrenActive,
-    }"
+    class="vp-navbar-menu-group" :class="{ active: isActiveGroup }"
     :button="item.text"
     :items="item.items"
     :prefix-icon="item.icon"

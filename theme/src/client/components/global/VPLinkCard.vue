@@ -29,7 +29,7 @@ const { href, title, icon, description, target, rel } = defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style>
 .vp-link-card {
   position: relative;
   display: flex;
@@ -100,7 +100,7 @@ const { href, title, icon, description, target, rel } = defineProps<{
   overflow-wrap: break-word;
 }
 
-.vpi-arrow-right {
+.vp-link-card .vpi-arrow-right {
   margin-top: 2px;
   font-size: 20px;
 }

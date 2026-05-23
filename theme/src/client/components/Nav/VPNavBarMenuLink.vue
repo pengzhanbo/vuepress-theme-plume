@@ -3,6 +3,7 @@ import type { ResolvedNavItemWithLink } from '../../../shared/index.js'
 import VPBadge from '@theme/global/VPBadge.vue'
 import VPIcon from '@theme/VPIcon.vue'
 import VPLink from '@theme/VPLink.vue'
+import { computed } from 'vue'
 import { resolveRouteFullPath } from 'vuepress/client'
 import { useData } from '../../composables/index.js'
 import { isActive } from '../../utils/index.js'
@@ -12,17 +13,17 @@ const { item } = defineProps<{
 }>()
 
 const { page } = useData()
+
+const isActiveLink = computed(() => isActive(
+  page.value.path,
+  item.activeMatch || resolveRouteFullPath(item.link),
+  !!item.activeMatch,
+))
 </script>
 
 <template>
   <VPLink
-    class="navbar-menu-link" :class="{
-      active: isActive(
-        page.path,
-        item.activeMatch || resolveRouteFullPath(item.link),
-        !!item.activeMatch,
-      ),
-    }"
+    class="navbar-menu-link" :class="{ active: isActiveLink }"
     :href="item.link"
     :no-icon="item.noIcon"
     :target="item.target"

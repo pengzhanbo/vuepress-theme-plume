@@ -4,11 +4,11 @@ import type { Ref } from 'vue'
 import type { SearchBoxLocales, SearchOptions } from '../../shared/index.js'
 import {
   computedAsync,
-  debouncedWatch,
   onKeyStroke,
   useEventListener,
   useScrollLock,
   useSessionStorage,
+  watchDebounced,
 } from '@vueuse/core'
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import Mark from 'mark.js/src/vanilla.js'
@@ -19,7 +19,6 @@ import {
   nextTick,
   onBeforeUnmount,
   onMounted,
-
   ref,
   shallowRef,
   toRef,
@@ -111,7 +110,7 @@ const mark = computedAsync(async () => {
 
 const cache = new LRUCache<string, Map<string, string>>(64) // 64 files
 
-debouncedWatch(
+watchDebounced(
   () => [searchIndex.value, filterText.value] as const,
   async ([index, filterTextValue], old, onCleanup) => {
     if (old?.[0] !== index) {

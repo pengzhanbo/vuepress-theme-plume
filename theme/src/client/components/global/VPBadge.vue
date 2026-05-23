@@ -22,7 +22,7 @@ const customStyle = computed(() => {
   </span>
 </template>
 
-<style scoped>
+<style>
 .vp-badge {
   display: inline-block;
   padding: 0 10px;
@@ -37,15 +37,14 @@ const customStyle = computed(() => {
   transform: translateY(-2px);
 }
 
-h1 .vp-badge {
-  margin-top: 4px;
-  vertical-align: top;
+h1 .vp-badge,
+h2 .vp-badge {
+  margin: 0 0 0 2px;
+  vertical-align: middle;
 }
 
 h2 .vp-badge {
   padding: 0 8px;
-  margin-top: 3px;
-  vertical-align: top;
 }
 
 h3 .vp-badge {

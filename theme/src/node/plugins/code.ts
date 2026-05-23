@@ -1,6 +1,7 @@
 import type { PluginConfig } from 'vuepress'
 import type { ThemeBuiltinPlugins } from '../../shared/index.js'
 import { uniq } from '@pengzhanbo/utils'
+import { transformerColorizedBrackets } from '@shikijs/colorized-brackets'
 import { isPlainObject } from '@vuepress/helper'
 import { copyCodePlugin } from '@vuepress/plugin-copy-code'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
@@ -30,7 +31,7 @@ export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
   const shikiOptions = options.codeHighlighter ?? pluginOptions.shiki
 
   if (shikiOptions !== false) {
-    const { twoslash, langs = [], codeBlockTitle: _, ...restShikiOptions } = isPlainObject(shikiOptions) ? shikiOptions : {}
+    const { twoslash, langs = [], codeBlockTitle: _, transformers, ...restShikiOptions } = isPlainObject(shikiOptions) ? shikiOptions : {}
     const twoslashOptions = twoslash === true ? {} : twoslash
 
     const mdPower = isPlainObject(pluginOptions.markdownPower) ? pluginOptions.markdownPower : {}
@@ -45,6 +46,7 @@ export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
       notationWordHighlight: true,
       highlightLines: true,
       collapsedLines: false,
+      transformers: [transformerColorizedBrackets(), ...(transformers || [])],
       langs: uniq([...twoslash ? ['ts', 'js', 'vue', 'json', 'bash', 'sh'] : [], ...langs]),
       codeBlockTitle: (title, code) => {
         const icon = getIcon(title)

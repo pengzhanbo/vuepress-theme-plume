@@ -9,7 +9,7 @@
       "location": "**/*.md",
       "pattern": "@lang/@path",
       "type": "universal",
-      "ignore": [".vuepress/**", "./snippet/**", "node_modules", "**/*.snippet.md"]
+      "ignore": [".vuepress/**", "./snippet/**", "node_modules", "**/*.snippet.md", "**/sponsor.md", "**/blog/**"]
     }
   ],
   "defaultLocale": {

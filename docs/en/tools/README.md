@@ -31,3 +31,11 @@ Uses AI to help generate theme colors and color schemes for websites.
 <LinkCard title="bolt.new - AI Code Generator" href="https://bolt.new/">
 When you want to add personalized features to your site but face technical limitations, this tool can help you generate code quickly.
 </LinkCard>
+
+<LinkCard title="Text to SVG" href="https://text-to-svg.tool.tokyo/zh">
+Convert text to SVG format, suitable for generating artistic text, LOGOs, etc., with animation effects.
+</LinkCard>
+
+<LinkCard title="CSS Variables Editor (Chrome Extension)" href="https://www.cssvariables.com/">
+Manage color values in CSS variables to help you quickly customize the UI style of your website.
+</LinkCard>

@@ -66,17 +66,7 @@ export function useNpmBadge(opt: Ref<NpmBadgeOptions>): ComputedRef<NpmBadgeInfo
   return computed(() => {
     const po = toValue(parentOpt)
     const o = toValue(opt)
-    const res: NpmBadgeOptions = {
-      name: o.name || po.name,
-      repo: o.repo || po.repo,
-      branch: o.branch || po.branch,
-      dir: o.dir || po.dir,
-      type: o.type,
-      color: o.color || po.color,
-      label: o.label,
-      labelColor: o.labelColor || po.labelColor,
-      theme: o.theme || po.theme,
-    }
+    const res: NpmBadgeOptions = { ...o, ...po }
     return resolveNpmBadgeOptions(res)
   })
 }
@@ -84,15 +74,7 @@ export function useNpmBadge(opt: Ref<NpmBadgeOptions>): ComputedRef<NpmBadgeInfo
 export function useNpmBadgeGroup(opt: Ref<NpmBadgeGroupOptions>): void {
   const baseOptions = computed<NpmBadgeBaseOptions>(() => {
     const o = toValue(opt)
-    return {
-      name: o.name,
-      repo: o.repo,
-      branch: o.branch,
-      dir: o.dir,
-      color: o.color,
-      labelColor: o.labelColor,
-      theme: o.theme,
-    }
+    return { ...o }
   })
 
   provide(NpmBadgeSymbol, baseOptions)

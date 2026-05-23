@@ -9,7 +9,7 @@ import { usePostsPageData } from './page.js'
 import { useThemeData } from './theme-data.js'
 
 interface Lang {
-  text?: string
+  text: string
   link: string
 }
 
@@ -33,7 +33,7 @@ export function useLangs({
   const currentLang = computed(() => {
     const link = routeLocale.value
     return {
-      text: theme.value.locales?.[link]?.selectLanguageName,
+      text: theme.value.locales?.[link]?.selectLanguageName || link,
       link,
     }
   })
@@ -72,7 +72,7 @@ export function useLangs({
       removeCurrent && currentLang.value.text === locale.selectLanguageName
         ? []
         : {
-            text: locale.selectLanguageName,
+            text: locale.selectLanguageName || key,
             link: getPageLink(key),
           },
     ),

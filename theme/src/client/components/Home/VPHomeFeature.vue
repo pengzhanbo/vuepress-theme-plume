@@ -48,7 +48,10 @@ const isIconify = computed(() => {
       </div>
       <div v-else-if="icon" class="icon" v-html="icon" />
       <h2 class="title" v-html="title" />
-      <p v-if="details" class="details" v-html="details" />
+      <ul v-if="Array.isArray(details)" class="details">
+        <li v-for="item in details" :key="item" v-html="item" />
+      </ul>
+      <p v-else-if="details" class="details" v-html="details" />
 
       <div v-if="linkText" class="link-text">
         <p class="link-text-value">
@@ -110,6 +113,11 @@ const isIconify = computed(() => {
   font-weight: 500;
   line-height: 24px;
   color: var(--vp-c-text-2);
+}
+
+ul.details {
+  padding-left: 14px;
+  list-style-type: disc;
 }
 
 .link-text {

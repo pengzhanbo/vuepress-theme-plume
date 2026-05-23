@@ -3,11 +3,23 @@ import type { ResolvedNavItemWithLink } from '../../../shared/index.js'
 import VPBadge from '@theme/global/VPBadge.vue'
 import VPIcon from '@theme/VPIcon.vue'
 import VPLink from '@theme/VPLink.vue'
-import { inject } from 'vue'
+import { computed, inject } from 'vue'
+import { useData } from '../../composables/index.js'
+import { isActive } from '../../utils/index.js'
 
 const { item } = defineProps<{
   item: ResolvedNavItemWithLink
 }>()
+
+const { page } = useData()
+
+const isActiveLink = computed(() =>
+  isActive(
+    page.value.path,
+    item.activeMatch || item.link,
+    !!item.activeMatch,
+  ),
+)
 
 const closeScreen = inject('close-screen') as () => void
 </script>
@@ -15,6 +27,7 @@ const closeScreen = inject('close-screen') as () => void
 <template>
   <VPLink
     class="vp-nav-screen-menu-group-link"
+    :class="{ active: isActiveLink }"
     :href="item.link"
     :target="item.target"
     :rel="item.rel"
@@ -42,7 +55,8 @@ const closeScreen = inject('close-screen') as () => void
   transition: color var(--vp-t-color);
 }
 
-.vp-nav-screen-menu-group-link:hover {
+.vp-nav-screen-menu-group-link:hover,
+.vp-nav-screen-menu-group-link.active {
   color: var(--vp-c-brand-1);
 }
 </style>

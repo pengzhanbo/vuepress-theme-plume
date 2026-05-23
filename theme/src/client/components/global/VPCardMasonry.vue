@@ -78,9 +78,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="masonry" class="vp-card-masonry" :class="[`cols-${columnsLength}`]" :style="{ 'grid-gap': `${gap}px`, '--card-masonry-cols': columnsLength }" data-allow-mismatch>
+  <div
+    ref="masonry"
+    class="vp-card-masonry" :class="[`cols-${columnsLength}`]"
+    :style="{ 'grid-gap': `${gap}px`, '--card-masonry-cols': columnsLength }"
+    data-allow-mismatch
+  >
     <ClientOnly>
-      <div v-for="(column, index) in columnsList" :key="`${uuid}-${index}`" class="card-masonry-item" :style="{ gap: `${gap}px` }">
+      <div
+        v-for="(column, index) in columnsList"
+        :key="`${uuid}-${index}`"
+        class="card-masonry-item"
+        :style="{ gap: `${gap}px` }"
+      >
         <component :is="item" v-for="item in column" :key="item.props!.class" />
       </div>
     </ClientOnly>

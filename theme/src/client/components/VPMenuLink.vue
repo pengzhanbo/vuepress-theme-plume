@@ -1,28 +1,34 @@
-<script lang="ts" setup>
+<script lang="ts" setup generic="T extends NavItemWithLink">
+import type { NavItemWithLink } from '../../shared/index.js'
 import VPBadge from '@theme/global/VPBadge.vue'
 import VPIcon from '@theme/VPIcon.vue'
 import VPLink from '@theme/VPLink.vue'
+import { computed } from 'vue'
 import { resolveRouteFullPath } from 'vuepress/client'
 import { useData } from '../composables/index.js'
 import { isActive } from '../utils/index.js'
 
 const { item } = defineProps<{
-  item: any
+  item: T
+  rel?: string
 }>()
 
 const { page } = useData()
+
+const isActiveLink = computed(() => isActive(
+  page.value.path,
+  item.activeMatch || resolveRouteFullPath(item.link),
+  !!item.activeMatch,
+))
 </script>
 
 <template>
   <div class="vp-menu-link">
     <VPLink
-      :class="{
-        active: isActive(
-          page.path,
-          item.activeMatch || resolveRouteFullPath(item.link),
-          !!item.activeMatch,
-        ),
-      }" :href="item.link"
+      :class="{ active: isActiveLink }"
+      :href="item.link"
+      :target="item.target"
+      :rel="rel || item.rel"
     >
       <VPIcon v-if="item.icon" :name="item.icon" />
       {{ item.text }}

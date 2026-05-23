@@ -1,10 +1,11 @@
 catalogMode: prefer
 ignoreWorkspaceRootCheck: true
 minimumReleaseAgeExclude:
-  - '@iconify/json@2.2.477'
   - '@pengzhanbo/utils@3.7.3'
   - local-pkg@1.2.1
   - vite@8.0.14
+  - '@iconify/json@2.2.478'
+  - baseline-browser-mapping@2.10.32
 shamefullyHoist: true
 shellEmulator: true
 strictPeerDependencies: false
@@ -32,7 +33,7 @@ overrides:
   '@typescript-eslint/utils': 'catalog:peer'
   '@xmldom/xmldom': '>=0.9.10'
   axios: '>=1.16.1'
-  baseline-browser-mapping: ^2.10.31
+  baseline-browser-mapping: ^2.10.32
   chokidar: 'catalog:prod'
   dompurify: '>=3.4.5'
   fast-uri: '>=3.1.2'
@@ -105,7 +106,7 @@ catalogs:
     wait-on: ^9.0.10
   peer:
     '@eslint-community/eslint-utils': ^4.9.1
-    '@iconify/json': ^2.2.477
+    '@iconify/json': ^2.2.478
     '@mathjax/src': ^4.1.2
     '@pinyin-pro/data': ^1.3.1
     '@typescript-eslint/types': ^8.59.4
@@ -119,8 +120,8 @@ catalogs:
     pinyin-pro: ^3.28.1
     postprocessing: ^6.39.1
     pyodide: ^0.29.4
-    sass: ^1.99.0
-    sass-embedded: ^1.99.0
+    sass: ^1.100.0
+    sass-embedded: ^1.100.0
     swiper: ^12.1.4
     three: ^0.184.0
   prod:
@@ -150,7 +151,7 @@ catalogs:
     hash-wasm: ^4.12.0
     image-size: ^2.0.2
     js-yaml: ^4.1.1
-    katex: ^0.16.47
+    katex: ^0.17.0
     local-pkg: ^1.2.1
     lru-cache: ^11.5.0
     mark.js: ^8.11.1

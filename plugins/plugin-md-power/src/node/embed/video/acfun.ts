@@ -1,6 +1,7 @@
 /**
  * @[acfun](acid)
  */
+
 import type { PluginWithOptions } from 'markdown-it'
 import type { AcFunTokenMeta } from '../../../shared/index.js'
 import { parseRect } from '../../utils/parseRect.js'

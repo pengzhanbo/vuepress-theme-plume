@@ -3,9 +3,18 @@ ignoreWorkspaceRootCheck: true
 minimumReleaseAgeExclude:
   - '@pengzhanbo/utils@3.7.3'
   - local-pkg@1.2.1
-  - vite@8.0.14
-  - '@iconify/json@2.2.478'
   - baseline-browser-mapping@2.10.32
+  - '@iconify/json@2.2.482'
+  - '@vitest/coverage-v8@4.1.8'
+  - '@vitest/expect@4.1.8'
+  - '@vitest/mocker@4.1.8'
+  - '@vitest/pretty-format@4.1.8'
+  - '@vitest/runner@4.1.8'
+  - '@vitest/snapshot@4.1.8'
+  - '@vitest/spy@4.1.8'
+  - '@vitest/utils@4.1.8'
+  - vite@8.0.16
+  - vitest@4.1.8
 shamefullyHoist: true
 shellEmulator: true
 strictPeerDependencies: false
@@ -33,9 +42,9 @@ overrides:
   '@typescript-eslint/utils': 'catalog:peer'
   '@xmldom/xmldom': '>=0.9.10'
   axios: '>=1.16.1'
-  baseline-browser-mapping: ^2.10.32
+  baseline-browser-mapping: ^2.10.33
   chokidar: 'catalog:prod'
-  dompurify: '>=3.4.5'
+  dompurify: '>=3.4.7'
   fast-uri: '>=3.1.2'
   follow-redirects: '>=1.16.0'
   lodash: '>=4.18.1'
@@ -44,7 +53,7 @@ overrides:
   postcss: '>=8.5.15'
   sass-embedded: 'catalog:peer'
   simple-git: '>=3.36.0'
-  tmp: '>=0.2.5'
+  tmp: '>=0.2.7'
   uuid: '>=13.0.2'
   vite: 'catalog:dev'
   vue: 'catalog:prod'
@@ -60,8 +69,8 @@ patchedDependencies:
 
 catalogs:
   dev:
-    '@commitlint/cli': ^21.0.1
-    '@commitlint/config-conventional': ^21.0.1
+    '@commitlint/cli': ^21.0.2
+    '@commitlint/config-conventional': ^21.0.2
     '@lunariajs/core': ^0.1.1
     '@pengzhanbo/eslint-config-vue': ^2.4.1
     '@pengzhanbo/stylelint-config': ^2.4.1
@@ -77,7 +86,7 @@ catalogs:
     '@types/stylus': ^0.48.43
     '@types/three': ^0.184.1
     '@types/webpack-env': ^1.18.8
-    '@vitest/coverage-v8': ^4.1.7
+    '@vitest/coverage-v8': ^4.1.8
     bumpp: ^11.1.0
     commitizen: ^4.3.1
     conventional-changelog: ^7.2.0
@@ -85,13 +94,13 @@ catalogs:
     cpx2: ^9.0.0
     cross-env: 7.0.3
     cz-conventional-changelog: ^3.3.0
-    eslint: ^10.4.0
+    eslint: ^10.4.1
     http-server: ^14.1.1
     husky: ^9.1.7
     less: ^4.6.4
-    lint-staged: ^17.0.5
-    markdown-it: ^14.1.1
-    memfs: ^4.57.2
+    lint-staged: ^17.0.7
+    markdown-it: ^14.2.0
+    memfs: ^4.57.3
     mermaid: ^11.15.0
     minimist: ^1.2.8
     postcss: ^8.5.15
@@ -99,21 +108,21 @@ catalogs:
     stylelint: ^17.12.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.22.0
+    tsdown: ^0.22.1
     typescript: ^6.0.3
     unrun: ^0.2.39
-    vite: ^8.0.14
-    vitest: ^4.1.7
+    vite: ^8.0.16
+    vitest: ^4.1.8
     wait-on: ^9.0.10
   peer:
     '@eslint-community/eslint-utils': ^4.9.1
-    '@iconify/json': ^2.2.478
+    '@iconify/json': ^2.2.482
     '@mathjax/src': ^4.1.2
     '@pinyin-pro/data': ^1.3.1
     '@typescript-eslint/types': ^8.59.4
     '@typescript-eslint/utils': ^8.59.4
     artplayer: ^5.4.0
-    dashjs: ^5.1.1
+    dashjs: ^5.2.0
     gsap: ^3.15.0
     hls.js: ^1.6.16
     mpegts.js: 1.7.3
@@ -123,10 +132,10 @@ catalogs:
     pyodide: ^0.29.4
     sass: ^1.100.0
     sass-embedded: ^1.100.0
-    swiper: ^12.1.4
+    swiper: ^12.2.0
     three: ^0.184.0
   prod:
-    '@clack/prompts': ^1.4.0
+    '@clack/prompts': ^1.5.0
     '@iconify/utils': ^3.1.3
     '@iconify/vue': ^5.0.1
     '@mdit/plugin-attrs': ^0.25.2
@@ -143,7 +152,7 @@ catalogs:
     cac: ^7.0.0
     chart.js: ^4.5.1
     chokidar: 5.0.0
-    dayjs: ^1.11.20
+    dayjs: ^1.11.21
     echarts: ^6.1.0
     flowchart.ts: ^3.0.1
     focus-trap: ^8.2.1
@@ -151,10 +160,10 @@ catalogs:
     handlebars: ^4.7.9
     hash-wasm: ^4.12.0
     image-size: ^2.0.2
-    js-yaml: ^4.1.1
+    js-yaml: ^4.2.0
     katex: ^0.17.0
     local-pkg: ^1.2.1
-    lru-cache: ^11.5.0
+    lru-cache: ^11.5.1
     mark.js: ^8.11.1
     markdown-it-cjk-friendly: ^2.0.2
     markdown-it-container: ^4.0.0
@@ -170,13 +179,13 @@ catalogs:
     picocolors: ^1.1.1
     picomatch: ^4.0.4
     qrcode: ^1.5.4
-    rolldown: ^1.0.2
+    rolldown: ^1.0.3
     shiki: ^4.1.0
     sort-package-json: ^3.6.1
     tm-grammars: ^1.31.15
     tm-themes: ^1.12.2
-    vue: ^3.5.34
-    vue-router: ^5.0.7
+    vue: ^3.5.35
+    vue-router: ^5.1.0
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.30
     '@vuepress/helper': 2.0.0-rc.130

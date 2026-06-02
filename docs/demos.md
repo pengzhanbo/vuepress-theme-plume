@@ -33,13 +33,6 @@ docs:
     repo: https://github.com/Isaaczhr/NcatBotDocs
     preview: https://docs.ncatbot.xyz/images/preview.jpg
   -
-    name: PGuide Docs
-    desc: 一个与计算机自学、校内生活、开放公共服务等相关的本地化大学指南。
-    logo: https://docs.pguide.studio/icon/logo.svg
-    url: https://docs.pguide.studio
-    repo: https://github.com/PGuideDev/PGuide-Docs
-    preview: https://cos-global.pguide.cloud/pguide-docs/src/pguide-doc.png
-  -
     name: 文档中心 ｜ 手感互动
     desc: 手感互动是一个专业的现场提问、投票和大屏互动平台，为讲师、主持人、会议组织者提供一站式互动解决方案
     logo: https://docs.shougan.net/images/logo.png

@@ -1,3 +1,16 @@
+# [1.0.0-rc.202](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.201...v1.0.0-rc.202) (2026-06-02)
+
+
+### Features
+
+* migrate `esbuild` to `rolldown` ([#911](https://github.com/pengzhanbo/vuepress-theme-plume/issues/911)) ([f2a4d08](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f2a4d0814d140ccff1379f7441fd225b1826376a))
+* **theme:** add colorized brackets transformer for code highlighter ([#912](https://github.com/pengzhanbo/vuepress-theme-plume/issues/912)) ([3bf812c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3bf812cd0b33f0ecc4f07578dfc2c2f317f9bbdd))
+
+
+### Performance Improvements
+
+* optimize theme fonts ([#910](https://github.com/pengzhanbo/vuepress-theme-plume/issues/910)) ([5bcde57](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5bcde5723bdd49b918909fbcadc6ca758e2a3e3a))
+
 # [1.0.0-rc.201](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.200...v1.0.0-rc.201) (2026-05-16)
 
 

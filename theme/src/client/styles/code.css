@@ -365,3 +365,27 @@ html:not([data-theme="dark"]) .vp-code span {
     margin-inline: -24px;
   }
 }
+
+/*
+  Indent Guides
+  --------------------------------------------------------------------------
+ */
+.vp-doc div[class*="language-"] code .indent {
+  position: relative;
+  left: var(--indent-offset, 0);
+  display: inline-block;
+}
+
+.vp-doc div[class*="language-"] .indent:empty {
+  height: 1lh;
+  vertical-align: bottom;
+}
+
+.vp-doc div[class*="language-"] .indent::before {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  content: "";
+  background-color: currentcolor;
+  opacity: 0.15;
+}

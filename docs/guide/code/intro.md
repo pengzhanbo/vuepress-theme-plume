@@ -9,22 +9,6 @@ permalink: /guide/code/intro/
 
 主题 使用 [Shiki](https://shiki.style/) 在 Markdown 代码块实现语法高亮。
 
-::: important 重要变更 <Badge type="danger" text="1.0.0-rc.136" />
-
-从 ==1.0.0-rc.136== 版本开始，主题已将代码高亮插件从主题内部实现的 `@vuepress-plume/plugin-shikiji` 迁移
-到了 [vuepress ecosystem](https://github.com/vuepress/ecosystem) 提供的 [@vuepress/plugin-shiki](https://ecosystem.vuejs.press/zh/plugins/markdown/shiki.html)。
-
-_(无需担心变化太大，我也是 `@vuepress/plugin-shiki` 的主要开发者之一，它实现了与主题原插件一致的功能)_
-
-其中涉及到部分配置项需要调整变更：
-
-- `languages` 配置变更为 `langs` 选项。无需再手动添加你所使用的语言，插件将会自动识别并按需加载语言包。
-- `themes` 配置变更为：
-  - 当使用单主题配置时，使用 `theme` 配置代码块主题
-  - 当使用双主题配置时，使用 `themes` 配置代码块主题。
-
-:::
-
 ## 语言
 
 [Shiki](https://shiki.style/) 支持 超过 190+ 种语言，

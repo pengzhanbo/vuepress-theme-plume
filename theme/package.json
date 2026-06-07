@@ -111,6 +111,7 @@
     "@iconify/vue": "catalog:prod",
     "@pengzhanbo/utils": "catalog:prod",
     "@shikijs/colorized-brackets": "catalog:prod",
+    "@shikijs/transformers": "catalog:prod",
     "@vuepress-plume/plugin-fonts": "workspace:*",
     "@vuepress-plume/plugin-search": "workspace:*",
     "@vuepress/helper": "catalog:vuepress",

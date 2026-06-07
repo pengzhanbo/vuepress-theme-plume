@@ -9,26 +9,6 @@ permalink: /en/guide/code/intro/
 
 The theme uses [Shiki](https://shiki.style/) to implement syntax highlighting in Markdown code blocks.
 
-::: important Important Changes <Badge type="danger" text="1.0.0-rc.136" />
-
-Starting from version ==1.0.0-rc.136==, the theme has migrated the code highlighting plugin from the
-internally implemented `@vuepress-plume/plugin-shikiji` to
-[@vuepress/plugin-shiki](https://ecosystem.vuejs.press/zh/plugins/markdown/shiki.html)
-provided by the [vuepress ecosystem](https://github.com/vuepress/ecosystem).
-
-_(No need to worry about significant changes - I am also one of the main developers of_
-_`@vuepress/plugin-shiki`, which implements functionality consistent with the theme's original plugin.)_
-
-Some configuration items require adjustments:
-
-- The `languages` configuration has been changed to the `langs` option. You no longer need to manually
-  add the languages you use; the plugin will automatically recognize and load language packages as needed.
-- The `themes` configuration has been changed to:
-  - When using a single theme configuration, use the `theme` option to configure the code block theme
-  - When using dual theme configuration, use the `themes` option to configure the code block themes.
-
-:::
-
 ## Languages
 
 [Shiki](https://shiki.style/) supports over 190+ languages.

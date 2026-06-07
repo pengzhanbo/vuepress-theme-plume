@@ -15,6 +15,8 @@ export const theme: Theme = plumeTheme({
   codeHighlighter: {
     twoslash: true,
     lineNumbers: 10,
+    renderIndentGuides: true,
+    colorizedBrackets: true,
   },
 
   markdown: {

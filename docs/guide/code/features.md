@@ -7,7 +7,7 @@ permalink: /guide/code/features/
 
 主题在代码高亮功能上，进一步支持了更多的特性，它们能够帮助你的代码块更加具备表达力。
 
-## 代码块标题 <Badge type="tip" text="1.0.0-rc.136 +" />
+## 代码块标题
 
 在 <code>\`\`\` [lang]</code> 之后添加 `title="xxxx"` ，可以为当前代码块添加标题
 
@@ -546,10 +546,7 @@ body > div {
 
 还可以在 `codeHighlighter` 中全局启用 `collapsed-lines` 功能：
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     codeHighlighter: {
@@ -559,6 +556,36 @@ export default defineUserConfig({
 })
 ```
 
-:::
-
 全局启用时，可以使用 `:no-collapsed-lines` 来单独为某一代码块禁用 `collapsed-lines` 功能。
+
+## 代码块中的 缩进引导线
+
+此功能默认不启用，需要在 `codeHighlighter` 中全局启用 `renderIndentGuides` 功能。
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    codeHighlighter: {
+      renderIndentGuides: true // [!code ++]
+    }
+  })
+})
+```
+
+正如上方的代码块，启用后，会为代码块添加缩进引导线。
+
+## 代码块中的 颜色括号
+
+此功能默认不启用，需要在 `codeHighlighter` 中全局启用 `colorizedBrackets` 功能。
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    codeHighlighter: {
+      colorizedBrackets: true // [!code ++]
+    }
+  })
+})
+```
+
+将代码块中的 `{}` 和 `()` 根据嵌套层级，渲染为颜色不同的括号。

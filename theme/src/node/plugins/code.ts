@@ -1,7 +1,8 @@
 import type { PluginConfig } from 'vuepress'
 import type { ThemeBuiltinPlugins } from '../../shared/index.js'
-import { uniq } from '@pengzhanbo/utils'
+import { toTruthy, uniq } from '@pengzhanbo/utils'
 import { transformerColorizedBrackets } from '@shikijs/colorized-brackets'
+import { transformerRenderIndentGuides } from '@shikijs/transformers'
 import { isPlainObject } from '@vuepress/helper'
 import { copyCodePlugin } from '@vuepress/plugin-copy-code'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
@@ -28,10 +29,10 @@ export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
   }
 
   // 代码高亮
-  const shikiOptions = options.codeHighlighter ?? pluginOptions.shiki
+  const shikiOptions = (options.codeHighlighter ?? pluginOptions.shiki) as typeof options.codeHighlighter
 
   if (shikiOptions !== false) {
-    const { twoslash, langs = [], codeBlockTitle: _, transformers, ...restShikiOptions } = isPlainObject(shikiOptions) ? shikiOptions : {}
+    const { twoslash, langs = [], renderIndentGuides = false, colorizedBrackets = false, codeBlockTitle: _, transformers, ...restShikiOptions } = isPlainObject(shikiOptions) ? shikiOptions : {}
     const twoslashOptions = twoslash === true ? {} : twoslash
 
     const mdPower = isPlainObject(pluginOptions.markdownPower) ? pluginOptions.markdownPower : {}
@@ -46,7 +47,15 @@ export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
       notationWordHighlight: true,
       highlightLines: true,
       collapsedLines: false,
-      transformers: [transformerColorizedBrackets(), ...(transformers || [])],
+      transformers: [
+        colorizedBrackets
+          ? transformerColorizedBrackets(isPlainObject(colorizedBrackets) ? colorizedBrackets : {})
+          : undefined,
+        renderIndentGuides
+          ? transformerRenderIndentGuides(isPlainObject(renderIndentGuides) ? renderIndentGuides : {})
+          : undefined,
+        ...(transformers || []),
+      ].filter(toTruthy),
       langs: uniq([...twoslash ? ['ts', 'js', 'vue', 'json', 'bash', 'sh'] : [], ...langs]),
       codeBlockTitle: (title, code) => {
         const icon = getIcon(title)

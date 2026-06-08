@@ -3,21 +3,23 @@ title: Field Container
 icon: solar:text-field-linear
 createTime: 2025/10/08 09:55:17
 permalink: /en/guide/markdown/field/
-badge: New
+badge:
+  type: warning
+  text: Change
 ---
 
 ## Overview
 
-In Markdown, use the `::: field` container to describe field information, including field name,
-field type, whether it's required, default value, description, and other details.
+In markdown, use the `::: field` container with JSDoc-style tags to describe field information,
+including field name, field type, whether required, default value, details, and other information.
 
-It's suitable for describing fields in configurations, component Props, and similar scenarios.
+It is suitable for scenarios such as describing fields in configuration or component Props.
 
-You can also use the additional `:::: field-group` container to group multiple `::: field` containers.
+You can also use the additional `:::: field-group` container to combine multiple `::: field` entries.
 
 ## Enable
 
-This feature is disabled by default. You need to enable it in the `theme` configuration.
+This feature is not enabled by default. You need to enable it in the `theme` configuration.
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
@@ -31,75 +33,92 @@ export default defineUserConfig({
 
 ## Syntax
 
+Inside the `::: field` container, use JSDoc-style tags to describe field information. Each tag should occupy its own line.
+
+Non-tag lines are merged into the `@description` tag as the field description by default.
+
 ```md
-<!-- Single Field -->
-::: field name="Field Name" type="Type" required default="Default Value"
-Field description information
+<!-- Single field -->
+::: field fieldName
+@type Type
+@required
+@default default value
+@description Field description
+Multi-line field description
 :::
 
-<!-- Field Group -->
+<!-- Field group -->
 :::: field-group
 
-::: field name="Field Name" type="Type" required default="Default Value"
-Field description information
+::: field fieldName
+@type Type
+@required
+@default default value
+@description Field description
+Multi-line field description
 :::
 
-::: field name="Field Name" type="Type" required default="Default Value"
-Field description information
+::: field fieldName
+@type Type
+@required
+@default default value
+@description Field description
 :::
 
 ::::
 ```
 
-## Properties
+## Field Tags
 
-:::: field-group
-::: field name="name" required type="string"
-Field name
-:::
+Supports `@name`, `@type`, `@default`, `@required`, `@deprecated`, `@optional`, and `@description` tags.
 
-::: field name="type" type="string" optional
-Field type
-:::
-
-::: field name="required" type="boolean" optional
-Whether the field is required
-:::
-
-::: field name="optional" type="boolean" optional
-Whether the field is optional
-:::
-
-::: field name="deprecated" type="boolean" optional
-Whether the field is deprecated
-:::
-
-::: field name="default" type="string" optional
-Default value. If it's an empty string, use `default="''"`
-:::
-::::
+| Tag | Description |
+| --- | --- |
+| `@name` | Override the field name (default uses the text following the `:::field` line as the name) |
+| `@type` | Field type annotation |
+| `@default` | Default value |
+| `@required` | Mark as required field |
+| `@deprecated` | Mark as deprecated field |
+| `@optional` | Mark as optional field |
+| `@description` | Explicit description text; any non-tag lines are also included in the description |
 
 ## Examples
 
 **Input:**
 
 ```md
-::: field name="theme" type="ThemeConfig" required default="{}"
+::: field theme
+@type ThemeConfig
+@required
+@default {}
+
 Theme configuration
 :::
 
-::: field name="enabled" type="boolean" optional default="true"
+::: field enabled
+@type boolean
+@optional
+@default true
+
 Whether enabled
 :::
 ```
 
 **Output:**
 
-::: field name="theme" type="ThemeConfig" required default="{}"
+::: field theme
+@type ThemeConfig
+@required
+@default {}
+
 Theme configuration
 :::
 
-::: field name="enabled" type="boolean" optional default="true"
+::: field enabled
+@type boolean
+@optional
+@default true
+
 Whether enabled
 :::
 
@@ -107,21 +126,34 @@ Whether enabled
 
 ```md
 :::: field-group
-::: field name="theme" type="ThemeConfig" required default="{ base: '/' }"
+::: field theme
+@type ThemeConfig
+@required
+@default { base: '/' }
 Theme configuration
 :::
 
-::: field name="enabled" type="boolean" optional default="true"
+::: field enabled
+@type boolean
+@optional
+@default true
+
 Whether enabled
 :::
 
-::: field name="callback" type="(...args: any[]) => void" optional default="() => {}"
-<Badge type="tip" text="v1.0.0 New"  />
+::: field callback
+@type (...args: any[]) => void
+@optional
+@default () => (){}
+<Badge type="tip" text="New in v1.0.0"  />
 Callback function
 :::
 
-::: field name="other" type="string" deprecated
-<Badge type="danger" text="v0.9.0 Deprecated"  />
+::: field other
+@type string
+@deprecated
+
+<Badge type="danger" text="Deprecated in v0.9.0"  />
 Deprecated property
 :::
 ::::
@@ -130,21 +162,34 @@ Deprecated property
 **Output:**
 
 :::: field-group
-::: field name="theme" type="ThemeConfig" required default="{ base: '/' }"
+::: field theme
+@type ThemeConfig
+@required
+@default { base: '/' }
 Theme configuration
 :::
 
-::: field name="enabled" type="boolean" optional default="true"
+::: field enabled
+@type boolean
+@optional
+@default true
+
 Whether enabled
 :::
 
-::: field name="callback" type="(...args: any[]) => void" optional default="() => {}"
-<Badge type="tip" text="v1.0.0 New"  />
+::: field callback
+@type (...args: any[]) => void
+@optional
+@default () => (){}
+<Badge type="tip" text="New in v1.0.0"  />
 Callback function
 :::
 
-::: field name="other" type="string" deprecated
-<Badge type="danger" text="v0.9.0 Deprecated"  />
+::: field other
+@type string
+@deprecated
+
+<Badge type="danger" text="Deprecated in v0.9.0"  />
 Deprecated property
 :::
 ::::

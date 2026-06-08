@@ -15,10 +15,10 @@ defineProps<{
       <span class="name">{{ name }}</span>
       <span v-if="required || optional" :class="{ required, optional }">{{ required ? 'Required' : optional ? 'Optional' : '' }}</span>
       <span v-if="deprecated" class="deprecated">Deprecated</span>
-      <span v-if="type" class="type"><code>{{ type }}</code></span>
+      <span v-if="type" class="type"><code>{{ decodeURIComponent(type) }}</code></span>
     </p>
     <p v-if="defaultValue" class="default-value">
-      <code>{{ defaultValue }}</code>
+      <code>{{ decodeURIComponent(defaultValue) }}</code>
     </p>
     <div v-if="$slots.default" class="description">
       <slot />

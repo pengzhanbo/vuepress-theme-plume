@@ -13,19 +13,35 @@ permalink: /guide/components/home-box/
 
 :::: field-group
 
-::: field name="type" type="string" default="''" optional
+::: field type
+@type `string`
+@default `''`
+@optional
+
 区域类型
 :::
 
-::: field name="full" type="boolean" default="false" optional
+::: field full
+@type `boolean`
+@default `false`
+@optional
+
 是否全屏
 :::
 
-::: field name="background-image" type="string" default="''" optional
+::: field backgroundImage
+@type `string`
+@default `''`
+@optional
+
 区域背景图片
 :::
 
-::: field name="background-attachment" type="'fixed' | 'local'" default="'local'" optional
+::: field backgroundAttachment
+@type `'fixed' | 'local'`
+@default `'local'`
+@optional
+
 区域背景定位方式
 :::
 

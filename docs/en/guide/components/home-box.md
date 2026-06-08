@@ -13,19 +13,35 @@ The `<HomeBox>` component provides a wrapper container for areas when customizin
 
 :::: field-group
 
-::: field name="type" type="string" default="''" optional
+::: field type
+@type `string`
+@default `''`
+@optional
+
 Area type.
 :::
 
-::: field name="full" type="boolean" default="false" optional
+::: field full
+@type `boolean`
+@default `false`
+@optional
+
 Whether to enable fullscreen mode.
 :::
 
-::: field name="background-image" type="string" default="''" optional
+::: field background-image
+@type `string`
+@default `''`
+@optional
+
 Area background image.
 :::
 
-::: field name="background-attachment" type="'fixed' | 'local'" default="'local'" optional
+::: field background-attachment
+@type `'fixed' | 'local'`
+@default `'local'`
+@optional
+
 Area background attachment method.
 :::
 

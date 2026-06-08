@@ -12,7 +12,10 @@ The `<CardGrid>` component is used when multiple cards need to be arranged. Card
 ## Props
 
 :::: field-group
-::: field name="cols" type="number | { sm: number, md: number, lg: number }" default="2"
+::: field cols
+@type `number | { sm: number, md: number, lg: number }`
+@default `2`
+@optional
 
 Number of columns for card arrangement.
 
@@ -28,7 +31,6 @@ the number of columns adjusts automatically based on screen width.
 - `lg` : `>= 960px`
 
 It is recommended that the provided `number` does not exceed `3`.
-
 :::
 ::::
 

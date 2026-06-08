@@ -25,11 +25,19 @@ export default defineUserConfig({
 
 :::: field-group
 
-::: field name="trigger" type="'hover' | 'click'" default="'hover'" optional
+::: field trigger
+@type `'hover' | 'click'`
+@default `'hover'`
+@optional
+
 鼠标悬停触发，或者点击触发
 :::
 
-::: field name="effect" type="'blur' | 'mask'" default="'mask'" optional
+::: field effect
+@type `'blur' | 'mask'`
+@default `'mask'`
+@optional
+
 遮罩层效果，或者文本模糊效果
 :::
 

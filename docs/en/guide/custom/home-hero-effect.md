@@ -219,49 +219,109 @@ config:
 
 :::: field-group
 
-:::field name="height" type="number" optional default="3.5"
+:::field height
+@type `number`
+@optional
+@default `3.5`
+
 Apex height of the prism (world units)
 :::
-:::field name="baseWidth" type="number" optional default="5.5"
+:::field baseWidth
+@type `number`
+@optional
+@default `5.5`
+
 Total base width across X/Z (world units).
 :::
-:::field name="animationType" type="'rotate' | 'hover' | '3drotate'" optional default="'rotate'"
+:::field animationType
+@type `'rotate' | 'hover' | '3drotate'`
+@default `'rotate'`
+@optional
+
 Animation mode: shader wobble, pointer hover tilt, or full 3D rotation.
 :::
-:::field name="glow" type="number" optional default="1"
+:::field glow
+@type `number`
+@optional
+@default `1`
+
 Glow/bleed intensity multiplier.
 :::
-:::field name="offset" type="{ x?: number, y?: number }" optional default="{ x: 0, y: 0 }"
+:::field offset
+@type `{ x?: number, y?: number }`
+@optional
+@default `{ x: 0, y: 0 }`
+
 Pixel offset within the canvas (x→right, y→down).
 :::
-:::field name="noise" type="number" optional default="0"
+:::field noise
+@type `number`
+@optional
+@default `0`
+
 Film-grain noise amount added to final color (0 disables).
 :::
-:::field name="transparent" type="boolean" optional default="true"
+:::field transparent
+@type `boolean`
+@optional
+@default `true`
+
 Whether the canvas has an alpha channel (transparent background).
 :::
-:::field name="scale" type="number" optional default="3.6"
+:::field scale
+@type `number`
+@optional
+@default `3.6`
+
 Overall screen-space scale of the prism (bigger = larger).
 :::
-:::field name="hueShift" type="number" optional default="0"
+:::field hueShift
+@type `number`
+@optional
+@default `0`
+
 Hue rotation (radians) applied to final color.
 :::
-:::field name="colorFrequency" type="number" optional default="1"
+:::field colorFrequency
+@type `number`
+@optional
+@default `1`
+
 Frequency of internal sine bands controlling color variation.
 :::
-:::field name="hoverStrength" type="number" optional default="2"
+:::field hoverStrength
+@type `number`
+@optional
+@default `2`
+
 Sensitivity of hover tilt (pitch/yaw amplitude).
 :::
-:::field name="inertia" type="number" optional default="0.05"
+:::field inertia
+@type `number`
+@optional
+@default `0.05`
+
 Easing factor for hover (0..1, higher = snappier).
 :::
-:::field name="bloom" type="number" optional default="1"
+:::field bloom
+@type `number`
+@optional
+@default `1`
+
 Extra bloom factor layered on top of glow.
 :::
-:::field name="suspendWhenOffscreen" type="boolean" optional default="true"
+:::field suspendWhenOffscreen
+@type `boolean`
+@optional
+@default `true`
+
 Pause rendering when the element is not in the viewport.
 :::
-:::field name="timeScale" type="number" optional default="0.5"
+:::field timeScale
+@type `number`
+@optional
+@default `0.5`
+
 Global time multiplier for animations (0=frozen, 1=normal).
 :::
 ::::
@@ -331,73 +391,161 @@ config:
 #### Configuration
 
 ::::field-group
-:::field name="variant" type="'square' | 'circle' | 'triangle' | 'diamond'" optional default="'square'"
+:::field variant
+@type `'square' | 'circle' | 'triangle' | 'diamond'`
+@default `'square'`
+@optional
+
 Pixel shape variant
 :::
-:::field name="pixelSize" type="number" optional default="4"
+:::field pixelSize
+@type `number`
+@optional
+@default `4`
+
 Base pixel size (auto scaled for DPI).
 :::
-:::field name="color" type="string" optional default="'#5086a1'"
+:::field color
+@type `string`
+@optional
+@default '#5086a1'`
+
 Pixel color.
 :::
-:::field name="antialias" type="boolean" optional default="true"
+:::field antialias
+@type `boolean`
+@optional
+@default `true`
+
 Enable antialiasing.
 :::
-:::field name="patternScale" type="number" optional default="2"
+:::field patternScale
+@type `number`
+@optional
+@default `2`
+
 Noise/pattern scale.
 :::
-:::field name="patternDensity" type="number" optional default="1"
+:::field patternDensity
+@type `number`
+@optional
+@default `1`
+
 Pattern density adjustment.
 :::
-:::field name="liquid" type="boolean" optional default="false"
+:::field liquid
+@type `boolean`
+@optional
+@default `false`
+
 Enable liquid distortion effect.
 :::
-:::field name="liquidStrength" type="number" optional default="0.1"
+:::field liquidStrength
+@type `number`
+@optional
+@default `0.1`
+
 Liquid distortion strength.
 :::
-:::field name="liquidRadius" type="number" optional default="1"
+:::field liquidRadius
+@type `number`
+@optional
+@default `1`
+
 Liquid touch brush radius scale.
 :::
-:::field name="liquidWobbleSpeed" type="number" optional default="4.5"
+:::field liquidWobbleSpeed
+@type `number`
+@optional
+@default `4.5`
+
 Liquid wobble frequency.
 :::
-:::field name="pixelSizeJitter" type="number" optional default="0"
+:::field pixelSizeJitter
+@type `number`
+@optional
+@default `0`
+
 Random jitter applied to coverage.
 :::
-:::field name="enableRipples" type="boolean" optional default="true"
+:::field enableRipples
+@type `boolean`
+@optional
+@default `true`
+
 Enable click ripple waves.
 :::
-:::field name="rippleIntensityScale" type="number" optional default="1"
+:::field rippleIntensityScale
+@type `number`
+@optional
+@default `1`
+
 Ripple intensity multiplier.
 :::
-:::field name="rippleThickness" type="number" optional default="0.1"
+:::field rippleThickness
+@type `number`
+@optional
+@default `0.1`
+
 Ripple ring thickness.
 :::
-:::field name="rippleSpeed" type="number" optional default="0.3"
+:::field rippleSpeed
+@type `number`
+@optional
+@default `0.3`
+
 Ripple propagation speed.
 :::
-:::field name="autoPauseOffscreen" type="boolean" optional default="true"
+:::field autoPauseOffscreen
+@type `boolean`
+@optional
+@default `true`
+
 Enable auto-pausing when offscreen.
 :::
-:::field name="speed" type="number" optional default="0.5"
+:::field speed
+@type `number`
+@optional
+@default `0.5`
+
 Animation time scale.
 :::
-:::field name="transparent" type="boolean" optional default="true"
+:::field transparent
+@type `boolean`
+@optional
+@default `true`
+
 Transparent background.
 :::
-:::field name="edgeFade" type="number" optional default="0.5"
+:::field edgeFade
+@type `number`
+@optional
+@default `0.5`
+
 Edge fade distance (`0-1`).
 :::
-:::field name="noiseAmount" type="number" optional default="0"
+:::field noiseAmount
+@type `number`
+@optional
+@default `0`
+
 Post noise amount.
 :::
-:::field name="className" type="string" optional
+:::field className
+@type `string`
+@optional
+
 Container class name
 :::
-:::field name="style" type="CSSProperties" optional
+:::field style
+@type `CSSProperties`
+@optional
+
 Container style
 :::
-:::field name="backgroundImage" type="string" optional
+:::field backgroundImage
+@type `string`
+@optional
 Background image URL
 :::
 ::::
@@ -838,61 +986,133 @@ config:
 #### Configuration
 
 ::::field-group
-:::field name="mouseForce" type="number" optional default="20"
+:::field mouseForce
+@type `number`
+@optional
+@default `20`
+
 Strength multiplier applied to mouse / touch movement when injecting velocity.
 :::
-:::field name="cursorSize" type="number" optional default="100"
+:::field cursorSize
+@type `number`
+@optional
+@default `100`
+
 Radius (in pixels at base resolution) of the force brush.
 :::
-:::field name="isViscous" type="boolean" optional default="false"
+:::field isViscous
+@type `boolean`
+@optional
+@default `false`
+
 Toggle iterative viscosity solve (smoother, thicker motion when enabled).
 :::
-:::field name="viscous" type="number" optional default="30"
+:::field viscous
+@type `number`
+@optional
+@default `30`
+
 Viscosity coefficient used when `isViscous` is `true`.
 :::
-:::field name="iterationsViscous" type="number" optional default="32"
+:::field iterationsViscous
+@type `number`
+@optional
+@default `32`
+
 Number of Gauss-Seidel iterations for viscosity (higher = smoother, slower).
 :::
-:::field name="iterationsPoisson" type="number" optional default="32"
+:::field iterationsPoisson
+@type `number`
+@optional
+@default `32`
+
 Number of pressure Poisson iterations to enforce incompressibility.
 :::
-:::field name="dt" type="number" optional default="0.014"
+:::field dt
+@type `number`
+@optional
+@default `0.014`
+
 Fixed simulation timestep used inside the advection / diffusion passes.
 :::
-:::field name="BFECC" type="boolean" optional default="true"
+:::field BFECC
+@type `boolean`
+@optional
+@default `true`
+
 Enable BFECC advection (error-compensated) for crisper flow; disable for slight performance gain.
 :::
-:::field name="resolution" type="number" optional default="0.5"
+:::field resolution
+@type `number`
+@optional
+@default `0.5`
+
 Simulation texture scale relative to canvas size (lower = better performance, more blur).
 :::
-:::field name="isBounce" type="boolean" optional default="false"
+:::field isBounce
+@type `boolean`
+@optional
+@default `false`
+
 If true, shows bounce boundaries (velocity clamped at edges).
 :::
-:::field name="colors" type="string[]" optional default="['#5227FF', '#FF9FFC', '#B19EEF']"
+:::field colors
+@type `string[]`
+@optional
+@default `['#5227FF', '#FF9FFC', '#B19EEF']`
+
 Array of hex color stops used to build the velocity-to-color palette.
 :::
-:::field name="autoDemo" type="boolean" optional default="true"
+:::field autoDemo
+@type `boolean`
+@optional
+@default `true`
+
 Enable idle auto-driving of the pointer when no user interaction.
 :::
-:::field name="autoSpeed" type="number" optional default="0.5"
+:::field autoSpeed
+@type `number`
+@optional
+@default `0.5`
+
 Speed (normalized units/sec) for auto pointer motion.
 :::
-:::field name="autoIntensity" type="number" optional default="2.2"
+:::field autoIntensity
+@type `number`
+@optional
+@default `2.2`
+
 Multiplier applied to velocity delta while in auto mode.
 :::
-:::field name="takeoverDuration" type="number" optional default="2.5"
+:::field takeoverDuration
+@type `number`
+@optional
+@default `2.5`
+
 Seconds to interpolate from auto pointer to real cursor when user moves mouse.
 :::
-:::field name="autoResumeDelay" type="number" optional default="1000"
+:::field autoResumeDelay
+@type `number`
+@optional
+@default `1000`
+
 Milliseconds of inactivity before auto mode resumes.
 :::
-:::field name="autoRampDuration" type="number" optional default="0.6"
+:::field autoRampDuration
+@type `number`
+@optional
+@default `0.6`
+
 Seconds to ramp auto movement speed from 0 to full after activation.
 :::
-:::field name="className" type="string" optional
+:::field className
+@type `string`
+@optional
 Custom class name to apply to the container element
 :::
-:::field name="style" type="CSSProperties" optional
+:::field style
+@type `CSSProperties`
+@optional
 Custom inline styles to apply to the container element
 :::
 ::::
@@ -962,43 +1182,91 @@ config:
 #### Configuration
 
 ::::field-group
-:::field name="dotSize" type="number" optional default="5"
+:::field dotSize
+@type `number`
+@optional
+@default `5`
+
 Size of each dot in pixels.
 :::
-:::field name="gap" type="number" optional default="15"
+:::field gap
+@type `number`
+@optional
+@default `15`
+
 Gap between each dot in pixels.
 :::
-:::field name="baseColor" type="string" optional default="'#ebebf5'"
+:::field baseColor
+@type `string`
+@optional
+@default `#ebebf5`
+
 Base color of the dots.
 :::
-:::field name="activeColor" type="string" optional default="'#8cccd5'"
+:::field activeColor
+@type `string`
+@optional
+@default `#8cccd5`
+
 Color of dots when hovered or activated.
 :::
-:::field name="proximity" type="number" optional default="120"
+:::field proximity
+@type `number`
+@optional
+@default `120`
+
 Radius around the mouse pointer within which dots react.
 :::
-:::field name="speedTrigger" type="number" optional default="100"
+:::field speedTrigger
+@type `number`
+@optional
+@default `100`
+
 Mouse speed threshold to trigger inertia effect.
 :::
-:::field name="shockRadius" type="number" optional default="250"
+:::field shockRadius
+@type `number`
+@optional
+@default `250`
+
 Radius of the shockwave effect on click.
 :::
-:::field name="shockStrength" type="number" optional default="5"
+:::field shockStrength
+@type `number`
+@optional
+@default `5`
+
 Strength of the shockwave effect on click.
 :::
-:::field name="maxSpeed" type="number" optional default="5000"
+:::field maxSpeed
+@type `number`
+@optional
+@default `5000`
+
 Maximum speed for inertia calculation.
 :::
-:::field name="resistance" type="number" optional default="750"
+:::field resistance
+@type `number`
+@optional
+@default `750`
+
 Resistance for the inertia effect.
 :::
-:::field name="returnDuration" type="number" optional default="1.5"
+:::field returnDuration
+@type `number`
+@optional
+@default `1.5`
+
 Duration for dots to return to their original position after inertia.
 :::
-:::field name="className" type="string" optional
+:::field className
+@type `string`
+@optional
 CSS class names applied to the container.
 :::
-:::field name="style" type="CSSProperties" optional
+:::field style
+@type `CSSProperties`
+@optional
 Inline styles applied to the container.
 :::
 ::::
@@ -1062,16 +1330,28 @@ config:
 #### Configuration
 
 ::::field-group
-:::field name="color" type="readonly [number, number, number]" optional default="[1, 1, 1]"
+:::field color
+@type `readonly [number, number, number]`
+@optional
+@default `[1, 1, 1]`
 Base color as an array of RGB values (each between 0 and 1).
 :::
-:::field name="speed" type="number" optional default="1"
+:::field speed
+@type `number`
+@optional
+@default `1`
 Speed multiplier for the animation.
 :::
-:::field name="amplitude" type="number" optional default="0.1"
+:::field amplitude
+@type `number`
+@optional
+@default `0.1`
 Amplitude for the mouse-driven effect.
 :::
-:::field name="mouseReact" type="boolean" optional default="true"
+:::field mouseReact
+@type `boolean`
+@optional
+@default `true`
 Enable or disable mouse interaction with the shader.
 :::
 ::::
@@ -1128,19 +1408,38 @@ config:
 #### Configuration
 
 ::::field-group
-:::field name="hue" type="number" optional default="0"
+:::field hue
+@type `number`
+@optional
+@default `0`
+
 The base hue for the orb (in degrees).
 :::
-:::field name="hoverIntensity" type="number" optional default="0.2"
+:::field hoverIntensity
+@type `number`
+@optional
+@default `0.2`
+
 Controls the intensity of the hover distortion effect.
 :::
-:::field name="rotateOnHover" type="boolean" optional default="true"
+:::field rotateOnHover
+@type `boolean`
+@optional
+@default `true`
+
 Toggle to enable or disable continuous rotation on hover.
 :::
-:::field name="forceHoverState" type="boolean" optional default="false"
+:::field forceHoverState
+@type `boolean`
+@optional
+@default `false`
+
 Force hover animations even when the orb is not actually hovered.
 :::
-:::field name="className" type="string" optional
+:::field className
+@type `string`
+@optional
+
 Additional CSS classes for the component.
 :::
 ::::
@@ -1197,28 +1496,60 @@ config:
 #### Configuration
 
 ::::field-group
-:::field name="beamWidth" type="number" optional default="2"
+:::field beamWidth
+@type `number`
+@optional
+@default `2`
+
 Width of each beam.
 :::
-:::field name="beamHeight" type="number" optional default="15"
+:::field beamHeight
+@type `number`
+@optional
+@default `15`
+
 Height of each beam.
 :::
-:::field name="beamNumber" type="number" optional default="12"
+:::field beamNumber
+@type `number`
+@optional
+@default `12`
+
 Number of beams to display.
 :::
-:::field name="lightColor" type="string" optional default="#fff"
+:::field lightColor
+@type `string`
+@optional
+@default `#fff`
+
 Color of the directional light.
 :::
-:::field name="speed" type="number" optional default="2"
+:::field speed
+@type `number`
+@optional
+@default `2`
+
 Speed of the animation.
 :::
-:::field name="noiseIntensity" type="number" optional default="1.75"
+:::field noiseIntensity
+@type `number`
+@optional
+@default `1.75`
+
 Intensity of the noise effect overlay.
 :::
-:::field name="scale" type="number" optional default="0.2"
+:::field scale
+@type `number`
+@optional
+@default `0.2`
+
 Scale of the noise pattern.
 :::
-:::field name="rotation" type="number" optional default="0"
+:::field rotation
+@type `number`
+@optional
+@default `0`
+
 Rotation of the entire beams system in degrees.
 :::
 ::::
@@ -1269,19 +1600,35 @@ config:
 #### Configuration
 
 ::::field-group
-:::field name="hue" type="number" optional default="255"
+:::field hue
+@type `number`
+@optional
+@default `255`
+
 Hue of the lightning in degrees (0 to 360).
 :::
-:::field name="xOffset" type="number" optional default="0"
+:::field xOffset
+@type `number`
+@optional
+@default `0`
 Horizontal offset of the lightning in normalized units.
 :::
-:::field name="speed" type="number" optional default="1"
+:::field speed
+@type `number`
+@optional
+@default `1`
 Animation speed multiplier for the lightning.
 :::
-:::field name="intensity" type="number" optional default="1"
+:::field intensity
+@type `number`
+@optional
+@default `1`
 Brightness multiplier for the lightning.
 :::
-:::field name="size" type="number" optional default="1"
+:::field size
+@type `number`
+@optional
+@default `1`
 Scale factor for the bolt size.
 :::
 ::::
@@ -1329,25 +1676,53 @@ config:
 #### Configuration
 
 ::::field-group
-:::field name="hueShift" type="number" optional default="0"
+:::field hueShift
+@type `number`
+@optional
+@default `0`
+
 Shifts the hue of the entire animation.
 :::
-:::field name="noiseIntensity" type="number" optional default="0"
+:::field noiseIntensity
+@type `number`
+@optional
+@default `0`
+
 Intensity of the noise/grain effect.
 :::
-:::field name="scanlineIntensity" type="number" optional default="0"
+:::field scanlineIntensity
+@type `number`
+@optional
+@default `0`
+
 Intensity of the scanline effect.
 :::
-:::field name="speed" type="number" optional default="0.5"
+:::field speed
+@type `number`
+@optional
+@default `0.5`
+
 Speed of the animation.
 :::
-:::field name="scanlineFrequency" type="number" optional default="0"
+:::field scanlineFrequency
+@type `number`
+@optional
+@default `0`
+
 Frequency of the scanlines.
 :::
-:::field name="warpAmount" type="number" optional default="0"
+:::field warpAmount
+@type `number`
+@optional
+@default `0`
+
 Amount of warp distortion applied to the effect.
 :::
-:::field name="resolutionScale" type="number" optional default="1"
+:::field resolutionScale
+@type `number`
+@optional
+@default `1`
+
 Scale factor for the resolution.
 :::
 ::::

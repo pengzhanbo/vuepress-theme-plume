@@ -47,19 +47,35 @@ export default defineUserConfig({
 
 :::: field-group
 
-::: field name="wikiLink" type="boolean" default="true" optional
+::: field wikiLink
+@type `boolean`
+@default `true`
+@optional
+
 Enable [Wiki Links](#wiki-links) syntax.
 :::
 
-::: field name="embedLink" type="boolean" default="true" optional
+::: field embedLink
+@type `boolean`
+@default `true`
+@optional
+
 Enable [Embeds](#embeds) syntax.
 :::
 
-::: field name="callout" type="boolean" default="true" optional
+::: field callout
+@type `boolean`
+@default `true`
+@optional
+
 Enable [Callout](#callout) syntax.
 :::
 
-::: field name="comment" type="boolean" default="true" optional
+::: field comment
+@type `boolean`
+@default `true`
+@optional
+
 Enable [Comments](#comments) syntax.
 :::
 

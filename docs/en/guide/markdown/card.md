@@ -39,11 +39,18 @@ This is the card content.
 ## Props
 
 :::: field-group
-::: field name="title" type="string" optional default="''"
+::: field title
+@type `string`
+@optional
+@default `''`
+
 Card title
 :::
 
-::: field name="icon" type="string" optional
+::: field icon
+@type `string`
+@optional
+
 Card icon. Supports image URLs and [iconify](https://icon-sets.iconify.design/) icon names.
 ::::
 

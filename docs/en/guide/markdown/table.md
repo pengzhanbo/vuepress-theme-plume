@@ -52,9 +52,9 @@ Simply wrap the table within a `:::table` block.
 
 ```md
 :::table title="Title" align="center" max-content copy="all"
-| xx | xx | xx |
-| -- | -- | -- |
-| xx | xx | xx |
+| xx  | xx  | xx  |
+| --- | --- | --- |
+| xx  | xx  | xx  |
 :::
 ```
 
@@ -62,15 +62,26 @@ Simply wrap the table within a `:::table` block.
 
 :::: field-group
 
-::: field name="title" type="string" optional
+::: field title
+@type `string`
+@optional
+
 Table title, displayed below the table.
 :::
 
-::: field name="align" type="'left' | 'center' | 'right'" optional default="'left'"
+::: field align
+@type `'left' | 'center' | 'right'`
+@default `left`
+@optional
+
 Table alignment.
 :::
 
-::: field name="copy" type="boolean | 'all' | 'html' | 'md'" optional default="true"
+::: field copy
+@type `boolean | 'all' | 'html' | 'md'`
+@default `true`
+@optional
+
 Displays a copy button in the top-right corner of the table for copying as HTML or Markdown.
 
 - `true` is equivalent to `'all'`.
@@ -80,15 +91,26 @@ Displays a copy button in the top-right corner of the table for copying as HTML 
 - `'md'` enables copying as Markdown.
 :::
 
-::: field name="maxContent" type="boolean" optional default="false"
+::: field maxContent
+@type `boolean`
+@default `false`
+@optional
+
 Inline elements will not wrap automatically; a scrollbar is displayed when the content exceeds the container width.
 :::
 
-::: field name="fullWidth" type="boolean" optional default="false"
+::: field fullWidth
+@type `boolean`
+@default `false`
+@optional
+
 The table width defaults to occupying the entire row.
 :::
 
-::: field name="hl-rows" type="string" optional
+::: field hl-rows
+@type `string`
+@optional
+
 Configures row highlighting within the table.
 
 The value uses the format `type:row1,row2`. Multiple type-row pairs can be combined using `;`.
@@ -104,7 +126,10 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 `row` counting starts from 1.
 :::
 
-::: field name="hl-cols" type="string" optional
+::: field hl-cols
+@type `string`
+@optional
+
 Configures column highlighting within the table.
 
 The value uses the format `type:col1,col2`. Multiple type-column pairs can be combined using `;`.
@@ -121,7 +146,9 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 `col` counting starts from 1.
 :::
 
-::: field name="hl-cells" type="string" optional
+::: field hl-cells
+@type `string`
+@optional
 Configures cell highlighting within the table.
 
 The value uses the format `type:(row,col)`. Multiple type-cell pairs can be combined using `;`.
@@ -148,7 +175,7 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 ```md
 ::: table title="This is the Table Title"
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Cell 1   | Cell 2   | Cell 3   |
 | Row 2    | Data     | Info     |
 :::
@@ -159,7 +186,7 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 ::: table title="This is the Table Title"
 
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Cell 1   | Cell 2   | Cell 3   |
 | Row 2    | Data     | Info     |
 
@@ -172,7 +199,7 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 ```md
 ::: table title="This is the Table Title" align="center"
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Cell 1   | Cell 2   | Cell 3   |
 | Row 2    | Data     | Info     |
 :::
@@ -183,7 +210,7 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 ::: table title="This is the Table Title" align="center"
 
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Cell 1   | Cell 2   | Cell 3   |
 | Row 2    | Data     | Info     |
 
@@ -196,10 +223,10 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 ```md
 :::table title="This is the Table Title" max-content
 
-| ID | Description                                                                 | Status       |
-|----|-----------------------------------------------------------------------------|--------------|
-| 1  | This is an extremely long description that should trigger text wrapping in most table implementations. | In Progress  |
-| 2  | Short text                                                                  | ✅ Completed |
+| ID  | Description                                                                                            | Status      |
+| --- | ------------------------------------------------------------------------------------------------------ | ----------- |
+| 1   | This is an extremely long description that should trigger text wrapping in most table implementations. | In Progress |
+| 2   | Short text                                                                                             | ✅ Completed |
 :::
 ```
 
@@ -207,10 +234,10 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 
 :::table title="This is the Table Title" max-content
 
-| ID | Description                                                                 | Status       |
-|----|-----------------------------------------------------------------------------|--------------|
-| 1  | This is an extremely long description that should trigger text wrapping in most table implementations. | In Progress  |
-| 2  | Short text                                                                  | ✅ Completed |
+| ID  | Description                                                                                            | Status      |
+| --- | ------------------------------------------------------------------------------------------------------ | ----------- |
+| 1   | This is an extremely long description that should trigger text wrapping in most table implementations. | In Progress |
+| 2   | Short text                                                                                             | ✅ Completed|
 
 :::
 
@@ -219,7 +246,7 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 ```md
 ::: table full-width
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Cell 1   | Cell 2   | Cell 3   |
 | Row 2    | Data     | Info     |
 :::
@@ -230,7 +257,7 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 ::: table full-width
 
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Cell 1   | Cell 2   | Cell 3   |
 | Row 2    | Data     | Info     |
 

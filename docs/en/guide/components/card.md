@@ -15,11 +15,19 @@ Alternatively, the markdown [card container](../markdown/card.md) syntax can be 
 
 :::: field-group
 
-::: field name="title" type="string" default="''" optional
+::: field title
+@type `string`
+@default `''`
+@optional
+
 Card title.
 :::
 
-::: field name="icon" type="string | { svg: string }" default="''" optional
+::: field icon
+@type `string | { svg: string }`
+@default `''`
+@optional
+
 Icon displayed to the left of the title. Supports all icons from iconify, or an image URL can be used.
 :::
 

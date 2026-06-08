@@ -126,15 +126,26 @@ __Timeline__ supports highly flexible configuration options, divided into two ma
 
 :::: field-group
 
-::: field name="horizontal" type="boolean" default="false" optional
+::: field horizontal
+@type `boolean`
+@default `false`
+@optional
+
 Renders a horizontally oriented timeline.
 :::
 
-::: field name="card" type="boolean" default="false" optional
+::: field card
+@type `boolean`
+@default `false`
+@optional
+
 Renders each timeline node as a card by default (can be overridden in list item configuration).
 :::
 
-::: field name="placement" type="'left' | 'right' | 'between'" default="'left'" optional
+::: field placement
+@type `'left' | 'right' | 'between'`
+@default `'left'`
+@optional
 
 Alignment of timeline nodes. ==Only effective in vertical orientation=={.warning}
 
@@ -143,7 +154,11 @@ Alignment of timeline nodes. ==Only effective in vertical orientation=={.warning
 - `between`: Justifies the timeline axis (positions defined by `placement` in list item configuration, defaults to `left`)
 :::
 
-::: field name="line" type="'solid' | 'dashed' | 'dotted'" default="'solid'" optional
+::: field line
+@type `'solid' | 'dashed' | 'dotted'`
+@default `'solid'`
+@optional
+
 Line style (can be overridden in list item configuration).
 :::
 
@@ -153,27 +168,50 @@ Line style (can be overridden in list item configuration).
 
 :::: field-group
 
-::: field name="time" type="string" default="''" optional
+::: field time
+@type `string`
+@default `''`
+@optional
+
 Time point, can be any string such as `2025-03-20`, `Q1`, etc.
 :::
 
-::: field name="type" type="'info' | 'tip' | 'success' | 'warning' | 'danger' | 'caution' | 'important'" default="'info'" optional
+::: field type
+@type `'info' | 'tip' | 'success' | 'warning' | 'danger' | 'caution' | 'important'`
+@default `'info'`
+@optional
+
 Type of the timeline node.
 :::
 
-::: field name="card" type="boolean" default="false" optional
+::: field card
+@type `boolean`
+@default `false`
+@optional
+
 Renders the current timeline node as a card. Default value is inherited from container configuration `card`.
 :::
 
-::: field name="line" type="'solid' | 'dashed' | 'dotted'" default="'solid'" optional
+::: field line
+@type `'solid' | 'dashed' | 'dotted'`
+@default `'solid'`
+@optional
+
 Line style. Default value is inherited from container configuration `line`.
 :::
 
-::: field name="icon" type="string" default="''" optional
+::: field icon
+@type `string`
+@default `''`
+@optional
+
 Icon for the timeline node. Supports all [iconify](https://icon-sets.iconify.design/) icons.
 :::
 
-::: field name="placement" type="'left' | 'right'" default="'left'" optional
+::: field placement
+@type `'left' | 'right' | 'between'`
+@default `'left'`
+@optional
 
 Defines the position of the current timeline node when container configuration `placement` is `between`.
 
@@ -181,7 +219,11 @@ Defines the position of the current timeline node when container configuration `
 - `right`: On the right side of the timeline axis
 :::
 
-::: field name="color" type="string" default="''" optional
+::: field color
+@type `string`
+@default `''`
+@optional
+
 Line color for the timeline node. Can be any valid color value.
 :::
 

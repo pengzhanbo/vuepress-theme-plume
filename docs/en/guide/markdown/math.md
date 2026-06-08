@@ -98,18 +98,24 @@ $$
 ## Configuration Options
 
 :::: field-group
-::: field name="type" type="'katex' | 'mathjax'" default="'katex'"
+::: field type
+@type `'katex' | 'mathjax'`
+@default `'katex'`
 
 Package used to render $\TeX$ content.
 
 - `'katex'`: Use [KaTeX](https://katex.org/)
 - `'mathjax'`: Use [MathJax](https://www.mathjax.org/)
 :::
-:::field name="delimiters" type="'brackets' | 'dollars' | 'all'" default="'dollars'" optional
+::: field delimiters
+@type `'brackets' | 'dollars' | 'all'`
+@default `'dollars'`
+
 Enabled math delimiter syntax.
-  - `"brackets"`: Use `\(...\)` for inline math and `\[...\]` for display mode math (LaTeX style)
-  - `"dollars"`: Use `$...$` for inline math and `$$...$$` for display mode math (common Markdown style)
-  - `"all"`: Enable both bracket and dollar sign syntax
+
+- `"brackets"`: Use `\(...\)` for inline math and `\[...\]` for display mode math (LaTeX style)
+- `"dollars"`: Use `$...$` for inline math and `$$...$$` for display mode math (common Markdown style)
+- `"all"`: Enable both bracket and dollar sign syntax
 :::
 ::::
 
@@ -120,10 +126,16 @@ When using KaTeX, any other options will be passed to KaTeX as `KatexOptions`. F
 Additionally, 2 special options are supported:
 
 :::: field-group
-::: field name="copy" type="boolean" optional default="false"
+::: field copy
+@type `boolean`
+@optional
+@default `false`
 Whether to enable the copy extension.
 :::
-::: field name="mhchem" type="boolean" optional default="false"
+::: field mhchem
+@type `boolean`
+@optional
+@default `false`
 Whether to enable the mhchem extension.
 :::
 ::::
@@ -133,16 +145,29 @@ Whether to enable the mhchem extension.
 When using MathJax, you can set:
 
 :::: field-group
-:::field name="tex" type="object" optional
+::: field tex
+@type `object`
+@optional
+
 Options passed to the TeX input parser.
 :::
-::: field name="output" type="'svg' | 'chtml'" default="'svg'" optional
+::: field output
+@type `'svg' | 'chtml'`
+@optional
+@default `'svg'`
+
 Output format, either SVG or Common HTML.
 :::
-::: field name="chtml" type="object" optional
+::: field chtml
+@type `object`
+@optional
+
 Options passed to the Common HTML output parser.
 :::
-::: field name="svg" type="object" optional
+::: field svg
+@type `object`
+@optional
+
 Options passed to the SVG output parser.
 :::
 ::::

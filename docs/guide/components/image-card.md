@@ -16,35 +16,59 @@ permalink: /guide/components/image-card/
 
 :::: field-group
 
-::: field name="image" type="string" required
+::: field image
+@type `string`
+@required
+
 图片链接地址，本地图片必须使用绝对路径，即以 `/` 开头的路径，指向 `/public` 目录
 :::
 
-::: field name="title" type="string" optional
+::: field title
+@type `string`
+@optional
+
 图片标题
 :::
 
-::: field name="description" type="string" optional
+::: field description
+@type `string`
+@optional
+
 图片描述信息
 :::
 
-::: field name="author" type="string" optional
+::: field author
+@type `string`
+@optional
+
 图片作者
 :::
 
-::: field name="href" type="string" optional
+::: field href
+@type `string`
+@optional
+
 点击图片标题后的跳转链接
 :::
 
-::: field name="date" type="string | Date | number" optional
+::: field date
+@type `string | Date | number`
+@optional
+
 图片 创作日期
 :::
 
-::: field name="width" type="string | number" optional
+::: field width
+@type `string | number`
+@optional
+
 图片宽度
 :::
 
-::: field name="center" type="boolean" optional
+::: field center
+@type `boolean`
+@optional
+
 图片宽度不满屏时是否居中
 :::
 

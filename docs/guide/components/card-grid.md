@@ -12,7 +12,10 @@ permalink: /guide/components/card-grid/
 ## Props
 
 :::: field-group
-::: field name="cols" type="number | { sm: number, md: number, lg: number }" default="2"
+::: field cols
+@type `number | { sm: number, md: number, lg: number }`
+@default `2`
+@optional
 
 卡片排列列数。
 

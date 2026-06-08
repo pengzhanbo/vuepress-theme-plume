@@ -33,7 +33,9 @@ An item represents individual content such as an image, text, video, etc.
 
 :::: field-group
 
-::: field name="cols" type="number | { sm: number, md: number, lg: number }" optional
+::: field cols
+@type `number | { sm: number, md: number, lg: number }`
+@optional
 Number of columns.
 
 The component automatically adjusts the number of columns based on screen width by default.
@@ -48,7 +50,11 @@ the number of columns adjusts automatically based on screen width.
 - `lg` : `>= 960px`
 :::
 
-::: field name="gap" type="number" optional default="16"
+::: field gap
+@type `number`
+@optional
+@default `16`
+
 Gap between columns.
 :::
 

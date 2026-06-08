@@ -97,18 +97,26 @@ $$
 ## 配置项
 
 :::: field-group
-::: field name="type" type="'katex' | 'mathjax'" default="'katex'"
+::: field type
+@type `'katex' | 'mathjax'`
+@default `'katex'`
+@optional
 
 用于渲染 $\TeX$ 内容的包。
 
 - `'katex'`：使用 [KaTeX](https://katex.org/)
 - `'mathjax'`：使用 [MathJax](https://www.mathjax.org/)
 :::
-:::field name="delimiters" type="'brackets' | 'dollars' | 'all'" default="'dollars'" optional
+::: field delimiters
+@type `'brackets' | 'dollars' | 'all'`
+@default `'dollars'`
+@optional
+
 启用的数学分隔符语法。
-  - `"brackets"`: 使用 `\(...\)` 表示内联数学，使用 `\[...\]` 表示显示模式数学（LaTeX 风格）
-  - `"dollars"`: 使用 `$...$` 表示内联数学，使用 `$$...$$` 表示显示模式数学（常见 Markdown 风格）
-  - `"all"`: 启用括号和美元符号两种语法
+
+- `"brackets"`: 使用 `\(...\)` 表示内联数学，使用 `\[...\]` 表示显示模式数学（LaTeX 风格）
+- `"dollars"`: 使用 `$...$` 表示内联数学，使用 `$$...$$` 表示显示模式数学（常见 Markdown 风格）
+- `"all"`: 启用括号和美元符号两种语法
 :::
 ::::
 
@@ -119,10 +127,18 @@ $$
 此外，还支持 2 个特殊选项：
 
 :::: field-group
-::: field name="copy" type="boolean" optional default="false"
+::: field copy
+@type `boolean`
+@default `false`
+@optional
+
 是否启用复制扩展。
 :::
-::: field name="mhchem" type="boolean" optional default="false"
+::: field mhchem
+@type `boolean`
+@default `false`
+@optional
+
 是否启用 mhchem 扩展。
 :::
 ::::
@@ -132,16 +148,29 @@ $$
 使用 MathJax 时，你可以设置：
 
 :::: field-group
-:::field name="tex" type="object" optional
+::: field tex
+@type `object`
+@optional
+
 传递给 TeX 输入解析器的选项。
 :::
-::: field name="output" type="'svg' | 'chtml'" default="'svg'" optional
+::: field output
+@type `'svg' | 'chtml'`
+@default `'svg'`
+@optional
+
 输出格式，SVG 或通用 HTML。
 :::
-::: field name="chtml" type="object" optional
+::: field chtml
+@type `object`
+@optional
+
 传递给通用 HTML 输出解析器的选项。
 :::
-::: field name="svg" type="object" optional
+::: field svg
+@type `object`
+@optional
+
 传递给 SVG 输出解析器的选项。
 :::
 ::::

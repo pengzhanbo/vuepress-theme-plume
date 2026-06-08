@@ -17,35 +17,58 @@ It is suitable for scenarios such as photography works, design works, promotiona
 
 :::: field-group
 
-::: field name="image" type="string" required
+::: field image
+@type `string`
+@required
+
 The image URL. Local images must use an absolute path, i.e., a path starting with `/`, pointing to the `/public` directory.
 :::
 
-::: field name="title" type="string" optional
+::: field title
+@type `string`
+@optional
 The image title.
 :::
 
-::: field name="description" type="string" optional
+::: field description
+@type `string`
+@optional
+
 The image description.
 :::
 
-::: field name="author" type="string" optional
+::: field author
+@type `string`
+@optional
+
 The image author.
 :::
 
-::: field name="href" type="string" optional
+::: field href
+@type `string`
+@optional
+
 The link to navigate to when the image title is clicked.
 :::
 
-::: field name="date" type="string | Date | number" optional
+::: field date
+@type `string | Date | number`
+@optional
+
 The image creation date.
 :::
 
-::: field name="width" type="string | number" optional
+::: field width
+@type `string | number`
+@optional
+
 The image width.
 :::
 
-::: field name="center" type="boolean" optional
+::: field center
+@type `boolean`
+@optional
+
 Whether to center the image when its width is less than the screen width.
 :::
 

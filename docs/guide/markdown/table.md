@@ -50,9 +50,9 @@ export default defineUserConfig({
 
 ```md
 :::table title="标题" align="center" max-content copy="all"
-| xx | xx | xx |
-| -- | -- | -- |
-| xx | xx | xx |
+| xx  | xx  | xx  |
+| --- | --- | --- |
+| xx  | xx  | xx  |
 :::
 ```
 
@@ -60,15 +60,26 @@ export default defineUserConfig({
 
 :::: field-group
 
-::: field name="title" type="string" optional
+::: field title
+@type `string`
+@optional
+
 表格标题，显示在表格的下方
 :::
 
-::: field name="align" type="'left' | 'center' | 'right'" optional default="'left'"
+::: field align
+@type `'left' | 'center' | 'right'`
+@default `left`
+@optional
+
 表格对齐方式
 :::
 
-::: field name="copy" type="boolean | 'all' | 'html' | 'md'" optional default="true"
+::: field copy
+@type `boolean | 'all' | 'html' | 'md'`
+@default `true`
+@optional
+
 在表格的右上角显示复制按钮，可以复制为 html / markdown
 
 - `true` 等同于 `all`
@@ -78,15 +89,26 @@ export default defineUserConfig({
 - `md` 启用复制为 markdown
 :::
 
-::: field name="maxContent" type="boolean" optional default="false"
+::: field maxContent
+@type `boolean`
+@default `false`
+@optional
+
 行内元素不再自动换行，超出容器宽度时表格显示滚动条
 :::
 
-::: field name="fullWidth" type="boolean" optional default="false"
+::: field fullWidth
+@type `boolean`
+@default `false`
+@optional
+
 表格宽度默认占据整行
 :::
 
-::: field name="hl-rows" type="string" optional
+::: field hl-rows
+@type `string`
+@optional
+
 配置表格中的行高亮。
 
 值使用 `type:row1,row2` 的格式，可以使用 `;` 组合多个 type row。
@@ -102,7 +124,10 @@ export default defineUserConfig({
 `row` 从 1 开始计数。
 :::
 
-::: field name="hl-cols" type="string" optional
+::: field hl-cols
+@type `string`
+@optional
+
 配置表格中的列高亮。
 
 值使用 `type:col1,col2` 的格式，可以使用 `;` 组合多个 type col。
@@ -118,7 +143,10 @@ export default defineUserConfig({
 `col` 从 1 开始计数。
 :::
 
-::: field name="hl-cells" type="string" optional
+::: field hl-cells
+@type `string`
+@optional
+
 配置表格中的单元格高亮。
 
 值使用 `type:(row,col)` 的格式，可以使用 `;` 组合多个 type cell。
@@ -145,7 +173,7 @@ export default defineUserConfig({
 ```md
 ::: table title="这是表格标题"
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Cell 1   | Cell 2   | Cell 3   |
 | Row 2    | Data     | Info     |
 :::
@@ -156,7 +184,7 @@ export default defineUserConfig({
 ::: table title="这是表格标题"
 
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Cell 1   | Cell 2   | Cell 3   |
 | Row 2    | Data     | Info     |
 
@@ -169,7 +197,7 @@ export default defineUserConfig({
 ```md
 ::: table title="这是表格标题" align="center"
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Cell 1   | Cell 2   | Cell 3   |
 | Row 2    | Data     | Info     |
 :::
@@ -180,7 +208,7 @@ export default defineUserConfig({
 ::: table title="这是表格标题" align="center"
 
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Cell 1   | Cell 2   | Cell 3   |
 | Row 2    | Data     | Info     |
 
@@ -193,10 +221,10 @@ export default defineUserConfig({
 ```md
 :::table title="这是表格标题" max-content
 
-| ID | Description                                                                 | Status       |
-|----|-----------------------------------------------------------------------------|--------------|
-| 1  | This is an extremely long description that should trigger text wrapping in most table implementations. | In Progress  |
-| 2  | Short text                                                                  | ✅ Completed |
+| ID  | Description                                                                                            | Status      |
+| --- | ------------------------------------------------------------------------------------------------------ | ----------- |
+| 1   | This is an extremely long description that should trigger text wrapping in most table implementations. | In Progress |
+| 2   | Short text                                                                                             | ✅ Completed |
 :::
 ```
 
@@ -204,10 +232,10 @@ export default defineUserConfig({
 
 :::table title="这是表格标题" max-content
 
-| ID | Description                                                                 | Status       |
-|----|-----------------------------------------------------------------------------|--------------|
-| 1  | This is an extremely long description that should trigger text wrapping in most table implementations. | In Progress  |
-| 2  | Short text                                                                  | ✅ Completed |
+| ID  | Description                                                                                            | Status      |
+| --- | ------------------------------------------------------------------------------------------------------ | ----------- |
+| 1   | This is an extremely long description that should trigger text wrapping in most table implementations. | In Progress |
+| 2   | Short text                                                                                             | ✅ Completed|
 
 :::
 
@@ -216,7 +244,7 @@ export default defineUserConfig({
 ```md
 ::: table full-width
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Cell 1   | Cell 2   | Cell 3   |
 | Row 2    | Data     | Info     |
 :::
@@ -227,7 +255,7 @@ export default defineUserConfig({
 ::: table full-width
 
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Cell 1   | Cell 2   | Cell 3   |
 | Row 2    | Data     | Info     |
 

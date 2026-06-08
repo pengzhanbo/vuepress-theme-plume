@@ -50,15 +50,25 @@ Global components can be used in any other markdown file:
 
 :::: field-group
 
-::: field name="repo" type="string" required
+::: field repo
+@type `string`
+@required
+
 Repository address in `owner/repo` format
 :::
 
-::: field name="provider" type="github | gitee" optional default="'github'"
+::: field provider
+@type `'github' | 'gitee'`
+@default `'github'`
+@optional
+
 Repository platform. Currently only `github`/`gitee` are supported.
 :::
 
-::: field name="fullname" type="boolean" optional
+::: field fullname
+@type `boolean`
+@optional
+
 Whether to display the full repository name.
 
 The full repository name is `owner/repo`.

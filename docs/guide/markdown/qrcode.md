@@ -61,24 +61,46 @@ text
 ## 属性
 
 :::: field-group
-::: field name="card" type="boolean" optional default="false"
+::: field card
+@type `boolean`
+@default `false`
+@optional
+
 是否启用卡片样式。
 :::
-::: field name="logo" type="string" optional
+::: field logo
+@type `string`
+@optional
+
 二维码 logo 图片路径。显示于二维码中心。
 
 仅支持 绝对路径。
 :::
-::: field name="logoSize" type="number" optional default="0.2"
+::: field logoSize
+@type `number`
+@default `0.2`
+@optional
+
 logo 相对于二维码 大小比例
 :::
-::: field name="title" type="string" optional
+::: field title
+@type `string`
+@optional
+
 二维码标题。
 :::
-::: field name="align" type="'left' | 'center' | 'right'" optional default="left"
+::: field align
+@type `'left' | 'center' | 'right'`
+@default `left`
+@optional
+
 二维码对齐方式。
 :::
-::: field name="width" type="number" optional default="300"
+::: field width
+@type `number`
+@default `300`
+@optional
+
 二维码宽度。
 :::
 ::::
@@ -86,16 +108,32 @@ logo 相对于二维码 大小比例
 以下属性配置将直接影响二维码的最终渲染效果，通常使用默认值即可，无需配置。
 
 :::: field-group
-::: field name="light" type="string" optional default="#ffffffff"
+::: field light
+@type `string`
+@default `#ffffffff`
+@optional
+
 二维码亮色部分颜色，即背景色
 :::
-::: field name="dark" type="string" optional default="#000000ff"
+::: field dark
+@type `string`
+@default `#000000ff`
+
+@optional
+
 二维码暗色部分颜色，即二维码颜色
 :::
-::: field name="margin" type="number" optional default="2"
+::: field margin
+@type `number`
+@default `2`
+@optional
+
 二维码边距
 :::
-::: field name="level" type="'L' | 'M' | 'Q' | 'H'" optional default="M"
+::: field level
+@type `'L' | 'M' | 'Q' | 'H'`
+@default `M`
+@optional
 **纠错等级**
 
 纠错能力使得即使二维码符号被污染或损坏，也能成功扫描。根据操作环境，有四个级别可供选择。
@@ -106,15 +144,24 @@ logo 相对于二维码 大小比例
 
 当二维码中包含 logo 时，默认值为 `H`。
 :::
-::: field name="version" type="number" optional
+::: field version
+@type `number`
+@optional
 **二维码版本**
 
 若未指定，将自动计算更合适的值。取值范围 `1-40`。
 :::
-::: field name="scale" type="number" optional default="4"
+::: field scale
+@type `number`
+@default `4`
+@optional
+
 缩放因子。值为 1 表示每个模块（黑点）对应 1 像素。
 :::
-::: field name="mask" type="1 | 2 | 3 | 4 | 5 | 6 | 7" optional
+::: field mask
+@type `1 | 2 | 3 | 4 | 5 | 6 | 7`
+@optional
+
 用于遮蔽符号的掩码模式。
 
 若未指定，将自动计算更合适的值。

@@ -13,24 +13,40 @@ Use the `<LinkCard>` component to display link cards on pages.
 
 :::: field-group
 
-::: field name="title" type="string" default="''" optional
+::: field title
+@type `string`
+@default `''`
+@optional
+
 Link card title.
 :::
 
-::: field name="icon" type="string | { svg: string }" default="''" optional
+::: field icon
+@type `string | { svg: string }`
+@optional
+
 Icon displayed to the left of the title. Supports icons from providers configured in
 [markdown.icon](../features/icon.md), or image URLs can be used.
 :::
 
-::: field name="href" type="string" default="''" optional
+::: field href
+@type `string`
+@optional
+
 Link card navigation URL.
 :::
 
-::: field name="description" type="string" default="''" optional
+::: field description
+@type `string`
+@optional
+
 Link card description. It is recommended to use the component's default slot for description content.
 :::
 
-::: field name="target" type="string" default="''" optional
+::: field target
+@type `string`
+@optional
+
 Link target behavior.
 :::
 

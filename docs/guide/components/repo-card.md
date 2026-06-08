@@ -50,15 +50,26 @@ export default defineClientConfig({
 
 :::: field-group
 
-::: field name="repo" type="string" required
+::: field repo
+@type `string`
+@required
+
 仓库地址，格式为 `owner/repo`
 :::
 
-::: field name="provider" type="github | gitee" optional default="'github'"
+::: field provider
+@type `'github' | 'gitee'`
+@optional
+@default `'github'`
+
 仓库所属平台，当前仅支持 `github / gitee` 。
 :::
 
-::: field name="fullname" type="boolean" optional
+::: field fullname
+@type `boolean`
+@optional
+@default `false`
+
 是否显示完整的仓库名称。
 
 完整的仓库名称为 `owner/repo`。

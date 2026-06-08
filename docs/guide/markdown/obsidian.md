@@ -46,19 +46,35 @@ export default defineUserConfig({
 
 :::: field-group
 
-::: field name="wikiLink" type="boolean" default="true" optional
+::: field wikiLink
+@type `boolean`
+@default `true`
+@optional
+
 启用 [Wiki 链接](#wiki-链接) 语法。
 :::
 
-::: field name="embedLink" type="boolean" default="true" optional
+::: field embedLink
+@type `boolean`
+@default `true`
+@optional
+
 启用 [嵌入内容](#嵌入内容) 语法。
 :::
 
-::: field name="callout" type="boolean" default="true" optional
+::: field callout
+@type `boolean`
+@default `true`
+@optional
+
 启用 [Callout](#callout) 语法。
 :::
 
-::: field name="comment" type="boolean" default="true" optional
+::: field comment
+@type `boolean`
+@default `true`
+@optional
+
 启用 [注释](#注释) 语法。
 :::
 

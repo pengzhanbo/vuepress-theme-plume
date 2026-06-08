@@ -52,15 +52,27 @@ interface IconOptions {
 
 :::: field-group
 
-::: field name="name" type="string" default="''" optional
+::: field name
+@type `string`
+@default `''`
+@optional
+
 图标名称，当 `markdown.icon.prefix` 有值时，`name` 中的前缀可以省略
 :::
 
-::: field name="color" type="string" default="'currentcolor'" optional
+::: field color
+@type `string`
+@default `currentColor`
+@optional
+
 图标颜色
 :::
 
-::: field name="size" type="string" default="'1em'" optional
+::: field size
+@type `string`
+@default `1em`
+@optional
+
 图标大小
 :::
 

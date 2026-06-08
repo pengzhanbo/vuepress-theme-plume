@@ -46,39 +46,69 @@ Single npm badge
 
 :::: field-group
 
-::: field name="name" type="string" optional
+::: field name
+@type `string`
+@optional
+
 npm package name. If empty, it will be obtained from `repo`
 :::
 
-::: field name="repo" type="string"
+::: field repo
+@type `string`
+@optional
+
 Package GitHub repository address in `owner/repo` format. Required when `name` is empty
 :::
 
-::: field name="type" type="NpmBadgeType"
+::: field type
+@type `NpmBadgeType`
+
 Badge type
 :::
 
-::: field name="theme" type="NpmBadgeTheme" optional default="'flat'"
+::: field theme
+@type `NpmBadgeTheme`
+@optional
+@default `'flat'`
+
 Badge theme
 :::
 
-::: field name="label" type="string" optional
+::: field label
+@type `string`
+@optional
+
 Badge label
 :::
 
-::: field name="color" type="string" optional default="'#32A9C3'"
+::: field color
+@type `string`
+@optional
+@default `'#32A9C3'`
+
 Badge color
 :::
 
-::: field name="labelColor" type="string" optional default="'#1B3C4A'"
+::: field labelColor
+@type `string`
+@optional
+@default `'#1B3C4A'`
+
 Badge label color
 :::
 
-::: field name="branch" type="string" optional default="'main'"
+::: field branch
+@type `string`
+@optional
+@default `'main'`
+
 Repository branch
 :::
 
-::: field name="dir" type="string" optional
+::: field dir
+@type `string`
+@optional
+
 Package directory in repository. Suitable for monorepo projects
 :::
 
@@ -125,35 +155,60 @@ Combines multiple npm badges
 
 :::: field-group
 
-::: field name="name" type="string" optional
+::: field name
+@type `string`
+@optional
+
 npm package name. If empty, it will be obtained from `repo`
 :::
 
-::: field name="repo" type="string"
+::: field repo
+@type `string`
+@optional
+
 Package GitHub repository address in `owner/repo` format. Required when `name` is empty
 :::
 
-::: field name="items" type="string | NpmBadgeType[]" optional default="[]"
+::: field items
+@type `string | NpmBadgeType[]`
+@optional
+@default `[]`
+
 List of badge types. When passing a `string`, separate with `','` and it will be automatically converted to `NpmBadgeType[]`
 :::
 
-::: field name="theme" type="NpmBadgeTheme" optional
+::: field theme
+@type `NpmBadgeTheme`
+@optional
+
 Badge theme
 :::
 
-::: field name="color" type="string" optional
+::: field color
+@type `string`
+@optional
+
 Badge color
 :::
 
-::: field name="labelColor" type="string" optional
+::: field labelColor
+@type `string`
+@optional
+
 Badge label color
 :::
 
-::: field name="branch" type="string" optional
+::: field branch
+@type `string`
+@optional
+
 Repository branch
 :::
 
-::: field name="dir" type="string" optional
+::: field dir
+@type `string`
+@optional
+
 Package directory in repository. Suitable for monorepo projects
 :::
 

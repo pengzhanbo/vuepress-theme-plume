@@ -3,6 +3,7 @@ import type { CommonLocaleData, FileTreeIconMode, FileTreeOptions } from '../../
 import { encodeData } from '@vuepress/helper'
 import { ensureLeadingSlash, removeEndingSlash, resolveLocalePath } from 'vuepress/shared'
 import { defaultFile, defaultFolder, getFileIcon } from '../fileIcons/index.js'
+import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerSyntaxPlugin } from './createContainer.js'
 
@@ -49,11 +50,11 @@ export interface FileTreeNodeProps {
  * @param content - Raw file tree text content / 文件树的原始文本内容
  * @returns File tree node array / 文件树节点数组
  */
-export function parseFileTreeRawContent(content: string): FileTreeNode[] {
+export function parseFileTreeContentWithContainer(content: string): FileTreeNode[] {
   const root: FileTreeNode = { level: -1, children: [] } as unknown as FileTreeNode
   const stack: FileTreeNode[] = [root]
   const lines = content.trimEnd().split('\n')
-  const spaceLength = lines[0].match(/^\s*/)?.[0].length ?? 0 // Remove leading spaces
+  const spaceLength = lines[0].match(/^\s*/)![0].length // Remove leading spaces
 
   for (const line of lines) {
     const match = line.match(/^(\s*)-(.*)$/)
@@ -69,6 +70,83 @@ export function parseFileTreeRawContent(content: string): FileTreeNode[] {
     }
 
     const parent = stack[stack.length - 1]
+    const node: FileTreeNode = { level, children: [], ...parseFileTreeNodeInfo(info) }
+    parent.children.push(node)
+    stack.push(node)
+  }
+
+  return root.children
+}
+
+/**
+ * Regex for matching a single line of `tree` command output.
+ *
+ * Matches lines like:
+ *   ├── filename
+ *   │   ├── filename
+ *   │   └── filename
+ *   └── filename  # optional comment
+ *
+ * - Group 1: prefix segments, each is either `│   ` (has next sibling) or `    ` (last sibling)
+ * - Group 2: branch marker, either `├── ` (non-last) or `└── ` (last)
+ * - Group 3: the filename with optional comment
+ *
+ * 匹配 `tree` 命令输出的单行正则
+ */
+const TREE_LINE_RE = /^((?:│ {3}| {4})*)([├└]── )(.+)$/u
+
+/**
+ * Parse `tree` command output format into a structured file tree node array.
+ *
+ * Converts text like:
+ * ```
+ * .
+ * ├── src
+ * │   ├── index.ts
+ * │   └── utils.ts
+ * └── package.json  # project config
+ * ```
+ *
+ * into a `FileTreeNode[]` tree structure, with support for inline comments
+ * (text after `#`) on each entry.
+ *
+ * 将 `tree` 命令行输出格式解析为结构化的文件树节点数组
+ *
+ * @param content - Raw `tree` command output text / `tree` 命令输出的原始文本
+ * @returns Structured file tree node array / 结构化的文件树节点数组
+ */
+export function parseFileTreeContentWithFence(content: string): FileTreeNode[] {
+  const root: FileTreeNode = { level: -1, children: [] } as unknown as FileTreeNode
+  const stack: FileTreeNode[] = [root]
+  const lines = content.trimEnd().split('\n')
+
+  // Skip the first line if it is the root marker "."
+  const start = lines[0]?.trim() === '.' ? 1 : 0
+
+  for (let i = start; i < lines.length; i++) {
+    const line = lines[i]!
+    const match = line.match(TREE_LINE_RE)
+    if (!match)
+      continue
+
+    const prefix = match[1]!
+    const info = match[3]!.trim()
+
+    // Each indentation level is a 4-character segment: "│   " or "    "
+    const level = prefix.length / 4
+
+    // Pop the stack until we find the parent at a lower level
+    while (stack.length > 0 && stack[stack.length - 1]!.level >= level) {
+      stack.pop()
+    }
+
+    const parent = stack[stack.length - 1]!
+
+    // A node that has children must be a folder
+    if (parent !== root && parent.type === 'file') {
+      parent.type = 'folder'
+    }
+
     const node: FileTreeNode = { level, children: [], ...parseFileTreeNodeInfo(info) }
     parent.children.push(node)
     stack.push(node)
@@ -198,23 +276,40 @@ ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children
     }).join('\n')
 
   // Register custom container syntax plugin
-  return createContainerSyntaxPlugin(
-    md,
-    'file-tree',
-    (tokens, index, _, env: MarkdownEnv) => {
-      const token = tokens[index]
-      const nodes = parseFileTreeRawContent(token.content)
-      const meta = token.meta as FileTreeAttrs
-      const cmdText = fileTreeToCMDText(nodes).trim()
-      const localePath = resolveLocalePath(locales, ensureLeadingSlash(env.filePathRelative || ''))
-      const data = locales[localePath] ?? {}
-      return `<div class="vp-file-tree">${
-        meta.title ? `<p class="vp-file-tree-title">${meta.title}</p>` : ''
-      }<VPCopyButton text="${encodeData(cmdText)}" encode aria-label="${data.copy || 'Copy'}" data-copied="${data.copied || 'Copied'}" />${
-        renderFileTree(nodes, meta)
-      }</div>\n`
-    },
-  )
+  createContainerSyntaxPlugin(md, 'file-tree', (tokens, index, _, env: MarkdownEnv) => {
+    const token = tokens[index]
+    const nodes = parseFileTreeContentWithContainer(token.content)
+    const meta = token.meta as FileTreeAttrs
+    const cmdText = fileTreeToCMDText(nodes).trim()
+    const localePath = resolveLocalePath(locales, ensureLeadingSlash(env.filePathRelative || ''))
+    const data = locales[localePath] ?? {}
+    return `<div class="vp-file-tree">${
+      meta.title ? `<p class="vp-file-tree-title">${meta.title}</p>` : ''
+    }<VPCopyButton text="${encodeData(cmdText)}" encode aria-label="${data.copy || 'Copy'}" data-copied="${data.copied || 'Copied'}" />${
+      renderFileTree(nodes, meta)
+    }</div>\n`
+  })
+
+  const rawFence = md.renderer.rules.fence!
+  md.renderer.rules.fence = (...args) => {
+    const [tokens, index, _, env] = args
+    const token = tokens[index]!
+    const info = token.info.trim()
+
+    if (!info.startsWith('file-tree') && !info.startsWith('tree')) {
+      return rawFence(...args)
+    }
+    const meta = resolveAttrs(info.replace(/^(?:file-)?tree/, '').trim()).attrs as FileTreeAttrs
+    const text = token.content.trim()
+    const nodes = parseFileTreeContentWithFence(text)
+    const localePath = resolveLocalePath(locales, ensureLeadingSlash(env.filePathRelative || ''))
+    const data = locales[localePath] ?? {}
+    return `<div class="vp-file-tree">${
+      meta.title ? `<p class="vp-file-tree-title">${meta.title}</p>` : ''
+    }<VPCopyButton text="${encodeData(text)}" encode aria-label="${data.copy || 'Copy'}" data-copied="${data.copied || 'Copied'}" />${
+      renderFileTree(nodes, meta)
+    }</div>\n`
+  }
 }
 
 /**

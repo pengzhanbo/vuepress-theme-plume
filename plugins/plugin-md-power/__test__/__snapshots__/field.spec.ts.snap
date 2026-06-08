@@ -8,6 +8,14 @@ exports[`fieldPlugin > ::: field 1`] = `
 </VPField>"
 `;
 
+exports[`fieldPlugin > ::: field with attribute-style syntax (legacy) 1`] = `
+"<VPField name="foo" required type="string"><p>description</p>
+</VPField><VPField name="bar" optional type="string"><p>description</p>
+</VPField><VPField name="bar" deprecated type="string" default-value="baz"><p>description</p>
+</VPField><VPField name="foo" default-value="undefined"><p>description</p>
+</VPField>"
+`;
+
 exports[`fieldPlugin > ::: field-group 1`] = `
 "<div class="vp-field-group"><VPField name="foo" required type="string"><p>description</p>
 </VPField><VPField name="bar" optional type="string"><p>description</p>

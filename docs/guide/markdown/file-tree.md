@@ -10,12 +10,37 @@ badge:
 
 ## 概述
 
-在 Markdown 中，你可以使用 `file-tree` 容器 来显示带有文件图标和可折叠子目录的目录结构。
+在 Markdown 中，你可以使用 `file-tree` 容器或代码块 来显示带有文件图标和可折叠子目录的目录结构。
 
 ## 语法
 
+### 容器语法
+
 在 `::: file-tree` 容器，使用内置的 **Markdown 无序列表语法** 指定文件和目录的组织结构。
 使用嵌套的列表项创建子目录；若希望某个目录不显示具体内容，只需在列表项末尾添加斜杠 `/` 即可。
+
+```md
+::: file-tree
+<!-- 在这里添加文件树的组织结构 -->
+:::
+```
+
+### 代码块语法
+
+在命名为 `file-tree` 或者 `tree` 的代码块中，使用 `tree` 命令行工具的输出内容（使用 Unicode 制表符）
+来渲染文件树。
+
+````md
+```file-tree
+# 在这里添加文件树的组织结构
+```
+
+```file
+# 在这里添加文件树的组织结构
+```
+````
+
+### 自定义文件树外观
 
 以下语法可用于自定义文件树的外观：
 
@@ -26,12 +51,9 @@ badge:
 - 在 `:::file-tree` 后添加 `icon="simple"` 或 添加 `icon="colored"` 可以切换为简单图标或彩色图标，默认为彩色图标。
 - 在 `:::file-tree` 后添加 `title="xxxx"` 可以为文件树添加标题。
 
-::: important `rc.193` 主题更新说明
-过去 `file-tree` 使用 **空格** 来区分文件名和注释，这在某些情况下会导致问题，例如文件名中包含空格时。
-为了解决这个问题，我们引入了 **# 号注释** 语法，您可以在文件名后添加以 `#` 开头的注释，例如 `README.md # 这是一个 README 文件`。
+## 示例
 
-**此修改为 ==破坏性更新=={.danger} 更新。**
-:::
+### 容器语法
 
 **输入：**
 
@@ -87,11 +109,65 @@ badge:
 - …
 :::
 
+### 代码块语法
+
+**输入：**
+
+````md
+```file-tree
+.
+├── docs
+│   ├── .vuepress
+│   │   └── config.ts
+│   ├── page1.md
+│   └── README.md
+├── theme
+│   ├── client
+│   │   ├── components
+│   │   │   ├── Navbar.vue
+│   │   │   └── useNavbar.ts
+│   │   ├── styles
+│   │   │   └── navbar.css
+│   │   └── config.ts
+│   └── node/
+├── package.json
+├── pnpm-lock.yaml
+├── .gitignore
+├── README.md
+└── …
+```
+````
+
+**输出：**
+
+```file-tree
+.
+├── docs
+│   ├── .vuepress
+│   │   └── config.ts
+│   ├── page1.md
+│   └── README.md
+├── theme
+│   ├── client
+│   │   ├── components
+│   │   │   ├── Navbar.vue
+│   │   │   └── useNavbar.ts
+│   │   ├── styles
+│   │   │   └── navbar.css
+│   │   └── config.ts
+│   └── node/
+├── package.json
+├── pnpm-lock.yaml
+├── .gitignore
+├── README.md
+└── …
+```
+
 ## 使用简单图标
 
 **输入：**
 
-```md
+````md
 ::: file-tree icon="simple"
 - docs
   - .vuepress
@@ -100,7 +176,19 @@ badge:
   - README.md
 - package.json
 :::
+
+<!-- 或者 -->
+
+```file-tree icon="simple"
+.
+├── docs
+│   ├── .vuepress
+│   │   └── config.ts
+│   ├── page1.md
+│   └── README.md
+└── package.json
 ```
+````
 
 **输出：**
 

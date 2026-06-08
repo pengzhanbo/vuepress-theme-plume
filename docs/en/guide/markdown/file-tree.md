@@ -14,9 +14,35 @@ In Markdown, you can use the `file-tree` container to display directory structur
 
 ## Syntax
 
-Within the `::: file-tree` container, use the built-in **Markdown unordered list syntax** to specify the organization of files and directories.
-Use nested list items to create subdirectories; to indicate that a directory's contents should not be
-displayed, simply add a slash `/` at the end of the list item.
+### Container Syntax
+
+In the `::: file-tree` container, use the built-in **Markdown unordered list syntax** to specify the organizational structure of files and directories.
+
+Use nested list items to create subdirectories; if you want a directory to not display specific content,
+simply add a trailing slash `/` at the end of the list item.
+
+```md
+::: file-tree
+<!-- Add the file tree structure here -->
+:::
+```
+
+### Code Block Syntax
+
+In a code block named `file-tree` or `tree`, use the output content of the `tree` command line tool (using Unicode tab characters)
+to render the file tree.
+
+````md
+```file-tree
+# Add the file tree structure here
+```
+
+```file
+# Add the file tree structure here
+```
+````
+
+### Customizing File Tree Appearance
 
 The following syntax can be used to customize the appearance of the file tree:
 
@@ -26,6 +52,10 @@ The following syntax can be used to customize the appearance of the file tree:
 - Use `...` or `…` as the name to add placeholder files and directories.
 - Add `icon="simple"` or `icon="colored"` after `:::file-tree` to switch to simple icons or colored icons. The default is colored icons.
 - Add `title="xxxx"` after `:::file-tree` to add a title to the file tree.
+
+## Examples
+
+### Container Syntax
 
 **Input:**
 
@@ -81,11 +111,65 @@ The following syntax can be used to customize the appearance of the file tree:
 - …
 :::
 
+### Code Block Syntax
+
+**Input:**
+
+````md
+```file-tree
+.
+├── docs
+│   ├── .vuepress
+│   │   └── config.ts
+│   ├── page1.md
+│   └── README.md
+├── theme
+│   ├── client
+│   │   ├── components
+│   │   │   ├── Navbar.vue
+│   │   │   └── useNavbar.ts
+│   │   ├── styles
+│   │   │   └── navbar.css
+│   │   └── config.ts
+│   └── node/
+├── package.json
+├── pnpm-lock.yaml
+├── .gitignore
+├── README.md
+└── …
+```
+````
+
+**Output:**
+
+```file-tree
+.
+├── docs
+│   ├── .vuepress
+│   │   └── config.ts
+│   ├── page1.md
+│   └── README.md
+├── theme
+│   ├── client
+│   │   ├── components
+│   │   │   ├── Navbar.vue
+│   │   │   └── useNavbar.ts
+│   │   ├── styles
+│   │   │   └── navbar.css
+│   │   └── config.ts
+│   └── node/
+├── package.json
+├── pnpm-lock.yaml
+├── .gitignore
+├── README.md
+└── …
+```
+
 ## Using Simple Icons
 
 **Input:**
 
-```md
+````md
 ::: file-tree icon="simple"
 - docs
   - .vuepress
@@ -94,7 +178,19 @@ The following syntax can be used to customize the appearance of the file tree:
   - README.md
 - package.json
 :::
+
+<!-- Alternatively -->
+
+```file-tree icon="simple"
+.
+├── docs
+│   ├── .vuepress
+│   │   └── config.ts
+│   ├── page1.md
+│   └── README.md
+└── package.json
 ```
+````
 
 **Output:**
 

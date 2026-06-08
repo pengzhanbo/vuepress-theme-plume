@@ -45,7 +45,7 @@ export async function generate(
     if (data.packageManager === 'pnpm') {
       fileList.push({
         filepath: 'pnpm-workspace.yaml',
-        content: 'shamefully-hoist=true\nshell-emulator=true',
+        content: 'shamefullyHoist: true\nshellEmulator: true\n',
       })
     }
     if (data.packageManager === 'yarn') {

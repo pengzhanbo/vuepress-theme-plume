@@ -549,10 +549,7 @@ body > div {
 
 You can also globally enable the `collapsed-lines` feature in `codeHighlighter`:
 
-::: code-tabs
-@tab .vuepress/config.ts
-
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     codeHighlighter: {
@@ -562,6 +559,36 @@ export default defineUserConfig({
 })
 ```
 
-:::
-
 When globally enabled, you can use `:no-collapsed-lines` to disable the `collapsed-lines` feature for a specific code block.
+
+## Indent Guides in Code Blocks
+
+This feature is not enabled by default. You need to globally enable the `renderIndentGuides` feature in `codeHighlighter`.
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    codeHighlighter: {
+      renderIndentGuides: true // [!code ++]
+    }
+  })
+})
+```
+
+As shown in the code block above, once enabled, indent guides will be added to the code block.
+
+## Colorized Brackets in Code Blocks
+
+This feature is not enabled by default. You need to globally enable the `colorizedBrackets` feature in `codeHighlighter`.
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    codeHighlighter: {
+      colorizedBrackets: true // [!code ++]
+    }
+  })
+})
+```
+
+Renders `{}` and `()` in the code block with different colors based on their nesting level.

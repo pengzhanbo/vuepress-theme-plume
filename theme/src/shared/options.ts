@@ -1,4 +1,5 @@
 import type { Prettify } from '@pengzhanbo/utils'
+import type { TransformerRenderIndentGuidesOptions } from '@shikijs/transformers'
 import type { CommentPluginOptions } from '@vuepress/plugin-comment'
 import type { CopyCodePluginOptions } from '@vuepress/plugin-copy-code'
 import type { ChangelogOptions, ContributorsOptions } from '@vuepress/plugin-git'
@@ -130,7 +131,10 @@ export interface ThemeFeatureOptions {
    * Theme uses `shiki` as the code block highlighter
    * 代码块高亮配置，主题使用 `shiki` 作为代码块高亮器
    */
-  codeHighlighter?: false | ShikiPluginOptions
+  codeHighlighter?: false | ShikiPluginOptions & {
+    renderIndentGuides?: boolean | Partial<TransformerRenderIndentGuidesOptions>
+    colorizedBrackets?: boolean | Partial<Parameters<typeof import('@shikijs/colorized-brackets').transformerColorizedBrackets>[0]>
+  }
 
   /**
    * Comment configuration

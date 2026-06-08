@@ -37,6 +37,7 @@ overrides:
   '@bufbuild/protobuf': ^2.12.0
   '@eslint-community/eslint-utils': 'catalog:peer'
   '@shikijs/core': ^4.1.0
+  '@shikijs/transformers': ^4.1.0
   '@shikijs/twoslash': ^4.1.0
   '@typescript-eslint/types': 'catalog:peer'
   '@typescript-eslint/utils': 'catalog:peer'
@@ -147,6 +148,7 @@ catalogs:
     '@mdit/plugin-tasklist': ^0.23.2
     '@pengzhanbo/utils': ^3.7.3
     '@shikijs/colorized-brackets': ^4.1.0
+    '@shikijs/transformers': ^4.1.0
     '@vueuse/core': ^14.3.0
     '@vueuse/integrations': ^14.3.0
     cac: ^7.0.0

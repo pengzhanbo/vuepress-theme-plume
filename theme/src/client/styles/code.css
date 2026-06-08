@@ -370,18 +370,18 @@ html:not([data-theme="dark"]) .vp-code span {
   Indent Guides
   --------------------------------------------------------------------------
  */
-.vp-doc div[class*="language-"] code .indent {
+.vp-doc div[class*="language-"]:not([class*="md"],[class*="markdown"]) code .indent {
   position: relative;
   left: var(--indent-offset, 0);
   display: inline-block;
 }
 
-.vp-doc div[class*="language-"] .indent:empty {
+.vp-doc div[class*="language-"]:not([class*="md"],[class*="markdown"]) .indent:empty {
   height: 1lh;
   vertical-align: bottom;
 }
 
-.vp-doc div[class*="language-"] .indent::before {
+.vp-doc div[class*="language-"]:not([class*="md"],[class*="markdown"]) .indent::before {
   position: absolute;
   width: 1px;
   height: 100%;

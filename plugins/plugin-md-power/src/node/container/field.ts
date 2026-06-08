@@ -67,6 +67,8 @@ const KNOWN_TAGS = new Set([
   'description',
 ])
 
+const BACKTICK_RE = /^`|`$/g
+
 /**
  * Parse the body of a `::: field` container into a structured `FieldObject`.
  *
@@ -146,7 +148,7 @@ export function parseFieldContent(content: string, info: string): FieldObject {
           case 'name':
           case 'type':
           case 'default':
-            rest && (result[tag] = rest)
+            rest && (result[tag] = rest.replace(BACKTICK_RE, '')) // remove backticks
             break
           case 'required':
           case 'deprecated':

@@ -1,7 +1,8 @@
+import type { UserConfig } from 'vite'
 import type { Plugin } from 'vuepress/core'
 import type { MarkdownPowerPluginOptions } from '../shared/index.js'
 import { isPlainObject } from '@pengzhanbo/utils'
-import { addViteOptimizeDepsInclude } from '@vuepress/helper'
+import { addViteConfig, addViteOptimizeDepsInclude, addViteSsrNoExternal } from '@vuepress/helper'
 import { getFullLocaleConfig } from '@vuepress/helper'
 import { extendsPageWithCodeTree } from './container/codeTree.js'
 import { containerPlugin } from './container/index.js'
@@ -77,7 +78,7 @@ export function markdownPowerPlugin(
         return {}
       },
 
-      extendsBundlerOptions(bundlerOptions, app) {
+      async extendsBundlerOptions(bundlerOptions, app) {
         if (options.repl) {
           addViteOptimizeDepsInclude(
             bundlerOptions,
@@ -85,19 +86,33 @@ export function markdownPowerPlugin(
             ['shiki/core', 'shiki/wasm', 'shiki/engine/oniguruma'],
           )
 
-          if (options.repl.python)
+          if (options.repl.python) {
             addViteOptimizeDepsInclude(bundlerOptions, app, ['pyodide'])
+          }
         }
         if (options.artPlayer) {
-          addViteOptimizeDepsInclude(
-            bundlerOptions,
-            app,
-            ['artplayer', 'dashjs', 'hls.js', 'mpegts.js/dist/mpegts.js'],
-          )
+          const deps = ['artplayer', 'dashjs', 'hls.js', 'mpegts.js/dist/mpegts.js']
+          addViteOptimizeDepsInclude(bundlerOptions, app, deps)
+          addViteSsrNoExternal(bundlerOptions, app, deps)
         }
         if (options.qrcode) {
           addViteOptimizeDepsInclude(bundlerOptions, app, ['qrcode'])
+          addViteSsrNoExternal(bundlerOptions, app, ['qrcode'])
         }
+        addViteConfig(bundlerOptions, app, {
+          plugins: [{
+            name: 'filter-warn-log',
+            onLog(level, log) {
+              if (level === 'warn' && log.message.includes('pyodide'))
+                return false
+              if (log.code === 'INVALID_ANNOTATION' && log.message.includes('@vueuse/core'))
+                return false
+              if (log.message.includes('COMMONJS_VARIABLE_IN_ESM') && log.message.includes('dashjs'))
+                return false
+              return undefined
+            },
+          }],
+        } as UserConfig as Record<string, unknown>)
       },
 
       extendsMarkdown: async (md, app) => {

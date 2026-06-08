@@ -51,8 +51,8 @@ const { href, title, icon, description, target, rel } = defineProps<{
   box-shadow: var(--vp-shadow-2);
 }
 
-.vp-link-card :deep(.vp-icon),
-.vp-link-card :deep(.vp-icon-img) {
+.vp-link-card .vp-icon,
+.vp-link-card .vp-icon-img {
   margin: 0;
 }
 
@@ -88,8 +88,8 @@ const { href, title, icon, description, target, rel } = defineProps<{
   content: "";
 }
 
-.vp-link-card .link :deep(.vp-icon),
-.vp-link-card .link :deep(.vp-icon-img) {
+.vp-link-card .link .vp-icon,
+.vp-link-card .link .vp-icon-img {
   margin: 0;
 }
 

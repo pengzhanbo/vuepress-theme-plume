@@ -1,20 +1,9 @@
 catalogMode: prefer
 ignoreWorkspaceRootCheck: true
 minimumReleaseAgeExclude:
-  - '@pengzhanbo/utils@3.7.3'
-  - local-pkg@1.2.1
-  - baseline-browser-mapping@2.10.32
-  - '@iconify/json@2.2.482'
-  - '@vitest/coverage-v8@4.1.8'
-  - '@vitest/expect@4.1.8'
-  - '@vitest/mocker@4.1.8'
-  - '@vitest/pretty-format@4.1.8'
-  - '@vitest/runner@4.1.8'
-  - '@vitest/snapshot@4.1.8'
-  - '@vitest/spy@4.1.8'
-  - '@vitest/utils@4.1.8'
-  - vite@8.0.16
-  - vitest@4.1.8
+  - '@pengzhanbo/eslint-config-vue@2.6.1'
+  - '@pengzhanbo/eslint-config@2.6.1'
+  - '@pengzhanbo/stylelint-config@2.6.1'
 shamefullyHoist: true
 shellEmulator: true
 strictPeerDependencies: false
@@ -36,16 +25,16 @@ packages:
 overrides:
   '@bufbuild/protobuf': ^2.12.0
   '@eslint-community/eslint-utils': 'catalog:peer'
-  '@shikijs/core': ^4.1.0
-  '@shikijs/transformers': ^4.1.0
-  '@shikijs/twoslash': ^4.1.0
+  '@shikijs/core': ^4.2.0
+  '@shikijs/transformers': ^4.2.0
+  '@shikijs/twoslash': ^4.2.0
   '@typescript-eslint/types': 'catalog:peer'
   '@typescript-eslint/utils': 'catalog:peer'
   '@xmldom/xmldom': '>=0.9.10'
-  axios: '>=1.16.1'
-  baseline-browser-mapping: ^2.10.33
+  axios: '>=1.17.0'
+  baseline-browser-mapping: ^2.10.34
   chokidar: 'catalog:prod'
-  dompurify: '>=3.4.7'
+  dompurify: '>=3.4.8'
   fast-uri: '>=3.1.2'
   follow-redirects: '>=1.16.0'
   lodash: '>=4.18.1'
@@ -55,7 +44,7 @@ overrides:
   sass-embedded: 'catalog:peer'
   simple-git: '>=3.36.0'
   tmp: '>=0.2.7'
-  uuid: '>=13.0.2'
+  uuid: '>=14.0.0'
   vite: 'catalog:dev'
   vue: 'catalog:prod'
   vue-router: 'catalog:prod'
@@ -73,15 +62,15 @@ catalogs:
     '@commitlint/cli': ^21.0.2
     '@commitlint/config-conventional': ^21.0.2
     '@lunariajs/core': ^0.1.1
-    '@pengzhanbo/eslint-config-vue': ^2.4.1
-    '@pengzhanbo/stylelint-config': ^2.4.1
+    '@pengzhanbo/eslint-config-vue': ^2.6.1
+    '@pengzhanbo/stylelint-config': ^2.6.1
     '@simonwep/pickr': ^1.9.1
     '@types/express': ^5.0.6
     '@types/js-yaml': ^4.0.9
     '@types/less': ^3.0.8
     '@types/markdown-it': ^14.1.2
     '@types/minimist': ^1.2.5
-    '@types/node': ^25.9.1
+    '@types/node': ^25.9.2
     '@types/picomatch': ^4.0.3
     '@types/qrcode': ^1.5.6
     '@types/stylus': ^0.48.43
@@ -101,27 +90,27 @@ catalogs:
     less: ^4.6.4
     lint-staged: ^17.0.7
     markdown-it: ^14.2.0
-    memfs: ^4.57.3
+    memfs: ^4.57.6
     mermaid: ^11.15.0
     minimist: ^1.2.8
     postcss: ^8.5.15
     rimraf: ^6.1.3
-    stylelint: ^17.12.0
+    stylelint: ^17.13.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.22.1
+    tsdown: ^0.22.2
     typescript: ^6.0.3
-    unrun: ^0.2.39
+    unrun: ^0.3.1
     vite: ^8.0.16
     vitest: ^4.1.8
     wait-on: ^9.0.10
   peer:
     '@eslint-community/eslint-utils': ^4.9.1
-    '@iconify/json': ^2.2.482
+    '@iconify/json': ^2.2.483
     '@mathjax/src': ^4.1.2
     '@pinyin-pro/data': ^1.3.1
-    '@typescript-eslint/types': ^8.59.4
-    '@typescript-eslint/utils': ^8.59.4
+    '@typescript-eslint/types': ^8.60.1
+    '@typescript-eslint/utils': ^8.60.1
     artplayer: ^5.4.0
     dashjs: ^5.2.0
     gsap: ^3.15.0
@@ -136,7 +125,7 @@ catalogs:
     swiper: ^12.2.0
     three: ^0.184.0
   prod:
-    '@clack/prompts': ^1.5.0
+    '@clack/prompts': ^1.5.1
     '@iconify/utils': ^3.1.3
     '@iconify/vue': ^5.0.1
     '@mdit/plugin-attrs': ^0.25.2
@@ -147,8 +136,8 @@ catalogs:
     '@mdit/plugin-tab': ^0.24.2
     '@mdit/plugin-tasklist': ^0.23.2
     '@pengzhanbo/utils': ^3.7.3
-    '@shikijs/colorized-brackets': ^4.1.0
-    '@shikijs/transformers': ^4.1.0
+    '@shikijs/colorized-brackets': ^4.2.0
+    '@shikijs/transformers': ^4.2.0
     '@vueuse/core': ^14.3.0
     '@vueuse/integrations': ^14.3.0
     cac: ^7.0.0
@@ -181,9 +170,9 @@ catalogs:
     picocolors: ^1.1.1
     picomatch: ^4.0.4
     qrcode: ^1.5.4
-    rolldown: ^1.0.3
-    shiki: ^4.1.0
-    sort-package-json: ^3.6.1
+    rolldown: ^1.1.0
+    shiki: ^4.2.0
+    sort-package-json: ^4.0.0
     tm-grammars: ^1.31.15
     tm-themes: ^1.12.2
     vue: ^3.5.35

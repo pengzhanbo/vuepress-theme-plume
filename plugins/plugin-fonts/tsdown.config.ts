@@ -19,7 +19,7 @@ export default defineConfig(() => {
     options.push({
       ...DEFAULT_OPTIONS,
       entry: ['./src/node/index.ts'],
-      outDir: './lib/node',
+      outDir: './dist/node',
       target: 'node20.19.0',
     })
   }
@@ -30,7 +30,7 @@ export default defineConfig(() => {
       {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/config.ts'],
-        outDir: './lib/client',
+        outDir: './dist/client',
         dts: false,
         deps: { neverBundle: clientExternal },
       },

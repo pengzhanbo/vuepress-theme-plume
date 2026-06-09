@@ -23,7 +23,7 @@
     "clean": "pnpm -r --stream run clean",
     "dev": "pnpm --stream '/(dev:package|docs:dev)/'",
     "dev:package": "pnpm --parallel dev",
-    "docs:dev": "wait-on -d 100 theme/lib/node/index.js && pnpm -F=docs docs:dev",
+    "docs:dev": "wait-on -d 100 theme/dist/node/index.js && pnpm -F=docs docs:dev",
     "docs:build": "pnpm -F=docs docs:build",
     "docs:clean": "pnpm -F=docs docs:clean",
     "docs:serve": "pnpm -F=docs docs:serve",
@@ -32,7 +32,7 @@
     "lint:check": "eslint .",
     "lint:css": "stylelint **/*.{css,vue}",
     "test": "cross-env TZ=Etc/UTC vitest --coverage",
-    "prepare": "husky",
+    "prepare": "simple-git-hooks",
     "release:changelog": "conventional-changelog -p angular",
     "release:check": "pnpm lint && pnpm build",
     "release:sync": "node scripts/mirror-sync.mjs",
@@ -56,22 +56,19 @@
     "@types/webpack-env": "catalog:dev",
     "@vitest/coverage-v8": "catalog:dev",
     "bumpp": "catalog:dev",
-    "commitizen": "catalog:dev",
     "conventional-changelog": "catalog:dev",
     "conventional-changelog-angular": "catalog:dev",
     "cpx2": "catalog:dev",
     "cross-env": "catalog:dev",
-    "cz-conventional-changelog": "catalog:dev",
     "eslint": "catalog:dev",
-    "husky": "catalog:dev",
     "less": "catalog:dev",
-    "lint-staged": "catalog:dev",
     "markdown-it": "catalog:dev",
     "memfs": "catalog:dev",
-    "minimist": "catalog:dev",
+    "nano-staged": "catalog:dev",
     "postcss": "catalog:dev",
     "rimraf": "catalog:dev",
     "sass-embedded": "catalog:peer",
+    "simple-git-hooks": "catalog:dev",
     "stylelint": "catalog:dev",
     "stylus": "catalog:dev",
     "tsconfig-vuepress": "catalog:dev",
@@ -81,12 +78,11 @@
     "vitest": "catalog:dev",
     "wait-on": "catalog:dev"
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+  "simple-git-hooks": {
+    "pre-commit": "./node_modules/.bin/nano-staged --allow-empty",
+    "commit-msg": "./node_modules/.bin/commitlint --edit $1"
   },
-  "lint-staged": {
+  "nano-staged": {
     "*": "eslint --fix",
     "*.{css,vue}": "stylelint --fix",
     "*.{js,ts,mjs,cjs}": "cross-env TZ=Etc/UTC vitest related --run"

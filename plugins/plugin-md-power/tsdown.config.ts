@@ -30,14 +30,14 @@ export default defineConfig((cli) => {
   options.push({
     ...DEFAULT_OPTIONS,
     entry: ['./src/shared/index.ts'],
-    outDir: './lib/shared',
+    outDir: './dist/shared',
   })
 
   if (argv.node) {
     options.push({
       ...DEFAULT_OPTIONS,
       entry: ['./src/node/index.ts'],
-      outDir: './lib/node',
+      outDir: './dist/node',
       target: 'node20.19.0',
       deps: { neverBundle: ['markdown-it', /^@?vuepress/] },
     })
@@ -47,7 +47,7 @@ export default defineConfig((cli) => {
     options.push(...config.map(({ dir, files }) => ({
       ...DEFAULT_OPTIONS,
       entry: files.map(file => `./src/client/${dir}/${file}`),
-      outDir: `./lib/client/${dir}`,
+      outDir: `./dist/client/${dir}`,
       deps: { neverBundle: clientExternal },
     })))
   }

@@ -24,44 +24,44 @@
   ],
   "exports": {
     ".": {
-      "types": "./lib/node/index.d.ts",
-      "import": "./lib/node/index.js"
+      "types": "./dist/node/index.d.ts",
+      "import": "./dist/node/index.js"
     },
     "./client": {
-      "types": "./lib/client/index.d.ts",
-      "import": "./lib/client/index.js"
+      "types": "./dist/client/index.d.ts",
+      "import": "./dist/client/index.js"
     },
     "./components/*": {
-      "import": "./lib/client/components/*"
+      "import": "./dist/client/components/*"
     },
     "./composables": {
-      "types": "./lib/client/composables/index.d.ts",
-      "import": "./lib/client/composables/index.js"
+      "types": "./dist/client/composables/index.d.ts",
+      "import": "./dist/client/composables/index.js"
     },
     "./features/*": {
-      "import": "./lib/client/features/components/*"
+      "import": "./dist/client/features/components/*"
     },
     "./shared": {
-      "types": "./lib/shared/index.d.ts",
-      "import": "./lib/shared/index.js"
+      "types": "./dist/shared/index.d.ts",
+      "import": "./dist/shared/index.js"
     },
     "./package.json": "./package.json"
   },
-  "main": "lib/node/index.js",
-  "types": "lib/node/index.d.ts",
+  "main": "dist/node/index.js",
+  "types": "dist/node/index.d.ts",
   "files": [
-    "lib",
+    "dist",
     "templates"
   ],
   "engines": {
-    "node": "^20.19.0 || >=22.0.0"
+    "node": "^20.19.0 || >=22.12.0"
   },
   "scripts": {
     "dev": "pnpm '/(copy|tsdown):watch/'",
     "build": "pnpm run tsdown && pnpm run copy",
-    "clean": "rimraf --glob ./lib",
-    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
-    "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib -w",
+    "clean": "rimraf --glob ./dist",
+    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" dist",
+    "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" dist -w",
     "tsdown": "tsdown --config-loader unrun",
     "tsdown:watch": "tsdown --config-loader unrun --watch -- -c"
   },

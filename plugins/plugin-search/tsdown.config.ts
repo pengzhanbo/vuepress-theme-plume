@@ -26,14 +26,14 @@ export default defineConfig(() => {
   options.push({
     ...DEFAULT_OPTIONS,
     entry: ['./src/shared/index.ts'],
-    outDir: './lib/shared',
+    outDir: './dist/shared',
   })
 
   if (argv.node) {
     options.push({
       ...DEFAULT_OPTIONS,
       entry: ['./src/node/index.ts'],
-      outDir: './lib/node',
+      outDir: './dist/node',
       deps: { neverBundle: sharedExternal },
       target: 'node20.19.0',
     })
@@ -45,21 +45,21 @@ export default defineConfig(() => {
       {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/utils/index.ts'],
-        outDir: './lib/client/utils',
+        outDir: './dist/client/utils',
         deps: { neverBundle: clientExternal },
       },
       // client/composables/index.js
       {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/composables/index.ts'],
-        outDir: './lib/client/composables',
+        outDir: './dist/client/composables',
         deps: { neverBundle: clientExternal },
       },
       // client/config.js
       {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/config.ts'],
-        outDir: './lib/client',
+        outDir: './dist/client',
         deps: { neverBundle: clientExternal },
         dts: false,
       },
@@ -67,7 +67,7 @@ export default defineConfig(() => {
       {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/index.ts'],
-        outDir: './lib/client',
+        outDir: './dist/client',
         deps: { neverBundle: [
           ...clientExternal,
           './composables/index.js',

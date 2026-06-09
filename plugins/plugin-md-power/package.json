@@ -16,26 +16,26 @@
   },
   "exports": {
     ".": {
-      "types": "./lib/node/index.d.ts",
-      "import": "./lib/node/index.js"
+      "types": "./dist/node/index.d.ts",
+      "import": "./dist/node/index.js"
     },
     "./client": {
-      "types": "./lib/client/index.d.ts",
-      "import": "./lib/client/index.js"
+      "types": "./dist/client/index.d.ts",
+      "import": "./dist/client/index.js"
     },
     "./package.json": "./package.json"
   },
-  "main": "lib/node/index.js",
-  "types": "./lib/node/index.d.ts",
+  "main": "dist/node/index.js",
+  "types": "dist/node/index.d.ts",
   "files": [
-    "lib"
+    "dist"
   ],
   "scripts": {
     "dev": "pnpm '/(copy|tsdown):watch/'",
     "build": "pnpm tsdown && pnpm copy",
-    "clean": "rimraf --glob ./lib",
-    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib",
-    "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" lib -w",
+    "clean": "rimraf --glob ./dist",
+    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" dist",
+    "copy:watch": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png}\" dist -w",
     "tsdown": "tsdown --config-loader unrun",
     "tsdown:watch": "tsdown --config-loader unrun --watch -- -c"
   },

@@ -16,20 +16,20 @@
   },
   "exports": {
     ".": {
-      "types": "./lib/node/index.d.ts",
-      "import": "./lib/node/index.js"
+      "types": "./dist/node/index.d.ts",
+      "import": "./dist/node/index.js"
     },
     "./package.json": "./package.json"
   },
-  "main": "lib/node/index.js",
-  "types": "./lib/node/index.d.ts",
+  "main": "dist/node/index.js",
+  "types": "dist/node/index.d.ts",
   "files": [
-    "lib"
+    "dist"
   ],
   "scripts": {
     "build": "pnpm run tsdown && pnpm run copy",
-    "clean": "rimraf --glob ./lib",
-    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" lib",
+    "clean": "rimraf --glob ./dist",
+    "copy": "cpx \"src/**/*.{d.ts,vue,css,scss,jpg,png,woff2}\" dist",
     "tsdown": "tsdown --config-loader unrun"
   },
   "peerDependencies": {

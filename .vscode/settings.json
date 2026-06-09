@@ -55,6 +55,7 @@
     "postcss",
     "vue"
   ],
+  "npmx.ignore.replacement": ["js-yaml", "rimraf"],
   "cSpell.words": [
     "acfun",
     "bilibili",

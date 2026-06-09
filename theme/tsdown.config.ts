@@ -38,7 +38,7 @@ export default defineConfig((cli) => {
   options.push({
     ...DEFAULT_OPTIONS,
     entry: ['./src/shared/index.ts'],
-    outDir: './lib/shared',
+    outDir: './dist/shared',
     deps: { neverBundle: ['sax'] },
   })
 
@@ -46,7 +46,7 @@ export default defineConfig((cli) => {
     options.push({
       ...DEFAULT_OPTIONS,
       entry: ['./src/node/index.ts'],
-      outDir: './lib/node',
+      outDir: './dist/node',
       deps: { neverBundle: [...sharedExternal, '@pinyin-pro/data/complete'] },
       target: 'node20.19.0',
       watch: false,
@@ -58,7 +58,7 @@ export default defineConfig((cli) => {
       {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/utils/index.ts'],
-        outDir: './lib/client/utils',
+        outDir: './dist/client/utils',
         platform: 'browser',
         deps: { neverBundle: clientExternal },
       },
@@ -66,7 +66,7 @@ export default defineConfig((cli) => {
       {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/composables/index.ts'],
-        outDir: './lib/client/composables',
+        outDir: './dist/client/composables',
         platform: 'browser',
         deps: { neverBundle: [
           ...clientExternal,
@@ -77,7 +77,7 @@ export default defineConfig((cli) => {
       {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/config.ts'],
-        outDir: './lib/client',
+        outDir: './dist/client',
         dts: false,
         platform: 'browser',
         deps: { neverBundle: [
@@ -90,7 +90,7 @@ export default defineConfig((cli) => {
       {
         ...DEFAULT_OPTIONS,
         entry: ['./src/client/index.ts'],
-        outDir: './lib/client',
+        outDir: './dist/client',
         platform: 'browser',
         deps: { neverBundle: [
           ...clientExternal,
@@ -102,7 +102,7 @@ export default defineConfig((cli) => {
       ...featuresComposables.map(file => ({
         ...DEFAULT_OPTIONS,
         entry: [`./src/client/features/composables/${file}`],
-        outDir: `./lib/client/features/composables/`,
+        outDir: `./dist/client/features/composables/`,
         platform: 'browser',
         deps: { neverBundle: [
           ...clientExternal,

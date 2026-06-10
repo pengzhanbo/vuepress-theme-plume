@@ -86,6 +86,14 @@ docs:
     logo: https://d.mcenahle.com/images/logo.png
     url: https://d.mcenahle.com/
     preview: https://mcenahle.cn/resources/docs-site-preview.jpg
+  
+  -
+    name: 加密指南针
+    desc: 带你探索不一样的区块链世界
+    logo: https://jm-nav.com/logo.png
+    url: https://jm-nav.com/
+    preview: https://jm-nav.com/preview.jpg
+  
 
 blog:
   -

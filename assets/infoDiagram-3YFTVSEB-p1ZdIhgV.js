@@ -1,0 +1,2 @@
+import{Bt as e,Wr as t,bn as n,vr as r,zr as i}from"./common-CWW_U7Zw.js";var a={parse:t(async e=>{let t=await i(`info`,e);r.debug(t)},`parse`)},o={version:`11.15.0`},s={parser:a,db:{getVersion:t(()=>o.version,`getVersion`)},renderer:{draw:t((t,i,a)=>{r.debug(`rendering info diagram
+`+t);let o=e(i);n(o,100,400,!0),o.append(`g`).append(`text`).attr(`x`,100).attr(`y`,40).attr(`class`,`version`).attr(`font-size`,32).style(`text-anchor`,`middle`).text(`v${a}`)},`draw`)}};export{s as diagram};

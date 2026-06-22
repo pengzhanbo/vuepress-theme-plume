@@ -93,7 +93,13 @@ docs:
     logo: https://jm-nav.com/logo.png
     url: https://jm-nav.com/
     preview: https://jm-nav.com/preview.jpg
-  
+  -
+    name: Dante Cloud
+    desc: 国内首个支持阻塞式和响应式服务并行的微服务云原生基座
+    logo: https://www.herodotus.cn/logo.svg
+    url: https://www.herodotus.cn
+    repo: https://gitee.com/dante-compass/herodotus-documents
+    preview: https://www.herodotus.cn/plume-demo.jpg
 
 blog:
   -

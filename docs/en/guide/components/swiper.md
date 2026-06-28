@@ -53,13 +53,13 @@ Global components can be used in any other markdown file:
 ```
 
 <script setup lang="ts">
-  import { ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
 
 const images = ref([])
 
 async function fetchImage() {
-  const res = await fetch('https://api.pengzhanbo.cn/wallpaper/bing/zh/').then((res) => res.json())
+  const res = await fetch('https://api.pengzhanbo.cn/wallpaper/bing/zh').then((res) => res.json())
   images.value = res.map(item => ({
     name: item.title,
     link: item.url,
@@ -77,19 +77,19 @@ if (!__VUEPRESS_SSR__) {
 
 ## Props
 
-| Name              | Type                                                       | Default    | Description                                                                         |
-| ----------------- | ---------------------------------------------------------- | ---------- | ----------------------------------------------------------------------------------- |
-| items             | `string \| { link: string; href?: string; alt?: string}[]` | `[]`       | Image link array. When passing objects, `link` represents image URL, `href` represents navigation link, `alt` represents image description |
-| width             | `number \| string`                                         | `100%`     | Carousel area width                                                                 |
-| height            | `number \| string`                                         | `100%`     | Carousel area height                                                                |
-| mode              | `'banner' \| 'carousel' \| 'broadcast'`                    | `'banner'` | Carousel mode: `banner`: banner; `carousel`: carousel; `broadcast`: information display |
-| navigation        | `boolean`                                                  | `true`     | Whether to show navigation buttons                                                  |
-| effect            | `'slide' \| 'fade' \| 'cube' \| 'coverflow' \| 'flip' \| 'cards' \| 'creative'` | `'slide'`  | Carousel effect                                                                     |
-| delay             | `number`                                                   | `3000`     | Carousel interval time. Only effective when `mode: 'banner'`. Unit: `ms`            |
-| speed             | `number`                                                   | `300`      | Animation duration. Unit: `ms`                                                      |
-| loop              | `boolean`                                                  | `true`     | Whether to loop                                                                     |
-| pauseOnMouseEnter | `boolean`                                                  | `false`    | Whether to pause carousel on mouse hover                                            |
-| swipe             | `boolean`                                                  | `true`     | Whether to enable gesture swiping                                                   |
+| Name              | Type                                                                            | Default    | Description                                                                                                                                |
+| ----------------- | ------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| items             | `string \| { link: string; href?: string; alt?: string}[]`                      | `[]`       | Image link array. When passing objects, `link` represents image URL, `href` represents navigation link, `alt` represents image description |
+| width             | `number \| string`                                                              | `100%`     | Carousel area width                                                                                                                        |
+| height            | `number \| string`                                                              | `100%`     | Carousel area height                                                                                                                       |
+| mode              | `'banner' \| 'carousel' \| 'broadcast'`                                         | `'banner'` | Carousel mode: `banner`: banner; `carousel`: carousel; `broadcast`: information display                                                    |
+| navigation        | `boolean`                                                                       | `true`     | Whether to show navigation buttons                                                                                                         |
+| effect            | `'slide' \| 'fade' \| 'cube' \| 'coverflow' \| 'flip' \| 'cards' \| 'creative'` | `'slide'`  | Carousel effect                                                                                                                            |
+| delay             | `number`                                                                        | `3000`     | Carousel interval time. Only effective when `mode: 'banner'`. Unit: `ms`                                                                   |
+| speed             | `number`                                                                        | `300`      | Animation duration. Unit: `ms`                                                                                                             |
+| loop              | `boolean`                                                                       | `true`     | Whether to loop                                                                                                                            |
+| pauseOnMouseEnter | `boolean`                                                                       | `false`    | Whether to pause carousel on mouse hover                                                                                                   |
+| swipe             | `boolean`                                                                       | `true`     | Whether to enable gesture swiping                                                                                                          |
 
 For more props, refer to [Swiper Documentation](https://swiperjs.com/swiper-api#parameters)
 

@@ -136,7 +136,6 @@ export function createEmbedRuleBlock<Meta extends Record<string, any> = Record<s
 
   md.renderer.rules[name] = (tokens, index, _, env: MarkdownEnv) => {
     const token = tokens[index]
-    token.content = content(token.meta, token.content, env)
-    return token.content
+    return content(token.meta, token.content, env)
   }
 }

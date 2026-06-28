@@ -8,7 +8,7 @@ import type {
 import { objectKeys, sleep } from '@pengzhanbo/utils'
 import { type FSWatcher, watch } from 'chokidar'
 import matter from 'gray-matter'
-import yaml from 'js-yaml'
+import * as yaml from 'js-yaml'
 import pMap from 'p-map'
 import { fs, hash as getHash, path, tinyglobby } from 'vuepress/utils'
 import { logger } from '../utils/index.js'

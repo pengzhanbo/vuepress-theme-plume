@@ -27,7 +27,7 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'), toRef(props, 'provi
         </span>
         <span class="repo-visibility" :class="{ archived: data.archived }">{{ data.visibility + (data.template ? ' Template' : '') }}{{ data.archived ? ' archive' : '' }}</span>
       </p>
-      <p class="repo-desc">
+      <p class="repo-desc" :title="data.description">
         {{ data.description }}
       </p>
       <div class="repo-info">
@@ -36,13 +36,13 @@ const { loaded, data } = useGithubRepo(toRef(props, 'repo'), toRef(props, 'provi
             class="repo-language" :style="{ 'background-color': data.languageColor }"
           /><span>{{ data.language }}</span>
         </p>
-        <p :title="`Github Stars: ${data.stars}`">
+        <p :title="`Stars: ${data.stars}`">
           <span class="vpi-github-star" /><span>{{ data.convertStars }}</span>
         </p>
-        <p :title="`Github Forks: ${data.forks}`">
+        <p :title="`Forks: ${data.forks}`">
           <span class="vpi-github-fork" /><span>{{ data.convertForks }}</span>
         </p>
-        <p v-if="data.license" :title="`Github License: ${data.license.name}`">
+        <p v-if="data.license" :title="`License: ${data.license.name}`">
           <span class="vpi-github-license" /><span>{{ data.license.name }}</span>
         </p>
       </div>

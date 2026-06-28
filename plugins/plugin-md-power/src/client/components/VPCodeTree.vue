@@ -19,26 +19,22 @@ provide('on-file-tree-node-click', (filepath: string, type: 'file' | 'folder') =
 })
 
 onMounted(() => {
-  watch(
-    () => activeNode.value,
-    () => {
-      if (codePanel.value) {
-        const items = Array.from(codePanel.value.querySelectorAll('.code-block-title'))
-        let hasActive = false
-        items.forEach((item) => {
-          if (item.getAttribute('data-title') === activeNode.value) {
-            item.classList.add('active')
-            hasActive = true
-          }
-          else {
-            item.classList.remove('active')
-          }
-        })
-        isEmpty.value = !hasActive
-      }
-    },
-    { immediate: true },
-  )
+  watch(activeNode, () => {
+    if (codePanel.value) {
+      const items = Array.from(codePanel.value.querySelectorAll('.code-block-title'))
+      let hasActive = false
+      items.forEach((item) => {
+        if (item.getAttribute('data-title') === activeNode.value) {
+          item.classList.add('active')
+          hasActive = true
+        }
+        else {
+          item.classList.remove('active')
+        }
+      })
+      isEmpty.value = !hasActive
+    }
+  }, { immediate: true })
 })
 </script>
 

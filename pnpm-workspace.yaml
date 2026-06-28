@@ -1,5 +1,9 @@
 catalogMode: prefer
 ignoreWorkspaceRootCheck: true
+minimumReleaseAgeExclude:
+  - '@pengzhanbo/eslint-config-vue@2.7.0'
+  - '@pengzhanbo/eslint-config@2.7.0'
+  - '@pengzhanbo/stylelint-config@2.7.0'
 shamefullyHoist: true
 shellEmulator: true
 strictPeerDependencies: false
@@ -25,7 +29,7 @@ overrides:
   '@shikijs/twoslash': ^4.2.0
   '@xmldom/xmldom': '>=0.9.10'
   axios: '>=1.18.1'
-  baseline-browser-mapping: ^2.10.38
+  baseline-browser-mapping: ^2.10.40
   brace-expansion: '>=5.0.6'
   chokidar: 'catalog:prod'
   dompurify: '>=3.4.11'
@@ -33,7 +37,7 @@ overrides:
   follow-redirects: '>=1.16.0'
   lodash: '>=4.18.1'
   lodash-es: '>=4.18.1'
-  mermaid: '>=11.15.0'
+  mermaid: '>=11.16.0'
   postcss: '>=8.5.15'
   qs: '>=6.15.3'
   sass-embedded: 'catalog:peer'
@@ -59,8 +63,8 @@ catalogs:
     '@commitlint/cli': ^21.1.0
     '@commitlint/config-conventional': ^21.1.0
     '@lunariajs/core': ^0.1.1
-    '@pengzhanbo/eslint-config-vue': ^2.6.1
-    '@pengzhanbo/stylelint-config': ^2.6.1
+    '@pengzhanbo/eslint-config-vue': ^2.7.0
+    '@pengzhanbo/stylelint-config': ^2.7.0
     '@simonwep/pickr': ^1.9.1
     '@types/express': ^5.0.6
     '@types/js-yaml': ^4.0.9
@@ -70,25 +74,25 @@ catalogs:
     '@types/picomatch': ^4.0.3
     '@types/qrcode': ^1.5.6
     '@types/stylus': ^0.48.43
-    '@types/three': ^0.184.1
+    '@types/three': ^0.185.0
     '@types/webpack-env': ^1.18.8
     '@vitest/coverage-v8': ^4.1.9
     bumpp: ^11.1.0
-    conventional-changelog: ^7.2.1
-    conventional-changelog-angular: ^8.3.1
+    conventional-changelog: ^8.0.0
+    conventional-changelog-angular: ^9.0.0
     cpx2: ^9.0.0
     cross-env: ^10.1.0
-    eslint: ^10.5.0
+    eslint: ^10.6.0
     http-server: ^14.1.1
     less: ^4.6.7
     markdown-it: ^14.2.0
     memfs: ^4.57.8
-    mermaid: ^11.15.0
+    mermaid: ^11.16.0
     nano-staged: ^1.0.2
     postcss: ^8.5.15
     rimraf: ^6.1.3
     simple-git-hooks: ^2.13.1
-    stylelint: ^17.13.0
+    stylelint: ^17.14.0
     stylus: ^0.64.0
     tsconfig-vuepress: ^7.0.0
     tsdown: ^0.22.3
@@ -109,11 +113,11 @@ catalogs:
     ogl: ^1.0.11
     pinyin-pro: ^3.28.1
     postprocessing: ^6.39.1
-    pyodide: ^314.0.0
+    pyodide: ^314.0.1
     sass: ^1.101.0
     sass-embedded: ^1.100.0
-    swiper: ^12.2.0
-    three: ^0.184.0
+    swiper: ^14.0.0
+    three: ^0.185.0
   prod:
     '@clack/prompts': ^1.6.0
     '@iconify/utils': ^3.1.3
@@ -141,7 +145,7 @@ catalogs:
     handlebars: ^4.7.9
     hash-wasm: ^4.12.0
     image-size: ^2.0.2
-    js-yaml: ^5.1.0
+    js-yaml: ^5.2.0
     katex: ^0.17.0
     local-pkg: ^1.2.1
     lru-cache: ^11.5.1
@@ -165,7 +169,7 @@ catalogs:
     sort-package-json: ^4.0.0
     tm-grammars: ^1.31.15
     tm-themes: ^1.12.2
-    vue: ^3.5.38
+    vue: ^3.5.39
     vue-router: ^5.1.0
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.30

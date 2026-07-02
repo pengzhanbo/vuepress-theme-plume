@@ -30,19 +30,23 @@ overrides:
   '@xmldom/xmldom': '>=0.9.10'
   axios: '>=1.18.1'
   baseline-browser-mapping: ^2.10.40
-  brace-expansion: '>=5.0.6'
+  brace-expansion: '>=5.0.7'
   chokidar: 'catalog:prod'
   dompurify: '>=3.4.11'
-  fast-uri: '>=4.0.0'
+  esbuild: '>=0.28.1'
+  fast-uri: '>=4.1.0'
   follow-redirects: '>=1.16.0'
+  linkify-it: '>=5.0.1'
   lodash: '>=4.18.1'
   lodash-es: '>=4.18.1'
   mermaid: '>=11.16.0'
-  postcss: '>=8.5.15'
+  postcss: '>=8.5.16'
   qs: '>=6.15.3'
   sass-embedded: 'catalog:peer'
+  shell-quote: '>=1.8.4'
   simple-git: '>=3.36.0'
   tmp: '>=0.2.7'
+  undici: '>=7.28.0'
   uuid: '>=14.0.1'
   vite: 'catalog:dev'
   vue: 'catalog:prod'
@@ -60,8 +64,8 @@ patchedDependencies:
 
 catalogs:
   dev:
-    '@commitlint/cli': ^21.1.0
-    '@commitlint/config-conventional': ^21.1.0
+    '@commitlint/cli': ^21.2.0
+    '@commitlint/config-conventional': ^21.2.0
     '@lunariajs/core': ^0.1.1
     '@pengzhanbo/eslint-config-vue': ^2.7.0
     '@pengzhanbo/stylelint-config': ^2.7.0
@@ -79,7 +83,7 @@ catalogs:
     '@vitest/coverage-v8': ^4.1.9
     bumpp: ^11.1.0
     conventional-changelog: ^8.0.0
-    conventional-changelog-angular: ^9.0.0
+    conventional-changelog-angular: ^9.2.0
     cpx2: ^9.0.0
     cross-env: ^10.1.0
     eslint: ^10.6.0
@@ -89,7 +93,7 @@ catalogs:
     memfs: ^4.57.8
     mermaid: ^11.16.0
     nano-staged: ^1.0.2
-    postcss: ^8.5.15
+    postcss: ^8.5.16
     rimraf: ^6.1.3
     simple-git-hooks: ^2.13.1
     stylelint: ^17.14.0
@@ -98,11 +102,11 @@ catalogs:
     tsdown: ^0.22.3
     typescript: ^6.0.3
     unrun: ^0.3.1
-    vite: ^8.1.0
+    vite: ^8.1.2
     vitest: ^4.1.9
     wait-on: ^9.0.10
   peer:
-    '@iconify/json': ^2.2.491
+    '@iconify/json': ^2.2.494
     '@mathjax/src': ^4.1.2
     '@pinyin-pro/data': ^1.3.1
     artplayer: ^5.4.0
@@ -112,23 +116,23 @@ catalogs:
     mpegts.js: 1.7.3
     ogl: ^1.0.11
     pinyin-pro: ^3.28.1
-    postprocessing: ^6.39.1
-    pyodide: ^314.0.1
+    postprocessing: ^6.39.2
+    pyodide: ^314.0.2
     sass: ^1.101.0
     sass-embedded: ^1.100.0
-    swiper: ^14.0.0
+    swiper: ^14.0.1
     three: ^0.185.0
   prod:
     '@clack/prompts': ^1.6.0
     '@iconify/utils': ^3.1.3
     '@iconify/vue': ^5.0.1
-    '@mdit/plugin-attrs': ^0.25.2
-    '@mdit/plugin-footnote': ^0.23.2
-    '@mdit/plugin-mark': ^0.23.2
-    '@mdit/plugin-sub': ^0.24.2
-    '@mdit/plugin-sup': ^0.24.2
-    '@mdit/plugin-tab': ^0.24.2
-    '@mdit/plugin-tasklist': ^0.23.2
+    '@mdit/plugin-attrs': ^1.0.1
+    '@mdit/plugin-footnote': ^1.0.1
+    '@mdit/plugin-mark': ^1.0.1
+    '@mdit/plugin-sub': ^1.0.1
+    '@mdit/plugin-sup': ^1.0.1
+    '@mdit/plugin-tab': ^1.0.1
+    '@mdit/plugin-tasklist': ^1.0.1
     '@pengzhanbo/utils': ^3.7.3
     '@shikijs/colorized-brackets': ^4.2.0
     '@shikijs/transformers': ^4.2.0
@@ -159,8 +163,8 @@ catalogs:
     nano-spawn: ^2.1.0
     nanoid: ^5.1.16
     os-locale: ^8.0.0
-    p-map: ^7.0.4
-    package-manager-detector: ^1.6.0
+    p-map: ^7.0.5
+    package-manager-detector: ^1.7.0
     picocolors: ^1.1.1
     picomatch: ^4.0.4
     qrcode: ^1.5.4

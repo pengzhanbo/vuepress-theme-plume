@@ -85,6 +85,7 @@
     }
   },
   "dependencies": {
+    "@floating-ui/vue": "catalog:prod",
     "@mdit/plugin-attrs": "catalog:prod",
     "@mdit/plugin-footnote": "catalog:prod",
     "@mdit/plugin-mark": "catalog:prod",

@@ -1,76 +1,73 @@
 <script setup lang="ts">
-import type { CSSProperties } from 'vue'
-import { onClickOutside, useMediaQuery, useToggle } from '@vueuse/core'
-import { nextTick, ref, useTemplateRef, watch } from 'vue'
+import { arrow, autoUpdate, offset, shift, useFloating } from '@floating-ui/vue'
+import { onClickOutside, useMediaQuery } from '@vueuse/core'
+import { ref, useTemplateRef } from 'vue'
 
 import '@vuepress/helper/transition/fade-in.css'
 
-const [show, toggle] = useToggle(false)
+defineOptions({ inheritAttrs: false })
 
-const el = useTemplateRef<HTMLSpanElement>('el')
-const tooltip = useTemplateRef<HTMLSpanElement>('tooltip')
-const styles = ref<CSSProperties>()
+const abbr = useTemplateRef('abbr')
+const tooltip = useTemplateRef('tooltip')
+const tooltipArrow = useTemplateRef('tooltipArrow')
 
 const isMobile = useMediaQuery('(max-width: 768px)')
-const showTooltip = () => toggle(true)
-const hiddenTooltip = () => toggle(false)
+const show = ref(false)
 
-onClickOutside(el, () => {
+const showTooltip = () => show.value = true
+const hideTooltip = () => show.value = false
+
+onClickOutside(abbr, () => {
   if (isMobile.value)
-    hiddenTooltip()
+    show.value = false
 }, {
   ignore: [tooltip],
 })
-
-watch(show, () => nextTick(() => {
-  if (__VUEPRESS_SSR__)
-    return
-
-  if (show.value && tooltip.value) {
-    const { x, width } = tooltip.value.getBoundingClientRect()
-    const innerWidth = window.innerWidth
-    const space = 16
-    let translate = 0
-    if (x - space < 0)
-      translate = Math.abs(x) + space
-
-    else if (x + width + space > innerWidth)
-      translate = innerWidth - x - width - space
-
-    if (translate !== 0) {
-      styles.value = {
-        '--vp-abbr-transform': `translateX(${translate}px) translateX(-50%)`,
-        '--vp-abbr-space-transform': `translateX(${-translate}px) translateX(-50%)`,
-      }
-    }
-  }
-}))
+const { floatingStyles, middlewareData } = useFloating(abbr, tooltip, {
+  whileElementsMounted: autoUpdate,
+  placement: 'bottom',
+  middleware: [
+    offset(10),
+    shift({ padding: 20 }),
+    arrow({ element: tooltipArrow, padding: 4 }),
+  ],
+})
 </script>
 
 <template>
   <span
-    ref="el"
-    class="vp-abbr"
-    role="tooltip"
-    tabindex="0"
+    ref="abbr" class="vp-abbr" role="tooltip" tabindex="0"
     v-bind="isMobile ? {
-      onClick: showTooltip,
+      onClick: () => show = !show,
+      ...$attrs,
     } : {
       onMouseenter: showTooltip,
-      onMouseleave: hiddenTooltip,
+      onMouseleave: hideTooltip,
       onFocus: showTooltip,
-      onBlur: hiddenTooltip,
+      onBlur: hideTooltip,
+      ...$attrs,
     }"
-  >
-    <slot />
-    <ClientOnly>
+  ><slot /></span>
+  <ClientOnly>
+    <Teleport to="body">
       <Transition name="fade-in">
-        <span v-show="show" ref="tooltip" class="vp-abbr-tooltip ignore-header" :style="styles" aria-hidden="true">
+        <span
+          v-show="show" ref="tooltip"
+          class="vp-abbr-tooltip ignore-header" :style="floatingStyles"
+          aria-hidden="true"
+          v-bind="!isMobile ? { onMouseenter: showTooltip, onMouseleave: hideTooltip } : undefined"
+        >
+          <span
+            ref="tooltipArrow" class="tooltip-arrow" :style="{
+              left: middlewareData.arrow?.x != null ? `${middlewareData.arrow.x}px` : '',
+              top: middlewareData.arrow?.y != null ? `${middlewareData.arrow.y}px` : '',
+            }"
+          />
           <slot name="tooltip" />
         </span>
       </Transition>
-    </ClientOnly>
-  </span>
+    </Teleport>
+  </ClientOnly>
 </template>
 
 <style>
@@ -89,10 +86,8 @@ watch(show, () => nextTick(() => {
   cursor: help;
 }
 
-.vp-abbr .vp-abbr-tooltip {
+.vp-abbr-tooltip {
   position: absolute;
-  top: calc(100% + 12px);
-  left: 50%;
   z-index: 3;
   width: max-content;
   max-width: min(calc(100vw - 32px), 360px);
@@ -105,25 +100,29 @@ watch(show, () => nextTick(() => {
   border: solid 1px var(--vp-abbr-border);
   border-radius: 4px;
   box-shadow: var(--vp-shadow-2);
+  transition: opacity var(--transition-duration) var(--transition-ease-in-out) !important;
   transform: var(--vp-abbr-transform);
 }
 
-.vp-abbr .vp-abbr-tooltip::before,
-.vp-abbr .vp-abbr-tooltip::after {
+.vp-abbr-tooltip .tooltip-arrow,
+.vp-abbr-tooltip .tooltip-arrow::before {
   position: absolute;
-  top: -16px;
-  left: 50%;
   display: block;
   width: 0;
   height: 0;
-  content: "";
   border: 8px solid transparent;
-  border-bottom-color: var(--vp-abbr-bg);
   transform: var(--vp-abbr-space-transform);
 }
 
-.vp-abbr .vp-abbr-tooltip::before {
-  top: -17px;
+.vp-abbr-tooltip .tooltip-arrow {
+  top: -16px;
+  left: 4px;
   border-bottom-color: var(--vp-abbr-border);
+}
+
+.vp-abbr-tooltip .tooltip-arrow::before {
+  content: "";
+  border-bottom-color: var(--vp-abbr-bg);
+  transform: translate(-8px, -7px);
 }
 </style>

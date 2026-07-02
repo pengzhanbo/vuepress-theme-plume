@@ -29,7 +29,7 @@ const { floatingStyles, placement } = useFloating(annotation, tooltip, {
   whileElementsMounted: autoUpdate,
   middleware: [
     flip(),
-    shift({ padding: { top: 80, left: 16, bottom: 16 } }),
+    shift({ padding: { top: 80, left: 16, right: 16, bottom: 16 } }),
   ],
 })
 
@@ -37,14 +37,14 @@ const inset = computed(() => placement.value.split('-')[0])
 </script>
 
 <template>
-  <span
+  <button
     v-bind="$attrs" ref="annotation"
     class="vp-annotation ignore-header" :class="{ active, [inset]: true }"
     :aria-label="label" :aria-expanded="active"
     @click="active = !active"
   >
     <span class="vpi-annotation" />
-  </span>
+  </button>
   <ClientOnly>
     <Teleport to="body">
       <Transition name="fade-in">

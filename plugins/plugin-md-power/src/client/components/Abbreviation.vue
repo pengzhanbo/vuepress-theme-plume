@@ -52,7 +52,7 @@ const { floatingStyles, middlewareData } = useFloating(abbr, tooltip, {
     <Teleport to="body">
       <Transition name="fade-in">
         <span
-          v-show="show" ref="tooltip"
+          v-if="show" ref="tooltip"
           class="vp-abbr-tooltip ignore-header" :style="floatingStyles"
           aria-hidden="true"
           v-bind="!isMobile ? { onMouseenter: showTooltip, onMouseleave: hideTooltip } : undefined"

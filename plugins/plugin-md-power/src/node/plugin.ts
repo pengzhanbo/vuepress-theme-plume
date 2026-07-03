@@ -79,6 +79,10 @@ export function markdownPowerPlugin(
       },
 
       async extendsBundlerOptions(bundlerOptions, app) {
+        if (options.abbr || options.annotation) {
+          addViteOptimizeDepsInclude(bundlerOptions, app, ['@floating-ui/vue'])
+        }
+
         if (options.repl) {
           addViteOptimizeDepsInclude(
             bundlerOptions,

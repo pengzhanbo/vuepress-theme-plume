@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { onClickOutside, useEventListener } from '@vueuse/core'
-import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
+import { autoUpdate, flip, shift, useFloating } from '@floating-ui/vue'
+import { onClickOutside, useIntersectionObserver } from '@vueuse/core'
+import { computed, ref, useTemplateRef } from 'vue'
 
 import '@vuepress/helper/transition/fade-in.css'
+
+defineOptions({ inheritAttrs: false })
 
 const { label, total } = defineProps<{
   label: string
@@ -10,68 +13,59 @@ const { label, total } = defineProps<{
 }>()
 
 const active = ref(false)
-const list = computed(() => Array.from({ length: total }, (_, i) => i))
-const position = ref({ x: 0, y: 0 })
+const group = computed(() => Array.from({ length: total }, (_, i) => i))
 
-const popover = useTemplateRef<HTMLDivElement>('popover')
-const button = useTemplateRef<HTMLButtonElement>('button')
-onClickOutside(popover, () => (active.value = false), {
-  ignore: [button],
+const annotation = useTemplateRef('annotation')
+const tooltip = useTemplateRef('tooltip')
+
+onClickOutside(annotation, () => (active.value = false), { ignore: [tooltip] })
+
+useIntersectionObserver(annotation as any, ([entry]) => {
+  if (!entry.isIntersecting && active.value)
+    active.value = false
+}, { rootMargin: '-64px 0px 0px 0px' })
+
+const { floatingStyles, placement } = useFloating(annotation, tooltip, {
+  whileElementsMounted: autoUpdate,
+  middleware: [
+    flip(),
+    shift({ padding: { top: 80, left: 16, right: 16, bottom: 16 } }),
+  ],
 })
 
-function updatePosition() {
-  if (__VUEPRESS_SSR__)
-    return
-  if (!active.value || !popover.value || !button.value)
-    return
-  const { x: _x, y: _y, width: w, height: h } = button.value.getBoundingClientRect()
-  const x = _x + w / 2
-  const y = _y + h / 2
-
-  const { width, height } = popover.value.getBoundingClientRect()
-  const { clientWidth, clientHeight } = document.documentElement
-  position.value.x = x + width + 16 > clientWidth ? clientWidth - x - width - 16 : 0
-
-  if (y > clientHeight - 16) {
-    active.value = false
-  }
-  else {
-    position.value.y = y + height + 16 > clientHeight ? clientHeight - y - height - 16 : 0
-  }
-}
-
-watch(active, () => nextTick(updatePosition))
-useEventListener('resize', updatePosition)
-useEventListener('scroll', updatePosition, { passive: true })
+const inset = computed(() => placement.value.split('-')[0])
 </script>
 
 <template>
-  <span class="vp-annotation ignore-header" :class="{ active, [label]: true }">
-    <span
-      ref="button"
-      :aria-label="label"
-      class="vpi-annotation"
-      @click="active = !active"
-    />
-    <ClientOnly>
+  <button
+    v-bind="$attrs" ref="annotation"
+    class="vp-annotation ignore-header" :class="{ active, [inset]: true }"
+    :aria-label="label" :aria-expanded="active"
+    @click="active = !active"
+  >
+    <span class="vpi-annotation" />
+  </button>
+  <ClientOnly>
+    <Teleport to="body">
       <Transition name="fade-in">
         <div
-          v-show="active" ref="popover"
-          class="annotations-popover" :class="{ list: list.length > 1 }"
-          :style="{ '--vp-annotation-x': `${position.x}px`, '--vp-annotation-y': `${position.y}px` }"
+          v-if="active" ref="tooltip"
+          class="vp-annotation-popover" :class="{ group: group.length > 1 }"
+          :style="floatingStyles"
         >
-          <div v-for="i in list" :key="label + i" class="annotation">
+          <div v-for="i in group" :key="label + i" class="annotation">
             <slot :name="`item-${i}`" />
           </div>
         </div>
       </Transition>
-    </ClientOnly>
-  </span>
+    </Teleport>
+  </ClientOnly>
 </template>
 
 <style scoped>
 .vp-annotation {
   position: relative;
+  z-index: 10;
 }
 
 .vpi-annotation {
@@ -104,16 +98,28 @@ useEventListener('scroll', updatePosition, { passive: true })
   opacity: 1;
 }
 
-.vp-annotation.active .vpi-annotation {
+.vp-annotation.active.top .vpi-annotation {
+  transform: rotate(135deg);
+}
+
+.vp-annotation.active.left .vpi-annotation {
+  transform: rotate(45deg);
+}
+
+.vp-annotation.active.bottom .vpi-annotation {
   transform: rotate(-45deg);
 }
 
-.annotations-popover {
+.vp-annotation.active.right .vpi-annotation {
+  transform: rotate(-135deg);
+}
+
+.vp-annotation-popover {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  z-index: 9;
+  box-sizing: border-box;
   width: max-content;
-  max-width: min(calc(100vw - 32px), 360px);
+  max-width: min(calc(100vw - 40px), 360px);
   max-height: 360px;
   padding: 8px 12px;
   overflow: auto;
@@ -123,11 +129,10 @@ useEventListener('scroll', updatePosition, { passive: true })
   border: solid 1px var(--vp-c-divider);
   border-radius: 4px;
   box-shadow: var(--vp-shadow-2);
-  transform: translateX(var(--vp-annotation-x, 0)) translateY(var(--vp-annotation-y, 0)) translateZ(0);
-  will-change: transform;
+  transition: opacity var(--transition-duration) var(--transition-ease-in-out) !important;
 }
 
-.annotations-popover.list {
+.vp-annotation-popover.group {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -135,31 +140,31 @@ useEventListener('scroll', updatePosition, { passive: true })
   background-color: var(--vp-c-bg-soft);
 }
 
-.annotations-popover.list .annotation {
+.vp-annotation-popover.group .annotation {
   padding: 4px 12px;
   background-color: var(--vp-c-bg);
   border-radius: 4px;
   box-shadow: var(--vp-shadow-1);
 }
 
-.annotations-popover :deep(p) {
+.vp-annotation-popover :deep(p) {
   margin: 12px 0;
   line-height: 24px;
 }
 
-.annotations-popover :deep(:first-child) {
+.vp-annotation-popover :deep(:first-child) {
   margin-top: 4px;
 }
 
-.annotations-popover :deep(:last-child) {
+.vp-annotation-popover :deep(:last-child) {
   margin-bottom: 4px;
 }
 
-.annotations-popover.list :deep(:first-child) {
+.vp-annotation-popover.group :deep(:first-child) {
   margin-top: 8px;
 }
 
-.annotations-popover.list :deep(:last-child) {
+.vp-annotation-popover.group :deep(:last-child) {
   margin-bottom: 8px;
 }
 </style>

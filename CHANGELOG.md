@@ -1,3 +1,10 @@
+# [1.0.0-rc.204](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.203...v1.0.0-rc.204) (2026-07-03)
+
+
+### Bug Fixes
+
+* fix test wrong ([a33f01a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a33f01afe3115994aae3d4729ca864250318375c))
+
 # [1.0.0-rc.203](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.202...v1.0.0-rc.203) (2026-06-09)
 
 

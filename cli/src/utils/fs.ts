@@ -33,7 +33,6 @@ export async function readFiles(dir: string): Promise<File[]> {
  *
  * @param files - Array of file objects to write / 要写入的文件对象数组
  * @param target - Target directory path / 目标目录路径
- * @param rewrite - Optional function to rewrite file paths / 可选的文件路径重写函数
  */
 export async function writeFiles(
   files: File[],

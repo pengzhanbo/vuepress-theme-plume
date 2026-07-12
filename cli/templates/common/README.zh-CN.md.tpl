@@ -1,22 +1,21 @@
-# {{ name }}
+# <%= it.name %>
+
 
 网站使用 [vuepress](https://vuepress.vuejs.org/) 和 [vuepress-theme-plume](https://github.com/pengzhanbo/vuepress-theme-plume) 构建生成。
 
 ## Install
 
 ```sh
-{{#if (equal packageManager "pnpm")}}
-pnpm i
-{{else if (equal packageManager "yarn")}}
+<% if (it.packageManager === 'yarn') { %>
 yarn
-{{else}}
-npm i
-{{/if}}
+<% } else {%>
+<%= it.packageManager %> install
+<% } %>
 ```
 
 ## Usage
 
-{{#if (equal packageManager "pnpm")}}
+<% if (it.packageManager === 'pnpm') { %>
 ```sh
 # 启动开发服务
 pnpm docs:dev
@@ -27,7 +26,7 @@ pnpm docs:preview
 # 更新 vuepress 和主题
 pnpm vp-update
 ```
-{{else if (equal packageManager "yarn")}}
+<% } else if (it.packageManager === 'yarn') { %>
 ```sh
 # 启动开发服务
 yarn docs:dev
@@ -38,7 +37,7 @@ yarn docs:preview
 # update vuepress and theme
 yarn vp-update
 ```
-{{else}}
+<% } else { %>
 ```sh
 # 启动开发服务
 npm run docs:dev
@@ -49,9 +48,9 @@ npm run docs:preview
 # 更新 vuepress 和主题
 npm run vp-update
 ```
-{{/if}}
+<% } %>
 
-{{#if (equal deploy "github")}}
+<% if (it.deploy === 'github') { %>
 ## 部署到 GitHub Pages
 
 主题已创建 github actions: `.github/workflows/docs-deploy.yml`，你还需要在 github 仓库中进行以下设置：
@@ -67,7 +66,7 @@ npm run vp-update
 
 如需要自定义域名，请查看 [Github Pages 文档](https://docs.github.com/zh/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages)
 
-{{/if}}
+<% } %>
 ## 文档
 
 - [vuepress](https://vuepress.vuejs.org/)

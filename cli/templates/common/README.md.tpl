@@ -1,22 +1,21 @@
-# {{ name }}
+# <%= it.name %>
+
 
 The Site is generated using [vuepress](https://vuepress.vuejs.org/) and [vuepress-theme-plume](https://github.com/pengzhanbo/vuepress-theme-plume)
 
 ## Install
 
 ```sh
-{{#if (equal packageManager "pnpm")}}
-pnpm i
-{{else if (equal packageManager "yarn")}}
+<% if (it.packageManager === 'yarn') { %>
 yarn
-{{else}}
-npm i
-{{/if}}
+<% } else {%>
+<%= it.packageManager %> install
+<% } %>
 ```
 
 ## Usage
 
-{{#if (equal packageManager "pnpm")}}
+<% if (it.packageManager === 'pnpm') { %>
 ```sh
 # start dev server
 pnpm docs:dev
@@ -27,7 +26,7 @@ pnpm docs:preview
 # update vuepress and theme
 pnpm vp-update
 ```
-{{else if (equal packageManager "yarn")}}
+<% } else if (it.packageManager === 'yarn') { %>
 ```sh
 # start dev server
 yarn docs:dev
@@ -38,7 +37,7 @@ yarn docs:preview
 # update vuepress and theme
 yarn vp-update
 ```
-{{else}}
+<% } else { %>
 ```sh
 # start dev server
 npm run docs:dev
@@ -49,9 +48,9 @@ npm run docs:preview
 # update vuepress and theme
 npm run vp-update
 ```
-{{/if}}
+<% } %>
 
-{{#if (equal deploy "github")}}
+<% if (it.deploy === 'github') { %>
 ## Deploy to GitHub Pages
 
 The plume theme has been created with GitHub Actions: `.github/workflows/docs-deploy.yml`. You also need to make the following settings in the GitHub repository:
@@ -67,7 +66,7 @@ The plume theme has been created with GitHub Actions: `.github/workflows/docs-de
 
 To customize a domain name, please refer to [Github Pages](https://docs.github.com/zh/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages)
 
-{{/if}}
+<% } %>
 ## Documents
 
 - [vuepress](https://vuepress.vuejs.org/)

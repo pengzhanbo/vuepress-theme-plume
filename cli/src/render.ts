@@ -1,6 +1,6 @@
 import type { ResolvedData } from './types.js'
 import { kebabCase } from '@pengzhanbo/utils'
-import handlebars from 'handlebars'
+import { Eta } from 'eta'
 
 /**
  * Extended resolved data with additional rendering information
@@ -16,25 +16,22 @@ export interface RenderData extends ResolvedData {
   locales: { path: string, lang: string, isEn: boolean, prefix: string }[]
   /** Whether default language is English / 默认语言是否为英语 */
   isEN: boolean
+
+  t: (en: string, zh: string) => string
 }
 
-handlebars.registerHelper('removeLeadingSlash', (path: string) => path.replace(/^\//, ''))
-handlebars.registerHelper('equal', (a: string, b: string) => a === b)
-
-/**
- * Create render function with Handlebars template engine
- *
- * 使用 Handlebars 模板引擎创建渲染函数
- *
- * @param result - Resolved configuration data / 解析后的配置数据
- * @returns Render function that processes Handlebars templates / 处理 Handlebars 模板的渲染函数
- */
 export function createRender(result: ResolvedData) {
+  const eta = new Eta({
+    functionHeader: 'const t = it.t',
+  })
+
+  const isEN = result.defaultLanguage === 'en-US'
+
   const data: RenderData = {
     ...result,
     name: kebabCase(result.siteName),
-    isEN: result.defaultLanguage === 'en-US',
-    locales: result.defaultLanguage === 'en-US'
+    isEN,
+    locales: isEN
       ? [
           { path: '/', lang: 'en-US', isEn: true, prefix: 'en' },
           { path: '/zh/', lang: 'zh-CN', isEn: false, prefix: 'zh' },
@@ -43,15 +40,9 @@ export function createRender(result: ResolvedData) {
           { path: '/', lang: 'zh-CN', isEn: false, prefix: 'zh' },
           { path: '/en/', lang: 'en-US', isEn: true, prefix: 'en' },
         ],
+    t: (en: string, zh: string) => isEN ? en : zh,
   }
   return function render(source: string): string {
-    try {
-      const template = handlebars.compile(source)
-      return template(data)
-    }
-    catch (e) {
-      console.error(e)
-      return source
-    }
+    return eta.renderString(source, data)
   }
 }

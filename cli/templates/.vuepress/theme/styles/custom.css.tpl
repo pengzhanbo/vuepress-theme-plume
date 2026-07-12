@@ -1,5 +1,5 @@
 :root {
-  /** 主题颜色 */
+  /** Brand Colors / 主题颜色 */
 
   /*
   --vp-c-brand-1: #5086a1;
@@ -8,7 +8,7 @@
   --vp-c-brand-soft: rgba(131, 208, 218, 0.314);
   */
 
-  /** 背景颜色 */
+  /** Background Colors / 背景颜色 */
 
   /*
   --vp-c-bg: #fff;
@@ -17,7 +17,7 @@
   --vp-c-bg-soft: #f6f6f7;
   */
 
-  /** 文本颜色 */
+  /** Text Colors / 文本颜色 */
 
   /*
   --vp-c-text-1: rgba(60, 60, 67);
@@ -26,7 +26,8 @@
   */
 }
 
-/** 深色模式 */
+/** Dark Mode / 深色模式 */
+
 [data-theme="dark"] {
   /*
   --vp-c-brand-1: #8cccd5;

@@ -7,14 +7,14 @@ import path from 'node:path'
  *
  * 递归读取目录下的所有文件
  *
- * @param root - Root directory path to read from / 要读取的根目录路径
+ * @param dir - Root directory path to read from / 要读取的根目录路径
  * @returns Array of file objects / 文件对象数组
  */
-export async function readFiles(root: string): Promise<File[]> {
-  const filepaths = await fs.readdir(root, { recursive: true })
+export async function readFiles(dir: string): Promise<File[]> {
+  const filepaths = await fs.readdir(dir, { recursive: true })
   const files: File[] = []
   for (const file of filepaths) {
-    const filepath = path.join(root, file)
+    const filepath = path.join(dir, file)
     if ((await fs.stat(filepath)).isFile()) {
       files.push({
         filepath: file,
@@ -38,14 +38,11 @@ export async function readFiles(root: string): Promise<File[]> {
 export async function writeFiles(
   files: File[],
   target: string,
-  rewrite?: (path: string) => string,
 ): Promise<void> {
   for (const { filepath, content } of files) {
-    let root = path.join(target, filepath).replace(/\.handlebars$/, '')
-    if (rewrite)
-      root = rewrite(root)
-    await fs.mkdir(path.dirname(root), { recursive: true })
-    await fs.writeFile(root, content)
+    const file = path.join(target, filepath).replace(/\.tpl$/, '')
+    await fs.mkdir(path.dirname(file), { recursive: true })
+    await fs.writeFile(file, content)
   }
 }
 

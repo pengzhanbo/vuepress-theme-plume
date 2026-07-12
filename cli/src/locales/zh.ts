@@ -12,7 +12,6 @@ export const zh: Locale = {
   'question.bundler': '请选择打包工具',
   'question.multiLanguage': '是否使用多语言？',
   'question.defaultLanguage': '请选择站点默认语言',
-  'question.useTs': '是否使用 TypeScript？',
   'question.injectNpmScripts': '是否注入 npm 脚本？',
   'question.deploy': '部署方式：',
   'question.git': '是否初始化 git 仓库？',

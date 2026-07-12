@@ -12,7 +12,6 @@ export const en: Locale = {
   'question.bundler': 'Select a bundler',
   'question.multiLanguage': 'Do you want to use multiple languages?',
   'question.defaultLanguage': 'Select the default language of the site',
-  'question.useTs': 'Use TypeScript?',
   'question.injectNpmScripts': 'Inject npm scripts?',
   'question.deploy': 'Deploy type:',
   'question.git': 'Initialize a git repository?',

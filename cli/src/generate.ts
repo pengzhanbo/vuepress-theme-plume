@@ -64,12 +64,11 @@ export async function generate(
     const gitFiles = await readFiles(getTemplate('git'))
     if (mode === Mode.init) {
       const gitignorePath = path.join(cwd, '.gitignore')
-      const docs = data.docsDir
       if (fs.existsSync(gitignorePath)) {
         const content = await fs.promises.readFile(gitignorePath, 'utf-8')
         fileList.push({
           filepath: '.gitignore',
-          content: `${content}\n${docs}/.vuepress/.cache\n${docs}/.vuepress/.temp\n${docs}/.vuepress/dist\n`,
+          content: `${content}\n# VuePress\n.vuepress/.cache\n.vuepress/.temp\n.vuepress/dist\n`,
         })
         fileList.push(...gitFiles.filter(({ filepath }) => filepath !== '.gitignore'))
       }
@@ -97,22 +96,14 @@ export async function generate(
   const render = createRender(data)
 
   const renderedFiles = fileList.map((file) => {
-    if (file.filepath.endsWith('.handlebars'))
+    if (file.filepath.endsWith('.tpl'))
       file.content = render(file.content)
 
     return file
   })
 
-  const ext = data.useTs ? '' : userPkg.type !== 'module' ? '.mjs' : '.js'
-  const REG_EXT = /\.ts$/
   const output = mode === Mode.create ? path.join(cwd, data.root) : cwd
-  await writeFiles(renderedFiles, output, (filepath) => {
-    if (filepath.endsWith('.d.ts'))
-      return filepath
-    if (ext)
-      return filepath.replace(REG_EXT, ext)
-    return filepath
-  })
+  await writeFiles(renderedFiles, output)
 }
 
 /**

@@ -1,6 +1,5 @@
 ---
 pageLayout: home
-externalLinkIcon: false
 config:
   -
     type: hero
@@ -15,7 +14,11 @@ config:
         -
           theme: brand
           text: 博客
-          link: {{#if (equal defaultLanguage 'zh-CN')}}/{{else}}/zh/{{/if}}blog/
+<% if (it.defaultLanguage === 'zh-CN') { %>
+          link: /blog/
+<% } else { %>
+          link: /zh/blog/
+<% } %>
         -
           theme: alt
           text: Github →

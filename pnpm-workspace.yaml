@@ -142,12 +142,13 @@ catalogs:
     chokidar: 5.0.0
     dayjs: ^1.11.21
     echarts: ^6.1.0
+    eta: ^4.6.0
     flowchart.ts: ^3.0.1
     focus-trap: ^8.2.2
     gray-matter: ^4.0.3
-    handlebars: ^4.7.9
     hash-wasm: ^4.12.0
     image-size: ^2.0.2
+    js-tokens: ^10.0.0
     js-yaml: ^5.2.0
     katex: ^0.17.0
     local-pkg: ^1.2.1

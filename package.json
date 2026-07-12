@@ -60,6 +60,7 @@
     "cpx2": "catalog:dev",
     "cross-env": "catalog:dev",
     "eslint": "catalog:dev",
+    "js-tokens": "catalog:prod",
     "less": "catalog:dev",
     "markdown-it": "catalog:dev",
     "memfs": "catalog:dev",

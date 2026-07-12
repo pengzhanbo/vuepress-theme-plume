@@ -2,7 +2,7 @@ import type { Langs, Locale } from './types.js'
 import { locales } from './locales/index.js'
 
 interface Translate {
-  setLang: (lang: Langs) => void
+  setLang: (lang: Langs) => Langs
   t: (key: keyof Locale) => string
 }
 
@@ -20,6 +20,7 @@ function createTranslate(lang?: Langs): Translate {
   return {
     setLang: (lang) => {
       current = lang
+      return lang
     },
     t: key => locales[current][key],
   }

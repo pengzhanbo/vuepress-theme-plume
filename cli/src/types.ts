@@ -50,12 +50,6 @@ export interface Locale {
    */
   'question.bundler': string
   /**
-   * Question: Use TypeScript
-   *
-   * 问题：使用 TypeScript
-   */
-  'question.useTs': string
-  /**
    * Question: Inject npm scripts
    *
    * 问题：注入 npm 脚本
@@ -223,12 +217,7 @@ export interface PromptResult {
    * 默认语言
    */
   defaultLanguage: Langs
-  /**
-   * Use TypeScript
-   *
-   * 使用 TypeScript
-   */
-  useTs: boolean
+
   /**
    * Inject npm scripts
    *

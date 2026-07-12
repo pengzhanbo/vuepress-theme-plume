@@ -20,54 +20,53 @@ jobs:
           # "Last updated time" and other git log-related information require fetching all commit records.
           fetch-depth: 0
 
-{{#if (equal packageManager "pnpm")}}
+<% if (it.packageManager === 'pnpm') { %>
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
-{{/if}}
+<% } %>
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           # 选择要使用的 node 版本
-          node-version: 22
+          node-version: 24
 
-{{#if (equal packageManager "npm")}}
+<% if (it.packageManager === 'npm') { %>
       # 安装依赖
       # Install dependencies
       - name: Install Dependencies
         run: npm ci
-{{/if}}
+<% } %>
 
-{{#if (equal packageManager "pnpm")}}
+<% if (it.packageManager === 'pnpm') { %>
       # 安装依赖
       # Install dependencies
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
-{{/if}}
+<% } %>
 
-{{#if (equal packageManager "yarn")}}
+<% if (it.packageManager === 'yarn') { %>
       - name: Run install
         uses: borales/actions-yarn@v4
         with:
           cmd: install
-{{/if}}
+<% } %>
 
       # 运行构建脚本
       # Run the build script
-{{#unless (equal packageManager "yarn")}}
+<% if (it.packageManager !== 'yarn') { %>
       - name: Build VuePress site
         env:
           NODE_OPTIONS: --max_old_space_size=8192
-        run: {{packageManager}} run docs:build
-{{/unless}}
-{{#if (equal packageManager "yarn")}}
+        run: <%= it.packageManager %> run docs:build
+<% } else { %>
       - name: Build VuePress site
         uses: borales/actions-yarn@v4
         env:
           NODE_OPTIONS: --max_old_space_size=8192
         with:
           cmd: docs:build
-{{/if}}
+<% } %>
 
 
       # 查看 workflow 的文档来获取更多信息
@@ -78,7 +77,7 @@ jobs:
           # 部署到 gh-pages 分支
           target_branch: gh-pages
           # 部署目录为 VuePress 的默认输出目录
-          build_dir: {{docsDir}}/.vuepress/dist
+          build_dir: <%= it.docsDir %>/.vuepress/dist
         env:
           # @see https://docs.github.com/cn/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
-          GITHUB_TOKEN: $\{{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

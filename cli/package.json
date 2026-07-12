@@ -33,7 +33,7 @@
     "@clack/prompts": "catalog:prod",
     "@pengzhanbo/utils": "catalog:prod",
     "cac": "catalog:prod",
-    "handlebars": "catalog:prod",
+    "eta": "catalog:prod",
     "nano-spawn": "catalog:prod",
     "os-locale": "catalog:prod",
     "picocolors": "catalog:prod",

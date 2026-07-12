@@ -221,6 +221,9 @@ catalogs:
     echarts:
       specifier: ^6.1.0
       version: 6.1.0
+    eta:
+      specifier: ^4.6.0
+      version: 4.6.0
     flowchart.ts:
       specifier: ^3.0.1
       version: 3.0.1
@@ -230,15 +233,15 @@ catalogs:
     gray-matter:
       specifier: ^4.0.3
       version: 4.0.3
-    handlebars:
-      specifier: ^4.7.9
-      version: 4.7.9
     hash-wasm:
       specifier: ^4.12.0
       version: 4.12.0
     image-size:
       specifier: ^2.0.2
       version: 2.0.2
+    js-tokens:
+      specifier: ^10.0.0
+      version: 10.0.0
     js-yaml:
       specifier: ^5.2.0
       version: 5.2.0
@@ -479,6 +482,9 @@ importers:
       eslint:
         specifier: catalog:dev
         version: 10.6.0(jiti@2.6.1)
+      js-tokens:
+        specifier: catalog:prod
+        version: 10.0.0
       less:
         specifier: catalog:dev
         version: 4.6.7
@@ -539,9 +545,9 @@ importers:
       cac:
         specifier: catalog:prod
         version: 7.0.0
-      handlebars:
+      eta:
         specifier: catalog:prod
-        version: 4.7.9
+        version: 4.6.0
       nano-spawn:
         specifier: catalog:prod
         version: 2.1.0
@@ -4487,6 +4493,10 @@ packages:
   esutils@2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
+
+  eta@4.6.0:
+    resolution: {integrity: sha512-lW6is4T1NFOYnmqGZIfvixqj7A7sSvScF+DN8EK6K58xI5MZ5UvYe0GjopxOXQtZvUn4eDdVuZ8XSoYWTMEKwA==}
+    engines: {node: '>=20'}
 
   eve-raphael@0.5.0:
     resolution: {integrity: sha512-jrxnPsCGqng1UZuEp9DecX/AuSyAszATSjf4oEcRxvfxa1Oux4KkIPKBAAWWnpdwfARtr+Q0o9aPYWjsROD7ug==}
@@ -11352,6 +11362,8 @@ snapshots:
       '@types/estree': 1.0.9
 
   esutils@2.0.3: {}
+
+  eta@4.6.0: {}
 
   eve-raphael@0.5.0: {}
 

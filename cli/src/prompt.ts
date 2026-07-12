@@ -1,12 +1,9 @@
 import type { Bundler, Langs, PromptResult } from './types.js'
-import { createRequire } from 'node:module'
 import process from 'node:process'
 import { cancel, confirm, group, select, text } from '@clack/prompts'
 import osLocale from 'os-locale'
 import { bundlerOptions, deployOptions, DeployType, languageOptions, Mode } from './constants.js'
 import { setLang, t } from './translate.js'
-
-const require = createRequire(process.cwd())
 
 const REG_DIR_CHAR = /[<>:"\\|?*[\]]/
 
@@ -20,37 +17,21 @@ const REG_DIR_CHAR = /[<>:"\\|?*[\]]/
  * @returns Resolved prompt result / 解析后的提示结果
  */
 export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
-  let hasTs = false
-  if (mode === Mode.init) {
-    try {
-      hasTs = !!require.resolve('typescript')
-    }
-    catch {}
-  }
-
   const result: PromptResult = await group({
     displayLang: async () => {
+      // 从操作系统中获取语言
       const locale = osLocale()
 
-      if (locale === 'zh-CN' || locale === 'zh-Hans') {
-        setLang('zh-CN')
-        return 'zh-CN'
-      }
+      if (locale === 'zh-CN' || locale === 'zh-Hans')
+        return setLang('zh-CN')
 
-      if (locale === 'en-US') {
-        setLang('en-US')
-        return 'en-US'
-      }
+      if (locale === 'en-US')
+        return setLang('en-US')
 
-      const lang = await select<Langs>({
+      return setLang(await select<Langs>({
         message: 'Select a language to display / 选择显示语言',
         options: languageOptions,
-      })
-
-      if (typeof lang === 'string')
-        setLang(lang)
-
-      return lang
+      }) as Langs)
     },
 
     root: async () => {
@@ -83,6 +64,7 @@ export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
 
     siteDescription: () => text({
       message: t('question.site.description'),
+      defaultValue: '',
     }),
 
     multiLanguage: () => confirm({
@@ -94,17 +76,6 @@ export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
       message: t('question.defaultLanguage'),
       options: languageOptions,
     }),
-
-    useTs: async () => {
-      if (mode === Mode.init)
-        return hasTs
-      if (hasTs)
-        return true
-      return await confirm({
-        message: t('question.useTs'),
-        initialValue: true,
-      })
-    },
 
     injectNpmScripts: async () => {
       if (mode === Mode.create)

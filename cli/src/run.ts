@@ -1,8 +1,8 @@
-import type { PromptResult, ResolvedData } from './types.js'
+import type { ResolvedData } from './types.js'
 import path from 'node:path'
 import process from 'node:process'
 import { intro, outro, spinner } from '@clack/prompts'
-import { sleep } from '@pengzhanbo/utils'
+import { attemptAsync, sleep } from '@pengzhanbo/utils'
 import spawn from 'nano-spawn'
 import colors from 'picocolors'
 import { Mode } from './constants.js'
@@ -20,19 +20,23 @@ import { getPackageManager } from './utils/index.js'
  * @param root - Root directory path / 根目录路径
  */
 export async function run(mode: Mode, root?: string): Promise<void> {
-  intro(colors.cyan('Welcome to VuePress and vuepress-theme-plume !'))
+  intro(colors.cyan('Welcome to VuePress and vuepress-theme-plume !\n欢迎使用 VuePress 和 vuepress-theme-plume !'))
 
   const result = await prompt(mode, root)
-  const data = resolveData(result, mode)
+  const data = {
+    ...result,
+    packageManager: getPackageManager(),
+    docsDir: mode === Mode.create ? 'docs' : result.root.replace(/^\.\//, '').replace(/\/$/, ''),
+  } as ResolvedData
 
   const progress = spinner()
   progress.start(t('spinner.start'))
 
-  try {
-    await generate(mode, data)
-  }
-  catch (e) {
-    console.error(`${colors.red('generate files error: ')}\n`, e)
+  // Generate VuePress project files
+  const [err] = await attemptAsync(generate, mode, data)
+  if (err) {
+    progress.error(colors.red('generate files error: '))
+    console.error(err)
     process.exit(1)
   }
 
@@ -41,26 +45,27 @@ export async function run(mode: Mode, root?: string): Promise<void> {
   await sleep(200)
 
   const cwd = path.join(process.cwd(), data.root)
+
+  // Init git
   if (data.git) {
     progress.message(t('spinner.git'))
-    try {
-      await spawn('git', ['init'], { cwd })
-    }
-    catch (e) {
-      console.error(`${colors.red('git init error: ')}\n`, e)
+    const [err] = await attemptAsync(() => spawn('git', ['init'], { cwd }))
+    if (err) {
+      progress.error(colors.red('git init error: '))
+      console.error(err)
       process.exit(1)
     }
   }
 
   const pm = data.packageManager
 
+  // Install dependencies
   if (data.install) {
     progress.message(t('spinner.install'))
-    try {
-      await spawn(pm, ['install'], { cwd })
-    }
-    catch (e) {
-      console.error(`${colors.red('install dependencies error: ')}\n`, e)
+    const [err] = await attemptAsync(() => spawn(pm, ['install'], { cwd }))
+    if (err) {
+      progress.error(colors.red('install dependencies error: '))
+      console.error(err)
       process.exit(1)
     }
   }
@@ -75,23 +80,5 @@ export async function run(mode: Mode, root?: string): Promise<void> {
     outro(`${t('spinner.command')}
       ${cdCommand}
       ${data.install ? '' : `${installCommand} && `}${runCommand}`)
-  }
-}
-
-/**
- * Resolve prompt result into final configuration data.
- *
- * 将提示结果解析为最终配置数据。
- *
- * @param result - Prompt result from user input / 用户输入的提示结果
- * @param mode - Operation mode (init or create) / 操作模式（初始化或创建）
- * @returns Resolved configuration data / 解析后的配置数据
- */
-function resolveData(result: PromptResult, mode: Mode): ResolvedData {
-  return {
-    ...result,
-    packageManager: getPackageManager(),
-    docsDir: mode === Mode.create ? 'docs' : result.root.replace(/^\.\//, '').replace(/\/$/, ''),
-    siteDescription: result.siteDescription || '',
   }
 }

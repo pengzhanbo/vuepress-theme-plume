@@ -55,9 +55,12 @@ interface Result {
   text?: string
 }
 
-const { activate } = useFocusTrap(el, {
-  immediate: true,
-})
+const { activate } = useFocusTrap(el, { immediate: true })
+
+const isSearchIndexLoading = ref(false)
+const isSearching = ref(false)
+
+const showSearchSpinner = computed(() => isSearchIndexLoading.value || isSearching.value)
 
 const searchIndex = computedAsync(async () => {
   let tokenize: ((str: string) => string[]) | undefined
@@ -83,7 +86,7 @@ const searchIndex = computedAsync(async () => {
       },
     ),
   )
-})
+}, undefined, isSearchIndexLoading)
 
 const disableQueryPersistence = computed(() =>
   options?.disableQueryPersistence === true,
@@ -121,15 +124,19 @@ watchDebounced(
     let canceled = false
     onCleanup(() => {
       canceled = true
+      isSearching.value = false
     })
 
-    if (!index)
+    if (!index) {
+      results.value = []
       return
+    }
 
+    isSearching.value = true
     // Search
     results.value = index
-      .search(filterTextValue) as (SearchResult & Result)[]
-    // .slice(0, 16)
+      .search(filterTextValue)
+      .slice(0, 16) as (SearchResult & Result)[]
     enableNoResults.value = true
 
     const terms = new Set<string>()
@@ -155,6 +162,7 @@ watchDebounced(
         },
       })
     })
+    isSearching.value = false
   },
   { debounce: 200, immediate: true },
 )
@@ -202,7 +210,17 @@ function scrollToSelectedResult() {
   })
 }
 
-onKeyStroke('ArrowUp', (event) => {
+function isMacCtrlShortcut(event: KeyboardEvent) {
+  return (
+    event.ctrlKey
+    && !event.altKey
+    && !event.metaKey
+    && !event.shiftKey
+    && document.documentElement.classList.contains('mac')
+  )
+}
+
+function selectPreviousResult(event: KeyboardEvent) {
   event.preventDefault()
   selectedIndex.value--
   if (selectedIndex.value < 0)
@@ -210,9 +228,9 @@ onKeyStroke('ArrowUp', (event) => {
 
   disableMouseOver.value = true
   scrollToSelectedResult()
-})
+}
 
-onKeyStroke('ArrowDown', (event) => {
+function selectNextResult(event: KeyboardEvent) {
   event.preventDefault()
   selectedIndex.value++
   if (selectedIndex.value >= results.value.length)
@@ -220,6 +238,19 @@ onKeyStroke('ArrowDown', (event) => {
 
   disableMouseOver.value = true
   scrollToSelectedResult()
+}
+
+onKeyStroke('ArrowUp', selectPreviousResult)
+onKeyStroke('ArrowDown', selectNextResult)
+onKeyStroke(['p', 'P'], (event) => {
+  if (isMacCtrlShortcut(event)) {
+    selectPreviousResult(event)
+  }
+})
+onKeyStroke(['n', 'N'], (event) => {
+  if (isMacCtrlShortcut(event)) {
+    selectNextResult(event)
+  }
 })
 
 const router = useRouter()
@@ -344,6 +375,13 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
             class="search-input"
           >
           <div class="search-actions">
+            <span
+              class="search-loading"
+              :class="{ active: showSearchSpinner }"
+              :role="showSearchSpinner ? 'status' : undefined"
+              aria-live="polite"
+              :aria-label="showSearchSpinner ? 'Loading search results' : undefined"
+            />
             <button
               class="clear-button"
               type="reset"
@@ -604,9 +642,37 @@ svg {
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .search-actions.before {
     display: none;
+  }
+}
+
+.search-loading {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 8px;
+  visibility: hidden;
+  border: 2px solid var(--vp-c-divider);
+  border-top-color: var(--vp-c-brand-1);
+  border-radius: 50%;
+}
+
+.search-loading.active {
+  visibility: visible;
+  animation: local-search-loading 0.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-loading.active {
+    animation: none;
+  }
+}
+
+@keyframes local-search-loading {
+  to {
+    transform: rotate(360deg);
   }
 }
 

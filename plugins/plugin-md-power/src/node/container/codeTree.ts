@@ -210,7 +210,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
         }
       }
 
-      const { attrs } = resolveAttrs<CodeTreeMeta>(info)
+      const attrs = resolveAttrs<CodeTreeMeta>(info)
       const { title, icon, height, entry } = attrs
       const fileTreeNodes = parseFileNodes(files)
       const entryFile = activeFile || entry || files[0]
@@ -227,7 +227,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
     type: 'code-tree',
     syntaxPattern: /^@\[code-tree([^\]]*)\]\(([^)]*)\)/,
     meta: ([, info, dir]) => {
-      const { attrs } = resolveAttrs<CodeTreeMeta>(info)
+      const attrs = resolveAttrs<CodeTreeMeta>(info)
       const h = attrs.height || String(options.height)
       return {
         title: attrs.title,

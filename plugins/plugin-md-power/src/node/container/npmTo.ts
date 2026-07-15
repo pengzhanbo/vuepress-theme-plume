@@ -49,7 +49,7 @@ export function npmToPlugins(md: Markdown, options: NpmToOptions = {}): void {
 
   createContainerPlugin(md, 'npm-to', {
     before: (info, tokens, idx, _opt, env: MarkdownEnv) => {
-      const { attrs } = resolveAttrs<{ tabs?: string }>(info)
+      const attrs = resolveAttrs<{ tabs?: string }>(info)
       const tabs = (attrs.tabs ? attrs.tabs.split(/,\s*/) : defaultTabs) as NpmToPackageManager[]
       const token = tokens[idx + 1]
       if (token.type === 'fence') {

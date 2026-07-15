@@ -150,7 +150,7 @@ export function createContainerSyntaxPlugin(
 
     // Create token, save content and attributes
     const token = state.push(`${type}_container`, '', 0)
-    token.meta = resolveAttrs(info.slice(type.length)).attrs
+    token.meta = resolveAttrs(info.slice(type.length))
     token.info = info.slice(type.length).trim()
     token.content = content
     token.markup = `${markup} ${type}`

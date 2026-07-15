@@ -33,7 +33,7 @@ export function demoEmbed(app: App, md: Markdown): void {
     meta: ([, type, info, url]) => ({
       type: (type || 'normal') as DemoMeta['type'],
       url,
-      ...resolveAttrs(info).attrs,
+      ...resolveAttrs(info) as any,
     }),
     content: (meta, content, env: MarkdownDemoEnv) => {
       const { url, type } = meta
@@ -112,7 +112,7 @@ function parseCodeMapping(
 
 function getContainerMeta(info: string): DemoMeta {
   const [, type, raw] = (info.trim().slice(4).trim() || '').match(INFO_RE) || []
-  const { attrs } = resolveAttrs(raw)
+  const attrs = resolveAttrs(raw)
   return {
     url: '',
     type: (type || 'normal') as DemoMeta['type'],

@@ -18,7 +18,7 @@ export const youtubePlugin: PluginWithOptions<never> = (md) => {
     name: 'video_youtube',
     syntaxPattern: /^@\[youtube([^\]]*)\]\(([^)]*)\)/,
     meta([, info, id]) {
-      const { attrs } = resolveAttrs(info)
+      const attrs = resolveAttrs(info)
 
       return {
         id,

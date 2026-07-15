@@ -15,7 +15,7 @@ export const codepenPlugin: PluginWithOptions<never> = (md) => {
     type: 'codepen',
     syntaxPattern: /^@\[codepen([^\]]*)\]\(([^)]*)\)/,
     meta: ([, info, source]) => {
-      const { width, height, title, tab, preview, editable, theme } = resolveAttrs<CodepenTokenMeta>(info).attrs
+      const { width, height, title, tab, preview, editable, theme } = resolveAttrs<CodepenTokenMeta>(info)
       const [user, slash] = source.split('/')
 
       return {

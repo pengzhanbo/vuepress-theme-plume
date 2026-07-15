@@ -14,7 +14,7 @@ export const qrcodePlugin: PluginWithOptions<never> = (md) => {
     type: 'qrcode',
     syntaxPattern: /^@\[qrcode([^\]]*)\]\(([^)]*)\)/,
     meta([, info, text]) {
-      const { attrs } = resolveAttrs<QRCodeMeta>(info)
+      const attrs = resolveAttrs<QRCodeMeta>(info)
       const { card, ...rest } = omit(attrs, ['text'])
 
       return {

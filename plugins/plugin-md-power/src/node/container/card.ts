@@ -43,7 +43,7 @@ export function cardPlugin(md: Markdown): void {
    */
   createContainerPlugin(md, 'card', {
     before(info) {
-      const { attrs } = resolveAttrs<CardAttrs>(info)
+      const attrs = resolveAttrs<CardAttrs>(info)
       return `<VPCard${stringifyAttrs(attrs)}>`
     },
     after: () => '</VPCard>',
@@ -76,9 +76,9 @@ export function cardPlugin(md: Markdown): void {
    */
   createContainerPlugin(md, 'card-masonry', {
     before: (info) => {
-      const { attrs } = resolveAttrs<CardMasonryAttrs>(info)
+      const attrs = resolveAttrs<CardMasonryAttrs>(info)
       if (attrs.cols)
-        attrs.cols = attrs.cols[0] === '{' ? attrs.cols : Number.parseInt(`${attrs.cols}`)
+        attrs.cols = typeof attrs.cols === 'string' && attrs.cols[0] === '{' ? attrs.cols : Number.parseInt(`${attrs.cols}`)
       if (attrs.gap)
         attrs.gap = Number(attrs.gap)
 

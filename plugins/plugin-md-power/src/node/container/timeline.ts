@@ -86,7 +86,7 @@ export function timelinePlugin(md: Markdown): void {
     before(info, tokens, index) {
       parseTimeline(tokens, index)
 
-      const { attrs } = resolveAttrs<TimelineAttrs>(info)
+      const attrs = resolveAttrs<TimelineAttrs>(info)
       attrs.card ??= undefined
       return `<VPTimeline${stringifyAttrs(attrs, true)}>`
     },

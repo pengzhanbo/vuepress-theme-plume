@@ -14,7 +14,7 @@ export const jsfiddlePlugin: PluginWithOptions<never> = (md) => {
     type: 'jsfiddle',
     syntaxPattern: /^@\[jsfiddle([^\]]*)\]\(([^)]*)\)/,
     meta([, info, source]) {
-      const { width, height, title, tab, theme } = resolveAttrs<JSFiddleTokenMeta>(info).attrs
+      const { width, height, title, tab, theme } = resolveAttrs<JSFiddleTokenMeta>(info)
 
       return {
         width: width ? parseRect(width) : '100%',

@@ -48,7 +48,7 @@ export async function langReplPlugin(app: App, md: markdownIt, {
    */
   const container = (lang: string): void => createContainerPlugin(md, `${lang}-repl`, {
     before(info) {
-      const { attrs } = resolveAttrs<CodeReplMeta>(info)
+      const attrs = resolveAttrs<CodeReplMeta>(info)
       const { editable, title } = attrs
       return `<CodeRepl${stringifyAttrs({ editable, title: title || `${lang} playground` })}>`
     },

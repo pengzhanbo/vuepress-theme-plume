@@ -16,17 +16,13 @@ const RE_ATTR_VALUE = /(?:^|\s+)(?<attr>[\w-]+)(?:=(?<quote>['"])(?<valueWithQuo
  * @returns Object with attrs and rawAttrs / 包含 attrs 和 rawAttrs 的对象
  * @typeParam T - Attribute type / 属性类型
  */
-export function resolveAttrs<T extends Record<string, any> = Record<string, any>>(info: string): {
-  attrs: T
-  rawAttrs: string
-} {
+export function resolveAttrs<T extends Record<string, any> = Record<string, any>>(info: string): T {
   info = info.trim()
 
   if (!info)
-    return { rawAttrs: '', attrs: {} as T }
+    return {} as T
 
   const attrs: Record<string, string | boolean> = {}
-  const rawAttrs = info
 
   let matched: RegExpMatchArray | null
 
@@ -46,7 +42,7 @@ export function resolveAttrs<T extends Record<string, any> = Record<string, any>
     info = info.slice(matched[0].length)
   }
 
-  return { attrs: attrs as T, rawAttrs }
+  return attrs as T
 }
 
 /**

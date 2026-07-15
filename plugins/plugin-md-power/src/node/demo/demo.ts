@@ -112,7 +112,7 @@ function parseCodeMapping(
 
 function getContainerMeta(info: string): DemoMeta {
   const [, type, raw] = (info.trim().slice(4).trim() || '').match(INFO_RE) || []
-  const { attrs } = resolveAttrs(raw)
+  const attrs = resolveAttrs(raw)
   return {
     url: '',
     type: (type || 'normal') as DemoMeta['type'],

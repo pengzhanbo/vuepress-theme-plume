@@ -10,7 +10,7 @@ Applicable only to the homepage. Configure in `{sourceDir}/README.md`.
 
 Example:
 
-```md
+```md title="frontmatter"
 ---
 pageLayout: home
 config:

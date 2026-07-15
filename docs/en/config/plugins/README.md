@@ -24,6 +24,15 @@ export default defineUserConfig({
 })
 ```
 
+## Configuration Entry Priority
+
+The theme provides two configuration entry points for some plugin features:
+
+- **Recommended entry** (top-level configuration): Options like `markdown`, `search`, `watermark`, etc. These options support hot updates, meaning changes take effect without restarting the development server.
+- **Low-level entry** (under the `plugins` namespace): Options like `plugins.markdownPower`, `plugins.search`, `plugins.watermark`, etc. These are the raw plugin configurations and do not support hot updates.
+
+It is recommended to use the top-level configuration entry unless you need more fine-grained plugin control. When both are configured, the top-level configuration takes priority.
+
 ## Plugin List
 
 - [@vuepress/plugin-nprogress](https://ecosystem.vuejs.press/zh/plugins/features/nprogress.html) - Page loading progress bar

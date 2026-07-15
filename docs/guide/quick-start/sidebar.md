@@ -548,7 +548,7 @@ sidebar: [
 
 **Frontmatter 配置**：
 
-```md
+```md title="frontmatter"
 ---
 title: 介绍
 badge:

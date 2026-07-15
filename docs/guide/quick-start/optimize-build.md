@@ -24,7 +24,7 @@ permalink: /guide/optimize-build/
 
 主题提供的自动化解决方案：
 
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
@@ -105,3 +105,11 @@ graph LR
    - 确保构建产物的最优体积
 
 通过这两项优化措施，主题在保持功能丰富性的同时，确保了优秀的构建性能和运行时体验。
+
+### 大型站点优化
+
+对于页面数量超过 100 的大型站点：
+
+- 考虑按目录拆分多语言配置，减少单次构建的页面数量
+- 使用 `pnpm docs:build` 时设置 `NODE_OPTIONS=--max-old-space-size=4096` 增加内存
+- 定期清理 `.vuepress/.cache` 和 `node_modules/.vite` 目录避免缓存膨胀

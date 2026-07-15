@@ -11,6 +11,8 @@ permalink: /guide/features/watermark/
 
 主题支持在文章中添加水印。支持 全屏水印 和 内容水印，同时还支持 图片水印 和 文字水印 。
 
+如需查看配置选项，请参阅 [配置 > 水印](/config/plugins/watermark/)。
+
 ## 启用水印
 
 主题默认不启用水印功能。你需要在主题配置中开启。
@@ -76,7 +78,7 @@ export default defineUserConfig({
 
 在 md 文件中添加 `frontmatter.watermark` 为 `true` ：
 
-```md
+```md title="frontmatter"
 ---
 watermark: true
 ---
@@ -84,7 +86,7 @@ watermark: true
 
 还可以个性化配置当前页面的水印：
 
-```md
+```md title="frontmatter"
 ---
 watermark:
   content: My Custom Content
@@ -119,7 +121,7 @@ export default defineUserConfig({
 
 也可以在 md 文件中添加配置，为当前页面设置水印：
 
-```md
+```md title="frontmatter"
 ---
 watermark:
   contentType: image
@@ -157,7 +159,7 @@ export default defineUserConfig({
 
 也可以在 md 文件中添加配置，为当前页面设置水印：
 
-```md
+```md title="frontmatter"
 ---
 watermark:
   content: 自定义文字
@@ -169,7 +171,7 @@ watermark:
 
 主题支持在 md 文件中添加 `frontmatter.watermark` 为单个页面设置水印。
 
-```md
+```md title="frontmatter"
 ---
 watermark:
   content: My Custom Content
@@ -180,7 +182,7 @@ watermark:
 
 同时，还额外支持 `fullPage` 控制是否全屏显示。
 
-```md
+```md title="frontmatter"
 ---
 watermark:
   fullPage: false

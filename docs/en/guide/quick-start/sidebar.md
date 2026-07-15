@@ -550,7 +550,7 @@ sidebar: [
 
 **Frontmatter Configuration**:
 
-```md
+```md title="frontmatter"
 ---
 title: Introduction
 badge:

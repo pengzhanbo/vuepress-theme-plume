@@ -149,7 +149,7 @@ type CopyrightOptions = boolean | string | CopyrightLicense | {
 
 您可以在文章 frontmatter 中为单个文章配置版权信息，以覆盖全局配置：
 
-```md
+```md title="frontmatter"
 ---
 title: 我的文章
 copyright: CC-BY-4.0
@@ -194,7 +194,7 @@ export type CopyrightFrontmatter = boolean | string | CopyrightLicense | {
 
 ### 原创文章
 
-```md
+```md title="frontmatter"
 ---
 title: 我的文章
 copyright: CC-BY-4.0
@@ -205,7 +205,7 @@ copyright: CC-BY-4.0
 
 ### 转载文章
 
-```md
+```md title="frontmatter"
 ---
 title: 转载的文章
 copyright:
@@ -225,7 +225,7 @@ copyright:
 
 ### 翻译文章
 
-```md
+```md title="frontmatter"
 ---
 title: 翻译的文章
 copyright:
@@ -245,7 +245,7 @@ copyright:
 
 ### 自定义许可证
 
-```md
+```md title="frontmatter"
 ---
 title: 我的文章
 copyright:

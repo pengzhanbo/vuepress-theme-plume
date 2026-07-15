@@ -54,7 +54,7 @@ export default defineThemeConfig({
 
 当开启了 多语言配置，则会生成对应语言的导航栏的默认配置：
 
-```ts
+```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 

@@ -21,13 +21,11 @@ export default defineUserConfig({
     readingTime: {
       wordPerMinute: 300
     },
-    // Can also be configured via plugins.readingTime, but not recommended
-    plugins: {
-      readingTime: {}
-    }
   }),
 })
 ```
+
+For configuration entry priority information, please refer to [Plugin Configuration Entry](./README.md#configuration-entry-priority).
 
 ## Configuration
 

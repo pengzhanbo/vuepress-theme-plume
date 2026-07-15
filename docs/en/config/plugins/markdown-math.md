@@ -27,10 +27,8 @@ export default defineUserConfig({
         type: 'katex',
       }
     },
-    // Can also be configured in `plugins.markdownMath`, but not recommended
-    plugins: {
-      markdownMath: {}
-    }
   }),
 })
 ```
+
+For configuration entry priority information, please refer to [Plugin Configuration Entry](./README.md#configuration-entry-priority).

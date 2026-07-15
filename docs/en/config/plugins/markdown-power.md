@@ -23,7 +23,7 @@ export default defineUserConfig({
     markdown: {
       fileTree: true, // :::file-tree File tree container
       plot: true, // !!plot!! Hidden text
-      icons: true, // ::collect:name:: Inline iconify icons
+      icon: true, // ::collect:name:: Inline iconify icons
       // The following features are not enabled by default; you need to enable them manually
       // npmTo: true, // :::npm-to
       // demo: true, // :::demo
@@ -39,13 +39,11 @@ export default defineUserConfig({
       // repl: true, // :::go-repl :::kotlin-repl :::rust-repl
       // imageSize: true, // Add width/height attributes to images during build
     },
-    // Can also be configured in `plugins.markdownPower`, but not recommended
-    plugins: {
-      markdownPower: {}
-    }
   }),
 })
 ```
+
+For configuration entry priority information, please refer to [Plugin Configuration Entry](./README.md#configuration-entry-priority).
 
 ## Features
 
@@ -63,7 +61,7 @@ Please refer to the [Complete Usage Documentation](../../guide/embed/pdf.md)
 
 ### Iconify Icons
 
-This feature is not enabled by default; you need to manually set `icons` to `true`.
+This feature is not enabled by default; you need to manually set `icon` to `true`.
 
 Thanks to [iconify](https://iconify.design/), you can use __200k+__ icons from Iconify in Markdown.
 
@@ -133,7 +131,7 @@ __Syntax:__
 @[codesandbox](id)
 ```
 
-Please refer to the [Complete Usage Documentation](../../guide/repl/codeSandbox.md)
+Please refer to the [Complete Usage Documentation](../../guide/repl/code-sandbox.md)
 
 ### JSFiddle Demo
 
@@ -145,7 +143,7 @@ __Syntax:__
 @[jsfiddle](id)
 ```
 
-Please refer to the [Complete Usage Documentation](../../guide/repl/jsFiddle.md)
+Please refer to the [Complete Usage Documentation](../../guide/repl/js-fiddle.md)
 
 ### Can I Use Browser Support
 

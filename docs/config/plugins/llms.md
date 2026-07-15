@@ -62,14 +62,11 @@ export default defineUserConfig({
       locale: '/',
       // ...其它配置
     },
-
-    // 也可以在 `plugins.llmstxt` 配置，但不推荐
-    plugins: {
-      llmstxt: true
-    }
   }),
 })
 ```
+
+关于配置入口的优先级说明，请参考 [插件配置入口](./README.md#配置入口优先级)。
 
 [完整配置项说明请查看 **插件官方文档**](https://ecosystem.vuejs.press/zh/plugins/ai/llms.html#options){.read-more}
 

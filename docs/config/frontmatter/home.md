@@ -10,7 +10,7 @@ permalink: /config/frontmatter/home/
 
 示例：
 
-```md
+```md title="frontmatter"
 ---
 pageLayout: home
 config:

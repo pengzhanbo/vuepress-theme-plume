@@ -11,11 +11,11 @@ permalink: /guide/auto-frontmatter/
 
 ::: details 什么是 frontmatter ?
 Frontmatter（前言）是在 Markdown 文件最开头部分使用 YAML 格式编写的元数据区块。
-你可以把它想象成 Markdown 文件的“身份证”或“配置说明书”，它不会被直接渲染成网页内容，而是用于配置该文件的相关参数。
+您可以把它想象成 Markdown 文件的“身份证”或“配置说明书”，它不会被直接渲染成网页内容，而是用于配置该文件的相关参数。
 
 Frontmatter 使用三个连字符（---）包裹，位于文件的最开头：
 
-```md
+```md title="frontmatter"
 ---
 title: Post Title
 createTime: 2026/01/15 15:03:10
@@ -33,6 +33,14 @@ createTime: 2026/01/15 15:03:10
 - `permalink`: 文章链接
   - 默认使用 `nanoid` 生成 8 位随机字符串
   - 可以设置为 `filepath` 根据文件路径生成
+
+### 规则优先级
+
+frontmatter 生成的优先级从高到低为：
+
+1. **手动配置**：已在 Markdown 文件中手动写入的 frontmatter 字段，不会被自动覆盖
+2. **集合配置**：在 `collections` 中为特定集合配置的 frontmatter 规则
+3. **默认规则**：主题内置的默认生成规则
 
 ## 配置
 
@@ -249,7 +257,7 @@ interface AutoFrontmatterOptions {
 主题默认使用 `nanoid` 生成一个 8 位的随机字符串作为文件的永久链接。
 
 还可以将 `permalink` 配置为 `'filepath'` ，根据文件路径生成永久链接。
-请注意，如果你的文件路径中，包含中文，主题建议在你的项目中安装 `pinyin-pro` ，
+请注意，如果您的文件路径中，包含中文，主题建议在您的项目中安装 `pinyin-pro` ，
 以支持将中文转换为拼音。
 
 ::: npm-to
@@ -311,8 +319,8 @@ permalink: /blog/dou-cheng/
 
 :::
 
-你应该已经发现 示例中的 `都城.md` 文件的 permalink 为 `/blog/dou-cheng/` ,这显然是错误的，这是因为 `pinyin-pro`
-默认的词库对于多音字并不能精确的识别，如果你需要更为精确的转换结果，可以手动安装 `@pinyin-pro/data`，
+您应该已经发现 示例中的 `都城.md` 文件的 permalink 为 `/blog/dou-cheng/` ,这显然是错误的，这是因为 `pinyin-pro`
+默认的词库对于多音字并不能精确的识别，如果您需要更为精确的转换结果，可以手动安装 `@pinyin-pro/data`，
 主题为自动加载该词库，以提高精度。
 
 ::: npm-to

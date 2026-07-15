@@ -12,6 +12,8 @@ permalink: /guide/features/content-search/
 
 注意，请勿同时配置使用两种方式，同时配置时，只有 本地内容搜索 生效。
 
+如需查看配置选项，请参阅 [配置 > 内容搜索](/config/plugins/search/)。
+
 ## 本地内容搜索
 
 本地内容搜索由

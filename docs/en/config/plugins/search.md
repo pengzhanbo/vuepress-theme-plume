@@ -10,9 +10,9 @@ permalink: /en/config/plugins/search/
 
 Adds local search functionality to the site.
 
-Related plugin: [@vuepress-plume/plugin-search](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-search)
+For feature details, please refer to [Search Feature](../../guide/features/search.md)
 
-This plugin uses [minisearch](https://github.com/lucaong/minisearch) for content search.
+Related plugin: [@vuepress-plume/plugin-search](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-search)
 
 Default configuration:
 
@@ -26,13 +26,11 @@ export default defineUserConfig({
       provider: 'local', // [!code hl]
       // more options...
     },
-    // Can also be configured via plugins.search, but not recommended
-    plugins: {
-      search: {},
-    }
   })
 })
 ```
+
+For configuration entry priority information, please refer to [Plugin Configuration Entry](./README.md#configuration-entry-priority).
 
 ### Configuration
 
@@ -77,7 +75,7 @@ A site content search plugin powered by [Algolia DocSearch](https://docsearch.al
 
 Related plugin: [@vuepress/plugin-docsearch](https://ecosystem.vuejs.press/zh/plugins/search/docsearch.html)
 
-Refer to [Algolia DocSearch Reference](/guide/features/content-search/#algolia-docsearch) for more information.
+Refer to [Algolia DocSearch Reference](/guide/features/search/#algolia-docsearch) for more information.
 
 ### Enable
 
@@ -95,10 +93,8 @@ export default defineUserConfig({
       indexName: 'YOUR_INDEX_NAME',
       // more options
     },
-    // Can also be configured via plugins.docsearch, but not recommended
-    plugins: {
-      docsearch: {},
-    }
   })
 })
 ```
+
+For configuration entry priority information, please refer to [Plugin Configuration Entry](./README.md#configuration-entry-priority).

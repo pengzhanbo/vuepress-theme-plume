@@ -66,6 +66,56 @@ export default defineThemeConfig({
 
 For detailed configuration methods, please refer to: [Internationalization](../guide/quick-start/locales.md)
 
+## Path Mapping
+
+The following is an example of the directory structure and URL path mapping for a multilingual site:
+
+Assume the following configuration:
+
+```ts title=".vuepress/config.ts" twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    locales: {
+      '/': {
+        selectLanguageName: 'Simplified Chinese',
+      },
+      '/en/': {
+        selectLanguageName: 'English',
+      },
+    },
+  }),
+})
+```
+
+The corresponding directory structure and URL mapping are as follows:
+
+::: file-tree
+
+- docs/
+  - README.md  <-- Visit `/`  (Chinese homepage)
+  - guide/
+    - intro.md  <-- Visit `/guide/intro.html`
+  - en/
+    - README.md  <-- Visit `/en/`  (English homepage)
+    - guide/
+      - intro.md  <-- Visit `/en/guide/intro.html`
+  - .vuepress/
+    - config.ts
+    - plume.config.ts
+
+:::
+
+**Key Points:**
+
+- The `key` of the `locales` object (e.g., `/` and `/en/`) determines the URL path prefix
+- Chinese (default language) uses `/` as the prefix, corresponding to files under the `docs/` root directory
+- English uses `/en/` as the prefix, corresponding to files under the `docs/en/` directory
+- The Markdown file structure for each language remains consistent within its language directory
+- The `.vuepress/` directory is a shared configuration directory and does not need to be configured separately for each language
+
 ### appearanceText
 
 - Type: `string`
@@ -280,4 +330,59 @@ interface NotFound {
   linkLabel?: string
   linkText?: string
 }
+```
+
+## Encryption-related Text
+
+The following options are used to customize the text displayed in the encryption feature and should be configured in `theme.locales`.
+For details, see [Encryption Feature](../guide/features/encryption.md).
+
+### encryptGlobalText
+
+- Type: `string`
+- Default: `'Only password can access this site'`
+- Details:
+
+  The prompt message when the entire site is encrypted. Supports HTML.
+  You may need this configuration if you want to provide visitors with contact information to obtain the password.
+
+### encryptPageText
+
+- Type: `string`
+- Default: `'Only password can access this page'`
+- Details:
+
+  The prompt message when a page is partially encrypted. Supports HTML.
+  You may need this configuration if you want to provide visitors with contact information to obtain the password.
+
+### encryptButtonText
+
+- Type: `string`
+- Default: `'Confirm'`
+- Details: The text for the confirm button.
+
+### encryptPlaceholder
+
+- Type: `string`
+- Default: `'Enter password'`
+- Details: The placeholder for the password input field.
+
+### Configuration Example
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    locales: {
+      '/': {
+        encryptButtonText: 'Confirm',
+        encryptPlaceholder: 'Enter password',
+        encryptGlobalText: 'Only password can access this site',
+        encryptPageText: 'Only password can access this page',
+      }
+    }
+  })
+})
 ```

@@ -22,13 +22,11 @@ export default defineUserConfig({
         // ... options
       }
     },
-    // Can also be configured in `plugins.markdownInclude`, but not recommended
-    plugins: {
-      markdownInclude: {},
-    }
   })
 })
 ```
+
+For configuration entry priority information, please refer to [Plugin Configuration Entry](./README.md#configuration-entry-priority).
 
 ### resolvePath
 

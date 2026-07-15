@@ -100,7 +100,7 @@ interface PlumeThemeHomeBanner extends PlumeHomeConfigBase {
 
 **示例：**
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:
@@ -172,6 +172,36 @@ interface PlumeThemeHomeHero extends PlumeHomeConfigBase {
 }
 ```
 
+**示例：**
+
+```md title="frontmatter"
+---
+home: true
+config:
+  -
+    type: hero
+    full: true
+    hero:
+      name: Theme Plume
+      text: VuePress Next Theme
+      tagline: 一个简约易用的，功能丰富的 vuepress 文档&博客 主题
+      actions:
+        -
+          theme: brand
+          text: 快速开始
+          link: /guide/intro/
+          icon: material-symbols:rocket-launch
+        -
+          theme: alt
+          text: Github
+          link: https://github.com/pengzhanbo/vuepress-theme-plume
+          suffixIcon: simple-icons:github
+          target: _blank
+          rel: noopener noreferrer
+    effect: prism
+---
+```
+
 [查看 **背景效果 配置 & 演示** 了解更多](./home-hero-effect.md){.read-more}
 
 主题还支持自定义 `name`, `tagline`， `text` 的颜色。
@@ -220,7 +250,7 @@ interface PlumeThemeHomeDocHero {
 
 **示例：**
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:
@@ -310,7 +340,7 @@ type FeatureIcon = string | {
 
 **示例：**
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:
@@ -386,7 +416,7 @@ type PlumeThemeImage
 
 **示例：**
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:
@@ -457,7 +487,7 @@ interface PlumeThemeHomePosts extends PlumeHomeConfigBase {
 
 **示例：**
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:
@@ -490,7 +520,7 @@ type PlumeThemeImage
 
 **示例：**
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:
@@ -522,7 +552,7 @@ interface PlumeThemeHomeCustom extends PlumeHomeConfigBase {
 
 **示例：**
 
-````md
+````md title="frontmatter"
 ---
 home: true
 config:
@@ -609,7 +639,7 @@ export default defineClientConfig({
 
 然后，你就可以在 `README.md` 中使用 `your-component` 了。
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:

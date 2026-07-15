@@ -23,6 +23,15 @@ export default defineUserConfig({
 })
 ```
 
+## 配置入口优先级
+
+主题为部分插件功能提供了两种配置入口：
+
+- **推荐入口**（顶层配置）：`markdown`、`search`、`watermark` 等选项，这些选项支持热更新，修改后无需重启开发服务器即可生效。
+- **底层入口**（`plugins` 命名空间下）：`plugins.markdownPower`、`plugins.search`、`plugins.watermark` 等，这些是插件的原始配置，不支持热更新。
+
+推荐使用顶层配置入口，除非需要进行更细粒度的插件控制。两者同时配置时，顶层配置优先级更高。
+
 ## 插件列表
 
 - [@vuepress/plugin-nprogress](https://ecosystem.vuejs.press/zh/plugins/features/nprogress.html) - 页面加载进度条

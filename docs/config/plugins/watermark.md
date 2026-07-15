@@ -10,6 +10,8 @@ permalink: /config/watermark/
 
 关联插件：[@vuepress/plugin-watermark](https://ecosystem.vuejs.press/zh/plugins/features/watermark.html)
 
+功能说明请参考 [水印功能](../../guide/features/watermark.md)
+
 ## 使用
 
 ```ts title=".vuepress/config.ts" twoslash
@@ -36,13 +38,11 @@ export default defineUserConfig({
         // ...
       }
     },
-    // 也可以通过 plugins.watermark 配置，但不推荐
-    plugins: {
-      watermark: {}
-    }
   })
 })
 ```
+
+关于配置入口的优先级说明，请参考 [插件配置入口](./README.md#配置入口优先级)。
 
 ## 配置项
 
@@ -90,7 +90,7 @@ export default defineUserConfig({
 
   可以参考 [watermark-js-plus](https://zhensherlock.github.io/watermark-js-plus/zh/config/) 。
 
-```md
+```md title="frontmatter"
 ---
 watermark:
   width: 200

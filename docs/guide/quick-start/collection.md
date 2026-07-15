@@ -35,7 +35,7 @@ permalink: /guide/collection/
 
 :::
 
-当你想要添加一个用于 **博客** 的集合：
+当您想要添加一个用于 **博客** 的集合：
 
 :::: steps
 
@@ -117,6 +117,35 @@ permalink: /guide/collection/
 
 集合的类型决定了该集合下的文档将会提供哪些功能。
 
+::: details 关于 frontmatter
+下表中提到的 **frontmatter** 是指 Markdown 文件顶部的 YAML 格式元数据，用于配置页面的标题、创建时间、标签、分类等信息。它由三根虚线 `---` 包裹，例如：
+
+```md title="frontmatter"
+---
+title: 文章标题
+createTime: 2024-01-01
+tags:
+  - 标签1
+  - 标签2
+---
+
+正文内容...
+```
+
+主题支持自动生成 frontmatter，详见 [自动 Frontmatter](./auto-frontmatter.md)。
+:::
+
+| 特性             | post 集合                    | doc 集合                    |
+| ---------------- | ---------------------------- | --------------------------- |
+| 适用场景         | 博客、随笔、碎片化文章       | 文档手册、系列教程、知识库  |
+| 文章列表页       | ✅ 自动生成                  | ❌ 不生成                   |
+| 分类页           | ✅ 根据目录结构生成          | ❌ 不生成                   |
+| 标签页           | ✅ 根据 frontmatter.tags 生成| ❌ 不生成                   |
+| 归档页           | ✅ 根据 createTime 生成      | ❌ 不生成                   |
+| 侧边栏           | ❌ 不生成                    | ✅ 自动生成或手动配置       |
+| 目录结构         | 扁平化，文章间无强关联       | 层级化，文章间有结构化关联  |
+| 自动 Frontmatter | ✅ 支持 title、createTime 等 | ✅ 支持 title、createTime 等|
+
 ### post 集合
 
 post 集合提供了以下的功能实现：
@@ -137,6 +166,12 @@ doc 集合提供了以下的功能实现：
 - **多级嵌套支持** - 支持复杂的文档层次结构
 
 <LinkCard title="doc 集合详细说明" href="./collection-doc.md" icon="streamline-ultimate:sidebar-line-left" />
+
+::: warning 已弃用
+旧版本中的 `notes` 配置项已弃用，请使用 `collections` 配置代替。`notes` 将在未来的主版本中移除。
+
+`notes` 配置中的目录和笔记结构可以对应迁移到 `collections` 中的 `doc` 类型集合，参考 [集合配置](./collection.md) 了解更多。
+:::
 
 ## 集合配置
 

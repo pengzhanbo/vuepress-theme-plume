@@ -72,3 +72,40 @@ pnpm build
 
 推荐使用 `vs code` 进行开发。本仓库配置了开发本主题时，推荐的 `vs code` 扩展，
 当你导入本仓库时，`vs code` 可能会推荐你安装一些扩展。
+
+## 文档贡献
+
+感谢您对 vuepress-theme-plume 文档的贡献！以下是文档贡献的规范和流程。
+
+### 文档风格规范
+
+- **人称代词**：统一使用"您"作为说明性文字的称谓，避免使用"你"。
+- **文件命名**：所有 Markdown 文件使用 kebab-case 命名（如 `audio-reader.md`，而非 `audioReader.md`）。
+- **概述段落**：每个文档的 `##` 标题之后应有简短的概述段落，说明该文档的内容和用途。
+- **代码示例**：代码块应标注语言类型，配置示例应包含完整的导入语句和上下文。
+- **链接引用**：使用相对路径引用其他文档，确保链接有效性。
+
+### 文档提交流程
+
+1. Fork 仓库并创建新的分支
+2. 在 `docs/` 目录下修改或新建文档
+3. 如新建文档，需在 `docs/.vuepress/collections/zh/` 下对应的侧边栏配置文件中添加条目
+4. 运行 `pnpm lint` 检查代码质量
+5. 运行 `pnpm dev` 预览文档效果
+6. 提交 Pull Request，描述文档变更内容
+
+### 文档目录结构
+
+```text
+docs/
+├── guide/           # 使用指南
+│   ├── quick-start/ # 快速开始
+│   ├── markdown/    # Markdown 扩展
+│   ├── features/    # 功能特性
+│   └── custom/      # 自定义配置
+├── config/          # 配置参考
+│   ├── plugins/     # 插件配置
+│   └── ...
+└── .vuepress/       # VuePress 配置
+    └── collections/ # 集合和侧边栏配置
+```

@@ -66,7 +66,7 @@ export default defineUserConfig({
 提供了 更多的 [特性支持](./features.md)，它们让 代码块具备更强的表达能力。
 
 同时，为了方便 更好的 完成 代码演示，Theme Plume 还提供了嵌入 [CodePen](../repl/codepen.md)，
-[Js Fiddle](../repl/jsFiddle.md)，[Code Sandbox](../repl/codeSandbox.md)，
+[Js Fiddle](../repl/js-fiddle.md)，[Code Sandbox](../repl/code-sandbox.md)，
 [Replit](../repl/replit.md) 的语法支持，你可以很方便的嵌入代码演示。
 
 ## 示例

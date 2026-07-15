@@ -10,6 +10,8 @@ The theme's built-in watermark plugin adds watermarks to the entire site or indi
 
 Related plugin: [@vuepress/plugin-watermark](https://ecosystem.vuejs.press/zh/plugins/features/watermark.html)
 
+For feature details, please refer to [Watermark Feature](../../guide/features/watermark.md)
+
 ## Usage
 
 ```ts title=".vuepress/config.ts" twoslash
@@ -36,13 +38,11 @@ export default defineUserConfig({
         // ...
       }
     },
-    // Can also be configured via plugins.watermark, but not recommended
-    plugins: {
-      watermark: {}
-    }
   })
 })
 ```
+
+For configuration entry priority information, please refer to [Plugin Configuration Entry](./README.md#configuration-entry-priority).
 
 ## Configuration Options
 
@@ -90,7 +90,7 @@ export default defineUserConfig({
 
   Refer to [watermark-js-plus](https://zhensherlock.github.io/watermark-js-plus/zh/config/) for configuration options.
 
-```md
+```md title="frontmatter"
 ---
 watermark:
   width: 200

@@ -101,7 +101,7 @@ interface PlumeThemeHomeBanner extends PlumeHomeConfigBase {
 
 **Example:**
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:
@@ -172,6 +172,36 @@ interface PlumeThemeHomeHero extends PlumeHomeConfigBase {
 }
 ```
 
+**Example:**
+
+```md title="frontmatter"
+---
+home: true
+config:
+  -
+    type: hero
+    full: true
+    hero:
+      name: Theme Plume
+      text: VuePress Next Theme
+      tagline: A minimalistic, easy-to-use, feature-rich vuepress documentation & blog theme
+      actions:
+        -
+          theme: brand
+          text: Get Started
+          link: /guide/intro/
+          icon: material-symbols:rocket-launch
+        -
+          theme: alt
+          text: Github
+          link: https://github.com/pengzhanbo/vuepress-theme-plume
+          suffixIcon: simple-icons:github
+          target: _blank
+          rel: noopener noreferrer
+    effect: prism
+---
+```
+
 [See **Background Effects Configuration & Demo** to learn more.](./home-hero-effect.md){.read-more}
 
 The theme also supports customizing the colors of `name`, `tagline`, and `text`.
@@ -220,7 +250,7 @@ interface PlumeThemeHomeDocHero {
 
 **Example:**
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:
@@ -310,7 +340,7 @@ type FeatureIcon = string | {
 
 **Example:**
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:
@@ -386,7 +416,7 @@ type PlumeThemeImage
 
 **Example:**
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:
@@ -457,7 +487,7 @@ The value of `collection` should match the `dir` value of the collection.
 
 **Example:**
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:
@@ -490,7 +520,7 @@ type PlumeThemeImage
 
 **Example:**
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:
@@ -522,7 +552,7 @@ interface PlumeThemeHomeCustom extends PlumeHomeConfigBase {
 
 **Example:**
 
-````md
+````md title="frontmatter"
 ---
 home: true
 config:
@@ -609,7 +639,7 @@ export default defineClientConfig({
 
 Then, you can use `your-component` in your `README.md`.
 
-```md
+```md title="frontmatter"
 ---
 home: true
 config:

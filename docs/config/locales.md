@@ -66,6 +66,56 @@ export default defineThemeConfig({
 
 详细配置方法请参考：[国际化](../guide/quick-start/locales.md)
 
+## 路径映射
+
+以下是一个多语言站点的目录结构与 URL 路径映射示例：
+
+假设配置如下：
+
+```ts title=".vuepress/config.ts" twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    locales: {
+      '/': {
+        selectLanguageName: '简体中文',
+      },
+      '/en/': {
+        selectLanguageName: 'English',
+      },
+    },
+  }),
+})
+```
+
+对应的目录结构和 URL 映射如下：
+
+::: file-tree
+
+- docs/
+  - README.md  <-- 访问 `/`  (中文首页)
+  - guide/
+    - intro.md  <-- 访问 `/guide/intro.html`
+  - en/
+    - README.md  <-- 访问 `/en/`  (英文首页)
+    - guide/
+      - intro.md  <-- 访问 `/en/guide/intro.html`
+  - .vuepress/
+    - config.ts
+    - plume.config.ts
+
+:::
+
+**要点说明：**
+
+- `locales` 对象的 `key`（如 `/` 和 `/en/`）决定了 URL 路径前缀
+- 中文（默认语言）使用 `/` 作为前缀，对应 `docs/` 根目录下的文件
+- 英文使用 `/en/` 作为前缀，对应 `docs/en/` 目录下的文件
+- 每种语言的 Markdown 文件结构在该语言的目录下保持一致
+- `.vuepress/` 目录是共享的配置目录，不需要为每种语言单独配置
+
 ### appearanceText
 
 - 类型： `string`
@@ -278,4 +328,56 @@ interface NotFound {
   linkLabel?: string
   linkText?: string
 }
+```
+
+## 加密相关文本
+
+以下选项用于自定义加密功能中显示的文本，应配置在 `theme.locales` 中。详见 [加密功能](../guide/features/encryption.md)。
+
+### encryptGlobalText
+
+- 类型： `string`
+- 默认值： `'Only password can access this site'`
+- 详情：
+
+  全站加密时，提示信息。支持 HTML。如果你期望为访客提供获取密码的联系方式，你可能会需要这个配置。
+
+### encryptPageText
+
+- 类型： `string`
+- 默认值： `'Only password can access this page'`
+- 详情：
+
+  部分加密时，提示信息。支持 HTML。如果你期望为访客提供获取密码的联系方式，你可能会需要这个配置。
+
+### encryptButtonText
+
+- 类型： `string`
+- 默认值： `'Confirm'`
+- 详情： 确认按钮的文本
+
+### encryptPlaceholder
+
+- 类型： `string`
+- 默认值： `'Enter password'`
+- 详情： 密码输入框的占位符
+
+### 配置示例
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    locales: {
+      '/': {
+        encryptButtonText: 'Confirm',
+        encryptPlaceholder: 'Enter password',
+        encryptGlobalText: 'Only password can access this site',
+        encryptPageText: 'Only password can access this page',
+      }
+    }
+  })
+})
 ```

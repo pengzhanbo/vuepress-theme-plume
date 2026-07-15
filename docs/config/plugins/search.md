@@ -10,9 +10,9 @@ permalink: /config/plugins/search/
 
 为站点添加本地搜索。
 
-关联插件： [@vuepress-plume/plugin-search](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-search)
+功能说明请参考 [搜索功能](../../guide/features/search.md)
 
-该插件使用 [minisearch](https://github.com/lucaong/minisearch) 进行内容搜索。
+关联插件： [@vuepress-plume/plugin-search](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-search)
 
 默认配置：
 
@@ -26,13 +26,11 @@ export default defineUserConfig({
       provider: 'local', // [!code hl]
       // more options...
     },
-    // 也可以通过 plugins.search 配置，但不推荐
-    plugins: {
-      search: {},
-    }
   })
 })
 ```
+
+关于配置入口的优先级说明，请参考 [插件配置入口](./README.md#配置入口优先级)。
 
 ### 配置
 
@@ -77,7 +75,7 @@ interface SearchBoxLocale {
 
 关联插件：[@vuepress/plugin-docsearch](https://ecosystem.vuejs.press/zh/plugins/search/docsearch.html)
 
-查看 [Algolia DocSearch 参考](/guide/features/content-search/#algolia-docsearch) 获取更多信息。
+查看 [Algolia DocSearch 参考](/guide/features/search/#algolia-docsearch) 获取更多信息。
 
 ### 启用
 
@@ -95,10 +93,8 @@ export default defineUserConfig({
       indexName: 'YOUR_INDEX_NAME',
       // more options
     },
-    // 也可以通过 plugins.docsearch 配置，但不推荐
-    plugins: {
-      docsearch: {},
-    }
   })
 })
 ```
+
+关于配置入口的优先级说明，请参考 [插件配置入口](./README.md#配置入口优先级)。

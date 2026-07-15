@@ -10,7 +10,7 @@ permalink: /config/frontmatter/article/
 
 示例：
 
-```md
+```md title="frontmatter"
 ---
 title: 文章标题
 tags:

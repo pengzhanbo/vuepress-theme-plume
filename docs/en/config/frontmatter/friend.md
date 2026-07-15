@@ -10,7 +10,7 @@ Applicable to friends links pages.
 
 Example:
 
-```md
+```md title="frontmatter"
 ---
 pageLayout: friends
 title: Friends Links
@@ -63,17 +63,17 @@ The title of the friends links page.
 
 The description of the friends links page.
 
-### contentPosition <Badge text="New" />
+### contentPosition
 
 - Type: `'before' | 'after'`
 - Default: `'after'`
 
 Whether the markdown content is placed before or after the friends links list. By default, it is inserted after the list.
 
-### cols
+### cols <Badge text="New" />
 
 - Type: `number`
-- Default: `1`
+- Default: `2`
 
 The maximum number of columns displayed per line in the friends link list is generally best set to `2` / `3`.
 

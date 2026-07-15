@@ -22,13 +22,11 @@ export default defineUserConfig({
         // ... options
       }
     },
-    // 也可以在 `plugins.markdownInclude` 中配置，但不推荐
-    plugins: {
-      markdownInclude: {},
-    }
   })
 })
 ```
+
+关于配置入口的优先级说明，请参考 [插件配置入口](./README.md#配置入口优先级)。
 
 ### resolvePath
 

@@ -39,7 +39,7 @@ Frontmatter 是采用 [YAML](https://dev.to/paulasantamaria/introduction-to-yaml
 
 这一功能既减轻了内容创作者的重复工作负担，也为主题的后续功能提供了必要的数据支持。
 
-```md
+```md title="frontmatter"
 ---
 title: 标题
 createTime: 2024/09/08 22:53:34
@@ -160,7 +160,7 @@ const dir = /\d+\.[\s\S]+/
 
 通过 `frontmatter.tags` 为文章添加标签：
 
-```md
+```md title="frontmatter"
 ---
 title: 我的文章
 tags:

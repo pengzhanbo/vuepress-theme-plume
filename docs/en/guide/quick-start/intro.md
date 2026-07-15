@@ -26,16 +26,20 @@ and generates static HTML pages that can be deployed anywhere.
 
 [Visit the **VuePress Official Website** to learn more](https://v2.vuepress.vuejs.org/zh/){.read-more}
 
+::: tip Getting Started
+If you want to get started quickly, please read the [Quick Start](./usage.md) guide directly.
+:::
+
 ## Core Advantages
 
 Significant improvements are offered compared to the default VuePress theme:
 
-### 🎨 Superior User Experience
+### Superior User Experience
 
 The interface design and interaction logic have been comprehensively optimized to deliver
 a more beautiful, clean, and user-friendly reading experience.
 
-### 🚀 Rich Feature Set
+### Rich Feature Set
 
 - **Diverse Layouts**: Support for fully customizable ==homepage==, with optional ==article list== and ==documentation== modes.
 - **Content Enhancement**: Built-in practical features such as ==full-text search==, ==article comments==,
@@ -51,24 +55,24 @@ a more beautiful, clean, and user-friendly reading experience.
 - **Extensibility**: Support for ==layout slots==, ==component overrides==, and ==custom styles==,
   enabling easy implementation of personalized layout designs.
 
-### 🎉 Everything is a "Collection"
+### Everything is a "Collection"
 
 Content is organized into multiple ==collections==. Each collection has its own independent directory.
 Based on different collection types, diverse requirements such as **blogs**, **columns**,
 **tutorial series**, **knowledge bases**, and **product documentation** can be easily achieved.
 
-### ⚡ Efficient Development Experience
+### Efficient Development Experience
 
 A compilation caching mechanism is introduced, caching the compilation results of Markdown files
 and the parsing results of complex code blocks, significantly improving build speed.
 
-### 🔧 Intelligent Configuration Management
+### Intelligent Configuration Management
 
 Support for independent theme configuration files avoids frequent VuePress service restarts caused by
 configuration changes. This maintains configuration flexibility while substantially simplifying the
 configuration process and lowering the barrier to use.
 
-### 🌟 Out-of-the-Box Solution
+### Out-of-the-Box Solution
 
 The ==plume theme== comes pre-integrated with the common features and configurations needed to build a site.
 This allows you to **focus on content creation** without worrying about technical details,
@@ -84,4 +88,17 @@ If you encounter any issues or have suggestions for improvement, please feel fre
 [Issues](https://github.com/pengzhanbo/vuepress-theme-plume/issues). Contributions via
 [Pull Requests (PR)](https://github.com/pengzhanbo/vuepress-theme-plume/pulls) are also welcome to help improve the theme.
 
+:::
+
+## Version Compatibility
+
+`vuepress-theme-plume` is built on the following core technologies:
+
+- **VuePress**: 2.0.0-rc.30 and above
+- **Node.js**: 20.19.0 and above (LTS version recommended)
+- **Vue**: 3.5.0 and above
+
+::: warning Note
+When upgrading VuePress versions, please check whether the theme version is compatible.
+It is recommended to use the `^` semantic version range in `package.json` to receive compatible updates.
 :::

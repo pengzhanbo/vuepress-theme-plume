@@ -11,7 +11,7 @@ permalink: /config/theme/
 
 当字段说明包含以下声明时，表示该字段不支持在 `.vuepress/plume.config.ts` 中进行配置：
 
-::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
 :::
 
 无以上声明的字段，您可以在 `.vuepress/config.ts` 或者 `.vuepress/plume.config.ts` 的任意一个文件中进行配置，一般情况下建议在 `.vuepress/plume.config.ts` 中进行配置。
@@ -56,9 +56,9 @@ export default defineThemeConfig({
 
   自定义主题配置文件的路径。
 
-  查看 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 了解更多。
+  查看 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 了解更多。
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### plugins
@@ -72,7 +72,7 @@ export default defineThemeConfig({
   主题使用的插件默认已进行了配置，大多数情况下您不需要进行修改，如果需要使用到细致的定制化，请查阅
 [此文档](./plugins/README.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### markdown <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -83,7 +83,7 @@ export default defineThemeConfig({
 
   Markdown 功能配置， 参考 [此文档](./markdown.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### codeHighlighter <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -94,7 +94,7 @@ export default defineThemeConfig({
 
   代码高亮配置， 参考 [此文档](../guide/code/intro.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### search <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -105,7 +105,7 @@ export default defineThemeConfig({
 
   搜索配置， 参考 [此文档](../guide/features/search.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### comment <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -116,7 +116,7 @@ export default defineThemeConfig({
 
   评论配置， 参考 [此文档](../guide/features/comments.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### watermark <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -127,7 +127,7 @@ export default defineThemeConfig({
 
   水印配置， 参考 [此文档](../guide/features/watermark.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### readingTime <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -138,7 +138,7 @@ export default defineThemeConfig({
 
   阅读时长配置， 参考 [此文档](./plugins/reading-time.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### copyCode <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -149,7 +149,7 @@ export default defineThemeConfig({
 
   复制代码配置， 参考 [此文档](../guide/code/copy-code.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### replaceAssets <Badge type="tip" text="1.0.0-rc.139 +" />
@@ -160,7 +160,7 @@ export default defineThemeConfig({
 
   替换资源配置， 参考 [此文档](../guide/features/replace-assets.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### hostname
@@ -173,7 +173,7 @@ export default defineThemeConfig({
 
   当 `hostname` 配置为有效域名时，主题将会生成 `sitemap` 和 `seo` 相关的内容。
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### autoFrontmatter
@@ -228,7 +228,7 @@ export default defineThemeConfig({
   - `'filesystem'`：使用文件系统缓存，此方式可获得相对快且稳定的启动速度，更适合内容多的项目使用
 
   ::: warning
-  该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
 
   为了使缓存能够生效，您应该 **删除** `package.json` 中 `vuepress dev` 开发服务启动脚本中的 `--clean-cache` 参数。
   :::
@@ -257,7 +257,7 @@ export default defineThemeConfig({
 - **默认值：** `true`
 - **详情：** 是否启用 编辑链接
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### lastUpdated
@@ -280,7 +280,7 @@ interface LastUpdatedOptions {
 }
 ```
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### contributors
@@ -291,7 +291,7 @@ interface LastUpdatedOptions {
 
   更多配置请参考 [此文档](../guide/features/contributors.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### changelog
@@ -302,7 +302,7 @@ interface LastUpdatedOptions {
 
   更多配置请参考 [此文档](../guide/features/changelog.md)
 
-  ::: warning 该字段不支持在 [主题配置文件 `plume.config.js`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### locales
@@ -357,121 +357,137 @@ interface LastUpdatedOptions {
 
 ### profile
 
-- **类型：** `ProfileOptions`
-- **默认值：** `{}`
-- **详情：** 配置站点博主的个人信息
-  - `profile.avatar`: 头像地址，用于右侧博主信息展示
-  - `profile.name`: 名称， 用于右侧博主信息展示
-  - `profile.description`: 个人描述，用于右侧博主信息展示
-  - `profile.circle`: 是否为圆形头像
-  - `profile.location`: 用户地理位置
-  - `profile.organization`: 用户所在组织/公司
-  - `profile.layout`: 个人信息展示在左侧还是右侧，`'left' | 'right'`
+- 类型: `ProfileOptions`
+- 默认值: `undefined`
 
-示例：
+配置博主个人资料，显示在博客右侧侧边栏。
 
-``` ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    profile: {
-      avatar: '/avatar.jpg',
-      name: '张三',
-      description: '此处无银三百两，隔壁王二不曾偷',
-      circle: true,
-      location: '杭州，中国',
-      organization: 'xxx公司',
-      layout: 'right',
-    }
-  })
+```ts title=".vuepress/plume.config.ts"
+import { definePlumeThemeConfig } from 'vuepress-theme-plume'
+
+export default definePlumeThemeConfig({
+  profile: {
+    avatar: '/avatar.png',
+    name: 'Your Name',
+    description: 'Your description',
+    circle: true,
+    location: 'Hangzhou, China',
+    organization: 'Your Company',
+    layout: 'right',
+  },
 })
 ```
+
+### avatar
+
+- 类型: `string`
+- 默认值: `undefined`
+
+头像图片链接，支持本地路径或网络地址。
+
+#### name
+
+- 类型: `string`
+- 默认值: `undefined`
+
+博主名称，显示在头像下方。
+
+#### description
+
+- 类型: `string`
+- 默认值: `undefined`
+
+个人描述或签名，显示在名称下方。
+
+#### circle
+
+- 类型: `boolean`
+- 默认值: `false`
+
+是否以圆形裁剪显示头像。
+
+#### location
+
+- 类型: `string`
+- 默认值: `undefined`
+
+地理位置信息，显示在个人资料中。
+
+#### organization
+
+- 类型: `string`
+- 默认值: `undefined`
+
+组织或公司信息，显示在个人资料中。
+
+#### layout
+
+- 类型: `'left' | 'right'`
+- 默认值: `'right'`
+
+个人资料的布局位置。`right` 显示在右侧侧边栏，`left` 显示在左侧侧边栏。
 
 ### social
 
-- **类型：** `false | SocialLink[]`
-- **默认值：** `false`
-- **详情：** 个人社交信息配置。
+- 类型: `SocialLink[]`
+- 默认值: `[]`
 
-  将作为 图标链接 展示在 导航栏最右侧。
+配置社交账号链接，显示在个人资料区域。支持 30+ 内置图标（如 `github`、`twitter`、`discord`、`weibo`、`bilibili`、`zhihu` 等），也支持自定义 SVG 图标。
 
-  支持 [Iconify](https://icon-sets.iconify.design/) 任意图标，直接使用 iconify name 即可自动加载。
+```ts title=".vuepress/plume.config.ts"
+import { definePlumeThemeConfig } from 'vuepress-theme-plume'
 
-  对于 `simple-icons` 集合下的图标，可以省略 `simple-icons:` 前缀，如 `simple-icons:github` 可以简写为 `github`
-
-  常见的社交图标示例：
-
-  ::: flex
-
-  <div style="flex: 1">
-
-  - discord ::simple-icons:discord::
-  - telegram ::simple-icons:telegram::
-  - facebook ::simple-icons:facebook::
-  - github ::simple-icons:github::
-  - instagram ::simple-icons:instagram::
-  - linkedin ::simple-icons:linkedin::
-  - mastodon ::simple-icons:mastodon::
-  - npm  ::simple-icons:npm::
-  - slack ::simple-icons:slack::
-  - twitter ::simple-icons:twitter::
-  - x ::simple-icons:x::
-  - youtube ::simple-icons:youtube::
-  - bluesky ::simple-icons:bluesky::
-  - tiktok ::simple-icons:tiktok::
-
-  </div><div style="flex: 1">
-
-  - qq ::simple-icons:qq::
-  - weibo ::simple-icons:sinaweibo::
-  - bilibili ::simple-icons:bilibili::
-  - gitlab ::simple-icons:gitlab::
-  - docker ::simple-icons:docker::
-  - juejin ::simple-icons:juejin::
-  - zhihu ::simple-icons:zhihu::
-  - douban ::simple-icons:douban::
-  - steam ::simple-icons:steam::
-  - stackoverflow ::simple-icons:stackoverflow::
-  - xbox ::simple-icons:xbox::
-  - kuaishou ::simple-icons:kuaishou::
-  - twitch ::simple-icons:twitch::
-  - xiaohongshu ::simple-icons:xiaohongshu::
-
-  </div>
-
-  :::
-
-  [您可以在这里查看 **simple-icons** 所有可用图标](https://icon-sets.iconify.design/simple-icons/){.readmore}
-
-如果 **Iconify** 无法满足您的需求，可以传入 `{ svg: string, name?: string }` 格式使用自定义图标，传入 SVG 源码字符串，可选 `name` 字段用于配置 [`navbarSocialInclude`](#navbarsocialinclude)
-
-示例：
-
-``` ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    social: [
-      // 使用 iconify name
-      { icon: 'github', link: 'https://github.com/zhangsan' },
-      {
-        // 使用自定义图标
-        icon: { svg: '<svg>xxxxx</svg>', name: 'xxx' },
-        link: 'https://xxx.com'
-      },
-    ]
-  })
+export default definePlumeThemeConfig({
+  social: [
+    { icon: 'github', link: 'https://github.com/your-username' },
+    { icon: 'twitter', link: 'https://twitter.com/your-username' },
+    { icon: 'weibo', link: 'https://weibo.com/your-username' },
+    // 自定义 SVG 图标
+    { icon: { svg: '<svg>...</svg>', name: 'custom' }, link: 'https://example.com' },
+  ],
 })
 ```
 
+#### icon
+
+- 类型: `string | { svg: string, name?: string }`
+- 必填
+
+社交图标。可以是内置图标名称（如 `github`、`twitter`、`discord`、`facebook`、`instagram`、`linkedin`、`mastodon`、`npm`、`slack`、`youtube`、`qq`、`weibo`、`bilibili`、`gitlab`、`docker`、`juejin`、`zhihu`、`douban`、`steam`、`stackoverflow`、`xbox`、`tiktok`、`kuaishou`、`bytedance`、`xiaohongshu`、`bluesky`、`gmail` 等），也可以是包含 `svg` 和可选 `name` 的自定义图标对象。
+
+#### link
+
+- 类型: `string`
+- 必填
+
+社交链接地址。
+
+#### ariaLabel
+
+- 类型: `string`
+- 默认值: `undefined`
+
+无障碍标签，用于屏幕阅读器读取。未设置时将根据图标名称自动生成。
+
 ### navbarSocialInclude
 
-- **类型：** `string[]`
-- **默认值：** `['github', 'twitter', 'discord', 'facebook']`
-- **详情：**
+- 类型: `string[]`
+- 默认值: `['github', 'twitter', 'discord', 'facebook']`
 
-    允许显示在导航栏的社交链接。
-    该配置仅在 PC 端下有效。
+控制哪些社交链接同时显示在导航栏中。仅 `social` 中配置的且 `icon` 在此列表中的社交链接会显示在导航栏右侧。
 
-    如果 [`social`](#social) 配置为 `{ svg: string, name: string}` 则可将 `name` 作为 `navbarSocialInclude` 的值。
+```ts title=".vuepress/plume.config.ts"
+import { definePlumeThemeConfig } from 'vuepress-theme-plume'
+
+export default definePlumeThemeConfig({
+  social: [
+    { icon: 'github', link: 'https://github.com/your-username' },
+    { icon: 'twitter', link: 'https://twitter.com/your-username' },
+    { icon: 'weibo', link: 'https://weibo.com/your-username' },
+  ],
+  navbarSocialInclude: ['github', 'weibo'], // 只有 github 和 weibo 显示在导航栏
+})
+```
 
 ### navbar
 
@@ -687,36 +703,53 @@ interface SidebarItem {
 
 ### transition
 
-- **类型：** `boolean | TransitionOptions`
-- **默认值：** `true`
-- **详情：**
+- 类型: `boolean | TransitionOptions`
+- 默认值: `true`
 
-  是否启用过渡动画。
+是否启用过渡动画效果。设置为 `false` 可完全禁用所有过渡动画。传入对象可分别控制各类动画。
 
-  传入 `boolean` 类型时，`true` 代表启用，`false` 代表禁用。
+```ts title=".vuepress/plume.config.ts"
+import { definePlumeThemeConfig } from 'vuepress-theme-plume'
 
-  也可以传入一个对象，具体配置见下
+export default definePlumeThemeConfig({
+  transition: {
+    page: true,
+    postList: true,
+    appearance: 'fade',
+  },
+})
+```
 
-  ```ts
-  interface TransitionOptions {
-    /**
-     * 是否启用 页面间跳转过渡动画
-     * @default true
-     */
-    page?: boolean
-    /**
-     * 是否启用 博客文章列表过渡动画
-     * @default true
-     */
-    postList?: boolean
-    /**
-     * 是否启用 深色/浅色 模式切换过渡动画，
-     * 或配置过渡动画类型
-     * @default 'fade'
-     */
-    appearance?: boolean | 'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip' | 'blinds-vertical' | 'blinds-horizontal' | 'soft-blur-fade' | 'diamond-reveal'
-  }
-  ```
+### page
+
+- 类型: `boolean`
+- 默认值: `true`
+
+是否启用页面跳转时的过渡动画。
+
+### postList
+
+- 类型: `boolean`
+- 默认值: `true`
+
+是否启用文章列表的过渡动画。
+
+### appearance
+
+- 类型: `'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip' | 'blinds-vertical' | 'blinds-horizontal' | 'soft-blur-fade' | 'diamond-reveal'`
+- 默认值: `'fade'`
+
+深色/浅色模式切换时的过渡动画类型。支持以下 9 种动画效果：
+
+- `fade`：淡入淡出（默认）
+- `circle-clip`：圆形裁剪
+- `horizontal-clip`：水平裁剪
+- `vertical-clip`：垂直裁剪
+- `skew-clip`：倾斜裁剪
+- `blinds-vertical`：垂直百叶窗
+- `blinds-horizontal`：水平百叶窗
+- `soft-blur-fade`：柔和模糊淡出
+- `diamond-reveal`：菱形揭示
 
 ### footer
 

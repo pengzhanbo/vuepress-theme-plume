@@ -1,0 +1,2 @@
+import{_n as e,gr as t,ni as n,si as r,wn as i}from"./common-DcuX3gjm.js";var a={parse:r(async t=>{let r=await e(`info`,t);n.debug(r)},`parse`)},o={version:`11.16.0`},s={parser:a,db:{getVersion:r(()=>o.version,`getVersion`)},renderer:{draw:r((e,r,a)=>{n.debug(`rendering info diagram
+`+e);let o=i(r);t(o,100,400,!0),o.append(`g`).append(`text`).attr(`x`,100).attr(`y`,40).attr(`class`,`version`).attr(`font-size`,32).style(`text-anchor`,`middle`).text(`v${a}`)},`draw`)}};export{s as diagram};

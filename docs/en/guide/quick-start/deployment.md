@@ -18,7 +18,7 @@ The following guides are based on the following assumptions:
 - [pnpm](https://pnpm.io/) is used as the package manager, although npm or yarn are also supported.
 - VuePress is installed as a project dependency and the following script is configured in `package.json`:
 
-```json
+```json title="package.json"
 {
   "scripts": {
     "docs:build": "vuepress build docs"
@@ -192,6 +192,12 @@ pages:
 
 ## Heroku
 
+::: warning Heroku ended free service in late 2022
+Heroku stopped providing free Dyno and free PostgreSQL database services in November 2022.
+New users can no longer use it for free. If you are an individual developer or using it for learning purposes,
+it is recommended to choose platforms that still offer free plans such as [Netlify](#netlify), [Vercel](#vercel), or [GitHub Pages](#github-pages).
+:::
+
 ::: steps
 
 1. First, install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
@@ -221,9 +227,47 @@ pages:
 
 Please check [Set Up VuePress on Kinsta](https://kinsta.com/docs/vuepress-application/).
 
+::: steps
+
+1. Sign up for an account at [Kinsta](https://kinsta.com) and log in to the dashboard.
+   Create a new static site from a Git repository (GitHub or GitLab).
+
+2. Set the following options in the build configuration:
+
+   - **Build command:** `pnpm docs:build`
+   - **Publish directory:** `docs/.vuepress/dist`
+   - **Node version:** 22
+
+3. Click the deploy button. Once the build is complete, you can access the site through
+   the default domain provided by Kinsta, or bind a custom domain in the dashboard.
+
+:::
+
 ## Edgio
 
 Please check [Edgio Documentation > Framework Guides > VuePress](https://docs.edg.io/guides/vuepress).
+
+::: steps
+
+1. Install the Edgio CLI globally:
+
+   ```bash
+   pnpm install -g @edgio/cli
+   ```
+
+2. Initialize the Edgio configuration in the project root directory. Follow the prompts to complete the framework adapter selection:
+
+   ```bash
+   edgio init
+   ```
+
+3. Deploy the site to the Edgio global edge network:
+
+   ```bash
+   edgio deploy
+   ```
+
+:::
 
 ## Netlify
 

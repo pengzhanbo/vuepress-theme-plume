@@ -89,22 +89,36 @@ External links have `target="_blank" rel="noreferrer"`:
 
 [[TOC]]
 
-## Superscripts and Subscripts
+## Superscript (Sup)
 
-- Use `^ ^` for superscript notation.
-- Use `~ ~` for subscript notation.
+Superscript is used to display text above normal text, commonly for mathematical exponents (e.g., X²), ordinal numbers (e.g., 19th), etc. Content wrapped with `^ ^` will be rendered as superscript.
 
-**Input:**
+### Syntax
 
 ```md
-- 19^th^
-- H~2~O
+X^2^
+19^th^
 ```
 
-**Output:**
+### Effect
 
-- 19^th^
-- H~2~O
+X^2^
+
+19^th^
+
+## Subscript (Sub)
+
+Subscript is used to display text below normal text, commonly for chemical formulas (e.g., H₂O), mathematical variables (e.g., a₁), etc. Content wrapped with `~ ~` will be rendered as subscript.
+
+### Syntax
+
+```md
+H~2~O
+```
+
+### Effect
+
+H~2~O
 
 ## Custom Alignment
 
@@ -140,15 +154,17 @@ Right-aligned content
 
 ## Task Lists
 
-**Input:**
+Task lists are used to create list items with checkboxes, suitable for displaying to-dos, task progress, or checklists. Use `- [ ]` for incomplete tasks and `- [x]` for completed tasks.
 
-````md
+### Syntax
+
+```md
 - [ ] Task 1
 - [x] Task 2
 - [ ] Task 3
-````
+```
 
-**Output:**
+### Effect
 
 - [ ] Task 1
 - [x] Task 2
@@ -156,16 +172,32 @@ Right-aligned content
 
 ## Footnotes
 
-**Input:**
+Footnotes are used to add supplementary notes at the bottom of a document without affecting the reading flow of the main text. By adding footnote markers (`[^identifier]`) in the text and defining the footnote content anywhere in the document, readers can click the marker to jump to the corresponding note. Footnote identifiers can be numbers or any descriptive text.
 
-````md
-The farthest distance in the world Is not the distance between life and death But you don't know I love you when I stand in front of you.[^footnote1].
+### Syntax
 
-[^footnote1]: From India.Rabindranath Tagore **The Farthest Distance in the World**
-````
+```md
+This is a paragraph[^1] that needs a footnote explanation.
 
-**Output:**
+[^1]: This is the footnote content.
+```
 
-The farthest distance in the world Is not the distance between life and death But you don't know I love you when I stand in front of you.[^footnote1].
+Descriptive identifiers are also supported:
 
-[^footnote1]: From India.Rabindranath Tagore **The Farthest Distance in the World**
+```md
+Since ancient times, who has not died? Let my loyal heart illuminate the annals of history[^footnote1].
+
+[^footnote1]: From Song Dynasty · Wen Tianxiang **"Passing Lingdingyang"**
+```
+
+### Effect
+
+This is a paragraph[^1] that needs a footnote explanation.
+
+[^1]: This is the footnote content.
+
+---
+
+Since ancient times, who has not died? Let my loyal heart illuminate the annals of history[^footnote1].
+
+[^footnote1]: From Song Dynasty · Wen Tianxiang **"Passing Lingdingyang"**

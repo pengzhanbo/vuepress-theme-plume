@@ -47,13 +47,11 @@ export default defineUserConfig({
       collapsedLines: false,
       lineNumbers: true,
     },
-    // Can also be configured via plugins.shiki, but not recommended
-    plugins: {
-      shiki: {}
-    }
   }),
 })
 ```
+
+For configuration entry priority information, please refer to [Plugin Configuration Entry](./README.md#configuration-entry-priority).
 
 ### themes
 
@@ -116,6 +114,20 @@ Effect:
 - Default: `false`
 
 Collapse code blocks to the specified number of lines.
+
+### renderIndentGuides
+
+- Type: `boolean | Partial<TransformerRenderIndentGuidesOptions>`
+- Default: `false`
+
+Whether to render indent guides in code blocks. When enabled, indentation in the code will be displayed as visual guides, making it easier to read deeply nested code.
+
+### colorizedBrackets
+
+- Type: `boolean | Partial<TransformerColorizedBracketsOptions>`
+- Default: `false`
+
+Whether to add color matching for brackets in code blocks. When enabled, matching pairs of brackets will be displayed in different colors, making it easier to identify bracket matching relationships in the code.
 
 ### transformers
 

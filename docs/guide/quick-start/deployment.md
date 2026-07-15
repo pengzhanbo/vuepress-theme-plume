@@ -18,7 +18,7 @@ tags:
 - 使用 [pnpm](https://pnpm.io/zh/) 作为包管理器，当然也支持使用 npm 或 yarn 。
 - VuePress 作为项目依赖安装，并在 `package.json` 中配置了如下脚本：
 
-```json
+```json title="package.json"
 {
   "scripts": {
     "docs:build": "vuepress build docs"
@@ -190,6 +190,10 @@ pages:
 
 ## Heroku
 
+::: warning Heroku 已于 2022 年底停止免费服务
+Heroku 已于 2022 年 11 月停止提供免费 Dyno 和免费 PostgreSQL 数据库服务，新用户无法再免费使用。如果你是个人开发者或学习用途，建议选择 [Netlify](#netlify)、[Vercel](#vercel) 或 [GitHub Pages](#github-pages) 等仍提供免费方案的平台。
+:::
+
 ::: steps
 
 1. 首先安装 [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)；
@@ -217,9 +221,45 @@ pages:
 
 请查看 [Set Up VuePress on Kinsta](https://kinsta.com/docs/vuepress-application/) 。
 
+::: steps
+
+1. 在 [Kinsta](https://kinsta.com) 注册账号并登录控制台，从 Git 仓库（GitHub 或 GitLab）创建一个新的静态站点。
+
+2. 在构建配置中设置如下选项：
+
+   - **Build command:** `pnpm docs:build`
+   - **Publish directory:** `docs/.vuepress/dist`
+   - **Node version:** 22
+
+3. 点击部署按钮，构建完成后即可通过 Kinsta 提供的默认域名访问站点，也可在控制台中绑定自定义域名。
+
+:::
+
 ## Edgio
 
 请查看 [Edgio Documentation > Framework Guides > VuePress](https://docs.edg.io/guides/vuepress) 。
+
+::: steps
+
+1. 全局安装 Edgio CLI：
+
+   ```bash
+   pnpm install -g @edgio/cli
+   ```
+
+2. 在项目根目录初始化 Edgio 配置，根据提示完成框架适配选择：
+
+   ```bash
+   edgio init
+   ```
+
+3. 部署站点到 Edgio 全球边缘网络：
+
+   ```bash
+   edgio deploy
+   ```
+
+:::
 
 ## Netlify
 

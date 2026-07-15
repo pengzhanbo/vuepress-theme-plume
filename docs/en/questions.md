@@ -120,14 +120,14 @@ When executing `npm run docs:build`, you encounter an error similar to:
 ```sh
 <--- Last few GCs --->
 
-[69161:0x7fe63aa00000]   137006 ms: xxxxxx
-[69161:0x7fe63aa00000]   139327 ms: xxxxxxxx
+[69161:0x7fe63aa00000]   137006 ms: Mark-sweep (reduce) 2048.2 (2082.5) -> 2048.2 (2082.5) MB, 1205.3 / 0.0 ms  (average mu = 0.123, current mu = 0.012) allocation failure; scavenge might not succeed
+[69161:0x7fe63aa00000]   139327 ms: Mark-sweep (reduce) 2048.2 (2082.5) -> 2048.2 (2082.5) MB, 1231.5 / 0.0 ms  (average mu = 0.102, current mu = 0.015) allocation failure; scavenge might not succeed
 
 <--- JS stacktrace --->
 FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
 ----- Native stack trace -----
 
-1: 0x107ce7c84 xxxxxxxxxxxx
+1: 0x107ce7c84 node::Abort() [/path/to/node]
 ...
 ```
 

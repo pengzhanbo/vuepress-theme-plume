@@ -10,7 +10,7 @@ permalink: /config/frontmatter/basic/
 
 示例：
 
-```md
+```md title="frontmatter"
 ---
 title: 标题
 createTime: 2024/03/02 20:01:09

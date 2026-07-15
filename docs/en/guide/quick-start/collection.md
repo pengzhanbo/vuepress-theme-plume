@@ -120,6 +120,36 @@ Key considerations in this process:
 
 The collection type determines which features are provided for documents within that collection.
 
+::: details About Frontmatter
+The **frontmatter** mentioned in the table below refers to the YAML format metadata at the top of a Markdown file,
+used to configure the page's title, creation time, tags, categories, and other information. It is wrapped by three dashes `---`, for example:
+
+```md title="frontmatter"
+---
+title: Article Title
+createTime: 2024-01-01
+tags:
+  - Tag1
+  - Tag2
+---
+
+Content...
+```
+
+The theme supports automatic frontmatter generation. See [Auto Frontmatter](./auto-frontmatter.md) for details.
+:::
+
+| Feature             | Post Collection                                | Doc Collection                                          |
+| ------------------- | ---------------------------------------------- | ------------------------------------------------------- |
+| Use Case            | Blogs, essays, fragmented articles             | Documentation, tutorial series, knowledge bases         |
+| Article List Page   | ✅ Auto-generated                              | ❌ Not generated                                        |
+| Category Page       | ✅ Generated from directory structure          | ❌ Not generated                                        |
+| Tag Page            | ✅ Generated from frontmatter.tags             | ❌ Not generated                                        |
+| Archive Page        | ✅ Generated from createTime                   | ❌ Not generated                                        |
+| Sidebar             | ❌ Not generated                               | ✅ Auto-generated or manually configured                |
+| Directory Structure | Flat, no strong relationships between articles | Hierarchical, structured relationships between articles |
+| Auto Frontmatter    | ✅ Supports title, createTime, etc.            | ✅ Supports title, createTime, etc.                     |
+
 ### Post Collection
 
 The post collection provides the following feature implementations:
@@ -140,6 +170,14 @@ The doc collection provides the following feature implementations:
 - **Multi-level Nesting Support** - Supports complex document hierarchy structures
 
 <LinkCard title="Doc Collection Details" href="./collection-doc.md" icon="streamline-ultimate:sidebar-line-left" />
+
+::: warning Deprecated
+The `notes` configuration option from the old version has been deprecated.
+Please use the `collections` configuration instead. `notes` will be removed in a future major version.
+
+The directories and note structures in the `notes` configuration can be migrated to the `doc` type collection in
+`collections`. Refer to [Collection Configuration](./collection.md) for more details.
+:::
 
 ## Collection Configuration
 

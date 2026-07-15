@@ -27,10 +27,8 @@ export default defineUserConfig({
         type: 'katex',
       }
     },
-    // 也可以在 `plugins.markdownMath` 中进行配置，但不推荐
-    plugins: {
-      markdownMath: {}
-    }
   }),
 })
 ```
+
+关于配置入口的优先级说明，请参考 [插件配置入口](./README.md#配置入口优先级)。

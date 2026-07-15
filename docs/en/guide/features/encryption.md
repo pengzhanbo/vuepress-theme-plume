@@ -94,7 +94,7 @@ and the **value** is the corresponding password (or multiple passwords) for that
 
 In the `Frontmatter` of a Markdown file, you can set the article's password using the `password` field.
 
-```md
+```md title="frontmatter"
 ---
 title: Encrypted Article
 password: 123456
@@ -103,7 +103,7 @@ password: 123456
 
 You can also add the `passwordHint` option to provide a password hint.
 
-```md
+```md title="frontmatter"
 ---
 title: Encrypted Article
 password: 123456
@@ -111,7 +111,7 @@ passwordHint: The password is 123456
 ---
 ```
 
-## Example
+### Example
 
 Click to visit [Encrypted Article, Password: 123456](/article/enx7c9s/)
 
@@ -211,61 +211,26 @@ therefore, it will not work properly in **non-HTTPS environments**.
 
 ::: details If you are a technical developer, you may need to know
 
-The original markdown content is first rendered into HTML content, then encrypted; transmitted to the client, then decrypted and rendered.
+**Encryption Implementation:**
+
+Partial content encryption is implemented using [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Crypto), involving the following key steps:
+
+- **Key Derivation**: Uses the **PBKDF2** (Password-Based Key Derivation Function 2) algorithm, combined with the user-provided password and a random salt value to iteratively derive a fixed-length key, thereby increasing the difficulty of brute-force attacks.
+- **Encryption Algorithm**: Uses the **AES-GCM** (Advanced Encryption Standard - Galois/Counter Mode) symmetric encryption algorithm to encrypt the content, providing both confidentiality and integrity verification to ensure the ciphertext has not been tampered with.
+- **Build-time Encryption**: The original markdown content is first rendered into HTML content, then encrypted; transmitted to the client, then decrypted and rendered.
+
+**Runtime Compilation:**
+
 The decrypted content is wrapped as a dynamic Vue component, with HTML passed as the template to the dynamic component.
 This involves runtime template compilation. As a result, if partial content encryption is enabled,
 Vue needs to be switched to the `esm-bundler` version to support runtime compilation,
 which has slightly worse performance and larger size compared to the default `runtime-only` version.
+
+**Environment Limitations:**
+
+Since `crypto.subtle` in the Web Crypto API is only available in **Secure Contexts**, partial content encryption requires the site to run in an **HTTPS** environment (`http://localhost` is also considered a secure context). In non-HTTPS environments, the encryption feature will not work properly.
 :::
 
 ## Related Configurations
 
-The following configurations can be used in [multilingual settings](../../config/locales.md).
-
-### encryptGlobalText
-
-- **Type**: `string`
-- **Default**: `'Only password can access this site'`
-- **Description**:
-
-  The prompt message for full-site encryption. Supports HTML. Useful if you want to provide contact information for visitors to obtain the password.
-
-### encryptPageText
-
-- **Type**: `string`
-- **Default**: `'Only password can access this page'`
-- **Description**:
-
-  The prompt message for partial encryption. Supports HTML. Useful if you want to provide contact information for visitors to obtain the password.
-
-### encryptButtonText
-
-- **Type**: `string`
-- **Default**: `'Confirm'`
-- **Description**: The text for the confirmation button.
-
-### encryptPlaceholder
-
-- **Type**: `string`
-- **Default**: `'Enter password'`
-- **Description**: The placeholder text for the password input field.
-
-### Example
-
-```ts title=".vuepress/config.ts"
-import { defineUserConfig } from 'vuepress'
-import { plumeTheme } from 'vuepress-theme-plume'
-
-export default defineUserConfig({
-  theme: plumeTheme({
-    locales: {
-      '/': {
-        encryptButtonText: 'Confirm',
-        encryptPlaceholder: 'Enter password',
-        encryptGlobalText: 'Only password can access this site',
-        encryptPageText: 'Only password can access this page',
-      }
-    }
-  })
-})
-```
+For multilingual text configuration of the encryption feature, please refer to [Multilingual Configuration](../../config/locales.md#encryption-related-text).

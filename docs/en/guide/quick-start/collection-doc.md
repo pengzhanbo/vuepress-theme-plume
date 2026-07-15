@@ -297,7 +297,7 @@ export default defineThemeConfig({
 
 In markdown, configure article metadata through frontmatter:
 
-```md
+```md title="frontmatter"
 ---
 title: Article Title
 createTime: 2024/01/01 00:00:00
@@ -429,7 +429,8 @@ export default defineThemeConfig({
 
 ## Collection Homepage Customization
 
-The `README.md` file in the directory automatically serves as the collection homepage, supporting transformation into a feature-rich portal layout:
+The `README.md` file in the directory automatically serves as the collection homepage,
+supporting transformation into a feature-rich portal layout:
 
 ```md title="typescript/README.md"
 ---

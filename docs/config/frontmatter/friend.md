@@ -10,7 +10,7 @@ permalink: /config/frontmatter/friends/
 
 示例：
 
-```md
+```md title="frontmatter"
 ---
 pageLayout: friends
 title: 友情链接

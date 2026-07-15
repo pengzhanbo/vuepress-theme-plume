@@ -7,6 +7,10 @@ permalink: /en/guide/friend-links/
 
 ## Friend Links
 
+The friend links feature allows you to display links to other sites or bloggers in your blog,
+making it easy for readers to discover more quality content.
+It supports configuring the display style and link list of the friend links page through frontmatter.
+
 The friend links page is not automatically generated, but you can create it as needed.
 
 Create any `*.md` file in your `{sourceDir}/` directory, such as `friends.md`. Then configure it using `frontmatter` in this file.

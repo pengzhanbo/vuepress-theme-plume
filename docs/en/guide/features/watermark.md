@@ -12,6 +12,8 @@ Article watermarking is powered by [@vuepress/plugin-watermark](https://ecosyste
 The theme supports adding watermarks to articles. Both full-page watermarks and content-area watermarks
 are supported, along with image watermarks and text watermarks.
 
+For configuration options, please refer to [Configuration > Watermark](/config/plugins/watermark/).
+
 ## Enabling Watermark
 
 Watermark functionality is disabled by default in the theme. You need to enable it in the theme configuration.
@@ -77,7 +79,7 @@ export default defineUserConfig({
 
 Add `frontmatter.watermark` as `true` in the md file:
 
-```md
+```md title="frontmatter"
 ---
 watermark: true
 ---
@@ -85,7 +87,7 @@ watermark: true
 
 You can also customize the watermark configuration for the current page:
 
-```md
+```md title="frontmatter"
 ---
 watermark:
   content: My Custom Content
@@ -120,7 +122,7 @@ export default defineUserConfig({
 
 You can also add configuration in the md file to set watermark for the current page:
 
-```md
+```md title="frontmatter"
 ---
 watermark:
   contentType: image
@@ -158,7 +160,7 @@ export default defineUserConfig({
 
 You can also add configuration in the md file to set watermark for the current page:
 
-```md
+```md title="frontmatter"
 ---
 watermark:
   content: Custom Text
@@ -170,7 +172,7 @@ watermark:
 
 The theme supports adding `frontmatter.watermark` in md files to set watermarks for individual pages.
 
-```md
+```md title="frontmatter"
 ---
 watermark:
   content: My Custom Content
@@ -181,7 +183,7 @@ For supported configuration options, please refer to: [watermark-js-plus](https:
 
 Additionally, `fullPage` is supported to control whether to display the watermark full-screen.
 
-```md
+```md title="frontmatter"
 ---
 watermark:
   fullPage: false

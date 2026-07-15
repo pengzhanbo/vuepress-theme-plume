@@ -47,13 +47,11 @@ export default defineUserConfig({
       collapsedLines: false,
       lineNumbers: true,
     },
-    // 也可以通过 plugins.shiki 配置，但不推荐
-    plugins: {
-      shiki: {}
-    }
   }),
 })
 ```
+
+关于配置入口的优先级说明，请参考 [插件配置入口](./README.md#配置入口优先级)。
 
 ### themes
 
@@ -116,6 +114,20 @@ export default defineUserConfig({
 - 默认值： `false`
 
 将代码块折叠到指定行数。
+
+### renderIndentGuides
+
+- 类型: `boolean | Partial<TransformerRenderIndentGuidesOptions>`
+- 默认值: `false`
+
+是否在代码块中渲染缩进参考线。启用后，代码中的缩进会显示为可视化的参考线，便于阅读嵌套较深的代码。
+
+### colorizedBrackets
+
+- 类型: `boolean | Partial<TransformerColorizedBracketsOptions>`
+- 默认值: `false`
+
+是否为代码块中的括号添加颜色匹配。启用后，成对的括号会以不同颜色显示，便于识别代码中的括号匹配关系。
 
 ### transformers
 

@@ -297,7 +297,7 @@ export default defineThemeConfig({
 
 在 markdown 中，通过 frontmatter 配置文章元数据：
 
-```md
+```md title="frontmatter"
 ---
 title: 文章标题
 createTime: 2024/01/01 00:00:00

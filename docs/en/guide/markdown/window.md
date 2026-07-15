@@ -25,9 +25,8 @@ Add your demo here
 ## Options
 
 - `title="xxx"`: Title
-- `no-padding`: Remove padding
-- `img`: Use when containing only images
-- `height="xxx"`: Height
+- `height="200px"`: Height
+- `gap="20px"`: Left and right padding
 
 ## Examples
 
@@ -66,7 +65,7 @@ Containing HTML/Vue code:
 
 ```md
 ::: window
-<h1 class="your-demo-title">This is a heading</h1>
+<h2 class="your-demo-title">This is a heading</h2>
 <p class="your-demo-paragraph">This is a paragraph</p>
 
 <style>
@@ -83,7 +82,7 @@ Containing HTML/Vue code:
 **Output:**
 ::: window
 
-<h1 class="your-demo-title">This is a heading</h1>
+<h2 class="your-demo-title">This is a heading</h2>
 <p class="your-demo-paragraph">This is a paragraph</p>
 
 <style>

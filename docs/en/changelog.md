@@ -13,4 +13,12 @@ changelog: false
 search: false
 ---
 
+## Overview
+
+Below is the changelog for vuepress-theme-plume, recording the changes for each version.
+
+To view changes for a specific version, you can use your browser's page search functionality (Ctrl+F / Cmd+F) to search for the version number.
+
+For the complete change history, please visit the [GitHub Releases](https://github.com/pengzhanbo/vuepress-theme-plume/releases) page.
+
 <!-- @include: ../../CHANGELOG.md -->

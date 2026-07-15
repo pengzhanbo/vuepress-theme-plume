@@ -58,6 +58,7 @@
   "npmx.ignore.replacement": ["js-yaml", "rimraf"],
   "cSpell.words": [
     "acfun",
+    "Artalk",
     "axios",
     "bilibili",
     "bumpp",
@@ -72,6 +73,7 @@
     "esbuild",
     "fontawesome",
     "frontmatter",
+    "Giscus",
     "gitee",
     "gsap",
     "iarna",
@@ -99,10 +101,12 @@
     "Tongji",
     "tsbuildinfo",
     "tsdown",
+    "Twikoo",
     "twoslash",
     "vite",
     "vitest",
     "vuepress",
-    "vueuse"
+    "vueuse",
+    "Waline"
   ]
 }

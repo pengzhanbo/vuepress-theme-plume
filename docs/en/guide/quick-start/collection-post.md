@@ -828,7 +828,7 @@ export default defineThemeConfig({
 
 In markdown, configure article metadata through frontmatter:
 
-```md
+```md title="frontmatter"
 ---
 title: Article Title
 createTime: 2024/01/01 00:00:00
@@ -861,7 +861,7 @@ Also supports all fields from [common frontmatter configuration](../../config/fr
 
 Use `<!-- more -->` marker for excerpt truncation point:
 
-```md
+```md title="frontmatter"
 ---
 title: Title
 ---
@@ -877,7 +877,7 @@ Remaining body content
 
 Custom excerpt via excerpt field:
 
-```md
+```md title="frontmatter"
 ---
 title: Title
 excerpt: Custom excerpt content

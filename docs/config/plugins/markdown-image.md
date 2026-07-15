@@ -35,10 +35,8 @@ export default defineUserConfig({
         // size: true,
       }
     },
-    // 也可以在 `plugins.markdownImage` 配置，但不推荐
-    plugins: {
-      markdownImage: {}
-    }
   }),
 })
 ```
+
+关于配置入口的优先级说明，请参考 [插件配置入口](./README.md#配置入口优先级)。

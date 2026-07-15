@@ -10,7 +10,7 @@ General Frontmatter configuration applicable to all articles.
 
 Example:
 
-```md
+```md title="frontmatter"
 ---
 title: Title
 createTime: 2024/03/02 20:01:09

@@ -68,14 +68,11 @@ export default defineUserConfig({
       locale: '/',
       // ...other configurations
     },
-
-    // Can also configure via `plugins.llmstxt`, but not recommended
-    plugins: {
-      llmstxt: true
-    }
   }),
 })
 ```
+
+For configuration entry priority information, please refer to [Plugin Configuration Entry](./README.md#configuration-entry-priority).
 
 [View the complete configuration options in the **Plugin Official Documentation**](https://ecosystem.vuejs.press/plugins/ai/llms.html#options){.read-more}
 

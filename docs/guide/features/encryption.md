@@ -7,7 +7,7 @@ permalink: /guide/features/encryption/
 
 ## 加密
 
-在本主题中，支持 **全站加密** 、 **部分页面加密** 和 **部分内容加密** 等多种灵活的加密方式。
+主题内置文章加密功能，允许您为文章或整个集合设置密码保护。访问加密页面时，用户需要输入正确的密码才能查看内容。支持单篇文章加密、全局加密以及集合加密等多种模式。
 
 ::: warning 提示
 由于 `vuepress` 是静态站点，其自身限制的原因，**加密** 仅仅只是 看起来 看不到内容，
@@ -43,6 +43,9 @@ export default defineUserConfig({
 然后，通过配置 `encrypt.admin` 选项，设置一个或多个密码。
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     encrypt: {
@@ -59,6 +62,9 @@ export default defineUserConfig({
 因此，你可以通过 `encrypt.rules` 选项配置部分加密。
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     encrypt: {
@@ -93,7 +99,7 @@ export default defineUserConfig({
 
 在 Markdown 文件的 `Frontmatter` 中，可以使用 `password` 设置文章的密码。
 
-```md
+```md title="frontmatter"
 ---
 title: 加密的文章
 password: 123456
@@ -102,7 +108,7 @@ password: 123456
 
 还可以添加 `passwordHint` 选项，用于设置密码提示信息。
 
-```md
+```md title="frontmatter"
 ---
 title: 加密的文章
 password: 123456
@@ -121,6 +127,9 @@ passwordHint: 密码是 123456
 部分内容加密通过 `::: encrypt` 容器实现，需要配置 `markdown.encrypt` 选项：
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
@@ -133,6 +142,9 @@ export default defineUserConfig({
 还可以给 `::: encrypt` 容器设置统一的默认密码：
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
@@ -210,60 +222,25 @@ export default defineUserConfig({
 
 ::: details 如果你是技术开发者，你可能需要知道的内容
 
-原始 markdown 内容首先进过 markdown 渲染为 HTML 内容后，再进行加密；传输到客户端，再进行解密渲染。
+**加密实现原理：**
+
+部分内容加密采用 [Web Crypto API](https://developer.mozilla.org/zh-CN/docs/Web/API/Crypto) 实现，主要涉及以下步骤：
+
+- **密钥派生**：使用 **PBKDF2**（Password-Based Key Derivation Function 2）算法，结合用户输入的密码和随机盐值（salt）迭代派生出固定长度的密钥，从而增加暴力破解的难度。
+- **加密算法**：使用 **AES-GCM**（Advanced Encryption Standard - Galois/Counter Mode）对称加密算法对内容进行加密，同时提供机密性和完整性校验，确保密文未被篡改。
+- **编译时加密**：原始 markdown 内容首先经过 markdown 渲染为 HTML 内容后，再进行加密；传输到客户端，再进行解密渲染。
+
+**运行时编译：**
+
 解密后的内容会被包装为一个动态的 vue 组件，html 作为 template 传给该动态组件，因此，涉及到运行时编译 template
 的内容。这导致了如果启用部分内容加密功能，那么就需要将 vue 切换到 `esm-bundler` 版本，以支持运行时编译，
 这会比默认的 `runtime-only` 版本性能差一些，体积也会增加。
+
+**环境限制：**
+
+由于 Web Crypto API 中的 `crypto.subtle` 仅在 **安全上下文**（Secure Context）中可用，因此部分内容加密功能要求站点运行在 **HTTPS** 环境下（`http://localhost` 也被视为安全上下文）。在非 HTTPS 环境下，加密功能将无法正常工作。
 :::
 
 ## 相关配置
 
-以下配置支持在 [多语言配置](../../config/locales.md) 中使用。
-
-### encryptGlobalText
-
-- **类型**： `string`
-- **默认值**： `'Only password can access this site'`
-- **说明**：
-
-  全站加密时，提示信息。支持 HTML。如果你期望为访客提供获取密码的联系方式，你可能会需要这个配置。
-
-### encryptPageText
-
-- **类型**： `string`
-- **默认值**： `'Only password can access this page'`
-- **说明**：
-
-  部分加密时，提示信息。支持 HTML。如果你期望为访客提供获取密码的联系方式，你可能会需要这个配置。
-
-### encryptButtonText
-
-- **类型**： `string`
-- **默认值**： `'Confirm'`
-- **说明**： 确认按钮的文本
-
-### encryptPlaceholder
-
-- **类型**： `string`
-- **默认值**： `'Enter password'`
-- **说明**： 密码输入框的占位符
-
-### 示例
-
-```ts title=".vuepress/config.ts"
-import { defineUserConfig } from 'vuepress'
-import { plumeTheme } from 'vuepress-theme-plume'
-
-export default defineUserConfig({
-  theme: plumeTheme({
-    locales: {
-      '/': {
-        encryptButtonText: 'Confirm',
-        encryptPlaceholder: 'Enter password',
-        encryptGlobalText: 'Only password can access this site',
-        encryptPageText: 'Only password can access this page',
-      }
-    }
-  })
-})
-```
+加密功能的多语言文本配置请参考 [多语言配置](../../config/locales.md#加密相关文本)。

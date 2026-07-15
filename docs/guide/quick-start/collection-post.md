@@ -821,7 +821,7 @@ export default defineThemeConfig({
 
 在 markdown 中，通过 frontmatter 配置文章元数据：
 
-```md
+```md title="frontmatter"
 ---
 title: 文章标题
 createTime: 2024/01/01 00:00:00
@@ -854,7 +854,7 @@ tags:
 
 使用 `<!-- more -->` 标记摘要截断点：
 
-```md
+```md title="frontmatter"
 ---
 title: 标题
 ---
@@ -870,7 +870,7 @@ title: 标题
 
 通过 excerpt 字段自定义摘要：
 
-```md
+```md title="frontmatter"
 ---
 title: 标题
 excerpt: 自定义摘要内容
@@ -923,7 +923,7 @@ config:
 ---
 ```
 
-使用这种方式，你不仅可以在首页中添加 文章列表，还可以灵活的在页面的其他区域添加不同的内容。
+使用这种方式，您不仅可以在首页中添加 文章列表，还可以灵活的在页面的其他区域添加不同的内容。
 
 比如，配置首屏为 `banner`，然后紧跟着 博客文章列表：
 

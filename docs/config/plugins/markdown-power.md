@@ -23,13 +23,13 @@ export default defineUserConfig({
     markdown: {
       fileTree: true, // :::file-tree  文件树容器
       plot: true, // !!plot!! 隐秘文本
-      icons: true, // ::collect:name::   内联 iconify 图标
+      icon: true, // ::collect:name::   内联 iconify 图标
       // 默认不启用以下功能，你需要手动开启它们
       // npmTo: true, // :::npm-to
       // demo: true, // :::demo
       // pdf: true, // @[pdf](url)  嵌入 PDF 文件
       // bilibili: true, // @[bilibili](bvid)  嵌入 bilibili 视频
-      // acfun: true, // @[acfun](id)  嵌入 AcFun 视屏
+      // acfun: true, // @[acfun](id)  嵌入 AcFun 视频
       // youtube: true, // @[youtube](id)  嵌入 youtube 视频
       // codepen: true, // @[codepen](user/slash)  嵌入 codepen
       // replit: true, // @[replit](user/repl-name)  嵌入 Replit
@@ -39,13 +39,11 @@ export default defineUserConfig({
       // repl: true, // :::go-repl   :::kotlin-repl  :::rust-repl
       // imageSize: true, // 在构建阶段为 图片添加 width/height 属性
     },
-    // 也可以在 `plugins.markdownPower` 中配置，但不推荐
-    plugins: {
-      markdownPower: {}
-    }
   }),
 })
 ```
+
+关于配置入口的优先级说明，请参考 [插件配置入口](./README.md#配置入口优先级)。
 
 ## 功能
 
@@ -63,7 +61,7 @@ __语法:__
 
 ### iconify 图标
 
-插件默认不启用该功能，你需要手动设置 `icons` 为 `true`
+插件默认不启用该功能，你需要手动设置 `icon` 为 `true`
 
 得益于 [iconify](https://iconify.design/), 你可以在 Markdown 中使用 iconify __200k+__ 的图标
 
@@ -74,6 +72,39 @@ __语法:__
 ```
 
 请查看 [完整使用文档](../../guide/markdown/icons.md)
+
+`icon` 选项支持 `boolean | IconOptions`。设置为 `true` 时使用默认配置（iconify 提供商）。
+
+也可以传入对象进行更详细的配置：
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      icon: {
+        // 图标提供商，默认 'iconify'
+        provider: 'iconify', // 'iconify' | 'iconfont' | 'fontawesome'
+        // 图标大小，默认 '1em'
+        size: '1em',
+        // 图标颜色，默认 'currentColor'
+        color: 'currentColor',
+        // 图标前缀
+        // iconify: 默认 ''，支持如 'mdi'、'ri' 等集合名
+        // iconfont: 默认 'iconfont icon-'
+        // fontawesome: 默认 'fas'
+        prefix: '',
+        // 仅 iconify: 预加载图标，用于组件中直接使用 <VPIcon> 时预设本地资源
+        preload: ['mdi:home', 'ri:github-fill'],
+        // 仅 iconfont/fontawesome: 图标资源链接
+        // assets: '//at.alicdn.com/t/font_xxx.css',
+      },
+    },
+  }),
+})
+```
 
 ### bilibili 视频
 
@@ -97,7 +128,7 @@ __语法:__
 @[acfun](id)
 ```
 
-请查看 [完整使用文档](../../guide/embed/video/acfun.md)
+请查看 [完整使用文档](../../guide/embed/acfun.md)
 
 ### youtube 视频
 
@@ -133,7 +164,7 @@ __语法:__
 @[codesandbox](id)
 ```
 
-请查看 [完整使用文档](../../guide/repl/codeSandbox.md)
+请查看 [完整使用文档](../../guide/repl/code-sandbox.md)
 
 ### jsfiddle 代码演示
 
@@ -145,7 +176,7 @@ __语法:__
 @[jsfiddle](id)
 ```
 
-请查看 [完整使用文档](../../guide/repl/jsFiddle.md)
+请查看 [完整使用文档](../../guide/repl/js-fiddle.md)
 
 ### caniuse 浏览器支持
 

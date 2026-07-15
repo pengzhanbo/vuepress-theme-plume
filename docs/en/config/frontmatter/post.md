@@ -10,7 +10,7 @@ Applicable to articles with collection type set to 'post'.
 
 Example:
 
-```md
+```md title="frontmatter"
 ---
 title: Article Title
 tags:

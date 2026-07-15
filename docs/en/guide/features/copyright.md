@@ -152,7 +152,7 @@ you should configure copyright information in the article frontmatter.
 
 You can configure copyright information for individual articles in the article frontmatter to override global configuration:
 
-```md
+```md title="frontmatter"
 ---
 title: My Article
 copyright: CC-BY-4.0
@@ -197,7 +197,7 @@ export type CopyrightFrontmatter = boolean | string | CopyrightLicense | {
 
 ### Original Article
 
-```md
+```md title="frontmatter"
 ---
 title: My Article
 copyright: CC-BY-4.0
@@ -208,7 +208,7 @@ copyright: CC-BY-4.0
 
 ### Reposted Article
 
-```md
+```md title="frontmatter"
 ---
 title: Reposted Article
 copyright:
@@ -228,7 +228,7 @@ copyright:
 
 ### Translated Article
 
-```md
+```md title="frontmatter"
 ---
 title: Translated Article
 copyright:
@@ -248,7 +248,7 @@ copyright:
 
 ### Custom License
 
-```md
+```md title="frontmatter"
 ---
 title: My Article
 copyright:

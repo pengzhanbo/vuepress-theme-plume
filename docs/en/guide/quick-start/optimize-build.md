@@ -28,7 +28,7 @@ ratio in advance and reserve display space, eliminating layout shifts at the sou
 
 Automated solution provided by the theme:
 
-```ts
+```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
@@ -113,3 +113,11 @@ graph LR
    - Ensures optimal build artifact size
 
 Through these two optimization measures, the theme maintains rich functionality while ensuring excellent build performance and runtime experience.
+
+### Large Site Optimization
+
+For large sites with over 100 pages:
+
+- Consider splitting multi-language configuration by directory to reduce the number of pages per build
+- Set `NODE_OPTIONS=--max-old-space-size=4096` when running `pnpm docs:build` to increase memory
+- Regularly clean `.vuepress/.cache` and `node_modules/.vite` directories to prevent cache bloat

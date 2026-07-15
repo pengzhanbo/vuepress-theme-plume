@@ -12,6 +12,8 @@ The theme provides two approaches for content search:
 
 Note: Do not configure both approaches simultaneously. When both are configured, only Local Content Search will take effect.
 
+For configuration options, please refer to [Configuration > Content Search](/config/plugins/search/).
+
 ## Local Content Search
 
 Local Content Search is powered by the

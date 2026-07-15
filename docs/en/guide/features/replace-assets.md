@@ -10,7 +10,8 @@ badge: New
 
 This feature is powered by the [@vuepress/plugin-replace-assets](https://ecosystem.vuejs.press/en/plugins/tools/replace-assets.html) plugin.
 
-It replaces local asset links within the site, such as images, videos, audio, PDFs, and other resources, rewriting local asset paths to new addresses.
+It replaces local asset links within the site, such as images, videos, audio, PDFs, and other resources,
+rewriting local asset paths to new addresses.
 
 ## Why is this feature needed?
 

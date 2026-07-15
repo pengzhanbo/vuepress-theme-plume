@@ -364,122 +364,142 @@ This ensures `[data-theme="dark"]` is applied before the page is rendered to avo
 ### profile
 
 - **Type:** `ProfileOptions`
-- **Default:** `{}`
-- **Details:** Configure the site owner's personal information.
-  - `profile.avatar`: Avatar URL, used for displaying blogger information on the right.
-  - `profile.name`: Name, used for displaying blogger information on the right.
-  - `profile.description`: Personal description, used for displaying blogger information on the right.
-  - `profile.circle`: Whether the avatar is circular.
-  - `profile.location`: User's geographical location.
-  - `profile.organization`: User's organization/company.
-  - `profile.layout`: Whether to display personal information on the left or right, `'left' | 'right'`.
+- **Default:** `undefined`
 
-Example:
+Configure the blogger's profile, displayed in the right sidebar of the blog.
 
-``` ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    profile: {
-      avatar: '/avatar.jpg',
-      name: 'Zhang San',
-      description: 'Here is no silver three hundred two, next door Wang Er never stole',
-      circle: true,
-      location: 'Hangzhou, China',
-      organization: 'XXX Company',
-      layout: 'right',
-    }
-  })
+```ts title=".vuepress/plume.config.ts"
+import { definePlumeThemeConfig } from 'vuepress-theme-plume'
+
+export default definePlumeThemeConfig({
+  profile: {
+    avatar: '/avatar.png',
+    name: 'Your Name',
+    description: 'Your description',
+    circle: true,
+    location: 'Hangzhou, China',
+    organization: 'Your Company',
+    layout: 'right',
+  },
 })
 ```
+
+### avatar
+
+- **Type:** `string`
+- **Default:** `undefined`
+
+Avatar image link, supports local paths or network URLs.
+
+#### name
+
+- **Type:** `string`
+- **Default:** `undefined`
+
+Blogger name, displayed below the avatar.
+
+#### description
+
+- **Type:** `string`
+- **Default:** `undefined`
+
+Personal description or signature, displayed below the name.
+
+#### circle
+
+- **Type:** `boolean`
+- **Default:** `false`
+
+Whether to display the avatar with circular cropping.
+
+#### location
+
+- **Type:** `string`
+- **Default:** `undefined`
+
+Geographic location information, displayed in the profile.
+
+#### organization
+
+- **Type:** `string`
+- **Default:** `undefined`
+
+Organization or company information, displayed in the profile.
+
+#### layout
+
+- **Type:** `'left' | 'right'`
+- **Default:** `'right'`
+
+Layout position of the profile. `'right'` displays in the right sidebar, `'left'` displays in the left sidebar.
 
 ### social
 
-- **Type:** `false | SocialLink[]`
-- **Default:** `false`
-- **Details:** Personal social information configuration.
+- **Type:** `SocialLink[]`
+- **Default:** `[]`
 
-  Displayed as icon links on the far right of the navbar.
+Configure social account links, displayed in the profile area. Supports 30+ built-in icons
+(e.g., `github`, `twitter`, `discord`, `weibo`, `bilibili`, `zhihu`, etc.), and also supports custom SVG icons.
 
-  Supports any icon from [Iconify](https://icon-sets.iconify.design/). Simply use the iconify name to load it automatically.
+```ts title=".vuepress/plume.config.ts"
+import { definePlumeThemeConfig } from 'vuepress-theme-plume'
 
-  For icons in the `simple-icons` collection, you can omit the `simple-icons:` prefix.
-  For example, `simple-icons:github` can be abbreviated as `github`.
-
-  Examples of common social icons:
-
-  ::: flex
-
-  <div style="flex: 1">
-
-  - discord ::simple-icons:discord::
-  - telegram ::simple-icons:telegram::
-  - facebook ::simple-icons:facebook::
-  - github ::simple-icons:github::
-  - instagram ::simple-icons:instagram::
-  - linkedin ::simple-icons:linkedin::
-  - mastodon ::simple-icons:mastodon::
-  - npm  ::simple-icons:npm::
-  - slack ::simple-icons:slack::
-  - twitter ::simple-icons:twitter::
-  - x ::simple-icons:x::
-  - youtube ::simple-icons:youtube::
-  - bluesky ::simple-icons:bluesky::
-  - tiktok ::simple-icons:tiktok::
-
-  </div><div style="flex: 1">
-
-  - qq ::simple-icons:qq::
-  - weibo ::simple-icons:sinaweibo::
-  - bilibili ::simple-icons:bilibili::
-  - gitlab ::simple-icons:gitlab::
-  - docker ::simple-icons:docker::
-  - juejin ::simple-icons:juejin::
-  - zhihu ::simple-icons:zhihu::
-  - douban ::simple-icons:douban::
-  - steam ::simple-icons:steam::
-  - stackoverflow ::simple-icons:stackoverflow::
-  - xbox ::simple-icons:xbox::
-  - kuaishou ::simple-icons:kuaishou::
-  - twitch ::simple-icons:twitch::
-  - xiaohongshu ::simple-icons:xiaohongshu::
-
-  </div>
-
-  :::
-
-  [You can view all available icons for **simple-icons** here](https://icon-sets.iconify.design/simple-icons/){.readmore}
-
-  If **Iconify** does not meet your needs, you can pass in the format `{ svg: string, name?: string }` to use a custom icon.
-  Pass in the SVG source code string, with the optional `name` field for configuring [`navbarSocialInclude`](#navbarsocialinclude).
-
-Example:
-
-``` ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    social: [
-      // use iconify name
-      { icon: 'github', link: 'https://github.com/zhangsan' },
-      {
-        // use custom icon
-        icon: { svg: '<svg>xxxxx</svg>', name: 'xxx' },
-        link: 'https://xxx.com'
-      },
-    ]
-  })
+export default definePlumeThemeConfig({
+  social: [
+    { icon: 'github', link: 'https://github.com/your-username' },
+    { icon: 'twitter', link: 'https://twitter.com/your-username' },
+    { icon: 'weibo', link: 'https://weibo.com/your-username' },
+    // Custom SVG icon
+    { icon: { svg: '<svg>...</svg>', name: 'custom' }, link: 'https://example.com' },
+  ],
 })
 ```
+
+#### icon
+
+- **Type:** `string | { svg: string, name?: string }`
+- Required
+
+Social icon. Can be a built-in icon name
+(e.g., `github`, `twitter`, `discord`, `facebook`, `instagram`, `linkedin`, `mastodon`, `npm`, `slack`,
+`youtube`, `qq`, `weibo`, `bilibili`, `gitlab`, `docker`, `juejin`, `zhihu`, `douban`, `steam`,
+`stackoverflow`, `xbox`, `tiktok`, `kuaishou`, `bytedance`, `xiaohongshu`, `bluesky`, `gmail`, etc.),
+or a custom icon object containing `svg` and an optional `name`.
+
+#### link
+
+- **Type:** `string`
+- Required
+
+Social link URL.
+
+#### ariaLabel
+
+- **Type:** `string`
+- **Default:** `undefined`
+
+Accessibility label for screen readers. If not set, it will be automatically generated based on the icon name.
 
 ### navbarSocialInclude
 
 - **Type:** `string[]`
 - **Default:** `['github', 'twitter', 'discord', 'facebook']`
-- **Details:**
 
-    Social links allowed to be displayed in the navbar.
-    This configuration is only effective on PC.
+Controls which social links are also displayed in the navbar. Only social links configured in `social`
+whose `icon` is in this list will be displayed on the right side of the navbar.
 
-    If [`social`](#social) is configured as `{ svg: string, name: string}`, then `name` can be used as a value for `navbarSocialInclude`.
+```ts title=".vuepress/plume.config.ts"
+import { definePlumeThemeConfig } from 'vuepress-theme-plume'
+
+export default definePlumeThemeConfig({
+  social: [
+    { icon: 'github', link: 'https://github.com/your-username' },
+    { icon: 'twitter', link: 'https://twitter.com/your-username' },
+    { icon: 'weibo', link: 'https://weibo.com/your-username' },
+  ],
+  navbarSocialInclude: ['github', 'weibo'], // Only github and weibo are displayed in the navbar
+})
+```
 
 ### navbar
 
@@ -697,34 +717,52 @@ interface SidebarItem {
 
 - **Type:** `boolean | TransitionOptions`
 - **Default:** `true`
-- **Details:**
 
-  Whether to enable transition animations.
+Whether to enable transition animations. Set to `false` to completely disable all transition animations.
+Pass an object to control each type of animation separately.
 
-  When passing a `boolean`, `true` enables and `false` disables.
+```ts title=".vuepress/plume.config.ts"
+import { definePlumeThemeConfig } from 'vuepress-theme-plume'
 
-  An object can also be passed for specific configuration, as shown below.
+export default definePlumeThemeConfig({
+  transition: {
+    page: true,
+    postList: true,
+    appearance: 'fade',
+  },
+})
+```
 
-  ```ts
-  interface TransitionOptions {
-    /**
-     * Whether to enable page transition animations.
-     * @default true
-     */
-    page?: boolean
-    /**
-     * Whether to enable blog post list transition animations.
-     * @default true
-     */
-    postList?: boolean
-    /**
-     * Whether to enable dark/light mode switch transition animations,
-     * or configure the transition animation type.
-     * @default 'fade'
-     */
-    appearance?: boolean | 'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip' | 'blinds-vertical' | 'blinds-horizontal' | 'soft-blur-fade' | 'diamond-reveal'
-  }
-  ```
+### page
+
+- **Type:** `boolean`
+- **Default:** `true`
+
+Whether to enable page transition animations.
+
+### postList
+
+- **Type:** `boolean`
+- **Default:** `true`
+
+Whether to enable blog post list transition animations.
+
+### appearance
+
+- **Type:** `'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip' | 'blinds-vertical' | 'blinds-horizontal' | 'soft-blur-fade' | 'diamond-reveal'`
+- **Default:** `'fade'`
+
+Transition animation type for dark/light mode switching. Supports the following 9 animation effects:
+
+- `fade`: Fade in/out (default)
+- `circle-clip`: Circular clip
+- `horizontal-clip`: Horizontal clip
+- `vertical-clip`: Vertical clip
+- `skew-clip`: Skew clip
+- `blinds-vertical`: Vertical blinds
+- `blinds-horizontal`: Horizontal blinds
+- `soft-blur-fade`: Soft blur fade
+- `diamond-reveal`: Diamond reveal
 
 ### footer
 

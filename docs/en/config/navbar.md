@@ -54,7 +54,7 @@ export default defineThemeConfig({
 
 When multi-language configuration is enabled, the default navbar configuration for the corresponding languages will be generated:
 
-```ts
+```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 

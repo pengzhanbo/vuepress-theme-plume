@@ -3,7 +3,14 @@ title: Replit
 icon: simple-icons:replit
 createTime: 2024/04/04 10:42:05
 permalink: /guide/code/replit/
+badge: 
+  text: 弃用
+  type: danger
 ---
+
+::: warning 已弃用
+Replit 已停止对其在线代码编辑服务的支持，本插件不再推荐使用。建议使用 [CodeSandbox](./code-sandbox.md) 或 [JSFiddle](./js-fiddle.md) 作为替代方案。
+:::
 
 <Badge type="danger" text="弃用" />
 

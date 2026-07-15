@@ -45,7 +45,7 @@ Markdown files in the documentation source directory, including: **title**, **cr
 
 This feature reduces the repetitive workload for content creators and provides essential data support for the theme's subsequent functionalities.
 
-```md
+```md title="frontmatter"
 ---
 title: Title
 createTime: 2024/09/08 22:53:34
@@ -173,7 +173,7 @@ If `autoFrontmatter.title` is disabled, start with level 1 headings `# Level 1 H
 
 Add tags to articles via `frontmatter.tags`:
 
-```md
+```md title="frontmatter"
 ---
 title: My Article
 tags:

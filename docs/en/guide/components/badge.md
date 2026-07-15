@@ -125,3 +125,58 @@ Using custom `type` enables richer visual presentations.
   border-color: transparent;
 }
 </style>
+
+## Use Cases
+
+The `<Badge>` component has several common use cases in practical documentation writing. The following examples demonstrate some typical scenarios.
+
+### Status Indicators
+
+In feature lists or descriptions, use `<Badge>` to mark recommended, new, or important features to help readers quickly identify key information.
+
+**Input:**
+
+```md :no-line-numbers
+- Article Encryption <Badge type="tip" text="Recommended" />
+- Full-site Encryption <Badge type="info" text="New" />
+- Comment System <Badge type="danger" text="Important" />
+```
+
+**Output:**
+
+- Article Encryption <Badge type="tip" text="Recommended" />
+- Full-site Encryption <Badge type="info" text="New" />
+- Comment System <Badge type="danger" text="Important" />
+
+### Version Markers
+
+In API documentation or feature descriptions, use `<Badge>` to mark the minimum version required for a feature, making it easy for readers to determine compatibility.
+
+**Input:**
+
+```md :no-line-numbers
+- `sidebarCollapsed` option <Badge type="info" text="v1.0.0-rc.143 +" />
+- Collection Configuration <Badge type="warning" text="v1.0.0-rc.120 +" />
+```
+
+**Output:**
+
+- `sidebarCollapsed` option <Badge type="info" text="v1.0.0-rc.143 +" />
+- Collection Configuration <Badge type="warning" text="v1.0.0-rc.120 +" />
+
+### Category Tags
+
+In documentation section headings, use `<Badge>` to mark experimental or deprecated features, alerting readers to risks before use.
+
+**Input:**
+
+```md :no-line-numbers
+## Custom Section Type <Badge type="warning" text="Experimental" />
+
+## Legacy Configuration <Badge type="danger" text="Deprecated" />
+```
+
+**Output:**
+
+- Custom Section Type <Badge type="warning" text="Experimental" />
+- Legacy Configuration <Badge type="danger" text="Deprecated" />

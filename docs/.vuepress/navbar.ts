@@ -31,18 +31,21 @@ export const zhNavbar: ThemeNavItem[] = defineNavbarConfig([
     icon: 'icon-park-outline:more-three',
     items: [
       { text: '常见问题', link: '/faq/', icon: 'wpf:faq' },
-      { text: '喝杯奶茶', link: '/sponsor/', icon: 'line-md:coffee-loop' },
       { text: '主题工具', link: '/tools/', icon: 'jam:tools' },
-      { text: '友情链接', link: '/friends/', icon: 'carbon:friendship' },
       {
         text: 'Vuepress',
-        icon: 'logos:vue',
+        icon: 'carbon:link',
         items: [
           { text: '官方文档', link: 'https://v2.vuepress.vuejs.org', icon: 'logos:vue' },
           { text: '生态系统', link: 'https://ecosystem.vuejs.press/', icon: 'logos:vue' },
         ],
       },
     ],
+  },
+  {
+    text: '喝杯奶茶',
+    link: '/sponsor/',
+    icon: 'line-md:coffee-loop',
   },
   {
     text: `${version}`,
@@ -80,16 +83,20 @@ export const enNavbar: ThemeNavItem[] = defineNavbarConfig([
     items: [
       { text: 'FAQ', link: '/en/faq/', icon: 'wpf:faq' },
       { text: 'Theme Tools', link: '/en/tools/', icon: 'jam:tools' },
-      { text: 'Friend Links', link: '/en/friends/', icon: 'carbon:friendship' },
       {
         text: 'Vuepress',
-        icon: 'logos:vue',
+        icon: 'carbon:link',
         items: [
           { text: 'Official Docs', link: 'https://v2.vuepress.vuejs.org', icon: 'logos:vue' },
           { text: 'Ecosystem', link: 'https://ecosystem.vuejs.press/', icon: 'logos:vue' },
         ],
       },
     ],
+  },
+  {
+    text: 'Sponsor',
+    link: '/sponsor/',
+    icon: 'line-md:coffee-loop',
   },
   {
     text: `${version}`,

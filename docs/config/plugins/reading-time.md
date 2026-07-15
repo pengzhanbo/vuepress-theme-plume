@@ -21,13 +21,11 @@ export default defineUserConfig({
     readingTime: {
       wordPerMinute: 300
     },
-    // 也可以通过 plugins.readingTime 配置，但不推荐
-    plugins: {
-      readingTime: {}
-    }
   }),
 })
 ```
+
+关于配置入口的优先级说明，请参考 [插件配置入口](./README.md#配置入口优先级)。
 
 ## 配置
 

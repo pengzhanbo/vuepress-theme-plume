@@ -15,11 +15,11 @@ article: false
 在 Issue 中说明该问题的具体细节，如有必要，请尽量提供一个 最小重现包，我们会尽快解决。
 
 ::: details 发起讨论或提出问题需要注意什么？
-我们欢迎你发起讨论或提出任何问题，无论它是否简单，积极提问是好事。但请确保以下三点：
+我们欢迎您发起讨论或提出任何问题，无论它是否简单，积极提问是好事。但请确保以下三点：
 
-1. 你已经尝试搜索过相关文档；
-2. 你在讨论中提供了详细的描述；
-3. 你不是在问与 VuePress 无关的问题，也不是在寻求技术支持。
+1. 您已经尝试搜索过相关文档；
+2. 您在讨论中提供了详细的描述；
+3. 您不是在问与 VuePress 无关的问题，也不是在寻求技术支持。
 
    我们不会回答 “我如何在我自己的项目中单独使用主题的某个功能” 、“我怎么在我的自己项目中实现主题的某个功能” 这种
    问题。
@@ -27,12 +27,12 @@ article: false
 
 ## 怎么更新主题？
 
-你可以通过 `vp-update` 命令来更新主题。
+您可以通过 `vp-update` 命令来更新主题。
 
-`vp-update` 是 VuePress 官方维护的 CLI 工具，它可以帮助你检查项目内与 VuePress 相关的主题、插件等的
-最新版本，并自动为你安装依赖。
+`vp-update` 是 VuePress 官方维护的 CLI 工具，它可以帮助您检查项目内与 VuePress 相关的主题、插件等的
+最新版本，并自动为您安装依赖。
 
-复制以下命令到你的项目中运行：
+复制以下命令到您的项目中运行：
 
 ::: npm-to
 
@@ -59,9 +59,9 @@ npx vp-update
 
 ## 为什么修改主题插件的配置没有生效？
 
-这个文件常见于修改 `plugins.markdownEnhance` 、`plugins.markdownPower` 、`plugins.markdownImage` 和
+这个问题常见于修改 `plugins.markdownPower` 、`plugins.markdownImage` 和
 `plugins.markdownMath` 的配置。它与 [为什么更新主题版本后新的功能没有生效？](#为什么更新主题版本后新的功能没有生效)
-的原因相同。因此
+的原因相同。因此，需要清除缓存后重启才能使新配置生效。
 
 **只需要删除缓存文件，并重启即可**：
 
@@ -112,14 +112,14 @@ export default defineUserConfig({
 ```sh
 <--- Last few GCs --->
 
-[69161:0x7fe63aa00000]   137006 ms: xxxxxx
-[69161:0x7fe63aa00000]   139327 ms: xxxxxxxx
+[69161:0x7fe63aa00000]   137006 ms: Mark-sweep (reduce) 2048.2 (2082.5) -> 2048.2 (2082.5) MB, 1205.3 / 0.0 ms  (average mu = 0.123, current mu = 0.012) allocation failure; scavenge might not succeed
+[69161:0x7fe63aa00000]   139327 ms: Mark-sweep (reduce) 2048.2 (2082.5) -> 2048.2 (2082.5) MB, 1231.5 / 0.0 ms  (average mu = 0.102, current mu = 0.015) allocation failure; scavenge might not succeed
 
 <--- JS stacktrace --->
 FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
 ----- Native stack trace -----
 
-1: 0x107ce7c84 xxxxxxxxxxxx
+1: 0x107ce7c84 node::Abort() [/path/to/node]
 ...
 ```
 

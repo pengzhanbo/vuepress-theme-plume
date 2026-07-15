@@ -16,7 +16,7 @@ It won't be rendered into the web page content directly, but is used to configur
 
 Frontmatter is wrapped using three dashes (`---`) and located at the very start of the file:
 
-```md
+```md title="frontmatter"
 ---
 title: Post Title
 createTime: 2026/01/15 15:03:10
@@ -34,6 +34,14 @@ The current theme supports auto-generated frontmatter including:
 - `permalink`: Article permalink
   - Uses `nanoid` to generate an 8-character random string by default
   - Can be set to `filepath` to generate based on the file path
+
+### Rule Priority
+
+The priority of frontmatter generation from highest to lowest is:
+
+1. **Manual Configuration**: Frontmatter fields manually written in the Markdown file will not be automatically overwritten
+2. **Collection Configuration**: Frontmatter rules configured for a specific collection in `collections`
+3. **Default Rules**: Theme's built-in default generation rules
 
 ## Configuration
 

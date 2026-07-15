@@ -24,7 +24,7 @@ const render: NonNullable<ContainerOptions['before']> = (info, tokens, idx) => {
       break
     elms.push(tokens[i])
   }
-  const { attrs } = resolveAttrs<WindowAttrs>(info)
+  const attrs = resolveAttrs<WindowAttrs>(info)
   let onlyImg = false
   if (elms.length === 1) {
     const { type } = elms[0]

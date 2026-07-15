@@ -43,7 +43,7 @@ export function resolveIcon(content: string, options: IconOptions): ResolvedIcon
     return props
   }
 
-  const { attrs } = resolveAttrs(extra)
+  const attrs = resolveAttrs(extra)
   const info: string[] = []
   const excludes: string[] = []
 

@@ -62,7 +62,7 @@ const audioReader: RuleInline = (state, silent) => {
     state.pos = labelStart
     state.posMax = labelEnd
     const info = state.src.slice(labelStart, labelEnd).trim()
-    const { attrs } = resolveAttrs<AudioReaderTokenMeta>(info)
+    const attrs = resolveAttrs<AudioReaderTokenMeta>(info)
 
     const token = state.push('audio_reader', 'AudioReader', 0)
     token.info = info

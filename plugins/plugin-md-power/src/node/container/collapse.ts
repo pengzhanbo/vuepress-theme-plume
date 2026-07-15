@@ -49,7 +49,7 @@ interface CollapseItemMeta {
 export function collapsePlugin(md: Markdown): void {
   createContainerPlugin(md, 'collapse', {
     before: (info, tokens, index) => {
-      const { attrs } = resolveAttrs<CollapseMeta>(info)
+      const attrs = resolveAttrs<CollapseMeta>(info)
       const idx = parseCollapse(tokens, index, attrs)
       const { accordion } = attrs
 

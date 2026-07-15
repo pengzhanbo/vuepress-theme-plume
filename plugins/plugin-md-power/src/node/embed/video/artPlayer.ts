@@ -27,7 +27,7 @@ export const artPlayerPlugin: PluginWithOptions<never> = (md) => {
     name: 'video_artPlayer',
     syntaxPattern: /^@\[artPlayer([^\]]*)\]\(([^)]*)\)/,
     meta([, info, source]) {
-      const { attrs } = resolveAttrs<ArtPlayerTokenMeta>(info)
+      const attrs = resolveAttrs<ArtPlayerTokenMeta>(info)
       const url = source.trim()
       checkSupportType(attrs.type ?? url.split('.').pop())
 

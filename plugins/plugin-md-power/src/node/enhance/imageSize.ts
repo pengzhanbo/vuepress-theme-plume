@@ -121,7 +121,7 @@ export async function imageSizePlugin(
     return (tokens, idx, options, env, self) => {
       const token = tokens[idx]
       token.content = token.content.replace(REG_IMG_TAG, (raw, info) => {
-        const { attrs } = resolveAttrs(info)
+        const attrs = resolveAttrs(info)
         const src = attrs.src || attrs.srcset
         const url = resolveImagePath(app, src, env.filepath)
         const { width, height } = attrs

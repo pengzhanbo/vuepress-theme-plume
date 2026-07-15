@@ -15,7 +15,7 @@ export const replitPlugin: PluginWithOptions<never> = (md) => {
     type: 'replit',
     syntaxPattern: /^@\[replit([^\]]*)\]\(([^)]*)\)/,
     meta: ([, info = '', source = '']) => {
-      const { attrs } = resolveAttrs(info)
+      const attrs = resolveAttrs(info)
       return {
         width: attrs.width ? parseRect(attrs.width) : '100%',
         height: attrs.height ? parseRect(attrs.height) : '450px',

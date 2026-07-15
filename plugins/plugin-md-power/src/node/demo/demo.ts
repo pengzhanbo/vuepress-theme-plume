@@ -33,7 +33,7 @@ export function demoEmbed(app: App, md: Markdown): void {
     meta: ([, type, info, url]) => ({
       type: (type || 'normal') as DemoMeta['type'],
       url,
-      ...resolveAttrs(info).attrs,
+      ...resolveAttrs(info) as any,
     }),
     content: (meta, content, env: MarkdownDemoEnv) => {
       const { url, type } = meta

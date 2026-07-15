@@ -17,7 +17,7 @@ export const pdfPlugin: PluginWithOptions<never> = (md) => {
     // eslint-disable-next-line regexp/no-super-linear-backtracking
     syntaxPattern: /^@\[pdf(?:\s+(\d+))?([^\]]*)\]\(([^)]*)\)/,
     meta([, page, info, src]) {
-      const { attrs } = resolveAttrs(info)
+      const attrs = resolveAttrs(info)
       return {
         src,
         page: +page || 1,

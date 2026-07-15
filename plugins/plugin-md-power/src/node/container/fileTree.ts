@@ -299,7 +299,7 @@ ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children
     if (!info.startsWith('file-tree') && !info.startsWith('tree')) {
       return rawFence(...args)
     }
-    const meta = resolveAttrs(info.replace(/^(?:file-)?tree/, '').trim()).attrs as FileTreeAttrs
+    const meta = resolveAttrs(info.replace(/^(?:file-)?tree/, '').trim()) as FileTreeAttrs
     const text = token.content.trim()
     const nodes = parseFileTreeContentWithFence(text)
     const localePath = resolveLocalePath(locales, ensureLeadingSlash(env.filePathRelative || ''))

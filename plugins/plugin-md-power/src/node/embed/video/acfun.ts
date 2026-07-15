@@ -17,7 +17,7 @@ export const acfunPlugin: PluginWithOptions<never> = (md) => {
     name: 'video_acfun',
     syntaxPattern: /^@\[acfun([^\]]*)\]\(([^)]*)\)/,
     meta([, info, id]) {
-      const { attrs } = resolveAttrs(info)
+      const attrs = resolveAttrs(info)
 
       return {
         id,

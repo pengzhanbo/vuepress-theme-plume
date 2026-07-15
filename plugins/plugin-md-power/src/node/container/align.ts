@@ -44,7 +44,7 @@ export function alignPlugin(md: Markdown): void {
 
   createContainerPlugin(md, 'flex', {
     before: (info) => {
-      const { attrs } = resolveAttrs<FlexContainerAttrs>(info)
+      const attrs = resolveAttrs<FlexContainerAttrs>(info)
       const styles: string[] = ['margin:16px 0;display:flex']
 
       const align = attrs.start ? 'flex-start' : attrs.end ? 'flex-end' : attrs.center ? 'center' : ''

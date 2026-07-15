@@ -22,7 +22,7 @@ export const bilibiliPlugin: PluginWithOptions<never> = (md) => {
     // eslint-disable-next-line regexp/no-super-linear-backtracking
     syntaxPattern: /^@\[bilibili(?:\s+p(\d+))?([^\]]*)\]\(([^)]*)\)/,
     meta([, page, info, source]) {
-      const { attrs } = resolveAttrs(info)
+      const attrs = resolveAttrs(info)
       const ids = source.trim().split(/\s+/)
       const bvid = ids.find(id => id.startsWith('BV'))
       const [aid, cid] = ids.filter(id => !id.startsWith('BV'))

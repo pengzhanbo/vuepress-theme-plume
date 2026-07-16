@@ -32,7 +32,7 @@ export const caniusePlugin: PluginWithOptions<CanIUseOptions> = (
       return {
         feature: source,
         mode: (mode.trim() as CanIUseMode) || defaultMode,
-        versions: versions.replace('}', ''),
+        versions: versions.replace(/\}/g, ''),
       }
     },
     content: (meta, env) => resolveCanIUse(meta, env),

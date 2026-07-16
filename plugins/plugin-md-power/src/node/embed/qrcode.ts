@@ -12,8 +12,7 @@ import { createEmbedRuleBlock } from './createEmbedRuleBlock.js'
 export const qrcodePlugin: PluginWithOptions<never> = (md) => {
   createEmbedRuleBlock<QRCodeMeta>(md, {
     type: 'qrcode',
-    syntaxPattern: /^@\[qrcode([^\]]*)\]\(([^)]*)\)/,
-    meta([, info, text]) {
+    meta(info, text) {
       const attrs = resolveAttrs<QRCodeMeta>(info)
       const { card, ...rest } = omit(attrs, ['text'])
 

@@ -15,8 +15,7 @@ export const acfunPlugin: PluginWithOptions<never> = (md) => {
   createEmbedRuleBlock<AcFunTokenMeta>(md, {
     type: 'acfun',
     name: 'video_acfun',
-    syntaxPattern: /^@\[acfun([^\]]*)\]\(([^)]*)\)/,
-    meta([, info, id]) {
+    meta(info, id) {
       const attrs = resolveAttrs(info)
 
       return {

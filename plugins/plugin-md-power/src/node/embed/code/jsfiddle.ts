@@ -12,8 +12,7 @@ import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 export const jsfiddlePlugin: PluginWithOptions<never> = (md) => {
   createEmbedRuleBlock<JSFiddleTokenMeta>(md, {
     type: 'jsfiddle',
-    syntaxPattern: /^@\[jsfiddle([^\]]*)\]\(([^)]*)\)/,
-    meta([, info, source]) {
+    meta(info, source) {
       const { width, height, title, tab, theme } = resolveAttrs<JSFiddleTokenMeta>(info)
 
       return {

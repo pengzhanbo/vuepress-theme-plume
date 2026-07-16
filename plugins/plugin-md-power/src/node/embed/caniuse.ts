@@ -27,13 +27,15 @@ export const caniusePlugin: PluginWithOptions<CanIUseOptions> = (
 ): void => {
   createEmbedRuleBlock<CanIUseTokenMeta>(md, {
     type: 'caniuse',
-    syntaxPattern: /^@\[caniuse\s*(embed|image|baseline)?(?:\{([0-9,\-]*)\})?\]\(([^)]*)\)/,
-    meta: ([, mode, versions = '', feature]) => ({
-      feature,
-      mode: (mode as CanIUseMode) || defaultMode,
-      versions,
-    }),
-    content: (meta, _c, env) => resolveCanIUse(meta, env),
+    meta: (info, source) => {
+      const [mode, versions = ''] = info.split('{')
+      return {
+        feature: source,
+        mode: (mode.trim() as CanIUseMode) || defaultMode,
+        versions: versions.replace('}', ''),
+      }
+    },
+    content: (meta, env) => resolveCanIUse(meta, env),
   })
 }
 

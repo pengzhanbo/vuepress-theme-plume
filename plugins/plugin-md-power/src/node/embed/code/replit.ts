@@ -13,8 +13,7 @@ import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 export const replitPlugin: PluginWithOptions<never> = (md) => {
   createEmbedRuleBlock<ReplitTokenMeta>(md, {
     type: 'replit',
-    syntaxPattern: /^@\[replit([^\]]*)\]\(([^)]*)\)/,
-    meta: ([, info = '', source = '']) => {
+    meta(info, source) {
       const attrs = resolveAttrs(info)
       return {
         width: attrs.width ? parseRect(attrs.width) : '100%',

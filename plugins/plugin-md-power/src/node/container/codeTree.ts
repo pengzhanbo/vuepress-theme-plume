@@ -225,8 +225,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
   // Register @[code-tree](dir) syntax
   createEmbedRuleBlock(md, {
     type: 'code-tree',
-    syntaxPattern: /^@\[code-tree([^\]]*)\]\(([^)]*)\)/,
-    meta: ([, info, dir]) => {
+    meta: (info, dir) => {
       const attrs = resolveAttrs<CodeTreeMeta>(info)
       const h = attrs.height || String(options.height)
       return {
@@ -237,7 +236,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
         dir,
       }
     },
-    content: ({ dir, icon, ...props }, _, env) => {
+    content: ({ dir, icon, ...props }, env) => {
       // codeTreeFiles for page dependency collection
       const codeTreeFiles = ((env as any).codeTreeFiles ??= []) as string[]
       const root = findFile(app, env, dir)

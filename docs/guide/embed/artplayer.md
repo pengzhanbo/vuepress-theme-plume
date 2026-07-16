@@ -104,13 +104,13 @@ npm i mpegts.js
 
 ### Props
 
-|字段 |类型 |描述 |
-| -- | -- | -- |
-| src | `string` | 必填，视频播放地址 |
-| type | `string` | 选填，视频格式，默认从 `src` 中截取 |
-| width | `string` | 选填， 宽度， 默认 `100%` |
-| height | `string` | 选填，高度 |
-| ratio | `string` | 选填，宽高比，默认 `16:9` |
+| 字段   | 类型     | 描述                                |
+| ------ | -------- | ----------------------------------- |
+| src    | `string` | 必填，视频播放地址                  |
+| type   | `string` | 选填，视频格式，默认从 `src` 中截取 |
+| width  | `string` | 选填， 宽度， 默认 `100%`           |
+| height | `string` | 选填，高度                          |
+| ratio  | `string` | 选填，宽高比，默认 `16:9`           |
 
 更多 `Props` 请参考 [artPlayer 文档](https://artplayer.org/document/start/option.html) 主题支持所有选项。
 

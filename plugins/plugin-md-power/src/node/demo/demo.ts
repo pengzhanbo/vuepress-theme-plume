@@ -4,7 +4,6 @@ import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
 import container from 'markdown-it-container'
-import { colors } from 'vuepress/utils'
 import { createEmbedRuleBlock } from '../embed/createEmbedRuleBlock.js'
 import { logger } from '../utils/logger.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
@@ -29,23 +28,24 @@ const embedMap: Record<
 export function demoEmbed(app: App, md: Markdown): void {
   createEmbedRuleBlock<DemoMeta>(md, {
     type: 'demo',
-    syntaxPattern: /^@\[demo(?:\s(vue|normal|markdown))?\s?(.*)\]\((.*)\)/,
-    meta: ([, type, info, url]) => ({
-      type: (type || 'normal') as DemoMeta['type'],
-      url,
-      ...resolveAttrs(info) as any,
-    }),
-    content: (meta, content, env: MarkdownDemoEnv) => {
+    meta: (info, url) => {
+      const { vue, normal, markdown, ...attrs } = resolveAttrs(info)
+      const type = vue ? 'vue' : markdown ? 'markdown' : 'normal'
+      return { type, url, ...attrs }
+    },
+    content: (meta, env: MarkdownDemoEnv) => {
       const { url, type } = meta
       if (!url) {
-        logger.warn('demo-vue', `Invalid filepath: ${colors.gray(url)}`)
-        return content
+        logger.warn(`demo-${type}`, `filepath is empty`)
+        return `<p style="color:red;">@[demo ${type}] filepath is empty</p>`
       }
 
       if (embedMap[type]) {
         return embedMap[type](app, md, env, meta)
       }
-      return content
+
+      logger.warn(`demo-${type}`, `Invalid Demo Type: ${type}`)
+      return `<p style="color:red;">@[demo ${type}](${url}) Invalid Demo Type</p>`
     },
   })
 }

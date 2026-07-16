@@ -5,22 +5,30 @@
  */
 import type { PluginWithOptions } from 'markdown-it'
 import type { PDFTokenMeta } from '../../shared/index.js'
+import { objectKeys } from '@pengzhanbo/utils'
 import { path } from 'vuepress/utils'
 import { parseRect } from '../utils/parseRect.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createEmbedRuleBlock } from './createEmbedRuleBlock.js'
 
+const RE_PAGE = /^\d+$/
+
 export const pdfPlugin: PluginWithOptions<never> = (md) => {
   createEmbedRuleBlock<PDFTokenMeta>(md, {
     type: 'pdf',
-    // eslint-disable-next-line regexp/no-super-linear-backtracking
-    syntaxPattern: /^@\[pdf(?:\s+(\d+))?([^\]]*)\]\(([^)]*)\)/,
-    meta([, page, info, src]) {
+    meta(info, src) {
       const attrs = resolveAttrs(info)
+      let page: number = 1
+      objectKeys(attrs).forEach((key) => {
+        if (RE_PAGE.test(key)) {
+          page = +key
+        }
+      })
+
       return {
         src,
-        page: +page || 1,
+        page,
         noToolbar: Boolean(attrs.noToolbar ?? false),
         zoom: +attrs.zoom || 50,
         width: attrs.width ? parseRect(attrs.width) : '100%',

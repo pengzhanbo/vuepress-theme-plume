@@ -16,8 +16,7 @@ export const youtubePlugin: PluginWithOptions<never> = (md) => {
   createEmbedRuleBlock<YoutubeTokenMeta>(md, {
     type: 'youtube',
     name: 'video_youtube',
-    syntaxPattern: /^@\[youtube([^\]]*)\]\(([^)]*)\)/,
-    meta([, info, id]) {
+    meta(info, id) {
       const attrs = resolveAttrs(info)
 
       return {
@@ -35,17 +34,10 @@ export const youtubePlugin: PluginWithOptions<never> = (md) => {
     content(meta) {
       const params = new URLSearchParams()
 
-      if (meta.autoplay)
-        params.set('autoplay', '1')
-
-      if (meta.loop)
-        params.set('loop', '1')
-
-      if (meta.start)
-        params.set('start', meta.start.toString())
-
-      if (meta.end)
-        params.set('end', meta.end.toString())
+      meta.autoplay && params.set('autoplay', '1')
+      meta.loop && params.set('loop', '1')
+      meta.start && params.set('start', meta.start.toString())
+      meta.end && params.set('end', meta.end.toString())
 
       const src = `${YOUTUBE_LINK}/${meta.id}?${params.toString()}`
       const { width, height, ratio, title } = meta

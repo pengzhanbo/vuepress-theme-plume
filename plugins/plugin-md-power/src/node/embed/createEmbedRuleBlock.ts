@@ -1,5 +1,7 @@
-import type { RuleOptions } from 'markdown-it/lib/ruler.mjs'
+import type MarkdownIt from 'markdown-it'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
+import { colors } from 'vuepress/utils'
+import { logger } from '../utils/logger.js'
 
 /**
  * Embed rule block options
@@ -22,44 +24,28 @@ export interface EmbedRuleBlockOptions<Meta extends Record<string, any>> {
    */
   name?: string
   /**
-   * Name of the rule to insert before
-   *
-   * 要插入在其前面的规则名称
-   */
-  beforeName?: string
-  /**
-   * Syntax pattern regular expression
-   *
-   * 语法模式正则表达式
-   */
-  syntaxPattern: RegExp
-  /**
-   * Rule options
-   *
-   * 规则选项
-   */
-  ruleOptions?: RuleOptions
-  /**
    * Extract metadata from match
    *
    * 从匹配中提取元数据
    *
-   * @param match - RegExp match array / 正则表达式匹配数组
+   * @param info - Information / 信息
+   * @param source - Source / 来源
    * @returns Metadata object / 元数据对象
    */
-  meta: (match: RegExpMatchArray) => Meta
+  meta: (info: string, source: string) => Meta
   /**
    * Generate content from metadata
    *
    * 从元数据生成内容
    *
    * @param meta - Metadata / 元数据
-   * @param content - Original content / 原始内容
    * @param env - Markdown environment / Markdown 环境
    * @returns Generated content / 生成的内容
    */
-  content: (meta: Meta, content: string, env: MarkdownEnv) => string
+  content?: (meta: Meta, env: MarkdownEnv) => string
 }
+
+const EXISTS_TYPES = new WeakMap<MarkdownIt, Set<string>>()
 
 /**
  * Create embed rule block
@@ -79,18 +65,36 @@ export function createEmbedRuleBlock<Meta extends Record<string, any> = Record<s
   {
     type,
     name = type,
-    syntaxPattern,
-    beforeName = 'import_code',
-    ruleOptions = { alt: ['paragraph', 'reference', 'blockquote', 'list'] },
     meta,
     content,
   }: EmbedRuleBlockOptions<Meta>,
 ): void {
+  if (!type) {
+    logger.warn(`Embed rule block type is empty`)
+    return
+  }
+  let exists = EXISTS_TYPES.get(md)
+  !exists && EXISTS_TYPES.set(md, exists = new Set())
+
+  if (exists.has(type)) {
+    logger.warn(`Embed rule block type ${colors.green(type)} already exists`)
+    return
+  }
+
+  if (md.renderer.rules[name]) {
+    logger.warn(`Embed rule block ${type} (${name}) already exists`)
+    return
+  }
+
+  exists.add(type)
+
   const MIN_LENGTH = type.length + 5
   const START_CODES = [64, 91, ...type.split('').map(c => c.charCodeAt(0))]
+  const escapedType = type.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const syntaxPattern = new RegExp(`^@\\[${escapedType}(?:\\s+([^\\]]*))?\\]\\(([^)]*)\\)$`)
 
   md.block.ruler.before(
-    beforeName,
+    'import_code',
     name,
     (state, startLine, endLine, silent) => {
       const pos = state.bMarks[startLine] + state.tShift[startLine]
@@ -122,8 +126,9 @@ export function createEmbedRuleBlock<Meta extends Record<string, any> = Record<s
         return true
 
       const token = state.push(name, '', 0)
+      const [, info = '', source = ''] = match
 
-      token.meta = meta(match)
+      token.meta = meta(info.trim(), source.trim())
       token.content = content
       token.map = [startLine, startLine + 1]
 
@@ -131,11 +136,11 @@ export function createEmbedRuleBlock<Meta extends Record<string, any> = Record<s
 
       return true
     },
-    ruleOptions,
+    { alt: ['paragraph', 'reference', 'blockquote', 'list'] },
   )
 
   md.renderer.rules[name] = (tokens, index, _, env: MarkdownEnv) => {
     const token = tokens[index]
-    return content(token.meta, token.content, env)
+    return content?.(token.meta, env) ?? token.content
   }
 }

@@ -25,10 +25,8 @@ export const artPlayerPlugin: PluginWithOptions<never> = (md) => {
   createEmbedRuleBlock<ArtPlayerTokenMeta>(md, {
     type: 'artPlayer',
     name: 'video_artPlayer',
-    syntaxPattern: /^@\[artPlayer([^\]]*)\]\(([^)]*)\)/,
-    meta([, info, source]) {
+    meta(info, url) {
       const attrs = resolveAttrs<ArtPlayerTokenMeta>(info)
-      const url = source.trim()
       checkSupportType(attrs.type ?? url.split('.').pop())
 
       return {

@@ -20,7 +20,7 @@ const tooltip = useTemplateRef('tooltip')
 
 onClickOutside(annotation, () => (active.value = false), { ignore: [tooltip] })
 
-useIntersectionObserver(annotation as any, ([entry]) => {
+useIntersectionObserver(annotation, ([entry]) => {
   if (!entry.isIntersecting && active.value)
     active.value = false
 }, { rootMargin: '-64px 0px 0px 0px' })

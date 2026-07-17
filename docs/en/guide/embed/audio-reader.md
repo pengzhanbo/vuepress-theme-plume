@@ -57,7 +57,7 @@ With configuration options:
 
 ## Global Component
 
-The theme provides a global component `<AudioReader />` to support more flexible and comprehensive usage.
+The theme provides a global component `<VPAudioReader />` to support more flexible and comprehensive usage.
 
 ### Props
 
@@ -95,9 +95,9 @@ audio 美 @[audioReader title="[ˈɔːdioʊ]"](https://sensearch.baidu.com/gettt
 **Input:**
 
 ```md
-audio 美 <AudioReader src="/audio/audio.mp3">[ˈɔːdioʊ]</AudioReader>
+audio 美 <VPAudioReader src="/audio/audio.mp3">[ˈɔːdioʊ]</VPAudioReader>
 ```
 
 **Output:**
 
-audio 美 <AudioReader src="https://sensearch.baidu.com/gettts?lan=en&spd=3&source=alading&text=audio">[ˈɔːdioʊ]</AudioReader>
+audio 美 <VPAudioReader src="https://sensearch.baidu.com/gettts?lan=en&spd=3&source=alading&text=audio">[ˈɔːdioʊ]</VPAudioReader>

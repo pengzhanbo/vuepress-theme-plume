@@ -71,10 +71,10 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
         return `<template #title${index}="{ value, isActive }">${icon ? `<VPIcon provider="iconify" name="${icon}"/>` : ''}<span>${title}</span></template>`
       }).join('')
 
-      return `<CodeTabs id="${index}" :data='${stringifyProp(tabsData)}'${active === -1 ? '' : ` :active="${active}"`}${meta.id ? ` tab-id="${meta.id as string}"` : ''}>${titlesContent}`
+      return `<VPCodeTabs id="${index}" :data='${stringifyProp(tabsData)}'${active === -1 ? '' : ` :active="${active}"`}${meta.id ? ` tab-id="${meta.id as string}"` : ''}>${titlesContent}`
     },
 
-    closeRender: () => `</CodeTabs>`,
+    closeRender: () => `</VPCodeTabs>`,
 
     tabOpenRender: ({ index }, tokens, tokenIndex) => {
       let foundFence = false

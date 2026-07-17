@@ -210,7 +210,7 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
             nodes.push(token)
           }
 
-          const abbrToken = new state.Token('abbreviation', 'Abbreviation', 0)
+          const abbrToken = new state.Token('abbreviation', 'VPAbbreviation', 0)
           abbrToken.content = word
           abbrToken.info = abbreviations[`:${word}`]
 
@@ -247,6 +247,6 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
     const { content, info } = tokens[idx]
     const rendered = md.renderInline(info, cleanMarkdownEnv(env))
     const label = rendered.replace(/<[^>]*>/g, '')
-    return `<Abbreviation aria-label="${label}">${content}${info ? `<template #tooltip>${rendered}</template>` : ''}</Abbreviation>`
+    return `<VPAbbreviation aria-label="${label}">${content}${info ? `<template #tooltip>${rendered}</template>` : ''}</VPAbbreviation>`
   }
 }

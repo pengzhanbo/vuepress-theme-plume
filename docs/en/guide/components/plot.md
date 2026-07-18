@@ -7,7 +7,7 @@ permalink: /en/guide/components/plot/
 
 ## Overview
 
-Use the `<Plot>` component to display [plot text](../markdown/plot.md) with more flexible control over behavior.
+Use the `<VPPlot>` component to display [plot text](../markdown/plot.md) with more flexible control over behavior.
 
 This component is disabled by default and needs to be enabled in the theme configuration.
 

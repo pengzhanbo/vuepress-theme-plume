@@ -21,18 +21,18 @@ exports[`plotPlugin > should not work with invalid tag 4`] = `
 `;
 
 exports[`plotPlugin > should work 1`] = `
-"<p><Plot>plot</Plot></p>
+"<p><VPPlot>plot</VPPlot></p>
 "
 `;
 
 exports[`plotPlugin > should work 2`] = `
-"<p>hidden:  <Plot>plot</Plot>  <strong>strong</strong></p>
+"<p>hidden:  <VPPlot>plot</VPPlot>  <strong>strong</strong></p>
 "
 `;
 
 exports[`plotPlugin > should work 3`] = `
 "<p>hidden:<br>
-<Plot>plot</Plot><br>
-<Plot>plot</Plot></p>
+<VPPlot>plot</VPPlot><br>
+<VPPlot>plot</VPPlot></p>
 "
 `;

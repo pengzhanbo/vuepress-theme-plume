@@ -77,7 +77,7 @@ export interface ThemeBuiltinPlugins {
   /**
    * 是否启用 `vuepress-plugin-md-power` 插件
    */
-  markdownPower?: false | MarkdownPowerPluginOptions
+  markdownPower?: false | Omit<MarkdownPowerPluginOptions, 'components'>
 
   /**
    * 是否启用 `@vuepress/plugin-markdown-image` 插件

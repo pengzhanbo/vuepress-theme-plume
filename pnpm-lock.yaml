@@ -151,12 +151,6 @@ catalogs:
     postprocessing:
       specifier: ^6.39.2
       version: 6.39.2
-    pyodide:
-      specifier: ^314.0.2
-      version: 314.0.2
-    sass:
-      specifier: ^1.101.0
-      version: 1.101.0
     swiper:
       specifier: ^14.0.1
       version: 14.0.1
@@ -314,6 +308,9 @@ catalogs:
     tm-themes:
       specifier: ^1.12.2
       version: 1.12.2
+    unplugin-vue-components:
+      specifier: ^32.1.0
+      version: 32.1.0
   vuepress:
     '@vuepress/bundler-vite':
       specifier: 2.0.0-rc.30
@@ -768,6 +765,9 @@ importers:
       tm-themes:
         specifier: catalog:prod
         version: 1.12.2
+      unplugin-vue-components:
+        specifier: catalog:prod
+        version: 32.1.0(esbuild@0.28.1)(rolldown@1.1.3)(vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.6.1)(less@4.6.7)(sass-embedded@1.100.0)(sass@1.101.0)(stylus@0.64.0)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3))
       vue:
         specifier: ^3.5.39
         version: 3.5.39(typescript@6.0.3)
@@ -7038,6 +7038,16 @@ packages:
   unplugin-utils@0.3.1:
     resolution: {integrity: sha512-5lWVjgi6vuHhJ526bI4nlCOmkCIF3nnfXkCMDeMJrtdvxTs6ZFCM8oNufGTsDbKv/tJ/xj8RpvXjRuPBZJuJog==}
     engines: {node: '>=20.19.0'}
+
+  unplugin-vue-components@32.1.0:
+    resolution: {integrity: sha512-YiUkSxuRjab18XFOrX5VsIxXzccrfmHVGsGeJgSgklb829DQmCy9E4vvDUE4tuvZZdxyFJZX0Oc4TPnnxiiMyg==}
+    engines: {node: '>=20.19.0'}
+    peerDependencies:
+      '@nuxt/kit': ^3.2.2 || ^4.0.0
+      vue: ^3.5.39
+    peerDependenciesMeta:
+      '@nuxt/kit':
+        optional: true
 
   unplugin@3.0.0:
     resolution: {integrity: sha512-0Mqk3AT2TZCXWKdcoaufeXNukv2mTrEZExeXlHIOZXdqYoHHr4n51pymnwV8x2BOVxwXbK2HLlI7usrqMpycdg==}
@@ -14207,6 +14217,29 @@ snapshots:
     dependencies:
       pathe: 2.0.3
       picomatch: 4.0.4
+
+  unplugin-vue-components@32.1.0(esbuild@0.28.1)(rolldown@1.1.3)(vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.6.1)(less@4.6.7)(sass-embedded@1.100.0)(sass@1.101.0)(stylus@0.64.0)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3)):
+    dependencies:
+      chokidar: 5.0.0
+      local-pkg: 1.2.1
+      magic-string: 0.30.21
+      mlly: 1.8.2
+      obug: 2.1.3
+      picomatch: 4.0.4
+      tinyglobby: 0.2.17
+      unplugin: 3.3.0(esbuild@0.28.1)(rolldown@1.1.3)(vite@8.1.2(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.6.1)(less@4.6.7)(sass-embedded@1.100.0)(sass@1.101.0)(stylus@0.64.0)(yaml@2.9.0))
+      unplugin-utils: 0.3.1
+      vue: 3.5.39(typescript@6.0.3)
+    transitivePeerDependencies:
+      - '@farmfe/core'
+      - '@rspack/core'
+      - bun-types-no-globals
+      - esbuild
+      - rolldown
+      - rollup
+      - unloader
+      - vite
+      - webpack
 
   unplugin@3.0.0:
     dependencies:

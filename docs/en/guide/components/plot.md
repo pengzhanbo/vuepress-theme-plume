@@ -7,7 +7,7 @@ permalink: /en/guide/components/plot/
 
 ## Overview
 
-Use the `<Plot>` component to display [plot text](../markdown/plot.md) with more flexible control over behavior.
+Use the `<VPPlot>` component to display [plot text](../markdown/plot.md) with more flexible control over behavior.
 
 This component is disabled by default and needs to be enabled in the theme configuration.
 
@@ -47,11 +47,11 @@ Mask layer effect or text blur effect
 **Input:**
 
 ```md :no-line-numbers
-- Hover - <Plot>Visible on hover</Plot>
-- Click - <Plot trigger="click">Visible on click</Plot>
+- Hover - <VPPlot>Visible on hover</VPPlot>
+- Click - <VPPlot trigger="click">Visible on click</VPPlot>
 ```
 
 **Output:**
 
-- Hover - <Plot>Visible on hover</Plot>
-- Click - <Plot trigger="click">Visible on click</Plot>
+- Hover - <VPPlot>Visible on hover</VPPlot>
+- Click - <VPPlot trigger="click">Visible on click</VPPlot>

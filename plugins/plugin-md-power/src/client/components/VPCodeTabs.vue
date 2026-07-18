@@ -54,8 +54,7 @@ function keyboardHandler(event: KeyboardEvent, index: number): void {
     activatePrev()
   }
 
-  if (props.tabId)
-    codeTabStore.value[props.tabId] = props.data[activeIndex.value].id
+  updateStore()
 }
 
 function getInitialIndex(): number {

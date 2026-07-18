@@ -11,7 +11,7 @@ defineProps<{
   title?: string
 }>()
 
-const Editor = defineAsyncComponent(() => import('./CodeEditor.vue'))
+const Editor = defineAsyncComponent(() => import('./VPCodeEditor.vue'))
 
 const replEl = shallowRef<HTMLDivElement | null>(null)
 const outputEl = shallowRef<HTMLDivElement | null>(null)

@@ -54,5 +54,5 @@ export default defineUserConfig({
 
 **输出：**
 
-- 鼠标悬停 - <Plot>悬停时可见</Plot>
-- 点击 - <Plot trigger="click">点击时可见</Plot>
+- 鼠标悬停 - <VPPlot>悬停时可见</VPPlot>
+- 点击 - <VPPlot trigger="click">点击时可见</VPPlot>

@@ -47,11 +47,11 @@ Mask layer effect or text blur effect
 **Input:**
 
 ```md :no-line-numbers
-- Hover - <Plot>Visible on hover</Plot>
-- Click - <Plot trigger="click">Visible on click</Plot>
+- Hover - <VPPlot>Visible on hover</VPPlot>
+- Click - <VPPlot trigger="click">Visible on click</VPPlot>
 ```
 
 **Output:**
 
-- Hover - <Plot>Visible on hover</Plot>
-- Click - <Plot trigger="click">Visible on click</Plot>
+- Hover - <VPPlot>Visible on hover</VPPlot>
+- Click - <VPPlot trigger="click">Visible on click</VPPlot>

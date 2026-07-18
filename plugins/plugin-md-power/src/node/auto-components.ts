@@ -4,7 +4,7 @@ import type { MarkdownPowerPluginOptions } from '../shared/index.js'
 import { toArray } from '@pengzhanbo/utils'
 import { addViteConfig, configWebpack, getBundlerName } from '@vuepress/helper'
 
-const builtInComponents: string[] = ['Abbreviation', 'Annotation', 'ArtPlayer', 'AudioReader', 'Caniuse', 'CodeEditor', 'CodePen', 'CodeRepl', 'CodeSandbox', 'CodeTabs', 'CodeTree', 'Collapse', 'CollapseItem', 'CopyButton', 'DemoBasic', 'DemoNormal', 'EncryptSnippet', 'Field', 'FileTreeNode', 'JsFiddle', 'Pdf', 'Plot', 'Tabs', 'QRCode', 'Table', 'Timeline', 'TimelineItem', 'VideoEmbed']
+const builtInComponents: string[] = ['Abbreviation', 'Annotation', 'ArtPlayer', 'AudioReader', 'Caniuse', 'CodeEditor', 'CodePen', 'CodeRepl', 'CodeSandbox', 'CodeTabs', 'CodeTree', 'Collapse', 'CollapseItem', 'CopyButton', 'DemoBasic', 'DemoNormal', 'EncryptSnippet', 'Field', 'FileTreeNode', 'JsFiddle', 'Pdf', 'Plot', 'Tabs', 'QRCode', 'Table', 'Timeline', 'TimelineItem', 'VideoEmbed', 'Replit']
 const COMPONENT_PREFIX = /^VP/
 
 export async function autoComponents(
@@ -20,8 +20,9 @@ export async function autoComponents(
       type: 'component',
       resolve: (name) => {
         const componentName = name.replace(COMPONENT_PREFIX, '')
-        if (builtInComponents.includes(componentName))
-          return `vuepress-plugin-md-power/components/VP${componentName}.vue`
+        if (builtInComponents.includes(componentName)) {
+          return { from: `vuepress-plugin-md-power/components/VP${componentName}.vue` }
+        }
         return undefined
       },
     }, ...toArray(resolvers)],

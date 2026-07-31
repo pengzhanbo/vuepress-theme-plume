@@ -276,6 +276,13 @@ blog:
     url: https://www.esyka.top/
     repo: https://github.com/esyka114514
     preview: https://www.esyka.top/images/preview.png
+  -
+    name: 阿凯 Freddy
+    desc: 在工程、设计、产品的交汇处创造价值
+    logo: https://freddyx.pages.dev/logo.jpg
+    url: https://freddyx.pages.dev/
+    repo: https://github.com/1nFrastr/loxi-blog
+    preview: /images/demos/freddyx.jpg
 ---
 
 :::important

@@ -55,7 +55,7 @@ export default defineUserConfig({
 
 ## 全局组件
 
-主题提供了全局组件 `<AudioReader />` 以支持更灵活丰富的使用方式。
+主题提供了全局组件 `<VPAudioReader />` 以支持更灵活丰富的使用方式。
 
 ### Props
 
@@ -93,9 +93,9 @@ audio 美 @[audioReader title="[ˈɔːdioʊ]"](https://sensearch.baidu.com/gettt
 **输入：**
 
 ```md
-audio 美 <AudioReader src="/audio/audio.mp3">[ˈɔːdioʊ]</AudioReader>
+audio 美 <VPAudioReader src="/audio/audio.mp3">[ˈɔːdioʊ]</VPAudioReader>
 ```
 
 **输出：**
 
-audio 美 <AudioReader src="https://sensearch.baidu.com/gettts?lan=en&spd=3&source=alading&text=audio">[ˈɔːdioʊ]</AudioReader>
+audio 美 <VPAudioReader src="https://sensearch.baidu.com/gettts?lan=en&spd=3&source=alading&text=audio">[ˈɔːdioʊ]</VPAudioReader>

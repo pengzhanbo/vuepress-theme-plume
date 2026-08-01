@@ -10,7 +10,7 @@ import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
  *
  * Markdown 增强选项
  */
-export interface MarkdownOptions extends MarkdownPowerPluginOptions,
+export interface MarkdownOptions extends Omit<MarkdownPowerPluginOptions, 'components'>,
   MarkdownChartPluginOptions,
   Partial<Pick<MarkdownHintPluginOptions, 'alert' | 'hint'>> {
   /**

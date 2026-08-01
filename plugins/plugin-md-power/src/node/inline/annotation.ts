@@ -276,12 +276,12 @@ export const annotationPlugin: PluginWithOptions<Record<string, string | string[
     /* istanbul ignore next -- @preserve */
     const data = env.annotations[`:${label}`] || annotations[`:${label}`]
 
-    return `<Annotation label="${label}" :total="${data.sources.length}">${
+    return `<VPAnnotation label="${label}" :total="${data.sources.length}">${
       data.sources.map((source, i) => {
         const annotation = data.rendered[i] ??= md.render(source, cleanMarkdownEnv(env, ['references']))
         return `<template #item-${i}>${annotation}</template>`
       }).join('')
-    }</Annotation>`
+    }</VPAnnotation>`
   }
 
   md.inline.ruler.before('image', 'annotation_ref', annotationRef)

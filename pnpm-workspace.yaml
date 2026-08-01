@@ -173,6 +173,7 @@ catalogs:
     sort-package-json: ^4.0.0
     tm-grammars: ^1.31.15
     tm-themes: ^1.12.2
+    unplugin-vue-components: ^32.1.0
     vue: ^3.5.39
     vue-router: ^5.1.0
   vuepress:

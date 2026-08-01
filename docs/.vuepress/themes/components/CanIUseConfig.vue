@@ -107,7 +107,7 @@ const { output } = useCaniuse({ feature, embedType, past, future })
       <h4>{{ locale.output }}</h4>
       <CodeViewer lang="md" :content="output" />
     </div>
-    <CanIUseViewer v-if="feature" :feature="feature" :past="past" :future="future" :baseline="embedType === 'baseline'" />
+    <VPCaniuse v-if="feature" :feature="feature" :past="past" :future="future" :baseline="embedType === 'baseline'" />
   </div>
 </template>
 

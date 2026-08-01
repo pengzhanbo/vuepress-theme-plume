@@ -23,6 +23,7 @@
       "types": "./dist/client/index.d.ts",
       "import": "./dist/client/index.js"
     },
+    "./components/*": "./dist/client/components/*",
     "./package.json": "./package.json"
   },
   "main": "dist/node/index.js",
@@ -110,6 +111,7 @@
     "shiki": "catalog:prod",
     "tm-grammars": "catalog:prod",
     "tm-themes": "catalog:prod",
+    "unplugin-vue-components": "catalog:prod",
     "vue": "catalog:prod"
   },
   "devDependencies": {

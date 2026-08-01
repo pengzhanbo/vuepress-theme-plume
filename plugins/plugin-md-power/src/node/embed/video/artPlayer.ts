@@ -45,7 +45,7 @@ export const artPlayerPlugin: PluginWithOptions<never> = (md) => {
     },
     content({ url, ...meta }) {
       meta.muted = meta.muted || meta.autoplay
-      return `<ArtPlayer src="${url}" fullscreen flip playback-rate aspect-ratio setting pip${stringifyAttrs(meta)}/>`
+      return `<VPArtPlayer src="${url}" fullscreen flip playback-rate aspect-ratio setting pip${stringifyAttrs(meta)}/>`
     },
   })
 }

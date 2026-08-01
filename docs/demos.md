@@ -100,6 +100,13 @@ docs:
     url: https://www.herodotus.cn
     repo: https://gitee.com/dante-compass/herodotus-documents
     preview: https://www.herodotus.cn/plume-demo.jpg
+  -
+    name: GhostFox
+    desc: 一个提供AI部署与工具的技术文档
+    logo: https://www.ghostosint.com/favicon.ico
+    url: https://www.ghostosint.com
+    preview: https://raw.githubusercontent.com/hackerschina/deskblog/refs/heads/main/ghostfox.png
+
 
 blog:
   -

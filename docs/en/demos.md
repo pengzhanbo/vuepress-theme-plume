@@ -269,6 +269,13 @@ blog:
     logo: https://raw.githubusercontent.com/Konata9/pic-base/main/pics/20260126223726455.png
     url: https://konata9.cc/
     preview: https://raw.githubusercontent.com/Konata9/pic-base/main/pics/20260125225910673.webp
+  -
+    name: Freddy
+    desc: Creating value at the intersection of engineering, design, and product.
+    logo: https://freddyx.pages.dev/logo.jpg
+    url: https://freddyx.pages.dev/
+    repo: https://github.com/1nFrastr/loxi-blog
+    preview: /images/demos/freddyx.jpg
 ---
 
 :::important

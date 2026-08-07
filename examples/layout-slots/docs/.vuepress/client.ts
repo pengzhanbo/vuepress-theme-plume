@@ -36,6 +36,8 @@ export default defineClientConfig({
       'doc-meta-after': () => h(SlotDemo, { name: 'doc-meta-after', h: 24 }),
       'doc-meta-top': () => h(SlotDemo, { name: 'doc-meta-top' }),
       'doc-meta-bottom': () => h(SlotDemo, { name: 'doc-meta-bottom' }),
+      'doc-content-before': () => h(SlotDemo, { name: 'doc-content-before', h: 60, mt: 16 }),
+      'doc-content-after': () => h(SlotDemo, { name: 'doc-content-after', h: 60, mt: 16 }),
 
       'sidebar-nav-before': () => h(SlotDemo, { name: 'sidebar-nav-before' }),
       'sidebar-nav-after': () => h(SlotDemo, { name: 'sidebar-nav-after' }),

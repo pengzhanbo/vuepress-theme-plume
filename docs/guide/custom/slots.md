@@ -110,6 +110,8 @@ export default defineClientConfig({
   - `doc-meta-bottom`
   - `doc-meta-before`
   - `doc-meta-after`
+  - `doc-content-before`
+  - `doc-content-after`
   - `sidebar-nav-before`
   - `sidebar-nav-after`
   - `aside-top`

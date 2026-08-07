@@ -148,6 +148,8 @@ watch(
 
                   <Content />
 
+                  <slot name="doc-content-after" />
+
                   <DocGitContributors v-if="contributorsMode === 'block'" />
                   <DocGitChangelog />
                   <VPDocCopyright />

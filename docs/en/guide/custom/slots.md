@@ -103,6 +103,7 @@ You can preview <https://plume-layout-slots.netlify.app> to see the positions of
   - `doc-top`
   - `doc-bottom`
   - `doc-content-before`
+  - `doc-content-after`
   - `doc-footer-before`
   - `doc-before`
   - `doc-after`
@@ -112,8 +113,6 @@ You can preview <https://plume-layout-slots.netlify.app> to see the positions of
   - `doc-meta-bottom`
   - `doc-meta-before`
   - `doc-meta-after`
-  - `doc-content-before`
-  - `doc-content-after`
   - `sidebar-nav-before`
   - `sidebar-nav-after`
   - `aside-top`

@@ -51,7 +51,7 @@ watch(
     <VPPosts
       v-if="isPostsLayout || frontmatter.pageLayout === 'posts'"
       :home-posts="frontmatter.pageLayout === 'posts'"
-      :collection="`${frontmatter.collection}`"
+      :collection="`${frontmatter.collection ?? ''}`"
     >
       <template #posts-top>
         <slot name="posts-top" />

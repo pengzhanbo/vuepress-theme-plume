@@ -101,6 +101,7 @@ export default defineClientConfig({
   - `doc-top`
   - `doc-bottom`
   - `doc-content-before`
+  - `doc-content-after`
   - `doc-footer-before`
   - `doc-before`
   - `doc-after`

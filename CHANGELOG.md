@@ -1,3 +1,17 @@
+# [1.0.0-rc.205](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.204...v1.0.0-rc.205) (2026-08-12)
+
+
+### Features
+
+* **plugin-search:** add search status styles ([02613b0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/02613b077cb1dd4dd9b24fa14cf1743385436599))
+* **theme:** add `doc-content-after` slots ([#950](https://github.com/pengzhanbo/vuepress-theme-plume/issues/950)) ([7f148f4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7f148f493dcf48da0c659987d27b10134af8b769))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** improve `resolveAttrs` ([#930](https://github.com/pengzhanbo/vuepress-theme-plume/issues/930)) ([b17ac21](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b17ac2127911f26a44673791ac1b9a32a8f42fd9))
+* **plugin-md-power:** improve embed syntax ([#931](https://github.com/pengzhanbo/vuepress-theme-plume/issues/931)) ([22490ab](https://github.com/pengzhanbo/vuepress-theme-plume/commit/22490abefac8a643e18a0553f2a4bb612481904b))
+
 # [1.0.0-rc.204](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.203...v1.0.0-rc.204) (2026-07-03)
 
 

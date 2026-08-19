@@ -12,13 +12,6 @@ changelog: false
 search: false
 docs:
   -
-    name: 科技酱的技术文档
-    desc: 同一个世界，同一个互联网！
-    logo: https://pic1.imgdb.cn/i/0348ByTnV9pOxa3ZSQgjFg.png
-    url: https://docs.asoe.cn/
-    repo: https://github.com/techjiang/
-    preview: https://pic1.imgdb.cn/i/0348hE4WxcGW5tgHUwfRNl.png
-  -
     name: VuePress Plume
     desc: 一个简约的，功能丰富的 vuepress 文档&博客 主题。
     logo: /plume.png
@@ -113,7 +106,13 @@ docs:
     logo: https://www.ghostosint.com/favicon.ico
     url: https://www.ghostosint.com
     preview: https://raw.githubusercontent.com/hackerschina/deskblog/refs/heads/main/ghostfox.png
-
+  -
+    name: 科技酱的技术文档
+    desc: 同一个世界，同一个互联网！
+    logo: https://pic1.imgdb.cn/i/0348ByTnV9pOxa3ZSQgjFg.png
+    url: https://docs.asoe.cn/
+    repo: https://github.com/techjiang/
+    preview: https://pic1.imgdb.cn/i/0348hE4WxcGW5tgHUwfRNl.png
 
 blog:
   -

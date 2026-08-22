@@ -150,7 +150,7 @@ async function generateWithDoc(
 
   if (ep && !hasOwn(data, 'permalink')) {
     if (isRoot) {
-      data.permalink = path.join(locale, collection.linkPrefix, '/')
+      data.permalink = path.join(locale, collection.linkPrefix!, '/')
     }
     else if (collection.sidebar && collection.sidebar !== 'auto') {
       const res = resolveLinkBySidebar(collection.sidebar, ensureLeadingSlash(collection.dir))
@@ -158,7 +158,7 @@ async function generateWithDoc(
       const link = res[ensureLeadingSlash(ensureEndingSlash(file))] || '/'
       data.permalink = path.join(
         locale,
-        collection.linkPrefix,
+        collection.linkPrefix!,
         link,
         isReadme(context.relativePath)
           ? ''
@@ -174,7 +174,7 @@ async function generateWithDoc(
     else {
       data.permalink = path.join(
         locale,
-        collection.linkPrefix,
+        collection.linkPrefix!,
         ep === 'filepath'
           ? await getPermalinkByFilepath(context.relativePath, path.join(locale, collection.dir))
           : nanoid(8),

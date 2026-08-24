@@ -24,7 +24,7 @@ export function getFileCreateTime(filepath: string): string {
 
 export function getCurrentName(filepath: string): string {
   if (isReadme(filepath))
-    return normalizeTitle(path.dirname(filepath).slice(-1).split('/').pop() || 'Home')
+    return normalizeTitle(path.basename(path.dirname(filepath)) || 'Home')
 
   return normalizeTitle(path.basename(filepath, '.md'))
 }

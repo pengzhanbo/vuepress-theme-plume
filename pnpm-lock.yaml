@@ -124,9 +124,6 @@ catalogs:
     '@iconify/json':
       specifier: ^2.2.514
       version: 2.2.514
-    '@mathjax/src':
-      specifier: ^4.1.3
-      version: 4.1.3
     '@pinyin-pro/data':
       specifier: ^1.3.1
       version: 1.3.1
@@ -154,12 +151,6 @@ catalogs:
     postprocessing:
       specifier: ^6.39.4
       version: 6.39.4
-    pyodide:
-      specifier: ^314.0.3
-      version: 314.0.3
-    sass:
-      specifier: ^1.102.0
-      version: 1.102.0
     swiper:
       specifier: ^14.1.0
       version: 14.1.0
@@ -192,8 +183,8 @@ catalogs:
       specifier: ^1.0.4
       version: 1.0.4
     '@mdit/plugin-sup':
-      specifier: ^1.0.4
-      version: 1.0.4
+      specifier: ^1.1.0
+      version: 1.1.0
     '@mdit/plugin-tab':
       specifier: ^1.0.4
       version: 1.0.4
@@ -384,9 +375,6 @@ catalogs:
     '@vuepress/shiki-twoslash':
       specifier: 2.0.0-rc.132
       version: 2.0.0-rc.132
-    vuepress:
-      specifier: 2.0.0-rc.30
-      version: 2.0.0-rc.30
 
 overrides:
   '@bufbuild/protobuf': ^2.13.0
@@ -698,7 +686,7 @@ importers:
         version: 1.0.4(markdown-it@14.2.0)
       '@mdit/plugin-sup':
         specifier: catalog:prod
-        version: 1.0.4(markdown-it@14.2.0)
+        version: 1.1.0(markdown-it@14.2.0)
       '@mdit/plugin-tab':
         specifier: catalog:prod
         version: 1.0.4(markdown-it@14.2.0)
@@ -1796,6 +1784,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/helper@1.1.0':
+    resolution: {integrity: sha512-IWOUioaLobXA4ueulPfJopKaOHEGAH2pYDyK3u0cy4ItzxHXFssIJYksvdhUOC4JSHWfSjCArw41LBQdKOgFiw==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: '>=14.2.0'
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-alert@1.0.1':
     resolution: {integrity: sha512-gEZgbwlK2JSNIW3izqQyPoYJ8NXAEU0aON7XYpUHBzyD9km+ny5zFkAmoogMAzR8ird8iCQiK5pSv3nOtPBlLw==}
     engines: {node: '>=22'}
@@ -1883,6 +1880,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/plugin-inline-rule@2.2.0':
+    resolution: {integrity: sha512-Ce/GHczV8NZUgZU/3A085Ew7Ru1hY4NK8j0/Y+vp/NHXj+M7Hn1ANg8NHWlb3+NqQpJDuUq5TI2hA+DCQ1uUxw==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: '>=14.2.0'
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-katex-slim@1.0.1':
     resolution: {integrity: sha512-UlzgxvjR1Ltx/GHBeyAcr80AiJLdlMohWGtVPc6Hupya7aXkaGp4CyMHaxVkm1S6QIiHepggVjK+7sTCx2JdYA==}
     engines: {node: '>=22'}
@@ -1937,8 +1943,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-sup@1.0.4':
-    resolution: {integrity: sha512-nobuDPnCIvTFijlLh6N0hxiEy+JjuuK+i0jB9l4Fn+exOYbHjS34IG8BwW5YK1IJke8FSWg8FEB1ugmNmrX2dA==}
+  '@mdit/plugin-sup@1.1.0':
+    resolution: {integrity: sha512-EqCoChg0l/4Si/8mW07kfjRLZaBVxYqpxBrFhwUEDM4IjpiJPZgCC9kpkHI4GH3edQsPFG+2/Pj7Sh0NRXjq5w==}
     engines: {node: '>=22'}
     peerDependencies:
       markdown-it: '>=14.2.0'
@@ -3441,6 +3447,7 @@ packages:
   '@xmldom/xmldom@0.9.10':
     resolution: {integrity: sha512-A9gOqLdi6cV4ibazAjcQufGj0B1y/vDqYrcuP6d/6x8P27gRS8643Dj9o1dEKtB6O7fwxb2FgBmJS2mX7gpvdw==}
     engines: {node: '>=14.6'}
+    deprecated: this version has critical issues, please update to the latest version
 
   '@yuku-codegen/binding-android-arm64@0.8.4':
     resolution: {integrity: sha512-rsYkGl2kOkDRsh1mxriYnk1qBS78vjlBJ3+T2XwtwKwqOliy2n+2Ae0EDxJ/uX1DZLm3KkBZarGO5isEnmHchA==}
@@ -8511,6 +8518,10 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.2.0
 
+  '@mdit/helper@1.1.0(markdown-it@14.2.0)':
+    optionalDependencies:
+      markdown-it: 14.2.0
+
   '@mdit/plugin-alert@1.0.1(markdown-it@14.2.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
@@ -8574,6 +8585,12 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.2.0
 
+  '@mdit/plugin-inline-rule@2.2.0(markdown-it@14.2.0)':
+    dependencies:
+      '@mdit/helper': 1.1.0(markdown-it@14.2.0)
+    optionalDependencies:
+      markdown-it: 14.2.0
+
   '@mdit/plugin-katex-slim@1.0.1(katex@0.18.4)(markdown-it@14.2.0)':
     dependencies:
       '@mdit/helper': 1.0.1(markdown-it@14.2.0)
@@ -8613,10 +8630,10 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.2.0
 
-  '@mdit/plugin-sup@1.0.4(markdown-it@14.2.0)':
+  '@mdit/plugin-sup@1.1.0(markdown-it@14.2.0)':
     dependencies:
-      '@mdit/plugin-inline-rule': 2.1.0(markdown-it@14.2.0)
-      '@types/markdown-it': 14.1.2
+      '@mdit/helper': 1.1.0(markdown-it@14.2.0)
+      '@mdit/plugin-inline-rule': 2.2.0(markdown-it@14.2.0)
     optionalDependencies:
       markdown-it: 14.2.0
 

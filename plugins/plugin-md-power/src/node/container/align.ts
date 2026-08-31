@@ -38,7 +38,7 @@ export function alignPlugin(md: Markdown): void {
 
   for (const name of alignList) {
     createContainerPlugin(md, name, {
-      before: () => `<div style="text-align:${name}">`,
+      before: () => `<div class="vp-align" style="text-align:${name}">`,
     })
   }
 
@@ -64,7 +64,7 @@ export function alignPlugin(md: Markdown): void {
 
       styles.push(`gap:${parseRect(attrs.gap || '16')}`)
 
-      return `<div style="${styles.join(';')}">`
+      return `<div class="vp-flex" style="${styles.join(';')}">`
     },
   })
 }

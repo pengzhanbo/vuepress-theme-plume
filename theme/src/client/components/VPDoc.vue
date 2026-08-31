@@ -6,7 +6,9 @@ import VPDocCopyright from '@theme/VPDocCopyright.vue'
 import VPDocFooter from '@theme/VPDocFooter.vue'
 import VPDocMeta from '@theme/VPDocMeta.vue'
 import VPEncrypt from '@theme/VPEncrypt.vue'
+import VPReadAid from '@theme/VPReadAid.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
+import { useMediaQuery } from '@vueuse/core'
 import { computed, nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
 import {
@@ -19,8 +21,10 @@ import {
   useSidebarControl,
 } from '../composables/index.js'
 
-const { page, theme, frontmatter } = useData()
+const { page, theme, frontmatter, collection } = useData()
 const route = useRoute()
+
+const mobile = useMediaQuery('(max-width: 768px)')
 
 const { hasSidebar, hasAside, leftAside } = useLayout()
 const { isSidebarCollapsed } = useSidebarControl()
@@ -28,6 +32,8 @@ const { isPosts } = usePostsPageData()
 const headers = useHeaders()
 const { isPageDecrypted } = useEncrypt()
 const { mode: contributorsMode } = useContributors()
+
+const enableReadAid = computed(() => collection.value?.readAid ?? theme.value.readAid ?? false)
 
 const enableAside = computed(() => {
   if (!hasAside.value)
@@ -144,6 +150,8 @@ watch(
                   class="vp-doc plume-content"
                   :class="[pageName, enabledExternalLinkIcon && 'external-link-icon-enabled']" vp-content
                 >
+                  <VPReadAid v-if="!mobile && enableReadAid" />
+
                   <slot name="doc-content-before" />
 
                   <Content />
@@ -191,6 +199,7 @@ watch(
 
 .aside {
   position: relative;
+  z-index: 1;
 
   display: none;
   flex-grow: 1;
@@ -244,6 +253,7 @@ watch(
 
 .content {
   position: relative;
+  z-index: 2;
   width: 100%;
   margin: 0 auto;
 }

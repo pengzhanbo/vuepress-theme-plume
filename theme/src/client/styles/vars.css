@@ -598,6 +598,20 @@
   --vp-bulletin-width: 320px;
 }
 
+/**
+ * Component: ReadAid
+ * -------------------------------------------------------------------------- */
+:root {
+  --vp-read-aid-line-width: 6px;
+  --vp-read-aid-radius: 6px;
+  --vp-read-aid-line-color: #3a99d8;
+  --vp-read-aid-mask-color: rgb(51 143 224 / 0.085);
+}
+
+[data-theme="dark"] {
+  --vp-read-aid-line-color: #1a4e7e;
+}
+
 /* md enhance code-tabs */
 :root {
   --code-tabs-nav-text-color: var(--vp-c-text-1);

@@ -1,3 +1,10 @@
+# [1.0.0-rc.207](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.206...v1.0.0-rc.207) (2026-08-31)
+
+
+### Bug Fixes
+
+* **theme:** fix decrypted content not rendering correctly ([6de15a3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6de15a34573aa44131be0a6da7e465ad4544864a))
+
 # [1.0.0-rc.206](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.205...v1.0.0-rc.206) (2026-08-31)
 
 

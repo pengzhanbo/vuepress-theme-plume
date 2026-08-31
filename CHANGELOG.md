@@ -1,3 +1,16 @@
+# [1.0.0-rc.206](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.205...v1.0.0-rc.206) (2026-08-31)
+
+
+### Bug Fixes
+
+* **theme:** fix decrypted content not rendering correctly ([#958](https://github.com/pengzhanbo/vuepress-theme-plume/issues/958)) ([0997c70](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0997c7073763df94a660145bf1e5a4fb1b29df3d))
+* **theme:** use the parent directory name as the auto frontmatter title ([#957](https://github.com/pengzhanbo/vuepress-theme-plume/issues/957)) ([3e6fa22](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3e6fa22270146e81e37162f60c97ead32cabd90e))
+
+
+### Features
+
+* **theme:** add read-aid support ([#960](https://github.com/pengzhanbo/vuepress-theme-plume/issues/960)) ([e272559](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e2725599eff039c14e1995bea8762097c3406907))
+
 # [1.0.0-rc.205](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.204...v1.0.0-rc.205) (2026-08-12)
 
 

@@ -71,7 +71,7 @@ export function markdownPowerPlugin(
 
       define: provideData(options, locales),
 
-      alias: () => ({ ...options.encrypt ? { vue: 'vue/dist/vue.esm-bundler.js' } : undefined }),
+      alias: (_, isServer) => ({ ...options.encrypt && (!isServer || app.env.isDev) ? { vue: 'vue/dist/vue.esm-bundler.js' } : undefined }),
 
       async extendsBundlerOptions(bundlerOptions, app) {
         if (options.abbr || options.annotation) {

@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0-rc.205",
   "private": true,
-  "packageManager": "pnpm@11.21.0",
+  "packageManager": "pnpm@11.24.0",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",
   "license": "MIT",
   "keywords": [

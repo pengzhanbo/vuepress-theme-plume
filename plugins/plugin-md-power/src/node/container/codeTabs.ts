@@ -57,7 +57,7 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
   tab(md, {
     name: 'code-tabs',
 
-    openRender: ({ active, data }, tokens, index, _, env) => {
+    openRenderer: ({ active, data }, tokens, index, _, env) => {
       const { meta } = tokens[index]
       const titles = data.map(({ title }) => md.renderInline(title, cleanMarkdownEnv(env)))
       const tabsData = data.map((item, dataIndex) => {
@@ -74,9 +74,9 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
       return `<CodeTabs id="${index}" :data='${stringifyProp(tabsData)}'${active === -1 ? '' : ` :active="${active}"`}${meta.id ? ` tab-id="${meta.id as string}"` : ''}>${titlesContent}`
     },
 
-    closeRender: () => `</CodeTabs>`,
+    closeRenderer: () => `</CodeTabs>`,
 
-    tabOpenRender: ({ index }, tokens, tokenIndex) => {
+    tabOpenRenderer: ({ index }, tokens, tokenIndex) => {
       let foundFence = false
 
       // Hide all elements excerpt the first fence
@@ -98,6 +98,6 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
       return `<template #tab${index}="{ value, isActive }">`
     },
 
-    tabCloseRender: () => `</template>`,
+    tabCloseRenderer: () => `</template>`,
   })
 }

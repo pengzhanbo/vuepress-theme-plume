@@ -751,6 +751,17 @@ export default definePlumeThemeConfig({
 - `soft-blur-fade`：柔和模糊淡出
 - `diamond-reveal`：菱形揭示
 
+### readAid
+
+- **类型：** `boolean | 'mask' | 'left' | 'right'`
+- **默认值：** `false`
+- **详情：** 是否显示阅读辅助线，（辅助线可帮助用户视觉聚焦到鼠标所在区域）
+
+  - `false` - 不显示
+  - `'mask'` - 显示遮罩
+  - `'left'` - 显示左侧辅助线
+  - `'right'` - 显示右侧辅助线
+
 ### footer
 
 - **类型：** `false | { message: string; copyright: string }`

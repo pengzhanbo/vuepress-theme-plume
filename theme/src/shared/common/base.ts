@@ -74,3 +74,12 @@ export interface ThemeBadge {
  * @template T - The value type / 值类型
  */
 export type ThemeLightDark<T> = T | { light?: T, dark?: T }
+
+/**
+ * Read aid display mode
+ *
+ * 阅读辅助显示模式
+ *
+ * @default 'left'
+ */
+export type ThemeReadAid = 'left' | 'right' | 'mask'

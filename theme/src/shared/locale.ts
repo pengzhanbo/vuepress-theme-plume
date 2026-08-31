@@ -1,5 +1,5 @@
 import type { LocaleData } from 'vuepress'
-import type { SocialLink, SocialLinkIconUnion, ThemeOutline } from './common/index.js'
+import type { SocialLink, SocialLinkIconUnion, ThemeOutline, ThemeReadAid } from './common/index.js'
 import type {
   BulletinOptions,
   CopyrightLicense,
@@ -176,6 +176,14 @@ export interface ThemeLocale extends LocaleData {
       message?: string
       copyright?: string
     }
+
+  /**
+   * 配置阅读辅助功能
+   *
+   * 该配置将被合并到 collections 中的每个集合中
+   * @default false
+   */
+  readAid?: boolean | ThemeReadAid
 }
 
 /**

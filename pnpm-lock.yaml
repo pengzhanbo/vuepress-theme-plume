@@ -239,9 +239,6 @@ catalogs:
     hash-wasm:
       specifier: ^4.12.0
       version: 4.12.0
-    image-size:
-      specifier: ^2.0.2
-      version: 2.0.2
     js-tokens:
       specifier: ^10.0.0
       version: 10.0.0
@@ -311,6 +308,9 @@ catalogs:
     sort-package-json:
       specifier: ^4.0.0
       version: 4.0.0
+    tiny-image-size:
+      specifier: ^1.0.0
+      version: 1.0.0
     tm-grammars:
       specifier: ^1.32.3
       version: 1.32.3
@@ -720,9 +720,6 @@ importers:
       gray-matter:
         specifier: catalog:prod
         version: 4.0.3
-      image-size:
-        specifier: catalog:prod
-        version: 2.0.2
       less:
         specifier: catalog:dev
         version: 4.8.1(supports-color@10.2.2)
@@ -768,6 +765,9 @@ importers:
       stylus:
         specifier: catalog:dev
         version: 0.64.0(supports-color@10.2.2)
+      tiny-image-size:
+        specifier: catalog:prod
+        version: 1.0.0
       tm-grammars:
         specifier: catalog:prod
         version: 1.32.3
@@ -5158,11 +5158,6 @@ packages:
     resolution: {integrity: sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg==}
     engines: {node: '>= 4'}
 
-  image-size@2.0.2:
-    resolution: {integrity: sha512-IRqXKlaXwgSMAMtpNzZa1ZAe8m+Sa1770Dhk8VkSsP9LS+iHD62Zd8FQKs8fbPiagBE7BzoFX23cxFnwshpV6w==}
-    engines: {node: '>=16.x'}
-    hasBin: true
-
   immediate@3.0.6:
     resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
 
@@ -7053,6 +7048,9 @@ packages:
   time-span@5.1.0:
     resolution: {integrity: sha512-75voc/9G4rDIJleOo4jPvN4/YC4GRZrY8yy1uU4lwrB3XEQbWve8zXoO5No4eFrGcTAMYyoY67p8jRQdtA1HbA==}
     engines: {node: '>=12'}
+
+  tiny-image-size@1.0.0:
+    resolution: {integrity: sha512-0A3CAfJrw+Cp6mxJgumyvqXx19t6WvvaZke2qmJATnHjoHety9UBZPTeAVd5jcyO7wpSIUov3VGn1NTHjH6cdg==}
 
   tinybench@2.9.0:
     resolution: {integrity: sha512-0+DUvqWMValLmha6lr4kD8iAMK1HzV0/aKnCtWb9v9641TnP/MFb7Pc2bxoxQjTXAErryXVgUOfv2YqNllqGeg==}
@@ -12271,8 +12269,6 @@ snapshots:
 
   ignore@7.0.5: {}
 
-  image-size@2.0.2: {}
-
   immediate@3.0.6: {}
 
   immutable@5.1.5: {}
@@ -14458,6 +14454,8 @@ snapshots:
   time-span@5.1.0:
     dependencies:
       convert-hrtime: 5.0.0
+
+  tiny-image-size@1.0.0: {}
 
   tinybench@2.9.0: {}
 

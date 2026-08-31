@@ -98,7 +98,6 @@
     "@vueuse/core": "catalog:prod",
     "chokidar": "catalog:prod",
     "gray-matter": "catalog:prod",
-    "image-size": "catalog:prod",
     "local-pkg": "catalog:prod",
     "lru-cache": "catalog:prod",
     "markdown-it-cjk-friendly": "catalog:prod",
@@ -108,6 +107,7 @@
     "qrcode": "catalog:prod",
     "rolldown": "catalog:prod",
     "shiki": "catalog:prod",
+    "tiny-image-size": "catalog:prod",
     "tm-grammars": "catalog:prod",
     "tm-themes": "catalog:prod",
     "vue": "catalog:prod"

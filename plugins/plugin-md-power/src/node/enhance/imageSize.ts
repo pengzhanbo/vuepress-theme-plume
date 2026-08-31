@@ -6,8 +6,8 @@ import http from 'node:https'
 import { URL } from 'node:url'
 import { attempt, isBoolean, objectEntries, withTimeout } from '@pengzhanbo/utils'
 import { isLinkHttp } from '@vuepress/helper'
-import imageSize from 'image-size'
 import pMap from 'p-map'
+import { tinyImageSize } from 'tiny-image-size'
 import { fs, logger, path } from 'vuepress/utils'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 
@@ -60,6 +60,8 @@ const BADGE_LIST = [
   'https://badgen.net',
   'https://forthebadge.com',
   'https://vercel.com/button',
+  'https://npmx.dev',
+  'https://codecov.io',
 ]
 
 /**
@@ -252,14 +254,16 @@ export async function getImageOriginalSize(
   const isRemote = isLinkHttp(image)
   // remote image
   if (isRemote && includeRemote && !BADGE_LIST.some(badge => image.startsWith(badge))) {
-    const { width, height } = await fetchRemoteImageSize(image.startsWith('//') ? `https:${image}` : image)
+    const { width, height } = await fetchRemoteImageSize(
+      image.startsWith('//') ? `https:${image}` : image,
+    )
     if (width && height)
       return { width, height }
   }
   if (!isRemote) {
-    const [, data] = attempt(() => imageSize(fs.readFileSync(image)))
+    const [, data] = attempt(() => tinyImageSize(fs.readFileSync(image)))
     if (data?.width && data?.height)
-      return { width: data.width, height: data.height }
+      return data
   }
   return null
 }
@@ -303,7 +307,7 @@ async function fetchRemoteImageSize(src: string): Promise<ImgSize> {
         const chunks: any[] = []
         for await (const chunk of stream) {
           chunks.push(chunk)
-          const [, data] = attempt(imageSize, Buffer.concat(chunks))
+          const [, data] = attempt(tinyImageSize, Buffer.concat(chunks))
           if (data && data.width && data.height)
             return resolve(data)
         }

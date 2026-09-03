@@ -24,7 +24,7 @@ export const tabs: PluginSimple = (md) => {
   tab(md, {
     name: 'tabs',
 
-    openRender: ({ active, data }, tokens, index, _, env) => {
+    openRenderer: ({ active, data }, tokens, index, _, env) => {
       const { meta } = tokens[index]
       const titles = data.map(({ title }) => md.renderInline(title, cleanMarkdownEnv(env)))
       const tabsData = data.map((item, dataIndex) => {
@@ -39,11 +39,11 @@ ${titles.map((title, titleIndex) =>
 ).join('')}`
     },
 
-    closeRender: () => `</Tabs>`,
+    closeRenderer: () => `</Tabs>`,
 
-    tabOpenRender: ({ index }) =>
+    tabOpenRenderer: ({ index }) =>
       `<template #tab${index}="{ value, isActive }">`,
 
-    tabCloseRender: () => `</template>`,
+    tabCloseRenderer: () => `</template>`,
   })
 }

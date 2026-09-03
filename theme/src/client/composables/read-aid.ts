@@ -18,7 +18,7 @@ const queries = [
   '.table-of-contents > ul > li', // 目录项
   '.footnotes > ol > li', // 页脚注
   ':where([class^="vp-card"],.vp-repo-card,.vp-link-card,.vp-image-card)',
-  ':where(.vp-copyright,.vp-contributors,.vp-changelog-wrapper)', // 版权、贡献者、变更日志
+  ':where(.vp-copyright,.vp-changelog-wrapper)', // 版权、变更日志
   '.hint-container', // 提示容器
   '.vp-field-group .vp-field', // 字段容器
   '.vp-field',
@@ -30,6 +30,7 @@ const queries = [
   '.vp-npm-badge',
   '.vp-swiper',
   '.vp-chat',
+  ':where(.vp-encrypt-snippet,.decrypted-content)',
   '.vp-timeline .vp-timeline-item', // 时间线项
   '.vp-collapse .vp-collapse-item', // 折叠项
   ':where(.chartjs-wrapper,.echarts-wrapper,mermaid-wrapper,.flowchart-wrapper,.markmap-wrapper,.ciu_embed)', // 图表

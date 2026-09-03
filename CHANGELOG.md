@@ -1,3 +1,15 @@
+# [1.0.0-rc.208](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.207...v1.0.0-rc.208) (2026-09-03)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** fix`tabs` container not rendering correctly， close [#965](https://github.com/pengzhanbo/vuepress-theme-plume/issues/965) ([#966](https://github.com/pengzhanbo/vuepress-theme-plume/issues/966)) ([70f3314](https://github.com/pengzhanbo/vuepress-theme-plume/commit/70f33141936a2f848ccf1200419f56c5a11e72b6))
+
+
+### Performance Improvements
+
+* **theme:** improve read-aid elements query ([7e36d2e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7e36d2eacfd9be8f6e6c7203303a2b23eac9d55c))
+
 # [1.0.0-rc.207](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.206...v1.0.0-rc.207) (2026-08-31)
 
 

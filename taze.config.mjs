@@ -6,5 +6,6 @@ export default defineConfig({
     'markdown-it',
     'conventional-changelog',
     'conventional-changelog-angular',
+    'linkify-it',
   ],
 })

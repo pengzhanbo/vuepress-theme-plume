@@ -200,4 +200,4 @@ catalogs:
     '@vuepress/plugin-sitemap': 2.0.0-rc.132
     '@vuepress/plugin-watermark': 2.0.0-rc.132
     '@vuepress/shiki-twoslash': 2.0.0-rc.132
-    vuepress: 2.0.0-rc.30
+    vuepress: 2.0.0-rc.31

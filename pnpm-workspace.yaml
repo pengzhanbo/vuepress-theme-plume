@@ -178,7 +178,7 @@ catalogs:
     vue: ^3.5.42
     vue-router: ^5.3.0
   vuepress:
-    '@vuepress/bundler-vite': 2.0.0-rc.30
+    '@vuepress/bundler-vite': 2.0.0-rc.31
     '@vuepress/helper': 2.0.0-rc.131
     '@vuepress/plugin-cache': 2.0.0-rc.132
     '@vuepress/plugin-comment': 2.0.0-rc.131

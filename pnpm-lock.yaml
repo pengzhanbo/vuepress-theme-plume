@@ -124,9 +124,6 @@ catalogs:
     '@iconify/json':
       specifier: ^2.2.524
       version: 2.2.524
-    '@mathjax/src':
-      specifier: ^4.1.3
-      version: 4.1.3
     '@pinyin-pro/data':
       specifier: ^1.3.1
       version: 1.3.1
@@ -154,12 +151,6 @@ catalogs:
     postprocessing:
       specifier: ^6.39.4
       version: 6.39.4
-    pyodide:
-      specifier: ^314.0.6
-      version: 314.0.6
-    sass:
-      specifier: ^1.103.1
-      version: 1.103.1
     swiper:
       specifier: ^14.2.0
       version: 14.2.0
@@ -174,8 +165,8 @@ catalogs:
       specifier: ^2.0.1
       version: 2.0.1
     '@iconify/utils':
-      specifier: ^3.1.4
-      version: 3.1.4
+      specifier: ^3.1.5
+      version: 3.1.5
     '@iconify/vue':
       specifier: ^5.0.1
       version: 5.0.1
@@ -384,9 +375,6 @@ catalogs:
     '@vuepress/shiki-twoslash':
       specifier: 2.0.0-rc.132
       version: 2.0.0-rc.132
-    vuepress:
-      specifier: 2.0.0-rc.30
-      version: 2.0.0-rc.30
 
 overrides:
   '@bufbuild/protobuf': ^2.14.1
@@ -834,7 +822,7 @@ importers:
     dependencies:
       '@iconify/utils':
         specifier: catalog:prod
-        version: 3.1.4
+        version: 3.1.5
       '@iconify/vue':
         specifier: catalog:prod
         version: 5.0.1(vue@3.5.42(typescript@6.0.3))
@@ -1000,9 +988,6 @@ packages:
 
   '@adobe/css-tools@4.3.3':
     resolution: {integrity: sha512-rE0Pygv0sEZ4vBWHlAgJLGDU7Pm8xoO6p3wsEceb7GYAjScrOHpEo8KK/eVkAcnSM+slAEtXjA2JpdjLp4fJQQ==}
-
-  '@antfu/install-pkg@1.1.0':
-    resolution: {integrity: sha512-MGQsmw10ZyI+EJo45CdSER4zEb+p31LpDAFp2Z3gkSd1yqVZGi0Ebx++YTEMonJy4oChEMLsxZ64j8FH6sSqtQ==}
 
   '@antfu/install-pkg@2.0.1':
     resolution: {integrity: sha512-iCKVQcIC0e3oDxEfs3SHQGW+ovhBMZmS1TE+bTk50rVyMCBmCfClv7Qi3HQKlumYwvjb/iIMeWCW2i67q6kFfQ==}
@@ -1525,8 +1510,8 @@ packages:
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
 
-  '@iconify/utils@3.1.4':
-    resolution: {integrity: sha512-b1S7B1k9ohZ+iNTi2ATxbRYG9fTrJmUT0rc46bvVnNxqNRGW7dyo/vRREwyniI5IRN2RSJHDcm+s3BjWrSAjHw==}
+  '@iconify/utils@3.1.5':
+    resolution: {integrity: sha512-nT+AWyh5caHY6xa0PdLXpUooIz6l7qsT+adqsCTYBfbdn5Q18VrWs2fvuTa7KEoJnPBfEPqWkmAIht0EHtCi2A==}
 
   '@iconify/vue@5.0.1':
     resolution: {integrity: sha512-aumwwooJlFJ5H5qYWB6ZTAyM0C8hpfcSVLB9/a3qnH1GGvIJ+FEbpEs4s/HfErYe/M5qZeLjwmESR5fFm3lXEw==}
@@ -7331,11 +7316,6 @@ snapshots:
 
   '@adobe/css-tools@4.3.3': {}
 
-  '@antfu/install-pkg@1.1.0':
-    dependencies:
-      package-manager-detector: 1.8.0
-      tinyexec: 1.3.0
-
   '@antfu/install-pkg@2.0.1':
     dependencies:
       package-manager-detector: 1.8.0
@@ -7806,9 +7786,9 @@ snapshots:
 
   '@iconify/types@2.0.0': {}
 
-  '@iconify/utils@3.1.4':
+  '@iconify/utils@3.1.5':
     dependencies:
-      '@antfu/install-pkg': 1.1.0
+      '@antfu/install-pkg': 2.0.1
       '@iconify/types': 2.0.0
       import-meta-resolve: 4.2.0
 
@@ -12288,7 +12268,7 @@ snapshots:
   mermaid@11.17.2:
     dependencies:
       '@braintree/sanitize-url': 7.1.2
-      '@iconify/utils': 3.1.4
+      '@iconify/utils': 3.1.5
       '@mermaid-js/parser': 1.2.1
       '@types/d3': 7.4.3
       '@upsetjs/venn.js': 2.0.0

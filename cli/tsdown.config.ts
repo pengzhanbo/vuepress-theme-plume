@@ -1,7 +1,5 @@
-import fs from 'node:fs/promises'
-import path from 'node:path'
-import parse from 'js-tokens'
 import { defineConfig } from 'tsdown'
+import { rewriteBundle } from '../scripts/strip-comments.js'
 
 export default defineConfig({
   entry: ['src/index.ts'],
@@ -11,25 +9,5 @@ export default defineConfig({
   format: 'esm',
   sourcemap: false,
   fixedExtension: false,
-  async onSuccess(config) {
-    for (const name of Object.keys(config.entry)) {
-      const file = path.join(config.outDir, `${name}.js`)
-      const content = strip(await fs.readFile(file, 'utf-8'))
-      await fs.writeFile(file, content)
-    }
-  },
+  onSuccess: rewriteBundle,
 })
-
-function strip(input: string): string {
-  const tokens = parse(input, { jsx: false })
-  let code = ''
-  for (const token of tokens) {
-    if (token.type === 'MultiLineComment' || token.type === 'SingleLineComment') {
-      code += ''
-    }
-    else {
-      code += token.value
-    }
-  }
-  return code
-}

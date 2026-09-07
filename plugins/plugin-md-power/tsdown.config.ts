@@ -1,5 +1,6 @@
 import { defineConfig, type UserConfig } from 'tsdown'
-import { argv } from '../../scripts/tsdown-args'
+import { rewriteBundle } from '../../scripts/strip-comments.js'
+import { argv } from '../../scripts/tsdown-args.js'
 
 const config = [
   { dir: 'composables', files: ['codeRepl.ts', 'pdf.ts', 'rustRepl.ts', 'size.ts', 'audio.ts', 'demo.ts', 'mark.ts', 'decrypt.ts', 'qrcode.ts'] },
@@ -22,6 +23,7 @@ export default defineConfig((cli) => {
     format: 'esm',
     clean: !cli.watch,
     fixedExtension: false,
+    onSuccess: rewriteBundle,
   }
 
   const options: UserConfig[] = []

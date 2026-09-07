@@ -65,6 +65,7 @@
     "markdown-it": "catalog:dev",
     "memfs": "catalog:dev",
     "nano-staged": "catalog:dev",
+    "oxfmt": "catalog:dev",
     "postcss": "catalog:dev",
     "rimraf": "catalog:dev",
     "sass-embedded": "catalog:peer",

@@ -1,13 +1,11 @@
 import type { CanIUseOptions } from '../src/shared/index.js'
 import MarkdownIt from 'markdown-it'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { caniusePlugin, legacyCaniuse } from '../src/node/embed/caniuse.js'
 
-beforeEach(() => {
-  vi.mock('../src/node/utils/nanoid.js', () => ({
-    nanoid: vi.fn(() => 'test-id'),
-  }))
-})
+vi.mock('../src/node/utils/nanoid.js', () => ({
+  nanoid: vi.fn(() => 'test-id'),
+}))
 
 function createMarkdown(options?: CanIUseOptions) {
   return MarkdownIt().use((md) => {

@@ -100,6 +100,19 @@ docs:
     url: https://www.herodotus.cn
     repo: https://gitee.com/dante-compass/herodotus-documents
     preview: https://www.herodotus.cn/plume-demo.jpg
+  -
+    name: GhostFox
+    desc: 一个提供AI部署与工具的技术文档
+    logo: https://www.ghostosint.com/favicon.ico
+    url: https://www.ghostosint.com
+    preview: https://raw.githubusercontent.com/hackerschina/deskblog/refs/heads/main/ghostfox.png
+  -
+    name: 科技酱的技术文档
+    desc: 同一个世界，同一个互联网！
+    logo: https://pic1.imgdb.cn/i/0348ByTnV9pOxa3ZSQgjFg.png
+    url: https://docs.asoe.cn/
+    repo: https://github.com/techjiang/
+    preview: https://pic1.imgdb.cn/i/0348hE4WxcGW5tgHUwfRNl.png
 
 blog:
   -
@@ -276,6 +289,13 @@ blog:
     url: https://www.esyka.top/
     repo: https://github.com/esyka114514
     preview: https://www.esyka.top/images/preview.png
+  -
+    name: 阿凯 Freddy
+    desc: 在工程、设计、产品的交汇处创造价值
+    logo: https://freddyx.pages.dev/logo.jpg
+    url: https://freddyx.pages.dev/
+    repo: https://github.com/1nFrastr/loxi-blog
+    preview: /images/demos/freddyx.jpg
 ---
 
 :::important

@@ -764,6 +764,16 @@ Transition animation type for dark/light mode switching. Supports the following 
 - `soft-blur-fade`: Soft blur fade
 - `diamond-reveal`: Diamond reveal
 
+### readAid
+
+- **Type:** `boolean | 'mask' | 'left' | 'right'`
+- **Default:** `false`
+- **Details:** Whether to show reading guide lines (the guide lines help users visually focus on the area where the mouse is located)
+  - `false` - Do not show
+  - `'mask'` - Show mask
+  - `'left'` - Show left guide line
+  - `'right'` - Show right guide line
+
 ### footer
 
 - **Type:** `false | { message: string; copyright: string }`

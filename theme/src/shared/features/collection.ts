@@ -1,3 +1,4 @@
+import type { ThemeReadAid } from '../common/index.js'
 import type { SocialLink } from '../common/social.js'
 import type { AutoFrontmatterOptions } from './autoFrontmatter.js'
 import type { PostsCategoryItem, PostsCoverLayout, PostsCoverStyle } from './posts.js'
@@ -87,6 +88,12 @@ export interface ThemeBaseCollection {
      */
     createTime?: 'short' | 'long' | boolean
   }
+
+  /**
+   * 是否启用阅读助手功能
+   * @default true
+   */
+  readAid?: boolean | ThemeReadAid
 }
 
 /**

@@ -4,6 +4,7 @@ import type { ThemeOutline } from '../../shared/index.js'
 import { useThrottleFn, watchDebounced } from '@vueuse/core'
 import { onMounted, onUnmounted, onUpdated, ref } from 'vue'
 import { onContentUpdated, useRouter } from 'vuepress/client'
+import { getAbsoluteTop } from '../utils/index.js'
 import { useData } from './data.js'
 import { useLayout } from './layout.js'
 
@@ -444,28 +445,6 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
   onUnmounted(() => {
     window.removeEventListener('scroll', onScroll)
   })
-}
-
-/**
- * Get the absolute top position of an element
- * Accounts for fixed positioned ancestors
- *
- * 获取元素的绝对顶部位置
- * 考虑固定定位的祖先元素
- *
- * @param element - Element to measure / 要测量的元素
- * @returns Absolute top position or NaN / 绝对顶部位置或 NaN
- */
-function getAbsoluteTop(element: HTMLElement): number {
-  let offsetTop = 0
-  while (element && element !== document.body) {
-    if (window.getComputedStyle(element).position === 'fixed') {
-      return element.offsetTop
-    }
-    offsetTop += element.offsetTop
-    element = element.offsetParent as HTMLElement
-  }
-  return element ? offsetTop : Number.NaN
 }
 
 /**

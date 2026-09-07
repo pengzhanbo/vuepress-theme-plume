@@ -1327,7 +1327,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="mountRef" :class="`home-hero-effect-liquid-ether ${className || ''}`" :style="style" />
+  <div ref="mountRef" class="home-hero-effect-liquid-ether" :class="className" :style="style" />
 </template>
 
 <style scoped>

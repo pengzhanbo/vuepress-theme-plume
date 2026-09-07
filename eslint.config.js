@@ -8,6 +8,7 @@ export default config({
   ignores: [
     'lib',
     'skills',
+    'assets',
     'docs/snippet/code-block.snippet.md',
     'docs/snippet/whitespace.snippet.md',
     'docs/en/guide/markdown/obsidian.md',

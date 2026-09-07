@@ -310,7 +310,7 @@ watch(
 </script>
 
 <template>
-  <div ref="ctnDom" :class="`home-hero-effect-orb ${className}`" />
+  <div ref="ctnDom" class="home-hero-effect-orb" :class="className" />
 </template>
 
 <style scoped>

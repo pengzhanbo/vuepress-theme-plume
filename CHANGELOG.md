@@ -1,3 +1,55 @@
+# [1.0.0-rc.209](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.208...v1.0.0-rc.209) (2026-09-07)
+
+### Features
+
+* update vuepress to `2.0.0-rc.31` ([8e1fc04](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8e1fc0458255b257793941561dd4890c5905b858))
+
+# [1.0.0-rc.208](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.207...v1.0.0-rc.208) (2026-09-03)
+
+
+### Bug Fixes
+
+* **plugin-md-power:** fix`tabs` container not rendering correctly， close [#965](https://github.com/pengzhanbo/vuepress-theme-plume/issues/965) ([#966](https://github.com/pengzhanbo/vuepress-theme-plume/issues/966)) ([70f3314](https://github.com/pengzhanbo/vuepress-theme-plume/commit/70f33141936a2f848ccf1200419f56c5a11e72b6))
+
+
+### Performance Improvements
+
+* **theme:** improve read-aid elements query ([7e36d2e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7e36d2eacfd9be8f6e6c7203303a2b23eac9d55c))
+
+# [1.0.0-rc.207](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.206...v1.0.0-rc.207) (2026-08-31)
+
+
+### Bug Fixes
+
+* **theme:** fix decrypted content not rendering correctly ([6de15a3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/6de15a34573aa44131be0a6da7e465ad4544864a))
+
+# [1.0.0-rc.206](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.205...v1.0.0-rc.206) (2026-08-31)
+
+
+### Bug Fixes
+
+* **theme:** fix decrypted content not rendering correctly ([#958](https://github.com/pengzhanbo/vuepress-theme-plume/issues/958)) ([0997c70](https://github.com/pengzhanbo/vuepress-theme-plume/commit/0997c7073763df94a660145bf1e5a4fb1b29df3d))
+* **theme:** use the parent directory name as the auto frontmatter title ([#957](https://github.com/pengzhanbo/vuepress-theme-plume/issues/957)) ([3e6fa22](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3e6fa22270146e81e37162f60c97ead32cabd90e))
+
+
+### Features
+
+* **theme:** add read-aid support ([#960](https://github.com/pengzhanbo/vuepress-theme-plume/issues/960)) ([e272559](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e2725599eff039c14e1995bea8762097c3406907))
+
+# [1.0.0-rc.205](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.204...v1.0.0-rc.205) (2026-08-12)
+
+
+### Features
+
+* **plugin-search:** add search status styles ([02613b0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/02613b077cb1dd4dd9b24fa14cf1743385436599))
+* **theme:** add `doc-content-after` slots ([#950](https://github.com/pengzhanbo/vuepress-theme-plume/issues/950)) ([7f148f4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7f148f493dcf48da0c659987d27b10134af8b769))
+
+
+### Performance Improvements
+
+* **plugin-md-power:** improve `resolveAttrs` ([#930](https://github.com/pengzhanbo/vuepress-theme-plume/issues/930)) ([b17ac21](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b17ac2127911f26a44673791ac1b9a32a8f42fd9))
+* **plugin-md-power:** improve embed syntax ([#931](https://github.com/pengzhanbo/vuepress-theme-plume/issues/931)) ([22490ab](https://github.com/pengzhanbo/vuepress-theme-plume/commit/22490abefac8a643e18a0553f2a4bb612481904b))
+
 # [1.0.0-rc.204](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.203...v1.0.0-rc.204) (2026-07-03)
 
 

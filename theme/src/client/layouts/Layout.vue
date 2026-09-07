@@ -116,6 +116,9 @@ registerWatchers()
           <template #doc-content-before>
             <slot name="doc-content-before" />
           </template>
+          <template #doc-content-after>
+            <slot name="doc-content-after" />
+          </template>
           <template #doc-footer-before>
             <slot name="doc-footer-before" />
           </template>

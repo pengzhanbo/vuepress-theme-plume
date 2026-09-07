@@ -7,11 +7,11 @@ interface ArgvOptions {
 }
 
 const rawArgv = process.argv.slice(2)
-const tsupArgv = rawArgv.includes('--') ? rawArgv.slice(rawArgv.indexOf('--') + 1) : []
+const args = rawArgv.includes('--') ? rawArgv.slice(rawArgv.indexOf('--') + 1) : []
 
-const parsed = tsupArgv.length
+const parsed = args.length
   ? parseArgs({
-    args: tsupArgv,
+    args,
     options: {
       client: { type: 'boolean', short: 'c' },
       node: { type: 'boolean', short: 'n' },
@@ -19,7 +19,7 @@ const parsed = tsupArgv.length
     },
     allowPositionals: true,
   }).values
-  : { all: true }
+  : { all: true } as ArgvOptions & { all: boolean }
 
 export const argv: ArgvOptions = {
   client: parsed.client || parsed.all,

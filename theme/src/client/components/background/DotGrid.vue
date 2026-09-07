@@ -313,7 +313,7 @@ watch([() => props.proximity, () => props.baseColor, activeRgb, baseRgb, circleP
 </script>
 
 <template>
-  <section :class="`home-hero-effect-dot-grid ${className}`" :style="style">
+  <section class="home-hero-effect-dot-grid" :class="className" :style="style">
     <div ref="wrapperRef" class="dot-grid-container">
       <canvas ref="canvasRef" />
     </div>

@@ -15,6 +15,8 @@ export default defineThemeConfig({
     organization: 'pengzhanbo',
   },
 
+  readAid: 'left',
+
   transition: { appearance: 'circle-clip' },
 
   social: [

@@ -94,7 +94,7 @@ If you encounter any issues or have suggestions for improvement, please feel fre
 
 `vuepress-theme-plume` is built on the following core technologies:
 
-- **VuePress**: 2.0.0-rc.30 and above
+- **VuePress**: {{ vuepressVersion }} and above
 - **Node.js**: 20.19.0 and above (LTS version recommended)
 - **Vue**: 3.5.0 and above
 
@@ -102,3 +102,7 @@ If you encounter any issues or have suggestions for improvement, please feel fre
 When upgrading VuePress versions, please check whether the theme version is compatible.
 It is recommended to use the `^` semantic version range in `package.json` to receive compatible updates.
 :::
+
+<script setup lang="ts">
+const vuepressVersion = __VUEPRESS_VERSION__
+</script>

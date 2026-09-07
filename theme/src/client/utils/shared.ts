@@ -125,3 +125,25 @@ const gradient: string[] = ['linear-gradient', 'radial-gradient', 'repeating-lin
 export function isGradient(value: string): boolean {
   return gradient.some(v => value.startsWith(v))
 }
+
+/**
+ * Get the absolute top position of an element
+ * Accounts for fixed positioned ancestors
+ *
+ * 获取元素的绝对顶部位置
+ * 考虑固定定位的祖先元素
+ *
+ * @param element - Element to measure / 要测量的元素
+ * @returns Absolute top position or NaN / 绝对顶部位置或 NaN
+ */
+export function getAbsoluteTop(element: HTMLElement): number {
+  let offsetTop = 0
+  while (element && element !== document.body) {
+    if (window.getComputedStyle(element).position === 'fixed') {
+      return element.offsetTop
+    }
+    offsetTop += element.offsetTop
+    element = element.offsetParent as HTMLElement
+  }
+  return element ? offsetTop : Number.NaN
+}

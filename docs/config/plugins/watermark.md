@@ -1,7 +1,7 @@
 ---
 title: 水印
 createTime: 2024/06/17 15:37:18
-permalink: /config/watermark/
+permalink: /config/plugins/watermark/
 ---
 
 ## 概述

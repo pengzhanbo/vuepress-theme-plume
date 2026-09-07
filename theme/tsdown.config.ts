@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
 import { defineConfig, type UserConfig } from 'tsdown'
+import { rewriteBundle } from '../scripts/strip-comments.js'
 import { argv } from '../scripts/tsdown-args'
 
 /** @import {Options} from 'tsdown' */
@@ -31,6 +32,7 @@ export default defineConfig((cli) => {
     format: 'esm',
     clean: !cli.watch,
     fixedExtension: false,
+    onSuccess: rewriteBundle,
   }
   const options: UserConfig[] = []
 

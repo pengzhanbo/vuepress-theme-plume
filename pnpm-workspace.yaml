@@ -1,8 +1,31 @@
-catalogMode: prefer
 ignoreWorkspaceRootCheck: true
-shamefullyHoist: true
-shellEmulator: true
-strictPeerDependencies: false
+catalogMode: prefer
+
+minimumReleaseAgeExcludePrune: true
+minimumReleaseAgeExclude:
+  - '@vuepress/helper@2.0.0-rc.134'
+  - '@vuepress/highlighter-helper@2.0.0-rc.134'
+  - '@vuepress/plugin-cache@2.0.0-rc.134'
+  - '@vuepress/plugin-comment@2.0.0-rc.134'
+  - '@vuepress/plugin-copy-code@2.0.0-rc.134'
+  - '@vuepress/plugin-docsearch@2.0.0-rc.134'
+  - '@vuepress/plugin-git@2.0.0-rc.134'
+  - '@vuepress/plugin-llms@2.0.0-rc.134'
+  - '@vuepress/plugin-markdown-chart@2.0.0-rc.134'
+  - '@vuepress/plugin-markdown-hint@2.0.0-rc.134'
+  - '@vuepress/plugin-markdown-image@2.0.0-rc.134'
+  - '@vuepress/plugin-markdown-include@2.0.0-rc.134'
+  - '@vuepress/plugin-markdown-math@2.0.0-rc.134'
+  - '@vuepress/plugin-nprogress@2.0.0-rc.134'
+  - '@vuepress/plugin-photo-swipe@2.0.0-rc.134'
+  - '@vuepress/plugin-reading-time@2.0.0-rc.134'
+  - '@vuepress/plugin-replace-assets@2.0.0-rc.134'
+  - '@vuepress/plugin-seo@2.0.0-rc.134'
+  - '@vuepress/plugin-shiki@2.0.0-rc.134'
+  - '@vuepress/plugin-sitemap@2.0.0-rc.134'
+  - '@vuepress/plugin-watermark@2.0.0-rc.134'
+  - '@vuepress/shiki-twoslash@2.0.0-rc.134'
+
 trustPolicy: no-downgrade
 trustPolicyExclude:
   - ua-parser-js
@@ -10,6 +33,11 @@ trustPolicyExclude:
   - memfs
   - semver
   - chokidar
+
+strictPeerDependencies: false
+fetchTimeout: 180000
+shamefullyHoist: true
+shellEmulator: true
 
 packages:
   - docs
@@ -19,37 +47,40 @@ packages:
   - examples/*
 
 overrides:
-  '@bufbuild/protobuf': ^2.12.1
-  '@shikijs/core': ^4.2.0
-  '@shikijs/transformers': ^4.2.0
-  '@shikijs/twoslash': ^4.2.0
-  '@xmldom/xmldom': '>=0.9.10'
-  axios: '>=1.18.1'
-  baseline-browser-mapping: ^2.10.40
-  brace-expansion: '>=5.0.7'
+  '@bufbuild/protobuf': ^2.14.1
+  '@shikijs/core': ^4.4.3
+  '@shikijs/transformers': ^4.4.3
+  '@shikijs/twoslash': ^4.4.3
+  '@xmldom/xmldom': '>=0.9.12'
+  axios: '>=1.20.0'
+  baseline-browser-mapping: ^2.11.21
+  brace-expansion: '>=5.0.9'
   chokidar: 'catalog:prod'
-  dompurify: '>=3.4.11'
-  esbuild: '>=0.28.1'
-  fast-uri: '>=4.1.0'
+  dompurify: '>=3.4.14'
+  esbuild: '>=0.28.2'
+  fast-uri: '>=4.1.4'
   follow-redirects: '>=1.16.0'
   form-data: '>=4.0.6'
-  linkify-it: '>=5.0.1'
+  linkify-it: ^5.0.2
   lodash: '>=4.18.1'
   lodash-es: '>=4.18.1'
-  markdown-it: '>=14.2.0'
-  mermaid: '>=11.16.0'
-  postcss: '>=8.5.16'
-  qs: '>=6.15.3'
+  markdown-it: ^14.3.1
+  mermaid: '>=11.17.2'
+  postcss: '>=8.5.28'
+  qs: '>=6.16.0'
   sass-embedded: 'catalog:peer'
-  shell-quote: '>=1.8.4'
+  shell-quote: '>=1.10.0'
   simple-git: '>=3.36.0'
   tmp: '>=0.2.7'
-  undici: '>=7.28.0'
-  uuid: '>=14.0.1'
+  undici: '>=8.10.2'
+  uuid: '>=14.0.2'
   vite: 'catalog:dev'
   vue: 'catalog:prod'
   vue-router: 'catalog:prod'
-  ws: '>=8.21.0'
+  ws: '>=8.21.3'
+
+patchedDependencies:
+  floating-vue: patches/floating-vue.patch
 
 allowBuilds:
   '@parcel/watcher': true
@@ -57,146 +88,145 @@ allowBuilds:
   esbuild: true
   simple-git-hooks: true
 
-patchedDependencies:
-  floating-vue: patches/floating-vue.patch
-
 catalogs:
   dev:
-    '@commitlint/cli': ^21.2.0
-    '@commitlint/config-conventional': ^21.2.0
+    '@commitlint/cli': ^21.2.2
+    '@commitlint/config-conventional': ^21.2.2
     '@lunariajs/core': ^0.1.1
-    '@pengzhanbo/eslint-config-vue': ^2.7.0
-    '@pengzhanbo/stylelint-config': ^2.7.0
-    '@simonwep/pickr': ^1.9.1
+    '@pengzhanbo/eslint-config-vue': ^2.9.2
+    '@pengzhanbo/stylelint-config': ^2.9.2
+    '@simonwep/pickr': ^1.10.1
     '@types/express': ^5.0.6
     '@types/js-yaml': ^4.0.9
     '@types/less': ^3.0.8
-    '@types/markdown-it': ^14.1.2
-    '@types/node': ^26.0.1
+    '@types/markdown-it': ^14.2.0
+    '@types/node': ^26.4.1
     '@types/picomatch': ^4.0.3
     '@types/qrcode': ^1.5.6
     '@types/stylus': ^0.48.43
-    '@types/three': ^0.185.0
+    '@types/three': ^0.185.4
     '@types/webpack-env': ^1.18.8
-    '@vitest/coverage-v8': ^4.1.9
-    bumpp: ^11.1.0
-    conventional-changelog: ^7.2.1
-    conventional-changelog-angular: ^8.3.1
+    '@vitest/coverage-v8': ^5.0.0
+    bumpp: ^12.3.0
+    conventional-changelog: ^8.1.3
+    conventional-changelog-angular: ^9.4.0
     cpx2: ^9.0.0
     cross-env: ^10.1.0
-    eslint: ^10.6.0
+    eslint: ^10.10.0
     http-server: ^14.1.1
-    less: ^4.6.7
+    less: ^4.9.1
     markdown-it: ^14.2.0
-    memfs: ^4.57.8
-    mermaid: ^11.16.0
+    memfs: ^4.71.0
+    mermaid: ^11.17.2
     nano-staged: ^1.0.2
-    postcss: ^8.5.16
+    oxfmt: ^0.66.0
+    postcss: ^8.5.28
     rimraf: ^6.1.3
-    simple-git-hooks: ^2.13.1
-    stylelint: ^17.14.0
+    simple-git-hooks: ^2.14.0
+    stylelint: ^17.15.0
     stylus: ^0.64.0
+    taze: ^21.1.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.22.3
+    tsdown: ^0.23.0
     typescript: ^6.0.3
     unrun: ^0.3.1
-    vite: ^8.1.2
-    vitest: ^4.1.9
-    wait-on: ^9.0.10
+    vite: ^8.2.2
+    vitest: ^5.0.0
+    wait-on: ^9.1.0
   peer:
-    '@iconify/json': ^2.2.494
-    '@mathjax/src': ^4.1.2
+    '@iconify/json': ^2.2.525
+    '@mathjax/src': ^4.1.3
     '@pinyin-pro/data': ^1.3.1
     artplayer: ^5.4.0
-    dashjs: ^5.2.0
+    dashjs: ^5.2.1
     gsap: ^3.15.0
-    hls.js: ^1.6.16
-    mpegts.js: 1.7.3
+    hls.js: ^1.7.2
+    mpegts.js: ^1.8.2
     ogl: ^1.0.11
-    pinyin-pro: ^3.28.1
-    postprocessing: ^6.39.2
-    pyodide: ^314.0.2
-    sass: ^1.101.0
-    sass-embedded: ^1.100.0
-    swiper: ^14.0.1
-    three: ^0.185.0
+    pinyin-pro: ^3.29.3
+    postprocessing: ^6.39.4
+    pyodide: ^314.0.6
+    sass: ^1.104.0
+    sass-embedded: ^1.104.0
+    swiper: ^14.2.0
+    three: ^0.185.1
   prod:
-    '@clack/prompts': ^1.6.0
-    '@floating-ui/vue': ^2.0.0
-    '@iconify/utils': ^3.1.3
+    '@clack/prompts': ^1.7.0
+    '@floating-ui/vue': ^2.0.1
+    '@iconify/utils': ^3.1.6
     '@iconify/vue': ^5.0.1
-    '@mdit/plugin-attrs': ^1.0.1
-    '@mdit/plugin-footnote': ^1.0.1
-    '@mdit/plugin-mark': ^1.0.1
-    '@mdit/plugin-sub': ^1.0.1
-    '@mdit/plugin-sup': ^1.0.1
-    '@mdit/plugin-tab': ^1.0.1
-    '@mdit/plugin-tasklist': ^1.0.1
-    '@pengzhanbo/utils': ^3.7.3
-    '@shikijs/colorized-brackets': ^4.2.0
-    '@shikijs/transformers': ^4.2.0
-    '@vueuse/core': ^14.3.0
-    '@vueuse/integrations': ^14.3.0
+    '@mdit/plugin-attrs': ^1.3.0
+    '@mdit/plugin-footnote': ^1.1.0
+    '@mdit/plugin-mark': ^2.1.0
+    '@mdit/plugin-sub': ^1.1.0
+    '@mdit/plugin-sup': ^1.1.0
+    '@mdit/plugin-tab': ^2.0.0
+    '@mdit/plugin-tasklist': ^1.1.0
+    '@pengzhanbo/utils': ^3.11.0
+    '@shikijs/colorized-brackets': ^4.4.3
+    '@shikijs/transformers': ^4.4.3
+    '@vueuse/core': ^14.4.0
+    '@vueuse/integrations': ^14.4.0
     cac: ^7.0.0
     chart.js: ^4.5.1
     chokidar: 5.0.0
-    dayjs: ^1.11.21
+    dayjs: ^1.11.23
     echarts: ^6.1.0
     eta: ^4.6.0
     flowchart.ts: ^3.0.1
     focus-trap: ^8.2.2
     gray-matter: ^4.0.3
     hash-wasm: ^4.12.0
-    image-size: ^2.0.2
     js-tokens: ^10.0.0
-    js-yaml: ^5.2.0
-    katex: ^0.17.0
+    js-yaml: ^5.4.1
+    katex: ^0.18.6
     local-pkg: ^1.2.1
-    lru-cache: ^11.5.1
+    lru-cache: ^11.5.2
     mark.js: ^8.11.1
-    markdown-it-cjk-friendly: ^2.0.2
+    markdown-it-cjk-friendly: ^3.0.0
     markdown-it-container: ^4.0.0
     markmap-lib: ^0.18.12
     markmap-toolbar: ^0.18.12
     markmap-view: ^0.18.12
     minisearch: ^7.2.0
     nano-spawn: ^2.1.0
-    nanoid: ^5.1.16
+    nanoid: ^6.0.1
     os-locale: ^8.0.0
-    p-map: ^7.0.5
-    package-manager-detector: ^1.7.0
+    p-map: ^7.0.7
+    package-manager-detector: ^1.8.0
     picocolors: ^1.1.1
-    picomatch: ^4.0.4
+    picomatch: ^4.0.7
     qrcode: ^1.5.4
-    rolldown: ^1.1.3
-    shiki: ^4.2.0
+    rolldown: ^1.2.7
+    shiki: ^4.4.3
     sort-package-json: ^4.0.0
-    tm-grammars: ^1.31.15
-    tm-themes: ^1.12.2
+    tiny-image-size: ^1.0.0
+    tm-grammars: ^1.32.13
+    tm-themes: ^1.12.10
     unplugin-vue-components: ^32.1.0
-    vue: ^3.5.39
-    vue-router: ^5.1.0
+    vue: ^3.5.42
+    vue-router: ^5.3.1
   vuepress:
-    '@vuepress/bundler-vite': 2.0.0-rc.30
-    '@vuepress/helper': 2.0.0-rc.131
-    '@vuepress/plugin-cache': 2.0.0-rc.131
-    '@vuepress/plugin-comment': 2.0.0-rc.131
-    '@vuepress/plugin-copy-code': 2.0.0-rc.131
-    '@vuepress/plugin-docsearch': 2.0.0-rc.131
-    '@vuepress/plugin-git': 2.0.0-rc.131
-    '@vuepress/plugin-llms': 2.0.0-rc.131
-    '@vuepress/plugin-markdown-chart': 2.0.0-rc.131
-    '@vuepress/plugin-markdown-hint': 2.0.0-rc.131
-    '@vuepress/plugin-markdown-image': 2.0.0-rc.131
-    '@vuepress/plugin-markdown-include': 2.0.0-rc.131
-    '@vuepress/plugin-markdown-math': 2.0.0-rc.131
-    '@vuepress/plugin-nprogress': 2.0.0-rc.131
-    '@vuepress/plugin-photo-swipe': 2.0.0-rc.131
-    '@vuepress/plugin-reading-time': 2.0.0-rc.131
-    '@vuepress/plugin-replace-assets': 2.0.0-rc.131
-    '@vuepress/plugin-seo': 2.0.0-rc.131
-    '@vuepress/plugin-shiki': 2.0.0-rc.131
-    '@vuepress/plugin-sitemap': 2.0.0-rc.131
-    '@vuepress/plugin-watermark': 2.0.0-rc.131
-    '@vuepress/shiki-twoslash': 2.0.0-rc.131
-    vuepress: 2.0.0-rc.30
+    '@vuepress/bundler-vite': 2.0.0-rc.31
+    '@vuepress/helper': 2.0.0-rc.134
+    '@vuepress/plugin-cache': 2.0.0-rc.134
+    '@vuepress/plugin-comment': 2.0.0-rc.134
+    '@vuepress/plugin-copy-code': 2.0.0-rc.134
+    '@vuepress/plugin-docsearch': 2.0.0-rc.134
+    '@vuepress/plugin-git': 2.0.0-rc.134
+    '@vuepress/plugin-llms': 2.0.0-rc.134
+    '@vuepress/plugin-markdown-chart': 2.0.0-rc.134
+    '@vuepress/plugin-markdown-hint': 2.0.0-rc.134
+    '@vuepress/plugin-markdown-image': 2.0.0-rc.134
+    '@vuepress/plugin-markdown-include': 2.0.0-rc.134
+    '@vuepress/plugin-markdown-math': 2.0.0-rc.134
+    '@vuepress/plugin-nprogress': 2.0.0-rc.134
+    '@vuepress/plugin-photo-swipe': 2.0.0-rc.134
+    '@vuepress/plugin-reading-time': 2.0.0-rc.134
+    '@vuepress/plugin-replace-assets': 2.0.0-rc.134
+    '@vuepress/plugin-seo': 2.0.0-rc.134
+    '@vuepress/plugin-shiki': 2.0.0-rc.134
+    '@vuepress/plugin-sitemap': 2.0.0-rc.134
+    '@vuepress/plugin-watermark': 2.0.0-rc.134
+    '@vuepress/shiki-twoslash': 2.0.0-rc.134
+    vuepress: 2.0.0-rc.31

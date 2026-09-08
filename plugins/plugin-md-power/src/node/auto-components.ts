@@ -23,7 +23,7 @@ export async function autoComponents(
         if (builtInComponents.includes(componentName)) {
           return { from: `vuepress-plugin-md-power/components/VP${componentName}.vue` }
         }
-        return undefined
+        return void 0
       },
     }, ...toArray(resolvers)],
     ...options,

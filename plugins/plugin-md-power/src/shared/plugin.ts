@@ -416,20 +416,9 @@ export interface MarkdownPowerPluginOptions {
   obsidian?: boolean | ObsidianOptions
 
   /**
-   * 自动导入组件
-   *
-   * - key: 组件导入路径
-   * - value: 组件名或组件名数组
-   *
-   * @default {}
-   *
-   * ```ts
-   * {
-   *   'package-name': ['component-name'],
-   * }
-   * ```
+   * 自动导入组件配置
    */
-  components?: ComponentsOptions
+  components?: Omit<ComponentsOptions, 'include' | 'exclude'>
 
   locales?: LocaleConfig<MDPowerLocaleData>
 }

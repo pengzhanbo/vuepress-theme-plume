@@ -12,6 +12,7 @@ const EXCLUDE_LIST: (keyof ThemeOptions)[] = [
   'blog', // @deprecated
   'notes', // @deprecated
   'collections',
+  'components',
   'sidebar',
   'article',
   'changelog',
@@ -61,7 +62,7 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
 
     objectEntries(opt).forEach(([key, value]) => {
       if (!EXCLUDE_LOCALE_LIST.includes(key as keyof ThemeOptions))
-        themeData.locales![locale][key] = value as any
+        themeData.locales![locale][key] = value as never
     })
 
     if (isPlainObject(opt.bulletin)) {

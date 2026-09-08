@@ -18,3 +18,10 @@ export * from './repl.js'
 export * from './replit.js'
 export * from './size.js'
 export * from './video.js'
+
+export type {
+  ComponentResolver,
+  ComponentResolveResult,
+  ComponentResolverFunction,
+  ComponentResolverObject,
+} from 'unplugin-vue-components'

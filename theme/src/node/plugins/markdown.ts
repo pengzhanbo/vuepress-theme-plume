@@ -6,7 +6,7 @@ import type { MarkdownMathPluginOptions } from '@vuepress/plugin-markdown-math'
 import type { PluginConfig } from 'vuepress'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
 import type { MarkdownOptions, ThemeBuiltinPlugins } from '../../shared/index.js'
-import { isPlainObject, objectKeys } from '@pengzhanbo/utils'
+import { isPlainObject, objectKeys, toArray } from '@pengzhanbo/utils'
 import { markdownChartPlugin } from '@vuepress/plugin-markdown-chart'
 import { markdownHintPlugin } from '@vuepress/plugin-markdown-hint'
 import { markdownImagePlugin } from '@vuepress/plugin-markdown-image'
@@ -15,6 +15,7 @@ import { markdownMathPlugin } from '@vuepress/plugin-markdown-math'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
 import { MARKDOWN_CHART_FIELDS, MARKDOWN_POWER_FIELDS } from '../detector/index.js'
 import { getThemeConfig } from '../loadConfig/index.js'
+import { componentResolver } from './components.js'
 
 /**
  * Setup markdown plugins
@@ -33,25 +34,29 @@ export function markdownPlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfi
     injectStyles: false,
   }))
 
-  if (pluginOptions.markdownPower !== false) {
-    const shikiOptions = options.codeHighlighter ?? pluginOptions.shiki
+  const shikiOptions = options.codeHighlighter ?? pluginOptions.shiki
+  const shikiTheme = shikiOptions && 'theme' in shikiOptions
+    ? shikiOptions.theme
+    : shikiOptions && 'themes' in shikiOptions
+      ? shikiOptions.themes
+      : { light: 'vitesse-light', dark: 'vitesse-dark' }
 
-    const shikiTheme = shikiOptions && 'theme' in shikiOptions
-      ? shikiOptions.theme
-      : shikiOptions && 'themes' in shikiOptions
-        ? shikiOptions.themes
-        : { light: 'vitesse-light', dark: 'vitesse-dark' }
-
-    const repl = mdPower?.repl ?? pluginOptions.markdownPower?.repl
-    plugins.push(markdownPowerPlugin({
-      fileTree: true,
-      plot: true,
-      icons: true,
-      ...pluginOptions.markdownPower || {},
-      ...mdPower,
-      repl: repl ? { theme: shikiTheme as any, ...repl } : repl,
-    }))
-  }
+  const disabledMdPowerPlugin = pluginOptions.markdownPower === false
+  const repl = disabledMdPowerPlugin
+    ? false
+    : (mdPower?.repl ?? (pluginOptions.markdownPower || {})?.repl)
+  plugins.push(markdownPowerPlugin({
+    fileTree: !disabledMdPowerPlugin,
+    plot: !disabledMdPowerPlugin,
+    icons: !disabledMdPowerPlugin,
+    ...pluginOptions.markdownPower || {},
+    ...mdPower,
+    repl: repl ? { theme: shikiTheme as any, ...repl } : repl,
+    components: {
+      ...options.components,
+      resolvers: [componentResolver, ...toArray(options.components?.resolvers)],
+    },
+  }))
 
   mdChart ??= pluginOptions.markdownChart
   if (mdChart) {

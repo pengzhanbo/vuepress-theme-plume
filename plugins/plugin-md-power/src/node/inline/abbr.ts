@@ -11,6 +11,7 @@ import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs'
 import type StateCore from 'markdown-it/lib/rules_core/state_core.mjs'
 import type Token from 'markdown-it/lib/token.mjs'
 import { isEmptyObject, objectKeys, objectMap } from '@pengzhanbo/utils'
+import { cleanHtmlAllTag } from '../utils/cleanHtml.js'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 
 /**
@@ -161,7 +162,7 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
 
     const abbreviations = { ...globalAbbreviations, ...localAbbreviations }
     const abbreviationsRegExpText = objectKeys(abbreviations)
-      .map(x => x.substring(1))
+      .map(x => `${x}`.substring(1))
       .sort((a, b) => b.length - a.length)
       .map(escapeRE)
       .join('|')
@@ -246,7 +247,7 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
   md.renderer.rules.abbreviation = (tokens, idx, _, env) => {
     const { content, info } = tokens[idx]
     const rendered = md.renderInline(info, cleanMarkdownEnv(env))
-    const label = rendered.replace(/<[^>]*>/g, '')
+    const label = cleanHtmlAllTag(rendered)
     return `<VPAbbreviation aria-label="${label}">${content}${info ? `<template #tooltip>${rendered}</template>` : ''}</VPAbbreviation>`
   }
 }

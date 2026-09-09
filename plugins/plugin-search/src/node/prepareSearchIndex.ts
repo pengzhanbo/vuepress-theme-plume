@@ -11,10 +11,12 @@
  *
  * @module plugin-search/node/prepareSearchIndex
  */
+
 import type { App, Page } from 'vuepress/core'
 import type { SearchOptions, SearchPluginOptions } from '../shared/index.js'
 import MiniSearch from 'minisearch'
 import pMap from 'p-map'
+import sanitizeHTML from 'sanitize-html'
 import { colors, logger } from 'vuepress/utils'
 
 /**
@@ -412,7 +414,7 @@ function getSearchableText(content: string) {
 function clearHtmlTags(str: string) {
   str = str.replace(ignoreHeadingRegex, '')
   // 移除其他所有HTML标签
-  return str.replace(/<[^>]*>/g, '')
+  return sanitizeHTML(str, { allowedTags: [], allowedAttributes: {} })
 }
 
 /**

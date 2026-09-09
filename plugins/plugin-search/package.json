@@ -48,6 +48,7 @@
     "mark.js": "catalog:prod",
     "minisearch": "catalog:prod",
     "p-map": "catalog:prod",
+    "sanitize-html": "catalog:prod",
     "vue": "catalog:prod"
   },
   "publishConfig": {

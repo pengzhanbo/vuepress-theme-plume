@@ -79,6 +79,7 @@ catalogs:
     '@types/node': ^26.4.1
     '@types/picomatch': ^4.0.3
     '@types/qrcode': ^1.5.6
+    '@types/sanitize-html': ^2.16.1
     '@types/stylus': ^0.48.43
     '@types/three': ^0.185.4
     '@types/webpack-env': ^1.18.8
@@ -174,6 +175,7 @@ catalogs:
     picomatch: ^4.0.7
     qrcode: ^1.5.4
     rolldown: ^1.2.7
+    sanitize-html: ^2.17.7
     shiki: ^4.4.3
     sort-package-json: ^4.0.0
     tiny-image-size: ^1.0.0

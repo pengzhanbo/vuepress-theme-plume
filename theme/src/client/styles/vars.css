@@ -280,10 +280,12 @@
   font-optical-sizing: auto;
 }
 
-:root:where(:lang(zh)),
-:root:where(:lang(zh-CN)) {
+[lang]:where(:lang(zh)) {
   --vp-font-family-base:
-    "Inter4CJK",
+    "Inter Core",
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans CJK SC",
     -apple-system,
     blinkmacsystemfont,
     sans-serif,
@@ -293,7 +295,38 @@
     "Noto Color Emoji";
 }
 
-[lang]:where(:lang(zh, zh-CN)) {
+[lang]:where(:lang(ja)) {
+  --vp-font-family-base:
+    "Inter Core",
+    "Hiragino Sans",
+    "Meiryo",
+    "Yu Gothic",
+    "Noto Sans CJK JP",
+    -apple-system,
+    blinkmacsystemfont,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
+
+[lang]:where(:lang(ko)) {
+  --vp-font-family-base:
+    "Inter Core",
+    "Apple SD Gothic Neo",
+    "Malgun Gothic",
+    "Noto Sans CJK KR",
+    -apple-system,
+    blinkmacsystemfont,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
+
+[lang]:where(:lang(zh), :lang(ja), :lang(ko)) {
   h1,
   h2,
   h3,

@@ -182,15 +182,24 @@ catalogs:
     less:
       specifier: ^4.9.1
       version: 4.9.1
+    markdown-it:
+      specifier: ^14.2.0
+      version: 14.3.1
     memfs:
       specifier: ^4.71.0
       version: 4.71.0
+    mermaid:
+      specifier: ^11.17.2
+      version: 11.17.2
     nano-staged:
       specifier: ^1.0.2
       version: 1.0.2
     oxfmt:
       specifier: ^0.66.0
       version: 0.66.0
+    postcss:
+      specifier: ^8.5.28
+      version: 8.5.28
     rimraf:
       specifier: ^6.1.3
       version: 6.1.3
@@ -264,6 +273,9 @@ catalogs:
     sass:
       specifier: ^1.104.0
       version: 1.104.0
+    sass-embedded:
+      specifier: ^1.104.0
+      version: 1.104.0
     swiper:
       specifier: ^14.2.0
       version: 14.2.0
@@ -291,7 +303,7 @@ catalogs:
       version: 1.1.0
     '@mdit/plugin-mark':
       specifier: ^2.1.0
-      version: 2.1.0
+      version: 2.1.1
     '@mdit/plugin-sub':
       specifier: ^1.1.0
       version: 1.1.0
@@ -310,6 +322,9 @@ catalogs:
     '@shikijs/colorized-brackets':
       specifier: ^4.4.3
       version: 4.4.3
+    '@shikijs/transformers':
+      specifier: ^4.4.3
+      version: 4.4.3
     '@vueuse/core':
       specifier: ^14.4.0
       version: 14.4.0
@@ -322,6 +337,9 @@ catalogs:
     chart.js:
       specifier: ^4.5.1
       version: 4.5.1
+    chokidar:
+      specifier: 5.0.0
+      version: 5.0.0
     dayjs:
       specifier: ^1.11.23
       version: 1.11.23
@@ -424,6 +442,12 @@ catalogs:
     unplugin-vue-components:
       specifier: ^32.1.0
       version: 32.1.0
+    vue:
+      specifier: ^3.5.42
+      version: 3.5.42
+    vue-router:
+      specifier: ^5.3.1
+      version: 5.3.1
   vuepress:
     '@vuepress/bundler-vite':
       specifier: 2.0.0-rc.31
@@ -599,7 +623,7 @@ importers:
         specifier: catalog:dev
         version: 4.9.1(supports-color@10.2.2)
       markdown-it:
-        specifier: ^14.3.1
+        specifier: catalog:dev
         version: 14.3.1
       memfs:
         specifier: catalog:dev
@@ -611,13 +635,13 @@ importers:
         specifier: catalog:dev
         version: 0.66.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: catalog:dev
         version: 8.5.28
       rimraf:
         specifier: catalog:dev
         version: 6.1.3
       sass-embedded:
-        specifier: ^1.104.0
+        specifier: catalog:peer
         version: 1.104.0
       simple-git-hooks:
         specifier: catalog:dev
@@ -716,7 +740,7 @@ importers:
         specifier: catalog:prod
         version: 0.18.12(markmap-common@0.18.9)
       mermaid:
-        specifier: '>=11.17.2'
+        specifier: catalog:dev
         version: 11.17.2
       postprocessing:
         specifier: catalog:peer
@@ -728,7 +752,7 @@ importers:
         specifier: catalog:peer
         version: 0.185.1
       vue:
-        specifier: ^3.5.42
+        specifier: catalog:prod
         version: 3.5.42(typescript@6.0.3)
       vuepress:
         specifier: catalog:vuepress
@@ -753,7 +777,7 @@ importers:
         specifier: catalog:dev
         version: 14.1.1(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       vue:
-        specifier: ^3.5.42
+        specifier: catalog:prod
         version: 3.5.42(typescript@6.0.3)
       vuepress:
         specifier: catalog:vuepress
@@ -774,7 +798,7 @@ importers:
         specifier: catalog:dev
         version: 14.1.1(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       vue:
-        specifier: ^3.5.42
+        specifier: catalog:prod
         version: 3.5.42(typescript@6.0.3)
       vuepress:
         specifier: catalog:vuepress
@@ -802,7 +826,7 @@ importers:
         version: 1.1.0(markdown-it@14.3.1)
       '@mdit/plugin-mark':
         specifier: catalog:prod
-        version: 2.1.0(markdown-it@14.3.1)
+        version: 2.1.1(markdown-it@14.3.1)
       '@mdit/plugin-sub':
         specifier: catalog:prod
         version: 1.1.0(markdown-it@14.3.1)
@@ -825,7 +849,7 @@ importers:
         specifier: catalog:prod
         version: 14.4.0(vue@3.5.42(typescript@6.0.3))
       chokidar:
-        specifier: 5.0.0
+        specifier: catalog:prod
         version: 5.0.0
       gray-matter:
         specifier: catalog:prod
@@ -840,7 +864,7 @@ importers:
         specifier: catalog:prod
         version: 11.5.2
       markdown-it:
-        specifier: ^14.3.1
+        specifier: catalog:dev
         version: 14.3.1
       markdown-it-cjk-friendly:
         specifier: catalog:prod
@@ -867,7 +891,7 @@ importers:
         specifier: catalog:peer
         version: 1.104.0
       sass-embedded:
-        specifier: ^1.104.0
+        specifier: catalog:peer
         version: 1.104.0
       shiki:
         specifier: catalog:prod
@@ -888,7 +912,7 @@ importers:
         specifier: catalog:prod
         version: 32.1.0(vue@3.5.42(typescript@6.0.3))
       vue:
-        specifier: ^3.5.42
+        specifier: catalog:prod
         version: 3.5.42(typescript@6.0.3)
       vuepress:
         specifier: catalog:vuepress
@@ -922,7 +946,7 @@ importers:
         specifier: catalog:prod
         version: 14.4.0(axios@1.20.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(change-case@5.4.4)(focus-trap@8.2.2)(qrcode@1.5.4)(vue@3.5.42(typescript@6.0.3))
       chokidar:
-        specifier: 5.0.0
+        specifier: catalog:prod
         version: 5.0.0
       focus-trap:
         specifier: catalog:prod
@@ -937,7 +961,7 @@ importers:
         specifier: catalog:prod
         version: 7.0.7
       vue:
-        specifier: ^3.5.42
+        specifier: catalog:prod
         version: 3.5.42(typescript@6.0.3)
       vuepress:
         specifier: catalog:vuepress
@@ -961,7 +985,7 @@ importers:
         specifier: catalog:prod
         version: 4.4.3
       '@shikijs/transformers':
-        specifier: ^4.4.3
+        specifier: catalog:prod
         version: 4.4.3
       '@vuepress-plume/plugin-fonts':
         specifier: workspace:*
@@ -1036,7 +1060,7 @@ importers:
         specifier: catalog:prod
         version: 14.4.0(vue@3.5.42(typescript@6.0.3))
       chokidar:
-        specifier: 5.0.0
+        specifier: catalog:prod
         version: 5.0.0
       dayjs:
         specifier: catalog:prod
@@ -1072,10 +1096,10 @@ importers:
         specifier: catalog:prod
         version: 1.2.7
       vue:
-        specifier: ^3.5.42
+        specifier: catalog:prod
         version: 3.5.42(typescript@6.0.3)
       vue-router:
-        specifier: ^5.3.1
+        specifier: catalog:prod
         version: 5.3.1(@vue/compiler-sfc@3.5.42)(rolldown@1.2.7)(vite@8.2.2(@types/node@26.4.1)(jiti@2.7.0)(less@4.9.1(supports-color@10.2.2))(sass-embedded@1.104.0)(sass@1.104.0)(stylus@0.64.0(supports-color@10.2.2))(yaml@2.9.0))(vue@3.5.42(typescript@6.0.3))
       vuepress:
         specifier: catalog:vuepress
@@ -1691,6 +1715,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/helper@1.1.1':
+    resolution: {integrity: sha512-Rrl14ZjFerzfAqCt0zxAWbPgRpsumgm9iBLrCVE05WS8dM6v/LnF1ppPFVnRz1F7fAaxn0kTFOlYwzcY+kRsHQ==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^14.3.1
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-alert@2.0.0':
     resolution: {integrity: sha512-38dF7mUEGxeK/ez0FTU/FTUXpZNt5o9hhX1QSXZ8IkuBEA+Q7f0JUqX6tp1Ng8ecWVN2c95bGltSN1tar5R1mg==}
     engines: {node: '>=22'}
@@ -1778,6 +1811,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/plugin-inline-rule@2.2.1':
+    resolution: {integrity: sha512-abU4gF31O9qhh0SGGfD/maoI8vPCt1oZ1VSho/TAs21eKeEUqQjXfgv2Y9dW7SY8zeZbHdxHze1bzvnOh1Rk2g==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^14.3.1
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-katex-slim@1.1.0':
     resolution: {integrity: sha512-WqobvAhteNibPCj7zMgI2GyipRvxn8ubSu0w4mFCtpghFNWl4DV8MWojsIGhLzS0YL1lHERzIp5DOxKU+Yss8g==}
     engines: {node: '>=22'}
@@ -1790,8 +1832,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-mark@2.1.0':
-    resolution: {integrity: sha512-1SImTKhs1TeFRRqXyuPamliB/uUCLLX2oHHp+ml/7GZEFxxbCPAmaofLUFDM7QR+q3bbMJcuhXq5AQGA88ugHA==}
+  '@mdit/plugin-mark@2.1.1':
+    resolution: {integrity: sha512-GGc83glYiPWJYKxkS69btqDKb5MabiGo+WwgRWKaDimZjsNiZrvFyIF10zUXAEmYLBPMrY3a6TCBKaMCyp3l/w==}
     engines: {node: '>=22'}
     peerDependencies:
       markdown-it: ^14.3.1
@@ -7960,6 +8002,10 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.3.1
 
+  '@mdit/helper@1.1.1(markdown-it@14.3.1)':
+    optionalDependencies:
+      markdown-it: 14.3.1
+
   '@mdit/plugin-alert@2.0.0(markdown-it@14.3.1)':
     dependencies:
       '@mdit/helper': 1.1.0(markdown-it@14.3.1)
@@ -8020,6 +8066,12 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.3.1
 
+  '@mdit/plugin-inline-rule@2.2.1(markdown-it@14.3.1)':
+    dependencies:
+      '@mdit/helper': 1.1.1(markdown-it@14.3.1)
+    optionalDependencies:
+      markdown-it: 14.3.1
+
   '@mdit/plugin-katex-slim@1.1.0(katex@0.18.6)(markdown-it@14.3.1)':
     dependencies:
       '@mdit/helper': 1.1.0(markdown-it@14.3.1)
@@ -8028,10 +8080,10 @@ snapshots:
       katex: 0.18.6
       markdown-it: 14.3.1
 
-  '@mdit/plugin-mark@2.1.0(markdown-it@14.3.1)':
+  '@mdit/plugin-mark@2.1.1(markdown-it@14.3.1)':
     dependencies:
-      '@mdit/helper': 1.1.0(markdown-it@14.3.1)
-      '@mdit/plugin-inline-rule': 2.2.0(markdown-it@14.3.1)
+      '@mdit/helper': 1.1.1(markdown-it@14.3.1)
+      '@mdit/plugin-inline-rule': 2.2.1(markdown-it@14.3.1)
     optionalDependencies:
       markdown-it: 14.3.1
 

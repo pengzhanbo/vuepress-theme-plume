@@ -13,7 +13,7 @@ export const tools: ThemeCollectionItem = defineCollection({
       items: [
         'custom-theme',
         'home-hero-tint-plate',
-        'caniuse',
+        'v-caniuse',
       ],
     },
   ],

@@ -8,11 +8,11 @@ tags:
   - Quick Start
 ---
 
-VuePress fully supports [Standard Markdown Syntax](../markdown/basic.md),
+VuePress fully supports [Standard Markdown Syntax](../markdown/v-basic.md),
 while also allowing page metadata (such as title, creation time, etc.) to be defined via Frontmatter
 in [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) format.
 
-Additionally, the theme provides extensive [Markdown Extended Syntax](../markdown/extensions.md).
+Additionally, the theme provides extensive [Markdown Extended Syntax](../markdown/v-extensions.md).
 You can not only write HTML directly in Markdown but also use Vue components to enhance content expressiveness.
 
 ## Frontmatter Page Configuration
@@ -35,7 +35,7 @@ Page content starts after the second `---`.
 Frontmatter is a configuration block using
 [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) format, located at the top of a Markdown file and delimited by `---`.
 
-It is recommended to read the [Frontmatter Detailed Guide](../auto-frontmatter.md) for the complete syntax specification.
+It is recommended to read the [Frontmatter Detailed Guide](../../blog/4.Tutorials/frontmatter.md) for the complete syntax specification.
 :::
 
 ## Automatic Frontmatter Generation
@@ -158,12 +158,12 @@ The theme automatically generates category pages or sidebars based on the direct
 ### File Naming Convention
 
 File naming follows the same rules as the [Directory Naming Convention](#directory-naming-convention),
-providing sorting basis for the [auto-generated sidebar](../../config/notes.md#auto-generated-sidebar) in the notes feature.
+providing sorting basis for the [auto-generated sidebar](../../config/collections.md#auto-generated-sidebar) in the notes feature.
 
 ## Start Writing
 
 You can now create Markdown files under the `docs` directory to start writing.
-For a complete description of Markdown extension features, please refer to the [Extended Syntax Documentation](../markdown/extensions.md).
+For a complete description of Markdown extension features, please refer to the [Extended Syntax Documentation](../markdown/v-extensions.md).
 
 Since the theme automatically generates article titles by default,
 the main content should start with level 2 headings `## Level 2 Heading`.

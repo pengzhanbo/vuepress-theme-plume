@@ -1,9 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`codeSandboxPlugin > should not work 1`] = `
-"<JSFiddleViewer width="100%" height="400px" source="" title="JS Fiddle" tab="js,css,html,result" /><p>@[jsfiddle]xxx</p>
+"<VPJsFiddle width="100%" height="400px" source="" title="JS Fiddle" tab="js,css,html,result" /><p>@[jsfiddle]xxx</p>
 <p>@[jsfiddle](</p>
 "
 `;
 
-exports[`codeSandboxPlugin > should work 1`] = `"<JSFiddleViewer width="100%" height="400px" source="user/id" title="JS Fiddle" tab="js,css,html,result" /><JSFiddleViewer width="100%" height="400px" source="user/id" title="JS Fiddle" tab="js,css,html,result" /><JSFiddleViewer width="100%" height="400px" source="user/id" title="JS Fiddle" tab="js,css,html,result" theme="light" /><JSFiddleViewer width="100%" height="500px" source="user/id" title="xxx" tab="js,css,html,result" theme="dark" />"`;
+exports[`codeSandboxPlugin > should work 1`] = `"<VPJsFiddle width="100%" height="400px" source="user/id" title="JS Fiddle" tab="js,css,html,result" /><VPJsFiddle width="100%" height="400px" source="user/id" title="JS Fiddle" tab="js,css,html,result" /><VPJsFiddle width="100%" height="400px" source="user/id" title="JS Fiddle" tab="js,css,html,result" theme="light" /><VPJsFiddle width="100%" height="500px" source="user/id" title="xxx" tab="js,css,html,result" theme="dark" />"`;

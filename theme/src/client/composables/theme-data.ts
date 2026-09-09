@@ -4,6 +4,7 @@ import type { ThemeData } from '../../shared/index.js'
 import { themeData as themeDataRaw } from '@internal/themePlumeData'
 import { computed, inject, ref } from 'vue'
 import { clientDataSymbol } from 'vuepress/client'
+import { createSymbol } from '../utils/index.js'
 
 declare const __VUE_HMR_RUNTIME__: Record<string, any>
 
@@ -26,9 +27,7 @@ export type ThemeLocaleDataRef<T extends ThemeData = ThemeData> = ComputedRef<T>
  *
  * 主题本地化数据的注入键
  */
-export const themeLocaleDataSymbol: InjectionKey<ThemeLocaleDataRef> = Symbol(
-  __VUEPRESS_DEV__ ? 'themeLocaleData' : '',
-)
+export const themeLocaleDataSymbol: InjectionKey<ThemeLocaleDataRef> = createSymbol('themeLocaleData')
 
 /**
  * Theme data ref

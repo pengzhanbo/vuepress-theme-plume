@@ -24,6 +24,6 @@ export const jsfiddlePlugin: PluginWithOptions<never> = (md) => {
         theme,
       }
     },
-    content: meta => `<JSFiddleViewer${stringifyAttrs(meta)} />`,
+    content: meta => `<VPJsFiddle${stringifyAttrs(meta)} />`,
   })
 }

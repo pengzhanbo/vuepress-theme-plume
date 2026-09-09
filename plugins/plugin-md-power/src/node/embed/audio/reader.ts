@@ -64,7 +64,7 @@ const audioReader: RuleInline = (state, silent) => {
     const info = state.src.slice(labelStart, labelEnd).trim()
     const attrs = resolveAttrs<AudioReaderTokenMeta>(info)
 
-    const token = state.push('audio_reader', 'AudioReader', 0)
+    const token = state.push('audio_reader', 'VPAudioReader', 0)
     token.info = info
     token.meta = { src: href, ...attrs } as AudioReaderTokenMeta
   }
@@ -86,7 +86,7 @@ export const audioReaderPlugin: PluginWithOptions<never> = (md) => {
     if (meta.volume)
       meta.volume = Number(meta.volume)
 
-    return `<AudioReader${stringifyAttrs(meta)} />`
+    return `<VPAudioReader${stringifyAttrs(meta, false, ['title'])} />`
   }
 
   md.inline.ruler.before('link', 'audio-reader', audioReader)

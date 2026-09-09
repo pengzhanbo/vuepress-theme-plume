@@ -17,12 +17,12 @@ permalink: /guide/features/icon/
 
 - [导航栏图标](../../config/navbar.md#配置)
 - [侧边栏图标](../quick-start/sidebar.md#视觉增强功能)
-- [文件树图标](../../guide/markdown/file-tree.md)
-- [代码分组标题图标](../code/code-tabs.md#分组标题图标)
+- [文件树图标](../../guide/markdown/v-file-tree.md)
+- [代码分组标题图标](../code/v-code-tabs.md#分组标题图标)
 
 提供语法糖和组件支持：
 
-[Markdown 图标语法糖支持](../markdown/icons.md){.read-more}
+[Markdown 图标语法糖支持](../markdown/v-icons.md){.read-more}
 
 [图标组件支持](../components/icon.md){.read-more}
 

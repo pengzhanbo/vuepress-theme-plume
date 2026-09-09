@@ -270,9 +270,9 @@ export function fileTreePlugin(
         filename,
         level,
       }
-      return `<FileTreeNode${stringifyAttrs(props, false, ['filename'])}>
+      return `<VPFileTreeNode${stringifyAttrs(props, false, ['filename'])}>
 ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children, meta) : ''}
-</FileTreeNode>`
+</VPFileTreeNode>`
     }).join('\n')
 
   // Register custom container syntax plugin

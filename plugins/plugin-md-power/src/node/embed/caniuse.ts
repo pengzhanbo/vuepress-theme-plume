@@ -88,7 +88,7 @@ function resolveCanIUse({ feature, mode, versions }: CanIUseTokenMeta, env: Mark
   const { past, future } = resolveVersions(versions)
   const meta = nanoid()
 
-  return `<CanIUseViewer${stringifyAttrs({ feature, meta, past, future, baseline: mode === 'baseline' })} />`
+  return `<VPCaniuse${stringifyAttrs({ feature, meta, past, future, baseline: mode === 'baseline' })} />`
 }
 
 function resolveVersions(versions: string): { past: number, future: number } {

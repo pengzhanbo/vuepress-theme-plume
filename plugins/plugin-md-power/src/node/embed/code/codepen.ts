@@ -30,6 +30,6 @@ export const codepenPlugin: PluginSimple = (md) => {
         theme,
       }
     },
-    content: meta => `<CodePenViewer${stringifyAttrs(meta)} />`,
+    content: meta => `<VPCodePen${stringifyAttrs(meta)} />`,
   })
 }

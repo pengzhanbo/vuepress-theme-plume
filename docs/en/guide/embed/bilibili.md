@@ -9,7 +9,7 @@ permalink: /en/guide/embed/video/bilibili/
 
 The theme provides the capability to embed Bilibili videos.
 
-This feature is powered by [vuepress-plugin-md-power](../../config/plugins/markdownPower.md).
+This feature is powered by [vuepress-plugin-md-power](../../config/plugins/markdown-power.md).
 
 ## Configuration
 

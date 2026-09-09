@@ -4,6 +4,7 @@ import type { MarkdownPowerPluginOptions } from '../shared/index.js'
 import { isPlainObject } from '@pengzhanbo/utils'
 import { addViteConfig, addViteOptimizeDepsInclude, addViteSsrNoExternal } from '@vuepress/helper'
 import { getFullLocaleConfig } from '@vuepress/helper'
+import { autoComponents } from './auto-components.js'
 import { extendsPageWithCodeTree } from './container/codeTree.js'
 import { containerPlugin } from './container/index.js'
 import { demoPlugin, demoWatcher, extendsPageWithDemo, waitDemoRender } from './demo/index.js'
@@ -74,6 +75,8 @@ export function markdownPowerPlugin(
       alias: (_, isServer) => ({ ...options.encrypt && (!isServer || app.env.isDev) ? { vue: 'vue/dist/vue.esm-bundler.js' } : undefined }),
 
       async extendsBundlerOptions(bundlerOptions, app) {
+        await autoComponents(bundlerOptions, app, options)
+
         if (options.abbr || options.annotation) {
           addViteOptimizeDepsInclude(bundlerOptions, app, ['@floating-ui/vue'])
         }

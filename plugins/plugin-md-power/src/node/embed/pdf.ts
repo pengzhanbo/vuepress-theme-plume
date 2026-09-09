@@ -37,6 +37,6 @@ export const pdfPlugin: PluginWithOptions<never> = (md) => {
         title: path.basename(src || ''),
       }
     },
-    content: meta => `<PDFViewer${stringifyAttrs(meta)} />`,
+    content: meta => `<VPPdf${stringifyAttrs(meta)} />`,
   })
 }

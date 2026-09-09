@@ -697,7 +697,7 @@ const x = 1
     const html = md.render(code)
     expect(html).toContain('filename="…"')
     // Ellipsis should NOT have an icon template
-    const match = html.match(/filename="…"[^>]*>([\s\S]*?)<\/FileTreeNode>/)
+    const match = html.match(/filename="…"[^>]*>([\s\S]*?)<\/VPFileTreeNode>/)
     expect(match?.[1]).not.toContain('#icon')
   })
 
@@ -711,7 +711,7 @@ const x = 1
 `
     const html = md.render(code)
     expect(html).toContain('filename="..."')
-    const match = html.match(/filename="\.\.\."[^^>]*>([\s\S]*?)<\/FileTreeNode>/)
+    const match = html.match(/filename="\.\.\."[^^>]*>([\s\S]*?)<\/VPFileTreeNode>/)
     expect(match?.[1]).not.toContain('#icon')
   })
 

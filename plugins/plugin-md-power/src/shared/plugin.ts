@@ -1,3 +1,4 @@
+import type { Options as ComponentsOptions } from 'unplugin-vue-components'
 import type { LocaleConfig } from 'vuepress'
 import type { CanIUseOptions } from './caniuse.js'
 import type { CodeTabsOptions } from './codeTabs.js'
@@ -413,6 +414,11 @@ export interface MarkdownPowerPluginOptions {
    * @default false
    */
   obsidian?: boolean | ObsidianOptions
+
+  /**
+   * 自动导入组件配置
+   */
+  components?: Omit<ComponentsOptions, 'include' | 'exclude'>
 
   locales?: LocaleConfig<MDPowerLocaleData>
 }

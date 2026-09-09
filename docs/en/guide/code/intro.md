@@ -66,8 +66,8 @@ Thanks to the powerful capabilities of [Shiki](https://shiki.style/), Theme Plum
 [feature support](./features.md) for code blocks, enhancing their expressive power.
 
 Additionally, to facilitate better code demonstrations, Theme Plume provides syntax support for embedding
-[CodePen](../repl/codepen.md), [Js Fiddle](../repl/js-fiddle.md), [Code Sandbox](../repl/code-sandbox.md),
-and [Replit](../repl/replit.md), allowing you to easily embed code demonstrations.
+[CodePen](../repl/v-codepen.md), [Js Fiddle](../repl/v-js-fiddle.md), [Code Sandbox](../repl/v-code-sandbox.md),
+and [Replit](../repl/v-replit.md), allowing you to easily embed code demonstrations.
 
 ## Examples
 

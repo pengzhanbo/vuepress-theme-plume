@@ -9,7 +9,7 @@ permalink: /en/guide/components/icon/
 
 The `<Icon />` component loads icons from different icon libraries based on the `markdown.icon` configuration.
 
-[The theme also provides markdown syntax support. Click to learn more](../markdown/icons.md){.read-more}
+[The theme also provides markdown syntax support. Click to learn more](../markdown/v-icons.md){.read-more}
 
 ## Configuration
 

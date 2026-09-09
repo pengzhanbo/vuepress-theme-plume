@@ -9,7 +9,7 @@ permalink: /guide/components/icon/
 
 图标组件 `<Icon />`，根据 `markdown.icon` 配置，从不同的图标库加载图标。
 
-[主题还提供了 markdown 语法支持，点击了解更多](../markdown/icons.md){.read-more}
+[主题还提供了 markdown 语法支持，点击了解更多](../markdown/v-icons.md){.read-more}
 
 ## 配置
 

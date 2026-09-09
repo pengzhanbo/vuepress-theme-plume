@@ -8,9 +8,10 @@ tags:
   - 快速开始
 ---
 
-VuePress 完整支持 [标准 Markdown 语法](../markdown/basic.md)，同时允许通过 [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) 格式的 Frontmatter 定义页面元数据（如标题、创建时间等）。
+VuePress 完整支持 [标准 Markdown 语法](../markdown/v-basic.md)，
+同时允许通过 [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) 格式的 Frontmatter 定义页面元数据（如标题、创建时间等）。
 
-此外，主题还提供了丰富的 [Markdown 扩展语法](../markdown/extensions.md)，您不仅可以在 Markdown 中直接编写 HTML，还能使用 Vue 组件来增强内容表现力。
+此外，主题还提供了丰富的 [Markdown 扩展语法](../markdown/v-extensions.md)，您不仅可以在 Markdown 中直接编写 HTML，还能使用 Vue 组件来增强内容表现力。
 
 ## Frontmatter 页面配置
 
@@ -30,7 +31,7 @@ permalink: /article/9eh4d6ao/
 ::: details 什么是 Frontmatter？
 Frontmatter 是采用 [YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) 格式的配置区块，位于 Markdown 文件顶部，通过 `---` 分隔符界定。
 
-推荐阅读 [Frontmatter 详解](../../../../4.教程/frontmatter.md) 了解完整语法规范。
+推荐阅读 [Frontmatter 详解](../../blog/4.教程/frontmatter.md) 了解完整语法规范。
 :::
 
 ## 自动生成 Frontmatter
@@ -148,11 +149,11 @@ const dir = /\d+\.[\s\S]+/
 
 ### 文件命名约定
 
-文件命名遵循与[文件夹命名约定](#文件夹命名约定)相同的规则，为笔记功能的[自动生成侧边栏](../../config/notes.md#自动生成侧边栏)提供排序依据。
+文件命名遵循与[文件夹命名约定](#文件夹命名约定)相同的规则，为笔记功能的[自动生成侧边栏](../../config/collections.md#自动生成侧边栏)提供排序依据。
 
 ## 开始写作
 
-现在您可以在 `docs` 目录下创建 Markdown 文件开始写作了。关于 Markdown 扩展功能的完整说明，请参阅[扩展语法文档](../markdown/extensions.md)。
+现在您可以在 `docs` 目录下创建 Markdown 文件开始写作了。关于 Markdown 扩展功能的完整说明，请参阅[扩展语法文档](../markdown/v-extensions.md)。
 
 由于主题默认自动生成文章标题，正文内容的标题应从二级标题 `## 二级标题` 开始。如果禁用了 `autoFrontmatter.title`，则使用一级标题 `# 一级标题` 开始。
 

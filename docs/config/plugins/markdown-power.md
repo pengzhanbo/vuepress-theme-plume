@@ -57,7 +57,7 @@ __语法:__
 @[pdf](url)
 ```
 
-请查看 [完整使用文档](../../guide/embed/pdf.md)
+请查看 [完整使用文档](../../guide/embed/v-pdf.md)
 
 ### iconify 图标
 
@@ -71,7 +71,7 @@ __语法:__
 ::collect:name::
 ```
 
-请查看 [完整使用文档](../../guide/markdown/icons.md)
+请查看 [完整使用文档](../../guide/markdown/v-icons.md)
 
 `icon` 选项支持 `boolean | IconOptions`。设置为 `true` 时使用默认配置（iconify 提供商）。
 
@@ -152,7 +152,7 @@ __语法:__
 @[codepen](user/slash)
 ```
 
-请查看 [完整使用文档](../../guide/repl/codepen.md)
+请查看 [完整使用文档](../../guide/repl/v-codepen.md)
 
 ### codeSandbox 代码演示
 
@@ -164,7 +164,7 @@ __语法:__
 @[codesandbox](id)
 ```
 
-请查看 [完整使用文档](../../guide/repl/code-sandbox.md)
+请查看 [完整使用文档](../../guide/repl/v-code-sandbox.md)
 
 ### jsfiddle 代码演示
 
@@ -176,7 +176,7 @@ __语法:__
 @[jsfiddle](id)
 ```
 
-请查看 [完整使用文档](../../guide/repl/js-fiddle.md)
+请查看 [完整使用文档](../../guide/repl/v-js-fiddle.md)
 
 ### caniuse 浏览器支持
 
@@ -188,7 +188,7 @@ __语法:__
 @[caniuse](feature)
 ```
 
-请查看 [完整使用文档](../../guide/markdown/caniuse.md)
+请查看 [完整使用文档](../../guide/markdown/v-caniuse.md)
 
 ### Repl 代码演示容器
 
@@ -259,7 +259,7 @@ __语法:__
 !!content!!
 ```
 
-请查看 [完整使用文档](../../guide/markdown/plot.md)
+请查看 [完整使用文档](../../guide/markdown/v-plot.md)
 
 ### 文件树
 
@@ -280,7 +280,7 @@ __语法:__
 :::
 ```
 
-请查看 [完整使用文档](../../guide/markdown/file-tree.md)
+请查看 [完整使用文档](../../guide/markdown/v-file-tree.md)
 
 ### 图片尺寸
 

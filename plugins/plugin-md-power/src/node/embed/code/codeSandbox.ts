@@ -31,6 +31,6 @@ export const codeSandboxPlugin: PluginSimple = (md) => {
         filepath,
       }
     },
-    content: meta => `<CodeSandboxViewer${stringifyAttrs(meta)} />`,
+    content: meta => `<VPCodeSandbox${stringifyAttrs(meta)} />`,
   })
 }

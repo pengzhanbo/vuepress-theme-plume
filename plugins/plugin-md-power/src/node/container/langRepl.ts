@@ -50,9 +50,9 @@ export async function langReplPlugin(app: App, md: markdownIt, {
     before(info) {
       const attrs = resolveAttrs<CodeReplMeta>(info)
       const { editable, title } = attrs
-      return `<CodeRepl${stringifyAttrs({ editable, title: title || `${lang} playground` })}>`
+      return `<VPCodeRepl${stringifyAttrs({ editable, title: title || `${lang} playground` })}>`
     },
-    after: () => '</CodeRepl>',
+    after: () => '</VPCodeRepl>',
   })
 
   if (kotlin)

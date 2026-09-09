@@ -1,7 +1,7 @@
 ---
 title: Special Character Fonts
 createTime: 2024/03/06 10:21:47
-permalink: /config/plugins/fonts/
+permalink: /en/config/plugins/fonts/
 ---
 
 ## Overview

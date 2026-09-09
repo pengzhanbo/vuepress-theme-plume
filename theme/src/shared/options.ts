@@ -8,6 +8,7 @@ import type { ReadingTimePluginOptions } from '@vuepress/plugin-reading-time'
 import type { ReplaceAssetsPluginOptions } from '@vuepress/plugin-replace-assets'
 import type { ShikiPluginOptions } from '@vuepress/plugin-shiki'
 import type { WatermarkPluginOptions } from '@vuepress/plugin-watermark'
+import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
 import type { ThemeBaseData, ThemeData } from './data.js'
 import type {
   AutoFrontmatterOptions,
@@ -135,6 +136,23 @@ export interface ThemeFeatureOptions {
     renderIndentGuides?: boolean | Partial<TransformerRenderIndentGuidesOptions>
     colorizedBrackets?: boolean | Partial<Parameters<typeof import('@shikijs/colorized-brackets').transformerColorizedBrackets>[0]>
   }
+
+  /**
+   * 自动导入组件配置
+   *
+   * 使用内置的 [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components) 实现自动导入组件，继承其完整的配置项
+   *
+   * 完整配置请参考 [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components#configuration)
+   *
+   * @example
+   * ```ts
+   * components: {
+   *   dirs: [path.resolve(__dirname, 'components')],
+   * }
+   * ```
+   *
+   */
+  components?: MarkdownPowerPluginOptions['components']
 
   /**
    * Comment configuration

@@ -60,7 +60,7 @@ export function initThemeOptions(app: App, { locales, ...options }: ThemeOptions
 }
 
 function mergeOptions(target: ThemeOptions, source: ThemeOptions): ThemeOptions {
-  const res: ThemeOptions = {}
+  const res = {} satisfies ThemeOptions
   const keys = uniq([...objectKeys(target), ...objectKeys(source)])
   for (const key of keys) {
     if (hasOwn(source, key)) {
@@ -77,5 +77,5 @@ function mergeOptions(target: ThemeOptions, source: ThemeOptions): ThemeOptions 
       res[key] = target[key]
     }
   }
-  return res
+  return res as ThemeOptions
 }

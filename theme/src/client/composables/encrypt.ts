@@ -5,6 +5,7 @@ import { bcryptVerify, md5 } from 'hash-wasm'
 import { computed, inject, provide } from 'vue'
 import { useRoute } from 'vuepress/client'
 import { removeLeadingSlash } from 'vuepress/shared'
+import { createSymbol } from '../utils/index.js'
 import { useData } from './data.js'
 import { useEncryptData } from './encrypt-data.js'
 
@@ -31,9 +32,7 @@ export interface Encrypt {
  *
  * 加密功能的注入键
  */
-export const EncryptSymbol: InjectionKey<Encrypt> = Symbol(
-  __VUEPRESS_DEV__ ? 'Encrypt' : '',
-)
+export const EncryptSymbol: InjectionKey<Encrypt> = createSymbol('docEncrypt')
 
 /**
  * Session storage for encryption state

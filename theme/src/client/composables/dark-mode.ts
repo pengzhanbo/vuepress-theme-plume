@@ -1,6 +1,7 @@
 import type { App, InjectionKey, Ref } from 'vue'
 import { useDark, useEventListener } from '@vueuse/core'
 import { inject, ref } from 'vue'
+import { createSymbol } from '../utils/index.js'
 import { useThemeData } from './theme-data.js'
 
 /**
@@ -15,9 +16,7 @@ type DarkModeRef = Ref<boolean>
  *
  * 暗黑模式的注入键
  */
-export const darkModeSymbol: InjectionKey<DarkModeRef> = Symbol(
-  __VUEPRESS_DEV__ ? 'darkMode' : '',
-)
+export const darkModeSymbol: InjectionKey<DarkModeRef> = createSymbol('darkMode')
 
 /**
  * Check if view transitions are enabled and supported

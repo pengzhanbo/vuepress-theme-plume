@@ -421,6 +421,9 @@ catalogs:
     tm-themes:
       specifier: ^1.12.10
       version: 1.12.10
+    unplugin-vue-components:
+      specifier: ^32.1.0
+      version: 32.1.0
   vuepress:
     '@vuepress/bundler-vite':
       specifier: 2.0.0-rc.31
@@ -881,6 +884,9 @@ importers:
       tm-themes:
         specifier: catalog:prod
         version: 1.12.10
+      unplugin-vue-components:
+        specifier: catalog:prod
+        version: 32.1.0(vue@3.5.42(typescript@6.0.3))
       vue:
         specifier: ^3.5.42
         version: 3.5.42(typescript@6.0.3)
@@ -6884,6 +6890,20 @@ packages:
   unplugin-utils@0.3.2:
     resolution: {integrity: sha512-xVToRh2CTmLk2HnEG7ac4rl1MJTT3RFkpS8B++/SnB0kXvuaavD+n3m/vrzyWQOdJNSZQACnbz01pnppbwV5BA==}
     engines: {node: '>=20.19.0'}
+
+  unplugin-vue-components@32.1.0:
+    resolution: {integrity: sha512-YiUkSxuRjab18XFOrX5VsIxXzccrfmHVGsGeJgSgklb829DQmCy9E4vvDUE4tuvZZdxyFJZX0Oc4TPnnxiiMyg==}
+    engines: {node: '>=20.19.0'}
+    peerDependencies:
+      '@nuxt/kit': ^3.2.2 || ^4.0.0
+      vue: ^3.5.42
+    peerDependenciesMeta:
+      '@nuxt/kit':
+        optional: true
+
+  unplugin@3.0.0:
+    resolution: {integrity: sha512-0Mqk3AT2TZCXWKdcoaufeXNukv2mTrEZExeXlHIOZXdqYoHHr4n51pymnwV8x2BOVxwXbK2HLlI7usrqMpycdg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
 
   unplugin@3.3.0:
     resolution: {integrity: sha512-qa66K+crbfyE6JK10GjvbJeRrOsuC/JpbnHctfyp/i4oBTxWOzJfRZyDiOk1PtErMFRu8JhsU/wPvOdBNWe5Rg==}
@@ -13737,6 +13757,25 @@ snapshots:
     dependencies:
       pathe: 2.0.3
       picomatch: 4.0.7
+
+  unplugin-vue-components@32.1.0(vue@3.5.42(typescript@6.0.3)):
+    dependencies:
+      chokidar: 5.0.0
+      local-pkg: 1.2.1
+      magic-string: 0.30.21
+      mlly: 1.8.2
+      obug: 2.1.4
+      picomatch: 4.0.7
+      tinyglobby: 0.2.17
+      unplugin: 3.0.0
+      unplugin-utils: 0.3.2
+      vue: 3.5.42(typescript@6.0.3)
+
+  unplugin@3.0.0:
+    dependencies:
+      '@jridgewell/remapping': 2.3.5
+      picomatch: 4.0.7
+      webpack-virtual-modules: 0.6.2
 
   unplugin@3.3.0(rolldown@1.2.7)(vite@8.2.2(@types/node@26.4.1)(jiti@2.7.0)(less@4.9.1(supports-color@10.2.2))(sass-embedded@1.104.0)(sass@1.104.0)(stylus@0.64.0(supports-color@10.2.2))(yaml@2.9.0)):
     dependencies:

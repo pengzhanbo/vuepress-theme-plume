@@ -1,31 +1,31 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`langReplPlugin > should work with custom options 1`] = `
-"<CodeRepl title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
+"<VPCodeRepl title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl editable title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl editable title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl editable title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl editable title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</VPCodeRepl><VPCodeRepl title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</VPCodeRepl><VPCodeRepl editable title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</VPCodeRepl><VPCodeRepl title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</VPCodeRepl><VPCodeRepl editable title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
 </code></pre></div></code></pre>
-</CodeRepl>"
+</VPCodeRepl>"
 `;
 
 exports[`langReplPlugin > should work with custom options 2`] = `
@@ -56,31 +56,31 @@ exports[`langReplPlugin > should work with custom options 2`] = `
 `;
 
 exports[`langReplPlugin > should work with custom theme 1`] = `
-"<CodeRepl title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
+"<VPCodeRepl title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl editable title="go playground"><pre><code class="language-go"><div class="language-go"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl editable title="kotlin playground"><pre><code class="language-kotlin"><div class="language-kotlin"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl editable title="rust playground"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
+</VPCodeRepl><VPCodeRepl editable title="title"><pre><code class="language-rust"><div class="language-rust"><pre><code>const a = 1
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</VPCodeRepl><VPCodeRepl title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</VPCodeRepl><VPCodeRepl editable title="python playground"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</VPCodeRepl><VPCodeRepl title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
 </code></pre></div></code></pre>
-</CodeRepl><CodeRepl editable title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
+</VPCodeRepl><VPCodeRepl editable title="title"><pre><code class="language-python"><div class="language-python"><pre><code>hello_world()
 </code></pre></div></code></pre>
-</CodeRepl>"
+</VPCodeRepl>"
 `;
 
 exports[`langReplPlugin > should work with custom theme 2`] = `

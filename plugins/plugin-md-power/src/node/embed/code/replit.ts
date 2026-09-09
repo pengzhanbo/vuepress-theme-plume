@@ -23,6 +23,6 @@ export const replitPlugin: PluginWithOptions<never> = (md) => {
         theme: attrs.theme || '',
       }
     },
-    content: meta => `<ReplitViewer${stringifyAttrs(meta)} />`,
+    content: meta => `<VPReplit${stringifyAttrs(meta)} />`,
   })
 }

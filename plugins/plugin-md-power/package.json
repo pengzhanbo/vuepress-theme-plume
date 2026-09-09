@@ -107,6 +107,7 @@
     "p-map": "catalog:prod",
     "qrcode": "catalog:prod",
     "rolldown": "catalog:prod",
+    "sanitize-html": "catalog:prod",
     "shiki": "catalog:prod",
     "tiny-image-size": "catalog:prod",
     "tm-grammars": "catalog:prod",
@@ -116,6 +117,7 @@
   },
   "devDependencies": {
     "@types/markdown-it": "catalog:dev",
+    "@types/sanitize-html": "catalog:dev",
     "artplayer": "catalog:peer",
     "dashjs": "catalog:peer",
     "hls.js": "catalog:peer",

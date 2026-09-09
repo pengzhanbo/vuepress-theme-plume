@@ -12,13 +12,14 @@ defineProps<{
 <template>
   <div class="vp-field" :class="{ required, optional, deprecated }">
     <p class="field-meta">
-      <span class="name">{{ name }}</span>
+      <span class="name"><span class="visually-hidden">Name:</span>{{ name }}</span>
       <span v-if="required || optional" :class="{ required, optional }">{{ required ? 'Required' : optional ? 'Optional' : '' }}</span>
       <span v-if="deprecated" class="deprecated">Deprecated</span>
-      <span v-if="type" class="type"><code>{{ decodeURIComponent(type) }}</code></span>
+      <span v-if="type" class="type"><span class="visually-hidden">Type:</span><code title="Type" aria-label="Type">{{ decodeURIComponent(type) }}</code></span>
     </p>
     <p v-if="defaultValue" class="default-value">
-      <code>{{ decodeURIComponent(defaultValue) }}</code>
+      <span class="visually-hidden">Default Value: </span>
+      <code title="Default Value" aria-label="Default Value">{{ decodeURIComponent(defaultValue) }}</code>
     </p>
     <div v-if="$slots.default" class="description">
       <slot />

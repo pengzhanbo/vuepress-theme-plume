@@ -8,6 +8,8 @@ declare const __MD_POWER_HLSJS_INSTALLED__: boolean
 declare const __MD_POWER_MPEGTSJS_INSTALLED__: boolean
 declare const __MD_POWER_ENCRYPT_LOCALES__: LocaleConfig<EncryptSnippetLocale>
 
+const VUEPRESS_SYMBOL_KEY = '__VUEPRESS_GLOBAL_SYMBOL_MAP__'
+
 /**
  * Plugin options injected at build time.
  *
@@ -54,18 +56,14 @@ if (installed.mpegtsjs) {
  *
  * 时间线组件通信的注入键。
  */
-export const INJECT_TIMELINE_KEY: symbol = Symbol(
-  __VUEPRESS_DEV__ ? 'timeline' : '',
-)
+export const INJECT_TIMELINE_KEY: symbol = createSymbol('timeline')
 
 /**
  * Injection key for collapse component communication.
  *
  * 折叠面板组件通信的注入键。
  */
-export const INJECT_COLLAPSE_KEY: symbol = Symbol(
-  __VUEPRESS_DEV__ ? 'collapse' : '',
-)
+export const INJECT_COLLAPSE_KEY: symbol = createSymbol('collapse')
 
 /**
  * Encrypt snippet locale data.
@@ -73,3 +71,14 @@ export const INJECT_COLLAPSE_KEY: symbol = Symbol(
  * 加密片段本地化数据。
  */
 export const ENCRYPT_LOCALES = __MD_POWER_ENCRYPT_LOCALES__
+
+export function createSymbol(name: string): symbol {
+  // 开发环境下，全局缓存 symbol，避免重复创建
+  if (__VUEPRESS_DEV__) {
+    const globalSymbolMap = (globalThis[VUEPRESS_SYMBOL_KEY] ??= {}) as Record<string, symbol>
+    globalSymbolMap[name] ??= Symbol(name)
+    return globalSymbolMap[name]
+  }
+
+  return Symbol('')
+}

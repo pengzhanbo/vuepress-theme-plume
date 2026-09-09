@@ -14,7 +14,7 @@ permalink: /tools/
 
 <LinkCard title="首页背景色板配置" href="./home-hero-tint-plate.md" icon="icon-park-outline:hand-painted-plate" />
 
-<LinkCard title="caniuse 特性搜索" href="./caniuse.md" icon="fa-brands:css3" />
+<LinkCard title="caniuse 特性搜索" href="./v-caniuse.md" icon="fa-brands:css3" />
 
 ## 第三方工具
 

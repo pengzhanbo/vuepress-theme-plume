@@ -14,7 +14,7 @@ The Theme Toolkit is designed to lower the barrier to entry when using some of t
 
 <LinkCard title="Homepage Hero Tint Plate Configuration" href="./home-hero-tint-plate.md" icon="icon-park-outline:hand-painted-plate" />
 
-<LinkCard title="caniuse Feature Search" href="./caniuse.md" icon="fa-brands:css3" />
+<LinkCard title="caniuse Feature Search" href="./v-caniuse.md" icon="fa-brands:css3" />
 
 ## Third-party Tools
 

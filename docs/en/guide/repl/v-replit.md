@@ -9,7 +9,8 @@ badge:
 ---
 
 ::: warning Deprecated
-Replit has discontinued support for its online code editor service. This plugin is no longer recommended. Consider using [CodeSandbox](./code-sandbox.md) or [JSFiddle](./js-fiddle.md) as alternatives.
+Replit has discontinued support for its online code editor service. This plugin is no longer recommended.
+Consider using [CodeSandbox](./v-code-sandbox.md) or [JSFiddle](./v-js-fiddle.md) as alternatives.
 :::
 
 <Badge type="danger" text="Deprecated" />

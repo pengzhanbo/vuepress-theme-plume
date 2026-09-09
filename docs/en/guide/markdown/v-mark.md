@@ -27,7 +27,7 @@ vuepress-theme-plume is a ==simple and beautiful== theme
 
 ### Color Customization
 
-Different marker pen colors are set using [Markdown attribute syntax](./extensions.md#attribute-support).
+Different marker pen colors are set using [Markdown attribute syntax](./v-extensions.md#attribute-support).
 
 Add `{.classname}` immediately after the `==Mark==` syntax to customize colors.
 

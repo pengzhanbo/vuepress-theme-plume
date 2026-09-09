@@ -103,5 +103,5 @@ permalink: /guide/markdown/card/
 ::::
 
 ::: info
-如果你更喜欢通过组件的方式使用 卡片，你可以查看 [卡片组件](/guide/features/component/#card) 。
+如果你更喜欢通过组件的方式使用 卡片，你可以查看 [卡片组件](../components/v-card.md) 。
 :::

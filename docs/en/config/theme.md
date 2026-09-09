@@ -148,7 +148,7 @@ export default defineThemeConfig({
 - **Default:** `{}`
 - **Details:**
 
-  Copy code configuration. Refer to [this documentation](../guide/code/copy-code.md).
+  Copy code configuration. Refer to [this documentation](../guide/code/v-copy-code.md).
 
   ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
   :::

@@ -5,11 +5,6 @@ createTime: 2024/07/26 22:07:23
 permalink: /guide/components/npm-badge/
 ---
 
-<script setup>
-import NpmBadge from 'vuepress-theme-plume/features/NpmBadge.vue'
-import NpmBadgeGroup from 'vuepress-theme-plume/features/NpmBadgeGroup.vue'
-</script>
-
 ## 概述
 
 Npm 徽章组件用于显示 npm 包信息，并提供相关的链接。
@@ -18,16 +13,12 @@ Npm 徽章组件用于显示 npm 包信息，并提供相关的链接。
 
 ## 使用
 
-使用该组件需要你手动导入 `NpmBadge` 或 `NpmBadgeGroup` 组件：
+组件无需注册，主题会自动按需导入 `NpmBadge` 、 `NpmBadgeGroup` 组件。
+
+在 markdown 文件中直接使用即可：
 
 ```md :no-line-numbers
-<!-- 在 markdown 中导入 -->
-<script setup>
-import NpmBadge from 'vuepress-theme-plume/features/NpmBadge.vue'
-import NpmBadgeGroup from 'vuepress-theme-plume/features/NpmBadgeGroup.vue'
-</script>
-
-<!-- 导入后，即可在 markdown 中使用 -->
+<!-- 在 markdown 中使用 -->
 <NpmBadge name="vuepress-theme-plume" type="dm" />
 
 <!-- 并排显示多个 npm badge -->

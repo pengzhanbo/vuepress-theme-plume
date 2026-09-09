@@ -77,7 +77,7 @@ You can also control behavior through attribute syntax:
 - `.mask` - Mask layer effect
 - `.blur` - Text blur effect
 
-::: info You can also use the [`<Plot />`](../components/plot.md) component as an alternative.
+::: info You can also use the [`<Plot />`](../components/v-plot.md) component as an alternative.
 :::
 
 ## Frontmatter

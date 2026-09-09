@@ -17,12 +17,12 @@ Icons are used in the same way across the following theme features:
 
 - [Navbar Icons](../../config/navbar.md#configuration)
 - [Sidebar Icons](../../guide/quick-start/sidebar.md#visual-enhancement-features)
-- [File Tree Icons](../../guide/markdown/file-tree.md)
-- [Code Group Title Icons](../code/code-tabs.md#group-title-icons)
+- [File Tree Icons](../../guide/markdown/v-file-tree.md)
+- [Code Group Title Icons](../code/v-code-tabs.md#group-title-icons)
 
 Provides syntax sugar and component support:
 
-[Markdown Icon Syntax Sugar Support](../markdown/icons.md){.read-more}
+[Markdown Icon Syntax Sugar Support](../markdown/v-icons.md){.read-more}
 
 [Icon Component Support](../components/icon.md){.read-more}
 

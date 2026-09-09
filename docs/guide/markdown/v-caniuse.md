@@ -32,7 +32,7 @@ export default defineUserConfig({
 @[caniuse](feature)
 ```
 
-为了方便使用，主题提供了工具支持：[caniuse 特性搜索](../../../tools/caniuse.md)，你可以直接使用该工具
+为了方便使用，主题提供了工具支持：[caniuse 特性搜索](../../../tools/v-caniuse.md)，你可以直接使用该工具
 帮助生成 markdown 代码。
 
 ## 语法
@@ -44,7 +44,7 @@ export default defineUserConfig({
 @[caniuse embed_type{browser_versions}](feature)
 ```
 
-:::info 使用主题提供的 caniuse 工具：[caniuse 特性搜索](../../../tools/caniuse.md) 帮助生成 markdown 代码。
+:::info 使用主题提供的 caniuse 工具：[caniuse 特性搜索](../../../tools/v-caniuse.md) 帮助生成 markdown 代码。
 :::
 
 - `feature`

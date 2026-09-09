@@ -1,6 +1,7 @@
 import type { InjectionKey, Ref } from 'vue'
 import { useSessionStorage, useStyleTag } from '@vueuse/core'
 import { inject, provide, watch } from 'vue'
+import { createSymbol } from 'vuepress-theme-plume/client'
 
 declare const __VUEPRESS_DEV__: boolean
 
@@ -91,7 +92,7 @@ interface ThemeColorResult {
   reset: () => void
 }
 
-const themeColorSymbol: InjectionKey<ThemeColorResult> = Symbol(__VUEPRESS_DEV__ ? 'theme-color' : '')
+const themeColorSymbol: InjectionKey<ThemeColorResult> = createSymbol('theme-color')
 
 export function setupThemeColors(): void {
   const lightColors = useSessionStorage<ThemeColorsGroup[]>('custom-theme-colors-light', resolveDefaultColors('light'))

@@ -146,4 +146,4 @@ permalink: /guide/components/image-card/
   />
 </CardGrid>
 
-[查看 照片类作品示例](../../../../1.示例/照片类作品示例.md)
+[查看 照片类作品示例](../../blog/1.示例/照片类作品示例.md)

@@ -9,7 +9,7 @@ permalink: /en/guide/components/card/
 
 Use the `<Card>` component to display cards within a page.
 
-Alternatively, the markdown [card container](../markdown/card.md) syntax can be used as a substitute for the `<Card>` component.
+Alternatively, the markdown [card container](../markdown/v-card.md) syntax can be used as a substitute for the `<Card>` component.
 
 ## Props
 

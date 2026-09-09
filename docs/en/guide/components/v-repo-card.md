@@ -5,44 +5,18 @@ createTime: 2025/10/08 21:11:56
 permalink: /en/guide/components/github-repo-card/
 ---
 
-<script setup>
-import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
-</script>
-
 ## Overview
 
 The Repo Card component is used to display GitHub/Gitee repository information.
 
 ## Usage
 
-To use this component, you need to manually import the `RepoCard` component:
+Components do not need to be registered; the theme will automatically import the `RepoCard` component on demand.
+
+Simply use it directly in the markdown file:
 
 ```md :no-line-numbers
-<!-- Import in markdown -->
-<script setup>
-import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
-</script>
-
-<!-- After importing, you can use it in markdown -->
-<RepoCard repo="pengzhanbo/vuepress-theme-plume" />
-```
-
-Register as a global component:
-
-```ts title=".vuepress/client.ts"
-import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
-import { defineClientConfig } from 'vuepress/client'
-
-export default defineClientConfig({
-  enhance({ app }) {
-    app.component('RepoCard', RepoCard)
-  },
-})
-```
-
-Global components can be used in any other markdown file:
-
-```md
+<!-- use it in markdown -->
 <RepoCard repo="pengzhanbo/vuepress-theme-plume" />
 ```
 

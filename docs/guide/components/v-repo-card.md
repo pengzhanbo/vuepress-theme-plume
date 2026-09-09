@@ -5,44 +5,18 @@ createTime: 2024/07/26 21:11:56
 permalink: /guide/components/github-repo-card/
 ---
 
-<script setup>
-import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
-</script>
-
 ## 概述
 
 Repo 卡片组件用于显示 GitHub / Gitee 仓库信息。
 
 ## 使用
 
-使用该组件需要你手动导入 `RepoCard` 组件：
+组件无需注册，主题会自动按需导入 `RepoCard` 组件。
+
+在 markdown 文件中直接使用即可：
 
 ```md :no-line-numbers
-<!-- 在 markdown 中导入 -->
-<script setup>
-import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
-</script>
-
-<!-- 导入后，即可在 markdown 中使用 -->
-<RepoCard repo="pengzhanbo/vuepress-theme-plume" />
-```
-
-注册为全局组件：
-
-```ts title=".vuepress/client.ts"
-import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
-import { defineClientConfig } from 'vuepress/client'
-
-export default defineClientConfig({
-  enhance({ app }) {
-    app.component('RepoCard', RepoCard)
-  },
-})
-```
-
-全局组件可在 其他任意 markdown 文件中使用
-
-```md
+<!-- 在 markdown 中使用 -->
 <RepoCard repo="pengzhanbo/vuepress-theme-plume" />
 ```
 

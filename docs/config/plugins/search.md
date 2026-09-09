@@ -75,7 +75,7 @@ interface SearchBoxLocale {
 
 关联插件：[@vuepress/plugin-docsearch](https://ecosystem.vuejs.press/zh/plugins/search/docsearch.html)
 
-查看 [Algolia DocSearch 参考](/guide/features/search/#algolia-docsearch) 获取更多信息。
+查看 [Algolia DocSearch 参考](../../guide/features/search.md#algolia-docsearch) 获取更多信息。
 
 ### 启用
 

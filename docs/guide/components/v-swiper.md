@@ -11,7 +11,7 @@ permalink: /guide/components/swiper/
 
 ## 使用
 
-使用该组件，首先需要手动安装 `swiper` 库：
+使用该组件，需要手动安装 `swiper` 库：
 
 ::: npm-to
 
@@ -21,32 +21,7 @@ npm install swiper
 
 :::
 
-然后，手动导入 `Swiper` 组件：
-
-```md
-<!-- 在 markdown 中导入 -->
-<script setup>
-import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
-</script>
-
-<!-- 导入后，即可在 markdown 中使用 -->
-<Swiper :items="['img_link1', 'img_link2']" />
-```
-
-注册为全局组件：
-
-```ts title=".vuepress/client.ts"
-import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
-import { defineClientConfig } from 'vuepress/client'
-
-export default defineClientConfig({
-  enhance({ app }) {
-    app.component('Swiper', Swiper)
-  },
-})
-```
-
-全局组件可在 其他任意 markdown 文件中使用
+组件可在任意 markdown 文件中直接使用（主题会自动按需导入 `Swiper` 组件）。
 
 ```md
 <Swiper :items="['img_link1', 'img_link2']" />
@@ -54,7 +29,6 @@ export default defineClientConfig({
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
 
 const images = ref([])
 

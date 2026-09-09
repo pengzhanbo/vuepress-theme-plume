@@ -345,7 +345,7 @@ export default defineUserConfig({
 
 #### 方式二
 
-使用 [属性支持](./attrs.md) 语法
+使用 [属性支持](./v-attrs.md) 语法
 
 **输入：**
 

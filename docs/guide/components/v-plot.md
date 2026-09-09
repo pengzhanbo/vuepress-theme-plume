@@ -7,7 +7,7 @@ permalink: /guide/components/plot/
 
 ## 概述
 
-使用 `<VPPlot>` 组件显示 ["隐秘"文本](../markdown/plot.md)，能够更灵活地控制行为。
+使用 `<VPPlot>` 组件显示 ["隐秘"文本](../markdown/v-plot.md)，能够更灵活地控制行为。
 
 该组件默认不启用，你需要在 theme 配置中启用。
 

@@ -40,16 +40,16 @@ There are three ways to use internal links:
   The absolute path `/` indicates starting from the `${sourceDir}` directory.
 
 ```md
-[Markdown](/guide/markdown/)
+[Markdown](/guide/markdown/basic.md)
 
 [Markdown](./basic.md)
 ```
 
 Renders as:
 
-[Markdown](/guide/markdown/)
+[Markdown](/guide/markdown/v-basic.md)
 
-[Markdown](./basic.md)
+[Markdown](./v-basic.md)
 
 ### External Links
 

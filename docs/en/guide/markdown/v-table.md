@@ -345,7 +345,7 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 
 #### Method Two
 
-Using the [Attribute Support](./attrs.md) syntax
+Using the [Attribute Support](./v-attrs.md) syntax
 
 **Input:**
 

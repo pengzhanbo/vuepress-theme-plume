@@ -21,40 +21,16 @@ npm install swiper
 
 :::
 
-Then, manually import the `Swiper` component:
+The component can be used directly in any markdown file (the theme will automatically import the `Swiper` component on demand).
 
 ```md
-<!-- Import in markdown -->
-<script setup>
-import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
-</script>
 
-<!-- After importing, you can use it in markdown -->
-<Swiper :items="['img_link1', 'img_link2']" />
-```
-
-Register as a global component:
-
-```ts title=".vuepress/client.ts"
-import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
-import { defineClientConfig } from 'vuepress/client'
-
-export default defineClientConfig({
-  enhance({ app }) {
-    app.component('Swiper', Swiper)
-  },
-})
-```
-
-Global components can be used in any other markdown file:
-
-```md
+<!-- use it in markdown -->
 <Swiper :items="['img_link1', 'img_link2']" />
 ```
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
 
 const images = ref([])
 

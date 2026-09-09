@@ -32,7 +32,7 @@ In your article's markdown file, use the following format:
 @[caniuse](feature)
 ```
 
-For ease of use, the theme provides tool support: [caniuse Feature Search](../../../tools/caniuse.md).
+For ease of use, the theme provides tool support: [caniuse Feature Search](../../tools/v-caniuse.md).
 You can use this tool directly to help generate the markdown code.
 
 ## Syntax
@@ -44,7 +44,7 @@ You can use this tool directly to help generate the markdown code.
 @[caniuse embed_type{browser_versions}](feature)
 ```
 
-:::info Using the caniuse tool provided by the theme: [caniuse feature search](../../../../tools/caniuse.md) to help generate markdown code.
+:::info Using the caniuse tool provided by the theme: [caniuse feature search](../../tools/v-caniuse.md) to help generate markdown code.
 :::
 
 - `feature`

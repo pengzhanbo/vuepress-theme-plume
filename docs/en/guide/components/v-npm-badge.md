@@ -5,11 +5,6 @@ createTime: 2025/10/08 22:07:23
 permalink: /en/guide/components/npm-badge/
 ---
 
-<script setup>
-import NpmBadge from 'vuepress-theme-plume/features/NpmBadge.vue'
-import NpmBadgeGroup from 'vuepress-theme-plume/features/NpmBadgeGroup.vue'
-</script>
-
 ## Overview
 
 The Npm Badge component is used to display npm package information and provide relevant links.
@@ -18,16 +13,13 @@ The badges are powered by <https://shields.io>.
 
 ## Usage
 
-To use this component, you need to manually import the `NpmBadge` or `NpmBadgeGroup` components:
+The component does not need to be registered; the theme will automatically import the `NpmBadge` and `NpmBadgeGroup` components on demand.
+
+Use them directly in markdown files:
 
 ```md :no-line-numbers
-<!-- Import in markdown -->
-<script setup>
-import NpmBadge from 'vuepress-theme-plume/features/NpmBadge.vue'
-import NpmBadgeGroup from 'vuepress-theme-plume/features/NpmBadgeGroup.vue'
-</script>
 
-<!-- After importing, you can use them in markdown -->
+<!-- use them in markdown -->
 <NpmBadge name="vuepress-theme-plume" type="dm" />
 
 <!-- Display multiple npm badges side by side -->

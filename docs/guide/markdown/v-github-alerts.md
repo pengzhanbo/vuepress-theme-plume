@@ -7,7 +7,8 @@ permalink: /guide/markdown/github-alerts/
 
 ## GitHub 风格的警报
 
-主题支持以标注的方式渲染 [GitHub 风格的警报](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts)。它们和[提示容器](./container.md)的渲染方式相同。
+主题支持以标注的方式渲染 [GitHub 风格的警报](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts)。
+它们和 [提示容器](./v-container.md) 的渲染方式相同。
 
 **输入：**
 

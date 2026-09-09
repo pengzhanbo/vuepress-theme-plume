@@ -8,11 +8,9 @@ badge:
   type: danger
 ---
 
-::: warning 已弃用
-Replit 已停止对其在线代码编辑服务的支持，本插件不再推荐使用。建议使用 [CodeSandbox](./code-sandbox.md) 或 [JSFiddle](./js-fiddle.md) 作为替代方案。
+::: caution 已弃用
+Replit 已停止对其在线代码编辑服务的支持，本插件不再推荐使用。建议使用 [CodeSandbox](./v-code-sandbox.md) 或 [JSFiddle](./v-js-fiddle.md) 作为替代方案。
 :::
-
-<Badge type="danger" text="弃用" />
 
 ~~主题支持在 Markdown 文件中嵌入 [Replit](https://replit.com/)。~~
 

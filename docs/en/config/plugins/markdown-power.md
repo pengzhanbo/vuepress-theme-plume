@@ -57,7 +57,7 @@ __Syntax:__
 @[pdf](url)
 ```
 
-Please refer to the [Complete Usage Documentation](../../guide/embed/pdf.md)
+Please refer to the [Complete Usage Documentation](../../guide/embed/v-pdf.md)
 
 ### Iconify Icons
 
@@ -71,7 +71,7 @@ __Syntax:__
 ::collect:name::
 ```
 
-Please refer to the [Complete Usage Documentation](../../guide/markdown/icons.md)
+Please refer to the [Complete Usage Documentation](../../guide/markdown/v-icons.md)
 
 ### Bilibili Video
 
@@ -95,7 +95,7 @@ __Syntax:__
 @[acfun](id)
 ```
 
-Please refer to the [Complete Usage Documentation](../../guide/embed/video/acfun.md)
+Please refer to the [Complete Usage Documentation](../../guide/embed/acfun.md)
 
 ### YouTube Video
 
@@ -119,7 +119,7 @@ __Syntax:__
 @[codepen](user/slash)
 ```
 
-Please refer to the [Complete Usage Documentation](../../guide/repl/codepen.md)
+Please refer to the [Complete Usage Documentation](../../guide/repl/v-codepen.md)
 
 ### CodeSandbox Demo
 
@@ -131,7 +131,7 @@ __Syntax:__
 @[codesandbox](id)
 ```
 
-Please refer to the [Complete Usage Documentation](../../guide/repl/code-sandbox.md)
+Please refer to the [Complete Usage Documentation](../../guide/repl/v-code-sandbox.md)
 
 ### JSFiddle Demo
 
@@ -143,7 +143,7 @@ __Syntax:__
 @[jsfiddle](id)
 ```
 
-Please refer to the [Complete Usage Documentation](../../guide/repl/js-fiddle.md)
+Please refer to the [Complete Usage Documentation](../../guide/repl/v-js-fiddle.md)
 
 ### Can I Use Browser Support
 
@@ -155,7 +155,7 @@ __Syntax:__
 @[caniuse](feature)
 ```
 
-Please refer to the [Complete Usage Documentation](../../guide/markdown/caniuse.md)
+Please refer to the [Complete Usage Documentation](../../guide/markdown/v-caniuse.md)
 
 ### Repl Code Demo Container
 
@@ -226,7 +226,7 @@ __Syntax:__
 !!content!!
 ```
 
-Please refer to the [Complete Usage Documentation](../../guide/markdown/plot.md)
+Please refer to the [Complete Usage Documentation](../../guide/markdown/v-plot.md)
 
 ### File Tree
 
@@ -247,7 +247,7 @@ __Syntax:__
 :::
 ```
 
-Please refer to the [Complete Usage Documentation](../../guide/markdown/file-tree.md)
+Please refer to the [Complete Usage Documentation](../../guide/markdown/v-file-tree.md)
 
 ### Image Dimensions
 

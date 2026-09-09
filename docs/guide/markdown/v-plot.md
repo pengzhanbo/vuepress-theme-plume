@@ -76,7 +76,7 @@ interface PlotOptions {
 - `.mask` - 遮罩层效果
 - `.blur` - 文本模糊效果
 
-::: info 你也可以使用 [`<Plot />`](../components/plot.md) 组件替代。
+::: info 你也可以使用 [`<Plot />`](../components/v-plot.md) 组件替代。
 :::
 
 ## Frontmatter

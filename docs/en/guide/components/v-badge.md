@@ -78,7 +78,7 @@ Using custom `type` enables richer visual presentations.
 
 **Input:**
 
-1. Add predefined styles in the theme's [custom style file](../custom/style.md.md):
+1. Add predefined styles in the theme's [custom style file](../custom/style.md):
 
     ```css
     /* Light theme */

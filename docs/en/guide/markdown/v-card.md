@@ -103,5 +103,5 @@ This is the card content.
 ::::
 
 ::: info
-If you prefer using cards via components, you can check out the [Card Component](../features/component.md#card).
+If you prefer using cards via components, you can check out the [Card Component](../components/v-card.md).
 :::

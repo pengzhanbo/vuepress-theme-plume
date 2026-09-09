@@ -9,7 +9,7 @@ permalink: /en/guide/markdown/github-alerts/
 
 The theme supports rendering
 [GitHub-style alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts)
-through callouts. They are rendered in the same way as [hint containers](./container.md).
+through callouts. They are rendered in the same way as [hint containers](./v-container.md).
 
 **Input:**
 

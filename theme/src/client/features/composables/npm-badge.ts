@@ -1,5 +1,6 @@
 import type { ComputedRef, InjectionKey, Ref } from 'vue'
 import { computed, inject, provide, ref, toValue } from 'vue'
+import { createSymbol } from '../../utils/index.js'
 
 const DEFAULT_COLOR = '#32A9C3'
 const DEFAULT_LABEL_COLOR = '#1B3C4A'
@@ -58,7 +59,7 @@ export interface NpmBadgeInfo {
 
 type NpmBadgeBaseOptionsRef = Ref<NpmBadgeBaseOptions>
 
-const NpmBadgeSymbol: InjectionKey<NpmBadgeBaseOptionsRef> = Symbol(__VUEPRESS_DEV__ ? 'NpmBadge' : '')
+const NpmBadgeSymbol: InjectionKey<NpmBadgeBaseOptionsRef> = createSymbol('NpmBadge')
 
 export function useNpmBadge(opt: Ref<NpmBadgeOptions>): ComputedRef<NpmBadgeInfo> {
   const parentOpt = inject(NpmBadgeSymbol, ref({}) as NpmBadgeBaseOptionsRef)

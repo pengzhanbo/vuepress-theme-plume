@@ -75,7 +75,7 @@ A site content search plugin powered by [Algolia DocSearch](https://docsearch.al
 
 Related plugin: [@vuepress/plugin-docsearch](https://ecosystem.vuejs.press/zh/plugins/search/docsearch.html)
 
-Refer to [Algolia DocSearch Reference](/guide/features/search/#algolia-docsearch) for more information.
+Refer to [Algolia DocSearch Reference](../../guide/features/search.md#algolia-docsearch) for more information.
 
 ### Enable
 

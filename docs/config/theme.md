@@ -147,7 +147,7 @@ export default defineThemeConfig({
 - **默认值：** `{}`
 - **详情：**
 
-  复制代码配置， 参考 [此文档](../guide/code/copy-code.md)
+  复制代码配置， 参考 [此文档](../guide/code/v-copy-code.md)
 
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::

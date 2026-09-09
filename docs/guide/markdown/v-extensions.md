@@ -26,7 +26,8 @@ tags:
 
 内部和外部链接都会被特殊处理。
 
-主题默认对每个 Markdown 文件自动生成一个新的链接，并保存在对应的 Markdown 文件的 frontmatter 的 `permalink`（永久链接，用于指定页面的 URL 路径）中。您可以随时修改它们。您也可以通过 `theme.autoFrontmatter` 选项来禁用这个功能，这时会恢复为 VuePress 的默认行为。
+主题默认对每个 Markdown 文件自动生成一个新的链接，并保存在对应的 Markdown 文件的 frontmatter 的 `permalink`（永久链接，用于指定页面的 URL 路径）中。您可以随时修改它们。
+您也可以通过 `theme.autoFrontmatter` 选项来禁用这个功能，这时会恢复为 VuePress 的默认行为。
 
 ### 内部链接
 
@@ -37,16 +38,16 @@ tags:
 - 使用 Markdown 文件的绝对路径作为内部链接的目标，绝对路径 `/` 表示从 `${sourceDir}` 目录开始。
 
 ```md
-[Markdown](/guide/markdown/)
+[Markdown](/guide/markdown/basic.md)
 
 [Markdown](./basic.md)
 ```
 
 渲染为：
 
-[Markdown](/guide/markdown/)
+[Markdown](/guide/markdown/v-basic.md)
 
-[Markdown](./basic.md)
+[Markdown](./v-basic.md)
 
 ### 外部链接
 

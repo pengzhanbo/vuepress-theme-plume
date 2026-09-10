@@ -1,0 +1,1 @@
+var e=`/images/contributors-inline.png`;export{e as t};

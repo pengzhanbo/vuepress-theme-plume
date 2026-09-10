@@ -27,7 +27,7 @@ Obsidian 兼容功能默认全部启用，你可以通过配置选择性地启�
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
-      mdPower: {
+      markdownPower: {
         obsidian: {
           wikiLink: true,    // Wiki 链接
           embedLink: true,  // 嵌入内容

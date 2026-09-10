@@ -28,7 +28,7 @@ Obsidian compatibility features are all enabled by default. You can selectively 
 export default defineUserConfig({
   theme: plumeTheme({
     plugins: {
-      mdPower: {
+      markdownPower: {
         obsidian: {
           wikiLink: true,    // Wiki Links
           embedLink: true,  // Embeds
@@ -168,7 +168,7 @@ In `docs/guide/markdown/obsidian.md`:
 
 [[file-tree#Configuration]]
 
-[Obsidian Official - **Wiki Links**](https://obsidian.md/en/help/links){.readmore}
+[Obsidian Official - **Wiki Links**](https://obsidian.md/help/links){.readmore}
 
 ## Embeds
 
@@ -282,8 +282,8 @@ Content fragments under a specified heading can be embedded using `#heading`:
 ![[my-note#Heading One#Subheading]]
 ```
 
-[Obsidian Official - **Insert Files**](https://obsidian.md/en/help/embeds){.readmore}
-[Obsidian Official - **File Formats**](https://obsidian.md/en/help/file-formats){.readmore}
+[Obsidian Official - **Insert Files**](https://obsidian.md/help/embeds){.readmore}
+[Obsidian Official - **File Formats**](https://obsidian.md/help/file-formats){.readmore}
 
 ## Callout
 
@@ -400,7 +400,7 @@ The `details` type renders as an HTML `<details>` element, supporting collapse/e
 >
 > This is hidden content.
 
-[Obsidian Official - **Callout**](https://obsidian.md/en/help/callouts){.readmore}
+[Obsidian Official - **Callout**](https://obsidian.md/help/callouts){.readmore}
 
 ## Comments
 
@@ -465,7 +465,7 @@ This is a block comment.
 
 It can span multiple lines.
 
-[Obsidian Official - **Comments**](https://obsidian.md/en/help/syntax#%E6%B3%A8%E9%87%8B){.readmore}
+[Obsidian Official - **Comments**](https://obsidian.md/help/syntax#Comments){.readmore}
 
 ## Notes
 

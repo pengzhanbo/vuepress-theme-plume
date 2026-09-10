@@ -37,7 +37,7 @@ VuePress 是一个[静态站点生成器](https://en.wikipedia.org/wiki/Static_s
 - **多样化布局**：支持完全自定义的==首页==，可选==文章列表==、==文档==模式
 - **内容增强**：内置==全文搜索==、==文章评论==、==内容加密==、==文章水印==等实用功能
 - **代码展示**：支持代码块==分组==、==折叠==、==聚焦==、==行高亮==、==差异对比==，可嵌入 CodePen、JSFiddle、CodeSandbox 等平台的==代码演示==
-- **图标系统**：集成 [iconify](https://icon-sets.iconify.d/) **200,000+** ==图标==，可选配 `iconfont` / `fontawesome` 图标库
+- **图标系统**：集成 [iconify](https://icon-sets.iconify.design/) **200,000+** ==图标==，可选配 `iconfont` / `fontawesome` 图标库
 - **媒体嵌入**：支持==PDF 嵌入==、==Bilibili/Youtube/本地视频==嵌入
 - **图表渲染**：集成 chart.js、Echarts、Mermaid、Flowchart、Markmap、PlantUML 等多种==图表引擎==
 - **布局容器**：灵活的 Markdown 容器语法，提供==提示容器==、==文件树==、==代码树==、==卡片容器==、==瀑布流容器==等

@@ -116,8 +116,6 @@
     "vue": "catalog:prod"
   },
   "devDependencies": {
-    "@types/markdown-it": "catalog:dev",
-    "@types/sanitize-html": "catalog:dev",
     "artplayer": "catalog:peer",
     "dashjs": "catalog:peer",
     "hls.js": "catalog:peer",

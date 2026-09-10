@@ -559,6 +559,9 @@ importers:
       '@types/less':
         specifier: catalog:dev
         version: 3.0.8
+      '@types/markdown-it':
+        specifier: catalog:dev
+        version: 14.2.0
       '@types/node':
         specifier: catalog:dev
         version: 26.4.1
@@ -568,6 +571,9 @@ importers:
       '@types/qrcode':
         specifier: catalog:dev
         version: 1.5.6
+      '@types/sanitize-html':
+        specifier: catalog:dev
+        version: 2.16.1
       '@types/stylus':
         specifier: catalog:dev
         version: 0.48.43
@@ -724,6 +730,9 @@ importers:
       mermaid:
         specifier: '>=11.17.2'
         version: 11.17.2
+      ogl:
+        specifier: catalog:peer
+        version: 1.0.11
       postprocessing:
         specifier: catalog:peer
         version: 6.39.4(three@0.185.1)
@@ -903,12 +912,6 @@ importers:
         specifier: catalog:vuepress
         version: 2.0.0-rc.31(@vue/compiler-sfc@3.5.42)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.4.1)(@vue/compiler-sfc@3.5.42)(jiti@2.7.0)(less@4.9.1(supports-color@10.2.2))(sass-embedded@1.104.0)(sass@1.104.0)(stylus@0.64.0(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)(yaml@2.9.0))(rolldown@1.2.7)(supports-color@10.2.2)(typescript@6.0.3)(vite@8.2.2(@types/node@26.4.1)(jiti@2.7.0)(less@4.9.1(supports-color@10.2.2))(sass-embedded@1.104.0)(sass@1.104.0)(stylus@0.64.0(supports-color@10.2.2))(yaml@2.9.0))(vue@3.5.42(typescript@6.0.3))
     devDependencies:
-      '@types/markdown-it':
-        specifier: catalog:dev
-        version: 14.2.0
-      '@types/sanitize-html':
-        specifier: catalog:dev
-        version: 2.16.1
       artplayer:
         specifier: catalog:peer
         version: 5.4.0

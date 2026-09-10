@@ -1,8 +1,5 @@
 export * from '../shared/index.js'
 
-export { default as VPBadge } from './components/global/VPBadge.vue'
-export { default as VPCard } from './components/global/VPCard.vue'
-export { default as VPCardGrid } from './components/global/VPCardGrid.vue'
 export { default as VPHomeBanner } from './components/Home/VPHomeBanner.vue'
 export { default as VPHomeBox } from './components/Home/VPHomeBox.vue'
 export { default as VPHomeCustom } from './components/Home/VPHomeCustom.vue'

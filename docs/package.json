@@ -28,6 +28,7 @@
     "markmap-toolbar": "catalog:prod",
     "markmap-view": "catalog:prod",
     "mermaid": "catalog:dev",
+    "ogl": "catalog:peer",
     "postprocessing": "catalog:peer",
     "swiper": "catalog:peer",
     "three": "catalog:peer",

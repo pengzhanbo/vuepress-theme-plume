@@ -8,7 +8,7 @@ import type { LiteralUnion } from '../utils.js'
  *
  * 首页 Hero 动画效果类型
  */
-export type ThemeHomeHeroEffect = LiteralUnion<'tint-plate' | 'prism' | 'pixel-blast' | 'hyper-speed' | 'liquid-ether' | 'dot-grid' | 'iridescence' | 'orb' | 'beams' | 'lightning' | 'dark-veil'>
+export type ThemeHomeHeroEffect = LiteralUnion<'tint-plate' | 'prism' | 'pixel-blast' | 'hyper-speed' | 'liquid-ether' | 'dot-grid' | 'iridescence' | 'orb' | 'beams' | 'lightning' | 'dark-veil' | 'light-fall'>
 
 /**
  * Home page hero effect configuration
@@ -27,6 +27,7 @@ export type ThemeHomeHeroEffectConfig
     | ThemeHomeHeroBeams
     | ThemeHomeHeroLightning
     | ThemeHomeHeroDarkVeil
+    | ThemeHomeHeroLightFall
 
 /**
  * Tint plate effect configuration
@@ -645,4 +646,113 @@ export interface ThemeHomeHeroDarkVeil {
    * 分辨率缩放比例。
    */
   resolutionScale?: number
+}
+
+/**
+ * Light fall effect configuration
+ *
+ * 光落效果配置
+ */
+export interface ThemeHomeHeroLightFall {
+  className?: string
+  /**
+   * Overrides device pixel ratio; lower for performance, higher for sharpness.
+   * 覆盖设备像素比；较低值可提升性能，较高值可提高清晰度。
+   */
+  dpr?: number
+  /**
+   * If true, stops rendering updates (freezing the current frame).
+   * 如果为true，停止渲染更新（冻结当前帧）。
+   */
+  paused?: boolean
+  /**
+   * Array of hex colors (up to 8) used to tint the falling light streaks.
+   * Each streak is randomly but evenly assigned one of the colors;
+   * a single color makes the whole effect uniform.
+   *
+   * 用于着色下降的光束的十六进制颜色数组（最多8个）。
+   * 每个光束随机但均匀地分配一个颜色；
+   * 单个颜色使整个效果均匀。
+   */
+  colors?: string[]
+  /**
+   * Hex color of the soft ambient glow behind the streaks.
+   * 软光束的十六进制颜色。
+   */
+  backgroundColor?: string
+  /**
+   * Multiplier for how fast the light streaks fall.
+   * 光束下降速度乘数。
+   */
+  speed?: number
+  /**
+   * Number of streak layers rendered per cell (1–16). Higher = busier.
+   * 每个单元格渲染的光束层数（1–16）。较高值表示更繁忙的效果。
+   */
+  streakCount?: number
+  /**
+   * Thickness of each light streak.
+   * 每个光束的厚度。
+   */
+  streakWidth?: number
+  /**
+   * Length of the glowing tail trailing each streak.
+   * 每个光束的光尾长度。
+   */
+  streakLength?: number
+  /**
+   * Overall brightness multiplier applied before tone mapping.
+   * 全局亮度乘数，用于在色调映射之前应用。
+   */
+  glow?: number
+  /**
+   * Vertical frequency of streaks. Higher values pack more streaks into view.
+   * 垂直方向的光束频率。较高值将更多光束打包到视图中。
+   */
+  density?: number
+  /**
+   * Amount of per-streak brightness flicker. 0 = constant brightness.
+   * 每个光束的亮度闪烁量。0 表示恒亮度。
+   */
+  twinkle?: number
+  /**
+   * Field of view into the tunnel. Higher values zoom further in.
+   * 隧道中的视场。较高值将更近地缩放。
+   */
+  zoom?: number
+  /**
+   * Intensity of the ambient background glow.
+   * 背景光的强度。
+   */
+  backgroundGlow?: number
+  /**
+   * Overall alpha of the rendered canvas.
+   * 渲染画布的全局透明度。
+   */
+  opacity?: number
+  /**
+   * Enables a soft light that follows the cursor and flares nearby streaks (no warping).
+   * 启用软光，跟随光标并使附近光束闪烁（不扭曲）。
+   */
+  mouseInteraction?: boolean
+  /**
+   * Intensity of the cursor light.
+   * 光标光的强度。
+   */
+  mouseStrength?: number
+  /**
+   * Falloff radius of the cursor light.
+   * 光标光的衰减半径。
+   */
+  mouseRadius?: number
+  /**
+   * Easing time constant (seconds) for the cursor light to follow the pointer. 0 = immediate.
+   * 光标光跟随指针的缓动时间常量（秒）。0 表示立即响应。
+   */
+  mouseDampening?: number
+  /**
+   * CSS mix-blend-mode applied to the canvas (e.g. 'screen', 'lighten').
+   * 渲染画布应用的CSS mix-blend-mode（例如'screen'、'lighten'）。
+   */
+  mixBlendMode?: string
 }

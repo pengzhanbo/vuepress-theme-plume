@@ -16,6 +16,7 @@ const effectDeps: Record<string, string[]> = {
   'orb': ['ogl'],
   'beams': ['three'],
   'dark-veil': ['ogl'],
+  'light-fall': ['ogl'],
 }
 
 const effectMapping: Record<string, string> = {
@@ -30,6 +31,7 @@ const effectMapping: Record<string, string> = {
   'beams': 'Beams',
   'lightning': 'Lightning',
   'dark-veil': 'DarkVeil',
+  'light-fall': 'LightFall',
 }
 
 const allEffects = objectKeys(effectMapping)

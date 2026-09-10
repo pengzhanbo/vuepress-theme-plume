@@ -5,7 +5,7 @@ config:
   -
     type: hero
     full: true
-    effect: hyper-speed
+    effect: light-fall
     forceDark: true
     hero:
       name: Theme Plume

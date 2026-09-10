@@ -1,3 +1,12 @@
+# [1.0.0-rc.210](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.209...v1.0.0-rc.210) (2026-09-10)
+
+### Features
+
+* add builtin auto-import-components ([#932](https://github.com/pengzhanbo/vuepress-theme-plume/issues/932)) ([1d04dce](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1d04dcea7637bcf134a9fcf7e3005e968ed48391))
+* improve fonts ([#977](https://github.com/pengzhanbo/vuepress-theme-plume/issues/977)) ([1612f94](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1612f9475d49f5a6f32ae7da4d6bfb53d641a22a))
+* **plugin-md-power:** add screen reader visually hidden labels to field container ([686b3c1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/686b3c1f976ebfb769d2a98ebceb056083d05889))
+* **theme:** add `lightFall` to home hero effect ([#982](https://github.com/pengzhanbo/vuepress-theme-plume/issues/982)) ([3139293](https://github.com/pengzhanbo/vuepress-theme-plume/commit/313929348664438bbeda11b9a1c13a8c1e36c9a9))
+
 # [1.0.0-rc.209](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.208...v1.0.0-rc.209) (2026-09-07)
 
 ### Features

@@ -1,7 +1,7 @@
 {
   "name": "vuepress-theme-plume-monorepo",
   "type": "module",
-  "version": "1.0.0-rc.209",
+  "version": "1.0.0-rc.210",
   "private": true,
   "packageManager": "pnpm@12.3.4",
   "author": "pengzhanbo <q942450674@outlook.com> (https://github.com/pengzhanbo/)",

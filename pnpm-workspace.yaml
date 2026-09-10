@@ -9,6 +9,7 @@ trustPolicyExclude:
   - memfs
   - semver
   - chokidar
+  - cpx2
 
 strictPeerDependencies: false
 fetchTimeout: 180000
@@ -32,7 +33,7 @@ overrides:
   baseline-browser-mapping: ^2.11.21
   brace-expansion: '>=5.0.9'
   chokidar: 'catalog:prod'
-  dompurify: '>=3.4.14'
+  dompurify: '>=3.4.15'
   esbuild: '>=0.28.2'
   fast-uri: '>=4.1.4'
   follow-redirects: '>=1.16.0'
@@ -71,12 +72,12 @@ catalogs:
     '@lunariajs/core': ^0.1.1
     '@pengzhanbo/eslint-config-vue': ^2.9.2
     '@pengzhanbo/stylelint-config': ^2.9.2
-    '@simonwep/pickr': ^1.10.1
+    '@simonwep/pickr': ^1.10.2
     '@types/express': ^5.0.6
     '@types/js-yaml': ^4.0.9
     '@types/less': ^3.0.8
     '@types/markdown-it': ^14.2.0
-    '@types/node': ^26.4.1
+    '@types/node': ^26.5.0
     '@types/picomatch': ^4.0.3
     '@types/qrcode': ^1.5.6
     '@types/sanitize-html': ^2.16.1
@@ -87,7 +88,7 @@ catalogs:
     bumpp: ^12.3.0
     conventional-changelog: ^8.1.3
     conventional-changelog-angular: ^9.4.0
-    cpx2: ^9.0.0
+    cpx2: ^9.0.3
     cross-env: ^10.1.0
     eslint: ^10.10.0
     http-server: ^14.1.1
@@ -96,7 +97,7 @@ catalogs:
     memfs: ^4.71.0
     mermaid: ^11.17.2
     nano-staged: ^1.0.2
-    oxfmt: ^0.66.0
+    oxfmt: ^0.67.0
     postcss: ^8.5.28
     rimraf: ^6.1.3
     simple-git-hooks: ^2.14.0
@@ -111,7 +112,7 @@ catalogs:
     vitest: ^5.0.0
     wait-on: ^9.1.0
   peer:
-    '@iconify/json': ^2.2.525
+    '@iconify/json': ^2.2.526
     '@mathjax/src': ^4.1.3
     '@pinyin-pro/data': ^1.3.1
     artplayer: ^5.4.0
@@ -126,19 +127,19 @@ catalogs:
     sass: ^1.104.0
     sass-embedded: ^1.104.0
     swiper: ^14.2.0
-    three: ^0.185.1
+    three: ^0.186.0
   prod:
-    '@clack/prompts': ^1.7.0
+    '@clack/prompts': ^1.8.0
     '@floating-ui/vue': ^2.0.1
-    '@iconify/utils': ^3.1.6
+    '@iconify/utils': ^3.1.7
     '@iconify/vue': ^5.0.1
-    '@mdit/plugin-attrs': ^1.3.0
-    '@mdit/plugin-footnote': ^1.1.0
-    '@mdit/plugin-mark': ^2.1.0
-    '@mdit/plugin-sub': ^1.1.0
-    '@mdit/plugin-sup': ^1.1.0
-    '@mdit/plugin-tab': ^2.0.0
-    '@mdit/plugin-tasklist': ^1.1.0
+    '@mdit/plugin-attrs': ^1.3.1
+    '@mdit/plugin-footnote': ^1.1.1
+    '@mdit/plugin-mark': ^2.1.1
+    '@mdit/plugin-sub': ^1.1.1
+    '@mdit/plugin-sup': ^1.1.1
+    '@mdit/plugin-tab': ^2.0.1
+    '@mdit/plugin-tasklist': ^1.1.1
     '@pengzhanbo/utils': ^3.11.0
     '@shikijs/colorized-brackets': ^4.4.3
     '@shikijs/transformers': ^4.4.3
@@ -156,7 +157,7 @@ catalogs:
     hash-wasm: ^4.12.0
     js-tokens: ^10.0.0
     js-yaml: ^5.4.1
-    katex: ^0.18.6
+    katex: ^0.18.7
     local-pkg: ^1.2.1
     lru-cache: ^11.5.2
     mark.js: ^8.11.1
@@ -179,8 +180,8 @@ catalogs:
     shiki: ^4.4.3
     sort-package-json: ^4.0.0
     tiny-image-size: ^1.0.0
-    tm-grammars: ^1.32.13
-    tm-themes: ^1.12.10
+    tm-grammars: ^1.32.16
+    tm-themes: ^1.12.11
     unplugin-vue-components: ^32.1.0
     vue: ^3.5.42
     vue-router: ^5.3.1

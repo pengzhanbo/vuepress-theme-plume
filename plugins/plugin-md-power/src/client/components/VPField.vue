@@ -1,21 +1,31 @@
 <script lang="ts" setup>
 defineProps<{
   name: string
+  slug: string
   type?: string
   required?: boolean
-  optional?: boolean
   deprecated?: boolean
   defaultValue?: string
 }>()
 </script>
 
 <template>
-  <div class="vp-field" :class="{ required, optional, deprecated }">
+  <div
+    :id="slug" class="vp-field"
+    :class="{ required, deprecated, optional: !required && !deprecated }"
+  >
     <p class="field-meta">
-      <span class="name"><span class="visually-hidden">Name:</span>{{ name }}</span>
-      <span v-if="required || optional" :class="{ required, optional }">{{ required ? 'Required' : optional ? 'Optional' : '' }}</span>
-      <span v-if="deprecated" class="deprecated">Deprecated</span>
-      <span v-if="type" class="type"><span class="visually-hidden">Type:</span><code title="Type" aria-label="Type">{{ decodeURIComponent(type) }}</code></span>
+      <a :href="`#${slug}`" class="header-anchor ignore-header">
+        <span class="visually-hidden">Name:</span>
+        <span class="name">{{ name }}</span>
+      </a>
+      <span v-if="required" class="required">Required</span>
+      <span v-else-if="deprecated" class="deprecated">Deprecated</span>
+      <span v-else class="optional">Optional</span>
+      <span v-if="type" class="type">
+        <span class="visually-hidden">Type:</span>
+        <code title="Type" aria-label="Type">{{ decodeURIComponent(type) }}</code>
+      </span>
     </p>
     <p v-if="defaultValue" class="default-value">
       <span class="visually-hidden">Default Value: </span>
@@ -29,6 +39,9 @@ defineProps<{
 
 <style>
 .vp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   width: 100%;
   margin: 16px 0;
   transition: border-color var(--vp-t-color);
@@ -43,7 +56,7 @@ defineProps<{
   display: flex;
   gap: 8px;
   align-items: flex-start;
-  margin: 8px 0;
+  margin: 0;
 }
 
 .vp-field .field-meta .name {
@@ -55,9 +68,7 @@ defineProps<{
   text-decoration: line-through;
 }
 
-.vp-field .field-meta .required,
-.vp-field .field-meta .optional,
-.vp-field .field-meta .deprecated {
+.vp-field .field-meta :where(.required, .optional, .deprecated) {
   display: inline-block;
   padding: 2px 8px;
   font-size: 12px;
@@ -86,6 +97,10 @@ defineProps<{
   text-align: right;
 }
 
+.vp-field.deprecated .field-meta .name {
+  color: var(--vp-c-text-2);
+}
+
 .vp-field .default-value {
   margin: 0;
   font-size: 14px;
@@ -96,6 +111,13 @@ defineProps<{
 .vp-field .description :where(p, ul, ol) {
   margin: 8px 0;
   line-height: 24px;
+}
+
+.vp-field .description :first-child {
+  margin-top: 0;
+}
+
+.vp-field.deprecated .description :where(p) {
   color: var(--vp-c-text-2);
 }
 

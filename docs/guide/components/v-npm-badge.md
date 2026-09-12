@@ -39,8 +39,6 @@ Npm 徽章组件用于显示 npm 包信息，并提供相关的链接。
 
 ::: field name
 @type `string`
-@optional
-
 npm 包名，为空则从 `repo` 中获取
 :::
 
@@ -52,23 +50,17 @@ npm 包名，为空则从 `repo` 中获取
 
 ::: field type
 @type `NpmBadgeType`
-@optional
-
 徽章类型
 :::
 
 ::: field theme
 @type `NpmBadgeTheme`
-@optional
 @default 'flat'
-@optional
-
 徽章主题
 :::
 
 ::: field label
 @type `string`
-@optional
 @default `''`
 
 徽章标签
@@ -76,29 +68,24 @@ npm 包名，为空则从 `repo` 中获取
 
 ::: field color
 @type `string`
-@optional
 @default '#32A9C3'
 徽章颜色
 :::
 
 ::: field labelColor
 @type `string`
-@optional
 @default '#1B3C4A'
 徽章标签颜色
 :::
 
 ::: field branch
 @type `string`
-@optional
 @default `'main'`
 仓库分支
 :::
 
 ::: field dir
 @type `string`
-@optional
-
 包所在仓库目录，适用于 monorepo 项目
 :::
 
@@ -147,8 +134,6 @@ type NpmBadgeTheme = 'flat' | 'flat-square' | 'plastic' | 'for-the-badge' | 'soc
 
 ::: field name
 @type `string`
-@optional
-
 npm 包名，为空则从 `repo` 中获取
 :::
 
@@ -160,7 +145,6 @@ npm 包名，为空则从 `repo` 中获取
 
 ::: field items
 @type `string | NpmBadgeType[]`
-@optional
 @default `[]`
 
 徽章类型列表, 传入 `string` 时用 `','`分隔，会自动转换为 `NpmBadgeType[]`
@@ -168,36 +152,26 @@ npm 包名，为空则从 `repo` 中获取
 
 ::: field theme
 @type `NpmBadgeTheme`
-@optional
-
 徽章主题
 :::
 
 ::: field color
 @type `string`
-@optional
-
 徽章颜色
 :::
 
 ::: field labelColor
 @type `string`
-@optional
-
 徽章标签颜色
 :::
 
 ::: field branch
 @type `string`
-@optional
-
 仓库分支
 :::
 
 ::: field dir
 @type `string`
-@optional
-
 包所在仓库目录，适用于 monorepo 项目
 :::
 

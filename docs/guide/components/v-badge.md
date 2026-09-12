@@ -18,37 +18,27 @@ permalink: /guide/components/badge/
 ::: field type
 @type `'info' | 'tip' | 'warning' | 'danger' | string`
 @default `'tip'`
-@optional
-
 徽章类型，不同的类型使用不同的颜色方案。支持自定义类型
 :::
 
 ::: field text
 @type `string`
 @default `''`
-@optional
-
 徽章文本
 :::
 
 ::: field color
 @type `string`
-@optional
-
 自定义徽章文本颜色
 :::
 
 ::: field bgColor
 @type `string`
-@optional
-
 自定义徽章背景颜色
 :::
 
 ::: field borderColor
 @type `string`
-@optional
-
 自定义徽章边框颜色
 :::
 

@@ -24,8 +24,6 @@ export default defineUserConfig({
 ::: field propertyName
 @type type
 @default default-value
-@optional
-
 Field description here.
 :::
 
@@ -58,15 +56,11 @@ The title of the component.
 ::: field disabled
 @type `boolean`
 @default `false`
-@optional
-
 Whether the component is disabled.
 :::
 
 ::: field onClick
 @type `(event: MouseEvent) => void`
-@optional
-
 Click handler callback.
 :::
 
@@ -77,7 +71,7 @@ Click handler callback.
 
 Use a markup syntax similar to JSDoc to declare field metadata.
 
-Supports `@name`, `@type`, `@default`, `@required`, `@deprecated`, `@optional`, and `@description` tags.
+Supports `@name`, `@type`, `@default`, `@required`, `@deprecated`, and `@description` tags.
 
 | Tag            | Description                                                                               |
 | -------------- | ----------------------------------------------------------------------------------------- |
@@ -86,8 +80,9 @@ Supports `@name`, `@type`, `@default`, `@required`, `@deprecated`, `@optional`, 
 | `@default`     | Default value                                                                             |
 | `@required`    | Mark as required field                                                                    |
 | `@deprecated`  | Mark as deprecated field                                                                  |
-| `@optional`    | Mark as optional field                                                                    |
 | `@description` | Explicit description text; any non-tag lines are also included in the description         |
+
+Fields are optional by default and are only shown as required when marked with `@required`.
 
 ## Use Cases
 

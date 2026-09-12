@@ -3,6 +3,7 @@ import { isUndefined, objectKeys } from '@pengzhanbo/utils'
 import { colors } from 'vuepress/utils'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { logger } from '../utils/logger.js'
+import { slugify } from '../utils/slugify.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerPlugin, createContainerSyntaxPlugin } from './createContainer.js'
 
@@ -43,12 +44,6 @@ export interface FieldObject {
    */
   deprecated?: boolean
   /**
-   * Whether `@optional` is present
-   *
-   * 是否为可选项 — 是否在 `@optional` 标签中
-   */
-  optional?: boolean
-  /**
    * Description text, may span multiple lines joined by `\n`
    *
    * 描述文本 — 可跨多行，以 `\n` 连接
@@ -63,7 +58,6 @@ const KNOWN_TAGS = new Set([
   'default',
   'required',
   'deprecated',
-  'optional',
   'description',
 ])
 
@@ -78,7 +72,6 @@ const BACKTICK_RE = /^`|`$/g
  * - `@default` — default value
  * - `@required` — mark as required (boolean flag)
  * - `@deprecated` — mark as deprecated (boolean flag)
- * - `@optional` — mark as optional (boolean flag)
  * - `@description` — explicit description; any non-tag line also feeds into description
  *
  * Unknown `@`-prefixed tags are treated as description text.
@@ -92,7 +85,6 @@ const BACKTICK_RE = /^`|`$/g
  * - `@default` — 默认值
  * - `@required` — 标记为必需（布尔标志）
  * - `@deprecated` — 标记为已弃用（布尔标志）
- * - `@optional` — 标记为可选（布尔标志）
  * - `@description` — 显式描述；任何非标签行也会被纳入描述
  *
  * 未知的以 `@` 开头的标签将被视为描述文本。
@@ -140,6 +132,11 @@ export function parseFieldContent(content: string, info: string): FieldObject {
         rest = line.slice(spaceIdx + 1).trim()
       }
 
+      // `@optional` 已废弃，不被解析
+      if (tag === 'optional') {
+        continue
+      }
+
       if (KNOWN_TAGS.has(tag)) {
         // A known tag ends the current description paragraph.
         flushDesc()
@@ -152,7 +149,6 @@ export function parseFieldContent(content: string, info: string): FieldObject {
             break
           case 'required':
           case 'deprecated':
-          case 'optional':
             result[tag] = true
             break
           case 'description':
@@ -204,13 +200,25 @@ export function fieldPlugin(md: Markdown): void {
       logger.warn(`[Field container \`::: field\` name="${meta.name}"]`, `\n  No longer support attribute-style syntax. Please use \`@tag\` syntax instead.\n  see ${colors.cyan('https://theme-plume.vuejs.press/guide/markdown/field/')}\n  at ${colors.gray(env.filePathRelative!)}`)
     }
 
-    const { name, type, required, optional, deprecated, default: defaultValue, description } = { ...meta, ...parseFieldContent(content, info.includes('=') ? '' : info) }
+    const { name, type, required, deprecated, default: defaultValue, description } = { ...meta, ...parseFieldContent(content, info.includes('=') ? '' : info) }
 
-    const props = stringifyAttrs({ name: name || meta.name, required, optional, deprecated })
+    const props = stringifyAttrs({
+      name: name || meta.name,
+      required,
+      deprecated,
+      slug: createSlug(name || meta.name, env),
+    })
     return `<VPField${props}${
       !isUndefined(type) ? ` type="${encodeURIComponent(type)}"` : ''
     }${
       !isUndefined(defaultValue) ? ` default-value="${encodeURIComponent(defaultValue)}"` : ''
     }>${description ? md.render(description, cleanMarkdownEnv(env)) : ''}</VPField>`
   })
+}
+
+function createSlug(name: string, env: MarkdownEnv & { __FIELD_SLUG__?: Record<string, number> }) {
+  const cache = env.__FIELD_SLUG__ ??= {}
+  const count = cache[name] || 0
+  cache[name] = count + 1
+  return `${slugify(name)}${count > 0 ? `-${count}` : ''}`
 }

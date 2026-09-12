@@ -218,14 +218,12 @@ config:
 
 ::: field height
 @type `number`
-@optional
 @default `3.5`
 
 棱柱的顶点高度（world units）
 :::
 ::: field baseWidth
 @type `number`
-@optional
 @default `5.5`
 
 X/Z轴总基准宽度（world units）
@@ -233,90 +231,76 @@ X/Z轴总基准宽度（world units）
 ::: field animationType
 @type `'rotate' | 'hover' | '3drotate'`
 @default `'rotate'`
-@optional
-
 动画模式：着色器摆动、指针悬停倾斜或完全三维旋转。
 :::
 ::: field glow
 @type `number`
-@optional
 @default `1`
 
 发光/溢出强度乘数。
 :::
 ::: field offset
 @type `{ x?: number, y?: number }`
-@optional
 @default `{ x: 0, y: 0 }`
 
 画布内的像素偏移（x → 向右，y → 向下）。
 :::
 ::: field noise
 @type `number`
-@optional
 @default `0`
 
 最终颜色中添加的颗粒噪声量（0表示禁用）。
 :::
 ::: field transparent
 @type `boolean`
-@optional
 @default `true`
 
 画布是否具有Alpha通道（透明背景）。
 :::
 ::: field scale
 @type `number`
-@optional
 @default `3.6`
 
 棱镜的整体屏幕空间比例（数值越大，显示尺寸越大）。
 :::
 ::: field hueShift
 @type `number`
-@optional
 @default `0`
 
 色调旋转（弧度）应用于最终颜色。
 :::
 ::: field colorFrequency
 @type `number`
-@optional
 @default `1`
 
 控制颜色变化的内部正弦带频率。
 :::
 ::: field hoverStrength
 @type `number`
-@optional
 @default `2`
 
 悬停倾斜（俯仰/偏航幅度）灵敏度。
 :::
 ::: field inertia
 @type `number`
-@optional
 @default `0.05`
 
 悬停缓动因子（`0 ~ 1`，数值越大响应越灵敏）。
 :::
 ::: field bloom
 @type `number`
-@optional
 @default `1`
 
 在光泽之上叠加额外的绽放效果层次。
 :::
 ::: field suspendWhenOffscreen
 @type `boolean`
-@optional
 @default `true`
 
 当元素不在视口内时暂停渲染。
 :::
 ::: field timeScale
 @type `number`
-@optional
 @default `0.5`
 
 动画全局时间倍率（0=冻结，1=正常）。
@@ -391,159 +375,132 @@ config:
 ::: field variant
 @type `'square' | 'circle' | 'triangle' | 'diamond'`
 @default `'square'`
-@optional
-
 像素形状变体
 :::
 ::: field pixelSize
 @type `number`
-@optional
 @default `4`
 
 基础像素尺寸（根据DPI自动缩放）。
 :::
 ::: field color
 @type `string`
-@optional
 @default `'#5086a1'`
 
 像素颜色
 :::
 ::: field antialias
 @type `boolean`
-@optional
 @default `true`
 
 是否启用抗锯齿
 :::
 ::: field patternScale
 @type `number`
-@optional
 @default `2`
 
 噪声/图案比例
 :::
 ::: field patternDensity
 @type `number`
-@optional
 @default `1`
 
 调整图案密度
 :::
 ::: field liquid
 @type `boolean`
-@optional
 @default `false`
 
 是否启用液体扭曲效果。
 :::
 ::: field liquidStrength
 @type `number`
-@optional
 @default `0.1`
 
 液体扭曲强度
 :::
 ::: field liquidRadius
 @type `number`
-@optional
 @default `1`
 
 液体触摸笔刷半径比例。
 :::
 ::: field liquidWobbleSpeed
 @type `number`
-@optional
 @default `4.5`
 
 液体晃动频率
 :::
 ::: field pixelSizeJitter
 @type `number`
-@optional
 @default `0`
 
 应用于覆盖范围的随机抖动
 :::
 ::: field enableRipples
 @type `boolean`
-@optional
 @default `true`
 
 启用点击涟漪效果
 :::
 ::: field rippleIntensityScale
 @type `number`
-@optional
 @default `1`
 
 纹波强度乘数
 :::
 ::: field rippleThickness
 @type `number`
-@optional
 @default `0.1`
 
 纹波环厚度
 :::
 ::: field rippleSpeed
 @type `number`
-@optional
 @default `0.3`
 
 纹波传播速度
 :::
 ::: field autoPauseOffscreen
 @type `boolean`
-@optional
 @default `true`
 
 当元素不在视口内时自动暂停渲染
 :::
 ::: field speed
 @type `number`
-@optional
 @default `0.5`
 
 动画时间缩放比例
 :::
 ::: field transparent
 @type `boolean`
-@optional
 @default `true`
 
 透明背景
 :::
 ::: field edgeFade
 @type `number`
-@optional
 @default `0.5`
 
 边缘淡入距离（`0-1`）。
 :::
 ::: field noiseAmount
 @type `number`
-@optional
 @default `0`
 
 噪声强度
 :::
 ::: field className
 @type `string`
-@optional
-
 容器自定义类名
 :::
 ::: field style
 @type `CSSProperties`
-@optional
-
 容器自定义样式
 :::
 ::: field backgroundImage
 @type `string`
-@optional
-
 背景图像 URL
 :::
 ::::
@@ -986,133 +943,114 @@ config:
 ::::field-group
 ::: field mouseForce
 @type `number`
-@optional
 @default `20`
 
 鼠标/触摸移动注入速度时的强度系数。
 :::
 ::: field cursorSize
 @type `number`
-@optional
 @default `100`
 
 光标半径（以基本分辨率的像素为单位）。
 :::
 ::: field isViscous
 @type `boolean`
-@optional
 @default `false`
 
 启用迭代性质量解决方案(更平滑，更粗糙的运动)。
 :::
 ::: field viscous
 @type `number`
-@optional
 @default `30`
 
 当 `isViscous` 为 `true` 时使用的粘性系数。
 :::
 ::: field iterationsViscous
 @type `number`
-@optional
 @default `32`
 
 粘性的高斯-塞德尔迭代次数（值越大 = 更平滑，更慢）。
 :::
 ::: field iterationsPoisson
 @type `number`
-@optional
 @default `32`
 
 用于确保不可压缩性的压力泊松迭代次数。
 :::
 ::: field dt
 @type `number`
-@optional
 @default `0.014`
 
 内部的对流/扩散迭代中使用固定的模拟时间步长。
 :::
 ::: field BFECC
 @type `boolean`
-@optional
 @default `true`
 
 启用 BFECC 传输（错误补偿）以获得更清晰的流动，禁用以获得稍微的性能提升。
 :::
 ::: field resolution
 @type `number`
-@optional
 @default `0.5`
 
 相对于画布大小的仿真纹理缩放（值越小，更好的性能、更模糊）。
 :::
 ::: field isBounce
 @type `boolean`
-@optional
 @default `false`
 
 如果为 true，显示弹跳边界（速度在边缘上限）。
 :::
 ::: field colors
 @type `string[]`
-@optional
 @default `['#5227FF', '#FF9FFC', '#B19EEF']`
 
 用于构建速度-颜色映射调色板的十六进制颜色停止点数组。
 :::
 ::: field autoDemo
 @type `boolean`
-@optional
 @default `true`
 
 启用无用户交互时的自动驾驶指针。
 :::
 ::: field autoSpeed
 @type `number`
-@optional
 @default `0.5`
 
 自动指针运动的速度（标准化单位/秒）。
 :::
 ::: field autoIntensity
 @type `number`
-@optional
 @default `2.2`
 
 在自动模式下应用于速度增量的乘数。
 :::
 ::: field takeoverDuration
 @type `number`
-@optional
 @default `2.5`
 
 在用户移动鼠标时从自动指针插值到实际光标的秒数。
 :::
 ::: field autoResumeDelay
 @type `number`
-@optional
 @default `1000`
 
 在自动模式恢复之前的不活动时间（毫秒）。
 :::
 ::: field autoRampDuration
 @type `number`
-@optional
 @default `0.6`
 
 在激活后从 0 开始加速自动移动速度的秒数。
 :::
 ::: field className
 @type `string`
-@optional
 @default `''`
 
 应用于容器上的 CSS 类名。
 :::
 ::: field style
 @type `CSSProperties`
-@optional
 @default `{}`
 
 应用于容器上的 CSS 样式。
@@ -1186,91 +1124,78 @@ config:
 ::::field-group
 ::: field dotSize
 @type `number`
-@optional
 @default `5`
 
 每个点的尺寸（像素）。
 :::
 ::: field gap
 @type `number`
-@optional
 @default `15`
 
 每个点之间的间隙（像素）。
 :::
 ::: field baseColor
 @type `string`
-@optional
 @default `'#ebebf5'`
 
 点的基本颜色。
 :::
 ::: field activeColor
 @type `string`
-@optional
 @default `'#8cccd5'`
 
 鼠标悬停或激活时点的颜色。
 :::
 ::: field proximity
 @type `number`
-@optional
 @default `120`
 
 鼠标指针周围的半径，在此范围内点会响应
 :::
 ::: field speedTrigger
 @type `number`
-@optional
 @default `100`
 
 触发惯性效果的鼠标速度阈值。
 :::
 ::: field shockRadius
 @type `number`
-@optional
 @default `250`
 
 点击时的震动波半径。
 :::
 ::: field shockStrength
 @type `number`
-@optional
 @default `5`
 
 点击时震动波的强度。
 :::
 ::: field maxSpeed
 @type `number`
-@optional
 @default `5000`
 
 惯性计算的最大速度。
 :::
 ::: field resistance
 @type `number`
-@optional
 @default `750`
 
 惯性效果的阻力
 :::
 ::: field returnDuration
 @type `number`
-@optional
 @default `1.5`
 
 惯性后点返回原始位置的持续时间。
 :::
 ::: field className
 @type `string`
-@optional
 @default `''`
 
 应用于容器上的 CSS 类名。
 :::
 ::: field style
 @type `CSSProperties`
-@optional
 @default `{}`
 
 应用于容器上的 CSS 样式。
@@ -1338,28 +1263,24 @@ config:
 ::::field-group
 ::: field color
 @type `readonly [number, number, number]`
-@optional
 @default `[1, 1, 1]`
 
 基准色以 RGB 值数组形式表示（每个数值范围在 `0` 到 `1` 之间）。
 :::
 ::: field speed
 @type `number`
-@optional
 @default `1.0`
 
 动画的速度乘数
 :::
 ::: field amplitude
 @type `number`
-@optional
 @default `0.1`
 
 鼠标驱动效果的振幅。
 :::
 ::: field mouseReact
 @type `boolean`
-@optional
 @default `true`
 
 启用或禁用鼠标与着色器的交互
@@ -1420,35 +1341,30 @@ config:
 ::::field-group
 ::: field hue
 @type `number`
-@optional
 @default `0`
 
 球的基本色调（度）。
 :::
 ::: field hoverIntensity
 @type `number`
-@optional
 @default `0.2`
 
 控制悬停扭曲效果的强度。
 :::
 ::: field rotateOnHover
 @type `boolean`
-@optional
 @default `true`
 
 启用或禁用悬停时的持续旋转。
 :::
 ::: field forceHoverState
 @type `boolean`
-@optional
 @default `false`
 
 即使没有悬停，也强制启用悬停动画。
 :::
 ::: field className
 @type `string`
-@optional
 @default `''`
 
 应用于容器上的 CSS 类名。
@@ -1509,56 +1425,48 @@ config:
 ::::field-group
 ::: field beamWidth
 @type `number`
-@optional
 @default `2`
 
 每个激光束的宽度。
 :::
 ::: field beamHeight
 @type `number`
-@optional
 @default `15`
 
 每个激光束的高度。
 :::
 ::: field beamNumber
 @type `number`
-@optional
 @default `12`
 
 要显示的激光束数量。
 :::
 ::: field lightColor
 @type `string`
-@optional
 @default `'#fff'`
 
 方向光的颜色。
 :::
 ::: field speed
 @type `number`
-@optional
 @default `2`
 
 动画的速度。
 :::
 ::: field noiseIntensity
 @type `number`
-@optional
 @default `1.75`
 
 噪音效果的强度。
 :::
 ::: field scale
 @type `number`
-@optional
 @default `0.2`
 
 噪音模式的缩放比例。
 :::
 ::: field rotation
 @type `number`
-@optional
 @default `0`
 
 整个激光束系统的旋转角度（度）。
@@ -1613,35 +1521,30 @@ config:
 ::::field-group
 ::: field hue
 @type `number`
-@optional
 @default `255`
 
 光束的色调（度）（0到360）。
 :::
 ::: field xOffset
 @type `number`
-@optional
 @default `0`
 
 光束的水平偏移量（标准化单位）。
 :::
 ::: field speed
 @type `number`
-@optional
 @default `1`
 
 光束的动画速度乘数。
 :::
 ::: field intensity
 @type `number`
-@optional
 @default `1`
 
 光束的亮度乘数。
 :::
 ::: field size
 @type `number`
-@optional
 @default `1`
 
 光束的缩放因子。
@@ -1693,48 +1596,41 @@ config:
 ::::field-group
 ::: field hueShift
 @type `number`
-@optional
 @default `0`
 
 调整整个动画的色调。
 :::
 ::: field noiseIntensity
 @type `number`
-@optional
 @default `0`
 
 噪声/颗粒效果的强度。
 :::
 ::: field scanlineIntensity
 @type `number`
-@optional
 @default `0`
 
 扫描线效果的强度。
 :::
 ::: field speed
 @type `number`
-@optional
 @default `0.5`
 
 动画速度。
 :::
 ::: field scanlineFrequency
 @type `number`
-@optional
 @default `0`
 
 扫描线的频率。
 :::
 ::: field warpAmount
 @type `number`
-@optional
 @default `0`
 应用于效果的扭曲变形量。
 :::
 ::: field resolutionScale
 @type `number`
-@optional
 @default `1`
 分辨率缩放比例。
 :::

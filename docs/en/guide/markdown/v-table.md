@@ -64,24 +64,18 @@ Simply wrap the table within a `:::table` block.
 
 ::: field title
 @type `string`
-@optional
-
 Table title, displayed below the table.
 :::
 
 ::: field align
 @type `'left' | 'center' | 'right'`
 @default `left`
-@optional
-
 Table alignment.
 :::
 
 ::: field copy
 @type `boolean | 'all' | 'html' | 'md'`
 @default `true`
-@optional
-
 Displays a copy button in the top-right corner of the table for copying as HTML or Markdown.
 
 - `true` is equivalent to `'all'`.
@@ -94,23 +88,17 @@ Displays a copy button in the top-right corner of the table for copying as HTML 
 ::: field maxContent
 @type `boolean`
 @default `false`
-@optional
-
 Inline elements will not wrap automatically; a scrollbar is displayed when the content exceeds the container width.
 :::
 
 ::: field fullWidth
 @type `boolean`
 @default `false`
-@optional
-
 The table width defaults to occupying the entire row.
 :::
 
 ::: field hl-rows
 @type `string`
-@optional
-
 Configures row highlighting within the table.
 
 The value uses the format `type:row1,row2`. Multiple type-row pairs can be combined using `;`.
@@ -128,8 +116,6 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 
 ::: field hl-cols
 @type `string`
-@optional
-
 Configures column highlighting within the table.
 
 The value uses the format `type:col1,col2`. Multiple type-column pairs can be combined using `;`.
@@ -148,7 +134,6 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 
 ::: field hl-cells
 @type `string`
-@optional
 Configures cell highlighting within the table.
 
 The value uses the format `type:(row,col)`. Multiple type-cell pairs can be combined using `;`.

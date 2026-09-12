@@ -25,50 +25,36 @@ permalink: /guide/components/image-card/
 
 ::: field title
 @type `string`
-@optional
-
 图片标题
 :::
 
 ::: field description
 @type `string`
-@optional
-
 图片描述信息
 :::
 
 ::: field author
 @type `string`
-@optional
-
 图片作者
 :::
 
 ::: field href
 @type `string`
-@optional
-
 点击图片标题后的跳转链接
 :::
 
 ::: field date
 @type `string | Date | number`
-@optional
-
 图片 创作日期
 :::
 
 ::: field width
 @type `string | number`
-@optional
-
 图片宽度
 :::
 
 ::: field center
 @type `boolean`
-@optional
-
 图片宽度不满屏时是否居中
 :::
 

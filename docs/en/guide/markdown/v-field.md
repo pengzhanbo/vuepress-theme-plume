@@ -70,7 +70,7 @@ Multi-line field description
 
 ## Field Tags
 
-Supports `@name`, `@type`, `@default`, `@required`, `@deprecated`, `@optional`, and `@description` tags.
+Supports `@name`, `@type`, `@default`, `@required`, `@deprecated`, and `@description` tags.
 
 | Tag | Description |
 | --- | --- |
@@ -79,8 +79,9 @@ Supports `@name`, `@type`, `@default`, `@required`, `@deprecated`, `@optional`, 
 | `@default` | Default value |
 | `@required` | Mark as required field |
 | `@deprecated` | Mark as deprecated field |
-| `@optional` | Mark as optional field |
 | `@description` | Explicit description text; any non-tag lines are also included in the description |
+
+Fields are optional by default and are only shown as required when marked with `@required`.
 
 ## Examples
 
@@ -97,7 +98,6 @@ Theme configuration
 
 ::: field enabled
 @type boolean
-@optional
 @default true
 
 Whether enabled
@@ -116,7 +116,6 @@ Theme configuration
 
 ::: field enabled
 @type boolean
-@optional
 @default true
 
 Whether enabled
@@ -135,7 +134,6 @@ Theme configuration
 
 ::: field enabled
 @type boolean
-@optional
 @default true
 
 Whether enabled
@@ -143,7 +141,6 @@ Whether enabled
 
 ::: field callback
 @type (...args: any[]) => void
-@optional
 @default () => (){}
 <Badge type="tip" text="New in v1.0.0"  />
 Callback function
@@ -171,7 +168,6 @@ Theme configuration
 
 ::: field enabled
 @type boolean
-@optional
 @default true
 
 Whether enabled
@@ -179,7 +175,6 @@ Whether enabled
 
 ::: field callback
 @type (...args: any[]) => void
-@optional
 @default () => (){}
 <Badge type="tip" text="New in v1.0.0"  />
 Callback function

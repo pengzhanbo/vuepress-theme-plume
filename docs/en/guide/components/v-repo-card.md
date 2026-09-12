@@ -34,15 +34,11 @@ Repository address in `owner/repo` format
 ::: field provider
 @type `'github' | 'gitee'`
 @default `'github'`
-@optional
-
 Repository platform. Currently only `github`/`gitee` are supported.
 :::
 
 ::: field fullname
 @type `boolean`
-@optional
-
 Whether to display the full repository name.
 
 The full repository name is `owner/repo`.

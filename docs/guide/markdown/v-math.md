@@ -100,8 +100,6 @@ $$
 ::: field type
 @type `'katex' | 'mathjax'`
 @default `'katex'`
-@optional
-
 用于渲染 $\TeX$ 内容的包。
 
 - `'katex'`：使用 [KaTeX](https://katex.org/)
@@ -110,8 +108,6 @@ $$
 ::: field delimiters
 @type `'brackets' | 'dollars' | 'all'`
 @default `'dollars'`
-@optional
-
 启用的数学分隔符语法。
 
 - `"brackets"`: 使用 `\(...\)` 表示内联数学，使用 `\[...\]` 表示显示模式数学（LaTeX 风格）
@@ -130,15 +126,11 @@ $$
 ::: field copy
 @type `boolean`
 @default `false`
-@optional
-
 是否启用复制扩展。
 :::
 ::: field mhchem
 @type `boolean`
 @default `false`
-@optional
-
 是否启用 mhchem 扩展。
 :::
 ::::
@@ -150,27 +142,19 @@ $$
 :::: field-group
 ::: field tex
 @type `object`
-@optional
-
 传递给 TeX 输入解析器的选项。
 :::
 ::: field output
 @type `'svg' | 'chtml'`
 @default `'svg'`
-@optional
-
 输出格式，SVG 或通用 HTML。
 :::
 ::: field chtml
 @type `object`
-@optional
-
 传递给通用 HTML 输出解析器的选项。
 :::
 ::: field svg
 @type `object`
-@optional
-
 传递给 SVG 输出解析器的选项。
 :::
 ::::

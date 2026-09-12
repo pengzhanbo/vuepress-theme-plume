@@ -128,24 +128,18 @@ __时间线__ 支持非常灵活且灵活的配置项，配置主要分为两个
 ::: field horizontal
 @type `boolean`
 @default `false`
-@optional
-
 渲染为 水平方向 的时间线
 :::
 
 ::: field card
 @type `boolean`
 @default `false`
-@optional
-
 每个时间节点默认渲染为卡片样式（可在列表项配置中覆盖）
 :::
 
 ::: field placement
 @type `'left' | 'right' | 'between'`
 @default `'left'`
-@optional
-
 时间节点的对齐方式。==仅在垂直方向时生效=={.warning}
 
 - `left` : 时间轴左侧对齐
@@ -156,8 +150,6 @@ __时间线__ 支持非常灵活且灵活的配置项，配置主要分为两个
 ::: field line
 @type `'solid' | 'dashed' | 'dotted'`
 @default `'solid'`
-@optional
-
 线条样式（可在列表项配置中覆盖）
 :::
 
@@ -170,48 +162,36 @@ __时间线__ 支持非常灵活且灵活的配置项，配置主要分为两个
 ::: field time
 @type `string`
 @default `''`
-@optional
-
 时间点，可以是任何字符串，比如 `2025-03-20`， `Q1` 等。
 :::
 
 ::: field type
 @type `'info' | 'tip' | 'success' | 'warning' | 'danger' | 'caution' | 'important'`
 @default `'info'`
-@optional
-
 时间节点的类型。
 :::
 
 ::: field card
 @type `boolean`
 @default `false`
-@optional
-
 当前 时间节点渲染为卡片样式。默认值从 容器配置 `card` 中继承
 :::
 
 ::: field line
 @type `'solid' | 'dashed' | 'dotted'`
 @default `'solid'`
-@optional
-
 线条样式。 默认值从 容器配置 `line` 中继承
 :::
 
 ::: field icon
 @type `string`
 @default `''`
-@optional
-
 时间节点的图标，支持所有的 [iconify](https://icon-sets.iconify.design/) 图标。
 :::
 
 ::: field placement
 @type `'left' | 'right' | 'between'`
 @default `'left'`
-@optional
-
 当 容器配置 `placement` 为 `between` 时，定义当前时间节点的位置。
 
 - `left` : 在时间轴左侧
@@ -221,8 +201,6 @@ __时间线__ 支持非常灵活且灵活的配置项，配置主要分为两个
 ::: field color
 @type `string`
 @default `''`
-@optional
-
 时间节点线条颜色，可以是任何有效的颜色值。
 :::
 

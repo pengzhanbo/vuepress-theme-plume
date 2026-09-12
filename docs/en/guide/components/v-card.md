@@ -18,16 +18,12 @@ Alternatively, the markdown [card container](../markdown/v-card.md) syntax can b
 ::: field title
 @type `string`
 @default `''`
-@optional
-
 Card title.
 :::
 
 ::: field icon
 @type `string | { svg: string }`
 @default `''`
-@optional
-
 Icon displayed to the left of the title. Supports all icons from iconify, or an image URL can be used.
 :::
 

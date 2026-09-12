@@ -62,24 +62,18 @@ export default defineUserConfig({
 
 ::: field title
 @type `string`
-@optional
-
 表格标题，显示在表格的下方
 :::
 
 ::: field align
 @type `'left' | 'center' | 'right'`
 @default `left`
-@optional
-
 表格对齐方式
 :::
 
 ::: field copy
 @type `boolean | 'all' | 'html' | 'md'`
 @default `true`
-@optional
-
 在表格的右上角显示复制按钮，可以复制为 html / markdown
 
 - `true` 等同于 `all`
@@ -92,23 +86,17 @@ export default defineUserConfig({
 ::: field maxContent
 @type `boolean`
 @default `false`
-@optional
-
 行内元素不再自动换行，超出容器宽度时表格显示滚动条
 :::
 
 ::: field fullWidth
 @type `boolean`
 @default `false`
-@optional
-
 表格宽度默认占据整行
 :::
 
 ::: field hl-rows
 @type `string`
-@optional
-
 配置表格中的行高亮。
 
 值使用 `type:row1,row2` 的格式，可以使用 `;` 组合多个 type row。
@@ -126,8 +114,6 @@ export default defineUserConfig({
 
 ::: field hl-cols
 @type `string`
-@optional
-
 配置表格中的列高亮。
 
 值使用 `type:col1,col2` 的格式，可以使用 `;` 组合多个 type col。
@@ -145,8 +131,6 @@ export default defineUserConfig({
 
 ::: field hl-cells
 @type `string`
-@optional
-
 配置表格中的单元格高亮。
 
 值使用 `type:(row,col)` 的格式，可以使用 `;` 组合多个 type cell。

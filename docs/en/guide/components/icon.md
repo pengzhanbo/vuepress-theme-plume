@@ -55,8 +55,6 @@ interface IconOptions {
 ::: field name
 @type `string`
 @default `''`
-@optional
-
 Icon name.
 
 When `markdown.icon.prefix` has a value, the prefix in `name` can be omitted.
@@ -65,16 +63,12 @@ When `markdown.icon.prefix` has a value, the prefix in `name` can be omitted.
 ::: field color
 @type `string`
 @default `'currentcolor'`
-@optional
-
 Icon color.
 :::
 
 ::: field size
 @type `string`
 @default `'1em'`
-@optional
-
 Icon size.
 :::
 

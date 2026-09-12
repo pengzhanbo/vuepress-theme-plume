@@ -128,13 +128,11 @@ Additionally, 2 special options are supported:
 :::: field-group
 ::: field copy
 @type `boolean`
-@optional
 @default `false`
 Whether to enable the copy extension.
 :::
 ::: field mhchem
 @type `boolean`
-@optional
 @default `false`
 Whether to enable the mhchem extension.
 :::
@@ -147,27 +145,20 @@ When using MathJax, you can set:
 :::: field-group
 ::: field tex
 @type `object`
-@optional
-
 Options passed to the TeX input parser.
 :::
 ::: field output
 @type `'svg' | 'chtml'`
-@optional
 @default `'svg'`
 
 Output format, either SVG or Common HTML.
 :::
 ::: field chtml
 @type `object`
-@optional
-
 Options passed to the Common HTML output parser.
 :::
 ::: field svg
 @type `object`
-@optional
-
 Options passed to the SVG output parser.
 :::
 ::::

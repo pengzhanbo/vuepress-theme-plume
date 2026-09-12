@@ -34,11 +34,6 @@ describe('parseFieldContent', () => {
     expect(result.deprecated).toBe(true)
   })
 
-  it('should parse @optional tag', () => {
-    const result = parseFieldContent('@optional', 'field')
-    expect(result.optional).toBe(true)
-  })
-
   it('should parse @description tag', () => {
     const result = parseFieldContent('@description This is a description', 'field')
     expect(result.description).toBe('This is a description')
@@ -143,9 +138,8 @@ continued text`
   })
 
   it('should handle all boolean flags together', () => {
-    const result = parseFieldContent('@required\n@optional\n@deprecated', 'field')
+    const result = parseFieldContent('@required\n@deprecated', 'field')
     expect(result.required).toBe(true)
-    expect(result.optional).toBe(true)
     expect(result.deprecated).toBe(true)
   })
 
@@ -179,10 +173,6 @@ describe('fieldPlugin', () => {
 description
 :::
 
-::: field name="bar" type="string" optional
-description
-:::
-
 ::: field name="bar" type="string" deprecated default="baz"
 description
 :::
@@ -201,7 +191,7 @@ description
 description
 :::
 
-::: field name="bar" type="string" optional
+::: field name="bar" type="string" deprecated
 description
 :::
 ::::
@@ -327,17 +317,6 @@ This is **bold** and *italic* text.
     expect(html).toContain('deprecated')
   })
 
-  it('::: field with @optional flag', () => {
-    const code = `\
-::: field optField
-@optional
-@type string
-:::
-`
-    const html = md.render(code)
-    expect(html).toContain('optional')
-  })
-
   it('::: field with unknown @tag in description', () => {
     const code = `\
 ::: field customField
@@ -387,7 +366,6 @@ The count value
 
 ::: field label
 @type string
-@optional
 The label value
 :::
 ::::

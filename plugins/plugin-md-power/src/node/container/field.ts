@@ -218,7 +218,8 @@ export function fieldPlugin(md: Markdown): void {
 
 function createSlug(name: string, env: MarkdownEnv & { __FIELD_SLUG__?: Record<string, number> }) {
   const cache = env.__FIELD_SLUG__ ??= {}
-  const count = cache[name] || 0
-  cache[name] = count + 1
-  return `${slugify(name)}${count > 0 ? `-${count}` : ''}`
+  const slug = slugify(name)
+  const count = cache[slug] || 0
+  cache[slug] = count + 1
+  return `${slug}${count > 0 ? `-${count}` : ''}`
 }

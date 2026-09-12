@@ -49,32 +49,24 @@ export default defineUserConfig({
 ::: field wikiLink
 @type `boolean`
 @default `true`
-@optional
-
 启用 [Wiki 链接](#wiki-链接) 语法。
 :::
 
 ::: field embedLink
 @type `boolean`
 @default `true`
-@optional
-
 启用 [嵌入内容](#嵌入内容) 语法。
 :::
 
 ::: field callout
 @type `boolean`
 @default `true`
-@optional
-
 启用 [Callout](#callout) 语法。
 :::
 
 ::: field comment
 @type `boolean`
 @default `true`
-@optional
-
 启用 [注释](#注释) 语法。
 :::
 

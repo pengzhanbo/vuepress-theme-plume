@@ -42,15 +42,11 @@ permalink: /guide/markdown/card/
 ::: field title
 @type `string`
 @default `''`
-@optional
-
 卡片标题
 :::
 
 ::: field icon
 @type `string`
-@optional
-
 卡片图标 支持传入图片链接，还可以传入 [iconify](https://icon-sets.iconify.design/) 图标名。
 ::::
 

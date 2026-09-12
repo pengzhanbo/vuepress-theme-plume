@@ -69,7 +69,7 @@ export default defineUserConfig({
 
 ## 字段标签
 
-支持 `@name`、`@type`、`@default`、`@required`、`@deprecated`、`@optional`、`@description` 标签。
+支持 `@name`、`@type`、`@default`、`@required`、`@deprecated`、`@description` 标签。
 
 | 标签 | 描述 |
 | --- | --- |
@@ -78,8 +78,9 @@ export default defineUserConfig({
 | `@default` | 默认值 |
 | `@required` | 标记为必填字段 |
 | `@deprecated` | 标记为已弃用字段 |
-| `@optional` | 标记为可选字段 |
 | `@description` | 显式描述文本，任何非标签行也会被纳入描述 |
+
+字段默认即为可选，仅在标记 `@required` 时才显示为必填。
 
 ## 示例
 
@@ -96,7 +97,6 @@ export default defineUserConfig({
 
 ::: field enabled
 @type boolean
-@optional
 @default true
 
 是否启用
@@ -115,7 +115,6 @@ export default defineUserConfig({
 
 ::: field enabled
 @type boolean
-@optional
 @default true
 
 是否启用
@@ -134,7 +133,6 @@ export default defineUserConfig({
 
 ::: field enabled
 @type boolean
-@optional
 @default true
 
 是否启用
@@ -142,7 +140,6 @@ export default defineUserConfig({
 
 ::: field callback
 @type (...args: any[]) => void
-@optional
 @default () => (){}
 <Badge type="tip" text="v1.0.0 新增"  />
 回调函数
@@ -170,7 +167,6 @@ export default defineUserConfig({
 
 ::: field enabled
 @type boolean
-@optional
 @default true
 
 是否启用
@@ -178,7 +174,6 @@ export default defineUserConfig({
 
 ::: field callback
 @type (...args: any[]) => void
-@optional
 @default () => (){}
 <Badge type="tip" text="v1.0.0 新增"  />
 回调函数

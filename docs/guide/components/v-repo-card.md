@@ -33,7 +33,6 @@ Repo 卡片组件用于显示 GitHub / Gitee 仓库信息。
 
 ::: field provider
 @type `'github' | 'gitee'`
-@optional
 @default `'github'`
 
 仓库所属平台，当前仅支持 `github / gitee` 。
@@ -41,7 +40,6 @@ Repo 卡片组件用于显示 GitHub / Gitee 仓库信息。
 
 ::: field fullname
 @type `boolean`
-@optional
 @default `false`
 
 是否显示完整的仓库名称。

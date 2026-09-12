@@ -18,37 +18,27 @@ Pass the content you want to display to the `text` prop of the `<Badge>` compone
 ::: field type
 @type `'info' | 'tip' | 'warning' | 'danger' | string`
 @default `'tip'`
-@optional
-
 Badge type. Different types use different color schemes. Custom types are supported.
 :::
 
 ::: field text
 @type `string`
 @default `''`
-@optional
-
 Badge text content.
 :::
 
 ::: field color
 @type `string`
-@optional
-
 Custom badge text color.
 :::
 
 ::: field bgColor
 @type `string`
-@optional
-
 Custom badge background color.
 :::
 
 ::: field borderColor
 @type `string`
-@optional
-
 Custom badge border color.
 :::
 

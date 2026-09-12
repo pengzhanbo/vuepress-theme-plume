@@ -18,16 +18,12 @@ permalink: /guide/components/card/
 ::: field title
 @type `string`
 @default `''`
-@optional
-
 卡片标题
 :::
 
 ::: field icon
 @type `string | { svg: string }`
 @default `''`
-@optional
-
 显示在标题左侧的图标，支持 iconify 所有图标，也可以使用 图片链接
 :::
 

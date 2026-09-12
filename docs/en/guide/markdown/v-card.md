@@ -41,7 +41,6 @@ This is the card content.
 :::: field-group
 ::: field title
 @type `string`
-@optional
 @default `''`
 
 Card title
@@ -49,8 +48,6 @@ Card title
 
 ::: field icon
 @type `string`
-@optional
-
 Card icon. Supports image URLs and [iconify](https://icon-sets.iconify.design/) icon names.
 ::::
 

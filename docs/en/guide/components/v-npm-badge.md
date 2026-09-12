@@ -40,15 +40,11 @@ Single npm badge
 
 ::: field name
 @type `string`
-@optional
-
 npm package name. If empty, it will be obtained from `repo`
 :::
 
 ::: field repo
 @type `string`
-@optional
-
 Package GitHub repository address in `owner/repo` format. Required when `name` is empty
 :::
 
@@ -60,7 +56,6 @@ Badge type
 
 ::: field theme
 @type `NpmBadgeTheme`
-@optional
 @default `'flat'`
 
 Badge theme
@@ -68,14 +63,11 @@ Badge theme
 
 ::: field label
 @type `string`
-@optional
-
 Badge label
 :::
 
 ::: field color
 @type `string`
-@optional
 @default `'#32A9C3'`
 
 Badge color
@@ -83,7 +75,6 @@ Badge color
 
 ::: field labelColor
 @type `string`
-@optional
 @default `'#1B3C4A'`
 
 Badge label color
@@ -91,7 +82,6 @@ Badge label color
 
 ::: field branch
 @type `string`
-@optional
 @default `'main'`
 
 Repository branch
@@ -99,8 +89,6 @@ Repository branch
 
 ::: field dir
 @type `string`
-@optional
-
 Package directory in repository. Suitable for monorepo projects
 :::
 
@@ -149,21 +137,16 @@ Combines multiple npm badges
 
 ::: field name
 @type `string`
-@optional
-
 npm package name. If empty, it will be obtained from `repo`
 :::
 
 ::: field repo
 @type `string`
-@optional
-
 Package GitHub repository address in `owner/repo` format. Required when `name` is empty
 :::
 
 ::: field items
 @type `string | NpmBadgeType[]`
-@optional
 @default `[]`
 
 List of badge types. When passing a `string`, separate with `','` and it will be automatically converted to `NpmBadgeType[]`
@@ -171,36 +154,26 @@ List of badge types. When passing a `string`, separate with `','` and it will be
 
 ::: field theme
 @type `NpmBadgeTheme`
-@optional
-
 Badge theme
 :::
 
 ::: field color
 @type `string`
-@optional
-
 Badge color
 :::
 
 ::: field labelColor
 @type `string`
-@optional
-
 Badge label color
 :::
 
 ::: field branch
 @type `string`
-@optional
-
 Repository branch
 :::
 
 ::: field dir
 @type `string`
-@optional
-
 Package directory in repository. Suitable for monorepo projects
 :::
 

@@ -28,15 +28,12 @@ export default defineUserConfig({
 ::: field trigger
 @type `'hover' | 'click'`
 @default `'hover'`
-@optional
-
 Trigger on mouse hover or click
 :::
 
 ::: field effect
 @type `'blur' | 'mask'`
 @default `'mask'`
-@optional
 Mask layer effect or text blur effect
 :::
 

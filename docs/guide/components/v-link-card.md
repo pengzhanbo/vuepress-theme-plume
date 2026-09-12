@@ -16,22 +16,17 @@ permalink: /guide/components/link-card/
 ::: field title
 @type `string`
 @default `''`
-@optional
-
 链接卡片标题
 :::
 
 ::: field icon
 @type `string | { svg: string }`
 @default `''`
-@optional
-
 显示在标题左侧的图标，支持 [markdown.icon](../features/icon.md) 配置的提供商的图标，也可以使用 图片链接
 :::
 
 ::: field href
 @type `string`
-@optional
 @default `''`
 
 链接卡片跳转地址
@@ -40,16 +35,12 @@ permalink: /guide/components/link-card/
 ::: field description
 @type `string`
 @default `''`
-@optional
-
 链接卡片描述，建议使用组件默认插槽添加描述内容
 :::
 
 ::: field target
 @type `string`
 @default `''`
-@optional
-
 链接跳转方式
 :::
 

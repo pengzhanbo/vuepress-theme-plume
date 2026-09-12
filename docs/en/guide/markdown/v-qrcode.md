@@ -63,30 +63,24 @@ text
 :::: field-group
 ::: field card
 @type `boolean`
-@optional
 @default `false`
 
 Whether to enable the card style.
 :::
 ::: field logo
 @type `string`
-@optional
-
 The path to the logo image displayed at the center of the QR code.
 
 Only absolute paths are supported.
 :::
 ::: field logoSize
 @type `number`
-@optional
 @default `0.2`
 
 The size ratio of the logo relative to the QR code.
 :::
 ::: field title
 @type `string`
-@optional
-
 The title of the QR code.
 :::
 ::: field align
@@ -110,28 +104,21 @@ Usually, the default values are sufficient and do not require configuration.
 ::: field light
 @type `string`
 @default `#ffffffff`
-@optional
-
 The color for the light parts of the QR code, i.e., the background color.
 :::
 ::: field dark
 @type `string`
 @default `#000000ff`
-@optional
-
 The color for the dark parts of the QR code, i.e., the QR code color.
 :::
 ::: field margin
 @type `number`
 @default `2`
-@optional
-
 The margin of the QR code.
 :::
 ::: field level
 @type `'L' | 'M' | 'Q' | 'H'`
 @default `M`
-@optional
 **Error Correction Level**
 
 Error correction allows the QR code to be successfully scanned even if it is dirty or damaged.
@@ -145,7 +132,6 @@ When the QR code contains a logo, the default value is `H`.
 :::
 ::: field version
 @type `number`
-@optional
 @default `40`
 **QR Code Version**
 
@@ -159,8 +145,6 @@ Scaling factor. A value of 1 means 1 pixel per module (black dot).
 :::
 ::: field mask
 @type `1 | 2 | 3 | 4 | 5 | 6 | 7`
-@optional
-
 The mask pattern used to mask the symbol.
 
 If not specified, a more suitable value will be automatically calculated.

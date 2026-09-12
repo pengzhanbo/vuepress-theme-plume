@@ -15,8 +15,6 @@ permalink: /guide/components/card-grid/
 ::: field cols
 @type `number | { sm: number, md: number, lg: number }`
 @default `2`
-@optional
-
 卡片排列列数。
 
 组件默认会根据屏幕宽度自动调整列数。在空间足够时，默认显示双列，小屏幕下显示单列。

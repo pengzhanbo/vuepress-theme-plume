@@ -15,8 +15,6 @@ The `<CardGrid>` component is used when multiple cards need to be arranged. Card
 ::: field cols
 @type `number | { sm: number, md: number, lg: number }`
 @default `2`
-@optional
-
 Number of columns for card arrangement.
 
 The component automatically adjusts the number of columns based on screen width by default.

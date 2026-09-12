@@ -35,8 +35,6 @@ permalink: /guide/components/card-masonry/
 
 ::: field cols
 @type `number | { sm: number, md: number, lg: number }`
-@optional
-
 列数。
 
 组件默认会根据屏幕宽度自动调整列数。在空间足够时，默认显示三列，小屏幕下显示双列。
@@ -52,8 +50,6 @@ permalink: /guide/components/card-masonry/
 ::: field gap
 @type `number`
 @default `16`
-@optional
-
 列之间的间距。
 :::
 

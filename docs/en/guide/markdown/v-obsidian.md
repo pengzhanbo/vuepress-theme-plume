@@ -50,32 +50,24 @@ export default defineUserConfig({
 ::: field wikiLink
 @type `boolean`
 @default `true`
-@optional
-
 Enable [Wiki Links](#wiki-links) syntax.
 :::
 
 ::: field embedLink
 @type `boolean`
 @default `true`
-@optional
-
 Enable [Embeds](#embeds) syntax.
 :::
 
 ::: field callout
 @type `boolean`
 @default `true`
-@optional
-
 Enable [Callout](#callout) syntax.
 :::
 
 ::: field comment
 @type `boolean`
 @default `true`
-@optional
-
 Enable [Comments](#comments) syntax.
 :::
 

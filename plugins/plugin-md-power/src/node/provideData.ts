@@ -50,5 +50,6 @@ export function provideData(
     __MD_POWER_ICON_PROVIDER__: icon.provider || 'iconify',
     __MD_POWER_ICON_PREFIX__: icon.prefix || '',
     __MD_POWER_ENCRYPT_LOCALES__: options.encrypt ? findLocales(locales, 'encrypt') : {},
+    __MD_POWER_FIELD_LOCALES__: findLocales(locales, 'field'),
   }
 }

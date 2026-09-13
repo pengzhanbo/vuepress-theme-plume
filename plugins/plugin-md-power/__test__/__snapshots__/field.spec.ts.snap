@@ -1,14 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`fieldPlugin > ::: field with attribute-style syntax (legacy) 1`] = `
-"<VPField name="foo" required slug="foo" type="string"><p>description</p>
-</VPField><VPField name="bar" deprecated slug="bar" type="string" default-value="baz"><p>description</p>
-</VPField><VPField name="foo" slug="foo-1" default-value="undefined"><p>description</p>
+exports[`fieldPlugin > ::: field renders a full snapshot 1`] = `
+"<VPField name="theme" type="ThemeConfig" required default-value="dark" slug="field-theme" since="v1.2.0"><template #enum><span>light</span><span>dark</span><span>auto</span></template><p>主题配置说明</p>
 </VPField>"
-`;
-
-exports[`fieldPlugin > ::: field-group 1`] = `
-"<div class="vp-field-group"><VPField name="foo" required slug="foo" type="string"><p>description</p>
-</VPField><VPField name="bar" deprecated slug="bar" type="string"><p>description</p>
-</VPField></div>"
 `;

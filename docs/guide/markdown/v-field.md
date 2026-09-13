@@ -69,20 +69,31 @@ export default defineUserConfig({
 
 ## 字段标签
 
-支持 `@name`、`@type`、`@default`、`@required`、`@deprecated`、`@description` 标签。
+支持以下标签：
 
 | 标签 | 描述 |
 | --- | --- |
 | `@name` | 覆盖字段名称（默认使用 `:::field` 行后跟随的文本作为名称） |
 | `@type` | 字段类型注解 |
-| `@default` | 默认值 |
+| `@typeLink` | 字段类型参考链接，为 `@type` 渲染超链接 |
 | `@required` | 标记为必填字段 |
-| `@deprecated` | 标记为已弃用字段 |
+| `@deprecated` | 标记为已弃用字段，可附带弃用版本或日期 |
+| `@experimental` | 标记为实验性字段，可附带版本或日期 |
+| `@default` | 默认值 |
+| `@enum` | 可选值列表，多个候选值以 `\|` 分隔，支持多个 `@enum` 行追加 |
+| `@since` | 标记字段自某版本起可用（重复标记时仅首个生效） |
+| `@unit` | 单位注解 |
+| `@format` | 格式注解 |
+| `@constraint` | 约束注解 |
 | `@description` | 显式描述文本，任何非标签行也会被纳入描述 |
 
 字段默认即为可选，仅在标记 `@required` 时才显示为必填。
 
 ## 示例
+
+### 基础用法
+
+单个 `::: field` 容器用于描述一个字段，字段名默认取自容器标题，非标签行自动合并为字段描述。
 
 **输入：**
 
@@ -120,36 +131,89 @@ export default defineUserConfig({
 是否启用
 :::
 
+### 标记字段状态
+
+`@deprecated` 和 `@experimental` 标签既可以单独声明，用于标记字段的弃用或实验性状态；
+也可以附带额外的版本或日期信息。
+
+**输入：**
+
+```md
+::: field legacy
+@deprecated
+
+旧版字段，不再推荐使用
+:::
+
+::: field beta
+@experimental
+
+实验性字段，接口可能发生变更
+:::
+```
+
+**输出：**
+
+::: field legacy
+@deprecated
+
+旧版字段，不再推荐使用
+:::
+
+::: field beta
+@experimental
+
+实验性字段，接口可能发生变更
+:::
+
+### 标签组合
+
+使用 `:::: field-group` 容器组合多个字段，并搭配各类标签描述字段的完整信息：
+
 **输入：**
 
 ```md
 :::: field-group
 ::: field theme
 @type ThemeConfig
+@typeLink https://theme-plume.vuejs.press/zh/config/
 @required
 @default { base: '/' }
 主题配置
 :::
 
-::: field enabled
-@type boolean
-@default true
+::: field fontSize
+@type number
+@required
+@since v1.2.0
+@default 14
+@unit px
+@format integer
+@constraint 12 ~ 48
 
-是否启用
+字体大小
+:::
+
+::: field mode
+@type 'light' | 'dark' | 'auto'
+@experimental v2.0.0-beta
+@enum light | dark | auto
+@default auto
+
+主题模式
 :::
 
 ::: field callback
 @type (...args: any[]) => void
 @default () => (){}
-<Badge type="tip" text="v1.0.0 新增"  />
-回调函数
+@description 回调函数，在特定时机触发
+<Badge type="tip" text="v1.0.0 新增" />
 :::
 
 ::: field other
 @type string
-@deprecated
+@deprecated v0.9.0
 
-<Badge type="danger" text="v0.9.0 弃用"  />
 已弃用属性
 :::
 ::::
@@ -160,30 +224,44 @@ export default defineUserConfig({
 :::: field-group
 ::: field theme
 @type ThemeConfig
+@typeLink https://theme-plume.vuejs.press/zh/config/
 @required
 @default { base: '/' }
 主题配置
 :::
 
-::: field enabled
-@type boolean
-@default true
+::: field fontSize
+@type number
+@required
+@since v1.2.0
+@default 14
+@unit px
+@format integer
+@constraint 12 ~ 48
 
-是否启用
+字体大小
+:::
+
+::: field mode
+@type 'light' | 'dark' | 'auto'
+@experimental v2.0.0-beta
+@enum light | dark | auto
+@default auto
+
+主题模式
 :::
 
 ::: field callback
 @type (...args: any[]) => void
 @default () => (){}
-<Badge type="tip" text="v1.0.0 新增"  />
-回调函数
+@description 回调函数，在特定时机触发
+<Badge type="tip" text="v1.0.0 新增" />
 :::
 
 ::: field other
 @type string
-@deprecated
+@deprecated v0.9.0
 
-<Badge type="danger" text="v0.9.0 弃用"  />
 已弃用属性
 :::
 ::::

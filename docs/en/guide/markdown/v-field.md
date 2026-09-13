@@ -70,20 +70,32 @@ Multi-line field description
 
 ## Field Tags
 
-Supports `@name`, `@type`, `@default`, `@required`, `@deprecated`, and `@description` tags.
+Supports the following tags:
 
 | Tag | Description |
 | --- | --- |
-| `@name` | Override the field name (default uses the text following the `:::field` line as the name) |
+| `@name` | Override the field name (defaults to the text following the `:::field` line) |
 | `@type` | Field type annotation |
-| `@default` | Default value |
+| `@typeLink` | Field type reference link; renders the `@type` as a hyperlink |
 | `@required` | Mark as required field |
-| `@deprecated` | Mark as deprecated field |
+| `@deprecated` | Mark as deprecated field, optionally with the version/date of deprecation |
+| `@experimental` | Mark as experimental field, optionally with the version/date |
+| `@default` | Default value |
+| `@enum` | Candidate values list, separated by `\|`; multiple `@enum` lines are appended |
+| `@since` | Mark the version from which the field is available (only the first occurrence takes effect) |
+| `@unit` | Unit annotation |
+| `@format` | Format annotation |
+| `@constraint` | Constraint annotation |
 | `@description` | Explicit description text; any non-tag lines are also included in the description |
 
 Fields are optional by default and are only shown as required when marked with `@required`.
 
 ## Examples
+
+### Basic Usage
+
+A single `::: field` container describes one field. The field name defaults to the text following the
+`::: field` line, and non-tag lines are merged into the description.
 
 **Input:**
 
@@ -121,36 +133,89 @@ Theme configuration
 Whether enabled
 :::
 
+### Marking Field Status
+
+The `@deprecated` and `@experimental` tags can either be declared on their own to mark a field's
+deprecated or experimental status, or include additional version/date information.
+
+**Input:**
+
+```md
+::: field legacy
+@deprecated
+
+Legacy field, no longer recommended
+:::
+
+::: field beta
+@experimental
+
+Experimental field, the API may change
+:::
+```
+
+**Output:**
+
+::: field legacy
+@deprecated
+
+Legacy field, no longer recommended
+:::
+
+::: field beta
+@experimental
+
+Experimental field, the API may change
+:::
+
+### Combined Tags
+
+Use the `:::: field-group` container to combine multiple fields and describe complete field information with various tags:
+
 **Input:**
 
 ```md
 :::: field-group
 ::: field theme
 @type ThemeConfig
+@typeLink https://theme-plume.vuejs.press/config/
 @required
 @default { base: '/' }
 Theme configuration
 :::
 
-::: field enabled
-@type boolean
-@default true
+::: field fontSize
+@type number
+@required
+@since v1.2.0
+@default 14
+@unit px
+@format integer
+@constraint 12 ~ 48
 
-Whether enabled
+Font size
+:::
+
+::: field mode
+@type 'light' | 'dark' | 'auto'
+@experimental v2.0.0-beta
+@enum light | dark | auto
+@default auto
+
+Theme mode
 :::
 
 ::: field callback
 @type (...args: any[]) => void
 @default () => (){}
-<Badge type="tip" text="New in v1.0.0"  />
-Callback function
+@description Callback function invoked at specific times
+<Badge type="tip" text="New in v1.0.0" />
 :::
 
 ::: field other
 @type string
-@deprecated
+@deprecated v0.9.0
 
-<Badge type="danger" text="Deprecated in v0.9.0"  />
 Deprecated property
 :::
 ::::
@@ -161,30 +226,44 @@ Deprecated property
 :::: field-group
 ::: field theme
 @type ThemeConfig
+@typeLink https://theme-plume.vuejs.press/config/
 @required
 @default { base: '/' }
 Theme configuration
 :::
 
-::: field enabled
-@type boolean
-@default true
+::: field fontSize
+@type number
+@required
+@since v1.2.0
+@default 14
+@unit px
+@format integer
+@constraint 12 ~ 48
 
-Whether enabled
+Font size
+:::
+
+::: field mode
+@type 'light' | 'dark' | 'auto'
+@experimental v2.0.0-beta
+@enum light | dark | auto
+@default auto
+
+Theme mode
 :::
 
 ::: field callback
 @type (...args: any[]) => void
 @default () => (){}
-<Badge type="tip" text="New in v1.0.0"  />
-Callback function
+@description Callback function invoked at specific times
+<Badge type="tip" text="New in v1.0.0" />
 :::
 
 ::: field other
 @type string
-@deprecated
+@deprecated v0.9.0
 
-<Badge type="danger" text="Deprecated in v0.9.0"  />
 Deprecated property
 :::
 ::::

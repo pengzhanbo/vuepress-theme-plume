@@ -43,4 +43,16 @@ export const ruLocale: MDPowerLocaleData = {
     summary: 'Итоги',
     tldr: 'Кратко',
   },
+  field: {
+    required: 'Обязательно',
+    optional: 'Необязательно',
+    deprecated: 'Устарело',
+    experimental: 'Экспериментально',
+    default: 'По умолчанию',
+    enum: 'Допустимые значения',
+    format: 'Формат',
+    unit: 'Единица измерения',
+    constraint: 'Ограничение',
+    since: 'С версии',
+  },
 }

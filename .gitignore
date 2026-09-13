@@ -18,3 +18,4 @@ coverage/
 
 .claude/
 !.claude/skills/
+*.profraw

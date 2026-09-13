@@ -43,4 +43,16 @@ export const frLocale: MDPowerLocaleData = {
     summary: 'Sommaire',
     tldr: 'En bref',
   },
+  field: {
+    required: 'Requis',
+    optional: 'Facultatif',
+    deprecated: 'Obsolète',
+    experimental: 'Expérimental',
+    default: 'Par défaut',
+    enum: 'Valeurs possibles',
+    format: 'Format',
+    unit: 'Unité',
+    constraint: 'Contrainte',
+    since: 'Depuis',
+  },
 }

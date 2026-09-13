@@ -43,4 +43,16 @@ export const jaLocale: MDPowerLocaleData = {
     summary: 'まとめ',
     tldr: '短縮版',
   },
+  field: {
+    required: '必須',
+    optional: '任意',
+    deprecated: '非推奨',
+    experimental: '実験的',
+    default: 'デフォルト値',
+    enum: '選択肢',
+    format: '形式',
+    unit: '単位',
+    constraint: '制約',
+    since: '導入バージョン',
+  },
 }

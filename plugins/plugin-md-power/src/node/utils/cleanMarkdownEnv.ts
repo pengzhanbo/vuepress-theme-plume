@@ -31,7 +31,7 @@ export interface CleanMarkdownEnv extends MarkdownEnv {
  *
  * 要保留的环境键白名单
  */
-const WHITE_LIST = ['base', 'filePath', 'filePathRelative', 'references', 'abbreviations', 'annotations'] as const
+const WHITE_LIST = ['base', 'filePath', 'filePathRelative', 'references', 'abbreviations', 'annotations', '__FIELD_SLUG__'] as const
 
 type WhiteListUnion = (typeof WHITE_LIST)[number]
 

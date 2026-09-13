@@ -240,7 +240,7 @@ export function parseFieldContent(content: string, info: string, env: MarkdownEn
           case 'since':
             if (rest) {
               if (result.since) {
-                logger.warn(`[Field container \`::: field\`]', '  Duplicate \`@since\` tag is ignored, only the first one takes effect. at ${colors.gray(env.filePathRelative!)}`)
+                logger.warn(`[Field container \`::: field\`]`, `Duplicate \`@since\` tag is ignored, only the first one takes effect. at ${colors.gray(env.filePathRelative!)}`)
                 continue
               }
               else {
@@ -314,7 +314,7 @@ export function fieldPlugin(md: Markdown): void {
     })
     // 可选值
     const enums = parsed.enum?.length
-      ? `<template #enum>${parsed.enum.map(item => `<span>${item}</span>`).join('')}</template>`
+      ? `<template #enum>${parsed.enum.map(item => `<span>${md.utils.escapeHtml(item)}</span>`).join('')}</template>`
       : ''
     // 描述
     const description = parsed.description

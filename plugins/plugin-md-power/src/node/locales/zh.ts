@@ -43,4 +43,16 @@ export const zhLocale: MDPowerLocaleData = {
     summary: '总结',
     tldr: '太长不看',
   },
+  field: {
+    required: '必填',
+    optional: '可选',
+    deprecated: '已弃用',
+    experimental: '实验性',
+    default: '默认值',
+    enum: '可选值',
+    format: '格式',
+    unit: '单位',
+    constraint: '约束',
+    since: '自',
+  },
 }

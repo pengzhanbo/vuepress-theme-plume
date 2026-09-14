@@ -1,12 +1,13 @@
 import type { LocaleConfig } from 'vuepress'
 import type { EncryptSnippetLocale } from '../shared/encrypt.js'
-import type { MarkdownPowerPluginOptions } from '../shared/index.js'
+import type { FieldLocaleData, MarkdownPowerPluginOptions } from '../shared/index.js'
 
 declare const __MD_POWER_INJECT_OPTIONS__: MarkdownPowerPluginOptions
 declare const __MD_POWER_DASHJS_INSTALLED__: boolean
 declare const __MD_POWER_HLSJS_INSTALLED__: boolean
 declare const __MD_POWER_MPEGTSJS_INSTALLED__: boolean
 declare const __MD_POWER_ENCRYPT_LOCALES__: LocaleConfig<EncryptSnippetLocale>
+declare const __MD_POWER_FIELD_LOCALES__: LocaleConfig<FieldLocaleData>
 
 const VUEPRESS_SYMBOL_KEY = '__VUEPRESS_GLOBAL_SYMBOL_MAP__'
 
@@ -71,6 +72,13 @@ export const INJECT_COLLAPSE_KEY: symbol = createSymbol('collapse')
  * 加密片段本地化数据。
  */
 export const ENCRYPT_LOCALES = __MD_POWER_ENCRYPT_LOCALES__
+
+/**
+ * Field locale data.
+ *
+ * 字段本地化数据。
+ */
+export const FIELD_LOCALES = __MD_POWER_FIELD_LOCALES__
 
 export function createSymbol(name: string): symbol {
   // 开发环境下，全局缓存 symbol，避免重复创建

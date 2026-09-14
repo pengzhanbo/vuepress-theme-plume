@@ -43,4 +43,16 @@ export const enLocale: MDPowerLocaleData = {
     summary: 'Summary',
     tldr: 'TL;DR',
   },
+  field: {
+    required: 'Required',
+    optional: 'Optional',
+    deprecated: 'Deprecated',
+    experimental: 'Experimental',
+    default: 'Default',
+    enum: 'Allowed values',
+    format: 'Format',
+    unit: 'Unit',
+    constraint: 'Constraint',
+    since: 'Since',
+  },
 }

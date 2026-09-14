@@ -43,4 +43,16 @@ export const koLocale: MDPowerLocaleData = {
     summary: '정리',
     tldr: '요약',
   },
+  field: {
+    required: '필수',
+    optional: '선택',
+    deprecated: '폐기 예정',
+    experimental: '실험적',
+    default: '기본값',
+    enum: '선택값',
+    format: '형식',
+    unit: '단위',
+    constraint: '제약',
+    since: '버전',
+  },
 }

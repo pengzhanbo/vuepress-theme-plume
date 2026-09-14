@@ -43,4 +43,16 @@ export const deLocale: MDPowerLocaleData = {
     summary: 'Zusammenfassung',
     tldr: 'TL;DR',
   },
+  field: {
+    required: 'Erforderlich',
+    optional: 'Optional',
+    deprecated: 'Veraltet',
+    experimental: 'Experimentell',
+    default: 'Standardwert',
+    enum: 'Mögliche Werte',
+    format: 'Format',
+    unit: 'Einheit',
+    constraint: 'Einschränkung',
+    since: 'Seit',
+  },
 }

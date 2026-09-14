@@ -29,7 +29,7 @@ const locale = computed(() => FIELD_LOCALES[pathLocale.value] || {})
     :class="{ required, deprecated, optional: !required && !deprecated, experimental }"
   >
     <div class="field-meta">
-      <div class="meta-left">
+      <div class="meta-left align-start">
         <p>
           <a :href="`#${slug}`" class="header-anchor ignore-header">
             <span class="visually-hidden">Name:</span>
@@ -101,7 +101,7 @@ const locale = computed(() => FIELD_LOCALES[pathLocale.value] || {})
 }
 
 .vp-field + .vp-field {
-  padding-top: 8px;
+  padding-top: 12px;
   border-top: solid 1px var(--vp-c-divider);
 }
 
@@ -111,6 +111,10 @@ const locale = computed(() => FIELD_LOCALES[pathLocale.value] || {})
   flex-wrap: wrap;
   gap: 12px;
   align-items: center;
+}
+
+.vp-field .field-meta {
+  justify-content: space-between;
 }
 
 @media (max-width: 768px) {
@@ -129,8 +133,11 @@ const locale = computed(() => FIELD_LOCALES[pathLocale.value] || {})
 }
 
 .vp-field .field-meta .meta-left {
-  flex: 1 2;
   gap: 8px 12px;
+}
+
+.vp-field .field-meta .meta-left.align-start {
+  align-self: flex-start;
 }
 
 .vp-field .field-meta .name {
@@ -198,6 +205,13 @@ const locale = computed(() => FIELD_LOCALES[pathLocale.value] || {})
 .vp-field .field-meta :where(.since,.unit,.format,.constraint) code {
   padding: 0 6px;
   color: var(--vp-c-text-3);
+}
+
+@media (min-width: 768px) {
+  .vp-field .field-meta .meta-right.type {
+    flex: 1 2;
+    justify-content: flex-end;
+  }
 }
 
 .vp-field .field-meta .enum span:not(:first-child) {

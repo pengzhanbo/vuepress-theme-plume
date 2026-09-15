@@ -1,4 +1,5 @@
 import type { App } from 'vuepress'
+import type { MarkdownEnv } from 'vuepress/markdown'
 import MarkdownIt from 'markdown-it'
 import { describe, expect, it, vi } from 'vitest'
 import { obsidianPlugin } from '../src/node/obsidian/index.js'
@@ -81,5 +82,23 @@ describe('obsidianPlugin', () => {
 
     const commentResult = md.render('%%comment%%')
     expect(commentResult).toContain('%%comment%%')
+  })
+
+  it('should disable callout when explicitly set to false', () => {
+    const md = createMarkdownWithMockRules()
+    const mockApp = createMockApp()
+    obsidianPlugin(mockApp, md, { obsidian: { callout: false } }, {})
+
+    const result = md.render('>[!tip]\n>\n> Content.')
+    expect(result).not.toContain('hint-container')
+  })
+
+  it('should support callout options object', () => {
+    const md = createMarkdownWithMockRules()
+    const mockApp = createMockApp()
+    obsidianPlugin(mockApp, md, { obsidian: { callout: { locales: { '/': { tip: 'Custom Tip' } } } } }, {})
+
+    const result = md.render('>[!tip]\n>\n> Content.', { filePathRelative: 'guide.md' } as unknown as MarkdownEnv)
+    expect(result).toContain('Custom Tip')
   })
 })

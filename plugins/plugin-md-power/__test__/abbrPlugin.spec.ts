@@ -212,6 +212,15 @@ Some text.`
     expect(result).toContain('API')
   })
 
+  it('should render abbreviation without tooltip when description is empty', () => {
+    const md = createMarkdown({ EMPTY: '' })
+
+    const result = md.render('This is EMPTY value.')
+
+    expect(result).toContain('<VPAbbreviation aria-label="">EMPTY</VPAbbreviation>')
+    expect(result).not.toContain('template #tooltip')
+  })
+
   it('should handle abbreviation adjacent to punctuation', () => {
     const md = createMarkdown()
     const code = `*[HTML]: HyperText Markup Language

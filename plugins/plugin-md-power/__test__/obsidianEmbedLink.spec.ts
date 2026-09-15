@@ -7,6 +7,8 @@ import { initPagePaths } from '../src/node/obsidian/findFirstPage.js'
 
 const mockGlobSync = vi.fn()
 const mockReadFileSync = vi.fn()
+const mockExistsSync = vi.fn()
+const mockRelative = vi.fn()
 
 vi.mock('vuepress/utils', () => ({
   tinyglobby: {
@@ -14,6 +16,7 @@ vi.mock('vuepress/utils', () => ({
   },
   fs: {
     readFileSync: (...args: unknown[]) => mockReadFileSync(...args),
+    existsSync: (...args: unknown[]) => mockExistsSync(...args),
   },
   path: {
     dirname: vi.fn((p: string) => p.split('/').slice(0, -1).join('/') || '.'),
@@ -22,6 +25,7 @@ vi.mock('vuepress/utils', () => ({
       return i > 0 ? p.slice(i) : ''
     }),
     join: vi.fn((...args: string[]) => args.join('/')),
+    relative: (...args: unknown[]) => mockRelative(...args),
   },
   hash: vi.fn((s: string) => `hash_${s.length}`),
 }))
@@ -89,6 +93,8 @@ describe('embedLinkPlugin', () => {
   beforeEach(() => {
     mockGlobSync.mockReset()
     mockReadFileSync.mockReset()
+    mockExistsSync.mockReset()
+    mockRelative.mockReset()
   })
 
   // ==================== Asset Embedding ====================
@@ -203,6 +209,58 @@ describe('embedLinkPlugin', () => {
       const result = md.render('![[file.unknown]]')
       expect(result).toContain('<a')
       expect(result).toContain('href="file.unknown"')
+    })
+
+    it('should resolve asset path relative to source root', () => {
+      mockExistsSync.mockImplementation((p: unknown) => p === '/source//cover.png')
+      mockRelative.mockReturnValue('../cover.png')
+
+      const md = createMarkdownWithMockRules().use(embedLinkPlugin, createMockApp())
+      const env = { ...createMockEnv('docs/page.md'), filePath: '/source/docs/page.md' } as MarkdownEnv
+
+      const result = md.render('![[cover.png]]', env)
+
+      expect(result).toContain('src="../cover.png"')
+    })
+
+    it('should resolve asset path relative to current file directory', () => {
+      mockExistsSync.mockImplementation((p: unknown) => p === '/source/docs/cover.png')
+      mockRelative.mockReturnValue('cover.png')
+
+      const md = createMarkdownWithMockRules().use(embedLinkPlugin, createMockApp())
+      const env = { ...createMockEnv('docs/page.md'), filePath: '/source/docs/page.md' } as MarkdownEnv
+
+      const result = md.render('![[cover.png]]', env)
+
+      expect(result).toContain('src="./cover.png"')
+    })
+
+    it('should fallback to root path when asset does not exist', () => {
+      mockExistsSync.mockReturnValue(false)
+
+      const md = createMarkdownWithMockRules().use(embedLinkPlugin, createMockApp())
+      const env = { ...createMockEnv('docs/page.md'), filePath: '/source/docs/page.md' } as MarkdownEnv
+
+      const result = md.render('![[cover.png]]', env)
+
+      expect(result).toContain('src="/cover.png"')
+    })
+
+    it('should fallback to root path when filePathRelative is missing', () => {
+      const md = createMarkdownWithMockRules().use(embedLinkPlugin, createMockApp())
+      const env = { ...createMockEnv('docs/page.md'), filePath: '/source/docs/page.md', filePathRelative: undefined } as unknown as MarkdownEnv
+
+      const result = md.render('![[cover.png]]', env)
+
+      expect(result).toContain('src="/cover.png"')
+    })
+
+    it('should render image with height only setting', () => {
+      const md = createMarkdownWithMockRules().use(embedLinkPlugin, createMockApp())
+      const result = md.render('![[image.png|x200]]')
+      expect(result).toContain('<img')
+      expect(result).toContain('height: 200px')
+      expect(result).not.toContain('width')
     })
   })
 
@@ -496,6 +554,106 @@ A content again.`
 
       expect(result).toBe('')
     })
+
+    it('should keep searching when a deeper heading does not match', () => {
+      const content = `# A
+
+### Z
+
+Z content.
+
+## B
+
+B content.`
+
+      mockGlobSync.mockReturnValue(['guide.md'])
+      mockReadFileSync.mockReturnValue(content)
+
+      const app = createMockApp()
+      initPagePaths(app)
+
+      const md = createMarkdownWithMockRules().use(embedLinkPlugin, createMockApp())
+      const env = createMockEnv()
+
+      // ### Z is deeper than A but doesn't match B, it should be skipped
+      const result = md.render('![[guide#A#B]]', env)
+
+      expect(result).toContain('B content.')
+      expect(result).not.toContain('Z content.')
+    })
+
+    it('should embed content when target heading is the last heading', () => {
+      const content = `# A
+
+## B
+
+B content without following heading.`
+
+      mockGlobSync.mockReturnValue(['guide.md'])
+      mockReadFileSync.mockReturnValue(content)
+
+      const app = createMockApp()
+      initPagePaths(app)
+
+      const md = createMarkdownWithMockRules().use(embedLinkPlugin, createMockApp())
+      const env = createMockEnv()
+
+      const result = md.render('![[guide#A#B]]', env)
+
+      expect(result).toContain('B content without following heading.')
+    })
+
+    it('should embed nested content until a sibling heading is found', () => {
+      const content = `# A
+
+## B
+
+### C
+
+C content.
+
+## D
+
+D content.`
+
+      mockGlobSync.mockReturnValue(['guide.md'])
+      mockReadFileSync.mockReturnValue(content)
+
+      const app = createMockApp()
+      initPagePaths(app)
+
+      const md = createMarkdownWithMockRules().use(embedLinkPlugin, createMockApp())
+      const env = createMockEnv()
+
+      const result = md.render('![[guide#A#B]]', env)
+
+      expect(result).toContain('C content.')
+      expect(result).not.toContain('D content.')
+    })
+
+    it('should drop unregistered container placeholders', () => {
+      const content = `# A
+
+## B
+
+<!--container:missing-->
+
+B content.`
+
+      mockGlobSync.mockReturnValue(['guide.md'])
+      mockReadFileSync.mockReturnValue(content)
+
+      const app = createMockApp()
+      initPagePaths(app)
+
+      const md = createMarkdownWithMockRules().use(embedLinkPlugin, createMockApp())
+      const env = createMockEnv()
+
+      const result = md.render('![[guide#A#B]]', env)
+
+      expect(result).toContain('B content.')
+      expect(result).not.toContain('container:missing')
+    })
   })
 
   // ==================== Edge Cases ====================
@@ -661,6 +819,26 @@ Steps for getting started.
           raw: 'guide.md',
         }),
       )
+    })
+
+    it('should render inline page embed without base and filePathRelative env', () => {
+      const md = createMarkdownWithMockRules().use(embedLinkPlugin, createMockApp())
+      const env = { links: [] } as unknown as MarkdownEnv
+
+      const result = md.render('See ![[guide]] for details.', env)
+
+      expect(result).toContain('<VPLink')
+      expect(result).toContain('href="/guide.md"')
+    })
+
+    it('should render relative page embed without filePathRelative env', () => {
+      const md = createMarkdownWithMockRules().use(embedLinkPlugin, createMockApp())
+      const env = { links: [] } as unknown as MarkdownEnv
+
+      const result = md.render('See ![[./guide]] for details.', env)
+
+      expect(result).toContain('<a')
+      expect(result).toContain('href="/././guide"')
     })
 
     it('should render inline embed with relative path as external link when not found', () => {

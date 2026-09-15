@@ -109,6 +109,14 @@ describe('wikiLinkPlugin', () => {
       expect(result).toContain('href="#anchor2"')
       expect(result).toContain('&gt; anchor1 &gt; anchor2</template>')
     })
+
+    it('should render internal hash link without titles and alias', () => {
+      const md = new MarkdownIt({ html: true }).use(wikiLinkPlugin)
+      const env = createMockEnv('docs/page.md')
+      const result = md.render('[[|]]', env)
+      expect(result).toContain('<VPLink')
+      expect(result).toContain('href=""')
+    })
   })
 
   // ==================== Internal Page Resolution ====================
@@ -187,6 +195,16 @@ describe('wikiLinkPlugin', () => {
       expect(result).toContain('<VPLink')
       expect(result).toContain('href="/docs/guide/intro.md"')
     })
+
+    it('should render internal link without base and filePathRelative env', () => {
+      const md = new MarkdownIt({ html: true }).use(wikiLinkPlugin)
+      const env = { links: [] } as unknown as MarkdownEnv
+
+      const result = md.render('[[guide]]', env)
+
+      expect(result).toContain('<VPLink')
+      expect(result).toContain('href="/guide.md"')
+    })
   })
 
   // ==================== Page Not Found ====================
@@ -213,6 +231,16 @@ describe('wikiLinkPlugin', () => {
       const result = md.render('[[nonexistent#section]]')
 
       expect(result).toContain('href="/nonexistent#section"')
+    })
+
+    it('should render relative asset path without filePathRelative env', () => {
+      const md = new MarkdownIt({ html: true }).use(wikiLinkPlugin)
+      const env = { links: [] } as unknown as MarkdownEnv
+
+      const result = md.render('[[./guide]]', env)
+
+      expect(result).toContain('<a')
+      expect(result).toContain('href="/././guide"')
     })
   })
 

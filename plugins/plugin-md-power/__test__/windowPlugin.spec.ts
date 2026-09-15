@@ -38,6 +38,19 @@ content
     expect(md.render(code)).toMatchSnapshot()
   })
 
+  it('should handle single non-html element content', () => {
+    const code = `\
+::: window
+\`\`\`js
+const a = 1
+\`\`\`
+:::
+`
+    const result = md.render(code)
+    // 单个非 html_block 元素不会被识别为图片，使用默认间距
+    expect(result).toContain('--window-gap:20px')
+  })
+
   it('legacy demo-wrapper container', () => {
     const code = `\
 ::: demo-wrapper

@@ -152,5 +152,10 @@ describe('findFirstPage', () => {
       expect(findFirstPage('nonexistent', 'any/path.md')).toBeUndefined()
       expect(findFirstPage('does-not-exist', 'any/path.md')).toBeUndefined()
     })
+
+    it('should handle filename ending with slash', () => {
+      // 以 `/` 结尾的文件名会被拼接为目录索引路径
+      expect(findFirstPage('docs/guide/', 'any/path.md')).toBeUndefined()
+    })
   })
 })

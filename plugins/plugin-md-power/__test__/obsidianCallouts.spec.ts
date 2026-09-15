@@ -267,6 +267,20 @@ More content.`)
       const result = md.render('  >\t  [!tip]\n>\n> Content.')
       expect(result).toContain('hint-container tip')
     })
+
+    it('should parse with space followed by tab after >', () => {
+      const md = createMarkdown().use(calloutPlugin)
+      const result = md.render('> \t[!tip]\n>\n> Content.')
+      expect(result).toContain('hint-container tip')
+    })
+
+    it('should parse tab indented body lines', () => {
+      const md = createMarkdown().use(calloutPlugin)
+      const result = md.render('>[!tip] Title\n>\tbody with tab\n> \tbody with space and tab')
+      expect(result).toContain('hint-container tip')
+      expect(result).toContain('body with tab')
+      expect(result).toContain('body with space and tab')
+    })
   })
 
   // ==================== Block Parsing Edge Cases ====================
@@ -405,6 +419,30 @@ After horizontal rule.`)
 > Content after nested.`)
       expect(result).toContain('Nested quote')
       expect(result).toContain('Content after nested')
+    })
+
+    it('should handle lazy continuation line right after callout title', () => {
+      const md = createMarkdown().use(calloutPlugin)
+      const result = md.render('>[!tip] Title\nlazy content')
+
+      expect(result).toContain('hint-container tip')
+      expect(result).toContain('lazy content')
+    })
+
+    it('should handle lazy continuation line when preceded by paragraph', () => {
+      const md = createMarkdown().use(calloutPlugin)
+      const result = md.render('Some paragraph\n>[!tip] Title\nlazy content')
+
+      expect(result).toContain('Some paragraph')
+      expect(result).toContain('hint-container tip')
+      expect(result).toContain('lazy content')
+    })
+
+    it('should not parse callout without body when preceded by paragraph', () => {
+      const md = createMarkdown().use(calloutPlugin)
+      const result = md.render('Some paragraph\n>[!tip]\n>')
+
+      expect(result).not.toContain('hint-container')
     })
 
     it('should handle callout with proper terminator restoration', () => {

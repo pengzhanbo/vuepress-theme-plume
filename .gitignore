@@ -16,6 +16,9 @@ dist/
 coverage/
 .idea
 
+# test temporary directories
+**/.tmp/
+
 .claude/
 !.claude/skills/
 *.profraw

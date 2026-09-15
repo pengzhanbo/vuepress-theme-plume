@@ -19,11 +19,10 @@ import type { App, Page } from 'vuepress/core'
 import type { Markdown } from 'vuepress/markdown'
 import type { CodeTreeFile, CodeTreeFileLoader, CodeTreeMeta, CodeTreeOptions, FileTreeIconMode, FileTreeNode } from '../../shared/index.js'
 import type { FileTreeNodeProps } from './fileTree.js'
-import path from 'node:path'
 import { attempt, escape, isFunction, slash } from '@pengzhanbo/utils'
 import { bundledLanguagesInfo } from 'shiki'
 import { ensureEndingSlash, ensureLeadingSlash, removeLeadingSlash } from 'vuepress/shared'
-import { colors, fs, tinyglobby } from 'vuepress/utils'
+import { colors, fs, path, tinyglobby } from 'vuepress/utils'
 import { findFile } from '../demo/supports/file.js'
 import { createEmbedRuleBlock } from '../embed/createEmbedRuleBlock.js'
 import { defaultFile, defaultFolder, getFileIcon } from '../fileIcons/index.js'
@@ -122,9 +121,10 @@ const defaultLoader: CodeTreeFileLoader[] = [
   {
     filter: ({ extname }) => EXTENSION_IMAGES.includes(extname),
     load: (file, app) => {
-      const publicDir = ensureEndingSlash(app.dir.public())
+      const publicDir = ensureEndingSlash(slash(app.dir.public()))
+      const absolutePath = slash(file.absolutePath)
       // Resolve image src: use public path if in public dir, otherwise relative path
-      const src = file.absolutePath.startsWith(publicDir) ? ensureLeadingSlash(file.absolutePath.replace(publicDir, '')) : file.relativePath
+      const src = absolutePath.startsWith(publicDir) ? ensureLeadingSlash(absolutePath.replace(publicDir, '')) : file.relativePath
       return `<img src="${escape(slash(src))}" alt="${escape(file.basename)}" data-title="${escape(file.path)}">\n`
     },
   },
@@ -296,7 +296,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       // codeTreeFiles for page dependency collection
       const codeTreeFiles = ((env as any).codeTreeFiles ??= []) as string[]
       const root = findFile(app, env, dir)
-      if (!fs.existsSync(root)) {
+      if (!fs.existsSync(root) || !fs.statSync(root).isDirectory()) {
         logger.warn(`Invalid code-tree target directory ${colors.yellow(dir)}, in ${colors.gray(env.filePathRelative!)}`)
         return `<p>@[code-tree](${dir}) <em>Invalid target directory</em></p>`
       }

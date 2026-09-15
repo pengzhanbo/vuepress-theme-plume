@@ -50,6 +50,11 @@ onMounted(() => {
     is768.value = window.innerWidth <= 768
   })
 
+  useEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Escape' && show.value)
+      show.value = false
+  })
+
   items.value = contentEl.value?.querySelectorAll('[data-title]') as NodeListOf<HTMLElement>
   // Toggle the `active` class on content elements based on the active file
   watch([activeNode, items], () => {
@@ -92,7 +97,7 @@ onMounted(() => {
       <div
         v-show="show && !isFullscreen" class="code-tree-mask"
         role="button" aria-label="Close"
-        tabindex="0" @keydown.esc="show = false"
+        tabindex="-1"
         @click="show = false"
       />
     </Transition>

@@ -185,15 +185,24 @@ catalogs:
     less:
       specifier: ^4.9.1
       version: 4.9.1
+    markdown-it:
+      specifier: ^14.2.0
+      version: 14.3.1
     memfs:
       specifier: ^4.71.0
       version: 4.71.0
+    mermaid:
+      specifier: ^11.17.2
+      version: 11.17.2
     nano-staged:
       specifier: ^1.0.2
       version: 1.0.2
     oxfmt:
       specifier: ^0.67.0
       version: 0.67.0
+    postcss:
+      specifier: ^8.5.28
+      version: 8.5.28
     rimraf:
       specifier: ^6.1.3
       version: 6.1.3
@@ -260,11 +269,14 @@ catalogs:
       version: 3.29.3
     postprocessing:
       specifier: ^6.39.4
-      version: 6.39.4
+      version: 6.39.5
     pyodide:
       specifier: ^314.0.6
       version: 314.0.6
     sass:
+      specifier: ^1.104.0
+      version: 1.104.0
+    sass-embedded:
       specifier: ^1.104.0
       version: 1.104.0
     swiper:
@@ -313,6 +325,9 @@ catalogs:
     '@shikijs/colorized-brackets':
       specifier: ^4.4.3
       version: 4.4.3
+    '@shikijs/transformers':
+      specifier: ^4.4.3
+      version: 4.4.3
     '@vueuse/core':
       specifier: ^14.4.0
       version: 14.4.0
@@ -325,6 +340,9 @@ catalogs:
     chart.js:
       specifier: ^4.5.1
       version: 4.5.1
+    chokidar:
+      specifier: 5.0.0
+      version: 5.0.0
     dayjs:
       specifier: ^1.11.23
       version: 1.11.23
@@ -430,6 +448,12 @@ catalogs:
     unplugin-vue-components:
       specifier: ^32.1.0
       version: 32.1.0
+    vue:
+      specifier: ^3.5.42
+      version: 3.5.42
+    vue-router:
+      specifier: ^5.3.1
+      version: 5.3.1
   vuepress:
     '@vuepress/bundler-vite':
       specifier: 2.0.0-rc.31
@@ -611,7 +635,7 @@ importers:
         specifier: catalog:dev
         version: 4.9.1(supports-color@10.2.2)
       markdown-it:
-        specifier: ^14.3.1
+        specifier: catalog:dev
         version: 14.3.1
       memfs:
         specifier: catalog:dev
@@ -623,13 +647,13 @@ importers:
         specifier: catalog:dev
         version: 0.67.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: catalog:dev
         version: 8.5.28
       rimraf:
         specifier: catalog:dev
         version: 6.1.3
       sass-embedded:
-        specifier: ^1.104.0
+        specifier: catalog:peer
         version: 1.104.0
       simple-git-hooks:
         specifier: catalog:dev
@@ -728,14 +752,14 @@ importers:
         specifier: catalog:prod
         version: 0.18.12(markmap-common@0.18.9)
       mermaid:
-        specifier: '>=11.17.2'
+        specifier: catalog:dev
         version: 11.17.2
       ogl:
         specifier: catalog:peer
         version: 1.0.11
       postprocessing:
         specifier: catalog:peer
-        version: 6.39.4(three@0.186.0)
+        version: 6.39.5(three@0.186.0)
       swiper:
         specifier: catalog:peer
         version: 14.2.0
@@ -743,7 +767,7 @@ importers:
         specifier: catalog:peer
         version: 0.186.0
       vue:
-        specifier: ^3.5.42
+        specifier: catalog:prod
         version: 3.5.42(typescript@6.0.3)
       vuepress:
         specifier: catalog:vuepress
@@ -768,7 +792,7 @@ importers:
         specifier: catalog:dev
         version: 14.1.1(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       vue:
-        specifier: ^3.5.42
+        specifier: catalog:prod
         version: 3.5.42(typescript@6.0.3)
       vuepress:
         specifier: catalog:vuepress
@@ -789,7 +813,7 @@ importers:
         specifier: catalog:dev
         version: 14.1.1(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       vue:
-        specifier: ^3.5.42
+        specifier: catalog:prod
         version: 3.5.42(typescript@6.0.3)
       vuepress:
         specifier: catalog:vuepress
@@ -840,7 +864,7 @@ importers:
         specifier: catalog:prod
         version: 14.4.0(vue@3.5.42(typescript@6.0.3))
       chokidar:
-        specifier: 5.0.0
+        specifier: catalog:prod
         version: 5.0.0
       gray-matter:
         specifier: catalog:prod
@@ -855,7 +879,7 @@ importers:
         specifier: catalog:prod
         version: 11.5.2
       markdown-it:
-        specifier: ^14.3.1
+        specifier: catalog:dev
         version: 14.3.1
       markdown-it-cjk-friendly:
         specifier: catalog:prod
@@ -885,7 +909,7 @@ importers:
         specifier: catalog:peer
         version: 1.104.0
       sass-embedded:
-        specifier: ^1.104.0
+        specifier: catalog:peer
         version: 1.104.0
       shiki:
         specifier: catalog:prod
@@ -906,7 +930,7 @@ importers:
         specifier: catalog:prod
         version: 32.1.0(vue@3.5.42(typescript@6.0.3))
       vue:
-        specifier: ^3.5.42
+        specifier: catalog:prod
         version: 3.5.42(typescript@6.0.3)
       vuepress:
         specifier: catalog:vuepress
@@ -937,7 +961,7 @@ importers:
         specifier: catalog:prod
         version: 14.4.0(axios@1.20.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(change-case@5.4.4)(focus-trap@8.2.2)(qrcode@1.5.4)(vue@3.5.42(typescript@6.0.3))
       chokidar:
-        specifier: 5.0.0
+        specifier: catalog:prod
         version: 5.0.0
       focus-trap:
         specifier: catalog:prod
@@ -955,7 +979,7 @@ importers:
         specifier: catalog:prod
         version: 2.17.7
       vue:
-        specifier: ^3.5.42
+        specifier: catalog:prod
         version: 3.5.42(typescript@6.0.3)
       vuepress:
         specifier: catalog:vuepress
@@ -979,7 +1003,7 @@ importers:
         specifier: catalog:prod
         version: 4.4.3
       '@shikijs/transformers':
-        specifier: ^4.4.3
+        specifier: catalog:prod
         version: 4.4.3
       '@vuepress-plume/plugin-fonts':
         specifier: workspace:*
@@ -1054,7 +1078,7 @@ importers:
         specifier: catalog:prod
         version: 14.4.0(vue@3.5.42(typescript@6.0.3))
       chokidar:
-        specifier: 5.0.0
+        specifier: catalog:prod
         version: 5.0.0
       dayjs:
         specifier: catalog:prod
@@ -1090,10 +1114,10 @@ importers:
         specifier: catalog:prod
         version: 1.2.7
       vue:
-        specifier: ^3.5.42
+        specifier: catalog:prod
         version: 3.5.42(typescript@6.0.3)
       vue-router:
-        specifier: ^5.3.1
+        specifier: catalog:prod
         version: 5.3.1(@vue/compiler-sfc@3.5.42)(rolldown@1.2.7)(vite@8.2.2(@types/node@26.5.0)(jiti@2.7.0)(less@4.9.1(supports-color@10.2.2))(sass-embedded@1.104.0)(sass@1.104.0)(stylus@0.64.0(supports-color@10.2.2))(yaml@2.9.0))(vue@3.5.42(typescript@6.0.3))
       vuepress:
         specifier: catalog:vuepress
@@ -1119,7 +1143,7 @@ importers:
         version: 3.29.3
       postprocessing:
         specifier: catalog:peer
-        version: 6.39.4(three@0.186.0)
+        version: 6.39.5(three@0.186.0)
       swiper:
         specifier: catalog:peer
         version: 14.2.0
@@ -6026,10 +6050,10 @@ packages:
     resolution: {integrity: sha512-RRuzqDtt5Y9h3quz5hWhK+TPnsmVs6WwSU6LkJMeY4HstUEDuYTG8UJSdawMRzmzAtV+KEoG8N3Qg2qLy5vM/A==}
     engines: {node: ^10 || ^12 || >=14}
 
-  postprocessing@6.39.4:
-    resolution: {integrity: sha512-oAS/PjAbc/xT3OzjUrGsorJ4J064XwhVD2t0OwKLP/E8QwDMUJ0oOv6ZI1SYMtLchv4g0ySEx+JcLy92+48vlA==}
+  postprocessing@6.39.5:
+    resolution: {integrity: sha512-YmH+t74J2X1lwYjKzK/tgs9C9kqWWPB9JwZiDF5mEf4BdCEAmEFbO8lXBA7NM0/j4g+x6FgD/Tt5/kT7ogbEDA==}
     peerDependencies:
-      three: '>= 0.168.0 < 0.186.0'
+      three: '>= 0.168.0 < 0.187.0'
 
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
@@ -12852,7 +12876,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  postprocessing@6.39.4(three@0.186.0):
+  postprocessing@6.39.5(three@0.186.0):
     dependencies:
       three: 0.186.0
 

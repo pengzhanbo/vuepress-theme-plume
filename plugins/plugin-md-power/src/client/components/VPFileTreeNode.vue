@@ -124,6 +124,10 @@ function toggle(ev: MouseEvent) {
   transition: background-color var(--vp-t-color);
 }
 
+.vp-file-tree.compact .vp-file-tree-info::after {
+  left: calc(var(--file-tree-level) * 10.5px - 32px);
+}
+
 .vp-file-tree .vp-file-tree-info.active::after,
 .vp-file-tree .vp-file-tree-info:not(.diff):hover::after {
   background-color: var(--vp-c-default-soft);
@@ -222,6 +226,10 @@ function toggle(ev: MouseEvent) {
   position: relative;
   min-width: max-content;
   margin-left: 28px;
+}
+
+.vp-file-tree.compact .vp-file-tree-node .group {
+  margin-left: 10px;
 }
 
 .vp-file-tree .vp-file-tree-node .group::before {

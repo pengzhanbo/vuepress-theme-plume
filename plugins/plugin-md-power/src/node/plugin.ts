@@ -101,6 +101,10 @@ export function markdownPowerPlugin(
           addViteOptimizeDepsInclude(bundlerOptions, app, ['qrcode'])
           addViteSsrNoExternal(bundlerOptions, app, ['qrcode'])
         }
+        if (options.pdf) {
+          addViteOptimizeDepsInclude(bundlerOptions, app, ['@embedpdf/vue-pdf-viewer'])
+          addViteSsrNoExternal(bundlerOptions, app, ['@embedpdf/vue-pdf-viewer'])
+        }
         addViteConfig(bundlerOptions, app, {
           plugins: [{
             name: 'filter-warn-log',

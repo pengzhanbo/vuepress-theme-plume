@@ -15,19 +15,25 @@ describe('pdfPlugin', () => {
     const code = `\
 @[pdf](foo.pdf)
 
-@[pdf no-toolbar](foo.pdf)
-
 @[pdf 2](foo.pdf)
 
-@[pdf 2 no-toolbar](foo.pdf)
+@[pdf page="2"](foo.pdf)
 
-@[pdf 2 no-toolbar width="100%" height="600px" zoom="1"](foo.pdf)
+@[pdf page="3" width="100%" height="600px" ratio="1:1"](foo.pdf)
 
-@[pdf 2 no-toolbar width="100%" zoom="1" ratio="1:1"](foo.pdf)
+@[pdf width="100%" height="600px" ratio="1:1"](foo.pdf)
+
+@[pdf no-toolbar](foo.pdf)
 `
 
     expect(md.render('@[pdf](foo.pdf)')).toMatchSnapshot()
     expect(md.render(code)).toMatchSnapshot()
+  })
+
+  it('should fallback to page 1 when page is invalid', () => {
+    const md = createMarkdown()
+
+    expect(md.render('@[pdf page="abc"](foo.pdf)')).toMatchSnapshot()
   })
 
   it('should not work', () => {

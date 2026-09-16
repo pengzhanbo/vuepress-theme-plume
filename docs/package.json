@@ -11,10 +11,8 @@
     "lunaria:build": "lunaria build",
     "lunaria:preview": "lunaria preview"
   },
-  "peerDependencies": {
-    "vuepress": "catalog:vuepress"
-  },
   "dependencies": {
+    "@embedpdf/vue-pdf-viewer": "catalog:peer",
     "@iconify/json": "catalog:peer",
     "@lunariajs/core": "catalog:dev",
     "@simonwep/pickr": "catalog:dev",
@@ -33,6 +31,7 @@
     "swiper": "catalog:peer",
     "three": "catalog:peer",
     "vue": "catalog:prod",
+    "vuepress": "catalog:vuepress",
     "vuepress-theme-plume": "workspace:*"
   },
   "devDependencies": {

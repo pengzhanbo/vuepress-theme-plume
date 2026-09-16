@@ -33,23 +33,22 @@ The simplest syntax is as follows:
 @[pdf](url)
 ```
 
-To open a specific page, add a page number after `pdf`:
+To open a specific page, use the `page` option. The shorthand `@[pdf 2](url)` is also supported for backward compatibility.
 
 ```md
-@[pdf 2](url)
+@[pdf page="2"](url)
 ```
 
 Additional options can be added to `@[pdf ]` for more flexible control:
 
 ```md
-@[pdf 2 no-toolbar width="100%" height="400px" ratio="16:9" zoom="100"](url)
+@[pdf page="2" width="100%" height="400px" ratio="16:9"](url)
 ```
 
-- `no-toolbar` - Hide the toolbar
-- `width` - Width, defaults to 100%
+- `page` - Page number, defaults to `1`
+- `width` - Width, defaults to `100%`
 - `height` - Height, defaults to `auto`
-- `ratio` - Aspect ratio, defaults to `16:9`, only effective when height is not specified
-- `zoom` - Zoom level, percentage
+- `ratio` - Aspect ratio, defaults to `1:0.9`, only effective when `height` is not specified
 
 ## Examples
 
@@ -70,45 +69,33 @@ Output:
 Input:
 
 ```md
-@[pdf 2](https://plume.pengzhanbo.cn/files/sample-1.pdf)
+@[pdf page="2"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 Output:
 
-@[pdf 2 zoom="95"](/files/sample-1.pdf)
+@[pdf page="2"](/files/sample-1.pdf)
 
-### Hide Toolbar
+### Fixed Height
 
 Input:
 
 ```md
-@[pdf no-toolbar](https://plume.pengzhanbo.cn/files/sample-1.pdf)
+@[pdf height="400px"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 Output:
 
-@[pdf no-toolbar](/files/sample-1.pdf)
-
-### 90% Zoom Level
-
-Input:
-
-```md
-@[pdf zoom="90"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
-```
-
-Output:
-
-@[pdf zoom="90"](/files/sample-1.pdf)
+@[pdf height="400px"](/files/sample-1.pdf)
 
 ### 21:29 Aspect Ratio
 
 Input:
 
 ```md
-@[pdf zoom="95" ratio="21:29"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
+@[pdf ratio="21:29"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 Output:
 
-@[pdf zoom="95" ratio="21:29"](/files/sample-1.pdf)
+@[pdf ratio="21:29"](/files/sample-1.pdf)

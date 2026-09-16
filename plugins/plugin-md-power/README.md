@@ -68,19 +68,18 @@ caniuse 默认查看最近的5个浏览器版本。你可以通过 `{versions}` 
 
 ```md
 @[pdf](url)
-@[pdf 1](url)
-@[pdf 1 no-toolbar width="100%" height="600px" zoom="1" ratio="16:9"](url)
+@[pdf page="1"](url)
+@[pdf page="1" width="100%" height="600px" ratio="16:9"](url)
 ```
 
 `url` 只支持绝对路径以及完整的资源链接地址，请勿传入相对路径。
 
-你可以在 `pdf` 后紧跟空格，设置一个数字表示默认显示的  pdf 页码
+你可以通过 `page` 设置默认显示的 pdf 页码，同时也兼容 `@[pdf 1](url)` 的旧写法。
 
-- `no-toolbar` 表示不显示工具栏
-- `width` 设置宽度
-- `height` 设置高度
-- `zoom` 设置缩放
-- `ratio` 设置宽高比， 仅当 `width` 有值， `height` 未设置时有效
+- `page` 设置页码，默认为 `1`
+- `width` 设置宽度，默认为 `100%`
+- `height` 设置高度，默认为 `auto`
+- `ratio` 设置宽高比，默认为 `1:0.9` ， 仅当 `height` 未设置时有效
 
 ### icons
 

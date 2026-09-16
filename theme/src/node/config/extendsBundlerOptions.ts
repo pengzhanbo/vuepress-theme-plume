@@ -8,7 +8,7 @@ import {
 import { isPackageExists } from 'local-pkg'
 
 export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
-  const dynamicImport = ['artplayer', 'dashjs', 'hls.js', 'mpegts.js', 'shiki', 'pyodide', 'qrcode', 'artalk', 'giscus', 'twikoo', '@waline', 'photoswipe', 'chart.js', 'echarts', 'flowchart.ts', 'markmap', 'mermaid', 'katex', 'register-service-worker', '@docsearch']
+  const dynamicImport = ['artplayer', 'dashjs', 'hls.js', 'mpegts.js', 'shiki', 'pyodide', 'qrcode', 'artalk', 'giscus', 'twikoo', '@waline', 'photoswipe', 'chart.js', 'echarts', 'flowchart.ts', 'markmap', 'mermaid', 'katex', 'register-service-worker', '@docsearch', '@embedpdf/vue-pdf-viewer']
   const VUE_REG = /node_modules[\\/](?:@?vue[\\/]|vue-router|floating-vue)/
 
   const excludeDynamicImport = (id: string) => {
@@ -16,6 +16,7 @@ export function extendsBundlerOptions(bundlerOptions: any, app: App): void {
       const mod = id.slice(id.indexOf('node_modules') + 13)
       return !dynamicImport.some(item => mod.includes(item))
     }
+    return undefined
   }
   addViteConfig(bundlerOptions, app, {
     build: {

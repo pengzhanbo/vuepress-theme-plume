@@ -33,23 +33,22 @@ export default defineUserConfig({
 @[pdf](url)
 ```
 
-当需要打开特定页面时，在 `pdf` 后面跟随一个 页数。
+当需要打开特定页面时，使用 `page` 选项指定页码。为了兼容旧用法，也支持在 `pdf` 后直接跟随页码的简写形式 `@[pdf 2](url)`。
 
 ```md
-@[pdf 2](url)
+@[pdf page="2"](url)
 ```
 
 还可以添加更多的 选项到 `@[pdf ]` 中，更灵活的控制行为。
 
 ```md
-@[pdf 2 no-toolbar width="100%" height="400px" ratio="16:9" zoom="100"](url)
+@[pdf page="2" width="100%" height="400px" ratio="16:9"](url)
 ```
 
-- `no-toolbar` - 不显示工具栏
-- `width` - 宽度，默认为 100%
+- `page` - 页码，默认为 `1`
+- `width` - 宽度，默认为 `100%`
 - `height` - 高度，默认为 `auto`
-- `ratio` - 宽高比, 默认为 `16:9`, 仅当未指定高度时生效
-- `zoom` - 缩放比例, 百分比。
+- `ratio` - 宽高比，默认为 `1:0.9`，仅当未指定 `height` 时生效
 
 ## 示例
 
@@ -70,45 +69,33 @@ export default defineUserConfig({
 输入：
 
 ```md
-@[pdf 2](https://plume.pengzhanbo.cn/files/sample-1.pdf)
+@[pdf page="2"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 输出：
 
-@[pdf 2 zoom="95"](/files/sample-1.pdf)
+@[pdf page="2"](/files/sample-1.pdf)
 
-### 不显示工具栏
+### 指定高度
 
 输入：
 
 ```md
-@[pdf no-toolbar](https://plume.pengzhanbo.cn/files/sample-1.pdf)
+@[pdf height="400px"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 输出：
 
-@[pdf no-toolbar](/files/sample-1.pdf)
-
-### 缩放比 90%
-
-输入：
-
-```md
-@[pdf zoom="90"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
-```
-
-输出：
-
-@[pdf zoom="90"](/files/sample-1.pdf)
+@[pdf height="400px"](/files/sample-1.pdf)
 
 ### 宽高比 21:29
 
 输入：
 
 ```md
-@[pdf zoom="95" ratio="21:29"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
+@[pdf ratio="21:29"](https://plume.pengzhanbo.cn/files/sample-1.pdf)
 ```
 
 输出：
 
-@[pdf zoom="95" ratio="21:29"](/files/sample-1.pdf)
+@[pdf ratio="21:29"](/files/sample-1.pdf)

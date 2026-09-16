@@ -20,29 +20,11 @@ export interface PDFTokenMeta extends SizeOptions {
    */
   page?: number | string
   /**
-   * Whether to hide toolbar
-   *
-   * 是否隐藏工具栏
-   */
-  noToolbar?: boolean
-  /**
-   * Zoom level
-   *
-   * 缩放级别
-   */
-  zoom?: number
-  /**
    * PDF source URL
    *
    * PDF 源 URL
    */
   src?: string
-  /**
-   * Title of the PDF
-   *
-   * PDF 标题
-   */
-  title?: string
 }
 
 /**

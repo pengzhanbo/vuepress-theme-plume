@@ -142,8 +142,8 @@ catalogs:
     '@pengzhanbo/utils': ^3.11.0
     '@shikijs/colorized-brackets': ^4.4.3
     '@shikijs/transformers': ^4.4.3
-    '@vueuse/core': ^14.4.0
-    '@vueuse/integrations': ^14.4.0
+    '@vueuse/core': ^15.0.0
+    '@vueuse/integrations': ^15.0.0
     cac: ^7.0.0
     chart.js: ^4.5.1
     chokidar: 5.0.0

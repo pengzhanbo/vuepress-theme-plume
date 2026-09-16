@@ -42,7 +42,7 @@ To open a specific page, use the `page` option. The shorthand `@[pdf 2](url)` is
 Additional options can be added to `@[pdf ]` for more flexible control:
 
 ```md
-@[pdf page="2" width="100%" height="400px" ratio="16:9"](url)
+@[pdf page="2" width="100%" ratio="16:9"](url)
 ```
 
 - `page` - Page number, defaults to `1`

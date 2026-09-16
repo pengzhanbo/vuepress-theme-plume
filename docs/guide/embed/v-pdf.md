@@ -42,7 +42,7 @@ export default defineUserConfig({
 还可以添加更多的 选项到 `@[pdf ]` 中，更灵活的控制行为。
 
 ```md
-@[pdf page="2" width="100%" height="400px" ratio="16:9"](url)
+@[pdf page="2" width="100%" ratio="16:9"](url)
 ```
 
 - `page` - 页码，默认为 `1`

@@ -27,7 +27,7 @@ Simple syntax:
 With options:
 
 ```md
-@[pdf page="2" width="100%" height="400px" ratio="16:9"](url)
+@[pdf page="2" width="100%" ratio="16:9"](url)
 ```
 
 **Parameters:**

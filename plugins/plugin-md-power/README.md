@@ -69,7 +69,7 @@ caniuse 默认查看最近的5个浏览器版本。你可以通过 `{versions}` 
 ```md
 @[pdf](url)
 @[pdf page="1"](url)
-@[pdf page="1" width="100%" height="600px" ratio="16:9"](url)
+@[pdf page="1" width="100%" ratio="16:9"](url)
 ```
 
 `url` 只支持绝对路径以及完整的资源链接地址，请勿传入相对路径。

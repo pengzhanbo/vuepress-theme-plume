@@ -42,7 +42,7 @@ overrides:
   linkify-it: ^5.0.2
   lodash: '>=4.18.1'
   lodash-es: '>=4.18.1'
-  markdown-it: ^14.3.1
+  markdown-it: ^15.0.0
   mermaid: '>=12.0.0'
   postcss: '>=8.5.28'
   qs: '>=6.16.0'
@@ -91,7 +91,7 @@ catalogs:
     eslint: ^10.10.0
     http-server: ^14.1.1
     less: ^4.9.1
-    markdown-it: ^14.3.1
+    markdown-it: ^15.0.0
     memfs: ^4.78.0
     mermaid: ^12.0.0
     nano-staged: ^1.0.2

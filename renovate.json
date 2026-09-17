@@ -1,6 +1,237 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    ":semanticCommits",
+    "security:minimumReleaseAgeNpm",
+    ":timezone(Asia/Shanghai)"
+  ],
+  "description": [
+    "依赖更新策略：稳定优先（5 天稳定期、每周一批量处理），安全更新即时创建，按 pnpm catalog 与生态分组降低 PR 噪声。"
+  ],
+  "rangeStrategy": "bump",
+  "schedule": [
+    "before 6am on monday"
+  ],
+  "minimumReleaseAge": "5 days",
+  "internalChecksFilter": "strict",
+  "prConcurrentLimit": 6,
+  "prHourlyLimit": 2,
+  "rebaseWhen": "conflicted",
+  "dependencyDashboard": true,
+  "labels": [
+    "dependencies"
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": [
+      "before 5am on the first day of the month"
+    ],
+    "groupName": "lock file maintenance"
+  },
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": [
+      "security"
+    ],
+    "schedule": [
+      "at any time"
+    ],
+    "minimumReleaseAge": null,
+    "dependencyDashboardApproval": false
+  },
+  "osvVulnerabilityAlerts": true,
+  "packageRules": [
+    {
+      "description": "npm 生态稳定期 5 天（覆盖 security:minimumReleaseAgeNpm 的 3 天）",
+      "matchDatasources": [
+        "npm"
+      ],
+      "minimumReleaseAge": "5 days"
+    },
+    {
+      "description": "未被任何规则匹配的依赖更新",
+      "groupName": "other dependencies",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
+    },
+    {
+      "description": "overrides 为手动维护的版本约束，不自动更新",
+      "matchDepTypes": [
+        "pnpm-workspace.overrides"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "catalog:dev 中未细分的开发依赖",
+      "groupName": "dev dependencies",
+      "matchDepTypes": [
+        "pnpm.catalog.dev"
+      ]
+    },
+    {
+      "description": "catalog:prod 中未细分的运行时依赖",
+      "groupName": "prod dependencies",
+      "matchDepTypes": [
+        "pnpm.catalog.prod"
+      ]
+    },
+    {
+      "description": "catalog:peer，optional peer 依赖需人工验证兼容性",
+      "groupName": "peer dependencies",
+      "matchDepTypes": [
+        "pnpm.catalog.peer"
+      ]
+    },
+    {
+      "description": "catalog:vuepress，版本强耦合需整体升级",
+      "groupName": "vuepress",
+      "matchDepTypes": [
+        "pnpm.catalog.vuepress"
+      ],
+      "prPriority": 5
+    },
+    {
+      "description": "Vue 运行时生态",
+      "groupName": "vue",
+      "matchPackageNames": [
+        "vue",
+        "vue-router",
+        "@vueuse/**",
+        "@floating-ui/vue"
+      ]
+    },
+    {
+      "description": "Markdown 解析与代码高亮",
+      "groupName": "markdown",
+      "matchPackageNames": [
+        "shiki",
+        "@shikijs/**",
+        "tm-grammars",
+        "tm-themes",
+        "markdown-it",
+        "markdown-it-*",
+        "@mdit/**"
+      ]
+    },
+    {
+      "description": "文档内容增强（图表、数学、搜索）",
+      "groupName": "content features",
+      "matchPackageNames": [
+        "chart.js",
+        "echarts",
+        "flowchart.ts",
+        "mermaid",
+        "markmap-*",
+        "katex",
+        "minisearch",
+        "mark.js",
+        "@simonwep/pickr"
+      ]
+    },
+    {
+      "description": "构建与打包工具链",
+      "groupName": "build tooling",
+      "matchPackageNames": [
+        "tsdown",
+        "rolldown",
+        "vite",
+        "unplugin-vue-components",
+        "postcss",
+        "typescript",
+        "tsconfig-vuepress",
+        "unrun",
+        "cpx2",
+        "esbuild"
+      ]
+    },
+    {
+      "description": "CSS 预处理器",
+      "groupName": "style preprocessors",
+      "matchPackageNames": [
+        "sass",
+        "sass-embedded",
+        "less",
+        "stylus"
+      ]
+    },
+    {
+      "description": "代码检查与格式化",
+      "groupName": "lint & format",
+      "matchPackageNames": [
+        "eslint",
+        "stylelint",
+        "oxfmt",
+        "@pengzhanbo/eslint-config-vue",
+        "@pengzhanbo/stylelint-config",
+        "@commitlint/**",
+        "conventional-changelog",
+        "conventional-changelog-angular"
+      ]
+    },
+    {
+      "description": "测试工具链",
+      "groupName": "test",
+      "matchPackageNames": [
+        "vitest",
+        "@vitest/**",
+        "memfs"
+      ]
+    },
+    {
+      "description": "TypeScript 类型定义",
+      "groupName": "types",
+      "matchPackageNames": [
+        "@types/**"
+      ]
+    },
+    {
+      "description": "未走 catalog 的 peer 依赖",
+      "groupName": "peer dependencies",
+      "matchPackageNames": [
+        "@iconify/json",
+        "mpegts.js"
+      ]
+    },
+    {
+      "description": "包管理器版本",
+      "groupName": "pnpm",
+      "matchPackageNames": [
+        "pnpm"
+      ]
+    },
+    {
+      "description": "GitHub Actions",
+      "groupName": "github-actions",
+      "matchManagers": [
+        "github-actions"
+      ]
+    },
+    {
+      "description": "主版本更新需在 Dependency Dashboard 中批准",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "dependencyDashboardApproval": true,
+      "addLabels": [
+        "major"
+      ]
+    },
+    {
+      "description": "安全更新不受排程、稳定期与审批限制",
+      "matchCategories": [
+        "security"
+      ],
+      "groupName": null,
+      "enabled": true,
+      "dependencyDashboardApproval": false,
+      "minimumReleaseAge": null,
+      "prPriority": 20,
+      "addLabels": [
+        "security"
+      ]
+    }
   ]
 }

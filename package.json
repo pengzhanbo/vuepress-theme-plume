@@ -15,7 +15,7 @@
   ],
   "engines": {
     "node": "^20.19.0 || >=22.1.0",
-    "pnpm": ">=9.15.9"
+    "pnpm": ">=12.4.1"
   },
   "scripts": {
     "build": "pnpm run clean && pnpm build:package",

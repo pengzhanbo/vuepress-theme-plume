@@ -1,3 +1,16 @@
+# [1.0.0-rc.211](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.210...v1.0.0-rc.211) (2026-09-17)
+
+### Bug Fixes
+
+* **plugin-md-power:** fix demo embed filepath ([7903170](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7903170956c7241c5054253d7030f9abace7f22e))
+
+### Features
+
+* enhance field container ([#990](https://github.com/pengzhanbo/vuepress-theme-plume/issues/990)) ([238b674](https://github.com/pengzhanbo/vuepress-theme-plume/commit/238b674589496cabee23af2113005beb5646b33b))
+* **plugin-md-power:** drop `optional` tag in `field` container ([#987](https://github.com/pengzhanbo/vuepress-theme-plume/issues/987)) ([7a454d3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7a454d3fc6971915efddfef41696d2c1bb07e813))
+* **plugin-md-power:** enhance code-tree container ([#994](https://github.com/pengzhanbo/vuepress-theme-plume/issues/994)) ([5b050e5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5b050e501b05d3a33c8320ca704f14a4807c75c6))
+* **plugin-md-power:** enhance pdf embed syntax ([#997](https://github.com/pengzhanbo/vuepress-theme-plume/issues/997)) ([685a216](https://github.com/pengzhanbo/vuepress-theme-plume/commit/685a21642ef8da5cee01df8e873142991a36d4f9))
+
 # [1.0.0-rc.210](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.209...v1.0.0-rc.210) (2026-09-10)
 
 ### Features

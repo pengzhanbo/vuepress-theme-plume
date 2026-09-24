@@ -91,7 +91,7 @@ export function createEmbedRuleBlock<Meta extends Record<string, any> = Record<s
   const MIN_LENGTH = type.length + 5
   const START_CODES = [64, 91, ...type.split('').map(c => c.charCodeAt(0))]
   const escapedType = type.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  const syntaxPattern = new RegExp(`^@\\[${escapedType}(?:\\s+([^\\]]*))?\\]\\(([^)]*)\\)$`)
+  const syntaxPattern = new RegExp(`^@\\[${escapedType}(?:(?:\\s+|(?=\\{))([^\\]]*))?\\]\\(([^)]*)\\)$`)
 
   md.block.ruler.before(
     'import_code',

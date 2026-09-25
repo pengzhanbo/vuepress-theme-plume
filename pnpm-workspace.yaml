@@ -91,7 +91,7 @@ catalogs:
     eslint: ^10.10.0
     http-server: ^14.1.1
     less: ^4.9.1
-    markdown-it: ^14.3.1
+    markdown-it: ^14.3.2
     memfs: ^4.78.0
     mermaid: ^12.0.0
     nano-staged: ^1.0.2
@@ -179,7 +179,7 @@ catalogs:
     shiki: ^4.4.3
     sort-package-json: ^4.0.0
     tiny-image-size: ^1.0.0
-    tm-grammars: ^1.32.20
+    tm-grammars: ^1.32.21
     tm-themes: ^1.12.11
     unplugin-vue-components: ^32.1.0
     vue: ^3.5.42

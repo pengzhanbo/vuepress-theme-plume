@@ -482,8 +482,8 @@ catalogs:
       specifier: ^1.0.0
       version: 1.0.0
     tm-grammars:
-      specifier: ^1.32.20
-      version: 1.32.20
+      specifier: ^1.32.21
+      version: 1.32.22
     tm-themes:
       specifier: ^1.12.11
       version: 1.12.11
@@ -958,7 +958,7 @@ importers:
         version: 1.0.0
       tm-grammars:
         specifier: catalog:prod
-        version: 1.32.20
+        version: 1.32.22
       tm-themes:
         specifier: catalog:prod
         version: 1.12.11
@@ -7268,8 +7268,8 @@ packages:
     resolution: {integrity: sha512-yau8yJdTt989Mm0Bd/236QnzEiPf2xLLTqUZRUJOo/3CB078LSwzei343DgtJVmfJKJE3TMINY1u42SQsP6mXw==}
     engines: {node: '>=14.0.0'}
 
-  tm-grammars@1.32.20:
-    resolution: {integrity: sha512-FcooZ+Tc6cLBmUCN3Aw87VsHKWhtkAyBteq7CP/x9x7WcZaIwLb0D/OnAkraCN9eMkHrPIcMaDv1biVHEu7qdQ==}
+  tm-grammars@1.32.22:
+    resolution: {integrity: sha512-VKWL+UiqlGqbGHonRbrBc0kkqDIHUUiVO/A2rBTBz5LBXKA8Fe2f34O1YiBI7ED37tTUlT3MGmLf9+0F/H4/Ww==}
 
   tm-themes@1.12.11:
     resolution: {integrity: sha512-h4JDBH17U3ewJ3j8tFuwDpgza6dQ8ItaSDo5n5bZYzJhJN2eMME4AY3ZMTc81Yl5az02BkCCc6Xpyv0ayXhgZg==}
@@ -14679,7 +14679,7 @@ snapshots:
 
   tinyrainbow@3.1.1: {}
 
-  tm-grammars@1.32.20: {}
+  tm-grammars@1.32.22: {}
 
   tm-themes@1.12.11: {}
 

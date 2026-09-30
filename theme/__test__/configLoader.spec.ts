@@ -63,4 +63,36 @@ describe('configLoader', () => {
     // should not hang forever with no visible error
     await expect(loader.waiting()).rejects.toThrow(error)
   })
+
+  it('should reject waiting() when init fails with a falsy reason while waiting', async () => {
+    vi.mocked(findConfigPath).mockRejectedValue(null)
+
+    const loader = new ConfigLoader()
+    const waiting = loader.waiting()
+
+    await expect(loader.init(app, {}, undefined)).rejects.toBeNull()
+    await expect(waiting).rejects.toBeNull()
+  })
+
+  it('should reject waiting() when init already failed with an undefined reason', async () => {
+    vi.mocked(findConfigPath).mockRejectedValue(undefined)
+
+    const loader = new ConfigLoader()
+
+    await expect(loader.init(app, {}, undefined)).rejects.toBeUndefined()
+    // a falsy rejection reason must not be mistaken for "no failure"
+    await expect(loader.waiting()).rejects.toBeUndefined()
+  })
+
+  it('should clear the previous failure state after a successful init', async () => {
+    vi.mocked(findConfigPath).mockRejectedValueOnce(null)
+    vi.mocked(findConfigPath).mockResolvedValue(undefined)
+    vi.mocked(compiler).mockResolvedValue({ config: {}, dependencies: [] })
+
+    const loader = new ConfigLoader()
+
+    await expect(loader.init(app, {}, undefined)).rejects.toBeNull()
+    await expect(loader.init(app, {}, undefined)).resolves.toBeUndefined()
+    await expect(loader.waiting()).resolves.toBeUndefined()
+  })
 })

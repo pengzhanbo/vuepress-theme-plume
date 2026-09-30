@@ -16,6 +16,7 @@ export class ConfigLoader extends EventEmitter {
 
   private dependencies: string[] = []
   private loaded = false
+  private failed = false
   private loadError: unknown = null
   private configFile?: string
   private defaultConfig!: ThemeOptions
@@ -41,14 +42,16 @@ export class ConfigLoader extends EventEmitter {
       perf.log('config-loader:loaded')
     }
     catch (error) {
-      // Store and broadcast the failure so that `waiting()` rejects instead of
-      // hanging forever with no visible error.
-      // 记录并广播失败，使 `waiting()` 主动 reject，而不是无任何提示地永久挂起。
+      // Track the failure with a dedicated flag: the rejection reason may be a falsy
+      // value such as `null` or `undefined`, so a truthiness check on the reason would miss it.
+      // 使用独立标志记录失败：拒绝原因可能是 `null`/`undefined` 等假值，对原因做真值判断会漏判。
+      this.failed = true
       this.loadError = error
       this.emit('failed', error)
       throw error
     }
 
+    this.failed = false
     this.loadError = null
     this.emit('loaded', this.config)
     this.removeAllListeners('loaded')
@@ -81,7 +84,7 @@ export class ConfigLoader extends EventEmitter {
   }
 
   async waiting(): Promise<void> {
-    if (this.loadError)
+    if (this.failed)
       return Promise.reject(this.loadError)
 
     if (this.loaded)

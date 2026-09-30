@@ -1,3 +1,4 @@
+import type { FileHandle } from 'node:fs/promises'
 import type { File } from '../types.js'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -47,24 +48,6 @@ export interface WriteFilesResult {
 }
 
 /**
- * Check whether a path already exists.
- *
- * 检查路径是否已存在。
- *
- * @param filepath - Path to check / 要检查的路径
- * @returns Whether the path exists / 路径是否存在
- */
-async function exists(filepath: string): Promise<boolean> {
-  try {
-    await fs.access(filepath)
-    return true
-  }
-  catch {
-    return false
-  }
-}
-
-/**
  * Write files to target directory
  *
  * Existing files are skipped by default to avoid silently overwriting the
@@ -75,6 +58,9 @@ async function exists(filepath: string): Promise<boolean> {
  *
  * 默认跳过已存在的文件，避免静默覆盖用户数据。传入 `force` 可覆盖全部文件；
  * 对需要与用户内容合并的单个文件，可设置其 `overwrite` 为 `true`。
+ *
+ * 默认分支使用排他创建（`'wx'`）原子地写入，避免 `exists()` + 写入之间的
+ * TOCTOU 竞争导致覆盖其他进程刚创建的文件。
  *
  * @param files - Array of file objects to write / 要写入的文件对象数组
  * @param target - Target directory path / 目标目录路径
@@ -91,13 +77,32 @@ export async function writeFiles(
 
   for (const { filepath, content, overwrite } of files) {
     const file = path.join(target, filepath).replace(/\.tpl$/, '')
-    if (!force && !overwrite && await exists(file)) {
-      skipped.push(file)
+    await fs.mkdir(path.dirname(file), { recursive: true })
+
+    // 明确允许覆盖时，直接覆盖写入。
+    if (force || overwrite) {
+      await fs.writeFile(file, content)
+      written.push(file)
       continue
     }
-    await fs.mkdir(path.dirname(file), { recursive: true })
-    await fs.writeFile(file, content)
-    written.push(file)
+
+    // 否则使用排他创建，路径已存在时写入 `EEXIST`。
+    let handle: FileHandle | undefined
+    try {
+      handle = await fs.open(file, 'wx')
+      await handle.writeFile(content)
+      written.push(file)
+    }
+    catch (error) {
+      if ((error as NodeJS.ErrnoException).code === 'EEXIST') {
+        skipped.push(file)
+        continue
+      }
+      throw error
+    }
+    finally {
+      await handle?.close()
+    }
   }
 
   return { written, skipped }

@@ -63,6 +63,21 @@ describe('writeFiles conflict protection', () => {
     expect(await fs.readFile(path.join(dir, 'package.json'), 'utf-8')).toBe('NEW')
   })
 
+  it('should not overwrite when concurrent writes race on the same file', async () => {
+    const files = [{ filepath: 'race.txt', content: 'RACE' }]
+
+    const [first, second] = await Promise.all([
+      writeFiles(files, dir),
+      writeFiles(files, dir),
+    ])
+
+    // 排他创建保证只有一个实例写入，另一个实例跳过。
+    // Exclusive create guarantees only one writer wins, the other skips.
+    expect(first.written.length + second.written.length).toBe(1)
+    expect(first.skipped.length + second.skipped.length).toBe(1)
+    expect(await fs.readFile(path.join(dir, 'race.txt'), 'utf-8')).toBe('RACE')
+  })
+
   it('should keep untouched files when only some conflicts exist', async () => {
     await fs.writeFile(path.join(dir, 'a.txt'), 'OLD')
 

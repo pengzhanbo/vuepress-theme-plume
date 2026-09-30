@@ -596,3 +596,33 @@ describe('codeTreePlugin > embed syntax', () => {
     spy.mockRestore()
   })
 })
+
+// ─── codeTreePlugin > symlink safety ──────────────────────────────────────────
+
+describe('codeTreePlugin > symlink safety', () => {
+  it('should refuse a directory symlink that escapes the source directory', (ctx) => {
+    const linkPath = path.join(sourceDir, 'link-outside')
+    try {
+      // points outside the source directory (its parent contains `source/`)
+      fs.symlinkSync(baseDir, linkPath, 'dir')
+    }
+    catch {
+      // symlinks are unavailable on this platform
+      ctx.skip()
+      return
+    }
+
+    const spy = vi.spyOn(logger, 'warn')
+    const html = createMarkdown(app).render('@[code-tree](/link-outside)', env)
+
+    expect(spy).toHaveBeenCalledWith(
+      expect.stringContaining('Invalid code-tree target directory'),
+    )
+    expect(html).toContain('Invalid target directory')
+    // no file from the external directory leaks into the rendered output
+    expect(html).not.toContain('const a = 1')
+
+    spy.mockRestore()
+    fs.rmSync(linkPath, { force: true })
+  })
+})

@@ -29,6 +29,12 @@ export interface SearchLocaleOptions {
   backButtonTitle: string
   /** Text shown when no results found / 无搜索结果时显示的文本 */
   noResultsText: string
+  /**
+   * Text shown when the search index is missing or fails to load.
+   *
+   * 搜索索引缺失或加载失败时显示的文本。
+   */
+  searchIndexErrorText?: string
   /** Footer keyboard shortcut hints / 底部键盘快捷键提示 */
   footer: {
     /** Text for select action / 选择操作的文本 */

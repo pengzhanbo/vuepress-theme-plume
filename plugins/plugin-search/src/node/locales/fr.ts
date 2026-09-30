@@ -17,6 +17,7 @@ export const frSearchLocale: Partial<SearchLocaleOptions> = {
   resetButtonTitle: 'Réinitialiser la recherche',
   backButtonTitle: 'Fermer',
   noResultsText: 'Aucun résultat trouvé :',
+  searchIndexErrorText: 'Échec du chargement de l’index de recherche.',
   footer: {
     selectText: 'sélectionner',
     selectKeyAriaLabel: 'Entrée',

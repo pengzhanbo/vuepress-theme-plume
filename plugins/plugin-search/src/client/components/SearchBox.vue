@@ -62,17 +62,63 @@ const isSearching = ref(false)
 
 const showSearchSpinner = computed(() => isSearchIndexLoading.value || isSearching.value)
 
-const searchIndex = computedAsync(async () => {
+/**
+ * Visible error message when the search index is missing or fails to load.
+ *
+ * 搜索索引缺失或加载失败时显示的可见提示。
+ */
+const searchIndexError = ref('')
+
+const searchIndexErrorText = computed(() =>
+  locale.value.searchIndexErrorText || 'Failed to load the search index.',
+)
+
+/**
+ * Create an empty index used as a fallback when the index is missing or fails
+ * to load, so searching returns an empty result set instead of throwing.
+ *
+ * 创建空索引，在索引缺失或加载失败时兜底，使检索返回空结果而不是抛出异常。
+ */
+function createEmptyIndex(): MiniSearch<Result> {
+  return new MiniSearch<Result>({
+    fields: ['title', 'titles', 'text'],
+    storeFields: ['title', 'titles'],
+  })
+}
+
+const searchIndex = computedAsync(async (onCancel) => {
+  // 标记本次求值是否已被新一轮加载取代（例如 HMR 更新索引）。
+  // 过期任务不得再写入错误状态，否则有效结果旁会残留加载失败提示。
+  //
+  // Mark this evaluation as stale (e.g. superseded by a newer load during HMR).
+  // A stale task must not write the error state, otherwise a load failure message
+  // would persist next to valid results.
+  let canceled = false
+  onCancel(() => {
+    canceled = true
+  })
+
+  searchIndexError.value = ''
+
   let tokenize: ((str: string) => string[]) | undefined
   if (typeof Intl.Segmenter !== 'undefined') {
     const segmenter = new Intl.Segmenter(lang.value, { granularity: 'word' })
     tokenize = str => Array.from(segmenter.segment(str)).map(s => s.segment)
   }
 
-  return markRaw(
-    MiniSearch.loadJSON<Result>(
-      (await searchIndexData.value[routeLocale.value]?.())?.default,
-      {
+  const loadIndex = searchIndexData.value[routeLocale.value]
+  // 当前语言缺少索引文件时回退到空索引，并给出可见提示，避免静默无结果。
+  // Fall back to an empty index and show a visible message when the locale has no index.
+  if (!loadIndex) {
+    if (!canceled)
+      searchIndexError.value = searchIndexErrorText.value
+    return markRaw(createEmptyIndex())
+  }
+
+  try {
+    const json = (await loadIndex())?.default
+    return markRaw(
+      MiniSearch.loadJSON<Result>(json, {
         fields: ['title', 'titles', 'text'],
         storeFields: ['title', 'titles'],
         searchOptions: {
@@ -83,9 +129,15 @@ const searchIndex = computedAsync(async () => {
         },
         ...options.miniSearch?.searchOptions,
         ...options.miniSearch?.options,
-      },
-    ),
-  )
+      }),
+    )
+  }
+  catch (error) {
+    console.error('[plugin-search] failed to load the search index:', error)
+    if (!canceled)
+      searchIndexError.value = searchIndexErrorText.value
+    return markRaw(createEmptyIndex())
+  }
 }, undefined, isSearchIndexLoading)
 
 const disableQueryPersistence = computed(() =>
@@ -447,7 +499,14 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
             </a>
           </li>
           <li
-            v-if="filterText && !results.length && enableNoResults"
+            v-if="searchIndexError"
+            class="no-results error"
+            role="alert"
+          >
+            {{ searchIndexError }}
+          </li>
+          <li
+            v-else-if="filterText && !results.length && enableNoResults"
             class="no-results"
           >
             {{ locale.noResultsText }} "<strong>{{ filterText }}</strong>"
@@ -814,5 +873,9 @@ svg {
   padding: 12px;
   font-size: 0.9rem;
   text-align: center;
+}
+
+.no-results.error {
+  color: var(--vp-c-danger-1, #b8272c);
 }
 </style>

@@ -17,6 +17,7 @@ export const jaSearchLocale: Partial<SearchLocaleOptions> = {
   resetButtonTitle: '検索をリセット',
   backButtonTitle: '閉じる',
   noResultsText: '検索結果がありません：',
+  searchIndexErrorText: '検索インデックスの読み込みに失敗しました。',
   footer: {
     selectText: '選択',
     selectKeyAriaLabel: '入力',

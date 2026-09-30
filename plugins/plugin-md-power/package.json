@@ -41,7 +41,6 @@
     "tsdown:watch": "tsdown --config-loader unrun --watch -- -c"
   },
   "peerDependencies": {
-    "@embedpdf/vue-pdf-viewer": "catalog:peer",
     "artplayer": "catalog:peer",
     "dashjs": "catalog:peer",
     "hls.js": "catalog:peer",
@@ -55,9 +54,6 @@
     "vuepress": "catalog:vuepress"
   },
   "peerDependenciesMeta": {
-    "@embedpdf/vue-pdf-viewer": {
-      "optional": true
-    },
     "artplayer": {
       "optional": true
     },
@@ -120,7 +116,6 @@
     "vue": "catalog:prod"
   },
   "devDependencies": {
-    "@embedpdf/vue-pdf-viewer": "catalog:peer",
     "artplayer": "catalog:peer",
     "dashjs": "catalog:peer",
     "hls.js": "catalog:peer",

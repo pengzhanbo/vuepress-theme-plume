@@ -17,7 +17,8 @@ export function findCollection(page: Page<ThemePageData>): ThemeCollectionItem |
     return
 
   const pagePath = page.filePathRelative?.slice(locale.length - 1)
-  return collections.find(item =>
-    pagePath?.startsWith(ensureEndingSlash(removeLeadingSlash(item.dir))),
-  )
+  return collections.find((item) => {
+    const dir = removeLeadingSlash(item.dir)
+    return pagePath?.startsWith(dir ? ensureEndingSlash(dir) : '')
+  })
 }

@@ -3,7 +3,7 @@ import type { SearchPluginOptions } from '../shared/index.js'
 import { addViteOptimizeDepsInclude, getFullLocaleConfig } from '@vuepress/helper'
 import { getDirname, path } from 'vuepress/utils'
 import { SEARCH_LOCALES } from './locales/index.js'
-import { /* onSearchIndexRemoved, onSearchIndexUpdated, */ prepareSearchIndex, prepareSearchIndexPlaceholder } from './prepareSearchIndex.js'
+import { onSearchIndexRemoved, onSearchIndexUpdated, prepareSearchIndex, prepareSearchIndexInBackground, prepareSearchIndexPlaceholder } from './prepareSearchIndex.js'
 
 const __dirname = getDirname(import.meta.url)
 
@@ -67,20 +67,23 @@ export function searchPlugin({
       }
       else {
         await prepareSearchIndexPlaceholder(app)
-        prepareSearchIndex({ app, isSearchable, searchOptions })
+        prepareSearchIndexInBackground({ app, isSearchable, searchOptions })
       }
     },
 
-    // onPageUpdated: async (app, type, page) => {
-    //   if (!page?.filePathRelative)
-    //     return
+    // 开发模式下增量更新搜索索引，避免修改文档后必须重启 dev server。
+    // Incrementally update the search index in dev so edits take effect without a restart.
+    onPageUpdated: async (app, type, pageNew, pageOld) => {
+      // VuePress 对 `delete` 事件传入的页面在第四个参数（第三个为 null）。
+      // For the `delete` event the removed page is the 4th argument (the 3rd is null).
+      const page = type === 'delete' ? pageOld : pageNew
+      if (!page || !page.filePathRelative)
+        return
 
-    //   if (type === 'create' || type === 'update') {
-    //     await onSearchIndexUpdated(app, { page, isSearchable, searchOptions })
-    //   }
-    //   else if (type === 'delete') {
-    //     await onSearchIndexRemoved(app, { page, isSearchable, searchOptions })
-    //   }
-    // },
+      if (type === 'create' || type === 'update')
+        await onSearchIndexUpdated(app, { page, isSearchable, searchOptions })
+      else if (type === 'delete')
+        await onSearchIndexRemoved(app, { page, isSearchable, searchOptions })
+    },
   })
 }

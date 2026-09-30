@@ -18,6 +18,7 @@ import MiniSearch from 'minisearch'
 import pMap from 'p-map'
 import sanitizeHTML from 'sanitize-html'
 import { colors, logger } from 'vuepress/utils'
+import { createTokenizer } from '../shared/index.js'
 
 /**
  * Options for search index preparation.
@@ -60,7 +61,7 @@ const SEARCH_INDEX_DIR = 'internal/minisearchIndex/'
 /** Map of locale paths to their MiniSearch instances / 语言路径到 MiniSearch 实例的映射 */
 const indexByLocales = new Map<string, MiniSearch<IndexObject>>()
 
-/** Cache for index objects by file path / 按文件路径缓存索引对象 */
+/** Cache for index objects keyed by the page's relative file path / 按页面相对文件路径缓存索引对象 */
 const indexCache = new Map<string, IndexObject[]>()
 
 /**
@@ -76,13 +77,12 @@ const indexCache = new Map<string, IndexObject[]>()
 function getIndexByLocale(locale: string, lang: string, options: SearchIndexOptions['searchOptions']) {
   let index = indexByLocales.get(locale)
   if (!index) {
-    const segmenter = new Intl.Segmenter(lang, { granularity: 'word' })
     index = new MiniSearch<IndexObject>({
       fields: ['title', 'titles', 'text'],
       storeFields: ['title', 'titles'],
-      tokenize(text) {
-        return Array.from(segmenter.segment(text)).map(s => s.segment)
-      },
+      // 与客户端共用同一分词策略，保证索引词元与查询词元一致。
+      // Share the tokenizer with the client so index and query tokens match.
+      tokenize: createTokenizer(lang),
       ...options.miniSearch?.options,
     })
     indexByLocales.set(locale, index)
@@ -167,12 +167,43 @@ export async function prepareSearchIndex({
   }
 }
 
-let updateQueue = Promise.resolve()
+/**
+ * Serialize all index mutations (initial build and incremental updates).
+ *
+ * 串行化所有索引变更（初始构建与增量更新）。
+ *
+ * The initial dev build runs in the background, so a page change may arrive
+ * while it is still indexing. Chaining every task on a single queue prevents
+ * concurrent writes to the shared MiniSearch instances.
+ *
+ * 开发模式的初始构建在后台运行，页面变更可能在其尚未完成时到达。
+ * 将所有任务串联到同一队列可避免对共享 MiniSearch 实例的并发写入。
+ */
+let indexTaskQueue: Promise<void> = Promise.resolve()
 
-async function queueUpdateIndexFile({ page, isSearchable, searchOptions }: UpdateSearchIndexOptions) {
-  updateQueue = updateQueue
-    .then(() => indexFile(page, searchOptions, isSearchable))
-  return updateQueue
+function runExclusive(task: () => Promise<void>): Promise<void> {
+  const result = indexTaskQueue.then(task)
+  // Keep the queue alive even if a task rejects, so later tasks still run.
+  indexTaskQueue = result.then(() => {}, () => {})
+  return result
+}
+
+/**
+ * Prepare search indexes in the background for development mode.
+ *
+ * 为开发模式在后台准备搜索索引。
+ *
+ * Unlike the awaited build path, this enqueues the initial full build so that
+ * subsequent incremental updates never run concurrently with it.
+ *
+ * 与构建路径不同，此处将初始全量构建入队，确保后续增量更新不会与之并发执行。
+ *
+ * @param options - Search index preparation options / 搜索索引准备选项
+ */
+export function prepareSearchIndexInBackground(options: SearchIndexOptions): void {
+  runExclusive(() => prepareSearchIndex(options)).catch((error) => {
+    logger.error(`${colors.green('[@vuepress-plume/plugin-search]')} failed to prepare search index:`, error)
+  })
 }
 
 /**
@@ -197,9 +228,10 @@ export async function onSearchIndexUpdated(
   if (isSearchable && !isSearchable(page))
     return
 
-  // FIXME: onPageUpdated 存在竞态问题，当前使用异步队列避免
-  await queueUpdateIndexFile({ page, isSearchable, searchOptions })
-  await writeTemp(app)
+  await runExclusive(async () => {
+    await indexFile(page, searchOptions, isSearchable)
+    await writeTemp(app)
+  })
 }
 
 /**
@@ -224,16 +256,20 @@ export async function onSearchIndexRemoved(
   if (isSearchable && !isSearchable(page))
     return
 
-  if (page.filePathRelative) {
-    const fileId = page.path
-    const locale = page.pathLocale
-    const lang = page.lang
-    const index = getIndexByLocale(locale, lang, searchOptions)
-    const cache = getIndexCache(fileId)
-    if (cache && cache.length)
+  // 以相对文件路径为缓存键：页面路径变化（重命名/permalink）后仍能定位并清理旧条目。
+  // Key the cache by relative file path so renamed/permalink-changed pages still clear old entries.
+  const cacheKey = page.filePathRelative
+  if (!cacheKey)
+    return
+
+  await runExclusive(async () => {
+    const index = getIndexByLocale(page.pathLocale, page.lang, searchOptions)
+    const cache = indexCache.get(cacheKey)
+    if (cache?.length)
       index.removeAll(cache)
+    indexCache.delete(cacheKey)
     await writeTemp(app)
-  }
+  })
 }
 
 /**
@@ -299,45 +335,70 @@ async function indexFile(page: Page, options: SearchIndexOptions['searchOptions'
 
   // get file metadata
   const fileId = page.path
-  const locale = page.pathLocale
-  const lang = page.lang
-  const index = getIndexByLocale(locale, lang, options)
-  const cache = getIndexCache(fileId)
-  // retrieve file and split into "sections"
-  const html = `<h1><a href="#"><span>${page.frontmatter.title || page.title}</span></a></h1>
-${page.contentRendered}`
-  const sections = splitPageIntoSections(html)
+  const index = getIndexByLocale(page.pathLocale, page.lang, options)
+  // 以相对文件路径为缓存键，使页面路径（permalink）变化时仍能清理旧条目。
+  // Cache by relative file path so path/permalink changes still clear old entries.
+  const cacheKey = page.filePathRelative ?? fileId
+  const cache = getIndexCache(cacheKey)
 
   try {
-    if (cache && cache.length)
+    if (cache.length)
       index.removeAll(cache)
   }
   catch {}
 
-  // add sections to the locale index
-  for await (const section of sections) {
-    if (!section || !(section.text || section.titles))
-      break
-    const { anchor, text, titles } = section
-    const id = anchor ? [fileId, anchor].join('#') : fileId
+  // 清空缓存后重新填充，避免已移除的旧条目在缓存中累积。
+  // Reset the cache before re-adding, avoiding accumulation of removed entries.
+  cache.length = 0
 
-    if (index.has(id)) {
-      if (anchor) {
-        logger.error(`${colors.green('[@vuepress-plume/plugin-search]')} duplicate heading anchor : ${colors.cyan(titles.join(' >> '))} \n at ${colors.cyan(fileId)}`)
+  // add sections to the locale index
+  for (const item of createPageSectionItems(page)) {
+    if (index.has(item.id)) {
+      if (item.id !== fileId) {
+        logger.error(`${colors.green('[@vuepress-plume/plugin-search]')} duplicate heading anchor : ${colors.cyan([...item.titles, item.title].join(' >> '))} \n at ${colors.cyan(fileId)}`)
       }
       else {
         logger.error(`${colors.green('[@vuepress-plume/plugin-search]')} duplicate page permalink : ${colors.cyan(fileId)}`)
       }
     }
     else {
-      const item = {
-        id,
-        text,
-        title: titles.at(-1)!,
-        titles: titles.slice(0, -1),
-      }
       index.add(item)
       cache.push(item)
+    }
+  }
+}
+
+/**
+ * Build the searchable section items of a page.
+ *
+ * 构建页面的可搜索章节项。
+ *
+ * Prepends a page-level heading entry and splits the rendered content into
+ * anchor-level sections. A page without any title falls back to its relative
+ * file path, so a literal `"undefined"` never leaks into the index.
+ *
+ * 前置一个页面级标题条目，并将渲染后的内容拆分为锚点级章节。
+ * 无标题的页面回退为其相对文件路径，避免字面量 `"undefined"` 进入索引。
+ *
+ * @param page - VuePress page object / VuePress 页面对象
+ * @yields Section items to add to the index / 要加入索引的章节项
+ */
+export function* createPageSectionItems(page: Page): Generator<IndexObject> {
+  const pageTitle = page.frontmatter.title || page.title || page.filePathRelative || ''
+  const html = `<h1><a href="#"><span>${pageTitle}</span></a></h1>\n${page.contentRendered}`
+  const fileId = page.path
+
+  for (const section of splitPageIntoSections(html)) {
+    const { anchor, text, titles } = section
+    // 空章节应跳过当前项，而不是终止整页的索引。
+    // Skip an empty section without terminating the rest of the page.
+    if (!text && !titles.length)
+      continue
+    yield {
+      id: anchor ? `${fileId}#${anchor}` : fileId,
+      text,
+      title: titles.at(-1)!,
+      titles: titles.slice(0, -1),
     }
   }
 }
@@ -364,7 +425,7 @@ const ignoreHeadingRegex = /<template[^>]*>[\s\S]*<\/template>/gi
  * @param html - HTML content to split / 要分割的 HTML 内容
  * @yields Section objects with anchor, titles, and text / 包含锚点、标题和文本的章节对象
  */
-function* splitPageIntoSections(html: string) {
+export function* splitPageIntoSections(html: string) {
   const result = html.split(headingRegex)
   result.shift()
   let parentTitles: string[] = []
@@ -411,7 +472,7 @@ function getSearchableText(content: string) {
  * @param str - String containing HTML / 包含 HTML 的字符串
  * @returns String with HTML tags removed / 移除 HTML 标签后的字符串
  */
-function clearHtmlTags(str: string) {
+export function clearHtmlTags(str: string) {
   str = str.replace(ignoreHeadingRegex, '')
   // 移除其他所有HTML标签
   return sanitizeHTML(str, { allowedTags: [], allowedAttributes: {} })

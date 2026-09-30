@@ -62,6 +62,33 @@ export interface SearchLocaleOptions {
 export type SearchBoxLocales = LocaleConfig<SearchLocaleOptions>
 
 /**
+ * Create a tokenizer shared by the node (index build) and client (query) sides.
+ *
+ * 创建由 Node 端（构建索引）与客户端（查询）共享的分词器。
+ *
+ * MiniSearch requires the tokenizer used to build the index to be identical to
+ * the one used at query time. Defining it in one place guarantees both sides
+ * use the same strategy: `Intl.Segmenter` when available, otherwise the same
+ * deterministic whitespace fallback.
+ *
+ * MiniSearch 要求构建索引与查询时使用完全一致的分词器。集中定义可保证两端策略一致：
+ * 支持 `Intl.Segmenter` 时使用它分词，否则统一退化为确定性的空白符分词。
+ *
+ * @param lang - Language code for word segmentation / 用于分词的语言代码
+ * @returns Tokenizer that splits a string into tokens / 将字符串切分为词元的函数
+ * @example
+ * const tokenize = createTokenizer('en')
+ * tokenize('Hello world') // ['Hello', ' ', 'world'] with Intl.Segmenter
+ */
+export function createTokenizer(lang: string): (text: string) => string[] {
+  if (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function') {
+    const segmenter = new Intl.Segmenter(lang, { granularity: 'word' })
+    return text => Array.from(segmenter.segment(text)).map(segment => segment.segment)
+  }
+  return text => text.split(/\s+/).filter(Boolean)
+}
+
+/**
  * Options for the search plugin.
  *
  * 搜索插件的选项。

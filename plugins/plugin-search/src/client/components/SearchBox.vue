@@ -86,7 +86,18 @@ function createEmptyIndex(): MiniSearch<Result> {
   })
 }
 
-const searchIndex = computedAsync(async () => {
+const searchIndex = computedAsync(async (onCancel) => {
+  // 标记本次求值是否已被新一轮加载取代（例如 HMR 更新索引）。
+  // 过期任务不得再写入错误状态，否则有效结果旁会残留加载失败提示。
+  //
+  // Mark this evaluation as stale (e.g. superseded by a newer load during HMR).
+  // A stale task must not write the error state, otherwise a load failure message
+  // would persist next to valid results.
+  let canceled = false
+  onCancel(() => {
+    canceled = true
+  })
+
   searchIndexError.value = ''
 
   let tokenize: ((str: string) => string[]) | undefined
@@ -99,7 +110,8 @@ const searchIndex = computedAsync(async () => {
   // 当前语言缺少索引文件时回退到空索引，并给出可见提示，避免静默无结果。
   // Fall back to an empty index and show a visible message when the locale has no index.
   if (!loadIndex) {
-    searchIndexError.value = searchIndexErrorText.value
+    if (!canceled)
+      searchIndexError.value = searchIndexErrorText.value
     return markRaw(createEmptyIndex())
   }
 
@@ -122,7 +134,8 @@ const searchIndex = computedAsync(async () => {
   }
   catch (error) {
     console.error('[plugin-search] failed to load the search index:', error)
-    searchIndexError.value = searchIndexErrorText.value
+    if (!canceled)
+      searchIndexError.value = searchIndexErrorText.value
     return markRaw(createEmptyIndex())
   }
 }, undefined, isSearchIndexLoading)

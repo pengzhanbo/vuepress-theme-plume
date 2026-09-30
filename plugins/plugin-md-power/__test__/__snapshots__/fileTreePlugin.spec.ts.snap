@@ -3,7 +3,7 @@
 exports[`fileTreePlugin > should work with default options 1`] = `
 "<div class="vp-file-tree"><VPCopyButton text="eJzT43o0Zc6jKQ1ApJCSn1wM5DYpKCggBINcHV18XfVyU+AyU6Ayafn5EGGY0uKiZAztyTmZqXklcGE0yfzcgvw8oDzCWmQSZpFfYllSYpFeWWkqmjKYgsy8lNQKPSRTYBJ5+SkwPSCAVQfMMXrpmSWZ6Xn5RSAdMHUFicnZiempelnF+XkANX+Jpw==" encode aria-label="Copy" data-copied="Copied" /><VPFileTreeNode expanded type="folder" filename="docs" :level="0">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-docs" /></template><VPFileTreeNode type="file" filename="README.md" :level="1">
-<template #icon><VPIcon provider="iconify" name="flat-color-icons:info" /></template>
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-markdown" /></template>
 </VPFileTreeNode>
 <VPFileTreeNode type="file" filename="foo.md" :level="1">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-markdown" /></template>
@@ -30,11 +30,11 @@ exports[`fileTreePlugin > should work with default options 1`] = `
 <template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-git" /></template>
 </VPFileTreeNode>
 <VPFileTreeNode type="file" filename="package.json" :level="0">
-<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-node" /></template>
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-npm" /></template>
 </VPFileTreeNode></div>
 <div class="vp-file-tree"><p class="vp-file-tree-title">files</p><VPCopyButton text="eJzT43o0Zc6jKQ1ApFBclAzkNSkoKCDEsooxhMpKU+FiU6BiycUgdTBekKuji6+rXm4KAKLWLVo=" encode aria-label="Copy" data-copied="Copied" /><VPFileTreeNode expanded type="folder" filename="src" :level="0">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-src" /></template><VPFileTreeNode expanded type="folder" filename="js" :level="1">
-<template #icon><VPIcon provider="iconify" name="vscode-icons:default-folder" /></template><VPFileTreeNode type="file" filename="…" :level="2">
+<template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-js" /></template><VPFileTreeNode type="file" filename="…" :level="2">
 
 </VPFileTreeNode>
 </VPFileTreeNode>
@@ -50,7 +50,7 @@ exports[`fileTreePlugin > should work with default options 1`] = `
 </VPFileTreeNode>
 </VPFileTreeNode>
 <VPFileTreeNode type="file" filename="README.md" :level="0">
-<template #icon><VPIcon provider="iconify" name="flat-color-icons:info" /></template>
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-markdown" /></template>
 </VPFileTreeNode></div>
 <div class="vp-file-tree"><VPCopyButton text="eJzT43o0Zc6jKQ1ApJCSn1yMxC0uSgbymhQUFBBiiXpZICUQwSlQwSS9EpAgjBvk6uji66qXmwIAUH4sGA==" encode aria-label="Copy" data-copied="Copied" /><VPFileTreeNode type="file" filename="docs" :level="0">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:default-file" /></template>
@@ -110,7 +110,7 @@ exports[`fileTreePlugin > should work with nesting content 1`] = `
 </VPFileTreeNode>
 </VPFileTreeNode>
 <VPFileTreeNode type="file" filename="README.md" :level="0">
-<template #icon><VPIcon provider="iconify" name="flat-color-icons:info" /></template>
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-markdown" /></template>
 </VPFileTreeNode></div>
 </li>
 <li>

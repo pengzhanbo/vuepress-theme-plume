@@ -1,47 +1,9 @@
 import type { PluginWithOptions } from 'markdown-it'
 import type { CodeTabsOptions } from '../../shared/index.js'
 import { tab } from '@mdit/plugin-tab'
-import { isPlainObject } from '@vuepress/helper'
-import { definitions, getFileIconName, getFileIconTypeFromExtension } from '../fileIcons/index.js'
+import { findFileIcon } from 'find-file-icon'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { stringifyProp } from '../utils/stringifyProp.js'
-
-/**
- * Create code tab icon getter function
- *
- * 创建代码标签页图标获取函数
- *
- * @param options - Code tabs options / 代码标签页选项
- * @returns Icon getter function / 图标获取函数
- */
-export function createCodeTabIconGetter(
-  options: CodeTabsOptions = {},
-): (filename: string) => string | void {
-  const noop = () => undefined
-
-  if (options.icon === false)
-    return noop
-
-  const { named, extensions } = isPlainObject(options.icon) ? options.icon : {}
-
-  return function getIcon(filename: string): string | void {
-    if (named === false && definitions.named[filename])
-      return undefined
-    if (extensions === false && getFileIconTypeFromExtension(filename)) {
-      return undefined
-    }
-    const hasNamed = named && named.length
-    const hasExt = extensions && extensions.length
-    if (hasNamed || hasExt) {
-      if (hasNamed && named.includes(filename))
-        return definitions.named[filename]
-      if (hasExt && extensions.some(ext => filename.endsWith(ext)))
-        return getFileIconTypeFromExtension(filename)
-      return undefined
-    }
-    return getFileIconName(filename)
-  }
-}
 
 /**
  * Code tabs plugin - Enable code tabs container
@@ -52,8 +14,6 @@ export function createCodeTabIconGetter(
  * @param options - Code tabs options / 代码标签页选项
  */
 export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTabsOptions = {}) => {
-  const getIcon = createCodeTabIconGetter(options)
-
   tab(md, {
     name: 'code-tabs',
 
@@ -67,7 +27,9 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
       })
 
       const titlesContent = titles.map((title, index) => {
-        const icon = getIcon(title)
+        const icon = options.icon === false
+          ? undefined
+          : findFileIcon(title).name
         return `<template #title${index}="{ value, isActive }">${icon ? `<VPIcon provider="iconify" name="${icon}"/>` : ''}<span>${title}</span></template>`
       }).join('')
 

@@ -230,10 +230,7 @@ Configuration interface definition:
 
 ```ts
 export interface CodeTabsOptions {
-  icon?: boolean | {
-    named?: false | string[]
-    extensions?: false | string[]
-  }
+  icon?: boolean
 }
 ```
 
@@ -252,31 +249,6 @@ export default defineUserConfig({
   })
 })
 ```
-
-**Display Only Specified Technology Stack Icons**:
-
-```ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      codeTabs: {
-        icon: {
-          named: ['pnpm', 'yarn', 'npm'], // Only match these technology names
-          extensions: false // Disable file extension matching
-        }
-      }
-    }
-  })
-})
-```
-
-**Configuration Notes**:
-
-- `named`: Exact match for technology names (e.g., `pnpm`, `vue`, `react`)
-- `extensions`: Match file extensions (e.g., `.ts`, `.js`, `.py`)
-- Set to `false` to disable the corresponding matching method
-- Empty arrays use default matching rules
-- String matching is case-sensitive
 
 ## Performance Optimization Notes
 

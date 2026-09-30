@@ -10,9 +10,6 @@ export interface CodeTabsOptions {
    * 代码选项卡的图标配置
    *
    * - `boolean`: Whether to enable icons / 是否启用图标
-   * - `object`: Detailed icon configuration / 详细的图标配置
-   *   - `named`: Named icons to use / 要使用的命名图标
-   *   - `extensions`: File extensions to show icons for / 要显示图标的文件扩展名
    */
-  icon?: boolean | { named?: false | string[], extensions?: false | string[] }
+  icon?: boolean
 }

@@ -137,6 +137,7 @@
     "@vueuse/core": "catalog:prod",
     "chokidar": "catalog:prod",
     "dayjs": "catalog:prod",
+    "find-file-icon": "catalog:prod",
     "gray-matter": "catalog:prod",
     "hash-wasm": "catalog:prod",
     "js-yaml": "catalog:prod",

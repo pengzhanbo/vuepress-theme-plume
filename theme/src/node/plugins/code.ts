@@ -6,7 +6,7 @@ import { transformerRenderIndentGuides } from '@shikijs/transformers'
 import { isPlainObject } from '@vuepress/helper'
 import { copyCodePlugin } from '@vuepress/plugin-copy-code'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
-import { createCodeTabIconGetter } from 'vuepress-plugin-md-power'
+import { findFileIcon } from 'find-file-icon'
 import { getThemeConfig } from '../loadConfig/index.js'
 
 /**
@@ -36,7 +36,7 @@ export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
     const twoslashOptions = twoslash === true ? {} : twoslash
 
     const mdPower = isPlainObject(pluginOptions.markdownPower) ? pluginOptions.markdownPower : {}
-    const getIcon = createCodeTabIconGetter(options.markdown?.codeTabs ?? mdPower.codeTabs)
+    const iconOptions = options.markdown?.codeTabs ?? mdPower.codeTabs ?? {}
 
     plugins.push(shikiPlugin({
       // enable some default features
@@ -58,7 +58,7 @@ export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
       ].filter(toTruthy),
       langs: uniq([...twoslash ? ['ts', 'js', 'vue', 'json', 'bash', 'sh'] : [], ...langs]),
       codeBlockTitle: (title, code) => {
-        const icon = getIcon(title)
+        const icon = iconOptions.icon === false ? undefined : findFileIcon(title).name
         return `<div class="code-block-title" data-title="${title}"><div class="code-block-title-bar"><span class="title">${icon ? `<VPIcon provider="iconify" name="${icon}"/>` : ''}${title}</span></div>${code}</div>`
       },
       twoslash: isPlainObject(twoslashOptions)

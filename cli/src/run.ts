@@ -1,4 +1,4 @@
-import type { ResolvedData } from './types.js'
+import type { CliOptions, ResolvedData } from './types.js'
 import path from 'node:path'
 import process from 'node:process'
 import { intro, outro, spinner } from '@clack/prompts'
@@ -18,11 +18,17 @@ import { getPackageManager } from './utils/index.js'
  *
  * @param mode - Operation mode (init or create) / 操作模式（初始化或创建）
  * @param root - Root directory path / 根目录路径
+ * @param options - CLI options / CLI 可选配置
  */
-export async function run(mode: Mode, root?: string): Promise<void> {
+export async function run(mode: Mode, root?: string, options: CliOptions = {}): Promise<void> {
   intro(colors.cyan('Welcome to VuePress and vuepress-theme-plume !\n欢迎使用 VuePress 和 vuepress-theme-plume !'))
 
-  const result = await prompt(mode, root)
+  const [promptErr, result] = await attemptAsync(prompt, mode, root)
+  if (promptErr || !result) {
+    if (promptErr)
+      console.error(colors.red(promptErr.message))
+    process.exit(1)
+  }
   const data = {
     ...result,
     packageManager: getPackageManager(),
@@ -33,7 +39,7 @@ export async function run(mode: Mode, root?: string): Promise<void> {
   progress.start(t('spinner.start'))
 
   // Generate VuePress project files
-  const [err] = await attemptAsync(generate, mode, data)
+  const [err, writeResult] = await attemptAsync(generate, mode, data, options)
   if (err) {
     progress.error(colors.red('generate files error: '))
     console.error(err)
@@ -75,6 +81,15 @@ export async function run(mode: Mode, root?: string): Promise<void> {
   const installCommand = colors.green(`${pm} install`)
 
   progress.stop(t('spinner.stop'))
+
+  // Summarize the existing files that were skipped, so the user is aware of
+  // what was not overwritten and can re-run with `--force` if needed.
+  // Printed after `progress.stop()`, otherwise the spinner would overwrite the list.
+  if (writeResult?.skipped.length) {
+    console.log(colors.yellow(`${t('hint.files.skipped')}\n${
+      writeResult.skipped.map(file => `  - ${path.relative(process.cwd(), file)}`).join('\n')
+    }`))
+  }
 
   if (mode === Mode.create) {
     outro(`${t('spinner.command')}

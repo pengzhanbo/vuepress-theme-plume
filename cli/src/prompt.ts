@@ -1,4 +1,5 @@
-import type { Bundler, Langs, PromptResult } from './types.js'
+import type { Bundler, Langs, Locale, PromptResult } from './types.js'
+import path from 'node:path'
 import process from 'node:process'
 import { cancel, confirm, group, select, text } from '@clack/prompts'
 import osLocale from 'os-locale'
@@ -6,6 +7,36 @@ import { bundlerOptions, deployOptions, DeployType, languageOptions, Mode } from
 import { setLang, t } from './translate.js'
 
 const REG_DIR_CHAR = /[<>:"\\|?*[\]]/
+
+/**
+ * Validate the project root path.
+ *
+ * The same validation is applied to both the interactive input and the value
+ * passed from the command line, so a `..` segment or an absolute path can
+ * never escape the current working directory.
+ *
+ * 校验项目根目录路径。
+ *
+ * 交互输入与命令行参数使用同一套校验，确保 `..` 路径段或绝对路径
+ * 无法越出当前工作目录。
+ *
+ * @param value - Path to validate / 要校验的路径
+ * @returns Locale key of the error message, or `undefined` when valid / 错误信息的本地化键，校验通过时返回 `undefined`
+ */
+export function validateRoot(value?: string): keyof Locale | undefined {
+  if (!value)
+    return undefined
+
+  // 拒绝绝对路径与包含 `..` 段的相对路径
+  // Reject absolute paths and relative paths containing a `..` segment
+  if (path.isAbsolute(value) || value.split(/[\\/]/).includes('..'))
+    return 'hint.root'
+
+  if (REG_DIR_CHAR.test(value))
+    return 'hint.root.illegal'
+
+  return undefined
+}
 
 /**
  * Prompt user for project configuration
@@ -35,22 +66,22 @@ export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
     },
 
     root: async () => {
-      if (root)
+      // 命令行传入的路径也必须经过同一套校验，避免 `..` 越界写入。
+      // The path passed from the command line must go through the same validation
+      // to prevent writing outside of the current working directory.
+      if (root) {
+        const invalid = validateRoot(root)
+        if (invalid)
+          throw new Error(t(invalid))
         return root
+      }
       const DEFAULT_ROOT = mode === Mode.init ? './docs' : './my-project'
       return await text({
         message: t('question.root'),
         placeholder: DEFAULT_ROOT,
         validate(value) {
-          // not absolute path or parent path
-          if (value?.startsWith('/') || value?.startsWith('..'))
-            return t('hint.root')
-
-          // not contains illegal characters
-          if (value && REG_DIR_CHAR.test(value))
-            return t('hint.root.illegal')
-
-          return undefined
+          const invalid = validateRoot(value)
+          return invalid ? t(invalid) : undefined
         },
         defaultValue: DEFAULT_ROOT,
       })

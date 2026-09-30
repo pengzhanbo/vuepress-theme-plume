@@ -115,6 +115,9 @@ export async function createPackageJson(
 
   return {
     filepath: 'package.json',
+    // init 模式下与用户既有的 package.json 合并写入，而非替换。
+    // In init mode, merge into the user's existing package.json instead of replacing it.
+    overwrite: mode === Mode.init,
     content: JSON.stringify(sortPackageJson(pkg), null, 2),
   }
 }

@@ -58,7 +58,8 @@ export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
       ].filter(toTruthy),
       langs: uniq([...twoslash ? ['ts', 'js', 'vue', 'json', 'bash', 'sh'] : [], ...langs]),
       codeBlockTitle: (title, code) => {
-        const icon = iconOptions.icon === false ? undefined : findFileIcon(title).name
+        let icon = iconOptions.icon === false ? undefined : findFileIcon(title).name
+        icon = icon === 'vscode-icons:default-file' || icon === 'vscode-icons:default-folder' ? undefined : icon
         return `<div class="code-block-title" data-title="${title}"><div class="code-block-title-bar"><span class="title">${icon ? `<VPIcon provider="iconify" name="${icon}"/>` : ''}${title}</span></div>${code}</div>`
       },
       twoslash: isPlainObject(twoslashOptions)

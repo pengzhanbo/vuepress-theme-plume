@@ -27,9 +27,12 @@ export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTa
       })
 
       const titlesContent = titles.map((title, index) => {
-        const icon = options.icon === false
+        let icon = options.icon === false
           ? undefined
           : findFileIcon(title).name
+        icon = icon === 'vscode-icons:default-file' || icon === 'vscode-icons:default-folder'
+          ? undefined
+          : icon
         return `<template #title${index}="{ value, isActive }">${icon ? `<VPIcon provider="iconify" name="${icon}"/>` : ''}<span>${title}</span></template>`
       }).join('')
 

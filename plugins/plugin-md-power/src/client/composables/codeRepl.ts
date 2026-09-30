@@ -233,7 +233,18 @@ export function useCodeRepl(el: Ref<HTMLDivElement | null>): UseCodeReplResult {
     stderr.value = []
     error.value = ''
 
-    await executeMap[lang.value]?.(info.code)
+    try {
+      await executeMap[lang.value]?.(info.code)
+    }
+    catch (e) {
+      // 保证任何执行失败（网络异常、连接失败、依赖加载失败）都能退出 loading
+      // 并展示错误信息，而不是永久停留在转圈状态。
+      // Ensure any execution failure (network error, connection failure, dependency
+      // loading failure) exits the loading state and shows the error message.
+      error.value = e instanceof Error ? e.message : String(e)
+      loaded.value = true
+      finished.value = true
+    }
   }
 
   async function executeGolang(code: string) {

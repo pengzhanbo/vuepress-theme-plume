@@ -17,6 +17,7 @@ export const deSearchLocale: Partial<SearchLocaleOptions> = {
   resetButtonTitle: 'Suche zurücksetzen',
   backButtonTitle: 'Schließen',
   noResultsText: 'Keine Suchergebnisse:',
+  searchIndexErrorText: 'Der Suchindex konnte nicht geladen werden.',
   footer: {
     selectText: 'Auswählen',
     selectKeyAriaLabel: 'Eingabe',

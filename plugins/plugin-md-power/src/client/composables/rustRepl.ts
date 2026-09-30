@@ -23,38 +23,102 @@ let ws: WebSocket | null = null
 let isOpen = false
 let uuid = 0
 
+/**
+ * Connection timeout in milliseconds.
+ *
+ * 连接超时时间（毫秒）。
+ */
+const CONNECT_TIMEOUT = 10_000
+
+/**
+ * Establish the websocket connection.
+ *
+ * The returned promise rejects on `error`/`close` events or after a timeout,
+ * so a failed connection can never leave the caller awaiting forever.
+ *
+ * 建立 websocket 连接。
+ *
+ * 连接失败、被关闭或超时都会 reject，避免 Promise 永不 settle 导致调用方永久阻塞。
+ *
+ * @returns Promise resolved once the handshake completes / 握手完成后 resolve 的 Promise
+ */
 function connect(): Promise<void> {
   if (isOpen)
     return Promise.resolve()
 
-  ws = new WebSocket(wsUrl)
+  const socket = new WebSocket(wsUrl)
+  ws = socket
   uuid = 0
 
-  ws.addEventListener('open', () => {
-    isOpen = true
-    send(
-      payloadType.connected,
-      { iAcceptThisIsAnUnsupportedApi: true },
-      { websocket: true, sequenceNumber: uuid },
-    )
-  })
+  return new Promise<void>((resolve, reject) => {
+    let settled = false
 
-  ws.addEventListener('close', () => {
-    isOpen = false
-    ws = null
-  })
+    const timer = setTimeout(() => {
+      fail(new Error('Rust REPL websocket connection timed out.'))
+    }, CONNECT_TIMEOUT)
 
-  tryOnScopeDispose(() => ws?.close())
+    function cleanup(): void {
+      clearTimeout(timer)
+      socket.removeEventListener('open', onOpen)
+      socket.removeEventListener('close', onClose)
+      socket.removeEventListener('error', onError)
+      socket.removeEventListener('message', onMessage)
+    }
 
-  return new Promise((resolve) => {
-    function connected(e: WebSocketEventMap['message']) {
-      const data = JSON.parse(e.data)
-      if (data.type === payloadType.connected) {
-        ws?.removeEventListener('message', connected)
-        resolve()
+    function succeed(): void {
+      if (settled)
+        return
+      settled = true
+      cleanup()
+      resolve()
+    }
+
+    function fail(error: Error): void {
+      if (settled)
+        return
+      settled = true
+      cleanup()
+      isOpen = false
+      if (ws === socket)
+        ws = null
+      socket.close()
+      reject(error)
+    }
+
+    function onOpen(): void {
+      isOpen = true
+      send(
+        payloadType.connected,
+        { iAcceptThisIsAnUnsupportedApi: true },
+        { websocket: true, sequenceNumber: uuid },
+      )
+    }
+
+    function onClose(): void {
+      fail(new Error('Rust REPL websocket connection closed.'))
+    }
+
+    function onError(): void {
+      fail(new Error('Rust REPL websocket connection failed.'))
+    }
+
+    function onMessage(e: WebSocketEventMap['message']): void {
+      try {
+        const data = JSON.parse(e.data)
+        if (data.type === payloadType.connected)
+          succeed()
+      }
+      catch {
+        // 忽略无法解析的消息 / ignore malformed messages
       }
     }
-    ws?.addEventListener('message', connected)
+
+    socket.addEventListener('open', onOpen)
+    socket.addEventListener('close', onClose)
+    socket.addEventListener('error', onError)
+    socket.addEventListener('message', onMessage)
+
+    tryOnScopeDispose(() => socket.close())
   })
 }
 
@@ -84,7 +148,14 @@ export async function rustExecute(
   let stderr = ''
 
   function onMessage(e: WebSocketEventMap['message']) {
-    const data = JSON.parse(e.data)
+    let data: any
+    try {
+      data = JSON.parse(e.data)
+    }
+    catch {
+      // 忽略无法解析的消息 / ignore malformed messages
+      return
+    }
     const { type, payload, meta: _meta = {} } = data
     if (_meta.sequenceNumber !== meta.sequenceNumber)
       return

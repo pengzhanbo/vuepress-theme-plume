@@ -17,6 +17,7 @@ export const enSearchLocale: Partial<SearchLocaleOptions> = {
   resetButtonTitle: 'Reset search',
   backButtonTitle: 'Close search',
   noResultsText: 'No results for',
+  searchIndexErrorText: 'Failed to load the search index.',
   footer: {
     selectText: 'to select',
     selectKeyAriaLabel: 'enter',

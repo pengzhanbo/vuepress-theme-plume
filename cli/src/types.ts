@@ -123,6 +123,26 @@ export interface Locale {
    * 提示：非法的根目录名称
    */
   'hint.root.illegal': string
+  /**
+   * Hint: Skipped existing files
+   *
+   * 提示：已存在并被跳过的文件
+   */
+  'hint.files.skipped': string
+}
+
+/**
+ * Options for the CLI workflow
+ *
+ * CLI 工作流的可选配置
+ */
+export interface CliOptions {
+  /**
+   * Overwrite existing files
+   *
+   * 是否覆盖已存在的文件
+   */
+  force?: boolean
 }
 
 /**
@@ -167,6 +187,18 @@ export interface File {
    * 文件内容
    */
   content: string
+  /**
+   * Whether to write the file even if it already exists.
+   *
+   * Used for files that are merged with the user's existing content
+   * (e.g. `package.json`, `.gitignore`) instead of being replaced.
+   *
+   * 当文件已存在时是否仍然写入。
+   *
+   * 用于与用户既有内容合并的文件（如 `package.json`、`.gitignore`），
+   * 而非直接替换。
+   */
+  overwrite?: boolean
 }
 
 /**

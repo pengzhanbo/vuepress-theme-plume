@@ -1,4 +1,5 @@
-import type { File, ResolvedData } from './types.js'
+import type { CliOptions, File, ResolvedData } from './types.js'
+import type { WriteFilesResult } from './utils/index.js'
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
@@ -15,13 +16,15 @@ import { getTemplate, readFiles, readJsonFile, writeFiles } from './utils/index.
  *
  * @param mode - Operation mode (init or create) / 操作模式（初始化或创建）
  * @param data - Resolved configuration data / 解析后的配置数据
- * @param cwd - Current working directory / 当前工作目录
+ * @param options - CLI options / CLI 可选配置
+ * @returns Written and skipped file paths / 已写入与被跳过的文件路径
  */
 export async function generate(
   mode: Mode,
   data: ResolvedData,
-  cwd: string = process.cwd(),
-): Promise<void> {
+  options: CliOptions = {},
+): Promise<WriteFilesResult> {
+  const cwd = process.cwd()
   let userPkg: Record<string, any> = {}
   if (mode === Mode.init) {
     const pkgPath = path.join(cwd, 'package.json')
@@ -68,6 +71,9 @@ export async function generate(
         const content = await fs.promises.readFile(gitignorePath, 'utf-8')
         fileList.push({
           filepath: '.gitignore',
+          // 与用户既有的 .gitignore 合并写入，而非替换。
+          // Merge into the user's existing .gitignore instead of replacing it.
+          overwrite: true,
           content: `${content}\n# VuePress\n.vuepress/.cache\n.vuepress/.temp\n.vuepress/dist\n`,
         })
         fileList.push(...gitFiles.filter(({ filepath }) => filepath !== '.gitignore'))
@@ -103,7 +109,7 @@ export async function generate(
   })
 
   const output = mode === Mode.create ? path.join(cwd, data.root) : cwd
-  await writeFiles(renderedFiles, output)
+  return writeFiles(renderedFiles, output, options.force)
 }
 
 /**
@@ -149,8 +155,9 @@ async function createDocsFiles(data: ResolvedData): Promise<File[]> {
  * @returns Updated file array / 更新后的文件数组
  */
 function updateFileListTarget(fileList: File[], target: string): File[] {
-  return fileList.map(({ filepath, content }) => ({
+  return fileList.map(({ filepath, content, overwrite }) => ({
     filepath: path.join(target, filepath),
     content,
+    overwrite,
   }))
 }

@@ -26,4 +26,5 @@ export const en: Locale = {
   'hint.cancel': 'Operation cancelled.',
   'hint.root': 'The path cannot be an absolute path, and cannot contain the parent path.',
   'hint.root.illegal': 'Project names cannot contain special characters.',
+  'hint.files.skipped': 'Skipped existing files (use --force to overwrite):',
 }

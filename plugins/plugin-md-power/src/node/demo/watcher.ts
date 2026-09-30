@@ -4,8 +4,17 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { deleteKey, objectEntries, objectKeys } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
+import { logger } from '../utils/logger.js'
 import { compileCode, parseEmbedCode } from './normal.js'
 import { readFileSync } from './supports/file.js'
+
+/**
+ * Maximum time to wait for pending demo compilations, in milliseconds.
+ * Once exceeded, the build continues instead of hanging forever.
+ *
+ * 等待挂起的 demo 编译完成的最长时间（毫秒）。超时后不再等待，避免构建被永久挂起。
+ */
+const WAIT_RENDER_TIMEOUT = 60_000
 
 /**
  * 消除异步编译 demo 代码 与 markdown 同步 render 的时间差问题
@@ -26,7 +35,24 @@ export async function waitDemoRender(): Promise<void> {
     renderDone?.()
     renderDone = null
   }
-  await renderPromise
+
+  let timer: ReturnType<typeof setTimeout> | undefined
+  // Last-resort guard: a stuck compilation must never hang the whole build.
+  // 兜底保护：任何情况下都不允许卡住的编译让整个构建永久挂起。
+  await Promise.race([
+    renderPromise,
+    new Promise<void>((resolve) => {
+      timer = setTimeout(() => {
+        logger.error(
+          'demo-render',
+          `Waiting for demo render timed out after ${WAIT_RENDER_TIMEOUT}ms, `
+          + `${renderCount} demo(s) are still compiling. The build continues, but some demos may be incomplete.`,
+        )
+        resolve()
+      }, WAIT_RENDER_TIMEOUT)
+    }),
+  ])
+  clearTimeout(timer)
 }
 
 export function markDemoRender(): void {

@@ -17,7 +17,7 @@ import { createPages, extendsPageData } from './pages/index.js'
 import { setupPlugins } from './plugins/index.js'
 import { prepareData } from './prepare/index.js'
 import { prepareThemeData } from './prepare/prepareThemeData.js'
-import { perf, resolve, setTranslateLang, templates, THEME_NAME } from './utils/index.js'
+import { logger, perf, resolve, setTranslateLang, templates, THEME_NAME } from './utils/index.js'
 
 /**
  * VuePress Theme Plume
@@ -46,7 +46,13 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
 
     const { configFile, plugins, themeOptions } = detectThemeOptions(options)
 
-    configLoader.init(app, themeOptions, configFile)
+    configLoader.init(app, themeOptions, configFile).catch((error) => {
+      // The failure is also recorded in the loader, so `configLoader.waiting()` will
+      // reject and abort the build with a visible error instead of hanging forever.
+      // 该失败同样被记录在 loader 中，`configLoader.waiting()` 会 reject，
+      // 使构建以可见的错误中止，而不是永久挂起。
+      logger.error('Failed to load theme config.', error)
+    })
     configLoader.on('change', async () => {
       genAutoFrontmatterRules()
       await prepareThemeData(app, plugins)

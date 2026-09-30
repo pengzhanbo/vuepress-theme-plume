@@ -41,7 +41,8 @@ catch {
 
 afterAll(() => {
   warnSpy.mockRestore()
-  fs.rmSync(TEST_TMP_DIR, { recursive: true, force: true })
+  // 仅清理本文件创建的临时目录，避免影响其它测试文件（它们共用 `.tmp` 根目录）。
+  fs.rmSync(baseDir, { recursive: true, force: true })
 })
 
 function createApp(source: string): App {

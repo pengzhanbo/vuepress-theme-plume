@@ -90,4 +90,24 @@ describe('collapsePlugin', () => {
 `
     expect(md.render(code)).toMatchSnapshot()
   })
+
+  it('should not break when a list item starts with a nested list', () => {
+    const code = `\
+::: collapse
+-
+  - 嵌套列表
+
+- :- 标题
+
+  内容
+:::
+`
+    const html = md.render(code)
+
+    // 首块为嵌套列表的项没有标题段落，不应被误判为标题，只会生成一个标题插槽。
+    // An item whose first block is a nested list has no title paragraph and must
+    // not be mistaken for a title, so only one title slot is rendered.
+    expect(html.match(/<template #title>/g)).toHaveLength(1)
+    expect(html).toContain('嵌套列表')
+  })
 })

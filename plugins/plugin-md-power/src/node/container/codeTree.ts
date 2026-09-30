@@ -250,7 +250,11 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       let activeFile: string | undefined
       for (
         let i = index + 1;
-        !(
+        // 越界守卫：容器内容畸形时避免对 undefined 取属性而抛错。
+        // Bounds guard: avoid reading properties of `undefined` when the
+        // container content is malformed.
+        i < tokens.length
+        && !(
           tokens[i].nesting === -1
           && tokens[i].type === 'container_code-tree_close'
         );

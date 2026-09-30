@@ -93,8 +93,19 @@ export function useReadAid() {
   onMounted(() => void watch(() => page.value.path, initialize, { immediate: true }))
 
   function initialize() {
-    doc.value = document.querySelector('.vp-doc') as HTMLElement
-    const docRect = doc.value.getBoundingClientRect()
+    const docEl = document.querySelector<HTMLElement>('.vp-doc')
+    // `.vp-doc` 不存在时（首页、自定义布局、页面切换瞬间）跳过并清空目标，
+    // 避免对 null 调用 getBoundingClientRect() 抛错。
+    //
+    // Skip and clear targets when `.vp-doc` is absent (home page, custom layout,
+    // navigation in progress) to avoid calling getBoundingClientRect() on null.
+    if (!docEl) {
+      doc.value = undefined
+      targets.value = []
+      return
+    }
+    doc.value = docEl
+    const docRect = docEl.getBoundingClientRect()
     offsetX = docRect.left + window.scrollX
     offsetY = docRect.top + window.scrollY
 

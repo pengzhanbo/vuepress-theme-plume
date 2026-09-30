@@ -186,11 +186,15 @@ export function getSidebar(routePath: string, routeLocal: string): ResolvedSideb
  * @returns Resolved sidebar items / 解析的侧边栏项目
  */
 function resolveSidebarItems(
-  sidebarItems: (string | ThemeSidebarItem)[],
+  sidebarItems: (string | ThemeSidebarItem)[] | undefined,
   _prefix = '',
 ): ResolvedSidebarItem[] {
   const resolved: ResolvedSidebarItem[] = []
-  sidebarItems.forEach((item) => {
+  // 自动目录数据可能缺少对应语言/目录的条目，兜底为空数组避免 forEach 抛错。
+  // Auto-generated sidebar data may miss a locale/dir entry; fall back to an
+  // empty array so forEach never throws.
+  const list = sidebarItems ?? []
+  list.forEach((item) => {
     if (isString(item)) {
       resolved.push(resolveNavLink(normalizeLink(_prefix, item)))
     }

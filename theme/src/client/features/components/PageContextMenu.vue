@@ -102,8 +102,14 @@ const { copy, copied } = useClipboard()
 async function onCopy() {
   if (!markdownContent.value) {
     loaded.value = false
-    await fetchMarkdownContent()
-    loaded.value = true
+    try {
+      await fetchMarkdownContent()
+    }
+    finally {
+      // 无论成功失败都复位，避免按钮永久停留在「Copying..」。
+      // Always reset so the button never gets stuck on "Copying..".
+      loaded.value = true
+    }
   }
   markdownContent.value && copy(markdownContent.value)
 }
@@ -116,6 +122,11 @@ async function fetchMarkdownContent() {
     .then(res => res.text())
     .then((text) => {
       markdownContent.value = text.trimStart().replace(/^---[\s\S]+?---/, '').trimStart()
+    })
+    .catch((error) => {
+      // 捕获网络异常，避免产生未处理的 rejection。
+      // Catch network errors to avoid unhandled rejections.
+      console.error('[vuepress-theme-plume] failed to fetch markdown content:', error)
     })
     .finally(() => {
       promise = null

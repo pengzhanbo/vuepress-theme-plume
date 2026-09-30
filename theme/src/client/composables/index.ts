@@ -1,3 +1,4 @@
+export * from './breadcrumb.js'
 export * from './bulletin.js'
 export * from './collections.js'
 export * from './contributors.js'

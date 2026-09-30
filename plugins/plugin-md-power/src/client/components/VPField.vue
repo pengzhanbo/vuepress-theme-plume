@@ -38,12 +38,12 @@ const locale = computed(() => FIELD_LOCALES[pathLocale.value] || {})
         </p>
         <p>
           <span v-if="deprecated" class="deprecated">
-            {{ locale.deprecated }}<template v-if="deprecated && typeof deprecated === 'string'">: {{ deprecated }}</template>
+            {{ locale.deprecated }}<template v-if="deprecated && typeof deprecated === 'string'">: {{ decodeURIComponent(deprecated) }}</template>
           </span>
           <span v-else-if="required" class="required">{{ locale.required }}</span>
           <span v-else class="optional">{{ locale.optional }}</span>
           <span v-if="experimental" class="experimental">
-            {{ locale.experimental }}<template v-if="experimental && typeof experimental === 'string'">: {{ experimental }}</template>
+            {{ locale.experimental }}<template v-if="experimental && typeof experimental === 'string'">: {{ decodeURIComponent(experimental) }}</template>
           </span>
         </p>
       </div>

@@ -22,7 +22,7 @@ const { resources, showResources, toggleResources } = useResources(
   () => config,
 )
 
-const { id, height } = useNormalDemo(
+const { id, height, html, syncTheme } = useNormalDemo(
   useTemplateRef<HTMLIFrameElement>('draw'),
   () => title,
   () => config,
@@ -42,11 +42,14 @@ const data = useFence(
         ref="draw"
         :title="title || 'Demo'"
         class="draw-iframe"
+        :srcdoc="html"
         allow="accelerometer *; bluetooth *; camera *; encrypted-media *; display-capture *; geolocation *; gyroscope *; microphone *; midi *; clipboard-read *; clipboard-write *; web-share *; serial *; xr-spatial-tracking *"
         allowfullscreen="true"
         allowpaymentrequest="true"
         allowtransparency="true"
-        sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups-to-escape-sandbox allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" :style="{ height }"
+        sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups-to-escape-sandbox allow-popups allow-presentation allow-scripts allow-top-navigation-by-user-activation"
+        :style="{ height }"
+        @load="syncTheme"
       />
     </div>
     <div v-if="title || desc" class="demo-info">

@@ -391,6 +391,9 @@ catalogs:
     eta:
       specifier: ^4.6.0
       version: 4.6.0
+    find-file-icon:
+      specifier: ^0.1.1
+      version: 0.1.1
     flowchart.ts:
       specifier: ^3.0.1
       version: 3.0.1
@@ -896,6 +899,9 @@ importers:
       chokidar:
         specifier: 5.0.0
         version: 5.0.0
+      find-file-icon:
+        specifier: catalog:prod
+        version: 0.1.1
       gray-matter:
         specifier: catalog:prod
         version: 4.0.3
@@ -1113,6 +1119,9 @@ importers:
       dayjs:
         specifier: catalog:prod
         version: 1.11.23
+      find-file-icon:
+        specifier: catalog:prod
+        version: 0.1.1
       gray-matter:
         specifier: catalog:prod
         version: 4.0.3
@@ -2819,13 +2828,6 @@ packages:
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       '@typescript-eslint/parser': ^8.70.1
-      eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
-      typescript: '>=4.8.4 <6.1.0'
-
-  '@typescript-eslint/parser@8.70.0':
-    resolution: {integrity: sha512-zYvrmj9Yxd63UGaXw+kdt6A0F0s0qveJyuatIM77bYC2DE4pgmg7a50u8LR7PRtXd0x+h+Tl3eXabGm06SWd3Q==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.1.0'
 
@@ -4669,6 +4671,10 @@ packages:
   fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
     engines: {node: '>=8'}
+
+  find-file-icon@0.1.1:
+    resolution: {integrity: sha512-7o+Nx1wJoJWApwkZ5FBQedsgxVx7I2WJvp0tl5pzVY60XanfEYtH35use9NMQuy6djUOBBlQGzK6SZ7hrnb8iw==}
+    engines: {node: '>=20.19.0'}
 
   find-index@0.1.1:
     resolution: {integrity: sha512-uJ5vWrfBKMcE6y2Z8834dwEZj9mNGxYa3t3I53OwFeuZ8D9oc2E5zcsrkuhX6h4iYrjhiv0T3szQmxlAV9uxDg==}
@@ -9040,18 +9046,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.70.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)':
-    dependencies:
-      '@typescript-eslint/scope-manager': 8.70.0
-      '@typescript-eslint/types': 8.70.0
-      '@typescript-eslint/typescript-estree': 8.70.0(supports-color@10.2.2)(typescript@6.0.3)
-      '@typescript-eslint/visitor-keys': 8.70.0
-      debug: 4.4.3(supports-color@10.2.2)
-      eslint: 10.11.0(jiti@2.7.0)(supports-color@10.2.2)
-      typescript: 6.0.3
-    transitivePeerDependencies:
-      - supports-color
-
   '@typescript-eslint/parser@8.70.1(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.70.1
@@ -11327,6 +11321,8 @@ snapshots:
   fill-range@7.1.1:
     dependencies:
       to-regex-range: 5.0.1
+
+  find-file-icon@0.1.1: {}
 
   find-index@0.1.1: {}
 

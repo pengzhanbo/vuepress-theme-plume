@@ -1,8 +1,8 @@
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import type { CommonLocaleData, FileTreeIconMode, FileTreeOptions } from '../../shared/index.js'
 import { encodeData } from '@vuepress/helper'
+import { findFileIcon } from 'find-file-icon'
 import { ensureLeadingSlash, removeEndingSlash, resolveLocalePath } from 'vuepress/shared'
-import { defaultFile, defaultFolder, getFileIcon } from '../fileIcons/index.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerSyntaxPlugin } from './createContainer.js'
@@ -41,6 +41,9 @@ export interface FileTreeNodeProps {
   diff?: 'add' | 'remove'
   level?: number
 }
+
+const defaultFolder = 'vscode-icons:default-folder'
+const defaultFile = 'vscode-icons:default-file'
 
 /**
  * Parse raw file tree content to node tree structure
@@ -237,7 +240,7 @@ export function fileTreePlugin(
     mode ||= options.icon || 'colored'
     if (mode === 'simple')
       return type === 'folder' ? defaultFolder : defaultFile
-    return getFileIcon(filename, type)
+    return findFileIcon(filename, type).name
   }
 
   /**

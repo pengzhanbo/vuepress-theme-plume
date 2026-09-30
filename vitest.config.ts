@@ -18,7 +18,6 @@ export default defineConfig({
         '**/lib/**',
         '**/demo/**',
         '**/demo/supports/**',
-        '**/fileIcons/index.ts',
       ],
     },
   },

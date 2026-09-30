@@ -227,10 +227,7 @@ export default defineUserConfig({
 
 ```ts
 export interface CodeTabsOptions {
-  icon?: boolean | {
-    named?: false | string[]
-    extensions?: false | string[]
-  }
+  icon?: boolean
 }
 ```
 
@@ -249,31 +246,6 @@ export default defineUserConfig({
   })
 })
 ```
-
-**仅显示指定技术栈图标**：
-
-```ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      codeTabs: {
-        icon: {
-          named: ['pnpm', 'yarn', 'npm'], // 仅匹配这些技术名称
-          extensions: false // 禁用文件扩展名匹配
-        }
-      }
-    }
-  })
-})
-```
-
-**配置说明**：
-
-- `named`：精确匹配技术名称（如 `pnpm`、`vue`、`react`）
-- `extensions`：匹配文件扩展名（如 `.ts`、`.js`、`.py`）
-- 设置为 `false` 禁用对应匹配方式
-- 空数组使用默认匹配规则
-- 字符串匹配区分大小写
 
 ## 性能优化说明
 

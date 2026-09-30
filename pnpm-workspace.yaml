@@ -1,6 +1,9 @@
 ignoreWorkspaceRootCheck: true
 catalogMode: prefer
+
 minimumReleaseAgeExcludePrune: true
+minimumReleaseAgeExclude:
+  - find-file-icon@0.1.1
 
 trustPolicy: no-downgrade
 trustPolicyExclude:
@@ -149,6 +152,7 @@ catalogs:
     dayjs: ^1.11.23
     echarts: ^6.1.0
     eta: ^4.6.0
+    find-file-icon: ^0.1.1
     flowchart.ts: ^3.0.1
     focus-trap: ^8.2.2
     gray-matter: ^4.0.3

@@ -20,12 +20,12 @@ import type { Markdown } from 'vuepress/markdown'
 import type { CodeTreeFile, CodeTreeFileLoader, CodeTreeMeta, CodeTreeOptions, FileTreeIconMode, FileTreeNode } from '../../shared/index.js'
 import type { FileTreeNodeProps } from './fileTree.js'
 import { attempt, escape, isFunction, slash } from '@pengzhanbo/utils'
+import { findFileIcon } from 'find-file-icon'
 import { bundledLanguagesInfo } from 'shiki'
 import { ensureEndingSlash, ensureLeadingSlash, removeLeadingSlash } from 'vuepress/shared'
 import { colors, fs, path, tinyglobby } from 'vuepress/utils'
 import { findFile } from '../demo/supports/file.js'
 import { createEmbedRuleBlock } from '../embed/createEmbedRuleBlock.js'
-import { defaultFile, defaultFolder, getFileIcon } from '../fileIcons/index.js'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { createMatcher } from '../utils/createMatcher.js'
 import { logger } from '../utils/logger.js'
@@ -33,6 +33,9 @@ import { parseRect } from '../utils/parseRect.js'
 import { resolveAttr, resolveAttrs } from '../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerPlugin } from './createContainer.js'
+
+const defaultFolder = 'vscode-icons:default-folder'
+const defaultFile = 'vscode-icons:default-file'
 
 /**
  * File extensions supported by Shiki for syntax highlighting.
@@ -214,7 +217,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
     mode ||= options.icon || 'colored'
     if (mode === 'simple')
       return type === 'folder' ? defaultFolder : defaultFile
-    return getFileIcon(filename, type)
+    return findFileIcon(filename, type).name
   }
 
   /**

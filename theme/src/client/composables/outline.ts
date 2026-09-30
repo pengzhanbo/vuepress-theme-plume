@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import type { Router } from 'vuepress/client'
 import type { ThemeOutline } from '../../shared/index.js'
-import { useThrottleFn, watchDebounced } from '@vueuse/core'
+import { useThrottleFn, useTimeoutFn, watchDebounced } from '@vueuse/core'
 import { onMounted, onUnmounted, onUpdated, ref } from 'vue'
 import { onContentUpdated, useRouter } from 'vuepress/client'
 import { getAbsoluteTop } from '../utils/index.js'
@@ -430,12 +430,18 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
     updateHash(router, routeHash.value)
   }, { debounce: 500 })
 
-  onMounted(() => {
-    setTimeout(() => {
-      setActiveLink()
-      window.addEventListener('scroll', onScroll)
-    }, 1000)
-  })
+  // 定时器在 setup 顶层创建，随组件作用域自动清理。
+  // 若组件在延迟结束前卸载，定时器会被清除，scroll 监听不会被注册，避免永久泄漏。
+  //
+  // The timer is created at setup scope and disposed with the component. If the
+  // component unmounts before the delay elapses, the timer is cleared and the
+  // scroll listener is never attached, preventing a permanent leak.
+  const { start: initActiveAnchor } = useTimeoutFn(() => {
+    setActiveLink()
+    window.addEventListener('scroll', onScroll)
+  }, 1000, { immediate: false })
+
+  onMounted(initActiveAnchor)
 
   onUpdated(() => {
     // sidebar update means a route change

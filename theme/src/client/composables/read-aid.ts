@@ -90,7 +90,14 @@ export function useReadAid() {
 
   useEventListener('resize', initialize, { passive: true })
   useResizeObserver(doc, initialize)
-  onMounted(() => void watch(() => page.value.path, initialize, { immediate: true }))
+  // watcher 在 setup 顶层创建，随组件作用域自动回收，避免在 `onMounted` 内创建导致泄漏。
+  // 初始调用放在 `onMounted`，避免 SSR 期间访问 DOM。
+  //
+  // Create the watcher at setup scope so it is disposed with the component;
+  // creating it inside `onMounted` leaks. The initial call runs in `onMounted`
+  // to avoid touching the DOM during SSR.
+  watch(() => page.value.path, initialize)
+  onMounted(initialize)
 
   function initialize() {
     const docEl = document.querySelector<HTMLElement>('.vp-doc')

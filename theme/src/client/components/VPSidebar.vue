@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import VPSidebarGroup from '@theme/VPSidebarGroup.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
-import { useScrollLock } from '@vueuse/core'
+import { useScrollLock, useTimeoutFn } from '@vueuse/core'
 import { nextTick, onMounted, ref, watch } from 'vue'
 import { useRoutePath } from 'vuepress/client'
 import { useData, useLayout, useSidebar, useSidebarControl } from '../composables/index.js'
@@ -33,32 +33,46 @@ watch(
   { immediate: true, flush: 'post' },
 )
 
+// 重置滚动位置的定时器在 setup 顶层创建，随组件作用域自动清理。
+// The scroll-reset timer is created at setup scope and disposed with the component.
+const { start: resetSidebarScroll } = useTimeoutFn(
+  () => navEl.value?.scrollTo(0, 0),
+  200,
+  { immediate: false },
+)
+
 /**
  * Scroll to active item
  */
-onMounted(() => {
-  watch(sidebarKey, async () => {
-    await nextTick()
-    const activeItem = document.querySelector(
-      `.vp-sidebar .vp-link[href*="${routePath.value}"]`,
-    )
-    if (!navEl.value)
-      return
+async function scrollToActiveItem(): Promise<void> {
+  await nextTick()
+  const activeItem = document.querySelector(
+    `.vp-sidebar .vp-link[href*="${routePath.value}"]`,
+  )
+  if (!navEl.value)
+    return
 
-    if (!activeItem) {
-      // 等待动画进入透明状态后再重置滚动位置，避免内容闪烁
-      setTimeout(() => navEl.value?.scrollTo(0, 0), 200)
-      return
-    }
+  if (!activeItem) {
+    // 等待动画进入透明状态后再重置滚动位置，避免内容闪烁
+    resetSidebarScroll()
+    return
+  }
 
-    const { top: navTop, height: navHeight } = navEl.value.getBoundingClientRect()
-    const { top: activeTop, height: activeHeight }
-      = activeItem.getBoundingClientRect()
+  const { top: navTop, height: navHeight } = navEl.value.getBoundingClientRect()
+  const { top: activeTop, height: activeHeight }
+    = activeItem.getBoundingClientRect()
 
-    if (activeTop < navTop || activeTop + activeHeight > navTop + navHeight)
-      activeItem.scrollIntoView({ block: 'center' })
-  }, { immediate: true, flush: 'post' })
-})
+  if (activeTop < navTop || activeTop + activeHeight > navTop + navHeight)
+    activeItem.scrollIntoView({ block: 'center' })
+}
+
+// watcher 在 setup 顶层创建，随组件作用域自动回收；初始定位在 `onMounted` 中执行，
+// 避免 SSR 期间访问 DOM。
+//
+// Create the watcher at setup scope so it is disposed with the component. The
+// initial scroll runs in `onMounted` to avoid touching the DOM during SSR.
+watch(sidebarKey, scrollToActiveItem, { flush: 'post' })
+onMounted(scrollToActiveItem)
 </script>
 
 <template>

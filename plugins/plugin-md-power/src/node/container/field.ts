@@ -311,7 +311,7 @@ export function fieldPlugin(md: Markdown): void {
       unit: encodeData(parsed.unit),
       format: encodeData(parsed.format),
       constraint: encodeData(parsed.constraint),
-    })
+    }, false, ['name', 'type', 'typeLink', 'defaultValue', 'since', 'unit', 'format', 'constraint', 'required', 'deprecated', 'experimental'])
     // 可选值
     const enums = parsed.enum?.length
       ? `<template #enum>${parsed.enum.map(item => `<span>${md.utils.escapeHtml(item)}</span>`).join('')}</template>`

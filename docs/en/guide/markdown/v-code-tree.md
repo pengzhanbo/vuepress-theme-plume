@@ -166,9 +166,10 @@ The theme supports importing `code-tree` from a directory using the following sy
 
 ::: warning Paths must stay within the source directory
 Regardless of whether an absolute or relative path is used, the resolved directory must be located
-inside the documentation source directory. Any path that resolves outside the source directory
-(for example, escaping upwards via `../`) is rejected: a warning is logged during the build and the
-`Invalid target directory` message is rendered instead of the code tree.
+inside the documentation source directory. Any path that resolves outside the source directory is
+rejected — for example escaping upwards via `../`, or a symlink pointing outside the source
+directory. A warning is logged during the build and the `Invalid target directory` message is
+rendered instead of the code tree.
 :::
 
 **Input:**

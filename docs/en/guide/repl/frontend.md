@@ -124,6 +124,13 @@ Different code demos use the same embed syntax, allowing you to quickly grasp th
 - Relative paths start with `./` or `../` and are relative to the current markdown file's path.
 - Absolute paths start with `/` and are resolved from the [VuePress source directory path](../quick-start/project-structure.md#document-source-directory).
 
+::: warning Paths must stay within the source directory
+Regardless of whether a relative or absolute path is used, the resolved file must be located inside
+the documentation source directory. Any path that resolves outside the source directory
+(for example, escaping upwards via `../`) is rejected: a warning is logged during the build and the
+demo is not loaded.
+:::
+
 ```md
 <!-- Normal Code Demo -->
 @[demo](./demo/normal.html)

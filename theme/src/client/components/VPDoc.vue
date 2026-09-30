@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import VPComment from '@theme/VPComment.vue'
 import VPDocAside from '@theme/VPDocAside.vue'
-import VPDocBreadcrumbs from '@theme/VPDocBreadcrumbs.vue'
+import VPDocBreadcrumb from '@theme/VPDocBreadcrumb.vue'
 import VPDocCopyright from '@theme/VPDocCopyright.vue'
 import VPDocFooter from '@theme/VPDocFooter.vue'
 import VPDocMeta from '@theme/VPDocMeta.vue'
@@ -126,7 +126,7 @@ watch(
           <div class="content-container">
             <slot name="doc-before" />
             <main class="main">
-              <VPDocBreadcrumbs />
+              <VPDocBreadcrumb />
 
               <slot name="doc-meta-top" />
               <VPDocMeta>

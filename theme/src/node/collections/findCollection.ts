@@ -1,6 +1,6 @@
 import type { Page } from 'vuepress'
 import type { ThemeCollectionItem, ThemePageData } from '../../shared'
-import { removeLeadingSlash } from '@vuepress/helper'
+import { ensureEndingSlash, removeLeadingSlash } from '@vuepress/helper'
 import { getThemeConfig } from '../loadConfig/index.js'
 
 /**
@@ -18,6 +18,6 @@ export function findCollection(page: Page<ThemePageData>): ThemeCollectionItem |
 
   const pagePath = page.filePathRelative?.slice(locale.length - 1)
   return collections.find(item =>
-    pagePath?.startsWith(removeLeadingSlash(item.dir)),
+    pagePath?.startsWith(ensureEndingSlash(removeLeadingSlash(item.dir))),
   )
 }

@@ -46,14 +46,6 @@ export async function run(mode: Mode, root?: string, options: CliOptions = {}): 
     process.exit(1)
   }
 
-  // Summarize the existing files that were skipped, so the user is aware of
-  // what was not overwritten and can re-run with `--force` if needed.
-  if (writeResult?.skipped.length) {
-    progress.message(colors.yellow(`${t('hint.files.skipped')}\n${
-      writeResult.skipped.map(file => `  - ${path.relative(process.cwd(), file)}`).join('\n')
-    }`))
-  }
-
   // Delay for some time, I/O may not be completed yet,
   // executing subsequent tasks at this point may cause issues.
   await sleep(200)
@@ -89,6 +81,15 @@ export async function run(mode: Mode, root?: string, options: CliOptions = {}): 
   const installCommand = colors.green(`${pm} install`)
 
   progress.stop(t('spinner.stop'))
+
+  // Summarize the existing files that were skipped, so the user is aware of
+  // what was not overwritten and can re-run with `--force` if needed.
+  // Printed after `progress.stop()`, otherwise the spinner would overwrite the list.
+  if (writeResult?.skipped.length) {
+    console.log(colors.yellow(`${t('hint.files.skipped')}\n${
+      writeResult.skipped.map(file => `  - ${path.relative(process.cwd(), file)}`).join('\n')
+    }`))
+  }
 
   if (mode === Mode.create) {
     outro(`${t('spinner.command')}

@@ -72,30 +72,38 @@ function codeToHtml(md: Markdown, source: NormalCode, info: string): string {
 export async function compileCode(code: NormalCode, output: string): Promise<void> {
   markDemoRender()
   const res = { jsLib: [], cssLib: [], script: '', css: '', html: '' }
-  if (!fs.existsSync(output))
-    writeFileSync(output, `import { ref } from "vue"\nexport default ref(${JSON.stringify(res, null, 2)})`)
   try {
-    if (code.imports) {
-      const imports = JSON.parse(code.imports)
-      res.jsLib = imports.jsLib ?? []
-      res.cssLib = imports.cssLib ?? []
-    }
-    if (code.script) {
-      res.script = await compileScript(code.script.trim(), code.jsType)
-    }
-    if (code.css) {
-      res.css = await compileStyle(code.css.trim(), code.cssType)
-    }
-    if (code.html) {
-      res.html = code.html.trim()
-    }
-  }
-  catch (e) {
-    logger.error('demo-normal', 'demo parse error: \n', e)
-  }
+    if (!fs.existsSync(output))
+      writeFileSync(output, `import { ref } from "vue"\nexport default ref(${JSON.stringify(res, null, 2)})`)
 
-  writeFileSync(output, `import { ref } from "vue"\nexport default ref(${JSON.stringify(res, null, 2)})`)
-  checkDemoRender()
+    try {
+      if (code.imports) {
+        const imports = JSON.parse(code.imports)
+        res.jsLib = imports.jsLib ?? []
+        res.cssLib = imports.cssLib ?? []
+      }
+      if (code.script) {
+        res.script = await compileScript(code.script.trim(), code.jsType)
+      }
+      if (code.css) {
+        res.css = await compileStyle(code.css.trim(), code.cssType)
+      }
+      if (code.html) {
+        res.html = code.html.trim()
+      }
+    }
+    catch (e) {
+      logger.error('demo-normal', 'demo parse error: \n', e)
+    }
+
+    writeFileSync(output, `import { ref } from "vue"\nexport default ref(${JSON.stringify(res, null, 2)})`)
+  }
+  finally {
+    // Always release the pending render slot, otherwise `waitDemoRender()` never resolves
+    // and the build hangs forever in the `onPrepared` phase.
+    // 始终释放待渲染计数，否则 `waitDemoRender()` 永不 resolve，构建会永久卡在 `onPrepared` 阶段。
+    checkDemoRender()
+  }
 }
 
 export function normalEmbed(

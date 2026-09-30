@@ -16,6 +16,7 @@ export class ConfigLoader extends EventEmitter {
 
   private dependencies: string[] = []
   private loaded = false
+  private loadError: unknown = null
   private configFile?: string
   private defaultConfig!: ThemeOptions
 
@@ -29,15 +30,26 @@ export class ConfigLoader extends EventEmitter {
 
     this.config = initThemeOptions(app, defaultConfig)
 
-    perf.mark('config-loader:find-config')
-    this.configFile = await findConfigPath(app, configFile)
-    perf.log('config-loader:find-config')
+    try {
+      perf.mark('config-loader:find-config')
+      this.configFile = await findConfigPath(app, configFile)
+      perf.log('config-loader:find-config')
 
-    perf.mark('config-loader:loaded')
-    const dependencies = await this.load()
-    this.dependencies = [...dependencies]
-    perf.log('config-loader:loaded')
+      perf.mark('config-loader:loaded')
+      const dependencies = await this.load()
+      this.dependencies = [...dependencies]
+      perf.log('config-loader:loaded')
+    }
+    catch (error) {
+      // Store and broadcast the failure so that `waiting()` rejects instead of
+      // hanging forever with no visible error.
+      // 记录并广播失败，使 `waiting()` 主动 reject，而不是无任何提示地永久挂起。
+      this.loadError = error
+      this.emit('failed', error)
+      throw error
+    }
 
+    this.loadError = null
     this.emit('loaded', this.config)
     this.removeAllListeners('loaded')
   }
@@ -69,11 +81,15 @@ export class ConfigLoader extends EventEmitter {
   }
 
   async waiting(): Promise<void> {
+    if (this.loadError)
+      return Promise.reject(this.loadError)
+
     if (this.loaded)
       return
 
-    return new Promise<void>((resolve) => {
-      this.once('loaded', resolve)
+    return new Promise<void>((resolve, reject) => {
+      this.once('loaded', () => resolve())
+      this.once('failed', reject)
     })
   }
 

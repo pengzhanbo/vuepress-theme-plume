@@ -49,11 +49,11 @@ function chatMessagesRender(md: Markdown, env: MarkdownEnv, messages: ChatMessag
     let messageContent = ''
     if (!currentDate || currentDate !== date) {
       currentDate = date
-      messageContent += `<div class="vp-chat-date"><span>${currentDate}</span></div>\n`
+      messageContent += `<div class="vp-chat-date"><span>${md.utils.escapeHtml(currentDate)}</span></div>\n`
     }
     messageContent += `<div class="vp-chat-message ${sender}">
       <div class="vp-chat-message-body">\
-      ${sender === 'user' ? `\n<p class="vp-chat-username">${username}</p>` : ''}
+      ${sender === 'user' ? `\n<p class="vp-chat-username">${md.utils.escapeHtml(username)}</p>` : ''}
         <div class="message-content">
           ${md.render(content.join('\n'), cleanMarkdownEnv(env)).trim()}
         </div>

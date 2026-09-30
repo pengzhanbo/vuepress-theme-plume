@@ -287,8 +287,8 @@ ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children
     const localePath = resolveLocalePath(locales, ensureLeadingSlash(env.filePathRelative || ''))
     const data = locales[localePath] ?? {}
     return `<div class="vp-file-tree">${
-      meta.title ? `<p class="vp-file-tree-title">${meta.title}</p>` : ''
-    }<VPCopyButton text="${encodeData(cmdText)}" encode aria-label="${data.copy || 'Copy'}" data-copied="${data.copied || 'Copied'}" />${
+      meta.title ? `<p class="vp-file-tree-title">${md.utils.escapeHtml(meta.title)}</p>` : ''
+    }<VPCopyButton text="${encodeData(cmdText)}" encode aria-label="${md.utils.escapeHtml(data.copy || 'Copy')}" data-copied="${md.utils.escapeHtml(data.copied || 'Copied')}" />${
       renderFileTree(nodes, meta)
     }</div>\n`
   })
@@ -308,8 +308,8 @@ ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children
     const localePath = resolveLocalePath(locales, ensureLeadingSlash(env.filePathRelative || ''))
     const data = locales[localePath] ?? {}
     return `<div class="vp-file-tree">${
-      meta.title ? `<p class="vp-file-tree-title">${meta.title}</p>` : ''
-    }<VPCopyButton text="${encodeData(text)}" encode aria-label="${data.copy || 'Copy'}" data-copied="${data.copied || 'Copied'}" />${
+      meta.title ? `<p class="vp-file-tree-title">${md.utils.escapeHtml(meta.title)}</p>` : ''
+    }<VPCopyButton text="${encodeData(text)}" encode aria-label="${md.utils.escapeHtml(data.copy || 'Copy')}" data-copied="${md.utils.escapeHtml(data.copied || 'Copied')}" />${
       renderFileTree(nodes, meta)
     }</div>\n`
   }

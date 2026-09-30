@@ -47,13 +47,13 @@ export function prepareIcon(
   for (const asset of uniqWith(assets, (a, b) => a.link === b.link)) {
     if (asset.type === 'style') {
       hasStyle = true
-      setupContent.push(`useStyleTag('@import url("${asset.link}");')`)
+      setupContent.push(`useStyleTag(${JSON.stringify(`@import url("${asset.link}");`)})`)
     }
     else if (asset.type === 'script') {
       hasScript = true
       setupContent.push(asset.provide === 'fontawesome'
-        ? `useScriptTag("${asset.link}", () => {}, { attrs: { "data-auto-replace-svg": "nest" } })`
-        : `useScriptTag("${asset.link}")`,
+        ? `useScriptTag(${JSON.stringify(asset.link)}, () => {}, { attrs: { "data-auto-replace-svg": "nest" } })`
+        : `useScriptTag(${JSON.stringify(asset.link)})`,
       )
     }
   }

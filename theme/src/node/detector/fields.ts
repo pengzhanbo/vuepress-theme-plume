@@ -32,9 +32,11 @@ export const MARKDOWN_CHART_FIELDS: (keyof MarkdownChartPluginOptions)[] = [
   'markmap',
   'plantuml',
   'flowchart',
+  'DANGEROUS_ALLOW_SCRIPT_EXECUTION',
+  'DANGEROUS_SCRIPT_EXECUTION_ALLOWLIST',
 ]
 
-export const MARKDOWN_POWER_FIELDS: (keyof MarkdownPowerPluginOptions)[] = [
+export const MARKDOWN_POWER_FIELDS: Exclude<keyof MarkdownPowerPluginOptions, 'components'>[] = [
   'abbr',
   'acfun',
   'annotation',

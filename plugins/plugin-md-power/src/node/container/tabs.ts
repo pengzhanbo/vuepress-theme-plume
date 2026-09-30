@@ -33,7 +33,7 @@ export const tabs: PluginSimple = (md) => {
         return { id }
       })
 
-      return `<VPTabs id="${index}" :data='${stringifyProp(tabsData)}'${active === -1 ? '' : ` :active="${active}"`}${meta.id ? ` tab-id="${meta.id as string}"` : ''}>
+      return `<VPTabs id="${index}" :data='${stringifyProp(tabsData)}'${active === -1 ? '' : ` :active="${active}"`}${meta.id ? ` tab-id="${md.utils.escapeHtml(meta.id as string)}"` : ''}>
 ${titles.map((title, titleIndex) =>
   `<template #title${titleIndex}="{ value, isActive }">${title}</template>`,
 ).join('')}`

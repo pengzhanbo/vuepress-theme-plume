@@ -1,4 +1,5 @@
 import { isBoolean, isNull, isNumber, isString, isUndefined, kebabCase, objectEntries } from '@pengzhanbo/utils'
+import { escapeHtml } from './escapeHtml.js'
 
 /**
  * Stringify attributes object to HTML attribute string
@@ -40,12 +41,12 @@ export function stringifyAttrs<T extends object = object>(
       if (isString(value) && (value[0] === '{' || value[0] === '[')) {
         const v = value.replaceAll('\"', '\'')
         if (forceStringify.includes(key as keyof T))
-          return `${k}="${v}"`
-        return `:${k}="${v}"`
+          return `${k}="${escapeHtml(v)}"`
+        return `:${k}="${escapeHtml(v)}"`
       }
 
       const hasDynamic = key[0] === ':'
-      return `${hasDynamic ? ':' : ''}${k}="${String(value)}"`
+      return `${hasDynamic ? ':' : ''}${k}="${escapeHtml(String(value))}"`
     })
     .filter(Boolean)
     .join(' ')

@@ -317,3 +317,17 @@ The following configuration fields are implemented by the
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable Flowchart diagram embedding syntax.
+
+### DANGEROUS_ALLOW_SCRIPT_EXECUTION
+
+- **Type:** `boolean`
+- **Default:** `false`
+- **Details:** Whether to allow chart scripts to execute. When enabled, scripts in chart content will run,
+  which may introduce XSS or remote code execution risks. Only enable it when the content source is fully trusted.
+
+### DANGEROUS_SCRIPT_EXECUTION_ALLOWLIST
+
+- **Type:** `string[] | '*'`
+- **Default:** `undefined`
+- **Details:** Allowlist of source files permitted to run chart scripts. Only effective when
+  `DANGEROUS_ALLOW_SCRIPT_EXECUTION` is `true`; pass `'*'` to allow all source files.

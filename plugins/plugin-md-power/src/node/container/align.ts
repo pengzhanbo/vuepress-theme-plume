@@ -62,7 +62,7 @@ export function alignPlugin(md: Markdown): void {
       if (attrs.wrap)
         styles.push('flex-wrap:wrap')
 
-      styles.push(`gap:${parseRect(attrs.gap || '16')}`)
+      styles.push(`gap:${md.utils.escapeHtml(parseRect(attrs.gap || '16'))}`)
 
       return `<div class="vp-flex" style="${styles.join(';')}">`
     },

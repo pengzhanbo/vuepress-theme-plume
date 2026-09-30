@@ -60,11 +60,7 @@ export function markdownPlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfi
 
   mdChart ??= pluginOptions.markdownChart
   if (mdChart) {
-    plugins.push(markdownChartPlugin({
-      DANGEROUS_ALLOW_SCRIPT_EXECUTION: true,
-      DANGEROUS_SCRIPT_EXECUTION_ALLOWLIST: '*',
-      ...mdChart,
-    }))
+    plugins.push(markdownChartPlugin(mdChart))
   }
 
   math ??= pluginOptions.markdownMath
@@ -101,7 +97,7 @@ function splitMarkdownOptions(options: MarkdownOptions): {
     if (MARKDOWN_CHART_FIELDS.includes(key as keyof MarkdownChartPluginOptions)) {
       mdChart[key] = restOptions[key]
     }
-    else if (MARKDOWN_POWER_FIELDS.includes(key as keyof MarkdownPowerPluginOptions)) {
+    else if (MARKDOWN_POWER_FIELDS.includes(key as Exclude<keyof MarkdownPowerPluginOptions, 'components'>)) {
       mdPower[key] = restOptions[key]
     }
   }

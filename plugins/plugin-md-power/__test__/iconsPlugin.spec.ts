@@ -11,7 +11,7 @@ describe('iconPlugin', () => {
     expect(md.render('::mdi:11 /#fff::')).toContain('<VPIcon provider="iconify" color="#fff" name="mdi:11" />')
     expect(md.render('::mdi:11 =32px /#fff::')).toContain('<VPIcon provider="iconify" size="32px" color="#fff" name="mdi:11" />')
     expect(md.render('::mdi:11 =32px /#fff fa data-fa-transform="shrink-8::"'))
-      .toContain('<VPIcon provider="iconify" size="32px" color="#fff" name="mdi:11" extra="fa" data-fa-transform=""shrink-8" />')
+      .toContain('<VPIcon provider="iconify" size="32px" color="#fff" name="mdi:11" extra="fa" data-fa-transform="&quot;shrink-8" />')
 
     expect(md.render('::iconify mdi:11::')).toContain('<VPIcon provider="iconify" name="mdi:11" />')
   })

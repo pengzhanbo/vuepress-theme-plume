@@ -35,6 +35,8 @@ export const theme: Theme = plumeTheme({
     plantuml: true,
     mermaid: true,
     flowchart: true,
+    DANGEROUS_ALLOW_SCRIPT_EXECUTION: true,
+    DANGEROUS_SCRIPT_EXECUTION_ALLOWLIST: '*',
 
     annotation: true,
     abbr: true,

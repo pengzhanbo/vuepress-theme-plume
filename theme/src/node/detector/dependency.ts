@@ -17,7 +17,6 @@ const DEPENDENCIES: Record<string, string[]> = {
 
   artPlayer: ['artplayer'],
   mathjax: ['mathjax-full'],
-  pdf: ['@embedpdf/vue-pdf-viewer'],
 }
 
 const t = createTranslate({
@@ -59,9 +58,6 @@ export function detectDependencies(options: ThemeOptions, plugins: ThemeBuiltinP
     if (markdown[dep] || mdChart[dep])
       add(dep)
   })
-
-  if (markdown.pdf || mdPower.pdf)
-    add('pdf')
 
   const math = markdown.math || plugins.markdownMath
   if (math && math.type === 'mathjax')

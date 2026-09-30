@@ -110,7 +110,6 @@ catalogs:
     vitest: ^5.0.0
     wait-on: ^9.1.0
   peer:
-    '@embedpdf/vue-pdf-viewer': ^2.15.0
     '@iconify/json': ^2.2.528
     '@mathjax/src': ^4.1.3
     '@pinyin-pro/data': ^1.3.1

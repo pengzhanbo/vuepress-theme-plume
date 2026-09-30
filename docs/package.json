@@ -12,7 +12,6 @@
     "lunaria:preview": "lunaria preview"
   },
   "dependencies": {
-    "@embedpdf/vue-pdf-viewer": "catalog:peer",
     "@iconify/json": "catalog:peer",
     "@lunariajs/core": "catalog:dev",
     "@simonwep/pickr": "catalog:dev",

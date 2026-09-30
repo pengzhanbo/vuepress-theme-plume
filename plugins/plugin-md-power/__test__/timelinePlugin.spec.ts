@@ -110,4 +110,23 @@ describe('timeline > timelinePlugin()', () => {
     expect(html.match(/<template #title>/g)).toHaveLength(1)
     expect(html).toContain('嵌套列表')
   })
+
+  it('should not treat a paragraph inside a blockquote as the title', () => {
+    const source = `\
+::: timeline
+- > 引用内容
+
+- 正常标题
+
+  这是内容
+:::
+`
+    const html = md.render(source)
+
+    // 块引用内部的段落不能作为标题，否则 title 插槽会落在 blockquote 内部。
+    // A paragraph inside a blockquote must not become the title, otherwise the
+    // title slot would end up inside the blockquote.
+    expect(html.match(/<template #title>/g)).toHaveLength(1)
+    expect(html.indexOf('<template #title>')).toBeGreaterThan(html.indexOf('</blockquote>'))
+  })
 })

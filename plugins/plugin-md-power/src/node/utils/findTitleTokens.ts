@@ -17,41 +17,39 @@ export interface TitleTokenRange {
 /**
  * Locate the paragraph tokens that hold a list item's title.
  *
- * Walks the tokens by type instead of relying on fixed offsets, so loose lists
- * or items whose first block is not a paragraph (nested list, fence, ...) do not
- * shift the indices. Returns `undefined` when the item has no title paragraph.
+ * The title is the paragraph that is a **direct child** of the list item, so the
+ * match is limited by `token.level`. Items whose first block is a nested block
+ * (blockquote, nested list, fence, ...) have no title paragraph and return
+ * `undefined`; otherwise the generated `<template #title>` would end up inside
+ * the nested block and would not be collected as the component's `title` slot.
  *
  * 定位承载列表项标题的段落 token。
  *
- * 按 token 类型游走而非依赖固定偏移，避免 loose list 或首块不是段落的列表项
- * （嵌套列表、代码块等）导致索引错位。当列表项没有标题段落时返回 `undefined`。
+ * 标题是列表项的**直接子节点**段落，因此通过 `token.level` 限制匹配范围。首块为
+ * 嵌套块（块引用、嵌套列表、代码块等）的列表项没有标题段落，返回 `undefined`，
+ * 否则生成的 `<template #title>` 会落在嵌套块内部，无法被组件收集为 `title` 插槽。
  *
  * @param tokens - Token array / token 数组
  * @param startIndex - Index of the `list_item_open` token / `list_item_open` token 的索引
  * @returns Title token range, or `undefined` / 标题 token 范围，找不到时为 `undefined`
  */
 export function findTitleTokens(tokens: Token[], startIndex: number): TitleTokenRange | undefined {
-  for (let i = startIndex + 1; i < tokens.length; i++) {
-    const token = tokens[i]
-
-    if (token.type === 'list_item_close')
-      return undefined
-
-    // 尚未遇到段落就进入嵌套列表，说明该项没有标题段落
-    // Reaching a nested list before a paragraph means the item has no title paragraph
-    if (token.type === 'bullet_list_open' || token.type === 'ordered_list_open')
-      return undefined
-
-    if (token.type !== 'paragraph_open')
-      continue
-
-    const inline = tokens[i + 1]
-    const close = tokens[i + 2]
-    if (inline?.type === 'inline' && close?.type === 'paragraph_close')
-      return { open: i, inline: i + 1, close: i + 2 }
-
+  const item = tokens[startIndex]
+  if (!item)
     return undefined
-  }
 
-  return undefined
+  // 列表项直接子节点的层级；嵌套块内部的 token 层级更深。
+  // Nesting level of the list item's direct children; tokens inside nested blocks are deeper.
+  const childLevel = item.level + 1
+
+  const open = tokens[startIndex + 1]
+  if (!open || open.type !== 'paragraph_open' || open.level !== childLevel)
+    return undefined
+
+  const inline = tokens[startIndex + 2]
+  const close = tokens[startIndex + 3]
+  if (inline?.type !== 'inline' || close?.type !== 'paragraph_close')
+    return undefined
+
+  return { open: startIndex + 1, inline: startIndex + 2, close: startIndex + 3 }
 }

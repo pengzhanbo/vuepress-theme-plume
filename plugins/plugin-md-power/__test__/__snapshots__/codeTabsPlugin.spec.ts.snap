@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`codeTabsPlugin > should work with default 1`] = `
-"<VPCodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><VPIcon provider="iconify" name="vscode-icons:default-file"/><span>tab-1</span></template><template #title1="{ value, isActive }"><VPIcon provider="iconify" name="vscode-icons:default-file"/><span>tab-2</span></template><template #title2="{ value, isActive }"><VPIcon provider="iconify" name="vscode-icons:default-file"/><span>tab-3</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+"<VPCodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><span>tab-1</span></template><template #title1="{ value, isActive }"><span>tab-2</span></template><template #title2="{ value, isActive }"><span>tab-3</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
 </code></pre>
 </div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>const b = 2
 </code></pre>
@@ -41,7 +41,7 @@ exports[`codeTabsPlugin > should work with no icon 1`] = `
 `;
 
 exports[`codeTabsPlugin > should work with options: \`{ named: false, extensions: false }\` 1`] = `
-"<VPCodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><VPIcon provider="iconify" name="vscode-icons:default-file"/><span>tab-1</span></template><template #title1="{ value, isActive }"><VPIcon provider="iconify" name="vscode-icons:default-file"/><span>tab-2</span></template><template #title2="{ value, isActive }"><VPIcon provider="iconify" name="vscode-icons:default-file"/><span>tab-3</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+"<VPCodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><span>tab-1</span></template><template #title1="{ value, isActive }"><span>tab-2</span></template><template #title2="{ value, isActive }"><span>tab-3</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
 </code></pre>
 </div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>const b = 2
 </code></pre>
@@ -61,7 +61,7 @@ exports[`codeTabsPlugin > should work with options: \`{ named: false, extensions
 `;
 
 exports[`codeTabsPlugin > should work with options: { named: [npm,pnpm,yarn], extensions: [.js,.ts] } 1`] = `
-"<VPCodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><VPIcon provider="iconify" name="vscode-icons:default-file"/><span>tab-1</span></template><template #title1="{ value, isActive }"><VPIcon provider="iconify" name="vscode-icons:default-file"/><span>tab-2</span></template><template #title2="{ value, isActive }"><VPIcon provider="iconify" name="vscode-icons:default-file"/><span>tab-3</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
+"<VPCodeTabs id="0" :data='[{"id":"tab-1"},{"id":"tab-2"},{"id":"tab-3"}]'><template #title0="{ value, isActive }"><span>tab-1</span></template><template #title1="{ value, isActive }"><span>tab-2</span></template><template #title2="{ value, isActive }"><span>tab-3</span></template><template #tab0="{ value, isActive }"><div class="language-lang"><pre><code>const a = 1
 </code></pre>
 </div></template><template #tab1="{ value, isActive }"><div class="language-lang"><pre><code>const b = 2
 </code></pre>

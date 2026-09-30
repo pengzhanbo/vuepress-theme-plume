@@ -94,13 +94,13 @@ export function wikiLinkPlugin(md: Markdown) {
     // external link
     if (isLinkHttp(filename)) {
       const text = alias || (filename + (titles.length ? ` > ${titles.join(' > ')}` : ''))
-      return `<a href="${filename}${slug}" target="_blank" rel="noopener noreferrer">${
+      return `<a href="${md.utils.escapeHtml(`${filename}${slug}`)}" target="_blank" rel="noopener noreferrer">${
         md.utils.escapeHtml(text)
       }</a>`
     }
     // internal hash link
     if (!filename) { // internal page hash link
-      return `<VPLink href="${slug}">${md.utils.escapeHtml(alias) || (titles.length ? `<template #after-text>${md.utils.escapeHtml(` > ${titles.join(' > ')}`)}</template>` : '')}</VPLink>`
+      return `<VPLink href="${md.utils.escapeHtml(slug)}">${md.utils.escapeHtml(alias) || (titles.length ? `<template #after-text>${md.utils.escapeHtml(` > ${titles.join(' > ')}`)}</template>` : '')}</VPLink>`
     }
     const pagePath = findFirstPage(filename, env.filePathRelative ?? '')
     if (pagePath) {
@@ -114,13 +114,13 @@ export function wikiLinkPlugin(md: Markdown) {
         absolute: absolutePath,
         relative: relativePath,
       })
-      return `<VPLink href="${ensureLeadingSlash(pagePath)}${slug}">${md.utils.escapeHtml(alias) || (titles.length ? `<template #after-text>${md.utils.escapeHtml(` > ${titles.join(' > ')}`)}</template>` : '')}</VPLink>`
+      return `<VPLink href="${md.utils.escapeHtml(`${ensureLeadingSlash(pagePath)}${slug}`)}">${md.utils.escapeHtml(alias) || (titles.length ? `<template #after-text>${md.utils.escapeHtml(` > ${titles.join(' > ')}`)}</template>` : '')}</VPLink>`
     }
 
     // other asset url
     const url = ensureLeadingSlash(filename[0] === '.' ? path.join(path.dirname(env.filePathRelative ?? ''), filename) : filename)
     const text = alias || (filename + (titles.length ? ` > ${titles.join(' > ')}` : ''))
-    return `<a href="${url}${slug}" target="_blank" rel="noopener noreferrer">${
+    return `<a href="${md.utils.escapeHtml(`${url}${slug}`)}" target="_blank" rel="noopener noreferrer">${
       md.utils.escapeHtml(text)
     }</a>`
   }

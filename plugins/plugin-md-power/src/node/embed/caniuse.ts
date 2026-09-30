@@ -35,7 +35,7 @@ export const caniusePlugin: PluginWithOptions<CanIUseOptions> = (
         versions: versions.replace(/\}/g, ''),
       }
     },
-    content: (meta, env) => resolveCanIUse(meta, env),
+    content: (meta, env) => resolveCanIUse(md, meta, env),
   })
 }
 
@@ -61,13 +61,13 @@ export function legacyCaniuse(
     before: (info, _t, _i, _o, env) => {
       const feature = info.split(/\s+/)[0]
       const versions = info.match(/\{(.*)\}/)?.[1] || ''
-      return feature ? resolveCanIUse({ feature, mode, versions }, env) : ''
+      return feature ? resolveCanIUse(md, { feature, mode, versions }, env) : ''
     },
     after: () => '',
   })
 }
 
-function resolveCanIUse({ feature, mode, versions }: CanIUseTokenMeta, env: MarkdownEnv): string {
+function resolveCanIUse(md: MarkdownIt, { feature, mode, versions }: CanIUseTokenMeta, env: MarkdownEnv): string {
   if (!feature)
     return ''
 
@@ -76,11 +76,12 @@ function resolveCanIUse({ feature, mode, versions }: CanIUseTokenMeta, env: Mark
       colors.cyan(`@[caniuse](${feature})`)
     } instead. (${colors.gray(env.filePathRelative || '')})`)
     const link = 'https://caniuse.bitsofco.de/image/'
-    const alt = `Data on support for the ${feature} feature across the major browsers from caniuse.com`
+    const alt = md.utils.escapeHtml(`Data on support for the ${feature} feature across the major browsers from caniuse.com`)
+    const escapedFeature = md.utils.escapeHtml(feature)
     return `<p><picture>
-      <source type="image/webp" srcset="${link}${feature}.webp">
-      <source type="image/png" srcset="${link}${feature}.png">
-      <img src="${link}${feature}.jpg" alt="${alt}" width="100%">
+      <source type="image/webp" srcset="${link}${escapedFeature}.webp">
+      <source type="image/png" srcset="${link}${escapedFeature}.png">
+      <img src="${link}${escapedFeature}.jpg" alt="${alt}" width="100%">
     </picture></p>`
   }
 

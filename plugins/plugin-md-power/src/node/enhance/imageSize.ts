@@ -137,7 +137,7 @@ export async function imageSizePlugin(
         attrs.height = size.height
 
         const imgAttrs = objectEntries(attrs)
-          .map(([key, value]) => isBoolean(value) ? key : `${key}="${value}"`)
+          .map(([key, value]) => isBoolean(value) ? key : `${key}="${md.utils.escapeHtml(String(value))}"`)
           .join(' ')
 
         return `<img ${imgAttrs}>`

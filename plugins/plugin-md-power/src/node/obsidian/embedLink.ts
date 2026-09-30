@@ -162,7 +162,7 @@ export function embedLinkPlugin(md: Markdown, app: App): void {
         absolute: absolutePath,
         relative: relativePath,
       })
-      return `<VPLink href="${ensureLeadingSlash(pagePath)}${slug}">${md.utils.escapeHtml(settings) || (hashes.length ? `<template #after-text>${md.utils.escapeHtml(` > ${hashes.join(' > ')}`)}</template>` : '')}</VPLink>`
+      return `<VPLink href="${md.utils.escapeHtml(`${ensureLeadingSlash(pagePath)}${slug}`)}">${md.utils.escapeHtml(settings) || (hashes.length ? `<template #after-text>${md.utils.escapeHtml(` > ${hashes.join(' > ')}`)}</template>` : '')}</VPLink>`
     }
 
     // 解析为内部 markdown 资源，提取 markdown 片段并插入到当前页面
@@ -187,7 +187,7 @@ export function embedLinkPlugin(md: Markdown, app: App): void {
     const anchor = hashes.at(-1)
     const slug = anchor ? `#${slugify(anchor)}` : ''
     const text = settings || (filename + (hashes.length ? ` > ${hashes.join(' > ')}` : ''))
-    return `<a href="${url}${slug}" target="_blank" rel="noopener noreferrer">${
+    return `<a href="${md.utils.escapeHtml(`${url}${slug}`)}" target="_blank" rel="noopener noreferrer">${
       md.utils.escapeHtml(text)
     }</a>`
   }

@@ -248,6 +248,6 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
     const { content, info } = tokens[idx]
     const rendered = md.renderInline(info, cleanMarkdownEnv(env))
     const label = cleanHtmlAllTag(rendered)
-    return `<VPAbbreviation aria-label="${label}">${content}${info ? `<template #tooltip>${rendered}</template>` : ''}</VPAbbreviation>`
+    return `<VPAbbreviation aria-label="${md.utils.escapeHtml(label)}">${content}${info ? `<template #tooltip>${rendered}</template>` : ''}</VPAbbreviation>`
   }
 }

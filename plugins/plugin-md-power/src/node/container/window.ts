@@ -17,52 +17,6 @@ interface WindowAttrs {
 
 const RE_IMAGE_SYNTAX = /^!?\[[^\]]*\]\([^)]+\)$/
 
-const render: NonNullable<ContainerOptions['before']> = (info, tokens, idx) => {
-  const elms: Token[] = []
-  for (let i = idx + 1; i < tokens.length; i++) {
-    if (tokens[i].type === 'container_window_close')
-      break
-    elms.push(tokens[i])
-  }
-  const attrs = resolveAttrs<WindowAttrs>(info)
-  let onlyImg = false
-  if (elms.length === 1) {
-    const { type } = elms[0]
-    const content = elms[0].content.trim()
-    if (type === 'html_block'
-      && (content.startsWith('<img') || content.startsWith('<picture'))) {
-      onlyImg = true
-    }
-  }
-  if (elms.length === 3) {
-    const [op, img, cp] = elms
-    if (op.type === 'paragraph_open'
-      && cp.type === 'paragraph_close'
-      && img.type === 'inline'
-      && RE_IMAGE_SYNTAX.test(img.content.trim())) {
-      op.type = 'text'
-      cp.type = 'text'
-      onlyImg = true
-    }
-  }
-
-  const { title, height, noPadding } = attrs
-  const gap = isString(attrs.gap) || isNumber(attrs.gap)
-    ? parseRect(attrs.gap)
-    : (onlyImg || noPadding) ? '0' : '20px'
-
-  const classes: string[] = ['window-wrapper']
-  title && classes.push('has-title')
-
-  return `<article class="${classes.join(' ')}">
-  <header class="window-header">
-    <div class="window-left"><i></i><i></i><i></i></div>
-    ${title ? `<div class="window-center"><h4 class="window-title ignore-header"><span>${title}</span><i class="vpi-window-reload"></i></h4></div>` : ''}
-    <div class="window-right"><i class="vpi-window-share"></i><i class="vpi-window-add"></i><i class="vpi-window-copy"></i></div>
-  </header>
-  <section class="window-content" style="--window-gap:${gap};${height ? `--window-height:${parseRect(height)}` : ''}">`
-}
-
 /**
  * window plugin - Enable window container
  *
@@ -75,6 +29,52 @@ const render: NonNullable<ContainerOptions['before']> = (info, tokens, idx) => {
  */
 export function windowPlugin(md: Markdown): void {
   const after = () => '</section></article>'
+
+  const render: NonNullable<ContainerOptions['before']> = (info, tokens, idx) => {
+    const elms: Token[] = []
+    for (let i = idx + 1; i < tokens.length; i++) {
+      if (tokens[i].type === 'container_window_close')
+        break
+      elms.push(tokens[i])
+    }
+    const attrs = resolveAttrs<WindowAttrs>(info)
+    let onlyImg = false
+    if (elms.length === 1) {
+      const { type } = elms[0]
+      const content = elms[0].content.trim()
+      if (type === 'html_block'
+        && (content.startsWith('<img') || content.startsWith('<picture'))) {
+        onlyImg = true
+      }
+    }
+    if (elms.length === 3) {
+      const [op, img, cp] = elms
+      if (op.type === 'paragraph_open'
+        && cp.type === 'paragraph_close'
+        && img.type === 'inline'
+        && RE_IMAGE_SYNTAX.test(img.content.trim())) {
+        op.type = 'text'
+        cp.type = 'text'
+        onlyImg = true
+      }
+    }
+
+    const { title, height, noPadding } = attrs
+    const gap = isString(attrs.gap) || isNumber(attrs.gap)
+      ? parseRect(attrs.gap)
+      : (onlyImg || noPadding) ? '0' : '20px'
+
+    const classes: string[] = ['window-wrapper']
+    title && classes.push('has-title')
+
+    return `<article class="${classes.join(' ')}">
+  <header class="window-header">
+    <div class="window-left"><i></i><i></i><i></i></div>
+    ${title ? `<div class="window-center"><h4 class="window-title ignore-header"><span>${md.utils.escapeHtml(title)}</span><i class="vpi-window-reload"></i></h4></div>` : ''}
+    <div class="window-right"><i class="vpi-window-share"></i><i class="vpi-window-add"></i><i class="vpi-window-copy"></i></div>
+  </header>
+  <section class="window-content" style="--window-gap:${md.utils.escapeHtml(gap)};${height ? `--window-height:${md.utils.escapeHtml(parseRect(height))}` : ''}">`
+  }
 
   createContainerPlugin(md, 'window', {
     before: render,

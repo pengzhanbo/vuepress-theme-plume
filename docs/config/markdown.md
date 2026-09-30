@@ -305,3 +305,15 @@ export default defineUserConfig({
 - **类型**: `boolean`
 - **默认值**: `false`
 - **详情**: 是否启用 Flowchart 图表嵌入语法
+
+### DANGEROUS_ALLOW_SCRIPT_EXECUTION
+
+- **类型**: `boolean`
+- **默认值**: `false`
+- **详情**: 是否允许图表脚本执行。启用后图表内容中的脚本会被执行，可能带来 XSS 或远程代码执行风险，请仅在内容来源完全可信时开启。
+
+### DANGEROUS_SCRIPT_EXECUTION_ALLOWLIST
+
+- **类型**: `string[] | '*'`
+- **默认值**: `undefined`
+- **详情**: 允许执行图表脚本的源文件列表（允许清单），仅在 `DANGEROUS_ALLOW_SCRIPT_EXECUTION` 为 `true` 时生效；传入 `'*'` 表示允许所有源文件。

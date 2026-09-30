@@ -58,7 +58,26 @@ describe('stringifyAttrs', () => {
   })
 
   it('should handle special characters in values', () => {
-    expect(stringifyAttrs({ 'data-value': '<script>alert(1)</script>' })).toBe(' data-value="<script>alert(1)</script>"')
+    expect(stringifyAttrs({ 'data-value': '<script>alert(1)</script>' }))
+      .toBe(' data-value="&lt;script&gt;alert(1)&lt;/script&gt;"')
+  })
+
+  it('should escape quotes to prevent attribute breakout', () => {
+    expect(stringifyAttrs({ title: 'a" onmouseover="alert(1)' }))
+      .toBe(' title="a&quot; onmouseover=&quot;alert(1)"')
+  })
+
+  it('should escape quotes in dynamic attribute values', () => {
+    expect(stringifyAttrs({ ':title': 'a" onmouseover="alert(1)' }))
+      .toBe(' :title="a&quot; onmouseover=&quot;alert(1)"')
+  })
+
+  it('should escape ampersands', () => {
+    expect(stringifyAttrs({ title: 'a & b' })).toBe(' title="a &amp; b"')
+  })
+
+  it('should escape like json string values', () => {
+    expect(stringifyAttrs({ id: '{ "a": "<b>" }' })).toBe(' :id="{ \'a\': \'&lt;b&gt;\' }"')
   })
 
   it('should handle unicode values', () => {

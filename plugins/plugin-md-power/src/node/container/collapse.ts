@@ -15,6 +15,7 @@
  */
 import type Token from 'markdown-it/lib/token.mjs'
 import type { Markdown } from 'vuepress/markdown'
+import { findTitleTokens } from '../utils/findTitleTokens.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerPlugin } from './createContainer.js'
@@ -103,21 +104,29 @@ function parseCollapse(tokens: Token[], index: number, attrs: CollapseMeta): num
       // Only process root level list items (level 1)
       if (currentLevel === 1) {
         token.type = 'collapse_item_open'
-        tokens[i + 1].type = 'collapse_item_title_open'
-        tokens[i + 3].type = 'collapse_item_title_close'
+
+        // 按 token 类型定位标题段落，避免 loose/nested list 下固定偏移错位。
+        // Locate the title paragraph by token type instead of fixed offsets, so
+        // loose/nested lists cannot shift the indices.
+        const range = findTitleTokens(tokens, i)
 
         idx++
 
-        const inlineToken = tokens[i + 2]
-        const firstToken = inlineToken.children?.[0]
         let flag: string = ''
         let expand: boolean | undefined
-        if (firstToken?.type === 'text') {
-          firstToken.content = firstToken.content.trim().replace(/^:[+\-]\s*/, (match) => {
-            flag = match.trim()
-            return ''
-          })
+        if (range) {
+          tokens[range.open].type = 'collapse_item_title_open'
+          tokens[range.close].type = 'collapse_item_title_close'
+
+          const firstToken = tokens[range.inline].children?.[0]
+          if (firstToken?.type === 'text') {
+            firstToken.content = firstToken.content.trim().replace(/^:[+\-]\s*/, (match) => {
+              flag = match.trim()
+              return ''
+            })
+          }
         }
+
         if (attrs.accordion) {
           if (!hashExpand && flag === ':+') {
             expand = hashExpand = true

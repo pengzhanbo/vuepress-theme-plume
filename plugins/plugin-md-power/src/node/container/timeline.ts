@@ -23,6 +23,7 @@ import type Token from 'markdown-it/lib/token.mjs'
 import type { Markdown } from 'vuepress/markdown'
 import { isEmptyObject } from '@pengzhanbo/utils'
 import { resolveAttrs } from '.././utils/resolveAttrs.js'
+import { findTitleTokens } from '../utils/findTitleTokens.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerPlugin } from './createContainer.js'
 
@@ -138,23 +139,32 @@ function parseTimeline(tokens: Token[], index: number) {
       // Only process root level list items (level 1)
       if (currentLevel === 1) {
         token.type = 'timeline_item_open'
-        tokens[i + 1].type = 'timeline_item_title_open'
-        tokens[i + 3].type = 'timeline_item_title_close'
+
+        // 按 token 类型定位标题段落，避免 loose/nested list 下固定偏移错位。
+        // Locate the title paragraph by token type instead of fixed offsets, so
+        // loose/nested lists cannot shift the indices.
+        const range = findTitleTokens(tokens, i)
+        if (!range) {
+          token.meta = {}
+          continue
+        }
+        tokens[range.open].type = 'timeline_item_title_open'
+        tokens[range.close].type = 'timeline_item_title_close'
 
         // - title
         //   attrs
         // List item `-` followed by subsequent lines are in type=inline token as children
-        const inlineToken = tokens[i + 2]
+        const inlineToken = tokens[range.inline]
+        const children = inlineToken.children
         // Find last softbreak, last line as attrs
-        const softbreakIndex = inlineToken.children!.findLastIndex(
+        const softbreakIndex = children?.findLastIndex(
           token => token.type === 'softbreak',
-        )
-        if (softbreakIndex !== -1) {
-          const lastToken = inlineToken.children![inlineToken.children!.length - 1]
+        ) ?? -1
+        if (children && softbreakIndex !== -1) {
+          const lastToken = children[children.length - 1]
           token.meta = extractTimelineAttributes(lastToken.content.trim())
-          if (!isEmptyObject(token.meta)) {
-            inlineToken.children = inlineToken.children!.slice(0, softbreakIndex)
-          }
+          if (!isEmptyObject(token.meta))
+            inlineToken.children = children.slice(0, softbreakIndex)
         }
         else {
           token.meta = {}

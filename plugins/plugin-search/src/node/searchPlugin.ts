@@ -76,14 +76,25 @@ export function searchPlugin({
     onPageUpdated: async (app, type, pageNew, pageOld) => {
       // VuePress 对 `delete` 事件传入的页面在第四个参数（第三个为 null）。
       // For the `delete` event the removed page is the 4th argument (the 3rd is null).
-      const page = type === 'delete' ? pageOld : pageNew
-      if (!page || !page.filePathRelative)
+      if (type === 'delete') {
+        if (pageOld?.filePathRelative)
+          await onSearchIndexRemoved(app, { page: pageOld, isSearchable, searchOptions })
+        return
+      }
+
+      // 页面从「可搜索」变为「不可搜索」时，旧索引必须用旧页面清理，
+      // 否则 onSearchIndexUpdated 会直接跳过，已排除的页面仍残留在搜索结果中。
+      // When a page turns unsearchable, its existing index must be removed using the
+      // old page; otherwise onSearchIndexUpdated returns early and leaves stale results.
+      const becameUnsearchable = !!isSearchable && !!pageNew && !isSearchable(pageNew)
+      const page = becameUnsearchable ? pageOld : pageNew
+      if (!page?.filePathRelative)
         return
 
-      if (type === 'create' || type === 'update')
-        await onSearchIndexUpdated(app, { page, isSearchable, searchOptions })
-      else if (type === 'delete')
+      if (becameUnsearchable)
         await onSearchIndexRemoved(app, { page, isSearchable, searchOptions })
+      else
+        await onSearchIndexUpdated(app, { page, isSearchable, searchOptions })
     },
   })
 }

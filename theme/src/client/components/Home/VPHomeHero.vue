@@ -4,7 +4,7 @@ import { effectComponents, effects } from '@internal/home-hero-effects'
 import ImageBg from '@theme/background/ImageBg.vue'
 import VPButton from '@theme/VPButton.vue'
 import { hasGlobalComponent } from '@vuepress/helper/client'
-import { computed, markRaw, nextTick, onMounted, onUnmounted, resolveComponent, watch } from 'vue'
+import { computed, defineAsyncComponent, markRaw, nextTick, onMounted, onUnmounted, resolveComponent, watch } from 'vue'
 import { isPlainObject } from 'vuepress/shared'
 import { useData } from '../../composables/index.js'
 import { inBrowser } from '../../utils/index.js'
@@ -42,8 +42,9 @@ const effectConfig = computed(() => {
 const realEffectComponent = computed(() => {
   if (!effect.value)
     return null
-  if (effectComponents[effect.value])
-    return markRaw(effectComponents[effect.value])
+  const loader = effectComponents[effect.value]
+  if (loader)
+    return markRaw(defineAsyncComponent(loader))
   if (hasGlobalComponent(effect.value))
     return resolveComponent(effect.value)
 
@@ -102,7 +103,9 @@ onUnmounted(() => {
       [effect ?? '']: !!effect,
     }"
   >
-    <component :is="realEffectComponent" v-if="realEffectComponent" v-bind="effectConfig" />
+    <ClientOnly v-if="realEffectComponent">
+      <component :is="realEffectComponent" v-bind="effectConfig" />
+    </ClientOnly>
     <ImageBg v-else v-bind="props" />
 
     <div class="hero-container">

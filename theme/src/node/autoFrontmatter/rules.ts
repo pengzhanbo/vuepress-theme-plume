@@ -107,7 +107,7 @@ async function generateWithPost(
   }
 
   if (ec && !hasOwn(data, 'createTime')) {
-    data.createTime = getFileCreateTime(context.filepath)
+    data.createTime = await getFileCreateTime(context.filepath)
   }
 
   if (ep && !hasOwn(data, 'permalink')) {
@@ -145,7 +145,7 @@ async function generateWithDoc(
   }
 
   if (ec && !hasOwn(data, 'createTime')) {
-    data.createTime = getFileCreateTime(context.filepath)
+    data.createTime = await getFileCreateTime(context.filepath)
   }
 
   if (ep && !hasOwn(data, 'permalink')) {
@@ -209,7 +209,7 @@ async function generateWithRemain(
   }
 
   if (ec && !hasOwn(data, 'createTime') && !isRoot) {
-    data.createTime = getFileCreateTime(context.filepath)
+    data.createTime = await getFileCreateTime(context.filepath)
   }
 
   if (ep && !hasOwn(data, 'permalink') && !isRoot) {

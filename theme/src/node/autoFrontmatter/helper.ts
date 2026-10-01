@@ -1,4 +1,4 @@
-import { kebabCase } from '@pengzhanbo/utils'
+import { attemptAsync, kebabCase } from '@pengzhanbo/utils'
 import dayjs from 'dayjs'
 import { ensureLeadingSlash, removeLeadingSlash } from 'vuepress/shared'
 import { fs, path } from 'vuepress/utils'
@@ -16,9 +16,11 @@ export function normalizeTitle(title: string): string {
   return title.replace(NUMBER_RE, '').trim()
 }
 
-export function getFileCreateTime(filepath: string): string {
-  const stats = fs.statSync(filepath)
-  const time = stats.birthtime.getFullYear() !== 1970 ? stats.birthtime : stats.atime
+export async function getFileCreateTime(filepath: string): Promise<string> {
+  // 使用异步 stat 避免阻塞事件循环；读取失败时回退为当前时间。
+  const [, stats] = await attemptAsync(() => fs.promises.stat(filepath))
+  const time = stats && stats.birthtime.getFullYear() !== 1970 ? stats.birthtime : stats?.atime ?? new Date()
+
   return dayjs(new Date(time)).format('YYYY/MM/DD HH:mm:ss')
 }
 

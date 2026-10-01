@@ -209,7 +209,6 @@ watch(
   () => {
     initializeScene()
   },
-  { deep: true },
 )
 </script>
 

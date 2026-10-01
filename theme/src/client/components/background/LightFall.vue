@@ -414,7 +414,6 @@ watch(
     teardown()
     setupWebGL()
   },
-  { deep: true },
 )
 
 watch(

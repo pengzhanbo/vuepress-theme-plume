@@ -297,7 +297,7 @@ onUnmounted(() => {
 })
 
 watch(
-  () => props,
+  () => [props.hue, props.hoverIntensity, props.rotateOnHover, props.forceHoverState],
   () => {
     if (cleanupAnimation) {
       cleanupAnimation()
@@ -305,7 +305,6 @@ watch(
     }
     setupAnimation()
   },
-  { deep: true },
 )
 </script>
 

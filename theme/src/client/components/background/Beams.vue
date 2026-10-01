@@ -439,7 +439,6 @@ watch(
   () => {
     initThreeJS()
   },
-  { deep: true },
 )
 
 onMounted(() => {

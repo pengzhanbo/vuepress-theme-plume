@@ -69,18 +69,17 @@ export async function prepareHomeHeroEffects(app: App): Promise<void> {
 }
 
 async function writeToInternalTemp(app: App, effects: string[]) {
-  let imports: string = ''
+  // 使用动态 import 生成组件异步加载函数，避免 three/postprocessing 等
+  // 重量级依赖进入主包，仅在首页实际启用对应效果时才按需加载。
   let exports: string = 'export const effectComponents = {\n'
 
   for (const effect of effects) {
     const component = effectMapping[effect]
-    imports += `import ${component} from '@theme/background/${component}.vue'\n`
-    exports += `  '${effect}': ${component},\n`
+    exports += `  '${effect}': () => import('@theme/background/${component}.vue'),\n`
   }
   exports += '}\n\nexport const effects = Object.keys(effectComponents)\n'
-  const content = `${imports}\n${exports}`
 
-  await writeTemp(app, 'internal/home-hero-effects.js', content)
+  await writeTemp(app, 'internal/home-hero-effects.js', exports)
 }
 
 function getEffectsByFrontmatter(app: App) {

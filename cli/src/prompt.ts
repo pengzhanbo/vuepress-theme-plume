@@ -93,7 +93,10 @@ export function validateRoot(value?: string): keyof Locale | undefined {
 function createDefaultResult(mode: Mode, root?: string): PromptResult {
   return {
     displayLang: resolveLangByLocale(),
-    root: root ?? (mode === Mode.init ? './docs' : './my-project'),
+    // 空字符串视为未提供目录，回退到默认目录，与交互分支 `if (root)` 的行为保持一致。
+    // An empty string is treated as "not provided" and falls back to the default
+    // directory, matching the interactive branch which checks `if (root)`.
+    root: root || (mode === Mode.init ? './docs' : './my-project'),
     ...defaultAnswers,
     git: mode === Mode.init ? false : defaultAnswers.git,
     deploy: mode === Mode.init ? DeployType.custom : defaultAnswers.deploy,
@@ -226,10 +229,17 @@ export async function prompt(mode: Mode, root?: string, options: CliOptions = {}
       })
     },
 
-    install: () => confirm({
-      message: t('question.installDeps'),
-      initialValue: defaultAnswers.install,
-    }),
+    install: async () => {
+      // `--no-install` 已显式指定跳过安装，无需再询问用户。
+      // `--no-install` explicitly skips installing dependencies, so the prompt
+      // would only offer a choice that cannot take effect.
+      if (options.install === false)
+        return false
+      return confirm({
+        message: t('question.installDeps'),
+        initialValue: defaultAnswers.install,
+      })
+    },
   }, {
     onCancel: () => {
       cancel(t('hint.cancel'))

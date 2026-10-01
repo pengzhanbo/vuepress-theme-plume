@@ -1,6 +1,9 @@
 ignoreWorkspaceRootCheck: true
 catalogMode: prefer
 
+# minimumReleaseAge 单位为分钟，7200 = 5 天，与 renovate.json 的
+# `minimumReleaseAge: "5 days"` 对齐，为 install 侧提供同一稳定期约束。
+minimumReleaseAge: 7200
 minimumReleaseAgeExcludePrune: true
 minimumReleaseAgeExclude:
   - find-file-icon@0.1.1
@@ -60,6 +63,8 @@ overrides:
   vue-router: 'catalog:prod'
   ws: '>=8.21.3'
 
+# pnpm 11+ 将 onlyBuiltDependencies / neverBuiltDependencies 等合并为 allowBuilds
+# （`{ name: true | false }`），此处为构建脚本白名单，避免依赖 postinstall 任意执行。
 allowBuilds:
   '@parcel/watcher': true
   core-js: true

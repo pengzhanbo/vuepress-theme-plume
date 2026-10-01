@@ -25,3 +25,4 @@ export const getTemplate = (dir: string): string => resolve('templates', dir)
 
 export * from './fs.js'
 export * from './getPackageManager.js'
+export * from './getPackageManagerVersion.js'

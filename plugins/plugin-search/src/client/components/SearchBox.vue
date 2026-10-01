@@ -25,6 +25,7 @@ import {
   watch,
 } from 'vue'
 import { usePageLang, useRouteLocale, useRouter, withBase } from 'vuepress/client'
+import { createTokenizer } from '../../shared/index.js'
 import { useLocale, useSearchIndex } from '../composables/index.js'
 import { LRUCache } from '../utils/index.js'
 import BackIcon from './icons/BackIcon.vue'
@@ -100,11 +101,9 @@ const searchIndex = computedAsync(async (onCancel) => {
 
   searchIndexError.value = ''
 
-  let tokenize: ((str: string) => string[]) | undefined
-  if (typeof Intl.Segmenter !== 'undefined') {
-    const segmenter = new Intl.Segmenter(lang.value, { granularity: 'word' })
-    tokenize = str => Array.from(segmenter.segment(str)).map(s => s.segment)
-  }
+  // 使用与 Node 端建索引时完全一致的分词策略，避免两端词元不匹配导致检索失效。
+  // Use the same tokenizer as the node build side so query tokens always match the index.
+  const tokenize = createTokenizer(lang.value)
 
   const loadIndex = searchIndexData.value[routeLocale.value]
   // 当前语言缺少索引文件时回退到空索引，并给出可见提示，避免静默无结果。

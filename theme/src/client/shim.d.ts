@@ -84,9 +84,9 @@ declare module '@internal/iconify' {
 }
 
 declare module '@internal/home-hero-effects' {
-  import type { ComponentOptions } from 'vue'
+  import type { Component } from 'vue'
 
-  const effectComponents: Record<string, ComponentOptions>
+  const effectComponents: Record<string, () => Promise<{ default: Component }>>
   const effects: string[]
 
   export {

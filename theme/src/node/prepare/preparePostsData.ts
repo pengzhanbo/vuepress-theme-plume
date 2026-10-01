@@ -6,6 +6,7 @@ import type {
   ThemePosts,
   ThemePostsItem,
 } from '../../shared/index.js'
+import { attemptAsync } from '@pengzhanbo/utils'
 import { removeLeadingSlash } from '@vuepress/helper'
 import dayjs from 'dayjs'
 import { fs, path } from 'vuepress/utils'
@@ -15,6 +16,21 @@ import { isEncryptPage } from './prepareEncrypt.js'
 
 const HEADING_RE = /<h(\d)[^>]*>.*?<\/h\1>/gi
 const EXCERPT_SPLIT = '<!-- more -->'
+
+// 同一文件可能归属多个集合，缓存其创建时间避免重复 stat。
+const fileBirthtimeCache = new Map<string, Date>()
+
+async function getFileBirthtime(filepath: string): Promise<Date> {
+  const cached = fileBirthtimeCache.get(filepath)
+  if (cached)
+    return cached
+
+  const [, stats] = await attemptAsync(() => fs.promises.stat(filepath))
+  const time = stats?.birthtime ?? new Date()
+  fileBirthtimeCache.set(filepath, time)
+
+  return time
+}
 
 function getTimestamp(time: Date): number {
   return new Date(time).getTime()
@@ -27,16 +43,16 @@ function sortPage(prev: Page, next: Page): number {
     : -1
 }
 
-function processPostData(
+async function processPostData(
   page: Page<ThemePageData, ThemePostFrontmatter & Record<string, unknown>>,
   isBuild: boolean,
   encrypt?: EncryptOptions,
-): ThemePostsItem {
+): Promise<ThemePostsItem> {
   const tags = page.frontmatter.tags
   const date = page.frontmatter.createTime
     || page.frontmatter.date
     // vuepress 对初始化时间的处理，默认为 `0000-00-00` (Why ?)
-    || (page.date === '0000-00-00' ? fs.statSync(page.filePath!).birthtime : page.date)
+    || (page.date === '0000-00-00' ? await getFileBirthtime(page.filePath!) : page.date)
   const data: ThemePostsItem = {
     path: page.path,
     title: page.title,
@@ -104,12 +120,14 @@ export async function preparedPostsData(app: App): Promise<void> {
     for (const { include, exclude, dir } of collections.filter(item => item.type === 'post')) {
       const source = app.dir.source(removeLeadingSlash(withBase(dir, locale)))
       const isMatched = createMatcher(include, exclude)
-      postsData[withBase(dir, locale)] = pages
-        .filter(({ filePath }) => {
-          return filePath?.startsWith(source) && isMatched(path.relative(source, filePath!))
-        })
-        .sort(sortPage)
-        .map(page => processPostData(page, isBuild, encrypt))
+      postsData[withBase(dir, locale)] = await Promise.all(
+        pages
+          .filter(({ filePath }) => {
+            return filePath?.startsWith(source) && isMatched(path.relative(source, filePath!))
+          })
+          .sort(sortPage)
+          .map(page => processPostData(page, isBuild, encrypt)),
+      )
     }
   }
 

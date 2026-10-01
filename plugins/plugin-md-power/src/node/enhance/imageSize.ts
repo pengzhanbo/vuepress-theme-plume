@@ -1,10 +1,11 @@
 import type { RenderRule } from 'markdown-it/lib/renderer.mjs'
+import type { ClientRequest } from 'node:http'
 import type { App } from 'vuepress'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { Buffer } from 'node:buffer'
 import http from 'node:https'
 import { URL } from 'node:url'
-import { attempt, isBoolean, objectEntries, withTimeout } from '@pengzhanbo/utils'
+import { attempt, attemptAsync, isBoolean, objectEntries, withTimeout } from '@pengzhanbo/utils'
 import { isLinkHttp } from '@vuepress/helper'
 import pMap from 'p-map'
 import { tinyImageSize } from 'tiny-image-size'
@@ -63,6 +64,83 @@ const BADGE_LIST = [
   'https://npmx.dev',
   'https://codecov.io',
 ]
+
+/**
+ * Maximum bytes to read from a remote image
+ *
+ * 远程图片读取的最大字节数，超出后中止请求以避免内存耗尽
+ */
+const MAX_REMOTE_IMAGE_SIZE = 10 * 1024 * 1024
+
+/**
+ * Cache of resolved image sizes to avoid repeated file/network requests
+ *
+ * 已解析图片尺寸的缓存，避免重复的文件读取或网络请求
+ */
+const imageSizeCache = new Map<string, ImgSize | null>()
+
+/**
+ * Check whether a dotted-decimal IPv4 address is private/reserved
+ *
+ * 判断点分十进制 IPv4 地址是否属于内网/保留地址
+ *
+ * @param host - IPv4 address / IPv4 地址
+ * @returns Whether the address is private / 是否为内网地址
+ */
+function isPrivateIpv4(host: string): boolean {
+  const ipv4 = host.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/)
+  if (!ipv4)
+    return false
+
+  const [a, b] = ipv4.slice(1).map(Number)
+  // 0.0.0.0/8、127.0.0.0/8、10.0.0.0/8、172.16.0.0/12、192.168.0.0/16、169.254.0.0/16
+  return a === 0 || a === 127 || a === 10
+    || (a === 172 && b >= 16 && b <= 31)
+    || (a === 192 && b === 168)
+    || (a === 169 && b === 254)
+}
+
+/**
+ * Check whether a hostname points to a private/loopback address
+ *
+ * 判断主机名是否指向内网/回环地址，用于避免 SSRF
+ *
+ * @param hostname - URL hostname / URL 主机名
+ * @returns Whether the hostname is private / 是否为内网地址
+ */
+function isPrivateHostname(hostname: string): boolean {
+  const host = hostname.replace(/^\[|\]$/g, '').toLowerCase()
+
+  if (host === 'localhost' || host.endsWith('.localhost') || host.endsWith('.local'))
+    return true
+
+  if (isPrivateIpv4(host))
+    return true
+
+  // 仅对包含 `:` 的 IPv6 主机名做 IPv6 判断，避免误伤 fcdn.example.com、fdroid.org 等公网域名。
+  if (!host.includes(':'))
+    return false
+
+  // IPv4 映射地址在 URL 规范化后会变为 `::ffff:7f00:1` 形式，
+  // 需还原为 IPv4 后复用同一套拒绝规则，且不能无条件拒绝所有 `::ffff:` 地址
+  // （如 `::ffff:8.8.8.8` 为公网地址）。
+  const mapped = host.match(/^::ffff:([0-9a-f]{1,4}):([0-9a-f]{1,4})$/)
+  if (mapped) {
+    const high = Number.parseInt(mapped[1], 16)
+    const low = Number.parseInt(mapped[2], 16)
+    return isPrivateIpv4(`${high >> 8}.${high & 0xFF}.${low >> 8}.${low & 0xFF}`)
+  }
+
+  // IPv6 未指定/回环地址
+  if (host === '::' || host === '::1')
+    return true
+
+  // 唯一本地地址 fc00::/7、链路本地地址 fe80::/10
+  const firstGroup = host.split(':')[0]
+  const value = firstGroup ? Number.parseInt(firstGroup, 16) : Number.NaN
+  return !Number.isNaN(value)
+    && ((value >= 0xFC00 && value <= 0xFDFF) || (value >= 0xFE80 && value <= 0xFEBF))
+}
 
 /**
  * Image size plugin - Add width and height attributes to images
@@ -235,11 +313,12 @@ async function getAllImageOriginalSize(
 ): Promise<Record<string, ImgSize>> {
   const result: Record<string, ImgSize> = {}
 
-  for (const src of images) {
+  // 并发获取图片尺寸，避免大量图片时串行等待导致的构建耗时膨胀。
+  await pMap(images, async (src) => {
     const size = await getImageOriginalSize(src, includeRemote)
     if (size)
       result[src] = size
-  }
+  }, { concurrency: 16 })
 
   return result
 }
@@ -251,6 +330,21 @@ export async function getImageOriginalSize(
   if (!image)
     return null
 
+  const cacheKey = `${includeRemote ? 'remote' : 'local'}:${image}`
+  const cached = imageSizeCache.get(cacheKey)
+  if (cached !== undefined)
+    return cached
+
+  const size = await resolveImageOriginalSize(image, includeRemote)
+  imageSizeCache.set(cacheKey, size)
+
+  return size
+}
+
+async function resolveImageOriginalSize(
+  image: string,
+  includeRemote: boolean,
+): Promise<ImgSize | null> {
   const isRemote = isLinkHttp(image)
   // remote image
   if (isRemote && includeRemote && !BADGE_LIST.some(badge => image.startsWith(badge))) {
@@ -261,9 +355,12 @@ export async function getImageOriginalSize(
       return { width, height }
   }
   if (!isRemote) {
-    const [, data] = attempt(() => tinyImageSize(fs.readFileSync(image)))
-    if (data?.width && data?.height)
-      return data
+    const [, data] = await attemptAsync(() => fs.readFile(image))
+    if (data) {
+      const [, size] = attempt(() => tinyImageSize(data))
+      if (size?.width && size?.height)
+        return size
+    }
   }
   return null
 }
@@ -299,27 +396,60 @@ export function resolveImagePath(app: App, src?: string | null, currentPath?: st
  * @returns Image size / 图片尺寸
  */
 async function fetchRemoteImageSize(src: string): Promise<ImgSize> {
-  const link = new URL(src)
+  const empty: ImgSize = { width: 0, height: 0 }
+
+  let link: URL
+  try {
+    link = new URL(src)
+  }
+  catch {
+    return empty
+  }
+
+  // 仅允许 https 协议，并拒绝内网/回环地址，避免 SSRF。
+  if (link.protocol !== 'https:' || isPrivateHostname(link.hostname)) {
+    logger.warn(`[vuepress-plugin-md-power] skip fetching remote image from untrusted host: ${src}`)
+    return empty
+  }
+
+  let request: ClientRequest | undefined
 
   const promise = new Promise<ImgSize>((resolve) => {
-    http
+    request = http
       .get(link, async (stream) => {
-        const chunks: any[] = []
-        for await (const chunk of stream) {
-          chunks.push(chunk)
-          const [, data] = attempt(tinyImageSize, Buffer.concat(chunks))
-          if (data && data.width && data.height)
-            return resolve(data)
+        const chunks: Buffer[] = []
+        let received = 0
+
+        try {
+          for await (const chunk of stream) {
+            received += chunk.length
+            // 限制响应体大小，避免恶意大文件持续占用内存。
+            if (received > MAX_REMOTE_IMAGE_SIZE) {
+              stream.destroy()
+              return resolve(empty)
+            }
+            chunks.push(chunk)
+            const [, data] = attempt(tinyImageSize, Buffer.concat(chunks))
+            if (data && data.width && data.height)
+              return resolve(data)
+          }
+          resolve(empty)
         }
-        resolve({ width: 0, height: 0 })
+        catch {
+          // 超时销毁请求会使异步迭代器拒绝，此处吞掉该取消引发的异常。
+          resolve(empty)
+        }
       })
-      .on('error', () => resolve({ width: 0, height: 0 }))
+      .on('error', () => resolve(empty))
   })
 
   try {
     return await withTimeout(() => promise, 3000)
   }
-  catch {}
+  catch {
+    // 超时后销毁请求，避免连接继续运行。
+    request?.destroy()
+  }
 
-  return { width: 0, height: 0 }
+  return empty
 }

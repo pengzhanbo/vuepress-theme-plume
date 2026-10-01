@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { PostsCoverStyle, ThemePostsItem } from '../../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
-import { isMobile as _isMobile } from '@vuepress/helper/client'
 import { getReadingTimeLocale, useReadingTimeLocaleConfig } from '@vuepress/plugin-reading-time/client'
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { useMediaQuery } from '@vueuse/core'
+import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { useData, useInternalLink, useTagColors } from '../../composables/index.js'
 
@@ -12,20 +12,8 @@ const { post, index } = defineProps<{
   index: number
 }>()
 
-const isMobile = ref(false)
-
-function updateIsMobile() {
-  isMobile.value = _isMobile()
-}
-
-onMounted(() => {
-  updateIsMobile()
-  window.addEventListener('resize', updateIsMobile)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateIsMobile)
-})
+// 使用媒体查询替代逐卡片 `resize` 监听，避免列表项各自注册全局监听器。
+const isMobile = useMediaQuery('(max-width: 768px)')
 
 const { collection } = useData<'page', 'post'>()
 const colors = useTagColors()

@@ -451,12 +451,27 @@ onBeforeUnmount(() => {
 })
 
 watch(
-  props,
+  () => [
+    props.height,
+    props.baseWidth,
+    props.animationType,
+    props.glow,
+    props.offset,
+    props.noise,
+    props.transparent,
+    props.scale,
+    props.hueShift,
+    props.colorFrequency,
+    props.hoverStrength,
+    props.inertia,
+    props.bloom,
+    props.suspendWhenOffscreen,
+    props.timeScale,
+  ],
   () => {
     cleanup?.()
     setup()
   },
-  { deep: true },
 )
 </script>
 

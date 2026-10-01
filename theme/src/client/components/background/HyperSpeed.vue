@@ -1228,11 +1228,35 @@ onUnmounted(() => {
 })
 
 watch(
-  () => props,
+  () => [
+    props.distortion,
+    props.length,
+    props.roadWidth,
+    props.islandWidth,
+    props.lanesPerRoad,
+    props.fov,
+    props.fovSpeedUp,
+    props.speedUp,
+    props.carLightsFade,
+    props.totalSideLightSticks,
+    props.lightPairsPerRoadWay,
+    props.shoulderLinesWidthPercentage,
+    props.brokenLinesWidthPercentage,
+    props.brokenLinesLengthPercentage,
+    props.lightStickWidth,
+    props.lightStickHeight,
+    props.movingAwaySpeed,
+    props.movingCloserSpeed,
+    props.carLightsLength,
+    props.carLightsRadius,
+    props.carWidthPercentage,
+    props.carShiftX,
+    props.carFloorSeparation,
+    props.colors,
+  ],
   () => {
     initHyperspeed()
   },
-  { deep: true },
 )
 </script>
 

@@ -671,12 +671,32 @@ onBeforeUnmount(() => {
 })
 
 watch(
-  props,
+  () => [
+    props.variant,
+    props.pixelSize,
+    props.color,
+    props.antialias,
+    props.patternScale,
+    props.patternDensity,
+    props.liquid,
+    props.liquidStrength,
+    props.liquidRadius,
+    props.pixelSizeJitter,
+    props.enableRipples,
+    props.rippleIntensityScale,
+    props.rippleThickness,
+    props.rippleSpeed,
+    props.liquidWobbleSpeed,
+    props.autoPauseOffscreen,
+    props.speed,
+    props.transparent,
+    props.edgeFade,
+    props.noiseAmount,
+  ],
   () => {
     cleanup?.()
     setup()
   },
-  { deep: true },
 )
 </script>
 

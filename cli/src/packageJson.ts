@@ -2,8 +2,8 @@ import type { File, ResolvedData } from './types.js'
 import { attemptAsync, kebabCase } from '@pengzhanbo/utils'
 import spawn from 'nano-spawn'
 import _sortPackageJson from 'sort-package-json'
-import { Mode } from './constants.js'
-import { readJsonFile, resolve } from './utils/index.js'
+import { BUILD_SCRIPT_PACKAGES, Mode } from './constants.js'
+import { getPackageManagerVersion, readJsonFile, resolve } from './utils/index.js'
 
 /**
  * Sort package.json fields in a consistent order.
@@ -48,6 +48,15 @@ export async function createPackageJson(
     injectNpmScripts,
   }: ResolvedData,
 ): Promise<File> {
+  // CLI 自身的 package.json：`plume-deps` 提供生成工程的依赖版本，
+  // `engines.node` 提供生成工程的 Node 版本要求，避免多处硬编码不一致。
+  // The CLI's own package.json: `plume-deps` provides dependency versions for
+  // the generated project, and `engines.node` its Node requirement, so the
+  // version ranges have a single source of truth.
+  const context = (await readJsonFile(resolve('package.json')))!
+  const meta = context['plume-deps']
+  const nodeEngines: string | undefined = context.engines?.node
+
   if (mode === Mode.create) {
     pkg.name = kebabCase(siteName)
     pkg.type = 'module'
@@ -62,10 +71,13 @@ export async function createPackageJson(
         }
         pkg.packageManager = `${packageManager}@${version}`
 
-        // pnpm@10 should add `onlyBuiltDependencies`
+        // pnpm 10 从 `package.json#pnpm` 读取构建脚本白名单；
+        // pnpm 11+ 改为只从 `pnpm-workspace.yaml` 的 `allowBuilds` 读取。
+        // pnpm 10 reads the build script allowlist from `package.json#pnpm`;
+        // pnpm 11+ only reads `allowBuilds` from `pnpm-workspace.yaml`.
         if (packageManager === 'pnpm' && version.startsWith('10')) {
           pkg.pnpm = {
-            onlyBuiltDependencies: ['@parcel/watcher'],
+            onlyBuiltDependencies: [...BUILD_SCRIPT_PACKAGES],
           }
         }
       }
@@ -76,7 +88,8 @@ export async function createPackageJson(
       pkg.author = userInfo.username + (userInfo.email ? ` <${userInfo.email}>` : '')
     }
     pkg.license = 'MIT'
-    pkg.engines = { node: '^20.19.0 || >=22.0.0' }
+    if (nodeEngines)
+      pkg.engines = { node: nodeEngines }
   }
 
   if (injectNpmScripts) {
@@ -96,9 +109,6 @@ export async function createPackageJson(
   pkg.devDependencies ??= {}
 
   const hasDep = (dep: string) => pkg.devDependencies?.[dep] || pkg.dependencies?.[dep]
-
-  const context = (await readJsonFile(resolve('package.json')))!
-  const meta = context['plume-deps']
 
   pkg.devDependencies[`@vuepress/bundler-${bundler}`] = `${meta.vuepress}`
   pkg.devDependencies.vuepress = `${meta.vuepress}`
@@ -134,18 +144,4 @@ async function getUserInfo() {
   const { output: username } = await spawn('git', ['config', '--global', 'user.name'])
   const { output: email } = await spawn('git', ['config', '--global', 'user.email'])
   return { username, email }
-}
-
-/**
- * Get the version of a package manager.
- *
- * 获取包管理器的版本。
- *
- * @param pkg - Package manager name (npm, yarn, pnpm) / 包管理器名称
- * @returns Version string of the package manager / 包管理器的版本字符串
- * @throws Error if package manager command fails / 如果包管理器命令失败则抛出错误
- */
-async function getPackageManagerVersion(pkg: string) {
-  const { output } = await spawn(pkg, ['--version'])
-  return output
 }

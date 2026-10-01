@@ -23,7 +23,7 @@ import { getPackageManager } from './utils/index.js'
 export async function run(mode: Mode, root?: string, options: CliOptions = {}): Promise<void> {
   intro(colors.cyan('Welcome to VuePress and vuepress-theme-plume !\n欢迎使用 VuePress 和 vuepress-theme-plume !'))
 
-  const [promptErr, result] = await attemptAsync(prompt, mode, root)
+  const [promptErr, result] = await attemptAsync(() => prompt(mode, root, options))
   if (promptErr || !result) {
     if (promptErr)
       console.error(colors.red(promptErr.message))
@@ -34,6 +34,11 @@ export async function run(mode: Mode, root?: string, options: CliOptions = {}): 
     packageManager: getPackageManager(),
     docsDir: mode === Mode.create ? 'docs' : result.root.replace(/^\.\//, '').replace(/\/$/, ''),
   } as ResolvedData
+
+  // `--no-install` 显式跳过依赖安装。
+  // `--no-install` explicitly skips installing dependencies.
+  if (options.install === false)
+    data.install = false
 
   const progress = spinner()
   progress.start(t('spinner.start'))

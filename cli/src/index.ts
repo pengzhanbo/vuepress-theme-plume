@@ -21,11 +21,15 @@ const cli = cac('create-vuepress-theme-plume')
 cli
   .command('[root]', 'create a new vuepress-theme-plume project / 创建新的 vuepress-theme-plume 项目')
   .option('--force', 'overwrite existing files / 覆盖已存在的文件')
+  .option('-y, --yes', 'use the default answers without prompting / 使用默认答案，跳过所有交互提示')
+  .option('--no-install', 'skip installing dependencies / 跳过依赖安装')
   .action((root: string, options: CliOptions) => run(Mode.create, root, options))
 
 cli
   .command('init [root]', 'Initial vuepress-theme-plume in the existing project / 在现有项目中初始化 vuepress-theme-plume')
   .option('--force', 'overwrite existing files / 覆盖已存在的文件')
+  .option('-y, --yes', 'use the default answers without prompting / 使用默认答案，跳过所有交互提示')
+  .option('--no-install', 'skip installing dependencies / 跳过依赖安装')
   .action((root: string, options: CliOptions) => run(Mode.init, root, options))
 
 cli.help()

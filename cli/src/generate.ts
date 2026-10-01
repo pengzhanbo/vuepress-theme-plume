@@ -4,10 +4,10 @@ import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
 import spawn from 'nano-spawn'
-import { DeployType, Mode } from './constants.js'
+import { BUILD_SCRIPT_PACKAGES, DeployType, Mode } from './constants.js'
 import { createPackageJson } from './packageJson.js'
 import { createRender } from './render.js'
-import { getTemplate, readFiles, readJsonFile, writeFiles } from './utils/index.js'
+import { getPnpmMajorVersion, getTemplate, readFiles, readJsonFile, writeFiles } from './utils/index.js'
 
 /**
  * Generate VuePress project files
@@ -46,10 +46,7 @@ export async function generate(
   if (mode === Mode.create) {
     fileList.push(...await readFiles(getTemplate('common')))
     if (data.packageManager === 'pnpm') {
-      fileList.push({
-        filepath: 'pnpm-workspace.yaml',
-        content: 'shamefullyHoist: true\nshellEmulator: true\n',
-      })
+      fileList.push(await createPnpmWorkspaceFile())
     }
     if (data.packageManager === 'yarn') {
       const { output } = await spawn('yarn', ['--version'])
@@ -110,6 +107,34 @@ export async function generate(
 
   const output = mode === Mode.create ? path.join(cwd, data.root) : cwd
   return writeFiles(renderedFiles, output, options.force)
+}
+
+/**
+ * Create the `pnpm-workspace.yaml` file for the generated project.
+ *
+ * pnpm 11+ no longer reads configuration from the `pnpm` field of
+ * `package.json`, and consolidates the build script allowlist into the
+ * `allowBuilds` field of `pnpm-workspace.yaml`. Lower versions keep using
+ * `package.json#pnpm.onlyBuiltDependencies` (see `createPackageJson`).
+ *
+ * 为生成工程创建 `pnpm-workspace.yaml`。
+ *
+ * pnpm 11+ 不再读取 `package.json` 的 `pnpm` 字段，并将构建脚本白名单统一为
+ * `pnpm-workspace.yaml` 的 `allowBuilds` 字段。更低版本仍使用
+ * `package.json#pnpm.onlyBuiltDependencies`（见 `createPackageJson`）。
+ *
+ * @returns File object with pnpm-workspace.yaml content / 包含 pnpm-workspace.yaml 内容的文件对象
+ */
+async function createPnpmWorkspaceFile(): Promise<File> {
+  let content = 'shamefullyHoist: true\nshellEmulator: true\n'
+
+  if (await getPnpmMajorVersion() >= 11) {
+    content += `\nallowBuilds:\n${
+      BUILD_SCRIPT_PACKAGES.map(pkg => `  '${pkg}': true`).join('\n')
+    }\n`
+  }
+
+  return { filepath: 'pnpm-workspace.yaml', content }
 }
 
 /**

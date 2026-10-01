@@ -1,12 +1,50 @@
-import type { Bundler, Langs, Locale, PromptResult } from './types.js'
+import type { Bundler, CliOptions, Langs, Locale, PromptResult } from './types.js'
 import path from 'node:path'
 import process from 'node:process'
 import { cancel, confirm, group, select, text } from '@clack/prompts'
 import osLocale from 'os-locale'
-import { bundlerOptions, deployOptions, DeployType, languageOptions, Mode } from './constants.js'
+import { bundlerOptions, defaultAnswers, deployOptions, DeployType, languageOptions, Mode } from './constants.js'
 import { setLang, t } from './translate.js'
 
 const REG_DIR_CHAR = /[<>:"\\|?*[\]]/
+
+/**
+ * Whether the CLI can interact with the user.
+ *
+ * Both stdout and stdin must be a TTY; otherwise `@clack/prompts` would either
+ * throw or block forever (in CI, containers and piped shells).
+ *
+ * CLI 是否能够与用户交互。
+ *
+ * stdout 与 stdin 都必须是 TTY，否则 `@clack/prompts` 会抛出错误或永久阻塞
+ * （CI、容器与管道环境中）。
+ *
+ * @returns Whether an interactive terminal is available / 是否存在可用的交互式终端
+ */
+function isInteractive(): boolean {
+  return Boolean(process.stdout.isTTY && process.stdin.isTTY)
+}
+
+/**
+ * Resolve the display language from the operating system locale.
+ *
+ * Unlike the interactive flow, this never prompts: unknown locales fall back to
+ * English.
+ *
+ * 从操作系统语言环境解析显示语言。
+ *
+ * 与交互流程不同，此处不会发起询问：未知语言回退为英文。
+ *
+ * @returns Resolved language / 解析后的语言
+ */
+function resolveLangByLocale(): Langs {
+  const locale = osLocale()
+
+  if (locale === 'zh-CN' || locale === 'zh-Hans')
+    return setLang('zh-CN')
+
+  return setLang('en-US')
+}
 
 /**
  * Validate the project root path.
@@ -39,15 +77,61 @@ export function validateRoot(value?: string): keyof Locale | undefined {
 }
 
 /**
+ * Create the prompt result for the non-interactive mode.
+ *
+ * All values come from the documented defaults, so `--yes` and the automatic
+ * non-TTY fallback behave identically.
+ *
+ * 构造非交互模式的提示结果。
+ *
+ * 所有取值均来自约定的默认值，因此 `--yes` 与自动降级的非 TTY 行为完全一致。
+ *
+ * @param mode - Operation mode / 操作模式
+ * @param root - Root directory passed from the command line / 命令行传入的根目录
+ * @returns Resolved prompt result / 解析后的提示结果
+ */
+function createDefaultResult(mode: Mode, root?: string): PromptResult {
+  return {
+    displayLang: resolveLangByLocale(),
+    root: root ?? (mode === Mode.init ? './docs' : './my-project'),
+    ...defaultAnswers,
+    git: mode === Mode.init ? false : defaultAnswers.git,
+    deploy: mode === Mode.init ? DeployType.custom : defaultAnswers.deploy,
+  }
+}
+
+/**
  * Prompt user for project configuration
+ *
+ * When `--yes` is passed, or when no interactive terminal is available, every
+ * prompt is skipped and the default answers are used instead.
  *
  * 提示用户输入项目配置
  *
+ * 传入 `--yes` 或不存在可交互终端时，会跳过全部提示并直接使用默认答案。
+ *
  * @param mode - Operation mode (init or create) / 操作模式（初始化或创建）
  * @param root - Optional root directory path / 可选的根目录路径
+ * @param options - CLI options / CLI 可选配置
  * @returns Resolved prompt result / 解析后的提示结果
  */
-export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
+export async function prompt(mode: Mode, root?: string, options: CliOptions = {}): Promise<PromptResult> {
+  // 非交互模式：`--yes` 显式指定，或当前环境没有可交互终端时自动降级。
+  // Non-interactive mode: requested by `--yes`, or degraded automatically when
+  // no interactive terminal is available.
+  if (options.yes || !isInteractive()) {
+    // 先解析出结果（同时确定显示语言），保证后续提示与校验错误使用同一语言。
+    // Resolve the result first (which also resolves the display language) so the
+    // notice and validation errors share the same language.
+    const result = createDefaultResult(mode, root)
+    const invalid = validateRoot(result.root)
+    if (invalid)
+      throw new Error(t(invalid))
+    if (!options.yes)
+      console.log(t('hint.nonInteractive'))
+    return result
+  }
+
   const result: PromptResult = await group({
     displayLang: async () => {
       // 从操作系统中获取语言
@@ -89,18 +173,18 @@ export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
 
     siteName: () => text({
       message: t('question.site.name'),
-      placeholder: 'My Vuepress Site',
-      defaultValue: 'My Vuepress Site',
+      placeholder: defaultAnswers.siteName,
+      defaultValue: defaultAnswers.siteName,
     }),
 
     siteDescription: () => text({
       message: t('question.site.description'),
-      defaultValue: '',
+      defaultValue: defaultAnswers.siteDescription,
     }),
 
     multiLanguage: () => confirm({
       message: t('question.multiLanguage'),
-      initialValue: false,
+      initialValue: defaultAnswers.multiLanguage,
     }),
 
     defaultLanguage: () => select<Langs>({
@@ -113,7 +197,7 @@ export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
         return true
       return await confirm({
         message: t('question.injectNpmScripts'),
-        initialValue: true,
+        initialValue: defaultAnswers.injectNpmScripts,
       })
     },
 
@@ -129,7 +213,7 @@ export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
       return await select<DeployType>({
         message: t('question.deploy'),
         options: deployOptions,
-        initialValue: DeployType.custom,
+        initialValue: defaultAnswers.deploy,
       })
     },
 
@@ -138,13 +222,13 @@ export async function prompt(mode: Mode, root?: string): Promise<PromptResult> {
         return false
       return confirm({
         message: t('question.git'),
-        initialValue: true,
+        initialValue: defaultAnswers.git,
       })
     },
 
     install: () => confirm({
       message: t('question.installDeps'),
-      initialValue: true,
+      initialValue: defaultAnswers.install,
     }),
   }, {
     onCancel: () => {

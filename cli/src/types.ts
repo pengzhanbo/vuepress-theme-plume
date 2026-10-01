@@ -129,6 +129,12 @@ export interface Locale {
    * 提示：已存在并被跳过的文件
    */
   'hint.files.skipped': string
+  /**
+   * Hint: Fallback to non-interactive mode
+   *
+   * 提示：降级为非交互模式
+   */
+  'hint.nonInteractive': string
 }
 
 /**
@@ -143,6 +149,27 @@ export interface CliOptions {
    * 是否覆盖已存在的文件
    */
   force?: boolean
+  /**
+   * Skip all prompts and use the default answers.
+   *
+   * The CLI also falls back to the non-interactive mode automatically when no
+   * interactive terminal is available.
+   *
+   * 跳过所有交互提示并使用默认答案。
+   *
+   * 当没有可用的交互式终端时，CLI 也会自动降级为非交互模式。
+   */
+  yes?: boolean
+  /**
+   * Whether to install dependencies after generating files.
+   *
+   * `--no-install` sets this to `false`; `true` by default.
+   *
+   * 生成文件后是否安装依赖。
+   *
+   * `--no-install` 会将其置为 `false`，默认为 `true`。
+   */
+  install?: boolean
 }
 
 /**

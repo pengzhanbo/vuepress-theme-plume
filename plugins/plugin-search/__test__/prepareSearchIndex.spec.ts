@@ -32,12 +32,17 @@ function makePage(overrides: Partial<Page> = {}): Page {
  * 构造一个仅用于建索引的伪 VuePress 应用，
  * 将 app.writeTemp 写入的内容保存在内存中以便断言。
  */
-function createFakeApp(pages: Page[] = []) {
+function createFakeApp(pages: Page[] = [], failWritesFor: Set<string> = new Set()) {
   const files = new Map<string, string>()
+  /** 记录成功写入的顺序，用于断言写放大优化是否生效。 */
+  const writes: string[] = []
   const app = {
     pages,
     env: { isBuild: false, isDev: true, isProd: false, isDebug: false },
     writeTemp: async (filePath: string, content: string) => {
+      if (failWritesFor.has(filePath))
+        throw new Error(`failed to write ${filePath}`)
+      writes.push(filePath)
       files.set(filePath, content)
     },
   } as unknown as App
@@ -54,7 +59,7 @@ function createFakeApp(pages: Page[] = []) {
     return JSON.parse(readIndexJSON(filename))
   }
 
-  return { app, readIndex, readIndexJSON }
+  return { app, readIndex, readIndexJSON, writes, failWritesFor }
 }
 
 describe('splitPageIntoSections', () => {
@@ -73,6 +78,26 @@ describe('splitPageIntoSections', () => {
       ['Page'],
       ['Page', 'A'],
       ['Page', 'A', 'B'],
+    ])
+  })
+
+  it('drops stale ancestors when heading levels jump back and forth', () => {
+    const html = [
+      '<h1><a href="#"><span>Page</span></a></h1>',
+      '<h2><a href="#a"><span>A</span></a></h2>',
+      '<h3><a href="#b"><span>B</span></a></h3>',
+      '<h2><a href="#a2"><span>A2</span></a></h2>',
+      '<h5><a href="#e"><span>E</span></a></h5>',
+      '<p>content e</p>',
+    ].join('\n')
+
+    // h5 的祖先链不应残留上一个分支的 h3 "B"。
+    expect([...splitPageIntoSections(html)].map(s => s.titles)).toEqual([
+      ['Page'],
+      ['Page', 'A'],
+      ['Page', 'A', 'B'],
+      ['Page', 'A2'],
+      ['Page', 'A2', 'E'],
     ])
   })
 
@@ -200,5 +225,67 @@ describe('tokenizer filtering regression', () => {
     expect(index.search('！')).toEqual([])
     // 英文查询命中英文文档，不与中文文档混淆。
     expect(index.search('hello').map(result => result.id)).toEqual(['/zh/b/'])
+  })
+})
+
+describe('searchable text truncation', () => {
+  it('drops content beyond the maximum indexed length', async () => {
+    const { app, readIndexJSON } = createFakeApp([
+      makePage({
+        path: '/long/',
+        // 前半段在阈值内，末尾的 tailword 超出 8000 字符边界。
+        contentRendered: `<p>headword ${'lorem '.repeat(1600)}tailword</p>`,
+      }),
+    ])
+
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+
+    const index = MiniSearch.loadJSON(readIndexJSON('searchBox-default.js'), {
+      fields: ['title', 'titles', 'text'],
+      storeFields: ['title', 'titles'],
+      searchOptions: { tokenize: createTokenizer('en') },
+    })
+
+    expect(index.search('headword').map(result => result.id)).toEqual(['/long/'])
+    expect(index.search('tailword')).toEqual([])
+  })
+})
+
+describe('dev write amplification', () => {
+  it('only rewrites the changed locale file and keeps index.js untouched', async () => {
+    const { app, writes } = createFakeApp([
+      makePage({ path: '/a/', filePathRelative: 'docs/a.md', contentRendered: '<p>hello</p>' }),
+    ])
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+    writes.length = 0
+
+    const updated = makePage({ path: '/a/', filePathRelative: 'docs/a.md', contentRendered: '<p>hello world</p>' })
+    await onSearchIndexUpdated(app, { page: updated, searchOptions: {}, isSearchable: undefined })
+
+    // 仅内容变化的 locale 文件被重写；index.js 的映射未变，无需重写。
+    expect(writes).toEqual([`${INDEX_DIR}searchBox-default.js`])
+  })
+
+  it('retries a write when the previous attempt failed', async () => {
+    const { app, writes, failWritesFor } = createFakeApp([
+      makePage({ path: '/a/', filePathRelative: 'docs/a.md', contentRendered: '<p>hello</p>' }),
+    ])
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+    writes.length = 0
+
+    const updated = makePage({ path: '/a/', filePathRelative: 'docs/a.md', contentRendered: '<p>hello world</p>' })
+    const localeFile = `${INDEX_DIR}searchBox-default.js`
+
+    // 写入失败时不得提交指纹，否则后续相同内容会被误判为已写入。
+    failWritesFor.add(localeFile)
+    await expect(
+      onSearchIndexUpdated(app, { page: updated, searchOptions: {}, isSearchable: undefined }),
+    ).rejects.toThrow()
+    expect(writes).toEqual([])
+
+    // 恢复写入后，相同内容应被重新写入而不是跳过。
+    failWritesFor.clear()
+    await onSearchIndexUpdated(app, { page: updated, searchOptions: {}, isSearchable: undefined })
+    expect(writes).toEqual([localeFile])
   })
 })

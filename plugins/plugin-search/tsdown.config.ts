@@ -43,13 +43,6 @@ export default defineConfig(() => {
 
   if (argv.client) {
     options.push(...[
-      // client/utils/index.js
-      {
-        ...DEFAULT_OPTIONS,
-        entry: ['./src/client/utils/index.ts'],
-        outDir: './dist/client/utils',
-        deps: { neverBundle: clientExternal },
-      },
       // client/composables/index.js
       {
         ...DEFAULT_OPTIONS,

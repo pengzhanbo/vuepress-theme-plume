@@ -60,7 +60,7 @@ async function resolveEncrypt(encrypt?: EncryptOptions): Promise<EncryptConfig> 
     : ''
 
   const encryptRules = objectKeys(encrypt?.rules ?? {}).reduce((acc, key) => {
-    acc[encodeData(key)] = encrypt!.rules![key]
+    acc[encodeData(`${key}`)] = encrypt!.rules![key]
     return acc
   }, {} as Record<string, string | string[]>)
 
@@ -100,6 +100,7 @@ export function isEncryptPage(page: Page<ThemePageData>, encrypt?: EncryptOption
   const rules = encrypt.rules ?? {}
 
   return objectKeys(rules).some((match) => {
+    match = `${match}`
     const relativePath = page.data.filePathRelative || ''
     if (match[0] === '^') {
       const regex = new RegExp(match)

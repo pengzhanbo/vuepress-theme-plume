@@ -50,7 +50,7 @@ export function setupPlugins(
   if (readingTime !== false) {
     plugins.push(readingTimePlugin({
       locales: {
-        '/zh/': { word: '$word 字', less1Minute: '小于 1 分钟', time: '约 $time 分钟' },
+        '/zh/': { word: '$word 字', subMinute: '小于 1 分钟', time: '约 $time 分钟' },
       },
       ...readingTime,
     }))

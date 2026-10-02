@@ -52,7 +52,7 @@ interface ReadingTimePluginLocaleData {
   /**
    * Text for less than one minute
    */
-  less1Minute: string
+  subMinute: string
 
   /**
    * Time template

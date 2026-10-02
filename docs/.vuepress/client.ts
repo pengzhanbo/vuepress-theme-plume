@@ -6,7 +6,7 @@ import VPPostItem from 'vuepress-theme-plume/components/Posts/VPPostItem.vue'
 import PageContextMenu from 'vuepress-theme-plume/features/PageContextMenu.vue'
 import { defineClientConfig } from 'vuepress/client'
 import AsideNav from '~/components/AsideNav.vue'
-import { setupThemeColors } from '~/composables/theme-colors.js'
+import { setupThemeColors } from './themes/composables/theme-colors'
 
 defineMermaidConfig({
   class: {

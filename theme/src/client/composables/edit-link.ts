@@ -29,7 +29,7 @@ export function useEditLink(): ComputedRef<null | NavItemWithLink> {
       docsRepo,
       docsBranch,
       docsDir,
-      filePathRelative: page.value.filePathRelative,
+      filePathRelative: page.value.filePathRelative!,
       editLinkPattern:
         frontmatter.value.editLinkPattern ?? theme.value.editLinkPattern,
     })

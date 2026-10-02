@@ -1,6 +1,7 @@
 import type { Nullable } from '@pengzhanbo/utils'
 import type { GitPluginPageData } from '@vuepress/plugin-git'
 import type { ReadingTime } from '@vuepress/plugin-reading-time'
+import type { PageData } from 'vuepress'
 import type { PostsCategoryItem } from './features/index.js'
 
 /**
@@ -10,7 +11,7 @@ import type { PostsCategoryItem } from './features/index.js'
  * 主题页面数据接口
  * 扩展 GitPluginPageData，添加主题特定的属性
  */
-export interface ThemePageData extends GitPluginPageData {
+export interface ThemePageData extends GitPluginPageData, PageData {
   /**
    * Page layout type
    * 页面布局类型

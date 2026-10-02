@@ -73,7 +73,7 @@ export function resolveEditLink({
   docsRepo: string
   docsBranch: string
   docsDir: string
-  filePathRelative: string | null
+  filePathRelative: string | undefined
   editLinkPattern?: string
 }): string | null {
   if (!filePathRelative)

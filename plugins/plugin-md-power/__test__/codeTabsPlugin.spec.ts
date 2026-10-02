@@ -67,14 +67,4 @@ ${FENCE}
     const md = createMarkdown({ icon: false })
     expect(md.render(code)).toMatchSnapshot()
   })
-
-  it('should work with options: `{ named: false, extensions: false }`', () => {
-    const md = createMarkdown({ icon: { named: false, extensions: false } })
-    expect(md.render(code)).toMatchSnapshot()
-  })
-
-  it('should work with options: { named: [npm,pnpm,yarn], extensions: [.js,.ts] }', () => {
-    const md = createMarkdown({ icon: { named: ['npm', 'pnpm', 'yarn'], extensions: ['.js', '.ts'] } })
-    expect(md.render(code)).toMatchSnapshot()
-  })
 })

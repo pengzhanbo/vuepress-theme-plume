@@ -14,6 +14,12 @@
   "bugs": {
     "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
   },
+  "keywords": [
+    "VuePress",
+    "vuepress plugin",
+    "markdown power",
+    "vuepress-plugin-md-power"
+  ],
   "exports": {
     ".": {
       "types": "./dist/node/index.d.ts",
@@ -46,7 +52,7 @@
     "hls.js": "catalog:peer",
     "less": "catalog:dev",
     "markdown-it": "catalog:dev",
-    "mpegts.js": "^1.7.3",
+    "mpegts.js": "catalog:peer",
     "pyodide": "catalog:peer",
     "sass": "catalog:peer",
     "sass-embedded": "catalog:peer",
@@ -125,11 +131,5 @@
   "publishConfig": {
     "access": "public",
     "provenance": true
-  },
-  "keyword": [
-    "VuePress",
-    "vuepress plugin",
-    "markdown power",
-    "vuepress-plugin-md-power"
-  ]
+  }
 }

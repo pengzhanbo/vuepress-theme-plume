@@ -14,6 +14,12 @@
   "bugs": {
     "url": "https://github.com/pengzhanbo/vuepress-theme-plume/issues"
   },
+  "keywords": [
+    "VuePress",
+    "vuepress plugin",
+    "mini search",
+    "vuepress-plugin-search"
+  ],
   "exports": {
     ".": {
       "types": "./dist/node/index.d.ts",
@@ -54,11 +60,5 @@
   "publishConfig": {
     "access": "public",
     "provenance": true
-  },
-  "keyword": [
-    "VuePress",
-    "vuepress plugin",
-    "mini search",
-    "vuepress-plugin-search"
-  ]
+  }
 }

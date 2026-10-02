@@ -11,7 +11,7 @@ You can configure it in either `.vuepress/config.ts` or `.vuepress/plume.config.
 
 When a field description includes the following statement, it indicates that the field is not supported for configuration in `.vuepress/plume.config.ts`:
 
-::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
 :::
 
 For fields without the above declaration, you can configure them in either `.vuepress/config.ts`
@@ -57,9 +57,9 @@ export default defineThemeConfig({
 
   Custom path to the theme configuration file.
 
-  Refer to [Theme Config File `plume.config.js`](./intro.md#theme-config-file) for more information.
+  Refer to [Theme Config File `plume.config.ts`](./intro.md#theme-config-file) for more information.
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### plugins
@@ -73,7 +73,7 @@ export default defineThemeConfig({
   The plugins used by the theme are configured by default. In most cases, modification is not required.
   For detailed customization, please refer to [this documentation](./plugins/README.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### markdown <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -84,7 +84,7 @@ export default defineThemeConfig({
 
   Markdown feature configuration. Refer to [this documentation](./markdown.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### codeHighlighter <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -95,7 +95,7 @@ export default defineThemeConfig({
 
   Code highlighting configuration. Refer to [this documentation](../guide/code/intro.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### search <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -106,7 +106,7 @@ export default defineThemeConfig({
 
   Search configuration. Refer to [this documentation](../guide/features/search.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### comment <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -117,7 +117,7 @@ export default defineThemeConfig({
 
   Comment configuration. Refer to [this documentation](../guide/features/comments.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### watermark <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -128,7 +128,7 @@ export default defineThemeConfig({
 
   Watermark configuration. Refer to [this documentation](../guide/features/watermark.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### readingTime <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -139,7 +139,7 @@ export default defineThemeConfig({
 
   Reading time configuration. Refer to [this documentation](./plugins/reading-time.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### copyCode <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -150,7 +150,7 @@ export default defineThemeConfig({
 
   Copy code configuration. Refer to [this documentation](../guide/code/v-copy-code.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### replaceAssets <Badge type="tip" text="1.0.0-rc.139 +" />
@@ -161,7 +161,7 @@ export default defineThemeConfig({
 
   Replace assets configuration. Refer to [this documentation](../guide/features/replace-assets.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### hostname
@@ -174,7 +174,7 @@ export default defineThemeConfig({
 
   When `hostname` is configured to a valid domain, the theme will generate `sitemap` and SEO-related content.
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### autoFrontmatter
@@ -231,7 +231,7 @@ export default defineThemeConfig({
     more suitable for projects with substantial content.
 
   ::: warning
-  This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
 
   For the cache to take effect, you should **remove** the `--clean-cache` parameter from the
   `vuepress dev` development server startup script in your `package.json`.
@@ -261,7 +261,7 @@ export default defineThemeConfig({
 - **Default:** `true`
 - **Details:** Whether to enable the edit link.
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### lastUpdated
@@ -284,7 +284,7 @@ interface LastUpdatedOptions {
 }
 ```
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### contributors
@@ -295,7 +295,7 @@ interface LastUpdatedOptions {
 
   For more configuration, please refer to [this documentation](../guide/features/contributors.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### changelog
@@ -306,7 +306,7 @@ interface LastUpdatedOptions {
 
   For more configuration, please refer to [this documentation](../guide/features/changelog.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.js`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
 ### locales

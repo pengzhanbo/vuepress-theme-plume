@@ -303,7 +303,7 @@ export async function onSearchIndexRemoved(
  */
 async function writeTemp(app: App) {
   const records: string[] = []
-  const promises: Promise<string>[] = []
+  const promises: Promise<void>[] = []
 
   // 仅写入内容发生变化的文件，避免 dev 模式下每次页面更新重写所有 locale。
   // Only write files whose content changed, avoiding rewriting every locale on each update.
@@ -311,8 +311,15 @@ async function writeTemp(app: App) {
     const filePath = `${SEARCH_INDEX_DIR}${filename}`
     if (writtenIndexFingerprints.get(filePath) === content)
       return
-    writtenIndexFingerprints.set(filePath, content)
-    promises.push(app.writeTemp(filePath, content))
+    // 仅在写入成功后提交指纹：写入失败时保留旧指纹，使后续更新可以重试，
+    // 避免临时索引文件一直停留在旧内容。
+    //
+    // Commit the fingerprint only after a successful write. On failure the old
+    // fingerprint is kept so a later update retries instead of silently skipping,
+    // which would leave the temp index file stuck with stale content.
+    promises.push(app.writeTemp(filePath, content).then(() => {
+      writtenIndexFingerprints.set(filePath, content)
+    }))
   }
 
   for (const [locale] of indexByLocales) {

@@ -330,7 +330,10 @@ onKeyStroke('Enter', (e) => {
 
   if (selectedPackage) {
     navigatingToResult = true
-    router.push(selectedPackage.id)
+    // 用 replace 顶替挂载时 pushState 的临时历史条目，避免从结果页返回时多一次 Back。
+    // Replace the temporary history entry pushed on mount, so returning from the
+    // result page does not require an extra Back press.
+    router.replace(selectedPackage.id)
     emit('close')
   }
 })
@@ -397,7 +400,9 @@ function formMarkRegex(terms: Set<string>) {
 function selectedClick(e: MouseEvent, p: SearchResult & Result) {
   e.preventDefault()
   navigatingToResult = true
-  router.push(p.id)
+  // 同 Enter 键路径：replace 消费掉挂载时压入的临时历史条目。
+  // Same as the Enter path: replace consumes the temp entry pushed on mount.
+  router.replace(p.id)
   emit('close')
 }
 </script>

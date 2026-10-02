@@ -32,14 +32,16 @@ function makePage(overrides: Partial<Page> = {}): Page {
  * 构造一个仅用于建索引的伪 VuePress 应用，
  * 将 app.writeTemp 写入的内容保存在内存中以便断言。
  */
-function createFakeApp(pages: Page[] = []) {
+function createFakeApp(pages: Page[] = [], failWritesFor: Set<string> = new Set()) {
   const files = new Map<string, string>()
-  /** 记录写入顺序，用于断言写放大优化是否生效。 */
+  /** 记录成功写入的顺序，用于断言写放大优化是否生效。 */
   const writes: string[] = []
   const app = {
     pages,
     env: { isBuild: false, isDev: true, isProd: false, isDebug: false },
     writeTemp: async (filePath: string, content: string) => {
+      if (failWritesFor.has(filePath))
+        throw new Error(`failed to write ${filePath}`)
       writes.push(filePath)
       files.set(filePath, content)
     },
@@ -57,7 +59,7 @@ function createFakeApp(pages: Page[] = []) {
     return JSON.parse(readIndexJSON(filename))
   }
 
-  return { app, readIndex, readIndexJSON, writes }
+  return { app, readIndex, readIndexJSON, writes, failWritesFor }
 }
 
 describe('splitPageIntoSections', () => {
@@ -262,5 +264,28 @@ describe('dev write amplification', () => {
 
     // 仅内容变化的 locale 文件被重写；index.js 的映射未变，无需重写。
     expect(writes).toEqual([`${INDEX_DIR}searchBox-default.js`])
+  })
+
+  it('retries a write when the previous attempt failed', async () => {
+    const { app, writes, failWritesFor } = createFakeApp([
+      makePage({ path: '/a/', filePathRelative: 'docs/a.md', contentRendered: '<p>hello</p>' }),
+    ])
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+    writes.length = 0
+
+    const updated = makePage({ path: '/a/', filePathRelative: 'docs/a.md', contentRendered: '<p>hello world</p>' })
+    const localeFile = `${INDEX_DIR}searchBox-default.js`
+
+    // 写入失败时不得提交指纹，否则后续相同内容会被误判为已写入。
+    failWritesFor.add(localeFile)
+    await expect(
+      onSearchIndexUpdated(app, { page: updated, searchOptions: {}, isSearchable: undefined }),
+    ).rejects.toThrow()
+    expect(writes).toEqual([])
+
+    // 恢复写入后，相同内容应被重新写入而不是跳过。
+    failWritesFor.clear()
+    await onSearchIndexUpdated(app, { page: updated, searchOptions: {}, isSearchable: undefined })
+    expect(writes).toEqual([localeFile])
   })
 })

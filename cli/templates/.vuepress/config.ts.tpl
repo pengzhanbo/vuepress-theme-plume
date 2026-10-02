@@ -33,15 +33,15 @@ export default defineUserConfig({
   locales: {
 <% it.locales.forEach(function (locale) {%>
     '<%= locale.path %>': {
-      title: '<%= it.siteName %>',
+      title: '<%~ it.escapedSiteName %>',
       lang: '<%= locale.lang %>',
-      description: '<%= it.siteDescription %>',
+      description: '<%~ it.escapedSiteDescription %>',
     },
 <% }) %>
   },
 <%  } else { %>
-  title: '<%= it.siteName %>',
-  description: '<%= it.siteDescription %>',
+  title: '<%~ it.escapedSiteName %>',
+  description: '<%~ it.escapedSiteDescription %>',
 <% } %>
 
   head: [

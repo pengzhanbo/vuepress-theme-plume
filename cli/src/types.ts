@@ -124,6 +124,12 @@ export interface Locale {
    */
   'hint.root.illegal': string
   /**
+   * Hint: Root directory containing whitespace
+   *
+   * 提示：根目录包含空白字符
+   */
+  'hint.root.whitespace': string
+  /**
    * Hint: Skipped existing files
    *
    * 提示：已存在并被跳过的文件

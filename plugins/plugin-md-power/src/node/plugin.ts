@@ -4,6 +4,7 @@ import type { MarkdownPowerPluginOptions } from '../shared/index.js'
 import { isPlainObject } from '@pengzhanbo/utils'
 import { addViteConfig, addViteOptimizeDepsInclude, addViteSsrNoExternal } from '@vuepress/helper'
 import { getFullLocaleConfig } from '@vuepress/helper'
+import { isPackageExists } from 'local-pkg'
 import { autoComponents } from './auto-components.js'
 import { extendsPageWithCodeTree } from './container/codeTree.js'
 import { containerPlugin } from './container/index.js'
@@ -72,10 +73,16 @@ export function markdownPowerPlugin(
 
       define: provideData(options, locales),
 
-      alias: (_, isServer) => ({ ...options.encrypt && (!isServer || app.env.isDev) ? { vue: 'vue/dist/vue.esm-bundler.js' } : undefined }),
+      alias: (_, isServer) => ({
+        ...options.encrypt && (!isServer || app.env.isDev) ? { vue: 'vue/dist/vue.esm-bundler.js' } : undefined,
+        mermaid: 'mermaid/dist/mermaid.esm.min.mjs',
+      }),
 
       async extendsBundlerOptions(bundlerOptions, app) {
         await autoComponents(bundlerOptions, app, options)
+
+        if (isPackageExists('mermaid'))
+          addViteOptimizeDepsInclude(bundlerOptions, app, ['mermaid'])
 
         if (options.abbr || options.annotation) {
           addViteOptimizeDepsInclude(bundlerOptions, app, ['@floating-ui/vue'])

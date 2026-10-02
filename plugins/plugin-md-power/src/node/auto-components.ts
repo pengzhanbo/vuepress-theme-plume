@@ -15,10 +15,17 @@ export async function autoComponents(
   const { resolvers, ...options } = components
   const componentsOptions: Options = {
     dts: app.dir.temp('components.d.ts'),
-    include: [/\.vue$/, /\.vue\?vue/, /\.vue\.[tj]sx?\?vue/, /\.md$/],
+    extensions: ['vue', 'md'],
+    include: [
+      /\.vue$/,
+      /\.vue\?vue/,
+      /\.vue\.[tj]sx?\?vue/,
+      /\.md$/,
+      /\.md\?vue/,
+    ],
     resolvers: [{
       type: 'component',
-      resolve: (name) => {
+      resolve: (name: string) => {
         const componentName = name.replace(COMPONENT_PREFIX, '')
         if (builtInComponents.includes(componentName)) {
           return { from: `vuepress-plugin-md-power/components/VP${componentName}.vue` }

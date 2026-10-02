@@ -58,11 +58,26 @@ interface IndexObject {
 /** Directory path for storing search index files / 存储搜索索引文件的目录路径 */
 const SEARCH_INDEX_DIR = 'internal/minisearchIndex/'
 
+/** Maximum length of the searchable text per section / 每个章节可索引文本的最大长度 */
+const MAX_SEARCHABLE_TEXT_LENGTH = 8000
+
 /** Map of locale paths to their MiniSearch instances / 语言路径到 MiniSearch 实例的映射 */
 const indexByLocales = new Map<string, MiniSearch<IndexObject>>()
 
 /** Cache for index objects keyed by the page's relative file path / 按页面相对文件路径缓存索引对象 */
 const indexCache = new Map<string, IndexObject[]>()
+
+/**
+ * Fingerprint of the last written index content, keyed by index file path.
+ *
+ * 上次写入索引内容的指纹，按索引文件路径索引。
+ *
+ * Dev mode rewrites the index on every page update. Comparing fingerprints
+ * avoids rewriting locale files whose serialized content did not change.
+ *
+ * 开发模式每次页面更新都会重写索引文件，比对指纹可避免重写内容未变化的语言文件。
+ */
+const writtenIndexFingerprints = new Map<string, string>()
 
 /**
  * Get or create a MiniSearch index for a specific locale.
@@ -148,6 +163,7 @@ export async function prepareSearchIndex({
   const start = performance.now()
   indexByLocales.clear()
   indexCache.clear()
+  writtenIndexFingerprints.clear()
 
   await pMap(app.pages, p => indexFile(p, searchOptions, isSearchable), {
     concurrency: 64,
@@ -288,26 +304,33 @@ export async function onSearchIndexRemoved(
 async function writeTemp(app: App) {
   const records: string[] = []
   const promises: Promise<string>[] = []
+
+  // 仅写入内容发生变化的文件，避免 dev 模式下每次页面更新重写所有 locale。
+  // Only write files whose content changed, avoiding rewriting every locale on each update.
+  const writeIfChanged = (filename: string, content: string) => {
+    const filePath = `${SEARCH_INDEX_DIR}${filename}`
+    if (writtenIndexFingerprints.get(filePath) === content)
+      return
+    writtenIndexFingerprints.set(filePath, content)
+    promises.push(app.writeTemp(filePath, content))
+  }
+
   for (const [locale] of indexByLocales) {
     const index = indexByLocales.get(locale)!
     const localeName = locale.replace(/^\/|\/$/g, '').replace(/\//g, '_') || 'default'
     const filename = `searchBox-${localeName}.js`
     records.push(`${JSON.stringify(locale)}: () => import('@${SEARCH_INDEX_DIR}${filename}')`)
-    promises.push(
-      app.writeTemp(
-        `${SEARCH_INDEX_DIR}${filename}`,
-        `export default ${JSON.stringify(
-          JSON.stringify(index) ?? {},
-        )}`,
-      ),
+    writeIfChanged(
+      filename,
+      `export default ${JSON.stringify(JSON.stringify(index) ?? {})}`,
     )
   }
-  promises.push(
-    app.writeTemp(
-      `${SEARCH_INDEX_DIR}index.js`,
-      `export const searchIndex = {${records.join(',')}}${app.env.isDev ? `\n${genHmrCode('searchIndex')}` : ''}`,
-    ),
+
+  writeIfChanged(
+    'index.js',
+    `export const searchIndex = {${records.join(',')}}${app.env.isDev ? `\n${genHmrCode('searchIndex')}` : ''}`,
   )
+
   await Promise.all(promises)
 }
 
@@ -345,7 +368,11 @@ async function indexFile(page: Page, options: SearchIndexOptions['searchOptions'
     if (cache.length)
       index.removeAll(cache)
   }
-  catch {}
+  catch (error) {
+    // 不中断重建流程，但必须告警，避免 removeAll 失败后留下脏条目而无从察觉。
+    // Do not abort the rebuild, but warn so a failed removeAll is not silent.
+    logger.error(`${colors.green('[@vuepress-plume/plugin-search]')} failed to remove stale index entries:`, error)
+  }
 
   // 清空缓存后重新填充，避免已移除的旧条目在缓存中累积。
   // Reset the cache before re-adding, avoiding accumulation of removed entries.
@@ -439,10 +466,15 @@ export function* splitPageIntoSections(html: string) {
     if (!title || !content)
       continue
 
-    if (level === 0)
+    if (level === 0) {
       parentTitles = [title]
-    else
+    }
+    else {
+      // 截断层级跳跃（如 h2 → h4）残留的祖先，避免子标题错误继承陈旧层级。
+      // Truncate stale ancestors on heading level jumps (e.g. h2 -> h4).
+      parentTitles.length = level
       parentTitles[level] = title
+    }
 
     let titles = parentTitles.slice(0, level)
     titles[level] = title
@@ -461,7 +493,11 @@ export function* splitPageIntoSections(html: string) {
  */
 function getSearchableText(content: string) {
   content = clearHtmlTags(content)
-  return content
+  // 截断超长文本，避免长文 / 大站点索引体积过大。
+  // Truncate long text to keep the index size bounded.
+  return content.length > MAX_SEARCHABLE_TEXT_LENGTH
+    ? content.slice(0, MAX_SEARCHABLE_TEXT_LENGTH)
+    : content
 }
 
 /**

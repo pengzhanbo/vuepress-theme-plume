@@ -27,7 +27,6 @@ import {
 import { usePageLang, useRouteLocale, useRouter, withBase } from 'vuepress/client'
 import { createTokenizer } from '../../shared/index.js'
 import { useLocale, useSearchIndex } from '../composables/index.js'
-import { LRUCache } from '../utils/index.js'
 import BackIcon from './icons/BackIcon.vue'
 import ClearIcon from './icons/ClearIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
@@ -53,7 +52,6 @@ const searchIndexData = useSearchIndex()
 interface Result {
   title: string
   titles: string[]
-  text?: string
 }
 
 const { activate } = useFocusTrap(el, { immediate: true })
@@ -162,16 +160,9 @@ const mark = computedAsync(async () => {
   return markRaw(new Mark(resultsEl.value))
 }, null)
 
-const cache = new LRUCache<string, Map<string, string>>(64) // 64 files
-
 watchDebounced(
   () => [searchIndex.value, filterText.value] as const,
-  async ([index, filterTextValue], old, onCleanup) => {
-    if (old?.[0] !== index) {
-      // in case of hmr
-      cache.clear()
-    }
-
+  async ([index, filterTextValue], _old, onCleanup) => {
     let canceled = false
     onCleanup(() => {
       canceled = true
@@ -191,16 +182,10 @@ watchDebounced(
     enableNoResults.value = true
 
     const terms = new Set<string>()
-
-    results.value = results.value.map((r) => {
-      const [id, anchor] = r.id.split('#')
-      const map = cache.get(id)
-      const text = map?.get(anchor) ?? ''
-      for (const term in r.match)
+    for (const result of results.value) {
+      for (const term in result.match)
         terms.add(term)
-
-      return { ...r, text }
-    })
+    }
 
     await nextTick()
     if (canceled)
@@ -306,6 +291,30 @@ onKeyStroke(['n', 'N'], (event) => {
 
 const router = useRouter()
 
+/**
+ * Whether the browser back button already closed the search box.
+ *
+ * 浏览器后退键是否已关闭搜索框。
+ *
+ * When true the extra history entry created on mount has been consumed, so the
+ * unmount handler must not roll history back again.
+ *
+ * 为 true 时说明挂载时压入的额外历史条目已被消费，卸载时不应再回退历史。
+ */
+let closedByPopstate = false
+
+/**
+ * Whether the search box is being closed because a result is being opened.
+ *
+ * 搜索框是否因跳转到搜索结果而关闭。
+ *
+ * In that case the URL must stay on the target page, so history must not be
+ * rolled back on unmount.
+ *
+ * 此时 URL 必须停留在目标页面，卸载时不能回退历史。
+ */
+let navigatingToResult = false
+
 onKeyStroke('Enter', (e) => {
   if (e.isComposing)
     return
@@ -320,6 +329,7 @@ onKeyStroke('Enter', (e) => {
   }
 
   if (selectedPackage) {
+    navigatingToResult = true
     router.push(selectedPackage.id)
     emit('close')
   }
@@ -338,6 +348,7 @@ onMounted(() => {
 
 useEventListener('popstate', (event) => {
   event.preventDefault()
+  closedByPopstate = true
   emit('close')
 })
 
@@ -353,6 +364,15 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   isLocked.value = false
+  // 配对挂载时的 pushState，避免反复开关搜索框累积历史条目。
+  // 若该条目已被浏览器后退键（popstate）消费，或正在跳转到搜索结果，则不能回退。
+  //
+  // Pair the pushState made on mount so repeated open/close does not pile up
+  // history entries. Skip the rollback when the entry was already consumed by
+  // the browser back button (popstate), or when opening a result (the URL must
+  // stay on the target page).
+  if (!closedByPopstate && !navigatingToResult)
+    window.history.back()
 })
 
 function resetSearch() {
@@ -376,6 +396,7 @@ function formMarkRegex(terms: Set<string>) {
 
 function selectedClick(e: MouseEvent, p: SearchResult & Result) {
   e.preventDefault()
+  navigatingToResult = true
   router.push(p.id)
   emit('close')
 }
@@ -389,7 +410,7 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
       :aria-owns="results?.length ? 'localsearch-list' : undefined"
       aria-expanded="true"
       aria-haspopup="listbox"
-      aria-labelledby="mini-search-label"
+      aria-labelledby="localsearch-label"
       class="VPLocalSearchBox"
     >
       <div class="backdrop" @click="$emit('close')" />

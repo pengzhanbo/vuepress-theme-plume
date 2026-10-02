@@ -1,4 +1,5 @@
 import type { App, Page } from 'vuepress/core'
+import MiniSearch from 'minisearch'
 import { describe, expect, it } from 'vitest'
 import {
   clearHtmlTags,
@@ -8,6 +9,7 @@ import {
   prepareSearchIndex,
   splitPageIntoSections,
 } from '../src/node/prepareSearchIndex.js'
+import { createTokenizer } from '../src/shared/index.js'
 
 /** 索引输出目录，与 prepareSearchIndex.ts 内部常量保持一致。 */
 const INDEX_DIR = 'internal/minisearchIndex/'
@@ -40,15 +42,19 @@ function createFakeApp(pages: Page[] = []) {
     },
   } as unknown as App
 
-  function readIndex(filename: string) {
+  function readIndexJSON(filename: string) {
     const raw = files.get(`${INDEX_DIR}${filename}`)
     if (!raw)
       throw new Error(`missing index file: ${filename}`)
-    // 生成的内容形如 `export default "<json>"`，需要解析两次才能得到索引对象。
-    return JSON.parse(JSON.parse(raw.slice('export default '.length)))
+    // 生成的内容形如 `export default "<json>"`，取回其中的 JSON 字符串。
+    return JSON.parse(raw.slice('export default '.length)) as string
   }
 
-  return { app, readIndex }
+  function readIndex(filename: string) {
+    return JSON.parse(readIndexJSON(filename))
+  }
+
+  return { app, readIndex, readIndexJSON }
 }
 
 describe('splitPageIntoSections', () => {
@@ -134,5 +140,65 @@ describe('incremental index updates', () => {
 
     await onSearchIndexRemoved(app, { page: updated, searchOptions: {}, isSearchable: undefined })
     expect(readIndex('searchBox-default.js').documentCount).toBe(0)
+  })
+})
+
+describe('tokenizer filtering regression', () => {
+  it('does not return documents that only match whitespace tokens', async () => {
+    const { app, readIndexJSON } = createFakeApp([
+      makePage({ path: '/a/', filePathRelative: 'docs/a.md', contentRendered: '<p>hello world foo</p>' }),
+      makePage({ path: '/b/', filePathRelative: 'docs/b.md', contentRendered: '<p>再见 bar baz</p>' }),
+    ])
+
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+
+    const index = MiniSearch.loadJSON(readIndexJSON('searchBox-default.js'), {
+      fields: ['title', 'titles', 'text'],
+      storeFields: ['title', 'titles'],
+      searchOptions: { tokenize: createTokenizer('en') },
+    })
+
+    // 回归：查询词包含空格时，只命中真正含 "hello"/"world" 的文档。
+    expect(index.search('hello world').map(result => result.id)).toEqual(['/a/'])
+    // 纯空格查询不应命中任何文档。
+    expect(index.search(' ')).toEqual([])
+  })
+
+  it.skipIf(typeof Intl.Segmenter !== 'function')('matches Chinese words and ignores CJK punctuation', async () => {
+    const { app, readIndexJSON } = createFakeApp([
+      makePage({
+        path: '/zh/a/',
+        pathLocale: '/zh/',
+        lang: 'zh',
+        filePathRelative: 'docs/zh/a.md',
+        title: '指南',
+        contentRendered: '<p>你好，世界！欢迎使用。</p>',
+      }),
+      makePage({
+        path: '/zh/b/',
+        pathLocale: '/zh/',
+        lang: 'zh',
+        filePathRelative: 'docs/zh/b.md',
+        title: '指南',
+        contentRendered: '<p>hello world</p>',
+      }),
+    ])
+
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+
+    const index = MiniSearch.loadJSON(readIndexJSON('searchBox-zh.js'), {
+      fields: ['title', 'titles', 'text'],
+      storeFields: ['title', 'titles'],
+      searchOptions: { tokenize: createTokenizer('zh') },
+    })
+
+    // 中文整词查询命中包含该词的中文文档。
+    expect(index.search('你好').map(result => result.id)).toEqual(['/zh/a/'])
+    expect(index.search('欢迎').map(result => result.id)).toEqual(['/zh/a/'])
+    // 中文标点查询不应命中任何文档（修复前会因标点词元产生假阳性）。
+    expect(index.search('，')).toEqual([])
+    expect(index.search('！')).toEqual([])
+    // 英文查询命中英文文档，不与中文文档混淆。
+    expect(index.search('hello').map(result => result.id)).toEqual(['/zh/b/'])
   })
 })

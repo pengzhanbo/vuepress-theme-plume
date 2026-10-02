@@ -30,7 +30,7 @@ exports[`fileTreePlugin > should work with default options 1`] = `
 <template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-git" /></template>
 </VPFileTreeNode>
 <VPFileTreeNode type="file" filename="package.json" :level="0">
-<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-npm" /></template>
+<template #icon><VPIcon provider="iconify" name="vscode-icons:file-type-node" /></template>
 </VPFileTreeNode></div>
 <div class="vp-file-tree"><p class="vp-file-tree-title">files</p><VPCopyButton text="eJzT43o0Zc6jKQ1ApFBclAzkNSkoKCDEsooxhMpKU+FiU6BiycUgdTBekKuji6+rXm4KAKLWLVo=" encode aria-label="Copy" data-copied="Copied" /><VPFileTreeNode expanded type="folder" filename="src" :level="0">
 <template #icon><VPIcon provider="iconify" name="vscode-icons:folder-type-src" /></template><VPFileTreeNode expanded type="folder" filename="js" :level="1">

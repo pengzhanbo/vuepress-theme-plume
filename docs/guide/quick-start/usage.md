@@ -145,7 +145,7 @@ cd open-source        # 进入目标目录
   .cache
   ```
 
-  @tab sh
+  @tab shell
 
   ```sh
   echo 'node_modules' >> .gitignore

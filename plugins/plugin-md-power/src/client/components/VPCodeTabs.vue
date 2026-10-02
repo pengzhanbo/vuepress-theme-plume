@@ -124,6 +124,8 @@ function onTabNavClick(index: number): void {
 
 <style>
 .vp-code-tabs-nav {
+  display: flex;
+  align-items: center;
   padding: 0 12px;
   margin: 16px 0 0;
   overflow: auto hidden;
@@ -157,8 +159,9 @@ function onTabNavClick(index: number): void {
 .vp-code-tab-nav {
   position: relative;
   display: inline-flex;
-  gap: 4px;
+  gap: 0 4px;
   align-items: center;
+  height: 49px;
   padding: 0 12px;
   font-size: 14px;
   font-weight: 500;

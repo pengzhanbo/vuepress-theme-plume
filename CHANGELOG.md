@@ -1,3 +1,33 @@
+# [1.0.0-rc.212](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.211...v1.0.0-rc.212) (2026-10-02)
+
+### Bug Fixes
+
+* fix hydration mismatch ([#1028](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1028)) ([33376e4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/33376e41bfc27a9e4a17755f62f261c65caedc2e))
+* fix memory leaks and SSR hydration ([#1023](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1023)) ([a31872e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a31872e15c6b8a660c3e65574fedee1cd7b5d042))
+* fix the XSS vulnerability and apply HTML escaping to all user-controllable attributes ([#1017](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1017)) ([7611ec2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7611ec20e8aca0f49222b686c00839c0c8a5d748))
+* fix`demo` container build process may hang indefinitely ([#1018](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1018)) ([7211a50](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7211a50566c23af37100ebcf78e1697b5e749466))
+* **plugin-md-power:** fix nested list causing container plugin parsing error ([#1024](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1024)) ([7d2cc4a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7d2cc4ab409751880af312a40de55b65d3790004))
+* **plugin-md-power:** fix path escape for `demo` and `code-tree` ([#1016](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1016)) ([bef3649](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bef36499d7a2a004fadbd54a84d952bdfbcb2e2c))
+* **plugin-md-power:** match the caniuse syntax that has no space before the braces ([#1006](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1006)) ([56e6d1b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/56e6d1b7f07d4362b994639e8c63331bfb43cae8))
+* **theme:** fix collection parsing error in breadcrumb ([#1013](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1013)) ([356c403](https://github.com/pengzhanbo/vuepress-theme-plume/commit/356c403656cd0dd3f14f130a60e18e61fb7d442f))
+* **theme:** fix null value exceptions in the sidebar and reading assistance components ([#1022](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1022)) ([af7bcaa](https://github.com/pengzhanbo/vuepress-theme-plume/commit/af7bcaad7c003d37632f32f39548257d0def3ef9))
+
+### Features
+
+* **cli:** add support for non-interactive mode and improve interactive prompts ([#1027](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1027)) ([a684b52](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a684b52a536ceb745aa8e906e8c608cc5ddc5dcb))
+* **cli:** improve args validate ([#1020](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1020)) ([277cad9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/277cad9e6f779d7b39e48941a3efb498c19163fd))
+* migrate built-in icon-set to `find-file-icon` ([#1015](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1015)) ([7d2add9](https://github.com/pengzhanbo/vuepress-theme-plume/commit/7d2add9b2f427d7d6535d3913854923231bf8517))
+* **plugin-md-power:** improve `demo` container, use `srcdoc` inject html ([#1019](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1019)) ([442d3be](https://github.com/pengzhanbo/vuepress-theme-plume/commit/442d3be5cca58e04fa2e2729adddb96fccd683c1))
+* **plugin-md-power:** improve field container ([#1012](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1012)) ([c5ea1ee](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c5ea1ee041dbd4d301c5ed1ae2e74fbd8dd5df51))
+* **plugin-md-power:** revert pdf embed ([#1014](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1014)) ([f6d3076](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f6d3076dfb42fccec0a9f92aab06d073df76d048))
+* **plugin-search:** unify tokenization strategies on both ends to fix search mismatch ([#1025](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1025)) ([faca38e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/faca38e008ac286eb1a7c28c391d7f3c3e0cd00f))
+* **theme:** async load home hero effects components ([#1026](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1026)) ([61bb589](https://github.com/pengzhanbo/vuepress-theme-plume/commit/61bb5899419d035066b7a1e9ebd3ca0622e49ca5))
+* update vuepress upstream plugins to latest ([50c000c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/50c000c5c908a1a3e0fa7bff38fa59102ad0e41f))
+
+### Performance Improvements
+
+* optimize fallback handling for failures in Search and Repl ([#1021](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1021)) ([8dc81ad](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8dc81ad96fe77c7dea2b021126abe6d844e9e117))
+
 # [1.0.0-rc.211](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.210...v1.0.0-rc.211) (2026-09-17)
 
 ### Bug Fixes

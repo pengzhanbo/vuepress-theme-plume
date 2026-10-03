@@ -2,7 +2,7 @@ import type { CliOptions, ResolvedData } from './types.js'
 import path from 'node:path'
 import process from 'node:process'
 import { intro, outro, spinner } from '@clack/prompts'
-import { attemptAsync, sleep } from '@pengzhanbo/utils'
+import { attemptAsync } from '@pengzhanbo/utils'
 import spawn from 'nano-spawn'
 import colors from 'picocolors'
 import { Mode } from './constants.js'
@@ -50,10 +50,6 @@ export async function run(mode: Mode, root?: string, options: CliOptions = {}): 
     console.error(err)
     process.exit(1)
   }
-
-  // Delay for some time, I/O may not be completed yet,
-  // executing subsequent tasks at this point may cause issues.
-  await sleep(200)
 
   const cwd = path.join(process.cwd(), data.root)
 

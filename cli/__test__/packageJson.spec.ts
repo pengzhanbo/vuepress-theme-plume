@@ -86,6 +86,17 @@ describe('createPackageJson', () => {
     expect(json.scripts['vp-update']).toBe('npx vp-update')
   })
 
+  it('should keep the user declared typescript version in init mode', async () => {
+    const pkg = { devDependencies: { typescript: '~5.2.0' } }
+
+    const file = await createPackageJson(Mode.init, pkg, base)
+    const json = JSON.parse(file.content)
+
+    // 用户已声明 typescript 时不应被默认版本覆盖。
+    // A user declared typescript must not be overridden by the default version.
+    expect(json.devDependencies.typescript).toBe('~5.2.0')
+  })
+
   it('should skip script injection when injectNpmScripts is false', async () => {
     const file = await createPackageJson(Mode.init, {}, { ...base, injectNpmScripts: false })
     const json = JSON.parse(file.content)

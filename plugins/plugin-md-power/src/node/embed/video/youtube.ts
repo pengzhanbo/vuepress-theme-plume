@@ -8,7 +8,7 @@ import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
 import { timeToSeconds } from '../../utils/timeToSeconds.js'
-import { createEmbedRuleBlock } from '..//createEmbedRuleBlock.js'
+import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
 const YOUTUBE_LINK = 'https://www.youtube.com/embed/'
 

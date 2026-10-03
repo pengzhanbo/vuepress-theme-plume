@@ -56,12 +56,18 @@ export async function generate(
       const gitignorePath = path.join(cwd, '.gitignore')
       if (fs.existsSync(gitignorePath)) {
         const content = await fs.promises.readFile(gitignorePath, 'utf-8')
+        // 沿用用户文件既有的换行风格，避免在 CRLF 项目中混入 LF 行。
+        // Reuse the user's existing line ending so CRLF projects do not end up
+        // with mixed line endings.
+        const eol = content.includes('\r\n') ? '\r\n' : '\n'
+        const append = ['# VuePress', '.vuepress/.cache', '.vuepress/.temp', '.vuepress/dist']
+          .join(eol)
         fileList.push({
           filepath: '.gitignore',
           // 与用户既有的 .gitignore 合并写入，而非替换。
           // Merge into the user's existing .gitignore instead of replacing it.
           overwrite: true,
-          content: `${content}\n# VuePress\n.vuepress/.cache\n.vuepress/.temp\n.vuepress/dist\n`,
+          content: `${content}${eol}${append}${eol}`,
         })
         fileList.push(...gitFiles.filter(({ filepath }) => filepath !== '.gitignore'))
       }

@@ -20,7 +20,7 @@ export const <%= locale.prefix %>Navbar = defineNavbarConfig([
 
   { text: '<% output(locale.isEN ? 'Home' : '首页') %>', link: '<%= locale.path %>' },
   { text: '<% output(locale.isEN ? 'Blog' : '博客') %>', link: '<%= locale.path %>blog/' },
-  { text: '<% output(locale.isEN ? 'Tags' : ' 标签') %>', link: '<%= locale.path %>blog/tags/' },
+  { text: '<% output(locale.isEN ? 'Tags' : '标签') %>', link: '<%= locale.path %>blog/tags/' },
   { text: '<% output(locale.isEN ? 'Archives' : '归档') %>', link: '<%= locale.path %>blog/archives/' },
   {
     text: '<% output(locale.isEN ? 'Notes' : '笔记') %>',
@@ -32,11 +32,11 @@ export const <%= locale.prefix %>Navbar = defineNavbarConfig([
 export default defineNavbarConfig([
   { text: '<% output(it.isEN ? 'Home' : '首页') %>', link: '/' },
   { text: '<% output(it.isEN ? 'Blog' : '博客') %>', link: '/blog/' },
-  { text: '<% output(it.isEN ? 'Tags' : ' 标签') %>', link: '/blog/tags/' },
+  { text: '<% output(it.isEN ? 'Tags' : '标签') %>', link: '/blog/tags/' },
   { text: '<% output(it.isEN ? 'Archives' : '归档') %>', link: '/blog/archives/' },
   {
     text: '<% output(it.isEN ? 'Notes' : '笔记') %>',
-    items: [{ text: '<% output(it.isEN ? 'Demo' : ' 示例') %>', link: '/demo/README.md' }]
+    items: [{ text: '<% output(it.isEN ? 'Demo' : '示例') %>', link: '/demo/README.md' }]
   },
 ])
 <% } %>

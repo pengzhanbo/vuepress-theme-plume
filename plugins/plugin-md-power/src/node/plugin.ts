@@ -73,8 +73,7 @@ export function markdownPowerPlugin(
 
       define: provideData(options, locales),
 
-      alias: (_, isServer) => ({
-        ...options.encrypt && (!isServer || app.env.isDev) ? { vue: 'vue/dist/vue.esm-bundler.js' } : undefined,
+      alias: () => ({
         mermaid: 'mermaid/dist/mermaid.esm.min.mjs',
       }),
 

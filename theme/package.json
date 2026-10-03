@@ -66,7 +66,7 @@
     "tsdown:watch": "tsdown --config-loader unrun --watch -- -c"
   },
   "peerDependencies": {
-    "@iconify/json": ">=2",
+    "@iconify/json": ">=2.2.535",
     "@mathjax/src": "catalog:peer",
     "@vuepress/shiki-twoslash": "catalog:vuepress",
     "gsap": "catalog:peer",

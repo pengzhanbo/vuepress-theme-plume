@@ -67,7 +67,7 @@ export async function createPackageJson(
       let [, version] = await attemptAsync(getPackageManagerVersion, packageManager)
       if (version) {
         if (packageManager === 'yarn' && version.startsWith('1')) {
-          version = '4.10.3'
+          version = meta.yarn as string
         }
         pkg.packageManager = `${packageManager}@${version}`
 

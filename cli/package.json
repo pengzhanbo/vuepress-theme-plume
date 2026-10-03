@@ -46,7 +46,8 @@
     "vuepress": "2.0.0-rc.31",
     "vue": "^3.5.43",
     "http-server": "^14.1.1",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "yarn": "4.18.1"
   },
   "publishConfig": {
     "access": "public",

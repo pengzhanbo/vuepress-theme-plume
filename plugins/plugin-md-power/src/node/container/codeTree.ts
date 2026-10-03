@@ -305,7 +305,7 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       const root = findFile(app, env, dir)
       if (!fs.existsSync(root) || !fs.statSync(root).isDirectory()) {
         logger.warn(`Invalid code-tree target directory ${colors.yellow(dir)}, in ${colors.gray(env.filePathRelative!)}`)
-        return `<p>@[code-tree](${dir}) <em>Invalid target directory</em></p>`
+        return `<p>@[code-tree](${escape(dir)}) <em>Invalid target directory</em></p>`
       }
       // Get all files in directory
       const files = loadFiles(root, options.ignores)

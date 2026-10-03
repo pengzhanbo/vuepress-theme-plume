@@ -30,8 +30,13 @@ interface EncryptOptions {
  * @param md - Markdown instance / Markdown 实例
  * @param options - Encrypt snippet options / 加密片段选项
  */
-export function encryptPlugin(app: App, md: Markdown, options: EncryptSnippetOptions): void {
+export function encryptPlugin(
+  app: App,
+  md: Markdown,
+  options: EncryptSnippetOptions,
+): () => Promise<void> {
   const encrypted: Set<string> = new Set()
+  const pending: Promise<unknown>[] = []
   const entryFile = 'internal/encrypt-snippets/index.js'
 
   /**
@@ -53,18 +58,25 @@ export function encryptPlugin(app: App, md: Markdown, options: EncryptSnippetOpt
    *
    * 写入包含所有加密片段的入口文件
    */
-  const writeEntry = debounce(150, async () => {
+  const writeEntryFile = async () => {
     let content = `export default {\n`
     for (const hash of encrypted) {
       content += `  '${hash}': () => import('./${hash}.js' /* webpackChunkName: "snippet-${hash}" */),\n`
     }
     content += '\n}\n'
-    app.writeTemp(entryFile, content)
+    await app.writeTemp(entryFile, content)
+  }
+
+  // Debounced entry file writing for incremental updates during rendering (dev/HMR).
+  // 防抖写入入口文件，用于渲染过程中的增量更新（开发/HMR）。
+  let entryWrite: Promise<void> | undefined
+  const writeEntry = debounce(150, () => {
+    entryWrite = writeEntryFile()
   })
 
   if (!fs.existsSync(app.dir.temp(entryFile))) {
     // Initialize
-    app.writeTemp(entryFile, 'export default {}\n')
+    pending.push(app.writeTemp(entryFile, 'export default {}\n'))
   }
 
   const localKeys = objectKeys(app.options.locales || {}).filter(key => key !== '/')
@@ -97,7 +109,7 @@ export function encryptPlugin(app: App, md: Markdown, options: EncryptSnippetOpt
     const iv = getRandomValues(new Uint8Array(16))
 
     writeEntry()
-    writeTemp(contentHash, rendered, { salt, iv, password: String(_pwd) })
+    pending.push(writeTemp(contentHash, rendered, { salt, iv, password: String(_pwd) }))
 
     const data = encodeData(JSON.stringify({
       hash: contentHash,
@@ -105,6 +117,15 @@ export function encryptPlugin(app: App, md: Markdown, options: EncryptSnippetOpt
       iv: Array.from(iv),
     }))
 
-    return `<VPEncryptSnippet data="${data}" hint="${hint || ''}" path-locale="${getLocale(env.filePathRelative)}" />`
+    return `<VPEncryptSnippet data="${data}" hint="${md.utils.escapeHtml(hint || '')}" path-locale="${getLocale(env.filePathRelative)}" />`
   })
+
+  // Wait for all pending writes and flush the entry file before build ends.
+  // 等待所有待处理的写入完成，并在构建结束前收敛写入入口文件。
+  return async () => {
+    await Promise.all(pending)
+    writeEntry.cancel()
+    await entryWrite
+    await writeEntryFile()
+  }
 }

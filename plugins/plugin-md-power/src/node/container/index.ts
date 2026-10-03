@@ -31,13 +31,15 @@ import { windowPlugin } from './window.js'
  * @param md - Markdown instance / Markdown 实例
  * @param options - Plugin options / 插件选项
  * @param locales - Locale configuration / 本地化配置
+ * @returns A waiter for pending async writes, to be awaited in `onPrepared` / 待处理异步写入的等待函数，需在 `onPrepared` 中等待
  */
 export async function containerPlugin(
   app: App,
   md: Markdown,
   options: MarkdownPowerPluginOptions,
   locales: ExactLocaleConfig<MDPowerLocaleData>,
-): Promise<void> {
+): Promise<(() => Promise<void>) | undefined> {
+  let waitEncrypt: (() => Promise<void>) | undefined
   // ::: left / right / center / justify
   alignPlugin(md)
   // ::: tabs
@@ -56,7 +58,7 @@ export async function containerPlugin(
 
   if (options.encrypt) {
     // ::: encrypt password="xxx"
-    encryptPlugin(app, md, isPlainObject(options.encrypt) ? options.encrypt : {})
+    waitEncrypt = encryptPlugin(app, md, isPlainObject(options.encrypt) ? options.encrypt : {})
   }
 
   if (options.npmTo) {
@@ -91,4 +93,6 @@ export async function containerPlugin(
 
   if (options.table)
     tablePlugin(md, isPlainObject(options.table) ? options.table : {})
+
+  return waitEncrypt
 }

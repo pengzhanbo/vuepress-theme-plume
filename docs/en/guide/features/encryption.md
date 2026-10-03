@@ -193,16 +193,27 @@ This is encrypted content 2
 :::
 
 ::: warning Usage Limitations
+The encrypted content is **no longer** processed as a Vue template; after decryption it is rendered as static HTML via `v-html`.
+
 **For encrypted content, you can use:**
 
 - All standard markdown syntax
-- Most extended syntax provided by the theme, except:
-  - `@[demo]()` code examples imported from directories
-  - `@[code]()` code snippets imported from directories
-  - `@[code-tree]()` code trees imported from directories
-- Global Vue components provided by the theme
-- User-defined global Vue components
-- Encrypted content cannot contain executable scripts; for special interactions, please implement through components.
+- Extended syntax whose output is still standard HTML, such as hint containers
+  (`::: tip` / `::: warning` / `::: details`, etc.), code highlighting, and tables
+
+**Not supported:**
+
+- Extended syntax that outputs Vue components, such as `tabs`, `code-tabs`, `code-tree`,
+  `file-tree`, `collapse`, `timeline`, `card`, `table`, `steps`, `chat`, `repl`, etc.
+- Global Vue components (provided by the theme or user-defined)
+- Vue template syntax, such as `{{ }}` interpolation, `v-` directives and event bindings
+- Syntax that imports content from directories, such as `@[demo]()`, `@[code]()`, `@[code-tree]()`
+
+**Alternative:**
+
+If encrypted content needs Vue components or Vue template syntax, use **page encryption** (`password` frontmatter)
+or **global encryption** (`encrypt.global`) instead — their content is compiled at build time and is not subject to the limits above.
+See the "If you are a technical developer" section below for the reasons.
 
 **Network Environment Requirements:**
 Partial content encryption is implemented using [Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Crypto),
@@ -216,15 +227,19 @@ therefore, it will not work properly in **non-HTTPS environments**.
 Partial content encryption is implemented using [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Crypto), involving the following key steps:
 
 - **Key Derivation**: Uses the **PBKDF2** (Password-Based Key Derivation Function 2) algorithm, combined with the user-provided password and a random salt value to iteratively derive a fixed-length key, thereby increasing the difficulty of brute-force attacks.
-- **Encryption Algorithm**: Uses the **AES-GCM** (Advanced Encryption Standard - Galois/Counter Mode) symmetric encryption algorithm to encrypt the content, providing both confidentiality and integrity verification to ensure the ciphertext has not been tampered with.
+- **Encryption Algorithm**: Uses the **AES-CBC** (Advanced Encryption Standard - Cipher Block Chaining) symmetric encryption algorithm to encrypt the content.
 - **Build-time Encryption**: The original markdown content is first rendered into HTML content, then encrypted; transmitted to the client, then decrypted and rendered.
 
-**Runtime Compilation:**
+**Static Rendering:**
 
-The decrypted content is wrapped as a dynamic Vue component, with HTML passed as the template to the dynamic component.
-This involves runtime template compilation. As a result, if partial content encryption is enabled,
-Vue needs to be switched to the `esm-bundler` version to support runtime compilation,
-which has slightly worse performance and larger size compared to the default `runtime-only` version.
+The decrypted content is rendered directly as static HTML; it is **no longer** processed as a Vue template,
+so Vue components and Vue template syntax are not supported. Only the rendering method changed —
+the encryption and decryption flow itself is unchanged.
+
+The earlier implementation relied on Vue's runtime template compilation, which required shipping the template compiler:
+that increased page size and runtime cost for every visitor and required loosening the site's security policy,
+while the only capability gained was "Vue components inside an encrypted snippet". That trade-off is not worthwhile
+for a static site, and such needs are better served by **page encryption / global encryption**.
 
 **Environment Limitations:**
 

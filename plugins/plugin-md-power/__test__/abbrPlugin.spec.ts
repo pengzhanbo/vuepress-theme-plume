@@ -251,4 +251,44 @@ See (HTML) for details.`
     const result = md.render(code)
     expect(result).toContain('Abbreviation')
   })
+
+  it('should escape html special characters in the matched content', () => {
+    const md = createMarkdown()
+    const code = `*[a&b]: A and B
+
+Use a&b here.`
+
+    const result = md.render(code)
+    expect(result).toContain('a&amp;b')
+    expect(result).not.toContain('>a&b<')
+  })
+
+  it('should ignore labels that could inject template expressions', () => {
+    const md = createMarkdown()
+    const code = `*[{{ alert(1) }}]: unsafe
+
+Value {{ alert(1) }} here.`
+
+    const result = md.render(code)
+    expect(result).not.toContain('VPAbbreviation')
+    expect(result).not.toContain('<VPAbbreviation')
+  })
+
+  it('should ignore labels containing whitespace', () => {
+    const md = createMarkdown()
+    const code = `*[a b]: unsafe
+
+Value a b here.`
+
+    const result = md.render(code)
+    expect(result).not.toContain('VPAbbreviation')
+  })
+
+  it('should ignore global abbreviations with unsafe labels', () => {
+    const md = createMarkdown({ '{{ x }}': 'unsafe' })
+
+    const result = md.render('Value {{ x }} here.')
+
+    expect(result).not.toContain('VPAbbreviation')
+  })
 })

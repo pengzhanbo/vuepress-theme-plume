@@ -27,7 +27,7 @@ export function markdownEmbed(
   }
 
   return `<VPDemoBasic${stringifyAttrs({ type: 'markdown', title, desc, expanded })}>
-    ${md.render(code, { filepath: env.filePath, filepathRelative: env.filePathRelative })}
+    ${md.render(code, { filePath: env.filePath, filePathRelative: env.filePathRelative })}
     <template #code>
       ${md.render(`\`\`\`md ${codeSetting}\n${code}\n\`\`\``, {})}
     </template>
@@ -39,7 +39,7 @@ export const markdownContainerRender: DemoContainerRender = {
     const { title, desc, expanded = false } = meta
     const code = codeMap.md || ''
     return `<VPDemoBasic${stringifyAttrs({ type: 'markdown', title, desc, expanded })}>
-      ${md.render(code, { filepath: env.filePath, filepathRelative: env.filePathRelative })}
+      ${md.render(code, { filePath: env.filePath, filePathRelative: env.filePathRelative })}
       <template #code>`
   },
   after: () => '</template></VPDemoBasic>',

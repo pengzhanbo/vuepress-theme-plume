@@ -25,8 +25,18 @@ export function findFile(app: App, env: MarkdownEnv, url: string): string {
   if (url.startsWith('/'))
     return resolveSourceFile(app, env, url.slice(1))
 
-  if (url.startsWith('./') || url.startsWith('../'))
-    return resolveSourceFile(app, env, path.join(path.dirname(env.filePathRelative!), url))
+  if (url.startsWith('./') || url.startsWith('../')) {
+    // `filePathRelative` may be missing in some nested render contexts. Fall back to the
+    // directory of `filePath`, and finally to the source root, instead of throwing.
+    // `filePathRelative` 在某些嵌套渲染场景下可能缺失，回退到 `filePath` 所在目录，
+    // 最终回退到源目录根，而不是抛出异常。
+    const baseDir = env.filePathRelative
+      ? path.dirname(env.filePathRelative)
+      : env.filePath
+        ? path.relative(app.dir.source(), path.dirname(env.filePath))
+        : ''
+    return resolveSourceFile(app, env, path.join(baseDir, url))
+  }
 
   if (url.startsWith(SOURCE_ALIAS))
     return resolveSourceFile(app, env, url.slice(SOURCE_ALIAS.length))

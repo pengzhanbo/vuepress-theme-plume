@@ -66,6 +66,8 @@ export function markdownPowerPlugin(
       config: options.locales,
     })
 
+    let waitEncrypt: (() => Promise<void>) | undefined
+
     return {
       name: 'vuepress-plugin-md-power',
 
@@ -133,13 +135,14 @@ export function markdownPowerPlugin(
         if (options.demo)
           demoPlugin(app, md)
 
-        await containerPlugin(app, md, options, locales)
+        waitEncrypt = await containerPlugin(app, md, options, locales)
         await imageSizePlugin(app, md, options.imageSize)
 
         obsidianPlugin(app, md, options, locales)
       },
 
       onPrepared: async () => {
+        await waitEncrypt?.()
         if (options.demo)
           await waitDemoRender()
       },

@@ -51,12 +51,15 @@ function resolveLangByLocale(): Langs {
  *
  * The same validation is applied to both the interactive input and the value
  * passed from the command line, so a `..` segment or an absolute path can
- * never escape the current working directory.
+ * never escape the current working directory. Whitespace is rejected as well,
+ * because a root containing spaces would be split into several arguments when
+ * the generated npm scripts are executed.
  *
  * 校验项目根目录路径。
  *
  * 交互输入与命令行参数使用同一套校验，确保 `..` 路径段或绝对路径
- * 无法越出当前工作目录。
+ * 无法越出当前工作目录。同时拒绝空白字符：包含空格的根目录会让生成的
+ * npm scripts 在执行时被拆分为多个参数。
  *
  * @param value - Path to validate / 要校验的路径
  * @returns Locale key of the error message, or `undefined` when valid / 错误信息的本地化键，校验通过时返回 `undefined`
@@ -69,6 +72,11 @@ export function validateRoot(value?: string): keyof Locale | undefined {
   // Reject absolute paths and relative paths containing a `..` segment
   if (path.isAbsolute(value) || value.split(/[\\/]/).includes('..'))
     return 'hint.root'
+
+  // 拒绝空白字符，避免生成的 npm scripts 参数被拆分。
+  // Reject whitespace so the generated npm scripts keep a single path argument.
+  if (/\s/.test(value))
+    return 'hint.root.whitespace'
 
   if (REG_DIR_CHAR.test(value))
     return 'hint.root.illegal'
@@ -243,7 +251,10 @@ export async function prompt(mode: Mode, root?: string, options: CliOptions = {}
   }, {
     onCancel: () => {
       cancel(t('hint.cancel'))
-      process.exit(0)
+      // 用户取消属于非正常结束，使用非零退出码，避免脚本/CI 误判为成功。
+      // A user cancellation is not a successful run; exit with a non-zero code
+      // so scripts and CI do not treat it as success.
+      process.exit(1)
     },
   })
 

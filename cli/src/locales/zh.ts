@@ -26,6 +26,7 @@ export const zh: Locale = {
   'hint.cancel': '操作已取消。',
   'hint.root': '文件路径不能是绝对路径，不能包含父路径。',
   'hint.root.illegal': '文件夹不能包含特殊字符。',
+  'hint.root.whitespace': '路径不能包含空格等空白字符。',
   'hint.files.skipped': '以下文件已存在，已跳过（可使用 --force 覆盖）：',
   'hint.nonInteractive': '未检测到交互式终端，已使用默认配置继续。',
 }

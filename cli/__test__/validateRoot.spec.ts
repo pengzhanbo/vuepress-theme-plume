@@ -31,6 +31,13 @@ describe('validateRoot', () => {
     expect(validateRoot('foo\\..\\bar')).toBe('hint.root')
   })
 
+  it('should reject whitespace', () => {
+    expect(validateRoot('my docs')).toBe('hint.root.whitespace')
+    expect(validateRoot('my project/docs')).toBe('hint.root.whitespace')
+    expect(validateRoot('docs ')).toBe('hint.root.whitespace')
+    expect(validateRoot(' docs')).toBe('hint.root.whitespace')
+  })
+
   it('should reject illegal characters', () => {
     expect(validateRoot('foo<bar')).toBe('hint.root.illegal')
     expect(validateRoot('foo>bar')).toBe('hint.root.illegal')

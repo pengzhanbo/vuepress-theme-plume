@@ -49,8 +49,8 @@ export default defineThemeConfig({
    */
   profile: {
     avatar: 'https://theme-plume.vuejs.press/plume.png',
-    name: '<%= it.siteName %>',
-    description: '<%= it.siteDescription %>',
+    name: '<%~ it.escapedSiteName %>',
+    description: '<%~ it.escapedSiteDescription %>',
   },
 
   navbar,
@@ -66,8 +66,8 @@ export default defineThemeConfig({
        */
       profile: {
         avatar: 'https://theme-plume.vuejs.press/plume.png',
-        name: '<%= it.siteName %>',
-        description: '<%= it.siteDescription %>',
+        name: '<%~ it.escapedSiteName %>',
+        description: '<%~ it.escapedSiteDescription %>',
       },
 
       navbar: <%= locale.prefix %>Navbar,

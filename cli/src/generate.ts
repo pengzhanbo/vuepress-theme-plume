@@ -3,7 +3,6 @@ import type { WriteFilesResult } from './utils/index.js'
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
-import spawn from 'nano-spawn'
 import { BUILD_SCRIPT_PACKAGES, DeployType, Mode } from './constants.js'
 import { createPackageJson } from './packageJson.js'
 import { createRender } from './render.js'
@@ -48,15 +47,6 @@ export async function generate(
     if (data.packageManager === 'pnpm') {
       fileList.push(await createPnpmWorkspaceFile())
     }
-    if (data.packageManager === 'yarn') {
-      const { output } = await spawn('yarn', ['--version'])
-      if (output.startsWith('2')) {
-        fileList.push({
-          filepath: '.yarnrc.yml',
-          content: 'nodeLinker: \'node-modules\'\n',
-        })
-      }
-    }
   }
 
   // rewrite git files begin ==================================
@@ -85,6 +75,10 @@ export async function generate(
   }
   // rewrite git files end ====================================
 
+  // Yarn 1 会在 createPackageJson 中被升级为 Yarn 4（写入 `packageManager` 字段），
+  // 因此此处对所有 yarn 用户统一写入 Yarn Berry 的 nodeLinker 配置即可。
+  // Yarn 1 is upgraded to Yarn 4 in createPackageJson (via the `packageManager`
+  // field), so Yarn Berry's nodeLinker config applies to every yarn user.
   if (data.packageManager === 'yarn') {
     fileList.push({
       filepath: '.yarnrc.yml',

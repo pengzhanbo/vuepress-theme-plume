@@ -86,6 +86,17 @@ describe('findFile > resolve inside source directory', () => {
     expect(findFile(app, env('index.md'), './not-exists.md'))
       .toBe(path.join(sourceDir, 'not-exists.md'))
   })
+
+  it('should fall back to the directory of filePath when filePathRelative is missing', () => {
+    const missingRelative = { filePath: path.join(sourceDir, 'guide', 'index.md') } as MarkdownEnv
+    expect(findFile(app, missingRelative, './demo.md'))
+      .toBe(path.join(sourceDir, 'guide', 'demo.md'))
+  })
+
+  it('should fall back to the source root when no path is provided', () => {
+    expect(findFile(app, {} as MarkdownEnv, './demo.md'))
+      .toBe(path.join(sourceDir, 'demo.md'))
+  })
 })
 
 describe('findFile > reject path traversal', () => {

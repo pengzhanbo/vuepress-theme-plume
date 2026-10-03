@@ -81,6 +81,13 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
   const UNICODE_SPACE_REGEXP = (lib.ucmicro.Z as RegExp).source
   const WORDING_REGEXP_TEXT = `${UNICODE_PUNCTUATION_REGEXP}|${UNICODE_SPACE_REGEXP}|[${OTHER_CHARS.split('').map(escapeRE).join('')}]`
 
+  // Abbreviation labels are injected into the rendered Vue template. Labels containing
+  // whitespace, angle brackets or curly braces could therefore inject HTML tags or
+  // `{{ expression }}` template interpolations, so only safe labels are matched.
+  // 缩写词标签会被注入到渲染后的 Vue 模板中。含空白、尖括号或花括号的标签可能注入 HTML 标签或
+  // `{{ 表达式 }}` 模板插值，因此仅匹配安全的标签。
+  const SAFE_ABBR_LABEL = /^[^\s<>{}]+$/
+
   /**
    * Abbreviation definition rule
    *
@@ -163,9 +170,16 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
     const abbreviations = { ...globalAbbreviations, ...localAbbreviations }
     const abbreviationsRegExpText = objectKeys(abbreviations)
       .map(x => `${x}`.substring(1))
+      .filter(label => SAFE_ABBR_LABEL.test(label))
       .sort((a, b) => b.length - a.length)
       .map(escapeRE)
       .join('|')
+
+    // Every label was filtered out as unsafe (or the table is empty): an empty pattern
+    // would match at every position and never terminate the replacement loop.
+    // 所有标签都因不安全被过滤（或缩写表为空）：空模式会在任意位置匹配，导致替换循环无法结束。
+    if (!abbreviationsRegExpText)
+      return
 
     const regexpSimple = new RegExp(`(?:${abbreviationsRegExpText})`)
 
@@ -248,6 +262,9 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
     const { content, info } = tokens[idx]
     const rendered = md.renderInline(info, cleanMarkdownEnv(env))
     const label = cleanHtmlAllTag(rendered)
-    return `<VPAbbreviation aria-label="${md.utils.escapeHtml(label)}">${content}${info ? `<template #tooltip>${rendered}</template>` : ''}</VPAbbreviation>`
+    // `content` comes from the matched source text and is rendered into the Vue template,
+    // so it must be escaped to avoid injecting tags or template expressions.
+    // `content` 来自匹配到的原文且会被渲染进 Vue 模板，必须转义，避免注入标签或模板表达式。
+    return `<VPAbbreviation aria-label="${md.utils.escapeHtml(label)}">${md.utils.escapeHtml(content)}${info ? `<template #tooltip>${rendered}</template>` : ''}</VPAbbreviation>`
   }
 }

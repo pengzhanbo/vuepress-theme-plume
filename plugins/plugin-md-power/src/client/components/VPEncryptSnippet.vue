@@ -2,7 +2,7 @@
 import snippets from '@internal/encrypt-snippets'
 import { decodeData } from '@vuepress/helper/client'
 import { useIntersectionObserver } from '@vueuse/core'
-import { computed, defineComponent, h, ref, useTemplateRef } from 'vue'
+import { computed, ref, useTemplateRef } from 'vue'
 import { ClientOnly, onContentUpdated } from 'vuepress/client'
 import { useDecrypt } from '../composables/decrypt.js'
 import { ENCRYPT_LOCALES } from '../options.js'
@@ -90,15 +90,6 @@ onContentUpdated((reason) => {
     errorCode.value = 0
   }
 })
-
-const DecryptedContent = defineComponent({
-  name: 'DecryptedContent',
-  props: { content: String },
-  render() {
-    const template = `<div>${this.content}</div>`
-    return h({ template })
-  },
-})
 </script>
 
 <template>
@@ -132,7 +123,12 @@ const DecryptedContent = defineComponent({
         </p>
       </div>
     </div>
-    <DecryptedContent v-else :content="content" class="decrypted-content" />
+    <!--
+      The decrypted content is the HTML rendered by markdown-it at build time,
+      it is rendered as static HTML without runtime template compilation.
+      解密内容为构建期由 markdown-it 渲染的 HTML，直接以静态 HTML 渲染，不再进行运行时模板编译。
+    -->
+    <div v-else class="decrypted-content" v-html="content" />
   </ClientOnly>
 </template>
 

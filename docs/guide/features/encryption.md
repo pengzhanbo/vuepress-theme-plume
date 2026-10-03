@@ -204,16 +204,24 @@ export default defineUserConfig({
 :::
 
 ::: warning 使用限制
+被加密的内容 **不再** 被处理为 Vue 模板，解密后改为通过 `v-html` 作为静态 HTML 渲染。
+
 **对于被加密的内容，可以使用：**
 
 - 所有标准的 markdown 语法
-- 主题提供的 大多数扩展语法，但不包括：
-  - `@[demo]()` 从目录中引入的代码示例
-  - `@[code]()` 从目录中引入的代码片段
-  - `@[code-tree]()` 从目录中引入的代码树
-- 主题提供的 全局 vue 组件
-- 用户自定义的 全局 vue 组件
-- 被加密的内容，不能包含可执行的脚本，如有特殊交互，请通过组件实现。
+- 渲染结果仍为标准 HTML 的主题扩展语法，如 提示容器（`::: tip` / `::: warning` / `::: details` 等）、代码块高亮、表格
+
+**不支持：**
+
+- 输出 Vue 组件的扩展语法，如 `tabs`、`code-tabs`、`code-tree`、`file-tree`、`collapse`、`timeline`、`card`、`table`、`steps`、`chat`、`repl` 等
+- 全局 Vue 组件（主题内置的 与 用户自定义的）
+- Vue 模板语法，如 `{{ }}` 插值、`v-` 指令与事件绑定
+- 从目录中引入内容的语法，如 `@[demo]()`、`@[code]()`、`@[code-tree]()`
+
+**替代方案：**
+
+如果加密内容需要使用 Vue 组件或 Vue 模板语法，请改用 **整页加密**（`password` frontmatter）或 **全站加密**（`encrypt.global`），
+它们的内容在构建期正常编译，因此不受上述限制。原因详见下方《如果你是技术开发者》的说明。
 
 **网络环境要求：**
 部分内容加密采用 [Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Crypto) 实现，
@@ -227,14 +235,17 @@ export default defineUserConfig({
 部分内容加密采用 [Web Crypto API](https://developer.mozilla.org/zh-CN/docs/Web/API/Crypto) 实现，主要涉及以下步骤：
 
 - **密钥派生**：使用 **PBKDF2**（Password-Based Key Derivation Function 2）算法，结合用户输入的密码和随机盐值（salt）迭代派生出固定长度的密钥，从而增加暴力破解的难度。
-- **加密算法**：使用 **AES-GCM**（Advanced Encryption Standard - Galois/Counter Mode）对称加密算法对内容进行加密，同时提供机密性和完整性校验，确保密文未被篡改。
+- **加密算法**：使用 **AES-CBC**（Advanced Encryption Standard - Cipher Block Chaining）对称加密算法对内容进行加密。
 - **编译时加密**：原始 markdown 内容首先经过 markdown 渲染为 HTML 内容后，再进行加密；传输到客户端，再进行解密渲染。
 
-**运行时编译：**
+**静态渲染：**
 
-解密后的内容会被包装为一个动态的 vue 组件，html 作为 template 传给该动态组件，因此，涉及到运行时编译 template
-的内容。这导致了如果启用部分内容加密功能，那么就需要将 vue 切换到 `esm-bundler` 版本，以支持运行时编译，
-这会比默认的 `runtime-only` 版本性能差一些，体积也会增加。
+解密后的内容直接作为静态 HTML 渲染，**不再** 被处理为 Vue 模板，因此不支持 Vue 组件与 Vue 模板语法。
+此次调整只涉及渲染方式，加密与解密流程本身没有变化。
+
+早期实现依赖 Vue 的运行时模板编译，代价是必须让站点携带模板编译器：所有访问者的页面体积与运行开销都会增加，
+站点还需要在安全策略上放宽限制；而它换来的能力仅有"加密片段内可以使用 Vue 组件"。
+对静态站点而言这一取舍并不划算，这类需求改用 **整页加密 / 全站加密** 即可满足。
 
 **环境限制：**
 

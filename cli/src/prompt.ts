@@ -186,6 +186,16 @@ export async function prompt(mode: Mode, root?: string, options: CliOptions = {}
       message: t('question.site.name'),
       placeholder: defaultAnswers.siteName,
       defaultValue: defaultAnswers.siteName,
+      validate(value) {
+        // 直接回车（`value` 为 `undefined`）或清空输入（`''`）时会在提交后回落到
+        // 默认值，因此只需拒绝纯空白输入，避免生成非法的 package.json#name。
+        // Pressing enter (`value` is `undefined`) or clearing the input (`''`)
+        // falls back to the default value after submit, so only blank input needs
+        // to be rejected to avoid an invalid package.json#name.
+        if (value && value.trim() === '')
+          return t('hint.siteName.empty')
+        return undefined
+      },
     }),
 
     siteDescription: () => text({

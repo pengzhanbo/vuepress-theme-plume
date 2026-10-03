@@ -141,6 +141,24 @@ export interface Locale {
    * 提示：降级为非交互模式
    */
   'hint.nonInteractive': string
+  /**
+   * Hint: Site name must not be blank
+   *
+   * 提示：站点名称不能为空白
+   */
+  'hint.siteName.empty': string
+  /**
+   * Hint: Unsupported package manager
+   *
+   * 提示：不支持的包管理器
+   */
+  'hint.packageManager.unsupported': string
+  /**
+   * Hint: The CLI's own package.json cannot be read
+   *
+   * 提示：无法读取 CLI 自身的 package.json
+   */
+  'hint.packageJson.missing': string
 }
 
 /**

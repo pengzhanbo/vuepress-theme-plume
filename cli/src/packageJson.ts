@@ -3,6 +3,7 @@ import { attemptAsync, kebabCase } from '@pengzhanbo/utils'
 import spawn from 'nano-spawn'
 import _sortPackageJson from 'sort-package-json'
 import { BUILD_SCRIPT_PACKAGES, Mode } from './constants.js'
+import { t } from './translate.js'
 import { getPackageManagerVersion, readJsonFile, resolve } from './utils/index.js'
 
 /**
@@ -53,7 +54,14 @@ export async function createPackageJson(
   // The CLI's own package.json: `plume-deps` provides dependency versions for
   // the generated project, and `engines.node` its Node requirement, so the
   // version ranges have a single source of truth.
-  const context = (await readJsonFile(resolve('package.json')))!
+  const pkgJsonPath = resolve('package.json')
+  const context = await readJsonFile(pkgJsonPath)
+  if (!context) {
+    // 缺少该文件说明 CLI 安装包损坏，给出包含路径的明确错误而非后续的 TypeError。
+    // A missing file means the CLI installation is broken; fail with an explicit
+    // message including the path instead of a later TypeError.
+    throw new Error(`${t('hint.packageJson.missing')} (${pkgJsonPath})`)
+  }
   const meta = context['plume-deps']
   const nodeEngines: string | undefined = context.engines?.node
 
@@ -117,8 +125,11 @@ export async function createPackageJson(
   const deps: string[] = ['http-server']
   if (!hasDep('vue'))
     deps.push('vue')
-
-  deps.push('typescript')
+  // init 模式下保留用户已声明的 typescript 版本，避免破坏其依赖锁定。
+  // Keep the user's declared typescript version in init mode so their
+  // dependency lockfile is not silently overridden.
+  if (!hasDep('typescript'))
+    deps.push('typescript')
 
   for (const dep of deps)
     pkg.devDependencies[dep] = meta[dep]

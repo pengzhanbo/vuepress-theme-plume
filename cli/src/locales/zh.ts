@@ -29,4 +29,7 @@ export const zh: Locale = {
   'hint.root.whitespace': '路径不能包含空格等空白字符。',
   'hint.files.skipped': '以下文件已存在，已跳过（可使用 --force 覆盖）：',
   'hint.nonInteractive': '未检测到交互式终端，已使用默认配置继续。',
+  'hint.siteName.empty': '站点名称不能为空白。',
+  'hint.packageManager.unsupported': '检测到不支持的包管理器，已回退为 npm。',
+  'hint.packageJson.missing': '无法读取 CLI 自身的 package.json，安装可能已损坏。',
 }

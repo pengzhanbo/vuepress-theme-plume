@@ -6,25 +6,29 @@ import path from 'node:path'
 /**
  * Read all files from a directory recursively
  *
+ * Files are read concurrently to avoid paying the I/O latency of every file
+ * sequentially; `Promise.all` keeps the resulting order stable.
+ *
  * 递归读取目录下的所有文件
+ *
+ * 并发读取文件，避免逐个等待每个文件的 I/O 延迟；`Promise.all` 保证结果顺序稳定。
  *
  * @param dir - Root directory path to read from / 要读取的根目录路径
  * @returns Array of file objects / 文件对象数组
  */
 export async function readFiles(dir: string): Promise<File[]> {
   const filepaths = await fs.readdir(dir, { recursive: true })
-  const files: File[] = []
-  for (const file of filepaths) {
+  const files = await Promise.all(filepaths.map(async (file) => {
     const filepath = path.join(dir, file)
-    if ((await fs.stat(filepath)).isFile()) {
-      files.push({
-        filepath: file,
-        content: await fs.readFile(filepath, 'utf-8'),
-      })
+    if (!(await fs.stat(filepath)).isFile())
+      return undefined
+    return {
+      filepath: file,
+      content: await fs.readFile(filepath, 'utf-8'),
     }
-  }
+  }))
 
-  return files
+  return files.filter((file): file is File => file !== undefined)
 }
 
 /**

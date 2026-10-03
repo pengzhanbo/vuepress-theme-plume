@@ -29,4 +29,7 @@ export const en: Locale = {
   'hint.root.whitespace': 'The path cannot contain spaces or other whitespace characters.',
   'hint.files.skipped': 'Skipped existing files (use --force to overwrite):',
   'hint.nonInteractive': 'No interactive terminal detected, continuing with the default options.',
+  'hint.siteName.empty': 'Site name cannot be blank.',
+  'hint.packageManager.unsupported': 'Unsupported package manager detected, falling back to npm.',
+  'hint.packageJson.missing': 'Cannot read the CLI\'s own package.json, the installation may be broken.',
 }

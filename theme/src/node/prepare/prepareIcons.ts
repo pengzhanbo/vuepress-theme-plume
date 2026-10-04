@@ -190,7 +190,7 @@ function getIconsWithPage(page: Page, { provider = 'iconify', prefix }: IconOpti
           addIcon(feature.icon)
         }
       }
-      if (config.type === 'hero' && config.hero?.actions?.length) {
+      if ((config.type === 'hero' || config.type === 'doc-hero') && config.hero?.actions?.length) {
         for (const action of config.hero.actions) {
           addIcon(action.icon)
           addIcon(action.suffixIcon)

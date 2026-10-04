@@ -5,13 +5,13 @@
   ***************************************************
 -->
 <script setup lang="ts">
-import type { ThemeHomeHeroPixelBlastVariant, ThemeHomeHeroPixelPixelBlast } from '../../../shared/index.js'
+import type { ThemeHomeHeroPixelBlast, ThemeHomeHeroPixelBlastVariant } from '../../../shared/index.js'
 import { Effect, EffectComposer, EffectPass, RenderPass } from 'postprocessing'
 import * as THREE from 'three'
 import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue'
 import { useCssVar } from '../../composables/index.js'
 
-const props = withDefaults(defineProps<ThemeHomeHeroPixelPixelBlast>(), {
+const props = withDefaults(defineProps<ThemeHomeHeroPixelBlast>(), {
   variant: 'square',
   pixelSize: 4,
   color: '',

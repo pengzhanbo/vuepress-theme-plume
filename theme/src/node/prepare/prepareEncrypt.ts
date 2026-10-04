@@ -85,6 +85,7 @@ async function resolveEncrypt(encrypt?: EncryptOptions): Promise<EncryptConfig> 
   ]
 }
 
+const patternCache = new Map<string, RegExp>()
 /**
  * Check if a page is encrypted
  *
@@ -103,7 +104,11 @@ export function isEncryptPage(page: Page<ThemePageData>, encrypt?: EncryptOption
     match = `${match}`
     const relativePath = page.data.filePathRelative || ''
     if (match[0] === '^') {
-      const regex = new RegExp(match)
+      let regex = patternCache.get(match)
+      if (!regex) {
+        regex = new RegExp(match)
+        patternCache.set(match, regex)
+      }
       return regex.test(page.path) || regex.test(relativePath)
     }
     if (match.endsWith('.md'))

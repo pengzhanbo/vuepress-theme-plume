@@ -151,7 +151,7 @@ export interface ThemePostCollection extends ThemeBaseCollection {
   /**
    * 自定义标签页链接
    *
-   * @default '/${link}/tags/'
+   * @default '${linkPrefix}tags/'
    */
   tagsLink?: string
 

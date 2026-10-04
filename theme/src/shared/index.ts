@@ -7,7 +7,6 @@ export type * from './options.js'
 export type * from './pageData.js'
 export type * from './plugins.js'
 export type * from './resolved/index.js'
-export type * from './utils.js'
 
 export type {
   GitChangelogInfo as GitChangelog,

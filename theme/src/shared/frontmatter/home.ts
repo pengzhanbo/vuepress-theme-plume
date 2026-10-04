@@ -1,5 +1,5 @@
+import type { LiteralUnion } from '@pengzhanbo/utils'
 import type { ThemeImage, ThemeLightDark } from '../common/index.js'
-import type { LiteralUnion } from '../utils.js'
 import type { ThemeHomeHeroEffect, ThemeHomeHeroEffectConfig, ThemeHomeHeroTintPlate } from './homeHeroEffects.js'
 import type { ThemeNormalFrontmatter } from './normal.js'
 
@@ -14,7 +14,7 @@ export interface ThemeHomeFrontmatter extends ThemeNormalFrontmatter, Omit<Theme
   config?: ThemeHomeConfig[]
 }
 
-export type ThemeHomeConfig = ThemeHomeBanner | ThemeHomeTextImage | ThemeHomeFeatures | ThemeHomeProfile | ThemeHomeHero | ThemeHomePosts
+export type ThemeHomeConfig = ThemeHomeBanner | ThemeHomeTextImage | ThemeHomeFeatures | ThemeHomeProfile | ThemeHomeHero | ThemeHomePosts | ThemeHomeCustom | ThemeHomeDocHero
 
 export interface ThemeHomeConfigBase {
   type: 'banner' | 'hero' | 'doc-hero' | 'text-image' | 'image-text' | 'features' | 'profile' | 'custom' | 'posts'

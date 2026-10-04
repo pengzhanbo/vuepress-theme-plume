@@ -929,6 +929,9 @@ importers:
       p-map:
         specifier: catalog:prod
         version: 7.0.8
+      picomatch:
+        specifier: catalog:prod
+        version: 4.0.7
       pyodide:
         specifier: catalog:peer
         version: 314.0.7

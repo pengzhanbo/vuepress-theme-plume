@@ -112,6 +112,7 @@
     "markdown-it-container": "catalog:prod",
     "nanoid": "catalog:prod",
     "p-map": "catalog:prod",
+    "picomatch": "catalog:prod",
     "qrcode": "catalog:prod",
     "rolldown": "catalog:prod",
     "sanitize-html": "catalog:prod",

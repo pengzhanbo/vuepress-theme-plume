@@ -1,3 +1,4 @@
+import type { LiteralUnion } from '@pengzhanbo/utils'
 import type { LocaleData } from 'vuepress'
 import type { SocialLink, SocialLinkIconUnion, ThemeOutline, ThemeReadAid } from './common/index.js'
 import type {
@@ -10,7 +11,6 @@ import type {
   ThemeSidebarMulti,
   TransitionOptions,
 } from './features/index.js'
-import type { LiteralUnion } from './utils.js'
 
 /**
  * Built-in multilingual configuration
@@ -108,7 +108,7 @@ export interface ThemeLocale extends LocaleData {
    *
    * - `false` 表示禁用 右侧边栏
    * - `true` 表示启用 右侧边栏
-   * - `'left` 表示将有侧边栏移动到文章内容左侧，sidebar 右侧
+   * - `'left'` 表示将有侧边栏移动到文章内容左侧，sidebar 右侧
    *
    * @default true
    */
@@ -261,10 +261,6 @@ export interface ThemeLocaleText {
    * @default 'Languages'
    */
   selectLanguageText?: string
-  /**
-   * 选择语言菜单 的 `aria-label` 属性。
-   */
-  selectLanguageAriaLabel?: string
   /**
    * 语言名称
    *

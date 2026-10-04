@@ -26,7 +26,10 @@ export type ThemeNormalFrontmatter = PageFrontmatter<{
    *
    * 页面布局
    */
-  pageLayout?: false | 'home' | 'posts' | 'doc' | 'custom' | 'page' | 'friends'
+  pageLayout?:
+    | false
+    | 'home' | 'posts' | 'doc' | 'custom' | 'page' | 'friends'
+    | 'blog' /** @deprecated */
 
   /**
    * Custom page class

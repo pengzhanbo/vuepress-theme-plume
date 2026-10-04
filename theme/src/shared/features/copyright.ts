@@ -1,4 +1,4 @@
-import type { LiteralUnion } from '../utils.js'
+import type { LiteralUnion } from '@pengzhanbo/utils'
 
 /**
  * Built-in supported copyright licenses

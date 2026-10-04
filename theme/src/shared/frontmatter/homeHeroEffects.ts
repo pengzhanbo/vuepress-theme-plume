@@ -1,7 +1,7 @@
+import type { LiteralUnion } from '@pengzhanbo/utils'
 import type * as THREE from 'three'
 import type { CSSProperties } from 'vue'
 import type { ThemeLightDark } from '../common/index.js'
-import type { LiteralUnion } from '../utils.js'
 
 /**
  * Home page hero effect type
@@ -18,7 +18,7 @@ export type ThemeHomeHeroEffect = LiteralUnion<'tint-plate' | 'prism' | 'pixel-b
 export type ThemeHomeHeroEffectConfig
   = | ThemeHomeHeroTintPlate
     | ThemeHomeHeroPrism
-    | ThemeHomeHeroPixelPixelBlast
+    | ThemeHomeHeroPixelBlast
     | Omit<ThemeHomeHeroHyperSpeed, 'onSpeedUp' | 'onSlowDown'>
     | ThemeHomeHeroLiquidEther
     | ThemeHomeHeroDotGrid
@@ -135,7 +135,7 @@ export type ThemeHomeHeroPixelBlastVariant = 'square' | 'circle' | 'triangle' | 
  *
  * 像素爆炸效果配置
  */
-export interface ThemeHomeHeroPixelPixelBlast {
+export interface ThemeHomeHeroPixelBlast {
   /**
    * Pixel shape variant
    * 像素形状变体

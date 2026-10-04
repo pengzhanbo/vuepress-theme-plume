@@ -27,7 +27,7 @@ export async function prepareCollections(app: App): Promise<void> {
 
     data[locale] = collections?.map((item) => {
       if (item.type === 'post') {
-        return omit(item, ['include', 'exclude', 'autoFrontmatter'])
+        return omit(item, ['include', 'exclude', 'autoFrontmatter', 'categoriesTransform'])
       }
       else {
         return omit(item, ['sidebar', 'autoFrontmatter'])

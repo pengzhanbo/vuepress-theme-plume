@@ -362,6 +362,14 @@ export interface ThemeLocaleText {
   }
 
   /**
+   * 页脚
+   */
+  footer?: {
+    message?: string
+    copyright?: string
+  }
+
+  /**
    * 首页文本，用于默认生成的导航栏、面包屑导航中
    */
   homeText?: string

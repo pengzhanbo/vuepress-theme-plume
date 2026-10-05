@@ -157,6 +157,9 @@ function parseTimeline(tokens: Token[], index: number) {
         const inlineToken = tokens[range.inline]
         const children = inlineToken.children
         // Find last softbreak, last line as attrs
+        // inline token 始终带有 children 数组，`?? -1` 仅为类型层面的防御性兜底。
+        // An inline token always has a children array; `?? -1` only guards the type.
+        /* istanbul ignore next -- @preserve */
         const softbreakIndex = children?.findLastIndex(
           token => token.type === 'softbreak',
         ) ?? -1

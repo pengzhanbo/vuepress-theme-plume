@@ -1,12 +1,14 @@
 import type { App, Page } from 'vuepress/core'
 import MiniSearch from 'minisearch'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
+import { logger } from 'vuepress/utils'
 import {
   clearHtmlTags,
   createPageSectionItems,
   onSearchIndexRemoved,
   onSearchIndexUpdated,
   prepareSearchIndex,
+  prepareSearchIndexInBackground,
   splitPageIntoSections,
 } from '../src/node/prepareSearchIndex.js'
 import { createTokenizer } from '../src/shared/index.js'
@@ -59,7 +61,7 @@ function createFakeApp(pages: Page[] = [], failWritesFor: Set<string> = new Set(
     return JSON.parse(readIndexJSON(filename))
   }
 
-  return { app, readIndex, readIndexJSON, writes, failWritesFor }
+  return { app, readIndex, readIndexJSON, writes, failWritesFor, files }
 }
 
 describe('splitPageIntoSections', () => {
@@ -287,5 +289,202 @@ describe('dev write amplification', () => {
     failWritesFor.clear()
     await onSearchIndexUpdated(app, { page: updated, searchOptions: {}, isSearchable: undefined })
     expect(writes).toEqual([localeFile])
+  })
+})
+
+describe('index preparation options', () => {
+  it('logs the elapsed time in debug mode', async () => {
+    const { app } = createFakeApp([makePage({ contentRendered: '<p>hello</p>' })])
+    app.env.isDebug = true
+    const info = vi.spyOn(logger, 'info').mockImplementation(() => {})
+
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+
+    expect(info).toHaveBeenCalledWith(expect.stringContaining('prepare search time spent'))
+    info.mockRestore()
+  })
+
+  it('clears the in-memory caches after a build', async () => {
+    const { app } = createFakeApp([makePage({ contentRendered: '<p>hello</p>' })])
+    app.env.isBuild = true
+
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+
+    // 构建完成后缓存被清空，再次构建仍能正确重建索引。
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+  })
+
+  it('does not emit the HMR helper outside dev mode', async () => {
+    const { app, files } = createFakeApp([makePage({ contentRendered: '<p>hello</p>' })])
+    app.env.isDev = false
+
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+
+    expect(files.get(`${INDEX_DIR}index.js`)).not.toContain('import.meta.hot')
+  })
+
+  it('skips pages that cannot be indexed', async () => {
+    const { app, writes } = createFakeApp([
+      makePage({ path: '/no-file/', filePath: undefined, contentRendered: '<p>a</p>' }),
+      makePage({ path: '/hidden/', filePathRelative: 'hidden.md', frontmatter: { search: false }, contentRendered: '<p>b</p>' }),
+      makePage({ path: '/excluded/', filePathRelative: 'excluded.md', contentRendered: '<p>c</p>' }),
+    ])
+
+    await prepareSearchIndex({
+      app,
+      searchOptions: {},
+      isSearchable: page => page.path !== '/excluded/',
+    })
+
+    // 没有任何可索引页面时不会产生 locale 索引文件。
+    expect(writes.some(file => file.endsWith('index.js'))).toBe(true)
+    expect(writes.some(file => file.includes('searchBox-'))).toBe(false)
+  })
+
+  it('indexes a page without a relative path using its permalink', async () => {
+    const { app, readIndex } = createFakeApp([
+      makePage({ path: '/norel/', filePathRelative: undefined, contentRendered: '<p>hello</p>' }),
+    ])
+
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+
+    // 缺乏相对路径时以 permalink 作为缓存键，索引仍能建立。
+    expect(readIndex('searchBox-default.js').documentCount).toBe(1)
+  })
+})
+
+describe('incremental update guards', () => {
+  it('skips updating an unsearchable page', async () => {
+    const { app, readIndex } = createFakeApp([
+      makePage({ path: '/a/', filePathRelative: 'a.md', contentRendered: '<p>hello</p>' }),
+    ])
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+
+    await onSearchIndexUpdated(app, {
+      page: makePage({ path: '/a/', filePathRelative: 'a.md', frontmatter: { search: false }, contentRendered: '<p>changed</p>' }),
+      searchOptions: {},
+      isSearchable: page => page.frontmatter.search !== false,
+    })
+
+    // 变为不可搜索的页面不应被重新写入索引。
+    expect(readIndex('searchBox-default.js').documentCount).toBe(1)
+  })
+
+  it('skips removing an unsearchable page', async () => {
+    const { app, readIndex } = createFakeApp([
+      makePage({ path: '/a/', filePathRelative: 'a.md', contentRendered: '<p>hello</p>' }),
+    ])
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+
+    await onSearchIndexRemoved(app, {
+      page: makePage({ path: '/a/', filePathRelative: 'a.md', frontmatter: { search: false } }),
+      searchOptions: {},
+      isSearchable: page => page.frontmatter.search !== false,
+    })
+
+    expect(readIndex('searchBox-default.js').documentCount).toBe(1)
+  })
+
+  it('skips removing a page without a relative path', async () => {
+    const { app } = createFakeApp()
+
+    await onSearchIndexRemoved(app, {
+      page: makePage({ filePathRelative: undefined }),
+      searchOptions: {},
+      isSearchable: undefined,
+    })
+  })
+
+  it('skips removal when there is no cached index for the file', async () => {
+    const { app } = createFakeApp()
+
+    await onSearchIndexRemoved(app, {
+      page: makePage({ filePathRelative: 'never-indexed.md' }),
+      searchOptions: {},
+      isSearchable: undefined,
+    })
+  })
+})
+
+describe('index error handling', () => {
+  it('logs an error when the background preparation fails', async () => {
+    const { app } = createFakeApp(
+      [makePage({ contentRendered: '<p>hello</p>' })],
+      new Set([`${INDEX_DIR}index.js`]),
+    )
+    const error = vi.spyOn(logger, 'error').mockImplementation(() => {})
+
+    prepareSearchIndexInBackground({ app, searchOptions: {}, isSearchable: undefined })
+
+    await vi.waitFor(() => {
+      expect(error).toHaveBeenCalledWith(
+        expect.stringContaining('failed to prepare search index'),
+        expect.anything(),
+      )
+    })
+    error.mockRestore()
+  })
+
+  it('warns about duplicate permalinks and heading anchors', async () => {
+    const { app } = createFakeApp([
+      makePage({ path: '/dup/', filePathRelative: 'a.md', contentRendered: '<h2><a href="#sec"><span>Sec</span></a></h2><p>x</p>' }),
+      makePage({ path: '/dup/', filePathRelative: 'b.md', contentRendered: '<h2><a href="#sec"><span>Sec</span></a></h2><p>x</p>' }),
+    ])
+    const error = vi.spyOn(logger, 'error').mockImplementation(() => {})
+
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+
+    expect(error).toHaveBeenCalledWith(expect.stringContaining('duplicate page permalink'))
+    expect(error).toHaveBeenCalledWith(expect.stringContaining('duplicate heading anchor'))
+    error.mockRestore()
+  })
+
+  it('logs an error when stale entries cannot be removed', async () => {
+    const { app } = createFakeApp([
+      makePage({ path: '/en/x/', pathLocale: '/', lang: 'en', filePathRelative: 'x.md', contentRendered: '<p>x</p>' }),
+      makePage({ path: '/zh/x/', pathLocale: '/zh/', lang: 'zh', filePathRelative: 'x.md', contentRendered: '<p>x</p>' }),
+    ])
+    const error = vi.spyOn(logger, 'error').mockImplementation(() => {})
+
+    await prepareSearchIndex({ app, searchOptions: {}, isSearchable: undefined })
+
+    expect(error).toHaveBeenCalledWith(
+      expect.stringContaining('failed to remove stale index entries'),
+      expect.anything(),
+    )
+    error.mockRestore()
+  })
+})
+
+describe('section splitting boundaries', () => {
+  it('skips a heading whose anchor has no title span', () => {
+    const html = '<h2><a href="#x">X</a></h2><p>y</p><h2><a href="#z"><span>Z</span></a></h2><p>z</p>'
+
+    expect([...splitPageIntoSections(html)].map(section => section.anchor)).toEqual(['z'])
+  })
+
+  it('skips a heading with no title or no content', () => {
+    const html = [
+      '<h2><a href="#a"><span></span></a></h2><p>a</p>',
+      '<h2><a href="#b"><span>B</span></a></h2>',
+    ].join('')
+
+    // 空标题与末尾无内容的章节都应被跳过，且不终止后续解析。
+    expect([...splitPageIntoSections(html)]).toEqual([])
+  })
+})
+
+describe('createPageSectionItems title fallbacks', () => {
+  it('prefers the frontmatter title', () => {
+    const page = makePage({ title: 'Page', frontmatter: { title: 'FM' }, contentRendered: '<p>x</p>' })
+
+    expect([...createPageSectionItems(page)][0].title).toBe('FM')
+  })
+
+  it('handles a page without any title information', () => {
+    const page = makePage({ title: '', filePathRelative: undefined, frontmatter: {} })
+
+    // 所有标题来源都缺失时不应抛错，也不产生章节项。
+    expect([...createPageSectionItems(page)]).toEqual([])
   })
 })

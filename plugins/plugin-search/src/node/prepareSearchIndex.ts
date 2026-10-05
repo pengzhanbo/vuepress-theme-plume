@@ -327,6 +327,9 @@ async function writeTemp(app: App) {
     const localeName = locale.replace(/^\/|\/$/g, '').replace(/\//g, '_') || 'default'
     const filename = `searchBox-${localeName}.js`
     records.push(`${JSON.stringify(locale)}: () => import('@${SEARCH_INDEX_DIR}${filename}')`)
+    // `JSON.stringify` 对 MiniSearch 实例始终返回字符串，`?? {}` 仅为防御性兜底。
+    // `JSON.stringify` always returns a string for a MiniSearch instance; `?? {}` is only a defensive fallback.
+    /* istanbul ignore next -- @preserve */
     writeIfChanged(
       filename,
       `export default ${JSON.stringify(JSON.stringify(index) ?? {})}`,
@@ -426,6 +429,9 @@ export function* createPageSectionItems(page: Page): Generator<IndexObject> {
     const { anchor, text, titles } = section
     // 空章节应跳过当前项，而不是终止整页的索引。
     // Skip an empty section without terminating the rest of the page.
+    // `splitPageIntoSections` 产出的章节始终带有标题，`titles.length` 不会为 0，
+    // 因此该分支仅在防御性场景下存在。
+    /* istanbul ignore next -- @preserve */
     if (!text && !titles.length)
       continue
     yield {

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useElementSize, useWindowScroll, useWindowSize } from '@vueuse/core'
-import { computed, onMounted, ref, shallowRef, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
 import { useData } from '../composables/index.js'
 
 import '@vuepress/helper/transition/fade-in.css'
@@ -42,9 +42,7 @@ const show = computed(() => {
 
 let timer: NodeJS.Timeout | null = null
 function resetScrolling() {
-  if (timer) {
-    clearTimeout(timer)
-  }
+  timer && clearTimeout(timer)
   timer = setTimeout(() => {
     isScrolling.value = false
   }, 1000)
@@ -52,6 +50,10 @@ function resetScrolling() {
 watch(y, () => {
   isScrolling.value = true
   resetScrolling()
+})
+
+onUnmounted(() => {
+  timer && clearTimeout(timer)
 })
 
 function handleClick() {

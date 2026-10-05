@@ -1,3 +1,4 @@
+import { useEventListener } from '@vueuse/core'
 import { computed, shallowRef, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
 import { inBrowser } from '../utils/index.js'
@@ -84,7 +85,7 @@ export function registerWatchers() {
   if (inBrowser) {
     is960.value = window.innerWidth >= 960
     is1280.value = window.innerWidth >= 1280
-    window.addEventListener('resize', () => {
+    useEventListener('resize', () => {
       is960.value = window.innerWidth >= 960
       is1280.value = window.innerWidth >= 1280
     }, { passive: true })

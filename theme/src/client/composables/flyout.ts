@@ -93,6 +93,7 @@ function activateFocusTracking() {
  * 从文档移除 focusin 事件监听器。
  */
 function deactivateFocusTracking() {
+  active = false
   document.removeEventListener('focusin', handleFocusIn)
 }
 

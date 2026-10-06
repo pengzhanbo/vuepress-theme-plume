@@ -142,9 +142,14 @@ export async function prepareIcons(app: App): Promise<void> {
 
   fsCache?.write(cache, app.env.isBuild)
 
-  if (app.env.isBuild) {
-    cache = {}
-  }
+  // Clear the in-memory cache after every run. `prepareIcons` is re-executed on
+  // every update in dev, so clearing only on build would let the cache grow
+  // unbounded while editing. Resolved icons are persisted by `fsCache` and seeded
+  // back at the start of the next run, so the hit rate is preserved.
+  // 每次运行后清空内存缓存。dev 下 `prepareIcons` 会随每次更新反复执行，
+  // 若只在构建时清空，缓存会随编辑过程持续增长。已解析的图标数据由 `fsCache`
+  // 持久化，并在下次运行时重新载入，因此不影响命中率。
+  cache = {}
 
   perf.log('prepare:icons:total')
 }

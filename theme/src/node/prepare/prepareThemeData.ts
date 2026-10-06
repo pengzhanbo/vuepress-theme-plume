@@ -9,7 +9,7 @@ import { getImageOriginalSize, resolveImagePath } from 'vuepress-plugin-md-power
 import { hash } from 'vuepress/utils'
 import { resolveThemeData } from '../config/resolveThemeData.js'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { perf, resolveContent, writeTemp } from '../utils/index.js'
+import { logger, perf, resolveContent, writeTemp } from '../utils/index.js'
 
 let bulletinFileWatcher: FSWatcher | null = null
 const bulletinFiles: Record<string, string> = {}
@@ -125,7 +125,12 @@ async function readBulletinFile(app: App, filepath: string, locale = '/') {
     }
     return content
   }
-  catch {}
+  catch (error) {
+    // 读取失败时返回空内容，但必须给出提示，否则用户会以为自己配置写错了。
+    // Return empty content on failure, but warn: otherwise the user may think the
+    // configuration is wrong while the file is simply missing or unreadable.
+    logger.warn(`Failed to read the bulletin file ${filepath}`, error)
+  }
   return ''
 }
 

@@ -2,6 +2,7 @@ import type { App } from 'vuepress'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { hash } from 'vuepress/utils'
+import { logger } from './logger.js'
 
 /**
  * Cache data structure
@@ -75,7 +76,15 @@ export function createFsCache<T = any>(app: App, name: string): FsCache<T> {
           cache.hash = hash(res.hash || '')
         }
       }
-      catch {}
+      catch (error) {
+        // A missing cache file is the normal first-run case and must stay silent;
+        // a corrupted/unreadable one should be visible, otherwise the cache is
+        // silently ignored and the build gets slower for no apparent reason.
+        // 缓存文件不存在是首次运行的正常情况，不应提示；文件损坏或不可读时需要可见，
+        // 否则缓存被静默忽略，构建变慢却查不到原因。
+        if ((error as NodeJS.ErrnoException)?.code !== 'ENOENT')
+          logger.warn(`Failed to read the cache file ${filepath}, it will be ignored.`, error)
+      }
     }
     return cache.data
   }
@@ -102,11 +111,20 @@ export function createFsCache<T = any>(app: App, name: string): FsCache<T> {
 
     timer && clearTimeout(timer)
     timer = setTimeout(async () => {
-      await fs.mkdir(path.dirname(filepath), { recursive: true })
-      await fs.writeFile(filepath, JSON.stringify(cache), 'utf-8')
-      if (clear) {
-        cache.data = null
-        cache.hash = ''
+      // The timer callback runs outside any awaiting caller, so a rejected promise
+      // here would become an unhandled rejection and may crash the process.
+      // 定时回调不在任何 await 调用链中，这里的 rejection 会变成未处理的 rejection，
+      // 甚至可能使进程崩溃。
+      try {
+        await fs.mkdir(path.dirname(filepath), { recursive: true })
+        await fs.writeFile(filepath, JSON.stringify(cache), 'utf-8')
+        if (clear) {
+          cache.data = null
+          cache.hash = ''
+        }
+      }
+      catch (error) {
+        logger.warn(`Failed to write the cache file ${filepath}.`, error)
       }
     }, 300)
   }

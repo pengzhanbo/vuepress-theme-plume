@@ -11,11 +11,12 @@ const hoisted = vi.hoisted(() => ({
   writeTemp: vi.fn(async (_app: unknown, _file: string, _content: unknown) => {}),
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
   getThemeConfig: vi.fn(() => ({})),
+  genEncrypt: vi.fn(),
 }))
 
 vi.mock('../src/node/utils/index.js', () => ({
   createFsCache: vi.fn(),
-  genEncrypt: vi.fn(async (password: string) => `hashed(${password})`),
+  genEncrypt: hoisted.genEncrypt,
   hash: vi.fn((content: string) => `hashed-content(${content})`),
   logger: hoisted.logger,
   perf: { mark: vi.fn(), log: vi.fn() },
@@ -54,6 +55,32 @@ async function resolveEncryptConfig(encrypt?: Record<string, unknown>): Promise<
   return call?.[2] as EncryptConfig
 }
 
+/**
+ * Replace the mocked `genEncrypt` with an implementation that records the peak
+ * number of concurrently running hashes, so the bounded concurrency can be asserted.
+ *
+ * 用能够记录并发峰值的实现替换被 mock 的 `genEncrypt`，以便断言并发上限。
+ */
+function trackHashConcurrency(): () => number {
+  let inFlight = 0
+  let peak = 0
+
+  hoisted.genEncrypt.mockImplementation(async (password: string) => {
+    inFlight++
+    peak = Math.max(peak, inFlight)
+    // 让并发有机会重叠，否则串行调用也会得到峰值 1。
+    await new Promise(resolve => setTimeout(resolve, 1))
+    inFlight--
+    return `hashed(${password})`
+  })
+
+  return () => peak
+}
+
+beforeEach(() => {
+  hoisted.genEncrypt.mockImplementation(async (password: string) => `hashed(${password})`)
+})
+
 describe('prepareEncrypt', () => {
   beforeEach(() => {
     vi.clearAllMocks()
@@ -78,6 +105,29 @@ describe('prepareEncrypt', () => {
     expect(config[2]).toBe(1)
     expect(config[3]).toBe('hashed(admin-pwd)')
     expect(hoisted.logger.warn).toHaveBeenCalledWith(expect.stringContaining('encrypt.admin'))
+  })
+
+  it('should bound the concurrency of bcrypt hashing for admin passwords', async () => {
+    const peak = trackHashConcurrency()
+    const admins = Array.from({ length: 12 }, (_, index) => `admin-${index}`)
+
+    const config = await resolveEncryptConfig({ admin: admins })
+
+    // bcrypt 是 CPU 密集型操作，必须限制并发（当前上限为 4）。
+    // Bcrypt is CPU intensive, its concurrency must stay bounded (currently 4).
+    expect(peak()).toBeLessThanOrEqual(4)
+    // 限制并发不能丢失任何密码（admin 字段本身就是明文哈希串，未被 encodeData 编码）。
+    expect(config[3].split(':')).toHaveLength(admins.length)
+  })
+
+  it('should bound the concurrency of bcrypt hashing for rule passwords', async () => {
+    const peak = trackHashConcurrency()
+    const passwords = Array.from({ length: 10 }, (_, index) => `pwd-${index}`)
+
+    const config = await resolveEncryptConfig({ rules: { '/blog/': passwords } })
+
+    expect(peak()).toBeLessThanOrEqual(4)
+    expect(decode<Record<string, string>>(config[1])[0].split(':')).toHaveLength(passwords.length)
   })
 
   it('should warn when global encryption has no valid admin password', async () => {
@@ -142,6 +192,18 @@ describe('encryptPage', () => {
     await encryptPage(page)
 
     expect(page.data._e).toBe('hashed(123456):hashed(654321)')
+  })
+
+  it('should bound the concurrency of bcrypt hashing', async () => {
+    const peak = trackHashConcurrency()
+    const passwords = Array.from({ length: 12 }, (_, index) => `pwd-${index}`)
+    const page = createPage('/a/', 'a.md', { password: passwords })
+
+    await encryptPage(page)
+
+    expect(peak()).toBeLessThanOrEqual(4)
+    // 限制并发不能丢失任何密码。
+    expect(page.data._e).toBe(passwords.map(password => `hashed(${password})`).join(':'))
   })
 
   it('should ignore an empty password instead of locking the page forever', async () => {

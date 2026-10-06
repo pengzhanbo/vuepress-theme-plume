@@ -12,7 +12,14 @@ const iconName = computed<string | { svg: string }>(() => {
     try {
       return JSON.parse(icon) as { svg: string }
     }
-    catch {}
+    catch {
+      // 图标 JSON 非法时退回原始字符串，并在开发环境下给出可见提示，
+      // 否则错误配置不会有任何反馈。
+      // Fall back to the raw string and warn in dev; otherwise a broken icon
+      // configuration fails completely silently.
+      if (__VUEPRESS_DEV__)
+        console.warn('[vuepress-theme-plume] invalid icon JSON, using the raw value instead:', icon)
+    }
   }
   return icon
 })

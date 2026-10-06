@@ -2,7 +2,7 @@ import type { App } from 'vuepress/core'
 import type { Markdown } from 'vuepress/markdown'
 import type { EncryptSnippetOptions } from '../../shared/encrypt'
 import { getRandomValues } from 'node:crypto'
-import { debounce, objectKeys } from '@pengzhanbo/utils'
+import { debounce, limitAsync, objectKeys } from '@pengzhanbo/utils'
 import { encodeData, ensureLeadingSlash } from '@vuepress/helper'
 import { colors, fs, hash } from 'vuepress/utils'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv'
@@ -20,6 +20,19 @@ interface EncryptOptions {
   salt: Uint8Array
   iv: Uint8Array
 }
+
+/**
+ * Maximum number of snippet files written at the same time.
+ *
+ * A document may contain many `::: encrypt` containers; unbounded concurrent
+ * writes would exhaust file descriptors on large sites.
+ *
+ * 同时写入的加密片段文件数量上限。
+ *
+ * 一个文档中可能包含大量 `::: encrypt` 容器，无限制的并发写入会在
+ * 大站点上耗尽文件描述符。
+ */
+const SNIPPET_WRITE_CONCURRENCY = 8
 
 /**
  * Encrypt plugin - Enable encrypted content container
@@ -52,6 +65,12 @@ export function encryptPlugin(
     const encrypted = await encryptContent(content, options)
     await app.writeTemp(`internal/encrypt-snippets/${hash}.js`, `export default ${JSON.stringify(encrypted)}`)
   }
+
+  // Writes still start eagerly (so rendering stays incremental), but at most
+  // `SNIPPET_WRITE_CONCURRENCY` of them run at the same time.
+  // 写入仍然是即时发起的（保证渲染过程可持续增量更新），但同时最多只执行
+  // `SNIPPET_WRITE_CONCURRENCY` 个。
+  const writeTempLimited = limitAsync(writeTemp, SNIPPET_WRITE_CONCURRENCY)
 
   /**
    * Write entry file with all encrypted snippets
@@ -119,7 +138,7 @@ export function encryptPlugin(
     const iv = getRandomValues(new Uint8Array(16))
 
     writeEntry()
-    pending.push(writeTemp(contentHash, rendered, { salt, iv, password: String(_pwd) }))
+    pending.push(writeTempLimited(contentHash, rendered, { salt, iv, password: String(_pwd) }))
 
     const data = encodeData(JSON.stringify({
       hash: contentHash,

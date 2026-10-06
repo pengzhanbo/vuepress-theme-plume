@@ -72,10 +72,21 @@ export class ConfigLoader extends EventEmitter {
     })
 
     watcher.on('change', async (filepath) => {
-      const dependencies = await this.load()
-      watcher.add(difference(dependencies, this.dependencies))
-      this.dependencies = [...dependencies]
-      this.emit('change', this.config)
+      try {
+        const dependencies = await this.load()
+        watcher.add(difference(dependencies, this.dependencies))
+        this.dependencies = [...dependencies]
+        this.emit('change', this.config)
+      }
+      catch (error) {
+        // Never let the callback reject: an unhandled rejection would be invisible
+        // and could take the whole dev process down. The last valid config is kept
+        // and the error is surfaced to the user instead.
+        // 绝不让回调抛出：未处理的 rejection 既不透明，也可能使整个 dev 进程退出。
+        // 这里保留上一次可用的配置，并把错误暴露给用户。
+        logger.error('Failed to reload the theme config, the previous configuration is kept.', error)
+        return
+      }
 
       logger.info(`${colors.gray('theme config')} ${colors.magenta(normalizePath(filepath))} ${colors.gray('is modified.')}`)
     })

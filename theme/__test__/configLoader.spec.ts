@@ -154,6 +154,29 @@ describe('configLoader', () => {
     expect(logger.info).toHaveBeenCalled()
   })
 
+  it('should keep the previous config when reloading on change fails', async () => {
+    vi.mocked(findConfigPath).mockResolvedValue('/project/plume.config.ts')
+    vi.mocked(compiler)
+      .mockResolvedValueOnce({ config: {}, dependencies: [] })
+      .mockRejectedValueOnce(new Error('broken config'))
+
+    const loader = new ConfigLoader()
+    await loader.init(app, {}, undefined)
+
+    const changes: any[] = []
+    loader.on('change', config => changes.push(config))
+    const watchers: any[] = []
+    loader.watch(watchers)
+
+    // 编译失败的回调不能抛出（否则会成为未处理的 rejection），
+    // 也不能派发 change 事件，避免使用不完整的配置。
+    // A failing recompile must neither reject (unhandled rejection) nor emit `change`.
+    await expect(hoisted.watcher.emit('change', '/project/plume.config.ts')).resolves.toBeUndefined()
+
+    expect(changes).toHaveLength(0)
+    expect(vi.mocked(logger.error)).toHaveBeenCalled()
+  })
+
   it('should ignore node_modules files while watching', async () => {
     vi.mocked(findConfigPath).mockResolvedValue('/project/plume.config.ts')
     vi.mocked(compiler).mockResolvedValue({ config: {}, dependencies: [] })

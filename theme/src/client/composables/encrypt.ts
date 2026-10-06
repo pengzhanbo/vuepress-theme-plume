@@ -1,7 +1,7 @@
 import type { InjectionKey, Ref } from 'vue'
 import type { EncryptDataRule } from './encrypt-data.js'
 import { computedAsync, useSessionStorage } from '@vueuse/core'
-import { bcryptVerify, md5 } from 'hash-wasm'
+import { bcryptVerify, sha256 } from 'hash-wasm'
 import { computed, inject, provide } from 'vue'
 import { useRoute } from 'vuepress/client'
 import { removeLeadingSlash } from 'vuepress/shared'
@@ -75,6 +75,24 @@ const storage = useSessionStorage<EncryptStorageState>(ENCRYPT_STORAGE_KEY, () =
   g: '',
   p: {},
 }))
+
+/**
+ * Build the fingerprint of a password hash.
+ *
+ * The persisted value is the SHA-256 of the bcrypt hash shipped with the bundle,
+ * because MD5 is collision-prone and has no place in a security check.
+ * The fingerprint is not reversible and is only used to recognize a password
+ * that has already been verified during the current session.
+ *
+ * 生成密码哈希的指纹。
+ *
+ * 持久化的值是被打包下发的 bcrypt 哈希的 SHA-256，
+ * 因为 MD5 存在碰撞风险，不应出现在安全校验中。
+ * 指纹不可逆，仅用于在当前会话中识别已验证过的密码。
+ */
+function fingerprint(hash: string): Promise<string> {
+  return sha256(hash)
+}
 
 /**
  * Cache for password comparison results
@@ -200,7 +218,7 @@ export function setupEncrypt(): void {
       return true
 
     for (const admin of encrypt.value.admins) {
-      if (hash && hash === await md5(admin))
+      if (hash && hash === await fingerprint(admin))
         return true
     }
     return false
@@ -236,14 +254,14 @@ export function setupEncrypt(): void {
     const hash = storage.value.g
 
     for (const admin of encrypt.value.admins) {
-      if (hash && hash === await md5(admin))
+      if (hash && hash === await fingerprint(admin))
         return true
     }
 
     for (const { key, rules } of hashList.value) {
       const hash = storage.value.p[key]
       for (const rule of rules) {
-        if (hash && hash === await md5(rule))
+        if (hash && hash === await fingerprint(rule))
           return true
       }
     }
@@ -307,7 +325,7 @@ export function useEncryptCompare(): {
 
     for (const admin of encrypt.value.admins) {
       if (await compareDecrypt(password, admin)) {
-        storage.value.g = await md5(admin)
+        storage.value.g = await fingerprint(admin)
         return true
       }
     }
@@ -336,7 +354,7 @@ export function useEncryptCompare(): {
         for (const rule of rules) {
           if (await compareDecrypt(password, rule)) {
             decrypted = true
-            storage.value.p[key] = await md5(rule)
+            storage.value.p[key] = await fingerprint(rule)
             break
           }
         }

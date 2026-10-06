@@ -107,7 +107,12 @@ export function encryptPlugin(
 
     const rendered = md.render(content, cleanMarkdownEnv(env))
 
-    const contentHash = hash(content)
+    // The password is part of the hash: two containers with identical content but
+    // different passwords must not share the same temp file, otherwise the later one
+    // overwrites the former and both can only be unlocked with a single password.
+    // 密码参与哈希计算：内容相同但密码不同的两个容器不能共用同一个临时文件，
+    // 否则后写入的会覆盖先写入的，导致两处只能使用同一个密码解锁。
+    const contentHash = hash(`${_pwd}:${content}`)
     encrypted.add(contentHash)
 
     const salt = getRandomValues(new Uint8Array(16))

@@ -1,0 +1,8 @@
+.vp-encrypt-error {
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--vp-c-caution-1);
+  background-color: var(--vp-c-caution-soft);
+  border: solid 1px var(--vp-c-caution-1);
+  border-radius: 8px;
+}

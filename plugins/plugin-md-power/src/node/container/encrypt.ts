@@ -94,13 +94,18 @@ export function encryptPlugin(
   createContainerSyntaxPlugin(md, 'encrypt', (tokens, index, _, env) => {
     const { meta, content } = tokens[index]
     const { password, pwd, hint } = meta as { password?: string, pwd?: string, hint?: string }
-    const rendered = md.render(content, cleanMarkdownEnv(env))
     const _pwd = password || pwd || options.password
 
     if (!_pwd) {
-      logger.warn(`${colors.cyan('[encrypt snippet]')} ${colors.green('::: encrypt')} container missing password. ${colors.gray(`(${env.filePathRelative})`)}`)
-      return rendered
+      // Never fall back to plaintext: the author expects the content to be protected,
+      // silently rendering it would leak the content. Fail loudly and hide the content.
+      // 绝不降级为明文：作者期望内容被保护，静默渲染明文会导致内容泄露。
+      // 因此这里显式报错，并隐藏该片段的内容。
+      logger.error(`${colors.cyan('[encrypt snippet]')} ${colors.green('::: encrypt')} container missing password, its content is NOT encrypted and has been hidden. ${colors.gray(`(${env.filePathRelative})`)}`)
+      return `<div class="vp-encrypt-error" role="alert">[encrypt snippet] missing password, the content is not rendered. (${md.utils.escapeHtml(env.filePathRelative || '')})</div>`
     }
+
+    const rendered = md.render(content, cleanMarkdownEnv(env))
 
     const contentHash = hash(content)
     encrypted.add(contentHash)

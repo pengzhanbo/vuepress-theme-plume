@@ -130,14 +130,22 @@ const patternCache = new Map<string, RegExp>()
 /**
  * Check if a page is encrypted
  *
- * 检查页面是否需要加密，根据页面的路径或文件相对路径匹配加密规则
+ * A page is encrypted when it carries its own password (`frontmatter.password`)
+ * or when its path matches one of the `encrypt.rules`.
+ *
+ * 检查页面是否需要加密：页面自身携带密码（`frontmatter.password`），
+ * 或其路径命中了某条 `encrypt.rules` 规则时视为加密页面。
  */
 export function isEncryptPage(page: Page<ThemePageData>, encrypt?: EncryptOptions): boolean {
-  if (!encrypt)
-    return false
-
+  // A page carrying its own password (`frontmatter.password`) is always encrypted,
+  // even when no `encrypt` option is configured at all.
+  // 携带独立密码（`frontmatter.password`）的页面始终是加密页面，
+  // 即使完全没有配置 `encrypt` 选项。
   if (page.data._e)
     return true
+
+  if (!encrypt)
+    return false
 
   const rules = encrypt.rules ?? {}
 

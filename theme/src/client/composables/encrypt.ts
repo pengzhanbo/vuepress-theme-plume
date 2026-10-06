@@ -35,21 +35,46 @@ export interface Encrypt {
 export const EncryptSymbol: InjectionKey<Encrypt> = createSymbol('docEncrypt')
 
 /**
+ * Storage key for encryption state.
+ *
+ * The value is an opaque constant: it only needs to stay stable across releases
+ * so that a decryption made before a page refresh is still recognized afterwards.
+ * Changing it invalidates the session state of already-open tabs.
+ *
+ * 加密状态的存储键。
+ *
+ * 该值是不透明常量：只需在版本之间保持稳定，
+ * 使页面刷新前完成的解密在刷新后依然有效。修改它会使已打开标签页的会话状态失效。
+ */
+const ENCRYPT_STORAGE_KEY = '2a0a3d6afb2fdf1f'
+
+/**
+ * Shape of the persisted session state.
+ *
+ * `g` holds the decrypted global password fingerprint,
+ * `p` maps a page key to its decrypted page password fingerprint.
+ *
+ * 持久化的会话状态结构。
+ *
+ * `g` 保存已解密的全局密码指纹，
+ * `p` 以页面 key 为索引保存该页面已解密的密码指纹。
+ */
+interface EncryptStorageState {
+  g: string
+  p: Record<string, string>
+}
+
+/**
  * Session storage for encryption state
  * Stores global and page decryption states
  *
  * 加密状态的会话存储
  * 存储全局和页面解密状态
  */
-const storage = useSessionStorage('2a0a3d6afb2fdf1f', () => {
-  if (__VUEPRESS_SSR__) {
-    return { g: '', p: [] as string[] }
-  }
-  return {
-    g: '',
-    p: [] as string[],
-  }
-})
+const storage = useSessionStorage<EncryptStorageState>(ENCRYPT_STORAGE_KEY, () => ({
+  g: '',
+  p: {},
+}))
 
 /**
  * Cache for password comparison results

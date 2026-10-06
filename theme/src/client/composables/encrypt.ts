@@ -215,7 +215,7 @@ export function setupEncrypt(): void {
     const filePathRelative = page.value.filePathRelative
     const passwords = typeof page.value._e === 'string' ? page.value._e.split(':') : []
     const pageRule: EncryptDataRule | undefined = passwords.length
-      ? { key: pagePath.replace(/\//g, '').replace(/\.html$/, ''), match: pagePath, rules: passwords }
+      ? { key: pagePath, match: pagePath, rules: passwords }
       : undefined
     const rules = encrypt.value.ruleList.length
       ? encrypt.value.ruleList

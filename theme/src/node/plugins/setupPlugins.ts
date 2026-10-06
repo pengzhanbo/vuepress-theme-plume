@@ -1,7 +1,7 @@
 import type { SeoPluginOptions } from '@vuepress/plugin-seo'
 import type { SitemapPluginOptions } from '@vuepress/plugin-sitemap'
-import type { App, PluginConfig } from 'vuepress/core'
-import type { LocalSearchOptions, ThemeBuiltinPlugins } from '../../shared/index.js'
+import type { App, Page, PluginConfig } from 'vuepress/core'
+import type { LocalSearchOptions, ThemeBuiltinPlugins, ThemePageData } from '../../shared/index.js'
 import { fontsPlugin } from '@vuepress-plume/plugin-fonts'
 import { searchPlugin } from '@vuepress-plume/plugin-search'
 import { isPlainObject } from '@vuepress/helper'
@@ -16,6 +16,7 @@ import { seoPlugin } from '@vuepress/plugin-seo'
 import { sitemapPlugin } from '@vuepress/plugin-sitemap'
 import { watermarkPlugin } from '@vuepress/plugin-watermark'
 import { getThemeConfig } from '../loadConfig/index.js'
+import { isEncryptPage } from '../prepare/prepareEncrypt.js'
 import { codePlugins } from './code.js'
 import { gitPlugin } from './git.js'
 import { llmsPlugin } from './llms.js'
@@ -100,7 +101,19 @@ export function setupPlugins(
         console.error('docsearch plugin: appId and apiKey are both required')
     }
     else {
-      plugins.push(searchPlugin(searchOptions))
+      const userIsSearchable = (searchOptions as LocalSearchOptions).isSearchable
+      plugins.push(searchPlugin({
+        ...searchOptions,
+        // Encrypted pages must never enter the search index: the index is written to a
+        // publicly downloadable static asset, so their titles and content would leak and
+        // bypass the encryption entirely. The user-provided `isSearchable` is still honored.
+        // 加密页面绝不能进入搜索索引：索引会作为静态资源公开下载，
+        // 页面的标题与正文会被直接泄漏，从而绕过加密保护。用户自定义的
+        // `isSearchable` 依然生效。
+        isSearchable: (page: Page) =>
+          (userIsSearchable?.(page) ?? true)
+          && !isEncryptPage(page as Page<ThemePageData>, options.encrypt),
+      }))
     }
   }
 

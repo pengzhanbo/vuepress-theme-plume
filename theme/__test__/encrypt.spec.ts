@@ -114,6 +114,11 @@ describe('isEncryptPage', () => {
     page.data._e = 'hashed(pwd)'
 
     expect(isEncryptPage(page, { rules: {} })).toBe(true)
+    // A page-level password must be detected even without any `encrypt` option,
+    // otherwise the page would be treated as plain content (e.g. indexed by search).
+    // 即使没有配置 `encrypt` 选项，也必须能识别页面级密码，
+    // 否则该页面会被当作普通内容处理（例如被搜索索引收录）。
+    expect(isEncryptPage(page, undefined)).toBe(true)
   })
 })
 

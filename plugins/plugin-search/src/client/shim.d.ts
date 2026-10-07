@@ -6,7 +6,9 @@ declare module '*.vue' {
 }
 
 declare module '@internal/minisearchIndex' {
-  const searchIndex: Record<string, () => Promise<{ default: string }>>
+  import type { SearchIndexData } from './composables/searchIndex.js'
+
+  const searchIndex: SearchIndexData
   export {
     searchIndex,
   }

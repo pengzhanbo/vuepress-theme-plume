@@ -58,6 +58,16 @@ interface SearchBoxLocale {
   resetButtonTitle: string
   backButtonTitle: string
   noResultsText: string
+  /**
+   * 搜索索引缺失或加载失败时显示的文本
+   */
+  searchIndexErrorText?: string
+  /**
+   * 禁用 JavaScript 时显示的降级提示文本
+   *
+   * 该文本渲染在 `<noscript>` 中，需为不含 HTML 转义字符的纯文本
+   */
+  noscriptText?: string
   footer: {
     selectText: string
     selectKeyAriaLabel: string

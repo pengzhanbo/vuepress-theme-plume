@@ -39,10 +39,12 @@ export default defineUserConfig({
 })
 ```
 
-This plugin generates search indexes locally based on your pages, then loads the search index files when users visit your site.
+This plugin generates search indexes locally based on your pages, then loads the search index files when users open the search box for the first time.
 In other words, this is a lightweight built-in search capability that doesn't make any external requests.
 
-However, when your site contains a large number of pages, the search index file can become very large and may slow down your page loading speed.
+When an index is large, the plugin **automatically splits it into multiple shards** per locale. The client loads them on demand and parses one shard at a time, so a single huge index file never blocks rendering for long.
+
+However, when your site contains a large number of pages, the search index can still become very large, and sharding adds extra requests and loading time.
 In such cases, we recommend using a more robust solution - [Algolia DocSearch](#algolia-docsearch).
 
 ## Algolia DocSearch

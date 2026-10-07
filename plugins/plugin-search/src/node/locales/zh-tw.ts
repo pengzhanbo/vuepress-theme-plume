@@ -18,6 +18,7 @@ export const zhTwSearchLocale: Partial<SearchLocaleOptions> = {
   backButtonTitle: '關閉',
   noResultsText: '無搜尋結果：',
   searchIndexErrorText: '搜尋索引載入失敗。',
+  noscriptText: '未啟用 JavaScript，搜尋無法使用。',
   footer: {
     selectText: '選擇',
     selectKeyAriaLabel: '輸入',

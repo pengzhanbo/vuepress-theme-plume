@@ -18,6 +18,7 @@ export const frSearchLocale: Partial<SearchLocaleOptions> = {
   backButtonTitle: 'Fermer',
   noResultsText: 'Aucun résultat trouvé :',
   searchIndexErrorText: 'Échec du chargement de l’index de recherche.',
+  noscriptText: 'La recherche est indisponible sans JavaScript.',
   footer: {
     selectText: 'sélectionner',
     selectKeyAriaLabel: 'Entrée',

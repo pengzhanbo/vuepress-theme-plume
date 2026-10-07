@@ -12,6 +12,7 @@
  * @module plugin-search/node/prepareSearchIndex
  */
 
+import type { AsPlainObject } from 'minisearch'
 import type { App, Page } from 'vuepress/core'
 import type { SearchOptions, SearchPluginOptions } from '../shared/index.js'
 import MiniSearch from 'minisearch'
@@ -60,6 +61,23 @@ const SEARCH_INDEX_DIR = 'internal/minisearchIndex/'
 
 /** Maximum length of the searchable text per section / 每个章节可索引文本的最大长度 */
 const MAX_SEARCHABLE_TEXT_LENGTH = 8000
+
+/**
+ * Maximum number of terms per serialized index shard.
+ *
+ * 每个序列化索引分片的最大词元数。
+ *
+ * A locale index can grow very large on big sites. Splitting it into shards
+ * bounds the size of each `JSON.parse` performed on the client, and lets the
+ * client yield to the main thread between shards instead of blocking while a
+ * single huge file is parsed. Indexes smaller than this limit stay in a single
+ * file, so typical sites keep the original (fewer requests) behavior.
+ *
+ * 大站点的单个语言索引可能非常大。拆分为分片可以限制客户端每次 `JSON.parse`
+ * 的体积，并在分片之间让出主线程，避免解析单个超大文件时长时间阻塞。
+ * 小于该阈值的索引仍保持单文件，因此普通站点维持原有（更少请求）的行为。
+ */
+export const SEARCH_INDEX_SHARD_SIZE = 50_000
 
 /** Map of locale paths to their MiniSearch instances / 语言路径到 MiniSearch 实例的映射 */
 const indexByLocales = new Map<string, MiniSearch<IndexObject>>()
@@ -289,6 +307,87 @@ export async function onSearchIndexRemoved(
 }
 
 /**
+ * Split a serialized index into shard-sized term entry chunks.
+ *
+ * 将序列化索引拆分为分片大小的词元条目分组。
+ *
+ * The `index` field of a serialized index is an array of `[term, postings]`
+ * pairs, so it can be sliced without breaking the deserialization contract:
+ * the client concatenates the chunks back before deserializing the index.
+ *
+ * 序列化索引的 `index` 字段是 `[term, postings]` 数组，可以在不破坏反序列化
+ * 约定的前提下切片：客户端会先拼接分片，再反序列化为索引。
+ *
+ * @param serialized - Serialized index / 序列化索引
+ * @param shardSize - Maximum terms per shard / 每个分片的最大词元数
+ * @returns Metadata (with an empty `index` when sharded) and the shards /
+ *   元数据（分片时 `index` 为空）与分片列表
+ */
+export function splitSearchIndex(
+  serialized: AsPlainObject,
+  shardSize: number = SEARCH_INDEX_SHARD_SIZE,
+): { meta: AsPlainObject, shards: AsPlainObject['index'][] } {
+  const { index } = serialized
+
+  if (shardSize <= 0 || index.length <= shardSize)
+    return { meta: serialized, shards: [] }
+
+  const shards: AsPlainObject['index'][] = []
+  for (let i = 0; i < index.length; i += shardSize)
+    shards.push(index.slice(i, i + shardSize))
+
+  return { meta: { ...serialized, index: [] }, shards }
+}
+
+/**
+ * Build the temporary files of one locale index.
+ *
+ * 构建单个语言索引的临时文件。
+ *
+ * Returns a map of file name to file content. When the index is not sharded the
+ * map holds a single file whose content keeps the legacy
+ * `export default "<json>"` format. When it is sharded, the metadata file
+ * additionally exports a `shards` array of lazy importers.
+ *
+ * 返回「文件名 → 文件内容」的映射。未分片时仅包含一个文件，内容保持旧版
+ * `export default "<json>"` 格式；分片时元数据文件会额外导出由延迟导入函数
+ * 组成的 `shards` 数组。
+ *
+ * @param localeName - Sanitized locale name, e.g. `zh` or `default` /
+ *   规整后的语言名，如 `zh`、`default`
+ * @param serialized - Serialized index / 序列化索引
+ * @param shardSize - Maximum terms per shard / 每个分片的最大词元数
+ * @returns Map of file name to content / 文件名到内容的映射
+ */
+export function buildIndexFiles(
+  localeName: string,
+  serialized: AsPlainObject,
+  shardSize: number = SEARCH_INDEX_SHARD_SIZE,
+): Record<string, string> {
+  const { meta, shards } = splitSearchIndex(serialized, shardSize)
+  const files: Record<string, string> = {}
+
+  // 为每个分片写入独立的临时文件，客户端按需并行加载后再合并为同一个索引。
+  // Write each shard to its own temp file; the client loads them on demand and
+  // merges them back into a single index.
+  shards.forEach((entries, i) => {
+    files[`searchBox-${localeName}-${i}.js`]
+      = `export default ${JSON.stringify(JSON.stringify(entries))}`
+  })
+
+  const shardImports = shards.length
+    ? `\nexport const shards = [${shards
+      .map((_, i) => `() => import('@${SEARCH_INDEX_DIR}searchBox-${localeName}-${i}.js')`)
+      .join(', ')}]`
+    : ''
+
+  files[`searchBox-${localeName}.js`]
+    = `export default ${JSON.stringify(JSON.stringify(meta))}${shardImports}`
+
+  return files
+}
+
+/**
  * Write all search indexes to temporary files.
  *
  * 将所有搜索索引写入临时文件。
@@ -322,18 +421,13 @@ async function writeTemp(app: App) {
     }))
   }
 
-  for (const [locale] of indexByLocales) {
-    const index = indexByLocales.get(locale)!
+  for (const [locale, localeIndex] of indexByLocales) {
     const localeName = locale.replace(/^\/|\/$/g, '').replace(/\//g, '_') || 'default'
-    const filename = `searchBox-${localeName}.js`
-    records.push(`${JSON.stringify(locale)}: () => import('@${SEARCH_INDEX_DIR}${filename}')`)
-    // `JSON.stringify` 对 MiniSearch 实例始终返回字符串，`?? {}` 仅为防御性兜底。
-    // `JSON.stringify` always returns a string for a MiniSearch instance; `?? {}` is only a defensive fallback.
-    /* istanbul ignore next -- @preserve */
-    writeIfChanged(
-      filename,
-      `export default ${JSON.stringify(JSON.stringify(index) ?? {})}`,
-    )
+    records.push(`${JSON.stringify(locale)}: () => import('@${SEARCH_INDEX_DIR}searchBox-${localeName}.js')`)
+
+    const files = buildIndexFiles(localeName, localeIndex.toJSON())
+    for (const [filename, content] of Object.entries(files))
+      writeIfChanged(filename, content)
   }
 
   writeIfChanged(

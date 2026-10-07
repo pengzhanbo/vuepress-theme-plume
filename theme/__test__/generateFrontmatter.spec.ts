@@ -109,6 +109,18 @@ describe('generateFileFrontmatter', () => {
     expect(files.some(file => file.endsWith('.tmp'))).toBe(false)
   })
 
+  it.skipIf(process.platform === 'win32')('preserves the file permissions when replacing it', async () => {
+    const filepath = path.join(cwd, 'mode.md')
+    await write('mode.md', '---\ntitle: Old\n---\nbody\n')
+    // 0600 在默认 umask 022 下若使用新建文件的默认权限会变成 0644。
+    await nodeFs.chmod(filepath, 0o600)
+
+    await generateFileFrontmatter('mode.md', cwd, handle)
+
+    await expect(read('mode.md')).resolves.toContain('permalink: /generated/')
+    expect((await nodeFs.stat(filepath)).mode & 0o7777).toBe(0o600)
+  })
+
   it('does not rewrite the file when the data is unchanged', async () => {
     const original = '---\ntitle: Old\n---\nbody\n'
     await write('untouched.md', original)

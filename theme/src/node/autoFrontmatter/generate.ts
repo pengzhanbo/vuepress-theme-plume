@@ -5,6 +5,7 @@ import type {
   AutoFrontmatterHandle,
   AutoFrontmatterRule,
 } from '../../shared/index.js'
+import process from 'node:process'
 import { attemptAsync, objectKeys, sleep } from '@pengzhanbo/utils'
 import { type FSWatcher, watch } from 'chokidar'
 import matter from 'gray-matter'
@@ -24,18 +25,9 @@ async function getMarkdownInfo(filepath: string, relativePath: string): Promise<
   eol: string
 }> {
   const raw = await fs.promises.readFile(filepath, 'utf-8')
-  const { data, content } = matter(raw)
+  const { data, content } = matter(raw, {})
   return {
-    // `gray-matter` caches the parsed result by the input string and returns the very same
-    // `data` object, while the rule handlers mutate it in place. Parsing the same content
-    // again would therefore hand out already-generated fields (`permalink`, `createTime`),
-    // and the file would be skipped forever — which also hides a previous write failure.
-    // A shallow copy keeps the cache entry pristine.
-    //
-    // `gray-matter` 按输入字符串缓存解析结果，并返回同一个 `data` 对象，而规则处理器会原地修改它。
-    // 因此再次解析相同内容时会拿到已生成过的字段（`permalink`、`createTime`），文件会被永久跳过，
-    // 同时也会掩盖上一次的写入失败。这里返回浅拷贝，保持缓存条目不被污染。
-    data: { ...(data as AutoFrontmatterData) },
+    data: data as AutoFrontmatterData,
     context: {
       filepath,
       relativePath,
@@ -55,25 +47,47 @@ async function getMarkdownInfo(filepath: string, relativePath: string): Promise<
  * Renaming within the same file system is atomic, so a concurrent editor save can
  * never observe a partially written file.
  *
+ * The target's permissions and owner are preserved, because `rename` swaps in a brand new
+ * inode instead of truncating the existing one. ACLs and extended attributes are not
+ * carried over.
+ *
  * 原子写入文件内容。
  *
  * 先写入同目录下的临时文件，再重命名覆盖目标文件。同一文件系统内的重命名是原子操作，
  * 因此并发的编辑器保存永远不会读到写了一半的文件。
+ *
+ * 由于 `rename` 换入的是全新的 inode（而非截断原文件），这里会保留目标的权限与属主。
+ * ACL 与扩展属性不会被保留。
  */
 async function writeFileAtomic(filepath: string, content: string): Promise<void> {
-  // Never replace a read-only file: renaming over it would drop the read-only mode and
-  // silently defeat the user's intent. Failing here keeps the previous behavior of a
-  // read-only file (an `EACCES`) and surfaces it through the aggregated failure list.
-  // 不要替换只读文件：重命名覆盖会丢失只读属性，静默违背用户意图。
-  // 这里直接失败，保持只读文件原有的行为（`EACCES`），并通过失败清单汇总上报。
-  await fs.promises.access(filepath, fs.constants.W_OK)
+  // Inspect the target's own permission bits instead of relying on `access(W_OK)`: a
+  // process able to bypass the file permission checks (e.g. root) would pass the check on
+  // a `0444` file, and the rename would silently replace a read-only file.
+  // 检查目标文件自身的权限位，而不是依赖 `access(W_OK)`：能够绕过文件权限检查的进程（如 root）
+  // 对 `0444` 文件也会通过检查，重命名将静默替换只读文件。
+  const stats = await fs.promises.stat(filepath)
+  const mode = stats.mode & 0o7777
+
+  if ((mode & 0o222) === 0) {
+    const error = new Error('EACCES: permission denied, the file is read-only') as NodeJS.ErrnoException
+    error.code = 'EACCES'
+    throw error
+  }
 
   const tempPath = path.join(
     path.dirname(filepath),
     `.${path.basename(filepath)}.${nanoid(8)}.tmp`,
   )
   try {
-    await fs.promises.writeFile(tempPath, content, 'utf-8')
+    await fs.promises.writeFile(tempPath, content, { encoding: 'utf-8', mode })
+    await fs.promises.chmod(tempPath, mode)
+
+    if (typeof process.getuid === 'function') {
+      const [chownError] = await attemptAsync(() => fs.promises.chown(tempPath, stats.uid, stats.gid))
+      if (chownError && stats.uid !== process.getuid())
+        throw chownError
+    }
+
     await fs.promises.rename(tempPath, filepath)
   }
   catch (error) {

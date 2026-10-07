@@ -73,32 +73,41 @@ function yieldToMainThread(): Promise<void> {
 }
 
 /**
- * Load and assemble the serialized search index of a locale.
+ * Load and assemble the JSON-serialized search index of a locale.
  *
- * 加载并组装某个语言的序列化搜索索引。
+ * 加载并组装某个语言的 JSON 序列化搜索索引。
  *
- * Sharded indexes are loaded in parallel and then parsed one shard at a time,
+ * The returned string can be passed to `MiniSearch.loadJSONAsync()`, which
+ * deserializes the index in batches without blocking the main thread.
+ *
+ * 返回的字符串可直接交给 `MiniSearch.loadJSONAsync()`，
+ * 它会分批反序列化索引，避免阻塞主线程。
+ *
+ * Sharded indexes are loaded in parallel and then merged one shard at a time,
  * yielding to the main thread between shards. This keeps the first paint and
- * input handling responsive while a large index is being deserialized.
+ * input handling responsive while a large index is being assembled.
  *
- * 分片索引会并行加载，再逐片解析，并在分片之间让出主线程。
- * 这样在反序列化大索引时仍能保持首屏渲染与输入的响应性。
+ * 分片索引会并行加载，再逐片合并，并在分片之间让出主线程。
+ * 这样在组装大索引时仍能保持首屏渲染与输入的响应性。
  *
  * @param locale - Locale path (e.g. `/`, `/zh/`) / 语言路径
- * @returns Serialized index, or `undefined` when the locale has no index /
- *   序列化索引；该语言没有索引时返回 `undefined`
+ * @returns Serialized index JSON, or `undefined` when the locale has no index /
+ *   序列化索引 JSON；该语言没有索引时返回 `undefined`
  */
-export async function loadSearchIndex(locale: string): Promise<AsPlainObject | undefined> {
+export async function loadSearchIndexJSON(locale: string): Promise<string | undefined> {
   const loadIndexModule = searchIndexData.value[locale]
   if (!loadIndexModule)
     return undefined
 
   const indexModule = await loadIndexModule()
-  const serialized = JSON.parse(indexModule.default) as AsPlainObject
 
+  // 未分片时直接复用原始 JSON 字符串，避免多余的解析与再序列化。
+  // Reuse the raw JSON string when the index is not sharded, avoiding a redundant
+  // parse and re-serialization.
   if (!indexModule.shards?.length)
-    return serialized
+    return indexModule.default
 
+  const serialized = JSON.parse(indexModule.default) as AsPlainObject
   const shards = await Promise.all(indexModule.shards.map(loadShard => loadShard()))
 
   for (const shard of shards) {
@@ -111,7 +120,10 @@ export async function loadSearchIndex(locale: string): Promise<AsPlainObject | u
     await yieldToMainThread()
   }
 
-  return serialized
+  // `MiniSearch.loadJSONAsync` 只接受 JSON 字符串，因此合并后需要再序列化一次。
+  // `MiniSearch.loadJSONAsync` only accepts a JSON string, so the merged index has
+  // to be serialized once more.
+  return JSON.stringify(serialized)
 }
 
 if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {

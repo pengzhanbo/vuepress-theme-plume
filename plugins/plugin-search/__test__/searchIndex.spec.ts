@@ -1,11 +1,13 @@
 import type { AsPlainObject } from 'minisearch'
+import MiniSearch from 'minisearch'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { createTokenizer } from '../src/shared/index.js'
 
 /**
- * Client-side index loading: shards are fetched in parallel, then parsed one at a
- * time and merged back into a single serialized index.
+ * Client-side index loading: shards are fetched in parallel, then merged one at a
+ * time and the result is handed to `MiniSearch.loadJSONAsync`.
  *
- * 客户端索引加载：分片并行获取，再逐片解析并合并为同一个序列化索引。
+ * 客户端索引加载：分片并行获取，再逐片合并，最终交给 `MiniSearch.loadJSONAsync`。
  */
 const { loadIndexModule } = vi.hoisted(() => ({
   loadIndexModule: vi.fn(),
@@ -19,7 +21,7 @@ vi.mock('@internal/minisearchIndex', () => ({
 // `searchIndex.ts` 在模块顶层读取 VuePress 全局变量。
 vi.stubGlobal('__VUEPRESS_DEV__', false)
 
-const { loadSearchIndex } = await import('../src/client/composables/searchIndex.js')
+const { loadSearchIndexJSON } = await import('../src/client/composables/searchIndex.js')
 
 /** 构造仅包含元数据的序列化索引。 */
 function createMeta(): AsPlainObject {
@@ -58,21 +60,25 @@ function createModule(
   }
 }
 
-describe('loadSearchIndex', () => {
+function termsOf(indexJson: string): string[] {
+  return (JSON.parse(indexJson) as AsPlainObject).index.map(([term]) => term)
+}
+
+describe('loadSearchIndexJSON', () => {
   beforeEach(() => {
     loadIndexModule.mockReset()
   })
 
   it('returns undefined when the locale has no index', async () => {
-    expect(await loadSearchIndex('/missing/')).toBeUndefined()
+    expect(await loadSearchIndexJSON('/missing/')).toBeUndefined()
     expect(loadIndexModule).not.toHaveBeenCalled()
   })
 
-  it('parses a single-file index without shards', async () => {
+  it('returns the raw JSON string for a single-file index', async () => {
     const meta = createMeta()
     loadIndexModule.mockResolvedValue(createModule(meta))
 
-    expect(await loadSearchIndex('/')).toEqual(meta)
+    expect(await loadSearchIndexJSON('/')).toBe(JSON.stringify(meta))
   })
 
   it('merges every shard into the metadata index', async () => {
@@ -83,9 +89,10 @@ describe('loadSearchIndex', () => {
       ]),
     )
 
-    const serialized = await loadSearchIndex('/')
+    const indexJson = await loadSearchIndexJSON('/')
 
-    expect(serialized?.index.map(([term]) => term)).toEqual(['w0', 'w1', 'w2'])
+    expect(indexJson).toBeTypeOf('string')
+    expect(termsOf(indexJson!)).toEqual(['w0', 'w1', 'w2'])
   })
 
   it('loads all shards in parallel and merges them in the declared order', async () => {
@@ -104,9 +111,24 @@ describe('loadSearchIndex', () => {
       shards: [createShard('w0', 10), createShard('w1', 0)],
     })
 
-    const serialized = await loadSearchIndex('/')
+    const indexJson = await loadSearchIndexJSON('/')
 
     expect(resolved).toEqual(['w1', 'w0'])
-    expect(serialized?.index.map(([term]) => term)).toEqual(['w0', 'w1'])
+    expect(termsOf(indexJson!)).toEqual(['w0', 'w1'])
+  })
+
+  it('produces a string that `MiniSearch.loadJSONAsync` can deserialize', async () => {
+    loadIndexModule.mockResolvedValue(
+      createModule(createMeta(), [createEntries(['w0']), createEntries(['w1'])]),
+    )
+
+    const indexJson = await loadSearchIndexJSON('/')
+    const index = await MiniSearch.loadJSONAsync(indexJson!, {
+      fields: ['title', 'titles', 'text'],
+      storeFields: ['title', 'titles'],
+      searchOptions: { tokenize: createTokenizer('en') },
+    })
+
+    expect(index.search('w1').map(result => result.id)).toEqual(['/a/'])
   })
 })

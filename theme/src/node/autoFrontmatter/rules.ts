@@ -38,7 +38,16 @@ export function genAutoFrontmatterRules(): void {
     if (!collections?.length)
       continue
 
-    for (const collection of collections) {
+    // `findRule` returns the first matching rule, so rules generated from a longer
+    // `dir` must come first. This makes nested collections (e.g. `blog` and `blog/sub`)
+    // resolve to the most specific one, independent of the config declaration order.
+    // `findRule` 返回首个命中的规则，因此 `dir` 更长的集合生成的规则必须排在前面。
+    // 这样嵌套集合（如 `blog` 与 `blog/sub`）会归属到最具体的那个，不受配置声明顺序影响。
+    const sortedCollections = [...collections].sort(
+      (a, b) => removeLeadingSlash(b.dir).length - removeLeadingSlash(a.dir).length,
+    )
+
+    for (const collection of sortedCollections) {
       const source = removeLeadingSlash(path.join(locale, collection.dir, '**/*.md'))
       // 无论 集合是否启用 autoFrontmatter，
       // 在最后的对剩余文件的 auto frontmatter 都需要排除当前集合的文件

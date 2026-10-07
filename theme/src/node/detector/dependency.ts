@@ -16,7 +16,7 @@ const DEPENDENCIES: Record<string, string[]> = {
   flowchart: ['flowchart.ts'],
 
   artPlayer: ['artplayer'],
-  mathjax: ['mathjax-full'],
+  mathjax: ['@mathjax/src'],
 }
 
 const t = createTranslate({

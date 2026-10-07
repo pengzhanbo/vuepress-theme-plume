@@ -2,6 +2,7 @@ import type { ComputedRef, Ref } from 'vue'
 import type { ThemePostsItem } from '../../shared/index.js'
 import { useTimeoutFn } from '@vueuse/core'
 import { computed } from 'vue'
+import { sortPostsBySticky } from '../utils/posts.js'
 import { useData } from './data.js'
 import { useLayout } from './layout.js'
 import { useLocalePostList } from './posts-data.js'
@@ -45,23 +46,12 @@ export function usePostListControl(homePage: Ref<boolean>): UsePostListControlRe
     return undefined
   })
 
-  const postList = computed(() => {
-    const stickyList = list.value.filter(item =>
-      item.sticky === true || typeof item.sticky === 'number',
-    )
-    const otherList = list.value.filter(
-      item => item.sticky === undefined || item.sticky === false,
-    )
-
-    return [
-      ...stickyList.sort((prev, next) => {
-        if (next.sticky === true && prev.sticky === true)
-          return 0
-        return next.sticky! > prev.sticky! ? 1 : -1
-      }),
-      ...otherList,
-    ] as ThemePostsItem[]
-  })
+  // Sticky posts are normalized to a numeric priority and moved to the front;
+  // the list is then paginated, which means sticky posts are only pinned on the
+  // first page (page 2 onward follows the normal chronological order).
+  // 置顶文章会被归一化为数值优先级并前置；列表随后会分页切片，
+  // 因此置顶文章仅在第 1 页置顶（第 2 页起按正常时间顺序展示）。
+  const postList = computed(() => sortPostsBySticky(list.value))
 
   const routePage = useRouteQuery('p', 1, {
     mode: 'push',

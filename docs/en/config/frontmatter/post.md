@@ -28,7 +28,11 @@ tags:
 
 Whether to pin the current article to the top in article lists.
 
-If a `number` is provided, a higher value will position the article closer to the top when pinned.
+If a `number` is provided, a higher value will position the article closer to the top when pinned. `true` ranks above any number, while `0`, negative numbers and `false` are all treated as "not sticky".
+
+::: tip
+Sticky articles are only pinned **on the first page of the article list**. From the second page onward, articles are shown in the normal chronological order.
+:::
 
 ### article
 

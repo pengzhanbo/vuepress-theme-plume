@@ -6,6 +6,7 @@ import { useMediaQuery } from '@vueuse/core'
 import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
 import { useData, useInternalLink, useTagColors } from '../../composables/index.js'
+import { resolveSticky } from '../../utils/index.js'
 
 const { post, index } = defineProps<{
   post: ThemePostsItem
@@ -39,15 +40,10 @@ const readingTime = computed(() => {
   return res
 })
 
-const sticky = computed(() => {
-  if (typeof post.sticky === 'boolean') {
-    return post.sticky
-  }
-  else if (typeof post.sticky === 'number') {
-    return post.sticky >= 0
-  }
-  return false
-})
+// Keep the "TOP" badge consistent with the list sorting: `sticky: 0` and
+// negative / non-finite numbers are treated as "not sticky".
+// 保持 "TOP" 标记与列表排序一致：`sticky: 0` 以及负数 / 非有限数均视为不置顶。
+const sticky = computed(() => resolveSticky(post.sticky) > 0)
 
 const tags = computed(() => {
   const tagTheme = collection.value?.tagsTheme ?? 'colored'

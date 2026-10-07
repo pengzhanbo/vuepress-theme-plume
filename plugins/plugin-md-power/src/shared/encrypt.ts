@@ -21,6 +21,13 @@ export interface EncryptSnippetLocale extends LocaleData {
    */
   placeholder?: string
   /**
+   * Unlock button accessible name
+   *
+   * 解锁按钮的无障碍名称
+   * @default 'Unlock'
+   */
+  unlock?: string
+  /**
    * Incorrect password message
    *
    * 密码错误消息

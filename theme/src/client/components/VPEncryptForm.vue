@@ -59,7 +59,10 @@ async function onSubmit() {
         >
       </label>
     </p>
-    <button class="encrypt-button" :class="{ unlocking }" @click="onSubmit">
+    <p v-if="errorCode === 1" id="encrypt-error" class="encrypt-error" role="alert">
+      {{ theme.encryptErrorText ?? 'Incorrect password' }}
+    </p>
+    <button type="button" class="encrypt-button" :class="{ unlocking }" @click="onSubmit">
       <span v-if="!unlocking">{{ theme.encryptButtonText ?? 'Confirm' }}</span>
       <span v-else class="vpi-loading" />
     </button>
@@ -105,6 +108,13 @@ async function onSubmit() {
 
 .encrypt-input.error {
   border-color: var(--vp-c-danger-3);
+}
+
+.encrypt-error {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--vp-c-danger-3);
+  text-align: center;
 }
 
 .encrypt-button {

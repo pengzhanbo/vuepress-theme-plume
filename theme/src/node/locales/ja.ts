@@ -39,6 +39,7 @@ export const jaLocale: ThemeLocaleText = {
 
   homeText: 'ホーム',
   postsText: 'ブログ',
+  postsExtractLabel: '記事ナビゲーション',
   tagText: 'タグ',
   archiveText: 'アーカイブ',
   categoryText: 'カテゴリー',
@@ -46,6 +47,7 @@ export const jaLocale: ThemeLocaleText = {
 
   encryptButtonText: '確認',
   encryptPlaceholder: 'パスワードを入力してください',
+  encryptErrorText: 'パスワードが正しくありません',
   encryptGlobalText: 'このサイトはパスワードでのみアクセス可能です',
   encryptPageText: 'このページはパスワードでのみアクセス可能です',
 

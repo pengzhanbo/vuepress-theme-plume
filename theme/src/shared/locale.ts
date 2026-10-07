@@ -378,6 +378,11 @@ export interface ThemeLocaleText {
    */
   postsText?: string
   /**
+   * 文章导航面板触发按钮的无障碍标签，供屏幕阅读器朗读
+   * @default 'Posts Navigation'
+   */
+  postsExtractLabel?: string
+  /**
    * 标签文本，用于默认生成的导航栏、博客标签页中
    */
   tagText?: string
@@ -414,6 +419,12 @@ export interface ThemeLocaleText {
    * 加密时输入框的 placeholder
    */
   encryptPlaceholder?: string
+
+  /**
+   * 加密密码校验失败时的提示文本
+   * @default 'Incorrect password'
+   */
+  encryptErrorText?: string
 
   // 以下字段与 PageContextMenu 相关 ------ start
 

@@ -8,6 +8,7 @@ export const koLocale: MDPowerLocaleData = {
   encrypt: {
     hint: '내용이 암호화되어 있습니다. 잠금 해제 후 확인하세요.',
     placeholder: '비밀번호 입력',
+    unlock: '잠금 해제',
     incPwd: '잘못된 비밀번호',
     noContent: '잠금이 해제되었지만 내용을 불러오지 못했습니다. 나중에 다시 시도해 주세요.',
     warningTitle: '🚨 보안 경고:',

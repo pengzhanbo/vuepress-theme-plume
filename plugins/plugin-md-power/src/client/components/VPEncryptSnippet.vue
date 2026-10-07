@@ -2,7 +2,7 @@
 import snippets from '@internal/encrypt-snippets'
 import { decodeData } from '@vuepress/helper/client'
 import { useIntersectionObserver } from '@vueuse/core'
-import { computed, ref, useTemplateRef } from 'vue'
+import { computed, ref, useId, useTemplateRef } from 'vue'
 import { ClientOnly, onContentUpdated } from 'vuepress/client'
 import { useDecrypt } from '../composables/decrypt.js'
 import { ENCRYPT_LOCALES } from '../options.js'
@@ -28,6 +28,22 @@ const password = ref('')
 const content = ref('')
 const errorCode = ref<0 | 1 | 2>(0) // 0: no error, 1: wrong password 2: no content
 const loading = ref(false)
+
+// 同一个页面可能存在多个加密片段，因此 id 必须唯一
+// A page may contain multiple encrypted snippets, so the ids must be unique.
+const uid = useId()
+const inputId = `${uid}-password`
+const errorId = `${uid}-error`
+
+// 密码错误与内容缺失共用同一个提示节点，避免出现多个同 id 元素
+// Both the wrong-password and the missing-content messages share one node, so no duplicated ids.
+const errorMessage = computed(() => {
+  if (errorCode.value === 1)
+    return locale.value.incPwd || 'Incorrect password'
+  if (errorCode.value === 2)
+    return locale.value.noContent || 'Unlocked, but content failed to load, please try again later.'
+  return ''
+})
 
 // web encrypt should always use https
 const isHttps = computed(() => {
@@ -104,30 +120,31 @@ onContentUpdated((reason) => {
         {{ locale.warningText || 'Your connection is not encrypted with HTTPS, posing a risk of content leakage and preventing access to encrypted content.' }}
       </div>
       <div v-else class="snippet-form" :class="{ error: errorCode === 1 }">
-        <label for="password">
+        <label :for="inputId">
           <input
+            :id="inputId"
             v-model="password" name="password" type="password"
             :placeholder="locale.placeholder || 'Enter password'"
+            :aria-invalid="errorCode === 1"
+            :aria-describedby="errorMessage ? errorId : undefined"
             @keydown.enter="onDecrypt"
             @input="errorCode = 0"
           >
         </label>
-        <button type="button" :disabled="!password" @click="onDecrypt">
+        <button
+          type="button"
+          :disabled="!password"
+          :aria-label="locale.unlock || 'Unlock'"
+          :aria-busy="loading"
+          @click="onDecrypt"
+        >
           <span :class="loading ? 'vpi-loading' : 'vpi-unlock'" />
         </button>
-        <p v-if="errorCode === 1" class="snippet-error">
-          {{ locale.incPwd || 'Incorrect password' }}
-        </p>
-        <p v-if="errorCode === 2" class="snippet-error">
-          {{ locale.noContent || 'Unlocked, but content failed to load, please try again later.' }}
+        <p v-if="errorMessage" :id="errorId" class="snippet-error" role="alert">
+          {{ errorMessage }}
         </p>
       </div>
     </div>
-    <!--
-      The decrypted content is the HTML rendered by markdown-it at build time,
-      it is rendered as static HTML without runtime template compilation.
-      解密内容为构建期由 markdown-it 渲染的 HTML，直接以静态 HTML 渲染，不再进行运行时模板编译。
-    -->
     <div v-else class="decrypted-content" v-html="content" />
   </ClientOnly>
 </template>

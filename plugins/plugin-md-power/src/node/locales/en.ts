@@ -8,6 +8,7 @@ export const enLocale: MDPowerLocaleData = {
   encrypt: {
     hint: 'The content is encrypted, please unlock to view.',
     placeholder: 'Enter password',
+    unlock: 'Unlock',
     incPwd: 'Incorrect password',
     noContent: 'Unlocked, but content failed to load, please try again later.',
     warningTitle: '🚨 Security Warning:',

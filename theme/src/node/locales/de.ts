@@ -39,6 +39,7 @@ export const deLocale: ThemeLocaleText = {
 
   homeText: 'Startseite',
   postsText: 'Blog',
+  postsExtractLabel: 'Beitragsnavigation',
   tagText: 'Tag',
   archiveText: 'Archiv',
   categoryText: 'Kategorie',
@@ -46,6 +47,7 @@ export const deLocale: ThemeLocaleText = {
 
   encryptButtonText: 'Bestätigen',
   encryptPlaceholder: 'Bitte Passwort eingeben',
+  encryptErrorText: 'Falsches Passwort',
   encryptGlobalText: 'Diese Website ist nur mit Passwort zugänglich',
   encryptPageText: 'Diese Seite ist nur mit Passwort zugänglich',
 

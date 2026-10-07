@@ -17,16 +17,18 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
       </h2>
       <slot name="posts-tags-title-after" />
       <div class="tags">
-        <p
+        <button
           v-for="tag in tags"
           :key="tag.name"
+          type="button"
           class="tag"
           :class="{ active: tag.name === currentTag, [tag.className]: true }"
+          :aria-pressed="tag.name === currentTag"
           @click="handleTagClick(tag.name)"
         >
           <span class="tag-name">{{ tag.name }}</span>
           <span class="tag-count">{{ tag.count }}</span>
-        </p>
+        </button>
       </div>
     </div>
 
@@ -92,6 +94,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
   display: flex;
   align-items: center;
   padding: 6px 10px 6px 12px;
+  font-family: inherit;
   font-size: 14px;
   line-height: 1;
   color: var(--vp-tag-color);

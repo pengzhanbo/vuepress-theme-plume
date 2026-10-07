@@ -9,7 +9,7 @@ import { collections as collectionsRaw } from '@internal/collectionsData'
 import { ref, watchEffect } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
 import { removeLeadingSlash } from 'vuepress/shared'
-import { normalizeLink } from '../utils/index.js'
+import { normalizeLink, normalizePrefix } from '../utils/index.js'
 import { useData } from './data.js'
 
 /**
@@ -129,7 +129,7 @@ export function setupCollection(): void {
 
     collectionItemRef.value = sorted.find((item) => {
       if (page.value.filePathRelative) {
-        return page.value.filePathRelative?.startsWith(normalizeLink(routeLocale.value, item.dir).slice(1))
+        return page.value.filePathRelative?.startsWith(normalizePrefix(routeLocale.value, item.dir).slice(1))
       }
       else {
         const { link, linkPrefix, dir, tagsLink, categoriesLink, archivesLink } = item as ThemePostCollection

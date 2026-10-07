@@ -162,6 +162,11 @@ export default defineUserConfig({
 可以在容器中添加 `password` / `pwd` 属性，设置该容器的密码。
 如果没有设置密码，将使用默认密码。
 
+:::: warning 密码必须设置
+如果容器未设置 `password` / `pwd`，且未配置默认密码 `markdown.encrypt.password`，
+构建时会在终端输出错误，并且该容器的内容 **不会** 被渲染（不会降级为明文输出）。
+::::
+
 还可以在容器上添加 `hint` 属性，设置密码提示信息。
 
 ```md /password="123456"/

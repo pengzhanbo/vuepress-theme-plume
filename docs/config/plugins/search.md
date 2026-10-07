@@ -45,6 +45,9 @@ interface SearchOptions {
 
   /**
    * 文章是否可被搜索，默认为 `() => true`
+   *
+   * 注意：被加密的文章（`encrypt.rules` 命中或页面 `password`）始终不会被索引，
+   * 搜索索引是公开下发的静态资源，收录加密文章会使其内容泄漏。
    */
   isSearchable?: (page: Page) => boolean
 }

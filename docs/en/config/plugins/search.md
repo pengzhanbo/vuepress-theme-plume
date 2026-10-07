@@ -45,6 +45,10 @@ interface SearchOptions {
 
   /**
    * Whether articles are searchable, defaults to `() => true`
+   *
+   * Note: encrypted pages (matched by `encrypt.rules` or having a page `password`)
+   * are never indexed, because the search index is shipped as a public static asset
+   * and indexing them would leak their content.
    */
   isSearchable?: (page: Page) => boolean
 }

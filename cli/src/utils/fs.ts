@@ -2,23 +2,33 @@ import type { FileHandle } from 'node:fs/promises'
 import type { File } from '../types.js'
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { mapAsync } from '@pengzhanbo/utils'
+
+/**
+ * Maximum number of files read at the same time.
+ *
+ * 同时读取的文件数量上限。
+ */
+const READ_CONCURRENCY = 64
 
 /**
  * Read all files from a directory recursively
  *
  * Files are read concurrently to avoid paying the I/O latency of every file
- * sequentially; `Promise.all` keeps the resulting order stable.
+ * sequentially, while the concurrency stays bounded so that a large template
+ * directory cannot exhaust file descriptors. The resulting order is stable.
  *
  * 递归读取目录下的所有文件
  *
- * 并发读取文件，避免逐个等待每个文件的 I/O 延迟；`Promise.all` 保证结果顺序稳定。
+ * 并发读取文件，避免逐个等待每个文件的 I/O 延迟；同时限制并发数量，
+ * 避免模板目录过大时耗尽文件描述符。结果顺序保持稳定。
  *
  * @param dir - Root directory path to read from / 要读取的根目录路径
  * @returns Array of file objects / 文件对象数组
  */
 export async function readFiles(dir: string): Promise<File[]> {
   const filepaths = await fs.readdir(dir, { recursive: true })
-  const files = await Promise.all(filepaths.map(async (file) => {
+  const files = await mapAsync(filepaths, async (file) => {
     const filepath = path.join(dir, file)
     if (!(await fs.stat(filepath)).isFile())
       return undefined
@@ -26,7 +36,7 @@ export async function readFiles(dir: string): Promise<File[]> {
       filepath: file,
       content: await fs.readFile(filepath, 'utf-8'),
     }
-  }))
+  }, READ_CONCURRENCY)
 
   return files.filter((file): file is File => file !== undefined)
 }

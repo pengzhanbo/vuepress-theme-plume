@@ -1,7 +1,7 @@
 import type { InjectionKey, Ref } from 'vue'
 import type { EncryptDataRule } from './encrypt-data.js'
 import { computedAsync, useSessionStorage } from '@vueuse/core'
-import { bcryptVerify, md5 } from 'hash-wasm'
+import { bcryptVerify, sha256 } from 'hash-wasm'
 import { computed, inject, provide } from 'vue'
 import { useRoute } from 'vuepress/client'
 import { removeLeadingSlash } from 'vuepress/shared'
@@ -35,21 +35,64 @@ export interface Encrypt {
 export const EncryptSymbol: InjectionKey<Encrypt> = createSymbol('docEncrypt')
 
 /**
+ * Storage key for encryption state.
+ *
+ * The value is an opaque constant: it only needs to stay stable across releases
+ * so that a decryption made before a page refresh is still recognized afterwards.
+ * Changing it invalidates the session state of already-open tabs.
+ *
+ * 加密状态的存储键。
+ *
+ * 该值是不透明常量：只需在版本之间保持稳定，
+ * 使页面刷新前完成的解密在刷新后依然有效。修改它会使已打开标签页的会话状态失效。
+ */
+const ENCRYPT_STORAGE_KEY = '2a0a3d6afb2fdf1f'
+
+/**
+ * Shape of the persisted session state.
+ *
+ * `g` holds the decrypted global password fingerprint,
+ * `p` maps a page key to its decrypted page password fingerprint.
+ *
+ * 持久化的会话状态结构。
+ *
+ * `g` 保存已解密的全局密码指纹，
+ * `p` 以页面 key 为索引保存该页面已解密的密码指纹。
+ */
+interface EncryptStorageState {
+  g: string
+  p: Record<string, string>
+}
+
+/**
  * Session storage for encryption state
  * Stores global and page decryption states
  *
  * 加密状态的会话存储
  * 存储全局和页面解密状态
  */
-const storage = useSessionStorage('2a0a3d6afb2fdf1f', () => {
-  if (__VUEPRESS_SSR__) {
-    return { g: '', p: [] as string[] }
-  }
-  return {
-    g: '',
-    p: [] as string[],
-  }
-})
+const storage = useSessionStorage<EncryptStorageState>(ENCRYPT_STORAGE_KEY, () => ({
+  g: '',
+  p: {},
+}))
+
+/**
+ * Build the fingerprint of a password hash.
+ *
+ * The persisted value is the SHA-256 of the bcrypt hash shipped with the bundle,
+ * because MD5 is collision-prone and has no place in a security check.
+ * The fingerprint is not reversible and is only used to recognize a password
+ * that has already been verified during the current session.
+ *
+ * 生成密码哈希的指纹。
+ *
+ * 持久化的值是被打包下发的 bcrypt 哈希的 SHA-256，
+ * 因为 MD5 存在碰撞风险，不应出现在安全校验中。
+ * 指纹不可逆，仅用于在当前会话中识别已验证过的密码。
+ */
+function fingerprint(hash: string): Promise<string> {
+  return sha256(hash)
+}
 
 /**
  * Cache for password comparison results
@@ -175,7 +218,7 @@ export function setupEncrypt(): void {
       return true
 
     for (const admin of encrypt.value.admins) {
-      if (hash && hash === await md5(admin))
+      if (hash && hash === await fingerprint(admin))
         return true
     }
     return false
@@ -190,7 +233,7 @@ export function setupEncrypt(): void {
     const filePathRelative = page.value.filePathRelative
     const passwords = typeof page.value._e === 'string' ? page.value._e.split(':') : []
     const pageRule: EncryptDataRule | undefined = passwords.length
-      ? { key: pagePath.replace(/\//g, '').replace(/\.html$/, ''), match: pagePath, rules: passwords }
+      ? { key: pagePath, match: pagePath, rules: passwords }
       : undefined
     const rules = encrypt.value.ruleList.length
       ? encrypt.value.ruleList
@@ -211,14 +254,14 @@ export function setupEncrypt(): void {
     const hash = storage.value.g
 
     for (const admin of encrypt.value.admins) {
-      if (hash && hash === await md5(admin))
+      if (hash && hash === await fingerprint(admin))
         return true
     }
 
     for (const { key, rules } of hashList.value) {
       const hash = storage.value.p[key]
       for (const rule of rules) {
-        if (hash && hash === await md5(rule))
+        if (hash && hash === await fingerprint(rule))
           return true
       }
     }
@@ -282,7 +325,7 @@ export function useEncryptCompare(): {
 
     for (const admin of encrypt.value.admins) {
       if (await compareDecrypt(password, admin)) {
-        storage.value.g = await md5(admin)
+        storage.value.g = await fingerprint(admin)
         return true
       }
     }
@@ -311,7 +354,7 @@ export function useEncryptCompare(): {
         for (const rule of rules) {
           if (await compareDecrypt(password, rule)) {
             decrypted = true
-            storage.value.p[key] = await md5(rule)
+            storage.value.p[key] = await fingerprint(rule)
             break
           }
         }

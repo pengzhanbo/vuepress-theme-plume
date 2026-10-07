@@ -75,43 +75,57 @@ const tasks: Record<string, string> = {}
 const target = 'md-power/demo/watcher.txt'
 
 export function demoWatcher(app: App, watchers: any[]): void {
+  // Listeners and the watcher wrapper are registered lazily and only once:
+  // `onWatched` may be invoked more than once, and re-registering would handle the
+  // same event repeatedly while leaking a wrapper object on every call.
+  // 监听器与 watcher 包装对象只注册一次：`onWatched` 可能被多次调用，
+  // 重复注册会导致同一事件被处理多次，并且每次调用都会泄漏一个包装对象。
   if (!watcher) {
     watcher = watch([], { ignoreInitial: true })
+
+    watcher.on('change', (path) => {
+      if (tasks[path]) {
+        const code = readFileSync(path)
+        if (code === false)
+          return
+        const source = parseEmbedCode(code)
+        compileCode(source, tasks[path])
+      }
+    })
+
+    watcher.on('unlink', (path) => {
+      deleteKey(tasks, path)
+      watcher?.unwatch(path)
+    })
+
+    watchers.push({
+      close: () => {
+        watcher?.close()
+        watcher = null
+      },
+    })
   }
 
-  watcher!.add(objectKeys(tasks))
+  watcher.add(objectKeys(tasks))
 
   const code = readFileSync(app.dir.temp(target))
   if (code) {
-    const paths = JSON.parse(code || '{}') as Record<string, string>
+    let paths: Record<string, string> = {}
+    try {
+      paths = JSON.parse(code) as Record<string, string>
+    }
+    catch (error) {
+      // 缓存文件损坏时不应中断构建，但必须可见，否则同步失效且无任何提示。
+      // A corrupted cache file must not break the build, but it has to be visible,
+      // otherwise the watcher silently stops tracking existing demos.
+      logger.warn('demo-watcher', `Failed to parse ${target}, it has been ignored.`, error)
+    }
     objectEntries(paths).forEach(([path, output]) => {
-      watcher!.add(path)
+      watcher?.add(path)
       tasks[path] = output
     })
   }
-  updateWatchFiles(app)
-
-  watcher.on('change', (path) => {
-    if (tasks[path]) {
-      const code = readFileSync(path)
-      if (code === false)
-        return
-      const source = parseEmbedCode(code)
-      compileCode(source, tasks[path])
-    }
-  })
-
-  watcher.on('unlink', (path) => {
-    deleteKey(tasks, path)
-    watcher!.unwatch(path)
-  })
-
-  watchers.push({
-    close: () => {
-      watcher!.close()
-      watcher = null
-    },
-  })
+  void updateWatchFiles(app)
 }
 
 export function addTask(app: App, path: string, output: string): void {
@@ -121,10 +135,19 @@ export function addTask(app: App, path: string, output: string): void {
   if (watcher) {
     watcher.add(path)
   }
-  updateWatchFiles(app)
+  void updateWatchFiles(app)
 }
 
 async function updateWatchFiles(app: App) {
-  await fs.promises.mkdir(app.dir.temp(path.dirname(target)), { recursive: true })
-  await fs.promises.writeFile(app.dir.temp(target), JSON.stringify(tasks))
+  // Called from synchronous markdown rendering paths that cannot await it, so the
+  // error is handled here to avoid an unhandled rejection.
+  // 该函数在无法 await 的同步 markdown 渲染路径中被调用，因此在此处处理错误，
+  // 避免产生未处理的 rejection。
+  try {
+    await fs.promises.mkdir(app.dir.temp(path.dirname(target)), { recursive: true })
+    await fs.promises.writeFile(app.dir.temp(target), JSON.stringify(tasks))
+  }
+  catch (error) {
+    logger.warn('demo-watcher', `Failed to update ${target}.`, error)
+  }
 }

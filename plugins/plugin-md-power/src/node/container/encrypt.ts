@@ -2,7 +2,7 @@ import type { App } from 'vuepress/core'
 import type { Markdown } from 'vuepress/markdown'
 import type { EncryptSnippetOptions } from '../../shared/encrypt'
 import { getRandomValues } from 'node:crypto'
-import { debounce, objectKeys } from '@pengzhanbo/utils'
+import { debounce, limitAsync, objectKeys } from '@pengzhanbo/utils'
 import { encodeData, ensureLeadingSlash } from '@vuepress/helper'
 import { colors, fs, hash } from 'vuepress/utils'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv'
@@ -20,6 +20,19 @@ interface EncryptOptions {
   salt: Uint8Array
   iv: Uint8Array
 }
+
+/**
+ * Maximum number of snippet files written at the same time.
+ *
+ * A document may contain many `::: encrypt` containers; unbounded concurrent
+ * writes would exhaust file descriptors on large sites.
+ *
+ * 同时写入的加密片段文件数量上限。
+ *
+ * 一个文档中可能包含大量 `::: encrypt` 容器，无限制的并发写入会在
+ * 大站点上耗尽文件描述符。
+ */
+const SNIPPET_WRITE_CONCURRENCY = 8
 
 /**
  * Encrypt plugin - Enable encrypted content container
@@ -52,6 +65,12 @@ export function encryptPlugin(
     const encrypted = await encryptContent(content, options)
     await app.writeTemp(`internal/encrypt-snippets/${hash}.js`, `export default ${JSON.stringify(encrypted)}`)
   }
+
+  // Writes still start eagerly (so rendering stays incremental), but at most
+  // `SNIPPET_WRITE_CONCURRENCY` of them run at the same time.
+  // 写入仍然是即时发起的（保证渲染过程可持续增量更新），但同时最多只执行
+  // `SNIPPET_WRITE_CONCURRENCY` 个。
+  const writeTempLimited = limitAsync(writeTemp, SNIPPET_WRITE_CONCURRENCY)
 
   /**
    * Write entry file with all encrypted snippets
@@ -94,22 +113,32 @@ export function encryptPlugin(
   createContainerSyntaxPlugin(md, 'encrypt', (tokens, index, _, env) => {
     const { meta, content } = tokens[index]
     const { password, pwd, hint } = meta as { password?: string, pwd?: string, hint?: string }
-    const rendered = md.render(content, cleanMarkdownEnv(env))
     const _pwd = password || pwd || options.password
 
     if (!_pwd) {
-      logger.warn(`${colors.cyan('[encrypt snippet]')} ${colors.green('::: encrypt')} container missing password. ${colors.gray(`(${env.filePathRelative})`)}`)
-      return rendered
+      // Never fall back to plaintext: the author expects the content to be protected,
+      // silently rendering it would leak the content. Fail loudly and hide the content.
+      // 绝不降级为明文：作者期望内容被保护，静默渲染明文会导致内容泄露。
+      // 因此这里显式报错，并隐藏该片段的内容。
+      logger.error(`${colors.cyan('[encrypt snippet]')} ${colors.green('::: encrypt')} container missing password, its content is NOT encrypted and has been hidden. ${colors.gray(`(${env.filePathRelative})`)}`)
+      return `<div class="vp-encrypt-error" role="alert">[encrypt snippet] missing password, the content is not rendered. (${md.utils.escapeHtml(env.filePathRelative || '')})</div>`
     }
 
-    const contentHash = hash(content)
+    const rendered = md.render(content, cleanMarkdownEnv(env))
+
+    // The password is part of the hash: two containers with identical content but
+    // different passwords must not share the same temp file, otherwise the later one
+    // overwrites the former and both can only be unlocked with a single password.
+    // 密码参与哈希计算：内容相同但密码不同的两个容器不能共用同一个临时文件，
+    // 否则后写入的会覆盖先写入的，导致两处只能使用同一个密码解锁。
+    const contentHash = hash(`${_pwd}:${content}`)
     encrypted.add(contentHash)
 
     const salt = getRandomValues(new Uint8Array(16))
     const iv = getRandomValues(new Uint8Array(16))
 
     writeEntry()
-    pending.push(writeTemp(contentHash, rendered, { salt, iv, password: String(_pwd) }))
+    pending.push(writeTempLimited(contentHash, rendered, { salt, iv, password: String(_pwd) }))
 
     const data = encodeData(JSON.stringify({
       hash: contentHash,

@@ -62,22 +62,33 @@ export function usePostListControl(homePage: Ref<boolean>): UsePostListControlRe
     ] as ThemePostsItem[]
   })
 
-  const page = useRouteQuery('p', 1, {
+  const routePage = useRouteQuery('p', 1, {
     mode: 'push',
     transform(val) {
       const page = Number(val)
-      if (!Number.isNaN(page) && page > 0)
+      // Only positive integers are accepted, so `?p=abc`, `?p=0`, `?p=-1`, `?p=1.5`
+      // and `?p=Infinity` all fall back to the first page.
+      // 仅接受正整数，因此 `?p=abc`、`?p=0`、`?p=-1`、`?p=1.5` 和 `?p=Infinity` 都会回退到首页。
+      if (Number.isInteger(page) && page > 0)
         return page
       return 1
     },
   })
 
   const perPage = computed(() => {
-    if (postCollection.value?.pagination === false)
+    const pagination = postCollection.value?.pagination
+    if (pagination === false)
       return 0
-    if (typeof postCollection.value?.pagination === 'number')
-      return postCollection.value.pagination
-    return postCollection.value?.pagination?.perPage || DEFAULT_PER_PAGE
+
+    const raw = typeof pagination === 'number'
+      ? pagination
+      : (pagination?.perPage ?? DEFAULT_PER_PAGE)
+    const size = Math.floor(raw)
+
+    // A non-positive or non-finite page size would make `totalPage` become `Infinity`
+    // and render an empty list, so fall back to the default instead.
+    // 非正数 / 非有限值的每页条数会让 `totalPage` 变成 `Infinity` 并渲染空列表，因此回退默认值。
+    return Number.isFinite(size) && size > 0 ? size : DEFAULT_PER_PAGE
   })
 
   const totalPage = computed(() => {
@@ -85,6 +96,17 @@ export function usePostListControl(homePage: Ref<boolean>): UsePostListControlRe
       return 0
     return Math.ceil(postList.value.length / perPage.value)
   })
+
+  // Clamp the page number into the valid range `[1, totalPage]`.
+  // An out-of-range `?p=9999` / `?p=1e9`, or a list that shrank after a locale switch,
+  // must not produce an empty list nor a dangling pagination state.
+  // 将页码钳制到有效区间 `[1, totalPage]`。
+  // 越界的 `?p=9999` / `?p=1e9`，或切换语言后列表变短的情况，
+  // 都不应产生空列表或失效的分页状态。
+  const page = computed(() =>
+    Math.min(Math.max(routePage.value, 1), Math.max(totalPage.value, 1)),
+  )
+
   const isLastPage = computed(() => page.value >= totalPage.value)
   const isFirstPage = computed(() => page.value <= 1)
   const isPaginationEnabled = computed(() => postCollection.value?.pagination !== false && totalPage.value > 1)
@@ -144,9 +166,13 @@ export function usePostListControl(homePage: Ref<boolean>): UsePostListControlRe
   })
 
   const changePage = (current: number): void => {
-    if (page.value === current)
+    // Write to the route query ref, not to the clamped `page` (which is a readonly computed).
+    // This also lets a click on the clamped page heal an out-of-range `?p=` in the URL.
+    // 写入路由 query ref，而不是被钳制的 `page`（它是只读 computed）。
+    // 这也让点击被钳制后的页码能够顺带修正 URL 中越界的 `?p=`。
+    if (routePage.value === current)
       return
-    page.value = current
+    routePage.value = current
     setTimeout(() => {
       let top = 0
       if (homePage.value) {

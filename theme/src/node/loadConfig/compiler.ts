@@ -124,7 +124,12 @@ export async function compiler(configPath?: string): Promise<{
     config = await importFileDefault(tempFilePath)
   }
   finally {
-    fs.unlink(tempFilePath)
+    // The temp file may never have been written (e.g. `writeFile` failed), so the
+    // cleanup is awaited and the failure ignored: it must neither produce an
+    // unhandled rejection nor mask the original error.
+    // 临时文件可能并未写入成功（如 `writeFile` 失败），因此需要 await 并吞掉清理失败：
+    // 既不能产生未处理的 rejection，也不能掩盖原始错误。
+    await fs.unlink(tempFilePath).catch(() => {})
   }
   return {
     config,

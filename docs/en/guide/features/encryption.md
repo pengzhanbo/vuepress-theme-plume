@@ -151,6 +151,12 @@ Use the `::: encrypt` container to wrap the content that needs to be encrypted.
 You can add `password` / `pwd` attribute to the container to set the password for that container.
 If no password is set, the default password will be used.
 
+:::: warning Password is required
+If neither `password` / `pwd` is set on the container nor the default password `markdown.encrypt.password` is configured,
+the build will report an error, and the content of this container will **not** be rendered
+(it is never output as plaintext).
+::::
+
 You can also add a `hint` attribute to set a password hint.
 
 ```md /password="123456"/

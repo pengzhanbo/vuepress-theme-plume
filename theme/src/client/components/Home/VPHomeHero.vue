@@ -98,6 +98,9 @@ onUnmounted(() => {
     noTransition()
     window.removeEventListener('unload', fallbackDarkMode)
   }
+  else {
+    document.documentElement.classList.remove('no-transition')
+  }
 })
 </script>
 

@@ -99,4 +99,22 @@ describe('findCollection', () => {
 
     expect(findCollection(createPage('other/a.md'))).toBeUndefined()
   })
+
+  it('falls back to the root collections when the locale declares none', () => {
+    // locales['/'] 未声明集合时，退回到顶层的 `collections`。
+    hoisted.themeConfig = {
+      collections: [{ type: 'doc', dir: 'blog', title: 'Blog' }],
+      locales: { '/en/': { collections: [{ type: 'doc', dir: 'docs', title: 'Docs' }] } },
+    }
+
+    expect(dir(findCollection(createPage('blog/a.md', '/')))).toBe('blog')
+    // 非根语言的文件路径包含语言前缀，比较前会被裁掉。
+    expect(dir(findCollection(createPage('en/docs/a.md', '/en/')))).toBe('docs')
+  })
+
+  it('returns undefined when the resolved collection list is empty', () => {
+    setCollections([])
+
+    expect(findCollection(createPage('blog/a.md'))).toBeUndefined()
+  })
 })

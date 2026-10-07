@@ -21,7 +21,13 @@ vi.mock('@internal/minisearchIndex', () => ({
 // `searchIndex.ts` 在模块顶层读取 VuePress 全局变量。
 vi.stubGlobal('__VUEPRESS_DEV__', false)
 
-const { loadSearchIndexJSON } = await import('../src/client/composables/searchIndex.js')
+// Note: the HMR block at the bottom of `searchIndex.ts` is guarded by
+// `__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)`. `import.meta.hot`
+// cannot be provided under the test runner, so that block is intentionally not tested.
+// 说明：`searchIndex.ts` 底部的 HMR 代码块由 `__VUEPRESS_DEV__ && (import.meta.webpackHot
+// || import.meta.hot)` 守卫。测试环境中无法提供 `import.meta.hot`，因此该代码块不进行测试。
+
+const { loadSearchIndexJSON, useSearchIndex } = await import('../src/client/composables/searchIndex.js')
 
 /** 构造仅包含元数据的序列化索引。 */
 function createMeta(): AsPlainObject {
@@ -130,5 +136,13 @@ describe('loadSearchIndexJSON', () => {
     })
 
     expect(index.search('w1').map(result => result.id)).toEqual(['/a/'])
+  })
+})
+
+describe('useSearchIndex', () => {
+  it('exposes the reactive search index data', () => {
+    const data = useSearchIndex()
+
+    expect(data.value['/']).toBe(loadIndexModule)
   })
 })

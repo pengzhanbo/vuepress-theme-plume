@@ -37,6 +37,88 @@ describe('createFsCache', () => {
     warn.mockRestore()
   })
 
+  it('should persist and reload the cached data', async () => {
+    const cache = createFsCache<{ a: number }>(createApp(), 'persist')
+
+    await cache.write({ a: 1 })
+    await new Promise(resolve => setTimeout(resolve, 400))
+    expect(cache.hash).not.toBe('')
+
+    // 新实例从磁盘读取缓存，命中已写入的数据。
+    const reloaded = createFsCache<{ a: number }>(createApp(), 'persist')
+    await expect(reloaded.read()).resolves.toEqual({ a: 1 })
+    expect(reloaded.hash).not.toBe('')
+    expect(reloaded.data).toEqual({ a: 1 })
+  })
+
+  it('should skip writing when the data is unchanged', async () => {
+    const cache = createFsCache<{ a: number }>(createApp(), 'dedupe')
+
+    await cache.write({ a: 1 })
+    const firstHash = cache.hash
+    await cache.write({ a: 1 })
+
+    // 内容未变化时不应重新调度写入。
+    expect(cache.hash).toBe(firstHash)
+  })
+
+  it('should clear the data after writing when requested', async () => {
+    const cache = createFsCache<{ a: number }>(createApp(), 'clear')
+
+    await cache.write({ a: 1 }, true)
+    await new Promise(resolve => setTimeout(resolve, 400))
+
+    expect(cache.data).toBeNull()
+    expect(cache.hash).toBe('')
+  })
+
+  it('should return the cached data without re-reading the file', async () => {
+    const app = createApp()
+    const filepath = path.join(tmpDir, 'markdown/cached.json')
+    fs.mkdirSync(path.dirname(filepath), { recursive: true })
+    fs.writeFileSync(filepath, JSON.stringify({ hash: 'whatever', data: { a: 1 } }))
+
+    const cache = createFsCache<{ a: number }>(app, 'cached')
+    await expect(cache.read()).resolves.toEqual({ a: 1 })
+
+    // 内存中已有数据时，删除磁盘文件也不影响再次读取。
+    fs.rmSync(filepath)
+    await expect(cache.read()).resolves.toEqual({ a: 1 })
+  })
+
+  it('should ignore an empty cache file', async () => {
+    const filepath = path.join(tmpDir, 'markdown/empty.json')
+    fs.mkdirSync(path.dirname(filepath), { recursive: true })
+    fs.writeFileSync(filepath, '')
+
+    const cache = createFsCache(createApp(), 'empty')
+
+    await expect(cache.read()).resolves.toBeNull()
+  })
+
+  it('should debounce consecutive writes', async () => {
+    const cache = createFsCache<{ a: number }>(createApp(), 'debounce')
+
+    await cache.write({ a: 1 })
+    await cache.write({ a: 2 })
+    await new Promise(resolve => setTimeout(resolve, 400))
+
+    // 只有最后一次写入落盘。
+    const reloaded = createFsCache<{ a: number }>(createApp(), 'debounce')
+    await expect(reloaded.read()).resolves.toEqual({ a: 2 })
+  })
+
+  it('should restore a cache entry that stored no data', async () => {
+    const filepath = path.join(tmpDir, 'markdown/no-data.json')
+    fs.mkdirSync(path.dirname(filepath), { recursive: true })
+    fs.writeFileSync(filepath, JSON.stringify({ hash: 'h', data: null }))
+
+    const cache = createFsCache(createApp(), 'no-data')
+
+    await expect(cache.read()).resolves.toBeNull()
+    expect(cache.hash).not.toBe('')
+  })
+
   it('should warn and ignore a corrupted cache file', async () => {
     const warn = vi.spyOn(logger, 'warn').mockImplementation(() => {})
     const filepath = path.join(tmpDir, 'markdown/corrupted.json')

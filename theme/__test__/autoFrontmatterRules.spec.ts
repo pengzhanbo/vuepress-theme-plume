@@ -115,6 +115,29 @@ describe('autoFrontmatter rules', () => {
     expect(source(findRule(getRules(), 'en/about.md'))).toBe('en/**/*.md')
   })
 
+  it('builds the post filter from the include and exclude patterns', () => {
+    hoisted.themeConfig = {
+      locales: {
+        '/': {
+          collections: [{
+            type: 'post',
+            dir: 'blog',
+            title: 'Blog',
+            include: ['docs/**/*.md'],
+            exclude: ['draft/**'],
+          }],
+        },
+      },
+    }
+
+    genAutoFrontmatterRules()
+
+    const filter = findRule(getRules(), 'blog/a.md')?.filter as string[]
+    expect(filter).toEqual(expect.arrayContaining(['blog/**/*.md', 'docs/**/*.md', '!draft/**']))
+    // node_modules 始终被排除。
+    expect(filter).toContain('!**/node_modules/**')
+  })
+
   it('excludes node_modules from the fallback rules', () => {
     hoisted.themeConfig = { locales: { '/': {} } }
 

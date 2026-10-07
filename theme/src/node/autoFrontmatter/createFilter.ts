@@ -21,7 +21,10 @@ export function createFilter(pattern: Pattern): Matcher {
 
   if (!isArray(pattern)) {
     const matcher = picomatch(pattern)
-    matchers.set(pattern, matcher)
+    // 用与查询一致的 `key`（pattern 的哈希）写入缓存，否则字符串 pattern 每次都会
+    // 重新创建 matcher，缓存失效。Store under the same hashed `key` used for the lookup,
+    // otherwise a single string pattern would rebuild a matcher on every call.
+    matchers.set(key, matcher)
     return matcher
   }
 

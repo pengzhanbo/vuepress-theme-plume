@@ -12,12 +12,14 @@ const hoisted = vi.hoisted(() => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
   getThemeConfig: vi.fn(() => ({})),
   genEncrypt: vi.fn(),
+  createFsCache: vi.fn(),
+  hash: vi.fn((content: string) => `hashed-content(${content})`),
 }))
 
 vi.mock('../src/node/utils/index.js', () => ({
-  createFsCache: vi.fn(),
+  createFsCache: hoisted.createFsCache,
   genEncrypt: hoisted.genEncrypt,
-  hash: vi.fn((content: string) => `hashed-content(${content})`),
+  hash: hoisted.hash,
   logger: hoisted.logger,
   perf: { mark: vi.fn(), log: vi.fn() },
   resolveContent: vi.fn((_app: unknown, { content }: { content: unknown }) => content),
@@ -99,6 +101,15 @@ describe('prepareEncrypt', () => {
     expect(hoisted.logger.warn).toHaveBeenCalledWith(expect.stringContaining('empty'))
   })
 
+  it('should warn and drop passwords that are not string-like', async () => {
+    const config = await resolveEncryptConfig({ rules: { '/a/': [true, 'pwd'] } })
+
+    expect(hoisted.logger.warn).toHaveBeenCalledWith(expect.stringContaining('not a string nor a number'))
+    // 非字符串/数字的密码被丢弃，其余仍然生效。
+    expect(decode<string[]>(config[0]).map(key => decodeData(key))).toEqual(['/a/'])
+    expect(decode<Record<string, string>>(config[1])).toEqual({ 0: 'hashed(pwd)' })
+  })
+
   it('should drop empty and invalid admins', async () => {
     const config = await resolveEncryptConfig({ global: true, admin: ['admin-pwd', ''] })
 
@@ -136,6 +147,33 @@ describe('prepareEncrypt', () => {
     expect(config[3]).toBe('')
     expect(hoisted.logger.warn).toHaveBeenCalledWith(expect.stringContaining('can never be unlocked'))
   })
+
+  it('should read and reuse the file system cache in dev mode', async () => {
+    const encrypt = { rules: { '/a/': 'pwd' } }
+    const cachedConfig: EncryptConfig = ['cached-keys', 'cached-rules', 0, '']
+    const cache = {
+      read: vi.fn(async () => null),
+      write: vi.fn(),
+      // 缓存命中：哈希与配置都已存在。
+      data: [hoisted.hash(JSON.stringify(encrypt)), cachedConfig],
+      hash: '',
+    }
+    hoisted.createFsCache.mockReturnValue(cache)
+
+    const devApp = { env: { isDev: true } } as unknown as App
+    await prepareEncrypt(devApp, { encrypt })
+
+    // dev 模式下启用文件缓存，并在准备阶段读取一次。
+    expect(hoisted.createFsCache).toHaveBeenCalled()
+    expect(cache.read).toHaveBeenCalled()
+    expect(cache.write).toHaveBeenCalled()
+    // 命中缓存时不再重新计算 bcrypt 哈希。
+    expect(hoisted.genEncrypt).not.toHaveBeenCalled()
+
+    // 配置变化后重新计算。
+    await prepareEncrypt(devApp, { encrypt: { rules: { '/b/': 'pwd' } } })
+    expect(hoisted.genEncrypt).toHaveBeenCalled()
+  })
 })
 
 describe('isEncryptPage', () => {
@@ -157,6 +195,27 @@ describe('isEncryptPage', () => {
     expect(isEncryptPage(page, { rules: { '/blog/': '' } })).toBe(false)
     expect(isEncryptPage(page, { rules: { '/blog/': [] } })).toBe(false)
     expect(isEncryptPage(page, { rules: { '/blog/': [''] } })).toBe(false)
+  })
+
+  it('should support regex rules prefixed with `^`', () => {
+    const page = createPage('/blog/a/', 'blog/a.md')
+
+    expect(isEncryptPage(page, { rules: { '^/blog/': 'pwd' } })).toBe(true)
+    // 第二次调用命中正则缓存，行为保持一致。
+    expect(isEncryptPage(page, { rules: { '^/blog/': 'pwd' } })).toBe(true)
+    expect(isEncryptPage(createPage('/other/a/', 'other/a.md'), { rules: { '^/blog/': 'pwd' } })).toBe(false)
+  })
+
+  it('should treat a page as unencrypted when no rule is configured', () => {
+    // `encrypt.rules` 缺省时不应把页面视为加密。
+    expect(isEncryptPage(createPage('/blog/a/', 'blog/a.md'), { global: true })).toBe(false)
+  })
+
+  it('should handle pages without a relative file path', () => {
+    const page = { path: '/blog/a/', data: {}, frontmatter: {} } as unknown as Page<ThemePageData>
+
+    expect(isEncryptPage(page, { rules: { '^/blog/': 'pwd' } })).toBe(true)
+    expect(isEncryptPage(page, { rules: { '^/other/': 'pwd' } })).toBe(false)
   })
 
   it('should return true when the page already has an encrypted password', () => {

@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 const hoisted = vi.hoisted(() => ({
   writeTemp: vi.fn(),
   getThemeConfig: vi.fn(() => ({}) as any),
+  logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
   /** 记录并发的文件系统调用（`stat`）峰值。 */
   stat: { inFlight: 0, peak: 0 },
 }))
@@ -31,7 +32,7 @@ vi.mock('../src/node/utils/index.js', () => ({
   createFsCache: vi.fn(),
   genEncrypt: vi.fn(),
   hash: vi.fn(),
-  logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+  logger: hoisted.logger,
   perf: { mark: vi.fn(), log: vi.fn() },
   resolveContent: vi.fn((_app: unknown, { content }: { content: unknown }) => content),
   writeTemp: hoisted.writeTemp,
@@ -45,10 +46,10 @@ vi.mock('../src/node/loadConfig/index.js', () => ({
 
 const { preparedPostsData } = await import('../src/node/prepare/preparePostsData.js')
 
-function createApp(pages: Page[]): App {
+function createApp(pages: Page[], isBuild = true): App {
   return {
     pages,
-    env: { isBuild: true },
+    env: { isBuild },
     dir: { source: (file: string) => `/root/${file}` },
   } as unknown as App
 }
@@ -58,8 +59,8 @@ interface PostOptions {
   withoutDate?: boolean
 }
 
-function createPost(index: number, { withoutDate = false }: PostOptions = {}): Page {
-  return {
+function createPost(index: number, { withoutDate = false }: PostOptions = {}, overrides: Record<string, any> = {}): Page {
+  const page = {
     path: `/blog/post-${index}/`,
     filePathRelative: `blog/post-${index}.md`,
     filePath: `/root/blog/post-${index}.md`,
@@ -72,7 +73,13 @@ function createPost(index: number, { withoutDate = false }: PostOptions = {}): P
       : { createTime: new Date(Date.UTC(2024, 0, 1) + index * 1000), excerpt: false },
     data: { categoryList: [], readingTime: 1 },
     contentRendered: '',
-  } as unknown as Page
+  }
+  return { ...page, ...overrides } as unknown as Page
+}
+
+/** 读取写入的 `postsData` 中 `/blog/` 的下第一篇文章。 */
+function firstPost(): Record<string, any> {
+  return readPostsData()['/blog/'][0] as unknown as Record<string, any>
 }
 
 /** 读取写入的 `postsData` 内容。 */
@@ -130,5 +137,136 @@ describe('preparedPostsData', () => {
     await preparedPostsData(app)
 
     expect(readPostsData()['/blog/'].map(post => post.title)).toEqual(['post-0'])
+  })
+})
+
+describe('preparedPostsData: post content mapping', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    hoisted.getThemeConfig.mockReturnValue({
+      locales: { '/': { collections: [{ type: 'post', dir: 'blog' }] } },
+    })
+  })
+
+  it('warns when a cover is not a path string', async () => {
+    const page = createPost(0, {}, {
+      frontmatter: { createTime: new Date(Date.UTC(2024, 0, 1)), cover: { src: 'x' } },
+    })
+
+    await preparedPostsData(createApp([page]))
+
+    expect(hoisted.logger.warn).toHaveBeenCalledWith(expect.stringContaining('cover should be a path string'))
+    expect(firstPost().cover).toEqual({ src: 'x' })
+  })
+
+  it('uses an excerpt defined directly in the frontmatter', async () => {
+    const page = createPost(0, {}, {
+      frontmatter: { createTime: new Date(Date.UTC(2024, 0, 1)), excerpt: 'custom summary' },
+    })
+
+    await preparedPostsData(createApp([page]))
+
+    expect(firstPost().excerpt).toBe('custom summary')
+  })
+
+  it('derives the excerpt from the `<!-- more -->` marker and strips headings', async () => {
+    const page = createPost(0, {}, {
+      frontmatter: { createTime: new Date(Date.UTC(2024, 0, 1)) },
+      contentRendered: '<h1>Title</h1><p>intro</p><!-- more --><p>rest</p>',
+    })
+
+    await preparedPostsData(createApp([page]))
+
+    expect(firstPost().excerpt).toBe('<p>intro</p>')
+  })
+
+  it('leaves the excerpt empty when the marker is absent', async () => {
+    const page = createPost(0, {}, {
+      frontmatter: { createTime: new Date(Date.UTC(2024, 0, 1)) },
+      contentRendered: '<p>no marker</p>',
+    })
+
+    await preparedPostsData(createApp([page]))
+
+    expect(firstPost().excerpt).toBe('')
+  })
+
+  it('excludes draft posts from the build', async () => {
+    const page = createPost(0, {}, { frontmatter: { draft: true } })
+
+    await preparedPostsData(createApp([page], true))
+
+    expect(readPostsData()['/blog/']).toHaveLength(0)
+  })
+
+  it('keeps draft posts in dev and marks them as drafts', async () => {
+    const page = createPost(0, {}, {
+      frontmatter: { draft: true, createTime: new Date(Date.UTC(2024, 0, 1)) },
+    })
+
+    await preparedPostsData(createApp([page], false))
+
+    expect(firstPost().draft).toBe(true)
+  })
+
+  it('skips pages marked with `article: false`', async () => {
+    const page = createPost(0, {}, {
+      frontmatter: { article: false, createTime: new Date(Date.UTC(2024, 0, 1)) },
+    })
+
+    await preparedPostsData(createApp([page]))
+
+    expect(readPostsData()['/blog/']).toHaveLength(0)
+  })
+
+  it('flags encrypted posts so the client can hide their content', async () => {
+    const page = createPost(0, {}, {
+      frontmatter: { createTime: new Date(Date.UTC(2024, 0, 1)) },
+      data: { _e: 'hashed', categoryList: [], readingTime: 1 },
+    })
+
+    await preparedPostsData(createApp([page]))
+
+    expect(firstPost().encrypt).toBe(true)
+  })
+
+  it('caches the file birthtime for posts that share the same file', async () => {
+    // 同一文件归属多个集合时，`stat` 结果应被缓存复用。
+    const first = createPost(0, { withoutDate: true })
+    const second = createPost(0, { withoutDate: true }, {
+      path: '/blog/post-0-alias/',
+      frontmatter: { excerpt: false },
+    })
+
+    await preparedPostsData(createApp([first, second]))
+
+    expect(readPostsData()['/blog/']).toHaveLength(2)
+  })
+
+  it('uses the post date when createTime is absent', async () => {
+    const page = createPost(0, {}, {
+      date: '2024-02-03',
+      frontmatter: { excerpt: false },
+    })
+
+    await preparedPostsData(createApp([page]))
+
+    expect(firstPost().createTime).toBe('2024/02/03 00:00:00')
+  })
+
+  it('creates no posts when locales are not configured', async () => {
+    hoisted.getThemeConfig.mockReturnValue({})
+
+    await preparedPostsData(createApp([createPost(0)]))
+
+    expect(readPostsData()).toEqual({})
+  })
+
+  it('skips locales that declare no collections', async () => {
+    hoisted.getThemeConfig.mockReturnValue({ locales: { '/': {} } })
+
+    await preparedPostsData(createApp([createPost(0)]))
+
+    expect(readPostsData()).toEqual({})
   })
 })

@@ -121,6 +121,20 @@ describe('generateFileFrontmatter', () => {
     expect((await nodeFs.stat(filepath)).mode & 0o7777).toBe(0o600)
   })
 
+  it.skipIf(process.platform === 'win32')('tolerates a chown failure when the ownership is preserved', async () => {
+    // 某些文件系统不允许 chown（如挂载的卷），此时只要归属未变化就应继续写入。
+    const chown = vi.spyOn(nodeFs, 'chown').mockRejectedValue(new Error('EPERM') as never)
+    await write('chown.md', '---\ntitle: Old\n---\nbody\n')
+
+    await generateFileFrontmatter('chown.md', cwd, handle)
+
+    await expect(read('chown.md')).resolves.toContain('permalink: /generated/')
+    const files = await nodeFs.readdir(cwd)
+    expect(files.some(file => file.endsWith('.tmp'))).toBe(false)
+
+    chown.mockRestore()
+  })
+
   it('does not rewrite the file when the data is unchanged', async () => {
     const original = '---\ntitle: Old\n---\nbody\n'
     await write('untouched.md', original)

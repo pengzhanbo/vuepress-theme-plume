@@ -18,10 +18,10 @@ vi.mock('vuepress/core', async (importOriginal) => {
 
 const { createPages } = await import('../src/node/pages/createPages.js')
 
-function createApp(): App {
+function createApp(siteData: Record<string, any> = { locales: { '/': { lang: 'en' } }, lang: 'en' }): App {
   return {
     pages: [],
-    siteData: { locales: { '/': { lang: 'en' } }, lang: 'en' },
+    siteData,
   } as unknown as App
 }
 
@@ -117,5 +117,41 @@ describe('createPages', () => {
     await createPages(app)
 
     expect(createdPages(app)).toHaveLength(0)
+  })
+
+  it('should create no pages when locales are not configured', async () => {
+    hoisted.getThemeConfig.mockReturnValue({})
+
+    const app = createApp()
+    await createPages(app)
+
+    expect(createdPages(app)).toHaveLength(0)
+  })
+
+  it('should skip the post list page when `postList` is false', async () => {
+    hoisted.getThemeConfig.mockReturnValue({
+      locales: { '/': { collections: [postCollection('blog', { postList: false })] } },
+    })
+
+    const app = createApp()
+    await createPages(app)
+
+    expect(createdPages(app).map(page => page.frontmatter._pageLayout)).toEqual([
+      'posts-tags',
+      'posts-archives',
+      'posts-categories',
+    ])
+  })
+
+  it('should fall back to the site language when the root locale has none', async () => {
+    hoisted.getThemeConfig.mockReturnValue({
+      locales: { '/': { collections: [postCollection('blog')] } },
+    })
+
+    // 根语言缺少 `lang` 时，回退到 `siteData.lang`。
+    const app = createApp({ locales: { '/': {} }, lang: 'fr' })
+    await createPages(app)
+
+    expect(createdPages(app)[0].frontmatter.lang).toBe('fr')
   })
 })

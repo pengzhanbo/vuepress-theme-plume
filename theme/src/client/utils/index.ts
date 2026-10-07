@@ -1,5 +1,6 @@
 // export * from './animate.js'
 export * from './create-symbol.js'
+export * from './posts.js'
 // export * from './dom.js'
 export * from './resolveEditLink.js'
 export * from './resolveNavLink.js'

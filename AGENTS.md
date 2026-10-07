@@ -4,7 +4,7 @@
 
 VuePress 2 theme monorepo (`vuepress-theme-plume`): a blog/documentation theme, bundled plugins, a project scaffolder, the documentation site, and runnable examples. Published packages use `dist/` as build output.
 
-> Note: `CLAUDE.md` claims build output goes to `lib/`. That is stale — every package emits to `dist/` (`theme/package.json` exports, tsdown configs, `.gitignore`).
+> Note: every package emits its build output to `dist/` — not `lib/` (see `theme/package.json` exports, the tsdown configs, and `.gitignore`).
 
 ## Architecture & Data Flow
 

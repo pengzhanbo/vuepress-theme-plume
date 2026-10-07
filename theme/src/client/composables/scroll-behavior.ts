@@ -20,9 +20,14 @@ export function enhanceScrollBehavior(router: Router): void {
     }
   })
 
+  // 同一时刻只保留一个定时器：连续快速跳转时不应堆积多个 1000ms 定时器。
+  // Keep a single timer, so rapid consecutive navigations do not pile up 1000ms timers.
+  let smoothTimer: ReturnType<typeof setTimeout> | undefined
+
   router.afterEach(() => nextTick(() => {
     if (inBrowser) {
-      setTimeout(() => {
+      clearTimeout(smoothTimer)
+      smoothTimer = setTimeout(() => {
         document.documentElement.classList.add('smooth')
       }, 1000)
     }

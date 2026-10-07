@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { AutoplayOptions, SwiperModule, Swiper as SwiperType } from 'swiper/types'
-import { useMutationObserver } from '@vueuse/core'
+import { useMutationObserver, useTimeoutFn } from '@vueuse/core'
 import {
   Autoplay,
   EffectCards,
@@ -14,7 +14,7 @@ import {
   Pagination,
 } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { computed, onMounted } from 'vue'
+import { computed, onBeforeUnmount, onMounted, onUnmounted } from 'vue'
 import { withBase } from 'vuepress/client'
 
 import 'swiper/css'
@@ -135,25 +135,50 @@ const hasNavigation = computed(() =>
   props.mode === 'banner' || props.mode === 'broadcast' ? props.navigation : false,
 )
 
-let swiper: SwiperType
+let swiper: SwiperType | undefined
+
+function onMouseEnter() {
+  swiper?.autoplay.stop()
+}
+
+function onMouseLeave() {
+  swiper?.autoplay.start()
+}
+
 function onSwiper(_swiper: SwiperType) {
   swiper = _swiper
   if (props.mode === 'carousel' && props.pauseOnMouseEnter) {
-    swiper.el.onmouseenter = () => swiper!.autoplay.stop()
-    swiper.el.onmouseleave = () => swiper!.autoplay.start()
+    swiper.el.addEventListener('mouseenter', onMouseEnter)
+    swiper.el.addEventListener('mouseleave', onMouseLeave)
   }
 }
 
+const { start: updateSwiper } = useTimeoutFn(() => swiper?.update(), 350, { immediate: false })
+
+let stopObserver: ReturnType<typeof useMutationObserver> | undefined
+
 onMounted(() => {
   if (props.mode === 'carousel' && !props.pauseOnMouseEnter) {
-    useMutationObserver(() => document.documentElement, () => {
+    stopObserver = useMutationObserver(() => document.documentElement, () => {
       if (!swiper)
         return
 
       swiper.wrapperEl.style.transform = 'translate3d(0px, 0px, 0px)'
-      setTimeout(() => swiper.update(), 350)
+      updateSwiper()
     }, { attributeFilter: ['data-theme'] })
   }
+})
+
+onBeforeUnmount(() => {
+  stopObserver?.stop()
+  swiper?.el?.removeEventListener('mouseenter', onMouseEnter)
+  swiper?.el?.removeEventListener('mouseleave', onMouseLeave)
+})
+
+onUnmounted(() => {
+  if (swiper && !swiper.destroyed)
+    swiper.destroy()
+  swiper = undefined
 })
 </script>
 

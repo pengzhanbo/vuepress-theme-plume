@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import VPEncryptForm from '@theme/VPEncryptForm.vue'
+import { useTimeoutFn } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 import { useData, useEncrypt } from '../composables/index.js'
 
@@ -12,12 +13,18 @@ const { isPageDecrypted } = useEncrypt()
 const { theme, frontmatter } = useData<'post'>()
 
 const el = useTemplateRef<HTMLElement>('el')
+
+// 动画类的移除定时器随组件作用域自动清理，避免组件卸载后仍操作已卸载的 DOM。
+// The timer that removes the animation class is disposed with the component scope, so
+// an unmounted component is never touched afterwards.
+const { start: resetAnimation } = useTimeoutFn(() => {
+  el.value?.classList.remove('animation')
+}, 800, { immediate: false })
+
 function onValidate(isValidate: boolean) {
   if (!isValidate) {
     el.value?.classList.add('animation')
-    setTimeout(() => {
-      el.value?.classList.remove('animation')
-    }, 800)
+    resetAnimation()
   }
 }
 </script>

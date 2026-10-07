@@ -4,6 +4,7 @@ import { effectComponents, effects } from '@internal/home-hero-effects'
 import ImageBg from '@theme/background/ImageBg.vue'
 import VPButton from '@theme/VPButton.vue'
 import { hasGlobalComponent } from '@vuepress/helper/client'
+import { useTimeoutFn } from '@vueuse/core'
 import { computed, defineAsyncComponent, markRaw, nextTick, onMounted, onUnmounted, resolveComponent, watch } from 'vue'
 import { isPlainObject } from 'vuepress/shared'
 import { useData } from '../../composables/index.js'
@@ -51,11 +52,18 @@ const realEffectComponent = computed(() => {
   return null
 })
 
+// 禁用过渡的移除定时器随组件作用域自动清理；
+// 重复调用 `start()` 会重置上一次的定时器，避免过早恢复过渡。
+// The timer that removes the transition-disabling class is disposed with the component
+// scope; starting it again resets the previous timer, so the transition is never
+// restored too early.
+const { start: endNoTransition } = useTimeoutFn(() => {
+  document.documentElement.classList.remove('no-transition')
+}, 300, { immediate: false })
+
 function noTransition() {
   document.documentElement.classList.add('no-transition')
-  setTimeout(() => {
-    document.documentElement.classList.remove('no-transition')
-  }, 300)
+  endNoTransition()
 }
 
 let defaultTheme: string | undefined

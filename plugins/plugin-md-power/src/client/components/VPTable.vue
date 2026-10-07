@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { decodeData } from '@vuepress/helper/client'
-import { useClipboard, useToggle } from '@vueuse/core'
+import { useClipboard, useTimeoutFn, useToggle } from '@vueuse/core'
 import { computed, useTemplateRef } from 'vue'
 
 const { title, align = 'left', copy, maxContent, fullWidth, markdown } = defineProps<{
@@ -25,12 +25,17 @@ const [isHTMLCopied, toggleHTMLCopy] = useToggle()
 const [isMDCopied, toggleMDCopy] = useToggle()
 const { copy: copyTable } = useClipboard()
 
+// 复制状态的重置定时器随组件作用域自动清理。
+// 两种格式各自持有独立的定时器，避免连续复制不同格式时相互取消。
+// The timers that reset the "copied" state are disposed with the component scope; each
+// format keeps its own timer so copying the other format cannot cancel it.
+const { start: resetHTMLCopied } = useTimeoutFn(() => toggleHTMLCopy(false), 1500, { immediate: false })
+const { start: resetMDCopied } = useTimeoutFn(() => toggleMDCopy(false), 1500, { immediate: false })
+
 function onCopy(type: 'html' | 'md') {
   copyTable(type === 'md' ? rawContent.value : tableEl.value?.innerHTML || '')
   type === 'html' ? toggleHTMLCopy(true) : toggleMDCopy(true)
-  setTimeout(() => {
-    type === 'html' ? toggleHTMLCopy(false) : toggleMDCopy(false)
-  }, 1500)
+  type === 'html' ? resetHTMLCopied() : resetMDCopied()
 }
 </script>
 

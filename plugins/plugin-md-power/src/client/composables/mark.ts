@@ -1,3 +1,4 @@
+import { tryOnScopeDispose } from '@vueuse/core'
 import { onContentUpdated } from 'vuepress/client'
 
 /**
@@ -136,5 +137,19 @@ export function setupMarkHighlight(mode: 'lazy' | 'eager'): void {
   onContentUpdated(() => {
     resetObserver()
     scheduleBind()
+  })
+
+  // `setupMarkHighlight` 在 clientConfig 的 `setup()` 中调用，运行在根组件的作用域内。
+  // 将观察器与待执行的动画帧绑定到该作用域，作用域销毁时一并释放，
+  // 避免组件级容器反复挂载/卸载时残留观察器。
+  // `setupMarkHighlight` is called from `clientConfig.setup()`, which runs inside the
+  // root component scope. Binding the observer and the pending animation frame to that
+  // scope releases them together instead of leaving them alive after disposal.
+  tryOnScopeDispose(() => {
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId)
+      rafId = null
+    }
+    resetObserver()
   })
 }

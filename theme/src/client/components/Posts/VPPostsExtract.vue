@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ProfileOptions } from '../../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
-import { useScrollLock } from '@vueuse/core'
+import { useScrollLock, useTimeoutFn } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
 import { useRoute, withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
@@ -35,17 +35,26 @@ const lazyOpen = ref(false)
 
 const isLocked = useScrollLock(inBrowser ? document.body : null)
 
+// 延迟展开的定时器随组件作用域自动清理；关闭时提前停止，
+// 避免面板已关闭后定时器仍把它标记为展开状态。
+// The delayed-open timer is disposed with the component scope and is stopped early on
+// close, so a closed panel can never be marked as opened afterwards.
+const { start: scheduleLazyOpen, stop: cancelLazyOpen } = useTimeoutFn(() => {
+  lazyOpen.value = true
+}, 200, { immediate: false })
+
 watch(() => route.path, () => {
   open.value = false
 })
 
-watch(open, async () => {
-  if (open.value) {
-    setTimeout(() => {
-      lazyOpen.value = true
-    }, 200)
+watch(open, (isOpen) => {
+  if (isOpen) {
+    scheduleLazyOpen()
   }
-  else { lazyOpen.value = false }
+  else {
+    cancelLazyOpen()
+    lazyOpen.value = false
+  }
 })
 
 watch(

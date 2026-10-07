@@ -52,10 +52,12 @@ const socialFallbacks: Record<string, string> = {
  * Prepare icon data for theme
  *
  * 准备主题图标数据，收集页面中使用的图标并生成对应的 CSS 和 JS 文件
+ *
+ * @param app - VuePress application instance / VuePress 应用实例
+ * @param options - Theme options, defaults to `getThemeConfig()` / 主题配置，默认从 `getThemeConfig()` 读取
  */
-export async function prepareIcons(app: App): Promise<void> {
+export async function prepareIcons(app: App, options: ThemeOptions = getThemeConfig()): Promise<void> {
   perf.mark('prepare:icons:total')
-  const options = getThemeConfig()
   const icons: UsageIcons = { co: [], bg: {}, mask: {} }
   if (!isInstalled) {
     await writeTemp(app, JS_FILENAME, resolveContent(app, { name: 'icons', content: icons }))

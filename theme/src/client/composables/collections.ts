@@ -101,14 +101,33 @@ export function setupCollection(): void {
 
   watchEffect(() => {
     const locale = collectionsRef.value[routeLocale.value]
-    collectionItemRef.value = locale?.find((item) => {
-      if (forceCollection.value) {
-        // if `true`, return first posts
-        if (forceCollection.value === true) {
-          return item.type === 'post'
-        }
-        return item.dir === forceCollection.value
-      }
+
+    if (!locale?.length) {
+      collectionItemRef.value = undefined
+      return
+    }
+
+    // When `forceCollection` is set, match it directly without reordering:
+    // `true` means "the first posts collection", a string means exact `dir` match.
+    // 设置了 `forceCollection` 时，按其值直接匹配且不重新排序：
+    // `true` 表示“第一个文章集合”，字符串表示 `dir` 精确匹配。
+    if (forceCollection.value) {
+      collectionItemRef.value = locale.find(item => forceCollection.value === true
+        ? item.type === 'post'
+        : item.dir === forceCollection.value)
+      return
+    }
+
+    // Resolve to the collection with the longest `dir`, so that nested collections
+    // (e.g. `blog` and `blog/sub`) always belong to the most specific one, instead of
+    // being determined by the declaration order in the config.
+    // 归属到 `dir` 最长的集合，使嵌套集合（如 `blog` 与 `blog/sub`）始终归属于最具体的那个，
+    // 而不是由配置中的声明顺序决定。
+    const sorted = [...locale].sort(
+      (a, b) => removeLeadingSlash(b.dir).length - removeLeadingSlash(a.dir).length,
+    )
+
+    collectionItemRef.value = sorted.find((item) => {
       if (page.value.filePathRelative) {
         return page.value.filePathRelative?.startsWith(normalizeLink(routeLocale.value, item.dir).slice(1))
       }

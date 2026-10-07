@@ -23,6 +23,7 @@ async function getMarkdownInfo(filepath: string, relativePath: string): Promise<
   data: AutoFrontmatterData
   context: AutoFrontmatterContext
   eol: string
+  raw: string
 }> {
   const raw = await fs.promises.readFile(filepath, 'utf-8')
   const { data, content } = matter(raw, {})
@@ -37,29 +38,18 @@ async function getMarkdownInfo(filepath: string, relativePath: string): Promise<
     // a CRLF file with mixed line endings, and git would flag the whole file as modified.
     // 保留原文件的换行符。始终输出 LF 会让 CRLF 文件出现混合换行符，导致 git 将整个文件标记为已修改。
     eol: raw.includes('\r\n') ? '\r\n' : '\n',
+    // The exact bytes that were read, used to detect a concurrent edit before replacing it.
+    // 读取到的原始内容，用于在替换前检测并发修改。
+    raw,
   }
 }
 
 /**
  * Write file content atomically
  *
- * Write to a temporary file in the same directory, then rename it over the target.
- * Renaming within the same file system is atomic, so a concurrent editor save can
- * never observe a partially written file.
- *
- * The target's permissions and owner are preserved, because `rename` swaps in a brand new
- * inode instead of truncating the existing one. ACLs and extended attributes are not
- * carried over.
- *
  * 原子写入文件内容。
- *
- * 先写入同目录下的临时文件，再重命名覆盖目标文件。同一文件系统内的重命名是原子操作，
- * 因此并发的编辑器保存永远不会读到写了一半的文件。
- *
- * 由于 `rename` 换入的是全新的 inode（而非截断原文件），这里会保留目标的权限与属主。
- * ACL 与扩展属性不会被保留。
  */
-async function writeFileAtomic(filepath: string, content: string): Promise<void> {
+async function writeFileAtomic(filepath: string, content: string, original: string): Promise<void> {
   // Inspect the target's own permission bits instead of relying on `access(W_OK)`: a
   // process able to bypass the file permission checks (e.g. root) would pass the check on
   // a `0444` file, and the rename would silently replace a read-only file.
@@ -84,8 +74,20 @@ async function writeFileAtomic(filepath: string, content: string): Promise<void>
 
     if (typeof process.getuid === 'function') {
       const [chownError] = await attemptAsync(() => fs.promises.chown(tempPath, stats.uid, stats.gid))
-      if (chownError && stats.uid !== process.getuid())
-        throw chownError
+      if (chownError) {
+        const [, tempStats] = await attemptAsync(() => fs.promises.stat(tempPath))
+        const preserved = tempStats?.uid === stats.uid && tempStats?.gid === stats.gid
+        if (!preserved)
+          throw chownError
+      }
+    }
+
+    const current = await fs.promises.readFile(filepath, 'utf-8')
+    if (current !== original) {
+      throw new Error(
+        'the file was modified while generating frontmatter, '
+        + 'the write was skipped to avoid overwriting the newer content',
+      )
     }
 
     await fs.promises.rename(tempPath, filepath)
@@ -165,7 +167,7 @@ async function doGenerateFileFrontmatter(
       return
     }
 
-    const { data, context, eol } = await getMarkdownInfo(filepath, relativePath)
+    const { data, context, eol, raw } = await getMarkdownInfo(filepath, relativePath)
     const beforeHash = getHash(data)
     const result = await handle(data, context)
     const afterHash = getHash(result)
@@ -191,7 +193,7 @@ async function doGenerateFileFrontmatter(
       ? `---${eol}${formatted.replace(/\n/g, eol)}---${eol}${context.content}`
       : context.content
 
-    await writeFileAtomic(filepath, content)
+    await writeFileAtomic(filepath, content, raw)
   }
   catch (e) {
     // Collected and reported as an aggregated error once the batch finishes:

@@ -132,6 +132,32 @@ describe('generateFileFrontmatter', () => {
     expect(files.some(file => file.endsWith('.tmp'))).toBe(false)
   })
 
+  it('refuses to overwrite a file changed while generating frontmatter', async () => {
+    await write('race.md', '---\ntitle: Old\n---\nbody\n')
+
+    async function competingHandle(data: AutoFrontmatterData): Promise<AutoFrontmatterData> {
+      // 模拟编辑器在生成器读取原文之后保存同一文件。
+      await write('race.md', '---\ntitle: Old\n---\nedited by the user\n')
+      return { ...data, permalink: '/generated/' }
+    }
+
+    await generateFileFrontmatter('race.md', cwd, competingHandle)
+
+    // 编辑器的新内容被保留，生成器的替换被拒绝。
+    await expect(read('race.md')).resolves.toBe('---\ntitle: Old\n---\nedited by the user\n')
+    const files = await nodeFs.readdir(cwd)
+    expect(files.some(file => file.endsWith('.tmp'))).toBe(false)
+
+    // 冲突同样会进入汇总上报（空批次也会 flush 失败清单）。
+    await generateFileListFrontmatter({
+      options: { pagePatterns: ['**/*.nothing'] },
+      dir: { source: () => cwd },
+    } as unknown as App)
+
+    expect(hoisted.error).toHaveBeenCalledTimes(1)
+    expect(hoisted.error.mock.calls[0][0]).toContain('the file was modified while generating frontmatter')
+  })
+
   it('only processes the same file once when requests overlap', async () => {
     await write('dedup.md', '---\ntitle: Old\n---\nbody\n')
 

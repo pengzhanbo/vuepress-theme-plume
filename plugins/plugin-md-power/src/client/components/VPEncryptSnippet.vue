@@ -78,20 +78,21 @@ async function onDecrypt() {
 
   loading.value = true
   errorCode.value = 0
-  const [code, rawContent] = await load()
-  if (typeof code === 'number') {
-    errorCode.value = code
-    return
-  }
 
   try {
+    const [code, rawContent] = await load()
+    if (typeof code === 'number') {
+      errorCode.value = code
+      return
+    }
     content.value = (await decrypt(password.value, rawContent))!
   }
   catch {
     errorCode.value = 1
   }
-
-  loading.value = false
+  finally {
+    loading.value = false
+  }
 }
 
 useIntersectionObserver(el, ([entry]) => {

@@ -323,6 +323,13 @@ export interface ThemeLocaleText {
   returnToTopLabel?: string
 
   /**
+   * 关闭按钮的无障碍标签，用于弹窗、面板等关闭按钮。
+   *
+   * @default 'Close'
+   */
+  closeLabel?: string
+
+  /**
    * 侧边栏 outline 文本
    *
    * @default 'On this page'

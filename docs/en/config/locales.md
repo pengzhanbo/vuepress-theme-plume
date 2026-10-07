@@ -230,6 +230,14 @@ The corresponding directory structure and URL mapping are as follows:
 
   The text for returning to the top in the navigation bar on mobile devices.
 
+### closeLabel
+
+- Type: `string`
+- Default: `'Close'`
+- Details:
+
+  The accessible label for close buttons, such as the ones in dialogs and panels.
+
 ### outlineLabel
 
 - Type: `string`

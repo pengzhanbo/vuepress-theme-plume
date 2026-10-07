@@ -10,6 +10,7 @@ export const zhLocale: ThemeLocaleText = {
 
   outlineLabel: '此页内容',
   returnToTopLabel: '返回顶部',
+  closeLabel: '关闭',
   editLinkText: '编辑此页',
   contributorsText: '贡献者',
   prevPageLabel: '上一页',

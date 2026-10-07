@@ -11,6 +11,7 @@ export const zhTwLocale: ThemeLocaleText = {
 
   outlineLabel: '此頁內容',
   returnToTopLabel: '返回頂部',
+  closeLabel: '關閉',
   editLinkText: '編輯此頁',
   contributorsText: '貢獻者',
   prevPageLabel: '上一頁',

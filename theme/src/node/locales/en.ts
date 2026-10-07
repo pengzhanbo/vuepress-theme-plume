@@ -23,6 +23,7 @@ export const enLocale: ThemeLocaleText = {
   copyrightLicenseText: 'License under:',
 
   openNewWindowText: '(Open in new window)',
+  closeLabel: 'Close',
 
   encryptButtonText: 'Confirm',
   encryptPlaceholder: 'Enter password',

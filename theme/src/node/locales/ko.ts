@@ -11,6 +11,7 @@ export const koLocale: ThemeLocaleText = {
 
   sidebarMenuLabel: '메뉴',
   returnToTopLabel: '위로 이동',
+  closeLabel: '닫기',
   outlineLabel: '목차',
   editLinkText: '편집하기',
   contributorsText: '기여자',

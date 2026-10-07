@@ -11,6 +11,7 @@ export const deLocale: ThemeLocaleText = {
 
   outlineLabel: 'Inhalt dieser Seite',
   returnToTopLabel: 'Zurück nach oben',
+  closeLabel: 'Schließen',
   editLinkText: 'Diese Seite bearbeiten',
   contributorsText: 'Mitwirkende',
   prevPageLabel: 'Vorherige Seite',

@@ -11,6 +11,7 @@ export const frLocale: ThemeLocaleText = {
 
   outlineLabel: 'Contenu de cette page',
   returnToTopLabel: 'Retour en haut',
+  closeLabel: 'Fermer',
   editLinkText: 'Modifier cette page',
   contributorsText: 'Contributeurs',
   prevPageLabel: 'Page précédente',

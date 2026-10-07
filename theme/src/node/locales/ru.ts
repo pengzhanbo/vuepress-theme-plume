@@ -11,6 +11,7 @@ export const ruLocale: ThemeLocaleText = {
 
   outlineLabel: 'Содержание страницы',
   returnToTopLabel: 'Вернуться наверх',
+  closeLabel: 'Закрыть',
   editLinkText: 'Редактировать страницу',
   contributorsText: 'Авторы',
   prevPageLabel: 'Предыдущая страница',

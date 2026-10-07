@@ -228,6 +228,14 @@ export default defineUserConfig({
 
   移动设备下的导航栏中返回顶部的文本。
 
+### closeLabel
+
+- 类型： `string`
+- 默认值： `'Close'`
+- 详情：
+
+  关闭按钮的无障碍标签，用于弹窗、面板等关闭按钮。
+
 ### outlineLabel
 
 - 类型： `string`

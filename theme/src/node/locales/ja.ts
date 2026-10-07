@@ -11,6 +11,7 @@ export const jaLocale: ThemeLocaleText = {
 
   outlineLabel: 'このページの内容',
   returnToTopLabel: 'トップに戻る',
+  closeLabel: '閉じる',
   editLinkText: 'このページを編集',
   contributorsText: '貢献者',
   prevPageLabel: '前のページ',

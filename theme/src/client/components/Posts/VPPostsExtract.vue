@@ -32,6 +32,7 @@ const imageUrl = computed(() => {
 const { hasPostsExtract, tags, archives, categories } = usePostsExtract()
 
 const postsExtractLabel = computed(() => theme.value.postsExtractLabel ?? 'Posts Navigation')
+const closeLabel = computed(() => theme.value.closeLabel ?? 'Close')
 
 const open = ref(false)
 const lazyOpen = ref(false)
@@ -39,14 +40,20 @@ const lazyOpen = ref(false)
 const triggerEl = useTemplateRef<HTMLButtonElement>('trigger')
 const modalEl = useTemplateRef<HTMLDivElement>('modal')
 
-// 面板内可聚焦元素的候选集合，用于初始聚焦与焦点陷阱。
-// Candidates for focusable elements inside the panel, used for the initial focus and the focus trap.
-const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+// 面板内可聚焦元素的候选集合，用于焦点陷阱。
+// Candidates for focusable elements inside the panel, used for the focus trap.
+const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]'
+
+function isTabbable(el: HTMLElement): boolean {
+  if (el.tabIndex < 0)
+    return false
+  return el.getClientRects().length > 0 && getComputedStyle(el).visibility !== 'hidden'
+}
 
 function getFocusable(): HTMLElement[] {
   if (!modalEl.value)
     return []
-  return Array.from(modalEl.value.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR))
+  return Array.from(modalEl.value.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(isTabbable)
 }
 
 /**
@@ -166,6 +173,14 @@ const showPostsExtract = computed(() => {
         @keydown="onModalKeydown"
       >
         <div class="posts-modal-container" :class="{ open: lazyOpen }">
+          <button
+            type="button"
+            class="posts-modal-close"
+            :aria-label="closeLabel"
+            @click="open = false"
+          >
+            <span class="vpi-close" />
+          </button>
           <slot name="posts-extract-before" />
 
           <div v-if="profile" class="profile">
@@ -225,7 +240,6 @@ const showPostsExtract = computed(() => {
   border-right: none;
   border-top-left-radius: 99px;
   border-bottom-left-radius: 99px;
-  outline: none;
   box-shadow: var(--vp-shadow-2);
   transition: var(--vp-t-color);
   transition-property: background-color, border, box-shadow;
@@ -289,6 +303,30 @@ const showPostsExtract = computed(() => {
   transform: translateY(0);
 }
 
+.posts-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  transition: var(--vp-t-color);
+  transition-property: color, background-color;
+}
+
+.posts-modal-close:hover {
+  color: var(--vp-c-text-1);
+  background-color: var(--vp-c-bg-alt);
+}
+
 .profile {
   display: flex;
   align-items: center;
@@ -300,6 +338,7 @@ const showPostsExtract = computed(() => {
 }
 
 .profile h3 {
+  padding-right: 40px; /* 为右上角的关闭按钮留出空间 */
   font-weight: 600;
 }
 

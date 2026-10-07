@@ -166,7 +166,7 @@ Contributions are welcome! Please read the [Contribution Guide](./CONTRIBUTING.m
 Development requirements:
 
 - Node.js 20.19.0+
-- pnpm 9+
+- pnpm 12.6.0+
 
 Local development:
 

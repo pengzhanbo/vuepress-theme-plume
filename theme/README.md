@@ -164,7 +164,7 @@ npm run docs:build
 开发要求：
 
 - Node.js 20.19.0+
-- pnpm 9+
+- pnpm 12.6.0+
 
 本地开发：
 

@@ -296,6 +296,13 @@ blog:
     url: https://freddyx.pages.dev/
     repo: https://github.com/1nFrastr/loxi-blog
     preview: /images/demos/freddyx.jpg
+  -
+    name: 朱岸峰的深度思考与分享
+    desc: 人工智能时代，答案更加唾手可得，但有趣的灵魂，依然万里挑一。
+    logo:  /plume.png
+    url: https://zhuanfeng.netlify.app/
+    repo: https://github.com/zhidangjia/zhuanfeng
+    preview: /images/demos/zhuanfeng.png
 ---
 
 :::important

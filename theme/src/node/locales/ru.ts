@@ -11,6 +11,7 @@ export const ruLocale: ThemeLocaleText = {
 
   outlineLabel: 'Содержание страницы',
   returnToTopLabel: 'Вернуться наверх',
+  closeLabel: 'Закрыть',
   editLinkText: 'Редактировать страницу',
   contributorsText: 'Авторы',
   prevPageLabel: 'Предыдущая страница',
@@ -39,6 +40,7 @@ export const ruLocale: ThemeLocaleText = {
 
   homeText: 'Главная',
   postsText: 'Блог',
+  postsExtractLabel: 'Навигация по записям',
   tagText: 'Теги',
   archiveText: 'Архив',
   categoryText: 'Категории',
@@ -46,6 +48,7 @@ export const ruLocale: ThemeLocaleText = {
 
   encryptButtonText: 'Подтвердить',
   encryptPlaceholder: 'Введите пароль',
+  encryptErrorText: 'Неверный пароль',
   encryptGlobalText: 'Доступ к сайту только по паролю',
   encryptPageText: 'Доступ к странице только по паролю',
 

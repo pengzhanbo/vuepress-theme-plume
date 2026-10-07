@@ -11,6 +11,7 @@ export const zhTwLocale: ThemeLocaleText = {
 
   outlineLabel: '此頁內容',
   returnToTopLabel: '返回頂部',
+  closeLabel: '關閉',
   editLinkText: '編輯此頁',
   contributorsText: '貢獻者',
   prevPageLabel: '上一頁',
@@ -39,6 +40,7 @@ export const zhTwLocale: ThemeLocaleText = {
 
   homeText: '首頁',
   postsText: '部落格',
+  postsExtractLabel: '文章導覽',
   tagText: '標籤',
   archiveText: '歸檔',
   categoryText: '分類',
@@ -46,6 +48,7 @@ export const zhTwLocale: ThemeLocaleText = {
 
   encryptButtonText: '確認',
   encryptPlaceholder: '請輸入密碼',
+  encryptErrorText: '密碼錯誤',
   encryptGlobalText: '本站只允許密碼訪問',
   encryptPageText: '本頁面只允許密碼訪問',
 

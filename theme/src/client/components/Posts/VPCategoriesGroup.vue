@@ -59,10 +59,15 @@ onMounted(() => {
 
 <template>
   <div ref="el" class="vp-category-group" :class="{ expand }">
-    <p class="folder" @click="toggle">
+    <button
+      type="button"
+      class="folder"
+      :aria-expanded="expand"
+      @click="toggle"
+    >
       <span class="icon" :class="[expand ? 'vpi-folder-open' : 'vpi-folder']" />
       <span>{{ item.title }}</span>
-    </p>
+    </button>
 
     <VPCategories
       v-if="item.items.length"
@@ -92,11 +97,17 @@ onMounted(() => {
 .vp-category-group .folder {
   display: flex;
   align-items: center;
+  width: 100%;
+  padding: 0;
   margin: 8px 0;
+  font-family: inherit;
   font-size: 16px;
   font-weight: 600;
   color: var(--vp-c-text-2);
+  text-align: left;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
   transition: color var(--vp-t-color);
 }
 

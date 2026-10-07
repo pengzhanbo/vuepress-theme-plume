@@ -8,6 +8,7 @@ export const frLocale: MDPowerLocaleData = {
   encrypt: {
     hint: 'Le contenu est chiffré, veuillez déverrouiller pour afficher.',
     placeholder: 'Entrez le mot de passe',
+    unlock: 'Déverrouiller',
     incPwd: 'Mot de passe incorrect',
     noContent: 'Déverrouillé, mais le contenu n\'a pas pu être chargé, veuillez réessayer plus tard.',
     warningTitle: '🚨 Avertissement de sécurité :',

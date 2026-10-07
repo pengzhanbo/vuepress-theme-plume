@@ -23,14 +23,17 @@ export const enLocale: ThemeLocaleText = {
   copyrightLicenseText: 'License under:',
 
   openNewWindowText: '(Open in new window)',
+  closeLabel: 'Close',
 
   encryptButtonText: 'Confirm',
   encryptPlaceholder: 'Enter password',
+  encryptErrorText: 'Incorrect password',
   encryptGlobalText: 'Only password can access this site',
   encryptPageText: 'Only password can access this page',
 
   homeText: 'Home',
   postsText: 'Blog',
+  postsExtractLabel: 'Posts Navigation',
   tagText: 'Tags',
   archiveText: 'Archives',
   categoryText: 'Categories',

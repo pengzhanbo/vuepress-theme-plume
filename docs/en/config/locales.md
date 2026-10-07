@@ -172,6 +172,12 @@ The corresponding directory structure and URL mapping are as follows:
   - The text for the posts list page link in the theme's default navigation bar.
   - The text for the posts list page link in breadcrumb navigation.
 
+### postsExtractLabel
+
+- Type: `string`
+- Default: `'Posts Navigation'`
+- Details: The accessible label for the button that expands the posts navigation panel (profile, tags, categories, archives), used by screen readers.
+
 ### tagText
 
 - Type: `string`
@@ -223,6 +229,14 @@ The corresponding directory structure and URL mapping are as follows:
 - Details:
 
   The text for returning to the top in the navigation bar on mobile devices.
+
+### closeLabel
+
+- Type: `string`
+- Default: `'Close'`
+- Details:
+
+  The accessible label for close buttons, such as the ones in dialogs and panels.
 
 ### outlineLabel
 
@@ -366,6 +380,12 @@ For details, see [Encryption Feature](../guide/features/encryption.md).
 - Type: `string`
 - Default: `'Enter password'`
 - Details: The placeholder for the password input field.
+
+### encryptErrorText
+
+- Type: `string`
+- Default: `'Incorrect password'`
+- Details: The message shown when the password is incorrect. It is also the content referenced by the `aria-describedby` of the password input.
 
 ### Configuration Example
 

@@ -170,6 +170,12 @@ export default defineUserConfig({
   - 主题默认导航栏中的文章列表页链接的文本。
   - 面包屑导航中的文章列表页链接的文本。
 
+### postsExtractLabel
+
+- 类型： `string`
+- 默认值： `'Posts Navigation'`
+- 详情： 文章导航面板（包含个人信息、标签、分类、归档入口）的展开按钮的无障碍标签，用于屏幕阅读器。
+
 ### tagText
 
 - 类型： `string`
@@ -221,6 +227,14 @@ export default defineUserConfig({
 - 详情：
 
   移动设备下的导航栏中返回顶部的文本。
+
+### closeLabel
+
+- 类型： `string`
+- 默认值： `'Close'`
+- 详情：
+
+  关闭按钮的无障碍标签，用于弹窗、面板等关闭按钮。
 
 ### outlineLabel
 
@@ -361,6 +375,12 @@ interface NotFound {
 - 类型： `string`
 - 默认值： `'Enter password'`
 - 详情： 密码输入框的占位符
+
+### encryptErrorText
+
+- 类型： `string`
+- 默认值： `'Incorrect password'`
+- 详情： 密码错误时的提示文本，同时作为密码输入框 `aria-describedby` 指向的错误提示内容。
 
 ### 配置示例
 

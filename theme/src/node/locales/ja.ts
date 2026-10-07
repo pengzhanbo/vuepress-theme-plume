@@ -11,6 +11,7 @@ export const jaLocale: ThemeLocaleText = {
 
   outlineLabel: 'このページの内容',
   returnToTopLabel: 'トップに戻る',
+  closeLabel: '閉じる',
   editLinkText: 'このページを編集',
   contributorsText: '貢献者',
   prevPageLabel: '前のページ',
@@ -39,6 +40,7 @@ export const jaLocale: ThemeLocaleText = {
 
   homeText: 'ホーム',
   postsText: 'ブログ',
+  postsExtractLabel: '記事ナビゲーション',
   tagText: 'タグ',
   archiveText: 'アーカイブ',
   categoryText: 'カテゴリー',
@@ -46,6 +48,7 @@ export const jaLocale: ThemeLocaleText = {
 
   encryptButtonText: '確認',
   encryptPlaceholder: 'パスワードを入力してください',
+  encryptErrorText: 'パスワードが正しくありません',
   encryptGlobalText: 'このサイトはパスワードでのみアクセス可能です',
   encryptPageText: 'このページはパスワードでのみアクセス可能です',
 

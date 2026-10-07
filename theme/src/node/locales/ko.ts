@@ -11,6 +11,7 @@ export const koLocale: ThemeLocaleText = {
 
   sidebarMenuLabel: '메뉴',
   returnToTopLabel: '위로 이동',
+  closeLabel: '닫기',
   outlineLabel: '목차',
   editLinkText: '편집하기',
   contributorsText: '기여자',
@@ -30,11 +31,13 @@ export const koLocale: ThemeLocaleText = {
 
   encryptButtonText: '확인',
   encryptPlaceholder: '비밀번호를 입력하세요',
+  encryptErrorText: '비밀번호가 올바르지 않습니다',
   encryptGlobalText: '이 사이트를 이용하려면 비밀번호가 필요합니다',
   encryptPageText: '이 페이지를 이용하려면 비밀번호가 필요합니다',
 
   homeText: '홈',
   postsText: '블로그',
+  postsExtractLabel: '게시글 내비게이션',
   tagText: '태그',
   archiveText: '아카이브',
   categoryText: '카테고리',

@@ -10,6 +10,7 @@ export const zhLocale: ThemeLocaleText = {
 
   outlineLabel: '此页内容',
   returnToTopLabel: '返回顶部',
+  closeLabel: '关闭',
   editLinkText: '编辑此页',
   contributorsText: '贡献者',
   prevPageLabel: '上一页',
@@ -38,6 +39,7 @@ export const zhLocale: ThemeLocaleText = {
 
   homeText: '首页',
   postsText: '博客',
+  postsExtractLabel: '文章导航',
   tagText: '标签',
   archiveText: '归档',
   categoryText: '分类',
@@ -45,6 +47,7 @@ export const zhLocale: ThemeLocaleText = {
 
   encryptButtonText: '确认',
   encryptPlaceholder: '请输入密码',
+  encryptErrorText: '密码错误',
   encryptGlobalText: '本站只允许密码访问',
   encryptPageText: '本页面只允许密码访问',
 

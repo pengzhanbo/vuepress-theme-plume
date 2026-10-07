@@ -11,6 +11,7 @@ export const frLocale: ThemeLocaleText = {
 
   outlineLabel: 'Contenu de cette page',
   returnToTopLabel: 'Retour en haut',
+  closeLabel: 'Fermer',
   editLinkText: 'Modifier cette page',
   contributorsText: 'Contributeurs',
   prevPageLabel: 'Page précédente',
@@ -39,6 +40,7 @@ export const frLocale: ThemeLocaleText = {
 
   homeText: 'Accueil',
   postsText: 'Blog',
+  postsExtractLabel: 'Navigation des articles',
   tagText: 'Étiquette',
   archiveText: 'Archives',
   categoryText: 'Catégorie',
@@ -46,6 +48,7 @@ export const frLocale: ThemeLocaleText = {
 
   encryptButtonText: 'Confirmer',
   encryptPlaceholder: 'Veuillez entrer le mot de passe',
+  encryptErrorText: 'Mot de passe incorrect',
   encryptGlobalText: 'Ce site n\'est accessible qu\'avec un mot de passe',
   encryptPageText: 'Cette page n\'est accessible qu\'avec un mot de passe',
 

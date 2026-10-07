@@ -30,6 +30,7 @@ const { theme } = useData()
         class="btn"
         :disabled="more"
         :class="{ more, active: value === page }"
+        :aria-current="value === page ? 'page' : undefined"
         type="button"
         @click="() => !more && emit('change', value as number)"
       >

@@ -2,7 +2,7 @@
 import type { ProfileOptions } from '../../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
 import { useScrollLock, useTimeoutFn } from '@vueuse/core'
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
 import { useRoute, withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
 import { useData, usePostsExtract } from '../../composables/index.js'
@@ -30,8 +30,66 @@ const imageUrl = computed(() => {
 })
 
 const { hasPostsExtract, tags, archives, categories } = usePostsExtract()
+
+const postsExtractLabel = computed(() => theme.value.postsExtractLabel ?? 'Posts Navigation')
+const closeLabel = computed(() => theme.value.closeLabel ?? 'Close')
+
 const open = ref(false)
 const lazyOpen = ref(false)
+
+const triggerEl = useTemplateRef<HTMLButtonElement>('trigger')
+const modalEl = useTemplateRef<HTMLDivElement>('modal')
+
+// 面板内可聚焦元素的候选集合，用于焦点陷阱。
+// Candidates for focusable elements inside the panel, used for the focus trap.
+const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]'
+
+function isTabbable(el: HTMLElement): boolean {
+  if (el.tabIndex < 0)
+    return false
+  return el.getClientRects().length > 0 && getComputedStyle(el).visibility !== 'hidden'
+}
+
+function getFocusable(): HTMLElement[] {
+  if (!modalEl.value)
+    return []
+  return Array.from(modalEl.value.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(isTabbable)
+}
+
+/**
+ * Esc 关闭面板；Tab 在面板内循环，避免焦点逃逸到被遮挡的页面内容。
+ *
+ * Escape closes the panel; Tab cycles inside it so focus never escapes
+ * into the page content hidden behind the dialog.
+ */
+function onModalKeydown(event: KeyboardEvent) {
+  if (event.key === 'Escape') {
+    open.value = false
+    return
+  }
+
+  if (event.key !== 'Tab')
+    return
+
+  const focusable = getFocusable()
+  if (!focusable.length) {
+    event.preventDefault()
+    return
+  }
+
+  const first = focusable[0]
+  const last = focusable[focusable.length - 1]
+  const active = document.activeElement
+
+  if (event.shiftKey && (active === first || active === modalEl.value)) {
+    event.preventDefault()
+    last.focus()
+  }
+  else if (!event.shiftKey && active === last) {
+    event.preventDefault()
+    first.focus()
+  }
+}
 
 const isLocked = useScrollLock(inBrowser ? document.body : null)
 
@@ -57,6 +115,22 @@ watch(open, (isOpen) => {
   }
 })
 
+// 打开时把焦点移入面板，关闭时归还给触发按钮，保证键盘用户不会丢失位置。
+// Move focus into the panel on open and back to the trigger on close, so keyboard users never lose their place.
+watch(open, (isOpen) => {
+  if (!inBrowser)
+    return
+
+  if (isOpen) {
+    nextTick(() => {
+      modalEl.value?.focus({ preventScroll: true })
+    })
+  }
+  else if (modalEl.value?.contains(document.activeElement)) {
+    triggerEl.value?.focus()
+  }
+})
+
 watch(
   [() => open.value],
   () => {
@@ -75,12 +149,38 @@ const showPostsExtract = computed(() => {
 
 <template>
   <template v-if="showPostsExtract">
-    <div class="vp-posts-extract" @click="open = !open">
+    <button
+      ref="trigger"
+      type="button"
+      class="vp-posts-extract"
+      :aria-label="postsExtractLabel"
+      :aria-expanded="open"
+      aria-haspopup="dialog"
+      @click="open = !open"
+    >
       <span class="vpi-posts-ext icon" />
-    </div>
+    </button>
     <Transition name="fade-in">
-      <div v-show="open" class="posts-modal" @click.self="open = false">
+      <div
+        v-show="open"
+        ref="modal"
+        class="posts-modal"
+        role="dialog"
+        aria-modal="true"
+        :aria-label="postsExtractLabel"
+        tabindex="-1"
+        @click.self="open = false"
+        @keydown="onModalKeydown"
+      >
         <div class="posts-modal-container" :class="{ open: lazyOpen }">
+          <button
+            type="button"
+            class="posts-modal-close"
+            :aria-label="closeLabel"
+            @click="open = false"
+          >
+            <span class="vpi-close" />
+          </button>
           <slot name="posts-extract-before" />
 
           <div v-if="profile" class="profile">
@@ -174,6 +274,10 @@ const showPostsExtract = computed(() => {
   background-color: rgb(0 0 0 / 0.3);
 }
 
+.posts-modal:focus {
+  outline: none;
+}
+
 .posts-modal-container {
   position: absolute;
   bottom: 0;
@@ -199,6 +303,30 @@ const showPostsExtract = computed(() => {
   transform: translateY(0);
 }
 
+.posts-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  transition: var(--vp-t-color);
+  transition-property: color, background-color;
+}
+
+.posts-modal-close:hover {
+  color: var(--vp-c-text-1);
+  background-color: var(--vp-c-bg-alt);
+}
+
 .profile {
   display: flex;
   align-items: center;
@@ -210,6 +338,7 @@ const showPostsExtract = computed(() => {
 }
 
 .profile h3 {
+  padding-right: 40px; /* 为右上角的关闭按钮留出空间 */
   font-weight: 600;
 }
 

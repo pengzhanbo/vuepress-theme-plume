@@ -46,13 +46,39 @@ export function strip(code: string) {
   return result
 }
 
+/**
+ * Multi-line comments that carry build-time or coverage semantics.
+ * Removing them would silently break the directives they represent.
+ *
+ * 带有构建期或覆盖率语义的多行注释。
+ * 移除它们会静默破坏其代表的指令。
+ */
+const PRESERVED_COMMENT_MARKERS = [
+  // webpack magic comments
+  'webpackChunkName:',
+  'webpackIgnore',
+  // vite magic comment
+  '@vite-ignore',
+  // tree-shaking annotations
+  '@__PURE__',
+  '#__PURE__',
+  '@__NO_SIDE_EFFECTS__',
+  // coverage ignore hints
+  'c8 ignore',
+  'v8 ignore',
+]
+
 function stripFromToken(token: JSToken): string {
   if (token.type === 'SingleLineComment') {
     return ''
   }
 
-  // 对于多行注释，如果包含 `webpackChunkName:`，则保留注释内容
-  if (token.type === 'MultiLineComment' && !token.value.includes('webpackChunkName:')) {
+  // Only keep multi-line comments that hold a directive; drop everything else.
+  // 仅保留带有指令意义的多行注释，其余全部移除。
+  if (
+    token.type === 'MultiLineComment'
+    && !PRESERVED_COMMENT_MARKERS.some(marker => token.value.includes(marker))
+  ) {
     return ''
   }
   return token.value

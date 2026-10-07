@@ -11,9 +11,10 @@
  * @module plugin-search/client
  */
 import SearchBox from './components/Search.vue'
-import { useSearchIndex } from './composables/index.js'
+import { loadSearchIndexJSON, useSearchIndex } from './composables/index.js'
 
 export {
+  loadSearchIndexJSON,
   SearchBox,
   useSearchIndex,
 }

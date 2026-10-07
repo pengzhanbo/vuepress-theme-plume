@@ -1,8 +1,10 @@
+import type { AsPlainObject } from 'minisearch'
 import type { App, Page } from 'vuepress/core'
 import MiniSearch from 'minisearch'
 import { describe, expect, it, vi } from 'vitest'
 import { logger } from 'vuepress/utils'
 import {
+  buildIndexFiles,
   clearHtmlTags,
   createPageSectionItems,
   onSearchIndexRemoved,
@@ -10,6 +12,7 @@ import {
   prepareSearchIndex,
   prepareSearchIndexInBackground,
   splitPageIntoSections,
+  splitSearchIndex,
 } from '../src/node/prepareSearchIndex.js'
 import { createTokenizer } from '../src/shared/index.js'
 
@@ -486,5 +489,103 @@ describe('createPageSectionItems title fallbacks', () => {
 
     // 所有标题来源都缺失时不应抛错，也不产生章节项。
     expect([...createPageSectionItems(page)]).toEqual([])
+  })
+})
+
+/** 构造一个可直接交给 MiniSearch 反序列化的最小索引对象。 */
+function createSerializedIndex(termCount: number): AsPlainObject {
+  return {
+    documentCount: 1,
+    nextId: 2,
+    documentIds: { 1: '/a/' },
+    fieldIds: { title: 0, titles: 1, text: 2 },
+    fieldLength: { 1: [1, 0, 1] },
+    averageFieldLength: [1, 0, 1],
+    storedFields: { 1: { title: 'A', titles: [] } },
+    dirtCount: 0,
+    index: Array.from({ length: termCount }, (_, i) => [
+      `w${i}`,
+      { 2: { 1: 1 } },
+    ]) as AsPlainObject['index'],
+    serializationVersion: 2,
+  }
+}
+
+/** 取出 `export default "<json>"` 文件中的 JSON 字符串并解析两层。 */
+function parseDefaultExport(content: string) {
+  const [defaultLine] = content.split('\n')
+  return JSON.parse(JSON.parse(defaultLine.slice('export default '.length)))
+}
+
+describe('search index sharding', () => {
+  it('keeps a small index in a single file', () => {
+    const serialized = createSerializedIndex(5)
+    const { meta, shards } = splitSearchIndex(serialized, 5)
+
+    // 未超过阈值时不分片，且元数据就是原索引本身（保持旧格式）。
+    expect(shards).toEqual([])
+    expect(meta).toBe(serialized)
+    expect(Object.keys(buildIndexFiles('default', serialized, 5)))
+      .toEqual(['searchBox-default.js'])
+  })
+
+  it('does not shard for a non-positive shard size', () => {
+    expect(splitSearchIndex(createSerializedIndex(50), 0).shards).toEqual([])
+    expect(splitSearchIndex(createSerializedIndex(50), -1).shards).toEqual([])
+  })
+
+  it('splits a large index into shard files and moves entries out of the metadata file', () => {
+    const serialized = createSerializedIndex(25)
+    const files = buildIndexFiles('zh', serialized, 10)
+
+    expect(Object.keys(files).sort()).toEqual([
+      'searchBox-zh-0.js',
+      'searchBox-zh-1.js',
+      'searchBox-zh-2.js',
+      'searchBox-zh.js',
+    ])
+
+    // 元数据文件保留文档信息，但词元条目全部移入分片。
+    const meta = parseDefaultExport(files['searchBox-zh.js'])
+    expect(meta.index).toEqual([])
+    expect(meta.documentCount).toBe(1)
+
+    // 客户端依靠导出的 `shards` 数组按需加载各分片。
+    expect(files['searchBox-zh.js']).toContain(
+      `export const shards = [() => import('@internal/minisearchIndex/searchBox-zh-0.js'), () => import('@internal/minisearchIndex/searchBox-zh-1.js'), () => import('@internal/minisearchIndex/searchBox-zh-2.js')]`,
+    )
+
+    expect(parseDefaultExport(files['searchBox-zh-0.js'])).toHaveLength(10)
+    expect(parseDefaultExport(files['searchBox-zh-2.js'])).toHaveLength(5)
+  })
+
+  it('rebuilds an equivalent index by concatenating the shards', () => {
+    const serialized = createSerializedIndex(25)
+    const files = buildIndexFiles('zh', serialized, 10)
+
+    const meta = parseDefaultExport(files['searchBox-zh.js']) as AsPlainObject
+    for (const name of ['searchBox-zh-0.js', 'searchBox-zh-1.js', 'searchBox-zh-2.js'])
+      meta.index.push(...parseDefaultExport(files[name]) as AsPlainObject['index'])
+
+    // 分片顺序拼接后与原始词元条目完全一致，索引行为不变。
+    expect(meta.index).toEqual(serialized.index)
+
+    const index = MiniSearch.loadJS(meta, {
+      fields: ['title', 'titles', 'text'],
+      storeFields: ['title', 'titles'],
+      searchOptions: { tokenize: createTokenizer('en') },
+    })
+    expect(index.search('w3').map(result => result.id)).toEqual(['/a/'])
+    expect(index.search('w24').map(result => result.id)).toEqual(['/a/'])
+  })
+
+  it('normalizes the locale name into the shard file names', () => {
+    const files = buildIndexFiles('zh-CN_guide', createSerializedIndex(4), 2)
+
+    expect(Object.keys(files).sort()).toEqual([
+      'searchBox-zh-CN_guide-0.js',
+      'searchBox-zh-CN_guide-1.js',
+      'searchBox-zh-CN_guide.js',
+    ])
   })
 })

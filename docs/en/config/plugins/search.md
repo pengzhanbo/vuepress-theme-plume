@@ -59,6 +59,17 @@ interface SearchBoxLocale {
   resetButtonTitle: string
   backButtonTitle: string
   noResultsText: string
+  /**
+   * Text shown when the search index is missing or fails to load
+   */
+  searchIndexErrorText?: string
+  /**
+   * Fallback text shown when JavaScript is disabled
+   *
+   * It is rendered inside `<noscript>`, so it must be plain text without
+   * HTML-escaped characters
+   */
+  noscriptText?: string
   footer: {
     selectText: string
     selectKeyAriaLabel: string

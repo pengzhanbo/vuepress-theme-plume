@@ -18,6 +18,7 @@ export const deSearchLocale: Partial<SearchLocaleOptions> = {
   backButtonTitle: 'Schließen',
   noResultsText: 'Keine Suchergebnisse:',
   searchIndexErrorText: 'Der Suchindex konnte nicht geladen werden.',
+  noscriptText: 'Die Suche ist ohne JavaScript nicht verfügbar.',
   footer: {
     selectText: 'Auswählen',
     selectKeyAriaLabel: 'Eingabe',

@@ -18,6 +18,7 @@ export const jaSearchLocale: Partial<SearchLocaleOptions> = {
   backButtonTitle: '閉じる',
   noResultsText: '検索結果がありません：',
   searchIndexErrorText: '検索インデックスの読み込みに失敗しました。',
+  noscriptText: 'JavaScript が無効のため、検索を利用できません。',
   footer: {
     selectText: '選択',
     selectKeyAriaLabel: '入力',

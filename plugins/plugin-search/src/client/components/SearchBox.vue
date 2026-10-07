@@ -26,7 +26,7 @@ import {
 } from 'vue'
 import { usePageLang, useRouteLocale, useRouter, withBase } from 'vuepress/client'
 import { createTokenizer } from '../../shared/index.js'
-import { useLocale, useSearchIndex } from '../composables/index.js'
+import { loadSearchIndexJSON, useLocale } from '../composables/index.js'
 import BackIcon from './icons/BackIcon.vue'
 import ClearIcon from './icons/ClearIcon.vue'
 import SearchIcon from './icons/SearchIcon.vue'
@@ -46,8 +46,6 @@ const lang = usePageLang()
 
 const el = shallowRef<HTMLElement>()
 const resultsEl = shallowRef<HTMLElement>()
-
-const searchIndexData = useSearchIndex()
 
 interface Result {
   title: string
@@ -103,19 +101,27 @@ const searchIndex = computedAsync(async (onCancel) => {
   // Use the same tokenizer as the node build side so query tokens always match the index.
   const tokenize = createTokenizer(lang.value)
 
-  const loadIndex = searchIndexData.value[routeLocale.value]
-  // 当前语言缺少索引文件时回退到空索引，并给出可见提示，避免静默无结果。
-  // Fall back to an empty index and show a visible message when the locale has no index.
-  if (!loadIndex) {
-    if (!canceled)
-      searchIndexError.value = searchIndexErrorText.value
-    return markRaw(createEmptyIndex())
-  }
-
   try {
-    const json = (await loadIndex())?.default
+    // 分片索引在客户端按片合并并让出主线程，避免大索引长时间阻塞渲染。
+    // Sharded indexes are merged piece by piece on the client, yielding to the main
+    // thread, so a large index never blocks rendering for long.
+    const indexJson = await loadSearchIndexJSON(routeLocale.value)
+
+    // 当前语言缺少索引文件时回退到空索引，并给出可见提示，避免静默无结果。
+    // Fall back to an empty index and show a visible message when the locale has no index.
+    if (!indexJson) {
+      if (!canceled)
+        searchIndexError.value = searchIndexErrorText.value
+      return markRaw(createEmptyIndex())
+    }
+
+    // 使用公开的异步反序列化 API（`loadJSAsync` 为 `@ignore` 的内部 API），
+    // 它在批次之间让出主线程，避免大索引同步解析长时间阻塞。
+    // Use the public async deserialization API (`loadJSAsync` is an `@ignore`d
+    // internal API). It yields to the main thread between batches, so a large index
+    // never blocks rendering for long.
     return markRaw(
-      MiniSearch.loadJSON<Result>(json, {
+      await MiniSearch.loadJSONAsync<Result>(indexJson, {
         fields: ['title', 'titles', 'text'],
         storeFields: ['title', 'titles'],
         searchOptions: {

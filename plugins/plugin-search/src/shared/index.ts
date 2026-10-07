@@ -35,6 +35,19 @@ export interface SearchLocaleOptions {
    * 搜索索引缺失或加载失败时显示的文本。
    */
   searchIndexErrorText?: string
+  /**
+   * Fallback text shown when JavaScript is disabled.
+   *
+   * 禁用 JavaScript 时显示的降级提示文本。
+   *
+   * 请注意：该文本会渲染在 `<noscript>` 中，必须为不含 `<`、`>`、`&`、引号等
+   * 需要 HTML 转义的纯文本，否则在启用脚本的浏览器中水合时会与原文不一致。
+   *
+   * Note: this text is rendered inside `<noscript>`, so it must be plain text
+   * without characters requiring HTML escaping (`<`, `>`, `&`, quotes), otherwise
+   * it would mismatch during hydration in browsers with scripting enabled.
+   */
+  noscriptText?: string
   /** Footer keyboard shortcut hints / 底部键盘快捷键提示 */
   footer: {
     /** Text for select action / 选择操作的文本 */

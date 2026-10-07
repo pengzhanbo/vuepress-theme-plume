@@ -18,6 +18,7 @@ export const enSearchLocale: Partial<SearchLocaleOptions> = {
   backButtonTitle: 'Close search',
   noResultsText: 'No results for',
   searchIndexErrorText: 'Failed to load the search index.',
+  noscriptText: 'Search is unavailable without JavaScript.',
   footer: {
     selectText: 'to select',
     selectKeyAriaLabel: 'enter',

@@ -18,6 +18,7 @@ export const ruSearchLocale: Partial<SearchLocaleOptions> = {
   backButtonTitle: 'Закрыть',
   noResultsText: 'Нет результатов поиска:',
   searchIndexErrorText: 'Не удалось загрузить поисковый индекс.',
+  noscriptText: 'Поиск недоступен без JavaScript.',
   footer: {
     selectText: 'Выбрать',
     selectKeyAriaLabel: 'Ввод',

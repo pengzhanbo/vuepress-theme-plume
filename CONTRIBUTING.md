@@ -19,8 +19,8 @@
 
 开发要求：
 
-- [Node.js](http://nodejs.org/) version 20.19.0+
-- [pnpm](https://pnpm.io/zh/) version 9+
+- [Node.js](http://nodejs.org/) version `^20.19.0` 或 `>=22.12.0`
+- [pnpm](https://pnpm.io/zh/) version `>=12.6.0`
 
 克隆代码仓库，并安装依赖：
 
@@ -44,18 +44,19 @@ pnpm build
 
 #### `pnpm build`
 
-`build` 命令使用 `tsc` 将源代码编译成 `lib` 目录下的 `.js` 文件。
-同时复制 不需要编译的资源到对应的`lib` 目录下。
+`build` 命令使用 [tsdown](https://tsdown.dev/) 将源代码编译成 `dist` 目录下的 `.js` 文件，
+同时通过 `cpx` 复制不需要编译的静态资源（`.vue`、`.css`、图片、字体等）到对应的 `dist` 目录下。
 
-你在克隆代码仓库后，需要先执行该命令来确保项目代码可以顺利运行，因为编译后的输出目录被 `.gitignore` 排除在仓库以外了。
+由于编译后的输出目录 `dist` 被 `.gitignore` 排除在仓库以外，你在克隆代码仓库后，
+需要先执行该命令来确保项目代码可以顺利运行。
 
 #### `pnpm dev`
 
-`dev` 命令会在本地开启两个服务，一个是运行 主题 `theme` 目录的 `tsup:watch & copy:watch`,
-一个是运行 示例 `docs` 目录的 `vuepress` 开发服务。
+`dev` 命令会在本地同时开启两个进程，一个是监听 主题 `theme` 目录的 `tsdown:watch` 与 `copy:watch`（即 `dev:package`），
+一个是运行 文档 `docs` 目录的 `vuepress` 开发服务（即 `docs:dev`）。
 
-`plugins` 目录下的所有插件，默认都没有 `dev` 命令，因此，你对 `plugins` 下的改动，可能需要执行 `pnpm build` 命令
-进行重新构建，部分对 `plugins/**/node` 目录下的改动，需要重新执行 `pnpm dev` 才能生效。
+除 `plugin-md-power` 外，`plugins` 目录下的其它插件默认都没有 `dev` 命令，因此你对这些插件的改动，
+需要执行 `pnpm build` 命令进行重新构建；部分对 `plugins/**/node` 目录下的改动，需要重新执行 `pnpm dev` 才能生效。
 
 #### `pnpm lint`
 

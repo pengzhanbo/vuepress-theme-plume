@@ -1,6 +1,6 @@
 import type { FSWatcher } from 'chokidar'
 import type { App } from 'vuepress'
-import type { ThemeBuiltinPlugins, ThemeData } from '../../shared/index.js'
+import type { ThemeBuiltinPlugins, ThemeData, ThemeOptions } from '../../shared/index.js'
 import fs from 'node:fs/promises'
 import process from 'node:process'
 import { deleteKey } from '@pengzhanbo/utils'
@@ -20,17 +20,21 @@ process.on('exit', () => bulletinFileWatcher?.close())
  * Prepare theme data
  *
  * 准备主题数据，解析主题配置、处理头像尺寸、解析公告栏并更新主题数据
+ *
+ * @param app - VuePress application instance / VuePress 应用实例
+ * @param plugins - Built-in theme plugins / 主题内置插件
+ * @param options - Theme options, defaults to `getThemeConfig()` / 主题配置，默认从 `getThemeConfig()` 读取
  */
 export async function prepareThemeData(
   app: App,
   plugins: ThemeBuiltinPlugins,
+  options: ThemeOptions = getThemeConfig(),
 ): Promise<void> {
   perf.mark('prepare:theme-data')
-  const options = getThemeConfig()
   const resolvedThemeData = resolveThemeData(app, options)
 
   // 用户头像添加尺寸
-  await processProfileImageSize(app, resolvedThemeData, plugins)
+  await processProfileImageSize(app, resolvedThemeData, plugins, options)
 
   if (bulletinFileWatcher) {
     bulletinFileWatcher.close()
@@ -138,8 +142,8 @@ async function processProfileImageSize(
   app: App,
   themeData: ThemeData,
   plugins: ThemeBuiltinPlugins,
+  options: ThemeOptions,
 ) {
-  const options = getThemeConfig()
   const imageSize = options.markdown?.imageSize
     ?? (typeof plugins.markdownPower === 'boolean' ? false : plugins.markdownPower?.imageSize)
 

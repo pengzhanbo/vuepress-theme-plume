@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import type { Page } from 'vuepress/core'
-import type { EncryptOptions, ThemePageData } from '../../shared/index.js'
+import type { EncryptOptions, ThemeOptions, ThemePageData } from '../../shared/index.js'
 import type { FsCache } from '../utils/index.js'
 import { isNumber, isString, LRUCache, objectKeys, toArray } from '@pengzhanbo/utils'
 import { encodeData, removeLeadingSlash } from '@vuepress/helper'
@@ -34,10 +34,13 @@ let fsCache: FsCache<[string, EncryptConfig]> | null = null
  * Prepare encryption configuration
  *
  * 准备加密配置，处理主题的加密选项并生成加密相关的临时文件
+ *
+ * @param app - VuePress application instance / VuePress 应用实例
+ * @param options - Theme options, defaults to `getThemeConfig()` / 主题配置，默认从 `getThemeConfig()` 读取
  */
-export async function prepareEncrypt(app: App): Promise<void> {
+export async function prepareEncrypt(app: App, options: ThemeOptions = getThemeConfig()): Promise<void> {
   perf.mark('prepare:encrypt')
-  const { encrypt } = getThemeConfig()
+  const { encrypt } = options
   if (!fsCache && app.env.isDev) {
     fsCache = createFsCache(app, 'encrypt')
     await fsCache.read()

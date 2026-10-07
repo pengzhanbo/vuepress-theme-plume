@@ -1,6 +1,7 @@
 import type { App, Page } from 'vuepress/core'
 import type {
   EncryptOptions,
+  ThemeOptions,
   ThemePageData,
   ThemePostFrontmatter,
   ThemePosts,
@@ -111,10 +112,13 @@ async function processPostData(
  * Prepare posts data
  *
  * 准备文章数据，过滤非草稿文章并为每个集合和语言环境生成文章列表数据
+ *
+ * @param app - VuePress application instance / VuePress 应用实例
+ * @param options - Theme options, defaults to `getThemeConfig()` / 主题配置，默认从 `getThemeConfig()` 读取
  */
-export async function preparedPostsData(app: App): Promise<void> {
+export async function preparedPostsData(app: App, options: ThemeOptions = getThemeConfig()): Promise<void> {
   const isBuild = app.env.isBuild
-  const { encrypt, locales } = getThemeConfig()
+  const { encrypt, locales } = options
 
   perf.mark('prepare:posts-data')
 

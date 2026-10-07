@@ -15,7 +15,10 @@ vi.mock('../src/node/utils/index.js', () => ({
   perf: { mark: vi.fn(), log: vi.fn() },
 }))
 
-vi.mock('../src/node/config/index.js', () => ({
+// `ConfigLoader` imports the implementation module directly (not the `config/index.js`
+// barrel), so the mock must target the same specifier to take effect.
+// `ConfigLoader` 直接导入实现模块（而非 `config/index.js` 桶文件），因此 mock 必须指向同一路径才生效。
+vi.mock('../src/node/config/initThemeOptions.js', () => ({
   initThemeOptions: vi.fn(() => ({})),
 }))
 

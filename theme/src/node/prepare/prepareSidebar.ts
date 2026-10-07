@@ -3,6 +3,7 @@ import type {
   ResolvedSidebarItem,
   ThemeDocCollection,
   ThemeIcon,
+  ThemeOptions,
   ThemePageData,
   ThemeSidebar,
   ThemeSidebarItem,
@@ -17,12 +18,15 @@ import { normalizeLink, perf, resolveContent, writeTemp } from '../utils/index.j
  * Prepare sidebar data
  *
  * 准备侧边栏数据，处理所有语言环境的侧边栏配置并生成临时文件
+ *
+ * @param app - VuePress application instance / VuePress 应用实例
+ * @param options - Theme options, defaults to `getThemeConfig()` / 主题配置，默认从 `getThemeConfig()` 读取
  */
-export async function prepareSidebar(app: App): Promise<void> {
+export async function prepareSidebar(app: App, options: ThemeOptions = getThemeConfig()): Promise<void> {
   perf.mark('prepare:sidebar')
-  const sidebar = getAllSidebar()
+  const sidebar = getAllSidebar(options)
 
-  const { resolved, autoHome } = getSidebarData(app, sidebar)
+  const { resolved, autoHome } = getSidebarData(app, sidebar, options)
   sidebar.__auto__ = resolved
   sidebar.__home__ = autoHome as any
   await writeTemp(app, 'internal/sidebar.js', resolveContent(app, { name: 'sidebar', content: sidebar }))
@@ -33,6 +37,7 @@ export async function prepareSidebar(app: App): Promise<void> {
 function getSidebarData(
   app: App,
   locales: Record<string, ThemeSidebar>,
+  options: ThemeOptions,
 ): { resolved: ThemeSidebar, autoHome: Record<string, string> } {
   const autoDirList: string[] = []
   const resolved: ThemeSidebar = {}
@@ -73,7 +78,7 @@ function getSidebarData(
 
   const autoHome: Record<string, string> = {}
   autoDirList.forEach((localePath) => {
-    const { link, sidebar } = getAutoDirSidebar(app, localePath)
+    const { link, sidebar } = getAutoDirSidebar(app, localePath, options)
     resolved[localePath] = sidebar
     if (link) {
       autoHome[localePath] = link
@@ -105,6 +110,7 @@ function fileSorting(filepath?: string): number | false {
 function getAutoDirSidebar(
   app: App,
   prefix: string,
+  options: ThemeOptions,
 ): { link: string, sidebar: ThemeSidebarItem[] } {
   const rootPath = removeLeadingSlash(prefix)
   let pages = (app.pages as Page<ThemePageData>[])
@@ -137,7 +143,7 @@ function getAutoDirSidebar(
     const paths = (data.filePathRelative || '')
       .slice(rootPath.replace(/^\/|\/$/g, '').length + 1)
       .split('/')
-    const collection = findCollection(page) as ThemeDocCollection | undefined
+    const collection = findCollection(page, options) as ThemeDocCollection | undefined
     let index = 0
     let dir: string
     let items = sidebar
@@ -220,8 +226,7 @@ function findAutoDirList(sidebar: (string | ThemeSidebarItem)[], prefix = ''): s
   return list
 }
 
-function getAllSidebar(): Record<string, ThemeSidebar> {
-  const options = getThemeConfig()
+function getAllSidebar(options: ThemeOptions): Record<string, ThemeSidebar> {
   const locales: Record<string, ThemeSidebar> = {}
 
   for (const [locale, opt] of objectEntries(options.locales || {})) {

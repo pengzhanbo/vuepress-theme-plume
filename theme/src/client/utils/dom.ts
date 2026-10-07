@@ -71,19 +71,50 @@ export function setScrollTop(
 }
 
 /**
+ * Pending scroll animations, keyed by their target element.
+ *
+ * 进行中的滚动动画，以目标元素为键。
+ */
+const scrollTimers = new WeakMap<Document | HTMLElement, ReturnType<typeof setInterval>>()
+
+/**
+ * Cancel the pending scroll animation of a target, if any.
+ *
+ * 取消目标元素上尚未完成的滚动动画。
+ *
+ * @param target - Target element or document / 目标元素或文档
+ */
+function cancelScroll(target: Document | HTMLElement): void {
+  const timer = scrollTimers.get(target)
+  if (timer === undefined)
+    return
+
+  clearInterval(timer)
+  scrollTimers.delete(target)
+}
+
+/**
  * Smoothly scroll to a specific position
  *
  * 平滑滚动到指定位置
  *
+ * A new scroll on the same target cancels the previous unfinished animation, so that
+ * multiple intervals never write `scrollTop` at the same time.
+ *
+ * 同一目标上新的滚动会取消上一次未完成的动画，避免多个定时器同时写入 `scrollTop`。
+ *
  * @param target - Target element or document / 目标元素或文档
  * @param top - Target scrollTop position / 目标 scrollTop 位置
  * @param time - Animation duration in milliseconds, defaults to 300ms / 动画持续时间（毫秒），默认为 300ms
+ * @returns A function that cancels the animation / 取消动画的函数
  */
 export function scrollTo(
   target: Document | HTMLElement,
   top: number,
   time = 300,
-): void {
+): () => void {
+  cancelScroll(target)
+
   if (target !== document) {
     const currentTop = getScrollTop(target)
     const step = Math.ceil(time / 16)
@@ -91,15 +122,21 @@ export function scrollTo(
     const change = top - currentTop
     const timer = setInterval(() => {
       currentStep++
-      if (currentStep >= step && timer)
-        clearInterval(timer)
+      if (currentStep >= step)
+        cancelScroll(target)
 
       setScrollTop(target, tween(currentStep, currentTop, change, step))
     }, 1000 / 60)
+    scrollTimers.set(target, timer)
+
+    // 返回取消函数：调用方（如组件）可以在卸载时提前终止动画。
+    // Returns a cancel function, so callers (e.g. components) can abort the animation
+    // early, for example when they unmount.
+    return () => cancelScroll(target)
   }
-  else {
-    window.scrollTo({ top, behavior: 'smooth' })
-  }
+
+  window.scrollTo({ top, behavior: 'smooth' })
+  return () => {}
 }
 
 /**

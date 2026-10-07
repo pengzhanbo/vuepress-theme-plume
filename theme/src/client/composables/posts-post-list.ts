@@ -1,5 +1,6 @@
 import type { ComputedRef, Ref } from 'vue'
 import type { ThemePostsItem } from '../../shared/index.js'
+import { useTimeoutFn } from '@vueuse/core'
 import { computed } from 'vue'
 import { useData } from './data.js'
 import { useLayout } from './layout.js'
@@ -165,6 +166,19 @@ export function usePostListControl(homePage: Ref<boolean>): UsePostListControlRe
     return range
   })
 
+  // 分页切换后回到列表顶部的定时器随组件作用域自动清理。
+  // The timer that scrolls back to the top of the list after a page change is disposed
+  // together with the component scope.
+  const { start: scrollToPostsTop } = useTimeoutFn(() => {
+    let top = 0
+    if (homePage.value) {
+      top = document.querySelector('.vp-posts')?.getBoundingClientRect().top || 0
+      top += window.scrollY - 64
+    }
+
+    window.scrollTo({ top, behavior: 'instant' })
+  }, 0, { immediate: false })
+
   const changePage = (current: number): void => {
     // Write to the route query ref, not to the clamped `page` (which is a readonly computed).
     // This also lets a click on the clamped page heal an out-of-range `?p=` in the URL.
@@ -173,15 +187,7 @@ export function usePostListControl(homePage: Ref<boolean>): UsePostListControlRe
     if (routePage.value === current)
       return
     routePage.value = current
-    setTimeout(() => {
-      let top = 0
-      if (homePage.value) {
-        top = document.querySelector('.vp-posts')?.getBoundingClientRect().top || 0
-        top += window.scrollY - 64
-      }
-
-      window.scrollTo({ top, behavior: 'instant' })
-    }, 0)
+    scrollToPostsTop()
   }
 
   return {

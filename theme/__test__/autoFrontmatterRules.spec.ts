@@ -85,4 +85,42 @@ describe('autoFrontmatter rules', () => {
     expect(source(findRule(getRules(), 'blog/sub/a.md'))).toBe('blog/sub/**/*.md')
     expect(source(findRule(getRules(), 'blog/a.md'))).toBe('blog/**/*.md')
   })
+
+  it('falls back to the root rule for files outside any collection', () => {
+    hoisted.themeConfig = {
+      locales: {
+        '/': { collections: [{ type: 'doc', dir: 'blog', title: 'Blog' }] },
+      },
+    }
+
+    genAutoFrontmatterRules()
+
+    expect(source(findRule(getRules(), 'blog/a.md'))).toBe('blog/**/*.md')
+    // 未归属任何集合的根级文件必须命中根兜底规则。
+    expect(source(findRule(getRules(), 'about.md'))).toBe('**/*.md')
+  })
+
+  it('falls back to the locale rule for files outside the locale collections', () => {
+    hoisted.themeConfig = {
+      locales: {
+        '/': { collections: [{ type: 'doc', dir: 'blog', title: 'Blog' }] },
+        '/en/': { collections: [{ type: 'doc', dir: 'docs', title: 'Docs' }] },
+      },
+    }
+
+    genAutoFrontmatterRules()
+
+    expect(source(findRule(getRules(), 'en/docs/a.md'))).toBe('en/docs/**/*.md')
+    // 未归属集合的 /en/ 文件命中该语言环境的兜底规则。
+    expect(source(findRule(getRules(), 'en/about.md'))).toBe('en/**/*.md')
+  })
+
+  it('excludes node_modules from the fallback rules', () => {
+    hoisted.themeConfig = { locales: { '/': {} } }
+
+    genAutoFrontmatterRules()
+
+    expect(source(findRule(getRules(), 'about.md'))).toBe('**/*.md')
+    expect(findRule(getRules(), 'node_modules/a.md')).toBeUndefined()
+  })
 })

@@ -28,7 +28,16 @@ export function getRules(): AutoFrontmatterRule[] {
 
 export function genAutoFrontmatterRules(): void {
   const options = getThemeConfig()
-  const remainExclude: string[] = [...EXCLUDE]
+  // `EXCLUDE` entries are already negated (`!**/node_modules/**`). They are re-negated
+  // below (`!${s}`) when building the fallback filters, so the leading `!` must be
+  // stripped here: `!!**/node_modules/**` would become an ignore pattern of
+  // `!**/node_modules/**`, which makes picomatch match nothing at all, and both fallback
+  // rules would silently stop working.
+  // `EXCLUDE` 中的条目本身就带否定前缀（`!**/node_modules/**`），而下面构建兜底规则时
+  // 还会再加一次 `!${s}`，因此这里必须先去掉前导 `!`：否则会得到
+  // `!!**/node_modules/**`，忽略模式变成 `!**/node_modules/**`，会让 picomatch 对任何路径
+  // 都返回 false，两条兜底规则都会静默失效。
+  const remainExclude: string[] = EXCLUDE.map(s => s.replace(/^!/, ''))
 
   rules.length = 0
 

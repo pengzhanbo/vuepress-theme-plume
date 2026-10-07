@@ -4,7 +4,11 @@ import { ensureLeadingSlash, removeLeadingSlash } from 'vuepress/shared'
 import { fs, path } from 'vuepress/utils'
 import { getPinyin, hasPinyin } from '../utils/index.js'
 
-export const EXCLUDE = ['!**/.vuepress/', '!**/node_modules/']
+// The `!/**` form is required: a trailing slash (`**/node_modules/`) only matches the
+// directory entry itself, so `node_modules/a.md` would not be excluded.
+// 必须使用 `!/**` 形式：带尾斜杠（`**/node_modules/`）只能匹配目录本身，
+// 无法排除 `node_modules/a.md`。
+export const EXCLUDE = ['!**/.vuepress/**', '!**/node_modules/**']
 
 const NUMBER_RE = /^\d+\./
 

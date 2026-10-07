@@ -42,6 +42,11 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
     setTranslateLang(app.options.lang)
     perf.init(app.env.isDebug)
 
+    // `onWatched` must register its watchers only once: registering them again on a
+    // repeated call would duplicate listeners and leak watcher instances.
+    // `onWatched` 只能注册一次监听：重复调用会重复绑定监听器并泄漏 watcher 实例。
+    let watchedRegistered = false
+
     detectVersions(app)
 
     const { configFile, plugins, themeOptions } = detectThemeOptions(options)
@@ -95,6 +100,10 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
       },
 
       onWatched: async (app, watchers) => {
+        if (watchedRegistered)
+          return
+
+        watchedRegistered = true
         configLoader.watch(watchers as any)
         watchAutoFrontmatter(app, watchers as any)
       },

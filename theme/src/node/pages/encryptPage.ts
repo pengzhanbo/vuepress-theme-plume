@@ -19,7 +19,9 @@ export async function encryptPage(
     .filter(item => item.length > 0)
 
   if (password.length) {
-    page.data._e = (await pMap(password, item => genEncrypt(item))).join(':')
+    // bcrypt 是 CPU 密集型操作（costFactor 为 11），限制并发避免打满事件循环。
+    // Bcrypt is CPU intensive (cost factor 11), so its concurrency is bounded.
+    page.data._e = (await pMap(password, item => genEncrypt(item), { concurrency: 4 })).join(':')
   }
   else if (rawPassword.length) {
     // An empty password still produces a valid bcrypt hash, but the client always rejects

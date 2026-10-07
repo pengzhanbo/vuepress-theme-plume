@@ -128,7 +128,12 @@ function detectThemeVersion(app: App) {
 
     updateCache()
   }
-  catch {}
+  catch (error) {
+    // 缓存清理失败不应中断构建，但也不能完全静默，否则问题无法被发现。
+    // Failing to reset the cache must not abort the build, but it should not be
+    // completely silent either, otherwise the problem stays invisible.
+    logger.warn('Failed to reset the cache after a theme version change.', error)
+  }
 }
 
 const RE_FLAG = /^[\^~<>=]+/

@@ -6,9 +6,10 @@ import type {
   ThemePosts,
   ThemePostsItem,
 } from '../../shared/index.js'
-import { attemptAsync } from '@pengzhanbo/utils'
+import { attemptAsync, LRUCache } from '@pengzhanbo/utils'
 import { removeLeadingSlash } from '@vuepress/helper'
 import dayjs from 'dayjs'
+import pMap from 'p-map'
 import { fs, path } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { createMatcher, logger, perf, resolveContent, withBase, writeTemp } from '../utils/index.js'
@@ -17,8 +18,19 @@ import { isEncryptPage } from './prepareEncrypt.js'
 const HEADING_RE = /<h(\d)[^>]*>.*?<\/h\1>/gi
 const EXCERPT_SPLIT = '<!-- more -->'
 
+/**
+ * Bounded concurrency for per-post processing: `processPostData` may hit the file
+ * system (`stat`), so an unbounded `Promise.all` over every post would exhaust
+ * file descriptors (EMFILE) on large sites.
+ *
+ * 单篇文章处理的并发上限：`processPostData` 可能访问文件系统（`stat`），
+ * 对大站点使用无限制的 `Promise.all` 会耗尽文件描述符（EMFILE）。
+ */
+const POST_PROCESS_CONCURRENCY = 64
+
 // 同一文件可能归属多个集合，缓存其创建时间避免重复 stat。
-const fileBirthtimeCache = new Map<string, Date>()
+// 使用有界缓存，避免大站点下缓存无上限增长。
+const fileBirthtimeCache = new LRUCache<string, Date>({ maxSize: 1024 })
 
 async function getFileBirthtime(filepath: string): Promise<Date> {
   const cached = fileBirthtimeCache.get(filepath)
@@ -120,13 +132,14 @@ export async function preparedPostsData(app: App): Promise<void> {
     for (const { include, exclude, dir } of collections.filter(item => item.type === 'post')) {
       const source = app.dir.source(removeLeadingSlash(withBase(dir, locale)))
       const isMatched = createMatcher(include, exclude)
-      postsData[withBase(dir, locale)] = await Promise.all(
+      postsData[withBase(dir, locale)] = await pMap(
         pages
           .filter(({ filePath }) => {
             return filePath?.startsWith(source) && isMatched(path.relative(source, filePath!))
           })
-          .sort(sortPage)
-          .map(page => processPostData(page, isBuild, encrypt)),
+          .sort(sortPage),
+        page => processPostData(page, isBuild, encrypt),
+        { concurrency: POST_PROCESS_CONCURRENCY },
       )
     }
   }

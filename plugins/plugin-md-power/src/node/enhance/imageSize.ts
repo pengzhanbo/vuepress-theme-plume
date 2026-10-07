@@ -5,7 +5,7 @@ import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { Buffer } from 'node:buffer'
 import http from 'node:https'
 import { URL } from 'node:url'
-import { attempt, attemptAsync, isBoolean, objectEntries, withTimeout } from '@pengzhanbo/utils'
+import { attempt, attemptAsync, isBoolean, LRUCache, objectEntries, withTimeout } from '@pengzhanbo/utils'
 import { isLinkHttp } from '@vuepress/helper'
 import pMap from 'p-map'
 import { tinyImageSize } from 'tiny-image-size'
@@ -73,11 +73,16 @@ const BADGE_LIST = [
 const MAX_REMOTE_IMAGE_SIZE = 10 * 1024 * 1024
 
 /**
- * Cache of resolved image sizes to avoid repeated file/network requests
+ * Cache of resolved image sizes to avoid repeated file/network requests.
  *
- * 已解析图片尺寸的缓存，避免重复的文件读取或网络请求
+ * It is bounded (LRU) so that a site with a very large number of images does not
+ * keep every entry in memory for the whole session.
+ *
+ * 已解析图片尺寸的缓存，避免重复的文件读取或网络请求。
+ *
+ * 缓存有容量上限（LRU），避免图片数量极大的站点在整个会话期间常驻所有条目。
  */
-const imageSizeCache = new Map<string, ImgSize | null>()
+const imageSizeCache = new LRUCache<string, ImgSize | null>({ maxSize: 2048 })
 
 /**
  * Image size plugin - Add width and height attributes to images

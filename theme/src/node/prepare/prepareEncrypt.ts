@@ -2,7 +2,7 @@ import type { App } from 'vuepress'
 import type { Page } from 'vuepress/core'
 import type { EncryptOptions, ThemePageData } from '../../shared/index.js'
 import type { FsCache } from '../utils/index.js'
-import { isNumber, isString, objectKeys, toArray } from '@pengzhanbo/utils'
+import { isNumber, isString, LRUCache, objectKeys, toArray } from '@pengzhanbo/utils'
 import { encodeData, removeLeadingSlash } from '@vuepress/helper'
 import pMap from 'p-map'
 import { getThemeConfig } from '../loadConfig/index.js'
@@ -18,6 +18,15 @@ export type EncryptConfig = readonly [
 const isStringLike = (value: unknown): boolean => isString(value) || isNumber(value)
 
 const separator = ':'
+
+/**
+ * Concurrency for bcrypt hashing: it is CPU intensive (cost factor 11), so a
+ * bounded value keeps the event loop responsive on sites with many passwords.
+ *
+ * bcrypt 哈希的并发布上限：它是 CPU 密集型操作（costFactor 为 11），
+ * 使用有界并发可避免在密码很多时打满事件循环。
+ */
+const BCRYPT_CONCURRENCY = 4
 let contentHash = ''
 let fsCache: FsCache<[string, EncryptConfig]> | null = null
 
@@ -98,7 +107,7 @@ async function resolveEncrypt(encrypt?: EncryptOptions): Promise<EncryptConfig> 
   }
 
   const admin = adminPasswords.length
-    ? (await pMap(adminPasswords, item => genEncrypt(item))).join(separator)
+    ? (await pMap(adminPasswords, item => genEncrypt(item), { concurrency: BCRYPT_CONCURRENCY })).join(separator)
     : ''
 
   // Rules without any valid password are dropped entirely: keeping them would make
@@ -115,7 +124,7 @@ async function resolveEncrypt(encrypt?: EncryptOptions): Promise<EncryptConfig> 
   const rules: Record<string, string> = {}
 
   for (const [index, { passwords }] of encryptRules.entries()) {
-    rules[String(index)] = (await pMap(passwords, item => genEncrypt(item))).join(separator)
+    rules[String(index)] = (await pMap(passwords, item => genEncrypt(item), { concurrency: BCRYPT_CONCURRENCY })).join(separator)
   }
 
   return [
@@ -126,7 +135,8 @@ async function resolveEncrypt(encrypt?: EncryptOptions): Promise<EncryptConfig> 
   ]
 }
 
-const patternCache = new Map<string, RegExp>()
+// 有界缓存：规则数量由用户配置决定，避免缓存无上限增长。
+const patternCache = new LRUCache<string, RegExp>({ maxSize: 256 })
 /**
  * Check if a page is encrypted
  *

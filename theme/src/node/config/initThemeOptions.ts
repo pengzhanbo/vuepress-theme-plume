@@ -52,8 +52,12 @@ export function initThemeOptions(app: App, { locales, ...options }: ThemeOptions
     }),
   }
 
-  // 兼容旧的 blog 、 notes 配置
-  compatBlogAndNotesToCollections(resolvedOptions)
+  // 兼容旧的 blog 、 notes 配置。
+  //
+  // 需要一并传入用户原始的多语言配置：`resolvedOptions` 中的语言环境已经合并了根级选项，
+  // 无法据此区分"语言环境自身配置了 collections"与"只是继承了根级 collections"，
+  // 会把语言环境自身的 legacy 配置误判为已被取代而静默丢弃。
+  compatBlogAndNotesToCollections(resolvedOptions, { '/': {}, ...locales })
   // 补全 collections 可选项
   completeCollections(resolvedOptions)
 

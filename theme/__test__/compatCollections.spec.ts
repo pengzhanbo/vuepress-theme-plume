@@ -1,4 +1,4 @@
-import type { ThemeOptions } from '../src/shared/index.js'
+import type { ThemeDocCollection, ThemeOptions, ThemePostCollection } from '../src/shared/index.js'
 import { describe, expect, it } from 'vitest'
 import { compatBlogAndNotesToCollections } from '../src/node/collections/compat.js'
 
@@ -47,7 +47,7 @@ describe('compatBlogAndNotesToCollections', () => {
       tags: false,
     })
     // 每个 note 的目录都会被追加到 post 集合的 `exclude` 中，避免被博客列表收录。
-    expect(collections[0].exclude).toEqual([
+    expect((collections[0] as ThemePostCollection).exclude).toEqual([
       'blog/draft/**',
       'notes/guide',
       'notes/faq',
@@ -78,7 +78,7 @@ describe('compatBlogAndNotesToCollections', () => {
 
     expect(options.collections).toHaveLength(1)
     // `exclude` 为字符串时也要被归一化为数组，且缺少 `notes` 列表时不追加任何路径。
-    expect(options.collections![0].exclude).toEqual(['blog/draft/**'])
+    expect((options.collections![0] as ThemePostCollection).exclude).toEqual(['blog/draft/**'])
   })
 
   it('should apply the legacy post options to every locale without its own collections', () => {
@@ -148,9 +148,9 @@ describe('compatBlogAndNotesToCollections', () => {
     compatBlogAndNotesToCollections(options)
 
     // 根级 doc 集合使用根级配置。
-    expect(options.collections![0].sidebarScrollbar).toBe(true)
+    expect((options.collections![0] as ThemeDocCollection).sidebarScrollbar).toBe(true)
     // 语言环境没有配置 `sidebarScrollbar` 时回退到根级配置。
-    expect(options.locales!['/en/']!.collections![0].sidebarScrollbar).toBe(true)
+    expect((options.locales!['/en/']!.collections![0] as ThemeDocCollection).sidebarScrollbar).toBe(true)
   })
 
   it('should keep existing collections untouched but still strip the legacy keys', () => {
@@ -195,5 +195,98 @@ describe('compatBlogAndNotesToCollections', () => {
 
     expect(options.collections).toHaveLength(1)
     expect(options.locales).toBeUndefined()
+  })
+
+  it('should not create a post collection for a locale that disables blog', () => {
+    const options = createOptions({
+      article: '/article/',
+      blog: { include: ['blog/**/*.md'] },
+      locales: { '/': {}, '/en/': { blog: false } },
+    })
+
+    compatBlogAndNotesToCollections(options)
+
+    // 根级 blog 仍然被迁移到根级集合。
+    expect(options.collections).toHaveLength(1)
+    // `blog: false` 的语言环境不应再被根级 `blog` 影响。
+    expect(options.locales!['/en/']!.collections ?? []).toHaveLength(0)
+  })
+
+  it('should prefer the locale own blog and article over the root ones', () => {
+    const options = createOptions({
+      article: '/article/',
+      blog: { include: ['blog/**/*.md'] },
+      locales: {
+        '/en/': { blog: { include: ['en/blog/**/*.md'] }, article: '/en/article/' },
+      },
+    })
+
+    compatBlogAndNotesToCollections(options)
+
+    const collections = options.locales!['/en/']!.collections!
+    expect(collections).toHaveLength(1)
+    expect(collections[0]).toMatchObject({
+      type: 'post',
+      dir: '/',
+      include: ['en/blog/**/*.md'],
+      linkPrefix: '/en/article/',
+    })
+  })
+
+  it('should migrate a locale legacy config that only inherits the root collections', () => {
+    // 回归：`initThemeOptions` 会把根级选项合并进每个语言环境，语言环境的 `collections`
+    // 因此可能是"继承"而来。此前会被误判为"该语言环境已完成迁移"，导致其自身的
+    // legacy `notes` 被静默删除。
+    // Regression: `initThemeOptions` merges the root options into each locale, so a
+    // locale's `collections` may merely be inherited. It used to be mistaken for
+    // "the locale has already migrated", silently dropping the locale's own legacy
+    // `notes`.
+    const rootCollections = [{ type: 'post', dir: 'blog' }] as any
+    const options = {
+      collections: rootCollections,
+      locales: { '/en/': { collections: [...rootCollections] } },
+    } as unknown as ThemeOptions
+    // 用户为该语言环境显式声明的原始配置，只包含 legacy `notes`。
+    const rawLocales = {
+      '/en/': {
+        notes: { dir: 'en/notes', link: '/en/notes/', notes: [{ dir: 'guide', link: 'guide' }] },
+      },
+    } as any
+
+    compatBlogAndNotesToCollections(options, rawLocales)
+
+    // 继承的根级集合被保留，语言环境自身的 notes 被迁移并追加。
+    const collections = options.locales!['/en/']!.collections!
+    expect(collections).toHaveLength(2)
+    expect(collections[0]).toMatchObject({ type: 'post', dir: 'blog' })
+    expect(collections[1]).toMatchObject({
+      type: 'doc',
+      dir: 'en/notes/guide',
+      linkPrefix: '/en/notes/guide',
+    })
+    // 追加迁移结果不能就地修改根级集合，也不能删除语言环境之外的配置。
+    expect(options.collections).toHaveLength(1)
+    expect(options.collections![0]).toMatchObject({ type: 'post', dir: 'blog' })
+    expect('notes' in options.locales!['/en/']!).toBe(false)
+  })
+
+  it('should drop a locale legacy config when the locale declares its own collections', () => {
+    const options = {
+      collections: [{ type: 'post', dir: 'blog' }],
+      locales: {
+        '/en/': {
+          collections: [{ type: 'doc', dir: 'en/docs' }],
+          notes: { dir: 'en/notes', link: '/en/notes/', notes: [{ dir: 'guide', link: 'guide' }] },
+        },
+      },
+    } as unknown as ThemeOptions
+
+    // 原始配置中该语言环境确实声明了 collections，说明它已完成迁移。
+    const rawLocales = { '/en/': { collections: [{ type: 'doc', dir: 'en/docs' }] } } as any
+
+    compatBlogAndNotesToCollections(options, rawLocales)
+
+    expect(options.locales!['/en/']!.collections).toEqual([{ type: 'doc', dir: 'en/docs' }])
+    expect('notes' in options.locales!['/en/']!).toBe(false)
   })
 })

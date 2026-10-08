@@ -84,6 +84,20 @@ describe('createPackageJson', () => {
     expect(json.devDependencies.typescript).toBe('5.0.0')
   })
 
+  it('should generate runnable scripts when the docs dir is the current directory', async () => {
+    // 回归：`init ./` 曾生成 `vuepress dev `（source 为空）与
+    // `http-server /.vuepress/dist`，脚本立即报错。
+    // Regression: `init ./` used to emit `vuepress dev ` (empty source) and
+    // `http-server /.vuepress/dist`, so the scripts failed immediately.
+    const file = await createPackageJson(Mode.init, {}, { ...base, docsDir: '.' })
+    const json = JSON.parse(file.content)
+
+    expect(json.scripts['docs:dev']).toBe('vuepress dev .')
+    expect(json.scripts['docs:dev-clean']).toBe('vuepress dev . --clean-cache --clean-temp')
+    expect(json.scripts['docs:build']).toBe('vuepress build . --clean-cache --clean-temp')
+    expect(json.scripts['docs:preview']).toBe('http-server ./.vuepress/dist')
+  })
+
   it('should create a fresh package.json in create mode', async () => {
     const file = await createPackageJson(Mode.create, {}, base)
     const json = JSON.parse(file.content)

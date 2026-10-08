@@ -7,9 +7,31 @@ import spawn from 'nano-spawn'
 import colors from 'picocolors'
 import { Mode } from './constants.js'
 import { generate } from './generate.js'
-import { prompt } from './prompt.js'
+import { normalizeRoot, prompt } from './prompt.js'
 import { t } from './translate.js'
 import { getPackageManager } from './utils/index.js'
+
+/**
+ * Resolve the documentation directory written into the generated npm scripts.
+ *
+ * `create` mode always scaffolds into a `docs/` directory, while `init` mode
+ * reuses the directory the user chose. The root must be normalized, otherwise
+ * `init ./` collapses to an empty string and produces unrunnable scripts
+ * (`vuepress dev `) plus a `http-server /.vuepress/dist` preview command.
+ *
+ * 解析写入生成 npm scripts 的文档目录。
+ *
+ * `create` 模式固定脚手架到 `docs/` 目录；`init` 模式复用用户选择的目录。
+ * 必须对根目录做归一化，否则 `init ./` 会折叠为空字符串，生成无法运行的
+ * 脚本（`vuepress dev `）以及 `http-server /.vuepress/dist` 预览命令。
+ *
+ * @param mode - Operation mode (init or create) / 操作模式（初始化或创建）
+ * @param root - Resolved project root / 解析后的项目根目录
+ * @returns Documentation directory for the generated scripts / 生成脚本使用的文档目录
+ */
+export function resolveDocsDir(mode: Mode, root: string): string {
+  return mode === Mode.create ? 'docs' : normalizeRoot(root)
+}
 
 /**
  * Run the CLI workflow for VuePress project initialization or creation
@@ -32,7 +54,7 @@ export async function run(mode: Mode, root?: string, options: CliOptions = {}): 
   const data = {
     ...result,
     packageManager: getPackageManager(),
-    docsDir: mode === Mode.create ? 'docs' : result.root.replace(/^\.\//, '').replace(/\/$/, ''),
+    docsDir: resolveDocsDir(mode, result.root),
   } as ResolvedData
 
   // `--no-install` 显式跳过依赖安装。

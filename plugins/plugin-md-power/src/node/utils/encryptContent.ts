@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer'
 import { webcrypto } from 'node:crypto'
 
 /**
@@ -58,7 +59,7 @@ function getCryptoDeriveKey(keyMaterial: CryptoKey | webcrypto.CryptoKey, salt: 
  * @param options.password - Password for encryption / 加密密码
  * @param options.iv - Initialization vector / 初始化向量
  * @param options.salt - Salt for key derivation / 密钥派生盐值
- * @returns Encrypted content / 加密后的内容
+ * @returns Encrypted content, one code unit per byte / 加密后的内容，每个字符码对应一个字节
  */
 export async function encryptContent(content: string, options: {
   password: string
@@ -79,5 +80,5 @@ export async function encryptContent(content: string, options: {
     enc.encode(content),
   )
 
-  return String.fromCharCode(...new Uint8Array(cipherTextData))
+  return Buffer.from(cipherTextData).toString('latin1')
 }

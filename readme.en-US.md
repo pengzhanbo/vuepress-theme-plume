@@ -123,12 +123,12 @@ For detailed documentation, visit: [https://theme-plume.vuejs.press](https://the
 
 - [Installation & Usage](https://theme-plume.vuejs.press/en/guide/usage/) - Complete installation guide
 - [Theme Configuration](https://theme-plume.vuejs.press/en/config/intro/) - Configuration options explained
-- [Collections](https://theme-plume.vuejs.press/en/guide/quick-start/collection/) - Create blog and documentation columns
+- [Collections](https://theme-plume.vuejs.press/en/guide/collection/) - Create blog and documentation columns
 - [Markdown Enhancement](https://theme-plume.vuejs.press/en/guide/markdown/basic/) - Rich Markdown syntax
 - [Code Enhancement](https://theme-plume.vuejs.press/en/guide/code/intro/) - Code block features
 - [Components](https://theme-plume.vuejs.press/en/guide/components/badge/) - Built-in component usage
 - [Features](https://theme-plume.vuejs.press/en/guide/features/comments/) - Comments, search, encryption, and more
-- [Deployment](https://theme-plume.vuejs.press/en/guide/quick-start/deployment/) - Deploy to various platforms
+- [Deployment](https://theme-plume.vuejs.press/en/guide/deployment/) - Deploy to various platforms
 
 ## Examples
 

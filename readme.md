@@ -121,12 +121,12 @@ npm run docs:dev
 
 - [安装与使用](https://theme-plume.vuejs.press/guide/usage/) - 完整的安装指南
 - [主题配置](https://theme-plume.vuejs.press/config/intro/) - 配置选项详解
-- [集合](https://theme-plume.vuejs.press/guide/quick-start/collection/) - 创建博客、文档专栏
+- [集合](https://theme-plume.vuejs.press/guide/collection/) - 创建博客、文档专栏
 - [Markdown 增强](https://theme-plume.vuejs.press/guide/markdown/basic/) - 丰富的 Markdown 语法
 - [代码增强](https://theme-plume.vuejs.press/guide/code/intro/) - 代码块功能
 - [组件](https://theme-plume.vuejs.press/guide/components/badge/) - 内置组件使用
 - [功能特性](https://theme-plume.vuejs.press/guide/features/comments/) - 评论、搜索、加密等
-- [部署指南](https://theme-plume.vuejs.press/guide/quick-start/deployment/) - 部署到各种平台
+- [部署指南](https://theme-plume.vuejs.press/guide/deployment/) - 部署到各种平台
 
 ## 案例
 

@@ -121,7 +121,7 @@ export const chatPlugin: PluginSimple = md => createContainerSyntaxPlugin(
   'chat',
   (tokens, idx, _, env) => `<div class="vp-chat">
   <div class="vp-chat-header">
-    <p class="vp-chat-title">${tokens[idx].meta?.title || 'Chat'}</p>
+    <p class="vp-chat-title">${md.utils.escapeHtml(tokens[idx].meta?.title || 'Chat')}</p>
   </div>
   <div class="vp-chat-content">
     ${chatMessagesRender(md, env, parseChatContent(tokens[idx].content))}

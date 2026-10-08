@@ -538,11 +538,9 @@ export function* createPageSectionItems(page: Page): Generator<IndexObject> {
 }
 
 /** Regex pattern for matching heading tags / 匹配标题标签的正则表达式 */
-// eslint-disable-next-line regexp/no-super-linear-backtracking
-const headingRegex = /<h(\d*).*?>(<a.*? href="#.*?".*?>[\s\S]*?<\/a>)<\/h\1>/gi
+const headingRegex = /<h(\d)[^>]*>(<a.*? href="#[^"]*"[^>]*>[\s\S]*?<\/a>)<\/h\1>/gi
 /** Regex pattern for extracting heading content / 提取标题内容的正则表达式 */
-// eslint-disable-next-line regexp/no-super-linear-backtracking
-const headingContentRegex = /<a.*? href="#(.*?)".*?><span>([\s\S]*?)<\/span><\/a>/i
+const headingContentRegex = /<a.*? href="#([^"]*)"[^>]*><span>([\s\S]*?)<\/span><\/a>/i
 /** Regex pattern for ignoring template content / 忽略模板内容的正则表达式 */
 const ignoreHeadingRegex = /<template[^>]*>[\s\S]*<\/template>/gi
 

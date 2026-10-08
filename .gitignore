@@ -19,6 +19,24 @@ coverage/
 # test temporary directories
 **/.tmp/
 
+*.profraw
+
+# AI Agent CLI Local Artifacts
+.agent/
+.agents/
+
 .claude/
 !.claude/skills/
-*.profraw
+!.claude/rules/
+!.claude/hooks/
+!.claude/agents/
+
+.cline/
+.cursor/
+.gemini/
+.codex/
+.workbuddy/
+.trae/
+.windsurf/
+.opencode/
+.qoder/

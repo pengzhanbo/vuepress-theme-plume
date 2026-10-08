@@ -44,7 +44,7 @@ export function compatBlogAndNotesToCollections(
     // 只有该语言环境自身声明了 collections，才意味着它已经完成迁移，
     // 其 legacy 配置才按约定被忽略。
     if (raw?.collections?.length) {
-      deleteKey(opt, 'notes')
+      deleteKey(opt, ['notes', 'blog'] as any)
       continue
     }
 

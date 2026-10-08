@@ -1,3 +1,32 @@
+# [1.0.0-rc.213](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.212...v1.0.0-rc.213) (2026-10-08)
+
+### Bug Fixes
+
+* **cli:** harden generated project files and root validation ([#1031](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1031)) ([ca3e63a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ca3e63a99e48818dacb58c0d380388b8e7ffb80f))
+* fix mathjax dependency detection ([#1051](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1051)) ([3b77f95](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3b77f95c110c0d84cbeb60adab590feaf8b8f42b))
+* **plugin-md-power:** fix content leakage in encrypt container when password missing ([#1044](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1044)) ([a8621a3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a8621a3f1299c5e53d13540d184491a40f71be26))
+* **plugin-md-power:** fix security issues in the file lookup and abbreviation plugins ([#1034](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1034)) ([dbf8e37](https://github.com/pengzhanbo/vuepress-theme-plume/commit/dbf8e3763327fc748549b2c3814c88e182808684))
+* **plugin-md-power:** fix XSS risk in code tree and asynchronous race condition in encrypt container ([#1036](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1036)) ([f9c08e2](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f9c08e277c63c2edc743d420386d6fdfaa4490d0))
+* **plugin-search:** optimize the heading-matching regex ([#1057](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1057)) ([a32d168](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a32d16821935a0a13fe765af0244ceced2e1afa5))
+* **theme:** cleanup of timers and observers and add scroll cancellation ([#1049](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1049)) ([b31c95b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/b31c95bdd437d9e1602cd3e0688ee5b840b65dec))
+* **theme:** fix invalid values in pagination page numbers and page sizes ([#1043](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1043)) ([c8c7f98](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c8c7f987ecc6dcd185ab63d3e926ba13dc5fad17))
+* **theme:** fix key generate in the page encryption rules ([8590f82](https://github.com/pengzhanbo/vuepress-theme-plume/commit/8590f826ec86a072f1753e820ce62856a774bfba))
+* **theme:** fix password verification security and empty password lockout ([#1045](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1045)) ([1f60681](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1f6068198062efac0cd4ea6d57ff3659c27534e4))
+* **theme:** fix silent data loss, CRLF, and concurrent overwrite caused ([#1053](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1053)) ([62021e0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/62021e0a37df5d02b0f9f706b13d7c4e42f752e5))
+* **theme:** fix sorting of pinned articles is inconsistent with the `TOP` label ([#1054](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1054)) ([4773da4](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4773da466cef6724690a6b4e99fecfb18f580781))
+* **theme:** limit concurrency and handle errors ([#1047](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1047)) ([98d579c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/98d579cd5188f0f1b347953f8f4a1dabacf31fa6))
+* **theme:** prevent encrypted pages from being indexed by search ([#1046](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1046)) ([9667f4a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9667f4a386d4160ba8ef54c3be0e2749ca220e67))
+
+### Features
+
+* **cli:** add site name validation, package manager prompts, and related feature optimizations ([#1033](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1033)) ([259b2dd](https://github.com/pengzhanbo/vuepress-theme-plume/commit/259b2dd556f77f0bc34713ed653f4b9b70cd7afd))
+* **cli:** upgrade yarn version and remove sleep delay ([#1032](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1032)) ([022abbe](https://github.com/pengzhanbo/vuepress-theme-plume/commit/022abbec6d33a496593a15609a2dc76a250100e3))
+* **plugin-search:** optimize search index write logic ([#1030](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1030)) ([bcce8a5](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bcce8a5ac947cf20523b5a25b42df55e5551534b))
+* **plugin-search:** support search index shard loading ([#1055](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1055)) ([3c257fc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/3c257fc3e91720af4212904cc3a4455a05a095f9))
+* **plugin-search:** tokenizer filters whitespace and punctuation tokens ([#1029](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1029)) ([4567bb8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4567bb884ed1d0ede19e2fc9242e4c823c96c624))
+* **theme:** collection is determined by the longest match on `dir` to support nested collections ([#1050](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1050)) ([74edd1b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/74edd1b06583453947069571ce2336ea3b4ecf75))
+* **theme:** optimize a11y for article navigation and encrypted forms ([#1056](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1056)) ([150a957](https://github.com/pengzhanbo/vuepress-theme-plume/commit/150a9570d47e58f533e207b577d70f355641244c))
+
 # [1.0.0-rc.212](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.211...v1.0.0-rc.212) (2026-10-02)
 
 ### Bug Fixes

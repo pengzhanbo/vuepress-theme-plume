@@ -129,8 +129,8 @@ const searchIndex = computedAsync(async (onCancel) => {
           prefix: true,
           boost: { title: 4, text: 2, titles: 1 },
           tokenize,
+          ...options.miniSearch?.searchOptions,
         },
-        ...options.miniSearch?.searchOptions,
         ...options.miniSearch?.options,
       }),
     )
@@ -197,10 +197,10 @@ watchDebounced(
     if (canceled)
       return
 
-    await new Promise((r) => {
+    await new Promise((done) => {
       mark.value?.unmark({
         done: () => {
-          mark.value?.markRegExp(formMarkRegex(terms), { done: r })
+          mark.value?.markRegExp(formMarkRegex(terms), { done })
         },
       })
     })

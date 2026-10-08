@@ -134,7 +134,7 @@ describe('setTranslateLang / createTranslate', () => {
     en: { hello: 'Hello, {{ name }}!', plain: 'Plain' },
     zh: { hello: '你好，{{name}}！', plain: '纯文本' },
   } as const
-  const t = createTranslate(locales)
+  const t = createTranslate(locales as any)
 
   it('switches between Chinese and English variants', () => {
     setTranslateLang('zh-CN')

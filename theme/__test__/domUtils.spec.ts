@@ -85,7 +85,7 @@ describe('getScrollTop', () => {
 
 describe('setScrollTop', () => {
   it('accepts a number and writes it to the document', () => {
-    setScrollTop(200)
+    setScrollTop(doc, 200)
 
     expect(doc.documentElement.scrollTop).toBe(200)
     expect(doc.body.scrollTop).toBe(200)

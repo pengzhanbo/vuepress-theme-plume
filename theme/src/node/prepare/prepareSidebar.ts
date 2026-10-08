@@ -138,10 +138,12 @@ function getAutoDirSidebar(
 
   const sidebar: ResolvedSidebarItem[] = []
   let rootLink = ''
+  const root = rootPath.replace(/^\/|\/$/g, '')
+
   for (const page of pages) {
     const { data, title, path, frontmatter } = page
     const paths = (data.filePathRelative || '')
-      .slice(rootPath.replace(/^\/|\/$/g, '').length + 1)
+      .slice(root ? root.length + 1 : 0)
       .split('/')
     const collection = findCollection(page, options) as ThemeDocCollection | undefined
     let index = 0

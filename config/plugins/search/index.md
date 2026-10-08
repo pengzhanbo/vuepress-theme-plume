@@ -1,0 +1,110 @@
+---
+url: /config/plugins/search/index.md
+---
+## 本地搜索
+
+### 概述
+
+为站点添加本地搜索。
+
+功能说明请参考 [搜索功能](../../guide/features/search.md)
+
+关联插件： [@vuepress-plume/plugin-search](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-search)
+
+默认配置：
+
+```ts title=".vuepress/config.ts" twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    search: {
+      provider: 'local', // [!code hl]
+      // more options...
+    },
+  })
+})
+```
+
+关于配置入口的优先级说明，请参考 [插件配置入口](./README.md#配置入口优先级)。
+
+### 配置
+
+```ts
+interface SearchOptions {
+  /**
+   * 本地搜索 国际化
+   */
+  locales?: {
+    [locale: string]: SearchBoxLocale
+  }
+
+  /**
+   * 文章是否可被搜索，默认为 `() => true`
+   *
+   * 注意：被加密的文章（`encrypt.rules` 命中或页面 `password`）始终不会被索引，
+   * 搜索索引是公开下发的静态资源，收录加密文章会使其内容泄漏。
+   */
+  isSearchable?: (page: Page) => boolean
+}
+
+interface SearchBoxLocale {
+  placeholder: string
+  buttonText: string
+  resetButtonTitle: string
+  backButtonTitle: string
+  noResultsText: string
+  /**
+   * 搜索索引缺失或加载失败时显示的文本
+   */
+  searchIndexErrorText?: string
+  /**
+   * 禁用 JavaScript 时显示的降级提示文本
+   *
+   * 该文本渲染在 `<noscript>` 中，需为不含 HTML 转义字符的纯文本
+   */
+  noscriptText?: string
+  footer: {
+    selectText: string
+    selectKeyAriaLabel: string
+    navigateText: string
+    navigateUpKeyAriaLabel: string
+    navigateDownKeyAriaLabel: string
+    closeText: string
+    closeKeyAriaLabel: string
+  }
+}
+```
+
+## Algolia DocSearch
+
+### 概述
+
+使用 [Algolia DocSearch](https://docsearch.algolia.com/) 提供支持的网站内容搜索插件
+
+关联插件：[@vuepress/plugin-docsearch](https://ecosystem.vuejs.press/zh/plugins/search/docsearch.html)
+
+查看 [Algolia DocSearch 参考](../../guide/features/search.md#algolia-docsearch) 获取更多信息。
+
+### 启用
+
+```ts title=".vuepress/config.ts" twoslash
+// @errors: 2353
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    search: {
+      provider: 'algolia', // [!code hl]
+      appId: 'YOUR_APP_ID',
+      apiKey: 'YOUR_API_KEY',
+      indexName: 'YOUR_INDEX_NAME',
+      // more options
+    },
+  })
+})
+```
+
+关于配置入口的优先级说明，请参考 [插件配置入口](./README.md#配置入口优先级)。

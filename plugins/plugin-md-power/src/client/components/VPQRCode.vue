@@ -108,7 +108,7 @@ onMounted(async () => {
         <a v-if="isLink" :href="parsedText" rel="noopener noreferrer" target="_blank">
           {{ parsedText }}
         </a>
-        <span v-else v-html="parsedText.replaceAll('\n', '<br>')" />
+        <span v-else class="qrcode-text">{{ parsedText }}</span>
       </p>
     </div>
   </div>
@@ -191,6 +191,10 @@ onMounted(async () => {
 
 .vp-qrcode .qrcode-info .qrcode-title {
   font-weight: 600;
+}
+
+.vp-qrcode .qrcode-info .qrcode-text {
+  white-space: pre-line;
 }
 
 @media (min-width: 960px) {

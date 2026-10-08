@@ -85,6 +85,29 @@ export function validateRoot(value?: string): keyof Locale | undefined {
 }
 
 /**
+ * Normalize a validated root path into the directory used by the generated scripts.
+ *
+ * 将已校验的根目录归一化为生成脚本所使用的目录。
+ *
+ * @param root - Validated root path / 已校验的根目录路径
+ * @returns Normalized relative path, or `.` when the value is empty / 归一化后的相对路径，为空时返回 `.`
+ */
+export function normalizeRoot(root: string): string {
+  const normalized = root
+    // 去掉开头的 `./` 或 `.\`；要求其后至少有一个分隔符，避免破坏 `.hidden` 这类目录名。
+    // Strip a leading `./` or `.\`; at least one separator is required after the dot
+    // so that dot-directories such as `.hidden` are left intact.
+    .replace(/^\.[\\/]+/, '')
+    // 去掉结尾的分隔符，避免生成 `vuepress dev docs/`。
+    // Strip trailing separators so the scripts do not read `vuepress dev docs/`.
+    .replace(/[\\/]+$/, '')
+
+  // 空值（含 `''` 与 `'./'`）表示当前目录。
+  // An empty value (including `''` and `'./'`) means the current directory.
+  return normalized || '.'
+}
+
+/**
  * Create the prompt result for the non-interactive mode.
  *
  * All values come from the documented defaults, so `--yes` and the automatic

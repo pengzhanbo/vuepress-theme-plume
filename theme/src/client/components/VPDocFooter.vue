@@ -49,12 +49,12 @@ const showFooter = computed(() => {
     <div v-if="hasEditLink || hasLastUpdated" class="edit-info">
       <div v-if="hasEditLink && editLink" class="edit-link">
         <VPLink class="edit-link-button" :href="editLink.link" no-icon>
-          <span class="vpi-square-pen edit-link-icon" aria-label="edit icon" />
+          <span class="vpi-square-pen edit-link-icon" aria-hidden="true" />
           {{ editLink.text }}
         </VPLink>
       </div>
 
-      <div v-if="hasLastUpdated" class="last-updated" aria-label="Last updated">
+      <div v-if="hasLastUpdated" class="last-updated">
         <p class="last-updated-text">
           {{ lastUpdatedText }}:
           <time :datetime="isoDatetime" class="last-updated-time">
@@ -67,7 +67,6 @@ const showFooter = computed(() => {
     <div
       v-if="hasContributors && contributors?.length"
       class="contributors" :class="{ right: hasLastUpdated }"
-      aria-label="Contributors"
     >
       <span class="contributors-label">
         {{ theme.contributorsText || 'Contributors' }}:
@@ -194,7 +193,7 @@ const showFooter = computed(() => {
   transition: color var(--vp-t-color);
 
   .contributor {
-    color: var(--vp-c-text-3);
+    color: var(--vp-c-text-2);
     transition: color var(--vp-t-color);
   }
 }

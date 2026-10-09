@@ -11,7 +11,9 @@ onMounted(() => {
   body.value = document.body
 })
 
-const { page } = useData()
+const { page, theme } = useData()
+
+const label = computed(() => theme.value.scrollDownLabel || 'Scroll down')
 
 const mustHidden = computed(() => {
   if (page.value.frontmatter.signDown !== true || page.value.frontmatter.pageLayout !== 'home' || !page.value.frontmatter.config) {
@@ -42,17 +44,20 @@ function onClick() {
 </script>
 
 <template>
-  <svg
+  <button
     v-show="!mustHidden && show"
-    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-    viewBox="0 0 24 24" aria-label="sign down" class="vp-sign-down" aria-hidden="true"
+    type="button"
+    class="vp-sign-down"
+    :aria-label="label"
     @click="onClick"
   >
-    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
-      <path d="m19 11l-7 6l-7-6" />
-      <path d="m19 5l-7 6l-7-6" opacity="0.6" />
-    </g>
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+        <path d="m19 11l-7 6l-7-6" />
+        <path d="m19 5l-7 6l-7-6" opacity="0.6" />
+      </g>
+    </svg>
+  </button>
 </template>
 
 <style scoped>
@@ -73,12 +78,23 @@ function onClick() {
   bottom: 8px;
   left: 50%;
   z-index: 29;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 36px;
   height: 36px;
+  padding: 0;
   color: #fff;
   cursor: pointer;
+  background: none;
+  border: none;
   transform: translate(-50%, 0);
   animation: vp-sign-down 1.75s infinite alternate ease-out;
+}
+
+.vp-sign-down svg {
+  width: 100%;
+  height: 100%;
 }
 
 [data-theme="dark"] .vp-sign-down {

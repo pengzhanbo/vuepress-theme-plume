@@ -24,6 +24,12 @@ export const enLocale: ThemeLocaleText = {
 
   openNewWindowText: '(Open in new window)',
   closeLabel: 'Close',
+  skipToContentLabel: 'Skip to content',
+  mobileNavLabel: 'Mobile navigation',
+  printLabel: 'Print',
+  scrollDownLabel: 'Scroll down',
+  sidebarNavigationLabel: 'Sidebar Navigation',
+  toggleSidebarLabel: 'Toggle sidebar',
 
   encryptButtonText: 'Confirm',
   encryptPlaceholder: 'Enter password',

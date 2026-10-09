@@ -135,6 +135,7 @@
     "@vuepress/plugin-sitemap": "catalog:vuepress",
     "@vuepress/plugin-watermark": "catalog:vuepress",
     "@vueuse/core": "catalog:prod",
+    "@vueuse/integrations": "catalog:prod",
     "chokidar": "catalog:prod",
     "dayjs": "catalog:prod",
     "find-file-icon": "catalog:prod",

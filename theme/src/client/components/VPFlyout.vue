@@ -53,7 +53,7 @@ function onBlur() {
       <span v-else class="vpi-more-horizontal icon" />
     </button>
 
-    <div class="menu">
+    <div class="menu" :inert="!open">
       <VPMenu :items="items">
         <slot />
       </VPMenu>
@@ -116,7 +116,6 @@ function onBlur() {
   color: var(--vp-c-brand-2);
 }
 
-.vp-flyout:hover .menu,
 .button[aria-expanded="true"] + .menu {
   visibility: visible;
   opacity: 1;

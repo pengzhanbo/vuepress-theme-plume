@@ -100,7 +100,7 @@ const social = computed(() => {
   justify-content: center;
   margin-top: 16px;
   font-size: 14px;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   transition: color var(--vp-t-color);
 }
 

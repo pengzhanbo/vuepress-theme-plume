@@ -20,14 +20,20 @@ function toggle() {
     class="vp-nav-screen-translations"
     :class="{ open: isOpen }"
   >
-    <button class="title" @click="toggle">
-      <span class="vpi-languages icon lang" />
+    <button
+      type="button"
+      class="title"
+      :aria-expanded="isOpen"
+      aria-controls="vp-nav-screen-translations"
+      @click="toggle"
+    >
+      <span class="vpi-languages icon lang" aria-hidden="true" />
       {{ currentLang.text }}
-      <span class="vpi-chevron-down icon chevron" />
+      <span class="vpi-chevron-down icon chevron" aria-hidden="true" />
     </button>
 
     <FadeInExpandTransition>
-      <div v-show="isOpen" class="vp-nav-screen-translations-container">
+      <div v-show="isOpen" id="vp-nav-screen-translations" class="vp-nav-screen-translations-container">
         <ul class="list">
           <li v-for="locale in localeLinks" :key="locale.link" class="item">
             <VPLink class="link" :href="locale.link">

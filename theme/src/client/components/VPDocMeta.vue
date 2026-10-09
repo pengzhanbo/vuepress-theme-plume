@@ -136,7 +136,7 @@ const hasMeta = computed(() =>
   padding: 1rem 0 0.5rem;
   margin-bottom: 2rem;
   font-size: 14px;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   border-bottom: solid 1px var(--vp-c-divider);
   transition: color var(--vp-t-color), border-bottom var(--vp-t-color);
 }

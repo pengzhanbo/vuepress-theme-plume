@@ -671,7 +671,7 @@
   --info-border-color: var(--vp-custom-block-info-border);
   --info-code-bg-color: var(--vp-custom-block-info-code-bg);
 
-  --note-title-color: var(--vp-c-text-3);
+  --note-title-color: var(--vp-c-text-2);
   --note-bg-color: var(--vp-c-bg);
   --note-border-color: var(--vp-c-divider);
   --note-code-bg-color: var(--vp-c-default-soft);

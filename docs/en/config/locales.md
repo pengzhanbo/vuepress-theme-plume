@@ -238,6 +238,54 @@ The corresponding directory structure and URL mapping are as follows:
 
   The accessible label for close buttons, such as the ones in dialogs and panels.
 
+### skipToContentLabel
+
+- Type: `string`
+- Default: `'Skip to content'`
+- Details:
+
+  The accessible text for the "skip to content" link.
+
+### mobileNavLabel
+
+- Type: `string`
+- Default: `'Mobile navigation'`
+- Details:
+
+  The accessible label for the mobile navigation menu button.
+
+### printLabel
+
+- Type: `string`
+- Default: `'Print'`
+- Details:
+
+  The accessible label for the print button.
+
+### scrollDownLabel
+
+- Type: `string`
+- Default: `'Scroll down'`
+- Details:
+
+  The accessible label for the scroll-down indicator on the home page.
+
+### sidebarNavigationLabel
+
+- Type: `string`
+- Default: `'Sidebar Navigation'`
+- Details:
+
+  The accessible name for the sidebar navigation region.
+
+### toggleSidebarLabel
+
+- Type: `string`
+- Default: `'Toggle sidebar'`
+- Details:
+
+  The accessible label for the sidebar collapse/expand button.
+
 ### outlineLabel
 
 - Type: `string`

@@ -66,7 +66,7 @@ const { hasBreadcrumb, breadcrumbList } = useBreadcrumb()
 }
 
 .vp-breadcrumb .breadcrumb.current {
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
 }
 
 .vp-breadcrumb .vpi-chevron-right {

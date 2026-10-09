@@ -7,6 +7,7 @@ const { theme } = useData()
 
 const headers = useHeaders()
 const hasOutline = computed(() => headers.value.length > 0)
+const printLabel = computed(() => theme.value.printLabel || 'Print')
 
 const container = ref()
 const marker = ref()
@@ -36,7 +37,14 @@ function handlePrint() {
         role="heading"
       >
         <span>{{ theme.outlineLabel || 'On this page' }}</span>
-        <span class="vpi-print icon" @click="handlePrint" />
+        <button
+          type="button"
+          class="btn-print"
+          :aria-label="printLabel"
+          @click="handlePrint"
+        >
+          <span class="vpi-print icon" />
+        </button>
       </div>
 
       <VPDocOutlineItem :headers="headers" :root="true" />
@@ -81,15 +89,22 @@ function handlePrint() {
 .outline-title {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   font-size: 14px;
   font-weight: 600;
   line-height: 32px;
   letter-spacing: 0.4px;
 }
 
-.outline-title .icon {
-  margin-left: 4px;
+.outline-title .btn-print {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
   font-size: 1.2em;
+  line-height: 1;
   cursor: pointer;
+  background: none;
+  border: none;
 }
 </style>

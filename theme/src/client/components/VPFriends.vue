@@ -53,7 +53,7 @@ const cols = computed(() => {
           :href="editLink.link"
           no-icon
         >
-          <span class="vpi-square-pen edit-link-icon" aria-label="edit icon" />
+          <span class="vpi-square-pen edit-link-icon" aria-hidden="true" />
           {{ editLink.text }}
         </VPLink>
       </div>

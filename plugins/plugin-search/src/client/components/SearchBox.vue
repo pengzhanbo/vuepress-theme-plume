@@ -426,11 +426,9 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
   <Teleport to="body">
     <div
       ref="el"
-      role="button"
-      :aria-owns="results?.length ? 'localsearch-list' : undefined"
-      aria-expanded="true"
-      aria-haspopup="listbox"
-      aria-labelledby="localsearch-label"
+      role="dialog"
+      aria-modal="true"
+      :aria-label="buttonText"
       class="VPLocalSearchBox"
     >
       <div class="backdrop" @click="$emit('close')" />

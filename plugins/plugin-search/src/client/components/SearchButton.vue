@@ -32,7 +32,7 @@ defineExpose({ focus })
 <template>
   <button ref="button" type="button" class="mini-search mini-search-button" :aria-label="locale.placeholder">
     <span class="mini-search-button-container">
-      <span class="mini-search-search-icon vpi-mini-search" aria-label="search icon" />
+      <span class="mini-search-search-icon vpi-mini-search" aria-hidden="true" />
       <span class="mini-search-button-placeholder">{{ locale.placeholder }}</span>
     </span>
     <span class="mini-search-button-keys">

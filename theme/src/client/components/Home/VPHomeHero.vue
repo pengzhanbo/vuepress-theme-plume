@@ -8,7 +8,7 @@ import { useTimeoutFn } from '@vueuse/core'
 import { computed, defineAsyncComponent, markRaw, nextTick, onMounted, onUnmounted, resolveComponent, watch } from 'vue'
 import { isPlainObject } from 'vuepress/shared'
 import { useData } from '../../composables/index.js'
-import { inBrowser } from '../../utils/index.js'
+import { inBrowser, shouldDeferHeroEffect } from '../../utils/index.js'
 
 const props = defineProps<ThemeHomeHero>()
 
@@ -43,6 +43,11 @@ const effectConfig = computed(() => {
 const realEffectComponent = computed(() => {
   if (!effect.value)
     return null
+  // 统一降级：对偏好减少动效的用户与低端触屏设备，跳过全屏动画并回退到静态背景。
+  // Unified fallback: skip the full-screen effect for reduced-motion users and
+  // low-end touch devices, the static background takes over instead.
+  if (shouldDeferHeroEffect())
+    return null
   const loader = effectComponents[effect.value]
   if (loader)
     return markRaw(defineAsyncComponent(loader))
@@ -50,6 +55,12 @@ const realEffectComponent = computed(() => {
     return resolveComponent(effect.value)
 
   return null
+})
+
+const staticBackgroundProps = computed<ThemeHomeHero>(() => {
+  if (props.background && effects.includes(props.background))
+    return { ...props, background: 'https://api.pengzhanbo.cn/wallpaper/bing' }
+  return props
 })
 
 // 禁用过渡的移除定时器随组件作用域自动清理；
@@ -114,8 +125,9 @@ onUnmounted(() => {
       [effect ?? '']: !!effect,
     }"
   >
-    <ClientOnly v-if="realEffectComponent">
-      <component :is="realEffectComponent" v-bind="effectConfig" />
+    <ClientOnly v-if="effect">
+      <component :is="realEffectComponent" v-if="realEffectComponent" v-bind="effectConfig" />
+      <ImageBg v-else v-bind="staticBackgroundProps" />
     </ClientOnly>
     <ImageBg v-else v-bind="props" />
 

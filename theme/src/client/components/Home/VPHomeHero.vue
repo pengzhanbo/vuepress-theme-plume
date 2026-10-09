@@ -7,14 +7,15 @@ import { hasGlobalComponent } from '@vuepress/helper/client'
 import { useTimeoutFn } from '@vueuse/core'
 import { computed, defineAsyncComponent, markRaw, nextTick, onMounted, onUnmounted, resolveComponent, watch } from 'vue'
 import { isPlainObject } from 'vuepress/shared'
-import { useData } from '../../composables/index.js'
-import { inBrowser, shouldDeferHeroEffect } from '../../utils/index.js'
+import { useData, useReducedMotion } from '../../composables/index.js'
+import { inBrowser } from '../../utils/index.js'
 
 const props = defineProps<ThemeHomeHero>()
 
 const { frontmatter, isDark } = useData<'home'>()
 const hero = computed(() => props.hero ?? frontmatter.value.hero ?? {})
 const actions = computed(() => hero.value.actions ?? [])
+const shouldDeferHeroEffect = useReducedMotion()
 
 const effect = computed(() => {
   if (props.effect)
@@ -44,9 +45,7 @@ const realEffectComponent = computed(() => {
   if (!effect.value)
     return null
   // 统一降级：对偏好减少动效的用户与低端触屏设备，跳过全屏动画并回退到静态背景。
-  // Unified fallback: skip the full-screen effect for reduced-motion users and
-  // low-end touch devices, the static background takes over instead.
-  if (shouldDeferHeroEffect())
+  if (shouldDeferHeroEffect.value)
     return null
   const loader = effectComponents[effect.value]
   if (loader)
@@ -59,7 +58,7 @@ const realEffectComponent = computed(() => {
 
 const staticBackgroundProps = computed<ThemeHomeHero>(() => {
   if (props.background && effects.includes(props.background))
-    return { ...props, background: 'https://api.pengzhanbo.cn/wallpaper/bing' }
+    return { ...props, background: undefined, backgroundImage: 'backgroundImage' }
   return props
 })
 

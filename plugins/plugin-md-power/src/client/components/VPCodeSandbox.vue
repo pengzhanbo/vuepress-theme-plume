@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { CodeSandboxTokenMeta } from '../../shared/index.js'
 import { computed } from 'vue'
+import EmbedFrame from './EmbedFrame.vue'
 
 defineOptions({
   inheritAttrs: false,
@@ -37,13 +38,17 @@ const source = computed(() => {
 </script>
 
 <template>
-  <ClientOnly v-if="type === 'embed'">
-    <iframe
-      :src="source" class="code-sandbox-iframe" :title="title || 'CodeSandbox'" :allow="ALLOW" :sandbox="SANDBOX"
-      :style="{ width, height }"
-      v-bind="$attrs"
-    />
-  </ClientOnly>
+  <EmbedFrame
+    v-if="type === 'embed'"
+    class="code-sandbox-iframe"
+    :src="source"
+    :title="title || 'CodeSandbox'"
+    :width="width"
+    :height="height"
+    :allow="ALLOW"
+    :sandbox="SANDBOX"
+    v-bind="$attrs"
+  />
   <p v-else v-bind="$attrs">
     <a class="code-sandbox-link no-icon" :href="source" target="_blank" rel="noopener noreferrer" :aria-label="title || 'CodeSandbox'">
       <svg xmlns="http://www.w3.org/2000/svg" width="165" height="32" viewBox="0 0 165 32" fill="none">
@@ -69,10 +74,6 @@ const source = computed(() => {
 }
 
 .code-sandbox-iframe {
-  width: 100%;
-  height: 500px;
-  overflow: hidden;
-  border: 0;
   border-radius: 4px;
 }
 </style>

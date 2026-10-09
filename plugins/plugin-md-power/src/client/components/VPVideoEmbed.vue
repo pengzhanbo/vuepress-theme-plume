@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { toRefs } from 'vue'
-import { useSize } from '../composables/size.js'
+import EmbedFrame from './EmbedFrame.vue'
 
 defineOptions({
   inheritAttrs: false,
 })
 
-const props = defineProps<{
+const { src, title, type, width, height, ratio } = defineProps<{
   src: string
   title: string
   type?: string
@@ -16,30 +15,23 @@ const props = defineProps<{
 }>()
 
 const IFRAME_ALLOW = 'accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture'
-
-const options = toRefs(props)
-
-const { el, width, height, resize } = useSize(options)
 </script>
 
 <template>
-  <ClientOnly>
-    <iframe
-      ref="el"
-      class="video-iframe" :class="type"
-      :src="src"
-      :title="title || type"
-      :style="{ width, height }"
-      v-bind="$attrs"
-      :allow="IFRAME_ALLOW"
-      @load="resize"
-    />
-  </ClientOnly>
+  <EmbedFrame
+    class="video-iframe" :class="type"
+    :src="src"
+    :title="title || type"
+    :width="width"
+    :height="height"
+    :ratio="ratio"
+    :allow="IFRAME_ALLOW"
+    v-bind="$attrs"
+  />
 </template>
 
 <style>
 .video-iframe {
-  width: 100%;
   margin: 16px auto;
   border: none;
   border-radius: 5px;

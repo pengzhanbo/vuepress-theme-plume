@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { useDarkMode } from '@vuepress/helper/client'
 import { computed } from 'vue'
+import EmbedFrame from './EmbedFrame.vue'
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const { source, title, tab, theme, width, height } = defineProps<{
   source: string
@@ -20,14 +25,14 @@ const link = computed(() => {
 </script>
 
 <template>
-  <iframe
+  <EmbedFrame
     class="js-fiddle-iframe"
     :src="link"
     :title="title"
-    :style="{ width, height }"
-    frameborder="0"
-    allowfullscreen="true"
-    allowpaymentrequest="true"
+    :width="width"
+    :height="height"
+    allowfullscreen
+    v-bind="$attrs"
   />
 </template>
 

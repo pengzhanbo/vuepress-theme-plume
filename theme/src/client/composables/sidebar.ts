@@ -114,6 +114,8 @@ export function useCloseSidebarOnEscape(): void {
   let triggerElement: HTMLButtonElement | undefined
 
   watchEffect(() => {
+    if (__VUEPRESS_SSR__)
+      return
     triggerElement = isSidebarEnabled.value
       ? (document.activeElement as HTMLButtonElement)
       : undefined

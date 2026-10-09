@@ -55,7 +55,8 @@
     "minisearch": "catalog:prod",
     "p-map": "catalog:prod",
     "sanitize-html": "catalog:prod",
-    "vue": "catalog:prod"
+    "vue": "catalog:prod",
+    "vue-router": "catalog:prod"
   },
   "publishConfig": {
     "access": "public",

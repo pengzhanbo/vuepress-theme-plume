@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { SearchBoxLocales } from '../../shared/index.js'
-import { toRef } from 'vue'
+import { toRef, useTemplateRef } from 'vue'
 import { useLocale } from '../composables/index.js'
 
 const { locales } = defineProps<{
@@ -8,10 +8,29 @@ const { locales } = defineProps<{
 }>()
 
 const locale = useLocale(toRef(() => locales))
+
+const buttonEl = useTemplateRef<HTMLButtonElement>('button')
+
+/**
+ * Move focus back to the trigger button.
+ *
+ * 将焦点移回触发按钮。
+ *
+ * Exposed so the search box can hand focus back to this trigger after closing,
+ * which keeps keyboard users from being thrown back to the top of the page.
+ *
+ * 暴露该方法，使搜索框在关闭后能把焦点归还给该触发按钮，
+ * 避免键盘用户的焦点被弹回页面顶部。
+ */
+function focus() {
+  buttonEl.value?.focus({ preventScroll: true })
+}
+
+defineExpose({ focus })
 </script>
 
 <template>
-  <button type="button" class="mini-search mini-search-button" :aria-label="locale.placeholder">
+  <button ref="button" type="button" class="mini-search mini-search-button" :aria-label="locale.placeholder">
     <span class="mini-search-button-container">
       <span class="mini-search-search-icon vpi-mini-search" aria-label="search icon" />
       <span class="mini-search-button-placeholder">{{ locale.placeholder }}</span>

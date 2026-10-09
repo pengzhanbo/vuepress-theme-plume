@@ -4,8 +4,10 @@ import { onKeyStroke } from '@vueuse/core'
 import {
   computed,
   defineAsyncComponent,
+  nextTick,
   ref,
   toRef,
+  useTemplateRef,
 } from 'vue'
 import { useLocale } from '../composables/index.js'
 import SearchButton from './SearchButton.vue'
@@ -19,19 +21,38 @@ const SearchBox = defineAsyncComponent(() => import('./SearchBox.vue'))
 
 const showSearch = ref(false)
 
+const searchButtonRef = useTemplateRef<{ focus: () => void }>('searchButton')
+
 const locale = useLocale(toRef(() => props.locales))
 
 /**
- * Text shown when JavaScript is disabled.
+ * Hand focus back to the trigger button.
  *
- * 禁用 JavaScript 时展示的提示文本。
+ * 把焦点归还给触发按钮。
  *
- * `<noscript>` 仅在脚本被禁用时渲染，且必须是纯文本：启用脚本时浏览器会把
- * 其中的内容当作原始文本，若包含元素或 HTML 实体会造成水合不匹配。
- * `<noscript>` only renders with scripting disabled, and must stay plain text:
- * with scripting enabled browsers parse its content as raw text, so elements or
- * HTML entities would cause a hydration mismatch.
+ * The search box unmounts its own focus trap, so without this the focused input
+ * disappears and focus falls back to `<body>`, forcing keyboard users to tab
+ * through the whole page again.
+ *
+ * 搜索框卸载时会一并销毁自身的焦点陷阱：若不显式归还，被聚焦的输入框随组件
+ * 消失后焦点会落到 `<body>`，键盘用户只能从页面第一个元素重新 Tab 一遍。
  */
+function restoreSearchFocus() {
+  // 等待卸载完成（焦点陷阱销毁）后再归还焦点，否则会被其收尾逻辑覆盖。
+  // Wait until the unmount finished (the focus trap is destroyed), otherwise the
+  // trap teardown would override the focus we just set.
+  nextTick(() => searchButtonRef.value?.focus())
+}
+
+function closeSearch(options?: { restoreFocus?: boolean }) {
+  showSearch.value = false
+
+  if (options?.restoreFocus === false)
+    return
+
+  restoreSearchFocus()
+}
+
 const noscriptText = computed(
   () => locale.value.noscriptText || 'Search is unavailable without JavaScript.',
 )
@@ -79,11 +100,11 @@ function isEditingContent(event: KeyboardEvent): boolean {
       v-if="showSearch"
       :locales="locales"
       :options="options"
-      @close="showSearch = false"
+      @close="closeSearch"
     />
 
     <div id="local-search">
-      <SearchButton :locales="locales" @click="showSearch = true" />
+      <SearchButton ref="searchButton" :locales="locales" @click="showSearch = true" />
     </div>
 
     <noscript>{{ noscriptText }}</noscript>
@@ -96,8 +117,6 @@ function isEditingContent(event: KeyboardEvent): boolean {
   align-items: center;
 }
 
-/* 仅在禁用 JavaScript 时可见的降级提示。
-   Fallback hint that is only visible when JavaScript is disabled. */
 .search-wrapper noscript {
   font-size: 13px;
   line-height: 1.4;

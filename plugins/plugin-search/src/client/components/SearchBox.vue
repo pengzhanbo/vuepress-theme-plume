@@ -24,6 +24,7 @@ import {
   toRef,
   watch,
 } from 'vue'
+import { isNavigationFailure, NavigationFailureType } from 'vue-router'
 import { usePageLang, useRouteLocale, useRouter, withBase } from 'vuepress/client'
 import { createTokenizer } from '../../shared/index.js'
 import { loadSearchIndexJSON, useLocale } from '../composables/index.js'
@@ -37,7 +38,11 @@ const { locales, options } = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'close'): void
+  // `restoreFocus: false` 表示关闭是因为页面已切换到搜索结果，焦点不应归还给触发按钮。
+  //
+  // `restoreFocus: false` means the box is closing because the page really moved to
+  // the result, so focus must not go back to the trigger button.
+  (e: 'close', options?: { restoreFocus?: boolean }): void
 }>()
 
 const routeLocale = useRouteLocale()
@@ -52,7 +57,7 @@ interface Result {
   titles: string[]
 }
 
-const { activate } = useFocusTrap(el, { immediate: true })
+const { activate } = useFocusTrap(el, { immediate: true, returnFocusOnDeactivate: false })
 
 const isSearchIndexLoading = ref(false)
 const isSearching = ref(false)
@@ -310,16 +315,32 @@ const router = useRouter()
 let closedByPopstate = false
 
 /**
- * Whether the search box is being closed because a result is being opened.
+ * Whether the URL leaves the current page because a result is being opened, so
+ * unmount must not roll back the temporary history entry pushed on mount.
  *
- * 搜索框是否因跳转到搜索结果而关闭。
- *
- * In that case the URL must stay on the target page, so history must not be
- * rolled back on unmount.
- *
- * 此时 URL 必须停留在目标页面，卸载时不能回退历史。
+ * 为 true 表示 URL 会离开当前页（搜索结果导航在途、已成功或被更新的导航接替），
+ * 卸载时不能回退挂载时压入的临时历史条目。
  */
 let navigatingToResult = false
+
+/**
+ * Open a search result: navigate to the target page, then close the box.
+ *
+ * 打开搜索结果：跳转到目标页面后再关闭搜索框。
+ */
+async function openResult(id: string) {
+  navigatingToResult = true
+  // 用 replace 顶替挂载时 pushState 的临时历史条目，避免从结果页返回时多一次 Back。
+  const navigation = router.replace(id)
+
+  const navigated = await navigation.then(
+    failure => failure === undefined || isNavigationFailure(failure, NavigationFailureType.cancelled),
+    () => false,
+  )
+
+  navigatingToResult = navigated
+  emit('close', { restoreFocus: !navigated })
+}
 
 onKeyStroke('Enter', (e) => {
   if (e.isComposing)
@@ -334,14 +355,8 @@ onKeyStroke('Enter', (e) => {
     return
   }
 
-  if (selectedPackage) {
-    navigatingToResult = true
-    // 用 replace 顶替挂载时 pushState 的临时历史条目，避免从结果页返回时多一次 Back。
-    // Replace the temporary history entry pushed on mount, so returning from the
-    // result page does not require an extra Back press.
-    router.replace(selectedPackage.id)
-    emit('close')
-  }
+  if (selectedPackage)
+    openResult(selectedPackage.id)
 })
 
 onKeyStroke('Escape', () => {
@@ -375,11 +390,6 @@ onBeforeUnmount(() => {
   isLocked.value = false
   // 配对挂载时的 pushState，避免反复开关搜索框累积历史条目。
   // 若该条目已被浏览器后退键（popstate）消费，或正在跳转到搜索结果，则不能回退。
-  //
-  // Pair the pushState made on mount so repeated open/close does not pile up
-  // history entries. Skip the rollback when the entry was already consumed by
-  // the browser back button (popstate), or when opening a result (the URL must
-  // stay on the target page).
   if (!closedByPopstate && !navigatingToResult)
     window.history.back()
 })
@@ -405,11 +415,10 @@ function formMarkRegex(terms: Set<string>) {
 
 function selectedClick(e: MouseEvent, p: SearchResult & Result) {
   e.preventDefault()
-  navigatingToResult = true
-  // 同 Enter 键路径：replace 消费掉挂载时压入的临时历史条目。
-  // Same as the Enter path: replace consumes the temp entry pushed on mount.
-  router.replace(p.id)
-  emit('close')
+  // 同 Enter 键路径：跳转、消费临时历史条目与焦点处理都由 openResult 统一负责。
+  // Same as the Enter path: navigation, temp history entry and focus handling all
+  // live in openResult.
+  openResult(p.id)
 }
 </script>
 

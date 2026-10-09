@@ -111,6 +111,53 @@ describe('preparedPostsData', () => {
     ])
   })
 
+  it('should keep a stable order for posts sharing the same createTime', async () => {
+    const sameTime = new Date(Date.UTC(2024, 0, 1))
+    const app = createApp([
+      createPost(0, {}, { frontmatter: { createTime: sameTime, excerpt: false } }),
+      createPost(1, {}, { frontmatter: { createTime: sameTime, excerpt: false } }),
+      createPost(2, {}, { frontmatter: { createTime: sameTime, excerpt: false } }),
+    ])
+
+    await preparedPostsData(app)
+
+    // 相等时间戳时比较器返回 0，稳定排序保留原始相对顺序；
+    // 旧实现永远返回 ±1，会在 TimSort 下产生不确定顺序。
+    // Equal timestamps must yield 0 so the stable sort keeps the input order;
+    // the old comparator always returned ±1 and produced unpredictable order.
+    expect(readPostsData()['/blog/'].map(post => post.title)).toEqual([
+      'post-0',
+      'post-1',
+      'post-2',
+    ])
+  })
+
+  it('should reuse one ordering across multiple post collections', async () => {
+    hoisted.getThemeConfig.mockReturnValue({
+      locales: {
+        '/': { collections: [{ type: 'post', dir: 'blog', include: [], exclude: [] }] },
+        '/en/': { collections: [{ type: 'post', dir: 'blog', include: [], exclude: [] }] },
+      },
+    })
+
+    const enPost = (index: number): Page => {
+      return {
+        ...createPost(index),
+        path: `/en/blog/post-${index}/`,
+        filePathRelative: `en/blog/post-${index}.md`,
+        filePath: `/root/en/blog/post-${index}.md`,
+      } as unknown as Page
+    }
+    const app = createApp([createPost(0), createPost(1), enPost(0), enPost(1)])
+
+    await preparedPostsData(app)
+
+    // 全局排序一次，各 locale 的集合过滤后继承同一顺序。
+    // Sorted once globally; each locale's collection inherits the same order.
+    expect(readPostsData()['/blog/'].map(post => post.title)).toEqual(['post-1', 'post-0'])
+    expect(readPostsData()['/en/blog/'].map(post => post.title)).toEqual(['post-1', 'post-0'])
+  })
+
   it('should bound the number of concurrent file stats', async () => {
     const app = createApp(Array.from({ length: 200 }, (_, index) => createPost(index, { withoutDate: true })))
 

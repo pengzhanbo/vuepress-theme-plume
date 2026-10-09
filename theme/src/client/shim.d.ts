@@ -46,13 +46,9 @@ declare module '@internal/collectionsData' {
 }
 
 declare module '@internal/sidebar' {
-  import type { Sidebar, SidebarItem } from '../shared/index.js'
+  import type { ThemeSidebarData } from '../shared/index.js'
 
-  const sidebar: {
-    __auto__: SidebarItem[] | { link: string, items: SidebarItem[] }
-    __home__: Record<string, string>
-    [key: string]: Sidebar
-  }
+  const sidebar: ThemeSidebarData
   export {
     sidebar,
   }

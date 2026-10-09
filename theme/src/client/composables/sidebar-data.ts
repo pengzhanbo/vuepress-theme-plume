@@ -1,5 +1,10 @@
 import type { Ref } from 'vue'
-import type { ResolvedSidebarItem, ThemeSidebar, ThemeSidebarItem } from '../../shared/index.js'
+import type {
+  ResolvedSidebarItem,
+  ThemeSidebar,
+  ThemeSidebarData,
+  ThemeSidebarItem,
+} from '../../shared/index.js'
 import { sidebar as sidebarRaw } from '@internal/sidebar'
 import {
   isArray,
@@ -31,10 +36,7 @@ export type SidebarDataRef = Ref<SidebarData>
  *
  * 自动生成目录侧边栏的引用类型。
  */
-export type AutoDirSidebarRef = Ref<ThemeSidebarItem[] | {
-  link: string
-  items: ThemeSidebarItem[]
-}>
+export type AutoDirSidebarRef = Ref<Record<string, ResolvedSidebarItem[]>>
 
 /**
  * Reference type for auto-generated home data.
@@ -43,29 +45,28 @@ export type AutoDirSidebarRef = Ref<ThemeSidebarItem[] | {
  */
 export type AutoHomeDataRef = Ref<Record<string, string>>
 
-const { __auto__, __home__, ...items } = sidebarRaw
+const { locales, auto, home } = sidebarRaw
 
 /**
  * Global sidebar data reference.
  *
  * 全局侧边栏数据引用。
  */
-export const sidebarData: SidebarDataRef = ref(items)
+export const sidebarData: SidebarDataRef = ref(locales)
 
 /**
  * Auto-generated directory sidebar reference.
  *
  * 自动生成目录侧边栏引用。
  */
-export const autoDirSidebar: AutoDirSidebarRef = ref(__auto__)
-const autoHomeData: AutoHomeDataRef = ref(__home__)
+export const autoDirSidebar: AutoDirSidebarRef = ref(auto)
+const autoHomeData: AutoHomeDataRef = ref(home)
 
 if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {
-  __VUE_HMR_RUNTIME__.updateSidebar = (data: SidebarData) => {
-    const { __auto__, __home__, ...items } = data
-    sidebarData.value = items
-    autoDirSidebar.value = __auto__ as ThemeSidebarItem[]
-    autoHomeData.value = __home__ as Record<string, string>
+  __VUE_HMR_RUNTIME__.updateSidebar = (data: ThemeSidebarData) => {
+    sidebarData.value = data.locales
+    autoDirSidebar.value = data.auto
+    autoHomeData.value = data.home
   }
 }
 

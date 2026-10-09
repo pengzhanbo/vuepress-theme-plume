@@ -1,4 +1,39 @@
 import type { ThemeBadge, ThemeIcon } from '../common/index.js'
+import type { ThemeSidebar } from '../features/sidebar.js'
+
+/**
+ * Payload of the `@internal/sidebar` virtual module.
+ *
+ * Written at build time by `prepareSidebar` and consumed by the client sidebar
+ * composable. Kept as the single source of truth so the node writer and the
+ * client shim cannot silently drift apart when the structure changes.
+ *
+ * `@internal/sidebar` 虚拟模块的数据结构。
+ * 构建期由 `prepareSidebar` 写入、客户端侧边栏 composable 消费。
+ * 作为唯一类型来源，避免 node 侧与客户端 shim 在结构变更时静默失配。
+ *
+ * @internal
+ */
+export interface ThemeSidebarData {
+  /**
+   * Per-locale sidebar configurations, keyed by locale path (`/`, `/en/`, …).
+   *
+   * 各语言环境的侧边栏配置，以 locale 路径（`/`、`/en/` 等）为键。
+   */
+  locales: Record<string, ThemeSidebar>
+  /**
+   * Auto-generated directory sidebars, keyed by locale path or directory prefix.
+   *
+   * 自动生成的目录侧边栏，以 locale 路径或目录前缀为键。
+   */
+  auto: Record<string, ResolvedSidebarItem[]>
+  /**
+   * Auto-generated directory home links, keyed by directory prefix.
+   *
+   * 自动生成的目录首页链接，以目录前缀为键。
+   */
+  home: Record<string, string>
+}
 
 /**
  * Resolved sidebar for internal theme use

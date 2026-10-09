@@ -43,10 +43,10 @@ function createApp(pages: Page[]): App {
   return { pages } as unknown as App
 }
 
-/** 读取最近一次写入的自动生成侧边栏（`sidebar.__auto__`）。 */
+/** 读取最近一次写入的自动生成侧边栏（`sidebar.auto`）。 */
 function readAutoSidebar(): Record<string, ThemeSidebarItem[]> {
   const call = hoisted.writeTemp.mock.calls.at(-1)
-  return call?.[2]?.__auto__ as Record<string, ThemeSidebarItem[]>
+  return call?.[2]?.auto as Record<string, ThemeSidebarItem[]>
 }
 
 describe('prepareSidebar > auto dir', () => {
@@ -128,5 +128,27 @@ describe('prepareSidebar > auto dir', () => {
     expect(readAutoSidebar()['/en/']).toMatchObject([
       { text: 'blog', items: [{ text: 'A', link: '/en/blog/a/' }] },
     ])
+  })
+
+  it('should write the payload as { locales, auto, home }', async () => {
+    // 回归：`@internal/sidebar` 曾把 `__auto__` / `__home__` 混入 locale 映射，
+    // 与手写 shim 类型不一致。现在统一为 `{ locales, auto, home }`。
+    // Regression: the module used to mix `__auto__` / `__home__` into the locale
+    // map, drifting from the hand-written shim. It is now `{ locales, auto, home }`.
+    const app = createApp([
+      createPage('blog/index.md', 'Blog'),
+      createPage('blog/a.md', 'A'),
+    ])
+
+    await prepareSidebar(app, {
+      locales: { '/': {} },
+      sidebar: { '/blog': 'auto' },
+    } as ThemeOptions)
+
+    const payload = hoisted.writeTemp.mock.calls.at(-1)?.[2]
+    expect(Object.keys(payload).sort()).toEqual(['auto', 'home', 'locales'])
+    expect(payload.auto['/blog/']).toMatchObject([{ text: 'A', link: '/blog/a/' }])
+    // 目录首页 `index.md` 被记录为自动侧边栏的首页链接。
+    expect(payload.home['/blog/']).toBe('/blog/index/')
   })
 })

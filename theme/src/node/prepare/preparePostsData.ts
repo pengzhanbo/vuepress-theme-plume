@@ -50,10 +50,9 @@ function getTimestamp(time: Date): number {
 }
 
 function sortPage(prev: Page, next: Page): number {
-  return getTimestamp((prev.frontmatter.createTime as Date) || prev.date)
-    < getTimestamp(next.frontmatter.createTime as Date || next.date)
-    ? 1
-    : -1
+  const prevTime = getTimestamp((prev.frontmatter.createTime as Date) || prev.date)
+  const nextTime = getTimestamp((next.frontmatter.createTime as Date) || next.date)
+  return nextTime - prevTime
 }
 
 async function processPostData(
@@ -130,6 +129,12 @@ export async function preparedPostsData(app: App, options: ThemeOptions = getThe
     && (page.frontmatter.draft === true ? !isBuild : true),
   ) as Page<ThemePageData, ThemePostFrontmatter & Record<string, unknown>>[]
 
+  // 全局只排序一次：`filter` 会保持原数组的相对顺序，因此各集合在过滤后
+  // 自然继承该顺序，无需在 (locale, collection) 双重循环内重复 `O(M log M)` 排序。
+  // Sort once up front; `filter` preserves relative order, so each collection
+  // inherits the same ordering without re-sorting inside the nested loops.
+  const sortedPages = [...pages].sort(sortPage)
+
   for (const [locale, { collections }] of Object.entries(locales || {})) {
     if (!collections)
       continue
@@ -137,11 +142,10 @@ export async function preparedPostsData(app: App, options: ThemeOptions = getThe
       const source = app.dir.source(removeLeadingSlash(withBase(dir, locale)))
       const isMatched = createMatcher(include, exclude)
       postsData[withBase(dir, locale)] = await pMap(
-        pages
+        sortedPages
           .filter(({ filePath }) => {
             return filePath?.startsWith(source) && isMatched(path.relative(source, filePath!))
-          })
-          .sort(sortPage),
+          }),
         page => processPostData(page, isBuild, encrypt),
         { concurrency: POST_PROCESS_CONCURRENCY },
       )

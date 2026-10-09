@@ -1,9 +1,13 @@
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
+import { useData } from '../composables/index.js'
 
+const { theme } = useData()
 const route = useRoute()
 const backToTop = ref()
+
+const skipToContentLabel = computed(() => theme.value.skipToContentLabel || 'Skip to content')
 
 watch(
   () => route.path,
@@ -36,7 +40,7 @@ function focusOnTargetAnchor({ target }: Event) {
     class="vp-skip-link visually-hidden"
     @click="focusOnTargetAnchor"
   >
-    Skip to content
+    {{ skipToContentLabel }}
   </a>
 </template>
 

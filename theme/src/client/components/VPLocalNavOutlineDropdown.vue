@@ -56,9 +56,17 @@ function onItemClick(e: Event) {
 
 <template>
   <div class="vp-local-nav-outline-dropdown" :style="{ '--vp-vh': `${vh}px` }">
-    <button v-if="headers.length > 0" ref="btn" :class="{ open }" @click="toggle">
+    <button
+      v-if="headers.length > 0"
+      ref="btn"
+      type="button"
+      :class="{ open }"
+      :aria-expanded="open"
+      aria-haspopup="true"
+      @click="toggle"
+    >
       {{ theme.outlineLabel || 'On this page' }}
-      <span class="vpi-chevron-right icon" />
+      <span class="vpi-chevron-right icon" aria-hidden="true" />
     </button>
     <Transition name="fade-in">
       <div v-if="open" class="outline-mask" />

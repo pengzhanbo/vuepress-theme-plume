@@ -1,9 +1,15 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
+import { useData } from '../../composables/index.js'
+
 const { active } = defineProps<{
   active: boolean
 }>()
 
 defineEmits<(e: 'click') => void>()
+
+const { theme } = useData()
+const label = computed(() => theme.value.mobileNavLabel || 'Mobile navigation')
 </script>
 
 <template>
@@ -11,7 +17,7 @@ defineEmits<(e: 'click') => void>()
     type="button"
     class="vp-navbar-hamburger"
     :class="{ active }"
-    aria-label="mobile navigation"
+    :aria-label="label"
     :aria-expanded="active"
     aria-controls="nav-screen"
     @click="$emit('click')"

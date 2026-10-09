@@ -135,6 +135,11 @@ async function onSubmit() {
   background-color: var(--vp-c-brand-2);
 }
 
+.encrypt-button:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 2px;
+}
+
 .encrypt-button.unlocking {
   color: var(--vp-c-brand-1);
   background-color: var(--vp-c-gray-1);

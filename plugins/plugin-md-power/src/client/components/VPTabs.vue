@@ -98,6 +98,7 @@ function onTabNavClick(index: number): void {
     <div class="vp-tabs-nav" role="tablist">
       <button
         v-for="(item, index) in data"
+        :id="`tab-${id}-${index}-nav`"
         :key="index"
         :ref="(el) => el && (tabRefs[index] = el as HTMLUListElement)"
         class="vp-tab-nav" :class="{ active: index === activeIndex }"
@@ -114,7 +115,7 @@ function onTabNavClick(index: number): void {
       v-for="(item, index) in data"
       :id="`tab-${id}-${index}`" :key="index"
       class="vp-tab" :class="{ active: index === activeIndex }"
-      role="tabpanel" :aria-expanded="index === activeIndex"
+      role="tabpanel" :aria-labelledby="`tab-${id}-${index}-nav`"
     >
       <div class="vp-tab-title">
         <slot :name="`title${index}`" :value="item.id" :is-active="index === activeIndex" />

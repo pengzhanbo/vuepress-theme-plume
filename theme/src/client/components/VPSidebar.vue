@@ -2,7 +2,7 @@
 import VPSidebarGroup from '@theme/VPSidebarGroup.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { useScrollLock, useTimeoutFn } from '@vueuse/core'
-import { nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useRoutePath } from 'vuepress/client'
 import { useData, useLayout, useSidebar, useSidebarControl } from '../composables/index.js'
 import { inBrowser } from '../utils/index.js'
@@ -12,10 +12,21 @@ const { open } = defineProps<{
 }>()
 
 const { theme } = useData()
-const { hasSidebar } = useLayout()
+const { hasSidebar, is960 } = useLayout()
 const { sidebarGroups, sidebarKey } = useSidebar()
 const { isSidebarCollapsed, toggleSidebarCollapse } = useSidebarControl()
 const routePath = useRoutePath()
+
+const hidden = computed(() => !open && (!is960.value || isSidebarCollapsed.value))
+
+const ready = ref(false)
+onMounted(() => {
+  ready.value = true
+})
+const sidebarInert = computed(() => ready.value && hidden.value)
+
+const sidebarNavigationLabel = computed(() => theme.value.sidebarNavigationLabel || 'Sidebar Navigation')
+const toggleSidebarLabel = computed(() => theme.value.toggleSidebarLabel || 'Toggle sidebar')
 
 // a11y: focus Nav element when menu has opened
 const navEl = ref<HTMLElement | null>(null)
@@ -86,6 +97,7 @@ onMounted(scrollToActiveItem)
         'hide-scrollbar': !(theme.sidebarScrollbar ?? true),
         'collapsed': isSidebarCollapsed,
       }"
+      :inert="sidebarInert"
       vp-sidebar
       @click.stop
     >
@@ -100,7 +112,7 @@ onMounted(scrollToActiveItem)
           tabindex="-1"
         >
           <span id="sidebar-aria-label" class="visually-hidden">
-            Sidebar Navigation
+            {{ sidebarNavigationLabel }}
           </span>
 
           <slot name="sidebar-nav-before" />
@@ -115,7 +127,7 @@ onMounted(scrollToActiveItem)
   <div v-if="hasSidebar" class="vp-sidebar-control" :class="{ collapsed: isSidebarCollapsed }">
     <button
       type="button" class="toggle-sidebar-btn"
-      aria-label="Toggle sidebar"
+      :aria-label="toggleSidebarLabel"
       @click="toggleSidebarCollapse()"
     >
       <span :class="`vpi-sidebar-${isSidebarCollapsed ? 'open' : 'close'}`" />

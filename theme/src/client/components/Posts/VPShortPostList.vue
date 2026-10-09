@@ -53,7 +53,7 @@ const { postList } = defineProps<{
 }
 
 .vp-short-post-list .post-time {
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   transition: color var(--vp-t-color);
 }
 

@@ -2,6 +2,7 @@
 import type { ProfileOptions } from '../../../shared/index.js'
 import VPLink from '@theme/VPLink.vue'
 import { useScrollLock, useTimeoutFn } from '@vueuse/core'
+import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
 import { useRoute, withBase } from 'vuepress/client'
 import { isLinkHttp } from 'vuepress/shared'
@@ -40,55 +41,16 @@ const lazyOpen = ref(false)
 const triggerEl = useTemplateRef<HTMLButtonElement>('trigger')
 const modalEl = useTemplateRef<HTMLDivElement>('modal')
 
-// 面板内可聚焦元素的候选集合，用于焦点陷阱。
-// Candidates for focusable elements inside the panel, used for the focus trap.
-const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]'
+const { activate: activateTrap, deactivate: deactivateTrap } = useFocusTrap(modalEl, {
+  immediate: false,
+  escapeDeactivates: false,
+  returnFocusOnDeactivate: false,
+})
 
-function isTabbable(el: HTMLElement): boolean {
-  if (el.tabIndex < 0)
-    return false
-  return el.getClientRects().length > 0 && getComputedStyle(el).visibility !== 'hidden'
-}
-
-function getFocusable(): HTMLElement[] {
-  if (!modalEl.value)
-    return []
-  return Array.from(modalEl.value.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(isTabbable)
-}
-
-/**
- * Esc 关闭面板；Tab 在面板内循环，避免焦点逃逸到被遮挡的页面内容。
- *
- * Escape closes the panel; Tab cycles inside it so focus never escapes
- * into the page content hidden behind the dialog.
- */
+/** Esc 关闭面板 / Escape closes the panel */
 function onModalKeydown(event: KeyboardEvent) {
-  if (event.key === 'Escape') {
+  if (event.key === 'Escape')
     open.value = false
-    return
-  }
-
-  if (event.key !== 'Tab')
-    return
-
-  const focusable = getFocusable()
-  if (!focusable.length) {
-    event.preventDefault()
-    return
-  }
-
-  const first = focusable[0]
-  const last = focusable[focusable.length - 1]
-  const active = document.activeElement
-
-  if (event.shiftKey && (active === first || active === modalEl.value)) {
-    event.preventDefault()
-    last.focus()
-  }
-  else if (!event.shiftKey && active === last) {
-    event.preventDefault()
-    first.focus()
-  }
 }
 
 const isLocked = useScrollLock(inBrowser ? document.body : null)
@@ -115,19 +77,17 @@ watch(open, (isOpen) => {
   }
 })
 
-// 打开时把焦点移入面板，关闭时归还给触发按钮，保证键盘用户不会丢失位置。
-// Move focus into the panel on open and back to the trigger on close, so keyboard users never lose their place.
 watch(open, (isOpen) => {
   if (!inBrowser)
     return
 
   if (isOpen) {
-    nextTick(() => {
-      modalEl.value?.focus({ preventScroll: true })
-    })
+    nextTick(() => activateTrap())
   }
-  else if (modalEl.value?.contains(document.activeElement)) {
-    triggerEl.value?.focus()
+  else {
+    if (modalEl.value?.contains(document.activeElement))
+      triggerEl.value?.focus()
+    deactivateTrap()
   }
 })
 
@@ -390,7 +350,7 @@ const showPostsExtract = computed(() => {
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   transition: color var(--vp-t-color);
 }
 

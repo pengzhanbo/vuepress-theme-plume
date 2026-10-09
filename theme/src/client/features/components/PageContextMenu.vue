@@ -234,7 +234,7 @@ const copyPageText = computed(() => {
 }
 
 .page-context-toggle {
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
 }
 
 .page-context-copy,
@@ -329,7 +329,7 @@ const copyPageText = computed(() => {
   display: block;
   font-size: 12px;
   font-weight: normal;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
 }
 
 .page-context-menu .vpi-external-link {

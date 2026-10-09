@@ -330,6 +330,48 @@ export interface ThemeLocaleText {
   closeLabel?: string
 
   /**
+   * 跳转到主要内容链接的无障碍文本。
+   *
+   * @default 'Skip to content'
+   */
+  skipToContentLabel?: string
+
+  /**
+   * 移动端导航菜单按钮的无障碍标签。
+   *
+   * @default 'Mobile navigation'
+   */
+  mobileNavLabel?: string
+
+  /**
+   * 打印按钮的无障碍标签。
+   *
+   * @default 'Print'
+   */
+  printLabel?: string
+
+  /**
+   * 首页向下滚动指示器的无障碍标签。
+   *
+   * @default 'Scroll down'
+   */
+  scrollDownLabel?: string
+
+  /**
+   * 侧边栏导航区域的无障碍名称。
+   *
+   * @default 'Sidebar Navigation'
+   */
+  sidebarNavigationLabel?: string
+
+  /**
+   * 侧边栏折叠/展开按钮的无障碍标签。
+   *
+   * @default 'Toggle sidebar'
+   */
+  toggleSidebarLabel?: string
+
+  /**
    * 侧边栏 outline 文本
    *
    * @default 'On this page'

@@ -119,7 +119,7 @@ const { hasPostsExtract, tags, archives, categories } = usePostsExtract()
 
 .nav-link .total {
   padding-right: 8px;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   transition: color var(--vp-t-color);
 }
 

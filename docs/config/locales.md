@@ -236,6 +236,54 @@ export default defineUserConfig({
 
   关闭按钮的无障碍标签，用于弹窗、面板等关闭按钮。
 
+### skipToContentLabel
+
+- 类型： `string`
+- 默认值： `'Skip to content'`
+- 详情：
+
+  跳转到主要内容链接的无障碍文本。
+
+### mobileNavLabel
+
+- 类型： `string`
+- 默认值： `'Mobile navigation'`
+- 详情：
+
+  移动端导航菜单按钮的无障碍标签。
+
+### printLabel
+
+- 类型： `string`
+- 默认值： `'Print'`
+- 详情：
+
+  打印按钮的无障碍标签。
+
+### scrollDownLabel
+
+- 类型： `string`
+- 默认值： `'Scroll down'`
+- 详情：
+
+  首页向下滚动指示器的无障碍标签。
+
+### sidebarNavigationLabel
+
+- 类型： `string`
+- 默认值： `'Sidebar Navigation'`
+- 详情：
+
+  侧边栏导航区域的无障碍名称。
+
+### toggleSidebarLabel
+
+- 类型： `string`
+- 默认值： `'Toggle sidebar'`
+- 详情：
+
+  侧边栏折叠/展开按钮的无障碍标签。
+
 ### outlineLabel
 
 - 类型： `string`

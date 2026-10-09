@@ -1119,6 +1119,9 @@ importers:
       '@vueuse/core':
         specifier: catalog:prod
         version: 15.0.0(vue@3.5.43(typescript@6.0.3))
+      '@vueuse/integrations':
+        specifier: catalog:prod
+        version: 15.0.0(axios@1.20.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(change-case@5.4.4)(focus-trap@8.2.2)(qrcode@1.5.4)(vue@3.5.43(typescript@6.0.3))
       chokidar:
         specifier: 5.0.0
         version: 5.0.0

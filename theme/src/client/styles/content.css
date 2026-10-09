@@ -132,7 +132,7 @@
   position: relative;
   padding: 8px 20px 8px 36px;
   margin: 16px 0;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   background-color: var(--vp-c-default-soft);
   border-radius: 8px;
   transition: background-color var(--vp-t-color), color var(--vp-t-color);

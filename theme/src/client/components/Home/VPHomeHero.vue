@@ -237,7 +237,7 @@ onUnmounted(() => {
   margin: 18px 0 30px;
   font-size: 18px;
   font-weight: 500;
-  color: var(--vp-c-home-hero-text, var(--vp-c-text-3));
+  color: var(--vp-c-home-hero-text, var(--vp-c-text-2));
   white-space: pre-wrap;
   pointer-events: auto;
   transition: color var(--vp-t-color);

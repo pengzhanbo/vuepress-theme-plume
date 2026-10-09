@@ -206,7 +206,7 @@ function onItemInteraction(e: MouseEvent | Event) {
 .vp-sidebar-item.level-3 .text.separator,
 .vp-sidebar-item.level-4 .text.separator,
 .vp-sidebar-item.level-5 .text.separator {
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
 }
 
 .vp-sidebar-item.level-0 :deep(.vp-icon.separator),

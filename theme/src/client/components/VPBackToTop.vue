@@ -12,7 +12,9 @@ onMounted(() => {
   body.value = document.body
 })
 
-const { page } = useData()
+const { page, theme } = useData()
+
+const label = computed(() => theme.value.returnToTopLabel || 'Back to top')
 
 const { y } = useWindowScroll()
 const isScrolling = ref(false)
@@ -67,11 +69,11 @@ function handleClick() {
       v-show="!mustHidden && (show || isScrolling)"
       type="button"
       class="vp-back-to-top"
-      aria-label="back to top"
+      :aria-label="label"
       @click="handleClick"
     >
       <span class="percent" :class="{ show: isScrolling }" data-allow-mismatch>{{ percent }}</span>
-      <span class="icon vpi-back-to-top" :class="{ show: !isScrolling }" />
+      <span class="icon vpi-back-to-top" :class="{ show: !isScrolling }" aria-hidden="true" />
       <svg aria-hidden="true">
         <circle cx="50%" cy="50%" data-allow-mismatch :style="{ 'stroke-dasharray': stroke }" />
       </svg>

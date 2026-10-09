@@ -85,9 +85,10 @@ watch(open, (isOpen) => {
     nextTick(() => activateTrap())
   }
   else {
-    if (modalEl.value?.contains(document.activeElement))
-      triggerEl.value?.focus()
+    const hadFocus = modalEl.value?.contains(document.activeElement)
     deactivateTrap()
+    if (hadFocus)
+      triggerEl.value?.focus()
   }
 })
 

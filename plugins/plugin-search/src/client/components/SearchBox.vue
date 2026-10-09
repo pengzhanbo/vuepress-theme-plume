@@ -37,7 +37,7 @@ const { locales, options } = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'close'): void
+  (e: 'close', options?: { restoreFocus?: boolean }): void
 }>()
 
 const routeLocale = useRouteLocale()
@@ -52,7 +52,7 @@ interface Result {
   titles: string[]
 }
 
-const { activate } = useFocusTrap(el, { immediate: true })
+const { activate } = useFocusTrap(el, { immediate: true, returnFocusOnDeactivate: false })
 
 const isSearchIndexLoading = ref(false)
 const isSearching = ref(false)
@@ -336,11 +336,8 @@ onKeyStroke('Enter', (e) => {
 
   if (selectedPackage) {
     navigatingToResult = true
-    // 用 replace 顶替挂载时 pushState 的临时历史条目，避免从结果页返回时多一次 Back。
-    // Replace the temporary history entry pushed on mount, so returning from the
-    // result page does not require an extra Back press.
     router.replace(selectedPackage.id)
-    emit('close')
+    emit('close', { restoreFocus: false })
   }
 })
 
@@ -375,11 +372,6 @@ onBeforeUnmount(() => {
   isLocked.value = false
   // 配对挂载时的 pushState，避免反复开关搜索框累积历史条目。
   // 若该条目已被浏览器后退键（popstate）消费，或正在跳转到搜索结果，则不能回退。
-  //
-  // Pair the pushState made on mount so repeated open/close does not pile up
-  // history entries. Skip the rollback when the entry was already consumed by
-  // the browser back button (popstate), or when opening a result (the URL must
-  // stay on the target page).
   if (!closedByPopstate && !navigatingToResult)
     window.history.back()
 })
@@ -406,10 +398,8 @@ function formMarkRegex(terms: Set<string>) {
 function selectedClick(e: MouseEvent, p: SearchResult & Result) {
   e.preventDefault()
   navigatingToResult = true
-  // 同 Enter 键路径：replace 消费掉挂载时压入的临时历史条目。
-  // Same as the Enter path: replace consumes the temp entry pushed on mount.
   router.replace(p.id)
-  emit('close')
+  emit('close', { restoreFocus: false })
 }
 </script>
 

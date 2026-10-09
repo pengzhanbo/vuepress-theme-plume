@@ -56,6 +56,65 @@ export interface Header {
 // 从 resolveHeaders 缓存的锚点元素列表
 const resolvedHeaders: { element: HTMLHeadElement, link: string }[] = []
 
+/** A resolved header and its cached document-relative top position. */
+interface HeaderTop {
+  link: string
+  top: number
+}
+
+// 标题位置在页面生命周期内基本不变：这里缓存测量结果，滚动热路径只读取缓存并与
+// `window.scrollY` 比较，避免对每个标题调用 `getAbsoluteTop`（内部会触发
+// `getComputedStyle` 与强制同步布局）。
+//
+// Header positions barely change during a page's lifetime, so the measurement is
+// cached here. The scroll hot path only reads the cache and compares against
+// `window.scrollY`, instead of calling `getAbsoluteTop` (which triggers
+// `getComputedStyle` and a forced synchronous layout) for every header.
+let headerTops: HeaderTop[] = []
+let headerTopsValid = false
+let measuredBodyHeight = -1
+
+/**
+ * Measure and cache the absolute top of every resolved header.
+ *
+ * 测量并缓存所有已解析标题的绝对顶部位置。
+ */
+export function measureHeaderTops(): void {
+  headerTops = resolvedHeaders
+    .map(({ element, link }) => ({ link, top: getAbsoluteTop(element) }))
+    .filter(({ top }) => !Number.isNaN(top))
+    .sort((a, b) => a.top - b.top)
+  measuredBodyHeight = document.body.offsetHeight
+  headerTopsValid = true
+}
+
+/**
+ * Invalidate the cached header tops so they are re-measured on next use.
+ *
+ * 使缓存的标题位置失效，下次读取时重新测量。
+ */
+export function invalidateHeaderTops(): void {
+  headerTopsValid = false
+}
+
+/**
+ * Get the cached header tops, re-measuring only when the cache is invalid or the
+ * page height changed (which may indicate images / fonts finished loading or the
+ * layout otherwise reflowed).
+ *
+ * 获取缓存的标题位置。仅在缓存失效或页面高度发生变化（可能意味着图片/字体加载完成
+ * 或发生过重排）时重新测量。
+ *
+ * @param bodyHeight - Already-read `document.body.offsetHeight`, to avoid a second layout read / 已读取的页面高度，避免二次布局读取
+ */
+export function getHeaderTops(bodyHeight?: number): HeaderTop[] {
+  const height = bodyHeight ?? document.body.offsetHeight
+  if (!headerTopsValid || height !== measuredBodyHeight)
+    measureHeaderTops()
+
+  return headerTops
+}
+
 /**
  * Menu item type for outline navigation
  * Extends Header with element reference and additional properties
@@ -88,6 +147,10 @@ export function setupHeaders(): Ref<MenuItem[]> {
 
   onContentUpdated(() => {
     headers.value = getHeaders(frontmatter.value.outline ?? theme.value.outline)
+    // 内容更新后标题位置可能变化，使缓存失效，下次读取时重新测量。
+    // Content updates may move the headers, so invalidate the cache and let it be
+    // re-measured on next use.
+    invalidateHeaderTops()
   })
 
   return headers
@@ -349,14 +412,10 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
     const offsetHeight = document.body.offsetHeight
     const isBottom = Math.abs(scrollY + innerHeight - offsetHeight) < 1
 
-    // resolvedHeaders may be repositioned, hidden or fix positioned
-    const headers = resolvedHeaders
-      .map(({ element, link }) => ({
-        link,
-        top: getAbsoluteTop(element),
-      }))
-      .filter(({ top }) => !Number.isNaN(top))
-      .sort((a, b) => a.top - b.top)
+    // 复用已读取的页面高度：仅在缓存失效或页面高度变化时重新测量标题位置。
+    // Reuse the already-read body height: header tops are re-measured only when the
+    // cache is invalid or the page height changed.
+    const headers = getHeaderTops(offsetHeight)
 
     // no headers available for active link
     if (!headers.length) {
@@ -426,6 +485,14 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
 
   const onScroll = useThrottleFn(setActiveLink, 100)
 
+  // 视口尺寸变化会改变标题位置，使缓存失效后重新测量（滚动时不会再逐帧测量）。
+  // A viewport resize moves the headers, so invalidate the cache and re-measure;
+  // scrolling no longer measures on every frame.
+  const onResize = useThrottleFn(() => {
+    invalidateHeaderTops()
+    setActiveLink()
+  }, 200)
+
   watchDebounced(routeHash, () => {
     updateHash(router, routeHash.value)
   }, { debounce: 500 })
@@ -439,6 +506,7 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
   const { start: initActiveAnchor } = useTimeoutFn(() => {
     setActiveLink()
     window.addEventListener('scroll', onScroll)
+    window.addEventListener('resize', onResize)
   }, 1000, { immediate: false })
 
   onMounted(initActiveAnchor)
@@ -450,6 +518,7 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
 
   onUnmounted(() => {
     window.removeEventListener('scroll', onScroll)
+    window.removeEventListener('resize', onResize)
   })
 }
 

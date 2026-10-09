@@ -44,13 +44,13 @@ function restoreSearchFocus() {
   nextTick(() => searchButtonRef.value?.focus())
 }
 
-function closeSearch(options?: { restoreFocus?: boolean | Promise<boolean> }) {
+function closeSearch(options?: { restoreFocus?: boolean }) {
   showSearch.value = false
 
-  Promise.resolve(options?.restoreFocus ?? true).then((restoreFocus) => {
-    if (restoreFocus)
-      restoreSearchFocus()
-  })
+  if (options?.restoreFocus === false)
+    return
+
+  restoreSearchFocus()
 }
 
 const noscriptText = computed(

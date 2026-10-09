@@ -21,6 +21,7 @@ let animationId = 0
 let gl: WebGLRenderingContext | null = null
 let program: WebGLProgram | null = null
 let startTime = 0
+let dispose: (() => void) | undefined
 
 const vertexShaderSource = `
 attribute vec2 aPosition;
@@ -132,7 +133,7 @@ function initWebGL() {
 
   const resizeCanvas = () => {
     const rect = canvas.getBoundingClientRect()
-    const dpr = window.devicePixelRatio || 1
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
 
     let width = rect.width
     let height = rect.height
@@ -167,7 +168,6 @@ function initWebGL() {
   }
 
   resizeCanvas()
-  window.addEventListener('resize', resizeCanvas)
 
   gl = canvas.getContext('webgl')
   if (!gl) {
@@ -204,6 +204,11 @@ function initWebGL() {
   startTime = performance.now()
   render()
 
+  // 仅在初始化成功后注册监听，使上面的所有失败分支都不会泄漏监听器。
+  // Register the listener only after a successful init, so that none of the
+  // failure branches above leaks it.
+  window.addEventListener('resize', resizeCanvas)
+
   return () => {
     window.removeEventListener('resize', resizeCanvas)
   }
@@ -214,14 +219,6 @@ function render() {
     return
 
   const canvas = canvasRef.value
-
-  const rect = canvas.getBoundingClientRect()
-  if (canvas.width !== rect.width || canvas.height !== rect.height) {
-    canvas.width = rect.width
-    canvas.height = rect.height
-    canvas.style.width = `${rect.width}px`
-    canvas.style.height = `${rect.height}px`
-  }
 
   gl.viewport(0, 0, canvas.width, canvas.height)
 
@@ -247,13 +244,15 @@ function render() {
 }
 
 onMounted(() => {
-  initWebGL()
+  dispose = initWebGL()
 })
 
 onUnmounted(() => {
   if (animationId) {
     cancelAnimationFrame(animationId)
   }
+  dispose?.()
+  dispose = undefined
   gl = null
   program = null
 })

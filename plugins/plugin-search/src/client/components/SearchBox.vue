@@ -37,7 +37,10 @@ const { locales, options } = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'close', options?: { restoreFocus?: boolean }): void
+  // `restoreFocus: false` 表示关闭是因为即将打开某个搜索结果：页面会切换，焦点不应
+  // 立即归还给触发按钮。此时它还可能是一个 Promise——导航结果异步可得，且结果揭晓
+  // 时搜索框已经卸载（卸载后不可再 emit），只能由父组件等待它来决定焦点归属。
+  (e: 'close', options?: { restoreFocus?: boolean | Promise<boolean> }): void
 }>()
 
 const routeLocale = useRouteLocale()
@@ -321,6 +324,24 @@ let closedByPopstate = false
  */
 let navigatingToResult = false
 
+/**
+ * Open a search result: navigate to the target page and close the box.
+ *
+ * 打开搜索结果：跳转到目标页面并关闭搜索框。
+ */
+function openResult(id: string) {
+  navigatingToResult = true
+  // 用 replace 顶替挂载时 pushState 的临时历史条目，避免从结果页返回时多一次 Back。
+  const navigation = router.replace(id)
+  emit('close', {
+    // 失败对象 = 重复或取消的导航；reject = 守卫抛出异常。两者都表示页面没有切换。
+    restoreFocus: navigation.then(
+      failure => !!failure,
+      () => true,
+    ),
+  })
+}
+
 onKeyStroke('Enter', (e) => {
   if (e.isComposing)
     return
@@ -334,11 +355,8 @@ onKeyStroke('Enter', (e) => {
     return
   }
 
-  if (selectedPackage) {
-    navigatingToResult = true
-    router.replace(selectedPackage.id)
-    emit('close', { restoreFocus: false })
-  }
+  if (selectedPackage)
+    openResult(selectedPackage.id)
 })
 
 onKeyStroke('Escape', () => {
@@ -397,9 +415,10 @@ function formMarkRegex(terms: Set<string>) {
 
 function selectedClick(e: MouseEvent, p: SearchResult & Result) {
   e.preventDefault()
-  navigatingToResult = true
-  router.replace(p.id)
-  emit('close', { restoreFocus: false })
+  // 同 Enter 键路径：跳转、消费临时历史条目与焦点处理都由 openResult 统一负责。
+  // Same as the Enter path: navigation, temp history entry and focus handling all
+  // live in openResult.
+  openResult(p.id)
 }
 </script>
 

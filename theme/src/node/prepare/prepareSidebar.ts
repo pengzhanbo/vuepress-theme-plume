@@ -6,6 +6,7 @@ import type {
   ThemeOptions,
   ThemePageData,
   ThemeSidebar,
+  ThemeSidebarData,
   ThemeSidebarItem,
 } from '../../shared/index.js'
 import { deleteKey, isArray, isPlainObject, objectEntries } from '@pengzhanbo/utils'
@@ -24,12 +25,11 @@ import { normalizeLink, perf, resolveContent, writeTemp } from '../utils/index.j
  */
 export async function prepareSidebar(app: App, options: ThemeOptions = getThemeConfig()): Promise<void> {
   perf.mark('prepare:sidebar')
-  const sidebar = getAllSidebar(options)
+  const locales = getAllSidebar(options)
 
-  const { resolved, autoHome } = getSidebarData(app, sidebar, options)
-  sidebar.__auto__ = resolved
-  sidebar.__home__ = autoHome as any
-  await writeTemp(app, 'internal/sidebar.js', resolveContent(app, { name: 'sidebar', content: sidebar }))
+  const { auto, home } = getSidebarData(app, locales, options)
+  const data: ThemeSidebarData = { locales, auto, home }
+  await writeTemp(app, 'internal/sidebar.js', resolveContent(app, { name: 'sidebar', content: data }))
 
   perf.log('prepare:sidebar')
 }
@@ -38,9 +38,9 @@ function getSidebarData(
   app: App,
   locales: Record<string, ThemeSidebar>,
   options: ThemeOptions,
-): { resolved: ThemeSidebar, autoHome: Record<string, string> } {
+): { auto: Record<string, ResolvedSidebarItem[]>, home: Record<string, string> } {
   const autoDirList: string[] = []
-  const resolved: ThemeSidebar = {}
+  const auto: Record<string, ResolvedSidebarItem[]> = {}
 
   objectEntries(locales).forEach(([localePath, sidebar]) => {
     if (!sidebar)
@@ -76,16 +76,16 @@ function getSidebarData(
     }
   })
 
-  const autoHome: Record<string, string> = {}
+  const home: Record<string, string> = {}
   autoDirList.forEach((localePath) => {
     const { link, sidebar } = getAutoDirSidebar(app, localePath, options)
-    resolved[localePath] = sidebar
+    auto[localePath] = sidebar
     if (link) {
-      autoHome[localePath] = link
+      home[localePath] = link
     }
   })
 
-  return { resolved, autoHome }
+  return { auto, home }
 }
 
 const MD_RE = /\.md$/
@@ -111,7 +111,7 @@ function getAutoDirSidebar(
   app: App,
   prefix: string,
   options: ThemeOptions,
-): { link: string, sidebar: ThemeSidebarItem[] } {
+): { link: string, sidebar: ResolvedSidebarItem[] } {
   const rootPath = removeLeadingSlash(prefix)
   let pages = (app.pages as Page<ThemePageData>[])
     .filter(page => page.data.filePathRelative?.startsWith(rootPath))
@@ -189,7 +189,7 @@ function getAutoDirSidebar(
   return { link: rootLink, sidebar: cleanSidebar(sidebar) }
 }
 
-function cleanSidebar(sidebar: (ThemeSidebarItem)[]) {
+function cleanSidebar(sidebar: ResolvedSidebarItem[]): ResolvedSidebarItem[] {
   for (const item of sidebar) {
     if (isPlainObject(item)) {
       if (isArray(item.items)) {
@@ -197,7 +197,7 @@ function cleanSidebar(sidebar: (ThemeSidebarItem)[]) {
           deleteKey(item, ['items', 'collapsed'])
         }
         else {
-          cleanSidebar(item.items as ThemeSidebarItem[])
+          cleanSidebar(item.items)
         }
       }
       else if (!('items' in item)) {

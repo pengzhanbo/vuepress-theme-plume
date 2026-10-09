@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { useDarkMode } from '@vuepress/helper/client'
 import { computed } from 'vue'
+import EmbedFrame from './EmbedFrame.vue'
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const { user, slash, title, preview, editable, tab, theme, width, height } = defineProps<{
   user: string
@@ -33,15 +38,16 @@ const link = computed(() => {
 </script>
 
 <template>
-  <iframe
-    :src="link"
+  <EmbedFrame
     class="code-pen-iframe"
+    :src="link"
     :title="title"
-    :style="{ width, height }"
-    frameborder="0"
+    :width="width"
+    :height="height"
     loading="lazy"
-    allowtransparency="true"
-    allowfullscreen="true"
+    allowtransparency
+    allowfullscreen
+    v-bind="$attrs"
   />
 </template>
 

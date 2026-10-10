@@ -119,7 +119,7 @@ catalogs:
     memfs: ^4.80.0
     mermaid: ^12.1.0
     nano-staged: ^1.0.2
-    oxfmt: ^0.71.0
+    oxfmt: ^0.72.0
     postcss: ^8.5.28
     rimraf: ^6.1.3
     simple-git-hooks: ^2.14.0

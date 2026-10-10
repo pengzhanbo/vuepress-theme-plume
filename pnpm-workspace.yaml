@@ -120,7 +120,7 @@ catalogs:
     mermaid: ^12.1.0
     nano-staged: ^1.0.2
     oxfmt: ^0.71.0
-    postcss: ^8.5.28
+    postcss: ^8.5.29
     rimraf: ^6.1.3
     simple-git-hooks: ^2.14.0
     stylelint: ^17.16.0

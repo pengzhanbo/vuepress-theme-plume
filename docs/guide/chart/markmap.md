@@ -7,7 +7,7 @@ permalink: /guide/chart/markmap/
 
 ## 概述
 
-主题支持在 文章中 嵌入由 [markmap](https://markmap.js.org/) 。
+主题支持在文章中嵌入 [markmap](https://markmap.js.org/) 图表。
 
 该功能由 [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/) 提供支持。
 

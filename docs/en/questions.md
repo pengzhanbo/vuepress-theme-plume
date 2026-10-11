@@ -45,6 +45,17 @@ npx vp-update
 
 :::
 
+## How do I migrate collections config ?
+
+Upgrade to 1.0.0-rc.165 and later versions,, the theme **automatically migrates** legacy `blog` / `notes` configuration to
+`collections` at build time, so in most cases no manual changes are needed.
+
+A few cases still require your attention. The most common one: **you have configured `collections`
+while keeping your legacy `blog` / `notes`** — the legacy config is then **silently ignored**.
+
+See the [Migration Guide](./guide/migration.md) for the complete migration rules, a manual migration
+example, and a verification checklist.
+
 ## Why don't new features take effect after updating the theme version?
 
 Because VuePress takes a long time to fully compile all `markdown` files in the source directory when
@@ -62,11 +73,6 @@ haven't changed, the compilation is skipped and the cache is used directly. This
    ```
 
 ## Why don't changes to theme plugin configurations take effect?
-
-This issue commonly occurs when modifying configurations for `plugins.markdownEnhance`,
-`plugins.markdownPower`, `plugins.markdownImage`, and `plugins.markdownMath`. The reason is the same as
-[Why don't new features take effect after updating the theme version?](#why-dont-new-features-take-effect-after-updating-the-theme-version).
-Therefore,
 
 **Simply delete the cache files and restart**:
 

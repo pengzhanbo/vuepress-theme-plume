@@ -13,7 +13,7 @@ permalink: /guide/features/bulletin/
 
 ## 使用
 
-主题提供了非常方便且灵活的 公告板 使用方法。你可以根据自己的需求，选择合适的方式进行配置。
+主题提供了非常方便且灵活的公告板使用方法。你可以根据自己的需求，选择合适的方式进行配置。
 
 ### 配置说明
 
@@ -107,7 +107,7 @@ interface BulletinOptions {
 
 ## 简单公告
 
-当您仅需要配置 简单的公告板，仅包含一些简要的内容 时，可以直接使用 `bulletin.content` 添加内容。
+当您仅需要配置简单的公告板，仅包含一些简要的内容时，可以直接使用 `bulletin.content` 添加内容。
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
@@ -143,7 +143,7 @@ export default defineUserConfig({
 
 ## 长内容公告
 
-当您需要配置 长内容的公告板时，将长内容写在配置文件中会显得比较臃肿和难以阅读，
+当您需要配置长内容的公告板时，将长内容写在配置文件中会显得比较臃肿和难以阅读，
 这时候可以使用 `bulletin.contentFile` 添加内容文件路径，将长内容与配置文件分开。
 
 `bulletin.contentFile` 需要传入一个 `markdown` 或 `html` 文件的绝对路径。主题将使用该文件内容作为公告内容。
@@ -340,7 +340,7 @@ export default defineUserConfig({
 
 公告板的持续时间由 `bulletin.lifetime` 配置。
 
-- `session` 表示在 当前会话周期内，如果用户没有关闭公告板，则会一直显示，这包括到下个会话周期。
+- `session` 表示在当前会话周期内，如果用户没有关闭公告板，则会一直显示，这包括到下个会话周期。
   而当用户关闭公告板，则表示公告板已过期，在当前会话周期内不再显示，但在下一个会话周期会重新显示。
 
 - `always` 表示公告板即使被用户关闭，不仅下一个会话周期也会重新显示，刷新页面也会重新显示。

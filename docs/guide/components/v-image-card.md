@@ -10,7 +10,7 @@ permalink: /guide/components/image-card/
 使用 `<ImageCard>` 组件在页面中显示图片卡片。
 
 图片卡片有别于 markdown 的普通插入图片方式，它展示与图片相关的更多信息，包括标题、描述、作者、链接等。
-适用于如 摄影作品、设计作品、宣传海报 等场景。
+适用于如摄影作品、设计作品、宣传海报等场景。
 
 ## Props
 
@@ -45,7 +45,7 @@ permalink: /guide/components/image-card/
 
 ::: field date
 @type `string | Date | number`
-图片 创作日期
+图片创作日期
 :::
 
 ::: field width
@@ -59,6 +59,12 @@ permalink: /guide/components/image-card/
 :::
 
 ::::
+
+## Slots
+
+**该组件不提供插槽。** 所有内容均通过 Props 传入（`image`、`title`、`author`、`date`、`description`、`href`）。
+
+若需要在图片卡片内放置自定义内容，请使用 [`Card`](../components/v-card.md) 或 [`LinkCard`](../components/v-link-card.md) 并在其插槽中自行构建。
 
 ## 示例
 
@@ -132,4 +138,4 @@ permalink: /guide/components/image-card/
   />
 </CardGrid>
 
-[查看 照片类作品示例](../../blog/1.示例/照片类作品示例.md)
+[查看照片类作品示例](../../blog/1.示例/照片类作品示例.md)

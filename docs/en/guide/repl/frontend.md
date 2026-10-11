@@ -5,33 +5,6 @@ createTime: 2025/01/08 21:34:26
 permalink: /en/guide/repl/frontend/
 ---
 
-::: important Legacy Frontend Code Demo Deprecated - Please Migrate to New Solution
-
-The legacy solution was provided by [vuepress-plugin-md-enhance](https://plugin-md-enhance.vuejs.press/zh/).
-We appreciate its support for code demos in the past. The code demo functionality in
-`vuepress-plugin-md-enhance` will be migrated to [vuepress/ecosystem](https://github.com/vuepress/ecosystem). For details, please refer to [vuepress/ecosystem#293](https://github.com/vuepress/ecosystem/pull/293).
-
-:::
-
-::: details Why Redesign?
-
-Frontend code demos are a highly useful feature, but the legacy implementation did not align with actual usage scenario expectations.
-
-In the legacy solution, for example, `vue-demo` only supported simple Vue component demonstrations
-and could not directly import dependencies from the project. It relied on loading external scripts for
-additional functionality and did not provide full support for Vue SFC, being limited to simple code demonstrations.
-
-Furthermore, script code compilation occurred in the browser runtime. It required loading `babel` from a
-CDN first, then performing the transformation via `babel`, which introduced additional waiting time.
-Additionally, for internal enterprise projects within an intranet environment that cannot access external
-resources, the demos failed to display properly.
-
-In the new solution, all demo code is compiled and transformed during the Node.js runtime.
-Therefore, demo code can be displayed directly in the browser runtime without extra waiting time.
-Leveraging Node.js's powerful capabilities, it fully supports all features of Vue SFC and allows direct
-import of project dependencies, enabling richer demonstrations that better match real-world usage scenarios.
-:::
-
 ## Overview
 
 This feature supports embedding code demonstration functionality within pages. A frontend code demo consists of two main areas:

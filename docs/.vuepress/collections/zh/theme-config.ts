@@ -42,7 +42,6 @@ export const themeConfig: ThemeCollectionItem = defineCollection({
         'fonts',
         'reading-time',
         'llms',
-        // 'markdown-enhance', // 已弃用，功能已拆分到 markdown-power 等独立插件
         'markdown-power',
         'markdown-image',
         'markdown-math',

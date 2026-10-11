@@ -3,7 +3,6 @@ title: Flex Container
 icon: material-symbols-light:flex-no-wrap
 createTime: 2025/10/08 17:56:39
 permalink: /en/guide/markdown/flex/
-badge: New
 ---
 
 ## Overview

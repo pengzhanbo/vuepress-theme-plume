@@ -58,6 +58,32 @@ Gap between columns.
 
 ::::
 
+## Slots
+
+### `default`
+
+The masonry grid receives its child cards through the `default` slot. Unlike `CardGrid`, it
+**automatically distributes children into columns** for you.
+
+```vue
+<CardMasonry :cols="3">
+  <ImageCard v-for="item in photos" :key="item.src" v-bind="item" />
+</CardMasonry>
+```
+
+::: warning Children are distributed in a scattered order
+Items are placed into columns in a round-robin fashion, so **DOM order does not match visual reading
+order** (the 1st, 2nd and 3rd items may land in columns 1, 2 and 3 respectively).
+
+If strict reading order matters, use [`CardGrid`](./v-card-grid.md), which preserves DOM order.
+:::
+
+::: tip Client-only rendering
+Masonry must measure element heights to compute columns, so it is wrapped in `ClientOnly` and **renders
+nothing during SSR**. This affects the first-screen HTML of that region — avoid placing critical
+content only inside it.
+:::
+
 ## Markdown Syntax Support
 
 In Markdown, the `::: card-masonry` container can be used instead of `<CardMasonry>`.

@@ -69,6 +69,24 @@ if (!__VUEPRESS_SSR__) {
 
 For more props, refer to [Swiper Documentation](https://swiperjs.com/swiper-api#parameters)
 
+## Slots
+
+**This component provides no named slots.** Slides are passed through the `items` prop. Each item is
+either an image URL or an object with `link`, `href` and `alt`:
+
+```vue
+<Swiper :items="[
+  '/images/slide-1.png',
+  { link: '/images/slide-2.png', href: 'https://example.com', alt: 'Click to visit' },
+]"
+/>
+```
+
+::: tip
+`link` is the **image address**, while `href` is the **click target**. The two mean different things
+and are easy to confuse.
+:::
+
 ## Reference Examples
 
 ### Preset Animation Effects

@@ -5,7 +5,7 @@ permalink: /article/ecxnxxd0/
 ---
 
 ::: info 说明
-本文 翻译 [Introduction to YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) 的部分内容。
+本文翻译 [Introduction to YAML](https://dev.to/paulasantamaria/introduction-to-yaml-125f) 的部分内容。
 用于简单说明如何在 markdown 文件中使用 frontmatter。
 
 如果您具有良好的英语阅读基础，为避免翻译可能存在的内容失真，建议您阅读原文。

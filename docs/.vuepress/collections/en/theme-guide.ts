@@ -13,20 +13,25 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
       icon: 'carbon:idea',
       prefix: 'quick-start',
       items: [
+        // ① Essentials (required)
         'intro',
         'usage',
-        'project-structure',
         {
           text: 'Collection',
           link: 'collection',
           items: ['collection-post', 'collection-doc'],
         },
-        'sidebar',
         'write',
+        // ② Content organisation (optional reading)
+        'project-structure',
+        'sidebar',
         'auto-frontmatter',
+        // ③ Advanced (optional)
         'locales',
         'deployment',
         'optimize-build',
+        // ④ Upgrading & migration
+        'migration',
       ],
     },
     {

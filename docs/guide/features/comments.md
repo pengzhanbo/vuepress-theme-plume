@@ -40,8 +40,8 @@ export default defineUserConfig({
 你可以根据自己的需求进行配置。
 
 - `Giscus` 是一个基于 GitHub Discussion 的评论系统，启用简便。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/giscus/)
-- `Waline` 是一个 需要后端的评论系统，安全性较高。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/waline/)
-- `Twikoo` 一个简洁、安全、免费的静态网站评论系统，基于 腾讯云开发。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/twikoo/)
+- `Waline` 是一个需要后端的评论系统，安全性较高。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/waline/)
+- `Twikoo` 一个简洁、安全、免费的静态网站评论系统，基于腾讯云开发。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/twikoo/)
 - `Artalk` 是一款简洁的自托管评论系统，你可以在服务器上轻松部署并置入前端页面中。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/artalk/)
 
 ::: tip 推荐的评论服务
@@ -53,6 +53,25 @@ export default defineUserConfig({
 ::: note
 示例 Fork 自 [@vuepress/plugin-comment](https://ecosystem.vuejs.press/zh/plugins/blog/comment/),
 遵循 [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE) 许可证。
+:::
+
+### 各服务商的限制汇总
+
+不同评论服务商的限制差异很大，选型前请先对照下表：
+
+| 服务商 | 需要后端 | 数据存储 | 主要限制 |
+| --- | --- | --- | --- |
+| **Giscus** | 否 | GitHub Discussions | 依赖 GitHub 账号登录；国内访问可能不稳定；**内容公开可见** |
+| **Waline** | 是 | Vercel（或自建） | 需自行部署服务端并保证可用性；匿名评论需配置 |
+| **Twikoo** | 否 | 腾讯云开发 | 依赖腾讯云环境；免费额度有限 |
+| **Artalk** | 是 | SQLite / PostgreSQL / MySQL | 需自行部署服务端 |
+
+::: warning 评论功能需要显式启用
+评论功能**默认关闭**，需通过 `comment` 字段开启。此外：
+
+- `comment` 属于**仅可全局配置**的字段，写进 `locales` 中会被**静默忽略**（详见 [主题配置 > locales](../../config/theme.md#locales)）
+- 部分服务商（如 Waline、Artalk）的客户端脚本**不在主题的默认依赖中**，需按各自文档额外安装
+- 加密页面的评论行为未定义，请勿在加密文章中依赖评论
 :::
 
 ## Giscus
@@ -121,6 +140,9 @@ npm i @waline/client
 :::
 
 ### LeanCloud 设置 (数据库)
+
+::: warning LeanCloud 国际版预计 2027 年 1 月 12 日停止服务，不推荐使用
+:::
 
 ::: steps
 

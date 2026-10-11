@@ -18,6 +18,14 @@ The theme provides two ways to configure the sidebar:
 - Configure sidebar through the `sidebar` option in theme configuration
 - Configure sidebar in [collections of type `doc`](./collection-doc.md)
 
+::: tip This page is the main document for sidebars
+This is the **complete guide** to sidebars, covering directory structure, basic configuration,
+advanced usage, configuration details and visual enhancements.
+
+If you only want to quickly compare the syntax of the two configuration entry points, see
+[Sidebar Configuration (reference)](../../config/sidebar.md).
+:::
+
 ## File Structure and Basic Configuration
 
 ### Directory Structure Design

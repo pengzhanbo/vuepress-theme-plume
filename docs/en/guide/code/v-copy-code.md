@@ -94,7 +94,7 @@ export default defineClientConfig({
     useCopyCode({
       transform: (preElement) => {
         // Insert copyright information
-        pre.innerHTML += `\n Copied by vuepress-theme-plume`
+        preElement.innerHTML += `\n Copied by vuepress-theme-plume`
       },
     })
   },

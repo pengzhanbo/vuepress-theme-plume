@@ -7,12 +7,12 @@ permalink: /guide/layout-slots/
 
 ## 概述
 
-主题通过 `<Layout />` 和 `<NotFound />` 提供了 丰富的 布局插槽，可以通过这些插槽，在 页面 的不同位置注入内容。
+主题通过 `<Layout />` 和 `<NotFound />` 提供了丰富的布局插槽，可以通过这些插槽，在页面的不同位置注入内容。
 以便用户可以个性化的使用主题。
 
 ## 使用
 
-以 `<Layout />` 为例，首先，需要创建一个 客户端配置文件： `.vuepress/client.ts`:
+以 `<Layout />` 为例，首先，需要创建一个客户端配置文件： `.vuepress/client.ts`:
 
 ```ts title=".vuepress/client.ts"
 import { defineClientConfig } from 'vuepress/client'
@@ -26,13 +26,13 @@ export default defineClientConfig({
 ```
 
 ::: info
-`layouts` 中的 `Layout` 名是固定的，这是 js 的简写语法， 实际上为 `Layout: Layout`，它是实现 布局插槽的关键。
+`layouts` 中的 `Layout` 名是固定的，这是 js 的简写语法， 实际上为 `Layout: Layout`，它是实现布局插槽的关键。
 `NotFound` 也是相同的规则。
 
 你传入的其它非 `Layout` / `NotFound` 的组件，被认为是自定义布局组件。
 :::
 
-然后，创建一个 `.vuepress/layouts/Layout.vue`，作为布局插槽的默认组件，在该组件中引入 当前主题的 `<Layout />` 组件。
+然后，创建一个 `.vuepress/layouts/Layout.vue`，作为布局插槽的默认组件，在该组件中引入当前主题的 `<Layout />` 组件。
 
 ```vue {7-11} title=".vuepress/layouts/Layout.vue"
 <script setup>
@@ -56,7 +56,7 @@ import { Layout } from 'vuepress-theme-plume/client' // [!code hl]
 </style>
 ```
 
-也可以使用 渲染函数 实现注入内容，在 `.vuepress/client.ts` 中：
+也可以使用渲染函数实现注入内容，在 `.vuepress/client.ts` 中：
 
 ::: code-tabs
 @tab .vuepress/client.ts
@@ -123,7 +123,7 @@ export default defineClientConfig({
   - `page-top`
   - `page-bottom`
 
-- 在 post 集合相关页面 中 （包括 文章列表页、标签页、归档页 均适用）：
+- 在 post 集合相关页面中 （包括文章列表页、标签页、归档页均适用）：
 
   - `posts-top`
   - `posts-bottom`
@@ -132,25 +132,25 @@ export default defineClientConfig({
   - `posts-extract-before`
   - `posts-extract-after`
 
-- 在 文章列表页 中：
+- 在文章列表页中：
 
   - `posts-post-list-before`
   - `posts-post-list-after`
   - `posts-post-list-pagination-after`
 
-- 在 标签页 中：
+- 在标签页中：
 
   - `posts-tags-before`
   - `posts-tags-title-after`
   - `posts-tags-content-before`
   - `posts-tags-after`
 
-- 在 归档页 中：
+- 在归档页中：
 
   - `posts-archives-before`
   - `posts-archives-after`
 
-- 在 分类页 中：
+- 在分类页中：
 
   - `posts-categories-before`
   - `posts-categories-content-before`

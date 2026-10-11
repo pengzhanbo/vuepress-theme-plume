@@ -52,6 +52,12 @@ Repo 卡片组件用于显示 GitHub / Gitee 仓库信息。
 
 ::::
 
+## Slots
+
+**该组件不提供插槽。** 仓库信息在组件内部通过 GitHub / Gitee API 拉取后渲染，内容完全由 `repo` 与 `provider` 决定。
+
+若需要展示仓库之外的自定义内容，请使用 [`Card`](./v-card.md) 自行构建。
+
 ## 示例
 
 ### 单卡片

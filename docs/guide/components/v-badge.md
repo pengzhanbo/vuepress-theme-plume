@@ -7,7 +7,7 @@ permalink: /guide/components/badge/
 
 ## 概述 <Badge type="tip" text="badge" />
 
-使用 `<Badge>` 组件来显示 行内信息，如状态或标签。
+使用 `<Badge>` 组件来显示行内信息，如状态或标签。
 
 将你想显示的内容传递给 `<Badge>` 组件的 `text` 属性。
 
@@ -39,10 +39,35 @@ permalink: /guide/components/badge/
 
 ::: field borderColor
 @type `string`
+@default `'transparent'`
 自定义徽章边框颜色
 :::
 
 ::::
+
+## Slots
+
+### `default`
+
+组件内部提供 `default` 插槽，**插槽内容优先于 `text` 属性**。适合放置图标或富文本：
+
+```vue
+<Badge type="tip">
+  <VPIcon provider="iconify" name="carbon:warning" />
+  注意
+</Badge>
+```
+
+若不写插槽内容，则回退渲染 `text` 属性的值：
+
+```vue
+<!-- 等价于上面的写法 -->
+<Badge type="tip" text="注意" />
+```
+
+::: tip
+插槽内容会原样包裹在徽章内，若放入较长文本，建议改用自定义 `color` / `bgColor` 而非依赖 `text` 的截断样式。
+:::
 
 ## 示例
 

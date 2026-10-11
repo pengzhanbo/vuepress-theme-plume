@@ -7,7 +7,7 @@ permalink: /guide/embed/video/artplayer/
 
 ## 概述
 
-主题提供嵌入 自定义来源视频 的功能。
+主题提供嵌入自定义来源视频的功能。
 
 该功能由 [vuepress-plugin-md-power](../../config/plugins/markdown-power.md) 提供支持。
 

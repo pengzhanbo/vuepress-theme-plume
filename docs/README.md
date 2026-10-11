@@ -10,12 +10,20 @@ config:
     hero:
       name: Theme Plume
       tagline: VuePress Next Theme
-      text: 一个简约易用的，功能丰富的 vuepress 文档&博客 主题
+      text: 一个简约易用的，功能丰富的 vuepress 文档&博客主题
       actions:
         -
           theme: brand
           text: 快速开始 →
           link: /guide/intro/
+        -
+          theme: alt
+          text: 配置参考
+          link: /config/theme/
+        -
+          theme: alt
+          text: 案例站点
+          link: /demos/
         -
           theme: alt
           text: Github
@@ -38,11 +46,11 @@ config:
       -
         title: 多语言
         icon: twemoji:balance-scale
-        details: 内置 中文、英文等 7 种语言支持，还可以自定义添加更多的语言支持
+        details: 内置中文、英文等 7 种语言支持，还可以自定义添加更多的语言支持
       -
         title: 双色主题
         icon: twemoji:cityscape
-        details: 支持 浅色/深色 主题，包括代码高亮
+        details: 支持浅色/深色主题，包括代码高亮
       -
         title: 插件
         icon: twemoji:card-file-box
@@ -128,6 +136,8 @@ config:
 ![codecov](https://codecov.io/gh/pengzhanbo/vuepress-theme-plume/graph/badge.svg?token=W6KYBX7WO5){.no-view}
 
 :::
+
+<!-- markdownlint-disable heading-increment -->
 
 ### 使用
 

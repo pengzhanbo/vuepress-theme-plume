@@ -144,16 +144,6 @@ The corresponding directory structure and URL mapping are as follows:
   If you set multiple [locales](./theme.md#locales) in the site configuration,
   the _Select Language Menu_ will be displayed next to the repository button in the navigation bar.
 
-### selectLanguageAriaLabel
-
-- Type: `string`
-- Default: `''`
-- Details:
-
-  The `aria-label` attribute for the _Select language menu_.
-
-  It is primarily for site accessibility (a11y).
-
 ### homeText
 
 - Type: `string`
@@ -300,10 +290,10 @@ The corresponding directory structure and URL mapping are as follows:
 - Default: `'Edit this page'`
 - Details: The edit link text.
 
-### latestUpdatedText
+### lastUpdatedText
 
 - Type: `string`
-- Default: `'Latest Updated'`
+- Default: `'Last Updated'`
 - Details: The text for "Latest Updated".
 
 ### contributorsText

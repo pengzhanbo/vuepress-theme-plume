@@ -11,9 +11,9 @@ import VPCopyright from '@theme/VPCopyright.vue'
 
 ## 概述
 
-主题支持为文章添加 文章 **版权所有** 声明。
+主题支持为文章添加文章 **版权所有** 声明。
 
-文章通常来源于 原创、转载、翻译等。针对于不同的来源，添加版权声明信息能够更好地保护知识产权，
+文章通常来源于原创、转载、翻译等。针对于不同的来源，添加版权声明信息能够更好地保护知识产权，
 以及避免产生版权纠纷。
 
 ### Creative Commons
@@ -79,7 +79,7 @@ export default defineUserConfig({
 })
 ```
 
-您可以通过以下配置为您的站点的所有文章 声明自定义的版权许可证:
+您可以通过以下配置为您的站点的所有文章声明自定义的版权许可证:
 
 ```ts :no-line-numbers title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
@@ -142,7 +142,7 @@ type CopyrightOptions = boolean | string | CopyrightLicense | {
 }
 ```
 
-::: warning 全局配置只适用于 原创文章，对于非原创文章，您应该在文章 frontmatter 中配置版权信息。
+::: warning 全局配置只适用于原创文章，对于非原创文章，您应该在文章 frontmatter 中配置版权信息。
 :::
 
 ## 文章 frontmatter 配置

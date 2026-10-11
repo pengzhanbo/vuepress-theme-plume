@@ -3,14 +3,13 @@ title: Can I Use
 createTime: 2024/09/30 14:50:55
 icon: streamline:desktop-help
 permalink: /guide/markdown/caniuse/
-badge: 新
 ---
 
 ## 概述
 
-在编写文章时， 提供嵌入 [can-i-use](https://caniuse.com/) WEB feature 各平台支持说明 的功能。
+在编写文章时， 提供嵌入 [can-i-use](https://caniuse.com/) WEB feature 各平台支持说明的功能。
 
-方便在描述某个 WEB feature 时，能更直观的表述 该特性的支持程度。
+方便在描述某个 WEB feature 时，能更直观的表述该特性的支持程度。
 
 ## 配置
 
@@ -19,20 +18,20 @@ badge: 新
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    markdownP: {
+    markdown: {
       caniuse: true, // [!code ++]
     },
   })
 })
 ```
 
-在你的 文章 markdown文件中，使用以下格式：
+在你的文章 markdown文件中，使用以下格式：
 
 ``` md
 @[caniuse](feature)
 ```
 
-为了方便使用，主题提供了工具支持：[caniuse 特性搜索](../../../tools/v-caniuse.md)，你可以直接使用该工具
+为了方便使用，主题提供了工具支持：[caniuse 特性搜索](../../tools/v-caniuse.md)，你可以直接使用该工具
 帮助生成 markdown 代码。
 
 ## 语法
@@ -44,7 +43,7 @@ export default defineUserConfig({
 @[caniuse embed_type{browser_versions}](feature)
 ```
 
-:::info 使用主题提供的 caniuse 工具：[caniuse 特性搜索](../../../tools/v-caniuse.md) 帮助生成 markdown 代码。
+:::info 使用主题提供的 caniuse 工具：[caniuse 特性搜索](../../tools/v-caniuse.md) 帮助生成 markdown 代码。
 :::
 
 - `feature`
@@ -71,8 +70,8 @@ export default defineUserConfig({
 
   默认值为：`'embed'`
 
-  - `embed` 表示嵌入为 类似 `caniuse.com` 的版本兼容数据表格
-  - `baseline` 表示嵌入为 特性的基线支持情况。
+  - `embed` 表示嵌入为类似 `caniuse.com` 的版本兼容数据表格
+  - `baseline` 表示嵌入为特性的基线支持情况。
     - `Wildly available` 表示受到所有主流浏览器的广泛支持
     - `Newly available` 表示仅受到最新主流浏览器的支持
     - `limit available` 表示主流浏览器可能部分支持，但支持程度有限，或者不支持

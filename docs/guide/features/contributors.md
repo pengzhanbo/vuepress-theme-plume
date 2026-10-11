@@ -63,15 +63,15 @@ export default defineUserConfig({
 - 默认值：`'inline'`
 - 描述：
 
-  - `inline`：在文章页底部，与 最后更新时间，并列显示贡献者信息，该模式下仅显示 贡献者名称。
+  - `inline`：在文章页底部，与最后更新时间，并列显示贡献者信息，该模式下仅显示贡献者名称。
 
     ![contributors inline](/images/contributors-inline.png)
 
-  - `block`：在文章内容末尾插入贡献者信息，该模式下包含 贡献者名称、贡献者链接、贡献者头像。
+  - `block`：在文章内容末尾插入贡献者信息，该模式下包含贡献者名称、贡献者链接、贡献者头像。
     (如当前页面内容结尾所示)
 
     在 `block` 模式下，贡献者默认均会显示头像，即使您未填写头像地址。插件会从 `https://gravatar.com/`
-    根据 邮箱地址或用户名 生成头像地址。
+    根据邮箱地址或用户名生成头像地址。
 
 ```ts
 import { defineUserConfig } from 'vuepress'
@@ -257,7 +257,7 @@ export default defineUserConfig({
 - 默认值：`'https://github.com/:username.png'`
 - 描述：贡献者头像地址模式
 
-    `:username` 会被替换为贡献者的 用户名
+    `:username` 会被替换为贡献者的用户名
 
 ### transform(contributors)
 
@@ -275,7 +275,7 @@ export default defineUserConfig({
 
 - 描述：
 
-  贡献者转换函数。该函数需要返回新的 贡献者列表。
+  贡献者转换函数。该函数需要返回新的贡献者列表。
   你可以在此处补充转换逻辑，比如进行排序、去重、或者补全信息等。
 
 ## frontmatter

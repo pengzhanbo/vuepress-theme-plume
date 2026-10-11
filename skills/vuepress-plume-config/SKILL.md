@@ -330,7 +330,7 @@ Collections are the core concept for organizing content. Each collection points 
 The theme includes these plugins (configured in `plugins` field):
 
 | Plugin | Description |
-|--------|-------------|
+| -------- | ------------- |
 | `@vuepress/plugin-nprogress` | Page loading progress bar |
 | `@vuepress/plugin-photo-swipe` | Image preview |
 | `@vuepress/plugin-reading-time` | Article reading time |
@@ -484,6 +484,7 @@ llmstxt: {
 ```
 
 This generates:
+
 - `/llms.txt` - Brief overview with links
 - `/llms-full.txt` - Full content
 - Individual markdown files for each page

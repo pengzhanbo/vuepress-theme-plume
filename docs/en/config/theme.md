@@ -150,6 +150,12 @@ export default defineThemeConfig({
 
   Copy code configuration. Refer to [this documentation](../guide/code/v-copy-code.md).
 
+  ::: tip Enabled by default
+  This feature is **on by default** and works without any configuration (the source checks
+  `copyCode !== false`). Configure it only to customise behaviour, or set it to `false` to disable it
+  entirely.
+  :::
+
   ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
   :::
 
@@ -369,9 +375,9 @@ This ensures `[data-theme="dark"]` is applied before the page is rendered to avo
 Configure the blogger's profile, displayed in the right sidebar of the blog.
 
 ```ts title=".vuepress/plume.config.ts"
-import { definePlumeThemeConfig } from 'vuepress-theme-plume'
+import { defineThemeConfig } from 'vuepress-theme-plume'
 
-export default definePlumeThemeConfig({
+export default defineThemeConfig({
   profile: {
     avatar: '/avatar.png',
     name: 'Your Name',
@@ -442,9 +448,9 @@ Configure social account links, displayed in the profile area. Supports 30+ buil
 (e.g., `github`, `twitter`, `discord`, `weibo`, `bilibili`, `zhihu`, etc.), and also supports custom SVG icons.
 
 ```ts title=".vuepress/plume.config.ts"
-import { definePlumeThemeConfig } from 'vuepress-theme-plume'
+import { defineThemeConfig } from 'vuepress-theme-plume'
 
-export default definePlumeThemeConfig({
+export default defineThemeConfig({
   social: [
     { icon: 'github', link: 'https://github.com/your-username' },
     { icon: 'twitter', link: 'https://twitter.com/your-username' },
@@ -489,9 +495,9 @@ Controls which social links are also displayed in the navbar. Only social links 
 whose `icon` is in this list will be displayed on the right side of the navbar.
 
 ```ts title=".vuepress/plume.config.ts"
-import { definePlumeThemeConfig } from 'vuepress-theme-plume'
+import { defineThemeConfig } from 'vuepress-theme-plume'
 
-export default definePlumeThemeConfig({
+export default defineThemeConfig({
   social: [
     { icon: 'github', link: 'https://github.com/your-username' },
     { icon: 'twitter', link: 'https://twitter.com/your-username' },
@@ -504,8 +510,14 @@ export default definePlumeThemeConfig({
 ### navbar
 
 - **Type:** `NavItem[]`
-- **Default:** `[]`
+- **Default:** `[]` (but a runtime fallback applies, see below)
 - **Details:** Navbar configuration.
+
+  ::: tip An empty navbar is not an empty navbar
+  When `navbar` is empty, the theme injects a fallback with Home / Posts (or the first `post`
+  collection) / Tags / Archives, derived from the current collection (see
+  `theme/src/node/config/resolveThemeData.ts`). Pass an explicit array to fully override it.
+  :::
 
   To configure navbar elements, you can set it to a navbar array, where each element is a `string` or a `NavItem` object.
 
@@ -722,9 +734,9 @@ Whether to enable transition animations. Set to `false` to completely disable al
 Pass an object to control each type of animation separately.
 
 ```ts title=".vuepress/plume.config.ts"
-import { definePlumeThemeConfig } from 'vuepress-theme-plume'
+import { defineThemeConfig } from 'vuepress-theme-plume'
 
-export default definePlumeThemeConfig({
+export default defineThemeConfig({
   transition: {
     page: true,
     postList: true,
@@ -749,10 +761,13 @@ Whether to enable blog post list transition animations.
 
 ### appearance
 
-- **Type:** `'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip' | 'blinds-vertical' | 'blinds-horizontal' | 'soft-blur-fade' | 'diamond-reveal'`
+- **Type:** `boolean | 'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip' | 'blinds-vertical' | 'blinds-horizontal' | 'soft-blur-fade' | 'diamond-reveal'`
 - **Default:** `'fade'`
 
-Transition animation type for dark/light mode switching. Supports the following 9 animation effects:
+Transition animation for dark/light mode switching. Set it to `false` to disable **only this animation**
+without affecting `page` or `postList`.
+
+Supports the following 9 animation effects:
 
 - `fade`: Fade in/out (default)
 - `circle-clip`: Circular clip
@@ -776,9 +791,21 @@ Transition animation type for dark/light mode switching. Supports the following 
 
 ### footer
 
-- **Type:** `false | { message: string; copyright: string }`
-- **Default:** `false`
+- **Type:** `false | { message: string; copyright?: string }`
+- **Default:** `{ message: 'Powered by VuePress & vuepress-theme-plume' }`
 - **Details:** Footer configuration.
+
+  ::: warning The default is not "hidden"
+  Even without configuring `footer`, the theme renders a default footer linking to the VuePress and
+  theme websites (see the default above). To hide it completely, set it to `false` explicitly:
+
+  ```ts
+  theme: plumeTheme({
+    footer: false
+  })
+  ```
+
+  :::
 
 ### bulletin
 

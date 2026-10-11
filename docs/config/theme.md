@@ -149,6 +149,8 @@ export default defineThemeConfig({
 
   复制代码配置， 参考 [此文档](../guide/code/v-copy-code.md)
 
+  此功能默认 启用。
+
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
@@ -217,18 +219,17 @@ export default defineThemeConfig({
 - **默认值：** `filesystem`
 - **详情：**
 
-  是否启用 编译缓存，或配置缓存方式
+  是否启用编译缓存，或配置缓存方式
 
   此配置项用于解决 VuePress 启动速度慢的问题，在首次启动服务时，对编译结果进行缓存，二次启动时
   直接读取缓存，跳过编译，从而加快启动速度。
 
-  - `false`：禁用 缓存
+  - `false`：禁用缓存
   - `'memory'`：使用内存缓存，此方式可获得更快的启动速度，但随着项目文件数量增加，内存占用会增加，
     适合文章数量较少的项目使用
   - `'filesystem'`：使用文件系统缓存，此方式可获得相对快且稳定的启动速度，更适合内容多的项目使用
 
-  ::: warning
-  该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
 
   为了使缓存能够生效，您应该 **删除** `package.json` 中 `vuepress dev` 开发服务启动脚本中的 `--clean-cache` 参数。
   :::
@@ -255,7 +256,7 @@ export default defineThemeConfig({
 
 - **类型：** `boolean`
 - **默认值：** `true`
-- **详情：** 是否启用 编辑链接
+- **详情：** 是否启用编辑链接
 
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
@@ -346,7 +347,7 @@ interface LastUpdatedOptions {
 - **类型：** `boolean | 'dark' | 'force-dark`
 - **默认值：** `true`
 
-是否启用 深色模式。
+是否启用深色模式。
 
 - 如果该选项设置为 `true`，则默认主题将由用户的首选配色方案决定。
 - 如果该选项设置为 `dark`，则默认情况下主题将是深色的，除非用户手动切换它。
@@ -363,9 +364,9 @@ interface LastUpdatedOptions {
 配置博主个人资料，显示在博客右侧侧边栏。
 
 ```ts title=".vuepress/plume.config.ts"
-import { definePlumeThemeConfig } from 'vuepress-theme-plume'
+import { defineThemeConfig } from 'vuepress-theme-plume'
 
-export default definePlumeThemeConfig({
+export default defineThemeConfig({
   profile: {
     avatar: '/avatar.png',
     name: 'Your Name',
@@ -435,9 +436,9 @@ export default definePlumeThemeConfig({
 配置社交账号链接，显示在个人资料区域。支持 30+ 内置图标（如 `github`、`twitter`、`discord`、`weibo`、`bilibili`、`zhihu` 等），也支持自定义 SVG 图标。
 
 ```ts title=".vuepress/plume.config.ts"
-import { definePlumeThemeConfig } from 'vuepress-theme-plume'
+import { defineThemeConfig } from 'vuepress-theme-plume'
 
-export default definePlumeThemeConfig({
+export default defineThemeConfig({
   social: [
     { icon: 'github', link: 'https://github.com/your-username' },
     { icon: 'twitter', link: 'https://twitter.com/your-username' },
@@ -477,9 +478,9 @@ export default definePlumeThemeConfig({
 控制哪些社交链接同时显示在导航栏中。仅 `social` 中配置的且 `icon` 在此列表中的社交链接会显示在导航栏右侧。
 
 ```ts title=".vuepress/plume.config.ts"
-import { definePlumeThemeConfig } from 'vuepress-theme-plume'
+import { defineThemeConfig } from 'vuepress-theme-plume'
 
-export default definePlumeThemeConfig({
+export default defineThemeConfig({
   social: [
     { icon: 'github', link: 'https://github.com/your-username' },
     { icon: 'twitter', link: 'https://twitter.com/your-username' },
@@ -492,10 +493,14 @@ export default definePlumeThemeConfig({
 ### navbar
 
 - **类型：** `NavItem[]`
-- **默认值：** `[]`
+- **默认值：** `[]`（但仍有运行时兜底，见下文）
 - **详情：** 导航栏配置。
 
-  为了配置导航栏元素，你可以将其设置为 导航栏数组 ，其中的每个元素是 `string` 或 `NavItem` 对象
+  ::: tip 未配置时并非空导航栏
+  当 `navbar` 为空时，主题会按当前集合自动注入「首页 / 博客（或首个 post 集合）/ 标签 / 归档」四项兜底导航（见 `theme/src/node/config/resolveThemeData.ts`）。若想完全自定义导航栏，显式传入数组即可覆盖。
+  :::
+
+  为了配置导航栏元素，你可以将其设置为导航栏数组 ，其中的每个元素是 `string` 或 `NavItem` 对象
 
   - `NavItem` 对象应该有一个 text 字段和一个 link 字段，还有一个可选的 `activeMatch` 字段。
   - `string` 表示是一个页面文件路径，或者是一个页面的访问路径。
@@ -677,8 +682,8 @@ interface SidebarItem {
 
   是否显示侧边栏
 
-  - `false` 表示禁用 右侧边栏
-  - `true` 表示启用 右侧边栏
+  - `false` 表示禁用右侧边栏
+  - `true` 表示启用右侧边栏
   - `'left` 表示将有侧边栏移动到文章内容左侧，sidebar 右侧
 
   每个页面可以通过 [frontmatter aside](./frontmatter/basic.md#aside) 覆盖层级配置。
@@ -709,9 +714,9 @@ interface SidebarItem {
 是否启用过渡动画效果。设置为 `false` 可完全禁用所有过渡动画。传入对象可分别控制各类动画。
 
 ```ts title=".vuepress/plume.config.ts"
-import { definePlumeThemeConfig } from 'vuepress-theme-plume'
+import { defineThemeConfig } from 'vuepress-theme-plume'
 
-export default definePlumeThemeConfig({
+export default defineThemeConfig({
   transition: {
     page: true,
     postList: true,
@@ -736,10 +741,12 @@ export default definePlumeThemeConfig({
 
 ### appearance
 
-- 类型: `'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip' | 'blinds-vertical' | 'blinds-horizontal' | 'soft-blur-fade' | 'diamond-reveal'`
+- 类型: `boolean | 'fade' | 'circle-clip' | 'horizontal-clip' | 'vertical-clip' | 'skew-clip' | 'blinds-vertical' | 'blinds-horizontal' | 'soft-blur-fade' | 'diamond-reveal'`
 - 默认值: `'fade'`
 
-深色/浅色模式切换时的过渡动画类型。支持以下 9 种动画效果：
+深色/浅色模式切换时的过渡动画。设为 `false` 可**单独关闭**该动画（不影响 `page`、`postList`）。
+
+支持以下 9 种动画效果：
 
 - `fade`：淡入淡出（默认）
 - `circle-clip`：圆形裁剪
@@ -764,9 +771,20 @@ export default definePlumeThemeConfig({
 
 ### footer
 
-- **类型：** `false | { message: string; copyright: string }`
-- **默认值：** `false`
+- **类型：** `false | { message: string; copyright?: string }`
+- **默认值：** `{ message: 'Powered by VuePress & vuepress-theme-plume' }`
 - **详情：** 页脚配置。
+
+  ::: warning 默认并非「不显示」
+  即使不配置 `footer`，主题也会渲染一个指向 VuePress 与主题官网的默认页脚（内容见上方默认值）。若想彻底隐藏，必须显式设置为 `false`：
+
+  ```ts
+  theme: plumeTheme({
+    footer: false
+  })
+  ```
+
+  :::
 
 ### bulletin
 

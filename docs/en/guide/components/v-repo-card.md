@@ -49,6 +49,13 @@ The full repository name is `owner/repo`.
 
 ::::
 
+## Slots
+
+**This component provides no slots.** Repository information is fetched internally through the
+GitHub / Gitee API and rendered for you; the content is fully determined by `repo` and `provider`.
+
+To display custom content alongside repositories, build it with [`Card`](./v-card.md).
+
 ## Examples
 
 ### Single Card

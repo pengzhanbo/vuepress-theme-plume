@@ -13,6 +13,14 @@ In the VuePress ecosystem, the default theme `@vuepress/theme-default` manages t
 the `sidebar` configuration option. While retaining this classic configuration method,
 this theme also provides a more flexible collection-level sidebar configuration solution.
 
+::: tip This page is a configuration reference; see the guide for full usage
+This page lists the syntax and differences of the **two configuration entry points**
+(collection-level vs. global), which makes it a handy lookup.
+
+If you want to learn sidebars systematically — nested structures, groups, custom titles, icons,
+per-language sidebars, separators, etc. — read the **[Sidebar Guide](../guide/quick-start/sidebar.md)**.
+:::
+
 ## Collection-Level Sidebar Configuration
 
 Collections are the core concept for organizing series of documents in the theme.

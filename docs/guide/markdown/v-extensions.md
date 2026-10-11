@@ -40,7 +40,7 @@ tags:
 ```md
 [Markdown](/guide/markdown/basic.md)
 
-[Markdown](./basic.md)
+[Markdown](./v-basic.md)
 ```
 
 渲染为：
@@ -198,4 +198,4 @@ H~2~O
 
 人生自古谁无死，留取丹心照汗青[^脚注1]。
 
-[^脚注1]: 出自 宋·文天祥 **《过零丁洋》**
+[^脚注1]: 出自宋·文天祥 **《过零丁洋》**

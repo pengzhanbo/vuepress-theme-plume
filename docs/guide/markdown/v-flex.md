@@ -3,12 +3,11 @@ title: Flex 容器
 icon: material-symbols-light:flex-no-wrap
 createTime: 2025/05/16 17:56:39
 permalink: /guide/markdown/flex/
-badge: 新
 ---
 
 ## 概述
 
-Flex 弹性容器 `::: flex` 提供一种便捷的方式，在 markdown 中对 块级内容 应用 Flex 布局。
+Flex 弹性容器 `::: flex` 提供一种便捷的方式，在 markdown 中对块级内容应用 Flex 布局。
 
 ## 用法
 
@@ -24,8 +23,8 @@ Flex 弹性容器 `::: flex` 提供一种便捷的方式，在 markdown 中对 �
 
 ## 属性
 
-- 在 主轴 方向上，使用 `center` / `between` / `around` 指定对齐方式；
-- 在 交叉轴 方向上，使用 `start` / `center` / `end` 指定对齐方式；
+- 在主轴方向上，使用 `center` / `between` / `around` 指定对齐方式；
+- 在交叉轴方向上，使用 `start` / `center` / `end` 指定对齐方式；
 - 使用 `gap="20"` 指定间距；
 - 使用 `column` 指定主轴方向为垂直方向。
 

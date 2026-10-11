@@ -7,9 +7,9 @@ permalink: /guide/features/changelog/
 
 ## 概述
 
-主题支持为文章添加 文章变更历史，以便更好的了解您的文章修改历史。
+主题支持为文章添加文章变更历史，以便更好的了解您的文章修改历史。
 
-文章变更历史 通过 git 提交记录获取。
+文章变更历史通过 git 提交记录获取。
 
 该功能由 [@vuepress/plugin-git](https://ecosystem.vuejs.press/zh/plugins/development/git.html) 提供支持。
 

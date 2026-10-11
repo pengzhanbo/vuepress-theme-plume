@@ -13,7 +13,7 @@ search: false
 docs:
   -
     name: VuePress Plume
-    desc: 一个简约的，功能丰富的 vuepress 文档&博客 主题。
+    desc: 一个简约的，功能丰富的 vuepress 文档&博客主题。
     logo: /plume.png
     url: https://theme-plume.vuejs.press
     repo: https://github.com/pengzhanbo/vuepress-theme-plume
@@ -187,7 +187,7 @@ blog:
     preview: https://image.qihuang02.cn/file/1736003534894_yulantu.png
   -
     name: jiahao
-    desc: 去追寻便好 哪怕是须臾的光亮
+    desc: 去追寻便好，哪怕是须臾的光亮
     logo: https://s.jhdev.cn/head.png
     url: https://jhdev.cn/
     repo: https://github.com/oh-yey
@@ -306,7 +306,7 @@ blog:
 ---
 
 :::important
-你可以随时通过 ==PR== 添加你的 文档 或 博客 到这个页面。
+你可以随时通过 ==PR== 添加你的文档或博客到这个页面。
 
 站点预览图片请放到 `docs/.vuepress/public/images/demos` 目录下。推荐使用远程链接，以便可以随时更新它。
 

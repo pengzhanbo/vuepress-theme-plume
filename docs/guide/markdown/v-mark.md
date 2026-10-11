@@ -24,13 +24,13 @@ vuepress-theme-plume 是一个 ==简洁美观== 的 主题
 
 **输出：**
 
-vuepress-theme-plume 是一个 ==简洁美观== 的 主题
+vuepress-theme-plume 是一个 ==简洁美观== 的主题
 
 ### 配色
 
 不同颜色的马克笔通过 [Markdown 属性语法](./v-extensions.md#属性支持) 进行设置。
 
-在 标记语法 `==Mark==` 之后紧跟 `{.classname}`，可以为马克笔设置不同的颜色。
+在标记语法 `==Mark==` 之后紧跟 `{.classname}`，可以为马克笔设置不同的颜色。
 
 **输入：**
 

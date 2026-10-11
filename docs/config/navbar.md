@@ -52,7 +52,7 @@ export default defineThemeConfig({
 
 :::
 
-当开启了 多语言配置，则会生成对应语言的导航栏的默认配置：
+当开启了多语言配置，则会生成对应语言的导航栏的默认配置：
 
 ```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
@@ -87,7 +87,7 @@ export default defineUserConfig({
 })
 ```
 
-随着站点内容变得越来越丰富，如通过 集合 配置了 博客、笔记、文档、友情链接、 外部链接等等，
+随着站点内容变得越来越丰富，如通过集合配置了博客、笔记、文档、友情链接、 外部链接等等，
 默认生成的导航栏配置满足不了您的需求。
 
 这时候，您可以通过 `navbar` 字段来完全自定义导航栏，它将直接覆盖默认的导航栏配置。
@@ -229,7 +229,7 @@ export default defineUserConfig({
 - 当 `markdown.icon.provide` 为 `iconfont` 时，支持 [iconfont](https://www.iconfont.cn/) 图标
 - 当 `markdown.icon.provide` 为 `fontawesome` 时，支持 [fontawesome](https://fontawesome.com/) 图标
 
-`markdown.icon.provide` 为非 `iconify` 值时，可以在 图标名称前加上 `iconify` 前缀，强制使用 [iconify](https://iconify.design/) 图标。
+`markdown.icon.provide` 为非 `iconify` 值时，可以在图标名称前加上 `iconify` 前缀，强制使用 [iconify](https://iconify.design/) 图标。
 
 ```ts
 const item = { text: '首页', link: '/', icon: 'iconify carbon:home' }

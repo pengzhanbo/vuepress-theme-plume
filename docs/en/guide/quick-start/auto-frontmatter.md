@@ -262,6 +262,25 @@ You can also configure `permalink` as `'filepath'` to generate the permalink bas
 Please note, if your file path contains Chinese characters,
 the theme recommends installing `pinyin-pro` in your project to support converting Chinese to pinyin.
 
+::: warning Changing `permalink` changes the URL of every existing article
+The value of `autoFrontmatter.permalink` determines the **access path of already-generated articles**.
+After changing it, the URL of every article using an auto-generated link will change, and **previously
+published links, external references and search-engine-indexed addresses will break (404)**. This is
+not reversible.
+
+Be careful when changing it on a production site. If you only want to adjust the link of a few articles,
+specify `permalink` **manually** in that article's frontmatter to lock it — it takes precedence over the
+auto-generated link:
+
+```md
+---
+title: My Article
+permalink: /custom/my-article/
+---
+```
+
+:::
+
 ::: npm-to
 
 ```sh

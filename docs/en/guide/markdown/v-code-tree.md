@@ -3,9 +3,6 @@ title: Code Tree
 icon: stash:side-peek
 createTime: 2025/10/08 05:59:44
 permalink: /en/guide/markdown/code-tree/
-badge:
-  text: Changed
-  type: warning
 ---
 
 ## Overview

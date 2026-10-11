@@ -3,7 +3,6 @@ title: QR Code
 icon: uiw:qrcode
 createTime: 2025/12/05 10:37:43
 permalink: /en/guide/markdown/qrcode/
-badge: New
 ---
 
 @[qrcode logo="/plume.png" logo-size=0.25](https://github.com/pengzhanbo/vuepress-theme-plume)
@@ -185,7 +184,7 @@ If not specified, a more suitable value will be automatically calculated.
 
 ```md
 @[qrcode](.) <!-- `.` represents the current page address -->
-@[qrcode](./steps.md) <!-- Relative path -->
+@[qrcode](./v-steps.md) <!-- Relative path -->
 @[qrcode](/guide/markdown/qrcode.md) <!-- Absolute path -->
 ```
 
@@ -193,7 +192,7 @@ If not specified, a more suitable value will be automatically calculated.
 
 ::: flex
 @[qrcode](.)
-@[qrcode](./steps.md)
+@[qrcode](./v-steps.md)
 @[qrcode](/guide/markdown/qrcode.md)
 :::
 

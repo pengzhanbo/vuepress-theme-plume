@@ -72,7 +72,7 @@ export default defineUserConfig({
 
 ## 组件
 
-为进一步增强 文档站点 与 LLMs 的互动，你可以在文档站点中添加 `<PageContextMenu />` 组件。
+为进一步增强文档站点与 LLMs 的互动，你可以在文档站点中添加 `<PageContextMenu />` 组件。
 该组件不作为内置组件，而是主题额外的 `features` 实现，因此你需要手动引入它，
 并在合适的位置，通过 [组件插槽](../../guide/custom/slots.md) 添加到文档站点中：
 

@@ -284,7 +284,7 @@ interface IconOptions {
 
 ## Fontawesome
 
-[Fontawesome](https://fontawesome.com/) 提供了 免费 和 付费 的图标支持，付费图标需要进行订阅。
+[Fontawesome](https://fontawesome.com/) 提供了免费和 付费的图标支持，付费图标需要进行订阅。
 
 [查看 **Fontawesome** 官方文档](https://docs.fontawesome.com/web/setup/get-started){.read-more}
 

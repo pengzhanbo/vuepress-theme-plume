@@ -44,6 +44,32 @@ Custom badge border color.
 
 ::::
 
+## Slots
+
+### `default`
+
+The component provides a `default` slot whose **content takes precedence over the `text` prop**. Use
+it to place icons or rich content:
+
+```vue
+<Badge type="tip">
+  <VPIcon provider="iconify" name="carbon:warning" />
+  Note
+</Badge>
+```
+
+Without slot content, the component falls back to rendering the `text` prop:
+
+```vue
+<!-- equivalent to the above -->
+<Badge type="tip" text="Note" />
+```
+
+::: tip
+Slot content is wrapped as-is inside the badge. For long text, prefer custom `color` / `bgColor` over
+relying on truncated styles.
+:::
+
 ## Examples
 
 **Input:**

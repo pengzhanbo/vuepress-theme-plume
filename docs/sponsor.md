@@ -10,8 +10,10 @@ changelog: false
 search: false
 ---
 
+<!-- markdownlint-disable table-column-style -->
+
 :::important 作者的话
-`vuepress-theme-plume` 是一款基于 MIT协议 的完全开源且免费的 vuepress 主题。
+`vuepress-theme-plume` 是一款基于 MIT协议的完全开源且免费的 vuepress 主题。
 
 如果觉得主题还不错，欢迎通过 [Star](https://github.com/pengzhanbo/vuepress-theme-plume) 支持。
 

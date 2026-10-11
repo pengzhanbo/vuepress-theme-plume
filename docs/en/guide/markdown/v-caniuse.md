@@ -3,7 +3,6 @@ title: Can I Use
 createTime: 2025/10/08 14:50:55
 icon: streamline:desktop-help
 permalink: /en/guide/markdown/caniuse/
-badge: New
 ---
 
 ## Overview
@@ -19,7 +18,7 @@ This feature is disabled by default. You can enable it in the configuration file
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({
-    markdownP: {
+    markdown: {
       caniuse: true, // [!code ++]
     },
   })

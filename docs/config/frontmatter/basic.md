@@ -6,7 +6,7 @@ permalink: /config/frontmatter/basic/
 
 ## 概述
 
-通用 Frontmatter 配置，适用于 所有的文章。
+通用 Frontmatter 配置，适用于所有的文章。
 
 示例：
 
@@ -30,7 +30,7 @@ permalink: /config/frontmatter/basic/
 
   - `'home'`: 主页布局
   - `'doc'`: 文章页布局，包括左侧侧边栏、文章内容、右侧侧边栏、导航栏、评论等
-  - `'page'`: 仅包含导航栏 和 MD 文件内容，可以使用此布局方式自定义页面内容
+  - `'page'`: 仅包含导航栏和 MD 文件内容，可以使用此布局方式自定义页面内容
   - `'friends'`: 友链页布局
   - `'custom'`: 仅包含 MD 文件内容，可以使用此布局方式完全自定义页面内容
   - `false`: 等同于 `custom`
@@ -42,7 +42,7 @@ permalink: /config/frontmatter/basic/
 - 默认值： `''`
 - 详情：
 
-  自定义页面额外的 类名。
+  自定义页面额外的类名。
 
 ### title
 
@@ -52,13 +52,13 @@ permalink: /config/frontmatter/basic/
 
   文章标题。
 
-  主题会在文件创建时，自动填充 当前文件名作为 文章标题。
+  主题会在文件创建时，自动填充当前文件名作为文章标题。
 
 ### badge
 
 - 类型： `string | { text: string, type?: 'info' | 'tip' | 'warning' | 'danger' }`
 
-在文章标题右侧显示 徽章。
+在文章标题右侧显示徽章。
 
 ### createTime
 
@@ -68,7 +68,7 @@ permalink: /config/frontmatter/basic/
 
   文章创建时间。
 
-  主题会在文件创建时，自动填充 当前时间作为 文章创建时间。
+  主题会在文件创建时，自动填充当前时间作为文章创建时间。
 
 ### permalink
 
@@ -80,7 +80,7 @@ permalink: /config/frontmatter/basic/
 
   主题会在文件创建时:
 
-  - 博客类型的文章，自动填充 `/article/` + `nanoid 生成的 8 位随机字符串` 作为 文章永久链接
+  - 博客类型的文章，自动填充 `/article/` + `nanoid 生成的 8 位随机字符串` 作为文章永久链接
   - notes 目录下的文章，会根据 notes 的配置，自动填充  文章永久链接
 
 ### externalLinkIcon
@@ -89,7 +89,7 @@ permalink: /config/frontmatter/basic/
 - 默认值： `true`
 - 详情：
 
-  当前文章内的 外部链接是否显示 外部链接图标。
+  当前文章内的外部链接是否显示外部链接图标。
 
 ### backToTop
 
@@ -97,7 +97,7 @@ permalink: /config/frontmatter/basic/
 - 默认值： `true`
 - 详情：
 
-  当前文章是否 显示 回到顶部 的按钮。
+  当前文章是否显示回到顶部的按钮。
 
 ### comments
 
@@ -105,7 +105,7 @@ permalink: /config/frontmatter/basic/
 - 默认值： `true`
 - 详情：
 
-  当前文章是否 可评论。 仅在启用了评论功能的情况下生效。
+  当前文章是否可评论。 仅在启用了评论功能的情况下生效。
 
 ### aside
 
@@ -113,7 +113,7 @@ permalink: /config/frontmatter/basic/
 - 默认值： `true`
 - 详情：
 
-  当前文章是否 显示 右侧边栏。
+  当前文章是否显示右侧边栏。
 
   当设置为 `'left'` 时，右侧边栏将显示在左侧。
 
@@ -123,7 +123,7 @@ permalink: /config/frontmatter/basic/
 - 默认值： `true`
 - 详情：
 
-  当前文章是否 显示 导航栏。
+  当前文章是否显示导航栏。
 
 ### outline
 
@@ -140,7 +140,7 @@ permalink: /config/frontmatter/basic/
   `'deep'` 与 `[2, 6]` 相同，将显示从 `<h2>` 到 `<h6>` 的所有标题。
 
 ::: tip 小技巧
-在 markdown 内容的 标题后面，使用属性语法 `{data-outline="level"}` / `{outline="level"}`，
+在 markdown 内容的标题后面，使用属性语法 `{data-outline="level"}` / `{outline="level"}`，
 可以重新设置当前标题的后代标题的显示的最大级别。
 
 **例如**:
@@ -191,7 +191,7 @@ permalink: /config/frontmatter/basic/
 - 默认值： `true`
 - 详情：
 
-  当前文章是否 显示 阅读时长。
+  当前文章是否显示阅读时长。
 
 ### lastUpdated
 
@@ -199,7 +199,7 @@ permalink: /config/frontmatter/basic/
 - 默认值： `true`
 - 详情：
 
-  当前文章是否 显示 最后更新时间。 最后更新时间 根据 git 提交时间自动填充。
+  当前文章是否显示最后更新时间。 最后更新时间根据 git 提交时间自动填充。
 
 ### contributors
 
@@ -207,7 +207,7 @@ permalink: /config/frontmatter/basic/
 - 默认值： `true | string | string[]`
 - 详情：
 
-  当前文章是否 显示 贡献者。 贡献者 根据 git 提交者自动填充。
+  当前文章是否显示贡献者。 贡献者根据 git 提交者自动填充。
 
   如果您的文章来源于第三方， git 提交不能完整列出所有的作者，您可以在此处补充贡献者。
 
@@ -227,7 +227,7 @@ permalink: /config/frontmatter/basic/
 - 默认值： `false`
 - 详情：
 
-  当前文章是否 显示 版权信息。
+  当前文章是否显示版权信息。
 
   完整信息请查看 [copyright](../../guide/features/copyright.md)
 
@@ -237,14 +237,14 @@ permalink: /config/frontmatter/basic/
 - 默认值： `true`
 - 详情：
 
-  当前文章是否 显示 文章编辑 按钮。
+  当前文章是否显示文章编辑按钮。
 
 ### watermark
 
 - 类型： `boolean | WatermarkOptions`
 - 默认值： `undefined` 主题不启用水印，或不启用全局水印时，默认值为 `false`，启用全局水印则为 `true`。
 - 详情：
-  配置当前文章 水印。
+  配置当前文章水印。
 
   当类型为 boolean 时，表示是否启用水印。
 
@@ -258,4 +258,4 @@ permalink: /config/frontmatter/basic/
 - 默认值： `true`
 - 详情：
 
-  当前文章是否 显示 页脚信息。
+  当前文章是否显示页脚信息。

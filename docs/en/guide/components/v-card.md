@@ -11,6 +11,10 @@ Use the `<Card>` component to display cards within a page.
 
 Alternatively, the markdown [card container](../markdown/v-card.md) syntax can be used as a substitute for the `<Card>` component.
 
+::: tip
+This page covers the **Vue component usage** (`<Card />`). If you only need to place a few cards in Markdown, the [card container](../markdown/v-card.md) syntax is simpler and requires no component.
+:::
+
 ## Props
 
 :::: field-group

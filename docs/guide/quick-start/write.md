@@ -111,7 +111,7 @@ export default defineUserConfig({
 
 主题对 `docs` 目录中的文件夹命名采用以下规则：
 
-对于 `post` 类型的 collection：
+对于 `post` 类型的[集合](./collection.md)：
 
 - 文件夹名称作为文章的 **分类**
 - 支持多级目录，子目录作为父分类的子项

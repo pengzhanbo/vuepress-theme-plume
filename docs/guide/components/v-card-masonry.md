@@ -12,7 +12,7 @@ permalink: /guide/components/card-masonry/
 
 ::: details 什么是项 ？
 
-项 表示的是一个单独的内容，可以是图片、文字、视频等等。
+项表示的是一个单独的内容，可以是图片、文字、视频等等。
 
 - 从 markdown 的语法而言，独占一行的可以被认为是一个项。（该行的前后应该有空行）
 - 从 html 的结构而言，容器下的每一个子元素都会被认为是一个项。
@@ -54,6 +54,28 @@ permalink: /guide/components/card-masonry/
 :::
 
 ::::
+
+## Slots
+
+### `default`
+
+瀑布流通过 `default` 插槽接收子卡片。与 `CardGrid` 不同的是：**组件会自动把子元素分配到各列**，无需你手动分列。
+
+```vue
+<CardMasonry :cols="3">
+  <ImageCard v-for="item in photos" :key="item.src" v-bind="item" />
+</CardMasonry>
+```
+
+::: warning 子元素会被打散分配
+组件按顺序把子元素轮流放入各列，因此**子元素的顺序不等于视觉上的阅读顺序**（第 1、2、3 个元素可能分别在第 1、2、3 列）。
+
+若你需要严格的阅读顺序，请改用 [`CardGrid`](./v-card-grid.md)，它保持 DOM 顺序。
+:::
+
+::: tip 仅在客户端渲染
+瀑布流需要测量元素高度以计算分列，因此组件被包裹在 `ClientOnly` 中，**SSR 阶段不渲染**。这会影响首屏 HTML 中该区域的内容，请勿将关键内容只放在其中。
+:::
 
 ## Markdown 语法支持
 

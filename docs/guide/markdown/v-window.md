@@ -4,14 +4,11 @@ createTime: 2024/09/30 14:47:12
 icon: fxemoji:window
 permalink: /guide/markdown/window/
 outline: 2
-badge:
-  text: 变更
-  type: warning
 ---
 
 ## 概述
 
-有时候，你可能需要在 内容中补充一些 示例，但期望能与 其它内容 分隔开来呈现。
+有时候，你可能需要在内容中补充一些示例，但期望能与其它内容分隔开来呈现。
 主题支持在 Markdown 文件中添加示例窗口容器。
 
 ## 语法

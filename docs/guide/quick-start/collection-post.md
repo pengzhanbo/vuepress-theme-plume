@@ -166,7 +166,7 @@ dir: '/team/blog/' // 指向 docs/team/blog
 ### 文件过滤
 
 通过 `include` 和 `exclude` 配置过滤 Markdown 文件，
-使用 [picomatch ::quill:search::](https://chat.baidu.com/search?word=picomatch+%E7%9A%84+glob+pattern+%E8%A7%84%E5%88%99){.no-icon} 模式匹配：
+使用 [picomatch ::quill:search::](https://github.com/micromatch/picomatch#glob-features){.no-icon} 模式匹配：
 
 ::: code-tabs#config
 
@@ -887,9 +887,9 @@ excerpt: 自定义摘要内容
 
 ## 配置到站点首页
 
-主题提供了两种方式来设置 post 集合 的文章列表页 到站点主页，满足不同的需求场景：
+主题提供了两种方式来设置 post 集合的文章列表页到站点主页，满足不同的需求场景：
 
-- **方式一：配置 主页的 `pageLayout` 属性为 `posts`**
+- **方式一：配置主页的 `pageLayout` 属性为 `posts`**
 
 ```md title="docs/README.md"
 ---
@@ -910,9 +910,9 @@ collection: blog
 
 此配置会直接将页面应用 `posts` 布局，显示博客文章列表。
 
-这是将主页修改为 博客页的 最简单的方式，但缺点是 缺少灵活性。
+这是将主页修改为博客页的最简单的方式，但缺点是缺少灵活性。
 
-- **方式二：配置 主页的 `pageLayout` 属性为 `home`, 添加 `type: posts` 的首页区域类型**
+- **方式二：配置主页的 `pageLayout` 属性为 `home`, 添加 `type: posts` 的首页区域类型**
 
 ```md title="docs/README.md"
 ---
@@ -923,9 +923,9 @@ config:
 ---
 ```
 
-使用这种方式，您不仅可以在首页中添加 文章列表，还可以灵活的在页面的其他区域添加不同的内容。
+使用这种方式，您不仅可以在首页中添加文章列表，还可以灵活的在页面的其他区域添加不同的内容。
 
-比如，配置首屏为 `banner`，然后紧跟着 博客文章列表：
+比如，配置首屏为 `banner`，然后紧跟着博客文章列表：
 
 ```md title="docs/README.md"
 ---
@@ -940,7 +940,7 @@ config:
 
 当使用以上两种方式将首页配置为文章列表页后，由于主题默认依然会生成文章列表页，这导致存在了重复功能的页面。为此，您可能需要在集合配置中**关闭自动生成博客文章列表页**：
 
-（还可以重新修改 分类页/标签页/归档页的链接地址）
+（还可以重新修改分类页/标签页/归档页的链接地址）
 
 ```ts title=".vuepress/config.ts" twoslash
 import { defineUserConfig } from 'vuepress'

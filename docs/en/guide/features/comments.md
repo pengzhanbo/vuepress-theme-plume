@@ -55,6 +55,27 @@ Examples are forked from [@vuepress/plugin-comment](https://ecosystem.vuejs.pres
 following the [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE) license.
 :::
 
+### Provider limitations at a glance
+
+The constraints differ significantly between providers — check this table before choosing:
+
+| Provider | Backend required | Storage | Main limitations |
+| --- | --- | --- | --- |
+| **Giscus** | No | GitHub Discussions | Requires GitHub account login; may be unstable in mainland China; **content is publicly visible** |
+| **Waline** | Yes | Vercel (or self-hosted) | You must deploy and keep the server running; anonymous comments need configuration |
+| **Twikoo** | No | Tencent CloudBase | Depends on the Tencent Cloud environment; free quota is limited |
+| **Artalk** | Yes | SQLite / PostgreSQL / MySQL | You must deploy the server yourself |
+
+::: warning The comment feature must be enabled explicitly
+Comments are **disabled by default** and must be turned on via the `comment` field. Additionally:
+
+- `comment` is a **global-only** field — placing it inside `locales` is **silently ignored** (see
+  [Theme Configuration > locales](../../config/theme.md#locales))
+- Some providers (Waline, Artalk) have client scripts that are **not part of the theme's default
+  dependencies** and must be installed separately per their documentation
+- Comment behaviour on encrypted pages is undefined; do not rely on comments in encrypted articles
+:::
+
 ## Giscus
 
 Giscus is a comment system based on GitHub Discussions, easy to set up.
@@ -121,6 +142,9 @@ npm i @waline/client
 :::
 
 ### LeanCloud Setup (Database)
+
+::: warning LeanCloud International Edition is expected to discontinue its services on January 12, 2027, and is not recommended for use.
+:::
 
 ::: steps
 

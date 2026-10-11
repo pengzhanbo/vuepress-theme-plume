@@ -25,14 +25,14 @@ tags:
 
 内部和外部链接都会被特殊处理。
 
-主题默认对每个 md 文件自动生成一个新的 链接，并保存在对应的 md 文件的 frontmatter 的 `permalink` 中。
+主题默认对每个 md 文件自动生成一个新的链接，并保存在对应的 md 文件的 frontmatter 的 `permalink` 中。
 你可以随时修改它们。你也可以通过 `theme.autoFrontmatter` 选项来禁用这个功能，这时会恢复为 VuePress 的默认行为。
 
 ### 内部链接
 
 有三种方式来使用内部链接：
 
-- 使用 生成的 `permalink` 作为内部链接的目标。
+- 使用生成的 `permalink` 作为内部链接的目标。
 - 使用 md 文件的相对路径作为内部链接的目标。
 - 使用 md 文件的绝对路径作为内部链接的目标， 绝对路径 `/` 表示从 `${sourceDir}` 目录开始。
 
@@ -194,7 +194,7 @@ console.log('Hello, VitePress!')
 
 ## GitHub 风格的警报
 
-主题 同样支持以标注的方式渲染 [GitHub 风格的警报](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts)。它们和[自定义容器](#自定义容器)的渲染方式相同。
+主题同样支持以标注的方式渲染 [GitHub 风格的警报](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts)。它们和[自定义容器](#自定义容器)的渲染方式相同。
 
 **输入：**
 
@@ -234,7 +234,7 @@ console.log('Hello, VitePress!')
 
 ## 代码块中的语法高亮
 
-主题 使用 [Shiki](https://github.com/shikijs/shiki) 在 Markdown 代码块中使用彩色文本实现语法高亮。
+主题使用 [Shiki](https://github.com/shikijs/shiki) 在 Markdown 代码块中使用彩色文本实现语法高亮。
 Shiki 支持多种编程语言。需要做的就是将有效的语言别名附加到代码块的开头：
 
 **输入：**
@@ -469,7 +469,7 @@ export default {
 }
 ```
 
-## 代码块中 词高亮
+## 代码块中词高亮
 
 **输入：**
 
@@ -651,7 +651,7 @@ vuepress-theme-plume 是一个 ==简洁美观== 的 主题
 
 **输出：**
 
-vuepress-theme-plume 是一个 ==简洁美观== 的 主题
+vuepress-theme-plume 是一个 ==简洁美观== 的主题
 
 ## 上下角标
 
@@ -708,7 +708,7 @@ vuepress-theme-plume 是一个 ==简洁美观== 的 主题
 
 **为图片添加属性：**
 
-这将为图片添加 一个 名为 `full-width` 的 class 属性，以及一个 `width` 属性，值为 `100%`。
+这将为图片添加一个名为 `full-width` 的 class 属性，以及一个 `width` 属性，值为 `100%`。
 
 ```md
 ![alt text](/plume.png){.full-width width="100%"}
@@ -758,4 +758,4 @@ vuepress-theme-plume 是一个 ==简洁美观== 的 主题
 
 人生自古谁无死，留取丹心照汗青[^脚注1]。
 
-[^脚注1]: 出自 宋·文天祥 **《过零丁洋》**
+[^脚注1]: 出自宋·文天祥 **《过零丁洋》**

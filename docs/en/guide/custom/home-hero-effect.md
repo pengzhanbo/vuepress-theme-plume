@@ -181,7 +181,7 @@ config:
 
 ::: info
 To help users easily configure visually appealing and personalized backgrounds,
-the theme also provides a [Homepage Hero Tint Plate Configuration Tool](../../../tools/home-hero-tint-plate.md).
+the theme also provides a [Homepage Hero Tint Plate Configuration Tool](../../tools/home-hero-tint-plate.md).
 You can use this tool for visual configuration and generate configuration content that can be directly copied into your own project.
 :::
 

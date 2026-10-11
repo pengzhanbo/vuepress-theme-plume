@@ -45,7 +45,7 @@ export default defineUserConfig({
 
 - `id`: Code Sandbox ID
 - `title`: Code Sandbox 标题
-- `layout`: 代码预览布局 可选值： `Preview`， `Editor`， `Editor+Preview`
+- `layout`: 代码预览布局。可选值： `Preview`， `Editor`， `Editor+Preview`
 - `height`: 代码预览高度
 - `navbar`: 是否显示导航栏，默认为 true
 - `console`: 是否显示控制台，默认为 false

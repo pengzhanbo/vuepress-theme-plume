@@ -18,6 +18,7 @@ The goal of Markdown is to achieve「readability and writability」.
 <!-- more -->
 
 ## Overview
+
 The most emphasized aspect is its readability. A document written in Markdown should be directly publishable as plain text,
 and should not appear to be composed of tags or formatting instructions. Markdown syntax is influenced by several existing text-to-HTML formats,
 including [Setext][1], [atx][2], [Textile][3], [reStructuredText][4], [Grutatxt][5], and [EtText][6],
@@ -51,6 +52,7 @@ Block-level elements like `<div>`, `<table>`, `<pre>`, and `<p>` must be separat
 These tags cannot be indented with tabs or spaces. Markdown's parser intelligently avoids adding unnecessary `<p>` tags around block elements.
 
 For example, adding an HTML table in a Markdown file:
+
 ```md
 This is a regular paragraph.
 
@@ -139,9 +141,11 @@ Markdown supports two heading syntax styles: [Setext][1] and [atx][2].
 The Setext style uses underlines with `=` (for first-level headings) and `-` (for second-level headings), like:
 
 ```md
-# This is an H1
+This is an H1
+=============
 
-## This is an H2
+This is an H2
+-------------
 ```
 
 Any number of `=` or `-` characters can be used.
@@ -447,8 +451,16 @@ const a = 1
 
 You can create a horizontal rule by placing three or more asterisks, hyphens, or underscores on a line. No other content should be on the line. You can also add spaces between the characters. Any of the following will create a horizontal rule:
 
-```html
----(recommended) * * * *** ***** - - - ---------------------------------------
+```text
+***
+
+* * *
+
+*****
+
+- - -
+
+---------------------------------------
 ```
 
 ## Inline Elements
@@ -503,15 +515,15 @@ The link definition consists of:
 - The URL
 - An optional title in single quotes, double quotes, or parentheses
 
-These three link definitions are equivalent:
+These three link definitions are equivalent — they differ only in how the title is wrapped:
 
 ```md
 [foo]: http://example.com/  "Optional Title Here"
-[foo]: http://example.com/  "Optional Title Here"
-[foo]: http://example.com/  "Optional Title Here"
+[foo]: http://example.com/  'Optional Title Here'
+[foo]: http://example.com/  (Optional Title Here)
 ```
 
-**Note:** A known issue is that Markdown.pl 1.0.1 ignores single-quoted link titles.
+**Note:** Single-quoted and parenthesised titles have weaker support across parsers. Unless you have a specific need, prefer double quotes.
 
 URLs in link definitions can be enclosed in square brackets:
 
@@ -528,7 +540,7 @@ You can also place the title on a new line with indentation for better readabili
 Link identifiers are case-insensitive and can include letters, numbers, spaces, and punctuation. These two links are the same:
 
 ```md
-[link text][a]
+[link text][A]
 [link text][a]
 ```
 
@@ -746,7 +758,13 @@ Where `id` is the image reference name, defined like:
 [id]: url/to/image "Optional title attribute"
 ```
 
-Currently, Markdown doesn't support specifying image width and height. For that, use the regular `<img>` tag.
+Plain Markdown syntax has no way to specify image width and height. The theme provides an [attribute support](./v-attrs.md) extension that lets you add dimensions and other attributes to images via `attr=value`:
+
+```md
+![Alt text](/path/to/img.jpg){width=200}
+```
+
+Alternatively, you can write a regular `<img>` tag.
 
 ### Other Text Styles
 
@@ -814,19 +832,19 @@ Markdown supports escaping the following characters:
 
 ## Keyboard Shortcuts
 
-| Rendered Effect | Markdown Syntax | Shortcut Key |
-| --------------- | --------------- | ------------ |
-| **Bold**        | `**text**`      | Ctrl/⌘ + B   |
-| _Emphasize_     | `*text*`        | Ctrl/⌘ + I   |
+| Rendered Effect | Markdown Syntax | Shortcut Key        |
+| --------------- | --------------- | ------------------- |
+| **Bold**        | `**text**`      | Ctrl/⌘ + B          |
+| _Emphasize_     | `*text*`        | Ctrl/⌘ + I          |
 | `Inline Code`   | \`code\`        | Select then `` ` `` |
 
 ## Tables
 
-|     Center      |         Right Aligned | Left Aligned         |
-| :-------------: | ---------------------: | :------------------- |
-| Use `:-:`       | Use `-:`              | Use `:-`             |
-|       b         |      aaaaaaaaa        | aaaa                 |
-|       c         |           aaaa        | a                    |
+|  Center   | Right Aligned | Left Aligned |
+| :-------: | ------------: | :----------- |
+| Use `:-:` |      Use `-:` | Use `:-`     |
+|     b     |     aaaaaaaaa | aaaa         |
+|     c     |          aaaa | a            |
 
 [1]: http://docutils.sourceforge.net/mirror/setext.html
 [2]: http://www.aaronsw.com/2002/atx/

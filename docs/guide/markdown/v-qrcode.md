@@ -3,7 +3,6 @@ title: 二维码
 icon: uiw:qrcode
 createTime: 2025/12/05 10:37:43
 permalink: /guide/markdown/qrcode/
-badge: 新
 ---
 
 @[qrcode logo="/plume.png" logo-size=0.25](https://github.com/pengzhanbo/vuepress-theme-plume)
@@ -15,7 +14,7 @@ badge: 新
 文本可以是：
 
 - 远程可访问的链接地址
-- vuepress 站点内的 `.md` 文件路径 _（绝对路径 或相对路径 均支持）_
+- vuepress 站点内的 `.md` 文件路径 _（绝对路径或相对路径均支持）_
 - 任意普通文本 （避免过长的文本）
 
 ## 配置
@@ -36,7 +35,7 @@ export default defineUserConfig({
 
 ### 单行语法
 
-单行语法适用于 `text` 文本较短时，比如 链接 等。
+单行语法适用于 `text` 文本较短时，比如链接等。
 
 ```md
 <!-- 基础语法-->
@@ -47,7 +46,7 @@ export default defineUserConfig({
 
 ### 容器语法
 
-容器语法适用于 `text` 文本较长时，比如 段落，多行文本 等。
+容器语法适用于 `text` 文本较长时，比如段落，多行文本等。
 
 ```md
 ::: qrcode card title="xxx" align="center"
@@ -70,12 +69,12 @@ text
 @type `string`
 二维码 logo 图片路径。显示于二维码中心。
 
-仅支持 绝对路径。
+仅支持绝对路径。
 :::
 ::: field logoSize
 @type `number`
 @default `0.2`
-logo 相对于二维码 大小比例
+logo 相对于二维码大小比例
 :::
 ::: field title
 @type `string`
@@ -178,7 +177,7 @@ logo 相对于二维码 大小比例
 
 ```md
 @[qrcode](.) <!-- `.` 表示当前页面地址 -->
-@[qrcode](./steps.md) <!-- 相对路径 -->
+@[qrcode](./v-steps.md) <!-- 相对路径 -->
 @[qrcode](/guide/markdown/qrcode.md) <!-- 绝对路径 -->
 ```
 
@@ -186,7 +185,7 @@ logo 相对于二维码 大小比例
 
 ::: flex
 @[qrcode](.)
-@[qrcode](./steps.md)
+@[qrcode](./v-steps.md)
 @[qrcode](/guide/markdown/qrcode.md)
 :::
 

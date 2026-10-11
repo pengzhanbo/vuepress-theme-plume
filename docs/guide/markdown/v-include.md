@@ -10,7 +10,7 @@ outline: 2
 
 主题支持在 Markdown 文件中导入文件切片。
 
-导入文件 默认启用，你还可以通过配置来自定义行为。
+导入文件默认启用，你还可以通过配置来自定义行为。
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({

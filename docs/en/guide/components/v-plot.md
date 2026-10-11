@@ -12,6 +12,9 @@ Use the `<VPPlot>` component to display [plot text](../markdown/v-plot.md) with 
 This component is disabled by default and needs to be enabled in the theme configuration.
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {

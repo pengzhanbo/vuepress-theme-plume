@@ -179,7 +179,7 @@ npm 包名，为空则从 `repo` 中获取
 
 ### Slots
 
-`<NpmBadgeGroup />` 支持传入 多个 `<NpmBadge />` 组件。
+`<NpmBadgeGroup />` 支持传入多个 `<NpmBadge />` 组件。
 
 `<NpmBadgeGroup />` 声明的 `Props` 将被注入到 `<NpmBadge />` 组件中。通过这种方式来实现和简化徽章组合。
 

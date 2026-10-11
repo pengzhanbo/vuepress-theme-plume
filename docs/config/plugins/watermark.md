@@ -6,7 +6,7 @@ permalink: /config/plugins/watermark/
 
 ## 概述
 
-主题内置的 水印插件，为 全站，或者 单个页面 添加水印。
+主题内置的水印插件，为全站，或者单个页面添加水印。
 
 关联插件：[@vuepress/plugin-watermark](https://ecosystem.vuejs.press/zh/plugins/features/watermark.html)
 

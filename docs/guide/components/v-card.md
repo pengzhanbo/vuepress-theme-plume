@@ -11,6 +11,10 @@ permalink: /guide/components/card/
 
 也可以使用 markdown [卡片容器](../markdown/v-card.md) 语法，替代 `<Card>` 组件。
 
+::: tip
+本页讲的是 **Vue 组件用法**（`<Card />`）。若你只需要在 Markdown 里快速放几张卡片，用 [卡片容器](../markdown/v-card.md) 语法更简洁，无需写组件。
+:::
+
 ## Props
 
 :::: field-group
@@ -24,7 +28,7 @@ permalink: /guide/components/card/
 ::: field icon
 @type `string | { svg: string }`
 @default `''`
-显示在标题左侧的图标，支持 iconify 所有图标，也可以使用 图片链接
+显示在标题左侧的图标，支持 iconify 所有图标，也可以使用图片链接
 :::
 
 ::::
@@ -67,6 +71,6 @@ permalink: /guide/components/card/
 </Card>
 
 :::info
-在插槽内也可以使用 markdown 语法，但需要注意的是，markdown 语法需要与 标签之间间隔一行。
+在插槽内也可以使用 markdown 语法，但需要注意的是，markdown 语法需要与标签之间间隔一行。
 否则将被识别为普通文本。
 :::

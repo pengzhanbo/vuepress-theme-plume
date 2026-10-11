@@ -329,7 +329,7 @@ mkdir hello && cd hello  # [!code warning]
 
 :::
 
-## 代码块中 词高亮
+## 代码块中词高亮
 
 **输入：**
 
@@ -388,11 +388,11 @@ mkdir hello && cd hello  # [!code word:hello]
 
 :::
 
-## 代码块中的 空白符
+## 代码块中的空白符
 
 将空白字符（Tab 和空格）渲染为可见状态。
 
-在 代码块 后面添加 `:whitespace`。
+在代码块后面添加 `:whitespace`。
 
 <!-- @include: ../../snippet/whitespace.snippet.md -->
 
@@ -414,7 +414,7 @@ export default defineUserConfig({
 
 有时候，代码块会很长，对于阅读其它部分的内容时，会显得很麻烦，影响阅读体验，这时候可以折叠代码块。
 
-在 代码块 后面添加 `:collapsed-lines`，即可折叠代码块，默认从第 15 行开始折叠。
+在代码块后面添加 `:collapsed-lines`，即可折叠代码块，默认从第 15 行开始折叠。
 
 **输入：**
 
@@ -558,7 +558,7 @@ export default defineUserConfig({
 
 全局启用时，可以使用 `:no-collapsed-lines` 来单独为某一代码块禁用 `collapsed-lines` 功能。
 
-## 代码块中的 缩进引导线
+## 代码块中的缩进引导线
 
 此功能默认不启用，需要在 `codeHighlighter` 中全局启用 `renderIndentGuides` 功能。
 
@@ -574,7 +574,7 @@ export default defineUserConfig({
 
 正如上方的代码块，启用后，会为代码块添加缩进引导线。
 
-## 代码块中的 颜色括号
+## 代码块中的颜色括号
 
 此功能默认不启用，需要在 `codeHighlighter` 中全局启用 `colorizedBrackets` 功能。
 

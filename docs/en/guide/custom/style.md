@@ -92,5 +92,5 @@ Below are some predefined variables. For the complete list, please refer to [var
 ```
 
 ::: tip
-The theme provides a [Theme Color Tool](../../../tools/custom-theme.md) that you can use to create custom colors.
+The theme provides a [Theme Color Tool](../../tools/custom-theme.md) that you can use to create custom colors.
 :::

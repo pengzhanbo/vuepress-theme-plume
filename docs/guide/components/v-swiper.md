@@ -7,7 +7,7 @@ permalink: /guide/components/swiper/
 
 ## 概述
 
-使用 `<Swiper>` 组件在 页面中显示轮播图片。
+使用 `<Swiper>` 组件在页面中显示轮播图片。
 
 ## 使用
 
@@ -66,6 +66,22 @@ if (!__VUEPRESS_SSR__) {
 | swipe             | `boolean`                                                                       | `true`     | 是否开启手势滑动                                                                    |
 
 更多 props 请参考 [Swiper 文档](https://swiperjs.com/swiper-api#parameters)
+
+## Slots
+
+**该组件不提供具名插槽。** 轮播项通过 `items` 属性传入，每个项可以是图片地址，或包含 `link`、`href`、`alt` 的对象：
+
+```vue
+<Swiper :items="[
+  '/images/slide-1.png',
+  { link: '/images/slide-2.png', href: 'https://example.com', alt: '点击跳转' },
+]"
+/>
+```
+
+::: tip
+每项的 `link` 是**图片地址**，`href` 才是**点击跳转的目标** —— 两者含义不同，容易混淆。
+:::
 
 ## 参考示例
 

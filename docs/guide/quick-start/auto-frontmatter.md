@@ -7,7 +7,7 @@ permalink: /guide/auto-frontmatter/
 
 ## 自动生成 frontmatter
 
-主题 自动为每个 Markdown 文件生成 frontmatter。
+主题自动为每个 Markdown 文件生成 frontmatter。
 
 ::: details 什么是 frontmatter ?
 Frontmatter（前言）是在 Markdown 文件最开头部分使用 YAML 格式编写的元数据区块。
@@ -143,7 +143,7 @@ export default defineThemeConfig({
 使用 `transform(data, context, locale)` 配置自定义处理逻辑，`data` 为 frontmatter 数据，`context` 为文件上下文，`locale` 为当前语言路径。
 
 - `transform()` 也可以是异步函数，返回 Promise。
-- `transform()` 适用于 全局配置 和 集合配置 中。
+- `transform()` 适用于全局配置和 集合配置中。
 
 ::: code-tabs#config
 
@@ -260,6 +260,20 @@ interface AutoFrontmatterOptions {
 请注意，如果您的文件路径中，包含中文，主题建议在您的项目中安装 `pinyin-pro` ，
 以支持将中文转换为拼音。
 
+::: warning 修改 `permalink` 会导致已有文章的访问路径全部变化
+`autoFrontmatter.permalink` 的取值决定了**已生成文章的访问路径**。修改该配置后，所有使用自动生成链接的文章 URL 都会变化，**已发布的旧链接、外部引用与搜索引擎收录的地址会直接失效（404）**，且这一过程不可逆。
+
+生产站点请谨慎修改。若只想调整少数几篇文章的链接，可以在该文章的 frontmatter 中**手动指定** `permalink` 来锁定，它会优先于自动生成的链接：
+
+```md
+---
+title: 我的文章
+permalink: /custom/my-article/
+---
+```
+
+:::
+
 ::: npm-to
 
 ```sh
@@ -319,7 +333,7 @@ permalink: /blog/dou-cheng/
 
 :::
 
-您应该已经发现 示例中的 `都城.md` 文件的 permalink 为 `/blog/dou-cheng/` ,这显然是错误的，这是因为 `pinyin-pro`
+您应该已经发现示例中的 `都城.md` 文件的 permalink 为 `/blog/dou-cheng/` ,这显然是错误的，这是因为 `pinyin-pro`
 默认的词库对于多音字并不能精确的识别，如果您需要更为精确的转换结果，可以手动安装 `@pinyin-pro/data`，
 主题为自动加载该词库，以提高精度。
 

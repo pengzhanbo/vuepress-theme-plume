@@ -5,7 +5,7 @@ createTime: 2025/07/03 20:46:17
 permalink: /guide/features/image-preview/
 ---
 
-在主题中，图片默认支持点击后放大预览。通过查找 文档内容中的图片，形成图片预览列表。
+在主题中，图片默认支持点击后放大预览。通过查找文档内容中的图片，形成图片预览列表。
 
 该功能由 [@vuepress/plugin-photo-swipe](https://ecosystem.vuejs.press/zh/plugins/features/photo-swipe.html) 插件提供支持。
 

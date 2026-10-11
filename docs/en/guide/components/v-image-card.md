@@ -61,6 +61,14 @@ Whether to center the image when its width is less than the screen width.
 
 ::::
 
+## Slots
+
+**This component provides no slots.** All content is passed through props (`image`, `title`, `author`,
+`date`, `description`, `href`).
+
+If you need custom content inside an image card, use [`Card`](./v-card.md) or
+[`LinkCard`](./v-link-card.md) and build it inside their slots.
+
 ## Examples
 
 **Input:**

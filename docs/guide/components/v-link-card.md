@@ -22,7 +22,7 @@ permalink: /guide/components/link-card/
 ::: field icon
 @type `string | { svg: string }`
 @default `''`
-显示在标题左侧的图标，支持 [markdown.icon](../features/icon.md) 配置的提供商的图标，也可以使用 图片链接
+显示在标题左侧的图标，支持 [markdown.icon](../features/icon.md) 配置的提供商的图标，也可以使用图片链接
 :::
 
 ::: field href
@@ -108,6 +108,6 @@ permalink: /guide/components/link-card/
 </LinkCard>
 
 :::info
-在插槽内也可以使用 markdown 语法，但需要注意的是，markdown 语法需要与 标签之间间隔一行。
+在插槽内也可以使用 markdown 语法，但需要注意的是，markdown 语法需要与标签之间间隔一行。
 否则将被识别为普通文本。
 :::

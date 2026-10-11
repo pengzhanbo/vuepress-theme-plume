@@ -7,9 +7,9 @@ permalink: /guide/markdown/npm-to/
 
 ## 概述
 
-npmTo 容器用于将 npm 命令行转换为 `pnpm / yarn / deno / bun` 的命令行，并它们作为 代码块组呈现在页面。
+npmTo 容器用于将 npm 命令行转换为 `pnpm / yarn / deno / bun` 的命令行，并它们作为代码块组呈现在页面。
 
-在 `::: npm-to` 容器中，只需要写 一次 npm 命令 代码块即可。
+在 `::: npm-to` 容器中，只需要写一次 npm 命令代码块即可。
 
 ::: details 为什么需要 npmTo 容器 ？
 在我编写文档时，常常需要提供 `pnpm / yarn / npm` 等不同运行环境的命令，需要写多个代码块并包装在 `::: code-tabs`
@@ -27,7 +27,7 @@ npm install -D vuepress vuepress-theme-plume
 :::
 ````
 
-将 包含 `npm` 命令行的代码块，包裹在 `::: npm-to` 容器中即可。
+将包含 `npm` 命令行的代码块，包裹在 `::: npm-to` 容器中即可。
 
 ::: warning npm-to 容器仅支持存在单个代码块，不能包含其他内容
 :::
@@ -61,7 +61,7 @@ npm install -D vuepress vuepress-theme-plume
 
 :::
 
-还可以控制 代码块组中的代码块的显示顺序，如下所示：
+还可以控制代码块组中的代码块的显示顺序，如下所示：
 
 **输入：**
 

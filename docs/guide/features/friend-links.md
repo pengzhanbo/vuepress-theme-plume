@@ -9,9 +9,9 @@ permalink: /guide/friend-links/
 
 友情链接功能允许您在博客中展示其他站点或博主的链接，便于读者发现更多优质内容。支持通过 frontmatter 配置友链页面的展示样式和链接列表。
 
-友情链接页 不会自动生成，但你可以根据需要，创建它。
+友情链接页不会自动生成，但你可以根据需要，创建它。
 
-在你的 `{sourceDir}/` 目录下，创建 任意 `*.md` 文件，比如 `friends.md` 文件。
+在你的 `{sourceDir}/` 目录下，创建任意 `*.md` 文件，比如 `friends.md` 文件。
 然后在这个文件中，通过 `frontmatter` 配置它。
 
 ```md title="friends.md"
@@ -38,10 +38,14 @@ list:
 自定义内容 <!-- markdown 内容 会插入到 友情链接页中 -->
 ```
 
-主题会根据 配置信息 生成友情链接页。
+主题会根据配置信息生成友情链接页。
 
-你需要自行将 友情链接页 的入口链接 配置到 `navbar` 的合适的位置中。
+你需要自行将友情链接页的入口链接配置到 `navbar` 的合适的位置中。
 
 ### 配置
 
 查看 [文档](../../config/frontmatter/friend.md) 更多配置信息。
+
+::: tip 完整字段说明
+`list` 支持的字段（`name`、`link`、`avatar`、`desc`）以及 `cols`、`contentPosition` 等布局选项，见 [友情链接 frontmatter 配置](../../config/frontmatter/friend.md)。
+:::

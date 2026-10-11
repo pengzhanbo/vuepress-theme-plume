@@ -35,3 +35,6 @@ jobs:
         run: |
           pnpm run lint:check
           pnpm run lint:css
+
+      - name: Markdown linter
+        run: pnpm run lint:md

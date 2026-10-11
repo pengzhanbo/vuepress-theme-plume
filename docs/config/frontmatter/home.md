@@ -6,7 +6,7 @@ permalink: /config/frontmatter/home/
 
 ## 概述
 
-仅适用于 首页。在 `{sourceDir}/README.md` 中进行配置。
+仅适用于首页。在 `{sourceDir}/README.md` 中进行配置。
 
 示例：
 
@@ -26,7 +26,7 @@ config:
 - 类型： `boolean`
 - 详情：
 
-  声明是否为 首页。
+  声明是否为首页。
 
   已弃用，请使用 `pageLayout: 'home'` 代替。
 
@@ -35,13 +35,13 @@ config:
 - 类型：`'home'`
 - 详情：
 
-  声明当前页面为 首页。
+  声明当前页面为首页。
 
 ### config
 
 - 类型： `PlumeHomeConfig[]`
 
-定义 首页 区域
+定义首页区域
 
 ```ts
 interface PlumeHomeConfigBase {

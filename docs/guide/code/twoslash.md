@@ -18,22 +18,22 @@ outline: [2, 4]
 :::
 
 ::: warning
-`twoslash` 是一个比较耗时的功能，由于它需要对代码进行类型编译，如果代码引入的包 比较大，会花费较长时间。
+`twoslash` 是一个比较耗时的功能，由于它需要对代码进行类型编译，如果代码引入的包比较大，会花费较长时间。
 
 特别的，由于 vuepress 启动时，会预编译所有的 markdown 文件，因此它会直接影响 vuepress 的启动时间，
-如果 包含了比较多的 `twoslash` 代码块，这可能会使 vuepress 启动时间变得很长。
+如果包含了比较多的 `twoslash` 代码块，这可能会使 vuepress 启动时间变得很长。
 
 比如，在未使用 `twoslash` 时，vuepress 的启动时间区间大约在 `300ms ~ 1000ms` 之间，而在使用 `twoslash` 后，
 可能某一个 `twoslash` 的代码块编译耗时就需要额外再等待 `500ms` 以上。
 
-但不必担心 markdown 文件热更新时的编译耗时，主题针对 代码高亮编译 耗时做了优化，即使 单个 markdown 文件
-中包含多个 代码块，主题也仅会对 __有变更的代码块__ 进行编译，因此热更新的速度依然非常快。
+但不必担心 markdown 文件热更新时的编译耗时，主题针对代码高亮编译耗时做了优化，即使单个 markdown 文件
+中包含多个代码块，主题也仅会对 __有变更的代码块__ 进行编译，因此热更新的速度依然非常快。
 :::
 
 [twoslash](https://twoslash.netlify.app/) 是一种 `javascript` 和 `typescript` 标记语言。
 你可以编写一个代码示例来描述整个 `javascript` 项目。
 
-`twoslash` 将 __双斜杠注释__ (`//`) 视为 代码示例的预处理器。
+`twoslash` 将 __双斜杠注释__ (`//`) 视为代码示例的预处理器。
 
 `twoslash` 使用与文本编辑器相同的编译器 API 来提供类型驱动的悬停信息、准确的错误和类型标注。
 
@@ -71,7 +71,7 @@ npm i @vuepress/shiki-twoslash
 
 :::
 
-在 主题配置中，启用 `twoslash` 选项。
+在主题配置中，启用 `twoslash` 选项。
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
@@ -105,7 +105,7 @@ npm i -D @types/express
 
 :::
 
-然后，可以在 代码块中使用 `express` 的类型，如下所示：
+然后，可以在代码块中使用 `express` 的类型，如下所示：
 
 ```` md
 ```ts twoslash
@@ -117,7 +117,7 @@ const app = express()
 
 ### 导入本地类型文件
 
-对于导入本地类型文件，由于代码块中的代码在编译时，并不容易确定代码的真实路径，我们很难直观的在 代码块中通过
+对于导入本地类型文件，由于代码块中的代码在编译时，并不容易确定代码的真实路径，我们很难直观的在代码块中通过
 __相对路径__ 导入类型文件。
 
 #### 从 `tsconfig.json` 中读取路径映射
@@ -137,7 +137,7 @@ __相对路径__ 导入类型文件。
 }
 ```
 
-你可以直接在 代码块中使用 `@/` 开头的路径，导入 `src` 目录下的类型文件，如下所示：
+你可以直接在代码块中使用 `@/` 开头的路径，导入 `src` 目录下的类型文件，如下所示：
 
 ````md
 ```ts twoslash
@@ -172,7 +172,7 @@ export default defineUserConfig({
 })
 ```
 
-你可以直接在 代码块中使用 `@/` 开头的路径，导入 `src` 目录下的类型文件，如下所示：
+你可以直接在代码块中使用 `@/` 开头的路径，导入 `src` 目录下的类型文件，如下所示：
 
 ````md
 ```ts twoslash
@@ -183,7 +183,7 @@ const foo: Foo = 1
 ````
 
 ::: important
-使用 `plugins.shiki.twoslash.compilerOptions` 可以更灵活的配置 类型编译，你可以在这里修改 `baseUrl` 等配置选项。
+使用 `codeHighlighter.twoslash.compilerOptions` 可以更灵活的配置类型编译，你可以在这里修改 `baseUrl` 等配置选项。
 
 [参考 CompilerOptions](https://www.typescriptlang.org/tsconfig/#compilerOptions)
 
@@ -192,10 +192,10 @@ const foo: Foo = 1
 
 ## 使用
 
-::: warning `twoslash` 仅支持 `typescript` 和 `vue` 的 代码块。
+::: warning `twoslash` 仅支持 `typescript` 和 `vue` 的代码块。
 :::
 
-启用该功能后，你只需要在 原有的 markdown 代码块语法中，在代码语言声明后添加 `twoslash` 关键词即可：
+启用该功能后，你只需要在原有的 markdown 代码块语法中，在代码语言声明后添加 `twoslash` 关键词即可：
 
 ````md{1}
 ```ts twoslash
@@ -637,7 +637,7 @@ str = 'Hello'
 你需要在 `@errors` 后面，声明对应的 `typescript` 错误码。使用空格分隔多个错误代码。
 
 ::: note
-如果你不知道应该添加哪个 错误码，你可以先尝试直接编写好代码，然后等待编译失败，
+如果你不知道应该添加哪个错误码，你可以先尝试直接编写好代码，然后等待编译失败，
 你应该能够在控制台中查看到相关的错误信息，然后在错误信息的 `description` 中找到对应的错误码。
 然后再将错误码添加到 `@errors` 中。
 

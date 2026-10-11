@@ -54,7 +54,7 @@ permalink: /guide/collection/
 
   将 `dir` 配置项指向 `blog` 目录
 
-  ::: code-tabs#config：
+  ::: code-tabs#config
 
   @tab .vuepress/config.ts
 

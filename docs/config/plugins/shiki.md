@@ -10,7 +10,7 @@ permalink: /config/plugins/code-highlight/
 
 关联插件：[@vuepress/plugin-shiki](https://ecosystem.vuejs.press/zh/plugins/markdown/shiki.html)
 
-主题 使用 [Shiki](https://github.com/shikijs/shiki) 在 Markdown 代码块中使用彩色文本实现语法高亮。
+主题使用 [Shiki](https://github.com/shikijs/shiki) 在 Markdown 代码块中使用彩色文本实现语法高亮。
 Shiki 支持多种编程语言。
 
 在 Shiki 的代码仓库中，可以找到 [合法的编程语言列表](https://shiki.style/languages) 。
@@ -58,9 +58,9 @@ export default defineUserConfig({
 - 类型: `{ light: string, dark: string }`
 - 默认值: `{ light: 'vitesse-light', dark: 'vitesse-dark' }`
 
-代码高亮主题，支持 浅色/暗色 双主题。
+代码高亮主题，支持浅色/暗色双主题。
 
-可在 支持的 [主题列表](https://shiki.style/themes) 中选择你喜欢的主题。
+可在支持的 [主题列表](https://shiki.style/themes) 中选择你喜欢的主题。
 
 ### langs
 
@@ -95,7 +95,7 @@ export default defineUserConfig({
 - 类型: `boolean | ShikiTwoslashOptions`
 - 默认值: `false`
 
-是否启用 对 `typescript` 和 `vue` 语言的 类型提示 支持。
+是否启用对 `typescript` 和 `vue` 语言的类型提示支持。
 
 ### whitespace
 

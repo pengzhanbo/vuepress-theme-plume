@@ -7,7 +7,7 @@ permalink: /guide/embed/video/bilibili/
 
 ## 概述
 
-主题提供了 嵌入 Bilibili 视频 的功能。
+主题提供了嵌入 Bilibili 视频的功能。
 
 该功能由 [vuepress-plugin-md-power](../../config/plugins/markdown-power.md) 提供支持。
 
@@ -33,7 +33,7 @@ export default defineUserConfig({
 @[bilibili](bvid)
 ```
 
-带 分P 的视频，在 `bilibili` 后跟随 `p1`、`p2`、`p3` 等选项
+带分P 的视频，在 `bilibili` 后跟随 `p1`、`p2`、`p3` 等选项
 
 ```md
 @[bilibili p1](aid cid)

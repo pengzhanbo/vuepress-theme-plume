@@ -169,7 +169,7 @@ dir: '/team/blog/' // Points to docs/team/blog
 ### File Filtering
 
 Filter Markdown files using `include` and `exclude` configurations with
-[picomatch ::quill:search::](https://chat.baidu.com/search?word=picomatch+glob+pattern){.no-icon} pattern matching:
+[picomatch ::quill:search::](https://github.com/micromatch/picomatch#glob-features){.no-icon} pattern matching:
 
 ::: code-tabs#config
 

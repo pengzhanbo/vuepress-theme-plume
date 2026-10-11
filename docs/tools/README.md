@@ -6,7 +6,7 @@ permalink: /tools/
 
 ## 概述
 
-主题工具包 旨在帮助用户在使用本主题提供的一些功能时，降低其使用门槛。
+主题工具包旨在帮助用户在使用本主题提供的一些功能时，降低其使用门槛。
 
 ## 工具列表
 
@@ -33,7 +33,7 @@ permalink: /tools/
 </LinkCard>
 
 <LinkCard title="文字转 SVG" href="https://text-to-svg.tool.tokyo/zh">
-将文本转为 SVG 格式，适合用于生成 艺术字、 LOGO 等，可附带动画效果。
+将文本转为 SVG 格式，适合用于生成艺术字、 LOGO 等，可附带动画效果。
 </LinkCard>
 
 <LinkCard title="CSS 变量编辑器 （Chrome 浏览器插件）" href="https://www.cssvariables.com/">

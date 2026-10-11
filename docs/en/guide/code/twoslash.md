@@ -184,7 +184,7 @@ const foo: Foo = 1
 ````
 
 ::: important
-Using `plugins.shiki.twoslash.compilerOptions` allows more flexible configuration of type compilation.
+Using `codeHighlighter.twoslash.compilerOptions` allows more flexible configuration of type compilation.
 You can modify `baseUrl` and other configuration options here.
 
 [Refer to CompilerOptions](https://www.typescriptlang.org/tsconfig/#compilerOptions)

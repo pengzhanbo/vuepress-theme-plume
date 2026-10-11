@@ -19,12 +19,12 @@ config:
 ---
 ```
 
-主题 遵循 流式布局的方式来渲染首页，将 首页 在 垂直方向上划分为一个个独立的区域，每个区域应用不同的组件。
+主题遵循流式布局的方式来渲染首页，将首页在 垂直方向上划分为一个个独立的区域，每个区域应用不同的组件。
 
-通过 `config` 属性，以 数组 的形式，可以定义多个区域。通过 `type` 字段，可以定义该区域的类型。
+通过 `config` 属性，以数组的形式，可以定义多个区域。通过 `type` 字段，可以定义该区域的类型。
 主题内置了 `banner`， `hero`，`text-image`，`image-text`，`features`，`profile`，`custom` 等不同的类型，
 你可以随意组合使用它们，组装成你的自定义首页。
-如果它们均不满足你的需求，你也可以 编写自定义组件，来自定义你的首页。
+如果它们均不满足你的需求，你也可以编写自定义组件，来自定义你的首页。
 
 ## 配置
 
@@ -69,7 +69,7 @@ interface PlumeHomeConfigBase {
 
 - 类型： `PlumeThemeHomeBanner`
 
-大屏 banner， 适用于放置在 首页的 首位。
+大屏 banner， 适用于放置在首页的首位。
 
 ```ts
 interface PlumeThemeHomeBanner extends PlumeHomeConfigBase {
@@ -137,7 +137,7 @@ config:
 
 - 类型： `PlumeThemeHomeHero`
 
-适用于 文档 类型站点，放置于 首位。
+适用于文档类型站点，放置于首位。
 
 ```ts
 interface PlumeThemeHomeHero extends PlumeHomeConfigBase {
@@ -202,7 +202,7 @@ config:
 ---
 ```
 
-[查看 **背景效果 配置 & 演示** 了解更多](./home-hero-effect.md){.read-more}
+[查看 **背景效果配置 & 演示** 了解更多](./home-hero-effect.md){.read-more}
 
 主题还支持自定义 `name`, `tagline`， `text` 的颜色。
 
@@ -223,7 +223,7 @@ config:
 
 - 类型： `PlumeThemeHomeDocHero`
 
-适用于 文档 类型站点，放置于 首位。
+适用于文档类型站点，放置于首位。
 
 ```ts
 interface PlumeThemeHomeDocHero {
@@ -299,7 +299,7 @@ config:
 
 - 类型： `PlumeThemeHomeFeatures`
 
-适用于展示 特性、功能、等。
+适用于展示特性、功能、等。
 
 ```ts
 interface PlumeThemeHomeFeatures extends PlumeHomeConfigBase {
@@ -396,7 +396,7 @@ config:
 
 - 类型： `PlumeThemeHomeTextImage`
 
-左右布局的 文本 和 图片。
+左右布局的文本和 图片。
 
 ```ts
 interface PlumeThemeHomeTextImage extends PlumeHomeConfigBase {
@@ -471,7 +471,7 @@ config:
 
 ### posts
 
-将 post 集合文章列表页 作为一个单独区域，插入到 首页中。
+将 post 集合文章列表页作为一个单独区域，插入到首页中。
 
 ```ts
 interface PlumeThemeHomePosts extends PlumeHomeConfigBase {
@@ -483,7 +483,7 @@ interface PlumeThemeHomePosts extends PlumeHomeConfigBase {
 当存在多个 post 集合时，默认读取第一个集合的文章列表页。
 还可以通过 `collection` 配置项来指定读取哪个集合的文章列表页。
 
-`collection` 的值应该与 集合的 `dir` 值相同。
+`collection` 的值应该与集合的 `dir` 值相同。
 
 **示例：**
 
@@ -542,7 +542,7 @@ config:
 
 - 类型： `PlumeThemeHomeCustom`
 
-自定义内容，在 `README.md` 的 文件中，编写的 markdown 内容，将会被插入到 对应的区域。
+自定义内容，在 `README.md` 的文件中，编写的 markdown 内容，将会被插入到对应的区域。
 
 ```ts
 interface PlumeThemeHomeCustom extends PlumeHomeConfigBase {
@@ -590,7 +590,7 @@ yarn add vuepress@next vuepress-theme-plume
 
 每一个自定义区域类型，本质上都是一个组件。
 
-一个 简单的实例如下：
+一个简单的实例如下：
 
 ::: code-tabs
 @tab your-component.vue
@@ -620,7 +620,7 @@ const props = defineProps<ThemeHomeConfigBase & {
 
 :::
 
-在 `.vuepress/client.ts` 在 `enhance` 钩子中添加 组件
+在 `.vuepress/client.ts` 在 `enhance` 钩子中添加组件
 ::: code-tabs
 @tab .vuepress/client.ts
 

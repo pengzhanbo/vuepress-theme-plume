@@ -7,7 +7,7 @@ permalink: /guide/embed/audio/reader/
 
 ## 概述
 
-主题支持在文档中嵌入 音频阅读 。
+主题支持在文档中嵌入音频阅读 。
 
 该功能由 [vuepress-plugin-md-power](../../config/plugins/markdown-power.md) 提供支持。
 
@@ -31,7 +31,7 @@ export default defineUserConfig({
 
 ## markdown 语法
 
-音频嵌入 markdown 语法是一个 行内语法，因此你可以在 markdown 的任何地方中使用。
+音频嵌入 markdown 语法是一个行内语法，因此你可以在 markdown 的任何地方中使用。
 
 ```md
 @[audioReader](src)
@@ -49,8 +49,8 @@ export default defineUserConfig({
   默认根据音频链接地址的文件扩展名推断，如果链接地址中不包含扩展名，请手动声明。
 - `title`： 音频标题，显示在音频图标之前。
 - `autoplay`：是否自动播放，不建议启用。
-- `start-time`：音频起始播放时间点，单位为 秒。
-- `end-time`：音频结束播放时间点，单位为 秒。
+- `start-time`：音频起始播放时间点，单位为秒。
+- `end-time`：音频结束播放时间点，单位为秒。
 - `volume`：音频播放音量，范围为 `0 ~ 1` 。
 
 ## 全局组件
@@ -64,8 +64,8 @@ export default defineUserConfig({
 | src       | `string`  | 必填，音频播放地址                  |
 | type      | `string`  | 选填，音频格式，默认从 `src` 中截取 |
 | autoplay  | `boolean` | 选填，是否自动播放，不建议启用      |
-| startTime | `number`  | 选填，音频起始播放时间点，单位为 秒 |
-| endTime   | `number`  | 选填，音频结束播放时间点，单位为 秒 |
+| startTime | `number`  | 选填，音频起始播放时间点，单位为秒  |
+| endTime   | `number`  | 选填，音频结束播放时间点，单位为秒  |
 | volume    | `number`  | 选填，音频播放音量，范围为 `0 ~ 1`  |
 
 ## 示例

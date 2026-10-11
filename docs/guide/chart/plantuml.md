@@ -7,7 +7,7 @@ permalink: /guide/chart/plantuml/
 
 ## 概述
 
-主题支持在 文章中 嵌入由 [PlantUML](https://plantuml.com/) 。
+主题支持在文章中嵌入 [PlantUML](https://plantuml.com/) 图表。
 
 该功能由 [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/) 提供支持。
 

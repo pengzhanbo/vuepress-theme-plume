@@ -10,11 +10,7 @@
   "first-line-h1": false,
   "first-line-heading": false,
   "no-blanks-blockquote": false,
-  "line-length": {
-    "line_length": 140,
-    "tables": false,
-    "code_blocks": false
-  },
+  "line-length": false,
   "no-inline-html": false,
   "hr-style": {
     "style": "---"
@@ -24,8 +20,12 @@
   "emphasis-style": false,
   "no-hard-tabs": {
     "spaces_per_tab": 2,
-    "ignore_code_languages": ["xml"]
+    "ignore_code_languages": [
+      "xml"
+    ]
   },
   "link-image-reference-definitions": false,
-  "no-bare-urls": false
+  "no-bare-urls": false,
+  "strong-style": false,
+  "no-emphasis-as-heading": false
 }

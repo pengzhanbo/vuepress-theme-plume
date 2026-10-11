@@ -10,6 +10,12 @@ permalink: /config/sidebar/
 
 在 VuePress 生态中，默认主题 `@vuepress/theme-default` 通过 `sidebar` 配置项管理侧边栏。本主题在保留这一经典配置方式的基础上，还提供了更为灵活的集合（Collections）级侧边栏配置方案。
 
+::: tip 本页是配置参考，完整用法见侧边栏指南
+本页列出**两种配置入口**（集合级 / 全局）的写法与差异，适合查阅配置项。
+
+若你想系统了解侧边栏 —— 嵌套结构、分组、自定义标题、图标、多语言侧边栏、分隔符等 —— 请阅读 **[侧边栏指南](../guide/quick-start/sidebar.md)**。
+:::
+
 ## 集合级侧边栏配置
 
 集合（Collections）是主题中组织系列文档的核心概念。当集合类型设置为 `doc` 时，您可以在 `collection.sidebar` 中定义专属的侧边栏导航。

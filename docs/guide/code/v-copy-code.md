@@ -9,15 +9,15 @@ permalink: /guide/code/copy-code/
 
 该功能由 [@vuepress/plugin-copy-code](https://ecosystem.vuejs.press/zh/plugins/features/copy-code.html) 提供支持。
 
-主题默认启用了代码复制功能。支持 一键复制 在 文章中 展示的代码。
+主题默认启用了代码复制功能。支持一键复制在 文章中展示的代码。
 
-默认情况下， 主题会为每一个 代码块 添加一个复制按钮。该按钮仅在桌面端显示。
+默认情况下， 主题会为每一个代码块添加一个复制按钮。该按钮仅在桌面端显示。
 
-当鼠标悬停在 代码块 上时，在右上角会出现一个复制按钮。
+当鼠标悬停在代码块上时，在右上角会出现一个复制按钮。
 
 ## 配置
 
-在 `.vuepress/config.ts` 配置文件中，修改 代码复制的行为：
+在 `.vuepress/config.ts` 配置文件中，修改代码复制的行为：
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
@@ -94,7 +94,7 @@ export default defineClientConfig({
     useCopyCode({
       transform: (preElement) => {
         // 插入版权信息
-        pre.innerHTML += `\n Copied by vuepress-theme-plume`
+        preElement.innerHTML += `\n Copied by vuepress-theme-plume`
       },
     })
   },

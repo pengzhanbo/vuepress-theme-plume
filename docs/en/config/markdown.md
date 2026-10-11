@@ -30,6 +30,28 @@ These two are independent. Do not configure the theme's markdown settings
 within [VuePress > markdown](https://v2.vuepress.vuejs.org/reference/config.html#markdown), and vice versa.
 :::
 
+::: tip The theme's `markdown` is flat and does not support `extend`
+VuePress's native `markdown.extend` is a **function** used to extend the markdown-it instance
+programmatically. The theme's `markdown`, by contrast, is a set of **flat feature-toggle fields**
+(every field listed in this document). There is **no `extend` key**, and passing one has no effect.
+
+If you need to extend markdown-it programmatically, use VuePress's native form and bypass the theme
+configuration:
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+
+export default defineUserConfig({
+  markdown: {
+    extend: (md) => {
+      md.use(require('markdown-it-footnote'))
+    },
+  },
+})
+```
+
+:::
+
 **Default Configuration:**
 
 ```ts title=".vuepress/config.ts" twoslash

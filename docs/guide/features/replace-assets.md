@@ -10,7 +10,7 @@ badge: 新
 
 此功能由 [@vuepress/plugin-replace-assets](https://ecosystem.vuejs.press/zh/plugins/tools/replace-assets.html) 插件提供。
 
-替换站点内的本地资源链接，比如 图片、视频、音频、PDF 等资源的链接地址，将本地资源地址改写到新的地址。
+替换站点内的本地资源链接，比如图片、视频、音频、PDF 等资源的链接地址，将本地资源地址改写到新的地址。
 
 ## 为什么需要这个功能？
 
@@ -101,7 +101,7 @@ const img = document.createElement('img')
 img.src = '/images/foo.jpg'
 ```
 
-以及在 样式文件 中：
+以及在样式文件中：
 
 ```css
 .foo {
@@ -169,7 +169,7 @@ interface ReplaceAssetsOptions {
 
 - `image`: 查找图片资源，包括 `['apng','bmp','png','jpeg','jpg','jfif','pjpeg','pjp','gif','svg','ico','webp','avif','cur','jxl']` 格式的本地图片资源链接
 - `media`: 查找媒体资源，包括 `['mp4','webm','ogg','mp3','wav','flac','aac','opus','mov','m4a','vtt','pdf']` 格式的本地媒体资源链接
-- `all`: 查找 图片 和 媒体资源，即 `image` 和 `media` 的合集
+- `all`: 查找图片和 媒体资源，即 `image` 和 `media` 的合集
 
 直接传入 **资源链接前缀** 或 **资源链接替换函数** 时，主题使用 `all` 规则替换资源链接。
 
@@ -256,7 +256,7 @@ export default defineUserConfig({
 `find` 字段用于匹配资源链接，可以是一个 **正则表达式** 或 **字符串**。
 
 当传入的是一个 `字符串` 时，如果是以 `^` 开头或者以 `$` 结尾的字符串，则会自动转换为一个 **正则表达式**。
-否则则会检查资源链接是否 以 `find` 结尾 或者 以 `find` 开头。
+否则则会检查资源链接是否以 `find` 结尾或者以 `find` 开头。
 
 ```txt
 '^/images/foo.jpg' -> /^\/images\/foo.jpg/

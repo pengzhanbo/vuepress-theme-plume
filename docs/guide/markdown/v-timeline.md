@@ -7,12 +7,12 @@ permalink: /guide/markdown/timeline/
 
 ## 概述
 
-在 markdown 中，使用 `::: timeline` 容器，包含 markdown 无序列表语法，即可实现 ==时间线== 的 渲染效果。
+在 markdown 中，使用 `::: timeline` 容器，包含 markdown 无序列表语法，即可实现 ==时间线== 的渲染效果。
 
 - 支持 ==水平方向== 和 ==垂直方向==
 - 垂直方向支持 __左对齐__，__右对齐__ 和 __两端对齐__
 - 支持 __图标__ 和 __线条样式__
-- 支持 通过预设 __类型__ 设置 __颜色__，支持自定义颜色
+- 支持通过预设 __类型__ 设置 __颜色__，支持自定义颜色
 
 ## 启用
 
@@ -30,7 +30,7 @@ export default defineUserConfig({
 
 ## 使用
 
-在 `::: timeline` 容器中，使用 markdown 无序列表语法，列表的每一个项即 时间线上的每一个点。
+在 `::: timeline` 容器中，使用 markdown 无序列表语法，列表的每一个项即时间线上的每一个点。
 
 ```md{1,9} title="timeline.md"
 ::: timeline 配置
@@ -107,7 +107,7 @@ __时间线__ 支持非常灵活且灵活的配置项，配置主要分为两个
 
 - __容器配置__： 在 `::: timeline` 容器上的配置，配置项跟随在 `::: timeline` 之后，如：
 
-  `::: timeline horizontal` 表示 渲染为 水平方向的时间线。
+  `::: timeline horizontal` 表示渲染为水平方向的时间线。
 
 - __列表项配置__： 列表的每一个项的配置，紧跟随在标题之后的一行，如：
 
@@ -128,7 +128,7 @@ __时间线__ 支持非常灵活且灵活的配置项，配置主要分为两个
 ::: field horizontal
 @type `boolean`
 @default `false`
-渲染为 水平方向 的时间线
+渲染为水平方向的时间线
 :::
 
 ::: field card
@@ -174,13 +174,13 @@ __时间线__ 支持非常灵活且灵活的配置项，配置主要分为两个
 ::: field card
 @type `boolean`
 @default `false`
-当前 时间节点渲染为卡片样式。默认值从 容器配置 `card` 中继承
+当前时间节点渲染为卡片样式。默认值从容器配置 `card` 中继承
 :::
 
 ::: field line
 @type `'solid' | 'dashed' | 'dotted'`
 @default `'solid'`
-线条样式。 默认值从 容器配置 `line` 中继承
+线条样式。 默认值从容器配置 `line` 中继承
 :::
 
 ::: field icon
@@ -192,7 +192,7 @@ __时间线__ 支持非常灵活且灵活的配置项，配置主要分为两个
 ::: field placement
 @type `'left' | 'right' | 'between'`
 @default `'left'`
-当 容器配置 `placement` 为 `between` 时，定义当前时间节点的位置。
+当容器配置 `placement` 为 `between` 时，定义当前时间节点的位置。
 
 - `left` : 在时间轴左侧
 - `right` : 在时间轴右侧
@@ -210,7 +210,7 @@ __时间线__ 支持非常灵活且灵活的配置项，配置主要分为两个
 
 ### 水平方向
 
-在 `:::timeline` 后跟随声明 `horizontal` , 即可将时间线渲染为 水平方向。
+在 `:::timeline` 后跟随声明 `horizontal` , 即可将时间线渲染为水平方向。
 
 __输入：__
 
@@ -265,7 +265,7 @@ __输出：__
 
 ### 右对齐
 
-在 `:::timeline` 后跟随声明 `placement="right"` , 即可将时间线渲染为 右对齐。
+在 `:::timeline` 后跟随声明 `placement="right"` , 即可将时间线渲染为右对齐。
 
 __输入：__
 
@@ -320,7 +320,7 @@ __输出：__
 
 ### 两端对齐
 
-在 `:::timeline` 后跟随声明 `placement="between"` , 即可将时间线渲染为 两端对齐。
+在 `:::timeline` 后跟随声明 `placement="between"` , 即可将时间线渲染为两端对齐。
 
 列表项默认位于时间线的左侧，可以通过 `placement="right"` 为列表项设置右侧位置。
 
@@ -547,7 +547,7 @@ __输出：__
 
 卡片节点可以很灵活的进行控制：
 
-- 在 容器配置中添加 `card` 即可使每个列表项都是卡片节点。
+- 在容器配置中添加 `card` 即可使每个列表项都是卡片节点。
 - 在列表项配置中，添加 `card=true` 即可为节点设置为卡片节点。
 - 在列表项配置中，添加 `card=false` 即可为节点设置为非卡片节点。
 

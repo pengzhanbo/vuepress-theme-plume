@@ -39,7 +39,7 @@ export default defineUserConfig({
 
 ## 使用
 
-使用 `::: python-repl` 容器语法 将 python 代码块包裹起来。主题会检查代码块并添加执行按钮。
+使用 `::: python-repl` 容器语法将 python 代码块包裹起来。主题会检查代码块并添加执行按钮。
 
 ::: warning python-repl 的支持是有限的，目前只支持：
 

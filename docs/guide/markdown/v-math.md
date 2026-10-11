@@ -7,7 +7,7 @@ permalink: /guide/markdown/math/
 
 ## 概述
 
-主题内置了对 数学公式 的支持。
+主题内置了对数学公式的支持。
 
 该功能由 [@vuepress/plugin-markdown-math](https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-math.html) 提供支持。你可以选择在 markdown 中使用以下方式渲染数学公式:
 

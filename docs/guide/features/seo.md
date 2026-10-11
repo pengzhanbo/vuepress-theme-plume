@@ -7,7 +7,7 @@ permalink: /guide/seo/
 
 ## 使用
 
-主题提供了开箱即用的配置，为 站点 启用 SEO 优化功能。
+主题提供了开箱即用的配置，为站点启用 SEO 优化功能。
 要启用它，需要进行以下配置：
 
 ```ts title=".vuepress/config.ts"

@@ -4,9 +4,6 @@ createTime: 2025/10/08 14:47:12
 icon: fxemoji:window
 permalink: /en/guide/markdown/window/
 outline: 2
-badge:
-  text: Change
-  type: warning
 ---
 
 ## Overview

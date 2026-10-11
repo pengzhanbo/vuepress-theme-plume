@@ -201,7 +201,7 @@ console.log(example)
 Different languages use different comment syntax:
 
 | Language | Highlight | Focus | Diff Add | Diff Remove |
-|----------|-----------|-------|----------|-------------|
+| ---------- | ----------- | ------- | ---------- | ------------- |
 | JS/TS/JSX/TSX | `// [!code highlight]` | `// [!code focus]` | `// [!code ++]` | `// [!code --]` |
 | Python/Ruby/YAML | `# [!code highlight]` | `# [!code focus]` | `# [!code ++]` | `# [!code --]` |
 | CSS/SCSS | `/* [!code highlight] */` | `/* [!code focus] */` | `/* [!code ++] */` | `/* [!code --] */` |
@@ -262,6 +262,7 @@ coverStyle:
 ```
 
 ### Home Page Frontmatter
+
 ```md
 ---
 pageLayout: home
@@ -304,6 +305,7 @@ config:
 When `llmstxt` is enabled, you can use special markup:
 
 ### `<llm-only>` - Content visible only to LLMs
+
 ```md
 <llm-only>
 
@@ -315,6 +317,7 @@ This content only appears in LLM-generated files.
 ```
 
 ### `<llm-exclude>` - Content hidden from LLMs
+
 ```md
 <llm-exclude>
 

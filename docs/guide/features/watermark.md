@@ -9,7 +9,7 @@ permalink: /guide/features/watermark/
 
 文章水印由 [@vuepress/plugin-watermark](https://ecosystem.vuejs.press/zh/plugins/features/watermark.html) 提供支持。
 
-主题支持在文章中添加水印。支持 全屏水印 和 内容水印，同时还支持 图片水印 和 文字水印 。
+主题支持在文章中添加水印。支持全屏水印和 内容水印，同时还支持图片水印和 文字水印 。
 
 如需查看配置选项，请参阅 [配置 > 水印](/config/plugins/watermark/)。
 
@@ -97,7 +97,7 @@ watermark:
 
 ## 图片水印
 
-主题支持使用 图片 作为水印。
+主题支持使用图片作为水印。
 
 ```ts
 import { defineUserConfig } from 'vuepress'
@@ -139,7 +139,7 @@ watermark:
 
 ## 文字水印
 
-主题支持使用 文字 作为水印。
+主题支持使用文字作为水印。
 
 ```ts
 import { defineUserConfig } from 'vuepress'
@@ -193,3 +193,23 @@ watermark:
 
 - [内容水印](/article/2z59hh8g/)
 - [全屏水印](/article/97s6ha1e/)
+
+## 限制
+
+::: warning 水印是纯客户端实现
+水印由 [@vuepress/plugin-watermark](https://ecosystem.vuejs.press/zh/plugins/features/watermark.html) 在浏览器端渲染，**不写入构建产物**。这意味着：
+
+- 内容仍完整存在于页面 HTML / 源文件中，水印只是视觉遮挡
+- 关闭 JavaScript 或直接查看源码即可看到原始内容
+- **不可用于任何需要真正保密的场景**
+
+若需要内容保护，请使用[加密功能](./encryption.md)。
+:::
+
+::: tip 全屏水印与内容水印的取舍
+
+- **全屏水印**：覆盖整个视口，适合防止截图泄露
+- **内容水印**：仅覆盖文章内容区域，不影响导航与侧边栏
+
+两者都可叠加文字或图片水印。
+:::

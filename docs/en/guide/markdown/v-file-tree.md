@@ -3,9 +3,6 @@ title: File Tree
 createTime: 2025/10/08 14:41:57
 icon: mdi:file-tree
 permalink: /en/guide/markdown/file-tree/
-badge:
-  text: Change
-  type: warning
 ---
 
 ## Overview

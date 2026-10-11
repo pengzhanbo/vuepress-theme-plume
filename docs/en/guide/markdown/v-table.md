@@ -3,7 +3,6 @@ title: Table Enhancement
 icon: mdi:table-plus
 createTime: 2025/10/13 16:57:42
 permalink: /en/guide/markdown/table/
-badge: New
 ---
 
 ## Overview

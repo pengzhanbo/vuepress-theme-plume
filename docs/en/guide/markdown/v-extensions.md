@@ -42,7 +42,7 @@ There are three ways to use internal links:
 ```md
 [Markdown](/guide/markdown/basic.md)
 
-[Markdown](./basic.md)
+[Markdown](./v-basic.md)
 ```
 
 Renders as:

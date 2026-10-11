@@ -11,6 +11,10 @@ Content that needs to be highlighted can be placed within a card container `::: 
 
 When multiple cards need to be displayed side-by-side when space permits, use the `card-grid` container to wrap multiple cards.
 
+::: tip
+This page covers the **Markdown container syntax** (`::: card`). If you want to use cards as render functions inside Vue components, see the [Card component](../components/v-card.md).
+:::
+
 ## Syntax
 
 ```md

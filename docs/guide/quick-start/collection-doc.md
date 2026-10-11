@@ -321,7 +321,7 @@ tags:
 
 ## 侧边栏配置
 
-提供灵活的侧边栏导航配置选项：
+`doc` 集合通过 `sidebar` 字段接入侧边栏导航：
 
 ::: code-tabs#config
 
@@ -352,7 +352,7 @@ export default defineUserConfig({
 
 @tab .vuepress/plume.config.ts
 
-``` ts
+```ts
 import { defineThemeConfig } from 'vuepress-theme-plume'
 
 export default defineThemeConfig({
@@ -374,58 +374,17 @@ export default defineThemeConfig({
 
 :::
 
-### 自动生成侧边栏
+### 集合级侧边栏字段速查
 
-设置 `sidebar: 'auto'` 自动基于目录结构生成导航：
+| 字段 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `sidebar` | `'auto' \| (string \| ThemeSidebarItem)[]` | — | `'auto'` 按目录结构自动生成，或手动指定导航项 |
+| `sidebarScrollbar` | `boolean` | `true` | 是否显示侧边栏滚动条 |
+| `sidebarCollapsed` | `boolean` | `false` | `sidebar: 'auto'` 时是否默认折叠 |
 
-::: code-tabs#config
-
-@tab .vuepress/config.ts
-
-```ts
-import { defineUserConfig } from 'vuepress'
-import { plumeTheme } from 'vuepress-theme-plume'
-
-export default defineUserConfig({
-  theme: plumeTheme({
-    collections: [
-      {
-        type: 'doc',
-        dir: 'guide',
-        title: '指南',
-        // [!code hl]
-        sidebar: 'auto', // 自动生成导航结构
-        sidebarCollapsed: undefined, // 折叠状态：true-折叠 false-展开
-      }
-    ]
-  })
-})
-```
-
-@tab .vuepress/plume.config.ts
-
-``` ts
-import { defineThemeConfig } from 'vuepress-theme-plume'
-
-export default defineThemeConfig({
-  collections: [
-    {
-      type: 'doc',
-      dir: 'guide',
-      title: '指南',
-      // [!code hl]
-      sidebar: 'auto', // 自动生成导航结构
-      sidebarCollapsed: undefined, // 折叠状态：true-折叠 false-展开
-    }
-  ]
-})
-```
-
+::: tip
+侧边栏的完整用法 —— 包括嵌套结构、分组、自定义标题、图标、多语言侧边栏、分隔符等 —— 请见 **[侧边栏](./sidebar.md)**。
 :::
-
-### 手动配置侧边栏
-
-[查看**侧边栏**详细配置说明](./sidebar.md){.read-more}
 
 ## 集合首页定制
 

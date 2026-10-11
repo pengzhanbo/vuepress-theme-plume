@@ -13,14 +13,14 @@ permalink: /guide/components/card-grid/
 
 :::: field-group
 ::: field cols
-@type `number | { sm: number, md: number, lg: number }`
-@default `2`
+@type `string | number | { sm?: number, md?: number, lg?: number }`
+@default `{ sm: 1, md: 2, lg: 2 }`
 卡片排列列数。
 
 组件默认会根据屏幕宽度自动调整列数。在空间足够时，默认显示双列，小屏幕下显示单列。
 
-你可以通过 `cols` 配置列数。当传入 `number` 时，所有尺寸均显示为 `number` 个卡片。
-传入 `{ sm: number, md: number, lg: number }` 时，根据屏幕宽度自动调整列数。
+你可以通过 `cols` 配置列数。当传入 `number`（或可被 `Number()` 转换的 `string`）时，所有尺寸均显示为该列数。
+传入 `{ sm: number, md: number, lg: number }` 时，根据屏幕宽度自动调整列数，缺省的键沿用默认值。
 
 - `sm` : `< 768px`
 - `md` : `>= 768px < 960px`
@@ -30,6 +30,26 @@ permalink: /guide/components/card-grid/
 
 :::
 ::::
+
+## Slots
+
+### `default`
+
+卡片网格通过 `default` 插槽接收子卡片。子元素会被均分为 `cols` 指定的列数：
+
+```vue
+<CardGrid :cols="3">
+  <Card title="卡片 1" />
+  <Card title="卡片 2" />
+  <Card title="卡片 3" />
+</CardGrid>
+```
+
+::: tip
+列数由 `cols` 决定，**无需手动换行或分列** —— 放几列就渲染几列，超出部分自动换行。响应式切换时列数会重新计算，无需额外处理。
+:::
+
+在 Markdown 中，可用[卡片容器](../markdown/v-card.md)语法 `:::: card-grid` 代替。
 
 ## 示例
 

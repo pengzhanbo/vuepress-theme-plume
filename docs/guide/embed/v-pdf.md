@@ -39,7 +39,7 @@ export default defineUserConfig({
 @[pdf page="2"](url)
 ```
 
-还可以添加更多的 选项到 `@[pdf ]` 中，更灵活的控制行为。
+还可以添加更多的选项到 `@[pdf]` 中，更灵活的控制行为。
 
 ```md
 @[pdf page="2" width="100%" ratio="16:9"](url)

@@ -10,7 +10,7 @@ permalink: /guide/custom-style/
 支持自定义样式。
 
 主题虽然使用 [SASS](https://sass-lang.com/) 作为 CSS 预处理器，但所有的颜色使用的是 `CSS Vars` 定义，
-因此，你可以创建 一个 css 文件 或 scss 文件，进行覆盖。
+因此，你可以创建一个 css 文件或 scss 文件，进行覆盖。
 
 首先，在 `.vuepress` 目录中，创建一个 `styles/index.css` 文件，
 然后在 [客户端配置文件](https://v2.vuepress.vuejs.org/zh/guide/configuration.html#%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6) 中，引入该文件即可。
@@ -93,5 +93,5 @@ export default defineClientConfig({
 ```
 
 ::: tip
-主题提供了 [主题颜色工具](../../../tools/custom-theme.md) , 你可以使用它来创建自定义颜色。
+主题提供了 [主题颜色工具](../../tools/custom-theme.md) , 你可以使用它来创建自定义颜色。
 :::

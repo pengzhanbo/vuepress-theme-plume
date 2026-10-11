@@ -1,4 +1,7 @@
 **/node_modules/**
 **/*.snippet.md
+**/.vuepress/.cache/**
+**/.vuepress/.temp/**
+**/.vuepress/dist/**
 CHANGELOG.*.md
 CHANGELOG.md

@@ -50,6 +50,7 @@ export default defineUserConfig({
 ## Supported Languages
 
 Replit supports 50+ programming languages including:
+
 - JavaScript/TypeScript
 - Python
 - Java

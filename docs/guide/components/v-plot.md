@@ -12,6 +12,9 @@ permalink: /guide/components/plot/
 该组件默认不启用，你需要在 theme 配置中启用。
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {

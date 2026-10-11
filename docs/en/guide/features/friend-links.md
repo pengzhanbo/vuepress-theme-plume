@@ -46,3 +46,8 @@ You need to manually configure the entry link for the friend links page in an ap
 ### Configuration
 
 View the [documentation](../../config/frontmatter/friend.md) for more configuration information.
+
+::: tip Full field reference
+Fields supported by `list` (`name`, `link`, `avatar`, `desc`) and layout options such as `cols` and
+`contentPosition` are documented in [Friends Frontmatter Configuration](../../config/frontmatter/friend.md).
+:::

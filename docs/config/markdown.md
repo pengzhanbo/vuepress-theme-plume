@@ -28,6 +28,25 @@ export default defineUserConfig({
 二者是相互独立的，不要在 [VuePress > markdown](https://v2.vuepress.vuejs.org/zh/reference/config.html#markdown) 中配置主题的 markdown 配置,反之亦然。
 :::
 
+::: tip 主题的 `markdown` 是扁平结构，不支持 `extend`
+VuePress 原生的 `markdown.extend` 是一个**函数**，用于以编程方式扩展 markdown-it 实例。而主题的 `markdown` 是一组**扁平的功能开关字段**（本文档列出的全部字段），**没有 `extend` 这一项**，传入不会被识别。
+
+若你需要以编程方式扩展 markdown-it，请使用 VuePress 原生的写法，绕开主题配置：
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+
+export default defineUserConfig({
+  markdown: {
+    extend: (md) => {
+      md.use(require('markdown-it-footnote'))
+    },
+  },
+})
+```
+
+:::
+
 **默认配置：**
 
 ```ts title=".vuepress/config.ts" twoslash
@@ -135,7 +154,7 @@ export default defineUserConfig({
 
 - **类型**: `boolean | TabsOptions`
 - **默认值**: `true`
-- **详情**: 是否启用 分组
+- **详情**: 是否启用分组
 
 ### npmTo
 
@@ -263,7 +282,7 @@ export default defineUserConfig({
 
 - **类型**: `boolean | 'local' | 'all'`
 - **默认值**: `false`
-- **详情**: 是否启用 自动填充图片宽高属性
+- **详情**: 是否启用自动填充图片宽高属性
 
 ---
 

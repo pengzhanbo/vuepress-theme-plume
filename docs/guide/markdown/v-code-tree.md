@@ -3,9 +3,6 @@ title: 代码树
 icon: stash:side-peek
 createTime: 2025/05/02 05:59:44
 permalink: /guide/markdown/code-tree/
-badge:
-  text: 变更
-  type: warning
 ---
 
 ## 概述
@@ -13,7 +10,7 @@ badge:
 在 markdown 中，使用 `::: code-tree` 容器，或者使用 `@[code-tree](dir_path)`，
 可以显示一个带有文件树的代码块区域。
 
-相比于 代码块分组，代码树 可以更加清晰地展示代码文件的组织结构，以及文件的依赖关系。
+相比于代码块分组，代码树可以更加清晰地展示代码文件的组织结构，以及文件的依赖关系。
 
 ## 启用
 
@@ -31,7 +28,7 @@ export default defineUserConfig({
 
 ## 使用
 
-主题提供了 两种使用方式：
+主题提供了两种使用方式：
 
 ### code-tree 容器
 
@@ -156,7 +153,7 @@ createApp(App).mount('#app')
 ```
 
 - **dir_path**:
-  当传入绝对路径，即以 `/` 开头时，从文档站点的 源目录 开始查找。
+  当传入绝对路径，即以 `/` 开头时，从文档站点的源目录开始查找。
   当传入相对路径时，即以 `.` 开头时，表示相对于当前 markdown 文件。
 
 - **title**: 代码树标题，可选，默认为空
@@ -197,7 +194,7 @@ createApp(App).mount('#app')
 #### 自定义文件加载器
 
 你可以在 `markdown.codeTree` 中通过 `loaders` 配置自定义文件加载器，
-自定义加载器 的优先级高于内置加载器。
+自定义加载器的优先级高于内置加载器。
 
 ```ts title=".vuepress/config.ts"
 import { readFileSync } from 'node:fs'
@@ -220,7 +217,7 @@ export default defineUserConfig({
 ```
 
 - **filter**: 决定该加载器处理哪些文件，支持 glob 模式、glob 模式数组、或接收 `CodeTreeFile` 的断言函数
-- **load**: 接收 `CodeTreeFile` 和 `App` 实例，返回 渲染为 markdown 的内容（如围栏代码块）
+- **load**: 接收 `CodeTreeFile` 和 `App` 实例，返回渲染为 markdown 的内容（如围栏代码块）
 
 `CodeTreeFile` 包含以下字段：
 

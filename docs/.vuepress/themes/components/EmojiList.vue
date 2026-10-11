@@ -80,7 +80,7 @@ const { copy, copied, text } = useClipboard()
   background-color: var(--vp-c-success-soft);
 }
 
-.emoji-wrapper ul li .vp-abbr {
+.emoji-wrapper ul li :deep(.vp-abbr) {
   text-decoration: none;
   cursor: inherit;
 }

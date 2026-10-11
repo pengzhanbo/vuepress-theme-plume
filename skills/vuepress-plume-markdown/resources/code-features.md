@@ -12,6 +12,7 @@ Add `title="filename.ext"` after the language:
   "name": "vuepress-theme-plume"
 }
 ```
+
 ```
 
 ## Line Numbers
@@ -29,6 +30,7 @@ export default defineUserConfig({
 ```
 
 Per-block control:
+
 - `:line-numbers` - Enable line numbers
 - `:no-line-numbers` - Disable line numbers
 - `:line-numbers=2` - Start from line 2
@@ -48,6 +50,7 @@ const line3 = 'This is line 3'
 // Line numbers start from 2
 const line3 = 'This is line 3'
 ```
+
 ```
 
 ## Line Highlighting
@@ -62,6 +65,7 @@ const line3 = 'This is line 3'
 // Line 4 normal
 // Line 5-7 highlighted
 ```
+
 ```
 
 Formats:
@@ -78,6 +82,7 @@ const a = 1
 const b = 2 // [!code highlight]
 const c = 3
 ```
+
 ```
 
 ## Line Focus
@@ -90,6 +95,7 @@ const a = 1
 const b = 2 // [!code focus]
 const c = 3
 ```
+
 ```
 
 Focus multiple lines:
@@ -101,6 +107,7 @@ const b = 2
 const c = 3
 const d = 4
 ```
+
 ```
 
 ## Diff Highlighting
@@ -112,6 +119,7 @@ Show code changes:
 const oldVal = 'value' // [!code --]
 const newVal = 'value' // [!code ++]
 ```
+
 ```
 
 ## Warning and Error
@@ -121,6 +129,7 @@ const newVal = 'value' // [!code ++]
 const warning = 'caution' // [!code warning]
 const error = 'failed' // [!code error]
 ```
+
 ```
 
 ## Word Highlight
@@ -133,6 +142,7 @@ Highlight specific words:
 const config = {}
 console.log(config)
 ```
+
 ```
 
 Highlight with count limit:
@@ -144,6 +154,7 @@ const api = {}
 const apiClient = {}
 const apiKey = {} // Not highlighted
 ```
+
 ```
 
 ## Whitespace Visibility
@@ -154,6 +165,7 @@ Show tabs and spaces:
 ```ts:whitespace
 const a = 1
 ```
+
 ```
 
 Global enable:
@@ -182,6 +194,7 @@ Collapse long code blocks (default from line 15):
 ```ts:collapsed-lines=10
 // Lines after 10th will be collapsed
 ```
+
 ```
 
 Global enable:
@@ -209,6 +222,7 @@ const b = 2 // [!code ++]
 const c = 3
 const d = 4 // [!code focus]
 ```
+
 ```
 
 ## Language-Specific Comments

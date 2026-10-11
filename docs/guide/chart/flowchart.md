@@ -7,7 +7,7 @@ permalink: /guide/chart/flowchart/
 
 ## 概述
 
-主题支持在 文章中 嵌入由 [flowchart](http://flowchart.js.org/) 。
+主题支持在文章中嵌入 [flowchart](http://flowchart.js.org/) 图表。
 
 该功能由 [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/) 提供支持。
 

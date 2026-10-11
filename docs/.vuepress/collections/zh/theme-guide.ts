@@ -13,20 +13,25 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
       icon: 'carbon:idea',
       prefix: 'quick-start',
       items: [
+        // ① 快速上手（必读）
         'intro',
         'usage',
-        'project-structure',
         {
           text: '集合',
           link: 'collection',
           items: ['collection-post', 'collection-doc'],
         },
-        'sidebar',
         'write',
+        // ② 内容组织（选读）
+        'project-structure',
+        'sidebar',
         'auto-frontmatter',
+        // ③ 进阶（可选）
         'locales',
         'deployment',
         'optimize-build',
+        // ④ 升级与迁移
+        'migration',
       ],
     },
     {

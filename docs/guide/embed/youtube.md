@@ -7,7 +7,7 @@ permalink: /guide/embed/video/youtube/
 
 ## 概述
 
-主题提供了 嵌入 Youtube 视频 的功能。
+主题提供了嵌入 Youtube 视频的功能。
 
 该功能由 [vuepress-plugin-md-power](../../config/plugins/markdown-power.md) 提供支持。
 

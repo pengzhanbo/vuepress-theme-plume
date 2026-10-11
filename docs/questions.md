@@ -12,7 +12,7 @@ article: false
 如果没有找到，您可以先通过  Github [Discussions](https://github.com/pengzhanbo/vuepress-theme-plume/discussions/new?category=q-a) 与我们讨论。
 
 如果您确定某处确实存在问题，请在 Github [Open an issue](https://github.com/pengzhanbo/vuepress-theme-plume/issues/new?assignees=pengzhanbo&labels=bug&projects=&template=bug-report.zh-CN.yml&title=%5BBug%5D),
-在 Issue 中说明该问题的具体细节，如有必要，请尽量提供一个 最小重现包，我们会尽快解决。
+在 Issue 中说明该问题的具体细节，如有必要，请尽量提供一个最小重现包，我们会尽快解决。
 
 ::: details 发起讨论或提出问题需要注意什么？
 我们欢迎您发起讨论或提出任何问题，无论它是否简单，积极提问是好事。但请确保以下三点：
@@ -42,6 +42,14 @@ npx vp-update
 
 :::
 
+## collections 配置怎么改？
+
+升级到 1.0.0-rc.165 及后续版本，主题会在构建时**自动迁移**旧的 `blog` / `notes` 配置为 `collections`，多数情况下无需手动修改。
+
+但有几种情况需要你主动处理，最常见的是：**你已经配置了 `collections`，同时又保留了 `blog` / `notes`** —— 此时旧的配置会被**静默忽略**。
+
+完整的迁移规则、手动迁移示例与验证清单，请见 [迁移指南](./guide/migration.md)。
+
 ## 为什么更新主题版本后新的功能没有生效？
 
 由于 VuePress 在启动开发服务时，全量编译源目录中的的 `markdown` 文件耗时较长，主题对 `markdown` 的编译进行了
@@ -59,10 +67,6 @@ npx vp-update
 
 ## 为什么修改主题插件的配置没有生效？
 
-这个问题常见于修改 `plugins.markdownPower` 、`plugins.markdownImage` 和
-`plugins.markdownMath` 的配置。它与 [为什么更新主题版本后新的功能没有生效？](#为什么更新主题版本后新的功能没有生效)
-的原因相同。因此，需要清除缓存后重启才能使新配置生效。
-
 **只需要删除缓存文件，并重启即可**：
 
 1. 方法一：直接删除 `.vuepress/.cache` 目录。
@@ -74,8 +78,8 @@ npx vp-update
 
 ## 更新依赖后重启提示 `import "xxxx" not exist`
 
-有时候更新主题以及相关依赖后，可能会存在 包管理器未能正确生成新的依赖树的问题，导致了 导入一些依赖时，提示找不到该依赖的错误。
-这时候的 依赖锁定文件如 `package-lock.json` 或 `pnpm-lock.yaml` 已经被污染。
+有时候更新主题以及相关依赖后，可能会存在包管理器未能正确生成新的依赖树的问题，导致了导入一些依赖时，提示找不到该依赖的错误。
+这时候的依赖锁定文件如 `package-lock.json` 或 `pnpm-lock.yaml` 已经被污染。
 
 请直接删除 `package-lock.json` 或 `pnpm-lock.yaml` 等依赖锁定文件，以及删除 `node_modules` 目录，然后重新安装依赖。
 
@@ -127,7 +131,7 @@ FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memor
 
 通过添加以下环境变量，修改 nodejs 内存限制：
 
-**方式一 在当前命令行工具的会话期内**：
+**方式一：在当前命令行工具的会话期内**：
 
 ```sh
 export NODE_OPTIONS="--max_old_space_size=8192"
@@ -136,7 +140,7 @@ npm run docs:build
 
 ==注意此方式仅在当前命令行工具的会话期内有效。=={.warning}
 
-**方式二 在本地环境中**：
+**方式二：在本地环境中**：
 
 需要长期保持此环境变量，可以通过以下方式在本地环境中修改 nodejs 内存限制:
 
@@ -166,7 +170,7 @@ npm run docs:build
 
 在本地构建时，使用 `npm run docs:build-local` 构建包。
 
-**方式三 在 Github Actions 中**：
+**方式三：在 Github Actions 中**：
 
 修改 `.github/workflows/deploy.yml` 文件，添加以下环境变量:
 

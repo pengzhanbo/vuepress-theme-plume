@@ -5,12 +5,12 @@ createTime: 2024/03/04 09:58:39
 permalink: /guide/features/content-search/
 ---
 
-主题提供了两种方式支持 内容搜索。
+主题提供了两种方式支持内容搜索。
 
 - 本地内容搜索
 - Algolia DocSearch
 
-注意，请勿同时配置使用两种方式，同时配置时，只有 本地内容搜索 生效。
+注意，请勿同时配置使用两种方式，同时配置时，只有本地内容搜索生效。
 
 如需查看配置选项，请参阅 [配置 > 内容搜索](/config/plugins/search/)。
 
@@ -23,7 +23,7 @@ permalink: /guide/features/content-search/
 
 ### 启用
 
-主题默认 启用 本地内容搜索 功能。您也可以对其进行自定义配置。
+主题默认启用本地内容搜索功能。您也可以对其进行自定义配置。
 
 ```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
@@ -77,7 +77,7 @@ export default defineUserConfig({
 或者，你也可以 [运行你自己的爬虫](https://docsearch.algolia.com/docs/run-your-own/) 来创建索引，
 然后使用你自己的 `appId` ， `apiKey` 和 `indexName` 来配置该插件。
 
-以下是本主题使用的 爬虫配置示例, 你可以前往 [Algolia Crawler](https://crawler.algolia.com/admin/crawlers/)
+以下是本主题使用的爬虫配置示例, 你可以前往 [Algolia Crawler](https://crawler.algolia.com/admin/crawlers/)
 根据你的需求进行修改:
 
 ```ts

@@ -194,3 +194,25 @@ watermark:
 
 - [Content Watermark](/article/2z59hh8g/)
 - [Full-page Watermark](/article/97s6ha1e/)
+
+## Limitations
+
+::: warning The watermark is client-side only
+The watermark is rendered in the browser by
+[@vuepress/plugin-watermark](https://ecosystem.vuejs.press/zh/plugins/features/watermark.html) and is
+**not baked into the build output**. This means:
+
+- The full content still exists in the page HTML and source files — the watermark is only a visual overlay
+- Disabling JavaScript or viewing the source reveals the original content
+- It is **not suitable for any scenario that requires real confidentiality**
+
+For content protection, use the [encryption feature](./encryption.md) instead.
+:::
+
+::: tip Full-screen vs. content watermark
+
+- **Full-screen watermark**: covers the entire viewport, better at discouraging screenshot leaks
+- **Content watermark**: covers only the article area, leaving navbar and sidebar untouched
+
+Both can be combined with text or image watermarks.
+:::

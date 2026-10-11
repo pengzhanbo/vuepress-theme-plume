@@ -17,7 +17,7 @@ docs:
     logo: /plume.png
     url: https://theme-plume.vuejs.press
     repo: https://github.com/pengzhanbo/vuepress-theme-plume
-    preview: /images/demos/plume.jpg
+    preview: /images/demos/plume.webp
   -
     name: city walk
     desc: An open data platform dedicated to gathering outdoor activity locations and cultural venues from over 350 cities across the country.

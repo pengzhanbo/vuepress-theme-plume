@@ -142,16 +142,6 @@ export default defineUserConfig({
 
   如果你在站点配置中设置了多个 [locales](./theme.md#locales) ，那么 _选择语言菜单_ 就会显示在导航栏中仓库按钮的旁边。
 
-### selectLanguageAriaLabel
-
-- 类型： `string`
-- 默认值： `''`
-- 详情：
-
-   _选择语言菜单 的 `aria-label` 属性。_
-
-   它主要是为了站点的可访问性 (a11y) 。
-
 ### homeText
 
 - 类型： `string`
@@ -218,7 +208,7 @@ export default defineUserConfig({
 - 默认值： `'Menu'`
 - 详情：
 
-  移动设备下的导航栏中 菜单选项的文本。
+  移动设备下的导航栏中菜单选项的文本。
 
 ### returnToTopLabel
 
@@ -298,11 +288,11 @@ export default defineUserConfig({
 - 默认值： `'Edit this page'`
 - 详情： 编辑链接文本
 
-### latestUpdatedText
+### lastUpdatedText
 
 - 类型： `string`
-- 默认值： `'Latest Updated'`
-- 详情： 最近更新时间 的文本
+- 默认值： `'Last Updated'`
+- 详情： 最近更新时间的文本
 
 ### contributorsText
 

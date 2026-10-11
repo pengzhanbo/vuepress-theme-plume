@@ -136,6 +136,7 @@ const example = 'code blocks work inside containers'
 ## Styling
 
 Containers use theme colors and support:
+
 - Custom icons (based on type)
 - Dark/light mode adaptation
 - Consistent spacing and borders

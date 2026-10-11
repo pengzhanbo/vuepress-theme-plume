@@ -8,9 +8,9 @@ permalink: /guide/markdown/env/
 ## 概述
 
 环境预设 (`markdown.env`) 可以用来配置一些 Markdown 渲染环境的预设值，
-比如 引用链接、内容注释、缩写词等，从而避免在每个 markdown 文件中重复定义。
+比如引用链接、内容注释、缩写词等，从而避免在每个 markdown 文件中重复定义。
 
-**环境预设在 任意 markdown 文件中都可以生效。**
+**环境预设在任意 markdown 文件中都可以生效。**
 
 ## 配置
 
@@ -43,7 +43,7 @@ export default defineUserConfig({
 `env.references` 始终生效。但 `env.abbreviations` 和 `env.annotations` 需要分别启用 `abbr` 和 `annotation` 选项后才会生效。
 :::
 
-以上配置等同于在 任意 markdown 文件中：
+以上配置等同于在任意 markdown 文件中：
 
 ```md
 [vuepress]: https://v2.vuepress.vuejs.org/

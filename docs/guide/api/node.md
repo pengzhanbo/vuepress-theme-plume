@@ -43,6 +43,6 @@ __options:__ `(ThemePostCollection | ThemeDocCollection)[]`
 
 __options:__ `ThemePostCollection | ThemeDocCollection`
 
-主题 单个 collection  配置类型帮助函数
+主题单个 collection  配置类型帮助函数
 
 查看 [主题配置](../../config/collections.md) 了解更多。

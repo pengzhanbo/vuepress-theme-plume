@@ -18,6 +18,14 @@ config:
           link: /en/guide/intro/
         -
           theme: alt
+          text: Configuration
+          link: /en/config/theme/
+        -
+          theme: alt
+          text: Demo Sites
+          link: /en/demos/
+        -
+          theme: alt
           text: Github
           link: https://github.com/pengzhanbo/vuepress-theme-plume
   -
@@ -129,6 +137,8 @@ config:
 
 :::
 
+<!-- markdownlint-disable heading-increment -->
+
 ### Usage
 
 Use the following command to quickly create a new ==VuePress== project using this theme.
@@ -153,7 +163,7 @@ npm run docs:dev
 
 ### Changelog
 
-[Changelog](./changelog)
+[Changelog](./changelog.md)
 
 ### Contributors
 

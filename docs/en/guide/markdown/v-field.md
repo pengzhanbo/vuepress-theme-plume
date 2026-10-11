@@ -3,9 +3,6 @@ title: Field Container
 icon: solar:text-field-linear
 createTime: 2025/10/08 09:55:17
 permalink: /en/guide/markdown/field/
-badge:
-  type: warning
-  text: Change
 ---
 
 ## Overview

@@ -1,7 +1,7 @@
 ---
 title: Watermark
 createTime: 2025/10/09 15:37:18
-permalink: /en/config/watermark/
+permalink: /en/config/plugins/watermark/
 ---
 
 ## Overview

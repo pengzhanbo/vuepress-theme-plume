@@ -3,16 +3,13 @@ title: 字段容器
 icon: solar:text-field-linear
 createTime: 2025/04/29 09:55:17
 permalink: /guide/markdown/field/
-badge:
-  type: warning
-  text: 变更
 ---
 
 ## 概述
 
 在 markdown 中，使用 `::: field` 容器，配合 JSDoc 风格标签， 用于描述字段信息，包括字段名称、字段类型、是否必填、默认值、详情等信息。
 
-它适用于 描述配置中的字段、组件的 Props 等场景。
+它适用于描述配置中的字段、组件的 Props 等场景。
 
 还可以使用额外的 `:::: field-group` 容器，用于组合多个 `::: field`。
 

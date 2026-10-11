@@ -86,14 +86,52 @@ pnpm build
 - **代码示例**：代码块应标注语言类型，配置示例应包含完整的导入语句和上下文。
 - **链接引用**：使用相对路径引用其他文档，确保链接有效性。
 
+### TypeScript 代码块必须使用 twoslash
+
+所有 ` ```ts ` 代码块**必须**追加 `twoslash` 标记，让文档示例在构建时被真实编译一次：
+
+````md
+```ts twoslash
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  // ...
+})
+```
+````
+
+这不是可选的装饰。历史上多个「用户照抄即失败」的问题（虚构的导出名、不存在的配置键、拼错的字段名、拼错的变量名），都因缺少该标记而无法在构建阶段被发现，只能等用户复制后才暴露。twoslash 会在 `pnpm docs:build` 时直接报错。
+
+配套要求：
+
+- **类型引用用 `import type`，不要手抄**：从源码导入类型，源码变更时文档会自动跟随，且类型漂移会被 twoslash 捕获。
+
+  ```ts twoslash
+  import type { ThemeNavItem } from 'vuepress-theme-plume'
+
+  const navbar: ThemeNavItem[] = []
+  ```
+
+- **API 名称与配置键须核对源码**：写之前对照 `theme/src/shared/` 与 `theme/src/node/defineConfig.ts`，确认导出名与字段名真实存在。
+- **默认值须核对源码**：不要凭印象填写，从 `node/locales/*.ts`、`initThemeOptions.ts` 等处确认。
+
+### 中英双语文档同步
+
+`docs/` 与 `docs/en/` 必须同步修改，包括：
+
+- 同一段落的结构、代码块、组件引用保持一致
+- `permalink` 严格对应（中文 `/config/plugins/watermark/` 对应英文 `/en/config/plugins/watermark/`，不可漏掉目录层级或改动单复数）
+- 历史更新说明（`docs/blog/3.更新说明/`）记录的是当时的事实，**不应修改**
+
 ### 文档提交流程
 
 1. Fork 仓库并创建新的分支
 2. 在 `docs/` 目录下修改或新建文档
 3. 如新建文档，需在 `docs/.vuepress/collections/zh/` 下对应的侧边栏配置文件中添加条目
-4. 运行 `pnpm lint` 检查代码质量
-5. 运行 `pnpm dev` 预览文档效果
-6. 提交 Pull Request，描述文档变更内容
+4. 运行 `pnpm lint` 检查代码质量（含 Markdown 排版检查）
+5. 运行 `pnpm docs:build` 构建文档，twoslash 会在此阶段校验所有 TypeScript 示例
+6. 运行 `pnpm docs:dev` 预览文档效果
+7. 提交 Pull Request，描述文档变更内容
 
 ### 文档目录结构
 

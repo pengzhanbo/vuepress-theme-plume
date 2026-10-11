@@ -3,7 +3,6 @@ title: table 增强
 icon: mdi:table-plus
 createTime: 2025/07/25 16:57:42
 permalink: /guide/markdown/table/
-badge: 新
 ---
 
 ## 概述
@@ -46,7 +45,7 @@ export default defineUserConfig({
 
 ## 语法
 
-直接将 表格 包裹在 `:::table` 中即可。
+直接将表格包裹在 `:::table` 中即可。
 
 ```md
 :::table title="标题" align="center" max-content copy="all"
@@ -410,7 +409,7 @@ export default defineUserConfig({
 表格单元格合并由 [markdown-it-attrs](https://github.com/arve0/markdown-it-attrs) 属性支持语法提供实现。
 因此它不需要在 `:::table` 容器中使用，你可以在何人表格中使用它。
 
-在表格单元格内，末尾部分使用 属性支持语法 `{}` 中，添加 `rowspan=rows` 或者 `{colspan=cols}` ，或组合使用，
+在表格单元格内，末尾部分使用属性支持语法 `{}` 中，添加 `rowspan=rows` 或者 `{colspan=cols}` ，或组合使用，
 即可实现表格单元格合并。
 
 **输入：**

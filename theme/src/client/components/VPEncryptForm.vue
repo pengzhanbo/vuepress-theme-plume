@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, useId } from 'vue'
 import { useData, useEncryptCompare } from '../composables/index.js'
 
 const { global, info } = defineProps<{
@@ -17,6 +17,10 @@ const { compareGlobal, comparePage } = useEncryptCompare()
 const password = ref('')
 const errorCode = ref(0) // 0: no error, 1: wrong password
 const unlocking = ref(false)
+
+const uid = useId()
+const inputId = `${uid}-encrypt-input`
+const errorId = `${uid}-encrypt-error`
 
 async function onSubmit() {
   if (unlocking.value)
@@ -41,10 +45,10 @@ async function onSubmit() {
   <div class="vp-encrypt-form">
     <p class="encrypt-text" v-html="info ?? 'Only Password can access this site'" />
     <p class="encrypt-input-wrapper">
-      <label for="encrypt-input">
-        <span class="vpi-lock icon-lock" />
+      <label :for="inputId">
+        <span class="vpi-lock icon-lock" aria-hidden="true" />
         <input
-          id="encrypt-input"
+          :id="inputId"
           v-model="password"
           class="encrypt-input"
           :class="{ error: errorCode === 1 }"
@@ -52,20 +56,29 @@ async function onSubmit() {
           autocomplete="off"
           :placeholder="theme.encryptPlaceholder ?? 'Enter Password'"
           :aria-invalid="errorCode === 1"
-          :aria-describedby="errorCode === 1 ? 'encrypt-error' : undefined"
+          :aria-describedby="errorCode === 1 ? errorId : undefined"
           @keyup.enter="onSubmit"
           @focus="!password && (errorCode = 0)"
           @input="password && (errorCode = 0)"
         >
       </label>
     </p>
-    <p v-if="errorCode === 1" id="encrypt-error" class="encrypt-error" role="alert">
+    <p v-if="errorCode === 1" :id="errorId" class="encrypt-error" role="alert">
       {{ theme.encryptErrorText ?? 'Incorrect password' }}
     </p>
-    <button type="button" class="encrypt-button" :class="{ unlocking }" @click="onSubmit">
+    <button
+      type="button"
+      class="encrypt-button"
+      :class="{ unlocking }"
+      :aria-busy="unlocking"
+      @click="onSubmit"
+    >
       <span v-if="!unlocking">{{ theme.encryptButtonText ?? 'Confirm' }}</span>
-      <span v-else class="vpi-loading" />
+      <span v-else class="vpi-loading" aria-hidden="true" />
     </button>
+    <p class="visually-hidden" role="status" aria-live="polite">
+      {{ unlocking ? 'Unlocking…' : '' }}
+    </p>
   </div>
 </template>
 
@@ -96,7 +109,7 @@ async function onSubmit() {
   width: 100%;
   padding: 8px 12px 8px 32px;
   background-color: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid var(--vp-input-border-color);
   border-radius: 21px;
   outline: none;
   transition: border-color var(--vp-t-color), background-color var(--vp-t-color);
@@ -107,13 +120,13 @@ async function onSubmit() {
 }
 
 .encrypt-input.error {
-  border-color: var(--vp-c-danger-3);
+  border-color: var(--vp-c-danger-1);
 }
 
 .encrypt-error {
   margin-top: 8px;
   font-size: 13px;
-  color: var(--vp-c-danger-3);
+  color: var(--vp-c-danger-1);
   text-align: center;
 }
 
@@ -127,7 +140,6 @@ async function onSubmit() {
   background-color: var(--vp-c-brand-1);
   border: none;
   border-radius: 4px;
-  outline: none;
   transition: background-color var(--vp-t-color);
 }
 
@@ -136,7 +148,7 @@ async function onSubmit() {
 }
 
 .encrypt-button:focus-visible {
-  outline: 2px solid var(--vp-c-brand-1);
+  outline: var(--vp-focus-ring-width) solid var(--vp-focus-ring-color);
   outline-offset: 2px;
 }
 

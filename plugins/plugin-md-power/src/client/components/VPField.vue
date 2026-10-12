@@ -50,9 +50,9 @@ const locale = computed(() => FIELD_LOCALES[pathLocale.value] || {})
       <div v-if="type" class="meta-right type">
         <span class="visually-hidden">Type:</span>
         <VPLink v-if="typeLink" :href="typeLink">
-          <code title="Type" aria-label="Type">{{ decodeURIComponent(type) }}</code>
+          <code title="Type">{{ decodeURIComponent(type) }}</code>
         </VPLink>
-        <code v-else title="Type" aria-label="Type">{{ decodeURIComponent(type) }}</code>
+        <code v-else title="Type">{{ decodeURIComponent(type) }}</code>
       </div>
     </div>
 

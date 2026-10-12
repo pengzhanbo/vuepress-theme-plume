@@ -212,20 +212,20 @@ figure {
   cursor: pointer;
 }
 
-:where(#app) button:focus,
 :where(#app) button:focus-visible {
-  outline: 1px dotted;
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: var(--vp-focus-ring-width) solid var(--vp-focus-ring-color);
+  outline-offset: var(--vp-focus-ring-offset);
 }
 
 :where(#app) button:focus:not(:focus-visible) {
-  outline: none !important;
+  outline: none;
 }
 
-:where(#app) input:focus,
-:where(#app) textarea:focus,
-:where(#app) select:focus {
-  outline: none;
+:where(#app) input:focus-visible,
+:where(#app) textarea:focus-visible,
+:where(#app) select:focus-visible {
+  outline: var(--vp-focus-ring-width) solid var(--vp-focus-ring-color);
+  outline-offset: var(--vp-focus-ring-offset);
 }
 
 :where(#app) table {
@@ -259,6 +259,13 @@ figure {
 :where(#app) input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
+}
+
+/* 仅清除鼠标点击产生的焦点环；键盘聚焦由上方 :focus-visible 规则提供 */
+:where(#app) input:focus:not(:focus-visible),
+:where(#app) textarea:focus:not(:focus-visible),
+:where(#app) select:focus:not(:focus-visible) {
+  outline: none;
 }
 
 :where(#app) fieldset {

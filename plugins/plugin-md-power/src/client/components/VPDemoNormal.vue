@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DemoConfig } from '../composables/demo.js'
 import { FadeInExpandTransition } from '@vuepress/helper/client'
-import { useTemplateRef } from 'vue'
+import { computed, useId, useTemplateRef } from 'vue'
 import { useExpand, useFence, useNormalDemo, useResources } from '../composables/demo.js'
 
 import '@vuepress/helper/transition/fade-in.css'
@@ -14,6 +14,8 @@ const { title, desc, expanded, config } = defineProps<{
   expanded?: boolean
   config?: DemoConfig
 }>()
+
+const resourcesPanelId = `${useId()}-resources`
 
 const [showCode, toggleCode] = useExpand(expanded)
 
@@ -32,6 +34,17 @@ const data = useFence(
   useTemplateRef<HTMLDivElement>('fence'),
   () => config,
 )
+const codePenData = computed(() => JSON.stringify({
+  title: title || 'Demo',
+  description: desc || '',
+  html: data.value.html,
+  css: data.value.css,
+  js: data.value.js,
+  js_pre_processor: data.value.jsType === 'ts' ? 'typescript' : 'none',
+  css_pre_processor: data.value.cssType,
+  css_external: config?.cssLib?.join(';'),
+  js_external: config?.jsLib?.join(';'),
+}))
 </script>
 
 <template>
@@ -63,19 +76,7 @@ const data = useFence(
     <div class="demo-ctrl">
       <div class="extra">
         <form action="https://codepen.io/pen/define" method="POST" target="_blank" enctype="application/x-www-form-urlencoded;charset=utf-8">
-          <input
-            type="hidden" name="data" :value="JSON.stringify({
-              title: title || 'Demo',
-              description: desc || '',
-              html: data.html,
-              css: data.css,
-              js: data.js,
-              js_pre_processor: data.jsType === 'ts' ? 'typescript' : 'none',
-              css_pre_processor: data.cssType,
-              css_external: config?.cssLib?.join(';'),
-              js_external: config?.jsLib?.join(';'),
-            })"
-          >
+          <input type="hidden" name="data" :value="codePenData">
           <button type="submit" title="CodePen" aria-label="CodePen">
             <span class="vpi-demo-codepen" />
           </button>
@@ -96,14 +97,21 @@ const data = useFence(
         </form>
       </div>
       <div v-if="resources.length" class="demo-resources">
-        <span ref="resourcesEl" class="vpi-demo-resources" title="Resources" aria-label="Resources" @click="toggleResources" />
+        <button
+          ref="resourcesEl" type="button" class="btn-resources"
+          title="Resources" aria-label="Resources"
+          :aria-expanded="showResources" :aria-controls="resourcesPanelId"
+          @click="toggleResources"
+        >
+          <span class="vpi-demo-resources" aria-hidden="true" />
+        </button>
         <Transition name="fade-in">
-          <div v-show="showResources" class="demo-resources-container">
+          <div v-show="showResources" :id="resourcesPanelId" class="demo-resources-container">
             <div v-for="{ name, items } in resources" :key="name" class="demo-resources-list">
               <p>{{ name }}</p>
               <ul v-for="item in items" :key="item.url">
                 <li>
-                  <a :href="item.url" target="_blank" rel="noopener noreferrer" class="no-icon" aria-label="{{ item.name }}">{{ item.name }}</a>
+                  <a :href="item.url" target="_blank" rel="noopener noreferrer" class="no-icon">{{ item.name }}</a>
                 </li>
               </ul>
             </div>

@@ -48,7 +48,7 @@ const { theme } = useData()
       </template>
     </VPNav>
 
-    <div id="VPContent" class="vp-content">
+    <main id="vp-content" class="vp-content">
       <slot name="not-found">
         <div class="vp-not-found">
           <p class="code">
@@ -66,13 +66,13 @@ const { theme } = useData()
           </blockquote>
 
           <div class="action">
-            <a class="link" :href="withBase(root)" :aria-label="theme.notFound?.linkLabel ?? 'go to home'">
+            <a class="link" :href="withBase(root)">
               {{ theme.notFound?.linkText ?? 'Take me home' }}
             </a>
           </div>
         </div>
       </slot>
-    </div>
+    </main>
     <VPFooter>
       <template #footer-content>
         <slot name="footer-content" />

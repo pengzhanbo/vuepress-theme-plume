@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { arrow, autoUpdate, offset, shift, useFloating } from '@floating-ui/vue'
 import { onClickOutside, useMediaQuery } from '@vueuse/core'
-import { ref, useTemplateRef } from 'vue'
+import { ref, useId, useTemplateRef } from 'vue'
 
 import '@vuepress/helper/transition/fade-in.css'
 
@@ -13,9 +13,11 @@ const tooltipArrow = useTemplateRef('tooltipArrow')
 
 const isMobile = useMediaQuery('(max-width: 768px)')
 const show = ref(false)
+const tooltipId = `${useId()}-abbr-tooltip`
 
 const showTooltip = () => show.value = true
 const hideTooltip = () => show.value = false
+const toggleTooltip = () => show.value = !show.value
 
 onClickOutside(abbr, () => {
   if (isMobile.value)
@@ -36,7 +38,8 @@ const { floatingStyles, middlewareData } = useFloating(abbr, tooltip, {
 
 <template>
   <span
-    ref="abbr" class="vp-abbr" role="tooltip" tabindex="0"
+    ref="abbr" class="vp-abbr" tabindex="0"
+    :aria-describedby="show ? tooltipId : undefined"
     v-bind="isMobile ? {
       onClick: () => show = !show,
       ...$attrs,
@@ -47,14 +50,16 @@ const { floatingStyles, middlewareData } = useFloating(abbr, tooltip, {
       onBlur: hideTooltip,
       ...$attrs,
     }"
+    @keydown.enter.prevent="toggleTooltip"
+    @keydown.space.prevent="toggleTooltip"
   ><slot /></span>
   <ClientOnly>
     <Teleport to="body">
       <Transition name="fade-in">
         <span
-          v-if="show" ref="tooltip"
+          v-if="show" :id="tooltipId" ref="tooltip"
           class="vp-abbr-tooltip ignore-header" :style="floatingStyles"
-          aria-hidden="true"
+          role="tooltip"
           v-bind="!isMobile ? { onMouseenter: showTooltip, onMouseleave: hideTooltip } : undefined"
         >
           <span

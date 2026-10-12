@@ -76,11 +76,19 @@ onMounted(() => {
 <template>
   <div ref="el" class="vp-code-tree" :class="{ fullscreen: isFullscreen }">
     <div class="code-tree-actions" :style="styles">
-      <button v-if="!isFullscreen" @click="show = !show">
-        <span :class="`vpi-sidebar-${show ? 'open' : 'close'}`" />
+      <button
+        v-if="!isFullscreen" type="button"
+        aria-label="Toggle file tree" :aria-expanded="show"
+        @click="show = !show"
+      >
+        <span :class="`vpi-sidebar-${show ? 'open' : 'close'}`" aria-hidden="true" />
       </button>
-      <button v-if="isSupported && !is768" @click="toggle">
-        <span class="vpi-fullscreen" />
+      <button
+        v-if="isSupported && !is768" type="button"
+        aria-label="Toggle fullscreen" :aria-pressed="isFullscreen"
+        @click="toggle"
+      >
+        <span class="vpi-fullscreen" aria-hidden="true" />
       </button>
     </div>
     <Transition name="fade-in-right">
@@ -88,7 +96,7 @@ onMounted(() => {
         <p v-if="title" class="code-tree-title" :title="title">
           <span>{{ title }}</span>
         </p>
-        <div class="file-tree-content">
+        <div class="file-tree-content" role="tree" :aria-label="title || 'File tree'">
           <slot name="file-tree" />
         </div>
       </div>
@@ -96,8 +104,7 @@ onMounted(() => {
     <Transition name="fade-in">
       <div
         v-show="show && !isFullscreen" class="code-tree-mask"
-        role="button" aria-label="Close"
-        tabindex="-1"
+        aria-hidden="true"
         @click="show = false"
       />
     </Transition>

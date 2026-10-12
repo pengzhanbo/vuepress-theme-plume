@@ -73,7 +73,7 @@ const actions = computed(() => hero?.actions ?? matter.value.hero?.actions ?? []
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  transition: all var(--vp-t-color);
+  transition: background-color var(--vp-t-color);
 }
 
 .vp-home-banner .banner-mask {

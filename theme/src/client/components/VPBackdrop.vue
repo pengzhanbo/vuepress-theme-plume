@@ -8,7 +8,7 @@ const { show } = defineProps<{
 
 <template>
   <Transition name="fade-in">
-    <div v-if="show" class="vp-backdrop" />
+    <div v-if="show" class="vp-backdrop" aria-hidden="true" />
   </Transition>
 </template>
 

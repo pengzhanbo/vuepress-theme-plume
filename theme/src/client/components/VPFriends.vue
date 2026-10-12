@@ -86,7 +86,6 @@ const cols = computed(() => {
   font-weight: 700;
   color: var(--vp-c-text-1);
   text-align: center;
-  outline: none;
   transition: color var(--vp-t-color);
 }
 

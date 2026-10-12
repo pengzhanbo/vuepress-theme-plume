@@ -21,7 +21,7 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
     @enter="isLocked = true"
     @after-leave="isLocked = false"
   >
-    <div v-if="open" id="navScreen" class="vp-nav-screen">
+    <div v-if="open" id="nav-screen" class="vp-nav-screen">
       <div class="container">
         <slot name="nav-screen-content-before" />
         <slot name="nav-screen-menu-before" />

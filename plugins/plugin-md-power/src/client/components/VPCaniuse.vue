@@ -21,6 +21,7 @@ const { feature, past = 2, future = 1, meta = '', baseline = false } = definePro
 }>()
 
 const url = 'https://caniuse.pengzhanbo.cn/'
+const origin = new URL(url).origin
 
 const height = ref(baseline ? '150px' : '350px')
 
@@ -32,6 +33,9 @@ const source = computed(() => {
 })
 
 useEventListener('message', (event) => {
+  if (event.origin !== origin)
+    return
+
   const data = parseData(event.data)
   const { type, payload } = data
   if (

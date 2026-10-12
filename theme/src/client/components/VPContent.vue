@@ -42,8 +42,8 @@ watch(
 </script>
 
 <template>
-  <div
-    id="VPContent" vp-content class="vp-content" :class="{
+  <main
+    id="vp-content" vp-content class="vp-content" :class="{
       'has-sidebar': hasSidebar && !isSidebarCollapsed && !isNotFound,
       'is-home': isHome,
     }"
@@ -201,7 +201,7 @@ watch(
         <slot name="aside-bottom" />
       </template>
     </VPDoc>
-  </div>
+  </main>
 </template>
 
 <style scoped>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useMediaQuery } from '@vueuse/core'
 import { defineAsyncComponent, shallowRef } from 'vue'
 import { useCodeRepl } from '../composables/codeRepl.js'
 import IconClose from './icons/IconClose.vue'
@@ -12,6 +13,8 @@ defineProps<{
 }>()
 
 const Editor = defineAsyncComponent(() => import('./VPCodeEditor.vue'))
+
+const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 
 const replEl = shallowRef<HTMLDivElement | null>(null)
 const outputEl = shallowRef<HTMLDivElement | null>(null)
@@ -31,8 +34,12 @@ const {
 function runCode() {
   onRunCode()
 
-  if (outputEl.value)
-    outputEl.value.scrollIntoView?.({ behavior: 'smooth', block: 'center' })
+  if (outputEl.value) {
+    outputEl.value.scrollIntoView?.({
+      behavior: reduceMotion.value ? 'auto' : 'smooth',
+      block: 'center',
+    })
+  }
 }
 </script>
 
@@ -40,23 +47,28 @@ function runCode() {
   <div ref="replEl" class="code-repl">
     <div class="code-repl-title">
       <h4>{{ title }}</h4>
-      <span v-show="loaded && finished" class="icon-run" title="Run Code" @click="runCode">
-        <IconRun />
-      </span>
+      <button
+        v-show="loaded && finished" type="button"
+        class="icon-run" title="Run Code" aria-label="Run code" @click="runCode"
+      >
+        <IconRun aria-hidden="true" />
+      </button>
     </div>
     <Editor v-if="editable">
       <slot />
     </Editor>
     <slot v-else />
     <div ref="outputEl" class="code-repl-pin" />
-    <div v-if="!firstRun" class="code-repl-output">
+    <div v-if="!firstRun" class="code-repl-output" role="status" aria-live="polite">
       <div class="output-head">
-        <IconConsole class="icon-console" />
+        <IconConsole class="icon-console" aria-hidden="true" />
         <span class="title">console</span>
         <span v-if="lang && backendVersion" class="output-version">
           Running on: {{ lang }} <i>{{ backendVersion }}</i>
         </span>
-        <IconClose class="icon-close" @click="onCleanRun" />
+        <button type="button" class="icon-close-button" aria-label="Clear output" @click="onCleanRun">
+          <IconClose class="icon-close" aria-hidden="true" />
+        </button>
       </div>
       <div v-if="!loaded" class="output-content">
         <Loading />
@@ -149,13 +161,20 @@ function runCode() {
   justify-content: center;
   width: 24px;
   height: 24px;
+  padding: 0;
   font-size: 12px;
   color: var(--vp-c-text-3);
   cursor: pointer;
+  background: none;
   border: solid 1px var(--vp-c-text-3);
   border-radius: 100%;
   transition: var(--vp-t-color);
   transition-property: color, border;
+}
+
+.icon-run:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 2px;
 }
 
 .icon-run:hover {
@@ -188,10 +207,23 @@ function runCode() {
 .output-head .icon-close {
   width: 20px;
   height: 20px;
-  margin-left: 20px;
   color: var(--vp-c-text-3);
   cursor: pointer;
   transition: color var(--vp-t-color);
+}
+
+.output-head .icon-close-button {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-left: 20px;
+  background: none;
+  border: none;
+}
+
+.output-head .icon-close-button:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 2px;
 }
 
 .output-head .icon-close:hover {

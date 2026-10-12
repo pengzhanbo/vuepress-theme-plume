@@ -28,7 +28,7 @@ const link = computed(() => {
   <EmbedFrame
     class="js-fiddle-iframe"
     :src="link"
-    :title="title"
+    :title="title || 'JSFiddle embed'"
     :width="width"
     :height="height"
     allowfullscreen

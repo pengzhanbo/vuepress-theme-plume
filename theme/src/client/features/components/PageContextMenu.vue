@@ -144,6 +144,14 @@ const toggleRef = useTemplateRef('toggle')
 const [open, toggleMenu] = useToggle(false)
 onClickOutside(menuRef, () => toggleMenu(false), { ignore: [toggleRef] })
 
+/** Esc 关闭菜单并把焦点归还给触发按钮 / Escape closes the menu and returns focus to its trigger */
+function onEscape() {
+  if (!open.value)
+    return
+  toggleMenu(false)
+  toggleRef.value?.focus()
+}
+
 const copyPageText = computed(() => {
   const copyText = theme.value.copyPageText ?? 'Copy page'
   const copiedText = theme.value.copiedPageText ?? 'Copied !'
@@ -153,26 +161,34 @@ const copyPageText = computed(() => {
 </script>
 
 <template>
-  <div v-if="frontmatter.llmstxt !== false && isPageDecrypted" class="vp-page-context-menu">
-    <div class="page-context-button" type="button">
-      <span class="page-context-copy" @click="onCopy">
+  <div v-if="frontmatter.llmstxt !== false && isPageDecrypted" class="vp-page-context-menu" @keydown.escape="onEscape">
+    <div class="page-context-button">
+      <button type="button" class="page-context-copy" @click="onCopy">
         <span class="vpi-copy" :class="{ loading: !loaded, copied }" />
         <span class="text">{{ copyPageText }}</span>
-      </span>
-      <span ref="toggle" class="page-context-toggle" :class="{ open }" @click="() => toggleMenu()">
+      </button>
+      <button
+        ref="toggle"
+        type="button"
+        class="page-context-toggle"
+        :class="{ open }"
+        aria-haspopup="menu"
+        :aria-expanded="open"
+        @click="() => toggleMenu()"
+      >
         <span class="vpi-chevron-down" />
-      </span>
+      </button>
     </div>
     <Transition name="fade-in">
-      <ul v-show="open" ref="menu" class="page-context-menu">
+      <ul v-show="open" ref="menu" class="page-context-menu" role="menu">
         <li>
-          <a href="javascript:void(0)" @click="onCopy">
+          <button type="button" @click="onCopy">
             <span class="vpi-copy" :class="{ loading: !loaded, copied }" />
             <span>
               {{ copyPageText }}
               <small>{{ theme.copyTagline ?? 'Copy page as Markdown for LLMs' }}</small>
             </span>
-          </a>
+          </button>
         </li>
         <li v-for="item in menuList" :key="item.text">
           <a
@@ -222,7 +238,10 @@ const copyPageText = computed(() => {
 .page-context-copy {
   gap: 4px;
   padding: 0 8px;
+  font: inherit;
   font-size: 14px;
+  color: inherit;
+  border: none;
 }
 
 .page-context-toggle {
@@ -230,6 +249,8 @@ const copyPageText = computed(() => {
   align-items: center;
   justify-content: center;
   width: 24px;
+  padding: 0;
+  border: none;
   border-left: solid 1px var(--vp-c-divider);
 }
 
@@ -243,6 +264,11 @@ const copyPageText = computed(() => {
   cursor: pointer;
   background-color: transparent;
   transition: background-color var(--vp-t-color);
+}
+
+.page-context-copy:focus-visible,
+.page-context-toggle:focus-visible {
+  outline-offset: -2px;
 }
 
 .page-context-copy:hover,
@@ -297,25 +323,31 @@ const copyPageText = computed(() => {
   }
 }
 
-.page-context-menu li a {
+.page-context-menu li a,
+.page-context-menu li button {
   display: flex;
   gap: 12px;
   align-items: center;
   padding: 4px 8px;
+  font: inherit;
   font-size: 14px;
   font-weight: bold;
   color: var(--vp-c-text-1);
+  text-align: left;
   cursor: pointer;
   background-color: transparent;
+  border: none;
   border-radius: 6px;
   transition: background-color var(--vp-t-color);
 }
 
-.page-context-menu li a:hover {
+.page-context-menu li a:hover,
+.page-context-menu li button:hover {
   background-color: var(--vp-c-bg-soft);
 }
 
-.page-context-menu li a > [class*="vpi-"] {
+.page-context-menu li a > [class*="vpi-"],
+.page-context-menu li button > [class*="vpi-"] {
   display: inline-block;
   width: 24px;
   height: 24px;
@@ -325,7 +357,8 @@ const copyPageText = computed(() => {
   border-radius: 4px;
 }
 
-.page-context-menu li a small {
+.page-context-menu li a small,
+.page-context-menu li button small {
   display: block;
   font-size: 12px;
   font-weight: normal;

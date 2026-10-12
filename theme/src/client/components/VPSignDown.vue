@@ -97,6 +97,12 @@ function onClick() {
   height: 100%;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .vp-sign-down {
+    animation: none;
+  }
+}
+
 [data-theme="dark"] .vp-sign-down {
   color: var(--vp-c-text-2);
 }

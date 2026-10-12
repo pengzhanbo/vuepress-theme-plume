@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { autoUpdate, flip, shift, useFloating } from '@floating-ui/vue'
-import { onClickOutside, useIntersectionObserver } from '@vueuse/core'
-import { computed, ref, useTemplateRef } from 'vue'
+import { onClickOutside, useEventListener, useIntersectionObserver } from '@vueuse/core'
+import { computed, nextTick, ref, useId, useTemplateRef } from 'vue'
 
 import '@vuepress/helper/transition/fade-in.css'
 
@@ -17,6 +17,21 @@ const group = computed(() => Array.from({ length: total }, (_, i) => i))
 
 const annotation = useTemplateRef('annotation')
 const tooltip = useTemplateRef('tooltip')
+
+const popoverId = `${useId()}-annotation-popover`
+
+function close(restoreFocus = false) {
+  active.value = false
+  if (restoreFocus)
+    nextTick(() => (annotation.value as HTMLElement | null)?.focus())
+}
+
+useEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && active.value) {
+    event.preventDefault()
+    close(true)
+  }
+})
 
 onClickOutside(annotation, () => (active.value = false), { ignore: [tooltip] })
 
@@ -40,16 +55,16 @@ const inset = computed(() => placement.value.split('-')[0])
   <button
     v-bind="$attrs" ref="annotation"
     class="vp-annotation ignore-header" :class="{ active, [inset]: true }"
-    :aria-label="label" :aria-expanded="active"
+    :aria-label="label" :aria-expanded="active" :aria-controls="active ? popoverId : undefined"
     @click="active = !active"
   >
-    <span class="vpi-annotation" />
+    <span class="vpi-annotation" aria-hidden="true" />
   </button>
   <ClientOnly>
     <Teleport to="body">
       <Transition name="fade-in">
         <div
-          v-if="active" ref="tooltip"
+          v-if="active" :id="popoverId" ref="tooltip"
           class="vp-annotation-popover" :class="{ group: group.length > 1 }"
           :style="floatingStyles"
         >

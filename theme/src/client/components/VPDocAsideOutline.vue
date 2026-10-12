@@ -25,7 +25,6 @@ function handlePrint() {
     aria-labelledby="doc-outline-aria-label"
     class="vp-doc-aside-outline"
     :class="{ 'has-outline': hasOutline }"
-    role="navigation"
   >
     <div class="content">
       <div ref="marker" class="outline-marker" />

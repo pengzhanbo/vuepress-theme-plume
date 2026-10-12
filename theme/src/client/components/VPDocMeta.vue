@@ -2,13 +2,14 @@
 import type { Ref } from 'vue'
 import VPBadge from '@theme/global/VPBadge.vue'
 import VPLink from '@theme/VPLink.vue'
-import { useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
+import { useReadingTimeData, useReadingTimeLocale } from '@vuepress/plugin-reading-time/client'
 import { computed, inject, ref } from 'vue'
 import { useData, useInternalLink, usePostsPageData, useTagColors } from '../composables/index.js'
 
 const { page, frontmatter: matter, theme, collection } = useData<'post'>()
 const colors = useTagColors()
 const readingTime = useReadingTimeLocale()
+const readingTimeData = useReadingTimeData()
 const { tags: tagsLink } = useInternalLink()
 const { isPosts } = usePostsPageData()
 
@@ -50,6 +51,13 @@ const badge = computed(() => {
   return false
 })
 
+// 阅读时长的机器可读格式（ISO 8601 duration）
+// Machine-readable reading duration (ISO 8601 duration).
+const readingTimeDatetime = computed(() => {
+  const minutes = readingTimeData.value?.minutes
+  return minutes ? `PT${Math.ceil(minutes)}M` : undefined
+})
+
 // 无法准确判断是否存在 doc-meta 插槽，因此需要通过 provide 传递
 const hasDocMetaSlot = inject<Ref<boolean>>('doc-meta-slot-exists', ref(false))
 
@@ -76,13 +84,13 @@ const hasMeta = computed(() =>
     <slot name="doc-meta-before" />
 
     <p v-if="readingTime.time && matter.readingTime !== false && (metaConfig.readingTime !== false || metaConfig.wordCount !== false)" class="reading-time">
-      <span class="vpi-books icon" />
+      <span class="vpi-books icon" aria-hidden="true" />
       <span v-if="metaConfig.wordCount !== false">{{ readingTime.words }}</span>
-      <span v-if="metaConfig.readingTime !== false">{{ readingTime.time }}</span>
+      <time v-if="metaConfig.readingTime !== false" :datetime="readingTimeDatetime">{{ readingTime.time }}</time>
     </p>
 
     <p v-if="tags.length > 0">
-      <span class="vpi-tag icon" />
+      <span class="vpi-tag icon" aria-hidden="true" />
       <VPLink
         v-for="tag in tags"
         :key="tag.name"
@@ -97,7 +105,7 @@ const hasMeta = computed(() =>
     <slot name="doc-meta-after" />
 
     <p v-if="createTime" class="create-time">
-      <span class="vpi-clock icon" /><span>{{ createTime }}</span>
+      <span class="vpi-clock icon" aria-hidden="true" /><time :datetime="createTime">{{ createTime }}</time>
     </p>
   </div>
 </template>

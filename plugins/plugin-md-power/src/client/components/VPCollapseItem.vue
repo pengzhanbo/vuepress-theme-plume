@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { FadeInExpandTransition } from '@vuepress/helper/client'
-import { inject, ref, watch } from 'vue'
+import { inject, ref, useId, watch } from 'vue'
 import { INJECT_COLLAPSE_KEY } from '../options.js'
 
 import '@vuepress/helper/transition/fade-in-height-expand.css'
@@ -25,6 +25,10 @@ const expanded = ref(
     ? index === collapse.index.value
     : expand,
 )
+
+const uid = useId()
+const headerId = `${uid}-header`
+const contentId = `${uid}-content`
 
 if (collapse?.accordion) {
   watch(collapse?.index, () => {
@@ -50,14 +54,21 @@ function toggle() {
 
 <template>
   <div class="vp-collapse-item" :class="{ expanded }">
-    <div class="vp-collapse-header" @click="toggle">
-      <span class="vpi-chevron-right" />
-      <p class="vp-collapse-title">
+    <button
+      :id="headerId" type="button" class="vp-collapse-header"
+      :aria-expanded="expanded" :aria-controls="contentId"
+      @click="toggle"
+    >
+      <span class="vpi-chevron-right" aria-hidden="true" />
+      <h3 class="vp-collapse-title">
         <slot name="title" />
-      </p>
-    </div>
+      </h3>
+    </button>
     <FadeInExpandTransition>
-      <div v-show="expanded" class="vp-collapse-content">
+      <div
+        v-show="expanded" :id="contentId"
+        class="vp-collapse-content" role="region" :aria-labelledby="headerId"
+      >
         <div class="vp-collapse-content-inner">
           <slot />
         </div>
@@ -82,9 +93,21 @@ function toggle() {
   display: flex;
   gap: 6px;
   align-items: center;
+  width: 100%;
+  padding: 0;
+  font-family: inherit;
   font-size: 16px;
   font-weight: 600;
+  color: inherit;
+  text-align: start;
   cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.vp-collapse-header:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 2px;
 }
 
 .vp-collapse-header .vpi-chevron-right {
@@ -102,6 +125,8 @@ function toggle() {
 .vp-collapse-header .vp-collapse-title {
   flex: 1 2;
   margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
   line-height: 1;
 }
 

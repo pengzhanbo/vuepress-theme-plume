@@ -48,11 +48,21 @@ function keyboardHandler(event: KeyboardEvent, index: number): void {
   }
   else if (event.key === 'ArrowRight') {
     event.preventDefault()
-    activateNext()
+    activateNext(index)
   }
   else if (event.key === 'ArrowLeft') {
     event.preventDefault()
-    activatePrev()
+    activatePrev(index)
+  }
+  else if (event.key === 'Home') {
+    event.preventDefault()
+    activeIndex.value = 0
+    tabRefs.value[0]?.focus()
+  }
+  else if (event.key === 'End') {
+    event.preventDefault()
+    activeIndex.value = tabRefs.value.length - 1
+    tabRefs.value[activeIndex.value]?.focus()
   }
 
   updateStore()
@@ -115,7 +125,7 @@ function onTabNavClick(index: number): void {
       v-for="(item, index) in data"
       :id="`tab-${id}-${index}`" :key="index"
       class="vp-tab" :class="{ active: index === activeIndex }"
-      role="tabpanel" :aria-labelledby="`tab-${id}-${index}-nav`"
+      role="tabpanel" tabindex="-1" :aria-labelledby="`tab-${id}-${index}-nav`"
     >
       <div class="vp-tab-title">
         <slot :name="`title${index}`" :value="item.id" :is-active="index === activeIndex" />
@@ -196,6 +206,10 @@ function onTabNavClick(index: number): void {
 
 .vp-doc .vp-tab-nav.active::after {
   background: var(--vp-code-tab-active-bar-color);
+}
+
+.vp-doc .vp-tab-nav:focus-visible {
+  outline-offset: -2px;
 }
 
 .vp-doc .vp-tab {

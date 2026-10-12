@@ -69,7 +69,7 @@ export function useAudioPlayer(source: MaybeRef<string>, options: AudioPlayerOpt
     player.className = 'audio-player'
     player.style.display = 'none'
     player.preload = options.autoplay ? 'auto' : 'none'
-    player.autoplay = options.autoplay ?? false
+    player.autoplay = false
     document.body.appendChild(player)
     playerList.push(player)
 

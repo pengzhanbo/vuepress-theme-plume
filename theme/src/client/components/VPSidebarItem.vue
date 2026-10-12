@@ -24,6 +24,15 @@ const {
   toggle,
 } = useSidebarItemControl(computed(() => item))
 
+const plainText = computed(() => item.text?.replace(/<[^>]*>/g, '') ?? '')
+
+const caretLabel = computed(() => {
+  const action = collapsed.value
+    ? 'Expand'
+    : 'Collapse'
+  return `${action} ${plainText.value}`
+})
+
 const sectionTag = computed(() => (hasChildren.value ? 'section' : `div`))
 
 const linkTag = computed(() => (isLink.value ? 'a' : 'div'))
@@ -105,7 +114,7 @@ function onItemInteraction(e: MouseEvent | Event) {
         v-if="item.collapsed != null"
         type="button"
         class="caret"
-        :aria-label="`${collapsed ? 'Expand' : 'Collapse'} ${item.text}`"
+        :aria-label="caretLabel"
         :aria-expanded="!collapsed"
         tabindex="-1"
         @click.capture="item.link && toggle()"

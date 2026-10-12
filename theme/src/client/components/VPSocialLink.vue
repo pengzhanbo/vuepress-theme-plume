@@ -2,13 +2,15 @@
 import type { SocialLinkIcon } from '../../shared/index.js'
 import VPIcon from '@theme/VPIcon.vue'
 import { computed } from 'vue'
-import { socialFallbacks } from '../composables/index.js'
+import { socialFallbacks, useData } from '../composables/index.js'
 
 const { icon, link, ariaLabel } = defineProps<{
   icon: SocialLinkIcon
   link: string
   ariaLabel?: string
 }>()
+
+const { theme } = useData()
 
 const iconName = computed(() => {
   if (typeof icon === 'string') {
@@ -34,10 +36,12 @@ const label = computed(() => {
     class="vp-social-link no-icon"
     :href="link"
     :aria-label="label"
-    :title="label"
     target="_blank" rel="noopener"
   >
     <VPIcon :name="iconName" />
+    <span class="visually-hidden">
+      {{ theme.openNewWindowText || '(Open in new window)' }}
+    </span>
   </a>
 </template>
 

@@ -254,8 +254,8 @@ const actions = computed(() => hero.value.actions ?? [])
 
 .image-container {
   position: relative;
-  width: 320px;
-  height: 320px;
+  width: min(320px, 100%);
+  aspect-ratio: 1;
   margin: 0 auto;
 }
 
@@ -285,8 +285,8 @@ const actions = computed(() => hero.value.actions ?? [])
 
   /* rtl:ignore */
   left: 50%;
-  width: 192px;
-  height: 192px;
+  width: min(192px, 100%);
+  aspect-ratio: 1;
   background-image: var(--vp-home-hero-image-background-image);
   filter: var(--vp-home-hero-image-filter);
   border-radius: 50%;

@@ -234,6 +234,11 @@ onMounted(scrollToActiveItem)
   outline: 0;
 }
 
+.nav:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: -2px;
+}
+
 .vp-sidebar-control {
   position: fixed;
   bottom: 0;

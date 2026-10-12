@@ -43,7 +43,7 @@ const showFooter = computed(() => {
 </script>
 
 <template>
-  <footer v-if="showFooter" class="vp-doc-footer">
+  <footer v-if="showFooter" class="vp-doc-footer" aria-label="Page footer">
     <slot name="doc-footer-before" />
 
     <div v-if="hasEditLink || hasLastUpdated" class="edit-info">

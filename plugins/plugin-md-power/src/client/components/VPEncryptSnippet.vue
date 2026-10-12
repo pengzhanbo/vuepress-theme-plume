@@ -122,6 +122,7 @@ onContentUpdated((reason) => {
       </div>
       <div v-else class="snippet-form" :class="{ error: errorCode === 1 }">
         <label :for="inputId">
+          <span class="visually-hidden">Password</span>
           <input
             :id="inputId"
             v-model="password" name="password" type="password"

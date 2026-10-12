@@ -24,7 +24,17 @@ const {
   toggle,
 } = useSidebarItemControl(computed(() => item))
 
-const plainText = computed(() => item.text?.replace(/<[^>]*>/g, '') ?? '')
+function stripHtmlTags(input: string): string {
+  let current = input
+  let previous: string
+  do {
+    previous = current
+    current = current.replace(/<[^>]*>/g, '')
+  } while (current !== previous)
+  return current
+}
+
+const plainText = computed(() => item.text ? stripHtmlTags(item.text) : '')
 
 const caretLabel = computed(() => {
   const action = collapsed.value

@@ -2,7 +2,7 @@
 import type { MenuItem } from '../composables/index.js'
 import VPDocOutlineItem from '@theme/VPDocOutlineItem.vue'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
-import { nextTick, ref, watch } from 'vue'
+import { nextTick, ref, useId, watch } from 'vue'
 import { onContentUpdated } from 'vuepress/client'
 import { useData } from '../composables/index.js'
 
@@ -19,6 +19,7 @@ const open = ref(false)
 const vh = ref(0)
 const items = ref<HTMLDivElement>()
 const btn = ref<HTMLButtonElement>()
+const itemsId = `outline-dropdown-${useId()}`
 
 watch(() => headers, () => {
   open.value = false
@@ -29,7 +30,10 @@ onClickOutside(items, () => {
 }, { ignore: [btn] })
 
 onKeyStroke('Escape', () => {
+  if (!open.value)
+    return
   open.value = false
+  btn.value?.focus()
 })
 
 onContentUpdated(() => {
@@ -63,6 +67,7 @@ function onItemClick(e: Event) {
       :class="{ open }"
       :aria-expanded="open"
       aria-haspopup="true"
+      :aria-controls="itemsId"
       @click="toggle"
     >
       {{ theme.outlineLabel || 'On this page' }}
@@ -72,7 +77,7 @@ function onItemClick(e: Event) {
       <div v-if="open" class="outline-mask" />
     </Transition>
     <Transition name="fade-in-scale-up">
-      <div v-if="open" ref="items" class="items" @click="onItemClick">
+      <div v-if="open" :id="itemsId" ref="items" class="items" tabindex="-1" @click="onItemClick">
         <div class="outline">
           <VPDocOutlineItem :headers="headers" />
         </div>

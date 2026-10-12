@@ -41,7 +41,7 @@ const link = computed(() => {
   <EmbedFrame
     class="code-pen-iframe"
     :src="link"
-    :title="title"
+    :title="title || 'CodePen embed'"
     :width="width"
     :height="height"
     loading="lazy"

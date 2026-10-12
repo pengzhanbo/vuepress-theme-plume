@@ -3,7 +3,7 @@ import type { HighlighterCore } from 'shiki/core'
 import editorData from '@internal/md-power/replEditorData'
 import { createHighlighterCore } from 'shiki/core'
 import { createOnigurumaEngine } from 'shiki/engine/oniguruma'
-import { onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
+import { onMounted, onUnmounted, ref, shallowRef, useId, watch } from 'vue'
 import { resolveCodeInfo } from '../composables/codeRepl.js'
 
 let highlighter: HighlighterCore | null = null
@@ -16,6 +16,7 @@ const lang = ref<'go' | 'rust' | 'kotlin' | 'python'>()
 const editorEl = shallowRef<HTMLDivElement>()
 const textAreaEl = shallowRef<HTMLTextAreaElement>()
 const input = ref('')
+const inputId = `${useId()}-code-input`
 
 async function init() {
   highlighter = await createHighlighterCore({
@@ -81,8 +82,10 @@ onUnmounted(() => {
 <template>
   <div ref="editorEl" class="code-repl-editor">
     <slot />
-    <!-- eslint-disable-next-line vue-a11y/form-control-has-label -->
-    <textarea ref="textAreaEl" v-model="input" class="code-repl-input" spellcheck="false" />
+    <label :for="inputId">
+      <span class="visually-hidden">Code editor</span>
+      <textarea :id="inputId" ref="textAreaEl" v-model="input" class="code-repl-input" spellcheck="false" />
+    </label>
   </div>
 </template>
 
@@ -134,6 +137,10 @@ onUnmounted(() => {
   scrollbar-width: thin;
 }
 
+.code-repl-input:focus-visible {
+  outline: none;
+}
+
 @media (min-width: 640px) {
   .code-repl-input {
     right: 0;
@@ -141,7 +148,7 @@ onUnmounted(() => {
   }
 }
 
-:deep(div[class*="language-"].line-numbers-mode) + .code-repl-input {
+:deep(div[class*="language-"].line-numbers-mode) + label .code-repl-input {
   padding-left: 24px;
   margin-left: 32px;
 }

@@ -46,7 +46,7 @@
   --vp-c-gray-3: #ebebef;
   --vp-c-gray-soft: rgb(142 150 170 / 0.14);
 
-  --vp-c-turquoise-1: #5086a1;
+  --vp-c-turquoise-1: #3f7189;
   --vp-c-turquoise-2: #6aa1b7;
   --vp-c-turquoise-3: #8cccd5;
   --vp-c-turquoise-soft: rgb(131 208 218 / 0.314);
@@ -172,7 +172,7 @@
 :root {
   --vp-c-text-1: rgb(60 60 67);
   --vp-c-text-2: rgb(60 60 67 / 0.78);
-  --vp-c-text-3: rgb(60 60 67 / 0.56);
+  --vp-c-text-3: rgb(60 60 67 / 0.72);
 
   --vp-c-text-dark-1: rgb(255 255 245 / 0.86);
   --vp-c-text-dark-2: rgb(235 235 245 / 0.6);
@@ -182,7 +182,7 @@
 [data-theme="dark"] {
   --vp-c-text-1: rgb(255 255 245 / 0.86);
   --vp-c-text-2: rgb(235 235 245 / 0.6);
-  --vp-c-text-3: rgb(235 235 245 / 0.38);
+  --vp-c-text-3: rgb(235 235 245 / 0.55);
 }
 
 /**
@@ -454,8 +454,8 @@
 }
 
 [data-theme="dark"] {
-  --vp-button-brand-bg: var(--vp-c-brand-2);
-  --vp-button-brand-hover-bg: var(--vp-c-brand-1);
+  --vp-button-brand-bg: var(--vp-c-brand-1);
+  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
   --vp-button-brand-active-bg: var(--vp-c-brand-3);
 }
 

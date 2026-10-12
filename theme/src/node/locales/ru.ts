@@ -72,6 +72,7 @@ export const ruLocale: ThemeLocaleText = {
   askAIText: 'Открыть в {name}',
   askAITagline: 'Спросить {name} об этой странице',
   askAIMessage: 'Прочитайте {link} и ответьте на вопросы, связанные с содержанием.',
+  pageContextMenuLabel: 'Открыть меню действий со страницей',
 }
 
 export const ruPresetLocale: PresetLocale = {

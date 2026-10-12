@@ -54,4 +54,11 @@ export interface CommonLocaleData extends LocaleData {
    * 已复制按钮文本
    */
   copied?: string
+  /**
+   * File tree container accessible name
+   *
+   * 文件树容器的无障碍名称
+   * @default 'File tree'
+   */
+  fileTree?: string
 }

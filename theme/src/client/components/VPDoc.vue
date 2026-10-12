@@ -125,7 +125,7 @@ watch(
         <div :key="page.path" class="content">
           <div class="content-container">
             <slot name="doc-before" />
-            <main class="main">
+            <div class="main">
               <VPDocBreadcrumb />
 
               <slot name="doc-meta-top" />
@@ -169,7 +169,7 @@ watch(
                   </VPDocFooter>
                 </div>
               </VPEncrypt>
-            </main>
+            </div>
 
             <VPComment />
 

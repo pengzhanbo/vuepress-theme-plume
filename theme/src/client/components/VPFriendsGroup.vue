@@ -41,7 +41,6 @@ const { group } = defineProps<{
   color: var(--vp-c-text-1);
   text-align: center;
   border-top: solid 1px var(--vp-c-divider);
-  outline: none;
   transition: color var(--vp-t-color), border-color var(--vp-t-color);
 }
 

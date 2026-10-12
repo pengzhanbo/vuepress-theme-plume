@@ -39,10 +39,102 @@ function toggle(ev: MouseEvent) {
     nodeClick()
   }
 }
+
+function activate() {
+  if (filename === '…' || filename === '...')
+    return
+
+  if (type === 'folder')
+    active.value = !active.value
+
+  nodeClick()
+}
+
+function isHidden(el: HTMLElement): boolean {
+  for (
+    let node: HTMLElement | null = el;
+    node && !node.classList.contains('vp-file-tree');
+    node = node.parentElement
+  ) {
+    if (getComputedStyle(node).display === 'none')
+      return true
+  }
+  return false
+}
+
+function getItems(ev: KeyboardEvent): HTMLElement[] {
+  const root = (ev.currentTarget as HTMLElement).closest('.vp-file-tree')
+  if (!root)
+    return []
+  return Array.from(root.querySelectorAll<HTMLElement>('.vp-file-tree-info'))
+    .filter(el => !isHidden(el))
+}
+
+function moveFocus(ev: KeyboardEvent, step: number) {
+  const items = getItems(ev)
+  const index = items.indexOf(ev.currentTarget as HTMLElement)
+  items[index + step]?.focus()
+}
+
+function focusEdge(ev: KeyboardEvent, edge: 'first' | 'last') {
+  const items = getItems(ev)
+  const target = edge === 'first' ? items[0] : items[items.length - 1]
+  target?.focus()
+}
+
+function onKeydown(ev: KeyboardEvent) {
+  switch (ev.key) {
+    case 'Enter':
+    case ' ': {
+      ev.preventDefault()
+      activate()
+      break
+    }
+    case 'ArrowRight': {
+      ev.preventDefault()
+      if (type === 'folder' && !active.value) {
+        active.value = true
+        nodeClick()
+      }
+      else {
+        moveFocus(ev, 1)
+      }
+      break
+    }
+    case 'ArrowLeft': {
+      ev.preventDefault()
+      if (type === 'folder' && active.value)
+        active.value = false
+      else
+        moveFocus(ev, -1)
+      break
+    }
+    case 'ArrowDown': {
+      ev.preventDefault()
+      moveFocus(ev, 1)
+      break
+    }
+    case 'ArrowUp': {
+      ev.preventDefault()
+      moveFocus(ev, -1)
+      break
+    }
+    case 'Home': {
+      ev.preventDefault()
+      focusEdge(ev, 'first')
+      break
+    }
+    case 'End': {
+      ev.preventDefault()
+      focusEdge(ev, 'last')
+      break
+    }
+  }
+}
 </script>
 
 <template>
-  <div class="vp-file-tree-node">
+  <div class="vp-file-tree-node" role="none">
     <p
       class="vp-file-tree-info" :class="{
         [type]: true,
@@ -53,14 +145,19 @@ function toggle(ev: MouseEvent) {
         add: diff === 'add',
         remove: diff === 'remove',
       }"
+      role="treeitem"
+      tabindex="0"
+      :aria-expanded="type === 'folder' ? active : undefined"
+      :aria-selected="type === 'file' ? activeFileTreeNode === filepath : undefined"
       :style="{ '--file-tree-level': -level }"
       @click="toggle"
+      @keydown="onKeydown"
     >
       <slot name="icon" />
       <span class="name" :class="[type]">{{ filename }}</span>
       <span v-if="$slots.comment" class="comment"><slot name="comment" /></span>
     </p>
-    <div v-if="type === 'folder'" v-show="active" class="group">
+    <div v-if="type === 'folder'" v-show="active" class="group" role="group">
       <slot />
     </div>
   </div>
@@ -201,7 +298,13 @@ function toggle(ev: MouseEvent) {
   transition: color var(--vp-t-color), background-color var(--vp-t-color);
 }
 
+.vp-file-tree .vp-file-tree-info:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: -2px;
+}
+
 .vp-file-tree .vp-file-tree-info.active .name {
+  font-weight: 600;
   color: var(--vp-c-brand-1);
 }
 

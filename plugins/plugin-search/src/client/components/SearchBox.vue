@@ -22,6 +22,7 @@ import {
   ref,
   shallowRef,
   toRef,
+  useId,
   watch,
 } from 'vue'
 import { isNavigationFailure, NavigationFailureType } from 'vue-router'
@@ -51,6 +52,15 @@ const lang = usePageLang()
 
 const el = shallowRef<HTMLElement>()
 const resultsEl = shallowRef<HTMLElement>()
+
+const uid = useId()
+const labelId = `${uid}-label`
+const inputId = `${uid}-input`
+const listId = `${uid}-list`
+
+function optionId(index: number) {
+  return `${uid}-option-${index}`
+}
 
 interface Result {
   title: string
@@ -165,6 +175,16 @@ watch(filterText, () => {
   enableNoResults.value = false
 })
 
+const searchStatusText = computed(() => {
+  if (searchIndexError.value)
+    return searchIndexError.value
+  if (!filterText.value || !enableNoResults.value)
+    return ''
+  if (!results.value.length)
+    return `${locale.value.noResultsText || 'No results for'} "${filterText.value}"`
+  return `${results.value.length} results`
+})
+
 const mark = computedAsync(async () => {
   if (!resultsEl.value)
     return
@@ -241,6 +261,10 @@ function onSearchBarClick(event: PointerEvent) {
 const selectedIndex = ref(-1)
 const disableMouseOver = ref(false)
 
+const activeDescendantId = computed(() =>
+  results.value[selectedIndex.value] ? optionId(selectedIndex.value) : undefined,
+)
+
 watch(results, (r) => {
   selectedIndex.value = r.length ? 0 : -1
   scrollToSelectedResult()
@@ -269,6 +293,12 @@ function isMacCtrlShortcut(event: KeyboardEvent) {
 
 function selectPreviousResult(event: KeyboardEvent) {
   event.preventDefault()
+
+  if (!results.value.length) {
+    selectedIndex.value = -1
+    return
+  }
+
   selectedIndex.value--
   if (selectedIndex.value < 0)
     selectedIndex.value = results.value.length - 1
@@ -279,6 +309,12 @@ function selectPreviousResult(event: KeyboardEvent) {
 
 function selectNextResult(event: KeyboardEvent) {
   event.preventDefault()
+
+  if (!results.value.length) {
+    selectedIndex.value = -1
+    return
+  }
+
   selectedIndex.value++
   if (selectedIndex.value >= results.value.length)
     selectedIndex.value = 0
@@ -379,11 +415,22 @@ useEventListener('popstate', (event) => {
 /** Lock body */
 const isLocked = useScrollLock(typeof document !== 'undefined' ? document.body : null)
 
+let appEl: Element | null = null
+
 onMounted(() => {
   nextTick(() => {
     isLocked.value = true
     nextTick().then(() => activate())
   })
+})
+
+onMounted(() => {
+  appEl = document.querySelector('#app')
+  appEl?.setAttribute('inert', '')
+})
+
+onBeforeUnmount(() => {
+  appEl?.removeAttribute('inert')
 })
 
 onBeforeUnmount(() => {
@@ -414,10 +461,10 @@ function formMarkRegex(terms: Set<string>) {
 }
 
 function selectedClick(e: MouseEvent, p: SearchResult & Result) {
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)
+    return
+
   e.preventDefault()
-  // 同 Enter 键路径：跳转、消费临时历史条目与焦点处理都由 openResult 统一负责。
-  // Same as the Enter path: navigation, temp history entry and focus handling all
-  // live in openResult.
   openResult(p.id)
 }
 </script>
@@ -434,6 +481,14 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
       <div class="backdrop" @click="$emit('close')" />
 
       <div class="shell">
+        <div
+          class="sr-only"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {{ searchStatusText }}
+        </div>
         <form
           class="search-bar"
           @pointerup="onSearchBarClick($event)"
@@ -441,15 +496,18 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
         >
           <!-- eslint-disable vue-a11y/label-has-for -->
           <label
-            id="localsearch-label"
+            :id="labelId"
             :title="buttonText"
-            for="localsearch-input"
+            :for="inputId"
           >
             <SearchIcon class="search-icon" />
+            <span class="sr-only">{{ buttonText }}</span>
           </label>
           <div class="search-actions before">
             <button
+              type="button"
               class="back-button"
+              :aria-label="locale.backButtonTitle"
               :title="locale.backButtonTitle"
               @click="$emit('close')"
             >
@@ -457,20 +515,23 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
             </button>
           </div>
           <input
-            id="localsearch-input"
+            :id="inputId"
             ref="searchInput"
             v-model="filterText"
             :placeholder="buttonText"
-            aria-labelledby="localsearch-label"
+            role="combobox"
+            aria-autocomplete="list"
+            :aria-expanded="results.length > 0 ? 'true' : 'false'"
+            :aria-controls="listId"
+            :aria-labelledby="labelId"
+            :aria-activedescendant="activeDescendantId"
             class="search-input"
           >
           <div class="search-actions">
             <span
               class="search-loading"
               :class="{ active: showSearchSpinner }"
-              :role="showSearchSpinner ? 'status' : undefined"
-              aria-live="polite"
-              :aria-label="showSearchSpinner ? 'Loading search results' : undefined"
+              aria-hidden="true"
             />
             <button
               class="clear-button"
@@ -485,40 +546,42 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
         </form>
 
         <ul
-          :id="results?.length ? 'localsearch-list' : undefined"
+          :id="listId"
           ref="resultsEl"
-          :role="results?.length ? 'listbox' : undefined"
-          :aria-labelledby="results?.length ? 'localsearch-label' : undefined"
+          role="listbox"
+          :aria-labelledby="labelId"
           class="results"
+          tabindex="-1"
           @mousemove="disableMouseOver = false"
         >
           <li
             v-for="(p, index) in results"
+            :id="optionId(index)"
             :key="p.id"
             role="option"
             :aria-selected="selectedIndex === index ? 'true' : 'false'"
+            tabindex="-1"
+            @mouseenter="!disableMouseOver && (selectedIndex = index)"
+            @focusin="selectedIndex = index"
           >
             <a
-              :href="withBase(p.id)"
               class="result"
               :class="{
                 selected: selectedIndex === index,
               }"
-              :aria-label="[...p.titles, p.title].join(' > ')"
-              @mouseenter="!disableMouseOver && (selectedIndex = index)"
-              @focusin="selectedIndex = index"
+              :href="withBase(p.id)"
               @click="selectedClick($event, p)"
             >
               <div>
                 <div class="titles">
-                  <span class="title-icon">#</span>
+                  <span class="title-icon" aria-hidden="true">#</span>
                   <span
                     v-for="(t, i) in p.titles"
                     :key="i"
                     class="title"
                   >
                     <span class="text" v-html="t" />
-                    <svg width="18" height="18" viewBox="0 0 24 24">
+                    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
                       <path
                         fill="none"
                         stroke="currentColor"
@@ -536,24 +599,24 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
               </div>
             </a>
           </li>
-          <li
-            v-if="searchIndexError"
-            class="no-results error"
-            role="alert"
-          >
-            {{ searchIndexError }}
-          </li>
-          <li
-            v-else-if="filterText && !results.length && enableNoResults"
-            class="no-results"
-          >
-            {{ locale.noResultsText }} "<strong>{{ filterText }}</strong>"
-          </li>
         </ul>
+
+        <div
+          v-if="searchIndexError"
+          class="no-results error"
+        >
+          {{ searchIndexError }}
+        </div>
+        <div
+          v-else-if="filterText && !results.length && enableNoResults"
+          class="no-results"
+        >
+          {{ locale.noResultsText }} "<strong>{{ filterText }}</strong>"
+        </div>
 
         <div class="search-keyboard-shortcuts">
           <span>
-            <kbd :aria-label="locale.footer?.navigateUpKeyAriaLabel ?? ''">
+            <kbd :aria-label="locale.footer?.navigateUpKeyAriaLabel || 'up arrow'">
               <svg width="14" height="14" viewBox="0 0 24 24">
                 <path
                   fill="none"
@@ -565,7 +628,7 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
                 />
               </svg>
             </kbd>
-            <kbd :aria-label="locale.footer?.navigateDownKeyAriaLabel ?? ''">
+            <kbd :aria-label="locale.footer?.navigateDownKeyAriaLabel || 'down arrow'">
               <svg width="14" height="14" viewBox="0 0 24 24">
                 <path
                   fill="none"
@@ -580,7 +643,7 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
             {{ locale.footer?.navigateText ?? '' }}
           </span>
           <span>
-            <kbd :aria-label="locale.footer?.selectKeyAriaLabel ?? ''">
+            <kbd :aria-label="locale.footer?.selectKeyAriaLabel || 'enter'">
               <svg width="14" height="14" viewBox="0 0 24 24">
                 <g
                   fill="none"
@@ -597,7 +660,7 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
             {{ locale.footer?.selectText ?? '' }}
           </span>
           <span>
-            <kbd :aria-label="locale.footer?.closeKeyAriaLabel ?? ''">esc</kbd>
+            <kbd :aria-label="locale.footer?.closeKeyAriaLabel || 'esc'">esc</kbd>
             {{ locale.footer?.closeText ?? '' }}
           </span>
         </div>
@@ -639,6 +702,7 @@ svg {
 
 .shell {
   position: relative;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -654,7 +718,7 @@ svg {
 @media (max-width: 767px) {
   .shell {
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     max-height: none;
     margin: 0;
     border-radius: 0;
@@ -666,7 +730,7 @@ svg {
   align-items: center;
   padding: 0 12px;
   cursor: text;
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid var(--vp-c-text-2);
   border-radius: 4px;
 }
 
@@ -751,7 +815,7 @@ svg {
   height: 18px;
   margin: 8px;
   visibility: hidden;
-  border: 2px solid var(--vp-c-divider);
+  border: 2px solid var(--vp-c-text-2);
   border-top-color: var(--vp-c-brand-1);
   border-radius: 50%;
 }
@@ -835,6 +899,10 @@ svg {
   list-style: none;
 }
 
+.results:empty {
+  display: none;
+}
+
 .result {
   display: flex;
   gap: 8px;
@@ -842,8 +910,12 @@ svg {
   line-height: 1rem;
   border: solid 2px var(--vp-mini-search-result-border);
   border-radius: 4px;
-  outline: none;
   transition: none;
+}
+
+.result:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 2px;
 }
 
 .result > div {
@@ -879,8 +951,7 @@ svg {
 
 .title-icon {
   font-weight: 500;
-  color: var(--vp-c-brand-1);
-  opacity: 0.5;
+  color: var(--vp-c-text-2);
 }
 
 .title :deep(svg) {

@@ -5,7 +5,7 @@ import VPNavScreenMenuGroupLink from '@theme/Nav/VPNavScreenMenuGroupLink.vue'
 import VPNavScreenMenuGroupSection from '@theme/Nav/VPNavScreenMenuGroupSection.vue'
 import VPIcon from '@theme/VPIcon.vue'
 import { FadeInExpandTransition } from '@vuepress/helper/client'
-import { computed, ref } from 'vue'
+import { ref, useId } from 'vue'
 
 import '@vuepress/helper/transition/fade-in-height-expand.css'
 
@@ -18,9 +18,7 @@ const { text, icon, badge, items } = defineProps<{
 
 const isOpen = ref(false)
 
-const groupId = computed(
-  () => `nav-screen-menu-group-${text.replace(' ', '-').toLowerCase()}`,
-)
+const groupId = `nav-screen-menu-group-${useId()}`
 
 function toggle() {
   isOpen.value = !isOpen.value

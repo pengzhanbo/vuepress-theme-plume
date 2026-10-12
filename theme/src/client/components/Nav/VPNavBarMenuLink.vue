@@ -28,7 +28,6 @@ const isActiveLink = computed(() => isActive(
     :no-icon="item.noIcon"
     :target="item.target"
     :rel="item.rel"
-    tabindex="0"
   >
     <VPIcon v-if="item.icon" :name="item.icon" />
     <span v-html="item.text" />

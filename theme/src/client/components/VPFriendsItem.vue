@@ -68,7 +68,9 @@ const friendStyle = computed(() => {
   background-color: var(--vp-friends-bg-color);
   border-radius: 6px;
   box-shadow: 0 0 0 transparent;
-  transition: all var(--vp-t-color);
+  transition:
+    background-color var(--vp-t-color),
+    box-shadow var(--vp-t-color);
 }
 
 .vp-friend:hover {

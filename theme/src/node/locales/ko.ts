@@ -72,6 +72,7 @@ export const koLocale: ThemeLocaleText = {
   askAIText: '{name} 에서 열기',
   askAITagline: '이 페이지에 대해 {name} 에 질문하기',
   askAIMessage: '{link} 을(를) 읽고 내용과 관련된 질문에 답변해 주세요.',
+  pageContextMenuLabel: '페이지 작업 메뉴 열기',
 }
 
 export const koPresetLocale: PresetLocale = {

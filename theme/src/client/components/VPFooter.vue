@@ -23,6 +23,7 @@ onMounted(() => {
     ref="footer"
     class="vp-footer"
     :class="{ 'has-sidebar': hasSidebar && !isSidebarCollapsed }"
+    aria-label="Site footer"
     vp-footer
   >
     <slot name="footer-content">

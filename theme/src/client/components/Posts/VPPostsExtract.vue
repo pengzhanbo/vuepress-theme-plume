@@ -235,8 +235,9 @@ const showPostsExtract = computed(() => {
   background-color: rgb(0 0 0 / 0.3);
 }
 
-.posts-modal:focus {
-  outline: none;
+.posts-modal:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: -2px;
 }
 
 .posts-modal-container {
@@ -329,7 +330,7 @@ const showPostsExtract = computed(() => {
   font-weight: 600;
   color: var(--vp-c-brand-1);
   border-radius: 8px;
-  transition: all var(--vp-t-color);
+  transition: color var(--vp-t-color);
 }
 
 .nav-link .icon {

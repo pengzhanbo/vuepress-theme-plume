@@ -22,7 +22,7 @@ const label = computed(() => theme.value.mobileNavLabel || 'Mobile navigation')
     aria-controls="nav-screen"
     @click="$emit('click')"
   >
-    <span class="container">
+    <span class="container" aria-hidden="true">
       <span class="top" />
       <span class="middle" />
       <span class="bottom" />

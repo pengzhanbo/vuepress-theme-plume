@@ -24,6 +24,25 @@ const {
   toggle,
 } = useSidebarItemControl(computed(() => item))
 
+function stripHtmlTags(input: string): string {
+  let current = input
+  let previous: string
+  do {
+    previous = current
+    current = current.replace(/<[^>]*>/g, '')
+  } while (current !== previous)
+  return current
+}
+
+const plainText = computed(() => item.text ? stripHtmlTags(item.text) : '')
+
+const caretLabel = computed(() => {
+  const action = collapsed.value
+    ? 'Expand'
+    : 'Collapse'
+  return `${action} ${plainText.value}`
+})
+
 const sectionTag = computed(() => (hasChildren.value ? 'section' : `div`))
 
 const linkTag = computed(() => (isLink.value ? 'a' : 'div'))
@@ -105,7 +124,7 @@ function onItemInteraction(e: MouseEvent | Event) {
         v-if="item.collapsed != null"
         type="button"
         class="caret"
-        :aria-label="`${collapsed ? 'Expand' : 'Collapse'} ${item.text}`"
+        :aria-label="caretLabel"
         :aria-expanded="!collapsed"
         tabindex="-1"
         @click.capture="item.link && toggle()"

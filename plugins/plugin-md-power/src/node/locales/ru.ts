@@ -4,9 +4,11 @@ export const ruLocale: MDPowerLocaleData = {
   common: {
     copy: 'Копировать',
     copied: 'Скопировано',
+    fileTree: 'Дерево файлов',
   },
   encrypt: {
     hint: 'Контент зашифрован, разблокируйте для просмотра.',
+    password: 'Пароль',
     placeholder: 'Введите пароль',
     unlock: 'Разблокировать',
     incPwd: 'Неверный пароль',

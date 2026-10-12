@@ -72,6 +72,7 @@ export const zhTwLocale: ThemeLocaleText = {
   askAIText: '在 {name} 中開啟',
   askAITagline: '向 {name} 提問有關此頁面',
   askAIMessage: '閱讀 {link} 並回答內容相關的問題。',
+  pageContextMenuLabel: '開啟頁面操作選單',
 }
 
 export const zhTwPresetLocale: PresetLocale = {

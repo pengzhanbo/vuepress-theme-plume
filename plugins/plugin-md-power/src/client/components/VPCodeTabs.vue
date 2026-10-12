@@ -47,11 +47,21 @@ function keyboardHandler(event: KeyboardEvent, index: number): void {
   }
   else if (event.key === 'ArrowRight') {
     event.preventDefault()
-    activateNext()
+    activateNext(index)
   }
   else if (event.key === 'ArrowLeft') {
     event.preventDefault()
-    activatePrev()
+    activatePrev(index)
+  }
+  else if (event.key === 'Home') {
+    event.preventDefault()
+    activeIndex.value = 0
+    tabRefs.value[0]?.focus()
+  }
+  else if (event.key === 'End') {
+    event.preventDefault()
+    activeIndex.value = tabRefs.value.length - 1
+    tabRefs.value[activeIndex.value]?.focus()
   }
 
   updateStore()
@@ -96,10 +106,12 @@ function onTabNavClick(index: number): void {
     <div class="vp-code-tabs-nav" role="tablist">
       <button
         v-for="(item, index) in data"
+        :id="`codetab-${id}-${index}-nav`"
         :key="index"
         :ref="(el) => el && (tabRefs[index] = el as HTMLUListElement)"
         class="vp-code-tab-nav" :class="{ active: index === activeIndex }"
         type="button" role="tab"
+        :tabindex="index === activeIndex ? 0 : -1"
         :aria-controls="`codetab-${id}-${index}`"
         :aria-selected="index === activeIndex"
         @click="() => onTabNavClick(index)"
@@ -112,7 +124,7 @@ function onTabNavClick(index: number): void {
       v-for="(item, index) in data"
       :id="`codetab-${id}-${index}`" :key="index"
       class="vp-code-tab" :class="{ active: index === activeIndex }"
-      role="tabpanel" :aria-expanded="index === activeIndex"
+      role="tabpanel" tabindex="0" :aria-labelledby="`codetab-${id}-${index}-nav`"
     >
       <div class="vp-code-tab-title">
         <slot :name="`title${index}`" :value="item.id" :is-active="index === activeIndex" />
@@ -192,7 +204,8 @@ function onTabNavClick(index: number): void {
 }
 
 .vp-code-tab-nav:focus-visible {
-  outline: none;
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: -2px;
 }
 
 .vp-code-tab-nav.active {

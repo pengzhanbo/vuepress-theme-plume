@@ -4,9 +4,11 @@ export const zhLocale: MDPowerLocaleData = {
   common: {
     copy: '复制',
     copied: '已复制',
+    fileTree: '文件树',
   },
   encrypt: {
     hint: '内容已加密，请解锁后查看。',
+    password: '密码',
     placeholder: '输入密码',
     unlock: '解锁',
     incPwd: '密码错误',

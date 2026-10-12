@@ -11,7 +11,14 @@ const skipToContentLabel = computed(() => theme.value.skipToContentLabel || 'Ski
 
 watch(
   () => route.path,
-  () => backToTop.value.focus(),
+  () => {
+    const el = document.getElementById('vp-content') ?? backToTop.value
+    if (el) {
+      if (!el.hasAttribute('tabindex'))
+        el.setAttribute('tabindex', '-1')
+      el.focus()
+    }
+  },
 )
 
 function focusOnTargetAnchor({ target }: Event) {
@@ -36,7 +43,7 @@ function focusOnTargetAnchor({ target }: Event) {
 <template>
   <span ref="backToTop" tabindex="-1" />
   <a
-    href="#VPContent"
+    href="#vp-content"
     class="vp-skip-link visually-hidden"
     @click="focusOnTargetAnchor"
   >
@@ -50,7 +57,7 @@ function focusOnTargetAnchor({ target }: Event) {
   left: 8px;
   z-index: 999;
   padding: 8px 16px;
-  font-size: 12px;
+  font-size: 0.875rem;
   font-weight: bold;
   color: var(--vp-c-brand-1);
   text-decoration: none;

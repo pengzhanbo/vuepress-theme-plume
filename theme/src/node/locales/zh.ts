@@ -71,6 +71,7 @@ export const zhLocale: ThemeLocaleText = {
   askAIText: '在 {name} 中打开',
   askAITagline: '向 {name} 提问有关此页面',
   askAIMessage: '阅读 {link} 并回答内容相关的问题。',
+  pageContextMenuLabel: '打开页面操作菜单',
 }
 
 export const zhPresetLocale: PresetLocale = {

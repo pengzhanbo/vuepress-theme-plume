@@ -87,15 +87,9 @@
 }
 
 .vp-doc .header-anchor:focus-visible {
-  outline: none;
-}
-
-.vp-doc .header-anchor:focus-visible::before {
-  position: absolute;
-  left: -0.75em;
-  color: var(--vp-c-brand-1);
-  content: var(--vp-header-anchor-symbol);
-  outline: auto;
+  border-radius: 2px;
+  outline: var(--vp-focus-ring-width) solid var(--vp-focus-ring-color);
+  outline-offset: 3px;
 }
 
 @media (min-width: 768px) {

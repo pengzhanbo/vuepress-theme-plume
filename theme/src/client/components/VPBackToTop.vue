@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useElementSize, useWindowScroll, useWindowSize } from '@vueuse/core'
+import { useElementSize, useMediaQuery, useWindowScroll, useWindowSize } from '@vueuse/core'
 import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
 import { useData } from '../composables/index.js'
 
@@ -58,8 +58,10 @@ onUnmounted(() => {
   timer && clearTimeout(timer)
 })
 
+const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
+
 function handleClick() {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  window.scrollTo({ top: 0, behavior: reduceMotion.value ? 'auto' : 'smooth' })
 }
 </script>
 
@@ -72,7 +74,7 @@ function handleClick() {
       :aria-label="label"
       @click="handleClick"
     >
-      <span class="percent" :class="{ show: isScrolling }" data-allow-mismatch>{{ percent }}</span>
+      <span class="percent" :class="{ show: isScrolling }" aria-hidden="true" data-allow-mismatch>{{ percent }}</span>
       <span class="icon vpi-back-to-top" :class="{ show: !isScrolling }" aria-hidden="true" />
       <svg aria-hidden="true">
         <circle cx="50%" cy="50%" data-allow-mismatch :style="{ 'stroke-dasharray': stroke }" />

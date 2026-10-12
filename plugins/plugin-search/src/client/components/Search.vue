@@ -47,8 +47,19 @@ function restoreSearchFocus() {
 function closeSearch(options?: { restoreFocus?: boolean }) {
   showSearch.value = false
 
-  if (options?.restoreFocus === false)
+  if (options?.restoreFocus === false) {
+    nextTick(() => {
+      const main = document.querySelector<HTMLElement>('main, [role="main"]')
+      if (!main) {
+        searchButtonRef.value?.focus()
+        return
+      }
+      if (!main.hasAttribute('tabindex'))
+        main.setAttribute('tabindex', '-1')
+      main.focus({ preventScroll: true })
+    })
     return
+  }
 
   restoreSearchFocus()
 }
@@ -104,7 +115,7 @@ function isEditingContent(event: KeyboardEvent): boolean {
     />
 
     <div id="local-search">
-      <SearchButton ref="searchButton" :locales="locales" @click="showSearch = true" />
+      <SearchButton ref="searchButton" :locales="locales" :expanded="showSearch" @click="showSearch = true" />
     </div>
 
     <noscript>{{ noscriptText }}</noscript>

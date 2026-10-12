@@ -2,12 +2,15 @@
 import type { ThemeImage } from '../../shared/index.js'
 import { computed } from 'vue'
 import { withBase } from 'vuepress/client'
+import { useDarkMode } from '../composables/index.js'
 import { numToUnit } from '../utils/index.js'
 
 const { image, alt } = defineProps<{
   image: ThemeImage
   alt?: string
 }>()
+
+const isDark = useDarkMode()
 
 const styles = computed(() => {
   if (!image || typeof image === 'string')
@@ -42,12 +45,14 @@ export default {
         class="dark"
         :image="image.dark"
         :alt="image.alt"
+        :aria-hidden="isDark ? undefined : 'true'"
         v-bind="$attrs"
       />
       <VPImage
         class="light"
         :image="image.light"
         :alt="image.alt"
+        :aria-hidden="isDark ? 'true' : undefined"
         v-bind="$attrs"
       />
     </template>

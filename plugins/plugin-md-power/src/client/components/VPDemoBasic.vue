@@ -28,6 +28,9 @@ function resizeAndPositionVueDraw() {
   vueDraw.value.style.width = `${draw.value.offsetWidth - 48}px`
   vueDraw.value.style.top = `${rect.top + scrollTop}px`
   vueDraw.value.style.left = `${rect.x + scrollLeft}px`
+  // `.demo-draw-vue` starts hidden (out of the Tab order / a11y tree); once it is
+  // positioned over the preview it becomes visible again.
+  vueDraw.value.style.visibility = 'visible'
 }
 
 if (type === 'vue' && !__VUEPRESS_SSR__) {

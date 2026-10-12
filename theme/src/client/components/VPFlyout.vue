@@ -3,6 +3,7 @@ import type { ThemeBadge, ThemeIcon } from '../../shared/index.js'
 import VPBadge from '@theme/global/VPBadge.vue'
 import VPIcon from '@theme/VPIcon.vue'
 import VPMenu from '@theme/VPMenu.vue'
+import { onKeyStroke } from '@vueuse/core'
 import { ref } from 'vue'
 import { useFlyout } from '../composables/index.js'
 
@@ -17,12 +18,32 @@ const { prefixIcon, icon, button, label, items, badge } = defineProps<{
 
 const open = ref(false)
 const el = ref<HTMLElement>()
+const btn = ref<HTMLButtonElement>()
+
+let restoringFocus = false
 
 useFlyout({ el, onBlur })
 
 function onBlur() {
   open.value = false
 }
+
+function onFocusIn() {
+  if (restoringFocus)
+    return
+  open.value = true
+}
+
+onKeyStroke('Escape', () => {
+  if (!open.value)
+    return
+  open.value = false
+  if (document.activeElement !== btn.value) {
+    restoringFocus = true
+    btn.value?.focus()
+    restoringFocus = false
+  }
+})
 </script>
 
 <template>
@@ -31,10 +52,11 @@ function onBlur() {
     class="vp-flyout"
     @mouseenter="open = true"
     @mouseleave="open = false"
-    @focus="open = true"
-    @blur="open = false"
+    @focusin="onFocusIn"
+    @focusout="open = false"
   >
     <button
+      ref="btn"
       type="button"
       class="button"
       aria-haspopup="true"

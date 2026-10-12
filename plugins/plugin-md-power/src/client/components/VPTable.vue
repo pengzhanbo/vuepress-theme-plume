@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { decodeData } from '@vuepress/helper/client'
 import { useClipboard, useTimeoutFn, useToggle } from '@vueuse/core'
-import { computed, useTemplateRef } from 'vue'
+import { computed, onMounted, ref, useId, useTemplateRef } from 'vue'
 
 const { title, align = 'left', copy, maxContent, fullWidth, markdown } = defineProps<{
   /** 表格标题 */
@@ -21,9 +21,19 @@ const { title, align = 'left', copy, maxContent, fullWidth, markdown } = defineP
 const tableEl = useTemplateRef('table')
 const rawContent = computed(() => markdown ? decodeData(markdown) : '')
 
+const titleId = `${useId()}-table-title`
+const copyStatus = ref('')
+
+// The `<table>` is injected via the slot, so associate the title programmatically.
+onMounted(() => {
+  const table = tableEl.value?.querySelector('table')
+  if (table && title)
+    table.setAttribute('aria-labelledby', titleId)
+})
+
 const [isHTMLCopied, toggleHTMLCopy] = useToggle()
 const [isMDCopied, toggleMDCopy] = useToggle()
-const { copy: copyTable } = useClipboard()
+const { copy: copyTable, copied } = useClipboard()
 
 // 复制状态的重置定时器随组件作用域自动清理。
 // 两种格式各自持有独立的定时器，避免连续复制不同格式时相互取消。
@@ -32,10 +42,17 @@ const { copy: copyTable } = useClipboard()
 const { start: resetHTMLCopied } = useTimeoutFn(() => toggleHTMLCopy(false), 1500, { immediate: false })
 const { start: resetMDCopied } = useTimeoutFn(() => toggleMDCopy(false), 1500, { immediate: false })
 
-function onCopy(type: 'html' | 'md') {
-  copyTable(type === 'md' ? rawContent.value : tableEl.value?.innerHTML || '')
+async function onCopy(type: 'html' | 'md') {
+  await copyTable(type === 'md' ? rawContent.value : tableEl.value?.innerHTML || '')
+
+  if (!copied.value) {
+    copyStatus.value = type === 'html' ? 'Failed to copy table as HTML' : 'Failed to copy table as Markdown'
+    return
+  }
+
   type === 'html' ? toggleHTMLCopy(true) : toggleMDCopy(true)
   type === 'html' ? resetHTMLCopied() : resetMDCopied()
+  copyStatus.value = type === 'html' ? 'Table copied as HTML' : 'Table copied as Markdown'
 }
 </script>
 
@@ -44,13 +61,14 @@ function onCopy(type: 'html' | 'md') {
     <div class="table-container">
       <div class="table-content">
         <div v-if="copy" class="table-toolbar">
+          <span class="visually-hidden" role="status" aria-live="polite">{{ copyStatus }}</span>
           <button
             v-if="copy === 'all' || copy === 'html'"
             type="button"
             aria-label="Copy Table as HTML"
             @click="onCopy('html')"
           >
-            <span :class="isHTMLCopied ? 'vpi-table-copied' : 'vpi-table-copy'" />
+            <span :class="isHTMLCopied ? 'vpi-table-copied' : 'vpi-table-copy'" aria-hidden="true" />
             <span>HTML</span>
           </button>
           <button
@@ -59,15 +77,18 @@ function onCopy(type: 'html' | 'md') {
             aria-label="Copy Table as Markdown"
             @click="onCopy('md')"
           >
-            <span :class="isMDCopied ? 'vpi-table-copied' : 'vpi-table-copy'" />
+            <span :class="isMDCopied ? 'vpi-table-copied' : 'vpi-table-copy'" aria-hidden="true" />
             <span>Markdown</span>
           </button>
         </div>
-        <div ref="table" class="table-inner" :class="{ 'max-content': maxContent }">
+        <div
+          ref="table" class="table-inner" :class="{ 'max-content': maxContent }"
+          role="region" :aria-label="title || 'Table'" tabindex="0"
+        >
           <slot />
         </div>
       </div>
-      <p v-if="title" class="table-title">
+      <p v-if="title" :id="titleId" class="table-title">
         {{ title }}
       </p>
     </div>

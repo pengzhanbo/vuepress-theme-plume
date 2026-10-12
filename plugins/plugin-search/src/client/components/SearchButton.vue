@@ -3,8 +3,9 @@ import type { SearchBoxLocales } from '../../shared/index.js'
 import { toRef, useTemplateRef } from 'vue'
 import { useLocale } from '../composables/index.js'
 
-const { locales } = defineProps<{
+const { locales, expanded } = defineProps<{
   locales: SearchBoxLocales
+  expanded?: boolean
 }>()
 
 const locale = useLocale(toRef(() => locales))
@@ -30,7 +31,14 @@ defineExpose({ focus })
 </script>
 
 <template>
-  <button ref="button" type="button" class="mini-search mini-search-button" :aria-label="locale.placeholder">
+  <button
+    ref="button"
+    type="button"
+    class="mini-search mini-search-button"
+    :aria-label="locale.placeholder"
+    aria-haspopup="dialog"
+    :aria-expanded="expanded ? 'true' : 'false'"
+  >
     <span class="mini-search-button-container">
       <span class="mini-search-search-icon vpi-mini-search" aria-hidden="true" />
       <span class="mini-search-button-placeholder">{{ locale.placeholder }}</span>
@@ -59,13 +67,13 @@ defineExpose({ focus })
   background: transparent;
 }
 
-.mini-search-button:focus {
-  outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+.mini-search-button:focus-visible {
+  outline: var(--vp-focus-ring-width) solid var(--vp-focus-ring-color);
+  outline-offset: var(--vp-focus-ring-offset);
 }
 
 .mini-search-button:focus:not(:focus-visible) {
-  outline: none !important;
+  outline: none;
 }
 
 @media (min-width: 768px) {

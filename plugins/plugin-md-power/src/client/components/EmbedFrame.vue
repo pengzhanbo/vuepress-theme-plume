@@ -6,24 +6,6 @@ import { useSize } from '../composables/size.js'
 import { createEmbedStatus } from '../utils/embedStatus.js'
 import Loading from './icons/Loading.vue'
 
-/**
- * Unified frame for third-party iframe embeds (CodePen / JSFiddle / CodeSandbox /
- * Replit / video embeds).
- *
- * It centralizes the shared concerns that used to be duplicated (and missing) in
- * each embed component:
- * - a loading placeholder while the embed is not ready,
- * - an error state with a fallback link when the embed fails (removed, blocked
- *   by region / CSP, or silently swallowed by the browser),
- * - a timeout guard: if the `load` event never fires within `timeout` ms the
- *   frame falls back to the error state instead of showing a blank box forever.
- *
- * 第三方 iframe 嵌入（CodePen / JSFiddle / CodeSandbox / Replit / 视频嵌入）的统一容器。
- * 集中处理各嵌入组件此前重复实现（甚至缺失）的职责：
- * - 未就绪时展示 loading 占位；
- * - 加载失败（被删除、区域限制、CSP 拦截，或被浏览器静默吞掉）时展示错误状态与兜底链接；
- * - 超时保护：`timeout` 毫秒内未触发 `load` 事件则回退到错误状态，避免永久空白或永久 loading。
- */
 defineOptions({
   inheritAttrs: false,
 })
@@ -51,6 +33,7 @@ const props = withDefaults(defineProps<{
   timeout?: number
 } & SizeOptions>(), {
   timeout: 15000,
+  title: 'Embedded content',
 })
 
 const emit = defineEmits<{
@@ -119,7 +102,7 @@ function onError(event: Event): void {
         @error="onError"
       />
       <Loading v-if="status === 'loading'" absolute />
-      <div v-else-if="status === 'error'" class="embed-frame-error">
+      <div v-else-if="status === 'error'" class="embed-frame-error" role="alert">
         <p class="embed-frame-error-text">
           Failed to load
         </p>

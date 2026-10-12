@@ -45,7 +45,7 @@ const { postList } = defineProps<{
   margin-right: 14px;
   overflow: hidden;
   font-weight: 600;
-  transition: all var(--vp-t-color);
+  transition: color var(--vp-t-color);
 
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;

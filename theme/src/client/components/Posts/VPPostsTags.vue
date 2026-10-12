@@ -16,7 +16,7 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
         <span>{{ tagsLink?.text ?? 'Tags' }}</span>
       </h2>
       <slot name="posts-tags-title-after" />
-      <div class="tags">
+      <div class="tags" role="group" :aria-label="tagsLink?.text ?? 'Tags'">
         <button
           v-for="tag in tags"
           :key="tag.name"
@@ -103,7 +103,10 @@ const { tags, currentTag, postList, handleTagClick } = useTags()
   background-color: var(--vp-tag-bg);
   border: 1px solid var(--vp-tag-bg);
   border-radius: 6px;
-  transition: all var(--vp-t-color);
+  transition:
+    color var(--vp-t-color),
+    background-color var(--vp-t-color),
+    border-color var(--vp-t-color);
 }
 
 .tag-title {

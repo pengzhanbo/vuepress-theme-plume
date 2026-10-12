@@ -3,6 +3,7 @@ import type { CommonLocaleData, FileTreeIconMode, FileTreeOptions } from '../../
 import { encodeData } from '@vuepress/helper'
 import { findFileIcon } from 'find-file-icon'
 import { ensureLeadingSlash, removeEndingSlash, resolveLocalePath } from 'vuepress/shared'
+import { nanoid } from '../utils/nanoid.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
 import { createContainerSyntaxPlugin } from './createContainer.js'
@@ -307,9 +308,15 @@ ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children
     const nodes = parseFileTreeContentWithFence(text)
     const localePath = resolveLocalePath(locales, ensureLeadingSlash(env.filePathRelative || ''))
     const data = locales[localePath] ?? {}
-    return `<div class="vp-file-tree" role="tree">${
-      meta.title ? `<p class="vp-file-tree-title">${md.utils.escapeHtml(meta.title)}</p>` : ''
-    }<VPCopyButton text="${encodeData(text)}" encode aria-label="${md.utils.escapeHtml(data.copy || 'Copy')}" data-copied="${md.utils.escapeHtml(data.copied || 'Copied')}" />${
+    const titleId = `file-tree-title-${nanoid()}`
+    const title = meta.title
+      ? `<p class="vp-file-tree-title" id="${titleId}">${md.utils.escapeHtml(meta.title)}</p>`
+      : ''
+    const label = meta.title
+      ? ` aria-labelledby="${titleId}"`
+      : ` aria-label="${md.utils.escapeHtml(data.fileTree || 'File tree')}"`
+
+    return `<div class="vp-file-tree" role="tree"${label}>${title}<VPCopyButton text="${encodeData(text)}" encode aria-label="${md.utils.escapeHtml(data.copy || 'Copy')}" data-copied="${md.utils.escapeHtml(data.copied || 'Copied')}" />${
       renderFileTree(nodes, meta)
     }</div>\n`
   }

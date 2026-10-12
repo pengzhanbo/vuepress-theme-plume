@@ -4,6 +4,7 @@ export const frLocale: MDPowerLocaleData = {
   common: {
     copy: 'Copier',
     copied: 'Copié',
+    fileTree: 'Arborescence de fichiers',
   },
   encrypt: {
     hint: 'Le contenu est chiffré, veuillez déverrouiller pour afficher.',

@@ -4,6 +4,7 @@ export const enLocale: MDPowerLocaleData = {
   common: {
     copy: 'Copy',
     copied: 'Copied',
+    fileTree: 'File tree',
   },
   encrypt: {
     hint: 'The content is encrypted, please unlock to view.',

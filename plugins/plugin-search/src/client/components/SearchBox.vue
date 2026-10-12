@@ -26,7 +26,7 @@ import {
   watch,
 } from 'vue'
 import { isNavigationFailure, NavigationFailureType } from 'vue-router'
-import { usePageLang, useRouteLocale, useRouter } from 'vuepress/client'
+import { usePageLang, useRouteLocale, useRouter, withBase } from 'vuepress/client'
 import { createTokenizer } from '../../shared/index.js'
 import { loadSearchIndexJSON, useLocale } from '../composables/index.js'
 import BackIcon from './icons/BackIcon.vue'
@@ -461,10 +461,10 @@ function formMarkRegex(terms: Set<string>) {
 }
 
 function selectedClick(e: MouseEvent, p: SearchResult & Result) {
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)
+    return
+
   e.preventDefault()
-  // 同 Enter 键路径：跳转、消费临时历史条目与焦点处理都由 openResult 统一负责。
-  // Same as the Enter path: navigation, temp history entry and focus handling all
-  // live in openResult.
   openResult(p.id)
 }
 </script>
@@ -563,13 +563,14 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
             tabindex="-1"
             @mouseenter="!disableMouseOver && (selectedIndex = index)"
             @focusin="selectedIndex = index"
-            @click="selectedClick($event, p)"
           >
-            <span
+            <a
               class="result"
               :class="{
                 selected: selectedIndex === index,
               }"
+              :href="withBase(p.id)"
+              @click="selectedClick($event, p)"
             >
               <div>
                 <div class="titles">
@@ -596,7 +597,7 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
                   </span>
                 </div>
               </div>
-            </span>
+            </a>
           </li>
         </ul>
 

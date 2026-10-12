@@ -4,6 +4,7 @@ export const zhTWLocale: MDPowerLocaleData = {
   common: {
     copy: '複製',
     copied: '已複製',
+    fileTree: '檔案樹',
   },
   encrypt: {
     hint: '內容已加密，請解鎖後查看。',

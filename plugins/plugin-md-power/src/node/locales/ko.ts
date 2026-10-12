@@ -4,6 +4,7 @@ export const koLocale: MDPowerLocaleData = {
   common: {
     copy: '복사',
     copied: '복사됨',
+    fileTree: '파일 트리',
   },
   encrypt: {
     hint: '내용이 암호화되어 있습니다. 잠금 해제 후 확인하세요.',

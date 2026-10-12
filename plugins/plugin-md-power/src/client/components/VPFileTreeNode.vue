@@ -50,11 +50,24 @@ function activate() {
   nodeClick()
 }
 
+function isHidden(el: HTMLElement): boolean {
+  for (
+    let node: HTMLElement | null = el;
+    node && !node.classList.contains('vp-file-tree');
+    node = node.parentElement
+  ) {
+    if (getComputedStyle(node).display === 'none')
+      return true
+  }
+  return false
+}
+
 function getItems(ev: KeyboardEvent): HTMLElement[] {
   const root = (ev.currentTarget as HTMLElement).closest('.vp-file-tree')
   if (!root)
     return []
   return Array.from(root.querySelectorAll<HTMLElement>('.vp-file-tree-info'))
+    .filter(el => !isHidden(el))
 }
 
 function moveFocus(ev: KeyboardEvent, step: number) {

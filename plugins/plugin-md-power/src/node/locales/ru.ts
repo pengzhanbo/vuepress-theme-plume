@@ -7,6 +7,7 @@ export const ruLocale: MDPowerLocaleData = {
   },
   encrypt: {
     hint: 'Контент зашифрован, разблокируйте для просмотра.',
+    password: 'Пароль',
     placeholder: 'Введите пароль',
     unlock: 'Разблокировать',
     incPwd: 'Неверный пароль',

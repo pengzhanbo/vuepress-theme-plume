@@ -7,6 +7,7 @@ export const deLocale: MDPowerLocaleData = {
   },
   encrypt: {
     hint: 'Der Inhalt ist verschlüsselt, bitte entsperren Sie ihn, um ihn anzuzeigen.',
+    password: 'Passwort',
     placeholder: 'Passwort eingeben',
     unlock: 'Entsperren',
     incPwd: 'Falsches Passwort',

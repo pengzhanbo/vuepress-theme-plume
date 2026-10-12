@@ -59,6 +59,7 @@ export const enLocale: ThemeLocaleText = {
   askAIText: 'Open in {name}',
   askAITagline: 'Ask {name} about this page',
   askAIMessage: 'Read {link} and answer content-related questions.',
+  pageContextMenuLabel: 'Open page actions menu',
 }
 
 export const enPresetLocale: PresetLocale = {

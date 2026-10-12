@@ -261,6 +261,10 @@ function onSearchBarClick(event: PointerEvent) {
 const selectedIndex = ref(-1)
 const disableMouseOver = ref(false)
 
+const activeDescendantId = computed(() =>
+  results.value[selectedIndex.value] ? optionId(selectedIndex.value) : undefined,
+)
+
 watch(results, (r) => {
   selectedIndex.value = r.length ? 0 : -1
   scrollToSelectedResult()
@@ -289,6 +293,12 @@ function isMacCtrlShortcut(event: KeyboardEvent) {
 
 function selectPreviousResult(event: KeyboardEvent) {
   event.preventDefault()
+
+  if (!results.value.length) {
+    selectedIndex.value = -1
+    return
+  }
+
   selectedIndex.value--
   if (selectedIndex.value < 0)
     selectedIndex.value = results.value.length - 1
@@ -299,6 +309,12 @@ function selectPreviousResult(event: KeyboardEvent) {
 
 function selectNextResult(event: KeyboardEvent) {
   event.preventDefault()
+
+  if (!results.value.length) {
+    selectedIndex.value = -1
+    return
+  }
+
   selectedIndex.value++
   if (selectedIndex.value >= results.value.length)
     selectedIndex.value = 0
@@ -508,7 +524,7 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
             :aria-expanded="results.length > 0 ? 'true' : 'false'"
             :aria-controls="listId"
             :aria-labelledby="labelId"
-            :aria-activedescendant="selectedIndex >= 0 ? optionId(selectedIndex) : undefined"
+            :aria-activedescendant="activeDescendantId"
             class="search-input"
           >
           <div class="search-actions">

@@ -29,19 +29,20 @@ const label = computed(() => {
     return icon.includes(':') ? icon.split(':')[1] : icon
   return icon.name
 })
+
+const ariaLabelText = computed(() =>
+  `${label.value} ${theme.value.openNewWindowText || '(Open in new window)'}`,
+)
 </script>
 
 <template>
   <a
     class="vp-social-link no-icon"
     :href="link"
-    :aria-label="label"
+    :aria-label="ariaLabelText"
     target="_blank" rel="noopener"
   >
     <VPIcon :name="iconName" />
-    <span class="visually-hidden">
-      {{ theme.openNewWindowText || '(Open in new window)' }}
-    </span>
   </a>
 </template>
 

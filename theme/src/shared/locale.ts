@@ -478,6 +478,13 @@ export interface ThemeLocaleText {
   // 以下字段与 PageContextMenu 相关 ------ start
 
   /**
+   * 打开页面操作菜单按钮的无障碍名称
+   *
+   * Accessible name of the button that opens the page actions menu.
+   * @default 'Open page actions menu'
+   */
+  pageContextMenuLabel?: string
+  /**
    * 复制页面的文本
    */
   copyPageText?: string

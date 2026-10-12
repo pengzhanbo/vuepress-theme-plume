@@ -152,6 +152,10 @@ function onEscape() {
   toggleRef.value?.focus()
 }
 
+const menuToggleLabel = computed(() =>
+  theme.value.pageContextMenuLabel ?? 'Open page actions menu',
+)
+
 const copyPageText = computed(() => {
   const copyText = theme.value.copyPageText ?? 'Copy page'
   const copiedText = theme.value.copiedPageText ?? 'Copied !'
@@ -172,6 +176,7 @@ const copyPageText = computed(() => {
         type="button"
         class="page-context-toggle"
         :class="{ open }"
+        :aria-label="menuToggleLabel"
         aria-haspopup="menu"
         :aria-expanded="open"
         @click="() => toggleMenu()"
@@ -180,7 +185,7 @@ const copyPageText = computed(() => {
       </button>
     </div>
     <Transition name="fade-in">
-      <ul v-show="open" ref="menu" class="page-context-menu" role="menu">
+      <ul v-show="open" ref="menu" class="page-context-menu">
         <li>
           <button type="button" @click="onCopy">
             <span class="vpi-copy" :class="{ loading: !loaded, copied }" />

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { ThemeHomeConfig } from '../../shared/index.js'
-import { useElementSize, useWindowSize } from '@vueuse/core'
+import { useElementSize, useMediaQuery, useWindowSize } from '@vueuse/core'
 import { computed, onMounted, shallowRef } from 'vue'
 import { useData, useLayout } from '../composables/index.js'
 
@@ -35,10 +35,12 @@ const show = computed(() => {
 
 const { is960 } = useLayout()
 
+const reduceMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
+
 function onClick() {
   document.documentElement.scrollTo({
     top: document.documentElement.clientHeight - (is960.value ? 64 : 0),
-    behavior: 'smooth',
+    behavior: reduceMotion.value ? 'auto' : 'smooth',
   })
 }
 </script>

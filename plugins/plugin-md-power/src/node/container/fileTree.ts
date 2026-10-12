@@ -307,7 +307,7 @@ ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children
     const nodes = parseFileTreeContentWithFence(text)
     const localePath = resolveLocalePath(locales, ensureLeadingSlash(env.filePathRelative || ''))
     const data = locales[localePath] ?? {}
-    return `<div class="vp-file-tree">${
+    return `<div class="vp-file-tree" role="tree">${
       meta.title ? `<p class="vp-file-tree-title">${md.utils.escapeHtml(meta.title)}</p>` : ''
     }<VPCopyButton text="${encodeData(text)}" encode aria-label="${md.utils.escapeHtml(data.copy || 'Copy')}" data-copied="${md.utils.escapeHtml(data.copied || 'Copied')}" />${
       renderFileTree(nodes, meta)

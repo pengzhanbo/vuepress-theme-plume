@@ -7,6 +7,7 @@ export const jaLocale: MDPowerLocaleData = {
   },
   encrypt: {
     hint: 'コンテンツは暗号化されています。閲覧するにはロックを解除してください。',
+    password: 'パスワード',
     placeholder: 'パスワードを入力',
     unlock: 'ロック解除',
     incPwd: 'パスワードが間違っています',

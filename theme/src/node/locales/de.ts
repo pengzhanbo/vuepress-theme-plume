@@ -72,6 +72,7 @@ export const deLocale: ThemeLocaleText = {
   askAIText: 'In {name} öffnen',
   askAITagline: '{name} zu dieser Seite befragen',
   askAIMessage: 'Lese {link} und beantworte Fragen zum Inhalt.',
+  pageContextMenuLabel: 'Menü der Seitenaktionen öffnen',
 }
 
 export const dePresetLocale: PresetLocale = {

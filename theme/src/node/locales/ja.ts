@@ -72,6 +72,7 @@ export const jaLocale: ThemeLocaleText = {
   askAIText: '{name} で開く',
   askAITagline: 'このページについて {name} に質問する',
   askAIMessage: '{link} を読み、内容に関する質問に答えてください。',
+  pageContextMenuLabel: 'ページ操作メニューを開く',
 }
 
 export const jaPresetLocale: PresetLocale = {

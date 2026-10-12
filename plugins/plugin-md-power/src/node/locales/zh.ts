@@ -7,6 +7,7 @@ export const zhLocale: MDPowerLocaleData = {
   },
   encrypt: {
     hint: '内容已加密，请解锁后查看。',
+    password: '密码',
     placeholder: '输入密码',
     unlock: '解锁',
     incPwd: '密码错误',

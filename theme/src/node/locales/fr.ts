@@ -72,6 +72,7 @@ export const frLocale: ThemeLocaleText = {
   askAIText: 'Ouvrir dans {name}',
   askAITagline: 'Interroger {name} sur cette page',
   askAIMessage: 'Lisez {link} et répondez aux questions concernant son contenu.',
+  pageContextMenuLabel: 'Ouvrir le menu des actions de la page',
 }
 
 export const frPresetLocale: PresetLocale = {

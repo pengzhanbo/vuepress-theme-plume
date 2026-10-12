@@ -33,7 +33,7 @@ onMounted(() => {
 
 const [isHTMLCopied, toggleHTMLCopy] = useToggle()
 const [isMDCopied, toggleMDCopy] = useToggle()
-const { copy: copyTable } = useClipboard()
+const { copy: copyTable, copied } = useClipboard()
 
 // 复制状态的重置定时器随组件作用域自动清理。
 // 两种格式各自持有独立的定时器，避免连续复制不同格式时相互取消。
@@ -42,8 +42,14 @@ const { copy: copyTable } = useClipboard()
 const { start: resetHTMLCopied } = useTimeoutFn(() => toggleHTMLCopy(false), 1500, { immediate: false })
 const { start: resetMDCopied } = useTimeoutFn(() => toggleMDCopy(false), 1500, { immediate: false })
 
-function onCopy(type: 'html' | 'md') {
-  copyTable(type === 'md' ? rawContent.value : tableEl.value?.innerHTML || '')
+async function onCopy(type: 'html' | 'md') {
+  await copyTable(type === 'md' ? rawContent.value : tableEl.value?.innerHTML || '')
+
+  if (!copied.value) {
+    copyStatus.value = type === 'html' ? 'Failed to copy table as HTML' : 'Failed to copy table as Markdown'
+    return
+  }
+
   type === 'html' ? toggleHTMLCopy(true) : toggleMDCopy(true)
   type === 'html' ? resetHTMLCopied() : resetMDCopied()
   copyStatus.value = type === 'html' ? 'Table copied as HTML' : 'Table copied as Markdown'

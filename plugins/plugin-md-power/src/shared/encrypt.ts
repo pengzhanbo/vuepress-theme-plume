@@ -14,6 +14,13 @@ export interface EncryptSnippetLocale extends LocaleData {
    */
   hint?: string
   /**
+   * Password input accessible name
+   *
+   * 密码输入框的无障碍名称
+   * @default 'Password'
+   */
+  password?: string
+  /**
    * Password placeholder
    *
    * 密码占位符

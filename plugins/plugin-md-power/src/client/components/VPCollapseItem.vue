@@ -54,16 +54,16 @@ function toggle() {
 
 <template>
   <div class="vp-collapse-item" :class="{ expanded }">
-    <button
-      :id="headerId" type="button" class="vp-collapse-header"
-      :aria-expanded="expanded" :aria-controls="contentId"
-      @click="toggle"
-    >
-      <span class="vpi-chevron-right" aria-hidden="true" />
-      <h3 class="vp-collapse-title">
+    <h3 class="vp-collapse-title">
+      <button
+        :id="headerId" type="button" class="vp-collapse-header"
+        :aria-expanded="expanded" :aria-controls="contentId"
+        @click="toggle"
+      >
+        <span class="vpi-chevron-right" aria-hidden="true" />
         <slot name="title" />
-      </h3>
-    </button>
+      </button>
+    </h3>
     <FadeInExpandTransition>
       <div
         v-show="expanded" :id="contentId"
@@ -122,8 +122,7 @@ function toggle() {
   transform: rotate(90deg);
 }
 
-.vp-collapse-header .vp-collapse-title {
-  flex: 1 2;
+.vp-collapse-item .vp-collapse-title {
   margin: 0;
   font-size: inherit;
   font-weight: inherit;

@@ -73,8 +73,8 @@ async function onSubmit() {
       :aria-busy="unlocking"
       @click="onSubmit"
     >
-      <span v-if="!unlocking">{{ theme.encryptButtonText ?? 'Confirm' }}</span>
-      <span v-else class="vpi-loading" aria-hidden="true" />
+      <span :class="{ 'visually-hidden': unlocking }">{{ theme.encryptButtonText ?? 'Confirm' }}</span>
+      <span v-if="unlocking" class="vpi-loading" aria-hidden="true" />
     </button>
     <p class="visually-hidden" role="status" aria-live="polite">
       {{ unlocking ? 'Unlocking…' : '' }}
@@ -131,6 +131,7 @@ async function onSubmit() {
 }
 
 .encrypt-button {
+  position: relative;
   width: 100%;
   padding: 8px 12px;
   margin-top: 20px;

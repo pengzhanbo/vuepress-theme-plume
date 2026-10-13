@@ -1,7 +1,7 @@
 ---
-title: 示例容器
-createTime: 2024/09/30 14:47:12
+title: 窗口容器
 icon: fxemoji:window
+createTime: 2024/09/30 14:47:12
 permalink: /guide/markdown/window/
 outline: 2
 ---
@@ -19,11 +19,25 @@ outline: 2
 :::
 ````
 
-## 选项
+## Props
 
-- `title="xxx"`：标题
-- `height="200px"`: 高度
-- `gap="20px"`: 左右内边距
+:::: field-group
+::: field title
+@type `string`
+
+标题
+:::
+::: field height
+@type `string`
+
+高度
+:::
+::: field gap
+@type `string`
+
+左右内边距
+:::
+::::
 
 ## 示例
 

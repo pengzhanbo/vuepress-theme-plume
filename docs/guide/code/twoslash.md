@@ -11,8 +11,8 @@ outline: [2, 4]
 为代码块添加支持 [TypeScript TwoSlash](https://www.typescriptlang.org/dev/twoslash/) 支持。
 在代码块内提供内联类型提示。
 
-该功能由 [shiki](https://shiki.style/) 和 [@shikijs/twoslash](https://shiki.style/packages/twoslash) 提供支持，
-并整合在 [@vuepress-plume/plugin-shikiji](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-shikiji) 中。
+该功能由 [shiki](https://shiki.style/) 与 [@shikijs/twoslash](https://shiki.style/packages/twoslash) 提供支持，
+主题通过 [`codeHighlighter`](../../config/theme.md#codehighlighter) 配置集成。
 
 ::: important __twoslash__ 是一个高级功能，您需要熟练掌握 [TypeScript](https://www.typescriptlang.org/) 的知识，并且了解 [twoslash 语法](https://twoslash.netlify.app/)。
 :::

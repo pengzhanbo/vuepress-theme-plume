@@ -43,6 +43,8 @@ list:
 
   Whether the current page is a friends links page.
 
+  Deprecated. Please use `pageLayout: 'friends'` instead.
+
 ### pageLayout
 
 - Type: `'friends'`
@@ -53,7 +55,7 @@ list:
 ### title
 
 - Type: `string`
-- Default: `Friends Links`
+- Default: `'My Friends'`
 
 The title of the friends links page.
 
@@ -135,13 +137,13 @@ For social link configuration, please refer to [Configuration/Theme Configuratio
 
 ### groups
 
-- Type: `FriendsGroup[]`
+- Type: `FriendGroup[]`
 - Default: `[]`
 
 Friends links grouping.
 
 ```ts
-interface FriendsGroup {
+interface FriendGroup {
   /**
    * Group title
    */

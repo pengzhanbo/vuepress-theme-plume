@@ -3,7 +3,6 @@ title: AcFun Video
 icon: lets-icons:video-fill
 createTime: 2025/10/08 10:57:45
 permalink: /en/guide/embed/video/acfun/
-badge: New
 ---
 
 ## Overview
@@ -40,12 +39,30 @@ More options:
 @[acfun width="100%" height="400px" ratio="16:9"](id)
 ```
 
-**Parameter Description:**
+Parameter Description:
 
-- id: Video ID
-- width: Video width
-- height: Video height
-- ratio: Video aspect ratio, defaults to `16:9`
+:::: field-group
+::: field id
+@type `string`
+@required
+Video ID
+:::
+::: field width
+@type `string`
+@default `100%`
+Video width
+:::
+::: field height
+@type `string`
+@default undefined
+Video height. When not specified, it is handled as automatic height
+:::
+::: field ratio
+@type `string`
+@default `16:10`
+Video aspect ratio.
+:::
+::::
 
 ## Examples
 

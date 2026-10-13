@@ -9,7 +9,7 @@ permalink: /en/guide/markdown/flex/
 
 The Flex container `::: flex` provides a convenient way to apply Flexbox layout to block-level content in markdown.
 
-## Usage
+## Syntax
 
 ```md
 ::: flex [center|between|around] [start|center|end] [gap="20"] [column]
@@ -21,12 +21,31 @@ The Flex container `::: flex` provides a convenient way to apply Flexbox layout 
 :::
 ```
 
-## Attributes
+## Props
 
-- On the main axis, use `center` / `between` / `around` to specify alignment;
-- On the cross axis, use `start` / `center` / `end` to specify alignment;
-- Use `gap="20"` to specify spacing;
-- Use `column` to set the main axis direction to vertical.
+:::: field-group
+::: field center / between / around
+@type `boolean`
+Alignment along the main axis; just write one of them
+:::
+::: field start / center / end
+@type `boolean`
+Alignment along the cross axis; just write one of them
+:::
+::: field gap
+@type `number | string`
+@default `16`
+Spacing
+:::
+::: field column
+@type `boolean`
+Sets the main axis direction to vertical
+:::
+::: field wrap
+@type `boolean`
+Allows child elements to wrap (`flex-wrap: wrap`)
+:::
+::::
 
 ## Examples
 

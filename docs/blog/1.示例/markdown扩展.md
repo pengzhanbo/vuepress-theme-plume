@@ -54,7 +54,7 @@ tags:
 
 [VuePress](https://v2.vuepress.vuejs.org/)
 
-## Github风格的表格
+## GitHub 风格的表格
 
 **输入：**
 

@@ -24,21 +24,22 @@ permalink: /guide/markdown/obsidian/
 Obsidian 兼容功能默认全部启用，你可以通过配置选择性地启用或禁用：
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        obsidian: {
-          wikiLink: true,    // Wiki 链接
-          embedLink: true,  // 嵌入内容
-          callout: true,    // Callout
-          comment: true,    // 注释
-        },
-        pdf: true,          // PDF 嵌入功能
-        artPlayer: true,    // 视频嵌入功能
-      }
-    }
-  })
+    markdown: {
+      obsidian: {
+        wikiLink: true, // Wiki 链接
+        embedLink: true, // 嵌入内容
+        callout: true, // Callout
+        comment: true, // 注释
+      },
+      pdf: true, // PDF 嵌入功能
+      artPlayer: true, // 视频嵌入功能
+    },
+  }),
 })
 ```
 
@@ -175,7 +176,11 @@ docs/
 
 文件名搜索规则与 [Wiki 链接](#文件名搜索规则) 相同。
 
-::: info 以 `/` 开头或无路径前缀如 `./` 形式的，从 `public` 目录中加载资源
+::: info 嵌入资源的路径解析规则
+
+- 以 `./` 或 `../` 开头：相对于**当前 markdown 文件**解析
+- 以 `/` 开头：按站点根路径解析，即 `.vuepress/public/` 下的资源
+- 不带路径前缀的裸文件名：先尝试相对当前目录与文档根目录查找真实文件，找不到时按 `/文件名` 处理
 :::
 
 ### 图片嵌入
@@ -219,7 +224,7 @@ docs/
 ### PDF 嵌入
 
 > [!NOTE]
-> PDF 嵌入需要启用 `markdown.pdf` 插件才能正常工作。
+> PDF 嵌入需要启用 `markdown.pdf` 配置项才能正常工作。
 
 **语法：**
 
@@ -248,7 +253,7 @@ docs/
 ### 视频嵌入
 
 > [!NOTE]
-> 视频嵌入需要启用 `markdown.artPlayer` 插件才能正常工作。
+> 视频嵌入需要启用 `markdown.artPlayer` 配置项才能正常工作。
 
 **语法：**
 
@@ -463,6 +468,6 @@ Callout 支持以下类型，别名会自动映射到对应的主要类型：
 - 这些插件提供的是 **兼容性支持**，并非完全实现 Obsidian 的全部功能
 - 部分 Obsidian 特有的功能（如内部链接的图谱视图、双向链接等）不在支持范围内
 - 嵌入内容时，被嵌入的页面也会参与主题的构建过程
-- PDF 嵌入需要同时启用 `markdown.pdf` 插件
-- 视频嵌入需要同时启用 `markdown.artPlayer` 插件
-- 以 `/` 开头或使用 `./` 形式的嵌入资源会从 `public` 目录加载
+- PDF 嵌入需要同时启用 [markdown 配置](../../config/markdown.md) 中的 `pdf`
+- 视频嵌入需要同时启用 [markdown 配置](../../config/markdown.md) 中的 `artPlayer`
+- 以 `/` 开头的嵌入资源按站点根路径（`.vuepress/public/`）解析，`./` / `../` 开头则相对于当前 markdown 文件解析

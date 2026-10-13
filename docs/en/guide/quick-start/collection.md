@@ -175,7 +175,7 @@ The doc collection provides the following feature implementations:
 The `notes` configuration option from the old version has been deprecated.
 Please use the `collections` configuration instead. `notes` will be removed in a future major version.
 
-The directories and note structures in the `notes` configuration can be migrated to the `doc` type collection in
+The directories and document structures in the `notes` configuration can be migrated to the `doc` type collection in
 `collections`. Refer to [Collection Configuration](./collection.md) for more details.
 :::
 

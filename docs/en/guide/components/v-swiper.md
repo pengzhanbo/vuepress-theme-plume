@@ -24,8 +24,6 @@ npm install swiper
 The component can be used directly in any markdown file (the theme will automatically import the `Swiper` component on demand).
 
 ```md
-
-<!-- use it in markdown -->
 <Swiper :items="['img_link1', 'img_link2']" />
 ```
 
@@ -53,19 +51,66 @@ if (!__VUEPRESS_SSR__) {
 
 ## Props
 
-| Name              | Type                                                                            | Default    | Description                                                                                                                                |
-| ----------------- | ------------------------------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| items             | `string \| { link: string; href?: string; alt?: string}[]`                      | `[]`       | Image link array. When passing objects, `link` represents image URL, `href` represents navigation link, `alt` represents image description |
-| width             | `number \| string`                                                              | `100%`     | Carousel area width                                                                                                                        |
-| height            | `number \| string`                                                              | `100%`     | Carousel area height                                                                                                                       |
-| mode              | `'banner' \| 'carousel' \| 'broadcast'`                                         | `'banner'` | Carousel mode: `banner`: banner; `carousel`: carousel; `broadcast`: information display                                                    |
-| navigation        | `boolean`                                                                       | `true`     | Whether to show navigation buttons                                                                                                         |
-| effect            | `'slide' \| 'fade' \| 'cube' \| 'coverflow' \| 'flip' \| 'cards' \| 'creative'` | `'slide'`  | Carousel effect                                                                                                                            |
-| delay             | `number`                                                                        | `3000`     | Carousel interval time. Only effective when `mode: 'banner'`. Unit: `ms`                                                                   |
-| speed             | `number`                                                                        | `300`      | Animation duration. Unit: `ms`                                                                                                             |
-| loop              | `boolean`                                                                       | `true`     | Whether to loop                                                                                                                            |
-| pauseOnMouseEnter | `boolean`                                                                       | `false`    | Whether to pause carousel on mouse hover                                                                                                   |
-| swipe             | `boolean`                                                                       | `true`     | Whether to enable gesture swiping                                                                                                          |
+:::: field-group
+::: field items
+@type `string | { link: string, href?: string, alt?: string }[]`
+@default `[]`
+Image link array. When passing objects, `link` represents the image URL, `href` the navigation link, and `alt` the image description
+:::
+::: field width
+@type `number | string`
+@default `100%`
+Carousel area width
+:::
+::: field height
+@type `number | string`
+@default `100%`
+Carousel area height
+:::
+::: field mode
+@type `'banner' | 'carousel' | 'broadcast'`
+@default `'banner'`
+@enum 'banner'|'carousel'|'broadcast'
+Carousel mode: `banner` banner, `carousel` carousel, `broadcast` information display
+:::
+::: field navigation
+@type `boolean`
+@default `true`
+Whether to show navigation buttons
+:::
+::: field effect
+@type `'slide' | 'fade' | 'cube' | 'coverflow' | 'flip' | 'cards' | 'creative'`
+@default `'slide'`
+Carousel effect
+:::
+::: field delay
+@type `number`
+@default `3000`
+@unit ms
+Carousel interval. Only effective when `mode: 'banner'`
+:::
+::: field speed
+@type `number`
+@default `300`
+@unit ms
+Animation duration
+:::
+::: field loop
+@type `boolean`
+@default `true`
+Whether to loop
+:::
+::: field pauseOnMouseEnter
+@type `boolean`
+@default `false`
+Whether to pause the carousel on mouse hover
+:::
+::: field swipe
+@type `boolean`
+@default `true`
+Whether to enable gesture swiping
+:::
+::::
 
 For more props, refer to [Swiper Documentation](https://swiperjs.com/swiper-api#parameters)
 
@@ -87,7 +132,26 @@ either an image URL or an object with `link`, `href` and `alt`:
 and are easy to confuse.
 :::
 
-## Reference Examples
+## Examples
+
+::: warning The `images` in the examples below come from this page's script setup
+
+All reference examples on this page use `:items="images"`, where `images` is defined in the
+`<script setup>` at the top of this page (used to fetch wallpaper data from the example site) —
+**it is not a built-in variable of the component**.
+
+When copying these examples directly into your own page, you need to provide equivalent data yourself:
+
+```vue
+<script setup lang="ts">
+const images = [
+  { link: '/images/slide-1.png' },
+  { link: '/images/slide-2.png' },
+]
+</script>
+```
+
+:::
 
 ### Preset Animation Effects
 

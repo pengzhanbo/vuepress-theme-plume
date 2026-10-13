@@ -32,7 +32,7 @@ permalink: /guide/migration/
 主题默认兼容旧的 `blog/notes` 配置，在构建时完成转换，规则如下：
 
 1. 若**未配置 `collections`**，则把根级的 `blog` 转换为 `post` 集合，把 `notes` 转换为若干 `doc` 集合。
-2. `notes` 中配置的笔记目录会被自动追加到 `blog` 集合的 `exclude` 中，避免笔记文章被博客列表收录。
+2. `notes` 中配置的目录会被自动追加到 `blog` 集合的 `exclude` 中，避免这些文章被博客列表收录。
 3. **若已配置 `collections`，则根级的 `blog` / `notes` 会被忽略。**
 4. 多语言场景下，某个语言环境**自身声明了 `collections`** 时，它自己的 `blog` / `notes` 会被忽略；未声明时，会回退使用根级的 `blog` / `notes`。
 
@@ -146,7 +146,7 @@ export default defineCollections([
 2. **标签页、归档页、分类页**链接是否可达
 3. **文档侧边栏**是否与迁移前一致，特别是 `sidebar: 'struct'` 这类深层结构
 4. 各页面的 **URL 是否发生变化** —— `linkPrefix` 写错会导致路径改变，旧链接失效
-5. 笔记目录中的文章是否被正确排除在博客列表之外
+5. 原 `notes` 目录中的文章是否被正确排除在博客列表之外
 
 ## 相关文档
 

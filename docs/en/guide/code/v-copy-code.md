@@ -7,7 +7,7 @@ permalink: /en/guide/code/copy-code/
 
 ## Overview
 
-This feature is powered by [@vuepress/plugin-copy-code](https://ecosystem.vuejs.press/zh/plugins/features/copy-code.html).
+This feature is powered by [@vuepress/plugin-copy-code](https://ecosystem.vuejs.press/plugins/features/copy-code.html).
 
 The code copying feature is enabled by default in the theme. It supports one-click copying of code displayed in articles.
 
@@ -40,11 +40,14 @@ Whether to show the copy button on mobile devices.
 ### ignoreSelector
 
 - **Type:** `string | string[]`
-- **Default:** `[]`
+- **Default:** `['.vp-copy-ignore', '.diff.remove']`
 
 CSS selector for elements within code blocks to be ignored during copying.
 
-Example: `['.token.comment']` will ignore nodes with the class `.token.comment` in code blocks (this would ignore comments in prismjs).
+The theme forcibly merges the two selectors `.vp-copy-ignore` and `.diff.remove`,
+so these two kinds of elements are always ignored.
+
+Example: `['.token.comment']` will ignore nodes with the class `.token.comment` in code blocks.
 
 ### inlineSelector
 

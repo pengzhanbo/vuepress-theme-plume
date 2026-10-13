@@ -39,29 +39,49 @@ config:
 
 ### config
 
-- Type: `PlumeHomeConfig[]`
+- Type: `ThemeHomeConfig[]`
 
-Defines homepage sections.
+Defines homepage sections, rendered in array order.
 
 ```ts
-interface PlumeHomeConfigBase {
+interface ThemeHomeConfigBase {
   /**
    * The type of this section, which determines the component to be applied
+   *
+   * When another string is passed, it is resolved as a global component name, used for custom section components.
    */
-  type: 'banner' | 'hero' | 'text-image' | 'image-text' | 'features' | 'profile' | 'custom' | string
+  type: 'banner' | 'hero' | 'doc-hero' | 'text-image' | 'image-text'
+    | 'features' | 'profile' | 'custom' | 'posts' | string
+
+  /**
+   * The index of this section
+   *
+   * The theme re-injects this value at render time according to the order of the `config` array, so it is usually not needed when writing frontmatter by hand;
+   * however, it is a required field in the source types, so it must be provided when using TS to constrain frontmatter.
+   */
+  index: number
+
   /**
    * Whether this section should be full-screen
    */
   full?: boolean
+
   /**
    * Background image for this section
    * You can define background images for light/dark modes
    */
   backgroundImage?: string | { light: string, dark: string }
+
   /**
    * Background attachment style for this section
    */
   backgroundAttachment?: 'fixed' | 'local'
+
+  /**
+   * The theme automatically derives this from the length of `config` at render time (it is `true` when the length is 1) and overrides the passed value,
+   * so setting this field in the config has no effect.
+   */
+  onlyOnce?: boolean
 }
 ```
 

@@ -39,16 +39,50 @@ More options:
 @[youtube autoplay loop start="0" end="0" width="100%" height="400px" ratio="16:9"](id)
 ```
 
-**Parameter Description:**
+Parameter Description:
 
-- id: Video ID
-- autoplay: Whether to enable autoplay
-- loop: Whether to enable loop playback
-- start: Video playback start time in seconds, or in `mm:ss` or `hh:mm:ss` format
-- end: Video playback end time in seconds, or in `mm:ss` or `hh:mm:ss` format
-- width: Video width
-- height: Video height
-- ratio: Video aspect ratio, defaults to `16:9`
+:::: field-group
+::: field id
+@type `string`
+@required
+Video ID
+:::
+::: field autoplay
+@type `boolean`
+@default `false`
+Whether to enable autoplay
+:::
+::: field loop
+@type `boolean`
+@default `false`
+Whether to enable loop playback
+:::
+::: field start
+@type `number | string`
+@default undefined
+Video playback start time in seconds, or in `mm:ss` or `hh:mm:ss` format
+:::
+::: field end
+@type `number | string`
+@default undefined
+Video playback end time in seconds, or in `mm:ss` or `hh:mm:ss` format
+:::
+::: field width
+@type `string`
+@default `100%`
+Video width
+:::
+::: field height
+@type `string`
+@default undefined
+Video height. When not specified, it is handled as automatic height
+:::
+::: field ratio
+@type `string`
+@default `16:9`
+Video aspect ratio
+:::
+::::
 
 ## Examples
 

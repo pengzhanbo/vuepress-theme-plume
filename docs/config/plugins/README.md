@@ -1,6 +1,6 @@
 ---
 title: 介绍
-createTime: 2024/03/06 8:26:44
+createTime: 2024/03/06 08:26:44
 permalink: /config/plugins/
 ---
 
@@ -39,6 +39,7 @@ export default defineUserConfig({
 - [@vuepress/plugin-reading-time](https://ecosystem.vuejs.press/zh/plugins/development/reading-time.html) - 文章阅读时间
 - [@vuepress/plugin-watermark](https://ecosystem.vuejs.press/zh/plugins/features/watermark.html) - 文章水印
 - [@vuepress-plume/plugin-search](./search.md) - 本地搜索
+- [@vuepress-plume/plugin-fonts](./fonts.md) - 特殊字符字体
 - [@vuepress/plugin-docsearch](https://ecosystem.vuejs.press/zh/plugins/search/docsearch.html) - Algolia 文档搜索
 - [@vuepress/plugin-copy-code](https://ecosystem.vuejs.press/zh/plugins/features/copy-code.html) - 代码复制
 - [@vuepress/plugin-shiki](https://ecosystem.vuejs.press/zh/plugins/markdown/shiki.html) - 代码高亮
@@ -55,6 +56,7 @@ export default defineUserConfig({
 - [@vuepress/plugin-cache](https://ecosystem.vuejs.press/zh/plugins/tools/cache.html) - 页面编译缓存
 - [@vuepress/plugin-seo](https://ecosystem.vuejs.press/zh/plugins/seo/seo/) - SEO 优化
 - [@vuepress/plugin-sitemap](https://ecosystem.vuejs.press/zh/plugins/seo/sitemap/) - 站点地图
+- [@vuepress/plugin-llms](./llms.md) - 生成 LLM 友好的 `llms.txt`
 
 :::tip
 您无需重复安装这些内置插件，也无需在 [vuepress配置 > plugins](https://v2.vuepress.vuejs.org/zh/reference/config.html#plugins) 中添加它们。主题已在内部完成了这些工作。

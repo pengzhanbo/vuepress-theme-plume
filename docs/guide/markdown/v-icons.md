@@ -1,7 +1,7 @@
 ---
 title: 图标
-createTime: 2024/09/30 14:49:39
 icon: grommet-icons:emoji
+createTime: 2024/09/30 14:49:39
 permalink: /guide/markdown/icon/
 ---
 
@@ -317,10 +317,10 @@ interface IconOptions {
   /**
    * iconfont 资源地址
    */
-  assets: (FontAwesomeAssetBuiltin | string)[]
+  assets: (FontAwesomeAssetBuiltIn | string)[]
 }
 
-type FontAwesomeAssetBuiltin = 'fontawesome' | 'fontawesome-with-brands'
+type FontAwesomeAssetBuiltIn = 'fontawesome' | 'fontawesome-with-brands'
 
 type FontAwesomePrefix
   = | 'fas' | 's' // fa-solid fa-name

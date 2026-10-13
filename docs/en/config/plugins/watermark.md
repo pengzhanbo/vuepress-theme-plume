@@ -8,7 +8,7 @@ permalink: /en/config/plugins/watermark/
 
 The theme's built-in watermark plugin adds watermarks to the entire site or individual pages.
 
-Related plugin: [@vuepress/plugin-watermark](https://ecosystem.vuejs.press/zh/plugins/features/watermark.html)
+Related plugin: [@vuepress/plugin-watermark](https://ecosystem.vuejs.press/plugins/features/watermark.html)
 
 For feature details, please refer to [Watermark Feature](../../guide/features/watermark.md)
 
@@ -50,13 +50,34 @@ For configuration entry priority information, please refer to [Plugin Configurat
 
 - Type: `boolean | ((page: Page) => boolean)`
 
-- Default: `false`
+- Default: `true`
 
 - Details:
 
   Specifies which pages should have watermarks added.
 
   Pages with a `true` value will have watermarks applied.
+
+  ::: tip The default `true` does not conflict with "no watermark when not configured"
+  The theme only registers the watermark plugin when `watermark` is configured (either the top-level `watermark` or `plugins.watermark`),
+  and it explicitly passes `enabled: true` when registering. Therefore **when `watermark` is not configured, no watermark appears anywhere on the site**;
+  the `true` here describes the default behavior once the watermark has been configured, and it is not an on/off switch.
+  :::
+
+### fullPage
+
+- Type: `boolean`
+
+- Default: `true`
+
+- Details:
+
+  Whether to use a full-page watermark. This is a theme extension field; `@vuepress/plugin-watermark` itself does not have this option.
+
+  - `true`: The watermark covers the entire page
+  - `false`: The watermark is only displayed within the content area
+
+  A single page can also override this by setting `watermark.fullPage: false` in frontmatter.
 
 ### watermarkOptions
 

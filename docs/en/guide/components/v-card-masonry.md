@@ -34,15 +34,17 @@ An item represents individual content such as an image, text, video, etc.
 :::: field-group
 
 ::: field cols
-@type `number | { sm: number, md: number, lg: number }`
+@type `number | { sm?: number, md?: number, lg?: number }`
+@default `{ sm: 2, md: 2, lg: 3 }`
 Number of columns.
 
 The component automatically adjusts the number of columns based on screen width by default.
 Three columns are displayed when space permits, while two columns are shown on smaller screens.
 
 The `cols` prop configures the number of columns. When a `number` is provided,
-all screen sizes display `number` columns. When `{ sm: number, md: number, lg: number }` is provided,
-the number of columns adjusts automatically based on screen width.
+all screen sizes display `number` columns. When an object is provided,
+the number of columns adjusts automatically based on screen width (all three keys are optional;
+when omitted they fall back to `lg → 3`, `md → 2` and `sm → 2`).
 
 - `sm` : `< 640px`
 - `md` : `>= 640px < 960px`
@@ -63,7 +65,7 @@ Gap between columns.
 ### `default`
 
 The masonry grid receives its child cards through the `default` slot. Unlike `CardGrid`, it
-**automatically distributes children into columns** for you.
+**automatically distributes children into columns by height** for you.
 
 ```vue
 <CardMasonry :cols="3">
@@ -71,9 +73,12 @@ The masonry grid receives its child cards through the `default` slot. Unlike `Ca
 </CardMasonry>
 ```
 
-::: warning Children are distributed in a scattered order
-Items are placed into columns in a round-robin fashion, so **DOM order does not match visual reading
-order** (the 1st, 2nd and 3rd items may land in columns 1, 2 and 3 respectively).
+::: warning Children are redistributed into columns
+The component uses a **height-greedy** column assignment strategy: it measures each child's height in
+turn and places it into the column with the smallest accumulated height.
+
+As a result, **the order of children does not match the visual reading order** (the 1st, 2nd and 3rd
+items may not land in columns 1, 2 and 3 respectively).
 
 If strict reading order matters, use [`CardGrid`](./v-card-grid.md), which preserves DOM order.
 :::
@@ -109,7 +114,9 @@ Masonry layout is particularly suitable for displaying images. You can directly 
 ``` md
 ::: card-masonry
 
-![alt text](image_url)
+![alt text](/images/1.png)
+
+![alt text](/images/2.png)
 
 ![alt text](image_url)
 

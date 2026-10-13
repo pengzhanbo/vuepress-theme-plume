@@ -14,8 +14,6 @@ permalink: /guide/markdown/timeline/
 - 支持 __图标__ 和 __线条样式__
 - 支持通过预设 __类型__ 设置 __颜色__，支持自定义颜色
 
-## 启用
-
 该功能默认不启用，你需要在 `theme` 配置中启用。
 
 ```ts title=".vuepress/config.ts"
@@ -28,7 +26,7 @@ export default defineUserConfig({
 })
 ```
 
-## 使用
+## 语法
 
 在 `::: timeline` 容器中，使用 markdown 无序列表语法，列表的每一个项即时间线上的每一个点。
 

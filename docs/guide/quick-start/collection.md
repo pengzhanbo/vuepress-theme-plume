@@ -170,7 +170,7 @@ doc 集合提供了以下的功能实现：
 ::: warning 已弃用
 旧版本中的 `notes` 配置项已弃用，请使用 `collections` 配置代替。`notes` 将在未来的主版本中移除。
 
-`notes` 配置中的目录和笔记结构可以对应迁移到 `collections` 中的 `doc` 类型集合，参考 [集合配置](./collection.md) 了解更多。
+`notes` 配置中的目录和文档结构可以对应迁移到 `collections` 中的 `doc` 类型集合，参考 [集合配置](./collection.md) 了解更多。
 :::
 
 ## 集合配置

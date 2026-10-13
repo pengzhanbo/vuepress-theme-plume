@@ -53,42 +53,46 @@ export default defineClientConfig({
 
 你也可以利用它来覆盖默认主题的预定义 CSS 变量。
 
-以下是部分预定义变量， 完整列表请参考 [vars.css](https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/theme/src/client/styles/vars.css)
+::: warning 以下仅为变量名称与书写格式示例
+
+这里的取值会随主题版本变化，**实际取值请以 [vars.css](https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/theme/src/client/styles/vars.css) 为准**。
+其中的品牌色是 `--vp-c-turquoise-*` 的派生变量，深浅色模式下取值不同。
+:::
 
 ```scss
 :root {
-  /** 主题颜色 */
-  --vp-c-brand-1: #5086a1;
-  --vp-c-brand-2: #6aa1b7;
-  --vp-c-brand-3: #8cccd5;
-  --vp-c-brand-soft: rgba(131, 208, 218, 0.314);
+  /** 主题颜色（派生自 --vp-c-turquoise-*） */
+  --vp-c-brand-1: var(--vp-c-turquoise-1);
+  --vp-c-brand-2: var(--vp-c-turquoise-2);
+  --vp-c-brand-3: var(--vp-c-turquoise-3);
+  --vp-c-brand-soft: var(--vp-c-turquoise-soft);
 
- /** 背景颜色 */
+  /** 背景颜色 */
   --vp-c-bg: #ffffff;
   --vp-c-bg-alt: #f6f6f7;
   --vp-c-bg-elv: #ffffff;
   --vp-c-bg-soft: #f6f6f7;
 
   /** 文本颜色 */
-  --vp-c-text-1: rgba(60, 60, 67);
-  --vp-c-text-2: rgba(60, 60, 67, 0.78);
-  --vp-c-text-3: rgba(60, 60, 67, 0.56);
+  --vp-c-text-1: rgb(60 60 67);
+  --vp-c-text-2: rgb(60 60 67 / 0.78);
+  --vp-c-text-3: rgb(60 60 67 / 0.72);
 }
 
 [data-theme="dark"] {
-  --vp-c-brand-1: #8cccd5;
-  --vp-c-brand-2: #6aa1b7;
-  --vp-c-brand-3: #5086a1;
-  --vp-c-brand-soft: rgba(131, 208, 218, 0.314);
+  --vp-c-brand-1: var(--vp-c-turquoise-1);
+  --vp-c-brand-2: var(--vp-c-turquoise-2);
+  --vp-c-brand-3: var(--vp-c-turquoise-3);
+  --vp-c-brand-soft: var(--vp-c-turquoise-soft);
 
   --vp-c-bg: #1b1b1f;
   --vp-c-bg-alt: #161618;
   --vp-c-bg-elv: #202127;
   --vp-c-bg-soft: #202127;
 
-  --vp-c-text-1: rgba(255, 255, 245, 0.86);
-  --vp-c-text-2: rgba(235, 235, 245, 0.6);
-  --vp-c-text-3: rgba(235, 235, 245, 0.38);
+  --vp-c-text-1: rgb(255 255 245 / 0.86);
+  --vp-c-text-2: rgb(235 235 245 / 0.6);
+  --vp-c-text-3: rgb(235 235 245 / 0.55);
 }
 ```
 

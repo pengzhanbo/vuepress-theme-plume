@@ -58,7 +58,7 @@ Python 代码演示默认是只读的，不可编辑。
 ````md
 ::: python-repl title="自定义标题"
 ```python
-// your python code
+# your python code
 ```
 :::
 ````
@@ -70,7 +70,7 @@ Python 代码演示默认是只读的，不可编辑。
 ````md
 ::: python-repl editable title="自定义标题"
 ```python
-// your python code
+# your python code
 ```
 :::
 ````
@@ -85,7 +85,7 @@ Python 代码演示默认是只读的，不可编辑。
 ::: python-repl
 ```python
 def hello_world():
-    return 'Hello World!'
+    print('Hello World!')
 
 hello_world()
 ```

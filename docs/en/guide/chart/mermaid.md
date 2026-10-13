@@ -1,7 +1,7 @@
 ---
 title: Mermaid
-createTime: 2025/10/08 19:34:16
 icon: file-icons:mermaid
+createTime: 2025/10/08 19:34:16
 permalink: /en/guide/chart/mermaid/
 ---
 
@@ -52,24 +52,38 @@ and is provided under the[MIT](https://github.com/vuepress/ecosystem/blob/main/L
 ```
 ````
 
-In addition to using the `mermaid` code block, you can also directly use the following code block types:
+In addition to using the `mermaid` code block, you can also directly use the following code block aliases:
 
-- class: `classDiagram`
+- agentflow: `agentflow-beta`
+- architecture: `architecture-beta`
+- block: `block`
 - c4c: `C4Context`
+- class: `classDiagram`
 - er: `erDiagram`
 - gantt: `gantt`
 - git-graph: `gitGraph`
+- ishikawa: `ishikawa-beta`
 - journey: `journey`
+- kanban: `kanban`
 - mindmap: `mindmap`
+- packet: `packet`
 - pie: `pie`
 - quadrant: `quadrantChart`
+- radar: `radar-beta`
 - requirement: `requirementDiagram`
-- sankey: `sankey-beta`
+- sankey: `sankey`
 - sequence: `sequenceDiagram`
 - state: `stateDiagram-v2`
 - timeline: `timeline`
-- xy: `xychart-beta`
+- treemap: `treemap-beta`
+- treeview: `treeView-beta`
+- usecase: `usecase-beta`
+- venn: `venn-beta`
+- wardley: `wardley-beta`
+- xy: `xychart`
 
+The table above lists all code block aliases (27 in total) mapped by the current version of
+[@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/mermaid.html).
 You do not need to declare the diagram type again, nor do you need to indent the diagram code.
 
 When the diagram supports setting a title, you can add the title directly after the code block info:
@@ -202,7 +216,7 @@ title What Voldemort doesn't have?
 **Input:**
 
 :::: details View Code
-<!-- @include: ../../../snippet/mermaid-8.snippet.md-->
+<!-- @include: ../../../snippet/mermaid-8.snippet.md -->
 ::::
 
 **Output:**

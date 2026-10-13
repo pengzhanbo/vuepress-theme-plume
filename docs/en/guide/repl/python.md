@@ -85,7 +85,7 @@ For online editing and execution, wrap the code block in the `::: python-repl ed
 ::: python-repl
 ```python
 def hello_world():
-    return 'Hello World!'
+    print('Hello World!')
 
 hello_world()
 ```

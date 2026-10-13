@@ -165,3 +165,5 @@ export default defineCollections([
   },
 ])
 ```
+
+:::

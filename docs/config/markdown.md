@@ -2,6 +2,7 @@
 title: Markdown 配置
 createTime: 2025/03/15 14:54:19
 permalink: /config/markdown/
+outline: [2, 4]
 ---
 
 ## 概述
@@ -28,25 +29,6 @@ export default defineUserConfig({
 二者是相互独立的，不要在 [VuePress > markdown](https://v2.vuepress.vuejs.org/zh/reference/config.html#markdown) 中配置主题的 markdown 配置,反之亦然。
 :::
 
-::: tip 主题的 `markdown` 是扁平结构，不支持 `extend`
-VuePress 原生的 `markdown.extend` 是一个**函数**，用于以编程方式扩展 markdown-it 实例。而主题的 `markdown` 是一组**扁平的功能开关字段**（本文档列出的全部字段），**没有 `extend` 这一项**，传入不会被识别。
-
-若你需要以编程方式扩展 markdown-it，请使用 VuePress 原生的写法，绕开主题配置：
-
-```ts title=".vuepress/config.ts"
-import { defineUserConfig } from 'vuepress'
-
-export default defineUserConfig({
-  markdown: {
-    extend: (md) => {
-      md.use(require('markdown-it-footnote'))
-    },
-  },
-})
-```
-
-:::
-
 **默认配置：**
 
 ```ts title=".vuepress/config.ts" twoslash
@@ -61,7 +43,7 @@ export default defineUserConfig({
       alert: true,
       fileTree: true,
       plot: true,
-      icons: true,
+      icon: { provider: 'iconify' },
       math: { type: 'katex' },
       include: {
         // ...option
@@ -73,266 +55,305 @@ export default defineUserConfig({
 
 ## 配置项
 
-::: tip `hint` 和 `alter` 的功能由 [@vuepress/plugin-markdown-hint](https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-hint.html) 插件实现。
-:::
+只要没有显式设置 `plugins.markdownPower: false`，主题就会默认注入 `plot`、`fileTree` 与图标支持三项，
+因此隐秘文本、文件树、`::name::` 图标语法**默认启用**，无需额外配置。
 
-### hint
+其余功能默认关闭，需要按需开启。
+
+以下字段按所属插件分组。
+
+### 由 `@vuepress/plugin-markdown-hint` 实现
+
+#### hint
 
 - **类型：** `boolean`
 - **默认值：** `true`
 - **详情：** 是否启用提示容器
 
-### alert
+#### alert
 
 - **类型：** `boolean`
 - **默认值：** `true`
-- **详情：** 是否启用 Github 风格的警告语法
+- **详情：** 是否启用 GitHub 风格的警告语法。
+  主题默认开启 [obsidian 兼容](#obsidian)，该语法由 obsidian callout 渲染；
+  仅当 `markdown.obsidian` 被显式设置为 `false` 时，改由 markdown-hint 渲染。
 
----
+### 由 `@vuepress/plugin-markdown-image` 实现
 
-::: tip `image` 配置由 [@vuepress/plugin-markdown-image](https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-image.html) 插件实现。
-:::
+#### image
 
-### image
+- **类型：** `false | MarkdownImagePluginOptions`
+- **默认值：** `false`
+- **详情：** 是否启用图片增强语法
 
-- **类型**: `boolean | MarkdownImagePluginOptions`
-- **默认值**: `false`
-- **详情**: 是否启用图片增强语法
+### 由 `@vuepress/plugin-markdown-math` 实现
 
----
+#### math
 
-::: tip `math` 配置由 [@vuepress/plugin-markdown-math](https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-math.html) 插件实现。
-:::
+- **类型：** `false | MarkdownMathPluginOptions`
+- **默认值：** `{ type: 'katex' }`
+- **详情：** 是否启用数学支持
 
-### math
+### 由 `@vuepress/plugin-markdown-include` 实现
 
-- **类型**: `boolean | MarkdownMathPluginOptions`
-- **默认值**: `{ type: 'katex' }`
-- **详情**: 是否启用数学支持
+#### include
 
----
+- **类型：** `false | MarkdownIncludePluginOptions`
+- **默认值：** `true`
+- **详情：** 是否启用 Markdown 文件导入
 
-### include
+### 由 `vuepress-plugin-md-power` 实现
 
-::: tip `include` 配置由 [@vuepress/plugin-markdown-include](https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-include.html) 插件实现。
-:::
+该组字段的完整说明见 [markdown-power 插件](./plugins/markdown-power.md)。
 
-- **类型**: `boolean | MarkdownIncludePluginOptions`
-- **默认值**: `true`
-- **详情**: 是否启用 Markdown 文件导入
+#### env
 
----
+- **类型：** `MarkdownEnvPreset`
+- **默认值：** `undefined`
+- **详情：** 预设 markdown 环境，如预设链接引用、缩写词、内容注释等。预设可在任意 markdown 文件中直接使用
 
-::: tip 以下配置字段由 [vuepress-plugin-md-power](./plugins/markdown-power.md) 插件实现。
-:::
+#### annotation
 
-### annotation
+- **类型：** `boolean | MarkdownEnvPreset['annotations']`
+- **默认值：** `false`
+- **详情：** 是否启用内容注释，或直接预设内容注释
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用内容注释
+#### abbr
 
-### abbr
+- **类型：** `boolean | MarkdownEnvPreset['abbreviations']`
+- **默认值：** `false`
+- **详情：** 是否启用缩写语法，或直接预设缩写词
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用缩写语法
+#### mark
 
-### mark
+- **类型：** `MarkOptions`
+- **默认值：** `'eager'`
+- **详情：** 设置 `==马克笔==` 的动画播放模式
 
-- **类型**: `MarkOptions`
-- **默认值**: `'eager'`
-- **详情**: 设置 `==马克笔==` 的动画播放模式
+#### encrypt
 
-### codeTabs
+- **类型：** `boolean | EncryptSnippetOptions`
+- **默认值：** `false`
+- **详情：** 是否启用内容片段加密容器
 
-- **类型**: `boolean | CodeTabsOptions`
-- **默认值**: `true`
-- **详情**: 是否启用代码块分组
+#### codeTabs
 
-### tabs
+- **类型：** `CodeTabsOptions`（`{ icon?: boolean }`）
+- **默认值：** `{ icon: true }`
+- **详情：** 代码块分组容器的图标配置。`::: code-tabs` 容器**默认启用**，此选项仅用于控制是否显示语言图标
 
-- **类型**: `boolean | TabsOptions`
-- **默认值**: `true`
-- **详情**: 是否启用分组
+> `::: tabs` 选项卡容器同样**默认可用**，且没有任何配置项，无需设置。
 
-### npmTo
+#### codeTree
 
-- **类型**: `boolean | NpmToOptions`
-- **默认值**: `false`
-- **详情**: 是否启用 `npm-to` 容器
+- **类型：** `boolean | CodeTreeOptions`
+- **默认值：** `false`
+- **详情：** 是否启用代码树容器语法与嵌入语法
 
-### icon
+#### npmTo
 
-- **类型**: `IconOptions`
-- **默认值**: `{ provider: 'iconify' }`
-- **详情**: 图标配置
+- **类型：** `boolean | NpmToOptions`
+- **默认值：** `false`
+- **详情：** 是否启用 `npm-to` 容器
+
+#### icon
+
+- **类型：** `IconOptions`
+- **默认值：** `{ provider: 'iconify' }`
+- **详情：** 图标渲染配置（提供商、前缀、尺寸、颜色、资源等）。`::name::` 图标语法**默认可用**，此选项用于定制渲染行为
 
   [查看 **icon** 使用说明](../guide/features/icon.md){.read-more}
 
-### plot
+#### plot
 
-- **类型**: `boolean | PlotOptions`
-- **默认值**: `true`
-- **详情**: 是否启用隐秘文本语法
+- **类型：** `boolean | PlotOptions`
+- **默认值：** `true`
+- **详情：** 是否启用隐秘文本语法
 
-### fileTree
+#### fileTree
 
-- **类型**: `boolean | FileTreeOptions`
-- **默认值**: `true`
-- **详情**: 是否启用文件树容器语法
+- **类型：** `boolean | FileTreeOptions`
+- **默认值：** `true`
+- **详情：** 是否启用文件树容器语法
 
-### field
+#### field
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用字段容器
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用字段容器，即 [`field-group`](../guide/markdown/v-field.md) 与 `field` 容器
 
-### table
+#### table
 
-- **类型**: `boolean | TableContainerOptions`
-- **默认值**: `false`
-- **详情**: 是否启用表格增强容器
+- **类型：** `boolean | TableContainerOptions`
+- **默认值：** `false`
+- **详情：** 是否启用表格增强容器
 
-### timeline
+#### timeline
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用时间线容器语法
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用时间线容器语法
 
-### collapse
+#### collapse
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用折叠面板容器语法
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用折叠面板容器语法
 
-### chat
+#### chat
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用对话记录容器
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用对话记录容器
 
-### demo
+#### demo
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 Demo 容器
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 Demo 容器
 
-### pdf
+#### pdf
 
-- **类型**: `boolean | PdfOptions`
-- **默认值**: `false`
-- **详情**: 是否启用 PDF 嵌入语法
+- **类型：** `boolean | PDFOptions`
+- **默认值：** `false`
+- **详情：** 是否启用 PDF 嵌入语法
 
-### bilibili
+#### acfun
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 Bilibili 视频嵌入语法
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 AcFun 视频嵌入语法
 
-### youtube
+#### bilibili
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 YouTube 视频嵌入语法
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 Bilibili 视频嵌入语法
 
-### artPlayer
+#### youtube
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 ArtPlayer 视频嵌入语法
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 YouTube 视频嵌入语法
 
-### audioReader
+#### artPlayer
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 Audio Reader 音频嵌入语法
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 ArtPlayer 视频嵌入语法
 
-### codepen
+#### audioReader
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 CodePen 嵌入语法
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 Audio Reader 音频嵌入语法
 
-### codeSandbox
+#### codepen
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 CodeSandbox 嵌入语法
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 CodePen 嵌入语法
 
-### jsfiddle
+#### codeSandbox
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 JS Fiddle 嵌入语法
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 CodeSandbox 嵌入语法
 
-### repl
+#### jsfiddle
 
-- **类型**: `boolean | ReplOptions`
-- **默认值**: `false`
-- **详情**: 是否启用 Repl 容器语法
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 JS Fiddle 嵌入语法
 
-### caniuse
+#### replit <Badge type="warning" text="已弃用" />
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 Can I Use 嵌入语法
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 Repl.it 嵌入语法，请改用 `repl`
 
-### imageSize
+#### repl
 
-- **类型**: `boolean | 'local' | 'all'`
-- **默认值**: `false`
-- **详情**: 是否启用自动填充图片宽高属性
+- **类型：** `false | ReplOptions`
+- **默认值：** `false`
+- **详情：** 是否启用 Repl 容器语法
 
----
+#### caniuse
 
-::: tip 以下配置字段由 [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-chart/) 插件实现。
-:::
+- **类型：** `boolean | CanIUseOptions`
+- **默认值：** `false`
+- **详情：** 是否启用 Can I Use 嵌入语法
 
-### chartjs
+#### qrcode
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 Chart.js 图表嵌入语法
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用二维码嵌入语法
 
-### echarts
+#### obsidian
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 ECharts 图表嵌入语法
+- **类型：** `boolean | ObsidianOptions`
+- **默认值：** 主题默认为启用状态（未显式设置为 `false` 时即启用）
+- **详情：** 是否启用 obsidian 官方 markdown 扩展语法的兼容性支持，包括 wiki link、嵌入、callout 与注释
 
-### mermaid
+#### locales
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 Mermaid 图表嵌入语法
+- **类型：** `LocaleConfig<MDPowerLocaleData>`
+- **默认值：** `undefined`
+- **详情：** markdown-power 插件的多语言文本配置
 
-### markmap
+#### imageSize
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 Markmap 图表嵌入语法
+- **类型：** `boolean | 'local' | 'all'`
+- **默认值：** `false`
+- **详情：** 是否启用自动填充图片宽高属性。该功能仅在构建生产包时生效
 
-### plantuml
+### 由 `@vuepress/plugin-markdown-chart` 实现
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 PlantUML 图表嵌入语法
+#### chartjs
 
-### flowchart
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 Chart.js 图表嵌入语法
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否启用 Flowchart 图表嵌入语法
+#### echarts
 
-### DANGEROUS_ALLOW_SCRIPT_EXECUTION
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 ECharts 图表嵌入语法
 
-- **类型**: `boolean`
-- **默认值**: `false`
-- **详情**: 是否允许图表脚本执行。启用后图表内容中的脚本会被执行，可能带来 XSS 或远程代码执行风险，请仅在内容来源完全可信时开启。
+#### mermaid
 
-### DANGEROUS_SCRIPT_EXECUTION_ALLOWLIST
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 Mermaid 图表嵌入语法
 
-- **类型**: `string[] | '*'`
-- **默认值**: `undefined`
-- **详情**: 允许执行图表脚本的源文件列表（允许清单），仅在 `DANGEROUS_ALLOW_SCRIPT_EXECUTION` 为 `true` 时生效；传入 `'*'` 表示允许所有源文件。
+#### markmap
+
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 Markmap 图表嵌入语法
+
+#### plantuml
+
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 PlantUML 图表嵌入语法
+
+#### flowchart
+
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否启用 Flowchart 图表嵌入语法
+
+#### DANGEROUS_ALLOW_SCRIPT_EXECUTION
+
+- **类型：** `boolean`
+- **默认值：** `false`
+- **详情：** 是否允许图表脚本执行。启用后图表内容中的脚本会被执行，可能带来 XSS 或远程代码执行风险，请仅在内容来源完全可信时开启。
+
+#### DANGEROUS_SCRIPT_EXECUTION_ALLOWLIST
+
+- **类型：** `string[] | '*'`
+- **默认值：** `undefined`
+- **详情：** 允许执行图表脚本的源文件列表（允许清单），仅在 `DANGEROUS_ALLOW_SCRIPT_EXECUTION` 为 `true` 时生效；传入 `'*'` 表示允许所有源文件。

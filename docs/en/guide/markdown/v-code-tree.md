@@ -12,8 +12,6 @@ In Markdown, use the `::: code-tree` container or `@[code-tree](dir_path)` synta
 Compared to code block grouping, code trees can more clearly present the
 organizational structure of code files and their dependency relationships.
 
-## Enable
-
 This feature is disabled by default. You need to enable it in the `theme` configuration.
 
 ```ts title=".vuepress/config.ts"
@@ -26,14 +24,14 @@ export default defineUserConfig({
 })
 ```
 
-## Usage
+## Syntax
 
 The theme provides two usage methods:
 
 ### code-tree Container
 
 ````md
-::: code-tree title="Project Name" height="400px" entry="filepath" showSidebar
+::: code-tree title="Project Name" height="400px" entry="filepath"
 ```lang title="filepath" :active
 <!-- code content-->
 ```
@@ -51,14 +49,14 @@ Use the `::: code-tree` container to wrap multiple code blocks.
 - Use `height="400px"` after `::: code-tree` to declare the code tree height.
   A number is also supported, e.g. `height="400"`, and the `px` unit will be appended automatically
 - Use `entry="filepath"` after `::: code-tree` to declare the default expanded file path
-- Use `showSidebar` after `::: code-tree` to show the file tree sidebar by default, which is hidden by default
+- Use `showSidebar` after `::: code-tree` to declare showing the file tree sidebar by default, which is hidden by default
 - Use `title="filepath"` after the code block <code>\`\`\` lang</code> to declare the current code block's file path
 - If `entry="filepath"` is not declared in `::: code-tree`, you can use `:active` after the code block
 <code>\`\`\` lang</code> to declare the current code block as expanded
 - If no expanded file path is specified, the first file will be expanded by default
 
 ::: details Why use `title="filepath"` instead of `filepath="filepath"` on code blocks?
-Because the theme already [supports title syntax on code blocks](../code/features.md#code-block-titles).
+Because the theme already [supports title syntax on code blocks](../code/features.md#code-block-title).
 Continuing to use the existing syntax support reduces the learning curve.
 :::
 

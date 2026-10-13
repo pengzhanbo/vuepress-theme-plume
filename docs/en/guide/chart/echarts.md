@@ -1,7 +1,7 @@
 ---
 title: ECharts
-createTime: 2025/10/08 19:34:03
 icon: raphael:piechart
+createTime: 2025/10/08 19:34:03
 permalink: /en/guide/chart/echarts/
 ---
 
@@ -80,6 +80,33 @@ const option = {
 :::tip
 You can use top-level `await` and `fetch` to retrieve data from network requests.
 :::
+
+:::: warning Script code blocks are not executed by default
+
+Scripts inside chart code blocks are **not executed by default**: the page only shows a blank area, and the build outputs a single warning line with no other error prompts.
+
+If you really need to execute them, you must enable **both** of the following switches:
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      DANGEROUS_ALLOW_SCRIPT_EXECUTION: true,
+      DANGEROUS_SCRIPT_EXECUTION_ALLOWLIST: '*',
+    },
+  }),
+})
+```
+
+- `DANGEROUS_ALLOW_SCRIPT_EXECUTION`: Allows executing scripts in chart code blocks
+- `DANGEROUS_SCRIPT_EXECUTION_ALLOWLIST`: The list of source files allowed to execute scripts; passing `'*'` allows all source files
+
+Once enabled, scripts in chart code blocks will run in visitors' browsers, **which may introduce XSS or remote code execution risks**.
+Enable it only when the content source is fully trusted, and prefer a file allowlist over `'*'`.
+::::
 
 Refer to the [ECharts documentation](https://echarts.apache.org/handbook/zh/get-started/) for configuration details.
 

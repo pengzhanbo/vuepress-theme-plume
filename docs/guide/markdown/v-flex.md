@@ -9,7 +9,7 @@ permalink: /guide/markdown/flex/
 
 Flex 弹性容器 `::: flex` 提供一种便捷的方式，在 markdown 中对块级内容应用 Flex 布局。
 
-## 用法
+## 语法
 
 ```md
 ::: flex [center|between|around] [start|center|end] [gap="20"] [column]
@@ -21,12 +21,31 @@ Flex 弹性容器 `::: flex` 提供一种便捷的方式，在 markdown 中对�
 :::
 ```
 
-## 属性
+## Props
 
-- 在主轴方向上，使用 `center` / `between` / `around` 指定对齐方式；
-- 在交叉轴方向上，使用 `start` / `center` / `end` 指定对齐方式；
-- 使用 `gap="20"` 指定间距；
-- 使用 `column` 指定主轴方向为垂直方向。
+:::: field-group
+::: field center / between / around
+@type `boolean`
+主轴方向上的对齐方式，裸写其一即可
+:::
+::: field start / center / end
+@type `boolean`
+交叉轴方向上的对齐方式，裸写其一即可
+:::
+::: field gap
+@type `number | string`
+@default `16`
+间距
+:::
+::: field column
+@type `boolean`
+指定主轴方向为垂直方向
+:::
+::: field wrap
+@type `boolean`
+允许子元素换行（`flex-wrap: wrap`）
+:::
+::::
 
 ## 示例
 

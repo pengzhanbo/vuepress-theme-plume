@@ -22,19 +22,24 @@ permalink: /config/frontmatter/basic/
 
 ### pageLayout
 
-- Type: `false | 'home' | 'doc' | 'custom' | 'page' | 'friends' | string`
+- Type: `false | 'home' | 'posts' | 'doc' | 'custom' | 'page' | 'friends' | string`
 - Default: `doc`
 - Details:
 
   Page layout mode.
 
   - `'home'`: Homepage layout
+  - `'posts'`: Article list page layout
   - `'doc'`: Documentation page layout, including left sidebar, article content, right sidebar, navbar, comments, etc.
   - `'page'`: Includes only the navbar and MD file content. Use this layout for custom page content.
   - `'friends'`: Friends link page layout
   - `'custom'`: Includes only MD file content. Use this layout for fully custom page content.
   - `false`: Equivalent to `custom`
-  - `string`: A global component name can be passed, which will be applied as the layout component.
+
+  Besides the above values, you can also pass a **registered global component name**, which will be applied as the layout component.
+  (This form is not included in the source type declarations, but it is supported at runtime.)
+
+  In addition, `'blog'` has been deprecated; please use `'posts'` instead.
 
 ### pageClass
 
@@ -56,17 +61,45 @@ permalink: /config/frontmatter/basic/
 
 ### badge
 
-- Type: `string | { text: string, type?: 'info' | 'tip' | 'warning' | 'danger' }`
+- Type: `string | ThemeBadge`
+- Default: `undefined`
 
 Display a badge on the right side of the article title.
 
+When a string is passed, it is used as the badge's `text`; when an object is passed, the following fields are available:
+
+```ts
+interface ThemeBadge {
+  /** Badge text content */
+  text?: string
+  /** Badge type, used for preset styles */
+  type?: string
+  /** Badge text color */
+  color?: string
+  /** Badge background color */
+  bgColor?: string
+  /** Badge border color */
+  borderColor?: string
+}
+```
+
+### icon
+
+- Type: `ThemeIcon` (`string | { svg: string }`)
+- Default: `undefined`
+- Details:
+
+  Used as the icon for the navbar and sidebar.
+
+  You can directly use an iconify icon name (loaded automatically). Local and remote SVG icon URLs, or an SVG string passed directly, are also supported.
+
 ### createTime
 
-- Type: `string`
+- Type: `string | false`
 - Default: `''`
 - Details:
 
-  Article creation time.
+  Article creation time. When set to `false`, the creation time is not displayed on the page.
 
   The theme automatically populates the current time as the article creation time upon file creation.
 
@@ -105,6 +138,17 @@ Display a badge on the right side of the article title.
 - Details:
 
   Whether the current article is commentable. Only takes effect when the comment feature is enabled.
+
+### sidebar
+
+- Type: `string | false`
+- Default: `undefined`
+- Details:
+
+  Whether to display the left sidebar, or forcibly specify which sidebar the current page displays.
+
+  - `false`: Hide the left sidebar
+  - `string`: Specify the sidebar to display by its key (page path prefix)
 
 ### aside
 
@@ -203,7 +247,7 @@ Note that the value of `level` should be greater than the level of the current h
 
 ### contributors
 
-- Type: `boolean | string | string[]`
+- Type: `boolean | string[]`
 - Default: `true`
 - Details:
 
@@ -238,6 +282,16 @@ Note that the value of `level` should be greater than the level of the current h
 - Details:
 
   Whether to display the article edit button for the current article.
+
+### editLinkPattern
+
+- Type: `string`
+- Default: `''`
+- Details:
+
+  The edit link pattern for the current page, which overrides `editLinkPattern` in the theme configuration.
+
+  Example: `':repo/edit/:branch/:path'`
 
 ### watermark
 

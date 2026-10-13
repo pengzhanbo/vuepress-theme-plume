@@ -5,6 +5,8 @@ createTime: 2025/11/29 14:42:46
 permalink: /guide/markdown/container/
 ---
 
+## 概述
+
 ::: tip 提示容器能够帮助你在文档中突出显示重要信息，让内容层次更加清晰。
 :::
 
@@ -38,6 +40,14 @@ permalink: /guide/markdown/container/
 ::: details
 这是一个详情折叠框
 :::
+
+::: important
+这是一个重要信息框
+:::
+
+::: danger
+这是一个危险信息框
+:::
 ```
 
 **实际效果：**
@@ -66,6 +76,14 @@ permalink: /guide/markdown/container/
 这是一个详情折叠框
 :::
 
+::: important
+这是一个重要信息框
+:::
+
+::: danger
+这是一个危险信息框
+:::
+
 ## 自定义标题设置
 
 通过在容器类型后添加文本，可以轻松设置自定义标题。
@@ -79,7 +97,7 @@ permalink: /guide/markdown/container/
 
 ::: details 点我查看代码
 ```js
-console.log('Hello, VitePress!')
+console.log('Hello, VuePress Plume!')
 ```
 :::
 ````

@@ -10,7 +10,7 @@ outline: [2, 4]
 
 Adds support for [TypeScript TwoSlash](https://www.typescriptlang.org/dev/twoslash/) in code blocks. Provides inline type hints within code blocks.
 
-This feature is powered by [shiki](https://shiki.style/) and [@shikijs/twoslash](https://shiki.style/packages/twoslash), and integrated in [@vuepress-plume/plugin-shikiji](https://github.com/pengzhanbo/vuepress-theme-plume/tree/main/plugins/plugin-shikiji).
+This feature is powered by [shiki](https://shiki.style/) and [@shikijs/twoslash](https://shiki.style/packages/twoslash), and the theme integrates it through the [`codeHighlighter`](../../config/theme.md#codehighlighter) configuration.
 
 ::: important __twoslash__ is an advanced feature that requires proficiency in
 [TypeScript](https://www.typescriptlang.org/) and understanding of [twoslash syntax](https://twoslash.netlify.app/).

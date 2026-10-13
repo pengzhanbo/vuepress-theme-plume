@@ -3,7 +3,6 @@ title: AcFun 视频
 icon: lets-icons:video-fill
 createTime: 2025/06/28 10:57:45
 permalink: /guide/embed/video/acfun/
-badge: 新
 ---
 
 ## 概述
@@ -40,12 +39,30 @@ export default defineUserConfig({
 @[acfun width="100%" height="400px" ratio="16:9"](id)
 ```
 
-**选项说明：**
+选项说明：
 
-- id: 视频 ID
-- width: 视频宽度
-- height: 视频高度
-- ratio: 视频比例，默认 `16:9`
+:::: field-group
+::: field id
+@type `string`
+@required
+视频 ID
+:::
+::: field width
+@type `string`
+@default `100%`
+视频宽度
+:::
+::: field height
+@type `string`
+@default undefined
+视频高度。未指定时按自动高度处理
+:::
+::: field ratio
+@type `string`
+@default `16:10`
+视频比例。
+:::
+::::
 
 ## 示例
 

@@ -61,6 +61,7 @@ export default defineUserConfig({
 
 ::: field title
 @type `string`
+
 表格标题，显示在表格的下方
 :::
 
@@ -96,6 +97,7 @@ export default defineUserConfig({
 
 ::: field hl-rows
 @type `string`
+@default `''`
 配置表格中的行高亮。
 
 值使用 `type:row1,row2` 的格式，可以使用 `;` 组合多个 type row。
@@ -113,6 +115,7 @@ export default defineUserConfig({
 
 ::: field hl-cols
 @type `string`
+@default `''`
 配置表格中的列高亮。
 
 值使用 `type:col1,col2` 的格式，可以使用 `;` 组合多个 type col。
@@ -130,6 +133,7 @@ export default defineUserConfig({
 
 ::: field hl-cells
 @type `string`
+@default `''`
 配置表格中的单元格高亮。
 
 值使用 `type:(row,col)` 的格式，可以使用 `;` 组合多个 type cell。
@@ -407,9 +411,9 @@ export default defineUserConfig({
 ## 表格单元格合并
 
 表格单元格合并由 [markdown-it-attrs](https://github.com/arve0/markdown-it-attrs) 属性支持语法提供实现。
-因此它不需要在 `:::table` 容器中使用，你可以在何人表格中使用它。
+因此它不需要在 `:::table` 容器中使用，你可以在任何表格中使用它。
 
-在表格单元格内，末尾部分使用属性支持语法 `{}` 中，添加 `rowspan=rows` 或者 `{colspan=cols}` ，或组合使用，
+在表格单元格内，末尾部分使用属性支持语法 `{}` 中，添加 `rowspan=rows` 或者 `colspan=cols` ，或组合使用，
 即可实现表格单元格合并。
 
 **输入：**

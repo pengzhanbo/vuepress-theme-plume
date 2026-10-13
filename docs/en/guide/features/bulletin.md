@@ -351,7 +351,9 @@ it is considered expired and won't display again during the current session cycl
 
 - `always`: Even if the user closes the bulletin, it will reappear not only in the next session cycle but also when refreshing the page.
 
-- `once`: Once the bulletin is closed during the current session cycle, it won't display again afterward.
+- `once`: Once the bulletin is closed, it will **never display again** (written to `localStorage`).
+Refreshing the page, closing the browser, or starting a new session won't bring it back. If you need it to
+reappear in a new session, use `session` instead.
 
 ::: details What is a session?
 **Session** refers to the period when you visit a site. As long as the browser tab where the site is

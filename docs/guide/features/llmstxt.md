@@ -145,7 +145,7 @@ export default defineClientConfig({
 </llm-exclude>
 ```
 
-也可以在单行中使用 `<llm-exclude>` 标签，但请注意单行时仅能包含一个 `<llm-only>` 标签，否则会导致解析错误。
+也可以在单行中使用 `<llm-exclude>` 标签，但请注意单行时仅能包含一个 `<llm-exclude>` 标签，否则会导致解析错误。
 
 ```md
 查看插件API指南，了解创建插件的相关文档。

@@ -4,6 +4,7 @@ title: Friends Links
 description: >-
   Here is the description text for the friend links. This page is for
   demonstration purposes only.
+createTime: 2025/10/09 15:46:30
 permalink: /en/friends/
 article: true
 list:
@@ -148,5 +149,4 @@ groups:
         desc: >-
           Even if slow, persist without stop; even if falling behind, even if
           failing, one must be able to reach the goal they are heading towards.
-createTime: 2025/10/09 15:46:30
 ---

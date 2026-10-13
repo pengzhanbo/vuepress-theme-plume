@@ -493,14 +493,17 @@ config:
 :::
 ::: field className
 @type `string`
+@default `''`
 容器自定义类名
 :::
 ::: field style
 @type `CSSProperties`
+@default `{}`
 容器自定义样式
 :::
 ::: field backgroundImage
 @type `string`
+@default undefined
 背景图像 URL
 :::
 ::::

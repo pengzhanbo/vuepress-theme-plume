@@ -9,7 +9,9 @@ permalink: /en/guide/components/plot/
 
 Use the `<VPPlot>` component to display [plot text](../markdown/v-plot.md) with more flexible control over behavior.
 
-This component is disabled by default and needs to be enabled in the theme configuration.
+This component is **available by default**.
+
+To change the site-wide defaults, pass an object via `markdown.plot`:
 
 ```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
@@ -18,9 +20,11 @@ import { plumeTheme } from 'vuepress-theme-plume'
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
-      plot: true,
+      plot: {
+        trigger: 'click',
+      },
     },
-  })
+  }),
 })
 ```
 

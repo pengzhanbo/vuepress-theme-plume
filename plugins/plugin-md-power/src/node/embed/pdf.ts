@@ -5,7 +5,7 @@
  */
 import type { PluginWithOptions } from 'markdown-it'
 import type { PDFTokenMeta } from '../../shared/index.js'
-import { objectKeys } from '@pengzhanbo/utils'
+import { hasOwn, objectKeys } from '@pengzhanbo/utils'
 import { path } from 'vuepress/utils'
 import { parseRect } from '../utils/parseRect.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
@@ -28,7 +28,7 @@ export const pdfPlugin: PluginWithOptions<never> = (md) => {
 
       return {
         src,
-        page,
+        page: hasOwn(attrs, 'page') ? +attrs.page : page,
         noToolbar: Boolean(attrs.noToolbar ?? false),
         zoom: +attrs.zoom || 50,
         width: attrs.width ? parseRect(attrs.width) : '100%',

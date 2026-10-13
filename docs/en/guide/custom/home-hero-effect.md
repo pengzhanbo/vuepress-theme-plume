@@ -113,7 +113,7 @@ config:
 
 ```ts
 interface TintPlate {
-  r: { value: number, offset: number }
+  r: { value: number, offset: number } // value is the color value, offset is the offset
   g: { value: number, offset: number }
   b: { value: number, offset: number }
 }
@@ -496,14 +496,17 @@ Post noise amount.
 :::
 :::field className
 @type `string`
+@default `''`
 Container class name
 :::
 :::field style
 @type `CSSProperties`
+@default `{}`
 Container style
 :::
 :::field backgroundImage
 @type `string`
+@default undefined
 Background image URL
 :::
 ::::

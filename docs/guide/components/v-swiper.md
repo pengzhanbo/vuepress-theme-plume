@@ -51,19 +51,66 @@ if (!__VUEPRESS_SSR__) {
 
 ## Props
 
-| 名称              | 类型                                                                            | 默认值     | 说明                                                                                |
-| ----------------- | ------------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------------------- |
-| items             | `string \| { link: string; href?: string; alt?: string}[]`                      | `[]`       | 图片链接数组，传入对象时，`link`表示图片链接，`href`表示跳转链接，`alt`表示图片描述 |
-| width             | `number \| string`                                                              | `100%`     | 轮播区域宽度                                                                        |
-| height            | `number \| string`                                                              | `100%`     | 轮播区域高度                                                                        |
-| mode              | `'banner' \| 'carousel' \| 'broadcast'`                                         | `'banner'` | 轮播模式, `banner`: 轮播图; `carousel`: 走马灯; `broadcast`: 信息展播               |
-| navigation        | `boolean`                                                                       | `true`     | 是否显示导航按钮                                                                    |
-| effect            | `'slide' \| 'fade' \| 'cube' \| 'coverflow' \| 'flip' \| 'cards' \| 'creative'` | `'slide'`  | 轮播效果                                                                            |
-| delay             | `number`                                                                        | `3000`     | 轮播间隔时间, 仅当 `mode: 'banner'` 时生效，单位 `ms`                               |
-| speed             | `number`                                                                        | `300`      | 动画持续时间，单位 `ms`                                                             |
-| loop              | `boolean`                                                                       | `true`     | 是否循环                                                                            |
-| pauseOnMouseEnter | `boolean`                                                                       | `false`    | 是否鼠标悬停时暂停轮播                                                              |
-| swipe             | `boolean`                                                                       | `true`     | 是否开启手势滑动                                                                    |
+:::: field-group
+::: field items
+@type `string | { link: string, href?: string, alt?: string }[]`
+@default `[]`
+图片链接数组。传入对象时，`link` 表示图片链接，`href` 表示跳转链接，`alt` 表示图片描述
+:::
+::: field width
+@type `number | string`
+@default `100%`
+轮播区域宽度
+:::
+::: field height
+@type `number | string`
+@default `100%`
+轮播区域高度
+:::
+::: field mode
+@type `'banner' | 'carousel' | 'broadcast'`
+@default `'banner'`
+@enum 'banner'|'carousel'|'broadcast'
+轮播模式：`banner` 轮播图、`carousel` 走马灯、`broadcast` 信息展播
+:::
+::: field navigation
+@type `boolean`
+@default `true`
+是否显示导航按钮
+:::
+::: field effect
+@type `'slide' | 'fade' | 'cube' | 'coverflow' | 'flip' | 'cards' | 'creative'`
+@default `'slide'`
+轮播效果
+:::
+::: field delay
+@type `number`
+@default `3000`
+@unit ms
+轮播间隔时间，仅当 `mode: 'banner'` 时生效
+:::
+::: field speed
+@type `number`
+@default `300`
+@unit ms
+动画持续时间
+:::
+::: field loop
+@type `boolean`
+@default `true`
+是否循环
+:::
+::: field pauseOnMouseEnter
+@type `boolean`
+@default `false`
+是否鼠标悬停时暂停轮播
+:::
+::: field swipe
+@type `boolean`
+@default `true`
+是否开启手势滑动
+:::
+::::
 
 更多 props 请参考 [Swiper 文档](https://swiperjs.com/swiper-api#parameters)
 
@@ -83,7 +130,25 @@ if (!__VUEPRESS_SSR__) {
 每项的 `link` 是**图片地址**，`href` 才是**点击跳转的目标** —— 两者含义不同，容易混淆。
 :::
 
-## 参考示例
+## 示例
+
+::: warning 下方示例中的 images 来自本页的 script setup
+
+本页所有参考示例都写成了 `:items="images"`，其中的 `images` 定义在本页顶部的 `<script setup>` 中
+（用于从示例站点拉取壁纸数据），**并非组件的内置变量**。
+
+直接复制这些示例到你的页面时，需要自行提供等价的数据：
+
+```vue
+<script setup lang="ts">
+const images = [
+  { link: '/images/slide-1.png' },
+  { link: '/images/slide-2.png' },
+]
+</script>
+```
+
+:::
 
 ### 预设动画效果
 

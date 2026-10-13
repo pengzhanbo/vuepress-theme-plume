@@ -63,7 +63,7 @@ export default defineThemeConfig({
 
 ### plugins
 
-- **类型：**`PlumeThemePluginOptions`
+- **类型：** `ThemeBuiltinPlugins`
 - **默认值：** `{}`
 - **详情：**
 
@@ -74,6 +74,20 @@ export default defineThemeConfig({
 
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
+
+### encrypt
+
+- **类型：** `EncryptOptions`（`{ global?: boolean; admin?: string | string[]; rules?: Record<string, string | string[]> }`）
+- **默认值：** `undefined`
+- **详情：**
+
+  站点加密配置，支持全站加密与文章级加密。
+
+  未配置时不会启用任何加密。`global` 为 `true` 时全站加密；
+  `admin` 为超级权限密码；`rules` 以文件相对路径、页面访问路径或目录路径为 key 指定文章密码，
+  key 以 `^` 开头时按正则表达式匹配。
+
+  该字段支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中配置并热更新。
 
 ### markdown <Badge type="tip" text="1.0.0-rc.136 +" />
 
@@ -88,22 +102,50 @@ export default defineThemeConfig({
 
 ### codeHighlighter <Badge type="tip" text="1.0.0-rc.136 +" />
 
-- **类型：** `false | ShikiPluginOptions`
+- **类型：** `false | (ShikiPluginOptions & { renderIndentGuides?: boolean | object; colorizedBrackets?: boolean | object })`
 - **默认值：** `{}`
 - **详情：**
 
   代码高亮配置， 参考 [此文档](../guide/code/intro.md)
+
+  除 [@vuepress/plugin-shiki](https://ecosystem.vuejs.press/zh/plugins/markdown/shiki.html) 的选项外，
+  还额外支持 `renderIndentGuides`（缩进参考线）与 `colorizedBrackets`（彩色括号）两个主题扩展配置。
+
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
+  :::
+
+### components
+
+- **类型：** `MarkdownPowerPluginOptions['components']`
+- **默认值：** `undefined`
+- **详情：**
+
+  自动导入组件配置。主题使用 [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components)
+  实现组件自动导入，继承其完整配置项（`include`、`exclude` 除外）。
+
+  ```ts title=".vuepress/plume.config.ts"
+  import path from 'node:path'
+  import { defineThemeConfig } from 'vuepress-theme-plume'
+
+  export default defineThemeConfig({
+    components: {
+      dirs: [path.resolve(import.meta.dirname, 'components')],
+    },
+  })
+  ```
 
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
 ### search <Badge type="tip" text="1.0.0-rc.136 +" />
 
-- **类型：** `false | SearchOptions`
+- **类型：** `boolean | SearchOptions`
 - **默认值：** `{ provider: 'local' }`
 - **详情：**
 
   搜索配置， 参考 [此文档](../guide/features/search.md)
+
+  `true` 等价于 `{ provider: 'local' }`；`false` 表示禁用搜索。
 
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
@@ -121,11 +163,14 @@ export default defineThemeConfig({
 
 ### watermark <Badge type="tip" text="1.0.0-rc.136 +" />
 
-- **类型：** `false | WatermarkPluginOptions`
+- **类型：** `boolean | (WatermarkPluginOptions & { fullPage?: boolean })`
 - **默认值：** `false`
 - **详情：**
 
   水印配置， 参考 [此文档](../guide/features/watermark.md)
+
+  除 [@vuepress/plugin-watermark](https://ecosystem.vuejs.press/zh/plugins/features/watermark.html) 的选项外，
+  主题额外支持 `fullPage`（默认 `true`）：为 `true` 时水印铺满整个页面，为 `false` 时仅覆盖文章内容区域。
 
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
@@ -165,6 +210,20 @@ export default defineThemeConfig({
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
+### llmstxt
+
+- **类型：** `boolean | LlmsPluginOptions`
+- **默认值：** `false`
+- **详情：**
+
+  是否生成 `llms.txt` 与 `llms-full.txt`，用于向大语言模型提供站点内容。
+  该功能仅在生产构建（`vuepress build`）时生效。
+
+  参考 [此文档](./plugins/llms.md)
+
+  ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
+  :::
+
 ### hostname
 
 - **类型：** `string`
@@ -181,9 +240,11 @@ export default defineThemeConfig({
 ### autoFrontmatter
 
 - **类型：** `false | AutoFrontmatterOptions`
+- **默认值：** 默认启用，等价于 `{ title: true, createTime: true, permalink: true }`
 - **详情：**
 
-  是否为 markdown 文件自动添加 frontmatter 配置
+  是否为 markdown 文件自动添加 frontmatter 配置。
+  只有显式设置为 `false` 才会关闭该功能。
 
   ```ts
   interface AutoFrontmatterOptions {
@@ -200,7 +261,7 @@ export default defineThemeConfig({
     /**
      * 是否自动生成 createTime
      *
-     * 默认读取 文件创建时间，`createTitme` 比 vuepress 默认的 `date` 时间更精准到秒
+     * 默认读取 文件创建时间，`createTime` 比 vuepress 默认的 `date` 时间更精准到秒
      */
     createTime?: boolean
 
@@ -286,9 +347,12 @@ interface LastUpdatedOptions {
 
 ### contributors
 
-- **类型：** `boolean | ContributorsOptions`
+- **类型：** `boolean | (ContributorsOptions & { mode?: 'inline' | 'block' })`
 - **默认值：** `true`
 - **详情：** 是否显示贡献者
+
+  传入对象时可使用 [@vuepress/plugin-git](https://ecosystem.vuejs.press/zh/plugins/development/git.html) 的
+  `ContributorsOptions` 选项，以及主题扩展的 `mode?: 'inline' | 'block'`（贡献者的展示模式）。
 
   更多配置请参考 [此文档](../guide/features/contributors.md)
 
@@ -312,9 +376,9 @@ interface LastUpdatedOptions {
 - **默认值：** `{}`
 - **详情：** 多语言配置
 
-不同语言的文本配置，参考 [此文档](./locales.md)
+  不同语言的文本配置，参考 [此文档](./locales.md)
 
-多语言配置支持以下 [Locale](#locale-配置) 所有配置选项以控制不同语言下的主题行为。
+  多语言配置支持以下 [Locale](#locale-配置) 所有配置选项以控制不同语言下的主题行为。
 
 ## Locale 配置
 
@@ -801,6 +865,12 @@ export default defineThemeConfig({
 - **详情：** 编辑链接的正则表达式
 
   示例： `':repo/edit/:branch/:path'`
+
+### externalLinkIcon
+
+- **类型：** `boolean`
+- **默认值：** `true`
+- **详情：** 是否在外部链接后显示外部链接图标
 
 ### copyright
 

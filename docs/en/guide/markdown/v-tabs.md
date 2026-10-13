@@ -1,7 +1,7 @@
 ---
-title: Tab Groups
-createTime: 2024/09/30 14:43:40
+title: Tabs
 icon: vaadin:tabs
+createTime: 2024/09/30 14:43:40
 permalink: /en/guide/markdown/tabs/
 ---
 

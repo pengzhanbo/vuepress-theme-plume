@@ -7,12 +7,12 @@ permalink: /en/guide/features/watermark/
 
 ## Overview
 
-Article watermarking is powered by [@vuepress/plugin-watermark](https://ecosystem.vuejs.press/zh/plugins/features/watermark.html).
+Article watermarking is powered by [@vuepress/plugin-watermark](https://ecosystem.vuejs.press/plugins/features/watermark.html).
 
 The theme supports adding watermarks to articles. Both full-page watermarks and content-area watermarks
 are supported, along with image watermarks and text watermarks.
 
-For configuration options, please refer to [Configuration > Watermark](/config/plugins/watermark/).
+For configuration options, please refer to [Configuration > Watermark](/en/config/plugins/watermark/).
 
 ## Enabling Watermark
 
@@ -28,7 +28,6 @@ export default defineUserConfig({
     watermark: {
       // enabled: false,  // boolean type to control global enablement
       enabled: page => true, // function type to filter which pages enable watermark
-      delay: 500, // Delay for adding watermark. In milliseconds.
 
       /**
        * Whether to use full-page watermark, defaults to `true`.
@@ -48,7 +47,10 @@ export default defineUserConfig({
 
 ### Global Enablement
 
-When `plugins.watermark` is set to `true`, the theme enables watermark globally.
+When the top-level `watermark` is set to `true`, the theme enables watermark globally.
+
+Equivalent form: configure it at the lower-level entry `plugins.watermark: true`. The two are different
+entries and do not override each other; the top-level entry takes precedence.
 
 ```ts
 export default defineUserConfig({
@@ -199,7 +201,7 @@ watermark:
 
 ::: warning The watermark is client-side only
 The watermark is rendered in the browser by
-[@vuepress/plugin-watermark](https://ecosystem.vuejs.press/zh/plugins/features/watermark.html) and is
+[@vuepress/plugin-watermark](https://ecosystem.vuejs.press/plugins/features/watermark.html) and is
 **not baked into the build output**. This means:
 
 - The full content still exists in the page HTML and source files — the watermark is only a visual overlay

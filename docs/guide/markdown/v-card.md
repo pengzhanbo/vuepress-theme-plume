@@ -1,7 +1,7 @@
 ---
 title: 卡片
-createTime: 2024/09/30 14:37:40
 icon: solar:card-broken
+createTime: 2024/09/30 14:37:40
 permalink: /guide/markdown/card/
 ---
 
@@ -11,8 +11,7 @@ permalink: /guide/markdown/card/
 
 当需要在空间足够时并排显示多个卡片，可以使用 `card-grid` 容器，包裹多个卡片。
 
-::: tip
-本页讲的是 **Markdown 容器语法**（`::: card`）。若你想在 Vue 组件中以渲染函数方式使用卡片，请见 [卡片组件](../components/v-card.md)。
+::: tip 本页讲的是 **Markdown 容器语法**（`::: card`）。若你想在 Vue 组件中以渲染函数方式使用卡片，请见 [卡片组件](../components/v-card.md)。
 :::
 
 ## 语法
@@ -50,8 +49,10 @@ permalink: /guide/markdown/card/
 :::
 
 ::: field icon
-@type `string`
+@type `string | { svg: string }`
+@default `''`
 卡片图标支持传入图片链接，还可以传入 [iconify](https://icon-sets.iconify.design/) 图标名。
+:::
 ::::
 
 ## 示例

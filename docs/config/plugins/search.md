@@ -37,6 +37,11 @@ export default defineUserConfig({
 ```ts
 interface SearchOptions {
   /**
+   * 搜索提供者，本地搜索固定为 'local'（必填）
+   */
+  provider: 'local'
+
+  /**
    * 本地搜索 国际化
    */
   locales?: {
@@ -50,6 +55,30 @@ interface SearchOptions {
    * 搜索索引是公开下发的静态资源，收录加密文章会使其内容泄漏。
    */
   isSearchable?: (page: Page) => boolean
+
+  /**
+   * 是否禁用会话存储中的搜索查询持久化
+   *
+   * @default false
+   */
+  disableQueryPersistence?: boolean
+
+  /**
+   * MiniSearch 配置
+   */
+  miniSearch?: {
+    /**
+     * MiniSearch 实例选项
+     * @see https://lucaong.github.io/minisearch/modules/_minisearch_.html#options
+     */
+    options?: Pick<MiniSearchOptions, 'extractField' | 'tokenize' | 'processTerm'>
+
+    /**
+     * MiniSearch 搜索选项
+     * @see https://lucaong.github.io/minisearch/modules/_minisearch_.html#searchoptions-1
+     */
+    searchOptions?: MiniSearchOptions['searchOptions']
+  }
 }
 
 interface SearchBoxLocale {
@@ -78,6 +107,21 @@ interface SearchBoxLocale {
     closeKeyAriaLabel: string
   }
 }
+```
+
+### 禁用
+
+将 `search` 设置为 `false` 可完全关闭搜索，此时导航栏不再渲染搜索框：
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    search: false,
+  }),
+})
 ```
 
 ## Algolia DocSearch

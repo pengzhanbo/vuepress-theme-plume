@@ -13,7 +13,7 @@ permalink: /guide/markdown/field/
 
 还可以使用额外的 `:::: field-group` 容器，用于组合多个 `::: field`。
 
-## 启用
+## 配置
 
 该功能默认不启用，您需要在 `theme` 配置中启用它。
 

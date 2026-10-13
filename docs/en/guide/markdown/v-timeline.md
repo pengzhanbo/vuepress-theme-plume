@@ -14,8 +14,6 @@ In markdown, use the `::: timeline` container with markdown unordered list synta
 - Supports __icons__ and __line styles__
 - Supports setting __colors__ through preset __types__, and supports custom colors
 
-## Enable
-
 This feature is disabled by default. You need to enable it in the `theme` configuration.
 
 ```ts title=".vuepress/config.ts"
@@ -28,7 +26,7 @@ export default defineUserConfig({
 })
 ```
 
-## Usage
+## Syntax
 
 Inside the `::: timeline` container, use markdown unordered list syntax. Each list item represents a point on the timeline.
 

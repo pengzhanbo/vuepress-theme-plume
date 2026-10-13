@@ -14,7 +14,7 @@ It is suitable for scenarios such as describing fields in configuration or compo
 
 You can also use the additional `:::: field-group` container to combine multiple `::: field` entries.
 
-## Enable
+## Configuration
 
 This feature is not enabled by default. You need to enable it in the `theme` configuration.
 

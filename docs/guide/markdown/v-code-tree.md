@@ -12,8 +12,6 @@ permalink: /guide/markdown/code-tree/
 
 相比于代码块分组，代码树可以更加清晰地展示代码文件的组织结构，以及文件的依赖关系。
 
-## 启用
-
 该功能默认不启用，你需要在 `theme` 配置中启用。
 
 ```ts title=".vuepress/config.ts"
@@ -26,14 +24,14 @@ export default defineUserConfig({
 })
 ```
 
-## 使用
+## 语法
 
 主题提供了两种使用方式：
 
 ### code-tree 容器
 
 ````md
-::: code-tree title="Project Name" height="400px" entry="filepath" showSidebar
+::: code-tree title="Project Name" height="400px" entry="filepath"
 ```lang title="filepath" :active
 <!-- code content-->
 ```

@@ -122,10 +122,22 @@ export default defineUserConfig({
 - 默认值： `'Appearance'`
 - 详情： 导航栏中的主题切换按钮的文本。
 
+### lightModeSwitchTitle
+
+- 类型： `string`
+- 默认值： `'Switch to light theme'`
+- 详情： 切换到浅色主题按钮的标题（悬停提示）。
+
+### darkModeSwitchTitle
+
+- 类型： `string`
+- 默认值： `'Switch to dark theme'`
+- 详情： 切换到深色主题按钮的标题（悬停提示）。
+
 ### selectLanguageName
 
 - 类型： `string`
-- 默认值： `''`
+- 默认值： 由语言预设提供（如 `/` → `'简体中文'`、`/en/` → `'English'`）
 - 详情：
 
   Locale 的语言名称。
@@ -135,7 +147,7 @@ export default defineUserConfig({
 ### selectLanguageText
 
 - 类型： `string`
-- 默认值： `''`
+- 默认值： `'Languages'`
 - 详情：
 
   _选择语言菜单_ 的文本。
@@ -154,7 +166,7 @@ export default defineUserConfig({
 ### postsText
 
 - 类型： `string`
-- 默认值： `'Posts'`
+- 默认值： `'Blog'`
 - 详情： 文章列表页链接的文本。
 
   - 主题默认导航栏中的文章列表页链接的文本。
@@ -339,7 +351,7 @@ export default defineUserConfig({
 ### copyrightCreationTranslateText
 
 - 类型： `string`
-- 默认值： `'This article translated from:'`
+- 默认值： `'This article is translated from:'`
 - 详情： 本文翻译的文本
 
 ### copyrightCreationReprintText
@@ -353,6 +365,12 @@ export default defineUserConfig({
 - 类型： `string`
 - 默认值： `'License under:'`
 - 详情： 版权许可证的文本
+
+### openNewWindowText
+
+- 类型： `string`
+- 默认值： `'(Open in new window)'`
+- 详情： 外部链接打开新窗口时的无障碍提示文本。
 
 ### prevPageLabel
 
@@ -381,6 +399,71 @@ interface NotFound {
   linkText?: string
 }
 ```
+
+## 页面上下文菜单（PageContextMenu）
+
+以下选项用于 [`<PageContextMenu />`](./plugins/llms.md#组件) 组件的文本，应配置在 `theme.locales` 中。
+该组件需要配合 [@vuepress/plugin-llms](./plugins/llms.md) 使用。
+
+### pageContextMenuLabel
+
+- 类型： `string`
+- 默认值： `'Open page actions menu'`
+- 详情： 打开页面操作菜单按钮的无障碍标签。
+
+### copyPageText
+
+- 类型： `string`
+- 默认值： `'Copy page'`
+- 详情： 复制页面按钮的文本。
+
+### copiedPageText
+
+- 类型： `string`
+- 默认值： `'Copied !'`
+- 详情： 复制成功后的提示文本。
+
+### copingPageText
+
+- 类型： `string`
+- 默认值： `'Copying..'`
+- 详情： 正在复制时的提示文本。
+
+### copyTagline
+
+- 类型： `string`
+- 默认值： `'Copy page as Markdown for LLMs'`
+- 详情： 复制页面按钮的副标题。
+
+### viewMarkdown
+
+- 类型： `string`
+- 默认值： `'View as Markdown'`
+- 详情： 以 Markdown 查看按钮的文本。
+
+### viewMarkdownTagline
+
+- 类型： `string`
+- 默认值： `'View this page as plain text'`
+- 详情： 以 Markdown 查看按钮的副标题。
+
+### askAIText
+
+- 类型： `string`
+- 默认值： `'Open in {name}'`
+- 详情： 在 AI 平台中打开按钮的文本，`{name}` 会被替换为平台名称。
+
+### askAITagline
+
+- 类型： `string`
+- 默认值： `'Ask {name} about this page'`
+- 详情： 在 AI 平台中打开按钮的副标题，`{name}` 会被替换为平台名称。
+
+### askAIMessage
+
+- 类型： `string`
+- 默认值： `'Read {link} and answer content-related questions.'`
+- 详情： 发送给 AI 平台的提问内容，`{link}` 会被替换为当前页面的 Markdown 地址。
 
 ## 加密相关文本
 

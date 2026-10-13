@@ -11,8 +11,6 @@ In markdown, use the `::: collapse` container with markdown unordered list synta
 
 - Supports ==accordion== mode via the `accordion` setting
 
-## Enable
-
 This feature is disabled by default. You need to enable it in the `theme` configuration.
 
 ```ts title=".vuepress/config.ts"
@@ -25,7 +23,7 @@ export default defineUserConfig({
 })
 ```
 
-## Usage
+## Syntax
 
 In markdown, use the `::: collapse` container with markdown unordered list syntax. Each item represents a separate collapsible section.
 
@@ -85,7 +83,8 @@ After the `::: collapse` container syntax, follow with configuration options:
 
 - `accordion`: Sets the collapse panel to ==accordion== mode. In accordion mode,
   only one panel can be expanded at a time; clicking other panels will close the previously opened panel.
-- `expand`: Expands panels by default. Invalid in accordion mode.
+- `expand`: Expands panels by default. In accordion (`accordion`) mode, `expand` expands the **first** panel;
+  if a `:+`-marked item already exists in the list, the `:+`-marked item takes precedence.
 
 In list items, before the title, use special markers `:+` / `:-` to set the initial state of the current item to __expanded / collapsed__.
 

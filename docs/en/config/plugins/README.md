@@ -1,6 +1,6 @@
 ---
 title: Introduction
-createTime: 2025/10/09 8:26:44
+createTime: 2025/10/09 08:26:44
 permalink: /en/config/plugins/
 ---
 
@@ -35,27 +35,29 @@ It is recommended to use the top-level configuration entry unless you need more 
 
 ## Plugin List
 
-- [@vuepress/plugin-nprogress](https://ecosystem.vuejs.press/zh/plugins/features/nprogress.html) - Page loading progress bar
-- [@vuepress/plugin-photo-swipe](https://ecosystem.vuejs.press/zh/plugins/features/photo-swipe.html) - Image preview
-- [@vuepress/plugin-reading-time](https://ecosystem.vuejs.press/zh/plugins/development/reading-time.html) - Article reading time
-- [@vuepress/plugin-watermark](https://ecosystem.vuejs.press/zh/plugins/features/watermark.html) - Article watermark
+- [@vuepress/plugin-nprogress](https://ecosystem.vuejs.press/plugins/features/nprogress.html) - Page loading progress bar
+- [@vuepress/plugin-photo-swipe](https://ecosystem.vuejs.press/plugins/features/photo-swipe.html) - Image preview
+- [@vuepress/plugin-reading-time](https://ecosystem.vuejs.press/plugins/development/reading-time.html) - Article reading time
+- [@vuepress/plugin-watermark](https://ecosystem.vuejs.press/plugins/features/watermark.html) - Article watermark
 - [@vuepress-plume/plugin-search](./search.md) - Local search
-- [@vuepress/plugin-docsearch](https://ecosystem.vuejs.press/zh/plugins/search/docsearch.html) - Algolia documentation search
-- [@vuepress/plugin-copy-code](https://ecosystem.vuejs.press/zh/plugins/features/copy-code.html) - Code copy
-- [@vuepress/plugin-shiki](https://ecosystem.vuejs.press/zh/plugins/markdown/shiki.html) - Syntax highlighting
-- [@vuepress/plugin-comment](https://ecosystem.vuejs.press/zh/plugins/blog/comment/) - Article comments
-- [@vuepress/plugin-markdown-hint](https://ecosystem.vuejs.press/zh/plugins/markdown/hint.html) - Markdown hints
-- [@vuepress/plugin-markdown-image](https://ecosystem.vuejs.press/zh/plugins/markdown/image.html) - Markdown images
-- [@vuepress/plugin-markdown-math](https://ecosystem.vuejs.press/zh/plugins/markdown/math.html) - Markdown mathematical formulas
-- [@vuepress/plugin-markdown-include](https://ecosystem.vuejs.press/zh/plugins/markdown/include.html) - Markdown file inclusion
-- [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-chart/) - Markdown charts
+- [@vuepress-plume/plugin-fonts](./fonts.md) - Special character fonts
+- [@vuepress/plugin-docsearch](https://ecosystem.vuejs.press/plugins/search/docsearch.html) - Algolia documentation search
+- [@vuepress/plugin-copy-code](https://ecosystem.vuejs.press/plugins/features/copy-code.html) - Code copy
+- [@vuepress/plugin-shiki](https://ecosystem.vuejs.press/plugins/markdown/shiki.html) - Syntax highlighting
+- [@vuepress/plugin-comment](https://ecosystem.vuejs.press/plugins/blog/comment/) - Article comments
+- [@vuepress/plugin-markdown-hint](https://ecosystem.vuejs.press/plugins/markdown/hint.html) - Markdown hints
+- [@vuepress/plugin-markdown-image](https://ecosystem.vuejs.press/plugins/markdown/image.html) - Markdown images
+- [@vuepress/plugin-markdown-math](https://ecosystem.vuejs.press/plugins/markdown/math.html) - Markdown mathematical formulas
+- [@vuepress/plugin-markdown-include](https://ecosystem.vuejs.press/plugins/markdown/include.html) - Markdown file inclusion
+- [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/) - Markdown charts
   chartjs / echarts / mermaid / flowchart / markmap / plantUML
-- [@vuepress/plugin-replace-assets](https://ecosystem.vuejs.press/zh/plugins/tools/replace-assets.html) - Asset link replacement
+- [@vuepress/plugin-replace-assets](https://ecosystem.vuejs.press/plugins/tools/replace-assets.html) - Asset link replacement
 - [vuepress-plugin-md-power](./markdown-power.md) - Markdown Power
-- [@vuepress/plugin-git](https://ecosystem.vuejs.press/zh/plugins/development/git.html) - Git commit information
-- [@vuepress/plugin-cache](https://ecosystem.vuejs.press/zh/plugins/tools/cache.html) - Page compilation cache
-- [@vuepress/plugin-seo](https://ecosystem.vuejs.press/zh/plugins/seo/seo/) - SEO optimization
-- [@vuepress/plugin-sitemap](https://ecosystem.vuejs.press/zh/plugins/seo/sitemap/) - Sitemap
+- [@vuepress/plugin-git](https://ecosystem.vuejs.press/plugins/development/git.html) - Git commit information
+- [@vuepress/plugin-cache](https://ecosystem.vuejs.press/plugins/tools/cache.html) - Page compilation cache
+- [@vuepress/plugin-seo](https://ecosystem.vuejs.press/plugins/seo/seo/) - SEO optimization
+- [@vuepress/plugin-sitemap](https://ecosystem.vuejs.press/plugins/seo/sitemap/) - Sitemap
+- [@vuepress/plugin-llms](./llms.md) - Generate LLM-friendly `llms.txt`
 
 :::tip
 You don't need to install these built-in plugins separately, nor should you add them to [vuepress config > plugins](https://v2.vuepress.vuejs.org/zh/reference/config.html#plugins).

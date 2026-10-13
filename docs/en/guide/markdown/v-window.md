@@ -1,7 +1,7 @@
 ---
-title: Demo Container
-createTime: 2025/10/08 14:47:12
+title: Window Container
 icon: fxemoji:window
+createTime: 2025/10/08 14:47:12
 permalink: /en/guide/markdown/window/
 outline: 2
 ---
@@ -19,11 +19,25 @@ Add your demo here
 :::
 ````
 
-## Options
+## Props
 
-- `title="xxx"`: Title
-- `height="200px"`: Height
-- `gap="20px"`: Left and right padding
+:::: field-group
+::: field title
+@type `string`
+
+Title
+:::
+::: field height
+@type `string`
+
+Height
+:::
+::: field gap
+@type `string`
+
+Left and right padding
+:::
+::::
 
 ## Examples
 

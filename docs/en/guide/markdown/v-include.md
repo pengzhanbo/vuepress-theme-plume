@@ -1,7 +1,7 @@
 ---
 title: File Inclusion
-createTime: 2025/10/08 14:53:04
 icon: fluent:table-simple-include-16-regular
+createTime: 2025/10/08 14:53:04
 permalink: /en/guide/markdown/include/
 outline: 2
 ---
@@ -85,7 +85,11 @@ interface IncludeOptions {
 
 For example: You can use `@src` as an alias for your source directory.
 
-```ts{5-11} title=".vuepress/config.ts"
+```ts{8-14} title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+import path from 'node:path'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
@@ -104,7 +108,7 @@ export default defineUserConfig({
 
 Additionally, if you want to place Markdown files directly alongside your actual files but don't
 want them rendered as pages, you can set the `pagePatterns` option in your VuePress configuration.
-For more details, refer to [pagePatterns](https://vuejs.press/zh/reference/config.html#pagepatterns).
+For more details, refer to [pagePatterns](https://vuejs.press/reference/config.html#pagepatterns).
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({

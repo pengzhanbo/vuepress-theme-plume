@@ -39,16 +39,50 @@ export default defineUserConfig({
 @[youtube autoplay loop start="0" end="0" width="100%" height="400px" ratio="16:9"](id)
 ```
 
-**选项说明：**
+选项说明：
 
-- id: 视频 ID
-- autoplay: 是否自动播放
-- loop: 是否循环播放
-- start: 视频开始播放时间点，单位为秒， 也可以使用 `mm:ss` 或 `hh:mm:ss` 格式
-- end: 视频结束播放时间点，单位为秒， 也可以使用 `mm:ss` 或 `hh:mm:ss` 格式
-- width: 视频宽度
-- height: 视频高度
-- ratio: 视频比例，默认 `16:9`
+:::: field-group
+::: field id
+@type `string`
+@required
+视频 ID
+:::
+::: field autoplay
+@type `boolean`
+@default `false`
+是否自动播放
+:::
+::: field loop
+@type `boolean`
+@default `false`
+是否循环播放
+:::
+::: field start
+@type `number | string`
+@default undefined
+视频开始播放时间点，单位为秒，也可以使用 `mm:ss` 或 `hh:mm:ss` 格式
+:::
+::: field end
+@type `number | string`
+@default undefined
+视频结束播放时间点，单位为秒，也可以使用 `mm:ss` 或 `hh:mm:ss` 格式
+:::
+::: field width
+@type `string`
+@default `100%`
+视频宽度
+:::
+::: field height
+@type `string`
+@default undefined
+视频高度。未指定时按自动高度处理
+:::
+::: field ratio
+@type `string`
+@default `16:9`
+视频比例
+:::
+::::
 
 ## 示例
 

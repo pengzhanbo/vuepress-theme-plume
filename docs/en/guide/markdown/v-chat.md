@@ -38,12 +38,10 @@ Bad news: I've used you as the example \[doge\]
 
 In Markdown, wrapping specially formatted text content within a `::: chat` container allows you to display ==chat records== within the documentation.
 
-::: warning This is a feature you likely won't need most of the time.
-Please consider carefully whether you should use it when the need arises.
-Filter out any private or sensitive content yourself.
+::: warning This is a feature you likely won't need most of the time. Please consider carefully whether you should use it when the need arises. Filter out any private or sensitive content yourself.
 :::
 
-## Enable
+## Configuration
 
 This feature is disabled by default. You need to enable it in the `theme` configuration.
 
@@ -57,7 +55,7 @@ export default defineUserConfig({
 })
 ```
 
-## Usage
+## Syntax
 
 Within a `::: chat` container, use specific markers to identify the sender and timestamp of messages,
 which will then render the chat record in the documentation.

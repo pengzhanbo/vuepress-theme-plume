@@ -2,6 +2,7 @@
 pageLayout: friends
 title: 友情链接
 description: 这里是友情链接的描述文字，此页面仅作为示例展示
+createTime: 2025/08/04 15:01:06
 permalink: /friends/
 article: true
 list:
@@ -128,5 +129,4 @@ groups:
         link: https://github.com/pengzhanbo
         avatar: https://github.com/pengzhanbo.png
         desc: 即使慢，驰而不息，纵会落后，纵会失败，但必须能够到达他所向的目标。
-createTime: 2025/08/04 15:01:06
 ---

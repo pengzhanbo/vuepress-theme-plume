@@ -35,10 +35,10 @@ A typical project structure might look like:
 ::: file-tree
 
 - docs
-  - typescript     # TypeScript Study Notes
+  - typescript     # TypeScript Docs
     - basic.md
     - types.md
-  - rust           # Rust Programming Notes
+  - rust           # Rust Docs
     - tuple.md
     - struct.md
   - README.md      # Site Homepage
@@ -112,14 +112,14 @@ export default defineUserConfig({
         type: 'doc',
         dir: 'typescript',
         linkPrefix: '/typescript/',
-        title: 'TypeScript Notes',
+        title: 'TypeScript Docs',
         sidebar: ['basic', 'types'],
       },
       {
         type: 'doc',
         dir: 'rust',
         linkPrefix: '/rust/',
-        title: 'Rust Notes',
+        title: 'Rust Docs',
         sidebar: ['tuple', 'struct'],
       }
     ],
@@ -138,14 +138,14 @@ export default defineThemeConfig({
       type: 'doc',
       dir: 'typescript',
       linkPrefix: '/typescript/',
-      title: 'TypeScript Notes',
+      title: 'TypeScript Docs',
       sidebar: ['basic', 'types'],
     },
     {
       type: 'doc',
       dir: 'rust',
       linkPrefix: '/rust/',
-      title: 'Rust Notes',
+      title: 'Rust Docs',
       sidebar: ['tuple', 'struct'],
     }
   ],
@@ -177,7 +177,7 @@ import { defineCollection, defineCollections } from 'vuepress-theme-plume'
 const typescript = defineCollection({
   type: 'doc',
   dir: 'typescript',
-  title: 'TypeScript Notes',
+  title: 'TypeScript Docs',
   linkPrefix: '/typescript/',
   sidebar: [
     'guide/intro.md',
@@ -278,7 +278,7 @@ export default defineCollection({
   type: 'doc',
   dir: 'typescript',
   link: '/typescript/',
-  title: 'TypeScript Notes',
+  title: 'TypeScript Docs',
   sidebar: [
     'guide/intro.md',
     'guide/getting-start.md',
@@ -293,7 +293,7 @@ export default defineCollection({
 
 ### File Structure Example
 
-Assume the TypeScript Notes contain the following structure:
+Assume the TypeScript Docs contain the following structure:
 
 ::: file-tree
 
@@ -527,7 +527,7 @@ const sidebarItem: SidebarItem = {
 }
 ```
 
-::: important Local Resource Paths
+:::: important Local Resource Paths
 Local image paths should start with `/` and correspond to the `.vuepress/public/` directory:
 
 ::: file-tree
@@ -539,6 +539,8 @@ Local image paths should start with `/` and correspond to the `.vuepress/public/
         - guide.png
         - info.png
 :::
+
+::::
 
 ### Badge Feature <Badge text="v1.0.0-rc.143 +" />
 

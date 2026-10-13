@@ -18,7 +18,7 @@ Icons are used in the same way across the following theme features:
 - [Navbar Icons](../../config/navbar.md#configuration)
 - [Sidebar Icons](../../guide/quick-start/sidebar.md#visual-enhancement-features)
 - [File Tree Icons](../../guide/markdown/v-file-tree.md)
-- [Code Group Title Icons](../code/v-code-tabs.md#group-title-icons)
+- [Code Group Title Icons](../code/v-code-tabs.md#tab-icon-support)
 
 Provides syntax sugar and component support:
 
@@ -84,10 +84,10 @@ Icon provider
 
 ### assets
 
-- **Type**: `(string | FontAwesomeAssetBuiltin)[] | string | FontAwesomeAssetBuiltin`
+- **Type**: `(string | FontAwesomeAssetBuiltIn)[] | string | FontAwesomeAssetBuiltIn`
 
   ```ts
-  type FontAwesomeAssetBuiltin = 'fontawesome' | 'fontawesome-with-brands'
+  type FontAwesomeAssetBuiltIn = 'fontawesome' | 'fontawesome-with-brands'
   ```
 
 - **Default**: `undefined`

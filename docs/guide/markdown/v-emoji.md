@@ -10,7 +10,11 @@ import EmojiList from '~/components/EmojiList.vue'
 import { people, nature, foods, places, activities, symbols, objects, flags } from '~/composables/emoji'
 </script>
 
-## 快速上手
+## 概述
+
+在 Markdown 中使用 `:emoji_name:` 语法即可插入 emoji 表情，该功能默认可用，无需额外配置。
+
+## 示例
 
 在 Markdown 中使用表情符号非常简单，只需用冒号包裹表情代码即可：
 

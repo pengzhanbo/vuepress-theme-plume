@@ -66,23 +66,25 @@ Only absolute paths and remote image URLs are supported.
 
 ### coverStyle
 
-- Type: `BlogPostCoverStyle`
-- Default: `null`
+- Type: `PostsCoverStyle`
+- Default: `undefined`
 
 Cover image configuration.
 
 ```ts
-interface PostCoverStyle {
+type PostsCoverLayout = 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
+
+interface PostsCoverStyle {
   /**
    * Layout position of the blog post cover image
    */
-  layout?: 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
+  layout?: PostsCoverLayout
   /**
    * Aspect ratio of the blog post cover image
    *
    * @default '4:3'
    */
-  ratio?: number | `${number}:${number}`
+  ratio?: number | `${number}:${number}` | `${number}/${number}`
 
   /**
    * Width of the cover image, only effective when layout is 'left' or 'right'
@@ -97,3 +99,17 @@ interface PostCoverStyle {
   compact?: boolean
 }
 ```
+
+### excerpt
+
+- Type: `boolean | string`
+- Default: `undefined`
+
+Whether to display the article excerpt. When a `string` is passed, it is used as a custom excerpt, and the `<!-- more -->` comment is ignored.
+
+::: tip Other fields of the article frontmatter
+
+- `createTime`: Creation time, see [Basic frontmatter](./basic.md#createtime)
+- `password` / `passwordHint`: Article encryption, see [Encryption](../../guide/features/encryption.md)
+- `copyright`: Copyright information, see [Copyright](../../guide/features/copyright.md)
+:::

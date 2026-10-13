@@ -15,14 +15,17 @@ Related plugin: [@vuepress/plugin-markdown-include](https://ecosystem.vuejs.pres
 The theme enables `markdownInclude` by default. You can further customize its behavior through configuration.
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
       include: {
         // ... options
-      }
+      },
     },
-  })
+  }),
 })
 ```
 
@@ -37,7 +40,8 @@ For configuration entry priority information, please refer to [Plugin Configurat
 ### deep
 
 - Type: `boolean`
-- Details: Whether to enable deep include support.
+- Default: `false`
+- Details: Whether to recursively import `@include` within included files. When `false`, the `@include` in included files will not be further parsed.
 
 ### useComment
 

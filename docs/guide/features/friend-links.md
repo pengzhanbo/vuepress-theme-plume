@@ -16,7 +16,7 @@ permalink: /guide/friend-links/
 
 ```md title="friends.md"
 ---
-friends: true
+pageLayout: friends
 title: 友情链接
 description: 友情链接描述文本
 permalink: /friends/
@@ -40,6 +40,10 @@ list:
 
 主题会根据配置信息生成友情链接页。
 
+::: warning `friends: true` 已废弃
+旧写法 `friends: true` 已废弃，请使用 `pageLayout: friends` 代替。
+:::
+
 你需要自行将友情链接页的入口链接配置到 `navbar` 的合适的位置中。
 
 ### 配置
@@ -47,5 +51,7 @@ list:
 查看 [文档](../../config/frontmatter/friend.md) 更多配置信息。
 
 ::: tip 完整字段说明
-`list` 支持的字段（`name`、`link`、`avatar`、`desc`）以及 `cols`、`contentPosition` 等布局选项，见 [友情链接 frontmatter 配置](../../config/frontmatter/friend.md)。
+`list` 支持的字段包括 `name`、`link`、`avatar`、`desc`、`location`、`organization`、`socials`、
+`backgroundColor`、`color`、`nameColor`；此外还支持 `groups` 分组，以及 `cols`、`contentPosition`
+等布局选项，详见 [友情链接 frontmatter 配置](../../config/frontmatter/friend.md)。
 :::

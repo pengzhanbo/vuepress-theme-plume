@@ -52,7 +52,7 @@ licensed under [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE).
 
 Configuration via Frontmatter syntax is supported.
 
-## Example
+## Examples
 
 ::: demo markdown title="markmap"
 

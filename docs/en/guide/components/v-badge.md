@@ -29,16 +29,19 @@ Badge text content.
 
 ::: field color
 @type `string`
+
 Custom badge text color.
 :::
 
 ::: field bgColor
 @type `string`
+
 Custom badge background color.
 :::
 
 ::: field borderColor
 @type `string`
+@default `'transparent'`
 Custom badge border color.
 :::
 
@@ -141,8 +144,6 @@ Using custom `type` enables richer visual presentations.
   border-color: transparent;
 }
 </style>
-
-## Use Cases
 
 The `<Badge>` component has several common use cases in practical documentation writing. The following examples demonstrate some typical scenarios.
 

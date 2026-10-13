@@ -18,21 +18,44 @@ permalink: /guide/chart/plantuml/
 在 `.vuepress/config.ts` 配置文件中，启用该功能：
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
       plantuml: true, // [!code ++]
     },
-  })
+  }),
 })
 ```
+
+`markdown.plantuml` 的类型为 `boolean | MarkdownItPlantumlOptions[]`，
+传入数组时可以分别配置不同的图表类型。
+
+::: warning 默认通过公网服务器生成图形
+
+`plantuml` 默认使用 **`https://www.plantuml.com/plantuml`** 这个公网服务器渲染图形，
+图表内容会被发送到该服务器。离线构建、内网部署或对内容外发有合规要求时，请改为自托管服务：
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      plantuml: [{ server: 'https://your-plantuml-server/' }],
+    },
+  }),
+})
+```
+
+:::
 
 ::: note
 以下文档 Fork 自 [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/plantuml.html),
 遵循 [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE) 许可证。
 :::
 
-## 格式
+## 语法
 
 你可以插入[plantuml](https://plantuml.com/) 支持的相同内容，例如:
 

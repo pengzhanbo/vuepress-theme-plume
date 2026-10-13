@@ -18,7 +18,7 @@ permalink: /guide/features/icon/
 - [导航栏图标](../../config/navbar.md#配置)
 - [侧边栏图标](../quick-start/sidebar.md#视觉增强功能)
 - [文件树图标](../../guide/markdown/v-file-tree.md)
-- [代码分组标题图标](../code/v-code-tabs.md#分组标题图标)
+- [代码分组标题图标](../code/v-code-tabs.md#标签图标支持)
 
 提供语法糖和组件支持：
 
@@ -84,10 +84,10 @@ export default defineUserConfig({
 
 ### assets
 
-- **类型**: `(string | FontAwesomeAssetBuiltin)[] | string | FontAwesomeAssetBuiltin`
+- **类型**: `(string | FontAwesomeAssetBuiltIn)[] | string | FontAwesomeAssetBuiltIn`
 
   ```ts
-  type FontAwesomeAssetBuiltin = 'fontawesome' | 'fontawesome-with-brands'
+  type FontAwesomeAssetBuiltIn = 'fontawesome' | 'fontawesome-with-brands'
   ```
 
 - **默认值**: `undefined`

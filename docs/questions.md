@@ -9,9 +9,9 @@ article: false
 
 如果您遇到任何问题，您可以先在以下内容中寻找是否有相关的问题和解决方法。
 
-如果没有找到，您可以先通过  Github [Discussions](https://github.com/pengzhanbo/vuepress-theme-plume/discussions/new?category=q-a) 与我们讨论。
+如果没有找到，您可以先通过  GitHub [Discussions](https://github.com/pengzhanbo/vuepress-theme-plume/discussions/new?category=q-a) 与我们讨论。
 
-如果您确定某处确实存在问题，请在 Github [Open an issue](https://github.com/pengzhanbo/vuepress-theme-plume/issues/new?assignees=pengzhanbo&labels=bug&projects=&template=bug-report.zh-CN.yml&title=%5BBug%5D),
+如果您确定某处确实存在问题，请在 GitHub [Open an issue](https://github.com/pengzhanbo/vuepress-theme-plume/issues/new?assignees=pengzhanbo&labels=bug&projects=&template=bug-report.zh-CN.yml&title=%5BBug%5D),
 在 Issue 中说明该问题的具体细节，如有必要，请尽量提供一个最小重现包，我们会尽快解决。
 
 ::: details 发起讨论或提出问题需要注意什么？
@@ -30,7 +30,7 @@ article: false
 您可以通过 `vp-update` 命令来更新主题。
 
 `vp-update` 是 VuePress 官方维护的 CLI 工具，它可以帮助您检查项目内与 VuePress 相关的主题、插件等的
-最新版本，并自动为您安装依赖。
+最新版本，并自动为您安装依赖。它无需预先安装，直接通过 `npx vp-update` 运行即可。
 
 复制以下命令到您的项目中运行：
 
@@ -48,7 +48,7 @@ npx vp-update
 
 但有几种情况需要你主动处理，最常见的是：**你已经配置了 `collections`，同时又保留了 `blog` / `notes`** —— 此时旧的配置会被**静默忽略**。
 
-完整的迁移规则、手动迁移示例与验证清单，请见 [迁移指南](./guide/migration.md)。
+完整的迁移规则、手动迁移示例与验证清单，请见 [迁移指南](./guide/quick-start/migration.md)。
 
 ## 为什么更新主题版本后新的功能没有生效？
 
@@ -170,7 +170,7 @@ npm run docs:build
 
 在本地构建时，使用 `npm run docs:build-local` 构建包。
 
-**方式三：在 Github Actions 中**：
+**方式三：在 GitHub Actions 中**：
 
 修改 `.github/workflows/deploy.yml` 文件，添加以下环境变量:
 

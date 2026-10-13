@@ -53,11 +53,16 @@ interface IconOptions {
 :::: field-group
 
 ::: field name
-@type `string`
-@default `''`
-Icon name.
-
+@type `string | { svg: string }`
+@required
+Icon name. Supports iconify icon names, icon links (`https://…` or `/…`), and inline SVG objects `{ svg: '<svg>…</svg>' }`.
 When `markdown.icon.prefix` has a value, the prefix in `name` can be omitted.
+:::
+
+::: field provider
+@type `'iconify' | 'iconfont' | 'fontawesome'`
+@default Determined by `markdown.icon.provider` (defaults to `'iconify'`)
+Icon provider. You can also force a specific provider by using the `iconify` / `iconfont` / `fontawesome` prefix followed by a space in `name`.
 :::
 
 ::: field color
@@ -67,9 +72,15 @@ Icon color.
 :::
 
 ::: field size
-@type `string`
+@type `string | number`
 @default `'1em'`
-Icon size.
+Icon size. A number is treated as `px`, and the `20x20` form is also supported to specify width and height separately.
+:::
+
+::: field extra
+@type `string`
+@default `undefined`
+Extra CSS class name. Fontawesome icons automatically prepend the `fa-` prefix for class names without it.
 :::
 
 ::::

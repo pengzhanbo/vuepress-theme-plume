@@ -2,6 +2,7 @@
 title: Markdown Configuration
 createTime: 2025/10/09 14:54:19
 permalink: /en/config/markdown/
+outline: [2, 4]
 ---
 
 ## Overview
@@ -30,28 +31,6 @@ These two are independent. Do not configure the theme's markdown settings
 within [VuePress > markdown](https://v2.vuepress.vuejs.org/reference/config.html#markdown), and vice versa.
 :::
 
-::: tip The theme's `markdown` is flat and does not support `extend`
-VuePress's native `markdown.extend` is a **function** used to extend the markdown-it instance
-programmatically. The theme's `markdown`, by contrast, is a set of **flat feature-toggle fields**
-(every field listed in this document). There is **no `extend` key**, and passing one has no effect.
-
-If you need to extend markdown-it programmatically, use VuePress's native form and bypass the theme
-configuration:
-
-```ts title=".vuepress/config.ts"
-import { defineUserConfig } from 'vuepress'
-
-export default defineUserConfig({
-  markdown: {
-    extend: (md) => {
-      md.use(require('markdown-it-footnote'))
-    },
-  },
-})
-```
-
-:::
-
 **Default Configuration:**
 
 ```ts title=".vuepress/config.ts" twoslash
@@ -66,7 +45,7 @@ export default defineUserConfig({
       alert: true,
       fileTree: true,
       plot: true,
-      icons: true,
+      icon: { provider: 'iconify' },
       math: { type: 'katex' },
       include: {
         // ...option
@@ -78,276 +57,306 @@ export default defineUserConfig({
 
 ## Configuration Options
 
-::: tip
-The `hint` and `alert` features are implemented by
-the [@vuepress/plugin-markdown-hint](https://ecosystem.vuejs.press/plugins/markdown/markdown-hint.html) plugin.
-:::
+As long as `plugins.markdownPower: false` is not explicitly set, the theme injects three features by
+default: `plot`, `fileTree`, and icon support. Therefore, hidden text, file trees, and the `::name::`
+icon syntax are **enabled by default** and require no extra configuration.
 
-### hint
+All other features are disabled by default and must be enabled as needed.
+
+The following fields are grouped by the plugin that implements them.
+
+### Implemented by `@vuepress/plugin-markdown-hint`
+
+#### hint
 
 - **Type:** `boolean`
 - **Default:** `true`
 - **Details:** Whether to enable hint containers.
 
-### alert
+#### alert
 
 - **Type:** `boolean`
 - **Default:** `true`
 - **Details:** Whether to enable GitHub-style alert syntax.
+  The theme enables [obsidian compatibility](#obsidian) by default, and this syntax is rendered by the obsidian callout.
+  Only when `markdown.obsidian` is explicitly set to `false` is it rendered by markdown-hint instead.
 
----
+### Implemented by `@vuepress/plugin-markdown-image`
 
-::: tip
-The `image` configuration is implemented by the
-[@vuepress/plugin-markdown-image](https://ecosystem.vuejs.press/plugins/markdown/markdown-image.html) plugin.
-:::
+#### image
 
-### image
-
-- **Type:** `boolean | MarkdownImagePluginOptions`
+- **Type:** `false | MarkdownImagePluginOptions`
 - **Default:** `false`
 - **Details:** Whether to enable image enhancement syntax.
 
----
+### Implemented by `@vuepress/plugin-markdown-math`
 
-::: tip
-The `math` configuration is implemented by the
-[@vuepress/plugin-markdown-math](https://ecosystem.vuejs.press/plugins/markdown/markdown-math.html) plugin.
-:::
+#### math
 
-### math
-
-- **Type:** `boolean | MarkdownMathPluginOptions`
+- **Type:** `false | MarkdownMathPluginOptions`
 - **Default:** `{ type: 'katex' }`
 - **Details:** Whether to enable math support.
 
----
+### Implemented by `@vuepress/plugin-markdown-include`
 
-### include
+#### include
 
-::: tip
-The `include` configuration is implemented by the
-[@vuepress/plugin-markdown-include](https://ecosystem.vuejs.press/plugins/markdown/markdown-include.html) plugin.
-:::
-
-- **Type:** `boolean | MarkdownIncludePluginOptions`
+- **Type:** `false | MarkdownIncludePluginOptions`
 - **Default:** `true`
 - **Details:** Whether to enable Markdown file inclusion.
 
----
+### Implemented by `vuepress-plugin-md-power`
 
-::: tip The following configuration fields are implemented by the [vuepress-plugin-md-power](./plugins/markdown-power.md) plugin.
-:::
+See the [markdown-power plugin](./plugins/markdown-power.md) for the complete description of the fields in this group.
 
-### annotation
+#### env
 
-- **Type:** `boolean`
+- **Type:** `MarkdownEnvPreset`
+- **Default:** `undefined`
+- **Details:** Presets the markdown environment, such as preset link references, abbreviations, and content annotations. Presets can be used directly in any markdown file.
+
+#### annotation
+
+- **Type:** `boolean | MarkdownEnvPreset['annotations']`
 - **Default:** `false`
-- **Details:** Whether to enable content annotations.
+- **Details:** Whether to enable content annotations, or directly preset content annotations.
 
-### abbr
+#### abbr
 
-- **Type:** `boolean`
+- **Type:** `boolean | MarkdownEnvPreset['abbreviations']`
 - **Default:** `false`
-- **Details:** Whether to enable abbreviation syntax.
+- **Details:** Whether to enable abbreviation syntax, or directly preset abbreviations.
 
-### mark
+#### mark
 
 - **Type:** `MarkOptions`
 - **Default:** `'eager'`
-- **Details:** Sets when the `==mark==` animation runs.
+- **Details:** Sets the animation playback mode for `==mark==`.
 
-### codeTabs
+#### encrypt
 
-- **Type:** `boolean | CodeTabsOptions`
-- **Default:** `true`
-- **Details:** Whether to enable code block grouping.
+- **Type:** `boolean | EncryptSnippetOptions`
+- **Default:** `false`
+- **Details:** Whether to enable the content snippet encryption container.
 
-### tabs
+#### codeTabs
 
-- **Type:** `boolean | TabsOptions`
-- **Default:** `true`
-- **Details:** Whether to enable grouping.
+- **Type:** `CodeTabsOptions` (`{ icon?: boolean }`)
+- **Default:** `{ icon: true }`
+- **Details:** Icon configuration for the code block grouping container. The `::: code-tabs` container is **enabled by default**; this option only controls whether language icons are shown.
 
-### npmTo
+> The `::: tabs` container is also **available by default** and has no config field at all, so there is nothing to set.
+
+#### codeTree
+
+- **Type:** `boolean | CodeTreeOptions`
+- **Default:** `false`
+- **Details:** Whether to enable code tree container syntax and embed syntax.
+
+#### npmTo
 
 - **Type:** `boolean | NpmToOptions`
 - **Default:** `false`
 - **Details:** Whether to enable the `npm-to` container.
 
-### icon
+#### icon
 
 - **Type:** `IconOptions`
 - **Default:** `{ provider: 'iconify' }`
-- **Details:** Icon configuration.
+- **Details:** Icon rendering configuration (provider, prefix, size, color, assets, etc.). The `::name::` icon syntax is **available by default**; this option customizes the rendering behavior.
 
   [View **icon** usage instructions](../guide/features/icon.md){.read-more}
 
-### plot
+#### plot
 
 - **Type:** `boolean | PlotOptions`
 - **Default:** `true`
 - **Details:** Whether to enable hidden text syntax.
 
-### fileTree
+#### fileTree
 
 - **Type:** `boolean | FileTreeOptions`
 - **Default:** `true`
 - **Details:** Whether to enable file tree container syntax.
 
-### field
+#### field
 
 - **Type:** `boolean`
 - **Default:** `false`
-- **Details:** Whether to enable field containers.
+- **Details:** Whether to enable field containers, i.e. [`field-group`](../guide/markdown/v-field.md) and the `field` container.
 
-### table
+#### table
 
 - **Type:** `boolean | TableContainerOptions`
 - **Default:** `false`
 - **Details:** Whether to enable enhanced table containers.
 
-### timeline
+#### timeline
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable timeline container syntax.
 
-### collapse
+#### collapse
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable collapsible panel container syntax.
 
-### chat
+#### chat
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable chat record containers.
 
-### demo
+#### demo
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable Demo containers.
 
-### pdf
+#### pdf
 
-- **Type:** `boolean | PdfOptions`
+- **Type:** `boolean | PDFOptions`
 - **Default:** `false`
 - **Details:** Whether to enable PDF embedding syntax.
 
-### bilibili
+#### acfun
+
+- **Type:** `boolean`
+- **Default:** `false`
+- **Details:** Whether to enable AcFun video embedding syntax.
+
+#### bilibili
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable Bilibili video embedding syntax.
 
-### youtube
+#### youtube
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable YouTube video embedding syntax.
 
-### artPlayer
+#### artPlayer
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable ArtPlayer video embedding syntax.
 
-### audioReader
+#### audioReader
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable Audio Reader audio embedding syntax.
 
-### codepen
+#### codepen
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable CodePen embedding syntax.
 
-### codeSandbox
+#### codeSandbox
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable CodeSandbox embedding syntax.
 
-### jsfiddle
+#### jsfiddle
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable JS Fiddle embedding syntax.
 
-### repl
-
-- **Type:** `boolean | ReplOptions`
-- **Default:** `false`
-- **Details:** Whether to enable Repl container syntax.
-
-### caniuse
+#### replit <Badge type="warning" text="Deprecated" />
 
 - **Type:** `boolean`
 - **Default:** `false`
+- **Details:** Whether to enable Repl.it embedding syntax. Use `repl` instead.
+
+#### repl
+
+- **Type:** `false | ReplOptions`
+- **Default:** `false`
+- **Details:** Whether to enable Repl container syntax.
+
+#### caniuse
+
+- **Type:** `boolean | CanIUseOptions`
+- **Default:** `false`
 - **Details:** Whether to enable Can I Use embedding syntax.
 
-### imageSize
+#### qrcode
+
+- **Type:** `boolean`
+- **Default:** `false`
+- **Details:** Whether to enable QR code embedding syntax.
+
+#### obsidian
+
+- **Type:** `boolean | ObsidianOptions`
+- **Default:** Enabled by default in the theme (enabled unless explicitly set to `false`)
+- **Details:** Whether to enable compatibility support for obsidian's official markdown extension syntax, including wiki links, embeds, callouts, and comments.
+
+#### locales
+
+- **Type:** `LocaleConfig<MDPowerLocaleData>`
+- **Default:** `undefined`
+- **Details:** Multi-language text configuration for the markdown-power plugin.
+
+#### imageSize
 
 - **Type:** `boolean | 'local' | 'all'`
 - **Default:** `false`
-- **Details:** Whether to enable automatic filling of image width and height attributes.
+- **Details:** Whether to enable automatic filling of image width and height attributes. This feature only takes effect when building the production bundle.
 
----
+### Implemented by `@vuepress/plugin-markdown-chart`
 
-::: tip
-The following configuration fields are implemented by the
-[@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/) plugin.
-:::
-
-### chartjs
+#### chartjs
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable Chart.js chart embedding syntax.
 
-### echarts
+#### echarts
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable ECharts chart embedding syntax.
 
-### mermaid
+#### mermaid
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable Mermaid diagram embedding syntax.
 
-### markmap
+#### markmap
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable Markmap diagram embedding syntax.
 
-### plantuml
+#### plantuml
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable PlantUML diagram embedding syntax.
 
-### flowchart
+#### flowchart
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to enable Flowchart diagram embedding syntax.
 
-### DANGEROUS_ALLOW_SCRIPT_EXECUTION
+#### DANGEROUS_ALLOW_SCRIPT_EXECUTION
 
 - **Type:** `boolean`
 - **Default:** `false`
 - **Details:** Whether to allow chart scripts to execute. When enabled, scripts in chart content will run,
   which may introduce XSS or remote code execution risks. Only enable it when the content source is fully trusted.
 
-### DANGEROUS_SCRIPT_EXECUTION_ALLOWLIST
+#### DANGEROUS_SCRIPT_EXECUTION_ALLOWLIST
 
 - **Type:** `string[] | '*'`
 - **Default:** `undefined`

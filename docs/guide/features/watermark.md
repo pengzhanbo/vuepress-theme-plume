@@ -27,7 +27,6 @@ export default defineUserConfig({
     watermark: {
       // enabled: false,  // boolean 类型控制是否全局启用
       enabled: page => true, // function 类型 过滤哪些页面启用水印
-      delay: 500, // 添加水印的延时。以毫秒为单位。
 
       /**
        * 是否全屏水印，默认为 `true`，
@@ -47,7 +46,10 @@ export default defineUserConfig({
 
 ### 全局启用
 
-当 `plugins.watermark` 配置为 `true` 时， 主题全局开启水印。
+当顶层 `watermark` 配置为 `true` 时，主题全局开启水印。
+
+等价写法：将其配置在底层入口 `plugins.watermark: true`。两者是不同入口，不会互相覆盖，
+顶层入口优先级更高。
 
 ```ts
 export default defineUserConfig({

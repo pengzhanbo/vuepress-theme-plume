@@ -17,7 +17,7 @@ npmTo 容器用于将 npm 命令行转换为 `pnpm / yarn / deno / bun` 的命�
 因此我编写了这个 `::: npm-to` 容器以解决这个问题。
 :::
 
-## 用法
+## 语法
 
 ````md{1,5}
 ::: npm-to
@@ -106,11 +106,12 @@ export default defineUserConfig({
 
 `npmTo` 并不对 `npm` 的所有命令行提供支持，以下是支持的列表：
 
-- `npm install` / `npm i`
+- `npm install` / `npm i`（不带包名）
+- `npm install <pkg>` / `npm i <pkg>` / `npm add <pkg>`
 - `npm run` / `npm run-script`
 - `npm init`
 - `npm create`
-- `npm uninstall` / `npm rm` / `npm remove` / `npm un` / `npm unlink`
+- `npm uninstall` / `npm r` / `npm rm` / `npm remove` / `npm un` / `npm unlink`
 - `npm ci`
 - `npx`
 

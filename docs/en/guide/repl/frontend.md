@@ -95,7 +95,7 @@ Different code demos use the same embed syntax, allowing you to quickly grasp th
 `url` indicates the path to the demo code file, which can be relative or absolute.
 
 - Relative paths start with `./` or `../` and are relative to the current markdown file's path.
-- Absolute paths start with `/` and are resolved from the [VuePress source directory path](../quick-start/project-structure.md#document-source-directory).
+- Absolute paths start with `/` and are resolved from the [VuePress source directory path](../quick-start/project-structure.md#documentation-source-directory).
 
 ::: warning Paths must stay within the source directory
 Regardless of whether a relative or absolute path is used, the resolved file must be located inside
@@ -127,7 +127,7 @@ Additional parameters:
 - `expanded`: Expand the code area.
 - `code-setting="xxx"`: Code settings. The value will be appended after ``` [lang]` and is used to add configurations to the code block.
 
-  `code-setting=":lines-number"` will add `:lines-number` after the code block, enabling line numbers.
+  `code-setting=":line-numbers"` will add `:line-numbers` after the code block, enabling line numbers.
 
   `code-setting=":collapsed-lines=10"` will add `:collapsed-lines=10` after the code block,
   causing the code block to be collapsed starting from line 10.
@@ -194,8 +194,7 @@ You can also wrap code blocks with the `::: code-tabs` container within the `:::
 ``` css
 /* css code */
 ```
-:::
-:::::
+::::
 ````
 
 When using TypeScript or `Less/Sass/Stylus`, simply modify the value of ` ``` [lang]`:
@@ -215,8 +214,7 @@ When using TypeScript or `Less/Sass/Stylus`, simply modify the value of ` ``` [l
 ``` scss
 /* scss code */
 ```
-:::
-:::::
+::::
 ````
 
 ## Vue Component Demo
@@ -263,6 +261,8 @@ You can also embed a Vue component written in `.ts`:
 @[code](./demo/Counter.ts)
 @tab Counter.module.css
 @[code](./demo/Counter.module.css)
+:::
+
 :::
 
 **Output:**

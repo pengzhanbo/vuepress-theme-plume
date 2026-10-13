@@ -26,7 +26,7 @@ config:
           link: /en/demos/
         -
           theme: alt
-          text: Github
+          text: GitHub
           link: https://github.com/pengzhanbo/vuepress-theme-plume
   -
     type: features
@@ -46,7 +46,7 @@ config:
       -
         title: Multi-language
         icon: twemoji:balance-scale
-        details: Built-in support for 7 languages including Chinese and English, and you can customize and add more language support
+        details: Built-in support for 8 languages including Chinese and English, and you can customize and add more language support
       -
         title: Dual Color Theme
         icon: twemoji:cityscape

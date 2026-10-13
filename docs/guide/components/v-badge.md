@@ -29,11 +29,13 @@ permalink: /guide/components/badge/
 
 ::: field color
 @type `string`
+
 自定义徽章文本颜色
 :::
 
 ::: field bgColor
 @type `string`
+
 自定义徽章背景颜色
 :::
 
@@ -140,8 +142,6 @@ permalink: /guide/components/badge/
   border-color: transparent;
 }
 </style>
-
-## 使用场景
 
 `<Badge>` 组件在实际文档编写中有多种常见用途，以下示例展示了几种典型场景。
 

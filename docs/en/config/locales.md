@@ -122,10 +122,22 @@ The corresponding directory structure and URL mapping are as follows:
 - Default: `'Appearance'`
 - Details: The text for the theme toggle button in the navigation bar.
 
+### lightModeSwitchTitle
+
+- Type: `string`
+- Default: `'Switch to light theme'`
+- Details: The title (hover tooltip) of the button for switching to the light theme.
+
+### darkModeSwitchTitle
+
+- Type: `string`
+- Default: `'Switch to dark theme'`
+- Details: The title (hover tooltip) of the button for switching to the dark theme.
+
 ### selectLanguageName
 
 - Type: `string`
-- Default: `''`
+- Default: Provided by the language preset (e.g. `/` → `'简体中文'`, `/en/` → `'English'`)
 - Details:
 
   The language name for the locale.
@@ -136,7 +148,7 @@ The corresponding directory structure and URL mapping are as follows:
 ### selectLanguageText
 
 - Type: `string`
-- Default: `''`
+- Default: `'Languages'`
 - Details:
 
   The text for the _Select Language Menu_.
@@ -156,7 +168,7 @@ The corresponding directory structure and URL mapping are as follows:
 ### postsText
 
 - Type: `string`
-- Default: `'Posts'`
+- Default: `'Blog'`
 - Details: The text for the posts list page link.
 
   - The text for the posts list page link in the theme's default navigation bar.
@@ -341,7 +353,7 @@ The corresponding directory structure and URL mapping are as follows:
 ### copyrightCreationTranslateText
 
 - Type: `string`
-- Default: `'This article translated from:'`
+- Default: `'This article is translated from:'`
 - Details: The text for "This article translated from".
 
 ### copyrightCreationReprintText
@@ -355,6 +367,12 @@ The corresponding directory structure and URL mapping are as follows:
 - Type: `string`
 - Default: `'License under:'`
 - Details: The text for copyright license.
+
+### openNewWindowText
+
+- Type: `string`
+- Default: `'(Open in new window)'`
+- Details: The accessible hint text shown when an external link opens in a new window.
 
 ### prevPageLabel
 
@@ -383,6 +401,71 @@ interface NotFound {
   linkText?: string
 }
 ```
+
+## Page Context Menu (PageContextMenu)
+
+The following options are used for the text of the [`<PageContextMenu />`](./plugins/llms.md#components) component and should be configured in `theme.locales`.
+This component needs to be used together with [@vuepress/plugin-llms](./plugins/llms.md).
+
+### pageContextMenuLabel
+
+- Type: `string`
+- Default: `'Open page actions menu'`
+- Details: The accessible label for the button that opens the page actions menu.
+
+### copyPageText
+
+- Type: `string`
+- Default: `'Copy page'`
+- Details: The text for the copy page button.
+
+### copiedPageText
+
+- Type: `string`
+- Default: `'Copied !'`
+- Details: The message text shown after a successful copy.
+
+### copingPageText
+
+- Type: `string`
+- Default: `'Copying..'`
+- Details: The message text shown while copying.
+
+### copyTagline
+
+- Type: `string`
+- Default: `'Copy page as Markdown for LLMs'`
+- Details: The subtitle of the copy page button.
+
+### viewMarkdown
+
+- Type: `string`
+- Default: `'View as Markdown'`
+- Details: The text for the view as Markdown button.
+
+### viewMarkdownTagline
+
+- Type: `string`
+- Default: `'View this page as plain text'`
+- Details: The subtitle of the view as Markdown button.
+
+### askAIText
+
+- Type: `string`
+- Default: `'Open in {name}'`
+- Details: The text for the open in AI platform button; `{name}` will be replaced with the platform name.
+
+### askAITagline
+
+- Type: `string`
+- Default: `'Ask {name} about this page'`
+- Details: The subtitle of the open in AI platform button; `{name}` will be replaced with the platform name.
+
+### askAIMessage
+
+- Type: `string`
+- Default: `'Read {link} and answer content-related questions.'`
+- Details: The question content sent to the AI platform; `{link}` will be replaced with the Markdown URL of the current page.
 
 ## Encryption-related Text
 

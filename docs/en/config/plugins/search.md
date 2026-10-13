@@ -37,6 +37,11 @@ For configuration entry priority information, please refer to [Plugin Configurat
 ```ts
 interface SearchOptions {
   /**
+   * Search provider, fixed to 'local' for local search (required)
+   */
+  provider: 'local'
+
+  /**
    * Local search internationalization
    */
   locales?: {
@@ -51,6 +56,30 @@ interface SearchOptions {
    * and indexing them would leak their content.
    */
   isSearchable?: (page: Page) => boolean
+
+  /**
+   * Whether to disable search query persistence in session storage
+   *
+   * @default false
+   */
+  disableQueryPersistence?: boolean
+
+  /**
+   * MiniSearch configuration
+   */
+  miniSearch?: {
+    /**
+     * MiniSearch instance options
+     * @see https://lucaong.github.io/minisearch/modules/_minisearch_.html#options
+     */
+    options?: Pick<MiniSearchOptions, 'extractField' | 'tokenize' | 'processTerm'>
+
+    /**
+     * MiniSearch search options
+     * @see https://lucaong.github.io/minisearch/modules/_minisearch_.html#searchoptions-1
+     */
+    searchOptions?: MiniSearchOptions['searchOptions']
+  }
 }
 
 interface SearchBoxLocale {
@@ -82,13 +111,28 @@ interface SearchBoxLocale {
 }
 ```
 
+### Disabling
+
+Setting `search` to `false` completely disables search, and the navbar will no longer render the search box:
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    search: false,
+  }),
+})
+```
+
 ## Algolia DocSearch
 
 ### Overview
 
 A site content search plugin powered by [Algolia DocSearch](https://docsearch.algolia.com/)
 
-Related plugin: [@vuepress/plugin-docsearch](https://ecosystem.vuejs.press/zh/plugins/search/docsearch.html)
+Related plugin: [@vuepress/plugin-docsearch](https://ecosystem.vuejs.press/plugins/search/docsearch.html)
 
 Refer to [Algolia DocSearch Reference](../../guide/features/search.md#algolia-docsearch) for more information.
 

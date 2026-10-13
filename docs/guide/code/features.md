@@ -31,7 +31,7 @@ permalink: /guide/code/features/
 
 ## 代码行号
 
-主题默认显示代码行号，它通过 `codeHighlighter.line-numbers` 来控制。
+主题默认显示代码行号，它通过 `codeHighlighter.lineNumbers` 来控制。
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({

@@ -1,7 +1,7 @@
 ---
 title: flowchart
-createTime: 2024/03/16 19:34:31
 icon: f7:flowchart
+createTime: 2024/03/16 19:34:31
 permalink: /guide/chart/flowchart/
 ---
 
@@ -59,7 +59,7 @@ export default defineUserConfig({
 - ant
 - pie
 
-## 演示
+## 示例
 
 ::: demo markdown  title="Vue 主题"
 

@@ -273,11 +273,11 @@ export function codeTreePlugin(md: Markdown, app: App, options: CodeTreeOptions 
       }
 
       const attrs = resolveAttrs<CodeTreeMeta>(info)
-      const { title, icon, height, entry } = attrs
+      const { title, icon, height, entry, showSidebar } = attrs
       const fileTreeNodes = parseFileNodes(files)
       const entryFile = activeFile || entry || files[0]
       const h = height || String(options.height)
-      return `<VPCodeTree${stringifyAttrs({ title, entryFile, height: h ? parseRect(h) : undefined })}><template #file-tree>${renderFileTree(fileTreeNodes, icon)}</template>`
+      return `<VPCodeTree${stringifyAttrs({ title, entryFile, showSidebar, height: h ? parseRect(h) : undefined })}><template #file-tree>${renderFileTree(fileTreeNodes, icon)}</template>`
     },
     after: () => '</VPCodeTree>',
   })

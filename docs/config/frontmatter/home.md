@@ -39,29 +39,49 @@ config:
 
 ### config
 
-- 类型： `PlumeHomeConfig[]`
+- 类型： `ThemeHomeConfig[]`
 
-定义首页区域
+定义首页区域，按数组顺序依次渲染。
 
 ```ts
-interface PlumeHomeConfigBase {
+interface ThemeHomeConfigBase {
   /**
    * 该区域的类型，根据类型应用不同的组件
+   *
+   * 传入其它字符串时，会按全局组件名解析，用于自定义区域组件
    */
-  type: 'banner' | 'hero' | 'text-image' | 'image-text' | 'features' | 'profile' | 'custom' | string
+  type: 'banner' | 'hero' | 'doc-hero' | 'text-image' | 'image-text'
+    | 'features' | 'profile' | 'custom' | 'posts' | string
+
+  /**
+   * 该区域的索引
+   *
+   * 主题在渲染时会按 `config` 数组的顺序重新注入该值，手写 frontmatter 时通常无需提供；
+   * 但在源码类型中它是必填字段，使用 TS 约束 frontmatter 时需要补上。
+   */
+  index: number
+
   /**
    * 该区域是否占满全屏
    */
   full?: boolean
+
   /**
    * 该区域的背景图片
    * 你可以定义在 浅色/暗色 模式下的背景图片
    */
   backgroundImage?: string | { light: string, dark: string }
+
   /**
    * 该区域的背景 定位方式
    */
   backgroundAttachment?: 'fixed' | 'local'
+
+  /**
+   * 主题在渲染时按 `config` 的长度自动推导（长度为 1 时即为 `true`）并覆盖传入值，
+   * 因此在配置中书写该项不会生效。
+   */
+  onlyOnce?: boolean
 }
 ```
 

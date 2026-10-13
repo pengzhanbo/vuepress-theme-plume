@@ -59,4 +59,12 @@ export default config({
     'markdown/no-space-in-emphasis': 'off',
     'markdown/no-missing-atx-heading-space': 'off',
   },
+}, {
+  files: [
+    'commitlint.config.js',
+    'scripts/mirror-sync.mjs',
+  ],
+  rules: {
+    'unused-imports/no-unused-vars': 'off',
+  },
 })

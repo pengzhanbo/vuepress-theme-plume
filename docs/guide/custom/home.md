@@ -120,7 +120,7 @@ config:
           link: /blog/
           theme: brand
         -
-          text: Github
+          text: GitHub
           link: https://github.com/pengzhanbo
           theme: alt
 ---
@@ -193,7 +193,7 @@ config:
           icon: material-symbols:rocket-launch
         -
           theme: alt
-          text: Github
+          text: GitHub
           link: https://github.com/pengzhanbo/vuepress-theme-plume
           suffixIcon: simple-icons:github
           target: _blank
@@ -268,7 +268,7 @@ config:
           link: /guide/intro/
         -
           theme: alt
-          text: Github
+          text: GitHub
           link: https://github.com/pengzhanbo/vuepress-theme-plume
 ---
 ```

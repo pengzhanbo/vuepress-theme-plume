@@ -1,7 +1,7 @@
 ---
 title: chart.js
-createTime: 2025/10/08 19:33:49
 icon: solar:chart-bold
+createTime: 2025/10/08 19:33:49
 permalink: /en/guide/chart/chartjs/
 ---
 

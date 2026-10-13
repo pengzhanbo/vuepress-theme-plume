@@ -1,7 +1,7 @@
 ---
 title: 导入文件
-createTime: 2024/09/30 14:53:04
 icon: fluent:table-simple-include-16-regular
+createTime: 2024/09/30 14:53:04
 permalink: /guide/markdown/include/
 outline: 2
 ---
@@ -85,7 +85,11 @@ interface IncludeOptions {
 
 例如: 你可以使用 `@src` 作为源文件夹的别名。
 
-```ts{5-11} title=".vuepress/config.ts"
+```ts{8-14} title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+import path from 'node:path'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {

@@ -26,7 +26,7 @@ config:
           link: /demos/
         -
           theme: alt
-          text: Github
+          text: GitHub
           link: https://github.com/pengzhanbo/vuepress-theme-plume
   -
     type: features
@@ -46,7 +46,7 @@ config:
       -
         title: 多语言
         icon: twemoji:balance-scale
-        details: 内置中文、英文等 7 种语言支持，还可以自定义添加更多的语言支持
+        details: 内置中文、英文等 8 种语言支持，还可以自定义添加更多的语言支持
       -
         title: 双色主题
         icon: twemoji:cityscape
@@ -87,7 +87,7 @@ config:
         description: 支持全站加密、部分加密（加密目录、加密文章）。
       -
         title: 代码
-        description: 代码复制，CodePen演示，JSFiddle演示，CodeSandbox演示，代码组，行高亮，行聚焦，行警告，差异对比，代码块折叠等。
+        description: 代码复制，CodePen 演示，JSFiddle 演示，CodeSandbox 演示，代码组，行高亮，行聚焦，行警告，差异对比，代码块折叠等。
       -
         title: 资源嵌入
         description: 图表：chart.js/ECharts/Mermaid/flowchart<br>视频：Bilibili/Youtube/ArtPlayer<br>PDF，200K+ Iconify 图标

@@ -286,7 +286,7 @@ Site preview images should be placed in the `docs/.vuepress/public/images/demos`
 Please try to use `.jpg` format for images, and use [tinypng](https://tinypng.com/) for compression if the file size is large.
 :::
 
-[Go to **Github Pull Request** to submit your site](https://github.com/pengzhanbo/vuepress-theme-plume/edit/main/docs/en/demos.md){.read-more}
+[Go to **GitHub Pull Request** to submit your site](https://github.com/pengzhanbo/vuepress-theme-plume/edit/main/docs/en/demos.md){.read-more}
 
 ## Documentation
 
@@ -295,6 +295,12 @@ Please try to use `.jpg` format for images, and use [tinypng](https://tinypng.co
 ## Blog
 
 <Demos :list="$frontmatter.blog" />
+
+::: details Cases are reviewed every six months; sites in the following situations will be removed
+
+- The site link is inaccessible
+- The site no longer uses the vuepress-theme-plume theme
+:::
 
 <script setup>
 import Demos from '~/components/Demos.vue'

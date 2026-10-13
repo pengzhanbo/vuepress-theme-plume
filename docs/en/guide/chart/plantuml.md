@@ -18,21 +18,45 @@ This feature is disabled by default in the theme.
 Enable the feature in the `.vuepress/config.ts` configuration file:
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
       plantuml: true, // [!code ++]
     },
-  })
+  }),
 })
 ```
+
+The type of `markdown.plantuml` is `boolean | MarkdownItPlantumlOptions[]`;
+when passing an array, you can configure different diagram types separately.
+
+::: warning Diagrams are rendered through a public server by default
+
+By default, `plantuml` uses the public server **`https://www.plantuml.com/plantuml`** to render diagrams,
+and the diagram content is sent to that server. For offline builds, intranet deployments, or when there are
+compliance requirements about outbound content, switch to a self-hosted service:
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      plantuml: [{ server: 'https://your-plantuml-server/' }],
+    },
+  }),
+})
+```
+
+:::
 
 ::: note
 The following documentation is forked from [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/plugins/markdown/markdown-chart/plantuml.html),
 licensed under [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE).
 :::
 
-## Format
+## Syntax
 
 You can insert the same content supported by [plantuml](https://plantuml.com/), for example:
 

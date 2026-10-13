@@ -5,7 +5,7 @@ createTime: 2025/02/23 10:48:35
 permalink: /guide/markdown/annotation/
 ---
 
-## 描述
+## 概述
 
 ==Annotation(注释)== 是 Markdown 中的一种特殊的语法，用于在文档中添加额外的信息、说明或者提示。
 

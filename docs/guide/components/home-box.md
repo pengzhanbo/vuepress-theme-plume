@@ -19,15 +19,17 @@ permalink: /guide/components/home-box/
 
 ## Props
 
-::: field-group
+:::: field-group
 
 ::: field type
 @type `'banner' | 'hero' | 'doc-hero' | 'text-image' | 'image-text' | 'features' | 'profile' | 'custom' | 'posts'`
+@required
 区域类型。由主题在渲染区域时传入，一般无需手动设置。
 :::
 
 ::: field index
 @type `number`
+@required
 区域在首页中的排列顺序，由主题根据 `config` 数组顺序自动计算。
 :::
 
@@ -39,26 +41,29 @@ permalink: /guide/components/home-box/
 
 ::: field backgroundImage
 @type `string | { light: string, dark?: string }`
+
 背景图片。传对象时可分别为浅色/深色模式指定不同图片。
 :::
 
 ::: field backgroundAttachment
 @type `'fixed' | 'local'`
-@default `'local'`
+
 背景图定位方式。`fixed` 表示背景图相对视口固定，滚动时不随之移动。
 :::
 
 ::: field containerClass
 @type `string | string[] | Record<string, boolean>`
+
 内部 `.container` 的附加类名，用于自定义内容区宽度与间距。
 :::
 
 ::: field onlyOnce
 @type `boolean`
+
 是否只显示一次（不重复渲染）。主题内部区域使用，一般无需手动设置。
 :::
 
-:::
+::::
 
 ## Slots
 

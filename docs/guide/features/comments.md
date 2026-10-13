@@ -20,29 +20,29 @@ import { plumeTheme } from 'vuepress-theme-plume'
 export default defineUserConfig({
   theme: plumeTheme({
     comment: {
-      // 服务提供商
+      // 评论服务
       provider: '', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
       // 是否默认启用评论
       comment: true,
 
-      // 其它配置，根据服务提供商进行配置
+      // 其它配置，根据评论服务进行配置
       // ...
     }
   })
 })
 ```
 
-### 服务提供商
+### 评论服务
 
 [@vuepress/plugin-comment](https://ecosystem.vuejs.press/zh/plugins/blog/comment/) 支持
-`"Artalk" | "Giscus" | "Twikoo" | "Waline"` 等多种不同的评论服务提供商。
+`"Artalk" | "Giscus" | "Twikoo" | "Waline"` 等多种不同的评论服务。
 
 你可以根据自己的需求进行配置。
 
-- `Giscus` 是一个基于 GitHub Discussion 的评论系统，启用简便。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/giscus/)
-- `Waline` 是一个需要后端的评论系统，安全性较高。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/waline/)
-- `Twikoo` 一个简洁、安全、免费的静态网站评论系统，基于腾讯云开发。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/twikoo/)
-- `Artalk` 是一款简洁的自托管评论系统，你可以在服务器上轻松部署并置入前端页面中。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/artalk/)
+- `Giscus` 是一个基于 GitHub Discussion 的评论服务，启用简便。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/giscus/)
+- `Waline` 是一个需要后端的评论服务，安全性较高。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/waline/)
+- `Twikoo` 一个简洁、安全、免费的静态网站评论服务，基于腾讯云开发。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/twikoo/)
+- `Artalk` 是一款简洁的自托管评论服务，你可以在服务器上轻松部署并置入前端页面中。[查看文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/artalk/)
 
 ::: tip 推荐的评论服务
 
@@ -55,11 +55,11 @@ export default defineUserConfig({
 遵循 [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE) 许可证。
 :::
 
-### 各服务商的限制汇总
+### 各评论服务的限制汇总
 
-不同评论服务商的限制差异很大，选型前请先对照下表：
+不同评论服务的限制差异很大，选型前请先对照下表：
 
-| 服务商 | 需要后端 | 数据存储 | 主要限制 |
+| 评论服务 | 需要后端 | 数据存储 | 主要限制 |
 | --- | --- | --- | --- |
 | **Giscus** | 否 | GitHub Discussions | 依赖 GitHub 账号登录；国内访问可能不稳定；**内容公开可见** |
 | **Waline** | 是 | Vercel（或自建） | 需自行部署服务端并保证可用性；匿名评论需配置 |
@@ -70,7 +70,7 @@ export default defineUserConfig({
 评论功能**默认关闭**，需通过 `comment` 字段开启。此外：
 
 - `comment` 属于**仅可全局配置**的字段，写进 `locales` 中会被**静默忽略**（详见 [主题配置 > locales](../../config/theme.md#locales)）
-- 部分服务商（如 Waline、Artalk）的客户端脚本**不在主题的默认依赖中**，需按各自文档额外安装
+- 部分评论服务（如 Waline、Artalk）的客户端脚本**不在主题的默认依赖中**，需按各自文档额外安装
 - 加密页面的评论行为未定义，请勿在加密文章中依赖评论
 :::
 
@@ -125,7 +125,7 @@ export default defineUserConfig({
 
 ## Waline
 
-一个有后端的安全评论系统。
+一个有后端的安全评论服务。
 
 ### 安装
 
@@ -239,7 +239,7 @@ npm i @waline/client
 
 4. 等待生效，你可以通过自己的域名来访问了:tada:
 
-   - 评论系统：example.your-domain.com
+   - 评论服务：example.your-domain.com
    - 评论管理：example.your-domain.com/ui
 
    ![success](https://ecosystem.vuejs.press/images/comment/vercel-9.png)
@@ -248,11 +248,11 @@ npm i @waline/client
 
 ### 客户端
 
-#### 使用插件
+#### 配置
 
 在插件选项中设置 `provider: "Waline"`，同时设置服务端地址 `serverURL` 为上一步获取到的值。
 
-此时，将 `<CommentService>` 组件放置在你网站中合适的位置 (通常是页面的底部)，即可使用 Waline 评论功能。
+配置完成后，主题会在文章页底部**自动渲染**评论组件，无需手动引入或放置 `<CommentService>`。
 
 ::: tip
 
@@ -271,3 +271,49 @@ npm i @waline/client
 3. 用户也可通过评论框注册账号，登陆后会跳转到自己的档案页。
 
 :::
+
+## Twikoo
+
+Twikoo 是一个简洁、安全、免费的静态网站评论服务，基于腾讯云开发。
+
+最小可用配置需要设置 `envId`（腾讯云环境 ID；若使用 Vercel 部署，则为部署地址）：
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    comment: {
+      provider: 'Twikoo',
+      envId: 'your-env-id', // [!code highlight]
+    },
+  }),
+})
+```
+
+部署方式与完整配置请参考
+[Twikoo 文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/twikoo/)。
+
+## Artalk
+
+Artalk 是一款简洁的自托管评论服务，你可以在服务器上轻松部署并置入前端页面中。
+
+最小可用配置需要设置 `server`（Artalk 服务端地址）：
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    comment: {
+      provider: 'Artalk',
+      server: 'https://artalk.example.com', // [!code highlight]
+    },
+  }),
+})
+```
+
+部署方式与完整配置请参考
+[Artalk 文档](https://ecosystem.vuejs.press/zh/plugins/blog/comment/artalk/)。

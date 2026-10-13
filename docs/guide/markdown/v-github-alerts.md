@@ -1,5 +1,5 @@
 ---
-title: Github 警报
+title: GitHub 警报
 icon: mdi:alert-outline
 createTime: 2025/11/29 19:59:45
 permalink: /guide/markdown/github-alerts/

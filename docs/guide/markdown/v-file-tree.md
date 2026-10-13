@@ -1,7 +1,7 @@
 ---
 title: 文件树
-createTime: 2024/09/30 14:41:57
 icon: mdi:file-tree
+createTime: 2024/09/30 14:41:57
 permalink: /guide/markdown/file-tree/
 ---
 
@@ -32,7 +32,7 @@ permalink: /guide/markdown/file-tree/
 # 在这里添加文件树的组织结构
 ```
 
-```file
+```tree
 # 在这里添加文件树的组织结构
 ```
 ````

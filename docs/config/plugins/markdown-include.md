@@ -15,14 +15,17 @@ permalink: /config/plugins/markdown-include/
 主题默认启用 `markdownInclude`。你还可以通过配置来自定义行为。
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
       include: {
         // ... options
-      }
+      },
     },
-  })
+  }),
 })
 ```
 
@@ -37,7 +40,8 @@ export default defineUserConfig({
 ### deep
 
 - 类型：`boolean`
-- 详情：是否启用图片 Figure 支持。
+- 默认值：`false`
+- 详情：是否递归导入被包含文件中的 `@include`。为 `false` 时，被包含文件里的 `@include` 不会被继续解析。
 
 ### useComment
 

@@ -21,15 +21,17 @@ directly when writing a [custom area type](../custom/home.md#custom-section-type
 
 ## Props
 
-::: field-group
+:::: field-group
 
 ::: field type
 @type `'banner' | 'hero' | 'doc-hero' | 'text-image' | 'image-text' | 'features' | 'profile' | 'custom' | 'posts'`
+@required
 Area type. Passed by the theme when rendering the area; you rarely need to set it manually.
 :::
 
 ::: field index
 @type `number`
+@required
 The area's position on the homepage, computed by the theme from the `config` array order.
 :::
 
@@ -40,28 +42,31 @@ Whether the area fills the viewport height (`100vh` minus the navbar height). Co
 first-screen `hero` and `banner`.
 :::
 
-::: field background-image
+::: field backgroundImage
 @type `string | { light: string, dark?: string }`
+
 Background image. Pass an object to specify different images for light and dark modes.
 :::
 
-::: field background-attachment
+::: field backgroundAttachment
 @type `'fixed' | 'local'`
-@default `'local'`
+
 Background positioning. `fixed` pins the background to the viewport so it does not scroll.
 :::
 
 ::: field containerClass
 @type `string | string[] | Record<string, boolean>`
+
 Extra class names applied to the inner `.container`, for customising content width and spacing.
 :::
 
 ::: field onlyOnce
 @type `boolean`
+
 Whether the area is rendered only once. Used internally by the theme; rarely set manually.
 :::
 
-:::
+::::
 
 ## Slots
 

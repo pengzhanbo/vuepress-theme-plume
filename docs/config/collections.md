@@ -60,7 +60,7 @@ export default defineUserConfig({
       // 注册 post 类型集合，实现博客功能
       { type: 'post', dir: 'blog', title: '博客' },
       // 注册 doc 类型集合，实现 TypeScript 文档功能
-      { type: 'doc', dir: 'typescript', title: 'TypeScript笔记', sidebar: 'auto' }
+      { type: 'doc', dir: 'typescript', title: 'TypeScript 文档', sidebar: 'auto' }
     ],
   })
 })
@@ -75,7 +75,7 @@ export default defineThemeConfig({
   // 独立配置文件中的集合配置 // [!code focus:7]
   collections: [
     { type: 'post', dir: 'blog', title: '博客' },
-    { type: 'doc', dir: 'typescript', title: 'TypeScript笔记', sidebar: 'auto' }
+    { type: 'doc', dir: 'typescript', title: 'TypeScript 文档', sidebar: 'auto' }
   ],
 })
 ```
@@ -123,7 +123,7 @@ export default defineUserConfig({
         // 中文集合配置 // [!code focus:4]
         collections: [
           { type: 'post', dir: 'blog', title: '博客' },
-          { type: 'doc', dir: 'typescript', title: 'TypeScript笔记', sidebar: 'auto' }
+          { type: 'doc', dir: 'typescript', title: 'TypeScript 文档', sidebar: 'auto' }
         ],
       },
       '/en/': {
@@ -149,7 +149,7 @@ export default defineThemeConfig({
       // 中文集合配置 // [!code focus:4]
       collections: [
         { type: 'post', dir: 'blog', title: '博客' },
-        { type: 'doc', dir: 'typescript', title: 'TypeScript笔记', sidebar: 'auto' }
+        { type: 'doc', dir: 'typescript', title: 'TypeScript 文档', sidebar: 'auto' }
       ],
     },
     '/en/': {
@@ -221,18 +221,18 @@ import { defineThemeConfig } from 'vuepress-theme-plume'
 
 export default defineThemeConfig({
   collections: [
-    // TypeScript 笔记 - 自动生成侧边栏
+    // TypeScript 文档 - 自动生成侧边栏
     {
       type: 'doc',
       dir: 'typescript',
-      title: 'TypeScript笔记',
+      title: 'TypeScript 文档',
       sidebar: 'auto'
     },
-    // Python 笔记 - 手动配置侧边栏
+    // Python 文档 - 手动配置侧边栏
     {
       type: 'doc',
       dir: 'python',
-      title: 'Python 笔记',
+      title: 'Python 文档',
       sidebar: [
         { text: '基础语法', link: 'basic' },
         {

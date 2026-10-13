@@ -63,6 +63,7 @@ Simply wrap the table within a `:::table` block.
 
 ::: field title
 @type `string`
+
 Table title, displayed below the table.
 :::
 
@@ -98,6 +99,7 @@ The table width defaults to occupying the entire row.
 
 ::: field hl-rows
 @type `string`
+@default `''`
 Configures row highlighting within the table.
 
 The value uses the format `type:row1,row2`. Multiple type-row pairs can be combined using `;`.
@@ -115,6 +117,7 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 
 ::: field hl-cols
 @type `string`
+@default `''`
 Configures column highlighting within the table.
 
 The value uses the format `type:col1,col2`. Multiple type-column pairs can be combined using `;`.
@@ -133,6 +136,7 @@ Built-in `type` support: `tip`, `note`, `info`, `success`, `warning`, `danger`, 
 
 ::: field hl-cells
 @type `string`
+@default `''`
 Configures cell highlighting within the table.
 
 The value uses the format `type:(row,col)`. Multiple type-cell pairs can be combined using `;`.

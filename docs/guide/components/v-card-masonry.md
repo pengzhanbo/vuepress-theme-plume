@@ -34,13 +34,14 @@ permalink: /guide/components/card-masonry/
 :::: field-group
 
 ::: field cols
-@type `number | { sm: number, md: number, lg: number }`
+@type `number | { sm?: number, md?: number, lg?: number }`
+@default `{ sm: 2, md: 2, lg: 3 }`
 列数。
 
 组件默认会根据屏幕宽度自动调整列数。在空间足够时，默认显示三列，小屏幕下显示双列。
 
 你可以通过 `cols` 配置列数。当传入 `number` 时，所有尺寸均显示为 `number` 个卡片。
-传入 `{ sm: number, md: number, lg: number }` 时，根据屏幕宽度自动调整列数。
+传入对象时，根据屏幕宽度自动调整列数（三个键均可选，未提供时按 `lg → 3`、`md → 2`、`sm → 2` 回退）。
 
 - `sm` : `< 640px`
 - `md` : `>= 640px < 960px`
@@ -59,7 +60,7 @@ permalink: /guide/components/card-masonry/
 
 ### `default`
 
-瀑布流通过 `default` 插槽接收子卡片。与 `CardGrid` 不同的是：**组件会自动把子元素分配到各列**，无需你手动分列。
+瀑布流通过 `default` 插槽接收子卡片。与 `CardGrid` 不同的是：**组件会按高度自动把子元素分配到各列**，无需你手动分列。
 
 ```vue
 <CardMasonry :cols="3">
@@ -67,8 +68,10 @@ permalink: /guide/components/card-masonry/
 </CardMasonry>
 ```
 
-::: warning 子元素会被打散分配
-组件按顺序把子元素轮流放入各列，因此**子元素的顺序不等于视觉上的阅读顺序**（第 1、2、3 个元素可能分别在第 1、2、3 列）。
+::: warning 子元素会被重新分配到各列
+组件采用**按高度贪心**的分列策略：依次测量每个子元素的高度，并把它放入当前累计高度最小的一列。
+
+因此**子元素的顺序不等于视觉上的阅读顺序**（第 1、2、3 个元素未必分别落在第 1、2、3 列）。
 
 若你需要严格的阅读顺序，请改用 [`CardGrid`](./v-card-grid.md)，它保持 DOM 顺序。
 :::

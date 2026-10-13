@@ -15,33 +15,38 @@ permalink: /guide/components/link-card/
 
 ::: field title
 @type `string`
-@default `''`
+
 链接卡片标题
 :::
 
 ::: field icon
 @type `string | { svg: string }`
-@default `''`
+
 显示在标题左侧的图标，支持 [markdown.icon](../features/icon.md) 配置的提供商的图标，也可以使用图片链接
 :::
 
 ::: field href
 @type `string`
-@default `''`
-
+@required
 链接卡片跳转地址
 :::
 
 ::: field description
 @type `string`
-@default `''`
+
 链接卡片描述，建议使用组件默认插槽添加描述内容
 :::
 
 ::: field target
 @type `string`
-@default `''`
-链接跳转方式
+
+链接跳转方式，对应 `a` 标签的 `target` 属性
+:::
+
+::: field rel
+@type `string`
+
+链接的 `rel` 属性，对应 `a` 标签的 `rel` 属性
 :::
 
 ::::

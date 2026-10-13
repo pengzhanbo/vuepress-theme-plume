@@ -11,7 +11,7 @@ The theme supports adding contributor information to articles to better track yo
 
 Article contributors are obtained through git commit history.
 
-This feature is powered by [@vuepress/plugin-git](https://ecosystem.vuejs.press/zh/plugins/development/git.html).
+This feature is powered by [@vuepress/plugin-git](https://ecosystem.vuejs.press/plugins/development/git.html).
 
 ::: warning Note
 This feature relies on the `git log` command to retrieve commit history for each markdown file,
@@ -36,7 +36,7 @@ export default defineUserConfig({
 ## Usage
 
 The theme has built-in support for the
-[@vuepress/plugin-git](https://ecosystem.vuejs.press/zh/plugins/development/git.html) plugin, so you can use it without reinstalling.
+[@vuepress/plugin-git](https://ecosystem.vuejs.press/plugins/development/git.html) plugin, so you can use it without reinstalling.
 
 Enable this feature in the theme configuration file:
 
@@ -135,7 +135,7 @@ export default defineUserConfig({
 
 ::: code-tabs
 
-@tab Github
+@tab GitHub
 
 ```ts
 import { defineUserConfig } from 'vuepress'
@@ -156,7 +156,7 @@ export default defineUserConfig({
 })
 ```
 
-@tab Gitlab
+@tab GitLab
 
 ```ts
 import { defineUserConfig } from 'vuepress'
@@ -303,11 +303,12 @@ This feature requires your project to be under a
 **When building your site, you should ensure all commit records are accessible.**
 
 For example, CI workflows typically add the `--depth 1` parameter when cloning your repository to avoid
-fetching all commit history. Therefore, you need to disable this feature so the plugin can work properly in CI.
+fetching all commit history. In this case, you need to fetch the full commit history instead (remove
+`--depth 1`) so the plugin can work properly in CI.
 
 Services like `GitHub Actions`, `Netlify`, and `Vercel` do not fetch all commit history by default.
 
-In `GitHub Actions`, you can add the `--depth 0` parameter to ensure `GitHub Actions` can correctly fetch all commit records.
+In `GitHub Actions`, you should configure `fetch-depth: 0` for `actions/checkout`, i.e. fetch the full commit history.
 
 ``` yaml title=".github/workflows/deploy.yml"
 jobs:
@@ -320,7 +321,7 @@ jobs:
 ```
 
 For services like `Netlify` and `Vercel`, the processing method is relatively more complex.
-In such cases, you can first complete the build in `GitHub Actions` and output the artifacts to a
+In such cases, you can first complete the build in `GitHub Actions` and output the build artifacts to a
 separate branch, then use that branch for deployment in `Netlify` or `Vercel`.
 
 ::: info

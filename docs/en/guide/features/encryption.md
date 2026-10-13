@@ -5,9 +5,9 @@ createTime: 2025/10/08 15:58:48
 permalink: /en/guide/features/encryption/
 ---
 
-## Encryption
+## Overview
 
-In this topic, various flexible encryption methods such as **full-site encryption** and **partial encryption** are supported.
+The theme has built-in article encryption, allowing you to set password protection for articles or an entire collection. When visiting an encrypted page, users must enter the correct password to view the content. It supports multiple modes such as single-article encryption, global encryption, and collection encryption.
 
 ::: warning Note
 Due to the limitations of `vuepress` as a static site, **encryption** only makes the content *appear* invisible.

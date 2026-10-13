@@ -9,7 +9,9 @@ permalink: /guide/components/plot/
 
 使用 `<VPPlot>` 组件显示 ["隐秘"文本](../markdown/v-plot.md)，能够更灵活地控制行为。
 
-该组件默认不启用，你需要在 theme 配置中启用。
+该组件**默认可用**。
+
+如果需要修改全站默认行为，可以通过 `markdown.plot` 传入对象配置：
 
 ```ts title=".vuepress/config.ts"
 import { defineUserConfig } from 'vuepress'
@@ -18,7 +20,9 @@ import { plumeTheme } from 'vuepress-theme-plume'
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
-      plot: true,
+      plot: {
+        trigger: 'click',
+      },
     },
   })
 })

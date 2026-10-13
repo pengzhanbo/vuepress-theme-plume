@@ -12,14 +12,25 @@ The theme supports embedding [Code Sandbox](https://codesandbox.io) in Markdown 
 This feature is disabled by default. You can enable it in the configuration file.
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
-      codesandbox: true, // [!code highlight]
+      codeSandbox: true, // [!code highlight]
     },
-  })
+  }),
 })
 ```
+
+::: warning Mind the letter case
+The embed **syntax** is all lowercase — `@[codesandbox](id)` — while the **config field** is
+camelCase — `codeSandbox`.
+
+Writing `codesandbox` is silently dropped by the theme's field allowlist: the feature will not
+take effect and no error is reported.
+:::
 
 ## Syntax
 
@@ -40,7 +51,7 @@ Use Code Sandbox redirect button:
 ### Extended Options
 
 ```md
-@[codesanbox title="xxx" layout="Editor+Preview" height="500px" navbar="false" console](id#filepath)
+@[codesandbox title="xxx" layout="Editor+Preview" height="500px" navbar="false" console](id#filepath)
 ```
 
 - `id`: Code Sandbox identifier

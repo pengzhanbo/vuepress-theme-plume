@@ -46,6 +46,9 @@ permalink: /config/plugins/llmstxt/
 
 ## 配置
 
+- **类型：** `boolean | LlmsPluginOptions`
+- **默认值：** `false`
+
 主题默认不启用此功能，你可以通过 `llmstxt` 配置项启用它：
 
 ```ts title=".vuepress/config.ts"
@@ -93,6 +96,15 @@ export default defineClientConfig({
 ```
 
 你可以在当前页面的标题的右侧，体验该组件的功能。
+
+::: tip 该组件的文案来自主题 locale 配置
+`<PageContextMenu />` 使用的全部文本都取自主题的 locale 配置，主题已内置多语言默认值：
+
+`pageContextMenuLabel`、`copyPageText`、`copiedPageText`、`copingPageText`、`copyTagline`、
+`viewMarkdown`、`viewMarkdownTagline`、`askAIText`、`askAITagline`、`askAIMessage`。
+
+如需自定义或补充其它语言，请参考 [Locale 配置](../locales.md)。
+:::
 
 ::: important
 此组件完全依赖于 `@vuepress/plugin-llms` 插件，仅当你启用了此插件功能后，才能使用它。

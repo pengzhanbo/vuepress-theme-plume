@@ -43,6 +43,8 @@ list:
 
   当前页面是否为友情链接页。
 
+  已弃用，请使用 `pageLayout: 'friends'` 代替。
+
 ### pageLayout
 
 - 类型：`'friends'`
@@ -53,7 +55,7 @@ list:
 ### title
 
 - 类型： `string`
-- 默认值： `友情链接`
+- 默认值： `'My Friends'`
 
 友情链接页的标题
 
@@ -135,13 +137,13 @@ interface FriendsItem {
 
 ### groups
 
-- 类型： `FriendsGroup[]`
+- 类型： `FriendGroup[]`
 - 默认值: `[]`
 
 友情链接分组
 
 ```ts
-interface FriendsGroup {
+interface FriendGroup {
   /**
    * 分组名
    */

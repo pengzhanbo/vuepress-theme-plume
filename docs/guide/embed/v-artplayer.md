@@ -11,20 +11,6 @@ permalink: /guide/embed/video/artplayer/
 
 该功能由 [vuepress-plugin-md-power](../../config/plugins/markdown-power.md) 提供支持。
 
-## 配置
-
-该功能默认不启用。你需要在主题配置中开启。
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      artPlayer: true, // [!code ++]
-    },
-  })
-})
-```
-
 ## 安装
 
 该功能依赖于 `artplayer` 播放器实现，主题默认不安装该依赖，在启用 `artPlayer` 功能时，需要
@@ -72,6 +58,23 @@ npm i mpegts.js
 
 :::
 
+## 配置
+
+该功能默认不启用。你需要在主题配置中开启。
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      artPlayer: true, // [!code ++]
+    },
+  }),
+})
+```
+
 ## markdown 语法
 
 ```md
@@ -84,19 +87,18 @@ npm i mpegts.js
 @[artPlayer muted autoplay loop width="100%" height="400px" ratio="16:9"](src)
 ```
 
-- `src`: 视频链接地址
-
 **配置项说明：**
 
-- `width`： 视频宽度
-- `height`： 视频高度
-- `ratio`： 视频比例，默认 `16:9`
-- `type`: 视频格式，默认从视频链接的文件地址中解析获取
-- `autoplay`： 是否自动播放
-- `muted`: 是否静音，autoplay 时，默认为 `true`
-- `volume`： 音量大小，范围为 `0 - 1`
-- `poster`：视频封面图链接地址
-- `auto-mini`: 当播放器滚动到浏览器视口以外时，自动进入 `迷你播放` 模式
+- `src`：`string`，视频链接地址
+- `width`：`string`，视频宽度，默认 `100%`
+- `height`：`string`，视频高度，默认自动
+- `ratio`：`string`，视频比例，默认 `16:9`
+- `type`：`string`，视频格式，默认从视频链接的文件地址中解析获取
+- `autoplay`：`boolean`，是否自动播放，默认 `false`
+- `muted`：`boolean`，是否静音，默认跟随 `autoplay`（`autoplay` 开启时为 `true`）
+- `volume`：`number`，音量大小，范围为 `0 - 1`，默认 `0.75`
+- `poster`：`string`，视频封面图链接地址
+- `auto-mini`：`boolean`，当播放器滚动到浏览器视口以外时，自动进入 `迷你播放` 模式，默认 `false`
 
 ## 全局组件
 
@@ -104,13 +106,33 @@ npm i mpegts.js
 
 ### Props
 
-| 字段   | 类型     | 描述                                |
-| ------ | -------- | ----------------------------------- |
-| src    | `string` | 必填，视频播放地址                  |
-| type   | `string` | 选填，视频格式，默认从 `src` 中截取 |
-| width  | `string` | 选填， 宽度， 默认 `100%`           |
-| height | `string` | 选填，高度                          |
-| ratio  | `string` | 选填，宽高比，默认 `16:9`           |
+:::: field-group
+::: field src
+@type `string`
+@required
+视频播放地址
+:::
+::: field type
+@type `string`
+@default undefined
+视频格式。未设置时从 `src` 的扩展名推断
+:::
+::: field width
+@type `string`
+@default `100%`
+宽度
+:::
+::: field height
+@type `string`
+@default undefined
+高度。未指定时按自动高度处理
+:::
+::: field ratio
+@type `string`
+@default `16:9`
+宽高比
+:::
+::::
 
 更多 `Props` 请参考 [artPlayer 文档](https://artplayer.org/document/start/option.html) 主题支持所有选项。
 

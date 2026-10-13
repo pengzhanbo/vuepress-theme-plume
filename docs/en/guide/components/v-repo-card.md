@@ -39,12 +39,12 @@ Repository platform. Currently only `github`/`gitee` are supported.
 
 ::: field fullname
 @type `boolean`
-Whether to display the full repository name.
 
-The full repository name is `owner/repo`.
+Whether to display the full repository name (`owner/repo`).
 
-- If the owner is an individual, the full repository name is not displayed by default, only `repo` is shown.
-- If the owner is an organization, the full repository name is displayed by default.
+- `undefined` (default): when the owner is an individual, only `repo` is shown; when the owner is an organization, `owner/repo` is shown
+- `true`: always show `owner/repo`
+- `false`: always show only `repo` (even when the owner is an organization, the full name is not shown)
 :::
 
 ::::

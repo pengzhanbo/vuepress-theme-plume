@@ -12,14 +12,24 @@ permalink: /guide/code/code-sandbox/
 此功能默认不启用，你可以在配置文件中启用它。
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
-      codesandbox: true, // [!code highlight]
+      codeSandbox: true, // [!code highlight]
     },
-  })
+  }),
 })
 ```
+
+::: warning 注意区分大小写
+
+嵌入**语法**是全小写的 `@[codesandbox](id)`，而**配置字段**是驼峰 `codeSandbox`。
+
+写成 `codesandbox` 会被主题的字段白名单静默丢弃，功能不会生效，也不会有任何报错。
+:::
 
 ## 语法
 
@@ -40,7 +50,7 @@ export default defineUserConfig({
 ### 更多选项
 
 ```md
-@[codesanbox title="xxx" layout="Editor+Preview" height="500px" navbar="false" console](id#filepath)
+@[codesandbox title="xxx" layout="Editor+Preview" height="500px" navbar="false" console](id#filepath)
 ```
 
 - `id`: Code Sandbox ID

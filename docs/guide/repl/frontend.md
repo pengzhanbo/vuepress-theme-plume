@@ -123,7 +123,7 @@ export default defineUserConfig({
 - `expanded`：展开代码区域
 - `code-setting="xxx"`：代码设置，值将被拼接在 ` ``` [lang]` 之后，用于给代码块添加配置。
 
-  `code-setting=":lines-number"`,则会在代码块后面添加 `:lines-number`，使代码块支持显示行号。
+  `code-setting=":line-numbers"`,则会在代码块后面添加 `:line-numbers`，使代码块支持显示行号。
 
   `code-setting=":collapsed-lines=10"`,则会在代码块后面添加 `:collapsed-lines=10`，使代码块从第 10 行开始折叠。
 
@@ -256,6 +256,8 @@ vue 组件演示是一个很强大的功能，对于演示代码不做任何限�
 @[code](./demo/Counter.ts)
 @tab Counter.module.css
 @[code](./demo/Counter.module.css)
+:::
+
 :::
 
 **输出：**

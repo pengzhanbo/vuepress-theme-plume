@@ -26,7 +26,7 @@ This allows linking to the header as `#my-anchor` instead of the default `#using
 
 Internal and external links are specially processed.
 
-The theme automatically generates a new link for each md file and stores it in the `permalink` of the corresponding md file's frontmatter.
+The theme automatically generates a new link for each md file and stores it in the `permalink` (the permanent link used to specify the page's URL path) of the corresponding md file's frontmatter.
 You can modify these links at any time.
 You can also disable this feature via the `theme.autoFrontmatter` option, reverting to VuePress's default behavior.
 
@@ -36,18 +36,17 @@ There are three ways to use internal links:
 
 - Use the generated `permalink` as the target for the internal link.
 - Use the relative path of the md file as the target for the internal link.
-- Use the absolute path of the md file as the target for the internal link.
-  The absolute path `/` indicates starting from the `${sourceDir}` directory.
+- Use the absolute path of the md file as the target for the internal link. `/` indicates starting from the **documentation source directory** (i.e. the directory containing `.vuepress`).
 
 ```md
-[Markdown](/guide/markdown/basic.md)
+[Markdown](/guide/markdown/v-basic.md)
 
 [Markdown](./v-basic.md)
 ```
 
 Renders as:
 
-[Markdown](/guide/markdown/v-basic.md)
+[Markdown](/en/guide/markdown/v-basic.md)
 
 [Markdown](./v-basic.md)
 
@@ -55,7 +54,7 @@ Renders as:
 
 External links have `target="_blank" rel="noreferrer"`:
 
-[VuePress](https://v2.vuepress.vuejs.org/  )
+[VuePress](https://v2.vuepress.vuejs.org/)
 
 ## GitHub-Style Tables
 

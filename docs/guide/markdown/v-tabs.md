@@ -1,7 +1,7 @@
 ---
-title: 选项组
-createTime: 2024/09/30 14:43:40
+title: 选项卡
 icon: vaadin:tabs
+createTime: 2024/09/30 14:43:40
 permalink: /guide/markdown/tabs/
 ---
 

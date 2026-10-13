@@ -62,7 +62,7 @@ export default defineUserConfig({
       // Register post-type collection for blog functionality
       { type: 'post', dir: 'blog', title: 'Blog' },
       // Register doc-type collection for TypeScript documentation functionality
-      { type: 'doc', dir: 'typescript', title: 'TypeScript Notes', sidebar: 'auto' }
+      { type: 'doc', dir: 'typescript', title: 'TypeScript Docs', sidebar: 'auto' }
     ],
   })
 })
@@ -77,7 +77,7 @@ export default defineThemeConfig({
   // Collection configuration in standalone config file // [!code focus:7]
   collections: [
     { type: 'post', dir: 'blog', title: 'Blog' },
-    { type: 'doc', dir: 'typescript', title: 'TypeScript Notes', sidebar: 'auto' }
+    { type: 'doc', dir: 'typescript', title: 'TypeScript Docs', sidebar: 'auto' }
   ],
 })
 ```
@@ -125,14 +125,14 @@ export default defineUserConfig({
         // Chinese collection configuration // [!code focus:4]
         collections: [
           { type: 'post', dir: 'blog', title: 'Blog' },
-          { type: 'doc', dir: 'typescript', title: 'TypeScript Notes', sidebar: 'auto' }
+          { type: 'doc', dir: 'typescript', title: 'TypeScript Docs', sidebar: 'auto' }
         ],
       },
       '/en/': {
         // English collection configuration // [!code focus:4]
         collections: [
           { type: 'post', dir: 'blog', title: 'Blog' },
-          { type: 'doc', dir: 'typescript', title: 'TypeScript Note', sidebar: 'auto' }
+          { type: 'doc', dir: 'typescript', title: 'TypeScript Docs', sidebar: 'auto' }
         ],
       }
     }
@@ -151,14 +151,14 @@ export default defineThemeConfig({
       // Chinese collection configuration // [!code focus:4]
       collections: [
         { type: 'post', dir: 'blog', title: 'Blog' },
-        { type: 'doc', dir: 'typescript', title: 'TypeScript Notes', sidebar: 'auto' }
+        { type: 'doc', dir: 'typescript', title: 'TypeScript Docs', sidebar: 'auto' }
       ],
     },
     '/en/': {
       // English collection configuration // [!code focus:4]
       collections: [
         { type: 'post', dir: 'blog', title: 'Blog' },
-        { type: 'doc', dir: 'typescript', title: 'TypeScript Note', sidebar: 'auto' }
+        { type: 'doc', dir: 'typescript', title: 'TypeScript Docs', sidebar: 'auto' }
       ],
     }
   }
@@ -223,18 +223,18 @@ import { defineThemeConfig } from 'vuepress-theme-plume'
 
 export default defineThemeConfig({
   collections: [
-    // TypeScript Notes - Auto-generated sidebar
+    // TypeScript Docs - Auto-generated sidebar
     {
       type: 'doc',
       dir: 'typescript',
-      title: 'TypeScript Notes',
+      title: 'TypeScript Docs',
       sidebar: 'auto'
     },
-    // Python Notes - Manually configured sidebar
+    // Python Docs - Manually configured sidebar
     {
       type: 'doc',
       dir: 'python',
-      title: 'Python Notes',
+      title: 'Python Docs',
       sidebar: [
         { text: 'Basic Syntax', link: 'basic' },
         {
@@ -503,7 +503,7 @@ export interface ThemeBadge {
 ### Auto Sidebar Generation
 
 When the Doc collection's `sidebar` is set to `'auto'`, the system automatically generates sidebar
-navigation based on the directory structure. The sorting rules follow the [Folder Naming Conventions](../guide/quick-start/write.md#folder-naming-conventions).
+navigation based on the directory structure. The sorting rules follow the [Folder Naming Conventions](../guide/quick-start/write.md#directory-naming-convention).
 
 ### Sidebar Icon Configuration
 

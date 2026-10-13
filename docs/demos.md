@@ -313,7 +313,7 @@ blog:
 图片请尽量使用 `.jpg` 格式，体积较大的请使用 [tinypng](https://tinypng.com/) 进行压缩。
 :::
 
-[前往 **Github Pull Request** 提交站点](https://github.com/pengzhanbo/vuepress-theme-plume/edit/main/docs/demos.md){.read-more}
+[前往 **GitHub Pull Request** 提交站点](https://github.com/pengzhanbo/vuepress-theme-plume/edit/main/docs/demos.md){.read-more}
 
 ## 文档
 

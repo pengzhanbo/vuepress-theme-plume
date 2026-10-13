@@ -55,6 +55,10 @@ function handleClick({ target: el }: Event) {
   color: var(--vp-c-brand-1);
 }
 
+.outline-link:focus-visible {
+  outline-offset: -2px;
+}
+
 .outline-link.nested {
   padding-left: 13px;
 }

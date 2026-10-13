@@ -23,8 +23,8 @@ export default defineUserConfig({
     markdown: {
       fileTree: true, // :::file-tree  文件树容器
       plot: true, // !!plot!! 隐秘文本
-      icon: true, // ::collect:name::   内联 iconify 图标
-      // 默认不启用以下功能，你需要手动开启它们
+      icon: {}, // ::collect:name::   内联图标
+      // 以下功能默认不启用，需要手动开启
       // npmTo: true, // :::npm-to
       // demo: true, // :::demo
       // pdf: true, // @[pdf](url)  嵌入 PDF 文件
@@ -32,12 +32,12 @@ export default defineUserConfig({
       // acfun: true, // @[acfun](id)  嵌入 AcFun 视频
       // youtube: true, // @[youtube](id)  嵌入 youtube 视频
       // codepen: true, // @[codepen](user/slash)  嵌入 codepen
-      // replit: true, // @[replit](user/repl-name)  嵌入 Replit
       // codeSandbox: true, // @[codesandbox](id)  嵌入 CodeSandbox
       // jsfiddle: true, // @[jsfiddle](id)  嵌入 jsfiddle
       // caniuse: true, // @[caniuse](feature)  嵌入 caniuse
-      // repl: true, // :::go-repl   :::kotlin-repl  :::rust-repl
+      // repl: true, // :::go-repl   :::kotlin-repl  :::rust-repl  :::python-repl
       // imageSize: true, // 在构建阶段为 图片添加 width/height 属性
+      // replit: true, // 已弃用，请使用 repl
     },
   }),
 })
@@ -61,7 +61,7 @@ __语法:__
 
 ### iconify 图标
 
-插件默认不启用该功能，你需要手动设置 `icon` 为 `true`
+主题默认启用图标支持（等价于 `icon: {}`），无需额外配置。
 
 得益于 [iconify](https://iconify.design/), 你可以在 Markdown 中使用 iconify __200k+__ 的图标
 
@@ -73,7 +73,9 @@ __语法:__
 
 请查看 [完整使用文档](../../guide/markdown/v-icons.md)
 
-`icon` 选项支持 `boolean | IconOptions`。设置为 `true` 时使用默认配置（iconify 提供商）。
+`icon` 的类型为 `IconOptions`（对象），**不接受 `boolean`**。`icon: true` 不会被识别，
+请使用 `icon: {}` 或 `icon: { provider: 'iconify' }`。
+原 `icons` 字段已弃用，其行为等价于 `icon: {}`。
 
 也可以传入对象进行更详细的配置：
 
@@ -142,7 +144,7 @@ __语法:__
 
 请查看 [完整使用文档](../../guide/embed/youtube.md)
 
-### codePen 代码演示
+### codepen 代码演示
 
 插件默认不启用该功能，你需要手动设置 `codepen` 为 `true`
 
@@ -194,23 +196,25 @@ __语法:__
 
 插件默认不启用该功能，你需要手动设置 `repl` 为 `true`
 
-支持在线运行 Rust、Golang、Kotlin 代码，还支持在线编辑。
+支持在线运行 Rust、Golang、Kotlin、Python 代码，还支持在线编辑。
 
-或者开启部分功能，如下所示
+也可以只开启部分语言，此时使用顶层 `markdown` 入口（推荐）：
 
-``` ts
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        repl: {
-          rust: true,
-          go: true,
-          kotlin: true,
-        },
+    markdown: {
+      repl: {
+        rust: true,
+        go: true,
+        kotlin: true,
+        python: true,
       },
-    }
-  })
+    },
+  }),
 })
 ```
 
@@ -251,7 +255,7 @@ __语法:__
 
 ### Plot 隐秘文本
 
-插件默认不启用该功能，你需要手动设置 `plot` 为 `true`
+主题默认启用该功能，设置为 `false` 可关闭。
 
 __语法:__
 
@@ -263,7 +267,7 @@ __语法:__
 
 ### 文件树
 
-插件默认不启用该功能，你需要手动设置 `fileTree` 为 `true`
+主题默认启用该功能，设置为 `false` 可关闭。
 
 __语法:__
 

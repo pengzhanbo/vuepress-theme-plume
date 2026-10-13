@@ -67,23 +67,25 @@ tags:
 
 ### coverStyle
 
-- 类型： `BlogPostCoverStyle`
-- 默认值: `null
+- 类型： `PostsCoverStyle`
+- 默认值： `undefined`
 
 封面图配置。
 
 ```ts
-interface PostCoverStyle {
+type PostsCoverLayout = 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
+
+interface PostsCoverStyle {
   /**
    * 博客文章封面图的位置
    */
-  layout?: 'left' | 'right' | 'odd-left' | 'odd-right' | 'top'
+  layout?: PostsCoverLayout
   /**
    * 博客文章封面图的比例
    *
    * @default '4:3'
    */
-  ratio?: number | `${number}:${number}`
+  ratio?: number | `${number}:${number}` | `${number}/${number}`
 
   /**
    * 封面图的宽度, 仅在 layout 为 'left' 或 'right' 时生效
@@ -98,3 +100,17 @@ interface PostCoverStyle {
   compact?: boolean
 }
 ```
+
+### excerpt
+
+- 类型： `boolean | string`
+- 默认值： `undefined`
+
+是否展示文章摘要。传入 `string` 时为自定义摘要，此时 `<!-- more -->` 注释无效。
+
+::: tip 文章 frontmatter 的其它字段
+
+- `createTime`：创建时间，见 [基础 frontmatter](./basic.md#createtime)
+- `password` / `passwordHint`：文章加密，见 [加密](../../guide/features/encryption.md)
+- `copyright`：版权信息，见 [版权](../../guide/features/copyright.md)
+:::

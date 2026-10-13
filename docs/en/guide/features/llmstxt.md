@@ -154,7 +154,7 @@ This content will not appear in the files generated for LLMs.
 </llm-exclude>
 ```
 
-You can also use the `<llm-exclude>` tag inline, but note that only one `<llm-only>` tag can be included per line;
+You can also use the `<llm-exclude>` tag inline, but note that only one `<llm-exclude>` tag can be included per line;
 otherwise, it will cause a parsing error.
 
 ```md

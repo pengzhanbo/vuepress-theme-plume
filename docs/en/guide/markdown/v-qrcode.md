@@ -57,7 +57,7 @@ text
 ::: warning QR codes generated from overly long text may be truncated and potentially unscannable.
 :::
 
-## Attributes
+## Props
 
 :::: field-group
 ::: field card
@@ -68,6 +68,7 @@ Whether to enable the card style.
 :::
 ::: field logo
 @type `string`
+
 The path to the logo image displayed at the center of the QR code.
 
 Only absolute paths are supported.
@@ -80,6 +81,7 @@ The size ratio of the logo relative to the QR code.
 :::
 ::: field title
 @type `string`
+
 The title of the QR code.
 :::
 ::: field align
@@ -90,9 +92,8 @@ The alignment of the QR code.
 :::
 ::: field width
 @type `number`
-@default `300`
-
-The width of the QR code.
+@default `128px` (`150px` when the viewport is ≥768px)
+The display width of the QR code. When unspecified, it falls back to the stylesheet, independent of the internal canvas sampling width (`300`).
 :::
 ::::
 
@@ -131,7 +132,7 @@ When the QR code contains a logo, the default value is `H`.
 :::
 ::: field version
 @type `number`
-@default `40`
+@default undefined
 **QR Code Version**
 
 If not specified, a more suitable value will be automatically calculated. Valid range: `1-40`.
@@ -143,10 +144,12 @@ If not specified, a more suitable value will be automatically calculated. Valid 
 Scaling factor. A value of 1 means 1 pixel per module (black dot).
 :::
 ::: field mask
-@type `1 | 2 | 3 | 4 | 5 | 6 | 7`
+@type `0 | 1 | 2 | 3 | 4 | 5 | 6 | 7`
+
 The mask pattern used to mask the symbol.
 
 If not specified, a more suitable value will be automatically calculated.
+:::
 ::::
 
 ## Examples
@@ -193,7 +196,7 @@ If not specified, a more suitable value will be automatically calculated.
 ::: flex
 @[qrcode](.)
 @[qrcode](./v-steps.md)
-@[qrcode](/guide/markdown/qrcode.md)
+@[qrcode](/en/guide/markdown/qrcode.md)
 :::
 
 ### Arbitrary Text

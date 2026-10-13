@@ -22,19 +22,24 @@ permalink: /config/frontmatter/basic/
 
 ### pageLayout
 
-- 类型： `false | 'home' | 'doc' | 'custom' | 'page' | 'friends' | string`
+- 类型： `false | 'home' | 'posts' | 'doc' | 'custom' | 'page' | 'friends' | string`
 - 默认值： `doc`
 - 详情：
 
   页面布局方式。
 
   - `'home'`: 主页布局
+  - `'posts'`: 文章列表页布局
   - `'doc'`: 文章页布局，包括左侧侧边栏、文章内容、右侧侧边栏、导航栏、评论等
   - `'page'`: 仅包含导航栏和 MD 文件内容，可以使用此布局方式自定义页面内容
   - `'friends'`: 友链页布局
   - `'custom'`: 仅包含 MD 文件内容，可以使用此布局方式完全自定义页面内容
   - `false`: 等同于 `custom`
-  - `string`: 可以传入一个全局组件组件名，该组件将被应用为布局组件
+
+  除以上取值外，还可以传入一个**已注册的全局组件名**，该组件会被应用为布局组件。
+  （源码的类型声明中未包含该写法，但运行时支持。）
+
+  另外，`'blog'` 已弃用，请使用 `'posts'` 代替。
 
 ### pageClass
 
@@ -56,17 +61,45 @@ permalink: /config/frontmatter/basic/
 
 ### badge
 
-- 类型： `string | { text: string, type?: 'info' | 'tip' | 'warning' | 'danger' }`
+- 类型： `string | ThemeBadge`
+- 默认值： `undefined`
 
 在文章标题右侧显示徽章。
 
+传入字符串时作为徽章的 `text`；传入对象时可使用：
+
+```ts
+interface ThemeBadge {
+  /** 徽章文本内容 */
+  text?: string
+  /** 徽章类型，用于预设样式 */
+  type?: string
+  /** 徽章文本颜色 */
+  color?: string
+  /** 徽章背景颜色 */
+  bgColor?: string
+  /** 徽章边框颜色 */
+  borderColor?: string
+}
+```
+
+### icon
+
+- 类型： `ThemeIcon`（`string | { svg: string }`）
+- 默认值： `undefined`
+- 详情：
+
+  用作导航栏、侧边栏的图标。
+
+  支持直接使用 iconify 图标名（自动加载），也支持本地、远程 SVG 图标地址，或直接传入 SVG 字符串。
+
 ### createTime
 
-- 类型： `string`
+- 类型： `string | false`
 - 默认值： `''`
 - 详情：
 
-  文章创建时间。
+  文章创建时间。设置为 `false` 时，不在页面中展示创建时间。
 
   主题会在文件创建时，自动填充当前时间作为文章创建时间。
 
@@ -106,6 +139,17 @@ permalink: /config/frontmatter/basic/
 - 详情：
 
   当前文章是否可评论。 仅在启用了评论功能的情况下生效。
+
+### sidebar
+
+- 类型： `string | false`
+- 默认值： `undefined`
+- 详情：
+
+  是否显示左侧侧边栏，也可以强制指定当前页面显示哪个侧边栏。
+
+  - `false`：隐藏左侧侧边栏
+  - `string`：按侧边栏的 key（页面路径前缀）指定要显示的侧边栏
 
 ### aside
 
@@ -203,8 +247,8 @@ permalink: /config/frontmatter/basic/
 
 ### contributors
 
-- 类型： `boolean`
-- 默认值： `true | string | string[]`
+- 类型： `boolean | string[]`
+- 默认值： `true`
 - 详情：
 
   当前文章是否显示贡献者。 贡献者根据 git 提交者自动填充。
@@ -238,6 +282,16 @@ permalink: /config/frontmatter/basic/
 - 详情：
 
   当前文章是否显示文章编辑按钮。
+
+### editLinkPattern
+
+- 类型： `string`
+- 默认值： `''`
+- 详情：
+
+  当前页面的编辑链接模式，会覆盖主题配置中的 `editLinkPattern`。
+
+  示例： `':repo/edit/:branch/:path'`
 
 ### watermark
 

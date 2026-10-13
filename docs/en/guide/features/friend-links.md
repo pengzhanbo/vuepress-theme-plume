@@ -17,12 +17,12 @@ Create any `*.md` file in your `{sourceDir}/` directory, such as `friends.md`. T
 
 ```md title="friends.md"
 ---
-friends: true
+pageLayout: friends
 title: Friend Links
 description: Description text for friend links
 permalink: /friends/
-cols: 2
 contentPosition: after
+cols: 2
 list:
   -
     name: pengzhanbo
@@ -41,6 +41,10 @@ Custom content <!-- Markdown content will be inserted into the friend links page
 
 The theme will generate the friend links page based on the configuration.
 
+::: warning `friends: true` is deprecated
+The old syntax `friends: true` is deprecated, please use `pageLayout: friends` instead.
+:::
+
 You need to manually configure the entry link for the friend links page in an appropriate location in the `navbar`.
 
 ### Configuration
@@ -48,6 +52,7 @@ You need to manually configure the entry link for the friend links page in an ap
 View the [documentation](../../config/frontmatter/friend.md) for more configuration information.
 
 ::: tip Full field reference
-Fields supported by `list` (`name`, `link`, `avatar`, `desc`) and layout options such as `cols` and
-`contentPosition` are documented in [Friends Frontmatter Configuration](../../config/frontmatter/friend.md).
+Fields supported by `list` include `name`, `link`, `avatar`, `desc`, `location`, `organization`, `socials`,
+`backgroundColor`, `color`, `nameColor`; it also supports `groups` for grouping, as well as layout options
+such as `cols` and `contentPosition`. See [Friends Frontmatter Configuration](../../config/frontmatter/friend.md) for details.
 :::

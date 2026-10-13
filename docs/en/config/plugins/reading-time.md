@@ -8,7 +8,7 @@ permalink: /en/config/plugins/reading-time/
 
 Generates word count and estimated reading time for each page.
 
-Related plugin: [@vuepress/plugin-reading-time](https://ecosystem.vuejs.press/plugins/search/docsearch.html)
+Related plugin: [@vuepress/plugin-reading-time](https://ecosystem.vuejs.press/plugins/development/reading-time.html)
 
 Default configuration:
 

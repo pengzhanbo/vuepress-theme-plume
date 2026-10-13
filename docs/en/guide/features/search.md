@@ -5,14 +5,20 @@ createTime: 2025/10/08 09:58:39
 permalink: /en/guide/features/content-search/
 ---
 
+## Overview
+
 The theme provides two approaches for content search:
 
 - Local Content Search
 - Algolia DocSearch
 
-Note: Do not configure both approaches simultaneously. When both are configured, only Local Content Search will take effect.
+Note: Do not configure both approaches simultaneously. The precedence is:
+**top-level `search` > `plugins.docsearch` > local search**.
 
-For configuration options, please refer to [Configuration > Content Search](/config/plugins/search/).
+In other words, when `plugins.docsearch` and `plugins.search` are both configured,
+**Algolia DocSearch** takes effect.
+
+For configuration options, please refer to [Configuration > Content Search](/en/config/plugins/search/).
 
 ## Local Content Search
 
@@ -59,13 +65,22 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    search: { // [!code ++:4]
+    search: { // [!code ++:5]
       provider: 'algolia',
-      // more options
-    }
-  })
+      appId: 'YOUR_APP_ID',
+      apiKey: 'YOUR_API_KEY',
+      indexName: 'YOUR_INDEX_NAME',
+    },
+  }),
 })
 ```
+
+::: warning Without `appId` and `apiKey`, there will be no search box
+
+When `provider` is `'algolia'`, `appId` and `apiKey` **must both be present**.
+If either is missing, the theme will only output a `console.error` line at build time
+and will **not register any search plugin**.
+:::
 
 ### Obtaining Search Index
 
@@ -215,7 +230,7 @@ The `recordProps` section contains configuration options used by this theme for 
 
 ### Configuration Options
 
-For complete configuration, please refer to the [documentation](https://ecosystem.vuejs.press/en/plugins/search/docsearch.html).
+For complete configuration, please refer to the [documentation](https://ecosystem.vuejs.press/plugins/search/docsearch.html).
 
 ### Configuration Example
 

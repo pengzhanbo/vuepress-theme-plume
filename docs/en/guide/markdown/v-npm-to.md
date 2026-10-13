@@ -19,7 +19,7 @@ which is time-consuming and takes up a lot of space in the Markdown content,
 leading to a poor experience. That's why I created the `::: npm-to` container to solve this problem.
 :::
 
-## Usage
+## Syntax
 
 ````md{1,5}
 ::: npm-to
@@ -109,11 +109,12 @@ You can configure the `tabs` according to your needs.
 
 `npmTo` does not support all `npm` command lines. Here is the list of supported commands:
 
-- `npm install` / `npm i`
+- `npm install` / `npm i` (without a package name)
+- `npm install <pkg>` / `npm i <pkg>` / `npm add <pkg>`
 - `npm run` / `npm run-script`
 - `npm init`
 - `npm create`
-- `npm uninstall` / `npm rm` / `npm remove` / `npm un` / `npm unlink`
+- `npm uninstall` / `npm r` / `npm rm` / `npm remove` / `npm un` / `npm unlink`
 - `npm ci`
 - `npx`
 

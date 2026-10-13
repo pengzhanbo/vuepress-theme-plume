@@ -14,8 +14,6 @@ permalink: /guide/markdown/math/
 - `katex` (默认)
 - `mathjax`
 
-## 使用
-
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
   theme: plumeTheme({

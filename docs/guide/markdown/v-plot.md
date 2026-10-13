@@ -1,7 +1,7 @@
 ---
 title: 隐秘文本
-createTime: 2024/09/30 14:45:35
 icon: weui:eyes-off-outlined
+createTime: 2024/09/30 14:45:35
 permalink: /guide/markdown/plot/
 ---
 
@@ -21,19 +21,32 @@ permalink: /guide/markdown/plot/
 
 ## 配置
 
-该功能默认不启用，你需要在 `theme` 配置中启用。
+该功能**默认启用**，无需额外配置即可使用。
+
+如需修改默认的触发方式或遮罩效果，可以通过 `markdown.plot` 传入选项：
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
-      plot: true, // [!code ++]
-    }
-  })
+      // 修改默认的触发方式与遮罩效果
+      plot: {
+        trigger: 'click',
+        effect: 'blur',
+      },
+    },
+  }),
 })
 ```
 
-`markdownPower.plot` 支持传入 `boolean | PlotOptions` 类型，该配置用于控制该功能的默认行为。
+`markdown.plot` 的类型为 `boolean | PlotOptions`：
+
+- 传入 `false`：关闭 `!!...!!` 语法
+- 传入对象：设置该语法的默认行为
+- 将 `plugins.markdownPower` 设为 `false`：整体关闭 markdown-power 插件
 
 ```ts
 interface PlotOptions {

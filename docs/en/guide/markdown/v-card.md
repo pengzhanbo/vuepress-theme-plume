@@ -1,7 +1,7 @@
 ---
 title: Card
-createTime: 2025/10/08 14:37:40
 icon: solar:card-broken
+createTime: 2025/10/08 14:37:40
 permalink: /en/guide/markdown/card/
 ---
 
@@ -11,8 +11,7 @@ Content that needs to be highlighted can be placed within a card container `::: 
 
 When multiple cards need to be displayed side-by-side when space permits, use the `card-grid` container to wrap multiple cards.
 
-::: tip
-This page covers the **Markdown container syntax** (`::: card`). If you want to use cards as render functions inside Vue components, see the [Card component](../components/v-card.md).
+::: tip This page covers the **Markdown container syntax** (`::: card`). If you want to use cards as render functions inside Vue components, see the [Card component](../components/v-card.md).
 :::
 
 ## Syntax
@@ -46,13 +45,14 @@ This is the card content.
 ::: field title
 @type `string`
 @default `''`
-
 Card title
 :::
 
 ::: field icon
-@type `string`
+@type `string | { svg: string }`
+@default `''`
 Card icon. Supports image URLs and [iconify](https://icon-sets.iconify.design/) icon names.
+:::
 ::::
 
 ## Examples

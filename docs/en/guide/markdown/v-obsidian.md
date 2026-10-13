@@ -25,21 +25,22 @@ Currently supported Obsidian extension syntax includes:
 Obsidian compatibility features are all enabled by default. You can selectively enable or disable them through configuration:
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
-    plugins: {
-      markdownPower: {
-        obsidian: {
-          wikiLink: true,    // Wiki Links
-          embedLink: true,  // Embeds
-          callout: true,    // Callout
-          comment: true,    // Comments
-        },
-        pdf: true,          // PDF embed functionality
-        artPlayer: true,    // Video embed functionality
-      }
-    }
-  })
+    markdown: {
+      obsidian: {
+        wikiLink: true, // Wiki Links
+        embedLink: true, // Embeds
+        callout: true, // Callout
+        comment: true, // Comments
+      },
+      pdf: true, // PDF embed functionality
+      artPlayer: true, // Video embed functionality
+    },
+  }),
 })
 ```
 
@@ -176,7 +177,11 @@ The embed syntax allows you to insert other file resources into the current page
 
 Filename search rules are the same as [Wiki Links](#filename-search-rules).
 
-::: info Resources starting with `/` or having no path prefix like `./` are loaded from the `public` directory
+::: info Path resolution rules for embedded resources
+
+- Starting with `./` or `../`: Resolved relative to the **current markdown file**
+- Starting with `/`: Resolved from the site root, i.e., resources under `.vuepress/public/`
+- A bare filename with no path prefix: The real file is first looked up relative to the current directory and the document root, and if not found, it is treated as `/filename`
 :::
 
 ### Image Embeds
@@ -192,6 +197,25 @@ Filename search rules are the same as [Wiki Links](#filename-search-rules).
 Supported formats: `jpg`, `jpeg`, `png`, `gif`, `avif`, `webp`, `svg`, `bmp`, `ico`, `tiff`, `apng`, `jfif`, `pjpeg`, `pjp`, `xbm`
 
 **Example:**
+
+::: warning This page's examples require the demo syntax to be enabled first
+The `::: demo` syntax is **disabled by default**. When it is not enabled, the `md` code blocks
+below are rendered as plain code blocks and no rendered output is shown.
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      demo: true, // [!code ++]
+    },
+  }),
+})
+```
+
+:::
 
 ::: demo markdown title="Basic Image" expanded
 
@@ -220,7 +244,7 @@ Supported formats: `jpg`, `jpeg`, `png`, `gif`, `avif`, `webp`, `svg`, `bmp`, `i
 ### PDF Embeds
 
 > [!NOTE]
-> PDF embeds require the `markdown.pdf` plugin to be enabled for proper functionality.
+> PDF embeds require the `markdown.pdf` configuration option to be enabled for proper functionality.
 
 **Syntax:**
 
@@ -249,7 +273,7 @@ Supported formats: `mp3`, `flac`, `wav`, `ogg`, `opus`, `webm`, `acc`
 ### Video Embeds
 
 > [!NOTE]
-> Video embeds require the `markdown.artPlayer` plugin to be enabled for proper functionality.
+> Video embeds require the `markdown.artPlayer` configuration option to be enabled for proper functionality.
 
 **Syntax:**
 
@@ -464,6 +488,6 @@ It can span multiple lines.
 - These plugins provide **compatibility support** and do not fully implement all of Obsidian's functionality
 - Some Obsidian-specific features (such as internal link graph views, bidirectional links, etc.) are outside the scope of this support
 - When embedding content, the embedded page also participates in the theme's build process
-- PDF embeds require the `markdown.pdf` plugin to be enabled simultaneously
-- Video embeds require the `markdown.artPlayer` plugin to be enabled simultaneously
-- Embed resources starting with `/` or using `./` form are loaded from the `public` directory
+- PDF embeds require the `pdf` option in the [markdown configuration](../../config/markdown.md) to be enabled
+- Video embeds require the `artPlayer` option in the [markdown configuration](../../config/markdown.md) to be enabled
+- Embedded resources starting with `/` are resolved from the site root (`.vuepress/public/`), while those starting with `./` / `../` are resolved relative to the current markdown file

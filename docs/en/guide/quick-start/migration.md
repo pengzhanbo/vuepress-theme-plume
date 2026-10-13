@@ -32,7 +32,7 @@ The old version's `blog` corresponds to the `post` collection, and the old `note
 The theme is compatible with the old `blog/notes` configuration by default and performs the conversion at build time. The rules are as follows:
 
 1. If **`collections` is not configured**, the root-level `blog` is converted into a `post` collection, and `notes` is converted into several `doc` collections.
-2. The note directories configured in `notes` are automatically appended to the `exclude` of the `blog` collection, to prevent note articles from being included in the blog list.
+2. The directories configured in `notes` are automatically appended to the `exclude` of the `blog` collection, to prevent these articles from being included in the blog list.
 3. **If `collections` is configured, the root-level `blog` / `notes` will be ignored.**
 4. In multilingual scenarios, when a certain locale **declares its own `collections`**, its own `blog` / `notes` will be ignored; when it does not declare them, it falls back to using the root-level `blog` / `notes`.
 
@@ -62,8 +62,6 @@ The old `notes.notes` is an array, and each item has its own `dir` / `link` / `s
 
 Take a typical 1.x configuration:
 
-::: details Legacy config (for reference only, not type-checked)
-
 ```ts
 export default defineThemeConfig({
   blog: {
@@ -86,14 +84,12 @@ export default defineThemeConfig({
 })
 ```
 
-`blog` / `notes` are `@deprecated` and typed as `never`, so this block intentionally **omits `twoslash`** — it exists for comparison, not for copying.
-:::
-
 Migrate it to:
 
 ```ts twoslash
 import { defineCollections } from 'vuepress-theme-plume'
 
+// After migration
 export default defineCollections([
   {
     type: 'post',
@@ -136,7 +132,9 @@ If the legacy config used a hand-written sidebar array (`notes.notes[].sidebar`)
 
 When directories are **nested**, a file belongs to the collection with the **longest matching** `dir`:
 
-- Given both `dir: 'docs'` (`type: 'doc'`) and `dir: 'docs/blog'` (`type: 'post'`), `docs/blog/a.md` belongs to the **`post`** collection (`docs/blog` is longer than `docs`, so the more specific match wins), while `docs/guide/b.md` belongs to `doc`.
+- When both `dir: 'docs'` (`type: 'doc'`) and `dir: 'docs/blog'` (`type: 'post'`) are declared
+- `docs/blog/a.md` belongs to the **`post`** collection (`docs/blog` is longer than `docs`, so the longer match wins)
+- `docs/guide/b.md` belongs to the `doc` collection
 
 This is resolved automatically — no manual ordering is needed. The logic lives in `theme/src/node/collections/findCollection.ts`: it sorts collections by `dir` length in **descending** order and picks the first whose directory prefix matches, so a **longer (more specific) directory always takes priority**.
 
@@ -148,7 +146,7 @@ After migrating, check each of the following:
 2. **Tag, archive and category pages** are reachable
 3. **Doc sidebars** match the pre-migration state, especially deep structures such as `sidebar: 'auto'`
 4. **URLs have not changed** — a wrong `linkPrefix` changes paths and breaks old links
-5. Articles under note directories are correctly excluded from the blog list
+5. Articles in the original `notes` directory are correctly excluded from the blog list
 
 ## Related documentation
 

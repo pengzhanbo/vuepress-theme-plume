@@ -26,36 +26,43 @@ The image URL. Local images must use an absolute path, i.e., a path starting wit
 
 ::: field title
 @type `string`
+
 The image title.
 :::
 
 ::: field description
 @type `string`
+
 The image description.
 :::
 
 ::: field author
 @type `string`
+
 The image author.
 :::
 
 ::: field href
 @type `string`
+
 The link to navigate to when the image title is clicked.
 :::
 
 ::: field date
 @type `string | Date | number`
+
 The image creation date.
 :::
 
 ::: field width
 @type `string | number`
+
 The image width.
 :::
 
 ::: field center
 @type `boolean`
+
 Whether to center the image when its width is less than the screen width.
 :::
 

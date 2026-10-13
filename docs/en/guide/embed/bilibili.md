@@ -45,16 +45,51 @@ More options:
 @[bilibili p1 autoplay time="0" width="100%" height="400px" ratio="16:9"](bvid aid cid)
 ```
 
-**Parameter Description:**
+Parameter Description:
 
-- bvid: Video BV ID
-- aid: Video AID
-- cid: Video CID
-- autoplay: Whether to enable autoplay
-- time: Video playback start time in seconds, or in `mm:ss` or `hh:mm:ss` format
-- width: Video width
-- height: Video height
-- ratio: Video aspect ratio, defaults to `16:9`
+:::: field-group
+::: field bvid
+@type `string`
+Video BV ID, starting with `BV`
+:::
+::: field aid
+@type `string`
+Video AID. It can be omitted when used together with `cid`
+:::
+::: field cid
+@type `string`
+Video CID
+:::
+::: field p1
+@type `string`
+Part marker, just write it as-is (e.g. `@[bilibili p1](…)`); `p1` / `p2` / … are supported
+:::
+::: field autoplay
+@type `boolean`
+@default `false`
+Whether to enable autoplay
+:::
+::: field time
+@type `number | string`
+@default undefined
+Video playback start time in seconds, or in `mm:ss` or `hh:mm:ss` format
+:::
+::: field width
+@type `string`
+@default `100%`
+Video width
+:::
+::: field height
+@type `string`
+@default undefined
+Video height. When not specified, it is handled as automatic height
+:::
+::: field ratio
+@type `string`
+@default `16:9`
+Video aspect ratio
+:::
+::::
 
 For videos with multiple parts, `bvid` can be omitted, but `aid` and `cid` must be provided.
 

@@ -89,9 +89,9 @@ export default defineUserConfig({
   theme: plumeTheme({
     // 全局侧边栏配置 // [!code hl:7]
     sidebar: {
-      '/config/': [ // 匹配/config/路径
-        { text: '侧边栏配置', link: 'sidebar-1' },
-        { text: '侧边栏配置', link: 'sidebar-2' },
+      '/config/': [ // 匹配 /config/ 路径
+        { text: '主题配置', link: 'theme' },
+        { text: '多语言配置', link: 'locales' },
       ]
     }
   })
@@ -107,8 +107,8 @@ export default defineThemeConfig({
   // 在独立配置文件中定义全局侧边栏 // [!code hl:7]
   sidebar: {
     '/config/': [
-      { text: '侧边栏配置', link: 'sidebar-1' },
-      { text: '侧边栏配置', link: 'sidebar-2' },
+      { text: '主题配置', link: 'theme' },
+      { text: '多语言配置', link: 'locales' },
     ]
   }
 })

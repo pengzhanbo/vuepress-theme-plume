@@ -31,7 +31,7 @@ Add `title="xxxx"` after <code>\`\`\` [lang]</code> to add a title to the curren
 
 ## Line Numbers
 
-Line numbers are displayed by default in the theme, controlled by `codeHighlighter.line-numbers`.
+Line numbers are displayed by default in the theme, controlled by `codeHighlighter.lineNumbers`.
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({

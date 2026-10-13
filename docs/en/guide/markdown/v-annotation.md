@@ -5,7 +5,7 @@ createTime: 2025/10/08 10:48:35
 permalink: /en/guide/markdown/annotation/
 ---
 
-## Description
+## Overview
 
 ==Annotation== is a special syntax in Markdown used to add extra information, explanations, or hints to a document.
 

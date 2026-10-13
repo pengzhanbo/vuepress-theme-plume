@@ -1,7 +1,7 @@
 ---
 title: flowchart
-createTime: 2025/10/08 19:34:31
 icon: f7:flowchart
+createTime: 2025/10/08 19:34:31
 permalink: /en/guide/chart/flowchart/
 ---
 
@@ -59,7 +59,26 @@ Currently available presets:
 - ant
 - pie
 
-## Demo
+## Examples
+
+::: warning This page's examples require the demo syntax to be enabled first
+The `::: demo` syntax is **disabled by default**. When it is not enabled, the `md` code blocks
+below are rendered as plain code blocks and no rendered output is shown.
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      demo: true, // [!code ++]
+    },
+  }),
+})
+```
+
+:::
 
 ::: demo markdown title="Vue Theme"
 

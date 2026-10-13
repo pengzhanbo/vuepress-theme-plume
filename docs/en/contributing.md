@@ -11,4 +11,8 @@ changelog: false
 search: false
 ---
 
+::: info This page **mirrors `CONTRIBUTING.en-US.md` in the repository root** (included via `@include`)
+Do not edit this page directly; for any adjustments, please submit changes to [CONTRIBUTING.en-US.md](https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/CONTRIBUTING.en-US.md) in the repository root.
+:::
+
 <!-- @include: ../../CONTRIBUTING.en-US.md{2-} -->

@@ -40,11 +40,14 @@ export default defineUserConfig({
 ### ignoreSelector
 
 - **类型：** `string | string[]`
-- **默认值：** `[]`
+- **默认值：** `['.vp-copy-ignore', '.diff.remove']`
 
 代码块中的元素选择器，用于在复制时忽略相关元素。
 
-例如: `['.token.comment']` 将忽略代码块中类名为 `.token.comment` 的节点 （这会在 prismjs 中忽略注释）。
+主题会强制并入 `.vp-copy-ignore` 与 `.diff.remove` 两个选择器，
+因此这两类元素始终会被忽略。
+
+例如: `['.token.comment']` 将忽略代码块中类名为 `.token.comment` 的节点 。
 
 ### inlineSelector
 

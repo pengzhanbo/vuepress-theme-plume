@@ -11,7 +11,7 @@ You can configure it in either `.vuepress/config.ts` or `.vuepress/plume.config.
 
 When a field description includes the following statement, it indicates that the field is not supported for configuration in `.vuepress/plume.config.ts`:
 
-::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
 :::
 
 For fields without the above declaration, you can configure them in either `.vuepress/config.ts`
@@ -57,14 +57,14 @@ export default defineThemeConfig({
 
   Custom path to the theme configuration file.
 
-  Refer to [Theme Config File `plume.config.ts`](./intro.md#theme-config-file) for more information.
+  Refer to [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file) for more information.
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### plugins
 
-- **Type:** `PlumeThemePluginOptions`
+- **Type:** `ThemeBuiltinPlugins`
 - **Default:** `{}`
 - **Details:**
 
@@ -73,8 +73,22 @@ export default defineThemeConfig({
   The plugins used by the theme are configured by default. In most cases, modification is not required.
   For detailed customization, please refer to [this documentation](./plugins/README.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
+
+### encrypt
+
+- **Type:** `EncryptOptions` (`{ global?: boolean; admin?: string | string[]; rules?: Record<string, string | string[]> }`)
+- **Default:** `undefined`
+- **Details:**
+
+  Site encryption configuration, supporting full-site encryption and article-level encryption.
+
+  When not configured, no encryption is enabled. When `global` is `true`, the whole site is encrypted;
+  `admin` is the super-permission password; `rules` specifies article passwords keyed by the file relative path,
+  page access path, or directory path, and when a key starts with `^`, it is matched as a regular expression.
+
+  This field supports configuration and hot reload in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
 
 ### markdown <Badge type="tip" text="1.0.0-rc.136 +" />
 
@@ -84,29 +98,57 @@ export default defineThemeConfig({
 
   Markdown feature configuration. Refer to [this documentation](./markdown.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### codeHighlighter <Badge type="tip" text="1.0.0-rc.136 +" />
 
-- **Type:** `false | ShikiPluginOptions`
+- **Type:** `false | (ShikiPluginOptions & { renderIndentGuides?: boolean | object; colorizedBrackets?: boolean | object })`
 - **Default:** `{}`
 - **Details:**
 
   Code highlighting configuration. Refer to [this documentation](../guide/code/intro.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  In addition to the options of [@vuepress/plugin-shiki](https://ecosystem.vuejs.press/plugins/markdown/shiki.html),
+  it also supports two theme-extension options: `renderIndentGuides` (indent guides) and `colorizedBrackets` (colorized brackets).
+
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
+  :::
+
+### components
+
+- **Type:** `MarkdownPowerPluginOptions['components']`
+- **Default:** `undefined`
+- **Details:**
+
+  Automatic component import configuration. The theme uses [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components)
+  to implement automatic component import, inheriting all of its configuration options (except `include` and `exclude`).
+
+  ```ts title=".vuepress/plume.config.ts"
+  import path from 'node:path'
+  import { defineThemeConfig } from 'vuepress-theme-plume'
+
+  export default defineThemeConfig({
+    components: {
+      dirs: [path.resolve(import.meta.dirname, 'components')],
+    },
+  })
+  ```
+
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### search <Badge type="tip" text="1.0.0-rc.136 +" />
 
-- **Type:** `false | SearchOptions`
+- **Type:** `boolean | SearchOptions`
 - **Default:** `{ provider: 'local' }`
 - **Details:**
 
   Search configuration. Refer to [this documentation](../guide/features/search.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  `true` is equivalent to `{ provider: 'local' }`; `false` disables search.
+
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### comment <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -117,18 +159,21 @@ export default defineThemeConfig({
 
   Comment configuration. Refer to [this documentation](../guide/features/comments.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### watermark <Badge type="tip" text="1.0.0-rc.136 +" />
 
-- **Type:** `false | WatermarkPluginOptions`
+- **Type:** `boolean | (WatermarkPluginOptions & { fullPage?: boolean })`
 - **Default:** `false`
 - **Details:**
 
   Watermark configuration. Refer to [this documentation](../guide/features/watermark.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  In addition to the options of [@vuepress/plugin-watermark](https://ecosystem.vuejs.press/plugins/features/watermark.html),
+  the theme additionally supports `fullPage` (default `true`): when `true`, the watermark covers the entire page; when `false`, it only covers the article content area.
+
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### readingTime <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -139,7 +184,7 @@ export default defineThemeConfig({
 
   Reading time configuration. Refer to [this documentation](./plugins/reading-time.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### copyCode <Badge type="tip" text="1.0.0-rc.136 +" />
@@ -156,7 +201,7 @@ export default defineThemeConfig({
   entirely.
   :::
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### replaceAssets <Badge type="tip" text="1.0.0-rc.139 +" />
@@ -167,7 +212,21 @@ export default defineThemeConfig({
 
   Replace assets configuration. Refer to [this documentation](../guide/features/replace-assets.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
+  :::
+
+### llmstxt
+
+- **Type:** `boolean | LlmsPluginOptions`
+- **Default:** `false`
+- **Details:**
+
+  Whether to generate `llms.txt` and `llms-full.txt` to provide site content to large language models.
+  This feature only takes effect during a production build (`vuepress build`).
+
+  Refer to [this documentation](./plugins/llms.md).
+
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### hostname
@@ -180,15 +239,17 @@ export default defineThemeConfig({
 
   When `hostname` is configured to a valid domain, the theme will generate `sitemap` and SEO-related content.
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### autoFrontmatter
 
 - **Type:** `false | AutoFrontmatterOptions`
+- **Default:** Enabled by default, equivalent to `{ title: true, createTime: true, permalink: true }`
 - **Details:**
 
   Whether to automatically add frontmatter configuration to markdown files.
+  The feature is disabled only when it is explicitly set to `false`.
 
   ```ts
   interface AutoFrontmatterOptions {
@@ -237,7 +298,7 @@ export default defineThemeConfig({
     more suitable for projects with substantial content.
 
   ::: warning
-  This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
 
   For the cache to take effect, you should **remove** the `--clean-cache` parameter from the
   `vuepress dev` development server startup script in your `package.json`.
@@ -267,7 +328,7 @@ export default defineThemeConfig({
 - **Default:** `true`
 - **Details:** Whether to enable the edit link.
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### lastUpdated
@@ -290,18 +351,21 @@ interface LastUpdatedOptions {
 }
 ```
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### contributors
 
-- **Type:** `boolean | ContributorsOptions`
+- **Type:** `boolean | (ContributorsOptions & { mode?: 'inline' | 'block' })`
 - **Default:** `true`
 - **Details:** Whether to display contributors.
 
+  When passing an object, you can use the `ContributorsOptions` of [@vuepress/plugin-git](https://ecosystem.vuejs.press/plugins/development/git.html),
+  as well as the theme extension `mode?: 'inline' | 'block'` (the display mode of contributors).
+
   For more configuration, please refer to [this documentation](../guide/features/contributors.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### changelog
@@ -312,7 +376,7 @@ interface LastUpdatedOptions {
 
   For more configuration, please refer to [this documentation](../guide/features/changelog.md).
 
-  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-config-file).
+  ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
 ### locales
@@ -321,10 +385,10 @@ interface LastUpdatedOptions {
 - **Default:** `{}`
 - **Details:** Multi-language configuration.
 
-Text configuration for different languages. Refer to [this documentation](./locales.md).
+  Text configuration for different languages. Refer to [this documentation](./locales.md).
 
-The multi-language configuration supports all configuration options under the following
-[Locale](#locale-configuration) to control theme behavior in different languages.
+  The multi-language configuration supports all configuration options under the following
+  [Locale](#locale-configuration) to control theme behavior in different languages.
 
 ## Locale Configuration
 
@@ -822,6 +886,12 @@ Supports the following 9 animation effects:
 - **Details:** Regular expression for the edit link.
 
   Example: `':repo/edit/:branch/:path'`
+
+### externalLinkIcon
+
+- **Type:** `boolean`
+- **Default:** `true`
+- **Details:** Whether to display an external link icon after external links.
 
 ### copyright
 

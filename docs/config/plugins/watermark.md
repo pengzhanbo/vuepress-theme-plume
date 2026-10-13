@@ -50,13 +50,34 @@ export default defineUserConfig({
 
 - 类型： `boolean | ((page: Page) => boolean)`
 
-- 默认值： `false`
+- 默认值： `true`
 
 - 详情：
 
   指定哪些页面需要添加水印。
 
   拥有 `true` 值的页面将会被添加水印。
+
+  ::: tip 默认值 `true` 与「未配置时不显示水印」并不冲突
+  只有配置了 `watermark`（顶层 `watermark` 或 `plugins.watermark`）时主题才会注册水印插件，
+  注册时会显式传入 `enabled: true`。因此**未配置 `watermark` 时全站都不会有水印**，
+  这里的 `true` 描述的是「已配置水印时的默认行为」，它并不是启用开关。
+  :::
+
+### fullPage
+
+- 类型： `boolean`
+
+- 默认值： `true`
+
+- 详情：
+
+  是否为全屏水印。这是主题扩展字段，`@vuepress/plugin-watermark` 本身没有该选项。
+
+  - `true`：水印铺满整个页面
+  - `false`：水印仅在内容区域中显示
+
+  单个页面也可以通过在 frontmatter 中设置 `watermark.fullPage: false` 覆盖。
 
 ### watermarkOptions
 

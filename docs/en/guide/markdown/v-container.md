@@ -5,6 +5,8 @@ createTime: 2025/11/29 14:53:21
 permalink: /en/guide/markdown/container/
 ---
 
+## Overview
+
 ::: tip Tip containers help you highlight important information in your documentation, making the content hierarchy clearer.
 :::
 
@@ -38,6 +40,14 @@ This is a danger warning container
 ::: details
 This is a details collapsible container
 :::
+
+::: important
+This is an important container
+:::
+
+::: danger
+This is a danger container
+:::
 ```
 
 **Actual Effect:**
@@ -66,6 +76,14 @@ This is a danger warning container
 This is a details collapsible container
 :::
 
+::: important
+This is an important container
+:::
+
+::: danger
+This is a danger container
+:::
+
 ## Custom Title Settings
 
 You can easily set custom titles by adding text after the container type.
@@ -79,7 +97,7 @@ Danger zone, do not proceed
 
 ::: details Click to view code
 ```js
-console.log('Hello, VitePress!')
+console.log('Hello, VuePress Plume!')
 ```
 :::
 ````

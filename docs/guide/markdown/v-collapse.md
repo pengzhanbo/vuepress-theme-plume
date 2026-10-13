@@ -11,8 +11,6 @@ permalink: /guide/markdown/collapse/
 
 - 支持通过 `accordion` 设置为 ==手风琴== 模式
 
-## 启用
-
 该功能默认不启用，你需要在 `theme` 配置中启用。
 
 ```ts title=".vuepress/config.ts"
@@ -25,7 +23,7 @@ export default defineUserConfig({
 })
 ```
 
-## 使用
+## 语法
 
 在 markdown 中，使用 `::: collapse` 容器，包含 markdown 无序列表语法，每一项为一个单独的可折叠区域。
 
@@ -84,7 +82,8 @@ __输出：__
 在 `::: collapse` 容器语法之后，跟随配置项：
 
 - `accordion` ：折叠面板设置为 ==手风琴== 模式，在手风琴模式下，只允许展开一个面板，点击其他面板会关闭之前的面板。
-- `expand` ：默认展开面板，在手风琴模式下无效。
+- `expand` ：默认展开面板。在手风琴（`accordion`）模式下，`expand` 会展开**第一个**面板；
+  若列表中已存在 `:+` 标记项，则以 `:+` 标记项为准。
 
 在列表项，标题之前，可通过特殊标记 `:+` / `:-` 来设置当前项是否 __展开 / 折叠__。
 

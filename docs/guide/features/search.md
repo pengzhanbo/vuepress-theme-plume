@@ -5,12 +5,16 @@ createTime: 2024/03/04 09:58:39
 permalink: /guide/features/content-search/
 ---
 
+## 概述
+
 主题提供了两种方式支持内容搜索。
 
 - 本地内容搜索
 - Algolia DocSearch
 
-注意，请勿同时配置使用两种方式，同时配置时，只有本地内容搜索生效。
+两种方式互斥，请勿同时配置。生效优先级为：**顶层 `search` > `plugins.docsearch` > 本地搜索**。
+
+也就是说，若同时配置了 `plugins.docsearch` 与 `plugins.search`，生效的是 **Algolia DocSearch**。
 
 如需查看配置选项，请参阅 [配置 > 内容搜索](/config/plugins/search/)。
 
@@ -60,13 +64,22 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   theme: plumeTheme({
-    search: { // [!code ++:4]
+    search: { // [!code ++:5]
       provider: 'algolia',
-      // more options
-    }
-  })
+      appId: 'YOUR_APP_ID',
+      apiKey: 'YOUR_API_KEY',
+      indexName: 'YOUR_INDEX_NAME',
+    },
+  }),
 })
 ```
+
+::: warning `appId` 与 `apiKey` 缺失时不会有搜索框
+
+当 `provider` 为 `'algolia'` 时，`appId` 与 `apiKey` **必须同时存在**。
+若缺少其中之一，主题只会在构建时输出一行 `console.error`，
+并且**不注册任何搜索插件**
+:::
 
 ### 获取搜索索引
 

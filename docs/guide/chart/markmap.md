@@ -52,7 +52,7 @@ export default defineUserConfig({
 
 支持通过 Frontmatter 语法进行配置。
 
-## 案例
+## 示例
 
 ::: demo markdown title="markmap"
 

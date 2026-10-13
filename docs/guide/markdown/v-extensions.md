@@ -35,10 +35,10 @@ tags:
 
 - 使用生成的 `permalink` 作为内部链接的目标。
 - 使用 Markdown 文件的相对路径作为内部链接的目标。
-- 使用 Markdown 文件的绝对路径作为内部链接的目标，绝对路径 `/` 表示从 `${sourceDir}` 目录开始。
+- 使用 Markdown 文件的绝对路径作为内部链接的目标，`/` 表示从**文档源目录**（即包含 `.vuepress` 的目录）开始。
 
 ```md
-[Markdown](/guide/markdown/basic.md)
+[Markdown](/guide/markdown/v-basic.md)
 
 [Markdown](./v-basic.md)
 ```
@@ -55,7 +55,7 @@ tags:
 
 [VuePress](https://v2.vuepress.vuejs.org/)
 
-## Github风格的表格
+## GitHub 风格的表格
 
 **输入：**
 

@@ -20,12 +20,15 @@ permalink: /guide/embed/audio/reader/
 该功能默认不启用。你需要在主题配置中开启。
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
       audioReader: true, // [!code ++]
     },
-  })
+  }),
 })
 ```
 
@@ -47,11 +50,12 @@ export default defineUserConfig({
 
 - `type`：音频类型，格式如：`audio/mpeg` ,
   默认根据音频链接地址的文件扩展名推断，如果链接地址中不包含扩展名，请手动声明。
-- `title`： 音频标题，显示在音频图标之前。
+- `title`：**鼠标悬停时显示的原生提示文本**。它最终渲染为根元素 `<button>` 的 `title` 属性，
+  **不会作为可见文字显示**。如需显示可见文字，请使用下方的全局组件并通过默认插槽传入内容。
 - `autoplay`：是否自动播放，不建议启用。
 - `start-time`：音频起始播放时间点，单位为秒。
 - `end-time`：音频结束播放时间点，单位为秒。
-- `volume`：音频播放音量，范围为 `0 ~ 1` 。
+- `volume`：音频播放音量，范围为 `0 ~ 1` ，未设置时使用浏览器默认音量。
 
 ## 全局组件
 
@@ -59,14 +63,38 @@ export default defineUserConfig({
 
 ### Props
 
-| 字段      | 类型      | 描述                                |
-| --------- | --------- | ----------------------------------- |
-| src       | `string`  | 必填，音频播放地址                  |
-| type      | `string`  | 选填，音频格式，默认从 `src` 中截取 |
-| autoplay  | `boolean` | 选填，是否自动播放，不建议启用      |
-| startTime | `number`  | 选填，音频起始播放时间点，单位为秒  |
-| endTime   | `number`  | 选填，音频结束播放时间点，单位为秒  |
-| volume    | `number`  | 选填，音频播放音量，范围为 `0 ~ 1`  |
+:::: field-group
+::: field src
+@type `string`
+@required
+音频播放地址
+:::
+::: field type
+@type `string`
+@default undefined
+音频格式。未设置时从 `src` 的扩展名推断
+:::
+::: field autoplay
+@type `boolean`
+@default `false`
+是否自动播放，不建议启用
+:::
+::: field startTime
+@type `number`
+@default undefined
+音频起始播放时间点，单位为秒
+:::
+::: field endTime
+@type `number`
+@default undefined
+音频结束播放时间点，单位为秒
+:::
+::: field volume
+@type `number`
+@default undefined
+音频播放音量，范围为 `0 ~ 1`。未设置时使用浏览器默认音量
+:::
+::::
 
 ## 示例
 
@@ -89,6 +117,8 @@ audio 美 @[audioReader title="[ˈɔːdioʊ]"](/audio/audio.mp3)
 **输出：**
 
 audio 美 @[audioReader title="[ˈɔːdioʊ]"](https://sensearch.baidu.com/gettts?lan=en&spd=3&source=alading&text=audio)
+
+（这里的 `[ˈɔːdioʊ]` 只会作为鼠标悬停提示出现，不会显示在页面上）
 
 **输入：**
 

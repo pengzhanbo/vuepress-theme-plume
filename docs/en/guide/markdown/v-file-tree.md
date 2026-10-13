@@ -1,13 +1,13 @@
 ---
 title: File Tree
-createTime: 2025/10/08 14:41:57
 icon: mdi:file-tree
+createTime: 2025/10/08 14:41:57
 permalink: /en/guide/markdown/file-tree/
 ---
 
 ## Overview
 
-In Markdown, you can use the `file-tree` container to display directory structures with file icons and collapsible subdirectories.
+In Markdown, you can use the `file-tree` container or code blocks to display directory structures with file icons and collapsible subdirectories.
 
 ## Syntax
 
@@ -34,7 +34,7 @@ to render the file tree.
 # Add the file tree structure here
 ```
 
-```file
+```tree
 # Add the file tree structure here
 ```
 ````
@@ -44,7 +44,7 @@ to render the file tree.
 The following syntax can be used to customize the appearance of the file tree:
 
 - Emphasize file or directory names by making them bold, e.g., `**README.md**`
-- Add comments to files or directories by appending a comment starting with `#` after the name, for example, `README.md This is a README file`
+- Add comments to files or directories by appending a comment starting with `#` after the name, for example, `README.md # This is a README file`
 - Mark files or directories as **added** or **deleted** by prefixing the name with `++` or `--`
 - Use `...` or `…` as the name to add placeholder files and directories.
 - Add `icon="simple"` or `icon="colored"` after `:::file-tree` to switch to simple icons or colored icons. The default is colored icons.

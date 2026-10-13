@@ -11,20 +11,6 @@ The theme provides the capability to embed custom source videos.
 
 This feature is powered by [vuepress-plugin-md-power](../../config/plugins/markdown-power.md).
 
-## Configuration
-
-This feature is disabled by default. You need to enable it in the theme configuration.
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      artPlayer: true, // [!code ++]
-    },
-  })
-})
-```
-
 ## Installation
 
 This feature relies on the `artplayer` player implementation. The theme does not include this dependency
@@ -72,6 +58,23 @@ npm i mpegts.js
 
 :::
 
+## Configuration
+
+This feature is disabled by default. You need to enable it in the theme configuration.
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      artPlayer: true, // [!code ++]
+    },
+  }),
+})
+```
+
 ## Markdown Syntax
 
 ```md
@@ -84,19 +87,18 @@ With configuration options:
 @[artPlayer muted autoplay loop width="100%" height="400px" ratio="16:9"](src)
 ```
 
-- `src`: Video source URL
-
 **Parameter Description:**
 
-- `width`: Video width
-- `height`: Video height
-- `ratio`: Video aspect ratio, defaults to `16:9`
-- `type`: Video format, automatically parsed from the video URL by default
-- `autoplay`: Whether to enable autoplay
-- `muted`: Whether to mute, defaults to `true` when autoplay is enabled
-- `volume`: Volume level, range from `0 - 1`
-- `poster`: Video poster image URL
-- `auto-mini`: Automatically enters mini-player mode when the player scrolls out of the browser viewport
+- `src`: `string`, video source URL
+- `width`: `string`, video width, defaults to `100%`
+- `height`: `string`, video height, auto by default
+- `ratio`: `string`, video aspect ratio, defaults to `16:9`
+- `type`: `string`, video format, parsed from the video URL by default
+- `autoplay`: `boolean`, whether to enable autoplay, defaults to `false`
+- `muted`: `boolean`, whether to mute, defaults to follow `autoplay` (`true` when autoplay is enabled)
+- `volume`: `number`, volume level, range from `0 - 1`, defaults to `0.75`
+- `poster`: `string`, video poster image URL
+- `auto-mini`: `boolean`, automatically enters mini-player mode when the player scrolls out of the browser viewport, defaults to `false`
 
 ## Global Component
 
@@ -104,13 +106,33 @@ The theme provides a global component `<ArtPlayer />` to support more flexible a
 
 ### Props
 
-| Field | Type | Description |
-| -- | -- | -- |
-| src | `string` | Required, video source URL |
-| type | `string` | Optional, video format, parsed from `src` by default |
-| width | `string` | Optional, width, defaults to `100%` |
-| height | `string` | Optional, height |
-| ratio | `string` | Optional, aspect ratio, defaults to `16:9` |
+:::: field-group
+::: field src
+@type `string`
+@required
+Video source URL
+:::
+::: field type
+@type `string`
+@default undefined
+Video format. Inferred from the extension of `src` when not set
+:::
+::: field width
+@type `string`
+@default `100%`
+Width
+:::
+::: field height
+@type `string`
+@default undefined
+Height. Treated as auto when not specified
+:::
+::: field ratio
+@type `string`
+@default `16:9`
+Aspect ratio
+:::
+::::
 
 For more `Props`, please refer to the
 [artPlayer documentation](https://artplayer.org/document/start/option.html). The theme supports all available options.

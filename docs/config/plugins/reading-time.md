@@ -8,7 +8,7 @@ permalink: /config/plugins/reading-time/
 
 为每个页面生成字数统计与预计阅读时间。
 
-关联插件： [@vuepress/plugin-reading-time](https://ecosystem.vuejs.press/zh/plugins/search/docsearch.html)
+关联插件： [@vuepress/plugin-reading-time](https://ecosystem.vuejs.press/zh/plugins/development/reading-time.html)
 
 默认配置：
 

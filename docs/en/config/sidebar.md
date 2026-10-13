@@ -99,8 +99,8 @@ export default defineUserConfig({
     // Global sidebar configuration // [!code hl:7]
     sidebar: {
       '/config/': [ // Matches /config/ path
-        { text: 'Sidebar Configuration', link: 'sidebar-1' },
-        { text: 'Sidebar Configuration', link: 'sidebar-2' },
+        { text: 'Theme Configuration', link: 'theme' },
+        { text: 'Locales Configuration', link: 'locales' },
       ]
     }
   })
@@ -116,8 +116,8 @@ export default defineThemeConfig({
   // Define global sidebar in independent config file // [!code hl:7]
   sidebar: {
     '/config/': [
-      { text: 'Sidebar Configuration', link: 'sidebar-1' },
-      { text: 'Sidebar Configuration', link: 'sidebar-2' },
+      { text: 'Theme Configuration', link: 'theme' },
+      { text: 'Locales Configuration', link: 'locales' },
     ]
   }
 })

@@ -45,16 +45,51 @@ export default defineUserConfig({
 @[bilibili p1 autoplay time="0" width="100%" height="400px" ratio="16:9"](bvid aid cid)
 ```
 
-**选项说明：**
+选项说明：
 
-- bvid: 视频 BV ID
-- aid: 视频 AID
-- cid: 视频 CID
-- autoplay: 是否自动播放
-- time: 视频开始播放时间点，单位为秒， 也可以使用 `mm:ss` 或 `hh:mm:ss` 格式
-- width: 视频宽度
-- height: 视频高度
-- ratio: 视频比例，默认 `16:9`
+:::: field-group
+::: field bvid
+@type `string`
+视频 BV ID，以 `BV` 开头
+:::
+::: field aid
+@type `string`
+视频 AID。与 `cid` 配合使用时可省略 `bvid`
+:::
+::: field cid
+@type `string`
+视频 CID
+:::
+::: field p1
+@type `string`
+分 P 标记，裸写即可（如 `@[bilibili p1](…)`），支持 `p1` / `p2` / …
+:::
+::: field autoplay
+@type `boolean`
+@default `false`
+是否自动播放
+:::
+::: field time
+@type `number | string`
+@default undefined
+视频开始播放时间点，单位为秒，也可以使用 `mm:ss` 或 `hh:mm:ss` 格式
+:::
+::: field width
+@type `string`
+@default `100%`
+视频宽度
+:::
+::: field height
+@type `string`
+@default undefined
+视频高度。未指定时按自动高度处理
+:::
+::: field ratio
+@type `string`
+@default `16:9`
+视频比例
+:::
+::::
 
 对于分P的视频，可以省略传入 `bvid`，但需要传入 `aid` 和 `cid`
 

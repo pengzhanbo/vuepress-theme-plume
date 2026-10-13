@@ -1,7 +1,7 @@
 ---
 title: mermaid
-createTime: 2024/03/16 19:34:16
 icon: file-icons:mermaid
+createTime: 2024/03/16 19:34:16
 permalink: /guide/chart/mermaid/
 ---
 
@@ -52,25 +52,38 @@ export default defineUserConfig({
 ```
 ````
 
-除了使用 mermaid 代码块，你也可以直接使用以下代码块：
+除了使用 mermaid 代码块，你也可以直接使用以下代码块别名：
 
-- class: `classDiagram`
+- agentflow: `agentflow-beta`
+- architecture: `architecture-beta`
+- block: `block`
 - c4c: `C4Context`
+- class: `classDiagram`
 - er: `erDiagram`
 - gantt: `gantt`
 - git-graph: `gitGraph`
+- ishikawa: `ishikawa-beta`
 - journey: `journey`
+- kanban: `kanban`
 - mindmap: `mindmap`
+- packet: `packet`
 - pie: `pie`
 - quadrant: `quadrantChart`
+- radar: `radar-beta`
 - requirement: `requirementDiagram`
-- sankey: `sankey-beta`
+- sankey: `sankey`
 - sequence: `sequenceDiagram`
 - state: `stateDiagram-v2`
 - timeline: `timeline`
-- xy: `xychart-beta`
+- treemap: `treemap-beta`
+- treeview: `treeView-beta`
+- usecase: `usecase-beta`
+- venn: `venn-beta`
+- wardley: `wardley-beta`
+- xy: `xychart`
 
-你不需要再声明图表类型，也不需要缩进图表代码。
+上表为 [@vuepress/plugin-markdown-chart](https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-chart/mermaid.html)
+当前版本映射的全部代码块别名（共 27 个）。你不需要再声明图表类型，也不需要缩进图表代码。
 
 当图表支持设置标题时，你可以直接在代码块信息后添加标题:
 
@@ -202,7 +215,7 @@ title What Voldemort doesn't have?
 **输入：**
 
 :::: details 查看代码
-<!-- @include: ../../snippet/mermaid-8.snippet.md-->
+<!-- @include: ../../snippet/mermaid-8.snippet.md -->
 ::::
 
 **输出：**

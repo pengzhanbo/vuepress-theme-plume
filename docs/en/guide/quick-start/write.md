@@ -158,7 +158,7 @@ The theme automatically generates category pages or sidebars based on the direct
 ### File Naming Convention
 
 File naming follows the same rules as the [Directory Naming Convention](#directory-naming-convention),
-providing sorting basis for the [auto-generated sidebar](../../config/collections.md#auto-generated-sidebar) in the notes feature.
+providing the sorting basis for the [auto sidebar generation](../../config/collections.md#auto-sidebar-generation) in collections.
 
 ## Start Writing
 

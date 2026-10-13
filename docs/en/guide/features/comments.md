@@ -7,7 +7,7 @@ permalink: /en/guide/features/comments/
 
 ## Overview
 
-Article comments are powered by [@vuepress/plugin-comment](https://ecosystem.vuejs.press/zh/plugins/blog/comment/).
+Article comments are powered by [@vuepress/plugin-comment](https://ecosystem.vuejs.press/plugins/blog/comment/).
 
 The theme has built-in plugin support, so you can use it without reinstalling.
 
@@ -20,29 +20,29 @@ import { plumeTheme } from 'vuepress-theme-plume'
 export default defineUserConfig({
   theme: plumeTheme({
     comment: {
-      // Service provider
+      // Comment service
       provider: '', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
       // Whether comments are enabled by default
       comment: true,
 
-      // Other configurations based on the service provider
+      // Other configurations based on the comment service
       // ...
     }
   })
 })
 ```
 
-### Service Providers
+### Comment Services
 
-[@vuepress/plugin-comment](https://ecosystem.vuejs.press/zh/plugins/blog/comment/) supports various
-comment service providers such as `"Artalk" | "Giscus" | "Twikoo" | "Waline"`.
+[@vuepress/plugin-comment](https://ecosystem.vuejs.press/plugins/blog/comment/) supports various
+comment services such as `"Artalk" | "Giscus" | "Twikoo" | "Waline"`.
 
 You can configure based on your requirements.
 
-- `Giscus` is a comment system based on GitHub Discussions, easy to set up. [View documentation](https://ecosystem.vuejs.press/zh/plugins/blog/comment/giscus/)
-- `Waline` is a comment system that requires a backend, offering higher security. [View documentation](https://ecosystem.vuejs.press/zh/plugins/blog/comment/waline/)
-- `Twikoo` is a concise, secure, free static website comment system based on Tencent Cloud Base. [View documentation](https://ecosystem.vuejs.press/zh/plugins/blog/comment/twikoo/)
-- `Artalk` is a concise self-hosted comment system that you can easily deploy on your server and embed in frontend pages. [View documentation](https://ecosystem.vuejs.press/zh/plugins/blog/comment/artalk/)
+- `Giscus` is a comment service based on GitHub Discussions, easy to set up. [View documentation](https://ecosystem.vuejs.press/plugins/blog/comment/giscus/)
+- `Waline` is a comment service that requires a backend, offering higher security. [View documentation](https://ecosystem.vuejs.press/plugins/blog/comment/waline/)
+- `Twikoo` is a concise, secure, free static website comment service based on Tencent Cloud Base. [View documentation](https://ecosystem.vuejs.press/plugins/blog/comment/twikoo/)
+- `Artalk` is a concise self-hosted comment service that you can easily deploy on your server and embed in frontend pages. [View documentation](https://ecosystem.vuejs.press/plugins/blog/comment/artalk/)
 
 ::: tip Recommended Comment Services
 
@@ -51,15 +51,15 @@ You can configure based on your requirements.
 :::
 
 ::: note
-Examples are forked from [@vuepress/plugin-comment](https://ecosystem.vuejs.press/zh/plugins/blog/comment/),
+Examples are forked from [@vuepress/plugin-comment](https://ecosystem.vuejs.press/plugins/blog/comment/),
 following the [MIT](https://github.com/vuepress/ecosystem/blob/main/LICENSE) license.
 :::
 
-### Provider limitations at a glance
+### Comment Service Limitations at a Glance
 
-The constraints differ significantly between providers — check this table before choosing:
+The limitations differ significantly between comment services — check this table before choosing:
 
-| Provider | Backend required | Storage | Main limitations |
+| Comment Service | Backend required | Storage | Main limitations |
 | --- | --- | --- | --- |
 | **Giscus** | No | GitHub Discussions | Requires GitHub account login; may be unstable in mainland China; **content is publicly visible** |
 | **Waline** | Yes | Vercel (or self-hosted) | You must deploy and keep the server running; anonymous comments need configuration |
@@ -71,7 +71,7 @@ Comments are **disabled by default** and must be turned on via the `comment` fie
 
 - `comment` is a **global-only** field — placing it inside `locales` is **silently ignored** (see
   [Theme Configuration > locales](../../config/theme.md#locales))
-- Some providers (Waline, Artalk) have client scripts that are **not part of the theme's default
+- Some comment services (Waline, Artalk) have client scripts that are **not part of the theme's default
   dependencies** and must be installed separately per their documentation
 - Comment behaviour on encrypted pages is undefined; do not rely on comments in encrypted articles
 :::
@@ -127,7 +127,7 @@ using built-in theme keywords or custom CSS links starting with `https://`.
 
 ## Waline
 
-A secure comment system with a backend.
+A secure comment service with a backend.
 
 ### Installation
 
@@ -251,7 +251,7 @@ with the repository name being the project name you entered earlier.
 
 4. Wait for it to take effect. You can now access it via your own domain :tada:
 
-   - Comment system: example.your-domain.com
+   - Comment service: example.your-domain.com
    - Comment management: example.your-domain.com/ui
 
    ![success](https://ecosystem.vuejs.press/images/comment/vercel-9.png)
@@ -260,16 +260,15 @@ with the repository name being the project name you entered earlier.
 
 ### Client
 
-#### Using the Plugin
+#### Configuration
 
 Set `provider: "Waline"` in the plugin options, and set the server address `serverURL` to the value obtained in the previous step.
 
-At this point, place the `<CommentService>` component in a suitable location on your website
-(usually at the bottom of the page) to use the Waline comment functionality.
+After configuration, the theme will **automatically render** the comment component at the bottom of article pages — no need to manually import or place `<CommentService>`.
 
 ::: tip
 
-You can also pass other options supported by Waline (except `el`). For details, see [Waline Configuration](https://ecosystem.vuejs.press/zh/plugins/blog/comment/waline/config.html).
+You can also pass other options supported by Waline (except `el`). For details, see [Waline Configuration](https://ecosystem.vuejs.press/plugins/blog/comment/waline/config.html).
 
 :::
 
@@ -284,3 +283,49 @@ You can also pass other options supported by Waline (except `el`). For details, 
 3. Users can also register accounts through the comment box. After logging in, they will be redirected to their own profile page.
 
 :::
+
+## Twikoo
+
+Twikoo is a concise, secure, free static website comment service based on Tencent Cloud Base.
+
+The minimal usable configuration requires setting `envId` (the Tencent Cloud environment ID; if deployed on Vercel, it is the deployment address):
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    comment: {
+      provider: 'Twikoo',
+      envId: 'your-env-id', // [!code highlight]
+    },
+  }),
+})
+```
+
+For deployment methods and the full configuration, see the
+[Twikoo documentation](https://ecosystem.vuejs.press/plugins/blog/comment/twikoo/).
+
+## Artalk
+
+Artalk is a concise self-hosted comment service that you can easily deploy on your server and embed in frontend pages.
+
+The minimal usable configuration requires setting `server` (the Artalk server address):
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    comment: {
+      provider: 'Artalk',
+      server: 'https://artalk.example.com', // [!code highlight]
+    },
+  }),
+})
+```
+
+For deployment methods and the full configuration, see the
+[Artalk documentation](https://ecosystem.vuejs.press/plugins/blog/comment/artalk/).

@@ -1,7 +1,7 @@
 ---
 title: 步骤
-createTime: 2024/09/30 14:40:30
 icon: streamline:steps-number
+createTime: 2024/09/30 14:40:30
 permalink: /guide/markdown/steps/
 ---
 
@@ -12,6 +12,12 @@ permalink: /guide/markdown/steps/
 ## 语法
 
 在 `steps` 容器内，使用有序列表 （或无序列表） 来表示步骤。你可以在容器内使用任意 markdown 语法。
+
+::: tip 嵌套其它容器时需要增加外层冒号数量
+容器的结束标记不校验容器名，只判断「行首冒号数量是否不少于起始数量」。
+因此当步骤内容中需要嵌套 `::: tip` 之类的容器时，外层必须写成 `:::: steps`，
+否则内层容器的结束标记会提前闭合外层容器。
+:::
 
 ````md
 ::: steps

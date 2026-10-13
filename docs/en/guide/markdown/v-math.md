@@ -9,13 +9,11 @@ permalink: /en/guide/markdown/math/
 
 The theme has built-in support for mathematical formulas.
 
-This feature is powered by [@vuepress/plugin-markdown-math](https://ecosystem.vuejs.press/zh/plugins/markdown/markdown-math.html).
+This feature is powered by [@vuepress/plugin-markdown-math](https://ecosystem.vuejs.press/plugins/markdown/markdown-math.html).
 You can choose to render mathematical formulas in markdown using the following methods:
 
 - `katex` (default)
 - `mathjax`
-
-## Usage
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({
@@ -45,6 +43,25 @@ npm i @mathjax/src
 ### Inline Syntax
 
 Use `$` to wrap mathematical formulas *(i.e., write the mathematical formula between two `$` symbols)*
+
+::: warning This page's examples require the demo syntax to be enabled first
+The `::: demo` syntax is **disabled by default**. When it is not enabled, the `md` code blocks
+below are rendered as plain code blocks and no rendered output is shown.
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    markdown: {
+      demo: true, // [!code ++]
+    },
+  }),
+})
+```
+
+:::
 
 ::: demo markdown title="Inline Mode" expanded
 

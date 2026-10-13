@@ -33,10 +33,10 @@ tags:
 ::: file-tree
 
 - docs
-  - typescript     # TypeScript 学习笔记
+  - typescript     # TypeScript 文档
     - basic.md
     - types.md
-  - rust           # Rust 编程笔记
+  - rust           # Rust 文档
     - tuple.md
     - struct.md
   - README.md      # 站点首页
@@ -110,14 +110,14 @@ export default defineUserConfig({
         type: 'doc',
         dir: 'typescript',
         linkPrefix: '/typescript/',
-        title: 'TypeScript 笔记',
+        title: 'TypeScript 文档',
         sidebar: ['basic', 'types'],
       },
       {
         type: 'doc',
         dir: 'rust',
         linkPrefix: '/rust/',
-        title: 'Rust 笔记',
+        title: 'Rust 文档',
         sidebar: ['tuple', 'struct'],
       }
     ],
@@ -136,14 +136,14 @@ export default defineThemeConfig({
       type: 'doc',
       dir: 'typescript',
       linkPrefix: '/typescript/',
-      title: 'TypeScript 笔记',
+      title: 'TypeScript 文档',
       sidebar: ['basic', 'types'],
     },
     {
       type: 'doc',
       dir: 'rust',
       linkPrefix: '/rust/',
-      title: 'Rust 笔记',
+      title: 'Rust 文档',
       sidebar: ['tuple', 'struct'],
     }
   ],
@@ -153,7 +153,7 @@ export default defineThemeConfig({
 :::
 
 ::: tip 配置时机建议
-在创建文档文件前完成笔记配置。主题的 [auto-frontmatter](../../config/theme.md#autofrontmatter) 功能会根据配置自动生成永久链接和侧边栏结构。
+在创建文档文件前完成集合（collection）配置。主题的 [auto-frontmatter](../../config/theme.md#autofrontmatter) 功能会根据配置自动生成永久链接和侧边栏结构。
 :::
 
 ## 进阶配置管理
@@ -173,7 +173,7 @@ import { defineCollection, defineCollections } from 'vuepress-theme-plume'
 const typescript = defineCollection({
   type: 'doc',
   dir: 'typescript',
-  title: 'TypeScript 笔记',
+  title: 'TypeScript 文档',
   linkPrefix: '/typescript/',
   sidebar: [
     'guide/intro.md',
@@ -274,7 +274,7 @@ export default defineCollection({
   type: 'doc',
   dir: 'typescript',
   link: '/typescript/',
-  title: 'TypeScript 笔记',
+  title: 'TypeScript 文档',
   sidebar: [
     'guide/intro.md',
     'guide/getting-start.md',
@@ -289,7 +289,7 @@ export default defineCollection({
 
 ### 文件结构示例
 
-假设 TypeScript 笔记包含以下结构：
+假设 TypeScript 文档包含以下结构：
 
 ::: file-tree
 
@@ -523,7 +523,7 @@ const sidebarItem: SidebarItem = {
 }
 ```
 
-::: important 本地资源路径
+:::: important 本地资源路径
 本地图片路径应从 `/` 开始，对应 `.vuepress/public/` 目录：
 
 ::: file-tree
@@ -535,6 +535,8 @@ const sidebarItem: SidebarItem = {
         - guide.png
         - info.png
 :::
+
+::::
 
 ### 徽章功能 <Badge text="v1.0.0-rc.143 +" />
 

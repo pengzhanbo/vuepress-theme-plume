@@ -224,11 +224,11 @@ This means that for page links starting with `/blog/` or `/article/`, this link 
 
 Supports icons from sources configured via [markdown -> icon](../guide/features/icon.md).
 
-- When `markdown.icon.provide` is `iconify`, [iconify](https://iconify.design/) icons are supported
-- When `markdown.icon.provide` is `iconfont`, [iconfont](https://www.iconfont.cn/) icons are supported
-- When `markdown.icon.provide` is `fontawesome`, [fontawesome](https://fontawesome.com/) icons are supported
+- When `markdown.icon.provider` is `iconify`, [iconify](https://iconify.design/) icons are supported
+- When `markdown.icon.provider` is `iconfont`, [iconfont](https://www.iconfont.cn/) icons are supported
+- When `markdown.icon.provider` is `fontawesome`, [fontawesome](https://fontawesome.com/) icons are supported
 
-When `markdown.icon.provide` is not `iconify`, you can prefix the icon name with `iconify` to force the
+When `markdown.icon.provider` is not `iconify`, you can prefix the icon name with `iconify` to force the
 use of [iconify](https://iconify.design/) icons.
 
 ```ts

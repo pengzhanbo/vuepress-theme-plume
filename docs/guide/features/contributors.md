@@ -130,7 +130,7 @@ export default defineUserConfig({
 
 ::: code-tabs
 
-@tab Github
+@tab GitHub
 
 ```ts
 import { defineUserConfig } from 'vuepress'
@@ -151,7 +151,7 @@ export default defineUserConfig({
 })
 ```
 
-@tab Gitlab
+@tab GitLab
 
 ```ts
 import { defineUserConfig } from 'vuepress'
@@ -296,11 +296,12 @@ export default defineUserConfig({
 
 **在构建站点时，你应该确保所有的提交记录是可以获取到的。**
 
-举例来说， CI 工作流通常会在克隆你的仓库时添加 `--depth 1` 参数来避免拉取全部的提交记录，因此你需要禁用这个功能，以便该插件在 CI 可以中正常使用。
+举例来说， CI 工作流通常会在克隆你的仓库时添加 `--depth 1` 参数来避免拉取全部的提交记录。
+这种情况下，你需要改为拉取完整的提交记录（去掉 `--depth 1`），该插件才能在 CI 中正常使用。
 
 类似于 `github actions` 、`Netlify` 、 `Vercel` 等服务，默认是不会拉取全部的提交记录的。
 
-在 `github actions` 中，可以通过添加 `--depth 0` 参数来使得 `github actions` 可以正确获取到所有的提交记录。
+在 `github actions` 中，应为 `actions/checkout` 配置 `fetch-depth: 0`，即拉取完整提交记录。
 
 ``` yaml title=".github/workflows/deploy.yml"
 jobs:
@@ -312,8 +313,8 @@ jobs:
           fetch-depth: 0
 ```
 
-在 `Netlify` 、 `Vercel` 等服务中，处理方法则会相对复杂一些。这时候您可以先在 `github actions` 完成构建后
-输出将产物输出到另一个单独的分支，然后在 `Netlify` 或者 `Vercel` 中直接使用该分支进行部署。
+在 `Netlify` 、 `Vercel` 等服务中，处理方法则会相对复杂一些。这时候您可以先在 `github actions` 完成构建，
+将构建产物输出到另一个单独的分支，然后在 `Netlify` 或者 `Vercel` 中直接使用该分支进行部署。
 
 ::: info
 通过主题的 `cli` 工具创建的项目，在选择部署方式为 `github action` 时，构建产物会输出到 `gh_pages` 分支中，

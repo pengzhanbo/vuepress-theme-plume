@@ -53,9 +53,16 @@ interface IconOptions {
 :::: field-group
 
 ::: field name
-@type `string`
-@default `''`
-图标名称，当 `markdown.icon.prefix` 有值时，`name` 中的前缀可以省略
+@type `string | { svg: string }`
+@required
+图标名称。支持 iconify 图标名、图标链接（`https://…` 或 `/…`），以及内联 SVG 对象 `{ svg: '<svg>…</svg>' }`。
+当 `markdown.icon.prefix` 有值时，`name` 中的前缀可以省略。
+:::
+
+::: field provider
+@type `'iconify' | 'iconfont' | 'fontawesome'`
+@default 由 `markdown.icon.provider` 决定（默认 `'iconify'`）
+图标提供商。也可以在 `name` 中使用 `iconify` / `iconfont` / `fontawesome` 加空格前缀强制指定。
 :::
 
 ::: field color
@@ -65,9 +72,15 @@ interface IconOptions {
 :::
 
 ::: field size
-@type `string`
+@type `string | number`
 @default `1em`
-图标大小
+图标大小。传入数字时按 `px` 处理，也支持 `20x20` 形式分别指定宽高。
+:::
+
+::: field extra
+@type `string`
+@default `undefined`
+附加的 CSS 类名。fontawesome 图标会自动为不带 `fa-` 前缀的类名补上前缀。
 :::
 
 ::::

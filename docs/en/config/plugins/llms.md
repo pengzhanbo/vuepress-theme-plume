@@ -52,6 +52,9 @@ production builds, i.e., when executing the `vuepress build` command, and output
 
 ## Configuration
 
+- **Type:** `boolean | LlmsPluginOptions`
+- **Default:** `false`
+
 This feature is not enabled by default in the theme. You can enable it through the `llmstxt` configuration option:
 
 ```ts title=".vuepress/config.ts"
@@ -101,6 +104,15 @@ export default defineClientConfig({
 ```
 
 You can experience this component's functionality to the right of the current page's title.
+
+::: tip The component's text comes from the theme locale configuration
+All the text used by `<PageContextMenu />` is taken from the theme's locale configuration, and the theme already includes built-in multilingual defaults:
+
+`pageContextMenuLabel`, `copyPageText`, `copiedPageText`, `copingPageText`, `copyTagline`,
+`viewMarkdown`, `viewMarkdownTagline`, `askAIText`, `askAITagline`, `askAIMessage`.
+
+To customize them or add other languages, please refer to [Locale Configuration](../locales.md).
+:::
 
 ::: important
 This component relies entirely on the `@vuepress/plugin-llms` plugin and can only be used when you have enabled this plugin's functionality.

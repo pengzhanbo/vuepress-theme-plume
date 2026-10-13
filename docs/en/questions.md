@@ -34,6 +34,7 @@ You can update the theme using the `vp-update` command.
 
 `vp-update` is a CLI tool maintained by the VuePress team. It helps you check for the latest versions of
 VuePress-related themes, plugins, etc., within your project and automatically installs the dependencies for you.
+It requires no prior installation; you can run it directly via `npx vp-update`.
 
 Copy and run the following command in your project:
 
@@ -53,7 +54,7 @@ Upgrade to 1.0.0-rc.165 and later versions,, the theme **automatically migrates*
 A few cases still require your attention. The most common one: **you have configured `collections`
 while keeping your legacy `blog` / `notes`** — the legacy config is then **silently ignored**.
 
-See the [Migration Guide](./guide/migration.md) for the complete migration rules, a manual migration
+See the [Migration Guide](./guide/quick-start/migration.md) for the complete migration rules, a manual migration
 example, and a verification checklist.
 
 ## Why don't new features take effect after updating the theme version?

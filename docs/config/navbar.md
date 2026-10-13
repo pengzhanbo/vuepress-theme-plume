@@ -225,11 +225,11 @@ export default defineUserConfig({
 
 支持通过 [markdown -> icon](../guide/features/icon.md) 配置的来源的图标。
 
-- 当 `markdown.icon.provide` 为 `iconify` 时，支持 [iconify](https://iconify.design/) 图标
-- 当 `markdown.icon.provide` 为 `iconfont` 时，支持 [iconfont](https://www.iconfont.cn/) 图标
-- 当 `markdown.icon.provide` 为 `fontawesome` 时，支持 [fontawesome](https://fontawesome.com/) 图标
+- 当 `markdown.icon.provider` 为 `iconify` 时，支持 [iconify](https://iconify.design/) 图标
+- 当 `markdown.icon.provider` 为 `iconfont` 时，支持 [iconfont](https://www.iconfont.cn/) 图标
+- 当 `markdown.icon.provider` 为 `fontawesome` 时，支持 [fontawesome](https://fontawesome.com/) 图标
 
-`markdown.icon.provide` 为非 `iconify` 值时，可以在图标名称前加上 `iconify` 前缀，强制使用 [iconify](https://iconify.design/) 图标。
+`markdown.icon.provider` 为非 `iconify` 值时，可以在图标名称前加上 `iconify` 前缀，强制使用 [iconify](https://iconify.design/) 图标。
 
 ```ts
 const item = { text: '首页', link: '/', icon: 'iconify carbon:home' }

@@ -1,7 +1,7 @@
 ---
 title: Plot Text
-createTime: 2025/10/08 14:45:35
 icon: weui:eyes-off-outlined
+createTime: 2025/10/08 14:45:35
 permalink: /en/guide/markdown/plot/
 ---
 
@@ -22,19 +22,32 @@ mouse over the content to see what's hidden.
 
 ## Configuration
 
-This feature is disabled by default. You need to enable it in the `theme` configuration.
+This feature is **enabled by default** and requires no additional configuration.
+
+To change the default trigger method or mask effect, you can pass options through `markdown.plot`:
 
 ```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
 export default defineUserConfig({
   theme: plumeTheme({
     markdown: {
-      plot: true, // [!code ++]
-    }
-  })
+      // Change the default trigger method and mask effect
+      plot: {
+        trigger: 'click',
+        effect: 'blur',
+      },
+    },
+  }),
 })
 ```
 
-`markdownPower.plot` accepts either `boolean | PlotOptions` type, which controls the default behavior of this feature.
+`markdown.plot` has the type `boolean | PlotOptions`:
+
+- Passing `false`: Disables the `!!...!!` syntax
+- Passing an object: Sets the default behavior of this syntax
+- Setting `plugins.markdownPower` to `false`: Disables the markdown-power plugin entirely
 
 ```ts
 interface PlotOptions {

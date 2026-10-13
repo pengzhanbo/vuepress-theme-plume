@@ -52,15 +52,19 @@ Add additional styles or override default styles here:
 
 You can also use it to override the predefined CSS variables of the default theme.
 
-Below are some predefined variables. For the complete list, please refer to [vars.css](https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/theme/src/client/styles/vars.css).
+::: warning The following are only examples of variable names and formatting styles
+
+These values may change with each theme version. **For the actual values, please refer to [vars.css](https://github.com/pengzhanbo/vuepress-theme-plume/blob/main/theme/src/client/styles/vars.css)**.
+The brand colors are derived from the `--vp-c-turquoise-*` variables, and their values differ between light and dark modes.
+:::
 
 ```scss
 :root {
-  /** Theme Colors */
-  --vp-c-brand-1: #5086a1;
-  --vp-c-brand-2: #6aa1b7;
-  --vp-c-brand-3: #8cccd5;
-  --vp-c-brand-soft: rgba(131, 208, 218, 0.314);
+  /** Theme Colors (derived from --vp-c-turquoise-*) */
+  --vp-c-brand-1: var(--vp-c-turquoise-1);
+  --vp-c-brand-2: var(--vp-c-turquoise-2);
+  --vp-c-brand-3: var(--vp-c-turquoise-3);
+  --vp-c-brand-soft: var(--vp-c-turquoise-soft);
 
   /** Background Colors */
   --vp-c-bg: #ffffff;
@@ -69,25 +73,25 @@ Below are some predefined variables. For the complete list, please refer to [var
   --vp-c-bg-soft: #f6f6f7;
 
   /** Text Colors */
-  --vp-c-text-1: rgba(60, 60, 67);
-  --vp-c-text-2: rgba(60, 60, 67, 0.78);
-  --vp-c-text-3: rgba(60, 60, 67, 0.56);
+  --vp-c-text-1: rgb(60 60 67);
+  --vp-c-text-2: rgb(60 60 67 / 0.78);
+  --vp-c-text-3: rgb(60 60 67 / 0.72);
 }
 
 [data-theme="dark"] {
-  --vp-c-brand-1: #8cccd5;
-  --vp-c-brand-2: #6aa1b7;
-  --vp-c-brand-3: #5086a1;
-  --vp-c-brand-soft: rgba(131, 208, 218, 0.314);
+  --vp-c-brand-1: var(--vp-c-turquoise-1);
+  --vp-c-brand-2: var(--vp-c-turquoise-2);
+  --vp-c-brand-3: var(--vp-c-turquoise-3);
+  --vp-c-brand-soft: var(--vp-c-turquoise-soft);
 
   --vp-c-bg: #1b1b1f;
   --vp-c-bg-alt: #161618;
   --vp-c-bg-elv: #202127;
   --vp-c-bg-soft: #202127;
 
-  --vp-c-text-1: rgba(255, 255, 245, 0.86);
-  --vp-c-text-2: rgba(235, 235, 245, 0.6);
-  --vp-c-text-3: rgba(235, 235, 245, 0.38);
+  --vp-c-text-1: rgb(255 255 245 / 0.86);
+  --vp-c-text-2: rgb(235 235 245 / 0.6);
+  --vp-c-text-3: rgb(235 235 245 / 0.55);
 }
 ```
 

@@ -57,7 +57,7 @@ text
 ::: warning 过长的文本生成的二维码可能会被截断，且可能无法扫描
 :::
 
-## 属性
+## Props
 
 :::: field-group
 ::: field card
@@ -67,6 +67,7 @@ text
 :::
 ::: field logo
 @type `string`
+
 二维码 logo 图片路径。显示于二维码中心。
 
 仅支持绝对路径。
@@ -78,6 +79,7 @@ logo 相对于二维码大小比例
 :::
 ::: field title
 @type `string`
+
 二维码标题。
 :::
 ::: field align
@@ -87,8 +89,8 @@ logo 相对于二维码大小比例
 :::
 ::: field width
 @type `number`
-@default `300`
-二维码宽度。
+@default `128px`（视口 ≥768px 时为 `150px`）
+二维码显示宽度。未指定时由样式表兜底，与内部 canvas 采样宽度（`300`）无关。
 :::
 ::::
 
@@ -126,6 +128,7 @@ logo 相对于二维码大小比例
 :::
 ::: field version
 @type `number`
+@default undefined
 **二维码版本**
 
 若未指定，将自动计算更合适的值。取值范围 `1-40`。
@@ -136,10 +139,12 @@ logo 相对于二维码大小比例
 缩放因子。值为 1 表示每个模块（黑点）对应 1 像素。
 :::
 ::: field mask
-@type `1 | 2 | 3 | 4 | 5 | 6 | 7`
+@type `0 | 1 | 2 | 3 | 4 | 5 | 6 | 7`
+
 用于遮蔽符号的掩码模式。
 
 若未指定，将自动计算更合适的值。
+:::
 ::::
 
 ## 示例

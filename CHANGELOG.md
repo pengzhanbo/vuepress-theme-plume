@@ -1,3 +1,29 @@
+# [1.0.0-rc.214](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.213...v1.0.0-rc.214) (2026-10-14)
+
+### Bug Fixes
+
+* **cli:** fix `init ./` generates a non-runnable script ([#1058](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1058)) ([97f118f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/97f118fa511b5d8937d553abdc6f920b886fcb4f))
+* **plugin-md-power:** escape chat container title ([bdd1bd3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/bdd1bd3f051c918bc236c3e60b21f4301a9be841))
+* **plugin-md-power:** fix stack overflow error when encrypting large content ([#1061](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1061)) ([1d26902](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1d269023512a7c4bc65d99124e167ef49a45d32d))
+* **plugin-md-power:** optimize QRCode text rendering ([9a48d6e](https://github.com/pengzhanbo/vuepress-theme-plume/commit/9a48d6e141917e7804058004d83ab28ae122ed7a))
+* **plugin-search:** fix focus loss after closing the search ([#1062](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1062)) ([c37cc06](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c37cc06cb44c2441815729512b665cd918c268c4))
+* **plugin-search:** fix search options merge order ([74a8105](https://github.com/pengzhanbo/vuepress-theme-plume/commit/74a8105aa04454f213aed6e24cc9f9a049016c52))
+* **theme:** degrade Hero animation on low-end devices and reduced motion ([#1063](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1063)) ([a3ae6c7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a3ae6c72d7530a7d0d6fd91f990313abcb59a19e))
+* **theme:** fix legacy `blog/notes` compatibility migration ([#1059](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1059)) ([16856bc](https://github.com/pengzhanbo/vuepress-theme-plume/commit/16856bcb0e39050593b9fc3cddf7378453bed29c))
+* **theme:** fix root dir auto sidebar truncation error ([54342b7](https://github.com/pengzhanbo/vuepress-theme-plume/commit/54342b76ca48b810190c15ada456822b1acc387b))
+* **theme:** fix root dir auto sidebar truncation error ([#1060](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1060)) ([ca2bebe](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ca2bebe497fd6fdcd108c1983f6388bc4cd834ae))
+* **theme:** fix unstable and duplicate sorting in each collection ([#1064](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1064)) ([5384626](https://github.com/pengzhanbo/vuepress-theme-plume/commit/53846261b7340788542a35f3ef73311e1733c0eb))
+
+### Features
+
+* improve a11y ([#1068](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1068)) ([4dc24fe](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4dc24feeaf42ea62c3340dab6c1e8458f3f10abc))
+* improve a11y ([#1070](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1070)) ([4a1c429](https://github.com/pengzhanbo/vuepress-theme-plume/commit/4a1c429a0b52ef0a220ac9a2d5dc043e6ab63072))
+* improve a11y ([#1072](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1072)) ([ce5a87f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/ce5a87ffec802501c1a9c96bee56fff7cbf98400))
+
+### Performance Improvements
+
+* **theme:** cache heading position measurements to optimize scrolling performance ([#1067](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1067)) ([284cd30](https://github.com/pengzhanbo/vuepress-theme-plume/commit/284cd30e7b091248dad450452f3f0db237034040))
+
 # [1.0.0-rc.213](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.212...v1.0.0-rc.213) (2026-10-08)
 
 ### Bug Fixes

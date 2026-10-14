@@ -122,6 +122,7 @@ const showPostsExtract = computed(() => {
       <span class="vpi-posts-ext icon" />
     </button>
     <Transition name="fade-in">
+      <!-- eslint-disable-next-line vue-a11y/no-static-element-interactions -->
       <div
         v-show="open"
         ref="modal"

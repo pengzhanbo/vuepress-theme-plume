@@ -27,8 +27,6 @@ export default config({
   files: ['**/*.vue'],
   rules: {
     'vue/no-v-text-v-html-on-component': 'off',
-    'vue-a11y/click-events-have-key-events': 'off',
-    'vue-a11y/no-static-element-interactions': 'off',
   },
 }, {
   files: ['**/*.md/*.{js,ts}'],

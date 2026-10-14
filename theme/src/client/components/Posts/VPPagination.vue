@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useData } from '../../composables/index.js'
 
 const { page, isFirstPage, isLastPage, pageRange } = defineProps<{
@@ -11,10 +12,12 @@ const { page, isFirstPage, isLastPage, pageRange } = defineProps<{
 const emit = defineEmits<{ change: [value: number] }>()
 
 const { theme } = useData()
+
+const paginationLabel = computed(() => theme.value.paginationLabel || 'Pagination')
 </script>
 
 <template>
-  <div class="vp-pagination">
+  <nav class="vp-pagination" :aria-label="paginationLabel">
     <button
       type="button"
       class="btn prev"
@@ -24,18 +27,19 @@ const { theme } = useData()
       {{ theme.prevPageLabel || 'Prev' }}
     </button>
     <div class="page-range">
-      <button
-        v-for="{ value, more } in pageRange"
-        :key="value"
-        class="btn"
-        :disabled="more"
-        :class="{ more, active: value === page }"
-        :aria-current="value === page ? 'page' : undefined"
-        type="button"
-        @click="() => !more && emit('change', value as number)"
-      >
-        {{ more ? '...' : value }}
-      </button>
+      <template v-for="{ value, more } in pageRange" :key="value">
+        <span v-if="more" class="btn more" aria-hidden="true">…</span>
+        <button
+          v-else
+          class="btn"
+          :class="{ active: value === page }"
+          :aria-current="value === page ? 'page' : undefined"
+          type="button"
+          @click="() => emit('change', value as number)"
+        >
+          {{ value }}
+        </button>
+      </template>
     </div>
     <button
       type="button"
@@ -45,7 +49,7 @@ const { theme } = useData()
     >
       {{ theme.nextPageLabel || 'Next' }}
     </button>
-  </div>
+  </nav>
 </template>
 
 <style scoped>
@@ -77,10 +81,15 @@ const { theme } = useData()
 }
 
 .btn[disabled],
-.btn[disabled]:hover,
-.btn.more {
+.btn[disabled]:hover {
   color: var(--vp-c-gray-1);
   cursor: not-allowed;
+  background-color: transparent;
+}
+
+.btn.more {
+  color: var(--vp-c-gray-1);
+  cursor: default;
   background-color: transparent;
 }
 
@@ -100,7 +109,7 @@ const { theme } = useData()
     font-size: 14px;
   }
 
-  .btn:not(.active, [disabled]):hover {
+  .btn:not(.active, [disabled], .more):hover {
     color: var(--vp-c-brand-1);
   }
 

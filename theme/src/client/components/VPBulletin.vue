@@ -2,6 +2,8 @@
 import { hasGlobalComponent } from '@vuepress/helper/client'
 import { computed, resolveComponent } from 'vue'
 import { useBulletinControl, useData } from '../composables/index.js'
+import { stripHtmlTags } from '../utils/index.js'
+
 import '@vuepress/helper/transition/fade-in-scale-up.css'
 
 const UserBulletin = hasGlobalComponent('Bulletin') ? resolveComponent('Bulletin') : null
@@ -11,6 +13,11 @@ const { theme } = useData()
 const closeLabel = computed(() => theme.value.closeLabel || 'Close')
 
 const { bulletin, showBulletin, enableBulletin, close } = useBulletinControl()
+
+const bulletinLabel = computed(() => {
+  const title = bulletin.value?.title ? stripHtmlTags(bulletin.value.title) : ''
+  return title || theme.value.bulletinLabel || 'Announcement'
+})
 </script>
 
 <template>
@@ -22,6 +29,8 @@ const { bulletin, showBulletin, enableBulletin, close } = useBulletinControl()
         border: bulletin.border ?? true,
         [bulletin.layout ?? 'top-right']: true,
       }"
+      role="region"
+      :aria-label="bulletinLabel"
     >
       <button type="button" class="close" :aria-label="closeLabel" @click="close">
         <span class="vpi-close" aria-hidden="true" />

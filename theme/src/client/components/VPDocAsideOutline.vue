@@ -29,20 +29,17 @@ function handlePrint() {
     <div class="content">
       <div ref="marker" class="outline-marker" />
 
-      <div
-        id="doc-outline-aria-label"
-        aria-level="2"
-        class="outline-title"
-        role="heading"
-      >
-        <span>{{ theme.outlineLabel || 'On this page' }}</span>
+      <div class="outline-header">
+        <h2 id="doc-outline-aria-label" class="outline-title">
+          {{ theme.outlineLabel || 'On this page' }}
+        </h2>
         <button
           type="button"
           class="btn-print"
           :aria-label="printLabel"
           @click="handlePrint"
         >
-          <span class="vpi-print icon" />
+          <span class="vpi-print icon" aria-hidden="true" />
         </button>
       </div>
 
@@ -85,17 +82,22 @@ function handlePrint() {
     opacity var(--vp-t-color);
 }
 
-.outline-title {
+.outline-header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  line-height: 32px;
+}
+
+.outline-title {
+  margin: 0;
   font-size: 14px;
   font-weight: 600;
   line-height: 32px;
   letter-spacing: 0.4px;
 }
 
-.outline-title .btn-print {
+.outline-header .btn-print {
   width: 32px;
   height: 32px;
   padding: 0;

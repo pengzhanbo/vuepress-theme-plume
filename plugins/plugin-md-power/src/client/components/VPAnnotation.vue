@@ -53,7 +53,7 @@ const inset = computed(() => placement.value.split('-')[0])
 
 <template>
   <button
-    v-bind="$attrs" ref="annotation"
+    v-bind="$attrs" ref="annotation" type="button"
     class="vp-annotation ignore-header" :class="{ active, [inset]: true }"
     :aria-label="label" :aria-expanded="active" :aria-controls="active ? popoverId : undefined"
     @click="active = !active"
@@ -109,7 +109,7 @@ const inset = computed(() => placement.value.split('-')[0])
 }
 
 .vp-annotation:where(:hover, .active) .vpi-annotation {
-  color: var(--vp-c-brand-2);
+  color: var(--vp-c-brand-1);
   opacity: 1;
 }
 

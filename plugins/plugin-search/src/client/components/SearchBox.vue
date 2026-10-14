@@ -478,6 +478,7 @@ function selectedClick(e: MouseEvent, p: SearchResult & Result) {
       :aria-label="buttonText"
       class="VPLocalSearchBox"
     >
+      <!-- eslint-disable-next-line vue-a11y/no-static-element-interactions, vue-a11y/click-events-have-key-events -->
       <div class="backdrop" @click="$emit('close')" />
 
       <div class="shell">

@@ -58,7 +58,7 @@ async function onSubmit() {
           :aria-invalid="errorCode === 1"
           :aria-describedby="errorCode === 1 ? errorId : undefined"
           @keyup.enter="onSubmit"
-          @focus="!password && (errorCode = 0)"
+          @focus="errorCode = 0"
           @input="password && (errorCode = 0)"
         >
       </label>

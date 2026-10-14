@@ -20,12 +20,17 @@ const isActiveLink = computed(() => isActive(
   item.activeMatch || resolveRouteFullPath(item.link),
   !!item.activeMatch,
 ))
+
+const ariaCurrent = computed(() =>
+  isActive(page.value.path, resolveRouteFullPath(item.link)) ? 'page' : undefined,
+)
 </script>
 
 <template>
   <div class="vp-menu-link">
     <VPLink
       :class="{ active: isActiveLink }"
+      :aria-current="ariaCurrent"
       :href="item.link"
       :target="item.target"
       :rel="rel || item.rel"

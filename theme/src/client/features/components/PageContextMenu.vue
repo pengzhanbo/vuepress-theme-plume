@@ -165,6 +165,7 @@ const copyPageText = computed(() => {
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue-a11y/no-static-element-interactions -->
   <div v-if="frontmatter.llmstxt !== false && isPageDecrypted" class="vp-page-context-menu" @keydown.escape="onEscape">
     <div class="page-context-button">
       <button type="button" class="page-context-copy" @click="onCopy">

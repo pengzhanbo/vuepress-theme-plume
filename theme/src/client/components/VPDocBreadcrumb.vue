@@ -58,12 +58,8 @@ const { hasBreadcrumb, breadcrumbList } = useBreadcrumb()
 
 .vp-breadcrumb .breadcrumb {
   font-weight: bold;
-  color: var(--vp-c-brand-2);
-  transition: color var(--vp-t-color);
-}
-
-.vp-breadcrumb .breadcrumb:hover {
   color: var(--vp-c-brand-1);
+  transition: color var(--vp-t-color);
 }
 
 .vp-breadcrumb .breadcrumb.current {

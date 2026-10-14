@@ -39,6 +39,7 @@ const { floatingStyles, middlewareData } = useFloating(abbr, tooltip, {
 <template>
   <span
     ref="abbr" class="vp-abbr" tabindex="0"
+    role="button"
     :aria-describedby="show ? tooltipId : undefined"
     v-bind="isMobile ? {
       onClick: () => show = !show,

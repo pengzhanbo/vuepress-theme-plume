@@ -46,6 +46,7 @@ function onClick() {
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue-a11y/no-static-element-interactions, vue-a11y/click-events-have-key-events -->
   <span
     ref="el"
     class="vp-plot"

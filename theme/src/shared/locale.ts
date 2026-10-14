@@ -372,6 +372,27 @@ export interface ThemeLocaleText {
   toggleSidebarLabel?: string
 
   /**
+   * 公告（Bulletin）面板的无障碍名称，当公告未提供标题时使用。
+   *
+   * @default 'Announcement'
+   */
+  bulletinLabel?: string
+
+  /**
+   * 文档页脚「上一页 / 下一页」导航区域的无障碍名称。
+   *
+   * @default 'Document navigation'
+   */
+  docFooterNavLabel?: string
+
+  /**
+   * 分页导航区域的无障碍名称。
+   *
+   * @default 'Pagination'
+   */
+  paginationLabel?: string
+
+  /**
    * 侧边栏 outline 文本
    *
    * @default 'On this page'

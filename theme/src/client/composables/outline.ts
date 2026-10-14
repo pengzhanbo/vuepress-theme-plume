@@ -472,7 +472,7 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
 
     if (activeLink) {
       activeLink.classList.add('active')
-      activeLink.setAttribute('aria-current', 'page')
+      activeLink.setAttribute('aria-current', 'location')
       if (marker.value) {
         marker.value.style.top = `${activeLink.offsetTop + 39}px`
         marker.value.style.opacity = '1'

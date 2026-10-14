@@ -61,7 +61,13 @@ watchPostEffect(() => {
 </script>
 
 <template>
-  <VPSwitch class="vp-switch-appearance" :title="switchTitle" :aria-checked="checked" @click="toggleAppearance">
+  <VPSwitch
+    class="vp-switch-appearance"
+    :aria-label="switchTitle"
+    :title="switchTitle"
+    :aria-checked="checked"
+    @click="toggleAppearance"
+  >
     <span class="vpi-sun sun" />
     <span class="vpi-moon moon" />
   </VPSwitch>

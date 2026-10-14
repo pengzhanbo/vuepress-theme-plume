@@ -454,8 +454,10 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
    */
   function activateLink(hash: string | null): void {
     routeHash.value = hash || ''
-    if (prevActiveLink)
+    if (prevActiveLink) {
       prevActiveLink.classList.remove('active')
+      prevActiveLink.removeAttribute('aria-current')
+    }
 
     if (hash == null) {
       prevActiveLink = null
@@ -470,6 +472,7 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
 
     if (activeLink) {
       activeLink.classList.add('active')
+      activeLink.setAttribute('aria-current', 'page')
       if (marker.value) {
         marker.value.style.top = `${activeLink.offsetTop + 39}px`
         marker.value.style.opacity = '1'

@@ -47,6 +47,7 @@ onKeyStroke('Escape', () => {
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue-a11y/no-static-element-interactions -->
   <div
     ref="el"
     class="vp-flyout"

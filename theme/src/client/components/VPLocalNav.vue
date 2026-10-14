@@ -53,6 +53,7 @@ const showLocalNav = computed(() => {
 <template>
   <div v-if="showLocalNav" :class="classes">
     <button
+      type="button"
       class="menu" :class="{ hidden: isPosts }"
       :disabled="isPosts"
       :aria-expanded="open"

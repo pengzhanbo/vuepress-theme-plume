@@ -29,7 +29,11 @@ function onCopy(name: string) {
     :class="{ [name]: true, small }"
     :style="{ width: `${w}px`, height: `${h}px`, marginTop: `${mt}px` }"
     :title="name"
+    role="button"
+    tabindex="0"
     @click="() => onCopy(name)"
+    @keydown.enter.prevent="onCopy(name)"
+    @keydown.space.prevent="onCopy(name)"
   >
     <span>{{ name }}</span>
   </div>

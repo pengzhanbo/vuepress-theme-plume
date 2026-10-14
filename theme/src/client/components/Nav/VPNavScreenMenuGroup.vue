@@ -28,6 +28,7 @@ function toggle() {
 <template>
   <div class="vp-nav-screen-menu-group" :class="{ open: isOpen }">
     <button
+      type="button"
       class="button"
       :aria-controls="groupId"
       :aria-expanded="isOpen"

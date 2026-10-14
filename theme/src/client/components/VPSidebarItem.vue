@@ -6,6 +6,7 @@ import VPLink from '@theme/VPLink.vue'
 import { FadeInExpandTransition } from '@vuepress/helper/client'
 import { computed } from 'vue'
 import { useSidebarItemControl } from '../composables/index.js'
+import { stripHtmlTags } from '../utils/index.js'
 
 import '@vuepress/helper/transition/fade-in-height-expand.css'
 
@@ -23,16 +24,6 @@ const {
   hasChildren,
   toggle,
 } = useSidebarItemControl(computed(() => item))
-
-function stripHtmlTags(input: string): string {
-  let current = input
-  let previous: string
-  do {
-    previous = current
-    current = current.replace(/<[^>]*>/g, '')
-  } while (current !== previous)
-  return current
-}
 
 const plainText = computed(() => item.text ? stripHtmlTags(item.text) : '')
 
@@ -57,6 +48,10 @@ const textTag = computed(() => {
 
 const itemRole = computed(() => (isLink.value ? undefined : 'button'))
 
+const itemExpanded = computed(() =>
+  !isLink.value && collapsible.value ? !collapsed.value : undefined,
+)
+
 const SEPARATOR_RE = /^-{3,}$/
 const isSeparator = computed(() => item.link && SEPARATOR_RE.test(item.link))
 
@@ -69,9 +64,14 @@ const classes = computed(() => [
   { 'has-active': hasActiveLink.value },
 ])
 
-function onItemInteraction(e: MouseEvent | Event) {
-  if ('key' in e && e.key !== 'Enter')
-    return
+function onItemInteraction(e: MouseEvent | KeyboardEvent) {
+  if ('key' in e) {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.code !== 'Space')
+      return
+
+    if (e.key === ' ' || e.code === 'Space')
+      e.preventDefault()
+  }
 
   if (!item.link) {
     toggle()
@@ -86,6 +86,7 @@ function onItemInteraction(e: MouseEvent | Event) {
       class="item"
       :role="itemRole"
       :tabindex="item.items && 0"
+      :aria-expanded="itemExpanded"
       v-on="item.items
         ? { click: onItemInteraction, keydown: onItemInteraction }
         : {}
@@ -100,6 +101,7 @@ function onItemInteraction(e: MouseEvent | Event) {
         :tag="linkTag"
         class="link"
         :href="item.link"
+        :aria-current="isActiveLink ? 'page' : undefined"
       >
         <Component :is="textTag" class="text">
           <span v-html="item.text" />

@@ -30,6 +30,9 @@ export const enLocale: ThemeLocaleText = {
   scrollDownLabel: 'Scroll down',
   sidebarNavigationLabel: 'Sidebar Navigation',
   toggleSidebarLabel: 'Toggle sidebar',
+  bulletinLabel: 'Announcement',
+  docFooterNavLabel: 'Document navigation',
+  paginationLabel: 'Pagination',
 
   encryptButtonText: 'Confirm',
   encryptPlaceholder: 'Enter password',

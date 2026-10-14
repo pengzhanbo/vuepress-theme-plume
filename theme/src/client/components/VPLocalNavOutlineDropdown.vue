@@ -77,6 +77,7 @@ function onItemClick(e: Event) {
       <div v-if="open" class="outline-mask" />
     </Transition>
     <Transition name="fade-in-scale-up">
+      <!-- eslint-disable-next-line vue-a11y/no-static-element-interactions, vue-a11y/click-events-have-key-events -->
       <div v-if="open" :id="itemsId" ref="items" class="items" tabindex="-1" @click="onItemClick">
         <div class="outline">
           <VPDocOutlineItem :headers="headers" />

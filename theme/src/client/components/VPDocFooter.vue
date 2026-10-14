@@ -29,6 +29,8 @@ const hasLastUpdated = computed(() =>
 )
 const hasContributors = computed(() => Boolean(contributors.value.length) && mode.value === 'inline')
 
+const prevNextLabel = computed(() => theme.value.docFooterNavLabel || 'Document navigation')
+
 // 无法准确判断是否存在 doc-footer 插槽，因此需要通过 provide 传递
 const hasSlot = inject('doc-footer-slot-exists', ref(false))
 
@@ -81,7 +83,7 @@ const showFooter = computed(() => {
       </span>
     </div>
 
-    <nav v-if="prev?.link || next?.link" class="prev-next">
+    <nav v-if="prev?.link || next?.link" class="prev-next" :aria-label="prevNextLabel">
       <div class="pager">
         <VPLink v-if="prev?.link" class="pager-link prev" :href="prev.link">
           <span class="desc" v-html="theme.prevPageLabel || 'Previous page'" />

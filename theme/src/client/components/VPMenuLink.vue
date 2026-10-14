@@ -26,6 +26,7 @@ const isActiveLink = computed(() => isActive(
   <div class="vp-menu-link">
     <VPLink
       :class="{ active: isActiveLink }"
+      :aria-current="isActiveLink ? 'page' : undefined"
       :href="item.link"
       :target="item.target"
       :rel="rel || item.rel"

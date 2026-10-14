@@ -1,0 +1,526 @@
+---
+url: /en/config/locales/index.md
+---
+These options are used to configure language-related text.
+
+If your site is served in languages other than the built-in supported languages, you should set these options for each language to provide translations.
+
+## Built-in Language Support
+
+The theme has built-in support for the following languages:
+
+* Simplified Chinese (`zh-CN`) - `/zh/`
+* Traditional Chinese (`zh-TW`) - `/zh-tw/`
+* English (`en-US`) - `/en/`
+* French (`fr-FR`) - `/fr/`
+* German (`de-DE`) - `/de/`
+* Russian (`ru-RU`) - `/ru/`
+* Japanese (`ja-JP`) - `/ja/`
+* Korean (`ko-KR`) - `/ko/`
+
+## Configuration
+
+You should write the configuration in `theme.locales`.
+
+You can configure it in `.vuepress/config.ts`, or in `.vuepress/plume.config.ts`:
+
+::: code-tabs#configs
+
+@tab .vuepress/config.ts
+
+```ts twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    locales: {
+      // Language code for non-built-in languages
+      '/xxx/': {
+        // Language configuration
+      }
+    }
+  })
+})
+```
+
+@tab .vuepress/plume.config.ts
+
+```ts twoslash
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  locales: {
+    // Language code for non-built-in languages
+    '/xxx/': {
+      // Language configuration
+    }
+  }
+})
+```
+
+:::
+
+For detailed configuration methods, please refer to: [Internationalization](../guide/quick-start/locales.md)
+
+## Path Mapping
+
+The following is an example of the directory structure and URL path mapping for a multilingual site:
+
+Assume the following configuration:
+
+```ts title=".vuepress/config.ts" twoslash
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    locales: {
+      '/': {
+        selectLanguageName: 'Simplified Chinese',
+      },
+      '/en/': {
+        selectLanguageName: 'English',
+      },
+    },
+  }),
+})
+```
+
+The corresponding directory structure and URL mapping are as follows:
+
+::: file-tree
+
+* docs/
+  * README.md  <-- Visit `/`  (Chinese homepage)
+  * guide/
+    * intro.md  <-- Visit `/guide/intro.html`
+  * en/
+    * README.md  <-- Visit `/en/`  (English homepage)
+    * guide/
+      * intro.md  <-- Visit `/en/guide/intro.html`
+  * .vuepress/
+    * config.ts
+    * plume.config.ts
+
+:::
+
+**Key Points:**
+
+* The `key` of the `locales` object (e.g., `/` and `/en/`) determines the URL path prefix
+* Chinese (default language) uses `/` as the prefix, corresponding to files under the `docs/` root directory
+* English uses `/en/` as the prefix, corresponding to files under the `docs/en/` directory
+* The Markdown file structure for each language remains consistent within its language directory
+* The `.vuepress/` directory is a shared configuration directory and does not need to be configured separately for each language
+
+### appearanceText
+
+* Type: `string`
+* Default: `'Appearance'`
+* Details: The text for the theme toggle button in the navigation bar.
+
+### lightModeSwitchTitle
+
+* Type: `string`
+* Default: `'Switch to light theme'`
+* Details: The title (hover tooltip) of the button for switching to the light theme.
+
+### darkModeSwitchTitle
+
+* Type: `string`
+* Default: `'Switch to dark theme'`
+* Details: The title (hover tooltip) of the button for switching to the dark theme.
+
+### selectLanguageName
+
+* Type: `string`
+* Default: Provided by the language preset (e.g. `/` → `'简体中文'`, `/en/` → `'English'`)
+* Details:
+
+  The language name for the locale.
+
+  This configuration item **only takes effect inside the [locales](./theme.md#locales) of the theme configuration**.
+  It will be used as the language name for the locale, displayed in the *Select Language Menu*.
+
+### selectLanguageText
+
+* Type: `string`
+* Default: `'Languages'`
+* Details:
+
+  The text for the *Select Language Menu*.
+
+  If you set multiple [locales](./theme.md#locales) in the site configuration,
+  the *Select Language Menu* will be displayed next to the repository button in the navigation bar.
+
+### homeText
+
+* Type: `string`
+* Default: `'Home'`
+* Details: The text for the home link.
+
+  * The text for the home link in the theme's default navigation bar.
+  * The text for the home link in breadcrumb navigation.
+
+### postsText
+
+* Type: `string`
+* Default: `'Blog'`
+* Details: The text for the posts list page link.
+
+  * The text for the posts list page link in the theme's default navigation bar.
+  * The text for the posts list page link in breadcrumb navigation.
+
+### postsExtractLabel
+
+* Type: `string`
+* Default: `'Posts Navigation'`
+* Details: The accessible label for the button that expands the posts navigation panel (profile, tags, categories, archives), used by screen readers.
+
+### tagText
+
+* Type: `string`
+* Default: `'Tags'`
+* Details: The text for the tags link.
+
+  * The text for the tags link in the theme's default navigation bar.
+  * The text for the tags link on blog pages.
+  * The title on the blog tags page.
+
+### categoryText
+
+* Type: `string`
+* Default: `'Categories'`
+* Details: The text for the categories link.
+
+  * The text for the categories link in the theme's default navigation bar.
+  * The text for the categories link on blog pages.
+  * The title on the blog categories page.
+
+### archiveText
+
+* Type: `string`
+* Default: `'Archives'`
+* Details: The text for the archives link.
+
+  * The text for the archives link in the theme's default navigation bar.
+  * The text for the archives link on blog pages.
+  * The title on the blog archives page.
+
+### archiveTotalText
+
+* Type: `string`
+* Default: `'{count} articles'`
+* Details: The text for the total article count on the archives page.
+
+### sidebarMenuLabel
+
+* Type: `string`
+* Default: `'Menu'`
+* Details:
+
+  The text for the menu option in the navigation bar on mobile devices.
+
+### returnToTopLabel
+
+* Type: `string`
+* Default: `'return to top'`
+* Details:
+
+  The text for returning to the top in the navigation bar on mobile devices.
+
+### closeLabel
+
+* Type: `string`
+* Default: `'Close'`
+* Details:
+
+  The accessible label for close buttons, such as the ones in dialogs and panels.
+
+### skipToContentLabel
+
+* Type: `string`
+* Default: `'Skip to content'`
+* Details:
+
+  The accessible text for the "skip to content" link.
+
+### mobileNavLabel
+
+* Type: `string`
+* Default: `'Mobile navigation'`
+* Details:
+
+  The accessible label for the mobile navigation menu button.
+
+### printLabel
+
+* Type: `string`
+* Default: `'Print'`
+* Details:
+
+  The accessible label for the print button.
+
+### scrollDownLabel
+
+* Type: `string`
+* Default: `'Scroll down'`
+* Details:
+
+  The accessible label for the scroll-down indicator on the home page.
+
+### sidebarNavigationLabel
+
+* Type: `string`
+* Default: `'Sidebar Navigation'`
+* Details:
+
+  The accessible name for the sidebar navigation region.
+
+### toggleSidebarLabel
+
+* Type: `string`
+* Default: `'Toggle sidebar'`
+* Details:
+
+  The accessible label for the sidebar collapse/expand button.
+
+### outlineLabel
+
+* Type: `string`
+* Default: `'On this page'`
+* Details:
+
+  The text for the outline title in the navigation bar on mobile devices.
+
+### editLinkText
+
+* Type: `string`
+* Default: `'Edit this page'`
+* Details: The edit link text.
+
+### lastUpdatedText
+
+* Type: `string`
+* Default: `'Last Updated'`
+* Details: The text for "Latest Updated".
+
+### contributorsText
+
+* Type: `string`
+* Default: `'Contributors'`
+* Details: The text for contributors.
+
+### changelogText
+
+* Type: `string`
+* Default: `'Changelog'`
+* Details: The text for changelog.
+
+### changelogOnText
+
+* Type: `string`
+* Default: `'On'`
+* Details: The time text for a single changelog entry.
+
+### changelogButtonText
+
+* Type: `string`
+* Default: `'View All Changelog'`
+* Details: The button text for changelog.
+
+### copyrightText
+
+* Type: `string`
+* Default: `'Copyright'`
+* Details: The text for copyright.
+
+### copyrightAuthorText
+
+* Type: `string`
+* Default: `'Copyright Ownership:'`
+* Details: The text for copyright owner.
+
+### copyrightCreationOriginalText
+
+* Type: `string`
+* Default: `'This article link:'`
+* Details: The text for "This article link".
+
+### copyrightCreationTranslateText
+
+* Type: `string`
+* Default: `'This article is translated from:'`
+* Details: The text for "This article translated from".
+
+### copyrightCreationReprintText
+
+* Type: `string`
+* Default: `'This article reprint from:'`
+* Details: The text for "This article reprint from".
+
+### copyrightLicenseText
+
+* Type: `string`
+* Default: `'License under:'`
+* Details: The text for copyright license.
+
+### openNewWindowText
+
+* Type: `string`
+* Default: `'(Open in new window)'`
+* Details: The accessible hint text shown when an external link opens in a new window.
+
+### prevPageLabel
+
+* Type: `string`
+* Default: `'Previous Page'`
+* Details: The text for previous page.
+
+### nextPageLabel
+
+* Type: `string`
+* Default: `'Next Page'`
+* Details: The text for next page.
+
+### notFound
+
+* Type: `NotFound | undefined`
+* Default: `undefined`
+* Details: 404 page configuration.
+
+```ts
+interface NotFound {
+  code?: string
+  title?: string
+  quote?: string
+  linkLabel?: string
+  linkText?: string
+}
+```
+
+## Page Context Menu (PageContextMenu)
+
+The following options are used for the text of the [`<PageContextMenu />`](./plugins/llms.md#components) component and should be configured in `theme.locales`.
+This component needs to be used together with [@vuepress/plugin-llms](./plugins/llms.md).
+
+### pageContextMenuLabel
+
+* Type: `string`
+* Default: `'Open page actions menu'`
+* Details: The accessible label for the button that opens the page actions menu.
+
+### copyPageText
+
+* Type: `string`
+* Default: `'Copy page'`
+* Details: The text for the copy page button.
+
+### copiedPageText
+
+* Type: `string`
+* Default: `'Copied !'`
+* Details: The message text shown after a successful copy.
+
+### copingPageText
+
+* Type: `string`
+* Default: `'Copying..'`
+* Details: The message text shown while copying.
+
+### copyTagline
+
+* Type: `string`
+* Default: `'Copy page as Markdown for LLMs'`
+* Details: The subtitle of the copy page button.
+
+### viewMarkdown
+
+* Type: `string`
+* Default: `'View as Markdown'`
+* Details: The text for the view as Markdown button.
+
+### viewMarkdownTagline
+
+* Type: `string`
+* Default: `'View this page as plain text'`
+* Details: The subtitle of the view as Markdown button.
+
+### askAIText
+
+* Type: `string`
+* Default: `'Open in {name}'`
+* Details: The text for the open in AI platform button; `{name}` will be replaced with the platform name.
+
+### askAITagline
+
+* Type: `string`
+* Default: `'Ask {name} about this page'`
+* Details: The subtitle of the open in AI platform button; `{name}` will be replaced with the platform name.
+
+### askAIMessage
+
+* Type: `string`
+* Default: `'Read {link} and answer content-related questions.'`
+* Details: The question content sent to the AI platform; `{link}` will be replaced with the Markdown URL of the current page.
+
+## Encryption-related Text
+
+The following options are used to customize the text displayed in the encryption feature and should be configured in `theme.locales`.
+For details, see [Encryption Feature](../guide/features/encryption.md).
+
+### encryptGlobalText
+
+* Type: `string`
+* Default: `'Only password can access this site'`
+* Details:
+
+  The prompt message when the entire site is encrypted. Supports HTML.
+  You may need this configuration if you want to provide visitors with contact information to obtain the password.
+
+### encryptPageText
+
+* Type: `string`
+* Default: `'Only password can access this page'`
+* Details:
+
+  The prompt message when a page is partially encrypted. Supports HTML.
+  You may need this configuration if you want to provide visitors with contact information to obtain the password.
+
+### encryptButtonText
+
+* Type: `string`
+* Default: `'Confirm'`
+* Details: The text for the confirm button.
+
+### encryptPlaceholder
+
+* Type: `string`
+* Default: `'Enter password'`
+* Details: The placeholder for the password input field.
+
+### encryptErrorText
+
+* Type: `string`
+* Default: `'Incorrect password'`
+* Details: The message shown when the password is incorrect. It is also the content referenced by the `aria-describedby` of the password input.
+
+### Configuration Example
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    locales: {
+      '/': {
+        encryptButtonText: 'Confirm',
+        encryptPlaceholder: 'Enter password',
+        encryptGlobalText: 'Only password can access this site',
+        encryptPageText: 'Only password can access this page',
+      }
+    }
+  })
+})
+```

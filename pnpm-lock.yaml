@@ -171,8 +171,8 @@ catalogs:
       specifier: ^21.2.3
       version: 21.2.3
     '@lunariajs/core':
-      specifier: ^0.2.0
-      version: 0.2.0
+      specifier: ^0.2.1
+      version: 0.2.1
     '@pengzhanbo/eslint-config-vue':
       specifier: ^2.10.0
       version: 2.10.0
@@ -759,7 +759,7 @@ importers:
         version: 2.2.540
       '@lunariajs/core':
         specifier: catalog:dev
-        version: 0.2.0(supports-color@10.2.2)
+        version: 0.2.1(supports-color@10.2.2)
       '@simonwep/pickr':
         specifier: catalog:dev
         version: 1.10.2
@@ -1758,8 +1758,8 @@ packages:
   '@lit/reactive-element@2.1.2':
     resolution: {integrity: sha512-pbCDiVMnne1lYUIaYNN5wrwQXDtHaYtg7YEFPeW+hws6U47WeFvISGUWekPGKWOP1ygrs0ef0o1VJMk1exos5A==}
 
-  '@lunariajs/core@0.2.0':
-    resolution: {integrity: sha512-JuQsDStxiznw4Km0ab/FNH2VxVfWm08oJdjevRUOY7duN6nPKvBkk9rvXD6zPDlvauPWTf9RFuJ3lD4l+o9M4g==}
+  '@lunariajs/core@0.2.1':
+    resolution: {integrity: sha512-TSqlYWJM8XiiSLit7UlPI4hQq0gpX5g4f5L89/XsVvef+EPX3mp5J+JFFMN+M2Mzjof//duKx0xjGIKcNXiNQA==}
     engines: {node: '>=18.17.0'}
     hasBin: true
 
@@ -8151,7 +8151,7 @@ snapshots:
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.6.0
 
-  '@lunariajs/core@0.2.0(supports-color@10.2.2)':
+  '@lunariajs/core@0.2.1(supports-color@10.2.2)':
     dependencies:
       consola: 3.4.2
       gettext-parser: 9.1.1

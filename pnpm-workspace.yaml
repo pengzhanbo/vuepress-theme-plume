@@ -25,6 +25,8 @@ minimumReleaseAgeExclude:
   - '@vuepress/plugin-seo@2.0.0-rc.137'
   - '@vuepress/plugin-shiki@2.0.0-rc.137'
   - '@vuepress/plugin-sitemap@2.0.0-rc.137'
+  # Renovate security update: sanitize-html@2.18.1
+  - sanitize-html@2.18.1
 
 trustPolicy: no-downgrade
 trustPolicyExclude:

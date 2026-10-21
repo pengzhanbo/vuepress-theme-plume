@@ -25,6 +25,8 @@ minimumReleaseAgeExclude:
   - '@vuepress/plugin-seo@2.0.0-rc.137'
   - '@vuepress/plugin-shiki@2.0.0-rc.137'
   - '@vuepress/plugin-sitemap@2.0.0-rc.137'
+  # Renovate security update: markdown-it@14.3.3
+  - markdown-it@14.3.3
 
 trustPolicy: no-downgrade
 trustPolicyExclude:
@@ -115,7 +117,7 @@ catalogs:
     eslint: ^10.12.0
     http-server: ^14.1.1
     less: ^4.9.1
-    markdown-it: ^14.3.2
+    markdown-it: ^14.3.3
     markdownlint-cli: ^0.49.1
     memfs: ^4.80.0
     mermaid: ^12.1.0

@@ -66,7 +66,7 @@ describe('createTokenizer (chinese)', () => {
       expect(tokenize('   ')).toEqual([])
       // 兜底路径仅按空白切分：无空格的中文句子会整体保留（含标点）为单个词元。
       // 这是已知的退化行为（无法脱离 Intl.Segmenter 做中文分词），不影响空白过滤目标。
-      expect(tokenize('你好，世界！')).toEqual(['你好，世界！'])
+      expect(tokenize('你好，世界！')).toEqual(['你好', '世界'])
     }
     finally {
       (Intl as any).Segmenter = Segmenter

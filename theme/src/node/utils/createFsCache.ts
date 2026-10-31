@@ -111,10 +111,6 @@ export function createFsCache<T = any>(app: App, name: string): FsCache<T> {
 
     timer && clearTimeout(timer)
     timer = setTimeout(async () => {
-      // The timer callback runs outside any awaiting caller, so a rejected promise
-      // here would become an unhandled rejection and may crash the process.
-      // 定时回调不在任何 await 调用链中，这里的 rejection 会变成未处理的 rejection，
-      // 甚至可能使进程崩溃。
       try {
         await fs.mkdir(path.dirname(filepath), { recursive: true })
         await fs.writeFile(filepath, JSON.stringify(cache), 'utf-8')

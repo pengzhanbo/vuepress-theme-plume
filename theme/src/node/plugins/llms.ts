@@ -101,7 +101,7 @@ export function llmsPlugin(app: App, userOptions: true | LlmsPluginOptions): Plu
       .filter(collection => collection.type === 'doc')
       .forEach(({ dir, title, sidebar = [] }) => {
         tableOfContent += `### ${title}\n\n`
-        const prefix = normalizePath(ensureLeadingSlash(withBase(dir, currentLocale)))
+        const prefix = normalizePath(`/${withBase(dir, currentLocale)}/`)
         if (sidebar === 'auto') {
           tableOfContent += `${processAutoSidebar(prefix).join('')}\n`
         }

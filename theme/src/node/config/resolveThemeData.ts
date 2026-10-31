@@ -1,7 +1,7 @@
 import type { App } from 'vuepress'
 import type { ThemeData, ThemeNavItem, ThemeOptions } from '../../shared/index.js'
 import { isBoolean, isPlainObject, objectEntries } from '@pengzhanbo/utils'
-import { removeEndingSlash } from '@vuepress/helper'
+import { ensureEndingSlash, removeEndingSlash } from '@vuepress/helper'
 import { withBase } from '../utils/index.js'
 
 const EXCLUDE_LIST: (keyof ThemeOptions)[] = [
@@ -88,7 +88,7 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
         return
 
       const posts = collections[0]
-      const postsLink = posts.link || posts.dir
+      const postsLink = ensureEndingSlash(posts.link || posts.dir)
       navbar.push({
         text: posts.title || removeEndingSlash(posts.dir).split('/').pop() || opt.postsText || options.postsText || 'Posts',
         link: withBase(postsLink, locale),
@@ -96,13 +96,13 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
       if (posts.tags !== false) {
         navbar.push({
           text: opt.tagText || options.tagText || 'Tags',
-          link: withBase(posts.tagsLink || `${postsLink}/tags/`, locale),
+          link: withBase(ensureEndingSlash(posts.tagsLink || `${postsLink}/tags`), locale),
         })
       }
       if (posts.archives !== false) {
         navbar.push({
           text: opt.archiveText || options.archiveText || 'Archives',
-          link: withBase(posts.archivesLink || `${postsLink}/archives/`, locale),
+          link: withBase(ensureEndingSlash(posts.archivesLink || `${postsLink}/archives`), locale),
         })
       }
 

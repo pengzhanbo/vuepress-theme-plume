@@ -2,6 +2,7 @@ import type { App, Page } from 'vuepress/core'
 import { objectKeys } from '@pengzhanbo/utils'
 import pMap from 'p-map'
 import { createPage } from 'vuepress/core'
+import { ensureEndingSlash } from 'vuepress/shared'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { perf, withBase } from '../utils/index.js'
 
@@ -49,7 +50,7 @@ export async function createPages(app: App): Promise<void> {
       continue
 
     for (const post of collections) {
-      const link = withBase(post.link || post.dir, localePath)
+      const link = withBase(ensureEndingSlash(post.link || post.dir), localePath)
       // 添加 文章列表页面
       if (post.postList !== false) {
         pageTasks.push(() => createPage(app, {
@@ -61,7 +62,7 @@ export async function createPages(app: App): Promise<void> {
       // 添加 标签页
       if (post.tags !== false) {
         pageTasks.push(() => createPage(app, {
-          path: withBase(post.tagsLink || `${link}/tags/`, localePath),
+          path: withBase(ensureEndingSlash(post.tagsLink || `${link}/tags`), localePath),
           frontmatter: { lang, _pageLayout: 'posts-tags', title: opt.tagText || options.tagText || 'Tags' },
         }))
       }
@@ -69,7 +70,7 @@ export async function createPages(app: App): Promise<void> {
       // 添加归档页
       if (post.archives !== false) {
         pageTasks.push(() => createPage(app, {
-          path: withBase(post.archivesLink || `${link}/archives/`, localePath),
+          path: withBase(ensureEndingSlash(post.archivesLink || `${link}/archives`), localePath),
           frontmatter: { lang, _pageLayout: 'posts-archives', title: opt.archiveText || options.archiveText || 'Archives' },
         }))
       }
@@ -77,7 +78,7 @@ export async function createPages(app: App): Promise<void> {
       // 添加分类页
       if (post.categories !== false) {
         pageTasks.push(() => createPage(app, {
-          path: withBase(post.categoriesLink || `${link}/categories/`, localePath),
+          path: withBase(ensureEndingSlash(post.categoriesLink || `${link}/categories`), localePath),
           frontmatter: { lang, _pageLayout: 'posts-categories', title: opt.categoryText || options.categoryText || 'Categories' },
         }))
       }

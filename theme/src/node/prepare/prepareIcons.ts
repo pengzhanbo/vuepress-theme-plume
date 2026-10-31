@@ -8,7 +8,7 @@ import { isLinkAbsolute, isLinkHttp } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { createFsCache, interopDefault, logger, perf, resolveContent, writeTemp } from '../utils/index.js'
+import { createFsCache, genTempCode, interopDefault, logger, perf, writeTemp } from '../utils/index.js'
 
 interface IconData {
   className: string
@@ -60,7 +60,7 @@ export async function prepareIcons(app: App, options: ThemeOptions = getThemeCon
   perf.mark('prepare:icons:total')
   const icons: UsageIcons = { co: [], bg: {}, mask: {} }
   if (!isInstalled) {
-    await writeTemp(app, JS_FILENAME, resolveContent(app, { name: 'icons', content: icons }))
+    await writeTemp(app, JS_FILENAME, genTempCode(app, { name: 'icons', content: icons }))
     return
   }
   if (!fsCache && app.env.isDev) {
@@ -135,7 +135,7 @@ export async function prepareIcons(app: App, options: ThemeOptions = getThemeCon
 
   await Promise.all([
     writeTemp(app, CSS_FILENAME, cssCode),
-    writeTemp(app, JS_FILENAME, resolveContent(app, {
+    writeTemp(app, JS_FILENAME, genTempCode(app, {
       name: 'icons',
       content: icons,
       before: `import './iconify.css'`,

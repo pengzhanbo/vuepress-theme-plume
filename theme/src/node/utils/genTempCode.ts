@@ -5,7 +5,7 @@ import type { App } from 'vuepress'
  *
  * 解析要写入临时文件的内容的选项。
  */
-export interface ResolveContentOptions {
+export interface TempCodeOptions {
   /** Variable name for the exported content / 导出内容的变量名 */
   name: string
   /** Content to be serialized / 要序列化的内容 */
@@ -31,12 +31,13 @@ export interface ResolveContentOptions {
  * @param options.after - Content to append after the export / 在导出之后添加的内容
  * @returns Resolved content string / 解析后的内容字符串
  */
-export function resolveContent(app: App, { name, content, before, after }: ResolveContentOptions): string {
-  content = `${before ? `${before}\n` : ''}export const ${name} = ${JSON.stringify(content)}${after ? `\n${after}` : ''}`
+export function genTempCode(app: App, { name, content, before, after }: TempCodeOptions): string {
+  let code = before ? `${before}\n` : ''
+  code += `export const ${name} = ${JSON.stringify(content)}${after ? `\n${after}` : ''}`
 
   if (app.env.isDev) {
     const func = `update${name[0].toUpperCase()}${name.slice(1)}`
-    content += `\n
+    code += `\n
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()
   if (__VUE_HMR_RUNTIME__.${func}) {
@@ -51,5 +52,5 @@ if (import.meta.hot) {
 }
 `
   }
-  return content
+  return code
 }

@@ -9,7 +9,7 @@ import { getImageOriginalSize, resolveImagePath } from 'vuepress-plugin-md-power
 import { hash } from 'vuepress/utils'
 import { resolveThemeData } from '../config/resolveThemeData.js'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { logger, perf, resolveContent, writeTemp } from '../utils/index.js'
+import { genTempCode, logger, perf, writeTemp } from '../utils/index.js'
 
 let bulletinFileWatcher: FSWatcher | null = null
 const bulletinFiles: Record<string, string> = {}
@@ -48,7 +48,7 @@ export async function prepareThemeData(
 }
 
 async function updateThemeData(app: App, themeData: ThemeData) {
-  const content = resolveContent(app, { name: 'themeData', content: themeData })
+  const content = genTempCode(app, { name: 'themeData', content: themeData })
   await writeTemp(app, 'internal/themePlumeData.js', content)
 }
 

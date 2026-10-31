@@ -5,6 +5,7 @@ import {
   createMatcher,
   resolveMatcherPattern,
 } from '../src/node/utils/createMatcher.js'
+import { genTempCode } from '../src/node/utils/genTempCode.js'
 import { hash, nanoid } from '../src/node/utils/hash.js'
 import { interopDefault } from '../src/node/utils/interopDefault.js'
 import { logger, perf } from '../src/node/utils/logger.js'
@@ -12,12 +13,10 @@ import {
   getCurrentDirname,
   normalizeLink,
   normalizePath,
-  pathJoin,
   resolve,
   templates,
   withBase,
 } from '../src/node/utils/path.js'
-import { resolveContent } from '../src/node/utils/resolveContent.js'
 import { createTranslate, setTranslateLang } from '../src/node/utils/translate.js'
 
 describe('resolveMatcherPattern', () => {
@@ -95,18 +94,18 @@ describe('interopDefault', () => {
   })
 })
 
-describe('resolveContent', () => {
+describe('genTempCode', () => {
   const prodApp = { env: { isDev: false } } as any
   const devApp = { env: { isDev: true } } as any
 
   it('serializes the content as an exported constant', () => {
-    const content = resolveContent(prodApp, { name: 'postsData', content: { a: 1 } })
+    const content = genTempCode(prodApp, { name: 'postsData', content: { a: 1 } })
 
     expect(content).toBe('export const postsData = {"a":1}')
   })
 
   it('wraps the export with the before and after snippets', () => {
-    const content = resolveContent(prodApp, {
+    const content = genTempCode(prodApp, {
       name: 'data',
       content: [1, 2],
       before: 'import { x } from "y"',
@@ -119,13 +118,13 @@ describe('resolveContent', () => {
   })
 
   it('appends HMR handling in dev mode only', () => {
-    const content = resolveContent(devApp, { name: 'themeData', content: {} })
+    const content = genTempCode(devApp, { name: 'themeData', content: {} })
 
     expect(content).toContain('import.meta.hot')
     expect(content).toContain('import.meta.webpackHot')
     // 依据变量名推导出的 HMR 更新函数名首字母大写。
     expect(content).toContain('__VUE_HMR_RUNTIME__.updateThemeData(themeData)')
-    expect(resolveContent(prodApp, { name: 'themeData', content: {} })).not.toContain('import.meta.hot')
+    expect(genTempCode(prodApp, { name: 'themeData', content: {} })).not.toContain('import.meta.hot')
   })
 })
 
@@ -179,11 +178,6 @@ describe('path utils', () => {
   it('normalizes path separators and collapses duplicates', () => {
     expect(normalizePath('a\\b\\c')).toBe('a/b/c')
     expect(normalizePath('a//b///c')).toBe('a/b/c')
-  })
-
-  it('joins and normalizes path segments', () => {
-    expect(pathJoin('a', 'b', 'c')).toBe('a/b/c')
-    expect(pathJoin('a\\b', 'c')).toBe('a/b/c')
   })
 
   it('normalizes links with the base path', () => {

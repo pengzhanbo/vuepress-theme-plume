@@ -22,7 +22,7 @@ vi.mock('../src/node/utils/index.js', () => ({
   hash: hoisted.hash,
   logger: hoisted.logger,
   perf: { mark: vi.fn(), log: vi.fn() },
-  resolveContent: vi.fn((_app: unknown, { content }: { content: unknown }) => content),
+  genTempCode: vi.fn((_app: unknown, { content }: { content: unknown }) => content),
   writeTemp: hoisted.writeTemp,
 }))
 

@@ -3,7 +3,7 @@ import type { ThemeCollectionItem, ThemeOptions } from '../../shared/index.js'
 import { omit } from '@pengzhanbo/utils'
 import { entries } from '@vuepress/helper'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { perf, resolveContent, writeTemp } from '../utils/index.js'
+import { genTempCode, perf, writeTemp } from '../utils/index.js'
 
 /**
  * Prepare collections data
@@ -38,7 +38,7 @@ export async function prepareCollections(app: App, options: ThemeOptions = getTh
     })
   }
 
-  const content = resolveContent(app, { name: 'collections', content: data })
+  const content = genTempCode(app, { name: 'collections', content: data })
   await writeTemp(app, 'internal/collectionsData.js', content)
 
   if (app.env.isBuild) {

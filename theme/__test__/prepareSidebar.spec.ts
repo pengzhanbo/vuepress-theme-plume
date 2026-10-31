@@ -16,7 +16,7 @@ vi.mock('../src/node/utils/index.js', async (importOriginal) => {
   return {
     ...actual,
     perf: { mark: vi.fn(), log: vi.fn() },
-    resolveContent: vi.fn((_app: unknown, { content }: { content: unknown }) => content),
+    genTempCode: vi.fn((_app: unknown, { content }: { content: unknown }) => content),
     writeTemp: hoisted.writeTemp,
   }
 })
@@ -40,7 +40,7 @@ function createPage(filePathRelative: string, title: string, pathLocale = '/'): 
 }
 
 function createApp(pages: Page[]): App {
-  return { pages } as unknown as App
+  return { pages, env: { isDev: false } } as unknown as App
 }
 
 /** 读取最近一次写入的自动生成侧边栏（`sidebar.auto`）。 */

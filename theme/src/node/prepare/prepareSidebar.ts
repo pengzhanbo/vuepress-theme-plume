@@ -13,7 +13,7 @@ import { deleteKey, isArray, isPlainObject, objectEntries } from '@pengzhanbo/ut
 import { ensureLeadingSlash, removeLeadingSlash } from '@vuepress/helper'
 import { findCollection } from '../collections/index.js'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { normalizeLink, perf, resolveContent, writeTemp } from '../utils/index.js'
+import { genTempCode, normalizeLink, perf, writeTemp } from '../utils/index.js'
 
 /**
  * Prepare sidebar data
@@ -29,7 +29,7 @@ export async function prepareSidebar(app: App, options: ThemeOptions = getThemeC
 
   const { auto, home } = getSidebarData(app, locales, options)
   const data: ThemeSidebarData = { locales, auto, home }
-  await writeTemp(app, 'internal/sidebar.js', resolveContent(app, { name: 'sidebar', content: data }))
+  await writeTemp(app, 'internal/sidebar.js', genTempCode(app, { name: 'sidebar', content: data }))
 
   perf.log('prepare:sidebar')
 }

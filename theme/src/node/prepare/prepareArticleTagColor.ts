@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import { objectEntries, toArray } from '@pengzhanbo/utils'
-import { nanoid, perf, resolveContent, writeTemp } from '../utils/index.js'
+import { genTempCode, nanoid, perf, writeTemp } from '../utils/index.js'
 
 export type TagsColorsItem = readonly [
   string, // normal color
@@ -81,7 +81,7 @@ export function genCode(app: App): { js: string, css: string } {
     }
   })
 
-  const js = resolveContent(app, {
+  const js = genTempCode(app, {
     name: 'articleTagColors',
     content: articleTagColors,
     before: `import './articleTagColors.css'`,

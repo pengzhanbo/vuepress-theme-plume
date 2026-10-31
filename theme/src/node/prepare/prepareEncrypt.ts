@@ -6,7 +6,7 @@ import { isNumber, isString, LRUCache, objectKeys, toArray } from '@pengzhanbo/u
 import { encodeData, removeLeadingSlash } from '@vuepress/helper'
 import pMap from 'p-map'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { createFsCache, genEncrypt, hash, logger, perf, resolveContent, writeTemp } from '../utils/index.js'
+import { createFsCache, genEncrypt, genTempCode, hash, logger, perf, writeTemp } from '../utils/index.js'
 
 export type EncryptConfig = readonly [
   keys: string, // keys
@@ -53,7 +53,7 @@ export async function prepareEncrypt(app: App, options: ThemeOptions = getThemeC
     contentHash = currentHash
     resolvedEncrypt = await resolveEncrypt(encrypt)
   }
-  await writeTemp(app, 'internal/encrypt.js', resolveContent(app, {
+  await writeTemp(app, 'internal/encrypt.js', genTempCode(app, {
     name: 'encrypt',
     content: resolvedEncrypt,
   }))
@@ -73,13 +73,6 @@ function hasValidPassword(value: unknown): boolean {
 }
 
 /**
- * Resolve passwords, dropping invalid (empty) entries with a build-time warning.
- *
- * An empty password still produces a valid bcrypt hash, but the client always
- * rejects empty input (`if (!password) return false`), which makes the page or
- * the whole site impossible to unlock. Such entries are dropped and reported
- * instead of silently locking the content forever.
- *
  * 解析密码，丢弃无效（空）项并在构建期给出提示。
  *
  * 空密码依然会生成合法的 bcrypt 哈希，但客户端始终拒绝空输入（`if (!password) return false`），
@@ -163,8 +156,6 @@ export function isEncryptPage(page: Page<ThemePageData>, encrypt?: EncryptOption
   const rules = encrypt.rules ?? {}
 
   return objectKeys(rules).some((match) => {
-    // Keep in sync with `resolveEncrypt`: rules without a valid password are ignored,
-    // otherwise the page would be treated as encrypted while it can never be unlocked.
     // 与 `resolveEncrypt` 保持一致：没有有效密码的规则会被忽略，
     // 否则页面会被当作已加密，但却永远无法解锁。
     if (!hasValidPassword(rules[match]))

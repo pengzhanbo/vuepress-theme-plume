@@ -28,11 +28,6 @@ export function getRules(): AutoFrontmatterRule[] {
 
 export function genAutoFrontmatterRules(): void {
   const options = getThemeConfig()
-  // `EXCLUDE` entries are already negated (`!**/node_modules/**`). They are re-negated
-  // below (`!${s}`) when building the fallback filters, so the leading `!` must be
-  // stripped here: `!!**/node_modules/**` would become an ignore pattern of
-  // `!**/node_modules/**`, which makes picomatch match nothing at all, and both fallback
-  // rules would silently stop working.
   // `EXCLUDE` 中的条目本身就带否定前缀（`!**/node_modules/**`），而下面构建兜底规则时
   // 还会再加一次 `!${s}`，因此这里必须先去掉前导 `!`：否则会得到
   // `!!**/node_modules/**`，忽略模式变成 `!**/node_modules/**`，会让 picomatch 对任何路径
@@ -47,9 +42,6 @@ export function genAutoFrontmatterRules(): void {
     if (!collections?.length)
       continue
 
-    // `findRule` returns the first matching rule, so rules generated from a longer
-    // `dir` must come first. This makes nested collections (e.g. `blog` and `blog/sub`)
-    // resolve to the most specific one, independent of the config declaration order.
     // `findRule` 返回首个命中的规则，因此 `dir` 更长的集合生成的规则必须排在前面。
     // 这样嵌套集合（如 `blog` 与 `blog/sub`）会归属到最具体的那个，不受配置声明顺序影响。
     const sortedCollections = [...collections].sort(

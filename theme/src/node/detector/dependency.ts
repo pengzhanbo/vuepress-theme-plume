@@ -1,3 +1,10 @@
+/**
+ * 检查当前环境是否存在依赖缺失
+ *
+ * 某些功能启用时，需要安装其相关的可选依赖
+ * 根据用户的环境，提示用户安装
+ */
+
 import type { ThemeBuiltinPlugins, ThemeOptions } from '../../shared/index.js'
 import { isEmptyObject, isPlainObject, objectKeys } from '@pengzhanbo/utils'
 import { isPackageExists } from 'local-pkg'

@@ -3,6 +3,9 @@ import { templateRenderer } from 'vuepress/utils'
 import { getThemeConfig } from '../loadConfig/index.js'
 import { getThemePackage } from '../utils/index.js'
 
+const SPACE_TRIM_REG = /^\s+|\s+$/gm
+const NEWLINE_TRIM_REG = /\n/g
+
 export function templateBuildRenderer(
   template: string,
   context: TemplateRendererContext,
@@ -11,8 +14,8 @@ export function templateBuildRenderer(
   const pkg = getThemePackage()
   template = template
     .replace('{{ themeVersion }}', pkg.version || '')
-    .replace(/^\s+|\s+$/gm, '')
-    .replace(/\n/g, '')
+    .replace(SPACE_TRIM_REG, '')
+    .replace(NEWLINE_TRIM_REG, '')
 
   if (options.appearance ?? true) {
     const appearance = typeof options.appearance === 'string'

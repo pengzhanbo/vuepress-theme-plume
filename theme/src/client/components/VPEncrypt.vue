@@ -14,9 +14,7 @@ const { theme, frontmatter } = useData<'post'>()
 
 const el = useTemplateRef<HTMLElement>('el')
 
-// 动画类的移除定时器随组件作用域自动清理，避免组件卸载后仍操作已卸载的 DOM。
-// The timer that removes the animation class is disposed with the component scope, so
-// an unmounted component is never touched afterwards.
+// 动画类的移除定时器随组件作用域自动清理，避免组件卸载后仍操作已卸载的 DOM
 const { start: resetAnimation } = useTimeoutFn(() => {
   el.value?.classList.remove('animation')
 }, 800, { immediate: false })

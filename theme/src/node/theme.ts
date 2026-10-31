@@ -1,5 +1,5 @@
-import type { Page, Theme } from 'vuepress/core'
-import type { ThemeOptions, ThemePageData } from '../shared/index.js'
+import type { Theme } from 'vuepress/core'
+import type { ThemeOptions } from '../shared/index.js'
 import {
   genAutoFrontmatterRules,
   generateFileListFrontmatter,
@@ -42,22 +42,15 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
     setTranslateLang(app.options.lang)
     perf.init(app.env.isDebug)
 
-    // `onWatched` must register its watchers only once: registering them again on a
-    // repeated call would duplicate listeners and leak watcher instances.
-    // `onWatched` 只能注册一次监听：重复调用会重复绑定监听器并泄漏 watcher 实例。
     let watchedRegistered = false
 
     detectVersions(app)
 
     const { configFile, plugins, themeOptions } = detectThemeOptions(options)
 
-    configLoader.init(app, themeOptions, configFile).catch((error) => {
-      // The failure is also recorded in the loader, so `configLoader.waiting()` will
-      // reject and abort the build with a visible error instead of hanging forever.
-      // 该失败同样被记录在 loader 中，`configLoader.waiting()` 会 reject，
-      // 使构建以可见的错误中止，而不是永久挂起。
-      logger.error('Failed to load theme config.', error)
-    })
+    configLoader.init(app, themeOptions, configFile)
+      .catch(error => logger.error('Failed to load theme config.', error))
+
     configLoader.on('change', async () => {
       genAutoFrontmatterRules()
       await prepareThemeData(app, plugins)
@@ -86,18 +79,16 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
 
       templateBuildRenderer,
 
-      extendsPage: async page => await extendsPageData(page as Page<ThemePageData>),
+      extendsPage: extendsPageData,
 
-      onInitialized: async app => await createPages(app),
+      onInitialized: createPages,
 
       onPrepared: async (app) => {
         await prepareThemeData(app, plugins)
         await prepareData(app)
       },
 
-      onPageUpdated: async (app) => {
-        await prepareData(app)
-      },
+      onPageUpdated: prepareData,
 
       onWatched: async (app, watchers) => {
         if (watchedRegistered)

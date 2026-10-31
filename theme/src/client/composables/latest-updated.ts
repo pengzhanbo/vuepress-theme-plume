@@ -27,11 +27,6 @@ export function useLastUpdated(): {
   // 副作用在 setup 顶层创建，随组件作用域自动回收。
   // `flush: 'post'` 将首次执行推迟到首次渲染之后：`datetime` 依赖本地时区，
   // 必须保持 SSR 渲染为空，避免水合不一致。
-  //
-  // Create the effect at setup scope so it is disposed with the component.
-  // `flush: 'post'` defers the first run until after the initial render:
-  // `datetime` depends on the local timezone, so it must stay empty during SSR
-  // to keep hydration consistent.
   watchEffect(() => {
     if (frontmatter.value.lastUpdated === false || themeData.value.lastUpdated === false)
       return

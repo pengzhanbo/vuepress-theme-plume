@@ -2,6 +2,7 @@
  * 检查由于版本变更，配置中出现破坏性更改时，输出警告。
  * 提醒用户更新配置，或告知用户进行迁移。
  */
+
 import type { ThemeOptions } from '../../shared/index.js'
 import { hasOwn } from '@pengzhanbo/utils'
 import { colors } from 'vuepress/utils'

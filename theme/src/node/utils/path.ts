@@ -1,4 +1,5 @@
-import { ensureEndingSlash, ensureLeadingSlash, isLinkAbsolute, isLinkWithProtocol } from '@vuepress/helper'
+import { slash } from '@pengzhanbo/utils'
+import { ensureLeadingSlash, isLinkAbsolute, isLinkWithProtocol } from '@vuepress/helper'
 import { getDirname, path } from 'vuepress/utils'
 
 const __dirname = getDirname(import.meta.url)
@@ -27,8 +28,6 @@ export const resolve = (...args: string[]): string => path.resolve(__dirname, '.
  */
 export const templates = (url: string): string => resolve('../templates', url)
 
-const RE_SLASH = /(\\|\/)+/g
-
 /**
  * Normalize path separators
  * Converts backslashes to forward slashes for cross-platform compatibility
@@ -36,25 +35,11 @@ const RE_SLASH = /(\\|\/)+/g
  * 规范化路径分隔符
  * 将反斜杠转换为正斜杠以实现跨平台兼容性
  *
- * @param path - Path to normalize / 要规范化的路径
+ * @param filepath - Path to normalize / 要规范化的路径
  * @returns Normalized path with forward slashes / 带有正斜杠的规范化路径
  */
-export function normalizePath(path: string): string {
-  return path.replace(RE_SLASH, '/')
-}
-
-/**
- * Join path segments
- * Combines multiple path segments and normalizes the result
- *
- * 连接路径段
- * 组合多个路径段并规范化结果
- *
- * @param args - Path segments to join / 要连接的路径段
- * @returns Joined and normalized path / 连接并规范化的路径
- */
-export function pathJoin(...args: string[]): string {
-  return normalizePath(path.join(...args))
+export function normalizePath(filepath: string): string {
+  return slash(path.normalize(filepath))
 }
 
 /**
@@ -95,19 +80,19 @@ export function getCurrentDirname(basePath: string | undefined, filepath: string
 }
 
 /**
- * Add base path to path
+ * Add base url to url
  * Prepends base path to a given path if not already present
  *
  * 为路径添加基础路径
  * 如果给定路径尚未包含基础路径，则在前面添加
  *
- * @param path - Path to modify / 要修改的路径
+ * @param url - Path to modify / 要修改的路径
  * @param base - Base path to prepend / 要添加的基础路径
  * @returns Path with base prepended / 添加了基础路径的路径
  */
-export function withBase(path = '', base = '/'): string {
-  path = ensureEndingSlash(ensureLeadingSlash(path))
-  if (path.startsWith(base))
-    return normalizePath(path)
-  return normalizePath(`${base}${path}`)
+export function withBase(url = '', base = '/'): string {
+  url = normalizeLink(url)
+  if (url.startsWith(base))
+    return url
+  return normalizePath(`${base}/${url}`)
 }

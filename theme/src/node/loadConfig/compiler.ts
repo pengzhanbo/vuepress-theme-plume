@@ -1,8 +1,66 @@
 import type { ThemeConfig } from '../../shared/index.js'
 import { pathToFileURL } from 'node:url'
-import { type OutputChunk, rolldown } from 'rolldown'
+import { type OutputChunk, type Plugin, rolldown } from 'rolldown'
 import { fs, importFileDefault, path } from 'vuepress/utils'
 import { hash, normalizePath } from '../utils/index.js'
+
+const dirnameVarName = '__vite_injected_original_dirname__'
+const filenameVarName = '__vite_injected_original_filename__'
+const importMetaUrlVarName = '__vite_injected_original_import_meta_url__'
+const importMetaResolveVarName = '__vite_injected_original_import_meta_resolve__'
+const importMetaResolveRegex = /import\.meta\s*\.\s*resolve/
+
+const externalDeps: Plugin = {
+  name: 'externalize-deps',
+  resolveId: {
+    filter: { id: /^[^.#].*/ },
+    handler(id, importer) {
+      // externalize bare imports
+      if (!importer || path.isAbsolute(id))
+        return
+      return { id, external: true }
+    },
+  },
+}
+
+const injectFileScopeVariables: Plugin = {
+  name: 'inject-file-scope-variables',
+  transform: {
+    filter: { id: /\.[cm]?[jt]s$/ },
+    handler(code, id) {
+      let injectValues
+        = `const ${dirnameVarName} = ${JSON.stringify(path.dirname(id))};`
+          + `const ${filenameVarName} = ${JSON.stringify(id)};`
+          + `const ${importMetaUrlVarName} = ${JSON.stringify(
+            pathToFileURL(id).href,
+          )};`
+
+      if (importMetaResolveRegex.test(code)) {
+        injectValues += `const ${importMetaResolveVarName} = (specifier, importer = ${importMetaUrlVarName}) => import.meta.resolve(specifier, importer);`
+      }
+
+      let injectedContents: string
+      if (code.startsWith('#!')) {
+        // hashbang
+        let firstLineEndIndex = code.indexOf('\n')
+        if (firstLineEndIndex < 0)
+          firstLineEndIndex = code.length
+        injectedContents
+          = code.slice(0, firstLineEndIndex + 1)
+            + injectValues
+            + code.slice(firstLineEndIndex + 1)
+      }
+      else {
+        injectedContents = injectValues + code
+      }
+
+      return {
+        code: injectedContents,
+        map: null,
+      }
+    },
+  },
+}
 
 export async function compiler(configPath?: string): Promise<{
   config: ThemeConfig
@@ -12,12 +70,6 @@ export async function compiler(configPath?: string): Promise<{
     return { config: {}, dependencies: [] }
   }
 
-  const dirnameVarName = '__vite_injected_original_dirname'
-  const filenameVarName = '__vite_injected_original_filename'
-  const importMetaUrlVarName = '__vite_injected_original_import_meta_url'
-  const importMetaResolveVarName
-    = '__vite_injected_original_import_meta_resolve'
-  const importMetaResolveRegex = /import\.meta\s*\.\s*resolve/
   const bundle = await rolldown({
     input: configPath,
     platform: 'node',
@@ -35,58 +87,7 @@ export async function compiler(configPath?: string): Promise<{
         'import.meta.main': 'false',
       },
     },
-    plugins: [
-      {
-        name: 'externalize-deps',
-        resolveId: {
-          filter: { id: /^[^.#].*/ },
-          handler(id, importer) {
-            // externalize bare imports
-            if (!importer || path.isAbsolute(id))
-              return
-            return { id, external: true }
-          },
-        },
-      },
-      {
-        name: 'inject-file-scope-variables',
-        transform: {
-          filter: { id: /\.[cm]?[jt]s$/ },
-          handler(code, id) {
-            let injectValues
-              = `const ${dirnameVarName} = ${JSON.stringify(path.dirname(id))};`
-                + `const ${filenameVarName} = ${JSON.stringify(id)};`
-                + `const ${importMetaUrlVarName} = ${JSON.stringify(
-                  pathToFileURL(id).href,
-                )};`
-
-            if (importMetaResolveRegex.test(code)) {
-              injectValues += `const ${importMetaResolveVarName} = (specifier, importer = ${importMetaUrlVarName}) => import.meta.resolve(specifier, importer);`
-            }
-
-            let injectedContents: string
-            if (code.startsWith('#!')) {
-              // hashbang
-              let firstLineEndIndex = code.indexOf('\n')
-              if (firstLineEndIndex < 0)
-                firstLineEndIndex = code.length
-              injectedContents
-                = code.slice(0, firstLineEndIndex + 1)
-                  + injectValues
-                  + code.slice(firstLineEndIndex + 1)
-            }
-            else {
-              injectedContents = injectValues + code
-            }
-
-            return {
-              code: injectedContents,
-              map: null,
-            }
-          },
-        },
-      },
-    ],
+    plugins: [externalDeps, injectFileScopeVariables],
   })
 
   const result = await bundle.generate({
@@ -112,7 +113,7 @@ export async function compiler(configPath?: string): Promise<{
   collectAllModules(bundleChunks, entryChunk.fileName, seen)
   for (const modId of seen) {
     if (!modId.startsWith('\0')) {
-      userConfigDependencies.push(modId)
+      userConfigDependencies.push(normalizePath(modId))
     }
   }
 
@@ -124,17 +125,12 @@ export async function compiler(configPath?: string): Promise<{
     config = await importFileDefault(tempFilePath)
   }
   finally {
-    // The temp file may never have been written (e.g. `writeFile` failed), so the
-    // cleanup is awaited and the failure ignored: it must neither produce an
-    // unhandled rejection nor mask the original error.
-    // 临时文件可能并未写入成功（如 `writeFile` 失败），因此需要 await 并吞掉清理失败：
-    // 既不能产生未处理的 rejection，也不能掩盖原始错误。
     await fs.unlink(tempFilePath).catch(() => {})
   }
   return {
     config,
     // local deps
-    dependencies: userConfigDependencies.filter(dep => dep[0] === '.').map(normalizePath),
+    dependencies: userConfigDependencies,
   }
 }
 

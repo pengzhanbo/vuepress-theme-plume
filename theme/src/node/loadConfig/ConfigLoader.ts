@@ -42,9 +42,6 @@ export class ConfigLoader extends EventEmitter {
       perf.log('config-loader:loaded')
     }
     catch (error) {
-      // Track the failure with a dedicated flag: the rejection reason may be a falsy
-      // value such as `null` or `undefined`, so a truthiness check on the reason would miss it.
-      // 使用独立标志记录失败：拒绝原因可能是 `null`/`undefined` 等假值，对原因做真值判断会漏判。
       this.failed = true
       this.loadError = error
       this.emit('failed', error)

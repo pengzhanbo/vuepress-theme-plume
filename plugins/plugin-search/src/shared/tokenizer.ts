@@ -15,7 +15,7 @@ const NO_SPACE_AND_PUNCTUATION_RE_RE = /\p{L}|\p{N}/u
  * 词元是否至少包含一个字母或数字，用于过滤空白与标点词元。
  *
  * `Intl.Segmenter` 的 word 粒度与空白符兜底分词都会产出空白和标点片段，
- * 若直接写入索引会造成搜索结果假阳性（仅命中空格的文档）、索引膨胀，
+ * 若直接写入索引会造成搜索结果失真（仅命中空格的文档）、索引膨胀，
  * 以及高亮时把标题中的空格包裹为 `<mark>`。因此统一只保留含字母/数字的词元。
  */
 function isWordToken(token: string): boolean {

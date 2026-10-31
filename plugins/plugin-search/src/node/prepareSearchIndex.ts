@@ -63,15 +63,7 @@ const SEARCH_INDEX_DIR = 'internal/minisearchIndex/'
 const MAX_SEARCHABLE_TEXT_LENGTH = 8000
 
 /**
- * Maximum number of terms per serialized index shard.
- *
  * 每个序列化索引分片的最大词元数。
- *
- * A locale index can grow very large on big sites. Splitting it into shards
- * bounds the size of each `JSON.parse` performed on the client, and lets the
- * client yield to the main thread between shards instead of blocking while a
- * single huge file is parsed. Indexes smaller than this limit stay in a single
- * file, so typical sites keep the original (fewer requests) behavior.
  *
  * 大站点的单个语言索引可能非常大。拆分为分片可以限制客户端每次 `JSON.parse`
  * 的体积，并在分片之间让出主线程，避免解析单个超大文件时长时间阻塞。
@@ -86,12 +78,7 @@ const indexByLocales = new Map<string, MiniSearch<IndexObject>>()
 const indexCache = new Map<string, IndexObject[]>()
 
 /**
- * Fingerprint of the last written index content, keyed by index file path.
- *
  * 上次写入索引内容的指纹，按索引文件路径索引。
- *
- * Dev mode rewrites the index on every page update. Comparing fingerprints
- * avoids rewriting locale files whose serialized content did not change.
  *
  * 开发模式每次页面更新都会重写索引文件，比对指纹可避免重写内容未变化的语言文件。
  */
@@ -114,7 +101,6 @@ function getIndexByLocale(locale: string, lang: string, options: SearchIndexOpti
       fields: ['title', 'titles', 'text'],
       storeFields: ['title', 'titles'],
       // 与客户端共用同一分词策略，保证索引词元与查询词元一致。
-      // Share the tokenizer with the client so index and query tokens match.
       tokenize: createTokenizer(lang),
       ...options.miniSearch?.options,
     })
@@ -162,9 +148,6 @@ export async function prepareSearchIndexPlaceholder(app: App) {
  *
  * 为 VuePress 应用中的所有页面准备搜索索引。
  *
- * This function indexes all pages concurrently, creating separate MiniSearch
- * instances for each locale, and writes the indexes to temporary files.
- *
  * 此函数并发索引所有页面，为每个语言创建独立的 MiniSearch 实例，
  * 并将索引写入临时文件。
  *
@@ -205,10 +188,6 @@ export async function prepareSearchIndex({
  * Serialize all index mutations (initial build and incremental updates).
  *
  * 串行化所有索引变更（初始构建与增量更新）。
- *
- * The initial dev build runs in the background, so a page change may arrive
- * while it is still indexing. Chaining every task on a single queue prevents
- * concurrent writes to the shared MiniSearch instances.
  *
  * 开发模式的初始构建在后台运行，页面变更可能在其尚未完成时到达。
  * 将所有任务串联到同一队列可避免对共享 MiniSearch 实例的并发写入。

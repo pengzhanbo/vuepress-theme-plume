@@ -4,7 +4,7 @@ import type {
   AutoFrontmatterData,
   AutoFrontmatterHandle,
   AutoFrontmatterRule,
-} from '../../shared/index.js'
+} from '../../../shared/index.js'
 import process from 'node:process'
 import { attemptAsync, objectKeys, sleep } from '@pengzhanbo/utils'
 import { type FSWatcher, watch } from 'chokidar'
@@ -12,7 +12,7 @@ import matter from 'gray-matter'
 import * as yaml from 'js-yaml'
 import pMap from 'p-map'
 import { fs, hash as getHash, path, tinyglobby } from 'vuepress/utils'
-import { logger, nanoid } from '../utils/index.js'
+import { logger, nanoid } from '../../utils/index.js'
 import { createFilter } from './createFilter.js'
 import { genAutoFrontmatterRules, getRules } from './rules.js'
 
@@ -29,11 +29,7 @@ async function getMarkdownInfo(filepath: string, relativePath: string): Promise<
   const { data, content } = matter(raw, {})
   return {
     data: data as AutoFrontmatterData,
-    context: {
-      filepath,
-      relativePath,
-      content,
-    },
+    context: { filepath, relativePath, content },
     // 保留原文件的换行符
     eol: raw.includes('\r\n') ? '\r\n' : '\n',
     // 读取到的原始内容，用于在替换前检测并发修改。

@@ -5,12 +5,12 @@
  * 根据用户的环境，提示用户安装
  */
 
-import type { ThemeBuiltinPlugins, ThemeOptions } from '../../shared/index.js'
+import type { ThemeBuiltinPlugins, ThemeOptions } from '../../../shared/index.js'
 import { isEmptyObject, isPlainObject, objectKeys } from '@pengzhanbo/utils'
 import { isPackageExists } from 'local-pkg'
 import { getUserAgent, resolveCommand } from 'package-manager-detector'
 import { colors } from 'vuepress/utils'
-import { createTranslate, logger } from '../utils/index.js'
+import { createTranslate, logger } from '../../utils/index.js'
 
 const DEPENDENCIES: Record<string, string[]> = {
   twoslash: ['@vuepress/shiki-twoslash'],

@@ -11,8 +11,8 @@ import type {
 } from '../../shared/index.js'
 import { deleteKey, isArray, isPlainObject, objectEntries } from '@pengzhanbo/utils'
 import { ensureLeadingSlash, removeLeadingSlash } from '@vuepress/helper'
-import { findCollection } from '../collections/index.js'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { findCollection } from '../features/collections/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 import { genTempCode, normalizeLink, perf, writeTemp } from '../utils/index.js'
 
 /**

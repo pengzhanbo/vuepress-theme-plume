@@ -35,7 +35,7 @@ vi.mock('../src/node/utils/index.js', async (importOriginal) => {
   }
 })
 
-const { detectDependencies } = await import('../src/node/detector/dependency.js')
+const { detectDependencies } = await import('../src/node/features/detector/dependency.js')
 
 beforeEach(() => {
   hoisted.installed = new Set()

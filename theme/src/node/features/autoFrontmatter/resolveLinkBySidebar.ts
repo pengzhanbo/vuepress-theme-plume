@@ -1,4 +1,4 @@
-import type { ThemeSidebarItem } from '../../shared/index.js'
+import type { ThemeSidebarItem } from '../../../shared/index.js'
 import { isString } from '@pengzhanbo/utils'
 import { ensureEndingSlash } from 'vuepress/shared'
 import { path } from 'vuepress/utils'

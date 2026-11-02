@@ -8,7 +8,7 @@ import { watch } from 'chokidar'
 import { getImageOriginalSize, resolveImagePath } from 'vuepress-plugin-md-power'
 import { hash } from 'vuepress/utils'
 import { resolveThemeData } from '../config/resolveThemeData.js'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 import { genTempCode, logger, perf, writeTemp } from '../utils/index.js'
 
 let bulletinFileWatcher: FSWatcher | null = null

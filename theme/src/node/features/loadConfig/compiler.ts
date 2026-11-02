@@ -1,8 +1,8 @@
-import type { ThemeConfig } from '../../shared/index.js'
+import type { ThemeConfig } from '../../../shared/index.js'
 import { pathToFileURL } from 'node:url'
 import { type OutputChunk, type Plugin, rolldown } from 'rolldown'
 import { fs, importFileDefault, path } from 'vuepress/utils'
-import { hash, normalizePath } from '../utils/index.js'
+import { hash, normalizePath } from '../../utils/index.js'
 
 const dirnameVarName = '__vite_injected_original_dirname__'
 const filenameVarName = '__vite_injected_original_filename__'

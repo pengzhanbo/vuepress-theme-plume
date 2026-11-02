@@ -1,7 +1,7 @@
-import type { ThemeOptions } from '../../shared/index.js'
+import type { ThemeOptions } from '../../../shared/index.js'
 import { objectKeys } from '@pengzhanbo/utils'
 import { colors } from 'vuepress/utils'
-import { createTranslate, logger } from '../utils/index.js'
+import { createTranslate, logger } from '../../utils/index.js'
 import { MARKDOWN_SUPPORT_FIELDS } from './fields.js'
 
 const t = createTranslate({

@@ -1,5 +1,5 @@
 import type { Page } from 'vuepress'
-import type { ThemeCollectionItem, ThemeOptions, ThemePageData } from '../../shared'
+import type { ThemeCollectionItem, ThemeOptions, ThemePageData } from '../../../shared'
 import { ensureEndingSlash, removeLeadingSlash } from '@vuepress/helper'
 import { getThemeConfig } from '../loadConfig/index.js'
 

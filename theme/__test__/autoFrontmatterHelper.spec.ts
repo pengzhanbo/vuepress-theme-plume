@@ -30,7 +30,7 @@ const {
   getPermalinkByFilepath,
   isReadme,
   normalizeTitle,
-} = await import('../src/node/autoFrontmatter/helper.js')
+} = await import('../src/node/features/autoFrontmatter/helper.js')
 
 const TIME_RE = /^\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}:\d{2}$/
 

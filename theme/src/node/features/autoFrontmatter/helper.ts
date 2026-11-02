@@ -2,7 +2,7 @@ import { attemptAsync, kebabCase } from '@pengzhanbo/utils'
 import dayjs from 'dayjs'
 import { ensureLeadingSlash, removeLeadingSlash } from 'vuepress/shared'
 import { fs, path } from 'vuepress/utils'
-import { getPinyin, hasPinyin } from '../utils/index.js'
+import { getPinyin, hasPinyin } from '../../utils/index.js'
 
 // The `!/**` form is required: a trailing slash (`**/node_modules/`) only matches the
 // directory entry itself, so `node_modules/a.md` would not be excluded.

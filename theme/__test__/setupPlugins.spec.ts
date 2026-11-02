@@ -58,7 +58,7 @@ vi.mock('@vuepress/plugin-replace-assets', () => ({ replaceAssetsPlugin: hoisted
 vi.mock('@vuepress/plugin-seo', () => ({ seoPlugin: hoisted.plugins.seo.fn }))
 vi.mock('@vuepress/plugin-sitemap', () => ({ sitemapPlugin: hoisted.plugins.sitemap.fn }))
 vi.mock('@vuepress/plugin-watermark', () => ({ watermarkPlugin: hoisted.plugins.watermark.fn }))
-vi.mock('../src/node/loadConfig/index.js', () => ({
+vi.mock('../src/node/features/loadConfig/index.js', () => ({
   getThemeConfig: () => hoisted.themeConfig,
 }))
 vi.mock('../src/node/plugins/code.js', () => ({ codePlugins: () => [] }))

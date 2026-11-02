@@ -1,6 +1,6 @@
 import type { MarkdownChartPluginOptions } from '@vuepress/plugin-markdown-chart'
 import type { MarkdownPowerPluginOptions } from 'vuepress-plugin-md-power'
-import type { MarkdownOptions, ThemeBuiltinPlugins } from '../../shared/index.js'
+import type { MarkdownOptions, ThemeBuiltinPlugins } from '../../../shared/index.js'
 
 export const PLUGINS_SUPPORTED_FIELDS: (keyof ThemeBuiltinPlugins)[] = [
   'search',

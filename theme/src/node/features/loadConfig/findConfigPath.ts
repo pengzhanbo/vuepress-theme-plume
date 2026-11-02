@@ -3,7 +3,7 @@ import fs, { constants, promises as fsp } from 'node:fs'
 import { resolve } from 'node:path'
 import process from 'node:process'
 import { colors } from 'vuepress/utils'
-import { logger } from '../utils/index.js'
+import { logger } from '../../utils/index.js'
 
 const CONFIG_FILE_NAME = 'plume.config'
 const extensions: string[] = ['ts', 'js', 'mjs', 'cjs', 'mts', 'cts']

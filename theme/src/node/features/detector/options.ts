@@ -1,4 +1,4 @@
-import type { ThemeBuiltinPlugins, ThemeOptions } from '../../shared/index.js'
+import type { ThemeBuiltinPlugins, ThemeOptions } from '../../../shared/index.js'
 import { detectBreakingChange } from './breakingChange.js'
 import { detectDependencies } from './dependency.js'
 import { detectMarkdown } from './markdown.js'

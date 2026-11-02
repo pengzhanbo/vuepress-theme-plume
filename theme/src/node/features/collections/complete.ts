@@ -1,5 +1,5 @@
-import type { ThemeCollectionItem, ThemeOptions } from '../../shared/index.js'
-import { normalizePath } from '../utils/index.js'
+import type { ThemeCollectionItem, ThemeOptions } from '../../../shared/index.js'
+import { normalizePath } from '../../utils/index.js'
 
 export function completeCollections(options: ThemeOptions): void {
   if (options.collections?.length) {

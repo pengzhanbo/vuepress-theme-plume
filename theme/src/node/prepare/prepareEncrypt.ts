@@ -5,7 +5,7 @@ import type { FsCache } from '../utils/index.js'
 import { isNumber, isString, LRUCache, objectKeys, toArray } from '@pengzhanbo/utils'
 import { encodeData, removeLeadingSlash } from '@vuepress/helper'
 import pMap from 'p-map'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 import { createFsCache, genEncrypt, genTempCode, hash, logger, perf, writeTemp } from '../utils/index.js'
 
 export type EncryptConfig = readonly [
@@ -106,8 +106,6 @@ async function resolveEncrypt(encrypt?: EncryptOptions): Promise<EncryptConfig> 
     ? (await pMap(adminPasswords, item => genEncrypt(item), { concurrency: BCRYPT_CONCURRENCY })).join(separator)
     : ''
 
-  // Rules without any valid password are dropped entirely: keeping them would make
-  // matched pages locked while no password can ever be verified.
   // 没有任何有效密码的规则将整体丢弃：保留它们会让匹配的页面被锁定，却没有任何密码可以通过校验。
   const encryptRules = objectKeys(encrypt?.rules ?? {})
     .map(match => ({
@@ -143,10 +141,7 @@ const patternCache = new LRUCache<string, RegExp>({ maxSize: 256 })
  * 或其路径命中了某条 `encrypt.rules` 规则时视为加密页面。
  */
 export function isEncryptPage(page: Page<ThemePageData>, encrypt?: EncryptOptions): boolean {
-  // A page carrying its own password (`frontmatter.password`) is always encrypted,
-  // even when no `encrypt` option is configured at all.
   // 携带独立密码（`frontmatter.password`）的页面始终是加密页面，
-  // 即使完全没有配置 `encrypt` 选项。
   if (page.data._e)
     return true
 

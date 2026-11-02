@@ -1,9 +1,9 @@
 import type { App } from 'vuepress'
 import { watch as chokidarWatch } from 'chokidar'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { compiler } from '../src/node/loadConfig/compiler.js'
-import { ConfigLoader, configLoader, getThemeConfig } from '../src/node/loadConfig/ConfigLoader.js'
-import { findConfigPath } from '../src/node/loadConfig/findConfigPath.js'
+import { compiler } from '../src/node/features/loadConfig/compiler.js'
+import { ConfigLoader, configLoader, getThemeConfig } from '../src/node/features/loadConfig/ConfigLoader.js'
+import { findConfigPath } from '../src/node/features/loadConfig/findConfigPath.js'
 import { logger } from '../src/node/utils/index.js'
 
 /** 捕获被 mock 的 chokidar watcher，便于在测试中触发 change 事件。 */
@@ -22,11 +22,11 @@ vi.mock('../src/node/config/initThemeOptions.js', () => ({
   initThemeOptions: vi.fn(() => ({})),
 }))
 
-vi.mock('../src/node/loadConfig/compiler.js', () => ({
+vi.mock('../src/node/features/loadConfig/compiler.js', () => ({
   compiler: vi.fn(),
 }))
 
-vi.mock('../src/node/loadConfig/findConfigPath.js', () => ({
+vi.mock('../src/node/features/loadConfig/findConfigPath.js', () => ({
   findConfigPath: vi.fn(),
 }))
 

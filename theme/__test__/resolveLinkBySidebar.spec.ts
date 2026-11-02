@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { resolveLinkBySidebar } from '../src/node/autoFrontmatter/resolveLinkBySidebar.js'
+import { resolveLinkBySidebar } from '../src/node/features/autoFrontmatter/resolveLinkBySidebar.js'
 
 describe('resolveLinkBySidebar', () => {
   it('returns an empty map for the `auto` sidebar', () => {

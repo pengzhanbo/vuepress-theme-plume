@@ -26,7 +26,7 @@ vi.mock('../src/node/utils/index.js', () => ({
   writeTemp: hoisted.writeTemp,
 }))
 
-vi.mock('../src/node/loadConfig/index.js', () => ({
+vi.mock('../src/node/features/loadConfig/index.js', () => ({
   getThemeConfig: hoisted.getThemeConfig,
 }))
 

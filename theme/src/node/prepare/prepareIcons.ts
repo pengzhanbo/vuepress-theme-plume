@@ -7,7 +7,7 @@ import { isArray, isPlainObject, isString, objectEntries, uniq } from '@pengzhan
 import { isLinkAbsolute, isLinkHttp } from '@vuepress/helper'
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 import { createFsCache, genTempCode, interopDefault, logger, perf, writeTemp } from '../utils/index.js'
 
 interface IconData {

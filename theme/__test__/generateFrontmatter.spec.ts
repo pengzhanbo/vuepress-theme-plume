@@ -30,11 +30,11 @@ vi.mock('../src/node/utils/index.js', () => ({
   hasPinyin: () => false,
 }))
 
-vi.mock('../src/node/loadConfig/index.js', () => ({
+vi.mock('../src/node/features/loadConfig/index.js', () => ({
   getThemeConfig: () => hoisted.themeConfig,
 }))
 
-const { generateFileFrontmatter, generateFileListFrontmatter } = await import('../src/node/autoFrontmatter/generate.js')
+const { generateFileFrontmatter, generateFileListFrontmatter } = await import('../src/node/features/autoFrontmatter/generate.js')
 
 // 测试在测试目录内创建临时文件。
 // `.tmp` 目录已被 gitignore 忽略，并在测试结束后清理。

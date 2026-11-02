@@ -1,4 +1,4 @@
-import type { ThemeCollectionItem, ThemeDocCollection, ThemeLocaleData, ThemeOptions } from '../../shared/index.js'
+import type { ThemeCollectionItem, ThemeDocCollection, ThemeLocaleData, ThemeOptions } from '../../../shared/index.js'
 import { deleteKey, toArray } from '@pengzhanbo/utils'
 import { removeLeadingSlash } from 'vuepress/shared'
 import { path } from 'vuepress/utils'

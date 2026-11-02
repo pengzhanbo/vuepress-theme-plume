@@ -40,7 +40,7 @@ vi.mock('../src/node/utils/index.js', () => ({
   withBase: (path: string, base = '/') => `${base}${path}/`,
 }))
 
-vi.mock('../src/node/loadConfig/index.js', () => ({
+vi.mock('../src/node/features/loadConfig/index.js', () => ({
   getThemeConfig: hoisted.getThemeConfig,
 }))
 

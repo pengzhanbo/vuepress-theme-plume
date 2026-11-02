@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import type { ThemeOptions } from '../../shared/index.js'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 import { perf } from '../utils/index.js'
 import { prepareArticleTagColors } from './prepareArticleTagColor.js'
 import { prepareCollections } from './prepareCollections.js'

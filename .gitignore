@@ -20,6 +20,7 @@ coverage/
 **/.tmp/
 
 *.profraw
+report/
 
 # AI Agent CLI Local Artifacts
 .agent/

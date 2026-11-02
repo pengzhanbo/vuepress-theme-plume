@@ -3,10 +3,10 @@
  * 提醒用户更新配置，或告知用户进行迁移。
  */
 
-import type { ThemeOptions } from '../../shared/index.js'
+import type { ThemeOptions } from '../../../shared/index.js'
 import { hasOwn } from '@pengzhanbo/utils'
 import { colors } from 'vuepress/utils'
-import { createTranslate, logger } from '../utils/index.js'
+import { createTranslate, logger } from '../../utils/index.js'
 
 const t = createTranslate({
   en: {

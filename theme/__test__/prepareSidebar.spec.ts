@@ -21,7 +21,7 @@ vi.mock('../src/node/utils/index.js', async (importOriginal) => {
   }
 })
 
-vi.mock('../src/node/loadConfig/index.js', () => ({
+vi.mock('../src/node/features/loadConfig/index.js', () => ({
   getThemeConfig: () => ({}),
 }))
 

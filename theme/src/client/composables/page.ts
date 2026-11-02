@@ -2,6 +2,8 @@ import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 import { useData } from './data.js'
 
+const postLayouts = ['posts', 'posts-archives', 'posts-tags', 'posts-categories']
+
 /**
  * Use posts page data
  *
@@ -15,10 +17,7 @@ export function usePostsPageData(): {
 
   const isPosts = computed(() => collection.value?.type === 'post')
 
-  const isPostsLayout = computed(() => {
-    const type = page.value.type
-    return type === 'posts' || type === 'posts-archives' || type === 'posts-tags' || type === 'posts-categories'
-  })
+  const isPostsLayout = computed(() => postLayouts.includes(page.value.type))
 
   return {
     isPosts,

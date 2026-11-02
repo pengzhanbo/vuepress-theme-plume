@@ -7,7 +7,7 @@ import { isPlainObject } from '@vuepress/helper'
 import { copyCodePlugin } from '@vuepress/plugin-copy-code'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
 import { findFileIcon } from 'find-file-icon'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 
 /**
  * Setup code-related plugins

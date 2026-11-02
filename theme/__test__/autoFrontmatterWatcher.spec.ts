@@ -30,7 +30,7 @@ vi.mock('chokidar', () => ({
   },
 }))
 
-vi.mock('../src/node/loadConfig/index.js', () => ({
+vi.mock('../src/node/features/loadConfig/index.js', () => ({
   getThemeConfig: () => hoisted.themeConfig,
 }))
 
@@ -41,8 +41,8 @@ vi.mock('../src/node/utils/index.js', () => ({
   hasPinyin: false,
 }))
 
-const { watchAutoFrontmatter } = await import('../src/node/autoFrontmatter/generate.js')
-const { genAutoFrontmatterRules } = await import('../src/node/autoFrontmatter/rules.js')
+const { watchAutoFrontmatter } = await import('../src/node/features/autoFrontmatter/generate.js')
+const { genAutoFrontmatterRules } = await import('../src/node/features/autoFrontmatter/rules.js')
 
 const cwd = '/root'
 const app = {

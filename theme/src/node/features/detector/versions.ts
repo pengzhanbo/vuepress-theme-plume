@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { isEmptyObject, objectEntries } from '@pengzhanbo/utils'
 import { colors } from 'vuepress/utils'
-import { createTranslate, getPackage, getThemePackage, logger } from '../utils/index.js'
+import { createTranslate, getPackage, getThemePackage, logger } from '../../utils/index.js'
 
 const t = createTranslate({
   en: {

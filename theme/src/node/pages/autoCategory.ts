@@ -2,7 +2,7 @@ import type { Page } from 'vuepress/core'
 import type { PostsCategoryItem, ThemePageData } from '../../shared/index.js'
 import { ensureEndingSlash, ensureLeadingSlash } from '@vuepress/helper'
 import { path } from 'vuepress/utils'
-import { findCollection } from '../collections/index.js'
+import { findCollection } from '../features/collections/index.js'
 import { hash } from '../utils/index.js'
 
 let uuid = 10000

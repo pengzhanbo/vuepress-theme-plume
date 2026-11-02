@@ -12,12 +12,14 @@ import { ensureEndingSlash, removeLeadingSlash } from '@vuepress/helper'
 import dayjs from 'dayjs'
 import pMap from 'p-map'
 import { fs, path } from 'vuepress/utils'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 import { createMatcher, genTempCode, logger, perf, withBase, writeTemp } from '../utils/index.js'
 import { isEncryptPage } from './prepareEncrypt.js'
 
 const HEADING_RE = /<h(\d)[^>]*>.*?<\/h\1>/gi
 const EXCERPT_SPLIT = '<!-- more -->'
+
+const EXCLUDE_PAGE_TYPES = ['friends', 'posts', 'posts-tags', 'posts-archives', 'posts-categories']
 
 /**
  * 单篇文章处理的并发上限：`processPostData` 可能访问文件系统（`stat`），
@@ -120,9 +122,14 @@ export async function preparedPostsData(app: App, options: ThemeOptions = getThe
   const postsData: Record<string, ThemePosts> = {}
 
   const pages = app.pages.filter(page =>
+    // 不包含文件路径说明非真实 markdown 文件，直接过滤
     page.filePathRelative && page.filePath
+    // 用户手动隐藏了文章
     && page.frontmatter.article !== false
-    && (page.frontmatter.draft === true ? !isBuild : true),
+    // 排除指定页面类型
+    && !EXCLUDE_PAGE_TYPES.includes(page.data.type as string)
+    // 生产构建下，排除草稿文章
+    && (isBuild ? !page.frontmatter.draft : true),
   ) as Page<ThemePageData, ThemePostFrontmatter & Record<string, unknown>>[]
 
   const sortedPages = [...pages].sort(sortPage)

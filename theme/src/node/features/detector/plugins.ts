@@ -1,7 +1,7 @@
-import type { ThemeBuiltinPlugins } from '../../shared/index.js'
+import type { ThemeBuiltinPlugins } from '../../../shared/index.js'
 import { isArray, objectKeys } from '@pengzhanbo/utils'
 import { colors } from 'vuepress/utils'
-import { createTranslate, logger } from '../utils/index.js'
+import { createTranslate, logger } from '../../utils/index.js'
 import { PLUGINS_SUPPORTED_FIELDS } from './fields.js'
 
 const t = createTranslate({

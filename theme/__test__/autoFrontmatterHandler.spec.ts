@@ -15,7 +15,7 @@ const hoisted = vi.hoisted(() => ({
   seq: 0,
 }))
 
-vi.mock('../src/node/loadConfig/index.js', () => ({
+vi.mock('../src/node/features/loadConfig/index.js', () => ({
   getThemeConfig: () => hoisted.themeConfig,
 }))
 
@@ -26,8 +26,8 @@ vi.mock('../src/node/utils/index.js', () => ({
   hasPinyin: false,
 }))
 
-const { genAutoFrontmatterRules, getRules } = await import('../src/node/autoFrontmatter/rules.js')
-const { findRule } = await import('../src/node/autoFrontmatter/generate.js')
+const { genAutoFrontmatterRules, getRules } = await import('../src/node/features/autoFrontmatter/rules.js')
+const { findRule } = await import('../src/node/features/autoFrontmatter/generate.js')
 
 const TIME_RE = /^\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}:\d{2}$/
 

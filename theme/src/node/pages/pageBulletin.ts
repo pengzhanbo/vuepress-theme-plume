@@ -1,7 +1,7 @@
 import type { Page } from 'vuepress/core'
 import type { ThemePageData } from '../../shared/index.js'
 import { isFunction, isPlainObject } from '@vuepress/helper'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 
 /**
  * Enable bulletin for page

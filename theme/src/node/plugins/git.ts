@@ -2,7 +2,7 @@ import type { App, PluginConfig } from 'vuepress'
 import type { ThemeBuiltinPlugins } from '../../shared/index.js'
 import { isPlainObject } from '@vuepress/helper'
 import { gitPlugin as rawGitPlugin } from '@vuepress/plugin-git'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 
 /**
  * Setup git plugin

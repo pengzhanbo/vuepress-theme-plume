@@ -3,7 +3,7 @@ import { objectKeys } from '@pengzhanbo/utils'
 import pMap from 'p-map'
 import { createPage } from 'vuepress/core'
 import { ensureEndingSlash } from 'vuepress/shared'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 import { perf, withBase } from '../utils/index.js'
 
 /**

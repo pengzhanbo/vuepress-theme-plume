@@ -1,6 +1,6 @@
 import type { TemplateRendererContext } from 'vuepress/utils'
 import { templateRenderer } from 'vuepress/utils'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 import { getThemePackage } from '../utils/index.js'
 
 const SPACE_TRIM_REG = /^\s+|\s+$/gm

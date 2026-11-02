@@ -12,11 +12,11 @@ const hoisted = vi.hoisted(() => ({
   themeConfig: {} as any,
 }))
 
-vi.mock('../src/node/loadConfig/index.js', () => ({
+vi.mock('../src/node/features/loadConfig/index.js', () => ({
   getThemeConfig: () => hoisted.themeConfig,
 }))
 
-const { findCollection } = await import('../src/node/collections/findCollection.js')
+const { findCollection } = await import('../src/node/features/collections/findCollection.js')
 
 /** Build a minimal page with the fields `findCollection` reads. */
 function createPage(filePathRelative: string, pathLocale = '/'): Page<any> {

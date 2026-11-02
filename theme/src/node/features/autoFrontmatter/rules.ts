@@ -4,13 +4,13 @@ import type {
   AutoFrontmatterOptions,
   AutoFrontmatterRule,
   ThemeDocCollection,
-} from '../../shared/index.js'
-import type { ThemePostCollection } from '../../shared/index.js'
+} from '../../../shared/index.js'
+import type { ThemePostCollection } from '../../../shared/index.js'
 import { hasOwn, objectEntries, toArray } from '@pengzhanbo/utils'
 import { ensureEndingSlash, ensureLeadingSlash, removeLeadingSlash } from 'vuepress/shared'
 import { path } from 'vuepress/utils'
+import { nanoid } from '../../utils/index.js'
 import { getThemeConfig } from '../loadConfig/index.js'
-import { nanoid } from '../utils/index.js'
 import {
   EXCLUDE,
   getCurrentName,

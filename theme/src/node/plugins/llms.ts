@@ -3,7 +3,7 @@ import type { App, Page, PluginConfig } from 'vuepress'
 import type { ThemePageData, ThemeSidebarItem } from '../../shared/index.js'
 import { generateTOCLink as rawGenerateTOCLink, llmsPlugin as rawLlmsPlugin } from '@vuepress/plugin-llms'
 import { ensureEndingSlash, ensureLeadingSlash, isPlainObject } from 'vuepress/shared'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 import { isEncryptPage } from '../prepare/prepareEncrypt.js'
 import { hash, withBase } from '../utils/index.js'
 

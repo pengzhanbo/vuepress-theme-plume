@@ -1,7 +1,7 @@
 import type { App } from 'vuepress'
 import type { ThemeBuiltinPlugins } from '../../shared/index.js'
 import { getFullLocaleConfig, isPlainObject } from '@vuepress/helper'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 import { PRESET_LOCALES } from '../locales/index.js'
 
 export function setupProvideData(

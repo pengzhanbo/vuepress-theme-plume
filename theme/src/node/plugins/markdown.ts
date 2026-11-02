@@ -13,8 +13,8 @@ import { markdownImagePlugin } from '@vuepress/plugin-markdown-image'
 import { markdownIncludePlugin } from '@vuepress/plugin-markdown-include'
 import { markdownMathPlugin } from '@vuepress/plugin-markdown-math'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
-import { MARKDOWN_CHART_FIELDS, MARKDOWN_POWER_FIELDS } from '../detector/index.js'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { MARKDOWN_CHART_FIELDS, MARKDOWN_POWER_FIELDS } from '../features/detector/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 import { componentResolver } from './components.js'
 
 /**

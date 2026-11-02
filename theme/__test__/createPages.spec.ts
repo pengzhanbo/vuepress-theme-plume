@@ -6,7 +6,7 @@ const hoisted = vi.hoisted(() => ({
   createPage: vi.fn(),
 }))
 
-vi.mock('../src/node/loadConfig/index.js', () => ({
+vi.mock('../src/node/features/loadConfig/index.js', () => ({
   getThemeConfig: hoisted.getThemeConfig,
 }))
 

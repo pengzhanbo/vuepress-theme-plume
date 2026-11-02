@@ -2,7 +2,7 @@ import type { App } from 'vuepress'
 import type { ThemeCollectionItem, ThemeOptions } from '../../shared/index.js'
 import { omit } from '@pengzhanbo/utils'
 import { entries } from '@vuepress/helper'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeConfig } from '../features/loadConfig/index.js'
 import { genTempCode, perf, writeTemp } from '../utils/index.js'
 
 /**

@@ -1,6 +1,6 @@
 import type { ThemeDocCollection, ThemeOptions, ThemePostCollection } from '../src/shared/index.js'
 import { describe, expect, it } from 'vitest'
-import { compatBlogAndNotesToCollections } from '../src/node/collections/compat.js'
+import { compatBlogAndNotesToCollections } from '../src/node/features/collections/compat.js'
 
 /**
  * Build the legacy `blog` / `notes` options shape. The legacy types are deprecated

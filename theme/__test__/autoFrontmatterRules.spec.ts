@@ -11,7 +11,7 @@ const hoisted = vi.hoisted(() => ({
   themeConfig: {} as any,
 }))
 
-vi.mock('../src/node/loadConfig/index.js', () => ({
+vi.mock('../src/node/features/loadConfig/index.js', () => ({
   getThemeConfig: () => hoisted.themeConfig,
 }))
 
@@ -22,8 +22,8 @@ vi.mock('../src/node/utils/index.js', () => ({
   hasPinyin: () => false,
 }))
 
-const { genAutoFrontmatterRules, getRules } = await import('../src/node/autoFrontmatter/rules.js')
-const { findRule } = await import('../src/node/autoFrontmatter/generate.js')
+const { genAutoFrontmatterRules, getRules } = await import('../src/node/features/autoFrontmatter/rules.js')
+const { findRule } = await import('../src/node/features/autoFrontmatter/generate.js')
 
 /** The first pattern of a rule's filter identifies the collection it was generated from. */
 function source(rule: ReturnType<typeof findRule>): string | undefined {

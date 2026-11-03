@@ -112,7 +112,7 @@ export async function prepareArticleTagColors(app: App): Promise<void> {
  * 生成标签颜色的 CSS 和 JS 代码，遍历所有页面收集标签并生成对应的样式和脚本
  */
 export function genCode(app: App): { js: string, css: string } {
-  const articleTagColors: Record<string, string> = {}
+  const articleTagColors = new Map<string, string>()
   const tagColors = new Map<string, TagColors>()
 
   app.pages.forEach((page) => {
@@ -125,11 +125,11 @@ export function genCode(app: App): { js: string, css: string } {
         return
 
       const name = tag as string
-      if (articleTagColors[name])
+      if (articleTagColors.has(name))
         return
 
       const className = getTagClassName(name)
-      articleTagColors[name] = className
+      articleTagColors.set(name, className)
       // Colors are resolved from the tag text, tags sharing a hash share a class.
       if (!tagColors.has(className))
         tagColors.set(className, resolveTagColors(name))
@@ -138,7 +138,7 @@ export function genCode(app: App): { js: string, css: string } {
 
   const js = genTempCode(app, {
     name: 'articleTagColors',
-    content: articleTagColors,
+    content: Object.fromEntries(articleTagColors.entries()),
     before: `import './articleTagColors.css'`,
   })
   const css = [...tagColors]

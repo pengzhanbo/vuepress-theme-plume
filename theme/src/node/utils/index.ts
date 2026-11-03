@@ -1,3 +1,4 @@
+export * from './color.js'
 export * from './constants.js'
 export * from './createFsCache.js'
 export * from './createMatcher.js'

@@ -1,18 +1,18 @@
 import { describe, expect, it, vi } from 'vitest'
 
 /**
- * `genAutoFrontmatterRules` reads from the `getThemeConfig()` singleton and the
+ * `genAutoFrontmatterRules` reads from the `getThemeOptions()` singleton and the
  * node utils barrel. Both are replaced here to keep the test focused on rule ordering.
  *
- * `genAutoFrontmatterRules` 从 `getThemeConfig()` 单例与 node utils barrel 读取，
+ * `genAutoFrontmatterRules` 从 `getThemeOptions()` 单例与 node utils barrel 读取，
  * 这里将两者替换为桩，使测试聚焦于规则顺序。
  */
 const hoisted = vi.hoisted(() => ({
   themeConfig: {} as any,
 }))
 
-vi.mock('../src/node/features/loadConfig/index.js', () => ({
-  getThemeConfig: () => hoisted.themeConfig,
+vi.mock('../src/node/options.js', () => ({
+  getThemeOptions: () => hoisted.themeConfig,
 }))
 
 vi.mock('../src/node/utils/index.js', () => ({

@@ -8,7 +8,7 @@ import { watch } from 'chokidar'
 import { getImageOriginalSize, resolveImagePath } from 'vuepress-plugin-md-power'
 import { hash } from 'vuepress/utils'
 import { resolveThemeData } from '../config/resolveThemeData.js'
-import { getThemeConfig } from '../features/loadConfig/index.js'
+import { getThemeOptions } from '../options.js'
 import { genTempCode, logger, perf, writeTemp } from '../utils/index.js'
 
 let bulletinFileWatcher: FSWatcher | null = null
@@ -23,12 +23,12 @@ process.on('exit', () => bulletinFileWatcher?.close())
  *
  * @param app - VuePress application instance / VuePress 应用实例
  * @param plugins - Built-in theme plugins / 主题内置插件
- * @param options - Theme options, defaults to `getThemeConfig()` / 主题配置，默认从 `getThemeConfig()` 读取
+ * @param options - Theme options, defaults to `getThemeOptions()` / 主题配置，默认从 `getThemeOptions()` 读取
  */
 export async function prepareThemeData(
   app: App,
   plugins: ThemeBuiltinPlugins,
-  options: ThemeOptions = getThemeConfig(),
+  options: ThemeOptions = getThemeOptions(),
 ): Promise<void> {
   perf.mark('prepare:theme-data')
   const resolvedThemeData = resolveThemeData(app, options)

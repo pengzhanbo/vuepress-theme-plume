@@ -123,7 +123,7 @@ Companion requirements:
   `theme/src/node/defineConfig.ts` before writing. A past documentation review found names that simply
   do not exist.
 - **Verify default values against the source.** Take them from `node/locales/*.ts` or
-  `initThemeOptions.ts` rather than writing them from memory.
+  `node/options.ts` (`FALLBACK_OPTIONS`, `resolveThemeOptions`) rather than writing them from memory.
 
 ### Keep the Chinese and English docs in sync
 

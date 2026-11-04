@@ -11,7 +11,7 @@ import { prepareEncrypt } from '../src/node/prepare/prepareEncrypt.js'
 const hoisted = vi.hoisted(() => ({
   writeTemp: vi.fn(async (_app: unknown, _file: string, _content: unknown) => {}),
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
-  getThemeConfig: vi.fn(() => ({})),
+  getThemeOptions: vi.fn(() => ({})),
   genEncrypt: vi.fn(),
   createFsCache: vi.fn(),
   hash: vi.fn((content: string) => `hashed-content(${content})`),
@@ -27,8 +27,8 @@ vi.mock('../src/node/utils/index.js', () => ({
   writeTemp: hoisted.writeTemp,
 }))
 
-vi.mock('../src/node/features/loadConfig/index.js', () => ({
-  getThemeConfig: hoisted.getThemeConfig,
+vi.mock('../src/node/options.js', () => ({
+  getThemeOptions: hoisted.getThemeOptions,
 }))
 
 const app = { env: { isDev: false } } as unknown as App
@@ -52,7 +52,7 @@ function decode<T>(data: string): T {
 
 /** 执行 prepareEncrypt 并返回写入的加密配置。 */
 async function resolveEncryptConfig(encrypt?: Record<string, unknown>): Promise<EncryptConfig> {
-  hoisted.getThemeConfig.mockReturnValue({ encrypt })
+  hoisted.getThemeOptions.mockReturnValue({ encrypt })
   await prepareEncrypt(app)
   const call = hoisted.writeTemp.mock.calls.find(([, file]) => file === 'internal/encrypt.js')
   return call?.[2] as EncryptConfig

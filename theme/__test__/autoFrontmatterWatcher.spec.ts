@@ -30,8 +30,8 @@ vi.mock('chokidar', () => ({
   },
 }))
 
-vi.mock('../src/node/features/loadConfig/index.js', () => ({
-  getThemeConfig: () => hoisted.themeConfig,
+vi.mock('../src/node/options.js', () => ({
+  getThemeOptions: () => hoisted.themeConfig,
 }))
 
 vi.mock('../src/node/utils/index.js', () => ({

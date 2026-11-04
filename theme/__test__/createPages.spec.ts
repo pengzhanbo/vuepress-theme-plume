@@ -2,12 +2,12 @@ import type { App, Page } from 'vuepress/core'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 const hoisted = vi.hoisted(() => ({
-  getThemeConfig: vi.fn(() => ({}) as any),
+  getThemeOptions: vi.fn(() => ({}) as any),
   createPage: vi.fn(),
 }))
 
-vi.mock('../src/node/features/loadConfig/index.js', () => ({
-  getThemeConfig: hoisted.getThemeConfig,
+vi.mock('../src/node/options.js', () => ({
+  getThemeOptions: hoisted.getThemeOptions,
 }))
 
 // 保留 `vuepress/core` 的其它导出，仅替换 `createPage`，避免真实读取源文件。
@@ -42,7 +42,7 @@ describe('createPages', () => {
   })
 
   it('should create pages for every post collection and keep the declaration order', async () => {
-    hoisted.getThemeConfig.mockReturnValue({
+    hoisted.getThemeOptions.mockReturnValue({
       locales: {
         '/': {
           collections: [
@@ -71,7 +71,7 @@ describe('createPages', () => {
 
   it('should bound the number of pages created concurrently', async () => {
     // 40 个集合 × 4 个页面 = 160 个页面，足以触发并发上限。
-    hoisted.getThemeConfig.mockReturnValue({
+    hoisted.getThemeOptions.mockReturnValue({
       locales: {
         '/': {
           collections: Array.from({ length: 40 }, (_, index) => postCollection(`blog-${index}`)),
@@ -99,7 +99,7 @@ describe('createPages', () => {
   })
 
   it('should not create pages when no post collection is configured', async () => {
-    hoisted.getThemeConfig.mockReturnValue({
+    hoisted.getThemeOptions.mockReturnValue({
       locales: { '/': { collections: [{ type: 'doc', dir: 'docs' }] } },
     })
 
@@ -111,7 +111,7 @@ describe('createPages', () => {
   })
 
   it('should ignore locales without collections', async () => {
-    hoisted.getThemeConfig.mockReturnValue({ locales: { '/zh/': {} } })
+    hoisted.getThemeOptions.mockReturnValue({ locales: { '/zh/': {} } })
 
     const app = createApp()
     await createPages(app)
@@ -120,7 +120,7 @@ describe('createPages', () => {
   })
 
   it('should create no pages when locales are not configured', async () => {
-    hoisted.getThemeConfig.mockReturnValue({})
+    hoisted.getThemeOptions.mockReturnValue({})
 
     const app = createApp()
     await createPages(app)
@@ -129,7 +129,7 @@ describe('createPages', () => {
   })
 
   it('should skip the post list page when `postList` is false', async () => {
-    hoisted.getThemeConfig.mockReturnValue({
+    hoisted.getThemeOptions.mockReturnValue({
       locales: { '/': { collections: [postCollection('blog', { postList: false })] } },
     })
 
@@ -144,7 +144,7 @@ describe('createPages', () => {
   })
 
   it('should fall back to the site language when the root locale has none', async () => {
-    hoisted.getThemeConfig.mockReturnValue({
+    hoisted.getThemeOptions.mockReturnValue({
       locales: { '/': { collections: [postCollection('blog')] } },
     })
 

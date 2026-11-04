@@ -2,7 +2,7 @@ import type { App, PluginConfig } from 'vuepress'
 import type { ThemeBuiltinPlugins } from '../../shared/index.js'
 import { isPlainObject } from '@vuepress/helper'
 import { gitPlugin as rawGitPlugin } from '@vuepress/plugin-git'
-import { getThemeConfig } from '../features/loadConfig/index.js'
+import { getThemeOptions } from '../options.js'
 
 /**
  * Setup git plugin
@@ -10,7 +10,7 @@ import { getThemeConfig } from '../features/loadConfig/index.js'
  * 设置 Git 插件，用于显示文章的最后更新时间、贡献者和变更历史
  */
 export function gitPlugin(app: App, pluginOptions: ThemeBuiltinPlugins): PluginConfig {
-  const options = getThemeConfig()
+  const options = getThemeOptions()
 
   const git = pluginOptions.git ?? app.env.isBuild
 

@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 const hoisted = vi.hoisted(() => ({
   writeTemp: vi.fn(),
-  getThemeConfig: vi.fn(() => ({}) as any),
+  getThemeOptions: vi.fn(() => ({}) as any),
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
   /** 记录并发的文件系统调用（`stat`）峰值。 */
   stat: { inFlight: 0, peak: 0 },
@@ -40,8 +40,8 @@ vi.mock('../src/node/utils/index.js', () => ({
   withBase: (path: string, base = '/') => `${base}${path}/`,
 }))
 
-vi.mock('../src/node/features/loadConfig/index.js', () => ({
-  getThemeConfig: hoisted.getThemeConfig,
+vi.mock('../src/node/options.js', () => ({
+  getThemeOptions: hoisted.getThemeOptions,
 }))
 
 const { preparedPostsData } = await import('../src/node/prepare/preparePostsData.js')
@@ -93,7 +93,7 @@ describe('preparedPostsData', () => {
     vi.clearAllMocks()
     hoisted.stat.inFlight = 0
     hoisted.stat.peak = 0
-    hoisted.getThemeConfig.mockReturnValue({
+    hoisted.getThemeOptions.mockReturnValue({
       locales: { '/': { collections: [{ type: 'post', dir: 'blog', include: [], exclude: [] }] } },
     })
   })
@@ -133,7 +133,7 @@ describe('preparedPostsData', () => {
   })
 
   it('should reuse one ordering across multiple post collections', async () => {
-    hoisted.getThemeConfig.mockReturnValue({
+    hoisted.getThemeOptions.mockReturnValue({
       locales: {
         '/': { collections: [{ type: 'post', dir: 'blog', include: [], exclude: [] }] },
         '/en/': { collections: [{ type: 'post', dir: 'blog', include: [], exclude: [] }] },
@@ -190,7 +190,7 @@ describe('preparedPostsData', () => {
 describe('preparedPostsData: post content mapping', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    hoisted.getThemeConfig.mockReturnValue({
+    hoisted.getThemeOptions.mockReturnValue({
       locales: { '/': { collections: [{ type: 'post', dir: 'blog' }] } },
     })
   })
@@ -302,7 +302,7 @@ describe('preparedPostsData: post content mapping', () => {
   })
 
   it('creates no posts when locales are not configured', async () => {
-    hoisted.getThemeConfig.mockReturnValue({})
+    hoisted.getThemeOptions.mockReturnValue({})
 
     await preparedPostsData(createApp([createPost(0)]))
 
@@ -310,7 +310,7 @@ describe('preparedPostsData: post content mapping', () => {
   })
 
   it('skips locales that declare no collections', async () => {
-    hoisted.getThemeConfig.mockReturnValue({ locales: { '/': {} } })
+    hoisted.getThemeOptions.mockReturnValue({ locales: { '/': {} } })
 
     await preparedPostsData(createApp([createPost(0)]))
 

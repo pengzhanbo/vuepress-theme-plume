@@ -3,17 +3,17 @@ import type { ThemeCollectionItem } from '../src/shared/index.js'
 import { describe, expect, it, vi } from 'vitest'
 
 /**
- * `findCollection` reads collections from the `getThemeConfig()` singleton, so the
+ * `findCollection` reads collections from the `getThemeOptions()` singleton, so the
  * config is captured here and replaced per test case.
  *
- * `findCollection` 从 `getThemeConfig()` 单例读取集合配置，因此在这里捕获配置并按用例替换。
+ * `findCollection` 从 `getThemeOptions()` 单例读取集合配置，因此在这里捕获配置并按用例替换。
  */
 const hoisted = vi.hoisted(() => ({
   themeConfig: {} as any,
 }))
 
-vi.mock('../src/node/features/loadConfig/index.js', () => ({
-  getThemeConfig: () => hoisted.themeConfig,
+vi.mock('../src/node/options.js', () => ({
+  getThemeOptions: () => hoisted.themeConfig,
 }))
 
 const { findCollection } = await import('../src/node/features/collections/findCollection.js')

@@ -13,7 +13,7 @@ import dayjs from 'dayjs'
 import pMap from 'p-map'
 import { fs, path } from 'vuepress/utils'
 import { isEncryptPage } from '../features/encrypt.js'
-import { getThemeConfig } from '../features/loadConfig/index.js'
+import { getThemeOptions } from '../options.js'
 import { createMatcher, genTempCode, logger, perf, withBase, writeTemp } from '../utils/index.js'
 
 const HEADING_RE = /<h(\d)[^>]*>.*?<\/h\1>/gi
@@ -111,9 +111,9 @@ async function processPostData(
  * 准备文章数据，过滤非草稿文章并为每个集合和语言环境生成文章列表数据
  *
  * @param app - VuePress application instance / VuePress 应用实例
- * @param options - Theme options, defaults to `getThemeConfig()` / 主题配置，默认从 `getThemeConfig()` 读取
+ * @param options - Theme options, defaults to `getThemeOptions()` / 主题配置，默认从 `getThemeOptions()` 读取
  */
-export async function preparedPostsData(app: App, options: ThemeOptions = getThemeConfig()): Promise<void> {
+export async function preparedPostsData(app: App, options: ThemeOptions = getThemeOptions()): Promise<void> {
   const isBuild = app.env.isBuild
   const { encrypt, locales } = options
 

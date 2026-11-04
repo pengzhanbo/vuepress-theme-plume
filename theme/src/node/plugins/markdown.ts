@@ -14,7 +14,7 @@ import { markdownIncludePlugin } from '@vuepress/plugin-markdown-include'
 import { markdownMathPlugin } from '@vuepress/plugin-markdown-math'
 import { markdownPowerPlugin } from 'vuepress-plugin-md-power'
 import { MARKDOWN_CHART_FIELDS, MARKDOWN_POWER_FIELDS } from '../features/detector/index.js'
-import { getThemeConfig } from '../features/loadConfig/index.js'
+import { getThemeOptions } from '../options.js'
 import { componentResolver } from './components.js'
 
 /**
@@ -23,7 +23,7 @@ import { componentResolver } from './components.js'
  * 设置 Markdown 增强插件，包括提示、图像、数学公式、图表等功能
  */
 export function markdownPlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
-  const options = getThemeConfig()
+  const options = getThemeOptions()
   const plugins: PluginConfig = []
   let { hint, image, include, math, mdChart, mdPower } = splitMarkdownOptions(options.markdown ?? {})
   const obsidian = isPlainObject(mdPower.obsidian) ? mdPower.obsidian : {}

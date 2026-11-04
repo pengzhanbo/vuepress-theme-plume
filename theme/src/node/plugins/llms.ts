@@ -4,7 +4,7 @@ import type { ThemePageData, ThemeSidebarItem } from '../../shared/index.js'
 import { generateTOCLink as rawGenerateTOCLink, llmsPlugin as rawLlmsPlugin } from '@vuepress/plugin-llms'
 import { ensureEndingSlash, ensureLeadingSlash, isPlainObject } from 'vuepress/shared'
 import { isEncryptPage } from '../features/encrypt.js'
-import { getThemeConfig } from '../features/loadConfig/index.js'
+import { getThemeOptions } from '../options.js'
 import { hash, withBase } from '../utils/index.js'
 
 const CODE_BLOCK_RE = /(?:^|\n)(?<marker>\s*`{3,})([\s\w])[\s\S]*?\n\k<marker>(?:\n|$)/g
@@ -23,7 +23,7 @@ export function llmsPlugin(app: App, userOptions: true | LlmsPluginOptions): Plu
   const { llmsTxtTemplateGetter, transformMarkdown, ...userLLMsTxt } = isPlainObject(userOptions) ? userOptions : {}
 
   function tocGetter(llmPages: LLMPage[], llmState: LLMState): string {
-    const options = getThemeConfig()
+    const options = getThemeOptions()
     const { currentLocale } = llmState
     const collections = options.locales?.[currentLocale]?.collections || []
 
@@ -130,7 +130,7 @@ export function llmsPlugin(app: App, userOptions: true | LlmsPluginOptions): Plu
   return [rawLlmsPlugin({
     // 启用全站加密、或者页面被加密的情况下不启用
     filter: (page) => {
-      const options = getThemeConfig()
+      const options = getThemeOptions()
       return options.encrypt?.global ? false : !isEncryptPage(page as Page<ThemePageData>, options.encrypt)
     },
     locale: '/',

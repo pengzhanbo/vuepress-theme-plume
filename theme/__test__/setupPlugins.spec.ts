@@ -2,9 +2,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 /**
  * Capture the options passed to the search plugin, and the theme config returned
- * by the `getThemeConfig()` singleton, since `setupPlugins` reads both.
+ * by the `getThemeOptions()` singleton, since `setupPlugins` reads both.
  *
- * 捕获传递给搜索插件的选项，以及 `getThemeConfig()` 单例返回的主题配置，
+ * 捕获传递给搜索插件的选项，以及 `getThemeOptions()` 单例返回的主题配置，
  * 因为 `setupPlugins` 会读取它们。
  */
 const hoisted = vi.hoisted(() => {
@@ -58,8 +58,8 @@ vi.mock('@vuepress/plugin-replace-assets', () => ({ replaceAssetsPlugin: hoisted
 vi.mock('@vuepress/plugin-seo', () => ({ seoPlugin: hoisted.plugins.seo.fn }))
 vi.mock('@vuepress/plugin-sitemap', () => ({ sitemapPlugin: hoisted.plugins.sitemap.fn }))
 vi.mock('@vuepress/plugin-watermark', () => ({ watermarkPlugin: hoisted.plugins.watermark.fn }))
-vi.mock('../src/node/features/loadConfig/index.js', () => ({
-  getThemeConfig: () => hoisted.themeConfig,
+vi.mock('../src/node/options.js', () => ({
+  getThemeOptions: () => hoisted.themeConfig,
 }))
 vi.mock('../src/node/plugins/code.js', () => ({ codePlugins: () => [] }))
 vi.mock('../src/node/plugins/git.js', () => ({ gitPlugin: () => [] }))

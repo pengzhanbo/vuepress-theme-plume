@@ -7,7 +7,7 @@ import { isArray, isPlainObject, objectEntries, uniq } from '@pengzhanbo/utils'
 import { isPackageExists } from 'local-pkg'
 import { fs } from 'vuepress/utils'
 import { getIconsWithPage, getIconWithThemeConfig } from '../features/icons.js'
-import { getThemeConfig } from '../features/loadConfig/index.js'
+import { getThemeOptions } from '../options.js'
 import { createFsCache, genTempCode, interopDefault, logger, perf, writeTemp } from '../utils/index.js'
 
 interface IconData {
@@ -43,9 +43,9 @@ let cache: IconDataMap = {}
  * 准备主题图标数据，收集页面中使用的图标并生成对应的 CSS 和 JS 文件
  *
  * @param app - VuePress application instance / VuePress 应用实例
- * @param options - Theme options, defaults to `getThemeConfig()` / 主题配置，默认从 `getThemeConfig()` 读取
+ * @param options - Theme options, defaults to `getThemeOptions()` / 主题配置，默认从 `getThemeOptions()` 读取
  */
-export async function prepareIcons(app: App, options: ThemeOptions = getThemeConfig()): Promise<void> {
+export async function prepareIcons(app: App, options: ThemeOptions = getThemeOptions()): Promise<void> {
   perf.mark('prepare:icons:total')
   const icons: UsageIcons = { co: [], bg: {}, mask: {} }
   if (!isInstalled) {

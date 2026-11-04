@@ -1,12 +1,12 @@
 import type { App } from 'vuepress'
 import type { ThemeOptions } from '../src/shared/index.js'
 import { describe, expect, it } from 'vitest'
-import { initThemeOptions } from '../src/node/config/initThemeOptions.js'
+import { resolveThemeOptions } from '../src/node/options.js'
 
 /**
- * 仅提供多语言信息的最小 App 假对象，`initThemeOptions` 只需要据此解析语言环境。
+ * 仅提供多语言信息的最小 App 假对象，`resolveThemeOptions` 只需要据此解析语言环境。
  *
- * A minimal App stub carrying only the locale information; `initThemeOptions`
+ * A minimal App stub carrying only the locale information; `resolveThemeOptions`
  * needs nothing else to resolve the locale configs.
  */
 const app = {
@@ -18,9 +18,9 @@ function brief(collections: ThemeOptions['collections']) {
   return collections?.map(({ type, dir }) => ({ type, dir }))
 }
 
-describe('initThemeOptions > blog/notes compatibility', () => {
+describe('resolveThemeOptions > blog/notes compatibility', () => {
   it('should migrate the root legacy blog and notes into every locale', () => {
-    const options = initThemeOptions(app, {
+    const options = resolveThemeOptions(app, {
       blog: { include: ['blog/**'] },
       notes: { dir: 'notes', link: '/notes/', notes: [{ dir: 'guide', link: 'guide' }] },
       locales: { '/en/': {} },
@@ -42,7 +42,7 @@ describe('initThemeOptions > blog/notes compatibility', () => {
     // 曾被误判为已被取代而静默删除，既不迁移也不告警。
     // Regression: when a locale merely inherited the root `collections`, its own
     // legacy `notes` was mistaken for "already superseded" and silently deleted.
-    const options = initThemeOptions(app, {
+    const options = resolveThemeOptions(app, {
       collections: [{ type: 'post', dir: 'blog' }],
       locales: {
         '/en/': {
@@ -61,7 +61,7 @@ describe('initThemeOptions > blog/notes compatibility', () => {
   })
 
   it('should honour blog:false declared by a locale', () => {
-    const options = initThemeOptions(app, {
+    const options = resolveThemeOptions(app, {
       article: '/article/',
       blog: { include: ['blog/**'] },
       locales: { '/en/': { blog: false } },
@@ -73,7 +73,7 @@ describe('initThemeOptions > blog/notes compatibility', () => {
   })
 
   it('should prefer a locale own blog and article over the root ones', () => {
-    const options = initThemeOptions(app, {
+    const options = resolveThemeOptions(app, {
       article: '/article/',
       blog: { include: ['blog/**'] },
       locales: { '/en/': { blog: { include: ['en/blog/**'] }, article: '/en/article/' } },

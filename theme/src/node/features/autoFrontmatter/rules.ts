@@ -9,8 +9,8 @@ import type { ThemePostCollection } from '../../../shared/index.js'
 import { hasOwn, objectEntries, toArray } from '@pengzhanbo/utils'
 import { ensureEndingSlash, ensureLeadingSlash, removeLeadingSlash } from 'vuepress/shared'
 import { path } from 'vuepress/utils'
+import { getThemeOptions } from '../../options.js'
 import { nanoid } from '../../utils/index.js'
-import { getThemeConfig } from '../loadConfig/index.js'
 import {
   EXCLUDE,
   getCurrentName,
@@ -27,7 +27,7 @@ export function getRules(): AutoFrontmatterRule[] {
 }
 
 export function genAutoFrontmatterRules(): void {
-  const options = getThemeConfig()
+  const options = getThemeOptions()
   // `EXCLUDE` 中的条目本身就带否定前缀（`!**/node_modules/**`），而下面构建兜底规则时
   // 还会再加一次 `!${s}`，因此这里必须先去掉前导 `!`：否则会得到
   // `!!**/node_modules/**`，忽略模式变成 `!**/node_modules/**`，会让 picomatch 对任何路径

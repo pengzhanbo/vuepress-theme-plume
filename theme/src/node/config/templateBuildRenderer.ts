@@ -1,6 +1,6 @@
 import type { TemplateRendererContext } from 'vuepress/utils'
 import { templateRenderer } from 'vuepress/utils'
-import { getThemeConfig } from '../features/loadConfig/index.js'
+import { getThemeOptions } from '../options.js'
 import { getThemePackage } from '../utils/index.js'
 
 const SPACE_TRIM_REG = /^\s+|\s+$/gm
@@ -10,7 +10,7 @@ export function templateBuildRenderer(
   template: string,
   context: TemplateRendererContext,
 ): Promise<string> | string {
-  const options = getThemeConfig()
+  const options = getThemeOptions()
   const pkg = getThemePackage()
   template = template
     .replace('{{ themeVersion }}', pkg.version || '')

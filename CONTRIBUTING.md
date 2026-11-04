@@ -113,7 +113,7 @@ export default defineThemeConfig({
   ```
 
 - **API 名称与配置键须核对源码**：写之前对照 `theme/src/shared/` 与 `theme/src/node/defineConfig.ts`，确认导出名与字段名真实存在。
-- **默认值须核对源码**：不要凭印象填写，从 `node/locales/*.ts`、`initThemeOptions.ts` 等处确认。
+- **默认值须核对源码**：不要凭印象填写，从 `node/locales/*.ts`、`node/options.ts`（`FALLBACK_OPTIONS`、`resolveThemeOptions`）等处确认。
 
 ### 中英双语文档同步
 

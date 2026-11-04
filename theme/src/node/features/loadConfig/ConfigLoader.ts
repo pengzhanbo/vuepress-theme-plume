@@ -6,10 +6,16 @@ import process from 'node:process'
 import { deepMerge, difference } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
 import { colors } from 'vuepress/utils'
-import { initThemeOptions } from '../../config/initThemeOptions.js'
 import { logger, normalizePath, perf } from '../../utils/index.js'
 import { compiler } from './compiler.js'
 import { findConfigPath } from './findConfigPath.js'
+
+interface ConfigLoaderInitOptions {
+  app: App
+  defaultConfig: ThemeOptions
+  configFile?: string
+  update: (config: ThemeOptions) => ThemeOptions
+}
 
 export class ConfigLoader extends EventEmitter {
   app!: App
@@ -20,18 +26,20 @@ export class ConfigLoader extends EventEmitter {
   private loadError: unknown = null
   private configFile?: string
   private defaultConfig!: ThemeOptions
+  private update!: ConfigLoaderInitOptions['update']
 
-  config: ThemeOptions = {}
+  config!: ThemeOptions
 
-  async init(app: App, defaultConfig: ThemeOptions, configFile?: string): Promise<void> {
+  async init({ app, defaultConfig, configFile, update }: ConfigLoaderInitOptions): Promise<void> {
     this.removeAllListeners('change')
 
     this.app = app
     this.defaultConfig = defaultConfig
-
-    this.config = initThemeOptions(app, defaultConfig)
+    this.update = update
 
     try {
+      this.config = this.update(defaultConfig)
+
       perf.mark('config-loader:find-config')
       this.configFile = await findConfigPath(app, configFile)
       perf.log('config-loader:find-config')
@@ -45,7 +53,8 @@ export class ConfigLoader extends EventEmitter {
       this.failed = true
       this.loadError = error
       this.emit('failed', error)
-      throw error
+      logger.error('Failed to load theme config.', error)
+      return
     }
 
     this.failed = false
@@ -108,13 +117,7 @@ export class ConfigLoader extends EventEmitter {
   }
 
   private updateConfig(userConfig: ThemeOptions): void {
-    const config = deepMerge({}, this.defaultConfig, userConfig) as ThemeOptions
-    this.config = initThemeOptions(this.app, config)
+    const config = deepMerge(Object.create(null), this.defaultConfig, userConfig) as ThemeOptions
+    this.config = this.update(config)
   }
-}
-
-export const configLoader: ConfigLoader = new ConfigLoader()
-
-export function getThemeConfig(): ThemeOptions {
-  return configLoader.config
 }

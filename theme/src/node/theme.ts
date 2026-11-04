@@ -1,23 +1,18 @@
 import type { Theme } from 'vuepress/core'
 import type { ThemeOptions } from '../shared/index.js'
-import {
-  extendsBundlerOptions,
-  setupAlias,
-  setupProvideData,
-  templateBuildRenderer,
-} from './config/index.js'
+import { extendsBundlerOptions, setupAlias, setupProvideData, templateBuildRenderer } from './config/index.js'
 import {
   genAutoFrontmatterRules,
   generateFileListFrontmatter,
   watchAutoFrontmatter,
 } from './features/autoFrontmatter/index.js'
 import { detectThemeOptions, detectVersions } from './features/detector/index.js'
-import { configLoader } from './features/loadConfig/index.js'
+import { initConfigLoader } from './options.js'
 import { createPages, extendsPageData } from './pages/index.js'
 import { setupPlugins } from './plugins/index.js'
 import { prepareData } from './prepare/index.js'
 import { prepareThemeData } from './prepare/prepareThemeData.js'
-import { logger, perf, resolve, setTranslateLang, templates, THEME_NAME } from './utils/index.js'
+import { perf, resolve, setTranslateLang, templates, THEME_NAME } from './utils/index.js'
 
 /**
  * VuePress Theme Plume
@@ -45,10 +40,7 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
     detectVersions(app)
     const { configFile, plugins, themeOptions } = detectThemeOptions(options)
 
-    configLoader
-      .init(app, themeOptions, configFile)
-      .catch(error => logger.error('Failed to load theme config.', error))
-
+    const configLoader = initConfigLoader(app, themeOptions, configFile)
     configLoader.on('change', async () => {
       genAutoFrontmatterRules()
       await prepareThemeData(app, plugins)

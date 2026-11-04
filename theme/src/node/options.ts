@@ -1,10 +1,28 @@
 import type { App } from 'vuepress'
-import type { ThemeOptions } from '../../shared/index.js'
+import type { ThemeOptions } from '../shared/index.js'
 import { hasOwn, objectKeys, uniq } from '@pengzhanbo/utils'
 import { entries, fromEntries, getFullLocaleConfig, isPlainObject } from '@vuepress/helper'
-import { compatBlogAndNotesToCollections, completeCollections } from '../features/collections/index.js'
-import { LOCALE_OPTIONS } from '../locales/index.js'
-import { THEME_NAME } from '../utils/index.js'
+import { compatBlogAndNotesToCollections, completeCollections } from './features/collections/index.js'
+import { ConfigLoader } from './features/loadConfig/index.js'
+import { LOCALE_OPTIONS } from './locales/index.js'
+import { THEME_NAME } from './utils/index.js'
+
+const configLoader: ConfigLoader = new ConfigLoader()
+
+export function getThemeOptions(): ThemeOptions {
+  return configLoader.config
+}
+
+export function initConfigLoader(app: App, themeOptions: ThemeOptions, configFile?: string): ConfigLoader {
+  configLoader.init({
+    app,
+    defaultConfig: themeOptions,
+    configFile,
+    update: config => resolveThemeOptions(app, config),
+  })
+
+  return configLoader
+}
 
 const FALLBACK_OPTIONS: ThemeOptions = {
   appearance: true,
@@ -32,7 +50,7 @@ const FALLBACK_OPTIONS: ThemeOptions = {
  * 1. 合并默认配置
  * 2. 合并多语言配置
  */
-export function initThemeOptions(app: App, { locales, ...options }: ThemeOptions): ThemeOptions {
+export function resolveThemeOptions(app: App, { locales, ...options }: ThemeOptions): ThemeOptions {
   const resolvedOptions: ThemeOptions = {
     ...mergeOptions(FALLBACK_OPTIONS, options),
     locales: getFullLocaleConfig({

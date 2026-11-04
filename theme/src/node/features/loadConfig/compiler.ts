@@ -54,10 +54,7 @@ const injectFileScopeVariables: Plugin = {
         injectedContents = injectValues + code
       }
 
-      return {
-        code: injectedContents,
-        map: null,
-      }
+      return { code: injectedContents, map: null }
     },
   },
 }

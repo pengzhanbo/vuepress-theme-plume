@@ -7,7 +7,7 @@ import { isPlainObject } from '@vuepress/helper'
 import { copyCodePlugin } from '@vuepress/plugin-copy-code'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
 import { findFileIcon } from 'find-file-icon'
-import { getThemeConfig } from '../features/loadConfig/index.js'
+import { getThemeOptions } from '../options.js'
 
 /**
  * Setup code-related plugins
@@ -15,7 +15,7 @@ import { getThemeConfig } from '../features/loadConfig/index.js'
  * 设置代码相关插件，包括代码复制和代码高亮
  */
 export function codePlugins(pluginOptions: ThemeBuiltinPlugins): PluginConfig {
-  const options = getThemeConfig()
+  const options = getThemeOptions()
   const plugins: PluginConfig = []
 
   // 代码复制

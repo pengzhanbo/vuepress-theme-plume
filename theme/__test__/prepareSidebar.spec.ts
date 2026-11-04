@@ -21,8 +21,8 @@ vi.mock('../src/node/utils/index.js', async (importOriginal) => {
   }
 })
 
-vi.mock('../src/node/features/loadConfig/index.js', () => ({
-  getThemeConfig: () => ({}),
+vi.mock('../src/node/options.js', () => ({
+  getThemeOptions: () => ({}),
 }))
 
 const { prepareSidebar } = await import('../src/node/prepare/prepareSidebar.js')

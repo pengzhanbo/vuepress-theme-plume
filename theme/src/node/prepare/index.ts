@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import type { ThemeOptions } from '../../shared/index.js'
-import { getThemeConfig } from '../features/loadConfig/index.js'
+import { getThemeOptions } from '../options.js'
 import { perf } from '../utils/index.js'
 import { prepareCollections } from './prepareCollections.js'
 import { prepareEncrypt } from './prepareEncrypt.js'
@@ -16,9 +16,9 @@ import { prepareArticleTagColors } from './prepareTagColor.js'
  * 准备所有主题数据，包括文章标签颜色、文章列表、侧边栏、集合、加密、图标、Hero 动画效果等
  *
  * @param app - VuePress application instance / VuePress 应用实例
- * @param options - Theme options, defaults to `getThemeConfig()` / 主题配置，默认从 `getThemeConfig()` 读取
+ * @param options - Theme options, defaults to `getThemeOptions()` / 主题配置，默认从 `getThemeOptions()` 读取
  */
-export async function prepareData(app: App, options: ThemeOptions = getThemeConfig()): Promise<void> {
+export async function prepareData(app: App, options: ThemeOptions = getThemeOptions()): Promise<void> {
   perf.mark('prepare:data')
 
   await Promise.all([

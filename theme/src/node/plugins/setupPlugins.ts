@@ -16,7 +16,7 @@ import { seoPlugin } from '@vuepress/plugin-seo'
 import { sitemapPlugin } from '@vuepress/plugin-sitemap'
 import { watermarkPlugin } from '@vuepress/plugin-watermark'
 import { isEncryptPage } from '../features/encrypt.js'
-import { getThemeConfig } from '../features/loadConfig/index.js'
+import { getThemeOptions } from '../options.js'
 import { codePlugins } from './code.js'
 import { gitPlugin } from './git.js'
 import { llmsPlugin } from './llms.js'
@@ -32,7 +32,7 @@ export function setupPlugins(
   pluginOptions: ThemeBuiltinPlugins,
 ): PluginConfig {
   const isProd = app.env.isBuild
-  const options = getThemeConfig()
+  const options = getThemeOptions()
   const hostname = options.hostname
 
   const plugins: PluginConfig = [

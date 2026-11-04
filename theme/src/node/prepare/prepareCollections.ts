@@ -2,7 +2,7 @@ import type { App } from 'vuepress'
 import type { ThemeCollectionItem, ThemeOptions } from '../../shared/index.js'
 import { omit } from '@pengzhanbo/utils'
 import { entries } from '@vuepress/helper'
-import { getThemeConfig } from '../features/loadConfig/index.js'
+import { getThemeOptions } from '../options.js'
 import { genTempCode, perf, writeTemp } from '../utils/index.js'
 
 /**
@@ -11,9 +11,9 @@ import { genTempCode, perf, writeTemp } from '../utils/index.js'
  * 准备集合数据，为每个语言环境处理集合配置并生成临时文件
  *
  * @param app - VuePress application instance / VuePress 应用实例
- * @param options - Theme options, defaults to `getThemeConfig()` / 主题配置，默认从 `getThemeConfig()` 读取
+ * @param options - Theme options, defaults to `getThemeOptions()` / 主题配置，默认从 `getThemeOptions()` 读取
  */
-export async function prepareCollections(app: App, options: ThemeOptions = getThemeConfig()): Promise<void> {
+export async function prepareCollections(app: App, options: ThemeOptions = getThemeOptions()): Promise<void> {
   perf.mark('prepare:collections')
 
   const { collections: fallback, locales } = options

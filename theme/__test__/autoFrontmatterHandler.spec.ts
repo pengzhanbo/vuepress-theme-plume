@@ -3,11 +3,11 @@ import path from 'node:path'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 /**
- * `genAutoFrontmatterRules` reads the `getThemeConfig()` singleton and the node utils
+ * `genAutoFrontmatterRules` reads the `getThemeOptions()` singleton and the node utils
  * barrel (deterministic `nanoid`, no pinyin). Both are stubbed so the generated rule
  * handlers can be driven directly.
  *
- * `genAutoFrontmatterRules` 从 `getThemeConfig()` 单例与 node utils barrel 读取
+ * `genAutoFrontmatterRules` 从 `getThemeOptions()` 单例与 node utils barrel 读取
  * （确定性的 `nanoid`、不启用拼音）。这里将两者桩化，从而直接驱动生成的规则处理器。
  */
 const hoisted = vi.hoisted(() => ({
@@ -15,8 +15,8 @@ const hoisted = vi.hoisted(() => ({
   seq: 0,
 }))
 
-vi.mock('../src/node/features/loadConfig/index.js', () => ({
-  getThemeConfig: () => hoisted.themeConfig,
+vi.mock('../src/node/options.js', () => ({
+  getThemeOptions: () => hoisted.themeConfig,
 }))
 
 vi.mock('../src/node/utils/index.js', () => ({

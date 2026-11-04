@@ -1,14 +1,14 @@
 import type { App } from 'vuepress'
 import type { ThemeBuiltinPlugins } from '../../shared/index.js'
 import { getFullLocaleConfig, isPlainObject } from '@vuepress/helper'
-import { getThemeConfig } from '../features/loadConfig/index.js'
 import { PRESET_LOCALES } from '../locales/index.js'
+import { getThemeOptions } from '../options.js'
 
 export function setupProvideData(
   app: App,
   plugins: ThemeBuiltinPlugins,
 ): Record<string, any> {
-  const options = getThemeConfig()
+  const options = getThemeOptions()
   const watermark = options.watermark ?? plugins.watermark
   return {
     // 注入水印配置

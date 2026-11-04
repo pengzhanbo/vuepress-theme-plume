@@ -1,17 +1,17 @@
 import type { Page } from 'vuepress'
 import type { ThemeCollectionItem, ThemeOptions, ThemePageData } from '../../../shared'
 import { ensureEndingSlash, removeLeadingSlash } from '@vuepress/helper'
-import { getThemeConfig } from '../loadConfig/index.js'
+import { getThemeOptions } from '../../options.js'
 
 /**
  * 查找当前页面所属的 collection
  *
  * @param page - Current page / 当前页面
- * @param options - Theme options, defaults to `getThemeConfig()` / 主题配置，默认从 `getThemeConfig()` 读取
+ * @param options - Theme options / 主题配置
  */
 export function findCollection(
   page: Page<ThemePageData>,
-  options: ThemeOptions = getThemeConfig(),
+  options: ThemeOptions = getThemeOptions(),
 ): ThemeCollectionItem | undefined {
   const { collections: fallback, locales } = options
   const locale = page.pathLocale

@@ -2,13 +2,13 @@ import type { App } from 'vuepress'
 import type { ThemeOptions } from '../../shared/index.js'
 import { getThemeConfig } from '../features/loadConfig/index.js'
 import { perf } from '../utils/index.js'
-import { prepareArticleTagColors } from './prepareArticleTagColor.js'
 import { prepareCollections } from './prepareCollections.js'
 import { prepareEncrypt } from './prepareEncrypt.js'
 import { prepareHomeHeroEffects } from './prepareHomeHeroEffects.js'
 import { prepareIcons } from './prepareIcons.js'
 import { preparedPostsData } from './preparePostsData.js'
 import { prepareSidebar } from './prepareSidebar.js'
+import { prepareArticleTagColors } from './prepareTagColor.js'
 
 /**
  * Prepare all theme data

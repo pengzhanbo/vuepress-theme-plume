@@ -1,7 +1,5 @@
 import type { App } from 'vuepress'
-import fs from 'node:fs/promises'
-import path from 'node:path'
-import { hash } from 'vuepress/utils'
+import { fs, hash, path } from 'vuepress/utils'
 import { logger } from './logger.js'
 
 /**
@@ -77,11 +75,6 @@ export function createFsCache<T = any>(app: App, name: string): FsCache<T> {
         }
       }
       catch (error) {
-        // A missing cache file is the normal first-run case and must stay silent;
-        // a corrupted/unreadable one should be visible, otherwise the cache is
-        // silently ignored and the build gets slower for no apparent reason.
-        // 缓存文件不存在是首次运行的正常情况，不应提示；文件损坏或不可读时需要可见，
-        // 否则缓存被静默忽略，构建变慢却查不到原因。
         if ((error as NodeJS.ErrnoException)?.code !== 'ENOENT')
           logger.warn(`Failed to read the cache file ${filepath}, it will be ignored.`, error)
       }

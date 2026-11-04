@@ -1,16 +1,6 @@
-import type { App } from 'vuepress'
 import { describe, expect, it } from 'vitest'
-import {
-  genCode,
-  getTagClassName,
-  resolveTagColors,
-} from '../src/node/prepare/prepareArticleTagColor.js'
-import {
-  compositeColor,
-  contrastRatio,
-  relativeLuminance,
-  roundColor,
-} from '../src/node/utils/color.js'
+import { getTagClassName, resolveTagColors } from '../src/node/features/tag-color.js'
+import { compositeColor, contrastRatio, relativeLuminance, roundColor } from '../src/node/utils/color.js'
 
 type RGB = readonly [number, number, number]
 
@@ -67,13 +57,6 @@ const TAGS: string[] = [
   '前端工程化',
   'a11y',
 ]
-
-function createApp(tags: string[][]): App {
-  return {
-    pages: tags.map(pageTags => ({ frontmatter: { tags: pageTags } })),
-    env: { isDev: false },
-  } as unknown as App
-}
 
 describe('getTagClassName', () => {
   it('derives a stable class name from the tag text', () => {
@@ -154,43 +137,5 @@ describe('resolveTagColors', () => {
       // 颜色不能退化为灰色，否则所有标签看起来都一样。
       expect(max - min).toBeGreaterThan(10)
     }
-  })
-})
-
-describe('genCode', () => {
-  const app = createApp([['Vue', 'Vite'], ['Vue', '无障碍'], []])
-  const { js, css } = genCode(app)
-  const classNames = ['Vue', 'Vite', '无障碍'].map(tag => getTagClassName(tag))
-
-  it('maps every tag to its class name', () => {
-    const vue = getTagClassName('Vue')
-    const vite = getTagClassName('Vite')
-    const cjk = getTagClassName('无障碍')
-
-    expect(js).toContain(`import './articleTagColors.css'`)
-    expect(js).toContain(`"Vue":"${vue}"`)
-    expect(js).toContain(`"Vite":"${vite}"`)
-    expect(js).toContain(`"无障碍":"${cjk}"`)
-  })
-
-  it('generates one light and one dark rule for each tag', () => {
-    const lightRules = css.match(/^\.vp-tag-([0-9a-z]+) \{/gm) ?? []
-    const darkRules = css.match(/^\[data-theme="dark"\] \.vp-tag-([0-9a-z]+) \{/gm) ?? []
-
-    expect(lightRules).toHaveLength(classNames.length)
-    expect(darkRules).toHaveLength(classNames.length)
-    for (const className of classNames) {
-      expect(css).toContain(`.vp-tag-${className} {`)
-      expect(css).toContain(`[data-theme="dark"] .vp-tag-${className} {`)
-    }
-  })
-
-  it('declares the three tag color variables', () => {
-    expect(css).toContain('--vp-tag-color: rgb(')
-    expect(css).toContain('--vp-tag-hover-color: rgb(')
-    expect(css).toContain('--vp-tag-bg: rgba(')
-    // 每个标签 3 个变量 × 2 种模式
-    const declarations = css.match(/^\s+--vp-tag-(?:hover-color|color|bg):/gm) ?? []
-    expect(declarations).toHaveLength(classNames.length * 3 * 2)
   })
 })

@@ -12,9 +12,9 @@ import { ensureEndingSlash, removeLeadingSlash } from '@vuepress/helper'
 import dayjs from 'dayjs'
 import pMap from 'p-map'
 import { fs, path } from 'vuepress/utils'
+import { isEncryptPage } from '../features/encrypt.js'
 import { getThemeConfig } from '../features/loadConfig/index.js'
 import { createMatcher, genTempCode, logger, perf, withBase, writeTemp } from '../utils/index.js'
-import { isEncryptPage } from './prepareEncrypt.js'
 
 const HEADING_RE = /<h(\d)[^>]*>.*?<\/h\1>/gi
 const EXCERPT_SPLIT = '<!-- more -->'

@@ -1,11 +1,12 @@
 import type { App } from 'vuepress'
 import type { Page } from 'vuepress/core'
-import type { EncryptConfig } from '../src/node/prepare/prepareEncrypt.js'
+import type { EncryptConfig } from '../src/node/features/encrypt.js'
 import type { ThemePageData } from '../src/shared/index.js'
 import { decodeData } from '@vuepress/helper'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { isEncryptPage } from '../src/node/features/encrypt.js'
 import { encryptPage } from '../src/node/pages/encryptPage.js'
-import { isEncryptPage, prepareEncrypt } from '../src/node/prepare/prepareEncrypt.js'
+import { prepareEncrypt } from '../src/node/prepare/prepareEncrypt.js'
 
 const hoisted = vi.hoisted(() => ({
   writeTemp: vi.fn(async (_app: unknown, _file: string, _content: unknown) => {}),

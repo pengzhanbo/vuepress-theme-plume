@@ -130,9 +130,6 @@ async function readBulletinFile(app: App, filepath: string, locale = '/') {
     return content
   }
   catch (error) {
-    // 读取失败时返回空内容，但必须给出提示，否则用户会以为自己配置写错了。
-    // Return empty content on failure, but warn: otherwise the user may think the
-    // configuration is wrong while the file is simply missing or unreadable.
     logger.warn(`Failed to read the bulletin file ${filepath}`, error)
   }
   return ''

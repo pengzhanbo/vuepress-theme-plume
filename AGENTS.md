@@ -100,7 +100,7 @@ pnpm release                 # release:check (lint+build) then bumpp version/tag
 ## Important Files
 
 - `theme/src/node/theme.ts` — `plumeTheme()` and the VuePress hook wiring.
-- `theme/src/node/loadConfig/ConfigLoader.ts`, `compiler.ts` — config discovery/compile/reload; `getThemeConfig()` singleton.
+- `theme/src/node/features/loadConfig/ConfigLoader.ts`, `compiler.ts` — config discovery/compile/reload; `getThemeConfig()` singleton.
 - `theme/src/node/prepare/prepareThemeData.ts`, `preparePostsData.ts`, `prepareSidebar.ts`, `prepareCollections.ts` — build-time data generation.
 - `theme/src/client/config.ts`, `layouts/Layout.vue`, `composables/data.ts`, `composables/theme-data.ts` — client entry, shell, composable root.
 - `theme/src/shared/options.ts`, `shared/features/collection.ts`, `shared/frontmatter/*` — public config/content types.

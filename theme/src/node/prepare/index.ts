@@ -2,13 +2,14 @@ import type { App } from 'vuepress'
 import type { ThemeOptions } from '../../shared/index.js'
 import { getThemeOptions } from '../options.js'
 import { perf } from '../utils/index.js'
-import { prepareCollections } from './prepareCollections.js'
-import { prepareEncrypt } from './prepareEncrypt.js'
-import { prepareHomeHeroEffects } from './prepareHomeHeroEffects.js'
-import { prepareIcons } from './prepareIcons.js'
-import { preparedPostsData } from './preparePostsData.js'
-import { prepareSidebar } from './prepareSidebar.js'
-import { prepareArticleTagColors } from './prepareTagColor.js'
+import { prepareBulletin } from './bulletin.js'
+import { prepareCollections } from './collections.js'
+import { prepareEncrypt } from './encrypt.js'
+import { prepareHomeHeroEffects } from './home-hero-effects.js'
+import { prepareIcons } from './icons.js'
+import { preparedPostsData } from './posts-data.js'
+import { prepareSidebar } from './sidebar.js'
+import { prepareArticleTagColors } from './tag-color.js'
 
 /**
  * Prepare all theme data
@@ -29,6 +30,7 @@ export async function prepareData(app: App, options: ThemeOptions = getThemeOpti
     prepareEncrypt(app, options),
     prepareIcons(app, options),
     prepareHomeHeroEffects(app),
+    prepareBulletin(app),
   ])
 
   perf.log('prepare:data')

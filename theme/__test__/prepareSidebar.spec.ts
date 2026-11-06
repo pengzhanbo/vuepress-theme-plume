@@ -25,7 +25,7 @@ vi.mock('../src/node/options.js', () => ({
   getThemeOptions: () => ({}),
 }))
 
-const { prepareSidebar } = await import('../src/node/prepare/prepareSidebar.js')
+const { prepareSidebar } = await import('../src/node/prepare/sidebar.js')
 
 /** 构造页面，`filePathRelative` 同时作为页面数据，模拟 VuePress 的页面结构。 */
 function createPage(filePathRelative: string, title: string, pathLocale = '/'): Page {

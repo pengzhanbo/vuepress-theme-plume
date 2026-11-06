@@ -91,6 +91,15 @@ declare module '@internal/home-hero-effects' {
   }
 }
 
+declare module '@internal/bulletin-data' {
+  import type { BulletinOptions } from '../shared/index.js'
+
+  const bulletinData: Record<string, BulletinOptions>
+  export {
+    bulletinData,
+  }
+}
+
 declare module 'swiper/css' {
   const res: any
   export default res

@@ -7,7 +7,7 @@ import { ConfigLoader } from './features/loadConfig/index.js'
 import { LOCALE_OPTIONS } from './locales/index.js'
 import { THEME_NAME } from './utils/index.js'
 
-const configLoader: ConfigLoader = new ConfigLoader()
+export const configLoader: ConfigLoader = new ConfigLoader()
 
 export function getThemeOptions(): ThemeOptions {
   return configLoader.config

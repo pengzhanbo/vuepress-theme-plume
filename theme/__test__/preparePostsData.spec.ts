@@ -44,7 +44,7 @@ vi.mock('../src/node/options.js', () => ({
   getThemeOptions: hoisted.getThemeOptions,
 }))
 
-const { preparedPostsData } = await import('../src/node/prepare/preparePostsData.js')
+const { preparedPostsData } = await import('../src/node/prepare/posts-data.js')
 
 function createApp(pages: Page[], isBuild = true): App {
   return {

@@ -1,7 +1,8 @@
 import type { App } from 'vuepress'
-import type { ThemeData, ThemeNavItem, ThemeOptions } from '../../shared/index.js'
-import { isBoolean, isPlainObject, objectEntries } from '@pengzhanbo/utils'
+import type { ThemeBuiltinPlugins, ThemeData, ThemeNavItem, ThemeOptions } from '../../shared/index.js'
+import { deepClone, isBoolean, isPlainObject, objectEntries } from '@pengzhanbo/utils'
 import { ensureEndingSlash, removeEndingSlash } from '@vuepress/helper'
+import { getImageOriginalSize, resolveImagePath } from 'vuepress-plugin-md-power'
 import { withBase } from '../utils/index.js'
 
 const EXCLUDE_LIST: (keyof ThemeOptions)[] = [
@@ -40,7 +41,7 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
 
   objectEntries(options).forEach(([key, value]) => {
     if (!EXCLUDE_LIST.includes(key as keyof ThemeOptions))
-      themeData[key] = value
+      themeData[key] = deepClone(value)
   })
 
   themeData.contributors = isPlainObject(options.contributors)
@@ -62,7 +63,7 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
 
     objectEntries(opt).forEach(([key, value]) => {
       if (!EXCLUDE_LOCALE_LIST.includes(key as keyof ThemeOptions))
-        themeData.locales![locale][key] = value as never
+        themeData.locales![locale][key] = deepClone(value) as any
     })
 
     if (isPlainObject(opt.bulletin)) {
@@ -114,4 +115,46 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
   })
 
   return themeData
+}
+
+/**
+ * 为用户配置的头像图片添加宽高信息
+ */
+export async function processProfileImageSize(
+  app: App,
+  themeData: ThemeData,
+  plugins: ThemeBuiltinPlugins,
+  options: ThemeOptions,
+) {
+  const imageSize = options.markdown?.imageSize
+    ?? (typeof plugins.markdownPower === 'boolean' ? false : plugins.markdownPower?.imageSize)
+
+  if (!app.env.isBuild || !imageSize)
+    return
+
+  const remote = imageSize === 'all'
+  if (themeData.profile?.avatar) {
+    const size = await getImageOriginalSize(resolveImagePath(app, themeData.profile.avatar), remote)
+    if (size) {
+      themeData.profile = {
+        ...themeData.profile,
+        originalWidth: size.width,
+        originalHeight: size.height,
+      } as any
+    }
+  }
+  if (themeData.locales) {
+    for (const locale of Object.keys(themeData.locales)) {
+      if (themeData.locales[locale].profile?.avatar) {
+        const size = await getImageOriginalSize(resolveImagePath(app, themeData.locales[locale].profile.avatar), remote)
+        if (size) {
+          themeData.locales[locale].profile = {
+            ...themeData.locales[locale].profile,
+            originalWidth: size.width,
+            originalHeight: size.height,
+          } as any
+        }
+      }
+    }
+  }
 }

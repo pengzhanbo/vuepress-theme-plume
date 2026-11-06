@@ -10,8 +10,9 @@ import { detectThemeOptions, detectVersions } from './features/detector/index.js
 import { initConfigLoader } from './options.js'
 import { createPages, extendsPageData } from './pages/index.js'
 import { setupPlugins } from './plugins/index.js'
+import { watchBulletinFiles } from './prepare/bulletin.js'
 import { prepareData } from './prepare/index.js'
-import { prepareThemeData } from './prepare/prepareThemeData.js'
+import { prepareThemeData } from './prepare/theme-data.js'
 import { perf, resolve, setTranslateLang, templates, THEME_NAME } from './utils/index.js'
 
 /**
@@ -76,6 +77,7 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
         watchedRegistered = true
         configLoader.watch(watchers as any)
         watchAutoFrontmatter(app, watchers as any)
+        watchBulletinFiles(app, watchers as any)
       },
     }
   }

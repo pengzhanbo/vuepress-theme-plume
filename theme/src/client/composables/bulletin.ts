@@ -1,14 +1,24 @@
 import type { ComputedRef, Ref } from 'vue'
 import type { BulletinOptions } from '../../shared/index.js'
+import { bulletinData as rawBulletinData } from '@internal/bulletin-data'
+import { useRouteLocale } from '@vuepress/client'
 import { useLocalStorage, useSessionStorage } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
 import { useData } from './data.js'
 
 const showBulletin = ref(false)
 
+const bulletinData = ref(rawBulletinData)
+
+if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {
+  __VUE_HMR_RUNTIME__.updateBulletinData = (data: Record<string, BulletinOptions>) => {
+    bulletinData.value = data
+  }
+}
+
 export function useBulletin<T extends Record<string, any> = Record<string, any>>(): ComputedRef<BulletinOptions & T | undefined> {
-  const { theme } = useData()
-  const bulletin = computed(() => theme.value.bulletin === true ? {} : theme.value.bulletin)
+  const locale = useRouteLocale()
+  const bulletin = computed(() => bulletinData.value[locale.value] || {})
 
   return bulletin as ComputedRef<BulletinOptions & T | undefined>
 }

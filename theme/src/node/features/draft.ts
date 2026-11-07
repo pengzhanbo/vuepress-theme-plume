@@ -9,6 +9,7 @@ import type { ThemeSidebarLocales } from './sidebar.js'
 import { isArray, isPlainObject, isString, objectEntries } from '@pengzhanbo/utils'
 import { ensureEndingSlash, removeLeadingSlash } from '@vuepress/helper'
 import { inferRoutePath, isLinkWithProtocol } from 'vuepress/shared'
+import { tinyglobby } from 'vuepress/utils'
 import { getThemeOptions } from '../options.js'
 import { logger, normalizeLink } from '../utils/index.js'
 import { cleanSidebarItems } from './sidebar.js'
@@ -119,7 +120,7 @@ export function excludeDraftPages(app: App): void {
 
   const patterns = [...(app.options.pagePatterns ?? [])]
   for (const draft of drafts) {
-    const pattern = `!${draft.relativePath}`
+    const pattern = `!${tinyglobby.escapePath(draft.relativePath)}`
     if (!patterns.includes(pattern))
       patterns.push(pattern)
   }
@@ -226,8 +227,7 @@ function filterSidebarItems(
     if (isString(next.link) && !next.link.startsWith('---')) {
       const link = normalizeLink(prefix, next.link)
       if (isDraftRoute(link, routes, base)) {
-        // 分组自身的链接指向草稿时，只移除链接，保留子项
-        if (isArray(next.items) && next.items.length) {
+        if (next.items === 'auto' || (isArray(next.items) && next.items.length)) {
           logger.warn(`Removed the sidebar group link pointing to the draft page: ${link}`)
           delete next.link
         }

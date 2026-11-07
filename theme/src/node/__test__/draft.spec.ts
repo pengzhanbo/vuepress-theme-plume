@@ -161,6 +161,22 @@ describe('excludeDraftPages', () => {
     expect(hoisted.info).not.toHaveBeenCalled()
   })
 
+  it('escapes the glob characters of the draft path', async () => {
+    const dir = fs.mkdtempSync(path.join(fixtures, 'escape-'))
+    fs.writeFileSync(path.join(dir, 'a[b].md'), '# draft\n')
+    fs.writeFileSync(path.join(dir, 'a[b].keep.md'), '# keep\n')
+    fs.writeFileSync(path.join(dir, 'ab.md'), '# keep\n')
+
+    const app = createApp(true, ['**/*.md'])
+    collectDraftPage(markdownInfo('a[b].md', { draft: true, permalink: '/draft/' }))
+
+    excludeDraftPages(app)
+
+    // 转义后才能精确命中草稿文件，同时不会误排除 `ab.md` / `a[b].keep.md`
+    const source = new MarkdownSource({ cwd: dir, pagePatterns: app.options.pagePatterns })
+    expect((await source.glob()).sort()).toEqual(['a[b].keep.md', 'ab.md'])
+  })
+
   it('warns when a draft page is a directory index page', () => {
     const app = createApp()
     collectDraftPage(markdownInfo('docs/guide/README.md', {
@@ -177,12 +193,13 @@ describe('excludeDraftPages', () => {
 
 describe('pagePatterns', () => {
   it('excludes the draft file from the glob result', async () => {
-    fs.mkdirSync(path.join(fixtures, 'guide'), { recursive: true })
-    fs.writeFileSync(path.join(fixtures, 'blog.md'), '# blog\n')
-    fs.writeFileSync(path.join(fixtures, 'guide/a.md'), '# a\n')
-    fs.writeFileSync(path.join(fixtures, 'guide/draft.md'), '# draft\n')
+    const dir = fs.mkdtempSync(path.join(fixtures, 'glob-'))
+    fs.mkdirSync(path.join(dir, 'guide'), { recursive: true })
+    fs.writeFileSync(path.join(dir, 'blog.md'), '# blog\n')
+    fs.writeFileSync(path.join(dir, 'guide/a.md'), '# a\n')
+    fs.writeFileSync(path.join(dir, 'guide/draft.md'), '# draft\n')
 
-    const source = new MarkdownSource({ cwd: fixtures, pagePatterns: ['**/*.md'] })
+    const source = new MarkdownSource({ cwd: dir, pagePatterns: ['**/*.md'] })
     const files = await source.glob(['**/*.md', '!guide/draft.md'])
 
     expect([...files].sort()).toEqual(['blog.md', 'guide/a.md'])
@@ -240,6 +257,24 @@ describe('filterDraftSidebar', () => {
       'https://example.com',
     ])
     // 分组链接指向草稿时只移除链接，保留子项
+    expect(hoisted.warn).toHaveBeenCalledTimes(1)
+  })
+
+  it('keeps the group when its link points to a draft but the items are `auto`', () => {
+    collectDraftPage(markdownInfo('docs/auto/README.md', { draft: true, permalink: '/docs/auto/' }))
+
+    const locales = {
+      '/': {
+        '/docs/': {
+          prefix: '/docs/',
+          items: [{ text: 'Auto', link: '/docs/auto/', items: 'auto' as const }],
+        },
+      },
+    }
+
+    filterDraftSidebar(locales)
+
+    expect(locales['/']['/docs/'].items).toEqual([{ text: 'Auto', items: 'auto' }])
     expect(hoisted.warn).toHaveBeenCalledTimes(1)
   })
 

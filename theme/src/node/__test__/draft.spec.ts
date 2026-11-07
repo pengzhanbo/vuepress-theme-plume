@@ -110,6 +110,10 @@ describe('toCanonicalRoute', () => {
     ['config/intro', '/config/intro'],
     ['/config/intro/#anchor', '/config/intro'],
     ['/config/intro/?q=1', '/config/intro'],
+    // 相对链接经 `normalizeLink()` 追加结尾 `/` 后的形态
+    ['/docs/draft.md/', '/docs/draft'],
+    ['/docs/draft.html/', '/docs/draft'],
+    ['/docs/README.md/', '/docs'],
     ['/', ''],
   ])('normalizes %s to %s', (input, expected) => {
     expect(toCanonicalRoute(input)).toBe(expected)
@@ -278,6 +282,32 @@ describe('filterDraftSidebar', () => {
     expect(hoisted.warn).toHaveBeenCalledTimes(1)
   })
 
+  it('resolves the relative markdown links before matching', () => {
+    collectDraftPage(markdownInfo('docs/draft.md', { draft: true, permalink: '/docs/draft/' }))
+
+    const locales = {
+      '/': {
+        '/docs/': {
+          prefix: '/docs/',
+          items: [
+            'draft.md',
+            { text: 'Draft', link: 'draft.md' },
+            { text: 'Keep', link: 'keep.md' },
+            'keep.md',
+          ],
+        },
+      },
+    }
+
+    filterDraftSidebar(locales)
+
+    expect(locales['/']['/docs/'].items).toEqual([
+      { text: 'Keep', link: 'keep.md' },
+      'keep.md',
+    ])
+    expect(hoisted.warn).not.toHaveBeenCalled()
+  })
+
   it('does nothing when there is no draft page', () => {
     const locales = {
       '/': {
@@ -309,6 +339,7 @@ describe('filterDraftNavbar', () => {
             },
             { text: 'Empty', items: ['/guide/draft/'] },
             { text: 'Nested', prefix: '/guide', items: ['/guide/draft/', '/guide/keep/'] },
+            { text: 'DraftMd', link: 'guide/draft.md' },
             '/guide/draft/',
             'https://example.com',
           ],

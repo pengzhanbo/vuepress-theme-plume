@@ -91,10 +91,12 @@ export function getDraftPages(): DraftPageInfo[] {
  * toCanonicalRoute('/config/intro/') // '/config/intro'
  * toCanonicalRoute('/config/intro.html') // '/config/intro'
  * toCanonicalRoute('/config/intro#a') // '/config/intro'
+ * toCanonicalRoute('/config/intro.md/') // '/config/intro'
  * ```
  */
 export function toCanonicalRoute(pathname: string, base = '/'): string {
-  let path = pathname.split(/[?#]/)[0]
+  let path = pathname.split(/[?#]/)[0].replace(/\.(md|html)\/$/i, '.$1')
+
   if (base && base !== '/' && path.startsWith(base))
     path = path.slice(base.length)
 

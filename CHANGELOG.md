@@ -1,3 +1,18 @@
+# [1.0.0-rc.215](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.214...v1.0.0-rc.215) (2026-11-07)
+
+### Bug Fixes
+
+* **theme:** theme config loader hmr fail ([fa216cf](https://github.com/pengzhanbo/vuepress-theme-plume/commit/fa216cfb43c467560a0fd448efe4a9b995d65073))
+
+### Features
+
+* **theme:** auto calculate tag color ([#1079](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1079)) ([1f6b371](https://github.com/pengzhanbo/vuepress-theme-plume/commit/1f6b37179d29d5f90921e12bfd1de1b2d0e456bb))
+* **theme:** enhance `draft`, exclude draft pages in build ([#1081](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1081)) ([442f423](https://github.com/pengzhanbo/vuepress-theme-plume/commit/442f423a9db6a747fb0cb2207489b8bae7dc7f5d))
+
+### Performance Improvements
+
+* **theme:** improve `withBase` ([db0bd2f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/db0bd2f5671f5babac3fbc240828806e2d504c36))
+
 # [1.0.0-rc.214](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.213...v1.0.0-rc.214) (2026-10-14)
 
 ### Bug Fixes

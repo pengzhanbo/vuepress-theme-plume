@@ -88,7 +88,8 @@ export function resolveEditLink({
       /:repo/,
       isLinkHttp(docsRepo) ? docsRepo : `https://github.com/${docsRepo}`,
     )
-    .replace(/:branch/, docsBranch)
+    // Bitbucket 的模板中出现两次 `:branch`，必须全部替换。
+    .replace(/:branch/g, docsBranch)
     .replace(
       /:path/,
       removeLeadingSlash(`${removeEndingSlash(docsDir)}/${filePathRelative}`),

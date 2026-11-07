@@ -1,17 +1,16 @@
 import type { Theme } from 'vuepress/core'
 import type { ThemeOptions } from '../shared/index.js'
+import { noop } from '@pengzhanbo/utils'
 import { extendsBundlerOptions, setupAlias, setupProvideData, templateBuildRenderer } from './config/index.js'
-import {
-  genAutoFrontmatterRules,
-  generateFileListFrontmatter,
-  watchAutoFrontmatter,
-} from './features/autoFrontmatter/index.js'
+import { genAutoFrontmatterRules, generateMarkdownFrontmatter } from './features/autoFrontmatter/index.js'
 import { detectThemeOptions, detectVersions } from './features/detector/index.js'
+import { initMarkdownSource } from './features/markdown-source.js'
 import { initConfigLoader } from './options.js'
 import { createPages, extendsPageData } from './pages/index.js'
 import { setupPlugins } from './plugins/index.js'
+import { watchBulletinFiles } from './prepare/bulletin.js'
 import { prepareData } from './prepare/index.js'
-import { prepareThemeData } from './prepare/prepareThemeData.js'
+import { prepareThemeData } from './prepare/theme-data.js'
 import { perf, resolve, setTranslateLang, templates, THEME_NAME } from './utils/index.js'
 
 /**
@@ -47,6 +46,13 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
       await prepareData(app)
     })
 
+    const markdownSource = initMarkdownSource({
+      cwd: app.dir.source(),
+      pagePatterns: app.options.pagePatterns,
+    })
+
+    markdownSource.onWrite(generateMarkdownFrontmatter)
+
     let watchedRegistered = false
 
     return {
@@ -58,7 +64,8 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
       plugins: setupPlugins(app, plugins),
       extendsMarkdownOptions: async () => {
         await configLoader.waiting()
-        await generateFileListFrontmatter(app)
+        genAutoFrontmatterRules()
+        await markdownSource.run().catch(noop)
       },
       extendsBundlerOptions,
       templateBuildRenderer,
@@ -75,7 +82,8 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
 
         watchedRegistered = true
         configLoader.watch(watchers as any)
-        watchAutoFrontmatter(app, watchers as any)
+        markdownSource.watch(watchers as any)
+        watchBulletinFiles(app, watchers as any)
       },
     }
   }

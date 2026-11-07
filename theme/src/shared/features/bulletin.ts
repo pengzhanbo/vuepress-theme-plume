@@ -5,7 +5,7 @@ import type { Page } from 'vuepress'
  *
  * 公告栏配置
  */
-export type BulletinOptions<T extends Record<string, unknown> = Record<string, unknown>> = T & {
+export interface BulletinOptions {
   /**
    * 公告位置
    * @default 'top-right'

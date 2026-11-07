@@ -848,7 +848,7 @@ tags:
 | createTime | `string`            | Current time | Creation time                             |
 | tags       | `string[]`          | `[]`         | Article tags                              |
 | sticky     | `boolean \| number` | false        | Sticky flag, higher numbers sort first    |
-| draft      | `boolean`           | false        | Draft mode, hidden after build            |
+| draft      | `boolean`           | false        | Draft mode, excluded from the build       |
 | cover      | `string`            | `''`         | Cover image path                          |
 | coverStyle | `PostCoverStyle`    | `null`       | Cover style configuration                 |
 | excerpt    | `boolean \| string` | ''           | Excerpt content, supports auto-extraction |

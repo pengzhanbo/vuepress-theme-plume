@@ -78,4 +78,18 @@ export type ThemeNormalFrontmatter = PageFrontmatter<{
    * @deprecated 使用 `externalLinkIcon` 代替
    */
   externalLink?: boolean
+
+  /**
+   * Mark the current page as a draft
+   *
+   * Draft pages are completely excluded from the production build,
+   * but still visible in the dev server.
+   *
+   * 标记当前页面为草稿。
+   *
+   * 草稿页面在生产构建时被完全排除，但在开发模式下仍然可访问。
+   *
+   * @default false
+   */
+  draft?: boolean
 }>

@@ -1,9 +1,10 @@
-import type { Theme } from 'vuepress/core'
-import type { ThemeOptions } from '../shared/index.js'
+import type { Page, Theme } from 'vuepress/core'
+import type { ThemeOptions, ThemePageData } from '../shared/index.js'
 import { noop } from '@pengzhanbo/utils'
 import { extendsBundlerOptions, setupAlias, setupProvideData, templateBuildRenderer } from './config/index.js'
 import { genAutoFrontmatterRules, generateMarkdownFrontmatter } from './features/autoFrontmatter/index.js'
 import { detectThemeOptions, detectVersions } from './features/detector/index.js'
+import { collectDraftPage, excludeDraftPages, resetDraftPages } from './features/draft.js'
 import { initMarkdownSource } from './features/markdown-source.js'
 import { initConfigLoader } from './options.js'
 import { createPages, extendsPageData } from './pages/index.js'
@@ -53,6 +54,8 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
 
     markdownSource.onWrite(generateMarkdownFrontmatter)
 
+    app.env.isBuild && markdownSource.onWrite(collectDraftPage)
+
     let watchedRegistered = false
 
     return {
@@ -65,17 +68,22 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
       extendsMarkdownOptions: async () => {
         await configLoader.waiting()
         genAutoFrontmatterRules()
+
+        app.env.isBuild && resetDraftPages() // 重置草稿页面
+
         await markdownSource.run().catch(noop)
+
+        app.env.isBuild && excludeDraftPages(app) // 排除草稿页面
       },
       extendsBundlerOptions,
       templateBuildRenderer,
-      extendsPage: extendsPageData,
-      onInitialized: createPages,
+      extendsPage: page => extendsPageData(page as Page<ThemePageData>),
+      onInitialized: () => createPages(app),
       onPrepared: async () => {
         await prepareThemeData(app, plugins)
         await prepareData(app)
       },
-      onPageUpdated: prepareData,
+      onPageUpdated: app => prepareData(app),
       onWatched: async (_, watchers) => {
         if (watchedRegistered)
           return

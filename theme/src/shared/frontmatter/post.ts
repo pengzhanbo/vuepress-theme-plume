@@ -37,17 +37,6 @@ export interface ThemePostFrontmatter extends ThemePageFrontmatter {
   article?: boolean
 
   /**
-   * Mark current article as draft
-   * Draft posts will not appear in blog list
-   *
-   * 标记当前文章是否为草稿状态，
-   * 草稿状态下的文章不会出现在博客列表中
-   *
-   * @default false
-   */
-  draft?: boolean
-
-  /**
    * Article cover image
    *
    * 文章封面图

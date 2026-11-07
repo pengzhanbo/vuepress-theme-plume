@@ -165,23 +165,40 @@ function getAutoDirSidebar(
       index++
     }
   }
-  return { link: rootLink, sidebar: cleanSidebar(sidebar) }
+  return { link: rootLink, sidebar: cleanSidebarItems(sidebar) }
 }
 
-function cleanSidebar(sidebar: ResolvedSidebarItem[]): ResolvedSidebarItem[] {
+/**
+ * The minimal shape of a sidebar item that needs cleaning
+ *
+ * 需要清理的侧边栏项的最小结构
+ */
+interface CleanableSidebarItem {
+  items?: unknown
+  collapsed?: boolean
+}
+
+/**
+ * Clean up the sidebar items: remove the empty `items` and the redundant `collapsed`
+ *
+ * 清理侧边栏项：移除空的 `items` 与多余的 `collapsed`
+ */
+export function cleanSidebarItems<T>(sidebar: T[]): T[] {
   for (const item of sidebar) {
-    if (isPlainObject(item)) {
-      if (isArray(item.items)) {
-        if (item.items.length === 0) {
-          deleteKey(item, ['items', 'collapsed'])
-        }
-        else {
-          cleanSidebar(item.items)
-        }
+    if (!isPlainObject(item))
+      continue
+
+    const node = item as CleanableSidebarItem
+    if (isArray(node.items)) {
+      if (node.items.length === 0) {
+        deleteKey(node, ['items', 'collapsed'])
       }
-      else if (!('items' in item)) {
-        deleteKey(item, 'collapsed')
+      else {
+        cleanSidebarItems(node.items)
       }
+    }
+    else if (!('items' in node)) {
+      deleteKey(node, 'collapsed')
     }
   }
   return sidebar
@@ -207,8 +224,25 @@ function findAutoDirList(sidebar: (string | ThemeSidebarItem)[], prefix = ''): s
   return list
 }
 
-export function getAllSidebar(options: ThemeOptions): Record<string, ThemeSidebar> {
-  const locales: Record<string, ThemeSidebar> = {}
+/**
+ * The normalized sidebar config of a locale
+ *
+ * 归一化后的侧边栏配置
+ */
+export interface ResolvedSidebarConfig {
+  items: 'auto' | (string | ThemeSidebarItem)[]
+  prefix: string
+}
+
+/**
+ * The normalized sidebar config of all locales
+ *
+ * 所有语言环境的归一化侧边栏配置
+ */
+export type ThemeSidebarLocales = Record<string, Record<string, ResolvedSidebarConfig>>
+
+export function getAllSidebar(options: ThemeOptions): ThemeSidebarLocales {
+  const locales: ThemeSidebarLocales = {}
 
   for (const [locale, opt] of objectEntries(options.locales || {})) {
     const rawCollections = locale === '/' ? (opt.collections || options.collections) : opt.collections

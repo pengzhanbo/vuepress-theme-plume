@@ -16,6 +16,10 @@ permalink: /config/sidebar/
 若你想系统了解侧边栏 —— 嵌套结构、分组、自定义标题、图标、多语言侧边栏、分隔符等 —— 请阅读 **[侧边栏指南](../guide/quick-start/sidebar.md)**。
 :::
 
+:::: tip
+侧边栏中指向 [草稿页面](./frontmatter/basic.md#draft)（`draft: true`）的配置项，在生产构建时会被自动移除。如果分组自身链接指向草稿，则只移除该分组的链接，保留其子项。
+::::
+
 ## 集合级侧边栏配置
 
 集合（Collections）是主题中组织系列文档的核心概念。当集合类型设置为 `doc` 时，您可以在 `collection.sidebar` 中定义专属的侧边栏导航。

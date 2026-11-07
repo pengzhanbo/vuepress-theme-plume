@@ -223,7 +223,7 @@ export class MarkdownSource {
       : options
 
     this.cwd = cwd
-    this.pagePatterns = pagePatterns ?? DEFAULT_PAGE_PATTERNS
+    this.pagePatterns = [...(pagePatterns ?? DEFAULT_PAGE_PATTERNS)]
   }
 
   /**
@@ -464,7 +464,7 @@ export function initMarkdownSource(options: MarkdownSourceOptions | string): Mar
 
   if (markdownSource && markdownSource.cwd === cwd) {
     if (pagePatterns)
-      markdownSource.pagePatterns = pagePatterns
+      markdownSource.pagePatterns = [...pagePatterns]
     return markdownSource
   }
 

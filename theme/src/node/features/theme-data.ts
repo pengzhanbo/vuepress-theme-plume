@@ -84,27 +84,25 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
         text: opt.homeText || options.homeText || 'Home',
         link: locale,
       }]
-      const collections = opt.collections?.filter(item => item.type === 'post')
-      if (!collections?.length)
-        return
-
-      const posts = collections[0]
-      const postsLink = ensureEndingSlash(posts.link || posts.dir)
-      navbar.push({
-        text: posts.title || removeEndingSlash(posts.dir).split('/').pop() || opt.postsText || options.postsText || 'Posts',
-        link: withBase(postsLink, locale),
-      })
-      if (posts.tags !== false) {
+      const posts = opt.collections?.find(item => item.type === 'post')
+      if (posts) {
+        const postsLink = ensureEndingSlash(posts.link || posts.dir)
         navbar.push({
-          text: opt.tagText || options.tagText || 'Tags',
-          link: withBase(ensureEndingSlash(posts.tagsLink || `${postsLink}/tags`), locale),
+          text: posts.title || removeEndingSlash(posts.dir).split('/').pop() || opt.postsText || options.postsText || 'Posts',
+          link: withBase(postsLink, locale),
         })
-      }
-      if (posts.archives !== false) {
-        navbar.push({
-          text: opt.archiveText || options.archiveText || 'Archives',
-          link: withBase(ensureEndingSlash(posts.archivesLink || `${postsLink}/archives`), locale),
-        })
+        if (posts.tags !== false) {
+          navbar.push({
+            text: opt.tagText || options.tagText || 'Tags',
+            link: withBase(ensureEndingSlash(posts.tagsLink || `${postsLink}/tags`), locale),
+          })
+        }
+        if (posts.archives !== false) {
+          navbar.push({
+            text: opt.archiveText || options.archiveText || 'Archives',
+            link: withBase(ensureEndingSlash(posts.archivesLink || `${postsLink}/archives`), locale),
+          })
+        }
       }
 
       themeData.locales![locale].navbar = navbar

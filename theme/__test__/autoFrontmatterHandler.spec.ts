@@ -1,14 +1,19 @@
-import type { AutoFrontmatterContext, AutoFrontmatterData } from '../src/shared/index.js'
+import type { MarkdownInfo } from '../src/node/features/markdown-source.js'
+import type { AutoFrontmatterData } from '../src/shared/index.js'
 import path from 'node:path'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 /**
  * `genAutoFrontmatterRules` reads the `getThemeOptions()` singleton and the node utils
- * barrel (deterministic `nanoid`, no pinyin). Both are stubbed so the generated rule
- * handlers can be driven directly.
+ * barrel (deterministic `nanoid`, no pinyin). `generateMarkdownFrontmatter` is the
+ * `write` hook of the markdown source: it receives the parsed markdown info and mutates
+ * its frontmatter data. Both are stubbed so the generated rule handlers can be driven
+ * without touching the real file system.
  *
  * `genAutoFrontmatterRules` 从 `getThemeOptions()` 单例与 node utils barrel 读取
- * （确定性的 `nanoid`、不启用拼音）。这里将两者桩化，从而直接驱动生成的规则处理器。
+ * （确定性的 `nanoid`、不启用拼音）。`generateMarkdownFrontmatter` 是 markdown source
+ * 的 `write` 钩子：接收解析后的 markdown 信息并改写其中的 frontmatter 数据。
+ * 这里将两者桩化，从而在不需要真实文件系统的情况下直接驱动生成的规则处理器。
  */
 const hoisted = vi.hoisted(() => ({
   themeConfig: {} as any,
@@ -26,8 +31,8 @@ vi.mock('../src/node/utils/index.js', () => ({
   hasPinyin: false,
 }))
 
-const { genAutoFrontmatterRules, getRules } = await import('../src/node/features/autoFrontmatter/rules.js')
-const { findRule } = await import('../src/node/features/autoFrontmatter/generate.js')
+const { genAutoFrontmatterRules } = await import('../src/node/features/autoFrontmatter/rules.js')
+const { generateMarkdownFrontmatter } = await import('../src/node/features/autoFrontmatter/generate.js')
 
 const TIME_RE = /^\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}:\d{2}$/
 
@@ -36,20 +41,28 @@ beforeEach(() => {
   hoisted.seq = 0
 })
 
-function context(relativePath: string, filepath = path.join('/abs', relativePath)): AutoFrontmatterContext {
-  return { filepath, relativePath, content: '' }
+function markdownInfo(
+  relativePath: string,
+  data: AutoFrontmatterData = {} as AutoFrontmatterData,
+): MarkdownInfo {
+  return {
+    filepath: path.join('/abs', relativePath),
+    relativePath,
+    raw: '',
+    content: '',
+    data,
+    eol: '\n',
+  }
 }
 
-/** Resolve the handler that would process the given relative file path. */
-function handle(file: string) {
-  const rule = findRule(getRules(), file)
-  if (!rule)
-    throw new Error(`no rule matched ${file}`)
-  return rule.handle
-}
-
-function generate(file: string, data: AutoFrontmatterData = {} as AutoFrontmatterData): Promise<AutoFrontmatterData> {
-  return Promise.resolve(handle(file)(data, context(file)))
+/** Run the `write` hook on a fake file and return the generated frontmatter. */
+async function generate(
+  file: string,
+  data: AutoFrontmatterData = {} as AutoFrontmatterData,
+): Promise<AutoFrontmatterData> {
+  const info = markdownInfo(file, data)
+  await generateMarkdownFrontmatter(info)
+  return info.data as AutoFrontmatterData
 }
 
 describe('generateWithPost', () => {
@@ -290,5 +303,10 @@ describe('generateWithRemain', () => {
 
     // 全局关闭时，兜底规则直接返回原始数据。
     await expect(generate('about.md')).resolves.toEqual({})
+  })
+
+  it('leaves the data untouched when no rule matches the file', async () => {
+    // `node_modules` 被所有规则排除，因此没有任何处理器生效。
+    await expect(generate('node_modules/pkg/a.md')).resolves.toEqual({})
   })
 })

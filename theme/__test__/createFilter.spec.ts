@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createFilter } from '../src/node/features/autoFrontmatter/createFilter.js'
+import { createFilter } from '../src/node/utils/createFilter.js'
 
 describe('createFilter', () => {
   it('should return the given matcher function unchanged', () => {

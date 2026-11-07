@@ -23,7 +23,17 @@ vi.mock('../src/node/utils/index.js', () => ({
 }))
 
 const { genAutoFrontmatterRules, getRules } = await import('../src/node/features/autoFrontmatter/rules.js')
-const { findRule } = await import('../src/node/features/autoFrontmatter/generate.js')
+const { createFilter } = await import('../src/node/utils/createFilter.js')
+
+/**
+ * `generateMarkdownFrontmatter` picks the first rule whose filter matches the relative
+ * path, so the same lookup is reproduced here to assert the rule precedence.
+ *
+ * `generateMarkdownFrontmatter` 取首条过滤器命中的规则，这里复现同一查找以断言规则优先级。
+ */
+function findRule(file: string) {
+  return getRules().find(({ filter }) => createFilter(filter)(file))
+}
 
 /** The first pattern of a rule's filter identifies the collection it was generated from. */
 function source(rule: ReturnType<typeof findRule>): string | undefined {
@@ -45,8 +55,8 @@ describe('autoFrontmatter rules', () => {
 
     genAutoFrontmatterRules()
 
-    expect(source(findRule(getRules(), 'blog/sub/a.md'))).toBe('blog/sub/**/*.md')
-    expect(source(findRule(getRules(), 'blog/a.md'))).toBe('blog/**/*.md')
+    expect(source(findRule('blog/sub/a.md'))).toBe('blog/sub/**/*.md')
+    expect(source(findRule('blog/a.md'))).toBe('blog/**/*.md')
   })
 
   it('keeps sibling dirs that share a name prefix apart', () => {
@@ -64,8 +74,8 @@ describe('autoFrontmatter rules', () => {
 
     genAutoFrontmatterRules()
 
-    expect(source(findRule(getRules(), 'java/a.md'))).toBe('java/**/*.md')
-    expect(source(findRule(getRules(), 'javaSpring/b.md'))).toBe('javaSpring/**/*.md')
+    expect(source(findRule('java/a.md'))).toBe('java/**/*.md')
+    expect(source(findRule('javaSpring/b.md'))).toBe('javaSpring/**/*.md')
   })
 
   it('resolves the same way regardless of the config declaration order', () => {
@@ -82,8 +92,8 @@ describe('autoFrontmatter rules', () => {
 
     genAutoFrontmatterRules()
 
-    expect(source(findRule(getRules(), 'blog/sub/a.md'))).toBe('blog/sub/**/*.md')
-    expect(source(findRule(getRules(), 'blog/a.md'))).toBe('blog/**/*.md')
+    expect(source(findRule('blog/sub/a.md'))).toBe('blog/sub/**/*.md')
+    expect(source(findRule('blog/a.md'))).toBe('blog/**/*.md')
   })
 
   it('falls back to the root rule for files outside any collection', () => {
@@ -95,9 +105,9 @@ describe('autoFrontmatter rules', () => {
 
     genAutoFrontmatterRules()
 
-    expect(source(findRule(getRules(), 'blog/a.md'))).toBe('blog/**/*.md')
+    expect(source(findRule('blog/a.md'))).toBe('blog/**/*.md')
     // 未归属任何集合的根级文件必须命中根兜底规则。
-    expect(source(findRule(getRules(), 'about.md'))).toBe('**/*.md')
+    expect(source(findRule('about.md'))).toBe('**/*.md')
   })
 
   it('falls back to the locale rule for files outside the locale collections', () => {
@@ -110,9 +120,9 @@ describe('autoFrontmatter rules', () => {
 
     genAutoFrontmatterRules()
 
-    expect(source(findRule(getRules(), 'en/docs/a.md'))).toBe('en/docs/**/*.md')
+    expect(source(findRule('en/docs/a.md'))).toBe('en/docs/**/*.md')
     // 未归属集合的 /en/ 文件命中该语言环境的兜底规则。
-    expect(source(findRule(getRules(), 'en/about.md'))).toBe('en/**/*.md')
+    expect(source(findRule('en/about.md'))).toBe('en/**/*.md')
   })
 
   it('builds the post filter from the include and exclude patterns', () => {
@@ -132,7 +142,7 @@ describe('autoFrontmatter rules', () => {
 
     genAutoFrontmatterRules()
 
-    const filter = findRule(getRules(), 'blog/a.md')?.filter as string[]
+    const filter = findRule('blog/a.md')?.filter as string[]
     expect(filter).toEqual(expect.arrayContaining(['blog/**/*.md', 'docs/**/*.md', '!draft/**']))
     // node_modules 始终被排除。
     expect(filter).toContain('!**/node_modules/**')
@@ -143,7 +153,7 @@ describe('autoFrontmatter rules', () => {
 
     genAutoFrontmatterRules()
 
-    expect(source(findRule(getRules(), 'about.md'))).toBe('**/*.md')
-    expect(findRule(getRules(), 'node_modules/a.md')).toBeUndefined()
+    expect(source(findRule('about.md'))).toBe('**/*.md')
+    expect(findRule('node_modules/a.md')).toBeUndefined()
   })
 })

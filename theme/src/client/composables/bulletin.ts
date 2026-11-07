@@ -1,9 +1,9 @@
 import type { ComputedRef, Ref } from 'vue'
 import type { BulletinOptions } from '../../shared/index.js'
 import { bulletinData as rawBulletinData } from '@internal/bulletin-data'
-import { useRouteLocale } from '@vuepress/client'
 import { useLocalStorage, useSessionStorage } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
+import { useRouteLocale } from 'vuepress/client'
 import { useData } from './data.js'
 
 const showBulletin = ref(false)

@@ -1,5 +1,6 @@
 export * from './color.js'
 export * from './constants.js'
+export * from './createFilter.js'
 export * from './createFsCache.js'
 export * from './createMatcher.js'
 export * from './encrypt.js'

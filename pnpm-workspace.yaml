@@ -95,7 +95,7 @@ catalogs:
     eslint: ^10.14.0
     http-server: ^14.1.1
     less: ^4.9.1
-    markdown-it: ^14.3.2
+    markdown-it: ^14.3.3
     markdownlint-cli: ^0.50.0
     memfs: ^4.80.0
     mermaid: ^12.2.0
@@ -213,3 +213,6 @@ catalogs:
     '@vuepress/plugin-watermark': 2.0.0-rc.135
     '@vuepress/shiki-twoslash': 2.0.0-rc.135
     vuepress: 2.0.0-rc.31
+minimumReleaseAgeExclude:
+  # Renovate security update: markdown-it@14.3.3
+  - markdown-it@14.3.3

@@ -841,7 +841,7 @@ tags:
 | createTime | `string`            | 当前时间 | 创建时间                   |
 | tags       | `string[]`          | `[]`     | 文章标签                   |
 | sticky     | `boolean \| number` | false    | 置顶标识，数字越大排序越前 |
-| draft      | `boolean`           | false    | 草稿模式，构建后隐藏       |
+| draft      | `boolean`           | false    | 草稿模式，生产构建完全排除 |
 | cover      | `string`            | `''`     | 封面图路径                 |
 | coverStyle | `PostCoverStyle`    | `null`   | 封面样式配置               |
 | excerpt    | `boolean \| string` | ''       | 摘要内容，支持自动提取     |

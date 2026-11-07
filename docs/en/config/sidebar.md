@@ -21,6 +21,12 @@ If you want to learn sidebars systematically — nested structures, groups, cust
 per-language sidebars, separators, etc. — read the **[Sidebar Guide](../guide/quick-start/sidebar.md)**.
 :::
 
+:::: tip
+Sidebar items pointing to a [draft page](./frontmatter/basic.md#draft) (`draft: true`) are
+removed automatically in the production build. If the link of a
+group points to a draft page, only the link is removed and its children are kept.
+::::
+
 ## Collection-Level Sidebar Configuration
 
 Collections are the core concept for organizing series of documents in the theme.

@@ -1,5 +1,6 @@
 import type { App } from 'vuepress'
 import type { ThemeOptions, ThemeSidebarData } from '../../shared/index.js'
+import { filterDraftSidebar } from '../features/draft.js'
 import { getAllSidebar, getSidebarData } from '../features/sidebar.js'
 import { getThemeOptions } from '../options.js'
 import { genTempCode, perf, writeTemp } from '../utils/index.js'
@@ -15,6 +16,11 @@ import { genTempCode, perf, writeTemp } from '../utils/index.js'
 export async function prepareSidebar(app: App, options: ThemeOptions = getThemeOptions()): Promise<void> {
   perf.mark('prepare:sidebar')
   const locales = getAllSidebar(options)
+
+  // 生产构建中，草稿页面不会被创建，显式配置指向草稿的侧边栏项需要同步移除，
+  // 避免产物中出现 404 链接。
+  if (app.env.isBuild)
+    filterDraftSidebar(locales, app.options.base)
 
   const { auto, home } = getSidebarData(app, locales, options)
   const data: ThemeSidebarData = { locales, auto, home }

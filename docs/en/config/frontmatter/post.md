@@ -46,7 +46,7 @@ Whether to display the current article in article lists.
 - Type: `boolean`
 - Default: `false`
 
-Marks the article as a draft. Articles marked as drafts **only appear in article lists during development** and are hidden in production environments.
+Marks the article as a draft. Draft articles are **completely excluded** from the production build: no page is generated, and they never appear in article lists, the search index, `sitemap.xml`, `llms.txt`, or any other output. They are only accessible in the dev server. See [draft](./basic.md#draft) for details.
 
 ### tags
 

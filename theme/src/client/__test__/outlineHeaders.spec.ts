@@ -273,7 +273,7 @@ describe('getHeaders', () => {
     const h4 = createHeader(4, 'c', { title: 'C' })
     stubDocument([h2, h3, h4])
 
-    expect(getHeaders('deep')[0].children[0].children)
+    expect(getHeaders('deep')[0]!.children![0].children)
       .toMatchObject([{ link: '#c' }])
   })
 

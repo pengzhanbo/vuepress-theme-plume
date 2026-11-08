@@ -31,13 +31,15 @@ const groupCache = new Map<string, CacheEntry>()
 
 /**
  * Signature of one page. The body is included so that editing a page always invalidates
- * the group, no matter whether its length changes.
+ * the group, no matter whether its length changes. Category names are part of the
  *
  * 单页签名。包含正文，因此任何正文改动都会使分组缓存失效，与长度是否变化无关。
  */
 function pageSignature(doc: RelatedPostsDoc): string {
+  const categories = (doc.page.data.categoryList ?? []).map(item => item.name)
+
   return hash(
-    `${doc.path}\n${doc.title}\n${doc.tags.join(',')}\n${doc.createTime}\n${doc.excerpt ?? ''}\n${doc.page.content}`,
+    `${doc.path}\n${doc.title}\n${doc.tags.join(',')}\n${JSON.stringify(categories)}\n${doc.createTime}\n${doc.excerpt ?? ''}\n${doc.page.content}`,
   )
 }
 

@@ -18,13 +18,10 @@ const HTML_TAG_RE = /<[^>]+>/g
 const LIST_MARKER_RE = /^\s*(?:[-*+]|\d+\.)\s+/gm
 const TABLE_PIPE_RE = /\|/g
 const HEADING_LINE_RE = /^#{1,6}\s(.+)$/gm
-/**
- * 带变音符号的拉丁字母、西里尔字母、希腊字母与数字，并允许标识符中常见的
- * `_ $ + . -`。
- */
+
 const WORD_RE = /[\p{Script=Latin}\p{Script=Cyrillic}\p{Script=Greek}\p{M}\d][\p{Script=Latin}\p{Script=Cyrillic}\p{Script=Greek}\p{M}\d_$+.-]*/gu
-const SCRIPT_RUN_RE = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]+/gu
-const KANA_RE = /[\p{Script=Hiragana}\p{Script=Katakana}]/u
+const SCRIPT_RUN_RE = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\u30FC\p{Script=Hangul}]+/gu
+const KANA_RE = /[\p{Script=Hiragana}\p{Script=Katakana}\u30FC]/u
 const HANGUL_RE = /\p{Script=Hangul}/u
 
 /**

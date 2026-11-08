@@ -136,3 +136,19 @@ describe('tokenize: non-latin scripts', () => {
     expect(tokens).toContain('한국어')
   })
 })
+
+describe('tokenize: prolonged sound mark', () => {
+  it('keeps the mark inside a katakana run', () => {
+    const tokens = tokenize('データ', 'bigram')
+
+    // 长音符与假名同属一个文本段，因此能生成跨过长音符的 bigram
+    expect(tokens).toContain('デー')
+    expect(tokens).toContain('ータ')
+  })
+
+  it.skipIf(!hasSegmenter)('keeps the mark when segmenting', () => {
+    const tokens = tokenize('データベース', 'segmenter')
+
+    expect(tokens.join('|')).toContain('ー')
+  })
+})

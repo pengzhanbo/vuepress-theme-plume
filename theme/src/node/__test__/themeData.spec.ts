@@ -1,5 +1,5 @@
 import type { App } from 'vuepress'
-import type { ThemeBuiltinPlugins, ThemeData, ThemeOptions } from '../../shared/index.js'
+import type { ThemeBuiltinPlugins, ThemeCollectionItem, ThemeData, ThemeLocaleData, ThemeOptions } from '../../shared/index.js'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 const hoisted = vi.hoisted(() => ({
@@ -31,8 +31,8 @@ describe('resolveThemeData', () => {
       hostname: 'https://example.com',
       sidebar: { '/': 'auto' },
       navbar: [{ text: 'Home', link: '/' }],
-      collections: [{ type: 'post', dir: 'blog' }],
-      encrypt: { rules: [] },
+      collections: [{ type: 'post', dir: 'blog' } as ThemeCollectionItem],
+      encrypt: { rules: {} },
       // 以下字段需要在客户端可用。
       logo: '/logo.svg',
       outline: 'deep',
@@ -51,7 +51,7 @@ describe('resolveThemeData', () => {
     expect(resolveThemeData(app, createOptions()).contributors).toBe(true)
     expect(resolveThemeData(app, createOptions({ contributors: false })).contributors).toBe(false)
     expect(resolveThemeData(app, createOptions({ contributors: {} })).contributors).toEqual({ mode: 'inline' })
-    expect(resolveThemeData(app, createOptions({ contributors: { mode: 'footer' } })).contributors)
+    expect(resolveThemeData(app, createOptions({ contributors: { mode: 'footer' as any } })).contributors)
       .toEqual({ mode: 'footer' })
 
     expect(resolveThemeData(app, createOptions({ changelog: true })).changelog).toBe(true)
@@ -75,7 +75,7 @@ describe('resolveThemeData', () => {
     const themeData = resolveThemeData(app, createOptions({
       locales: {
         '/': {},
-        '/en/': { appearance: false, blog: [], collections: [], outline: 'deep' },
+        '/en/': { appearance: false, blog: [], collections: [], outline: 'deep' } as ThemeLocaleData,
       },
     }))
 
@@ -125,7 +125,7 @@ describe('resolveThemeData > fallback navbar', () => {
       postsText: '文章',
       tagText: '标签',
       archiveText: '归档',
-      locales: { '/en/': { collections: [{ type: 'post', dir: 'blog' }] } },
+      locales: { '/en/': { collections: [{ type: 'post', dir: 'blog' } as ThemeCollectionItem] } },
     }))
 
     expect(themeData.locales!['/en/'].navbar).toEqual([
@@ -141,7 +141,7 @@ describe('resolveThemeData > fallback navbar', () => {
     const themeData = resolveThemeData(app, createOptions({
       locales: {
         // 纯文档站点只有 doc 集合，仍然需要 Home 入口。
-        '/': { collections: [{ type: 'doc', dir: 'guide' }] },
+        '/': { collections: [{ type: 'doc', dir: 'guide' } as ThemeCollectionItem] },
         '/en/': {},
       },
     }))

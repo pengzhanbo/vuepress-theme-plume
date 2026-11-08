@@ -1,5 +1,5 @@
 import type { App, Page } from 'vuepress'
-import type { ThemeOptions } from '../../shared/index.js'
+import type { ThemeOptions, ThemePageData } from '../../shared/index.js'
 import { describe, expect, it, vi } from 'vitest'
 
 const hoisted = vi.hoisted(() => ({
@@ -30,7 +30,7 @@ interface PostOptions {
   data?: Record<string, unknown>
 }
 
-function createPost(name: string, options: PostOptions = {}): Page {
+function createPost(name: string, options: PostOptions = {}): Page<ThemePageData> {
   const locale = options.locale ?? '/'
   const dir = options.dir ?? 'blog'
   const prefix = locale === '/' ? '' : locale.slice(1)
@@ -54,7 +54,7 @@ function createPost(name: string, options: PostOptions = {}): Page {
     },
     content: options.content ?? '',
     contentRendered: '',
-  } as unknown as Page
+  } as unknown as Page<ThemePageData>
 }
 
 interface OptionsOverrides {
@@ -303,7 +303,7 @@ describe('resolveRelatedPosts: shape', () => {
   })
 
   it('is deterministic across runs', () => {
-    const create = (): Page[] => [
+    const create = (): Page<ThemePageData>[] => [
       createPost('a', { tags: ['vue'] }),
       createPost('b', { tags: ['vue'] }),
       createPost('c', { tags: ['vue'] }),
@@ -400,7 +400,7 @@ describe('prepareRelatedPosts', () => {
 })
 
 describe('resolveRelatedPosts: diversity', () => {
-  const create = (): Page[] => [
+  const create = (): Page<ThemePageData>[] => [
     createPost('a', { tags: ['vue'], content: 'alpha beta gamma' }),
     createPost('b', { tags: ['vue'], content: 'alpha beta gamma' }),
     createPost('c', { tags: ['vue'], content: 'alpha beta gamma' }),
@@ -483,7 +483,7 @@ describe('prepareRelatedPosts: cache and cleanup', () => {
 })
 
 describe('resolveRelatedPosts: `relatedPosts: true`', () => {
-  const pages = (): Page[] => [
+  const pages = (): Page<ThemePageData>[] => [
     createPost('a', { tags: ['vue'] }),
     createPost('b', { tags: ['vue'] }),
   ]
@@ -562,6 +562,27 @@ describe('prepareRelatedPosts: manual list without groups', () => {
 
     expect(a.data.relatedPosts).toHaveLength(1)
     expect(a.data.relatedPosts?.[0].path).toBe('/blog/b/')
+    expect(b.data.relatedPosts).toBeUndefined()
+  })
+})
+
+describe('prepareRelatedPosts: cache invalidation', () => {
+  it('recomputes when only the categories change', async () => {
+    const a = createPost('a', { categories: ['前端'] })
+    const b = createPost('b', { categories: ['前端'] })
+    const app = { pages: [a, b], env: { isBuild: true } } as unknown as App
+    const options = createOptions()
+
+    await prepareRelatedPosts(app, options)
+    expect(a.data.relatedPosts).toHaveLength(1)
+
+    // 内容与标题不变，仅分类不同：分类参与签名，因此必须重新计算
+    const next = createPost('a', { categories: ['后端'] })
+    app.pages[0] = next
+
+    await prepareRelatedPosts(app, options)
+
+    expect(next.data.relatedPosts).toBeUndefined()
     expect(b.data.relatedPosts).toBeUndefined()
   })
 })

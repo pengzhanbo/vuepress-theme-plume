@@ -3,6 +3,7 @@ import type { SocialLink } from '../common/social.js'
 import type { AutoFrontmatterOptions } from './autoFrontmatter.js'
 import type { PostsCategoryItem, PostsCoverLayout, PostsCoverStyle } from './posts.js'
 import type { ProfileOptions } from './profile.js'
+import type { RelatedPostsOptions } from './relatedPosts.js'
 import type { ThemeSidebarItem } from './sidebar.js'
 
 /**
@@ -94,6 +95,16 @@ export interface ThemeBaseCollection {
    * @default true
    */
   readAid?: boolean | ThemeReadAid
+
+  /**
+   * 相关文章推荐配置，覆盖主题级配置
+   *
+   * - `true` 表示按默认配置启用
+   * - `false` 表示在该集合内关闭
+   *
+   * 未设置时继承主题级 `relatedPosts` 配置
+   */
+  relatedPosts?: boolean | RelatedPostsOptions
 }
 
 /**

@@ -33,6 +33,8 @@ export const enLocale: ThemeLocaleText = {
   bulletinLabel: 'Announcement',
   docFooterNavLabel: 'Document navigation',
   paginationLabel: 'Pagination',
+  relatedPostsText: 'Related Posts',
+  relatedPostsLabel: 'Related posts',
 
   encryptButtonText: 'Confirm',
   encryptPlaceholder: 'Enter password',

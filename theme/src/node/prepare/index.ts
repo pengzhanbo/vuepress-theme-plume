@@ -8,6 +8,7 @@ import { prepareEncrypt } from './encrypt.js'
 import { prepareHomeHeroEffects } from './home-hero-effects.js'
 import { prepareIcons } from './icons.js'
 import { preparedPostsData } from './posts-data.js'
+import { prepareRelatedPosts } from './related-posts.js'
 import { prepareSidebar } from './sidebar.js'
 import { prepareArticleTagColors } from './tag-color.js'
 
@@ -25,6 +26,7 @@ export async function prepareData(app: App, options: ThemeOptions = getThemeOpti
   await Promise.all([
     prepareArticleTagColors(app),
     preparedPostsData(app, options),
+    prepareRelatedPosts(app, options),
     prepareSidebar(app, options),
     prepareCollections(app, options),
     prepareEncrypt(app, options),

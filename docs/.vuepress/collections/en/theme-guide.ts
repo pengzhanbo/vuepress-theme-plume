@@ -149,6 +149,7 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
         'image-preview',
         'comments',
         'bulletin',
+        'related-posts',
         'encryption',
         'contributors',
         'changelog',

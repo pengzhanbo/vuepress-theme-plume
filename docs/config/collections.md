@@ -288,6 +288,12 @@ interface ThemeBaseCollection {
    * 自动生成 frontmatter
    */
   autoFrontmatter?: AutoFrontmatterOptions | false
+  /**
+   * 相关文章推荐配置，覆盖主题级的 `relatedPosts` 配置
+   * - `true`：按默认配置启用
+   * - `false`：在该集合内关闭
+   */
+  relatedPosts?: boolean | RelatedPostsOptions
 }
 ```
 

@@ -5,7 +5,7 @@ import { tools } from './tools.js'
 
 export const zhCollections: ThemeCollections = defineCollections([
   // 博客
-  { type: 'post', dir: '/blog/', link: '/blog/', title: '博客' },
+  { type: 'post', dir: '/blog/', link: '/blog/', title: '博客', relatedPosts: true },
   // 文档
   themeGuide,
   themeConfig,

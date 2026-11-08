@@ -6,6 +6,7 @@ import type {
   CopyrightLicense,
   CopyrightOptions,
   ProfileOptions,
+  RelatedPostsOptions,
   ThemeCollections,
   ThemeNavItem,
   ThemeSidebarMulti,
@@ -184,6 +185,17 @@ export interface ThemeLocale extends LocaleData {
    * @default false
    */
   readAid?: boolean | ThemeReadAid
+
+  /**
+   * 配置相关文章推荐
+   *
+   * - `true` 表示启用并使用默认配置
+   * - `false` 表示关闭
+   *
+   * 集合级配置（`collections[].relatedPosts`）优先于该配置
+   * @default false
+   */
+  relatedPosts?: boolean | RelatedPostsOptions
 }
 
 /**
@@ -391,6 +403,20 @@ export interface ThemeLocaleText {
    * @default 'Pagination'
    */
   paginationLabel?: string
+
+  /**
+   * 相关文章区块的标题。
+   *
+   * @default 'Related Posts'
+   */
+  relatedPostsText?: string
+
+  /**
+   * 相关文章区块的无障碍名称。
+   *
+   * @default 'Related posts'
+   */
+  relatedPostsLabel?: string
 
   /**
    * 侧边栏 outline 文本

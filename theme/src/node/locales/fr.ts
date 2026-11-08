@@ -21,6 +21,8 @@ export const frLocale: ThemeLocaleText = {
   bulletinLabel: 'Annonce',
   docFooterNavLabel: 'Navigation du document',
   paginationLabel: 'Pagination',
+  relatedPostsText: 'Articles similaires',
+  relatedPostsLabel: 'Articles similaires',
   editLinkText: 'Modifier cette page',
   contributorsText: 'Contributeurs',
   prevPageLabel: 'Page précédente',

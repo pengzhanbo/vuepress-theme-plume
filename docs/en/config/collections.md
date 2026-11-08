@@ -290,6 +290,12 @@ interface ThemeBaseCollection {
    * Auto-generate frontmatter
    */
   autoFrontmatter?: AutoFrontmatterOptions | false
+  /**
+   * Related posts options of this collection, overrides the theme level `relatedPosts`
+   * - `true`: enable it with the default configuration
+   * - `false`: disable it in this collection
+   */
+  relatedPosts?: boolean | RelatedPostsOptions
 }
 ```
 

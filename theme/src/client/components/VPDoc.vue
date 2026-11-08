@@ -7,6 +7,7 @@ import VPDocFooter from '@theme/VPDocFooter.vue'
 import VPDocMeta from '@theme/VPDocMeta.vue'
 import VPEncrypt from '@theme/VPEncrypt.vue'
 import VPReadAid from '@theme/VPReadAid.vue'
+import VPRelatedPosts from '@theme/VPRelatedPosts.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { useMediaQuery } from '@vueuse/core'
 import { computed, nextTick, ref, watch } from 'vue'
@@ -157,6 +158,8 @@ watch(
                   <Content />
 
                   <slot name="doc-content-after" />
+
+                  <VPRelatedPosts />
 
                   <DocGitContributors v-if="contributorsMode === 'block'" />
                   <DocGitChangelog />

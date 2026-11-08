@@ -16,6 +16,7 @@ vi.mock('../utils/index.js', async (importOriginal) => {
 
 const { resolveRelatedPosts } = await import('../features/relatedPosts/index.js')
 const { prepareRelatedPosts } = await import('../prepare/related-posts.js')
+const { recencyDecay } = await import('../features/relatedPosts/score.js')
 
 interface PostOptions {
   title?: string
@@ -509,5 +510,58 @@ describe('resolveRelatedPosts: `relatedPosts: true`', () => {
     await prepareRelatedPosts(app, createOptions({ relatedPosts: true }))
 
     expect(list[0].data.relatedPosts).toHaveLength(1)
+  })
+})
+
+describe('recencyDecay', () => {
+  const base = Date.UTC(2024, 0, 1)
+  const oneYear = 365 * 864e5
+
+  it('halves the score after `recency` years', () => {
+    expect(recencyDecay(base, base + oneYear, 1)).toBeCloseTo(0.5, 5)
+    expect(recencyDecay(base, base + oneYear * 2, 1)).toBeCloseTo(0.25, 5)
+  })
+
+  it('decays more slowly for a larger half-life', () => {
+    expect(recencyDecay(base, base + oneYear, 2)).toBeCloseTo(0.5 ** 0.5, 5)
+    expect(recencyDecay(base, base + oneYear, 2))
+      .toBeGreaterThan(recencyDecay(base, base + oneYear, 1))
+  })
+
+  it('returns 1 when disabled or when a time is missing', () => {
+    expect(recencyDecay(base, base + oneYear, 0)).toBe(1)
+    expect(recencyDecay(0, base, 1)).toBe(1)
+    expect(recencyDecay(base, 0, 1)).toBe(1)
+  })
+})
+
+describe('resolveRelatedPosts: manual target safety', () => {
+  it('skips an encrypted manual target and warns', () => {
+    const pages = [
+      createPost('a', { frontmatter: { relatedPosts: ['/blog/b/'] } }),
+      createPost('b', { data: { _e: 'hashed' } }),
+    ]
+
+    const { items } = resolveRelatedPosts(pages, createOptions())
+
+    expect(items.has('/blog/a/')).toBe(false)
+    expect(hoisted.logger.warn).toHaveBeenCalledWith(expect.stringContaining('is encrypted'))
+  })
+})
+
+describe('prepareRelatedPosts: manual list without groups', () => {
+  it('writes manual items even when every group is dropped', async () => {
+    const a = createPost('a', { frontmatter: { relatedPosts: ['/blog/b/'] } })
+    const b = createPost('b', { tags: ['vue'] })
+    const app = { pages: [a, b], env: { isBuild: true } } as unknown as App
+
+    // b 被排除后分组只剩一页，整组不参与自动计算
+    await prepareRelatedPosts(app, createOptions({
+      relatedPosts: { minScore: 0, limit: 3, cjk: 'bigram', exclude: ['/blog/b/'] },
+    }))
+
+    expect(a.data.relatedPosts).toHaveLength(1)
+    expect(a.data.relatedPosts?.[0].path).toBe('/blog/b/')
+    expect(b.data.relatedPosts).toBeUndefined()
   })
 })

@@ -152,20 +152,21 @@ export function buildIndex(docs: ScorableDoc[], fieldBoosts: FieldBoosts = {}): 
 }
 
 /**
- * Recency decay, `recency` is the half-life in years
+ * Recency decay with `recency` as a half-life in years: the score is halved after
+ * `recency` years, so a larger value decays more slowly.
  *
- * 时间衰减，`recency` 为以「年」为半衰期的衰减系数
+ * 以 `recency` 为半衰期的时间衰减：经过 `recency` 年后分数减半，值越大衰减越慢。
  *
  * @param a - Create time of one document in ms / 一篇文档的创建时间（毫秒）
  * @param b - Create time of the other document in ms / 另一篇文档的创建时间（毫秒）
- * @param recency - Decay coefficient, `0` disables it / 衰减系数，`0` 表示不衰减
+ * @param recency - Half-life in years, `0` disables it / 半衰期（年），`0` 表示不衰减
  */
 export function recencyDecay(a: number, b: number, recency: number): number {
   if (!recency || !a || !b)
     return 1
 
   const years = Math.abs(a - b) / 864e5 / 365
-  return 1 / (1 + recency * years)
+  return 0.5 ** (years / recency)
 }
 
 /**

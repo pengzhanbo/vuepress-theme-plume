@@ -853,7 +853,7 @@ export default defineThemeConfig({
   | `limit` | `number` | `4` | 最多推荐条数（1–12） |
   | `minScore` | `number` | `0.12` | 相似度阈值，低于该值不展示 |
   | `weights` | `object` | 见下 | 各信号字段的权重 |
-  | `recency` | `number` | `0` | 时间衰减半衰期（年），`0` 表示不考虑新旧 |
+  | `recency` | `number` | `0` | 时间衰减半衰期（年），经过 `recency` 年后相似度减半，`0` 表示不考虑新旧 |
   | `diversity` | `number` | `0.3` | 推荐结果多样性（0–1），`0` 表示仅按相关度排序 |
   | `scope` | `'collection' \| 'locale'` | `'collection'` | 候选范围 |
   | `contentLimit` | `number` | `2000` | 参与计算的正文最大字符数，`0` 表示不参与 |

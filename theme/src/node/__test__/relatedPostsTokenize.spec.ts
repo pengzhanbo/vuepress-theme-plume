@@ -106,3 +106,33 @@ describe('tokenize: cjk', () => {
     expect(tokens.some(token => token.includes('布局') || token === '组合')).toBe(true)
   })
 })
+
+describe('tokenize: non-latin scripts', () => {
+  it('keeps cyrillic and greek words', () => {
+    expect(tokenize('Привет мир', 'bigram')).toEqual(['привет', 'мир'])
+    expect(tokenize('Ελληνικά', 'bigram')).toEqual(['ελληνικά'])
+  })
+
+  it('keeps latin letters with diacritics', () => {
+    expect(tokenize('Café naïve', 'bigram')).toEqual(['café', 'naïve'])
+  })
+
+  it('splits japanese kana into 2-grams with the bigram strategy', () => {
+    const tokens = tokenize('ひらがな', 'bigram')
+
+    expect(tokens).toContain('ひら')
+    expect(tokens).toContain('がな')
+  })
+
+  it.skipIf(!hasSegmenter)('segments japanese kana with the ja segmenter', () => {
+    const tokens = tokenize('ひらがなとカタカナ', 'segmenter')
+
+    expect(tokens.length).toBeGreaterThan(0)
+  })
+
+  it.skipIf(!hasSegmenter)('segments korean hangul with the ko segmenter', () => {
+    const tokens = tokenize('한국어 문서', 'segmenter')
+
+    expect(tokens).toContain('한국어')
+  })
+})

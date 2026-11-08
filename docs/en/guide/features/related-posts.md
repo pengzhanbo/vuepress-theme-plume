@@ -123,6 +123,9 @@ with **TF-IDF + cosine similarity**.
   never pruned
 - **Diversity**: before taking the Top-N, MMR (maximal marginal relevance) re-selects from a
   wider candidate pool, so the results are not all adjacent articles of the same series
+- **Multilingual tokenizer**: Chinese uses `Intl.Segmenter` (or 2-grams), Japanese and Korean
+  automatically use the segmenter of their own language, and Latin (including diacritics),
+  Cyrillic and Greek text is split by word
 - **Determinism**: equal scores are ordered by create time and path
 
 :::: note Why not vector search

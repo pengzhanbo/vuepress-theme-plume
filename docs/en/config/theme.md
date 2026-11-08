@@ -874,7 +874,7 @@ Supports the following 9 animation effects:
   | `limit` | `number` | `4` | Max number of related posts (1–12) |
   | `minScore` | `number` | `0.12` | Similarity threshold, lower candidates are dropped |
   | `weights` | `object` | see below | Weight of each signal |
-  | `recency` | `number` | `0` | Recency decay half-life in years, `0` disables it |
+  | `recency` | `number` | `0` | Recency decay half-life in years: the score halves after `recency` years, `0` disables it |
   | `diversity` | `number` | `0.3` | Diversity of the result (0–1), `0` keeps the pure relevance order |
   | `scope` | `'collection' \| 'locale'` | `'collection'` | Candidate scope |
   | `contentLimit` | `number` | `2000` | Max characters of the body used for scoring, `0` disables it |

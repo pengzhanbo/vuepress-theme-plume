@@ -77,60 +77,65 @@ export async function prepareRelatedPosts(app: App, options: ThemeOptions = getT
   }
 
   const groups = collectRelatedPostsGroups(pages, options)
-
-  if (!groups.length) {
-    groupCache.clear()
-    perf.log('prepare:related-posts')
-    return
-  }
-
-  const activeKeys = new Set<string>()
   const items = new Map<string, ThemeRelatedPostItem[]>()
   const debug: string[] = []
 
-  for (const group of groups) {
-    activeKeys.add(group.key)
+  if (groups.length) {
+    const activeKeys = new Set<string>()
 
-    const sig = groupSignature(group)
-    const cached = groupCache.get(group.key)
+    for (const group of groups) {
+      activeKeys.add(group.key)
 
-    if (cached?.sig === sig) {
-      mergeItems(items, cached.items)
-      debug.push(...cached.debug.slice(0, Math.max(0, DEBUG_SAMPLE_SIZE - debug.length)))
-      continue
+      const sig = groupSignature(group)
+      const cached = groupCache.get(group.key)
+
+      if (cached?.sig === sig) {
+        mergeItems(items, cached.items)
+        debug.push(...cached.debug.slice(0, Math.max(0, DEBUG_SAMPLE_SIZE - debug.length)))
+        continue
+      }
+
+      try {
+        const resolved = resolveGroupRelatedPosts(group)
+        groupCache.set(group.key, { sig, items: resolved.items, debug: resolved.debug })
+        mergeItems(items, resolved.items)
+        debug.push(...resolved.debug.slice(0, Math.max(0, DEBUG_SAMPLE_SIZE - debug.length)))
+      }
+      catch (error) {
+        logger.error(`Failed to resolve related posts of "${group.key}":`, error)
+      }
     }
 
-    try {
-      const resolved = resolveGroupRelatedPosts(group)
-      groupCache.set(group.key, { sig, items: resolved.items, debug: resolved.debug })
-      mergeItems(items, resolved.items)
-      debug.push(...resolved.debug.slice(0, Math.max(0, DEBUG_SAMPLE_SIZE - debug.length)))
-    }
-    catch (error) {
-      logger.error(`Failed to resolve related posts of "${group.key}":`, error)
+    // 清理已不存在分组的缓存
+    for (const key of groupCache.keys()) {
+      if (!activeKeys.has(key))
+        groupCache.delete(key)
     }
   }
-
-  // 清理已不存在分组的缓存
-  for (const key of groupCache.keys()) {
-    if (!activeKeys.has(key))
-      groupCache.delete(key)
+  else {
+    groupCache.clear()
   }
 
   applyManualRelatedPosts(pages, options, items)
 
-  let empty = 0
+  let written = 0
 
+  for (const [path, list] of items) {
+    if (!list.length)
+      continue
+
+    const page = pageByPath.get(path)
+    if (!page)
+      continue
+
+    page.data.relatedPosts = list
+    written++
+  }
+
+  let empty = 0
   for (const group of groups) {
     for (const doc of group.docs) {
-      const page = pageByPath.get(doc.path)
-      if (!page)
-        continue
-
-      const list = items.get(doc.path)
-      if (list?.length)
-        page.data.relatedPosts = list
-      else
+      if (!items.get(doc.path)?.length)
         empty++
     }
   }
@@ -139,10 +144,9 @@ export async function prepareRelatedPosts(app: App, options: ThemeOptions = getT
   for (const list of items.values())
     total += list.length
 
-  const pagesWithItems = items.size
-  const average = pagesWithItems ? (total / pagesWithItems).toFixed(1) : '0'
+  const average = written ? (total / written).toFixed(1) : '0'
 
-  const summary = `related posts: ${pagesWithItems} pages, avg ${average}, `
+  const summary = `related posts: ${written} pages, avg ${average}, `
     + `${empty} without candidates in ${groups.length} group(s)`
 
   if (app.env.isBuild)

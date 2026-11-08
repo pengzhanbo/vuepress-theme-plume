@@ -17,6 +17,7 @@ import type { FieldBoosts } from './score.js'
 import { logger } from '../../utils/index.js'
 import { findCollection } from '../collections/index.js'
 import { toCanonicalRoute } from '../draft.js'
+import { isEncryptPage } from '../encrypt.js'
 import {
   buildDocTerms,
   collectRelatedPostsGroups,
@@ -133,6 +134,7 @@ function normalizeRelatedLinks(links: string[]): string[] {
 function resolveManualItems(
   page: Page<ThemePageData, ThemePostFrontmatter & Record<string, unknown>>,
   pageIndex: Map<string, Page<ThemePageData, ThemePostFrontmatter & Record<string, unknown>>>,
+  options: ThemeOptions,
 ): ThemeRelatedPostItem[] {
   const links = normalizeRelatedLinks(page.frontmatter.relatedPosts as string[])
   const items: ThemeRelatedPostItem[] = []
@@ -143,6 +145,13 @@ function resolveManualItems(
     if (!target) {
       logger.warn(
         `The related post "${link}" declared in ${page.filePathRelative} does not exist.`,
+      )
+      continue
+    }
+
+    if (isEncryptPage(target, options.encrypt)) {
+      logger.warn(
+        `The related post "${link}" declared in ${page.filePathRelative} is encrypted and cannot be recommended.`,
       )
       continue
     }
@@ -232,7 +241,7 @@ export function applyManualRelatedPosts(
       continue
     }
 
-    const manualItems = resolveManualItems(page, pageIndex)
+    const manualItems = resolveManualItems(page, pageIndex, options)
     if (manualItems.length)
       items.set(page.path, manualItems)
     else

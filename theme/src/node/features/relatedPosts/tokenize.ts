@@ -18,8 +18,14 @@ const HTML_TAG_RE = /<[^>]+>/g
 const LIST_MARKER_RE = /^\s*(?:[-*+]|\d+\.)\s+/gm
 const TABLE_PIPE_RE = /\|/g
 const HEADING_LINE_RE = /^#{1,6}\s(.+)$/gm
-const WORD_RE = /[a-z0-9][\w$+.-]*/gi
-const CJK_RUN_RE = /\p{Script=Han}+/gu
+/**
+ * 带变音符号的拉丁字母、西里尔字母、希腊字母与数字，并允许标识符中常见的
+ * `_ $ + . -`。
+ */
+const WORD_RE = /[\p{Script=Latin}\p{Script=Cyrillic}\p{Script=Greek}\p{M}\d][\p{Script=Latin}\p{Script=Cyrillic}\p{Script=Greek}\p{M}\d_$+.-]*/gu
+const SCRIPT_RUN_RE = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]+/gu
+const KANA_RE = /[\p{Script=Hiragana}\p{Script=Katakana}]/u
+const HANGUL_RE = /\p{Script=Hangul}/u
 
 /**
  * Minimal built-in stop words.
@@ -101,17 +107,42 @@ interface SegmenterLike {
   segment: (input: string) => Iterable<{ segment: string, isWordLike?: boolean }>
 }
 
-const SEGMENTER: SegmenterLike | null = (() => {
-  const SegmenterCtor = (Intl as unknown as { Segmenter?: new (locale: string, options: { granularity: string }) => SegmenterLike }).Segmenter
-  return SegmenterCtor ? new SegmenterCtor('zh', { granularity: 'word' }) : null
-})()
+type SegmenterConstructor = new (locale: string, options: { granularity: string }) => SegmenterLike
+
+const SegmenterCtor = (Intl as unknown as { Segmenter?: SegmenterConstructor }).Segmenter
 
 /**
  * Whether the built-in `Intl.Segmenter` is available in the current runtime.
  *
  * 当前运行时是否支持内置的 `Intl.Segmenter`。
  */
-export const hasSegmenter = SEGMENTER !== null
+export const hasSegmenter = SegmenterCtor !== undefined
+
+const segmenters = new Map<string, SegmenterLike>()
+
+function getSegmenter(locale: string): SegmenterLike | null {
+  if (!SegmenterCtor)
+    return null
+
+  let segmenter = segmenters.get(locale)
+  if (!segmenter) {
+    segmenter = new SegmenterCtor(locale, { granularity: 'word' })
+    segmenters.set(locale, segmenter)
+  }
+
+  return segmenter
+}
+
+/**
+ * 为一段文字选择分词语言：含假名用 `ja`，含谚文用 `ko`，其余（汉字）用 `zh`。
+ */
+function resolveSegmenterLocale(run: string): string {
+  if (KANA_RE.test(run))
+    return 'ja'
+  if (HANGUL_RE.test(run))
+    return 'ko'
+  return 'zh'
+}
 
 /**
  * Check whether a token is a stop word.
@@ -161,9 +192,8 @@ export function extractHeadings(content: string): string[] {
 }
 
 /**
- * Tokenize text into latin words and CJK segments (or 2-grams).
- *
- * 将文本切分为拉丁词与中文词段（或 2-gram）。
+ * 将文本切分为拉丁 / 西里尔 / 希腊词，以及汉字 / 假名 / 谚文的词段
+ * （分词器不可用或关闭时退化为 2-gram）。
  *
  * @param text - Text to tokenize / 要分词的文本
  * @param cjk - CJK tokenizer strategy / 中文分词策略
@@ -177,7 +207,7 @@ export function tokenize(text: string, cjk: CjkTokenizer = 'segmenter'): string[
       tokens.push(word)
   }
 
-  for (const match of text.matchAll(CJK_RUN_RE)) {
+  for (const match of text.matchAll(SCRIPT_RUN_RE)) {
     const run = match[0]
 
     if (run.length === 1) {
@@ -186,8 +216,10 @@ export function tokenize(text: string, cjk: CjkTokenizer = 'segmenter'): string[
       continue
     }
 
-    if (cjk === 'segmenter' && SEGMENTER) {
-      for (const part of SEGMENTER.segment(run)) {
+    const segmenter = cjk === 'segmenter' ? getSegmenter(resolveSegmenterLocale(run)) : null
+
+    if (segmenter) {
+      for (const part of segmenter.segment(run)) {
         if (part.isWordLike && part.segment.length >= 2 && !STOP_WORDS.has(part.segment))
           tokens.push(part.segment)
       }

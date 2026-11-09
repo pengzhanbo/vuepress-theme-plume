@@ -21,6 +21,8 @@ export const zhTwLocale: ThemeLocaleText = {
   bulletinLabel: '公告',
   docFooterNavLabel: '文件翻頁',
   paginationLabel: '分頁導覽',
+  relatedPostsText: '相關文章',
+  relatedPostsLabel: '相關文章',
   editLinkText: '編輯此頁',
   contributorsText: '貢獻者',
   prevPageLabel: '上一頁',

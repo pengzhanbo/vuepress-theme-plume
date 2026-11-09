@@ -853,6 +853,76 @@ Supports the following 9 animation effects:
   - `'left'` - Show left guide line
   - `'right'` - Show right guide line
 
+### relatedPosts
+
+- **Type:** `boolean | RelatedPostsOptions`
+- **Default:** `false`
+- **Details:** Whether to show related posts at the bottom of article and doc pages.
+
+  - `true` - Enable it with the default configuration (same as `{}`)
+  - `false` - Disable it
+  - `RelatedPostsOptions` - Enable it with a custom configuration
+
+  Collection level options (`collections[].relatedPosts`) take precedence over this one.
+
+  The result is computed at **build time** (TF-IDF + cosine similarity) and written into
+  the page data, so there is no runtime cost on the client. Pages are only recommended
+  within the same collection and the same locale by default.
+
+  | Option | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `limit` | `number` | `4` | Max number of related posts (1–12) |
+  | `minScore` | `number` | `0.12` | Similarity threshold, lower candidates are dropped |
+  | `weights` | `object` | see below | Weight of each signal |
+  | `recency` | `number` | `0` | Recency decay half-life in years: the score halves after `recency` years, `0` disables it |
+  | `diversity` | `number` | `0.3` | Diversity of the result (0–1), `0` keeps the pure relevance order |
+  | `scope` | `'collection' \| 'locale'` | `'collection'` | Candidate scope |
+  | `contentLimit` | `number` | `2000` | Max characters of the body used for scoring, `0` disables it |
+  | `cjk` | `'segmenter' \| 'bigram'` | `'segmenter'` | CJK tokenizer strategy |
+  | `showExcerpt` | `boolean` | `false` | Whether to show an excerpt in each item |
+  | `excerptLength` | `number` | `80` | Max length of the excerpt |
+  | `title` | `string` | theme locale text | Title of the block |
+  | `exclude` | `string[]` | `[]` | Paths to exclude, glob supported |
+  | `debug` | `boolean` | `false` | Print scores in the build log |
+
+  The default `weights` is `{ tags: 3, category: 2, title: 2, headings: 1.5, content: 1 }`.
+
+:::: code-tabs#configs
+
+@tab .vuepress/config.ts
+
+```ts
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    relatedPosts: {
+      limit: 4,
+      minScore: 0.12,
+      weights: { tags: 3, category: 2, title: 2, content: 1 },
+    },
+  }),
+})
+```
+
+@tab .vuepress/plume.config.ts
+
+```ts
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  relatedPosts: {
+    limit: 4,
+    diversity: 0.3,
+  },
+})
+```
+
+::::
+
+See [Related Posts](../guide/features/related-posts.md) for more details.
+
 ### footer
 
 - **Type:** `false | { message: string; copyright?: string }`

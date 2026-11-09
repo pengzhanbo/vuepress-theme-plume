@@ -833,6 +833,75 @@ export default defineThemeConfig({
   - `'left'` - 显示左侧辅助线
   - `'right'` - 显示右侧辅助线
 
+### relatedPosts
+
+- **类型：** `boolean | RelatedPostsOptions`
+- **默认值：** `false`
+- **详情：** 是否在文章/文档页底部展示相关文章推荐。
+
+  - `true` - 启用，并使用默认配置（等价于传入 `{}`）
+  - `false` - 关闭
+  - `RelatedPostsOptions` - 启用，并自定义配置
+
+  集合级配置（`collections[].relatedPosts`）优先于该配置。
+
+  推荐结果在**构建期**计算（TF-IDF + 余弦相似度），默认只在**同一集合、同一语言**内推荐，
+  结果直接写入页面数据，不会增加客户端运行时计算。
+
+  | 配置 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | `limit` | `number` | `4` | 最多推荐条数（1–12） |
+  | `minScore` | `number` | `0.12` | 相似度阈值，低于该值不展示 |
+  | `weights` | `object` | 见下 | 各信号字段的权重 |
+  | `recency` | `number` | `0` | 时间衰减半衰期（年），经过 `recency` 年后相似度减半，`0` 表示不考虑新旧 |
+  | `diversity` | `number` | `0.3` | 推荐结果多样性（0–1），`0` 表示仅按相关度排序 |
+  | `scope` | `'collection' \| 'locale'` | `'collection'` | 候选范围 |
+  | `contentLimit` | `number` | `2000` | 参与计算的正文最大字符数，`0` 表示不参与 |
+  | `cjk` | `'segmenter' \| 'bigram'` | `'segmenter'` | 中文分词策略 |
+  | `showExcerpt` | `boolean` | `false` | 是否在推荐项中展示摘要 |
+  | `excerptLength` | `number` | `80` | 摘要最大长度 |
+  | `title` | `string` | 主题文案 | 区块标题 |
+  | `exclude` | `string[]` | `[]` | 排除的路径，支持 glob |
+  | `debug` | `boolean` | `false` | 在构建日志中输出评分明细 |
+
+  `weights` 的默认值为 `{ tags: 3, category: 2, title: 2, headings: 1.5, content: 1 }`。
+
+:::: code-tabs#configs
+
+@tab .vuepress/config.ts
+
+```ts
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    relatedPosts: {
+      limit: 4,
+      minScore: 0.12,
+      weights: { tags: 3, category: 2, title: 2, content: 1 },
+    },
+  }),
+})
+```
+
+@tab .vuepress/plume.config.ts
+
+```ts
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  relatedPosts: {
+    limit: 4,
+    diversity: 0.3,
+  },
+})
+```
+
+::::
+
+更多说明见 [相关文章推荐](../guide/features/related-posts.md)。
+
 ### footer
 
 - **类型：** `false | { message: string; copyright?: string }`

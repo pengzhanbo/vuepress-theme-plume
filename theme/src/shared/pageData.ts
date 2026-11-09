@@ -2,7 +2,7 @@ import type { Nullable } from '@pengzhanbo/utils'
 import type { GitPluginPageData } from '@vuepress/plugin-git'
 import type { ReadingTime } from '@vuepress/plugin-reading-time'
 import type { PageData } from 'vuepress'
-import type { PostsCategoryItem } from './features/index.js'
+import type { PostsCategoryItem, ThemeRelatedPostItem } from './features/index.js'
 
 /**
  * Theme page data interface
@@ -39,4 +39,9 @@ export interface ThemePageData extends GitPluginPageData, PageData {
    * 是否启用公告
    */
   bulletin?: boolean
+  /**
+   * Related posts, resolved at build time
+   * 相关文章，构建期计算
+   */
+  relatedPosts?: ThemeRelatedPostItem[]
 }

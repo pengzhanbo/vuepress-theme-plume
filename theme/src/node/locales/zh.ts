@@ -20,6 +20,8 @@ export const zhLocale: ThemeLocaleText = {
   bulletinLabel: '公告',
   docFooterNavLabel: '文档翻页',
   paginationLabel: '分页导航',
+  relatedPostsText: '相关文章',
+  relatedPostsLabel: '相关文章',
   editLinkText: '编辑此页',
   contributorsText: '贡献者',
   prevPageLabel: '上一页',

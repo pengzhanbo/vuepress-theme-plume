@@ -5,7 +5,7 @@ import { tools } from './tools.js'
 
 export const enCollections: ThemeCollections = defineCollections([
   // 博客
-  { type: 'post', dir: '/blog/', link: '/blog/', title: 'Blog' },
+  { type: 'post', dir: '/blog/', link: '/blog/', title: 'Blog', relatedPosts: true },
   // 文档
   themeGuide,
   themeConfig,

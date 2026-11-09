@@ -107,6 +107,28 @@ interface PostsCoverStyle {
 
 Whether to display the article excerpt. When a `string` is passed, it is used as a custom excerpt, and the `<!-- more -->` comment is ignored.
 
+### relatedPosts
+
+- Type: `false | string[]`
+- Default: `undefined`
+
+Related posts of the current page.
+
+- `false`: disable related posts for this page
+- `string[]`: a manual list of links, which takes precedence over the computed result
+
+```yaml title="blog/hello.md"
+---
+relatedPosts:
+  - /blog/vue3-reactivity/
+  - /blog/vue3-computed/
+---
+```
+
+::: tip
+`relatedPosts` must be enabled in the [theme config](../theme.md#relatedposts) or the [collection config](../collections.md) first.
+:::
+
 ::: tip Other fields of the article frontmatter
 
 - `createTime`: Creation time, see [Basic frontmatter](./basic.md#createtime)

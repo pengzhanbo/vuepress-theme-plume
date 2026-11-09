@@ -61,6 +61,18 @@ export interface ThemePageFrontmatter extends ThemeNormalFrontmatter {
    */
   next?: string | NavItemWithLink
   /**
+   * Related posts of current page
+   *
+   * - `false`: disable related posts for this page
+   * - `string[]`: manual list, takes precedence over the computed result
+   *
+   * 当前页的相关文章
+   *
+   * - `false`: 关闭当前页的相关文章
+   * - `string[]`: 手动指定列表，优先于构建期计算结果
+   */
+  relatedPosts?: false | string[]
+  /**
    * Show sidebar, can also force specify which sidebar to show on current page
    *
    * 是否显示侧边栏，也可以强制指定当前页面显示哪个侧边栏

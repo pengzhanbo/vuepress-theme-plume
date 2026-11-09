@@ -108,6 +108,28 @@ interface PostsCoverStyle {
 
 是否展示文章摘要。传入 `string` 时为自定义摘要，此时 `<!-- more -->` 注释无效。
 
+### relatedPosts
+
+- 类型： `false | string[]`
+- 默认值： `undefined`
+
+当前页的相关文章。
+
+- `false`：关闭当前页的相关文章
+- `string[]`：手动指定相关文章链接，优先于构建期计算的相似度结果
+
+```yaml title="blog/hello.md"
+---
+relatedPosts:
+  - /blog/vue3-reactivity/
+  - /blog/vue3-computed/
+---
+```
+
+::: tip
+需要先在 [主题配置](../theme.md#relatedposts) 或 [集合配置](../collections.md) 中开启 `relatedPosts`。
+:::
+
 ::: tip 文章 frontmatter 的其它字段
 
 - `createTime`：创建时间，见 [基础 frontmatter](./basic.md#createtime)

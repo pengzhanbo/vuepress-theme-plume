@@ -21,6 +21,8 @@ export const ruLocale: ThemeLocaleText = {
   bulletinLabel: 'Объявление',
   docFooterNavLabel: 'Навигация по документу',
   paginationLabel: 'Пагинация',
+  relatedPostsText: 'Похожие статьи',
+  relatedPostsLabel: 'Похожие статьи',
   editLinkText: 'Редактировать страницу',
   contributorsText: 'Авторы',
   prevPageLabel: 'Предыдущая страница',

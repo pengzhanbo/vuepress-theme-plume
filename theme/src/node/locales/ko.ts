@@ -21,6 +21,8 @@ export const koLocale: ThemeLocaleText = {
   bulletinLabel: '공지',
   docFooterNavLabel: '문서 내비게이션',
   paginationLabel: '페이지 매김',
+  relatedPostsText: '관련 글',
+  relatedPostsLabel: '관련 글',
   outlineLabel: '목차',
   editLinkText: '편집하기',
   contributorsText: '기여자',

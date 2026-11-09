@@ -21,6 +21,8 @@ export const jaLocale: ThemeLocaleText = {
   bulletinLabel: 'お知らせ',
   docFooterNavLabel: 'ドキュメントナビゲーション',
   paginationLabel: 'ページネーション',
+  relatedPostsText: '関連記事',
+  relatedPostsLabel: '関連記事',
   editLinkText: 'このページを編集',
   contributorsText: '貢献者',
   prevPageLabel: '前のページ',

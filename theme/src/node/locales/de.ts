@@ -21,6 +21,8 @@ export const deLocale: ThemeLocaleText = {
   bulletinLabel: 'Ankündigung',
   docFooterNavLabel: 'Dokumentennavigation',
   paginationLabel: 'Seitennummerierung',
+  relatedPostsText: 'Ähnliche Beiträge',
+  relatedPostsLabel: 'Ähnliche Beiträge',
   editLinkText: 'Diese Seite bearbeiten',
   contributorsText: 'Mitwirkende',
   prevPageLabel: 'Vorherige Seite',

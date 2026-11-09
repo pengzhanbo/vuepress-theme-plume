@@ -1,5 +1,5 @@
 import type { App, Page } from 'vuepress'
-import type { ThemeOptions } from '../../shared/index.js'
+import type { ThemeOptions, ThemePageData } from '../../shared/index.js'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -186,8 +186,8 @@ describe('prepareBulletin', () => {
 })
 
 describe('enableBulletin', () => {
-  function createPage(pathLocale = '/'): Page {
-    return { pathLocale, data: {} } as unknown as Page
+  function createPage(pathLocale = '/'): Page<ThemePageData> {
+    return { pathLocale, data: {} } as unknown as Page<ThemePageData>
   }
 
   it('enables the bulletin for every page by default', () => {
@@ -232,7 +232,7 @@ describe('enableBulletin', () => {
   })
 
   it('leaves the page untouched when the bulletin is disabled globally', () => {
-    hoisted.getThemeOptions.mockReturnValue({ bulletin: false } as ThemeOptions)
+    hoisted.getThemeOptions.mockReturnValue({ bulletin: false } as unknown as ThemeOptions)
     const page = createPage()
 
     enableBulletin(page)

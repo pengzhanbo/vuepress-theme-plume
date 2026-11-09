@@ -5,6 +5,7 @@ import type {
   BulletinOptions,
   CopyrightLicense,
   CopyrightOptions,
+  FeedOptions,
   ProfileOptions,
   RelatedPostsOptions,
   ThemeCollections,
@@ -196,6 +197,20 @@ export interface ThemeLocale extends LocaleData {
    * @default false
    */
   relatedPosts?: boolean | RelatedPostsOptions
+
+  /**
+   * Configure feed subscriptions
+   *
+   * - `true` 表示启用并使用默认配置
+   * - `false` 表示关闭
+   *
+   * 需要同时配置 `hostname` 才能生成绝对链接。
+   *
+   * 配置 Feed 订阅
+   *
+   * @default false
+   */
+  feed?: boolean | FeedOptions
 }
 
 /**

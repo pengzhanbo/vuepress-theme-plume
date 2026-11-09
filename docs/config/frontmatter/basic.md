@@ -130,6 +130,37 @@ interface ThemeBadge {
 
   在开发模式下，草稿页面仍然可以正常访问，便于编写与预览。
 
+### feed
+
+- 类型： `boolean | FeedPageOptions`
+- 默认值： `true`
+- 详情：
+
+  是否将当前页面包含在 [Feed 订阅](../../guide/features/feed.md) 中。
+
+  - `true`：使用默认行为（默认值，等同于不配置）；
+  - `false`：从所有频道排除该页面（标题、摘要、正文都不会出现）；
+  - 对象：覆盖条目的元信息，可配置 `title` / `description` / `summary` / `guid`。
+
+  ```yaml
+  ---
+  title: 内部草稿思路
+  feed: false
+  ---
+  ```
+
+  ```yaml
+  ---
+  title: 文章标题
+  feed:
+    title: 订阅器中显示的标题
+    summary: 自定义摘要
+  ---
+  ```
+
+  加密页面（页面密码或 `encrypt.rules` 命中）、草稿、`article: false`、非内容页布局的页面，
+  无论此配置为何都不会进入 feed。
+
 ### externalLinkIcon
 
 - 类型： `boolean`

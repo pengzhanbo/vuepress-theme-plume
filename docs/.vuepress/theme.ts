@@ -93,6 +93,11 @@ export const theme: Theme = plumeTheme({
     },
   },
 
+  feed: {
+    perCollection: true,
+    formats: ['rss', 'atom', 'json'],
+  },
+
   llmstxt: {
     locale: 'all',
     llmsTxtTemplateGetter: {

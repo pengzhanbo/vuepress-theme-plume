@@ -242,6 +242,48 @@ export default defineThemeConfig({
   ::: warning This field is not supported for configuration in the [Theme Config File `plume.config.ts`](./intro.md#theme-configuration-file).
   :::
 
+### feed
+
+- **Type:** `boolean | FeedOptions`
+- **Default:** `false`
+- **Details:**
+
+  Generate RSS 2.0 / Atom 1.0 / JSON Feed 1.1 subscription files. This feature only takes effect during a production build (`vuepress build`).
+
+  ::: warning
+  `hostname` is required to generate absolute links; `base` must match the deployment path of the site
+  (`/` by default), otherwise the subscription URLs will point to the wrong location.
+  :::
+
+  | Option | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `perCollection` | `boolean` | `false` | Generate a dedicated channel for every eligible collection |
+  | `includeDocCollections` | `boolean` | `false` | Include `doc` collections in the global channel |
+  | `content` | `'excerpt' \| 'full'` | `'excerpt'` | Entry content mode: summary or full content |
+  | `limit` | `number` | `20` | Max entries per channel (1–200) |
+  | `excerptLength` | `number` | `240` | Max summary length, `0` disables the summary |
+  | `formats` | `FeedFormat[]` | `['rss']` | Output formats, `rss` / `atom` / `json` |
+  | `filename` | `FeedFilenames` | see below | Output filenames |
+  | `channel` | `FeedChannelOptions` | — | Channel metadata (title, description, author, icon…) |
+  | `linkTag` | `boolean` | `true` | Inject `<link rel="alternate">` into page `<head>` |
+  | `debug` | `boolean` | `false` | Print per-channel details in the build log |
+
+  Default filenames: `feed.xml` (RSS), `atom.xml` (Atom), `feed.json` (JSON Feed).
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      hostname: 'https://example.com',
+      feed: {
+        perCollection: true,
+        formats: ['rss', 'atom', 'json'],
+      },
+    }),
+  })
+  ```
+
+  See [Feed Subscription](../guide/features/feed.md)
+
 ### autoFrontmatter
 
 - **Type:** `false | AutoFrontmatterOptions`

@@ -1,6 +1,7 @@
 import type { ThemeReadAid } from '../common/index.js'
 import type { SocialLink } from '../common/social.js'
 import type { AutoFrontmatterOptions } from './autoFrontmatter.js'
+import type { FeedCollectionOptions } from './feed.js'
 import type { PostsCategoryItem, PostsCoverLayout, PostsCoverStyle } from './posts.js'
 import type { ProfileOptions } from './profile.js'
 import type { RelatedPostsOptions } from './relatedPosts.js'
@@ -105,6 +106,25 @@ export interface ThemeBaseCollection {
    * 未设置时继承主题级 `relatedPosts` 配置
    */
   relatedPosts?: boolean | RelatedPostsOptions
+
+  /**
+   * Collection level feed configuration, overrides the theme level options
+   *
+   * - `true`: include the collection and generate a dedicated channel, same as `{}`
+   * - `false`: exclude the collection from every feed
+   * - object: presence means opt-in, fields can be overridden individually
+   *
+   * 集合级 Feed 配置，覆盖主题级配置
+   *
+   * - `true`：纳入 feed 并生成独立频道，等价于 `{}`
+   * - `false`：该集合完全不进入任何 feed
+   * - 对象：出现即 opt-in，字段可单独覆盖
+   *
+   * 显式开启时不依赖主题级的 `perCollection` / `includeDocCollections`。
+   *
+   * @default undefined（`post` 集合默认纳入，`doc` 集合默认排除）
+   */
+  feed?: boolean | FeedCollectionOptions
 }
 
 /**

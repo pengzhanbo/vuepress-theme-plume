@@ -294,7 +294,54 @@ interface ThemeBaseCollection {
    * - `false`：在该集合内关闭
    */
   relatedPosts?: boolean | RelatedPostsOptions
+  /**
+   * 集合级 Feed 配置，覆盖主题级 `feed` 配置
+   * - `true`：纳入 feed 并生成独立频道，等价于 `{}`
+   * - `false`：完全不进入任何 feed
+   * - 对象：出现即 opt-in，字段可单独覆盖
+   */
+  feed?: boolean | FeedCollectionOptions
 }
+```
+
+### 集合级 Feed 配置
+
+`feed` 用于控制该集合是否纳入订阅、是否生成独立频道，以及频道的标题、链接、条数与格式。
+可以写成布尔值或对象：
+
+- `true`：纳入 feed 并生成独立频道，等价于 `{}`；
+- `false`：该集合完全不进入任何 feed；
+- `{}` / 对象：出现即 opt-in，字段可单独覆盖。
+
+它需要主题级 `feed` 已启用（详见 [Feed 配置](../config/theme.md#feed)）。
+
+| 配置 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `include` | `boolean` | `true` | 是否将该集合的页面纳入 feed |
+| `channel` | `boolean` | `true` | 是否为该集合生成独立频道 |
+| `link` | `string` | 集合链接 | 频道主页链接，同时决定输出目录 |
+| `title` | `string` | 集合标题 | 频道标题 |
+| `description` | `string` | 主题级描述 | 频道描述 |
+| `limit` | `number` | 主题级 `limit` | 最多条目数 |
+| `content` | `'excerpt' \| 'full'` | 主题级 `content` | 内容模式 |
+| `formats` | `FeedFormat[]` | 主题级 `formats` | 输出格式 |
+
+::: tip 出现即 opt-in
+未设置 `feed` 时，`post` 集合会被纳入 feed（受 `perCollection` 影响是否生成独立频道），
+`doc` 集合默认不纳入。
+:::
+
+```ts title="plume.config.ts"
+import { defineConfig } from 'vuepress-theme-plume'
+
+export default defineConfig({
+  collections: [
+    // doc 集合默认不进入 feed，`feed: true` 即为显式开启（也可写 `feed: {}`）
+    { type: 'doc', dir: 'guide', title: '指南', sidebar: 'auto', feed: true },
+    // 关闭某个集合的订阅
+    { type: 'post', dir: 'notes', title: '笔记', feed: false },
+  ],
+})
 ```
 
 ### Post 集合专用配置

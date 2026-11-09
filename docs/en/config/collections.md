@@ -296,7 +296,54 @@ interface ThemeBaseCollection {
    * - `false`: disable it in this collection
    */
   relatedPosts?: boolean | RelatedPostsOptions
+  /**
+   * Collection level feed options, overrides the theme level `feed`
+   * - `true`: include the collection and generate a dedicated channel, same as `{}`
+   * - `false`: exclude the collection from every feed
+   * - object: presence means opt-in, fields can be overridden individually
+   */
+  feed?: boolean | FeedCollectionOptions
 }
+```
+
+### Collection Level Feed Options
+
+`feed` controls whether the collection is included in feeds, whether it owns a dedicated channel,
+and the channel title, link, limit and formats. It accepts a boolean or an object:
+
+- `true`: include the collection and generate a dedicated channel, same as `{}`;
+- `false`: exclude the collection from every feed;
+- `{}` / object: presence means opt-in, fields can be overridden individually.
+
+It requires the theme level `feed` to be enabled (see [Feed options](../config/theme.md#feed)).
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `include` | `boolean` | `true` | Include the collection pages in feeds |
+| `channel` | `boolean` | `true` | Generate a dedicated channel for the collection |
+| `link` | `string` | collection link | Channel home link, also decides the output directory |
+| `title` | `string` | collection title | Channel title |
+| `description` | `string` | theme level description | Channel description |
+| `limit` | `number` | theme level `limit` | Max entries |
+| `content` | `'excerpt' \| 'full'` | theme level `content` | Content mode |
+| `formats` | `FeedFormat[]` | theme level `formats` | Output formats |
+
+::: tip Presence means opt-in
+When `feed` is not set, `post` collections are included in feeds (`perCollection` decides whether they
+get a dedicated channel) and `doc` collections are excluded by default.
+:::
+
+```ts title="plume.config.ts"
+import { defineConfig } from 'vuepress-theme-plume'
+
+export default defineConfig({
+  collections: [
+    // Doc collections are excluded by default, `feed: true` opts in explicitly (same as `feed: {}`)
+    { type: 'doc', dir: 'guide', title: 'Guide', sidebar: 'auto', feed: true },
+    // Disable subscriptions for a collection
+    { type: 'post', dir: 'notes', title: 'Notes', feed: false },
+  ],
+})
 ```
 
 ### Post Collection Specific Configuration

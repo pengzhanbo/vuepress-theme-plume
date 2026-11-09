@@ -30,10 +30,10 @@ export async function prepareCollections(app: App, options: ThemeOptions = getTh
 
     data[locale] = collections?.map((item) => {
       if (item.type === 'post') {
-        return omit(item, ['include', 'exclude', 'autoFrontmatter', 'categoriesTransform'])
+        return omit(item, ['include', 'exclude', 'autoFrontmatter', 'categoriesTransform', 'feed'])
       }
       else {
-        return omit(item, ['sidebar', 'autoFrontmatter'])
+        return omit(item, ['sidebar', 'autoFrontmatter', 'feed'])
       }
     })
   }

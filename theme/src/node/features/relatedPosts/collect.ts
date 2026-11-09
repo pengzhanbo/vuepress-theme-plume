@@ -17,26 +17,8 @@ import type { CjkTokenizer } from './tokenize.js'
 import dayjs from 'dayjs'
 import { createMatcher } from '../../utils/index.js'
 import { findCollection } from '../collections/index.js'
-import { isEncryptPage } from '../encrypt.js'
+import { isPublicContentPage } from '../content.js'
 import { cleanMarkdown, extractHeadings, tokenize } from './tokenize.js'
-
-/**
- * Pages that never take part in recommendations.
- *
- * 不参与相关文章推荐的页面类型。
- *
- * Kept in sync with `prepare/posts-data.ts`.
- *
- * 与 `prepare/posts-data.ts` 保持一致。
- */
-const EXCLUDE_PAGE_TYPES = ['friends', 'posts', 'posts-tags', 'posts-archives', 'posts-categories']
-
-/**
- * Layouts that are not content pages.
- *
- * 非内容页面布局。
- */
-const EXCLUDE_LAYOUTS = ['home', 'posts', 'friends', 'custom', 'blog']
 
 /**
  * Resolved options with all defaults applied.
@@ -305,28 +287,12 @@ export function isRecommendablePage(
   page: Page<ThemePageData, ThemePostFrontmatter & Record<string, unknown>>,
   options: ThemeOptions,
 ): boolean {
-  // 虚拟页面没有文件路径
-  if (!page.filePathRelative?.endsWith('.md') || !page.filePath)
+  // 公共内容页的通用规则（虚拟页面、隐藏、草稿、布局、加密）
+  // Shared guard for public content pages.
+  if (!isPublicContentPage(page, options))
     return false
 
-  // 用户声明「不是文章」
-  if (page.frontmatter.article === false)
-    return false
-
-  // 草稿在任何环境都不能作为推荐目标（读者视角）
-  if (page.frontmatter.draft === true)
-    return false
-
-  if (EXCLUDE_PAGE_TYPES.includes(page.data.type as string))
-    return false
-
-  const layout = page.frontmatter.pageLayout
-  if (layout && EXCLUDE_LAYOUTS.includes(layout))
-    return false
-
-  if (isEncryptPage(page, options.encrypt))
-    return false
-
+  // 只推荐属于某个集合的页面
   return !!findCollection(page, options)
 }
 

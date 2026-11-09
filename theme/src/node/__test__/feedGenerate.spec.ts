@@ -304,6 +304,40 @@ describe('injectFeedLinks', () => {
     expect((page.frontmatter.head as any[])[0][1].href).toBe('https://example.com/blog/feed.xml')
   })
 
+  it('does not inject for a page excluded by include/exclude rules', () => {
+    hoisted.themeConfig = createOptions({
+      collections: [postCollection('blog', { exclude: ['private/**'] })],
+    })
+    const page = createPage({ name: 'secret', dir: 'blog/private', frontmatter: { head: [] } })
+
+    injectFeedLinks(page as any, env)
+
+    expect(page.frontmatter.head).toHaveLength(0)
+  })
+
+  it('does not inject for a collection with `feed: false`', () => {
+    hoisted.themeConfig = createOptions({
+      collections: [postCollection('blog', { feed: false })],
+    })
+    const page = createPage({ name: 'a', frontmatter: { head: [] } })
+
+    injectFeedLinks(page as any, env)
+
+    expect(page.frontmatter.head).toHaveLength(0)
+  })
+
+  it('warns about an invalid hostname only once across pages', () => {
+    hoisted.themeConfig = createOptions()
+    hoisted.themeConfig.hostname = 'not-a-url'
+    const pages = ['a', 'b', 'c'].map(name => createPage({ name, frontmatter: { head: [] } }))
+
+    for (const page of pages)
+      injectFeedLinks(page as any, env)
+
+    expect(hoisted.logger.warn).toHaveBeenCalledTimes(1)
+    expect(pages[0].frontmatter.head).toHaveLength(0)
+  })
+
   it('does not duplicate a user declared alternate link', () => {
     hoisted.themeConfig = createOptions()
     const page = createPage({

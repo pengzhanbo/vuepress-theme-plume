@@ -1,4 +1,5 @@
 import { toAbsoluteUrl } from './format.js'
+import { RAW_TEXT_TAGS, removeElements } from './html.js'
 
 /**
  * Context used to absolute the URLs of a rendered page.
@@ -14,8 +15,6 @@ export interface SanitizeContext {
   base: string
 }
 
-const SCRIPT_STYLE_RE = /<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi
-const COMMENT_RE = /<!--[\s\S]*?-->/g
 const HEADER_ANCHOR_RE = /<a\s[^>]*class="[^"]*header-anchor[^"]*"[^>]*>[\s\S]*?<\/a>/gi
 const LEADING_H1_RE = /^\s*<h1\b[^>]*>[\s\S]*?<\/h1>/i
 
@@ -24,15 +23,48 @@ const LEADING_H1_RE = /^\s*<h1\b[^>]*>[\s\S]*?<\/h1>/i
  * letter or contains a dash.
  *
  * Vue 组件与自定义元素：标签名以大写字母开头，或包含 `-`。
+ *
+ * @param name - Original tag name / 原始标签名
  */
-const COMPONENT_NAME = '(?:[A-Z][\\w.]*|[a-z][\\w.]*-[\\w.-]*)'
-const SELF_CLOSING_COMPONENT_RE = new RegExp(`<${COMPONENT_NAME}(?=[\\s/>])[^>]*?/>`, 'g')
-const COMPONENT_TAG_RE = new RegExp(`</?${COMPONENT_NAME}(?=[\\s/>])[^>]*>`, 'g')
+function isComponentTag(name: string): boolean {
+  return /^[A-Z]/.test(name) || name.includes('-')
+}
 
 const ATTR_RE = /\s+([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g
 
 const URL_ATTRIBUTES = new Set(['href', 'src', 'poster'])
 const PROTOCOL_RE = /^[a-z][a-z0-9+.-]*:/i
+
+/**
+ * Whitespace, control characters and zero-width characters that browsers ignore
+ * when parsing a URL scheme.
+ *
+ * 浏览器解析 URL scheme 时会忽略的空白、控制字符与零宽字符。
+ */
+const IGNORED_URL_CHAR_RE = /[\s\u0000-\u001F\u007F-\u009F\u200B-\u200D]/g // eslint-disable-line no-control-regex -- 需显式匹配控制字符以拦截混淆的 URL scheme
+
+/**
+ * Check whether an attribute value uses the `javascript:` protocol, tolerating
+ * obfuscation such as `java\tscript:`.
+ *
+ * 判断属性值是否使用 `javascript:` 协议，可识别 `java\tscript:` 之类的混淆写法。
+ *
+ * @param value - Raw attribute value / 原始属性值
+ */
+function isUnsafeUrl(value: string): boolean {
+  return /^javascript:/i.test(value.replace(IGNORED_URL_CHAR_RE, ''))
+}
+
+/**
+ * Escape a value that will be written inside a double quoted attribute.
+ *
+ * 转义将写入双引号属性值中的双引号，避免破坏属性边界。
+ *
+ * @param value - Attribute value / 属性值
+ */
+function escapeAttributeValue(value: string): string {
+  return value.replace(/"/g, '&quot;')
+}
 
 function resolveUrl(value: string, context: SanitizeContext): string {
   const url = value.trim()
@@ -95,13 +127,13 @@ function processAttributes(html: string, context: SanitizeContext): string {
       return ''
 
     if (URL_ATTRIBUTES.has(name)) {
-      if (/^javascript:/i.test(value.trim()))
+      if (isUnsafeUrl(value))
         return ''
-      return ` ${name}="${resolveUrl(value, context)}"`
+      return ` ${name}="${escapeAttributeValue(resolveUrl(value, context))}"`
     }
 
     if (name === 'srcset')
-      return ` ${name}="${resolveSrcset(value, context)}"`
+      return ` ${name}="${escapeAttributeValue(resolveSrcset(value, context))}"`
 
     return match
   })
@@ -109,10 +141,6 @@ function processAttributes(html: string, context: SanitizeContext): string {
 
 /**
  * Sanitize the rendered content of a page for feed output.
- *
- * The processing order is fixed to keep the output deterministic:
- * scripts/styles → comments → header anchors → leading H1 → component tags →
- * attributes → URL absolutization.
  *
  * 清洗页面渲染结果，供 feed 输出使用。处理顺序固定以保证输出确定性。
  *
@@ -123,20 +151,14 @@ export function sanitizeContent(html: string, context: SanitizeContext): string 
   if (!html)
     return ''
 
-  let content = html
-    .replace(SCRIPT_STYLE_RE, '')
-    .replace(COMMENT_RE, '')
+  // 脚本/样式/注释整段丢弃；组件标签剥离但保留内部文本，自闭合组件随之消失
+  // Drop scripts/styles/comments entirely; strip component tags but keep their text.
+  const content = removeElements(html, {
+    removeWithContent: RAW_TEXT_TAGS,
+    removeTag: isComponentTag,
+  })
     .replace(HEADER_ANCHOR_RE, '')
     .replace(LEADING_H1_RE, '')
 
-  // 自闭合组件整段丢弃（例如 `<VPEncryptSnippet hint="..." />`）
-  // Self-closing components are dropped entirely to avoid leaking their props.
-  content = content.replace(SELF_CLOSING_COMPONENT_RE, '')
-
-  // 成对组件标签剥离，保留内部文本 / Strip paired component tags, keep the text
-  content = content.replace(COMPONENT_TAG_RE, '')
-
-  content = processAttributes(content, context)
-
-  return content.trim()
+  return processAttributes(content, context).trim()
 }

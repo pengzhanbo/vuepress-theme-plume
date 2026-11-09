@@ -1,5 +1,6 @@
 import type { Page } from 'vuepress'
 import type { ThemePageData } from '../../../shared/index.js'
+import { RAW_TEXT_TAGS, stripHtml } from './html.js'
 
 /**
  * Excerpt separator, aligned with `prepare/posts-data.ts`.
@@ -9,12 +10,35 @@ import type { ThemePageData } from '../../../shared/index.js'
 const EXCERPT_SPLIT = '<!-- more -->'
 
 /**
- * Block level tags are converted into spaces before stripping the rest,
- * so that `<p>a</p><p>b</p>` becomes `a b` instead of `ab`.
- *
- * 块级标签先转换为空格，避免剥离后相邻段落粘连。
+ * 剥离标签时块级标签转换为空格，避免相邻段落粘连。
  */
-const BLOCK_TAGS = /<\/?(?:p|div|br|hr|li|ul|ol|h[1-6]|blockquote|pre|tr|td|th|table|section|article|figure|figcaption|dt|dd)\b[^>]*>/gi
+const BLOCK_TAGS: ReadonlySet<string> = new Set([
+  'p',
+  'div',
+  'br',
+  'hr',
+  'li',
+  'ul',
+  'ol',
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'blockquote',
+  'pre',
+  'tr',
+  'td',
+  'th',
+  'table',
+  'section',
+  'article',
+  'figure',
+  'figcaption',
+  'dt',
+  'dd',
+])
 
 const FIRST_PARAGRAPH_RE = /<p\b[^>]*>([\s\S]*?)<\/p>/i
 
@@ -73,13 +97,14 @@ export function toPlainText(html: string): string {
   if (!html)
     return ''
 
-  const text = html
-    .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, '')
-    .replace(/<!--[\s\S]*?-->/g, '')
-    .replace(BLOCK_TAGS, ' ')
-    .replace(/<[^>]*>/g, '')
+  const text = stripHtml(html, {
+    removeWithContent: RAW_TEXT_TAGS,
+    blockTags: BLOCK_TAGS,
+  })
 
-  return decodeEntities(text).replace(/\s+/g, ' ').trim()
+  return decodeEntities(text)
+    .replace(/\s+/g, ' ')
+    .trim()
 }
 
 /**

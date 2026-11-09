@@ -4,7 +4,7 @@ import type { FeedChannelDescriptor } from './collect.js'
 import type { ResolvedFeedOptions } from './options.js'
 import { getThemeOptions } from '../../options.js'
 import { findCollection } from '../collections/index.js'
-import { getLocaleCollections, isFeedPage, resolveChannelDescriptors } from './collect.js'
+import { getLocaleCollections, isFeedPage, matchesCollection, resolveChannelDescriptors } from './collect.js'
 import { toAbsoluteUrl } from './format.js'
 import { resolveCollectionFeed, resolveHostname, resolveLocaleFeedOptions } from './options.js'
 
@@ -20,15 +20,43 @@ const FEED_MIME: Record<FeedFormat, string> = {
 }
 
 /**
- * Channel descriptor cache, keyed by theme options and locale.
+ * Cache shared by every `extendsPage` call, keyed by the theme options object.
  *
- * `extendsPage` runs once per page; resolving the descriptors on every page
- * would repeat the same work and the same conflict warnings.
- *
- * 频道元信息缓存，按主题配置与语言环境缓存。
- * `extendsPage` 会为每个页面执行一次，重复解析会产生无意义的重复计算与重复警告。
+ * 每个 `extendsPage` 调用共享的缓存，以主题配置对象为键。
  */
-const descriptorCache = new WeakMap<ThemeOptions, Map<string, FeedChannelDescriptor[]>>()
+interface FeedInjectCache {
+  /** Resolved locale options / 已解析的语言环境配置 */
+  resolved: Map<string, ResolvedFeedOptions | null>
+  /** Channel descriptors per locale / 各语言环境的频道元信息 */
+  descriptors: Map<string, FeedChannelDescriptor[]>
+  /** Resolved hostname / 已解析的站点源 */
+  hostname?: { value: string | undefined }
+}
+
+const injectCache = new WeakMap<ThemeOptions, FeedInjectCache>()
+
+function getInjectCache(options: ThemeOptions): FeedInjectCache {
+  let cache = injectCache.get(options)
+  if (!cache) {
+    cache = { resolved: new Map(), descriptors: new Map() }
+    injectCache.set(options, cache)
+  }
+  return cache
+}
+
+function resolveCachedFeedOptions(options: ThemeOptions, locale: string): ResolvedFeedOptions | null {
+  const cache = getInjectCache(options)
+  if (!cache.resolved.has(locale))
+    cache.resolved.set(locale, resolveLocaleFeedOptions(options, locale))
+  return cache.resolved.get(locale)!
+}
+
+function resolveCachedHostname(options: ThemeOptions): string | undefined {
+  const cache = getInjectCache(options)
+  if (!cache.hostname)
+    cache.hostname = { value: resolveHostname(options.hostname) }
+  return cache.hostname.value
+}
 
 function resolveCachedDescriptors(
   env: ExtendsPageEnv,
@@ -36,16 +64,11 @@ function resolveCachedDescriptors(
   locale: string,
   resolved: ResolvedFeedOptions,
 ): FeedChannelDescriptor[] {
-  let cache = descriptorCache.get(options)
-  if (!cache) {
-    cache = new Map()
-    descriptorCache.set(options, cache)
-  }
-
-  let descriptors = cache.get(locale)
+  const cache = getInjectCache(options)
+  let descriptors = cache.descriptors.get(locale)
   if (!descriptors) {
     descriptors = resolveChannelDescriptors(env.siteData, options, locale, resolved)
-    cache.set(locale, descriptors)
+    cache.descriptors.set(locale, descriptors)
   }
   return descriptors
 }
@@ -79,34 +102,38 @@ export function injectFeedLinks(page: Page<ThemePageData>, env: ExtendsPageEnv):
     return
 
   const options = getThemeOptions()
-  const resolved = resolveLocaleFeedOptions(options, page.pathLocale)
+  const locale = page.pathLocale
+  const resolved = resolveCachedFeedOptions(options, locale)
   if (!resolved?.linkTag)
     return
 
-  const hostname = resolveHostname(options.hostname)
+  const hostname = resolveCachedHostname(options)
   if (!hostname)
     return
 
   if (!isFeedPage(page, options))
     return
 
-  const locale = page.pathLocale
   const collections = getLocaleCollections(options, locale)
   const collection = findCollection(page, options)
 
-  // 页面不属于任何集合，而站点配置了集合时，该页面不在任何 feed 中
-  // A page outside every collection is not part of any feed.
-  if (!collection && collections.length)
-    return
+  if (!collection) {
+    if (collections.length)
+      return
+  }
+  else {
+    if (!resolveCollectionFeed(collection, resolved).include || !matchesCollection(page, collection, options, locale))
+      return
+  }
 
   const descriptors = resolveCachedDescriptors(env, options, locale, resolved)
   let channel = collection
     ? descriptors.find(item => item.collection === collection)
     : descriptors[0]
 
-  // 集合未生成独立频道，但其页面被纳入 feed 时，回退到全局频道
+  // 集合未生成独立频道（如未开启 `perCollection`）时，回退到全局频道
   // Fall back to the global channel when the collection has no dedicated channel.
-  if (!channel && collection && resolveCollectionFeed(collection, resolved).include)
+  if (!channel && collection)
     channel = descriptors[0]
 
   if (!channel)

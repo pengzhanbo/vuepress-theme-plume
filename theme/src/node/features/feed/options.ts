@@ -165,6 +165,7 @@ export function normalizeFeedOptions(options: FeedOptions): ResolvedFeedOptions 
  * @param locale - Route locale / 路由语言
  */
 export function resolveLocaleFeedOptions(options: ThemeOptions, locale: string): ResolvedFeedOptions | null {
+  // locale 级的 `false` 会覆盖主题级配置 / A locale level `false` wins
   const value = options.locales?.[locale]?.feed ?? options.feed
   if (!value)
     return null
@@ -240,6 +241,13 @@ export function resolveHostname(hostname?: string): string | undefined {
 }
 
 /**
+ * Characters that are not part of a path and would corrupt the output directory.
+ *
+ * 不属于路径、会破坏输出目录的字符。
+ */
+const INVALID_PATH_CHAR_RE = /[\\?#]/
+
+/**
  * Normalize a channel home link.
  *
  * The link is relative to the current locale, it receives the locale prefix and
@@ -260,15 +268,20 @@ export function resolveChannelLink(link: string | undefined, locale: string): st
   if (!value)
     return undefined
 
-  // 外链与协议相对地址无法写入 dist / External links cannot be written into dist
   if (isLinkWithProtocol(value) || value.startsWith('//'))
     return undefined
 
-  // 防止路径穿越 / Prevent path traversal
-  if (value.includes('..'))
+  // 反斜杠、查询串与锚点不是路径的一部分，防止生成非法目录
+  // Backslashes, query strings and hashes are not path segments.
+  if (INVALID_PATH_CHAR_RE.test(value) || value.includes('..'))
     return undefined
 
-  return withBase(value, locale)
+  const normalized = withBase(value, locale)
+
+  if (INVALID_PATH_CHAR_RE.test(normalized) || normalized.includes('..'))
+    return undefined
+
+  return normalized
 }
 
 /**

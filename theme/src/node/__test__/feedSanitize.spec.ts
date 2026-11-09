@@ -80,6 +80,25 @@ describe('sanitizeContent', () => {
     expect(content).toContain('>x</a>')
   })
 
+  it('rejects obfuscated `javascript:` attributes', () => {
+    const content = sanitizeContent('<a href="java\tscript:alert(1)">x</a>', ctx)
+
+    expect(content).not.toContain('href')
+    expect(content).toContain('>x</a>')
+  })
+
+  it('escapes double quotes inside attribute values', () => {
+    const content = sanitizeContent(`<a href='/a"b'>x</a>`, ctx)
+
+    expect(content).toContain('href="https://example.com/a&quot;b"')
+  })
+
+  it('escapes double quotes inside srcset values', () => {
+    const content = sanitizeContent(`<img srcset='/a"b.png 1x'>`, ctx)
+
+    expect(content).toContain('srcset="https://example.com/a&quot;b.png 1x"')
+  })
+
   it('removes event handler attributes', () => {
     const content = sanitizeContent('<div onclick="alert(1)" data-v-abc="1">x</div>', ctx)
 

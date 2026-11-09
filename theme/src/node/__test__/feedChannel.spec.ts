@@ -316,6 +316,18 @@ describe('resolveFeedChannels', () => {
     expect(paths(channels[1])).toEqual(['/blog/a/'])
   })
 
+  it('applies the `include` / `exclude` glob to the global channel', () => {
+    const options = createOptions({
+      collections: [postCollection('blog', { include: ['**/*.md'], exclude: ['private/**'] })],
+    })
+    const app = createApp([
+      createPage({ name: 'a', dir: 'blog' }),
+      createPage({ name: 'b', dir: 'blog/private' }),
+    ])
+
+    expect(paths(resolve(app, options)[0])).toEqual(['/blog/a/'])
+  })
+
   it('assigns nested pages to the most specific collection', () => {
     const options = createOptions({
       collections: [postCollection('blog'), postCollection('blog/sub', { link: '/sub/' })],

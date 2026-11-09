@@ -501,7 +501,10 @@ export function resolveFeedChannels(
     else if (collections.length) {
       channelPages = pages.filter((page) => {
         const collection = findCollection(page, options)
-        return !!collection && included.has(collection)
+
+        return !!collection
+          && included.has(collection)
+          && matchesCollection(page, collection, options, locale)
       })
     }
     else {

@@ -16,11 +16,11 @@ if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {
   }
 }
 
-export function useBulletin<T extends Record<string, any> = Record<string, any>>(): ComputedRef<BulletinOptions & T | undefined> {
+export function useBulletin<T extends Record<string, any> = Record<string, any>>(): ComputedRef<BulletinOptions & T> {
   const locale = useRouteLocale()
   const bulletin = computed(() => bulletinData.value[locale.value] || {})
 
-  return bulletin as ComputedRef<BulletinOptions & T | undefined>
+  return bulletin as ComputedRef<BulletinOptions & T>
 }
 
 export function useBulletinControl<T extends Record<string, any> = Record<string, any>>(): {
@@ -35,10 +35,10 @@ export function useBulletinControl<T extends Record<string, any> = Record<string
   const { page } = useData()
 
   const bulletin = useBulletin<T>()
-  const enableBulletin = computed(() => page.value.bulletin ?? true)
+  const enableBulletin = computed(() => (page.value.bulletin ?? true) && Object.keys(bulletin.value).length > 0)
 
-  watch(() => bulletin.value?.lifetime, (lifetime) => {
-    const id = bulletin.value?.id
+  watch(() => bulletin.value.lifetime, (lifetime) => {
+    const id = bulletin.value.id
     if (lifetime === 'session') {
       showBulletin.value = session.value !== id
     }
@@ -52,8 +52,8 @@ export function useBulletinControl<T extends Record<string, any> = Record<string
 
   function close() {
     showBulletin.value = false
-    const lifetime = bulletin.value?.lifetime
-    const id = bulletin.value?.id
+    const lifetime = bulletin.value.lifetime
+    const id = bulletin.value.id
 
     if (lifetime === 'session') {
       session.value = id!

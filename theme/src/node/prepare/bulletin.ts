@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import type { BulletinOptions, ThemeLocaleData, ThemeOptions } from '../../shared/index.js'
-import { deleteKey, difference, isPlainObject, objectEntries, uniq } from '@pengzhanbo/utils'
+import { deleteKey, difference, isEmptyObject, isPlainObject, objectEntries, uniq } from '@pengzhanbo/utils'
 import { watch } from 'chokidar'
 import { fs, hash, path } from 'vuepress/utils'
 import { getThemeOptions } from '../options.js'
@@ -82,8 +82,10 @@ async function addBulletin(app: App, bulletinData: BulletinData, options: ThemeL
         filePathRelative: contentFile ? path.relative(app.dir.source(), contentFile) : '_bulletin.md',
       })
     }
-    bulletinData.id ||= hash(bulletinData)
     deleteKey(bulletinData, 'contentType')
+    if (!isEmptyObject(bulletinData)) {
+      bulletinData.id ||= hash(bulletinData)
+    }
   }
   return file
 }

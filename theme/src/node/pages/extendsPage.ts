@@ -1,24 +1,30 @@
 import type { Page } from 'vuepress/core'
 import type { ThemePageData } from '../../shared/index.js'
+import type { ExtendsPageEnv } from '../features/feed/head.js'
 import { deleteKey } from '@pengzhanbo/utils'
 import { findCollection } from '../features/collections/index.js'
+import { injectFeedLinks } from '../features/feed/head.js'
 import { normalizePath } from '../utils/index.js'
 import { autoCategory } from './autoCategory.js'
 import { encryptPage } from './encryptPage.js'
 import { enableBulletin } from './pageBulletin.js'
 
+export type { ExtendsPageEnv } from '../features/feed/head.js'
+
 /**
  * Extend page data
  *
- * 扩展页面数据，清理页面数据、自动分类、启用公告栏、加密页面
+ * 扩展页面数据，清理页面数据、自动分类、启用公告栏、加密页面、注入 feed 自动发现链接
  */
 export async function extendsPageData(
   page: Page<ThemePageData>,
+  env: ExtendsPageEnv,
 ): Promise<void> {
   cleanPageData(page)
   autoCategory(page)
   enableBulletin(page)
   await encryptPage(page)
+  injectFeedLinks(page, env)
 }
 
 function cleanPageData(page: Page<ThemePageData>) {

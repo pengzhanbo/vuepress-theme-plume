@@ -160,6 +160,7 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
         'seo',
         'sitemap',
         'llmstxt',
+        'feed',
       ],
     },
     {

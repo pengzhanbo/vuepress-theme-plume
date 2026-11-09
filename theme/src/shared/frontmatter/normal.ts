@@ -1,4 +1,5 @@
 import type { PageFrontmatter } from 'vuepress'
+import type { FeedPageOptions } from '../features/feed.js'
 
 /**
  * Normal page frontmatter
@@ -92,4 +93,16 @@ export type ThemeNormalFrontmatter = PageFrontmatter<{
    * @default false
    */
   draft?: boolean
+
+  /**
+   * Include the page in feeds
+   *
+   * - `false`: exclude the page from every feed
+   * - object: override the entry metadata
+   *
+   * 是否将当前页面包含在 Feed 中；`false` 时从所有频道排除。
+   *
+   * @default true
+   */
+  feed?: boolean | FeedPageOptions
 }>

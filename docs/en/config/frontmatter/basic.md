@@ -129,6 +129,37 @@ interface ThemeBadge {
 
   In the dev server, draft pages are still accessible for writing and previewing.
 
+### feed
+
+- Type: `boolean | FeedPageOptions`
+- Default: `true`
+- Details:
+
+  Whether to include the current page in [feed subscriptions](../../guide/features/feed.md).
+
+  - `true`: use the default behaviour (same as leaving it unset);
+  - `false`: exclude the page from every channel (title, summary and content are all excluded);
+  - object: override the entry metadata with `title` / `description` / `summary` / `guid`.
+
+  ```yaml
+  ---
+  title: Internal draft ideas
+  feed: false
+  ---
+  ```
+
+  ```yaml
+  ---
+  title: Article title
+  feed:
+    title: Title shown in the reader
+    summary: Custom summary
+  ---
+  ```
+
+  Encrypted pages (page password or `encrypt.rules`), drafts, pages with `article: false` and
+  non-content layouts never enter feeds, regardless of this option.
+
 ### externalLinkIcon
 
 - Type: `boolean`

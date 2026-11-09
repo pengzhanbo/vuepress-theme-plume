@@ -5,6 +5,7 @@ import { extendsBundlerOptions, setupAlias, setupProvideData, templateBuildRende
 import { genAutoFrontmatterRules, generateMarkdownFrontmatter } from './features/autoFrontmatter/index.js'
 import { detectThemeOptions, detectVersions } from './features/detector/index.js'
 import { collectDraftPage, excludeDraftPages, resetDraftPages } from './features/draft.js'
+import { generateFeeds } from './features/feed/index.js'
 import { initMarkdownSource } from './features/markdown-source.js'
 import { initConfigLoader } from './options.js'
 import { createPages, extendsPageData } from './pages/index.js'
@@ -77,13 +78,18 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
       },
       extendsBundlerOptions,
       templateBuildRenderer,
-      extendsPage: page => extendsPageData(page as Page<ThemePageData>),
+      extendsPage: page => extendsPageData(page as Page<ThemePageData>, {
+        base: app.options.base,
+        isBuild: app.env.isBuild,
+        siteData: app.siteData,
+      }),
       onInitialized: () => createPages(app),
       onPrepared: async () => {
         await prepareThemeData(app, plugins)
         await prepareData(app)
       },
-      onPageUpdated: app => prepareData(app),
+      onPageUpdated: () => prepareData(app),
+      onGenerated: () => generateFeeds(app),
       onWatched: async (_, watchers) => {
         if (watchedRegistered)
           return

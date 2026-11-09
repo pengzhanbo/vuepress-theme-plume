@@ -237,6 +237,48 @@ export default defineThemeConfig({
   ::: warning 该字段不支持在 [主题配置文件 `plume.config.ts`](./intro.md#主题配置文件) 中进行配置。
   :::
 
+### feed
+
+- **类型：** `boolean | FeedOptions`
+- **默认值：** `false`
+- **详情：**
+
+  生成 RSS 2.0 / Atom 1.0 / JSON Feed 1.1 订阅文件。该功能仅在生产构建（`vuepress build`）时生效。
+
+  ::: warning
+  必须配置 `hostname`（用于生成绝对链接）；`base` 需与站点实际部署路径一致（默认 `/`），
+  否则订阅地址会指向错误位置。
+  :::
+
+  | 配置 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | `perCollection` | `boolean` | `false` | 是否为每个符合条件的集合生成独立频道 |
+  | `includeDocCollections` | `boolean` | `false` | 全局频道是否包含 `doc` 类型的集合 |
+  | `content` | `'excerpt' \| 'full'` | `'excerpt'` | 条目内容模式：摘要或全文 |
+  | `limit` | `number` | `20` | 每个频道最多条目数（1–200） |
+  | `excerptLength` | `number` | `240` | 摘要最大长度，`0` 表示不生成摘要 |
+  | `formats` | `FeedFormat[]` | `['rss']` | 输出格式，可选 `rss` / `atom` / `json` |
+  | `filename` | `FeedFilenames` | 见下 | 输出文件名 |
+  | `channel` | `FeedChannelOptions` | — | 频道元信息（标题、描述、作者、图标等） |
+  | `linkTag` | `boolean` | `true` | 是否向页面 `<head>` 注入 `<link rel="alternate">` |
+  | `debug` | `boolean` | `false` | 在构建日志中输出逐频道明细 |
+
+  默认文件名：`feed.xml`（RSS）、`atom.xml`（Atom）、`feed.json`（JSON Feed）。
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      hostname: 'https://example.com',
+      feed: {
+        perCollection: true,
+        formats: ['rss', 'atom', 'json'],
+      },
+    }),
+  })
+  ```
+
+  参考 [Feed 订阅](../guide/features/feed.md)
+
 ### autoFrontmatter
 
 - **类型：** `false | AutoFrontmatterOptions`

@@ -16,6 +16,8 @@ link, so readers can decide **without leaving the current page**.
 ::: info **Link Preview** disabled by default
 :::
 
+[Hover your mouse here to preview the Feed subscription](./feed.md)
+
 ## Getting started
 
 ::::: steps
@@ -53,10 +55,6 @@ link, so readers can decide **without leaving the current page**.
    ```
 
 3. **Build and check**
-
-   ```sh
-   pnpm docs:build
-   ```
 
 :::::
 
@@ -114,34 +112,32 @@ The following forms do **not** trigger a preview:
 
 ## Safety
 
-- **Encrypted and draft pages never appear in preview data**;
+- **Encrypted** and **draft pages** never appear in preview data;
 - Only public page metadata is written, no existing output is changed;
 - When disabled, no page data field is produced, no listener is bound and no DOM is rendered.
 
 ## FAQ
 
-:::: details Why does a link have no preview?
+::: collapse
 
-- The target page does not exist (renamed, typo, or a stale link after a `permalink` change);
-- The target page is encrypted or a draft;
-- The target page matches `exclude`;
-- The link is not a Markdown internal link (see [Coverage](#coverage));
-- The current page sets `linkPreview: false`, or the feature is disabled.
+- Why does a link have no preview?
 
-::::
+  - The target page does not exist (renamed, typo, or a stale link after a `permalink` change);
+  - The target page is encrypted or a draft;
+  - The target page matches `exclude`;
+  - The link is not a Markdown internal link (see [Coverage](#coverage));
+  - The current page sets `linkPreview: false`, or the feature is disabled.
 
-:::: details I edited a target page title in dev, but the preview is stale
+- I edited a target page title in dev, but the preview is stale
 
-Preview data belongs to the source page's page data. After editing the target page, the
-source page data is recomputed, but the source page module has to re-render — **refresh the
-page**.
+  Preview data belongs to the source page's page data. After editing the target page, the
+  source page data is recomputed, but the source page module has to re-render — **refresh the
+  page**.
 
-::::
+- Why is the card not clickable?
 
-:::: details Why is the card not clickable?
+  "hover → move the mouse → card disappears" makes a clickable card a new usability problem,
+  and a second clickable target inside the card pollutes the `Tab` order. The card is
+  informational only: it shows the target of the link itself.
 
-"hover → move the mouse → card disappears" makes a clickable card a new usability problem,
-and a second clickable target inside the card pollutes the `Tab` order. The card is
-informational only: it shows the target of the link itself.
-
-::::
+:::

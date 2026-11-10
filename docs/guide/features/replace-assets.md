@@ -3,7 +3,6 @@ title: 资源链接替换
 icon: lucide:replace
 createTime: 2025/04/03 11:45:17
 permalink: /guide/features/replace-assets/
-badge: 新
 ---
 
 ## 概述

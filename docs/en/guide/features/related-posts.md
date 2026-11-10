@@ -12,11 +12,7 @@ Show related content at the bottom of article and doc pages, helping readers kee
 and strengthening internal linking.
 
 The result is computed at ==build time== and written into the page data, so the client only
-renders it:
-
-- **Zero runtime cost**: no extra first-screen JavaScript, no vector database, no external service
-- **Crawlable**: outputs real static `<a>` elements, so search engines can follow the internal links
-- **Predictable**: rebuilding the same source produces the same result
+renders it.
 
 :::: info Disabled by default
 
@@ -61,12 +57,6 @@ renders it:
 
 3. **Build and check**
 
-   The result is generated during the build — open any article and scroll to the bottom:
-
-   ```sh
-   pnpm docs:build
-   ```
-
 ::::
 
 ### Enable it for a single collection
@@ -87,16 +77,6 @@ export default defineUserConfig({
     ],
   }),
 })
-```
-
-## How it works
-
-```mermaid
-flowchart LR
-    A[Collect and filter pages] --> B[Extract signals and tokenize]
-    B --> C[TF-IDF cosine scoring]
-    C --> D[Decay · threshold · MMR]
-    D --> E[Write into page data]
 ```
 
 ### Signals

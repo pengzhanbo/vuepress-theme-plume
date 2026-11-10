@@ -3,6 +3,7 @@ title: Feed 订阅
 icon: mdi:rss
 createTime: 2026/11/09 10:00:00
 permalink: /guide/features/feed/
+badge: 新
 ---
 
 ## 概述
@@ -52,7 +53,7 @@ feed 中所有链接都必须是绝对地址，没有 `hostname` 时主题会跳
 
 :::: warning 仅在生产构建时生效
 `feed` 在 `onGenerated` 阶段生成，即只有执行 `vuepress build` 时才会产出文件。
-开发模式（`vuepress dev`）下不会生成任何 feed，也不会注入自动发现链接。
+开发模式（`vuepress dev`）下不会生成任何 feed。
 ::::
 
 ## 多集合与多语言
@@ -96,13 +97,13 @@ export default defineUserConfig({
 集合上的 `feed` 决定该集合是否纳入订阅、是否生成独立频道：
 
 ```ts
-// doc 集合默认不纳入 feed，`feed: true` 即为显式开启（也可写 `feed: {}`）
-const collection = { type: 'doc', dir: 'guide', title: '指南', sidebar: 'auto', feed: true }
+// doc 集合默认不纳入 feed，`feed: true` 即为显式开启
+const doc = { type: 'doc', dir: 'guide', title: '指南', sidebar: 'auto', feed: true }
 ```
 
 ```ts
 // 关闭某个集合的订阅
-const collection = { type: 'post', dir: 'notes', title: '笔记', feed: false }
+const post = { type: 'post', dir: 'notes', title: '笔记', feed: false }
 ```
 
 `feed: true` 等价于 `feed: {}`，都会让该集合纳入 feed 并生成独立频道，
@@ -159,7 +160,7 @@ feed 的正文来自构建期的 `page.contentRendered`，其中主题与 `vuepr
 
 ## 安全与隐私
 
-以下页面/内容 **永远不会** 进入任何 feed：
+以下页面/内容 **不会** 进入任何 feed：
 
 | 场景 | 处理 |
 | --- | --- |
@@ -222,28 +223,32 @@ shasum dist/feed.xml dist/atom.xml dist/feed.json
 
 ## 常见问题
 
-:::: details 提示 `hostname` 相关警告，没有生成文件
-请检查站点配置中的 `hostname` 是否为合法的站点源（origin，例如 `https://example.com`）。
-若站点部署在子路径，请使用 `base`（例如 `/docs/`）而不是把路径写进 `hostname`。
-::::
+:::collapse
 
-:::: details 两个集合的频道互相覆盖
-频道输出路径 = 频道主页路由 + 文件名。两个集合使用同一个 `link` 时会产生冲突，
-主题会保留先出现的频道并输出警告。请通过 `collections[].feed.link` 指定不同的频道链接。
-::::
+- 提示 `hostname` 相关警告，没有生成文件
 
-:::: details feed 中的时间与页面显示不一致
-feed 使用「本地时间 + 时区偏移」输出，例如 `2025-06-10T08:00:00+08:00`。
-若构建机器的时区与作者所在时区不同，字符串会不同，但表示的是同一时刻。
-CI 环境固定 `TZ=Etc/UTC` 时产物可复现。
-::::
+  请检查站点配置中的 `hostname` 是否为合法的站点源（origin，例如 `https://example.com`）。
+  若站点部署在子路径，请使用 `base`（例如 `/docs/`）而不是把路径写进 `hostname`。
 
-:::: details 某些文章没有出现在 feed 中
-feed 需要发布时间：`frontmatter.createTime` → `frontmatter.date` → `git.createdTime` →
-`git.updatedTime`，全部缺失的页面会被跳过，构建日志中会统计跳过数量。
-另外请检查页面是否被加密、标记为草稿，或设置了 `article: false` / `feed: false`。
-::::
+- 两个集合的频道互相覆盖
 
-:::: details 开发模式下看不到 feed
-`onGenerated` 只在生产构建时触发。请执行 `vuepress build` 后使用静态服务器预览产物。
-::::
+  频道输出路径 = 频道主页路由 + 文件名。两个集合使用同一个 `link` 时会产生冲突，
+  主题会保留先出现的频道并输出警告。请通过 `collections[].feed.link` 指定不同的频道链接。
+
+- feed 中的时间与页面显示不一致
+
+  feed 使用「本地时间 + 时区偏移」输出，例如 `2025-06-10T08:00:00+08:00`。
+  若构建机器的时区与作者所在时区不同，字符串会不同，但表示的是同一时刻。
+  CI 环境固定 `TZ=Etc/UTC` 时产物可复现。
+
+- 某些文章没有出现在 feed 中
+
+  feed 需要发布时间：`frontmatter.createTime` → `frontmatter.date` → `git.createdTime` →
+  `git.updatedTime`，全部缺失的页面会被跳过，构建日志中会统计跳过数量。
+  另外请检查页面是否被加密、标记为草稿，或设置了 `article: false` / `feed: false`。
+
+- 开发模式下看不到 feed
+
+  `onGenerated` 只在生产构建时触发。请执行 `vuepress build` 后使用静态服务器预览产物。
+
+:::

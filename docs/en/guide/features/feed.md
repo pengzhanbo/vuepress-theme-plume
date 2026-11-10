@@ -3,6 +3,7 @@ title: Feed Subscription
 icon: mdi:rss
 createTime: 2026/11/09 10:00:00
 permalink: /en/guide/features/feed/
+badge: NEW
 ---
 
 ## Overview
@@ -53,7 +54,7 @@ Every link in a feed must be absolute. Without `hostname` the theme skips genera
 
 :::: warning Production build only
 Feeds are generated in the `onGenerated` hook, i.e. only during `vuepress build`.
-The dev server (`vuepress dev`) generates no feed and injects no discovery links.
+The dev server (`vuepress dev`) generates no feed.
 ::::
 
 ## Multiple Collections and Locales
@@ -98,13 +99,13 @@ An article may appear in both the global channel and a collection channel. This 
 `feed` on a collection controls whether it is included and whether it owns a dedicated channel:
 
 ```ts
-// `doc` collections are excluded by default, `feed: true` opts in explicitly (same as `feed: {}`)
-const collection = { type: 'doc', dir: 'guide', title: 'Guide', sidebar: 'auto', feed: true }
+// `doc` collections are excluded by default, `feed: true` opts in explicitly
+const doc = { type: 'doc', dir: 'guide', title: 'Guide', sidebar: 'auto', feed: true }
 ```
 
 ```ts
 // Disable subscriptions for a collection
-const collection = { type: 'post', dir: 'notes', title: 'Notes', feed: false }
+const post = { type: 'post', dir: 'notes', title: 'Notes', feed: false }
 ```
 
 `feed: true` is equivalent to `feed: {}`: the collection is included in feeds and gets a dedicated
@@ -226,29 +227,33 @@ shasum dist/feed.xml dist/atom.xml dist/feed.json
 
 ## FAQ
 
-:::: details `hostname` warning and no files generated
-Make sure `hostname` is a valid site origin (e.g. `https://example.com`).
-If the site is deployed under a sub path, use `base` (e.g. `/docs/`) instead of appending it to `hostname`.
-::::
+::: collapse
 
-:::: details Two collections overwrite each other
-The output path is the channel home route plus the filename. Two collections sharing the same `link`
-conflict: the first channel wins and a warning is logged. Use `collections[].feed.link` to give them
-different channel links.
-::::
+- `hostname` warning and no files generated
 
-:::: details Feed dates differ from the site
-Feeds use "local time + timezone offset", e.g. `2025-06-10T08:00:00+08:00`. Building in a different
-timezone produces a different string for the same instant. CI sets `TZ=Etc/UTC`, so artifacts are reproducible.
-::::
+  Make sure `hostname` is a valid site origin (e.g. `https://example.com`).
+  If the site is deployed under a sub path, use `base` (e.g. `/docs/`) instead of appending it to `hostname`.
 
-:::: details Some articles are missing from the feed
-A feed entry needs a date: `frontmatter.createTime` → `frontmatter.date` → `git.createdTime` →
-`git.updatedTime`. Pages without any date are skipped and counted in the build log.
-Also check whether the page is encrypted, a draft, or marked with `article: false` / `feed: false`.
-::::
+- Two collections overwrite each other
 
-:::: details No feed in dev mode
-`onGenerated` only runs during a production build. Run `vuepress build` and preview the output with a
-static server.
-::::
+  The output path is the channel home route plus the filename. Two collections sharing the same `link`
+  conflict: the first channel wins and a warning is logged. Use `collections[].feed.link` to give them
+  different channel links.
+
+- Feed dates differ from the site
+
+  Feeds use "local time + timezone offset", e.g. `2025-06-10T08:00:00+08:00`. Building in a different
+  timezone produces a different string for the same instant. CI sets `TZ=Etc/UTC`, so artifacts are reproducible.
+
+- Some articles are missing from the feed
+
+  A feed entry needs a date: `frontmatter.createTime` → `frontmatter.date` → `git.createdTime` →
+  `git.updatedTime`. Pages without any date are skipped and counted in the build log.
+  Also check whether the page is encrypted, a draft, or marked with `article: false` / `feed: false`.
+
+- No feed in dev mode
+
+  `onGenerated` only runs during a production build. Run `vuepress build` and preview the output with a
+  static server.
+
+:::

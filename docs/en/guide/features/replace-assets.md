@@ -3,7 +3,6 @@ title: Replace Assets
 icon: lucide:replace
 createTime: 2025/10/08 11:45:17
 permalink: /en/guide/features/replace-assets/
-badge: New
 ---
 
 ## Overview

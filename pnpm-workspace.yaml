@@ -5,6 +5,15 @@ catalogMode: prefer
 # `minimumReleaseAge: "5 days"` 对齐，为 install 侧提供同一稳定期约束。
 minimumReleaseAge: 7200
 minimumReleaseAgeExcludePrune: true
+minimumReleaseAgeExclude:
+  - '@es-joy/escodegen@5.0.1'
+  - '@pengzhanbo/eslint-config-vue@2.15.0'
+  - '@pengzhanbo/eslint-config@2.15.0'
+  - '@pengzhanbo/stylelint-config@2.15.0'
+  - '@stylistic/stylelint-plugin@6.0.1'
+  - eslint-plugin-jsdoc@65.4.5
+  - stylelint-define-config@18.0.0
+  - vue-eslint-parser@10.4.2
 
 trustPolicy: no-downgrade
 trustPolicyExclude:
@@ -29,13 +38,13 @@ packages:
   - examples/*
 
 overrides:
-  '@bufbuild/protobuf': ^2.16.0
+  '@bufbuild/protobuf': ^2.17.0
   '@shikijs/core': ^4.6.0
   '@shikijs/transformers': ^4.6.0
   '@shikijs/twoslash': ^4.6.0
   '@xmldom/xmldom': '>=0.9.12'
   axios: '>=1.21.0'
-  baseline-browser-mapping: ^2.11.34
+  baseline-browser-mapping: ^2.11.35
   brace-expansion: '>=5.0.12'
   chokidar: 'catalog:prod'
   dompurify: '>=3.4.17'
@@ -47,14 +56,14 @@ overrides:
   lodash: '>=4.18.1'
   lodash-es: '>=4.18.1'
   markdown-it: ^14.3.1
-  mermaid: '>=12.2.0'
+  mermaid: '>=12.3.0'
   postcss: '>=8.5.32'
   qs: '>=6.17.1'
   sass-embedded: 'catalog:peer'
   shell-quote: '>=1.12.0'
   simple-git: '>=4.0.2'
   tmp: '>=0.2.7'
-  undici: '>=8.12.3'
+  undici: '>=8.12.4'
   uuid: '>=14.0.3'
   vite: 'catalog:dev'
   vue: 'catalog:prod'
@@ -72,9 +81,9 @@ catalogs:
     '@commitlint/cli': ^21.2.4
     '@commitlint/config-conventional': ^21.2.4
     '@lunariajs/core': ^0.2.1
-    '@pengzhanbo/eslint-config-vue': ^2.14.0
-    '@pengzhanbo/stylelint-config': ^2.14.0
-    '@simonwep/pickr': ^1.10.2
+    '@pengzhanbo/eslint-config-vue': ^2.15.0
+    '@pengzhanbo/stylelint-config': ^2.15.0
+    '@simonwep/pickr': ^1.10.3
     '@types/express': ^5.0.6
     '@types/js-yaml': ^4.0.9
     '@types/less': ^3.0.8
@@ -98,29 +107,29 @@ catalogs:
     markdown-it: ^14.3.2
     markdownlint-cli: ^0.50.0
     memfs: ^4.80.0
-    mermaid: ^12.2.0
+    mermaid: ^12.3.0
     nano-staged: ^1.0.2
-    oxfmt: ^0.75.0
+    oxfmt: ^0.76.0
     postcss: ^8.5.32
-    rimraf: ^6.1.3
+    rimraf: ^6.1.4
     simple-git-hooks: ^2.14.0
-    stylelint: ^17.16.0
+    stylelint: ^18.0.0
     stylus: ^0.64.0
     taze: ^21.3.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.23.4
+    tsdown: ^0.23.5
     typescript: ^6.0.3
     unrun: ^0.3.1
-    vite: ^8.3.5
+    vite: ^8.3.6
     vitest: ^5.1.0
     wait-on: ^9.5.1
   peer:
-    '@iconify/json': ^2.2.552
+    '@iconify/json': ^2.2.553
     '@mathjax/src': ^4.1.3
     '@pinyin-pro/data': ^1.3.1
     artplayer: ^5.4.0
-    dashjs: ^5.2.1
-    gsap: ^3.15.0
+    dashjs: ^5.3.0
+    gsap: ^3.15.1
     hls.js: ^1.7.4
     mpegts.js: ^1.8.2
     ogl: ^1.0.11
@@ -179,7 +188,7 @@ catalogs:
     picocolors: ^1.1.1
     picomatch: ^4.0.7
     qrcode: ^1.5.4
-    rolldown: ^1.2.16
+    rolldown: ^1.3.0
     sanitize-html: ^2.18.1
     shiki: ^4.6.0
     sort-package-json: ^4.1.0
@@ -187,7 +196,7 @@ catalogs:
     tm-grammars: ^1.32.22
     tm-themes: ^1.12.12
     unplugin-vue-components: ^32.1.0
-    vue: ^3.5.44
+    vue: ^3.5.45
     vue-router: ^5.4.0
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.31

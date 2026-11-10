@@ -138,7 +138,8 @@
 }
 
 @media print {
-  .vp-doc figure > a[href^="http://"]::after, .vp-doc figure > a[href^="https://"]::after {
+  .vp-doc figure > a[href^="http://"]::after,
+  .vp-doc figure > a[href^="https://"]::after {
     content: "";
   }
 }

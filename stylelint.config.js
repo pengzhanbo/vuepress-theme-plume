@@ -12,5 +12,9 @@ export default stylelintConfig({
     'color-function-notation': ['modern', {
       ignore: ['with-var-inside'],
     }],
+    '@stylistic/block-closing-brace-newline-after': null,
+    '@stylistic/block-closing-brace-space-after': null,
+    '@stylistic/declaration-block-semicolon-newline-after': null,
+    '@stylistic/declaration-block-semicolon-space-after': null,
   },
 })

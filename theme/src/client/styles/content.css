@@ -161,7 +161,8 @@
 }
 
 @media print {
-  .vp-doc a[href^="http://"]::after, .vp-doc a[href^="https://"]::after {
+  .vp-doc a[href^="http://"]::after,
+  .vp-doc a[href^="https://"]::after {
     content: " (" attr(href) ") ";
   }
 }
@@ -310,8 +311,8 @@
 }
 
 /* prettier-ignore */
-.external-link-icon-enabled :is(.vp-doc a[href*='://'],
-.vp-doc a[target='_blank']):not(:is(.no-icon, svg a, :has(img, svg)))::after {
+.external-link-icon-enabled :is(.vp-doc a[href*="://"],
+.vp-doc a[target="_blank"]):not(:is(.no-icon, svg a, :has(img, svg)))::after {
   color: currentcolor;
   content: "";
 }

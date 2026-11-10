@@ -7,6 +7,7 @@ import { prepareCollections } from './collections.js'
 import { prepareEncrypt } from './encrypt.js'
 import { prepareHomeHeroEffects } from './home-hero-effects.js'
 import { prepareIcons } from './icons.js'
+import { prepareLinkPreview } from './link-preview.js'
 import { preparedPostsData } from './posts-data.js'
 import { prepareRelatedPosts } from './related-posts.js'
 import { prepareSidebar } from './sidebar.js'
@@ -27,6 +28,7 @@ export async function prepareData(app: App, options: ThemeOptions = getThemeOpti
     prepareArticleTagColors(app),
     preparedPostsData(app, options),
     prepareRelatedPosts(app, options),
+    prepareLinkPreview(app, options),
     prepareSidebar(app, options),
     prepareCollections(app, options),
     prepareEncrypt(app, options),

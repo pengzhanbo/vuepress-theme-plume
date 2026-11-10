@@ -160,6 +160,21 @@ interface ThemeBadge {
   Encrypted pages (page password or `encrypt.rules`), drafts, pages with `article: false` and
   non-content layouts never enter feeds, regardless of this option.
 
+### linkPreview
+
+- Type: `boolean`
+- Default: `true`
+- Details:
+
+  Whether to enable [internal link previews](../../guide/features/link-preview.md) on the current page.
+
+  ```yaml
+  ---
+  title: Internal notes
+  linkPreview: false
+  ---
+  ```
+
 ### externalLinkIcon
 
 - Type: `boolean`

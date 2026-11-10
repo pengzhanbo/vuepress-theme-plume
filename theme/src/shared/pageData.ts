@@ -2,7 +2,7 @@ import type { Nullable } from '@pengzhanbo/utils'
 import type { GitPluginPageData } from '@vuepress/plugin-git'
 import type { ReadingTime } from '@vuepress/plugin-reading-time'
 import type { PageData } from 'vuepress'
-import type { PostsCategoryItem, ThemeRelatedPostItem } from './features/index.js'
+import type { PostsCategoryItem, ThemeLinkPreviewItem, ThemeRelatedPostItem } from './features/index.js'
 
 /**
  * Theme page data interface
@@ -44,4 +44,11 @@ export interface ThemePageData extends GitPluginPageData, PageData {
    * 相关文章，构建期计算
    */
   relatedPosts?: ThemeRelatedPostItem[]
+  /**
+   * Internal link previews of the links on this page, resolved at build time.
+   * Keyed by the normalized route path of the target page.
+   *
+   * 当前页内链的预览数据（构建期生成），以目标页路由路径为键
+   */
+  linkPreviews?: Record<string, ThemeLinkPreviewItem>
 }

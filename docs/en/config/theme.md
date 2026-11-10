@@ -965,6 +965,37 @@ export default defineThemeConfig({
 
 See [Related Posts](../guide/features/related-posts.md) for more details.
 
+### linkPreview
+
+- **Type:** `boolean | LinkPreviewOptions`
+- **Default:** `false`
+- **Details:** Whether to enable hover previews for internal links in the content. Hovering a link shows the title, excerpt, tags and last updated date of the target page.
+
+  - `true` - Enable it with the default configuration.
+  - `false` - Disable it
+  - `LinkPreviewOptions` - Enable it with a custom configuration
+
+  Preview data is generated at **build time** and written into the page data.
+
+  | Option | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `delay` | `number` | `150` | Hover-intent delay in ms |
+  | `focusDelay` | `number` | `0` | Delay after keyboard focus, in ms |
+  | `selector` | `string` | `'.vp-doc a[href]'` | Selector of the trigger links |
+  | `showExcerpt` | `boolean` | `true` | Whether to show the excerpt |
+  | `excerptLength` | `number` | `120` | Max excerpt length, `0` means unlimited |
+  | `showHeadings` | `boolean` | `false` | Whether to show the first headings of the target page |
+  | `headingsLimit` | `number` | `3` | Max headings (1–6) |
+  | `showTags` | `boolean` | `true` | Whether to show the tags |
+  | `showUpdatedTime` | `boolean` | `true` | Whether to show the last updated date (requires the git plugin) |
+  | `maxWidth` | `number` | `360` | Max card width in px |
+  | `exclude` | `string[]` | `[]` | Excluded target paths, glob supported |
+
+  The option is resolved **per locale**, so it can be disabled for one language in
+  `locales`. A single page can opt out with `linkPreview: false` in its frontmatter.
+
+  See [Link Preview](../guide/features/link-preview.md) for more details.
+
 ### footer
 
 - **Type:** `false | { message: string; copyright?: string }`

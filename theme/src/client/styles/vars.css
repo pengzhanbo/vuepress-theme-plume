@@ -379,6 +379,7 @@
   --vp-z-index-back-to-top: 70;
   --vp-z-index-overlay: 80;
   --vp-z-index-bulletin: 90;
+  --vp-z-index-link-preview: 100;
 }
 
 /**

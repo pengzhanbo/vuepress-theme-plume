@@ -17,6 +17,8 @@ export default defineThemeConfig({
 
   readAid: 'left',
 
+  linkPreview: { showHeadings: true },
+
   transition: { appearance: 'circle-clip' },
 
   social: [

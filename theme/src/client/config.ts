@@ -6,6 +6,7 @@ import {
   setupDarkMode,
   setupEncrypt,
   setupHeaders,
+  setupLinkPreview,
   setupSidebar,
   setupThemeData,
   setupWatermark,
@@ -29,6 +30,7 @@ export default defineClientConfig({
     setupHeaders()
     setupEncrypt()
     setupWatermark()
+    setupLinkPreview()
   },
   layouts: { Layout, NotFound },
 }) as ClientConfig

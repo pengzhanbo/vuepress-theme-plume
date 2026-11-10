@@ -161,6 +161,21 @@ interface ThemeBadge {
   加密页面（页面密码或 `encrypt.rules` 命中）、草稿、`article: false`、非内容页布局的页面，
   无论此配置为何都不会进入 feed。
 
+### linkPreview
+
+- 类型： `boolean`
+- 默认值： `true`
+- 详情：
+
+  当前页是否启用 [内链悬浮预览](../../guide/features/link-preview.md)。
+
+  ```yaml
+  ---
+  title: 内部草稿思路
+  linkPreview: false
+  ---
+  ```
+
 ### externalLinkIcon
 
 - 类型： `boolean`

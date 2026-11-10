@@ -118,8 +118,6 @@ The following forms do **not** trigger a preview:
 - Only public page metadata is written, no existing output is changed;
 - When disabled, no page data field is produced, no listener is bound and no DOM is rendered.
 
-::::
-
 ## FAQ
 
 :::: details Why does a link have no preview?

@@ -125,9 +125,16 @@ describe('resolveExcerpt', () => {
 
   it('strips tags and decodes entities', () => {
     const page = createPage('/a/', {
-      contentRendered: '<div class="code">x</div><p>a <code>b</code> &amp; c&#39;d</p>',
+      contentRendered: '<div class="code">x</div><p>a <code>b</code> &amp; c&#39;d&#x26;e</p>',
     })
-    expect(resolveExcerpt(page, 120)).toBe('a b & c\'d')
+    expect(resolveExcerpt(page, 120)).toBe('a b & c\'d&e')
+  })
+
+  it('keeps out-of-range numeric entities as raw text', () => {
+    const page = createPage('/a/', {
+      contentRendered: '<p>a&#1114112;b&#x110000;c&#xZZ;</p>',
+    })
+    expect(resolveExcerpt(page, 120)).toBe('a&#1114112;b&#x110000;c&#xZZ;')
   })
 
   it('skips a leading code block and takes the first paragraph', () => {

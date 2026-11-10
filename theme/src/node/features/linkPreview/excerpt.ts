@@ -31,6 +31,21 @@ const NAMED_ENTITY: Record<string, string> = {
 }
 
 /**
+ * Resolve a numeric character reference, keeping the raw text for invalid code points.
+ *
+ * 解析数字字符引用，码点非法时保留原始文本。
+ *
+ * @param entity - Raw entity text / 原始实体文本
+ * @param codePoint - Parsed code point / 解析出的码点
+ */
+function fromCodePoint(entity: string, codePoint: number): string {
+  if (!Number.isInteger(codePoint) || codePoint < 0 || codePoint > 0x10FFFF)
+    return entity
+
+  return String.fromCodePoint(codePoint)
+}
+
+/**
  * Decode the few HTML entities that survive markdown rendering in prose.
  *
  * 解码正文中常见的少量 HTML 实体。
@@ -38,11 +53,11 @@ const NAMED_ENTITY: Record<string, string> = {
  * @param text - Raw text / 原始文本
  */
 function decodeEntities(text: string): string {
-  return text.replace(ENTITY_RE, (_, dec?: string, hex?: string, named?: string) => {
+  return text.replace(ENTITY_RE, (entity, dec?: string, hex?: string, named?: string) => {
     if (dec)
-      return String.fromCodePoint(Number(dec))
+      return fromCodePoint(entity, Number(dec))
     if (hex)
-      return String.fromCodePoint(Number.parseInt(hex, 16))
+      return fromCodePoint(entity, Number.parseInt(hex, 16))
     return NAMED_ENTITY[named!.toLowerCase()] ?? `&${named};`
   })
 }

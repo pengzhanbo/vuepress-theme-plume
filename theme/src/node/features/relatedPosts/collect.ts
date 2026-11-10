@@ -14,10 +14,10 @@ import type {
   ThemePostFrontmatter,
 } from '../../../shared/index.js'
 import type { CjkTokenizer } from './tokenize.js'
-import dayjs from 'dayjs'
-import { createMatcher } from '../../utils/index.js'
+import { clamp, clampInteger, createMatcher, truncateText } from '../../utils/index.js'
 import { findCollection } from '../collections/index.js'
 import { isPublicContentPage } from '../content.js'
+import { formatPostDate, resolvePageCreateTime, resolvePageTags } from '../page-meta.js'
 import { cleanMarkdown, extractHeadings, tokenize } from './tokenize.js'
 
 /**
@@ -99,12 +99,6 @@ const DEFAULT_WEIGHTS: Required<RelatedPostsWeights> = {
  */
 const DEFAULT_DIVERSITY = 0.3
 
-function clamp(value: number, min: number, max: number): number {
-  if (!Number.isFinite(value))
-    return min
-  return Math.min(Math.max(value, min), max)
-}
-
 function normalizeWeights(weights?: RelatedPostsWeights): Required<RelatedPostsWeights> {
   return {
     tags: Math.max(weights?.tags ?? DEFAULT_WEIGHTS.tags, 0),
@@ -133,16 +127,16 @@ export function normalizeRelatedPostsOptions(
     return null
 
   return {
-    limit: Math.round(clamp(options.limit ?? 4, 1, 12)),
+    limit: clampInteger(options.limit ?? 4, 1, 12),
     minScore: clamp(options.minScore ?? 0.12, 0, 1),
     weights,
     recency: Math.max(options.recency ?? 0, 0),
     diversity: clamp(options.diversity ?? DEFAULT_DIVERSITY, 0, 1),
     scope: options.scope ?? 'collection',
-    contentLimit: Math.round(clamp(options.contentLimit ?? 2000, 0, 20000)),
+    contentLimit: clampInteger(options.contentLimit ?? 2000, 0, 20000),
     cjk: options.cjk ?? 'segmenter',
     showExcerpt: options.showExcerpt ?? false,
-    excerptLength: Math.round(clamp(options.excerptLength ?? 80, 0, 300)),
+    excerptLength: clampInteger(options.excerptLength ?? 80, 0, 300),
     title: options.title,
     exclude: options.exclude ?? [],
     debug: options.debug ?? false,
@@ -161,10 +155,7 @@ export function getLocaleRelatedPostsOptions(
   options: ThemeOptions,
   locale: string,
 ): boolean | RelatedPostsOptions | undefined {
-  const localeOptions = options.locales?.[locale]?.relatedPosts
-  if (localeOptions !== undefined)
-    return localeOptions
-  return options.relatedPosts
+  return options.locales?.[locale]?.relatedPosts ?? options.relatedPosts
 }
 
 /**
@@ -203,28 +194,6 @@ export function resolveCollectionRelatedPostsOptions(
   )
 }
 
-function resolveTags(frontmatter: Record<string, unknown>): string[] {
-  const tags = frontmatter.tags
-  if (!Array.isArray(tags))
-    return []
-  return tags.filter((tag): tag is string => typeof tag === 'string' && !!tag)
-}
-
-function resolveCreateTime(
-  page: Page<ThemePageData, ThemePostFrontmatter & Record<string, unknown>>,
-): number {
-  const { frontmatter } = page
-  // VuePress 对缺失的日期使用 `0000-00-00` 作为初始值
-  const raw = frontmatter.createTime || frontmatter.date
-    || (page.date && page.date !== '0000-00-00' ? page.date : undefined)
-
-  if (!raw)
-    return 0
-
-  const time = new Date(raw as string).getTime()
-  return Number.isNaN(time) ? 0 : time
-}
-
 function resolveExcerpt(
   page: Page<ThemePageData, ThemePostFrontmatter & Record<string, unknown>>,
   options: ResolvedRelatedPostsOptions,
@@ -241,9 +210,7 @@ function resolveExcerpt(
   if (!plain)
     return undefined
 
-  return plain.length > options.excerptLength
-    ? `${plain.slice(0, options.excerptLength)}…`
-    : plain
+  return truncateText(plain, options.excerptLength) || undefined
 }
 
 function addField(
@@ -265,7 +232,7 @@ function resolveTerms(
 
   // 字段权重在建立索引时应用，这里只记录词频，见 `score.ts` 的 `buildIndex`
   addField(terms, 't', tokenize(page.title ?? '', cjk))
-  addField(terms, 'g', resolveTags(page.frontmatter))
+  addField(terms, 'g', resolvePageTags(page))
   addField(terms, 'c', (page.data.categoryList ?? []).map(item => item.name))
   addField(terms, 'h', tokenize(extractHeadings(page.content).join(' '), cjk))
 
@@ -300,18 +267,16 @@ function toDoc(
   page: Page<ThemePageData, ThemePostFrontmatter & Record<string, unknown>>,
   options: ResolvedRelatedPostsOptions,
 ): RelatedPostsDoc {
-  const createTime = resolveCreateTime(page)
+  const created = resolvePageCreateTime(page)
 
   return {
     page,
     path: page.path,
     // 使用原始标题，`page.data.title` 在 `extendsPage` 中被追加了集合标题
     title: page.title,
-    tags: resolveTags(page.frontmatter),
-    createTime,
-    createTimeText: createTime
-      ? dayjs(new Date(createTime)).format('YYYY/MM/DD HH:mm:ss')
-      : undefined,
+    tags: resolvePageTags(page),
+    createTime: created?.getTime() ?? 0,
+    createTimeText: created ? formatPostDate(created) : undefined,
     excerpt: resolveExcerpt(page, options),
   }
 }

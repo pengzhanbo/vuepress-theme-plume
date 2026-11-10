@@ -9,6 +9,7 @@ import { getThemeOptions } from '../../options.js'
 import { logger, perf } from '../../utils/index.js'
 import { renderAtom } from './atom.js'
 import { buildEntries, resolveFeedChannels } from './collect.js'
+import { resolveFeedFilePath } from './format.js'
 import { renderJson } from './json.js'
 import { resolveHostname, resolveLocaleFeedOptions } from './options.js'
 import { renderRss } from './rss.js'
@@ -87,10 +88,8 @@ async function generate(app: App, options: ThemeOptions): Promise<void> {
       }
 
       for (const format of channel.formats) {
-        // `app.dir.dest()` 需要相对路径，根语言环境的全局频道必须使用 `feed.xml`
-        // The path passed to `app.dir.dest()` must be relative.
         const filename = resolved.filename[format]
-        const filepath = channel.dir ? `${channel.dir}/${filename}` : filename
+        const filepath = resolveFeedFilePath(channel.dir, filename)
 
         if (written.has(filepath)) {
           logger.warn(`[feed] output conflict: \`${filepath}\`, the feed of \`${channel.title}\` is skipped.`)

@@ -1,13 +1,9 @@
 import { attemptAsync, kebabCase } from '@pengzhanbo/utils'
-import dayjs from 'dayjs'
 import { ensureLeadingSlash, removeLeadingSlash } from 'vuepress/shared'
 import { fs, path } from 'vuepress/utils'
 import { getPinyin, hasPinyin } from '../../utils/index.js'
+import { formatPostDate } from '../page-meta.js'
 
-// The `!/**` form is required: a trailing slash (`**/node_modules/`) only matches the
-// directory entry itself, so `node_modules/a.md` would not be excluded.
-// 必须使用 `!/**` 形式：带尾斜杠（`**/node_modules/`）只能匹配目录本身，
-// 无法排除 `node_modules/a.md`。
 export const EXCLUDE = ['!**/.vuepress/**', '!**/node_modules/**']
 
 const NUMBER_RE = /^\d+\./
@@ -25,7 +21,7 @@ export async function getFileCreateTime(filepath: string): Promise<string> {
   const [, stats] = await attemptAsync(() => fs.promises.stat(filepath))
   const time = stats && stats.birthtime.getFullYear() !== 1970 ? stats.birthtime : stats?.atime ?? new Date()
 
-  return dayjs(new Date(time)).format('YYYY/MM/DD HH:mm:ss')
+  return formatPostDate(time)
 }
 
 export function getCurrentName(filepath: string): string {

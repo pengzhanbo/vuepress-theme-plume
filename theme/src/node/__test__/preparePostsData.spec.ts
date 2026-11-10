@@ -28,17 +28,21 @@ vi.mock('@pengzhanbo/utils', async (importOriginal) => {
   }
 })
 
-vi.mock('../utils/index.js', () => ({
-  createFsCache: vi.fn(),
-  genEncrypt: vi.fn(),
-  hash: vi.fn(),
-  logger: hoisted.logger,
-  perf: { mark: vi.fn(), log: vi.fn() },
-  genTempCode: vi.fn((_app: unknown, { content }: { content: unknown }) => content),
-  writeTemp: hoisted.writeTemp,
-  createMatcher: () => () => true,
-  withBase: (path: string, base = '/') => `${base}${path}/`,
-}))
+vi.mock('../utils/index.js', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('../utils/index.js')>()
+  return {
+    ...actual,
+    createFsCache: vi.fn(),
+    genEncrypt: vi.fn(),
+    hash: vi.fn(),
+    logger: hoisted.logger,
+    perf: { mark: vi.fn(), log: vi.fn() },
+    genTempCode: vi.fn((_app: unknown, { content }: { content: unknown }) => content),
+    writeTemp: hoisted.writeTemp,
+    createMatcher: () => () => true,
+    withBase: (path: string, base = '/') => `${base}${path}/`,
+  }
+})
 
 vi.mock('../options.js', () => ({
   getThemeOptions: hoisted.getThemeOptions,

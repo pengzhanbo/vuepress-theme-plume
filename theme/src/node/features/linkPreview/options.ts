@@ -1,5 +1,5 @@
 import type { LinkPreviewOptions, ThemeOptions } from '../../../shared/index.js'
-import { createMatcher } from '../../utils/index.js'
+import { clampInteger, createMatcher } from '../../utils/index.js'
 
 /**
  * Options with every default applied at build time.
@@ -57,12 +57,6 @@ export interface ResolvedLinkPreviewOptions {
   excludeMatcher: ((path: string) => boolean) | null
 }
 
-function clamp(value: number, min: number, max: number): number {
-  if (!Number.isFinite(value))
-    return min
-  return Math.min(Math.max(value, min), max)
-}
-
 /**
  * Normalize the link preview options of one locale.
  *
@@ -77,16 +71,11 @@ export function normalizeLinkPreviewOptions(options: LinkPreviewOptions): Resolv
 
   return {
     showExcerpt: options.showExcerpt ?? true,
-    excerptLength: Math.round(clamp(options.excerptLength ?? 120, 0, 300)),
+    excerptLength: clampInteger(options.excerptLength ?? 120, 0, 300),
     showHeadings: options.showHeadings ?? false,
-    headingsLimit: Math.round(clamp(options.headingsLimit ?? 3, 1, 6)),
+    headingsLimit: clampInteger(options.headingsLimit ?? 3, 1, 6),
     showTags: options.showTags ?? true,
     showUpdatedTime: options.showUpdatedTime ?? true,
-    // `createMatcher()` returns an *include* matcher, invert it so that
-    // `excludeMatcher(path)` is `true` when the path is excluded.
-    //
-    // `createMatcher()` 返回的是「包含」匹配器，这里取反，使
-    // `excludeMatcher(path)` 在路径被排除时返回 `true`。
     excludeMatcher: isIncluded ? path => !isIncluded(path) : null,
   }
 }

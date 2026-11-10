@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { RAW_TEXT_TAGS, removeElements, stripHtml } from '../features/feed/html.js'
-import { toPlainText } from '../features/feed/summary.js'
+import { RAW_TEXT_TAGS, removeElements, stripHtml } from '../utils/html.js'
+import { htmlToText } from '../utils/text.js'
 
 const isComponent = (name: string) => /^[A-Z]/.test(name) || name.includes('-')
 
@@ -65,20 +65,20 @@ describe('removeElements', () => {
   })
 })
 
-describe('toPlainText', () => {
+describe('htmlToText', () => {
   it('decodes entities and collapses whitespace', () => {
-    expect(toPlainText('<p>Hello&nbsp;<strong>world</strong></p>')).toBe('Hello world')
+    expect(htmlToText('<p>Hello&nbsp;<strong>world</strong></p>')).toBe('Hello world')
   })
 
   it('drops script and style content', () => {
-    expect(toPlainText('<script>var a = 1</script>Text<style>.a{}</style>')).toBe('Text')
+    expect(htmlToText('<script>var a = 1</script>Text<style>.a{}</style>')).toBe('Text')
   })
 
   it('separates block elements with a space', () => {
-    expect(toPlainText('<div>a<br>b</div>')).toBe('a b')
+    expect(htmlToText('<div>a<br>b</div>')).toBe('a b')
   })
 
   it('returns an empty string for empty input', () => {
-    expect(toPlainText('')).toBe('')
+    expect(htmlToText('')).toBe('')
   })
 })

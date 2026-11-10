@@ -10,14 +10,14 @@ import type {
 } from '../../../shared/index.js'
 import type { ResolvedFeedOptions } from './options.js'
 import { removeLeadingSlash } from '@vuepress/helper'
-import dayjs from 'dayjs'
-import { createMatcher, logger } from '../../utils/index.js'
-import { findCollection } from '../collections/index.js'
+import { clampInteger, createMatcher, htmlToText, logger } from '../../utils/index.js'
+import { findCollection, getLocaleCollections } from '../collections/index.js'
 import { isPublicContentPage } from '../content.js'
+import { resolvePageDates, resolvePageTags } from '../page-meta.js'
 import { toAbsoluteUrl } from './format.js'
 import { resolveChannelDir, resolveChannelLink, resolveCollectionFeed } from './options.js'
 import { sanitizeContent } from './sanitize.js'
-import { resolveSummary, toPlainText } from './summary.js'
+import { resolveSummary } from './summary.js'
 
 /**
  * Channel metadata, resolved without scanning the pages.
@@ -104,39 +104,39 @@ export interface FeedEntry {
 }
 
 /**
- * Read the collections of a locale, with the root fallback used by
- * `findCollection()`.
+ * Read the site metadata of a locale, falling back to the site level values.
  *
- * 读取某个语言环境的集合配置，并沿用 `findCollection()` 的根级回退规则。
+ * 读取某个语言环境的站点元信息，缺失时回退到站点级配置。
  *
- * @param options - Theme options / 主题配置
+ * @param siteData - Site data / 站点数据
  * @param locale - Route locale / 路由语言
  */
-export function getLocaleCollections(options: ThemeOptions, locale: string): ThemeCollectionItem[] {
-  const collections = options.locales?.[locale]?.collections
-  if (collections?.length)
-    return collections
+function resolveLocaleSiteData(siteData: SiteData, locale: string): {
+  title: string
+  description: string
+  lang: string
+} {
+  const site = siteData.locales?.[locale]
 
-  return locale === '/' ? options.collections ?? [] : collections ?? []
+  return {
+    title: site?.title ?? siteData.title ?? '',
+    description: site?.description ?? siteData.description ?? '',
+    lang: site?.lang ?? siteData.lang ?? '',
+  }
 }
 
-function localeSiteTitle(siteData: SiteData, locale: string): string {
-  return siteData.locales?.[locale]?.title ?? siteData.title ?? ''
-}
-
-function localeSiteDescription(siteData: SiteData, locale: string): string {
-  return siteData.locales?.[locale]?.description ?? siteData.description ?? ''
-}
-
-function localeLanguage(siteData: SiteData, locale: string): string {
-  return siteData.locales?.[locale]?.lang ?? siteData.lang ?? ''
-}
+/**
+ * Max number of entries of a channel.
+ *
+ * 频道条目的数量上限。
+ */
+const MAX_FEED_LIMIT = 200
 
 function clampLimit(value: number | undefined, fallback: number): number {
   const limit = value ?? fallback
   if (!Number.isFinite(limit))
     return fallback
-  return Math.min(Math.max(Math.round(limit), 1), 200)
+  return clampInteger(limit, 1, MAX_FEED_LIMIT)
 }
 
 function resolveCollectionLink(collection: ThemeCollectionItem): string {
@@ -161,7 +161,7 @@ function resolveAuthors(
   if (profile?.name)
     return [{ name: profile.name }]
 
-  const title = localeSiteTitle(siteData, locale)
+  const { title } = resolveLocaleSiteData(siteData, locale)
   return title ? [{ name: title }] : []
 }
 
@@ -181,15 +181,16 @@ function createDescriptor(
   },
 ): FeedChannelDescriptor {
   const channel = resolved.channel
-  const title = options.title || localeSiteTitle(siteData, locale)
+  const site = resolveLocaleSiteData(siteData, locale)
+  const title = options.title || site.title
 
   return {
     locale,
     link: options.link,
     dir: resolveChannelDir(options.link),
     title,
-    description: options.description || localeSiteDescription(siteData, locale) || title,
-    language: channel.language || localeLanguage(siteData, locale),
+    description: options.description || site.description || title,
+    language: channel.language || site.lang,
     formats: options.formats?.length ? options.formats : resolved.formats,
     limit: clampLimit(options.limit, resolved.limit),
     content: options.content ?? resolved.content,
@@ -225,6 +226,7 @@ export function resolveChannelDescriptors(
 ): FeedChannelDescriptor[] {
   const descriptors: FeedChannelDescriptor[] = []
   const usedDirs = new Set<string>()
+  const site = resolveLocaleSiteData(siteData, locale)
 
   const fallbackLink = locale.endsWith('/') ? locale : `${locale}/`
   let globalLink = resolveChannelLink(resolved.channel.link ?? locale, locale)
@@ -233,11 +235,10 @@ export function resolveChannelDescriptors(
     globalLink = fallbackLink
   }
 
-  const globalTitle = resolved.channel.title || localeSiteTitle(siteData, locale)
   descriptors.push(createDescriptor(siteData, options, locale, resolved, {
     link: globalLink,
-    title: globalTitle,
-    description: resolved.channel.description || localeSiteDescription(siteData, locale),
+    title: resolved.channel.title || site.title,
+    description: resolved.channel.description || site.description,
   }))
   usedDirs.add(descriptors[0].dir)
 
@@ -266,7 +267,7 @@ export function resolveChannelDescriptors(
     descriptors.push(createDescriptor(siteData, options, locale, resolved, {
       link,
       title,
-      description: config.description || resolved.channel.description || localeSiteDescription(siteData, locale),
+      description: config.description || resolved.channel.description || site.description,
       formats: config.formats,
       limit: config.limit,
       content: config.content,
@@ -329,50 +330,6 @@ export function matchesCollection(
   return createMatcher(include, exclude)(relative)
 }
 
-function parseDate(value: unknown): Date | undefined {
-  if (!value || value === '0000-00-00')
-    return undefined
-
-  if (value instanceof Date)
-    return Number.isNaN(value.getTime()) ? undefined : value
-
-  if (typeof value !== 'string' && typeof value !== 'number')
-    return undefined
-
-  const date = dayjs(value)
-  return date.isValid() ? date.toDate() : undefined
-}
-
-/**
- * Resolve the published and updated date of a page.
- *
- * 解析页面的发布时间与更新时间；没有任何日期时返回 `undefined`。
- *
- * @param page - Page / 页面
- */
-export function resolveEntryDates(page: Page<ThemePageData>): { published: Date, updated: Date } | undefined {
-  const git = page.data.git
-
-  const published = parseDate(page.frontmatter.createTime)
-    ?? parseDate(page.frontmatter.date)
-    ?? parseDate(git?.createdTime)
-    ?? parseDate(git?.updatedTime)
-
-  if (!published)
-    return undefined
-
-  return {
-    published,
-    updated: parseDate(git?.updatedTime) ?? published,
-  }
-}
-
-function resolveStringArray(value: unknown): string[] {
-  if (!Array.isArray(value))
-    return []
-  return value.filter((item): item is string => typeof item === 'string' && !!item)
-}
-
 function resolveEntryId(
   guid: string | undefined,
   url: string,
@@ -420,7 +377,7 @@ export function buildEntries(
   let skipped = 0
 
   for (const page of channel.pages) {
-    const dates = resolveEntryDates(page)
+    const dates = resolvePageDates(page)
     if (!dates) {
       skipped++
       continue
@@ -431,8 +388,8 @@ export function buildEntries(
     // An empty `feed:` key in YAML resolves to `null`, exclude it explicitly.
     const override = typeof feed === 'object' && feed !== null ? feed : undefined
     const url = toAbsoluteUrl(hostname, app.options.base, page.path)
-    const title = toPlainText(override?.title || page.title || page.path)
-    const tags = resolveStringArray(page.frontmatter.tags)
+    const title = htmlToText(override?.title || page.title || page.path)
+    const tags = resolvePageTags(page)
     const categories = (page.data.categoryList ?? []).map(item => item.name)
 
     entries.push({

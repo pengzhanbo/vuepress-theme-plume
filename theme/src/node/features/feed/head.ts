@@ -3,9 +3,9 @@ import type { FeedFormat, ThemeOptions, ThemePageData } from '../../../shared/in
 import type { FeedChannelDescriptor } from './collect.js'
 import type { ResolvedFeedOptions } from './options.js'
 import { getThemeOptions } from '../../options.js'
-import { findCollection } from '../collections/index.js'
-import { getLocaleCollections, isFeedPage, matchesCollection, resolveChannelDescriptors } from './collect.js'
-import { toAbsoluteUrl } from './format.js'
+import { findCollection, getLocaleCollections } from '../collections/index.js'
+import { isFeedPage, matchesCollection, resolveChannelDescriptors } from './collect.js'
+import { resolveFeedFilePath, toAbsoluteUrl } from './format.js'
 import { resolveCollectionFeed, resolveHostname, resolveLocaleFeedOptions } from './options.js'
 
 /**
@@ -151,7 +151,7 @@ export function injectFeedLinks(page: Page<ThemePageData>, env: ExtendsPageEnv):
       rel: 'alternate',
       type,
       title: channel.title,
-      href: toAbsoluteUrl(hostname, env.base, channel.dir ? `${channel.dir}/${filename}` : filename),
+      href: toAbsoluteUrl(hostname, env.base, resolveFeedFilePath(channel.dir, filename)),
     }])
   }
 }

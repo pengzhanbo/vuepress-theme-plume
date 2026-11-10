@@ -7,6 +7,7 @@ import type {
 } from '../../../shared/index.js'
 import { logger } from '../../utils/index.js'
 import { isEncryptPage } from '../encrypt.js'
+import { resolvePageTags } from '../page-meta.js'
 import { resolveExcerpt } from './excerpt.js'
 import { normalizePreviewPath, resolveLinkKey } from './key.js'
 import { type ResolvedLinkPreviewOptions, resolveLocaleLinkPreviewOptions } from './options.js'
@@ -109,25 +110,6 @@ function isPreviewSource(page: Page<ThemePageData>): boolean {
 }
 
 /**
- * Read the tags of a page.
- *
- * 读取页面标签。
- *
- * @param page - Target page / 目标页面
- */
-function resolvePageTags(page: Page<ThemePageData>): string[] | undefined {
-  const tags = (page.frontmatter as Record<string, unknown>).tags
-  if (!Array.isArray(tags))
-    return undefined
-
-  const result = tags
-    .filter((tag): tag is string => typeof tag === 'string')
-    .slice(0, MAX_TAGS)
-
-  return result.length ? result : undefined
-}
-
-/**
  * Create the preview item of a target page.
  *
  * 组装目标页的预览项。
@@ -159,8 +141,8 @@ export function createLinkPreviewItem(
   }
 
   if (options.showTags) {
-    const tags = resolvePageTags(page)
-    if (tags)
+    const tags = resolvePageTags(page, MAX_TAGS)
+    if (tags.length)
       item.tags = tags
   }
 

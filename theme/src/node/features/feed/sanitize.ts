@@ -1,5 +1,5 @@
+import { RAW_TEXT_TAGS, removeElements } from '../../utils/index.js'
 import { toAbsoluteUrl } from './format.js'
-import { RAW_TEXT_TAGS, removeElements } from './html.js'
 
 /**
  * Context used to absolute the URLs of a rendered page.

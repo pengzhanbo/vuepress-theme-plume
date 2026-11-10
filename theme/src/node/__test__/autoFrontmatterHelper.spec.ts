@@ -14,14 +14,18 @@ const hoisted = vi.hoisted(() => ({
   pinyin: undefined as undefined | ((str: string) => string),
 }))
 
-vi.mock('../utils/index.js', () => ({
-  get hasPinyin() {
-    return hoisted.hasPinyin
-  },
-  get getPinyin() {
-    return async () => hoisted.pinyin
-  },
-}))
+vi.mock('../utils/index.js', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('../utils/index.js')>()
+  return {
+    ...actual,
+    get hasPinyin() {
+      return hoisted.hasPinyin
+    },
+    get getPinyin() {
+      return async () => hoisted.pinyin
+    },
+  }
+})
 
 const {
   EXCLUDE,

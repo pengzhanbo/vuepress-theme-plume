@@ -8,7 +8,7 @@ import type {
   ThemeOptions,
 } from '../../../shared/index.js'
 import { isLinkWithProtocol } from '@vuepress/helper'
-import { logger, withBase } from '../../utils/index.js'
+import { clampInteger, logger, withBase } from '../../utils/index.js'
 
 /**
  * Supported feed formats, in the order used to resolve filename conflicts.
@@ -60,12 +60,6 @@ export interface ResolvedCollectionFeed {
   limit?: number
   content?: 'excerpt' | 'full'
   formats?: FeedFormat[]
-}
-
-function clamp(value: number, min: number, max: number): number {
-  if (!Number.isFinite(value))
-    return min
-  return Math.min(Math.max(value, min), max)
 }
 
 /**
@@ -146,8 +140,8 @@ export function normalizeFeedOptions(options: FeedOptions): ResolvedFeedOptions 
     perCollection: options.perCollection ?? false,
     includeDocCollections: options.includeDocCollections ?? false,
     content: options.content === 'full' ? 'full' : 'excerpt',
-    limit: Math.round(clamp(options.limit ?? 20, 1, 200)),
-    excerptLength: Math.round(clamp(options.excerptLength ?? 240, 0, 1000)),
+    limit: clampInteger(options.limit ?? 20, 1, 200),
+    excerptLength: clampInteger(options.excerptLength ?? 240, 0, 1000),
     formats,
     filename,
     channel: options.channel ?? {},

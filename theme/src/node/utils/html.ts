@@ -1,7 +1,7 @@
 /**
- * HTML scanning helpers for the feed pipeline.
+ * HTML scanning helpers.
  *
- * feed 流程使用的 HTML 扫描工具。
+ * HTML 扫描工具，供 feed 输出、纯文本转换等场景复用。
  */
 
 /**
@@ -10,6 +10,39 @@
  * 内容需要随元素一起丢弃的原始文本元素。
  */
 export const RAW_TEXT_TAGS: ReadonlySet<string> = new Set(['script', 'style'])
+
+/**
+ * Block level tags converted into a space when tags are stripped.
+ *
+ * 剥离标签时转换为空格的块级标签，避免相邻段落粘连。
+ */
+export const BLOCK_TAGS: ReadonlySet<string> = new Set([
+  'p',
+  'div',
+  'br',
+  'hr',
+  'li',
+  'ul',
+  'ol',
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'blockquote',
+  'pre',
+  'tr',
+  'td',
+  'th',
+  'table',
+  'section',
+  'article',
+  'figure',
+  'figcaption',
+  'dt',
+  'dd',
+])
 
 interface HtmlTag {
   /** Tag name with its original case / 保持原始大小写的标签名 */

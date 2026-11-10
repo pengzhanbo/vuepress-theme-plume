@@ -9,17 +9,15 @@ import type {
 } from '../../shared/index.js'
 import { attemptAsync, LRUCache } from '@pengzhanbo/utils'
 import { ensureEndingSlash, removeLeadingSlash } from '@vuepress/helper'
-import dayjs from 'dayjs'
 import pMap from 'p-map'
 import { fs, path } from 'vuepress/utils'
+import { EXCLUDE_PAGE_TYPES } from '../features/content.js'
 import { isEncryptPage } from '../features/encrypt.js'
+import { formatPostDate } from '../features/page-meta.js'
 import { getThemeOptions } from '../options.js'
-import { createMatcher, genTempCode, logger, perf, withBase, writeTemp } from '../utils/index.js'
+import { createMatcher, EXCERPT_SPLIT, genTempCode, logger, perf, withBase, writeTemp } from '../utils/index.js'
 
 const HEADING_RE = /<h(\d)[^>]*>.*?<\/h\1>/gi
-const EXCERPT_SPLIT = '<!-- more -->'
-
-const EXCLUDE_PAGE_TYPES = ['friends', 'posts', 'posts-tags', 'posts-archives', 'posts-categories']
 
 /**
  * 单篇文章处理的并发上限：`processPostData` 可能访问文件系统（`stat`），
@@ -69,7 +67,7 @@ async function processPostData(
     categoryList: page.data.categoryList,
     tags,
     sticky: page.frontmatter.sticky,
-    createTime: dayjs(new Date(date)).format('YYYY/MM/DD HH:mm:ss'),
+    createTime: formatPostDate(date),
     lang: page.lang,
     excerpt: '',
     cover: page.frontmatter.cover,

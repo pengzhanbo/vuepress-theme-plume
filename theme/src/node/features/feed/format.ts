@@ -1,3 +1,4 @@
+import { THEME_NAME } from '../../utils/index.js'
 /**
  * Shared helpers for feed serialization.
  *
@@ -9,7 +10,7 @@
  *
  * 写入每个 feed 的生成器名称。
  */
-export const FEED_GENERATOR = 'vuepress-theme-plume'
+export const FEED_GENERATOR = THEME_NAME
 
 /**
  * Theme homepage, used as the Atom generator URI.
@@ -33,6 +34,19 @@ export interface FeedRenderContext {
 }
 
 /**
+ * Resolve the output path of a feed file, relative to `dist`.
+ *
+ * 解析 feed 文件的输出路径（相对于 `dist`）。`app.dir.dest()` 只接受相对路径，
+ * 因此根语言环境的全局频道直接使用文件名。
+ *
+ * @param dir - Channel directory inside `dist` / 频道在 `dist` 内的目录
+ * @param filename - Output filename / 输出文件名
+ */
+export function resolveFeedFilePath(dir: string, filename: string): string {
+  return dir ? `${dir}/${filename}` : filename
+}
+
+/**
  * Resolve the public URL of a feed file.
  *
  * 解析 feed 文件的公开地址。
@@ -41,7 +55,7 @@ export interface FeedRenderContext {
  * @param ctx - Render context / 渲染上下文
  */
 export function resolveFeedFileUrl(dir: string, ctx: FeedRenderContext): string {
-  return toAbsoluteUrl(ctx.hostname, ctx.base, dir ? `${dir}/${ctx.filename}` : ctx.filename)
+  return toAbsoluteUrl(ctx.hostname, ctx.base, resolveFeedFilePath(dir, ctx.filename))
 }
 
 /**

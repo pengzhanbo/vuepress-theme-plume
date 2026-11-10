@@ -24,12 +24,16 @@ vi.mock('../options.js', () => ({
   getThemeOptions: () => hoisted.themeConfig,
 }))
 
-vi.mock('../utils/index.js', () => ({
-  logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
-  nanoid: () => `id${++hoisted.seq}`,
-  getPinyin: async () => null,
-  hasPinyin: false,
-}))
+vi.mock('../utils/index.js', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('../utils/index.js')>()
+  return {
+    ...actual,
+    logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+    nanoid: () => `id${++hoisted.seq}`,
+    getPinyin: async () => null,
+    hasPinyin: false,
+  }
+})
 
 const { genAutoFrontmatterRules } = await import('../features/autoFrontmatter/rules.js')
 const { generateMarkdownFrontmatter } = await import('../features/autoFrontmatter/generate.js')

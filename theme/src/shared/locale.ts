@@ -6,6 +6,7 @@ import type {
   CopyrightLicense,
   CopyrightOptions,
   FeedOptions,
+  LinkPreviewOptions,
   ProfileOptions,
   RelatedPostsOptions,
   ThemeCollections,
@@ -197,6 +198,20 @@ export interface ThemeLocale extends LocaleData {
    * @default false
    */
   relatedPosts?: boolean | RelatedPostsOptions
+
+  /**
+   * 配置内链悬浮预览
+   *
+   * - `true` 表示启用并使用默认配置
+   * - `false` 表示关闭
+   *
+   * 该配置按**语言环境**生效，可在 `locales` 中为不同语言单独设置
+   *
+   * Configure internal link previews. Enabled per locale.
+   *
+   * @default false
+   */
+  linkPreview?: boolean | LinkPreviewOptions
 
   /**
    * Configure feed subscriptions

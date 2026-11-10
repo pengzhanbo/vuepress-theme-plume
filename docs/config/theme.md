@@ -944,6 +944,37 @@ export default defineThemeConfig({
 
 更多说明见 [相关文章推荐](../guide/features/related-posts.md)。
 
+### linkPreview
+
+- **类型：** `boolean | LinkPreviewOptions`
+- **默认值：** `false`
+- **详情：** 是否启用正文内链的悬浮预览。鼠标停留在文档内链上时，展示目标页面的标题、摘要、标签与更新时间。
+
+  - `true` - 启用，使用默认配置
+  - `false` - 关闭
+  - `LinkPreviewOptions` - 启用，并自定义配置
+
+  预览数据在**构建期**生成并写入页面数据。
+
+  | 配置 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | `delay` | `number` | `150` | 鼠标停留多久后显示（ms） |
+  | `focusDelay` | `number` | `0` | 键盘聚焦后显示的延迟（ms） |
+  | `selector` | `string` | `'.vp-doc a[href]'` | 触发预览的链接选择器 |
+  | `showExcerpt` | `boolean` | `true` | 是否展示摘要 |
+  | `excerptLength` | `number` | `120` | 摘要最大字符数，`0` 表示不截断 |
+  | `showHeadings` | `boolean` | `false` | 是否展示目标页前几个标题 |
+  | `headingsLimit` | `number` | `3` | 标题数量（1–6） |
+  | `showTags` | `boolean` | `true` | 是否展示标签 |
+  | `showUpdatedTime` | `boolean` | `true` | 是否展示最后更新时间（依赖 git 插件） |
+  | `maxWidth` | `number` | `360` | 卡片最大宽度（px） |
+  | `exclude` | `string[]` | `[]` | 排除的目标路径，支持 glob |
+
+  该配置按**语言环境**生效，可在 `locales` 中为不同语言单独设置；
+  也可以在页面 frontmatter 中用 `linkPreview: false` 单独关闭。
+
+  更多说明见 [内链预览](../guide/features/link-preview.md)。
+
 ### footer
 
 - **类型：** `false | { message: string; copyright?: string }`

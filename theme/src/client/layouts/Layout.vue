@@ -6,10 +6,12 @@ import VPBulletin from '@theme/VPBulletin.vue'
 import VPContent from '@theme/VPContent.vue'
 import VPEncryptGlobal from '@theme/VPEncryptGlobal.vue'
 import VPFooter from '@theme/VPFooter.vue'
+import VPLinkPreview from '@theme/VPLinkPreview.vue'
 import VPLocalNav from '@theme/VPLocalNav.vue'
 import VPSidebar from '@theme/VPSidebar.vue'
 import VPSignDown from '@theme/VPSignDown.vue'
 import VPSkipLink from '@theme/VPSkipLink.vue'
+import { ClientOnly } from 'vuepress/client'
 import { registerWatchers, useData, useEncrypt, useSidebarControl } from '../composables/index.js'
 
 const {
@@ -221,6 +223,10 @@ registerWatchers()
       <slot name="bulletin-content" />
     </template>
   </VPBulletin>
+
+  <ClientOnly>
+    <VPLinkPreview />
+  </ClientOnly>
 </template>
 
 <style scoped>

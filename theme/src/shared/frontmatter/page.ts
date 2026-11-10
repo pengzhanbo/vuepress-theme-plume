@@ -73,6 +73,12 @@ export interface ThemePageFrontmatter extends ThemeNormalFrontmatter {
    */
   relatedPosts?: false | string[]
   /**
+   * Whether to show internal link previews on this page
+   *
+   * 当前页是否启用内链悬浮预览，`false` 关闭
+   */
+  linkPreview?: boolean
+  /**
    * Show sidebar, can also force specify which sidebar to show on current page
    *
    * 是否显示侧边栏，也可以强制指定当前页面显示哪个侧边栏

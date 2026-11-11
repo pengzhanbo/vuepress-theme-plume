@@ -1,3 +1,15 @@
+# [1.0.0-rc.216](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.215...v1.0.0-rc.216) (2026-11-11)
+
+### Bug Fixes
+
+* **theme:** fix incorrect bulletin rendering ([e8ad09c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/e8ad09c1b5ee430f9aa030f8ac01684b09c9ae19))
+
+### Features
+
+* **theme:** add feed support ([#1084](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1084)) ([02fc6a0](https://github.com/pengzhanbo/vuepress-theme-plume/commit/02fc6a0dc848a48d3dd43dcc040e511dc3c01216))
+* **theme:** add link preview support ([#1085](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1085)) ([56dda0d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/56dda0da06e544a75f805e41493a2e80e16329d4))
+* **theme:** add related posts support ([#1082](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1082)) ([5eccb89](https://github.com/pengzhanbo/vuepress-theme-plume/commit/5eccb894783b35df53c71f948881749097364370))
+
 # [1.0.0-rc.215](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.214...v1.0.0-rc.215) (2026-11-07)
 
 ### Bug Fixes

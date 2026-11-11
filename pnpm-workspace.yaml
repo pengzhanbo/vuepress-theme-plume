@@ -176,9 +176,9 @@ catalogs:
     mark.js: ^8.11.1
     markdown-it-cjk-friendly: ^3.0.0
     markdown-it-container: ^4.0.0
-    markmap-lib: ^0.18.12
-    markmap-toolbar: ^0.18.12
-    markmap-view: ^0.18.12
+    markmap-lib: ^0.18.13
+    markmap-toolbar: ^0.18.13
+    markmap-view: ^0.18.13
     minisearch: ^7.2.0
     nano-spawn: ^2.1.0
     nanoid: ^6.0.2

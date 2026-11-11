@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US">
+  <id>https://theme-plume.vuejs.press/en/blog/#feed</id>
+  <title>Blog</title>
+  <subtitle>Blog</subtitle>
+  <updated>2026-10-13T15:56:07+00:00</updated>
+  <link href="https://theme-plume.vuejs.press/en/blog/atom.xml" rel="self" type="application/atom+xml" />
+  <link href="https://theme-plume.vuejs.press/en/blog/" />
+  <generator uri="https://theme-plume.vuejs.press">vuepress-theme-plume</generator>
+  <author>
+    <name>Plume Theme</name>
+  </author>
+  <entry>
+    <id>https://theme-plume.vuejs.press/en/blog/dk58a4t2/</id>
+    <title>⚠️ 1.0.0-rc.165 Breaking Change Notice: Blog &amp; Notes Features Migrated to &quot;Collections&quot;</title>
+    <link href="https://theme-plume.vuejs.press/en/blog/dk58a4t2/" />
+    <published>2025-10-09T22:18:52+00:00</published>
+    <updated>2026-10-13T15:56:07+00:00</updated>
+    <summary type="text">This article is a historical version notice The blog / notes configuration mentioned in this article has been deprecated. Use collections for the new version; see the . Importan...</summary>
+    <category term="Breaking Change" />
+    <category term="Important Update" />
+    <category term="Update" />
+  </entry>
+  <entry>
+    <id>https://theme-plume.vuejs.press/en/article/ecxnxxd0/</id>
+    <title>How to Use Frontmatter</title>
+    <link href="https://theme-plume.vuejs.press/en/article/ecxnxxd0/" />
+    <published>2025-10-09T09:19:36+00:00</published>
+    <updated>2026-03-05T07:34:11+00:00</updated>
+    <summary type="text">Note This article translates parts of Introduction to YAML. It provides a basic explanation of how to use frontmatter in markdown files. If you have a good foundation in English...</summary>
+    <category term="Tutorials" />
+  </entry>
+  <entry>
+    <id>https://theme-plume.vuejs.press/en/article/xw0awouo/</id>
+    <title>english_blog</title>
+    <link href="https://theme-plume.vuejs.press/en/article/xw0awouo/" />
+    <published>2023-06-15T08:51:31+00:00</published>
+    <updated>2025-10-07T15:13:09+00:00</updated>
+    <category term="FE" />
+    <category term="Node" />
+  </entry>
+</feed>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>博客</title>
+    <link>https://theme-plume.vuejs.press/blog/</link>
+    <description>博客</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 13 Oct 2026 15:56:07 +0000</lastBuildDate>
+    <generator>vuepress-theme-plume</generator>
+    <atom:link href="https://theme-plume.vuejs.press/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>⚠️ 1.0.0-rc.165 破坏性更新说明：博客与笔记功能迁移至“集合”</title>
+      <link>https://theme-plume.vuejs.press/blog/dk58a4t2/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/blog/dk58a4t2/</guid>
+      <pubDate>Sun, 28 Sep 2025 22:18:52 +0000</pubDate>
+      <description>‼️ 本次更新为破坏性更新！博客与笔记功能已整体迁移至全新的“集合”架构。‼️ 设计动机：为什么引入“集合”？ 跳转至迁移指南 👇👇👇 背景与问题分析 主题最初仅支持博客功能，将 docs 源目录下的所有 Markdown 文件识别为博客文章。随着版本迭代，我们新增了笔记/知识库功能，默认将 notes 目录作为笔记根目录，并将其内容从博客列表中...</description>
+      <category>破坏性更新</category>
+      <category>重要更新</category>
+      <category>更新说明</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>1.0.0-rc.154 更新说明</title>
+      <link>https://theme-plume.vuejs.press/article/yw0dmwcm/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/yw0dmwcm/</guid>
+      <pubDate>Thu, 19 Jun 2025 18:10:18 +0000</pubDate>
+      <description>本篇为历史版本说明 本文提到的 blog / notes 配置已废弃，新版请使用 collections，详见 。 在本次更新中，主题移除了 vuepress-plugin-md-enhance 插件。 由该插件提供支持的图表 Chartjs ECharts mermaid flowchart plantuml 功能，迁移到 @vuepress/plu...</description>
+      <category>破坏性更新</category>
+      <category>更新说明</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>1.0.0-rc.144 更新说明</title>
+      <link>https://theme-plume.vuejs.press/article/f1khd14n/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/f1khd14n/</guid>
+      <pubDate>Mon, 28 Apr 2025 11:33:49 +0000</pubDate>
+      <description>本篇为历史版本说明 本文提到的 blog / notes 配置已废弃，新版请使用 collections，详见 。 当前版本包含了破坏性的更新。 Breaking Changes 移除 node18 支持 主题从 1.0.0-rc.144 开始，不再支持 node18 。最低支持的 node 版本为 20.6.0 。 图标语法 在主题 1.0.0-rc...</description>
+      <category>破坏性更新</category>
+      <category>更新说明</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>1.0.0-rc.120 更新说明</title>
+      <link>https://theme-plume.vuejs.press/article/r532eavn/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/r532eavn/</guid>
+      <pubDate>Sun, 08 Dec 2024 12:16:05 +0000</pubDate>
+      <description>本篇为历史版本说明 本文提到的 blog / notes 配置已废弃，新版请使用 collections，详见 。 当前版本包含了一些破坏性的更新，因此做一些说明。 vuepress-plugin-md-enhance 插件迁移 在 版本中， 主题完成了一部分功能到 vuepress 官方插件的迁移工作。但依然还有部分功能尚未完成。 在当前版本更新中，...</description>
+      <category>更新说明</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>1.0.0-rc.102 至 rc.103 更新说明</title>
+      <link>https://theme-plume.vuejs.press/article/6pa64b1n/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/6pa64b1n/</guid>
+      <pubDate>Tue, 24 Sep 2024 23:45:49 +0000</pubDate>
+      <description>本篇为历史版本说明 本文提到的 blog / notes 配置已废弃，新版请使用 collections，详见 。 这两个版本做了一些破坏性的更新，主要围绕以下两个方面： 适配 Vuepress Guidelines 更新 vuepress-plugin-md-enhance 插件，并迁移其中的部分功能，改用 VuePress 官方插件 适配 VueP...</description>
+      <category>更新说明</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>如何使用 frontmatter</title>
+      <link>https://theme-plume.vuejs.press/article/ecxnxxd0/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/ecxnxxd0/</guid>
+      <pubDate>Wed, 18 Sep 2024 09:19:36 +0000</pubDate>
+      <description>说明 本文翻译 Introduction to YAML 的部分内容。 用于简单说明如何在 markdown 文件中使用 frontmatter。 如果您具有良好的英语阅读基础，为避免翻译可能存在的内容失真，建议您阅读原文。 原文地址： https://dev.to/paulasantamaria/introduction-to-yaml-125f 。...</description>
+      <category>教程</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>照片类作品示例</title>
+      <link>https://theme-plume.vuejs.press/article/30995vcd/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/30995vcd/</guid>
+      <pubDate>Sat, 17 Aug 2024 14:30:23 +0000</pubDate>
+      <description>单列照片 双列照片 三列照片 不同尺寸设备适配 调整窗口大小以观察效果</description>
+      <category>示例</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>1.0.0-rc.73 至 rc.77 更新说明</title>
+      <link>https://theme-plume.vuejs.press/article/5vjshyi9/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/5vjshyi9/</guid>
+      <pubDate>Thu, 11 Jul 2024 09:18:48 +0000</pubDate>
+      <description>本篇为历史版本说明 本文提到的 blog / notes 配置已废弃，新版请使用 collections，详见 。 近期的这几个版本主要围绕 实现单独的主题配置文件 ，监听并支持热更新。 Breaking Changes 以下内置插件被移除： 移除 @vuepress-plume/plugin-blog-data 插件 移除 @vuepress-plu...</description>
+      <category>更新说明</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>图片水印</title>
+      <link>https://theme-plume.vuejs.press/article/i4cuuonn/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/i4cuuonn/</guid>
+      <pubDate>Thu, 11 Apr 2024 06:07:50 +0000</pubDate>
+      <description>概述 不过最需要强调的便是它的可读性。一份使用 Markdown 格式撰写的文件应该可以直接以纯文字发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响， 包括 Setext、atx、Textile、reStructuredText、Grutatext 和 EtText，然而最大...</description>
+      <category>示例</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>内容水印</title>
+      <link>https://theme-plume.vuejs.press/article/2z59hh8g/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/2z59hh8g/</guid>
+      <pubDate>Wed, 10 Apr 2024 20:28:32 +0000</pubDate>
+      <description>概述 不过最需要强调的便是它的可读性。一份使用 Markdown 格式撰写的文件应该可以直接以纯文字发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响， 包括 Setext、atx、Textile、reStructuredText、Grutatext 和 EtText，然而最大...</description>
+      <category>示例</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>全屏水印</title>
+      <link>https://theme-plume.vuejs.press/article/97s6ha1e/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/97s6ha1e/</guid>
+      <pubDate>Wed, 10 Apr 2024 20:28:18 +0000</pubDate>
+      <description>概述 不过最需要强调的便是它的可读性。一份使用 Markdown 格式撰写的文件应该可以直接以纯文字发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响， 包括 Setext、atx、Textile、reStructuredText、Grutatext 和 EtText，然而最大...</description>
+      <category>示例</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>Markdown 基础</title>
+      <link>https://theme-plume.vuejs.press/article/mcz1csb4/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/mcz1csb4/</guid>
+      <pubDate>Wed, 06 Mar 2024 22:43:52 +0000</pubDate>
+      <description>Markdown 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。 Markdown 的目标是实现「易读易写」。 概述 不过最需要强调的便是它的可读性。一份使用 Markdown 格式撰写的文件应该可以直接以纯文字发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有...</description>
+      <category>markdown</category>
+      <category>教程</category>
+      <category>示例</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>markdown 扩展</title>
+      <link>https://theme-plume.vuejs.press/article/mcgayb5w/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/mcgayb5w/</guid>
+      <pubDate>Tue, 05 Mar 2024 22:49:39 +0000</pubDate>
+      <description>标题锚点 标题会自动应用锚点。 自定义锚点 要为标题指定自定义锚点而不是使用自动生成的锚点，请向标题添加后缀： 这允许将标题链接为 #my-anchor，而不是默认的 #使用自定义锚点。 链接 内部和外部链接都会被特殊处理。 主题默认对每个 md 文件自动生成一个新的链接，并保存在对应的 md 文件的 frontmatter 的 permalink 中...</description>
+      <category>markdown</category>
+      <category>教程</category>
+      <category>示例</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>示例文章9</title>
+      <link>https://theme-plume.vuejs.press/article/z8zvx0ru/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/z8zvx0ru/</guid>
+      <pubDate>Fri, 01 Mar 2024 22:56:03 +0000</pubDate>
+      <category>示例</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>示例文章8</title>
+      <link>https://theme-plume.vuejs.press/article/m4gen76w/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/m4gen76w/</guid>
+      <pubDate>Fri, 01 Mar 2024 22:55:56 +0000</pubDate>
+      <category>示例</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>示例文章7</title>
+      <link>https://theme-plume.vuejs.press/article/5xbhl125/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/5xbhl125/</guid>
+      <pubDate>Fri, 01 Mar 2024 22:55:49 +0000</pubDate>
+      <category>示例</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>示例文章6</title>
+      <link>https://theme-plume.vuejs.press/article/v9fejej9/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/v9fejej9/</guid>
+      <pubDate>Fri, 01 Mar 2024 22:55:35 +0000</pubDate>
+      <category>示例</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>示例文章5</title>
+      <link>https://theme-plume.vuejs.press/article/2seng2ou/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/2seng2ou/</guid>
+      <pubDate>Fri, 01 Mar 2024 22:55:23 +0000</pubDate>
+      <category>示例</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>示例文章4</title>
+      <link>https://theme-plume.vuejs.press/article/qk81wscb/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/qk81wscb/</guid>
+      <pubDate>Fri, 01 Mar 2024 22:53:58 +0000</pubDate>
+      <category>示例</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>示例文章3</title>
+      <link>https://theme-plume.vuejs.press/article/9eh4d6ao/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/article/9eh4d6ao/</guid>
+      <pubDate>Fri, 01 Mar 2024 22:53:34 +0000</pubDate>
+      <category>示例</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+  </channel>
+</rss>

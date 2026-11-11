@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Plume Theme</title>
+    <link>https://theme-plume.vuejs.press/en/</link>
+    <description>Plume Theme</description>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 13 Oct 2026 15:56:07 +0000</lastBuildDate>
+    <generator>vuepress-theme-plume</generator>
+    <atom:link href="https://theme-plume.vuejs.press/en/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>⚠️ 1.0.0-rc.165 Breaking Change Notice: Blog &amp; Notes Features Migrated to &quot;Collections&quot;</title>
+      <link>https://theme-plume.vuejs.press/en/blog/dk58a4t2/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/en/blog/dk58a4t2/</guid>
+      <pubDate>Thu, 09 Oct 2025 22:18:52 +0000</pubDate>
+      <description>This article is a historical version notice The blog / notes configuration mentioned in this article has been deprecated. Use collections for the new version; see the . Importan...</description>
+      <category>Breaking Change</category>
+      <category>Important Update</category>
+      <category>Update</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>How to Use Frontmatter</title>
+      <link>https://theme-plume.vuejs.press/en/article/ecxnxxd0/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/en/article/ecxnxxd0/</guid>
+      <pubDate>Thu, 09 Oct 2025 09:19:36 +0000</pubDate>
+      <description>Note This article translates parts of Introduction to YAML. It provides a basic explanation of how to use frontmatter in markdown files. If you have a good foundation in English...</description>
+      <category>Tutorials</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>english_blog</title>
+      <link>https://theme-plume.vuejs.press/en/article/xw0awouo/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/en/article/xw0awouo/</guid>
+      <pubDate>Thu, 15 Jun 2023 08:51:31 +0000</pubDate>
+      <category>FE</category>
+      <category>Node</category>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+  </channel>
+</rss>

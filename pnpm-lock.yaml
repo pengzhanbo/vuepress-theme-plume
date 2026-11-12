@@ -289,8 +289,8 @@ catalogs:
       version: 9.5.1
   peer:
     '@iconify/json':
-      specifier: ^2.2.553
-      version: 2.2.553
+      specifier: ^2.2.554
+      version: 2.2.554
     '@mathjax/src':
       specifier: ^4.1.3
       version: 4.1.3
@@ -756,7 +756,7 @@ importers:
     dependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.553
+        version: 2.2.554
       '@lunariajs/core':
         specifier: catalog:dev
         version: 0.2.1(supports-color@8.1.1)
@@ -823,7 +823,7 @@ importers:
     dependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.553
+        version: 2.2.554
       '@vuepress/bundler-vite':
         specifier: catalog:vuepress
         version: 2.0.0-rc.31(@types/node@26.6.6)(@vue/compiler-sfc@3.5.44)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.107.1)(sass@1.107.1)(stylus@0.64.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)(yaml@2.9.1)
@@ -844,7 +844,7 @@ importers:
     dependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.553
+        version: 2.2.554
       '@vuepress/bundler-vite':
         specifier: catalog:vuepress
         version: 2.0.0-rc.31(@types/node@26.6.6)(@vue/compiler-sfc@3.5.44)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.107.1)(sass@1.107.1)(stylus@0.64.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)(yaml@2.9.1)
@@ -1182,7 +1182,7 @@ importers:
     devDependencies:
       '@iconify/json':
         specifier: catalog:peer
-        version: 2.2.553
+        version: 2.2.554
       '@pinyin-pro/data':
         specifier: catalog:peer
         version: 1.3.1
@@ -1602,8 +1602,8 @@ packages:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
 
-  '@iconify/json@2.2.553':
-    resolution: {integrity: sha512-wJiXvMppZufZiRtHNnvL/BfIQONajWDEbTmBPqWMFX2HSOLj54FGmhmp5M56ErYfyS39s9RKS1PhQOBiBy+L4w==}
+  '@iconify/json@2.2.554':
+    resolution: {integrity: sha512-HAiIOhC5LT1zCT3OXASrkISRGaWAECply3G8vFn6IycY3mUIDLlUXOI4JU7CBzQpr++yuM53aUyz9xjs/1WjiA==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -5538,24 +5538,29 @@ packages:
 
   markmap-common@0.18.9:
     resolution: {integrity: sha512-MV2HQO7IGIm3jWEJXSG8vmdpqf4WIDXcEyAEN52lrWR1qD53Zg5l81JwjXoZ2l0rY5mofKYqUFlmdM2fqTGMVg==}
+    deprecated: Replaced by @markmap/* in 1.0.0. See https://markmap.js.org/docs/migration
 
   markmap-html-parser@0.18.11:
     resolution: {integrity: sha512-+kC5C4sCGntGUhGvTa5VIb5rtM75cSy/VCy3tzZoNAcn2qZGdgYvljN0WvjsOzrEzp+V6XKgwzO0u2TdzNAiOg==}
+    deprecated: Replaced by @markmap/* in 1.0.0. See https://markmap.js.org/docs/migration
     peerDependencies:
       markmap-common: '*'
 
   markmap-lib@0.18.12:
     resolution: {integrity: sha512-WCA4OT+b71jYg0e4PS/6NRKqihod5OpPsvw1jEGHQwCtqQrY/yXXCeRyuL3axOS5cMy5pV8BSl4CwKfJU1LxJg==}
+    deprecated: Replaced by @markmap/* in 1.0.0. See https://markmap.js.org/docs/migration
     peerDependencies:
       markmap-common: '*'
 
   markmap-toolbar@0.18.12:
     resolution: {integrity: sha512-+MQ/95ywl/ZLhVKb0tKjRa3p/AuUSYsuJRs1MPHmkxcxBaumXgzLNHUUnLjKmsbNxeZUSQGe3QJaFyRQYcHZJg==}
+    deprecated: Replaced by @markmap/* in 1.0.0. See https://markmap.js.org/docs/migration
     peerDependencies:
       markmap-common: '*'
 
   markmap-view@0.18.12:
     resolution: {integrity: sha512-D8bzT1YwIC/8rkbwm6WzigVUrpOAGv7ioEGTi1Lj+Oo8gO5sAm6hhli27jvTgUcZ9TwBeIWZ+dSUP+AupYUGlQ==}
+    deprecated: Replaced by @markmap/* in 1.0.0. See https://markmap.js.org/docs/migration
     peerDependencies:
       markmap-common: '*'
 
@@ -7888,7 +7893,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@iconify/json@2.2.553':
+  '@iconify/json@2.2.554':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 2.0.3

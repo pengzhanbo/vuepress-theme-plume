@@ -171,8 +171,8 @@ catalogs:
       specifier: ^21.2.4
       version: 21.2.4
     '@lunariajs/core':
-      specifier: ^0.2.1
-      version: 0.2.1
+      specifier: ^0.3.0
+      version: 0.3.0
     '@pengzhanbo/eslint-config-vue':
       specifier: ^2.15.0
       version: 2.15.0
@@ -759,7 +759,7 @@ importers:
         version: 2.2.553
       '@lunariajs/core':
         specifier: catalog:dev
-        version: 0.2.1(supports-color@8.1.1)
+        version: 0.3.0(supports-color@8.1.1)
       '@simonwep/pickr':
         specifier: catalog:dev
         version: 1.10.3
@@ -1783,8 +1783,8 @@ packages:
   '@lit/reactive-element@2.1.2':
     resolution: {integrity: sha512-pbCDiVMnne1lYUIaYNN5wrwQXDtHaYtg7YEFPeW+hws6U47WeFvISGUWekPGKWOP1ygrs0ef0o1VJMk1exos5A==}
 
-  '@lunariajs/core@0.2.1':
-    resolution: {integrity: sha512-TSqlYWJM8XiiSLit7UlPI4hQq0gpX5g4f5L89/XsVvef+EPX3mp5J+JFFMN+M2Mzjof//duKx0xjGIKcNXiNQA==}
+  '@lunariajs/core@0.3.0':
+    resolution: {integrity: sha512-Bm9wNvUW1mvnTnGyDKkafUISKRSqbxn1qSENFHW9s14quyygLAPOH+L5bi688Cx69vpw0EtK1zgkoMKX5bnBjg==}
     engines: {node: '>=18.17.0'}
     hasBin: true
 
@@ -4780,8 +4780,8 @@ packages:
     resolution: {integrity: sha512-X6fBC0pmImC70gvX2zm56go9hx0MyoGVdG0tUCkg/D+Xnh5TJsOZ7iDbOdI3PvmtrDxnu1YdDufpK2QJX1Meqw==}
     engines: {node: '>=20.20.0'}
 
-  gettext-parser@9.1.1:
-    resolution: {integrity: sha512-ZLeqWPz9OMNrTgMuww0C22kkcNqis+e4059R94t7L7ERlZ2rUNpiDbaAUus+esBC6uBAQWbS9N+R5vJIJg//lw==}
+  gettext-parser@10.0.0:
+    resolution: {integrity: sha512-hELgK4pFrOrqFiUOo4GQ6kFg0ywhlEJXN6R22cgZ1dxzZj9LUXA2NnwmyoUqxLyunm0yrSPwd6fA5bNqjuvmYA==}
     engines: {node: '>=20'}
 
   giscus@1.6.0:
@@ -5538,24 +5538,29 @@ packages:
 
   markmap-common@0.18.9:
     resolution: {integrity: sha512-MV2HQO7IGIm3jWEJXSG8vmdpqf4WIDXcEyAEN52lrWR1qD53Zg5l81JwjXoZ2l0rY5mofKYqUFlmdM2fqTGMVg==}
+    deprecated: Replaced by @markmap/* in 1.0.0. See https://markmap.js.org/docs/migration
 
   markmap-html-parser@0.18.11:
     resolution: {integrity: sha512-+kC5C4sCGntGUhGvTa5VIb5rtM75cSy/VCy3tzZoNAcn2qZGdgYvljN0WvjsOzrEzp+V6XKgwzO0u2TdzNAiOg==}
+    deprecated: Replaced by @markmap/* in 1.0.0. See https://markmap.js.org/docs/migration
     peerDependencies:
       markmap-common: '*'
 
   markmap-lib@0.18.12:
     resolution: {integrity: sha512-WCA4OT+b71jYg0e4PS/6NRKqihod5OpPsvw1jEGHQwCtqQrY/yXXCeRyuL3axOS5cMy5pV8BSl4CwKfJU1LxJg==}
+    deprecated: Replaced by @markmap/* in 1.0.0. See https://markmap.js.org/docs/migration
     peerDependencies:
       markmap-common: '*'
 
   markmap-toolbar@0.18.12:
     resolution: {integrity: sha512-+MQ/95ywl/ZLhVKb0tKjRa3p/AuUSYsuJRs1MPHmkxcxBaumXgzLNHUUnLjKmsbNxeZUSQGe3QJaFyRQYcHZJg==}
+    deprecated: Replaced by @markmap/* in 1.0.0. See https://markmap.js.org/docs/migration
     peerDependencies:
       markmap-common: '*'
 
   markmap-view@0.18.12:
     resolution: {integrity: sha512-D8bzT1YwIC/8rkbwm6WzigVUrpOAGv7ioEGTi1Lj+Oo8gO5sAm6hhli27jvTgUcZ9TwBeIWZ+dSUP+AupYUGlQ==}
+    deprecated: Replaced by @markmap/* in 1.0.0. See https://markmap.js.org/docs/migration
     peerDependencies:
       markmap-common: '*'
 
@@ -6036,9 +6041,6 @@ packages:
   path-scurry@3.0.0:
     resolution: {integrity: sha512-1pTbQqH1wIwMi/eleQ5leFTTCkzFsPcgXNjwOA8YGGW/W4/kHT3dssE7Z6NH+zuqNLOzOB0uaD61yl7cAcVhgg==}
     engines: {node: 18 || 20 || >=22}
-
-  path-to-regexp@6.3.0:
-    resolution: {integrity: sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ==}
 
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
@@ -8088,14 +8090,13 @@ snapshots:
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.6.0
 
-  '@lunariajs/core@0.2.1(supports-color@8.1.1)':
+  '@lunariajs/core@0.3.0(supports-color@8.1.1)':
     dependencies:
       consola: 3.4.2
-      gettext-parser: 9.1.1
+      gettext-parser: 10.0.0
       jiti: 2.7.0
       neotraverse: 1.0.1
       p-all: 5.0.1
-      path-to-regexp: 6.3.0
       picomatch: 4.0.7
       simple-git: 4.0.2(supports-color@8.1.1)
       tinyglobby: 0.2.17
@@ -11464,7 +11465,7 @@ snapshots:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
-  gettext-parser@9.1.1:
+  gettext-parser@10.0.0:
     dependencies:
       content-type: 1.0.5
       encoding: 0.1.14
@@ -13026,8 +13027,6 @@ snapshots:
     dependencies:
       lru-cache: 11.5.3
       minipass: 7.1.3
-
-  path-to-regexp@6.3.0: {}
 
   pathe@2.0.3: {}
 

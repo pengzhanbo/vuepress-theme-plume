@@ -1,8 +1,5 @@
 /**
  * 打印基线样式。
- *
- * Print baseline. Hides navigation, sidebars, flyouts, back-to-top and the skip
- * link, and lets the main content fill the page width.
  */
 @media print {
   .vp-navbar,
@@ -31,5 +28,26 @@
   .vp-footer.has-sidebar .container {
     margin-right: 0 !important;
     margin-left: 0 !important;
+  }
+
+  html[data-reader-theme] {
+    --vp-c-bg: #fff;
+    --vp-c-bg-alt: #fff;
+    --vp-c-bg-soft: #fff;
+    --vp-c-bg-elv: #fff;
+    --vp-c-text-1: #000;
+    --vp-c-text-2: #000;
+    --vp-c-text-3: #000;
+    --vp-code-block-bg: #fff;
+  }
+
+  html[data-reader-width] .vp-doc-container {
+    --vp-doc-content-width: none;
+    --vp-doc-column-width: none;
+  }
+
+  .vp-reader-resume,
+  .vp-reader-focus-exit {
+    display: none !important;
   }
 }

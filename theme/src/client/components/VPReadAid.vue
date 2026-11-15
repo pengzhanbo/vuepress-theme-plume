@@ -8,7 +8,12 @@ const { isOutside, style, readAid } = useReadAid()
 
 <template>
   <Transition name="fade-in">
-    <div v-show="!isOutside" class="vp-read-aid" :class="{ [readAid]: true }" :style="style" />
+    <div
+      v-show="!!readAid && !isOutside"
+      class="vp-read-aid"
+      :class="readAid ?? undefined"
+      :style="style"
+    />
   </Transition>
 </template>
 

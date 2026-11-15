@@ -151,6 +151,7 @@ export const themeGuide: ThemeCollectionItem = defineCollection({
         'bulletin',
         'link-preview',
         'related-posts',
+        'reader',
         'encryption',
         'contributors',
         'changelog',

@@ -61,10 +61,7 @@ export function resolveThemeOptions(app: App, { locales, ...options }: ThemeOpti
         entries<ThemeOptions>({
           '/': {},
           ...locales,
-        }).map(([locale, opt]) => [
-          locale,
-          mergeOptions(options, opt),
-        ]),
+        }).map(([locale, opt]) => [locale, mergeOptions(options, opt)]),
       ),
     }),
   }

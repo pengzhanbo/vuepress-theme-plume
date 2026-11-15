@@ -400,6 +400,40 @@ interface NotFound {
 }
 ```
 
+## 阅读偏好（Reader）
+
+以下选项用于 [阅读体验](../guide/features/reader.md) 的界面文本，应配置在 `theme.locales` 中。
+
+| 配置 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `readerPreferencesText` | `string` | `'Reading'` | 导航栏入口的文本 |
+| `readerPanelLabel` | `string` | `'Reading settings'` | 阅读设置面板的标题 |
+| `readerWidthText` | `string` | `'Content width'` | 内容宽度分组的文本 |
+| `readerWidthNarrowText` | `string` | `'Narrow'` | 窄档位的文本 |
+| `readerWidthStandardText` | `string` | `'Standard'` | 标准档位的文本 |
+| `readerWidthWideText` | `string` | `'Wide'` | 宽档位的文本 |
+| `readerWidthFullText` | `string` | `'Full'` | 铺满档位的文本 |
+| `readerThemeText` | `string` | `'Background'` | 背景分组的文本 |
+| `readerThemeDefaultText` | `string` | `'Default'` | 默认背景的文本 |
+| `readerThemeWarmText` | `string` | `'Warm'` | 暖白背景的文本 |
+| `readerThemeSepiaText` | `string` | `'Sepia'` | 纸黄背景的文本 |
+| `readerThemeDarkDisabledText` | `string` | `'Not available in dark mode'` | 深色模式下背景不可用的提示 |
+| `readerBrandText` | `string` | `'Brand color'` | 品牌色分组的文本 |
+| `readerBrandDefaultText` | `string` | `'Default'` | 品牌色「默认」档位的文本 |
+| `readerAidText` | `string` | `'Reading aid'` | 阅读辅助线分组的文本 |
+| `readerAidOffText` | `string` | `'Off'` | 关闭阅读辅助线的文本 |
+| `readerAidMaskText` | `string` | `'Mask'` | 遮罩形态的文本 |
+| `readerAidLeftText` | `string` | `'Left'` | 左侧辅助线的文本 |
+| `readerAidRightText` | `string` | `'Right'` | 右侧辅助线的文本 |
+| `readerResetText` | `string` | `'Reset'` | 恢复默认偏好的文本 |
+| `readerResumeText` | `string` | `'Last read {percent}%'` | 继续阅读的提示，`{percent}` 会被替换为百分比 |
+| `readerResumeActionText` | `string` | `'Continue'` | 继续阅读按钮的文本 |
+| `readerResumeRestartText` | `string` | `'Start over'` | 从头开始按钮的文本 |
+| `readerFocusModeText` | `string` | `'Focus mode'` | 专注模式的文本 |
+| `readerFocusModeExitLabel` | `string` | `'Exit focus mode'` | 退出专注模式按钮的文本 |
+| `readerFocusModeEnterText` | `string` | `'Focus mode on, press Esc to exit'` | 进入专注模式时的无障碍播报 |
+| `readerProgressLabel` | `string` | `'Reading progress'` | 阅读进度条的无障碍名称 |
+
 ## 页面上下文菜单（PageContextMenu）
 
 以下选项用于 [`<PageContextMenu />`](./plugins/llms.md#组件) 组件的文本，应配置在 `theme.locales` 中。

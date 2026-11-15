@@ -8,6 +8,8 @@ import VPEncryptGlobal from '@theme/VPEncryptGlobal.vue'
 import VPFooter from '@theme/VPFooter.vue'
 import VPLinkPreview from '@theme/VPLinkPreview.vue'
 import VPLocalNav from '@theme/VPLocalNav.vue'
+import VPReaderFocusExit from '@theme/VPReaderFocusExit.vue'
+import VPReaderResume from '@theme/VPReaderResume.vue'
 import VPSidebar from '@theme/VPSidebar.vue'
 import VPSignDown from '@theme/VPSignDown.vue'
 import VPSkipLink from '@theme/VPSkipLink.vue'
@@ -226,6 +228,8 @@ registerWatchers()
 
   <ClientOnly>
     <VPLinkPreview />
+    <VPReaderResume />
+    <VPReaderFocusExit />
   </ClientOnly>
 </template>
 

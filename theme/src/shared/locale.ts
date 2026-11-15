@@ -8,6 +8,7 @@ import type {
   FeedOptions,
   LinkPreviewOptions,
   ProfileOptions,
+  ReaderPreferencesOptions,
   RelatedPostsOptions,
   ThemeCollections,
   ThemeNavItem,
@@ -181,12 +182,28 @@ export interface ThemeLocale extends LocaleData {
     }
 
   /**
-   * 配置阅读辅助功能
+   * 配置阅读辅助线。
    *
-   * 该配置将被合并到 collections 中的每个集合中
+   * 该配置将被合并到 collections 中的每个集合中。
+   *
    * @default false
+   * @deprecated 请改用 `readerPreferences.readAid`，阅读辅助线已并入阅读偏好，
+   * 且可以在客户端的面板中切换。此处配置仍会作为默认形态生效
+   * （`readerPreferences.readAid` 未指定默认形态时）。
    */
   readAid?: boolean | ThemeReadAid
+
+  /**
+   * 配置阅读体验（阅读进度、继续阅读、内容宽度、护眼背景、专注模式）
+   *
+   * - `true` 表示启用全部子项
+   * - `false` 表示完全关闭
+   * - 传入对象可逐项开关
+   *
+   * 该配置按**语言环境**生效，可在 `locales` 中为不同语言单独设置
+   * @default false
+   */
+  readerPreferences?: boolean | ReaderPreferencesOptions
 
   /**
    * 配置相关文章推荐
@@ -447,6 +464,195 @@ export interface ThemeLocaleText {
    * @default 'Related posts'
    */
   relatedPostsLabel?: string
+
+  /**
+   * 阅读偏好入口的文本
+   *
+   * @default 'Reading'
+   */
+  readerPreferencesText?: string
+
+  /**
+   * 阅读偏好面板的标题
+   *
+   * @default 'Reading settings'
+   */
+  readerPanelLabel?: string
+
+  /**
+   * 内容宽度分组的文本
+   *
+   * @default 'Content width'
+   */
+  readerWidthText?: string
+
+  /**
+   * 窄档位的文本
+   *
+   * @default 'Narrow'
+   */
+  readerWidthNarrowText?: string
+
+  /**
+   * 标准档位的文本
+   *
+   * @default 'Standard'
+   */
+  readerWidthStandardText?: string
+
+  /**
+   * 宽档位的文本
+   *
+   * @default 'Wide'
+   */
+  readerWidthWideText?: string
+
+  /**
+   * 铺满档位的文本
+   *
+   * @default 'Full'
+   */
+  readerWidthFullText?: string
+
+  /**
+   * 护眼背景分组的文本
+   *
+   * @default 'Background'
+   */
+  readerThemeText?: string
+
+  /**
+   * 默认背景的文本
+   *
+   * @default 'Default'
+   */
+  readerThemeDefaultText?: string
+
+  /**
+   * 暖白背景的文本
+   *
+   * @default 'Warm'
+   */
+  readerThemeWarmText?: string
+
+  /**
+   * 纸黄背景的文本
+   *
+   * @default 'Sepia'
+   */
+  readerThemeSepiaText?: string
+
+  /**
+   * 深色模式下护眼背景不可用的提示
+   *
+   * @default 'Not available in dark mode'
+   */
+  readerThemeDarkDisabledText?: string
+
+  /**
+   * 品牌色分组的文本
+   *
+   * @default 'Brand color'
+   */
+  readerBrandText?: string
+
+  /**
+   * 品牌色「默认」档位的文本
+   *
+   * @default 'Default'
+   */
+  readerBrandDefaultText?: string
+
+  /**
+   * 阅读辅助线分组的文本
+   *
+   * @default 'Reading aid'
+   */
+  readerAidText?: string
+
+  /**
+   * 关闭阅读辅助线的文本
+   *
+   * @default 'Off'
+   */
+  readerAidOffText?: string
+
+  /**
+   * 遮罩形态的文本
+   *
+   * @default 'Mask'
+   */
+  readerAidMaskText?: string
+
+  /**
+   * 左侧辅助线的文本
+   *
+   * @default 'Left'
+   */
+  readerAidLeftText?: string
+
+  /**
+   * 右侧辅助线的文本
+   *
+   * @default 'Right'
+   */
+  readerAidRightText?: string
+
+  /**
+   * 恢复默认偏好的文本
+   *
+   * @default 'Reset'
+   */
+  readerResetText?: string
+
+  /**
+   * 继续阅读提示的文本，`{percent}` 会被替换为百分比
+   *
+   * @default 'Last read {percent}%'
+   */
+  readerResumeText?: string
+
+  /**
+   * 继续阅读按钮的文本
+   *
+   * @default 'Continue'
+   */
+  readerResumeActionText?: string
+
+  /**
+   * 从头开始按钮的文本
+   *
+   * @default 'Start over'
+   */
+  readerResumeRestartText?: string
+
+  /**
+   * 专注模式的文本
+   *
+   * @default 'Focus mode'
+   */
+  readerFocusModeText?: string
+
+  /**
+   * 退出专注模式按钮的文本
+   *
+   * @default 'Exit focus mode'
+   */
+  readerFocusModeExitLabel?: string
+
+  /**
+   * 进入专注模式时的无障碍播报
+   *
+   * @default 'Focus mode on, press Esc to exit'
+   */
+  readerFocusModeEnterText?: string
+
+  /**
+   * 阅读进度条的无障碍名称
+   *
+   * @default 'Reading progress'
+   */
+  readerProgressLabel?: string
 
   /**
    * 侧边栏 outline 文本

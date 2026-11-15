@@ -9,7 +9,6 @@ import VPEncrypt from '@theme/VPEncrypt.vue'
 import VPReadAid from '@theme/VPReadAid.vue'
 import VPRelatedPosts from '@theme/VPRelatedPosts.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
-import { useMediaQuery } from '@vueuse/core'
 import { computed, nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
 import {
@@ -19,13 +18,12 @@ import {
   useHeaders,
   useLayout,
   usePostsPageData,
+  useReaderPreferences,
   useSidebarControl,
 } from '../composables/index.js'
 
-const { page, theme, frontmatter, collection } = useData()
+const { page, theme, frontmatter } = useData()
 const route = useRoute()
-
-const mobile = useMediaQuery('(max-width: 768px)')
 
 const { hasSidebar, hasAside, leftAside } = useLayout()
 const { isSidebarCollapsed } = useSidebarControl()
@@ -34,7 +32,9 @@ const headers = useHeaders()
 const { isPageDecrypted } = useEncrypt()
 const { mode: contributorsMode } = useContributors()
 
-const enableReadAid = computed(() => collection.value?.readAid ?? theme.value.readAid ?? false)
+// 宽度、阅读辅助线与专注模式在小屏上禁用
+const { aid, mobile } = useReaderPreferences()
+const enableReadAid = computed(() => aid.value !== null)
 
 const enableAside = computed(() => {
   if (!hasAside.value)
@@ -187,6 +187,9 @@ watch(
 
 <style scoped>
 .vp-doc-container {
+  --vp-doc-content-width: 788px;
+  --vp-doc-column-width: var(--vp-doc-column-width-base, 752px);
+
   width: 100%;
   padding: 32px 24px 96px;
 }
@@ -266,7 +269,7 @@ watch(
 }
 
 .vp-doc-container.has-aside .content-container {
-  max-width: 788px;
+  max-width: var(--vp-doc-content-width);
 }
 
 @media (min-width: 768px) {
@@ -287,7 +290,7 @@ watch(
   }
 
   .vp-doc-container:not(.has-sidebar) .content {
-    max-width: 752px;
+    max-width: var(--vp-doc-column-width);
   }
 }
 
@@ -303,12 +306,20 @@ watch(
 }
 
 @media (min-width: 1440px) {
+  .vp-doc-container {
+    --vp-doc-column-width-base: 884px;
+  }
+
   .vp-doc-container:not(.has-sidebar) .content {
-    max-width: 884px;
+    max-width: var(--vp-doc-column-width);
+  }
+
+  .vp-doc-container.is-posts:not(.has-sidebar.has-aside) {
+    --vp-doc-column-width-base: 985px;
   }
 
   .vp-doc-container.is-posts:not(.has-sidebar.has-aside) .content {
-    max-width: 985px;
+    max-width: var(--vp-doc-column-width);
   }
 
   .vp-doc-container:not(.has-sidebar) .container {

@@ -48,7 +48,7 @@ export interface ThemeConfig extends ThemeBaseData {
  * 包含所有功能的完整主题选项
  */
 export interface ThemeOptions extends ThemeConfig, ThemeFeatureOptions,
-  Omit<ThemeData, 'changelog' | 'contributors' | 'blog'> {
+  Omit<ThemeData, 'changelog' | 'contributors' | 'blog' | 'locales' | 'readerPreferences'> {
 
   /**
    * Theme built-in plugins configuration

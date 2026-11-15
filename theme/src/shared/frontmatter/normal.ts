@@ -58,6 +58,15 @@ export type ThemeNormalFrontmatter = PageFrontmatter<{
   backToTop?: boolean
 
   /**
+   * Whether to enable reading progress / resume on this page
+   *
+   * 当前页是否启用阅读进度与继续阅读，`false` 关闭（不影响全局偏好）
+   *
+   * @default true
+   */
+  reader?: boolean
+
+  /**
    * Show down arrow sign
    *
    * 是否显示向下箭头标志

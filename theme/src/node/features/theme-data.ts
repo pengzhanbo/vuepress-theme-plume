@@ -4,6 +4,7 @@ import { deepClone, isBoolean, isPlainObject, objectEntries } from '@pengzhanbo/
 import { ensureEndingSlash, removeEndingSlash } from '@vuepress/helper'
 import { getImageOriginalSize, resolveImagePath } from 'vuepress-plugin-md-power'
 import { withBase } from '../utils/index.js'
+import { resolveLocaleReaderOptions, resolveReaderOptions } from './reader/index.js'
 
 const EXCLUDE_LIST: (keyof ThemeOptions)[] = [
   'hostname',
@@ -33,6 +34,7 @@ const EXCLUDE_LIST: (keyof ThemeOptions)[] = [
   'copyCode',
   'llmstxt',
   'feed',
+  'readerPreferences',
 ]
 // 过滤不需要出现在多语言配置中的字段
 const EXCLUDE_LOCALE_LIST: (keyof ThemeOptions)[] = [...EXCLUDE_LIST, 'blog', 'appearance']
@@ -51,6 +53,8 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
 
   themeData.changelog = !!options.changelog
 
+  themeData.readerPreferences = resolveReaderOptions(options.readerPreferences)
+
   if (isPlainObject(options.bulletin)) {
     const { enablePage: _, ...opt } = options.bulletin
     themeData.bulletin = opt
@@ -66,6 +70,8 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
       if (!EXCLUDE_LOCALE_LIST.includes(key as keyof ThemeOptions))
         themeData.locales![locale][key] = deepClone(value) as any
     })
+
+    themeData.locales![locale].readerPreferences = resolveLocaleReaderOptions(options, locale)
 
     if (isPlainObject(opt.bulletin)) {
       const { enablePage: _, ...rest } = opt.bulletin

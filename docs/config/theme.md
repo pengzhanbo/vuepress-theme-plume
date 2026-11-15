@@ -866,14 +866,217 @@ export default defineThemeConfig({
 
 ### readAid
 
+::: warning 已弃用
+阅读辅助线已并入 [`readerPreferences.readAid`](#readerpreferences)，并且可以在客户端的面板中切换。
+此处配置仍然生效，但只作为 `readerPreferences.readAid` 未配置时的默认值。
+:::
+
 - **类型：** `boolean | 'mask' | 'left' | 'right'`
 - **默认值：** `false`
 - **详情：** 是否显示阅读辅助线，（辅助线可帮助用户视觉聚焦到鼠标所在区域）
 
   - `false` - 不显示
+  - `true` / `'left'` - 显示左侧辅助线
   - `'mask'` - 显示遮罩
-  - `'left'` - 显示左侧辅助线
   - `'right'` - 显示右侧辅助线
+
+### readerPreferences
+
+- **类型：** `boolean | ReaderPreferencesOptions`
+- **默认值：** `false`
+- **详情：** 配置阅读偏好，包括继续阅读、内容宽度、护眼背景、阅读辅助线与专注模式。
+
+  - `true` - 启用全部子项，并使用默认配置
+  - `false` - 完全关闭
+  - `ReaderPreferencesOptions` - 启用并逐项开关
+
+  该配置按**语言环境**生效，可以在 `locales` 中为不同语言单独设置。
+
+  | 配置 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | `width` | `false \| { presets }` | `true` | 内容宽度档位，`presets` 默认 `['narrow', 'wide', 'full']` |
+  | `theme` | `false \| { presets }` | `true` | 护眼背景调色板，`presets` 默认 `['default', 'warm', 'sepia']` |
+  | `brand` | `false \| { presets }` | `false` | 品牌色调色板，作用于 `--vp-c-brand-*` |
+  | `readAid` | `false \| 'mask' \| 'left' \| 'right' \| { modes, default }` | `true` | 阅读辅助线，默认关闭、可在面板中切换 |
+  | `focusMode` | `boolean` | `true` | 是否启用专注模式 |
+  | `resume` | `false \| ReaderResumeOptions` | `true` | 继续阅读 |
+  | `storagePrefix` | `string` | `'plume'` | `localStorage` 键前缀 |
+
+  宽度、阅读辅助线与专注模式是**桌面专属**控件：视口 `≤768px` 时会被禁用并从面板中隐藏（直接使用默认值），
+  护眼背景不受影响。详见 [小屏幕](../guide/features/reader.md#小屏幕)。
+
+  `ReaderResumeOptions`：
+
+  | 配置 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | `prompt` | `boolean` | `true` | `false` 表示只记录位置、不弹出提示 |
+  | `ttl` | `number` | `90` | 记录有效期（天），限制在 1–365 |
+  | `max` | `number` | `300` | 最多保留的记录数，限制在 10–1000 |
+  | `minPercent` | `number` | `0.05` | 低于该进度不提示，取值 `0`–`1` |
+
+  **标准档位不产生任何 CSS**：`width` 的 `standard` 与 `theme` 的 `default` 都是「不写属性」的状态，
+  因此默认值与升级前逐像素一致。
+
+  内容宽度的实际取值：**窄 ≈ 640px**、**标准 = 主题原本的宽度**、**宽 ≈ 1000px**、**铺满 = 视口宽度**。
+  宽档并不是简单地放开 `max-width`——带侧边栏与右侧目录时，页面宽度已被
+  `--vp-layout-max-width`（1440px）限制，正文最多只有约 864px，与标准的 788px 相差无几；
+  因此宽档会同时收窄页面留白与右侧目录、把外壳上限放宽到 1680px，并用 1000px 兜住行长。
+  需要自定义时覆盖
+  `html[data-reader-width="wide"] .vp-doc-container .content-container` 的 `max-width` 即可。
+
+  **铺满**（`full`）把外壳上限完全解除，正文宽度直接由视口决定：
+  1920px 屏幕上带侧边栏与目录时约 1344px，纯文章页约 1616px。
+  它适合愿意接受长行的大屏读者，中小屏上与宽档没有区别。
+  若不想提供这个档位，把它从 `presets` 中移除即可：
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      readerPreferences: {
+        width: { presets: ['narrow', 'wide'] },
+      },
+    }),
+  })
+  ```
+
+  背景与品牌色都支持**自定义调色板**：每个调色板是一组一起生效的 CSS 自定义属性，
+  面板中以纯色块展示，`default`（斜线色块）表示沿用主题令牌。`tokens` 的键可以省略 `--` 前缀：
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      readerPreferences: {
+        theme: {
+          presets: [
+            'default',
+            'warm',
+            {
+              name: 'forest',
+              label: '护眼绿',
+              tokens: {
+                'vp-c-bg': '#eef5ec',
+                'vp-c-bg-alt': '#e6efe3',
+                'vp-c-text-1': '#2b3529',
+              },
+            },
+          ],
+        },
+        brand: {
+          presets: [
+            {
+              name: 'ocean',
+              label: '海蓝',
+              tokens: {
+                'vp-c-brand-1': '#0e7490',
+                'vp-c-brand-2': '#0891b2',
+                'vp-c-brand-3': '#06b6d4',
+              },
+            },
+          ],
+        },
+      },
+    }),
+  })
+  ```
+
+  - `name` 只能是字母、数字、`-`、`_`，会作为 `html[data-reader-theme="<name>"]` 的属性值；
+  - `label` 用作色块的 `title` 与无障碍名称，缺省使用 `name`；
+  - `color` 是色块颜色，缺省取 `tokens` 中的 `--vp-c-bg`（背景）或 `--vp-c-brand-1`（品牌色）；
+  - 背景色在深色模式下依旧禁用；品牌色在深浅两种模式下都生效；
+  - 自定义调色板的样式会在构建时注入 `<head>`，首帧即生效；开发服务器下由客户端补注入。
+
+  **`label` 的多语言**：不需要（也不应该）在每个语言里重复整份 `tokens`。语言级的 `presets`
+  会按 `name` 与主题级合并——同名条目只覆盖它声明的字段（通常只有 `label`），`tokens` 沿用主题级；
+  只存在于语言级的名字会追加到列表末尾。
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      // 主题级：只写一份颜色
+      readerPreferences: {
+        theme: {
+          presets: [
+            {
+              name: 'forest',
+              tokens: { 'vp-c-bg': '#eef5ec', 'vp-c-bg-alt': '#e6efe3' },
+            },
+          ],
+        },
+      },
+      locales: {
+        '/en/': {
+          // 语言级：只补 label
+          readerPreferences: {
+            theme: { presets: [{ name: 'forest', label: 'Forest' }] },
+          },
+        },
+      },
+    }),
+  })
+  ```
+
+  ::: tip
+  语言级 `presets` 只用于覆盖，不能用来裁剪档位；要减少内置档位，请在主题级配置里调整。
+  :::
+
+  **阅读辅助线**跟随鼠标高亮当前段落：`mask` 为遮罩，`left` / `right` 为左右辅助线。
+  它默认**关闭**，读者在面板中选择后才生效；传入形态字符串（如 `'left'`）表示以该形态为默认值。
+  需要限定可选项时使用对象形式：
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      readerPreferences: {
+        readAid: { modes: ['mask', 'left'], default: 'mask' },
+      },
+    }),
+  })
+  ```
+
+  旧的主题级 / 集合级 `readAid` 配置仍然有效，仅作为未配置 `readerPreferences.readAid` 时的默认值。
+
+  示例：全部开启
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      readerPreferences: true,
+    }),
+  })
+  ```
+
+  示例：只开启宽度与背景
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      readerPreferences: {
+        width: { presets: ['wide'] },
+        theme: true,
+        focusMode: false,
+        resume: false,
+      },
+    }),
+  })
+  ```
+
+  示例：只开启继续阅读
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      readerPreferences: {
+        width: false,
+        theme: false,
+        readAid: false,
+        focusMode: false,
+        resume: { ttl: 30, minPercent: 0.1 },
+      },
+    }),
+  })
+  ```
+
+  更多说明见 [阅读偏好](../guide/features/reader.md)。
 
 ### relatedPosts
 

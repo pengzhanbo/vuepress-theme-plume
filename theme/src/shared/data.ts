@@ -1,5 +1,5 @@
 import type { LocaleConfig } from 'vuepress'
-import type { LastUpdatedOptions } from './features/index.js'
+import type { LastUpdatedOptions, ResolvedReaderOptions } from './features/index.js'
 import type { ThemeLocale, ThemeLocaleDeprecated, ThemeLocaleText } from './locale.js'
 
 /**
@@ -12,13 +12,34 @@ import type { ThemeLocale, ThemeLocaleDeprecated, ThemeLocaleText } from './loca
 export type ThemeLocaleData = ThemeLocale & ThemeLocaleDeprecated & ThemeLocaleText
 
 /**
+ * Theme locale data injected to the client.
+ *
+ * 注入到客户端的主题本地化数据。
+ */
+export interface ThemeInjectedLocaleData extends Omit<ThemeLocaleData, 'readerPreferences'> {
+  /**
+   * Resolved reader preferences, `null` when the feature is disabled
+   *
+   * 已解析的阅读偏好，功能关闭时为 `null`
+   */
+  readerPreferences?: ResolvedReaderOptions | null
+}
+
+/**
  * Theme data injected to client
  * Contains all theme configuration options
  *
  * 主题注入到客户端的数据
  * 包含所有主题配置选项
  */
-export interface ThemeData extends ThemeBaseData, ThemeLocaleData {
+export interface ThemeData extends Omit<ThemeBaseData, 'locales' | 'readerPreferences'>, ThemeInjectedLocaleData {
+  /**
+   * Resolved locale data
+   *
+   * 已解析的多语言数据
+   */
+  locales?: LocaleConfig<ThemeInjectedLocaleData>
+
   /**
    * Deployment site hostname
    * Used for generating sitemap, SEO, etc.

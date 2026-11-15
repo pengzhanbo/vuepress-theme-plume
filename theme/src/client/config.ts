@@ -7,6 +7,7 @@ import {
   setupEncrypt,
   setupHeaders,
   setupLinkPreview,
+  setupReaderPreferences,
   setupSidebar,
   setupThemeData,
   setupWatermark,
@@ -29,6 +30,7 @@ export default defineClientConfig({
     setupSidebar()
     setupHeaders()
     setupEncrypt()
+    setupReaderPreferences()
     setupWatermark()
     setupLinkPreview()
   },

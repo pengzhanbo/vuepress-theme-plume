@@ -3,6 +3,7 @@ import path from 'node:path'
 import { defineThemeConfig } from 'vuepress-theme-plume'
 import { enCollections, zhCollections } from './collections/index.js'
 import { enNavbar, zhNavbar } from './navbar.js'
+import { enReaderPreferences, readerPreferences } from './reader.js'
 
 export default defineThemeConfig({
   logo: '/plume.png',
@@ -15,9 +16,9 @@ export default defineThemeConfig({
     organization: 'pengzhanbo',
   },
 
-  readAid: 'left',
-
   linkPreview: { showHeadings: true },
+
+  readerPreferences,
 
   transition: { appearance: 'circle-clip' },
 
@@ -39,6 +40,7 @@ export default defineThemeConfig({
     '/en/': {
       navbar: enNavbar,
       collections: enCollections,
+      readerPreferences: enReaderPreferences,
     },
   },
 

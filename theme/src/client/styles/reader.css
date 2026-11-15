@@ -1,0 +1,186 @@
+/**
+ * Reader preferences.
+ *
+ * Content width presets, reading background tokens and the focus mode.
+ * Every rule is scoped by a `data-reader-*` attribute on `<html>`, so the
+ * `standard` / `default` states produce no CSS at all.
+ *
+ * 阅读偏好。
+ *
+ * 内容宽度档位、护眼背景令牌与专注模式。
+ * 所有规则都由 `<html>` 上的 `data-reader-*` 属性限定，
+ * 因此 `standard` / `default` 状态不产生任何 CSS。
+ */
+
+/**
+ * Content width
+ *
+ * 内容宽度
+ *
+ * The layout owns the widths through two variables: `--vp-doc-content-width`
+ * caps `.content-container` (only when the page has an aside) and
+ * `--vp-doc-column-width` caps the outer `.content` (only when the page has no
+ * sidebar). `standard` writes neither of them.
+ *
+ * 布局用两个变量控制宽度：`--vp-doc-content-width` 限制 `.content-container`
+ * （仅带 aside 时），`--vp-doc-column-width` 限制外层 `.content`（仅无侧边栏时）。
+ * `standard` 两者都不写。
+ * -------------------------------------------------------------------------- */
+
+html[data-reader-width="narrow"] .vp-doc-container {
+  --vp-doc-content-width: 640px;
+  --vp-doc-column-width: 640px;
+}
+
+html[data-reader-width="wide"] {
+  --vp-layout-max-width: min(100%, 1680px);
+}
+
+html[data-reader-width="wide"] .vp-doc-container {
+  --vp-doc-content-width: 1000px;
+  --vp-doc-column-width: none;
+
+  padding-inline: 16px;
+}
+
+html[data-reader-width="wide"] .vp-doc-container .content-container {
+  max-width: 1000px;
+  margin-inline: auto;
+}
+
+html[data-reader-width="wide"] .vp-doc-container:not(.has-sidebar) .container {
+  max-width: 1280px;
+}
+
+@media (min-width: 960px) {
+  html[data-reader-width="wide"] .vp-doc-container .content {
+    padding-inline: 16px;
+  }
+}
+
+@media (min-width: 1280px) {
+  html[data-reader-width="wide"] .vp-doc-container.has-aside .aside {
+    max-width: 240px;
+    padding-left: 16px;
+  }
+}
+
+/**
+ * 铺满：解除外壳宽度上限。
+ *
+ * 1440px 的上限挂在 `--vp-layout-max-width` 上，布局中所有偏移都写成
+ * `calc((100% - var(--vp-layout-max-width)) / 2 + ...)`。
+ * 因此把它设为 `100%` 时，这些偏移会自动收敛到常量部分（侧边栏宽度、32px 边距），
+ * 也就是「没有外边距」。用 `100%` 而非 `100vw` 可以把滚动条宽度计算在内，
+ * 既不会出现横向滚动条，导航栏 / 侧边栏 / 页脚也保持对齐。
+ * -------------------------------------------------------------------------- */
+
+html[data-reader-width="full"] {
+  --vp-layout-max-width: 100%;
+}
+
+html[data-reader-width="full"] .vp-doc-container {
+  --vp-doc-content-width: none;
+  --vp-doc-column-width: none;
+
+  padding-inline: 16px;
+}
+
+html[data-reader-width="full"] .vp-doc-container .content-container {
+  /* 铺满：正文不再设上限，宽度完全由视口决定 */
+  max-width: none;
+}
+
+html[data-reader-width="full"] .vp-doc-container:not(.has-sidebar) .container {
+  max-width: none;
+}
+
+@media (min-width: 960px) {
+  html[data-reader-width="full"] .vp-doc-container .content {
+    padding-inline: 16px;
+  }
+}
+
+@media (min-width: 1280px) {
+  html[data-reader-width="full"] .vp-doc-container.has-aside .aside {
+    max-width: 240px;
+    padding-left: 16px;
+  }
+}
+
+html[data-reader-width="narrow"] .vp-doc-container.has-sidebar:not(.has-aside) .content-container {
+  max-width: var(--vp-doc-content-width);
+  margin-inline: auto;
+}
+
+/**
+ * 护眼背景
+ *
+ * 只覆盖颜色令牌，绝不改动排版。深色模式在运行时互斥（根本不写 `data-reader-theme`），
+ * 而不是靠 CSS 兜底——两者特异性相同，只能靠源码顺序决胜负，太脆弱。
+ * -------------------------------------------------------------------------- */
+
+html[data-reader-theme="warm"] {
+  --vp-c-bg: #fbf8f3;
+  --vp-c-bg-alt: #f5f1ea;
+  --vp-c-bg-soft: #f3efe7;
+  --vp-c-bg-elv: #fffdf9;
+  --vp-c-text-1: #37312a;
+  --vp-c-text-2: rgb(55 49 42 / 0.78);
+  --vp-c-text-3: rgb(55 49 42 / 0.6);
+  --vp-c-divider: #e8e2d6;
+  --vp-c-gutter: #e6e0d4;
+  --vp-code-block-bg: #f6f2ea;
+  --vp-code-line-highlight-color: rgb(240 233 220 / 0.7);
+}
+
+html[data-reader-theme="sepia"] {
+  --vp-c-bg: #f4ecd8;
+  --vp-c-bg-alt: #efe6cf;
+  --vp-c-bg-soft: #ece2c9;
+  --vp-c-bg-elv: #f8f2e1;
+  --vp-c-text-1: #3b3226;
+  --vp-c-text-2: rgb(59 50 38 / 0.78);
+  --vp-c-text-3: rgb(59 50 38 / 0.6);
+  --vp-c-divider: #e0d4b6;
+  --vp-c-gutter: #ded2b4;
+  --vp-code-block-bg: #f0e7cf;
+  --vp-code-line-highlight-color: rgb(226 214 184 / 0.7);
+}
+
+/**
+ * 外壳响应皮肤。
+ *
+ * 导航栏、移动端抽屉、页面内导航与侧边栏并不直接使用 `--vp-c-bg`，而是各自的令牌，
+ * 默认值才是 `var(--vp-c-bg)`。只要站点自己给这些令牌赋过值（本文档站的主题色
+ * 配置工具就是如此），护眼背景就会留下白色的外壳：`:root { --vp-nav-bg-color: #fff }`
+ * 会按源码顺序赢过 `:root { --vp-nav-bg-color: var(--vp-c-bg) }`。
+ * 因此这里把它们重新指回背景令牌。
+ * -------------------------------------------------------------------------- */
+
+html[data-reader-theme] {
+  --vp-nav-bg-color: var(--vp-c-bg);
+  --vp-nav-screen-bg-color: var(--vp-c-bg);
+  --vp-local-nav-bg-color: var(--vp-c-bg);
+  --vp-sidebar-bg-color: var(--vp-c-bg-alt);
+}
+
+/**
+ * 专注模式
+ * -------------------------------------------------------------------------- */
+
+html[data-reader-focus="true"] {
+  --vp-nav-height: 0px;
+}
+
+html[data-reader-focus="true"] :is(.vp-navbar, .vp-sidebar-control, .vp-local-nav, .vp-sidebar, .vp-footer, .vp-back-to-top, .vp-bulletin) {
+  display: none !important;
+}
+
+html[data-reader-focus="true"] .vp-doc-container .aside {
+  display: none !important;
+}
+
+html[data-reader-focus="true"] .vp-content.has-sidebar {
+  padding-left: 0 !important;
+}

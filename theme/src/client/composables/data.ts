@@ -9,7 +9,7 @@ import type {
   ThemeDocCollection,
   ThemeFriendsFrontmatter,
   ThemeHomeFrontmatter,
-  ThemeLocaleData,
+  ThemeInjectedLocaleData,
   ThemePageData,
   ThemePageFrontmatter,
   ThemePostCollection,
@@ -37,7 +37,7 @@ type Frontmatter<T extends FrontmatterType = 'page'> = T extends 'home'
       : ThemePageFrontmatter
 
 export interface Data<T extends FrontmatterType = 'page', C extends FrontmatterCollectionType = 'doc'> {
-  theme: ThemeLocaleDataRef<ThemeLocaleData>
+  theme: ThemeLocaleDataRef<ThemeInjectedLocaleData>
   page: PageDataRef<ThemePageData>
   frontmatter: PageFrontmatterRef<Frontmatter<T> & Record<string, unknown>>
   lang: PageLangRef

@@ -30,6 +30,7 @@ const toggleSidebarLabel = computed(() => theme.value.toggleSidebarLabel || 'Tog
 
 // a11y: focus Nav element when menu has opened
 const navEl = ref<HTMLElement | null>(null)
+const scrollEl = ref<HTMLElement | null>(null)
 const isLocked = useScrollLock(inBrowser ? document.body : null)
 
 watch(
@@ -47,7 +48,7 @@ watch(
 // 重置滚动位置的定时器在 setup 顶层创建，随组件作用域自动清理。
 // The scroll-reset timer is created at setup scope and disposed with the component.
 const { start: resetSidebarScroll } = useTimeoutFn(
-  () => navEl.value?.scrollTo(0, 0),
+  () => scrollEl.value?.scrollTo(0, 0),
   200,
   { immediate: false },
 )
@@ -101,27 +102,29 @@ onMounted(scrollToActiveItem)
       vp-sidebar
       @click.stop
     >
-      <div class="curtain" />
+      <div ref="scrollEl" class="vp-sidebar-scroll">
+        <div class="curtain" />
 
-      <VPTransitionFadeSlideY>
-        <nav
-          id="SidebarNav"
-          :key="sidebarKey"
-          class="nav"
-          aria-labelledby="sidebar-aria-label"
-          tabindex="-1"
-        >
-          <span id="sidebar-aria-label" class="visually-hidden">
-            {{ sidebarNavigationLabel }}
-          </span>
+        <VPTransitionFadeSlideY>
+          <nav
+            id="SidebarNav"
+            :key="sidebarKey"
+            class="nav"
+            aria-labelledby="sidebar-aria-label"
+            tabindex="-1"
+          >
+            <span id="sidebar-aria-label" class="visually-hidden">
+              {{ sidebarNavigationLabel }}
+            </span>
 
-          <slot name="sidebar-nav-before" />
+            <slot name="sidebar-nav-before" />
 
-          <VPSidebarGroup :items="sidebarGroups" />
+            <VPSidebarGroup :items="sidebarGroups" />
 
-          <slot name="sidebar-nav-after" />
-        </nav>
-      </VPTransitionFadeSlideY>
+            <slot name="sidebar-nav-after" />
+          </nav>
+        </VPTransitionFadeSlideY>
+      </div>
     </aside>
   </Transition>
   <div v-if="hasSidebar" class="vp-sidebar-control" :class="{ collapsed: isSidebarCollapsed }">
@@ -144,8 +147,7 @@ onMounted(scrollToActiveItem)
   z-index: var(--vp-z-index-sidebar);
   width: calc(100vw - 64px);
   max-width: 320px;
-  padding: 32px 32px 96px;
-  overflow: hidden auto;
+  overflow: clip;
   background-color: var(--vp-sidebar-bg-color);
   box-shadow: var(--vp-c-shadow-3);
   opacity: 0;
@@ -155,6 +157,12 @@ onMounted(scrollToActiveItem)
     box-shadow var(--vp-t-color),
     transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   transform: translateX(-100%);
+}
+
+.vp-sidebar-scroll {
+  height: 100%;
+  padding: 32px 32px 96px;
+  overflow: hidden auto;
 
   scrollbar-width: thin;
 }
@@ -168,11 +176,11 @@ onMounted(scrollToActiveItem)
   transform: translateX(0);
 }
 
-.vp-sidebar.hide-scrollbar {
+.vp-sidebar.hide-scrollbar .vp-sidebar-scroll {
   scrollbar-width: none;
 }
 
-.vp-sidebar.hide-scrollbar::-webkit-scrollbar {
+.vp-sidebar.hide-scrollbar .vp-sidebar-scroll::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
@@ -186,12 +194,15 @@ onMounted(scrollToActiveItem)
     z-index: 1;
     width: var(--vp-sidebar-width);
     max-width: 100%;
-    padding-top: var(--vp-nav-height);
     visibility: visible;
     background-color: var(--vp-sidebar-bg-color);
     box-shadow: none;
     opacity: 1;
     transform: translateX(0);
+  }
+
+  .vp-sidebar-scroll {
+    padding-top: var(--vp-nav-height);
   }
 
   .vp-sidebar:not(.open).collapsed {
@@ -212,6 +223,10 @@ onMounted(scrollToActiveItem)
         32px,
         calc((100% - (var(--vp-layout-max-width) - 64px)) / 2)
       );
+  }
+
+  .vp-sidebar-scroll {
+    padding-left: 0;
   }
 }
 

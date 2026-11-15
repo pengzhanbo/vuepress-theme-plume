@@ -1,6 +1,6 @@
 import type { App, ComputedRef, InjectionKey, Ref } from 'vue'
 import type { ClientData, RouteLocale } from 'vuepress/client'
-import type { ThemeData } from '../../shared/index.js'
+import type { ThemeData, ThemeInjectedLocaleData } from '../../shared/index.js'
 import { themeData as themeDataRaw } from '@internal/themePlumeData'
 import { computed, inject, ref } from 'vue'
 import { clientDataSymbol } from 'vuepress/client'
@@ -20,7 +20,7 @@ export type ThemeDataRef<T extends ThemeData = ThemeData> = Ref<T>
  *
  * 主题本地化数据引用类型
  */
-export type ThemeLocaleDataRef<T extends ThemeData = ThemeData> = ComputedRef<T>
+export type ThemeLocaleDataRef<T extends ThemeInjectedLocaleData = ThemeInjectedLocaleData> = ComputedRef<T>
 
 /**
  * Injection key for theme locale data
@@ -69,7 +69,7 @@ if (__VUEPRESS_DEV__ && (import.meta.webpackHot || import.meta.hot)) {
  * @throws Error if called without provider / 如果没有提供者则抛出错误
  */
 export function useThemeLocaleData<
-  T extends ThemeData = ThemeData,
+  T extends ThemeInjectedLocaleData = ThemeInjectedLocaleData,
 >(): ThemeLocaleDataRef<T> {
   const themeLocaleData = inject(themeLocaleDataSymbol)
   if (!themeLocaleData) {

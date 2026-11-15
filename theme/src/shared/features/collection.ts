@@ -92,8 +92,12 @@ export interface ThemeBaseCollection {
   }
 
   /**
-   * 是否启用阅读助手功能
+   * 是否启用阅读辅助线。
+   *
    * @default true
+   * @deprecated 请改用主题级的 `readerPreferences.readAid`，阅读辅助线已并入阅读偏好，
+   * 且可以在客户端的面板中切换。此处配置仍会作为该集合的默认形态生效
+   * （`readerPreferences.readAid` 未指定默认形态时）。
    */
   readAid?: boolean | ThemeReadAid
 

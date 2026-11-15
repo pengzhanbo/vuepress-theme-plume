@@ -9,6 +9,7 @@ import { prepareHomeHeroEffects } from './home-hero-effects.js'
 import { prepareIcons } from './icons.js'
 import { prepareLinkPreview } from './link-preview.js'
 import { preparedPostsData } from './posts-data.js'
+import { prepareReader } from './reader.js'
 import { prepareRelatedPosts } from './related-posts.js'
 import { prepareSidebar } from './sidebar.js'
 import { prepareArticleTagColors } from './tag-color.js'
@@ -35,6 +36,7 @@ export async function prepareData(app: App, options: ThemeOptions = getThemeOpti
     prepareIcons(app, options),
     prepareHomeHeroEffects(app),
     prepareBulletin(app),
+    prepareReader(app, options),
   ])
 
   perf.log('prepare:data')

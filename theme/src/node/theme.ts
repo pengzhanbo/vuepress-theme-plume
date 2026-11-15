@@ -77,12 +77,8 @@ export function plumeTheme(options: ThemeOptions = {}): Theme {
         app.env.isBuild && excludeDraftPages(app) // 排除草稿页面
       },
       extendsBundlerOptions,
-      templateBuildRenderer,
-      extendsPage: page => extendsPageData(page as Page<ThemePageData>, {
-        base: app.options.base,
-        isBuild: app.env.isBuild,
-        siteData: app.siteData,
-      }),
+      templateBuildRenderer: (template, context) => templateBuildRenderer(app, template, context),
+      extendsPage: page => extendsPageData(app, page as Page<ThemePageData>),
       onInitialized: () => createPages(app),
       onPrepared: async () => {
         await prepareThemeData(app, plugins)

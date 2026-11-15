@@ -192,6 +192,17 @@ interface ThemeBadge {
 
   当前文章是否显示回到顶部的按钮。
 
+### reader
+
+- 类型： `boolean`
+- 默认值： `true`
+- 详情：
+
+  当前页面是否启用继续阅读。设为 `false` 时该页不记录/提示阅读位置。
+
+  该配置只影响当前页，不改变全局的阅读偏好。仅在主题配置了
+  [`readerPreferences`](../../config/theme.md#readerpreferences) 时生效。
+
 ### comments
 
 - 类型： `boolean`

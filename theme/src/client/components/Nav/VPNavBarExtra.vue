@@ -1,13 +1,16 @@
 <script lang="ts" setup>
 import VPFlyout from '@theme/VPFlyout.vue'
 import VPMenuLink from '@theme/VPMenuLink.vue'
+import VPReaderSettings from '@theme/VPReaderSettings.vue'
 import VPSocialLinks from '@theme/VPSocialLinks.vue'
 import VPSwitchAppearance from '@theme/VPSwitchAppearance.vue'
 import { computed } from 'vue'
-import { useData, useLangs } from '../../composables/index.js'
+import { useData, useLangs, useReaderPreferences } from '../../composables/index.js'
 
 const { theme } = useData()
 const { localeLinks, currentLang } = useLangs()
+// 只有面板确实有可操作项时（小屏上只剩护眼背景），入口才值得显示。
+const { hasControls: readerEnabled, reset } = useReaderPreferences()
 
 const social = computed(() => {
   const includes = theme.value.navbarSocialInclude ?? []
@@ -27,6 +30,7 @@ const hasExtraContent = computed(
   () =>
     (localeLinks.value.length && currentLang.value.text)
     || theme.value.appearance
+    || readerEnabled.value
     || social.value?.length,
 )
 </script>
@@ -58,6 +62,20 @@ const hasExtraContent = computed(
         <div class="appearance-action">
           <VPSwitchAppearance />
         </div>
+      </div>
+    </div>
+
+    <div v-if="readerEnabled" class="group reader">
+      <div class="item reader">
+        <div class="reader-header">
+          <p class="label">
+            {{ theme.readerPreferencesText || 'Reading' }}
+          </p>
+          <button type="button" class="reset" @click="reset">
+            {{ theme.readerResetText ?? 'Reset' }}
+          </button>
+        </div>
+        <VPReaderSettings compact />
       </div>
     </div>
 
@@ -105,6 +123,30 @@ const hasExtraContent = computed(
 
 .item.appearance {
   min-width: 176px;
+}
+
+.item.reader {
+  min-width: 240px;
+  padding: 0 12px 4px;
+}
+
+.item.reader .label {
+  font-size: 14px;
+  color: var(--vp-c-text-1);
+  transition: color var(--vp-t-color);
+}
+
+.item.reader .reader-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item.reader .reader-header .reset {
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--vp-c-text-3);
+  transition: color var(--vp-t-color);
 }
 
 .appearance-action {

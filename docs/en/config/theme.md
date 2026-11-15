@@ -887,13 +887,210 @@ Supports the following 9 animation effects:
 
 ### readAid
 
+::: warning Deprecated
+The reading aid is part of [`readerPreferences.readAid`](#readerpreferences) now, and can be switched in the client panel.
+This option still works, but only as the default when `readerPreferences.readAid` is not configured.
+:::
+
 - **Type:** `boolean | 'mask' | 'left' | 'right'`
 - **Default:** `false`
 - **Details:** Whether to show reading guide lines (the guide lines help users visually focus on the area where the mouse is located)
   - `false` - Do not show
+  - `true` / `'left'` - Show left guide line
   - `'mask'` - Show mask
-  - `'left'` - Show left guide line
   - `'right'` - Show right guide line
+
+### readerPreferences
+
+- **Type:** `boolean | ReaderPreferencesOptions`
+- **Default:** `false`
+- **Details:** Configure the reader preferences: resume reading, content width, reading background, reading aid and focus mode.
+
+  - `true` - enable every sub-feature with the default options
+  - `false` - disable everything
+  - `ReaderPreferencesOptions` - enable and toggle each sub-feature
+
+  The option is **per locale**, so it can be configured separately in `locales`.
+
+  | Option | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `width` | `false \| { presets }` | `true` | Content width presets, defaults to `['narrow', 'wide', 'full']` |
+  | `theme` | `false \| { presets }` | `true` | Background palettes, defaults to `['default', 'warm', 'sepia']` |
+  | `brand` | `false \| { presets }` | `false` | Brand palettes, applied to `--vp-c-brand-*` |
+  | `readAid` | `false \| 'mask' \| 'left' \| 'right' \| { modes, default }` | `true` | Reading aid, off by default, switchable in the panel |
+  | `focusMode` | `boolean` | `true` | Enable the focus mode |
+  | `resume` | `false \| ReaderResumeOptions` | `true` | Continue reading |
+  | `storagePrefix` | `string` | `'plume'` | `localStorage` key prefix |
+
+  Width, reading aid and focus mode are **desktop-only**: below a `768px` viewport they are disabled and hidden
+  from the panel (their defaults apply), while the reading background keeps working. See
+  [Small screens](../guide/features/reader.md#small-screens).
+
+  `ReaderResumeOptions`:
+
+  | Option | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `prompt` | `boolean` | `true` | `false` only records the position without prompting |
+  | `ttl` | `number` | `90` | Record TTL in days, clamped to 1–365 |
+  | `max` | `number` | `300` | Max records kept, clamped to 10–1000 |
+  | `minPercent` | `number` | `0.05` | Don't prompt below this progress, `0`–`1` |
+
+  **The standard preset produces no CSS at all**: `standard` for `width` and `default` for `theme` both mean "write no attribute", so the default output is pixel-identical to the previous version.
+
+  The actual widths are **narrow ≈ 640px**, **standard = whatever the theme already uses**, **wide ≈ 1000px**, **full = the viewport width**.
+  `wide` is not just a released `max-width`: with a sidebar and an outline the page is capped by `--vp-layout-max-width` (1440px) and the text column can only reach about 864px, barely above the 788px of `standard`. The wide preset therefore trims the page paddings and the outline column, relaxes the shell to 1680px, and caps the column at 1000px. Override the `max-width` of `html[data-reader-width="wide"] .vp-doc-container .content-container` to customize it.
+
+  **full** releases the shell cap entirely, so the text width follows the viewport: about 1344px on a 1920px screen with a sidebar and an outline, about 1616px on a plain article page. It targets large screens that accept long lines and behaves like `wide` on smaller ones. Drop it from `presets` to hide the option:
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      readerPreferences: {
+        width: { presets: ['narrow', 'wide'] },
+      },
+    }),
+  })
+  ```
+
+  Both groups accept **custom palettes**: a palette is a group of CSS custom properties applied together,
+  rendered as a solid swatch in the panel, where `default` (slashed swatch) means "keep the theme tokens".
+  Keys of `tokens` may omit the `--` prefix:
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      readerPreferences: {
+        theme: {
+          presets: [
+            'default',
+            'warm',
+            {
+              name: 'forest',
+              label: 'Forest',
+              tokens: {
+                'vp-c-bg': '#eef5ec',
+                'vp-c-bg-alt': '#e6efe3',
+                'vp-c-text-1': '#2b3529',
+              },
+            },
+          ],
+        },
+        brand: {
+          presets: [
+            {
+              name: 'ocean',
+              label: 'Ocean',
+              tokens: {
+                'vp-c-brand-1': '#0e7490',
+                'vp-c-brand-2': '#0891b2',
+                'vp-c-brand-3': '#06b6d4',
+              },
+            },
+          ],
+        },
+      },
+    }),
+  })
+  ```
+
+  - `name` is limited to letters, digits, `-` and `_`, it becomes the `html[data-reader-theme="<name>"]` value;
+  - `label` is the swatch tooltip and accessible name, `name` is used when omitted;
+  - `color` is the swatch color, defaults to `--vp-c-bg` (background) or `--vp-c-brand-1` (brand) from `tokens`;
+  - the reading background stays disabled in dark mode, brand palettes work in both modes;
+  - custom palettes are inlined into `<head>` at build time (no first-paint flash); the dev server injects them on the client.
+
+  **Localizing `label`**: there is no need to repeat the whole `tokens` in every locale. Locale level
+  `presets` merge with the theme level by `name` — an entry with the same name only overrides the fields it
+  declares (usually just `label`), while `tokens` are inherited; names that only exist in the locale are
+  appended to the end of the list.
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      // theme level: the colors live here, once
+      readerPreferences: {
+        theme: {
+          presets: [
+            {
+              name: 'forest',
+              tokens: { 'vp-c-bg': '#eef5ec', 'vp-c-bg-alt': '#e6efe3' },
+            },
+          ],
+        },
+      },
+      locales: {
+        '/en/': {
+          // locale level: just the label
+          readerPreferences: {
+            theme: { presets: [{ name: 'forest', label: 'Forest' }] },
+          },
+        },
+      },
+    }),
+  })
+  ```
+
+  ::: tip
+  Locale level `presets` only override, they cannot remove presets; adjust the theme level list to narrow it.
+  :::
+
+  The **reading aid** highlights the block under the mouse: `mask` draws a mask, `left` / `right` draw a guide line.
+  It is **off by default** and only takes effect once the reader picks it in the panel; passing a bare mode string (e.g. `'left'`) makes that mode the default. Use the object form to restrict the offered modes:
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      readerPreferences: {
+        readAid: { modes: ['mask', 'left'], default: 'mask' },
+      },
+    }),
+  })
+  ```
+
+  The legacy theme / collection level `readAid` still works, as the default when `readerPreferences.readAid` is not configured.
+
+  Example: enable everything
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      readerPreferences: true,
+    }),
+  })
+  ```
+
+  Example: only width and background
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      readerPreferences: {
+        width: { presets: ['wide'] },
+        theme: true,
+        focusMode: false,
+        resume: false,
+      },
+    }),
+  })
+  ```
+
+  Example: only continue reading
+
+  ```ts
+  export default defineUserConfig({
+    theme: plumeTheme({
+      readerPreferences: {
+        width: false,
+        theme: false,
+        readAid: false,
+        focusMode: false,
+        resume: { ttl: 30, minPercent: 0.1 },
+      },
+    }),
+  })
+  ```
+
+  See [Reader](../guide/features/reader.md) for more.
 
 ### relatedPosts
 

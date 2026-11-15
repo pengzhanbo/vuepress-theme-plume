@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import VPNavScreenAppearance from '@theme/Nav/VPNavScreenAppearance.vue'
 import VPNavScreenMenu from '@theme/Nav/VPNavScreenMenu.vue'
+import VPNavScreenReader from '@theme/Nav/VPNavScreenReader.vue'
 import VPNavScreenSocialLinks from '@theme/Nav/VPNavScreenSocialLinks.vue'
 import VPNavScreenTranslates from '@theme/Nav/VPNavScreenTranslations.vue'
 import { useScrollLock } from '@vueuse/core'
@@ -22,15 +23,18 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
     @after-leave="isLocked = false"
   >
     <div v-if="open" id="nav-screen" class="vp-nav-screen">
-      <div class="container">
-        <slot name="nav-screen-content-before" />
-        <slot name="nav-screen-menu-before" />
-        <VPNavScreenMenu class="menu" />
-        <slot name="nav-screen-menu-after" />
-        <VPNavScreenTranslates class="translations" />
-        <VPNavScreenAppearance class="appearance" />
-        <VPNavScreenSocialLinks class="social-links" />
-        <slot name="nav-screen-content-after" />
+      <div class="scroll">
+        <div class="container">
+          <slot name="nav-screen-content-before" />
+          <slot name="nav-screen-menu-before" />
+          <VPNavScreenMenu class="menu" />
+          <slot name="nav-screen-menu-after" />
+          <VPNavScreenTranslates class="translations" />
+          <VPNavScreenAppearance class="appearance" />
+          <VPNavScreenReader class="reader" />
+          <VPNavScreenSocialLinks class="social-links" />
+          <slot name="nav-screen-content-after" />
+        </div>
       </div>
     </div>
   </Transition>
@@ -48,11 +52,16 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
   /* rtl:ignore */
   left: 0;
   width: 100%;
-  padding: 0 32px;
-  overflow-y: auto;
+  overflow: clip;
   pointer-events: auto;
   background-color: var(--vp-nav-screen-bg-color);
   transition: background-color var(--vp-t-color);
+}
+
+.scroll {
+  height: 100%;
+  padding: 0 32px;
+  overflow-y: auto;
 }
 
 .container {
@@ -89,7 +98,10 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
 
 .menu + .translations,
 .menu + .appearance,
-.translations + .appearance {
+.translations + .appearance,
+.menu + .reader,
+.translations + .reader,
+.appearance + .reader {
   margin-top: 24px;
 }
 
@@ -98,6 +110,10 @@ const isLocked = useScrollLock(inBrowser ? document.body : null)
 }
 
 .appearance + .social-links {
+  margin-top: 16px;
+}
+
+.reader + .social-links {
   margin-top: 16px;
 }
 </style>

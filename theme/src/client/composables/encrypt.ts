@@ -34,17 +34,12 @@ export interface Encrypt {
  */
 export const EncryptSymbol: InjectionKey<Encrypt> = createSymbol('docEncrypt')
 
+let encryptState: Encrypt | null = null
+
 /**
  * Storage key for encryption state.
  *
- * The value is an opaque constant: it only needs to stay stable across releases
- * so that a decryption made before a page refresh is still recognized afterwards.
- * Changing it invalidates the session state of already-open tabs.
- *
  * 加密状态的存储键。
- *
- * 该值是不透明常量：只需在版本之间保持稳定，
- * 使页面刷新前完成的解密在刷新后依然有效。修改它会使已打开标签页的会话状态失效。
  */
 const ENCRYPT_STORAGE_KEY = '2a0a3d6afb2fdf1f'
 
@@ -269,12 +264,14 @@ export function setupEncrypt(): void {
     return false
   }, !hasPageEncrypt.value)
 
-  provide(EncryptSymbol, {
+  encryptState = {
     hasPageEncrypt,
     isGlobalDecrypted,
     isPageDecrypted,
     hashList,
-  })
+  }
+
+  provide(EncryptSymbol, encryptState)
 }
 
 /**
@@ -287,7 +284,8 @@ export function setupEncrypt(): void {
  * @throws Error if called without setup / 如果没有设置则抛出错误
  */
 export function useEncrypt(): Encrypt {
-  const result = inject(EncryptSymbol)
+  // `inject()` 读不到当前实例自身的 provide，因此回退到 `setupEncrypt()` 注册的状态。
+  const result = inject(EncryptSymbol, null) ?? encryptState
 
   if (!result)
     throw new Error('useEncrypt() is called without setup')

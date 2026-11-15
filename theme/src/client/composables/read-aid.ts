@@ -1,7 +1,7 @@
-import type { ThemeReadAid } from '../../shared/index.js'
 import { useEventListener, useMouseInElement, useResizeObserver } from '@vueuse/core'
 import { computed, type CSSProperties, onMounted, shallowRef, watch } from 'vue'
-import { useData } from '../composables/index.js'
+import { useData } from './data.js'
+import { useReaderReadAid } from './reader.js'
 
 interface Target {
   el: HTMLElement
@@ -17,20 +17,19 @@ const queries = [
   ':where(.vp-code-tabs,.code-block-title,div[class^="language-"],.code-repl)', // 代码块
   '.table-of-contents > ul > li', // 目录项
   '.footnotes > ol > li', // 页脚注
-  ':where([class^="vp-card"],.vp-repo-card,.vp-link-card,.vp-image-card)',
+  ':where([class^="vp-card"],.vp-repo-card,.vp-link-card,.vp-image-card)', // 各种卡片
   ':where(.vp-copyright,.vp-changelog-wrapper)', // 版权、变更日志
   '.hint-container', // 提示容器
   '.vp-field-group .vp-field', // 字段容器
-  '.vp-field',
   '.vp-steps > :where(ul,ol) > li', // 步骤项
   ':where(.vp-align,.vp-flex,.window-wrapper)', // 对齐元素
   '.vp-demo-wrapper > div', // 代码演示
   ':where(.vp-file-tree,.vp-code-tree)', // 文件树、代码树容器
-  ':where(.vp-tabs,.vp-table,.vp-qrcode)',
-  '.vp-npm-badge',
-  '.vp-swiper',
-  '.vp-chat',
-  ':where(.vp-encrypt-snippet,.decrypted-content)',
+  ':where(.vp-tabs,.vp-table,.vp-qrcode)', // 选项组、表格容器、二维码
+  '.vp-npm-badge', // npm 徽章
+  '.vp-swiper', // 轮播图
+  '.vp-chat', // 聊天记录容器
+  ':where(.vp-encrypt-snippet,.decrypted-content)', // 加密片段、已解密内容
   '.vp-timeline .vp-timeline-item', // 时间线项
   '.vp-collapse .vp-collapse-item', // 折叠项
   ':where(.chartjs-wrapper,.echarts-wrapper,mermaid-wrapper,.flowchart-wrapper,.markmap-wrapper,.ciu_embed)', // 图表
@@ -39,14 +38,10 @@ const queries = [
 ].map(query => `.vp-doc > div:not(.vp-read-aid) > ${query}`).join(',')
 
 export function useReadAid() {
-  const { page, collection, theme } = useData<'post', 'doc'>()
+  const { page } = useData<'post', 'doc'>()
+  const { aid: readAid } = useReaderReadAid()
 
-  const readAid = computed<ThemeReadAid>(() => {
-    const opt = collection.value?.readAid ?? theme.value.readAid ?? false
-    return typeof opt === 'boolean' ? 'left' : opt
-  })
-
-  const doc = shallowRef<HTMLElement>()
+  const doc = shallowRef<HTMLElement | null>(null)
   const targets = shallowRef<Target[]>([])
   const { y, elementX, elementY, elementWidth, elementHeight, isOutside: isOutsideElement } = useMouseInElement(doc)
 
@@ -90,29 +85,22 @@ export function useReadAid() {
 
   useEventListener('resize', initialize, { passive: true })
   useResizeObserver(doc, initialize)
-  // watcher 在 setup 顶层创建，随组件作用域自动回收，避免在 `onMounted` 内创建导致泄漏。
-  // 初始调用放在 `onMounted`，避免 SSR 期间访问 DOM。
-  //
-  // Create the watcher at setup scope so it is disposed with the component;
-  // creating it inside `onMounted` leaks. The initial call runs in `onMounted`
-  // to avoid touching the DOM during SSR.
-  watch(() => page.value.path, initialize)
-  onMounted(initialize)
+  watch([() => page.value.path, readAid], initialize)
+
+  onMounted(() => {
+    if (readAid.value) {
+      const docEl = document.querySelector<HTMLElement>('.vp-doc')
+      doc.value = docEl!
+      initialize()
+    }
+  })
 
   function initialize() {
-    const docEl = document.querySelector<HTMLElement>('.vp-doc')
-    // `.vp-doc` 不存在时（首页、自定义布局、页面切换瞬间）跳过并清空目标，
-    // 避免对 null 调用 getBoundingClientRect() 抛错。
-    //
-    // Skip and clear targets when `.vp-doc` is absent (home page, custom layout,
-    // navigation in progress) to avoid calling getBoundingClientRect() on null.
-    if (!docEl) {
-      doc.value = undefined
+    if (!doc.value || !readAid.value) {
       targets.value = []
       return
     }
-    doc.value = docEl
-    const docRect = docEl.getBoundingClientRect()
+    const docRect = doc.value.getBoundingClientRect()
     offsetX = docRect.left + window.scrollX
     offsetY = docRect.top + window.scrollY
 
@@ -120,7 +108,13 @@ export function useReadAid() {
       .map((el, index) => {
         const rect = el.getBoundingClientRect()
         const offset = el.tagName === 'H2' ? (index !== 0 ? 24 : 16) : 0
-        return { el, x: rect.left + window.scrollX, y: rect.top + window.scrollY + offset, height: rect.height - offset, width: rect.width }
+        return {
+          el,
+          x: rect.left + window.scrollX,
+          y: rect.top + window.scrollY + offset,
+          height: rect.height - offset,
+          width: rect.width,
+        }
       })
   }
 

@@ -402,6 +402,40 @@ interface NotFound {
 }
 ```
 
+## Reader
+
+The following options are the texts of the [reader preferences](../guide/features/reader.md) and should be configured in `theme.locales`.
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `readerPreferencesText` | `string` | `'Reading'` | Text of the nav-bar entry |
+| `readerPanelLabel` | `string` | `'Reading settings'` | Title of the settings panel |
+| `readerWidthText` | `string` | `'Content width'` | Text of the content width group |
+| `readerWidthNarrowText` | `string` | `'Narrow'` | Text of the narrow preset |
+| `readerWidthStandardText` | `string` | `'Standard'` | Text of the standard preset |
+| `readerWidthWideText` | `string` | `'Wide'` | Text of the wide preset |
+| `readerWidthFullText` | `string` | `'Full'` | Text of the full preset |
+| `readerThemeText` | `string` | `'Background'` | Text of the background group |
+| `readerThemeDefaultText` | `string` | `'Default'` | Text of the default background |
+| `readerThemeWarmText` | `string` | `'Warm'` | Text of the warm background |
+| `readerThemeSepiaText` | `string` | `'Sepia'` | Text of the sepia background |
+| `readerThemeDarkDisabledText` | `string` | `'Not available in dark mode'` | Hint shown when dark mode disables the background control |
+| `readerBrandText` | `string` | `'Brand color'` | Text of the brand color group |
+| `readerBrandDefaultText` | `string` | `'Default'` | Text of the "default" brand option |
+| `readerAidText` | `string` | `'Reading aid'` | Text of the reading aid group |
+| `readerAidOffText` | `string` | `'Off'` | Text of the "off" option |
+| `readerAidMaskText` | `string` | `'Mask'` | Text of the mask mode |
+| `readerAidLeftText` | `string` | `'Left'` | Text of the left guide line |
+| `readerAidRightText` | `string` | `'Right'` | Text of the right guide line |
+| `readerResetText` | `string` | `'Reset'` | Text of the reset action |
+| `readerResumeText` | `string` | `'Last read {percent}%'` | Resume prompt, `{percent}` is replaced with the percentage |
+| `readerResumeActionText` | `string` | `'Continue'` | Text of the continue button |
+| `readerResumeRestartText` | `string` | `'Start over'` | Text of the start over button |
+| `readerFocusModeText` | `string` | `'Focus mode'` | Text of the focus mode |
+| `readerFocusModeExitLabel` | `string` | `'Exit focus mode'` | Text of the exit button |
+| `readerFocusModeEnterText` | `string` | `'Focus mode on, press Esc to exit'` | Screen-reader announcement when focus mode turns on |
+| `readerProgressLabel` | `string` | `'Reading progress'` | Accessible name of the progress bar |
+
 ## Page Context Menu (PageContextMenu)
 
 The following options are used for the text of the [`<PageContextMenu />`](./plugins/llms.md#components) component and should be configured in `theme.locales`.

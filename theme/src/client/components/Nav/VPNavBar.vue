@@ -3,6 +3,7 @@ import VPNavBarAppearance from '@theme/Nav/VPNavBarAppearance.vue'
 import VPNavBarExtra from '@theme/Nav/VPNavBarExtra.vue'
 import VPNavBarHamburger from '@theme/Nav/VPNavBarHamburger.vue'
 import VPNavBarMenu from '@theme/Nav/VPNavBarMenu.vue'
+import VPNavBarReader from '@theme/Nav/VPNavBarReader.vue'
 import VPNavBarSearch from '@theme/Nav/VPNavBarSearch.vue'
 import VPNavBarSocialLinks from '@theme/Nav/VPNavBarSocialLinks.vue'
 import VPNavBarTitle from '@theme/Nav/VPNavBarTitle.vue'
@@ -55,6 +56,7 @@ watchPostEffect(() => {
             <slot name="nav-bar-menu-after" />
             <VPNavBarTranslations class="translations" />
             <VPNavBarAppearance class="appearance" />
+            <VPNavBarReader class="reader" />
             <VPNavBarSocialLinks class="social-links" />
             <VPNavBarExtra class="extra" />
             <slot name="nav-bar-content-after" />
@@ -126,6 +128,10 @@ watchPostEffect(() => {
   height: var(--vp-nav-height);
   margin: 0 auto;
   pointer-events: none;
+}
+
+[data-reader-width="full"] .container {
+  max-width: 100%;
 }
 
 .content {
@@ -220,10 +226,14 @@ watchPostEffect(() => {
 
 .menu + .translations::before,
 .menu + .appearance::before,
+.menu + .reader::before,
 .menu + .social-links::before,
 .translations + .appearance::before,
+.translations + .reader::before,
 .translations + .social-links::before,
-.appearance + .social-links::before {
+.appearance + .reader::before,
+.appearance + .social-links::before,
+.reader + .social-links::before {
   width: 1px;
   height: 24px;
   margin-right: 8px;
@@ -234,11 +244,15 @@ watchPostEffect(() => {
 }
 
 .menu + .appearance::before,
-.translations + .appearance::before {
+.menu + .reader::before,
+.translations + .appearance::before,
+.translations + .reader::before,
+.appearance + .reader::before {
   margin-right: 16px;
 }
 
-.appearance + .social-links::before {
+.appearance + .social-links::before,
+.reader + .social-links::before {
   margin-left: 16px;
 }
 

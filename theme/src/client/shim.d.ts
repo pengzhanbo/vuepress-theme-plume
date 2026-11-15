@@ -100,12 +100,17 @@ declare module '@internal/bulletin-data' {
   }
 }
 
+declare module '@internal/reader.css' {
+  const res: string
+  export default res
+}
+
 declare module 'swiper/css' {
-  const res: any
+  const res: string
   export default res
 }
 
 declare module 'swiper/css/*' {
-  const res: any
+  const res: string
   export default res
 }

@@ -191,6 +191,16 @@ interface ThemeBadge {
 
   Whether to display the back-to-top button for the current article.
 
+### reader
+
+- Type: `boolean`
+- Default: `true`
+- Details:
+
+  Whether to enable the resume prompt on the current page. When `false`, the page neither show records / offers a reading position.
+
+  This only affects the current page, it never changes the global reader preferences. It takes effect only when [`readerPreferences`](../../config/theme.md#readerpreferences) is enabled.
+
 ### comments
 
 - Type: `boolean`

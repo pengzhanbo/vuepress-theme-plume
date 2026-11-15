@@ -142,6 +142,17 @@ function resolvePalettes(
       continue
 
     names.add(palette.name)
+
+    if (builtins.includes(palette.name as ReaderThemePreset) && !Object.keys(palette.tokens).length) {
+      result.push({
+        name: palette.name,
+        label: palette.label,
+        color: palette.color ?? BUILTIN_THEME_COLORS[palette.name as ReaderThemePreset] ?? null,
+        tokens: {},
+      })
+      continue
+    }
+
     result.push(palette)
   }
 

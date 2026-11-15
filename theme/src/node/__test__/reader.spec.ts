@@ -409,6 +409,26 @@ describe('resolveLocaleReaderOptions', () => {
     expect(resolved.theme!.presets.find(palette => palette.name === 'warm')!.attribute)
       .toBeUndefined()
   })
+
+  it('keeps a relabeled built-in preset as built-in', () => {
+    const resolved = resolveLocaleReaderOptions({
+      readerPreferences: { theme: { presets: ['warm'] } },
+      locales: {
+        '/': {},
+        '/en/': { readerPreferences: { theme: { presets: [{ name: 'warm', label: 'Warm' }] } } },
+      },
+    } as any, '/en/')!
+
+    const warm = resolved.theme!.presets.find(palette => palette.name === 'warm')!
+
+    // 仅改文案时保留内置身份：不标记自定义、不加语言作用域、令牌仍由样式表提供
+    expect(warm.label).toBe('Warm')
+    expect(warm.custom).toBeUndefined()
+    expect(warm.attribute).toBeUndefined()
+    expect(warm.tokens).toEqual({})
+    // 色块沿用内置颜色
+    expect(warm.color).toBe('#fbf8f3')
+  })
 })
 
 describe('resolveThemeData', () => {

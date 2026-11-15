@@ -126,6 +126,12 @@ export interface ResolvedReaderPalette extends Required<Pick<ReaderPalette, 'nam
    * 不同的令牌。内置档位不设置该字段，直接使用 `name`。
    */
   attribute?: string
+  /**
+   * Whether the palette is user defined instead of a built-in preset
+   *
+   * 是否为用户自定义调色板（而非内置档位）
+   */
+  custom?: boolean
 }
 
 /**

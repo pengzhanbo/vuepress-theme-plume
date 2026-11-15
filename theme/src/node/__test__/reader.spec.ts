@@ -376,6 +376,7 @@ describe('resolveLocaleReaderOptions', () => {
       name: 'forest',
       color: '#eef5ec',
       tokens: { '--vp-c-bg': '#eef5ec' },
+      custom: true,
     })
   })
 
@@ -387,9 +388,26 @@ describe('resolveLocaleReaderOptions', () => {
       label: 'Forest',
       color: '#eef5ec',
       tokens: { '--vp-c-bg': '#eef5ec' },
+      custom: true,
       // 非根语言的自定义调色板带语言作用域的属性值
       attribute: 'forest@/en/',
     })
+  })
+
+  it('scopes a custom palette even when it has no tokens', () => {
+    const resolved = resolveLocaleReaderOptions({
+      readerPreferences: {
+        theme: { presets: ['warm', { name: 'paper', label: 'Paper' }] },
+      },
+      locales: { '/': {}, '/en/': {} },
+    } as any, '/en/')!
+
+    // 自定义项按语言作用域，令牌为空也一样
+    expect(resolved.theme!.presets.find(palette => palette.name === 'paper')!.attribute)
+      .toBe('paper@/en/')
+    // 内置档位沿用名称
+    expect(resolved.theme!.presets.find(palette => palette.name === 'warm')!.attribute)
+      .toBeUndefined()
   })
 })
 
@@ -422,6 +440,7 @@ describe('resolveThemeData', () => {
       label: 'Forest',
       color: '#eef5ec',
       tokens: { '--vp-c-bg': '#eef5ec' },
+      custom: true,
       attribute: 'forest@/en/',
     })
   })

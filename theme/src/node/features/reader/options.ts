@@ -92,6 +92,7 @@ function normalizePalette(palette: ReaderPalette): ResolvedReaderPalette | null 
     label: palette.label?.trim?.() || undefined,
     color: color || tokens['--vp-c-bg'] || tokens['--vp-c-brand-1'] || null,
     tokens,
+    custom: true,
   }
 }
 
@@ -395,7 +396,11 @@ function scopePalettes(
     return group
 
   return {
-    presets: group.presets.map(palette => Object.keys(palette.tokens).length
+    // 以「是否为自定义调色板」决定作用域，令牌为空的自定义项同样需要；
+    // 内置档位沿用名称，与静态样式表里的选择器保持一致。
+    // Scope by whether the palette is user defined, an empty token set still
+    // needs it. Built-in presets keep their bare name.
+    presets: group.presets.map(palette => palette.custom
       ? { ...palette, attribute: `${palette.name}@${prefix}` }
       : palette),
   }

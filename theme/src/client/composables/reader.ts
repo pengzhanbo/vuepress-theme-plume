@@ -439,9 +439,20 @@ export function setupReaderPreferences(): void {
   /**
    * Last valid sample, used by the forced flush points.
    *
+   * The resume options are captured with the sample: after a locale switch the
+   * pending sample still has to be written with the configuration it was taken
+   * under, not with the new locale's one.
+   *
    * 最后一次有效采样，供强制落盘点使用。
+   *
+   * 采样时一并保存所属语言的 `resume` 配置：语言切换后，待写样本仍需按采样时的
+   * 配置写入，不能被新语言的配置裁剪或阻止。
    */
-  let lastSample: { path: string, percent: number } | null = null
+  let lastSample: {
+    path: string
+    percent: number
+    resume: Required<ReaderResumeOptions>
+  } | null = null
   let lastWriteAt = 0
 
   /**
@@ -455,11 +466,10 @@ export function setupReaderPreferences(): void {
    * 落盘当前页面尚未写入的采样。
    */
   function flush(): void {
-    const resume = options.value?.resume
-    if (!lastSample || !resume)
+    if (!lastSample)
       return
 
-    writeRecord(resume, lastSample.path, lastSample.percent)
+    writeRecord(lastSample.resume, lastSample.path, lastSample.percent)
     lastSample = null
   }
 
@@ -593,7 +603,8 @@ export function setupReaderPreferences(): void {
     }
 
     // 每次滚动都更新采样，但按节流间隔落盘，保证强制落盘点写入的是最新位置。
-    lastSample = { path: page.value.path, percent: readingProgress.value }
+    // 采样时保存当前语言的 `resume` 配置，语言切换后仍可正确写入。
+    lastSample = { path: page.value.path, percent: readingProgress.value, resume }
 
     const now = Date.now()
     if (now - lastWriteAt < WRITE_THROTTLE)

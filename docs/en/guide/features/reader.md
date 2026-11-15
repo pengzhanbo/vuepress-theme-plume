@@ -1,5 +1,5 @@
 ---
-title: Reader Experience
+title: Reader Preferences
 icon: lucide:book-open-text
 createTime: 2026/11/11 10:00:00
 permalink: /en/guide/features/reader/
@@ -8,7 +8,7 @@ badge: New
 
 ## Overview
 
-The reader experience lets the reader decide how a page reads: how wide the text column is, what the background looks like, whether a reading aid is shown, and whether to enter focus mode.
+The reader preferences let the reader decide how a page reads: how wide the text column is, what the background looks like, whether a reading aid is shown, and whether to enter focus mode.
 
 Once enabled, a "Reading" entry appears in the top-right corner. Changes apply immediately, are stored in the browser, and survive the next visit to the same site.
 
@@ -194,7 +194,7 @@ In dark mode the background group is disabled: "dark + sepia" is unreadable. Dar
 
 ### Per language
 
-The reader experience applies per locale, so configure it in `locales`:
+Reader preferences apply per locale, so configure them in `locales`:
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({

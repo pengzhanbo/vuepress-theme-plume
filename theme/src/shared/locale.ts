@@ -194,7 +194,7 @@ export interface ThemeLocale extends LocaleData {
   readAid?: boolean | ThemeReadAid
 
   /**
-   * 配置阅读体验（阅读进度、继续阅读、内容宽度、护眼背景、专注模式）
+   * 配置阅读偏好（阅读进度、继续阅读、内容宽度、护眼背景、专注模式）
    *
    * - `true` 表示启用全部子项
    * - `false` 表示完全关闭

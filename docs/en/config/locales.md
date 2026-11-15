@@ -404,7 +404,7 @@ interface NotFound {
 
 ## Reader
 
-The following options are the texts of the [reader experience](../guide/features/reader.md) and should be configured in `theme.locales`.
+The following options are the texts of the [reader preferences](../guide/features/reader.md) and should be configured in `theme.locales`.
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |

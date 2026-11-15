@@ -158,7 +158,7 @@ export interface ReaderResumeOptions {
 /**
  * Reader preferences options
  *
- * 阅读体验配置（阅读进度、继续阅读、内容宽度、护眼背景、专注模式）
+ * 阅读偏好配置（阅读进度、继续阅读、内容宽度、护眼背景、专注模式）
  */
 export interface ReaderPreferencesOptions {
   /**

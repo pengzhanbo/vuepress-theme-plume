@@ -402,7 +402,7 @@ interface NotFound {
 
 ## 阅读偏好（Reader）
 
-以下选项用于 [阅读体验](../guide/features/reader.md) 的界面文本，应配置在 `theme.locales` 中。
+以下选项用于 [阅读偏好](../guide/features/reader.md) 的界面文本，应配置在 `theme.locales` 中。
 
 | 配置 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |

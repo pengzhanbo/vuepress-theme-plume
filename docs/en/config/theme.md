@@ -904,7 +904,7 @@ This option still works, but only as the default when `readerPreferences.readAid
 
 - **Type:** `boolean | ReaderPreferencesOptions`
 - **Default:** `false`
-- **Details:** Configure the reading experience: resume reading, content width, reading background, reading aid and focus mode.
+- **Details:** Configure the reader preferences: resume reading, content width, reading background, reading aid and focus mode.
 
   - `true` - enable every sub-feature with the default options
   - `false` - disable everything

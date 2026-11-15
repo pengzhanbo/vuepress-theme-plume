@@ -1,5 +1,5 @@
 ---
-title: 阅读体验
+title: 阅读偏好
 icon: lucide:book-open-text
 createTime: 2026/11/11 10:00:00
 permalink: /guide/features/reader/
@@ -8,7 +8,7 @@ badge: 新
 
 ## 概述
 
-阅读体验让读者自己决定阅读时的呈现：正文多宽、底色是什么、要不要显示阅读辅助线、要不要进入专注模式。
+阅读偏好让读者自己决定阅读时的呈现：正文多宽、底色是什么、要不要显示阅读辅助线、要不要进入专注模式。
 
 启用后页面右上角会出现「阅读」入口，改动立即生效，并保存在浏览器本地，下次打开同一站点依然有效。
 
@@ -194,7 +194,7 @@ export default defineUserConfig({
 
 ### 多语言
 
-阅读体验按语言生效，写在 `locales` 中：
+阅读偏好按语言生效，写在 `locales` 中：
 
 ```ts title=".vuepress/config.ts"
 export default defineUserConfig({

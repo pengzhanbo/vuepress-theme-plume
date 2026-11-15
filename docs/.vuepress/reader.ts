@@ -180,7 +180,7 @@ const lime: ReaderPalette = {
 }
 
 /**
- * 阅读体验（主题级配置）。
+ * 阅读偏好（主题级配置）。
  *
  * 中文标签直接写在调色板的 `label` 上，其它语言在 `locales` 中补充文案即可。
  */
@@ -197,7 +197,7 @@ export const readerPreferences: ReaderPreferencesOptions = {
 }
 
 /**
- * 阅读体验（英文站）。
+ * 阅读偏好（英文站）。
  *
  * 只覆盖调色板文案，颜色与主题级定义共用。
  */

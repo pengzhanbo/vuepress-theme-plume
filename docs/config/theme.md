@@ -884,7 +884,7 @@ export default defineThemeConfig({
 
 - **类型：** `boolean | ReaderPreferencesOptions`
 - **默认值：** `false`
-- **详情：** 配置阅读体验，包括继续阅读、内容宽度、护眼背景、阅读辅助线与专注模式。
+- **详情：** 配置阅读偏好，包括继续阅读、内容宽度、护眼背景、阅读辅助线与专注模式。
 
   - `true` - 启用全部子项，并使用默认配置
   - `false` - 完全关闭
@@ -1076,7 +1076,7 @@ export default defineThemeConfig({
   })
   ```
 
-  更多说明见 [阅读体验](../guide/features/reader.md)。
+  更多说明见 [阅读偏好](../guide/features/reader.md)。
 
 ### relatedPosts
 

@@ -37,7 +37,7 @@ export interface ReaderAidOptions {
    *
    * @default null
    */
-  default?: ReaderAidMode
+  default?: ReaderAidMode | null
 }
 
 /**
@@ -113,6 +113,19 @@ export interface ResolvedReaderPalette extends Required<Pick<ReaderPalette, 'nam
    * CSS 自定义属性，内置档位为空（令牌由 CSS 提供）
    */
   tokens: Record<string, string>
+  /**
+   * Value written to the `data-reader-theme` / `data-reader-brand` attribute.
+   *
+   * Custom palettes get a locale-scoped value at build time, so that two
+   * locales may define the same palette name with different tokens. Built-in
+   * presets leave it unset and use `name`.
+   *
+   * 写入 `data-reader-theme` / `data-reader-brand` 属性的值。
+   *
+   * 自定义调色板在构建期会带上语言作用域，使不同语言的同名调色板可以各自使用
+   * 不同的令牌。内置档位不设置该字段，直接使用 `name`。
+   */
+  attribute?: string
 }
 
 /**

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ReaderAidMode, ReaderWidthPreset, ResolvedReaderPalette } from '../../shared/index.js'
-import { computed } from 'vue'
+import { computed, nextTick } from 'vue'
 import { ClientOnly } from 'vuepress/client'
 import { useData, useReaderPreferences } from '../composables/index.js'
 
@@ -139,6 +139,41 @@ function selectAid(value: ReaderAidMode | null): void {
 function toggleFocus(): void {
   setPreference('focus', focusOn.value ? undefined : true)
 }
+
+function onRadioKeydown<T>(event: KeyboardEvent, values: T[], onSelect: (value: T) => void): void {
+  const keys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End']
+  if (!keys.includes(event.key))
+    return
+
+  const group = (event.currentTarget as HTMLElement).closest('[role="radiogroup"]')
+  const buttons = group
+    ? Array.from(group.querySelectorAll<HTMLButtonElement>('[role="radio"]:not(:disabled)'))
+    : []
+
+  const current = buttons.indexOf(event.currentTarget as HTMLButtonElement)
+
+  if (current < 0 || values.length !== buttons.length)
+    return
+
+  event.preventDefault()
+
+  const last = buttons.length - 1
+  const next = event.key === 'Home'
+    ? 0
+    : event.key === 'End'
+      ? last
+      : event.key === 'ArrowLeft' || event.key === 'ArrowUp'
+        ? (current - 1 + buttons.length) % buttons.length
+        : (current + 1) % buttons.length
+
+  onSelect(values[next])
+  nextTick(() => buttons[next]?.focus())
+}
+
+const themeValues = computed(() => themeItems.value.map(item => item.name))
+const brandValues = computed(() => brandItems.value.map(item => item.name))
+const widthValues = computed(() => widthItems.value.map(item => item.value))
+const aidValues = computed(() => aidItems.value.map(item => item.value))
 </script>
 
 <template>
@@ -165,8 +200,10 @@ function toggleFocus(): void {
             :title="item.label"
             :class="{ active: background === item.name, empty: !item.color }"
             :style="item.color ? { backgroundColor: item.color } : undefined"
+            :tabindex="backgroundDisabled ? -1 : (background === item.name ? 0 : -1)"
             :disabled="backgroundDisabled"
             @click="selectBackground(item.name)"
+            @keydown="onRadioKeydown($event, themeValues, selectBackground)"
           />
         </div>
         <p v-if="isDark" class="hint">
@@ -194,7 +231,9 @@ function toggleFocus(): void {
             :title="item.label"
             :class="{ active: brand === item.name, empty: !item.color }"
             :style="item.color ? { backgroundColor: item.color } : undefined"
+            :tabindex="brand === item.name ? 0 : -1"
             @click="selectBrand(item.name)"
+            @keydown="onRadioKeydown($event, brandValues, selectBrand)"
           />
         </div>
       </div>
@@ -211,7 +250,9 @@ function toggleFocus(): void {
             role="radio"
             :aria-checked="width === item.value"
             :class="{ active: width === item.value }"
+            :tabindex="width === item.value ? 0 : -1"
             @click="selectWidth(item.value)"
+            @keydown="onRadioKeydown($event, widthValues, selectWidth)"
           >
             {{ item.text }}
           </button>
@@ -230,7 +271,9 @@ function toggleFocus(): void {
             role="radio"
             :aria-checked="aid === item.value"
             :class="{ active: aid === item.value }"
+            :tabindex="aid === item.value ? 0 : -1"
             @click="selectAid(item.value)"
+            @keydown="onRadioKeydown($event, aidValues, selectAid)"
           >
             {{ item.text }}
           </button>

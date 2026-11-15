@@ -40,7 +40,8 @@ function serialize(value: unknown): string {
 /**
  * 生成在首帧前应用阅读偏好的内联脚本。
  *
- * @param locales - Locales that enabled the feature / 启用了该功能的语言
+ * @param locales - Configured locales, disabled ones only act as stop markers
+ * 已配置的语言，关闭的语言只作为停止标记
  * @param base - Site base / 站点 `base`
  * @returns The inline script, or `null` when nothing is enabled / 内联脚本，全部关闭时为 `null`
  */
@@ -48,26 +49,32 @@ export function generateReaderScript(
   locales: ReaderScriptLocale[],
   base: string,
 ): string | null {
-  if (!locales.length)
+  if (!locales.some(locale => locale.options))
     return null
 
-  const enableWidth = locales.some(({ options }) => options.width)
-  const enableTheme = locales.some(({ options }) => options.theme)
-  const enableBrand = locales.some(({ options }) => options.brand)
-  const enableFocus = locales.some(({ options }) => options.focusMode)
+  const enableWidth = locales.some(locale => locale.options?.width)
+  const enableTheme = locales.some(locale => locale.options?.theme)
+  const enableBrand = locales.some(locale => locale.options?.brand)
+  const enableFocus = locales.some(locale => locale.options?.focusMode)
 
-  // `default` 表示「不覆盖」，不写入属性，因此不进白名单
-  const paletteNames = (palettes: { name: string }[] | undefined): string[] =>
-    (palettes ?? []).map(palette => palette.name).filter(name => name !== 'default')
+  // 调色板的属性值可能带语言作用域；`default` 表示「不覆盖」，不写入属性。
+  const palettePairs = (
+    palettes: { name: string, attribute?: string }[] | undefined,
+  ): [string, string][] => (palettes ?? [])
+    .filter(palette => palette.name !== 'default')
+    .map(palette => [palette.name, palette.attribute ?? palette.name])
 
-  const data = locales.map(({ prefix, options }) => ({
-    p: prefix,
-    k: `${options.storagePrefix}:reader:prefs`,
-    ...(options.width ? { w: options.width.presets } : {}),
-    ...(options.theme ? { t: paletteNames(options.theme.presets) } : {}),
-    ...(options.brand ? { b: paletteNames(options.brand.presets) } : {}),
-    ...(options.focusMode ? { f: 1 } : {}),
-  }))
+  // 显式关闭的语言只保留前缀，脚本命中后立即停止，不回退到根语言。
+  const data = locales.map(({ prefix, options }) => options
+    ? {
+        p: prefix,
+        k: `${options.storagePrefix}:reader:prefs`,
+        ...(options.width ? { w: options.width.presets } : {}),
+        ...(options.theme ? { t: palettePairs(options.theme.presets) } : {}),
+        ...(options.brand ? { b: palettePairs(options.brand.presets) } : {}),
+        ...(options.focusMode ? { f: 1 } : {}),
+      }
+    : { p: prefix })
 
   const parts = [
     ';(function(){try{',
@@ -77,7 +84,7 @@ export function generateReaderScript(
     `if(b!=='/'&&p.indexOf(b)===0)p='/'+p.slice(b.length);`,
     `var L=${serialize(data)},e=null,i;`,
     'for(i=0;i<L.length;i++){if(p.indexOf(L[i].p)===0){e=L[i];break}}',
-    'if(!e)return;',
+    'if(!e||!e.k)return;',
     'var r=localStorage.getItem(e.k),v=r?JSON.parse(r):null;',
     `if(!v||typeof v!=='object')v={};`,
     // 小屏上宽度与专注模式会被禁用，首帧也不写入，避免先闪一次宽布局
@@ -89,15 +96,16 @@ export function generateReaderScript(
 
   if (enableTheme) {
     parts.push(
-      `if(e.t&&e.t.indexOf(v.theme)>-1){`,
+      `if(e.t){`,
       `var m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches,c=d.dataset.theme;`,
-      `if(!(c==='dark'||(c!=='light'&&m)))d.setAttribute('data-reader-theme',v.theme)}`,
+      `if(!(c==='dark'||(c!=='light'&&m)))for(var j=0;j<e.t.length;j++)if(e.t[j][0]===v.theme){d.setAttribute('data-reader-theme',e.t[j][1]);break}`,
+      `}`,
     )
   }
 
   // 品牌色与深色 / 浅色无关，两种模式下都能生效
   if (enableBrand)
-    parts.push(`if(e.b&&e.b.indexOf(v.brand)>-1)d.setAttribute('data-reader-brand',v.brand);`)
+    parts.push(`if(e.b)for(var j=0;j<e.b.length;j++)if(e.b[j][0]===v.brand){d.setAttribute('data-reader-brand',e.b[j][1]);break}`)
 
   if (enableFocus)
     parts.push(`if(dk&&e.f&&v.focus===true)d.setAttribute('data-reader-focus','true');`)

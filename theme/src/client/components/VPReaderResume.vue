@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useTimeoutFn } from '@vueuse/core'
-import { computed, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useData, useReaderPreferences, useResumeReading } from '../composables/index.js'
 
 import '@vuepress/helper/transition/fade-in.css'
 
 /**
- * 自动消失的延迟。鼠标停留在提示条上时暂停计时。
+ * 自动消失的延迟。鼠标或焦点停留在提示条上时暂停计时。
  */
 const LIFETIME = 8000
 
@@ -23,11 +23,55 @@ const timeout = useTimeoutFn(() => {
   visible.value = false
 }, LIFETIME, { immediate: false })
 
+const root = ref<HTMLElement | null>(null)
+
+// 鼠标停留与焦点停留在提示内部时都要暂停计时，两者是独立的状态。
+const hovered = ref(false)
+const focused = ref(false)
+
+/**
+ * 只有鼠标已经离开且焦点也不在提示内部时才恢复计时。
+ */
+function arm(): void {
+  if (!visible.value || hovered.value || focused.value)
+    return
+
+  timeout.start()
+}
+
+function onMouseEnter(): void {
+  hovered.value = true
+  timeout.stop()
+}
+
+function onMouseLeave(): void {
+  hovered.value = false
+  arm()
+}
+
+function onFocusIn(): void {
+  focused.value = true
+  timeout.stop()
+}
+
+function onFocusOut(event: FocusEvent): void {
+  const next = event.relatedTarget as Node | null
+  if (next && root.value?.contains(next))
+    return
+
+  focused.value = false
+  arm()
+}
+
 watch(visible, (value) => {
-  if (value)
+  if (value) {
+    hovered.value = false
+    focused.value = false
     timeout.start()
-  else
+  }
+  else {
     timeout.stop()
+  }
 }, { immediate: true })
 </script>
 
@@ -36,13 +80,14 @@ watch(visible, (value) => {
     <!-- eslint-disable-next-line vue-a11y/no-static-element-interactions -->
     <div
       v-if="options?.resume?.prompt && visible"
+      ref="root"
       class="vp-reader-resume"
       role="status"
       aria-live="polite"
-      @mouseenter="timeout.stop()"
-      @mouseleave="visible && timeout.start()"
-      @focusin="timeout.stop()"
-      @focusout="visible && timeout.start()"
+      @mouseenter="onMouseEnter"
+      @mouseleave="onMouseLeave"
+      @focusin="onFocusIn"
+      @focusout="onFocusOut"
     >
       <span class="text">{{ text }}</span>
       <span class="actions">

@@ -108,6 +108,11 @@ html[data-reader-width="full"] .vp-doc-container:not(.has-sidebar) .container {
   }
 }
 
+html[data-reader-width="narrow"] .vp-doc-container.has-sidebar:not(.has-aside) .content-container {
+  max-width: var(--vp-doc-content-width);
+  margin-inline: auto;
+}
+
 /**
  * 护眼背景
  *

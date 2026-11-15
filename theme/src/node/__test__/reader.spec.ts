@@ -16,6 +16,12 @@ vi.mock('../options.js', () => ({
   getThemeOptions: () => hoisted.options,
 }))
 
+// `theme-data` 依赖该插件的两个导出，这里用 stub 替换，无需其 `dist` 已构建。
+vi.mock('vuepress-plugin-md-power', () => ({
+  getImageOriginalSize: vi.fn(),
+  resolveImagePath: vi.fn(),
+}))
+
 const { templateBuildRenderer } = await import('../config/templateBuildRenderer.js')
 const { collectReaderLocales, generateReaderPaletteStyle, generateReaderScript, mergeReaderPreferences, resolveLocaleReaderOptions, resolveReaderOptions } = await import('../features/reader/index.js')
 
@@ -86,7 +92,7 @@ describe('reader script injection', () => {
     expect(script).toContain('data-reader-theme')
   })
 
-  it('skips a locale that disabled the feature', async () => {
+  it('keeps a disabled locale as a stop marker instead of falling back', async () => {
     const script = extractScript(await render({
       readerPreferences: true,
       locales: {
@@ -96,7 +102,9 @@ describe('reader script injection', () => {
     }))
 
     expect(script).toContain('"/"')
-    expect(script).not.toContain('"/en/"')
+    // 关闭的语言保留前缀标记，脚本命中后立即停止，不会回退到根语言
+    expect(script).toContain('{"p":"/en/"}')
+    expect(script).toContain('if(!e||!e.k)return;')
   })
 
   it('injects nothing when every locale is off', async () => {
@@ -129,6 +137,25 @@ describe('reader script injection', () => {
     const options = { readerPreferences: { width: { presets: ['wide'] } } }
 
     expect(await render(options)).toBe(await render(options))
+  })
+
+  it('sets the locale-scoped palette value', async () => {
+    const script = extractScript(await render({
+      readerPreferences: {
+        theme: { presets: [{ name: 'paper', tokens: { 'vp-c-bg': '#fdf6e3' } }] },
+      },
+      locales: {
+        '/': {},
+        '/en/': {
+          readerPreferences: {
+            theme: { presets: [{ name: 'paper', tokens: { 'vp-c-bg': '#111' } }] },
+          },
+        },
+      },
+    }))
+
+    // 同名调色板在非根语言下使用带语言作用域的值，避免与根语言互相覆盖
+    expect(script).toContain('["paper","paper@/en/"]')
   })
 
   it('never applies the width or the focus mode on small screens', async () => {
@@ -170,6 +197,9 @@ describe('resolveReaderOptions', () => {
       .toEqual({ modes: ['mask', 'left', 'right'], default: 'left' })
     expect(resolveReaderOptions({ readAid: { modes: ['mask', 'right', 'trace' as any] } })!.readAid)
       .toEqual({ modes: ['mask', 'right'], default: null })
+    // 显式 `default: null` 表示默认关闭辅助线
+    expect(resolveReaderOptions({ readAid: { default: null } })!.readAid)
+      .toEqual({ modes: ['mask', 'left', 'right'], default: null })
   })
 
   it('resolves user defined palettes', () => {
@@ -201,24 +231,30 @@ describe('resolveReaderOptions', () => {
   })
 
   it('emits a stylesheet for the custom palettes only', () => {
+    const options = {
+      readerPreferences: {
+        theme: { presets: ['warm', { name: 'paper', tokens: { 'vp-c-bg': '#fdf6e3' } }] },
+      },
+      locales: {
+        '/': {},
+        '/en/': {
+          readerPreferences: {
+            theme: { presets: [{ name: 'paper', tokens: { 'vp-c-bg': '#fdf6e3' } }] },
+          },
+        },
+      },
+    } as any
+
     const style = generateReaderPaletteStyle([
-      {
-        prefix: '/',
-        options: resolveReaderOptions({
-          theme: { presets: ['warm', { name: 'paper', tokens: { 'vp-c-bg': '#fdf6e3' } }] },
-        })!,
-      },
-      {
-        prefix: '/en/',
-        options: resolveReaderOptions({
-          theme: { presets: [{ name: 'paper', tokens: { 'vp-c-bg': '#fdf6e3' } }] },
-        })!,
-      },
+      { prefix: '/', options: resolveLocaleReaderOptions(options, '/')! },
+      { prefix: '/en/', options: resolveLocaleReaderOptions(options, '/en/')! },
     ])
 
     expect(style).toContain('html[data-reader-theme="paper"] {\n  --vp-c-bg: #fdf6e3;\n}')
-    // 内置档位不重复输出，跨语言同名调色板也只输出一次
+    // 内置档位不重复输出
     expect(style).not.toContain('data-reader-theme="warm"')
+    // 同名调色板带语言作用域，各自使用所在语言的令牌
+    expect(style).toContain('html[data-reader-theme="paper@/en/"] {\n  --vp-c-bg: #fdf6e3;\n}')
     expect(style.split('data-reader-theme="paper"').length - 1).toBe(1)
   })
 
@@ -285,6 +321,19 @@ describe('mergeReaderPreferences', () => {
     expect(merged.brand.presets[1].tokens).toEqual({ '--vp-c-brand-1': '#7c3aed' })
   })
 
+  it('keeps the implicit presets when the locale only declares one', () => {
+    // 主题级未声明 presets 时，语言级配置不能裁掉隐式默认档位
+    const theme = mergeReaderPreferences({ theme: {} }, { theme: { presets: ['sepia'] } }) as any
+    expect(theme.theme.presets).toEqual(['default', 'warm', 'sepia'])
+
+    // 品牌组没有隐式档位
+    const brand = mergeReaderPreferences(
+      { brand: {} },
+      { brand: { presets: [{ name: 'ocean', tokens: { '--vp-c-brand-1': '#0ea5e9' } }] } },
+    ) as any
+    expect(brand.brand.presets.map((preset: any) => preset.name)).toEqual(['ocean'])
+  })
+
   it('keeps the resolved shape when the locale disables a group', () => {
     const merged = mergeReaderPreferences(base, { theme: false }) as any
 
@@ -338,6 +387,8 @@ describe('resolveLocaleReaderOptions', () => {
       label: 'Forest',
       color: '#eef5ec',
       tokens: { '--vp-c-bg': '#eef5ec' },
+      // 非根语言的自定义调色板带语言作用域的属性值
+      attribute: 'forest@/en/',
     })
   })
 })
@@ -371,6 +422,7 @@ describe('resolveThemeData', () => {
       label: 'Forest',
       color: '#eef5ec',
       tokens: { '--vp-c-bg': '#eef5ec' },
+      attribute: 'forest@/en/',
     })
   })
 
@@ -385,7 +437,7 @@ describe('resolveThemeData', () => {
 })
 
 describe('collectReaderLocales', () => {
-  it('only collects the enabled locales, longest prefix first', () => {
+  it('keeps the disabled locales as stop markers, longest prefix first', () => {
     const locales = collectReaderLocales({
       readerPreferences: true,
       locales: {
@@ -395,7 +447,9 @@ describe('collectReaderLocales', () => {
       },
     } as any)
 
-    expect(locales.map(locale => locale.prefix)).toEqual(['/en/', '/'])
+    expect(locales.map(locale => locale.prefix)).toEqual(['/en/', '/ja/', '/'])
+    // 关闭的语言保留标记（`options` 为 `null`），脚本命中后不会回退到根语言
+    expect(locales.find(locale => locale.prefix === '/ja/')!.options).toBeNull()
   })
 })
 

@@ -41,9 +41,9 @@ export function hasReaderControls(options: ResolvedReaderOptions | null, mobile 
     return false
 
   if (mobile)
-    return !!options.theme
+    return !!(options.theme || options.brand)
 
-  return !!options.width || !!options.theme || !!options.readAid || options.focusMode
+  return !!options.width || !!options.theme || !!options.brand || !!options.readAid || options.focusMode
 }
 
 /**
@@ -117,7 +117,10 @@ export function resolveReaderAidConfig(
     ? null
     : legacy === true ? 'left' : legacy
 
-  if (options?.readAid) {
+  if (options) {
+    if (!options.readAid)
+      return null
+
     const { modes, default: preset } = options.readAid
 
     return {
@@ -187,7 +190,8 @@ export function normalizeReaderPreferences(
       prefs.aid = source.aid as ReaderAidMode
   }
 
-  if (typeof source.focus === 'boolean')
+  // 专注模式关闭时丢弃该偏好，避免它继续参与 `syncPreferences()` 与 DOM 属性
+  if (options.focusMode && typeof source.focus === 'boolean')
     prefs.focus = source.focus
 
   return prefs
@@ -249,7 +253,10 @@ function resolvePaletteName(
     ? stored
     : 'default'
 
-  return name === 'default' ? null : name
+  if (name === 'default')
+    return null
+
+  return presets.find(palette => palette.name === name)?.attribute ?? name
 }
 
 /**

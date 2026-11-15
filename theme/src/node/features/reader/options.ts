@@ -329,6 +329,7 @@ function mergePresets(
 function mergePaletteGroup<P extends ReaderThemePreset | ReaderPalette>(
   base: false | { presets?: P[] } | undefined,
   locale: false | { presets?: P[] } | undefined,
+  defaults: P[],
 ): { presets?: P[] } | undefined {
   if (!base || !locale)
     return undefined
@@ -336,7 +337,7 @@ function mergePaletteGroup<P extends ReaderThemePreset | ReaderPalette>(
   if (!locale.presets)
     return base.presets ? { presets: base.presets } : {}
 
-  return { presets: mergePresets(base.presets, locale.presets) as P[] }
+  return { presets: mergePresets(base.presets ?? defaults, locale.presets) as P[] }
 }
 
 /**
@@ -365,15 +366,39 @@ export function mergeReaderPreferences(
 
   const merged: ReaderPreferencesOptions = { ...base, ...locale }
 
-  const theme = mergePaletteGroup(base.theme, locale.theme)
+  const theme = mergePaletteGroup(base.theme, locale.theme, THEME_PRESETS)
   if (theme)
     merged.theme = theme
 
-  const brand = mergePaletteGroup(base.brand, locale.brand)
+  const brand = mergePaletteGroup(base.brand, locale.brand, [])
   if (brand)
     merged.brand = brand
 
   return merged
+}
+
+/**
+ * 为单个语言的自定义调色板加上语言作用域。
+ *
+ * 不同语言可能用同一个名称定义不同的令牌，因此非根语言写入
+ * `data-reader-theme` / `data-reader-brand` 的值会带上语言前缀；
+ * 根语言沿用名称，单语言站点与历史存储值保持不变。
+ *
+ * @param group - Palette group / 调色板分组
+ * @param prefix - Route locale prefix / 路由语言前缀
+ */
+function scopePalettes(
+  group: { presets: ResolvedReaderPalette[] } | null,
+  prefix: string,
+): { presets: ResolvedReaderPalette[] } | null {
+  if (!group || prefix === '/')
+    return group
+
+  return {
+    presets: group.presets.map(palette => Object.keys(palette.tokens).length
+      ? { ...palette, attribute: `${palette.name}@${prefix}` }
+      : palette),
+  }
 }
 
 /**
@@ -395,18 +420,26 @@ export function resolveLocaleReaderOptions(
 ): ResolvedReaderOptions | null {
   const localeValue = options.locales?.[locale]?.readerPreferences
 
-  if (localeValue === undefined)
-    return resolveReaderOptions(options.readerPreferences)
+  const merged = localeValue === undefined
+    ? options.readerPreferences
+    : mergeReaderPreferences(options.readerPreferences, localeValue)
 
-  return resolveReaderOptions(
-    mergeReaderPreferences(options.readerPreferences, localeValue),
-  )
+  const resolved = resolveReaderOptions(merged)
+
+  if (!resolved)
+    return null
+
+  return {
+    ...resolved,
+    theme: scopePalettes(resolved.theme, locale),
+    brand: scopePalettes(resolved.brand, locale),
+  }
 }
 
 /**
- * A locale that enabled the reader preferences.
+ * A configured locale of the reader preferences.
  *
- * 启用了阅读偏好的语言环境。
+ * 阅读偏好已配置的语言环境。
  */
 export interface ReaderScriptLocale {
   /**
@@ -416,20 +449,18 @@ export interface ReaderScriptLocale {
    */
   prefix: string
   /**
-   * Resolved options of that locale
+   * Resolved options of that locale, `null` when it disabled the feature
    *
-   * 该语言已解析的配置
+   * 该语言已解析的配置，显式关闭时为 `null`
    */
-  options: ResolvedReaderOptions
+  options: ResolvedReaderOptions | null
 }
 
 /**
- * Collect every locale that enabled the reader preferences.
+ * 收集所有已配置的语言环境，包括显式关闭的语言。
  *
- * Entries are sorted by prefix length descending, so that `/en/` is matched
- * before the root `/` when the script looks up the current path.
- *
- * 收集所有启用了阅读偏好的语言环境。
+ * 关闭的语言保留为标记：内联脚本命中后立即停止，而不是回退到根语言，
+ * 因此 `/en/` 关闭该功能后不会继承根语言的偏好。
  *
  * 按前缀长度倒序排列，使脚本在匹配当前路径时 `/en/` 先于根路径 `/` 命中。
  *
@@ -445,13 +476,10 @@ export function collectReaderLocales(options: ThemeOptions): ReaderScriptLocale[
     return resolved ? [{ prefix: '/', options: resolved }] : []
   }
 
-  const locales: ReaderScriptLocale[] = []
-
-  for (const prefix of prefixes) {
-    const resolved = resolveLocaleReaderOptions(options, prefix)
-    if (resolved)
-      locales.push({ prefix, options: resolved })
-  }
+  const locales: ReaderScriptLocale[] = prefixes.map(prefix => ({
+    prefix,
+    options: resolveLocaleReaderOptions(options, prefix),
+  }))
 
   return locales.sort((a, b) => b.prefix.length - a.prefix.length)
 }

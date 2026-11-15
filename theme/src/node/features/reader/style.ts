@@ -33,19 +33,29 @@ function paletteRule(
  * are emitted here. The style is injected into `build.html` before the reader
  * script so the first paint already uses the stored palette.
  *
+ * Palettes are scoped by the locale value computed at build time, so that two
+ * locales may define the same palette name with different tokens.
+ *
  * 生成所有自定义调色板的样式表。
  *
  * 内置档位在 `styles/reader.css` 中，这里只输出用户自定义的调色板。
  * 样式被注入到 `build.html` 的阅读偏好脚本之前，首帧即使用已存储的调色板。
  *
- * @param locales - Locales that enabled the feature / 启用了该功能的语言
- * @returns The `<style>` tag, or an empty string when there is nothing to emit
+ * 调色板按构建期计算的语言作用域值生成选择器，因此不同语言的同名调色板
+ * 可以使用各自的令牌。
+ *
+ * @param locales - Configured locales, disabled ones are skipped
+ * 已配置的语言，关闭的语言会被跳过
+ * @returns The stylesheet, or an empty string when there is nothing to emit
  */
 export function generateReaderPaletteStyle(locales: ReaderScriptLocale[]): string {
   const rules: string[] = []
   const seen = new Set<string>()
 
-  for (const { options } of locales) {
+  for (const { prefix, options } of locales) {
+    if (!options)
+      continue
+
     for (const [attribute, palettes] of [
       [READER_THEME_ATTRIBUTE, options.theme?.presets],
       [READER_BRAND_ATTRIBUTE, options.brand?.presets],
@@ -55,12 +65,14 @@ export function generateReaderPaletteStyle(locales: ReaderScriptLocale[]): strin
         if (!Object.keys(palette.tokens).length)
           continue
 
-        const key = `${attribute}:${palette.name}`
+        // 同名调色板在不同语言中可能有不同的令牌，选择器的值带有语言身份
+        const value = palette.attribute ?? palette.name
+        const key = `${attribute}:${prefix}:${value}`
         if (seen.has(key))
           continue
 
         seen.add(key)
-        rules.push(paletteRule(attribute, palette.name, palette.tokens))
+        rules.push(paletteRule(attribute, value, palette.tokens))
       }
     }
   }

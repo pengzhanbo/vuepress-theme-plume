@@ -436,11 +436,41 @@ export function setupReaderPreferences(): void {
   const route = useRoute()
   const options = useReaderOptions()
 
+  /**
+   * Last valid sample, used by the forced flush points.
+   *
+   * 最后一次有效采样，供强制落盘点使用。
+   */
+  let lastSample: { path: string, percent: number } | null = null
+  let lastWriteAt = 0
+
+  /**
+   * 新页面稳定前是否暂停采样。
+   *
+   * 路由切换会把滚动位置复位，若直接采样就会在续读判定前覆盖新页面已保存的进度。
+   */
+  let samplingSuspended = false
+
+  /**
+   * 落盘当前页面尚未写入的采样。
+   */
+  function flush(): void {
+    const resume = options.value?.resume
+    if (!lastSample || !resume)
+      return
+
+    writeRecord(resume, lastSample.path, lastSample.percent)
+    lastSample = null
+  }
+
   // 存储键前缀随语言变化，`useStorage` 会自动换键并重新读取。
   // The key prefix follows the locale, `useStorage` switches keys and reloads itself.
   watch(
     () => options.value?.storagePrefix ?? 'plume',
-    (prefix) => {
+    (prefix, prev) => {
+      // 语言切换：先把旧语言待写的样本落盘到旧前缀的记录表，再切换存储键。
+      if (prev !== undefined)
+        flush()
       storagePrefix.value = prefix
     },
     { immediate: true },
@@ -478,12 +508,36 @@ export function setupReaderPreferences(): void {
   const docHeight = ref(0)
 
   /**
-   * Last valid sample, used by the forced flush points.
-   *
-   * 最后一次有效采样，供强制落盘点使用。
+   * 当前被 `ResizeObserver` 观察的正文节点。
    */
-  let lastSample: { path: string, percent: number } | null = null
-  let lastWriteAt = 0
+  let observedDoc: HTMLElement | null = null
+  let resizeObserver: ResizeObserver | null = null
+
+  /**
+   * 正文节点被替换时重新绑定观察器。
+   *
+   * @param el - Current content node / 当前正文节点
+   */
+  function observeDoc(el: HTMLElement | null): void {
+    if (!resizeObserver)
+      return
+
+    if (!el) {
+      if (observedDoc)
+        resizeObserver.unobserve(observedDoc)
+      observedDoc = null
+      return
+    }
+
+    if (el === observedDoc)
+      return
+
+    if (observedDoc)
+      resizeObserver.unobserve(observedDoc)
+
+    observedDoc = el
+    resizeObserver.observe(el)
+  }
 
   function measure(): void {
     const el = document.querySelector<HTMLElement>('.vp-doc')
@@ -493,6 +547,9 @@ export function setupReaderPreferences(): void {
       readingTrackable.value = false
       return
     }
+
+    // 路由切换时正文节点会被替换（`out-in` 过渡），测量时顺带重新绑定
+    observeDoc(el)
 
     const rect = el.getBoundingClientRect()
     docTop.value = rect.top + window.scrollY
@@ -513,20 +570,15 @@ export function setupReaderPreferences(): void {
     { immediate: true },
   )
 
-  function flush(): void {
-    const resume = options.value?.resume
-    if (!lastSample || !resume)
-      return
-
-    writeRecord(resume, lastSample.path, lastSample.percent)
-    lastSample = null
-  }
-
   function onScroll(): void {
     const opt = options.value
     const resume = opt?.resume
 
     if (!opt || !resume)
+      return
+
+    // 路由切换触发的滚动复位不属于用户滚动，等续读判定完成后再恢复采样。
+    if (samplingSuspended)
       return
 
     // 首次滚动时正文可能还没被测量（setup 阶段尚无 DOM），补一次测量。
@@ -604,6 +656,8 @@ export function setupReaderPreferences(): void {
     resumeTimer = setTimeout(() => {
       measure()
       checkResume()
+      // 续读判定已经完成，恢复对用户滚动的采样
+      samplingSuspended = false
     }, RESUME_DELAY)
   }
 
@@ -613,19 +667,24 @@ export function setupReaderPreferences(): void {
     document.fonts.ready.then(measure).catch(() => {})
 
   if (typeof ResizeObserver === 'function') {
-    const observer = new ResizeObserver(() => measure())
-    const observe = (): void => {
-      const el = document.querySelector<HTMLElement>('.vp-doc')
-      if (el)
-        observer.observe(el)
-    }
-    observe()
-    watch(() => page.value.path, () => nextTick(observe))
+    resizeObserver = new ResizeObserver(() => measure())
+
+    // `setup` 阶段 `.vp-doc` 尚未挂载，首次绑定要等客户端首次渲染完成；
+    // 路由切换后由 `measure()` 重新绑定被替换的正文节点。
+    watch(() => page.value.path, () => nextTick(measure), { immediate: true })
   }
 
   watch(() => page.value.path, (_path, prev) => {
-    if (prev)
+    if (prev) {
+      // 只落盘属于上一页的采样：滚动复位可能已经用新路径采样，直接丢弃
+      if (lastSample && lastSample.path !== prev)
+        lastSample = null
+
       flush()
+    }
+
+    // 在续读判定完成前忽略路由切换触发的滚动复位
+    samplingSuspended = true
 
     nextTick(measure)
     scheduleResume()

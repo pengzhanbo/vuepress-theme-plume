@@ -2,16 +2,22 @@
 import { onKeyStroke } from '@vueuse/core'
 import { computed } from 'vue'
 import { useData, useReaderPreferences } from '../composables/index.js'
+import { resolveEffectiveFocus } from '../utils/index.js'
 
 import '@vuepress/helper/transition/fade-in.css'
 
 const { theme } = useData()
-const { options, prefs, setPreference } = useReaderPreferences()
+const { options, prefs, mobile, setPreference } = useReaderPreferences()
 
 /**
- * 只有功能启用且偏好开启时，专注模式才生效。
+ * 只有功能启用且专注模式真正生效时才显示退出控件。
+ *
+ * 小屏上专注模式不会生效（隐藏导航栏会失去打开抽屉的唯一入口），
+ * 但存储的偏好需要保留：视口变宽后仍会重新生效，因此只在这里按当前视口判定。
  */
-const active = computed(() => options.value?.focusMode === true && prefs.value.focus === true)
+const active = computed(() =>
+  options.value?.focusMode === true && resolveEffectiveFocus(prefs.value.focus, mobile.value),
+)
 
 function exit(): void {
   setPreference('focus', undefined)

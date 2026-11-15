@@ -109,6 +109,10 @@ describe('reading aid', () => {
     expect(resolveEffectiveAid({ modes: [...config.modes], default: config.default }, 'right')).toBe('left')
     expect(resolveEffectiveAid(null, 'mask')).toBeNull()
   })
+
+  it('keeps an explicitly disabled config instead of the legacy option', () => {
+    expect(resolveReaderAidConfig(makeOptions({ readAid: null }), 'left')).toBeNull()
+  })
 })
 
 describe('hasReaderControls', () => {
@@ -136,6 +140,20 @@ describe('hasReaderControls', () => {
     expect(hasReaderControls(makeOptions({ width: null, theme: null }))).toBe(true)
     expect(hasReaderControls(makeOptions({ width: null, theme: null, focusMode: false, readAid: { modes: ['mask'], default: null } }))).toBe(true)
     expect(hasReaderControls(fullOptions)).toBe(true)
+  })
+
+  it('counts the brand palettes on both viewports', () => {
+    // 只启用品牌色时，桌面与移动端都应保留设置入口
+    const brandOnly = makeOptions({
+      width: null,
+      theme: null,
+      readAid: null,
+      focusMode: false,
+      brand: { presets: [{ name: 'default', color: null, tokens: {} }] },
+    })
+
+    expect(hasReaderControls(brandOnly, false)).toBe(true)
+    expect(hasReaderControls(brandOnly, true)).toBe(true)
   })
 })
 
@@ -197,6 +215,11 @@ describe('normalizeReaderPreferences', () => {
   it('parses a JSON string', () => {
     expect(normalizeReaderPreferences('{"focus":true}', fullOptions)).toEqual({ focus: true })
   })
+
+  it('drops the focus preference when the focus mode is disabled', () => {
+    // 关闭专注模式后，该偏好不应继续同步到 DOM 属性
+    expect(normalizeReaderPreferences({ focus: true }, makeOptions({ focusMode: false }))).toEqual({})
+  })
 })
 
 describe('resolveEffectiveTheme', () => {
@@ -215,6 +238,19 @@ describe('resolveEffectiveTheme', () => {
 
     expect(resolveEffectiveTheme(narrow, 'sepia', false)).toBeNull()
     expect(resolveEffectiveTheme(narrow, 'warm', false)).toBe('warm')
+  })
+
+  it('uses the locale-scoped attribute value of a custom palette', () => {
+    const presets = makeOptions({
+      theme: {
+        presets: [
+          BUILTIN_THEMES[0],
+          { name: 'paper', color: '#fdf6e3', tokens: { '--vp-c-bg': '#fdf6e3' }, attribute: 'paper@/en/' },
+        ],
+      },
+    }).theme!.presets
+
+    expect(resolveEffectiveTheme(presets, 'paper', false)).toBe('paper@/en/')
   })
 })
 

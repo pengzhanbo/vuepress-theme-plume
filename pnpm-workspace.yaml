@@ -80,7 +80,7 @@ catalogs:
   dev:
     '@commitlint/cli': ^21.2.4
     '@commitlint/config-conventional': ^21.2.4
-    '@lunariajs/core': ^0.2.1
+    '@lunariajs/core': ^0.3.0
     '@pengzhanbo/eslint-config-vue': ^2.15.0
     '@pengzhanbo/stylelint-config': ^2.15.0
     '@simonwep/pickr': ^1.10.3

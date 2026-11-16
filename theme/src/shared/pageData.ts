@@ -18,7 +18,7 @@ export interface ThemePageData extends GitPluginPageData, PageData {
    *
    * @internal
    */
-  type: 'friends' | 'posts' | 'posts-tags' | 'posts-archives' | 'posts-categories'
+  type: 'friends' | 'posts' | 'posts-tags' | 'posts-archives' | 'posts-categories' | 'posts-series' | 'posts-series-index'
   /**
    * Blog post category list
    * 博客文章分类列表

@@ -4,6 +4,7 @@ icon: hugeicons:chart-relationship
 createTime: 2026/11/08 10:00:00
 permalink: /guide/features/related-posts/
 badge: 新
+series: features
 ---
 
 ## 概述

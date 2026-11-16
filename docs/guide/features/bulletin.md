@@ -3,6 +3,7 @@ title: 公告板
 icon: mingcute:announcement-line
 createTime: 2024/10/19 21:51:22
 permalink: /guide/features/bulletin/
+series: features
 ---
 
 ## 概述

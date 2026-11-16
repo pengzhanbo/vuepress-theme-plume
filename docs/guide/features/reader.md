@@ -4,6 +4,7 @@ icon: lucide:book-open-text
 createTime: 2026/11/11 10:00:00
 permalink: /guide/features/reader/
 badge: 新
+series: features
 ---
 
 ## 概述

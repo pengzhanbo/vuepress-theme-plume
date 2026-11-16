@@ -4,6 +4,7 @@ icon: fluent:preview-link-24-regular
 createTime: 2026/11/10 10:00:00
 permalink: /guide/features/link-preview/
 badge: 新
+series: features
 ---
 
 ## 概述

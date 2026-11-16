@@ -298,6 +298,43 @@ Note that the value of `level` should be greater than the level of the current h
   - For blog-type articles: The theme automatically populates the title and link of the next article based on chronological order.
   - For notes-type articles: The theme automatically populates the title and link of the next article based on the note sidebar configuration.
 
+### series
+
+- Type: `string`
+- Default: `''`
+- Details:
+
+  Id of the series this page belongs to. A series is a cross-collection content dimension: it
+  does not change page paths, it only adds two in-page links. See
+  [Series](../../guide/features/series.md) for details.
+
+  ```yaml
+  ---
+  series: vue3-in-depth
+  ---
+  ```
+
+### seriesOrder
+
+- Type: `number`
+- Default: none
+- Details:
+
+  Order of this page in the series, used when the series sorts by `order: 'order'`.
+  The effective chapter number is always assigned at build time.
+
+### seriesNav
+
+- Type: `boolean`
+- Default: `true`
+- Details:
+
+  Whether to render the series links on this page ("This post is part of …" above the content
+  and "Next: …" below it).
+
+  Setting it to `false` only hides these two blocks; the page still belongs to the series and
+  the doc pager is unaffected.
+
 ### readingTime
 
 - Type: `boolean`

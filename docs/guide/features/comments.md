@@ -3,6 +3,7 @@ title: 评论
 icon: la:comment
 createTime: 2024/03/04 11:58:59
 permalink: /guide/features/comments/
+series: features
 ---
 
 ## 概述

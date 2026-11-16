@@ -4,6 +4,7 @@ import { defineThemeConfig } from 'vuepress-theme-plume'
 import { enCollections, zhCollections } from './collections/index.js'
 import { enNavbar, zhNavbar } from './navbar.js'
 import { enReaderPreferences, readerPreferences } from './reader.js'
+import { enSeries, zhSeries } from './series.js'
 
 export default defineThemeConfig({
   logo: '/plume.png',
@@ -36,11 +37,13 @@ export default defineThemeConfig({
     '/': {
       navbar: zhNavbar,
       collections: zhCollections,
+      series: zhSeries,
     },
     '/en/': {
       navbar: enNavbar,
       collections: enCollections,
       readerPreferences: enReaderPreferences,
+      series: enSeries,
     },
   },
 

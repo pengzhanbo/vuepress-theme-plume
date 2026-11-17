@@ -7,7 +7,7 @@
 import type { Page } from 'vuepress'
 import type { SeriesItemOptions, SeriesOrder, ThemeOptions, ThemePageData } from '../../../shared/index.js'
 import type { ResolvedSeriesOptions } from './options.js'
-import { ensureEndingSlash } from '@vuepress/helper'
+import { ensureEndingSlash, isLinkExternal } from '@vuepress/helper'
 import { logger } from '../../utils/index.js'
 import { isPublicContentPage } from '../content.js'
 import { isEncryptPage } from '../encrypt.js'
@@ -279,7 +279,9 @@ function resolveLinks(
 
   const link = resolveSeriesLink(item.link, locale)
 
-  if (occupiedPaths && !isOccupied(occupiedPaths, link))
+  // 站外链接没有对应的站内页面，跳过占用检查
+  // An external link has no local page, so the occupancy check does not apply
+  if (occupiedPaths && !isLinkExternal(link) && !isOccupied(occupiedPaths, link))
     warn(`[series] "${id}" (${locale}): \`link\` points to ${link}, but no page is found at this path.`)
 
   return { link }

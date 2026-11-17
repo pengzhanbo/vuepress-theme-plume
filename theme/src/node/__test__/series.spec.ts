@@ -331,6 +331,35 @@ describe('collectSeries', () => {
     expect(hoisted.logger.warn).not.toHaveBeenCalled()
   })
 
+  it('should keep an external manual link untouched', () => {
+    const pages = [
+      createPage('a', { series: 'vue', seriesOrder: 1 }),
+      createPage('b', { series: 'vue', seriesOrder: 2 }),
+    ]
+
+    const [series] = collectSeries(pages, createOptions({
+      items: { vue: { page: false, link: ' https://example.com/series ' } },
+    }), { isBuild: false, occupiedPaths: new Set() })
+
+    expect(series!.link).toBe('https://example.com/series')
+    // 站外链接没有对应的站内页面，不应产生占用告警
+    expect(hoisted.logger.warn).not.toHaveBeenCalled()
+  })
+
+  it('should keep a protocol relative manual link untouched', () => {
+    const pages = [
+      createPage('a', { series: 'vue', seriesOrder: 1 }),
+      createPage('b', { series: 'vue', seriesOrder: 2 }),
+    ]
+
+    const [series] = collectSeries(pages, createOptions({
+      items: { vue: { page: false, link: '//cdn.example.com/series/' } },
+    }), { isBuild: false, occupiedPaths: new Set() })
+
+    expect(series!.link).toBe('//cdn.example.com/series/')
+    expect(hoisted.logger.warn).not.toHaveBeenCalled()
+  })
+
   it('should prefix the locale of a manual link without adding a trailing slash', () => {
     const pages = [
       createPage('a', { series: 'vue', seriesOrder: 1, locale: '/zh/' }),

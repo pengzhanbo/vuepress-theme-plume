@@ -1,4 +1,5 @@
 import type { ThemeSeries, ThemeSeriesData } from '../../shared/index.js'
+import { removeEndingSlash } from '@vuepress/helper/client'
 
 /**
  * Whether two route paths point at the same page, ignoring the trailing slash.
@@ -9,7 +10,7 @@ import type { ThemeSeries, ThemeSeriesData } from '../../shared/index.js'
  * @param b - Second path / 第二个路径
  */
 export function isSamePath(a: string, b: string): boolean {
-  return a === b || a.replace(/\/+$/, '') === b.replace(/\/+$/, '')
+  return a === b || removeEndingSlash(a) === removeEndingSlash(b)
 }
 
 /**

@@ -5,7 +5,7 @@
  */
 
 import type { SeriesItemOptions, SeriesOptions, SeriesOrder, ThemeOptions } from '../../../shared/index.js'
-import { ensureEndingSlash, ensureLeadingSlash, isLinkWithProtocol, removeLeadingSlash } from '@vuepress/helper'
+import { ensureEndingSlash, ensureLeadingSlash, isLinkExternal, removeLeadingSlash } from '@vuepress/helper'
 import { normalizePath, withBase } from '../../utils/index.js'
 
 /**
@@ -176,18 +176,26 @@ export function resolveSeriesIndexPath(options: ResolvedSeriesOptions, locale: s
  * points at a page the author maintains: forcing a directory-style path would break
  * links such as `/handmade-series.html`. Only the locale prefix is added.
  *
+ * External links are returned before any normalization, because `normalizePath` collapses
+ * the `//` of a protocol, turning `https://example.com` into `https:/example.com`.
+ *
  * 为用户自定义链接拼接语言前缀。链接保持原样（包括结尾是否有斜杠），
  * 因为它指向作者自己维护的页面，强制补成目录地址会破坏 `/xxx.html` 这类链接。
+ *
+ * 站外链接在任何路径处理之前就返回：`normalizePath` 会折叠协议里的 `//`，
+ * 把 `https://example.com` 改写成 `https:/example.com`。
  *
  * @param link - Raw link / 原始链接
  * @param locale - Route locale / 路由语言
  */
 export function resolveSeriesLink(link: string, locale: string): string {
-  const normalized = ensureLeadingSlash(normalizePath(link.trim()))
+  const trimmed = link.trim()
 
-  // 站外链接或协议相对地址保持原样 / External and protocol-relative links are kept as-is
-  if (isLinkWithProtocol(normalized) || normalized.startsWith('//'))
-    return normalized
+  // 站外链接与协议相对地址原样返回 / External and protocol-relative links are kept as-is
+  if (isLinkExternal(trimmed))
+    return trimmed
+
+  const normalized = ensureLeadingSlash(normalizePath(trimmed))
 
   if (locale === '/' || normalized.startsWith(locale))
     return normalized

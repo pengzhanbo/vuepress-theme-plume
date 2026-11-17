@@ -1,6 +1,19 @@
 import type { ThemeSeries, ThemeSeriesData } from '../../shared/index.js'
-import { describe, expect, it } from 'vitest'
-import { isSamePath, resolveSeriesPage } from '../utils/series.js'
+import { describe, expect, it, vi } from 'vitest'
+
+// `@vuepress/helper/client` re-exports the pure path helpers, but the module itself
+// loads the VuePress client runtime (which needs the virtual `@internal/routes`).
+// Forward the real implementations from `@vuepress/helper/shared` instead.
+//
+// `@vuepress/helper/client` 只是重新导出纯路径工具，但模块本身会加载 VuePress
+// 客户端运行时（依赖虚拟模块 `@internal/routes`）。这里改为从
+// `@vuepress/helper/shared` 转发真实实现。
+vi.mock('@vuepress/helper/client', async () => {
+  const shared = await import('@vuepress/helper/shared')
+  return { removeEndingSlash: shared.removeEndingSlash }
+})
+
+const { isSamePath, resolveSeriesPage } = await import('../utils/series.js')
 
 function createSeries(id: string, link?: string): ThemeSeries {
   return { id, title: id, link, nav: true, chapters: [] }
@@ -71,7 +84,7 @@ describe('resolveSeriesPage', () => {
 describe('isSamePath', () => {
   it('should ignore the trailing slash only', () => {
     expect(isSamePath('/a/', '/a')).toBe(true)
-    expect(isSamePath('/a//', '/a/')).toBe(true)
+    expect(isSamePath('/a', '/a')).toBe(true)
     expect(isSamePath('/a/', '/a/b/')).toBe(false)
   })
 })

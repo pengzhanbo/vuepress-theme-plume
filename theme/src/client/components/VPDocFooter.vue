@@ -85,7 +85,7 @@ const showFooter = computed(() => {
 
     <nav v-if="prev?.link || next?.link" class="prev-next" :aria-label="prevNextLabel">
       <div class="pager">
-        <VPLink v-if="prev?.link" class="pager-link prev" :href="prev.link">
+        <VPLink v-if="prev?.link" class="pager-link prev no-link-preview" :href="prev.link">
           <span class="desc" v-html="theme.prevPageLabel || 'Previous page'" />
           <span class="title">
             <VPIcon v-if="prev.icon" :name="prev.icon" />
@@ -94,7 +94,7 @@ const showFooter = computed(() => {
         </VPLink>
       </div>
       <div class="pager">
-        <VPLink v-if="next?.link" class="pager-link next" :href="next.link">
+        <VPLink v-if="next?.link" class="pager-link next no-link-preview" :href="next.link">
           <span class="desc" v-html="theme.nextPageLabel || 'Next page'" />
           <span class="title">
             <VPIcon v-if="next.icon" :name="next.icon" />

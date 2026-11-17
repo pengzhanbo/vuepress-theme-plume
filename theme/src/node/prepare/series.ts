@@ -24,12 +24,12 @@ const LARGE_INDEX_SIZE = 100 * 1024
  * Convert the resolved series into the serializable client data.
  *
  *
- * 将解析后的系列转换为可序列化的客户端数据。
+ * 将解析后的系列转换为可序列化的客户端数据。结果以对象字面量写入虚拟模块
  *
  * @param series - Resolved series / 解析后的系列
  */
 export function toSeriesData(series: ResolvedSeries[]): ThemeSeriesData {
-  const data: ThemeSeriesData = {}
+  const data: ThemeSeriesData = Object.create(null)
 
   for (const item of series) {
     data[item.locale] ??= {}

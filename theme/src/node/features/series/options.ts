@@ -5,8 +5,8 @@
  */
 
 import type { SeriesItemOptions, SeriesOptions, SeriesOrder, ThemeOptions } from '../../../shared/index.js'
-import { ensureEndingSlash, removeLeadingSlash } from '@vuepress/helper'
-import { withBase } from '../../utils/index.js'
+import { ensureEndingSlash, ensureLeadingSlash, isLinkWithProtocol, removeLeadingSlash } from '@vuepress/helper'
+import { normalizePath, withBase } from '../../utils/index.js'
 
 /**
  * Series options with all defaults applied.
@@ -172,11 +172,25 @@ export function resolveSeriesIndexPath(options: ResolvedSeriesOptions, locale: s
 /**
  * Resolve a user provided link with the locale prefix.
  *
- * 为用户自定义链接拼接语言前缀。
+ * The link is kept as written (including its trailing slash or lack of it), because it
+ * points at a page the author maintains: forcing a directory-style path would break
+ * links such as `/handmade-series.html`. Only the locale prefix is added.
+ *
+ * 为用户自定义链接拼接语言前缀。链接保持原样（包括结尾是否有斜杠），
+ * 因为它指向作者自己维护的页面，强制补成目录地址会破坏 `/xxx.html` 这类链接。
  *
  * @param link - Raw link / 原始链接
  * @param locale - Route locale / 路由语言
  */
 export function resolveSeriesLink(link: string, locale: string): string {
-  return ensureEndingSlash(withBase(ensureEndingSlash(removeLeadingSlash(link)), locale))
+  const normalized = ensureLeadingSlash(normalizePath(link.trim()))
+
+  // 站外链接或协议相对地址保持原样 / External and protocol-relative links are kept as-is
+  if (isLinkWithProtocol(normalized) || normalized.startsWith('//'))
+    return normalized
+
+  if (locale === '/' || normalized.startsWith(locale))
+    return normalized
+
+  return normalizePath(`${locale}${removeLeadingSlash(normalized)}`)
 }

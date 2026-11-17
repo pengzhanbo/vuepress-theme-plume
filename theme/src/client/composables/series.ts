@@ -3,6 +3,7 @@ import type { ThemeSeries, ThemeSeriesChapter, ThemeSeriesData } from '../../sha
 import { seriesData as seriesDataRaw } from '@internal/seriesData'
 import { computed, ref } from 'vue'
 import { useRoute, useRouteLocale } from 'vuepress/client'
+import { isSamePath, resolveSeriesPage } from '../utils/index.js'
 import { useData } from './data.js'
 
 /**
@@ -60,10 +61,6 @@ export interface UseSeriesResult {
   finishedLabel: ComputedRef<string>
   /** Accessible name of the tail block / 文末区块的无障碍名称 */
   navLabel: ComputedRef<string>
-}
-
-function isSamePath(a: string, b: string): boolean {
-  return a === b || a.replace(/\/+$/, '') === b.replace(/\/+$/, '')
 }
 
 function findSeriesById(locale: string, id: string): ThemeSeries | null {
@@ -157,20 +154,13 @@ export function useSeriesList(): ComputedRef<ThemeSeries[]> {
  */
 export function useSeriesPage(): ComputedRef<ThemeSeries | null> {
   const route = useRoute()
+  const routeLocale = useRouteLocale()
   const { frontmatter } = useData()
 
-  return computed<ThemeSeries | null>(() => {
-    const id = (frontmatter.value as Record<string, unknown>).seriesId
-
-    for (const locale of Object.values(seriesData.value)) {
-      if (typeof id === 'string' && locale[id])
-        return locale[id]!
-      for (const item of Object.values(locale)) {
-        if (item.link && isSamePath(item.link, route.path))
-          return item
-      }
-    }
-
-    return null
-  })
+  return computed<ThemeSeries | null>(() => resolveSeriesPage(
+    seriesData.value,
+    routeLocale.value,
+    route.path,
+    (frontmatter.value as Record<string, unknown>).seriesId,
+  ))
 }

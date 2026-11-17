@@ -316,6 +316,44 @@ describe('collectSeries', () => {
     expect(hoisted.logger.error).toHaveBeenCalled()
   })
 
+  it('should keep a manually managed link as written', () => {
+    const pages = [
+      createPage('a', { series: 'vue', seriesOrder: 1 }),
+      createPage('b', { series: 'vue', seriesOrder: 2 }),
+    ]
+
+    const [series] = collectSeries(pages, createOptions({
+      items: { vue: { page: false, link: '/handmade' } },
+    }), { isBuild: false, occupiedPaths: new Set(['/handmade/']) })
+
+    expect(series!.pagePath).toBeUndefined()
+    expect(series!.link).toBe('/handmade')
+    expect(hoisted.logger.warn).not.toHaveBeenCalled()
+  })
+
+  it('should prefix the locale of a manual link without adding a trailing slash', () => {
+    const pages = [
+      createPage('a', { series: 'vue', seriesOrder: 1, locale: '/zh/' }),
+      createPage('b', { series: 'vue', seriesOrder: 2, locale: '/zh/' }),
+    ]
+
+    const [series] = collectSeries(pages, createOptions({
+      items: { vue: { page: false, link: '/handmade.html' } },
+    }), { isBuild: false })
+
+    expect(series!.link).toBe('/zh/handmade.html')
+  })
+
+  it('should reject the reserved `__proto__` id', () => {
+    const pages = [
+      createPage('a', { series: '__proto__', seriesOrder: 1 }),
+      createPage('b', { series: '__proto__', seriesOrder: 2 }),
+    ]
+
+    expect(run(pages, {})).toHaveLength(0)
+    expect(hoisted.logger.warn).toHaveBeenCalledWith(expect.stringContaining('reserved id'))
+  })
+
   it('should skip a landing page whose path is occupied', () => {
     const pages = [
       createPage('a', { series: 'vue', seriesOrder: 1 }),

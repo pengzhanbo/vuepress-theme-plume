@@ -7,6 +7,7 @@
 import type { Page } from 'vuepress'
 import type { SeriesItemOptions, SeriesOrder, ThemeOptions, ThemePageData } from '../../../shared/index.js'
 import type { ResolvedSeriesOptions } from './options.js'
+import { ensureEndingSlash } from '@vuepress/helper'
 import { logger } from '../../utils/index.js'
 import { isPublicContentPage } from '../content.js'
 import { isEncryptPage } from '../encrypt.js'
@@ -278,10 +279,25 @@ function resolveLinks(
 
   const link = resolveSeriesLink(item.link, locale)
 
-  if (occupiedPaths && !occupiedPaths.has(link))
-    warn(`[series] "${id}" (${locale}): \`link\` points to ${link}, but no page is generated at this path.`)
+  if (occupiedPaths && !isOccupied(occupiedPaths, link))
+    warn(`[series] "${id}" (${locale}): \`link\` points to ${link}, but no page is found at this path.`)
 
   return { link }
+}
+
+/**
+ * Check whether a manually written link points at an existing page.
+ *
+ * The link keeps the trailing slash the author wrote, while `page.path` always ends
+ * with one, so both forms are compared.
+ *
+ * 判断手写链接是否指向已有页面。链接保留作者书写的结尾斜杠，
+ * 而 `page.path` 总是带结尾斜杠，因此两种形式都要比较。
+ */
+function isOccupied(paths: Set<string>, link: string): boolean {
+  return paths.has(link)
+    || paths.has(ensureEndingSlash(link))
+    || paths.has(link.replace(/\/+$/, ''))
 }
 
 /**
@@ -314,6 +330,13 @@ export function collectSeries(
 
       if (!id) {
         warn(`[series] ${page.filePathRelative ?? page.path}: \`series\` must be a non-empty string, it has been ignored.`)
+        continue
+      }
+
+      // 索引以对象字面量写进虚拟模块，`__proto__` 会变成原型设置而不是自有属性，
+      // 数据会被静默丢弃，因此在入口直接拒绝
+      if (id === '__proto__') {
+        warn(`[series] ${page.filePathRelative ?? page.path}: \`__proto__\` is a reserved id and cannot be used as a series id.`)
         continue
       }
 

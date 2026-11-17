@@ -2,7 +2,7 @@ import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
 import { useData } from './data.js'
 
-const postLayouts = ['posts', 'posts-archives', 'posts-tags', 'posts-categories']
+const postLayouts = ['posts', 'posts-archives', 'posts-tags', 'posts-categories', 'posts-series', 'posts-series-index']
 
 /**
  * Use posts page data

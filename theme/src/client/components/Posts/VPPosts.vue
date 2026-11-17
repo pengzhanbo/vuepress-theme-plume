@@ -5,6 +5,8 @@ import VPPostsAside from '@theme/Posts/VPPostsAside.vue'
 import VPPostsCategories from '@theme/Posts/VPPostsCategories.vue'
 import VPPostsExtract from '@theme/Posts/VPPostsExtract.vue'
 import VPPostsNav from '@theme/Posts/VPPostsNav.vue'
+import VPPostsSeries from '@theme/Posts/VPPostsSeries.vue'
+import VPPostsSeriesIndex from '@theme/Posts/VPPostsSeriesIndex.vue'
 import VPPostsTags from '@theme/Posts/VPPostsTags.vue'
 import VPEncrypt from '@theme/VPEncrypt.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
@@ -74,6 +76,8 @@ onBeforeUnmount(() => forceUpdateCollection(undefined))
               <slot name="posts-categories-content-before" />
             </template>
           </VPPostsCategories>
+          <VPPostsSeries v-else-if="page.type === 'posts-series'" />
+          <VPPostsSeriesIndex v-else-if="page.type === 'posts-series-index'" />
           <VPPostList v-else :home-posts="homePosts">
             <template #posts-post-list-before>
               <slot name="posts-post-list-before" />

@@ -10,6 +10,7 @@ import type {
   ProfileOptions,
   ReaderPreferencesOptions,
   RelatedPostsOptions,
+  SeriesOptions,
   ThemeCollections,
   ThemeNavItem,
   ThemeSidebarMulti,
@@ -215,6 +216,19 @@ export interface ThemeLocale extends LocaleData {
    * @default false
    */
   relatedPosts?: boolean | RelatedPostsOptions
+
+  /**
+   * 配置系列（专栏）
+   *
+   * - `true` 表示启用并使用默认配置
+   * - `false` 表示关闭
+   *
+   * 系列是**跨集合**的内容分组维度：不改变 URL、不改变路由，仅补充顺序与目录。
+   * 页面通过 frontmatter `series` 声明归属。
+   *
+   * @default false
+   */
+  series?: boolean | SeriesOptions
 
   /**
    * 配置内链悬浮预览
@@ -464,6 +478,67 @@ export interface ThemeLocaleText {
    * @default 'Related posts'
    */
   relatedPostsLabel?: string
+
+  /**
+   * 系列落地页的类别前缀
+   *
+   * @default 'Series'
+   */
+  seriesText?: string
+  /**
+   * 系列总览页的标题，同时作为该页面的 `<title>`
+   *
+   * @default 'All Series'
+   */
+  seriesIndexText?: string
+  /**
+   * 文末系列区块的无障碍名称
+   *
+   * @default 'Series navigation'
+   */
+  seriesNavLabel?: string
+  /**
+   * 文首提示的前缀
+   *
+   * @default 'This post is part of'
+   */
+  seriesIncludedText?: string
+  /**
+   * 系列名的展示形态，书名号随语言变化，`{title}` 会被替换为系列标题
+   *
+   * @default '“{title}”'
+   */
+  seriesNameText?: string
+  /**
+   * 文首提示的篇号，`{index}` / `{total}` 会被替换为实际值
+   *
+   * @default '{index} of {total}'
+   */
+  seriesChapterText?: string
+  /**
+   * 文末「下一篇」标签
+   *
+   * @default 'Next'
+   */
+  seriesNextText?: string
+  /**
+   * 末篇提示
+   *
+   * @default 'Completed'
+   */
+  seriesFinishedText?: string
+  /**
+   * 开发模式下草稿章节的徽标
+   *
+   * @default 'Draft'
+   */
+  seriesDraftText?: string
+  /**
+   * 落地页的篇数统计，`{count}` 会被替换为实际值
+   *
+   * @default '{count} chapters'
+   */
+  seriesTotalText?: string
 
   /**
    * 阅读偏好入口的文本

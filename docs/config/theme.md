@@ -1147,6 +1147,92 @@ export default defineThemeConfig({
 
 更多说明见 [相关文章推荐](../guide/features/related-posts.md)。
 
+### series
+
+- **类型：** `boolean | SeriesOptions`
+- **默认值：** `false`
+- **详情：** 是否启用系列（专栏）。
+
+  - `true` - 启用，并使用默认配置
+  - `false` - 关闭
+  - `SeriesOptions` - 启用，并自定义配置
+
+  系列是**跨集合**的内容分组维度：不改变 URL、不改变路由、不新增集合类型。
+  页面通过 frontmatter `series` 声明归属，构建期统一排序编号，并在正文头部
+  （本文收录于《X》）与正文尾部（《X》下一篇：Y）提供互链。
+
+  系列**不会接管**文章页底部的「上一页 / 下一页」，页脚翻页的语义保持不变。
+
+  | 配置 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | `page` | `boolean` | `true` | 是否生成落地页 |
+  | `linkPrefix` | `string` | `'/series/'` | 落地页路径前缀（自动拼接语言前缀） |
+  | `index` | `boolean` | `false` | 是否在该前缀根路径（如 `/series/`）生成系列总览页 |
+  | `autoCreate` | `boolean` | `true` | 未在 `items` 中声明的 id 是否自动建系列 |
+  | `order` | `'auto' \| 'order' \| 'time'` | `'auto'` | 篇目排序策略 |
+  | `nav` | `boolean` | `true` | 是否渲染页内互链（文首提示 + 文末下一篇） |
+  | `items` | `Record<string, SeriesItemOptions>` | `{}` | 系列定义，以系列 id 为键 |
+
+  `SeriesItemOptions`：
+
+  | 配置 | 类型 | 默认值 | 说明 |
+  | --- | --- | --- | --- |
+  | `title` | `string` | 系列 id | 系列标题 |
+  | `description` | `string` | - | 系列简介，用于落地页与 SEO description |
+  | `cover` | `string` | - | 落地页封面图 |
+  | `link` | `string` | `linkPrefix + id` | 落地页路径，可用于指向自己手写的页面 |
+  | `page` | `boolean` | `true` | 是否生成落地页 |
+  | `order` | `'auto' \| 'order' \| 'time'` | 全局 `order` | 该系列的排序策略 |
+  | `nav` | `boolean` | 全局 `nav` | 该系列是否渲染页内互链 |
+
+  `order` 语义：
+
+  - `'auto'`：全部成员都声明了 `seriesOrder` 时按序号，否则整体按创建时间升序（并告警）
+  - `'order'`：严格按 `seriesOrder`，未声明者排到最后（并告警）
+  - `'time'`：按创建时间升序
+
+  `index: true` 会在 `linkPrefix` 的根路径（如 `/series/`、`/en/series/`）生成一个**系列总览页**，
+  列出当前语言下的全部系列。它与落地页相互独立：关闭落地页（`page: false`）时仍可保留总览页，
+  用 `items[id].link` 指向自己维护的系列页面。
+
+::::: code-tabs#configs
+
+@tab .vuepress/config.ts
+
+```ts
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    series: {
+      linkPrefix: '/collections/',
+      items: {
+        'vue3-in-depth': {
+          title: 'Vue 3 深入浅出',
+          description: '从响应式原理到编译器的 12 个专题',
+          order: 'order',
+        },
+      },
+    },
+  }),
+})
+```
+
+@tab .vuepress/plume.config.ts
+
+```ts
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  series: true,
+})
+```
+
+:::::
+
+更多说明见 [系列 / 专栏](../guide/features/series.md)。
+
 ### linkPreview
 
 - **类型：** `boolean | LinkPreviewOptions`

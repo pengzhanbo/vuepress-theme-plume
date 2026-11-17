@@ -11,7 +11,7 @@ import { isEncryptPage } from './encrypt.js'
  *
  * 与 `prepare/posts-data.ts`、`features/relatedPosts/collect.ts` 保持一致。
  */
-export const EXCLUDE_PAGE_TYPES = ['friends', 'posts', 'posts-tags', 'posts-archives', 'posts-categories']
+export const EXCLUDE_PAGE_TYPES = ['friends', 'posts', 'posts-tags', 'posts-archives', 'posts-categories', 'posts-series', 'posts-series-index']
 
 /**
  * Layouts that are not content pages.
@@ -19,6 +19,20 @@ export const EXCLUDE_PAGE_TYPES = ['friends', 'posts', 'posts-tags', 'posts-arch
  * 非内容页面布局。
  */
 export const EXCLUDE_LAYOUTS = ['home', 'posts', 'friends', 'custom', 'blog']
+
+/**
+ * Options of {@link isPublicContentPage}.
+ *
+ * {@link isPublicContentPage} 的选项。
+ */
+export interface PublicPageGuardOptions {
+  /**
+   * 是否包含草稿页。仅在开发模式下有意义：构建期的草稿页面在解析前就已被剔除。
+   *
+   * @default false
+   */
+  includeDraft?: boolean
+}
 
 /**
  * Check whether a page is a public content page.
@@ -31,18 +45,25 @@ export const EXCLUDE_LAYOUTS = ['home', 'posts', 'friends', 'custom', 'blog']
  *
  * @param page - Page to check / 要检查的页面
  * @param options - Theme options / 主题配置
+ * @param guardOptions - Guard options / 守卫选项
  */
-export function isPublicContentPage(page: Page<ThemePageData>, options: ThemeOptions): boolean {
+export function isPublicContentPage(
+  page: Page<ThemePageData>,
+  options: ThemeOptions,
+  guardOptions: PublicPageGuardOptions = {},
+): boolean {
+  const { includeDraft = false } = guardOptions
+
   // 虚拟页面没有文件路径 / Virtual pages have no file path
   if (!page.filePathRelative?.endsWith('.md') || !page.filePath)
     return false
 
-  // 用户声明「不是文章」 / Hidden by the user
+  // 用户声明「不是文章」
   if (page.frontmatter.article === false)
     return false
 
-  // 草稿在任何环境都不能公开 / Drafts are never public
-  if (page.frontmatter.draft === true)
+  // 草稿默认不公开；仅开发模式可选保留
+  if (page.frontmatter.draft === true && !includeDraft)
     return false
 
   if (EXCLUDE_PAGE_TYPES.includes(page.data.type as string))

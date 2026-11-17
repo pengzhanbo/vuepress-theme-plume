@@ -8,6 +8,8 @@ import VPDocMeta from '@theme/VPDocMeta.vue'
 import VPEncrypt from '@theme/VPEncrypt.vue'
 import VPReadAid from '@theme/VPReadAid.vue'
 import VPRelatedPosts from '@theme/VPRelatedPosts.vue'
+import VPSeriesMeta from '@theme/VPSeriesMeta.vue'
+import VPSeriesNext from '@theme/VPSeriesNext.vue'
 import VPTransitionFadeSlideY from '@theme/VPTransitionFadeSlideY.vue'
 import { computed, nextTick, ref, watch } from 'vue'
 import { useRoute } from 'vuepress/client'
@@ -146,6 +148,7 @@ watch(
               </VPDocMeta>
               <slot name="doc-meta-bottom" />
 
+              <VPSeriesMeta />
               <VPEncrypt>
                 <div
                   class="vp-doc plume-content"
@@ -158,6 +161,8 @@ watch(
                   <Content />
 
                   <slot name="doc-content-after" />
+
+                  <VPSeriesNext />
 
                   <VPRelatedPosts />
 

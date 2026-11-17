@@ -22,6 +22,7 @@ function createApp(siteData: Record<string, any> = { locales: { '/': { lang: 'en
   return {
     pages: [],
     siteData,
+    env: { isBuild: false },
   } as unknown as App
 }
 

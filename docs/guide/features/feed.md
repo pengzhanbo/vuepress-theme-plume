@@ -4,6 +4,7 @@ icon: mdi:rss
 createTime: 2026/11/09 10:00:00
 permalink: /guide/features/feed/
 badge: 新
+series: features
 ---
 
 ## 概述

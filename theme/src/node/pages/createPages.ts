@@ -3,6 +3,7 @@ import { objectKeys } from '@pengzhanbo/utils'
 import pMap from 'p-map'
 import { createPage } from 'vuepress/core'
 import { ensureEndingSlash } from 'vuepress/shared'
+import { resolveSeriesPageTasks } from '../features/series/pages.js'
 import { getThemeOptions } from '../options.js'
 import { perf, withBase } from '../utils/index.js'
 
@@ -84,6 +85,8 @@ export async function createPages(app: App): Promise<void> {
       }
     }
   }
+
+  pageTasks.push(...await resolveSeriesPageTasks(app, options))
 
   app.pages.push(...await pMap(pageTasks, task => task(), { concurrency: CREATE_PAGE_CONCURRENCY }))
 

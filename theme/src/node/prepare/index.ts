@@ -11,6 +11,7 @@ import { prepareLinkPreview } from './link-preview.js'
 import { preparedPostsData } from './posts-data.js'
 import { prepareReader } from './reader.js'
 import { prepareRelatedPosts } from './related-posts.js'
+import { prepareSeries } from './series.js'
 import { prepareSidebar } from './sidebar.js'
 import { prepareArticleTagColors } from './tag-color.js'
 
@@ -30,6 +31,7 @@ export async function prepareData(app: App, options: ThemeOptions = getThemeOpti
     preparedPostsData(app, options),
     prepareRelatedPosts(app, options),
     prepareLinkPreview(app, options),
+    prepareSeries(app, options),
     prepareSidebar(app, options),
     prepareCollections(app, options),
     prepareEncrypt(app, options),

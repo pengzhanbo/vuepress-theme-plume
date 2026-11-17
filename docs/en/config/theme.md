@@ -1162,6 +1162,94 @@ export default defineThemeConfig({
 
 See [Related Posts](../guide/features/related-posts.md) for more details.
 
+### series
+
+- **Type:** `boolean | SeriesOptions`
+- **Default:** `false`
+- **Details:** Whether to enable series.
+
+  - `true` - Enable it with the default configuration
+  - `false` - Disable it
+  - `SeriesOptions` - Enable it with a custom configuration
+
+  A series is a **cross-collection** content dimension: it does not change URLs or routes and
+  does not add a collection type. Pages join a series with the `series` frontmatter field; the
+  order and numbering are resolved at build time, and two links are rendered above and below the
+  content ("This post is part of …" and "Next: …").
+
+  A series **never takes over** the "Previous / Next page" pager of a doc page.
+
+  | Option | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `page` | `boolean` | `true` | Generate the landing page |
+  | `linkPrefix` | `string` | `'/series/'` | Path prefix of landing pages (the locale prefix is always prepended) |
+  | `index` | `boolean` | `false` | Generate the series overview page at the root of `linkPrefix` (e.g. `/series/`) |
+  | `autoCreate` | `boolean` | `true` | Create a series automatically when its id is not declared |
+  | `order` | `'auto' \| 'order' \| 'time'` | `'auto'` | Sorting strategy |
+  | `nav` | `boolean` | `true` | Render the in-page links |
+  | `items` | `Record<string, SeriesItemOptions>` | `{}` | Series definitions keyed by id |
+
+  `SeriesItemOptions`:
+
+  | Option | Type | Default | Description |
+  | --- | --- | --- | --- |
+  | `title` | `string` | series id | Series title |
+  | `description` | `string` | - | Series description, used by the landing page and the SEO description |
+  | `cover` | `string` | - | Cover image of the landing page |
+  | `link` | `string` | `linkPrefix + id` | Landing page path, can point at a page you maintain |
+  | `page` | `boolean` | `true` | Generate the landing page |
+  | `order` | `'auto' \| 'order' \| 'time'` | global `order` | Sorting strategy of this series |
+  | `nav` | `boolean` | global `nav` | Whether to render the in-page links |
+
+  `order` semantics:
+
+  - `'auto'`: sort by `seriesOrder` when every chapter declares it, otherwise sort by create time
+    (and warn)
+  - `'order'`: always sort by `seriesOrder`, chapters without one go last (and warn)
+  - `'time'`: sort by create time
+
+  `index: true` generates a **series overview page** at the root of `linkPrefix` (e.g. `/series/`,
+  `/en/series/`) listing every series of the locale. It is independent of the landing pages: with
+  `page: false` you can keep the overview and point `items[id].link` at pages you maintain.
+
+::::: code-tabs#configs
+
+@tab .vuepress/config.ts
+
+```ts
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    series: {
+      linkPrefix: '/collections/',
+      items: {
+        'vue3-in-depth': {
+          title: 'Vue 3 in depth',
+          description: 'From reactivity to the compiler in 12 posts',
+          order: 'order',
+        },
+      },
+    },
+  }),
+})
+```
+
+@tab .vuepress/plume.config.ts
+
+```ts
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  series: true,
+})
+```
+
+:::::
+
+See [Series](../guide/features/series.md) for more details.
+
 ### linkPreview
 
 - **Type:** `boolean | LinkPreviewOptions`

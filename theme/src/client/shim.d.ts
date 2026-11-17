@@ -37,6 +37,15 @@ declare module '@internal/postsData' {
   }
 }
 
+declare module '@internal/seriesData' {
+  import type { ThemeSeriesData } from '../shared/index.js'
+
+  const seriesData: ThemeSeriesData
+  export {
+    seriesData,
+  }
+}
+
 declare module '@internal/collectionsData' {
   import type { ThemeCollectionItem } from '../shared/index.js'
   const collections: Record<string, ThemeCollectionItem[]>

@@ -73,6 +73,29 @@ export interface ThemePageFrontmatter extends ThemeNormalFrontmatter {
    */
   relatedPosts?: false | string[]
   /**
+   * Series id this page belongs to
+   *
+   * 当前页所属的系列 id。系列是跨集合的内容分组维度，不改变页面路径。
+   */
+  series?: string
+  /**
+   * Order of this page in the series, used when the series sorts by `order`
+   *
+   * 当前页在系列中的篇号，供系列按 `order` 排序时使用
+   */
+  seriesOrder?: number
+  /**
+   * Whether to render the series links on this page. `false` hides the head hint
+   * and the tail "next chapter" block only; the page still belongs to the series,
+   * and the doc pager (prev/next) is unaffected.
+   *
+   * 当前页是否展示系列互链。`false` 只隐藏文首提示与文末下一篇，
+   * 页面仍属该系列，页脚翻页不受影响
+   *
+   * @default true
+   */
+  seriesNav?: boolean
+  /**
    * Whether to show internal link previews on this page
    *
    * 当前页是否启用内链悬浮预览，`false` 关闭

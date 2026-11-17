@@ -1,6 +1,7 @@
 import type { App, Page } from 'vuepress'
 import type { ThemeOptions, ThemePageData, ThemeSeriesData } from '../../shared/index.js'
 import type { ResolvedSeries } from '../features/series/index.js'
+import { resolveSeriesFeedUrls } from '../features/feed/series.js'
 import { collectSeries } from '../features/series/collect.js'
 import { collectOccupiedPaths } from '../features/series/pages.js'
 import { getThemeOptions } from '../options.js'
@@ -27,8 +28,12 @@ const LARGE_INDEX_SIZE = 100 * 1024
  * 将解析后的系列转换为可序列化的客户端数据。结果以对象字面量写入虚拟模块
  *
  * @param series - Resolved series / 解析后的系列
+ * @param feedUrls - Subscription URL per `` `${locale}::${id}` `` key / 以 `` `${locale}::${id}` `` 为键的订阅地址
  */
-export function toSeriesData(series: ResolvedSeries[]): ThemeSeriesData {
+export function toSeriesData(
+  series: ResolvedSeries[],
+  feedUrls: Map<string, string> = new Map(),
+): ThemeSeriesData {
   const data: ThemeSeriesData = Object.create(null)
 
   for (const item of series) {
@@ -41,6 +46,7 @@ export function toSeriesData(series: ResolvedSeries[]): ThemeSeriesData {
       link: item.link,
       // 展示开关在构建期解析后随索引下发，客户端因此不需要读取 `series` 配置
       nav: item.nav,
+      feedUrl: feedUrls.get(`${item.locale}::${item.id}`),
       chapters: item.chapters.map(chapter => ({
         path: chapter.path,
         title: chapter.title,
@@ -75,7 +81,7 @@ export async function prepareSeries(app: App, options: ThemeOptions = getThemeOp
       occupiedPaths: collectOccupiedPaths(pages),
     })
 
-    data = toSeriesData(series)
+    data = toSeriesData(series, resolveSeriesFeedUrls(app, options))
 
     if (app.env.isBuild) {
       const chapters = series.reduce((total, item) => total + item.chapters.length, 0)

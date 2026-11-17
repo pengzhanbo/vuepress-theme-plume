@@ -149,6 +149,14 @@ export interface FeedOptions {
    */
   perCollection?: boolean
   /**
+   * Generate a channel for every generated series
+   *
+   * 是否为每个已生成的系列（专栏）生成独立频道
+   *
+   * @default false
+   */
+  perSeries?: boolean
+  /**
    * Include `doc` collections in the global channel
    *
    * 全局频道是否包含 `doc` 类型集合
@@ -264,6 +272,57 @@ export interface FeedCollectionOptions {
    * Max entries, overrides the theme level option
    *
    * 最多条目数，覆盖主题级配置
+   */
+  limit?: number
+  /**
+   * Content mode, overrides the theme level option
+   *
+   * 内容模式，覆盖主题级配置
+   */
+  content?: 'excerpt' | 'full'
+  /**
+   * Formats, overrides the theme level option
+   *
+   * 输出格式，覆盖主题级配置
+   */
+  formats?: FeedFormat[]
+}
+
+/**
+ * Series level feed options
+ *
+ * 系列级 Feed 配置
+ *
+ * 与集合不同，系列的章节页本来就已进入全局 / 集合频道，
+ * 因此这里只描述「独立频道」的元信息。
+ *
+ * Unlike collections, series chapters are already part of the global and
+ * collection channels, so these options only describe the dedicated channel.
+ */
+export interface FeedSeriesOptions {
+  /**
+   * Channel home link, also determines the output directory.
+   * Defaults to the series link (the landing page path).
+   *
+   * 频道主页链接，同时决定输出目录，默认使用系列的链接（落地页路径）
+   */
+  link?: string
+  /**
+   * Channel title, defaults to the series title
+   *
+   * 频道标题，默认使用系列标题
+   */
+  title?: string
+  /**
+   * Channel description, defaults to the series description
+   *
+   * 频道描述，默认使用系列简介
+   */
+  description?: string
+  /**
+   * Max entries. Series channels are not truncated by default.
+   *
+   * 最多条目数，系列频道默认不截断
    */
   limit?: number
   /**

@@ -539,6 +539,12 @@ export interface ThemeLocaleText {
    * @default '{count} chapters'
    */
   seriesTotalText?: string
+  /**
+   * 落地页订阅按钮的文本，仅在生成了系列 feed 时显示
+   *
+   * @default 'Subscribe'
+   */
+  seriesFeedText?: string
 
   /**
    * 阅读偏好入口的文本

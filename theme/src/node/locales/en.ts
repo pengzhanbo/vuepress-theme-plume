@@ -45,6 +45,7 @@ export const enLocale: ThemeLocaleText = {
   seriesFinishedText: 'Completed',
   seriesDraftText: 'Draft',
   seriesTotalText: '{count} chapters',
+  seriesFeedText: 'Subscribe',
 
   readerPreferencesText: 'Reading',
   readerPanelLabel: 'Reading settings',

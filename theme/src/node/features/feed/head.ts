@@ -1,23 +1,12 @@
 import type { Page, SiteData } from 'vuepress'
-import type { FeedFormat, ThemeOptions, ThemePageData } from '../../../shared/index.js'
+import type { ThemeOptions, ThemePageData } from '../../../shared/index.js'
 import type { FeedChannelDescriptor } from './collect.js'
 import type { ResolvedFeedOptions } from './options.js'
 import { getThemeOptions } from '../../options.js'
 import { findCollection, getLocaleCollections } from '../collections/index.js'
 import { isFeedPage, matchesCollection, resolveChannelDescriptors } from './collect.js'
-import { resolveFeedFilePath, toAbsoluteUrl } from './format.js'
+import { FEED_MIME, resolveFeedFilePath, toAbsoluteUrl } from './format.js'
 import { resolveCollectionFeed, resolveHostname, resolveLocaleFeedOptions } from './options.js'
-
-/**
- * MIME type of every feed format.
- *
- * 每种 feed 格式的 MIME 类型。
- */
-const FEED_MIME: Record<FeedFormat, string> = {
-  rss: 'application/rss+xml',
-  atom: 'application/atom+xml',
-  json: 'application/feed+json',
-}
 
 /**
  * Cache shared by every `extendsPage` call, keyed by the theme options object.
@@ -143,15 +132,12 @@ export function injectFeedLinks(page: Page<ThemePageData>, env: ExtendsPageEnv):
 
   for (const format of channel.formats) {
     const type = FEED_MIME[format]
+    const href = toAbsoluteUrl(hostname, env.base, resolveFeedFilePath(channel.dir, resolved.filename[format]))
+
+    // 此处页面的 head 里只有作者自己声明的链接，同类型的链接表示作者已接管订阅
     if (head.some(([tag, attrs]) => tag === 'link' && attrs?.rel === 'alternate' && attrs?.type === type))
       continue
 
-    const filename = resolved.filename[format]
-    head.push(['link', {
-      rel: 'alternate',
-      type,
-      title: channel.title,
-      href: toAbsoluteUrl(hostname, env.base, resolveFeedFilePath(channel.dir, filename)),
-    }])
+    head.push(['link', { rel: 'alternate', type, title: channel.title, href }])
   }
 }

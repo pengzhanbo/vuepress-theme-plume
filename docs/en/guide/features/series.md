@@ -210,6 +210,61 @@ Both are generated at build time as plain static pages: readable without JavaScr
 search engines, and absent from the post list, the search index and the RSS feed. In a multilingual
 site each language gets its own pair, they never mix.
 
+## Subscribe a series
+
+Series can be subscribed to as well. Once feeds are enabled and series channels are generated, the
+landing page shows a subscribe button right below the title:
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    hostname: 'https://example.com', // [!code hl]
+    feed: {
+      perSeries: true, // [!code hl]
+    },
+    series: true,
+  }),
+})
+```
+
+Output:
+
+| Subscription | URL |
+| --- | --- |
+| Series `features` | `/series/features/feed.xml` |
+| Series `features` (English site) | `/en/series/features/feed.xml` |
+
+Entries are ordered by chapter instead of published date and are not truncated by default, so a
+subscriber receives the complete table of contents. A single chapter series still owns a channel, but
+it has no landing page, so the channel home falls back to `/series/<id>/`.
+
+Override or disable the subscription of one series:
+
+```ts
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  series: {
+    items: {
+      vue3: { feed: { title: 'Vue 3 series', limit: 50 } },
+      archive: { feed: false },
+    },
+  },
+})
+```
+
+::: warning `hostname` is required
+
+Feed links must be absolute. Without `hostname` no subscription file is generated and the button never
+appears. Files are only produced by a production build (`vuepress build`).
+
+:::
+
+See [Feed subscription](./feed.md#series-channels) for every detail.
+
 ## Configuration
 
 ### Ordering

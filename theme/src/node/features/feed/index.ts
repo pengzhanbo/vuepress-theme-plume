@@ -7,12 +7,14 @@ import { objectKeys } from '@pengzhanbo/utils'
 import { fs, path } from 'vuepress/utils'
 import { getThemeOptions } from '../../options.js'
 import { logger, perf } from '../../utils/index.js'
+import { hasSeriesOptions } from '../series/options.js'
 import { renderAtom } from './atom.js'
 import { buildEntries, resolveFeedChannels } from './collect.js'
 import { resolveFeedFilePath } from './format.js'
 import { renderJson } from './json.js'
 import { resolveHostname, resolveLocaleFeedOptions } from './options.js'
 import { renderRss } from './rss.js'
+import { buildSeriesEntries, resolveFeedSeries, resolveLocaleSeriesChannels } from './series.js'
 
 /**
  * Emit a warning when a single feed grows beyond this size.
@@ -68,13 +70,33 @@ async function generate(app: App, options: ThemeOptions): Promise<void> {
   const written = new Map<string, WrittenFeed>()
   let entryCount = 0
   let skippedPages = 0
+  let seriesChannels = 0
   let debug = false
 
+  // 系列只收集一次，供全部语言环境复用
+  const series = hasSeriesOptions(options) ? resolveFeedSeries(app, options) : []
+
   for (const { locale, resolved } of locales) {
-    for (const channel of resolveFeedChannels(app, options, locale, resolved)) {
-      const { entries, skipped } = buildEntries(channel, app, resolved, hostname)
+    const channels = resolveFeedChannels(app, options, locale, resolved)
+    channels.push(...resolveLocaleSeriesChannels(
+      app,
+      options,
+      locale,
+      resolved,
+      new Set(channels.map(channel => channel.dir)),
+      series,
+    ))
+
+    for (const channel of channels) {
+      // 系列频道遵循篇目顺序，其余频道按发布时间
+      const { entries, skipped } = channel.series
+        ? buildSeriesEntries(channel, app, resolved, hostname)
+        : buildEntries(channel, app, resolved, hostname)
+
       entryCount += entries.length
       skippedPages += skipped
+      if (channel.series)
+        seriesChannels++
 
       debug ||= resolved.debug
 
@@ -124,6 +146,7 @@ async function generate(app: App, options: ThemeOptions): Promise<void> {
   const totalSize = [...written.values()].reduce((sum, item) => sum + item.size, 0)
   logger.info(
     `[feed] generated ${written.size} file(s) with ${entryCount} item(s)`
+    + `${seriesChannels ? `, including ${seriesChannels} series channel(s)` : ''}`
     + `${skippedPages ? `, ${skippedPages} page(s) skipped without date` : ''}`
     + `${debug && totalSize ? `, ${(totalSize / 1024).toFixed(1)} KB` : ''}.`,
   )
@@ -156,3 +179,4 @@ export async function generateFeeds(app: App, options: ThemeOptions = getThemeOp
 export * from './collect.js'
 export * from './format.js'
 export * from './options.js'
+export * from './series.js'

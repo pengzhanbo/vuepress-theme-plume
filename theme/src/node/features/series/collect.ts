@@ -107,6 +107,15 @@ export interface CollectSeriesContext {
    * 是否静默告警。落地页生成阶段使用该选项，其结论会由 `prepareSeries` 统一输出一次。
    */
   quiet?: boolean
+  /**
+   * Minimal chapter count of a kept series. Defaults to `2` because a single
+   * chapter series has no landing page; the feed channel pass passes `1` so that
+   * such a series still gets a feed.
+   *
+   * 保留一个系列所需的最少章节数。默认 `2`（单篇系列没有落地页），
+   * feed 频道阶段传入 `1`，让单篇系列也能拥有订阅频道。
+   */
+  minChapters?: number
 }
 
 /**
@@ -316,7 +325,7 @@ export function collectSeries(
   options: ThemeOptions,
   context: CollectSeriesContext,
 ): ResolvedSeries[] {
-  const { isBuild, occupiedPaths, quiet = false } = context
+  const { isBuild, occupiedPaths, quiet = false, minChapters = 2 } = context
   const warn: SeriesWarn = quiet ? () => {} : message => logger.warn(message)
   const groups = new Map<string, SeriesGroup>()
   let declared = 0
@@ -393,7 +402,7 @@ export function collectSeries(
 
       const chapters = group.pages.map(page => toChapter(page, warn))
 
-      if (chapters.length < 2) {
+      if (chapters.length < minChapters) {
         if (!quiet)
           logger.info(`[series] "${id}" (${locale}) has only ${chapters.length} chapter(s), no landing page nor index is generated.`)
         continue

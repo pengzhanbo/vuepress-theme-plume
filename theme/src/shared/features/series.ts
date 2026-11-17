@@ -1,3 +1,5 @@
+import type { FeedSeriesOptions } from './feed.js'
+
 /**
  * Series sorting strategy
  *
@@ -63,6 +65,14 @@ export interface SeriesItemOptions {
    * @default true
    */
   nav?: boolean
+  /**
+   * Feed channel of this series. `false` disables it, `true` opts in even
+   * when `feed.perSeries` is off. Requires the `feed` feature to be enabled.
+   *
+   * 该系列的订阅频道。`false` 关闭，`true` 可在 `feed.perSeries` 关闭时显式开启。
+   * 需要先启用 `feed`。
+   */
+  feed?: boolean | FeedSeriesOptions
 }
 
 /**
@@ -215,6 +225,13 @@ export interface ThemeSeries {
    * 是否渲染页内互链（文首提示 + 文末下一篇）。构建期已解析，客户端不读原始配置
    */
   nav: boolean
+  /**
+   * Subscribe URL of the series feed (already prefixed with `base`).
+   * Only present in production builds where the feed file exists.
+   *
+   * 系列订阅地址（已拼接 `base`）。仅在生成了 feed 文件的生产构建中存在
+   */
+  feedUrl?: string
   /**
    * Chapters, already sorted and numbered
    *

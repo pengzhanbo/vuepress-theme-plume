@@ -33,6 +33,7 @@ export const frLocale: ThemeLocaleText = {
   seriesFinishedText: 'Terminée',
   seriesDraftText: 'Brouillon',
   seriesTotalText: '{count} chapitres',
+  seriesFeedText: 'S\'abonner',
 
   readerPreferencesText: 'Lecture',
   readerPanelLabel: 'Paramètres de lecture',

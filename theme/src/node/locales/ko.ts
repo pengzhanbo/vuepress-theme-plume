@@ -33,6 +33,7 @@ export const koLocale: ThemeLocaleText = {
   seriesFinishedText: '완결',
   seriesDraftText: '초안',
   seriesTotalText: '총 {count} 편',
+  seriesFeedText: '구독',
 
   readerPreferencesText: '읽기',
   readerPanelLabel: '읽기 설정',

@@ -33,6 +33,7 @@ export const deLocale: ThemeLocaleText = {
   seriesFinishedText: 'Abgeschlossen',
   seriesDraftText: 'Entwurf',
   seriesTotalText: '{count} Kapitel',
+  seriesFeedText: 'Abonnieren',
 
   readerPreferencesText: 'Lesen',
   readerPanelLabel: 'Leseeinstellungen',

@@ -56,6 +56,12 @@ export interface FeedChannelDescriptor {
    * 所属集合，全局频道为 `undefined`。
    */
   collection?: ThemeCollectionItem
+  /**
+   * Owning series id, `undefined` for the global and collection channels.
+   *
+   * 所属系列 id，全局频道与集合频道为 `undefined`。
+   */
+  series?: string
 }
 
 /**
@@ -165,20 +171,51 @@ function resolveAuthors(
   return title ? [{ name: title }] : []
 }
 
-function createDescriptor(
+/**
+ * Metadata of a channel descriptor.
+ *
+ * 频道描述符的元信息。
+ */
+export interface ChannelDescriptorInput {
+  /** Channel home link, also determines the output directory / 频道主页链接，同时决定输出目录 */
+  link: string
+  /** Channel title / 频道标题 */
+  title: string
+  /** Channel description, falls back to the site description / 频道描述，缺省时使用站点描述 */
+  description?: string
+  /** Output formats, defaults to the theme level formats / 输出格式，默认使用主题级配置 */
+  formats?: FeedFormat[]
+  /** Max entries, defaults to the theme level limit / 最多条目数，默认使用主题级配置 */
+  limit?: number
+  /** Content mode, defaults to the theme level mode / 内容模式，默认使用主题级配置 */
+  content?: 'excerpt' | 'full'
+  /** Owning collection / 所属集合 */
+  collection?: ThemeCollectionItem
+  /** Owning series id / 所属系列 id */
+  series?: string
+}
+
+/**
+ * Build a channel descriptor from its metadata.
+ *
+ * Exported for the series channel pass, which shares every default of the
+ * collection pass (title, description, language, author, channel meta).
+ *
+ * 由元信息构建频道描述符。开放给系列频道使用，使两者共享全部默认值
+ * （标题、描述、语言、作者与频道元信息）。
+ *
+ * @param siteData - Site data / 站点数据
+ * @param themeOptions - Theme options / 主题配置
+ * @param locale - Route locale / 路由语言
+ * @param resolved - Resolved feed options / 归一化后的 Feed 配置
+ * @param options - Channel metadata / 频道元信息
+ */
+export function createChannelDescriptor(
   siteData: SiteData,
   themeOptions: ThemeOptions,
   locale: string,
   resolved: ResolvedFeedOptions,
-  options: {
-    link: string
-    title: string
-    description: string
-    formats?: FeedFormat[]
-    limit?: number
-    content?: 'excerpt' | 'full'
-    collection?: ThemeCollectionItem
-  },
+  options: ChannelDescriptorInput,
 ): FeedChannelDescriptor {
   const channel = resolved.channel
   const site = resolveLocaleSiteData(siteData, locale)
@@ -201,6 +238,7 @@ function createDescriptor(
     image: channel.image,
     hub: channel.hub,
     collection: options.collection,
+    series: options.series,
   }
 }
 
@@ -235,7 +273,7 @@ export function resolveChannelDescriptors(
     globalLink = fallbackLink
   }
 
-  descriptors.push(createDescriptor(siteData, options, locale, resolved, {
+  descriptors.push(createChannelDescriptor(siteData, options, locale, resolved, {
     link: globalLink,
     title: resolved.channel.title || site.title,
     description: resolved.channel.description || site.description,
@@ -264,7 +302,7 @@ export function resolveChannelDescriptors(
     usedDirs.add(dir)
 
     const title = config.title || collection.title
-    descriptors.push(createDescriptor(siteData, options, locale, resolved, {
+    descriptors.push(createChannelDescriptor(siteData, options, locale, resolved, {
       link,
       title,
       description: config.description || resolved.channel.description || site.description,
@@ -358,20 +396,39 @@ function resolveEntryId(
 }
 
 /**
+ * Options of {@link buildEntries}.
+ *
+ * {@link buildEntries} 的选项。
+ */
+export interface BuildEntriesOptions {
+  /**
+   * Keep the page order of the channel instead of sorting by published date.
+   * Series use it to follow the chapter order, which is what a column reader
+   * expects.
+   *
+   * 保持频道内的页面顺序，而不是按发布时间排序。
+   * 系列频道使用该选项以遵循章节顺序——这正是专栏读者期待的阅读顺序。
+   */
+  order?: 'published' | 'preserve'
+}
+
+/**
  * Build the entries of a channel.
  *
- * 构建频道的条目：解析日期、标题、摘要与正文，按发布时间降序、路径升序排序后截断。
+ * 构建频道的条目：解析日期、标题、摘要与正文，默认按发布时间降序、路径升序排序后截断。
  *
  * @param channel - Channel / 频道
  * @param app - VuePress app / VuePress 应用实例
  * @param resolved - Resolved feed options / 归一化后的 Feed 配置
  * @param hostname - Site origin / 站点源
+ * @param options - Build options / 构建选项
  */
 export function buildEntries(
   channel: FeedChannel,
   app: App,
   resolved: ResolvedFeedOptions,
   hostname: string,
+  options: BuildEntriesOptions = {},
 ): { entries: FeedEntry[], skipped: number } {
   const entries: FeedEntry[] = []
   let skipped = 0
@@ -414,10 +471,12 @@ export function buildEntries(
     })
   }
 
-  entries.sort((a, b) =>
-    b.published.getTime() - a.published.getTime()
-    || a.path.localeCompare(b.path),
-  )
+  if (options.order !== 'preserve') {
+    entries.sort((a, b) =>
+      b.published.getTime() - a.published.getTime()
+      || a.path.localeCompare(b.path),
+    )
+  }
 
   return { entries: entries.slice(0, channel.limit), skipped }
 }

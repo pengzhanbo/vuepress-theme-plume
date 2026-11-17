@@ -201,6 +201,59 @@ export const zhSeries: SeriesOptions = {
 两者都在构建时生成，是普通的静态页面：不加 JavaScript 也能阅读，可以被搜索引擎收录，
 但不会出现在文章列表、搜索索引与 RSS 中。多语言站点每个语言各有一份，互不影响。
 
+## 订阅专栏
+
+专栏也可以被订阅。开启 feed 并为系列输出频道后，目录页标题下方会出现「订阅」按钮：
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    hostname: 'https://example.com', // [!code hl]
+    feed: {
+      perSeries: true, // [!code hl]
+    },
+    series: true,
+  }),
+})
+```
+
+产物：
+
+| 订阅项 | 地址 |
+| --- | --- |
+| 专栏 `features` | `/series/features/feed.xml` |
+| 专栏 `features`（英文站） | `/en/series/features/feed.xml` |
+
+系列频道的条目按篇目顺序排列（不是发布时间），且默认不截断，订阅方可以拿到完整的目录；
+只有一篇文章的专栏同样有频道，但此时它没有目录页，频道主页会回退到 `/series/<id>/`。
+
+单个专栏可以覆盖或关闭订阅：
+
+```ts
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  series: {
+    items: {
+      vue3: { feed: { title: 'Vue 3 连载', limit: 50 } },
+      archive: { feed: false },
+    },
+  },
+})
+```
+
+::: warning 需要 `hostname`
+
+feed 中的链接必须是绝对地址，未配置 `hostname` 时不会生成任何订阅文件，按钮也不会出现。
+订阅文件只在生产构建（`vuepress build`）中生成。
+
+:::
+
+更多细节见 [Feed 订阅](./feed.md#系列频道)。
+
 ## 配置
 
 ### 排序

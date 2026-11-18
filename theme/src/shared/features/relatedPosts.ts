@@ -154,6 +154,34 @@ export interface RelatedPostsOptions {
    */
   exclude?: string[]
   /**
+   * Score multiplier of the pages in the same series. `0` removes every same series
+   * candidate, values below `1` demote them and values above `1` boost them.
+   *
+   * Only pages that are already candidates are adjusted: series members living in
+   * another collection are never pulled in.
+   *
+   * 同系列成员的分数乘数。`0` 表示同系列成员完全不参与推荐，小于 `1` 降权，大于 `1` 加权。
+   *
+   * 只调整已经是候选的页面：其他集合中的系列成员不会被额外引入。
+   *
+   * @default 1
+   */
+  seriesBoost?: number
+  /**
+   * Score multiplier of the next chapter of the same series. The default `0` skips it,
+   * because the "next chapter" block right above the related posts already shows it.
+   *
+   * It only applies when that block is really rendered, i.e. the series enables `nav`
+   * and the page does not set `frontmatter.seriesNav: false`.
+   *
+   * 系列「下一篇」的分数乘数。默认 `0`，因为它已经由相关文章上方的「下一篇」区块展示。
+   *
+   * 仅在「下一篇」确实渲染时生效，即系列开启了 `nav` 且页面未设置 `frontmatter.seriesNav: false`。
+   *
+   * @default 0
+   */
+  seriesNextBoost?: number
+  /**
    * Print per-page scores in the build log
    *
    * 在构建日志中输出评分明细

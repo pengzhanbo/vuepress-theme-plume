@@ -39,6 +39,10 @@ export interface ResolvedRelatedPostsOptions {
   excerptLength: number
   title?: string
   exclude: string[]
+  /** Same series multiplier / 同系列乘数 */
+  seriesBoost: number
+  /** Next chapter multiplier / 下一篇乘数 */
+  seriesNextBoost: number
   debug: boolean
 }
 
@@ -99,6 +103,14 @@ const DEFAULT_WEIGHTS: Required<RelatedPostsWeights> = {
  */
 const DEFAULT_DIVERSITY = 0.3
 
+/**
+ * Upper bound of the series multipliers. A larger multiplier would only let the same
+ * series monopolize the result without any practical benefit.
+ *
+ * 系列乘数的上限。更大的乘数只会让同系列页面霸榜，没有实际意义。
+ */
+const MAX_MULTIPLIER = 10
+
 function normalizeWeights(weights?: RelatedPostsWeights): Required<RelatedPostsWeights> {
   return {
     tags: Math.max(weights?.tags ?? DEFAULT_WEIGHTS.tags, 0),
@@ -107,6 +119,22 @@ function normalizeWeights(weights?: RelatedPostsWeights): Required<RelatedPostsW
     headings: Math.max(weights?.headings ?? DEFAULT_WEIGHTS.headings, 0),
     content: Math.max(weights?.content ?? DEFAULT_WEIGHTS.content, 0),
   }
+}
+
+/**
+ * Normalize a score multiplier. Invalid values fall back to the default instead of `0`,
+ * which would silently drop candidates.
+ *
+ * 归一化分数乘数。非法值回退为默认值而不是 `0`，否则会静默丢弃候选。
+ *
+ * @param value - Raw value / 原始值
+ * @param fallback - Value used when the raw value is missing or invalid / 缺失或非法时使用的值
+ */
+function normalizeMultiplier(value: number | undefined, fallback: number): number {
+  if (typeof value !== 'number' || !Number.isFinite(value))
+    return fallback
+
+  return clamp(value, 0, MAX_MULTIPLIER)
 }
 
 /**
@@ -139,6 +167,8 @@ export function normalizeRelatedPostsOptions(
     excerptLength: clampInteger(options.excerptLength ?? 80, 0, 300),
     title: options.title,
     exclude: options.exclude ?? [],
+    seriesBoost: normalizeMultiplier(options.seriesBoost, 1),
+    seriesNextBoost: normalizeMultiplier(options.seriesNextBoost, 0),
     debug: options.debug ?? false,
   }
 }

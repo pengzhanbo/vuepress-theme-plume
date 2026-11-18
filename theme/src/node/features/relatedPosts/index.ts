@@ -12,12 +12,14 @@ import type {
   ThemePostFrontmatter,
   ThemeRelatedPostItem,
 } from '../../../shared/index.js'
+import type { SeriesRelatedIndex, SeriesScoreMultiplier } from '../series/index.js'
 import type { RelatedPostsDoc, RelatedPostsGroup } from './collect.js'
 import type { FieldBoosts } from './score.js'
 import { logger } from '../../utils/index.js'
 import { findCollection } from '../collections/index.js'
 import { toCanonicalRoute } from '../draft.js'
 import { isEncryptPage } from '../encrypt.js'
+import { createSeriesMultiplier, resolveSeriesRelatedIndex } from '../series/related.js'
 import {
   buildDocTerms,
   collectRelatedPostsGroups,
@@ -76,13 +78,47 @@ function toItem(doc: RelatedPostsDoc): ThemeRelatedPostItem {
 }
 
 /**
+ * Context of the related posts resolution.
+ *
+ * 相关文章计算的上下文。
+ */
+export interface RelatedPostsResolveContext {
+  /**
+   * Series index used to adjust the score of in-series candidates.
+   *
+   * 用于调整同系列候选分数的系列索引。
+   */
+  series?: SeriesRelatedIndex
+  /**
+   * Whether the app is building. Only used when the series index has to be built on
+   * demand by {@link resolveRelatedPosts}.
+   *
+   * 是否为生产构建。仅当 {@link resolveRelatedPosts} 需要自行构建系列索引时使用。
+   */
+  isBuild?: boolean
+}
+
+/**
+ * Format the debug marker of a multiplier.
+ *
+ * 格式化乘数的调试标记。
+ */
+function formatRatio(ratio: number): string {
+  return `×${Number(ratio.toFixed(2))}`
+}
+
+/**
  * Resolve related posts of one document group.
  *
  * 计算一个文档分组内的相关文章。
  *
  * @param group - Document group / 文档分组
+ * @param context - Resolution context / 计算上下文
  */
-export function resolveGroupRelatedPosts(group: RelatedPostsGroup): {
+export function resolveGroupRelatedPosts(
+  group: RelatedPostsGroup,
+  context: RelatedPostsResolveContext = {},
+): {
   items: Map<string, ThemeRelatedPostItem[]>
   debug: string[]
 } {
@@ -92,9 +128,30 @@ export function resolveGroupRelatedPosts(group: RelatedPostsGroup): {
   if (group.docs.length < 2)
     return { items, debug }
 
+  const { debug: isDebug, seriesBoost, seriesNextBoost } = group.options
   const docs = buildDocTerms(group)
   const index = buildIndex(docs, toFieldBoosts(group.options.weights))
-  const scored = scoreAll(index, group.options)
+
+  const multiplier = createSeriesMultiplier(
+    docs.map(doc => doc.path),
+    context.series,
+    { boost: seriesBoost, next: seriesNextBoost },
+  )
+
+  // 记录被乘数为 0 剔除的候选，便于在 debug 日志中解释「为什么它不见了」
+  // Record candidates dropped by a zero multiplier, so debug logs can explain it
+  const removed: string[][] = docs.map(() => [])
+
+  const boost: SeriesScoreMultiplier | undefined = multiplier
+    ? (from, to) => {
+        const ratio = multiplier(from, to)
+        if (ratio <= 0 && isDebug)
+          removed[from].push(docs[to].path)
+        return ratio
+      }
+    : undefined
+
+  const scored = scoreAll(index, group.options, boost)
   const { limit, diversity } = group.options
 
   docs.forEach((doc, i) => {
@@ -114,13 +171,16 @@ export function resolveGroupRelatedPosts(group: RelatedPostsGroup): {
 
     items.set(doc.path, candidates.map(candidate => toItem(docs[candidate.index])))
 
-    if (group.options.debug) {
-      debug.push(
-        `${doc.path}\n${
-          candidates
-            .map(candidate => `  ${candidate.score.toFixed(3)}  ${docs[candidate.index].path}`)
-            .join('\n')}`,
-      )
+    if (isDebug) {
+      debug.push([
+        doc.path,
+        ...candidates.map((candidate) => {
+          const ratio = multiplier?.(i, candidate.index) ?? 1
+          const mark = ratio === 1 ? '' : ` ${formatRatio(ratio)}`
+          return `  ${candidate.score.toFixed(3)}${mark}  ${docs[candidate.index].path}`
+        }),
+        ...removed[i].map(path => `  · removed ${formatRatio(0)}  ${path}`),
+      ].join('\n'))
     }
   })
 
@@ -175,10 +235,13 @@ function resolveManualItems(
  *
  * @param pages - All pages of the app / 应用的全部页面
  * @param options - Theme options / 主题配置
+ * @param context - Resolution context, the series index is built on demand when omitted
+ *                  计算上下文，缺省时按需构建系列索引
  */
 export function resolveRelatedPosts(
   pages: Page<ThemePageData>[],
   options: ThemeOptions,
+  context: RelatedPostsResolveContext = {},
 ): ResolveRelatedPostsResult {
   const items = new Map<string, ThemeRelatedPostItem[]>()
   const debug: string[] = []
@@ -188,8 +251,14 @@ export function resolveRelatedPosts(
   if (!hasSegmenter && groups.length)
     logger.info('`Intl.Segmenter` is not available, falling back to the 2-gram CJK tokenizer.')
 
+  // 系列索引默认按生产视图构建：相关文章本身也不推荐草稿
+  // The series index defaults to the build view, related posts never recommend drafts
+  const series = groups.length
+    ? context.series ?? resolveSeriesRelatedIndex(pages, options, context.isBuild ?? true)
+    : undefined
+
   for (const group of groups) {
-    const resolved = resolveGroupRelatedPosts(group)
+    const resolved = resolveGroupRelatedPosts(group, { series })
     for (const [path, list] of resolved.items)
       items.set(path, list)
 

@@ -152,6 +152,33 @@ export function buildIndex(docs: ScorableDoc[], fieldBoosts: FieldBoosts = {}): 
 }
 
 /**
+ * Round a score to 4 decimals, so that the order stays stable across runs.
+ *
+ * 将分数保留 4 位小数，保证多次运行结果一致。
+ *
+ * @param value - Raw score / 原始分数
+ */
+export function roundScore(value: number): number {
+  return Math.round(value * 1e4) / 1e4
+}
+
+/**
+ * Deterministic candidate comparator: score desc → newer first → path asc.
+ *
+ * 确定性的候选比较器：分数降序 → 新文章优先 → 路径升序。
+ *
+ * @param docs - Documents of the group / 分组的文档
+ */
+export function compareCandidates(
+  docs: Pick<ScorableDoc, 'path' | 'createTime'>[],
+): (a: ScoredCandidate, b: ScoredCandidate) => number {
+  return (a, b) =>
+    b.score - a.score
+    || docs[b.index].createTime - docs[a.index].createTime
+    || docs[a.index].path.localeCompare(docs[b.index].path)
+}
+
+/**
  * Recency decay with `recency` as a half-life in years: the score is halved after
  * `recency` years, so a larger value decays more slowly.
  *
@@ -181,12 +208,20 @@ export function recencyDecay(a: number, b: number, recency: number): number {
  *
  * @param index - Built index / 已构建的索引
  * @param options - Scoring options / 打分配置
- * @param options.minScore - Similarity threshold / 相似度阈值
+ * @param options.minScore - Similarity threshold, applied to the adjusted score
+ *                          相似度阈值，作用于调整后的分数
  * @param options.recency - Recency decay coefficient / 时间衰减系数
+ * @param boost - Score multiplier of a candidate pair, `0` drops the candidate.
+ *                It is applied before `minScore`, so a boosted candidate below the raw
+ *                threshold can still make it, and a demoted one above it can be dropped.
+ *
+ *                候选对的分数乘数，`0` 表示丢弃该候选。乘数在 `minScore` 之前应用，
+ *                因此被加权的低分候选仍可入选，被降权的高分候选也会被剔除。
  */
 export function scoreAll(
   index: PostingsIndex,
   { minScore, recency }: Required<Pick<RelatedPostsOptions, 'minScore' | 'recency'>>,
+  boost?: (from: number, to: number) => number,
 ): ScoredCandidate[][] {
   const { docs, postings, vectors } = index
 
@@ -208,21 +243,24 @@ export function scoreAll(
 
     const candidates: ScoredCandidate[] = []
     for (const [j, dot] of acc) {
+      const ratio = boost ? boost(i, j) : 1
+      // 乘数为 0 表示完全不推荐 / A zero multiplier drops the candidate
+      if (!Number.isFinite(ratio) || ratio <= 0)
+        continue
+
       // 定点化，保证排序稳定
-      const score = Math.round(
-        (dot / (vectors[i].norm * vectors[j].norm)) * recencyDecay(doc.createTime, docs[j].createTime, recency) * 1e4,
-      ) / 1e4
+      const score = roundScore(
+        (dot / (vectors[i].norm * vectors[j].norm))
+        * recencyDecay(doc.createTime, docs[j].createTime, recency)
+        * ratio,
+      )
 
       if (score >= minScore)
         candidates.push({ index: j, score })
     }
 
     // 确定性排序：分数降序 → 新文章优先 → 路径升序
-    candidates.sort((a, b) =>
-      b.score - a.score
-      || docs[b.index].createTime - docs[a.index].createTime
-      || docs[a.index].path.localeCompare(docs[b.index].path),
-    )
+    candidates.sort(compareCandidates(docs))
 
     return candidates
   })

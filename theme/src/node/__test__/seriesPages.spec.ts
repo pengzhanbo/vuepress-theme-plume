@@ -239,6 +239,18 @@ describe('resolveSeriesPageTasks', () => {
     expect(hoisted.logger.warn).toHaveBeenCalledWith(expect.stringContaining('overview page path'))
   })
 
+  it('should create the landing page for a single chapter series', async () => {
+    const app = createApp([createPage('a', { seriesOrder: 1 })])
+
+    const tasks = await resolveSeriesPageTasks(app, createOptions({}))
+    const page = await tasks[0]!() as unknown as { path: string }
+
+    // 单篇系列同样有落地页，订阅频道的规范回退链接因此不会落空
+    // A single chapter series owns a landing page, so the feed canonical link never dangles
+    expect(tasks).toHaveLength(1)
+    expect(page.path).toBe('/series/vue3-in-depth/')
+  })
+
   it('should disable inheriting page features in the frontmatter', async () => {
     const app = createApp([
       createPage('a', { seriesOrder: 1 }),

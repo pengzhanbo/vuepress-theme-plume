@@ -70,10 +70,11 @@ Open any chapter to see the hint above the content and the "Next" link at the en
 
 ::::::
 
-::::: warning At least two posts
+::::: warning Chapter rules
 
-A series with a single post gets neither a contents page nor the in-page hints. Encrypted pages,
-pages with `article: false` and drafts in a production build are skipped as well.
+Encrypted pages, pages with `article: false` and drafts in a production build are skipped.
+A series with at least one public post always gets a contents page and the in-page hints, a single
+post series included.
 
 :::::
 
@@ -238,8 +239,8 @@ Output:
 | Series `features` (English site) | `/en/series/features/feed.xml` |
 
 Entries are ordered by chapter instead of published date and are not truncated by default, so a
-subscriber receives the complete table of contents. A single chapter series still owns a channel, but
-it has no landing page, so the channel home falls back to `/series/<id>/`.
+subscriber receives the complete table of contents. A single chapter series still owns a channel; its
+landing page and the channel home are the same canonical path `/series/<id>/`.
 
 Override or disable the subscription of one series:
 
@@ -363,7 +364,6 @@ See [theme config · series](../../config/theme.md#series) for the complete refe
 
 - Why is my series missing its contents page?
 
-  - the series has a single post;
   - the post is encrypted, has `article: false`, or is a draft in a production build;
   - `page: false` is set, or the path conflicts with an existing page and was skipped
     (the terminal tells you which one).

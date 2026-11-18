@@ -1,7 +1,7 @@
 import type { App, Page } from 'vuepress'
 import type { ThemeOptions, ThemePageData, ThemeSeriesData } from '../../shared/index.js'
 import type { ResolvedSeries } from '../features/series/index.js'
-import { resolveSeriesFeedUrls } from '../features/feed/series.js'
+import { resolveSeriesFeedUrls } from '../features/feed/plan.js'
 import { collectSeries } from '../features/series/collect.js'
 import { collectOccupiedPaths } from '../features/series/pages.js'
 import { getThemeOptions } from '../options.js'

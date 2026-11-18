@@ -145,10 +145,10 @@ Output:
 Unlike collection channels, series channels:
 
 - order entries by **chapter**, not by published date, so a reader can follow the column from part 1;
-- are **not truncated** by default, so subscribers receive the complete table of contents
-  (`items[id].feed.limit` clamps to 1–200);
-- are also emitted for a single chapter series; it has no landing page, so the channel home falls back
-  to the canonical path `/series/<id>/`.
+- are **not truncated** by default, even when the theme level `feed.limit` is set, so subscribers
+  receive the complete table of contents (`items[id].feed.limit` clamps to 1–200);
+- are also emitted for a single chapter series; its landing page and the channel home are both the
+  canonical path `/series/<id>/`.
 
 The output directory follows the public link of the series: `linkPrefix + id` by default (e.g.
 `/series/vue3/`). When the series points at a local page through `items[id].link`, the feed is written

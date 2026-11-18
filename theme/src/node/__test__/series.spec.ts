@@ -244,11 +244,15 @@ describe('collectSeries', () => {
     expect(series!.chapters.map(item => item.draft)).toEqual([false, true])
   })
 
-  it('should drop a series with a single chapter', () => {
+  it('should keep a series with a single chapter', () => {
     const pages = [createPage('a', { series: 'vue' })]
 
-    expect(run(pages, {})).toHaveLength(0)
-    expect(hoisted.logger.info).toHaveBeenCalledWith(expect.stringContaining('only 1 chapter'))
+    const [series] = run(pages, {})
+
+    // 单篇系列同样生成落地页，订阅频道的规范链接因此不会指向不存在的页面
+    // A single chapter series owns a landing page, so the feed canonical link never dangles
+    expect(series!.chapters).toHaveLength(1)
+    expect(series!.pagePath).toBe('/series/vue/')
   })
 
   it('should create an undeclared series automatically', () => {

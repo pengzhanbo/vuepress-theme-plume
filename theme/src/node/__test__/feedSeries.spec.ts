@@ -17,10 +17,9 @@ vi.mock('../utils/index.js', async (importOriginal) => {
 const {
   resolveSeriesFeed,
   resolveLocaleSeriesChannels,
-  resolveSeriesFeedUrls,
-  injectSeriesFeedLinks,
   buildSeriesEntries,
 } = await import('../features/feed/series.js')
+const { planFeedChannels, resolveSeriesFeedUrls, injectSeriesFeedLinks } = await import('../features/feed/plan.js')
 const { resolveChannelDescriptors } = await import('../features/feed/collect.js')
 const { normalizeFeedOptions, resolveLocaleFeedOptions } = await import('../features/feed/options.js')
 const { toSeriesData } = await import('../prepare/series.js')
@@ -341,10 +340,12 @@ describe('resolveLocaleSeriesChannels', () => {
 describe('buildSeriesEntries', () => {
   it('keeps the chapter order instead of the published date', () => {
     const options = createOptions({ feed: { perSeries: true }, series: true })
+    // 发布日期与篇目顺序完全相反，避免两种排序得到相同结果
+    // Published dates are the exact opposite of the chapter order, so both orderings cannot agree
     const app = createApp([
-      createPage({ name: 'c', series: 'vue3', seriesOrder: 3, createTime: '2024-01-01 00:00:00' }),
-      createPage({ name: 'a', series: 'vue3', seriesOrder: 1, createTime: '2024-03-01 00:00:00' }),
+      createPage({ name: 'a', series: 'vue3', seriesOrder: 1, createTime: '2024-01-01 00:00:00' }),
       createPage({ name: 'b', series: 'vue3', seriesOrder: 2, createTime: '2024-02-01 00:00:00' }),
+      createPage({ name: 'c', series: 'vue3', seriesOrder: 3, createTime: '2024-03-01 00:00:00' }),
     ])
     const resolved = resolveLocaleFeedOptions(options, '/')!
     const [channel] = resolveChannels(app, options)
@@ -523,7 +524,7 @@ describe('injectSeriesFeedLinks', () => {
   })
 
   it('honors `linkTag: false`, page level opt out and dev mode', () => {
-    const disabled = createOptions({ feed: { perSeries: true, linkTag: false } })
+    const disabled = createOptions({ feed: { perSeries: true, linkTag: false }, series: true })
     const pages = [createPage({ name: 'a', series: 'vue3' }), createPage({ name: 'b', series: 'vue3' })]
     injectSeriesFeedLinks(createApp(pages), disabled)
     expect(pages[0].frontmatter.head).toBeUndefined()
@@ -540,5 +541,64 @@ describe('injectSeriesFeedLinks', () => {
     const devPages = [createPage({ name: 'a', series: 'vue3' }), createPage({ name: 'b', series: 'vue3' })]
     injectSeriesFeedLinks(createApp(devPages, { isBuild: false }), options)
     expect(devPages[0].frontmatter.head).toBeUndefined()
+  })
+})
+
+describe('planFeedChannels', () => {
+  it('drops a format whose output path is taken by another format of the channel', () => {
+    hoisted.logger.warn.mockClear()
+    const options = createOptions({
+      feed: { perSeries: true, filename: { rss: 'feed.xml', atom: 'feed.xml' } },
+      series: { items: { vue3: { feed: { formats: ['rss', 'atom'] } } } },
+    })
+    const pages = [createPage({ name: 'a', series: 'vue3' }), createPage({ name: 'b', series: 'vue3' })]
+    const app = createApp(pages)
+
+    const plan = planFeedChannels(app, options).find(item => item.channel.series === 'vue3')!
+
+    // 同名文件只写出一次，订阅地址与 head 都不会公布被跳过的格式
+    // The shared filename is written once, the skipped format is never advertised
+    expect(plan.files).toEqual([{ format: 'rss', filepath: 'series/vue3/feed.xml' }])
+    expect(resolveSeriesFeedUrls(app, options).get('/::vue3')).toBe('/series/vue3/feed.xml')
+    expect(hoisted.logger.warn).toHaveBeenCalledWith(expect.stringContaining('output conflict'))
+
+    injectSeriesFeedLinks(app, options)
+
+    expect(pages[0].frontmatter.head).toHaveLength(1)
+  })
+
+  it('arbitrates output paths across locales like the file writer', () => {
+    hoisted.logger.warn.mockClear()
+    const options = createOptions({
+      feed: { perSeries: true },
+      // 根语言的系列占用了英文系列的默认目录 / The root series claims the en directory
+      series: { items: { vue3: { feed: { link: '/en/series/vue3/' } } } },
+      enSeries: true,
+    })
+    const pages = [
+      createPage({ name: 'a', series: 'vue3' }),
+      createPage({ name: 'b', series: 'vue3' }),
+      createPage({ name: 'a', series: 'vue3', locale: '/en/' }),
+      createPage({ name: 'b', series: 'vue3', locale: '/en/' }),
+    ]
+    const app = createApp(pages)
+
+    const plans = planFeedChannels(app, options)
+    const root = plans.find(plan => plan.locale === '/' && plan.channel.series === 'vue3')!
+    const en = plans.find(plan => plan.locale === '/en/' && plan.channel.series === 'vue3')!
+
+    expect(root.files).toEqual([{ format: 'rss', filepath: 'en/series/vue3/feed.xml' }])
+    expect(en.files).toEqual([])
+    expect(hoisted.logger.warn).toHaveBeenCalledWith(expect.stringContaining('output conflict'))
+
+    const urls = resolveSeriesFeedUrls(app, options)
+    expect(urls.get('/::vue3')).toBe('/en/series/vue3/feed.xml')
+    expect(urls.has('/en/::vue3')).toBe(false)
+
+    injectSeriesFeedLinks(app, options)
+
+    // 英文页面不注入根语言频道的链接 / English pages never get the root channel link
+    expect(pages[2].frontmatter.head).toBeUndefined()
+    expect(pages[0].frontmatter.head).toHaveLength(1)
   })
 })

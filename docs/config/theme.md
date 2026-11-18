@@ -1198,8 +1198,18 @@ export default defineThemeConfig({
   用 `items[id].link` 指向自己维护的系列页面。
 
   系列的 `feed` 需要同时启用主题级 `feed`：`true` / `{}` 表示显式开启（即使 `feed.perSeries` 关闭），
-  `false` 表示关闭该系列的频道。`FeedSeriesOptions` 支持 `link`（频道目录）、`title`、`description`、
-  `limit`、`content` 与 `formats`，未声明时继承主题级 `feed`。开启后目录页标题下方会显示「订阅」按钮，
+  `false` 表示关闭该系列的频道。`FeedSeriesOptions` 各字段的取值规则与集合不同：
+
+  | 字段 | 取值规则 |
+  | --- | --- |
+  | `link` | 频道主页与输出目录，默认采用系列链接（`items[id].link` → `linkPrefix + id`） |
+  | `title` | 默认采用系列标题，而不是站点标题 |
+  | `description` | 默认采用系列简介，而不是站点描述 |
+  | `limit` | **默认不截断**，即使主题级 `feed.limit` 设置了值；只有显式声明 `limit` 时才按 1–200 截断 |
+  | `content` | 未声明时继承主题级 `feed.content` |
+  | `formats` | 未声明时继承主题级 `feed.formats` |
+
+  开启后目录页标题下方会显示「订阅」按钮，
   详见 [Feed 订阅 · 系列频道](../guide/features/feed.md#系列频道)。
 
 ::::: code-tabs#configs

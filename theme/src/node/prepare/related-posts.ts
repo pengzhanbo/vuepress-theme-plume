@@ -3,6 +3,7 @@ import type { ThemeOptions, ThemePageData, ThemeRelatedPostItem } from '../../sh
 import type { RelatedPostsDoc, RelatedPostsGroup } from '../features/relatedPosts/index.js'
 import { collectRelatedPostsGroups } from '../features/relatedPosts/collect.js'
 import { applyManualRelatedPosts, resolveGroupRelatedPosts } from '../features/relatedPosts/index.js'
+import { resolveSeriesRelatedIndex } from '../features/series/related.js'
 import { getThemeOptions } from '../options.js'
 import { hash, logger, perf } from '../utils/index.js'
 
@@ -37,14 +38,22 @@ const groupCache = new Map<string, CacheEntry>()
  */
 function pageSignature(doc: RelatedPostsDoc): string {
   const categories = (doc.page.data.categoryList ?? []).map(item => item.name)
+  const { series, seriesOrder, seriesNav } = doc.page.frontmatter
 
   return hash(
-    `${doc.path}\n${doc.title}\n${doc.tags.join(',')}\n${JSON.stringify(categories)}\n${doc.createTime}\n${doc.excerpt ?? ''}\n${doc.page.content}`,
+    `${doc.path}\n${doc.title}\n${doc.tags.join(',')}\n${JSON.stringify(categories)}\n${doc.createTime}\n${doc.excerpt ?? ''}\n${series ?? ''}\n${seriesOrder ?? ''}\n${seriesNav ?? ''}\n${doc.page.content}`,
   )
 }
 
-function groupSignature(group: RelatedPostsGroup): string {
-  return hash(`${JSON.stringify(group.options)}\n${group.docs.map(pageSignature).join('\n')}`)
+/**
+ * Signature of a group. The series signature is global: adding a chapter in another
+ * group changes the "next chapter" of this one, so a group local signature is not enough.
+ *
+ * 分组签名。系列签名是全局的：在其他分组新增章节会改变本分组的「下一篇」，
+ * 仅靠分组内的签名无法发现这种变化。
+ */
+function groupSignature(group: RelatedPostsGroup, seriesSignature = ''): string {
+  return hash(`${JSON.stringify(group.options)}\n${seriesSignature}\n${group.docs.map(pageSignature).join('\n')}`)
 }
 
 function mergeItems(target: Map<string, ThemeRelatedPostItem[]>, source: Map<string, ThemeRelatedPostItem[]>): void {
@@ -82,13 +91,19 @@ export async function prepareRelatedPosts(app: App, options: ThemeOptions = getT
   const items = new Map<string, ThemeRelatedPostItem[]>()
   const debug: string[] = []
 
+  // 静默收集：系列相关的告警已由 `prepareSeries` 输出一次
+  // Collected quietly, series warnings are already reported by `prepareSeries`
+  const series = groups.length
+    ? resolveSeriesRelatedIndex(pages, options, app.env.isBuild)
+    : undefined
+
   if (groups.length) {
     const activeKeys = new Set<string>()
 
     for (const group of groups) {
       activeKeys.add(group.key)
 
-      const sig = groupSignature(group)
+      const sig = groupSignature(group, series?.signature)
       const cached = groupCache.get(group.key)
 
       if (cached?.sig === sig) {
@@ -98,7 +113,7 @@ export async function prepareRelatedPosts(app: App, options: ThemeOptions = getT
       }
 
       try {
-        const resolved = resolveGroupRelatedPosts(group)
+        const resolved = resolveGroupRelatedPosts(group, { series })
         groupCache.set(group.key, { sig, items: resolved.items, debug: resolved.debug })
         mergeItems(items, resolved.items)
         debug.push(...resolved.debug.slice(0, Math.max(0, DEBUG_SAMPLE_SIZE - debug.length)))

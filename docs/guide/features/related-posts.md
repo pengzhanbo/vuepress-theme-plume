@@ -102,6 +102,21 @@ export default defineUserConfig({
   对应语言的分词器；拉丁（含变音符号）、西里尔、希腊文字按词切分
 - **确定性**：相同分数按创建时间、路径排序，同一份源码重复构建结果一致
 
+### 与系列联动
+
+当页面通过 `frontmatter.series` 加入系列后，相关文章会同时考虑系列关系：
+
+- **同系列加权 / 降权**：`seriesBoost` 是同系列成员的分数乘数，默认 `1`（不改变分数）。
+  设为 `0` 表示相关文章完全不推荐同系列的其他章节，让系列导航成为系列内的唯一入口；
+  设为 `1.2` 之类的值则让同系列章节更靠前。
+- **跳过「下一篇」**：文末的系列区块已经展示了「下一篇」，所以相关文章默认不再重复推荐它
+  （`seriesNextBoost` 默认 `0`）。只有该区块确实渲染时才生效，即系列开启了 `nav`，
+  且当前页没有设置 `frontmatter.seriesNav: false`。
+
+乘数作用于最终分数（余弦相似度 × 时间衰减 × 系列乘数），因此 `minScore` 是**调整后**分数的阈值。
+系列虽然是跨集合维度，但推荐只在已有候选内调整：`scope: 'collection'` 时，
+位于其他集合的同系列页面不会被额外引入。
+
 :::: note 为什么不使用向量检索
 
 文档站的规模通常在数百到数千篇之间，TF-IDF 在可解释性、构建耗时、产物体积上
@@ -125,6 +140,8 @@ export default defineUserConfig({
 | `contentLimit` | `number` | `2000` | 参与计算的正文长度 |
 | `cjk` | `'segmenter' \| 'bigram'` | `'segmenter'` | 中文分词策略 |
 | `exclude` | `string[]` | `[]` | 排除的路径，支持 glob |
+| `seriesBoost` | `number` | `1` | 同系列成员的分数乘数，`0` 表示不推荐同系列章节 |
+| `seriesNextBoost` | `number` | `0` | 系列「下一篇」的分数乘数，默认不再重复推荐 |
 | `debug` | `boolean` | `false` | 输出评分明细 |
 
 ::: tip 常用组合
@@ -133,6 +150,8 @@ export default defineUserConfig({
 - **更发散**：提高 `diversity`（如 `0.5`）或降低 `minScore`
 - **优先新文章**：设置 `recency`（如 `0.5`，即半衰期半年）
 - **跨集合推荐**：设置 `scope: 'locale'`
+- **同系列优先**：设置 `seriesBoost`（如 `1.2`）
+- **只在系列外推荐**：设置 `seriesBoost: 0`
 
 :::
 
@@ -201,3 +220,4 @@ relatedPosts: false
 - 只处理真实 Markdown 内容页：`article: false`、`home` / `friends` 等布局页面、
   主题生成的虚拟列表页（标签页、归档页等）均不参与推荐
 - `frontmatter.relatedPosts` 只在功能已开启的集合内生效
+- 系列联动只在主题开启 `series`、且页面声明了 `frontmatter.series` 时生效

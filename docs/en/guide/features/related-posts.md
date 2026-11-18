@@ -108,6 +108,25 @@ with **TF-IDF + cosine similarity**.
   Cyrillic and Greek text is split by word
 - **Determinism**: equal scores are ordered by create time and path
 
+### Series integration
+
+When a page joins a series through `frontmatter.series`, the related posts take the series
+relation into account as well:
+
+- **Boost or demote in-series pages**: `seriesBoost` is the score multiplier of the pages
+  in the same series, `1` by default (nothing changes). Set it to `0` to never recommend
+  another chapter of the series, leaving the series navigation as the only way in; set it
+  to something like `1.2` to prefer the chapters of the series.
+- **Skip the next chapter**: the series block right above the related posts already shows
+  the next chapter, so it is not recommended again by default (`seriesNextBoost` is `0`).
+  It only applies when that block is really rendered, i.e. the series enables `nav` and the
+  page does not set `frontmatter.seriesNav: false`.
+
+Both multipliers apply to the final score (cosine similarity × recency decay × series
+multiplier), so `minScore` is a threshold on the **adjusted** score. A series may span
+collections, but only the existing candidates are adjusted: with `scope: 'collection'`,
+series pages living in another collection are never pulled in.
+
 :::: note Why not vector search
 
 Doc sites usually have hundreds to a few thousand pages. TF-IDF wins on explainability,
@@ -131,6 +150,8 @@ See [Theme config - relatedPosts](../../config/theme.md#relatedposts) for the fu
 | `contentLimit` | `number` | `2000` | Characters of the body used for scoring |
 | `cjk` | `'segmenter' \| 'bigram'` | `'segmenter'` | CJK tokenizer strategy |
 | `exclude` | `string[]` | `[]` | Paths to exclude, glob supported |
+| `seriesBoost` | `number` | `1` | Multiplier of the same series pages, `0` drops them |
+| `seriesNextBoost` | `number` | `0` | Multiplier of the next chapter, `0` stops repeating it |
 | `debug` | `boolean` | `false` | Print scores in the build log |
 
 ::: tip Common combinations
@@ -139,6 +160,8 @@ See [Theme config - relatedPosts](../../config/theme.md#relatedposts) for the fu
 - **More diverse**: raise `diversity` (e.g. `0.5`) or lower `minScore`
 - **Prefer newer articles**: set `recency` (e.g. `0.5` for a half-year half-life)
 - **Recommend across collections**: set `scope: 'locale'`
+- **Prefer the same series**: set `seriesBoost` (e.g. `1.2`)
+- **Only recommend outside the series**: set `seriesBoost: 0`
 
 :::
 
@@ -208,3 +231,5 @@ build warning instead of a broken link.
   layouts and theme-generated virtual pages (tags, archives, …) are excluded
 - `frontmatter.relatedPosts` list only takes effect inside a collection where the
   feature is enabled
+- Series integration only works when the theme enables `series` and the page declares
+  `frontmatter.series`

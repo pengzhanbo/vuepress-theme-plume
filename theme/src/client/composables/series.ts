@@ -81,9 +81,15 @@ export function useSeries(): UseSeriesResult {
   const { theme, frontmatter } = useData()
 
   const series = computed<ThemeSeries | null>(() => {
-    const id = frontmatter.value.series
-    if (typeof id !== 'string' || !id)
+    const value = frontmatter.value.series
+    if (typeof value !== 'string')
       return null
+
+    // 与构建期的 `normalizeSeriesId` 一致：忽略首尾空格，空值视为未声明
+    const id = value.trim()
+    if (!id)
+      return null
+
     return findSeriesById(routeLocale.value, id)
   })
 

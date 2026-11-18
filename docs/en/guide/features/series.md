@@ -361,6 +361,26 @@ Frontmatter fields:
 
 See [theme config · series](../../config/theme.md#series) for the complete reference.
 
+## Related posts
+
+Once [related posts](./related-posts.md) are enabled, the series relation becomes an extra
+signal of the recommendation:
+
+- the next chapter is already shown by its own block, so it is not recommended again;
+- the other chapters are controlled by `relatedPosts.seriesBoost`: `1` keeps the score,
+  `0` never recommends them, values above `1` prefer them.
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    series: true,
+    relatedPosts: { seriesBoost: 1.2 },
+  }),
+})
+```
+
+See [Related Posts - Series integration](./related-posts.md#series-integration) for details.
+
 ## FAQ
 
 :::: collapse

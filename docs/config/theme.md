@@ -1108,9 +1108,16 @@ export default defineThemeConfig({
   | `excerptLength` | `number` | `80` | 摘要最大长度 |
   | `title` | `string` | 主题文案 | 区块标题 |
   | `exclude` | `string[]` | `[]` | 排除的路径，支持 glob |
+  | `seriesBoost` | `number` | `1` | 同系列成员的分数乘数，`0` 表示不推荐同系列章节，大于 `1` 时优先推荐 |
+  | `seriesNextBoost` | `number` | `0` | 系列「下一篇」的分数乘数，默认不再重复推荐文末已展示的下一篇 |
   | `debug` | `boolean` | `false` | 在构建日志中输出评分明细 |
 
   `weights` 的默认值为 `{ tags: 3, category: 2, title: 2, headings: 1.5, content: 1 }`。
+
+  页面通过 `frontmatter.series` 加入系列后，系列关系会作为额外信号参与计算：
+  `seriesBoost` 用作同系列成员的乘数，`seriesNextBoost` 用于「下一篇」。
+  乘数作用于最终分数，`minScore` 因此是对调整后分数的阈值。详见
+  [相关文章推荐 - 与系列联动](../guide/features/related-posts.md#与系列联动)。
 
 :::: code-tabs#configs
 

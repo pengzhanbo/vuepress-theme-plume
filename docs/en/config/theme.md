@@ -1122,9 +1122,17 @@ This option still works, but only as the default when `readerPreferences.readAid
   | `excerptLength` | `number` | `80` | Max length of the excerpt |
   | `title` | `string` | theme locale text | Title of the block |
   | `exclude` | `string[]` | `[]` | Paths to exclude, glob supported |
+  | `seriesBoost` | `number` | `1` | Score multiplier of the same series pages, `0` drops them and values above `1` prefer them |
+  | `seriesNextBoost` | `number` | `0` | Score multiplier of the next chapter, `0` stops repeating the block already shown above |
   | `debug` | `boolean` | `false` | Print scores in the build log |
 
   The default `weights` is `{ tags: 3, category: 2, title: 2, headings: 1.5, content: 1 }`.
+
+  When a page joins a series through `frontmatter.series`, the series relation becomes an
+  extra signal: `seriesBoost` multiplies the score of the same series pages and
+  `seriesNextBoost` the one of the next chapter. Both apply to the final score, so
+  `minScore` is a threshold on the adjusted score. See
+  [Related Posts - Series integration](../guide/features/related-posts.md#series-integration).
 
 :::: code-tabs#configs
 

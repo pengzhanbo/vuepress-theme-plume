@@ -1,5 +1,4 @@
-export type * from './collect.js'
 export * from './collect.js'
-export type * from './options.js'
 export * from './options.js'
 export * from './pages.js'
+export * from './related.js'

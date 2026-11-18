@@ -345,6 +345,25 @@ frontmatter 字段：
 
 完整说明见 [主题配置 · series](../../config/theme.md#series)。
 
+## 与相关文章联动
+
+开启 [相关文章推荐](./related-posts.md) 后，系列关系会作为额外信号参与推荐：
+
+- 文末的「下一篇」已经单独展示，所以相关文章默认不再重复推荐它；
+- 同系列的其他章节由 `relatedPosts.seriesBoost` 控制：`1` 不改变分数、`0` 完全不推荐、
+  大于 `1` 时优先推荐。
+
+```ts title=".vuepress/config.ts"
+export default defineUserConfig({
+  theme: plumeTheme({
+    series: true,
+    relatedPosts: { seriesBoost: 1.2 },
+  }),
+})
+```
+
+更多细节见 [相关文章推荐 - 与系列联动](./related-posts.md#与系列联动)。
+
 ## 常见问题
 
 :::: collapse

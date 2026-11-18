@@ -1,9 +1,21 @@
+import type { FeedFormat } from '../../../shared/index.js'
 import { THEME_NAME } from '../../utils/index.js'
 /**
  * Shared helpers for feed serialization.
  *
  * Feed 序列化的公共辅助函数。
  */
+
+/**
+ * MIME type of every feed format.
+ *
+ * 每种 feed 格式的 MIME 类型。
+ */
+export const FEED_MIME: Record<FeedFormat, string> = {
+  rss: 'application/rss+xml',
+  atom: 'application/atom+xml',
+  json: 'application/feed+json',
+}
 
 /**
  * Generator name written into every feed.

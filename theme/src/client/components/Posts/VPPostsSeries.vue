@@ -31,12 +31,13 @@ const totalMinutes = computed(() => {
 
 const totalTimeText = computed(() => formatTime(totalMinutes.value))
 
+const feedText = computed(() => theme.value.seriesFeedText || 'Subscribe')
+
 function formatTime(minutes?: number): string {
   const locale = readingTimeConfig.value
   if (!minutes || !locale)
     return ''
   // 去掉语言预设里的修饰前缀（如「大约」「about」），与文章列表保持一致
-  // Drop the locale prefix (e.g. "about") to match the post list
   return getReadingTimeLocale({ minutes, words: 0 }, locale).time.replace(/^\D+/, '')
 }
 
@@ -66,6 +67,17 @@ function shortDate(value: string): string {
           <span class="vpi-books icon" aria-hidden="true" />
           <span>{{ totalTimeText }}</span>
         </div>
+        <a
+          v-if="series.feedUrl"
+          class="feed-link"
+          :href="series.feedUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          :title="feedText"
+        >
+          <span class="vpi-rss icon" aria-hidden="true" />
+          <span>{{ feedText }}</span>
+        </a>
       </div>
 
       <div v-if="series.cover" class="series-cover">
@@ -155,6 +167,32 @@ function shortDate(value: string): string {
   font-size: 14px;
   color: var(--vp-c-text-2);
   transition: color var(--vp-t-color);
+}
+
+.feed-link {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  transition: color var(--vp-t-color);
+}
+
+.feed-link:hover {
+  color: var(--vp-c-brand-2);
+  text-decoration: underline;
+}
+
+.feed-link:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 2px;
+}
+
+.feed-link .icon {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
 }
 
 .series-cover {

@@ -95,6 +95,7 @@ export const theme: Theme = plumeTheme({
 
   feed: {
     perCollection: true,
+    perSeries: true,
     formats: ['rss', 'atom', 'json'],
   },
 

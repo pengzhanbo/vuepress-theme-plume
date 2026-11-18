@@ -33,6 +33,7 @@ export const jaLocale: ThemeLocaleText = {
   seriesFinishedText: '完結',
   seriesDraftText: '下書き',
   seriesTotalText: '全 {count} 回',
+  seriesFeedText: '購読',
 
   readerPreferencesText: '読書',
   readerPanelLabel: '読書設定',

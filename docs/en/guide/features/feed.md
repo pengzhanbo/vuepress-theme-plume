@@ -25,6 +25,9 @@ splitting channels by **locale × collection**:
     - feed.xml
   - notes
     - feed.xml
+  - series
+    - vue3
+      - feed.xml
   - en
     - feed.xml
     - blog
@@ -112,6 +115,76 @@ const post = { type: 'post', dir: 'notes', title: 'Notes', feed: false }
 channel, without being limited by the theme level `perCollection` / `includeDocCollections`.
 
 See [collection options](../../config/collections.md#collection-level-feed-options) for every field.
+
+### Series channels
+
+Series (columns) are a second grouping dimension next to collections: collections split by directory,
+series split by the `series` frontmatter key. With `perSeries` enabled, every series emits a channel
+that sits next to its landing page:
+
+```ts
+export default defineUserConfig({
+  theme: plumeTheme({
+    hostname: 'https://example.com',
+    feed: {
+      perSeries: true,
+      formats: ['rss', 'atom', 'json'],
+    },
+    series: true,
+  }),
+})
+```
+
+Output:
+
+| Channel | File | Public URL |
+| --- | --- | --- |
+| Series `vue3` | `dist/series/vue3/feed.xml` | `https://example.com/series/vue3/feed.xml` |
+| Series `vue3` (English) | `dist/en/series/vue3/feed.xml` | `https://example.com/en/series/vue3/feed.xml` |
+
+Unlike collection channels, series channels:
+
+- order entries by **chapter**, not by published date, so a reader can follow the column from part 1;
+- are **not truncated** by default, even when the theme level `feed.limit` is set, so subscribers
+  receive the complete table of contents (`items[id].feed.limit` clamps to 1–200);
+- are also emitted for a single chapter series; its landing page and the channel home are both the
+  canonical path `/series/<id>/`.
+
+The output directory follows the public link of the series: the canonical landing page by default
+(e.g. `/series/vue3/`). When the series points at a local page through `items[id].link`, the feed is
+written into that directory; `items[id].feed.link` overrides it on its own.
+
+A series that disabled its landing page (`items[id].page: false` or a global `page: false`) and declared
+none of those links has no home to point at: no channel is generated, and the build log asks you to add
+a `feed.link`. An external link counts as unusable as well.
+
+Override the feed of a single series in `series.items`:
+
+```ts
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  series: {
+    items: {
+      vue3: {
+        title: 'Vue 3 in depth',
+        feed: { title: 'Vue 3 series', limit: 50, formats: ['rss'] },
+      },
+      notes: { feed: false }, // disable the channel for this series
+      handmade: { feed: true }, // opt in while `perSeries` is off
+    },
+  },
+})
+```
+
+`feed: true` equals `feed: {}` and opts a single series in when `perSeries` is disabled.
+
+::: tip Subscribe entry
+
+The landing page shows a subscribe button right below the title, pointing at the feed of the series.
+The button only appears in a production build, where the feed file actually exists.
+
+:::
 
 ### Locales
 
@@ -244,6 +317,12 @@ shasum dist/feed.xml dist/atom.xml dist/feed.json
 
   Feeds use "local time + timezone offset", e.g. `2025-06-10T08:00:00+08:00`. Building in a different
   timezone produces a different string for the same instant. CI sets `TZ=Etc/UTC`, so artifacts are reproducible.
+
+- A series channel conflicts with a collection channel
+
+  The series channel directory comes from the public link of the series, `/series/<id>/` by default.
+  When the series `link` points at a collection directory, both channels claim the same directory and
+  the latter one is skipped with a warning. Give the series an `items[id].feed.link` to fix it.
 
 - Some articles are missing from the feed
 

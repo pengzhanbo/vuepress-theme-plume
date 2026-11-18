@@ -253,6 +253,7 @@ export default defineThemeConfig({
   | 配置 | 类型 | 默认值 | 说明 |
   | --- | --- | --- | --- |
   | `perCollection` | `boolean` | `false` | 是否为每个符合条件的集合生成独立频道 |
+  | `perSeries` | `boolean` | `false` | 是否为每个系列生成独立频道（`/series/<id>/feed.xml`） |
   | `includeDocCollections` | `boolean` | `false` | 全局频道是否包含 `doc` 类型的集合 |
   | `content` | `'excerpt' \| 'full'` | `'excerpt'` | 条目内容模式：摘要或全文 |
   | `limit` | `number` | `20` | 每个频道最多条目数（1–200） |
@@ -1184,6 +1185,7 @@ export default defineThemeConfig({
   | `page` | `boolean` | `true` | 是否生成落地页 |
   | `order` | `'auto' \| 'order' \| 'time'` | 全局 `order` | 该系列的排序策略 |
   | `nav` | `boolean` | 全局 `nav` | 该系列是否渲染页内互链 |
+  | `feed` | `boolean \| FeedSeriesOptions` | 全局 `feed.perSeries` | 该系列的订阅频道，`false` 关闭 |
 
   `order` 语义：
 
@@ -1194,6 +1196,23 @@ export default defineThemeConfig({
   `index: true` 会在 `linkPrefix` 的根路径（如 `/series/`、`/en/series/`）生成一个**系列总览页**，
   列出当前语言下的全部系列。它与落地页相互独立：关闭落地页（`page: false`）时仍可保留总览页，
   用 `items[id].link` 指向自己维护的系列页面。
+
+  系列的 `feed` 需要同时启用主题级 `feed`：`true` / `{}` 表示显式开启（即使 `feed.perSeries` 关闭），
+  `false` 表示关闭该系列的频道。`FeedSeriesOptions` 各字段的取值规则与集合不同：
+
+  关闭落地页（`page: false`）且没有声明 `link` 的系列没有可指向的主页，此时不会生成频道。
+
+  | 字段 | 取值规则 |
+  | --- | --- |
+  | `link` | 频道主页与输出目录，默认采用系列链接（`items[id].link` → 规范落地页 `linkPrefix + id`） |
+  | `title` | 默认采用系列标题，而不是站点标题 |
+  | `description` | 默认采用系列简介，而不是站点描述 |
+  | `limit` | **默认不截断**，即使主题级 `feed.limit` 设置了值；只有显式声明 `limit` 时才按 1–200 截断 |
+  | `content` | 未声明时继承主题级 `feed.content` |
+  | `formats` | 未声明时继承主题级 `feed.formats` |
+
+  开启后目录页标题下方会显示「订阅」按钮，
+  详见 [Feed 订阅 · 系列频道](../guide/features/feed.md#系列频道)。
 
 ::::: code-tabs#configs
 

@@ -33,6 +33,7 @@ export const zhTwLocale: ThemeLocaleText = {
   seriesFinishedText: '已完結',
   seriesDraftText: '草稿',
   seriesTotalText: '共 {count} 篇',
+  seriesFeedText: '訂閱',
 
   readerPreferencesText: '閱讀',
   readerPanelLabel: '閱讀設定',

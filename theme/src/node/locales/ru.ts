@@ -33,6 +33,7 @@ export const ruLocale: ThemeLocaleText = {
   seriesFinishedText: 'Завершена',
   seriesDraftText: 'Черновик',
   seriesTotalText: '{count} глав',
+  seriesFeedText: 'Подписаться',
 
   readerPreferencesText: 'Чтение',
   readerPanelLabel: 'Настройки чтения',

@@ -35,6 +35,7 @@ export const DEFAULT_FEED_FILENAMES: Required<FeedFilenames> = {
  */
 export interface ResolvedFeedOptions {
   perCollection: boolean
+  perSeries: boolean
   includeDocCollections: boolean
   content: 'excerpt' | 'full'
   limit: number
@@ -138,6 +139,7 @@ export function normalizeFeedOptions(options: FeedOptions): ResolvedFeedOptions 
 
   return {
     perCollection: options.perCollection ?? false,
+    perSeries: options.perSeries ?? false,
     includeDocCollections: options.includeDocCollections ?? false,
     content: options.content === 'full' ? 'full' : 'excerpt',
     limit: clampInteger(options.limit ?? 20, 1, 200),

@@ -25,6 +25,9 @@ series: features
     - feed.xml
   - notes
     - feed.xml
+  - series
+    - vue3
+      - feed.xml
   - en
     - feed.xml
     - blog
@@ -111,6 +114,71 @@ const post = { type: 'post', dir: 'notes', title: '笔记', feed: false }
 且不再受主题级 `perCollection` / `includeDocCollections` 限制。
 
 具体字段请参考 [集合配置](../../config/collections.md#集合级-feed-配置)。
+
+### 系列频道
+
+系列（专栏）是与集合并列的另一个分组维度：集合按目录划分，系列按 frontmatter `series` 划分。
+开启 `perSeries` 后，每个系列都会输出一个频道，目录与系列落地页一致：
+
+```ts
+export default defineUserConfig({
+  theme: plumeTheme({
+    hostname: 'https://example.com',
+    feed: {
+      perSeries: true,
+      formats: ['rss', 'atom', 'json'],
+    },
+    series: true,
+  }),
+})
+```
+
+产物：
+
+| 频道 | 输出文件 | 公开地址 |
+| --- | --- | --- |
+| 系列 `vue3` | `dist/series/vue3/feed.xml` | `https://example.com/series/vue3/feed.xml` |
+| 系列 `vue3`（英文） | `dist/en/series/vue3/feed.xml` | `https://example.com/en/series/vue3/feed.xml` |
+
+与集合频道不同，系列频道：
+
+- 条目按 **篇目顺序** 排列，而不是发布时间，读者可以从第 1 篇顺序读下去；
+- 默认 **不截断**，即使主题级 `feed.limit` 设置了值；只有声明 `items[id].feed.limit` 时才按 1–200 截断；
+- 只有一章的系列同样输出频道，它的落地页与频道主页都在规范地址 `/series/<id>/`。
+
+输出目录跟随系列的公开链接：默认使用系列的规范落地页（如 `/series/vue3/`）。系列通过
+`items[id].link` 指定了站内页面时，feed 会放到该页面所在的目录；`items[id].feed.link` 可以单独覆盖。
+
+关闭落地页（`items[id].page: false` 或全局 `page: false`）又没有声明上述链接时，系列没有可指向的
+主页，此时不会生成频道，构建日志会提示补一个 `feed.link`；站外链接同样视为不可用。
+
+单个系列的订阅配置写在 `series.items`：
+
+```ts
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  series: {
+    items: {
+      vue3: {
+        title: 'Vue 3 从入门到进阶',
+        feed: { title: 'Vue 3 连载', limit: 50, formats: ['rss'] },
+      },
+      notes: { feed: false }, // 关闭该系列的订阅
+      handmade: { feed: true }, // 未开启 perSeries 时，单独为某个系列开启
+    },
+  },
+})
+```
+
+`feed: true` 等价于 `feed: {}`，可在 `perSeries` 关闭时单独开启某个系列。
+
+::: tip 订阅入口
+
+系列落地页的标题下方会显示「订阅」按钮，直接指向该系列的 feed。
+按钮只在生成了 feed 文件的生产构建中出现。
+
+:::
 
 ### 多语言
 
@@ -241,6 +309,11 @@ shasum dist/feed.xml dist/atom.xml dist/feed.json
   feed 使用「本地时间 + 时区偏移」输出，例如 `2025-06-10T08:00:00+08:00`。
   若构建机器的时区与作者所在时区不同，字符串会不同，但表示的是同一时刻。
   CI 环境固定 `TZ=Etc/UTC` 时产物可复现。
+
+- 系列频道与集合频道目录冲突
+
+  系列频道的目录来自系列的公开链接，默认 `/series/<id>/`。如果系列的 `link` 指向了某个集合目录，
+  两个频道会争用同一个目录，后者被跳过并告警；给该系列配置 `items[id].feed.link` 即可。
 
 - 某些文章没有出现在 feed 中
 

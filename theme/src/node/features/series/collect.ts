@@ -391,13 +391,8 @@ export function collectSeries(
       if (!item)
         warn(`[series] "${id}" (${locale}): title is not declared, the id is used instead. Add \`series.items['${id}'].title\` for a better display.`)
 
+      // 单篇系列同样保留：落地页、总览页与订阅频道都以规范路径对外
       const chapters = group.pages.map(page => toChapter(page, warn))
-
-      if (chapters.length < 2) {
-        if (!quiet)
-          logger.info(`[series] "${id}" (${locale}) has only ${chapters.length} chapter(s), no landing page nor index is generated.`)
-        continue
-      }
 
       sortChapters(chapters, item?.order ?? resolvedOptions.order, id, locale, warn)
 

@@ -70,10 +70,11 @@ Open any chapter to see the hint above the content and the "Next" link at the en
 
 ::::::
 
-::::: warning At least two posts
+::::: warning Chapter rules
 
-A series with a single post gets neither a contents page nor the in-page hints. Encrypted pages,
-pages with `article: false` and drafts in a production build are skipped as well.
+Encrypted pages, pages with `article: false` and drafts in a production build are skipped.
+A series with at least one public post always gets a contents page and the in-page hints, a single
+post series included.
 
 :::::
 
@@ -210,6 +211,64 @@ Both are generated at build time as plain static pages: readable without JavaScr
 search engines, and absent from the post list, the search index and the RSS feed. In a multilingual
 site each language gets its own pair, they never mix.
 
+## Subscribe a series
+
+Series can be subscribed to as well. Once feeds are enabled and series channels are generated, the
+landing page shows a subscribe button right below the title:
+
+```ts title=".vuepress/config.ts"
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
+
+export default defineUserConfig({
+  theme: plumeTheme({
+    hostname: 'https://example.com', // [!code hl]
+    feed: {
+      perSeries: true, // [!code hl]
+    },
+    series: true,
+  }),
+})
+```
+
+Output:
+
+| Subscription | URL |
+| --- | --- |
+| Series `features` | `/series/features/feed.xml` |
+| Series `features` (English site) | `/en/series/features/feed.xml` |
+
+Entries are ordered by chapter instead of published date and are not truncated by default, so a
+subscriber receives the complete table of contents. A single chapter series still owns a channel; its
+landing page and the channel home are the same canonical path `/series/<id>/`.
+
+Override or disable the subscription of one series:
+
+```ts
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  series: {
+    items: {
+      vue3: { feed: { title: 'Vue 3 series', limit: 50 } },
+      archive: { feed: false },
+    },
+  },
+})
+```
+
+A series that disabled its landing page (`page: false`) and declared no `link` has no home to point at,
+so no channel is generated; add a `feed.link` to restore it.
+
+::: warning `hostname` is required
+
+Feed links must be absolute. Without `hostname` no subscription file is generated and the button never
+appears. Files are only produced by a production build (`vuepress build`).
+
+:::
+
+See [Feed subscription](./feed.md#series-channels) for every detail.
+
 ## Configuration
 
 ### Ordering
@@ -308,7 +367,6 @@ See [theme config · series](../../config/theme.md#series) for the complete refe
 
 - Why is my series missing its contents page?
 
-  - the series has a single post;
   - the post is encrypted, has `article: false`, or is a draft in a production build;
   - `page: false` is set, or the path conflicts with an existing page and was skipped
     (the terminal tells you which one).

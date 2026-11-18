@@ -8,11 +8,12 @@ import { fs, path } from 'vuepress/utils'
 import { getThemeOptions } from '../../options.js'
 import { logger, perf } from '../../utils/index.js'
 import { renderAtom } from './atom.js'
-import { buildEntries, resolveFeedChannels } from './collect.js'
-import { resolveFeedFilePath } from './format.js'
+import { buildEntries } from './collect.js'
 import { renderJson } from './json.js'
 import { resolveHostname, resolveLocaleFeedOptions } from './options.js'
+import { planFeedChannels } from './plan.js'
 import { renderRss } from './rss.js'
+import { buildSeriesEntries } from './series.js'
 
 /**
  * Emit a warning when a single feed grows beyond this size.
@@ -68,53 +69,54 @@ async function generate(app: App, options: ThemeOptions): Promise<void> {
   const written = new Map<string, WrittenFeed>()
   let entryCount = 0
   let skippedPages = 0
+  let seriesChannels = 0
   let debug = false
 
-  for (const { locale, resolved } of locales) {
-    for (const channel of resolveFeedChannels(app, options, locale, resolved)) {
-      const { entries, skipped } = buildEntries(channel, app, resolved, hostname)
-      entryCount += entries.length
-      skippedPages += skipped
+  // 频道与输出文件统一由 planning 仲裁，避免与订阅地址 / head 注入不一致
+  for (const { resolved, channel, files } of planFeedChannels(app, options)) {
+    if (!files.length)
+      continue
 
-      debug ||= resolved.debug
+    // 系列频道遵循篇目顺序，其余频道按发布时间
+    const { entries, skipped } = channel.series
+      ? buildSeriesEntries(channel, app, resolved, hostname)
+      : buildEntries(channel, app, resolved, hostname)
 
-      if (resolved.debug) {
-        const latest = entries[0]?.updated
-        logger.info(
-          `[feed] ${channel.link} -> ${channel.formats.length} file(s), ${entries.length} item(s)`
-          + `${latest ? `, latest ${latest.toISOString()}` : ''}`
-          + `${skipped ? `, ${skipped} page(s) skipped without date` : ''}`,
-        )
+    entryCount += entries.length
+    skippedPages += skipped
+    if (channel.series)
+      seriesChannels++
+
+    debug ||= resolved.debug
+
+    if (resolved.debug) {
+      const latest = entries[0]?.updated
+      logger.info(
+        `[feed] ${channel.link} -> ${files.length} file(s), ${entries.length} item(s)`
+        + `${latest ? `, latest ${latest.toISOString()}` : ''}`
+        + `${skipped ? `, ${skipped} page(s) skipped without date` : ''}`,
+      )
+    }
+
+    for (const { format, filepath } of files) {
+      try {
+        const content = renderFeed(format, channel, entries, hostname, app.options.base, resolved.filename[format])
+        const target = app.dir.dest(filepath)
+        await fs.promises.mkdir(path.dirname(target), { recursive: true })
+        await fs.promises.writeFile(target, content, 'utf-8')
+
+        const size = Buffer.byteLength(content)
+        written.set(filepath, { channel, format, size })
+
+        if (size > MAX_FEED_SIZE) {
+          logger.warn(
+            `[feed] \`${filepath}\` is ${(size / 1024 / 1024).toFixed(1)} MB, `
+            + 'consider using `content: \'excerpt\'` or a smaller `limit`.',
+          )
+        }
       }
-
-      for (const format of channel.formats) {
-        const filename = resolved.filename[format]
-        const filepath = resolveFeedFilePath(channel.dir, filename)
-
-        if (written.has(filepath)) {
-          logger.warn(`[feed] output conflict: \`${filepath}\`, the feed of \`${channel.title}\` is skipped.`)
-          continue
-        }
-
-        try {
-          const content = renderFeed(format, channel, entries, hostname, app.options.base, filename)
-          const target = app.dir.dest(filepath)
-          await fs.promises.mkdir(path.dirname(target), { recursive: true })
-          await fs.promises.writeFile(target, content, 'utf-8')
-
-          const size = Buffer.byteLength(content)
-          written.set(filepath, { channel, format, size })
-
-          if (size > MAX_FEED_SIZE) {
-            logger.warn(
-              `[feed] \`${filepath}\` is ${(size / 1024 / 1024).toFixed(1)} MB, `
-              + 'consider using `content: \'excerpt\'` or a smaller `limit`.',
-            )
-          }
-        }
-        catch (error) {
-          logger.error(`[feed] failed to write \`${filepath}\`:`, error)
-        }
+      catch (error) {
+        logger.error(`[feed] failed to write \`${filepath}\`:`, error)
       }
     }
   }
@@ -124,6 +126,7 @@ async function generate(app: App, options: ThemeOptions): Promise<void> {
   const totalSize = [...written.values()].reduce((sum, item) => sum + item.size, 0)
   logger.info(
     `[feed] generated ${written.size} file(s) with ${entryCount} item(s)`
+    + `${seriesChannels ? `, including ${seriesChannels} series channel(s)` : ''}`
     + `${skippedPages ? `, ${skippedPages} page(s) skipped without date` : ''}`
     + `${debug && totalSize ? `, ${(totalSize / 1024).toFixed(1)} KB` : ''}.`,
   )
@@ -156,3 +159,5 @@ export async function generateFeeds(app: App, options: ThemeOptions = getThemeOp
 export * from './collect.js'
 export * from './format.js'
 export * from './options.js'
+export * from './plan.js'
+export * from './series.js'

@@ -90,7 +90,9 @@ export function createSeriesRelatedIndex(series: ResolvedSeries[]): SeriesRelate
   for (const item of series) {
     const { chapters } = item
 
-    signatures.push(`${item.locale}::${item.id}:${chapters.map(chapter => chapter.path).join('|')}`)
+    const navs = chapters.map(chapter =>
+      item.nav !== false && chapter.page.frontmatter.seriesNav !== false,
+    )
 
     chapters.forEach((chapter, index) => {
       members.set(chapter.path, {
@@ -101,9 +103,14 @@ export function createSeriesRelatedIndex(series: ResolvedSeries[]): SeriesRelate
         total: chapters.length,
         prev: chapters[index - 1]?.path,
         next: chapters[index + 1]?.path,
-        nav: item.nav !== false && chapter.page.frontmatter.seriesNav !== false,
+        nav: navs[index],
       })
     })
+
+    signatures.push(
+      `${item.locale}::${item.id}:${
+        chapters.map((chapter, index) => `${chapter.path}=${navs[index] ? 1 : 0}`).join('|')}`,
+    )
   }
 
   return { members, signature: hash(signatures.join('\n')) }

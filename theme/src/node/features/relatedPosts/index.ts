@@ -157,21 +157,22 @@ export function resolveGroupRelatedPosts(
   docs.forEach((doc, i) => {
     // 先取更宽的候选池，再在其中做多样性筛选
     const pool = scored[i].slice(0, limit * TOPK_FACTOR)
-    if (!pool.length)
-      return
 
-    const candidates = diversity > 0
-      ? selectDiverse(
-          pool,
-          limit,
-          (a, b) => cosineSimilarity(index, a, b),
-          1 - diversity,
-        )
-      : pool.slice(0, limit)
+    const candidates = !pool.length
+      ? []
+      : diversity > 0
+        ? selectDiverse(
+            pool,
+            limit,
+            (a, b) => cosineSimilarity(index, a, b),
+            1 - diversity,
+          )
+        : pool.slice(0, limit)
 
-    items.set(doc.path, candidates.map(candidate => toItem(docs[candidate.index])))
+    if (candidates.length)
+      items.set(doc.path, candidates.map(candidate => toItem(docs[candidate.index])))
 
-    if (isDebug) {
+    if (isDebug && (candidates.length || removed[i].length)) {
       debug.push([
         doc.path,
         ...candidates.map((candidate) => {

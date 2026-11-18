@@ -210,6 +210,21 @@ describe('resolveRelatedPosts: series signals', () => {
 
     expect(excluded.debug.join('\n')).toContain('· removed ×0  /blog/b/')
   })
+
+  it('reports the removal records when every candidate is dropped', () => {
+    const pages = [
+      createPost('a', { tags: ['vue'], content: 'alpha', frontmatter: { series: 'vue3', seriesOrder: 1 } }),
+      createPost('b', { tags: ['vue'], content: 'alpha', frontmatter: { series: 'vue3', seriesOrder: 2 } }),
+    ]
+
+    const { items, debug } = resolveRelatedPosts(pages, createOptions({
+      relatedPosts: { minScore: 0, limit: 3, cjk: 'bigram', debug: true },
+    }))
+
+    // a 的唯一候选就是被排除的下一篇
+    expect(items.has('/blog/a/')).toBe(false)
+    expect(debug.join('\n')).toContain('· removed ×0  /blog/b/')
+  })
 })
 
 describe('prepareRelatedPosts: series cache', () => {
@@ -272,5 +287,26 @@ describe('prepareRelatedPosts: series cache', () => {
     await prepareRelatedPosts(app, options)
 
     expect(a.data.relatedPosts?.map(item => item.path)).toContain('/blog/b/')
+  })
+
+  it('recomputes when the series nav state changes, and reuses the cache otherwise', async () => {
+    const a = createPost('a', { tags: ['vue'], content: 'alpha', frontmatter: { series: 'vue3', seriesOrder: 1 } })
+    const b = createPost('b', { tags: ['vue'], content: 'alpha', frontmatter: { series: 'vue3', seriesOrder: 2 } })
+    const c = createPost('c', { tags: ['vue'], content: 'alpha beta' })
+    const app = { pages: [a, b, c], env: { isBuild: true } } as unknown as App
+    const options = createOptions()
+
+    await prepareRelatedPosts(app, options)
+    expect(a.data.relatedPosts?.map(item => item.path)).toEqual(['/blog/c/'])
+    const first = a.data.relatedPosts
+
+    // 配置未变化：命中缓存，结果数组与上一次是同一个引用
+    await prepareRelatedPosts(app, options)
+    expect(a.data.relatedPosts).toBe(first)
+
+    // 系列关闭 nav：文末不再显示「下一篇」，它重新成为合法的相关文章
+    await prepareRelatedPosts(app, createOptions({ series: { nav: false } }))
+
+    expect(a.data.relatedPosts?.map(item => item.path)).toEqual(['/blog/b/', '/blog/c/'])
   })
 })

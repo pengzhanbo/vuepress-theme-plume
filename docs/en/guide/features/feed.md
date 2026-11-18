@@ -150,9 +150,13 @@ Unlike collection channels, series channels:
 - are also emitted for a single chapter series; its landing page and the channel home are both the
   canonical path `/series/<id>/`.
 
-The output directory follows the public link of the series: `linkPrefix + id` by default (e.g.
-`/series/vue3/`). When the series points at a local page through `items[id].link`, the feed is written
-into the same directory; an external link falls back to the canonical path with a build log hint.
+The output directory follows the public link of the series: the canonical landing page by default
+(e.g. `/series/vue3/`). When the series points at a local page through `items[id].link`, the feed is
+written into that directory; `items[id].feed.link` overrides it on its own.
+
+A series that disabled its landing page (`items[id].page: false` or a global `page: false`) and declared
+none of those links has no home to point at: no channel is generated, and the build log asks you to add
+a `feed.link`. An external link counts as unusable as well.
 
 Override the feed of a single series in `series.items`:
 

@@ -257,6 +257,9 @@ export default defineThemeConfig({
 })
 ```
 
+A series that disabled its landing page (`page: false`) and declared no `link` has no home to point at,
+so no channel is generated; add a `feed.link` to restore it.
+
 ::: warning `hostname` is required
 
 Feed links must be absolute. Without `hostname` no subscription file is generated and the button never

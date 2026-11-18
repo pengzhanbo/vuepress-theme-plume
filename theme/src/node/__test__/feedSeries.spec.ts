@@ -236,11 +236,43 @@ describe('resolveLocaleSeriesChannels', () => {
     expect(resolveChannels(app, options)[0]).toMatchObject({ link: '/notes/', dir: 'notes' })
   })
 
-  it('falls back to the canonical link for an external series link', () => {
+  it('skips a channel when the landing page is disabled and no link is declared', () => {
+    hoisted.logger.warn.mockClear()
+    const options = createOptions({
+      feed: { perSeries: true },
+      series: { items: { notes: { title: 'Notes', page: false } } },
+    })
+    const app = createApp([
+      createPage({ name: 'a', series: 'notes' }),
+      createPage({ name: 'b', series: 'notes' }),
+    ])
+
+    // 落地页关闭且没有链接时，`linkPrefix + id` 指向不存在的页面，不能当作主页
+    // With the landing page off and no link, `linkPrefix + id` would dangle
+    expect(resolveChannels(app, options)).toEqual([])
+    expect(hoisted.logger.warn).toHaveBeenCalledWith(expect.stringContaining('no landing page and no link'))
+  })
+
+  it('skips a channel whose landing page is disabled and whose link is external', () => {
     hoisted.logger.warn.mockClear()
     const options = createOptions({
       feed: { perSeries: true },
       series: { items: { notes: { title: 'Notes', page: false, link: 'https://example.com/notes/' } } },
+    })
+    const app = createApp([
+      createPage({ name: 'a', series: 'notes' }),
+      createPage({ name: 'b', series: 'notes' }),
+    ])
+
+    expect(resolveChannels(app, options)).toEqual([])
+    expect(hoisted.logger.warn).toHaveBeenCalledWith(expect.stringContaining('no usable link'))
+  })
+
+  it('falls back to the series link when `feed.link` is not a site path', () => {
+    hoisted.logger.warn.mockClear()
+    const options = createOptions({
+      feed: { perSeries: true },
+      series: { items: { notes: { title: 'Notes', feed: { link: 'https://example.com/notes/' } } } },
     })
     const app = createApp([
       createPage({ name: 'a', series: 'notes' }),

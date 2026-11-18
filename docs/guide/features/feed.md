@@ -146,9 +146,11 @@ export default defineUserConfig({
 - 默认 **不截断**，即使主题级 `feed.limit` 设置了值；只有声明 `items[id].feed.limit` 时才按 1–200 截断；
 - 只有一章的系列同样输出频道，它的落地页与频道主页都在规范地址 `/series/<id>/`。
 
-输出目录跟随系列的公开链接：默认是 `linkPrefix + 系列 id`（如 `/series/vue3/`），
-系列通过 `items[id].link` 指定了站内页面时，feed 会放到同一目录下；
-指向站外链接时回退到规范地址，并在构建日志中提示。
+输出目录跟随系列的公开链接：默认使用系列的规范落地页（如 `/series/vue3/`）。系列通过
+`items[id].link` 指定了站内页面时，feed 会放到该页面所在的目录；`items[id].feed.link` 可以单独覆盖。
+
+关闭落地页（`items[id].page: false` 或全局 `page: false`）又没有声明上述链接时，系列没有可指向的
+主页，此时不会生成频道，构建日志会提示补一个 `feed.link`；站外链接同样视为不可用。
 
 单个系列的订阅配置写在 `series.items`：
 

@@ -245,6 +245,9 @@ export default defineThemeConfig({
 })
 ```
 
+关闭落地页（`page: false`）又没有配置 `link` 的系列没有可指向的主页，不会生成订阅频道；
+补一个 `feed.link` 即可。
+
 ::: warning 需要 `hostname`
 
 feed 中的链接必须是绝对地址，未配置 `hostname` 时不会生成任何订阅文件，按钮也不会出现。

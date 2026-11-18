@@ -99,12 +99,46 @@ export interface RelatedPostsResolveContext {
 }
 
 /**
+ * Max number of dropped candidate paths kept per page for the debug log.
+ *
+ * 每页在调试日志中最多保留的被剔除候选路径数。
+ */
+const DEBUG_REMOVED_PATHS = 3
+
+/**
+ * Candidates dropped by a zero multiplier on one page.
+ *
+ * 一页中被零乘数剔除的候选。
+ */
+interface RemovedCandidates {
+  /** Total number of dropped candidates / 被剔除的候选总数 */
+  count: number
+  /** A few dropped paths kept for the debug log / 供调试日志使用的少量被剔除路径 */
+  paths: string[]
+}
+
+/**
  * Format the debug marker of a multiplier.
  *
  * 格式化乘数的调试标记。
  */
 function formatRatio(ratio: number): string {
   return `×${Number(ratio.toFixed(2))}`
+}
+
+/**
+ * Format the dropped candidates of one page. Only the sampled paths are printed, the
+ * rest is summarized by its count.
+ *
+ * 格式化一页被剔除的候选。仅打印样例路径，其余以数量概述。
+ *
+ * @param record - Dropped candidates of one page / 一页被剔除的候选
+ */
+function formatRemoved(record: RemovedCandidates): string {
+  const sample = [...record.paths].sort()
+  const more = record.count - sample.length
+
+  return `  · removed ${formatRatio(0)}  ${sample.join(' ')}${more > 0 ? ` (+${more} more)` : ''}`
 }
 
 /**
@@ -138,15 +172,19 @@ export function resolveGroupRelatedPosts(
     { boost: seriesBoost, next: seriesNextBoost },
   )
 
-  // 记录被乘数为 0 剔除的候选，便于在 debug 日志中解释「为什么它不见了」
-  // Record candidates dropped by a zero multiplier, so debug logs can explain it
-  const removed: string[][] = docs.map(() => [])
+  // 统计被乘数为 0 剔除的候选数量，仅保留少量路径供 debug 日志使用：
+  // 大系列中全部记录并格式化每一页会明显放大日志与内存开销
+  const removed: RemovedCandidates[] = docs.map(() => ({ count: 0, paths: [] }))
 
   const boost: SeriesScoreMultiplier | undefined = multiplier
     ? (from, to) => {
         const ratio = multiplier(from, to)
-        if (ratio <= 0 && isDebug)
-          removed[from].push(docs[to].path)
+        if (ratio <= 0 && isDebug) {
+          const record = removed[from]
+          record.count++
+          if (record.paths.length < DEBUG_REMOVED_PATHS)
+            record.paths.push(docs[to].path)
+        }
         return ratio
       }
     : undefined
@@ -172,7 +210,7 @@ export function resolveGroupRelatedPosts(
     if (candidates.length)
       items.set(doc.path, candidates.map(candidate => toItem(docs[candidate.index])))
 
-    if (isDebug && (candidates.length || removed[i].length)) {
+    if (isDebug && (candidates.length || removed[i].count)) {
       debug.push([
         doc.path,
         ...candidates.map((candidate) => {
@@ -180,7 +218,7 @@ export function resolveGroupRelatedPosts(
           const mark = ratio === 1 ? '' : ` ${formatRatio(ratio)}`
           return `  ${candidate.score.toFixed(3)}${mark}  ${docs[candidate.index].path}`
         }),
-        ...removed[i].map(path => `  · removed ${formatRatio(0)}  ${path}`),
+        ...(removed[i].count ? [formatRemoved(removed[i])] : []),
       ].join('\n'))
     }
   })

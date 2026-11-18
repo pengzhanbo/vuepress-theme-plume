@@ -225,6 +225,30 @@ describe('resolveRelatedPosts: series signals', () => {
     expect(items.has('/blog/a/')).toBe(false)
     expect(debug.join('\n')).toContain('· removed ×0  /blog/b/')
   })
+
+  it('summarizes a long list of removed candidates', () => {
+    const pages = [
+      createPost('a', { tags: ['vue'], content: 'alpha', frontmatter: { series: 'vue3', seriesOrder: 1 } }),
+      createPost('b', { tags: ['vue'], content: 'alpha', frontmatter: { series: 'vue3', seriesOrder: 2 } }),
+      createPost('c', { tags: ['vue'], content: 'alpha', frontmatter: { series: 'vue3', seriesOrder: 3 } }),
+      createPost('d', { tags: ['vue'], content: 'alpha', frontmatter: { series: 'vue3', seriesOrder: 4 } }),
+      createPost('e', { tags: ['vue'], content: 'alpha', frontmatter: { series: 'vue3', seriesOrder: 5 } }),
+      createPost('f', { tags: ['vue'], content: 'alpha' }),
+    ]
+
+    const { items, debug } = resolveRelatedPosts(pages, createOptions({
+      relatedPosts: { minScore: 0, limit: 3, cjk: 'bigram', seriesBoost: 0, debug: true },
+    }))
+
+    // 同系列全部被剔除，只剩系列外的 f
+    expect(firstPaths(items, '/blog/a/')).toEqual(['/blog/f/'])
+
+    const block = debug.find(item => item.startsWith('/blog/a/'))!
+
+    // 只保留 3 条样例路径，其余以数量概述
+    expect(block).toContain('· removed ×0  /blog/b/ /blog/c/ /blog/d/ (+1 more)')
+    expect(block).not.toContain('/blog/e/')
+  })
 })
 
 describe('prepareRelatedPosts: series cache', () => {

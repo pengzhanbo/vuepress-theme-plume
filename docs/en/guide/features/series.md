@@ -380,30 +380,3 @@ export default defineUserConfig({
 ```
 
 See [Related Posts - Series integration](./related-posts.md#series-integration) for details.
-
-## FAQ
-
-:::: collapse
-
-- Why is my series missing its contents page?
-
-  - the post is encrypted, has `article: false`, or is a draft in a production build;
-  - `page: false` is set, or the path conflicts with an existing page and was skipped
-    (the terminal tells you which one).
-
-- Does it affect the "Previous / Next page" pager?
-
-  No. The pager still follows the publish time or the sidebar order, the series only adds the in-page
-  hints.
-
-- Do I need to restart the dev server after adding a series?
-
-  Yes. Contents pages and the overview are generated once at startup, so restart after adding a
-  series or toggling `index`. Adding, removing or renaming posts does not require a restart.
-
-- The contents page path is already used by another page
-
-  The theme skips it and reports the conflicting path in the terminal. Give that series a different
-  `link` and you are done.
-
-::::

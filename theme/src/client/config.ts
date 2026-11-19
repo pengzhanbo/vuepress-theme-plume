@@ -1,13 +1,13 @@
 import type { ClientConfig } from 'vuepress/client'
 import { defineClientConfig } from 'vuepress/client'
 import {
-  enhanceScrollBehavior,
   setupCollection,
   setupDarkMode,
   setupEncrypt,
   setupHeaders,
   setupLinkPreview,
   setupReaderPreferences,
+  setupScrollRestoration,
   setupSidebar,
   setupThemeData,
   setupWatermark,
@@ -19,13 +19,13 @@ import NotFound from './layouts/NotFound.vue'
 import './styles/index.css'
 
 export default defineClientConfig({
-  enhance({ app, router }) {
+  enhance({ app }) {
     setupThemeData(app)
     setupDarkMode(app)
-    enhanceScrollBehavior(router)
     globalComponents(app)
   },
   setup() {
+    setupScrollRestoration()
     setupCollection()
     setupSidebar()
     setupHeaders()

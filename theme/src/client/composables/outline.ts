@@ -4,7 +4,13 @@ import type { ThemeOutline } from '../../shared/index.js'
 import { useThrottleFn, useTimeoutFn, watchDebounced } from '@vueuse/core'
 import { onMounted, onUnmounted, onUpdated, ref } from 'vue'
 import { onContentUpdated, useRouter } from 'vuepress/client'
-import { getAbsoluteTop } from '../utils/index.js'
+import {
+  ACTIVE_ANCHOR_OFFSET,
+  clearSkippedScrollPosition,
+  decodeHash,
+  getAbsoluteTop,
+  skipScrollPosition,
+} from '../utils/index.js'
 import { useData } from './data.js'
 import { useLayout } from './layout.js'
 
@@ -438,7 +444,7 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
     // find the last header above the top of viewport
     let activeLink: string | null = null
     for (const { link, top } of headers) {
-      if (top > scrollY + 80)
+      if (top > scrollY + ACTIVE_ANCHOR_OFFSET)
         break
 
       activeLink = link
@@ -526,22 +532,33 @@ export function useActiveAnchor(container: Ref<HTMLElement | null>, marker: Ref<
 }
 
 /**
- * Update current hash without triggering scrollBehavior
- * Temporarily disables scroll behavior during hash update
+ * 滚动监听会持续把当前视口内的标题 hash 写入地址栏，该导航不能引起页面滚动，否则
+ * 滚动位置发生变化 → 重新计算激活标题 → 再次写入 hash → 再次滚动，最终表现为
+ * 页面在不同的 hash 之间不停自动滚动。
  *
- * 更新当前哈希而不触发 scrollBehavior
- * 在哈希更新期间临时禁用滚动行为
+ * 这里通过 {@link skipScrollPosition} 标记该导航，让主题的滚动恢复保持当前位置，
+ * 而不是滚动到锚点。
  *
  * @param router - Vue Router instance / Vue Router 实例
  * @param hash - New hash value / 新的哈希值
  */
 async function updateHash(router: Router, hash: string): Promise<void> {
-  const { path, query } = router.currentRoute.value
-  const { scrollBehavior } = router.options
+  const { path, query, hash: currentHash } = router.currentRoute.value
 
-  // temporarily disable `scrollBehavior`
-  router.options.scrollBehavior = undefined
-  await router.replace({ path, query, hash })
-  // restore it after navigation
-  router.options.scrollBehavior = scrollBehavior
+  // 滚动监听写入的 hash 可能来自 `location.hash`（已编码），而路由中的 hash 是
+  // 原始标题 id，比较前统一解码
+  if (decodeHash(hash) === decodeHash(currentHash))
+    return
+
+  const fullPath = router.resolve({ path, query, hash }).fullPath
+
+  // 记录当前位置：滚动恢复会在导航后还原它，页面不会移动。
+  skipScrollPosition(fullPath, { left: window.scrollX, top: window.scrollY })
+
+  try {
+    await router.replace({ path, query, hash })
+  }
+  catch {
+    clearSkippedScrollPosition(fullPath)
+  }
 }

@@ -70,6 +70,7 @@ export const theme: Theme = plumeTheme({
       kotlin: true,
       python: true,
     },
+    include: { allowOutsideRoot: true },
   },
 
   comment: {

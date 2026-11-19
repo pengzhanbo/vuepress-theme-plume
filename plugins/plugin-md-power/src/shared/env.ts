@@ -1,5 +1,7 @@
 /* eslint-disable jsdoc/no-multi-asterisks */
 
+import type { Env } from 'markdown-it'
+
 /**
  * Markdown Environment Preset Configuration
  *
@@ -35,7 +37,7 @@ export interface MarkdownEnvPreset {
    * [link][label-2]
    * ```
    */
-  references?: Record<string, string | { title?: string, href: string }>
+  references?: Env['references']
   /**
    * markdown abbreviation preset, use in any markdown file
    *

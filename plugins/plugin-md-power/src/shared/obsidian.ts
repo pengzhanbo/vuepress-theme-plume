@@ -1,4 +1,4 @@
-import type { RenderRule } from 'markdown-it/lib/renderer.mjs'
+import type { RendererRule } from 'markdown-it'
 
 export interface ObsidianOptions {
   wikiLink?: boolean
@@ -9,9 +9,9 @@ export interface ObsidianOptions {
 
 export interface ObsidianCalloutOptions {
   locales?: Record<string, ObsidianLocaleData>
-  openRender?: RenderRule
-  closeRender?: RenderRule
-  titleRender?: RenderRule
+  openRender?: RendererRule
+  closeRender?: RendererRule
+  titleRender?: RendererRule
 }
 
 export interface ObsidianLocaleData {

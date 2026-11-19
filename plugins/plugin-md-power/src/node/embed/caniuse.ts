@@ -3,9 +3,8 @@
  * @[caniuse baseline](feature_name)
  * @[caniuse image](feature_name)  // 弃用
  */
-import type { PluginWithOptions } from 'markdown-it'
-import type MarkdownIt from 'markdown-it'
-import type { MarkdownEnv } from 'vuepress/markdown'
+
+import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import type { CanIUseMode, CanIUseOptions, CanIUseTokenMeta } from '../../shared/index.js'
 import { colors } from 'vuepress/utils'
 import { createContainerPlugin } from '../container/createContainer.js'
@@ -21,10 +20,7 @@ const UNDERLINE_RE = /_+/g
  * @[caniuse](feature_name)
  * ```
  */
-export const caniusePlugin: PluginWithOptions<CanIUseOptions> = (
-  md,
-  { mode: defaultMode = 'embed' }: CanIUseOptions = {},
-): void => {
+export function caniusePlugin(md: Markdown, { mode: defaultMode = 'embed' }: CanIUseOptions = {}): void {
   createEmbedRuleBlock<CanIUseTokenMeta>(md, {
     type: 'caniuse',
     meta: (info, source) => {
@@ -50,7 +46,7 @@ export const caniusePlugin: PluginWithOptions<CanIUseOptions> = (
  * ```
  */
 export function legacyCaniuse(
-  md: MarkdownIt,
+  md: Markdown,
   { mode = 'embed' }: CanIUseOptions = {},
 ): void {
   const modeMap: CanIUseMode[] = ['image', 'embed', 'baseline']
@@ -58,7 +54,7 @@ export function legacyCaniuse(
 
   mode = isMode(mode) ? mode : modeMap[0]
   createContainerPlugin(md, 'caniuse', {
-    before: (info, _t, _i, _o, env) => {
+    before: (info, _t, _i, _o, env = {}) => {
       const feature = info.split(/\s+/)[0]
       const versions = info.match(/\{(.*)\}/)?.[1] || ''
       return feature ? resolveCanIUse(md, { feature, mode, versions }, env) : ''
@@ -67,7 +63,7 @@ export function legacyCaniuse(
   })
 }
 
-function resolveCanIUse(md: MarkdownIt, { feature, mode, versions }: CanIUseTokenMeta, env: MarkdownEnv): string {
+function resolveCanIUse(md: Markdown, { feature, mode, versions }: CanIUseTokenMeta, env: MarkdownEnv): string {
   if (!feature)
     return ''
 

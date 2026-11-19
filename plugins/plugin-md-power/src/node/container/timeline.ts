@@ -19,7 +19,7 @@
  * :::
  * ```
  */
-import type Token from 'markdown-it/lib/token.mjs'
+import type { Token } from 'markdown-it'
 import type { Markdown } from 'vuepress/markdown'
 import { isEmptyObject } from '@pengzhanbo/utils'
 import { resolveAttrs } from '.././utils/resolveAttrs.js'
@@ -44,7 +44,7 @@ export interface TimelineAttrs {
  *
  * 时间线项元数据
  */
-export interface TimelineItemMeta {
+export interface TimelineItemMeta extends Record<string, unknown> {
   time?: string
   type?: string
   icon?: string

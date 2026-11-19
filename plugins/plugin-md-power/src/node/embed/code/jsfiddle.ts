@@ -2,14 +2,15 @@
  * @[jsfiddle](user/id)
  * @[jsfiddle theme="dark" tab="js,css,html,result"](user/id)
  */
-import type { PluginWithOptions } from 'markdown-it'
+
+import type { Markdown } from 'vuepress/markdown'
 import type { JSFiddleTokenMeta } from '../../../shared/index.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
 import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
-export const jsfiddlePlugin: PluginWithOptions<never> = (md) => {
+export function jsfiddlePlugin(md: Markdown): void {
   createEmbedRuleBlock<JSFiddleTokenMeta>(md, {
     type: 'jsfiddle',
     meta(info, source) {

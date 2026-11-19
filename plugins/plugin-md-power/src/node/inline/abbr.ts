@@ -4,12 +4,8 @@
  * 从 https://github.com/markdown-it/markdown-it-abbr/blob/master/index.mjs 分叉并修改
  */
 
-import type { PluginWithOptions } from 'markdown-it'
-import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
-import type { RuleCore } from 'markdown-it/lib/parser_core.mjs'
-import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs'
-import type StateCore from 'markdown-it/lib/rules_core/state_core.mjs'
-import type Token from 'markdown-it/lib/token.mjs'
+import type { Env, StateBlock, StateCore, Token } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 import { isEmptyObject, objectKeys, objectMap } from '@pengzhanbo/utils'
 import { cleanHtmlAllTag } from '../utils/cleanHtml.js'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
@@ -32,7 +28,7 @@ interface AbbrStateBlock extends StateBlock {
      * 缩写词记录
      */
     abbreviations?: Record<string, string>
-  }
+  } & Env
 }
 
 /**
@@ -53,7 +49,7 @@ interface AbbrStateCore extends StateCore {
      * 缩写词记录
      */
     abbreviations?: Record<string, string>
-  }
+  } & Env
 }
 
 /**
@@ -67,7 +63,7 @@ interface AbbrStateCore extends StateCore {
  * @param md - Markdown-it instance / Markdown-it 实例
  * @param globalAbbreviations - Global abbreviations preset / 全局缩写词预设
  */
-export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, globalAbbreviations = {}) => {
+export function abbrPlugin(md: Markdown, globalAbbreviations: Record<string, string> = {}) {
   const { arrayReplaceAt, escapeRE, lib } = md.utils
   globalAbbreviations = objectMap(
     globalAbbreviations,
@@ -99,12 +95,12 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
    * @param silent - Silent mode / 静默模式
    * @returns Whether matched / 是否匹配
    */
-  const abbrDefinition: RuleBlock = (
+  const abbrDefinition = (
     state: AbbrStateBlock,
-    startLine,
-    _endLine,
-    silent,
-  ) => {
+    startLine: number,
+    _endLine: number,
+    silent: boolean,
+  ): boolean => {
     let labelEnd = -1
     let pos = state.bMarks[startLine] + state.tShift[startLine]
     const max = state.eMarks[startLine]
@@ -160,7 +156,7 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
    *
    * @param state - State core / 核心状态
    */
-  const abbrReplace: RuleCore = (state: AbbrStateCore) => {
+  const abbrReplace = (state: AbbrStateCore): void => {
     const tokens = state.tokens
     const { abbreviations: localAbbreviations } = state.env
 
@@ -258,7 +254,7 @@ export const abbrPlugin: PluginWithOptions<Record<string, string>> = (md, global
 
   md.core.ruler.after('linkify', 'abbr_replace', abbrReplace)
 
-  md.renderer.rules.abbreviation = (tokens, idx, _, env) => {
+  md.renderer.rules.abbreviation = (tokens, idx, _, env = {}) => {
     const { content, info } = tokens[idx]
     const rendered = md.renderInline(info, cleanMarkdownEnv(env))
     const label = cleanHtmlAllTag(rendered)

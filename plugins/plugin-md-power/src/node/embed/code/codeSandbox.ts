@@ -3,14 +3,14 @@
  * @[codesandbox share](user/id)
  * @[codesanbox title="xxx" layout="Editor+Preview" height="500px" navbar="false" console="false"](id#filepath)
  */
-import type { PluginSimple } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 import type { CodeSandboxTokenMeta } from '../../../shared/index.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
 import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
-export const codeSandboxPlugin: PluginSimple = (md) => {
+export function codeSandboxPlugin(md: Markdown): void {
   createEmbedRuleBlock<CodeSandboxTokenMeta>(md, {
     type: 'codesandbox',
     meta(info, source) {

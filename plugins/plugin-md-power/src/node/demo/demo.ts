@@ -1,5 +1,4 @@
-import type { RenderRule } from 'markdown-it/lib/renderer.mjs'
-import type Token from 'markdown-it/lib/token.mjs'
+import type { RendererRule, Token } from 'markdown-it'
 import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
@@ -59,11 +58,11 @@ const renderMap: Record<string, DemoContainerRender> = {
 
 export function demoContainer(app: App, md: Markdown): void {
   let currentRender: DemoContainerRender | undefined
-  const render: RenderRule = (
+  const render: RendererRule = (
     tokens: Token[],
     index: number,
     _,
-    env: MarkdownDemoEnv,
+    env = {},
   ): string => {
     const token = tokens[index]
 

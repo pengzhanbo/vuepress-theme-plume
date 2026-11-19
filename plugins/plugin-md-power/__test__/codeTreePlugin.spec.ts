@@ -1,5 +1,5 @@
 import type { App, Page } from 'vuepress/core'
-import type { MarkdownEnv } from 'vuepress/markdown'
+import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import type { CodeTreeOptions } from '../src/shared/index.js'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -36,7 +36,7 @@ function createApp(sourceDir: string, publicDir: string): App {
   } as unknown as App
 }
 
-function createMarkdown(app: App, options?: CodeTreeOptions): MarkdownIt {
+function createMarkdown(app: App, options?: CodeTreeOptions): Markdown {
   const md = new MarkdownIt({
     // mimic vuepress markdown configuration so raw html (e.g. <img>) is kept
     html: true,

@@ -2,7 +2,7 @@
  * @[acfun](acid)
  */
 
-import type { PluginWithOptions } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 import type { AcFunTokenMeta } from '../../../shared/index.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
@@ -11,7 +11,7 @@ import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
 const AC_FUN_LINK = 'https://www.acfun.cn/player'
 
-export const acfunPlugin: PluginWithOptions<never> = (md) => {
+export function acfunPlugin(md: Markdown): void {
   createEmbedRuleBlock<AcFunTokenMeta>(md, {
     type: 'acfun',
     name: 'video_acfun',

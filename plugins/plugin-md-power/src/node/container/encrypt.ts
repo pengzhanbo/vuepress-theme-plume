@@ -110,7 +110,7 @@ export function encryptPlugin(
     return localKeys.find(key => relative.startsWith(key)) || '/'
   }
 
-  createContainerSyntaxPlugin(md, 'encrypt', (tokens, index, _, env) => {
+  createContainerSyntaxPlugin(md, 'encrypt', (tokens, index, _, env = {}) => {
     const { meta, content } = tokens[index]
     const { password, pwd, hint } = meta as { password?: string, pwd?: string, hint?: string }
     const _pwd = password || pwd || options.password
@@ -146,7 +146,7 @@ export function encryptPlugin(
       iv: Array.from(iv),
     }))
 
-    return `<VPEncryptSnippet data="${data}" hint="${md.utils.escapeHtml(hint || '')}" path-locale="${getLocale(env.filePathRelative)}" />`
+    return `<VPEncryptSnippet data="${data}" hint="${md.utils.escapeHtml(hint || '')}" path-locale="${getLocale(env.filePathRelative || '')}" />`
   })
 
   // Wait for all pending writes and flush the entry file before build ends.

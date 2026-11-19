@@ -86,9 +86,10 @@ describe('detectDependencies', () => {
 
     const message = hoisted.error.mock.calls[0][0] as string
     expect(message).toContain('echarts')
-    expect(message).toContain('markmap-lib')
-    expect(message).toContain('markmap-toolbar')
-    expect(message).toContain('markmap-view')
+    expect(message).toContain('@markmap/parse')
+    expect(message).toContain('@markmap/plugin-math')
+    expect(message).toContain('@markmap/render')
+    expect(message).toContain('@markmap/toolbar')
   })
 
   it('reports the python repl dependency', () => {

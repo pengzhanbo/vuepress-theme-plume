@@ -1,5 +1,4 @@
-import type { PluginWithOptions } from 'markdown-it'
-import type { MarkdownEnv } from 'vuepress/markdown'
+import type { Markdown } from 'vuepress/markdown'
 import type { IconOptions } from '../../shared/index.js'
 import { colors } from 'vuepress/utils'
 import { logger } from '../utils/logger.js'
@@ -12,7 +11,7 @@ function iconRender(content: string, options: IconOptions): string {
   return `<VPIcon${stringifyAttrs(icon)} />`
 }
 
-export const iconPlugin: PluginWithOptions<IconOptions> = (md, options = {}) => {
+export function iconPlugin(md: Markdown, options: IconOptions = {}): void {
   /**
    * ::collect:icon_name =size /color::
    */
@@ -33,8 +32,9 @@ export const iconPlugin: PluginWithOptions<IconOptions> = (md, options = {}) => 
     createIconRule([0x3A, 0x5B, 0x5D, 0x3A], true),
   )
 
-  md.renderer.rules.icon = (tokens, idx, _, env: MarkdownEnv) => {
-    const { content, meta } = tokens[idx]
+  md.renderer.rules.icon = (tokens, idx, _, env = {}) => {
+    const { content } = tokens[idx]
+    const meta = tokens[idx].meta ?? {}
     let icon = content
 
     /* istanbul ignore if -- @preserve */

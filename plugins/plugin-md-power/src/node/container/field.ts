@@ -288,15 +288,16 @@ export function fieldPlugin(md: Markdown): void {
     before: () => '<div class="vp-field-group">',
   })
 
-  createContainerSyntaxPlugin(md, 'field', (tokens, idx, _, env: MarkdownEnv) => {
-    const { info, content, meta } = tokens[idx]
+  createContainerSyntaxPlugin(md, 'field', (tokens, idx, _, env = {}) => {
+    const { info, content } = tokens[idx]
+    const meta = tokens[idx].meta ?? {}
     if (meta.name && objectKeys(meta).length > 1) {
       logger.warn(`[Field container \`::: field\` name="${meta.name}"]`, `\n  No longer support attribute-style syntax. Please use \`@tag\` syntax instead.\n  see ${colors.cyan('https://theme-plume.vuejs.press/guide/markdown/field/')}\n  at ${colors.gray(env.filePathRelative!)}`)
     }
 
     const parsed = { ...meta, ...parseFieldContent(content, info.includes('=') ? '' : info, env) } as FieldObject
 
-    const name = parsed.name || meta.name
+    const name = parsed.name || meta.name as string
 
     const props = stringifyAttrs({
       name,

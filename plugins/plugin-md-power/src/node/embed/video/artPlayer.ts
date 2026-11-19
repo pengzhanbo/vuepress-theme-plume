@@ -2,7 +2,8 @@
  * @[artPlayer](url)
  * @[artPlayer muted autoplay autoMini loop volume=1 poster="xxxx"](url)
  */
-import type { PluginWithOptions } from 'markdown-it'
+
+import type { Markdown } from 'vuepress/markdown'
 import type { ArtPlayerTokenMeta } from '../../../shared/index.js'
 import { isNil } from '@pengzhanbo/utils'
 import { isPackageExists } from 'local-pkg'
@@ -21,7 +22,7 @@ const installed = {
 
 export const SUPPORTED_VIDEO_TYPES = ['mp4', 'mp3', 'webm', 'ogg', 'mpd', 'dash', 'm3u8', 'hls', 'ts', 'flv', 'mkv', 'mov', 'ogv']
 
-export const artPlayerPlugin: PluginWithOptions<never> = (md) => {
+export function artPlayerPlugin(md: Markdown): void {
   createEmbedRuleBlock<ArtPlayerTokenMeta>(md, {
     type: 'artPlayer',
     name: 'video_artPlayer',

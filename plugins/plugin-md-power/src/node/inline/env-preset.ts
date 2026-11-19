@@ -1,6 +1,6 @@
-import type { PluginWithOptions } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 import type { MarkdownEnvPreset } from '../../shared/index.js'
-import { isEmptyObject, isString, objectMap } from '@pengzhanbo/utils'
+import { isEmptyObject, objectMap } from '@pengzhanbo/utils'
 
 /**
  * Environment preset plugin - Inject preset references to markdown env
@@ -10,12 +10,12 @@ import { isEmptyObject, isString, objectMap } from '@pengzhanbo/utils'
  * @param md - Markdown-it instance / Markdown-it 实例
  * @param env - Environment preset configuration / 环境预设配置
  */
-export const envPresetPlugin: PluginWithOptions<MarkdownEnvPreset> = (md, env = {}) => {
+export function envPresetPlugin(md: Markdown, env: MarkdownEnvPreset = {}): void {
   if (isEmptyObject(env))
     return
 
   const references = objectMap(env.references || {}, (key, value) => {
-    return [md.utils.normalizeReference(key), isString(value) ? { href: value } : value]
+    return [md.utils.normalizeReference(key), value]
   })
 
   const defaultRender = md.render

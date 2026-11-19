@@ -1,10 +1,10 @@
-import type { MarkdownEnv } from 'vuepress/markdown'
+import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import MarkdownIt from 'markdown-it'
 import { describe, expect, it, vi } from 'vitest'
 import { createEmbedRuleBlock } from '../src/node/embed/createEmbedRuleBlock.js'
 import { logger } from '../src/node/utils/logger.js'
 
-function createMarkdown(): MarkdownIt {
+function createMarkdown(): Markdown {
   return MarkdownIt().use((md) => {
     md.block.ruler.before('code', 'import_code', () => false)
     md.renderer.rules.import_code = () => ''

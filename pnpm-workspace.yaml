@@ -6,13 +6,28 @@ catalogMode: prefer
 minimumReleaseAge: 7200
 minimumReleaseAgeExcludePrune: true
 minimumReleaseAgeExclude:
-  - '@es-joy/escodegen@5.0.1'
-  - '@pengzhanbo/eslint-config-vue@2.15.0'
-  - '@pengzhanbo/eslint-config@2.15.0'
-  - '@pengzhanbo/stylelint-config@2.15.0'
-  - '@stylistic/stylelint-plugin@6.0.1'
-  - stylelint-define-config@18.0.0
-  - vue-eslint-parser@10.4.2
+  - '@eslint/markdown@9.0.0'
+  - '@pengzhanbo/eslint-config-vue@2.15.1'
+  - '@pengzhanbo/eslint-config@2.15.1'
+  - '@pengzhanbo/stylelint-config@2.15.1'
+  - '@stylelint-types/stylelint-order@8.1.4'
+  - '@stylelint-types/stylelint-scss@7.5.0'
+  - '@stylelint-types/stylelint-stylistic@6.0.1'
+  - '@stylistic/eslint-plugin@6.0.1'
+  - '@typescript-eslint/eslint-plugin@8.73.0'
+  - '@typescript-eslint/parser@8.73.0'
+  - '@typescript-eslint/project-service@8.73.0'
+  - '@typescript-eslint/scope-manager@8.73.0'
+  - '@typescript-eslint/tsconfig-utils@8.73.0'
+  - '@typescript-eslint/type-utils@8.73.0'
+  - '@typescript-eslint/types@8.73.0'
+  - '@typescript-eslint/typescript-estree@8.73.0'
+  - '@typescript-eslint/utils@8.73.0'
+  - '@typescript-eslint/visitor-keys@8.73.0'
+  - eslint-plugin-jsdoc@65.4.10
+  - eslint-plugin-perfectionist@5.14.0
+  - eslint-plugin-unicorn@80.0.0
+  - postcss-html@2.0.1
 
 trustPolicy: no-downgrade
 trustPolicyExclude:
@@ -51,10 +66,10 @@ overrides:
   fast-uri: '>=4.2.3'
   follow-redirects: '>=1.16.3'
   form-data: '>=4.0.6'
-  linkify-it: ^5.0.2
+  linkify-it: ^6.1.0
   lodash: '>=4.18.1'
   lodash-es: '>=4.18.1'
-  markdown-it: ^14.3.1
+  markdown-it: ^15.0.3
   mermaid: '>=12.3.0'
   postcss: '>=8.5.33'
   qs: '>=6.17.1'
@@ -80,13 +95,12 @@ catalogs:
     '@commitlint/cli': ^21.2.4
     '@commitlint/config-conventional': ^21.2.4
     '@lunariajs/core': ^0.3.0
-    '@pengzhanbo/eslint-config-vue': ^2.15.0
-    '@pengzhanbo/stylelint-config': ^2.15.0
+    '@pengzhanbo/eslint-config-vue': ^2.15.1
+    '@pengzhanbo/stylelint-config': ^2.15.1
     '@simonwep/pickr': ^1.10.3
     '@types/express': ^5.0.6
     '@types/js-yaml': ^4.0.9
     '@types/less': ^3.0.8
-    '@types/markdown-it': ^14.2.0
     '@types/node': ^26.6.6
     '@types/picomatch': ^4.0.3
     '@types/qrcode': ^1.5.6
@@ -103,7 +117,7 @@ catalogs:
     eslint: ^10.15.0
     http-server: ^14.1.1
     less: ^4.9.1
-    markdown-it: ^14.3.2
+    markdown-it: ^15.0.3
     markdownlint-cli: ^0.50.0
     memfs: ^4.80.1
     mermaid: ^12.3.0
@@ -144,6 +158,11 @@ catalogs:
     '@floating-ui/vue': ^2.0.1
     '@iconify/utils': ^3.1.7
     '@iconify/vue': ^5.0.5
+    '@markmap/parse': ^1.1.1
+    '@markmap/plugin-math': ^1.1.1
+    '@markmap/render': ^1.1.1
+    '@markmap/toolbar': ^1.1.1
+    '@markmap/view': ^1.1.1
     '@mdit/plugin-attrs': ^1.5.0
     '@mdit/plugin-footnote': ^1.2.0
     '@mdit/plugin-mark': ^2.2.0
@@ -158,7 +177,7 @@ catalogs:
     '@vueuse/integrations': ^15.0.0
     cac: ^7.1.0
     chart.js: ^4.6.1
-    chokidar: 5.0.0
+    chokidar: ^6.0.0
     dayjs: ^1.11.23
     echarts: ^6.1.0
     eta: ^4.6.0
@@ -175,9 +194,6 @@ catalogs:
     mark.js: ^8.11.1
     markdown-it-cjk-friendly: ^3.0.0
     markdown-it-container: ^4.0.0
-    markmap-lib: ^0.18.12
-    markmap-toolbar: ^0.18.12
-    markmap-view: ^0.18.12
     minisearch: ^7.2.0
     nano-spawn: ^2.1.0
     nanoid: ^6.0.2
@@ -198,26 +214,26 @@ catalogs:
     vue: ^3.5.45
     vue-router: ^5.5.1
   vuepress:
-    '@vuepress/bundler-vite': 2.0.0-rc.31
-    '@vuepress/helper': 2.0.0-rc.135
-    '@vuepress/plugin-cache': 2.0.0-rc.137
-    '@vuepress/plugin-comment': 2.0.0-rc.137
-    '@vuepress/plugin-copy-code': 2.0.0-rc.137
-    '@vuepress/plugin-docsearch': 2.0.0-rc.137
-    '@vuepress/plugin-git': 2.0.0-rc.137
-    '@vuepress/plugin-llms': 2.0.0-rc.137
-    '@vuepress/plugin-markdown-chart': 2.0.0-rc.137
-    '@vuepress/plugin-markdown-hint': 2.0.0-rc.137
-    '@vuepress/plugin-markdown-image': 2.0.0-rc.137
-    '@vuepress/plugin-markdown-include': 2.0.0-rc.137
-    '@vuepress/plugin-markdown-math': 2.0.0-rc.137
-    '@vuepress/plugin-nprogress': 2.0.0-rc.135
-    '@vuepress/plugin-photo-swipe': 2.0.0-rc.137
-    '@vuepress/plugin-reading-time': 2.0.0-rc.137
-    '@vuepress/plugin-replace-assets': 2.0.0-rc.137
-    '@vuepress/plugin-seo': 2.0.0-rc.137
-    '@vuepress/plugin-shiki': 2.0.0-rc.137
-    '@vuepress/plugin-sitemap': 2.0.0-rc.137
-    '@vuepress/plugin-watermark': 2.0.0-rc.135
-    '@vuepress/shiki-twoslash': 2.0.0-rc.135
-    vuepress: 2.0.0-rc.31
+    '@vuepress/bundler-vite': 2.0.0-rc.32
+    '@vuepress/helper': 2.0.0-rc.138
+    '@vuepress/plugin-cache': 2.0.0-rc.138
+    '@vuepress/plugin-comment': 2.0.0-rc.138
+    '@vuepress/plugin-copy-code': 2.0.0-rc.138
+    '@vuepress/plugin-docsearch': 2.0.0-rc.138
+    '@vuepress/plugin-git': 2.0.0-rc.138
+    '@vuepress/plugin-llms': 2.0.0-rc.138
+    '@vuepress/plugin-markdown-chart': 2.0.0-rc.138
+    '@vuepress/plugin-markdown-hint': 2.0.0-rc.138
+    '@vuepress/plugin-markdown-image': 2.0.0-rc.138
+    '@vuepress/plugin-markdown-include': 2.0.0-rc.138
+    '@vuepress/plugin-markdown-math': 2.0.0-rc.138
+    '@vuepress/plugin-nprogress': 2.0.0-rc.138
+    '@vuepress/plugin-photo-swipe': 2.0.0-rc.138
+    '@vuepress/plugin-reading-time': 2.0.0-rc.138
+    '@vuepress/plugin-replace-assets': 2.0.0-rc.138
+    '@vuepress/plugin-seo': 2.0.0-rc.138
+    '@vuepress/plugin-shiki': 2.0.0-rc.138
+    '@vuepress/plugin-sitemap': 2.0.0-rc.138
+    '@vuepress/plugin-watermark': 2.0.0-rc.138
+    '@vuepress/shiki-twoslash': 2.0.0-rc.138
+    vuepress: 2.0.0-rc.32

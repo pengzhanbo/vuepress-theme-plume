@@ -63,7 +63,7 @@ export interface TableContainerAttrs extends TableContainerOptions {
  * @param options - Table container options / 表格容器选项
  */
 export function tablePlugin(md: Markdown, options: TableContainerOptions = {}): void {
-  createContainerSyntaxPlugin(md, 'table', (tokens, index, opt, env) => {
+  createContainerSyntaxPlugin(md, 'table', (tokens, index, opt, env = {}) => {
     const { hlCols = '', hlRows = '', hlCells = '', ...meta } = tokens[index].meta as TableContainerAttrs
     const props = { copy: true, maxContent: false, fullWidth: false, ...options, ...meta } as TableContainerAttrs & { markdown?: string }
     const content = tokens[index].content
@@ -122,7 +122,7 @@ export function tablePlugin(md: Markdown, options: TableContainerOptions = {}): 
         // Check for colspan attribute
         const colspanIndex = token.attrIndex('colspan')
         if (colspanIndex >= 0) {
-          const colspanValue = Number.parseInt(token.attrs![colspanIndex][1])
+          const colspanValue = Number.parseInt(`${token.attrs![colspanIndex][1]}`)
           if (!Number.isNaN(colspanValue) && colspanValue > 1) {
             skipCells = colspanValue - 1
           }

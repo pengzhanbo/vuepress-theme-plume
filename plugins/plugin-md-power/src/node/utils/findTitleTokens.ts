@@ -1,4 +1,4 @@
-import type Token from 'markdown-it/lib/token.mjs'
+import type { Token } from 'markdown-it'
 
 /**
  * Range of tokens holding a list item's title paragraph.

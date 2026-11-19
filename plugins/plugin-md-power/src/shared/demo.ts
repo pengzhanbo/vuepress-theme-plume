@@ -1,4 +1,4 @@
-import type Token from 'markdown-it/lib/token.mjs'
+import type { Token } from 'markdown-it'
 import type { App } from 'vuepress'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 

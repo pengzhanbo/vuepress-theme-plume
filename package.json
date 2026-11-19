@@ -49,7 +49,6 @@
     "@pengzhanbo/stylelint-config": "catalog:dev",
     "@types/js-yaml": "catalog:dev",
     "@types/less": "catalog:dev",
-    "@types/markdown-it": "catalog:dev",
     "@types/node": "catalog:dev",
     "@types/picomatch": "catalog:dev",
     "@types/qrcode": "catalog:dev",

@@ -18,7 +18,7 @@ const DEPENDENCIES: Record<string, string[]> = {
 
   chartjs: ['chart.js'],
   echarts: ['echarts'],
-  markmap: ['markmap-lib', 'markmap-toolbar', 'markmap-view'],
+  markmap: ['@markmap/parse', '@markmap/plugin-math', '@markmap/render', '@markmap/toolbar'],
   mermaid: ['mermaid'],
   flowchart: ['flowchart.ts'],
 

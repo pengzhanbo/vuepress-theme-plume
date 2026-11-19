@@ -1,10 +1,10 @@
-import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
+import type { StateInline } from 'markdown-it'
 
 export function createIconRule(
   [l1, l2, r1, r2]: readonly [number, number, number, number],
   deprecated?: boolean,
-): RuleInline {
-  return (state, silent) => {
+) {
+  return (state: StateInline, silent: boolean): boolean => {
     let found = false
     const max = state.posMax
     const start = state.pos

@@ -6,10 +6,9 @@ describe('cleanMarkdownEnv', () => {
     base: 'base',
     filePath: 'filePath',
     filePathRelative: 'filePathRelative',
-    references: 'references',
+    references: { ref: { title: 'references', href: 'href' } },
     abbreviations: 'abbreviations',
     annotations: 'annotations',
-    // @ts-expect-error should be ignored
     foo: 'foo',
     bar: 'bar',
   }
@@ -19,7 +18,7 @@ describe('cleanMarkdownEnv', () => {
       base: 'base',
       filePath: 'filePath',
       filePathRelative: 'filePathRelative',
-      references: 'references',
+      references: { ref: { title: 'references', href: 'href' } },
       abbreviations: 'abbreviations',
       annotations: 'annotations',
     })

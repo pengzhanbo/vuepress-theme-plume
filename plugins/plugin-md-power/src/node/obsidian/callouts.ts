@@ -10,9 +10,8 @@
  * @see - https://obsidian.md/zh/help/callouts
  */
 
-import type { PluginWithOptions } from 'markdown-it'
-import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
-import type { MarkdownEnv } from 'vuepress/markdown'
+import type { StateBlock } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 import type { ObsidianCalloutOptions } from '../../shared/index.js'
 import { capitalize, objectEntries, uniq } from '@pengzhanbo/utils'
 import { ensureLeadingSlash } from '@vuepress/helper'
@@ -38,7 +37,7 @@ const calloutAlias = objectEntries(calloutsToAlerts)
     return acc
   }, {} as Record<string, string>)
 
-const calloutsDef: RuleBlock = (state, startLine, endLine, silent) => {
+function calloutsDef(state: StateBlock, startLine: number, endLine: number, silent: boolean): boolean {
   // if it's indented more than 3 spaces, it should be a code block
   if (state.sCount[startLine] - state.blkIndent >= 4)
     return false
@@ -149,7 +148,6 @@ const calloutsDef: RuleBlock = (state, startLine, endLine, silent) => {
     state.md.block.ruler.getRules('alert'),
   ].flat()
 
-  // @ts-expect-error: We are creating a new type called "alert"
   state.parentType = 'alert'
 
   // Search the end of the block
@@ -383,15 +381,12 @@ const calloutsDef: RuleBlock = (state, startLine, endLine, silent) => {
   return true
 }
 
-export const calloutPlugin: PluginWithOptions<ObsidianCalloutOptions> = (
-  md,
-  {
-    openRender,
-    closeRender,
-    titleRender,
-    locales = {},
-  } = {},
-) => {
+export function calloutPlugin(md: Markdown, {
+  openRender,
+  closeRender,
+  titleRender,
+  locales = {},
+}: ObsidianCalloutOptions = {}): void {
   md.block.ruler.before(
     'blockquote',
     'alert',
@@ -416,8 +411,8 @@ export const calloutPlugin: PluginWithOptions<ObsidianCalloutOptions> = (
   })
 
   md.renderer.rules.alert_title = titleRender
-    ?? ((tokens, index, _, env: MarkdownEnv): string => {
-      const { type, content } = tokens[index].meta
+    ?? ((tokens, index, _, env = {}): string => {
+      const { type, content } = tokens[index].meta as { type: string, content: string }
       const actualType = calloutAlias[type] || type
       const tag = actualType === 'details' ? 'summary' : 'p'
       const title = content.replace(/^\s*[+-]?/, '').trim()

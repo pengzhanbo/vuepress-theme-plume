@@ -5,7 +5,7 @@
  * @[bilibili p1 autoplay time=1](aid cid)
  */
 
-import type { PluginWithOptions } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 import type { BilibiliTokenMeta } from '../../../shared/index.js'
 import { URLSearchParams } from 'node:url'
 import { objectKeys } from '@pengzhanbo/utils'
@@ -18,7 +18,7 @@ import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 const BILIBILI_LINK = 'https://player.bilibili.com/player.html'
 const RE_PAGE = /^p(\d+)$/
 
-export const bilibiliPlugin: PluginWithOptions<never> = (md) => {
+export function bilibiliPlugin(md: Markdown): void {
   createEmbedRuleBlock<BilibiliTokenMeta>(md, {
     type: 'bilibili',
     name: 'video_bilibili',

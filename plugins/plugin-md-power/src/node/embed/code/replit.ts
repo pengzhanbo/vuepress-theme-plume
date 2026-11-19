@@ -3,14 +3,15 @@
  * @[replit](user/repl-name#filepath)
  * @[replit title="" height="400px" width="100%" theme="dark"](user/repl-name)
  */
-import type { PluginWithOptions } from 'markdown-it'
+
+import type { Markdown } from 'vuepress/markdown'
 import type { ReplitTokenMeta } from '../../../shared/index.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
 import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
-export const replitPlugin: PluginWithOptions<never> = (md) => {
+export function replitPlugin(md: Markdown): void {
   createEmbedRuleBlock<ReplitTokenMeta>(md, {
     type: 'replit',
     meta(info, source) {

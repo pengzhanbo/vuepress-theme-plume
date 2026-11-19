@@ -8,21 +8,21 @@
  * 插件提供的是对该语法的兼容性支持，并非实现其完全的功能。
  */
 
-import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
-import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
+import type { StateInline } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 import { ensureLeadingSlash, isLinkHttp } from 'vuepress/shared'
 import { path } from 'vuepress/utils'
 import { resolvePaths } from '../enhance/links.js'
 import { slugify } from '../utils/slugify.js'
 import { findFirstPage } from './findFirstPage.js'
 
-interface WikiLinkMeta {
+interface WikiLinkMeta extends Record<string, unknown> {
   filename: string
   alias: string
   titles: string[]
 }
 
-const wikiLinkDef: RuleInline = (state, silent) => {
+function wikiLinkDef(state: StateInline, silent: boolean): boolean {
   let found = false
   const max = state.posMax
   const start = state.pos
@@ -86,7 +86,7 @@ const wikiLinkDef: RuleInline = (state, silent) => {
 
 export function wikiLinkPlugin(md: Markdown) {
   md.inline.ruler.before('emphasis', 'obsidian_wiki_link', wikiLinkDef)
-  md.renderer.rules.obsidian_wiki_link = (tokens, idx, _, env: MarkdownEnv) => {
+  md.renderer.rules.obsidian_wiki_link = (tokens, idx, _, env = {}) => {
     const token = tokens[idx]
     const { filename, titles, alias } = token.meta as WikiLinkMeta
     const anchor = titles.at(-1)

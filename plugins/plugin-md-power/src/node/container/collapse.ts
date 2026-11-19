@@ -13,7 +13,7 @@
  * :::
  * ```
  */
-import type Token from 'markdown-it/lib/token.mjs'
+import type { Token } from 'markdown-it'
 import type { Markdown } from 'vuepress/markdown'
 import { findTitleTokens } from '../utils/findTitleTokens.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
@@ -35,7 +35,7 @@ interface CollapseMeta {
  *
  * 折叠面板项元数据
  */
-interface CollapseItemMeta {
+interface CollapseItemMeta extends Record<string, unknown> {
   expand?: boolean
   index?: number
 }

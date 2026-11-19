@@ -7,12 +7,6 @@ import type { MarkdownEnv } from 'vuepress/markdown'
  */
 export interface CleanMarkdownEnv extends MarkdownEnv {
   /**
-   * References
-   *
-   * 引用链接
-   */
-  references?: unknown
-  /**
    * Abbreviations
    *
    * 缩写词
@@ -58,11 +52,11 @@ type WhiteListUnion = (typeof WHITE_LIST)[number]
  * ```
  */
 export function cleanMarkdownEnv(env: CleanMarkdownEnv, excludes: WhiteListUnion[] = []): CleanMarkdownEnv {
-  const result: CleanMarkdownEnv = {}
+  const result = {}
   for (const key of WHITE_LIST) {
     if (excludes.includes(key))
       continue
     result[key] = env[key] as string
   }
-  return result
+  return result as CleanMarkdownEnv
 }

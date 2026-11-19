@@ -16,7 +16,6 @@
  * :::
  * ```
  */
-import type { PluginSimple } from 'markdown-it'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { createContainerSyntaxPlugin } from './createContainer.js'
@@ -116,15 +115,17 @@ function parseChatContent(content: string): ChatMessage[] {
  *
  * @param md - Markdown-it instance / Markdown-it 实例
  */
-export const chatPlugin: PluginSimple = md => createContainerSyntaxPlugin(
-  md,
-  'chat',
-  (tokens, idx, _, env) => `<div class="vp-chat">
+export function chatPlugin(md: Markdown) {
+  return createContainerSyntaxPlugin(
+    md,
+    'chat',
+    (tokens, idx, _, env) => `<div class="vp-chat">
   <div class="vp-chat-header">
-    <p class="vp-chat-title">${md.utils.escapeHtml(tokens[idx].meta?.title || 'Chat')}</p>
+    <p class="vp-chat-title">${md.utils.escapeHtml((tokens[idx].meta?.title as string) || 'Chat')}</p>
   </div>
   <div class="vp-chat-content">
-    ${chatMessagesRender(md, env, parseChatContent(tokens[idx].content))}
+    ${chatMessagesRender(md, env ?? {}, parseChatContent(tokens[idx].content))}
   </div>
 </div>`,
-)
+  )
+}

@@ -1,4 +1,4 @@
-import type Token from 'markdown-it/lib/token.mjs'
+import type { Token } from 'markdown-it'
 import { describe, expect, it } from 'vitest'
 import { findTitleTokens } from '../src/node/utils/findTitleTokens.js'
 

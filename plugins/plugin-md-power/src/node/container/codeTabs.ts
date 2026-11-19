@@ -1,4 +1,4 @@
-import type { PluginWithOptions } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 import type { CodeTabsOptions } from '../../shared/index.js'
 import { tab } from '@mdit/plugin-tab'
 import { findFileIcon } from 'find-file-icon'
@@ -13,12 +13,12 @@ import { stringifyProp } from '../utils/stringifyProp.js'
  * @param md - Markdown-it instance / Markdown-it 实例
  * @param options - Code tabs options / 代码标签页选项
  */
-export const codeTabs: PluginWithOptions<CodeTabsOptions> = (md, options: CodeTabsOptions = {}) => {
+export function codeTabs(md: Markdown, options: CodeTabsOptions = {}) {
   tab(md, {
     name: 'code-tabs',
 
-    openRenderer: ({ active, data }, tokens, index, _, env) => {
-      const { meta } = tokens[index]
+    openRenderer: ({ active, data }, tokens, index, _, env = {}) => {
+      const meta = tokens[index].meta ?? {}
       const titles = data.map(({ title }) => md.renderInline(title, cleanMarkdownEnv(env)))
       const tabsData = data.map((item, dataIndex) => {
         const { id = titles[dataIndex] } = item

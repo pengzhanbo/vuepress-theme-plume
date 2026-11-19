@@ -1,4 +1,4 @@
-import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
+import type { Markdown } from 'vuepress/markdown'
 import type { CommonLocaleData, FileTreeIconMode, FileTreeOptions } from '../../shared/index.js'
 import { encodeData } from '@vuepress/helper'
 import { findFileIcon } from 'find-file-icon'
@@ -280,7 +280,7 @@ ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children
     }).join('\n')
 
   // Register custom container syntax plugin
-  createContainerSyntaxPlugin(md, 'file-tree', (tokens, index, _, env: MarkdownEnv) => {
+  createContainerSyntaxPlugin(md, 'file-tree', (tokens, index, _, env = {}) => {
     const token = tokens[index]
     const nodes = parseFileTreeContentWithContainer(token.content)
     const meta = token.meta as FileTreeAttrs
@@ -296,7 +296,7 @@ ${renderedIcon}${renderedComment}${children.length > 0 ? renderFileTree(children
 
   const rawFence = md.renderer.rules.fence!
   md.renderer.rules.fence = (...args) => {
-    const [tokens, index, _, env] = args
+    const [tokens, index, _, env = {}] = args
     const token = tokens[index]!
     const info = token.info.trim()
 

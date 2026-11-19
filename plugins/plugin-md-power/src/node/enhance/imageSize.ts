@@ -1,7 +1,7 @@
-import type { RenderRule } from 'markdown-it/lib/renderer.mjs'
+import type { RendererRule } from 'markdown-it'
 import type { ClientRequest } from 'node:http'
 import type { App } from 'vuepress'
-import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
+import type { Markdown } from 'vuepress/markdown'
 import { Buffer } from 'node:buffer'
 import http from 'node:https'
 import { URL } from 'node:url'
@@ -110,11 +110,11 @@ export async function imageSizePlugin(
   }
 
   const imageRule = md.renderer.rules.image!.bind(md)
-  md.renderer.rules.image = (tokens, idx, options, env: MarkdownEnv, self) => {
+  md.renderer.rules.image = (tokens, idx, options, env = {}, self) => {
     const token = tokens[idx]
-    const width = token.attrGet('width')
-    const height = token.attrGet('height')
-    const src = token.attrGet('src')
+    const width = token.attrGet('width') as string
+    const height = token.attrGet('height') as string
+    const src = token.attrGet('src') as string
     const url = resolveImagePath(app, src, env.filePath)
 
     if ((width && height) || !url || !sizes[url] || src?.startsWith('data:'))
@@ -139,13 +139,13 @@ export async function imageSizePlugin(
    * @param rawHtmlRule - Original HTML rule / 原始 HTML 规则
    * @returns New HTML rule / 新的 HTML 规则
    */
-  function createHtmlRule(rawHtmlRule: RenderRule): RenderRule {
+  function createHtmlRule(rawHtmlRule: RendererRule): RendererRule {
     return (tokens, idx, options, env, self) => {
       const token = tokens[idx]
       token.content = token.content.replace(REG_IMG_TAG, (raw, info) => {
         const attrs = resolveAttrs(info)
         const src = attrs.src || attrs.srcset
-        const url = resolveImagePath(app, src, env.filepath)
+        const url = resolveImagePath(app, src, (env?.filepath as string) || '')
         const { width, height } = attrs
 
         if ((width && height) || !url || !sizes[url] || src?.startsWith('data:'))

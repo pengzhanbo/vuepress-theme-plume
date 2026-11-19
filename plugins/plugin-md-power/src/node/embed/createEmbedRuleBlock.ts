@@ -1,4 +1,3 @@
-import type MarkdownIt from 'markdown-it'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { colors } from 'vuepress/utils'
 import { logger } from '../utils/logger.js'
@@ -45,7 +44,7 @@ export interface EmbedRuleBlockOptions<Meta extends Record<string, any>> {
   content?: (meta: Meta, env: MarkdownEnv) => string
 }
 
-const EXISTS_TYPES = new WeakMap<MarkdownIt, Set<string>>()
+const EXISTS_TYPES = new WeakMap<Markdown, Set<string>>()
 
 /**
  * Create embed rule block
@@ -139,8 +138,8 @@ export function createEmbedRuleBlock<Meta extends Record<string, any> = Record<s
     { alt: ['paragraph', 'reference', 'blockquote', 'list'] },
   )
 
-  md.renderer.rules[name] = (tokens, index, _, env: MarkdownEnv) => {
+  md.renderer.rules[name] = (tokens, index, _, env = {}) => {
     const token = tokens[index]
-    return content?.(token.meta, env) ?? token.content
+    return content?.(token.meta as Meta, env) ?? token.content
   }
 }

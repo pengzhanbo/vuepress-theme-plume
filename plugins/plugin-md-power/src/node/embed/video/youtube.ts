@@ -1,7 +1,8 @@
 /**
  * @[youtube](id)
  */
-import type { PluginWithOptions } from 'markdown-it'
+
+import type { Markdown } from 'vuepress/markdown'
 import type { YoutubeTokenMeta } from '../../../shared/index.js'
 import { URLSearchParams } from 'node:url'
 import { parseRect } from '../../utils/parseRect.js'
@@ -12,7 +13,7 @@ import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
 const YOUTUBE_LINK = 'https://www.youtube.com/embed/'
 
-export const youtubePlugin: PluginWithOptions<never> = (md) => {
+export function youtubePlugin(md: Markdown): void {
   createEmbedRuleBlock<YoutubeTokenMeta>(md, {
     type: 'youtube',
     name: 'video_youtube',

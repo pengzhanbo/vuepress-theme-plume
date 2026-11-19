@@ -3,8 +3,9 @@
  *
  * !!The text here will be hidden by a spoiler, and can only be revealed by clicking or hovering!!
  */
-import type { PluginWithOptions } from 'markdown-it'
-import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
+
+import type { StateInline } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 
 /**
  * Plot inline rule definition
@@ -15,7 +16,7 @@ import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
  * @param silent - Silent mode / 静默模式
  * @returns Whether matched / 是否匹配
  */
-const plotDef: RuleInline = (state, silent) => {
+function plotDef(state: StateInline, silent: boolean): boolean {
   let found = false
   const max = state.posMax
   const start = state.pos
@@ -97,6 +98,6 @@ const plotDef: RuleInline = (state, silent) => {
  *
  * @param md - Markdown-it instance / Markdown-it 实例
  */
-export const plotPlugin: PluginWithOptions<never> = (md) => {
+export function plotPlugin(md: Markdown) {
   md.inline.ruler.before('emphasis', 'plot', plotDef)
 }

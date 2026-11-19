@@ -1,5 +1,5 @@
-import type Token from 'markdown-it/lib/token.mjs'
-import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
+import type { Token } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 import { isNumber, isString } from '@pengzhanbo/utils'
 import { colors } from 'vuepress/utils'
 import { logger } from '../utils/logger.js'
@@ -82,7 +82,7 @@ export function windowPlugin(md: Markdown): void {
   })
   // legacy demo-wrapper container, keep for compatibility
   createContainerPlugin(md, 'demo-wrapper', {
-    before: (info, tokens, idx, _, env: MarkdownEnv) => {
+    before: (info, tokens, idx, _, env = {}) => {
       logger.warn('container', `::: demo-wrapper container is deprecated, please use ::: window container instead. (${colors.gray(env.filePathRelative || '')})`)
       return render(info, tokens, idx, _, env)
     },

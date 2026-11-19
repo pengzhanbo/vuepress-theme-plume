@@ -1,9 +1,5 @@
-import type { PluginWithOptions } from 'markdown-it'
-import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
-import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
-import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs'
-import type StateInline from 'markdown-it/lib/rules_inline/state_inline.mjs'
-import type Token from 'markdown-it/lib/token.mjs'
+import type { Env, MarkdownItOptions, RendererRule, StateBlock, StateInline, Token } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 import { objectMap, toArray } from '@pengzhanbo/utils'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv'
 
@@ -25,7 +21,7 @@ interface AnnotationToken extends Token {
      * 注释标签
      */
     label: string
-  }
+  } & Record<string, unknown>
 }
 
 /**
@@ -33,7 +29,7 @@ interface AnnotationToken extends Token {
  *
  * 注释环境
  */
-interface AnnotationEnv extends Record<string, unknown> {
+interface AnnotationEnv extends Env {
   /**
    * Annotations record
    *
@@ -100,18 +96,14 @@ interface AnnotationStateInline extends StateInline {
  *
  * 注释定义规则
  *
- * @param state - State block / 状态块
+ * @param _state - State block / 状态块
  * @param startLine - Start line number / 开始行号
  * @param endLine - End line number / 结束行号
  * @param silent - Silent mode / 静默模式
  * @returns Whether matched / 是否匹配
  */
-const annotationDef: RuleBlock = (
-  state: AnnotationStateBlock,
-  startLine: number,
-  endLine: number,
-  silent: boolean,
-) => {
+function annotationDef(_state: StateBlock, startLine: number, endLine: number, silent: boolean): boolean {
+  const state = _state as AnnotationStateBlock
   const start = state.bMarks[startLine] + state.tShift[startLine]
   const max = state.eMarks[startLine]
 
@@ -181,14 +173,12 @@ const annotationDef: RuleBlock = (
  *
  * 注释引用规则
  *
- * @param state - State inline / 行内状态
+ * @param _state - State inline / 行内状态
  * @param silent - Silent mode / 静默模式
  * @returns Whether matched / 是否匹配
  */
-const annotationRef: RuleInline = (
-  state: AnnotationStateInline,
-  silent: boolean,
-): boolean => {
+function annotationRef(_state: StateInline, silent: boolean): boolean {
+  const state = _state as AnnotationStateInline
   const start = state.pos
   const max = state.posMax
 
@@ -255,10 +245,7 @@ const annotationRef: RuleInline = (
  * @param md - Markdown-it instance / Markdown-it 实例
  * @param globalAnnotations - Global annotations preset / 全局注释预设
  */
-export const annotationPlugin: PluginWithOptions<Record<string, string | string[]>> = (
-  md,
-  globalAnnotations = {},
-) => {
+export function annotationPlugin(md: Markdown, globalAnnotations: Record<string, string | string[]> = {}) {
   const annotations = objectMap(globalAnnotations, (key, value) => {
     return [
       key.startsWith(':') ? key : `:${key}`,
@@ -266,12 +253,12 @@ export const annotationPlugin: PluginWithOptions<Record<string, string | string[
     ]
   })
 
-  md.renderer.rules.annotation_ref = (
+  md.renderer.rules.annotation_ref = ((
     tokens: AnnotationToken[],
     idx: number,
-    _,
+    _: MarkdownItOptions,
     env: AnnotationEnv,
-  ) => {
+  ): string => {
     const label = tokens[idx].meta.label
     /* istanbul ignore next -- @preserve */
     const data = env.annotations[`:${label}`] || annotations[`:${label}`]
@@ -282,7 +269,7 @@ export const annotationPlugin: PluginWithOptions<Record<string, string | string[
         return `<template #item-${i}>${annotation}</template>`
       }).join('')
     }</VPAnnotation>`
-  }
+  }) as unknown as RendererRule
 
   md.inline.ruler.before('image', 'annotation_ref', annotationRef)
 

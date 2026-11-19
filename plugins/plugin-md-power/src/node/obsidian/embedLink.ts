@@ -14,15 +14,11 @@
  * 插件提供的是对该语法的兼容性支持，并非实现其完全的功能。
  */
 
-import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
-import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
-import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs'
-import type StateInline from 'markdown-it/lib/rules_inline/state_inline.mjs'
+import type { StateBlock, StateInline } from 'markdown-it'
 import type { App } from 'vuepress'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { attempt } from '@pengzhanbo/utils'
 import grayMatter from 'gray-matter'
-import Token from 'markdown-it/lib/token.mjs'
 import { ensureLeadingSlash, isLinkHttp } from 'vuepress/shared'
 import { fs, hash, path } from 'vuepress/utils'
 import { checkSupportType, SUPPORTED_VIDEO_TYPES } from '../embed/video/artPlayer.js'
@@ -32,7 +28,7 @@ import { parseRect } from '../utils/parseRect.js'
 import { slugify } from '../utils/slugify.js'
 import { findFirstPage } from './findFirstPage.js'
 
-interface EmbedLinkMeta {
+interface EmbedLinkMeta extends Record<string, unknown> {
   filename: string
   hashes: string[]
   settings: string
@@ -43,7 +39,7 @@ const EXTENSION_IMAGES: string[] = ['.jpg', '.jpeg', '.png', '.gif', '.avif', '.
 const EXTENSION_AUDIOS: string[] = ['.mp3', '.flac', '.wav', '.ogg', '.opus', '.webm', '.acc']
 const EXTENSION_VIDEOS: string[] = SUPPORTED_VIDEO_TYPES.map(ext => `.${ext}`)
 
-const blockEmbedLinkDef: RuleBlock = (state, startLine, endLine, silent) => {
+function blockEmbedLinkDef(state: StateBlock, startLine: number, endLine: number, silent: boolean): boolean {
   const start = state.bMarks[startLine] + state.tShift[startLine]
   const max = state.eMarks[startLine]
 
@@ -82,7 +78,7 @@ const blockEmbedLinkDef: RuleBlock = (state, startLine, endLine, silent) => {
   return true
 }
 
-const inlineEmbedLinkDef: RuleInline = (state, silent) => {
+function inlineEmbedLinkDef(state: StateInline, silent: boolean): boolean {
   let found = false
   const max = state.posMax
   const start = state.pos
@@ -144,7 +140,7 @@ export function embedLinkPlugin(md: Markdown, app: App): void {
   )
   md.inline.ruler.before('emphasis', 'obsidian_inline_embed_link', inlineEmbedLinkDef)
 
-  md.renderer.rules.obsidian_embed_link = (tokens, idx, _, env: MarkdownEnv) => {
+  md.renderer.rules.obsidian_embed_link = (tokens, idx, _, env = {}) => {
     const token = tokens[idx]
     const { filename, hashes, settings, isInline } = token.meta as EmbedLinkMeta
     const pagePath = findFirstPage(filename, env.filePathRelative ?? '')
@@ -218,7 +214,7 @@ function genEmbedAsset(state: StateBlock | StateInline, content: string, isInlin
         styles.push(`height: ${parseRect(height)}`)
       token.attrSet('style', styles.join(';'))
     }
-    const text = new Token('text', '', 0)
+    const text = new state.Token('text', '', 0)
     text.content = filename
     token.children = [text]
   }

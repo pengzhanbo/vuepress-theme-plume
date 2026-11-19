@@ -24,7 +24,7 @@
  * ```
  * :::
  */
-import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
+import type { Markdown } from 'vuepress/markdown'
 import type { NpmToOptions, NpmToPackageManager } from '../../shared/index.js'
 import type { CommandConfig, CommandConfigItem } from './npmToPreset.js'
 import { isArray } from '@vuepress/helper'
@@ -48,7 +48,7 @@ export function npmToPlugins(md: Markdown, options: NpmToOptions = {}): void {
   const defaultTabs = opt.tabs?.length ? opt.tabs : DEFAULT_TABS
 
   createContainerPlugin(md, 'npm-to', {
-    before: (info, tokens, idx, _opt, env: MarkdownEnv) => {
+    before: (info, tokens, idx, _opt, env = {}) => {
       const attrs = resolveAttrs<{ tabs?: string }>(info)
       const tabs = (attrs.tabs ? attrs.tabs.split(/,\s*/) : defaultTabs) as NpmToPackageManager[]
       const token = tokens[idx + 1]

@@ -39,7 +39,7 @@ describe('createContainerSyntaxPlugin', () => {
 
   it('should work with custom render', () => {
     const md = new MarkdownIt()
-    createContainerSyntaxPlugin(md, 'test', (tokens, index) => `<div class="test">${tokens[index].content} ${tokens[index].meta.title}</div>`)
+    createContainerSyntaxPlugin(md, 'test', (tokens, index) => `<div class="test">${tokens[index].content} ${tokens[index].meta?.title}</div>`)
     const rendered = md.render(':::test title="title"\ncontent\n:::')
     expect(rendered).toContain('class="test"')
     expect(rendered).toContain('content\n title')

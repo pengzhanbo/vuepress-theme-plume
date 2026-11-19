@@ -1,4 +1,4 @@
-import type { PluginSimple } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 import { tab } from '@mdit/plugin-tab'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
 import { stringifyProp } from '../utils/stringifyProp.js'
@@ -20,12 +20,12 @@ import { stringifyProp } from '../utils/stringifyProp.js'
  *
  * @param md - Markdown-it instance / Markdown-it 实例
  */
-export const tabs: PluginSimple = (md) => {
+export function tabs(md: Markdown) {
   tab(md, {
     name: 'tabs',
 
-    openRenderer: ({ active, data }, tokens, index, _, env) => {
-      const { meta } = tokens[index]
+    openRenderer: ({ active, data }, tokens, index, _, env = {}) => {
+      const meta = tokens[index].meta ?? {}
       const titles = data.map(({ title }) => md.renderInline(title, cleanMarkdownEnv(env)))
       const tabsData = data.map((item, dataIndex) => {
         const { id = titles[dataIndex] } = item
@@ -35,8 +35,7 @@ export const tabs: PluginSimple = (md) => {
 
       return `<VPTabs id="${index}" :data='${stringifyProp(tabsData)}'${active === -1 ? '' : ` :active="${active}"`}${meta.id ? ` tab-id="${md.utils.escapeHtml(meta.id as string)}"` : ''}>
 ${titles.map((title, titleIndex) =>
-  `<template #title${titleIndex}="{ value, isActive }">${title}</template>`,
-).join('')}`
+  `<template #title${titleIndex}="{ value, isActive }">${title}</template>`).join('')}`
     },
 
     closeRenderer: () => `</VPTabs>`,

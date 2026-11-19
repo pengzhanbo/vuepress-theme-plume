@@ -1,4 +1,4 @@
-import type Token from 'markdown-it/lib/token.mjs'
+import type { Token } from 'markdown-it'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
 import { objectEntries } from '@pengzhanbo/utils'
 import { removeLeadingSlash } from '@vuepress/shared'
@@ -49,7 +49,7 @@ export function linksPlugin(md: Markdown): void {
     // if `href` attr exists, `token.attrs` is not `null`
     // 如果 `href` 属性存在，`token.attrs` 不为 `null`
     const hrefAttr = token.attrs![hrefIndex]
-    const hrefLink: string = hrefAttr[1]
+    const hrefLink: string = `${hrefAttr[1]}`
 
     if (isLinkWithProtocol(hrefLink)) {
       // set `externalAttrs` to current token
@@ -88,8 +88,8 @@ export function linksPlugin(md: Markdown): void {
     }
   }
 
-  md.renderer.rules.link_open = (tokens, idx, opts, env: MarkdownEnv, self) => {
-    handleLinkOpen(tokens, idx, env)
+  md.renderer.rules.link_open = (tokens, idx, opts, env, self) => {
+    handleLinkOpen(tokens, idx, env ?? {})
     return self.renderToken(tokens, idx, opts)
   }
 

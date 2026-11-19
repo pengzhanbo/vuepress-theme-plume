@@ -1,5 +1,5 @@
-import type markdownIt from 'markdown-it'
 import type { App } from 'vuepress/core'
+import type { Markdown } from 'vuepress/markdown'
 import type { ReplEditorData, ReplOptions } from '../../shared/index.js'
 import { promises as fs } from 'node:fs'
 import { resolveModule } from 'local-pkg'
@@ -34,7 +34,7 @@ interface CodeReplMeta {
  * @param options.rust - Enable Rust playground / 启用 Rust 游乐场
  * @param options.python - Enable Python playground / 启用 Python 游乐场
  */
-export async function langReplPlugin(app: App, md: markdownIt, {
+export async function langReplPlugin(app: App, md: Markdown, {
   theme,
   go = false,
   kotlin = false,

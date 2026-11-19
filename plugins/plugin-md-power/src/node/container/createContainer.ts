@@ -1,5 +1,4 @@
-import type { RenderRule } from 'markdown-it/lib/renderer.mjs'
-import type StateBlock from 'markdown-it/lib/rules_block/state_block.mjs'
+import type { RendererRule, StateBlock } from 'markdown-it'
 import type { Markdown } from 'vuepress/markdown'
 import container from 'markdown-it-container'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
@@ -9,7 +8,7 @@ import { resolveAttrs } from '../utils/resolveAttrs.js'
  *
  * 获取 RenderRule 参数的类型
  */
-type RenderRuleParams = Parameters<RenderRule> extends [...infer Args, infer _] ? Args : never
+type RenderRuleParams = Parameters<RendererRule> extends [...infer Args, infer _] ? Args : never
 
 /**
  * Container options
@@ -48,7 +47,7 @@ export function createContainerPlugin(
   { before, after }: ContainerOptions = {},
 ): void {
   // Custom render rule
-  const render: RenderRule = (tokens, index, options, env): string => {
+  const render: RendererRule = (tokens, index, options, env): string => {
     const token = tokens[index]
     // Extract info after :::
     const info = token.info.trim().slice(type.length).trim() || ''
@@ -90,7 +89,7 @@ export function createContainerPlugin(
 export function createContainerSyntaxPlugin(
   md: Markdown,
   type: string,
-  render?: RenderRule,
+  render?: RendererRule,
 ): void {
   const maker = ':'
   const markerMinLen = 3
@@ -162,7 +161,7 @@ export function createContainerSyntaxPlugin(
   }
 
   // Default render function
-  const defaultRender: RenderRule = (tokens, index) => {
+  const defaultRender: RendererRule = (tokens, index) => {
     const { content } = tokens[index]
     return `<div class="custom-container ${type}">${content}</div>`
   }

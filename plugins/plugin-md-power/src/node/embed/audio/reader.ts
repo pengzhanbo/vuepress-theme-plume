@@ -1,9 +1,9 @@
-import type { PluginWithOptions } from 'markdown-it'
-import type { RuleInline } from 'markdown-it/lib/parser_inline.mjs'
+import type { StateInline } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
 
-interface AudioReaderTokenMeta {
+interface AudioReaderTokenMeta extends Record<string, unknown> {
   src?: string
   startTime?: number
   endTime?: number
@@ -12,7 +12,7 @@ interface AudioReaderTokenMeta {
   title?: string
 }
 
-const audioReader: RuleInline = (state, silent) => {
+function audioReader(state: StateInline, silent: boolean): boolean {
   const max = state.posMax
   let start = state.pos
   let href = ''
@@ -74,7 +74,7 @@ const audioReader: RuleInline = (state, silent) => {
   return true
 }
 
-export const audioReaderPlugin: PluginWithOptions<never> = (md) => {
+export function audioReaderPlugin(md: Markdown) {
   md.renderer.rules.audio_reader = (tokens, idx) => {
     const meta = tokens[idx].meta as AudioReaderTokenMeta
     if (meta.startTime)

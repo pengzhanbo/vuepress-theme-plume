@@ -3,7 +3,8 @@
  * @[pdf 1](/xxx)
  * @[pdf 1 no-toolbar width="100%" height="600px" zoom="1" ratio="1:1"](/xxx)
  */
-import type { PluginWithOptions } from 'markdown-it'
+
+import type { Markdown } from 'vuepress/markdown'
 import type { PDFTokenMeta } from '../../shared/index.js'
 import { hasOwn, objectKeys } from '@pengzhanbo/utils'
 import { path } from 'vuepress/utils'
@@ -14,7 +15,7 @@ import { createEmbedRuleBlock } from './createEmbedRuleBlock.js'
 
 const RE_PAGE = /^\d+$/
 
-export const pdfPlugin: PluginWithOptions<never> = (md) => {
+export function pdfPlugin(md: Markdown): void {
   createEmbedRuleBlock<PDFTokenMeta>(md, {
     type: 'pdf',
     meta(info, src) {

@@ -4,14 +4,14 @@
  * @[codepen preview editable title="" height="400px" tab="css,result" theme="dark"](user/slash)
  */
 
-import type { PluginSimple } from 'markdown-it'
+import type { Markdown } from 'vuepress/markdown'
 import type { CodepenTokenMeta } from '../../../shared/index.js'
 import { parseRect } from '../../utils/parseRect.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
 import { createEmbedRuleBlock } from '../createEmbedRuleBlock.js'
 
-export const codepenPlugin: PluginSimple = (md) => {
+export function codepenPlugin(md: Markdown): void {
   createEmbedRuleBlock<CodepenTokenMeta>(md, {
     type: 'codepen',
     meta: (info, source) => {

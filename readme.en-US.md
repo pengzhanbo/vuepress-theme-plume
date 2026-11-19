@@ -35,6 +35,7 @@ providing rich Markdown extensions to make your documentation more beautiful, pr
 
 - **💻 Responsive Design** - Perfectly adapts to mobile, tablet, and desktop devices
 - **📖 Collection System** - Create blogs, columns, product docs, technical docs, knowledge bases, and more through collections
+- **📋 Series/Columns** - Cross-collection; multiple articles aggregated into a series/column
 - **🔗 Permanent Links** - Auto-generate permanent article links
 - **⚖ Multi-language Support** - Built-in support for 7+ languages including English and Chinese
 - **👀 Search & Comments** - Supports local search, Algolia search, and multiple comment systems (Giscus, Waline, Twikoo, Artalk)
@@ -45,10 +46,13 @@ providing rich Markdown extensions to make your documentation more beautiful, pr
 - **📚 Code Demo Embedding** - Supports CodePen, JSFiddle, CodeSandbox, Replit, and more
 - **📊 Chart Support** - Chart.js, ECharts, Mermaid, Flowchart, PlantUML, Markmap
 - **🎛 Media Embedding** - PDF, Bilibili, YouTube, local videos, audio, and more
+- **🎞️ Internal link preview** - Hover over a link to quickly preview a summary of the page content
 - **🪞 Watermark** - Full-site watermark and partial content watermark support
 - **🔑 Content Encryption** - Full-site encryption and partial encryption (directory encryption, article encryption)
 - **⚡ Performance Optimization** - Compilation caching mechanism significantly improves build speed
 - **🔥 Hot Reload Configuration** - Theme configuration changes take effect without restarting
+- **📡 LLMs Text** - Automatically generate AI-retrieval-friendly md files for all pages based on their content, and generate `llms.txt` for the site
+- **📮 Feed Subscription** - Generate subscription feeds across multiple dimensions: site/collection/series/language
 
 ## Quick Start
 

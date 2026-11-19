@@ -3,6 +3,7 @@ import type { TemplateRendererContext } from 'vuepress/utils'
 import type { ReaderPreferencesOptions } from '../../shared/index.js'
 import { readFileSync } from 'node:fs'
 import { describe, expect, it, vi } from 'vitest'
+import { cleanReaderLocalePresets } from '../features/reader/options.js'
 
 /**
  * Theme options are read through `getThemeOptions()`, which is stubbed here so
@@ -450,16 +451,16 @@ describe('resolveThemeData', () => {
       },
     } as any)
 
-    expect(data.readerPreferences).toEqual(resolveReaderOptions({
+    expect(data.readerPreferences).toEqual(cleanReaderLocalePresets(resolveReaderOptions({
       width: { presets: ['wide'] },
       theme: { presets: [{ name: 'forest', tokens: { 'vp-c-bg': '#eef5ec' } }] },
-    }))
+    })))
     expect(data.readerPreferences!.width!.presets).toEqual(['wide'])
     expect(data.locales!['/en/'].readerPreferences!.theme!.presets[1]).toEqual({
       name: 'forest',
       label: 'Forest',
       color: '#eef5ec',
-      tokens: { '--vp-c-bg': '#eef5ec' },
+      tokens: { },
       custom: true,
       attribute: 'forest@/en/',
     })

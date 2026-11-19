@@ -409,8 +409,6 @@ function scopePalettes(
   return {
     // 以「是否为自定义调色板」决定作用域，令牌为空的自定义项同样需要；
     // 内置档位沿用名称，与静态样式表里的选择器保持一致。
-    // Scope by whether the palette is user defined, an empty token set still
-    // needs it. Built-in presets keep their bare name.
     presets: group.presets.map(palette => palette.custom
       ? { ...palette, attribute: `${palette.name}@${prefix}` }
       : palette),
@@ -498,4 +496,15 @@ export function collectReaderLocales(options: ThemeOptions): ReaderScriptLocale[
   }))
 
   return locales.sort((a, b) => b.prefix.length - a.prefix.length)
+}
+
+export function cleanReaderLocalePresets(options: ResolvedReaderOptions | null): ResolvedReaderOptions | null {
+  if (options?.theme?.presets?.length) {
+    options.theme.presets = options.theme.presets.map(p => ({ ...p, tokens: {} }))
+  }
+
+  if (options?.brand?.presets?.length) {
+    options.brand.presets = options.brand.presets.map(p => ({ ...p, tokens: {} }))
+  }
+  return options
 }

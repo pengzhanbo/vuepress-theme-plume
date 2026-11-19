@@ -4,7 +4,7 @@ import { deepClone, isBoolean, isPlainObject, objectEntries } from '@pengzhanbo/
 import { ensureEndingSlash, removeEndingSlash } from '@vuepress/helper'
 import { getImageOriginalSize, resolveImagePath } from 'vuepress-plugin-md-power'
 import { withBase } from '../utils/index.js'
-import { resolveLocaleReaderOptions, resolveReaderOptions } from './reader/index.js'
+import { cleanReaderLocalePresets, resolveLocaleReaderOptions, resolveReaderOptions } from './reader/index.js'
 
 const EXCLUDE_LIST: (keyof ThemeOptions)[] = [
   'hostname',
@@ -54,7 +54,7 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
 
   themeData.changelog = !!options.changelog
 
-  themeData.readerPreferences = resolveReaderOptions(options.readerPreferences)
+  themeData.readerPreferences = cleanReaderLocalePresets(resolveReaderOptions(options.readerPreferences))
 
   if (isPlainObject(options.bulletin)) {
     const { enablePage: _, ...opt } = options.bulletin
@@ -72,7 +72,7 @@ export function resolveThemeData(app: App, options: ThemeOptions): ThemeData {
         themeData.locales![locale][key] = deepClone(value) as any
     })
 
-    themeData.locales![locale].readerPreferences = resolveLocaleReaderOptions(options, locale)
+    themeData.locales![locale].readerPreferences = cleanReaderLocalePresets(resolveLocaleReaderOptions(options, locale))
 
     if (isPlainObject(opt.bulletin)) {
       const { enablePage: _, ...rest } = opt.bulletin

@@ -443,13 +443,13 @@ catalogs:
       specifier: ^4.0.0
       version: 4.0.0
     markmap-lib:
-      specifier: ^0.18.12
+      specifier: ^0.18.13
       version: 0.18.13
     markmap-toolbar:
-      specifier: ^0.18.12
+      specifier: ^0.18.13
       version: 0.18.13
     markmap-view:
-      specifier: ^0.18.12
+      specifier: ^0.18.13
       version: 0.18.13
     minisearch:
       specifier: ^7.2.0
@@ -5536,6 +5536,7 @@ packages:
 
   markmap-html-parser@0.18.11:
     resolution: {integrity: sha512-+kC5C4sCGntGUhGvTa5VIb5rtM75cSy/VCy3tzZoNAcn2qZGdgYvljN0WvjsOzrEzp+V6XKgwzO0u2TdzNAiOg==}
+    deprecated: Replaced by @markmap/* in 1.0.0. See https://markmap.js.org/docs/migration
     peerDependencies:
       markmap-common: '*'
 
@@ -5553,6 +5554,7 @@ packages:
 
   markmap-view@0.18.13:
     resolution: {integrity: sha512-FNzBzDZ81hR9TJ8MmpDxH1qhFWVqAHeCE2BkOW4GseDrymNTlXg5uLaiVl6PFAlB+O6mG6Gkbd+UsHuaOpgyKA==}
+    deprecated: Replaced by @markmap/* in 1.0.0. See https://markmap.js.org/docs/migration
     peerDependencies:
       markmap-common: '*'
 

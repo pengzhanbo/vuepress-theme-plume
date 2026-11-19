@@ -16,8 +16,7 @@ const { options, prefs, mobile, setPreference } = useReaderPreferences()
  * 但存储的偏好需要保留：视口变宽后仍会重新生效，因此只在这里按当前视口判定。
  */
 const active = computed(() =>
-  options.value?.focusMode === true && resolveEffectiveFocus(prefs.value.focus, mobile.value),
-)
+  options.value?.focusMode === true && resolveEffectiveFocus(prefs.value.focus, mobile.value))
 
 function exit(): void {
   setPreference('focus', undefined)

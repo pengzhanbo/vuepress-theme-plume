@@ -74,9 +74,7 @@ export function useLangs({
         : {
             text: locale.selectLanguageName || key,
             link: getPageLink(key),
-          },
-    ),
-  )
+          }))
 
   return { localeLinks, currentLang }
 }

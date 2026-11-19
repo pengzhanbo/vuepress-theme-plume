@@ -167,8 +167,7 @@ function resolveLightColorScheme(hue: number, saturation: number): TagColorSchem
   // On hover the page background becomes the text color and the hover color
   // becomes the background, so it must be readable against the page background too.
   const hoverBoundary = searchLightest(lightness =>
-    isAccessible(resolveColor(hue, saturation, lightness), LIGHT_PAGE_BG),
-  )
+    isAccessible(resolveColor(hue, saturation, lightness), LIGHT_PAGE_BG))
 
   // Darker than the text color, so the hover state is visibly different.
   const hoverLightness = Math.max(
@@ -197,8 +196,7 @@ function resolveDarkColorScheme(hue: number, saturation: number): TagColorScheme
   })
 
   const hoverBoundary = searchDarkest(lightness =>
-    isAccessible(resolveColor(hue, saturation, lightness), DARK_PAGE_BG),
-  )
+    isAccessible(resolveColor(hue, saturation, lightness), DARK_PAGE_BG))
 
   // Lighter than the text color, so the hover state is visibly different.
   const hoverLightness = Math.min(

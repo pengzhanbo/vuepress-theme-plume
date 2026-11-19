@@ -3,11 +3,11 @@
  *
  * CanIUse 显示模式
  */
-export type CanIUseMode
-  = | 'embed'
-    | 'baseline'
+export type CanIUseMode =
+  | 'embed'
+  | 'baseline'
     /** @deprecated */
-    | 'image'
+  | 'image'
 
 /**
  * CanIUse Token Metadata

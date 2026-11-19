@@ -95,8 +95,7 @@ export function usePostListControl(homePage: Ref<boolean>): UsePostListControlRe
   // 越界的 `?p=9999` / `?p=1e9`，或切换语言后列表变短的情况，
   // 都不应产生空列表或失效的分页状态。
   const page = computed(() =>
-    Math.min(Math.max(routePage.value, 1), Math.max(totalPage.value, 1)),
-  )
+    Math.min(Math.max(routePage.value, 1), Math.max(totalPage.value, 1)))
 
   const isLastPage = computed(() => page.value >= totalPage.value)
   const isFirstPage = computed(() => page.value <= 1)

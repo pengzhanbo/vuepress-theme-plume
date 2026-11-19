@@ -55,8 +55,7 @@ export function createTokenizer(lang: string): (text: string) => string[] {
             ?.flatMap(run =>
               UNSPACED_START_RE.test(run)
                 ? Array.from(segmenter!.segment(run), part => part.segment)
-                : run,
-            ) ?? term,
+                : run) ?? term,
       ).filter(isWordToken)
     }
   }

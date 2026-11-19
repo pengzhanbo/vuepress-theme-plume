@@ -20,8 +20,7 @@ const rawList = computed(() => {
     return []
   const res = slots.default?.()
   return ((Array.isArray(res) ? res : [res]) as VNode[]).map((item, index) =>
-    markRaw(cloneVNode(item, mergeProps(item.props ?? {}, { class: `masonry-${uuid}-${index}` }))),
-  )
+    markRaw(cloneVNode(item, mergeProps(item.props ?? {}, { class: `masonry-${uuid}-${index}` }))))
 })
 
 function resolveColumnsLength() {

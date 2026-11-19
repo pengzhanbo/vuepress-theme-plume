@@ -113,8 +113,7 @@ export function setupThemeData(app: App): void {
   const clientData: ClientData
     = app._context.provides[clientDataSymbol as unknown as symbol]
   const themeLocaleData = computed(() =>
-    resolveThemeLocaleData(themeData.value, clientData.routeLocale.value),
-  )
+    resolveThemeLocaleData(themeData.value, clientData.routeLocale.value))
   app.provide(themeLocaleDataSymbol, themeLocaleData)
 
   Object.defineProperties(app.config.globalProperties, {

@@ -15,19 +15,19 @@ export type ThemeHomeHeroEffect = LiteralUnion<'tint-plate' | 'prism' | 'pixel-b
  *
  * 首页 Hero 动画效果配置
  */
-export type ThemeHomeHeroEffectConfig
-  = | ThemeHomeHeroTintPlate
-    | ThemeHomeHeroPrism
-    | ThemeHomeHeroPixelBlast
-    | Omit<ThemeHomeHeroHyperSpeed, 'onSpeedUp' | 'onSlowDown'>
-    | ThemeHomeHeroLiquidEther
-    | ThemeHomeHeroDotGrid
-    | ThemeHomeHeroIridescence
-    | ThemeHomeHeroOrb
-    | ThemeHomeHeroBeams
-    | ThemeHomeHeroLightning
-    | ThemeHomeHeroDarkVeil
-    | ThemeHomeHeroLightFall
+export type ThemeHomeHeroEffectConfig =
+  | ThemeHomeHeroTintPlate
+  | ThemeHomeHeroPrism
+  | ThemeHomeHeroPixelBlast
+  | Omit<ThemeHomeHeroHyperSpeed, 'onSpeedUp' | 'onSlowDown'>
+  | ThemeHomeHeroLiquidEther
+  | ThemeHomeHeroDotGrid
+  | ThemeHomeHeroIridescence
+  | ThemeHomeHeroOrb
+  | ThemeHomeHeroBeams
+  | ThemeHomeHeroLightning
+  | ThemeHomeHeroDarkVeil
+  | ThemeHomeHeroLightFall
 
 /**
  * Tint plate effect configuration

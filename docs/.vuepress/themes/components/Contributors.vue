@@ -6,9 +6,9 @@ const props = defineProps<{
 }>()
 
 const list = computed(() =>
-  props.contributors.map(contributor =>
-    typeof contributor === 'string' ? { github: contributor, name: contributor } : contributor),
-)
+  props.contributors.map(
+    contributor => typeof contributor === 'string' ? { github: contributor, name: contributor } : contributor,
+  ))
 </script>
 
 <template>

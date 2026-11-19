@@ -121,11 +121,11 @@ The plugin will correctly identify these assets and replace them in the compiled
 /**
  * Asset link replacement configuration
  */
-type ReplaceAssetsPluginOptions
-  = | Replacement
-    | ReplacementRule
-    | ReplacementRule[]
-    | ReplaceAssetsOptions
+type ReplaceAssetsPluginOptions =
+  | Replacement
+  | ReplacementRule
+  | ReplacementRule[]
+  | ReplaceAssetsOptions
 
 /**
  * - `string`: Prepended to the original asset link

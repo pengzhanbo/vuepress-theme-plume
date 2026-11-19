@@ -95,10 +95,10 @@ export function setupMarkHighlight(mode: 'lazy' | 'eager'): void {
 
   const bindMarks = () => {
     const marks = Array.from(document.querySelectorAll<HTMLElement>(MARK_SELECTOR))
-      .filter(mark =>
-        mark instanceof HTMLElement
-        && !mark.classList.contains(MARK_VISIBLE_CLASS)
-        && mark.getAttribute(MARK_BOUND_ATTR) !== '1',
+      .filter(
+        mark => mark instanceof HTMLElement
+          && !mark.classList.contains(MARK_VISIBLE_CLASS)
+          && mark.getAttribute(MARK_BOUND_ATTR) !== '1',
       )
 
     if (marks.length === 0)

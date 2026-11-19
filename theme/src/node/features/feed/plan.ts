@@ -232,8 +232,7 @@ export function injectSeriesFeedLinks(app: App, options: ThemeOptions = getTheme
       const type = FEED_MIME[file.format]
       const href = toAbsoluteUrl(hostname, base, file.filepath)
       const links = head.filter(([tag, attrs]) =>
-        tag === 'link' && attrs?.rel === 'alternate' && attrs?.type === type,
-      )
+        tag === 'link' && attrs?.rel === 'alternate' && attrs?.type === type)
 
       // 作者自行声明的同类型链接优先 / A user declared link of the same type wins
       if (links.some(([, attrs]) => typeof attrs?.href !== 'string' || !themeHrefs.has(attrs.href)))

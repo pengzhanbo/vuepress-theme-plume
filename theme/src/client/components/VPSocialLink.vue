@@ -31,8 +31,7 @@ const label = computed(() => {
 })
 
 const ariaLabelText = computed(() =>
-  `${label.value} ${theme.value.openNewWindowText || '(Open in new window)'}`,
-)
+  `${label.value} ${theme.value.openNewWindowText || '(Open in new window)'}`)
 </script>
 
 <template>

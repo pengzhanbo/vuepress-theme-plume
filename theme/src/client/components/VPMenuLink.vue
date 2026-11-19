@@ -22,8 +22,7 @@ const isActiveLink = computed(() => isActive(
 ))
 
 const ariaCurrent = computed(() =>
-  isActive(page.value.path, resolveRouteFullPath(item.link)) ? 'page' : undefined,
-)
+  isActive(page.value.path, resolveRouteFullPath(item.link)) ? 'page' : undefined)
 </script>
 
 <template>

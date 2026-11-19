@@ -37,8 +37,7 @@ const MAX_COLORS = 8
 const containerRef = useTemplateRef<HTMLDivElement>('containerRef')
 
 const containerStyle = computed<CSSProperties>(() =>
-  props.mixBlendMode ? { mixBlendMode: props.mixBlendMode as CSSProperties['mixBlendMode'] } : {},
-)
+  props.mixBlendMode ? { mixBlendMode: props.mixBlendMode as CSSProperties['mixBlendMode'] } : {})
 
 function hexToRGB(hex: string): RGB {
   const c = hex.replace('#', '').padEnd(6, '0')

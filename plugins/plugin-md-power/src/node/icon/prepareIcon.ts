@@ -53,8 +53,7 @@ export function prepareIcon(
       hasScript = true
       setupContent.push(asset.provide === 'fontawesome'
         ? `useScriptTag(${JSON.stringify(asset.link)}, () => {}, { attrs: { "data-auto-replace-svg": "nest" } })`
-        : `useScriptTag(${JSON.stringify(asset.link)})`,
-      )
+        : `useScriptTag(${JSON.stringify(asset.link)})`)
     }
   }
   if (hasScript || hasStyle) {

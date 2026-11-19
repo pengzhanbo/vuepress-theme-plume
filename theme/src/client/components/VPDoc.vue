@@ -49,8 +49,7 @@ const enableAside = computed(() => {
 })
 
 const pageName = computed(() =>
-  route.path.replace(/[./]+/g, '_').replace(/_html$/, ''),
-)
+  route.path.replace(/[./]+/g, '_').replace(/_html$/, ''))
 const enabledExternalLinkIcon = computed(
   () =>
     theme.value.externalLinkIcon

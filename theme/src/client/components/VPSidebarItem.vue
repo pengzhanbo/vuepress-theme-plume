@@ -49,8 +49,7 @@ const textTag = computed(() => {
 const itemRole = computed(() => (isLink.value ? undefined : 'button'))
 
 const itemExpanded = computed(() =>
-  !isLink.value && collapsible.value ? !collapsed.value : undefined,
-)
+  !isLink.value && collapsible.value ? !collapsed.value : undefined)
 
 const SEPARATOR_RE = /^-{3,}$/
 const isSeparator = computed(() => item.link && SEPARATOR_RE.test(item.link))

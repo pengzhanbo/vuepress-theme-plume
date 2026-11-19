@@ -188,8 +188,7 @@ function createHeader(
 /** Stub `document.querySelectorAll`, routing the content and ignore selectors. */
 function stubDocument(headers: FakeNode[], ignored: FakeNode[] = []) {
   const querySelectorAll = vi.fn((selector: string) =>
-    selector.includes('.vp-doc') ? headers : ignored,
-  )
+    selector.includes('.vp-doc') ? headers : ignored)
   vi.stubGlobal('document', { querySelectorAll })
   return querySelectorAll
 }

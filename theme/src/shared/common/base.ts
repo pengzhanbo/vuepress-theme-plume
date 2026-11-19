@@ -7,10 +7,10 @@
  * 支持简单的字符串路径或详细的配置对象
  * 同时支持深色/浅色模式变体
  */
-export type ThemeImage
-  = | string
-    | { src: string, alt?: string, width?: string | number, height?: string | number }
-    | { dark: string, light: string, alt?: string, width?: string | number, height?: string | number }
+export type ThemeImage =
+  | string
+  | { src: string, alt?: string, width?: string | number, height?: string | number }
+  | { dark: string, light: string, alt?: string, width?: string | number, height?: string | number }
 
 /**
  * Icon configuration type

@@ -58,8 +58,8 @@ function createModule(
     default: JSON.stringify(meta),
     ...(shards.length
       ? {
-          shards: shards.map(entries => () =>
-            Promise.resolve({ default: JSON.stringify(entries) }),
+          shards: shards.map(
+            entries => () => Promise.resolve({ default: JSON.stringify(entries) }),
           ),
         }
       : {}),

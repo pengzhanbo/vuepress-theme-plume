@@ -65,8 +65,7 @@ const hasMeta = computed(() =>
   (readingTime.value.time && (metaConfig.value.readingTime !== false || metaConfig.value.wordCount !== false))
   || tags.value.length
   || createTime.value
-  || hasDocMetaSlot.value,
-)
+  || hasDocMetaSlot.value)
 </script>
 
 <template>

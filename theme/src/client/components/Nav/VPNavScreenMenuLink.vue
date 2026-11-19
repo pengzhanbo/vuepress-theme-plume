@@ -18,8 +18,7 @@ const isActiveLink = computed(() =>
     page.value.path,
     item.activeMatch || item.link,
     !!item.activeMatch,
-  ),
-)
+  ))
 
 const closeScreen = inject('close-screen') as () => void
 </script>

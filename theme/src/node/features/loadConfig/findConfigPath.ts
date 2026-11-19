@@ -25,8 +25,7 @@ export async function findConfigPath(app: App, configPath?: string): Promise<str
       resolve(cwd, `${source}/${CONFIG_FILE_NAME}.${ext}`),
       resolve(cwd, `./${CONFIG_FILE_NAME}.${ext}`),
       resolve(cwd, `./.vuepress/${CONFIG_FILE_NAME}.${ext}`),
-    ),
-  )
+    ))
   let current: string | undefined
   for (const path of paths) {
     if (existsSync(path) && (await fsp.stat(path)).isFile()) {

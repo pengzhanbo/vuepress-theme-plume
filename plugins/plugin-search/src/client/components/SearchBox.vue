@@ -82,8 +82,7 @@ const showSearchSpinner = computed(() => isSearchIndexLoading.value || isSearchi
 const searchIndexError = ref('')
 
 const searchIndexErrorText = computed(() =>
-  locale.value.searchIndexErrorText || 'Failed to load the search index.',
-)
+  locale.value.searchIndexErrorText || 'Failed to load the search index.')
 
 /**
  * Create an empty index used as a fallback when the index is missing or fails
@@ -159,8 +158,7 @@ const searchIndex = computedAsync(async (onCancel) => {
 }, undefined, isSearchIndexLoading)
 
 const disableQueryPersistence = computed(() =>
-  options?.disableQueryPersistence === true,
-)
+  options?.disableQueryPersistence === true)
 const filterText = disableQueryPersistence.value
   ? ref('')
   : useSessionStorage('vuepress-plume:mini-search-filter', '')
@@ -262,8 +260,7 @@ const selectedIndex = ref(-1)
 const disableMouseOver = ref(false)
 
 const activeDescendantId = computed(() =>
-  results.value[selectedIndex.value] ? optionId(selectedIndex.value) : undefined,
-)
+  results.value[selectedIndex.value] ? optionId(selectedIndex.value) : undefined)
 
 watch(results, (r) => {
   selectedIndex.value = r.length ? 0 : -1

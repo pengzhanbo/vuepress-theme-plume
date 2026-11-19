@@ -30,8 +30,7 @@ export function usePostsExtract(): {
       collection.value.archives !== false
       || collection.value.tags !== false
       || collection.value.categories !== false
-    ),
-  )
+    ))
 
   const tags = computed<PostsExtractLink>(() => ({
     link: links.tags.value?.link,

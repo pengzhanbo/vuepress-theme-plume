@@ -308,8 +308,7 @@ const beamMaterial = computed(() =>
       uNoiseIntensity: props.noiseIntensity,
       uScale: props.scale,
     },
-  }),
-)
+  }))
 
 function initThreeJS() {
   if (!containerRef.value)

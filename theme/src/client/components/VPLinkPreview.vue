@@ -23,8 +23,7 @@ const card = useTemplateRef<HTMLElement>('card')
 const size = shallowRef({ width: 0, height: 0 })
 
 const width = computed(() =>
-  Math.max(0, Math.min(options.value.maxWidth ?? MAX_WIDTH, viewport.value.width - MARGIN * 2)),
-)
+  Math.max(0, Math.min(options.value.maxWidth ?? MAX_WIDTH, viewport.value.width - MARGIN * 2)))
 
 const position = computed(() => {
   const state = active.value
@@ -50,8 +49,7 @@ const tags = computed(() =>
   (active.value?.item.tags ?? []).map(tag => ({
     name: tag,
     className: colors.value[tag] ? `vp-tag-${colors.value[tag]}` : 'tag-gray',
-  })),
-)
+  })))
 
 function measure(): void {
   const el = card.value

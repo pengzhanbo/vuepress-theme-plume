@@ -5,22 +5,22 @@ import type { BuiltinTheme, ThemeRegistration } from 'shiki'
  *
  * REPL 主题选项
  */
-export type ThemeOptions
-  = | BuiltinTheme
-    | {
-      /**
-       * Light theme
-       *
-       * 浅色主题
-       */
-      light: BuiltinTheme
-      /**
-       * Dark theme
-       *
-       * 深色主题
-       */
-      dark: BuiltinTheme
-    }
+export type ThemeOptions =
+  | BuiltinTheme
+  | {
+    /**
+     * Light theme
+     *
+     * 浅色主题
+     */
+    light: BuiltinTheme
+    /**
+     * Dark theme
+     *
+     * 深色主题
+     */
+    dark: BuiltinTheme
+  }
 
 /**
  * REPL options

@@ -6,8 +6,7 @@ const { frontmatter, isDark } = useData()
 const { isPageDecrypted } = useEncrypt()
 
 const hasComment = computed(() =>
-  frontmatter.value.comments !== false && isPageDecrypted.value,
-)
+  frontmatter.value.comments !== false && isPageDecrypted.value)
 </script>
 
 <template>

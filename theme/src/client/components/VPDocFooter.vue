@@ -18,15 +18,12 @@ const { contributors, mode } = useContributors()
 const { prev, next } = usePrevNext()
 
 const hasChangelog = computed(() =>
-  page.value.git?.changelog?.length && (frontmatter.value.changelog ?? !!themeData.value.changelog),
-)
+  page.value.git?.changelog?.length && (frontmatter.value.changelog ?? !!themeData.value.changelog))
 
 const hasEditLink = computed(() =>
-  Boolean(themeData.value.editLink && frontmatter.value.editLink !== false && editLink.value),
-)
+  Boolean(themeData.value.editLink && frontmatter.value.editLink !== false && editLink.value))
 const hasLastUpdated = computed(() =>
-  Boolean(themeData.value.lastUpdated !== false && frontmatter.value.lastUpdated !== false && lastUpdated.value) && !hasChangelog.value,
-)
+  Boolean(themeData.value.lastUpdated !== false && frontmatter.value.lastUpdated !== false && lastUpdated.value) && !hasChangelog.value)
 const hasContributors = computed(() => Boolean(contributors.value.length) && mode.value === 'inline')
 
 const prevNextLabel = computed(() => theme.value.docFooterNavLabel || 'Document navigation')

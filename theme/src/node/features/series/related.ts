@@ -91,8 +91,7 @@ export function createSeriesRelatedIndex(series: ResolvedSeries[]): SeriesRelate
     const { chapters } = item
 
     const navs = chapters.map(chapter =>
-      item.nav !== false && chapter.page.frontmatter.seriesNav !== false,
-    )
+      item.nav !== false && chapter.page.frontmatter.seriesNav !== false)
 
     chapters.forEach((chapter, index) => {
       members.set(chapter.path, {

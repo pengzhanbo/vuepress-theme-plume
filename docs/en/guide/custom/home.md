@@ -408,10 +408,10 @@ interface PlumeThemeHomeTextImage extends PlumeHomeConfigBase {
   list: (string | { title?: string, description?: string })[]
 }
 
-type PlumeThemeImage
-  = | string
-    | { src: string, alt?: string }
-    | { dark: string, light: string, alt?: string }
+type PlumeThemeImage =
+  | string
+  | { src: string, alt?: string }
+  | { dark: string, light: string, alt?: string }
 ```
 
 **Example:**
@@ -512,10 +512,10 @@ interface PlumeThemeHomeProfile extends PlumeHomeConfigBase {
   circle?: boolean
 }
 
-type PlumeThemeImage
-  = | string
-    | { src: string, alt?: string }
-    | { dark: string, light: string, alt?: string }
+type PlumeThemeImage =
+  | string
+  | { src: string, alt?: string }
+  | { dark: string, light: string, alt?: string }
 ```
 
 **Example:**

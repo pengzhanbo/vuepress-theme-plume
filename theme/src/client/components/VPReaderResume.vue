@@ -16,8 +16,7 @@ const { saved, visible, resume, restart } = useResumeReading()
 
 const percent = computed(() => Math.round((saved.value ?? 0) * 100))
 const text = computed(() =>
-  (theme.value.readerResumeText ?? 'Last read {percent}%').replace('{percent}', String(percent.value)),
-)
+  (theme.value.readerResumeText ?? 'Last read {percent}%').replace('{percent}', String(percent.value)))
 
 const timeout = useTimeoutFn(() => {
   visible.value = false

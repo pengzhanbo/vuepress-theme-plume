@@ -101,16 +101,14 @@ export function useSeries(): UseSeriesResult {
   })
 
   const chapter = computed(() =>
-    index.value < 0 ? null : series.value!.chapters[index.value]!,
-  )
+    index.value < 0 ? null : series.value!.chapters[index.value]!)
 
   // 三重条件：属于系列 + 当前页是其中一章 + 系列与当前页都开启了互链
   const enabled = computed(() =>
     !!series.value
     && series.value.nav !== false
     && !!chapter.value
-    && frontmatter.value.seriesNav !== false,
-  )
+    && frontmatter.value.seriesNav !== false)
 
   const next = computed(() => {
     const chapters = series.value?.chapters
@@ -120,14 +118,12 @@ export function useSeries(): UseSeriesResult {
   })
 
   const name = computed(() =>
-    (theme.value.seriesNameText || '“{title}”').replace('{title}', series.value?.title ?? ''),
-  )
+    (theme.value.seriesNameText || '“{title}”').replace('{title}', series.value?.title ?? ''))
 
   const chapterText = computed(() =>
     (theme.value.seriesChapterText || '{index} of {total}')
       .replace('{index}', String(chapter.value?.order ?? 0))
-      .replace('{total}', String(series.value?.chapters.length ?? 0)),
-  )
+      .replace('{total}', String(series.value?.chapters.length ?? 0)))
 
   const includedLabel = computed(() => theme.value.seriesIncludedText || 'This post is part of')
   const nextLabel = computed(() => theme.value.seriesNextText || 'Next')

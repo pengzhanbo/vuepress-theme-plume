@@ -13,8 +13,7 @@ const readingTimeConfig = useReadingTimeLocaleConfig()
 const chapters = computed(() => series.value?.chapters ?? [])
 
 const totalText = computed(() =>
-  (theme.value.seriesTotalText || '{count} chapters').replace('{count}', String(chapters.value.length)),
-)
+  (theme.value.seriesTotalText || '{count} chapters').replace('{count}', String(chapters.value.length)))
 
 /**
  * Total minutes are only shown when every chapter has a reading time, otherwise the

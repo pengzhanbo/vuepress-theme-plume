@@ -132,8 +132,7 @@ const autoplay = computed<AutoplayOptions | boolean>(() => {
 })
 
 const hasNavigation = computed(() =>
-  props.mode === 'banner' || props.mode === 'broadcast' ? props.navigation : false,
-)
+  props.mode === 'banner' || props.mode === 'broadcast' ? props.navigation : false)
 
 let swiper: SwiperType | undefined
 

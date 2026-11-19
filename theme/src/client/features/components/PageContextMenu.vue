@@ -153,8 +153,7 @@ function onEscape() {
 }
 
 const menuToggleLabel = computed(() =>
-  theme.value.pageContextMenuLabel ?? 'Open page actions menu',
-)
+  theme.value.pageContextMenuLabel ?? 'Open page actions menu')
 
 const copyPageText = computed(() => {
   const copyText = theme.value.copyPageText ?? 'Copy page'

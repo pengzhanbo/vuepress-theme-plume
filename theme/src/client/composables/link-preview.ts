@@ -229,12 +229,10 @@ export function useLinkPreview(): UseLinkPreviewResult {
   const value = computed(() => theme.value.linkPreview)
 
   const options = computed<LinkPreviewOptions>(() =>
-    typeof value.value === 'object' && value.value ? value.value : {},
-  )
+    typeof value.value === 'object' && value.value ? value.value : {})
 
   const enabled = computed(() =>
-    !!value.value && frontmatter.value.linkPreview !== false,
-  )
+    !!value.value && frontmatter.value.linkPreview !== false)
 
   return { enabled, active, options, viewport }
 }

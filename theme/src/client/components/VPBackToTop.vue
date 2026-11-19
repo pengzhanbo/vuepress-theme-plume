@@ -27,8 +27,7 @@ const progress = computed(
 const percent = computed(() => `${Math.min(Math.round(progress.value), 100) || 0}%`)
 
 const stroke = computed(() =>
-  `calc(${Math.PI * progress.value}% - ${4 * Math.PI}px) calc(${Math.PI * 100}% - ${4 * Math.PI}px)`,
-)
+  `calc(${Math.PI * progress.value}% - ${4 * Math.PI}px) calc(${Math.PI * 100}% - ${4 * Math.PI}px)`)
 
 const mustHidden = computed(() => {
   return page.value.frontmatter.backToTop === false || (page.value.frontmatter.pageLayout === 'home' && page.value.frontmatter.config && (page.value.frontmatter.config as any).length <= 1)

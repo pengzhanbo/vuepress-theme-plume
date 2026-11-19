@@ -76,7 +76,8 @@ export function commentPlugin(md: Markdown): void {
     (state, startLine, endLine, silent) => {
       const start = state.bMarks[startLine] + state.tShift[startLine]
       // check starts with %%
-      if (state.src.charCodeAt(start) !== 0x25 // %
+      if (
+        state.src.charCodeAt(start) !== 0x25 // %
         || state.src.charCodeAt(start + 1) !== 0x25 // %
       ) {
         return false

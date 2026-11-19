@@ -474,8 +474,7 @@ export function buildEntries(
   if (options.order !== 'preserve') {
     entries.sort((a, b) =>
       b.published.getTime() - a.published.getTime()
-      || a.path.localeCompare(b.path),
-    )
+      || a.path.localeCompare(b.path))
   }
 
   return { entries: entries.slice(0, channel.limit), skipped }
@@ -503,16 +502,14 @@ export function resolveFeedChannels(
     collections.filter(collection => resolveCollectionFeed(collection, resolved).include),
   )
   const pages = (app.pages as FeedPage[]).filter(page =>
-    page.pathLocale === locale && isFeedPage(page, options),
-  )
+    page.pathLocale === locale && isFeedPage(page, options))
 
   return descriptors.map((descriptor) => {
     let channelPages: FeedPage[]
 
     if (descriptor.collection) {
       channelPages = pages.filter(page =>
-        matchesCollection(page, descriptor.collection!, options, locale),
-      )
+        matchesCollection(page, descriptor.collection!, options, locale))
     }
     else if (collections.length) {
       channelPages = pages.filter((page) => {

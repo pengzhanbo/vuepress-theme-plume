@@ -21,8 +21,10 @@ async function initQRCodeInstance() {
   const qrcode = (await import(/* webpackChunkName: "qrcode" */ 'qrcode')).default
   qr = {
     toCanvas: (text: string | QRCodeByteSegment[], options: QRCodeRenderersOptions) => {
-      return new Promise((resolve, reject) =>
-        qrcode.toCanvas(text, options, (error, canvas) => error ? reject(error) : resolve(canvas)),
+      return new Promise(
+        (resolve, reject) => qrcode.toCanvas(text, options, (error, canvas) => error
+          ? reject(error)
+          : resolve(canvas)),
       )
     },
     toPNG: (text, options) => qrcode.toDataURL(text, { type: 'image/png', ...options }),

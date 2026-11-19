@@ -128,8 +128,7 @@ export async function preparedPostsData(app: App, options: ThemeOptions = getThe
     && !EXCLUDE_PAGE_TYPES.includes(page.data.type as string)
     // 生产构建下，排除草稿文章。
     // 草稿页面已在页面解析阶段通过 `pagePatterns` 排除，这里保留判断作为双保险。
-    && (isBuild ? !page.frontmatter.draft : true),
-  ) as Page<ThemePageData, ThemePostFrontmatter & Record<string, unknown>>[]
+    && (isBuild ? !page.frontmatter.draft : true)) as Page<ThemePageData, ThemePostFrontmatter & Record<string, unknown>>[]
 
   const sortedPages = [...pages].sort(sortPage)
 

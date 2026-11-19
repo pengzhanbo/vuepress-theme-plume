@@ -56,18 +56,15 @@ export function useRelatedPosts(): UseRelatedPostsResult {
   })
 
   const enabled = computed(() =>
-    !!options.value && frontmatter.value.relatedPosts !== false,
-  )
+    !!options.value && frontmatter.value.relatedPosts !== false)
 
   const relatedPosts = computed<ThemeRelatedPostItem[]>(() => page.value.relatedPosts ?? [])
 
   const title = computed(() =>
-    options.value?.title || theme.value.relatedPostsText || 'Related Posts',
-  )
+    options.value?.title || theme.value.relatedPostsText || 'Related Posts')
 
   const label = computed(() =>
-    theme.value.relatedPostsLabel || title.value,
-  )
+    theme.value.relatedPostsLabel || title.value)
 
   return { enabled, relatedPosts, title, label }
 }

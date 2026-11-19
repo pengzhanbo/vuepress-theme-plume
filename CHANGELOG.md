@@ -1,3 +1,17 @@
+# [1.0.0-rc.217](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.216...v1.0.0-rc.217) (2026-11-19)
+
+### Bug Fixes
+
+* **theme:** disable link previews for doc-footer ([edd9f1f](https://github.com/pengzhanbo/vuepress-theme-plume/commit/edd9f1fe4c9e91d19f98ffd3dc682b851558abbe))
+
+### Features
+
+* **theme:** add reader preferences support ([#1086](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1086)) ([89a89e1](https://github.com/pengzhanbo/vuepress-theme-plume/commit/89a89e1df4c4c1a4191a389d6d24239d19ec9703))
+* **theme:** add series support ([#1087](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1087)) ([357ff30](https://github.com/pengzhanbo/vuepress-theme-plume/commit/357ff30357c2e057944499d5ccf9be982e9d61f7))
+* **theme:** clean reader presets data in theme data ([634d64d](https://github.com/pengzhanbo/vuepress-theme-plume/commit/634d64dfe3ce19d426afa3c3cca2340f30dcd590))
+* **theme:** generate feed for series ([#1088](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1088)) ([532baf3](https://github.com/pengzhanbo/vuepress-theme-plume/commit/532baf33987565db329ccefca66b09fd421ac850))
+* **theme:** related-posts for series ([#1089](https://github.com/pengzhanbo/vuepress-theme-plume/issues/1089)) ([86311ef](https://github.com/pengzhanbo/vuepress-theme-plume/commit/86311ef372796605735121a8ed254fb2c3622a0f))
+
 # [1.0.0-rc.216](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.215...v1.0.0-rc.216) (2026-11-11)
 
 ### Bug Fixes

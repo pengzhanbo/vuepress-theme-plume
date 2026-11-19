@@ -11,7 +11,6 @@ minimumReleaseAgeExclude:
   - '@pengzhanbo/eslint-config@2.15.0'
   - '@pengzhanbo/stylelint-config@2.15.0'
   - '@stylistic/stylelint-plugin@6.0.1'
-  - eslint-plugin-jsdoc@65.4.5
   - stylelint-define-config@18.0.0
   - vue-eslint-parser@10.4.2
 
@@ -43,21 +42,21 @@ overrides:
   '@shikijs/transformers': ^4.6.0
   '@shikijs/twoslash': ^4.6.0
   '@xmldom/xmldom': '>=0.9.12'
-  axios: '>=1.21.0'
-  baseline-browser-mapping: ^2.11.35
-  brace-expansion: '>=5.0.12'
+  axios: '>=1.21.1'
+  baseline-browser-mapping: ^2.11.37
+  brace-expansion: '>=5.0.13'
   chokidar: 'catalog:prod'
   dompurify: '>=3.4.17'
   esbuild: '>=0.28.2'
   fast-uri: '>=4.2.3'
-  follow-redirects: '>=1.16.2'
+  follow-redirects: '>=1.16.3'
   form-data: '>=4.0.6'
   linkify-it: ^5.0.2
   lodash: '>=4.18.1'
   lodash-es: '>=4.18.1'
   markdown-it: ^14.3.1
   mermaid: '>=12.3.0'
-  postcss: '>=8.5.32'
+  postcss: '>=8.5.33'
   qs: '>=6.17.1'
   sass-embedded: 'catalog:peer'
   shell-quote: '>=1.12.0'
@@ -68,7 +67,7 @@ overrides:
   vite: 'catalog:dev'
   vue: 'catalog:prod'
   vue-router: 'catalog:prod'
-  ws: '>=8.22.1'
+  ws: '>=8.23.0'
 
 allowBuilds:
   '@parcel/watcher': true
@@ -80,7 +79,7 @@ catalogs:
   dev:
     '@commitlint/cli': ^21.2.4
     '@commitlint/config-conventional': ^21.2.4
-    '@lunariajs/core': ^0.2.1
+    '@lunariajs/core': ^0.3.0
     '@pengzhanbo/eslint-config-vue': ^2.15.0
     '@pengzhanbo/stylelint-config': ^2.15.0
     '@simonwep/pickr': ^1.10.3
@@ -101,30 +100,30 @@ catalogs:
     conventional-changelog-angular: ^9.4.0
     cpx2: ^9.0.3
     cross-env: ^10.1.0
-    eslint: ^10.14.0
+    eslint: ^10.15.0
     http-server: ^14.1.1
     less: ^4.9.1
     markdown-it: ^14.3.2
     markdownlint-cli: ^0.50.0
-    memfs: ^4.80.0
+    memfs: ^4.80.1
     mermaid: ^12.3.0
     nano-staged: ^1.0.2
-    oxfmt: ^0.76.0
-    postcss: ^8.5.32
+    oxfmt: ^0.78.0
+    postcss: ^8.5.33
     rimraf: ^6.1.4
     simple-git-hooks: ^2.14.0
     stylelint: ^18.0.0
     stylus: ^0.64.0
     taze: ^21.3.0
     tsconfig-vuepress: ^7.0.0
-    tsdown: ^0.23.5
+    tsdown: ^0.23.7
     typescript: ^6.0.3
     unrun: ^0.3.1
-    vite: ^8.3.6
+    vite: ^8.3.8
     vitest: ^5.1.0
     wait-on: ^9.5.1
   peer:
-    '@iconify/json': ^2.2.553
+    '@iconify/json': ^2.2.556
     '@mathjax/src': ^4.1.3
     '@pinyin-pro/data': ^1.3.1
     artplayer: ^5.4.0
@@ -135,23 +134,23 @@ catalogs:
     ogl: ^1.0.11
     pinyin-pro: ^3.29.5
     postprocessing: ^6.39.6
-    pyodide: ^314.0.7
-    sass: ^1.107.1
-    sass-embedded: ^1.107.1
+    pyodide: ^314.0.8
+    sass: ^1.108.2
+    sass-embedded: ^1.108.2
     swiper: ^14.4.0
     three: ^0.187.0
   prod:
-    '@clack/prompts': ^1.8.1
+    '@clack/prompts': ^1.9.0
     '@floating-ui/vue': ^2.0.1
     '@iconify/utils': ^3.1.7
     '@iconify/vue': ^5.0.5
-    '@mdit/plugin-attrs': ^1.4.0
-    '@mdit/plugin-footnote': ^1.1.4
-    '@mdit/plugin-mark': ^2.1.4
-    '@mdit/plugin-sub': ^1.1.4
-    '@mdit/plugin-sup': ^1.1.4
-    '@mdit/plugin-tab': ^2.1.0
-    '@mdit/plugin-tasklist': ^1.2.0
+    '@mdit/plugin-attrs': ^1.5.0
+    '@mdit/plugin-footnote': ^1.2.0
+    '@mdit/plugin-mark': ^2.2.0
+    '@mdit/plugin-sub': ^1.2.0
+    '@mdit/plugin-sup': ^1.2.0
+    '@mdit/plugin-tab': ^2.1.1
+    '@mdit/plugin-tasklist': ^1.3.0
     '@pengzhanbo/utils': ^3.12.0
     '@shikijs/colorized-brackets': ^4.6.0
     '@shikijs/transformers': ^4.6.0
@@ -167,7 +166,7 @@ catalogs:
     flowchart.ts: ^4.0.0
     focus-trap: ^8.2.4
     gray-matter: ^4.0.3
-    hash-wasm: ^4.12.0
+    hash-wasm: ^4.13.0
     js-tokens: ^10.0.0
     js-yaml: ^5.5.0
     katex: ^0.19.1
@@ -188,8 +187,8 @@ catalogs:
     picocolors: ^1.1.1
     picomatch: ^4.0.7
     qrcode: ^1.5.4
-    rolldown: ^1.3.0
-    sanitize-html: ^2.18.1
+    rolldown: ^1.3.2
+    sanitize-html: ^2.18.2
     shiki: ^4.6.0
     sort-package-json: ^4.1.0
     tiny-image-size: ^1.0.0
@@ -197,7 +196,7 @@ catalogs:
     tm-themes: ^1.12.12
     unplugin-vue-components: ^32.1.0
     vue: ^3.5.45
-    vue-router: ^5.4.0
+    vue-router: ^5.5.1
   vuepress:
     '@vuepress/bundler-vite': 2.0.0-rc.31
     '@vuepress/helper': 2.0.0-rc.135

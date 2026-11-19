@@ -1,3 +1,10 @@
+# [1.0.0-rc.218](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.217...v1.0.0-rc.218) (2026-11-19)
+
+### Features
+
+* **theme:** migrate `scrollBehavior` to `scrollRestoration` ([c966a0a](https://github.com/pengzhanbo/vuepress-theme-plume/commit/c966a0a6c15b9aadfbd1c4324b436fd3d166844c))
+* upgrade to `vuepress@rc.32` and `markdown@15` ([f2b4de8](https://github.com/pengzhanbo/vuepress-theme-plume/commit/f2b4de8d932df118a7aaf9553b28fd2c94591fee))
+
 # [1.0.0-rc.217](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.216...v1.0.0-rc.217) (2026-11-19)
 
 ### Bug Fixes

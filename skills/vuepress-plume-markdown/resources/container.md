@@ -2,19 +2,15 @@
 
 Use `::: type [title]` to create alert boxes, collapsible details, and custom containers.
 
-## Configuration
+## Enable
 
-Enable in `.vuepress/config.ts`:
+Both are on by default — no config needed.
 
 ```ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      hint: true, // Enable info, tip, warning, caution, note containers (default: true)
-      alert: true, // Enable GitHub-style alerts (default: true)
-    }
-  })
-})
+markdown: {
+  hint: true,  // default
+  alert: true, // default; rendered by the obsidian callout renderer while `markdown.obsidian` is enabled
+}
 ```
 
 ## Supported Types
@@ -81,8 +77,8 @@ This content is hidden by default.
 - Content
 :::
 
-::: details Open by default {open}
-This content is visible by default.
+::: details 自定义标题
+标题可省略，省略时使用当前语言的默认文案。
 :::
 ```
 
@@ -103,6 +99,20 @@ This content is visible by default.
 
 > [!CAUTION]
 > Advises about risks or negative outcomes.
+```
+
+## Alignment
+
+Always available (`left` / `center` / `right` / `justify`):
+
+```md
+::: center
+居中的内容
+:::
+
+::: justify
+两端对齐的长段落……
+:::
 ```
 
 ## Nested Containers

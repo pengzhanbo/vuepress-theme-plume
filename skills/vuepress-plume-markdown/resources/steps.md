@@ -1,98 +1,46 @@
 # Steps
 
-Display sequential steps using `::: steps`.
+Available by default — there is **no** `markdown.steps` option.
 
-## Configuration
-
-Enable in `.vuepress/config.ts`:
-
-```ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      steps: true
-    }
-  })
-})
-```
-
-## Syntax
-
-```md
+````markdown
 ::: steps
 
-1. Step Title
-   Step description content.
-   Can be multi-line.
+1. 安装
 
-2. Another Step
-   More content here.
+   安装依赖：
 
-3. Final Step
-   Last step content.
-
-:::
-```
-
-## Examples
-
-### Basic Steps
-
-````md
-::: steps
-
-1. Install
-   Install the package using your preferred package manager.
-   ```bash
-   npm install package
+   ```sh
+   pnpm add -D vuepress@next vuepress-theme-plume
    ```
 
-2. Configure
-   Add configuration to your config file.
-   ```ts
-   export default { /* config */ }
-   ```
+2. 配置
 
-3. Run
-   Start the development server.
-   ```bash
-   npm run dev
+   创建 `.vuepress/config.ts`。
+
+3. 启动
+
+   ```sh
+   pnpm vuepress dev
    ```
 
 :::
 ````
 
-### Without Numbers
+- Ordered lists render numbered markers; an unordered list (`- item`) also works and keeps a step layout.
+- Leave a **blank line** after the item title before its body, and indent the body to align with the title text.
+- The container body is full markdown: code blocks, images, other containers.
+- Nesting another container inside `::: steps` requires the outer marker to use 4+ colons:
 
-```md
-::: steps
+````md
+:::: steps
 
-- First Step
-  Content for first step.
+1. 说明
 
-- Second Step
-  Content for second step.
+   ::: tip
+   提示内容
+   :::
 
-:::
-```
+::::
+````
 
-## Features
-
-- Numbered steps with visual connector
-- Supports rich content (code, lists, etc.)
-- Responsive design
-- Dark/light mode support
-- Customizable styling via CSS variables
-
-## Styling
-
-Steps use these CSS variables:
-
-```css
-:root {
-  --vp-steps-bg-color: var(--vp-c-bg);
-  --vp-steps-border-color: var(--vp-c-divider);
-  --vp-steps-number-bg: var(--vp-c-brand);
-  --vp-steps-number-color: var(--vp-c-white);
-}
-```
+- Empty marker (`::: steps`) is enough; no positional arguments are supported.

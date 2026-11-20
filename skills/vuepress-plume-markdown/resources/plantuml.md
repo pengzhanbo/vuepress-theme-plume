@@ -1,50 +1,43 @@
 # PlantUML
 
-The theme supports embedding [PlantUML](https://plantuml.com/) diagrams within articles.
+PlantUML diagrams are written as **bare `@start…/@end…` blocks** — not fenced code blocks.
 
-## Configuration
+## Enable
 
-Enable the feature in `.vuepress/config.ts`:
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      plantuml: true,
-    },
-  })
-})
+```ts
+markdown: {
+  plantuml: true,
+  // or a self-hosted renderer (default server is the public https://www.plantuml.com/plantuml)
+  plantuml: [{ server: 'https://your-plantuml-server/' }],
+}
 ```
 
-## Syntax
+The default public server **sends the diagram source to plantuml.com** — mention this when the content is
+private, and suggest self-hosting or another diagram type.
 
-Use the `plantuml` syntax within a markdown file. Note: The example uses a raw code block,
-but typically you would use the `@startuml` and `@enduml` tags directly or inside a code block if the plugin supports it.
-The documentation shows:
+## Syntax
 
 ```md
 @startuml
 Alice -> Bob: Authentication Request
+Bob -> Alice: Authentication Accepted
+@enduml
+```
 
-alt successful case
+Supported start/end pairs:
 
-    Bob -> Alice: Authentication Accepted
+`@startuml/@enduml`, `@startmindmap/@endmindmap`, `@startgantt/@endgantt`, `@startwbs/@endwbs`,
+`@startjson/@endjson`, `@startyaml/@endyaml`, `@startsalt/@endsalt`, `@startregex/@endregex`.
 
-else some failure case
+## Example
 
-    Bob -> Alice: Authentication Failed
-    group My own label
-    Alice -> Log : Log attack start
-        loop 1000 times
-            Alice -> Bob: DNS Attack
-        end
-    Alice -> Log : Log attack end
-    end
+```md
+@startuml
+skinparam backgroundColor transparent
 
-else Another failure
-
-   Bob -> Alice: Please repeat
-
-end
+actor User
+User -> Site: 访问页面
+Site -> Site: 读取 markdown
+Site --> User: 渲染 HTML
 @enduml
 ```

@@ -1,58 +1,32 @@
-# JSFiddle Embed
+# JSFiddle
 
-Embed JSFiddle demos in your markdown files.
-
-## Configuration
-
-Enable in `.vuepress/config.ts`:
+## Enable
 
 ```ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      jsfiddle: true
-    }
-  })
-})
+markdown: { jsfiddle: true }
 ```
 
 ## Syntax
 
 ```md
-@[jsfiddle](fiddle_id)
-
-@[jsfiddle](fiddle_id title)
-
-@[jsfiddle](fiddle_id title tabs)
+@[jsfiddle](user/id)
+@[jsfiddle theme="dark" tab="js,css,html,result" height="500px"](user/id)
 ```
 
-## Parameters
+The path is `jsfiddle.net/<user>/<id>` → `user/id`.
 
-- `fiddle_id` - The JSFiddle fiddle ID
-- `title` - Optional title for the embed
-- `tabs` - Optional tabs to show: `js`, `css`, `html`, `result` (comma-separated)
+## Props
 
-## Example
+| Prop | Type | Default | Meaning |
+| --- | --- | --- | --- |
+| `theme` | `'light' \| 'dark'` | `light` | embed theme |
+| `tab` | `string` | `js,css,html,result` | visible tabs, comma separated; the **order** defines the tab order |
+| `height` | `string` | `500px` | iframe height |
 
-**Input:**
+## Examples
 
 ```md
-@[jsfiddle](abc123)
+@[jsfiddle](pengzhanbo/1xbwz2p9)
 
-@[jsfiddle](abc123 "My Fiddle")
-
-@[jsfiddle](abc123 "My Fiddle" html,css,result)
+@[jsfiddle tab="result,js,css,html" theme="dark"](pengzhanbo/1xbwz2p9)
 ```
-
-## Getting Fiddle ID
-
-1. Open the JSFiddle
-2. Copy the ID from the URL: `jsfiddle.net/username/XXXXXX/`
-3. Use `XXXXXX` as the fiddle ID
-
-## Features
-
-- Embedded fiddle preview
-- Tab-based navigation
-- Live code editing
-- Result preview

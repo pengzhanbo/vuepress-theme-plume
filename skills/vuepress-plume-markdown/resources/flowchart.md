@@ -2,18 +2,10 @@
 
 The theme supports embedding [flowchart](http://flowchart.js.org/) diagrams within articles.
 
-## Configuration
+## Enable
 
-Enable the feature in `.vuepress/config.ts`:
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      flowchart: true,
-    },
-  })
-})
+```ts
+markdown: { flowchart: true }
 ```
 
 You also need to install the `flowchart.ts` library:

@@ -1,58 +1,36 @@
-# CodePen Embed
+# CodePen
 
-Embed CodePen demos in your markdown files.
-
-## Configuration
-
-Enable in `.vuepress/config.ts`:
+## Enable
 
 ```ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      codepen: true
-    }
-  })
-})
+markdown: { codepen: true }
 ```
 
 ## Syntax
 
 ```md
-@[codepen](pen_id)
-
-@[codepen](pen_id title)
-
-@[codepen](pen_id title tab)
+@[codepen](user/slash)
 ```
 
-## Parameters
+The path is `codepen.io/<user>/pen/<slash>` → `user/slash` (it is **not** just the pen id).
 
-- `pen_id` - The CodePen pen ID (from URL: codepen.io/user/pen/**XXXXXX**)
-- `title` - Optional title for the embed
-- `tab` - Optional default tab: `html`, `css`, `js`, `result` (default: `result`)
+## Props (key=value, before the parentheses)
 
-## Example
+| Prop | Type | Default | Meaning |
+| --- | --- | --- | --- |
+| `preview` | `boolean` | `false` | 30% code / 70% preview layout |
+| `editable` | `boolean` | `false` | allow editing inside the embed |
+| `tab` | `string` | `result` | `html`, `css`, `js`, `result` — comma separated |
+| `theme` | `'dark' \| 'light'` | `dark` | embed theme |
+| `height` | `string` | `400px` | iframe height |
+| `width` | `string` | `100%` | iframe width |
 
-**Input:**
+## Examples
 
 ```md
-@[codepen](VwKZgJG)
+@[codepen](leimapapa/RwOZQOW)
 
-@[codepen](VwKZgJG "My Demo")
+@[codepen preview](leimapapa/RwOZQOW)
 
-@[codepen](VwKZgJG "My Demo" css)
+@[codepen editable tab="css,result" theme="dark" height="500px" width="100%"](user/slash)
 ```
-
-## Getting Pen ID
-
-1. Open the CodePen pen
-2. Copy the ID from the URL: `codepen.io/username/pen/XXXXXX`
-3. Use `XXXXXX` as the pen ID
-
-## Features
-
-- Embedded iframe preview
-- Editable code (if enabled on CodePen)
-- Responsive sizing
-- Dark/light theme support

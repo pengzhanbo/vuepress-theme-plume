@@ -1,258 +1,95 @@
-# Code Block Features
+# Code Blocks
 
-VuePress Plume theme provides rich code block features via Shiki highlighter.
+Highlighting is provided by `@vuepress/plugin-shiki` through `theme.codeHighlighter` (enabled by default,
+default themes `vitesse-light` / `vitesse-dark`).
 
-## Code Title
+````markdown
+```ts title="file.ts" :line-numbers :collapsed-lines=10 {2,4-6}
+code
+```
+````
 
-Add `title="filename.ext"` after the language:
+`title=`, `:flags` and `{lines}` may appear in any order after the language.
 
-```markdown
-```json title="package.json"
-{
-  "name": "vuepress-theme-plume"
+## Fence metadata
+
+| Metadata | Effect |
+| --- | --- |
+| `title="a.ts"` | code block title bar |
+| `:line-numbers` / `:no-line-numbers` | toggle line numbers (also `:line-numbers=2` to start at 2) |
+| `{2,4-6}` | highlight lines |
+| `:whitespace` / `:no-whitespace` | show spaces/tabs |
+| `:collapsed-lines` / `:collapsed-lines=10` | collapse after N lines (default 15) |
+| `:no-collapsed-lines` | disable collapsed lines for this block |
+
+Global switches (`plumeTheme()` only):
+
+```ts
+codeHighlighter: {
+  themes: { light: 'vitesse-light', dark: 'vitesse-dark' },
+  lineNumbers: true,
+  whitespace: false,
+  collapsedLines: false,
+  twoslash: true,
+  langs: ['ts', 'vue'],
+  renderIndentGuides: true, // 缩进参考线（主题扩展）
+  colorizedBrackets: true,  // 彩色括号（主题扩展）
 }
 ```
 
-```
+## Notations (inside the code)
 
-## Line Numbers
-
-Theme shows line numbers by default. Control via `codeHighlighter.lineNumbers`:
-
-```typescript title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    codeHighlighter: {
-      lineNumbers: true, // [!code ++]
-    },
-  }),
-})
-```
-
-Per-block control:
-
-- `:line-numbers` - Enable line numbers
-- `:no-line-numbers` - Disable line numbers
-- `:line-numbers=2` - Start from line 2
-
-```markdown
-```ts:line-numbers
-// Line numbers enabled
-const line2 = 'This is line 2'
-```
-
-```ts:no-line-numbers
-// Line numbers disabled
-const line3 = 'This is line 3'
-```
-
-```ts:line-numbers=2
-// Line numbers start from 2
-const line3 = 'This is line 3'
-```
-
-```
-
-## Line Highlighting
-
-### Bracket Syntax
-
-```markdown
-```ts{1,3,5-7}
-// Line 1 highlighted
-// Line 2 normal
-// Line 3 highlighted
-// Line 4 normal
-// Line 5-7 highlighted
-```
-
-```
-
-Formats:
-- Single line: `{4}`
-- Multiple lines: `{5-8}`, `{3-10}`
-- Multiple single lines: `{4,7,9}`
-- Combined: `{4,7-13,16,23-27,40}`
-
-### Comment Syntax
-
-```markdown
 ```ts
-const a = 1
-const b = 2 // [!code highlight]
-const c = 3
-```
-
-```
-
-## Line Focus
-
-Focus a line and dim others:
-
-```markdown
-```ts
-const a = 1
-const b = 2 // [!code focus]
-const c = 3
-```
-
-```
-
-Focus multiple lines:
-
-```markdown
-```ts
-const a = 1 // [!code focus:3]
-const b = 2
-const c = 3
-const d = 4
-```
-
-```
-
-## Diff Highlighting
-
-Show code changes:
-
-```markdown
-```ts
-const oldVal = 'value' // [!code --]
-const newVal = 'value' // [!code ++]
-```
-
-```
-
-## Warning and Error
-
-```markdown
-```ts
-const warning = 'caution' // [!code warning]
-const error = 'failed' // [!code error]
-```
-
-```
-
-## Word Highlight
-
-Highlight specific words:
-
-```markdown
-```ts
+const a = 1   // [!code highlight]
+const b = 2   // [!code focus]
+const c = 3   // [!code focus:3]
+const old = 1 // [!code --]
+const newV = 1// [!code ++]
+const w = 1   // [!code warning]
+const e = 1   // [!code error]
 // [!code word:config]
 const config = {}
-console.log(config)
-```
-
-```
-
-Highlight with count limit:
-
-```markdown
-```ts
 // [!code word:api:2]
-const api = {}
-const apiClient = {}
-const apiKey = {} // Not highlighted
 ```
 
+Comment syntax per language:
+
+| Language | Notation prefix |
+| --- | --- |
+| JS/TS/JSX/TSX, Go, Rust, C/C++ | `// [!code …]` |
+| Python, Ruby, YAML, Bash/Shell | `# [!code …]` |
+| CSS/SCSS/Less | `/* [!code …] */` |
+| HTML/XML/Vue template | `<!-- [!code …] -->` |
+| SQL | `-- [!code …]` |
+
+Note: with `codeHighlighter.removeComments` the notation comments are stripped from output.
+
+## Import code from a file
+
+```md
+@[code](../snippet/example.js)
+@[code{1-10}](../snippet/example.js)
+@[code js](../snippet/example.js)
+@[code js{2,4-5}](../snippet/example.js)
+@[code ts title="example.ts" :line-numbers](../snippet/example.ts)
 ```
 
-## Whitespace Visibility
+Paths are relative to the current page (`../snippet/...`) and resolve against `sourceDir`.
 
-Show tabs and spaces:
+## Twoslash
 
-```markdown
-```ts:whitespace
-const a = 1
+Enable `codeHighlighter: { twoslash: true }`, then add `twoslash` to the fence:
+
+````md
+```ts twoslash
+const a = 1 // ^?
 ```
+````
 
-```
+Object form passes compiler options: `twoslash: { compilerOptions: { paths: { '@/*': ['./src/*'] } } }`.
 
-Global enable:
+## Copy button
 
-```typescript title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    codeHighlighter: {
-      whitespace: true, // [!code ++]
-    },
-  }),
-})
-```
-
-When enabled globally, use `:no-whitespace` to disable per block.
-
-## Collapsed Lines
-
-Collapse long code blocks (default from line 15):
-
-```markdown
-```ts:collapsed-lines
-// Lines after 15th will be collapsed
-```
-
-```ts:collapsed-lines=10
-// Lines after 10th will be collapsed
-```
-
-```
-
-Global enable:
-
-```typescript title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    codeHighlighter: {
-      collapsedLines: true, // [!code ++]
-    },
-  }),
-})
-```
-
-When enabled globally, use `:no-collapsed-lines` to disable per block.
-
-## Combining Features
-
-Multiple features can be combined:
-
-```markdown
-```ts:title="example.ts":line-numbers {2,4}
-const a = 1
-const b = 2 // [!code ++]
-const c = 3
-const d = 4 // [!code focus]
-```
-
-```
-
-## Language-Specific Comments
-
-Different languages use different comment syntax:
-
-| Language | Highlight | Focus | Diff Add | Diff Remove |
-|----------|-----------|-------|----------|-------------|
-| JS/TS/JSX/TSX | `// [!code highlight]` | `// [!code focus]` | `// [!code ++]` | `// [!code --]` |
-| Python/Ruby/YAML | `# [!code highlight]` | `# [!code focus]` | `# [!code ++]` | `# [!code --]` |
-| CSS/SCSS | `/* [!code highlight] */` | `/* [!code focus] */` | `/* [!code ++] */` | `/* [!code --] */` |
-| HTML/XML | `<!-- [!code highlight] -->` | `<!-- [!code focus] -->` | `<!-- [!code ++] -->` | `<!-- [!code --] -->` |
-| Bash/Shell | `# [!code highlight]` | `# [!code focus]` | `# [!code ++]` | `# [!code --]` |
-| SQL | `-- [!code highlight]` | `-- [!code focus]` | `-- [!code ++]` | `-- [!code --]` |
-| Rust | `// [!code highlight]` | `// [!code focus]` | `// [!code ++]` | `// [!code --]` |
-| Go | `// [!code highlight]` | `// [!code focus]` | `// [!code ++]` | `// [!code --]` |
-
-## Global Configuration
-
-```typescript title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    codeHighlighter: {
-      lineNumbers: true, // Enable line numbers globally
-      whitespace: false, // Show whitespace globally
-      collapsedLines: false, // Collapse lines globally
-      theme: { light: 'github-light', dark: 'github-dark' },
-      languages: ['js', 'ts', 'vue', 'bash', 'json'],
-      twoslash: false, // TypeScript twoslash
-    },
-  }),
-})
-```
+`copyCode` is enabled by default (`plugin-copy-code`); configure with
+`copyCode: { showInMobile: false, ignoreSelector: ['.vp-copy-ignore'], inlineSelector: false }`.
+Exclude a block by adding `.vp-copy-ignore` to its wrapper, or an inline snippet with `inlineSelector`.

@@ -1,162 +1,110 @@
 # VuePress Plume Skills
 
-This directory contains specialized skills for VuePress Plume theme, designed to enhance your development experience with AI agents.
+Specialised [agent skills](https://skills.sh) for the VuePress Plume theme. They give an AI agent the exact
+option names, defaults and syntax of the theme, so generated config and markdown actually build.
 
-## 1. Skill Introduction
+> Content is aligned with `vuepress-theme-plume@1.0.0-rc.218` (VuePress `2.0.0-rc.32`).
+> When the theme adds or changes options, update `SKILL.md` plus the matching `references/` / `resources/` file.
 
-The `skills` directory currently provides the following skills:
+## 1. Skills
 
-### 🌟 Available Skills
+| Skill | Purpose | Layout |
+| --- | --- | --- |
+| **vuepress-plume-config** | Generate and maintain theme config | `SKILL.md` + `references/` (theme-options, collections, navigation, locales, features, plugins, markdown, frontmatter) |
+| **vuepress-plume-markdown** | Write page content | `SKILL.md` + `resources/` (50+ per-feature syntax sheets) |
 
-| Skill Name | Description | Key Features |
-| ---------- | ----------- | ------------ |
-| **vuepress-plume-config** | Theme Configuration Generator | • Generates `config.ts`, `plume.config.ts`<br>• Manages `collections`, `navbar`, `sidebar`, `locales`<br>• Supports `plugins`, `markdown`, `codeHighlighter`<br>• Configures `encrypt`, `bulletin`, `copyright`, `llmstxt`<br>• Supports `search`, `comment`, `watermark` |
-| **vuepress-plume-markdown** | Markdown Writing Assistant | • Provides syntax for Plume's Markdown extensions<br>• Supports Containers (hint, alert, details, etc.)<br>• Supports Charts (Mermaid, ECharts, Chart.js, etc.)<br>• Supports Embeds (YouTube, Bilibili, PDF, CodePen, etc.)<br>• Code block features (highlight, focus, diff, etc.)<br>• LLMs txt markup (`<llm-only>`, `<llm-exclude>`) |
+**vuepress-plume-config** covers:
 
-### 🔍 Selection Guide
+- The two config surfaces — `.vuepress/config.ts` (full) and `.vuepress/plume.config.ts` (hot-reloadable subset) —
+  and which fields may go where.
+- Collections (`post` / `doc`), cover styles, `meta`, collection-level `feed` / `relatedPosts`.
+- Navigation: `navbar`, `sidebar`, `defineNavbarConfig`, `defineCollection`.
+- i18n: built-in languages, path mapping, every text key.
+- Features: `search`, `comment`, `watermark`, `encrypt`, `llmstxt`, `bulletin`, `copyright`, `replaceAssets`,
+  `feed`, `series`, `relatedPosts`, `linkPreview`, `readerPreferences`, `changelog`, `contributors`,
+  SEO / sitemap, image preview.
+- `plugins.*` (built-in plugins and precedence), all `markdown` / `codeHighlighter` switches with defaults.
+- Page frontmatter (common, post, home, friends).
 
-- **Use `vuepress-plume-config` when:**
-  - You are initializing a new VuePress Plume project.
-  - You need to update the theme configuration, navbar, sidebar, or collections.
-  - You want to configure complex settings like locales, plugins, or markdown extensions.
-  - You need to set up encryption, comments, search, or other advanced features.
-  - You want to enable LLMs txt generation for AI assistant integration.
+**vuepress-plume-markdown** covers:
 
-- **Use `vuepress-plume-markdown` when:**
-  - You are writing content in Markdown files.
-  - You want to use advanced features like containers, code groups, tabs, or diagrams.
-  - You need to embed media (videos, PDFs) or external content (CodePen, CodeSandbox).
-  - You want to add code block features like line highlighting, diff, or focus.
-  - You need to create charts (Mermaid, ECharts) or mind maps (Markmap).
+- Containers: `hint`, `details`, `tabs`, `code-tabs`, `steps`, `timeline`, `collapse`, `chat`, `field`, `card`,
+  `window`, `flex`, `table`, `file-tree`, `code-tree`, `demo`, `encrypt`, `qrcode`.
+- Inline syntax: `==mark==`, `::icon::`, `!!plot!!`, `[+annotation]`, abbreviations, `{.attrs}`, math, emoji,
+  Obsidian wiki links / callouts / comments.
+- Embeds: Bilibili, YouTube, AcFun, ArtPlayer, AudioReader, PDF, CodePen, CodeSandbox, JSFiddle, REPL.
+- Charts: Mermaid, ECharts, Chart.js, Markmap, PlantUML, Flowchart.
+- Code blocks: title, line numbers, highlight, focus, diff, word highlight, collapsed lines, `@[code]`, twoslash.
+- Page authoring: article frontmatter, home `config` sections, friend-links page, `<Card>` / `<Badge>` / `<Swiper>`
+  and other components.
 
----
+### Which skill should trigger?
 
-## 2. Installation and Configuration
+- Configuration work (site init, collections, navbar/sidebar, locales, enabling a feature, frontmatter keys)
+  → **vuepress-plume-config**.
+- Content work (writing `.md`, "how do I write X", picking a container/chart/embed) → **vuepress-plume-markdown**.
 
-You can install these skills into your project or globally using the `skills` CLI tool.
-
-### Prerequisites
-
-- Node.js installed
-- `npx` available
-
-### Installation Steps
-
-1. **Install skills from this repository:**
-
-    ```bash
-    # Install into your current project (recommended for teams)
-    npx skills add https://github.com/pengzhanbo/vuepress-theme-plume
-
-    # Install specific skill only
-    npx skills add https://github.com/pengzhanbo/vuepress-theme-plume --skill vuepress-plume-config
-    ```
-
-2. **Verify Installation:**
-
-    ```bash
-    npx skills list
-    ```
-
-    You should see the installed skills listed in the output.
-
----
-
-## 3. Integration Guide
-
-### 🤖 Claude Code Integration
-
-Claude Code automatically detects skills in the `.claude/skills` directory or the standard `skills` directory if configured.
-
-**Setup:**
+## 2. Install
 
 ```bash
-# Install for Claude Code specifically
-npx skills add https://github.com/pengzhanbo/vuepress-theme-plume -a claude-code
+# all skills into the current project (recommended for teams)
+npx skills add https://github.com/pengzhanbo/vuepress-theme-plume
+
+# one skill only
+npx skills add https://github.com/pengzhanbo/vuepress-theme-plume --skill vuepress-plume-markdown
+
+npx skills list
 ```
 
-**Configuration:**
-Ensure your `~/.claude/config.json` or project configuration allows loading skills from the installed location.
+Alternatively copy the directories under `skills/` into your agent's skill folder (`.claude/skills/`,
+`.codebuddy/skills/`, …).
 
-### 🌐 OpenCode Integration
+| Agent | Install |
+| --- | --- |
+| Claude Code | `npx skills add <repo> -a claude-code` (detects `.claude/skills`) |
+| OpenCode | `npx skills add <repo> -a opencode` |
+| Trae / other IDEs | keep `skills/` in the workspace; agents scan `SKILL.md` files |
 
-OpenCode supports the open agent skills standard.
+If a skill is not picked up, verify the `name` / `description` frontmatter in `SKILL.md`.
 
-**Setup:**
+## 3. Examples
 
-```bash
-# Install for OpenCode
-npx skills add https://github.com/pengzhanbo/vuepress-theme-plume -a opencode
+### vuepress-plume-config
+
+**Blog with feed, related posts and reader preferences**
+
+> "Set up my Plume blog: `blog/` as a post collection, RSS feed, related posts, reader preferences — and put the
+> hot-reloadable parts in `plume.config.ts`."
+
+The agent keeps `hostname` in `plumeTheme()` and writes `feed`, `relatedPosts`, `readerPreferences`,
+`collections` into `plume.config.ts`.
+
+**Docs collection with an auto sidebar**
+
+```ts
+// .vuepress/plume.config.ts
+import { defineThemeConfig } from 'vuepress-theme-plume'
+
+export default defineThemeConfig({
+  collections: [{ type: 'doc', dir: 'guide', title: 'Guide', sidebar: 'auto' }],
+  navbar: [{ text: 'Guide', link: '/guide/', icon: 'mdi:book-open-outline' }],
+})
 ```
 
-**Usage:**
-Once installed, OpenCode agents will automatically index the skills and can be invoked using natural language prompts.
+**Partial encryption**
 
-### 🚀 Trae Integration
+```ts
+plumeTheme({
+  encrypt: { rules: { '/secret/': 'mypassword' } },
+})
+```
 
-Trae is a powerful IDE that can utilize these skills to assist you better.
+### vuepress-plume-markdown
 
-**Setup:**
+**Timeline**
 
-1. **Project-level:** Clone or install the skills into your project's `skills/` directory. Trae can scan and utilize `SKILL.md` files located in the project workspace.
-2. **Usage:** Simply ask Trae to perform tasks related to the skills.
-
-**Example:**
-> "Help me configure the navbar for my VuePress site using the plume config skill."
-
-**Debugging:**
-If Trae doesn't recognize the skill, ensure the `SKILL.md` file is valid and contains the correct frontmatter (name, description).
-
----
-
-## 4. Usage Examples
-
-### 🛠️ Using `vuepress-plume-config`
-
-#### Example 1: Initialize a Blog Configuration
-
-**Prompt:**
-> "Generate a `config.ts` for my VuePress Plume site with a blog setup, English and Chinese locales, and the filesystem cache enabled."
-
-**Outcome:**
-The agent will use the skill to create a `.vuepress/config.ts` file with the requested configuration structure.
-
-#### Example 2: Configure Collections
-
-**Prompt:**
-> "Add a post collection for my blog at `blog/` directory with tags, categories, and archives enabled."
-
-**Outcome:**
-The agent will generate the appropriate `collections` configuration.
-
-#### Example 3: Enable Encryption
-
-**Prompt:**
-> "Configure partial encryption for all pages under `/secret/` directory with password 'mypassword'."
-
-**Outcome:**
-The agent will add the `encrypt` configuration with the specified rules.
-
-#### Example 4: Setup Comments with Giscus
-
-**Prompt:**
-> "Configure Giscus comments for my VuePress Plume site with repo 'user/repo' and category 'Announcements'."
-
-**Outcome:**
-The agent will add the `comment` configuration with Giscus provider settings.
-
-### 📝 Using `vuepress-plume-markdown`
-
-#### Example 1: Add a Timeline
-
-**Prompt:**
-> "I want to add a timeline of VuePress release history to my markdown file using the Plume timeline extension."
-
-**Outcome:**
-The agent will reference the `vuepress-plume-markdown` skill to provide the correct syntax:
-
-```markdown
-::: timeline
+````markdown
+:::: timeline
 - Node 1
   time=2025-03-20 type=success
 
@@ -166,116 +114,59 @@ The agent will reference the `vuepress-plume-markdown` skill to provide the corr
   time=2025-02-21 type=warning
 
   Content
+::::
+````
 
-- Node 3
-  time=2025-01-22 type=danger
-
-  Content
-:::
-```
-
-#### Example 2: Code Block with Features
-
-**Prompt:**
-> "Show me how to create a code block with line numbers, title, and highlighted lines 2-4."
-
-**Outcome:**
-The agent will provide the syntax:
+**Code block with features**
 
 ````markdown
-```ts title="example.ts":line-numbers {2-4}
+```ts title="example.ts" :line-numbers {2-4}
 const line1 = 'normal'
 const line2 = 'highlighted'
 const line3 = 'highlighted'
 const line4 = 'highlighted'
-const line5 = 'normal'
 ```
 ````
 
-#### Example 3: Embed a Bilibili Video
-
-**Prompt:**
-> "How do I embed a Bilibili video with BV ID 'BV1xx411c7mD' in my markdown?"
-
-**Outcome:**
-The agent will provide the embed syntax:
+**Embed, chart, LLM-only content**
 
 ```markdown
 @[bilibili](BV1xx411c7mD)
 ```
 
-#### Example 4: Create a Mermaid Diagram
-
-**Prompt:**
-> "Create a flowchart using Mermaid showing the build process of VuePress."
-
-**Outcome:**
-The agent will provide:
-
 ````markdown
 ```mermaid
 flowchart TD
-    A[Source Files] --> B[Markdown Processing]
-    B --> C[Vue Components]
-    C --> D[Webpack/Vite Build]
-    D --> E[Static HTML]
-    E --> F[Deploy]
+  A[Source] --> B[Markdown] --> C[HTML]
 ```
 ````
-
-#### Example 5: Use LLMs txt Markup
-
-**Prompt:**
-> "How can I add content that's only visible in LLM-generated files?"
-
-**Outcome:**
-The agent will provide:
 
 ```markdown
 <llm-only>
 
-## Additional Context for AI
-
-This section only appears in the LLM-friendly version of the documentation.
+## Content for LLMs only
 
 </llm-only>
 ```
 
----
+## 4. Best practices
 
-## 5. Best Practices
+- **Version control:** commit project-level skills so the whole team gets the same behaviour.
+- **Updates:** re-run `npx skills update` after a theme upgrade, or diff against the version noted above.
+- **Enable before writing:** most markdown extensions are off by default — enable them in
+  `plumeTheme({ markdown: { ... } })` first (see the defaults table in `vuepress-plume-markdown/SKILL.md`).
+- **Verify:** run `pnpm vuepress build` after generated config changes.
+- **Encryption:** page/snippet encryption requires HTTPS.
+- **Cache:** remove `--clean-cache` from the dev script after enabling `cache`.
+- **Chart scripts:** ECharts / Chart.js JS configs are inert unless `DANGEROUS_*` switches are enabled.
 
-### Recommendations
+## 5. Resources
 
-- **Version Control:** Commit your `skills/` directory to Git if you are using project-level skills. This ensures all team members have access to the same capabilities.
-- **Updates:** Regularly check for updates to the skills to get the latest features and fixes.
-
-    ```bash
-    npx skills update
-    ```
-
-- **Feature Enablement:** Most markdown extensions need to be enabled in `.vuepress/config.ts`. Ensure you have the required features enabled before using them.
-
-### Performance & Security
-
-- **Review Changes:** Always review the configuration files generated by the `vuepress-plume-config` skill before deploying.
-- **Safe Execution:** These skills primarily generate text/code. They do not execute system commands directly without user confirmation in most agent environments.
-- **Encryption:** When using the `encrypt` feature, ensure your site is served over HTTPS for partial content encryption to work properly.
-- **Cache Management:** When enabling cache, remember to remove `--clean-cache` from your dev script to benefit from caching.
-
----
-
-## 6. Resources
-
-### Documentation Links
-
-- [Theme Configuration](https://theme-plume.vuejs.press/config/theme/)
-- [Collections Configuration](https://theme-plume.vuejs.press/config/collections/)
-- [Markdown Extensions](https://theme-plume.vuejs.press/guide/markdown/extensions/)
-- [Code Features](https://theme-plume.vuejs.press/guide/code/features/)
-- [Plugins](https://theme-plume.vuejs.press/config/plugins/)
-
-### Related Projects
-
+- [Theme config](https://theme-plume.vuejs.press/config/theme/)
+- [Collections](https://theme-plume.vuejs.press/config/collections/)
+- [Markdown config](https://theme-plume.vuejs.press/config/markdown/)
+- [Markdown extensions](https://theme-plume.vuejs.press/guide/markdown/basic/)
+- [Code features](https://theme-plume.vuejs.press/guide/code/features/)
+- [Components](https://theme-plume.vuejs.press/guide/components/card/)
 - [VuePress](https://v2.vuepress.vuejs.org/)
 - [VuePress Theme Plume](https://github.com/pengzhanbo/vuepress-theme-plume)

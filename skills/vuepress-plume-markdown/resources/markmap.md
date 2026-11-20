@@ -2,18 +2,10 @@
 
 The theme supports embedding [markmap](https://markmap.js.org/) mind maps within articles.
 
-## Configuration
+## Enable
 
-Enable the feature in `.vuepress/config.ts`:
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      markmap: true,
-    },
-  })
-})
+```ts
+markdown: { markmap: true }
 ```
 
 You also need to install `markmap-lib`, `markmap-toolbar`, and `markmap-view`:

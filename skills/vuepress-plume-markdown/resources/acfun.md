@@ -1,42 +1,22 @@
-# AcFun Video
+# AcFun
 
-Embed AcFun videos in your markdown.
+## Enable
 
-## Configuration
-
-Enable the feature in `.vuepress/config.ts`:
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      acfun: true,
-    },
-  })
-})
+```ts
+markdown: { acfun: true }
 ```
 
 ## Syntax
 
 ```md
-@[acfun](id)
+@[acfun](acid)
+@[acfun width="100%" height="400px" ratio="16:9"](ac47431669)
 ```
 
-With options:
+| Prop | Type | Default |
+| --- | --- | --- |
+| `width` | `string` | `100%` |
+| `height` | `string` | auto |
+| `ratio` | `string` | `16:10` |
 
-```md
-@[acfun width="100%" height="400px" ratio="16:9"](id)
-```
-
-**Parameters:**
-
-- `id`: Video ID
-- `width`: Video width
-- `height`: Video height
-- `ratio`: Video aspect ratio (default `16:9`)
-
-## Example
-
-```md
-@[acfun](ac47431669)
-```
+`ratio` only applies when `height` is not set.

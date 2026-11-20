@@ -1,60 +1,46 @@
-# ArtPlayer Video
+# ArtPlayer (custom video)
 
-Embed custom source videos using ArtPlayer.
+## Enable
 
-## Configuration
-
-Enable the feature in `.vuepress/config.ts`:
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      artPlayer: true,
-    },
-  })
-})
+```ts
+markdown: { artPlayer: true }
 ```
 
-You must install `artplayer`. Additional dependencies may be needed for specific formats:
-
-- `dashjs` for `.mpd`, `.dash`
-- `hls.js` for `.m3u8`, `.hls`
-- `mpegts.js` for `.ts`, `.flv`
+Optional peers (install only the ones you need):
 
 ```sh
-npm i artplayer
-# Optional
-npm i dashjs hls.js mpegts.js
+npm i artplayer              # required
+npm i dashjs                 # .mpd / .dash
+npm i hls.js                 # .m3u8 / .hls
+npm i mpegts.js              # .ts / .flv
 ```
 
 ## Syntax
 
 ```md
-@[artPlayer](src)
-```
-
-With options:
-
-```md
-@[artPlayer muted autoplay loop width="100%" height="400px" ratio="16:9"](src)
-```
-
-**Parameters:**
-
-- `src`: Video source URL
-- `width`: Video width
-- `height`: Video height
-- `ratio`: Video aspect ratio (default `16:9`)
-- `type`: Video format (auto-detected)
-- `autoplay`: Enable autoplay
-- `muted`: Mute video (default `true` if autoplay)
-- `volume`: Volume (0-1)
-- `poster`: Poster image URL
-- `auto-mini`: Auto mini-player on scroll
-
-## Example
-
-```md
 @[artPlayer](https://example.com/video.mp4)
+
+@[artPlayer muted autoplay loop width="100%" height="400px" ratio="16:9" poster="/poster.png"](src)
 ```
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `src` | `string` | required |
+| `width` / `height` | `string` | `100%` / auto |
+| `ratio` | `string` | `16:9` |
+| `type` | `string` | auto-detected from the extension |
+| `autoplay` | `boolean` | `false` |
+| `muted` | `boolean` | follows `autoplay` |
+| `loop` | `boolean` | `false` |
+| `volume` | `number` | `0.75` |
+| `poster` | `string` | — |
+| `auto-mini` | `boolean` | `false` (mini player on scroll) |
+
+## Component
+
+```md
+<ArtPlayer src="/videos/demo.mp4" fullscreen />
+```
+
+`@[artPlayer ...]` is equivalent to the component with
+`fullscreen flip playback-rate aspect-ratio setting pip` enabled.

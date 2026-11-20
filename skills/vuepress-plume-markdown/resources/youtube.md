@@ -2,18 +2,10 @@
 
 Embed YouTube videos in your markdown.
 
-## Configuration
+## Enable
 
-Enable the feature in `.vuepress/config.ts`:
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      youtube: true,
-    },
-  })
-})
+```ts
+markdown: { youtube: true }
 ```
 
 ## Syntax

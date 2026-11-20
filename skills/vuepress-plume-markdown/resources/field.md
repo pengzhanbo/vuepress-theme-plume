@@ -1,46 +1,12 @@
-# Field Container
+# Field (API / props documentation)
 
-The `::: field` container displays structured field/attribute information.
-
-## Configuration
-
-Enable in `.vuepress/config.ts`:
+## Enable
 
 ```ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      field: true
-    }
-  })
-})
+markdown: { field: true } // enables `::: field` and `::: field-group`
 ```
 
 ## Syntax
-
-```md
-::: field-group
-
-::: field propertyName
-@type type
-@default default-value
-Field description here.
-:::
-
-::: field anotherProp
-@type number
-@default 0
-@required
-
-Another field description.
-:::
-
-:::
-```
-
-## Example
-
-**Input:**
 
 ```md
 :::: field-group
@@ -50,43 +16,53 @@ Another field description.
 @default `''`
 @required
 
-The title of the component.
+字段说明。
 :::
 
 ::: field disabled
 @type `boolean`
 @default `false`
-Whether the component is disabled.
+是否禁用。
 :::
 
-::: field onClick
-@type `(event: MouseEvent) => void`
-Click handler callback.
-:::
-
-:::
+::::
 ```
 
-## Field Tags
+The field name comes from the positional text after `::: field` (or from `@name`). Any non-tag line is part of
+the description, and a **blank line** separates tags from the description body.
 
-Use a markup syntax similar to JSDoc to declare field metadata.
+## Tags
 
-Supports `@name`, `@type`, `@default`, `@required`, `@deprecated`, and `@description` tags.
+| Tag | Meaning |
+| --- | --- |
+| `@name` | override the field name |
+| `@type` | type annotation |
+| `@typeLink` | link for the type |
+| `@default` | default value |
+| `@required` | mark as required (otherwise optional) |
+| `@deprecated` | mark deprecated, optionally `@deprecated v0.9.0` |
+| `@experimental` | mark experimental |
+| `@since` | version introduced |
+| `@enum` | enumerable values, `\|` separated, repeatable on multiple lines |
+| `@unit` | unit of the value |
+| `@format` | expected format |
+| `@constraint` | validation constraint |
+| `@description` | explicit description |
 
-| Tag            | Description                                                                               |
-| -------------- | ----------------------------------------------------------------------------------------- |
-| `@name`        | Override the field name (default uses the text following the `:::field` line as the name) |
-| `@type`        | Field type annotation                                                                     |
-| `@default`     | Default value                                                                             |
-| `@required`    | Mark as required field                                                                    |
-| `@deprecated`  | Mark as deprecated field                                                                  |
-| `@description` | Explicit description text; any non-tag lines are also included in the description         |
+## Use cases
 
-Fields are optional by default and are only shown as required when marked with `@required`.
+- Component prop tables
+- Config option references
+- API signature documentation
 
-## Use Cases
+Component-style props example:
 
-- API documentation
-- Component prop documentation
-- Configuration reference
-- Type definitions
+```md
+:::: field-group
+::: field align
+@type `'left' | 'center' | 'right'`
+@default `left`
+表格对齐方式
+:::
+::::
+```

@@ -1,29 +1,26 @@
-# Flex Container
+# Flex
 
-Apply Flexbox layout using `::: flex`.
-
-## Syntax
+Available by default. Lays out its children as a flex row.
 
 ```md
-::: flex [justify] [align] [gap="20"] [column]
-Block 1
+:::: flex center center gap="20" column wrap
 
-Block 2
-:::
+| 表 1 |
+| --- |
+
+| 表 2 |
+| --- |
+
+::::
 ```
 
-- Justify: `center`, `between`, `around`
-- Align: `start`, `center`, `end`
-- `column`: Vertical direction.
+| Argument | Values | Meaning |
+| --- | --- | --- |
+| 1st positional | `center \| between \| around` | `justify-content` |
+| 2nd positional | `start \| center \| end` | `align-items` |
+| `gap="16"` | number | spacing in px (default `16`) |
+| `column` | flag | vertical direction (`flex-direction: column`) |
+| `wrap` | flag | `flex-wrap: wrap` |
 
-## Example
-
-```md
-::: flex between center
-| Table 1 |
-| ------- |
-
-| Table 2 |
-| ------- |
-:::
-```
+Positional arguments are written bare (`:::: flex between center`), attributes as `key="value"`.
+Nested containers inside `flex` need the outer marker to use 4+ colons.

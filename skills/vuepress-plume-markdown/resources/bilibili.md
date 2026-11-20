@@ -2,18 +2,10 @@
 
 Embed Bilibili videos in your markdown.
 
-## Configuration
+## Enable
 
-Enable the feature in `.vuepress/config.ts`:
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      bilibili: true,
-    },
-  })
-})
+```ts
+markdown: { bilibili: true }
 ```
 
 ## Syntax

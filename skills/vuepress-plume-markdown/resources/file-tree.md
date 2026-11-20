@@ -1,27 +1,53 @@
 # File Tree
 
-Display directory structure using `::: file-tree`.
+Enabled by default (`markdown.fileTree: true`).
 
-## Syntax
-
-Use unordered lists.
-
-- `++`: Added file/dir.
-- `--`: Deleted file/dir.
-- `**name**`: Bold name.
-- `/` at end of dir name: Hide contents (if not listed).
-- `...` or `…`: Placeholder.
-
-## Example
+## Container
 
 ```md
-::: file-tree title="Structure" icon="simple"
-- root
+::: file-tree title="项目结构" icon="simple"
+- docs
   - .vuepress
-    - ++ config.ts
-  - -- old-file.md
-  - src/
+    - config.ts
   - README.md
-  - ...
 :::
 ```
+
+| Option | Meaning |
+| --- | --- |
+| `title` | panel title |
+| `icon` | `'colored'` (default) or `'simple'` |
+
+Markers inside the list:
+
+| Marker | Effect |
+| --- | --- |
+| `++ file` | added |
+| `-- file` | removed |
+| `**file**` | highlighted / bold |
+| `dir/` (trailing slash) | treat as folder; its children are hidden unless listed |
+| `...` or `…` | placeholder for omitted entries |
+| `name # 注释` | inline comment (only in the code-block form) |
+
+## Fenced form
+
+````md
+```file-tree
+src
+├── components
+│   └── Button.vue
+└── index.ts
+```
+````
+
+````md
+```tree icon="simple"
+├── src
+│   ├── index.ts # 入口
+│   └── utils.ts
+└── package.json
+```
+````
+
+The `tree` / `file-tree` fences accept tree-drawing characters (`├──`, `└──`, `│`) as shown, and support `#`
+comments.

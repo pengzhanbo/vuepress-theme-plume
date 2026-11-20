@@ -1,53 +1,40 @@
-# CodeSandbox Embed
+# CodeSandbox
 
-Embed CodeSandbox projects in your markdown files.
-
-## Configuration
-
-Enable in `.vuepress/config.ts`:
+## Enable
 
 ```ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      codeSandbox: true
-    }
-  })
-})
+markdown: { codeSandbox: true } // camelCase config key
 ```
+
+The embed syntax is all lowercase `@[codesandbox]`; writing `codesandbox` as the config key is silently ignored.
 
 ## Syntax
 
 ```md
-@[codesandbox](sandbox_id)
-
-@[codesandbox](sandbox_id title)
+@[codesandbox](id)
+@[codesandbox button](workspace/id)
+@[codesandbox title="标题" layout="Editor+Preview" height="500px" navbar="false" console](id#filepath)
 ```
 
-## Parameters
+`button` renders a link button instead of an embedded editor — useful for large sandboxes.
 
-- `sandbox_id` - The CodeSandbox sandbox ID
-- `title` - Optional title for the embed
+## Props
 
-## Example
+| Prop | Type | Default | Meaning |
+| --- | --- | --- | --- |
+| `title` | `string` | — | embed title |
+| `layout` | `'Preview' \| 'Editor' \| 'Editor+Preview'` | `Preview` | panel layout |
+| `height` | `string` | — | embed height |
+| `navbar` | `boolean` | `true` | show sandbox navbar |
+| `console` | `boolean` | `false` | show console panel |
+| `filepath` | appended to `id` as `#filepath` | — | initially opened file |
 
-**Input:**
+## Examples
 
 ```md
-@[codesandbox](react-new)
+@[codesandbox](5wyzu)
 
-@[codesandbox](vue-vue "Vue Demo")
+@[codesandbox button](reaction/5wyzu)
+
+@[codesandbox title="Vue 示例" layout="Editor+Preview" height="500px" navbar="false" console](5wyzu#src/App.vue)
 ```
-
-## Getting Sandbox ID
-
-1. Open the CodeSandbox project
-2. Copy the ID from the URL: `codesandbox.io/s/XXXXXX`
-3. Use `XXXXXX` as the sandbox ID
-
-## Features
-
-- Full IDE embedded
-- Live preview
-- File navigation
-- Code editing capabilities

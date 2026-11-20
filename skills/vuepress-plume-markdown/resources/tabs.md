@@ -1,139 +1,63 @@
-# Tabs
+# Tabs & Code Tabs
 
-Create tabbed content using `::: tabs`.
+`::: tabs` and `::: code-tabs` are **always available** — no config needed.
 
-## Configuration
-
-Enable in `.vuepress/config.ts`:
-
-```ts
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      tabs: true, // General tabs
-      codeTabs: true, // Code block tabs
-    }
-  })
-})
-```
-
-## Syntax
-
-```md
-::: tabs [id]
-
-@tab Tab Title 1
-Content for tab 1
-
-@tab:active Tab Title 2
-Content for tab 2 (active by default)
-
-@tab Tab Title 3
-Content for tab 3
-
-:::
-```
-
-## Parameters
-
-- `id` - Optional unique identifier for the tabs group
-- `@tab` - Tab separator with title
-- `@tab:active` - Sets this tab as active by default
-
-## Examples
-
-### Basic Tabs
-
-````md
-::: tabs
-
-@tab npm
-```bash
-npm install package
-```
-
-@tab yarn
-```bash
-yarn add package
-```
-
-@tab pnpm
-```bash
-pnpm add package
-```
-
-:::
-````
-
-### With Active Tab
+## Tabs
 
 ```md
 ::: tabs
+@tab 标题 1
+内容 1
 
-@tab npm
-npm install
-
-@tab:active pnpm
-pnpm install
-
-@tab yarn
-yarn install
-
+@tab:active 标题 2
+内容 2（默认激活）
 :::
 ```
 
-### Code Tabs
+- `@tab` must start the line; `@tab:active` marks the tab opened by default.
+- `@tab 标题 2#值 2` gives that tab a custom value (tracked in `localStorage`).
+- `::: tabs#group-id` — tabs sharing the id stay in sync across the page and across reloads.
+- Inside a tab, the component scope exposes `value` and `isActive`.
 
-Special syntax for code blocks:
+## Code Tabs
 
 ````md
-::: code-tabs
-
-@tab TypeScript
+::: code-tabs#lang
+@tab TS
 ```ts
-const x: number = 1
+const a: number = 1
 ```
 
-@tab JavaScript
+@tab:active JS
 ```js
-const x = 1
+const a = 1
 ```
-
 :::
 ````
 
-### With ID (Synced Tabs)
+Options for the **container only**:
 
-Tabs with the same ID will sync their active state:
-
-```md
-::: tabs#install
-
-@tab npm
-npm install
-
-@tab pnpm
-pnpm install
-
-:::
-
-Some other content...
-
-::: tabs#install
-
-@tab npm
-npm run dev
-
-@tab pnpm
-pnpm dev
-
-:::
+```ts
+markdown: { codeTabs: { icon: true } } // default; `false` hides language icons
 ```
 
-## Features
+`markdown.tabs` does **not** exist — the tabs container has no options.
 
-- Persistent active tab (saved to localStorage)
-- Synchronized tabs with same ID
-- Smooth transitions
-- Responsive design
-- Dark/light mode support
+## Nesting
+
+Nest a single-colon container inside code tabs by giving the outer one more colons:
+
+````md
+:::: code-tabs
+@tab Demo
+::: tip
+提示
+:::
+::::
+````
+
+## Notes
+
+- No blank line between `@tab` and the first line of the tab body.
+- Code tabs must contain only fenced code blocks (one per tab) for the language icon to show.
+- Same `#id` synchronises the active tab between separate container blocks.

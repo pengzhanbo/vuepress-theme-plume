@@ -1,45 +1,37 @@
-# PDF Reader
+# PDF
 
-Embed PDF files directly in your markdown.
+## Enable
 
-## Configuration
-
-Enable the feature in `.vuepress/config.ts`:
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      pdf: true,
-    },
-  })
-})
+```ts
+markdown: {
+  pdf: true,
+  // or point at a self-hosted PDF.js
+  pdf: { pdfjsUrl: '/pdfjs/' }, // default https://static.pengzhanbo.cn/pdfjs/
+}
 ```
 
 ## Syntax
 
-Simple syntax:
-
 ```md
 @[pdf](url)
-```
-
-With options:
-
-```md
 @[pdf page="2" width="100%" ratio="16:9"](url)
 ```
 
-**Parameters:**
+| Prop | Type | Default |
+| --- | --- | --- |
+| `page` | `number` | `1` |
+| `width` | `string` | `100%` |
+| `height` | `string` | auto |
+| `ratio` | `string` | `16/9` (only when `height` is unset) |
+| `zoom` | `number` | `50` (percent) |
+| `no-toolbar` | `boolean` | `false` |
 
-- `url`: PDF URL
-- `page`: Page number (default `1`). The shorthand `@[pdf 2](url)` is also supported
-- `width`: Width (default `100%`)
-- `height`: Height (default `auto`)
-- `ratio`: Aspect ratio (default `1:0.9`, only effective when height is not set)
+The legacy shorthand `@[pdf 2](url)` still works but prefer `page="2"`.
 
-## Example
+## Examples
 
 ```md
-@[pdf page="2"](https://plume.pengzhanbo.cn/files/sample.pdf)
+@[pdf page="2"](https://example.com/files/sample.pdf)
+
+@[pdf page="1" height="600px" no-toolbar zoom="80"](https://example.com/files/sample.pdf)
 ```

@@ -4,16 +4,8 @@ Display chat records using `::: chat` container.
 
 ## Enable
 
-This feature is disabled by default, enable it in theme config:
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      chat: true, // [!code ++]
-    }
-  })
-})
+```ts
+markdown: { chat: true }
 ```
 
 ## Syntax

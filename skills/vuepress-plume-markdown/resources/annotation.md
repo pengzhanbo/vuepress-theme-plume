@@ -1,18 +1,40 @@
 # Annotation
 
-Annotation allows adding extra information or hints that are revealed on click.
+Inline annotations revealed on click.
+
+## Enable
+
+```ts
+markdown: { annotation: true }
+```
 
 ## Syntax
 
-1. **Inline Marker**: `[+label]` (must have a space before `[+`)
-2. **Definition**: `[+label]: content` (can be multiline with indentation)
+```md
+本站由 VuePress [+vuepress] 驱动。
 
-## Example
+[+vuepress]: VuePress 是一个静态站点生成器（SSG）。
+```
+
+- Marker: `[+label]`, with a space before `[+`.
+- Definition: `[+label]: content` — content may continue on indented following lines.
+- Defining the same label more than once renders the annotations as a list:
 
 ```md
-This site is powered by VuePress [+vuepress].
+用到了 [+vue] 的一些特性 [+vue]。
 
-[+vuepress]:
-  VuePress is a [Static Site Generator](https://en.wikipedia.org/wiki/Static_site_generator) (SSG).
-  It is specifically designed for building fast, content-centric sites.
+[+vue]: 响应式系统
+[+vue]: 单文件组件
 ```
+
+## Presets
+
+```ts
+markdown: {
+  annotation: true,
+  annotation: { vuepress: '一个 VuePress 主题' }, // same as `markdown.env.annotations`
+}
+```
+
+`markdown.env.annotations` accepts `string | string[]` per label; page-level definitions take precedence over
+presets, which take precedence over `markdown.env`.

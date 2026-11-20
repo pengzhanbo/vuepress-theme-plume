@@ -2,18 +2,10 @@
 
 The theme supports embedding [chart.js] charts within articles.
 
-## Configuration
+## Enable
 
-Enable the feature in `.vuepress/config.ts`:
-
-```ts title=".vuepress/config.ts"
-export default defineUserConfig({
-  theme: plumeTheme({
-    markdown: {
-      chartjs: true,
-    },
-  })
-})
+```ts
+markdown: { chartjs: true }
 ```
 
 You also need to install the `chart.js` library:

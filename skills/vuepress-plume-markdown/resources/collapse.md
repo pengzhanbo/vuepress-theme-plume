@@ -1,32 +1,50 @@
 # Collapse
 
-Create collapsible panels using `::: collapse`.
+## Enable
+
+```ts
+markdown: { collapse: true }
+```
 
 ## Syntax
 
 ```md
 ::: collapse [accordion] [expand]
-- Title 1
-  Content 1
+- 标题 1
 
-- Title 2
-  Content 2
+  内容 1
+
+- 标题 2
+
+  内容 2
 :::
 ```
 
-- `accordion`: Only one panel expanded at a time.
-- `expand`: Expand all by default.
-- `:+ Title`: Mark specific item as expanded.
-- `:- Title`: Mark specific item as collapsed.
+| Option | Effect |
+| --- | --- |
+| `accordion` | only one panel open at a time |
+| `expand` | all panels open by default |
+| `:+ 标题` | this panel open by default |
+| `:- 标题` | this panel closed by default |
+
+Rules:
+
+- A **blank line** is required between the item title and its body, and the body must be indented.
+- With `expand`, `:-` forces a panel closed; with `accordion` + `expand`, only the first panel opens and a `:+`
+  marker wins over the `expand` default.
 
 ## Example
 
-```md
-::: collapse accordion
-- Panel 1
-  Content 1
+````markdown
+::: collapse accordion expand
+- 安装
 
-- :+ Panel 2 (Initially Expanded)
-  Content 2
+  ```sh
+  pnpm add -D vuepress@next vuepress-theme-plume
+  ```
+
+- :- 常见问题
+
+  内容默认折叠
 :::
-```
+````

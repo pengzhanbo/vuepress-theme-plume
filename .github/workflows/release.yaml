@@ -44,6 +44,8 @@ jobs:
         id: publish
         run: |
           pnpm build
+          mkdir -p theme/skills
+          cp -R skills/vuepress-plume-config skills/vuepress-plume-markdown theme/skills/
           pnpm release:publish --no-git-checks
           pnpm release:sync
 

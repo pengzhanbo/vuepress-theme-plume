@@ -51,6 +51,7 @@
   "types": "dist/node/index.d.ts",
   "files": [
     "dist",
+    "skills",
     "templates"
   ],
   "engines": {

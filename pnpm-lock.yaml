@@ -436,9 +436,6 @@ catalogs:
     js-yaml:
       specifier: ^5.5.0
       version: 5.5.0
-    katex:
-      specifier: ^0.19.1
-      version: 0.19.1
     local-pkg:
       specifier: ^2.0.0
       version: 2.0.0
@@ -591,6 +588,7 @@ overrides:
   fast-uri: '>=4.2.3'
   follow-redirects: '>=1.16.3'
   form-data: '>=4.0.6'
+  katex: '>=0.18.2'
   linkify-it: ^6.1.0
   lodash: '>=4.18.1'
   lodash-es: '>=4.18.1'
@@ -1162,7 +1160,7 @@ importers:
         specifier: catalog:prod
         version: 5.5.0
       katex:
-        specifier: catalog:prod
+        specifier: '>=0.18.2'
         version: 0.19.1
       local-pkg:
         specifier: catalog:prod
@@ -1963,7 +1961,7 @@ packages:
     resolution: {integrity: sha512-Um9oLdMZ/6lbalLjj0auLGGiFfHEWESZY6DTgZyo2aJb15j22KAMRzzuKrWLBpYKWqX6ZcDTIXmJI6mgpp/MUQ==}
     engines: {node: '>=22'}
     peerDependencies:
-      katex: ^0.19.1
+      katex: '>=0.18.2'
       markdown-it: ^15.0.3
     peerDependenciesMeta:
       katex:
@@ -3318,7 +3316,7 @@ packages:
     resolution: {integrity: sha512-eSn304fR2WFdmFBI/RClJ2PMoxWs2KhQn6xWrHzqyvQpukc4P9i5BV10puHPqEKkVARNxQdyR79faspcPg9eLg==}
     peerDependencies:
       '@mathjax/src': ^4.1.3
-      katex: ^0.19.1
+      katex: '>=0.18.2'
       vuepress: 2.0.0-rc.32
     peerDependenciesMeta:
       '@mathjax/src':
@@ -3807,10 +3805,6 @@ packages:
   commander@7.2.0:
     resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
     engines: {node: '>= 10'}
-
-  commander@8.3.0:
-    resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
-    engines: {node: '>= 12'}
 
   comment-parser@1.4.7:
     resolution: {integrity: sha512-0h+uSNtQGW3D98eQt3jJ8L06Fves8hncB4V/PKdw/Qb8Hnk19VaKuTr55UNRYiSoVa7WwrFls+rh3ux9agmkeQ==}
@@ -5283,14 +5277,6 @@ packages:
   jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
     engines: {node: '>=4.0'}
-
-  katex@0.16.47:
-    resolution: {integrity: sha512-Eeo8Ys1doU1z+x8AZsPpQu+p/QcZBI5PeOo7QGQdy2x2m0MU/hYagBbGOmXwr5KVbEfVuWv9LpnQWeehogurjg==}
-    hasBin: true
-
-  katex@0.18.10:
-    resolution: {integrity: sha512-/B6p9eY9DX7aHBfpkHdpirDTZ5QH9xTwL9y837PWuzuv41O5jFdqNQwVQEQsimY0/iVNkwBY4+4hMfhQ7d4Dbw==}
-    hasBin: true
 
   katex@0.19.1:
     resolution: {integrity: sha512-jG8uKntjSEcm2EpQOh0XturpPuuC9r3Sq5HLHdsFdWZT27E672SF19QEi+of0/YeOy15lDgRhKvr5614uRrEfA==}
@@ -10222,8 +10208,6 @@ snapshots:
 
   commander@7.2.0: {}
 
-  commander@8.3.0: {}
-
   comment-parser@1.4.7: {}
 
   comment-parser@1.4.9: {}
@@ -11880,14 +11864,6 @@ snapshots:
       object.assign: 4.1.7
       object.values: 1.2.1
 
-  katex@0.16.47:
-    dependencies:
-      commander: 8.3.0
-
-  katex@0.18.10:
-    dependencies:
-      commander: 15.1.0
-
   katex@0.19.1:
     dependencies:
       commander: 15.1.0
@@ -12326,7 +12302,7 @@ snapshots:
       dompurify: 3.4.17
       elkjs: 0.12.1
       es-toolkit: 1.53.2
-      katex: 0.18.10
+      katex: 0.19.1
       khroma: 2.1.0
       marked: 16.4.2
       roughjs: 4.6.6
@@ -12436,7 +12412,7 @@ snapshots:
     dependencies:
       '@types/katex': 0.16.8
       devlop: 1.1.0
-      katex: 0.16.47
+      katex: 0.19.1
       micromark-factory-space: 2.1.0
       micromark-util-character: 2.1.1
       micromark-util-symbol: 2.0.1

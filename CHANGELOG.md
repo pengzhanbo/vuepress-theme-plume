@@ -1,3 +1,14 @@
+# [1.0.0-rc.219](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.218...v1.0.0-rc.219) (2026-11-20)
+
+### Bug Fixes
+
+* **theme:** fix `reader.css` is empty ([a3c6e6b](https://github.com/pengzhanbo/vuepress-theme-plume/commit/a3c6e6b863cd3541ab5756e4958de4c78427ab40))
+* **theme:** fix home `doc-hero` image size ([117b7fa](https://github.com/pengzhanbo/vuepress-theme-plume/commit/117b7fae7ba42a2f9fc32e549f738cfdb70650cd))
+
+### Features
+
+* **cli:** upgrade `vuepress` to `rc.32` ([477754c](https://github.com/pengzhanbo/vuepress-theme-plume/commit/477754cb9851e45856c3765d98463f1bd37fa404))
+
 # [1.0.0-rc.218](https://github.com/pengzhanbo/vuepress-theme-plume/compare/v1.0.0-rc.217...v1.0.0-rc.218) (2026-11-19)
 
 ### Features

@@ -8,6 +8,6 @@ export async function prepareReader(app: App, options: ThemeOptions = getThemeOp
   perf.mark('prepare:reader')
   const locales = collectReaderLocales(options)
   const style = generateReaderPaletteStyle(locales)
-  await writeTemp(app, 'internal/reader.css', style)
+  await writeTemp(app, 'internal/reader.css', style || ':root {}\n')
   perf.log('prepare:reader')
 }

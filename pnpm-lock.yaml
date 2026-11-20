@@ -594,6 +594,7 @@ overrides:
   lodash-es: '>=4.18.1'
   markdown-it: ^15.0.3
   mermaid: '>=12.3.0'
+  minimatch: '>=11.0.1'
   postcss: '>=8.5.33'
   qs: '>=6.17.1'
   sass-embedded: ^1.108.2
@@ -5712,20 +5713,9 @@ packages:
     resolution: {integrity: sha512-VP79XUPxV2CigYP3jWwAUFSku2aKqBH7uTAapFWCBqutsbmDo96KY5o8uh6U+/YSIn5OxJnXp73beVkpqMIGhA==}
     engines: {node: '>=18'}
 
-  minimatch@10.2.6:
-    resolution: {integrity: sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A==}
-    engines: {node: 18 || 20 || >=22}
-
   minimatch@11.0.8:
     resolution: {integrity: sha512-nFQuYSTVrGvysVBps5Ih+0BdnYFN/Cj3C816r6+p7yK+FHrVLGE4O4N9AFwykrlNlvM2HYt+Rad1Uiro6h88Ig==}
     engines: {node: 20 || >=22}
-
-  minimatch@3.1.5:
-    resolution: {integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==}
-
-  minimatch@9.0.9:
-    resolution: {integrity: sha512-OBwBN9AL4dqmETlpS2zasx+vTeWclWzkblfZk7KTA5j3jeOONz/tRCnZomUyvNg83wL5Zv9Ss6HMJXAgL8R2Yg==}
-    engines: {node: '>=16 || 14 >=14.17'}
 
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
@@ -10297,7 +10287,7 @@ snapshots:
       glob: 13.0.7
       glob2base: 0.0.12
       ignore: 7.0.14
-      minimatch: 10.2.6
+      minimatch: 11.0.8
       p-map: 7.1.1
       shell-quote: 1.12.0
       subarg: 1.0.0
@@ -10946,7 +10936,7 @@ snapshots:
       hasown: 2.0.4
       jsx-ast-utils: 3.3.5
       language-tags: 1.0.9
-      minimatch: 3.1.5
+      minimatch: 11.0.8
       object.fromentries: 2.0.8
       safe-regex-test: 1.1.0
       string.prototype.includes: 2.0.1
@@ -11373,14 +11363,14 @@ snapshots:
     dependencies:
       foreground-child: 3.3.1
       jackspeak: 3.4.3
-      minimatch: 9.0.9
+      minimatch: 11.0.8
       minipass: 7.1.3
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
   glob@13.0.7:
     dependencies:
-      minimatch: 10.2.6
+      minimatch: 11.0.8
       minipass: 7.1.3
       path-scurry: 2.0.2
 
@@ -12094,7 +12084,7 @@ snapshots:
       jsonpointer: 5.0.1
       markdown-it: 15.0.3
       markdownlint: 0.42.1(supports-color@8.1.1)
-      minimatch: 10.2.6
+      minimatch: 11.0.8
       run-con: 1.3.3
       smol-toml: 1.9.1
       tinyglobby: 0.2.17
@@ -12551,21 +12541,9 @@ snapshots:
 
   mimic-function@5.0.1: {}
 
-  minimatch@10.2.6:
-    dependencies:
-      brace-expansion: 5.0.13
-
   minimatch@11.0.8:
     dependencies:
       '@isaacs/nonrecursive-glob-match': 1.1.0
-      brace-expansion: 5.0.13
-
-  minimatch@3.1.5:
-    dependencies:
-      brace-expansion: 5.0.13
-
-  minimatch@9.0.9:
-    dependencies:
       brace-expansion: 5.0.13
 
   minimist@1.2.8: {}

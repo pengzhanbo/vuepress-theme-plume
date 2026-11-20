@@ -263,6 +263,7 @@ const actions = computed(() => hero.value.actions ?? [])
   .image-container {
     width: 392px;
     height: 392px;
+    aspect-ratio: unset;
   }
 }
 
@@ -273,6 +274,7 @@ const actions = computed(() => hero.value.actions ?? [])
     justify-content: center;
     width: 100%;
     height: 100%;
+    aspect-ratio: unset;
 
     /* rtl:ignore */
     transform: translate(-32px, -32px);

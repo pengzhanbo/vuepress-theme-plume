@@ -1,0 +1,53 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Blog",
+  "home_page_url": "https://theme-plume.vuejs.press/en/blog/",
+  "feed_url": "https://theme-plume.vuejs.press/en/blog/feed.json",
+  "description": "Blog",
+  "language": "en-US",
+  "authors": [
+    {
+      "name": "Plume Theme"
+    }
+  ],
+  "items": [
+    {
+      "id": "https://theme-plume.vuejs.press/en/blog/dk58a4t2/",
+      "url": "https://theme-plume.vuejs.press/en/blog/dk58a4t2/",
+      "title": "⚠️ 1.0.0-rc.165 Breaking Change Notice: Blog & Notes Features Migrated to \"Collections\"",
+      "summary": "This article is a historical version notice The blog / notes configuration mentioned in this article has been deprecated. Use collections for the new version; see the . Importan...",
+      "content_text": "This article is a historical version notice The blog / notes configuration mentioned in this article has been deprecated. Use collections for the new version; see the . Importan...",
+      "date_published": "2025-10-09T22:18:52+00:00",
+      "date_modified": "2026-10-13T15:56:07+00:00",
+      "tags": [
+        "Breaking Change",
+        "Important Update",
+        "Update"
+      ]
+    },
+    {
+      "id": "https://theme-plume.vuejs.press/en/article/ecxnxxd0/",
+      "url": "https://theme-plume.vuejs.press/en/article/ecxnxxd0/",
+      "title": "How to Use Frontmatter",
+      "summary": "Note This article translates parts of Introduction to YAML. It provides a basic explanation of how to use frontmatter in markdown files. If you have a good foundation in English...",
+      "content_text": "Note This article translates parts of Introduction to YAML. It provides a basic explanation of how to use frontmatter in markdown files. If you have a good foundation in English...",
+      "date_published": "2025-10-09T09:19:36+00:00",
+      "date_modified": "2026-03-05T07:34:11+00:00",
+      "tags": [
+        "Tutorials"
+      ]
+    },
+    {
+      "id": "https://theme-plume.vuejs.press/en/article/xw0awouo/",
+      "url": "https://theme-plume.vuejs.press/en/article/xw0awouo/",
+      "title": "english_blog",
+      "content_text": "",
+      "date_published": "2023-06-15T08:51:31+00:00",
+      "date_modified": "2025-10-07T15:13:09+00:00",
+      "tags": [
+        "FE",
+        "Node"
+      ]
+    }
+  ]
+}

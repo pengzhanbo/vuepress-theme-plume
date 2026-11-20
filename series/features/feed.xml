@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>主题功能</title>
+    <link>https://theme-plume.vuejs.press/series/features/</link>
+    <description>主题功能列表，详细介绍主题提供的各类功能，以及如何在配置中开启和配置它们。</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 18 Nov 2026 08:09:07 +0000</lastBuildDate>
+    <generator>vuepress-theme-plume</generator>
+    <atom:link href="https://theme-plume.vuejs.press/series/features/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>评论</title>
+      <link>https://theme-plume.vuejs.press/guide/features/comments/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/guide/features/comments/</guid>
+      <pubDate>Mon, 04 Mar 2024 11:58:59 +0000</pubDate>
+      <description>概述 文章评论由 @vuepress/plugin-comment 提供支持。 主题已内置插件，你无需重新安装即可使用。 在本主题中，通过以下字段进行配置： .vuepress/config.ts 评论服务 @vuepress/plugin-comment 支持 &quot;Artalk&quot; | &quot;Giscus&quot; | &amp;qu...</description>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>公告板</title>
+      <link>https://theme-plume.vuejs.press/guide/features/bulletin/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/guide/features/bulletin/</guid>
+      <pubDate>Sat, 19 Oct 2024 21:51:22 +0000</pubDate>
+      <description>概述 公告板是一个实时通知组件，可以实现在站点中方便的展示一些通知信息。 如右上角的公告板。 使用 主题提供了非常方便且灵活的公告板使用方法。你可以根据自己的需求，选择合适的方式进行配置。 配置说明 .vuepress/config.ts 简单公告 当您仅需要配置简单的公告板，仅包含一些简要的内容时，可以直接使用 bulletin.content 添加...</description>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>相关文章推荐</title>
+      <link>https://theme-plume.vuejs.press/guide/features/related-posts/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/guide/features/related-posts/</guid>
+      <pubDate>Sun, 08 Nov 2026 10:00:00 +0000</pubDate>
+      <description>概述 在文章 / 文档页底部展示相关内容，帮助读者继续阅读，同时增强站内链接。 推荐结果在 构建期 计算完成并写入页面数据，客户端只负责渲染。 默认关闭 relatedPosts 默认关闭，需要显式开启（relatedPosts: true 即可使用默认配置）。 快速开始 开启功能 在主题配置中开启，true 表示使用全部默认值： .vuepress/...</description>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>Feed 订阅</title>
+      <link>https://theme-plume.vuejs.press/guide/features/feed/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/guide/features/feed/</guid>
+      <pubDate>Mon, 09 Nov 2026 10:00:00 +0000</pubDate>
+      <description>概述 主题支持在构建时为站点生成 RSS 2.0、Atom 1.0 与 JSON Feed 1.1 订阅文件， 并在页面 &lt;head&gt; 中注入 &lt;link rel=&quot;alternate&quot;&gt;，让读者与自动化工具可以直接发现订阅地址。 与「一个站点一个 feed」的通用方案不同，主题的 feed 与 collec...</description>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>内链预览</title>
+      <link>https://theme-plume.vuejs.press/guide/features/link-preview/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/guide/features/link-preview/</guid>
+      <pubDate>Tue, 10 Nov 2026 10:00:00 +0000</pubDate>
+      <description>概述 阅读文档时，正文里的 详见 [配置说明](../config/theme.md) 往往需要点进去才知道值不值得看。 内链预览会在鼠标停留在站内链接上时，展示目标页面的标题、摘要、标签与更新时间， 让读者在 不离开当前页面 的情况下判断是否跳转。 内链预览 默认关闭 快速开始 开启功能 在主题配置中开启，true 表示使用全部默认值： .vuepr...</description>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+    <item>
+      <title>阅读偏好</title>
+      <link>https://theme-plume.vuejs.press/guide/features/reader/</link>
+      <guid isPermaLink="true">https://theme-plume.vuejs.press/guide/features/reader/</guid>
+      <pubDate>Wed, 11 Nov 2026 10:00:00 +0000</pubDate>
+      <description>概述 阅读偏好让读者自己决定阅读时的呈现：正文多宽、底色是什么、要不要显示阅读辅助线、要不要进入专注模式。 启用后页面右上角会出现「阅读」入口，改动立即生效，并保存在浏览器本地，下次打开同一站点依然有效。 该功能默认关闭，打开一个开关即可使用。 适用场景 以长文为主的文档站、教程站与博客。读者常在长文章中找不到位置，或者夜里觉得白底刺眼。 快速开始 ....</description>
+      <dc:creator>Plume Theme</dc:creator>
+    </item>
+  </channel>
+</rss>

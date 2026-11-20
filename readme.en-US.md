@@ -58,8 +58,8 @@ providing rich Markdown extensions to make your documentation more beautiful, pr
 
 ### Environment Requirements
 
-- **Node.js**: ^20.19.0 or >= 22.0.0
-- **Package Manager**: npm 8+, pnpm 8+, or Yarn 2+
+- **Node.js**: `^22.22.0` or `>=24.0.0`
+- **Package Manager**: npm 9+, pnpm 12+, or Yarn 4+
 
 ### Installation
 
@@ -169,7 +169,7 @@ Contributions are welcome! Please read the [Contribution Guide](./CONTRIBUTING.m
 
 Development requirements:
 
-- Node.js 20.19.0+
+- Node.js 22.22.0+
 - pnpm 12.6.0+
 
 Local development:

@@ -56,8 +56,8 @@ vuepress-theme-plume 是一个基于 VuePress 2 的现代化主题，专为创�
 
 ### 环境要求
 
-- **Node.js**: ^20.19.0 或 >= 22.0.0
-- **包管理器**: npm 8+、pnpm 8+ 或 Yarn 2+
+- **Node.js**: `^20.22.0` 或 `>=24.0.0`
+- **包管理器**: npm 9+、pnpm 12+ 或 Yarn 4+
 
 ### 安装
 
@@ -167,7 +167,7 @@ npm run docs:build
 
 开发要求：
 
-- Node.js 20.19.0+
+- Node.js 22.22.0+
 - pnpm 12.6.0+
 
 本地开发：

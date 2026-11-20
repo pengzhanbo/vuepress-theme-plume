@@ -85,7 +85,7 @@ Packages resolve from `dist/` at runtime: rebuild after editing `src/` (`pnpm bu
 
 ## Environment & CI
 
-- Node `^20.19.0 || >=22.12.0` (CI uses 24); pnpm `>=12.6.0` (`packageManager: pnpm@12.10.1`). `pnpm-workspace.yaml` also pins `catalogMode: prefer`, `minimumReleaseAge` (5 days) and `trustPolicy`.
+- Node `^22.22.0 || >=24` (CI uses 24); pnpm `>=12.6.0` (`packageManager: pnpm@12.10.1`). `pnpm-workspace.yaml` also pins `catalogMode: prefer`, `minimumReleaseAge` (5 days) and `trustPolicy`.
 - Build with tsdown (`--config-loader unrun`); static assets (`.vue`, `.css`, `.scss`, images, fonts, `.d.ts`) are copied by `cpx`. Client bundles externalize `*.vue`, `*.css`, `@internal`, `@theme`, and shared barrels.
 - Docs/examples use `@vuepress/bundler-vite` + VuePress `2.0.0-rc.32` (exact pins in the `vuepress` catalog).
 - CI workflows: `lint`, `test`, `docs-deploy`, `example-layout-slots-deploy`, `release`, `star-history`. Pre-commit runs eslint/stylelint fixes and `vitest related --run` for staged JS/TS changes.

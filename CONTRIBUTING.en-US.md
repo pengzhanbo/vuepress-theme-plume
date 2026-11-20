@@ -19,8 +19,8 @@ In the `plugins` directory:
 
 Development requirements:
 
-- [Node.js](http://nodejs.org/) version 20.19.0+
-- [pnpm](https://pnpm.io/zh/) version 9+
+- [Node.js](http://nodejs.org/) version 22.22.0+
+- [pnpm](https://pnpm.io/) version `>=12.6.0`
 
 Clone the repository and install dependencies:
 

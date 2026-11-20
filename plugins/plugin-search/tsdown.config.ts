@@ -37,7 +37,7 @@ export default defineConfig(() => {
       entry: ['./src/node/index.ts'],
       outDir: './dist/node',
       deps: { neverBundle: sharedExternal },
-      target: 'node20.19.0',
+      target: 'node22.22.0',
     })
   }
 

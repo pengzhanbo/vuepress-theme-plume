@@ -188,10 +188,10 @@ blog:
   -
     name: jiahao
     desc: 去追寻便好，哪怕是须臾的光亮
-    logo: https://s.jhdev.cn/head.png
-    url: https://jhdev.cn/
+    logo: https://s.ohyey.net/head.png
+    url: https://ohyey.net/
     repo: https://github.com/oh-yey
-    preview: https://s.jhdev.cn/demos/blog-preview.png
+    preview: https://s.ohyey.net/demos/blog-preview.png
   -
     name: 阿哲
     desc: 强大自己是解决问题的唯一办法

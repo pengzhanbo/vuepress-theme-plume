@@ -35,7 +35,7 @@ function getSidebarLink(items: 'auto' | (string | ThemeSidebarItem)[] | undefine
       getSidebarLink(
         subItems,
         path.join(link, subLink),
-        path.join(prefix[0] === '/' ? prefix : `/${dir}/${prefix || subDir}`),
+        prefix[0] === '/' ? path.join(prefix) : path.join('/', dir, prefix || subDir),
         res,
       )
     }

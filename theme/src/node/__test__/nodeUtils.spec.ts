@@ -1,6 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it, vi } from 'vitest'
+import { path as vuepressPath } from 'vuepress/utils'
 import {
   createMatcher,
   resolveMatcherPattern,
@@ -189,6 +190,17 @@ describe('path utils', () => {
     expect(normalizeLink('/blog/', 'https://example.com')).toBe('https://example.com')
   })
 
+  it('treats root-relative links the same on Windows and POSIX', () => {
+    const normalizeWindows = path.win32.normalize
+    const normalize = vi.spyOn(vuepressPath, 'normalize').mockImplementation(normalizeWindows)
+    try {
+      expect(normalizeLink('/', 'guide/reference/')).toBe('/guide/reference/')
+    }
+    finally {
+      normalize.mockRestore()
+    }
+  })
+
   it('extracts the last directory segment', () => {
     expect(getCurrentDirname('blog/guide', 'a.md')).toBe('guide')
     // basePath 为空时回退到 filepath 的目录名。
@@ -206,9 +218,9 @@ describe('path utils', () => {
   it('resolves paths relative to the parent of the utils directory', () => {
     // `resolve` 以 utils 目录的上一级为基准（构建产物中即主题包根目录）。
     const nodeDir = fileURLToPath(new URL('..', import.meta.url))
-    expect(resolve('foo.txt')).toBe(path.join(nodeDir, 'foo.txt'))
+    expect(resolve('foo.txt')).toBe(vuepressPath.join(nodeDir, 'foo.txt'))
     // templates 在 resolve 的基础上又上溯一级。
-    expect(templates('index.html')).toBe(path.resolve(nodeDir, '..', 'templates', 'index.html'))
+    expect(templates('index.html')).toBe(vuepressPath.resolve(nodeDir, '..', 'templates', 'index.html'))
   })
 })
 

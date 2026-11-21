@@ -166,12 +166,12 @@ blog:
     repo: https://github.com/QiHuang02/qihuang02.github.io
     preview: https://image.qihuang02.cn/file/1736003534894_yulantu.png
   -
-    name: jiahao
-    desc: Just pursue it, even if it's just a momentary light
-    logo: https://s.jhdev.cn/head.png
-    url: https://jhdev.cn/
+    name: ohyey
+    desc: Never stop searching, even if only for a brief flash of light.
+    logo: https://s.ohyey.net/head.png
+    url: https://ohyey.net/
     repo: https://github.com/oh-yey
-    preview: https://s.jhdev.cn/demos/blog-preview.png
+    preview: https://s.ohyey.net/demos/blog-preview.png
   -
     name: A Zhe
     desc: Strengthening yourself is the only way to solve problems

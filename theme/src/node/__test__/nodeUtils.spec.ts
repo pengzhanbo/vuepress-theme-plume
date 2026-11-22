@@ -1,5 +1,3 @@
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { describe, expect, it, vi } from 'vitest'
 import { path as vuepressPath } from 'vuepress/utils'
 import {
@@ -10,14 +8,6 @@ import { genTempCode } from '../utils/genTempCode.js'
 import { hash, nanoid } from '../utils/hash.js'
 import { interopDefault } from '../utils/interopDefault.js'
 import { logger, perf } from '../utils/logger.js'
-import {
-  getCurrentDirname,
-  normalizeLink,
-  normalizePath,
-  resolve,
-  templates,
-  withBase,
-} from '../utils/path.js'
 import { createTranslate, setTranslateLang } from '../utils/translate.js'
 
 describe('resolveMatcherPattern', () => {

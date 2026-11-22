@@ -13,7 +13,15 @@ permissions:
 
 jobs:
   unit-test:
-    runs-on: ubuntu-latest
+    name: unit-test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+
+    strategy:
+      # 各平台测试结果相互独立，不要因为某个平台失败而取消其他平台
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Checkout
@@ -40,7 +48,8 @@ jobs:
         run: pnpm run test
 
       - name: Upload coverage
-        if: github.ref == 'refs/heads/main'
+        # 仅需上传一次覆盖率报告，避免多平台重复上传
+        if: github.ref == 'refs/heads/main' && matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

@@ -19,7 +19,15 @@ export function extendsPageWithDemo(page: Page): void {
     ? demoFiles
         .filter(({ gitignore }) => !gitignore)
         .map(demo => path.relative(path.dirname(page.filePath!), slash(demo.path)))
-        .filter(relative => relative && !relative.startsWith('..') && !path.isAbsolute(relative))
+        // 仅排除真正的父级引用（`..` / `../xxx`）与跨盘符的绝对路径；
+        // `..assets/Basic.vue` 这类以 `..` 开头的目录名仍在页面目录内，需要保留。
+        // Exclude only real parent references (`..` / `../xxx`) and cross-drive absolute
+        // paths: a directory literally named `..assets` stays inside the page directory.
+        .filter(relative =>
+          relative
+          && relative !== '..'
+          && !relative.startsWith('../')
+          && !path.isAbsolute(relative))
     : []
 
   if (gitIncludes.length) {

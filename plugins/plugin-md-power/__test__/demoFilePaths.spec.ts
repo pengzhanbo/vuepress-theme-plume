@@ -91,6 +91,28 @@ describe('extendsPageWithDemo', () => {
     expect(page.frontmatter.gitInclude).toBeUndefined()
   })
 
+  it('skips demo files in a sibling directory', () => {
+    const page = createPage('/source/demo/a.md', [
+      { type: 'vue', path: '/source/other/x.vue', gitignore: false },
+    ])
+
+    extendsPageWithDemo(page)
+
+    // `../other/x.vue` 是真正的父级引用，应被排除。
+    expect(page.frontmatter.gitInclude).toBeUndefined()
+  })
+
+  it('keeps demo files in a directory whose name starts with `..`', () => {
+    const page = createPage('/source/demo/a.md', [
+      { type: 'vue', path: '/source/demo/..assets/Basic.vue', gitignore: false },
+    ])
+
+    extendsPageWithDemo(page)
+
+    // `..assets` 只是以 `..` 开头的目录名，仍位于页面目录内，不能被当作父级引用排除。
+    expect(page.frontmatter.gitInclude).toEqual(['..assets/Basic.vue'])
+  })
+
   it('ignores generated files marked as gitignored', () => {
     const page = createPage('/source/demo/a.md', [
       { type: 'vue', path: '/source/demo/x.vue', gitignore: true },

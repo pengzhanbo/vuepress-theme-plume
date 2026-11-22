@@ -54,9 +54,10 @@ export function normalizePath(filepath: string): string {
  * @returns Normalized link / 规范化后的链接
  */
 export function normalizeLink(base: string, link = ''): string {
-  return isLinkAbsolute(link) || isLinkWithProtocol(link)
-    ? link
-    : ensureLeadingSlash(normalizePath(`${base}/${link}/`))
+  if (isLinkAbsolute(link) || isLinkWithProtocol(link))
+    return link
+
+  return ensureLeadingSlash(path.posix.join(slash(base || '/'), slash(link), '/'))
 }
 
 const RE_START_END_SLASH = /^\/|\/$/g

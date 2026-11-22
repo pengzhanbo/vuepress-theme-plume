@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
+import { path as vuepressPath } from 'vuepress/utils'
 import {
   createMatcher,
   resolveMatcherPattern,
@@ -161,6 +162,55 @@ describe('setTranslateLang / createTranslate', () => {
   it('keeps the raw placeholder when the value is missing', () => {
     setTranslateLang('en')
     expect(t('hello', { other: 'x' } as any)).toBe('Hello, {{ name }}!')
+  })
+})
+
+describe('path utils', () => {
+  it('normalizes path separators and collapses duplicates', () => {
+    expect(normalizePath('a\\b\\c')).toBe('a/b/c')
+    expect(normalizePath('a//b///c')).toBe('a/b/c')
+  })
+
+  it('normalizes links with the base path', () => {
+    expect(normalizeLink('/blog/', 'a')).toBe('/blog/a/')
+    // 空 link 退化为 base 本身。
+    expect(normalizeLink('/blog', '')).toBe('/blog/')
+    // 绝对链接与带协议的链接保持原样。
+    expect(normalizeLink('/blog/', '/absolute')).toBe('/absolute')
+    expect(normalizeLink('/blog/', 'https://example.com')).toBe('https://example.com')
+  })
+
+  it('treats root-relative links the same on Windows and POSIX', () => {
+    const normalizeWindows = path.win32.normalize
+    const normalize = vi.spyOn(vuepressPath, 'normalize').mockImplementation(normalizeWindows)
+    try {
+      expect(normalizeLink('/', 'guide/reference/')).toBe('/guide/reference/')
+    }
+    finally {
+      normalize.mockRestore()
+    }
+  })
+
+  it('extracts the last directory segment', () => {
+    expect(getCurrentDirname('blog/guide', 'a.md')).toBe('guide')
+    // basePath 为空时回退到 filepath 的目录名。
+    expect(getCurrentDirname('', '/a/b/c.md')).toBe('b')
+    expect(getCurrentDirname(undefined, 'a/b/c.md')).toBe('b')
+  })
+
+  it('prefixes the base path when it is missing', () => {
+    expect(withBase('guide', '/blog/')).toBe('/blog/guide/')
+    // 已包含 base 时不重复添加。
+    expect(withBase('/blog/guide', '/blog/')).toBe('/blog/guide/')
+    expect(withBase('', '/')).toBe('/')
+  })
+
+  it('resolves paths relative to the parent of the utils directory', () => {
+    // `resolve` 以 utils 目录的上一级为基准（构建产物中即主题包根目录）。
+    const nodeDir = fileURLToPath(new URL('..', import.meta.url))
+    expect(resolve('foo.txt')).toBe(vuepressPath.join(nodeDir, 'foo.txt'))
+    // templates 在 resolve 的基础上又上溯一级。
+    expect(templates('index.html')).toBe(vuepressPath.resolve(nodeDir, '..', 'templates', 'index.html'))
   })
 })
 

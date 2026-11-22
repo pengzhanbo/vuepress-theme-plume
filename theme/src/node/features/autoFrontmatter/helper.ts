@@ -20,12 +20,15 @@ export function isReadme(filepath: string): boolean {
  * 传入的路径可能来自不同的来源（`node:path` 拼接的结果在 Windows 上使用 `\`），
  * 因此两侧都先归一化再比较，避免同一份文件在不同平台上得出相反的结论。
  *
- * @param filepath - File path to check / 要检查的文件路径
+ *
+ * @param relativePath - Path relative to the site root / 相对于站点根目录的路径
  * @param segments - Directory segments relative to the site root / 相对于站点根目录的目录片段
  * @returns Whether the file is the README of the directory / 是否为该目录的 README
  */
-export function isDirReadme(filepath: string, ...segments: string[]): boolean {
-  return normalizePath(filepath).endsWith(normalizePath(path.join(...segments, 'README.md')))
+export function isDirReadme(relativePath: string, ...segments: string[]): boolean {
+  const target = normalizePath(path.join(...segments, 'README.md'))
+
+  return removeLeadingSlash(normalizePath(relativePath)) === removeLeadingSlash(target)
 }
 
 export function normalizeTitle(title: string): string {

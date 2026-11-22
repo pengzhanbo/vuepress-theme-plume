@@ -32,6 +32,7 @@ const {
   getCurrentName,
   getFileCreateTime,
   getPermalinkByFilepath,
+  isDirReadme,
   isReadme,
   normalizeTitle,
 } = await import('../features/autoFrontmatter/helper.js')
@@ -56,6 +57,33 @@ describe('isReadme', () => {
     expect(isReadme('blog/index.md')).toBe(true)
     expect(isReadme('blog/readme.md')).toBe(true)
     expect(isReadme('blog/post.md')).toBe(false)
+  })
+})
+
+describe('isDirReadme', () => {
+  it('matches the README of the target directory', () => {
+    expect(isDirReadme('blog/README.md', '/', 'blog')).toBe(true)
+    // 前导斜杠不影响结果。
+    expect(isDirReadme('/blog/README.md', '/', 'blog')).toBe(true)
+    // Windows 风格的路径分隔符同样可以匹配。
+    expect(isDirReadme('blog\\README.md', '/', 'blog')).toBe(true)
+    // 非根语言目录。
+    expect(isDirReadme('en/docs/README.md', '/en/', 'docs')).toBe(true)
+  })
+
+  it('matches the README of the site root', () => {
+    expect(isDirReadme('README.md', '/')).toBe(true)
+    expect(isDirReadme('/README.md', '/')).toBe(true)
+    expect(isDirReadme('\\README.md', '/')).toBe(true)
+  })
+
+  it('does not match a README in a nested directory', () => {
+    // 子目录中的 README 不是集合根 README。
+    expect(isDirReadme('blog/guide/README.md', '/', 'blog')).toBe(false)
+    expect(isDirReadme('blog\\guide\\README.md', '/', 'blog')).toBe(false)
+    expect(isDirReadme('guide/README.md', '/')).toBe(false)
+    // 目录名只是后缀的一部分时同样不匹配。
+    expect(isDirReadme('myblog/README.md', '/', 'blog')).toBe(false)
   })
 })
 

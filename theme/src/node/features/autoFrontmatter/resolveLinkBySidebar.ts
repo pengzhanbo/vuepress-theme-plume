@@ -32,10 +32,11 @@ function getSidebarLink(items: 'auto' | (string | ThemeSidebarItem)[] | undefine
     }
     else {
       const { prefix = '', dir: subDir = '', link: subLink = '/', items: subItems } = item
+      const subDirectory = prefix[0] === '/' ? prefix : path.join(dir, prefix || subDir)
       getSidebarLink(
         subItems,
         path.join(link, subLink),
-        path.join(prefix[0] === '/' ? prefix : `/${dir}/${prefix || subDir}`),
+        subDirectory,
         res,
       )
     }

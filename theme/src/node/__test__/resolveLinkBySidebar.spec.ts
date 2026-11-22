@@ -52,6 +52,17 @@ describe('resolveLinkBySidebar', () => {
       '/guide/advanced/': '/guide/',
       '/guide/faq/': '/guide/',
     })
+    expect(Object.keys(res).every(key => !key.includes('//'))).toBe(true)
+  })
+
+  it('keeps a single leading slash for nested groups under a collection prefix', () => {
+    const res = resolveLinkBySidebar(
+      [{ dir: 'blog', link: '/blog/', items: [{ dir: 'sub', items: ['a'] }] }],
+      '/docs',
+    )
+
+    // 父目录已带前导 `/`，拼接子目录时不能重复补 `/`。
+    expect(res).toEqual({ '/docs/blog/sub/': '/blog/' })
   })
 
   it('skips groups whose items are `auto` or undefined', () => {

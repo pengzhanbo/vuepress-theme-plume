@@ -2,7 +2,7 @@ import type { FileHandle } from 'node:fs/promises'
 import type { File } from '../types.js'
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { mapAsync } from '@pengzhanbo/utils'
+import { mapAsync, slash } from '@pengzhanbo/utils'
 
 /**
  * Maximum number of files read at the same time.
@@ -33,7 +33,8 @@ export async function readFiles(dir: string): Promise<File[]> {
     if (!(await fs.stat(filepath)).isFile())
       return undefined
     return {
-      filepath: file,
+      // 以 `/` 作为分隔符保存相对路径，避免 Windows 上的 `\` 泄漏到文件列表与日志中。
+      filepath: slash(file),
       content: await fs.readFile(filepath, 'utf-8'),
     }
   }, READ_CONCURRENCY)

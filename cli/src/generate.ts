@@ -3,6 +3,7 @@ import type { WriteFilesResult } from './utils/index.js'
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
+import { slash } from '@pengzhanbo/utils'
 import { BUILD_SCRIPT_PACKAGES, DeployType, Mode } from './constants.js'
 import { createPackageJson } from './packageJson.js'
 import { createRender } from './render.js'
@@ -181,7 +182,8 @@ async function createDocsFiles(data: ResolvedData): Promise<File[]> {
  */
 function updateFileListTarget(fileList: File[], target: string): File[] {
   return fileList.map(({ filepath, content, overwrite }) => ({
-    filepath: path.join(target, filepath),
+    // 文件列表中的相对路径统一使用 `/`，保证生成的路径在不同平台上保持一致。
+    filepath: slash(path.join(target, filepath)),
     content,
     overwrite,
   }))

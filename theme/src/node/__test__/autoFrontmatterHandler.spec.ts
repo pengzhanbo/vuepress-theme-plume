@@ -1,6 +1,5 @@
 import type { AutoFrontmatterData } from '../../shared/index.js'
 import type { MarkdownInfo } from '../features/markdown-source.js'
-import path from 'node:path'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 /**
@@ -50,7 +49,8 @@ function markdownInfo(
   data: AutoFrontmatterData = {} as AutoFrontmatterData,
 ): MarkdownInfo {
   return {
-    filepath: path.join('/abs', relativePath),
+    // 固定使用 POSIX 风格，避免平台差异干扰断言；生产代码会对路径做归一化。
+    filepath: `/abs/${relativePath}`,
     relativePath,
     raw: '',
     content: '',
@@ -97,6 +97,25 @@ describe('generateWithPost', () => {
 
     expect(data.title).toBe('Blog')
     expect(data.permalink).toBe('/blog/readme/')
+  })
+
+  it('recognizes the collection README when the file path uses Windows separators', async () => {
+    const info = {
+      ...markdownInfo('blog/README.md'),
+      filepath: 'C:\\project\\docs\\blog\\README.md',
+    } as MarkdownInfo
+    await generateMarkdownFrontmatter(info)
+
+    expect(info.data.title).toBe('Blog')
+    expect(info.data.permalink).toBe('/blog/readme/')
+  })
+
+  it('does not treat a nested README as the collection root README', async () => {
+    // 子目录中的 README 不是集合根 README：标题取目录名，permalink 保留 `readme` 段。
+    const data = await generate('blog/guide/README.md')
+
+    expect(data.title).toBe('guide')
+    expect(data.permalink).toBe('/blog/guide/readme/')
   })
 
   it('keeps the frontmatter that already exists', async () => {
@@ -272,6 +291,38 @@ describe('generateWithRemain', () => {
     expect(data.title).toBe('Home')
     expect(data.createTime).toBeUndefined()
     expect(data.permalink).toBeUndefined()
+  })
+
+  it('detects the root README when the relative path has a leading slash', async () => {
+    const info = {
+      ...markdownInfo('README.md'),
+      relativePath: '/README.md',
+    } as MarkdownInfo
+    await generateMarkdownFrontmatter(info)
+
+    expect(info.data.pageLayout).toBe('home')
+    expect(info.data.title).toBe('Home')
+  })
+
+  it('does not treat a nested README as the home page', async () => {
+    // 只有站点根目录的 README 才是首页，子目录 README 仍按普通页面处理。
+    const data = await generate('guide/README.md')
+
+    expect(data.pageLayout).toBeUndefined()
+    // 标题取目录名，而不是首页的 `Home`。
+    expect(data.title).toBe('guide')
+  })
+
+  it('does not treat a nested README with Windows separators as the home page', async () => {
+    const info = {
+      ...markdownInfo('guide/README.md'),
+      relativePath: 'guide\\README.md',
+      filepath: 'C:\\project\\docs\\guide\\README.md',
+    } as MarkdownInfo
+    await generateMarkdownFrontmatter(info)
+
+    expect(info.data.pageLayout).toBeUndefined()
+    expect(info.data.title).toBe('guide')
   })
 
   it('applies the global transform to the remaining files', async () => {

@@ -52,6 +52,17 @@ describe('resolveLinkBySidebar', () => {
       '/guide/advanced/': '/guide/',
       '/guide/faq/': '/guide/',
     })
+    expect(Object.keys(res).every(key => !key.includes('//'))).toBe(true)
+  })
+
+  it('keeps a single leading slash for nested groups under a collection prefix', () => {
+    const res = resolveLinkBySidebar(
+      [{ dir: 'blog', link: '/blog/', items: [{ dir: 'sub', items: ['a'] }] }],
+      '/docs',
+    )
+
+    // 父目录已带前导 `/`，拼接子目录时不能重复补 `/`。
+    expect(res).toEqual({ '/docs/blog/sub/': '/blog/' })
   })
 
   it('skips groups whose items are `auto` or undefined', () => {
@@ -74,6 +85,25 @@ describe('resolveLinkBySidebar', () => {
 
     // 以 `/` 开头的 prefix 直接作为目录，不再拼接父目录。
     expect(Object.keys(res)).toEqual(['/abs/'])
+  })
+
+  it('normalizes a non-canonical absolute prefix', () => {
+    const res = resolveLinkBySidebar(
+      [
+        {
+          prefix: 'guide',
+          link: '/guide/',
+          items: [
+            { prefix: '//abs//x/', items: ['a'] },
+            { prefix: '/abs/./y', items: ['b'] },
+          ],
+        },
+      ],
+      '/',
+    )
+
+    // 绝对 prefix 保留"不拼接父目录"的行为，但需要规范化后才能与页面目录键匹配。
+    expect(Object.keys(res)).toEqual(['/abs/x/', '/abs/y/'])
   })
 
   it('accumulates the link of nested groups', () => {

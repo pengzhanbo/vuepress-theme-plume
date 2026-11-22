@@ -28,7 +28,9 @@ describe('readFiles', () => {
     const map = new Map(files.map(file => [file.filepath, file.content]))
 
     expect(map.get('a.txt')).toBe('A')
-    expect(map.get(path.join('sub', 'b.txt'))).toBe('B')
+    // 返回值中的相对路径始终使用 `/` 作为分隔符，与运行平台无关。
+    expect(map.get('sub/b.txt')).toBe('B')
+    expect(files.every(file => !file.filepath.includes('\\'))).toBe(true)
     // 目录本身不是文件，不应出现在结果中。
     expect(files.map(file => file.filepath)).not.toContain('sub')
   })

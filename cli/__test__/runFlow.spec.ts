@@ -1,4 +1,5 @@
 import type { PromptResult } from '../src/types.js'
+import path from 'node:path'
 import process from 'node:process'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { DeployType, Mode } from '../src/constants.js'
@@ -200,11 +201,14 @@ describe('run > success flow', () => {
 
   it('lists the skipped files so the user knows what was not overwritten', async () => {
     hoisted.prompt.mockResolvedValue({ ...promptResult, git: false, install: false })
-    const skipped = `${process.cwd()}/my-project/docs/existing.md`
+    const skipped = path.join(process.cwd(), 'my-project', 'docs', 'existing.md')
     hoisted.generate.mockResolvedValue({ written: [], skipped: [skipped] })
 
     await run(Mode.create)
 
-    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('docs/existing.md'))
+    // 提示中的路径由 `path.relative()` 生成，使用运行平台的路径分隔符。
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining(path.join('my-project', 'docs', 'existing.md')),
+    )
   })
 })

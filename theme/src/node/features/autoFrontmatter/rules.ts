@@ -16,6 +16,7 @@ import {
   getCurrentName,
   getFileCreateTime,
   getPermalinkByFilepath,
+  isDirReadme,
   isReadme,
 } from './helper.js'
 import { resolveLinkBySidebar } from './resolveLinkBySidebar.js'
@@ -110,7 +111,7 @@ async function generateWithPost(
 
   const { title: et = true, createTime: ec = true, permalink: ep = true } = { ...fm, ...collection.autoFrontmatter }
   const transform = (collection.autoFrontmatter || {}).transform
-  const isRoot = context.filepath.endsWith(path.join(locale, collection.dir, 'README.md'))
+  const isRoot = isDirReadme(context.filepath, locale, collection.dir)
 
   if (et && !hasOwn(data, 'title')) {
     data.title = isRoot ? collection.title : getCurrentName(context.relativePath)
@@ -148,7 +149,7 @@ async function generateWithDoc(
 
   const { title: et = true, createTime: ec = true, permalink: ep = true } = { ...fm, ...collection.autoFrontmatter }
   const transform = (collection.autoFrontmatter || {}).transform
-  const isRoot = context.filepath.endsWith(path.join(locale, collection.dir, 'README.md'))
+  const isRoot = isDirReadme(context.filepath, locale, collection.dir)
 
   if (et && !hasOwn(data, 'title')) {
     data.title = isRoot ? collection.title : getCurrentName(context.relativePath)
@@ -208,7 +209,7 @@ async function generateWithRemain(
     return data
 
   const { title: et = true, createTime: ec = true, permalink: ep = true, transform } = fm
-  const isRoot = context.filepath.endsWith(path.join(locale, 'README.md'))
+  const isRoot = isDirReadme(context.filepath, locale)
 
   if (isRoot) {
     data.pageLayout = 'home'

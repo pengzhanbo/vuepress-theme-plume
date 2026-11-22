@@ -5,6 +5,7 @@ import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import { afterAll, afterEach, describe, expect, it, vi } from 'vitest'
+import { normalizePath } from '../utils/path.js'
 
 /**
  * `MarkdownSource` reads / writes markdown files without a VuePress app, so the tests
@@ -108,7 +109,9 @@ describe('markdownSource', () => {
 
     const info = await createSource().read('read.md')
 
-    expect(info.filepath).toBe(path.join(cwd, 'read.md'))
+    // `filepath` 始终使用 `/` 作为分隔符，因此需要把平台相关的结果归一化后再比较。
+    expect(info.filepath).toBe(normalizePath(path.join(cwd, 'read.md')))
+    expect(info.filepath).not.toContain('\\')
     expect(info.relativePath).toBe('read.md')
     expect(info.data).toEqual({ title: 'Old' })
     expect(info.content).toBe('# Hello\n')

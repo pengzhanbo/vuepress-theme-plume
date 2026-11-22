@@ -1,6 +1,5 @@
 import type { AutoFrontmatterData } from '../../shared/index.js'
 import type { MarkdownInfo } from '../features/markdown-source.js'
-import path from 'node:path'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 /**
@@ -50,7 +49,8 @@ function markdownInfo(
   data: AutoFrontmatterData = {} as AutoFrontmatterData,
 ): MarkdownInfo {
   return {
-    filepath: path.join('/abs', relativePath),
+    // 固定使用 POSIX 风格，避免平台差异干扰断言；生产代码会对路径做归一化。
+    filepath: `/abs/${relativePath}`,
     relativePath,
     raw: '',
     content: '',
@@ -97,6 +97,18 @@ describe('generateWithPost', () => {
 
     expect(data.title).toBe('Blog')
     expect(data.permalink).toBe('/blog/readme/')
+  })
+
+  it('recognizes the collection README when the path uses Windows separators', async () => {
+    // Windows 上由 `node:path` 拼接的文件路径使用 `\`，根 README 的判定不应因此失效。
+    const info = {
+      ...markdownInfo('blog/README.md'),
+      filepath: 'C:\\project\\docs\\blog\\README.md',
+    } as MarkdownInfo
+    await generateMarkdownFrontmatter(info)
+
+    expect(info.data.title).toBe('Blog')
+    expect(info.data.permalink).toBe('/blog/readme/')
   })
 
   it('keeps the frontmatter that already exists', async () => {
@@ -272,6 +284,17 @@ describe('generateWithRemain', () => {
     expect(data.title).toBe('Home')
     expect(data.createTime).toBeUndefined()
     expect(data.permalink).toBeUndefined()
+  })
+
+  it('detects the root README when the path uses Windows separators', async () => {
+    const info = {
+      ...markdownInfo('README.md'),
+      filepath: 'C:\\project\\docs\\README.md',
+    } as MarkdownInfo
+    await generateMarkdownFrontmatter(info)
+
+    expect(info.data.pageLayout).toBe('home')
+    expect(info.data.title).toBe('Home')
   })
 
   it('applies the global transform to the remaining files', async () => {

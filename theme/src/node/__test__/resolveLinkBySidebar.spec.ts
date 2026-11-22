@@ -87,6 +87,25 @@ describe('resolveLinkBySidebar', () => {
     expect(Object.keys(res)).toEqual(['/abs/'])
   })
 
+  it('normalizes a non-canonical absolute prefix', () => {
+    const res = resolveLinkBySidebar(
+      [
+        {
+          prefix: 'guide',
+          link: '/guide/',
+          items: [
+            { prefix: '//abs//x/', items: ['a'] },
+            { prefix: '/abs/./y', items: ['b'] },
+          ],
+        },
+      ],
+      '/',
+    )
+
+    // 绝对 prefix 保留"不拼接父目录"的行为，但需要规范化后才能与页面目录键匹配。
+    expect(Object.keys(res)).toEqual(['/abs/x/', '/abs/y/'])
+  })
+
   it('accumulates the link of nested groups', () => {
     const res = resolveLinkBySidebar(
       [

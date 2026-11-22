@@ -1,6 +1,6 @@
 import type { Page } from 'vuepress'
 import type { MarkdownDemoEnv } from '../../shared/demo.js'
-import { ensureEndingSlash } from 'vuepress/shared'
+import { slash } from '@pengzhanbo/utils'
 import { path } from 'vuepress/utils'
 
 export function extendsPageWithDemo(page: Page): void {
@@ -15,10 +15,12 @@ export function extendsPageWithDemo(page: Page): void {
     page.deps.push(...deps)
   }
 
-  const gitIncludes = demoFiles
-    .filter(({ gitignore }) => !gitignore)
-    .map(demo => page.filePath && demo.path.replace(ensureEndingSlash(path.dirname(page.filePath)), ''))
-    .filter(item => item && item[0] !== '/') as string[]
+  const gitIncludes = page.filePath
+    ? demoFiles
+        .filter(({ gitignore }) => !gitignore)
+        .map(demo => path.relative(path.dirname(page.filePath!), slash(demo.path)))
+        .filter(relative => relative && !relative.startsWith('..') && !path.isAbsolute(relative))
+    : []
 
   if (gitIncludes.length) {
     ((page.frontmatter.gitInclude as string[] | undefined) ??= []).push(...gitIncludes)

@@ -2,6 +2,7 @@ import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
 import path from 'node:path'
+import { slash } from '@pengzhanbo/utils'
 import { colors } from 'vuepress/utils'
 import { logger } from '../utils/logger.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'
@@ -117,7 +118,7 @@ const STYLE_RE = /<style.*?>/
 function transformImports(code: string, filepath: string): string {
   return code.replace(IMPORT_RE, (matched, url) => {
     if (url.startsWith('./') || url.startsWith('../')) {
-      return matched.replace(url, `${path.resolve(path.dirname(filepath), url)}`)
+      return matched.replace(url, slash(path.resolve(path.dirname(filepath), url)))
     }
     return matched
   })

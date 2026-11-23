@@ -22,7 +22,7 @@ export default defineConfig(() => {
       ...DEFAULT_OPTIONS,
       entry: ['./src/node/index.ts'],
       outDir: './dist/node',
-      target: 'node22.22.0',
+      target: 'node22.12.0',
     })
   }
 

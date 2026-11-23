@@ -50,7 +50,7 @@ export default defineConfig((cli) => {
       entry: ['./src/node/index.ts'],
       outDir: './dist/node',
       deps: { neverBundle: [...sharedExternal, '@pinyin-pro/data/complete'] },
-      target: 'node22.22.0',
+      target: 'node22.12.0',
       watch: false,
     })
   }

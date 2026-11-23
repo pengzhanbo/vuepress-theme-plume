@@ -24,7 +24,7 @@ vi.mock('../src/utils/index.js', () => ({
 /** CLI 自身 package.json 的固定元数据，用例可按需覆盖。 */
 const context = {
   'version': '1.0.0',
-  'engines': { node: '^22.22.0 || >=24.0.0' },
+  'engines': { node: '^22.12.0 || >=24.0.0' },
   'plume-deps': {
     'vuepress': '2.0.0',
     'http-server': '14.0.0',
@@ -109,7 +109,7 @@ describe('createPackageJson', () => {
     // 生成工程的 Node 版本要求来自 CLI 自身 package.json 的 engines.node。
     // The generated project's Node requirement comes from the CLI's own
     // package.json `engines.node`.
-    expect(json.engines).toEqual({ node: '^22.22.0 || >=24.0.0' })
+    expect(json.engines).toEqual({ node: '^22.12.0 || >=24.0.0' })
     expect(json.scripts['vp-update']).toBe('npx vp-update')
   })
 

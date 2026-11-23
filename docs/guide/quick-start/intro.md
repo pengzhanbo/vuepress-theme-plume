@@ -76,7 +76,7 @@ VuePress 是一个[静态站点生成器](https://en.wikipedia.org/wiki/Static_s
 `vuepress-theme-plume` 基于以下核心技术构建：
 
 - **VuePress**：{{ vuepressVersion }} 及以上版本
-- **Node.js**：22.22.0 及以上版本（推荐使用 LTS 版本）
+- **Node.js**：22.12.0 及以上版本（推荐使用 LTS 版本）
 - **Vue**：3.5.0 及以上版本
 
 ::: warning 注意

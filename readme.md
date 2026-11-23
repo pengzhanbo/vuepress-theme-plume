@@ -167,7 +167,7 @@ npm run docs:build
 
 开发要求：
 
-- Node.js 22.22.0+
+- Node.js 22.12.0+
 - pnpm 12.6.0+
 
 本地开发：

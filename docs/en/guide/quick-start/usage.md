@@ -10,10 +10,10 @@ tags:
 
 ## Environment Requirements
 
-- [Node.js](https://nodejs.org/): **^22.22.0 or >= 24.0.0** [+node-versions]
+- [Node.js](https://nodejs.org/): **^22.12.0 or >= 24.0.0** [+node-versions]
 - Package Manager: [npm 9+](https://www.npmjs.com/), [pnpm 12+](https://pnpm.io/), or [Yarn 4+](https://yarnpkg.com/)
 
-[+node-versions]: **^22.22.0:** Versions `22.22.0` and above but below `23.0.0`
+[+node-versions]: **^22.12.0:** Versions `22.12.0` and above but below `23.0.0`
 [+node-versions]: **>= 24.0.0:** Versions `24.0.0` and above
 
 :::: details How to Install Environment Dependencies?

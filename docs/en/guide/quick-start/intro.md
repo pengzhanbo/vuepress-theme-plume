@@ -95,7 +95,7 @@ If you encounter any issues or have suggestions for improvement, please feel fre
 `vuepress-theme-plume` is built on the following core technologies:
 
 - **VuePress**: {{ vuepressVersion }} and above
-- **Node.js**: 22.22.0 and above (LTS version recommended)
+- **Node.js**: 22.12.0 and above (LTS version recommended)
 - **Vue**: 3.5.0 and above
 
 ::: warning Note

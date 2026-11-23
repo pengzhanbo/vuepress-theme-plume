@@ -19,7 +19,7 @@ In the `plugins` directory:
 
 Development requirements:
 
-- [Node.js](http://nodejs.org/) version 22.22.0+
+- [Node.js](http://nodejs.org/) version 22.12.0+
 - [pnpm](https://pnpm.io/) version `>=12.6.0`
 
 Clone the repository and install dependencies:

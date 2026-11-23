@@ -216,7 +216,7 @@ It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 
 *[HTML]: Hyper Text Markup Language
 
-### [Custom containers](https://github.com/markdown-it/markdown-it-container)
+### [Custom containers](https://mdit-plugins.github.io/container.html)
 
 ::: warning
 *here be dragons*

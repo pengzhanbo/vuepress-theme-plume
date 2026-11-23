@@ -166,6 +166,7 @@ catalogs:
     '@markmap/toolbar': ^1.1.1
     '@markmap/view': ^1.1.1
     '@mdit/plugin-attrs': ^1.5.0
+    '@mdit/plugin-container': ^2.2.0
     '@mdit/plugin-footnote': ^1.2.0
     '@mdit/plugin-mark': ^2.2.0
     '@mdit/plugin-sub': ^1.2.0
@@ -195,7 +196,6 @@ catalogs:
     lru-cache: ^11.5.3
     mark.js: ^8.11.1
     markdown-it-cjk-friendly: ^3.0.0
-    markdown-it-container: ^4.0.0
     minisearch: ^7.2.0
     nano-spawn: ^2.1.0
     nanoid: ^6.0.2

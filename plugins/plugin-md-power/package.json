@@ -94,6 +94,7 @@
   "dependencies": {
     "@floating-ui/vue": "catalog:prod",
     "@mdit/plugin-attrs": "catalog:prod",
+    "@mdit/plugin-container": "catalog:prod",
     "@mdit/plugin-footnote": "catalog:prod",
     "@mdit/plugin-mark": "catalog:prod",
     "@mdit/plugin-sub": "catalog:prod",
@@ -109,7 +110,6 @@
     "local-pkg": "catalog:prod",
     "lru-cache": "catalog:prod",
     "markdown-it-cjk-friendly": "catalog:prod",
-    "markdown-it-container": "catalog:prod",
     "nanoid": "catalog:prod",
     "p-map": "catalog:prod",
     "picomatch": "catalog:prod",

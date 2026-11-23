@@ -214,7 +214,7 @@ _紧凑样式：_
 
 *[HTML]: 超文本标记语言
 
-### [自定义容器](https://github.com/markdown-it/markdown-it-container)
+### [自定义容器](https://mdit-plugins.github.io/zh/container.html)
 
 ::: warning
 *此处有龙*

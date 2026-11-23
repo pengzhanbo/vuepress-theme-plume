@@ -1,8 +1,8 @@
-import type { RendererRule, Token } from 'markdown-it'
+import type { Token } from 'markdown-it'
 import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
 import type { DemoContainerRender, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
-import container from 'markdown-it-container'
+import { container } from '@mdit/plugin-container'
 import { createEmbedRuleBlock } from '../embed/createEmbedRuleBlock.js'
 import { logger } from '../utils/logger.js'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
@@ -58,34 +58,21 @@ const renderMap: Record<string, DemoContainerRender> = {
 
 export function demoContainer(app: App, md: Markdown): void {
   let currentRender: DemoContainerRender | undefined
-  const render: RendererRule = (
-    tokens: Token[],
-    index: number,
-    _,
-    env = {},
-  ): string => {
-    const token = tokens[index]
-
-    if (token.nesting === 1) {
+  md.use(container, {
+    name: 'demo',
+    openRenderer: (tokens, index, _, env = {}) => {
+      const token = tokens[index]
       const meta = getContainerMeta(token.info)
       meta.url = `${index}`
       currentRender = renderMap[meta.type]
-      return currentRender?.before(
-        app,
-        md,
-        env,
-        meta,
-        parseCodeMapping(tokens, index, currentRender.token),
-      ) || ''
-    }
-    else {
+      return currentRender?.before(app, md, env, meta, parseCodeMapping(tokens, index, currentRender.token)) || ''
+    },
+    closeRenderer: () => {
       const res = currentRender?.after() || ''
       currentRender = undefined
       return res
-    }
-  }
-
-  md.use(container, 'demo', { render })
+    },
+  })
 }
 
 function parseCodeMapping(

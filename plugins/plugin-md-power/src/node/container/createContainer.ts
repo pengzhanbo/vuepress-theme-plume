@@ -1,6 +1,6 @@
-import type { RendererRule, StateBlock } from 'markdown-it'
+import type { RendererRule, StateBlock, Token } from 'markdown-it'
 import type { Markdown } from 'vuepress/markdown'
-import container from 'markdown-it-container'
+import { container } from '@mdit/plugin-container'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 
 /**
@@ -36,33 +36,24 @@ export interface ContainerOptions {
  * 创建 markdown-it 的自定义容器插件
  *
  * @param md - Markdown-it instance / Markdown-it 实例
- * @param type - Container type (e.g., 'tip', 'warning') / 容器类型（如 'tip', 'warning' 等）
+ * @param name - Container name (e.g., 'tip', 'warning') / 容器名称（如 'tip', 'warning' 等）
  * @param options - Optional before/after render hooks / 可选的 before/after 渲染钩子
  * @param options.before - Callback for rendering container opening tag / 渲染容器起始标签时的回调函数
  * @param options.after - Callback for rendering container closing tag / 渲染容器结束标签时的回调函数
  */
 export function createContainerPlugin(
   md: Markdown,
-  type: string,
+  name: string,
   { before, after }: ContainerOptions = {},
 ): void {
-  // Custom render rule
-  const render: RendererRule = (tokens, index, options, env): string => {
-    const token = tokens[index]
-    // Extract info after :::
-    const info = token.info.trim().slice(type.length).trim() || ''
-    if (token.nesting === 1) {
-      // Container opening tag
-      return before?.(info, tokens, index, options, env) ?? `<div class="custom-container ${type}">`
-    }
-    else {
-      // Container closing tag
-      return after?.(info, tokens, index, options, env) ?? '</div>'
-    }
-  }
-
-  // Register markdown-it-container plugin
-  md.use(container, type, { render })
+  const getInfo = (tokens: Token[], index: number): string => tokens[index].info.trim().slice(name.length).trim() || ''
+  md.use(container, {
+    name,
+    openRenderer: (tokens, index, options, env) =>
+      before?.(getInfo(tokens, index), tokens, index, options, env) ?? `<div class="custom-container ${name}">`,
+    closeRenderer: (tokens, index, options, env) =>
+      after?.(getInfo(tokens, index), tokens, index, options, env) ?? '</div>',
+  })
 }
 
 /**

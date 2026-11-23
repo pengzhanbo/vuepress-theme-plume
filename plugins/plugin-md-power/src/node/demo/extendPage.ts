@@ -1,5 +1,5 @@
 import type { Page } from 'vuepress'
-import type { MarkdownDemoEnv } from '../../shared/demo.js'
+import type { MarkdownDemoEnv } from '../../shared/index.js'
 import { slash } from '@pengzhanbo/utils'
 import { path } from 'vuepress/utils'
 

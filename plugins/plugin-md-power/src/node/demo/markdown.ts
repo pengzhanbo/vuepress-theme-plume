@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
-import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
+import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/index.js'
 import { colors } from 'vuepress/utils'
 import { logger } from '../utils/logger.js'
 import { stringifyAttrs } from '../utils/stringifyAttrs.js'

@@ -1,12 +1,12 @@
 import type { OutputChunk } from 'rolldown'
 import { randomUUID } from 'node:crypto'
 import { tmpdir } from 'node:os'
+import { LRUCache } from '@pengzhanbo/utils'
 import { isPackageExists } from 'local-pkg'
-import { LRUCache } from 'lru-cache'
 import { fs, hash, path } from 'vuepress/utils'
 import { interopDefault } from '../../utils/package.js'
 
-const cache = new LRUCache({ max: 64 })
+const cache = new LRUCache({ maxSize: 64 })
 
 const compiler = {
   script: importer(async () => {

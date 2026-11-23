@@ -108,7 +108,6 @@
     "find-file-icon": "catalog:prod",
     "gray-matter": "catalog:prod",
     "local-pkg": "catalog:prod",
-    "lru-cache": "catalog:prod",
     "markdown-it-cjk-friendly": "catalog:prod",
     "nanoid": "catalog:prod",
     "p-map": "catalog:prod",

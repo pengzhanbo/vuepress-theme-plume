@@ -7,7 +7,7 @@ import process from 'node:process'
 import { colors } from 'vuepress/utils'
 import { logger } from '../../utils/logger.js'
 
-const require = createRequire(process.cwd())
+const require = createRequire(path.join(process.cwd(), 'fake.js'))
 
 const SOURCE_ALIAS = '@source/'
 

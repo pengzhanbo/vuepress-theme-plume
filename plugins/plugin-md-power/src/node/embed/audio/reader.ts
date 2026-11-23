@@ -1,5 +1,5 @@
-import type { StateInline } from 'markdown-it'
 import type { Markdown } from 'vuepress/markdown'
+import type { InlineRule } from '../../types/index.js'
 import { resolveAttrs } from '../../utils/resolveAttrs.js'
 import { stringifyAttrs } from '../../utils/stringifyAttrs.js'
 
@@ -12,7 +12,7 @@ interface AudioReaderTokenMeta extends Record<string, unknown> {
   title?: string
 }
 
-function audioReader(state: StateInline, silent: boolean): boolean {
+const audioReader: InlineRule = (state, silent) => {
   const max = state.posMax
   let start = state.pos
   let href = ''

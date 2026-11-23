@@ -4,8 +4,8 @@
  * !!The text here will be hidden by a spoiler, and can only be revealed by clicking or hovering!!
  */
 
-import type { StateInline } from 'markdown-it'
 import type { Markdown } from 'vuepress/markdown'
+import type { InlineRule } from '../types/index.js'
 
 /**
  * Plot inline rule definition
@@ -16,7 +16,7 @@ import type { Markdown } from 'vuepress/markdown'
  * @param silent - Silent mode / 静默模式
  * @returns Whether matched / 是否匹配
  */
-function plotDef(state: StateInline, silent: boolean): boolean {
+const plotDef: InlineRule = (state, silent) => {
   let found = false
   const max = state.posMax
   const start = state.pos

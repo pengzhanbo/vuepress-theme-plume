@@ -6,6 +6,7 @@
 
 import type { Env, StateBlock, StateCore, Token } from 'markdown-it'
 import type { Markdown } from 'vuepress/markdown'
+import type { BlockRule, CoreRule } from '../types/index.js'
 import { isEmptyObject, objectKeys, objectMap } from '@pengzhanbo/utils'
 import { cleanHtmlAllTag } from '../utils/cleanHtml.js'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
@@ -95,12 +96,7 @@ export function abbrPlugin(md: Markdown, globalAbbreviations: Record<string, str
    * @param silent - Silent mode / 静默模式
    * @returns Whether matched / 是否匹配
    */
-  const abbrDefinition = (
-    state: AbbrStateBlock,
-    startLine: number,
-    _endLine: number,
-    silent: boolean,
-  ): boolean => {
+  const abbrDefinition: BlockRule = (state: AbbrStateBlock, startLine, _endLine, silent) => {
     let labelEnd = -1
     let pos = state.bMarks[startLine] + state.tShift[startLine]
     const max = state.eMarks[startLine]
@@ -156,7 +152,7 @@ export function abbrPlugin(md: Markdown, globalAbbreviations: Record<string, str
    *
    * @param state - State core / 核心状态
    */
-  const abbrReplace = (state: AbbrStateCore): void => {
+  const abbrReplace: CoreRule = (state: AbbrStateCore) => {
     const tokens = state.tokens
     const { abbreviations: localAbbreviations } = state.env
 

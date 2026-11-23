@@ -1,5 +1,6 @@
 import type { Env, MarkdownItOptions, RendererRule, StateBlock, StateInline, Token } from 'markdown-it'
 import type { Markdown } from 'vuepress/markdown'
+import type { BlockRule, InlineRule } from '../types/index.js'
 import { objectMap, toArray } from '@pengzhanbo/utils'
 import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv'
 
@@ -102,7 +103,7 @@ interface AnnotationStateInline extends StateInline {
  * @param silent - Silent mode / 静默模式
  * @returns Whether matched / 是否匹配
  */
-function annotationDef(_state: StateBlock, startLine: number, endLine: number, silent: boolean): boolean {
+const annotationDef: BlockRule = (_state, startLine, endLine, silent) => {
   const state = _state as AnnotationStateBlock
   const start = state.bMarks[startLine] + state.tShift[startLine]
   const max = state.eMarks[startLine]
@@ -177,7 +178,7 @@ function annotationDef(_state: StateBlock, startLine: number, endLine: number, s
  * @param silent - Silent mode / 静默模式
  * @returns Whether matched / 是否匹配
  */
-function annotationRef(_state: StateInline, silent: boolean): boolean {
+const annotationRef: InlineRule = (_state, silent) => {
   const state = _state as AnnotationStateInline
   const start = state.pos
   const max = state.posMax

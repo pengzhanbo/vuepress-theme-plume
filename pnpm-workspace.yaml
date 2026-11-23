@@ -193,7 +193,6 @@ catalogs:
     js-yaml: ^5.5.0
     katex: ^0.19.1
     local-pkg: ^2.0.0
-    lru-cache: ^11.5.3
     mark.js: ^8.11.1
     markdown-it-cjk-friendly: ^3.0.0
     minisearch: ^7.2.0

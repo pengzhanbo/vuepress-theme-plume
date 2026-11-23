@@ -1,7 +1,7 @@
 import type { Token } from 'markdown-it'
 import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
-import type { DemoContainerRender, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
+import type { DemoContainerRender, DemoMeta, MarkdownDemoEnv } from '../../shared/index.js'
 import { container } from '@mdit/plugin-container'
 import { createEmbedRuleBlock } from '../embed/createEmbedRuleBlock.js'
 import { logger } from '../utils/logger.js'

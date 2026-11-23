@@ -8,8 +8,8 @@
  * 插件提供的是对该语法的兼容性支持，并非实现其完全的功能。
  */
 
-import type { StateInline } from 'markdown-it'
 import type { Markdown } from 'vuepress/markdown'
+import type { InlineRule } from '../types/index.js'
 import { ensureLeadingSlash, isLinkHttp } from 'vuepress/shared'
 import { path } from 'vuepress/utils'
 import { resolvePaths } from '../enhance/links.js'
@@ -22,7 +22,7 @@ interface WikiLinkMeta extends Record<string, unknown> {
   titles: string[]
 }
 
-function wikiLinkDef(state: StateInline, silent: boolean): boolean {
+const wikiLinkDef: InlineRule = (state, silent) => {
   let found = false
   const max = state.posMax
   const start = state.pos

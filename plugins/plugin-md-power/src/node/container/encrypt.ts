@@ -1,14 +1,14 @@
 import type { App } from 'vuepress/core'
 import type { Markdown } from 'vuepress/markdown'
-import type { EncryptSnippetOptions } from '../../shared/encrypt'
+import type { EncryptSnippetOptions } from '../../shared/index.js'
 import { getRandomValues } from 'node:crypto'
 import { debounce, limitAsync, objectKeys } from '@pengzhanbo/utils'
 import { encodeData, ensureLeadingSlash } from '@vuepress/helper'
 import { colors, fs, hash } from 'vuepress/utils'
-import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv'
-import { encryptContent } from '../utils/encryptContent'
-import { logger } from '../utils/logger'
-import { createContainerSyntaxPlugin } from './createContainer'
+import { cleanMarkdownEnv } from '../utils/cleanMarkdownEnv.js'
+import { encryptContent } from '../utils/encryptContent.js'
+import { logger } from '../utils/logger.js'
+import { createContainerSyntaxPlugin } from './createContainer.js'
 
 /**
  * Encryption options

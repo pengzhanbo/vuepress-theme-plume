@@ -1,5 +1,6 @@
-import type { RendererRule, StateBlock, Token } from 'markdown-it'
+import type { RendererRule, Token } from 'markdown-it'
 import type { Markdown } from 'vuepress/markdown'
+import type { BlockRule } from '../types/index.js'
 import { container } from '@mdit/plugin-container'
 import { resolveAttrs } from '../utils/resolveAttrs.js'
 
@@ -96,7 +97,7 @@ export function createContainerSyntaxPlugin(
    * @param silent - Silent mode / 是否为静默模式
    * @returns Whether matched / 是否匹配到自定义容器
    */
-  function defineContainer(state: StateBlock, startLine: number, endLine: number, silent: boolean): boolean {
+  const defineContainer: BlockRule = (state, startLine, endLine, silent) => {
     const start = state.bMarks[startLine] + state.tShift[startLine]
     const max = state.eMarks[startLine]
     let pos = start

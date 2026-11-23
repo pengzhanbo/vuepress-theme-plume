@@ -1,4 +1,4 @@
-import type { DemoFile, MarkdownDemoEnv } from '../../../shared/demo.js'
+import type { DemoFile, MarkdownDemoEnv } from '../../../shared/index.js'
 import { slash } from '@pengzhanbo/utils'
 
 const SCRIPT_RE = /<script\b[^>]*>/

@@ -1,6 +1,6 @@
 import type { App } from 'vuepress'
 import type { Markdown } from 'vuepress/markdown'
-import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/demo.js'
+import type { DemoContainerRender, DemoFile, DemoMeta, MarkdownDemoEnv } from '../../shared/index.js'
 import path from 'node:path'
 import { slash } from '@pengzhanbo/utils'
 import { colors } from 'vuepress/utils'

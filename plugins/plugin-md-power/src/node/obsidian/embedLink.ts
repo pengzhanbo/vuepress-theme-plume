@@ -17,6 +17,7 @@
 import type { StateBlock, StateInline } from 'markdown-it'
 import type { App } from 'vuepress'
 import type { Markdown, MarkdownEnv } from 'vuepress/markdown'
+import type { BlockRule, InlineRule } from '../types/index.js'
 import { attempt } from '@pengzhanbo/utils'
 import grayMatter from 'gray-matter'
 import { ensureLeadingSlash, isLinkHttp } from 'vuepress/shared'
@@ -39,7 +40,7 @@ const EXTENSION_IMAGES: string[] = ['.jpg', '.jpeg', '.png', '.gif', '.avif', '.
 const EXTENSION_AUDIOS: string[] = ['.mp3', '.flac', '.wav', '.ogg', '.opus', '.webm', '.acc']
 const EXTENSION_VIDEOS: string[] = SUPPORTED_VIDEO_TYPES.map(ext => `.${ext}`)
 
-function blockEmbedLinkDef(state: StateBlock, startLine: number, endLine: number, silent: boolean): boolean {
+const blockEmbedLinkDef: BlockRule = (state, startLine, endLine, silent) => {
   const start = state.bMarks[startLine] + state.tShift[startLine]
   const max = state.eMarks[startLine]
 
@@ -78,7 +79,7 @@ function blockEmbedLinkDef(state: StateBlock, startLine: number, endLine: number
   return true
 }
 
-function inlineEmbedLinkDef(state: StateInline, silent: boolean): boolean {
+const inlineEmbedLinkDef: InlineRule = (state, silent) => {
   let found = false
   const max = state.posMax
   const start = state.pos

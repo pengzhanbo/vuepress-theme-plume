@@ -10,9 +10,9 @@
  * @see - https://obsidian.md/zh/help/callouts
  */
 
-import type { StateBlock } from 'markdown-it'
 import type { Markdown } from 'vuepress/markdown'
 import type { ObsidianCalloutOptions } from '../../shared/index.js'
+import type { BlockRule } from '../types/index.js'
 import { capitalize, objectEntries, uniq } from '@pengzhanbo/utils'
 import { ensureLeadingSlash } from '@vuepress/helper'
 import { resolveLocalePath } from 'vuepress/shared'
@@ -37,7 +37,7 @@ const calloutAlias = objectEntries(calloutsToAlerts)
     return acc
   }, {} as Record<string, string>)
 
-function calloutsDef(state: StateBlock, startLine: number, endLine: number, silent: boolean): boolean {
+const calloutsDef: BlockRule = (state, startLine, endLine, silent) => {
   // if it's indented more than 3 spaces, it should be a code block
   if (state.sCount[startLine] - state.blkIndent >= 4)
     return false

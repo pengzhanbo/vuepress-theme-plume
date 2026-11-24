@@ -51,9 +51,6 @@ export async function prepareConfigFile(app: App, options: MarkdownPowerPluginOp
   if (iconSetup)
     setupStmts.push(iconSetup)
 
-  imports.add(`import { setupMarkHighlight } from '${CLIENT_FOLDER}composables/mark.js'`)
-  setupStmts.push(`setupMarkHighlight(${JSON.stringify(options.mark === 'lazy' ? 'lazy' : 'eager')})`)
-
   const setupContent = setupStmts.length
     ? `    ${setupStmts.join('\n    ')}\n`
     : ''

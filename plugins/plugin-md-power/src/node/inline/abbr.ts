@@ -167,9 +167,6 @@ export function abbrPlugin(md: Markdown, globalAbbreviations: Record<string, str
       .map(escapeRE)
       .join('|')
 
-    // Every label was filtered out as unsafe (or the table is empty): an empty pattern
-    // would match at every position and never terminate the replacement loop.
-    // 所有标签都因不安全被过滤（或缩写表为空）：空模式会在任意位置匹配，导致替换循环无法结束。
     if (!abbreviationsRegExpText)
       return
 

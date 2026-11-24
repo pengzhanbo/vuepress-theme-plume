@@ -1,6 +1,3 @@
-/**
- * Mark
- * -------------------------------------------------------------------------- */
 mark {
   --vp-mark-text: currentcolor;
   --vp-mark-bg: transparent;
@@ -15,7 +12,6 @@ mark {
   background-repeat: no-repeat;
   background-position: 100% var(--vp-mark-bg-shift);
   background-size: 200%;
-  animation: var(--vp-mark-animation, mark-highlight 1.5s 0.5s forwards);
 }
 
 mark:where(.note) {
@@ -66,12 +62,9 @@ mark:where(.important) {
   --vp-mark-linear-color: #66c;
 }
 
-[data-mark-mode="lazy"] mark {
-  --vp-mark-animation: none;
-}
-
-[data-mark-mode="lazy"] mark.vp-mark-visible {
-  animation: mark-highlight 1.5s 0.2s forwards;
+mark.vp-mark.active,
+mark:not(.vp-mark) {
+  animation: var(--vp-mark-animation, mark-highlight 1.25s 0.5s forwards);
 }
 
 @keyframes mark-highlight {

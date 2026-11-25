@@ -11,11 +11,13 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import type { PDFEmbedType, PDFTokenMeta } from '../../shared/index.js'
+import type { PDFEmbedType, PDFOptions, PDFTokenMeta } from '../../shared/index.js'
 import { isiPad, isMobile, isSafari } from '@vuepress/helper/client'
 import { withBase } from 'vuepress/client'
 import { ensureEndingSlash, isLinkHttp } from 'vuepress/shared'
-import { pluginOptions } from '../options.js'
+
+declare const __MD_POWER_PDF__: boolean | PDFOptions
+const PDF_OPTIONS = __MD_POWER_PDF__
 
 /**
  * Build query string from PDF options.
@@ -56,13 +58,13 @@ export function renderPDF(
   embedType: PDFEmbedType,
   options: PDFTokenMeta,
 ): void {
-  if (!pluginOptions.pdf)
+  if (!PDF_OPTIONS)
     return
   url = isLinkHttp(url)
     ? url
     : new URL(withBase(url), typeof location !== 'undefined' ? location.href : '').toString()
 
-  const pdfOptions = pluginOptions.pdf === true ? {} : pluginOptions.pdf
+  const pdfOptions = PDF_OPTIONS === true ? {} : PDF_OPTIONS
   pdfOptions.pdfjsUrl ??= 'https://static.pengzhanbo.cn/pdfjs/'
   const pdfjsUrl = `${ensureEndingSlash(withBase(pdfOptions.pdfjsUrl))}web/viewer.html`
 

@@ -3,15 +3,18 @@ import type { PlotOptions } from '../../shared/index.js'
 import { onClickOutside, useMediaQuery } from '@vueuse/core'
 import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { usePageFrontmatter } from 'vuepress/client'
-import { pluginOptions } from '../options.js'
+
+declare const __MD_POWER_PLOT__: boolean | PlotOptions
 
 const props = defineProps<PlotOptions>()
+
+const plotOptions = __MD_POWER_PLOT__
 
 const matter = usePageFrontmatter()
 const isMobile = useMediaQuery('(max-width: 768px)')
 
 const plot = computed(() => {
-  const global = typeof pluginOptions.plot === 'object' ? pluginOptions.plot : {}
+  const global = typeof plotOptions === 'object' ? plotOptions : {}
   const current = (typeof matter.value.plot === 'object' ? matter.value.plot : {}) as PlotOptions
   return {
     trigger: isMobile.value ? 'click' : props.trigger ?? current.trigger ?? global.trigger ?? 'hover',

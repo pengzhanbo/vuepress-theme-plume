@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { provide, ref } from 'vue'
-import { INJECT_COLLAPSE_KEY } from '../options.js'
+import { INJECT_COLLAPSE_KEY } from '../symbols.js'
 
 const { accordion, index } = defineProps<{
   accordion?: boolean

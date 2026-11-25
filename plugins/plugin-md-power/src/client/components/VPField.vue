@@ -1,7 +1,14 @@
+<script lang="ts">
+import type { LocaleConfig } from 'vuepress'
+import type { FieldLocaleData } from '../../shared/index.js'
+
+declare const __MD_POWER_FIELD_LOCALES__: LocaleConfig<FieldLocaleData>
+export const FIELD_LOCALES = __MD_POWER_FIELD_LOCALES__
+</script>
+
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
-import { FIELD_LOCALES } from '../options.js'
 
 defineProps<{
   name: string

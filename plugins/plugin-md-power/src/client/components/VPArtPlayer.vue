@@ -1,3 +1,18 @@
+<script lang="ts">
+declare const __MD_POWER_INSTALLED__: {
+  dash: boolean
+  hls: boolean
+  mpegts: boolean
+}
+
+const installed = __MD_POWER_INSTALLED__
+const supportTypes: string[] = ['mp4', 'mp3', 'webm', 'ogg']
+
+installed.dash && supportTypes.push('mpd', 'dash')
+installed.hls && supportTypes.push('m3u8', 'hls')
+installed.mpegts && supportTypes.push('ts', 'flv')
+</script>
+
 <script setup lang="ts">
 import type ArtPlayer from 'artplayer'
 import type { Option as ArtPlayerInitOptions } from 'artplayer'
@@ -6,7 +21,6 @@ import { useCssVar } from '@vueuse/core'
 import { onMounted, onUnmounted, ref, toRefs } from 'vue'
 import { usePageLang, withBase } from 'vuepress/client'
 import { useSize } from '../composables/size.js'
-import { ART_PLAYER_SUPPORTED_VIDEO_TYPES, installed } from '../options.js'
 import Loading from './icons/Loading.vue'
 
 type CustomType = Record<string, (this: ArtPlayer, video: HTMLVideoElement, url: string, art: ArtPlayer) => any>
@@ -38,9 +52,7 @@ async function createPlayer() {
     return
 
   loaded.value = false
-  const { default: ArtPlayer } = await import(
-    /* webpackChunkName: "artplayer" */ 'artplayer',
-  )
+  const { default: ArtPlayer } = await import(/* webpackChunkName: "artplayer" */ 'artplayer')
   loaded.value = true
   const { src, type: _t, width: _w, height: _h, ratio: _r, ...opt } = props
   const { customType = {}, ...options } = opt
@@ -52,7 +64,7 @@ async function createPlayer() {
   const type = props.type ?? src.split('.').pop() ?? ''
   const url = isLinkHttp(src) ? src : withBase(src)
 
-  if (!ART_PLAYER_SUPPORTED_VIDEO_TYPES.includes(type)) {
+  if (!supportTypes.includes(type)) {
     console.error(`Unsupported video type: ${type}`)
     return
   }
@@ -78,7 +90,7 @@ async function createPlayer() {
 function initCustomType(type: string): CustomType {
   const customType: CustomType = {}
 
-  if ((type === 'mpd' || type === 'dash') && installed.dashjs) {
+  if ((type === 'mpd' || type === 'dash') && installed.dash) {
     customType[type] = async function (video, url, art) {
       const { supportsMediaSource, MediaPlayer } = (await import(/* webpackChunkName: "dashjs" */ 'dashjs'))
       if (supportsMediaSource()) {
@@ -96,7 +108,7 @@ function initCustomType(type: string): CustomType {
         video.src = url
         return
       }
-      if (!installed.hlsjs)
+      if (!installed.hls)
         return
 
       const Hls = (await import(/* webpackChunkName: "hls.js" */ 'hls.js')).default
@@ -109,7 +121,7 @@ function initCustomType(type: string): CustomType {
     }
   }
 
-  if ((type === 'ts' || type === 'flv') && installed.mpegtsjs) {
+  if ((type === 'ts' || type === 'flv') && installed.mpegts) {
     customType[type] = async function (video, url, art) {
       const mpegts = (await import(/* webpackChunkName: "mpegts.js" */ 'mpegts.js/dist/mpegts.js')).default
       if (mpegts.isSupported()) {

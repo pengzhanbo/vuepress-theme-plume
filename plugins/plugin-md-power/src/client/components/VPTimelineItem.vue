@@ -2,7 +2,7 @@
 import type { ComputedRef } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 import { computed, inject } from 'vue'
-import { INJECT_TIMELINE_KEY } from '../options.js'
+import { INJECT_TIMELINE_KEY } from '../symbols.js'
 
 const { time, type, card, line, icon, color, placement } = defineProps<{
   time?: string

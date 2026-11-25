@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, provide } from 'vue'
-import { INJECT_TIMELINE_KEY } from '../options.js'
+import { INJECT_TIMELINE_KEY } from '../symbols.js'
 
 const { horizontal, card, placement, line } = defineProps<{
   horizontal?: boolean

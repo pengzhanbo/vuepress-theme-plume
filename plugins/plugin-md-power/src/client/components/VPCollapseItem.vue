@@ -2,7 +2,7 @@
 import type { Ref } from 'vue'
 import { FadeInExpandTransition } from '@vuepress/helper/client'
 import { inject, ref, useId, watch } from 'vue'
-import { INJECT_COLLAPSE_KEY } from '../options.js'
+import { INJECT_COLLAPSE_KEY } from '../symbols.js'
 
 import '@vuepress/helper/transition/fade-in-height-expand.css'
 

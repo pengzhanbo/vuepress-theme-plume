@@ -1,3 +1,12 @@
+<script lang="ts">
+import type { LocaleConfig } from 'vuepress'
+import type { EncryptSnippetLocale } from '../../shared/index.js'
+
+declare const __MD_POWER_ENCRYPT_LOCALES__: LocaleConfig<EncryptSnippetLocale>
+
+const ENCRYPT_LOCALES = __MD_POWER_ENCRYPT_LOCALES__
+</script>
+
 <script setup lang="ts">
 import snippets from '@internal/encrypt-snippets'
 import { decodeData } from '@vuepress/helper/client'
@@ -5,7 +14,6 @@ import { useIntersectionObserver } from '@vueuse/core'
 import { computed, ref, useId, useTemplateRef } from 'vue'
 import { ClientOnly, onContentUpdated } from 'vuepress/client'
 import { useDecrypt } from '../composables/decrypt.js'
-import { ENCRYPT_LOCALES } from '../options.js'
 
 const { data, hint, pathLocale } = defineProps<{
   data: string

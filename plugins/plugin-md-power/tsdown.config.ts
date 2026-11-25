@@ -8,12 +8,7 @@ import { argv } from '../../scripts/tsdown-args.js'
 /**
  * Enumerate the TypeScript entry files of a client directory.
  *
- * New `src/client/composables/*.ts` (and `src/client/utils/*.ts`) files are picked up
- * automatically, so they no longer need to be registered in a hardcoded list.
- *
  * 枚举客户端目录下的 TypeScript 入口文件。
- * 新增的 `src/client/composables/*.ts`（以及 `src/client/utils/*.ts`）会被自动纳入构建，
- * 不再需要维护硬编码清单。
  *
  * @param dir - Directory relative to `src/client`, or `''` for the client root
  */

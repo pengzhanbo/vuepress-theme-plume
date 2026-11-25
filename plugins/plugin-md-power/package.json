@@ -96,7 +96,7 @@
     "@mdit/plugin-attrs": "catalog:prod",
     "@mdit/plugin-container": "catalog:prod",
     "@mdit/plugin-footnote": "catalog:prod",
-    "@mdit/plugin-mark": "catalog:prod",
+    "@mdit/plugin-inline-rule": "catalog:prod",
     "@mdit/plugin-sub": "catalog:prod",
     "@mdit/plugin-sup": "catalog:prod",
     "@mdit/plugin-tab": "catalog:prod",

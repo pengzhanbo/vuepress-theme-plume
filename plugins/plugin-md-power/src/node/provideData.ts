@@ -43,6 +43,7 @@ export function provideData(
   const icon = options.icon ?? { provider: 'iconify' }
 
   return {
+    __MD_POWER_MARK_MODE__: options.mark === 'lazy' ? 'lazy' : 'eager',
     __MD_POWER_INJECT_OPTIONS__: markdownOptions,
     __MD_POWER_DASHJS_INSTALLED__: isPackageExists('dashjs'),
     __MD_POWER_HLSJS_INSTALLED__: isPackageExists('hls.js'),

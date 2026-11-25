@@ -168,7 +168,7 @@ catalogs:
     '@mdit/plugin-attrs': ^1.5.0
     '@mdit/plugin-container': ^2.2.0
     '@mdit/plugin-footnote': ^1.2.0
-    '@mdit/plugin-mark': ^2.2.0
+    '@mdit/plugin-inline-rule': ^2.2.5
     '@mdit/plugin-sub': ^1.2.0
     '@mdit/plugin-sup': ^1.2.0
     '@mdit/plugin-tab': ^2.1.1

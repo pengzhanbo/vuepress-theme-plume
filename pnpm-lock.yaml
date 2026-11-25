@@ -376,9 +376,9 @@ catalogs:
     '@mdit/plugin-footnote':
       specifier: ^1.2.0
       version: 1.2.0
-    '@mdit/plugin-mark':
-      specifier: ^2.2.0
-      version: 2.2.0
+    '@mdit/plugin-inline-rule':
+      specifier: ^2.2.5
+      version: 2.2.5
     '@mdit/plugin-sub':
       specifier: ^1.2.0
       version: 1.2.0
@@ -892,9 +892,9 @@ importers:
       '@mdit/plugin-footnote':
         specifier: catalog:prod
         version: 1.2.0(markdown-it@15.0.3)
-      '@mdit/plugin-mark':
+      '@mdit/plugin-inline-rule':
         specifier: catalog:prod
-        version: 2.2.0(markdown-it@15.0.3)
+        version: 2.2.5(markdown-it@15.0.3)
       '@mdit/plugin-sub':
         specifier: catalog:prod
         version: 1.2.0(markdown-it@15.0.3)
@@ -1961,15 +1961,6 @@ packages:
     peerDependenciesMeta:
       katex:
         optional: true
-      markdown-it:
-        optional: true
-
-  '@mdit/plugin-mark@2.2.0':
-    resolution: {integrity: sha512-c9W5B7I1B+2GbZ54D0s92Zd+WpLA3j1o9J2cmQgFXit56zlCtafsoBiX+vouF+UgBMP2xI7g7uh9KwK3HT5hOg==}
-    engines: {node: '>=22'}
-    peerDependencies:
-      markdown-it: ^15.0.3
-    peerDependenciesMeta:
       markdown-it:
         optional: true
 
@@ -8208,13 +8199,6 @@ snapshots:
       '@mdit/plugin-tex': 1.3.0(markdown-it@15.0.3)
     optionalDependencies:
       katex: 0.19.1
-      markdown-it: 15.0.3
-
-  '@mdit/plugin-mark@2.2.0(markdown-it@15.0.3)':
-    dependencies:
-      '@mdit/helper': 1.2.1(markdown-it@15.0.3)
-      '@mdit/plugin-inline-rule': 2.2.5(markdown-it@15.0.3)
-    optionalDependencies:
       markdown-it: 15.0.3
 
   '@mdit/plugin-mathjax-slim@2.1.0(@mathjax/mathjax-newcm-font@4.1.3)(@mathjax/src@4.1.3)(markdown-it@15.0.3)':

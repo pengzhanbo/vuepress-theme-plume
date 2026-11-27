@@ -178,18 +178,18 @@ catalogs:
     '@shikijs/transformers': ^4.6.0
     '@vueuse/core': ^15.0.0
     '@vueuse/integrations': ^15.0.0
-    cac: ^7.1.0
+    cac: ^7.1.1
     chart.js: ^4.6.1
     chokidar: ^6.0.0
     dayjs: ^1.11.23
     echarts: ^6.1.0
     eta: ^4.6.0
-    find-file-icon: ^1.0.0
+    find-file-icon: ^1.1.0
     flowchart.ts: ^4.0.0
-    focus-trap: ^8.2.4
+    focus-trap: ^8.2.6
     gray-matter: ^4.0.3
     hash-wasm: ^4.13.0
-    js-tokens: ^10.0.0
+    js-tokens: ^10.0.1
     js-yaml: ^5.5.0
     katex: ^0.19.1
     local-pkg: ^2.0.0

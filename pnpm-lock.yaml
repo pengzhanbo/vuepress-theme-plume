@@ -404,8 +404,8 @@ catalogs:
       specifier: ^15.0.0
       version: 15.0.0
     cac:
-      specifier: ^7.1.0
-      version: 7.1.0
+      specifier: ^7.1.1
+      version: 7.1.1
     chart.js:
       specifier: ^4.6.1
       version: 4.6.1
@@ -419,14 +419,14 @@ catalogs:
       specifier: ^4.6.0
       version: 4.6.0
     find-file-icon:
-      specifier: ^1.0.0
-      version: 1.0.0
+      specifier: ^1.1.0
+      version: 1.1.0
     flowchart.ts:
       specifier: ^4.0.0
       version: 4.0.0
     focus-trap:
-      specifier: ^8.2.4
-      version: 8.2.4
+      specifier: ^8.2.6
+      version: 8.2.6
     gray-matter:
       specifier: ^4.0.3
       version: 4.0.3
@@ -434,8 +434,8 @@ catalogs:
       specifier: ^4.13.0
       version: 4.13.0
     js-tokens:
-      specifier: ^10.0.0
-      version: 10.0.0
+      specifier: ^10.0.1
+      version: 10.0.1
     js-yaml:
       specifier: ^5.5.0
       version: 5.5.0
@@ -671,7 +671,7 @@ importers:
         version: 10.15.0(jiti@2.7.0)(supports-color@8.1.1)
       js-tokens:
         specifier: catalog:prod
-        version: 10.0.0
+        version: 10.0.1
       less:
         specifier: catalog:dev
         version: 4.9.1(supports-color@8.1.1)
@@ -740,7 +740,7 @@ importers:
         version: 3.12.0
       cac:
         specifier: catalog:prod
-        version: 7.1.0
+        version: 7.1.1
       eta:
         specifier: catalog:prod
         version: 4.6.0
@@ -921,7 +921,7 @@ importers:
         version: 6.0.0
       find-file-icon:
         specifier: catalog:prod
-        version: 1.0.0
+        version: 1.1.0
       gray-matter:
         specifier: catalog:prod
         version: 4.0.3
@@ -1012,13 +1012,13 @@ importers:
         version: 15.0.0(vue@3.5.45(typescript@6.0.3))
       '@vueuse/integrations':
         specifier: catalog:prod
-        version: 15.0.0(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(change-case@5.4.4)(focus-trap@8.2.4)(qrcode@1.5.4)(vue@3.5.45(typescript@6.0.3))
+        version: 15.0.0(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(change-case@5.4.4)(focus-trap@8.2.6)(qrcode@1.5.4)(vue@3.5.45(typescript@6.0.3))
       chokidar:
         specifier: ^6.0.0
         version: 6.0.0
       focus-trap:
         specifier: catalog:prod
-        version: 8.2.4
+        version: 8.2.6
       mark.js:
         specifier: catalog:prod
         version: 8.11.1
@@ -1135,7 +1135,7 @@ importers:
         version: 15.0.0(vue@3.5.45(typescript@6.0.3))
       '@vueuse/integrations':
         specifier: catalog:prod
-        version: 15.0.0(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(change-case@5.4.4)(focus-trap@8.2.4)(qrcode@1.5.4)(vue@3.5.45(typescript@6.0.3))
+        version: 15.0.0(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(change-case@5.4.4)(focus-trap@8.2.6)(qrcode@1.5.4)(vue@3.5.45(typescript@6.0.3))
       chokidar:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1144,7 +1144,7 @@ importers:
         version: 1.11.23
       find-file-icon:
         specifier: catalog:prod
-        version: 1.0.0
+        version: 1.1.0
       gray-matter:
         specifier: catalog:prod
         version: 4.0.3
@@ -3647,8 +3647,8 @@ packages:
       '@75lb/nature':
         optional: true
 
-  cac@7.1.0:
-    resolution: {integrity: sha512-LMDU/U2yA4IPIY8KT0NsNPWEYZvAMkbgyspxJ6btJaYV+WMDOHAZCmB0lsTObiHaRS1V/ztKAl7+TSkTqXyeoA==}
+  cac@7.1.1:
+    resolution: {integrity: sha512-8zc+h51HxpodKsA7L4PpBNd+9qlrfuUcyUDE5a793BJfN4NZgwk7v9NmrY3ptZ+Sk0+ToigxSzkb47AsEgyizw==}
     engines: {node: '>=20.19.0'}
 
   cacheable@2.5.0:
@@ -4644,8 +4644,8 @@ packages:
   file-entry-cache@11.1.5:
     resolution: {integrity: sha512-+PFTHITI08JIGhnNpGNI8T8inUpgZfk3GNEqfT9R2zZV2iFXg3CvqzSl/uEhs7TSGujYRELEANyDvS8Fj7+S7Q==}
 
-  find-file-icon@1.0.0:
-    resolution: {integrity: sha512-a+a8qIo71WW0WOrQlvcVoRr4q7VFze2e71h9JnE1FgpYW+R+roGiPajm2eMZzYy3nqLsFUnlutUW1nHKfvtb4g==}
+  find-file-icon@1.1.0:
+    resolution: {integrity: sha512-XILLZnd9MoI9quC9ITN9fZFNqktEGfWJlBa8AQxUCYK1EksdhxWpTbn5ncjLXzoHzipk7Ms30prafAFrcZWdIQ==}
     engines: {node: '>=20.19.0'}
 
   find-index@0.1.1:
@@ -4688,8 +4688,8 @@ packages:
     resolution: {integrity: sha512-0xUOC4q8YsD7qZDo1P8SnOuB5daoMyqg5wUC55vGP7S04FO7jXarOa1Dll12MNqQDiiGxv1EKf/4x9D3FFOdpw==}
     engines: {node: '>=22'}
 
-  focus-trap@8.2.4:
-    resolution: {integrity: sha512-oy6dj7WZYgMbbpoOA29K5W++473F1zEzdI1oJgPb6x7yWT36YaWedUe6i6YPWEt5quSh0pRMohVyHLWXUxtdxg==}
+  focus-trap@8.2.6:
+    resolution: {integrity: sha512-4V7uTf/7Ax3ynfbey6K3o8NOfIz+go9atKNtFU+KCP5NWhyvn2M/Qk4HY+9kOi8NWujpglRGe0y6G3r/L5M/Pw==}
 
   follow-redirects@1.16.3:
     resolution: {integrity: sha512-toOSoqN6d51Wjf1aOFJYcoVv1aND9rj/CwjLU0Vz40oDuSpWDayCeKe4JpL5NL0WdFvoOOCI3BRo69HahjbR1A==}
@@ -5200,8 +5200,8 @@ packages:
     resolution: {integrity: sha512-iUivApKYw5GpZmq2Sy6El99j7noo8QSUFZlyQtr3HCkosC/b5wKF6/Y3teiHIlaM8WI38sAT3P+51rB0lhAhJA==}
     engines: {node: '>= 20'}
 
-  js-tokens@10.0.0:
-    resolution: {integrity: sha512-lM/UBzQmfJRo9ABXbPWemivdCW8V2G8FHaHdypQaIy523snUjog0W71ayWXTjiR+ixeMyVHN2XcpnTd/liPg/Q==}
+  js-tokens@10.0.1:
+    resolution: {integrity: sha512-XMt+uh+yEs6srFvEb/pEe4IMvbtoXVdNxF7lZFU+I9sdWI641L97L+gXQMTGm1x3RjPUVizNVjHueclXr0U7sw==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -6748,8 +6748,8 @@ packages:
     resolution: {integrity: sha512-U+/AXT6LWsxnj2vz9HeUuPWBNgdWxjyIEjEPdbJARC9txmgPzo2VEdqnFo4hHaNyMPtycyVJrSaQYeQv/PoyyA==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  tabbable@6.5.1:
-    resolution: {integrity: sha512-dMCuwDUY6Noz3zVKLefBC4wq+aJV20yc7vWmM7uTNGwtQSFF5kX7OUIUsxuVajz/bdt5Xqdah3/0NLjth+cM5A==}
+  tabbable@6.5.2:
+    resolution: {integrity: sha512-XgdnB1nGU6KU4VgMnZPaZCx7M1hBrLyEiZYau2G2gq9UT0d7d4FUBlNX7vvPlm/B1vk1PjrzJBx9Lbv4fsqS9g==}
 
   tapable@2.3.4:
     resolution: {integrity: sha512-NHFiWnAbMJxNNpBwiO7jJVGDuqMxT9/oV8v57RR+fgBQShkJil5inGD8/xWy0hjLyHQyX1tu27QANhlz3KBqCg==}
@@ -9352,7 +9352,7 @@ snapshots:
       '@vuepress/core': 2.0.0-rc.32(@vue/compiler-sfc@3.5.45)(rolldown@1.3.2)(supports-color@8.1.1)(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.108.2)(sass@1.108.2)(stylus@0.64.0(supports-color@8.1.1))(yaml@2.9.1))
       '@vuepress/shared': 2.0.0-rc.32
       '@vuepress/utils': 2.0.0-rc.32(supports-color@8.1.1)
-      cac: 7.1.0
+      cac: 7.1.1
       chokidar: 6.0.0
       envinfo: 7.21.0
       rolldown: 1.3.2
@@ -9789,7 +9789,7 @@ snapshots:
       '@vueuse/shared': 15.0.0(vue@3.5.45(typescript@6.0.3))
       vue: 3.5.45(typescript@6.0.3)
 
-  '@vueuse/integrations@15.0.0(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(change-case@5.4.4)(focus-trap@8.2.4)(qrcode@1.5.4)(vue@3.5.45(typescript@6.0.3))':
+  '@vueuse/integrations@15.0.0(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(change-case@5.4.4)(focus-trap@8.2.6)(qrcode@1.5.4)(vue@3.5.45(typescript@6.0.3))':
     dependencies:
       '@vueuse/core': 15.0.0(vue@3.5.45(typescript@6.0.3))
       '@vueuse/shared': 15.0.0(vue@3.5.45(typescript@6.0.3))
@@ -9797,7 +9797,7 @@ snapshots:
     optionalDependencies:
       axios: 1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       change-case: 5.4.4
-      focus-trap: 8.2.4
+      focus-trap: 8.2.6
       qrcode: 1.5.4
 
   '@vueuse/metadata@15.0.0': {}
@@ -9943,7 +9943,7 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       estree-walker: 3.0.3
-      js-tokens: 10.0.0
+      js-tokens: 10.0.1
 
   ast-walker-scope@0.10.0:
     dependencies:
@@ -10015,7 +10015,7 @@ snapshots:
   bumpp@12.3.0:
     dependencies:
       args-tokenizer: 0.3.0
-      cac: 7.1.0
+      cac: 7.1.1
       jsonc-parser: 3.3.1
       package-manager-detector: 1.9.0
       tinyexec: 1.3.1
@@ -10026,7 +10026,7 @@ snapshots:
 
   byte-size@9.0.2: {}
 
-  cac@7.1.0: {}
+  cac@7.1.1: {}
 
   cacheable@2.5.0:
     dependencies:
@@ -11178,7 +11178,7 @@ snapshots:
     dependencies:
       flat-cache: 6.1.23
 
-  find-file-icon@1.0.0: {}
+  find-file-icon@1.1.0: {}
 
   find-index@0.1.1: {}
 
@@ -11215,9 +11215,9 @@ snapshots:
 
   flowchart.ts@4.0.0: {}
 
-  focus-trap@8.2.4:
+  focus-trap@8.2.6:
     dependencies:
-      tabbable: 6.5.1
+      tabbable: 6.5.2
 
   follow-redirects@1.16.3(debug@4.4.3(supports-color@8.1.1)):
     optionalDependencies:
@@ -11769,7 +11769,7 @@ snapshots:
       '@hapi/topo': 6.0.2
       '@standard-schema/spec': 1.1.0
 
-  js-tokens@10.0.0: {}
+  js-tokens@10.0.1: {}
 
   js-tokens@4.0.0: {}
 
@@ -13661,7 +13661,7 @@ snapshots:
       '@dual-bundle/import-meta-resolve': 4.2.1
       '@pkgr/core': 0.3.6
 
-  tabbable@6.5.1: {}
+  tabbable@6.5.2: {}
 
   tapable@2.3.4: {}
 
@@ -13669,7 +13669,7 @@ snapshots:
     dependencies:
       '@antfu/ni': 30.6.0
       '@henrygd/queue': 1.2.0
-      cac: 7.1.0
+      cac: 7.1.1
       obug: 3.0.0
       ofetch: 1.5.1
       package-manager-detector: 1.9.0
@@ -13738,7 +13738,7 @@ snapshots:
 
   tsdown@0.23.7(@vue/language-core@3.3.14)(typescript@6.0.3)(unrun@0.3.1(synckit@0.11.13)):
     dependencies:
-      cac: 7.1.0
+      cac: 7.1.1
       defu: 6.1.7
       empathic: 2.1.0
       hookable: 6.1.2

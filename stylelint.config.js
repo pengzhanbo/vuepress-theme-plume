@@ -1,3 +1,5 @@
+// @ts-check
+
 import { stylelintConfig } from '@pengzhanbo/stylelint-config'
 
 export default stylelintConfig({

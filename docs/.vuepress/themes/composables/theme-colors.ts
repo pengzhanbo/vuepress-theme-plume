@@ -3,8 +3,6 @@ import { useSessionStorage, useStyleTag } from '@vueuse/core'
 import { inject, provide, watch } from 'vue'
 import { createSymbol } from 'vuepress-theme-plume/client'
 
-declare const __VUEPRESS_DEV__: boolean
-
 export interface ThemeColor {
   name: string
   key: string

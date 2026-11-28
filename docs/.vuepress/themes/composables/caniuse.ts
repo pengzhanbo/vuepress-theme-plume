@@ -101,7 +101,7 @@ export function useCaniuseFeaturesSearch(
     if (features.value.length && Date.now() - featuresUpdated.value < maxAge)
       return
     const data = await fetch(api).then(res => res.json())
-    features.value = data || features.value || []
+    features.value = data.map(([label, value]) => ({ label, value })) || features.value || []
   })
 
   const input = ref('')

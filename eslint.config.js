@@ -1,3 +1,5 @@
+// @ts-check
+
 import config from '@pengzhanbo/eslint-config-vue'
 
 export default config({
@@ -14,55 +16,51 @@ export default config({
     'docs/en/guide/markdown/v-obsidian.md',
     'docs/guide/markdown/v-obsidian.md',
   ],
-  globals: {
-    __VUEPRESS_VERSION__: 'readonly',
-    __VUEPRESS_BASE__: 'readonly',
-    __VUEPRESS_DEV__: 'readonly',
-    __VUEPRESS_SSR__: 'readonly',
-    __VUE_HMR_RUNTIME__: 'readonly',
-    __VUE_OPTIONS_API__: 'readonly',
-    __VUE_PROD_DEVTOOLS__: 'readonly',
+}, [
+  {
+    files: ['**/*.vue'],
+    rules: {
+      'vue/no-v-text-v-html-on-component': 'off',
+    },
   },
-}, {
-  files: ['**/*.vue'],
-  rules: {
-    'vue/no-v-text-v-html-on-component': 'off',
+  {
+    files: ['**/*.md/*.{js,ts}'],
+    rules: {
+      'import/no-duplicates': 'off',
+      'import/first': 'off',
+      'no-new': 'off',
+      'eslint-comments/no-unlimited-disable': 'off',
+      'antfu/no-top-level-await': 'off',
+    },
   },
-}, {
-  files: ['**/*.md/*.{js,ts}'],
-  rules: {
-    'import/no-duplicates': 'off',
-    'import/first': 'off',
-    'no-new': 'off',
-    'eslint-comments/no-unlimited-disable': 'off',
-    'antfu/no-top-level-await': 'off',
+  {
+    files: [
+      'docs/blog/1.示例/markdown基础.md',
+      'docs/blog/4.教程/frontmatter.md',
+      'docs/en/guide/markdown/v-basic.md',
+      'docs/en/guide/chart/plantuml.md',
+      'docs/en/blog/4.Tutorials/frontmatter.md',
+      'docs/en/guide/markdown/v-env.md',
+      'docs/guide/chart/plantuml.md',
+      'docs/guide/markdown/v-annotation.md',
+      'docs/guide/markdown/v-basic.md',
+      'docs/guide/markdown/v-env.md',
+    ].map(file => [file, `${file}/*.md`]).flat(),
+    rules: {
+      'markdown/no-unused-definitions': 'off',
+      'markdown/no-duplicate-definitions': 'off',
+      'markdown/no-multiple-h1': 'off',
+      'markdown/no-space-in-emphasis': 'off',
+      'markdown/no-missing-atx-heading-space': 'off',
+    },
   },
-}, {
-  files: [
-    'docs/blog/1.示例/markdown基础.md',
-    'docs/blog/4.教程/frontmatter.md',
-    'docs/en/guide/markdown/v-basic.md',
-    'docs/en/guide/chart/plantuml.md',
-    'docs/en/blog/4.Tutorials/frontmatter.md',
-    'docs/en/guide/markdown/v-env.md',
-    'docs/guide/chart/plantuml.md',
-    'docs/guide/markdown/v-annotation.md',
-    'docs/guide/markdown/v-basic.md',
-    'docs/guide/markdown/v-env.md',
-  ].map(file => [file, `${file}/*.md`]).flat(),
-  rules: {
-    'markdown/no-unused-definitions': 'off',
-    'markdown/no-duplicate-definitions': 'off',
-    'markdown/no-multiple-h1': 'off',
-    'markdown/no-space-in-emphasis': 'off',
-    'markdown/no-missing-atx-heading-space': 'off',
+  {
+    files: [
+      'commitlint.config.js',
+      'scripts/mirror-sync.mjs',
+    ],
+    rules: {
+      'unused-imports/no-unused-vars': 'off',
+    },
   },
-}, {
-  files: [
-    'commitlint.config.js',
-    'scripts/mirror-sync.mjs',
-  ],
-  rules: {
-    'unused-imports/no-unused-vars': 'off',
-  },
-})
+])
